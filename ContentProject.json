@@ -1,0 +1,13 @@
+{ 
+  "contentRoots": [ 
+    "Content"
+  ], 
+
+  "Metadata": { 
+    "\\": { 
+      "ms.locale ": "en-us",
+      "ms.version": "office",
+      "Robots": "index, follow"
+    }
+  } 
+} 
