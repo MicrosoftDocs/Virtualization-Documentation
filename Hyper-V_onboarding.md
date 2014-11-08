@@ -1,7 +1,7 @@
 This guide was written by Cynthia Nottingham and Sarah Cooley. Please let us know if you run into any issues or the steps aren't clear.
 
 ## Install Git ##
-1. Install Git for Windows: [http://git-scm.com/download/win](http://git-scm.com/download/win "http://git-scm.com/download/win")
+Install Git for Windows: [http://git-scm.com/download/win](http://git-scm.com/download/win "http://git-scm.com/download/win")
 - Gitbash is the command-line app that you will use to interact with your local Git repository
 - Git GUI is an app used to create and clone Git repositories.
 - Accept all default settings
@@ -21,7 +21,7 @@ When you use GitBash you will occasionally be asked to enter your username and p
 1. Back in VS Online, on the right part of the page, click **Clone** and copy the address for cloning into your clipboard. Is should be: https://mseng.visualstudio.com/DefaultCollection/Documentation/_git/HyperV
 2. Open GitBash
 type **cd *path*** where *path* is where you want the files to be stored. For example: **cd c:\GIT**
-3. Then type: git clone https://mseng.visualstudio.com/DefaultCollection/Documentation/_git/HyperV
+3. Then type: **git clone https://mseng.visualstudio.com/DefaultCollection/Documentation/_git/HyperV**
 4. Type: **cd hyperv**. This puts you in the master branch.
 5. Leave GitBash open for now. We will come back to it later.
 
@@ -38,8 +38,8 @@ There are lots of options for creating markdown. You just need a text editor lik
 
 ## Add your file to Git ##
 
-1. Go back to GitBash and type: **git add *alias*.md**. For example: **git add cynthn.md**. This adds or updates your files in the local "index". This is how Git tracks your files.
-2. Type: **git commit -am "Testing adding my files to master"**. This is how you tell Git that you have made a change to a file and prepare it for being pushed back to the master shared repository (origin).
+1. Go back to GitBash and type: **git add *alias*.md**. For example: **git add cynthn.md**. This adds or updates your files in the local "index". This is how Git tracks your files. FYI: Tab complete works in GitBash, so you can start typing the name of the file and hit **Tab** to have it auto-complete the file name.
+2. Type: **git commit -am "Testing adding my files to master"**. This is how you tell Git that you have made a change to a file and prepare it for being pushed back to the master shared repository (origin). The information in quotes is used as a check-in remark.
 3. Type: **git push**. This pushes your changes to the master copy in the shared repository (origin).
 4. Go back to VS online and see if your files is listed there now: [https://mseng.visualstudio.com/DefaultCollection/Documentation/_git/HyperV#path=%2F&version=GBmaster&_a=contents](https://mseng.visualstudio.com/DefaultCollection/Documentation/_git/HyperV#path=%2F&version=GBmaster&_a=contents "https://mseng.visualstudio.com/DefaultCollection/Documentation/_git/HyperV#path=%2F&version=GBmaster&_a=contents"). You should see your new file and the comment that you put in when yo did the commit.
 
@@ -65,6 +65,7 @@ You have to do all three steps before your files are available for everyone else
 - T​his StackOverflow thread contains a glossary of Git terms such as repo, branch, fork, etc.: [http://stackoverflow.com/questions/7076164/terminology-used-by-git](http://stackoverflow.com/questions/7076164/terminology-used-by-git "http://stackoverflow.com/questions/7076164/terminology-used-by-git")
 - Markdown cheat sheet: [https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet "https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet")​​
 - Powerpoint presentation about onboarding done by DevDiv (not step-by-step but an okay resource): [https://microsoft.sharepoint.com/teams/DD_VSCS/dcs/_layouts/15/WopiFrame.aspx?sourcedoc={BF244921-4CC7-480F-AD99-A321BC283F17}&file=ADS%20Onboarding.pptx&action=default](https://microsoft.sharepoint.com/teams/DD_VSCS/dcs/_layouts/15/WopiFrame.aspx?sourcedoc={BF244921-4CC7-480F-AD99-A321BC283F17}&file=ADS%20Onboarding.pptx&action=default "ADS Onboarding Presentation")
+- Pandoc for converting between markdown and other formats: [http://johnmacfarlane.net/pandoc/](http://johnmacfarlane.net/pandoc/ "http://johnmacfarlane.net/pandoc/")
 
 
 ## Publish ##
