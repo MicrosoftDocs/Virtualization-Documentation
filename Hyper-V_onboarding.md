@@ -1,4 +1,4 @@
-# TEST #
+This guide was written by Cynthia Nottingham and Sarah Cooley. Please let us know if you run into any issues or the steps aren't clear.
 
 ## Install ALL THE things! ##
 Install GIT for Windows: [http://git-scm.com/download/win](http://git-scm.com/download/win "http://git-scm.com/download/win")
