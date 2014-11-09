@@ -9,7 +9,7 @@ Install Git for Windows: [http://git-scm.com/download/win](http://git-scm.com/do
 Optional: To use GIT at a Powershell prompt, download this: [http://msysgit.github.io/](http://msysgit.github.io/ "http://msysgit.github.io/") and to use Git from VS, install the VS extensions: [https://visualstudiogallery.msdn.microsoft.com/8f594baa-e44e-4114-8381-e175ace0fe97](https://visualstudiogallery.msdn.microsoft.com/8f594baa-e44e-4114-8381-e175ace0fe97 "https://visualstudiogallery.msdn.microsoft.com/8f594baa-e44e-4114-8381-e175ace0fe97")
 
 ## Enable Alternate Credentials ##
-1. Go to the repository in VS Online: [https://mseng.visualstudio.com/DefaultCollection/Documentation/_git/HyperV](https://mseng.visualstudio.com/DefaultCollection/Documentation/_git/HyperV "https://mseng.visualstudio.com/DefaultCollection/Documentation/_git/HyperV")
+1. Go to the repository in VS Online: [https://mseng.visualstudio.com/DefaultCollection/Documentation/_git/HyperV#path=%2F&version=GBmaster&_a=contents](https://mseng.visualstudio.com/DefaultCollection/Documentation/_git/HyperV#path=%2F&version=GBmaster&_a=contents "https://mseng.visualstudio.com/DefaultCollection/Documentation/_git/HyperV#path=%2F&version=GBmaster&_a=contents")
 2. On the upper right, click your name and then click **My profile**.  
 3. In your profile details, click **Credentials**.
 4. Check that the e-mail address is correct and then put in the password for your account and click **Save Changes**.
