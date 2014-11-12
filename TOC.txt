@@ -1,3 +1,2 @@
-﻿*		"Oerview"						visualstudio.com	integrate/get-started		oa-toc-container
-**		"Hello World"								visualstudio.com	integrate/get-started		oa-toc-container								
-***		"Task Reference for Windows Powershell"						visualstudio.com	integrate/get-started		get-started-rest-basics-vsi							integration/vso/getstarted.md
+﻿***	"Hyper-V Onboarding"	visualstudio.com	integrate/reference	get-started-rest-basics-vsi	hyper-v_onboarding.md
+***	"Hello World"	visualstudio.com	integrate/reference	get-started-rest-basics-vsi	Hello_World.md
