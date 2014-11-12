@@ -6,7 +6,7 @@ Folder Structure:
 ** pages        most markdown files live here!  This is where all published pages with content related to containers will live.
 ** media        refrenced images, videos, and other embedded media.
 ** codeSnippits sample code, scripts, etc.
-**        DO NOT TOUCH THIS!  This is where shared headers and decoration goes for generating the documentation in HTML.
+** forRobots    DO NOT TOUCH THIS!  This is where shared headers and decoration goes for generating the documentation in HTML.
 ** sandbox      use this as your sandbox for previewing content, seeing how git works, storing half baked ideas, making folders, whatever you want to do.
 
 
