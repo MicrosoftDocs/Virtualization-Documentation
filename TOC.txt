@@ -1,2 +1,7 @@
-﻿***	"Hyper-V Onboarding"	visualstudio.com	integrate/reference	get-started-rest-basics-vsi	hyper-v_onboarding.md
-***	"Hello World"	visualstudio.com	integrate/reference	get-started-rest-basics-vsi	Hello_World.md
+
+***	"Hyper-V Onboarding"	visualstudio.com	integrate/reference	onboarding	hyper-v_onboarding.md
+
+
+***	"Hello World"	visualstudio.com	integrate/reference	hello_world	sandbox/Hello_World.md
+***	"Release Notes"	visualstudio.com	integrate/reference	relnotes	relnotes.md
+
