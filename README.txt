@@ -9,7 +9,6 @@ Folder Structure:
 **        DO NOT TOUCH THIS!  This is where shared headers and decoration goes for generating the documentation in HTML.
 ** sandbox      use this as your sandbox for previewing content, seeing how git works, storing half baked ideas, making folders, whatever you want to do.
 
-Please don't change the folder structure here unless you're in sandbox!
 
 Helpful guides for getting started:
 overview.md     The content that should be here eventually
