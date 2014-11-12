@@ -1,8 +1,18 @@
-**Note:** Your file needs to be listed in toc.txt in order to work in the local preview. If you need help adding your file, let Sarah or Cynthia know!
+Title: Local Preview
+Description: This topic contains important information that you should read or there is no hope that you will get local preview working.
+Custom-keywords: local preview
 
-The VS version of the instructions are here: http://devdocs/Learn/LocalPreview. They have nice screenshots which might be helpful, but the instructions aren't complete. 
 
-##Connect to and clone the Preview Project ##
+
+
+
+
+## Note ##
+- Your file needs to be listed in toc.txt in order to work in the local preview. If you need help adding your file, let Sarah or Cynthia know!
+
+- The VS version of the instructions are here: http://devdocs/Learn/LocalPreview. They have nice screenshots which might be helpful, but the instructions aren't complete. 
+
+## Connect to and clone the Preview Project ##
 1. Open **Visual Studio 2013** as an administrator. 
 2. On the right pane, click on the **Team Explorer** tab
 3. Click **Select Team Projects**. The **Connect to Team Foundation Servers** dialog appears. 
