@@ -3,9 +3,11 @@ TODO:
 Make a weekly meeting for following up on stuff/triage md
 
 Laundry list of a few things we need:
-* Simple folder structure.
+* A name for the project :)
 * A few basic content type templates.
 * Buckets for our content:  reference, Examples, Articles, Installation, user Guide
 * A name for the iroot
 * A grid, OneNote, .MD file, etc., to track an overall content plan and assignments.
 * Key milestones and dates, schedule?
+
+* Talk to Hari about disclosure

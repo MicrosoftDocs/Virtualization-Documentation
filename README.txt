@@ -12,8 +12,8 @@ Folder Structure:
 Please don't change the folder structure here unless you're in sandbox!
 
 Helpful guides for getting started:
-overview.md
-onboarding.md
+overview.md     The content that should be here eventually
+onboarding.md   Getting started guide
                 
 Living Documents:
 QA              Is something unclear?  I'm documenting questions and answers here.  I'll update all of the READMEs when appropriate.
