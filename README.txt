@@ -3,9 +3,12 @@ Welcome to our Windows Container documentation experiment!
 Right now, you're probably wondering where to put your content.
 
 Folder Structure:
-** pages        most markdown files live here!  This is where all published pages with content related to containers will live.
+** about        About windows containers and otheruseful informational stuff
+** installation How to get this running
+** userguide    Quick start and managing/working with containers
+** reference    APIs and topical reference information
+** community    Forum link, feedback tools
 ** media        refrenced images, videos, and other embedded media.
-** codeSnippits sample code, scripts, etc.
 ** forRobots    DO NOT TOUCH THIS!  This is where shared headers and decoration goes for generating the documentation in HTML.
 ** sandbox      use this as your sandbox for previewing content, seeing how git works, storing half baked ideas, making folders, whatever you want to do.
 Note: Do not put spaces in your file/folder names :)
