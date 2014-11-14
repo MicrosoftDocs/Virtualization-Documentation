@@ -5,6 +5,7 @@ Custom-keywords: local preview
 
 ## Note ##
 - Your file needs to be listed in toc.txt in order to work in the local preview. If you need help adding your file, let Sarah or Cynthia know!
+- Right now all of the files have to be in one folder (local preview doesn't see subfolders of a repo) so you need to either copy everything in your main repo folder (HyperV) or copy all of the files to another folder and use that folder path when you edit app.config later in this topic. This will be fixed at some point in the future.
 
 - The VS version of the instructions are here: http://devdocs/Learn/LocalPreview. They have nice screenshots which might be helpful, but the instructions aren't complete. 
 
@@ -36,8 +37,9 @@ In GitBash, got to your local hyperV repo and then type: **git branch RenderingP
 **Note:** If you *do* get build errors, try right-clicking on the **Microsoft.DCS.rendering.MiddleTier.UnitTests** and select **Unload Project**. Then click on the **Build** menu and select **Clean Solution** and when that is done, click on the **Build** menu and choose **Build Solution**. 
 
 ## Run the preview ##
-1. Click **Start** to run the solution. A command prompt will launch and give you the path to the local host, which is typically http://localhost:8777. The cmd prompt needs to remain open while you are previewing files.
-2. Open a Chrome (sorry, I've not had any luck with IE) and navigate to http://localhost:8777. This is a default page that uses toc.txt to give you links to the files listed in the TOC. Scroll down and click on one of the links in the list to see the local preview.
+1. Click **Start** to run the solution. A command prompt will launch and give you the path to the local host, which is typically localhost:8777. The cmd prompt needs to remain open while you are previewing files.
+2. Open a browser and navigate to http://localhost:8777. This is a default page that uses toc.txt to give you links to the files listed in the TOC. Scroll down and click on one of the links in the list to see the local preview.
+
 
 
 **If it works, do a happy little dance!**
