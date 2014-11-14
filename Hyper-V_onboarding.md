@@ -56,6 +56,8 @@ You have to do all three steps before your files are available for everyone else
 2. **git commit -am "My reasoning for sharing these changes"**
 3. **git push**
 
+## Local Preview ##
+This is a work in progress: [local_preview](local_preview)
 
 ## Learn more ##
 
@@ -71,5 +73,22 @@ You have to do all three steps before your files are available for everyone else
 ## Publish ##
 How to manually promote content to staging: [http://devdocs/Learn/ManualTrigger](http://devdocs/Learn/ManualTrigger "http://devdocs/Learn/ManualTrigger") 
 
+# Warning - inserting images in MarkdownPad #
+ **Do Not let MarkdownPad upload your images!!!** When you add an image in MarkdownPad, there is a button to **Browse and Upload** which actually uploads the image to imgur.com - which is really bad if it is super secret stuff.
+
+# Troubleshooting and other helpful stuff
+
+When all else fails, check here.
+
+## Markdown - special characters ##
+Markdown validation trips over special characters like alligators (<>) and quotes ("). Where you need to use special characters (file paths etc) you can mark the text as “code” in MarkdownPad or surround it with “back ticks” which are specific single quotes - **`** - this is the mark that is probably on the same key as **~** . 
+
+You have to use 3 whacks to get 2 to show – so to get a path like `\\myfile` to show correctly, you need to use `\\\myfile` in markdown.
 
 
+## MarkdownPad - Live Preview##
+If you have troubles with Live Preview in MarkdownPad (it displays an error message stating: **This view has crashed!** and no HTML is displayed).
+
+To fix this issue, please try installing the [Awesomium 1.6.6 SDK](http://markdownpad.com/download/awesomium_v1.6.6_sdk_win.exe).
+
+If you continue to experience issues, please install [Microsoft's DirectX End-User Runtimes (June 2010)](http://www.microsoft.com/en-us/download/details.aspx?id=8109).
