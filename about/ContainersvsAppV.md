@@ -1,3 +1,5 @@
+ms.ContentId: A571D01D-FF87-4158-A97E-D528A6C5DBA0
+
 # Containers vs. App-V
 
 A common question is "How do containers compare to App-V?  When should I use one, when should I use the other?"
@@ -33,3 +35,4 @@ Containers helps developers build and ship higher-quality applications, faster.
 Systems administrators can use containers to provide standardized environments for their development, QA, and production teams, reducing “works on my machine” finger-pointing. By using containers  systems administrators abstract away differences in OS installations and underlying infrastructure. 
 
 Containers helps systems administrators deploy and run any app on any infrastructure, quickly and reliably. 
+

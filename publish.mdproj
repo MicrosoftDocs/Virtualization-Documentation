@@ -1,0 +1,91 @@
+<Project 
+    DefaultTargets="Publish"
+    ToolsVersion="4.0"
+    xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <PropertyGroup>
+    <BuildTaskPackage>OpenAuthoringPublishingBuild</BuildTaskPackage>
+    <ToolsFolder>$(MSBuildThisFileDirectory)Tools\</ToolsFolder>    
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <PackageInstalled>True</PackageInstalled>
+    <PackageInstalled Condition="EXISTS('$(PackageRootFolder)build\net451\OpenAuthoringPublishing.props') != 'True'">False</PackageInstalled>
+    <PackageInstalled Condition="EXISTS('$(PackageRootFolder)build\net451\OpenAuthoringPublishing.mdproj') != 'True'">False</PackageInstalled>
+  </PropertyGroup>
+  
+  <PropertyGroup>
+    <NuGetSourceArgument Condition="$(NuGetPackageDirectory) == ''"></NuGetSourceArgument>
+    <NuGetSourceArgument Condition="$(NuGetPackageDirectory) != ''">-Source &quot;https://www.nuget.org/api/v2/&quot; -Source &quot;$(NuGetPackageDirectory)&quot;</NuGetSourceArgument>
+  </PropertyGroup>
+
+  <!-- nuget Restore Target-->
+  <Target Name="RestorePackages">
+
+    <!-- There are three files manually needed to publish a content repository. This -->
+    <!-- file, packages.config, and nuget.exe. The rest can be boot strapped by the build process. -->
+    <Error Condition="EXISTS('$(MSBuildThisFileDirectory)packages.config') != 'True'" Text="packages.config was not found at the expected location: $(MSBuildThisFileDirectory)." />
+    <Error Condition="EXISTS('$(ToolsFolder)NuGet\NuGet.exe') != 'True'" Text="Nuget.exe was not found at the expected location: $(ToolsFolder)NuGet." />
+    
+    <!-- Use NuGet to pull down any packages -->
+    <Exec Command="&quot;$(ToolsFolder)NuGet\NuGet.exe&quot; restore &quot;$(MSBuildThisFileDirectory)\packages.config&quot; -PackagesDirectory &quot;$(MSBuildThisFileDirectory)\packages&quot; $(NuGetSourceArgument)"
+          Condition="$(PackageInstalled) != 'True'"/>
+
+    <!-- Get installed packgage version -->
+    <XmlPeek
+        XmlInputPath=".\packages.config"
+        Query="//package[@id='$(BuildTaskPackage)']/@version">
+
+      <Output
+          TaskParameter="Result"
+          ItemName="PackageVersion" />
+
+    </XmlPeek>
+
+    <CreateProperty
+        Value="@(PackageVersion)">
+
+      <Output
+          TaskParameter="Value"
+          PropertyName="PackageVersion" />
+
+    </CreateProperty>
+
+    <PropertyGroup>
+      <BuildTaskNugetPackageFolderName>$(BuildTaskPackage).$(PackageVersion)</BuildTaskNugetPackageFolderName>
+      <PackageRootFolder>$(MSBuildThisFileDirectory)packages\$(BuildTaskNugetPackageFolderName)\</PackageRootFolder>
+    </PropertyGroup>
+
+  </Target>
+
+  <!-- Build Target -->
+  <Target 
+      Name="Build"
+      DependsOnTargets="RestorePackages">
+
+    <MSBuild 
+        Targets="Build" 
+        Projects="$(PackageRootFolder)build\net451\OpenAuthoringPublishing.mdproj" />
+
+  </Target>
+
+  <Target 
+      Name="Clean"
+      DependsOnTargets="RestorePackages">
+
+    <MSBuild 
+        Targets="Clean" 
+        Projects="$(PackageRootFolder)build\net451\OpenAuthoringPublishing.mdproj" />
+
+  </Target>
+
+  <Target 
+      Name="Rebuild"
+      DependsOnTargets="RestorePackages">
+
+    <MSBuild 
+        Targets="Rebuild" 
+        Projects="$(PackageRootFolder)build\net451\OpenAuthoringPublishing.mdproj" />
+  </Target>
+
+</Project>

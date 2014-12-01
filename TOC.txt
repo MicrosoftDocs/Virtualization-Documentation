@@ -1,14 +1,13 @@
 
-*	"Windows Server Containers"		visualstudio.com	integrate/reference	overview		WindowsServerContainers.md
-** 	"Container Life Cycle"		visualstudio.com	integrate/reference	container_life_cycle	ContainerLifeCycle.md 
-**	"When to use Containers, When to use Virtual Machines"	 visualstudio.com		integrate/reference		Containers_vs_VMs	Containers_vs_VMs.md
-**	"Containers vs. App-V" 	visualstudio.com	integrate/reference	containers_vs_AppV		ContainersvsAppV.md
-**	"About"	visualstudio.com	integrate/reference	about	about.md
-**	"Installation"	visualstudio.com	integrate/reference	installation	installation.md
-**	"User Guide"	visualstudio.com	integrate/reference	user_guide	user_guide.md
-**	"Reference"		visualstudio.com	integrate/reference	reference	reference.md
-**	"Community"		visualstudio.com	integrate/reference	community	community.md
-
-**	"Release Notes"				visualstudio.com	integrate/reference	relnotes				relnotes.md
-**	"Hyper-V Onboarding"	visualstudio.com	integrate/reference	onboarding				hyper-v_onboarding.md
-**	"Local Preview"			visualstudio.com	integrate/reference	local_preview			local_preview.md
+*	"Windows Server Containers"		msdn.microsoft.com	/windowsContainers/howto	overview		about/WindowsServerContainers.md
+** 	"Container Life Cycle"		msdn.microsoft.com	/windowsContainers/howto	container_life_cycle	about/ContainerLifeCycle.md 
+**	"When to use Containers, When to use Virtual Machines"	 msdn.microsoft.com		/windowsContainers/howto		Containers_vs_VMs	about/Containers_vs_VMs.md
+**	"Containers vs. App-V" 	msdn.microsoft.com	/windowsContainers/howto	containers_vs_AppV		about/ContainersvsAppV.md
+**	"About"	msdn.microsoft.com	/windowsContainers/howto	about	about.md
+**	"Installation"	msdn.microsoft.com	/windowsContainers/howto	installation	installation.md
+**	"User Guide"	msdn.microsoft.com	/windowsContainers/howto	user_guide	user_guide.md
+**	"Reference"		msdn.microsoft.com	/windowsContainers/howto	reference	reference.md
+**	"Community"		msdn.microsoft.com	/windowsContainers/howto	community	community.md
+**	"Release Notes"				msdn.microsoft.com	/windowsContainers/howto	relnotes				relnotes.md
+**	"Hyper-V Onboarding"	msdn.microsoft.com	/windowsContainers/howto	onboarding				hyper-v_onboarding.md
+**	"Local Preview"			msdn.microsoft.com	/windowsContainers/howto	local_preview			local_preview.md

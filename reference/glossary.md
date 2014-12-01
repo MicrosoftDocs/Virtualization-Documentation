@@ -1,3 +1,4 @@
+ms.ContentId: 942C3A02-F028-4DBE-913A-CD46B24ED6A3
  
 
 **Argon** 
@@ -18,6 +19,7 @@ An AppX package containing an application and its associated metadata
 
 **Xenon Package Store **
 A directory on a host that contains packages and metadata. 
+
 
 
 
