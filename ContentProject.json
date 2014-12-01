@@ -1,4 +1,4 @@
-{ 
+﻿{ 
   "contentRoots": [ 
     "Content"
   ], 
@@ -6,7 +6,7 @@
   "Metadata": { 
     "\\": { 
       "ms.locale ": "en-us",
-      "ms.version": "office",
+      "ms.version": "HyperV",
       "Robots": "index, follow"
     }
   } 
