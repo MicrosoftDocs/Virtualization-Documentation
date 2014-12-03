@@ -1,4 +1,5 @@
-This guide was written by Cynthia Nottingham and Sarah Cooley. Please let us know if you run into any issues or the steps aren't clear.
+ms.ContentId: 96168C3C-3DB5-4274-AC2C-0F9AE2E1FD15
+disclaimer: This guide was written by Cynthia Nottingham and Sarah Cooley. Please let us know if you run into any issues or the steps aren't clear.
 
 ## Install Git ##
 Install Git for Windows: [http://git-scm.com/download/win](http://git-scm.com/download/win "http://git-scm.com/download/win")
@@ -9,26 +10,6 @@ Install Git for Windows: [http://git-scm.com/download/win](http://git-scm.com/do
 Optional: To use GIT at a Powershell prompt, download this: [http://msysgit.github.io/](http://msysgit.github.io/ "http://msysgit.github.io/") and to use Git from VS, install the VS extensions: [https://visualstudiogallery.msdn.microsoft.com/8f594baa-e44e-4114-8381-e175ace0fe97](https://visualstudiogallery.msdn.microsoft.com/8f594baa-e44e-4114-8381-e175ace0fe97 "https://visualstudiogallery.msdn.microsoft.com/8f594baa-e44e-4114-8381-e175ace0fe97")
 
 ## Enable Alternate Credentials ##
-
-**New instructions:**
-They are disabling alternate credentials for https://microsoft.visualstudio.com in preparation for our move of HBI code to Visual Studio Online. The current plan is to disable them by Monday 11/24 at 10AM. The solutions below provide a more secure alternative. If you have questions you can contact (evera) directly.
- 
-
-If you are testing/using SD/SDX/RAZZLE or installed your Git tools through http://jumpstart...
-You won’t even notice that the change happened 
- 
-If you are using git.exe on Windows…
-1.     Run the following command elevated \\gitdrops\ProjectJ\drops\git-remote-no-proxy\install.cmd
-2.     Run the following command on your Git repo git config --global url.mshttps://microsoft.visualstudio.com/.insteadof https://microsoft.visualstudio.com/
- 
-If you are using git.exe on OSX or Linux…
-1.     Follow the steps at Installation (Ubuntu)  (Web view) or Installation (Mac)  (Web view)
- 
-If you are using the VSO REST APIs & TFS Libraries…
-1.     Follow the steps at VSO/TFS API Auth  (Web view)
-
-
-
 1. Go to the repository in VS Online: [https://mseng.visualstudio.com/DefaultCollection/Documentation/_git/HyperV#path=%2F&version=GBmaster&_a=contents](https://mseng.visualstudio.com/DefaultCollection/Documentation/_git/HyperV#path=%2F&version=GBmaster&_a=contents "https://mseng.visualstudio.com/DefaultCollection/Documentation/_git/HyperV#path=%2F&version=GBmaster&_a=contents")
 2. On the upper right, click your name and then click **My profile**.  
 3. In your profile details, click **Credentials**.
@@ -77,7 +58,7 @@ You have to do all three steps before your files are available for everyone else
 3. **git push**
 
 ## Local Preview ##
-This is a work in progress: [local_preview](local_preview)
+This is a work in progress: [local_preview](local_preview.md)
 
 ## Learn more ##
 

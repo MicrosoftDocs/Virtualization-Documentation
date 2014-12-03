@@ -1,3 +1,5 @@
+ms.ContentId: 150B8DCC-861B-4FD4-9353-C9886F2F0C30
+
 # When to use Containers, When to use Virtual Machines
 
 Containers and virtual machines both provide flexible ways to run workloads in an isolated fashion.
