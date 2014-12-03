@@ -30,7 +30,7 @@ During the authoring stage, the administrator can install applications, copy fil
 ### Image Creation ###
 At any point the container can be converted into an image, typically this will be done once the authoring has been completed.  Invocation of a WMI conversion API referencing the Msvm_ComputerSystem will convert the container into an image.  When invoked this API will capture the changes accumulated in the scratch space into a package residing in the package store as well as a metadata file that will reside in the image configuration store, an instance of Msvm_ImageVirtualSystem will represent these entities.  
 
-![](media\ImageCreationLifeCycle.png)
+![](..\media\ImageCreationLifeCycle.png)
  
 
 
