@@ -1,5 +1,7 @@
 ms.ContentId: 96168C3C-3DB5-4274-AC2C-0F9AE2E1FD15
-disclaimer: This guide was written by Cynthia Nottingham and Sarah Cooley. Please let us know if you run into any issues or the steps aren't clear.
+Title: Hyper-V Insternal Onboarding
+
+Disclaimer: This guide was written by Cynthia Nottingham and Sarah Cooley. Please let us know if you run into any issues or the steps aren't clear.
 
 ## Install Git ##
 Install Git for Windows: [http://git-scm.com/download/win](http://git-scm.com/download/win "http://git-scm.com/download/win")
