@@ -14,11 +14,11 @@ Custom-keywords: overview, internal
 
 # [Installation](installation.md) #
 
-[Requirements](installation/requirements.md) 
+- [Requirements](installation/requirements.md) 
 
-[Install using Docker ](installation/install_using_docker.md)
+- [Install using Docker ](installation/install_using_docker.md)
 
-[Install in Azure](installation/install_in_azure.md) 
+- [Install in Azure](installation/install_in_azure.md) 
 
 ----------
 
