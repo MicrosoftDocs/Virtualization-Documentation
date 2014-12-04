@@ -59,6 +59,15 @@ You have to do all three steps before your files are available for everyone else
 2. **git commit -am "My reasoning for sharing these changes"**
 3. **git push**
 
+
+## Required metadata ##
+At the top of each file, there is some required metadata:
+`ms.ContentId: <GUID>
+title: <topic title>`
+
+- Each topic needs a unique GUID which you can get in Visual Studio by clicking on **Tools** and selecting **Create GUID** (the registry one has the least extra stuff, just delete the brackets)
+- The topic is just what it seems like, the official formal title for the topic
+
 ## Local Preview ##
 This is a work in progress: [local_preview](local_preview.md)
 
