@@ -1,7 +1,10 @@
 ms.ContentId: 96168C3C-3DB5-4274-AC2C-0F9AE2E1FD15
-Title: Hyper-V Insternal Onboarding
+Title: Hyper-V Internal Onboarding
 
 Disclaimer: This guide was written by Cynthia Nottingham and Sarah Cooley. Please let us know if you run into any issues or the steps aren't clear.
+
+
+
 
 ## Install Git ##
 Install Git for Windows: [http://git-scm.com/download/win](http://git-scm.com/download/win "http://git-scm.com/download/win")
@@ -79,7 +82,7 @@ This is a work in progress: [local_preview](local_preview.md)
 - T​his StackOverflow thread contains a glossary of Git terms such as repo, branch, fork, etc.: [http://stackoverflow.com/questions/7076164/terminology-used-by-git](http://stackoverflow.com/questions/7076164/terminology-used-by-git "http://stackoverflow.com/questions/7076164/terminology-used-by-git")
 - Markdown cheat sheet: [https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet "https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet")​​
 - Powerpoint presentation about onboarding done by DevDiv (not step-by-step but an okay resource): [https://microsoft.sharepoint.com/teams/DD_VSCS/dcs/_layouts/15/WopiFrame.aspx?sourcedoc={BF244921-4CC7-480F-AD99-A321BC283F17}&file=ADS%20Onboarding.pptx&action=default](https://microsoft.sharepoint.com/teams/DD_VSCS/dcs/_layouts/15/WopiFrame.aspx?sourcedoc={BF244921-4CC7-480F-AD99-A321BC283F17}&file=ADS%20Onboarding.pptx&action=default "ADS Onboarding Presentation")
-- Pandoc for converting between markdown and other formats: [http://johnmacfarlane.net/pandoc/](http://johnmacfarlane.net/pandoc/ "http://johnmacfarlane.net/pandoc/")
+- Pandoc for converting between markdown and other formats: [http://johnmacfarlane.net/pandoc/](http://johnmacfarlane.net/pandoc/ "http://johnmacfarlane.net/pandoc/") download page is here: [https://github.com/jgm/pandoc/releases](https://github.com/jgm/pandoc/releases) and our short internal doc on using Pandoc is here: [pandoc.md](pandoc.md "Pandoc for converting files to markdown")
 
 
 ## Publish ##
@@ -97,6 +100,10 @@ Markdown validation trips over special characters like alligators (<>) and quote
 
 You have to use 3 whacks to get 2 to show – so to get a path like `\\myfile` to show correctly, you need to use `\\\myfile` in markdown.
 
+## If you are having permissions issues ## 
+If you are using git.exe on Windows…
+1.     Run the following command elevated \\gitdrops\ProjectJ\drops\git-remote-no-proxy\install.cmd
+2.     Run the following command on your Git repo git config --global url.mshttps://microsoft.visualstudio.com/.insteadof https://microsoft.visualstudio.com/
 
 ## MarkdownPad - Live Preview##
 If you have troubles with Live Preview in MarkdownPad (it displays an error message stating: **This view has crashed!** and no HTML is displayed).
