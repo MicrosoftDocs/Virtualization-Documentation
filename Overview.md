@@ -6,13 +6,14 @@ Custom-keywords: overview, internal
 # [About](about.md) #
 
 - [Overview](about/overview.md) 
+- [Container Life Cycle](about/containerlifecycle.md)
 
 - [Containers versus VMs](about/Containers_vs_VMs.md) 
 
 - [Containers versus App-V](about/ContainersvsAppV.md) 
 
 
-# [Installation](installation.md) #
+# [Quick Start](installation.md) #
 
 - [Requirements](installation/requirements.md) 
 
