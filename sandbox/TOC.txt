@@ -1,0 +1,37 @@
+
+*	"Windows Server Containers"		msdn.microsoft.com	/windowsContainers/howto	overview		about/WindowsServerContainers.md
+** 	"Container Life Cycle"		msdn.microsoft.com	/windowsContainers/howto	container_life_cycle	about/ContainerLifeCycle.md 
+**	"When to use Containers, When to use Virtual Machines"	 msdn.microsoft.com		/windowsContainers/howto		Containers_vs_VMs	about/Containers_vs_VMs.md
+**	"Containers vs. App-V" 	msdn.microsoft.com	/windowsContainers/howto	containers_vs_AppV		about/ContainersvsAppV.md
+**	"About"	msdn.microsoft.com	/windowsContainers/howto	about	about.md
+**	"Installation"	msdn.microsoft.com	/windowsContainers/howto	installation	installation.md
+*** "Requirements"	/windowsContainers/howto	installation	installation/requirements.md
+*** "Installing Using Docker"	/windowsContainers/howto	installation	installation/install_using_docker.md
+***	"Install in Azure"	/windowsContainers/howto	installation	installation/install_in_azure.md
+
+**	"User Guide"	msdn.microsoft.com	/windowsContainers/howto	user_guide	user_guide.md
+*** "Quick start Guide: Hello World"	/windowsContainers/howto	user_guide	userguide/hello_world.md
+*** "Working with Containers"	/windowsContainers/howto	user_guide	userguide/working_with_containers.md
+*** "Managing Containers"	/windowsContainers/howto	user_guide	userguide/managing_containers.md
+*** "Accessing Data in Containers"	/windowsContainers/howto	user_guide	userguide/accessing_data_in_containers.md
+*** "Linking Multiple Containers"	/windowsContainers/howto	user_guide	userguide/linking_multiple_containers.md
+*** "Getting Started with Docker Hub"	/windowsContainers/howto	user_guide	userguide/gstart_docker_hub.md
+
+**	"Reference"		msdn.microsoft.com	/windowsContainers/howto	reference	reference.md
+*** "WMI Reference"		msdn.microsoft.com	/windowsContainers/howto	reference	reference/wmi.md
+*** "Windows PowerShell Reference"		msdn.microsoft.com	/windowsContainers/howto	reference	reference/powershell.md
+*** "Networking Guide"		msdn.microsoft.com	/windowsContainers/howto	reference	reference/networking.md 
+*** "Storage Guide"		msdn.microsoft.com	/windowsContainers/howto	reference	reference/storage.md
+*** "Security Guide"		msdn.microsoft.com	/windowsContainers/howto	reference	reference/security.md 
+*** "Drivers"		msdn.microsoft.com	/windowsContainers/howto	reference	reference/drivers.md 
+*** "Frequently Asked Questions"		msdn.microsoft.com	/windowsContainers/howto	reference	reference/faq.md 
+
+**	"Community"		msdn.microsoft.com	/windowsContainers/howto	community	community.md
+**	"Release Notes"				msdn.microsoft.com	/windowsContainers/howto	relnotes				relnotes.md
+**	"Hyper-V Onboarding"	msdn.microsoft.com	/windowsContainers/howto	onboarding				hyper-v_onboarding.md
+**	"Local Preview"			msdn.microsoft.com	/windowsContainers/howto	local_preview			local_preview.md
+
+
+
+
+
