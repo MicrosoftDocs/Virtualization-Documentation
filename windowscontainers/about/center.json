@@ -1,4 +1,5 @@
-{
+﻿{
 	"Template": "API",
-	"TocFilePath": "about/toc.csv",
+	"TocFilePath": "/windowscontainers/about/toc.csv",
+	"TocTitlesFilePath":"/windowscontainers/about/ContainerNodeTitles.csv"
 }
