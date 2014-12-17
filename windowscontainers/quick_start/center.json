@@ -1,4 +1,7 @@
 {
-	"Template": "API",
-	"TocFilePath": "quick_start/toc.csv",
+                "Template": "API",
+                "TocFilePath": "/windowscontainers/quick_start/toc.csv",
+                "TocTitlesFilePath": "/windowscontainers/quick_start/containerNodeTitles.csv"
 }
+
+
