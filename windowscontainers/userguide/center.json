@@ -1,6 +1,16 @@
+<<<<<<< HEAD
 ﻿{
                 "Template": "API",
                 "TocFilePath": "/windowscontainers/userguide/toc.csv",
                 "TocTitlesFilePath": "/windowscontainers/userguide/containerNodeTitles.csv"
 }
 
+=======
+{
+                "Template": "API",
+                "TocFilePath": "/windowscontainers/quick_start/toc.csv",
+                "TocTitlesFilePath": "/windowscontainers/quick_start/containerNodeTitles.csv"
+}
+
+
+>>>>>>> 8b952e926cf915d0bbe5cd82b7e2faf503626ade
