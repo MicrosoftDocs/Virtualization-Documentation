@@ -1,3 +1,0 @@
-ms.ContentId: 2439D06D-4E03-49A7-9178-A2377269E2B7
-
-# HELLO Israel #

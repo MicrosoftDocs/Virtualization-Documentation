@@ -1,3 +1,0 @@
-ms.ContentId: 5DB37C79-B951-4319-94F9-FC0DFF2A37AF
-
-# Hello World #
