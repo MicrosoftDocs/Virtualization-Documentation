@@ -1,3 +1,3 @@
-﻿ms.ContentId: 136C3CCF-A664-4557-8AF9-B80F27B4466E title: Hello World
+﻿ms.ContentId: {a3f19206-91e3-4013-b569-d4d8624a4ad0} title: Hello World
 
 ## Hello World for Windows Containers ##
