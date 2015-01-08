@@ -16,7 +16,7 @@ The process of creating a container begins, just as with virtual machines, by ca
 
 To support customization and validation of the container prior to full instantiation callers may opt to invoke a new DefinePlannedSystem method, which like DefineSystem will require as one of its parameters a reference to an Msvm_VirtualSystemSettingData object representing the package.  Unlike DefineSystem when calling DefinePlannedSystem the resulting object is a planned virtual system, which supports modification and subsequent validation and realization into a functional container.  Common customizations might include renaming or modification of resource configuration (network, CPU, memory).
 
-![](media/ContainerCreationLifeCycle.png)
+![](media\ContainerCreationLifeCycle.png)
 
 ## Image Composition ###
 This illustration describes the process of constructing an image. 
@@ -33,7 +33,7 @@ During the authoring stage, the administrator can install applications, copy fil
 ### Image Creation ###
 At any point the container can be converted into an image, typically this will be done once the authoring has been completed.  Invocation of a WMI conversion API referencing the Msvm_ComputerSystem will convert the container into an image.  When invoked this API will capture the changes accumulated in the scratch space into a package residing in the package store as well as a metadata file that will reside in the image configuration store, an instance of Msvm_ImageVirtualSystem will represent these entities.  
 
-![](media/ImageCreationLifeCycle.png)
+![](media\ImageCreationLifeCycle.png)
 
 
 

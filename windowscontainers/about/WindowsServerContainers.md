@@ -7,4 +7,4 @@ Windows Server containers provide applications an isolated, portable and resourc
 
 The Windows Server container infrastructure allows for sharing, publishing and shipping of containers to anywhere the next wave of Windows Server is running. With this new technology millions of Windows developers familiar with technologies such as .NET, ASP.NET, PowerShell, and more will be able to leverage container technology. No longer will developers have to choose between the advantages of containers and using Windows Server technologies.
 
-![](media/WindowsServerContainer.png)
+![](media\WindowsServerContainer.png)
