@@ -1,8 +1,7 @@
-    
-*,about/WindowsServerContainers.md
-**,about/ContainerLifeCycle.md 
-**,about/Containers_vs_VMs.md
-**,about/ContainersvsAppV.md
+*,WindowsServerContainers.md
+**,ContainerLifeCycle.md 
+**,Containers_vs_VMs.md
+**,ContainersvsAppV.md
 
 
 
