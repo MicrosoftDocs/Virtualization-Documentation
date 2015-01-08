@@ -1,4 +1,4 @@
-*,user_guide.md
+*,userguide.md
 **,working_with_containers.md
 **,working_with_packages.md
 **,containerize_app.md
@@ -6,9 +6,6 @@
 **,accessing_data_in_containers.md
 **,linking_multiple_containers.md
 **,gstart_docker_hub.md
-
-				
-
 
 
 
