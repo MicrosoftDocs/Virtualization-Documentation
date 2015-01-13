@@ -3,4 +3,14 @@ Title: Install in Azure
 
 ## Prerequisites ##
 
+- An Azure.com account. [Get a free trial](http://azure.microsoft.com/en-us/pricing/free-trial/).
+
+
 ## Procedure ##
+1. 
+2. 
+3. 
+
+
+## Next steps
+- Get more detailed information about using Windows Containers in the [User Guide](userguide.md).

@@ -3,3 +3,13 @@ title: Install Using Docker
 
 ## Prerequisites ##
 
+- [Docker](https://docs.docker.com/installation/mac/#installation). 
+
+
+## Procedure
+1. 
+2. 
+3. 
+
+## Next steps
+- Get more detailed information about using Windows Containers in the [User Guide](userguide.md).
