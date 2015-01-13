@@ -11,6 +11,6 @@ The Windows Server container infrastructure allows for sharing, publishing and s
 
 ## Next Steps
 
-- Take a deeper look at containers and the [container life cycle](ContainerLifeCycle.md "Windows Containers Life Cycle"). 
-- Containers and virtual machines both provide flexible ways to run workloads in an isolated fashion. [When should I use a container and when should I use a virtual machine? Containers_vs_VMs.md](Containers_vs_VMs.md "When should I use a container and when should I use a virtual machine? ")
+- Take a deeper look at containers and the [container life cycle](ContainerLifeCycle.md). 
+- Containers and virtual machines both provide flexible ways to run workloads in an isolated fashion. [When should I use a container and when should I use a virtual machine?](Containers_vs_VMs.md)
 - [Learn about how containers compare to App-V](ContainersvsAppV.md). When should I use one, when should I use the other? 
