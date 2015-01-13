@@ -13,4 +13,4 @@ Title: Install in Azure
 
 
 ## Next steps
-- Get more detailed information about using Windows Containers in the [User Guide](userguide.md).
+- 
