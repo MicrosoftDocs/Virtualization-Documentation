@@ -4,4 +4,5 @@
 	"/windowscontainers/userguide": "windowscontainers/userguide/center.json",
 	"/windowscontainers/reference": "windowscontainers/reference/center.json",
 	"/windowscontainers/community": "windowscontainers/community/center.json",
+	"/sandbox/GettingStarted": "sandbox/GettingStarted/center.json",
 }
