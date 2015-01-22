@@ -1,5 +1,6 @@
-*,quick_start.md
+﻿*,quick_start.md
 **,hello_world.md
+**,demo.md
 **,install_using_docker.md
 **,install_in_azure.md
 
