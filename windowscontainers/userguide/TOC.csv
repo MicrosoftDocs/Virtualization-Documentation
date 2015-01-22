@@ -1,4 +1,5 @@
-*,userguide.md
+﻿*,userguide.md
+**,system_requirements.md
 **,Working_with_containers.md
 **,working_with_packages.md
 **,containerize_app.md
