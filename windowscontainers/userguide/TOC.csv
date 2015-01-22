@@ -1,6 +1,12 @@
+<<<<<<< HEAD
 *,userguide.md
 **,system_requirements.md
 **,working_with_containers.md
+=======
+﻿*,userguide.md
+**,system_requirements.md
+**,Working_with_containers.md
+>>>>>>> 2f6433a294b9052ba058ed52c4d49b19fabfc2e4
 **,working_with_packages.md
 **,containerize_app.md
 **,managing_container_resources.md
