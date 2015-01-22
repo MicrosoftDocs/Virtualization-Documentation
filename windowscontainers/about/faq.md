@@ -6,13 +6,13 @@ title: Frequently asked questions
 ## Q: What are the system requirements for running containers?
 **A:** The general system requirements are....
 
-For more detailed information, see [System Requirements](../userguide/system_requirements.md)
+For more detailed information, see [System Requirements](..\userguide\system_requirements.md)
 
 ## Q: What kind of licensing is needed for containers?
 **A:** Licensing for Windows Containers is....
 
-For more detailed information, see [Licensing](licensing.md).
+For more detailed information, see [Licensing](..\about\licensing.md).
 
 
 ## Next Steps:
-[Create your first container](hello_world.md)
+[Create your first container](..\quick_start\hello_world.md)
