@@ -9,7 +9,7 @@ title: Demo file
 
 ### Add an image
 
-![](\media\kanban.jpg)
+![](.\media\kanban.jpg)
 
 ### Link to a video
 
