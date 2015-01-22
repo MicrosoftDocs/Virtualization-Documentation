@@ -1,4 +1,4 @@
-﻿ms.TocTitle: Calendar tasks in Visual Studio
+﻿ms.TocTitle: Common Tasks
 Title: Common calendar tasks using the Visual Studio client library
 ms.ContentId: b48ff767-153e-414f-86c8-f89fe0f132be
 ms.topic: article (how-tos)
