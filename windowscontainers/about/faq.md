@@ -1,0 +1,18 @@
+ms.ContentId: F0D47E70-0BA1-4A06-B2F3-0232C496709D
+title: Frequently asked questions
+
+# Frequently Asked Questions
+
+## Q: What are the system requirements for running containers?
+**A:** The general system requirements are....
+
+For more detailed information, see [System Requirements](../userguide/system_requirements.md)
+
+## Q: What kind of licensing is needed for containers?
+**A:** Licensing for Windows Containers is....
+
+For more detailed information, see [Licensing](licensing.md).
+
+
+## Next Steps:
+[Create your first container](hello_world.md)
