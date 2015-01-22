@@ -1,9 +1,7 @@
-ms.ContentId: 9dc57a6a-7104-4721-ba5c-3e246ee17f75 
+﻿ms.ContentId: 9dc57a6a-7104-4721-ba5c-3e246ee17f75 
 title: Demo file
 
-### Agile
-<hr>
-
+## Agile
 Visual Studio ALM provides you with the tools and flexibility needed to run your agile teams. 
 
 ![](http://cdn1.visualstudio.com/dynimg/IC765979.jpg)
