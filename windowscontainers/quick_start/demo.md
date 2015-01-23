@@ -3,3 +3,6 @@ title: Demo file
 
 
 ## Getting Started ##
+1. First download tool
+2. Then get an account
+3. Submit app
