@@ -1,4 +1,4 @@
-*,oa-toc-container:reference
+﻿*,oa-toc-container:reference
 **,wmi.md
 **,powershell.md
 **,networking.md 
@@ -6,6 +6,7 @@
 **,security.md 
 **,faq.md 
 **,relnotes.md
+**,andyat.md
 **,glossary.md
 
 
