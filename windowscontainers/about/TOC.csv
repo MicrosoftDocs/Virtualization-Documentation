@@ -1,9 +1,10 @@
-*,About.md
-**,ContainerLifeCycle.md 
-**,ContainersVsVMs.md
-**,ContainersVsAppV.md
+*,oa-toc-container:about
+**,about.md
+**,container_life_cycle.md 
+**,containers_vs_VMs.md
+**,Containers_vs_AppV.md
 **,faq.md
-**,ReleaseNotes.md
+**,release_notes.md
 **,licensing.md
 
 
