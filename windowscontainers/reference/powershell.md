@@ -1,10 +1,7 @@
 ﻿ms.ContentId: C49DA0E6-2E12-4D51-803A-31B1B5A8F85C
 title: Windows Powershell Reference
 
-
-ms.ContentId: C49DA0E6-2E12-4D51-803A-31B1B5A8F85C
-title: Windows Powershell Reference
-### 
+###
 #Powershell for Containers  ##
 
 ----------
