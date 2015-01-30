@@ -4,8 +4,6 @@ title: PowerShell Reference
 
 # PowerShell for Containers  #
 
-----------
-
 
 ## Managing containers ##
 
