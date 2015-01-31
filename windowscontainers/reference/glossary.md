@@ -1,6 +1,9 @@
 ms.ContentId: 942C3A02-F028-4DBE-913A-CD46B24ED6A3
 title: Glossary
  
+# Glossary #
+
+Catalog of confusing terms, jargon, and other esoteric or domain specific nomenclature.
 
 **Argon** 
 Process based containers that are not multi-tenant secure. They share a kernel with the management OS and with eachother. 

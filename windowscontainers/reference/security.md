@@ -1,7 +1,10 @@
 ms.ContentId: 86DECDF6-2FE6-48AC-8417-B3CBFD17E678
-title: Security Guide
+title: Security Reference
 
+# Container Isolation and Security #
 
 Security for containers....
 
-## User Accounts ##
+## Kernel sharing ##
+
+## User Accounts (Multi-tenancy) ##
