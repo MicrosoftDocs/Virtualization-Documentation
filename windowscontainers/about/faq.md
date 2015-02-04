@@ -8,6 +8,10 @@ title: Frequently asked questions
 
 For more detailed information, see [System Requirements](..\userguide\system_requirements.md)
 
+## Q: What kind cmdlets are available for working with containers?
+**A:** For more detailed information on working with containers using Windows Powershell, see [Powershell](..\reference\powershell.md).
+
+
 ## Q: What kind of licensing is needed for containers?
 **A:** Licensing for Windows Containers is....
 
