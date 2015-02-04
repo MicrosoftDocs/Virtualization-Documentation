@@ -36,4 +36,4 @@ Before launching your application, make sure you have verified:
 5. When we see erroneous accounts in the press, we commit to take the time to contact the reporting journalists.
 
 ## Next Steps
-[Getting started with Docker Hub](gstart_docker_hub.md)
+[Install using Docker](install_using_docker.md)
