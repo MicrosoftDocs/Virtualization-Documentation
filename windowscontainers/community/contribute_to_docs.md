@@ -1,4 +1,4 @@
-ms.ContentId: 37e66cb2-c05e-4c5a-9da7-bb477cabf2ba
+﻿ms.ContentId: 37e66cb2-c05e-4c5a-9da7-bb477cabf2ba
 title: Contribute to this Documentation
 
 # Contribute to this Documentation #
@@ -18,7 +18,7 @@ Optional:
 To use GIT at a Powershell prompt, [download msysgit](http://msysgit.github.io/ "http://msysgit.github.io/") and to use Git from Visual Studio, install the [Visual Studio extensions](https://visualstudiogallery.msdn.microsoft.com/8f594baa-e44e-4114-8381-e175ace0fe97 "https://visualstudiogallery.msdn.microsoft.com/8f594baa-e44e-4114-8381-e175ace0fe97")
 
 ### Clone the repository locally ###
-Go to the [repository in VS Online]("https://mseng.visualstudio.com/DefaultCollection/Documentation/_git/HyperV#path=%2F&version=GBrelease&_a=contents")
+Go to the [repository in VS Online](https://mseng.visualstudio.com/DefaultCollection/Documentation/_git/HyperV#path=%2F&version=GBrelease&_a=contents)
 
 On the right part of the page, click **Clone** and copy the address for cloning into your clipboard. Is should be: https://mseng.visualstudio.com/DefaultCollection/Documentation/_git/HyperV
 
