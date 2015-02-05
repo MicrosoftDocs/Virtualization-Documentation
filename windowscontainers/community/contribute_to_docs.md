@@ -1,4 +1,4 @@
-﻿ms.ContentId: 37e66cb2-c05e-4c5a-9da7-bb477cabf2ba
+ms.ContentId: 37e66cb2-c05e-4c5a-9da7-bb477cabf2ba
 title: Contribute to this Documentation
 
 # Contribute to this Documentation #
@@ -12,13 +12,13 @@ Did we get something wrong?  Do you have something to add?  Follow these steps t
 Install [Git for Windows](http://git-scm.com/download/win "http://git-scm.com/download/win")
 - Gitbash is the command-line app that you will use to interact with your local Git repository
 - Git GUI is an app used to create and clone Git repositories.
-- Accepting all default settings is fine
+* Note: Accepting all default settings during installation is fine
 
 Optional:
 To use GIT at a Powershell prompt, [download msysgit](http://msysgit.github.io/ "http://msysgit.github.io/") and to use Git from Visual Studio, install the [Visual Studio extensions](https://visualstudiogallery.msdn.microsoft.com/8f594baa-e44e-4114-8381-e175ace0fe97 "https://visualstudiogallery.msdn.microsoft.com/8f594baa-e44e-4114-8381-e175ace0fe97")
 
 ### Clone the repository locally ###
-Go to the [repository in VS Online](https://mseng.visualstudio.com/DefaultCollection/Documentation/_git/HyperV#path=%2F&version=GBrelease&_a=contents)
+Go to the [repository in VS Online](https://mseng.visualstudio.com/DefaultCollection/Documentation/_git/HyperV#path=%2F&version=GBrelease&_a=contents "https://mseng.visualstudio.com/DefaultCollection/Documentation/_git/HyperV#path=%2F&version=GBrelease&_a=contents")
 
 On the right part of the page, click **Clone** and copy the address for cloning into your clipboard. Is should be: https://mseng.visualstudio.com/DefaultCollection/Documentation/_git/HyperV
 
@@ -41,7 +41,9 @@ to see what branch you're currently in.  If it says release, you're great.  Cont
 
 	git checkout release
 
+In our documentation system, release is the branch that publishes to stage, master publishes to live.  **Never work directly in master.**
 
+If you're feeling adventurous, read more about git branching here (link eventually about having a topic branch).
 
 ## Create your new file ##
 You want to create a file named my_new_content.md in the reference section.  
@@ -50,8 +52,47 @@ First you'll want to make a new markdown file.  There are a number of ways to do
 
 Open your editor of choice and make a new file.  Name it my_new_content.md and save it to /windowscontainers/reference
 
-### Folder structure ###
+### Folder/File structure ###
+The documentation website's structure matches the git folder structure.  Looking inside the HyperV repository, the folder structure should look a bit like this:
 
+	HyperV
+		{build goo: Hyper-V, siteCatalog.json, publish.mdproj,etc} 
+		tools
+		windowscontainers
+			{build goo}
+			about
+			quick_start
+			userguide
+			reference
+			community
+
+Inside each of those folders corresponding to a heading on the navigation pane at the top of the container documentation, there will be some similar structure.  Let's look at the "about" folder as an example:
+
+	about
+		{content pages}
+		TOC.cvs
+		ContainerNodeTitles.csv
+		center.json
+
+Content is added to the folder as a markdown folder then to the TOC in order to tell the build system where that content should live in the site structure.
+
+Here is a sample TOC:
+
+	*,oa-toc-container:section_name
+	**,section_landingpage.md
+	**,content1.md 
+	**,content2.md
+	**,oa-toc-container:deep_dive_content
+	***,deep_dive_landingpage.md
+	***,deep_dive1.md
+	***,deep_dive2.md
+	**,content3.md.md
+
+oa-toc-container:section_name specifies that the landing page should automatically redirect to the next sub heading.  This builds the breadcrumb at the top of the page.
+Asterisk (*) indicate the breadcrumb depth.
+
+Add your new file to the TOC.
+		
 
 ### Add Metadata ###
 In order to convert your markdown files and internal documentation into HTML5, the each file must have some basic metadata.  There are many optional pieces of metadata but the two that are required are:
@@ -78,6 +119,6 @@ Optional metadata includes:
 ## See the changes ##
 
 ## References ##
-A good example of a fully fleshed-out OA site: [Office365](https://msdn.microsoft.com/en-us/office/office365/api/api-catalog) here's a [link to their repo](https://mseng.visualstudio.com/DefaultCollection/Documentation/_git/O365API#path=%2Foffice%2Foffice365%2FAPI&version=GBmaster&_a=contents)
+A good example of a fully fleshed-out OA site: [Office365](https://msdn.microsoft.com/en-us/office/office365/api/api-catalog "https://msdn.microsoft.com/en-us/office/office365/api/api-catalog") here's a [link to their repo](https://mseng.visualstudio.com/DefaultCollection/Documentation/_git/O365API#path=%2Foffice%2Foffice365%2FAPI&version=GBmaster&_a=contents "https://mseng.visualstudio.com/DefaultCollection/Documentation/_git/O365API#path=%2Foffice%2Foffice365%2FAPI&version=GBmaster&_a=contents")
 
 
