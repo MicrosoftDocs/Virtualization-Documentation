@@ -48,11 +48,23 @@ If you're feeling adventurous, read more about git branching here (link eventual
 ## Create your new file ##
 You want to create a file named my_new_content.md in the reference section.  
 
-First you'll want to make a new markdown file.  There are a number of ways to do this and a number of tools you can use.  I've been using the CodeWriter metro app or Notepad but MarkdownPad or Notepad++ are also great.
+First you'll want to make a new markdown file.  There are a number of ways to do this and a number of tools you can use.  I've been using the CodeWriter metro app or Notepad but [MarkdownPad](http://www.markdownpad.com/ "http://www.markdownpad.com/") or [Notepad++](http://notepad-plus-plus.org/ "http://notepad-plus-plus.org/") are also great.
 
 Open your editor of choice and make a new file.  Name it my_new_content.md and save it to /windowscontainers/reference
 
+Add your new file to the TOC.
+
+For this example, open /windowscontainers/reference/TOC.csv
+
+and add the line:
+
+	**,my_new_content.md
+
+To fully understand these seemingly arbitrary steps, read folder and file structure.  Otherwise, skip that section.
+
+
 ### Folder/File structure ###
+
 The documentation website's structure matches the git folder structure.  Looking inside the HyperV repository, the folder structure should look a bit like this:
 
 	HyperV
@@ -81,17 +93,15 @@ Here is a sample TOC:
 	*,oa-toc-container:section_name
 	**,section_landingpage.md
 	**,content1.md 
-	**,content2.md
 	**,oa-toc-container:deep_dive_content
 	***,deep_dive_landingpage.md
 	***,deep_dive1.md
-	***,deep_dive2.md
 	**,content3.md.md
 
 oa-toc-container:section_name specifies that the landing page should automatically redirect to the next sub heading.  This builds the breadcrumb at the top of the page.
 Asterisk (*) indicate the breadcrumb depth.
 
-Add your new file to the TOC.
+To register a 
 		
 
 ### Add Metadata ###
@@ -114,6 +124,20 @@ Optional metadata includes:
 
 ### Write content in MarkDown ###
 
+### Pandoc for converting files to markdown ###
+
+Download Pandoc here: [https://github.com/jgm/pandoc/releases](https://github.com/jgm/pandoc/releases)
+Full documentation: [C:\Users\cynthn\AppData\Local\Pandoc\Pandoc User's Guide.html](C:\Users\cynthn\AppData\Local\Pandoc\Pandoc User's Guide.html)
+
+To convert a .docx file called **containers.docx** to a .md file with the same name, type: 
+
+    pandoc -f docx -t markdown containers.docx -o containers.md
+
+The switches are:
+
+    -f = from
+    -t = to
+    -o = output
 
 
 ## See the changes ##
