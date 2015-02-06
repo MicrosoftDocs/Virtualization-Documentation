@@ -33,13 +33,12 @@ After you create your containers, you can provide network connectivity to them i
 
 1. Create a container network:
 
-	PS> New-ContainerNetwork cnet1 -EnableNat
-
-Creating a vSwitch for the network...done.
-Enabling IP forwarding between network and external adapter...done.
-Picking the NAT external IP address and prefix...done.
-Configuring NAT...done.
-Network cnet1 created successfully.
+	PS> New-ContainerNetwork cnet1 -EnableNat\
+	Creating a vSwitch for the network...done.
+	Enabling IP forwarding between network and external adapter...done.
+	Picking the NAT external IP address and prefix...done.
+	Configuring NAT...done.
+	Network cnet1 created successfully.
 
 This cmd creates a container network named “cnet1” and puts it behind a NAT. Public mode (without NAT) is currently not supported so -EnableNat parameter is mandatory. Unless you want to segment your containers in multiple networks, you only need one network, so this command needs to be run only once.
 
