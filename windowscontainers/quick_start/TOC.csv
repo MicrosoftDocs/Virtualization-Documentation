@@ -1,5 +1,5 @@
 *,oa-toc-container:quick_start
-**,quick_start.md
+**,quick_start_overview.md
 **,hello_world.md
 **,run_local.md
 **,install_using_docker.md
