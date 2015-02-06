@@ -23,7 +23,7 @@ The verbs and objects (below) are taken directly from the proposal. Cmdlets auto
 	                      Close-ContainerPort
 
 To try:
-1. [Install the latest build](..\quick_start\run_local).
+1. [Install the latest build](..\quick_start\run_local.md).
 2. Type \\corenetfs1\users\ofiliz\argon\ContainerNet.ps1 to install the ContainerNet module. You may need to Set-ExecutionPolicy before installing it.
 
 The cmdlets store state in session variables, so do not close your PS session and always use that same PS session when entering cmdlets. When running for the first time, the script will offer to install Hyper-V if it is not already installed.
