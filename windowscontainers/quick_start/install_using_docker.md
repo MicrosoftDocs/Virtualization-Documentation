@@ -12,4 +12,4 @@ title: Install Using Docker
 3. 
 
 ## Next steps
-- Get more detailed information about using Windows Containers in the [User Guide](..\userguide\userguide.md).
+- Get more detailed information about using Windows Containers in the [User Guide](..\userguide\userguide_overview.md).
