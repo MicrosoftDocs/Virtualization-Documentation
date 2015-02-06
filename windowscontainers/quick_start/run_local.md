@@ -11,11 +11,11 @@ These instructions were created for the 2/6/2015 review.
 4. Reboot
 5. Install the siloservice:
 	
-	SiloService –install
+	`SiloService –install`
 
 6. Now start a container via the following command line:
 
-	Siloclient –start test1 –def \windows\system32\containers\cmdserver.def –server
+	`Siloclient –start test1 –def \windows\system32\containers\cmdserver.def –server`
 
 7. Then follow [these instructions](..\reference\networking.md) to set up your network.
 
