@@ -1,3 +1,5 @@
+ms.ContentId: d5ec4e10-b57f-486d-82e5-fac8abba6212
+title: Management Architecture
 
 **INTERNAL ONLY - NOT FOR PUBLICATION IN THIS FORM**
 
