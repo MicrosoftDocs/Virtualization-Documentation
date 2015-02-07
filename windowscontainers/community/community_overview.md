@@ -16,6 +16,9 @@ Hyper-V Forums
 ## Publications ##
 
 ## Contribute ##
+
+Contribute to this documentation. ([Instructions](contribute_to_docs.md))
+
 Docker for Windows ([GitHub](https://github.com/Microsoft/docker "https://github.com/Microsoft/docker"))
 
 
