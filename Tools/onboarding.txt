@@ -85,15 +85,9 @@ This is a work in progress: [local_preview](local_preview.md)
 - Pandoc for converting between markdown and other formats: [http://johnmacfarlane.net/pandoc/](http://johnmacfarlane.net/pandoc/ "http://johnmacfarlane.net/pandoc/") download page is here: [https://github.com/jgm/pandoc/releases](https://github.com/jgm/pandoc/releases) and our short internal doc on using Pandoc is here: [pandoc.md](pandoc.md "Pandoc for converting files to markdown")
 
 
-## Publish ##
-How to manually promote content to staging: [http://devdocs/Learn/ManualTrigger](http://devdocs/Learn/ManualTrigger "http://devdocs/Learn/ManualTrigger") 
-
 # Warning - inserting images in MarkdownPad #
  **Do Not let MarkdownPad upload your images!!!** When you add an image in MarkdownPad, there is a button to **Browse and Upload** which actually uploads the image to imgur.com - which is really bad if it is super secret stuff.
 
-# Troubleshooting and other helpful stuff
-
-When all else fails, check here.
 
 ## Markdown - special characters ##
 Markdown validation trips over special characters like alligators (<>) and quotes ("). Where you need to use special characters (file paths etc) you can mark the text as “code” in MarkdownPad or surround it with “back ticks” which are specific single quotes - **`** - this is the mark that is probably on the same key as **~** . 

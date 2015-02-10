@@ -1,4 +1,5 @@
-*,userguide.md
+*,oa-toc-container:userguide
+**,userguide_overview.md
 **,system_requirements.md
 **,working_with_containers.md
 **,working_with_packages.md
