@@ -2,3 +2,7 @@
 title: Demo file
 
 ## Getting Started ##
+1. get starting with new content
+2. download visual studio
+3. get going!
+
