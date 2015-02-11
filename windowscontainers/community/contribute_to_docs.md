@@ -5,6 +5,15 @@ title: Contribute to this Documentation
 
 Did we get something wrong?  Do you have something to add?  Follow these steps to start contributing to the documentation.
 
+## Quickest way to jump in and help
+
+If you just want to make a small change or two to an existing topic, the easiest thing to do is to jump onto [VSOnline](https://mseng.visualstudio.com/DefaultCollection/Documentation/_git/HyperV#path=%2Fwindowscontainers&version=GBrelease&_a=contents) and make the change right in the repo.
+
+1. Go here: [VSOnline](https://mseng.visualstudio.com/DefaultCollection/Documentation/_git/HyperV#path=%2Fwindowscontainers&version=GBrelease&_a=contents)
+2. Select the .md file and then click **Edit**. 
+![](media\vsonline.png)
+3. This opens a simple online editor where you can make changes. Just click the **Save** button when you are done to add the changes to the repo. 
+![](media\vsoeditor.png)
 
 ## Set up Git ##
 
