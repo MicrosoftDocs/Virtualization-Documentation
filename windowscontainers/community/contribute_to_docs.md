@@ -140,8 +140,11 @@ Optional metadata includes:
 ## Write content in MarkDown ##
 
 There are lots of resources for how to write in markdown, here are a few favorites:
-[http://devdocs/HowTo/Markdown](http://devdocs/HowTo/Markdown)
-[http://markdowntutorial.com/lesson/1/](http://markdowntutorial.com/lesson/1/)
+
+- [http://devdocs/HowTo/Markdown](http://devdocs/HowTo/Markdown)
+
+- [http://markdowntutorial.com/lesson/1/](http://markdowntutorial.com/lesson/1/)
+ 
 
 ## Pandoc for converting .doc files to markdown ##
 
@@ -172,7 +175,7 @@ The Open Authoring team have build a local preview so you can see how your conte
 	**Repository folder**: the path to the root of your repo. For example: `C\HyperV`
 
 3. Click **Save**.
-4. To see a local preview of the file `about_overview.md` in your browsers, type: [http://localhost:7777/windowscontainers/about/about_overview.md](http://localhost:7777/windowscontainers/about/about_overview.md) in the address bar.
+4. To see a local preview of the file **about_overview.md** in your browsers, type: [http://localhost:7777/windowscontainers/about/about_overview.md](http://localhost:7777/windowscontainers/about/about_overview.md) in the address bar.
 
 
 
