@@ -137,13 +137,13 @@ Optional metadata includes:
 	description: {discription of the page}
 
 
-### Write content in MarkDown ###
+## Write content in MarkDown ##
 
 There are lots of resources for how to write in markdown, here are a few favorites:
 [http://devdocs/HowTo/Markdown](http://devdocs/HowTo/Markdown)
 [http://markdowntutorial.com/lesson/1/](http://markdowntutorial.com/lesson/1/)
 
-### Pandoc for converting files to markdown ###
+## Pandoc for converting .doc files to markdown ##
 
 Download Pandoc here: [https://github.com/jgm/pandoc/releases](https://github.com/jgm/pandoc/releases "https://github.com/jgm/pandoc/releases")
 
