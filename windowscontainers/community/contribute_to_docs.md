@@ -139,6 +139,10 @@ Optional metadata includes:
 
 ### Write content in MarkDown ###
 
+There are lots of resources for how to write in markdown, here are a few favorites:
+[http://devdocs/HowTo/Markdown](http://devdocs/HowTo/Markdown)
+[http://markdowntutorial.com/lesson/1/](http://markdowntutorial.com/lesson/1/)
+
 ### Pandoc for converting files to markdown ###
 
 Download Pandoc here: [https://github.com/jgm/pandoc/releases](https://github.com/jgm/pandoc/releases "https://github.com/jgm/pandoc/releases")
@@ -154,7 +158,23 @@ The switches are:
     -o = output
 
 
-## See the changes ##
+## Local Preview
+The Open Authoring team have build a local preview so you can see how your content will look before committing your changes.
+
+1. Install the tool from here: [http://co1msdnwbh01/LocalPreview/OA-LocalPreview.application](http://co1msdnwbh01/LocalPreview/OA-LocalPreview.application)
+2. Click on the ![](media\local_preview_icon.png) icon in your system tray and click Configuration. 
+3. Click the **+** button to add a new configuration and then enter the following values:
+
+	**Friendly name**: Windows Containers (or whatever friendly name you prefer)
+	
+	**Domain URL**: https://int.msdn.microsoft.com
+	
+	**Repository folder**: the path to the root of your repo. For example: `C\HyperV`
+
+3. Click **Save**.
+4. To see a local preview of the file `about_overview.md` in your browsers, type: [http://localhost:7777/windowscontainers/about/about_overview.md](http://localhost:7777/windowscontainers/about/about_overview.md) in the address bar.
+
+
 
 ## References ##
 A good example of a fully fleshed-out OA site: [Office365](https://msdn.microsoft.com/en-us/office/office365/api/api-catalog "https://msdn.microsoft.com/en-us/office/office365/api/api-catalog") here's a [link to their repo](https://mseng.visualstudio.com/DefaultCollection/Documentation/_git/O365API#path=%2Foffice%2Foffice365%2FAPI&version=GBmaster&_a=contents "https://mseng.visualstudio.com/DefaultCollection/Documentation/_git/O365API#path=%2Foffice%2Foffice365%2FAPI&version=GBmaster&_a=contents")
