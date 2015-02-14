@@ -1,8 +1,7 @@
 *,oa-toc-container:about
 **,about_overview.md
 **,container_life_cycle.md 
-**,containers_vs_VMs.md
-**,containers_vs_AppV.md
+**,when_containers.md
 **,oa-toc-container:powerpoint-overview
 ***,powerpoint.md
 ***,powerpoint2.md

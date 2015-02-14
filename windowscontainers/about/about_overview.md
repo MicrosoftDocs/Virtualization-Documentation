@@ -3,17 +3,23 @@ title: About Windows Server Containers
 
 # Windows Server Containers #
 
-Windows Server containers provide applications an isolated, portable and resource controlled operating environment. This isolation enables containerized applications to run without risk of dependencies or environmental configuration affecting the application.
-
-By sharing the same kernel and other key system components, containers exhibit rapid startup times and reduced resource overhead. Rapid startup helps in development and testing scenarios and continuous integration environments, while the reduced resource overhead makes them ideal for service-oriented architectures.
-
-The Windows Server container infrastructure allows for sharing, publishing and shipping of containers to anywhere the Windows 10 Server is running. With this new technology millions of Windows developers familiar with technologies such as .NET, ASP.NET, PowerShell, and more will be able to leverage container technology. No longer will developers have to choose between the advantages of containers and using Windows Server technologies.
+Windows Server contrainers provide a new way to build, ship, deploy, and instanciate applications by providing applications an isolated, portable and resource controlled operating environment.
 
 ![](media\WindowsServerContainer.png)
 
-## Next Steps
+Basically, a container is an isolated place in which an application can run with out affecting the rest of the system and without your system affecting the application.  Isolatiing the application allows it to run without risk of mismatched dependencies or environmental configuration affecting the application.
 
-- See containers in action with the container [quickstart guide](..\quick_start\hello_world.md)
-- Take a deeper look at containers and the [container life cycle](container_life_cycle.md). 
-- Containers and virtual machines both provide flexible ways to run workloads in an isolated fashion. [When should I use a container and when should I use a virtual machine?](containers_vs_VMs.md)
-- [Learn about how containers compare to App-V](containers_vs_AppV.md). When should I use one, when should I use the other? 
+At the same time, containers are light and responsive compaired to a traditional virtual machine.  By sharing the same kernel and other key system components, containers exhibit rapid startup times and reduced resource overhead. Rapid startup helps in development and testing scenarios and continuous integration environments, while the reduced resource overhead makes them ideal for service-oriented architectures.
+
+![](media\isolationSpectrum.png)
+
+[Read more about when to use containers.](when_containers.md)
+
+In additon to isolation, Windows Server container infrastructure allows for sharing, publishing and shipping of containers to anywhere running Windows 10 Server.
+
+With this new technology, Windows developers familiar with technologies such as .NET, ASP.NET, PowerShell, and more will be able to run their application, app test harness, or pre-configured dev environment on any Windows 10 Server.  
+
+Would you like to learn more?
+
+Read more about [how to use containers](container_life_cycle.md) or get started with your own Windows containers using the [quickstart guide](..\quick_start\hello_world.md)
+
