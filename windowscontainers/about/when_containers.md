@@ -18,8 +18,10 @@ However, there is a price to pay in overhead.  The more isolation from the machi
 ![The continuum of resource use](media/overheadSpectrum.png)
 
 So really, to understand when to use a container, VM, or AppV, it's important to consider:
-1.  Required security/trust boundries
-2.  System resources
+1.  Required security/trust boundries -- Do you trust the machine/its administrator?
+2.  Compatability (across different systems) -- Does this need to run on different operating systems?  Different versions of the operating system?
+2.  Density -- Are you running many instances?  If so, do your system resources support that?
+3.  Resource management/Quality of Service -- Do you need to specify resource use?
 
 (Chart of what a VM, container, appV offer)
 
@@ -50,10 +52,15 @@ nd security
 
 Virtual machines have the following properties:
 - Can run other operating systems to the host operating system
-- Highest level of isolation a# Containers vs. App-V
+- Highest level of isolation
+- Provide very high availability without requiring application intelligence
+- Legacy applications 
+- Strong resource management
+- Persistent storage
 
 
 ## About App-V ##
+
 
 Microsoft Application Virtualization (App-V) Provides anywhere user access to their applications on any authorized device without application installs. 
 
@@ -64,5 +71,12 @@ App-V allows applications to be deployed ("streamed") in real-time to any client
 With a streaming-based implementation, the App-V client needs to be installed on the client machines and application data that is stored on the virtual application server is installed (streamed) to the client cache on demand when it is first used, or pre-installed in a local cache. 
 
 The App-V stack sandboxes the execution environment so that an application does not make changes directly to the underlying operating system's file system and/or Registry, but rather contained in an application-specific "bubble". App-V applications are also sandboxed from each other, so that different versions of the same application can be run under App-V concurrently, and so that mutually exclusive applications can co-exist on the same system.
+
+In other words, App-V:
+-  Addresses application installation and management
+-  Users experience is unchanged when an application is virtualized
+-  Applications communicate with each-other and with traditionally installed applications
+-  Resource management provided by the OS
+-  Applications can leverage any hardware available
 
 You can read more about App-V [here](http://technet.microsoft.com/en-us/windows/hh826068.aspx).
