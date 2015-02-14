@@ -11,11 +11,11 @@ When should you use Windows containers, AppV, virtual machines, or some combinat
 
 All of these technologies provide some level of isolation between your machine and an application though they differ in isolation and purpous.
 
-![The continuum of isolation](/media/isolationSpectrum.png)
+![The continuum of isolation](media\isolationSpectrum.png)
 
 However, there is a price to pay in overhead.  The more isolation from the machine's operating system, the more resources needed.
 
-![The continuum of resource use](media/overheadSpectrum.png)
+![The continuum of resource use](media\overheadSpectrum.png)
 
 So really, to understand when to use a container, VM, or AppV, it's important to consider:
 1.  Required security/trust boundries
