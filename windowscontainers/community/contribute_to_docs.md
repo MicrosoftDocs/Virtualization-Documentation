@@ -35,7 +35,8 @@ To use GIT at a Powershell prompt, [download msysgit](http://msysgit.github.io/ 
 ### Clone the repository locally ###
 Go to the [repository in VS Online](https://mseng.visualstudio.com/DefaultCollection/Documentation/_git/HyperV#path=%2F&version=GBrelease&_a=contents "https://mseng.visualstudio.com/DefaultCollection/Documentation/_git/HyperV#path=%2F&version=GBrelease&_a=contents")
 
-On the right part of the page, click **Clone** and copy the address for cloning into your clipboard. Is should be: https://mseng.visualstudio.com/DefaultCollection/Documentation/_git/HyperV
+On the right part of the page, click **Clone** and copy the address for cloning into your clipboard. Is should be: `https://mseng.visualstudio.com/DefaultCollection/Documentation/_git/HyperV`
+
 
 Open GitBash and enter:
 
