@@ -18,7 +18,7 @@ These instructions were created for the 2/6/2015 review.
 
 	Alternatively use the same steps as above in a PowerShell script (copy instructions into a .ps1 file, open Powershell and run the script) :
 	
-	set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server'-name "fDenyTSConnections" -Value 0 
+	`set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server'-name "fDenyTSConnections" -Value 0` 
 	set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp' -name "UserAuthentication" -Value 0
 	Enable-NetFirewallRule -DisplayGroup "Remote Desktop" 
 	dism /Online /Enable-Feature:Containers 
