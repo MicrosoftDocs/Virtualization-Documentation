@@ -23,7 +23,7 @@ So really, to understand when to use a container, VM, or AppV, it's important to
 2.  Density -- Are you running many instances?  If so, do your system resources support that?
 3.  Resource management/Quality of Service -- Do you need to specify resource use?
 
-(Chart of what a VM, container, appV offer)
+(Chart of what a VM, container, App-V offer)
 
 ## Properties of a container ##
 Containers have the following properties:
@@ -50,6 +50,8 @@ nd security
 
 ## Properties of a virtual machine ##
 
+Virtual machines are completely isolated enviornments from the host operating system.
+
 Virtual machines have the following properties:
 - Can run other operating systems to the host operating system
 - Highest level of isolation
@@ -61,8 +63,20 @@ Virtual machines have the following properties:
 
 ## About App-V ##
 
+Microsoft Application Virtualization (App-V) transforms applications into centrally managed services that are never installed and don’t conflict with other applications.  Using App-V, users can access their applications on any authorized device without installing the application.
+ 
+Today, people sharing business applications in the workplace speak many languages, are geographically dispersed and may not be connected to corporate networks at all times. The IT professionals who manage their IT infrastructure must meet the needs of all of these users while providing solutions that are fast, flexible and reliable. App-V can help.
 
-Microsoft Application Virtualization (App-V) Provides anywhere user access to their applications on any authorized device without application installs. 
+Some of the key benefits of App-V include:
+**An integrated platform:** 
+Virtual Applications have a consistant user experience. With App-V 5.0, virtual applications work more like traditionally installed applications. This means that users don’t have to change the way they use an application just because it’s virtual. It also makes it easy for IT to ork with virtual applications. Diagnostic messages provide meaningful feedback, helping users resolve problems on their own.
+
+**Flexible virtualization:** 
+Businesses can connect separately packaged App-V applications, enabling them to communicate with each other and with traditionally installed applications. This gives businesses the best of both worlds, providing isolation – reducing conflict and time spent regression testing – yet allowing applications to interact and communicate when needed. 
+
+**Powerful management of virtualized applications:** 
+App-V 5.0 allows IT to deploy, track and service virtual applications. With new, web-based management interface based on Silverlight, IT can manage applications without being tied to an installed management console. And App-V 5.0 is designed to be easy and efficient to use in VDI environments, allowing IT to make the best use of expensive disk resources without changing the way they get their jobs done. It lets IT simply choose to turn off local application storage, drmatically reducing disk requirements for VDI while leaving the application provisioning and update process unchanged. 
+
 
 App-V increases business agility through faster application deployment and updates with no user interruptions. It minimizes conflicts between applications, allowing enterprises to reduce application compatibility testing time. App-V together with USV provides users with a consistent experience and reliable access to applications and business data, no matter their location and connection to the Internet.
 
