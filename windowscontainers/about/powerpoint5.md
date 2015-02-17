@@ -60,5 +60,3 @@ title: Powerpoint: What’s Dockers role in Windows Server Containers?
 ![](media\slide70.png)
  -----
 
-## Next Steps:
-You can see the first section of this presentation by going to [What are containers?](powerpoint.md)

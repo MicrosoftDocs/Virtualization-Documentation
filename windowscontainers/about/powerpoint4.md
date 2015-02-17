@@ -39,5 +39,3 @@ title: Powerpoint: What are Windows Server Containers?
  -----
 
 
-## Next Steps:
-[What’s Dockers role in Windows Server Containers?](powerpoint5.md)
