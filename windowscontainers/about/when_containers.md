@@ -23,15 +23,15 @@ So really, to understand when to use a container, VM, or other technology, it's 
 2.  Density -- Are you running many instances?  If so, do your system resources support that?
 3.  Resource management/Quality of Service -- Do you need to specify resource use?
 
-|  | **Windows Container** | **Virtual Machines** |
-|:-----|:-----|:-----|
-|Kernel| Same as host | Any (Windows/Linux)|
-|Multi-tenant security | No | Yes |
-|Resource managed | Yes | Yes |
-|Density | Higher | Lower |
-|Startup time | Shorter | Longer |
-|Disk footprint | Smaller | Larger |
-|Application compatability | Medium | High |
+|  | **Windows Container** | **Virtual Machines** |  **Application Virtualization** |
+|:-----|:-----|:-----|:-----|
+|Kernel| Same as host | Any (Windows/Linux)| Same as host |
+|Multi-tenant security | No | Yes | No |
+|Resource managed | Yes | Yes | No |
+|Density | High | Lower | Higher |
+|Startup time | Short | Longer | Shorter |
+|Disk footprint | Small | Larger | Smaller |
+|Application compatability | Medium | High | Medium |
 
 ## Properties of a container ##
 Containers have the following properties:
