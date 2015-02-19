@@ -3,6 +3,12 @@ title: Licensing
 
 # Licensing
 
+<--- checking into how commenting works --->
+
+[//]: # (This may be the most platform independent comment)
+
+
+
 Licensing requirements for Windows Containers....
 
 Next Steps:
