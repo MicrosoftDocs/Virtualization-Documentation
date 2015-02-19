@@ -3,10 +3,6 @@ title: Licensing
 
 # Licensing
 
-[//]: # (This is a comment! Let's see if I can break it.)
-
-
-
 Licensing requirements for Windows Containers....
 
 Next Steps:
