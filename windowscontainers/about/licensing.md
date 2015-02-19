@@ -3,7 +3,7 @@ title: Licensing
 
 # Licensing
 
-[//]: # (This is a comment! Let's see if I can break it + - " " ` < > )
+[//]: # (This is a comment! Let's see if I can break it +)
 
 
 
