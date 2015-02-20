@@ -15,16 +15,15 @@ These instructions were created for the 2/6/2015 review.
 	3.	Install the siloservice: SiloService –install
 	4.  Enable the “Hyper-V” role and PowerShell management.
 	
-		Note: You can only enabled Hyper-V inside a virtual machine using the command prompt.  Server Manager and PowerShell will check for
-			  the presence of SLAT and will block installation.  To install Hyper-V from the command line run:
-			  
-			  dism /Online /Enable-Feature:Microsoft-Hyper-V /all
-			  
-			  Hyper-V Powershell can be enabled with either Server Manager, PowerShell or DISM.
+		Note: You can only enabled Hyper-V inside a virtual machine using the command prompt.  Server Manager and PowerShell will check for the presence of SLAT and will block installation.  To install Hyper-V from the command line run:
+		
+			dism /Online /Enable-Feature:Microsoft-Hyper-V /all
+			
+		Hyper-V Powershell can be enabled with either Server Manager, PowerShell or DISM.
 			  
 	5.  Reboot
 
-	Alternatively use the same steps as above in a PowerShell script (copy instructions into a .ps1 file, open Powershell and run the script) :
+Alternatively use the same steps as above in a PowerShell script (copy instructions into a .ps1 file, open Powershell and run the script) :
 	
 		`set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server'-name "fDenyTSConnections" -Value 0` 
 	
