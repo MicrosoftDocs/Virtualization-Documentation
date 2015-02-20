@@ -3,13 +3,10 @@ title: Licensing
 
 # Licensing
 
-<<<<<<< HEAD
 
 
 
 
-=======
->>>>>>> 16a9417c39c042d64f1ea1a89ccfa2e62f0b987a
 Licensing requirements for Windows Containers....
 
 Next Steps:
