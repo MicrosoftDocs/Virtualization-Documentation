@@ -3,7 +3,7 @@ title: Licensing
 
 # Licensing
 
-[//]: # (This is a comment! Let's see if I can break it)
+
 
 
 
@@ -11,3 +11,25 @@ Licensing requirements for Windows Containers....
 
 Next Steps:
 [System Requirements](..\userguide\system_requirements.md)
+
+
+## Testing ##
+
+1. One
+2. Two
+
+    while (stringBuilder.Length < 19)
+    
+    {
+    
+    **stringBuilder**.Append('\x00');
+    
+    }
+    
+    stringBuilder.Append('\x00');
+
+3. Three
+4. Four
+
+
+[//]: # (This is a comment! Let's see if I can break it)
