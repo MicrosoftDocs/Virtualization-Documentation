@@ -3,13 +3,22 @@ title: About Windows Server Containers
 
 # Windows Server Containers #
 
-Windows Server contrainers provide a new way to build, ship, deploy, and instanciate applications by providing applications an isolated, portable and resource controlled operating environment.
+Windows Server contrainers provide a new way to develop, run, and deploy applications.  On their own, Windows Server Containers are an isolated, portable and resource controlled operating environment.  When combined with Docker integration, VisualStudio, and Azure, they become one piece in a robust ecosystem.
+
+Developers can use VisualStudio and Azure for born-in-the-cloud application development.
+Hosters can use WinFab to create high density hosting.
+System Center for a more efficient on-prem cloud.
+
+[Read more about the Windows Server Container ecosystem}(container_ecosystem.md)
+
+
+# About Container Technology #
 
 ![](media\WindowsServerContainer.png)
 
 Basically, a container is an isolated place in which an application can run with out affecting the rest of the system and without your system affecting the application.  Isolatiing the application allows it to run without risk of mismatched dependencies or environmental configuration affecting the application.
 
-At the same time, containers are light and responsive compaired to a traditional virtual machine.  By sharing the same kernel and other key system components, containers exhibit rapid startup times and reduced resource overhead. Rapid startup helps in development and testing scenarios and continuous integration environments, while the reduced resource overhead makes them ideal for service-oriented architectures.
+At the same time, containers are light and responsive compaired to a traditional virtual machine.  By sharing the same kernel and other key system components, containers exhibit rapid startup times and reduced resource overhead. Rapid startup allows development and testing the be containerized with very little overhead.  Reduced resource overhead makes containers ideal for service-oriented architectures.
 
 ![](media\isolationSpectrum.png)
 
