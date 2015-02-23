@@ -29,7 +29,7 @@ You need to create a new virtual machine using a .vhdx of Windows 10 or Windows 
 	<tr><td>Name:</td><td>Hello Containers</td></tr>
 	<tr><td>Generation:</td><td><b>Generation 2</b></td></tr>
 	<tr><td>Startup Memory</td><td><b>1024</b> and don't select dynamic memory</td></tr>
-	<tr><td>Configure networking:</td><td>?</td></tr>
+	<tr><td>Configure networking:</td><td>select the virtual switch</td></tr>
 	<tr><td>Connect virtual hard disk:</td><td><b>Use and existing virtual hard disk</b> and enter the path the .vhdx</td></tr>
 	</table>
 6. The Summary page of the wizard should look like this:
