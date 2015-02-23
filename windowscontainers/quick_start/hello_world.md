@@ -1,17 +1,22 @@
 ms.ContentId: a3f19206-91e3-4013-b569-d4d8624a4ad0 
-title: Hello World
+title: Hello World for Windows Containers
 
-## Hello World for Windows Containers ##
+## Hello World for Windows Containers ###
 
+Let's get you started with containers! Before we begin, you will need:
 
+- a computer running Windows 10 or Windows Server
+- an application with ....
+- something else
+- and another thing 
 
-## Step 1: Install Hyper-V ##
-Install Hyper-V using Windows Powershell</td></tr>
+### Step 1: Install Hyper-V ###
+Install Hyper-V using Windows Powershell. If you already have Hyper-V installed, you can skip this step and go on to **Step 2: Create a virtual machine**.
 	
 - On Windows 10, type: `enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V -All` 
 - On Windows Server, type: `Install-WindowsFeature –Name Hyper-V -IncludeManagementTools -Restart`
 	
-##Step 2: Create the virtual machine ##
+### Step 2: Create the virtual machine ##
 You need to create a new virtual machine using a .vhdx of Windows 10 or Windows Server. 
 
 1. Click the **Start** button and type **Hyper-V Manager**.
@@ -32,7 +37,7 @@ You need to create a new virtual machine using a .vhdx of Windows 10 or Windows 
 	
 	![](media\create_vm.png)
 
-## Configure the virtual machine
+### Configure the virtual machine ###
 1. Click on the Windows button and type note and then select Notepad
 2. Copy the following lines in to Notepad and save it as configure.ps1:
 
@@ -58,7 +63,7 @@ You need to create a new virtual machine using a .vhdx of Windows 10 or Windows 
 3. Click on the Windows button and type power and then select Windows Powershell. 
 4. Type configure.ps1 to start the script.
 
-## Start your container ##
+### Start your container ###
 1. At the Windows Powershell prompt or a command prompt, type:
 
    `Siloclient -start test1 -def \windows\system32\containers\cmdserver.def -server`
@@ -68,5 +73,5 @@ You need to create a new virtual machine using a .vhdx of Windows 10 or Windows 
 
 	Note: You may need to disable the Windows firewall / open custom ports in the Windows firewall in order to have RDP to the container work.
 
-## Next Steps
+### Next Steps ###
 [Install using Docker](install_using_docker.md)
