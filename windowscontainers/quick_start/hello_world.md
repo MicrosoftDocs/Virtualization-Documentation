@@ -3,12 +3,6 @@ title: Hello World
 
 ## Hello World for Windows Containers ##
 
-Let's get you started with containers! Before we begin, you will need:
-
-- a computer running Windows 10 or Windows Server
-- an application with ....
-- something else
-- and another thing 
 
 
 ## Step 1: Install Hyper-V ##
@@ -26,7 +20,14 @@ You need to create a new virtual machine using a .vhdx of Windows 10 or Windows 
 4. On the **Action** menu, click **New** > **Virtual machine**
 5. In the virtual machine wizard, make the following choices:
 	
-	
+	<table>
+	<tr><td>Name:</td> <td>Hello Containers</td></tr>
+	<tr><td>Generation:</td> <td><b>Generation 2</b></td></tr>
+	<tr><td>Startup Memory</td> <td><b>1024</b> and don't select dynamic memory</td></tr>
+	<tr><td>Configure networking:</td> <td>select the virtual switch</td></tr>
+	<tr><td>Connect virtual hard disk:</td> <td><b>Use and existing virtual hard disk</b> and enter the path the .vhdx</td></tr>
+	</table>
+
 6. The Summary page of the wizard should look like this:
 	
 	![](media\create_vm.png)
