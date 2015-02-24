@@ -60,16 +60,21 @@ You need to create a new virtual machine using a .vhdx of Windows 10 or Windows 
     	
     		shutdown -r -t 0 
     	
-3. Click on the Windows button and type power and then select Windows Powershell. 
-4. Type configure.ps1 to start the script.
+3. Click on the **Windows** button and type **power** and then select **Windows Powershell**. 
+4. Type **configure.ps1** to start the script.
 
 ### Start your container ###
 1. At the Windows Powershell prompt or a command prompt, type:
 
    `Siloclient -start test1 -def \windows\system32\containers\cmdserver.def -server`
 
-2. Then follow [these instructions](..\reference\networking.md) to set up your network.
-3. You can now try to RDP into the container
+### Setup the network
+Follow [these instructions](..\reference\networking.md) to set up your network.
+
+### Connect to the container using Remote Desktop ###
+1. Click on the Windows button and type mstsc and then click Remote Desktop Connection. 
+2. Type in the name of your container and then click OK. 
+ 	 Screenshot
 
 	Note: You may need to disable the Windows firewall / open custom ports in the Windows firewall in order to have RDP to the container work.
 
