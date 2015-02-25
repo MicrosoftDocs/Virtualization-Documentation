@@ -13,7 +13,7 @@ Let's get you started with containers! Before we begin, you will need:
 ### Step 1: Install Hyper-V ###
 Install Hyper-V using Windows Powershell. If you already have Hyper-V installed, you can skip this step and go on to [Step 2: Create a virtual machine](hello_world.md#Step2:Createthevirtualmachine).
 	
-<--  On Windows 10, type: `enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V -All` -->
+<!--  On Windows 10, type: `enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V -All` -->
 - On Windows Server, type: `Install-WindowsFeature –Name Hyper-V -IncludeManagementTools -Restart`
 	
 ### Step 2: Create the virtual machine ##
