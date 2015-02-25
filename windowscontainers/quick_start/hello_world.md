@@ -13,11 +13,11 @@ Let's get you started with containers! Before we begin, you will need:
 ### Step 1: Install Hyper-V ###
 Install Hyper-V using Windows Powershell. If you already have Hyper-V installed, you can skip this step and go on to [Step 2: Create a virtual machine](hello_world.md#Step2:Createthevirtualmachine).
 	
-<!--  On Windows 10, type: `enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V -All` -->
-- On Windows Server, type: `Install-WindowsFeature –Name Hyper-V -IncludeManagementTools -Restart`
+1. Click on the **Windows** button and type **power** and then select **Windows Powershell**. 
+2. <!--  On Windows 10, type: `enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V -All` --><!-- On Windows Server,-->Then type: `Install-WindowsFeature –Name Hyper-V -IncludeManagementTools -Restart` and hit **Enter**.
 	
 ### Step 2: Create the virtual machine ##
-You need to create a new virtual machine using a .vhdx of Windows 10 or Windows Server. 
+You need to create a new virtual machine using a .vhdx of Windows Server. 
 
 1. Click the **Start** button and type **Hyper-V Manager**.
 2. On the **Action** menu, select **Connect to Server**. 
@@ -38,8 +38,8 @@ You need to create a new virtual machine using a .vhdx of Windows 10 or Windows 
 	![](media\create_vm.png)
 
 ### Configure the virtual machine ###
-1. Click on the Windows button and type note and then select Notepad
-2. Copy the following lines in to Notepad and save it as configure.ps1:
+1. Click on the **Windows** button and type **note** and then select **Notepad**.
+2. Copy the following lines into Notepad and save it as **configure.ps1**:
 
 	
     		set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server'-name "fDenyTSConnections" -Value 0 
@@ -64,7 +64,7 @@ You need to create a new virtual machine using a .vhdx of Windows 10 or Windows 
 4. Type **configure.ps1** to start the script.
 
 ### Start your container ###
-1. At the Windows Powershell prompt or a command prompt, type:
+1. At the Windows Powershell prompt type:
 
    `Siloclient -start test1 -def \windows\system32\containers\cmdserver.def -server`
 
@@ -72,9 +72,9 @@ You need to create a new virtual machine using a .vhdx of Windows 10 or Windows 
 Follow [these instructions](..\reference\networking.md) to set up your network.
 
 ### Connect to the container using Remote Desktop ###
-1. Click on the Windows button and type mstsc and then click Remote Desktop Connection. 
-2. Type in the name of your container and then click OK. 
- 	 Screenshot
+1. Click on the **Windows** button and type **mstsc** and then click **Remote Desktop Connection**. 
+2. Type in the name of your container and then click **OK**. 
+ 	 <!-- Screenshot -->
 
 	Note: You may need to disable the Windows firewall / open custom ports in the Windows firewall in order to have RDP to the container work.
 
