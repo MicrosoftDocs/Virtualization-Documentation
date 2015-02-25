@@ -5,7 +5,7 @@ title: Hello World for Windows Containers
 
 Let's get you started with containers! Before we begin, you will need:
 
-- a computer running [//]: # (Windows 10 or) Windows Server
+- a computer running <!-- Windows 10 or -->Windows Server
 - an application with ....
 - something else
 - and another thing 
