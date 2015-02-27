@@ -42,7 +42,7 @@ You need to create a new virtual machine using a .vhdx of Windows Server.
 2. Copy the following lines into Notepad and save it as **configure.ps1**:
 
 	
-    		set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server'-name "fDenyTSConnections" -Value 0 
+    		```set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server'-name "fDenyTSConnections" -Value 0 
     	
     		set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp' -name "UserAuthentication" -Value 0
     	
@@ -59,6 +59,7 @@ You need to create a new virtual machine using a .vhdx of Windows Server.
     		Pause  # Wait for user to acknowledge before rebooting the system
     	
     		shutdown -r -t 0 
+```
 3. Click on the **Windows** button and type **power** and then select **Windows Powershell**. 
 4. Type **configure.ps1** to start the script.
 
