@@ -59,7 +59,6 @@ You need to create a new virtual machine using a .vhdx of Windows Server.
     		Pause  # Wait for user to acknowledge before rebooting the system
     	
     		shutdown -r -t 0 
-    	
 3. Click on the **Windows** button and type **power** and then select **Windows Powershell**. 
 4. Type **configure.ps1** to start the script.
 
