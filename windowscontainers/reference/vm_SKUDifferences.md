@@ -39,3 +39,7 @@ Hyper-V is only available on Enteprise and Profesional versions of Windows clien
 
 Enhanced Mode VM Connections are enabled by default on Windows Client hosts
 Intercept and VMBus throttling are disabled by default on Windows Client hosts
+
+# Guest Feature Differences #
+
+RemoteFX is only supported when running Windows Client Enterprise inside the virtual machine
