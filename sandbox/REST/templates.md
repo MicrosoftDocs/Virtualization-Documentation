@@ -1,1 +1,0 @@
-﻿Discussion of the role of templates in new management model
