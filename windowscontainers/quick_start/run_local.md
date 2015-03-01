@@ -31,13 +31,13 @@ Alternatively use the same steps as above in a PowerShell script (copy instructi
 	
 		`Enable-NetFirewallRule -DisplayGroup "Remote Desktop"` 
 	
-		`dism /Online /Enable-Feature:Containers` 
+		dism /Online /Enable-Feature:Containers
 	
-		`siloservice -install` 
+		siloservice -install
 	
-		`dism /Online /Enable-Feature:Microsoft-Hyper-V /all` 
+		dism /Online /Enable-Feature:Microsoft-Hyper-V /all
 	
-		`dism /Online /Enable-Feature:Microsoft-Hyper-V-Management-PowerShell /all`
+		dism /Online /Enable-Feature:Microsoft-Hyper-V-Management-PowerShell /all
 	
 		`Pause  # Wait for user to acknowledge before rebooting the system`
 	
