@@ -1,4 +1,7 @@
-﻿Hyper-V has different features depending on the version of Windows in the host and guest environments.
+ms.ContentId: 300B0F58-26DE-4F49-809D-8C1828AB071F 
+title: Host SKU Differences
+
+Hyper-V has different features depending on the version of Windows in the host and guest environments.
 
 # Host Feature Differences #
 
