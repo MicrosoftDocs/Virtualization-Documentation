@@ -27,3 +27,20 @@ These developers want to build a fabric experience that has specific and unique 
 An individual developer with a laptop and an idea should find it easy to do what they want with Hyper-V.
 
 ## Philosophy ##
+
+The following points are key to the philosophy of the Hyper-V REST API
+
+### Human readable ###
+
+It should be easy for a developer who is otherwise unfamiliar with Hyper-V to read and understand code that interacts with Hyper-V.
+Developers who are familiar with Hyper-V should not have to expend mental effort in reading and parsing the code that they have written that interacts with Hyper-V.
+
+This means we will prefer:
+- Simple English over jargon
+- Descriptive enumerations over booleans / codes
+- Minimal syntax
+
+### No unecessary content needed ###
+
+Developers should only have to provide the information they care about.  Defaults should be defined and populated for all operations - so that people can focus solely on the problem they want to solve / solution they want to enable.
+
