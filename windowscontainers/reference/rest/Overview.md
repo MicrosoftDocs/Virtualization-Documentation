@@ -60,3 +60,5 @@ Defaults should be defined and populated for all operations - so that people can
 [Status / Eventing](./eventing.md)
 
 [Reference material](./Reference.md)
+
+[Life Cycle](./LifeCycle.md)
