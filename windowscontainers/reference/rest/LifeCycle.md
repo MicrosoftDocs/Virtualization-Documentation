@@ -1,4 +1,7 @@
-﻿We need to support the following virtual machine life cycle events:
+ms.ContentId: 1F4AB21D-19E6-495D-B5BC-66E8B73539F1 
+title: REST Lifecycle
+
+We need to support the following virtual machine life cycle events:
 
 - Create
 - Delete

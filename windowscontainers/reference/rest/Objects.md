@@ -1,4 +1,7 @@
-﻿The Hyper-V REST API will have the following basic objects:
+ms.ContentId: 6852FF78-8F19-4C09-A918-F8F2635AF8FC 
+title: REST Objects
+
+The Hyper-V REST API will have the following basic objects:
 - Host
 - Virtual machine
 - Image

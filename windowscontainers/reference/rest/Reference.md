@@ -1,4 +1,7 @@
-﻿Read these things to understand what we are talking about:
+ms.ContentId: 025C8AA5-70FE-4C39-B54F-0D3A0F9AE0A2 
+title: REST API
+
+Read these things to understand what we are talking about:
 
 [Hyper-V WMI Documentation](http://bit.ly/1E8yZjI) 
 
