@@ -6,16 +6,18 @@
 
 # Host #
 
-Foo
+All the host settings go here...
 
 # Virtual Machine #
 
-Foo
+There should be a single object for a virtual machine - that includes all its devices, guest settings, etc...
+
+How are we going to handle checkpoints?
 
 # Image #
 
-Foo
+How are we handling VHDs versus vFC versus passthrough?
 
 # Network #
 
-Foo
+What will this look like if we give networking to the networking team?
