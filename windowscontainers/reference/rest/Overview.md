@@ -23,7 +23,8 @@ They should always be able to go "straight to the source" and talk to Hyper-V at
 
 ### Purpose Built Fabric Controllers ###
 
-These developers want to build a fabric experience that has specific and unique differentiators.  Hyper-V should provide the right high level concepts that they are not required to impliment everything themselves, and are able to focus on adding value where they are different.
+These developers want to build a fabric experience that has specific and unique differentiators. 
+Hyper-V should provide the right high level concepts that they are not required to impliment everything themselves, and are able to focus on adding value where they are different.
 
 ### Small Projects / Individual Developers ###
 
@@ -45,7 +46,8 @@ This means we will prefer:
 
 ### No unecessary content needed ###
 
-Developers should only have to provide the information they care about.  Defaults should be defined and populated for all operations - so that people can focus solely on the problem they want to solve / solution they want to enable.
+Developers should only have to provide the information they care about.
+Defaults should be defined and populated for all operations - so that people can focus solely on the problem they want to solve / solution they want to enable.
 
 # Detailed Topics #
 
