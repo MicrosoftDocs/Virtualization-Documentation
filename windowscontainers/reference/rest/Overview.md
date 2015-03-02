@@ -44,3 +44,10 @@ This means we will prefer:
 
 Developers should only have to provide the information they care about.  Defaults should be defined and populated for all operations - so that people can focus solely on the problem they want to solve / solution they want to enable.
 
+# Detailed Topics #
+
+	Hopefully, Sarah will teach me how to do a TOC...
+
+Templates:
+Objects:
+Reference material:
