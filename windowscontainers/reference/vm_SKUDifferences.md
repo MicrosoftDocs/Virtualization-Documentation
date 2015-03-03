@@ -1,4 +1,4 @@
-ms.ContentId: 300B0F58-26DE-4F49-809D-8C1828AB071F 
+﻿ms.ContentId: 300B0F58-26DE-4F49-809D-8C1828AB071F 
 title: Host SKU Differences
 
 Hyper-V has different features depending on the version of Windows in the host and guest environments.
@@ -36,7 +36,7 @@ Intercept and VMBus throttling are enabled by default on Windows Server hosts
 
 ### Features that are limited to a subset of Windows Client Hosts ###
 
-Hyper-V is only available on Enteprise and Profesional versions of Windows client.
+Hyper-V is only available on Enterprise and Professional versions of Windows Client.
 
 ### Windows Client Specific Default Settings ###
 
