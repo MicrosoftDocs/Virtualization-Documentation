@@ -39,4 +39,4 @@ We need to support the following virtual machine life cycle events:
 
 Also:	
 - Replica states
-- Planned VM goo
+- Planned VM goo <!-- would this include writing and accessing the KVP goo? -->

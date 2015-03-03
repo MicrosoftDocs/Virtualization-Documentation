@@ -56,14 +56,12 @@ Defaults should be defined and populated for all operations - so that people can
 
 # Detailed Topics #
 
-	Hopefully, Sarah will teach me how to do a TOC...
+- [Templates](templates.md)
 
-[Templates](templates.md)
+- [Objects](Objects.md)
 
-[Objects](Objects.md)
+- [Eventing](eventing.md)
 
-[Eventing](eventing.md)
+- [Reference material](Reference.md)
 
-[Reference material](Reference.md)
-
-[Life Cycle](LifeCycle.md)
+- [Life Cycle](LifeCycle.md)
