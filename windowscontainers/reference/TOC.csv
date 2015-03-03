@@ -1,10 +1,10 @@
 *,oa-toc-container:reference
 **,reference_overview.md
-***,rest\overview.md
-***,rest\eventing.md
-***,rest\lifecycle.md
-***,rest\objects.md
-***,rest\templates.md
+***,rest/overview.md
+***,rest/eventing.md
+***,rest/lifecycle.md
+***,rest/objects.md
+***,rest/templates.md
 **,vm_skudifferences.md
 **,rest\overview.md
 **,wmi.md
