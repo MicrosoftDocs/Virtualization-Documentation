@@ -8,25 +8,30 @@ If you are just getting started with Client Hyper-V, you probably want to use th
 
 
 ## Using Programs and Features ##
-In the Control Panel, click Programs, and then click Programs and Features.
+1. In the **Control Panel**, click **Programs**, and then click **Programs and Features**.
 
-Click Turn Windows features on or off.
+2. Click **Turn Windows features on or off**.
 
-Select Hyper-V, click OK, and then click Close.
-
+3. Select Hyper-V, click OK, and then click Close.
+4. When the installation is finished, restart the computer.
 
 ## Using the Get-WindowsOptionalFeature cmdlet ##
 For more information, see Get-WindowsOptionalFeature and Using PowerShell to Set Up Hyper-V
 
-Click on the Windows icon and search for Windows PowerShell. Right-click the shortcut for Windows PowerShell and then click Run as Administrator. To pin the Windows PowerShell shortcut to the Start menu, right-click the shortcut, and then click Pin to Start.
+1. Click on the **Windows** button and search for **Windows PowerShell**. 
+2. Right-click on **Windows PowerShell** and then click **Run as Administrator**.
+3. At the Windows Powerhshell prompt, type the following and then press the **Enter** key: 
+```enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V -All``` 
+4. When the installation is finished, restart the computer. 
 
-At the Windows Powerhshell prompt, type the following and then press Enter. 
+## How do I know it installed?##
+After you restart your computer, check to see if youcan start the Hyper-V Manager too.
 
-  Copy Code 
-enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V -All 
- 
+1. Click on the **Windows** button and type **Hyper-V**.
+2. Click on **Hyper-V Manager** in the list.
 
-When the installation is finished, restart the computer. 
-
+The Hyper-V Manager should start and look like this:
+<!-- need screenshot -->
 
 # Next Step #
+Step 4: Create a virtual switch

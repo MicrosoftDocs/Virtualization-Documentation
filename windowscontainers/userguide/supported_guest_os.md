@@ -42,9 +42,9 @@ manner:
 
 
 
-See also:
+## See also: ##
 
-- **Linux Virtual Machines on Hyper-V**\
+- **Linux Virtual Machines on Hyper-V**
 
 - **Supported Guest Operating Systems for Windows Server Technical Preview 2**
 
