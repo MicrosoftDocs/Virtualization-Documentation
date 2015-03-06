@@ -1,4 +1,4 @@
-ms.ContentId: B0092519-7B91-4C73-9810-7242326BCCFD 
+﻿ms.ContentId: B0092519-7B91-4C73-9810-7242326BCCFD 
 title: REST API Overview
 
 
@@ -65,3 +65,5 @@ Defaults should be defined and populated for all operations - so that people can
 - [Reference material](Reference.md)
 
 - [Life Cycle](LifeCycle.md)
+
+- [Planned VMs](plannedVMs.md)
