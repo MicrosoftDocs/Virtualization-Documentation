@@ -23,16 +23,16 @@ manner:
 
 ## Supported Windows Server guest operating systems ##
 
-+--------------------+--------------------+--------------------+--------------------+
+
 | Guest operating    | Maximum number of  | Integration        | Notes              |
 | system (server)    | virtual processors | Services           |                    |
-+====================+====================+====================+====================+
+|--------------------|--------------------|--------------------|--------------------|
 | Windows Server     | 64                 | Built-in           |                    |
 | 2012 R2            |                    |                    |                    |
-+--------------------+--------------------+--------------------+--------------------+
+|--------------------|--------------------|--------------------|--------------------|
 | Windows Server     | 64                 | Built-in           |                    |
 | 2012               |                    |                    |                    |
-+--------------------+--------------------+--------------------+--------------------+
+|--------------------|--------------------|--------------------|--------------------|
 | Windows Server     | 64                 | Install the        | Datacenter,        |
 | 2008 R2 with       |                    | integration        | Enterprise,        |
 | Service Pack 1 (SP |                    | services after you | Standard and Web   |
@@ -40,7 +40,7 @@ manner:
 |                    |                    | operating system   |                    |
 |                    |                    | in the virtual     |                    |
 |                    |                    | machine.           |                    |
-+--------------------+--------------------+--------------------+--------------------+
+|--------------------|--------------------|--------------------|--------------------|
 | Windows Server     | 4                  | Install the        | Datacenter,        |
 | 2008 with Service  |                    | integration        | Enterprise,        |
 | Pack 2 (SP 2)      |                    | services after you | Standard and Web   |
@@ -48,7 +48,7 @@ manner:
 |                    |                    | operating system   | and 64-bit).       |
 |                    |                    | in the virtual     |                    |
 |                    |                    | machine.           |                    |
-+--------------------+--------------------+--------------------+--------------------+
+|--------------------|--------------------|--------------------|--------------------|
 | Windows Home       | 4                  | Install the        |                    |
 | Server 2011        |                    | integration        |                    |
 |                    |                    | services after you |                    |
@@ -56,7 +56,7 @@ manner:
 |                    |                    | operating system   |                    |
 |                    |                    | in the virtual     |                    |
 |                    |                    | machine.           |                    |
-+--------------------+--------------------+--------------------+--------------------+
+|--------------------|--------------------|--------------------|--------------------|
 | Windows Small      | Essentials         | Install the        | Essentials and     |
 | Business Server    | edition - 2        | integration        | Standard editions. |
 | 2011               |                    | services after you |                    |
@@ -64,7 +64,7 @@ manner:
 |                    | 4                  | operating system   |                    |
 |                    |                    | in the virtual     |                    |
 |                    |                    | machine.           |                    |
-+--------------------+--------------------+--------------------+--------------------+
+|--------------------|--------------------|--------------------|--------------------|
 | Windows Server     | 2                  | Install the        | Standard, Web,     |
 | 2003 R2 with       |                    | integration        | Enterprise, and    |
 | Service Pack 2     |                    | services after you | Datacenter         |
@@ -72,7 +72,7 @@ manner:
 |                    |                    | operating system   | and 64-bit).       |
 |                    |                    | in the virtual     |                    |
 |                    |                    | machine.           |                    |
-+--------------------+--------------------+--------------------+--------------------+
+|--------------------|--------------------|--------------------|--------------------|
 | Windows Server     | 2                  | Install the        | Standard, Web,     |
 | 2003 with Service  |                    | integration        | Enterprise, and    |
 | Pack 2             |                    | services after you | Datacenter         |
@@ -80,7 +80,7 @@ manner:
 |                    |                    | operating system   | and 64-bit).       |
 |                    |                    | in the virtual     |                    |
 |                    |                    | machine.           |                    |
-+--------------------+--------------------+--------------------+--------------------+
+|--------------------|--------------------|--------------------|--------------------|
 
 
 
