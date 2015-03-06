@@ -1,4 +1,7 @@
-﻿There are times when a virtual machine configuration needs to be "altered" in order to be moved.
+ms.ContentId: C71126C0-BBC8-470B-91F0-17B339177D7F
+title: Planned VMs
+
+There are times when a virtual machine configuration needs to be "altered" in order to be moved.
 
 When:
 - Live migrating a virtual machine
