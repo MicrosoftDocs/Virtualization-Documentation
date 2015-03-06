@@ -19,128 +19,29 @@ manner:
 - For issues found in other operating systems that have been certified by the operating system vendor to run on Hyper-V, support is provided by the vendor.
 
 - For issues found in other operating systems, Microsoft submits the issue to the multi-vendor support community, [TSANet](http://www.tsanet.org/).
-    \
+
 
 ## Supported Windows Server guest operating systems ##
 
-
-| Guest operating    | Maximum number of  | Integration        | Notes              |
-| system (server)    | virtual processors | Services           |                    |
-|--------------------|--------------------|--------------------|--------------------|
-| Windows Server     | 64                 | Built-in           |                    |
-| 2012 R2            |                    |                    |                    |
-|--------------------|--------------------|--------------------|--------------------|
-| Windows Server     | 64                 | Built-in           |                    |
-| 2012               |                    |                    |                    |
-|--------------------|--------------------|--------------------|--------------------|
-| Windows Server     | 64                 | Install the        | Datacenter,        |
-| 2008 R2 with       |                    | integration        | Enterprise,        |
-| Service Pack 1 (SP |                    | services after you | Standard and Web   |
-| 1)                 |                    | set up the         | editions.          |
-|                    |                    | operating system   |                    |
-|                    |                    | in the virtual     |                    |
-|                    |                    | machine.           |                    |
-|--------------------|--------------------|--------------------|--------------------|
-| Windows Server     | 4                  | Install the        | Datacenter,        |
-| 2008 with Service  |                    | integration        | Enterprise,        |
-| Pack 2 (SP 2)      |                    | services after you | Standard and Web   |
-|                    |                    | set up the         | editions (32-bit   |
-|                    |                    | operating system   | and 64-bit).       |
-|                    |                    | in the virtual     |                    |
-|                    |                    | machine.           |                    |
-|--------------------|--------------------|--------------------|--------------------|
-| Windows Home       | 4                  | Install the        |                    |
-| Server 2011        |                    | integration        |                    |
-|                    |                    | services after you |                    |
-|                    |                    | set up the         |                    |
-|                    |                    | operating system   |                    |
-|                    |                    | in the virtual     |                    |
-|                    |                    | machine.           |                    |
-|--------------------|--------------------|--------------------|--------------------|
-| Windows Small      | Essentials         | Install the        | Essentials and     |
-| Business Server    | edition - 2        | integration        | Standard editions. |
-| 2011               |                    | services after you |                    |
-|                    | Standard edition - | set up the         |                    |
-|                    | 4                  | operating system   |                    |
-|                    |                    | in the virtual     |                    |
-|                    |                    | machine.           |                    |
-|--------------------|--------------------|--------------------|--------------------|
-| Windows Server     | 2                  | Install the        | Standard, Web,     |
-| 2003 R2 with       |                    | integration        | Enterprise, and    |
-| Service Pack 2     |                    | services after you | Datacenter         |
-| (SP2)              |                    | set up the         | editions (32-bit   |
-|                    |                    | operating system   | and 64-bit).       |
-|                    |                    | in the virtual     |                    |
-|                    |                    | machine.           |                    |
-|--------------------|--------------------|--------------------|--------------------|
-| Windows Server     | 2                  | Install the        | Standard, Web,     |
-| 2003 with Service  |                    | integration        | Enterprise, and    |
-| Pack 2             |                    | services after you | Datacenter         |
-|                    |                    | set up the         | editions (32-bit   |
-|                    |                    | operating system   | and 64-bit).       |
-|                    |                    | in the virtual     |                    |
-|                    |                    | machine.           |                    |
-|--------------------|--------------------|--------------------|--------------------|
-
-
+<table>
+<tr><th>Guest operating system</th><th>	Maximum number of virtual processors</th><th>Integration Services</th><th>Notes	</th></tr>
+<tr><td><p>Windows Server Technical Preview</p></td><td><p>64</p></td><td><p>Built-in</p></td><td><p></p></td></tr>
+<tr><td><p>Windows Server 2012 R2</p></td><td><p>64</p></td><td><p>Built-in</p></td><td><p></p></td></tr>
+<tr><td><p>Windows Server 2012</p></td><td><p>64</p></td><td><p>Built-in</p></td><td></td></tr>
+<tr><td><p>Windows Server 2008 R2 with Service Pack 1 (SP 1)</p></td><td><p>64</p></td><td><p>Install the integration services after you set up the operating system in the virtual machine.</p></td><td><p>Datacenter, Enterprise, Standard and Web editions. </p></td></tr>
+<tr><td><p>Windows Server 2008 with Service Pack 2 (SP 2)</p></td><td><p>4</p></td><td><p>Install the integration services after you set up the operating system in the virtual machine.</p></td><td><p>Datacenter, Enterprise, Standard and Web editions (32-bit and 64-bit). </p></td></tr>
+<tr><td><p>Windows Home Server 2011</p></td><td><p>4</p></td><td><p>Install the integration services after you set up the operating system in the virtual machine.</p></td><td></td></tr>
+<tr><td><p>Windows Small Business Server 2011</p></td><td><p>Essentials edition - 2</p><p>Standard edition - 4</p></td><td><p>Install the integration services after you set up the operating system in the virtual machine.</p></td><td><p>Essentials and Standard editions. </p></td>
+</table>
 
 ## Supported Windows client guest operating systems ##
 
-
-+--------------------+--------------------+--------------------+--------------------+
-| Guest operating    | Maximum number of  | Integration        | Notes              |
-| system (client)    | virtual processors | Services           |                    |
-+====================+====================+====================+====================+
-| Windows 8.1        | 32                 | Built-in           |                    |
-+--------------------+--------------------+--------------------+--------------------+
-| Windows 8          | 32                 | Upgrade the        |                    |
-|                    |                    | integration        |                    |
-|                    |                    | services after you |                    |
-|                    |                    | set up the         |                    |
-|                    |                    | operating system   |                    |
-|                    |                    | in the virtual     |                    |
-|                    |                    | machine.           |                    |
-+--------------------+--------------------+--------------------+--------------------+
-| Windows 7 with     | 4                  | Upgrade the        | Ultimate,          |
-| Service Pack 1 (SP |                    | integration        | Enterprise, and    |
-| 1)                 |                    | services after you | Professional       |
-|                    |                    | set up the         | editions (32-bit   |
-|                    |                    | operating system   | and 64-bit).       |
-|                    |                    | in the virtual     |                    |
-|                    |                    | machine.           |                    |
-+--------------------+--------------------+--------------------+--------------------+
-| Windows 7          | 4                  | Upgrade the        | Ultimate,          |
-|                    |                    | integration        | Enterprise, and    |
-|                    |                    | services after you | Professional       |
-|                    |                    | set up the         | editions (32-bit   |
-|                    |                    | operating system   | and 64-bit).       |
-|                    |                    | in the virtual     |                    |
-|                    |                    | machine.           |                    |
-+--------------------+--------------------+--------------------+--------------------+
-| Windows Vista with | 2                  | Install the        | Business,          |
-| Service Pack 2     |                    | integration        | Enterprise, and    |
-| (SP2)              |                    | services after you | Ultimate,          |
-|                    |                    | set up the         | including N and KN |
-|                    |                    | operating system   | editions.          |
-|                    |                    | in the virtual     |                    |
-|                    |                    | machine.           |                    |
-+--------------------+--------------------+--------------------+--------------------+
-| Windows XP with    | 2                  | Install the        | Professional.      |
-| Service Pack 3     |                    | integration        |                    |
-| (SP3)              |                    | services after you |                    |
-|                    |                    | set up the         |                    |
-|                    |                    | operating system   |                    |
-|                    |                    | in the virtual     |                    |
-|                    |                    | machine.           |                    |
-+--------------------+--------------------+--------------------+--------------------+
-| Windows XP x64     | 2                  | Install the        | Professional.      |
-| Edition with       |                    | integration        |                    |
-| Service Pack 2 (SP |                    | services after you |                    |
-| 2)                 |                    | set up the         |                    |
-|                    |                    | operating system   |                    |
-|                    |                    | in the virtual     |                    |
-|                    |                    | machine.           |                    |
-+--------------------+--------------------+--------------------+--------------------+
+<table><tr><th>Guest operating system</th><th>Maximum number of virtual processors</th><th>Integration Services</th><th>Notes</th></tr>
+<tr><td><p>Windows 10</p></td><td><p>32</p></td><td><p>Built-in</p></td><td></td></tr>
+<tr><td><p>Windows 8.1</p></td><td><p>32</p></td><td><p>Built-in</p></td><td></td></tr>
+<tr><td><p>Windows 8</p></td><td><p>32</p></td><td><p>Upgrade the integration services after you set up the operating system in the virtual machine.</p></td><td></td></tr>
+<tr><td><p>Windows 7 with Service Pack 1 (SP 1)</p></td><td><p>4</p></td><td><p>Upgrade the integration services after you set up the operating system in the virtual machine.</p></td><td><p>Ultimate, Enterprise, and Professional editions (32-bit and 64-bit). </p></td></tr><tr><td><p>Windows 7</p></td><td><p>4</p></td><td><p>Upgrade the integration services after you set up the operating system in the virtual machine.</p></td><td><p>Ultimate, Enterprise, and Professional editions (32-bit and 64-bit). </p></td></tr><tr><td><p>Windows Vista with Service Pack 2 (SP2)</p></td><td><p>2</p></td><td><p>Install the integration services after you set up the operating system in the virtual machine.</p></td><td><p>Business, Enterprise, and Ultimate, including N and KN editions. </p></td></tr><tr><td><p>Windows XP with Service Pack 3 (SP3)</p></td><td><p>2</p></td><td><p>Install the integration services after you set up the operating system in the virtual machine.</p></td><td><p>Professional. </p></td></tr><tr><td><p>Windows XP x64 Edition with Service Pack 2 (SP 2)</p></td><td><p>2</p></td><td><p>Install the integration services after you set up the operating system in the virtual machine.</p></td><td><p>Professional. </p></td></tr>
+</table>
 
 
 
