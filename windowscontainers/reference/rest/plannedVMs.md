@@ -19,7 +19,7 @@ This may be possibly fatal, like it is referencing a missing disk or package.  R
 
 Hyper-V handles this today with the planned virtual machine infrastructure
 
-LXD handles this by having the caller define a container configuration that the container is then "created into".  For instanace - in the case of a live migration on LXD the caller:
+LXD handles this by having the caller define a container configuration that the container is then "created into".  For instance - in the case of a live migration on LXD the caller:
 1. Calls the source server and tells it to prepare the container for live migration
 2. Calls the destination server and tells it to:
 	1. Create a new blank container, including configuration
