@@ -8,7 +8,7 @@ These topics will help your get acquainted with Hyper-V Client on Windows 10. We
 
 [Step 2: Make sure you can use your machine with Client Hyper-V](step2.md)
 
-[Step 3: Install Client Hyper-V](step3)
+[Step 3: Install Client Hyper-V](step3.md)
 
 [Step 4: Create a virtual switch](step4.md) 
 
