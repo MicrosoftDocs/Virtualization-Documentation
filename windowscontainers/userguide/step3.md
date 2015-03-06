@@ -12,7 +12,7 @@ If you are just getting started with Client Hyper-V, you probably want to use th
 
 2. Click **Turn Windows features on or off**.
 
-3. Select Hyper-V, click OK, and then click Close.
+3. Select **Hyper-V**, click **OK**, and then click **Close**.
 4. When the installation is finished, restart the computer.
 
 ## Using the Get-WindowsOptionalFeature cmdlet ##
