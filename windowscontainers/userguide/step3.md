@@ -34,4 +34,4 @@ The Hyper-V Manager should start and look like this:
 <!-- need screenshot -->
 
 # Next Step #
-Step 4: Create a virtual switch
+[Step 4: Create a virtual switch](step4.md)

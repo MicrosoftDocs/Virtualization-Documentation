@@ -19,4 +19,4 @@ Is it an emulator?
 **Checkpoint**
 
 # Next step: #
-Step 2: Make sure you can use your machine with Client Hyper-V
+[Step 2: Make sure you can use your machine with Client Hyper-V](step2.md)

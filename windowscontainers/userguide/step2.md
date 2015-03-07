@@ -10,4 +10,4 @@ BIOS settings
 RAM
 
 # Next Step: #
-Step 3: Install Client Hyper-V
+[Step 3: Install Client Hyper-V](step3.md)
