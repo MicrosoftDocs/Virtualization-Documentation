@@ -1,5 +1,8 @@
-ms.ContentId: 150B8DCC-861B-4FD4-9353-C9886F2F0C30
+﻿ms.ContentId: 150B8DCC-861B-4FD4-9353-C9886F2F0C30
 title: When to use Containers
+
+
+** Goes live in May **
 
 # When to use Containers #
 
@@ -44,13 +47,13 @@ Users can create, deploy and run server applications directly inside a Windows S
 
 ### Containers for Developers  
 
-With containers, developers can build any app in any language using any libraries. These apps are completely portable and can run anywhere - colleagues’ computers, QA servers running in the cloud, and production data center VMs.  
+With containers, developers can build any app in any language using any libraries. These apps are completely portable and can run anywhere - colleaguesâ€™ computers, QA servers running in the cloud, and production data center VMs.  
 
 Containers helps developers build and ship higher-quality applications, faster. 
 
 ### Containers for Systems Administrators
 
-Systems administrators can use containers to provide standardized environments for their development, QA, and production teams, reducing “works on my machine” finger-pointing. By using containers  systems administrators abstract away differences in OS installations and underlying infrastructure. 
+Systems administrators can use containers to provide standardized environments for their development, QA, and production teams, reducing â€œworks on my machineâ€ finger-pointing. By using containers  systems administrators abstract away differences in OS installations and underlying infrastructure. 
 
 Containers helps systems administrators deploy and run any app on any infrastructure, quickly and reliably. 
 nd security
@@ -70,12 +73,12 @@ Virtual machines have the following properties:
 ## About App-V ##
 
 Application Virtualization (App-V)
-Microsoft Application Virtualization (App-V) transforms applications into centrally managed services that are never installed and don’t conflict with other applications.
-IT professionals and end-users alike face challenges in today’s work environment. End-users speak many languages, are geographically dispersed and may not be connected to corporate networks at all times. IT must meet the needs of these users, and provide solutions that are fast, flexible and reliable. App-V can help with the challenges you face day to day and enable your business to be more flexible and responsive to changing needs. Some of the key benefits of App-V include:
+Microsoft Application Virtualization (App-V) transforms applications into centrally managed services that are never installed and donâ€™t conflict with other applications.
+IT professionals and end-users alike face challenges in todayâ€™s work environment. End-users speak many languages, are geographically dispersed and may not be connected to corporate networks at all times. IT must meet the needs of these users, and provide solutions that are fast, flexible and reliable. App-V can help with the challenges you face day to day and enable your business to be more flexible and responsive to changing needs. Some of the key benefits of App-V include:
 An integrated platform: 
-Virtual Applications leverage Windows standards for a consistent user experience. With App-V 5.0, virtual applications work more like traditionally installed applications. This means that users don’t have to change the way they use an application just because it’s virtual. It also makes it easy for IT to ork with virtual applications. Diagnostic messages provide meaningful feedback, helping users resolve problems on their own.
+Virtual Applications leverage Windows standards for a consistent user experience. With App-V 5.0, virtual applications work more like traditionally installed applications. This means that users donâ€™t have to change the way they use an application just because itâ€™s virtual. It also makes it easy for IT to ork with virtual applications. Diagnostic messages provide meaningful feedback, helping users resolve problems on their own.
 Flexible virtualization: 
-Businesses can connect separately packaged App-V applications, enabling them to communicate with each other and with traditionally installed applications. This gives businesses the best of both worlds, providing isolation – reducing conflict and time spent regression testing – yet allowing applications to interact and communicate when needed. 
+Businesses can connect separately packaged App-V applications, enabling them to communicate with each other and with traditionally installed applications. This gives businesses the best of both worlds, providing isolation â€“ reducing conflict and time spent regression testing â€“ yet allowing applications to interact and communicate when needed. 
 Powerful management of virtualized applications: 
 App-V 5.0 allows IT to deploy, track and service virtual applications. With new, web-based management interface based on Silverlight, IT can manage applications without being tied to an installed management console. And App-V 5.0 is designed to be easy and efficient to use in VDI environments, allowing IT to make the best use of expensive disk resources without changing the way they get their jobs done. It lets IT simply choose to turn off local application storage, drmatically reducing disk requirements for VDI while leaving the application provisioning and update process unchanged. 
 
