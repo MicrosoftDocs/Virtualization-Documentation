@@ -30,7 +30,7 @@ Automatic VM Activation is only available on Windows Server Datacenter hosts.
 ### Windows Server Specific Default Settings ###
 
 Enhanced Mode VM Connections are disabled by default on Windows Server hosts
-Intercept and VMBus throttling are enabled by default on Windows Server hosts
+Intercept and VMBus throttling are enabled by default on Windows Server hosts (mebersol asks, is this true?  Investigating...)
 
 ## Windows Client ##
 
