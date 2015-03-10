@@ -23,4 +23,4 @@ For this step, if you already have a .iso file for a supported operating system,
 4. When everything looks right, click **OK**. 
 
 # Next Step: #
-Step 6: Connect to the virtual machine and finish the installation
+[Step 6: Connect to the virtual machine and finish the installation](step6.md)

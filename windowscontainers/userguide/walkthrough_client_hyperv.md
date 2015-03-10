@@ -14,11 +14,11 @@ These topics will help your get acquainted with Hyper-V Client on Windows 10. We
 
 [Step 5: Create a Windows virtual machine from an .iso file](step5.md)
 
-Step 6: Connect to the virtual machine and finish the installation
+[Step 6: Connect to the virtual machine and finish the installation](step6.md)
 
-Step 7: Experiment with checkpoints
+[Step 7: Experiment with checkpoints](step7.md)
 
-Step 8: Experiment with exporting and importing a virtual machine
+[Step 8: Export and import a virtual machine](step8.md)
 
 Step 9: Create a Linux guest virtual machine
 
