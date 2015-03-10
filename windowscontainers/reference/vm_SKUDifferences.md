@@ -5,13 +5,25 @@ Hyper-V has different features depending on the version of Windows in the host a
 
 # Host Feature Differences #
 
-<table>
-<tr><th>Feature</th><th>Server</th><th>Client</th><th>Notes</th></tr>
-<tr><td>Enhanced Session Mode</td><td>√ </td><td>√</td><td>Defaults: Server = off and Client = on</td></tr>
-<tr><td>Live Migration</td><td>√</td><td></td><td></td></tr>
-</table>
+<-- Do we want to simplify this with a table? Yes - No? -->
 
-
+| **Feature**  			| **Server** 	| **Client** 	|  **Notes**       				|
+|:----------------------|:--------------|:--------------|:------------------------------|
+|Enhanced Session Mode	| √       		| √          	| Default:      				|
+|             			|        		|            	| Server = off 					|
+|            			|           	|            	| Client = on  					|
+|Live Migration  		| √        		|            	|              					|
+|Remote FX 				| √ 			|  				|  								|
+|Hyper-V Replica 		| √ 			|  				|  								|
+|Virtual Fibre Channel 	| √ 			|  				|  								|
+|SR-IOV 				| √ 			| 				|  								|
+|Automatic VM Activation| √ see notes	|				|Datacenter version only		|
+|Clustered hosts		| √ see notes	|				|Requires server only features	|
+|Shared VHDX 			| √ see notes 	| 				| VHDX file must reside on a 	|
+|						|				|				|Windows Server Scale Out 		|
+|						|				|				|File Server Cluster			|
+|VSS based host backup	| √				|				|								|
+	
 ## Windows Server ##
 
 ### Features only in Windows Server Hosts ###
