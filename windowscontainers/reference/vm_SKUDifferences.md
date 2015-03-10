@@ -19,10 +19,12 @@ Hyper-V has different features depending on the version of Windows in the host a
 |SR-IOV 				| √ 			| 				|  								|
 |Automatic VM Activation| √ see notes	|				|Datacenter version only		|
 |Clustered hosts		| √ see notes	|				|Requires server only features	|
-|Shared VHDX 			| √ see notes 	| 				| VHDX file must reside on a 	|
+|Shared VHDX 			| √ see notes 	| 				|VHDX file must reside on a 	|
 |						|				|				|Windows Server Scale Out 		|
 |						|				|				|File Server Cluster			|
 |VSS based host backup	| √				|				|								|
+
+
 	
 ## Windows Server ##
 
