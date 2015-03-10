@@ -11,4 +11,4 @@ In order to finish making your virtual machine, you need to start the VM and wal
 
 
 Next Step:
-[Step 7: Experiment with checkpoints](step7)
+[Step 7: Experiment with checkpoints](step7.md)
