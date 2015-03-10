@@ -1,4 +1,4 @@
-ms.ContentId: 300B0F58-26DE-4F49-809D-8C1828AB071F 
+﻿ms.ContentId: 300B0F58-26DE-4F49-809D-8C1828AB071F 
 title: Host SKU Differences
 
 Hyper-V has different features depending on the version of Windows in the host and guest environments.
@@ -50,8 +50,8 @@ Automatic VM Activation is only available on Windows Server Datacenter hosts.
 
 ### Windows Server Specific Default Settings ###
 
-Enhanced Mode VM Connections are disabled by default on Windows Server hosts
-Intercept and VMBus throttling are enabled by default on Windows Server hosts <!--mebersol asks, is this true?  Investigating...-->
+- Enhanced Mode VM Connections are disabled by default on Windows Server hosts
+- Intercept and VMBus throttling are disabled by default on Windows Server hosts
 
 ## Windows Client ##
 
