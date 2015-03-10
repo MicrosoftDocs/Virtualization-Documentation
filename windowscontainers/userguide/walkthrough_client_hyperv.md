@@ -22,3 +22,5 @@ These topics will help your get acquainted with Hyper-V Client on Windows 10. We
 
 Step 9: Create a Linux guest virtual machine
 
+Step 10: Experiment with Windows Powershell
+
