@@ -178,7 +178,21 @@ The Open Authoring team have build a local preview so you can see how your conte
 3. Click **Save**.
 4. To see a local preview of the file **about_overview.md** in your browsers, type: [http://localhost:7777/windowscontainers/about/about_overview.md](http://localhost:7777/windowscontainers/about/about_overview.md) in the address bar.
 
+# Using Markdown Pad 2 #
 
+If you use Markdown Pad 2 for authoring, you should change the markdown style to GitHub.
+
+1. In Markdown Pad 2 got to **Tools** > **Options**
+2. Select the **Markdown** tab.
+3. In the drop-down menu for **Markdown Processor**, choose **GitHub Flavored Markdown**.
+4. Click Save and Close. 
+
+**Note**:
+If you get a "You are almost out of error like this one: 
+
+![](media\out_of_api.png)
+
+You need to enter in your GitHub account credentials instead of using **Anonymous mode**. For Microsoft folks, this means using your GitHub account name and because we use 2-factor authentication, you need to enter in a token instead of your GitHub password. Follow the instructions here: [http://markdownpad.com/faq.html#gfm-twofactor](http://markdownpad.com/faq.html#gfm-twofactor)
 
 ## References ##
 A good example of a fully fleshed-out OA site: [Office365](https://msdn.microsoft.com/en-us/office/office365/api/api-catalog "https://msdn.microsoft.com/en-us/office/office365/api/api-catalog") here's a [link to their repo](https://mseng.visualstudio.com/DefaultCollection/Documentation/_git/O365API#path=%2Foffice%2Foffice365%2FAPI&version=GBmaster&_a=contents "https://mseng.visualstudio.com/DefaultCollection/Documentation/_git/O365API#path=%2Foffice%2Foffice365%2FAPI&version=GBmaster&_a=contents")
