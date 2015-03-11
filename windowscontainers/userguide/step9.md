@@ -7,7 +7,7 @@ In this step we will create a virtual machine and install the 64-bit edition of 
 
 If you have another distribution that you would rather use, make sure it will work correctly by checking [Linux and FreeBSD Virtual Machines on Hyper-V](https://technet.microsoft.com/en-us/library/dn531030.aspx)
 
-<!-- Should we use a Gen 2 VM to show that stuff or stick with Gen 1 which might work for more distros? ==>
+<!-- Should we use a Gen 2 VM to show that stuff or stick with Gen 1 which might work for more distros? -->
 
 1. Download the .iso from [http://www.ubuntu.com/download/desktop](http://www.ubuntu.com/download/desktop) and save the file to your \\downloads directory.
 2. In Hyper-V Manager, click on the **Action** menu > **New** > **Virtual machine**. 
