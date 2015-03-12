@@ -37,8 +37,15 @@ Go to the [repository in VS Online](https://mseng.visualstudio.com/DefaultCollec
 
 On the right part of the page, click **Clone** and copy the address for cloning into your clipboard. Is should be: `https://mseng.visualstudio.com/DefaultCollection/Documentation/_git/HyperV`
 
+You may encounter a note about alternate credentials:
 
-Open GitBash and enter:
+![](media\clone_firstrun.png)
+
+You must set up alternate credentials to use a git client (if you have not already done so). Click **Profile** to open your profile dialog. Under **Credentials**, click **Enable alternate credentials** and set up an alternate username/password.
+
+![](media\enable_alt_cred.png)
+
+To clone the repo, open GitBash and enter:
 
 	cd {path where you want the local copy of the repository} 
 	//example: cd c:\GIT
