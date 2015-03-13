@@ -1,17 +1,16 @@
-﻿ms.ContentId: e586a11a-870f-403b-8af8-4c2931589d26
+ms.ContentId: e586a11a-870f-403b-8af8-4c2931589d26
 title: VM management using PowerShell  
 
-# Managing Wndows Inside Virtual Machines with PowerShell #
+# Managing Windows inside virtual machines with Windows PowerShell #
 
 ## VM Sessions ##
 
-** Windows 10 hosts to Windows 10 VMs only**
+**Windows 10 hosts to Windows 10 VMs only**
 
-Windows 10 and later offer PowerShell remoting from the Hyper-V host directly to virtual machines running on the host.  VM Sessions work regardless of network configuration, remote management setting, etc. on either the host or the virtual machine.
+Windows 10 introduces Windows PowerShell remote management from the Hyper-V host directly to virtual machines running on the host. These remote management sessions work regardless of network configuration or the remote management settings on the host or the virtual machine.
 
-To create a PowerShell session directly between the Hyper-V host and the virtual machines running on that host use the `-VMName` or `-VMguid` flags with several standard PowerShell remoting commands.
+To create a Windows PowerShell session directly between the Hyper-V host and the virtual machines running on that host use the `-VMName` or `-VMguid` flags with the supported standard PowerShell remoting commands:
 
-**Supported commands:**
 *  Enter-PSSession
 *  Invoke-Command
 
@@ -36,7 +35,7 @@ To enable VM Sessions in Technical Preview 2 builds:
   Make sure you're running PowerShell as an Administrator.
 	
 	```
-	Enable-VMIntegrationService -VMName <YourVMâ€™s Name> -Name "Guest Service Interface"
+	Enable-VMIntegrationService -VMName <YourVMsName> -Name "Guest Service Interface"
 	```
 	
 	
@@ -48,7 +47,7 @@ To enable VM Sessions in Technical Preview 2 builds:
 
 3.	Enter a VM Session
   
-   Open a PowerShell window as Administrator and supply credentials for the virtual machine.
+   Open a Windows PowerShell prompt as Administrator and supply credentials for the virtual machine:
 	
 	```
 	$cred = Get-Credential  #provide a valid guest credential
@@ -72,7 +71,7 @@ To enable VM Sessions in Technical Preview 2 builds:
 
 ### Differences between VM Sessions and standard PS Session ###
 
-VM sessions are connected dirrectly through the local memory on the host machine.  While PS Sessions run over Win RM by default (requiring a network connection with remoting enabled and correct firewall settings)  VM Sessions only require the VM be located on the box and that the VM Session IC is enabled.
+VM sessions are connected directly through the local memory on the host machine while PS Sessions run over Win RM by default (requiring a network connection with remoting enabled and the correct firewall settings)  VM Sessions only require the VM be located on the box and that the VM Session IC is enabled.
 
 
 

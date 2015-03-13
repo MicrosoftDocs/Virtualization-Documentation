@@ -25,7 +25,7 @@ For more information, see Get-WindowsOptionalFeature and Using PowerShell to Set
 4. When the installation is finished, restart the computer. 
 
 ## How do I know it installed?##
-After you restart your computer, check to see if youcan start the Hyper-V Manager too.
+After you restart your computer, check to see if you can start the Hyper-V Manager too.
 
 1. Click on the **Windows** button and type **Hyper-V**.
 2. Click on **Hyper-V Manager** in the list.
