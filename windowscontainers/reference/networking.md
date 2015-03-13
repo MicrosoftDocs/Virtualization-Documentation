@@ -11,7 +11,6 @@ Here is a set of PowerShell script cmdlets that implement the Docker network dri
 
 The verbs and objects (below) are taken directly from the proposal. Cmdlets automatically configure vSwitch, NAT and IP settings so the user can setup a very Docker-like network environment for Windows Containers without having to understand the underlying details. This should provide some convenience until our host agent service and docker tools arrive.
 
-```
 	Docker CLI command    Windows PS cmdlet
 	==================    =======================
 	docker net create  -> New-ContainerNetwork
@@ -21,8 +20,6 @@ The verbs and objects (below) are taken directly from the proposal. Cmdlets auto
 	docker net leave   -> Leave-ContainerNetwork
 	                      Open-ContainerPort
 	                      Close-ContainerPort
-```
-
 
 To try:
 
@@ -32,7 +29,7 @@ To try:
   
 2. Run:
   ```
-	\\corenetfs1\users\ofiliz\argon\ContainerNet.ps1
+\\corenetfs1\users\ofiliz\argon\ContainerNet.ps1
   ```
   to install the ContainerNet module.  When running for the first time, the script will offer to install Hyper-V if it is not already installed.
   
@@ -100,21 +97,19 @@ At this point, from within the container, you can `ping 192.168.1.1` to ping the
 
 Optionally, if you have a listening socket inside the container that you want to be accessible from the outside: 
 
-```
-PS> Open-ContainerPort Container1 cnet1 -Protocol TCP -ExternalPort 50000 -InternalPort 3389
+	PS> Open-ContainerPort Container1 cnet1 -Protocol TCP -ExternalPort 50000 -InternalPort 3389
 	
-StaticMappingID               : 1
-NatName                       : ContainerNat
-Protocol                      : TCP
-RemoteExternalIPAddressPrefix : 0.0.0.0/0
-ExternalIPAddress             : 10.91.68.239
-ExternalPort                  : 50000
-InternalIPAddress             : 192.168.1.2
-InternalPort                  : 3389
-InternalRoutingDomainId       : {00000000-0000-0000-0000-000000000000}
+	StaticMappingID               : 1
+	NatName                       : ContainerNat
+	Protocol                      : TCP
+	RemoteExternalIPAddressPrefix : 0.0.0.0/0
+	ExternalIPAddress             : 10.91.68.239
+	ExternalPort                  : 50000
+	InternalIPAddress             : 192.168.1.2
+	InternalPort                  : 3389
+	InternalRoutingDomainId       : {00000000-0000-0000-0000-000000000000}	
+	Active                        : True
 
-Active                        : True
-```	
 
 
 Since the containers are behind NAT, they are not accessible from outside via unsolicited traffic. This cmd makes container “Container1”’s RDP listener (3389) accessible over network “cnet1” via TCP Port 50000. Now we should be able to RDP into the container from an external host by typing ```mstsc /v 10.91.68.239:50000```. ExternalPort must be in the [50000-60000] range.
@@ -155,5 +150,5 @@ Running without NAT has several advantages:
 ## Cross-container DHCP client service ##
 The current plan is to NOT support cross-container user-mode services in v1. Each container will run its own service instance. However, we think having a compartment-aware DHCP service is nice, because (for v2, or v1 in case plans change) it is useful to have a simple compartment-aware service ready in the build to experiment with. Also, the container’s own DHCP client service doesn’t work currently (I understand the root cause, fixing it). In the meantime, we can use the host’s DHCP service instead.
  
-DHCP compartment-awareness is DISABLED BY DEFAULT. To enable, create `HKLM\System\CurrentControlSet\Services\DHCP\Parameters\CompartmentAware (DWORD)`, set it to 1 and restart the service (net stop/start dhcp).
+DHCP compartment-awareness is DISABLED BY DEFAULT. To enable, create `HKLM\System\CurrentControlSet\Services\DHCP\Parameters\CompartmentAware (DWORD), set it to 1 and restart the service (net stop/start dhcp).
 
