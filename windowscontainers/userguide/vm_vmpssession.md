@@ -9,7 +9,7 @@ title: VM management using PowerShell
 
 Windows 10 and later offer PowerShell remoting from the Hyper-V host directly to virtual machines running on the host.  VM Sessions work regardless of network configuration, remote management setting, etc. on either the host or the virtual machine.
 
-To create a PowerShell session directly between the Hyper-V host and the virtual machines running on that host using the `-VMName` or `-VMguid` flags with several standard PowerShell remoting commands.
+To create a PowerShell session directly between the Hyper-V host and the virtual machines running on that host use the `-VMName` or `-VMguid` flags with several standard PowerShell remoting commands.
 
 **Supported commands:**
 *  Enter-PSSession
@@ -69,6 +69,10 @@ To enable VM Sessions in Technical Preview 2 builds:
 	Get-Job 
 	Debug-Job -Job $job
 	```
+
+### Differences between VM Sessions and standard PS Session ###
+
+VM sessions are connected dirrectly through the local memory on the host machine.  While PS Sessions run over Win RM by default (requiring a network connection with remoting enabled and correct firewall settings)  VM Sessions only require the VM be located on the box and that the VM Session IC is enabled.
 
 
 
