@@ -4,7 +4,7 @@ title: Networking Reference
 
 # Networking in Containers #
 
-**Updated 2/6/2015**
+**Updated 3/12/2015**
 
 Even though the functionality is in the build, it is not easy to setup container networking yet as it involves configuring multiple networking objects.
 Here is a set of PowerShell script cmdlets that implement the Docker network driver proposal. The script exposes 7 cmdlets that implement the proposed “docker net” commands and more.
@@ -31,20 +31,23 @@ The cmdlets store state in session variables, so do not close your PS session an
 
 After you create your containers, you can provide network connectivity to them in 2 easy steps:
 
-1. Create a container network:
+**1 - Create a container network:**
+```New-ContainerNetwork net1```
+```Set-VmNetworkAdapter [vmname] –MacAddressSpoofing On ```
+ 
+For DHCP:
+```Set HKLM\System\CurrentControlSet\Services\DHCP\Parameters\CompartmentAware (DWORD)1```
+```net stop/start dhcp```
 
-	`PS> New-ContainerNetwork cnet1 -EnableNat\
-	Creating a vSwitch for the network...done.
-	Enabling IP forwarding between network and external adapter...done.
-	Picking the NAT external IP address and prefix...done.
-	Configuring NAT...done.
-	Network cnet1 created successfully.`
-
+	
 This cmd creates a container network named “cnet1” and puts it behind a NAT. Public mode (without NAT) is currently not supported so -EnableNat parameter is mandatory. Unless you want to segment your containers in multiple networks, you only need one network, so this command needs to be run only once.
 
-2. Join the container(s) to the network:
+**2 - Join the container(s) to the network:**
+```Join-ContainerNetwork container1 net1```
+```Get-ContainerEndpoint container1 net1 // displays IP addresses on the endpoint connecting container1 to net1```
+```mstsc /v [ipaddress]```
 
-	`PS> Join-ContainerNetwork Container1 cnet1
+The responses will look like this
 	Configuring compartment...done.
 	Creating endpoint...done.
 	Setting default routes...done.
