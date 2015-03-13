@@ -1,7 +1,7 @@
-ms.ContentId: e586a11a-870f-403b-8af8-4c2931589d26
+﻿ms.ContentId: e586a11a-870f-403b-8af8-4c2931589d26
 title: VM management using PowerShell  
 
-# Managing Virtual Machines with PowerShell #
+# Managing Wndows Inside Virtual Machines with PowerShell #
 
 ## VM Sessions ##
 
@@ -36,7 +36,7 @@ To enable VM Sessions in Technical Preview 2 builds:
   Make sure you're running PowerShell as an Administrator.
 	
 	```
-	Enable-VMIntegrationService -VMName <YourVM’s Name> -Name "Guest Service Interface"
+	Enable-VMIntegrationService -VMName <YourVMâ€™s Name> -Name "Guest Service Interface"
 	```
 	
 	
