@@ -1,4 +1,4 @@
-﻿ms.ContentId: B0092519-7B91-4C73-9810-7242326BCCFD 
+ms.ContentId: B0092519-7B91-4C73-9810-7242326BCCFD 
 title: REST API Overview
 
 
@@ -53,17 +53,3 @@ This means we will prefer:
 
 Developers should only have to provide the information they care about.
 Defaults should be defined and populated for all operations - so that people can focus solely on the problem they want to solve / solution they want to enable.
-
-# Detailed Topics #
-
-- [Templates](templates.md)
-
-- [Objects](Objects.md)
-
-- [Eventing](eventing.md)
-
-- [Reference material](Reference.md)
-
-- [Life Cycle](LifeCycle.md)
-
-- [Planned VMs](plannedVMs.md)

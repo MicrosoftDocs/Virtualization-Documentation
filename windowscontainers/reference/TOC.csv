@@ -1,7 +1,13 @@
 *,oa-toc-container:reference
 **,reference_overview.md
 **,vm_skudifferences.md
-**,rest\overview.md
+**,oa-toc-container:rest
+***,rest\overview.md
+***,rest\eventing.md
+***,rest\lifecycle.md
+***,rest\objects.md
+***,rest\reference.md
+***,rest\templates.md
 **,wmi.md
 **,powershell.md
 **,networking.md 
