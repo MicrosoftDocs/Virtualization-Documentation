@@ -43,17 +43,8 @@ Now you can create your containers and you can provide network connectivity to t
 
 **1 - Create a container network:**
 
-	New-ContainerNetwork net1
-	Set-VmNetworkAdapter [vmname] –MacAddressSpoofing On 
- 
-For DHCP:
-
-	set HKLM\System\CurrentControlSet\Services\DHCP\Parameters\CompartmentAware (DWORD)1
-	net stop/start dhcp
->>>>>>> 271fab22e2feaba8bb5d8086190b405ea2b82451
-
 	```PS> New-ContainerNetwork cnet1 -EnableNat\```
-	
+ 
 Responses:
 ```Creating a vSwitch for the network...done.
 	Enabling IP forwarding between network and external adapter...done.
@@ -61,24 +52,14 @@ Responses:
 	Configuring NAT...done.
 	Network cnet1 created successfully.```
 
-<<<<<<< HEAD
+
 This cmd creates a container network named “cnet1” and puts it behind a NAT. Unless you want to segment your containers in multiple networks, you only need one network, so this command needs to be run only once.
 
-2 - Join the container(s) to the network:
+**2 - Join the container(s) to the network:**
 
 	```PS> Join-ContainerNetwork Container1 cnet1```
 
 Responses:
-	```Configuring compartment...done.
-
-**2 - Join the container(s) to the network:**
-
-	Join-ContainerNetwork container1 net1
-	Get-ContainerEndpoint container1 net1 //displays IP addresses on the endpoint connecting container1 to net1
-	mstsc /v [ipaddress]
-
-The responses will look like this:
-
 	```Configuring compartment...done.
 	Creating endpoint...done.
 	Setting default routes...done.
@@ -87,13 +68,12 @@ The responses will look like this:
 	Name                                                                         Id IPv4Address
 	Container1_cnet1                                                              2 192.168.1.2```
 
-
 This cmd joins the container named “Container1” to network “cnet1”. You can join multiple containers to the same network. Each container will be automatically assigned a private IPv4 address from the 192.168/16 range. You can connect the same container to multiple networks, or to the same network multiple times. See `Join-ContainerNetwork -?` for more details.
 
 At this point, from within the container, you can `ping 192.168.1.1` to ping the container host, or any other external IP address. You cannot use hostnames since the script does not configure DNS (yet). Do not forget that Windows Firewall by default blocks ping (type wf.msc to configure), and is already compartment-aware so it will enforce firewall rules on container IP interfaces just like the host’s IP interfaces.
 
-Optionally, if you have a listening socket inside the container that you want to be accessible from the outside: 
-
+**3 - Optionally**
+If you have a listening socket inside the container that you want to be accessible from the outside: 
 
 	```PS> Open-ContainerPort Container1 cnet1 -Protocol TCP -ExternalPort 50000 -InternalPort 3389
 	
@@ -106,10 +86,8 @@ Optionally, if you have a listening socket inside the container that you want to
 	InternalIPAddress             : 192.168.1.2
 	InternalPort                  : 3389
 	InternalRoutingDomainId       : {00000000-0000-0000-0000-000000000000}
-
 	Active                        : True```
 	
-
 
 Since the containers are behind NAT, they are not accessible from outside via unsolicited traffic. This cmd makes container “Container1”’s RDP listener (3389) accessible over network “cnet1” via TCP Port 50000. Now we should be able to RDP into the container from an external host by typing ```mstsc /v 10.91.68.239:50000```. ExternalPort must be in the [50000-60000] range.
 
