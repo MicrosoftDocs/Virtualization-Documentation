@@ -11,7 +11,6 @@ Here is a set of PowerShell script cmdlets that implement the Docker network dri
 
 The verbs and objects (below) are taken directly from the proposal. Cmdlets automatically configure vSwitch, NAT and IP settings so the user can setup a very Docker-like network environment for Windows Containers without having to understand the underlying details. This should provide some convenience until our host agent service and docker tools arrive.
 
-```
 	Docker CLI command    Windows PS cmdlet
 	==================    =======================
 	docker net create  -> New-ContainerNetwork
@@ -21,57 +20,62 @@ The verbs and objects (below) are taken directly from the proposal. Cmdlets auto
 	docker net leave   -> Leave-ContainerNetwork
 	                      Open-ContainerPort
 	                      Close-ContainerPort
-```
+
 
 To try:
+
 1. [Install the latest build](..\quick_start\run_local.md).
-2. Type `\\corenetfs1\users\ofiliz\argon\ContainerNet.ps1` to install the ContainerNet module. You may need to `Set-ExecutionPolicy` before installing it.
+2. Open an Administrator PowerShell window.
+  The cmdlets store state in session variables, so do not close your PS session and always use that same PS session when entering cmdlets.
+  
+2. Run:
+  ```
+	\\corenetfs1\users\ofiliz\argon\ContainerNet.ps1
+  ```
+  to install the ContainerNet module.  When running for the first time, the script will offer to install Hyper-V if it is not already installed.
+  
+  If the script can't runm, you may need to `Set-ExecutionPolicy` to Unrestricted.
 
-The cmdlets store state in session variables, so do not close your PS session and always use that same PS session when entering cmdlets. When running for the first time, the script will offer to install Hyper-V if it is not already installed.
 
+Now you can create your containers and you can provide network connectivity to them in 2 easy steps:
 
-After you create your containers, you can provide network connectivity to them in 2 easy steps:
 
 **1 - Create a container network:**
-```
-New-ContainerNetwork net1
-Set-VmNetworkAdapter [vmname] –MacAddressSpoofing On 
-```
+
+	New-ContainerNetwork net1
+	Set-VmNetworkAdapter [vmname] –MacAddressSpoofing On 
  
 For DHCP:
-```
-Set HKLM\System\CurrentControlSet\Services\DHCP\Parameters\CompartmentAware (DWORD)1
-net stop/start dhcp
-```
+
+	set HKLM\System\CurrentControlSet\Services\DHCP\Parameters\CompartmentAware (DWORD)1
+	net stop/start dhcp
 
 	
 This cmd creates a container network named “cnet1” and puts it behind a NAT. Public mode (without NAT) is currently not supported so -EnableNat parameter is mandatory. Unless you want to segment your containers in multiple networks, you only need one network, so this command needs to be run only once.
 
 **2 - Join the container(s) to the network:**
-```
-Join-ContainerNetwork container1 net1
-Get-ContainerEndpoint container1 net1 // displays IP addresses on the endpoint connecting container1 to net1
-mstsc /v [ipaddress]
-```
 
-The responses will look like this
-```
-Configuring compartment...done.
-Creating endpoint...done.
-Setting default routes...done.
-Container Container1 joined network cnet1 successfully.
+	Join-ContainerNetwork container1 net1
+	Get-ContainerEndpoint container1 net1 //displays IP addresses on the endpoint connecting container1 to net1
+	mstsc /v [ipaddress]
 
-Name                                                                         Id IPv4Address
-Container1_cnet1                                                              2 192.168.1.2
-```
+The responses will look like this:
+
+	Configuring compartment...done.
+	Creating endpoint...done.
+	Setting default routes...done.
+	Container Container1 joined network cnet1 successfully.
+
+	Name                                                                         Id IPv4Address
+	Container1_cnet1                                                              2 192.168.1.2
+
 
 This cmd joins the container named “Container1” to network “cnet1”. You can join multiple containers to the same network. Each container will be automatically assigned a private IPv4 address from the 192.168/16 range. You can connect the same container to multiple networks, or to the same network multiple times. See `Join-ContainerNetwork -?` for more details.
 
 At this point, from within the container, you can `ping 192.168.1.1` to ping the container host, or any other external IP address. You cannot use hostnames since the script does not configure DNS (yet). Do not forget that Windows Firewall by default blocks ping (type wf.msc to configure), and is already compartment-aware so it will enforce firewall rules on container IP interfaces just like the host’s IP interfaces.
 
-3. Optionally, if you have a listening socket inside the container that you want to be accessible from the outside: 
+Optionally, if you have a listening socket inside the container that you want to be accessible from the outside: 
 
-  ```
 	PS> Open-ContainerPort Container1 cnet1 -Protocol TCP -ExternalPort 50000 -InternalPort 3389
 	
 	StaticMappingID               : 1
@@ -84,7 +88,7 @@ At this point, from within the container, you can `ping 192.168.1.1` to ping the
 	InternalPort                  : 3389
 	InternalRoutingDomainId       : {00000000-0000-0000-0000-000000000000}
 	Active                        : True
-  ```
+
 
 Since the containers are behind NAT, they are not accessible from outside via unsolicited traffic. This cmd makes container “Container1”’s RDP listener (3389) accessible over network “cnet1” via TCP Port 50000. Now we should be able to RDP into the container from an external host by typing ```mstsc /v 10.91.68.239:50000```. ExternalPort must be in the [50000-60000] range.
 
