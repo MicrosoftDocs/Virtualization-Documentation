@@ -72,7 +72,7 @@ At this point, from within the container, you can `ping 192.168.1.1` to ping the
 3. Optionally, if you have a listening socket inside the container that you want to be accessible from the outside: 
 
   ```
-	`PS> Open-ContainerPort Container1 cnet1 -Protocol TCP -ExternalPort 50000 -InternalPort 3389
+	PS> Open-ContainerPort Container1 cnet1 -Protocol TCP -ExternalPort 50000 -InternalPort 3389
 	
 	StaticMappingID               : 1
 	NatName                       : ContainerNat
@@ -83,7 +83,7 @@ At this point, from within the container, you can `ping 192.168.1.1` to ping the
 	InternalIPAddress             : 192.168.1.2
 	InternalPort                  : 3389
 	InternalRoutingDomainId       : {00000000-0000-0000-0000-000000000000}
-	Active                        : True`
+	Active                        : True
   ```
 
 Since the containers are behind NAT, they are not accessible from outside via unsolicited traffic. This cmd makes container “Container1”’s RDP listener (3389) accessible over network “cnet1” via TCP Port 50000. Now we should be able to RDP into the container from an external host by typing ```mstsc /v 10.91.68.239:50000```. ExternalPort must be in the [50000-60000] range.
