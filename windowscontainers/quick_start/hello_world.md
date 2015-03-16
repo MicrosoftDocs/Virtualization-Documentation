@@ -11,13 +11,19 @@ Let's get you started with containers! Before we begin, you will need:
 - and another thing 
 
 ### Step 1: Install Hyper-V ###
+
+Internal: You need to install Hyper-V from our internal shares here: ```\\winbuilds\release\FBL_KPG_CORE_XENON_LITE\<<builds_number>>\amd64fre\en-us\skus.cmi\server```
+
 Install Hyper-V using Windows Powershell. If you already have Hyper-V installed, you can skip this step and go on to [Step 2: Create a virtual machine](hello_world.md#Step2:Createthevirtualmachine).
 	
 1. Click on the **Windows** button and type **power** and then select **Windows Powershell**. 
 2. <!--  On Windows 10, type: `enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V -All` --><!-- On Windows Server,-->Then type: `Install-WindowsFeature –Name Hyper-V -IncludeManagementTools -Restart` and hit **Enter**.
 	
 ### Step 2: Create the virtual machine ##
-You need to create a new virtual machine using a .vhdx of Windows Server. 
+You need to create a new virtual machine using a .vhd or .vhdx of Windows Server. 
+
+**Internal**: for now, use the VHD available from
+    `\\winbuilds\release\FBL_KPG_CORE_XENON_LITE\<<build_number>>\amd64fre\vhd\vhd_server_serverdatacenter_en-us`
 
 1. Click the **Start** button and type **Hyper-V Manager**.
 2. On the **Action** menu, select **Connect to Server**. 
@@ -27,10 +33,10 @@ You need to create a new virtual machine using a .vhdx of Windows Server.
 	
 	<table>
 	<tr><td>Name:</td> <td>Hello Containers</td></tr>
-	<tr><td>Generation:</td> <td><b>Generation 2</b></td></tr>
-	<tr><td>Startup Memory</td> <td><b>1024</b> and don't select dynamic memory</td></tr>
+	<tr><td>Generation:</td> <td><b>Generation 2</b> is the default</td></tr>
+	<tr><td>Startup Memory</td> <td>The defaults are fine, <b>1024MB/b> and no dynamic memory</td></tr>
 	<tr><td>Configure networking:</td> <td>select the virtual switch</td></tr>
-	<tr><td>Connect virtual hard disk:</td> <td><b>Use and existing virtual hard disk</b> and enter the path the .vhdx</td></tr>
+	<tr><td>Connect virtual hard disk:</td> <td><b>Use and existing virtual hard disk</b> and enter the path the .vhd or .vhdx</td></tr>
 	</table>
 
 6. The Summary page of the wizard should look like this:
