@@ -31,13 +31,13 @@ You need to create a new virtual machine using a .vhd or .vhdx of Windows Server
 4. On the **Action** menu, click **New** > **Virtual machine**
 5. In the virtual machine wizard, make the following choices:
 	
-	<table>
-	<tr><td>Name:</td> <td>Hello Containers</td></tr>
-	<tr><td>Generation:</td> <td><b>Generation 2</b> is the default</td></tr>
-	<tr><td>Startup Memory</td> <td>The defaults are fine, <b>1024MB/b> and no dynamic memory</td></tr>
-	<tr><td>Configure networking:</td> <td>select the virtual switch</td></tr>
-	<tr><td>Connect virtual hard disk:</td> <td><b>Use and existing virtual hard disk</b> and enter the path the .vhd or .vhdx</td></tr>
-	</table>
+	|Tab|Option
+	|:-----|:-------|
+	|Name: |Hello Containers|
+	|Generation|**Generation 2** is the default|
+	|Startup Memory| The default is **1024 MB** and no dynamic memory|
+	|Configure networking |select **External** (the switch |you created in Step 4.)|
+	|Connect virtual hard disk | Select **Use and existing virtual hard disk** and enter the path the .vhd or .vhdx.|
 
 6. The Summary page of the wizard should look like this:
 	
