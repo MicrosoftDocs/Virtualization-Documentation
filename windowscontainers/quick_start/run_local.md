@@ -29,7 +29,7 @@ Alternatively use the same steps as above in a PowerShell script (copy instructi
 	
 		`set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp' -name "UserAuthentication" -Value 0`
 	
-		`Enable-NetFirewallRule -DisplayGroup "Remote Desktop"` 
+		Enable-NetFirewallRule -DisplayGroup "Remote Desktop" 
 	
 		dism /Online /Enable-Feature:Containers
 	
