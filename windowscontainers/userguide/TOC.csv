@@ -9,19 +9,7 @@
 **,linking_multiple_containers.md
 **,gstart_docker_hub.md
 **,supported_guest_os.md
-**,oa-toc-container:client-walkthrough
-***,walkthrough_client_hyperv.md
-***,step1.md
-***,step2.md
-***,step3.md
-***,step4.md
-***,step5.md
-***,step6.md
-***,step7.md
-***,step8.md
-***,step9.md
-***,step10.md
-**,vm_vmpssession.md
+
 
 
 
