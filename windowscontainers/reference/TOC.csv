@@ -1,6 +1,5 @@
 *,oa-toc-container:reference
 **,reference_overview.md
-**,vm_skudifferences.md
 **,oa-toc-container:rest
 ***,rest\overview.md
 ***,rest\eventing.md
