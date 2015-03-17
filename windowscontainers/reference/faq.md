@@ -1,4 +1,4 @@
-﻿ms.ContentId: 71D00223-0505-4CED-84E4-581351975FED
+ms.ContentId: 71D00223-0505-4CED-84E4-581351975FED
 title: Frequently Asked Questions
 
 
@@ -11,4 +11,4 @@ This is an answer.
 I'm not telling.
 
 ## Where am I? ##
-You're in a baloon.
+You're in a balloon.
