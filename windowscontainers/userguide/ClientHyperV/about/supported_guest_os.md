@@ -1,7 +1,7 @@
 ms.ContentId: 7561B149-A147-4F71-9840-6AE149B9DED5
 title: Supported Guest Operating Systems
 
-#Supported Guest Operating Systems for Client Hyper-V in Windows 10#
+# Supported Guest Operating Systems for Client Hyper-V in Windows 10 #
 
 Client Hyper-V includes integration services for supported guest operating systems that improves the integration between the physical computer and the virtual machine. Some operating systems have the integration services built-in, while others provide integration services through Windows Update.
 
