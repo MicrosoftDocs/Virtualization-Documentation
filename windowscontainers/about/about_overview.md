@@ -16,7 +16,7 @@ Windows Server containers provide a new way to develop, run, and deploy applicat
 
 # About Container Technology #
 
-![](media\WindowsServerContainer.SVG)
+![](media\WindowsServerContainer.png)
 
 Basically, a container is an isolated place in which an application can run without affecting the rest of the system and without your system affecting the application. Isolating the application allows it to run without risk of mismatched dependencies or environmental configuration affecting the application.
 
