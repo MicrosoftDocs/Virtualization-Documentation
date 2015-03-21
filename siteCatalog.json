@@ -1,7 +1,7 @@
-{
-	"/windowscontainers/about": "windowscontainers/about/center.json",
-	"/windowscontainers/quick_start": "windowscontainers/quick_start/center.json",
-	"/windowscontainers/userguide": "windowscontainers/userguide/center.json",
-	"/windowscontainers/reference": "windowscontainers/reference/center.json",
-	"/windowscontainers/community": "windowscontainers/community/center.json",
+﻿{
+	"/virtualization/windowscontainers/about": "virtualization/windowscontainers/about/center.json",
+	"/virtualization/windowscontainers/quick_start": "virtualization/windowscontainers/quick_start/center.json",
+	"/virtualization/windowscontainers/userguide": "virtualization/windowscontainers/userguide/center.json",
+	"/virtualization/windowscontainers/reference": "virtualization/windowscontainers/reference/center.json",
+	"/virtualization/community": "virtualization/community/center.json",
 }
