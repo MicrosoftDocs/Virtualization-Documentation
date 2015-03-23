@@ -42,10 +42,6 @@ Now you can create your containers and you can provide network connectivity to t
 
 **1 - Create a container network:**
 
-<<<<<<< HEAD
-	```PS> New-ContainerNetwork cnet1 -EnableNat\```
- 
-=======
 	New-ContainerNetwork net1
 	Set-VmNetworkAdapter [vmname] –MacAddressSpoofing On 
  
@@ -55,10 +51,6 @@ For DHCP:
 	net stop/start dhcp
 	New-ContainerNetwork cnet1 -EnableNat\
 	
->>>>>>> 78711f5c213aa7aa924b4d55909586032a1258cb
-Responses:
-
-<<<<<<< HEAD
 
 This cmd creates a container network named “cnet1” and puts it behind a NAT. Unless you want to segment your containers in multiple networks, you only need one network, so this command needs to be run only once.
 
@@ -67,33 +59,22 @@ This cmd creates a container network named “cnet1” and puts it behind a NAT.
 	```PS> Join-ContainerNetwork Container1 cnet1```
 
 Responses:
-	```Configuring compartment...done.
-	Creating endpoint...done.
-	Setting default routes...done.
-	Container Container1 joined network cnet1 successfully.
+```Configuring compartment...done.
+Creating endpoint...done.
+Setting default routes...done.
+Container Container1 joined network cnet1 successfully.
+Name Id IPv4Address
+Container1_cnet1  2 192.168.1.2```
 
-	Name                                                                         Id IPv4Address
-	Container1_cnet1                                                              2 192.168.1.2```
 
-=======
-```
-Creating a vSwitch for the network...done.
+```Creating a vSwitch for the network...done.
 Enabling IP forwarding between network and external adapter...done.
 Picking the NAT external IP address and prefix...done.
 Configuring NAT...done.
-Network cnet1 created successfully.
-```
+Network cnet1 created successfully.```
+
 
 This cmd creates a container network named “cnet1” and puts it behind a NAT. Unless you want to segment your containers in multiple networks, you only need one network, so this command needs to be run only once.
-
-2 - Join the container(s) to the network:
-  
-	PS> Join-ContainerNetwork Container1 cnet1
-
-Responses:
-```
-Configuring compartment...done.
-```
 
 
 **2 - Join the container(s) to the network:**
@@ -114,21 +95,15 @@ Name                                                                         Id 
 Container1_cnet1                                                              2 192.168.1.2
 ```
 
->>>>>>> 78711f5c213aa7aa924b4d55909586032a1258cb
 This cmd joins the container named “Container1” to network “cnet1”. You can join multiple containers to the same network. Each container will be automatically assigned a private IPv4 address from the 192.168/16 range. You can connect the same container to multiple networks, or to the same network multiple times. See `Join-ContainerNetwork -?` for more details.
 
 At this point, from within the container, you can `ping 192.168.1.1` to ping the container host, or any other external IP address. You cannot use hostnames since the script does not configure DNS (yet). Do not forget that Windows Firewall by default blocks ping (type wf.msc to configure), and is already compartment-aware so it will enforce firewall rules on container IP interfaces just like the host’s IP interfaces.
 
-<<<<<<< HEAD
+
 **3 - Optionally**
 If you have a listening socket inside the container that you want to be accessible from the outside: 
 
 	```PS> Open-ContainerPort Container1 cnet1 -Protocol TCP -ExternalPort 50000 -InternalPort 3389
-=======
-Optionally, if you have a listening socket inside the container that you want to be accessible from the outside: 
-
-	PS> Open-ContainerPort Container1 cnet1 -Protocol TCP -ExternalPort 50000 -InternalPort 3389
->>>>>>> 78711f5c213aa7aa924b4d55909586032a1258cb
 	
 	StaticMappingID               : 1
 	NatName                       : ContainerNat
@@ -138,15 +113,11 @@ Optionally, if you have a listening socket inside the container that you want to
 	ExternalPort                  : 50000
 	InternalIPAddress             : 192.168.1.2
 	InternalPort                  : 3389
-<<<<<<< HEAD
-	InternalRoutingDomainId       : {00000000-0000-0000-0000-000000000000}
-	Active                        : True```
-	
-=======
+
 	InternalRoutingDomainId       : {00000000-0000-0000-0000-000000000000}	
 	Active                        : True
 
->>>>>>> 78711f5c213aa7aa924b4d55909586032a1258cb
+
 
 Since the containers are behind NAT, they are not accessible from outside via unsolicited traffic. This cmd makes container “Container1”’s RDP listener (3389) accessible over network “cnet1” via TCP Port 50000. Now we should be able to RDP into the container from an external host by typing ```mstsc /v 10.91.68.239:50000```. ExternalPort must be in the [50000-60000] range.
 
@@ -175,7 +146,7 @@ Get-ContainerEndpoint container1 net1 // displays IP addresses on the endpoint c
 mstsc /v [ipaddress]
 ```
  
-If you are running your containers in a VM (as most of us do), do ```Set-VmNetworkAdapter [vmname] -MacAddressSpoofing On``` in Hyper-V host to let the outer vSwitch allow container traffic into the VM.
+If you are running your containers in a VM (as most of us do), do `Set-VmNetworkAdapter [vmname] -MacAddressSpoofing On` in Hyper-V host to let the outer vSwitch allow container traffic into the VM.
  
 Running without NAT has several advantages:
 •	DHCP works. Your container is assigned a public IPv4 address by DHCP.
@@ -186,5 +157,5 @@ Running without NAT has several advantages:
 ## Cross-container DHCP client service ##
 The current plan is to NOT support cross-container user-mode services in v1. Each container will run its own service instance. However, we think having a compartment-aware DHCP service is nice, because (for v2, or v1 in case plans change) it is useful to have a simple compartment-aware service ready in the build to experiment with. Also, the container’s own DHCP client service doesn’t work currently (I understand the root cause, fixing it). In the meantime, we can use the host’s DHCP service instead.
  
-DHCP compartment-awareness is DISABLED BY DEFAULT. To enable, create `HKLM\System\CurrentControlSet\Services\DHCP\Parameters\CompartmentAware (DWORD), set it to 1 and restart the service (net stop/start dhcp).
+DHCP compartment-awareness is DISABLED BY DEFAULT. To enable, create `HKLM\System\CurrentControlSet\Services\DHCP\Parameters\CompartmentAware (DWORD)`, set it to 1 and restart the service (net stop/start dhcp).
 
