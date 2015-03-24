@@ -1,7 +1,9 @@
-﻿{
+{
 	"/virtualization/windowscontainers/about": "virtualization/windowscontainers/about/center.json",
 	"/virtualization/windowscontainers/quick_start": "virtualization/windowscontainers/quick_start/center.json",
 	"/virtualization/windowscontainers/userguide": "virtualization/windowscontainers/userguide/center.json",
 	"/virtualization/windowscontainers/reference": "virtualization/windowscontainers/reference/center.json",
 	"/virtualization/community": "virtualization/community/center.json",
+	"/virtualization/clienthyperv/quick_start": "virtualization/windowscontainers/quick_start/center.json",
+	"/virtualization/clienthyperv/reference": "virtualization/windowscontainers/reference/center.json",
 }
