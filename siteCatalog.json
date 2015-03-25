@@ -4,6 +4,9 @@
 	"/virtualization/windowscontainers/userguide": "virtualization/windowscontainers/userguide/center.json",
 	"/virtualization/windowscontainers/reference": "virtualization/windowscontainers/reference/center.json",
 	"/virtualization/community": "virtualization/community/center.json",
+	"/virtualization/clienthyperv/about": "virtualization/clienthyperv/about/center.json",
 	"/virtualization/clienthyperv/quick_start": "virtualization/clienthyperv/quick_start/center.json",
+	"/virtualization/clienthyperv/config": "virtualization/clienthyperv/config/center.json",
 	"/virtualization/clienthyperv/reference": "virtualization/clienthyperv/reference/center.json",
+	"/virtualization/clienthyperv/communit": "virtualization/clienthyperv/community/center.json",
 }

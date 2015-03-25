@@ -11,8 +11,19 @@
 **,step8.md
 **,step9.md
 **,step10.md
+*,ContainerNode:about
+**,whats_new.md
+**,SKUDifferences.md
+**,vmsession.md
+**,supported_guest_os.md
+**,system_requirements.md
+*,ContainerNode:config
+**,configuration.md
+**,troubleshooting.md
 *,ContainerNode:reference
 **,reference.md
+*,ContainerNode:community
+**,community.md
 
 				
 
