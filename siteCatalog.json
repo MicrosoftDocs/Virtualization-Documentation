@@ -8,5 +8,5 @@
 	"/virtualization/clienthyperv/quick_start": "virtualization/clienthyperv/quick_start/center.json",
 	"/virtualization/clienthyperv/config": "virtualization/clienthyperv/config/center.json",
 	"/virtualization/clienthyperv/reference": "virtualization/clienthyperv/reference/center.json",
-	"/virtualization/clienthyperv/communit": "virtualization/clienthyperv/community/center.json",
+	"/virtualization/clienthyperv/community": "virtualization/clienthyperv/community/center.json",
 }
