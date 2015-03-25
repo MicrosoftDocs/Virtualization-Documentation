@@ -175,5 +175,4 @@ For more information on running Linux virtual machines on Hyper-V, see [Linux an
 
 
 ## Next Steps ##
-
-[Walkthrough Client Hyper-V on Windows 10](..\quick_start\walkthrough_client_hyperv.md)
+Walkthrough Client Hyper-V on Windows 10 <!-- Need link -->
