@@ -9,4 +9,7 @@
 	"/virtualization/clienthyperv/config": "virtualization/clienthyperv/config/center.json",
 	"/virtualization/clienthyperv/reference": "virtualization/clienthyperv/reference/center.json",
 	"/virtualization/clienthyperv/community": "virtualization/clienthyperv/community/center.json",
+	"/virtualization/api/powershell": "virtualization/api/powershell/center.json",
+	"/virtualization/api/wmi": "virtualization/api/wmi/center.json",
+	"/virtualization/api/rest": "virtualization/api/rest/center.json",
 }

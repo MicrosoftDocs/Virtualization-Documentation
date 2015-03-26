@@ -1,0 +1,18 @@
+*,ContainerNode: API	
+**,powershell/powershell.md
+**,wmi/wmi.md/
+**,rest/overview.md
+***,rest/eventing.md
+***,rest/lifecycle.md
+***,rest/objects.md
+***,rest/plannedvms.md
+***,rest/reference.md
+***,rest/templates.md
+
+				
+
+
+
+
+
+
