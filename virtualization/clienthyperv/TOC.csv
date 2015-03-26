@@ -17,7 +17,7 @@
 **,vmsession.md
 **,supported_guest_os.md
 **,system_requirements.md
-*,ContainerNode:config
+*,ContainerNode:ser_guide
 **,configuration.md
 **,troubleshooting.md
 *,ContainerNode:reference

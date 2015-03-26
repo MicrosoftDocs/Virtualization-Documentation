@@ -1,4 +1,4 @@
-*,oa-toc-container:config
+*,oa-toc-container:user_guide
 **,configuration.md
 **,troubleshooting.md
 
