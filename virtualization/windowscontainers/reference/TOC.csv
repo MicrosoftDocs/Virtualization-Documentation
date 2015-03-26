@@ -1,14 +1,5 @@
 *,oa-toc-container:reference
 **,reference_overview.md
-**,oa-toc-container:rest
-***,rest\overview.md
-***,rest\eventing.md
-***,rest\lifecycle.md
-***,rest\objects.md
-***,rest\reference.md
-***,rest\templates.md
-**,wmi.md
-**,powershell.md
 **,networking.md 
 **,storage.md
 **,security.md 
