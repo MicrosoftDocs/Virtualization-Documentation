@@ -6,7 +6,7 @@
 	"/virtualization/community": "virtualization/community/center.json",
 	"/virtualization/clienthyperv/about": "virtualization/clienthyperv/about/center.json",
 	"/virtualization/clienthyperv/quick_start": "virtualization/clienthyperv/quick_start/center.json",
-	"/virtualization/clienthyperv/config": "virtualization/clienthyperv/config/center.json",
+	"/virtualization/clienthyperv/user_guide": "virtualization/clienthyperv/user_guide/center.json",
 	"/virtualization/clienthyperv/reference": "virtualization/clienthyperv/reference/center.json",
 	"/virtualization/clienthyperv/community": "virtualization/clienthyperv/community/center.json",
 	"/virtualization/api/powershell": "virtualization/api/powershell/center.json",
