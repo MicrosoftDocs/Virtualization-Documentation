@@ -5,7 +5,6 @@ title: Checkpoints Overview
 
 This topic explains the new and changed checkpoint functionality in Client Hyper-V running on Windows 10® Technical Preview.
 
-----------
 
 ## Why do I need checkpoints? ##
 
