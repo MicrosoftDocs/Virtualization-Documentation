@@ -1,8 +1,8 @@
+ms.ContentId: 61CCEA47-B840-4EFE-8388-CA1044C74D15
+title: Checkpoints Overview
+
 # Checkpoint operations #
 
-
-
-----------
 Checkpoints provide a fast and easy way to revert the virtual machine to a previous state. You can apply several operations to production checkpoints and standard checkpoints. 
 
 ##Enable or disable checkpoints ##

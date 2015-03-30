@@ -1,3 +1,6 @@
+ms.ContentId: 1683647C-AD5D-4BD6-AEB4-7FF61EE41037
+title: Checkpoints Overview
+
 # Checkpoints Overview #
 
 This topic explains the new and changed checkpoint functionality in Client Hyper-V running on Windows 10® Technical Preview.
