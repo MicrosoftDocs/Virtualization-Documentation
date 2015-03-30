@@ -1,5 +1,5 @@
 {
                 "Template": "API",
-                "TocFilePath": "/virtualization/clienthyperv/user_guide/toc.csv",
-                "TocTitlesFilePath": "/virtualization/clienthyperv/user_guide/containerNodeTitles.csv"
+                "TocFilePath": "/virtualization/client_hyperv/user_guide/toc.csv",
+                "TocTitlesFilePath": "/virtualization/client_hyperv/user_guide/containerNodeTitles.csv"
 }
