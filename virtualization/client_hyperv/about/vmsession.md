@@ -9,7 +9,7 @@ title: VM management using PowerShell
 
 Windows 10 introduces Windows PowerShell remote management from the Hyper-V host directly to virtual machines running on the host. These remote management sessions work regardless of network configuration or the remote management settings on the host or the virtual machine.
 
-To create a Windows PowerShell session directly between the Hyper-V host and the virtual machines running on that host use the `-VMName` or `-VMguid` flags with the supported standard PowerShell remoting commands:
+To create a Windows PowerShell session directly between the Hyper-V host and the virtual machines running on that host, use the `-VMName` or `-VMguid` flags with the supported standard Windows PowerShell remoting commands:
 
 *  Enter-PSSession
 *  Invoke-Command
@@ -18,21 +18,21 @@ To create a Windows PowerShell session directly between the Hyper-V host and the
 
 ### Enabling VM Sessions ###
 
-These instructions were written against build 10035.  The hope is that it'll all be enabled by default before Technical Preview 2.
+<!-- These instructions were written against build 10035.  The hope is that it'll all be enabled by default before Technical Preview 2. -->
 
 To enable VM Sessions in Technical Preview 2 builds:
 
 1.  Enable the Guest Services IC in the VM settings.
   
-  **Using the Hyper-V UI**
+**Using the Hyper-V UI**
 
-  ![Selecting the VM Settings](media\vm_edit_VM_settings.png)
+![Selecting the VM Settings](media\vm_edit_VM_settings.png)
 
-  ![Enabling the Guest Services IC](media\vm_enable_guest_services_ic.png)
+![Enabling the Guest Services IC](media\vm_enable_guest_services_ic.png)
 	
-  **Using PowerShell on the Host**
+**Using PowerShell on the Host**
 
-  Make sure you're running PowerShell as an Administrator.
+Make sure you're running Windows PowerShell as an Administrator.
 	
 	```
 	Enable-VMIntegrationService -VMName <YourVMsName> -Name "Guest Service Interface"
