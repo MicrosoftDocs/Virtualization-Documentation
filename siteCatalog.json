@@ -1,15 +1,3 @@
 {
-	"/virtualization/windowscontainers/about": "virtualization/windowscontainers/about/center.json",
-	"/virtualization/windowscontainers/quick_start": "virtualization/windowscontainers/quick_start/center.json",
-	"/virtualization/windowscontainers/userguide": "virtualization/windowscontainers/userguide/center.json",
-	"/virtualization/windowscontainers/reference": "virtualization/windowscontainers/reference/center.json",
-	"/virtualization/community": "virtualization/community/center.json",
-	"/virtualization/client_hyperv/about": "virtualization/client_hyperv/about/center.json",
-	"/virtualization/client_hyperv/quick_start": "virtualization/client_hyperv/quick_start/center.json",
-	"/virtualization/client_hyperv/user_guide": "virtualization/client_hyperv/user_guide/center.json",
-	"/virtualization/client_hyperv/reference": "virtualization/client_hyperv/reference/center.json",
-	"/virtualization/client_hyperv/community": "virtualization/client_hyperv/community/center.json",
-	"/virtualization/api/powershell": "virtualization/api/powershell/center.json",
-	"/virtualization/api/wmi": "virtualization/api/wmi/center.json",
-	"/virtualization/api/rest": "virtualization/api/rest/center.json",
+	"/virtualization": "virtualization/center.json"
 }
