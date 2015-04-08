@@ -1,17 +1,21 @@
-﻿*,oa-toc-container:virtualization
-**,oa-toc-container: api	
-***,oa-toc-container: powershell
-****,api/Powershell/powershell.md
-***,oa-toc-container: wmi
-****,api/wmi/wmi.md
-***,oa-toc-container: rest
-****,api/rest/overview.md
-****,api/rest/eventing.md
-****,api/rest/lifecycle.md
-****,api/rest/objects.md
-****,api/rest/plannedvms.md
-****,api/rest/reference.md
-****,api/rest/templates.md
+*,oa-toc-container:virtualization
+**,oa-toc-container: windowscontainers
+***,oa-toc-container: about
+****,windowscontainers/about/about_overview.md
+****,windowscontainers/about/container_life_cycle.md
+****,windowscontainers/about/container_ecosystem.md
+***,oa-toc-container: quick_start
+****,windowscontainers/quick_start/hello_world.md
+***,oa-toc-container: user_guide
+****,windowscontainers/userguide/userguide_overview.md
+****,windowscontainers/userguide/working_with_containers.md
+****,windowscontainers/userguide/working_with_packages.md
+***,oa-toc-container: reference
+****,windowscontainers/reference/reference_overview.md
+****,windowscontainers/reference/networking.md
+****,windowscontainers/reference/storage.md
+****,windowscontainers/reference/security.md
+****,windowscontainers/reference/faq.md
 **,oa-toc-container: client_hyperv	
 ***,oa-toc-container: quick_start
 ****,client_hyperv/quick_start/walkthrough.md
@@ -41,20 +45,4 @@
 **,oa-toc-container: community	
 ***,community/community_overview.md
 ***,community/contribute_to_docs.md
-**,oa-toc-container: windowscontainers
-***,oa-toc-container: about
-****,windowscontainers/about/about_overview.md
-****,windowscontainers/about/container_life_cycle.md
-****,windowscontainers/about/container_ecosystem.md
-***,oa-toc-container: quick_start
-****,windowscontainers/quick_start/hello_world.md
-***,oa-toc-container: user_guide
-****,windowscontainers/userguide/userguide_overview.md
-****,windowscontainers/userguide/working_with_containers.md
-****,windowscontainers/userguide/working_with_packages.md
-***,oa-toc-container: reference
-****,windowscontainers/reference/reference_overview.md
-****,windowscontainers/reference/networking.md
-****,windowscontainers/reference/storage.md
-****,windowscontainers/reference/security.md
-****,windowscontainers/reference/faq.md
+
