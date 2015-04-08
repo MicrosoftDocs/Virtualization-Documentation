@@ -42,6 +42,19 @@
 ****,client_hyperv/reference/reference.md
 ***,oa-toc-container: community
 ****,client_hyperv/community/community.md
+**,oa-toc-container: api	
+***,oa-toc-container: powershell
+****,api/Powershell/powershell.md
+***,oa-toc-container: wmi
+****,api/wmi/wmi.md
+***,oa-toc-container: rest
+****,api/rest/overview.md
+****,api/rest/eventing.md
+****,api/rest/lifecycle.md
+****,api/rest/objects.md
+****,api/rest/plannedvms.md
+****,api/rest/reference.md
+****,api/rest/templates.md
 **,oa-toc-container: community	
 ***,community/community_overview.md
 ***,community/contribute_to_docs.md
