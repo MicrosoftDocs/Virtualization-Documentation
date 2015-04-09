@@ -16,8 +16,8 @@
 ****,windowscontainers/reference/storage.md
 ****,windowscontainers/reference/security.md
 ****,windowscontainers/reference/faq.md
-**,oa-toc-container: client_hyperv	
-***,oa-toc-container: quick_start
+**,oa-toc-container:client_hyperv	
+***,oa-toc-container:quick_start
 ****,client_hyperv/quick_start/walkthrough.md
 ****,client_hyperv/quick_start/step1.md
 ****,client_hyperv/quick_start/step2.md
@@ -43,11 +43,9 @@
 ***,oa-toc-container: community
 ****,client_hyperv/community/community.md
 **,oa-toc-container: api	
-***,oa-toc-container: powershell
-****,api/Powershell/powershell.md
-***,oa-toc-container: wmi
-****,api/wmi/wmi.md
-***,oa-toc-container: rest
+***,api/powershell.md
+***,api/wmi.md
+***,oa-toc-container:rest
 ****,api/rest/overview.md
 ****,api/rest/eventing.md
 ****,api/rest/lifecycle.md

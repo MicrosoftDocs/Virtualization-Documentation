@@ -1,7 +1,8 @@
 *,ContainerNode: API	
-**,powershell/powershell.md
-**,wmi/wmi.md/
-**,rest/overview.md
+**,powershell.md
+**,wmi.md
+**,oa-toc-container:rest
+***,rest/overview.md
 ***,rest/eventing.md
 ***,rest/lifecycle.md
 ***,rest/objects.md
