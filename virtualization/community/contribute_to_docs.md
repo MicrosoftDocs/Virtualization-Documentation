@@ -93,13 +93,20 @@ The documentation website's structure matches the git folder structure.  Looking
 	HyperV
 		{build goo: Hyper-V, siteCatalog.json, publish.mdproj,etc} 
 		tools
-		windowscontainers
-			{build goo}
-			about
-			quick_start
-			userguide
-			reference
-			community
+		virtualization
+			windowscontainers
+				{build goo}
+				about
+				quick_start
+				userguide
+				reference
+			Community
+			API	
+				WMI
+				Powershell
+				REST
+
+There is also a folder in the repo for the Client Hyper-V documentation for Windows 10 which will be hosted on the same site.
 
 Inside each of those folders corresponding to a heading on the navigation pane at the top of the container documentation, there will be some similar structure.  Let's look at the "about" folder as an example:
 
@@ -124,14 +131,13 @@ Here is a sample TOC:
 oa-toc-container:section_name specifies that the landing page should automatically redirect to the next sub heading.  This builds the breadcrumb at the top of the page.
 Asterisk (*) indicate the breadcrumb depth.
 
-To register a 
-		
+
 
 ### Add Metadata ###
 In order to convert your markdown files and internal documentation into HTML5, the each file must have some basic metadata.  There are many optional pieces of metadata but the two that are required are:
 
-	ms.ContentId: {GUID}
-	title: {Title}
+	ms.ContentId: <GUID>
+	title: <Title>
 
 To generate GUIDs, use the following PowerShell snippit:
 
@@ -139,6 +145,7 @@ To generate GUIDs, use the following PowerShell snippit:
 
 This command will generate a new GUID and put it on your clipboard so you can paste it directly into your file.
 
+You can also create a GUID using Visual Studio, just click **Tools** > **Create GUID**. Option 4 gives you the GUID in the most bare format, but you still have to remove the brackets after you paste the GUID into the header.
 
 Optional metadata includes:
 
@@ -172,7 +179,7 @@ The switches are:
 ## Local Preview
 The Open Authoring team have build a local preview so you can see how your content will look before committing your changes.
 
-1. Install the tool from here: [http://co1msdnwbh01/LocalPreview/OA-LocalPreview.application](http://co1msdnwbh01/LocalPreview/OA-LocalPreview.application)
+1. Install the tool from here: [http://co1msdnwbh01/LocalPreview/OA-LocalPreview.application](http://co1msdnwbh01/LocalPreview/OA-LocalPreview.application) 
 2. Click on the ![](media\local_preview_icon.png) icon in your system tray and click Configuration. 
 3. Click the **+** button to add a new configuration and then enter the following values:
 
@@ -183,6 +190,7 @@ The Open Authoring team have build a local preview so you can see how your conte
 	**Repository folder**: the path to the root of your repo. For example: `C\HyperV`
 
 3. Click **Save**.
+
 4. To see a local preview of the file **about_overview.md** in your browsers, type: [http://localhost:7777/windowscontainers/about/about_overview.md](http://localhost:7777/windowscontainers/about/about_overview.md) in the address bar.
 
 # Using Markdown Pad 2 #
