@@ -32,5 +32,5 @@ With this new technology, Windows developers familiar with technologies such as 
 
 Would you like to learn more?
 
-Read more about [how to use containers](container_life_cycle.md) or get started with your own Windows containers using the [quickstart guide](..\quick_start\hello_world.md)
+Get started with your own Windows containers using the [quickstart guide](..\quick_start\hello_world.md)
 
