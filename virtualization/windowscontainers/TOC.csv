@@ -1,8 +1,9 @@
-*,ContainerNode: About	
+﻿*,ContainerNode: About	
 **,about/WindowsServerContainers.md
 **,about/ContainerLifeCycle.md 
 **,about/Containers_vs_VMs.md
 **,about/ContainersvsAppV.md
+**,about/when_containers.md
 *,ContainerNode: Quick Start
 **,quick_start/requirements.md
 **,quick_start/installation.md
