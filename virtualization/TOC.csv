@@ -1,9 +1,10 @@
-*,oa-toc-container:virtualization
+﻿*,oa-toc-container:virtualization
 **,oa-toc-container: windowscontainers
 ***,oa-toc-container: about
 ****,windowscontainers/about/about_overview.md
 ****,windowscontainers/about/container_life_cycle.md
 ****,windowscontainers/about/container_ecosystem.md
+****,windowscontainers/about/when_containers.md
 ***,oa-toc-container: quick_start
 ****,windowscontainers/quick_start/hello_world.md
 ***,oa-toc-container: user_guide
