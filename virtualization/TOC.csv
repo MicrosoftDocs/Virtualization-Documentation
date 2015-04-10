@@ -13,9 +13,9 @@
 ****,windowscontainers/reference/reference_overview.md
 **,oa-toc-container: api	
 ***,oa-toc-container: powershell
-****,api/Powershell/powershell.md
+****,api/Powershell/powershell_overview.md
 ***,oa-toc-container: wmi
-****,api/wmi/wmi.md
+****,api/wmi/wmi_overview.md
 **,oa-toc-container: community	
 ***,community/community_overview.md
 
