@@ -9,11 +9,12 @@ Check out resources available to the greater user community.
 [TechNet Forums](https://social.technet.microsoft.com/Forums/windowsserver/en-US/home "TechNet Forums")
 Hyper-V Forums
 
-## Team Blogs ##
+## Blogs ##
+[Server & Cloud blog](http://blogs.technet.com/b/server-cloud/)
 
-## Community Blogs ##
 
-## Publications ##
+Mike Neil's post: [Microsoft Announces New Container Technologies for the Next Generation Cloud](http://blogs.technet.com/b/server-cloud/archive/2015/04/08/microsoft-announces-new-container-technologies-for-the-next-generation-cloud.aspx)
+
 
 ## Contribute ##
 
