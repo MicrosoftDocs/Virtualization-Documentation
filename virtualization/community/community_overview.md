@@ -1,4 +1,4 @@
-﻿ms.ContentId: 2b4ba69c-51a0-465c-a464-dca696cda744 
+ms.ContentId: 2b4ba69c-51a0-465c-a464-dca696cda744 
 title: Community Resources
 
 # Community Resources #
@@ -6,6 +6,7 @@ title: Community Resources
 Check out resources available to the greater user community.
 
 ## Forums ##
+Windows Server Container Forum coming soon...
 [TechNet Forums](https://social.technet.microsoft.com/Forums/windowsserver/en-US/home "TechNet Forums")
 Hyper-V Forums
 
