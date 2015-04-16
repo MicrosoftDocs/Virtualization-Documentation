@@ -1,36 +1,36 @@
 ms.ContentId: 526e4f1a-2936-4c61-b3be-d41b4cf9d10f
 title: About Windows Server Containers
 
-** Goes live in May **
 
 # Windows Server Containers #
 
-Windows Server containers provide a new way to develop, run, and deploy applications.  On their own, Windows Server Containers are an isolated, portable and resource controlled operating environment. When combined with Docker, VisualStudio, and Azure, they become one piece in a robust ecosystem.
-
-- Developers can use Visual Studio and Azure for born-in-the-cloud application development.
-- Hosters can use WinFab to create high density hosting.
-- System Center provides for a more efficient on-premises cloud.
-
-[Read more about the Windows Server Container ecosystem](container_ecosystem.md).
+Applications fuel innovation in this cloud and mobile era. Containers and the ecosystem that is developing around them will empowers app builders with a modern cloud platform and flexible tooling.
 
 
-# About Container Technology #
+## What are containers? ##  
 
-![](media\WindowsServerContainer.png)
+They are an isolated, portable and resource controlled operating environment. 
 
-Basically, a container is an isolated place in which an application can run without affecting the rest of the system and without your system affecting the application. Isolating the application allows it to run without risk of mismatched dependencies or environmental configuration affecting the application.
+Basically, a container is an isolated place where an application can run without affecting the rest of the system and without the system affecting the application. Containers are the next evolution in virtualization.
 
-At the same time, containers are light and responsive compared to a traditional virtual machine. By sharing the same kernel and other key system components, containers exhibit rapid startup times and reduced resource overhead. Rapid startup allows development and testing the be containerized with very little overhead. Reduced resource overhead makes containers ideal for service-oriented architectures.
 
-![](media\isolationSpectrum.png)
+![](media/WindowsServerContainer.png)
 
-[Read more about when to use containers.](when_containers.md)
+If you were inside a container, it would look very much like you were inside a physical computer or a virtual machine. From outside, a container looks like any other process running on the computer. And, to [Docker](https://www.docker.com/), a Windows Server Container looks like any other container.
 
-In addition to isolation, Windows Server container infrastructure allows for sharing, publishing and shipping containers to anywhere running Windows 10 Server.
+## Developing for containers ##
 
-With this new technology, Windows developers familiar with technologies such as .NET, ASP.NET, PowerShell, and more will be able to run their application, test harnesses, or pre-configured development environments on any Windows 10 Server.  
+When you containerize your app, only your app and the components needed to run your app are bundled into an blueprint called an "image". Containers are then created from this image as you need them. Multiple containers can share the same image, which means containers start very quickly and use fewer resources. For example, you can use containers to spin up light-weight and portable app components – or ‘micro-services’ – for distributed apps and quickly scale each service separately. 
 
-Would you like to learn more?
+Because the container contains everything it needs to run your application, they are very portable and can run on any machine that is running Windows 10 Server. You can create and test a container locally, then deploy that same container to your company's private cloud or to a VM in Azure. The natural agility of Containers supports modern app development patterns in large scale, virtualized and cloud environments.
 
-Get started with your own Windows containers using the [quickstart guide](..\quick_start\hello_world.md)
 
+## What else do I get? ##
+
+Containers and the container ecosystem provide agility, productivity, and freedom-of-choice in building, deploying, and managing modern apps.
+
+When combined with Docker, Visual Studio, and Azure, containers become an important part of a robust ecosystem. Read more about the [Windows Server Container ecosystem](container_ecosystem.md).
+
+## Next Steps: ##
+
+**Coming soon**: Get started with your own Windows containers with our [Hello world!](..\quick_start\hello_world.md)
