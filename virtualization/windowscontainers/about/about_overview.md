@@ -6,7 +6,6 @@ title: About Windows Server Containers
 
 Applications fuel innovation in this cloud and mobile era. Containers and the ecosystem that is developing around them will empowers app builders with a modern cloud platform and flexible tooling.
 
-
 ## What are containers? ##  
 
 They are an isolated, portable and resource controlled operating environment. 
@@ -24,6 +23,15 @@ When you containerize your app, only your app and the components needed to run y
 
 Because the container contains everything it needs to run your application, they are very portable and can run on any machine that is running Windows 10 Server. You can create and test a container locally, then deploy that same container to your company's private cloud or to a VM in Azure. The natural agility of Containers supports modern app development patterns in large scale, virtualized and cloud environments.
 
+### Containers for Developers  
+
+With containers, developers can build any app in any language using any libraries. These apps are completely portable and can run anywhere - colleagues computers, QA servers running in the cloud, and production data center VMs.  
+
+Containers helps developers build and ship higher-quality applications, faster. 
+
+### Containers for Systems Administrators
+
+Systems administrators can use containers to provide standardized environments for their development, QA, and production teams. By using containers, systems administrators abstract away differences in OS installations and underlying infrastructure.
 
 ## What else do I get? ##
 
@@ -31,6 +39,6 @@ Containers and the container ecosystem provide agility, productivity, and freedo
 
 When combined with Docker, Visual Studio, and Azure, containers become an important part of a robust ecosystem. Read more about the [Windows Server Container ecosystem](container_ecosystem.md).
 
-## Next Steps: ##
+## Next Steps ##
 
 **Coming soon**: Get started with your own Windows containers with our [Hello world!](..\quick_start\hello_world.md)
