@@ -44,4 +44,13 @@ When combined with Docker, Visual Studio, and Azure, containers become an import
 **Coming soon**: Get started with your own Windows containers with our [Hello world!](..\quick_start\hello_world.md)
 
 
-[container_ecosystem.md]
+
+# Test 1 #
+[!INCLUDE[temp] (container_ecosystem.md)]
+
+
+
+
+# Test 2 #
+
+[!INCLUDE[temp] (chttps://social.technet.microsoft.com/Forums/en-US/home)]
