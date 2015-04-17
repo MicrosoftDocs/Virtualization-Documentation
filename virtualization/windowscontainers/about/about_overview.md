@@ -17,13 +17,11 @@ Basically, a container is an isolated place where an application can run without
 
 If you were inside a container, it would look very much like you were inside a physical computer or a virtual machine. From outside, a container looks like any other process running on the computer. And, to [Docker](https://www.docker.com/), a Windows Server Container looks like any other container.
 
-## Developing for containers ##
+## Containers for Developers ##
 
 When you containerize your app, only your app and the components needed to run your app are bundled into an blueprint called an "image". Containers are then created from this image as you need them. Multiple containers can share the same image, which means containers start very quickly and use fewer resources. For example, you can use containers to spin up light-weight and portable app components – or ‘micro-services’ – for distributed apps and quickly scale each service separately. 
 
 Because the container contains everything it needs to run your application, they are very portable and can run on any machine that is running Windows 10 Server. You can create and test a container locally, then deploy that same container to your company's private cloud or to a VM in Azure. The natural agility of Containers supports modern app development patterns in large scale, virtualized and cloud environments.
-
-### Containers for Developers  
 
 With containers, developers can build any app in any language using any libraries. These apps are completely portable and can run anywhere - colleagues computers, QA servers running in the cloud, and production data center VMs.  
 
@@ -32,6 +30,8 @@ Containers helps developers build and ship higher-quality applications, faster.
 ### Containers for Systems Administrators
 
 Systems administrators can use containers to provide standardized environments for their development, QA, and production teams. By using containers, systems administrators abstract away differences in OS installations and underlying infrastructure.
+
+Containers help admins create an infrastructure that is simpler to update and maintain.
 
 ## What else do I get? ##
 
@@ -42,3 +42,6 @@ When combined with Docker, Visual Studio, and Azure, containers become an import
 ## Next Steps ##
 
 **Coming soon**: Get started with your own Windows containers with our [Hello world!](..\quick_start\hello_world.md)
+
+
+![Test](container_ecosystem.md)
