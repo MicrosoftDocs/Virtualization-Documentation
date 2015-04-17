@@ -45,12 +45,12 @@ When combined with Docker, Visual Studio, and Azure, containers become an import
 
 
 
-# Test 1 #
-[!INCLUDE[temp] (container_ecosystem.md)]
+## Test 1 ##
+[!INCLUDE[temp](container_ecosystem.md)]
 
 
 
 
-# Test 2 #
+## Test 2 ##
 
-[!INCLUDE[temp] (chttps://social.technet.microsoft.com/Forums/en-US/home)]
+[!INCLUDE[temp](chttps://social.technet.microsoft.com/Forums/en-US/home)]
