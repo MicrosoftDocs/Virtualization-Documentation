@@ -1,30 +1,124 @@
 ms.ContentId: F0D47E70-0BA1-4A06-B2F3-0232C496709D
 title: Frequently asked questions
 
-** Goes live in May **
 
 # Frequently Asked Questions
 
-## Q: What are the system requirements for running containers?
-**A:** TBD
+## Q: Are Hyper-V Containers vaporware? ##   
 
-## Q: What kind cmdlets are available for working with containers?
-**A:** For more detailed information on working with containers using Windows Powershell, see Powershell.
+Nope, check out the first live demonstrations of Windows Server Containers at Ignite! <!-- Link to video -->
 
 
-## Q: What kind of licensing is needed for containers?
-**A:** TBD
+## Q: Are you releasing Hyper-V Containers because Windows Server Containers are insecure?  ## 
 
-## Q: Are containers just a new type of virtual machine? ##
-**A:**No, containers have a very different architecture and value proposition from virtual machines. 
-
-## Q: Is there a Certified for Windows Containers program for applications? ##
-**A:**
+We believe that Windows Server Containers are intrinsically secure.  However, we know our customers value and trust Hyper-V to provide and an additional, CEC certified, hardware backed layer of isolation and assurance to their workloads.  Hyper-V Containers are less about secure vs insecure and more about providing customers the right options and features that enable them to realize the full benefit of containers. For organizations concerned with compliance, they won’t have to enable new compliance requirements because it’s all Hyper-V. 
 
 
+## Q: Does this announcement mean Microsoft is acknowledging virtual machines may become obsolete? Are you saying developers should stop writing apps on virtual machines?  ## 
 
-## Q:  ##
-**A:**
+No. VMs are well-understood and broadly adopted today.  However, modern app patterns necessitate looking beyond existing hardware/machine virtualization meant to solve for application compatibility and hardware consolidation efficiencies. Containers can help accelerate broad adoption of such modern app patterns in virtualized and cloud environments.  They empower dev-ops app builders to spin up light-weight, high-density, composable, and portable app components for distributed line-of-business apps as well as for certain task patterns (e.g. batch jobs).  Containers are being actively evaluated and used in various contexts – dev/test and production - both for cloud-native and enterprise LOB apps.    
+
+
+CONTAINERS 
+
+## Q: What is a Windows Server Container?  ##
+
+Windows Server Containers are a lightweight operating system virtualization method used to separate applications or services from other services running on the same container host. To enable this, each container has its own view of the operating system, processes, file system, registry, and IP addresses.  We are adding support for Windows Server Containers into Docker via the open source Docker project. By supporting Docker on the next wave of Windows Server, we will make available Docker open solutions across both Windows Server and Linux.  
+
+
+## Q: What is a Hyper-V Container?  ##
+
+Microsoft is leveraging its deep experience in virtualization to help customers make the move to containers in a way that works for them. Hyper-V Containers, are a new deployment option that complement Windows Server Containers by offering an identical development and deployment experience combined with Hyper-V powered isolation.  Hyper-V Containers ensure that code running in one container remains isolated and cannot impact the host operating system or other containers running on the same host. This makes them ideal for multitenant SaaS applications. 
+
+
+Hyper-V Containers offer an additional deployment option between the highly efficient, high-density Windows Server Container and the highly isolated hardware-virtualized Hyper-V virtual machine.  Both container deployment options utilize the same management APIs, tools and image formats, at deployment time, customers can simply chose which deployment mode best meets their requirements.   
+
+
+Alternate Answer: You can think of a Hyper-V Container as a Windows Server Container running inside of a Hyper-V partition.  The magic of the Microsoft solution comes in how well integrated the experience is, customers don’t have to worry about creating a virtual machine, installing an operating system and container management tools just to run their workload it’s all part of Hyper-V Containers. 
+
+
+## Q: When will Windows Server Containers and Hyper-V Containers be available for use?  ##
+
+We expect to deliver a preview of Hyper-V Containers this calendar year.  Windows Server Containers will be available in preview this summer.    
+
+
+
+## Q: Will Hyper-V Containers also be available to the Docker ecosystem?   ##
+
+Yes – Hyper-V Containers will provide the same level of integration and management with Docker as Windows Server Containers, enabling an open, consistent, cross-platform experience. The Docker platform will also greatly simplify and enhance the experience of working across our container portfolio. An application developed using Windows Server 
+
+
+## Q: As a developer, do I have to re-write my app for each type of container? ##
+Containers can be deployed as a Hyper-V Container without change, providing greater flexibility for operators who need to choose degrees of density, agility, and isolation in a multi-platform, multi-application environment. 
+
+
+## Q: Aren’t Hyper-V and Windows Server Containers Microsoft’s attempt to create its own container solution vs. embracing industry solutions? ## 
+
+No. Containers, just like processes & threads are operating system constructs to embrace the industry solution, we need to ensure that Windows Server, as an operating system, has core container capabilities.  We will absolutely continue to embrace open industry solutions, particularly through our integration with Docker. As we announced in October 2014, Docker and Microsoft will jointly bring the Windows Server ecosystem to the Docker community through investments in the next wave of Windows Server and through open-source development of the Docker Engine for Windows Server. Hyper-V Containers will provide the same level of integration and management with Docker as Windows Server Containers, enabling an open, consistent, cross-platform experience.  
+
+
+## Q: How do I choose between Windows Server Containers and Hyper-V Containers? Is there a difference in the workloads they will be able to run?  ##
+
+From a developer standpoint, Windows Server Containers and Hyper-V Containers are two flavors of the same thing-- deployment options for Microsoft's containers. They offer the same development, programming and management experience, are open and extensible and will include the same level of integration and support via Docker.  A developer can create a container image using a Windows Server Container and deploy it as a Hyper-V Container or vice-verse without any changes other than specifying the appropriate runtime flag. 
+
+
+Operators need the flexibility to serve many different scenarios so we felt it was vital to offer a range of solutions that scale to density and performance or security and isolation depending on use case and customer needs. Windows Server Containers will offer greater density and performance (e.g. lower spin up time, faster runtime performance compared to nested configurations) for when speed is key. Hyper-V Containers offer greater isolation, ensuring that code running in one container can't compromise or impact the host operating system or other containers running on the same host. This is useful for multitenant scenarios (with requirements for hosting untrusted code) including SaaS applications and compute hosting. 
+
+
+## Q: Are Hyper-V/Windows Server containers an add-on, or will they integrated within Windows Server?  ##
+
+The container capabilities will be integrated into the next version of Windows Server. Stay tuned for more information closer to the general availability.  
+
+
+## Q: What are the pre-requisites for Windows Server containers and Hyper-V Containers?  ##
+
+Both Window Server Containers and Hyper-V Containers require the next version of Windows Server. These technologies will not work with previous versions of Windows. 
+
+
+## Q: What is the difference between Linux and Windows Server Containers? ## 
+
+Linux and Windows Server Containers are similar, and both implement similar technologies within their kernel and core operating system. The difference and value-add comes from the surrounding management experience and workloads that run within the containers. When a customer is using 
+
+Windows Server Containers, they can integrate seamlessly with existing Windows technologies such as .NET, ASP.NET, PowerShell and more. 
+
+
+## Q: Why should a developer or a company choose Windows Server Containers over Linux? Is that why Microsoft made this announcement?  ##
+
+This announcement is about freedom of choice.  A developer or a company does not have to choose one or the other; in fact they can build container-based distributed applications with the best application content from both. Our approach thoughtfully combines open source, hybrid, and traditional approaches to deliver the most value to customers. This pragmatic focus means that Microsoft is committed to being the best choice for companies managing mixed IT environments. 
+
+
+## Q: How does Microsoft’s container strategy compare to the competition? In particular, how is your approach different from VMware, Google, and AWS? ## 
+
+Only Microsoft can bring Windows Server technologies and communities into the container movement.  Microsoft is excited to be able to help both Windows Server and Linux developers to deliver containerized applications in Microsoft Azure as well as on-premises – and ultimately across any cloud platform - using the development tools, languages and technologies that they are accustomed to using.  
+
+
+
+
+## Q: Are Hyper-V Containers this built using “Drawbridge” technologies that apparently originated from MSR?  ##
+
+Drawbridge is an internal project that we have been innovating on. The project helped us gain valuable experience with containers. Much of what we announcing today was born from the experience that we had with Drawbridge and we are excited to bring container technologies to Windows Server and the Docker ecosystem along with Linux.   
+
+
+## Q: Will Microsoft work with other companies besides Docker on containers? ## 
+
+Microsoft and Docker are continuing to work together as evidenced by several recent announcements. As a platform company, we are always interested in enabling broad ecosystems to enable developers and IT pros to be more productive and deliver more business value.  
+
+
+## Q: Isn’t Microsoft late to the container space? Why would a customer choose Microsoft for container scenarios?  ##
+
+No.  Azure deployed Docker 1.0, the first enterprise-ready version of the Docker open platform for Linux when it was released to the market in June 2014.  With regards to Windows Server, Microsoft has worked on container prototypes as early as 2005, and has been using container technologies internally to power some of its own global-scale public cloud services for many years. With this announcement, Microsoft is making containers a first class object within Windows Server. Microsoft will leverage expertise, experience and technology from this early work into its container technology for Windows Server, enabling our customers to seamlessly work with their existing technologies such as .NET, ASP.NET, PowerShell and more.   
+
+
+
+## Q: Is Microsoft offering first-party container orchestration?  ## 
+
+We are currently focused on building to an open API to enable open source across any cloud. This allows customers to take advantage of open source container orchestration options like Docker. We are closely monitoring our customers and their requests and will continue to evolve our offerings based on their usage and experience.  
+
+
+## Q: What are your options for container management?  ## 
+
+We offer customers choice to leverage Docker management solutions or Windows PowerShell.  
+
 
 
 ## Next Steps:
