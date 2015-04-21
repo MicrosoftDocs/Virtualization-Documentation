@@ -11,41 +11,33 @@ Nope, check out the first live demonstrations of Windows Server Containers at Ig
 
 ## Q: Are you releasing Hyper-V Containers because Windows Server Containers are insecure?  ## 
 
-We believe that Windows Server Containers are intrinsically secure.  However, we know our customers value and trust Hyper-V to provide and an additional, CEC certified, hardware backed layer of isolation and assurance to their workloads.  Hyper-V Containers are less about secure vs insecure and more about providing customers the right options and features that enable them to realize the full benefit of containers. For organizations concerned with compliance, they won’t have to enable new compliance requirements because it’s all Hyper-V. 
+No, we believe that Windows Server Containers are secure. We know customers value and trust Hyper-V to provide and an additional, CEC certified, hardware backed layer of isolation and assurance to their workloads.  For organizations concerned with compliance, they won’t have to enable new compliance requirements because it’s all Hyper-V. 
 
 
 ## Q: Does this announcement mean Microsoft is acknowledging virtual machines may become obsolete? Are you saying developers should stop writing apps on virtual machines?  ## 
 
-No. VMs are well-understood and broadly adopted today.  However, modern app patterns necessitate looking beyond existing hardware/machine virtualization meant to solve for application compatibility and hardware consolidation efficiencies. Containers can help accelerate broad adoption of such modern app patterns in virtualized and cloud environments.  They empower dev-ops app builders to spin up light-weight, high-density, composable, and portable app components for distributed line-of-business apps as well as for certain task patterns (e.g. batch jobs).  Containers are being actively evaluated and used in various contexts – dev/test and production - both for cloud-native and enterprise LOB apps.    
+No, VMs are well-understood and broadly adopted today. However, existing hardware and machine virtualization was meant to deal with application compatibility and enable hardware consolidation. Containers empower dev-ops app builders to spin up light-weight and portable app components for distributed line-of-business apps as well as for certain task patterns (e.g. batch jobs).   
 
-
-CONTAINERS 
 
 ## Q: What is a Windows Server Container?  ##
 
-Windows Server Containers are a lightweight operating system virtualization method used to separate applications or services from other services running on the same container host. To enable this, each container has its own view of the operating system, processes, file system, registry, and IP addresses.  We are adding support for Windows Server Containers into Docker via the open source Docker project. By supporting Docker on the next wave of Windows Server, we will make available Docker open solutions across both Windows Server and Linux.  
+Windows Server Containers are a lightweight operating system virtualization method used to separate applications or services from other services running on the same container host. To enable this, each container has its own view of the operating system, processes, file system, registry, and IP addresses. For more information, see [Windows Server Containers](about_overview.md) 
 
 
 ## Q: What is a Hyper-V Container?  ##
 
-Microsoft is leveraging its deep experience in virtualization to help customers make the move to containers in a way that works for them. Hyper-V Containers, are a new deployment option that complement Windows Server Containers by offering an identical development and deployment experience combined with Hyper-V powered isolation.  Hyper-V Containers ensure that code running in one container remains isolated and cannot impact the host operating system or other containers running on the same host. This makes them ideal for multitenant SaaS applications. 
-
-
-Hyper-V Containers offer an additional deployment option between the highly efficient, high-density Windows Server Container and the highly isolated hardware-virtualized Hyper-V virtual machine.  Both container deployment options utilize the same management APIs, tools and image formats, at deployment time, customers can simply chose which deployment mode best meets their requirements.   
-
-
-Alternate Answer: You can think of a Hyper-V Container as a Windows Server Container running inside of a Hyper-V partition.  The magic of the Microsoft solution comes in how well integrated the experience is, customers don’t have to worry about creating a virtual machine, installing an operating system and container management tools just to run their workload it’s all part of Hyper-V Containers. 
+You can think of a Hyper-V Container as a Windows Server Container running inside of a Hyper-V partition. You don’t have to worry about creating a virtual machine, installing an operating system and container management tools just to run their workload it’s all part of Hyper-V Containers. 
 
 
 ## Q: When will Windows Server Containers and Hyper-V Containers be available for use?  ##
 
-We expect to deliver a preview of Hyper-V Containers this calendar year.  Windows Server Containers will be available in preview this summer.    
+Windows Server Containers will be available in preview this summer. We expect to deliver a preview of Hyper-V Containers this calendar year.   
 
 
 
 ## Q: Will Hyper-V Containers also be available to the Docker ecosystem?   ##
 
-Yes – Hyper-V Containers will provide the same level of integration and management with Docker as Windows Server Containers, enabling an open, consistent, cross-platform experience. The Docker platform will also greatly simplify and enhance the experience of working across our container portfolio. An application developed using Windows Server 
+Yes. Hyper-V Containers will provide the same level of integration and management with Docker as Windows Server Containers, enabling an open, consistent, cross-platform experience. The Docker platform will also greatly simplify and enhance the experience of working across our container portfolio. 
 
 
 ## Q: As a developer, do I have to re-write my app for each type of container? ##
@@ -54,7 +46,7 @@ Containers can be deployed as a Hyper-V Container without change, providing grea
 
 ## Q: Aren’t Hyper-V and Windows Server Containers Microsoft’s attempt to create its own container solution vs. embracing industry solutions? ## 
 
-No. Containers, just like processes & threads are operating system constructs to embrace the industry solution, we need to ensure that Windows Server, as an operating system, has core container capabilities.  We will absolutely continue to embrace open industry solutions, particularly through our integration with Docker. As we announced in October 2014, Docker and Microsoft will jointly bring the Windows Server ecosystem to the Docker community through investments in the next wave of Windows Server and through open-source development of the Docker Engine for Windows Server. Hyper-V Containers will provide the same level of integration and management with Docker as Windows Server Containers, enabling an open, consistent, cross-platform experience.  
+No. Containers, just like processes and threads are operating system constructs. To embrace the industry solution, we need to ensure that Windows Server, as an operating system, has core container capabilities.   
 
 
 ## Q: How do I choose between Windows Server Containers and Hyper-V Containers? Is there a difference in the workloads they will be able to run?  ##
