@@ -1,9 +1,9 @@
-﻿ms.ContentId: 9dc57a6a-7104-4721-ba5c-3e246ee17f75 
+ms.ContentId: 9dc57a6a-7104-4721-ba5c-3e246ee17f75 
 title: Running Containers Locally
 
 # Setting up Argons on your local machine #
 
-These instructions were created for the 2/6/2015 review.
+<-- These instructions were created for the 2/6/2015 review. You might want to put instructions in hello_world.md instead of this file -->
  
 1. Install the latest build -- VHD available from
     `\\winbuilds\release\FBL_KPG_CORE_XENON_LITE\<<build_number>>\amd64fre\vhd\vhd_server_serverdatacenter_en-us`
