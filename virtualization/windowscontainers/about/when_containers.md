@@ -69,6 +69,7 @@ In other words, App-V:
 - Resource management is provided by the OS
 - Applications can leverage any hardware available
 
-You can read more about App-V [here](http://technet.microsoft.com/en-us/windows/hh826068.aspx).
+You can read more about App-V [here](http://technet.microsoft.com/windows/hh826068.aspx).
 
 ## Next steps: ##
+**Coming soon**: Get started with your own Windows containers with our [Hello world!](..\quick_start\hello_world.md)
