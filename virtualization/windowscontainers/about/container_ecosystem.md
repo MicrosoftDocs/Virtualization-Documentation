@@ -4,14 +4,14 @@ title: Container Ecosystem
 
 # Building a Container Ecosystem #
 
-Windows containers are a small component of a large container ecosystem. As part of our open and ecosystem friendly approach, we’re working across industry to deliver developer choice at each layer of the solution stack.     v
+Windows containers are a small component of a large container ecosystem. As part of our open and ecosystem oriented approach, we’re working across industry to deliver developer choice at each layer of the solution stack.
 
-The ecosystem provides ways to manage containers, share containers, develop apps that run in containers, and even orchestrate resource division across many containers.
+The larger container ecosystem provides ways to manage containers, share containers, develop apps that run in containers, and even orchestrate resource division across many containers.
 
 ![](media/containerEcosystem.png)
 
 
-Microsoft wants to empower developer choice and productivity as they build these next-gen apps.  Our goal is to fuel developer productivity by enabling applications to target any Microsoft cloud without having to modify, rewrite or reconfigure code. 
+Microsoft wants to empower developer choice and productivity as they build these next-gen apps.  Our goal is to fuel developer productivity which means enabling applications to target any Microsoft cloud without having to modify, rewrite, or reconfigure code. 
 
 Microsoft is committed to being open and ecosystem friendly.  We actively support the coming together of multiple developer ecosystems of interest – such as Windows and Linux – to drive innovation. 
 
