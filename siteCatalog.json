@@ -1,7 +1,3 @@
 {
-	"/windowscontainers/about": "windowscontainers/about/center.json",
-	"/windowscontainers/quick_start": "windowscontainers/quick_start/center.json",
-	"/windowscontainers/userguide": "windowscontainers/userguide/center.json",
-	"/windowscontainers/reference": "windowscontainers/reference/center.json",
-	"/windowscontainers/community": "windowscontainers/community/center.json",
+	"/virtualization": "virtualization/center.json"
 }
