@@ -20,7 +20,7 @@ However, there is a price to pay in overhead.  The more isolation from the machi
 
 So really, to understand when to use a container, a VM, or another technology, it's important to consider:
 1.  Required security/trust boundaries -- Do you trust the machine and its administrator?
-2.  Compatability and portability (across different systems) -- Does this need to run on different operating systems?  Different versions of the operating system?
+2.  Compatibility and portability (across different systems) -- Does this need to run on different operating systems?  Different versions of the operating system?
 3.  Density -- are you running many instances?  If so, do your system resources support that?
 4.  Resource management and quality of Service -- do you need to specify resource use?
 
