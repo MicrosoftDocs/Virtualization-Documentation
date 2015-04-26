@@ -4,9 +4,9 @@ title: Container Ecosystem
 
 # Building a Container Ecosystem #
 
-Windows containers are a small component of a large container ecosystem. As part of our open and ecosystem oriented approach, we’re working across industry to deliver developer choice at each layer of the solution stack.
+Windows containers are a key component of a large container ecosystem. We’re working across the industry to deliver developer choice at each layer of the solution stack.
 
-The larger container ecosystem provides ways to manage containers, share containers, develop apps that run in containers, and even orchestrate resource division across many containers.
+The container ecosystem provides ways to manage containers, share containers and develop apps that run in containers.
 
 ![](media/containerEcosystem.png)
 
@@ -16,18 +16,13 @@ Microsoft wants to empower developer choice and productivity as they build these
 Microsoft is committed to being open and ecosystem friendly.  We actively support the coming together of multiple developer ecosystems of interest – such as Windows and Linux – to drive innovation. 
 
 
-Over the coming months, we will be proving more information about additional partners in this developing ecosystem like: 
-- Container orchestration support for Linux-based containers (with Microsoft Azure Service Fabric) 
-
-- Support for third-party container cluster orchestration, such as Apache Mesosphere  
-
-- Support for third-party development environments, such as Eclipse
+Over the coming months, we will be proving more information about additional partners in this developing ecosystem.
 
 
 ### Partnership with Docker ###
 
 
-Our partnership with Docker enables developers to create Docker container-based applications that leverage Windows Server in addition to Linux. Developers targeting Windows Server will no longer have to make a choice between using the vast range of Windows Server technologies and building containerized applications.  
+Our partnership with Docker enables developers to create, manage and deploy both Windows Server and Linux containers using the same Docker tool set . Developers targeting Windows Server will no longer have to make a choice between using the vast range of Windows Server technologies and building containerized applications.  
 
 Microsoft will be delivering container capabilities as part of the next release of Windows Server. Developers and organizations who want to create distributed, container-based applications using Docker will be able to use Windows Server – either on premises or in a cloud deployment in Azure – and be able to leverage the same growing Docker ecosystem of users, applications and tools.  Docker Hub, a community-driven repository shared across a vast ecosystem of developers, will also be integrated into Microsoft Azure through the Azure management portal and Gallery of applications. Today’s announcements extend our previous collaboration with Docker, where we have already made the Docker Engine for Linux available to Microsoft Azure customers via a first-class experience.  
 
