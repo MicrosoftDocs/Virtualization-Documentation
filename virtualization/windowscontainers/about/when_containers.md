@@ -35,7 +35,7 @@ So really, to understand when to use a container, a VM, or another technology, i
 |Density | High | Lower | Higher |
 |Startup time | Short | Longer | Shorter |
 |Disk footprint | Small | Larger | Smaller |
-|Application compatability | Medium | High | Medium |
+|Application compatibility | Medium | High | Medium |
 
 ## Properties of a container ##
 Containers have the following properties:

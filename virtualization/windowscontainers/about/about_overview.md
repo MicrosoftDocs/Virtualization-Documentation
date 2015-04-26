@@ -4,11 +4,11 @@ title: About Windows Server Containers
 
 # Windows Server Containers #
 
-Applications fuel innovation in this cloud and mobile era. Containers and the ecosystem that is developing around them will empowers app builders with a modern cloud platform and flexible tooling.
+Applications fuel innovation in the cloud and mobile era. Containers, and the ecosystem that is developing around, them will empower software developers to create the next generation of applications experiences.
 
 ## What are containers? ##  
 
-They are an isolated, portable and resource controlled operating environment. 
+They are an isolated, resource controlled and portable operating environment. 
 
 Basically, a container is an isolated place where an application can run without affecting the rest of the system and without the system affecting the application. Containers are the next evolution in virtualization.
 
@@ -19,17 +19,17 @@ If you were inside a container, it would look very much like you were inside a p
 
 ## Containers for Developers ##
 
-When you containerize your app, only your app and the components needed to run your app are bundled into an blueprint called an "image". Containers are then created from this image as you need them. Multiple containers can share the same image, which means containers start very quickly and use fewer resources. For example, you can use containers to spin up light-weight and portable app components – or ‘micro-services’ – for distributed apps and quickly scale each service separately. 
+When you containerize an app, only the app and the components needed to run the app are combined into an "image". Containers are then created from this image as you need them. You can also use an image as a baseline to create another image, making image creation even faster.  Multiple containers can share the same image, which means containers start very quickly and use fewer resources. For example, you can use containers to spin up light-weight and portable app components – or ‘micro-services’ – for distributed apps and quickly scale each service separately. 
 
-Because the container contains everything it needs to run your application, they are very portable and can run on any machine that is running Windows 10 Server. You can create and test a container locally, then deploy that same container to your company's private cloud or to a VM in Azure. The natural agility of Containers supports modern app development patterns in large scale, virtualized and cloud environments.
+Because the container has everything it needs to run your application, they are very portable and can run on any machine that is running Windows Server 2016. You can create and test containers locally, then deploy that same container image to your company's private cloud, public cloud or service provider. The natural agility of Containers supports modern app development patterns in large scale, virtualized and cloud environments.
 
-With containers, developers can build any app in any language using any libraries. These apps are completely portable and can run anywhere - colleagues computers, QA servers running in the cloud, and production data center VMs.  
+With containers, developers can build an app in any language. These apps are completely portable and can run anywhere - colleagues computers, QA servers running in the cloud, and production data center VMs. 
 
 Containers helps developers build and ship higher-quality applications, faster. 
 
 ### Containers for Systems Administrators
 
-Systems administrators can use containers to provide standardized environments for their development, QA, and production teams. By using containers, systems administrators abstract away differences in OS installations and underlying infrastructure.
+Systems administrators can use containers to provide standardized environments for their development, QA, and production teams. They no longer have to worry about complex installation and configuration steps. By using containers, systems administrators abstract away differences in OS installations and underlying infrastructure.
 
 Containers help admins create an infrastructure that is simpler to update and maintain.
 
