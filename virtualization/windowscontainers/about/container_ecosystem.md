@@ -16,18 +16,18 @@ Microsoft wants to empower developer choice and productivity as they build these
 Microsoft is committed to being open and ecosystem friendly.  We actively support the coming together of multiple developer ecosystems of interest – such as Windows and Linux – to drive innovation. 
 
 
-Over the coming months, we will be proving more information about additional partners in this developing ecosystem.
+Over the coming months, we will be providing more information about additional partners in this developing ecosystem.
 
 
 ### Partnership with Docker ###
 
 
-Our partnership with Docker enables developers to create, manage and deploy both Windows Server and Linux containers using the same Docker tool set . Developers targeting Windows Server will no longer have to make a choice between using the vast range of Windows Server technologies and building containerized applications.  
+Our partnership with Docker enables developers to create, manage and deploy both Windows Server and Linux containers using the same Docker tool set. Developers targeting Windows Server will no longer have to make a choice between using the vast range of Windows Server technologies and building containerized applications.  
 
-Microsoft will be delivering container capabilities as part of the next release of Windows Server. Developers and organizations who want to create distributed, container-based applications using Docker will be able to use Windows Server – either on premises or in a cloud deployment in Azure – and be able to leverage the same growing Docker ecosystem of users, applications and tools.  Docker Hub, a community-driven repository shared across a vast ecosystem of developers, will also be integrated into Microsoft Azure through the Azure management portal and Gallery of applications. Today’s announcements extend our previous collaboration with Docker, where we have already made the Docker Engine for Linux available to Microsoft Azure customers via a first-class experience.  
+Microsoft will be delivering container capabilities as part of the next release of Windows Server. Developers and organizations who want to create distributed, container-based applications using Docker will be able to use Windows Server – either on-premises or in a cloud deployment in Azure – and be able to leverage the same growing Docker ecosystem of users, applications and tools.  Docker Hub, a community-driven repository shared across a vast ecosystem of developers, will also be integrated into Microsoft Azure through the Azure management portal and Gallery of applications. Today’s announcements extend our previous collaboration with Docker, where we have already made the Docker Engine for Linux available to Microsoft Azure customers via a first-class experience.  
 
-The new Windows Server container technologies will be available for customers to run in their on-premises server environments or in the cloud. We intend to make these Windows Server containers, with the Docker integration, available on Microsoft Azure as well. 
+The new Windows Server container technologies will be available for customers to run in their on-premises server environments or in the cloud. We intend to make these Windows Server containers, with Docker integration, available on Microsoft Azure as well. 
 
-Docker is two things, the open source group of projects and Docker the company. We consider this partnership to include both. Docker is successful, in part, because of the vibrant ecosystem that has built up around the Docker container technology. Microsoft will be bringing resources and its ecosystem to the Docker open source project.  Microsoft will be instrumental in the creation of an open source Docker Engine for Windows Server that will provide uniform functionality to the community.  
+Docker is two things, the open source group of projects and Docker the company. We consider this partnership to include both. Docker is successful, in part, because of the vibrant ecosystem that has built up around the Docker container technology. Microsoft is contributing to the Docker Project, enabling support for Windows Server Containers and Hyper-V Containers.  
 
 For more information, see the [New Windows Server containers and Azure support for Docker](http://azure.microsoft.com/blog/2014/10/15/new-windows-server-containers-and-azure-support-for-docker/?WT.mc_id=Blog_ServerCloud_Announce_TTD) blog post.
