@@ -4,7 +4,7 @@ title: About Windows Server Containers
 
 # Windows Server Containers #
 
-Applications fuel innovation in the cloud and mobile era. Containers, and the ecosystem that is developing around, them will empower software developers to create the next generation of applications experiences.
+Applications fuel innovation in the cloud and mobile era. Containers, and the ecosystem that is developing around them, will empower software developers to create the next generation of applications experiences.
 
 ## What are containers? ##  
 
