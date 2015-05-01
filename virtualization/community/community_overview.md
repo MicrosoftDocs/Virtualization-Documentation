@@ -3,26 +3,38 @@ title: Community Resources
 
 # Community Resources #
 
-Check out resources available to the greater user community.
+Check out resources available to the user community. There is also a lot to see on the [Docker community](https://www.docker.com/community/participate/) pages.
 
-## Forums ##
-Windows Server Container Forum coming soon...
-[TechNet Forums](https://social.technet.microsoft.com/Forums/windowsserver/en-US/home "TechNet Forums")
-Hyper-V Forums
+## Featured content from Build ##
 
-## Blogs ##
-[Server & Cloud blog](http://blogs.technet.com/b/server-cloud/)
+- [Day One Keynote Presentation](http://channel9.msdn.com/Events/Build/2015/KEY01)
 
+- [Windows Containers: What, Why and How](http://channel9.msdn.com/events/Build/2015/2-704)
 
-## Announcements ##
-Jason Zander -- [New Windows Server containers and Azure support for Docker](http://azure.microsoft.com/blog/2014/10/15/new-windows-server-containers-and-azure-support-for-docker/)
-
-Mike Neil -- [Microsoft Announces New Container Technologies for the Next Generation Cloud](http://blogs.technet.com/b/server-cloud/archive/2015/04/08/microsoft-announces-new-container-technologies-for-the-next-generation-cloud.aspx)
-
+- [Thinking in Containers: Building a Scalable, Next-Gen Application with Docker on Azure](http://channel9.msdn.com/events/Build/2015/2-683)
 
 ## Contribute ##
 
-Docker for Windows ([GitHub](https://github.com/Microsoft/docker "https://github.com/Microsoft/docker"))
+ [Docker for Windows](https://github.com/Microsoft/docker) on GitHub
+
+## Forums ##
+- Windows Containers Forum is coming soon!
+- [TechNet Forums](https://social.technet.microsoft.com/Forums/windowsserver/en-US/home "TechNet Forums")
+- [Azure forums](http://azure.microsoft.com/en-us/support/forums/)
+
+## Blogs ##
+- [Server & Cloud blog](http://blogs.technet.com/b/server-cloud/)
+- [Azure blog](http://azure.microsoft.com/blog/)
+
+## Announcements ##
+- [New Windows Server containers and Azure support for Docker](http://azure.microsoft.com/blog/2014/10/15/new-windows-server-containers-and-azure-support-for-docker/)
+
+- [Microsoft Announces New Container Technologies for the Next Generation Cloud](http://blogs.technet.com/b/server-cloud/archive/2015/04/08/microsoft-announces-new-container-technologies-for-the-next-generation-cloud.aspx)
+
+
+
+
+
 
 
 
