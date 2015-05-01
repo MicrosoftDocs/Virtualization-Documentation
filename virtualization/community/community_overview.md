@@ -17,8 +17,8 @@ Check out resources available to the user community. There is also a lot to see 
  [Docker for Windows](https://github.com/Microsoft/docker) on GitHub
 
 ## Forums ##
-- Windows Containers Forum is coming soon!
-- [TechNet Forums](https://social.technet.microsoft.com/Forums/windowsserver/en-US/home "TechNet Forums")
+- Windows Containers forum is coming soon!
+- [TechNet forums](https://social.technet.microsoft.com/Forums/windowsserver/en-US/home "TechNet Forums")
 - [Azure forums](http://azure.microsoft.com/en-us/support/forums/)
 
 ## Blogs ##
