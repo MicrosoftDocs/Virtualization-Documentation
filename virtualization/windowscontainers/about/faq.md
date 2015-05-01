@@ -3,6 +3,7 @@ title: Frequently asked questions
 
 
 # Frequently Asked Questions
+Last updated: May 1, 2015
 
 ## Q: What is a Windows Server Container?  ##
 
