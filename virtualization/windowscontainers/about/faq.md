@@ -3,6 +3,7 @@ title: Frequently asked questions
 
 
 # Frequently Asked Questions
+Last updated: May 1, 2015
 
 ## Q: What is a Windows Server Container?  ##
 
@@ -30,12 +31,12 @@ Yes. Hyper-V Containers and Windows Server Containers will provide identical exp
 No, Windows container images are common across both Windows Server Containers and Hyper-V Containers. The choice of container type is made when you start the container. Developers can choose to build container images using either type confident in the knowledge that either will work in deployment.
 
 
-## Q: Are Hyper-V/Windows Server containers an add-on, or will they integrated within Windows Server?  ##
+## Q: Are Hyper-V/Windows Server Containers an add-on, or will they integrated within Windows Server?  ##
 
 The container capabilities will be integrated into Windows Server 2016. Stay tuned for more information closer to the general availability.  
 
 
-## Q: What are the pre-requisites for Windows Server containers and Hyper-V Containers?  ##
+## Q: What are the prerequisites for Windows Server Containers and Hyper-V Containers?  ##
 
 Both Window Server Containers and Hyper-V Containers require Windows Server 2016. These technologies will not work with previous versions of Windows. 
 
