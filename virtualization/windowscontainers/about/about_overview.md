@@ -27,9 +27,9 @@ With containers, developers can build an app in any language. These apps are com
 
 Containers helps developers build and ship higher-quality applications, faster. 
 
-## Containers for Systems Administrators ##
+## Containers for IT Professionals ##
 
-Systems administrators can use containers to provide standardized environments for their development, QA, and production teams. They no longer have to worry about complex installation and configuration steps. By using containers, systems administrators abstract away differences in OS installations and underlying infrastructure.
+IT Professionals can use containers to provide standardized environments for their development, QA, and production teams. They no longer have to worry about complex installation and configuration steps. By using containers, systems administrators abstract away differences in OS installations and underlying infrastructure.
 
 Containers help admins create an infrastructure that is simpler to update and maintain.
 
