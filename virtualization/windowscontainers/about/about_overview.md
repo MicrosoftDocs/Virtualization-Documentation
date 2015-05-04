@@ -6,7 +6,7 @@ title: About Windows Server Containers
 
 Applications fuel innovation in the cloud and mobile era. Containers, and the ecosystem that is developing around them, will empower software developers to create the next generation of applications experiences.
 
-Watch a short overview video about [Windows-based containers: Modern app development with enterprise-grade control](https://youtu.be/Ryx3o0rD5lY ). 
+Watch a short overview: [Windows-based containers: Modern app development with enterprise-grade control](https://youtu.be/Ryx3o0rD5lY ). 
 
 ## What are containers? ##  
 
