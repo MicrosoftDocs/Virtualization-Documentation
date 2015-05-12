@@ -4,4 +4,4 @@ title: WMI Reference
 
 # WMI for Containers  #
 
-With the Windows Container WMI you can....
+Coming soon!

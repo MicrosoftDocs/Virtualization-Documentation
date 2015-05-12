@@ -1,28 +1,33 @@
 ms.ContentId: fbd49f81-b6cb-4030-9296-413d68a9428f
 title: Container Ecosystem
 
-** Goes live in May **
 
 # Building a Container Ecosystem #
 
-Windows containers are a small component of a large container ecosystem.
+Windows containers are a key component of a large container ecosystem. We’re working across the industry to deliver developer choice at each layer of the solution stack.
 
-Besides isolation, most users will need some way to manage containers, share containers, develop apps that may run in containers, or even orchestrate resource division across many containers.
+The container ecosystem provides ways to manage containers, share containers and develop apps that run in containers.
 
-![](media\containerEcosystem.png)
-
-
-## Developer Ecosystem ##
-
-Containers make it easy for developers to produce applications which evolve rapidly and organically by providing agile application packaging and isolation.   
-
-![](media/devCreateDeployManage.png)
-
-Using containers, a developer can begin writing an application, containerize that application including the development environment, and pass the container on to someone else. When they start the container, the entire environment is there and ready to use. Because containers can be imported and exported easily based on container definitions, they can also be stored in a central repository where the container definitions can be shared, searched, and modified.
-
-This is useful for iterative development, test frameworks, and numerous other applications.
+![](media/containerEcosystem.png)
 
 
-## Hosting Ecosystem ##
+Microsoft wants to empower developer choice and productivity as they build these next-gen apps.  Our goal is to fuel developer productivity which means enabling applications to target any Microsoft cloud without having to modify, rewrite, or reconfigure code. 
 
-Opportunity for high density hosting in situations where having a shared kernel is not a security concern. If it is a security concern, use a VM as the trust boundary then containers within the VM.
+Microsoft is committed to being open and ecosystem friendly.  We actively support the coming together of multiple developer ecosystems of interest – such as Windows and Linux – to drive innovation. 
+
+
+Over the coming months, we will be providing more information about additional partners in this developing ecosystem.
+
+
+### Partnership with Docker ###
+
+
+Our partnership with Docker enables developers to create, manage and deploy both Windows Server and Linux containers using the same Docker tool set. Developers targeting Windows Server will no longer have to make a choice between using the vast range of Windows Server technologies and building containerized applications.  
+
+Microsoft will be delivering container capabilities as part of the next release of Windows Server. Developers and organizations who want to create distributed, container-based applications using Docker will be able to use Windows Server – either on-premises or in a cloud deployment in Azure – and be able to leverage the same growing Docker ecosystem of users, applications and tools.  Docker Hub, a community-driven repository shared across a vast ecosystem of developers, will also be integrated into Microsoft Azure through the Azure management portal and gallery of applications. Today’s announcements extend our previous collaboration with Docker, where we have already made the Docker Engine for Linux available on Microsoft Azure.  
+
+The new Windows Server container technologies will be available for customers to run in their on-premises server environments or in the cloud. We intend to make these Windows Server containers, with Docker integration, available on Microsoft Azure as well. 
+
+Docker is two things, the open source group of projects and Docker the company. We consider this partnership to include both. Docker is successful, in part, because of the vibrant ecosystem that has built up around the Docker container technology. Microsoft is contributing to the Docker Project, enabling support for Windows Server Containers and Hyper-V Containers.  
+
+For more information, see the [New Windows Server containers and Azure support for Docker](http://azure.microsoft.com/blog/2014/10/15/new-windows-server-containers-and-azure-support-for-docker/?WT.mc_id=Blog_ServerCloud_Announce_TTD) blog post.

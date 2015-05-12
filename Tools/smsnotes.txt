@@ -1,0 +1,6 @@
+Banner headers 238x1180
+
+Block type:
+1 - 
+2 - image, title, text under
+3 - title, image, text
