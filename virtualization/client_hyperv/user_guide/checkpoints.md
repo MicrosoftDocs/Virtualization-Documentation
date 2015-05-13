@@ -1,11 +1,13 @@
-ms.ContentId: 61CCEA47-B840-4EFE-8388-CA1044C74D15
-title: Checkpoints Overview
+ms.ContentId: 8D89E9D8-2501-46A7-9304-2F19F37AFC85
+title: Working with checkpoints
 
-# Checkpoint operations #
+# Working with checkpoints #
+
+This topic explains virtual machine checkpoints used in Client Hyper-V running on Windows 10® Technical Preview.
 
 Checkpoints provide a fast and easy way to revert the virtual machine to a previous state. You can apply several operations to production checkpoints and standard checkpoints. 
 
-## Enable or disable checkpoints ##
+##Enable or disable checkpoints ##
 
 To enable or disable checkpoints for a virtual machine 
 
@@ -25,7 +27,7 @@ Standard checkpoints capture the state, data, and hardware configuration of a ru
 1.	In **Hyper-V Manager**, right-click the name of the virtual machine, and click **Settings**.
 2.	In the **Management** section, select **Checkpoints**.
 3.	Select either production checkpoints or standard checkpoints. 
-If you choose production checkpoints, you can also specify whether the host should take a standard checkpoint if a production checkpoint cannot be taken. If you clear this check box and a production checkpoint cannot be taken, no checkpoint will be created.
+If you choose production checkpoints, you can also specify whether the host should take a standard checkpoint if a production checkpoint cannot be taken. If you clear this check box and a production checkpoint cannot be taken, no checkpoint will be selected.
 4.	If you want to change the location where the configuration files for the checkpoint are stored, change the path in the **Checkpoint File Location** section.
 5.	Click **Apply** to apply your changes. If you are done, click **OK** to close the dialog box.
 
@@ -35,7 +37,7 @@ If you choose production checkpoints, you can also specify whether the host shou
 To create a checkpoint
 1.	In **Hyper-V Manager**, under **Virtual Machines**, select the virtual machine.
 2.	Right-click the name of the virtual machine, and then click **Checkpoint**.
-3.	When the process is complete, the checkpoint will appear under **Checkpoints** in **Hyper-V Manager**. 
+3.	When the process is complete, the checkpoint will appear under **Checkpoints** in the **Hyper-V Manager**. 
 
 
 ## Apply a checkpoint ##
@@ -63,7 +65,7 @@ To cleanly delete a checkpoint
 3.	You might be asked to verify that you want to delete the checkpoint. Confirm that it is the correct checkpoint, and then click **Delete**. 
 4.	The .avhdx and .vhdx files will merge, and when complete, the .avhdx file will be deleted from the file system. 
 
-**Tip** 
+Tip 
 You can use Windows Powershell to delete a checkpoint by using the Remove-VMSnapshot cmdlet. 
 
 
@@ -86,7 +88,7 @@ To change where the checkpoint configuration and saved state files are stored
 ## Rename a checkpoint ##
 By default, the name of a checkpoint is the name of the virtual machine combined with the date and time the checkpoint was taken. This is the standard format: 
 
-```virtual_machine_name (MM/DD/YYY –hh:mm:ss AM\PM) ```
+*virtual_machine_name (MM/DD/YYY –hh:mm:ss AM\PM) *
 
 Names are limited to 100 characters or less, and the name cannot be blank. 
 To rename a checkpoint
