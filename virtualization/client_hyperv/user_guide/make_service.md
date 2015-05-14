@@ -1,5 +1,5 @@
-ms.ContentId:7b638f5-2faa-43d5-bbd1-4bd684d53374
-title:Make a new Management Service
+ms.ContentId: 7b638f5-2faa-43d5-bbd1-4bd684d53374
+title: Make a new Management Service
 
 # Make a new management service #
 Why would you do this?
