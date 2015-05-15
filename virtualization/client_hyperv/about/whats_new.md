@@ -121,4 +121,4 @@ For more information on running Linux virtual machines on Hyper-V, see [Linux an
 
 
 ## Next Steps ##
-[Walk through Client Hyper-V on Windows 10](..\quick_start\walkthrough) 
+[Walk through Client Hyper-V on Windows 10](..\quick_start\walkthrough.md) 
