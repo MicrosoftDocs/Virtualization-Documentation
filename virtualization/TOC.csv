@@ -30,13 +30,13 @@
 ****,client_hyperv/about/vmsession.md
 ****,client_hyperv/about/supported_guest_os.md
 ****,client_hyperv/about/system_requirements.md
-****,client_hyperv/about/checkpoints.md
+****,client_hyperv/about/checkpoints_overview.md
 ****,client_hyperv/about/vm_config_overview.md
 ***,oa-toc-container: user_guide
 ****,client_hyperv/user_guide/configuration.md
 ****,client_hyperv/user_guide/migrating_vms.md
 ****,client_hyperv/user_guide/checkpoints.md
-****,client_hyperv/user_guide/makeservice.md
+****,client_hyperv/user_guide/make_service.md
 ****,client_hyperv/user_guide/troubleshooting.md
 **,oa-toc-container: api	
 ***,oa-toc-container: powershell
