@@ -1,4 +1,4 @@
-ms.ContentId: 34D5925A-D724-4552-9403-C2703A973234 
+ms.ContentId: 459CAC2E-5D03-4923-ADD6-1C4690A207FE 
 title: Virtual Machine Configuration File Format Overview
 
 # Virtual Machine Configuration File Format Overview
