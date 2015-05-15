@@ -1,7 +1,7 @@
 ms.ContentId: 34D5925A-D724-4552-9403-C2703A973234 
-title:
+title: Migrating and upgrading virtual machines
 
-# Migrating and upgrading Virtual Machines 
+# Migrating and upgrading virtual machines 
 
 If you upgrade a computer that has existing virtual machines to Windows 10, no changes are made to the virtual machine configuration settings or the virtual machine checkpoint files. This allows you to move virtual machines to computers that are running different versions of Windows and Hyper-V. 
 
