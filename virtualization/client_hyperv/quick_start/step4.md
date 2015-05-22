@@ -13,7 +13,7 @@ For this step, if you already have a .iso file for a supported operating system,
 	|Name:						|Windows Walkthrough VM 										|
 	|Generation: 				|Generation 2 													|
 	|Startup Memory:			|1024 and don't select dynamic memory 							|
-	|Configure networking: 		|External (this is the Virtual Switch you created in Step 4)	|
+	|Configure networking: 		|External (this is the Virtual Switch you created in Step 3)	|
 	|Connect virtual hard disk: |Create a virtual hard disk (keep the other default values) 	|
 	|Installation Options:		|Install an operating system from a bootable CD/DVD-ROM. Under **Media**, select **Image file (iso)** and then click **Browse** to point to the .iso file. 			|
 
