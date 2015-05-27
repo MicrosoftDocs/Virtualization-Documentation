@@ -3,7 +3,7 @@ title: Step 2: Install Client Hyper-V
 
 # Install Client Hyper-V #
 
-If you are just getting started with Client Hyper-V, you probably want to use the Programs and Features tool to install Client Hyper-V. But, you can also install using [Windows Powershell](step2#UsingtheGet-WindowsOptionalFeaturecmdlet).
+If you are just getting started with Client Hyper-V, you probably want to use the Programs and Features tool to install Client Hyper-V. But, you can also install using [Windows Powershell](#Using-the-Get-WindowsOptionalFeature-cmdlet).
 
 
 ## Using Programs and Features ##
