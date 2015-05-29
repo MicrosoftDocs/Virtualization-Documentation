@@ -32,6 +32,7 @@
 ****,client_hyperv/about/system_requirements.md
 ****,client_hyperv/about/checkpoints_overview.md
 ****,client_hyperv/about/vm_config_overview.md
+****,client_hyperv/about/vm_config_feature_compatibility.md
 ***,oa-toc-container: user_guide
 ****,client_hyperv/user_guide/configuration.md
 ****,client_hyperv/user_guide/migrating_vms.md
