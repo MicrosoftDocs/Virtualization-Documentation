@@ -5,7 +5,7 @@ title: Minimum VM configuration version for features
 
 # Minimum VM configuration version for new features #
 
-This topic shows a list of features and the VM configuration version that is required to use them 
+This topic shows a list of features introduced with Windows 10 and the VM configuration version that is required to use them.
 
 | Feature Name                           | Minimum VM version |
 | :------------------------------------- | -----------------: |
