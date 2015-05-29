@@ -8,7 +8,7 @@ title: Minimum VM configuration version for features
 This topic shows a list of features and the VM configuration version that is required to use them 
 
 | Feature Name                           | Minimum VM version |
-| -------------------------------------- | -----------------: |
+| :------------------------------------- | -----------------: |
 | Virtual Trusted Platform Module (vTPM) |                6.2 |
 | Virtual Machine Grouping               |                6.2 |
 
