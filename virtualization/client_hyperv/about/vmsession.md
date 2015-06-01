@@ -23,7 +23,8 @@ You can also use the PowerShell cmdlet Invoke-Command to do the same thing. Here
 
 ```Invoke-Command -VMName PSTest -Credential $cred  -FilePath C:\script\foo.ps1  ```
 
-Note: The virtual machine you want to connect to must be running locally on the host and booted. You can use the following cmdlet to check that:
+Note: The virtual machine you want to connect to must be running locally on the host and booted. You can run the following cmdlet to check that:
+
 ```Get-VM```
 
 
