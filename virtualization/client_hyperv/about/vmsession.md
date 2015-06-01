@@ -19,7 +19,7 @@ Or you can create the session by using the virtual machine GUID:
 
 ```New-PSSession -VMGUID <VMGUID> -Credential $cred ```
 
-You can also use the PowerShell cmdlet Invoke-Command to do the same thing. Here is an example of how you can use Invoke-Command cmdlet where PSTest is the virtual machine name and the script to run is in the script folder on the C:/ drive:
+You can also use the PowerShell cmdlet Invoke-Command to do the same thing. Here is an example of how you can use the Invoke-Command cmdlet where PSTest is the virtual machine name and the script to run is in the script folder on the C:/ drive:
 
 ```Invoke-Command -VMName PSTest -Credential $cred  -FilePath C:\script\foo.ps1  ```
 
