@@ -7,7 +7,7 @@ You can use Windows PowerShell to remotely manage a Windows 10 virtual machine f
 To create a PowerShell session directly between the Hyper-V host and the virtual machines running on that host, 
 1. On the Hyper-V host, open PowerShell as an administrator.
 2. Run the following command to get your credentials:
-'''$cred = Get-Credential  ''''
+```$cred = Get-Credential  ```
 3. Run the following command to create the session by using the virtual machine name:
 # Managing Windows inside virtual machines with Windows PowerShell #
 
