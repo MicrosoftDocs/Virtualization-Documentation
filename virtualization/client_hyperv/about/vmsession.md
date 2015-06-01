@@ -10,9 +10,13 @@ To create a PowerShell session directly between the Hyper-V host and the virtual
 2. Run the following command to get your credentials:
 
 ```$cred = Get-Credential  ```
+
 3. Run the following command to create the session by using the virtual machine name:
+
 ```New-PSSession -VMName <VMName> -Credential $cred  ```
+
 Or you can create the session by using the virtual machine GUID:
+
 ```New-PSSession -VMGUID <VMGUID> -Credential $cred ```
 
 # Managing Windows inside virtual machines with Windows PowerShell #
