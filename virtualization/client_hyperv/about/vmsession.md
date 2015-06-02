@@ -2,7 +2,7 @@ ms.ContentId: e586a11a-870f-403b-8af8-4c2931589d26
 title: Manage Windows 10 virtual machines with Windows PowerShell  
 
 # Manage Windows 10 virtual machines with Windows PowerShell #
-You can use Windows PowerShell to remotely manage a Windows 10 virtual machine from a Windows 10 Hyper-V host. These PowerShell remote management sessions work regardless of the network configuration or remote management settings on the host or virtual machine. This makes it easier to automate and script virtual machine management in Hyper-V. To get started, create a remote management session with the virtual machine from the host.
+You can use Windows PowerShell to remotely manage a Windows 10 virtual machine from a Windows 10 Hyper-V host. These PowerShell remote management sessions work regardless of the network configuration or remote management settings on the host or virtual machine. This makes it easier to automate and script virtual machine management in Hyper-V. To get started, create a PowerShell remote management session with the virtual machine from the host.
 
 ## Create a PowerShell remote management session##
 To create a PowerShell session directly between the Hyper-V host and a virtual machine running on that host, 
