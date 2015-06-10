@@ -6,16 +6,27 @@ There are two types of checkpoints, production and standard. Standard checkpoint
 
 
 ## Create a standard checkpoint ##
-Since standard checkpoints are the default, we just need to right-click the VM and click Checkpoint.
+Since standard checkpoints are the default, we just need to right-click the VM and click **Checkpoint**.
 
-
+When the process is complete, the checkpoint will appear under **Checkpoints** in the **Hyper-V Manager**. 
 
 ## Create a production checkpoint ##
 First we will need to change the type of checkpoint that we want to take.
 
+1.	Right-click the virtual machine, and click **Settings**.
+2.	In the **Management** section, select **Checkpoints**.
+3.	Select production checkpoints and then make sure to clear the fall-back option. If the system can't take a production checkpoint, we want it to fail instead of taking a standard checkpoint.
+4.	When you are done, click **OK** to close the dialog box.
+5.	Right-click the VM again and select **Checkpoint** to create the production checkpoint.
 
 ## Apply the production checkpoint ##
 
+
+1.	In **Hyper-V Manager**, under **Virtual Machines**, select the virtual machine.
+2.	In the Checkpoints section, right-click the one titled **Production Checkpoint** and click **Apply**.
+3.	In the pop-up dialog, pick **Apply**. 
+4. When this finishes, right-click the VM and the click **Connect** to launch the VM. 
+	
 
 ## Apply the standard checkpoint ##
 
