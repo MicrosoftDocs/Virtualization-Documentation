@@ -1,17 +1,15 @@
-﻿ms.ContentId: 300B0F58-26DE-4F49-809D-8C1828AB071F 
+ms.ContentId: 300B0F58-26DE-4F49-809D-8C1828AB071F 
 title: Host SKU Differences
 
 Hyper-V has different features depending on the version of Windows in the host and guest environments.
 
 # Host Feature Differences #
 
-<-- Do we want to simplify this with a table? Yes - No? -->
+
 
 | **Feature**  			| **Server** 	| **Client** 	|  **Notes**       				|
 |:----------------------|:--------------|:--------------|:------------------------------|
-|Enhanced Session Mode	| √       		| √          	| Default:      				|
-|             			|        		|            	| Server = off 					|
-|            			|           	|            	| Client = on  					|
+|Enhanced Session Mode	| √       		| √          	| Default: Server = off, Client = on  					|
 |Live Migration  		| √        		|            	|              					|
 |Remote FX 				| √ 			|  				|  								|
 |Hyper-V Replica 		| √ 			|  				|  								|
@@ -24,6 +22,17 @@ Hyper-V has different features depending on the version of Windows in the host a
 |						|				|				|File Server Cluster			|
 |VSS based host backup	| √				|				|								|
 
+## Windows Client ##
+
+### Features that are limited to a subset of Windows Client Hosts ###
+
+Hyper-V is only available on Enterprise and Professional versions of Windows Client.
+
+### Windows Client Specific Default Settings ###
+
+Enhanced Session Mode is enabled by default on Windows Client hosts.
+
+Intercept and VMBus throttling are disabled by default on Windows Client hosts
 
 	
 ## Windows Server ##
@@ -53,17 +62,6 @@ Automatic VM Activation is only available on Windows Server Datacenter hosts.
 - Enhanced Mode VM Connections are disabled by default on Windows Server hosts
 - Intercept and VMBus throttling are disabled by default on Windows Server hosts
 
-## Windows Client ##
-
-### Features that are limited to a subset of Windows Client Hosts ###
-
-Hyper-V is only available on Enterprise and Professional versions of Windows Client.
-
-### Windows Client Specific Default Settings ###
-
-Enhanced Session Mode is enabled by default on Windows Client hosts.
-
-Intercept and VMBus throttling are disabled by default on Windows Client hosts
 
 # Guest Feature Differences #
 

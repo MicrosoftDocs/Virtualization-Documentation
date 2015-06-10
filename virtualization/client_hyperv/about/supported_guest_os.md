@@ -1,12 +1,13 @@
 ms.ContentId: 7561B149-A147-4F71-9840-6AE149B9DED5
-title: Supported Guest Operating Systems
+title: Supported Windows Guest Operating Systems
 
-# Supported Guest Operating Systems for Client Hyper-V in Windows 10 #
+# Supported Windows Guest Operating Systems for Client Hyper-V in Windows 10 #
 
 Client Hyper-V includes integration services for supported guest operating systems that improves the integration between the physical computer and the virtual machine. Some operating systems have the integration services built-in, while others provide integration services through Windows Update.
 
-The following table lists the operating systems supported in Windows 10 for use as guest operating systems in Hyper-V virtual machines, as well as provides information about
-integration services. For information about running Linux as a guest operating system, see: **Linux Virtual Machines on Hyper-V**.
+The following table lists the operating systems supported in Windows 10 for use as guest operating systems in Hyper-V virtual machines, as well as provides information about integration services. 
+
+For information about running Linux or FreeBSD as a guest operating system, see: **[Linux and FreeBSD Virtual Machines on Hyper-V](https://technet.microsoft.com/library/dn531030.aspx)**.
 
 Microsoft provides support for guest operating systems in the following
 manner:

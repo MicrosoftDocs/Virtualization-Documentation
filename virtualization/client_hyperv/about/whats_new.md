@@ -19,6 +19,7 @@ To upgrade the configuration version, shut down the virtual machine and then, at
     Update-VmConfigurationVersion <vmname> | <vmobject> 
 
 For important information about virtual machine configuration version, see Virtual Machine Configuration Version. 
+
 ----------
 
 ## Compatible with Connected Standby ##
