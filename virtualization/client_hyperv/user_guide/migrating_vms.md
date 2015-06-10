@@ -7,6 +7,16 @@ If you upgrade a computer that has existing virtual machines to Windows 10, no c
 
 In Windows 10, you can upgrade your virtual machines to support the latest virtual machine configuration version. This introduces changes to the compatibility, structure, and location of your virtual machine's configuration and checkpoint files. 
 
+## Upgrade the virtual machine configuration version
+To upgrade to the latest virtual machine configuration version, open an elevated Windows PowerShell command prompt, and run one of the following commands:
+
+**Update-VMVersion** *vmname*   
+
+Substitute the name of your virtual machine for vmname.
+
+
+
+**Note** When you use a Windows PowerShell command to upgrade the configuration version of the virtual machine, you will be notified that any saved states associated with your virtual machine will be removed. This includes saved states associated with checkpoints. 
 ## What is the configuration version of a virtual machine?
 
 The configuration version defines the configuration, saved state, and checkpoint compatibility of the virtual machine. Virtual machines with configuration version 5 are compatible with Windows 10 and previous releases of Windows and Hyper-V. Virtual machines with configuration version 6.x are only compatible with Windows 10, and they will not run on earlier versions of Windows and Hyper-V. 
@@ -77,27 +87,3 @@ Atlantis VM   Running          0    1024         00:04:20.5910000    Operating n
 SGC VM        Running          0     538         00:02:44.8350000    Operating normally  6.2
 
 
-## Upgrade the virtual machine configuration version
-To upgrade to the latest virtual machine configuration version, open an elevated Windows PowerShell command prompt, and run one of the following commands:
-
-**Update-VMVersion** *vmname*   
-
-Substitute the name of your virtual machine for vmname.
-
-The PowerShell command produces the following sample output:
-
-C:\WINDOWS\system32> **update-vmversion** *atlantis*
-
-Confirm
-Are you sure you want to perform this action?
-
-Performing a configuration version update of "Atlantis" will prevent it from being migrated to or imported on previous versions of Windows. This operation is not reversible.
-Note that saved states associated with this virtual machine must be removed for the update to be successful; this includes saved states associated with checkpoints.
-
-The following saved states are associated with this virtual machine:
--  Checkpoint(s) named: "    -  Atlantis VM - (3/6/2015 - 10:21:26 AM)"
-These saved states will be removed during the update of the virtual machine's configuration version.
-[Y] Yes  [A] Yes to All  [N] No  [L] No to All  [S] Suspend  [?] Help (default is "Y"):
-
-
-**Note** When you use a Windows PowerShell command to upgrade the configuration version of the virtual machine, you will be notified that any saved states associated with your virtual machine will be removed. This includes saved states associated with checkpoints. 
