@@ -3,7 +3,9 @@ title: User Guide Overview
 
 # User Guide #
 
-Coming soon!
+**What would you like to see here?**
+
+Please come over to the [forums](https://technetappsmain.redmond.corp.microsoft.com/Forums/windowsserver/en-US/home) and give us some feedback!
 
 
 
