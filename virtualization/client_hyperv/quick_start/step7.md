@@ -1,4 +1,5 @@
-ms.ContentId: 66A69B50-7388-48EF-B490-9F8464AD51ED
+
+ms.ContentId: 2A12ACDB-37A1-449C-A73F-72CB81CCD5E9
 title: Step 7: Export and import a virtual machine
 
 

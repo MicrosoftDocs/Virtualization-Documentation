@@ -1,4 +1,4 @@
-ms.ContentId: C5DAC361-D339-4C3B-90E4-2C133BE6812E
+ms.ContentId: D50E5834-85A4-4BD7-819C-EC3B31198BE2
 title: Step 3: Create a virtual switch
 
 # Create a virtual switch #

@@ -1,4 +1,4 @@
-ms.ContentId: FCC6F388-DD06-4810-9BCB-7A163DB2C57F
+ms.ContentId: 14FAE32D-F71E-479A-B305-1094FA05E50A
 title: Step 5: Connect to the virtual machine and finish the installation
 
 # Step 5: Connect to the virtual machine and finish the installation #

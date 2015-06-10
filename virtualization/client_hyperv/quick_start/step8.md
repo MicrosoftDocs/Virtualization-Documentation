@@ -1,4 +1,4 @@
-ms.ContentId: C481ACA0-C4AD-4AC1-B1B5-97AA635D0809
+ms.ContentId: 66A69B50-7388-48EF-B490-9F8464AD51ED
 title: Step 9: Create a Linux guest virtual machine
 
 # Create a Linux guest virtual machine #

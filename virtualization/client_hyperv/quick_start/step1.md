@@ -1,4 +1,4 @@
-ms.ContentId: 2964B9FA-FBA4-4F8C-BEF2-A3F3E2FEC6E4
+ms.ContentId: 1290AB3E-3CC7-4743-8CEC-4599021D475F
 title: Step 1: Make sure you can use your machine with Client Hyper-V
 
 # Make sure your machine is compatible #

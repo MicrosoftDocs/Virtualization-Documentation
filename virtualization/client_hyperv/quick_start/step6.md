@@ -1,4 +1,4 @@
-ms.ContentId: 2A12ACDB-37A1-449C-A73F-72CB81CCD5E9
+ms.ContentId: FCC6F388-DD06-4810-9BCB-7A163DB2C57F
 title: Step 6: Experiment with checkpoints
 
 # Step 6: Experiment with checkpoints #
