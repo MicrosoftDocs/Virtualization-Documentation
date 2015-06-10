@@ -7,7 +7,9 @@ In order to finish making your virtual machine, you need to start the VM and wal
 
 ## Connect to the VM ##
 1. In **Hyper-V Manager**, right-click the virtual machine and then click **Connect**. 
-2. <!-- VMConnect is broken in my build -->
+2. In VMConnect, click on the green start button ![](\media\vmconnect_start_button.png). This is like hitting the power button on a physical computer. 
+3. The VM will boot into setup and you can walk through the installation like you would on a physical computer.
+
 
 
 Next Step:
