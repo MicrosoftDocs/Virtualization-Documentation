@@ -7,26 +7,22 @@ In order to finish making your virtual machine, you need to start the VM and wal
 
 ## Connect to the VM ##
 1. In **Hyper-V Manager**, right-click the virtual machine and then click **Connect**. 
-2. In VMConnect, click on the green start button ![](\media\vmconnect_start_button.png). This is like hitting the power button on a physical computer. 
+2. In VMConnect, click on the green **Start** button ![](media/vmconnect_start_button.png). This is like hitting the power button on a physical computer. 
 3. The VM will boot into setup and you can walk through the installation like you would on a physical computer.
 
 
 ## Other stuff you can do in VMConnect ##
--  this button works like hitting CTRL+ALT+Delete on a physical computer
-- Turn off this button works like the power button on a physical machine or pulling the plug from the outlet. This is a "dirty" way to shutdown the virtual machine and you may lose anything you were working on in the VM.
-- Shut down this "cleanly" shuts down the machine by closing all of the open applications and stopping the operating system. For Linux....
-- Save -
-- Pause
-- Reset 
-- Checkpoint
-- Revert
-- Enhanced session
 
 
 	| **To do this…** | Click this...| **Or, do this…** |
 	|:-----|:-----|:-----|
+	| Turn off the VM |  |   |
+	| Shut down a VM |  |  |
+	| Save |  |  |
+	| Pause |  |  |
+	| Reset |  |  |
 	| Mouse release |  |CTRL+ALT+LEFT arrow |
-	|  Same as CTRL+ALT+DELETE for a physical computer |  |CTRL+ALT+END |
+	| CTRL+ALT+DELETE for a physical computer |  |CTRL+ALT+END |
 	| Switch from full-screen mode back to windowed mode |  | CTRL+ALT+BREAK | 
 	| Opens the settings for the virtual machine |  | CTRL+O | 
 	| Starts the virtual machine |  | CTRL+S | 
@@ -37,6 +33,7 @@ In order to finish making your virtual machine, you need to start the VM and wal
 	| Send mouse clicks or keyboard input to the virtual machine |  |Click anywhere in the virtual machine window. The mouse pointer may appear as a small dot when you connect to a running virtual machine. |
 	| Change the settings of the virtual machine |  |Celect **File** > **Settings**.
 	| Connect to a DVD image (.iso file) or a virtual floppy disk (.vfd file) |  | Click **Media** on the menu. Virtual floppy disks are not supported for generation 2 virtual machines.|
+
 
 
 ## Next Step: ##
