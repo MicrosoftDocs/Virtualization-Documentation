@@ -1,4 +1,3 @@
-
 ms.ContentId: C481ACA0-C4AD-4AC1-B1B5-97AA635D0809
 title: Step 10: Experiment with Windows Powershell
 
