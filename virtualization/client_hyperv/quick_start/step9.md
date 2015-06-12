@@ -5,5 +5,15 @@ title: Step 10: Experiment with Windows Powershell
 # Step 10: Experiment with Windows Powershell #
 
 
+
+
+## Change saved VMConnect settings for a virtual machine ##
+ 
+`VMConnect.exe <ServerName> <VMName> /edit` 
+
+
+
 ## Next step: ##
 [Step 10: Backup your virtual machines](step10.md)
+
+
