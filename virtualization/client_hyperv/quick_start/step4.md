@@ -3,7 +3,7 @@ title: Step 4: Create a Windows virtual machine from an .iso file
 
 # Create a Windows virtual machine from an .iso file #
 
-For this step, if you already have a .iso file for a supported operating system, you can use that. If not, you can download the .iso for [Microsoft Hyper-V Server 2012 R2](http://www.microsoft.com/en-us/evalcenter/evaluate-hyper-v-server-2012-r2). For this step, we will assume that your .iso file is in the Downloads directory, just replace this path in the instructons with the path to your file if you have it stored somewhere else.
+For this step, if you already have a .iso file for a supported operating system, you can use that. If not, you can download the .iso for [Windows 8.1 Enterprise](http://www.microsoft.com/en-us/evalcenter/evaluate-windows-8-1-enterprise). For this step, we will assume that your .iso file is in the Downloads directory, just replace this path in the instructions with the path to your file if you have it stored somewhere else.
 
 1. In Hyper-V Manager, click on the **Action** menu > **New** > **Virtual machine**. 
 2. In the virtual machine wizard, make the following choices:
