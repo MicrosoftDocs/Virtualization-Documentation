@@ -12,7 +12,7 @@ Checkpoints can be helpful to use when you are about to make a change to a virtu
 
 Producton checkpoints are the default for Hyper-V Client on Windows 10.
 
-For more information about checkpoints, see [../about/checkpoints_overview.md](../about/checkpoints_overview.md "Checkpoints Overview")
+For more information about checkpoints, see [../about/checkpoints_overview.md](..\about\checkpoints_overview.md "Checkpoints Overview")
 
 
 ## Change the checkpoint type ##
