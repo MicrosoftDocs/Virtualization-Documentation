@@ -3,9 +3,7 @@ title: Working with checkpoints
 
 # Working with checkpoints #
 
-This topic explains virtual machine checkpoints used in Client Hyper-V running on Windows 10® Technical Preview.
-
-Checkpoints provide a fast and easy way to revert the virtual machine to a previous state. You can apply several operations to production checkpoints and standard checkpoints. 
+Checkpoints provide a fast and easy way to revert the virtual machine to a previous state. 
 
 ##Enable or disable checkpoints ##
 
