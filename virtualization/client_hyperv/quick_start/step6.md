@@ -48,28 +48,36 @@ Now, we need to change change the type of checkpoint that we want to take back t
 4.	When you are done, it should look like this:
 ![](media/production.png)
 6.	click **OK** to close the dialog box.
-7.	RIght-click on the VM again and select **Connect**.
+7.	Right-click on the VM again and select **Connect**.
 8.	In Notepad in the VM, type another line that reads **This is a test of a production checkpoint** and save the file again.
+9.	Click on the ![](media/checkpoint_button.png) **Checkpoint** button in the menu bar.
+10.	When asked, name it **Production** and then click **Yes**.
 ![](media/production_notepad.png) 
-2. Then, close VMConnect. The VM will continue running, you just won't be connected to it anymore.
-7.	Right-click the VM and select **Checkpoint** to create the production checkpoint.
-8.	When asked, name it **Production**.
-![](
+11. Close VMConnect. The VM will continue running, you just won't be connected to it anymore.
+12. In Hyper-V manager, your list of checkpoints will now look like this:
+![](media/production_complete.png)
+
+
 
 ## Apply the standard checkpoint ##
 
-1.	In **Hyper-V Manager**, under **Virtual Machines**, select the virtual machine.
-2.	In the Checkpoints section, right-click the one titled **Standard** and click **Apply**.
-3.	In the pop-up dialog, pick **Apply**. 
-4. When this finishes, right-click the VM and the click **Connect** to launch the VM. 
+1.	In **Hyper-V Manager**, in the **Checkpoints** section, right-click the one titled **Standard** and click **Apply**.
+3.	In the pop-up dialog, click **Create Checkpoint and Apply**. 
+![](media/apply_standard.png)
+4. When the finished, your list of checkpoints will now look something like this:
+![](media/standard_applied.png)
+5. When this finishes, right-click the VM and the click **Connect** to connect to the VM. 
+6. When you connect to the VM, the VM should be running, with Notepad open, but the line about production checkpoints will be missing:
+![](media/standard_applied_notepad.png)
+7. Close VMConnect, but leave the VM running.
 
 
 ## Apply the production checkpoint ##
+Now, let's go back to Hyper-V manager and apply the production checkpoint and see how our VM looks afterwards.
 
-1.	In **Hyper-V Manager**, under **Virtual Machines**, select the virtual machine.
-2.	In the Checkpoints section, right-click the one titled **Production Checkpoint** and click **Apply**.
-3.	In the pop-up dialog, pick **Apply**. 
-4. When this finishes, right-click the VM and the click **Connect** to launch the VM. 
+1.	In the Checkpoints section, right-click the one titled **Production Checkpoint** and click **Apply**.
+2.	In the pop-up dialog, pick **Apply**. 
+3. When this finishes, right-click the VM and the click **Connect** to launch the VM. 
 	
 
 
