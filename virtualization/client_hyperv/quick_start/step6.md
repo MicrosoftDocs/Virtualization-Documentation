@@ -20,24 +20,24 @@ We will start by trying out the older style of checkpoints, **standard checkpoin
 
 1. Right-click on **Windows Walkthrough VM** and select **Settings**.
 2. In the **Management** section, select **Checkpoints**.
-3.	Select Standard checkpoints. 
+3.	Select **Standard checkpoints**. The dialog should look like this:
+![](media/standard.png)
 4.	Click **OK** to close the dialog box.
 
 ## Open Notepad to test checkpoints ##
 In order to see what happens with each type of checkpoint, we need to run an application in the VM. 
 1. Right-click on **Windows Walkthrough VM** and select **Connect**.
 2. In the virtual machine, open **Notepad** by clicking on the **Start** menu and typing **Notepad** and then select it from the results. 
-3. In Notepad,  type **This is a test of checkpoints.** 
+3. In Notepad,  type **This is a test of checkpoints.** The file should look like this"
+![](media/standard_notepad.png)
 4. Save the file as **test.txt**, but don't close Notepad. Leave it running in the virtual machine.
 
 ## Create a standard checkpoint ##
-To create the checkpoint, we just need to right-click the VM and click **Checkpoint**. In the checkpoint name dialog, type **Standard**.
-
-When the process is complete, the checkpoint will appear under **Checkpoints** in the **Hyper-V Manager**. 
-
-## Make another change in Notepad ##
-
-Go back to the VM and in Notepad, type another line that reads **This is a test of a production checkpoint** and save the file again. Then, close VMConnect. The VM will continue running, you just won't be connected to it anymore.
+1. To create the checkpoint, we just need to right-click the VM and click **Checkpoint**. 
+2. In the checkpoint name dialog, type **Standard**. The dialog should look like this:
+![](media/save_standard.png) 
+3. When the process is complete, the checkpoint will appear under **Checkpoints** in the **Hyper-V Manager**.
+![](media/standard_complete.png) 
 
 ## Create a production checkpoint ##
 Now, we need to change change the type of checkpoint that we want to take back to **Production checkpoints** before we take another checkpoint.
@@ -45,9 +45,16 @@ Now, we need to change change the type of checkpoint that we want to take back t
 1.	Right-click the virtual machine, and click **Settings**.
 2.	In the **Management** section, select **Checkpoints**.
 3.	Select **Production checkpoints** and then make sure to clear the fall-back option. If the system can't take a production checkpoint, we want it to fail instead of taking a standard checkpoint.
-4.	When you are done, click **OK** to close the dialog box.
-5.	Right-click the VM and select **Checkpoint** to create the production checkpoint.
-6.	When the checkpoint has been created, right-click it and then click **Rename** and type **Production Checkpoint**.
+4.	When you are done, it should look like this:
+![](media/production.png)
+6.	click **OK** to close the dialog box.
+7.	RIght-click on the VM again and select **Connect**.
+8.	In Notepad in the VM, type another line that reads **This is a test of a production checkpoint** and save the file again.
+![](media/production_notepad.png) 
+2. Then, close VMConnect. The VM will continue running, you just won't be connected to it anymore.
+7.	Right-click the VM and select **Checkpoint** to create the production checkpoint.
+8.	When asked, name it **Production**.
+![](
 
 ## Apply the standard checkpoint ##
 
