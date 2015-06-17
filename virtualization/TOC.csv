@@ -27,7 +27,6 @@
 ***,oa-toc-container: about
 ****,client_hyperv/about/whats_new.md
 ****,client_hyperv/about/SKUDifferences.md
-****,client_hyperv/about/vmsession.md
 ****,client_hyperv/about/supported_guest_os.md
 ****,client_hyperv/about/checkpoints_overview.md
 ****,client_hyperv/about/vm_config_overview.md
@@ -35,6 +34,7 @@
 ****,client_hyperv/user_guide/configuration.md
 ****,client_hyperv/user_guide/migrating_vms.md
 ****,client_hyperv/user_guide/checkpoints.md
+****,client_hyperv/about/vmsession.md
 ****,client_hyperv/user_guide/make_service.md
 ****,client_hyperv/user_guide/troubleshooting.md
 ****,client_hyperv/user_guide/troubleshooting_checkpoints.md
