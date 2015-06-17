@@ -12,7 +12,7 @@ Let's get you started with containers! Before we begin, you will need:
 
 ### Step 1: Install Hyper-V ###
 
-Internal: You need to install Hyper-V from our internal shares here: ```\\winbuilds\release\FBL_KPG_CORE_XENON_LITE\<<builds_number>>\amd64fre\en-us\skus.cmi\server```
+Internal: You need to install Hyper-V from our internal shares here: ```\\winbuilds\release\fbl_ur1_argon\<<builds_number>>\amd64fre\en-us\skus.cmi\server```
 
 Install Hyper-V using Windows Powershell. If you already have Hyper-V installed, you can skip this step and go on to [Step 2: Create a virtual machine](hello_world.md#Step2:Createthevirtualmachine).
 	
@@ -23,7 +23,7 @@ Install Hyper-V using Windows Powershell. If you already have Hyper-V installed,
 You need to create a new virtual machine using a .vhd or .vhdx of Windows Server. 
 
 **Internal**: for now, use the VHD available from
-    `\\winbuilds\release\FBL_KPG_CORE_XENON_LITE\<<build_number>>\amd64fre\vhd\vhd_server_serverdatacenter_en-us`
+    `\\winbuilds\release\fbl_ur1_argon\<<build_number>>\amd64fre\vhd\vhd_server_serverdatacenter_en-us`
 
 1. Click the **Start** button and type **Hyper-V Manager**.
 2. On the **Action** menu, select **Connect to Server**. 
