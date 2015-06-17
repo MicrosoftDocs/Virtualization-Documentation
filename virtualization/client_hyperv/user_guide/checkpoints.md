@@ -3,7 +3,7 @@ title: Working with checkpoints
 
 # Working with checkpoints #
 
-Checkpoints provide a fast and easy way to revert the virtual machine to a previous state. 
+Checkpoints provide a fast and easy way to revert the virtual machine to a previous state. For more information about how checkpoints work, see [Checkpoints Overview](..\about\checkpoints_overview.md).
 
 ##Enable or disable checkpoints ##
 

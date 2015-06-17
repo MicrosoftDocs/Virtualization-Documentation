@@ -76,17 +76,28 @@ Now, we need to change change the type of checkpoint that we want to take back t
 Now, let's go back to Hyper-V manager and apply the production checkpoint and see how our VM looks afterwards.
 
 1.	In the Checkpoints section, right-click the one titled **Production Checkpoint** and click **Apply**.
-2.	In the pop-up dialog, pick **Apply**. 
+2.	In the pop-up dialog, pick **Create Checkpoint and Apply**. 
 3. When this finishes, right-click the VM and the click **Connect** to launch the VM. 
+4. You will notice that the VM is not running. Click on the ![](media/vmconnect_start_button.png) Start button in the menu bar to start the VM.
+5. Open open test.txt in Notepad. You should see the line in the file about testing production checkpoints:
+![](media/production_notepad.png)
 	
 
 
 ## Rename a checkpoint ##
-Right-click the last checkpoint in the tree and click Rename.
-Name the checkpoint **Delete this one**.
+1. Right-click the last checkpoint in the tree and click Rename.
+2. Name the checkpoint **Delete me**.
+![](media/delete_me.png)
 
 ## Delete a checkpoint ##
 The previous step has probably given you a hint about what we will do next. We are going to delete the checkpoint that you just renamed.
+
+1.Right-click on the checkpoint named **Delete me** and click **Delete**. 
+![](media/delete_checkpoint.png)
+2. In the warning dialong, click **OK**. 
+![](media/delete_warn.png)
+3. After the checkpoint is deleted, you list should look something like this:
+![](media/after_delete.png)
 
 
 # Next Steps: #
