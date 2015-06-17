@@ -83,7 +83,6 @@ Now, let's go back to Hyper-V manager and apply the production checkpoint and se
 ![](media/production_notepad.png)
 	
 
-
 ## Rename a checkpoint ##
 1. Right-click the last checkpoint in the tree and click Rename.
 2. Name the checkpoint **Delete me**.
