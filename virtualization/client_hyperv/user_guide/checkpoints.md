@@ -96,3 +96,4 @@ To rename a checkpoint
 2.	Right-click the checkpoint, and then select **Rename**.
 3.	Enter in the new name for the checkpoint. It must be less than 100 characters, and the field cannot be empty.
 4.	Click **ENTER** when you are done.
+
