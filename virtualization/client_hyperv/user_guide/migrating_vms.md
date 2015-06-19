@@ -17,6 +17,22 @@ Substitute the name of your virtual machine for vmname.
 
 
 **Note** When you use a Windows PowerShell command to upgrade the configuration version of the virtual machine, you will be notified that any saved states associated with your virtual machine will be removed. This includes saved states associated with checkpoints. 
+
+## How do I check the configuration version of the virtual machines running on Hyper-V? 
+
+To find the configuration version, open an elevated Windows PowerShell command prompt, and run the following command:
+
+**Get-VM * | Format-Table Name, Version**
+
+The PowerShell command produces the following sample output:
+
+    Name		State		CPUUsage(%)		MemoryAssigned(M)		Uptime			Status				Version
+    
+    Atlantis	Running			0			1024			 	00:04:20.5910000	Operating normally		5.0
+    
+    SGC VM		Running			0			538 	 			00:02:44.8350000	Operating normally		6.2
+
+
 ## What is the configuration version of a virtual machine?
 
 The configuration version defines the configuration, saved state, and checkpoint compatibility of the virtual machine. Virtual machines with configuration version 5 are compatible with Windows 10 and previous releases of Windows and Hyper-V. Virtual machines with configuration version 6.x are only compatible with Windows 10, and they will not run on earlier versions of Windows and Hyper-V. 
@@ -67,23 +83,5 @@ The following table lists the default file locations for new or upgraded virtual
 |**Automatic virtual hard disk files (.avhdx)**| C:\Users\Public\Documents\Hyper-V\Virtual Hard Disks
 
 
-## How do I check the configuration version of the virtual machines running on Hyper-V? 
-
-To find the configuration version, open an elevated Windows PowerShell command prompt, and run the following command:
-
-**Get-VM * | Format-Table Name, Version**
-
-The PowerShell command produces the following sample output:
-
-**Windows PowerShell
-Copyright (C) 2015 Microsoft Corporation. All rights reserved.**
-
-PS C:\WINDOWS\system32> get-vm
-
-Name          State        CPUUsage(%)  MemoryAssigned(M)   Uptime   Status             Version
-
-Atlantis VM   Running          0    1024         00:04:20.5910000    Operating normally  5.0
-
-SGC VM        Running          0     538         00:02:44.8350000    Operating normally  6.2
 
 
