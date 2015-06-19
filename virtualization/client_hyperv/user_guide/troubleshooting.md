@@ -12,13 +12,14 @@ It does this because Z.
 To fix it, do this....
 
 
-# Troubleshooting checkpoints #
+## I changed the checkpoint type, but it is still taking the wrong type of checkpoint ##
 
-If you have the VM open in VMConnect, change the checkpoint type in Hyper-V manager and then create a checkpoint from VMConnect, the checkpoint taken will be whatever checkpoint type was specified when VMConnect was opened.
+If you are taking the checkpoint from VMConnect and you change the checkpoint type in Hyper-V manager the checkpoint taken be whatever checkpoint type was specified when VMConnect was opened.
 
-After applying a production checkpoint, you will need to start the VM. 
+Close VMConnect and reopen it to make it take the correct type of checkpoint.
 
-Before applying a production checkpoint, close VMConnect.
+
+
 
 
 
