@@ -16,16 +16,20 @@ Exporting a virtual machine exports all of the pieces of the VM, including the c
 ![](media/select_folder.png)
 3. In the **Export Virtual Machine** dialog, make sure the path looks okay and then click **Export**.
 ![](media/click_export.png)
+4. While the VM is being exported, you can see the progress in the Status section:
+![](media/export_progress.png) 
 
 
 
 ## Did the export work? ##
+
 To verify that the virtual machine was exported, right-click on your **Start** menu and select **File Explorer**.
-6. Navigate to \Users\Public\Export\Windows Walkthrough VM.
-7. You should see another folder called Windows Walkthrough VM and inside that folder should be three folders with the files for your exported virtual machine:
+1. Navigate to \Users\Public\Export\Windows Walkthrough VM.
+2. You should see another folder called Windows Walkthrough VM and inside that folder should be three folders with the files for your exported virtual machine:
  - Snapshots
  - Virtual Hard Disks
  - Virtual Machines 
+![](media/export_confirm.png)
 
 ## Import the VM ##
 1. In **Hyper-V Manager**, in the **Action** menu, click **Import Virtual Machine**.
