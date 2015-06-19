@@ -12,6 +12,13 @@
 ***,oa-toc-container: reference
 ****,windowscontainers/reference/reference_overview.md
 **,oa-toc-container: client_hyperv	
+***,oa-toc-container: about
+****,client_hyperv/about/client_hyperv.md
+****,client_hyperv/about/whats_new.md
+****,client_hyperv/about/SKUDifferences.md
+****,client_hyperv/about/supported_guest_os.md
+****,client_hyperv/about/checkpoints_overview.md
+****,client_hyperv/about/vm_config_overview.md
 ***,oa-toc-container: quick_start
 ****,client_hyperv/quick_start/walkthrough.md
 ****,client_hyperv/quick_start/step1.md
@@ -24,12 +31,6 @@
 ****,client_hyperv/quick_start/step8.md
 ****,client_hyperv/quick_start/step9.md
 ****,client_hyperv/quick_start/step10.md
-***,oa-toc-container: about
-****,client_hyperv/about/whats_new.md
-****,client_hyperv/about/SKUDifferences.md
-****,client_hyperv/about/supported_guest_os.md
-****,client_hyperv/about/checkpoints_overview.md
-****,client_hyperv/about/vm_config_overview.md
 ***,oa-toc-container: user_guide
 ****,client_hyperv/user_guide/configuration.md
 ****,client_hyperv/user_guide/migrating_vms.md
