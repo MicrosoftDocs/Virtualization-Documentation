@@ -7,18 +7,16 @@ You can use the export and import functionality to quickly duplicate virtual mac
 
 ## Export ##
 
+
 You don't need to export a virtual machine in order to be able to import it. But, the export functionality exists and it can be an easy way to prepare virtual machines to be imported.
 
 For information about using Windows PowerShell to export virtual machines, see [Export-VM](https://technet.microsoft.com/library/hh848491.aspx)
 
 
 1. In Hyper-V Manager, right-click the virtual machine and select **Export**.
-![](media/select_export.png)
-2. Click **Browse** in the dialog box and navigate to  C:\Users\Public\Export and then click **Select Folder**. 
-![](media/select_folder.png)
-3. Make sure the path looks correct and then **OK**. 
-![](media/click_export.png)
+2. Click **Browse** in the dialog box and choose where you would like to put the exported VM and then click **Select Folder**. 
 3. In the **Export Virtual Machine** dialog, click **Export**.
+
 
 ## Import ##
 
