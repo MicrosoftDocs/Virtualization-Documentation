@@ -7,8 +7,7 @@ title: What's New in Client Hyper-V for Windows 10
 
 This topic explains the new and changed functionality in Client Hyper-V running on Windows 10® Technical Preview.
 
-----------
-**Important** 
+## Important - update existing VMs ##
 
 Before you begin, you need to update existing virtual machines to enable new features. 
 
@@ -16,11 +15,12 @@ If you use virtual machines that were created with Windows 8.1 you will not have
 
 To upgrade the configuration version, shut down the virtual machine and then, at an elevated Windows PowerShell command prompt, type: 
 
-    Update-VmConfigurationVersion <vmname> | <vmobject> 
 
-For important information about virtual machine configuration version, see Virtual Machine Configuration Version. 
+    ````Update-VmConfigurationVersion <vmname> | <vmobject> 
 
-----------
+For important information about virtual machine configuration version, see Virtual Machine Configuration Version.
+
+
 
 ## Compatible with Connected Standby ##
 
