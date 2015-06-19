@@ -36,10 +36,9 @@
 ****,client_hyperv/user_guide/migrating_vms.md
 ****,client_hyperv/user_guide/checkpoints.md
 ****,client_hyperv/user_guide/vmsession.md
-****,client_hyperv/user_guide/make_service.md
 ****,client_hyperv/user_guide/export_import.md
 ****,client_hyperv/user_guide/troubleshooting.md
-****,client_hyperv/user_guide/troubleshooting_checkpoints.md
+****,client_hyperv/user_guide/make_service.md
 **,oa-toc-container: api	
 ***,oa-toc-container: powershell
 ****,api/powershell_overview.md
