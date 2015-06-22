@@ -90,7 +90,7 @@ To fully understand these seemingly arbitrary steps, read folder and file struct
 
 The documentation website's structure matches the git folder structure.  Looking inside the HyperV repository, the folder structure should look a bit like this:
 
-	HyperV
+	```HyperV
 		{build goo: Hyper-V, siteCatalog.json, publish.mdproj,etc} 
 		tools
 		virtualization
@@ -104,17 +104,17 @@ The documentation website's structure matches the git folder structure.  Looking
 			API	
 				WMI
 				Powershell
-				REST
+				REST```
 
 There is also a folder in the repo for the Client Hyper-V documentation for Windows 10 which will be hosted on the same site.
 
 In the virtualization folder, there will be some site level files:
 
-    	```about
-    		{content pages}
-    		TOC.csv
-    		ContainerNodeTitles.csv
-    		center.json```
+```about
+    {content pages}
+    TOC.csv
+    ContainerNodeTitles.csv
+    center.json```
     
 Content is added to the folder as a markdown folder then to the TOC in order to tell the build system where that content should live in the site structure.
 
@@ -163,9 +163,9 @@ There are lots of resources for how to write in markdown, here are a few favorit
 ## Getting ready to publish content - staging ##
 
 The working branch needs to be merged with the release branch in order to be built for staging. Type the following:
-	git checkout release
+	```git checkout release
 	git merge <branch>
-	git push
+	git push```
 
 
 
