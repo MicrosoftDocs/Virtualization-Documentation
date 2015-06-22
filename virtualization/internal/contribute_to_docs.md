@@ -110,23 +110,23 @@ There is also a folder in the repo for the Client Hyper-V documentation for Wind
 
 In the virtualization folder, there will be some site level files:
 
-	about
-		{content pages}
-		TOC.cvs
-		ContainerNodeTitles.csv
-		center.json
-
+    	```about
+    		{content pages}
+    		TOC.csv
+    		ContainerNodeTitles.csv
+    		center.json```
+    
 Content is added to the folder as a markdown folder then to the TOC in order to tell the build system where that content should live in the site structure.
 
 Here is a sample TOC:
 
-	*,oa-toc-container:section_name
-	**,section_landingpage.md
-	**,content1.md 
-	**,oa-toc-container:deep_dive_content
-	***,deep_dive_landingpage.md
-	***,deep_dive1.md
-	**,content3.md.md
+    	```*,oa-toc-container:section_name
+    	**,section_landingpage.md
+    	**,content1.md 
+    	**,oa-toc-container:deep_dive_content
+    	***,deep_dive_landingpage.md
+    	***,deep_dive1.md
+    	**,content3.md.md```
 
 oa-toc-container:section_name specifies that the landing page should automatically redirect to the next sub heading.  This builds the breadcrumb at the top of the page.
 Asterisk (*) indicate the breadcrumb depth.
