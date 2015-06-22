@@ -3,4 +3,4 @@ title: Hello World for Windows Containers
 
 # Hello World for Windows Containers #
 
-**Coming soon!**
+**Is this real life or just a sandbox?**
