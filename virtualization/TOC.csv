@@ -53,6 +53,11 @@
 ****,api/wmi_overview.md
 **,oa-toc-container: community	
 ***,community/community_overview.md
+**,oa-toc-container: internal	
+***,internal/contribute_to_docs.md
+***,internal/build_sandbox.md
+***,internal/fix_build_breaks.md
+
 
 
 
