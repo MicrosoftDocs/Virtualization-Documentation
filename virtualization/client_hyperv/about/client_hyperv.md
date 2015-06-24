@@ -5,11 +5,7 @@ title: Client Hyper-V in Windows 10
  
 Client Hyper-V is an optional feature that can be installed on Windows 10 Enterprise and Windows 10 Professional. For details on installing Client Hyper-V, see [Install Client Hyper-V](..\quick_start\step3.md) 
 
-Client Hyper-V is built upon the same virtualization technology that is available in Windows Server. 
-
-
---------
-Hyper-V is an optional component that enables users to run a broad range of operating systems simultaneously on a single physical computer. 
+Hyper-V is an optional component that enables users to run a broad range of operating systems simultaneously on a single physical computer. Client Hyper-V is built upon the same virtualization technology that is available in Windows Server.
 
 A typical computer configuration matches hardware with one operating system and the applications designed for that one operating system. The hardware includes the mouse and keyboard, processor, memory, disk drives and drive controllers, video and network cards, and other devices. The operating system runs on and controls the hardware. Applications run on the operating system.
 
