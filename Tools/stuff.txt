@@ -1,0 +1,11 @@
+# Promotion Tool #
+
+\\scratch2\scratch\miwolf\PromotionTool 
+
+Directions: http://devdocs/Learn/ManualTrigger
+
+# Linking to external sites from TOC #
+
+The syntax in TOC.csv file is: **,oa-toc-external:bing,http://www.bing.com, in which bing is the title and http://www.bing.com is the URL
+
+In containerNodeTitle.csv, the syntax is bing, Bing. Where Bing is the final displayed string for the link in TOC.

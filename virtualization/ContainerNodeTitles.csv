@@ -1,5 +1,6 @@
 virtualization,"Virtualization"
 windowscontainers,"Windows Containers"
+client_hyperv, "Client Hyper-V"
 community,"Community"
 api,"API"
 quick_start,"Quick Start"
@@ -8,4 +9,5 @@ user_guide,"User Guide"
 reference,"Reference"
 wmi,"WMI"
 powershell,"Windows PowerShell"
+internal, "Internal"
 
