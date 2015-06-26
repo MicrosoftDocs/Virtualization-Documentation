@@ -36,7 +36,6 @@ To get started, create an interactive PowerShell Direct connection with the virt
 
     ```Exit-PSSession ``` 
 
-
 ## Command execution with PowerShell Direct ##
 
 You can use the cmdlet **Invoke-Command** to run a pre-determined set of commands on the virtual machine. Here is an example of how you can use the Invoke-Command cmdlet where PSTest is the virtual machine name and the script  to run (foo.ps1) is in the script folder on the C:/ drive:
@@ -45,8 +44,7 @@ You can use the cmdlet **Invoke-Command** to run a pre-determined set of command
 
 Single commands can be executed direclty as well:
 
- ```Invoke-Command -VMName PSTest -Credential $cred -ScriptBlock { hostname } ```
-
+ ```Invoke-Command -VMName PSTest -Credential $cred -ScriptBlock { cmdlet } ```
 
 
 Note: The virtual machine that you want to connect to must be running locally on the host and booted. You must be running as a Hyper-V administrator to access VMs.  You can use the **Get-VM** cmdlet to check if you're running as Hyper-V administrator and to see which VMs are available.
