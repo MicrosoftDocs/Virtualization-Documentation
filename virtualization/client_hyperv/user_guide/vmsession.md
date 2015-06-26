@@ -13,7 +13,7 @@ You can use PowerShell Direct to remotely manage a Windows 10 or Windows Server 
 
 3. Run the following command to create the session by using the virtual machine name:
 
-    ```Enter-PSSession -VMName <VMName-Credential $cred  ```
+    ```Enter-PSSession -VMName <VMName> -Credential $cred  ```
 
 Or you can create the session by using the virtual machine GUID:
 
