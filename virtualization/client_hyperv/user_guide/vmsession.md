@@ -24,7 +24,7 @@ You can also use the cmdlet **Invoke-Command** to do the same thing. Here is an 
 
     ```Invoke-Command -VMName PSTest -Credential $cred  -FilePath C:\script\foo.ps1  ```
 
-Note: The virtual machine that you want to connect to must be running locally on the host and booted. You can use the **Get-VM cmdlet** to check..
+Note: The virtual machine that you want to connect to must be running locally on the host and booted. You can use the **Get-VM** cmdlet to check..
 
 ## Exit a PowerShell Direct session##
 When you're done with the PowerShell Direct session, run the following command to close the session:
