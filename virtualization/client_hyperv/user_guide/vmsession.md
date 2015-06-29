@@ -27,7 +27,7 @@ If you're managing older virtual machines, use Virtual Machine Connection (VMCon
     
     ```Enter-PSSession -VMGUID <VMGUID> -Credential $cred ```
 
-4. Run whatever commands you need to.  Try **hostname**.  These commands are running inside the virtual machine specified with `<VMName`> or `<VMGUID`>.
+4. Run whatever commands you need to. These commands run inside the virtual machine that you’re connected to.
 5. When you're done with the PowerShell Direct session, run the following command to close the session:
 
     ```Exit-PSSession ``` 
