@@ -42,12 +42,12 @@ You can use the cmdlet **Invoke-Command** to run a pre-determined set of command
 
  ```Invoke-Command -VMName PSTest -Credential $cred -FilePath C:\script\foo.ps1 ```
 
-You can also run a single command:
+To run a single command, use the -ScriptBlock parameter:
 
  ```Invoke-Command -VMName PSTest -Credential $cred -ScriptBlock { cmdlet } ```
 
 
-Note: The virtual machine that you want to connect to must be running locally on the host and booted. You must be running as a Hyper-V administrator to access VMs.  You can use the **Get-VM** cmdlet to check if you're running as Hyper-V administrator and to see which VMs are available.
+Note: The virtual machine that you want to connect to must be running locally on the host and booted. You must use credentials with Hyper-V administrator permissions to access the virtual machines.  You can use the **Get-VM** cmdlet to check that the credentials you're using have Hyper-V administrator permissions and to see which VMs are running locally on the host and booted.
 
 
 
