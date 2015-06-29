@@ -4,13 +4,13 @@ title: Manage Windows 10 or Windows Server Technical Preview virtual machines wi
 # Manage Windows 10 or Windows Server Technical Preview virtual machines with PowerShell Direct #
 You can use PowerShell Direct to remotely manage a Windows 10 or Windows Server Technical Preview virtual machine from a Windows 10 or Windows Server Technical Preview Hyper-V host.  
 
-If you're managing older virtual machines, use Virtual Machine Connection (VMConnect) or create a guest network. 
-
 PowerShell Direct allows PowerShell management inside a virtual machine regardless of the network configuration or remote management settings on either the Hyper-V host or the virtual machine. This makes it easier for Hyper-V Administrators to automate and script virtual machine management and configuration.
 
 There are two ways to run PowerShell Direct:  
 * Create and exit an PowerShell Direct session using PSSession cmdlets
 * Run script or command with Invoke-Command cmdlet
+
+If you're managing older virtual machines, use Virtual Machine Connection (VMConnect) or create a guest network. 
 
 ## Create and exit an PowerShell Direct session using PSSession cmdlets ##
 
