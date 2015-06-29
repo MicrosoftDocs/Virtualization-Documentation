@@ -36,7 +36,7 @@ To get started, create an PowerShell Direct connection from the host to the virt
 
     ```Exit-PSSession ``` 
 
-## Run commands with Invoke-Command ##
+## Run script or command with Invoke-Command ##
 
 You can use the cmdlet **Invoke-Command** to run a pre-determined set of commands on the virtual machine. Here is an example of how you can use the Invoke-Command cmdlet where PSTest is the virtual machine name and the script to run (foo.ps1) is in the script folder on the C:/ drive:
 
