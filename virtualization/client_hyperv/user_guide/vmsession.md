@@ -12,8 +12,6 @@ There are two ways to run PowerShell Direct:
 * Create and exit an PowerShell Direct session using PSSession cmdlets
 * Run script or command with Invoke-Command cmdlet
 
-To get started, create an PowerShell Direct connection from the host to the virtual machine.
-
 ## Create and exit an PowerShell Direct session using PSSession cmdlets ##
 
 1. On the Hyper-V host, open Windows PowerShell as Administrator.
