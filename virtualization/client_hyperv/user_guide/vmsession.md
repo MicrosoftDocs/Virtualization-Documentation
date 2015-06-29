@@ -9,19 +9,19 @@ If you're managing older virtual machines, see: `[this article about VMConnect o
 PowerShell Direct allows PowerShell management inside a virtual machine regardless of the network configuration or remote management settings on either the Hyper-V host or the virtual machine. This makes it easier for Hyper-V Administrators to automate and script virtual machine management and configuration.
 
 There are two ways to run PowerShell Direct:  
-* As an interactive PowerShell connection using PSSession cmdlets
-* With command (or script) execution using Invoke-Command cmdlet
+* Use PSSession cmdlets 
+* Use Invoke-Command cmdlet to run a script or command
 
-To get started, create an interactive PowerShell Direct connection with the virtual machine from the host.
+To get started, create an PowerShell Direct connection from the host to the virtual machine.
 
-## Create an interactive PowerShell Direct session ##
+## Create an PowerShell Direct session ##
 
 1. On the Hyper-V host, open Windows PowerShell as Administrator.
 2. Run the following command to get your credentials:
 
     ```$cred = Get-Credential ```
 
-3. Run the following command to enter a new interactive session.
+3. Run the following command to enter a new session.
    
    Connect using the virtual machine name:
 
