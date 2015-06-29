@@ -31,18 +31,18 @@ To get started, create an interactive PowerShell Direct connection with the virt
     
     ```Enter-PSSession -VMGUID <VMGUID> -Credential $cred ```
 
-4. Run whatever commands you need.
+4. Run whatever commands you need to.
 5. When you're done with the PowerShell Direct session, run the following command to close the session:
 
     ```Exit-PSSession ``` 
 
-## Command execution with PowerShell Direct ##
+## Run commands with Invoke-Command ##
 
-You can use the cmdlet **Invoke-Command** to run a pre-determined set of commands on the virtual machine. Here is an example of how you can use the Invoke-Command cmdlet where PSTest is the virtual machine name and the script  to run (foo.ps1) is in the script folder on the C:/ drive:
+You can use the cmdlet **Invoke-Command** to run a pre-determined set of commands on the virtual machine. Here is an example of how you can use the Invoke-Command cmdlet where PSTest is the virtual machine name and the script to run (foo.ps1) is in the script folder on the C:/ drive:
 
  ```Invoke-Command -VMName PSTest -Credential $cred -FilePath C:\script\foo.ps1 ```
 
-Single commands can be executed direclty as well:
+You can also run a single command:
 
  ```Invoke-Command -VMName PSTest -Credential $cred -ScriptBlock { cmdlet } ```
 
