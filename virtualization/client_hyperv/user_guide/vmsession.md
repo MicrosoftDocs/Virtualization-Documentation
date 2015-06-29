@@ -8,7 +8,7 @@ There are two ways to run PowerShell Direct:
 * Create and exit an PowerShell Direct session using PSSession cmdlets
 * Run script or command with Invoke-Command cmdlet
 
-If you're managing older virtual machines, use Virtual Machine Connection (VMConnect) or [configure a virtual network for the virtual machine](http://technet.microsoft.com/library/cc816585(v=ws.10).aspx). 
+If you're managing older virtual machines, use Virtual Machine Connection (VMConnect) or [configure a virtual network for the virtual machine](http://technet.microsoft.com/library/cc816585.aspx). 
 
 ## Create and exit an PowerShell Direct session using PSSession cmdlets ##
 
