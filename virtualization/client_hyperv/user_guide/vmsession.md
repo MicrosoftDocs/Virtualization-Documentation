@@ -5,12 +5,12 @@ title: Manage Windows 10 or Windows Server Technical Preview virtual machines wi
 You can use PowerShell Direct to remotely manage a Windows 10 or Windows Server Technical Preview virtual machine from a Windows 10 or Windows Server Technical Preview Hyper-V host. PowerShell Direct allows PowerShell management inside a virtual machine regardless of the network configuration or remote management settings on either the Hyper-V host or the virtual machine. This makes it easier for Hyper-V Administrators to automate and script virtual machine management and configuration.
 
 There are two ways to run PowerShell Direct:  
-* Create and exit an PowerShell Direct session using PSSession cmdlets
-* Run script or command with Invoke-Command cmdlet
+* Create and exit an PowerShell Direct session using the PSSession cmdlet
+* Run script or command with the Invoke-Command cmdlet
 
 If you're managing older virtual machines, use Virtual Machine Connection (VMConnect) or [configure a virtual network for the virtual machine](http://technet.microsoft.com/library/cc816585.aspx). 
 
-## Create and exit an PowerShell Direct session using PSSession cmdlets ##
+## Create, test, and exit a PowerShell Direct session using PSSession cmdlets ##
 
 1. On the Hyper-V host, open Windows PowerShell as Administrator.
 2. Run the following command to get your credentials:
@@ -27,7 +27,7 @@ If you're managing older virtual machines, use Virtual Machine Connection (VMCon
     
     ```Enter-PSSession -VMGUID <VMGUID> -Credential $cred ```
 
-4. Run whatever commands you need to.
+4. Run whatever commands you need to.  Try **hostname**.  These commands are running inside the virtual machine specified with `<VMName`> or `<VMGUID`>.
 5. When you're done with the PowerShell Direct session, run the following command to close the session:
 
     ```Exit-PSSession ``` 
@@ -38,13 +38,15 @@ You can use the cmdlet **Invoke-Command** to run a pre-determined set of command
 
  ```Invoke-Command -VMName PSTest -Credential $cred -FilePath C:\script\foo.ps1 ```
 
-To run a single command, use the -ScriptBlock parameter:
+To run a single command, use the **-ScriptBlock** parameter:
 
  ```Invoke-Command -VMName PSTest -Credential $cred -ScriptBlock { cmdlet } ```
 
 ## What's required to use PowerShell Direct?
 * The virtual machine that you want to connect to must be running locally on the host and booted. 
-* You must use credentials with Hyper-V administrator role to access the virtual machines.  
+* You must be logged into the host computer as a Hyper-V administrator in order to access the virtual machines.
+* You must supply valid user credentials for the virtual machine in order to connect.
+* The host OS Must be Windows 10 or higher.  The virtual machine must be Windows 10 or higher.  
 
 
 You can use the **Get-VM** cmdlet to check that the credentials you're using have the Hyper-V administrator role and to see which VMs are running locally on the host and booted.
