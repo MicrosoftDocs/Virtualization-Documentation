@@ -14,7 +14,7 @@ There are two ways to run PowerShell Direct:
 
 To get started, create an PowerShell Direct connection from the host to the virtual machine.
 
-## Create an PowerShell Direct session using Enter-PSSession ##
+## Create and exit an PowerShell Direct session using PSSession cmdlets ##
 
 1. On the Hyper-V host, open Windows PowerShell as Administrator.
 2. Run the following command to get your credentials:
