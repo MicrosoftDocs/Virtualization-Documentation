@@ -46,7 +46,7 @@ To run a single command, use the **-ScriptBlock** parameter:
 * The virtual machine that you want to connect to must be running locally on the host and booted. 
 * You must be logged into the host computer as a Hyper-V administrator in order to access the virtual machines.
 * You must supply valid user credentials for the virtual machine in order to connect.
-* The host OS Must be Windows 10 or higher.  The virtual machine must be Windows 10 or higher.  
+* The host operating system must run Windows 10 or higher.  The virtual machine must run Windows 10 or higher.  
 
 
 You can use the **Get-VM** cmdlet to check that the credentials you're using have the Hyper-V administrator role and to see which VMs are running locally on the host and booted.
