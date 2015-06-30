@@ -9,7 +9,7 @@ Client Hyper-V requires a computer with a supported 64-bit processor that has Se
 
 Only the Profession and Enterprise versions of Windows 10 support Client Hyper-V
 
-## Verify Second Level Address Translation compatibility ##
+# Verify Second Level Address Translation compatibility #
 
 To verify SLAT compatibility for Client Hyper-V follow these steps:
 
