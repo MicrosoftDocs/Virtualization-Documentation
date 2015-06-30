@@ -53,7 +53,7 @@ Now, we need to change change the type of checkpoint that we want to take back t
 8.	In Notepad in the VM, type another line that reads **This is a test of a production checkpoint** and save the file again.
 9.	Click on the ![](media/checkpoint_button.png) **Checkpoint** button in the menu bar.
 10.	When asked, name it **Production** and then click **Yes**.
-![](media/production_notepad.png) 
+![](media/production_CheckpointName.png) 
 11. Close VMConnect. The VM will continue running, you just won't be connected to it anymore.
 12. In Hyper-V manager, your list of checkpoints will now look like this:
 ![](media/production_complete.png)
