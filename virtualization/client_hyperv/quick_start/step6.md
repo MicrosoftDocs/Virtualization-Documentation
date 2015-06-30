@@ -94,7 +94,7 @@ The previous step has probably given you a hint about what we will do next. We a
 
 1.Right-click on the checkpoint named **Delete me** and click **Delete checkpoint**. 
 ![](media/delete_checkpoint.png)
-2. In the warning dialong, click **OK**. 
+2. In the warning dialong, click **Delete**. 
 ![](media/delete_warn.png)
 3. After the checkpoint is deleted, you list should look something like this:
 ![](media/after_delete.png)
