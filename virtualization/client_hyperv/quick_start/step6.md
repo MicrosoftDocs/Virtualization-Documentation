@@ -92,7 +92,7 @@ Now, let's go back to Hyper-V manager and apply the production checkpoint and se
 ## Delete a checkpoint ##
 The previous step has probably given you a hint about what we will do next. We are going to delete the checkpoint that you just renamed.
 
-1.Right-click on the checkpoint named **Delete me** and click **Delete**. 
+1.Right-click on the checkpoint named **Delete me** and click **Delete checkpoint**. 
 ![](media/delete_checkpoint.png)
 2. In the warning dialong, click **OK**. 
 ![](media/delete_warn.png)
