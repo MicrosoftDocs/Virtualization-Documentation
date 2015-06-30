@@ -21,6 +21,7 @@ We will start by trying out the older style of checkpoints, **standard checkpoin
 1. Right-click on **Windows Walkthrough VM** and select **Settings**.
 2. In the **Management** section, select **Checkpoints**.
 3.	Select **Standard checkpoints**. The dialog should look like this:
+
   ![](media/standard.png)
 4.	Click **OK** to close the dialog box.
 
@@ -36,8 +37,10 @@ In order to see what happens with each type of checkpoint, we need to run an app
 ## Create a standard checkpoint ##
 1. To create the checkpoint, we just need to right-click the VM and click **Checkpoint**. 
 2. In the checkpoint name dialog, type **Standard**. The dialog should look like this:
+
   ![](media/save_standard.png) 
 3. When the process is complete, the checkpoint will appear under **Checkpoints** in the **Hyper-V Manager**.
+
   ![](media/standard_complete.png) 
 
 ## Create a production checkpoint ##
@@ -54,9 +57,11 @@ Now, we need to change change the type of checkpoint that we want to take back t
 7.	In Notepad in the VM, type another line that reads **This is a test of a production checkpoint** and save the file again.
 8.	Click on the ![](media/checkpoint_button.png) **Checkpoint** button in the menu bar.
 9.	When asked, name it **Production** and then click **Yes**.
+
   ![](media/production_CheckpointName.png) 
 10. Close VMConnect. The VM will continue running, you just won't be connected to it anymore.
 11. In Hyper-V manager, your list of checkpoints will now look like this:
+
   ![](media/production_complete.png)
 
 
@@ -64,14 +69,17 @@ Now, we need to change change the type of checkpoint that we want to take back t
 ## Apply the standard checkpoint ##
 
 1.	In **Hyper-V Manager**, in the **Checkpoints** section, right-click the one titled **Standard** and click **Apply**.
-3.	In the pop-up dialog, click **Create Checkpoint and Apply**. 
+2.	In the pop-up dialog, click **Create Checkpoint and Apply**. 
+
   ![](media/apply_standard.png)
-4. When the finished, your list of checkpoints will now look something like this:
+34. When the finished, your list of checkpoints will now look something like this:
+
   ![](media/standard_applied.png)
-5. When this finishes, right-click the VM and the click **Connect** to connect to the VM. 
-6. When you connect to the VM, the VM should be running, with Notepad open, but the line about production checkpoints will be missing:
+4. When this finishes, right-click the VM and the click **Connect** to connect to the VM. 
+5. When you connect to the VM, the VM should be running, with Notepad open, but the line about production checkpoints will be missing:
+
   ![](media/standard_applied_notepad.png)
-7. Close VMConnect, but leave the VM running.
+6. Close VMConnect, but leave the VM running.
 
 
 ## Apply the production checkpoint ##
@@ -82,22 +90,27 @@ Now, let's go back to Hyper-V manager and apply the production checkpoint and se
 3. When this finishes, right-click the VM and the click **Connect** to launch the VM. 
 4. You will notice that the VM is not running. Click on the ![](media/vmconnect_start_button.png) Start button in the menu bar to start the VM.
 5. Open open test.txt in Notepad. You should see the line in the file about testing production checkpoints:
+
   ![](media/production_notepad.png)
 	
 
 ## Rename a checkpoint ##
 1. Right-click the last checkpoint in the tree and click Rename.
 2. Name the checkpoint **Delete me**.
+
   ![](media/delete_me.png)
 
 ## Delete a checkpoint ##
 The previous step has probably given you a hint about what we will do next. We are going to delete the checkpoint that you just renamed.
 
 1.Right-click on the checkpoint named **Delete me** and click **Delete checkpoint**. 
+
   ![](media/delete_checkpoint.png)
 2. In the warning dialog, click **Delete**. 
+
   ![](media/delete_warn.png)
 3. After the checkpoint is deleted, your list should look something like this:
+
   ![](media/after_delete.png)
 
 
