@@ -15,7 +15,7 @@ If you are just getting started with Client Hyper-V, you probably want to use th
 
 3. Select **Hyper-V**, click **OK**
 
-![](media\hyper-v_feature_selected.png)
+![](media\hyper-v_feature_selected1.png)
 
 4. When the installation is finished, you will need  to restart the computer.
 
