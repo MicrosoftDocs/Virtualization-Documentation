@@ -8,14 +8,15 @@ For this step, if you already have a .iso file for a supported operating system,
 1. In Hyper-V Manager, click on the **Action** menu > **New** > **Virtual machine**. 
 2. In the virtual machine wizard, make the following choices:
 
-	| **Page** | **Entry** |
-	|:-----|:-----|
-	|Name:						|Type in **Windows Walkthrough VM**  |										
-	|Generation: 				|**Generation 2** 			|										
-	|Startup Memory:			|**1024** and don't select dynamic memory 				|			
-	|Configure networking: 		|**External** (this is the Virtual Switch you created in Step 3)	|
-	|Connect virtual hard disk: |**Create a virtual hard disk** (keep the other default values) 	|
-	|Installation Options:		|**Install an operating system from a bootable CD/DVD-ROM**. Under **Media**, select **Image file (iso)** and then click **Browse** to point to the .iso file. 			|
+| **Page** | **Entry** |
+|:-----|:-----|
+|Name:						|Type in **Windows Walkthrough VM**  |										
+|Generation: 				|**Generation 2** 			|										
+|Startup Memory:			|**1024** and don't select dynamic memory 				|			
+|Configure networking: 		|**External** (this is the Virtual Switch you created in Step 3)	|
+|Connect virtual hard disk: |**Create a virtual hard disk** (keep the other default values) 	|
+|Installation Options:		|**Install an operating system from a bootable CD/DVD-ROM**. Under **Media**, select **Image file (iso)** and then click **Browse** to point to the .iso file. |
+
 3. The Summary page of the wizard should look like this:
 	
 	<!-- need screenshot -->
