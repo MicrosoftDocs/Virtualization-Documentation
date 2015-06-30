@@ -35,6 +35,7 @@
 ****,client_hyperv/user_guide/configuration.md
 ****,client_hyperv/user_guide/migrating_vms.md
 ****,client_hyperv/user_guide/checkpoints.md
+****,client_hyperv/user_guide/remote_host_management.md
 ****,client_hyperv/user_guide/vmsession.md
 ****,client_hyperv/user_guide/export_import.md
 ****,client_hyperv/user_guide/troubleshooting.md
