@@ -3,7 +3,7 @@ title: Step 3: Create a virtual switch
 
 # Create a virtual switch #
 
-The virtual switch is how you create a network connection for your virtual machine to use to connect to the internet, the host or to other virtual machines.
+The virtual switch is how you create a network connection for your virtual machine to use when connecting to the internet, the host or to other virtual machines.
 
 For this example, we are going to create an External switch, which will let virtual machine access the internet using the host machines network adapter. We will also set the switch to allow the host to share this network adapter. This will make it so that both the virtual machines and the host can use the same physical NIC.
 
