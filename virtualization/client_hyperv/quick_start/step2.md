@@ -9,7 +9,7 @@ If you are just getting started with Client Hyper-V, you probably want to use th
 ## Using Programs and Features ##
 1. Right-click the **Windows** button and then click **Programs and Features**.
 
-![](media\ProgramsAndFeatures.png)
+![](media\programs_and_features.png)
 
 2. Click **Turn Windows features on or off**.
 
