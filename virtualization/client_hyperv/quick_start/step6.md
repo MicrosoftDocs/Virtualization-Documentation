@@ -96,7 +96,7 @@ The previous step has probably given you a hint about what we will do next. We a
 ![](media/delete_checkpoint.png)
 2. In the warning dialog, click **Delete**. 
 ![](media/delete_warn.png)
-3. After the checkpoint is deleted, you list should look something like this:
+3. After the checkpoint is deleted, your list should look something like this:
 ![](media/after_delete.png)
 
 
