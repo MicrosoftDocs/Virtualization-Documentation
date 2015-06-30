@@ -44,7 +44,8 @@ Now, we need to change change the type of checkpoint that we want to take back t
 
 1.	Right-click the virtual machine, and click **Settings**.
 2.	In the **Management** section, select **Checkpoints**.
-3.	Select **Production checkpoints** and then make sure to clear the fall-back option. If the system can't take a production checkpoint, we want it to fail instead of taking a standard checkpoint.
+3.	Select **Production checkpoints**.
+4.  Clear the fall-back option. If the system can't take a production checkpoint, we want it to fail instead of taking a standard checkpoint.
 
 ![](media/production.png)
 6.	click **OK** to close the dialog box.
