@@ -8,6 +8,7 @@ For this step, if you already have a .iso file for a supported operating system,
 1. In Hyper-V Manager, click on the **Action** menu > **New** > **Virtual machine**. 
 2. In the virtual machine wizard, make the following choices:
 
+
 	| **Page** | **Entry** |
 	|:-----|:-----|
 	|Name:						|Type in **Windows Walkthrough VM** 										|
