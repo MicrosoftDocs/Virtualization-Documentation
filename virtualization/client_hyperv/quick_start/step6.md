@@ -29,7 +29,8 @@ In order to see what happens with each type of checkpoint, we need to run an app
 1. Right-click on **Windows Walkthrough VM** and select **Connect**.
 2. In the virtual machine, open **Notepad** by clicking on the **Start** menu and typing **Notepad** and then select it from the results. 
 3. In Notepad,  type **This is a test of checkpoints.** The file should look like this:
-  * ![](media/standard_notepad.png)
+  
+  ![](media/standard_notepad.png)
 4. Save the file as **test.txt**, but don't close Notepad. Leave it running in the virtual machine.
 
 ## Create a standard checkpoint ##
