@@ -21,9 +21,7 @@ We will start by trying out the older style of checkpoints, **standard checkpoin
 1. Right-click on **Windows Walkthrough VM** and select **Settings**.
 2. In the **Management** section, select **Checkpoints**.
 3.	Select **Standard checkpoints**. The dialog should look like this:
-
 ![](media/standard.png)
-
 4.	Click **OK** to close the dialog box.
 
 ## Open Notepad to test checkpoints ##
