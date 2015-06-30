@@ -9,18 +9,15 @@ If you are just getting started with Client Hyper-V, you probably want to use th
 ## Using Programs and Features ##
 1. Right-click the **Windows** button and then click **Programs and Features**.
 
-![](media\programs_and_features.png)
-
+  ![](media\programs_and_features.png)
 2. Click **Turn Windows features on or off**.
 
 3. Select **Hyper-V**, click **OK**
 
-![](media\hyper-v_feature_selected.png)
-
+  ![](media\hyper-v_feature_selected.png)
 4. When the installation is finished, you will need  to restart the computer.
 
-![](media\restart.png)
-
+  ![](media\restart.png)
 ## Using the Get-WindowsOptionalFeature cmdlet ##
 For more information, see Get-WindowsOptionalFeature and Using PowerShell to Set Up Hyper-V
 
