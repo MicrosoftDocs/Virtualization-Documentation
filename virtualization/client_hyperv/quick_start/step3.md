@@ -11,8 +11,10 @@ For this example, we are going to create an External switch, which will let virt
 
 ![](media/virtual_switch_manager.png)
 
-2. In the left pane, select **New virtual network switch** and then select **External** and click **Create Virtual Switch**..
+2. In the left pane, select **New virtual network switch** and then select **External** and click **Create Virtual Switch**.
+
 ![](media/new_switch.png)
+
 3. Under **Name**, type **External**. Under **External network**, make sure the correct NIC is selected and that **Allow management operating system to share this network adapter** is selected and then click **OK**. 
 ![](media/share_nic.png)
 4. You will get a message warning you that your network might disconnect while the virtual switch is created. Just click **Yes**.
