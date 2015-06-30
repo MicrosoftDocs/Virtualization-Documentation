@@ -18,6 +18,7 @@ If you are just getting started with Client Hyper-V, you probably want to use th
 4. When the installation is finished, you will need  to restart the computer.
 
   ![](media\restart.png)
+  
 ## Using the Get-WindowsOptionalFeature cmdlet ##
 For more information, see Get-WindowsOptionalFeature and Using PowerShell to Set Up Hyper-V
 
