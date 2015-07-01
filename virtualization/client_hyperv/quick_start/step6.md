@@ -3,14 +3,14 @@ title: Step 6: Experiment with checkpoints
 
 # Step 6: Experiment with checkpoints #
 
-Checkpoints can be helpful to use when you are about to make a change to a virtual machine and you want to be able to roll-back to the present state if the updates cause issues. There are two types of checkpoints:
+Checkpoints can be helpful to use when you are about to make a change to a virtual machine and want to be able to roll-back to the present state if the updates cause issues. There are two types of checkpoints:
 
 •	**Production checkpoints**: Used mainly on servers in production environments 
 
 •	**Standard checkpoints**: Used in development or testing environments 
 
 
-Producton checkpoints are the default for Hyper-V Client on Windows 10.
+Production checkpoints are the default for Hyper-V Client on Windows 10.
 
 For more information about checkpoints, see [Checkpoints Overview](..\about\checkpoints_overview.md)
 
@@ -18,24 +18,24 @@ For more information about checkpoints, see [Checkpoints Overview](..\about\chec
 ## Change the checkpoint type ##
 We will start by trying out the older style of checkpoints, **standard checkpoints**. Since production checkpoints are the default, we need to go into the settings for the VM and change the checkpoint type.
 
-1. Right-click on **Windows Walkthrough VM** and select **Settings**.
-2. In the **Management** section, select **Checkpoints**.
-3.	Select **Standard checkpoints**. The dialog should look like this:
+1.Right-click on **Windows Walkthrough VM** and select **Settings**.
+2.In the **Management** section, select **Checkpoints**.
+3.Select **Standard checkpoints**. The dialog should look like this:
 
   ![](media/standard.png)
 4.	Click **OK** to close the dialog box.
 
 ## Open Notepad to test checkpoints ##
-In order to see what happens with each type of checkpoint, we need to run an application in the VM. 
+In order to see what happens with each type of checkpoint, we will run an application in the VM. 
 1. Right-click on **Windows Walkthrough VM** and select **Connect**.
 2. In the virtual machine, open **Notepad** by clicking on the **Start** menu and typing **Notepad** and then select it from the results. 
-3. In Notepad,  type **This is a test of checkpoints.** The file should look like this:
+3. In Notepad, type **This is a test of checkpoints.** The file should look like this:
   
   ![](media/standard_notepad.png)
 4. Save the file as **test.txt**, but don't close Notepad. Leave it running in the virtual machine.
 
 ## Create a standard checkpoint ##
-1. To create the checkpoint, we just need to right-click the VM and click **Checkpoint**. 
+1. To create the checkpoint, right-click the VM and click **Checkpoint**. 
 2. In the checkpoint name dialog, type **Standard**. The dialog should look like this:
 
   ![](media/save_standard.png) 
@@ -44,7 +44,7 @@ In order to see what happens with each type of checkpoint, we need to run an app
   ![](media/standard_complete.png) 
 
 ## Create a production checkpoint ##
-Now, we need to change change the type of checkpoint that we want to take back to **Production checkpoints** before we take another checkpoint.
+Now, we need to change change the type of checkpoint that we want to take back to **Production checkpoints** before taking a second checkpoint.
 
 1.	Right-click the virtual machine, and click **Settings**.
 2.	In the **Management** section, select **Checkpoints**.

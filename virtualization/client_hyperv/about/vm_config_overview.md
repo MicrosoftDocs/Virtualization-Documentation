@@ -11,7 +11,7 @@ Virtual machines now have a new configuration file format which is designed to i
 
 ## Minimum VM configuration version for new Hyper-V features ##
 
-If you have virtual machines that you created with an earlier version of Client Hyper-V, some features may not work with those virtual machines until your update the VM version.
+If you have virtual machines that you created with an earlier version of Client Hyper-V, some features may not work with those virtual machines until you update the VM version.
 
 This topic shows a list of features introduced with Windows 10 and the minimum VM configuration version that is required to use them.
 
@@ -34,15 +34,15 @@ Substitute the name of your virtual machine for vmname.
 ## What has changed? ##
 The new configuration files store virtual machine data in two binary files.
 
- - Virtual machine settings are stored in a configuration file using a **.vmcx** extension. The virtual machine configuration file replaces the .xml configuration file. 
+ - Virtual machine settings are stored in a configuration file using a **.vmcx** extension.
 
 - Runtime data and save state data is stored in a runtime state file using a **.vmrs** extension. 
 
-These new files types replace: 
+These two files replace: 
 
-- .xml contained the virtual machine configuration details. 
-- .bin contained the memory of a virtual machine or snapshot that is in a saved state. 
-- .vsv contained the saved state from the devices associated with a virtual machine. 
+- .xml file containing the virtual machine configuration details. 
+- .bin file containing the memory of a virtual machine or snapshot that is in a saved state. 
+- .vsv file containing the saved state from the devices associated with a virtual machine. 
 
 ## Do these new configuration files affect Hyper-V checkpoints? 
 Unlike previous versions of Hyper-V, the new virtual machine configuration and runtime state files store standard and production checkpoint information. Each time you create a standard or production checkpoint, a new configuration and runtime state file is created. 
@@ -53,10 +53,10 @@ No, you cannot edit Hyper-V virtual machine configuration files. The files are i
 ## Where are the .VMCX and .VMRS files located? 
 The configuration files are stored in the **C:\ProgramData\Microsoft\Windows\Hyper-V\Virtual Machines** folder. This folder contains a configuration file (.vmcx), a runtime state file (.vmrs) and a virtual machine folder for each virtual machine. The configuration, runtime state file and virtual machine folder are identified by a virtual machine’s GUID. 
 
-## Which GUID applied to a virtual machine? 
+## Which GUID is applied to a particular virtual machine? 
 To retrieve a GUID for a matching virtual machine, you can run the following PowerShell script: 
 
-gwmi msvm_virtualsystemsettingdata -namespace root\virtualization\v2 -Filter "VirtualSystemType='Microsoft:Hyper-V:System:Realized'" | %{ write-host "Virtual machine name: $($_.ElementName)"; write-host "Virtual machine ID: $($_.VirtualSystemIdentifier)"; write-host "Configuration file: $($_.ConfigurationDataRoot)\$($_.ConfigurationFile)"; write-host}
+```gwmi msvm_virtualsystemsettingdata -namespace root\virtualization\v2 -Filter "VirtualSystemType='Microsoft:Hyper-V:System:Realized'" | %{ write-host "Virtual machine name: $($_.ElementName)"; write-host "Virtual machine ID: $($_.VirtualSystemIdentifier)"; write-host "Configuration file: $($_.ConfigurationDataRoot)\$($_.ConfigurationFile)"; write-host}```
 
 
 This script will produce an output similar to the sample below:
