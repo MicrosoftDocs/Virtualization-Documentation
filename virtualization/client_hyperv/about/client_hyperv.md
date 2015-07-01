@@ -43,9 +43,9 @@ There are some features included in Hyper-V on server that are not included in C
 
 - Virtual Fibre Channel
 
-- 32-bit SR-IOV networking
+- SR-IOV networking
 
-- Shared .vhdx
+- Shared .VHDX
 
 -----
 **Warning**  
