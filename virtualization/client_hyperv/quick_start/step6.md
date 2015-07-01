@@ -44,7 +44,7 @@ In order to see what happens with each type of checkpoint, we will run an applic
   ![](media/standard_complete.png) 
 
 ## Create a production checkpoint ##
-Now, we need to change change the type of checkpoint that we want to take back to **Production checkpoints** before we taking a second checkpoint.
+Now, we need to change change the type of checkpoint that we want to take back to **Production checkpoints** before taking a second checkpoint.
 
 1.	Right-click the virtual machine, and click **Settings**.
 2.	In the **Management** section, select **Checkpoints**.
