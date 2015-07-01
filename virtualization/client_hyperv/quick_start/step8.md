@@ -13,14 +13,14 @@ If you have another distribution that you would rather use, make sure it will wo
 2. In Hyper-V Manager, click on the **Action** menu > **New** > **Virtual machine**. 
 3. In the virtual machine wizard, make the following choices:
 
-	| **Page** | **Entry** |
-	|:-----|:-----|
-	|Name:						|Ubuntu Desktop VM 												|
-	|Generation: 				|Generation 1  													
-	|Startup Memory:			|1024 and don't select dynamic memory 							|
-	|Configure networking: 		|External (this is the Virtual Switch you created in Step 4)	|
-	|Connect virtual hard disk: |Create a virtual hard disk (keep the other default values) 	|
-	|Installation Options:		|Install an operating system from a bootable CD/DVD-ROM. Under **Media**, select **Image file (iso)** and then click **Browse** to point to the .iso file. 			|
+| **Page** | **Entry** |
+|:-----|:-----|
+|Name:						|Ubuntu Desktop VM 												|
+|Generation: 				|Generation 1  													
+|Startup Memory:			|1024 and don't select dynamic memory 							|
+|Configure networking: 		|External (this is the Virtual Switch you created in Step 4)	|
+|Connect virtual hard disk: |Create a virtual hard disk (keep the other default values) 	|
+|Installation Options:		|Install an operating system from a bootable CD/DVD-ROM. Under **Media**, select **Image file (iso)** and then click **Browse** to point to the .iso file. 			|
 
 4. The Summary page of the wizard should look like this:
 	
