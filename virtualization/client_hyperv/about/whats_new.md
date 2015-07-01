@@ -1,12 +1,73 @@
 ms.ContentId: 52DAFFBE-40F5-46D2-96F3-FB8659581594 
 title: What's New in Client Hyper-V for Windows 10
 
-
-
 # What's New for Client Hyper-V in Windows 10 #
 
 This topic explains the new and changed functionality in Client Hyper-V running on Windows 10® Technical Preview.
 
+## Windows PowerShell Direct ##
+
+There is a now an easy and reliable way of running Windows PowerShell commands inside a virtual machine from the host operating system. There are no network or firewall requirements or special configuration. It works regardless of your remote management configuration.
+
+    Enter-PSSession -VMName VMName
+    Invoke-Command -VMName VMName -ScriptBlock { commands }
+
+*Note: PowerShell Direct only works from Windows 10 and Windows Server Technical Preview Hosts to Windows 10 and Windows Server Technical Preview guests.*
+
+
+Today, Hyper-V administrators rely on two categories of tools for connecting to a virtual machine on their Hyper-V host:\
+- Remote management tools such as PowerShell or Remote Desktop
+-Hyper-V Virtual Machine Connection (VM Connect)
+
+Both of these technologies work well, but each have trade-offs as your Hyper-V deployment grows. VMConnect is reliable, but it can be hard to automate. Remote PowerShell is powerful, but can be difficult to setup and maintain. 
+
+Windows PowerShell Direct provides a powerful scripting and automation experience with the simplicity of VMConnect. Because Windows PowerShell Direct runs between the host and virtual machine, there is no need for a network connection or to enable remote management. Like VMConnect, you do need guest credentials to log in to the virtual machine.
+
+### Requirements ###
+- You must be connected to a Windows 10 or Windows Server Technical Preview host with  virtual machines running Windows 10 or Windows Server Technical Preview as guests.
+- You need to be logged in with Hyper-V Administrator credentials on the host.
+- You need User credentials for the virtual machine.
+- The virtual machine you want to connect to must be running and booted.
+
+## Hot add and remove for network adapters and memory ##
+
+You can now add or remove a Network Adapter while the virtual machine is running, without incurring downtime. This works for generation 2 virtual machines running both Windows and Linux operating systems. 
+
+You can also adjust the amount of memory assigned to a virtual machine while it is running, even if you haven’t enabled Dynamic Memory. This works for both generation 1 and generation 2 virtual machines.
+
+## Production checkpoints ##
+
+Production checkpoints allow you to easily create “point in time” images of a virtual machine, which can be restored later on in a way that is completely supported for all production workloads. This is achieved by using backup technology inside the guest to create the checkpoint, instead of using saved state technology. For production checkpoints, the Volume Snapshot Service (VSS) is used inside Windows virtual machines. Linux virtual machines flush their file system buffers to create a file system consistent checkpoint. If you want to create checkpoints using saved state technology you can still choose to use standard checkpoints for your virtual machine. 
+
+----------
+
+**Important**
+
+The default for new virtual machines will be to create production checkpoints with a fallback to standard checkpoints. 
+ 
+----------
+
+## Hyper-V Manager improvements ##
+
+- **Alternate credentials support** – you can now use a different set of credentials in Hyper-V manager when connecting to another Windows 10 Technical Preview remote host. You can also choose to save these credentials to make it easier to log on again later. 
+
+- **Down-level management** - you can now use Hyper-V manager to manage more versions of Hyper-V. With Hyper-V manager in Windows 10 Technical Preview, you can manage computers running Hyper-V on Windows Server 2012, Windows 8, Windows Server 2012 R2 and Windows 8.1.
+
+- **Updated management protocol** - Hyper-V manager has been updated to communicate with remote Hyper-V hosts using the WS-MAN protocol, which permits CredSSP, Kerberos or NTLM authentication. Using CredSSP to connect to a remote Hyper-V host allows you to perform a live migration without first enabling constrained delegation in Active Directory. Moving to the WS-MAN-based infrastructure also simplifies the configuration necessary to enable a host for remote management because WS-MAN connects over port 80, which is open by default.
+
+## Compatible with Connected Standby ##
+
+When Hyper-V is enabled on a computer that uses the Always On/Always Connected (AOAC) power model, the Connected Standby power state is now available and works as expected.
+
+## Linux secure boot ##
+
+Linux operating systems running on generation 2 virtual machines can now boot with the secure boot option enabled.  Ubuntu 14.04 and later, and SUSE Linux Enterprise Server 12, are enabled for secure boot on hosts running the Technical Preview. Before you boot the virtual machine for the first time, you must specify that the virtual machine should use the Microsoft UEFI Certificate Authority.  At an elevated Windows Powershell prompt, type:
+
+    Set-VMFirmware vmname -SecureBootTemplate MicrosoftUEFICertificateAuthority
+
+For more information on running Linux virtual machines on Hyper-V, see [Linux and FreeBSD Virtual Machines on Hyper-V](https://technet.microsoft.com/library/dn531030.aspx).
+ 
+ 
 ## Important - update existing VMs ##
 
 Before you begin, you need to update existing virtual machines to enable new features. 
@@ -20,12 +81,6 @@ To upgrade the configuration version, shut down the virtual machine and then, at
 
 For important information about virtual machine configuration version, see Virtual Machine Configuration Version.
 
-
-
-## Compatible with Connected Standby ##
-
-When Hyper-V is enabled on a computer that uses the Always On/Always Connected (AOAC) power model, the Connected Standby power state is now available and works as expected.
- 
 ## Virtual Machine Configuration Version ##
 
 When you move or import a virtual machine to a host running Client Hyper-V on Windows 10 from host running Windows 8.1, the virtual machine’s configuration file is not automatically upgraded. This allows the virtual machine to be moved back to host running Windows 8.1. You will not have access to new virtual machine features until you manually update the virtual machine configuration version. 
@@ -72,50 +127,6 @@ The .VMCX file is a binary format, directly editing the .VMCX or .VMRS file is n
 
 ----------
 
-## Production checkpoints ##
-
-Production checkpoints allow you to easily create “point in time” images of a virtual machine, which can be restored later on in a way that is completely supported for all production workloads. This is achieved by using backup technology inside the guest to create the checkpoint, instead of using saved state technology. For production checkpoints, the Volume Snapshot Service (VSS) is used inside Windows virtual machines. Linux virtual machines flush their file system buffers to create a file system consistent checkpoint. If you want to create checkpoints using saved state technology you can still choose to use standard checkpoints for your virtual machine. 
-
-----------
-
-**Important**
-
-The default for new virtual machines will be to create production checkpoints with a fallback to standard checkpoints. 
- 
-----------
-
-## Hyper-V Manager improvements ##
-
-- **Alternate credentials support** – you can now use a different set of credentials in Hyper-V manager when connecting to another Windows 10 Technical Preview remote host. You can also choose to save these credentials to make it easier to log on again later. 
-
-- **Down-level management** - you can now use Hyper-V manager to manage more versions of Hyper-V. With Hyper-V manager in Windows 10 Technical Preview, you can manage computers running Hyper-V on Windows Server 2012, Windows 8, Windows Server 2012 R2 and Windows 8.1.
-
-
-- **Updated management protocol** - Hyper-V manager has been updated to communicate with remote Hyper-V hosts using the WS-MAN protocol, which permits CredSSP, Kerberos or NTLM authentication. Using CredSSP to connect to a remote Hyper-V host allows you to perform a live migration without first enabling constrained delegation in Active Directory. Moving to the WS-MAN-based infrastructure also simplifies the configuration necessary to enable a host for remote management because WS-MAN connects over port 80, which is open by default.
-
-## Windows PowerShell Direct ##
-
-There is a now an easy and reliable way of running Windows PowerShell commands inside a virtual machine from the host operating system. There are no network or firewall requirements or special configuration. It works regardless of your remote management configuration.
-
-    Enter-PSSession -VMName VMName
-    Invoke-Command -VMName VMName -ScriptBlock { commands }
-
-*Note: PowerShell Direct only works from Windows 10 and Windows Server Technical Preview Hosts to Windows 10 and Windows Server Technical Preview guests.*
-
-
-Today, Hyper-V administrators rely on two categories of tools for connecting to a virtual machine on their Hyper-V host:\
-- Remote management tools such as PowerShell or Remote Desktop
--Hyper-V Virtual Machine Connection (VM Connect)
-
-Both of these technologies work well, but each have trade-offs as your Hyper-V deployment grows. VMConnect is reliable, but it can be hard to automate. Remote PowerShell is powerful, but can be difficult to setup and maintain. 
-
-Windows PowerShell Direct provides a powerful scripting and automation experience with the simplicity of VMConnect. Because Windows PowerShell Direct runs between the host and virtual machine, there is no need for a network connection or to enable remote management. Like VMConnect, you do need guest credentials to log in to the virtual machine.
-
-### Requirements ###
-- You must be connected to a Windows 10 or Windows Server Technical Preview host with  virtual machines running Windows 10 or Windows Server Technical Preview as guests.
-- You need to be logged in with Hyper-V Administrator credentials on the host.
-- You need User credentials for the virtual machine.
-- The virtual machine you want to connect to must be running and booted.
 
 ## Integration Services delivered through Windows Update ##
 
@@ -128,21 +139,6 @@ Updates to integration services for Windows guests are now distributed through W
 vmguest.iso is no longer needed for updating integration components, it is no longer included with Hyper-V.
  
 ----------
-
-
-## Hot add and remove for network adapters and memory ##
-
-You can now add or remove a Network Adapter while the virtual machine is running, without incurring downtime. This works for generation 2 virtual machines running both Windows and Linux operating systems. 
-
-You can also adjust the amount of memory assigned to a virtual machine while it is running, even if you haven’t enabled Dynamic Memory. This works for both generation 1 and generation 2 virtual machines.
-
-## Linux secure boot ##
-
-Linux operating systems running on generation 2 virtual machines can now boot with the secure boot option enabled.  Ubuntu 14.04 and later, and SUSE Linux Enterprise Server 12, are enabled for secure boot on hosts running the Technical Preview. Before you boot the virtual machine for the first time, you must specify that the virtual machine should use the Microsoft UEFI Certificate Authority.  At an elevated Windows Powershell prompt, type:
-
-    Set-VMFirmware vmname -SecureBootTemplate MicrosoftUEFICertificateAuthority
-
-For more information on running Linux virtual machines on Hyper-V, see [Linux and FreeBSD Virtual Machines on Hyper-V](https://technet.microsoft.com/library/dn531030.aspx).
 
 
 ## Next Steps ##
