@@ -5,34 +5,27 @@ title: Client Hyper-V in Windows 10
  
 Client Hyper-V is an optional feature that can be installed on Windows 10 Enterprise and Windows 10 Professional. For details on installing Client Hyper-V, see [Install Client Hyper-V](..\quick_start\step3.md) 
 
-Hyper-V is an optional component that enables users to run a broad range of operating systems simultaneously on a single physical computer. Client Hyper-V is built upon the same virtualization technology that is available in Windows Server.
+A typical physical computer consists of hardware, an operating system and applications installed on this operating system. The operating system is installed on the hardware, applications are installed on the operating system and together these components make up a single computing environment.
 
-A typical computer configuration matches hardware with one operating system and the applications designed for that one operating system. The hardware includes the mouse and keyboard, processor, memory, disk drives and drive controllers, video and network cards, and other devices. The operating system runs on and controls the hardware. Applications run on the operating system.
-
-By contrast, the virtual machine technologies built into Hyper-V enables one physical computer to run multiple of operating systems and related applications inside of a virtualized computer also know as a virtual machine. A virtual machine uses specialized software called a hypervisor to create a separate operating environment on the physical hardware. 
-
-Hyper-V virtualizes hardware to provide an virtual machine environment. Each virtual machine is an isolated, virtualized computer that can run its own operating system and software. You can run multiple virtual machines on one physical computer.The operating system that runs within a virtual machine is called a guest operating system. You can use Hyper-V Manager to create and manage virtual machines and their resources. 
-
-Hyper-V is designed to enable you to run multiple virtual machines simultaneously on the same physical computer. The main factor that affects how many virtual machines you can run simultaneously is system resources of the physical computer.
+By contrast, the virtual machine technology built into Hyper-V enables one physical computer to run multiple computing environments. This is achieved by using a specialized piece of software called a hypervisor. The hypervisor emulates computer hardware and allows us to install an operating system and applications onto this virtualized hardware. The end result is a single piece of physical hardware called the host running many virtualized computer systems called the guests. 
 
 
 ----------
 **Important** 
-
 You must license the software running on each of the guest virtual machines according to their operating system requirements.
 
 -----------
- 
-
 
 ## Uses ##
 Client Hyper-V can be used in many ways, for example:
 
-- You can create your own testing environment with a single machine. ITPros and developers can you can create an entire infrastructure, hosted entirely on a laptop or desktop computer. Then, when everything is working correctly, you can export the virtual machines and run them on server running Hyper-V.
+- A test environment consisting of multiple virtual machines can be created on a single desktop or laptop computer. Once testing has completed, these virtual machines can be exported and then imported into a production Hyper-V system.
 
-- Developers can also use Client Hyper-V to test their software on multiple operating systems. For example, if you have an application that you must test on the Windows 8, Windows 7, and Linux operating systems, you can create three separate virtual machines right on your development computer.
+- Developers can use Client Hyper-V to test their software on multiple operating systems. For example, if you have an application that must be tested on Windows 8, Windows 7 and a Linux operating system, multiple virtual machines can be created on your development system, one containing each of these operating systems.
 
-- You can use Client Hyper-V to troubleshoot. You can export a virtual machine from your production environment, open it on your desktop with Client Hyper-V, perform your required troubleshooting, and then export it back into the production environment. Using virtual networking, you can create a multi-machine environment for test/development/demonstration that is secure from affecting the production network.
+- You can use Client Hyper-V to troubleshoot. You can export a virtual machine from your production environment, open it on your desktop with Client Hyper-V, perform your required troubleshooting, and then export it back into the production environment. 
+
+- Using virtual networking, you can create a multi-machine environment for test/development/demonstration that is secure from affecting the production network.
 
 - Enthusiasts can use it to experiment with other operating systems. Hyper-V makes it very easy to bring up and tear down different operating systems.
 
@@ -50,9 +43,9 @@ There are some features included in Hyper-V on server that are not included in C
 
 - Virtual Fibre Channel
 
-- 32-bit SR-IOV networking
+- SR-IOV networking
 
-- Shared .vhdx
+- Shared .VHDX
 
 -----
 **Warning**  
