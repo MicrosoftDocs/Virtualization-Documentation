@@ -29,7 +29,7 @@ If you're managing older virtual machines, use Virtual Machine Connection (VMCon
 
 ## Run script or command with Invoke-Command cmdlet##
 
-You can use the cmdlet **Invoke-Command** to run a pre-determined set of commands on the virtual machine. Here is an example of how you can use the Invoke-Command cmdlet where PSTest is the virtual machine name and the script to run (foo.ps1) is in the script folder on the C:/ drive:
+You can use the **Invoke-Command** cmdlet to run a pre-determined set of commands on the virtual machine. Here is an example of how you can use the Invoke-Command cmdlet where PSTest is the virtual machine name and the script to run (foo.ps1) is in the script folder on the C:/ drive:
 
  ```Invoke-Command -VMName PSTest -Credential $cred -FilePath C:\script\foo.ps1 ```
 
