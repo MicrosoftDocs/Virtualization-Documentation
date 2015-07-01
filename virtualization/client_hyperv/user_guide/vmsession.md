@@ -16,14 +16,10 @@ If you're managing older virtual machines, use Virtual Machine Connection (VMCon
 
     ```$cred = Get-Credential ```
 
-3. Run the following command to enter a new session.
-   
-   Connect using the virtual machine name:
-
+3. Run the one of the following commands to create a session by using the virtual machine name or GUID:
+     
     ```Enter-PSSession -VMName <VMName> -Credential $cred ```
-    
-   You can also connect using the virtual machine GUID:
-    
+      
     ```Enter-PSSession -VMGUID <VMGUID> -Credential $cred ```
 
 4. Run whatever commands you need to. These commands run inside the virtual machine that you’re connected to.
