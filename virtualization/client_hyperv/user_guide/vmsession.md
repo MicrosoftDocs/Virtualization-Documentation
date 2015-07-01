@@ -23,7 +23,7 @@ If you're managing older virtual machines, use Virtual Machine Connection (VMCon
     ```Enter-PSSession -VMGUID <VMGUID> -Credential $cred ```
 
 4. Run whatever commands you need to. These commands run on the virtual machine that you created the session with.
-5. When you're done with the PowerShell Direct session, run the following command to close the session:
+5. When you're done, run the following command to close the session:
 
     ```Exit-PSSession ``` 
 
