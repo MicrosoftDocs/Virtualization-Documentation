@@ -38,9 +38,10 @@ To run a single command, use the **-ScriptBlock** parameter:
  ```Invoke-Command -VMName PSTest -Credential $cred -ScriptBlock { cmdlet } ```
 
 ## What's required to use PowerShell Direct?
-* The virtual machine that you want to connect to must be running locally on the host and booted. 
-* You must be logged into the host computer as a Hyper-V administrator in order to access the virtual machines.
-* You must supply valid user credentials for the virtual machine in order to connect.
+To create a PowerShell Direct session on a virtual machine,
+* The virtual machine must be running locally on the host and booted. 
+* You must be logged into the host computer as a Hyper-V administrator.
+* You must supply valid user credentials for the virtual machine.
 * The host operating system must run Windows 10, Windows Server Technical Preview, or higher version.  
 * The virtual machine must run Windows 10, Windows Server Technical Preview, or higher version.  
 
