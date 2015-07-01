@@ -3,24 +3,22 @@ title: Step 2: Install Client Hyper-V
 
 # Install Client Hyper-V #
 
-If you are just getting started with Client Hyper-V, you probably want to use the Programs and Features tool to install Client Hyper-V. But, you can also install using [Windows Powershell](#Using-the-Get-WindowsOptionalFeature-cmdlet).
+Client Hyper-V can be installed using the Programs and Features tool or [Windows Powershell](#Using-the-Get-WindowsOptionalFeature-cmdlet).
 
 
 ## Using Programs and Features ##
 1. Right-click the **Windows** button and then click **Programs and Features**.
 
-![](media\programs_and_features.png)
-
+  ![](media\programs_and_features.png)
 2. Click **Turn Windows features on or off**.
 
 3. Select **Hyper-V**, click **OK**
 
-![](media\hyper-v_feature_selected.png)
-
+  ![](media\hyper-v_feature_selected.png)
 4. When the installation is finished, you will need  to restart the computer.
 
-![](media\restart.png)
-
+  ![](media\restart.png)
+  
 ## Using the Get-WindowsOptionalFeature cmdlet ##
 For more information, see Get-WindowsOptionalFeature and Using PowerShell to Set Up Hyper-V
 
@@ -31,7 +29,7 @@ For more information, see Get-WindowsOptionalFeature and Using PowerShell to Set
 4. When the installation is finished, restart the computer. 
 
 ## How do I know it installed?##
-After you restart your computer, check to see if you can start the Hyper-V Manager too.
+After you restart your computer start the Hyper-V Manager tool. 
 
 1. Click on the **Windows** button and type **Hyper-V**.
 2. Click on **Hyper-V Manager** in the list.
