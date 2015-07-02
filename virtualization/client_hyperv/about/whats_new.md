@@ -71,7 +71,7 @@ For more information on running Linux virtual machines on Hyper-V, see [Linux an
 ## Important - update existing VMs ##
 <!--This seems out of place. This is a evaluation topic. They shouldn't be doing this action until they've upgraded.
  I'd suggest just adding a note like "After you upgrade the host, you'll need to manually update the virtual machine 
- configuration version for any virtual machiens that were created with Windows Server 2012 R2. For more information, see..."
+ configuration version for any virtual machines that were created with Windows Server 2012 R2. For more information, see..."
   and link to upgrade topic that has these steps. -->
 Before you begin, you need to update existing virtual machines to enable new features. 
 
