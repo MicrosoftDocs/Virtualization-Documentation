@@ -8,7 +8,7 @@ This topic explains the new and changed functionality in Client Hyper-V running 
 ## Windows PowerShell Direct ##
 
 There is a now an easy and reliable way to run Windows PowerShell commands inside a virtual machine from the host operating system. There are no network or firewall requirements or special configuration. It works regardless of your remote management configuration.
-
+To create a PowerShell Direct session, use one of the following commands:
     Enter-PSSession -VMName VMName
     Invoke-Command -VMName VMName -ScriptBlock { commands }
 
