@@ -30,11 +30,11 @@ In addition to the wizard, the Hyper-V module for Windows PowerShell includes cm
 4. In the Choose Import Type section, you can choose how to import the virtual machine:
 
 
-	| **Import type** | **Description** |
-	|:-----|:-----|
-	| **Register** | Uses the existing unique ID of the virtual machine and registers it in-place. Choose this option if the virtual machines files are already in the correct location. |
-	| **Restore** | Uses the original virtual machine’s unique ID and also copies the virtual machine files to the default location specified for the host. |
-	| **Copy** | Creates a new unique ID for the virtual machine and also copies the virtual machine files to the default location specified for the host. |
+    | **Import type** | **Description** |
+    |:-----|:-----|
+    | **Register** | Uses the existing unique ID of the virtual machine and registers it in-place. Choose this option if the virtual machines files are already in the correct location. |
+    | **Restore** | Uses the original virtual machine’s unique ID and also copies the virtual machine files to the default location specified for the host. |
+    | **Copy** | Creates a new unique ID for the virtual machine and also copies the virtual machine files to the default location specified for the host. |
 
 
 5. After selecting how to import the VM, click **Next**.
