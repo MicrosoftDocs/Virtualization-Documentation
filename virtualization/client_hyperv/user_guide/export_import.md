@@ -14,13 +14,13 @@ For information about using Windows PowerShell to export virtual machines, see [
 
 
 1. In Hyper-V Manager, right-click the virtual machine and select **Export**.
-2. Click **Browse** in the dialog box and choose where you would like to put the exported VM and then click **Select Folder**. 
+2. Click **Browse** in the dialog box and choose where you would like to put the exported VM and then click **Select Folder**.
 3. In the **Export Virtual Machine** dialog, click **Export**.
 
 
 ## Import ##
 
-You don't need to export a virtual machine to be able to import it. You can simply copy a virtual machine and its associated files to the new host, and then use the **Import Virtual Machine** wizard to specify the location of the files. This registers the virtual machine with Hyper-V and makes it available to be used. 
+You don't need to export a virtual machine to be able to import it. You can simply copy a virtual machine and its associated files to the new host, and then use the **Import Virtual Machine** wizard to specify the location of the files. This registers the virtual machine with Hyper-V and makes it available to be used.
 
 In addition to the wizard, the Hyper-V module for Windows PowerShell includes cmdlets for importing virtual machines. For more information, see [Import-VM](https://technet.microsoft.com/library/hh848495.aspx).
 
@@ -29,13 +29,9 @@ In addition to the wizard, the Hyper-V module for Windows PowerShell includes cm
 3. Select the virtual machine to import and then click **Next**.
 4. In the Choose Import Type section, you can choose how to import the virtual machine:
 
-
-    | **Import type** | **Description** |
-    |:-----|:-----|
-    | **Register** | Uses the existing unique ID of the virtual machine and registers it in-place. Choose this option if the virtual machines files are already in the correct location. |
-    | **Restore** | Uses the original virtual machine’s unique ID and also copies the virtual machine files to the default location specified for the host. |
-    | **Copy** | Creates a new unique ID for the virtual machine and also copies the virtual machine files to the default location specified for the host. |
-
+  -  **Register** - Uses the existing unique ID of the virtual machine and registers it in-place. Choose this option if the virtual machines files are already in the correct location.
+  - **Restore** - Uses the original virtual machine’s unique ID and also copies the virtual machine files to the default location specified for the host.
+  - **Copy** - Creates a new unique ID for the virtual machine and also copies the virtual machine files to the default location specified for the host.
 
 5. After selecting how to import the VM, click **Next**.
 6. In the Choose Destination section, you can choose where to store the files for the virtual machine or leave them in their current location. When you are finished, click **Next**.
@@ -48,7 +44,6 @@ The Import Virtual Machine wizard also walks you through the steps of addressing
 
 1. Creates a copy of the virtual machine configuration file. This is done as a precaution in case an unexpected restart occurs on the host, such as from a power outage.
 2. Validates hardware. Information in the virtual machine configuration file is compared to hardware on the new host.
-3. Compiles a list of errors. This list identifies what needs to be reconfigured and determines which pages appear next in the wizard. 
-4. Displays the relevant pages, one category at a time. The wizard explains each incompatibility to help you reconfigure the virtual machine so it is compatible with the new host. 
+3. Compiles a list of errors. This list identifies what needs to be reconfigured and determines which pages appear next in the wizard.
+4. Displays the relevant pages, one category at a time. The wizard explains each incompatibility to help you reconfigure the virtual machine so it is compatible with the new host.
 5. Removes the copy of the configuration file. After the wizard does this, the virtual machine is ready to be started.
-
