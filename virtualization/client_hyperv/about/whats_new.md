@@ -15,9 +15,9 @@ To create a PowerShell Direct session, use one of the following commands:
     Enter-PSSession -VMName VMName
     Invoke-Command -VMName VMName -ScriptBlock { commands }
 
-Today, Hyper-V administrators rely on two categories of tools for connecting to a virtual machine on their Hyper-V host:\
+Today, Hyper-V administrators rely on two categories of tools for connecting to a virtual machine on their Hyper-V host:
 - Remote management tools such as PowerShell or Remote Desktop
--Hyper-V Virtual Machine Connection (VM Connect)
+- Hyper-V Virtual Machine Connection (VM Connect)
 
 Both of these technologies work well, but each have trade-offs as your Hyper-V deployment grows. VMConnect is reliable, but it can be hard to automate. Remote PowerShell is powerful, but can be difficult to setup and maintain. 
 
