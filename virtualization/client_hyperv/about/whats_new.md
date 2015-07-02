@@ -24,7 +24,7 @@ Both of these technologies work well, but each have trade-offs as your Hyper-V d
 Windows PowerShell Direct provides a powerful scripting and automation experience with the simplicity of VMConnect. Because Windows PowerShell Direct runs between the host and virtual machine, there is no need for a network connection or to enable remote management. You do need guest credentials to log into the virtual machine.
 
 ### Requirements ###
-- You must be connected to a Windows 10 or Windows Server Technical Preview host with  virtual machines running Windows 10 or Windows Server Technical Preview as guests.
+- You must be connected to a Windows 10 or Windows Server Technical Preview host with virtual machines that run Windows 10 or Windows Server Technical Preview as guests.
 - You need to be logged in with Hyper-V Administrator credentials on the host.
 - You need User credentials for the virtual machine.
 - The virtual machine you want to connect to must be running and booted.
