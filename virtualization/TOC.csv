@@ -9,6 +9,7 @@
 ****,windowscontainers/quick_start/hello_world.md
 ***,oa-toc-container: user_guide
 ****,windowscontainers/userguide/userguide_overview.md
+****,windowscontainers/userguide/debugging.md
 ***,oa-toc-container: reference
 ****,windowscontainers/reference/reference_overview.md
 ****,windowscontainers/reference/internal_ManagmentArchitecture.md
