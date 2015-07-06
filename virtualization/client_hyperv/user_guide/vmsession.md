@@ -42,8 +42,8 @@ To create a PowerShell Direct session on a virtual machine,
 * The virtual machine must be running locally on the host and booted. 
 * You must be logged into the host computer as a Hyper-V administrator.
 * You must supply valid user credentials for the virtual machine.
-* The host operating system must run Windows 10, Windows Server Technical Preview, or higher version.  
-* The virtual machine must run Windows 10, Windows Server Technical Preview, or higher version.  
+* The host operating system must run Windows 10, Windows Server Technical Preview, or a higher version.  
+* The virtual machine must run Windows 10, Windows Server Technical Preview, or a higher version.  
 
 
 You can use the **Get-VM** cmdlet to check that the credentials you're using have the Hyper-V administrator role and to see which VMs are running locally on the host and booted.
