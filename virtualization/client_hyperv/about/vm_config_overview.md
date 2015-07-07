@@ -20,7 +20,7 @@ This topic shows a list of features introduced with Windows 10 and the minimum V
 | Hot Add/Remove Memory                  |                6.0 |
 | Hot Add/Remove Network Adapters        |                5.0 |
 | Secure Boot for Linux VMs              |                6.0 |
-| Production Checkpoints                 |                    |
+| PowerShell Direct                      |                6.2 |
 | Virtual Trusted Platform Module (vTPM) |                6.2 |
 | Virtual Machine Grouping               |                6.2 |
 
