@@ -19,7 +19,7 @@ Multi-tenant secure containers- these are backed through hypervisor partitions a
 
 
 **Xenon Package **
-An AppX package containing an application and its associated metadata 
+An AppX package containing an application and its associated metadata.
 
 **Xenon Package Store **
 A directory on a host that contains packages and metadata. 
