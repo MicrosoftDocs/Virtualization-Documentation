@@ -16,6 +16,8 @@ Start an administrative PowerShell and CD into this directory.
 	
 	`.\Copy-SourcesLocally.ps1 -CreateBuildSubdir`
 	
+	(Remember to set Execution mode. `Set-ExecutionPolicy RemoteSigned` )
+	
 	If the script finds a valid build it is copied to a local source directory. 
 	
 	The script ​will output the target directory after everything has been copied over. Use this directory in the following command. You can use any VM name.
