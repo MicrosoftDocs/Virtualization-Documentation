@@ -6,7 +6,7 @@ title: Glossary
 Catalog of confusing terms, jargon, and other esoteric or domain specific nomenclature.
 
 **Argon** 
-Process based containers that are not multi-tenant secure. They share a kernel with the management OS and with eachother. 
+Process based containers that are not multi-tenant secure. They share a kernel with the management OS and with each other. 
 
 **Planned Configuration** 
 An interim state for a Xenon configuration, allowing it to be modified prior being turned into a full Xenon. In this state the Xenon is not viable through the UI or PowerShell and cannot be started. 
@@ -19,7 +19,7 @@ Multi-tenant secure containers- these are backed through hypervisor partitions a
 
 
 **Xenon Package **
-An AppX package containing an application and its associated metadata 
+An AppX package containing an application and its associated metadata.
 
 **Xenon Package Store **
 A directory on a host that contains packages and metadata. 

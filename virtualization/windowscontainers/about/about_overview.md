@@ -10,7 +10,7 @@ Watch a short overview: [Windows-based containers: Modern app development with e
 
 ## What are containers? ##  
 
-They are an isolated, resource controlled and portable operating environment. 
+They are an isolated, resource controlled, and portable operating environment. 
 
 Basically, a container is an isolated place where an application can run without affecting the rest of the system and without the system affecting the application. Containers are the next evolution in virtualization.
 
@@ -37,7 +37,7 @@ Containers help admins create an infrastructure that is simpler to update and ma
 
 ## What else do I get? ##
 
-Containers and the container ecosystem provide agility, productivity, and freedom-of-choice in building, deploying, and managing modern apps.
+Containers and the container ecosystem provide agility, productivity, and freedom-of-choice to build, deploy, and manage modern apps.
 
 When combined with Docker, Visual Studio, and Azure, containers become an important part of a robust ecosystem. Read more about the [Windows Server Container ecosystem](container_ecosystem.md).
 
