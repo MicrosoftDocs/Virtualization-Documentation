@@ -3,52 +3,39 @@ title: Running Containers Locally
 
 # Setting up Argons on your local machine #
 
-<-- These instructions were created for the 2/6/2015 review. You might want to put instructions in hello_world.md instead of this file -->
+<-- These instructions were created by Lars for selfhosters 7/7/2015. You might want to put instructions in hello_world.md instead of this file -->
  
-1. Install the latest build -- VHD available from
-    `\\winbuilds\release\FBL_KPG_CORE_XENON_LITE\<<build_number>>\amd64fre\vhd\vhd_server_serverdatacenter_en-us`
-	
-2. Create a VM with this VHD
-3. When the VM comes up, go to the Server Manager and
-    1.  Enable Remote Desktop
-	2.  Install the “Windows Containers” feature
-	3.	Install the siloservice: SiloService –install
-	4.  Enable the “Hyper-V” role and PowerShell management.
-	
-		Note: You can only enabled Hyper-V inside a virtual machine using the command prompt.  Server Manager and PowerShell will check for the presence of SLAT and will block installation.  To install Hyper-V from the command line run:
-		
-			dism /Online /Enable-Feature:Microsoft-Hyper-V /all
-			
-		Hyper-V Powershell can be enabled with either Server Manager, PowerShell or DISM.
-			  
-	5.  Reboot
+1.  Prerequisites:  
+Threshold host with Hyper-V enabled and capacity for an additional VM  
 
-Alternatively use the same steps as above in a PowerShell script (copy instructions into a .ps1 file, open Powershell and run the script) :
-	
-		`set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server'-name "fDenyTSConnections" -Value 0` 
-	
-		`set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp' -name "UserAuthentication" -Value 0`
-	
-		Enable-NetFirewallRule -DisplayGroup "Remote Desktop" 
-	
-		dism /Online /Enable-Feature:Containers
-	
-		siloservice -install
-	
-		dism /Online /Enable-Feature:Microsoft-Hyper-V /all
-	
-		dism /Online /Enable-Feature:Microsoft-Hyper-V-Management-PowerShell /all
-	
-		`Pause  # Wait for user to acknowledge before rebooting the system`
-	
-		`shutdown -r -t 0 `
-	
+2.  Initial setup  
+Copy the content of `\\vmstore\public\liwer\docker\scripts` to a local directory.  
+Start an administrative PowerShell and CD into this directory.
 
-4. Now start a container via the following command line:
-   `Siloclient -start test1 -def \windows\system32\containers\cmdserver.def -server`
+	** Run the following commands: **
+	
+	`.\Copy-SourcesLocally.ps1 -CreateBuildSubdir`
+	
+	If the script finds a valid build it is copied to a local source directory. 
+	
+	The script ​will output the target directory after everything has been copied over. Use this directory in the following command. You can use any VM name.
 
-5. Then follow [these instructions](..\reference\networking.md) to set up your network.
+	`.\New-ContainerHost.ps1 -localsourcedir C:\ContainerTest\LocalSources\10158.0.150628-1900\ -VMName "ContainerTest-10158.0.150628-1900"`
 
-6. You can now try to RDP into the container
+	Wait for the guest to boot until you see the desktop/cmd prompt (for server core) in the vmconnect window that is launched …
 
-	Note: You may need to disable the Windows firewall / open custom ports in the Windows firewall in order to have RDP to the container work.
+	`.\Configure-GuestForDockerUse.ps1 -VMName "ContainerTest-10158.0.150628-1900"`
+
+	​Follow the instructions from the script
+
+3.  First Steps  
+	Log in to the VM which was created using the Password P@ssw0rd
+
+	To start the docker daemon: Run a cmd, enter `docker -d -D`
+
+	Run a second cmd - here you can run docker commands to build an image/run containers etc.
+
+Some example Dockerfiles including installers can be found here:
+
+
+\\vmstore\public\liwer\docker\build files ​
