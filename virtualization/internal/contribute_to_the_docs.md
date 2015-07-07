@@ -1,7 +1,7 @@
 ms.ContentId: 1A979BC9-C43C-40A2-B60C-4ECC042AC7DC
 title: Contribute to the documentation
 
-# Contribute to the documentation #
+# Contribute to the documentation 
 
 Did we get something wrong?  Do you have something to add?  Follow these steps to start contributing to the documentation.
 
@@ -21,9 +21,9 @@ If you just want to make a small change or two to an existing topic, the easiest
 
 
 
-## Set up Git ##
+## Set up Git 
 
-### Install Git ###
+### Install Git 
 Install [Git for Windows](http://git-scm.com/download/win "http://git-scm.com/download/win")
 - Gitbash is the command-line app that you will use to interact with your local Git repository
 - Git GUI is an app used to create and clone Git repositories.
@@ -32,7 +32,7 @@ Install [Git for Windows](http://git-scm.com/download/win "http://git-scm.com/do
 Optional:
 To use GIT at a Powershell prompt, [download msysgit](http://msysgit.github.io/ "http://msysgit.github.io/") and to use Git from Visual Studio, install the [Visual Studio extensions](https://visualstudiogallery.msdn.microsoft.com/8f594baa-e44e-4114-8381-e175ace0fe97 "https://visualstudiogallery.msdn.microsoft.com/8f594baa-e44e-4114-8381-e175ace0fe97")
 
-### Clone the repository locally ###
+### Clone the repository locally 
 Go to the [repository in VS Online](https://mseng.visualstudio.com/DefaultCollection/Documentation/_git/HyperV#path=%2F&version=GBrelease&_a=contents "https://mseng.visualstudio.com/DefaultCollection/Documentation/_git/HyperV#path=%2F&version=GBrelease&_a=contents")
 
 On the right part of the page, click **Clone** and copy the address for cloning into your clipboard. Is should be: `https://mseng.visualstudio.com/DefaultCollection/Documentation/_git/HyperV`
@@ -53,9 +53,11 @@ To clone the repo, open GitBash and enter:
 	git clone https://mseng.visualstudio.com/DefaultCollection/Documentation/_git/HyperV
 
 	cd hyperv
+### Cache your credentials
 
+```git config --global credential.helper wincred```
 
-### Branches ###
+### Branches 
 Run
 
 	git branch
