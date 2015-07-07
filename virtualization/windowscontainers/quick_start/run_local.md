@@ -35,7 +35,10 @@ Start an administrative PowerShell and CD into this directory.
 
 	Run a second cmd - here you can run docker commands to build an image/run containers etc.
 
-Some example Dockerfiles including installers can be found here:
 
 
-\\vmstore\public\liwer\docker\build files ​
+** Some example Dockerfiles including installers can be found here: **
+
+`\\vmstore\public\liwer\docker\build files`
+
+If you discover any errors, please mail liwer@microsoft.com
