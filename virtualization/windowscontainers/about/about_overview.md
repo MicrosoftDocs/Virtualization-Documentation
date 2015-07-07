@@ -10,7 +10,7 @@ Watch a short overview: [Windows-based containers: Modern app development with e
 
 ## What are containers? ##  
 
-They are an isolated, resource controlled and portable operating environment. 
+They are an isolated, resource controlled, and portable operating environment. 
 
 Basically, a container is an isolated place where an application can run without affecting the rest of the system and without the system affecting the application. Containers are the next evolution in virtualization.
 
