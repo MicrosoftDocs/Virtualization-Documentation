@@ -9,8 +9,7 @@ Virtual machines now have a new configuration file format which is designed to i
 
 **Note:**  The new virtual machine configuration file format only applies new virtual machines created on Windows 10 or to virtual machines running on Windows 10 that have been upgraded to virtual machine configuration version 6. 
 
-## Minimum VM configuration version for new Hyper-V features ##
-
+## Minimum VM configuration version for new Hyper-V features
 If you have virtual machines that you created with an earlier version of Client Hyper-V, some features may not work with those virtual machines until you update the VM version.
 
 This topic shows a list of features introduced with Windows 10 and the minimum VM configuration version that is required to use them.
@@ -25,13 +24,14 @@ This topic shows a list of features introduced with Windows 10 and the minimum V
 | Virtual Machine Grouping               |                6.2 |
 
 ## Upgrade the virtual machine configuration version
-To upgrade to the latest virtual machine configuration version, open an elevated Windows PowerShell command prompt and ype the following:
+To upgrade to the latest virtual machine configuration version, open an elevated Windows PowerShell command prompt and type the following:
 
-**Update-VMVersion** *vmname*   
-
+`Update-VMVersion vmname`   
 Substitute the name of your virtual machine for vmname.
 
-## What has changed? ##
+**Note:** Please keep in mind that you won't be able to run a VM with an upgraded configuration version on Windows Server 2012 R2 or Windows 8.1.
+
+## What has changed?
 The new configuration files store virtual machine data in two binary files.
 
  - Virtual machine settings are stored in a configuration file using a **.vmcx** extension.
