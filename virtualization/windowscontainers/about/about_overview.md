@@ -37,7 +37,7 @@ Containers help admins create an infrastructure that is simpler to update and ma
 
 ## What else do I get? ##
 
-Containers and the container ecosystem provide agility, productivity, and freedom-of-choice in building, deploying, and managing modern apps.
+Containers and the container ecosystem provide agility, productivity, and freedom-of-choice to build, deploy, and manage modern apps.
 
 When combined with Docker, Visual Studio, and Azure, containers become an important part of a robust ecosystem. Read more about the [Windows Server Container ecosystem](container_ecosystem.md).
 
