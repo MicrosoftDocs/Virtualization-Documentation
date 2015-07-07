@@ -57,6 +57,8 @@ To clone the repo, open GitBash and enter:
 
 ```git config --global credential.helper wincred```
 
+Or use the handy tool from here: http://gitcredentialstore.codeplex.com/
+
 ### Branches 
 Run
 
