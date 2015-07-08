@@ -10,7 +10,7 @@ title: Licensing
 Licensing requirements for Windows Containers....
 
 Next Steps:
-[System Requirements](..\userguide\system_requirements.md)
+[System Requirements](..\about\sys_requirements.md)
 
 
 ## Testing ##
