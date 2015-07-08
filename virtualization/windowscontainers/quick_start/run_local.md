@@ -3,7 +3,7 @@ title: Running Containers Locally
 
 # Setting up Argons on your local machine #
 
-<-- These instructions were created by Lars for selfhosters 7/7/2015. You might want to put instructions in hello_world.md instead of this file -->
+**Note:** These instructions were created by Lars for selfhosters 7/7/2015.
  
 1.  Prerequisites:  
 Threshold host with Hyper-V enabled and capacity for an additional VM  

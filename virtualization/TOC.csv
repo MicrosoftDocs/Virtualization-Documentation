@@ -6,10 +6,10 @@
 ****,windowscontainers/about/when_containers.md
 ****,windowscontainers/about/faq.md
 ***,oa-toc-container: quick_start
+****,windowscontainers/quick_start/run_local.md
 ****,windowscontainers/quick_start/hello_world.md
 ****,windowscontainers/quick_start/install_in_azure.md
 ****,windowscontainers/quick_start/install_using_docker.md
-****,windowscontainers/quick_start/run_local.md
 ***,oa-toc-container: user_guide
 ****,windowscontainers/userguide/userguide_overview.md
 ****,windowscontainers/userguide/debugging.md
