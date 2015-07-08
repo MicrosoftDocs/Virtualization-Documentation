@@ -89,6 +89,62 @@ remove-vm -Name <virtual machien name>
 
 ### Create a new virtual machine
 
+Finally we will take a look at VM creation with PowerShell. This example will contain more than one line of code and may be more manageable if working from the PowerShell Integrated Scripting Environment of ISE.
+
+To open the PowerShell ISE click on start and type **PowerShell ISE* and then press the enter key.
+
+The following code completes the following.
+
+- Lines 1 – 9: defines the parameters that will be set when the VM is creating, storing each in a variable.
+- Line 11: creates the new VM using all defined parameters.
+- Line 12: Adds a virtual CD Rom drive to the VM and mounts installation media in this drive.
+
+```
+$Name = "POSHVM"
+$MemoryStartupBytes = 2147483648
+$Generation = 2
+$NewVHDPath = "D:\Windows 10 VM\POSHVM\$Name.vhdx"
+$NewVHDSizeBytes = 53687091200
+$BootDevice = "VHD"
+$Path = "D:\Windows 10 VM\POSHVM"
+$SwitchName = (get-vmswitch).Name
+$DVDPath = "C:\Media\media.iso"
+
+New-VM -Name $Name -MemoryStartupBytes $MemoryStartupBytes -Generation $Generation -NewVHDPath $NewVHDPath -NewVHDSizeBytes $NewVHDSizeBytes -BootDevice $BootDevice -SwitchName $SwitchName -Path $Path 
+Add-VMDvdDrive -VMName $Name -Path $DVDPath
+Start-VM -Name $Name
+```
+Here is the same code as seen in the PowerShell ISE
+
+![](media\new_vm.png)
+
+A more simple way to write this script would be to use a concept referred to as splatting. Splatting provides a way to group parameters and provide these to a command. This makes our scripts more readable and easier to update, modify and re-use.
+
+The same script re-written using the splatting method would like this:   
+
+```
+$VM = @{
+    Name = "POSHVM"
+    MemoryStartupBytes = 2147483648
+    Generation = 2
+    NewVHDPath = "D:\Windows 10 VM\POSHVM\$Name.vhdx"
+    NewVHDSizeBytes = 53687091200
+    BootDevice = "CD"
+    Path = "D:\Windows 10 VM\POSHVM"
+    SwitchName = (get-vmswitch).Name
+}
+
+$DVD = @{
+    Path = "C:\media\media_disk.iso"
+}
+
+New-VM @VM
+Add-VMDvdDrive @DVD
+```
+and as seen in the PowerShell ISE:
+
+![](media\new_vm2.png)
+
 ## Next step: ##
 [Step 10: Backup your virtual machines](step10.md)
 
