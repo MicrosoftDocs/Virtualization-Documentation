@@ -5,7 +5,7 @@ title: Step 10: Experiment with Windows PowerShell
 
 Now that we have walked through the basics of deploying Hyper-V, creating virtual machines and managing these virtual machines, let’s explore how we can automate many of these activities with PowerShell.
 
-### Return a list of Hyper-V commands:
+  ### Return a list of Hyper-V commands:
 Before working with Hyper-V virtual machines let’s explore the Hyper-V module:
 1.	Click on the start button and type **PowerShell** and click **enter**. This will open up the PowerShell scripting environment.
 2.	Type the following command. This will produce a searchable list of PowerShell commands available with the Hyper-V PowerShell Module.
@@ -24,7 +24,7 @@ Which will produce:
 
 ![](media\get_help.png)
   
-### Return a list of virtual machines
+  ### Return a list of virtual machines
 
 Now that we have examined the commands available for Hyper-V, let’s use the **get-vm** command to return a list of virtual machines:
 
@@ -49,7 +49,7 @@ Or to list all virtual machines in a powered off state:
 get-vm | where {$_.State –eq ‘Off’}
 ```
   
-### Power on or off virtual machines
+  ### Power on or off virtual machines
 
 Let's now perform some actions against a virtual machine. To power on a particular virtual machine we can run the following, specifying the name of the virtual machine:
 
@@ -69,7 +69,7 @@ Similarly, to power off all running virtual machines the command would be:
 get-vm | where {$_.State –eq ‘Running’} | stop-vm
 ```
   
-### Create a VM checkpoint 
+  ### Create a VM checkpoint 
 
 One option for creating a checkpoint is to load an instance of a virtual machine into the PowerShell session and then pipe this to the **checkpoint-vm** command similar to this:
 
@@ -80,7 +80,7 @@ Which will result in a checkpoint with the name specified in the command:
 
 ![](media\POSH_CP2.png)
   
-## Delete a Virtual Machine
+  ### Delete a Virtual Machine
 
 To delete a virtual machine we use the **remove-vm** command. A virtual machine must be powered off before it can be deleted.
 
@@ -88,7 +88,7 @@ To delete a virtual machine we use the **remove-vm** command. A virtual machine 
 remove-vm -Name <virtual machien name>
 ```
   
-### Create a new virtual machine
+  ### Create a new virtual machine
 
 Finally we will take a look at VM creation with PowerShell. This example will contain more than one line of code and may be more manageable if working from the PowerShell Integrated Scripting Environment (ISE).
 
@@ -145,7 +145,7 @@ and as seen in the PowerShell ISE:
 
 ![](media\new_vm2.png)
   
-### Wrap up
+  ### Wrap up
 
 This document has shown some simple steps for exploring the Hyper-V PowerShell module as well as some sample use cases. For more information on the Hyper-V PowerShell module see the Reference Guide found here <!—Insert Reference Guide --> .
   
