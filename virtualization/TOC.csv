@@ -1,5 +1,4 @@
 *,oa-toc-container:virtualization
-**,virtualization/virtualization.md
 **,oa-toc-container: windowscontainers
 ***,oa-toc-container: about
 ****,windowscontainers/about/about_overview.md
