@@ -6,8 +6,8 @@ title: Step 10: Experiment with Windows PowerShell
 Now that we have walked through the basics of deploying Hyper-V, creating virtual machines and managing these virtual machines, let’s explore how we can automate many of these activities with PowerShell.
 
 ### Return a list of Hyper-V commands:
-Before working with Hyper-V virtual machines let’s explore the Hyper-V module
-1.	Click on the start button and type PowerShell and click enter. This will open up the PowerShell scripting environment.
+Before working with Hyper-V virtual machines let’s explore the Hyper-V module:
+1.	Click on the start button and type **PowerShell** and click **enter**. This will open up the PowerShell scripting environment.
 2.	Type the following command. This will produce a searchable list of PowerShell commands available with the Hyper-V PowerShell Module.
 
 ```
@@ -57,7 +57,7 @@ Let's now perform some actions against a virtual machine. To power on a particul
 Start-vm –Name <virtual machine name>
 ```
 
-Or to power on all currently powered off virtual machines, we can gather a list of thoes machines and pipe this to the start-vm command:
+Or to power on all currently powered off virtual machines, we can gather a list of thoes machines and pipe this to the **start-vm** command:
 
 ```powershell
 get-vm | where {$_.State –eq ‘Off’} | start-vm
@@ -70,7 +70,7 @@ get-vm | where {$_.State –eq ‘Running’} | stop-vm
 ```
 ### Create a VM checkpoint 
 
-One option for creating a checkpoint is to load an instance of a virtual machine into the PowerShell session and then pipe this to the checkpoint-vm command similar to this:
+One option for creating a checkpoint is to load an instance of a virtual machine into the PowerShell session and then pipe this to the **checkpoint-vm** command similar to this:
 
 ```
 get-vm -Name <VM Name> | checkpoint-vm -snapshotname <name for snapshot>
@@ -81,7 +81,7 @@ Which will result in a checkpoint with the name specified in the command:
 
 ## Delete a Virtual Machine
 
-To delete a virtual machine we use the remove-vm command. A virtual machine must be powered off before it can be deleted.
+To delete a virtual machine we use the **remove-vm** command. A virtual machine must be powered off before it can be deleted.
 
 ```
 remove-vm -Name <virtual machien name>
@@ -89,11 +89,11 @@ remove-vm -Name <virtual machien name>
 
 ### Create a new virtual machine
 
-Finally we will take a look at VM creation with PowerShell. This example will contain more than one line of code and may be more manageable if working from the PowerShell Integrated Scripting Environment of ISE.
+Finally we will take a look at VM creation with PowerShell. This example will contain more than one line of code and may be more manageable if working from the PowerShell Integrated Scripting Environment (ISE).
 
-To open the PowerShell ISE click on start and type **PowerShell ISE* and then press the enter key.
+To open the PowerShell ISE click on start and type **PowerShell ISE** and then press the enter key.
 
-The following code completes the following.
+The following code consists of:
 
 - Lines 1 – 9: defines the parameters that will be set when the VM is creating, storing each in a variable.
 - Line 11: creates the new VM using all defined parameters.
@@ -112,15 +112,14 @@ $DVDPath = "C:\Media\media.iso"
 
 New-VM -Name $Name -MemoryStartupBytes $MemoryStartupBytes -Generation $Generation -NewVHDPath $NewVHDPath -NewVHDSizeBytes $NewVHDSizeBytes -BootDevice $BootDevice -SwitchName $SwitchName -Path $Path 
 Add-VMDvdDrive -VMName $Name -Path $DVDPath
-Start-VM -Name $Name
 ```
 Here is the same code as seen in the PowerShell ISE
 
 ![](media\new_vm.png)
 
-A more simple way to write this script would be to use a concept referred to as splatting. Splatting provides a way to group parameters and provide these to a command. This makes our scripts more readable and easier to update, modify and re-use.
+A more simple way to write this script would be to use a concept referred to as splatting. Splatting groups and passes parameters to a command as a single unit, this makes our scripts more readable, easier to modify and re-use.
 
-The same script re-written using the splatting method would like this:   
+The same script re-written using the splatting method would look like this:   
 
 ```
 $VM = @{
@@ -144,6 +143,10 @@ Add-VMDvdDrive @DVD
 and as seen in the PowerShell ISE:
 
 ![](media\new_vm2.png)
+
+### Wrap up
+
+This document has shown some simple steps for exploring the Hyper-V PowerShell module as well as some sample use cases. For more information on the Hyper-V PowerShell module see the Reference Guide found here <!—Insert Reference Guide --> .
 
 ## Next step: ##
 [Step 10: Backup your virtual machines](step10.md)
