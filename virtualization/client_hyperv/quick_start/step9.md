@@ -7,14 +7,22 @@ Now that we have walked through the basics of deploying Hyper-V, creating virtua
 
 ##Return a list of Hyper-V commands:
 Before working with Hyper-V virtual machines let’s explore the Hyper-V module
-1.	Click on the start button and type PowerShell ISE and click enter. This will open up the PowerShell scripting environment.
-2.	Type the following command. This will produce a searchable list of the PowerShell commands available with the Hyper-V PowerShell Module.
+1.	Click on the start button and type PowerShell and click enter. This will open up the PowerShell scripting environment.
+2.	Type the following command. This will produce a searchable list of PowerShell commands available with the Hyper-V PowerShell Module.
 
 ```
 get-command –module hyper-v | out-gridview
 ```
-
 ![](media\command_grid.png)
+
+PowerShell includes a get-help system that allows us to quickly discover how to use PowerShell commands. For instance to see more information on how to use the get-vm command, enter the following:
+
+```
+get-help get-vm
+```
+Which will produce:
+
+![](media\get_help.png)
 
 ## Return a list of virtual machines
 
@@ -43,21 +51,43 @@ get-vm | where {$_.State –eq ‘Off’}
 
 ## Power on or off virtual machines
 
-To power on a particular virtual machine we can run the following:
+Let's now perform some actions against virtual machines. To power on a particular virtual machine we can run the following specifying the name of the virtual machine:
 
 ```powershell
 Start-vm –Name <virtual machine name>
 ```
 
-Or to power on all currently powered off virtual machines we can gather a list  of only thoes machines and pipe this to the start-vm command like this:
+Or to power on all currently powered off virtual machines, we can gather a list of thoes machines and pipe this to the start-vm command:
 
 ```powershell
 get-vm | where {$_.State –eq ‘Off’} | start-vm
 ```
 
-##Create a new virtual machine
+Similarly, to power off all running virtual machines the command would be similar to this:
+
+```powershell
+get-vm | where {$_.State –eq ‘Running’} | stop-vm
+```
 ##Create a VM checkpoint 
-##Remove a Virtual Machine
+
+One option for creating a checkpoint is to load an instance of a virtual machine into the PowerShell session and then pipe this to the checkpoint-vm command similar to this:
+
+```
+get-vm -Name <VM Name> | checkpoint-vm -snapshotname <name for snapshot>
+```
+Which will result in a checkpoint with the name specified in the command:
+
+![](media\POSH_CP2.png)
+
+##Delete a Virtual Machine
+
+To delete a virtual machine we use the remove-vm command. A virtual machine must be powered off before it can be deleted.
+
+```
+remove-vm -Name <virtual machien name>
+```
+
+##Create a new virtual machine
 
 ## Next step: ##
 [Step 10: Backup your virtual machines](step10.md)
