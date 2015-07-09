@@ -14,7 +14,6 @@ Exporting a virtual machine exports all of the pieces of the VM, including the c
   ![](media/select_export.png)
 2. Click **Browse** in the dialog box and navigate to  C:\Users\Public\Export and then click **Select Folder**. 
 
-  ![](media/select_folder.png)
 3. In the **Export Virtual Machine** dialog, make sure the path looks okay and then click **Export**.
 
   ![](media/click_export.png)
