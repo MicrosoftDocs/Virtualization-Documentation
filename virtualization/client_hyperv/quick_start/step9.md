@@ -49,7 +49,7 @@ get-vm | where {$_.State –eq ‘Off’}
 ```
 
 ### Power on or off virtual machines
-
+<!--I think these should all be turn on/turn off. Power on/off sounds weird to me. Or is it Start/shut down or Start/Stop vm? Should match terms we use in UI.-->
 1. To power on a particular virtual machine, run the following command with name of the virtual machine:
  ```powershell
 Start-vm –Name <virtual machine name>
