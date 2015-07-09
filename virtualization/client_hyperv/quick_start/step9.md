@@ -8,7 +8,7 @@ Now that we have walked through the basics of deploying Hyper-V, creating virtua
 ### Return a list of Hyper-V commands
 Before we work with Hyper-V virtual machines, let’s explore the Hyper-V module:
 1.	Click on the Windows start button, type **PowerShell** and click **enter**. This opens the PowerShell scripting environment.
-2.	Type the following command. This displays a searchable list of PowerShell commands available with the Hyper-V PowerShell Module.
+2.	Type the following command to display a searchable list of PowerShell commands available with the Hyper-V PowerShell Module.
 
 ```powershell
 get-command –module hyper-v | out-gridview
