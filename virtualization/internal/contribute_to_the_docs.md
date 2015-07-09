@@ -101,7 +101,7 @@ To turn on word wrap:
 3. Copy and paste that setting into the curly braces in the .json pane and change it to:   `“editor.wrappingColumn”: 0,`
 4. Save and close the settings file.
 
-## Create a new file ##
+## Create a new file 
 
 1. Create a new file and name it something readable with .md as extension.
 2. At the top of the file, before any whitespace, you need 2 things:
@@ -117,7 +117,7 @@ To turn on word wrap:
 	```****,windowscontainers/about/when_containers.md```
 6. When you are done, add the updated toc.csv back to git too (see above – add, commit, push!)
 
-### Folder/File structure ###
+### Folder/File structure 
 
 The documentation website's structure matches the git folder structure.  Looking inside the HyperV repository, the folder structure should look a bit like this:
 
@@ -163,9 +163,10 @@ oa-toc-container:section_name specifies that the landing page should automatical
 Asterisk (*) indicate the breadcrumb depth.
 
 
-## Write content in MarkDown ##
+## Write content in MarkDown 
 
 There are lots of resources for how to write in markdown, here are a few favorites:
+- [Markdown cheatsheet] (https://github.com/Azure/azure-content/blob/master/contributor-guide/contributor-guide-index.md#authoring-articles-markdown)
 
 - [http://devdocs/HowTo/Markdown](http://devdocs/HowTo/Markdown)
 
@@ -173,17 +174,7 @@ There are lots of resources for how to write in markdown, here are a few favorit
 
 ## Staging on sandbox
 
-
-## Staging on int before going live
-
-The working branch needs to be merged with the release branch in order to be built for *int* staging (https://int.msdn.microsoft.com/en-us/virtualization/windowscontainers/about/about_overview). 
-
-To launch a staging build, type the following:
-	```git checkout release
-	git merge <branch>
-	git push```
-
-
+TBD
 
 ## Pushing content live
 
