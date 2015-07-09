@@ -19,6 +19,7 @@ If a connection can't be established, try:
 *  confirming your user account is part of the Hyper-V Administrator group.
 
 ## Manage a Hyper-V host in your domain ##
+<!--Include steps for this. Info below doesn't have context.-->
 Combinations of connections with both Kerberos and CredSSP:
 *  NetBIOS host name same user
 *  NetBIOS, Alternte Credentials
