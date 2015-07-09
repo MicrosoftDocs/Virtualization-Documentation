@@ -39,7 +39,7 @@ get-vm
 
  ![](media\get_vm.png)
 
-2. To return a list of only powered on virtual machines, add a filter on the command like this:
+2. To return a list of only powered on virtual machines, add a where clause to filter the list like this:
   ``` 
 get-vm | where {$_.State –eq ‘Running’}
 ```
