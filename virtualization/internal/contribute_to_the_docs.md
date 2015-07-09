@@ -44,15 +44,18 @@ If you are having access issues in Git using your corp credentials, you may need
 3. Click My Profile >>  Security tab  >> Personal Access tokens >> Add 
 4. In Description, name it Git and then in Expires In change it to 1 year. 
 5. Leave the other defaults and then click Create Token.
+
 **Before you do anything else, make sure you copy and paste the token someplace safe!!!!**
+
 A .txt file on your OneDrive for Business is a good place.
-When you are asked  for username in GitBash, use your full e-mail address (alias@microsoft.com) and Git access token as your password. You should only ave to use the access token once, after that your corporate password should work.
+
+When you are asked for username in GitBash, use your full e-mail address (alias@microsoft.com) and Git access token as your password. You should only have to use the access token once, after that your corporate password should work.
 
 
 ### Clone the repository locally 
 1. Go to the [repository in VS Online](https://mseng.visualstudio.com/DefaultCollection/Documentation/_git/HyperV)
 
-2.On the right part of the page, click **Clone** and copy the address for cloning into your clipboard. Is should be: 
+2. On the right part of the page, click **Clone** and copy the address for cloning into your clipboard. It should be: 
 ```
 https://mseng.visualstudio.com/DefaultCollection/Documentation/_git/HyperV 
 ```
