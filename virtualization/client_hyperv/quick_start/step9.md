@@ -77,10 +77,11 @@ Which will result in a checkpoint with the name specified in the command:
 
 ### Delete a Virtual Machine 
 
-To delete a virtual machine we use the `remove-vm` command. A virtual machine must be powered off before it can be deleted.
+To delete a virtual machine, use the `remove-vm` command. 
 ```powershell
 remove-vm -Name <virtual machien name>
 ```
+A virtual machine must be powered off before it can be deleted.
 
 ### Create a new virtual machine
 
