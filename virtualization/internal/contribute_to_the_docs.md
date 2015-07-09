@@ -11,7 +11,7 @@ If you just want to make a small change or two to an existing topic, the easiest
 
 1. Go here: [VSOnline](https://mseng.visualstudio.com/DefaultCollection/Documentation/_git/HyperV)
 2. Make sure you are in the right branch. Pick the repo from the drop-down on the right.
-	- containerbits - Containers content for TP3 and beyond
+- containerbits - Containers content for TP3 and beyond
 	- win10 - for content that will ship in support of Hyper-V in Windows 10
 3. Select the .md file from the left pane and then click **Edit**. 
 
@@ -76,7 +76,7 @@ Run
 
 	```git branch```
 
-to see what branch you're currently in.  If it list the rigt branch (like win10 or containerbits), you're great.  Continue to creating and adding your file.  If not, run
+to see what branch you're currently in.  If it lists the right branch (like win10 or containerbits), you're great.  Continue to creating and adding your file.  If not, run
 
 	```git checkout <branch>```
 
@@ -91,7 +91,7 @@ You can use any text editor, but VSCode is really nice!
 
 To preview a file, click CTRL+Shift+V or click the **Split Editor** button and then in the second pane, click **Open Preview**.
 
-Auto save and revert - you can setup  VS Code to auto save. Use the File > Revert File option if you need to revert.
+Auto save and revert - you can setup  VS Code to auto save. Use the File >>Revert File option if you need to revert.
 
 To turn on word wrap:
 1. Go to File >> Preferences >> User Settings 
