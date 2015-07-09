@@ -54,12 +54,10 @@ get-vm | where {$_.State –eq ‘Off’}
  ```powershell
 Start-vm –Name <virtual machine name>
 ```
-
 2. To power on all currently powered off virtual machines, get a list of those machines and pipe the list to the 'start-vm' command:
   ```powershell
 get-vm | where {$_.State –eq ‘Off’} | start-vm
 ```
-
 3. To power off all running virtual machines, run this:
   ```powershell
 get-vm | where {$_.State –eq ‘Running’} | stop-vm
