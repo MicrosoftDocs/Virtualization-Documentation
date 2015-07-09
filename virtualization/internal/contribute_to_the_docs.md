@@ -7,87 +7,118 @@ Did we get something wrong?  Do you have something to add?  Follow these steps t
 
 ## Quickest way to jump in and help
 
-If you just want to make a small change or two to an existing topic, the easiest thing to do is to jump onto [VSOnline](https://mseng.visualstudio.com/DefaultCollection/Documentation/_git/HyperV#path=%2Fwindowscontainers&version=GBrelease&_a=contents) and make the change right in the repo.
+If you just want to make a small change or two to an existing topic, the easiest thing to do is to jump onto [VSOnline](https://mseng.visualstudio.com/DefaultCollection/Documentation/_git/HyperV) 
 
-1. Go here: [VSOnline](https://mseng.visualstudio.com/DefaultCollection/Documentation/_git/HyperV#path=%2Fwindowscontainers&version=GBrelease&_a=contents)
-2. Select the .md file and then click **Edit**. 
+1. Go here: [VSOnline](https://mseng.visualstudio.com/DefaultCollection/Documentation/_git/HyperV)
+2. Make sure you are in the right branch. Pick the repo from the drop-down on the right.
+	- containerbits - Containers content for TP3 and beyond
+	- win10 - for content that will ship in support of Hyper-V in Windows 10
+3. Select the .md file from the left pane and then click **Edit**. 
 
 	![](media\vsonline.png)
 
-3. This opens a simple online editor where you can make changes. Just click the **Save** button when you are done to add the changes to the repo. 
+4. This opens a simple online editor where you can make changes. Just click the **Save** button when you are done to add the changes to the repo. 
 
 	![](media\vsoeditor.png)
 
 
-
+Ask Catherine Watson or Cynthia Nottingham about how to contribute to the Windows Server 2016 documentation.
 
 ## Set up Git 
 
 ### Install Git 
 Install [Git for Windows](http://git-scm.com/download/win "http://git-scm.com/download/win")
 - Gitbash is the command-line app that you will use to interact with your local Git repository
-- Git GUI is an app used to create and clone Git repositories.
-* Note: Accepting all default settings during installation is fine
+* Note: Accepting all default settings during installation is fine, but if you want to use Git in Powershell and from the cmd prompt, select the **Use Git from the Windows Command Prompt** option shown below:
+![](media\git_install.png)
 
 Optional:
-To use GIT at a Powershell prompt, [download msysgit](http://msysgit.github.io/ "http://msysgit.github.io/") and to use Git from Visual Studio, install the [Visual Studio extensions](https://visualstudiogallery.msdn.microsoft.com/8f594baa-e44e-4114-8381-e175ace0fe97 "https://visualstudiogallery.msdn.microsoft.com/8f594baa-e44e-4114-8381-e175ace0fe97")
+To use GIT at a Powershell prompt, [download msysgit](http://msysgit.github.io/ "http://msysgit.github.io/") 
+To use Git from Visual Studio, install the [Visual Studio extensions](https://visualstudiogallery.msdn.microsoft.com/8f594baa-e44e-4114-8381-e175ace0fe97 "https://visualstudiogallery.msdn.microsoft.com/8f594baa-e44e-4114-8381-e175ace0fe97")
+
+### Create and access token
+
+If you are having access issues in Git using your corp credentials, you may need to create an access token.
+1. Go here: [VSOnline](https://mseng.visualstudio.com/DefaultCollection/Documentation/_git/Hype
+2. Click on your name in upper right-hand area of browser 
+3. Click My Profile >  Security tab  > Personal Access tokens > Add 
+4. In Description, name it Git and then in Expires In change it to 1 year. 
+5. Leave the other defaults and then click Create Token.
+**Before you do anything else, make sure you copy and paste the token someplace safe!!!!**
+A .txt file on your OneDrive for Business is a good place.
+When you are asked  for username in GitBash, use your full e-mail address (alias@microsoft.com) and Git access token as your password. You should only ave to use the access token once, after that your corporate password should work.
+
 
 ### Clone the repository locally 
-Go to the [repository in VS Online](https://mseng.visualstudio.com/DefaultCollection/Documentation/_git/HyperV#path=%2F&version=GBrelease&_a=contents "https://mseng.visualstudio.com/DefaultCollection/Documentation/_git/HyperV#path=%2F&version=GBrelease&_a=contents")
+1. Go to the [repository in VS Online](https://mseng.visualstudio.com/DefaultCollection/Documentation/_git/HyperV)
 
-On the right part of the page, click **Clone** and copy the address for cloning into your clipboard. Is should be: `https://mseng.visualstudio.com/DefaultCollection/Documentation/_git/HyperV`
+2.On the right part of the page, click **Clone** and copy the address for cloning into your clipboard. Is should be: 
+```
+https://mseng.visualstudio.com/DefaultCollection/Documentation/_git/HyperV 
+```
 
-You may encounter a note about alternate credentials:
+3. In GitBash, change to the folder where you want the local copy of the repository:
+	```cd <path_to_my_repo>```
+4. To clone the repo, type:
+```git clone https://mseng.visualstudio.com/DefaultCollection/Documentation/_git/HyperV```
+Git will ask for your username (alias@microsoft.com) and password. If you are having issues, use the access token you created as the password instead of your corporate password.
 
-![](media\clone_firstrun.png)
+5. Get all of the indexes locally, type:
+```git fetch --all```
 
-You can set up alternate credentials to use a git client (if you have not already done so). Click **Profile** to open your profile dialog. Under **Credentials**, click **Enable alternate credentials** and set up an alternate username/password.
 
-![](media\enable_alt_cred.png)
-
-To clone the repo, open GitBash and enter:
-
-	cd {path where you want the local copy of the repository} 
-	//example: cd c:\GIT
-	
-	git clone https://mseng.visualstudio.com/DefaultCollection/Documentation/_git/HyperV
-
-	cd hyperv
 ### Cache your credentials
 
-```git config --global credential.helper wincred```
-
-Or use the handy tool from here: http://gitcredentialstore.codeplex.com/
+Don't want to enter your username and password over-and-over? Use the handy tool from here: http://gitcredentialstore.codeplex.com/
 
 ### Branches 
 Run
 
 	git branch
 
-to see what branch you're currently in.  If it list the working branch (like Ignite or containerbits), you're great.  Continue to creating and adding your file.  If not, run
+to see what branch you're currently in.  If it list the rigt branch (like win10 or containerbits), you're great.  Continue to creating and adding your file.  If not, run
 
 	git checkout <branch>
 
-In our documentation system, release is the branch that publishes to stage, master publishes to live. The working branches are where you should be working and they are usually named after the release. **Never work directly in master.**
+**Never work directly in master.**
 
-If you're feeling adventurous, read more about git branching here (link eventually about having a topic branch).
 
-## Create your new file ##
-You want to create a file named my_new_content.md in the reference section.  
+## Install a writing tool
 
-First you'll want to make a new markdown file.  There are a number of ways to do this and a number of tools you can use.  I've been using the CodeWriter metro app or Notepad but [MarkdownPad](http://www.markdownpad.com/ "http://www.markdownpad.com/") or [Notepad++](http://notepad-plus-plus.org/ "http://notepad-plus-plus.org/") are also great.
+VS Code (recommended)- https://www.visualstudio.com/en-us/products/code-vs.aspx  
+You can use any text editor, but VSCode is really nice!
 
-Open your editor of choice and make a new file.  Name it my_new_content.md and save it to /windowscontainers/reference
+### Using VSCode
 
-Add your new file to the TOC.
+To preview a file, click CTRL+Shift+V or click the **Split Editor** button and then in the second pane, click **Open Preview**.
 
-For this example, open /virtualization/TOC.csv
+Auto save and revert - you can setup  VS Code to auto save. Use the File > Revert File option if you need to revert.
 
-and add the line:
+To turn on word wrap:
+1. Go to File > Preferences > User Settings 
+2. Find the setting “editor.wrappingcolumn”: 300, 
+3. Copy and paste that setting into the curly braces in the .json pane and change it to:   `“editor.wrappingColumn”: 0,`
+4. Save and close the settings file.
 
-	**,my_new_content.md
 
-To fully understand these seemingly arbitrary steps, read folder and file structure.  Otherwise, skip that section.
+
+## Create a new file ##
+
+1. Create a new file and name it something readable with .md as extension
+2. At the top of the file, before any whitespace, you need 2 things:  
+	```ms.ContentId: <GUID>```
+	(use new-guid cmdlet in Powershell or Tools -> Create GUID in VS)
+	```title: <title of the file>```
+3. When you are done, add it to Git:
+	```Git add myfile.md```
+	```Git commit –m “my new file”```
+	```Git push```
+4. Add the file to te TOC by adding a line to the file `<your repo path>\virtualization\toc.csv`. For example, this is the entry for the When to use containers topic in the About section of the Windows Containers content:
+	```****,windowscontainers/about/when_containers.md```
+5. When you are done, add the updated toc.csv back to git too (see above – add, commit, push!)
+
+
+
 
 
 ### Folder/File structure ###
@@ -110,7 +141,7 @@ The documentation website's structure matches the git folder structure.  Looking
 				Powershell
 				REST```
 
-There is also a folder in the repo for the Client Hyper-V documentation for Windows 10 which will be hosted on the same site.
+There is also a folder in the repo win10 for the Client Hyper-V documentation for Windows 10 which will be hosted on the same site.
 
 In the virtualization folder, there will be some site level files:
 
@@ -136,26 +167,6 @@ oa-toc-container:section_name specifies that the landing page should automatical
 Asterisk (*) indicate the breadcrumb depth.
 
 
-
-### Add Metadata ###
-In order to convert your markdown files and internal documentation into HTML5, the each file must have some basic metadata.  There are many optional pieces of metadata but the two that are required are:
-
-	ms.ContentId: <GUID>
-	title: <Title>
-
-To generate GUIDs, use the following PowerShell snippit:
-
-	[guid]::NewGuid().ToString() | clip.exe
-
-This command will generate a new GUID and put it on your clipboard so you can paste it directly into your file.
-
-You can also create a GUID using Visual Studio, just click **Tools** > **Create GUID**. Option 4 gives you the GUID in the most bare format, but you still have to remove the brackets after you paste the GUID into the header.
-
-Optional metadata includes:
-
-	description: {discription of the page}
-
-
 ## Write content in MarkDown ##
 
 There are lots of resources for how to write in markdown, here are a few favorites:
@@ -164,23 +175,28 @@ There are lots of resources for how to write in markdown, here are a few favorit
 
 - [http://markdowntutorial.com/lesson/1/](http://markdowntutorial.com/lesson/1/)
 
-## Getting ready to publish content - staging ##
+## Staging on sandbox
 
-The working branch needs to be merged with the release branch in order to be built for staging. Type the following:
+
+## Staging on int before going live
+
+The working branch needs to be merged with the release branch in order to be built for *int* staging (https://int.msdn.microsoft.com/en-us/virtualization/windowscontainers/about/about_overview). 
+
+To launch a staging build, type the following:
 	```git checkout release
 	git merge <branch>
 	git push```
 
 
 
-## Pushing content live ##
+## Pushing content live
 
-Talk to Cynthia Nottingham (cynthn) or Sarah Cooley (scooley) to get your changes pushed live.
+Talk to Cynthia Nottingham (cynthn), Neil Peterson (nepeters) or Sarah Cooley (scooley) to get your changes pushed live.
  
 
-## Pandoc for converting .doc files to markdown ##
+## Pandoc for converting .doc files to markdown 
 
-Download Pandoc here: [https://github.com/jgm/pandoc/releases](https://github.com/jgm/pandoc/releases "https://github.com/jgm/pandoc/releases")
+Download Pandoc here: [https://github.com/jgm/pandoc/releases](https://github.com/jgm/pandoc/releases)
 
 To convert a .docx file called **containers.docx** to a .md file with the same name, type: 
 
@@ -193,39 +209,7 @@ The switches are:
     -o = output
 
 
-## Local Preview
-The Open Authoring team have build a local preview so you can see how your content will look before committing your changes.
 
-1. Install the tool from here: [http://co1msdnwbh01/LocalPreview/OA-LocalPreview.application](http://co1msdnwbh01/LocalPreview/OA-LocalPreview.application) 
-2. Click on the ![](media\local_preview_icon.png) icon in your system tray and click Configuration. 
-3. Click the **+** button to add a new configuration and then enter the following values:
-
-	**Friendly name**: Windows Containers (or whatever friendly name you prefer)
-	
-	**Domain URL**: https://int.msdn.microsoft.com
-	
-	**Repository folder**: the path to the root of your repo. For example: `C\HyperV`
-
-3. Click **Save**.
-
-4. To see a local preview of the file **about_overview.md** in your browsers, type: [http://localhost:7777/windowscontainers/about/about_overview.md](http://localhost:7777/windowscontainers/about/about_overview.md) in the address bar.
-
-# Using Markdown Pad 2 #
-
-If you use Markdown Pad 2 for authoring, you should change the markdown style to GitHub.
-
-1. In Markdown Pad 2 got to **Tools** > **Options**
-2. Select the **Markdown** tab.
-3. In the drop-down menu for **Markdown Processor**, choose **GitHub Flavored Markdown**.
-4. Click Save and Close. 
-
-**Note**:
-If you get a "You are almost out of error like this one: 
-
-![](media\out_of_api.png)
-
-You need to enter in your GitHub account credentials instead of using **Anonymous mode**. For Microsoft folks, this means using your GitHub account name and because we use 2-factor authentication, you need to enter in a token instead of your GitHub password. Follow the instructions here: [http://markdownpad.com/faq.html#gfm-twofactor](http://markdownpad.com/faq.html#gfm-twofactor)
-
-## References ##
+## References 
 A good example of a fully fleshed-out OA site: [Office365](https://msdn.microsoft.com/en-us/office/office365/api/api-catalog "https://msdn.microsoft.com/en-us/office/office365/api/api-catalog") here's a [link to their repo](https://mseng.visualstudio.com/DefaultCollection/Documentation/_git/O365API#path=%2Foffice%2Foffice365%2FAPI&version=GBmaster&_a=contents "https://mseng.visualstudio.com/DefaultCollection/Documentation/_git/O365API#path=%2Foffice%2Foffice365%2FAPI&version=GBmaster&_a=contents")
 
