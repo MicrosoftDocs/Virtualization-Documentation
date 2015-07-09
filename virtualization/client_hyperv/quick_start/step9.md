@@ -1,7 +1,7 @@
 ms.ContentId: C481ACA0-C4AD-4AC1-B1B5-97AA635D0809
 title: Step 10: Experiment with Windows PowerShell
 
-# Step 10: Experiment with Windows PowerShell
+# Step 9: Experiment with Windows PowerShell
 
 Now that we have walked through the basics of deploying Hyper-V, creating virtual machines and managing these virtual machines, let’s explore how we can automate many of these activities with PowerShell.
 
