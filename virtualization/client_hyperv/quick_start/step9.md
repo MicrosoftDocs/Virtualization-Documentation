@@ -22,7 +22,7 @@ get-command –module hyper-v | out-gridview
   ```powershell
 get-help get-vm
 ```
-Which will produce information about how to structure the command, required and optional parameters and aliases:
+ This shows you how to structure the command, what the required and optional parameters are and the aliases you can use.
 
 ![](media\get_help.png)
 
