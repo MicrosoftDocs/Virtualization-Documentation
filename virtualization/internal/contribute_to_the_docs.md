@@ -102,14 +102,12 @@ To turn on word wrap:
 3. Copy and paste that setting into the curly braces in the .json pane and change it to:   `“editor.wrappingColumn”: 0,`
 4. Save and close the settings file.
 
-
-
 ## Create a new file ##
 
 1. Create a new file and name it something readable with .md as extension.
 2. At the top of the file, before any whitespace, you need 2 things:
 	```ms.ContentId: <GUID>```
-	(use the new-guid cmdlet in Powershell or Tools >> Create GUID in VS)
+     (use the new-guid cmdlet in Powershell or Tools >> Create GUID in VS)
 	```title: <title of the file>```
 3. When you are done, add it to Git:
 	```Git add myfile.md```
