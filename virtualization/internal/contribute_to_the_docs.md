@@ -41,7 +41,7 @@ To use Git from Visual Studio, install the [Visual Studio extensions](https://vi
 If you are having access issues in Git using your corp credentials, you may need to create an access token.
 1. Go here: [VSOnline](https://mseng.visualstudio.com/DefaultCollection/Documentation/_git/HyperV)
 2. Click on your name in upper right-hand area of browser 
-3. Click My Profile >  Security tab  > Personal Access tokens > Add 
+3. Click My Profile >>  Security tab  >> Personal Access tokens >> Add 
 4. In Description, name it Git and then in Expires In change it to 1 year. 
 5. Leave the other defaults and then click Create Token.
 **Before you do anything else, make sure you copy and paste the token someplace safe!!!!**
@@ -82,7 +82,6 @@ to see what branch you're currently in.  If it list the rigt branch (like win10 
 
 **Never work directly in master.**
 
-
 ## Install a writing tool
 
 We recommend VSCode - [https://www.visualstudio.com/en-us/products/code-vs.aspx](https://www.visualstudio.com/en-us/products/code-vs.aspx)  
@@ -95,7 +94,7 @@ To preview a file, click CTRL+Shift+V or click the **Split Editor** button and t
 Auto save and revert - you can setup  VS Code to auto save. Use the File > Revert File option if you need to revert.
 
 To turn on word wrap:
-1. Go to File > Preferences > User Settings 
+1. Go to File >> Preferences >> User Settings 
 2. Find the setting “editor.wrappingcolumn”: 300, 
 3. Copy and paste that setting into the curly braces in the .json pane and change it to:   `“editor.wrappingColumn”: 0,`
 4. Save and close the settings file.
@@ -107,7 +106,7 @@ To turn on word wrap:
 1. Create a new file and name it something readable with .md as extension
 2. At the top of the file, before any whitespace, you need 2 things:  
 	```ms.ContentId: <GUID>```
-	(use new-guid cmdlet in Powershell or Tools -> Create GUID in VS)
+	(use new-guid cmdlet in Powershell or Tools >> Create GUID in VS)
 	```title: <title of the file>```
 3. When you are done, add it to Git:
 	```Git add myfile.md```
