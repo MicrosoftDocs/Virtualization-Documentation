@@ -7,7 +7,7 @@ Now that you have walked through the basics of deploying Hyper-V, creating virtu
 
 ### Return a list of Hyper-V commands
 Before you work with Hyper-V virtual machines, let’s explore the Hyper-V module:
-1.	Click on the Windows start button, type **PowerShell** and click **enter** to open PowerShell.
+1.	Click on the Windows start button, type **PowerShell** to open PowerShell.
 2.	Type the following command to display a searchable list of PowerShell commands available with the Hyper-V PowerShell Module.
 
  ```powershell
@@ -77,7 +77,7 @@ For example, here is a checkpoint with the name DEMOCP:
 
 ### Delete a Virtual Machine 
 
-To delete a virtual machine, use the `remove-vm` command. 
+To delete a virtual machine, use the **remove-vm** command. 
 ```powershell
 remove-vm -Name <virtual machien name>
 ```
@@ -85,9 +85,9 @@ A virtual machine must be powered off before it can be deleted.
 
 ### Create a new virtual machine
 
-Finally we will take a look at VM creation with PowerShell. This example will contain more than one line of code and may be more manageable if working from the PowerShell Integrated Scripting Environment (ISE).
+The following example shows how to create a new virtual machine in the PowerShell Integrated Scripting Environment (ISE).
 
-To open the PowerShell ISE click on start, type `PowerShell ISE` and then press the `enter` key.
+1. To open the PowerShell ISE click on start, type `PowerShell ISE`.
 
 The following code consists of:
 
