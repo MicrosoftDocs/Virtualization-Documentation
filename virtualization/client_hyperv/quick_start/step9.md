@@ -55,7 +55,7 @@ get-vm | where {$_.State –eq ‘Off’}
 Start-vm –Name <virtual machine name>
 ```
 
-2. To power on all currently powered off virtual machines, gather a list of those machines and pipe the list to the 'start-vm' command:
+2. To power on all currently powered off virtual machines, get a list of those machines and pipe the list to the 'start-vm' command:
   ```powershell
 get-vm | where {$_.State –eq ‘Off’} | start-vm
 ```
