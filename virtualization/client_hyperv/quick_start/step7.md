@@ -11,7 +11,7 @@ Exporting a virtual machine exports all of the pieces of the VM, including the c
 
 1. In Hyper-V Manager, right-click the virtual machine and select **Export**.
 
-  ![](media/select_export.png)
+  ![](media/select_export1.png)
 2. Click **Browse** in the dialog box and navigate to  C:\Users\Public\Export and then click **Select Folder**. 
 
 3. In the **Export Virtual Machine** dialog, make sure the path looks okay and then click **Export**.
