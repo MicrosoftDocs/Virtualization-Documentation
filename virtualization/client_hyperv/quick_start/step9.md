@@ -17,7 +17,7 @@ get-command –module hyper-v | out-gridview
 
   ![](media\command_grid.png)
 
-3. To learn how to use a PowerShell cmdlet like *get-vm*, run the following command:
+3. To learn how to use a PowerShell cmdlet like **get-vm**, run the following command:
 
   ```powershell
 get-help get-vm
