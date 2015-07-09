@@ -87,15 +87,14 @@ A virtual machine must be powered off before it can be deleted. <!--stopped or t
 
 The following example shows how to create a new virtual machine in the PowerShell Integrated Scripting Environment (ISE).
 
-1. To open the PowerShell ISE click on start, type `PowerShell ISE`.
+1. To open the PowerShell ISE click on start, type **PowerShell ISE**.
+2. Run the following code to create a virtual machine where:
 
-The following code consists of:
+  - Lines 1 – 9: Defines the VM parameters storing each in a PowerShell variable.
+  - Line 11: Creates the new VM using all defined parameters.
+  - Line 12: Adds a virtual CD Rom drive to the VM and mounts installation media in this drive.
 
-- Lines 1 – 9: Defines the VM parameters storing each in a PowerShell variable.
-- Line 11: Creates the new VM using all defined parameters.
-- Line 12: Adds a virtual CD Rom drive to the VM and mounts installation media in this drive.
-
-```powershell
+  ```powershell
 $Name = "POSHVM"
 $MemoryStartupBytes = 2147483648
 $Generation = 2
@@ -109,9 +108,9 @@ $DVDPath = "C:\Media\media.iso"
 New-VM -Name $Name -MemoryStartupBytes $MemoryStartupBytes -Generation $Generation -NewVHDPath $NewVHDPath -NewVHDSizeBytes $NewVHDSizeBytes -BootDevice $BootDevice -SwitchName $SwitchName -Path $Path 
 Add-VMDvdDrive -VMName $Name -Path $DVDPath
 ```
-A more simple way to write this script would be to use a concept referred to as splatting. Splatting groups parameters and passes these to a command as a single unit. Splatting makes our scripts more readable, easier to modify and re-use.
+3. Use the splatting to create a virtual machine. Splatting groups parameters and passes these to a command as a single unit. Splatting makes scripts more readable, easier to change and re-use.
 
-The same script re-written using the splatting method would look like this:   
+The same script used in step 2 is re-written using the splatting method and looks like:   
 
 ```powershell
 $VM = @{
@@ -135,7 +134,7 @@ Add-VMDvdDrive @DVD
 
 ### Wrap up and References
 
-This document has shown some simple steps for exploring the Hyper-V PowerShell module as well as some sample use cases. For more information on the Hyper-V PowerShell module see the Reference Guide found here <!—Insert Reference Guide --> .  
+This document has shown some simple steps to explorer the Hyper-V PowerShell module as well as some sample scenarios. For more information on the Hyper-V PowerShell module, see the Reference Guide found here <!—Insert Reference Guide --> .  
   
 ## Next step: ##
 [Step 10: Backup your virtual machines](step10.md)
