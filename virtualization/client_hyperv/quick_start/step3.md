@@ -9,7 +9,7 @@ For this example, we are going to create an External switch, which will let virt
 
 1. In Hyper-V manager, click **Action** > **Virtual Switch Manager**.
 
-  ![](media/virtual_switch_manager.png)
+  ![](media/virtual_switch_manager1.png)
 2. In the left pane, select **New virtual network switch** and then select **External** and click **Create Virtual Switch**.
 
   ![](media/new_switch.png)
