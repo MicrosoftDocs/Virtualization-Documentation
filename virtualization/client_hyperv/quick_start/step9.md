@@ -24,7 +24,7 @@ get-help get-vm
 ```
  This shows you how to structure the command, what the required and optional parameters are and the aliases you can use.
 
-![](media\get_help.png)
+ ![](media\get_help.png)
 
 
 ### Return a list of virtual machines
