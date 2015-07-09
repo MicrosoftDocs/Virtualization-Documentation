@@ -10,10 +10,12 @@ For this example, we are going to create an External switch, which will let virt
 1. In Hyper-V manager, click **Virtual Switch Manager**.
 
   ![](media/virtual_switch_manager1.png)
-2. In the left pane, select **New virtual network switch**.
-3. Select **External** and **Create Virtual Switch**.
+2. Select **New virtual network switch**.
 
   ![](media/new_switch.png)
+3. Select **External** and **Create Virtual Switch**.
+
+  ![](media/new_switch_createbutton.png)
 4. Under **Name**, type **External**. 
 5. Under **External network**, select the correct NIC.
 6. Select **Allow management operating system to share this network adapter** and click **OK**. 

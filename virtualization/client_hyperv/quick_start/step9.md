@@ -3,49 +3,48 @@ title: Step 10: Experiment with Windows PowerShell
 
 # Step 9: Experiment with Windows PowerShell
 
-Now that we have walked through the basics of deploying Hyper-V, creating virtual machines and managing these virtual machines, let’s explore how we can automate many of these activities with PowerShell.
+Now that you have walked through the basics of deploying Hyper-V, creating virtual machines and managing these virtual machines, let’s explore how you can automate many of these activities with PowerShell.
 
-### Return a list of Hyper-V commands:
-Before working with Hyper-V virtual machines let’s explore the Hyper-V module:
-1.	Click on the start button, type **PowerShell** and click **enter**. This will open up the PowerShell scripting environment.
-2.	Type the following command. This will produce a searchable list of PowerShell commands available with the Hyper-V PowerShell Module.
+### Return a list of Hyper-V commands
+Before you work with Hyper-V virtual machines, let’s explore the Hyper-V module:
+1.	Click on the Windows start button, type **PowerShell** and click **enter** to open PowerShell.
+2.	Type the following command to display a searchable list of PowerShell commands available with the Hyper-V PowerShell Module.
 
-```powershell
+ ```powershell
 get-command –module hyper-v | out-gridview
 ```
-Grid view of available Hyper-V commands:
+  You get something like this: <!--I'd crop this screenshot to make it shorter and get rid of the whitespace on the left. You only need enough to get the point across. They don't need to see everything..-->
 
-![](media\command_grid.png)
+  ![](media\command_grid.png)
 
-PowerShell includes a `get-help` system that allows us to quickly discover how to use PowerShell commands. For instance to see more information on how to use the `get-vm` command, enter the following:
+3. To learn how to use a PowerShell cmdlet like **get-vm**, run the following command:
 
-```powershell
+  ```powershell
 get-help get-vm
 ```
-Which will produce information about how to structure the command, required and optional parameters and aliases:
+ This shows you how to structure the command, what the required and optional parameters are and the aliases that you can use.
 
-![](media\get_help.png)
+ ![](media\get_help.png)
 
 
 ### Return a list of virtual machines
 
-Now that we have examined the commands available for Hyper-V, let’s use the 'get-vm' command to return a list of virtual machines:
-
-```powershell
+Use the **get-vm** command to return a list of virtual machines.
+1. In PowerShell, run the following command:
+ 
+ ```powershell
 get-vm
 ```
-Which will produce output similar to this:
+ This displays something like this:
 
-![](media\get_vm.png)
+ ![](media\get_vm.png)
 
-
-To return a list of only powered on virtual machines we can place a filter on the command like this:
-``` 
+2. To return a list of only powered on virtual machines, add a where clause to filter the list like this: <!--I'd suggest adding more detail here like "...where $_.State is x and -eq is y. That way people can understand and extrapolate the command for other uses. -->
+  ``` 
 get-vm | where {$_.State –eq ‘Running’}
 ```
-
-Or to list all virtual machines in a powered off state:
-``` 
+3.  To list all virtual machines in a powered off state, run this command:
+  ``` 
 get-vm | where {$_.State –eq ‘Off’}
 ```
 
@@ -73,7 +72,8 @@ One option for creating a checkpoint is to load an instance of a virtual machine
 get-vm -Name <VM Name> | checkpoint-vm -snapshotname <name for snapshot>
 ```
 Which will result in a checkpoint with the name specified in the command:
-![](media\POSH_CP2.png) 
+ 
+ ![](media\POSH_CP2.png) 
 
 ### Delete a Virtual Machine 
 
