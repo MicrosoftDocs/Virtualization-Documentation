@@ -18,9 +18,9 @@ For more information about checkpoints, see [Checkpoints Overview](..\about\chec
 ## Change the checkpoint type ##
 We will start by trying out the older style of checkpoints, **standard checkpoints**. Since production checkpoints are the default, we need to go into the settings for the VM and change the checkpoint type.
 
-1.Right-click on **Windows Walkthrough VM** and select **Settings**.
-2.In the **Management** section, select **Checkpoints**.
-3.Select **Standard checkpoints**. The dialog should look like this:
+1. Right-click on **Windows Walkthrough VM** and select **Settings**.
+2. In the **Management** section, select **Checkpoints**.
+3. Select **Standard checkpoints**. The dialog should look like this:
 
   ![](media/standard.png)
 4.	Click **OK** to close the dialog box.
