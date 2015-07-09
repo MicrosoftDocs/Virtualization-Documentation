@@ -26,7 +26,6 @@ Ask Catherine Watson or Cynthia Nottingham about how to contribute to the Window
 
 ## Set up Git 
 
-### Install Git 
 Install [Git for Windows](http://git-scm.com/download/win "http://git-scm.com/download/win")
 - Gitbash is the command-line app that you will use to interact with your local Git repository
 * Note: Accepting all default settings during installation is fine, but if you want to use Git in Powershell and from the cmd prompt, select the **Use Git from the Windows Command Prompt** option shown below:
@@ -36,7 +35,7 @@ Optional:
 To use GIT at a Powershell prompt, [download msysgit](http://msysgit.github.io/ "http://msysgit.github.io/") 
 To use Git from Visual Studio, install the [Visual Studio extensions](https://visualstudiogallery.msdn.microsoft.com/8f594baa-e44e-4114-8381-e175ace0fe97)
 
-### Create and access token
+### Create an access token
 
 If you are having access issues in Git using your corp credentials, you may need to create an access token.
 1. Go here: [VSOnline](https://mseng.visualstudio.com/DefaultCollection/Documentation/_git/HyperV)
@@ -109,13 +108,14 @@ To turn on word wrap:
 	```ms.ContentId: <GUID>```
      (use the new-guid cmdlet in Powershell or Tools >> Create GUID in VS)
 	```title: <title of the file>```
-3. When you are done, add it to Git:
+4. Make sure you leave a couple of lines of whitespace after the metadata before your first heading.
+5. When you are done, add it to Git:
 	```Git add myfile.md```
 	```Git commit –m “my new file”```
 	```Git push```
-4. Add the file to te TOC by adding a line to the file `<your repo path>\virtualization\toc.csv`. For example, this is the entry for the When to use containers topic in the About section of the Windows Containers content:
+6. Add the file to te TOC by adding a line to the file `<your repo path>\virtualization\toc.csv`. For example, this is the entry for the When to use containers topic in the About section of the Windows Containers content:
 	```****,windowscontainers/about/when_containers.md```
-5. When you are done, add the updated toc.csv back to git too (see above – add, commit, push!)
+7. When you are done, add the updated toc.csv back to git too (see above – add, commit, push!)
 
 ### Folder/File structure ###
 
