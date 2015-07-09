@@ -85,7 +85,7 @@ to see what branch you're currently in.  If it list the rigt branch (like win10 
 
 ## Install a writing tool
 
-VSCode (recommended)- https://www.visualstudio.com/en-us/products/code-vs.aspx  
+We recommend VSCode - [https://www.visualstudio.com/en-us/products/code-vs.aspx](https://www.visualstudio.com/en-us/products/code-vs.aspx)  
 You can use any text editor, but VSCode is really nice!
 
 ### Using VSCode
