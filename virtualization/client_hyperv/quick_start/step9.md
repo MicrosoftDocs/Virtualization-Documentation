@@ -79,9 +79,9 @@ For example, here is a checkpoint with the name DEMOCP:
 
 To delete a virtual machine, use the **remove-vm** command. 
 ```powershell
-remove-vm -Name <virtual machien name>
+remove-vm -Name <virtual machine name>
 ```
-A virtual machine must be powered off before it can be deleted.
+A virtual machine must be powered off before it can be deleted. <!--stopped or turned off?-->
 
 ### Create a new virtual machine
 
