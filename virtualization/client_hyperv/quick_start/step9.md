@@ -50,18 +50,18 @@ get-vm | where {$_.State –eq ‘Off’}
 
 ### Power on or off virtual machines
 
-Let's now perform an action against a virtual machine. To power on a particular virtual machine we can run the following, specifying the name of the virtual machine:
-```powershell
+1. To power on a particular virtual machine, run the following command with name of the virtual machine:
+ ```powershell
 Start-vm –Name <virtual machine name>
 ```
 
-Or to power on all currently powered off virtual machines, we can gather a list of thoes machines and pipe this to the 'start-vm' command:
-```powershell
+2. To power on all currently powered off virtual machines, gather a list of those machines and pipe the list to the 'start-vm' command:
+  ```powershell
 get-vm | where {$_.State –eq ‘Off’} | start-vm
 ```
 
-Similarly, to power off all running virtual machines the command would be:
-```powershell
+3. To power off all running virtual machines, run this:
+  ```powershell
 get-vm | where {$_.State –eq ‘Running’} | stop-vm
 ```
 
