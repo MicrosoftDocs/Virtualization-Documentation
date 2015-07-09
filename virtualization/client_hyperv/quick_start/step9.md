@@ -71,7 +71,7 @@ One option for creating a checkpoint is to load an instance of a virtual machine
 ```powershell
 get-vm -Name <VM Name> | checkpoint-vm -snapshotname <name for snapshot>
 ```
-Which will result in a checkpoint with the name specified in the command:
+For example, here is a checkpoint with the name :
  
  ![](media\POSH_CP2.png) 
 
