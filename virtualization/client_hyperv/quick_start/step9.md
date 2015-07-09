@@ -43,7 +43,7 @@ get-vm
   ``` 
 get-vm | where {$_.State –eq ‘Running’}
 ```
-3.  Or to list all virtual machines in a powered off state:
+3.  To list all virtual machines in a powered off state, run this command:
   ``` 
 get-vm | where {$_.State –eq ‘Off’}
 ```
