@@ -8,12 +8,12 @@ Hyper-V Manager is Hyper-V's in-box management tool.  It provides a very minimal
 This document is a knitty-gritty reference on the various configuration details required for managing remote Hyper-V hosts with Hyper-V Manager.
 
 To connect to a Hyper-V host with Hyper-V Manager, right click on the Hyper-V Manager icon in the left hand navigation bar (circled in red below) and select "Connect to Server..."
-
+<!--Screen shot needs to be replaced. For this bit, just show the Connect to Server menu option...not everything. It's confusing. -->
 ![](media/HyperVManager-ConnectToHost.png)
 
 ## Manage localhost ##
-To add localhost to Hyper-V Manager as a Hyper-V host, select the "local computer" radio button (circled in black) from the "select Computer" dialogue box.
-
+To add localhost to Hyper-V Manager as a Hyper-V host, select the "local computer" radio button from the "select Computer" dialogue box.
+<!--Add screen shot w/ just that dialog with local computer radio button selected.-->
 If a connection can't be established, try:
 *  making sure the Hyper-V server role is enabled.  See `[link to quickstart guide`].
 *  confirming your user account is part of the Hyper-V Administrator group.
