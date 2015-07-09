@@ -34,12 +34,12 @@ Install [Git for Windows](http://git-scm.com/download/win "http://git-scm.com/do
 
 Optional:
 To use GIT at a Powershell prompt, [download msysgit](http://msysgit.github.io/ "http://msysgit.github.io/") 
-To use Git from Visual Studio, install the [Visual Studio extensions](https://visualstudiogallery.msdn.microsoft.com/8f594baa-e44e-4114-8381-e175ace0fe97 "https://visualstudiogallery.msdn.microsoft.com/8f594baa-e44e-4114-8381-e175ace0fe97")
+To use Git from Visual Studio, install the [Visual Studio extensions](https://visualstudiogallery.msdn.microsoft.com/8f594baa-e44e-4114-8381-e175ace0fe97)
 
 ### Create and access token
 
 If you are having access issues in Git using your corp credentials, you may need to create an access token.
-1. Go here: [VSOnline](https://mseng.visualstudio.com/DefaultCollection/Documentation/_git/Hype
+1. Go here: [VSOnline](https://mseng.visualstudio.com/DefaultCollection/Documentation/_git/HyperV)
 2. Click on your name in upper right-hand area of browser 
 3. Click My Profile >  Security tab  > Personal Access tokens > Add 
 4. In Description, name it Git and then in Expires In change it to 1 year. 
@@ -74,18 +74,18 @@ Don't want to enter your username and password over-and-over? Use the handy tool
 ### Branches 
 Run
 
-	git branch
+	```git branch```
 
 to see what branch you're currently in.  If it list the rigt branch (like win10 or containerbits), you're great.  Continue to creating and adding your file.  If not, run
 
-	git checkout <branch>
+	```git checkout <branch>```
 
 **Never work directly in master.**
 
 
 ## Install a writing tool
 
-VS Code (recommended)- https://www.visualstudio.com/en-us/products/code-vs.aspx  
+VSCode (recommended)- https://www.visualstudio.com/en-us/products/code-vs.aspx  
 You can use any text editor, but VSCode is really nice!
 
 ### Using VSCode
@@ -116,9 +116,6 @@ To turn on word wrap:
 4. Add the file to te TOC by adding a line to the file `<your repo path>\virtualization\toc.csv`. For example, this is the entry for the When to use containers topic in the About section of the Windows Containers content:
 	```****,windowscontainers/about/when_containers.md```
 5. When you are done, add the updated toc.csv back to git too (see above – add, commit, push!)
-
-
-
 
 
 ### Folder/File structure ###
