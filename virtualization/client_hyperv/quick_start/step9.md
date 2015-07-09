@@ -13,7 +13,7 @@ Before we work with Hyper-V virtual machines, let’s explore the Hyper-V module
 ```powershell
 get-command –module hyper-v | out-gridview
 ```
-Grid view of available Hyper-V commands:
+Grid view of available Hyper-V commands: <!--I'd crop this screenshot to make it shorter.-->
 
 ![](media\command_grid.png)
 
