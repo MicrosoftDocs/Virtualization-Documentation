@@ -106,16 +106,16 @@ To turn on word wrap:
 1. Create a new file and name it something readable with .md as extension.
 2. At the top of the file, before any whitespace, you need 2 things:
 	```ms.ContentId: <GUID>```
-     (use the new-guid cmdlet in Powershell or Tools >> Create GUID in VS)
+	(use the new-guid cmdlet in Powershell or Tools >> Create GUID in VS)
 	```title: <title of the file>```
-4. Make sure you leave a couple of lines of whitespace after the metadata before your first heading.
-5. When you are done, add it to Git:
+3. Make sure you leave a couple of lines of whitespace after the metadata before your first heading.
+4. When you are done, add it to Git:
 	```Git add myfile.md```
 	```Git commit –m “my new file”```
 	```Git push```
-6. Add the file to te TOC by adding a line to the file `<your repo path>\virtualization\toc.csv`. For example, this is the entry for the When to use containers topic in the About section of the Windows Containers content:
+5. Add the file to te TOC by adding a line to the file `<your repo path>\virtualization\toc.csv`. For example, this is the entry for the When to use containers topic in the About section of the Windows Containers content:
 	```****,windowscontainers/about/when_containers.md```
-7. When you are done, add the updated toc.csv back to git too (see above – add, commit, push!)
+6. When you are done, add the updated toc.csv back to git too (see above – add, commit, push!)
 
 ### Folder/File structure ###
 
