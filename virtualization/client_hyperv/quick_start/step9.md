@@ -73,6 +73,7 @@ One option for creating a checkpoint is to load an instance of a virtual machine
 get-vm -Name <VM Name> | checkpoint-vm -snapshotname <name for snapshot>
 ```
 Which will result in a checkpoint with the name specified in the command:
+ 
  ![](media\POSH_CP2.png) 
 
 ### Delete a Virtual Machine 
