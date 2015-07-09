@@ -8,12 +8,14 @@ Now that we have walked through the basics of deploying Hyper-V, creating virtua
 <br />
 ### Return a list of Hyper-V commands:
 Before working with Hyper-V virtual machines let’s explore the Hyper-V module:
-1.	Click on the start button and type **PowerShell** and click **enter**. This will open up the PowerShell scripting environment.
+1.	Click on the start button, type **PowerShell** and click **enter**. This will open up the PowerShell scripting environment.
 2.	Type the following command. This will produce a searchable list of PowerShell commands available with the Hyper-V PowerShell Module.
 
 ```
 get-command –module hyper-v | out-gridview
 ```
+Grid view of available Hyper-V commands:
+
 ![](media\command_grid.png)
 
 PowerShell includes a **get-help** system that allows us to quickly discover how to use PowerShell commands. For instance to see more information on how to use the **get-vm** command, enter the following:
@@ -95,12 +97,12 @@ remove-vm -Name <virtual machien name>
 
 Finally we will take a look at VM creation with PowerShell. This example will contain more than one line of code and may be more manageable if working from the PowerShell Integrated Scripting Environment (ISE).
 
-To open the PowerShell ISE click on start and type **PowerShell ISE** and then press the enter key.
+To open the PowerShell ISE click on start, type **PowerShell ISE** and then press the enter key.
 
 The following code consists of:
 
-- Lines 1 – 9: defines the parameters that will be set when the VM is creating, storing each in a variable.
-- Line 11: creates the new VM using all defined parameters.
+- Lines 1 – 9: Defines the VM parameters storing each in a PowerShell variable.
+- Line 11: Creates the new VM using all defined parameters.
 - Line 12: Adds a virtual CD Rom drive to the VM and mounts installation media in this drive.
 
 ```
@@ -121,7 +123,7 @@ Here is the same code as seen in the PowerShell ISE
 
 ![](media\new_vm.png)
 
-A more simple way to write this script would be to use a concept referred to as splatting. Splatting groups and passes parameters to a command as a single unit, this makes our scripts more readable, easier to modify and re-use.
+A more simple way to write this script would be to use a concept referred to as splatting. Splatting groups parameters and passes these to a command as a single unit. Splatting makes our scripts more readable, easier to modify and re-use.
 
 The same script re-written using the splatting method would look like this:   
 
@@ -144,12 +146,12 @@ $DVD = @{
 New-VM @VM
 Add-VMDvdDrive @DVD
 ```
-and as seen in the PowerShell ISE:
+As seen in the PowerShell ISE:
 
 ![](media\new_vm2.png)  
 
 <br />
-### Wrap up
+### Wrap up and References
 
 This document has shown some simple steps for exploring the Hyper-V PowerShell module as well as some sample use cases. For more information on the Hyper-V PowerShell module see the Reference Guide found here <!—Insert Reference Guide --> .  
   
