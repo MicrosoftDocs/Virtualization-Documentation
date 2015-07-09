@@ -55,7 +55,7 @@ get-vm | where {$_.State –eq ‘Off’}
 <br />
 ### Power on or off virtual machines
 
-Let's now perform some actions against a virtual machine. To power on a particular virtual machine we can run the following, specifying the name of the virtual machine:
+Let's now perform an action against a virtual machine. To power on a particular virtual machine we can run the following, specifying the name of the virtual machine:
 
 ```powershell
 Start-vm –Name <virtual machine name>
@@ -75,7 +75,7 @@ get-vm | where {$_.State –eq ‘Running’} | stop-vm
 <br />
 ### Create a VM checkpoint
 
-One option for creating a checkpoint is to load an instance of a virtual machine into the PowerShell session and then pipe this to the **checkpoint-vm** command similar to this:
+One option for creating a checkpoint is to load an instance of a virtual machine into the PowerShell session and then pipe this to the **checkpoint-vm** command, similar to this:
 
 ```
 get-vm -Name <VM Name> | checkpoint-vm -snapshotname <name for snapshot>
@@ -97,7 +97,7 @@ remove-vm -Name <virtual machien name>
 
 Finally we will take a look at VM creation with PowerShell. This example will contain more than one line of code and may be more manageable if working from the PowerShell Integrated Scripting Environment (ISE).
 
-To open the PowerShell ISE click on start, type **PowerShell ISE** and then press the enter key.
+To open the PowerShell ISE click on start, type **PowerShell ISE** and then press the enter key. <!-- does this work-->
 
 The following code consists of:
 
