@@ -66,7 +66,7 @@ get-vm | where {$_.State –eq ‘Running’} | stop-vm
 
 ### Create a VM checkpoint
 
-Load an instance of a virtual machine into the PowerShell session and then pipe this to the `checkpoint-vm` command, similar to this:
+Load an instance of a virtual machine into the PowerShell session and then pipe this to the **checkpoint-vm** command, similar to this:
 <!--What do you mean by load an instance? Try to simplify this sentence. "Get the vm attributes and pipe this into ..." Also if this is for a beginner I'm not sure that pipe is going to make sense. I know that's what it's called but we should say what it does the first time you mention it.  -->
 ```powershell
 get-vm -Name <VM Name> | checkpoint-vm -snapshotname <name for snapshot>
