@@ -22,7 +22,7 @@ We will start by trying out the older style of checkpoints, **standard checkpoin
 2. In the **Management** section, select **Checkpoints**.
 3. Select **Standard checkpoints**. The dialog should look like this:
 
-  ![](media/standard.png)
+  ![](media/standard1.png)
 4.	Click **OK** to close the dialog box.
 
 ## Open Notepad to test checkpoints ##

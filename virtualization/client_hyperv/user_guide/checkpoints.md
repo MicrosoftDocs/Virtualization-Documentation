@@ -1,7 +1,7 @@
 ms.ContentId: 8D89E9D8-2501-46A7-9304-2F19F37AFC85
 title: Working with checkpoints
 
-# Working with checkpoints #
+# Use checkpoints to revert virtual machines to a previous state #
 
 Checkpoints provide a fast and easy way to revert the virtual machine to a previous state. For more information about how checkpoints work, see [Checkpoints Overview](..\about\checkpoints_overview.md).
 

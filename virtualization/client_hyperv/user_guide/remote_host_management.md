@@ -1,31 +1,33 @@
 ms.ContentId: 7dcd6da0-dd72-422d-8752-5eccc8116e02
 title: Manageing remote Hyper-V hosts
 
-# Managing Remote Hyper-V Hosts with Hyper-V Manager #
+# Manage Remote Hyper-V Hosts with Hyper-V Manager #
 
 Hyper-V Manager is Hyper-V's in-box management tool.  It provides a very minimal set of tools needed for diagnosing and managing a small number of local or remote hosts.
 
 This document is a knitty-gritty reference on the various configuration details required for managing remote Hyper-V hosts with Hyper-V Manager.
 
 To connect to a Hyper-V host with Hyper-V Manager, right click on the Hyper-V Manager icon in the left hand navigation bar (circled in red below) and select "Connect to Server..."
-
+<!--Screen shot needs to be replaced. For this bit, just show the Connect to Server menu option...not everything. It's confusing. -->
 ![](media/HyperVManager-ConnectToHost.png)
 
-## Managing localhost ##
-To add localhost to Hyper-V Manager as a Hyper-V host, select the "local computer" radio button (circled in black) from the "select Computer" dialogue box.
-
+## Manage localhost ##
+To add localhost to Hyper-V Manager as a Hyper-V host, select the "local computer" radio button from the "select Computer" dialogue box.
+<!--Add screen shot w/ just that dialog with local computer radio button selected.-->
 If a connection can't be established, try:
 *  making sure the Hyper-V server role is enabled.  See `[link to quickstart guide`].
 *  confirming your user account is part of the Hyper-V Administrator group.
 
-## Managing a Hyper-V host in your domain ##
+## Manage a Hyper-V host in your domain ##
+<!--Include steps for this. Info below doesn't have context.-->
 Combinations of connections with both Kerberos and CredSSP:
 *  NetBIOS host name same user
 *  NetBIOS, Alternte Credentials
 *  IP, same name
 *  IP, Alternate Credentials
 
-## Managing a Hyper-V host outside your domain (or with no domain) ##
+## Manage a Hyper-V host outside your domain (or with no domain) ##
+<!--Assuming this isn't done yet...again needs context.-->
 Local Hyper-V Host:
 1.	Enable-PSRemoting
 Came back with netowork set to public.

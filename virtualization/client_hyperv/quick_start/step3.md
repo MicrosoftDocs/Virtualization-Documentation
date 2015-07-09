@@ -7,16 +7,21 @@ The virtual switch is how you create a network connection for your virtual machi
 
 For this example, we are going to create an External switch, which will let virtual machines access the internet using the host machines network adapter. We will also set the switch to allow the host to share this network adapter. This will make it so that both the virtual machines and the host can use the same physical NIC.
 
-1. In Hyper-V manager, click **Action** > **Virtual Switch Manager**.
+1. In Hyper-V manager, click **Virtual Switch Manager**.
 
-  ![](media/virtual_switch_manager.png)
-2. In the left pane, select **New virtual network switch** and then select **External** and click **Create Virtual Switch**.
+  ![](media/virtual_switch_manager1.png)
+2. Select **New virtual network switch**.
 
   ![](media/new_switch.png)
-3. Under **Name**, type **External**. Under **External network**, make sure the correct NIC is selected and that **Allow management operating system to share this network adapter** is selected and then click **OK**. 
+3. Select **External** and **Create Virtual Switch**.
+
+  ![](media/new_switch_createbutton.png)
+4. Under **Name**, type **External**. 
+5. Under **External network**, select the correct NIC.
+6. Select **Allow management operating system to share this network adapter** and click **OK**. 
   
   ![](media/share_nic.png)
-4. You will get a message warning you that your network might disconnect while the virtual switch is created. Just click **Yes**.
+7. You will get a message warning you that your network might disconnect while the virtual switch is created. Just click **Yes**.
   
   ![](media/network_warning.png)
 
