@@ -13,11 +13,11 @@ Before we work with Hyper-V virtual machines, let’s explore the Hyper-V module
  ```powershell
 get-command –module hyper-v | out-gridview
 ```
-  Grid view of available Hyper-V commands: <!--I'd crop this screenshot to make it shorter and get rid of the whitespace on the left. You only need enough to get the point across. They don't need to see everything..-->
+  You'll get something like this: <!--I'd crop this screenshot to make it shorter and get rid of the whitespace on the left. You only need enough to get the point across. They don't need to see everything..-->
 
   ![](media\command_grid.png)
 
-3. PowerShell includes a `get-help` system that allows us to quickly discover how to use PowerShell commands. For instance to see more information on how to use the `get-vm` command, enter the following:
+3. To learn how to use PowerShell a cmdlet like `get-vm`, run the following command:
 
   ```powershell
 get-help get-vm
