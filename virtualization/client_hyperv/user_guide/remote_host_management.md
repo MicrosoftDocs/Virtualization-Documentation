@@ -27,6 +27,7 @@ Combinations of connections with both Kerberos and CredSSP:
 *  IP, Alternate Credentials
 
 ## Manage a Hyper-V host outside your domain (or with no domain) ##
+<!--Assuming this isn't done yet...again needs context.-->
 Local Hyper-V Host:
 1.	Enable-PSRemoting
 Came back with netowork set to public.
