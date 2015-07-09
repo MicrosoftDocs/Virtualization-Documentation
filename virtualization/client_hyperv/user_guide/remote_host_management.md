@@ -11,21 +11,21 @@ To connect to a Hyper-V host with Hyper-V Manager, right click on the Hyper-V Ma
 
 ![](media/HyperVManager-ConnectToHost.png)
 
-## Managing localhost ##
+## Manage localhost ##
 To add localhost to Hyper-V Manager as a Hyper-V host, select the "local computer" radio button (circled in black) from the "select Computer" dialogue box.
 
 If a connection can't be established, try:
 *  making sure the Hyper-V server role is enabled.  See `[link to quickstart guide`].
 *  confirming your user account is part of the Hyper-V Administrator group.
 
-## Managing a Hyper-V host in your domain ##
+## Manage a Hyper-V host in your domain ##
 Combinations of connections with both Kerberos and CredSSP:
 *  NetBIOS host name same user
 *  NetBIOS, Alternte Credentials
 *  IP, same name
 *  IP, Alternate Credentials
 
-## Managing a Hyper-V host outside your domain (or with no domain) ##
+## Manage a Hyper-V host outside your domain (or with no domain) ##
 Local Hyper-V Host:
 1.	Enable-PSRemoting
 Came back with netowork set to public.
