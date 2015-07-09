@@ -3,17 +3,17 @@ title: Step 10: Experiment with Windows PowerShell
 
 # Step 9: Experiment with Windows PowerShell
 
-Now that we have walked through the basics of deploying Hyper-V, creating virtual machines and managing these virtual machines, let’s explore how we can automate many of these activities with PowerShell.
+Now that you have walked through the basics of deploying Hyper-V, creating virtual machines and managing these virtual machines, let’s explore how you can automate many of these activities with PowerShell.
 
 ### Return a list of Hyper-V commands
-Before we work with Hyper-V virtual machines, let’s explore the Hyper-V module:
+Before you work with Hyper-V virtual machines, let’s explore the Hyper-V module:
 1.	Click on the Windows start button, type **PowerShell** and click **enter** to open PowerShell.
 2.	Type the following command to display a searchable list of PowerShell commands available with the Hyper-V PowerShell Module.
 
  ```powershell
 get-command –module hyper-v | out-gridview
 ```
-  You'll get something like this: <!--I'd crop this screenshot to make it shorter and get rid of the whitespace on the left. You only need enough to get the point across. They don't need to see everything..-->
+  You get something like this: <!--I'd crop this screenshot to make it shorter and get rid of the whitespace on the left. You only need enough to get the point across. They don't need to see everything..-->
 
   ![](media\command_grid.png)
 
@@ -29,23 +29,22 @@ get-help get-vm
 
 ### Return a list of virtual machines
 
-Now that we have examined the commands available for Hyper-V, let’s use the 'get-vm' command to return a list of virtual machines:
-
-```powershell
+Use the **get-vm** command to return a list of virtual machines.
+1. In PowerShell, run the following command:
+ 
+ ```powershell
 get-vm
 ```
-Which will produce output similar to this:
+ This displays something like this:
 
-![](media\get_vm.png)
+ ![](media\get_vm.png)
 
-
-To return a list of only powered on virtual machines we can place a filter on the command like this:
-``` 
+2. To return a list of only powered on virtual machines, add a filter on the command like this:
+  ``` 
 get-vm | where {$_.State –eq ‘Running’}
 ```
-
-Or to list all virtual machines in a powered off state:
-``` 
+3.  Or to list all virtual machines in a powered off state:
+  ``` 
 get-vm | where {$_.State –eq ‘Off’}
 ```
 
