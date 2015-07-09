@@ -6,7 +6,7 @@ title: Step 10: Experiment with Windows PowerShell
 Now that you have walked through the basics of deploying Hyper-V, creating virtual machines and managing these virtual machines, let’s explore how you can automate many of these activities with PowerShell.
 
 ### Return a list of Hyper-V commands
-Before you work with Hyper-V virtual machines, let’s explore the Hyper-V module:
+
 1.	Click on the Windows start button, type **PowerShell** to open PowerShell.
 2.	Type the following command to display a searchable list of PowerShell commands available with the Hyper-V PowerShell Module.
 
