@@ -1,6 +1,7 @@
 ms.ContentId: 45F3EEFA-C2C7-4551-9E24-CF992709DD50
 title: Working with Containers
 
+
 # Managing Windows Server Containers
 There are many ways to manage Windows Server Containers using both in-box Windows tools and Open Source management tools such as Docker.
 
@@ -9,12 +10,9 @@ Here are some of the most common options available.
 ## PowerShell
 You can now create, run, and interact with Windows Server Containers using PowerShell cmdlets. There’s no dependency here on Docker – everything you need to get going is available in-box.
 
-If you don't have containers set up, follow [these instructions](../quick_start/run_local.md).
+If you’ve used Hyper-V PowerShell, the design of the cmdlets should be pretty familiar to you. A lot of the workflow is similar to how you’d manage a virtual machine using the Hyper-V module. Instead of `New-VM`, `Get-VM`, `Start-VM`, `Stop-VM`, you have `New-Container`, `Get-Container`, `Start-Container`, `Stop-Container`.  There are quite a few container-specific cmdlets and parameters, but the general lifecycle and management of a Windows container looks roughly like that of a Hyper-V VM.
 
-If you’re familiar with Hyper-V:  
-If you’ve used Hyper-V PowerShell, the design of the cmdlets should be pretty familiar to you. A lot of the workflow is similar to how you’d manage a virtual machine using Hyper-V PowerShell – instead of `New-VM`, `Get-VM`, `Start-VM`, `Stop-VM`, you have `New-Container`, `Get-Container`, `Start-Container`, `Stop-Container`.  There are quite a few container-specific cmdlets and parameters, but the general lifecycle and management of a Windows container looks roughly like that of a Hyper-V VM.
-
-If you’re familiar with Docker:  
+### How does this compare to Docker? 
 The Containers PowerShell cmdlets expose an API that isn’t quite the same as Docker's; as a general rule, the cmdlets are more granular in operation. Some Docker commands have pretty straightforward parallels in PowerShell:
 
 | Docker command |	PowerShell Cmdlet |
@@ -32,7 +30,7 @@ The Containers PowerShell cmdlets expose an API that isn’t quite the same as D
 
 The PowerShell cmdlets are not an exact perfect parity, and there are a fair number of commands that we’re not planning on providing replacements for, at least not for TP3 (notably `docker build` and `docker cp`). But what might leap out at you is that there’s no single one-line replacement for `docker run`.
 
-But I need docker run! What’s going on?  
+### But I need docker run! What’s going on?  
 We’re doing a couple things here to provide a slightly more familiar interaction model for users who know their way around PowerShell already. Of course, if you’re used to the way docker operates, this will be a bit of a mental shift.
 
 1.	The lifecycle of a container in the PowerShell model is slightly different. In the Containers PowerShell module, we expose the more granular operations of `New-Container` (which creates a new container that’s stopped) and `Start-Container`.
