@@ -112,7 +112,7 @@ $DVDPath = "C:\Media\media.iso"
 New-VM -Name $Name -MemoryStartupBytes $MemoryStartupBytes -Generation $Generation -NewVHDPath $NewVHDPath -NewVHDSizeBytes $NewVHDSizeBytes -BootDevice $BootDevice -SwitchName $SwitchName -Path $Path 
 Add-VMDvdDrive -VMName $Name -Path $DVDPath
 ```
-3. Use the splatting to create a virtual machine. Splatting groups parameters and passes these to a command as a single unit. Splatting makes scripts more readable, easier to change and re-use.
+3. Use splatting to create a virtual machine. Splatting groups parameters and passes these to a command as a single unit. Splatting makes scripts more readable, easier to change and re-use.
 
 The same script used in step 2 is re-written using the splatting method and looks like:   
 
