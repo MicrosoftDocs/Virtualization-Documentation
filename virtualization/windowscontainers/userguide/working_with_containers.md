@@ -37,7 +37,8 @@ We’re doing a couple things here to provide a slightly more familiar interacti
   
   In between creating and starting the container, you can also configure the container’s settings; for TP3, the only other configuration we’re planning to expose is the ability to set the network connection for the container. using the (Add/Remove/Connect/Disconnect/Get/Set)-ContainerNetworkAdapter cmdlets.
 
-2.	You can’t currently pass a command to be run inside the container on start. However, you can still get an interactive PowerShell session to a running container using `Enter-PSSession -ContainerId <ID of a running container>`, and you can execute a command inside a running container using `Invoke-Command -ContainerId <container id> -ScriptBlock { code to run inside the container }`.
+2.	You can’t currently pass a command to be run inside the container on start. However, you can still get an interactive PowerShell session to a running container using `Enter-PSSession -ContainerId <ID of a running container>`, and you can execute a command inside a running container using `Invoke-Command -ContainerId <container id> -ScriptBlock { code to run inside the container }` or `Invoke-Command -ContainerId <container id> -FilePath <path to script>`.  
+Both of these commands allow the optional `-RunAsAdministrator` flag for high privilige actions.  
 
 
 ### Caveats and known issues
