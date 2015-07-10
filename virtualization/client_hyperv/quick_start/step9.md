@@ -29,6 +29,8 @@ get-help get-vm
 
 ### Return a list of virtual machines
 
+<!--As this is a walkthrough, the exercises should line up with they've already done. We've only had them create one VM titled Windows Walkthrough VM. -->
+
 Use the **get-vm** command to return a list of virtual machines.
 1. In PowerShell, run the following command:
  
@@ -49,7 +51,7 @@ get-vm | where {$_.State –eq ‘Off’}
 ```
 
 ### Power on or off virtual machines
-<!--I think these should all be turn on/turn off. Power on/off sounds weird to me. Or is it Start/shut down or Start/Stop vm? Should match terms we use in UI.-->
+<!--I think these should all be turn on/turn off. Power on/off sounds weird to me. Or is it Start/shut down or Start/Stop vm? Should match terms we use in UI. Also this doesn't line up with previous walkthrough topic - we've only had them create one VM.-->
 
 1. To power on a particular virtual machine, run the following command with name of the virtual machine:
  ```powershell
@@ -77,6 +79,8 @@ For example, here is a checkpoint with the name DEMOCP:
 
 ### Delete a Virtual Machine 
 
+<!--I don't think this belongs in the walkthrough unless we're having them create an extra VM they can delete. -->
+
 To delete a virtual machine, use the **remove-vm** command. 
 ```powershell
 remove-vm -Name <virtual machine name>
@@ -94,7 +98,7 @@ The following example shows how to create a new virtual machine in the PowerShel
   - Line 11: Creates the new VM using all defined parameters.
   - Line 12: Adds a virtual CD Rom drive to the VM and mounts installation media in this drive.
 
-  ```powershell
+```powershell
 $Name = "POSHVM"
 $MemoryStartupBytes = 2147483648
 $Generation = 2
@@ -108,7 +112,7 @@ $DVDPath = "C:\Media\media.iso"
 New-VM -Name $Name -MemoryStartupBytes $MemoryStartupBytes -Generation $Generation -NewVHDPath $NewVHDPath -NewVHDSizeBytes $NewVHDSizeBytes -BootDevice $BootDevice -SwitchName $SwitchName -Path $Path 
 Add-VMDvdDrive -VMName $Name -Path $DVDPath
 ```
-3. Use the splatting to create a virtual machine. Splatting groups parameters and passes these to a command as a single unit. Splatting makes scripts more readable, easier to change and re-use.
+3. Use splatting to create a virtual machine. Splatting groups parameters and passes these to a command as a single unit. Splatting makes scripts more readable, easier to change and re-use.
 
 The same script used in step 2 is re-written using the splatting method and looks like:   
 
