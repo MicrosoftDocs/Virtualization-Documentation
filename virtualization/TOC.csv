@@ -12,7 +12,7 @@
 ***,oa-toc-container: reference
 ****,windowscontainers/reference/reference_overview.md
 **,oa-toc-container: client_hyperv
-***,windows_welcome.md
+***,client_hyperv/windows_welcome.md
 ***,oa-toc-container: about
 ****,client_hyperv/about/client_hyperv.md
 ****,client_hyperv/about/whats_new.md
