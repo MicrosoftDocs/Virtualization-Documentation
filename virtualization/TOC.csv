@@ -16,15 +16,15 @@
 ****,windowscontainers/quick_start/install_using_docker.md
 ***,oa-toc-container: user_guide
 ****,windowscontainers/userguide/userguide_overview.md
-****,windowscontainers/userguide/accessing_data_in_containers.md
+****,windowscontainers/userguide/working_with_containers.md
 ****,windowscontainers/userguide/containerize_app.md
 ****,windowscontainers/userguide/gstart_docker_hub.md
+****,windowscontainers/userguide/working_with_packages.md
+****,windowscontainers/userguide/accessing_data_in_containers.md
 ****,windowscontainers/userguide/linking_multiple_containers.md
 ****,windowscontainers/userguide/managing_container_resources.md
-****,windowscontainers/userguide/minecraft.md
-****,windowscontainers/userguide/working_with_containers.md
-****,windowscontainers/userguide/working_with_packages.md
 ****,windowscontainers/userguide/debugging.md
+****,windowscontainers/userguide/minecraft.md
 ***,oa-toc-container: reference
 ****,windowscontainers/reference/reference_overview.md
 ****,windowscontainers/reference/internal_ManagmentArchitecture.md
