@@ -9,6 +9,7 @@ The Hyper-V role was introduced to Windows in Windows 8 as an optional feature t
 
 **Note** Hyper-V on Windows is often referred to as Client Hyper-V.
 
+To try out Hyper-V, follow this [walkthrough](./quick_start/walkthrough.md).
 
 Here are a few helpful links to different Hyper-V packages and information.
 
@@ -18,4 +19,4 @@ Here are a few helpful links to different Hyper-V packages and information.
 *  Windows Virtual PC
 
 ## Have Questions?
-Take me to the forums!
+Take me to [the forums](https://social.technet.microsoft.com/Forums/windowsserver/en-US/home?forum=winserverhyperv)!
