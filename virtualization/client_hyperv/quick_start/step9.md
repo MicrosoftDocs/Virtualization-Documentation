@@ -29,6 +29,7 @@ get-help get-vm
 
 ### Return a list of virtual machines
 
+<!--As this is a walkthrough, the exercises should line up with they've already done. We've only had them create one VM titled Windows Walkthrough VM. -->
 Use the **get-vm** command to return a list of virtual machines.
 1. In PowerShell, run the following command:
  
