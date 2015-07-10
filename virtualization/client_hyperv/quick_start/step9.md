@@ -79,6 +79,8 @@ For example, here is a checkpoint with the name DEMOCP:
 
 ### Delete a Virtual Machine 
 
+<!--I don't think this belongs in the walkthrough unless we're having them create an extra VM they can delete. -->
+
 To delete a virtual machine, use the **remove-vm** command. 
 ```powershell
 remove-vm -Name <virtual machine name>
