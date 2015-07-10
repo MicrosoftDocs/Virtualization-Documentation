@@ -8,15 +8,15 @@ For this step, if you already have a .iso file for a supported operating system,
 1. In Hyper-V Manager, click on the **Action** menu > **New** > **Virtual machine**. 
 2. In the virtual machine wizard, make the following choices:
 
-    <table><tr><td>Page</td><td>Entry</td></tr><tr><td>Name:</td><td>Type in <b>Windows Walkthrough VM</b></td></tr></table>
-    | **Page** | **Entry** |
-    |:-----|:-----|
-    |Name:						|Type in **Windows Walkthrough VM**  |										
-    |Generation: 				|**Generation 2** 			|										
-    |Startup Memory:			|**1024** and don't select dynamic memory 				|			
-    |Connect virtual hard disk: |**Create a virtual hard disk** (keep the other default values) 	|
-    |Installation Options:		|**Install an operating system from a bootable CD/DVD-ROM**. Under **Media**, select **Image file (iso)** and then click **Browse** to point to the .iso file. |
-
+    <table>
+    <tr><td>Page</td><td>Entry</td></tr>
+    <tr><td>Name:</td><td>Type in <b>Windows Walkthrough VM</b></td></tr>
+    <tr><td>Generation:</td><td><b>Generation 2</b></td></tr>
+    <tr><td>Startup Memory:</td><td><b>1024</b> and don't select dynamic memory</td></tr>
+    <tr><td>Connect virtual hard disk:</td><td><b>Create a virtual hard disk</b> (keep the other default values) </td></tr>
+    <tr><td>Installation Options:</td><td><b>Install an operating system from a bootable CD/DVD-ROM</b>. Under <b>Media</b>, select <b>Image file (iso)</b> and then click <b>Browse</b> to point to the .iso file.</td></tr>
+    </table>
+  
 3. The Summary page of the wizard should look like this:
 	
 	<!-- need screenshot -->
