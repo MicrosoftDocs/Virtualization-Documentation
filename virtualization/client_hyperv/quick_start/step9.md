@@ -98,7 +98,7 @@ The following example shows how to create a new virtual machine in the PowerShel
   - Line 11: Creates the new VM using all defined parameters.
   - Line 12: Adds a virtual CD Rom drive to the VM and mounts installation media in this drive.
 
-  ```powershell
+```powershell
 $Name = "POSHVM"
 $MemoryStartupBytes = 2147483648
 $Generation = 2
