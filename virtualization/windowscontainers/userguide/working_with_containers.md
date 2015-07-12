@@ -44,7 +44,7 @@ Both of these commands allow the optional `-RunAsAdministrator` flag for high pr
 ### Caveats and known issues
 1.  Right now, the Containers cmdlets have no knowledge about any containers or images created through Docker, and Docker does not know anything about containers and images created through the PowerShell. If you created it in Docker, manage it with Docker; if you created it through PowerShell, manage it through PowerShell. (One exception: we are on the verge of completing a change to allow us to share base images between Docker and the Microsoft management stack.)
 
-2.  We have quite a bit of work we'd like to do to improve the end user experience -- better error messages, better progress reporting, invalid event strings, and so forth. I'm tracking some of this with MSFT:3466908 - Add PS Job tracking for long running operations (start-container; stop-container) and MSFT:3466888 - Clean Up Event Logs for Containers. Obviously, a lot of other things are higher priority, and we may have to punt some of these issues, but if you happen to run into a situation where you wish you were getting more or better info, please drop me a line -- I'd really like to make what improvements we can.
+2.  We have quite a bit of work we'd like to do to improve the end user experience -- better error messages, better progress reporting, invalid event strings, and so forth. Some of this work is tracked by MSFT:3466908 - Add PS Job tracking for long running operations (start-container; stop-container) and MSFT:3466888 - Clean Up Event Logs for Containers. Obviously, a lot of other things are higher priority, and we may have to punt some of these issues, but if you happen to run into a situation where you wish you were getting more or better info, please feel free to send in any suggestions.
 
 ### A quick runthrough
 Here is a walk through of some common workflows.
@@ -140,19 +140,19 @@ Start-Container -Container $container2
 ```
 
 ### Build your own sample
-You can see all the Containers cmdlets using `Get-Command -Module Containers`.  There are other cmdlets I haven't really described here, which I'll leave to you to learn about on your own.    
+You can see all the Containers cmdlets using `Get-Command -Module Containers`.  There are several other cmdlets that are not described here, which we'll leave to you to learn about on your own.    
 **Note** This won't return the `Enter-PSSession` and `Invoke-Command` cmdlets, which are part of core PowerShell.
 
-You can also get help about any cmdlet using `Get-Help [cmdlet name]`, or equivalently `[cmdlet name] -?`.  Of course, since everything here is still in flux, we don't have true documentation for this yet -- today, the help output is auto-generated and just tells you the syntax for commands.
+You can also get help about any cmdlet using `Get-Help [cmdlet name]`, or equivalently `[cmdlet name] -?`.  Today, the help output is auto-generated and just tells you the syntax for commands; we will be adding further documentation as we get closer to finalizing the cmdlet design.
 
-A nicer way to discover the syntax is the PowerShell ISE, which you may not have looked at before if you haven't used PowerShell very much. If you're running on a SKU that permits it, try starting the ISE, opening the Commands pane, and choosing the "Containers" module (see screenshot).
+A nicer way to discover the syntax is the PowerShell ISE, which you may not have looked at before if you haven't used PowerShell very much. If you're running on a SKU that permits it, try starting the ISE, opening the Commands pane, and choosing the "Containers" module, which will show you a graphical representation of the cmdlets and their parameter sets.
 
-PS: Just to prove it can be done, here's a PowerShell function that composes some of the cmdlets we've seen already into an ersatz `docker run`. To be clear, this is a proof of concept that I don't necessarily plan on expanding or supporting, but I hafta admit I think it's kind of cool.
+PS: Just to prove it can be done, here's a PowerShell function that composes some of the cmdlets we've seen already into an ersatz `docker run`. (To be clear, this is a proof of concept, not under active development.)
 
 ``` PowerShell
-function Run-Container ([string]$ContainerImageName, [switch]$Remove, [switch]$Interactive, [scriptblock]$Command) {
+function Run-Container ([string]$ContainerImageName, [string]$Name="boring_wozniak", [switch]$Remove, [switch]$Interactive, [scriptblock]$Command) {
     $image = Get-ContainerImage -Name $ContainerImageName
-    $container = New-Container -ContainerImage $image
+    $container = New-Container -Name $Name -ContainerImage $image
     Start-Container $container
 
     if ($Interactive) {
