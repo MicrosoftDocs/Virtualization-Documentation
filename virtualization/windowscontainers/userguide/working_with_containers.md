@@ -49,7 +49,7 @@ Both of these commands allow the optional `-RunAsAdministrator` flag for high pr
 ### A quick runthrough
 Here is a walk through of some common workflows.
 
-created a virtual switch named "CNet" (using New-VMSwitch).
+This assumes you've installed an OS container image named "Base" and created a virtual switch named "Virtual Switch" (using New-VMSwitch).
 
 ``` PowerShell
 ### 1. Enumerating images
@@ -67,7 +67,7 @@ $baseImage
 
 ### 2. Creating and enumerating containers
 # Now, we can create a new container using this image:
-New-Container -Name "MyContainer" -ContainerImage $baseImage -SwitchName "CNet"
+New-Container -Name "MyContainer" -ContainerImage $baseImage -SwitchName "Virtual Switch"
 
 # Now we can enumerate all containers.
 Get-Container
@@ -109,7 +109,7 @@ $image1 = New-ContainerImage -Container $container1 -Publisher Test -Name Image1
 Get-ContainerImage
 
 # Rinse and repeat! Make another container based on the new image.
-$container2 = New-Container -Name "MySecondContainer" -ContainerImage $image1 -SwitchName "CNet"
+$container2 = New-Container -Name "MySecondContainer" -ContainerImage $image1 -SwitchName "Virtual Switch"
 
 # (If you like, you can start the second container and verify that the new file
 # "\Test\hello.txt" is there as expected.)
