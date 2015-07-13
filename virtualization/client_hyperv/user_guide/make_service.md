@@ -1,9 +1,18 @@
 ms.ContentId: E324BA8C-D573-4A84-945D-BB8456161793
 title: Make a new management service
 
-# Make a new management service #
-Why would you do this?
-Need a way to communicate between the host OS and guest OS.  Data stream.
+# Make a management service #
+This document introduces VM Services built on Hyper-V sockets and how to get started using them.
+
+## What is a VM Service?
+VM Services are services that span the Hyper-V host and virtual machines running on the host.
+
+Hyper-V now (Windows 10 and Server 2016+) provides a non-network connection which allows you to create services spanning the host/virtual machine boundary while preserving Hyper-V’s fundamental requirements around tenant/hoster isolation, control, and diagnosable.
+
+Hyper-V will continue to provide a base set of in-box services (integration services) for basics (such as time sync) and for common requests we receive, but now anyone can write and deploy a VM service as needed.
+
+## What is a Hyper-V socket?
+Hyper-V sockets are TCP-like sockets with no dependence on networking.  Using Hyper-V sockets, services can run independently of the networking stack and all data flow stays on host memory.
 
 # Getting started #
 ## Register your service on the Hyper-V host ##
@@ -16,17 +25,20 @@ By registering the service in the registry, you get:
 ### Registry location and information ###
 Registry key:
 
-    HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Virtualization\VirtualDevices\6C09BB55-D683-4DA0-8931-C9BF705F6480\GuestCommunicationServices\
+``` 
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Virtualization\VirtualDevices\6C09BB55-D683-4DA0-8931-C9BF705F6480\GuestCommunicationServices\
+```
 
 In this registry location, you'll see several GUIDS.  Those are our in-box services.
 
 Information in the registry per service:
-*  Service GUID
-    **  ElementName (REG_SZ) -- this is the service's friendly name
-    **  (planned) Service Discription
+*  `Service GUID`   
+    *  `ElementName (REG_SZ)` -- this is the service's friendly name
+    *  (planned) Service Discription
 
 ### Generate a GUID with PowerShell ###
 To generate a GUID in PowerShell and copy it to the clipboard, run:
 
-    [System.Guid]::NewGuid().ToString() | clip.exe
-
+``` PowerShell
+[System.Guid]::NewGuid().ToString() | clip.exe
+```
