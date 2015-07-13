@@ -8,7 +8,8 @@ If you upgrade a computer that has existing virtual machines to Windows 10, no c
 In Windows 10, you can upgrade your virtual machines to support the latest virtual machine configuration version. This introduces changes to the compatibility, structure, and location of your virtual machine's configuration and checkpoint files. 
 
 ## Upgrade the virtual machine configuration version
-To upgrade to the latest virtual machine configuration version, open an elevated Windows PowerShell command prompt, and run one of the following commands:
+To upgrade to the latest virtual machine configuration version, select the virtual machine in Hyper-V Manager, right-click on it and select *Upgrade Configuration Version*.
+If you want to upgrade the VM configuration using PowerShell, open an elevated Windows PowerShell command prompt, and run the following command:
 
 **Update-VMVersion** *vmname*   
 
