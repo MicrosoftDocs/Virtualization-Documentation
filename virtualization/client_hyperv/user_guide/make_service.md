@@ -14,6 +14,26 @@ Hyper-V will continue to provide a base set of in-box services (integration serv
 ## What is a Hyper-V socket?
 Hyper-V sockets are TCP-like sockets with no dependence on networking.  Using Hyper-V sockets, services can run independently of the networking stack and all data flow stays on host memory.
 
+## System Requirements
+
+**Supported Host OS**
+*	Windows 10
+*	Windows Server Technical Preview 3
+*	Future releases (Server 2016 +)
+
+**Supported Guest OS**
+*	Windows 10
+*	Windows Server Technical Preview 3
+*	Future releases (Server 2016 +)
+*	Linux
+
+## Capabilities and Limitations
+Kernel mode or user mode  
+Data stream only  	
+No block memory so not the best for backup/video  
+[todo] Ballpark benchmarks  
+
+
 # Getting started #
 ## Register your service on the Hyper-V host ##
 In order to use a custom service integrated with Hyper-V, the new service must be registered with the Hyper-V Host's registry.
