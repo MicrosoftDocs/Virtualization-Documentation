@@ -7,6 +7,58 @@ If you upgrade a computer that has existing virtual machines to Windows 10, no c
 
 In Windows 10, you can upgrade your virtual machines to support the latest virtual machine configuration version. This introduces changes to the compatibility, structure, and location of your virtual machine's configuration and checkpoint files. 
 
+## Important - update existing VMs ##
+<!--This seems out of place. This is a evaluation topic. They shouldn't be doing this action until they've upgraded.
+ I'd suggest just adding a note like "After you upgrade to Windows 10, you may need to update your virtual machine 
+ configuration versions to enable the new features. For more information, see…”
+  and link to upgrade topic that has these steps. -->
+Before you begin, you need to update existing virtual machines to enable new features. 
+
+If you use virtual machines that were created with Windows 8.1 you will not have access to new virtual machine features until you manually update the virtual machine configuration version. 
+
+To upgrade the configuration version, shut down the virtual machine and then, at an elevated Windows PowerShell command prompt, type: 
+
+
+    ````Update-VmConfigurationVersion <vmname> | <vmobject> 
+
+For important information about virtual machine configuration version, see Virtual Machine Configuration Version.
+
+## Virtual Machine Configuration Version ##
+
+When you move or import a virtual machine to a host running Client Hyper-V on Windows 10 from host running Windows 8.1, the virtual machine’s configuration file isn't automatically upgraded. This allows the virtual machine to be moved back to a host running Windows 8.1. You won't have access to new virtual machine features until you manually update the virtual machine configuration version. 
+
+The virtual machine configuration version represents what version of Hyper-V the virtual machine’s configuration, saved state, and snapshot files it's compatible with. Virtual machines with configuration version 5 are compatible with Windows 8.1 and can run on both Windows 8.1 and Windows 10. Virtual machines with configuration version 6 are compatible with Windows 10 and won't run on Windows 8.1.
+
+### How do I check the configuration version of the virtual machines running on Hyper-V? ###
+
+From an elevated command prompt, run the following command:
+
+    Get-VM * | Format-Table Name, Version
+
+### How do I upgrade the configuration version of a virtual machine?  ###
+
+From an elevated Windows PowerShell command prompt, run one of the following commands:
+
+    Update-VmConfigurationVersion <vmname>
+
+Or
+
+    Update-VmConfigurationVersion <vmobject>
+
+----------------
+**Important **
+
+• After you upgrade the virtual machine configuration version, you can't move the virtual machine to a host that runs Windows 8.1.
+
+• You can't downgrade the virtual machine configuration version from version 6 to version 5.
+
+• You must turn off the virtual machine to upgrade the virtual machine configuration.
+
+• After the upgrade, the virtual machine uses the new configuration file format. For more information, see New virtual machine configuration file format.
+
+----------
+
+
 ## Upgrade the virtual machine configuration version
 To upgrade to the latest virtual machine configuration version, open an elevated Windows PowerShell command prompt, and run one of the following commands:
 
