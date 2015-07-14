@@ -1,13 +1,22 @@
 ms.ContentId: 7561B149-A147-4F71-9840-6AE149B9DED5
 title: Supported Windows Guest Operating Systems
 
-# Supported Windows Guest Operating Systems for Client Hyper-V in Windows 10 #
+# Supported Guest Operating Systems
 
-Client Hyper-V includes integration services for supported guest operating systems which improves the integration between the host system and the virtual machine. Some operating systems have the integration services built-in, while others provide integration services through Windows Update.
+Hyper-V provides support for many combination of Hyper-V hosts and guest operating systems.
 
-The following table lists the Windows operating systems supported as guests in Windows Client Hyper-V, as well provides information about integration services. 
+## What does support mean? 
+Support means Microsoft has tested these host/guest combinations.  Issues with these setups may recieve attention from Customer Support Services.
+ 
+Microsoft provides support for guest operating systems in the following manner:
+- Issues found in Microsoft operating systems and in integration services are supported by Microsoft support.
+- For issues found in other operating systems that have been certified by the operating system vendor to run on Hyper-V, support is provided by the vendor.
+- For issues found in other operating systems, Microsoft submits the issue to the multi-vendor support community, [TSANet](http://www.tsanet.org/).
 
-## Supported Windows Server guest operating systems ##
+## What are integration services and why do they matter?
+Hyper-V includes integration services for supported guest operating systems.  Integration services improves the integration between the host system and the virtual machine. Some operating systems have the integration services built-in, while others provide integration services through Windows Update.
+
+## Supported Windows Server guest operating systems
 
 | Guest operating system| Maximum number of virtual processors| Integration Services | Notes |
 |:-----|:-----|:-----|:-----|
@@ -19,7 +28,7 @@ The following table lists the Windows operating systems supported as guests in W
 |Windows Home Server 2011|4|Install the integration services after you set up the operating system in the virtual machine.||
 |Windows Small Business Server 2011|Essentials edition - 2, Standard edition - 4|Install the integration services after you set up the operating system in the virtual machine.|Essentials and Standard editions. |
 
-## Supported Windows client guest operating systems ##
+## Supported Windows guest operating systems
 
 | Guest operating system| Maximum number of virtual processors| Integration Services | Notes |
 |:-----|:-----|:-----|:-----|
@@ -32,13 +41,10 @@ The following table lists the Windows operating systems supported as guests in W
 |Windows XP with Service Pack 3 (SP3)|2|Install the integration services after you set up the operating system in the virtual machine.|Professional.| 
 |Windows XP x64 Edition with Service Pack 2 (SP 2)|2|Install the integration services after you set up the operating system in the virtual machine.|Professional.|
 
-Microsoft provides support for guest operating systems in the following manner:
+## Contact Microsoft Support Services
 
-- Issues found in Microsoft operating systems and in integration services are supported by Microsoft support.
-- For issues found in other operating systems that have been certified by the operating system vendor to run on Hyper-V, support is provided by the vendor.
-- For issues found in other operating systems, Microsoft submits the issue to the multi-vendor support community, [TSANet](http://www.tsanet.org/).
 
-## See also: ##
+## Helpful Links
 
 - [Linux and FreeBSD Virtual Machines on Hyper-V](https://technet.microsoft.com/library/dn531030.aspx)
 
