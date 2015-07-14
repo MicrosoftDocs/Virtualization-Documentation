@@ -1,7 +1,7 @@
-ms.ContentId: 295275F2-45D0-4177-8635-15C94B54DA8F 
-title: Client Hyper-V in Windows 10
+ms.ContentId: 93EDAAF5-E4FC-4F3F-AB55-669D2BF47D78 
+title: Hyper-V on Windows 10
 
-# Client Hyper-V # 
+# Hyper-V on Windows 10 # 
  
 Client Hyper-V is an optional feature that can be installed on Windows 10 Enterprise and Windows 10 Professional. For details on installing Client Hyper-V, see [Install Client Hyper-V](..\quick_start\step3.md) 
 
