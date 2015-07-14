@@ -23,9 +23,10 @@ You must license the software running on each of the guest virtual machines acco
 Here are a few helpful links to different Hyper-V packages and information.
 
 ## Other Hyper-V Options
-*  Hyper-V on Windows Server®
-*  Hyper-V Server
-*  Windows Virtual PC
+*  [Hyper-V on Windows Server®](https://technet.microsoft.com/en-us/library/hh831531.aspx)
+  [Hyper-V Technical Preview](https://technet.microsoft.com/en-us/library/mt126117.aspx)
+*  [Hyper-V Server](https://technet.microsoft.com/library/hh923062.aspx)
+*  [Windows Virtual PC](https://www.microsoft.com/en-us/download/details.aspx?id=3702)
 
 ## Have Questions?
 Take me to [the forums](https://social.technet.microsoft.com/Forums/windowsserver/en-US/home?forum=winserverhyperv)!
