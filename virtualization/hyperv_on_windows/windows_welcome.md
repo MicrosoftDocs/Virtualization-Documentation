@@ -10,7 +10,7 @@ The Hyper-V role was introduced to Windows in Windows 8 as an optional feature t
 
 **Note** Hyper-V on Windows is often referred to as Client Hyper-V.
 
-To learn more about virtualization with Hyper-V, check out this [introduction](./about/about_hyperv.md).
+To learn more about virtualization with Hyper-V, check out this [introduction](./about/hyperv_on_windows.md).
 
 To try out Hyper-V, follow this [walkthrough](./quick_start/walkthrough.md).
 
