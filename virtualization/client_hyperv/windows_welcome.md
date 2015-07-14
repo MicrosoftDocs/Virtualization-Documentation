@@ -14,6 +14,12 @@ To learn more about virtualization with Hyper-V, check out this [introduction](.
 
 To try out Hyper-V, follow this [walkthrough](./quick_start/walkthrough.md).
 
+----------
+**Important** 
+You must license the software running on each of the guest virtual machines according to their operating system requirements.
+
+-----------
+
 Here are a few helpful links to different Hyper-V packages and information.
 
 ## Other Hyper-V Options
