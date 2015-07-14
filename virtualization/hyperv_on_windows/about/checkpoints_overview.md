@@ -10,9 +10,9 @@ This topic explains the new and changed checkpoint functionality in Client Hyper
 
 Checkpoints can be helpful to use when you are about to make a change to a virtual machine and you want to be able to roll-back to the present state if the updates cause issues. There are two types of checkpoints:
 
-•	**Production checkpoints**: Used mainly on servers in production environments 
+-  **Production checkpoints**: Used mainly on servers in production environments 
 
-•	**Standard checkpoints**: Used in development or testing environments 
+-  **Standard checkpoints**: Used in development or testing environments 
 
 
 ## How are production checkpoints different from standard checkpoints?

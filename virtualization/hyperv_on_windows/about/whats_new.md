@@ -1,11 +1,11 @@
 ms.ContentId: 52DAFFBE-40F5-46D2-96F3-FB8659581594 
 title: What's New in Client Hyper-V for Windows 10
 
-# What's New for Client Hyper-V in Windows 10 #
+# What's New for Client Hyper-V in Windows 10
 
 This topic explains the new and changed functionality in Client Hyper-V running on Windows 10® Technical Preview.
 
-## Windows PowerShell Direct ##
+## Windows PowerShell Direct
 
 There is a now an easy and reliable way to run Windows PowerShell commands inside a virtual machine from the host operating system. There are no network or firewall requirements or special configuration. 
 It works regardless of your remote management configuration. To use it, you must run Windows 10 or Windows Server Technical Preview on the host and the virtual machine guest operating system.
@@ -23,19 +23,19 @@ Both of these technologies work well, but each have trade-offs as your Hyper-V d
 
 Windows PowerShell Direct provides a powerful scripting and automation experience with the simplicity of VMConnect. Because Windows PowerShell Direct runs between the host and virtual machine, there is no need for a network connection or to enable remote management. You do need guest credentials to log into the virtual machine.
 
-### Requirements ###
+### Requirements
 - You must be connected to a Windows 10 or Windows Server Technical Preview host with virtual machines that run Windows 10 or Windows Server Technical Preview as guests.
 - You need to be logged in with Hyper-V Administrator credentials on the host.
 - You need User credentials for the virtual machine.
 - The virtual machine you want to connect to must be running and booted.
 
-## Hot add and remove for network adapters and memory ##
+## Hot add and remove for network adapters and memory
 
 You can now add or remove a Network Adapter while the virtual machine is running, without downtime. This works for generation 2 virtual machines running both Windows and Linux operating systems. 
 
 You can also adjust the amount of memory assigned to a virtual machine while it's running, even if you haven’t enabled Dynamic Memory. This works for both generation 1 and generation 2 virtual machines.
 
-## Production checkpoints ##
+## Production checkpoints
 
 Production checkpoints allow you to easily create “point in time” images of a virtual machine, which can be restored later on in a way that is completely supported for all production workloads. This is achieved by using backup technology inside the guest to create the checkpoint, instead of using saved state technology. For production checkpoints, the Volume Snapshot Service (VSS) is used inside Windows virtual machines. Linux virtual machines flush their file system buffers to create a file system consistent checkpoint. If you want to create checkpoints using saved state technology, you can still choose to use standard checkpoints for your virtual machine. 
 
@@ -47,7 +47,7 @@ The default for new virtual machines will be to create production checkpoints wi
  
 ----------
 
-## Hyper-V Manager improvements ##
+## Hyper-V Manager improvements
 
 - **Alternate credentials support** – You can now use a different set of credentials in Hyper-V manager when you connect to another Windows 10 Technical Preview remote host. You can also save these credentials so it's easier to log on later. 
 
@@ -103,7 +103,7 @@ Or
 
 ----------
 
-## New virtual machine configuration file format ##
+## New virtual machine configuration file format
 
 Virtual machines now have a new configuration file format which is designed to increase the efficiency of reading and writing virtual machine configuration data. It's also designed to reduce the potential for data corruption if there's a storage failure. The new configuration files use the .VMCX extension for virtual machine configuration data and the .VMRS extension for runtime state data. 
 
@@ -127,6 +127,14 @@ The ISO image file vmguest.iso is no longer needed for updating integration comp
  
 ----------
 
+## Connected Standby Works
+
+In windows 8/8.1, Hyper-V caused computers that uses the Always On/Always Connected (AOAC) power model (also known as InstantON) to never sleep.
+
+See this [KB article](
+https://support.microsoft.com/en-us/kb/2973536) for a full discription.
+
+This is fixed in Windows 10.
 
 ## Next Steps ##
 [Walk through Client Hyper-V on Windows 10](..\quick_start\walkthrough.md) 

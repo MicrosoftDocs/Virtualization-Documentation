@@ -11,35 +11,35 @@
 ****,windowscontainers/userguide/userguide_overview.md
 ***,oa-toc-container: reference
 ****,windowscontainers/reference/reference_overview.md
-**,oa-toc-container: client_hyperv
-***,client_hyperv/windows_welcome.md
+**,oa-toc-container: hyperv_on_windows
+***,hyperv_on_windows/windows_welcome.md
 ***,oa-toc-container: about
-****,client_hyperv/about/client_hyperv.md
-****,client_hyperv/about/whats_new.md
-****,client_hyperv/about/SKUDifferences.md
-****,client_hyperv/about/supported_guest_os.md
-****,client_hyperv/about/checkpoints_overview.md
+****,hyperv_on_windows/about/hyperv_on_windows.md
+****,hyperv_on_windows/about/whats_new.md
+****,hyperv_on_windows/about/SKUDifferences.md
+****,hyperv_on_windows/about/supported_guest_os.md
+****,hyperv_on_windows/about/checkpoints_overview.md
 ***,oa-toc-container: quick_start
-****,client_hyperv/quick_start/walkthrough.md
-****,client_hyperv/quick_start/step1.md
-****,client_hyperv/quick_start/step2.md
-****,client_hyperv/quick_start/step3.md
-****,client_hyperv/quick_start/step4.md
-****,client_hyperv/quick_start/step5.md
-****,client_hyperv/quick_start/step6.md
-****,client_hyperv/quick_start/step7.md
-****,client_hyperv/quick_start/step8.md
-****,client_hyperv/quick_start/step9.md
-****,client_hyperv/quick_start/step10.md
+****,hyperv_on_windows/quick_start/walkthrough.md
+****,hyperv_on_windows/quick_start/step1.md
+****,hyperv_on_windows/quick_start/step2.md
+****,hyperv_on_windows/quick_start/step3.md
+****,hyperv_on_windows/quick_start/step4.md
+****,hyperv_on_windows/quick_start/step5.md
+****,hyperv_on_windows/quick_start/step6.md
+****,hyperv_on_windows/quick_start/step7.md
+****,hyperv_on_windows/quick_start/step8.md
+****,hyperv_on_windows/quick_start/step9.md
+****,hyperv_on_windows/quick_start/step10.md
 ***,oa-toc-container: user_guide
-****,client_hyperv/user_guide/configuration.md
-****,client_hyperv/user_guide/migrating_vms.md
-****,client_hyperv/user_guide/checkpoints.md
-****,client_hyperv/user_guide/remote_host_management.md
-****,client_hyperv/user_guide/vmsession.md
-****,client_hyperv/user_guide/export_import.md
-****,client_hyperv/user_guide/troubleshooting.md
-****,client_hyperv/user_guide/make_service.md
+****,hyperv_on_windows/user_guide/configuration.md
+****,hyperv_on_windows/user_guide/migrating_vms.md
+****,hyperv_on_windows/user_guide/checkpoints.md
+****,hyperv_on_windows/user_guide/remote_host_management.md
+****,hyperv_on_windows/user_guide/vmsession.md
+****,hyperv_on_windows/user_guide/export_import.md
+****,hyperv_on_windows/user_guide/troubleshooting.md
+****,hyperv_on_windows/user_guide/make_service.md
 **,oa-toc-container: api	
 ***,oa-toc-container: powershell
 ****,api/powershell_overview.md
