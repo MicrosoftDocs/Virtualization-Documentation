@@ -68,22 +68,6 @@ Linux operating systems running on generation 2 virtual machines can now boot wi
 For more information on running Linux virtual machines on Hyper-V, see [Linux and FreeBSD Virtual Machines on Hyper-V](https://technet.microsoft.com/library/dn531030.aspx).
  
  
-## Important - update existing VMs ##
-<!--This seems out of place. This is a evaluation topic. They shouldn't be doing this action until they've upgraded.
- I'd suggest just adding a note like "After you upgrade to Windows 10, you may need to update your virtual machine 
- configuration versions to enable the new features. For more information, see…”
-  and link to upgrade topic that has these steps. -->
-Before you begin, you need to update existing virtual machines to enable new features. 
-
-If you use virtual machines that were created with Windows 8.1 you will not have access to new virtual machine features until you manually update the virtual machine configuration version. 
-
-To upgrade the configuration version, shut down the virtual machine and then, at an elevated Windows PowerShell command prompt, type: 
-
-
-    ````Update-VmConfigurationVersion <vmname> | <vmobject> 
-
-For important information about virtual machine configuration version, see Virtual Machine Configuration Version.
-
 ## Virtual Machine Configuration Version ##
 
 When you move or import a virtual machine to a host running Client Hyper-V on Windows 10 from host running Windows 8.1, the virtual machine’s configuration file isn't automatically upgraded. This allows the virtual machine to be moved back to a host running Windows 8.1. You won't have access to new virtual machine features until you manually update the virtual machine configuration version. 

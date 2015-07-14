@@ -3,20 +3,13 @@ title: Migrating and upgrading virtual machines
 
 # Migrate and upgrade virtual machines 
 
-If you upgrade a computer that has existing virtual machines to Windows 10, no changes are made to the virtual machine configuration settings or the virtual machine checkpoint files. This allows you to move virtual machines to computers that are running different versions of Windows and Hyper-V. 
 
-In Windows 10, you can upgrade your virtual machines to support the latest virtual machine configuration version. This introduces changes to the compatibility, structure, and location of your virtual machine's configuration and checkpoint files. 
+If you move virtual machines to your Windows 10 host that were originally created with Hyper-V in Windows 8.1 or earlier, you will not be able to use new virtual machine features until you manually update the virtual machine configuration version. 
 
-## Upgrade the virtual machine configuration version
-To upgrade to the latest virtual machine configuration version, open an elevated Windows PowerShell command prompt, and run one of the following commands:
-
-**Update-VMVersion** *vmname*   
-
-Substitute the name of your virtual machine for vmname.
+To upgrade the configuration version, shut down the virtual machine and then, at an elevated Windows PowerShell command prompt, type: 
 
 
-
-**Note** When you use a Windows PowerShell command to upgrade the configuration version of the virtual machine, you will be notified that any saved states associated with your virtual machine will be removed. This includes saved states associated with checkpoints. 
+    ````Update-VmConfigurationVersion <vmname> | <vmobject> 
 
 ## How do I check the configuration version of the virtual machines running on Hyper-V? 
 
@@ -32,26 +25,44 @@ The PowerShell command produces the following sample output:
     
     SGC VM		Running			0			538 	 			00:02:44.8350000	Operating normally		6.2
 
+## What happens if I do not upgrade the configuration version?
 
-## What is the configuration version of a virtual machine?
+If you have virtual machines that you created with an earlier version of Client Hyper-V, some features may not work with those virtual machines until you update the VM version.
 
-The configuration version defines the configuration, saved state, and checkpoint compatibility of the virtual machine. Virtual machines with configuration version 5 are compatible with Windows 10 and previous releases of Windows and Hyper-V. Virtual machines with configuration version 6.x are only compatible with Windows 10, and they will not run on earlier versions of Windows and Hyper-V. 
+Minimum VM configuration version for new Hyper-V features:
+
+| Feature Name                           | Minimum VM version |
+| :------------------------------------- | -----------------: |
+| Hot Add/Remove Memory                  |                6.0 |
+| Hot Add/Remove Network Adapters        |                5.0 |
+| Secure Boot for Linux VMs              |                6.0 |
+| PowerShell Direct                      |                6.2 |
+| Virtual Trusted Platform Module (vTPM) |                6.2 |
+| Virtual Machine Grouping               |                6.2 |## Virtual Machine Configuration Version ##
+
+When you move or import a virtual machine to a host running Client Hyper-V on Windows 10 from host running Windows 8.1, the virtual machine’s configuration file isn't automatically upgraded. This allows the virtual machine to be moved back to a host running Windows 8.1. You won't have access to new virtual machine features until you manually update the virtual machine configuration version. 
+
+The virtual machine configuration version represents what version of Hyper-V the virtual machine’s configuration, saved state, and snapshot files it's compatible with. Virtual machines with configuration version 5 are compatible with Windows 8.1 and can run on both Windows 8.1 and Windows 10. Virtual machines with configuration version 6 are compatible with Windows 10 and won't run on Windows 8.1.
 
 It is not necessary to upgrade all of your virtual machines simultaneously. You can choose to upgrade specific virtual machines when required. However, you will not have access to new virtual machine features until you manually update the configuration version for each virtual machine.  
 
-## What happens if I do not upgrade the configuration version?
 
-Administrators may choose to not upgrade a virtual machines configuration version because they plan to migrate virtual machines to computers that are using different versions of Windows. If you don’t upgrade the configuration version of your virtual machine, you will continue using the same virtual machine file formats for configuration and checkpoint files. You can also import virtual machines to computers running Windows 10, and they will continue to use the original file formats until they are upgraded. 
+----------------
+**Important **
 
-The following table describes the configuration and checkpoint files that are used for a configuration version 5 virtual machine.
+• After you upgrade the virtual machine configuration version, you can't move the virtual machine to a host that runs Windows 8.1.
 
-|**Virtual machine configuration and checkpoint files (version 5)** | **Description** 
-|:---------|:-----|
-|**Virtual machine configuration file (.xml)**| Contains the virtual machine configuration details. There is a configuration file for each virtual machine and for each checkpoint of a virtual machine.  They are always named with the GUID that is used to internally identify the virtual machine or checkpoint. 
-|**Virtual machine memory file (.bin)** | Contains the memory of a virtual machine or checkpoint that is in a saved state. 
-|**Virtual machine saved state (.vsv)**| Contains the saved state from the devices associated with the virtual machine. 
-|**Virtual hard disk File (.vhd/.vhdx)**| These are the virtual hard disk files for the virtual machine. 
-|**Automatic  virtual hard disk files (.avhd)** | These are the differencing disk files used for virtual machine checkpoints (formerly known as snapshots).|
+• You can't downgrade the virtual machine configuration version from version 6 to version 5.
+
+• You must turn off the virtual machine to upgrade the virtual machine configuration.
+
+• After the upgrade, the virtual machine uses the new configuration file format. For more information, see New virtual machine configuration file format.
+
+--------
+
+
+
+
 
 ## What happens when I upgrade the version of a virtual machine?
 When you manually upgrade the configuration version of a virtual machine to version 6.x, you will change the file structure that is used for storing the virtual machines configuration and checkpoint files. 
