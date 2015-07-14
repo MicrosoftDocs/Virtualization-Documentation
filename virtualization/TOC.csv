@@ -19,7 +19,6 @@
 ****,client_hyperv/about/SKUDifferences.md
 ****,client_hyperv/about/supported_guest_os.md
 ****,client_hyperv/about/checkpoints_overview.md
-****,client_hyperv/about/vm_config_overview.md
 ***,oa-toc-container: quick_start
 ****,client_hyperv/quick_start/walkthrough.md
 ****,client_hyperv/quick_start/step1.md
