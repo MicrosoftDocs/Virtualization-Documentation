@@ -40,6 +40,8 @@
 ****,hyperv_on_windows/user_guide/export_import.md
 ****,hyperv_on_windows/user_guide/troubleshooting.md
 ****,hyperv_on_windows/user_guide/make_service.md
+***,oa-toc-container: develop
+****,hyperv_on_windows/develop/make_service.md
 **,oa-toc-container: api	
 ***,oa-toc-container: powershell
 ****,api/powershell_overview.md
