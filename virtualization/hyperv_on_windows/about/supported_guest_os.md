@@ -2,7 +2,7 @@ ms.ContentId: 7561B149-A147-4F71-9840-6AE149B9DED5
 title: Supported Windows Guest Operating Systems
 
 
-# Supported Windows guest operating systems
+# Supported Windows guests
 This article lists the Windows operating systems supported as guests in Windows Client Hyper-V, as well provides information about integration services. 
 
 
@@ -42,7 +42,6 @@ Hyper-V includes integration services for supported guest operating systems.  In
 |Windows XP with Service Pack 3 (SP3)|2|Install the integration services after you set up the operating system in the virtual machine.|Professional.| 
 |Windows XP x64 Edition with Service Pack 2 (SP 2)|2|Install the integration services after you set up the operating system in the virtual machine.|Professional.|
 
-## Contact Microsoft Support Services
 
 
 ## Helpful Links
