@@ -11,16 +11,6 @@
 ****,windowscontainers/quick_start/container_setup.md
 ****,windowscontainers/quick_start/manage_containers.md
 ***,oa-toc-container: user_guide
-****,windowscontainers/userguide/userguide_overview.md
-****,windowscontainers/userguide/working_with_containers.md
-****,windowscontainers/userguide/containerize_app.md
-****,windowscontainers/userguide/gstart_docker_hub.md
-****,windowscontainers/userguide/working_with_packages.md
-****,windowscontainers/userguide/accessing_data_in_containers.md
-****,windowscontainers/userguide/linking_multiple_containers.md
-****,windowscontainers/userguide/managing_container_resources.md
-****,windowscontainers/userguide/debugging.md
-****,windowscontainers/userguide/minecraft.md
 ***,oa-toc-container: reference
 **,"oa-toc-container: client_hyperv	"
 ***,oa-toc-container: quick_start
