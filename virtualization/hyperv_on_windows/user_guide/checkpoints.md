@@ -32,6 +32,11 @@ If you choose production checkpoints, you can also specify whether the host shou
 4.	If you want to change the location where the configuration files for the checkpoint are stored, change the path in the **Checkpoint File Location** section.
 5.	Click **Apply** to apply your changes. If you are done, click **OK** to close the dialog box.
 
+### How are production checkpoints different from standard checkpoints?
+
+Production checkpoints and standard checkpoints restore a virtual machine to a previous state. However, production checkpoints utilize the Volume Shadow Copy Service (VSS) to create an application-consistent checkpoint of a virtual machine. Standard checkpoints (formerly known as snapshots) capture the saved state of your virtual machine.
+
+Standard checkpoints contain the memory state of a virtual machine, which may contain information about client connections, transactions, and the external network state. This information may not be valid when the checkpoint is applied. Applying a production checkpoint involves booting the guest operating system from an offline state. This means that no application state or security information is captured as part of the checkpoint process. 
 
 
 ## Create a checkpoint ##
