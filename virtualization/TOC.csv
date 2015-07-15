@@ -22,7 +22,6 @@
 ****,windowscontainers/userguide/debugging.md
 ****,windowscontainers/userguide/minecraft.md
 ***,oa-toc-container: reference
-****,windowscontainers/reference/internal_ManagmentArchitecture.md
 **,"oa-toc-container: client_hyperv	"
 ***,oa-toc-container: quick_start
 ****,client_hyperv/quick_start/walkthrough.md
