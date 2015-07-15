@@ -74,8 +74,6 @@ You need to create a new virtual machine using a .vhd or .vhdx of Windows Server
 
    `Siloclient -start test1 -def \windows\system32\containers\cmdserver.def -server`
 
-### Setup the network
-Follow [these instructions](..\reference\networking.md) to set up your network.
 
 ### Connect to the container using Remote Desktop ###
 1. Click on the **Windows** button and type **mstsc** and then click **Remote Desktop Connection**. 
