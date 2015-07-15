@@ -5,7 +5,7 @@ title: Hyper-V on Windows 10
 93EDAAF5-E4FC-4F3F-AB55-669D2BF47D78
 Whether you are a software developer, an IT administrator, or simply an enthusiast, many of you need to run multiple operating systems, occasionally on many different machines. Not all of us have access to a full suite of labs to house all these machines, and so virtualization can be a space and time saver.
 
-## Uses 
+## Uses for virtualization
 Virtualization enables anyone to easily maintain multiple test environments consisting of many operating systems, software configurations, and hardware configurations.  Hyper-V provides virtualization on Windows as well as a simple mechanism to quickly switch between these environments without incurring additional hardware costs.    
 
 Hyper-V can be used in many ways, for example:
@@ -49,8 +49,16 @@ Having said this, using virtualization has its limitations. Features or applicat
 
 As a reminder, you will still need to license any operating systems you use in the VMs.
 
+## Differences between Hyper-V on Windows and Hyper-V on Windows Server
+There are some features that work differently in Hyper-V on Windows than they do Hyper-V running on Windows Server. These include the following:
 
-## What isn’t supported?
+- The memory management model is different for Hyper-V on Windows. On a server, Hyper-V memory is managed with the assumption that only the virtual machines are running on the server. In Hyper-V on Windows, memory is managed with the understanding most client machines are running software in addition to running virtual machines. For example, a developer might be running Visual Studio as well as several virtual machines on the same computer.
+
+- SR-IOV on a 64-bit guest works normally, but 32-bit does not and is not supported.
+
+For more information, see this [article on SKU differences](./SKUDifferences.md).
+
+### Windows Server features not avilable in Windows Hyper-V
 There are some features included in Hyper-V on server that are not included in Hyper-V on Windows. These include the following:
 
 - The Remote FX capability to virtualize GPUs 
@@ -71,14 +79,7 @@ Virtual machines running on Hyper-V do not automatically handle moving from a wi
  
 ------
 
-## Differences between Hyper-V on Windows and Hyper-V on Windows Sertver
-There are some features that work differently in Hyper-V on Windows than they do Hyper-V running on Windows Server. These include the following:
 
-- The memory management model is different for Hyper-V on Windows. On a server, Hyper-V memory is managed with the assumption that only the virtual machines are running on the server. In Hyper-V on Windows, memory is managed with the understanding most client machines are running software in addition to running virtual machines. For example, a developer might be running Visual Studio as well as several virtual machines on the same computer.
-
-- SR-IOV on a 64-bit guest works normally, but 32-bit does not and is not supported.
-
-For more information, see this [article on SKU differences](./SKUDifferences.md).
 
 ## Supported Guest Operating Systems ##
 For a list of supported guest operating systems, see [Supported Windows Guest Operating Systems](supported_guest_os.md). 
