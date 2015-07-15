@@ -1,9 +1,10 @@
 ms.ContentId: 7561B149-A147-4F71-9840-6AE149B9DED5
 title: Supported Windows Guest Operating Systems
 
-# Supported Windows guest operating systems
 
-Hyper-V provides support for many combination of Hyper-V hosts and guest operating systems.
+# Supported Windows guest operating systems
+This article lists the Windows operating systems supported as guests in Windows Client Hyper-V, as well provides information about integration services. 
+
 
 ## What does support mean? 
 Support means Microsoft has tested these host/guest combinations.  Issues with these setups may recieve attention from Customer Support Services.
