@@ -1,9 +1,9 @@
 ms.ContentId: 52DAFFBE-40F5-46D2-96F3-FB8659581594 
-title: What's New in Client Hyper-V for Windows 10
+title: What's New in Hyper-V for Windows 10
 
-# What's New for Client Hyper-V in Windows 10
+# What's New for Hyper-V on Windows 10
 
-This topic explains the new and changed functionality in Client Hyper-V running on Windows 10® Technical Preview.
+This topic explains the new and changed functionality in Hyper-V on Windows 10®.
 
 ## Windows PowerShell Direct
 
@@ -70,7 +70,7 @@ For more information on running Linux virtual machines on Hyper-V, see [Linux an
  
 ## Virtual Machine Configuration Version ##
 
-When you move or import a virtual machine to a host running Client Hyper-V on Windows 10 from host running Windows 8.1, the virtual machine’s configuration file isn't automatically upgraded. This allows the virtual machine to be moved back to a host running Windows 8.1. You won't have access to new virtual machine features until you manually update the virtual machine configuration version. 
+When you move or import a virtual machine to a host running Hyper-V on Windows 10 from host running Windows 8.1, the virtual machine’s configuration file isn't automatically upgraded. This allows the virtual machine to be moved back to a host running Windows 8.1. You won't have access to new virtual machine features until you manually update the virtual machine configuration version. 
 
 The virtual machine configuration version represents what version of Hyper-V the virtual machine’s configuration, saved state, and snapshot files it's compatible with. Virtual machines with configuration version 5 are compatible with Windows 8.1 and can run on both Windows 8.1 and Windows 10. Virtual machines with configuration version 6 are compatible with Windows 10 and won't run on Windows 8.1.
 
@@ -137,4 +137,4 @@ https://support.microsoft.com/en-us/kb/2973536) for a full discription.
 This is fixed in Windows 10.
 
 ## Next Steps ##
-[Walk through Client Hyper-V on Windows 10](..\quick_start\walkthrough.md) 
+[Walk through Hyper-V on Windows 10](..\quick_start\walkthrough.md) 

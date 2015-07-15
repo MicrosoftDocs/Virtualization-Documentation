@@ -5,9 +5,9 @@ Hyper-V has different features depending on the version of Windows installed on 
 
 # Host Feature Differences #
 
-| **Feature**  			| **Server** 	| **Client** 	|  **Notes**       				|
+| **Feature**  			| **Server** 	| **Windows** 	|  **Notes**       				|
 |:----------------------|:--------------|:--------------|:------------------------------|
-|Enhanced Session Mode	| √       		| √          	| Default: Server = off, Client = on  					|
+|Enhanced Session Mode	| √       		| √          	| Default: Server = off, Windows = on  					|
 |Live Migration  		| √        		|            	|              					|
 |Remote FX 				| √ 			|  				|  								|
 |Hyper-V Replica 		| √ 			|  				|  								|
@@ -18,17 +18,17 @@ Hyper-V has different features depending on the version of Windows installed on 
 |Shared VHDX 			| √ see notes 	| 				|VHDX file must reside on a Windows Server Scale Out File Server Cluster	|
 |VSS based host backup	| √				|				|	.							|
 
-## Windows Client ##
+## Windows ##
 
-### Features that are limited to a subset of Windows Client Hosts ###
+### Features that are limited to a subset of Windows Hosts ###
 
-Hyper-V is only available on Enterprise and Professional versions of Windows Client.
+Hyper-V is only available on Enterprise and Professional versions of Windows.
 
-### Windows Client Specific Default Settings ###
+### Windows Specific Default Settings ###
 
-Enhanced Session Mode is enabled by default on Windows Client hosts.
+Enhanced Session Mode is enabled by default on Windows hosts.
 
-Intercept and VMBus throttling are disabled by default on Windows Client hosts
+Intercept and VMBus throttling are disabled by default on Windows hosts
 
 	
 ## Windows Server ##
@@ -61,4 +61,4 @@ Automatic VM Activation is only available on Windows Server Datacenter hosts.
 
 # Guest Feature Differences #
 
-RemoteFX is only supported when running the Enterprise version of Windows Client inside the virtual machine.
+RemoteFX is only supported when running the Enterprise version of Windows inside the virtual machine.

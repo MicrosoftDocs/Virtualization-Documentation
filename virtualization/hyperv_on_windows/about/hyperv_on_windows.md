@@ -1,8 +1,8 @@
-ms.ContentId: 93EDAAF5-E4FC-4F3F-AB55-669D2BF47D78 
+ms.ContentId: 295275F2-45D0-4177-8635-15C94B54DA8F
 title: Hyper-V on Windows 10
 
 # An Introduction to Hyper-V
-
+93EDAAF5-E4FC-4F3F-AB55-669D2BF47D78
 Whether you are a software developer, an IT administrator, or simply an enthusiast, many of you need to run multiple operating systems, occasionally on many different machines. Not all of us have access to a full suite of labs to house all these machines, and so virtualization can be a space and time saver.
 
 ## Uses 
@@ -51,7 +51,7 @@ As a reminder, you will still need to license any operating systems you use in t
 
 
 ## What isn’t supported?
-There are some features included in Hyper-V on server that are not included in Client Hyper-V. These include the following:
+There are some features included in Hyper-V on server that are not included in Hyper-V on Windows. These include the following:
 
 - The Remote FX capability to virtualize GPUs 
 
@@ -67,14 +67,14 @@ There are some features included in Hyper-V on server that are not included in C
 
 -----
 **Warning**  
-Virtual machines running on Client Hyper-V do not automatically handle moving from a wired to a wireless connection. You must change the virtual machines network adapter settings manually.
+Virtual machines running on Hyper-V do not automatically handle moving from a wired to a wireless connection. You must change the virtual machines network adapter settings manually.
  
 ------
 
 ## Differences between Hyper-V on Windows and Hyper-V on Windows Sertver
-There are some features that work differently on Client Hyper-V than they do Hyper-V running on Windows Server. These include the following:
+There are some features that work differently in Hyper-V on Windows than they do Hyper-V running on Windows Server. These include the following:
 
-- The memory management model is different for Client Hyper-V. On a server, Hyper-V memory is managed with the assumption that only the virtual machines are running on the server. In Client Hyper-V, memory is managed with the understanding most client machines are running software in addition to running virtual machines. For example, a developer might be running Visual Studio as well as several virtual machines on the same computer.
+- The memory management model is different for Hyper-V on Windows. On a server, Hyper-V memory is managed with the assumption that only the virtual machines are running on the server. In Hyper-V on Windows, memory is managed with the understanding most client machines are running software in addition to running virtual machines. For example, a developer might be running Visual Studio as well as several virtual machines on the same computer.
 
 - SR-IOV on a 64-bit guest works normally, but 32-bit does not and is not supported.
 
@@ -86,5 +86,5 @@ For a list of supported guest operating systems, see [Supported Windows Guest Op
 For supported Linux distributions as a guest operating systems on Hyper-V, see [Linux and FreeBSD Virtual Machines on Hyper-V](https://technet.microsoft.com/library/dn531030.aspx).
 
 
-Next step: [Walkthrough Client Hyper-V on Windows 10](..\quick_start\walkthrough.md) 
+Next step: [Walkthrough Hyper-V on Windows 10](..\quick_start\walkthrough.md) 
 
