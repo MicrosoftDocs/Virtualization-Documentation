@@ -19,9 +19,11 @@ To enable or disable checkpoints for a virtual machine
 ## Choose standard or production checkpoints ##
 
 You can choose between standard and production checkpoints for each virtual machine.
-Production checkpoints allow you to easily create point-in-time images of a virtual machine, which can be restored later in a way that is completely supported for all production workloads. This is achieved by using backup technology inside the guest operating system to create the checkpoint, instead of using saved-state technology. Production checkpoints are the default for new virtual machines. 
 
-Standard checkpoints capture the state, data, and hardware configuration of a running virtual machine, and they are intended for use in development and test scenarios. Standard checkpoints can be very useful if you need to re-create a specific state or condition of a running virtual machine so that you can troubleshoot an issue.
+-  **Production checkpoints**: Used mainly on servers in production environments 
+-  **Standard checkpoints**: Used in development or testing environments 
+
+
 
 1.	In **Hyper-V Manager**, right-click the name of the virtual machine, and click **Settings**.
 2.	In the **Management** section, select **Checkpoints**.
