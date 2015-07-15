@@ -83,5 +83,5 @@ You need to create a new virtual machine using a .vhd or .vhdx of Windows Server
 	Note: You may need to disable the Windows firewall / open custom ports in the Windows firewall in order to have RDP to the container work.
 
 ### Next Steps ###
-[Install using Docker](install_using_docker.md)
+[Install using Docker](<!--Need to replace-->)
 
