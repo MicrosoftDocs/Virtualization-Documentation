@@ -1,12 +1,12 @@
 ms.ContentId: 2964B9FA-FBA4-4F8C-BEF2-A3F3E2FEC6E4
-title: Step 2: Install Client Hyper-V
+title: Step 2: Install Hyper-V on Windows 10
 
-# Install Client Hyper-V #
+# Install Hyper-V on Windows 10
 
-Client Hyper-V can be installed using the Programs and Features tool or [Windows Powershell](#Using-the-Get-WindowsOptionalFeature-cmdlet).
+Hyper-V can be installed on Windows 10 using **Programs and Features** or [Windows Powershell](#Using-the-Get-WindowsOptionalFeature-cmdlet).
 
 
-## Using Programs and Features ##
+## Using Programs and Features
 1. Right-click the **Windows** button and then click **Programs and Features**.
 
   ![](media\programs_and_features.png)
@@ -19,7 +19,7 @@ Client Hyper-V can be installed using the Programs and Features tool or [Windows
 
   ![](media\restart.png)
   
-## Using the Get-WindowsOptionalFeature cmdlet ##
+## Using the Get-WindowsOptionalFeature cmdlet
 For more information, see Get-WindowsOptionalFeature and Using PowerShell to Set Up Hyper-V
 
 1. Click on the **Windows** button and search for **Windows PowerShell**. 
@@ -28,14 +28,13 @@ For more information, see Get-WindowsOptionalFeature and Using PowerShell to Set
 ```enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V -All``` 
 4. When the installation is finished, restart the computer. 
 
-## How do I know it installed?##
+## How do I know it installed?
 After you restart your computer start the Hyper-V Manager tool. 
 
 1. Click on the **Windows** button and type **Hyper-V**.
 2. Click on **Hyper-V Manager** in the list.
+3. The Hyper-V Manager application should start.
 
-The Hyper-V Manager should start and look like this:
-<!-- need screenshot -->
 
 # Next Step #
 [Step 3: Create a virtual switch](step3.md)

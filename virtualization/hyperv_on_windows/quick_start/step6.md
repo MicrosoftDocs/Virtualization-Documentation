@@ -10,12 +10,10 @@ Checkpoints can be helpful to use when you are about to make a change to a virtu
 •	**Standard checkpoints**: Used in development or testing environments 
 
 
-Production checkpoints are the default for Hyper-V Client on Windows 10.
-
-For more information about checkpoints, see [Checkpoints Overview](..\about\checkpoints_overview.md)
+Production checkpoints are the default for Hyper-V on Windows 10.
 
 
-## Change the checkpoint type ##
+## Change the checkpoint type
 We will start by trying out the older style of checkpoints, **standard checkpoints**. Since production checkpoints are the default, we need to go into the settings for the VM and change the checkpoint type.
 
 1. Right-click on **Windows Walkthrough VM** and select **Settings**.
@@ -25,7 +23,7 @@ We will start by trying out the older style of checkpoints, **standard checkpoin
   ![](media/standard1.png)
 4.	Click **OK** to close the dialog box.
 
-## Open Notepad to test checkpoints ##
+## Open Notepad to test checkpoints 
 In order to see what happens with each type of checkpoint, we will run an application in the VM. 
 1. Right-click on **Windows Walkthrough VM** and select **Connect**.
 2. In the virtual machine, open **Notepad** by clicking on the **Start** menu and typing **Notepad** and then select it from the results. 
@@ -34,7 +32,7 @@ In order to see what happens with each type of checkpoint, we will run an applic
   ![](media/standard_notepad.png)
 4. Save the file as **test.txt**, but don't close Notepad. Leave it running in the virtual machine.
 
-## Create a standard checkpoint ##
+## Create a standard checkpoint 
 1. To create the checkpoint, right-click the VM and click **Checkpoint**. 
 2. In the checkpoint name dialog, type **Standard**. The dialog should look like this:
 
@@ -43,7 +41,7 @@ In order to see what happens with each type of checkpoint, we will run an applic
 
   ![](media/standard_complete.png) 
 
-## Create a production checkpoint ##
+## Create a production checkpoint 
 Now, we need to change change the type of checkpoint that we want to take back to **Production checkpoints** before taking a second checkpoint.
 
 1.	Right-click the virtual machine, and click **Settings**.
@@ -66,7 +64,7 @@ Now, we need to change change the type of checkpoint that we want to take back t
 
 
 
-## Apply the standard checkpoint ##
+## Apply the standard checkpoint 
 
 1.	In **Hyper-V Manager**, in the **Checkpoints** section, right-click the one titled **Standard** and click **Apply**.
 2.	In the pop-up dialog, click **Create Checkpoint and Apply**. 
@@ -82,7 +80,7 @@ Now, we need to change change the type of checkpoint that we want to take back t
 6. Close VMConnect, but leave the VM running.
 
 
-## Apply the production checkpoint ##
+## Apply the production checkpoint 
 Now, let's go back to Hyper-V manager and apply the production checkpoint and see how our VM looks afterwards.
 
 1.	In the Checkpoints section, right-click the one titled **Production Checkpoint** and click **Apply**.
@@ -100,7 +98,7 @@ Now, let's go back to Hyper-V manager and apply the production checkpoint and se
 
   ![](media/delete_me.png)
 
-## Delete a checkpoint ##
+## Delete a checkpoint 
 The previous step has probably given you a hint about what we will do next. We are going to delete the checkpoint that you just renamed.
 
 1. Right-click on the checkpoint named **Delete me** and click **Delete checkpoint**. 
@@ -114,7 +112,7 @@ The previous step has probably given you a hint about what we will do next. We a
   ![](media/after_delete.png)
 
 
-# Next Steps: #
+## Next Steps: 
 [Step 7: Export and import a virtual machine](step7.md)
 
 
