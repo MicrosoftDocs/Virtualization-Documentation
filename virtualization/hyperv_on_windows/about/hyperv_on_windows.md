@@ -1,9 +1,9 @@
 ms.ContentId: 295275F2-45D0-4177-8635-15C94B54DA8F
-title: Hyper-V Overview
+title: Introduction to Hyper-V on Windows 10
 
-# An Introduction to Hyper-V
-93EDAAF5-E4FC-4F3F-AB55-669D2BF47D78
-Whether you are a software developer, an IT administrator, or simply an enthusiast, many of you need to run multiple operating systems, occasionally on many different machines. Not all of us have access to a full suite of labs to house all these machines, and so virtualization can be a space and time saver.
+# Introduction to Hyper-V on Windows 10
+
+Whether you are a software developer, an ITPro, or simply an enthusiast, many of you need to run multiple operating systems, occasionally on many different machines. Not all of us have access to a full suite of labs to house all these machines, and so virtualization can be a space and time saver.
 
 ## Uses for virtualization
 Virtualization enables anyone to easily maintain multiple test environments consisting of many operating systems, software configurations, and hardware configurations.  Hyper-V provides virtualization on Windows as well as a simple mechanism to quickly switch between these environments without incurring additional hardware costs.    
