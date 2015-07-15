@@ -27,7 +27,7 @@ The PowerShell command produces the following sample output:
 
 ## What happens if I do not upgrade the configuration version?
 
-If you have virtual machines that you created with an earlier version of Client Hyper-V, some features may not work with those virtual machines until you update the VM version.
+If you have virtual machines that you created with an earlier version of Hyper-V, some features may not work with those virtual machines until you update the VM version.
 
 Minimum VM configuration version for new Hyper-V features:
 
@@ -40,7 +40,7 @@ Minimum VM configuration version for new Hyper-V features:
 | Virtual Trusted Platform Module (vTPM) |                6.2 |
 | Virtual Machine Grouping               |                6.2 |## Virtual Machine Configuration Version ##
 
-When you move or import a virtual machine to a host running Client Hyper-V on Windows 10 from host running Windows 8.1, the virtual machine’s configuration file isn't automatically upgraded. This allows the virtual machine to be moved back to a host running Windows 8.1. You won't have access to new virtual machine features until you manually update the virtual machine configuration version. 
+When you move or import a virtual machine to a host running Hyper-V on Windows 10 from host running Windows 8.1, the virtual machine’s configuration file isn't automatically upgraded. This allows the virtual machine to be moved back to a host running Windows 8.1. You won't have access to new virtual machine features until you manually update the virtual machine configuration version. 
 
 The virtual machine configuration version represents what version of Hyper-V the virtual machine’s configuration, saved state, and snapshot files it's compatible with. Virtual machines with configuration version 5 are compatible with Windows 8.1 and can run on both Windows 8.1 and Windows 10. Virtual machines with configuration version 6 are compatible with Windows 10 and won't run on Windows 8.1.
 
