@@ -1,6 +1,7 @@
 *,oa-toc-container:virtualization
 **,oa-toc-container: windowscontainers
 ***,oa-toc-container: about
+***,windowscontainers/containers_welcome.md
 ****,windowscontainers/about/about_overview.md
 ****,windowscontainers/about/container_ecosystem.md
 ****,windowscontainers/about/when_containers.md
