@@ -1,7 +1,7 @@
 ms.ContentId: 7561B149-A147-4F71-9840-6AE149B9DED5
 title: Supported Windows Guest Operating Systems
 
-# Supported Guest Operating Systems
+# Supported Windows guest operating systems
 
 Hyper-V provides support for many combination of Hyper-V hosts and guest operating systems.
 
