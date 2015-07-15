@@ -8,9 +8,9 @@ Hyper-V lets you run more than one 32-bit or 64-bit x86 operating system at the 
 
 The Hyper-V role was introduced to Windows in Windows 8 as an optional feature that can be installed through Programs and Features in the Control Panel. The documentation available here gives you detailed, up-to-date, information about Hyper-V on Windows.
 
-**Note** Hyper-V on Windows is often referred to as Client Hyper-V.
+**Note** Hyper-V on Windows is sometimes referred to as Client Hyper-V.
 
-To learn more about virtualization with Hyper-V, check out this [introduction](./about/hyperv_on_windows.md).
+To learn more about virtualization with Hyper-V on Windows 10, check out this [introduction](./about/hyperv_on_windows.md).
 
 To try out Hyper-V, follow this [walkthrough](./quick_start/walkthrough.md).
 
@@ -23,10 +23,10 @@ You must license the software running on each of the guest virtual machines acco
 Here are a few helpful links to different Hyper-V packages and information.
 
 ## Other Hyper-V Options
-*  [Hyper-V on Windows Server®](https://technet.microsoft.com/en-us/library/hh831531.aspx)
-  [Hyper-V Technical Preview](https://technet.microsoft.com/en-us/library/mt126117.aspx)
-*  [Hyper-V Server](https://technet.microsoft.com/library/hh923062.aspx)
-*  [Windows Virtual PC](https://www.microsoft.com/en-us/download/details.aspx?id=3702)
+*  [Hyper-V on Windows Server 2016](https://technet.microsoft.com/en-us/library/mt126117.aspx)
+*  [Hyper-V on Windows Server 2012 R2](https://technet.microsoft.com/en-us/library/hh831531.aspx)
+*  [Microsoft Hyper-V Server](https://technet.microsoft.com/library/hh923062.aspx)
+
 
 ## Have Questions?
-Take me to [the forums](https://social.technet.microsoft.com/Forums/windowsserver/en-US/home?forum=winserverhyperv)!
+Check out [the forums](https://social.technet.microsoft.com/Forums/windowsserver/en-US/home?forum=winserverhyperv)!
