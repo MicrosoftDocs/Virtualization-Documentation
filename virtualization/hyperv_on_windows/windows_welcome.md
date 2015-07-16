@@ -2,7 +2,14 @@ ms.ContentId: 09eacb3a-bcd2-4724-9c73-6d47ec06f385
 title: Welcome to the Hyper-V on Windows documentation
 
 
-# Welcome to the Hyper-V on Windows documentation
+
+
+# Welcome to the Hyper-V on Windows 10 documentation
+
+
+![](Windows10_rgb_Blue_S.png)
+
+
 
 Hyper-V lets you run more than one 32-bit or 64-bit x86 operating system at the same time on the same computer. Instead of running directly on the computer’s hardware, the operating systems run inside of a virtual machine (VM).
 
