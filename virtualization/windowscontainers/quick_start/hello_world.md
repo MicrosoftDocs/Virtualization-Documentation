@@ -3,6 +3,19 @@ title: Hello World for Windows Containers
 
 # Hello World for Windows Containers #
 
+**Owner**: 
+
+**Goal**:  
+Get a container running.
+
+Give customers an overall idea what the walkthrough will entail and a TOC to each step.
+
+
+**Nav Experience**:
+Get started in Azure or locally.
+
+
+
 Let's get you started with containers! Before we begin, you will need:
 
 - a computer running <!-- Windows 10 or -->Windows Server
