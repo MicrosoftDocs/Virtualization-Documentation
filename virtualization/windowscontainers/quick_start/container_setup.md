@@ -9,6 +9,7 @@ Neil for overall experience.
 
 **Goal** :  
 Building on basic management, this doc will walk through set up of the container infrastructure. Includes setting up a basic network and installing some workload. 
+Customize the workload, save as a new image to send off to wherever? (if that is possible/ready)
 
 
 **Nav Experience** :
