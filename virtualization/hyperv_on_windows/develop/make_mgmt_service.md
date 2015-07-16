@@ -31,8 +31,6 @@ Hyper-V sockets are TCP-like sockets with no dependence on networking.  Using Hy
 Kernel mode or user mode  
 Data stream only  	
 No block memory so not the best for backup/video  
-[todo] Ballpark benchmarks  
-
 
 # Getting started #
 ## Register your service on the Hyper-V host ##
