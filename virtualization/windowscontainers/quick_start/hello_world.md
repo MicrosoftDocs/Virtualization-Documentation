@@ -6,7 +6,7 @@ title: Hello World for Windows Containers
 **Owner** :  
 Cynthia for overall structure.  
 Someone for Azure bits  
-Someone for local bits  
+Andy for running locally.
 
 
 **Goal** :  
