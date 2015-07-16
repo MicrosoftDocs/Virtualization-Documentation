@@ -3,17 +3,24 @@ title: Hello World for Windows Containers
 
 # Hello World for Windows Containers #
 
-**Owner**: 
+**Owner** :  
+Cynthia for overall structure.  
+Someone for Azure bits  
+Someone for local bits  
 
-**Goal**:  
-Get a container running.
+
+**Goal** :  
+Get a container running (environment set up for Windows Server Containers) either locally or on Azure.
+
+
+**Nav Experience** :
+Get started in Azure or locally, next step, learn more about container management options.
+Or jump to the step you want to know more about.
 
 Give customers an overall idea what the walkthrough will entail and a TOC to each step.
 
 
-**Nav Experience**:
-Get started in Azure or locally.
-
+----------------------------
 
 
 Let's get you started with containers! Before we begin, you will need:
