@@ -201,3 +201,14 @@ The below table decribes Docker commands we have verified with Windows Server Co
 | `attach` | [none] |  |
 |  | `--no-stdin=true` |  |
 |  | `--sig-proxy=false` |  |
+| `ps` | [none] and `-a` |  |
+|  | `--before=Id` |  |
+|  | `--filter` | `docker ps -a --filter "status=rubbish"` returns no output rather than error (ubuntu 1.8 is same) |
+|  | `-l` | Yes, but bug. Status isn't 'EXITED' -- "Created" |
+|  | `-n` |  |
+|  | `--no-trunc=true/false` |  |
+|  | `-q` |  |
+|  | `-s` | Doesn't work |
+|  | `--since="id"` |  |
+
+
