@@ -1,6 +1,16 @@
 ms.ContentId: 150B8DCC-861B-4FD4-9353-C9886F2F0C30
 title: When to use Containers
 
+**Owner** :  
+Sarah
+
+**Goal** :  
+Give customers an idea of how they'd use comtainers in the wild.
+
+**Nav Experience** :  
+Move to quick start or samples.  
+
+----------------------------
 
 # When to use Containers #
 
