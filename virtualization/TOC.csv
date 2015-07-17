@@ -41,11 +41,6 @@
 ****,hyperv_on_windows/user_guide/troubleshooting.md
 ***,oa-toc-container: develop
 ****,hyperv_on_windows/develop/make_mgmt_service.md
-**,oa-toc-container: api	
-***,oa-toc-container: powershell
-****,api/powershell_overview.md
-***,oa-toc-container: wmi
-****,api/wmi_overview.md
 **,oa-toc-container: community	
 ***,community/community_overview.md
 
