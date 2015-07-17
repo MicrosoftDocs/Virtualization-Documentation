@@ -1,6 +1,16 @@
 ms.ContentId: fbd49f81-b6cb-4030-9296-413d68a9428f
 title: Container Ecosystem
 
+**Owner** :  
+Sarah
+
+**Goal** :  
+We may not need this section but it explains how to pick tools for managing containers.  Let's move this to about for now? Build the content into when you'd use containers?
+
+**Nav Experience** :  
+Linked off of about containers as extra reading.  
+
+----------------------------
 
 # Building a Container Ecosystem #
 
@@ -11,9 +21,9 @@ The container ecosystem provides ways to manage containers, share containers and
 ![](media/containerEcosystem.png)
 
 
-Microsoft wants to empower developer choice and productivity as they build these next-gen apps.  Our goal is to fuel developer productivity which means enabling applications to target any Microsoft cloud without having to modify, rewrite, or reconfigure code. 
+Microsoft wants to empower developer choice and productivity as they build these next-gen apps.  Our goal is to fuel developer productivity which means enabling applications to target any Microsoft cloud without having to modify, rewrite, or reconfigure code.
 
-Microsoft is committed to being open and ecosystem friendly.  We actively support the coming together of multiple developer ecosystems of interest – such as Windows and Linux – to drive innovation. 
+Microsoft is committed to being open and ecosystem friendly.  We actively support the coming together of multiple developer ecosystems of interest – such as Windows and Linux – to drive innovation.
 
 
 Over the coming months, we will be providing more information about additional partners in this developing ecosystem.
@@ -26,7 +36,7 @@ Our partnership with Docker enables developers to create, manage and deploy both
 
 Microsoft will be delivering container capabilities as part of the next release of Windows Server. Developers and organizations who want to create distributed, container-based applications using Docker will be able to use Windows Server – either on-premises or in a cloud deployment in Azure – and be able to leverage the same growing Docker ecosystem of users, applications and tools.  Docker Hub, a community-driven repository shared across a vast ecosystem of developers, will also be integrated into Microsoft Azure through the Azure management portal and gallery of applications. Today’s announcements extend our previous collaboration with Docker, where we have already made the Docker Engine for Linux available on Microsoft Azure.  
 
-The new Windows Server container technologies will be available for customers to run in their on-premises server environments or in the cloud. We intend to make these Windows Server containers, with Docker integration, available on Microsoft Azure as well. 
+The new Windows Server container technologies will be available for customers to run in their on-premises server environments or in the cloud. We intend to make these Windows Server containers, with Docker integration, available on Microsoft Azure as well.
 
 Docker is two things, the open source group of projects and Docker the company. We consider this partnership to include both. Docker is successful, in part, because of the vibrant ecosystem that has built up around the Docker container technology. Microsoft is contributing to the Docker Project, enabling support for Windows Server Containers and Hyper-V Containers.  
 

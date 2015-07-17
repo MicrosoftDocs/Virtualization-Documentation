@@ -2,6 +2,17 @@ ms.ContentId: F0D47E70-0BA1-4A06-B2F3-0232C496709D
 title: Frequently asked questions
 
 
+**Owner** :  
+Cynthia
+
+**Goal** :  
+Capture the marketing container FAQ.  Respond to common questions.
+
+**Nav Experience** :  
+Reference when sought out.
+
+----------------------------
+
 # Frequently Asked Questions
 Last updated: May 1, 2015
 
@@ -12,18 +23,18 @@ Windows Server Containers are a lightweight operating system virtualization meth
 
 ## Q: What is a Hyper-V Container?  ##
 
-You can think of a Hyper-V Container as a Windows Server Container running inside of a Hyper-V partition. You don’t have to worry about creating a virtual machine, installing an operating system and container management tools just to run their workload it’s all part of Hyper-V Containers. 
+You can think of a Hyper-V Container as a Windows Server Container running inside of a Hyper-V partition. You don’t have to worry about creating a virtual machine, installing an operating system and container management tools just to run their workload it’s all part of Hyper-V Containers.
 
 
 ## Q: When will Windows Server Containers and Hyper-V Containers be available for use?  ##
 
-Windows Server Containers will be available in preview this summer. We expect to deliver a preview of Hyper-V Containers this calendar year.   
+Windows Server Containers will be available in preview this summer. We expect to deliver a preview of Hyper-V Containers this calendar year.
 
 
 
 ## Q: Will Hyper-V Containers also be available to the Docker ecosystem?   ##
 
-Yes. Hyper-V Containers and Windows Server Containers will provide identical experiences across all management solutions, including Docker. 
+Yes. Hyper-V Containers and Windows Server Containers will provide identical experiences across all management solutions, including Docker.
 
 
 ## Q: As a developer, do I have to re-write my app for each type of container? ##
@@ -38,7 +49,7 @@ The container capabilities will be integrated into Windows Server 2016. Stay tun
 
 ## Q: What are the prerequisites for Windows Server Containers and Hyper-V Containers?  ##
 
-Both Window Server Containers and Hyper-V Containers require Windows Server 2016. These technologies will not work with previous versions of Windows. 
+Both Window Server Containers and Hyper-V Containers require Windows Server 2016. These technologies will not work with previous versions of Windows.
 
 
 ## Next Steps:
