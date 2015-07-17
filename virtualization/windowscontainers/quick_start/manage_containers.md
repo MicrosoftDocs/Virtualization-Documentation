@@ -14,8 +14,8 @@ User can choose a management tool and learn how to perform basic container manag
 
 
 **Nav Experience** :
-Just came from Hello_world.  provide a back ref for confused people.
-Next step, containerize a default workload with a network (web server?)
+Just came from container setup.  provide a back ref for confused people.
+Next step, containerize your app!
 
 Give customers an overall idea what the walkthrough provides.  Where this page is in the process and a TOC to each step.
 
