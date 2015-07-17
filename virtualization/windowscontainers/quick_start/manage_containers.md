@@ -24,10 +24,11 @@ Give customers an overall idea what the walkthrough provides.  Where this page i
  
 There are many ways to manage Windows Server Containers using both in-box Windows tools and Open Source management tools such as Docker.
 
-Here are some of the most common options available.
+Here are some of the most common options available.  If you aren't sure which you'd like, use PowerShell to get started since it doesn't require additional setup.
+
 
 ## PowerShell
-You can now create, run, and interact with Windows Server Containers using PowerShell cmdlets. There’s no dependency here on Docker – everything you need to get going is available in-box.
+You can create, run, and interact with Windows Server Containers using PowerShell cmdlets. Everything you need to get going is available in-box.
 
 If you’ve used Hyper-V PowerShell, the design of the cmdlets should be pretty familiar to you. A lot of the workflow is similar to how you’d manage a virtual machine using the Hyper-V module. Instead of `New-VM`, `Get-VM`, `Start-VM`, `Stop-VM`, you have `New-Container`, `Get-Container`, `Start-Container`, `Stop-Container`.  There are quite a few container-specific cmdlets and parameters, but the general lifecycle and management of a Windows container looks roughly like that of a Hyper-V VM.
 
@@ -187,3 +188,16 @@ function Run-Container ([string]$ContainerImageName, [string]$Name="boring_wozni
     }
 } 
 ```
+
+## Docker
+Windows Server Containers can be managed with Docker commands.  While Windows containers should be comprable to their Linux counterparts and have the same management experience through Docker, there are some Docker commands that simply don't make sense with a Windows container.  Others simply haven't been tested (we're getting there).
+
+In an effort to not duplicate the API documentation acailable in Docker, here is a link to their management APIs.  Their walkthroughs are fantastic.
+
+The below table decribes Docker commands we have verified with Windows Server Containers and any caveats/differences we've noted.
+
+| Docker Command | Parameter | Notes |
+|----|----|----|
+| `attach` | [none] |  |
+|  | `--no-stdin=true` |  |
+|  | `--sig-proxy=false` |  |
