@@ -19,13 +19,14 @@ Hyper-V includes integration services for supported guest operating systems.  In
 
 ## Supported Windows Server guest operating systems
 
-| *Guest operating system*| *Maximum number of virtual processors*| *Integration Services* | *Notes* |
-|Windows Server Technical Preview|64|Built-in||
-|Windows Server 2012 R2|64|Built-in||
-|Windows Server 2012|64|Built-in||
+|*Guest operating system*|*Maximum number of virtual processors*|*Integration Services* |*Notes* |
+|:-----|:-----|:-----|:-----|
+|Windows Server Technical Preview|64|Built-in|  |
+|Windows Server 2012 R2|64|Built-in|  |
+|Windows Server 2012|64|Built-in|   |
 |Windows Server 2008 R2 with Service Pack 1 (SP 1)|64|Install the integration services after you set up the operating system in the virtual machine.|Datacenter, Enterprise, Standard and Web editions. |
 |Windows Server 2008 with Service Pack 2 (SP 2)|4|Install the integration services after you set up the operating system in the virtual machine.|Datacenter, Enterprise, Standard and Web editions (32-bit and 64-bit). |
-|Windows Home Server 2011|4|Install the integration services after you set up the operating system in the virtual machine.||
+|Windows Home Server 2011|4|Install the integration services after you set up the operating system in the virtual machine.|   |
 |Windows Small Business Server 2011|Essentials edition - 2, Standard edition - 4|Install the integration services after you set up the operating system in the virtual machine.|Essentials and Standard editions. |
 
 ## Supported Windows guest operating systems
