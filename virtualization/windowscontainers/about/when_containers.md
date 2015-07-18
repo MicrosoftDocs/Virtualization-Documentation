@@ -8,7 +8,7 @@ Sarah
 Give customers an idea of how they'd use comtainers in the wild.
 
 **Nav Experience** :  
-Move to quick start or samples.  
+Move to quick start or samples.   
 
 ----------------------------
 
