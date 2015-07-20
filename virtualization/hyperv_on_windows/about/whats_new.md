@@ -12,8 +12,10 @@ It works regardless of your remote management configuration. To use it, you must
 
 To create a PowerShell Direct session, use one of the following commands:
 
-    Enter-PSSession -VMName VMName
-    Invoke-Command -VMName VMName -ScriptBlock { commands }
+``` PowerShell
+Enter-PSSession -VMName VMName
+Invoke-Command -VMName VMName -ScriptBlock { commands }
+```
 
 Today, Hyper-V administrators rely on two categories of tools for connecting to a virtual machine on their Hyper-V host:
 - Remote management tools such as PowerShell or Remote Desktop
@@ -78,7 +80,9 @@ The virtual machine configuration version represents what version of Hyper-V the
 
 From an elevated command prompt, run the following command:
 
-    Get-VM * | Format-Table Name, Version
+``` PowerShell
+Get-VM * | Format-Table Name, Version
+```
 
 ### How do I upgrade the configuration version of a virtual machine?  ###
 
