@@ -143,6 +143,8 @@ The virtual machine must be connected to Windows Update or a WSUS server.  In th
 
 To read more about how we determine applicability, see this [blog post](http://blogs.technet.com/b/virtualization/archive/2014/11/24/integration-components-how-we-determine-windows-update-applicability.aspx).
 
+See [this blog](http://blogs.msdn.com/b/virtual_pc_guy/archive/2014/11/12/updating-integration-components-over-windows-update.aspx) post for a detailed walkthrough of installing ICs.
+
 ----------
 **Important**
 
