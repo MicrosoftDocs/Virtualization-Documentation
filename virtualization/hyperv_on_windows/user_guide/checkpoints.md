@@ -65,6 +65,7 @@ Checkpoint files are stored in the following locations:
 |**C:\ProgramData\Microsoft\Windows\Hyper-V\Snapshots** | Default folder for checkpoint files. Each time a virtual machine checkpoint is created, two additional files are added—a configuration file (.VMCX) and a runtime state file (.VMRS). 
 |**C:\Users\Public\Documents\Hyper-V\Virtual hard disks**| Default folder for a virtual machine hard disk file (.VHDX). Default folder for the automatic virtual hard disk files (.AVHDX) associated with a production checkpoint.  |
 
+![](media\ProductionCheckpoints.png) 
 -->
 
 ## Set a default checkpoint type
@@ -76,7 +77,7 @@ If you choose production checkpoints, you can also specify whether the host shou
 4.	If you want to change the location where the configuration files for the checkpoint are stored, change the path in the **Checkpoint File Location** section.
 5.	Click **Apply** to apply your changes. If you are done, click **OK** to close the dialog box.
 
-This sets the default on this virtual machine only.
+The default behavior in Windows 10 for new virtual machines is to create production checkpoints with fallback to standard checkpoints
 
 
 ## Create a checkpoint
