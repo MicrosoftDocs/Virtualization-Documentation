@@ -88,11 +88,15 @@ Get-VM * | Format-Table Name, Version
 
 From an elevated Windows PowerShell command prompt, run one of the following commands:
 
-    Update-VmConfigurationVersion <vmname>
+``` PowerShell
+Update-VmConfigurationVersion <vmname>
+```
 
 Or
 
-    Update-VmConfigurationVersion <vmobject>
+``` PowerShell
+Update-VmConfigurationVersion <vmobject>
+```
 
 ----------------
 **Important **
@@ -119,10 +123,25 @@ The .VMCX file is a binary format. Directly editing the .VMCX or .VMRS file isn'
 ----------
 
 
-## Integration Services delivered through Windows Update ##
+## Integration Services delivered through Windows Update
 
-Updates to integration services for Windows guests are now distributed through Windows Update. For information about integration services for Linux guests, see Linux and FreeBSD Virtual Machines on Hyper-V .
+Updates to integration services for Windows guests are now distributed through Windows Update.
 
+Integration components (also called integration services) are the set of synthetic drivers which allow a virtual machine to communicate with the host operating system.  They control services ranging from time sync to guest file copy.  We've been talking to customers about integration component installation and update over the past year to discover that they are a huge pain point during the upgrade process.　
+
+Historically, all new versions of Hyper-V came with new integration components. Upgrading the Hyper-V host required upgrading the integration components in the virtual machines as well.  The new integration components were included with the Hyper-V host then they were installed in the virtual machines using vmguest.iso.  This process required restarting the virtual machine and couldn't be batched with other Windows updates.  Since the Hyper-V administrator had to offer vmguest.iso and the virtual machine administrator had to install them, integration component upgrade required the Hyper-V administrator have administrator credentials in the virtual machines -- which isn't always the case.　　　　
+
+In Windows 10 and going forward, all integration components will be delivered to virtual machined through Windows Update along with other important updates.　
+
+There are updates available today for virtual machines running:
+*  Windows Server 2012
+*  Windows Server 2008 R2
+*  Windows 8
+*  Windows 7
+
+The virtual machine must be connected to Windows Update or a WSUS server.  In the future, integration component updates will have a category ID, for this release, they are listed as KBs.
+
+To read more about how we determine applicability, see this [blog post](http://blogs.technet.com/b/virtualization/archive/2014/11/24/integration-components-how-we-determine-windows-update-applicability.aspx).
 
 ----------
 **Important**
