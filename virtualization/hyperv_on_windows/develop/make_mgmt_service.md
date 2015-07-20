@@ -60,3 +60,5 @@ To generate a GUID in PowerShell and copy it to the clipboard, run:
 ``` PowerShell
 [System.Guid]::NewGuid().ToString() | clip.exe
 ```
+
+ 
