@@ -1,27 +1,73 @@
 ms.ContentId: 8D89E9D8-2501-46A7-9304-2F19F37AFC85
 title: Working with checkpoints
 
-# Use checkpoints to revert virtual machines to a previous state #
+# Using checkpoints to revert virtual machines to a previous state
 
+Checkpoints provide a fast and easy way to revert the virtual machine to a previous state.  This is especially helpful when you are about to make a change to a virtual machine and you want to be able to roll-back to the present state if that change cause issues.
 
-Checkpoints provide a fast and easy way to revert the virtual machine to a previous state. For more information about how checkpoints work, see [Checkpoints Overview](..\about\checkpoints_overview.md).
+This guide will help you:
+*  Make sure checkpoints are enabled
+*  Decide what kind of checkpoints to use
+*  Set a default type of checkpoint
+*  Make checkpoints
+*  Revert to a previous checkpoint
+*  Consolidate old checkpoints
 
-## Enable or disable checkpoints ##
+<!-- For checkpoint management in PowerShell and more technical information, look at the developer document for checkpoints. -->
+
+## Enable or disable checkpoints
 
 1.	In **Hyper-V Manager**, right-click the name of the virtual machine, and click **Settings**.
 2.	In the **Management** section, select **Checkpoints**.
-3.	To allow checkpoints to be taken off this virtual machine, make sure Enable Checkpoints is selected. To disable checkpoints, clear the **Enable Checkpoints** check box.
+3.	To allow checkpoints to be taken off this virtual machine, make sure Enable Checkpoints is selected -- this is the default behavior.  
+To disable checkpoints, deselect the **Enable Checkpoints** check box.
 4.	Click **Apply** to apply your changes. If you are done, click **OK** to close the dialog box.
 
 
-## Choose standard or production checkpoints ##
+## Choose standard or production checkpoints
 
-You can choose between standard and production checkpoints for each virtual machine.
+There are two types of checkpoints:
+*  **Production checkpoints** -- Used mainly on servers in production environments as a form of backup.
+*  **Standard checkpoints** -- Used in development or testing environments to allow rollback if a change fails. 
 
--  **Production checkpoints**: Used mainly on servers in production environments 
--  **Standard checkpoints**: Used in development or testing environments 
+Both types of checkpoints restore a virtual machine to a previous state.
 
+Production checkpoints create an application-consistent checkpoint of a virtual machine.  That means the saved virtual machine will resume with no application state.  
 
+Standard checkpoints (formerly known as snapshots) capture the exact memory state of your virtual machine.  That means the virtual machine will restore with **exactly** the same state in which the checkpoint was taken down to the exact application state.  
+Standard checkpoints may contain information about client connections, transactions, and the external network state. This information may not be valid when the checkpoint is applied.  Additionally, if a checkpoint is taken during an application crash, restoring that checkpoint will be in the middle of that crash.
+
+Applying a production checkpoint involves booting the guest operating system from an offline state. This means that no application state or security information is captured as part of the checkpoint process. 
+
+The following table shows when to use production checkpoints or standard checkpoints, depending on the state of the virtual machine.
+
+|   **Virtual Machine State** | **Production Checkpoint** |  **Standard Checkpoint** |
+|:-----|:-----|:-----|
+|**Running with Integration Services**| Yes | Yes 
+|**Running without Integration Services** | No | Yes 
+|**Offline - no saved state**| Yes | Yes 
+|**Offline - with saved state**| No | Yes 
+|**Paused** | No| Yes |
+
+<!-- This belongs in a dev doc
+
+production checkpoints utilize the Volume Shadow Copy Service (VSS) to create an application-consistent checkpoint of a virtual machine. Standard checkpoints (formerly known as snapshots) capture the saved state of your virtual machine.
+
+Standard checkpoints contain the memory state of a virtual machine, which may contain information about client connections, transactions, and the external network state. This information may not be valid when the checkpoint is applied. Applying a production checkpoint involves booting the guest operating system from an offline state. This means that no application state or security information is captured as part of the checkpoint process. 
+
+## How are checkpoints stored?
+
+Checkpoint files are stored in the following locations:
+
+| **Default Location** | **Contents** |
+|:-----|:-----|
+|**C:\ProgramData\Microsoft\Windows\Hyper-V\Virtual Machines**| Default folder for the virtual machine configuration file (.vmcx) and the virtual machine runtime state file (.vmrs). 
+|**C:\ProgramData\Microsoft\Windows\Hyper-V\Snapshots** | Default folder for checkpoint files. Each time a virtual machine checkpoint is created, two additional files are added—a configuration file (.VMCX) and a runtime state file (.VMRS). 
+|**C:\Users\Public\Documents\Hyper-V\Virtual hard disks**| Default folder for a virtual machine hard disk file (.VHDX). Default folder for the automatic virtual hard disk files (.AVHDX) associated with a production checkpoint.  |
+
+-->
+
+## Set a default checkpoint type
 
 1.	In **Hyper-V Manager**, right-click the name of the virtual machine, and click **Settings**.
 2.	In the **Management** section, select **Checkpoints**.
@@ -30,21 +76,17 @@ If you choose production checkpoints, you can also specify whether the host shou
 4.	If you want to change the location where the configuration files for the checkpoint are stored, change the path in the **Checkpoint File Location** section.
 5.	Click **Apply** to apply your changes. If you are done, click **OK** to close the dialog box.
 
-### How are production checkpoints different from standard checkpoints?
-
-Production checkpoints and standard checkpoints restore a virtual machine to a previous state. However, production checkpoints utilize the Volume Shadow Copy Service (VSS) to create an application-consistent checkpoint of a virtual machine. Standard checkpoints (formerly known as snapshots) capture the saved state of your virtual machine.
-
-Standard checkpoints contain the memory state of a virtual machine, which may contain information about client connections, transactions, and the external network state. This information may not be valid when the checkpoint is applied. Applying a production checkpoint involves booting the guest operating system from an offline state. This means that no application state or security information is captured as part of the checkpoint process. 
+This sets the default on this virtual machine only.
 
 
-## Create a checkpoint ##
+## Create a checkpoint
 To create a checkpoint
 1.	In **Hyper-V Manager**, under **Virtual Machines**, select the virtual machine.
 2.	Right-click the name of the virtual machine, and then click **Checkpoint**.
 3.	When the process is complete, the checkpoint will appear under **Checkpoints** in the **Hyper-V Manager**. 
 
 
-## Apply a checkpoint ##
+## Apply a checkpoint
 If you want to revert your virtual machine to a previous point-in-time, you can apply an existing checkpoint.
 
 1.	In **Hyper-V Manager**, under **Virtual Machines**, select the virtual machine.
@@ -58,7 +100,7 @@ If you want to revert your virtual machine to a previous point-in-time, you can 
 	**Cancel**: Closes the dialog box without doing anything.
 
 
-##Delete a checkpoint ##
+##Delete a checkpoint
 Checkpoints are stored as .avhdx files in the same location as the .vhdx files for the virtual machine. You should not delete the .avhdx files directly.
  
 To cleanly delete a checkpoint: 
@@ -72,7 +114,7 @@ To cleanly delete a checkpoint:
 You can use Windows Powershell to delete a checkpoint by using the **Remove-VMSnapshot** cmdlet. 
 
 
-## Change where checkpoint settings and save state files are stored ##
+## Change where checkpoint settings and save state files are stored
 If the virtual machine has no checkpoints, you can change where the checkpoint configuration and saved state files are stored.
 
 The default location for storing checkpoint configuration files is: %systemroot%\ProgramData\Microsoft\Windows\Hyper-V\Snapshots. This folder will contain the .VMRS file with the runtime and saved state data and a .VMCX configuration file, which uses the checkpoint GUID as the file name.
@@ -86,7 +128,7 @@ The default location for storing checkpoint configuration files is: %systemroot%
 5.	Click **Apply** to apply your changes. If you are done, click **OK** to close the dialog box.
 
 
-## Rename a checkpoint ##
+## Rename a checkpoint
 By default, the name of a checkpoint is the name of the virtual machine combined with the date and time the checkpoint was taken. This is the standard format: 
 
 *virtual_machine_name (MM/DD/YYY –hh:mm:ss AM\PM) *
