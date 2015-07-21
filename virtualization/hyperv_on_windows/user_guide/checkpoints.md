@@ -28,6 +28,9 @@ Production checkpoints create an application-consistent checkpoint of a virtual 
 Standard checkpoints (formerly known as snapshots) capture the exact memory state of your virtual machine.  That means the virtual machine will restore with **exactly** the same state in which the checkpoint was taken down to the exact application state.  
 Standard checkpoints may contain information about client connections, transactions, and the external network state. This information may not be valid when the checkpoint is applied.  Additionally, if a checkpoint is taken during an application crash, restoring that checkpoint will be in the middle of that crash.
 
+The presence of a standard checkpoint for a virtual machine may impact the disk performance of the virtual machine.  We do not recommend using standard checkpoints on virtual machines when performance or the availability of storage space is critical.
+
+
 Applying a production checkpoint involves booting the guest operating system from an offline state. This means that no application state or security information is captured as part of the checkpoint process. 
 
 The following table shows when to use production checkpoints or standard checkpoints, depending on the state of the virtual machine.
@@ -39,7 +42,6 @@ The following table shows when to use production checkpoints or standard checkpo
 |**Offline - no saved state**| Yes | Yes 
 |**Offline - with saved state**| No | Yes 
 |**Paused** | No| Yes |
-
 
 ## Set a default checkpoint type
 
@@ -110,15 +112,16 @@ This folder will contain the .VMRS file with the runtime and saved state data an
 -->
 
 ## Rename a checkpoint
-By default, the name of a checkpoint is the name of the virtual machine combined with the date and time the checkpoint was taken. This is the standard format: 
-
-*virtual_machine_name (MM/DD/YYY –hh:mm:ss AM\PM) *
-
-Names are limited to 100 characters or less, and the name cannot be blank. 
-
 
 1.	In **Hyper-V Manager**, select the virtual machine.
 2.	Right-click the checkpoint, and then select **Rename**.
 3.	Enter in the new name for the checkpoint. It must be less than 100 characters, and the field cannot be empty.
 4.	Click **ENTER** when you are done.
 
+By default, the name of a checkpoint is the name of the virtual machine combined with the date and time the checkpoint was taken. This is the standard format: 
+
+```
+virtual_machine_name (MM/DD/YYY –hh:mm:ss AM\PM)
+```
+
+Names are limited to 100 characters or less, and the name cannot be blank. 
