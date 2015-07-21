@@ -3,17 +3,8 @@ title: Working with checkpoints
 
 # Using checkpoints to revert virtual machines to a previous state
 
-Checkpoints provide a fast and easy way to revert the virtual machine to a previous state.  This is especially helpful when you are about to make a change to a virtual machine and you want to be able to roll-back to the present state if that change cause issues.
+Checkpoints provide a fast and easy way to revert the virtual machine to a previous state. This is especially helpful when you are about to make a change to a virtual machine and you want to be able to roll-back to the present state if that change cause issues.
 
-This guide will help you:
-*  Make sure checkpoints are enabled
-*  Decide what kind of checkpoints to use
-*  Set a default type of checkpoint
-*  Make checkpoints
-*  Revert to a previous checkpoint
-*  Consolidate, delete, rename checkpoints
-
-<!-- For checkpoint management in PowerShell and more technical information, look at the developer document for checkpoints. -->
 
 ## Enable or disable checkpoints
 
