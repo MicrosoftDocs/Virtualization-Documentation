@@ -21,16 +21,16 @@
 ****,hyperv_on_windows/about/checkpoints_overview.md
 ***,oa-toc-container: quick_start
 ****,hyperv_on_windows/quick_start/walkthrough.md
-****,hyperv_on_windows/quick_start/step1.md
-****,hyperv_on_windows/quick_start/step2.md
-****,hyperv_on_windows/quick_start/step3.md
-****,hyperv_on_windows/quick_start/step4.md
-****,hyperv_on_windows/quick_start/step5.md
-****,hyperv_on_windows/quick_start/step6.md
-****,hyperv_on_windows/quick_start/step7.md
-****,hyperv_on_windows/quick_start/step8.md
-****,hyperv_on_windows/quick_start/step9.md
-****,hyperv_on_windows/quick_start/step10.md
+****,hyperv_on_windows/quick_start/walkthrough_compatibility.md
+****,hyperv_on_windows/quick_start/walkthrough_install.md
+****,hyperv_on_windows/quick_start/walkthrough_virtual_switch.md
+****,hyperv_on_windows/quick_start/walkthrough_create_vm.md
+****,hyperv_on_windows/quick_start/walkthrough_vmconnect.md
+****,hyperv_on_windows/quick_start/walkthrough_checkpoints.md
+****,hyperv_on_windows/quick_start/walkthrough_export_import.md
+****,hyperv_on_windows/quick_start/walkthrough_powershell.md
+****,hyperv_on_windows/quick_start/walkthrough_linux_vm.md
+****,hyperv_on_windows/quick_start/walkthrough_backup.md
 ***,oa-toc-container: user_guide
 ****,hyperv_on_windows/user_guide/configuration.md
 ****,hyperv_on_windows/user_guide/migrating_vms.md
