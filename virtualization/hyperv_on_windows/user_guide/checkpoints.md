@@ -40,24 +40,6 @@ The following table shows when to use production checkpoints or standard checkpo
 |**Offline - with saved state**| No | Yes 
 |**Paused** | No| Yes |
 
-<!-- This belongs in a dev doc
-
-production checkpoints utilize the Volume Shadow Copy Service (VSS) to create an application-consistent checkpoint of a virtual machine. Standard checkpoints (formerly known as snapshots) capture the saved state of your virtual machine.
-
-Standard checkpoints contain the memory state of a virtual machine, which may contain information about client connections, transactions, and the external network state. This information may not be valid when the checkpoint is applied. Applying a production checkpoint involves booting the guest operating system from an offline state. This means that no application state or security information is captured as part of the checkpoint process. 
-
-## How are checkpoints stored?
-
-Checkpoint files are stored in the following locations:
-
-| **Default Location** | **Contents** |
-|:-----|:-----|
-|**C:\ProgramData\Microsoft\Windows\Hyper-V\Virtual Machines**| Default folder for the virtual machine configuration file (.vmcx) and the virtual machine runtime state file (.vmrs). 
-|**C:\ProgramData\Microsoft\Windows\Hyper-V\Snapshots** | Default folder for checkpoint files. Each time a virtual machine checkpoint is created, two additional files are added—a configuration file (.VMCX) and a runtime state file (.VMRS). 
-|**C:\Users\Public\Documents\Hyper-V\Virtual hard disks**| Default folder for a virtual machine hard disk file (.VHDX). Default folder for the automatic virtual hard disk files (.AVHDX) associated with a production checkpoint.  |
-
-![](media\ProductionCheckpoints.png) 
--->
 
 ## Set a default checkpoint type
 
