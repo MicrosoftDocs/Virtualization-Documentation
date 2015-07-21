@@ -13,7 +13,7 @@ Now that you have walked through the basics of deploying Hyper-V, creating virtu
  ```
 get-command –module hyper-v | out-gridview
 ```
-  You get something like this: <!--I'd crop this screenshot to make it shorter and get rid of the whitespace on the left. You only need enough to get the point across. They don't need to see everything..-->
+  You get something like this:
 
   ![](media\command_grid.png)
 
@@ -28,8 +28,6 @@ get-help get-vm
 
 
 ### Return a list of virtual machines
-
-<!--As this is a walkthrough, the exercises should line up with they've already done. We've only had them create one VM titled Windows Walkthrough VM. -->
 
 Use the `get-vm` command to return a list of virtual machines.
 
