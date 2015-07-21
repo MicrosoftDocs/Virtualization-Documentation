@@ -1,4 +1,4 @@
-ms.ContentId: D50E5834-85A4-4BD7-819C-EC3B31198BE2
+ms.ContentId: 95FE9554-3968-4EED-B65D-E03F06A7598D
 title: Step 3: Create a virtual switch
 
 # Create a virtual switch #
@@ -26,4 +26,4 @@ For this example, we are going to create an External switch, which will let virt
   ![](media/network_warning.png)
 
 # Next step: #
-[Step 4: Configure your host](step4.md)
+[Step 4: Create a Windows virtual machine from an .iso file](walkthrough_create_vm.md)

@@ -1,7 +1,7 @@
-ms.ContentId: C481ACA0-C4AD-4AC1-B1B5-97AA635D0809
-title: Step 10: Experiment with Windows PowerShell
+ms.ContentId: B9414110-BEFD-423F-9AD8-AFD5EE612CDA
+title: Step 8: Experiment with Windows PowerShell
 
-# Step 9: Experiment with Windows PowerShell
+# Step 8: Experiment with Windows PowerShell
 
 Now that you have walked through the basics of deploying Hyper-V, creating virtual machines and managing these virtual machines, let’s explore how you can automate many of these activities with PowerShell.
 
@@ -131,9 +131,8 @@ The following example shows how to create a new virtual machine in the PowerShel
 
 ### Wrap up and References
 
-This document has shown some simple steps to explorer the Hyper-V PowerShell module as well as some sample scenarios. For more information on the Hyper-V PowerShell module, see the Reference Guide found here <!—Insert Reference Guide --> .  
+This document has shown some simple steps to explorer the Hyper-V PowerShell module as well as some sample scenarios. For more information on the Hyper-V PowerShell module, see the [Hyper-V Cmdlets in Windows PowerShell reference](https://technet.microsoft.com/%5Clibrary/Hh848559.aspx).  
   
-## Next step: ##
-[Step 10: Backup your virtual machines](step10.md)
+
 
 

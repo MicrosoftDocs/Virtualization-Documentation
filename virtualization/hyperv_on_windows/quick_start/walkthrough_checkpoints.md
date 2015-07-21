@@ -1,4 +1,4 @@
-ms.ContentId: FCC6F388-DD06-4810-9BCB-7A163DB2C57F
+ms.ContentId: FBBAADE6-F1A1-4B5C-8FD2-BDCA3FCF81CA
 title: Step 6: Experiment with checkpoints
 
 # Step 6: Experiment with checkpoints #
@@ -113,6 +113,6 @@ The previous step has probably given you a hint about what we will do next. We a
 
 
 ## Next Steps: 
-[Step 7: Export and import a virtual machine](step7.md)
+[Step 7: Export and import a virtual machine](walkthrough_export_import.md)
 
 

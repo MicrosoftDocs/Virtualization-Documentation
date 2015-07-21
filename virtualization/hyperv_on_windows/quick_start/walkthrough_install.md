@@ -1,4 +1,4 @@
-ms.ContentId: 2964B9FA-FBA4-4F8C-BEF2-A3F3E2FEC6E4
+ms.ContentId: A6DD6776-614C-4D28-9B83-CB2EDFD263A3
 title: Step 2: Install Hyper-V on Windows 10
 
 # Install Hyper-V on Windows 10
@@ -37,4 +37,4 @@ After you restart your computer start the Hyper-V Manager tool.
 
 
 # Next Step #
-[Step 3: Create a virtual switch](step3.md)
+[Step 3: Create a virtual switch](walkthrough_virtual_switch.md) 

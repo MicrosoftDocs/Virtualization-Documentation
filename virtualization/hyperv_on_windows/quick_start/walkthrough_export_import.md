@@ -1,4 +1,4 @@
-ms.ContentId: 2A12ACDB-37A1-449C-A73F-72CB81CCD5E9
+ms.ContentId: B971C429-CEF0-4DAB-8456-3B08AEC0C233
 title: Step 7: Export and import a virtual machine
 
 # Step 7: Export and import a virtual machine #
@@ -53,4 +53,4 @@ To verify that the virtual machine was exported, right-click on your **Start** m
 To make sure the import worked, just right-click the imported VM in **Hyper-V Manager** and click **Connect**. 
 
 # Next Step: #
-[Step 8: Create a Linux guest virtual machine](step8.md)
+[Step 8: Experiment with Windows Powershell](walkthrough_powershell.md)

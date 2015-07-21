@@ -1,4 +1,4 @@
-ms.ContentId: 1290AB3E-3CC7-4743-8CEC-4599021D475F
+ms.ContentId: C2593EA1-B182-4C71-8504-49691F619158
 title: Step 1: Make sure your machine is compatible
 
 # Make sure your machine is compatible
@@ -19,4 +19,4 @@ To verify SLAT compatibility, follow these steps:
 ![](media\systeminfo.png)
 
 # Next Step: 
-[Step 2: Install Hyper-V](step2.md)
+[Step 2: Install Hyper-V](walkthrough_install.md)

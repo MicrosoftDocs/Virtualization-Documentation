@@ -1,4 +1,4 @@
-ms.ContentId: 66A69B50-7388-48EF-B490-9F8464AD51ED
+ms.ContentId: F21F148C-794C-408D-A480-D19D893A4DB7
 title: Step 9: Create a Linux guest virtual machine
 
 # Create a Linux guest virtual machine #
@@ -32,4 +32,4 @@ If you have another distribution that you would rather use, make sure it will wo
 
 
 Next steps:
-[Step 9: Experiment with Windows Powershell](step9.md)
+

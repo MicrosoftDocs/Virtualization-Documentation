@@ -1,4 +1,4 @@
-ms.ContentId: C5DAC361-D339-4C3B-90E4-2C133BE6812E
+ms.ContentId: 3C63F9A8-30E4-40F4-BC7B-A001C1E90779
 title: Step 4: Create a Windows virtual machine from an .iso file
 
 # Create a Windows virtual machine from an .iso file #
@@ -23,4 +23,4 @@ For this step, if you already have a .iso file for a supported operating system,
 4. When everything looks right, click **Finish**. 
 
 # Next Step: #
-[Step 5: Connect to the virtual machine and finish the installation](step5.md)
+[Step 5: Connect to the virtual machine and finish the installation](walkthrough_vmconnect.md)

@@ -1,4 +1,4 @@
-ms.ContentId: 14FAE32D-F71E-479A-B305-1094FA05E50A
+ms.ContentId: 178899C9-8EA6-4D82-A0B0-8BE4DDD78DAE
 title: Step 5: Connect to the virtual machine and finish the installation
 
 # Step 5: Connect to the virtual machine and finish the installation #
@@ -38,4 +38,4 @@ In order to finish building your virtual machine, you need to start the VM and w
 
 
 ## Next Step: ##
-[Step 6: Experiment with checkpoints](step6.md)
+[Step 6: Experiment with checkpoints](walkthrough_checkpoints.md)
