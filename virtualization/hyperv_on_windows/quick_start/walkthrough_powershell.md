@@ -40,7 +40,7 @@ get-vm
 
  ![](media\get_vm.png)
 
-2. To return a list of only powered on virtual machines add a filter to the command. A filter can be added by passing the output of `get-vm` using pipe caracter `|` to the `where-object` command or `where` for short. Finally inside of curly braces `{}` declare that the state should be equal to ‘Running’ as seen below.      
+2. To return a list of only powered on virtual machines add a filter to the `get-vm` command. A filter can be added by using the where-object command. For more information on filtering see the [Using the Where-Object](https://technet.microsoft.com/en-us/library/ee177028.aspx) documentation.   
 
  ``` 
  get-vm | where {$_.State –eq ‘Running’}
@@ -82,49 +82,25 @@ For example, here is a checkpoint with the name DEMOCP:
 
 ### Create a new virtual machine
 
-The following example shows how to create a new virtual machine in the PowerShell Integrated Scripting Environment (ISE).
+The following example shows how to create a new virtual machine in the PowerShell Integrated Scripting Environment (ISE). This is a simple example and could be expanded on to include additional PowerShell features and more advanced VM deployments.
 
 1. To open the PowerShell ISE click on start, type **PowerShell ISE**.
 2. Run the following code to create a virtual machine where:
 
-  - Lines 1 – 9: Defines the VM parameters storing each in a PowerShell variable.
-  - Line 11: Creates the new VM using all defined parameters.
-  - Line 12: Adds a virtual CD Rom drive to the VM and mounts installation media in this drive.
+  - Lines 1 – 8: Defines the VM parameters storing each in a PowerShell variable.
+  - Line 10: Creates the new VM using all defined parameters.
 
  ```
- $Name = "POSHVM"
+ $Name = "VMNAME"
  $MemoryStartupBytes = 2147483648
  $Generation = 2
- $NewVHDPath = "D:\Windows 10 VM\POSHVM\$Name.vhdx"
+ $NewVHDPath = "D:\Windows 10 VM\$Name\$Name.vhdx"
  $NewVHDSizeBytes = 53687091200
  $BootDevice = "VHD"
- $Path = "D:\Windows 10 VM\POSHVM"
+ $Path = "D:\Windows 10 VM\$Name"
  $SwitchName = (get-vmswitch).Name
- $DVDPath = "C:\Media\media.iso"
 
- New-VM -Name $Name -MemoryStartupBytes $MemoryStartupBytes -Generation $Generation -NewVHDPath $NewVHDPath -NewVHDSizeBytes $NewVHDSizeBytes -BootDevice $BootDevice -SwitchName $SwitchName -Path $Path 
- Add-VMDvdDrive -VMName $Name -Path $DVDPath
- ```
-3. This script could be re-written like this to increase readability and reusability. 
-
- ```
- $VM = @{
-     Name = "POSHVM"
-     MemoryStartupBytes = 2147483648
-     Generation = 2
-     NewVHDPath = "D:\Windows 10 VM\POSHVM\$Name.vhdx"
-     NewVHDSizeBytes = 53687091200
-     BootDevice = "CD"
-     Path = "D:\Windows 10 VM\POSHVM"
-     SwitchName = (get-vmswitch).Name
- }
-
- $DVD = @{
-     Path = "C:\media\media_disk.iso"
- }
-
- New-VM @VM
- Add-VMDvdDrive @DVD
+ New-VM -Name $Name -MemoryStartupBytes $MemoryStartupBytes -Generation $Generation -NewVHDPath $NewVHDPath -NewVHDSizeBytes $NewVHDSizeBytes -SwitchName $SwitchName -Path $Path -BootDevice $BootDevice
  ```
 
 ### Wrap up and References
