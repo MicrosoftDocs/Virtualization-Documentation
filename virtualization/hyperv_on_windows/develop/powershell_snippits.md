@@ -25,7 +25,7 @@ function waitForPSDirect([string]$VMName, $cred){
 ```
 
 **Requirements** :  
-*  PowerShell Direct.  Windows10+ guest and host OS
+*  PowerShell Direct.  Windows10+ guest and host OS.
 
 **Parameters** :  
 `$VMName` -- this is a string with the VMName.  See a list of available VMs with `Get-VM`  
@@ -34,6 +34,3 @@ function waitForPSDirect([string]$VMName, $cred){
 **Outcome**  
 Prints a friendly message and locks in the while loop until the connection to the VM succeeds.  
 Succeeds silently.  
-
-
-## Auto-Elevate 
