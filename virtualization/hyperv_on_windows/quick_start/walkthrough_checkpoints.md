@@ -86,7 +86,7 @@ Now, let's go back to Hyper-V manager and apply the production checkpoint and se
 1.	In the Checkpoints section, right-click the one titled **Production Checkpoint** and click **Apply**.
 2.	In the pop-up dialog, pick **Create Checkpoint and Apply**. 
 3. When this finishes, right-click the VM and the click **Connect** to launch the VM. 
-4. You will notice that the VM is not running. Click on the ![](media/vmconnect_start_button.png) Start button in the menu bar to start the VM.
+4. You will notice that the VM is not running. Click on the ![](media/start.png) Start button in the menu bar to start the VM.
 5. Open open test.txt in Notepad. You should see the line in the file about testing production checkpoints:
 
   ![](media/production_notepad.png)
