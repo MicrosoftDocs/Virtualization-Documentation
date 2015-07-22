@@ -112,7 +112,7 @@ The previous step has probably given you a hint about what we will do next. We a
   ![](media/after_delete.png)
 
 
-## Next Steps: 
+## Next Step: 
 [Step 7: Export and import a virtual machine](walkthrough_export_import.md)
 
 

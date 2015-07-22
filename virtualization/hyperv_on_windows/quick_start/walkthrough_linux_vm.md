@@ -27,5 +27,5 @@ If you have another distribution that you would rather use, make sure it will wo
 
 
 
-## Next steps:
+## Next step:
 

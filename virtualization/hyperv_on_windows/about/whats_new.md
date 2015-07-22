@@ -161,5 +161,5 @@ https://support.microsoft.com/en-us/kb/2973536) for a full discription.
 
 This is fixed in Windows 10.
 
-## Next Steps ##
+## Next Step
 [Walk through Hyper-V on Windows 10](..\quick_start\walkthrough.md) 
