@@ -1,17 +1,17 @@
 ms.ContentId: 178899C9-8EA6-4D82-A0B0-8BE4DDD78DAE
 title: Step 5: Connect to the virtual machine and finish the installation
 
-# Step 5: Connect to the virtual machine and finish the installation #
+# Step 5: Connect to the virtual machine and finish the installation 
 
 In order to finish building your virtual machine, you need to start the VM and walk through the operating system installation.
 
-## Connect to the VM ##
+## Connect to the VM 
 1. In **Hyper-V Manager**, right-click the virtual machine and then click **Connect**. 
 2. In VMConnect, click on the green **Start** button ![](media/start.png). This is like hitting the power button on a physical computer. 
 3. The VM will boot into setup and you can walk through the installation like you would on a physical computer.
 
 
-## Other stuff you can do in VMConnect ##
+## Other stuff you can do in VMConnect
 
 
 | **To do this…** | Click this...| **Or, do this…** |
@@ -37,5 +37,5 @@ In order to finish building your virtual machine, you need to start the VM and w
 
 
 
-## Next Step: ##
+## Next Step:
 [Step 6: Experiment with checkpoints](walkthrough_checkpoints.md)
