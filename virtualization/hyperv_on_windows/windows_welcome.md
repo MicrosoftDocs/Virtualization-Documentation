@@ -15,7 +15,7 @@ Hyper-V in Windows is sometimes referred to as Client Hyper-V.
 		<td valign="top"><p>To learn more about virtualization with Hyper-V on Windows 10, read the  [introduction](./about/hyperv_on_windows.md).</p></td></tr>
 	<tr valign="top">
 		<td><center>![](All_ContentTypeIcons_VisualWalkthrough_65.png)</center></td>
-		<td valign="top"><p>To try out Hyper-V, follow this [walkthrough](./quick_start/walkthrough.md).<p></td></tr>
+		<td valign="top"><p>To try out Hyper-V, follow this [walkthrough](./quick_start/walkthrough.md).</p></td></tr>
 	<tr valign="top">
 		<td><center>![](Chat_65.png)</center></td>
 		<td valign="top"><p> Have questions? Check out the [forum](https://social.technet.microsoft.com/Forums/windowsserver/en-US/home?forum=winserverhyperv)!</p></td>
