@@ -9,10 +9,18 @@ Hyper-V lets you run more than one 32-bit or 64-bit x86 operating system at the 
 
 Hyper-V in Windows is sometimes referred to as Client Hyper-V.
 
-<table><tr><td>
-![](MeetsRequirements_65.png)</td><td>To learn more about virtualization with Hyper-V on Windows 10, read the  [introduction](./about/hyperv_on_windows.md).</td></tr>
-<tr><td>![](All_ContentTypeIcons_VisualWalkthrough_65.png)</td><td>To try out Hyper-V, follow this [walkthrough](./quick_start/walkthrough.md).</td></tr>
-<tr><td>![](Chat_65.png) Have questions? Check out the [forum](https://social.technet.microsoft.com/Forums/windowsserver/en-US/home?forum=winserverhyperv)!</td></tr></table>
+<table border="1" style="background-color:FFFFCC;border-collapse:collapse;border:1px solid FFCC00;color:000000;width:100%" cellpadding="15" cellspacing="3">
+	<tr valign="top">
+		<td><center>![](MeetsRequirements_65.png)</center></td>
+		<td valign="top"><p>To learn more about virtualization with Hyper-V on Windows 10, read the  [introduction](./about/hyperv_on_windows.md).</p></td></tr>
+	<tr valign="top">
+		<td><center>![](All_ContentTypeIcons_VisualWalkthrough_65.png)</center></td>
+		<td valign="top"><p>To try out Hyper-V, follow this [walkthrough](./quick_start/walkthrough.md).<p></td></tr>
+	<tr valign="top">
+		<td><center>![](Chat_65.png)</center></td>
+		<td valign="top"><p> Have questions? Check out the [forum](https://social.technet.microsoft.com/Forums/windowsserver/en-US/home?forum=winserverhyperv)!</p></td>
+	</tr>
+</table>
 
 
 ----------
