@@ -57,7 +57,6 @@ There are some features that work differently in Hyper-V on Windows than they do
 
 - SR-IOV on a 64-bit guest works normally, but 32-bit does not and is not supported.
 
-For more information, see this [article on SKU differences](./SKUDifferences.md).
 
 ### Windows Server features not avilable in Windows Hyper-V
 There are some features included in Hyper-V on server that are not included in Hyper-V on Windows. These include the following:
