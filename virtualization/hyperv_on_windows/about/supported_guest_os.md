@@ -20,7 +20,6 @@ Hyper-V includes integration services for supported guest operating systems.  In
 ## Supported Windows Server guest operating systems
 
 |*Guest operating system*|*Maximum number of virtual processors*|*Integration Services* |*Notes* |
-|-----|-----|-----|-----|
 |Windows Server Technical Preview|64|Built-in|  |
 |Windows Server 2012 R2|64|Built-in|  |
 |Windows Server 2012|64|Built-in|   |
