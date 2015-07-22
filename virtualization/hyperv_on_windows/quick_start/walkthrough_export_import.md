@@ -1,11 +1,11 @@
 ms.ContentId: B971C429-CEF0-4DAB-8456-3B08AEC0C233
 title: Step 7: Export and import a virtual machine
 
-# Step 7: Export and import a virtual machine #
+# Step 7: Export and import a virtual machine 
 
 You can quickly copy a virtual machine or move a virtual machine by using the export and import functionality.
 
-## Export the VM ##
+## Export the VM 
 
 Exporting a virtual machine exports all of the pieces of the VM, including the checkpoints.
 
@@ -21,7 +21,7 @@ Exporting a virtual machine exports all of the pieces of the VM, including the c
 
   ![](media/export_progress.png) 
 
-## Did the export work? ##
+## Did the export work? 
 
 To verify that the virtual machine was exported, right-click on your **Start** menu and select **File Explorer**.
 1. Navigate to C:\Users\Public\Export\Windows Walkthrough VM.
@@ -32,7 +32,7 @@ To verify that the virtual machine was exported, right-click on your **Start** m
  
   ![](media/export_confirm.png)
 
-## Import the VM ##
+## Import the VM 
 1. In **Hyper-V Manager**, in the **Action** menu, click **Import Virtual Machine**.
 2. In the **Locate Folder** section, click Browse and navigate to C:\Users\Public\Export\Windows Walkthrough VM  and then click **Next**.
 3. In the Select the virtual machine to import and then click **Next**.
@@ -48,9 +48,9 @@ To verify that the virtual machine was exported, right-click on your **Start** m
 7. In Choose Storage folders, you can select another place to store the .vhdx file or leave them where they are. When you are finished, click **Next**.
 8. When you have finished importing the VM, you will see the summary page describing where the new VM files are located.
 
-## Did the import work? ##
+## Did the import work? 
 
 To make sure the import worked, just right-click the imported VM in **Hyper-V Manager** and click **Connect**. 
 
-# Next Step: #
+## Next Step: 
 [Step 8: Experiment with Windows Powershell](walkthrough_powershell.md)

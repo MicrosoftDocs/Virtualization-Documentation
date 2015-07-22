@@ -18,5 +18,5 @@ To verify SLAT compatibility, follow these steps:
 
 ![](media\systeminfo.png)
 
-# Next Step: 
+## Next Step: 
 [Step 2: Install Hyper-V](walkthrough_install.md)

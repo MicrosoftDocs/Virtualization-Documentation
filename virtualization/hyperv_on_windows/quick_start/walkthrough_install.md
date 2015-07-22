@@ -36,5 +36,5 @@ After you restart your computer start the Hyper-V Manager tool.
 3. The Hyper-V Manager application should start.
 
 
-# Next Step #
+## Next Step 
 [Step 3: Create a virtual switch](walkthrough_virtual_switch.md) 

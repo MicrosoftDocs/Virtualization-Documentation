@@ -1,7 +1,7 @@
 ms.ContentId: 95FE9554-3968-4EED-B65D-E03F06A7598D
 title: Step 3: Create a virtual switch
 
-# Create a virtual switch #
+# Create a virtual switch 
 
 The virtual switch is how you create a network connection for your virtual machine to use when connecting to the internet, the host or to other virtual machines.
 
@@ -25,5 +25,5 @@ For this example, we are going to create an External switch, which will let virt
   
   ![](media/network_warning.png)
 
-# Next step: #
+## Next step: 
 [Step 4: Create a Windows virtual machine from an .iso file](walkthrough_create_vm.md)

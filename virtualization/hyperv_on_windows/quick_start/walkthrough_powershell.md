@@ -103,7 +103,7 @@ The following example shows how to create a new virtual machine in the PowerShel
  New-VM -Name $Name -MemoryStartupBytes $MemoryStartupBytes -Generation $Generation -NewVHDPath $NewVHDPath -NewVHDSizeBytes $NewVHDSizeBytes -SwitchName $SwitchName -Path $Path -BootDevice $BootDevice
  ```
 
-### Wrap up and References
+## Wrap up and References
 
 This document has shown some simple steps to explorer the Hyper-V PowerShell module as well as some sample scenarios. For more information on the Hyper-V PowerShell module, see the [Hyper-V Cmdlets in Windows PowerShell reference](https://technet.microsoft.com/%5Clibrary/Hh848559.aspx).  
   

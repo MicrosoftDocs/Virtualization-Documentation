@@ -1,7 +1,7 @@
 ms.ContentId: FBBAADE6-F1A1-4B5C-8FD2-BDCA3FCF81CA
 title: Step 6: Experiment with checkpoints
 
-# Step 6: Experiment with checkpoints #
+# Step 6: Experiment with checkpoints 
 
 Checkpoints can be helpful to use when you are about to make a change to a virtual machine and want to be able to roll-back to the present state if the updates cause issues. There are two types of checkpoints:
 
