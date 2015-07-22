@@ -9,7 +9,7 @@ For this step, if you already have a .iso file for a supported operating system,
 2. In the virtual machine wizard, make the following choices:
 
     <table>
-    <tr><td>Page</td><td>Entry</td></tr>
+    <tr><th>Page</th><th>Entry</th></tr>
     <tr><td>Name:</td><td>Type in <b>Windows Walkthrough VM</b></td></tr>
     <tr><td>Generation:</td><td><b>Generation 2</b></td></tr>
     <tr><td>Startup Memory:</td><td><b>1024</b> and don't select dynamic memory</td></tr>
