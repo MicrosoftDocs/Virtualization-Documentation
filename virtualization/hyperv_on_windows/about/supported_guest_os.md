@@ -34,7 +34,7 @@ Hyper-V includes integration services for supported guest operating systems.  In
 
 ## Supported Windows guest operating systems
 
- |  Guest operating system |  Maximum number of virtual processors |  Integration Services  |  Notes  | 
+ |  Guest operating system |  Maximum number of virtual processors |  Integration Services  |  Notes  | 	|
  | ----- | ----- | ----- | ----- | ----- |
  | Windows 10 | 32 | Built-in |  | 	|
  | Windows 8.1 | 32 | Built-in |  | 	|
