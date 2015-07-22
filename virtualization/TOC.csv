@@ -16,9 +16,7 @@
 ***,oa-toc-container: about
 ****,hyperv_on_windows/about/hyperv_on_windows.md
 ****,hyperv_on_windows/about/whats_new.md
-****,hyperv_on_windows/about/SKUDifferences.md
 ****,hyperv_on_windows/about/supported_guest_os.md
-****,hyperv_on_windows/about/checkpoints_overview.md
 ***,oa-toc-container: quick_start
 ****,hyperv_on_windows/quick_start/walkthrough.md
 ****,hyperv_on_windows/quick_start/walkthrough_compatibility.md
@@ -29,10 +27,7 @@
 ****,hyperv_on_windows/quick_start/walkthrough_checkpoints.md
 ****,hyperv_on_windows/quick_start/walkthrough_export_import.md
 ****,hyperv_on_windows/quick_start/walkthrough_powershell.md
-****,hyperv_on_windows/quick_start/walkthrough_linux_vm.md
-****,hyperv_on_windows/quick_start/walkthrough_backup.md
 ***,oa-toc-container: user_guide
-****,hyperv_on_windows/user_guide/configuration.md
 ****,hyperv_on_windows/user_guide/migrating_vms.md
 ****,hyperv_on_windows/user_guide/checkpoints.md
 ****,hyperv_on_windows/user_guide/remote_host_management.md
@@ -41,6 +36,7 @@
 ****,hyperv_on_windows/user_guide/troubleshooting.md
 ***,oa-toc-container: develop
 ****,hyperv_on_windows/develop/make_mgmt_service.md
+****,hyperv_on_windows/develop/powershell_snippits.md
 **,oa-toc-container: community	
 ***,community/community_overview.md
 
