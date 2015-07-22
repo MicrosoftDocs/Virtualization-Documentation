@@ -15,13 +15,13 @@ In order to finish building your virtual machine, you need to start the VM and w
 
 
 | **To do this…** | Click this...| **Or, do this…** |
-|:-----|:-----|:-----|
-| Start the virtual machine | ![](media/start.png) | CTRL+S | 
-| Turn off the VM | ![](media/turnoff.png) |   |
-| Shut down a VM | ![](media/shutdown.png) |  |
-| Save | ![](media/save.png) |  |
-| Pause | ![](media/pause.png) |  |
-| Reset | ![](media/reset.png) |  |
+|:-----|:-----:|:-----:|
+| Start the virtual machine | ![](media/start.png)	 | CTRL+S | 
+| Turn off the VM | ![](media/turnoff.png) 	|   |
+| Shut down a VM | ![](media/shutdown.png) 	|  |
+| Save | ![](media/save.png) 	|  |
+| Pause | ![](media/pause.png) 	|  |
+| Reset | ![](media/reset.png) 	|  |
 | Mouse release |  |CTRL+ALT+LEFT arrow |
 | CTRL+ALT+DELETE for a physical computer |  |CTRL+ALT+END |
 | Switch from full-screen mode back to windowed mode |  | CTRL+ALT+BREAK | 
