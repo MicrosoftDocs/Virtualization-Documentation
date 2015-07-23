@@ -9,7 +9,7 @@ Hyper-V lets you run more than one 32-bit or 64-bit x86 operating system at the 
 
 Hyper-V in Windows is sometimes referred to as Client Hyper-V.
 
-<table>
+<table border="1" style="background-color:FFFFCC;border-collapse:collapse;border:1px solid FFCC00;color:000000;width:100%" cellpadding="15" cellspacing="3">
 	<tr valign="top">
 		<td><center>![](MeetsRequirements_65.png)</center></td>
 		<td valign="top"><p>To learn more about virtualization with Hyper-V on Windows 10, read the  [introduction](./about/hyperv_on_windows.md).</p></td></tr>
