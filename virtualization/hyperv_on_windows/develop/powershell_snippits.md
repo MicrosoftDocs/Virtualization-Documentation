@@ -11,6 +11,8 @@ Sanity Check: If `Get-VM` runs with no errors, you're all set :)
 
 If you need a script to auto-elevate and your user account is an Administrator account, see this handy snippit.
 
+Here is the [Hyper-V PowerShell Reference](https://technet.microsoft.com/%5Clibrary/Hh848559.aspx).
+<!-- let's add this external link to the TOC under develop? -->
 
 ## PowerShell Direct to check if the guest OS booted
 
