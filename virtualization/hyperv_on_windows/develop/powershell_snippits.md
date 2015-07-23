@@ -1,20 +1,18 @@
 ms.ContentId: 52f74e95-ce0b-4112-846a-cbeb552c2ac5
-title: Useful PowerShell Snippits
+title: PowerShell Snippits
 
-# Useful PowerShell Snippits
+# PowerShell Snippits
 
-PowerShell is an awesome scripting, automation, and management tool for Hyper-V.  As such, here is a toolbox for some of the cool things it can do!
+PowerShell is an awesome scripting, automation, and management tool for Hyper-V.  Here is a toolbox for exploring some of the cool things it can do!
 
-All Hyper-V management requires running as Administrator so assume all scripts and snippits must be run as administrator from a Hyper-V Administrator account.
+All Hyper-V management requires running as administrator so assume all scripts and snippits must be run as administrator from a Hyper-V Administrator account.
 
-Sanity Check: If `Get-VM` runs with no errors, you're all set :)
-
-If you need a script to auto-elevate and your user account is an Administrator account, see this handy snippit.
+If you aren't sure if you have the right permissions, type `Get-VM` and if it runs with no errors, you're ready to go.
 
 
-## PowerShell Direct to check if the guest OS booted
+## Use PowerShell Direct to see if the guest OS booted
 
-Hyper-V doesn't give you any visibility into the guest operating system which often makes it difficult to know whether the guest OS has booted once the VM is running.
+Hyper-V Manager doesn't give you visibility into the guest operating system which often makes it difficult to know whether the guest OS has booted once the VM is running.
 
 The following function waits until PowerShell is available in the guest OS (meaning the OS has booted and most services are running) then returns.
 
