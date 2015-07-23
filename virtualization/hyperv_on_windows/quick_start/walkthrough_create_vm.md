@@ -1,4 +1,4 @@
-s.ContentId: 3C63F9A8-30E4-40F4-BC7B-A001C1E90779
+ms.ContentId: 3C63F9A8-30E4-40F4-BC7B-A001C1E90779
 title: Step 4: Create a Windows virtual machine from an .iso file
 
 # Create a Windows virtual machine from an .iso file 
