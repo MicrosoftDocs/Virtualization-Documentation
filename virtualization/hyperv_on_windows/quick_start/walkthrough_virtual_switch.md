@@ -24,12 +24,12 @@ We'll also set the switch to allow the host to share this network adapter. This 
   ![](media/new_switch_createbutton.png)
   
 4. Under **Name**, type **External**. 
-5. Under **External network**, select the correct network adapter (there will probably be only one option).  
+5. Under **External network**, select the correct network adapter (there will probably only be one option).  
 6. Select **Allow management operating system to share this network adapter** and click **OK**. 
   
   ![](media/share_nic.png)  
   
-7. You will get a message warning you that your network might disconnect while the virtual switch is created. Just click **Yes**.  Your network will be unavailable for a short time.
+7. You'll get a message warning you that your network might disconnect while the virtual switch is created. Just click **Yes**.  Your network will be unavailable for a short time.
   
   ![](media/network_warning.png)
 
