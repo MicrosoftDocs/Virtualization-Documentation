@@ -13,7 +13,6 @@ Microsoft provides support for guest operating systems in the following manner:
 * Issues found in Microsoft operating systems and in integration services are supported by Microsoft support.
 * For issues found in other operating systems that have been certified by the operating system vendor to run on Hyper-V, support is provided by the vendor.
 * For issues found in other operating systems, Microsoft submits the issue to the multi-vendor support community, [TSANet](http://www.tsanet.org/).
-<!-- links to support stuff-->
 
 ## What are integration services and why do they matter?
 Hyper-V includes integration services for supported guest operating systems.  Integration services improves the integration between the host system and the virtual machine. Some operating systems have the integration services built-in, while others provide integration services through Windows Update.
@@ -44,17 +43,6 @@ Hyper-V includes integration services for supported guest operating systems.  In
  | Windows XP with Service Pack 3 (SP3) | 2 | Install the integration services after you set up the operating system in the virtual machine. | Professional. |  	|
  | Windows XP x64 Edition with Service Pack 2 (SP 2) | 2 | Install the integration services after you set up the operating system in the virtual machine. | Professional. | 	|
  
+## Linux and Freed BSD
+For information about Linux and FreeBSD support, see [Linux and FreeBSD Virtual Machines on Hyper-V](https://technet.microsoft.com/library/dn531030.aspx).
 
-## Supported Linux guest operating systems
-
-Ubuntu 
-CentOS and Red Hat Enterprise Linux
-Debian virtual machines on Hyper-V 
-SUSE
-Oracle Linux virtual machines on Hyper-V 
-FreeBSD virtual machines on Hyper-V 
-
-[Linux and FreeBSD Virtual Machines on Hyper-V](https://technet.microsoft.com/library/dn531030.aspx)
-
-## Past Releases
-* [Supported Guest Operating Systems for Windows Server Technical Preview](https://technet.microsoft.com/en-US/library/mt126119.aspx)
