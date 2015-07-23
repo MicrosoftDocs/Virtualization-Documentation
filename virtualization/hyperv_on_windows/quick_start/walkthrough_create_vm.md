@@ -25,7 +25,7 @@ For an easy to use test virtual machine, make the following selections:
 ## Help! I need an operating system for my new VM!
 There are many postential operating systems to run in your virtual machine.  If you already have an image (.iso file) for an operating system, you can use that. If you have a DVD installer, insert the DVD and the mounted image is an iso.
 
-If you don't have these, you can download a [Windows 8.1 Enterprise](http://www.microsoft.com/en-us/evalcenter/evaluate-windows-8-1-enterprise) image, an [Ubuntu image](http://www.ubuntu.com/download/desktop), or a plethora of other images.
+If you don't have these, you can download a [Windows 8.1 Enterprise](http://www.microsoft.com/en-us/evalcenter/evaluate-windows-8-1-enterprise) image, an [Ubuntu image](http://www.ubuntu.com/download/desktop), or a plethora of other images.  See [supported guest OS](../about/supported_guest_os.md) for all of your options.
 
 ## Next Step: 
 [Step 5: Connect to the virtual machine and finish the installation](walkthrough_vmconnect.md)
