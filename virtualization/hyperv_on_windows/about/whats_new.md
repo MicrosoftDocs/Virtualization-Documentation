@@ -31,6 +31,7 @@ Windows PowerShell Direct provides a powerful scripting and automation experienc
 - You need User credentials for the virtual machine.
 - The virtual machine you want to connect to must be running and booted.
 
+
 ## Hot add and remove for network adapters and memory
 
 You can now add or remove a Network Adapter while the virtual machine is running, without downtime. This works for generation 2 virtual machines running both Windows and Linux operating systems. 
@@ -57,26 +58,31 @@ The default for new virtual machines will be to create production checkpoints wi
 
 - **Updated management protocol** - Hyper-V manager has been updated to communicate with remote Hyper-V hosts using the WS-MAN protocol, which permits CredSSP, Kerberos or NTLM authentication. When you use CredSSP to connect to a remote Hyper-V host, it allows you to perform a live migration without first enabling constrained delegation in Active Directory. WS-MAN-based infrastructure also simplifies the configuration necessary to enable a host for remote management. WS-MAN connects over port 80, which is open by default.
 
-## Compatible with Connected Standby ##
+
+## Connected Standby works 
 
 When Hyper-V is enabled on a computer that uses the Always On/Always Connected (AOAC) power model, the Connected Standby power state is now available.
 
-## Linux secure boot ##
+In windows 8/8.1, Hyper-V caused computers that uses the Always On/Always Connected (AOAC) power model (also known as InstantON) to never sleep. See this [KB article](
+https://support.microsoft.com/en-us/kb/2973536) for a full discription.
 
-Linux operating systems running on generation 2 virtual machines can now boot with the secure boot option enabled.  Ubuntu 14.04 and later, and SUSE Linux Enterprise Server 12, are enabled for secure boot on hosts that run the Technical Preview. Before you boot the virtual machine for the first time, you must specify that the virtual machine should use the Microsoft UEFI Certificate Authority.  At an elevated Windows Powershell prompt, type:
+
+## Linux secure boot 
+
+More Linux operating systems, running on generation 2 virtual machines, can now boot with the secure boot option enabled.  Ubuntu 14.04 and later, and SUSE Linux Enterprise Server 12, are enabled for secure boot on hosts that run the Technical Preview. Before you boot the virtual machine for the first time, you must specify that the virtual machine should use the Microsoft UEFI Certificate Authority.  At an elevated Windows Powershell prompt, type:
 
     Set-VMFirmware vmname -SecureBootTemplate MicrosoftUEFICertificateAuthority
 
 For more information on running Linux virtual machines on Hyper-V, see [Linux and FreeBSD Virtual Machines on Hyper-V](https://technet.microsoft.com/library/dn531030.aspx).
  
  
-## Virtual Machine Configuration Version ##
+## Virtual Machine Configuration Version 
 
 When you move or import a virtual machine to a host running Hyper-V on Windows 10 from host running Windows 8.1, the virtual machine’s configuration file isn't automatically upgraded. This allows the virtual machine to be moved back to a host running Windows 8.1. You won't have access to new virtual machine features until you manually update the virtual machine configuration version. 
 
 The virtual machine configuration version represents what version of Hyper-V the virtual machine’s configuration, saved state, and snapshot files it's compatible with. Virtual machines with configuration version 5 are compatible with Windows 8.1 and can run on both Windows 8.1 and Windows 10. Virtual machines with configuration version 6 are compatible with Windows 10 and won't run on Windows 8.1.
 
-### How do I check the configuration version of the virtual machines running on Hyper-V? ###
+### How do I check the configuration version of the virtual machines running on Hyper-V? 
 
 From an elevated command prompt, run the following command:
 
@@ -84,7 +90,7 @@ From an elevated command prompt, run the following command:
 Get-VM * | Format-Table Name, Version
 ```
 
-### How do I upgrade the configuration version of a virtual machine?  ###
+### How do I upgrade the configuration version of a virtual machine?  
 
 From an elevated Windows PowerShell command prompt, run one of the following commands:
 
@@ -152,14 +158,7 @@ The ISO image file vmguest.iso is no longer needed for updating integration comp
  
 ----------
 
-## Connected Standby Works
 
-In windows 8/8.1, Hyper-V caused computers that uses the Always On/Always Connected (AOAC) power model (also known as InstantON) to never sleep.
-
-See this [KB article](
-https://support.microsoft.com/en-us/kb/2973536) for a full discription.
-
-This is fixed in Windows 10.
 
 ## Next Step
 [Walk through Hyper-V on Windows 10](..\quick_start\walkthrough.md) 
