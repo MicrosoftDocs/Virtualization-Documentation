@@ -1,4 +1,4 @@
-ms.ContentId: 3C63F9A8-30E4-40F4-BC7B-A001C1E90779
+s.ContentId: 3C63F9A8-30E4-40F4-BC7B-A001C1E90779
 title: Step 4: Create a Windows virtual machine from an .iso file
 
 # Create a Windows virtual machine from an .iso file 
@@ -12,12 +12,14 @@ For this step, if you already have a .iso file for a supported operating system,
     <tr><th>Page</th><th>Entry</th></tr>
     <tr><td>Name:</td><td>Type in <b>Windows Walkthrough VM</b></td></tr>
     <tr><td>Generation:</td><td><b>Generation 2</b></td></tr>
-    <tr><td>Startup Memory:</td><td><b>1024</b> and don't select dynamic memory</td></tr>
+    <tr><td>Startup Memory:</td><td><b>1024</b> and leave dynamic memory selected</td></tr>
     <tr><td>Connect virtual hard disk:</td><td><b>Create a virtual hard disk</b> (keep the other default values) </td></tr>
     <tr><td>Installation Options:</td><td><b>Install an operating system from a bootable CD/DVD-ROM</b>. Under <b>Media</b>, select <b>Image file (iso)</b> and then click <b>Browse</b> to point to the .iso file.</td></tr>
     </table>
   
 3. When everything looks right, click **Finish**. 
 
+
 ## Next Step: 
 [Step 5: Connect to the virtual machine and finish the installation](walkthrough_vmconnect.md)
+

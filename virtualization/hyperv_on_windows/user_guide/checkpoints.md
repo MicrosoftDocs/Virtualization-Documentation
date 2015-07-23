@@ -43,6 +43,8 @@ The following table shows when to use production checkpoints or standard checkpo
 |**Offline - with saved state**| No | Yes 
 |**Paused** | No| Yes |
 
+To see the difference between Standard and Production checkpoints, look at the [checkpoints walkthrough](../quick_start/walkthrough_checkpoints.md).
+
 ## Set a default checkpoint type
 
 1.	In **Hyper-V Manager**, right-click the name of the virtual machine, and click **Settings**.

@@ -27,7 +27,7 @@ Hyper-V can be used in many ways, for example:
 
 Hyper-V requires a 64-bit system that has Second Level Address Translation (SLAT). SLAT is a feature present in the current generation of 64-bit processors by Intel & AMD. You’ll also need a 64-bit version of Windows 8 or greater, and at least 4GB of RAM. Hyper-V does support creation of both 32-bit and 64-bit operating systems in the VMs.
 
-Hyper-V’s dynamic memory allows memory needed by the VM to be allocated and de-allocated dynamically (you specify a minimum and maximum) and share unused memory between VMs. You can run 3 or 4 VMs on a machine that has 4GB of RAM but you will need more RAM for 5 or more VMs. On the other end of the spectrum, you can also create large VMs with 32 processors and 512GB RAM, depending on your physical hardware.
+Hyper-V’s dynamic memory allows memory needed by the VM to be allocated and de-allocated dynamically (you specify a minimum and maximum) and share unused memory between VMs. You can run 3 or 4 VMs on a machine that has 4GB of RAM but you'll need more RAM for 5 or more VMs. On the other end of the spectrum, you can also create large VMs with 32 processors and 512GB RAM, depending on your physical hardware.
 
 ## Connecting to a virtual machine
 
@@ -48,7 +48,7 @@ Another great feature of Hyper-V is the ability to take snapshots of a virtual m
 ## Footnotes
 Having said this, using virtualization has its limitations. Features or applications that depend on specific hardware will not work well in a VM. For example, Windows BitLocker and Measured Boot, which rely on TPM (Trusted Platform Module), might not function properly in a VM, and games or applications that require processing with GPUs (without providing software fallback) might not work well either. Also, applications relying on sub 10ms timers, i.e. latency-sensitive high-precision apps such as live music mixing apps, etc. could have issues running in a VM. The root OS is also running on top of the Hyper-V virtualization layer, but it is special in that it has direct access to all the hardware. This is why applications with special hardware requirements continue to work unhindered in the root OS but latency-sensitive, high-precision apps could still have issues running in the root OS.
 
-As a reminder, you will still need to license any operating systems you use in the VMs.
+As a reminder, you'll need to have a valid license for any operating systems you use in the VMs.
 
 ## Differences between Hyper-V on Windows and Hyper-V on Windows Server
 There are some features that work differently in Hyper-V on Windows than they do Hyper-V running on Windows Server. These include the following:

@@ -3,7 +3,7 @@ title: Step 1: Make sure your machine is compatible
 
 # Make sure your machine is compatible
 
-Only the Profession and Enterprise versions of Windows support Hyper-V.  You must be running Windows 8 or later.  
+Only the Profession and Enterprise editions of Windows 10 support Hyper-V. 
 
 Hyper-V requires at least 4 GB of RAM but you might need more if you want to run multiple virtual machines at the same time.
 
@@ -11,7 +11,7 @@ Starting in Windows 10, Hyper-V requires a 64-bit processor with Second Level Ad
 
 ## Verify compatability
 
-To verify compatability, open PowerShell or a Windows command prompt (cmd) and enter `systeminfo.exe`.  This will give you information about your computer.
+To verify compatability, open PowerShell or a Windows command prompt (cmd.exe) and type: `systeminfo.exe`.  This will give you information about your computer.
 
 ![](media\systeminfo.png)
 <!-- Change box to be around the Hyper-V Requirements section? -->

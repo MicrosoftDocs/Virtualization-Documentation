@@ -4,7 +4,7 @@ title: Migrating and upgrading virtual machines
 # Migrate and upgrade virtual machines 
 
 
-If you move virtual machines to your Windows 10 host that were originally created with Hyper-V in Windows 8.1 or earlier, you will not be able to use new virtual machine features until you manually update the virtual machine configuration version. 
+If you move virtual machines to your Windows 10 host that were originally created with Hyper-V in Windows 8.1 or earlier, you won't be able to use the new virtual machine features until you manually update the virtual machine configuration version. 
 
 To upgrade the configuration version, shut down the virtual machine and then, at an elevated Windows PowerShell command prompt, type: 
 
@@ -44,7 +44,7 @@ When you move or import a virtual machine to a host running Hyper-V on Windows 1
 
 The virtual machine configuration version represents what version of Hyper-V the virtual machine’s configuration, saved state, and snapshot files it's compatible with. Virtual machines with configuration version 5 are compatible with Windows 8.1 and can run on both Windows 8.1 and Windows 10. Virtual machines with configuration version 6 are compatible with Windows 10 and won't run on Windows 8.1.
 
-It is not necessary to upgrade all of your virtual machines simultaneously. You can choose to upgrade specific virtual machines when required. However, you will not have access to new virtual machine features until you manually update the configuration version for each virtual machine.  
+It is not necessary to upgrade all of your virtual machines simultaneously. You can choose to upgrade specific virtual machines when required. However, you won't have access to new the virtual machine features until you manually update the configuration version for each virtual machine.  
 
 
 ----------------
@@ -65,7 +65,7 @@ It is not necessary to upgrade all of your virtual machines simultaneously. You 
 
 
 ## What happens when I upgrade the version of a virtual machine?
-When you manually upgrade the configuration version of a virtual machine to version 6.x, you will change the file structure that is used for storing the virtual machines configuration and checkpoint files. 
+When you manually upgrade the configuration version of a virtual machine to version 6.x, you'll change the file structure that is used for storing the virtual machines configuration and checkpoint files. 
 
 Upgraded virtual machines use a new configuration file format, which is designed to increase the efficiency of reading and writing virtual machine configuration data. The upgrade also reduces the potential for data corruption in the event of a storage failure. 
 

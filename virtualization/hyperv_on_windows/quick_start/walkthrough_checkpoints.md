@@ -3,18 +3,17 @@ title: Step 6: Experiment with checkpoints
 
 # Step 6: Experiment with checkpoints 
 
-Checkpoints can be helpful to use when you are about to make a change to a virtual machine and want to be able to roll-back to the present state if the updates cause issues. There are two types of checkpoints:
+Checkpoints are a helpful tool when you want to save the present state of a virtual machine before making a potentially risky change such as applying an update, installing software, or changing a setting.  If the change causes issues, you can restore the checkpoint and go back.  
 
-•	**Production checkpoints**: Used mainly on servers in production environments 
-
-•	**Standard checkpoints**: Used in development or testing environments 
-
+There are two types of checkpoints:  
+**Production checkpoints**: Used mainly on servers in production environments.  
+**Standard checkpoints**: Used in development or testing environments 
 
 Production checkpoints are the default for Hyper-V on Windows 10.
 
 
 ## Change the checkpoint type
-We will start by trying out the older style of checkpoints, **standard checkpoints**. Since production checkpoints are the default, we need to go into the settings for the VM and change the checkpoint type.
+We'll start by trying out the older style of checkpoints, **standard checkpoints**. Since production checkpoints are the default, we need to go into the settings for the VM and change the checkpoint type.
 
 1. Right-click on **Windows Walkthrough VM** and select **Settings**.
 2. In the **Management** section, select **Checkpoints**.
@@ -24,7 +23,7 @@ We will start by trying out the older style of checkpoints, **standard checkpoin
 4.	Click **OK** to close the dialog box.
 
 ## Open Notepad to test checkpoints 
-In order to see what happens with each type of checkpoint, we will run an application in the VM. 
+In order to see what happens with each type of checkpoint, we'll run an application in the VM. 
 1. Right-click on **Windows Walkthrough VM** and select **Connect**.
 2. In the virtual machine, open **Notepad** by clicking on the **Start** menu and typing **Notepad** and then select it from the results. 
 3. In Notepad, type **This is a test of checkpoints.** The file should look like this:
@@ -86,7 +85,7 @@ Now, let's go back to Hyper-V manager and apply the production checkpoint and se
 1.	In the Checkpoints section, right-click the one titled **Production Checkpoint** and click **Apply**.
 2.	In the pop-up dialog, pick **Create Checkpoint and Apply**. 
 3. When this finishes, right-click the VM and the click **Connect** to launch the VM. 
-4. You will notice that the VM is not running. Click on the ![](media/start.png) Start button in the menu bar to start the VM.
+4. You'll notice that the VM is not running. Click on the ![](media/start.png) Start button in the menu bar to start the VM.
 5. Open open test.txt in Notepad. You should see the line in the file about testing production checkpoints:
 
   ![](media/production_notepad.png)
@@ -99,7 +98,7 @@ Now, let's go back to Hyper-V manager and apply the production checkpoint and se
   ![](media/delete_me.png)
 
 ## Delete a checkpoint 
-The previous step has probably given you a hint about what we will do next. We are going to delete the checkpoint that you just renamed.
+The previous step has probably given you a hint about what we'll do next. We are going to delete the checkpoint that you just renamed.
 
 1. Right-click on the checkpoint named **Delete me** and click **Delete checkpoint**. 
 
