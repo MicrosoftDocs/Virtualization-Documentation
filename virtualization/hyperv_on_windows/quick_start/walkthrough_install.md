@@ -3,7 +3,7 @@ title: Step 2: Install Hyper-V on Windows 10
 
 # Install Hyper-V on Windows 10
 
-Hyper-V can be installed [Programs and Features](#UsingProgramsandFeatures) or [Windows Powershell](#UsingPowerShell).
+Hyper-V can be installed using [Programs and Features](#UsingProgramsandFeatures) or [Windows Powershell](#UsingPowerShell).
 
 ## Using Programs and Features
 1. Right-click the **Windows** button and then click **Programs and Features**.
@@ -16,13 +16,12 @@ Hyper-V can be installed [Programs and Features](#UsingProgramsandFeatures) or [
 
   ![](media\hyper-v_feature_selected.png)
   
-4. When the installation is finished, you will need  to restart the computer.
+4. When the installation is finished, you'll need  to restart the computer.
 
   ![](media\restart.png)
   
 ## Using PowerShell
-For more information, see the PowerShell help for `Get-WindowsOptionalFeature` and Using PowerShell to Set Up Hyper-V.
-<!-- Not sure what links you intended to have here? -->
+For more information, see the PowerShell help for []Get-WindowsOptionalFeature](https://technet.microsoft.com/en-us/library/Hh852173.aspx).
 
 1. Click on the **Windows** button and search for **Windows PowerShell**.  
 2. Right-click on **Windows PowerShell** and then click **Run as Administrator**.  
