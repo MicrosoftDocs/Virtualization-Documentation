@@ -6,7 +6,7 @@ title: Managing Containers
 **Owner** :  
 Neil for overall experience.
 Andy for PowerShell.  
-Someone for Docker.
+Vinod/Rohit for Docker.
 
 
 **Goal** :  
