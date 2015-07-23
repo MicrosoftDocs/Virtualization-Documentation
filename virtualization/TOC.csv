@@ -14,6 +14,7 @@
 ****,hyperv_on_windows/about/hyperv_on_windows.md
 ****,hyperv_on_windows/about/whats_new.md
 ****,hyperv_on_windows/about/supported_guest_os.md
+****,oa-toc-external: hyperv_on_windows/about/linux,https://technet.microsoft.com/library/dn531030.aspx
 ***,oa-toc-container: quick_start
 ****,hyperv_on_windows/quick_start/walkthrough.md
 ****,hyperv_on_windows/quick_start/walkthrough_compatibility.md
@@ -32,8 +33,8 @@
 ****,hyperv_on_windows/user_guide/export_import.md
 ****,hyperv_on_windows/user_guide/troubleshooting.md
 ***,oa-toc-container: develop
-****,hyperv_on_windows/develop/make_mgmt_service.md
 ****,hyperv_on_windows/develop/powershell_snippits.md
+****,hyperv_on_windows/develop/make_mgmt_service.md
 ****,oa-toc-external: hyperv_on_windows/develop/web_power,http://technet.microsoft.com/library/hh848559.aspx
 ****,oa-toc-external: hyperv_on_windows/develop/web_wmi,http://msdn.microsoft.com/library/cc136992.aspx
 **,oa-toc-container: community	

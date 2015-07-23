@@ -29,6 +29,10 @@ Hyper-V requires a 64-bit system that has Second Level Address Translation (SLAT
 
 Hyper-V’s dynamic memory allows memory needed by the VM to be allocated and de-allocated dynamically (you specify a minimum and maximum) and share unused memory between VMs. You can run 3 or 4 VMs on a machine that has 4GB of RAM but you'll need more RAM for 5 or more VMs. On the other end of the spectrum, you can also create large VMs with 32 processors and 512GB RAM, depending on your physical hardware.
 
+## Guest operating systems
+
+For a list of supported guest operating systems, see [Supported Windows Guest Operating Systems](supported_guest_os.md) and [Linux and FreeBSD Virtual Machines on Hyper-V](https://technet.microsoft.com/library/dn531030.aspx). 
+
 ## Connecting to a virtual machine
 
 As for user experience with VMs, Windows provides two mechanisms to peek into the Virtual Machine: the VM Console and the Remote Desktop Connection.
@@ -43,12 +47,7 @@ For storage, you can add multiple hard disks to the IDE or SCSI controllers avai
 Hyper-V’s “Live Storage Move” capability helps your VMs to be fairly independent of the underlying storage. With this, you could move the VM’s storage from one local drive to another, to a USB stick, or to a remote file share without needing to stop your VM. I’ve found this feature to be quite handy for fast deployments: when I need a VM quickly, I start one from a VM library maintained on a file share and then move the VM’s storage to my local drive.
 
 ## Save the current virtual machine state
-Another great feature of Hyper-V is the ability to take snapshots of a virtual machine while it is running. A snapshot saves everything about the virtual machine allowing you to go back to a previous point in time in the life of a VM, and is a great tool when trying to debug tricky problems. At the same time, Hyper-V virtual machines have all of the manageability benefits of Windows. Windows Update can patch Hyper-V components, so you don’t need to set up additional maintenance processes. And Windows has all the same inherent capabilities with Hyper-V installed.
-
-## Footnotes
-Having said this, using virtualization has its limitations. Features or applications that depend on specific hardware will not work well in a VM. For example, Windows BitLocker and Measured Boot, which rely on TPM (Trusted Platform Module), might not function properly in a VM, and games or applications that require processing with GPUs (without providing software fallback) might not work well either. Also, applications relying on sub 10ms timers, i.e. latency-sensitive high-precision apps such as live music mixing apps, etc. could have issues running in a VM. The root OS is also running on top of the Hyper-V virtualization layer, but it is special in that it has direct access to all the hardware. This is why applications with special hardware requirements continue to work unhindered in the root OS but latency-sensitive, high-precision apps could still have issues running in the root OS.
-
-As a reminder, you'll need to have a valid license for any operating systems you use in the VMs.
+Another great feature of Hyper-V is the ability to take a checkpoint of a virtual machine while it is running. A checkpoint saves everything about the virtual machine allowing you to go back to a previous point in time in the life of a VM, and is a great tool when trying to debug tricky problems. At the same time, Hyper-V virtual machines have all of the manageability benefits of Windows. Windows Update can patch Hyper-V components, so you don’t need to set up additional maintenance processes. And Windows has all the same inherent capabilities with Hyper-V installed.
 
 ## Differences between Hyper-V on Windows and Hyper-V on Windows Server
 There are some features that work differently in Hyper-V on Windows than they do Hyper-V running on Windows Server. These include the following:
@@ -79,13 +78,11 @@ Virtual machines running on Hyper-V do not automatically handle moving from a wi
  
 ------
 
+## Limitations
+Using virtualization does have limitations. Features or applications that depend on specific hardware will not work well in a VM. For example, Windows BitLocker and Measured Boot, which rely on TPM (Trusted Platform Module), might not function properly in a VM, and games or applications that require processing with GPUs (without providing software fallback) might not work well either. Also, applications relying on sub 10ms timers, like latency-sensitive high-precision apps such as live music mixing apps, etc. could have issues running in a VM. The root OS is also running on top of the Hyper-V virtualization layer, but it is special in that it has direct access to all the hardware. This is why applications with special hardware requirements continue to work unhindered in the root OS but latency-sensitive, high-precision apps could still have issues running in the root OS.
 
+As a reminder, you'll need to have a valid license for any operating systems you use in the VMs.
 
-## Supported Guest Operating Systems ##
-For a list of supported guest operating systems, see [Supported Windows Guest Operating Systems](supported_guest_os.md). 
-
-For supported Linux distributions as a guest operating systems on Hyper-V, see [Linux and FreeBSD Virtual Machines on Hyper-V](https://technet.microsoft.com/library/dn531030.aspx).
-
-
-Next step: [Walkthrough Hyper-V on Windows 10](..\quick_start\walkthrough.md) 
+## Next step: 
+[Walkthrough Hyper-V on Windows 10](..\quick_start\walkthrough.md) 
 
