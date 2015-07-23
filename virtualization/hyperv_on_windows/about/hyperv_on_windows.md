@@ -49,7 +49,7 @@ Here's a quick list of supported guest operating systems for Windows 10 Hyper-V:
   * Windows Vista
 * Linux and FreeBSD
   * Ubuntu
-  * CentOS and Red Hat Enterprise Linux ([more info](https://technet.microsoft.com/en-us/library/dn531026.aspx))
+  * CentOS and Red Hat Enterprise Linux
   * Debian virtual machines on Hyper-V 
   * SUSE
   * Oracle Linux virtual machines on Hyper-V 
