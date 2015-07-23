@@ -23,7 +23,7 @@ Hyper-V in Windows is sometimes referred to as Client Hyper-V.
 </table>
 
 
-**Important** 
+**Important**  
 
 You must license the software running on each of the guest virtual machines according to their operating system requirements.
 
