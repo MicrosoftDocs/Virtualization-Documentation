@@ -31,7 +31,7 @@ Hyper-V’s dynamic memory allows memory needed by the VM to be allocated and de
 
 ## Operating systems you can run in a virtual machine ##
 
-The term "guest" refers to a virtual machine and "host" refers to the computer running the virtual machine. For information about which operating systems are supported as guests in Hyper-V on Windows, see [Supported Windows Guest Operating Systems](supported_guest_os.md) and [Linux and FreeBSD Virtual Machines on Hyper-V](https://technet.microsoft.com/library/dn531030.aspx). . 
+The term "guest" refers to a virtual machine and "host" refers to the computer running the virtual machine. Hyper-V on Windows supports many different guest operating systems including various releases of Linux, FreeBSD and Windows. For information about which operating systems are supported as guests in Hyper-V on Windows, see [Supported Windows Guest Operating Systems](supported_guest_os.md) and [Linux and FreeBSD Virtual Machines on Hyper-V](https://technet.microsoft.com/library/dn531030.aspx). 
 
 
 ## Connecting to a virtual machine
