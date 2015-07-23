@@ -12,6 +12,7 @@ If you aren't sure if you have the right permissions, type `Get-VM` and if it ru
 
 ## Use PowerShell Direct to see if the guest OS booted
 
+
 Hyper-V Manager doesn't give you visibility into the guest operating system which often makes it difficult to know whether the guest OS has booted once the VM is running.
 
 The following function waits until PowerShell is available in the guest OS (meaning the OS has booted and most services are running) then returns.

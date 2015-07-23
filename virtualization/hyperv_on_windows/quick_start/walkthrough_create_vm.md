@@ -19,6 +19,7 @@ For this step, if you already have a .iso file for a supported operating system,
   
 3. When everything looks right, click **Finish**. 
 
+
 ## Next Step: 
 [Step 5: Connect to the virtual machine and finish the installation](walkthrough_vmconnect.md)
 

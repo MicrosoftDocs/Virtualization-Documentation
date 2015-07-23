@@ -3,15 +3,20 @@ title: Step 6: Experiment with checkpoints
 
 # Step 6: Experiment with checkpoints 
 
-Checkpoints can be helpful to use when you are about to make a change to a virtual machine and want to be able to roll-back to the present state if the updates cause issues. There are two types of checkpoints:
+Now you have a running virtual machine!  Hyper-V provides many tools to make it easier to save, move, and manage virtual machines.
 
-•	**Production checkpoints**: Used mainly on servers in production environments 
+First, let's talk about checkpoints.
 
-•	**Standard checkpoints**: Used in development or testing environments 
+Checkpoints are a helpful tool when you want to save the present state of a virtual machine before making a potentially risky change such as applying an update, installing software, or changing a setting.  If the change causes issues, you can restore the checkpoint and go back.  
+We'll walk through this in detail.
 
+There are two types of checkpoints:  
+**Production checkpoints**: Used mainly on servers in production environments.  
+**Standard checkpoints**: Used in development or testing environments 
 
 Production checkpoints are the default for Hyper-V on Windows 10.
 
+Let's take a look.
 
 ## Change the checkpoint type
 We will start by trying out the older style of checkpoints, **standard checkpoints**. Since production checkpoints are the default, we need to go into the settings for the VM and change the checkpoint type.
