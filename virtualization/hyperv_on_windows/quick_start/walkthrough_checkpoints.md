@@ -3,12 +3,7 @@ title: Step 6: Experiment with checkpoints
 
 # Step 6: Experiment with checkpoints 
 
-Now you have a running virtual machine!  Hyper-V provides many tools to make it easier to save, move, and manage virtual machines.
-
-First, let's talk about checkpoints.
-
 Checkpoints are a helpful tool when you want to save the present state of a virtual machine before making a potentially risky change such as applying an update, installing software, or changing a setting.  If the change causes issues, you can restore the checkpoint and go back.  
-We'll walk through this in detail.
 
 There are two types of checkpoints:  
 **Production checkpoints**: Used mainly on servers in production environments.  
@@ -16,10 +11,9 @@ There are two types of checkpoints:
 
 Production checkpoints are the default for Hyper-V on Windows 10.
 
-Let's take a look.
 
 ## Change the checkpoint type
-We will start by trying out the older style of checkpoints, **standard checkpoints**. Since production checkpoints are the default, we need to go into the settings for the VM and change the checkpoint type.
+We'll start by trying out the older style of checkpoints, **standard checkpoints**. Since production checkpoints are the default, we need to go into the settings for the VM and change the checkpoint type.
 
 1. Right-click on **Windows Walkthrough VM** and select **Settings**.
 2. In the **Management** section, select **Checkpoints**.
@@ -29,7 +23,7 @@ We will start by trying out the older style of checkpoints, **standard checkpoin
 4.	Click **OK** to close the dialog box.
 
 ## Open Notepad to test checkpoints 
-In order to see what happens with each type of checkpoint, we will run an application in the VM. 
+In order to see what happens with each type of checkpoint, we'll run an application in the VM. 
 1. Right-click on **Windows Walkthrough VM** and select **Connect**.
 2. In the virtual machine, open **Notepad** by clicking on the **Start** menu and typing **Notepad** and then select it from the results. 
 3. In Notepad, type **This is a test of checkpoints.** The file should look like this:

@@ -5,8 +5,10 @@ title: Step 3: Create a virtual switch
 
 Virtual switch allow you to create a network connection for your virtual machine.  They are used just like the network interface on your physical computer.  
 
-For this example, we are going to create an External switch.  The external switch will allow your virtual machine to access the host machine's network adapter.  If your host machine is connected to the internet, your virtual machine will be as well.  
-We will also set the switch to allow the host to share this network adapter. This makes it so both the virtual machines and the host can use the same network.
+For this example, we are going to create an External switch.  The external switch will allow your virtual machine to access the host machine's network adapter.  If your host machine is connected to the internet, your virtual machine will be as well. 
+ 
+We'll also set the switch to allow the host to share this network adapter. This makes it so both the virtual machines and the host can use the same network.
+
 <!-- We should have a userguide for setting up a private network/virtual network -->
 
 1. In Hyper-V manager, click **Virtual Switch Manager**.
