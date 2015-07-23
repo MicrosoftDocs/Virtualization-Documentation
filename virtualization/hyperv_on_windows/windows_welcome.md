@@ -23,13 +23,14 @@ Hyper-V in Windows is sometimes referred to as Client Hyper-V.
 </table>
 
 
-**Important** 
+**Important**  
+
 You must license the software running on each of the guest virtual machines according to their operating system requirements.
 
 
 
 Here are a few links to other versions of Hyper-V:
-*  [Hyper-V on Windows Server 2016](https://technet.microsoft.com/en-us/library/mt126117.aspx)
+*  [Hyper-V on Windows Server 2016 Technical Preview](https://technet.microsoft.com/en-us/library/mt126117.aspx)
 *  [Hyper-V on Windows Server 2012 R2](https://technet.microsoft.com/en-us/library/hh831531.aspx)
 *  [Microsoft Hyper-V Server](https://technet.microsoft.com/library/hh923062.aspx)
 

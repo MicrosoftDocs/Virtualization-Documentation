@@ -25,7 +25,7 @@ Both of these technologies work well, but each have trade-offs as your Hyper-V d
 
 Windows PowerShell Direct provides a powerful scripting and automation experience with the simplicity of VMConnect. Because Windows PowerShell Direct runs between the host and virtual machine, there is no need for a network connection or to enable remote management. You do need guest credentials to log into the virtual machine.
 
-### Requirements
+#### Requirements
 - You must be connected to a Windows 10 or Windows Server Technical Preview host with virtual machines that run Windows 10 or Windows Server Technical Preview as guests.
 - You need to be logged in with Hyper-V Administrator credentials on the host.
 - You need User credentials for the virtual machine.
@@ -42,7 +42,7 @@ You can also adjust the amount of memory assigned to a virtual machine while it'
 
 Production checkpoints allow you to easily create “point in time” images of a virtual machine, which can be restored later on in a way that is completely supported for all production workloads. This is achieved by using backup technology inside the guest to create the checkpoint, instead of using saved state technology. For production checkpoints, the Volume Snapshot Service (VSS) is used inside Windows virtual machines. Linux virtual machines flush their file system buffers to create a file system consistent checkpoint. If you want to create checkpoints using saved state technology, you can still choose to use standard checkpoints for your virtual machine. 
 
-----------
+---------- 
 
 **Important**
 
@@ -73,7 +73,7 @@ More Linux operating systems, running on generation 2 virtual machines, can now 
 
     Set-VMFirmware vmname -SecureBootTemplate MicrosoftUEFICertificateAuthority
 
-For more information on running Linux virtual machines on Hyper-V, see [Linux and FreeBSD Virtual Machines on Hyper-V](https://technet.microsoft.com/library/dn531030.aspx).
+For more information on running Linux virtual machines on Hyper-V, see [Linux and FreeBSD Virtual Machines on Hyper-V](http://technet.microsoft.com/library/dn531030.aspx).
  
  
 ## Virtual Machine Configuration Version 
@@ -82,7 +82,7 @@ When you move or import a virtual machine to a host running Hyper-V on Windows 1
 
 The virtual machine configuration version represents what version of Hyper-V the virtual machine’s configuration, saved state, and snapshot files it's compatible with. Virtual machines with configuration version 5 are compatible with Windows 8.1 and can run on both Windows 8.1 and Windows 10. Virtual machines with configuration version 6 are compatible with Windows 10 and won't run on Windows 8.1.
 
-### How do I check the configuration version of the virtual machines running on Hyper-V? 
+#### How do I check the configuration version of the virtual machines running on Hyper-V? 
 
 From an elevated command prompt, run the following command:
 
@@ -90,7 +90,7 @@ From an elevated command prompt, run the following command:
 Get-VM * | Format-Table Name, Version
 ```
 
-### How do I upgrade the configuration version of a virtual machine?  
+#### How do I upgrade the configuration version of a virtual machine?  
 
 From an elevated Windows PowerShell command prompt, run one of the following commands:
 
@@ -149,7 +149,8 @@ The virtual machine must be connected to Windows Update or a WSUS server.  In th
 
 To read more about how we determine applicability, see this [blog post](http://blogs.technet.com/b/virtualization/archive/2014/11/24/integration-components-how-we-determine-windows-update-applicability.aspx).
 
-See [this blog](http://blogs.msdn.com/b/virtual_pc_guy/archive/2014/11/12/updating-integration-components-over-windows-update.aspx) post for a detailed walkthrough of installing ICs.
+
+See [this blog](http://blogs.msdn.com/b/virtual_pc_guy/archive/2014/11/12/updating-integration-components-over-windows-update.aspx) post for a detailed walkthrough of installing integration services.
 
 ----------
 **Important**
