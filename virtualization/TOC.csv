@@ -1,5 +1,6 @@
 *,oa-toc-container:virtualization
 **,oa-toc-container: windowscontainers
+***,windowscontainers/containers_welcome.md
 ***,oa-toc-container: about
 ****,windowscontainers/about/about_overview.md
 ****,windowscontainers/about/container_ecosystem.md
@@ -7,10 +8,6 @@
 ****,windowscontainers/about/faq.md
 ***,oa-toc-container: quick_start
 ****,windowscontainers/quick_start/hello_world.md
-***,oa-toc-container: user_guide
-****,windowscontainers/userguide/userguide_overview.md
-***,oa-toc-container: reference
-****,windowscontainers/reference/reference_overview.md
 **,oa-toc-container: hyperv_on_windows
 ***,hyperv_on_windows/windows_welcome.md
 ***,oa-toc-container: about
@@ -35,6 +32,8 @@
 ****,hyperv_on_windows/user_guide/export_import.md
 ****,hyperv_on_windows/user_guide/troubleshooting.md
 ***,oa-toc-container: develop
+****,oa-toc-external:web_power,http://technet.microsoft.com/library/hh848559.aspx
+****,oa-toc-external:web_wmi,http://msdn.microsoft.com/library/cc136992.aspx
 ****,hyperv_on_windows/develop/make_mgmt_service.md
 ****,hyperv_on_windows/develop/powershell_snippits.md
 **,oa-toc-container: community	

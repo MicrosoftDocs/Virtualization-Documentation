@@ -8,5 +8,7 @@ user_guide,"User Guide"
 reference,"Reference"
 develop,"Develop"
 wmi,"WMI"
+web_power,"Hyper-V Cmdlets in Windows PowerShell"
+web_wmi,"Hyper-V WMI Provider"
 powershell,"Windows PowerShell"
 
