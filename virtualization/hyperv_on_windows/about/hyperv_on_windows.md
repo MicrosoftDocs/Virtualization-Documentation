@@ -30,32 +30,9 @@ Hyper-V requires a 64-bit system that has Second Level Address Translation (SLAT
 Hyper-V’s dynamic memory allows memory needed by the VM to be allocated and de-allocated dynamically (you specify a minimum and maximum) and share unused memory between VMs. You can run 3 or 4 VMs on a machine that has 4GB of RAM but you'll need more RAM for 5 or more VMs. On the other end of the spectrum, you can also create large VMs with 32 processors and 512GB RAM, depending on your physical hardware.
 
 ## Operating systems you can run in a virtual machine ##
-For a quick bit of nomenclature, "guest" refers to a virtual machine and "host" refers to the computer running the virtual machine.
 
-Here's a quick list of supported guest operating systems for Windows 10 Hyper-V:
-* Windows Server (includes Datacenter, Enterprise, Standard and Web editions)
-  * Windows Server Technical Preview
-  * Windows Server 2012 R2 
-  * Windows Server 2012
-  * Windows Server 2008 R2 with Service Pack 1 (SP 1) 
-  * Windows Server 2008 with Service Pack 2 (SP 2)
-  * Windows Home Server 2011
-  * Windows Small Business Server 2011
-* Windows (includes Professional, Enterprise, Ultimate, and Standard editions)
-  * Windows 10
-  * Windows 8.1
-  * Windows 8
-  * Windows 7
-  * Windows Vista
-* Linux and FreeBSD
-  * Ubuntu
-  * CentOS and Red Hat Enterprise Linux
-  * Debian virtual machines on Hyper-V 
-  * SUSE
-  * Oracle Linux virtual machines on Hyper-V 
-  * FreeBSD virtual machines on Hyper-V 
+The term "guest" refers to a virtual machine and "host" refers to the computer running the virtual machine. For information about which operating systems are supported as guests in Hyper-V on Windows, see [Supported Windows Guest Operating Systems](supported_guest_os.md) and [Linux and FreeBSD Virtual Machines on Hyper-V](https://technet.microsoft.com/library/dn531030.aspx). . 
 
-For more infromation including past versions of Hyper-V, see [Supported Windows Guest Operating Systems](supported_guest_os.md). 
 
 ## Connecting to a virtual machine
 
