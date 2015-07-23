@@ -45,11 +45,11 @@ To verify that the virtual machine was exported, right-click on your **Start** m
 5. After selecting how to import the VM, click **Next**.
 6. In the Choose Destination section, you can choose where to store the files for the virtual machine or leave them in their current location. When you are finished, click **Next**.
 7. In Choose Storage folders, you can select another place to store the .vhdx file or leave them where they are. When you are finished, click **Next**.
-8. When you have finished importing the VM, you will see the summary page describing where the new VM files are located.
+8. When you have finished importing the VM, you'll see the summary page describing where the new VM files are located.
 
 ## Did the import work? 
 
-To make sure the import worked, just right-click the imported VM in **Hyper-V Manager** and click **Connect**. 
+To make sure the import worked, just double-click the imported VM in **Hyper-V Manager** and launch VMConnect to check the VM. 
 
 ## Next Step: 
 [Step 8: Experiment with Windows Powershell](walkthrough_powershell.md)
