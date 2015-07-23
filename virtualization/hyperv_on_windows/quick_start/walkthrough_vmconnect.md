@@ -8,12 +8,26 @@ In order to finish building your virtual machine, you need to start the VM and w
 ## Connect to the VM 
 
 1. In **Hyper-V Manager**, double-click on the virtual machine. This will launch the VMConnect tool. 
-2. In VMConnect, click on the green **Start** button ![](media/start.png). This is like hitting the power button on a physical computer. 
+2. In VMConnect, click on the green **Start** button ![](media/start.png). This is like hitting the power button on a physical computer.  
+If prompted select your screen resolution -- use the default selection.
 3. The VM will boot into setup and you can walk through the installation like you would on a physical computer.
 
+## Enhanced Session Mode
+Since you created a Generation2 VM, VMConnect will launch Enhanced Session Mode by default.  You'll know it's Enhanced Session Mode because it'll ask you what screen resoultion to use as soon as you connect to the virtual machine (I'd stick with the default selection).
 
-## Other stuff you can do in VMConnect
+Enhanced Session Mode has some handy features to coordinate with your computer.  It allows you to do things like share your clipboard so you can copy paste from your computer into your virtual machine.  It also lets you share attached devices like a removable USB flash drive, printer, or audio device.
 
+If you weren't prompted for the screen resoultion, you're probably running your VM normally.
+
+You can check the state of Enhanced Session Mode by looking at the Enhanced Session Mode icon at the top of VMConnect.
+* ![](media/rdp.png) -- Enhanced session mode is enabled and clicking this button will return to basic mode.
+* ![](media/EnhancedEn.png) -- Enhanced session mode is disabled and clicking this button will enable it.
+* ![](media/EnhancedNA.png) -- Enhanced Session Mode isn't available in your current configuration.
+
+
+## Reference:  Other stuff you can do in VMConnect
+
+Here are all of the icons mapped to what they mean.
 
 | **To do this…** | Click this...| **Or, do this…** |	|
 | ----- | ----- | ----- | ----- |
