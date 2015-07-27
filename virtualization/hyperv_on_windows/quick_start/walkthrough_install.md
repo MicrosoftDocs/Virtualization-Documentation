@@ -21,13 +21,13 @@ Hyper-V can be installed using [Programs and Features](#UsingProgramsandFeatures
   ![](media\restart.png)
   
 ## Using PowerShell
-For more information, see the PowerShell help for []Get-WindowsOptionalFeature](https://technet.microsoft.com/en-us/library/Hh852173.aspx).
+For more information, see the PowerShell help for [Enable-WindowsOptionalFeature](https://technet.microsoft.com/library/hh852172.aspx).
 
 1. Click on the **Windows** button and search for **Windows PowerShell**.  
 2. Right-click on **Windows PowerShell** and then click **Run as Administrator**.  
 3. At the Windows Powerhshell prompt, type the following and then press the **Enter** key:  
 ``` PowerShell
-enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V -All
+Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V -All
 ``` 
 4. When the installation is finished, restart the computer. 
 
