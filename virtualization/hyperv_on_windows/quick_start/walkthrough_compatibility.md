@@ -13,7 +13,7 @@ Starting in Windows 10, Hyper-V requires a 64-bit processor with Second Level Ad
 
 To verify compatability, open PowerShell or a Windows command prompt (cmd.exe) and type: `systeminfo.exe`.  This will give you information about your computer.
 
-All of the items under *Hyper-V Requirements* must have the value if *Yes*.
+All of the items under **Hyper-V Requirements** must have the value if **Yes**.
 
 ![](media\systeminfo.png)
 
