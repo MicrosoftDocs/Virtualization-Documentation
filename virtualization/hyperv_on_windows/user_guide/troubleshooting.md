@@ -3,11 +3,6 @@ title: Troubleshooting
 
 # Troubleshoot Hyper-V on Windows 10
 
-## When I X, my machine does Y.
-It does this because Z.
-
-To fix it, do this....
-
 ## I changed the checkpoint type, but it is still taking the wrong type of checkpoint
 If you are taking the checkpoint from VMConnect and you change the checkpoint type in Hyper-V manager the checkpoint taken be whatever checkpoint type was specified when VMConnect was opened.
 
