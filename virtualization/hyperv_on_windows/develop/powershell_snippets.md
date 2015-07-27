@@ -24,7 +24,7 @@ function waitForPSDirect([string]$VMName, $cred){
 ```
 
 **Requirements** :  
-*  PowerShell Direct.  Windows10+ guest and host OS.
+*  PowerShell Direct.  Windows 10 guest and host OS.
 
 **Parameters** :  
 `$VMName` -- this is a string with the VMName.  See a list of available VMs with `Get-VM`  
