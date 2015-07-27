@@ -34,22 +34,6 @@ Hyper-V’s dynamic memory allows memory needed by the VM to be allocated and de
 The term "guest" refers to a virtual machine and "host" refers to the computer running the virtual machine. Hyper-V on Windows supports many different guest operating systems including various releases of Linux, FreeBSD and Windows. For information about which operating systems are supported as guests in Hyper-V on Windows, see [Supported Windows Guest Operating Systems](supported_guest_os.md) and [Linux and FreeBSD Virtual Machines on Hyper-V](https://technet.microsoft.com/library/dn531030.aspx). 
 
 
-## Connecting to a virtual machine
-
-As for user experience with VMs, Windows provides two mechanisms to peek into the Virtual Machine: the VM Console and the Remote Desktop Connection.
-
-The VM Console (also known as VMConnect) is a console view of the VM. It provides a single monitor view of the VM with resolution up to 1600x1200 in 32-bit color. This console provides you with the ability to view the VM’s booting process.
-
-For a richer experience, you can connect to the VM using the Remote Desktop Connection (RDC). With RDC, the VM takes advantage of capabilities present on your physical PC. For example, if you have multiple monitors, then the VM can show its graphics on all these monitors. Similarly, if you have a multipoint touch-enabled interface on your PC, then the VM can use this interface to give you a touch experience. The VM also has full multimedia capability by leveraging the physical system’s speakers and microphone. The Root OS (i.e. the main Windows OS that’s managing the VMs) can also share its clipboard and folders with the VMs. And finally, with RDC, you can also attach any USB device directly to the VM.
-
-## Virtual machine data
-For storage, you can add multiple hard disks to the IDE or SCSI controllers available in the VM. You can use Virtual Hard Disks (.VHD or .VHDX files) or actual disks that you pass directly through to the virtual machine. VHDs can also reside on a remote file server, making it easy to maintain and share a common set of predefined VHDs across a team.
-
-Hyper-V’s “Live Storage Move” capability helps your VMs to be fairly independent of the underlying storage. With this, you could move the VM’s storage from one local drive to another, to a USB stick, or to a remote file share without needing to stop your VM. I’ve found this feature to be quite handy for fast deployments: when I need a VM quickly, I start one from a VM library maintained on a file share and then move the VM’s storage to my local drive.
-
-## Save the current virtual machine state
-Another great feature of Hyper-V is the ability to take a checkpoint of a virtual machine while it is running. A checkpoint saves everything about the virtual machine allowing you to go back to a previous point in time in the life of a VM, and is a great tool when trying to debug tricky problems. At the same time, Hyper-V virtual machines have all of the manageability benefits of Windows. Windows Update can patch Hyper-V components, so you don’t need to set up additional maintenance processes. And Windows has all the same inherent capabilities with Hyper-V installed.
-
 ## Differences between Hyper-V on Windows and Hyper-V on Windows Server
 There are some features that work differently in Hyper-V on Windows than they do Hyper-V running on Windows Server. These include the following:
 
@@ -76,11 +60,10 @@ There are some features included in Hyper-V on server that are not included in H
 -----
 **Warning**  
 Virtual machines running on Hyper-V do not automatically handle moving from a wired to a wireless connection. You must change the virtual machines network adapter settings manually.
- 
 ------
 
 ## Limitations
-Using virtualization does have limitations. Features or applications that depend on specific hardware will not work well in a VM. For example, Windows BitLocker and Measured Boot, which rely on TPM (Trusted Platform Module), might not function properly in a VM, and games or applications that require processing with GPUs (without providing software fallback) might not work well either. Also, applications relying on sub 10ms timers, like latency-sensitive high-precision apps such as live music mixing apps, etc. could have issues running in a VM. The root OS is also running on top of the Hyper-V virtualization layer, but it is special in that it has direct access to all the hardware. This is why applications with special hardware requirements continue to work unhindered in the root OS but latency-sensitive, high-precision apps could still have issues running in the root OS.
+Using virtualization does have limitations. Features or applications that depend on specific hardware will not work well in a VM. For example, games or applications that require processing with GPUs (without providing software fallback) might not work well. Also, applications relying on sub 10ms timers, like latency-sensitive high-precision apps such as live music mixing apps, etc. could have issues running in a VM. The root OS is also running on top of the Hyper-V virtualization layer, but it is special in that it has direct access to all the hardware. This is why applications with special hardware requirements continue to work unhindered in the root OS but latency-sensitive, high-precision apps could still have issues running in the root OS.
 
 As a reminder, you'll need to have a valid license for any operating systems you use in the VMs.
 
