@@ -63,7 +63,7 @@ The default for new virtual machines will be to create production checkpoints wi
 
 When Hyper-V is enabled on a computer that uses the Always On/Always Connected (AOAC) power model, the Connected Standby power state is now available.
 
-In windows 8/8.1, Hyper-V caused computers that uses the Always On/Always Connected (AOAC) power model (also known as InstantON) to never sleep. See this [KB article](
+In Windows 8 and 8.1, Hyper-V caused computers that used the Always On/Always Connected (AOAC) power model (also known as InstantON) to never sleep. See this [KB article](
 https://support.microsoft.com/en-us/kb/2973536) for a full discription.
 
 
