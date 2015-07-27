@@ -114,7 +114,6 @@ Update-VmConfigurationVersion <vmobject>
 • You must turn off the virtual machine to upgrade the virtual machine configuration.
 
 • After the upgrade, the virtual machine uses the new configuration file format. For more information, see New virtual machine configuration file format.
-
 ----------
 
 ## New virtual machine configuration file format
@@ -123,9 +122,7 @@ Virtual machines now have a new configuration file format which is designed to i
 
 ----------
 **Important** 
-
 The .VMCX file is a binary format. Directly editing the .VMCX or .VMRS file isn't supported.
-
 ----------
 
 
@@ -154,9 +151,7 @@ See [this blog](http://blogs.msdn.com/b/virtual_pc_guy/archive/2014/11/12/updati
 
 ----------
 **Important**
-
 The ISO image file vmguest.iso is no longer needed for updating integration components. It's not included with Hyper-V on Windows 10.
- 
 ----------
 
 
