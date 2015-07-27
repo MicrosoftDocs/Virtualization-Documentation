@@ -25,7 +25,7 @@ Here are all of the buttons and shortcut keys, mapped to what they do.
 | Pause | ![](media/pause.png) 	|  |	|
 | Reset | ![](media/reset.png) 	|  |	|
 | Mouse release | ![](media/ctrlaltdel.png) 	 |CTRL+ALT+LEFT arrow |	|
-| CTRL+ALT+DELETE for a physical computer |  |CTRL+ALT+END |	|
+| Send CTRL+ALT+DELETE to the virtual machine |  |CTRL+ALT+END |	|
 | Switch from full-screen mode back to windowed mode |  | CTRL+ALT+BREAK | 	|
 | Use enhanced session mode | ![](media/basic.png) 	|	| 	|
 | Open the settings for the virtual machine |  | CTRL+O | 	|

@@ -1,11 +1,11 @@
-ms.ContentId: 52f74e95-ce0b-4112-846a-cbeb552c2ac5
-title: PowerShell Snippits
+ms.ContentId: 8DE9250B-556B-47BC-AD9A-8992B3D3D0F9
+title: PowerShell Snippets
 
-# PowerShell Snippits
+# PowerShell Snippets
 
 PowerShell is an awesome scripting, automation, and management tool for Hyper-V.  Here is a toolbox for exploring some of the cool things it can do!
 
-All Hyper-V management requires running as administrator so assume all scripts and snippits must be run as administrator from a Hyper-V Administrator account.
+All Hyper-V management requires running as administrator so assume all scripts and snippets must be run as administrator from a Hyper-V Administrator account.
 
 If you aren't sure if you have the right permissions, type `Get-VM` and if it runs with no errors, you're ready to go.
 
@@ -24,7 +24,7 @@ function waitForPSDirect([string]$VMName, $cred){
 ```
 
 **Requirements** :  
-*  PowerShell Direct.  Windows10+ guest and host OS.
+*  PowerShell Direct.  Windows 10 guest and host OS.
 
 **Parameters** :  
 `$VMName` -- this is a string with the VMName.  See a list of available VMs with `Get-VM`  

@@ -3,7 +3,7 @@ title: Step 6: Experiment with checkpoints
 
 # Step 6: Experiment with checkpoints 
 
-Checkpoints are a helpful tool when you want to save the present state of a virtual machine before making a potentially risky change such as applying an update, installing software, or changing a setting.  If the change causes issues, you can restore the checkpoint and go back.  
+Checkpoints are a helpful tool when you want to save the present state of a virtual machine before making a change such as applying an update, installing software, or changing a setting.  If the change causes issues, you can restore the checkpoint and go back.  
 
 There are two types of checkpoints:  
 **Production checkpoints**: Used mainly on servers in production environments.  
@@ -32,7 +32,7 @@ In order to see what happens with each type of checkpoint, we'll run an applicat
 4. Save the file as **test.txt**, but don't close Notepad. Leave it running in the virtual machine.
 
 ## Create a standard checkpoint 
-1. To create the checkpoint, right-click the VM and click **Checkpoint**. 
+1. To create the checkpoint, click on the ![](media/checkpoint_button.png) **Checkpoint** button in the menu bar. 
 2. In the checkpoint name dialog, type **Standard**. The dialog should look like this:
 
   ![](media/save_standard.png) 

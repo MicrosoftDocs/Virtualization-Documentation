@@ -13,16 +13,10 @@ Starting in Windows 10, Hyper-V requires a 64-bit processor with Second Level Ad
 
 To verify compatability, open PowerShell or a Windows command prompt (cmd.exe) and type: `systeminfo.exe`.  This will give you information about your computer.
 
-![](media\systeminfo.png)
-<!-- Change box to be around the Hyper-V Requirements section? -->
+All of the items under **Hyper-V Requirements** must have the value if **Yes**.
 
-Relevant sections:
-*  `OS Name` -- Must be Windows 8 or higher and either Profession or Enterprise.
-*  `Hyper-V Requirements` -- all of these must be true (value of "Yes") but some can be configured in BIOS.
-	*  `VM Monitor Mode Extensions` -- Property of the hardware.  Hyper-V can not run on this machine.
-	*  `Virtualization Enabled in Firmware` -- Can be enabled in BIOS
-	*  `Second Level Address Translation` -- Property of the hardware.  Hyper-V can not run on this machine.
-	*  `Data Execution Prevention Available` -- Can be enabled in BIOS
+![](media\systeminfo.png)
+
 	
 If Hyper-V is already enabled, the Hyper-V Requirements section will read:  
 ```
