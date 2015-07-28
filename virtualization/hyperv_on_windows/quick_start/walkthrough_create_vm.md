@@ -1,7 +1,7 @@
 ms.ContentId: 3C63F9A8-30E4-40F4-BC7B-A001C1E90779
 title: Step 4: Create a Windows virtual machine from an .iso file
 
-# Create a Windows virtual machine from an .iso file 
+# Step 4: Create a Windows virtual machine from an .iso file 
 
 For this step, if you already have a .iso file for a supported 64-bit operating system, you can use that. If not, you can download the .iso for [Windows 8.1 Enterprise](http://www.microsoft.com/en-us/evalcenter/evaluate-windows-8-1-enterprise) and choose the 64-bit edition. 
 

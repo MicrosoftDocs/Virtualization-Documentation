@@ -1,7 +1,7 @@
 ms.ContentId: C2593EA1-B182-4C71-8504-49691F619158
 title: Step 1: Make sure your machine is compatible
 
-# Make sure your machine is compatible
+# Step 1: Make sure your machine is compatible
 
 Only the Profession and Enterprise editions of Windows 10 support Hyper-V. 
 
