@@ -306,16 +306,23 @@ function createRunAndWaitVM
     Remove-VM $factoryVMName -Force;
 }
 
-Function MountVHDandRunBlock ([string]$vhd, [scriptblock]$block) { 
-      # This function mounts a VHD, runs a script block and unmounts the VHD.
-      # Drive letter of the mounted VHD is stored in $driveLetter - can be used by script blocks
-      $driveLetter = (Mount-VHD $vhd -Passthru | Get-Disk | Get-Partition | Get-Volume).DriveLetter
-      &$block
-      dismount-vhd $vhd
+function MountVHDandRunBlock 
+{
+    param
+    (
+        [string]$vhd, 
+        [scriptblock]$block
+    );
+     
+    # This function mounts a VHD, runs a script block and unmounts the VHD.
+    # Drive letter of the mounted VHD is stored in $driveLetter - can be used by script blocks
+    $driveLetter = (Mount-VHD $vhd -Passthru | Get-Disk | Get-Partition | Get-Volume).DriveLetter;
+    & $block;
+    Dismount-VHD $vhd;
 
-      # Wait 2 seconds for activity to clean up
-      Start-Sleep -Seconds 2
-      }
+    # Wait 2 seconds for activity to clean up
+    Start-Sleep -Seconds 2;
+}
 
 ### Update script block
 $updateCheckScriptBlock = {
