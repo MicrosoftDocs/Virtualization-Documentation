@@ -377,15 +377,18 @@ $sysprepScriptBlock = {
 
 ### Post Sysprep script block
 $postSysprepScriptBlock = {
-     # Remove autorun key if it exists
-     Get-Item -Path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run | ? Property -like Unattend* | Remove-Item
+    # Remove autorun key if it exists
+    Get-Item -Path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run | ? Property -like Unattend* | Remove-Item;
 
-     # Clean up unattend file if it is there
-     if (test-path "$ENV:SystemDrive\Unattend.xml") {Remove-Item -Force "$ENV:SystemDrive\Unattend.xml"}
+    # Clean up unattend file if it is there
+    if (Test-Path "$ENV:SystemDrive\Unattend.xml") 
+    {
+        Remove-Item -Force "$ENV:SystemDrive\Unattend.xml";
+    }
      
-     # Put any code you want to run Post sysprep here
-     invoke-expression 'shutdown -r -t 0'
-     }
+    # Put any code you want to run Post sysprep here
+    Invoke-Expression 'shutdown -r -t 0';
+};
 
 # This is the main function of this script
 function RunTheFactory
