@@ -222,7 +222,7 @@ Function createRunAndWaitVM ([string]$vhd, [string]$gen) {
 Function MountVHDandRunBlock ([string]$vhd, [scriptblock]$block) { 
       # This function mounts a VHD, runs a script block and unmounts the VHD.
       # Drive letter of the mounted VHD is stored in $driveLetter - can be used by script blocks
-      $driveLetter = (Mount-VHD $vhd –passthru | Get-Disk | Get-Partition | Get-Volume).DriveLetter
+      $driveLetter = (Mount-VHD $vhd -Passthru | Get-Disk | Get-Partition | Get-Volume).DriveLetter
       &$block
       dismount-vhd $vhd
 
@@ -362,7 +362,7 @@ Function RunTheFactory([string]$FriendlyName, `
 
        # Mount the VHD
        logger $FriendlyName "Mount the differencing disk"
-       $driveLetter = (Mount-VHD $updateVHD –passthru | Get-Disk | Get-Partition | Get-Volume).DriveLetter
+       $driveLetter = (Mount-VHD $updateVHD -Passthru | Get-Disk | Get-Partition | Get-Volume).DriveLetter
        
        # Check to see if changes were made
        logger $FriendlyName "Check to see if there were any updates"
