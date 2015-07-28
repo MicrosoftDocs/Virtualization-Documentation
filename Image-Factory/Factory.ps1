@@ -212,11 +212,20 @@ function cleanupFile
     }
 }
 
-function GetUnattendChunk ([string]$pass, [string]$component, [xml]$unattend) 
-    {# Helper function that returns one component chunk from the Unattend XML data structure
-     return $Unattend.unattend.settings | ? pass -eq $pass `
-                                        | select -ExpandProperty component `
-                                        | ? name -eq $component}
+function GetUnattendChunk 
+{
+    param
+    (
+        [string] $pass, 
+        [string] $component, 
+        [xml] $unattend
+    ); 
+    
+    # Helper function that returns one component chunk from the Unattend XML data structure
+    return $Unattend.unattend.settings | ? pass -eq $pass `
+        | select -ExpandProperty component `
+        | ? name -eq $component;
+}
 
 function makeUnattendFile ([string]$key, [string]$logonCount, [string]$filePath, [bool]$desktop = $false, [bool]$is32bit = $false) 
     {# Composes unattend file and writes it to the specified filepath
