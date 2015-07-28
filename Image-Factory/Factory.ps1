@@ -326,29 +326,45 @@ function MountVHDandRunBlock
 
 ### Update script block
 $updateCheckScriptBlock = {
-     # Clean up unattend file if it is there
-     if (test-path "$ENV:SystemDrive\Unattend.xml") {Remove-Item -Force "$ENV:SystemDrive\Unattend.xml"}
+    # Clean up unattend file if it is there
+    if (Test-Path "$ENV:SystemDrive\Unattend.xml") 
+    {
+        Remove-Item -Force "$ENV:SystemDrive\Unattend.xml"
+    }
      
-     # Check to see if files need to be unblocked - if they do, do it and reboot
-     if ((Get-ChildItem $env:SystemDrive\Bits\PSWindowsUpdate | `
-          get-item -Stream "Zone.Identifier" -ErrorAction SilentlyContinue).Count -gt 0)
-        {Get-ChildItem $env:SystemDrive\Bits\PSWindowsUpdate  | Unblock-File
-         invoke-expression 'shutdown -r -t 0'}
+    # Check to see if files need to be unblocked - if they do, do it and reboot
+    if ((Get-ChildItem $env:SystemDrive\Bits\PSWindowsUpdate | `
+        Get-Item -Stream "Zone.Identifier" -ErrorAction SilentlyContinue).Count -gt 0)
+    {
+        Get-ChildItem $env:SystemDrive\Bits\PSWindowsUpdate | Unblock-File;
+        Invoke-Expression 'shutdown -r -t 0'
+    }
 
-     # To get here - the files are unblocked
-     import-module $env:SystemDrive\Bits\PSWindowsUpdate\PSWindowsUpdate
+    # To get here - the files are unblocked
+    Import-Module $env:SystemDrive\Bits\PSWindowsUpdate\PSWindowsUpdate;
 
-     # Check if any updates are needed - leave a marker if there are
-     if ((Get-WUList).Count -gt 0)
-          {if (!(test-path $env:SystemDrive\Bits\changesMade.txt)) 
-          {New-Item $env:SystemDrive\Bits\changesMade.txt -type file}}
+    # Check if any updates are needed - leave a marker if there are
+    if ((Get-WUList).Count -gt 0)
+    {
+        if (-not (Test-Path $env:SystemDrive\Bits\changesMade.txt))
+        {
+            New-Item $env:SystemDrive\Bits\changesMade.txt -type file;
+        }
+    }
  
-     # Apply all the updates
-     Get-WUInstall -AcceptAll -IgnoreReboot -IgnoreUserInput -NotCategory "Language packs" 
+    # Apply all the updates
+    Get-WUInstall -AcceptAll -IgnoreReboot -IgnoreUserInput -NotCategory "Language packs";
 
-     # Reboot if needed - otherwise shutdown because we are done
-     if (Get-WURebootStatus -Silent) {invoke-expression 'shutdown -r -t 0'} 
-     else {invoke-expression 'shutdown -s -t 0'}}
+    # Reboot if needed - otherwise shutdown because we are done
+    if (Get-WURebootStatus -Silent) 
+    {
+        Invoke-Expression 'shutdown -r -t 0';
+    } 
+    else
+    {
+        invoke-expression 'shutdown -s -t 0';
+    }
+};
 
 ### Sysprep script block
 $sysprepScriptBlock = {
