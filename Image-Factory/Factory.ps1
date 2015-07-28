@@ -199,7 +199,18 @@ function Logger {
 }
 
 # Helper function for no error file cleanup
-Function cleanupFile ([string]$file) {if (test-path $file) {Remove-Item $file}}
+function cleanupFile
+{
+    param
+    (
+        [string]$file
+    )
+    
+    if (Test-Path $file) 
+    {
+        Remove-Item $file
+    }
+}
 
 function GetUnattendChunk ([string]$pass, [string]$component, [xml]$unattend) 
     {# Helper function that returns one component chunk from the Unattend XML data structure
