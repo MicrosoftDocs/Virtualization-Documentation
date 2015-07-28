@@ -227,36 +227,53 @@ function GetUnattendChunk
         | ? name -eq $component;
 }
 
-function makeUnattendFile ([string]$key, [string]$logonCount, [string]$filePath, [bool]$desktop = $false, [bool]$is32bit = $false) 
-    {# Composes unattend file and writes it to the specified filepath
-     
-     # Reload template - clone is necessary as PowerShell thinks this is a "complex" object
-     $unattend = $unattendSource.Clone()
-     
-     # Customize unattend XML
-     GetUnattendChunk "specialize" "Microsoft-Windows-Shell-Setup" $unattend | %{$_.ProductKey = $key}
-     GetUnattendChunk "specialize" "Microsoft-Windows-Shell-Setup" $unattend | %{$_.RegisteredOrganization = $Organization}
-     GetUnattendChunk "specialize" "Microsoft-Windows-Shell-Setup" $unattend | %{$_.RegisteredOwner = $Owner}
-     GetUnattendChunk "specialize" "Microsoft-Windows-Shell-Setup" $unattend | %{$_.TimeZone = $Timezone}
-     GetUnattendChunk "oobeSystem" "Microsoft-Windows-Shell-Setup" $unattend | %{$_.UserAccounts.AdministratorPassword.Value = $adminPassword}
-     GetUnattendChunk "oobeSystem" "Microsoft-Windows-Shell-Setup" $unattend | %{$_.AutoLogon.Password.Value = $adminPassword}
-     GetUnattendChunk "oobeSystem" "Microsoft-Windows-Shell-Setup" $unattend | %{$_.AutoLogon.LogonCount = $logonCount}
-     if ($desktop)
-         {
-         GetUnattendChunk "oobeSystem" "Microsoft-Windows-Shell-Setup" $unattend | %{$_.UserAccounts.LocalAccounts.LocalAccount.Password.Value = $userPassword}
-         }
-     else
-         {# Desktop needs a user other than "Administrator" to be present
-          # This will remove the creation of the other user for server images
-          $ns = New-Object System.Xml.XmlNamespaceManager($unattend.NameTable)
-          $ns.AddNamespace("ns", $unattend.DocumentElement.NamespaceURI)
-          $node = $unattend.SelectSingleNode("//ns:LocalAccounts", $ns) 
-          $node.ParentNode.RemoveChild($node) | Out-Null}
-     
-     if ($is32bit) {$unattend.InnerXml = $unattend.InnerXml.Replace('processorArchitecture="amd64"', 'processorArchitecture="x86"')}
+function makeUnattendFile 
+{
+    param
+    (
+        [string] $key, 
+        [string] $logonCount, 
+        [string] $filePath, 
+        [bool] $desktop = $false, 
+        [bool] $is32bit = $false
+    ); 
 
-     # Write it out to disk
-     cleanupFile $filePath; $Unattend.Save($filePath)}
+    # Composes unattend file and writes it to the specified filepath
+     
+    # Reload template - clone is necessary as PowerShell thinks this is a "complex" object
+    $unattend = $unattendSource.Clone();
+     
+    # Customize unattend XML
+    GetUnattendChunk "specialize" "Microsoft-Windows-Shell-Setup" $unattend | %{$_.ProductKey = $key};
+    GetUnattendChunk "specialize" "Microsoft-Windows-Shell-Setup" $unattend | %{$_.RegisteredOrganization = $Organization};
+    GetUnattendChunk "specialize" "Microsoft-Windows-Shell-Setup" $unattend | %{$_.RegisteredOwner = $Owner};
+    GetUnattendChunk "specialize" "Microsoft-Windows-Shell-Setup" $unattend | %{$_.TimeZone = $Timezone};
+    GetUnattendChunk "oobeSystem" "Microsoft-Windows-Shell-Setup" $unattend | %{$_.UserAccounts.AdministratorPassword.Value = $adminPassword};
+    GetUnattendChunk "oobeSystem" "Microsoft-Windows-Shell-Setup" $unattend | %{$_.AutoLogon.Password.Value = $adminPassword};
+    GetUnattendChunk "oobeSystem" "Microsoft-Windows-Shell-Setup" $unattend | %{$_.AutoLogon.LogonCount = $logonCount};
+
+    if ($desktop)
+    {
+        GetUnattendChunk "oobeSystem" "Microsoft-Windows-Shell-Setup" $unattend | %{$_.UserAccounts.LocalAccounts.LocalAccount.Password.Value = $userPassword};
+    }
+    else
+    {
+        # Desktop needs a user other than "Administrator" to be present
+        # This will remove the creation of the other user for server images
+        $ns = New-Object System.Xml.XmlNamespaceManager($unattend.NameTable);
+        $ns.AddNamespace("ns", $unattend.DocumentElement.NamespaceURI);
+        $node = $unattend.SelectSingleNode("//ns:LocalAccounts", $ns);
+        $node.ParentNode.RemoveChild($node) | Out-Null;
+    }
+     
+    if ($is32bit) 
+    {
+        $unattend.InnerXml = $unattend.InnerXml.Replace('processorArchitecture="amd64"', 'processorArchitecture="x86"');
+    }
+
+    # Write it out to disk
+    cleanupFile $filePath; $Unattend.Save($filePath);
+}
 
 Function createRunAndWaitVM ([string]$vhd, [string]$gen) {
       # Function for whenever I have a VHD that is ready to run
