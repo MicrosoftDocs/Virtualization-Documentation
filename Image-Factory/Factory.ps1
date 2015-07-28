@@ -368,11 +368,12 @@ $updateCheckScriptBlock = {
 
 ### Sysprep script block
 $sysprepScriptBlock = {
-     # Remove autorun key if it exists
-     Get-Item -Path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run | ? Property -like Unattend* | Remove-Item
+    # Remove autorun key if it exists
+    Get-Item -Path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run | ? Property -like Unattend* | Remove-Item;
              
-     $unattendedXmlPath = "$ENV:SystemDrive\Bits\Unattend.xml" 
-     & "$ENV:SystemRoot\System32\Sysprep\Sysprep.exe" `/generalize `/oobe `/shutdown `/unattend:"$unattendedXmlPath"}
+    $unattendedXmlPath = "$ENV:SystemDrive\Bits\Unattend.xml";
+    & "$ENV:SystemRoot\System32\Sysprep\Sysprep.exe" `/generalize `/oobe `/shutdown `/unattend:"$unattendedXmlPath";
+};
 
 ### Post Sysprep script block
 $postSysprepScriptBlock = {
