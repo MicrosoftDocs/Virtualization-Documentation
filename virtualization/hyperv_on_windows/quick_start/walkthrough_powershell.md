@@ -86,23 +86,24 @@ For example, here is a checkpoint with the name DEMOCP:
 The following example shows how to create a new virtual machine in the PowerShell Integrated Scripting Environment (ISE). This is a simple example and could be expanded on to include additional PowerShell features and more advanced VM deployments.
 
 1. To open the PowerShell ISE click on start, type **PowerShell ISE**.
-2. Run the following code to create a virtual machine where:
+2. Run the following code to create a virtual machine. See the [New-VM](https://technet.microsoft.com/en-us/library/hh848537.aspx) documentation for detailed information on the New-VM command.
 
-  - Lines 1 – 8: Defines the VM parameters storing each in a PowerShell variable.
-  - Line 10: Creates the new VM using all defined parameters.
+  ```powershell
+ $VMName = "VMNAME"
 
- ```powershell
- $Name = "VMNAME"
- $MemoryStartupBytes = 2147483648
- $Generation = 2
- $NewVHDPath = "D:\Windows 10 VM\$Name\$Name.vhdx"
- $NewVHDSizeBytes = 53687091200
- $BootDevice = "VHD"
- $Path = "D:\Windows 10 VM\$Name"
- $SwitchName = (get-vmswitch).Name
+ $VM = @{
+     Name = $VMName 
+     MemoryStartupBytes = 2147483648
+     Generation = 2
+     NewVHDPath = "C:\Virtual Machines\$VMName\$VMName.vhdx"
+     NewVHDSizeBytes = 53687091200
+     BootDevice = "VHD"
+     Path = "C:\Virtual Machines\$VMName "
+     SwitchName = (get-vmswitch).Name[0]
+ }
 
- New-VM -Name $Name -MemoryStartupBytes $MemoryStartupBytes -Generation $Generation -NewVHDPath $NewVHDPath -NewVHDSizeBytes $NewVHDSizeBytes -SwitchName $SwitchName -Path $Path -BootDevice $BootDevice
- ```
+ New-VM @VM
+  ```
 
 ## Wrap up and References
 
