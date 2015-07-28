@@ -9,7 +9,9 @@ If you move virtual machines to your Windows 10 host that were originally create
 To upgrade the configuration version, shut down the virtual machine and then, at an elevated Windows PowerShell command prompt, type: 
 
 
-    ```Update-VmConfigurationVersion <vmname> | <vmobject> ```
+	``` PowerShell
+	Update-VmConfigurationVersion <vmname> | <vmobject> 
+	```
 
 ## How do I check the configuration version of the virtual machines running on Hyper-V? 
 
@@ -19,11 +21,13 @@ To find the configuration version, open an elevated Windows PowerShell command p
 
 The PowerShell command produces the following sample output:
 
-    Name		State		CPUUsage(%)		MemoryAssigned(M)		Uptime			Status				Version
+	```
+    Name		State		CPUUsage(%)		MemoryAssigned(M)		Uptime				Status					Version
     
-    Atlantis	Running			0			1024			 	00:04:20.5910000	Operating normally		5.0
+    Atlantis	Running			0			1024			 		00:04:20.5910000	Operating normally		5.0
     
-    SGC VM		Running			0			538 	 			00:02:44.8350000	Operating normally		6.2
+    SGC VM		Running			0			538 	 				00:02:44.8350000	Operating normally		6.2
+	```
 
 ## What happens if I do not upgrade the configuration version?
 
