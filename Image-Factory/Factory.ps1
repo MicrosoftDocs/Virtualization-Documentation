@@ -184,12 +184,19 @@ function CSVLogger {
     }
 }
 
-function Logger ([string]$systemName, [string]$message)
-    {# Function for displaying formatted log messages.  Also displays time in minutes since the script was started
-     write-host (Get-Date).ToShortTimeString() -ForegroundColor Cyan -NoNewline
-     write-host " - [" -ForegroundColor White -NoNewline
-     write-host $systemName -ForegroundColor Yellow -NoNewline
-     write-Host "]::$($message)" -ForegroundColor White}
+function Logger {
+    param
+    (
+        [string]$systemName,
+        [string]$message
+    );
+
+    # Function for displaying formatted log messages.  Also displays time in minutes since the script was started
+    write-host (Get-Date).ToShortTimeString() -ForegroundColor Cyan -NoNewline;
+    write-host " - [" -ForegroundColor White -NoNewline;
+    write-host $systemName -ForegroundColor Yellow -NoNewline;
+    write-Host "]::$($message)" -ForegroundColor White;
+}
 
 # Helper function for no error file cleanup
 Function cleanupFile ([string]$file) {if (test-path $file) {Remove-Item $file}}
