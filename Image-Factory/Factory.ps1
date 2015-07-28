@@ -275,23 +275,36 @@ function makeUnattendFile
     cleanupFile $filePath; $Unattend.Save($filePath);
 }
 
-Function createRunAndWaitVM ([string]$vhd, [string]$gen) {
-      # Function for whenever I have a VHD that is ready to run
-      new-vm $factoryVMName -MemoryStartupBytes 2048mb -VHDPath $vhd -Generation $Gen `
-                            -SwitchName $virtualSwitchName | Out-Null
-      set-vm -Name $factoryVMName -ProcessorCount 2
-      Start-VM $factoryVMName
+function createRunAndWaitVM 
+{
+    param
+    (
+        [string] $vhd, 
+        [string] $gen
+    );
+    
+    # Function for whenever I have a VHD that is ready to run
+    New-VM $factoryVMName -MemoryStartupBytes 2048mb -VHDPath $vhd -Generation $Gen -SwitchName $virtualSwitchName | Out-Null;
+    set-vm -Name $factoryVMName -ProcessorCount 2;
+    Start-VM $factoryVMName;
 
-      # Give the VM a moment to start before we start checking for it to stop
-      Sleep -Seconds 10
+    # Give the VM a moment to start before we start checking for it to stop
+    Sleep -Seconds 10;
 
-      # Wait for the VM to be stopped for a good solid 5 seconds
-      do {$state1 = (Get-VM | ? name -eq $factoryVMName).State; sleep -Seconds 5
-          $state2 = (Get-VM | ? name -eq $factoryVMName).State; sleep -Seconds 5} 
-          until (($state1 -eq "Off") -and ($state2 -eq "Off"))
+    # Wait for the VM to be stopped for a good solid 5 seconds
+    do
+    {
+        $state1 = (Get-VM | ? name -eq $factoryVMName).State;
+        Start-Sleep -Seconds 5;
+        
+        $state2 = (Get-VM | ? name -eq $factoryVMName).State;
+        Start-Sleep -Seconds 5;
+    } 
+    until (($state1 -eq "Off") -and ($state2 -eq "Off"))
 
-      # Clean up the VM
-      Remove-VM $factoryVMName -Force}
+    # Clean up the VM
+    Remove-VM $factoryVMName -Force;
+}
 
 Function MountVHDandRunBlock ([string]$vhd, [scriptblock]$block) { 
       # This function mounts a VHD, runs a script block and unmounts the VHD.
