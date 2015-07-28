@@ -4,7 +4,6 @@
 ***,oa-toc-container: about
 ****,windowscontainers/about/about_overview.md
 ****,windowscontainers/about/container_ecosystem.md
-****,windowscontainers/about/when_containers.md
 ****,windowscontainers/about/faq.md
 ***,oa-toc-container: quick_start
 ****,windowscontainers/quick_start/hello_world.md
