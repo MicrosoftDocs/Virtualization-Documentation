@@ -3,7 +3,7 @@ title: In this section - User Guide
 
 # In this section
 
-<table>
+<table border="1" style="background-color:FFFFCC;border-collapse:collapse;border:1px solid FFCC00;color:000000;width:100%" cellpadding="15" cellspacing="3">
 <tr><td>
 [Migrate and upgrade virtual machines](migrating_vms.md) </td><td>Upgrade virtual machines that were migrated from previous versions of Hyper-V.</td></tr>
 <tr><td>
