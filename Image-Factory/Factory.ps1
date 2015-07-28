@@ -109,49 +109,79 @@ $unattendSource = [xml]@"
 </unattend>
 "@
 
-function CSVLogger ([string]$vhd, [switch]$sysprepped) {
+function CSVLogger {
+    param
+    (
+        [string] $vhd, 
+        [switch] $sysprepped
+    );
 
-   $createLogFile = $false
-   $entryExists = $false
-   $logCsv = @()
-   $newEntry = $null
+    $createLogFile = $false;
+    $entryExists = $false;
+    $logCsv = @();
+    $newEntry = $null;
 
-   # Check if the log file exists
-   if (!(test-path $logFile))
-      {$createLogFile = $true}
-   else
-      {$logCsv = import-csv $logFile
-       if (($logCsv.Image -eq $null) -or `
-           ($logCsv.Created -eq $null) -or `
-           ($logCsv.Sysprepped -eq $null) -or `
-           ($logCsv.Checked -eq $null)) 
-           {# Something is wrong with the log file
-            cleanupFile $logFile
-            $createLogFile = $true}
-            }
+    # Check if the log file exists
+    if (-not (Test-Path $logFile))
+    {
+        $createLogFile = $true;
+    }
+    else
+    {
+        $logCsv = import-csv $logFile;
 
-   if ($createLogFile) {$logCsv = @()} else {$logCsv = import-csv $logFile}
-
-   # If we find an entry for the VHD, update it
-   foreach ($entry in $logCsv)
-      { if ($entry.Image -eq $vhd)
-        {$entryExists = $true
-         $entry.Checked = ((get-Date).ToShortDateString() + "::" + (Get-Date).ToShortTimeString())
-         if ($sysprepped) {$entry.Sysprepped = ((get-Date).ToShortDateString() + "::" + (Get-Date).ToShortTimeString())}
+        if (($logCsv.Image -eq $null) -or `
+            ($logCsv.Created -eq $null) -or `
+            ($logCsv.Sysprepped -eq $null) -or `
+            ($logCsv.Checked -eq $null)) 
+        {
+            # Something is wrong with the log file
+            cleanupFile $logFile;
+            $createLogFile = $true;
         }
-      }
+    }
 
-   # if no entry is found, create a new one
-   If (!$entryExists) 
-      {$newEntry = New-Object PSObject -Property @{Image=$vhd; `
-                                                   Created=((get-Date).ToShortDateString() + "::" + (Get-Date).ToShortTimeString()); `
-                                                   Sysprepped=((get-Date).ToShortDateString() + "::" + (Get-Date).ToShortTimeString()); `
-                                                   Checked=((get-Date).ToShortDateString() + "::" + (Get-Date).ToShortTimeString())}}
+    if ($createLogFile)
+    {
+        $logCsv = @();
+    } 
+    else 
+    {
+        $logCsv = Import-Csv $logFile;
+    }
 
-   # Write out the CSV file
-   $logCsv | Export-CSV $logFile -notype
-   if (!($newEntry -eq $null)) {$newEntry | Export-CSV $logFile -notype -Append}
-   
+    # If we find an entry for the VHD, update it
+    foreach ($entry in $logCsv)
+    {
+        if ($entry.Image -eq $vhd)
+        {
+            $entryExists = $true;
+            $entry.Checked = ((Get-Date).ToShortDateString() + "::" + (Get-Date).ToShortTimeString());
+            
+            if ($sysprepped) 
+            {
+                $entry.Sysprepped = ((Get-Date).ToShortDateString() + "::" + (Get-Date).ToShortTimeString());
+            }
+        }
+    }
+
+    # if no entry is found, create a new one
+    if (-not $entryExists) 
+    {
+        $newEntry = New-Object PSObject -Property @{
+            Image = $vhd
+            Created = ((Get-Date).ToShortDateString() + "::" + (Get-Date).ToShortTimeString())
+            Sysprepped = ((Get-Date).ToShortDateString() + "::" + (Get-Date).ToShortTimeString())
+            Checked = ((Get-Date).ToShortDateString() + "::" + (Get-Date).ToShortTimeString())
+        };
+    }
+
+    # Write out the CSV file
+    $logCsv | Export-CSV $logFile -NoTypeInformation;
+    if (-not ($newEntry -eq $null)) 
+    {
+        $newEntry | Export-CSV $logFile -NoTypeInformation -Append;
+    }
 }
 
 function Logger ([string]$systemName, [string]$message)
