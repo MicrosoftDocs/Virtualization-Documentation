@@ -1,7 +1,7 @@
 ms.ContentId: A6DD6776-614C-4D28-9B83-CB2EDFD263A3
 title: Step 2: Install Hyper-V on Windows 10
 
-# Install Hyper-V on Windows 10
+# Step 2: Install Hyper-V on Windows 10
 
 Hyper-V can be installed using [Programs and Features](#UsingProgramsandFeatures) or [Windows Powershell](#UsingPowerShell).
 
