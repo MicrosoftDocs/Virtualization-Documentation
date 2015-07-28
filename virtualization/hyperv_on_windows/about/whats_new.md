@@ -42,13 +42,10 @@ You can also adjust the amount of memory assigned to a virtual machine while it'
 
 Production checkpoints allow you to easily create “point in time” images of a virtual machine, which can be restored later on in a way that is completely supported for all production workloads. This is achieved by using backup technology inside the guest to create the checkpoint, instead of using saved state technology. For production checkpoints, the Volume Snapshot Service (VSS) is used inside Windows virtual machines. Linux virtual machines flush their file system buffers to create a file system consistent checkpoint. If you want to create checkpoints using saved state technology, you can still choose to use standard checkpoints for your virtual machine. 
 
----------- 
 
 **Important**
-
 The default for new virtual machines will be to create production checkpoints with a fallback to standard checkpoints. 
  
-----------
 
 ## Hyper-V Manager improvements
 
@@ -104,26 +101,22 @@ Or
 Update-VmConfigurationVersion <vmobject>
 ```
 
-----------------
+
 **Important **
+- After you upgrade the virtual machine configuration version, you can't move the virtual machine to a host that runs Windows 8.1.
+- You can't downgrade the virtual machine configuration version from version 6 to version 5.
+- You must turn off the virtual machine to upgrade the virtual machine configuration.
+- After the upgrade, the virtual machine uses the new configuration file format. For more information, see New virtual machine configuration file format.
 
-• After you upgrade the virtual machine configuration version, you can't move the virtual machine to a host that runs Windows 8.1.
-
-• You can't downgrade the virtual machine configuration version from version 6 to version 5.
-
-• You must turn off the virtual machine to upgrade the virtual machine configuration.
-
-• After the upgrade, the virtual machine uses the new configuration file format. For more information, see New virtual machine configuration file format.
-----------
 
 ## New virtual machine configuration file format
 
 Virtual machines now have a new configuration file format which is designed to increase the efficiency of reading and writing virtual machine configuration data. It's also designed to reduce the potential for data corruption if there's a storage failure. The new configuration files use the .VMCX extension for virtual machine configuration data and the .VMRS extension for runtime state data. 
 
-----------
+
 **Important** 
 The .VMCX file is a binary format. Directly editing the .VMCX or .VMRS file isn't supported.
-----------
+
 
 
 ## Integration Services delivered through Windows Update
@@ -149,10 +142,10 @@ To read more about how we determine applicability, see this [blog post](http://b
 
 See [this blog](http://blogs.msdn.com/b/virtual_pc_guy/archive/2014/11/12/updating-integration-components-over-windows-update.aspx) post for a detailed walkthrough of installing integration services.
 
-----------
+
 **Important**
 The ISO image file vmguest.iso is no longer needed for updating integration components. It's not included with Hyper-V on Windows 10.
-----------
+
 
 
 
