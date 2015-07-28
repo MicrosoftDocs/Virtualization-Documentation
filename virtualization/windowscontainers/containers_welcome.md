@@ -31,7 +31,7 @@ The following table list topics that will provide more information about Windows
 	<tr valign="top">
 		<td ><center>![](media/question.png)</center></td>
 		<td>		
-              <p><strong>Connect with Communitiy and Support</strong></p>
+              <p><strong>Connect with Community and Support</strong></p>
               <p>Additional technical, support and community resources..</p>
  			<ul>
 				 <li class="unordered">[Windows Container Forum](https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers)<br /><br /></li>
