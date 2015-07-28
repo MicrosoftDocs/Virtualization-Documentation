@@ -1,0 +1,83 @@
+
+ms.ContentId: 9D726494-F535-4A0C-9B8F-A4399D68253B <!-- you can get a GUID using Visual Studio - click Tools -> Create GUID and choose Registry Format. Only enter the GUID, delete any extra formatting and brackets. -- >
+title: Container Life Cycle
+
+description: 
+metaKeywords:
+
+Last Updated: 
+
+# (H1 Article Title) 
+
+Intro paragraph. Lorem ipsum dolor amet, consectetur adipiscing elit. Phasellus interdum nulla risus, lacinia porta nisl imperdiet sed. Mauris dolor mauris, tempus sed lacinia nec, euismod non felis. Nunc semper porta ultrices. Maecenas neque nulla, condimentum vitae ipsum sit amet, dignissim aliquet nisi.
+
+## (H2 Subheading 1 - appears in right inline navigation when built)
+
+Aenean sit amet leo nec purus placerat fermentum ac gravida odio. Aenean tellus lectus, faucibus in rhoncus in, faucibus sed urna.  volutpat mi id purus ultrices iaculis nec non neque. <a href="http://msdn.microsoft.com/library/azure" target="_blank">Link text for link outside of azure.microsoft.com</a>. Nullam dictum dolor at aliquam pharetra. Vivamus ac hendrerit mauris.
+
+> Note: Indented note text. Ut eu pretium lacus. Nullam purus est, iaculis sed est vel, euismod vehicula odio. Curabitur lacinia, erat tristique iaculis rutrum, erat sem sodales nisi, eu condimentum turpis nisi a purus.
+
+Here is a numbered list:
+1. Aenean sit amet leo nec **Purus** placerat fermentum ac gravida odio. 2. Aenean tellus lectus, faucibus in **Rhoncus** in, faucibus sed urna. Suspendisse volutpat mi id purus ultrices iaculis nec non neque.
+3. Nullam dictum dolor at aliquam pharetra. Vivamus ac hendrerit mauris. Sed dolor dui, condimentum et varius a, vehicula at nisl
+
+
+Suspendisse volutpat mi id purus ultrices iaculis nec non neque. Nullam dictum dolor at aliquam pharetra. Vivamus ac hendrerit mauris. Otrus informatus: [Link 1 to another azure.microsoft.com documentation topic]
+
+### (H3 Subheading 2)
+
+Ut eu pretium lacus. Nullam purus est, iaculis sed est vel, euismod vehicula odio.   
+
+1. Curabitur lacinia, erat tristique iaculis rutrum, erat sem sodales nisi, eu condimentum turpis nisi a purus. 
+
+        - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:
+        (NSDictionary *)launchOptions
+        {
+            // Register for remote notifications
+            [[UIApplication sharedApplication] registerForRemoteNotificationTypes:
+            UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound];
+            return YES;
+        }   	 
+
+2. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia. 
+
+   	    // Because toast alerts don't work when the app is running, the app handles them.
+        // This uses the userInfo in the payload to display a UIAlertView.
+        - (void)application:(UIApplication *)application didReceiveRemoteNotification:
+        (NSDictionary *)userInfo {
+            NSLog(@"%@", userInfo);
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Notification" message:
+            [userInfo objectForKey:@"inAppMessage"] delegate:nil cancelButtonTitle:
+            @"OK" otherButtonTitles:nil, nil];
+            [alert show];
+        }
+
+
+    > Note: Duis sed diam non <i>nisl molestie</i> pharetra eget a est. [Link to another topic on this site](../about/containerlifecycle)
+
+
+Quisque commodo eros vel lectus euismod auctor eget sit amet leo. Proin faucibus suscipit tellus dignissim ultrices.
+
+#### (H4 Subheading 3)
+ 
+1. Maecenas sed condimentum nisi. Suspendisse potenti. 
+
+  + bullets under a numbered list
+  + Malesuada
+  + Sem
+
+2. Nullam in massa eu tellus tempus hendrerit.
+
+
+
+3. Quisque felis enim, fermentum ut aliquam nec, pellentesque pulvinar magna.
+
+ 
+
+
+<!--Every topic should have next steps and links to the next logical set of content to keep the customer engaged-->
+
+
+## Next steps
+- [Link to the next logical topic for someone to read](topic1)
+- [Link to the next logical topic for someone to read](topic1)
