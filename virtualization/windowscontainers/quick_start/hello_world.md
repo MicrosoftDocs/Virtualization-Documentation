@@ -83,7 +83,7 @@ You need to create a new virtual machine using a .vhd or .vhdx of Windows Server
 	Note: You may need to disable the Windows firewall / open custom ports in the Windows firewall in order to have RDP to the container work.
 
 ##Navigation:
-[Next Step: Managing Windows Containers](https://sandboxmsdnworking.redmond.corp.microsoft.com/en-us/virtualization/windowscontainers/quick_start/manage_containers)
+[Next Step: Managing Windows Containers](./manage_containers.md)
 
-[Back to Container Home]( https://sandboxmsdnworking.redmond.corp.microsoft.com/en-us/virtualization/windowscontainers/containers_welcome)
+[Back to Container Home]( ../containers_welcome.md)
 
