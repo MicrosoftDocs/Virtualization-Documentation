@@ -194,4 +194,4 @@ The below table decribes Docker commands we have verified with Windows Server Co
 ##Navigation:
 [Next Step: Explore Sample Deployments](https://github.com/)
 
-[Back to Container Home]( ../containers_welcome.md)
+[Back to Container Home](../containers_welcome.md)

@@ -18,6 +18,6 @@ Customize the workload, save as a new image to send off to wherever? (if that is
 
 
 ##Navigation:
-[Next Step: Creating Your First Container]( ./hello_world.md)
+[Next Step: Creating Your First Container](./hello_world.md)
 
-[Back to Container Home]( ../containers_welcome.md)
+[Back to Container Home](../containers_welcome.md)
