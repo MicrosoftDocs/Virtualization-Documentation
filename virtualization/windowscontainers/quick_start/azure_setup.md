@@ -5,7 +5,7 @@ title: Setup Windows Containers in Azure
 
 Before creating and managing Windows Containers the Windows Server 2016 Technical Preview environment must be prepared. With this preview release, two hands on experiences are available, one running in an Azure and one running in your on-premises environment. This guide will walk through configuring Windows container in a virtual machine hosted on Microsoft Azure. 
 
-To setup Windows Containers on your own virtual machine or system see the following document – [Windows Containers On-premises](https://sandboxmsdnworking.redmond.corp.microsoft.com/en-us/virtualization/windowscontainers/quick_start/container_setup).
+To setup Windows Containers on your own virtual machine or system see the following document – [Windows Containers On-premises](./container_setup.md).
 
 ##Windows Containers Preparation in Azure:
 
@@ -15,6 +15,6 @@ To setup Windows Containers on your own virtual machine or system see the follow
 4. 	Add content as the Azure experiance is defined.
 
 ##Navigation:
-[Next Step: Creating Your First Container]( https://sandboxmsdnworking.redmond.corp.microsoft.com/en-us/virtualization/windowscontainers/quick_start/hello_world)
+[Next Step: Creating Your First Container]( ./hello_world.md)
 
-[Back to Container Home]( https://sandboxmsdnworking.redmond.corp.microsoft.com/en-us/virtualization/windowscontainers/containers_welcome)
+[Back to Container Home]( ../containers_welcome.md)
