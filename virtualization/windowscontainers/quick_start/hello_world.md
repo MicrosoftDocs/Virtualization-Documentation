@@ -85,5 +85,5 @@ You need to create a new virtual machine using a .vhd or .vhdx of Windows Server
 ##Navigation:
 [Next Step: Managing Windows Containers](./manage_containers.md)
 
-[Back to Container Home]( ../containers_welcome.md)
+[Back to Container Home](../containers_welcome.md)
 

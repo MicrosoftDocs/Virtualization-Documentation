@@ -16,4 +16,4 @@ There are a number of scenarios where containers could come in handy.  Some of t
 
 [Get Started with Windows Containers On-Premises](../quick_start/container_setup.md)
 
-[Back to Container Home]( ../containers_welcome.md)
+[Back to Container Home](../containers_welcome.md)

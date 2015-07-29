@@ -45,4 +45,4 @@ Both Window Server Containers and Hyper-V Containers require Windows Server 2016
 
 [Get Started with Windows Containers On-Premises](../quick_start/container_setup.md)
 
-[Back to Container Home]( ../containers_welcome.md)
+[Back to Container Home](../containers_welcome.md)
