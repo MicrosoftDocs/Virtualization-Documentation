@@ -1,18 +1,6 @@
 ms.ContentId: F0D47E70-0BA1-4A06-B2F3-0232C496709D
 title: Frequently asked questions
 
-
-**Owner** :  
-Cynthia
-
-**Goal** :  
-Capture the marketing container FAQ.  Respond to common questions.
-
-**Nav Experience** :  
-Reference when sought out.
-
-----------------------------
-
 # Frequently Asked Questions
 Last updated: May 1, 2015
 
@@ -51,6 +39,10 @@ The container capabilities will be integrated into Windows Server 2016. Stay tun
 
 Both Window Server Containers and Hyper-V Containers require Windows Server 2016. These technologies will not work with previous versions of Windows.
 
+##Navigation:
 
-## Next Steps:
-[Create your first container](..\quick_start\hello_world.md)
+[Get Started with Windows Containers in Microsoft Azure](../quick_start/azure_setup.md)
+
+[Get Started with Windows Containers On-Premises](../quick_start/container_setup.md)
+
+[Back to Container Home]( ../containers_welcome.md)
