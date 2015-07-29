@@ -1,27 +1,6 @@
 ms.ContentId: b6ebcb24-c69e-475f-9a46-431493ca961b
 title: Managing Containers
 
-# Managing Windows Server Containers
-
-**Owner** :  
-Neil for overall experience.
-Andy for PowerShell.  
-Vinod/Rohit for Docker.
-
-
-**Goal** :  
-User can choose a management tool and learn how to perform basic container management (start, stop, new, remove, ???)
-
-
-**Nav Experience** :
-Just came from container setup.  provide a back ref for confused people.
-Next step, containerize your app!
-
-Give customers an overall idea what the walkthrough provides.  Where this page is in the process and a TOC to each step.
-
-
-----------------------------
- 
 There are many ways to manage Windows Server Containers using both in-box Windows tools and Open Source management tools such as Docker.
 
 Here are some of the most common options available.  If you aren't sure which you'd like, use PowerShell to get started since it doesn't require additional setup.
@@ -212,3 +191,7 @@ The below table decribes Docker commands we have verified with Windows Server Co
 |  | `--since="id"` |  |
 
 
+##Navigation:
+[Next Step: Explore Sample Deployments](https://github.com/)
+
+[Back to Container Home]( https://sandboxmsdnworking.redmond.corp.microsoft.com/en-us/virtualization/windowscontainers/containers_welcome)
