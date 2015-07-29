@@ -1,19 +1,6 @@
 ms.ContentId: 526e4f1a-2936-4c61-b3be-d41b4cf9d10f
 title: About Windows Server Containers
 
-**Owner** :  
-Sarah
-
-**Goal** :  
-This is a narrative explaining what Widnows Server Containers are and, at a high level, why they're exciting.
-
-**Nav Experience** :  
-Links to examples of when you'd use a container or quickstart.
-
-Give customers an overall idea what the walkthrough provides.  Where this page is in the process and a TOC to each step.  
-
-----------------------------
-
 # Windows Server Containers #
 
 Applications fuel innovation in the cloud and mobile era. Containers, and the ecosystem that is developing around them, will empower software developers to create the next generation of applications experiences.
@@ -53,6 +40,10 @@ Containers and the container ecosystem provide agility, productivity, and freedo
 
 When combined with Docker, Visual Studio, and Azure, containers become an important part of a robust ecosystem. Read more about the [Windows Server Container ecosystem](container_ecosystem.md).
 
-## Next Steps ##
+##Navigation:
 
-**Coming soon**: Get started with your own Windows containers with our [Hello world!](..\quick_start\hello_world.md)
+[Get Started with Windows Containers in Microsoft Azure](../quick_start/azure_setup.md)
+
+[Get Started with Windows Containers On-Premises](../quick_start/container_setup.md)
+
+[Back to Container Home](../containers_welcome.md)

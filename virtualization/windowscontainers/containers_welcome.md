@@ -21,11 +21,11 @@ The following table list topics that will provide more information about Windows
               	<p><strong>About Windows Containers</strong></p>
               	<p>The following articles provide an introduction and overview of Windows Containers.</p>
 			<ul>
-				<li class="unordered">[About Windows Containers](https://sandboxmsdnworking.redmond.corp.microsoft.com/en-us/virtualization/windowscontainers/about/about_overview)<br /><br /></li>
-                <li class="unordered">[When to use containers](https://sandboxmsdnworking.redmond.corp.microsoft.com/en-us/virtualization/windowscontainers/about/when_containers)<br /><br /></li>
-                <li class="unordered">[Windows Server Container Ecosystem](https://sandboxmsdnworking.redmond.corp.microsoft.com/en-us/virtualization/windowscontainers/about/container_ecosystem)<br /><br /></li>
-				<li class="unordered">[Release Notes](https://sandboxmsdnworking.redmond.corp.microsoft.com/en-us/virtualization/windowscontainers/about/release_notes)<br /><br /></li>
-				<li class="unordered">[Frequently Asked Questions](https://sandboxmsdnworking.redmond.corp.microsoft.com/en-us/virtualization/windowscontainers/about/faq)<br /><br /></li>
+				<li class="unordered">[About Windows Containers](./about/about_overview.md)<br /><br /></li>
+                <li class="unordered">[When to use containers](./about/when_containers.md)<br /><br /></li>
+                <li class="unordered">[Windows Server Container Ecosystem](./about/container_ecosystem.md)<br /><br /></li>
+				<li class="unordered">[Release Notes](./about/release_notes.md)<br /><br /></li>
+				<li class="unordered">[Frequently Asked Questions](./about/faq.md)<br /><br /></li>
 			</ul>	
 		</td>
 	</tr>
@@ -36,10 +36,10 @@ The following table list topics that will provide more information about Windows
               <p><strong>Evaluate Windows Containers.</strong></p>
               <p>The following resources will walk you through the deployment, creation and simple management of a Windows Container..</p>
 			<ul>
-			  	<li class="unordered">[Deploy Windows Containers infrastructure on Microsoft Azure](https://sandboxmsdnworking.redmond.corp.microsoft.com/en-us/virtualization/windowscontainers/quick_start/azure_setup)<br /><br /></li>
-                <li class="unordered">[Deploy Windows Containers infrastructure on Hyper-V](https://sandboxmsdnworking.redmond.corp.microsoft.com/en-us/virtualization/windowscontainers/quick_start/container_setup)<br /><br /></li>
-                <li class="unordered">[Creating your first container with PowerShell and Docker](https://sandboxmsdnworking.redmond.corp.microsoft.com/en-us/virtualization/windowscontainers/quick_start/hello_world)<br /><br /></li>
-				<li class="unordered">[Managing containers with PowerShell and Docker](https://sandboxmsdnworking.redmond.corp.microsoft.com/en-us/virtualization/windowscontainers/quick_start/manage_containers)<br /><br /></li>	
+			  	<li class="unordered">[Deploy Windows Containers infrastructure on Microsoft Azure](./quick_start/container_setup.md)<br /><br /></li>
+                <li class="unordered">[Deploy Windows Containers infrastructure on Hyper-V](./quick_start/container_setup.md)<br /><br /></li>
+                <li class="unordered">[Creating your first container with PowerShell and Docker](./quick_start/hello_world.md)<br /><br /></li>
+				<li class="unordered">[Managing containers with PowerShell and Docker](./quick_start/manage_containers.md)<br /><br /></li>	
 			</ul>
 		</td>
 	</tr>

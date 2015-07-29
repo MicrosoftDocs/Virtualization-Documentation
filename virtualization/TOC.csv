@@ -8,6 +8,7 @@
 ****,windowscontainers/about/faq.md
 ****,windowscontainers/about/release_notes.md
 ***,oa-toc-container: quick_start
+****,windowscontainers/quick_start/azure_setup.md
 ****,windowscontainers/quick_start/container_setup.md
 ****,windowscontainers/quick_start/hello_world.md
 ****,windowscontainers/quick_start/manage_containers.md

@@ -1,17 +1,6 @@
 ms.ContentId: 150B8DCC-861B-4FD4-9353-C9886F2F0C30
 title: When to use Containers
 
-**Owner** :  
-Sarah
-
-**Goal** :  
-Give customers an idea of how they'd use comtainers in the wild.
-
-**Nav Experience** :  
-Move to quick start or samples.   
-
-----------------------------
-
 # When to use Containers #
 
 There are a number of scenarios where containers could come in handy.  Some of these include:
@@ -21,6 +10,10 @@ There are a number of scenarios where containers could come in handy.  Some of t
 - Applications that normally don't play well togheter (or coexist) can be run next to each other in seperate containers
 - Allows running an application in a sandbox to limit what files it has access to
 
+##Navigation:
 
-## Next steps: ##
-**Coming soon**: Get started with your own Windows containers with our [Hello world!](..\quick_start\hello_world.md)
+[Get Started with Windows Containers in Microsoft Azure](../quick_start/azure_setup.md)
+
+[Get Started with Windows Containers On-Premises](../quick_start/container_setup.md)
+
+[Back to Container Home]( ../containers_welcome.md)

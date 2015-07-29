@@ -3,26 +3,6 @@ title: Hello World for Windows Containers
 
 # Hello World for Windows Containers #
 
-**Owner** :  
-Cynthia for overall structure.  
-Someone for Azure bits  
-Andy for running locally.
-
-
-**Goal** :  
-Get a container running (environment set up for Windows Server Containers) either locally or on Azure.
-
-
-**Nav Experience** :
-Get started in Azure or locally, next step, learn more about container management options.
-Or jump to the step you want to know more about.
-
-Give customers an overall idea what the walkthrough will entail and a TOC to each step.
-
-
-----------------------------
-
-
 Let's get you started with containers! Before we begin, you will need:
 
 - a computer running <!-- Windows 10 or -->Windows Server
@@ -102,6 +82,8 @@ You need to create a new virtual machine using a .vhd or .vhdx of Windows Server
 
 	Note: You may need to disable the Windows firewall / open custom ports in the Windows firewall in order to have RDP to the container work.
 
-### Next Steps ###
-[Install using Docker](<!--Need to replace-->)
+##Navigation:
+[Next Step: Managing Windows Containers](./manage_containers.md)
+
+[Back to Container Home]( ../containers_welcome.md)
 
