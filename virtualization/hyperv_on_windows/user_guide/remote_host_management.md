@@ -9,7 +9,6 @@ This document is a reference on the various configuration details needed for man
 
 To connect to a Hyper-V host in Hyper-V Manager, make sure **Hyper-V Manager** is selected in the left hand pane and then select **Connect to Server...** in the right-hand pane.
 
-
 ![](media/HyperVManager-ConnectToHost.png)
 
 
@@ -49,3 +48,5 @@ Remote Hyper-V Host:
 2. Enable-PSRemoting
 3. Set-Item WSMan:\localhost\Client\TrustedHosts * -Force
 So that's the demo-only instructions I used.  Replace * and turn off firewall with a single computer and letting credssp and winRM through
+
+## Manage a downlevel host
