@@ -203,12 +203,12 @@ function cleanupFile
 {
     param
     (
-        [string]$file
+        [string] $file
     )
     
     if (Test-Path $file) 
     {
-        Remove-Item $file
+        Remove-Item $file -Recurse;
     }
 }
 
@@ -385,6 +385,12 @@ $postSysprepScriptBlock = {
     {
         Remove-Item -Force "$ENV:SystemDrive\Unattend.xml";
     }
+
+    # Clean up bits
+    if(Test-Path "$ENV:SystemDrive\Bits")
+    {
+        Remove-Item -Force -Recurse "$ENV:SystemDrive\Bits";
+    } 
      
     # Put any code you want to run Post sysprep here
     Invoke-Expression 'shutdown -r -t 0';
@@ -457,6 +463,8 @@ function RunTheFactory
 
         logger $FriendlyName "Mount VHD and copy bits in, also set startup file";
         MountVHDandRunBlock $baseVHD {
+            cleanupFile -file "$($driveLetter):\Convert-WindowsImageInfo.txt";
+
             # Copy ResourceDirectory in
             Copy-Item ($ResourceDirectory) -Destination ($driveLetter + ":\") -Recurse;
             
@@ -581,6 +589,11 @@ function RunTheFactory
             {
                 # Make the logon script
                 $postSysprepScriptBlock | Out-String | Out-File -FilePath "$($driveLetter):\Bits\Logon.ps1" -Width 4096;
+            }
+            else
+            {
+                # Cleanup \Bits as the postSysprepScriptBlock is not run anymore
+                cleanupFile "$($driveLetter):\Bits";
             }
         }
 
