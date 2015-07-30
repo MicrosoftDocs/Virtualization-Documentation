@@ -16,16 +16,22 @@ To connect to a Hyper-V host in Hyper-V Manager, make sure **Hyper-V Manager** i
 To add localhost to Hyper-V Manager as a Hyper-V host, select the **Local computer** in the **Select Computer** dialogue box.
 <!--Add screen shot w/ just that dialog with local computer radio button selected.-->
 If a connection can't be established:
-*  Make sure the Hyper-V server role is enabled.  See `[link to quickstart guide`].
+*  Make sure the Hyper-V server role is enabled.  See the [walkthrough section for checking compatability](../user_guide/walkthrough_compatability.md).
 *  Confirm that your user account is part of the Hyper-V Administrator group.
 
 ## Manage a Hyper-V host in your domain ##
-<!--Include steps for this. Info below doesn't have context.-->
-Combinations of connections with both Kerberos and CredSSP:
-*  NetBIOS host name same user
-*  NetBIOS, Alternte Credentials
-*  IP, same name
-*  IP, Alternate Credentials
+Windows 10 greatly expanded the possible combinations of remote connection types.  
+Now you can connect to a remote Windows 10 or later host using either the host name or IP address.  Hyper-V Manager now supports alternate credentials as well.  
+
+In order to manage remote Hyper-V hosts, remote management must be enabled on both computers.
+
+You can do this through `System Properties -> Remote Management Settings` or through PowerShell.  
+To enable remote management in PowerShell, run the following as Administrator:
+``` PowerShell
+winrm quickconfig
+```
+
+
 
 ## Manage a Hyper-V host outside your domain (or with no domain) ##
 <!--Assuming this isn't done yet...again needs context.-->
