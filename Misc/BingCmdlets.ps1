@@ -50,4 +50,3 @@ Write-Progress -Activity "Checking cmdlet popularity" -Completed
 
 # Releases resources used by the web client
 $WebClient.Dispose()
-Enter file contents here
