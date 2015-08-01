@@ -1,4 +1,4 @@
-ms.ContentId: fbd49f81-b6cb-4030-9296-413d68a9428f
+﻿ms.ContentId: fbd49f81-b6cb-4030-9296-413d68a9428f
 title: Container Ecosystem
 
 # Building a Container Ecosystem #
@@ -32,10 +32,6 @@ Docker is two things, the open source group of projects and Docker the company. 
 For more information, see the [New Windows Server containers and Azure support for Docker](http://azure.microsoft.com/blog/2014/10/15/new-windows-server-containers-and-azure-support-for-docker/?WT.mc_id=Blog_ServerCloud_Announce_TTD) blog post.
 
 ##Navigation:
-
-[Get Started with Windows Containers in Microsoft Azure](../quick_start/azure_setup.md)
-
-[Get Started with Windows Containers On-Premises](../quick_start/container_setup.md)
 
 [Back to Container Home](../containers_welcome.md)
 

@@ -1,4 +1,4 @@
-ms.ContentId: F0D47E70-0BA1-4A06-B2F3-0232C496709D
+﻿ms.ContentId: F0D47E70-0BA1-4A06-B2F3-0232C496709D
 title: Frequently asked questions
 
 # Frequently Asked Questions
@@ -40,9 +40,5 @@ The container capabilities will be integrated into Windows Server 2016. Stay tun
 Both Window Server Containers and Hyper-V Containers require Windows Server 2016. These technologies will not work with previous versions of Windows.
 
 ##Navigation:
-
-[Get Started with Windows Containers in Microsoft Azure](../quick_start/azure_setup.md)
-
-[Get Started with Windows Containers On-Premises](../quick_start/container_setup.md)
 
 [Back to Container Home](../containers_welcome.md)

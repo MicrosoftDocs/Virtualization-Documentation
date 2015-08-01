@@ -1,13 +1,13 @@
-ms.ContentId: b6ebcb24-c69e-475f-9a46-431493ca961b
-title: Managing Containers
+ms.ContentId: d0a07897-5fd2-41a5-856d-dc8b499c6783
+title: Manage Windows Containers with PowerShell
 
-There are many ways to manage Windows Server Containers using both in-box Windows tools and Open Source management tools such as Docker.
+##Manage Windows Containers with PowerShell
 
-Here are some of the most common options available.  If you aren't sure which you'd like, use PowerShell to get started since it doesn't require additional setup.
-
-
-## PowerShell
 You can create, run, and interact with Windows Server Containers using PowerShell cmdlets. Everything you need to get going is available in-box.
+
+***
+Windows Containers created with Docker need to be managed with Docker – [Managing Windows Containers with Docker](./manage_docker.md)
+***
 
 If you’ve used Hyper-V PowerShell, the design of the cmdlets should be pretty familiar to you. A lot of the workflow is similar to how you’d manage a virtual machine using the Hyper-V module. Instead of `New-VM`, `Get-VM`, `Start-VM`, `Stop-VM`, you have `New-Container`, `Get-Container`, `Start-Container`, `Stop-Container`.  There are quite a few container-specific cmdlets and parameters, but the general lifecycle and management of a Windows container looks roughly like that of a Hyper-V VM.
 
@@ -39,13 +39,7 @@ We’re doing a couple things here to provide a slightly more familiar interacti
 2.	You can’t currently pass a command to be run inside the container on start. However, you can still get an interactive PowerShell session to a running container using `Enter-PSSession -ContainerId <ID of a running container>`, and you can execute a command inside a running container using `Invoke-Command -ContainerId <container id> -ScriptBlock { code to run inside the container }` or `Invoke-Command -ContainerId <container id> -FilePath <path to script>`.  
 Both of these commands allow the optional `-RunAsAdministrator` flag for high privilige actions.  
 
-
-### Caveats and known issues
-1.  Right now, the Containers cmdlets have no knowledge about any containers or images created through Docker, and Docker does not know anything about containers and images created through the PowerShell. If you created it in Docker, manage it with Docker; if you created it through PowerShell, manage it through PowerShell. (One exception: we are on the verge of completing a change to allow us to share base images between Docker and the Microsoft management stack.)
-
-2.  We have quite a bit of work we'd like to do to improve the end user experience -- better error messages, better progress reporting, invalid event strings, and so forth. Some of this work is tracked by MSFT:3466908 - Add PS Job tracking for long running operations (start-container; stop-container) and MSFT:3466888 - Clean Up Event Logs for Containers. Obviously, a lot of other things are higher priority, and we may have to punt some of these issues, but if you happen to run into a situation where you wish you were getting more or better info, please feel free to send in any suggestions.
-
-### A quick runthrough
+### Working with PowerShell Commands
 Here is a walk through of some common workflows.
 
 This assumes you've installed an OS container image named "ServerDatacenterCore" and created a virtual switch named "Virtual Switch" (using New-VMSwitch).
@@ -137,61 +131,7 @@ Import-ContainerImage -Path C:\exports\CN=Test_Image1_1.0.0.0.appx
 # We'd previously created a container dependent on this image. You should be able to start it:
 Start-Container -Container $container2 
 ```
-
-### Build your own sample
-You can see all the Containers cmdlets using `Get-Command -Module Containers`.  There are several other cmdlets that are not described here, which we'll leave to you to learn about on your own.    
-**Note** This won't return the `Enter-PSSession` and `Invoke-Command` cmdlets, which are part of core PowerShell.
-
-You can also get help about any cmdlet using `Get-Help [cmdlet name]`, or equivalently `[cmdlet name] -?`.  Today, the help output is auto-generated and just tells you the syntax for commands; we will be adding further documentation as we get closer to finalizing the cmdlet design.
-
-A nicer way to discover the syntax is the PowerShell ISE, which you may not have looked at before if you haven't used PowerShell very much. If you're running on a SKU that permits it, try starting the ISE, opening the Commands pane, and choosing the "Containers" module, which will show you a graphical representation of the cmdlets and their parameter sets.
-
-PS: Just to prove it can be done, here's a PowerShell function that composes some of the cmdlets we've seen already into an ersatz `docker run`. (To be clear, this is a proof of concept, not under active development.)
-
-``` PowerShell
-function Run-Container ([string]$ContainerImageName, [string]$Name="boring_wozniak", [switch]$Remove, [switch]$Interactive, [scriptblock]$Command) {
-    $image = Get-ContainerImage -Name $ContainerImageName
-    $container = New-Container -Name $Name -ContainerImage $image
-    Start-Container $container
-
-    if ($Interactive) {
-         Start-Process powershell ("-NoExit", "-c", "Enter-PSSession -ContainerId $($container.Id)") -Wait
-    } else {
-        Invoke-Command -ContainerId $container.Id -ScriptBlock $Command
-    }
-
-    Stop-Container $container
-
-    if ($Remove) {
-        Remove-Container $container -Force
-    }
-} 
-```
-
-## Docker
-Windows Server Containers can be managed with Docker commands.  While Windows containers should be comprable to their Linux counterparts and have the same management experience through Docker, there are some Docker commands that simply don't make sense with a Windows container.  Others simply haven't been tested (we're getting there).
-
-In an effort to not duplicate the API documentation acailable in Docker, here is a link to their management APIs.  Their walkthroughs are fantastic.
-
-The below table decribes Docker commands we have verified with Windows Server Containers and any caveats/differences we've noted.
-
-| Docker Command | Parameter | Notes |
-|----|----|----|
-| `attach` | [none] |  |
-|  | `--no-stdin=true` |  |
-|  | `--sig-proxy=false` |  |
-| `ps` | [none] and `-a` |  |
-|  | `--before=Id` |  |
-|  | `--filter` | `docker ps -a --filter "status=rubbish"` returns no output rather than error (ubuntu 1.8 is same) |
-|  | `-l` | Yes, but bug. Status isn't 'EXITED' -- "Created" |
-|  | `-n` |  |
-|  | `--no-trunc=true/false` |  |
-|  | `-q` |  |
-|  | `-s` | Doesn't work |
-|  | `--since="id"` |  |
-
+##Deploying an NGinx Webserver with PowerShell
 
 ##Navigation:
-[Next Step: Explore Sample Deployments](https://github.com/)
-
 [Back to Container Home](../containers_welcome.md)

@@ -15,6 +15,4 @@ To setup Windows Containers on your own virtual machine or system see the follow
 4. 	Add content as the Azure experiance is defined.
 
 ##Navigation:
-[Next Step: Creating Your First Container](./hello_world.md)
-
 [Back to Container Home](../containers_welcome.md)

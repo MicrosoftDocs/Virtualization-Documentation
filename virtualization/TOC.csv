@@ -1,45 +1,45 @@
-*,oa-toc-container:virtualization
-**,oa-toc-container: windowscontainers
-***,windowscontainers/containers_welcome.md
-***,oa-toc-container: about
-****,windowscontainers/about/about_overview.md
-****,windowscontainers/about/container_ecosystem.md
-****,windowscontainers/about/when_containers.md
-****,windowscontainers/about/faq.md
-****,windowscontainers/about/release_notes.md
-***,oa-toc-container: quick_start
-****,windowscontainers/quick_start/azure_setup.md
-****,windowscontainers/quick_start/container_setup.md
-****,windowscontainers/quick_start/hello_world.md
-****,windowscontainers/quick_start/manage_containers.md
-**,oa-toc-container: hyperv_on_windows
-***,hyperv_on_windows/windows_welcome.md
-***,oa-toc-container: about
-****,hyperv_on_windows/about/hyperv_on_windows.md
-****,hyperv_on_windows/about/whats_new.md
-****,hyperv_on_windows/about/supported_guest_os.md
+*,oa-toc-container:virtualization,
+**,oa-toc-container: windowscontainers,
+***,windowscontainers/containers_welcome.md,
+***,oa-toc-container: about,
+****,windowscontainers/about/about_overview.md,
+****,windowscontainers/about/container_ecosystem.md,
+****,windowscontainers/about/when_containers.md,
+****,windowscontainers/about/faq.md,
+****,windowscontainers/about/release_notes.md,
+***,oa-toc-container: quick_start,
+****,windowscontainers/quick_start/azure_setup.md,
+****,windowscontainers/quick_start/container_setup.md,
+****,windowscontainers/quick_start/manage_powershell.md,
+****,windowscontainers/quick_start/manage_docker.md,
+**,oa-toc-container: hyperv_on_windows,
+***,hyperv_on_windows/windows_welcome.md,
+***,oa-toc-container: about,
+****,hyperv_on_windows/about/hyperv_on_windows.md,
+****,hyperv_on_windows/about/whats_new.md,
+****,hyperv_on_windows/about/supported_guest_os.md,
 ****,oa-toc-external: hyperv_on_windows/about/linux,https://technet.microsoft.com/library/dn531030.aspx
-***,oa-toc-container: quick_start
-****,hyperv_on_windows/quick_start/walkthrough.md
-****,hyperv_on_windows/quick_start/walkthrough_compatibility.md
-****,hyperv_on_windows/quick_start/walkthrough_install.md
-****,hyperv_on_windows/quick_start/walkthrough_virtual_switch.md
-****,hyperv_on_windows/quick_start/walkthrough_create_vm.md
-****,hyperv_on_windows/quick_start/walkthrough_vmconnect.md
-****,hyperv_on_windows/quick_start/walkthrough_checkpoints.md
-****,hyperv_on_windows/quick_start/walkthrough_export_import.md
-****,hyperv_on_windows/quick_start/walkthrough_powershell.md
-***,oa-toc-container: user_guide
-****,hyperv_on_windows/user_guide/user_guide_nav.md
-****,hyperv_on_windows/user_guide/migrating_vms.md
-****,hyperv_on_windows/user_guide/checkpoints.md
-****,hyperv_on_windows/user_guide/export_import.md
-****,hyperv_on_windows/user_guide/vmsession.md
-****,hyperv_on_windows/user_guide/remote_host_management.md
-****,hyperv_on_windows/user_guide/troubleshooting.md
-***,oa-toc-container: develop
-****,hyperv_on_windows/develop/powershell_snippets.md
-****,hyperv_on_windows/develop/make_mgmt_service.md
+***,oa-toc-container: quick_start,
+****,hyperv_on_windows/quick_start/walkthrough.md,
+****,hyperv_on_windows/quick_start/walkthrough_compatibility.md,
+****,hyperv_on_windows/quick_start/walkthrough_install.md,
+****,hyperv_on_windows/quick_start/walkthrough_virtual_switch.md,
+****,hyperv_on_windows/quick_start/walkthrough_create_vm.md,
+****,hyperv_on_windows/quick_start/walkthrough_vmconnect.md,
+****,hyperv_on_windows/quick_start/walkthrough_checkpoints.md,
+****,hyperv_on_windows/quick_start/walkthrough_export_import.md,
+****,hyperv_on_windows/quick_start/walkthrough_powershell.md,
+***,oa-toc-container: user_guide,
+****,hyperv_on_windows/user_guide/user_guide_nav.md,
+****,hyperv_on_windows/user_guide/migrating_vms.md,
+****,hyperv_on_windows/user_guide/checkpoints.md,
+****,hyperv_on_windows/user_guide/export_import.md,
+****,hyperv_on_windows/user_guide/vmsession.md,
+****,hyperv_on_windows/user_guide/remote_host_management.md,
+****,hyperv_on_windows/user_guide/troubleshooting.md,
+***,oa-toc-container: develop,
+****,hyperv_on_windows/develop/powershell_snippets.md,
+****,hyperv_on_windows/develop/make_mgmt_service.md,
 ****,oa-toc-external: hyperv_on_windows/develop/web_power,http://technet.microsoft.com/library/hh848559.aspx
 ****,oa-toc-external: hyperv_on_windows/develop/web_wmi,https://msdn.microsoft.com/library/hh850319.aspx
 **,oa-toc-container: community	
