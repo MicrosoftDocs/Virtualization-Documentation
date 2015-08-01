@@ -29,4 +29,6 @@ This is the list of things currently in my "to do" list.  Feel free to tackle an
 * Better error handling around missing files (convert-windowsimage, factoryvariables, PSUpdate, etc...)
 * MD5 summing for virtual hard drives in the share folder
 * Make variables for the build and share directories - so they do not have to be under the working directory
+* Add support for static IP addresses inside the factory VM - so the script works when DHCP does not
+* Add support for connecting the factory VM to VLANs
 * Update this readme to have more information from the blog post - and vice versa
