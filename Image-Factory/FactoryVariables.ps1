@@ -1,3 +1,4 @@
+# Seperate file for variables - this when you pull down the latest factory file you can keep your paths / product keys etc...
 $workingDir = "C:\FactoryTest"
 $logFile = "$($workingDir)\Share\Details.csv"
 $factoryVMName = "Factory VM"

@@ -1,3 +1,4 @@
+# Load variables from a seperate file - this when you pull down the latest factory file you can keep your paths / product keys etc...
 . .\FactoryVariables.ps1
 
 $startTime = get-date
