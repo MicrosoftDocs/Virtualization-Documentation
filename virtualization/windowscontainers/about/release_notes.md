@@ -5,6 +5,4 @@ title: Release Notes
 
 ##Navigation:
 
-[Get Started with Windows Containers](../quick_start/container_setup.md)
-
 [Back to Container Home](../containers_welcome.md)

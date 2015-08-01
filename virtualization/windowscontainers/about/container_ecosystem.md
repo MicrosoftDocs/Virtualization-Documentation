@@ -33,7 +33,5 @@ For more information, see the [New Windows Server containers and Azure support f
 
 ##Navigation:
 
-[Get Started with Windows Containers](../quick_start/container_setup.md)
-
 [Back to Container Home](../containers_welcome.md)
 

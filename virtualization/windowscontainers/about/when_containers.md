@@ -12,6 +12,4 @@ There are a number of scenarios where containers could come in handy.  Some of t
 
 ##Navigation:
 
-[Get Started with Windows Containers](../quick_start/container_setup.md)
-
 [Back to Container Home](../containers_welcome.md)

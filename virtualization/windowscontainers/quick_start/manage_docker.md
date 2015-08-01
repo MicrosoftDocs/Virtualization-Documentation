@@ -4,8 +4,9 @@ title: Manage Windows Containers with Docker
 ##Manage Windows Containers with Docker
 
 Windows Server Containers can be managed with Docker commands. While Windows Server Containers are comparable to their Linux counterparts and the management experience with Docker is almost identical, not all Docker commands will be used with Windows Server Containers.
+
 ***
-Windows Containers created with PowerShell need to be managed with PowerShell – Managing Windows Containers with PowerShell
+Windows Containers created with PowerShell need to be managed with PowerShell – [Managing Windows Containers with PowerShell](./manage_powershell.md)
 
 Windows Containers are in an early preview, not all features are functional and some Docker commands have not yet been tested.
 ***
@@ -72,7 +73,7 @@ An image cannot be removed if it is referenced but a container.
 
 These steps demonstrated the basics of creating container images, running and managing Windows Server Containers with Docker.
 
-## Deploying an NGinx Webserver with a Windows Server Container and Docker
+## Deploying an NGinx Webserver with Docker
 
 This example will demonstrate a more practical application for Windows Server Containers. First a dockerfile will be used to automation the creation of a new container image. Dockerfiles contain instruction that the Docker engine will use to build a container, make modification to the container and then commit to a container image. This image will then be used to deploy multiple containers each hosting a simple website.
 
@@ -111,6 +112,8 @@ Once completed take a look at all images on the host, you should notice a new on
 ##Deploying an NGinx Webserver in a Windows Server Contianer
 
  
+##Navigation:
+[Back to Container Home](../containers_welcome.md)
 
 
 
