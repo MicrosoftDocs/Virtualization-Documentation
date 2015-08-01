@@ -35,10 +35,9 @@ The following table list topics that will provide more information about Windows
               <p><strong>Evaluate Windows Containers.</strong></p>
               <p>The following resources will walk you through the deployment, creation and simple management of a Windows Container..</p>
 			<ul>
-			  	<li class="unordered">[Configure the Windows Container Feature in Windows Azure or Locally](./quick_start/container_setup.md)<br /><br /></li>
-                <li class="unordered">[Create Windows Containers with PowerShell](./quick_start/create_powershell.md)<br /><br /></li>
-                <li class="unordered">[Create Windows Containers with Docker](./quick_start/create_docker.md)<br /><br /></li>
-				<li class="unordered">[Managing Windows Containers with PowerShell](./quick_start/manage_powershell.md)<br /><br /></li>
+			  	<li class="unordered">[Configure Windows Server Containers in Windows Azure](./quick_start/azure_setup.md)<br /><br /></li>
+				<li class="unordered">[Configure Windows Server Containers Locally](./quick_start/container_setup.md)<br /><br /></li>
+                <li class="unordered">[Managing Windows Containers with PowerShell](./quick_start/manage_powershell.md)<br /><br /></li>
 				<li class="unordered">[Managing Windows Containers with Docker](./quick_start/manage_docker.md)<br /><br /></li>		
 			</ul>
 		</td>
