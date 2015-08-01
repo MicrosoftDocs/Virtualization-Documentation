@@ -8,16 +8,21 @@ Windows Server Containers can be managed with Docker commands. While Windows Ser
 ***
 Windows Containers created with PowerShell need to be managed with PowerShell – [Managing Windows Containers with PowerShell](./manage_powershell.md)
 
-Windows Containers are in an early preview, not all features are functional and some Docker commands have not yet been tested.
+Windows Containers are in an early preview, not all features are functional and some Docker commands have not yet been tested.  
 ***
 
 ##Working with Docker Commands:
 
 The following exercise will walk though some basic Windows Server Container management steps using Docker commands. The goal here is to become comfortable creating, managing and removing both Windows Server Container Images and Windows Server Containers.
 
-To see a list of images available on the Windows Container host:
+To see a list of images available on the Windows Container host enter `docker Images`:
 ```
 docker images
+
+REPOSITORY          TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
+windowsservercore   latest              9eca9231f4d4        30 hours ago        9.613 GB
+windowsservercore   10.0.10254.0        9eca9231f4d4        30 hours ago        9.613 GB
+
 ```
 To create a new container and open an interactive session:
 ```
@@ -73,11 +78,11 @@ An image cannot be removed if it is referenced but a container.
 
 These steps demonstrated the basics of creating container images, running and managing Windows Server Containers with Docker.
 
-## Deploying an NGinx Webserver with Docker
+##Prepare an NGinx Container Image
 
 This example will demonstrate a more practical application for Windows Server Containers. First a dockerfile will be used to automation the creation of a new container image. Dockerfiles contain instruction that the Docker engine will use to build a container, make modification to the container and then commit to a container image. This image will then be used to deploy multiple containers each hosting a simple website.
 
-##Download and Extract the NGinx Software
+#Download and Extract the NGinx Software
 
 On the container host create folders in the following structure:
 ```
@@ -88,7 +93,7 @@ Download and extract the NGinx software to c:\build\nginx\source. The software c
 PowerShell.exe Invoke-WebRequest 'http://nginx.org/download/nginx-1.9.3.zip' -OutFile "c:\nginx-1.9.3.zip"
 PowerShell.exe Expand-Archive -Path C:\nginx-1.9.3.zip -DestinationPath c:\build\nginx\source -Force
 ```
-##Prepare the dockerfile
+#Prepare the dockerfile
 Create a file named dockerfile and open it with your favirote text editor. It is important that this file have no file extension.
 
 For more information on dockerfile see the documentation on the Docker site -  [Dockerfile reference](https://docs.docker.com/reference/builder/).
@@ -97,7 +102,7 @@ Enter the following text into the dockerfile, save the file and copy it to c:\bu
 ```
 FROM windowsservercore
 LABEL Description="NGINX For Windows" Vendor="NGINX" Version="1.9.3"
-ADD source /nging
+ADD source /nginx
 ```
 At this point the dockerfile will be in c:\build\nginx and the NGinx software extracted to c:\build\nginx\source. You are now ready to build an images based on the instructions in the dockerfile. To do so run the following command on the container host:
 ```
