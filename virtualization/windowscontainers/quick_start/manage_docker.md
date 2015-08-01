@@ -9,7 +9,7 @@ Windows Server Containers can be managed with Docker commands. While Windows Ser
 Windows Containers created with PowerShell need to be managed with PowerShell – [Managing Windows Containers with PowerShell](./manage_powershell.md)
 ***
 
-##Working with Docker Commands:
+####Working with Docker Commands:
 
 The following exercise will walk though some basic Windows Server Container management steps using Docker commands. The goal here is to become comfortable creating, managing and removing both Windows Server Container Images and Windows Server Containers.
 
@@ -22,10 +22,12 @@ windowsservercore   latest              9eca9231f4d4        30 hours ago        
 windowsservercore   10.0.10254.0        9eca9231f4d4        30 hours ago        9.613 GB
 
 ```
-To create a new container and open an interactive session run `docker run -it <image name or ID> cmd`. Once this command completes you are now working in an interactive shell session from within the container.
+To create a new container and open an interactive session run `docker run -it <image name or ID> cmd`:
 ```
 docker run -it windowsservercore cmd
 ```
+Once this command completes you are now working in an interactive shell session from within the container.
+
 ![](media/docker2.png)
 
 Create a text file:
@@ -46,8 +48,8 @@ See a list of containers on the host, take note of the container ID of the new c
 ```
 docker ps –a
 
-CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS                      PORTS               NAMES
-9fb031beb602        windowsservercore   "cmd"               9 minutes ago       Exited (0) 30 seconds ago                       kickass_engelbart
+CONTAINER ID        IMAGE               COMMAND      CREATED             STATUS                      NAMES
+9fb031beb602        windowsservercore   "cmd"        9 minutes ago       Exited (0) 30 seconds ago   kickass_engelbart
 ```
 
 To create a new container using the container just created enter `Docker commit <container id> newcontainerimage`:
@@ -92,14 +94,14 @@ docker rmi newcontainerimage
 Untagged: newcontainerimage:latest
 Deleted: 4f8ebcf0a334601e75070a92294d993b0f182abb6f4c88740c75b05093e6acff
 ```
-###Wrap Up:
+####Wrap Up:
 These steps demonstrated the basics of creating container images, running and managing Windows Server Containers with Docker.
 
 ##Prepare an NGinx Container Image
 
 This example will demonstrate a more practical application for Windows Server Containers. First a dockerfile will be used to automation the creation of a new container image. Dockerfiles contain instruction that the Docker engine will use to build a container, make modification to the container and then commit to a container image. This image will then be used to deploy multiple containers each hosting a simple website.
 
-###Download and Extract the NGinx Software
+####Download and Extract the NGinx Software
 
 On the container host create folders in the following structure:
 ```
@@ -110,7 +112,7 @@ Download and extract the NGinx software to c:\build\nginx\source. The software c
 PowerShell.exe Invoke-WebRequest 'http://nginx.org/download/nginx-1.9.3.zip' -OutFile "c:\nginx-1.9.3.zip"
 PowerShell.exe Expand-Archive -Path C:\nginx-1.9.3.zip -DestinationPath c:\build\nginx\source -Force
 ```
-###Prepare the dockerfile
+####Prepare the dockerfile
 Create a file named dockerfile and open it with your favirote text editor. It is important that this file have no file extension.
 
 For more information on dockerfile see the documentation on the Docker site -  [Dockerfile reference](https://docs.docker.com/reference/builder/).
