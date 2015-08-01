@@ -1,4 +1,4 @@
-ms.ContentId: fbd49f81-b6cb-4030-9296-413d68a9428f
+﻿ms.ContentId: fbd49f81-b6cb-4030-9296-413d68a9428f
 title: Container Ecosystem
 
 # Building a Container Ecosystem #
@@ -33,9 +33,7 @@ For more information, see the [New Windows Server containers and Azure support f
 
 ##Navigation:
 
-[Get Started with Windows Containers in Microsoft Azure](../quick_start/azure_setup.md)
-
-[Get Started with Windows Containers On-Premises](../quick_start/container_setup.md)
+[Get Started with Windows Containers](../quick_start/container_setup.md)
 
 [Back to Container Home](../containers_welcome.md)
 

@@ -1,4 +1,4 @@
-ms.ContentId: F0D47E70-0BA1-4A06-B2F3-0232C496709D
+﻿ms.ContentId: F0D47E70-0BA1-4A06-B2F3-0232C496709D
 title: Frequently asked questions
 
 # Frequently Asked Questions
@@ -41,8 +41,6 @@ Both Window Server Containers and Hyper-V Containers require Windows Server 2016
 
 ##Navigation:
 
-[Get Started with Windows Containers in Microsoft Azure](../quick_start/azure_setup.md)
-
-[Get Started with Windows Containers On-Premises](../quick_start/container_setup.md)
+[Get Started with Windows Containers](../quick_start/container_setup.md)
 
 [Back to Container Home](../containers_welcome.md)

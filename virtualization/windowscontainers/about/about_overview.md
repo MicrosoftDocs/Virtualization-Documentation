@@ -1,4 +1,4 @@
-ms.ContentId: 526e4f1a-2936-4c61-b3be-d41b4cf9d10f
+﻿ms.ContentId: 526e4f1a-2936-4c61-b3be-d41b4cf9d10f
 title: About Windows Server Containers
 
 # Windows Server Containers #
@@ -42,8 +42,6 @@ When combined with Docker, Visual Studio, and Azure, containers become an import
 
 ##Navigation:
 
-[Get Started with Windows Containers in Microsoft Azure](../quick_start/azure_setup.md)
-
-[Get Started with Windows Containers On-Premises](../quick_start/container_setup.md)
+[Get Started with Windows Containers](../quick_start/container_setup.md)
 
 [Back to Container Home](../containers_welcome.md)
