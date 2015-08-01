@@ -1,27 +1,4 @@
-$workingDir = "D:\ImageFactory"
-$logFile = "$($workingDir)\Share\Details.csv"
-$factoryVMName = "Factory VM"
-$virtualSwitchName = "Virtual Switch"
-$ResourceDirectory = "$($workingDir)\Resources\Bits" 
-$Organization = "The Power Elite"
-$Owner = "Ben Armstrong"
-$Timezone = "Pacific Standard Time"
-$adminPassword = "P@ssw0rd"
-$userPassword = "P@ssw0rd"
-
-# Keys
-$Windows81Key = ""
-$Windows2012R2Key = ""
-$Windows8Key = ""
-$Windows2012Key = ""
-
-# ISOs /  WIMs
-$2012Image = "$($workingDir)\ISOs\en_windows_server_2012_x64_dvd_915478.wim"
-$2012R2Image = "$($workingDir)\ISOs\en_windows_server_2012_r2_x64_dvd_2707946.wim"
-$8x86Image = "$($workingDir)\ISOs\en_windows_8_x86_dvd_915417.wim"
-$8x64Image = "$($workingDir)\ISOs\en_windows_8_x64_dvd_915440.wim"
-$81x86Image = "$($workingDir)\ISOs\en_windows_8_1_x86_dvd_2707392.wim"
-$81x64Image = "$($workingDir)\ISOs\en_windows_8_1_x64_dvd_2707217.wim"
+. .\FactoryVariables.ps1
 
 $startTime = get-date
 
@@ -209,6 +186,19 @@ function cleanupFile
     if (Test-Path $file) 
     {
         Remove-Item $file -Recurse;
+    }
+}
+
+# Helper function to make sure that needed folders are present
+function checkPath
+{
+    param
+    (
+        [string] $path
+    )
+    if (!(Test-Path $path)) 
+    {
+        md $path;
     }
 }
 
@@ -410,6 +400,9 @@ function RunTheFactory
         [switch]$Generation2,
         [bool] $GenericSysprep = $false
     );
+
+    checkPath "$($workingdir)\Share";
+    checkPath "$($workingdir)\Bases";
 
     logger $FriendlyName "Starting a new cycle!"
 
@@ -628,3 +621,6 @@ RunTheFactory -FriendlyName "Windows 8.1 Professional - 32 bit" -ISOFile $81x86I
 RunTheFactory -FriendlyName "Windows 8 Professional" -ISOFile $8x64Image -ProductKey $Windows8Key -SKUEdition "Professional" -desktop $true;
 RunTheFactory -FriendlyName "Windows 8 Professional - Gen 2" -ISOFile $8x64Image -ProductKey $Windows8Key -SKUEdition "Professional" -Generation2 -desktop $true;
 RunTheFactory -FriendlyName "Windows 8 Professional - 32 bit" -ISOFile $8x86Image -ProductKey $Windows8Key -SKUEdition "Professional" -desktop $true -is32bit $true;
+RunTheFactory -FriendlyName "Windows 10 Professional" -ISOFile $10x64Image -ProductKey $Windows10Key -SKUEdition "Professional" -desktop $true;
+RunTheFactory -FriendlyName "Windows 10 Professional - Gen 2" -ISOFile $10x64Image -ProductKey $Windows10Key -SKUEdition "Professional" -Generation2 -desktop $true;
+RunTheFactory -FriendlyName "Windows 10 Professional - 32 bit" -ISOFile $10x86Image -ProductKey $Windows10Key -SKUEdition "Professional" -desktop $true -is32bit $true;
