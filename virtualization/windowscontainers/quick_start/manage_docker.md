@@ -3,17 +3,15 @@ title: Manage Windows Containers with Docker
 
 ##Manage Windows Containers with Docker
 
-Windows Server Containers can be managed with Docker commands. While Windows Server Containers are comparable to their Linux counterparts and the management experience with Docker is almost identical, not all Docker commands will be used with Windows Server Containers.
-
-***
-Windows Containers created with PowerShell need to be managed with PowerShell – [Managing Windows Containers with PowerShell](./manage_powershell.md)
-***
+Windows Server Containers can be managed with native Docker commands. While Windows Server Containers are comparable to their Linux counterparts and the management experience with Docker is almost identical, not all Docker commands will be used with Windows Server Containers.
 
 ####Working with Docker Commands:
 
-The following exercise will walk though some basic Windows Server Container management steps using Docker commands. The goal here is to become comfortable creating, managing and removing both Windows Server Container Images and Windows Server Containers.
+The following exercise will walk though some basic Windows Server Container management actions using Docker commands. The goal here is to become comfortable creating, managing and removing both Windows Server Container Images and Windows Server Containers.
 
-To see a list of images available on the Windows Container host enter `docker Images`:
+####Creating a Container
+
+To see a list of images available on the Windows Container host enter `docker Images` 
 ```
 docker images
 
@@ -22,29 +20,48 @@ windowsservercore   latest              9eca9231f4d4        30 hours ago        
 windowsservercore   10.0.10254.0        9eca9231f4d4        30 hours ago        9.613 GB
 
 ```
-To create a new container and open an interactive session run `docker run -it <image name or ID> cmd`:
+
+To create a new container and open an interactive session from within the new container run the `docker run –it <image name or ID> cmd`:
 ```
 docker run -it windowsservercore cmd
 ```
 Once this command completes you are now working in an interactive shell session from within the container.
 
-![](media/docker2.png)
+![](media/docker4.png)
 
-Create a text file:
+Now that you are working from inside of the container make a simple modification to the container. For example the following command will create a file that contains the output of ipconfig.
 ```
 Ipconfig > c:\ipconfig.txt
 ```
-Read the text file, it contains the up address of the container.
+
+You can read the contents of the file to ensure the command completed successfully. Notice that the IP address contained in the text file matches that of the container.
 ```
 Type c:\ipconfig.txt
+
+Ethernet adapter vEthernet (Virtual Switch-b34f32fcdc63b8632eaeb114c6eb901f8982bc91f38a8b64e6da0de40ec47a07-0):
+
+   Connection-specific DNS Suffix  . :
+   Link-local IPv6 Address . . . . . : fe80::85b:7834:454c:375b%20
+   IPv4 Address. . . . . . . . . . . : 192.168.1.55
+   Subnet Mask . . . . . . . . . . . : 255.255.255.0
+   Default Gateway . . . . . . . . . :
+
 ```
-Exit the container, returning to the host session:
+
+Now exit the container by typing `Exit`. This will stop the interactive session, stop the container and place you back in the command session of the host.
 ```
 Exit
 ```
-Back in the host session, notice that the ipconfig.txt file has not been created on the host.
 
-See a list of containers on the host, take note of the container ID of the new container.
+Back in the host session notice that if you look for the ipconfig.txt file it is not present. This file was created in the container and will not exist on the host.
+```
+C:\Windows\system32>type c:\ipconfig.txt
+The system cannot find the file specified.
+```
+
+####Create a Container Image
+
+Now that a container has been created and modified, an image can be made from this container that will include all changes made to the container. This image will behave like a snapshot of the container and can be re-deployed many times, each time creating a new container. To create an image from the container you will need the container ID. To see a list of containers that have been created on the host run `docker ps –a`. This will return all running and stopped containers. Take note of the Container ID for the container just created.
 ```
 docker ps –a
 
@@ -52,13 +69,13 @@ CONTAINER ID        IMAGE               COMMAND      CREATED             STATUS 
 9fb031beb602        windowsservercore   "cmd"        9 minutes ago       Exited (0) 30 seconds ago   kickass_engelbart
 ```
 
-To create a new container using the container just created enter `Docker commit <container id> newcontainerimage`:
+To create a new container image from a specific container run the following - `Docker commit <container id> newcontainerimage`:
 ```
 docker commit 9fb031beb602 newcontainerimage
 4f8ebcf0a334601e75070a92294d993b0f182abb6f4c88740c75b05093e6acff	
 ```
 
-Take a look at all container images again, notice that there is a new image and note its name or id. 
+This will create a new container image on the container host. To see all images type `docker images`. Notice the new image and take note of the name or ID of this image.
 ```
 Docker images
 
@@ -68,26 +85,34 @@ windowsservercore   latest              9eca9231f4d4        30 hours ago        
 windowsservercore   10.0.10254.0        9eca9231f4d4        30 hours ago        9.613 GB
 ```
 
-Create a new container from the new image and start an interactive command session:
+####Create New Container From Image
+
+Now that we have a custom container image, deploy a new container from this image and open an interactive session with the container. This can be done by running `docker run –it <new container name or id> cmd`.
 ```
 Docker run –it newcontainerimage cmd
 ```
 
-Take a look at the c:\ drive of this new containers and notice that network folder and ipconfig.txt are in this container.
+Take a look at the c:\ drive of this new containers and notice that ipconfig.txt file is present in the new container.
 
 ![](media/docker3.png)
 
-Exit the newly created containers:
+Exit the newly created container by running `exit`, Once completed you will be back in the host session.
 ```
 Exit
 ```
+
+This exercise has shown that an image taken from a modified container will include all modifications. While the example here was a simple file modification, that same would apply if we were to install software into the container such as a web server. Using these methods custom images can be created that will deploy application read containers.
+
+####Removing Containers and Container Images
+
+To wrap up this introduction to managing Windows Server Containers with Docker you will see how to remove Windows Containers and Windows Container Images.
 
 To remove containers after they are no longer needed run `docker rm <container name or ID>`:
 ```
 docker rm 69cebe720e38
 69cebe720e38
 ```
-To remove container images when they are no longer needed run `docker rmi <image name or ID>`. Note - An image cannot be removed if it is referenced but a container.
+To remove container images when they are no longer needed run `docker rmi <image name or ID>`. Note, an image cannot be removed if it is referenced but a container.
 ```
 docker rmi newcontainerimage
 
