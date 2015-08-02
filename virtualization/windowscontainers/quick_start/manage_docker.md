@@ -120,7 +120,7 @@ Untagged: newcontainerimage:latest
 Deleted: 4f8ebcf0a334601e75070a92294d993b0f182abb6f4c88740c75b05093e6acff
 ```
 
-##Prepare NGinx Container Image
+##Prepare NGinx Image
 
 This example will demonstrate a more practical application for Windows Server Containers. First a dockerfile will be used to automation the creation of a new container image. Dockerfiles contain instruction that the Docker engine will use to build a container, make modification to the container and then commit to a container image.
 
@@ -168,7 +168,7 @@ windowsservercore   10.0.10254.0        9eca9231f4d4        35 hours ago        
 windowsservercore   latest              9eca9231f4d4        35 hours ago        9.613 GB
 ```
 
-##Deploy NGinx in Windows Server Contianer:
+##Deploy NGinx Contianer:
 
 ```
 docker run -it nginx_windows cmd
