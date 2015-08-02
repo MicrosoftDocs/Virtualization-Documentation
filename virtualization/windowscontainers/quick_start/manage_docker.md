@@ -148,9 +148,9 @@ LABEL Description="NGINX For Windows" Vendor="NGINX" Version="1.9.3"
 ADD source /nginx
 ```
 
-At this point the dockerfile will be in <b>c:\build\nginx</b> and the NGinx software extracted to <b>c:\build\nginx\source</b>. You are now ready to build an images based on the instructions in the dockerfile. To do so run the following command on the container host:
+At this point the dockerfile will be in <b>c:\build\nginx</b> and the NGinx software extracted to <b>c:\build\nginx\source</b>. You are now ready to build an images based on the instructions in the dockerfile. To do so run the following command on the container host. 
 ```
-Docker build c:\build\nginx
+Docker build -t nginx_windows c:\build\nginx
 ```
 
 The output will look similar to this:
@@ -162,12 +162,28 @@ Once completed take a look at all images on the host using the `docker images` c
 docker images
 
 REPOSITORY          TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
-<none>              <none>              012e178ea519        44 seconds ago      9.613 GB
-windowsservercore   10.0.10254.0        9eca9231f4d4        34 hours ago        9.613 GB
-windowsservercore   latest              9eca9231f4d4        34 hours ago        9.613 GB
+
+nginx_windows       latest              d792268338d0        5 seconds ago       9.613 GB
+windowsservercore   10.0.10254.0        9eca9231f4d4        35 hours ago        9.613 GB
+windowsservercore   latest              9eca9231f4d4        35 hours ago        9.613 GB
 ```
 
-##Deploy NGinx in Windows Server Contianer
+##Deploy NGinx in Windows Server Contianer:
+
+```
+docker run -it nginx_windows cmd
+```
+
+```
+cd c:\nginx\nginx-1.9.2
+start nging
+```
+
+```
+Powershell Invoke-WebRequest 'https://raw.githubusercontent.com/neilpeterson/index/master/index.html' -OutFile "C:\nginx\nginx-1.9.3\html\index.html"
+```
+![](media/docker5.png)
+
 
  
 ##Navigation:
