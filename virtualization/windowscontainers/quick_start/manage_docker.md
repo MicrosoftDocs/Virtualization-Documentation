@@ -170,24 +170,43 @@ windowsservercore   latest              9eca9231f4d4        35 hours ago        
 
 ##Deploy NGinx Contianer:
 
+With an NGinx image created you can now deploy multiple containers based off of this image. To deploy a Windows Server Container based off of the nginx_windows image use the Docker Run command as seen below. Once the command completes you will be in an interactive session in the container.
 ```
 docker run -it nginx_windows cmd
 ```
 
+From inside the container the NGinx webserver can be started and web content can be staged for consumption. To start the NGinx webserver navigate to the installation folder and run `start nginx`:
 ```
 cd c:\nginx\nginx-1.9.2
 start nging
 ```
+
+Once the NGinx software is running, get the IP address of the container using `ipconfig`, open up a web browser and navigate to `http//<container ip address>`. If everything has been correctly configured you will see the NGinx welcome page.
+
+```
+ipconfig
+
+Windows IP Configuration
+
+
+Ethernet adapter vEthernet (Virtual Switch-973000e2581a8c1c9eb994f0af4d9b302b03762836528c15a0e821e70a5c3b6d-0):
+
+   Connection-specific DNS Suffix  . :
+   IPv6 Address. . . . . . . . . . . : 2601:600:8f01:84eb:8d65:db42:52ac:acc2
+   Link-local IPv6 Address . . . . . : fe80::8d65:db42:52ac:acc2%21
+   IPv4 Address. . . . . . . . . . . : 10.0.0.23
+   Subnet Mask . . . . . . . . . . . : 255.255.255.0
+   Default Gateway . . . . . . . . . : fe80::e288:5dff:fec8:4523%21
+                                       10.0.0.1
+```
+![](media/docker6.png)
+
+At this point feel free to update the website, copy in your own sample website or run the following command to replace the NGinx welcome page with a ‘Hello World’ web page.
 
 ```
 Powershell Invoke-WebRequest 'https://raw.githubusercontent.com/neilpeterson/index/master/index.html' -OutFile "C:\nginx\nginx-1.9.3\html\index.html"
 ```
 ![](media/docker5.png)
 
-
- 
-##Navigation:
+ ##Navigation:
 [Back to Container Home](../containers_welcome.md)
-
-
-
