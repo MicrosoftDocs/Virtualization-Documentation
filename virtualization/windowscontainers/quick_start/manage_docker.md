@@ -123,10 +123,10 @@ Deleted: 4f8ebcf0a334601e75070a92294d993b0f182abb6f4c88740c75b05093e6acff
 ##Prepare Web Server Image
 
 This next example will walk through a more practical use case for a Windows Server Container. The steps included in this exercise will complete the following:  
--Create a container from the Windows Server Core base image.  
--Deploy web server software into the container.  
--Create an image from the web server container.  
--Deploy a web server ready container and host a simple website from the container.  
+- Create a container from the Windows Server Core base image.  
+- Deploy web server software into the container.  
+- Create an image from the web server container.  
+- Deploy a web server ready container and host a simple website from the container.  
 
 ####Download and Extract the NGinx Software
 
@@ -196,7 +196,7 @@ Powershell Invoke-WebRequest 'https://raw.githubusercontent.com/neilpeterson/ind
 ```
 After the website has been updated navigate back to `http://<IP address>`.
 
-![](media/docker5.png)
+![](media/docker7.png)
 
 ####Wrap Up
 
