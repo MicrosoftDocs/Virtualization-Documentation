@@ -60,65 +60,99 @@ To start the container use the `Start-Container` command.
 ```
 Start-Container -Name "MyContainer"
 ```
-Once the container has been created you can interact with the container using many standard PowerShell remoting commands such as `Invoke-Command`, and `Enter-PSSession`. This example will create a PSSession into the container.
+Once the container has been created you can interact with the container using many standard PowerShell remoting commands such as `Invoke-Command`, and `Enter-PSSession`. The example below creates an interactive session into the container using the Enter-PSSession command. Notice that once the command completes the prompt changes to include the container id ` [2446380e-629]` indicating that the session is now working against the container.
 
 ```powershell
-Enter-PSSession -ContainerId $container1.Id
+PS C:\> Enter-PSSession -ContainerId $container.ContainerId -RunAsAdministrator
+[2446380e-629]: PS C:\Windows\system32>
 ```
 
-```
-cd \
-mkdir Test
-cd Test
-echo "hello world" > hello.txt
-exit
-```
+Once in the container it can be managed very much like a physical or virtual machine. Command such as `ipconfig` to return the IP address of the container, `mkdir` to create a directory in the container and PowerShell commands like `Get-ChildItem` all work. Go ahead and make a modification to the container such as creating a file or folder. For instance the following command will created a file which contains network configuration data about the container. 
 
 ```
-$container1
+ipconfig > c:\ipconfig
 ```
+
+You can read the contents of the file to ensure the command completed successfully. Notice that the IP address contained in the text file matches that of the container.
+```
+Type c:\ipconfig.txt
+
+Ethernet adapter vEthernet (Virtual Switch-b34f32fcdc63b8632eaeb114c6eb901f8982bc91f38a8b64e6da0de40ec47a07-0):
+
+   Connection-specific DNS Suffix  . :
+   Link-local IPv6 Address . . . . . : fe80::85b:7834:454c:375b%20
+   IPv4 Address. . . . . . . . . . . : 192.168.1.55
+   Subnet Mask . . . . . . . . . . . : 255.255.255.0
+   Default Gateway . . . . . . . . . :
+
+```
+Now that the container has been modified, exit the remote PSSession by typing `Exit` and stop the container using the `Stop-Container` command. Once these commands have completed you will be back in control of the container host.
 
 ```powershell
-Stop-Container -Container $container1
+Exit
+
+Stop-Container -Container $container
 ```
 
+Now that a container has been created and modified, an image can be made from this container that will include all changes made to the container. This image will behave like a snapshot of the container and can be re-deployed many times, each time creating a new container.
+
+To create an image form the container run the following commands:
+
 ```powershell
-$image1 = New-ContainerImage -Container $container1 -Publisher Test -Name Image1 -Version 1.0
+$newimage = New-ContainerImage -Container $container -Publisher Demo -Name newimage -Version 1.0
 ```
+
+Run `Get-ContainerImage` to return a list of Container Images. Notice that a new image has been created.
 
 ```powershell
 Get-ContainerImage
+
+Name              Publisher    Version      IsOSImage
+----              ---------    -------      ---------
+newimage          CN=Demo      1.0.0.0      False
+WindowsServerCore CN=Microsoft 10.0.10254.0 True
 ```
 
+Create a new container from the new container image.
 ```powershell
-$container2 = New-Container -Name "MySecondContainer" -ContainerImage $image1 -SwitchName "Virtual Switch"
+$container2 = New-Container -Name "MyContainer2" -ContainerImage $newimage -SwitchName $vmswitch.Name
+```
+Start the new container and create a PSSession into the new container.
+```powershell
+Start-Container $container2
+Enter-PSSession -ContainerId $container2.ContainerId -RunAsAdministrator
 ```
 
-```powershell
-Remove-Container -Container $container1
+Finally once in the container notice that because this new container is based off of an image taken from the previous container that the ipconfig.txt file is present.
 ```
+type c:\ipconfig.txt
+
+Ethernet adapter vEthernet (Container-2446380E-6296-4BF2-8146-18DAAFD85FCA-0):
+
+   Connection-specific DNS Suffix  . :
+   Link-local IPv6 Address . . . . . : fe80::85b:7834:454c:375b%20
+   IPv4 Address. . . . . . . . . . . : 192.168.1.55
+   Subnet Mask . . . . . . . . . . . : 255.255.255.0
+   Default Gateway . . . . . . . . . :
+```
+####Removing Containers and Container Images
+
+To stop all running containers run the following:
+```powershell
+Get-Container | Stop-Contianer
+```
+To remove all contianers:
 
 ```powershell
-Get-Container
+Get-Container | Remove-Container -Force
 ```
+Finally to remove a particular container image run the following: 
 
 ```powershell
-Export-ContainerImage -Image $image1 -Path "C:\exports"
-```
-
-```powershell
-Remove-ContainerImage -Image $image1
-```
-
-```powershell
-Import-ContainerImage -Path C:\exports\CN=Test_Image1_1.0.0.0.appx
-```
-
-```powershell
-Start-Container -Container $container2 
+Get-ContainerImage -Name newimage | Remove-ContainerImage
 ```
 ##Prepare Web Server Image
 ##Deploy Web Server Contianer
 
-##Navigation:
+##Navigation
 [Back to Container Home](../containers_welcome.md)
