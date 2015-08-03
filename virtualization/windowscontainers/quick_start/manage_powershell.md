@@ -222,22 +222,22 @@ Enter-PSSession -ContainerId $webservercontainer.ContainerId -RunAsAdministrator
 
 From inside the container the NGINX webserver can be started and web content staged for consumption. To start the NGinx webserver move to the installation folder and run `start nginx`:
 ```
-cd c:\nginx-1.9.2
+cd c:\nginx-1.9.2\
 start nginx
 ```
 
 Once the NGINX software is running, get the IP address of the container using `ipconfig`, open up a web browser and browse to `http//<ip address>`. If everything has been correctly configured you will see the NGINX welcome page.
 
-![](media/docker6.png)
+![](media/nginx.png)
 
 At this point feel free to update the website, copy in your own sample website or run the following command to replace the NGINX welcome page with a ‘Hello World’ web page.
 
 ```powershell
-Powershell Invoke-WebRequest 'https://raw.githubusercontent.com/neilpeterson/index/master/index.html' -OutFile "C:\nginx\nginx-1.9.3\html\index.html"
+Powershell Invoke-WebRequest 'https://raw.githubusercontent.com/neilpeterson/index/master/index.html' -OutFile "C:\nginx-1.9.3\html\index.html"
 ```
 After the website has been updated navigate back to `http://<IP address>`.
 
-![](media/docker7.png)
+![](media/hello.png)
 
 ####Wrap Up
 
