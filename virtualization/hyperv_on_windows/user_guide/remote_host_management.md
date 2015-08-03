@@ -3,9 +3,9 @@ title: Managing remote Hyper-V hosts
 
 # Manage Remote Hyper-V Hosts with Hyper-V Manager #
 
-Hyper-V Manager provides a very minimal set of tools needed for diagnosing and managing a small number of local or remote hosts.
+Hyper-V Manager provides a minimal set of tools needed for diagnosing and managing your local Hyper-V host and a small number of remote hosts.
 
-This document is a reference on the various configuration details needed for managing remote Hyper-V hosts with Hyper-V Manager.
+This reference documents the configuration steps for connecting to Hyper-V hosts using Hyper-V Manager in all of the supported configurations.
 
 To connect to a Hyper-V host in Hyper-V Manager, make sure **Hyper-V Manager** is selected in the left hand pane and then select **Connect to Server...** in the right-hand pane.
 
@@ -13,13 +13,21 @@ To connect to a Hyper-V host in Hyper-V Manager, make sure **Hyper-V Manager** i
 
 
 ## Manage localhost ##
-To add localhost to Hyper-V Manager as a Hyper-V host, select the **Local computer** in the **Select Computer** dialogue box.
-<!--Add screen shot w/ just that dialog with local computer radio button selected.-->
+To add localhost to Hyper-V Manager as a Hyper-V host, select **Local computer** in the **Select Computer** dialogue box.
+
+![](media/HyperVManager-ConnectToLocalHost.png)
+
 If a connection can't be established:
 *  Make sure the Hyper-V server role is enabled.  See the [walkthrough section for checking compatability](../user_guide/walkthrough_compatability.md).
 *  Confirm that your user account is part of the Hyper-V Administrator group.
 
+
 ## Manage a Hyper-V host in your domain ##
+
+To add a remote Hyper-V host to Hyper-V Manager, select **Another computer** in the **Select Computer** dialogue box.
+
+![](media/HyperVManager-ConnectToRemoteHost.png)
+
 Windows 10 greatly expanded the possible combinations of remote connection types.  
 Now you can connect to a remote Windows 10 or later host using either the host name or IP address.  Hyper-V Manager now supports alternate credentials as well.  
 
@@ -31,9 +39,11 @@ To enable remote management in PowerShell, run the following as Administrator:
 winrm quickconfig
 ```
 
-
+![](media/HyperVManager-ConnectToRemoteHostAltCreds.png)
 
 ### Managing a remote host in Windows 8 and Windows 8.1
+
+
 
 
 
