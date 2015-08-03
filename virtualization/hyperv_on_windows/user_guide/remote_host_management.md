@@ -24,7 +24,7 @@ If a connection can't be established:
 
 ## Manage a Hyper-V host in your domain ##
 
-To add a remote Hyper-V host to Hyper-V Manager, select **Another computer** in the **Select Computer** dialogue box.
+To add a remote Hyper-V host to Hyper-V Manager, select **Another computer** in the **Select Computer** dialogue box and enter the remote host's hostname, NetBIOS, or FQDN into the text field.
 
 ![](media/HyperVManager-ConnectToRemoteHost.png)
 
@@ -51,7 +51,12 @@ To specify credentials for the remote Hyper-V host, select **Connect as another 
 
 ![](media/HyperVManager-ConnectToRemoteHostAltCreds.png)
 
-** *Note: **  It's very easy to forget to set the user and click OK with user `<none`>.  If your connection fails, make sure you actually did set the user.
+> Note:  It's very easy to forget to set the user and click OK with user `<none`>.  If your connection fails, make sure you actually did set the user.
+
+### Connect to the remote host using IP address
+Sometimes it's easier to connect using IP address rather than host name.  Windows 10 allows your to do just that.
+
+To connect using IP address, enter the IP address into the **Another Computer** text field.
 
 
 ## Manage a Hyper-V host outside your domain (or with no domain) ##
