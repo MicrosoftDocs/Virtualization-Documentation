@@ -189,7 +189,7 @@ start nginx
 
 Once the NGINX software is running, get the IP address of the container using `ipconfig`, open up a web browser and browse to `http//<ip address>`. If everything has been correctly configured you will see the NGINX welcome page.
 
-![](media/docker6.png)
+![](media/nginx.png)
 
 At this point feel free to update the website, copy in your own sample website or run the following command to replace the NGINX welcome page with a ‘Hello World’ web page.
 
@@ -198,7 +198,7 @@ Powershell Invoke-WebRequest 'https://raw.githubusercontent.com/neilpeterson/ind
 ```
 After the website has been updated navigate back to `http://<IP address>`.
 
-![](media/docker7.png)
+![](media/hello.png)
 
 ####Wrap Up
 
