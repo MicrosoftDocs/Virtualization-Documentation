@@ -7,11 +7,13 @@ Windows Server Containers can be managed with native Docker commands. While Wind
 
 ####Working with Docker Commands:
 
-The following exercise will walk though some basic Windows Server Container management actions using Docker commands. The goal here is to become comfortable creating, managing and removing Windows Server Container Images and Windows Server Containers.
+The following exercise will walk though some basic Windows Server Container management actions using Docker commands. The goal here is to become comfortable creating, managing and removing Windows Server Container Images and Windows Server Containers with Docker.
+
+Please Note – Windows Server Container created with PowerShell need to be managed with PowerShell. Checkout the PowerShell quick start documentation here – [Managing Windows Server Container with PowerShell](./manage_powershell.md).
 
 ####Creating a Container
 
-To see a list of images available on the Windows Container host enter `docker Images`: 
+To see a list of images available on the Windows Server Container host enter `docker Images`: 
 ```
 docker images
 
@@ -21,11 +23,11 @@ windowsservercore   10.0.10254.0        9eca9231f4d4        30 hours ago        
 
 ```
 
-To create a new container and open an interactive session to this new container run `docker run –it <image name or ID> cmd`:
+To create a new container and open an interactive session into this new container run `docker run –it <image name or ID> cmd`:
 ```
 docker run -it windowsservercore cmd
 ```
-Once this command completes you are now working in an interactive session from within the container.
+Once this command completes you will be working in an interactive session from within the container. Notice that working inside the container is almost identical to working in Windows installed on a virtual or physical system. You can run commands such as `Ipconfig` to return the IP address of the container, `mkdir` to create a new directory or `Powershell` to start a PowerShell session.
 
 ![](media/docker4.png)
 
@@ -53,7 +55,7 @@ Exit the container by typing `Exit`. This will stop the interactive session, sto
 Exit
 ```
 
-Back in the host session notice that the ipconfig.txt file it is not present. This file was created in the container and will not exist on the host.
+Notice that on the container host the ipconfig.txt file it is not present. This file was created in the container and will not exist on the host.
 ```
 C:\Windows\system32>type c:\ipconfig.txt
 The system cannot find the file specified.
@@ -75,7 +77,7 @@ docker commit 9fb031beb602 newcontainerimage
 4f8ebcf0a334601e75070a92294d993b0f182abb6f4c88740c75b05093e6acff	
 ```
 
-To see all images on the host type `docker images`. Notice the new image and take note of the name or ID of this image.
+To see all images on the host type `docker images`. Notice that a new image has been created with the name that was specified during the container commit.
 ```
 Docker images
 
@@ -87,7 +89,7 @@ windowsservercore   10.0.10254.0        9eca9231f4d4        30 hours ago        
 
 ####Create New Container From Image
 
-Now that you have a custom container image, deploy a new container from this image and open an interactive session into the container. This can be done by running `docker run –it <new container name or id> cmd`.
+Now that you have a custom container image, deploy a new container from this image and open an interactive session into the container. This can be done by running `docker run –it <new container image name or id> cmd`.
 ```
 Docker run –it newcontainerimage cmd
 ```
@@ -101,11 +103,11 @@ Exit the newly created container by running `exit`, Once completed you will be b
 Exit
 ```
 
-This exercise has shown that an image taken from a modified container will include all modifications. While the example here was a simple file modification, the same would apply if we were to install software into the container such as a web server. Using these methods, custom images can be created that will deploy application ready containers.
+This exercise has shown that an image taken from a modified container will include all modifications. While the example here was a simple file modification, the same would apply if you were to install software into the container such as a web server. Using these methods, custom images can be created that will deploy application ready containers.
 
 ####Removing Containers and Container Images
 
-To wrap up this introduction to managing Windows Server Containers with Docker you will see how to remove Windows Containers and Windows Container Images.
+To wrap up this introduction to managing Windows Server Containers with Docker you will see how to remove Windows Server Containers and Windows Server Container Images using Docker commands.
 
 To remove containers after they are no longer needed run `docker rm <container name or ID>`:
 ```
@@ -125,8 +127,8 @@ Deleted: 4f8ebcf0a334601e75070a92294d993b0f182abb6f4c88740c75b05093e6acff
 This next example will walk through a more practical use case for a Windows Server Container. The steps included in this exercise will complete the following:  
 - Create a container from the Windows Server Core base image.  
 - Deploy web server software into the container.  
-- Create an image from the web server container.  
-- Deploy a web server ready container and host a simple website from the container.  
+- Create an new image from the modified container.  
+- Deploy a web server ready container and host a simple website in the container.   
 
 ####Download and Extract the NGinx Software
 
@@ -135,24 +137,24 @@ Before creating a container image a few items need be staged on the container ho
 c:\build\nginx\source
 ```
 
-Download and extract the NGinx software to <b>c:\build\nginx\source</b>. The software can be downloaded from the following site – [NGinx for Windows](http://nginx.org/en/download.html). Alternatively use the following commands on the container host to download and extract the NGinx software to <b>c:\build\nginx\source</b>.
+Download and extract the NGINX software to <b>c:\build\nginx\source</b>. The software can be downloaded from the following site – [NGinx for Windows](http://nginx.org/en/download.html). Alternatively use the following commands on the container host to download and extract the NGinx software to <b>c:\build\nginx\source</b>.
 ```powershell
 PowerShell.exe Invoke-WebRequest 'http://nginx.org/download/nginx-1.9.3.zip' -OutFile "c:\nginx-1.9.3.zip"
 PowerShell.exe Expand-Archive -Path C:\nginx-1.9.3.zip -DestinationPath c:\build\nginx\source -Force
 ```
 ####Prepare the dockerfile
-In the previous example a container was created, manually modified, and then manually captured. This example will demonstrate an automated method for creating images using what is called a Dockerfile. Dockerfiles contain instruction that the Docker engine will use to build a container, make modification to the container and then commit to a container image. For more information on dockerfile see the documentation on the Docker site -  [Dockerfile reference](https://docs.docker.com/reference/builder/).
+In the previous example a container was created, manually modified, and then manually captured. This example will demonstrate an automated method for creating images using what is called a Dockerfile. Dockerfiles contain instructions that the Docker engine will use to build a container, make modifications to the container and then commit to a container image. For more information on dockerfiles see the documentation on the Docker site -  [Dockerfile reference](https://docs.docker.com/reference/builder/).
 
 Create a file named dockerfile and open it with your favirote text editor. It is important that this file have no file extension.
 
-Enter the following text into the dockerfile, save the file and copy it to <b>c:\build\nginx</b> on the container host.
+Enter the following text into the dockerfile and save the file to <b>c:\build\nginx</b> on the container host.
 ```
 FROM windowsservercore
 LABEL Description="NGINX For Windows" Vendor="NGINX" Version="1.9.3"
 ADD source /nginx
 ```
 
-At this point the dockerfile will be in <b>c:\build\nginx</b> and the NGinx software extracted to <b>c:\build\nginx\source</b>. You are now ready to build an web server image based on the instructions in the dockerfile. To do so run the following command on the container host. 
+At this point the dockerfile will be in <b>c:\build\nginx</b> and the NGINX software extracted to <b>c:\build\nginx\source</b>. You are now ready to build the web server image based on the instructions in the dockerfile. To do so run the following command on the container host. 
 ```
 Docker build -t nginx_windows c:\build\nginx
 ```
@@ -161,7 +163,7 @@ The output will look similar to this:
 
 ![](media/docker1.png)
 
-Once completed take a look at all images on the host using the `docker images` command, you should notice a new one. Take note of the name or ID for the new image, this will be used to deploy a container referencing the new image.
+Once completed take a look at all images on the host using the `docker images` command, you should notice a new one. Take note of the name or ID for the new image, this will be used to deploy a container from the new image.
 ```
 docker images
 
@@ -174,22 +176,22 @@ windowsservercore   latest              9eca9231f4d4        35 hours ago        
 
 ##Deploy Web Server Contianer
 
-With a web server image created you can now deploy multiple containers based off of this image. To deploy a Windows Server Container based off of the nginx_windows image use the Docker Run command as seen below. Once the command completes you will be in an interactive session in the container.
+With a web server image created you can now deploy multiple containers based off of this image. To deploy a Windows Server Container based off of the nginx_windows image use the `Docker Run` command as seen below. Once the command completes you will be in an interactive session on the container.
 ```
 docker run -it nginx_windows cmd
 ```
 
-From inside the container the NGinx webserver can be started and web content can be staged for consumption. To start the NGinx webserver navigate to the installation folder and run `start nginx`:
+From inside the container the NGINX webserver can be started and web content staged for consumption. To start the NGinx webserver move to the installation folder and run `start nginx`:
 ```
 cd c:\nginx\nginx-1.9.2
-start nging
+start nginx
 ```
 
-Once the NGinx software is running, get the IP address of the container using `ipconfig`, open up a web browser and navigate to `http//<ip address>`. If everything has been correctly configured you will see the NGinx welcome page.
+Once the NGINX software is running, get the IP address of the container using `ipconfig`, open up a web browser and browse to `http//<ip address>`. If everything has been correctly configured you will see the NGINX welcome page.
 
 ![](media/docker6.png)
 
-At this point feel free to update the website, copy in your own sample website or run the following command to replace the NGinx welcome page with a ‘Hello World’ web page.
+At this point feel free to update the website, copy in your own sample website or run the following command to replace the NGINX welcome page with a ‘Hello World’ web page.
 
 ```powershell
 Powershell Invoke-WebRequest 'https://raw.githubusercontent.com/neilpeterson/index/master/index.html' -OutFile "C:\nginx\nginx-1.9.3\html\index.html"
