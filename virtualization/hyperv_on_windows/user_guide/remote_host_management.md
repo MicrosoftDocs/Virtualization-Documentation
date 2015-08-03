@@ -33,13 +33,25 @@ Now you can connect to a remote Windows 10 or later host using either the host n
 
 In order to manage remote Hyper-V hosts, remote management must be enabled on both computers.
 
-You can do this through `System Properties -> Remote Management Settings` or through PowerShell.  
-To enable remote management in PowerShell, run the following as Administrator:
+You can do this through `System Properties -> Remote Management Settings` or by running the following PowerShell command as Administrator:  
 ``` PowerShell
 winrm quickconfig
 ```
 
+If your current user account matches a Hyper-V Administrator account on the remote host, go ahead and press **OK** to Connect.  
+
+This is the only supported way to manage a remote host in Hyper-V Manager in Windows 8 or Windows 8.1.
+
+### Connect to the remote host as a different user
+In Windows 10, if you are not running with the correct user account for the remote host, you can connect as another user with alternate credentials.
+
+To specify credentials for the remote Hyper-V host, select **Connect as another user: ** in the **Select Computer** dialogue box then select **Set User...**.
+
 ![](media/HyperVManager-ConnectToRemoteHostAltCreds.png)
+
+** *Note: **  It's very easy to forget to set the user and click OK with user `<none`>.  If your connection fails, make sure you actually did set the user.
+
+
 
 ### Managing a remote host in Windows 8 and Windows 8.1
 
