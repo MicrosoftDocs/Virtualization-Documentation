@@ -128,7 +128,7 @@ This next example will walk through a more practical use case for a Windows Serv
 - Create a container from the Windows Server Core base image.  
 - Deploy web server software into the container.  
 - Create an new image from the modified container.  
-- Deploy a web server ready container and host a simple website in the container.   
+- Deploy a web server ready container and host a simple website in the container.<br />   
 
 ####Download and Extract the NGinx Software
 
