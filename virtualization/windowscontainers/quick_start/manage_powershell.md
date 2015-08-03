@@ -5,133 +5,102 @@ title: Manage Windows Containers with PowerShell
 
 You can create, run, and interact with Windows Server Containers using PowerShell cmdlets. Everything you need to get going is available in-box.
 
-***
-Windows Containers created with Docker need to be managed with Docker – [Managing Windows Containers with Docker](./manage_docker.md)
-***
+Please Note - Windows Containers created with Docker need to be managed with Docker – [Managing Windows Containers with Docker](./manage_docker.md)
 
 If you’ve used Hyper-V PowerShell, the design of the cmdlets should be pretty familiar to you. A lot of the workflow is similar to how you’d manage a virtual machine using the Hyper-V module. Instead of `New-VM`, `Get-VM`, `Start-VM`, `Stop-VM`, you have `New-Container`, `Get-Container`, `Start-Container`, `Stop-Container`.  There are quite a few container-specific cmdlets and parameters, but the general lifecycle and management of a Windows container looks roughly like that of a Hyper-V VM.
 
-### How does this compare to Docker? 
-The Containers PowerShell cmdlets expose an API that isn’t quite the same as Docker's; as a general rule, the cmdlets are more granular in operation. Some Docker commands have pretty straightforward parallels in PowerShell:
+## Working with PowerShell Commands for Windows Containers
+The following walkthrough will demonstrate the basics of creating and managing Windows Server Containers and Container Images with PowerShell.
 
-| Docker command |	PowerShell Cmdlet |
-|----|----|
-| `docker ps -a`	| `Get-Container` |
-| `docker images`	| `Get-ContainerImage` |
-| `docker rm`	| `Remove-Container` |
-| `docker rmi` | `Remove-ContainerImage` |
-| `docker create`	| `New-Container` |
-| `docker commit <container ID>` | `New-ContainerImage -Container <container>` |
-| `docker load <tarball>` | `Import-ContainerImage <AppX package>` |
-| `docker save` |	`Export-ContainerImage` |
-| `docker start` |	`Start-Container` |
-| `docker stop` |	`Stop-Container` |
+Before running PowerShell commands make sure that you have started a PowerShell session. In Windows Sever 2016 Core this can be completed by typing `powershell`. You will know that you are in a PowerShell session then the prompt changes from `C:\>` to `PS C:\>` .
 
-The PowerShell cmdlets are not an exact perfect parity, and there are a fair number of commands that we’re not planning on providing replacements for, at least not for TP3 (notably `docker build` and `docker cp`). But what might leap out at you is that there’s no single one-line replacement for `docker run`.
-
-### But I need docker run! What’s going on?  
-We’re doing a couple things here to provide a slightly more familiar interaction model for users who know their way around PowerShell already. Of course, if you’re used to the way docker operates, this will be a bit of a mental shift.
-
-1.	The lifecycle of a container in the PowerShell model is slightly different. In the Containers PowerShell module, we expose the more granular operations of `New-Container` (which creates a new container that’s stopped) and `Start-Container`.
-  
-  In between creating and starting the container, you can also configure the container’s settings; for TP3, the only other configuration we’re planning to expose is the ability to set the network connection for the container. using the (Add/Remove/Connect/Disconnect/Get/Set)-ContainerNetworkAdapter cmdlets.
-
-2.	You can’t currently pass a command to be run inside the container on start. However, you can still get an interactive PowerShell session to a running container using `Enter-PSSession -ContainerId <ID of a running container>`, and you can execute a command inside a running container using `Invoke-Command -ContainerId <container id> -ScriptBlock { code to run inside the container }` or `Invoke-Command -ContainerId <container id> -FilePath <path to script>`.  
-Both of these commands allow the optional `-RunAsAdministrator` flag for high privilige actions.  
-
-### Working with PowerShell Commands
-Here is a walk through of some common workflows.
-
-This assumes you've installed an OS container image named "ServerDatacenterCore" and created a virtual switch named "Virtual Switch" (using New-VMSwitch).
-
-``` PowerShell
-### 1. Enumerating images
-# At this point, you can enumerate the images on the system:
+To return a list of all Windows Server Container Images loaded on the host run `Get-ContainerImages`. You can see in this example that one image was returned with a name of WindowsServerCore. This is the image that we will use to create a container from.
+```powershell
 Get-ContainerImage
 
-# Get-ContainerImage also accepts filters.
-# For example, this will return all container images whose Name starts with S (case-insensitive):
-Get-ContainerImage -Name S*
+Name              Publisher    Version      IsOSImage
+----              ---------    -------      ---------
+WindowsServerCore CN=Microsoft 10.0.10254.0 True
+```
 
-# You can save the results of this to a variable.
-# (If you're not familiar with PowerShell, the "$" denotes a variable.)
-$baseImage = Get-ContainerImage -Name ServerDatacenterCore
-$baseImage
+In order to use this image during the container creation process run `Get-ContainerImage` again however this time place the results into a PowerShell variable as seen below. Also notice that in this example the `–Name` parameter is being used to select a specific container image. This would be important if more than one image was present on the host.
 
-### 2. Creating and enumerating containers
-# Now, we can create a new container using this image:
+```powershell
+$baseImage = Get-ContainerImage –Name WindowsServerCore
+```
+
+```powershell
 New-Container -Name "MyContainer" -ContainerImage $baseImage -SwitchName "Virtual Switch"
+```
 
-# Now we can enumerate all containers.
+```powershell
 Get-Container
+```
 
-# Similarly, we can save this container to a variable:
+```powershell
 $container1 = Get-Container -Name "MyContainer"
+```
 
-### 3. Starting containers, interacting with running containers, and stopping containers
-# Now let's go ahead and start the container.
+```
 Start-Container -Name "MyContainer"
-
-# (We could've also started this container using "Start-Container -Container $container1".)
-
-# With the container now running, let's go ahead and enter an interactive PowerShell session:
+```
+```powershell
 Enter-PSSession -ContainerId $container1.Id
+```
 
-# This should eventually bring up a PowerShell prompt from inside the container.
-# You can try all the things that you did in the interactive cmd prompt given by "docker run -it".
-# For now, just to prove we've been here, we can create a new file:
+```
 cd \
 mkdir Test
 cd Test
 echo "hello world" > hello.txt
 exit
+```
 
-# Now we should be back in the outside world. Even though we've exited the PowerShell session,
-# the container itself is still running, as you can see by printing out the container again:
+```
 $container1
+```
 
-# Before we can commit this container to a new image, we need to stop the container.
-# Let's do that now.
+```powershell
 Stop-Container -Container $container1
+```
 
-### 4. Creating a new container image
-# And now let's commit it to a new image.
+```powershell
 $image1 = New-ContainerImage -Container $container1 -Publisher Test -Name Image1 -Version 1.0
+```
 
-# Enumerate all the images again, for sanity's sake:
+```powershell
 Get-ContainerImage
+```
 
-# Rinse and repeat! Make another container based on the new image.
+```powershell
 $container2 = New-Container -Name "MySecondContainer" -ContainerImage $image1 -SwitchName "Virtual Switch"
+```
 
-# (If you like, you can start the second container and verify that the new file
-# "\Test\hello.txt" is there as expected.)
-
-### 5. Removing a container
-# The first container we created is now stopped. Let's get rid of it:
+```powershell
 Remove-Container -Container $container1
+```
 
-# And confirm that it's gone:
+```powershell
 Get-Container
+```
 
-### 6. Exporting, removing, and importing images
-# For images that aren't the base OS image, we can export them into an .appx package file.
+```powershell
 Export-ContainerImage -Image $image1 -Path "C:\exports"
-# This should create a .appx file in the C:\exports folder.
-# If you've given your image the same publisher, name, and version we used earlier,
-# you'd expect the resulting .appx to be named "CN=Test_Image1_1.0.0.0.appx".
+```
 
-# Before we can try importing the image again, we need to remove the image.
-# (If you have any running containers that depend on this image, you'll want to stop them first.)
+```powershell
 Remove-ContainerImage -Image $image1
+```
 
-# Now let's import the image again:
+```powershell
 Import-ContainerImage -Path C:\exports\CN=Test_Image1_1.0.0.0.appx
+```
 
-# We'd previously created a container dependent on this image. You should be able to start it:
+```powershell
 Start-Container -Container $container2 
 ```
-##Deploying an NGinx Webserver with PowerShell
+##Prepare Web Server Image
+##Deploy Web Server Contianer
 
 ##Navigation:
 [Back to Container Home](../containers_welcome.md)
