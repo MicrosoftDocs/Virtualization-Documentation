@@ -1,27 +1,5 @@
-$workingDir = "D:\ImageFactory"
-$logFile = "$($workingDir)\Share\Details.csv"
-$factoryVMName = "Factory VM"
-$virtualSwitchName = "Virtual Switch"
-$ResourceDirectory = "$($workingDir)\Resources\Bits" 
-$Organization = "The Power Elite"
-$Owner = "Ben Armstrong"
-$Timezone = "Pacific Standard Time"
-$adminPassword = "P@ssw0rd"
-$userPassword = "P@ssw0rd"
-
-# Keys
-$Windows81Key = ""
-$Windows2012R2Key = ""
-$Windows8Key = ""
-$Windows2012Key = ""
-
-# ISOs /  WIMs
-$2012Image = "$($workingDir)\ISOs\en_windows_server_2012_x64_dvd_915478.wim"
-$2012R2Image = "$($workingDir)\ISOs\en_windows_server_2012_r2_x64_dvd_2707946.wim"
-$8x86Image = "$($workingDir)\ISOs\en_windows_8_x86_dvd_915417.wim"
-$8x64Image = "$($workingDir)\ISOs\en_windows_8_x64_dvd_915440.wim"
-$81x86Image = "$($workingDir)\ISOs\en_windows_8_1_x86_dvd_2707392.wim"
-$81x64Image = "$($workingDir)\ISOs\en_windows_8_1_x64_dvd_2707217.wim"
+# Load variables from a seperate file - this when you pull down the latest factory file you can keep your paths / product keys etc...
+. .\FactoryVariables.ps1
 
 $startTime = get-date
 
@@ -162,9 +140,7 @@ function Logger ([string]$systemName, [string]$message)
      write-Host "]::$($message)" -ForegroundColor White}
 
 # Helper function for no error file cleanup
-<<<<<<< HEAD
-Function cleanupFile ([string]$file) {if (test-path $file) {Remove-Item $file}}
-=======
+
 function cleanupFile
 {
     param
@@ -177,13 +153,34 @@ function cleanupFile
         Remove-Item $file -Recurse;
     }
 }
->>>>>>> 81d95744ba958c380e1e619ae06793773fe5be64
 
-function GetUnattendChunk ([string]$pass, [string]$component, [xml]$unattend) 
-    {# Helper function that returns one component chunk from the Unattend XML data structure
-     return $Unattend.unattend.settings | ? pass -eq $pass `
-                                        | select -ExpandProperty component `
-                                        | ? name -eq $component}
+# Helper function to make sure that needed folders are present
+function checkPath
+{
+    param
+    (
+        [string] $path
+    )
+    if (!(Test-Path $path)) 
+    {
+        md $path;
+    }
+}
+
+function GetUnattendChunk 
+{
+    param
+    (
+        [string] $pass, 
+        [string] $component, 
+        [xml] $unattend
+    ); 
+    
+    # Helper function that returns one component chunk from the Unattend XML data structure
+    return $Unattend.unattend.settings | ? pass -eq $pass `
+        | select -ExpandProperty component `
+        | ? name -eq $component;
+}
 
 function makeUnattendFile ([string]$key, [string]$logonCount, [string]$filePath, [bool]$desktop = $false, [bool]$is32bit = $false) 
     {# Composes unattend file and writes it to the specified filepath
@@ -284,10 +281,6 @@ $postSysprepScriptBlock = {
      # Remove autorun key if it exists
      Get-Item -Path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run | ? Property -like Unattend* | Remove-Item
 
-<<<<<<< HEAD
-     # Clean up unattend file if it is there
-     if (test-path "$ENV:SystemDrive\Unattend.xml") {Remove-Item -Force "$ENV:SystemDrive\Unattend.xml"}
-=======
     # Clean up unattend file if it is there
     if (Test-Path "$ENV:SystemDrive\Unattend.xml") 
     {
@@ -299,7 +292,6 @@ $postSysprepScriptBlock = {
     {
         Remove-Item -Force -Recurse "$ENV:SystemDrive\Bits";
     } 
->>>>>>> 81d95744ba958c380e1e619ae06793773fe5be64
      
      # Put any code you want to run Post sysprep here
      invoke-expression 'shutdown -r -t 0'
@@ -319,6 +311,9 @@ function RunTheFactory
         [switch]$Generation2,
         [bool] $GenericSysprep = $false
     );
+
+    checkPath "$($workingdir)\Share";
+    checkPath "$($workingdir)\Bases";
 
     logger $FriendlyName "Starting a new cycle!"
 
@@ -357,60 +352,6 @@ function RunTheFactory
         # Logon count is just "large number"
         makeUnattendFile -key $ProductKey -logonCount "1000" -filePath "$($workingDir)\unattend.xml" -desktop $desktop -is32bit $is32bit;
       
-<<<<<<< HEAD
-      # Time to create the base VHD
-      logger $FriendlyName "Create base VHD using Convert-WindowsImage.ps1"
-      $ConvertCommand = "Convert-WindowsImage" 
-      $ConvertCommand = $ConvertCommand + " -SourcePath `"$ISOFile`" -VHDPath `"$baseVHD`""
-      $ConvertCommand = $ConvertCommand + " -SizeBytes 80GB -VHDFormat VHDX -UnattendPath `"$($workingDir)\unattend.xml`""
-      $ConvertCommand = $ConvertCommand + " -Edition $SKUEdition -VHDPartitionStyle $VHDPartitionStyle"
-
-      Invoke-Expression "& $ConvertCommand"
-
-      # Clean up unattend file - we don't need it any more
-      logger $FriendlyName "Remove unattend file now that that is done"
-      cleanupFile "$($workingDir)\unattend.xml"
-
-      logger $FriendlyName "Mount VHD and copy bits in, also set startup file"
-      MountVHDandRunBlock $baseVHD {
-                          # Copy ResourceDirectory in
-                          copy-item ($ResourceDirectory) -Destination ($driveLetter + ":\") -Recurse
-                          # Create first logon script
-                          $updateCheckScriptBlock | Out-String | Out-File -FilePath "$($driveLetter):\Bits\Logon.ps1" -Width 4096}
-
-      logger $FriendlyName "Create virtual machine, start it and wait for it to stop..."
-      createRunAndWaitVM $baseVHD $Gen
-
-      # Remove Page file
-      logger $FriendlyName "Removing the page file"
-      MountVHDandRunBlock $baseVHD {attrib -s -h "$($driveLetter):\pagefile.sys" 
-                                    cleanupFile "$($driveLetter):\pagefile.sys"}
-
-      # Compact the base file
-      logger $FriendlyName "Compacting the base file"
-      optimize-vhd -Path $baseVHD -Mode Full}
-   else
-      {# The base VHD existed - time to check if it needs an update
-       logger $FriendlyName "Base VHD exists - need to check for updates"
-
-       # create new diff to check for updates
-       logger $FriendlyName "Create new differencing disk to check for updates"
-       cleanupFile $updateVHD; new-vhd -Path $updateVHD -ParentPath $baseVHD | Out-Null
-
-       logger $FriendlyName "Copy login file for update check, also make sure flag file is cleared"
-       MountVHDandRunBlock $updateVHD {
-                           # Make the UpdateCheck script the logon script, make sure update flag file is deleted before we start
-                           cleanupFile "$($driveLetter):\Bits\changesMade.txt"
-                           cleanupFile "$($driveLetter):\Bits\Logon.ps1"
-                           $updateCheckScriptBlock | Out-String | Out-File -FilePath "$($driveLetter):\Bits\Logon.ps1" -Width 4096}
-
-       logger $FriendlyName "Create virtual machine, start it and wait for it to stop..."
-       createRunAndWaitVM $updateVHD $Gen
-
-       # Mount the VHD
-       logger $FriendlyName "Mount the differencing disk"
-       $driveLetter = (Mount-VHD $updateVHD –passthru | Get-Disk | Get-Partition | Get-Volume).DriveLetter
-=======
         # Time to create the base VHD
         logger $FriendlyName "Create base VHD using Convert-WindowsImage.ps1";
         $ConvertCommand = "Convert-WindowsImage";
@@ -473,8 +414,7 @@ function RunTheFactory
         # Mount the VHD
         logger $FriendlyName "Mount the differencing disk";
         $driveLetter = (Mount-VHD $updateVHD -Passthru | Get-Disk | Get-Partition | Get-Volume).DriveLetter;
->>>>>>> 81d95744ba958c380e1e619ae06793773fe5be64
-       
+ 
         # Check to see if changes were made
         logger $FriendlyName "Check to see if there were any updates";
         if (Test-Path "$($driveLetter):\Bits\changesMade.txt") 
@@ -592,3 +532,6 @@ RunTheFactory -FriendlyName "Windows 8.1 Professional - 32 bit" -ISOFile $81x86I
 RunTheFactory -FriendlyName "Windows 8 Professional" -ISOFile $8x64Image -ProductKey $Windows8Key -SKUEdition "Professional" -desktop $true;
 RunTheFactory -FriendlyName "Windows 8 Professional - Gen 2" -ISOFile $8x64Image -ProductKey $Windows8Key -SKUEdition "Professional" -Generation2 -desktop $true;
 RunTheFactory -FriendlyName "Windows 8 Professional - 32 bit" -ISOFile $8x86Image -ProductKey $Windows8Key -SKUEdition "Professional" -desktop $true -is32bit $true;
+RunTheFactory -FriendlyName "Windows 10 Professional" -ISOFile $10x64Image -ProductKey $Windows10Key -SKUEdition "Professional" -desktop $true;
+RunTheFactory -FriendlyName "Windows 10 Professional - Gen 2" -ISOFile $10x64Image -ProductKey $Windows10Key -SKUEdition "Professional" -Generation2 -desktop $true;
+RunTheFactory -FriendlyName "Windows 10 Professional - 32 bit" -ISOFile $10x86Image -ProductKey $Windows10Key -SKUEdition "Professional" -desktop $true -is32bit $true;
