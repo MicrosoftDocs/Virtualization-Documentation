@@ -9,7 +9,7 @@ Please Note - Windows Containers created with Docker need to be managed with Doc
 
 If you’ve used Hyper-V PowerShell, the design of the cmdlets should be pretty familiar to you. A lot of the workflow is similar to how you’d manage a virtual machine using the Hyper-V module. Instead of `New-VM`, `Get-VM`, `Start-VM`, `Stop-VM`, you have `New-Container`, `Get-Container`, `Start-Container`, `Stop-Container`.  There are quite a few container-specific cmdlets and parameters, but the general lifecycle and management of a Windows container looks roughly like that of a Hyper-V VM.
 
-## Working with PowerShell Commands for Windows Containers
+#### Working with PowerShell Commands for Windows Containers
 The following walkthrough will demonstrate the basics of creating and managing Windows Server Containers and Container Images with PowerShell.
 
 Before running PowerShell commands make sure that you have started a PowerShell session. In Windows Sever 2016 Core this can be completed by typing `powershell`. You will know that you are in a PowerShell session then the prompt changes from `C:\>` to `PS C:\>` .
@@ -29,21 +29,39 @@ In order to use this image during the container creation process run `Get-Contai
 $baseImage = Get-ContainerImage –Name WindowsServerCore
 ```
 
+When creating a container the name of a Network Switch will also need to be specified. The `Get-VMSwitch` command can be run to return a list of available switches. If desired the switch details can be stored in a PowerShell variable.
 ```powershell
-New-Container -Name "MyContainer" -ContainerImage $baseImage -SwitchName "Virtual Switch"
+$vmswitch = get-VMSwitch –Name ‘Virtual Switch’
 ```
 
+At this point the container image object is stored in the `$baseimage` variable and the VM Switch object is stored in the `$VMSwitch` variable. You can now create a new container from the container image using the `New-Container` command.
+
+```powershell
+New-Container -Name "MyContainer" -ContainerImage $baseImage -SwitchName $vmswitch.Name
+
+Name        State Uptime   ParentImageName
+----        ----- ------   ---------------
+MyContainer Off   00:00:00 WindowsServerCore
+```
+
+To see a list on container on the system and verify that the container was created run the `Get-Container` command. You will see from the output that a new container has been created however is not running. 
 ```powershell
 Get-Container
-```
 
+Name        State Uptime   ParentImageName
+----        ----- ------   ---------------
+MyContainer Off   00:00:00 WindowsServerCore
+```
+Before starting the container run get-container once again however this time place the results into a PowerShell variable. This will come in handy as we begin to work with the container. 
 ```powershell
 $container1 = Get-Container -Name "MyContainer"
 ```
-
+To start the container use the `Start-Container` command.
 ```
 Start-Container -Name "MyContainer"
 ```
+Once the container has been created you can interact with the container using many standard PowerShell remoting commands such as `Invoke-Command`, and `Enter-PSSession`. This example will create a PSSession into the container.
+
 ```powershell
 Enter-PSSession -ContainerId $container1.Id
 ```
