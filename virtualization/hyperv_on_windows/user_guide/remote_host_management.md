@@ -33,6 +33,10 @@ winrm quickconfig
 
 
 
+### Managing a remote host in Windows 8 and Windows 8.1
+
+
+
 ## Manage a Hyper-V host outside your domain (or with no domain) ##
 <!--Assuming this isn't done yet...again needs context.-->
 Local Hyper-V Host:
