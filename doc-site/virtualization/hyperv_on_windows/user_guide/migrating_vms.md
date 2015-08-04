@@ -8,7 +8,7 @@ If you move virtual machines to your Windows 10 host that were originally create
 
 To upgrade the configuration version, shut down the virtual machine and then select to Upgrade Virtual Machine Configuration in Hyper-V Manager.  You can also open an elevated Windows PowerShell command prompt, and type: 
 
- ```powershell
+ ```PowerShell
 Update-VmVersion <vmname> | <vmobject>
 ```
 
