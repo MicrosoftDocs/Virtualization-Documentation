@@ -9,6 +9,14 @@ Hyper-V requires at least 4 GB of RAM but you might need more if you want to run
 
 Starting in Windows 10, Hyper-V requires a 64-bit processor with Second Level Address Translation (SLAT).
 
+## Verify compatability
+
+To verify compatability, open PowerShell or a Windows command prompt (cmd.exe) and type: `systeminfo.exe`.  This will give you information about your computer.
+
+All of the items under **Hyper-V Requirements** must have the value if **Yes**.
+
+![](media\systeminfo.png)
+
 Relevant sections:
 *  `OS Name` -- Must be Windows 8 or higher and either Profession or Enterprise.
 *  `Hyper-V Requirements` -- all of these must be true (value of "Yes") but some can be configured in BIOS.
