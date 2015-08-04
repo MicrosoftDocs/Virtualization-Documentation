@@ -111,7 +111,7 @@ newimage          CN=Demo      1.0.0.0      False
 WindowsServerCore CN=Microsoft 10.0.10254.0 True
 ```
 
-## Step 3 - Create New Container From Image
+## Step 3 - Create Container From Image
 
 Create a new container from the new container image.
 ```powershell
@@ -135,7 +135,7 @@ Ethernet adapter vEthernet (Container-2446380E-6296-4BF2-8146-18DAAFD85FCA-0):
    Subnet Mask . . . . . . . . . . . : 255.255.255.0
    Default Gateway . . . . . . . . . :
 ```
-##Step 4 - Remove Containers and Container Images
+##Step 4 - Remove Containers and Images
 
 To stop all running containers run the following:
 ```powershell
@@ -169,7 +169,7 @@ $container = New-Container -Name webbase -ContainerImage $img -SwitchName $net.N
 Start-Container $container
 ```
 
-##Step 2 - Download and Extract the nginx Software
+##Step 2 - Prepare Web Server Software
 
 The next step in preparing the container to host the web server is to install the web server software. This example will use nginx for Windows. Download and extract the nginx software to <b>c:\build\nginx\source</b>. The software can be downloaded from the following site – [nging for Windows](http://nginx.org/en/download.html). Alternatively use the following commands on the container host to download and extract the nginx software to <b>c:\build\nginx\source</b>.
 
@@ -182,7 +182,7 @@ Exit the PSSession and Stop the container using the following commands.
 exit
 Stop-Container $container
 ``` 
-##Step 3 - Create Web Server Container Image
+##Step 3 - Create Web Server Image
 
 With the container modified to include the nginx web server software you can now create an image from this container.  To do so run the following command:
 ```powershell
@@ -199,7 +199,7 @@ nginxwindows      CN=Demo      1.0.0.0      False
 WindowsServerCore CN=Microsoft 10.0.10254.0 True
 ```
 
-##Deploy Web Server Contianer
+##Step 3 - Deploy Web Server Container
 
 You can now deploy multiple containers based off of this web server image all of which will be prepared to host web content. To deploy a Windows Server Container based off of the nginxwindows image use the `New-Container` PowerShell command.
 
@@ -243,5 +243,5 @@ After the website has been updated navigate back to `http://<IP address>`.
 
 This walkthrough has demonstrated basic use of PowerShell with Windows Server Containers, basic image and container management and finally has demonstrated a simple yet practical use for Windows Server Containers. The lessons learned from this walkthrough should enable you to begin exploring deployment and management of Windows Server Containers using PowerShell.
 
-##Navigation
+####Navigation
 [Back to Container Home](../containers_welcome.md)
