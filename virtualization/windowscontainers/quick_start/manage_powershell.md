@@ -1,13 +1,13 @@
 ms.ContentId: d0a07897-5fd2-41a5-856d-dc8b499c6783
-title: Manage Windows Containers with PowerShell
+title: Manage Windows Server Containers with PowerShell
 
-##Manage Windows Containers with PowerShell
+##Manage Windows Server Containers with PowerShell
 
 You can create, run, and interact with Windows Server Containers using PowerShell cmdlets. Everything you need to get going is available in-box.
 
-> Please Note - Windows Containers created with Docker need to be managed with Docker – [Managing Windows Containers with Docker](./manage_docker.md)
-
 If you’ve used Hyper-V PowerShell, the design of the cmdlets should be pretty familiar to you. A lot of the workflow is similar to how you’d manage a virtual machine using the Hyper-V module. Instead of `New-VM`, `Get-VM`, `Start-VM`, `Stop-VM`, you have `New-Container`, `Get-Container`, `Start-Container`, `Stop-Container`.  There are quite a few container-specific cmdlets and parameters, but the general lifecycle and management of a Windows container looks roughly like that of a Hyper-V VM.
+
+> Please Note - Windows Containers created with Docker need to be managed with Docker – [Managing Windows Containers with Docker](./manage_docker.md)
 
 #### Working with PowerShell Commands for Windows Containers
 The following walkthrough will demonstrate the basics of creating and managing Windows Server Containers and Container Images with PowerShell.
@@ -75,7 +75,7 @@ ipconfig > c:\ipconfig
 
 You can read the contents of the file to ensure the command completed successfully. Notice that the IP address contained in the text file matches that of the container.
 ```
-Type c:\ipconfig.txt
+type c:\ipconfig.txt
 
 Ethernet adapter vEthernet (Virtual Switch-b34f32fcdc63b8632eaeb114c6eb901f8982bc91f38a8b64e6da0de40ec47a07-0):
 
@@ -89,7 +89,7 @@ Ethernet adapter vEthernet (Virtual Switch-b34f32fcdc63b8632eaeb114c6eb901f8982b
 Now that the container has been modified, exit the remote PSSession by typing `Exit` and stop the container using the `Stop-Container` command. Once these commands have completed you will be back in control of the container host.
 
 ```powershell
-Exit
+exit
 
 Stop-Container -Container $container
 ```
@@ -169,9 +169,9 @@ $container = New-Container -Name webbase -ContainerImage $img -SwitchName $net.N
 Start-Container $container
 ```
 
-####Download and Extract the NGinx Software
+####Download and Extract the NGINX Software
 
-The next step in preparing the container to host the web server is to install the web server software. This example will use NGINX for Windows. Download and extract the NGINX software to <b>c:\build\nginx\source</b>. The software can be downloaded from the following site – [NGinx for Windows](http://nginx.org/en/download.html). Alternatively use the following commands on the container host to download and extract the NGinx software to <b>c:\build\nginx\source</b>.
+The next step in preparing the container to host the web server is to install the web server software. This example will use NGINX for Windows. Download and extract the NGINX software to <b>c:\build\nginx\source</b>. The software can be downloaded from the following site – [NGINX for Windows](http://nginx.org/en/download.html). Alternatively use the following commands on the container host to download and extract the NGINX software to <b>c:\build\nginx\source</b>.
 
 ```powershell
 PowerShell.exe Invoke-WebRequest 'http://nginx.org/download/nginx-1.9.3.zip' -OutFile "c:\nginx-1.9.3.zip"
@@ -179,7 +179,7 @@ PowerShell.exe Expand-Archive -Path C:\nginx-1.9.3.zip -DestinationPath c:\ -For
 ```
 Exit the PSSession and Stop the container using the following commands. 
 ```powershell
-Exit
+exit
 Stop-Container $container
 ``` 
 ####Create Web Server Container Image
@@ -220,7 +220,7 @@ Enter-PSSession -ContainerId $webservercontainer.ContainerId -RunAsAdministrator
 
 ```
 
-From inside the container the NGINX webserver can be started and web content staged for consumption. To start the NGinx webserver move to the installation folder and run `start nginx`:
+From inside the container the NGINX web server can be started and web content staged for consumption. To start the NGINX web server move to the installation folder and run `start nginx`:
 ```
 cd c:\nginx-1.9.2\
 start nginx
