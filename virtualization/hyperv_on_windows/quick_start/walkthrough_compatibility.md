@@ -17,10 +17,17 @@ All of the items under **Hyper-V Requirements** must have the value if **Yes**.
 
 ![](media\systeminfo.png)
 
+Relevant sections:
+*  `OS Name` -- Must be Windows 8 or higher and either Profession or Enterprise.
+*  `Hyper-V Requirements` -- all of these must be true (value of "Yes") but some can be configured in BIOS.
+	*  `VM Monitor Mode Extensions` -- Property of the hardware.  Hyper-V can not run on this machine.
+	*  `Virtualization Enabled in Firmware` -- Can be enabled in BIOS
+	*  `Second Level Address Translation` -- Property of the hardware.  Hyper-V can not run on this machine.
+	*  `Data Execution Prevention Available` -- Can be enabled in BIOS
 	
 If Hyper-V is already enabled, the Hyper-V Requirements section will read:  
 ```
-Hyper-V Requirements:      A hypervisor has been detected. Features required for Hyper-V will not be displayed.
+Hyper-V Requirements: A hypervisor has been detected. Features required for Hyper-V will not be displayed.
 ```
 
 ## Next Step: 
