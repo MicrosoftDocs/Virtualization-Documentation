@@ -16,7 +16,7 @@ To add localhost to Hyper-V Manager as a Hyper-V host, select **Local computer**
 ![](media/HyperVManager-ConnectToLocalHost.png)
 
 If a connection can't be established:
-*  Make sure the Hyper-V server role is enabled.  See the [walkthrough section for checking compatability](../user_guide/walkthrough_compatability.md).
+*  Make sure the Hyper-V server role is enabled.  See the [walkthrough section for checking compatability](../quick_start/walkthrough_compatibility.md).
 *  Confirm that your user account is part of the Hyper-V Administrator group.
 
 
@@ -49,7 +49,7 @@ To specify credentials for the remote Hyper-V host, select **Connect as another 
 
 ![](media/HyperVManager-ConnectToRemoteHostAltCreds.png)
 
-> Note:  It's very easy to forget to set the user and click OK with user `<none>`.  If your connection fails, make sure you actually did set the user.
+> Note:  It's very easy to forget to set the user and click OK with user not specified.  If your connection fails, make sure you actually did set the user.
 
 ### Connect to the remote host using IP address
 Sometimes it's easier to connect using IP address rather than host name.  Windows 10 allows your to do just that.
