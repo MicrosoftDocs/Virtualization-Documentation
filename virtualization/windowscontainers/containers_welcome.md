@@ -21,9 +21,7 @@ The following table list topics that will provide more information about Windows
               	<p>The following articles provide an introduction and overview of Windows Containers.</p>
 			<ul>
 				<li class="unordered">[About Windows Containers](./about/about_overview.md)<br /><br /></li>
-                <li class="unordered">[When to use containers](./about/when_containers.md)<br /><br /></li>
                 <li class="unordered">[Windows Server Container Ecosystem](./about/container_ecosystem.md)<br /><br /></li>
-				<li class="unordered">[Release Notes](./about/release_notes.md)<br /><br /></li>
 				<li class="unordered">[Frequently Asked Questions](./about/faq.md)<br /><br /></li>
 			</ul>	
 		</td>

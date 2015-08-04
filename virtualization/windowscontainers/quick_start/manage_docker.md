@@ -87,7 +87,7 @@ windowsservercore   latest              9eca9231f4d4        30 hours ago        
 windowsservercore   10.0.10254.0        9eca9231f4d4        30 hours ago        9.613 GB
 ```
 
-##Step 3 - Create New Container From Image
+##Step 3 - Create Container From Image
 
 Now that you have a custom container image, deploy a new container from this image and open an interactive session into the container. This can be done by running `docker run –it <new container image name or id> cmd`.
 ```
@@ -105,7 +105,7 @@ exit
 
 This exercise has shown that an image taken from a modified container will include all modifications. While the example here was a simple file modification, the same would apply if you were to install software into the container such as a web server. Using these methods, custom images can be created that will deploy application ready containers.
 
-##Step 4 - Remove Containers and Container Images
+##Step 4 - Remove Containers and Images
 
 To wrap up this introduction to managing Windows Server Containers with Docker you will see how to remove Windows Server Containers and Windows Server Container Images using Docker commands.
 
@@ -130,7 +130,7 @@ This next example will walk through a more practical use case for a Windows Serv
 - Create an new image from the modified container.  
 - Deploy a web server ready container and host a simple website in the container.<br />   
 
-##Step 1 - Download and Extract the nginx Software
+##Step 1 - Prepare Web Server Software
 
 Before creating a container image a few items need be staged on the container host. On the container host create folders in the following structure:
 ```
@@ -142,7 +142,7 @@ Download and extract the nginx software to c:\build\nginx\source on the containe
 powerShell.exe Invoke-WebRequest 'http://nginx.org/download/nginx-1.9.3.zip' -OutFile "c:\nginx-1.9.3.zip"
 PowerShell.exe Expand-Archive -Path C:\nginx-1.9.3.zip -DestinationPath c:\build\nginx\source -Force
 ```
-##Step 2 - Create Image with a Dockerfile
+##Step 2 - Create Web Server Image
 In the previous example a container was created, manually modified, and then manually captured. This example will demonstrate an automated method for creating images using what is called a Dockerfile. Dockerfiles contain instructions that the Docker engine will use to build a container, make modifications to the container and then commit to a container image. For more information on dockerfiles see the documentation on the Docker site -  [Dockerfile reference](https://docs.docker.com/reference/builder/).
 
 Create a file named dockerfile and open it with your favorite text editor. It is important that this file have no file extension.
@@ -204,5 +204,5 @@ After the website has been updated navigate back to `http://<ipaddress>`.
 
 This walkthrough has demonstrated basic use of Docker command with Windows Server Containers, basic image and container management and finally has demonstrated a simple yet practical use for Windows Server Containers. The lessons learned from this walkthrough should enable you to begin exploring deployment and management of Windows Server Containers using the Docker toolset.
 
- ##Navigation
+ ####Navigation
 [Back to Container Home](../containers_welcome.md)
