@@ -87,7 +87,7 @@ windowsservercore   latest              9eca9231f4d4        30 hours ago        
 windowsservercore   10.0.10254.0        9eca9231f4d4        30 hours ago        9.613 GB
 ```
 
-## Step 3 - Create New Container From Image
+##Step 3 - Create New Container From Image
 
 Now that you have a custom container image, deploy a new container from this image and open an interactive session into the container. This can be done by running `docker run –it <new container image name or id> cmd`.
 ```
@@ -130,19 +130,19 @@ This next example will walk through a more practical use case for a Windows Serv
 - Create an new image from the modified container.  
 - Deploy a web server ready container and host a simple website in the container.<br />   
 
-##Step 1 - Download and Extract the NGINX Software
+##Step 1 - Download and Extract the nginx Software
 
 Before creating a container image a few items need be staged on the container host. On the container host create folders in the following structure:
 ```
 c:\build\nginx\source
 ```
 
-Download and extract the NGINX software to c:\build\nginx\source on the container host. The software can be downloaded from the following site – [NGinx for Windows](http://nginx.org/en/download.html). Alternatively use the following commands on the container host to download and extract the NGinx software to c:\build\nginx\source.
+Download and extract the nginx software to c:\build\nginx\source on the container host. The software can be downloaded from the following site – [nginx for Windows](http://nginx.org/en/download.html). Alternatively use the following commands on the container host to download and extract the nginx software to c:\build\nginx\source.
 ```powershell
 powerShell.exe Invoke-WebRequest 'http://nginx.org/download/nginx-1.9.3.zip' -OutFile "c:\nginx-1.9.3.zip"
 PowerShell.exe Expand-Archive -Path C:\nginx-1.9.3.zip -DestinationPath c:\build\nginx\source -Force
 ```
-##Step 2 - Prepare Image with a Dockerfile
+##Step 2 - Create Image with a Dockerfile
 In the previous example a container was created, manually modified, and then manually captured. This example will demonstrate an automated method for creating images using what is called a Dockerfile. Dockerfiles contain instructions that the Docker engine will use to build a container, make modifications to the container and then commit to a container image. For more information on dockerfiles see the documentation on the Docker site -  [Dockerfile reference](https://docs.docker.com/reference/builder/).
 
 Create a file named dockerfile and open it with your favorite text editor. It is important that this file have no file extension.
@@ -150,11 +150,11 @@ Create a file named dockerfile and open it with your favorite text editor. It is
 Enter the following text into the dockerfile and save the file to <b>c:\build\nginx</b> on the container host.
 ```
 FROM windowsservercore
-LABEL Description="NGINX For Windows" Vendor="NGINX" Version="1.9.3"
+LABEL Description="nginx For Windows" Vendor="nginx" Version="1.9.3"
 ADD source /nginx
 ```
 
-At this point the dockerfile will be in <b>c:\build\nginx</b> and the NGINX software extracted to <b>c:\build\nginx\source</b>. You are now ready to build the web server image based on the instructions in the dockerfile. To do so run the following command on the container host. 
+At this point the dockerfile will be in <b>c:\build\nginx</b> and the nginx software extracted to <b>c:\build\nginx\source</b>. You are now ready to build the web server image based on the instructions in the dockerfile. To do so run the following command on the container host. 
 ```
 docker build -t nginx_windows c:\build\nginx
 ```
@@ -181,17 +181,17 @@ With a web server image created you can now deploy multiple containers based off
 docker run -it nginx_windows cmd
 ```
 
-From inside the container the NGINX web server can be started and web content staged for consumption. To start the NGINX web server move to the installation folder and run `start nginx`:
+From inside the container the nginx web server can be started and web content staged for consumption. To start the nginx web server move to the installation folder and run `start nginx`:
 ```
 cd c:\nginx\nginx-1.9.2
 start nginx
 ```
 
-When the NGINX software is running, get the IP address of the container using `ipconfig`, open up a web browser and browse to `http//<ipaddress>`. If everything has been correctly configured you will see the NGINX welcome page.
+When the nginx software is running, get the IP address of the container using `ipconfig`, open up a web browser and browse to `http//<ipaddress>`. If everything has been correctly configured you will see the nginx welcome page.
 
 ![](media/nginx.png)
 
-At this point feel free to update the website, copy in your own sample website or run the following command to replace the NGINX welcome page with a ‘Hello World’ web page.
+At this point feel free to update the website, copy in your own sample website or run the following command to replace the nginx welcome page with a ‘Hello World’ web page.
 
 ```powershell
 powershell Invoke-WebRequest 'https://raw.githubusercontent.com/neilpeterson/index/master/index.html' -OutFile "C:\nginx\nginx-1.9.3\html\index.html"
