@@ -1,7 +1,7 @@
 ms.ContentId: 347fa279-d588-4094-90ec-8c2fc241f5b6
-title: Manage Windows Containers with Docker
+title: Manage Windows Server Containers with Docker
 
-##Manage Windows Containers with Docker
+##Manage Windows Server Containers with Docker
 
 Windows Server Containers can be managed with native Docker commands. While Windows Server Containers are comparable to their Linux counterparts and the management experience with Docker is almost identical, not all Docker commands will be used with Windows Server Containers.
 
@@ -33,7 +33,7 @@ Once this command completes you will be working in an interactive session from w
 
 Next make some simple modifications to the container, for example the following command will create a file that contains the output of ipconfig.
 ```
-Ipconfig > c:\ipconfig.txt
+ipconfig > c:\ipconfig.txt
 ```
 
 You can read the contents of the file to ensure the command completed successfully. Notice that the IP address contained in the text file matches that of the container.
@@ -79,7 +79,7 @@ docker commit 9fb031beb602 newcontainerimage
 
 To see all images on the host type `docker images`. Notice that a new image has been created with the name that was specified during the container commit.
 ```
-Docker images
+docker images
 
 REPOSITORY          TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
 newcontainerimage   latest              4f8ebcf0a334        2 minutes ago       9.613 GB
@@ -91,7 +91,7 @@ windowsservercore   10.0.10254.0        9eca9231f4d4        30 hours ago        
 
 Now that you have a custom container image, deploy a new container from this image and open an interactive session into the container. This can be done by running `docker run –it <new container image name or id> cmd`.
 ```
-Docker run –it newcontainerimage cmd
+docker run –it newcontainerimage cmd
 ```
 
 Take a look at the c:\ drive of this new container and notice that the ipconfig.txt file is present.
@@ -100,7 +100,7 @@ Take a look at the c:\ drive of this new container and notice that the ipconfig.
 
 Exit the newly created container by running `exit`, Once completed you will be back in the host session.
 ```
-Exit
+exit
 ```
 
 This exercise has shown that an image taken from a modified container will include all modifications. While the example here was a simple file modification, the same would apply if you were to install software into the container such as a web server. Using these methods, custom images can be created that will deploy application ready containers.
@@ -130,16 +130,16 @@ This next example will walk through a more practical use case for a Windows Serv
 - Create an new image from the modified container.  
 - Deploy a web server ready container and host a simple website in the container.<br />   
 
-####Download and Extract the NGinx Software
+####Download and Extract the NGINX Software
 
 Before creating a container image a few items need be staged on the container host. On the container host create folders in the following structure:
 ```
 c:\build\nginx\source
 ```
 
-Download and extract the NGINX software to <b>c:\build\nginx\source</b>. The software can be downloaded from the following site – [NGinx for Windows](http://nginx.org/en/download.html). Alternatively use the following commands on the container host to download and extract the NGinx software to <b>c:\build\nginx\source</b>.
+Download and extract the NGINX software to c:\build\nginx\source on the container host. The software can be downloaded from the following site – [NGinx for Windows](http://nginx.org/en/download.html). Alternatively use the following commands on the container host to download and extract the NGinx software to c:\build\nginx\source.
 ```powershell
-PowerShell.exe Invoke-WebRequest 'http://nginx.org/download/nginx-1.9.3.zip' -OutFile "c:\nginx-1.9.3.zip"
+powerShell.exe Invoke-WebRequest 'http://nginx.org/download/nginx-1.9.3.zip' -OutFile "c:\nginx-1.9.3.zip"
 PowerShell.exe Expand-Archive -Path C:\nginx-1.9.3.zip -DestinationPath c:\build\nginx\source -Force
 ```
 ####Prepare the dockerfile
@@ -156,7 +156,7 @@ ADD source /nginx
 
 At this point the dockerfile will be in <b>c:\build\nginx</b> and the NGINX software extracted to <b>c:\build\nginx\source</b>. You are now ready to build the web server image based on the instructions in the dockerfile. To do so run the following command on the container host. 
 ```
-Docker build -t nginx_windows c:\build\nginx
+docker build -t nginx_windows c:\build\nginx
 ```
 
 The output will look similar to this:
@@ -181,22 +181,22 @@ With a web server image created you can now deploy multiple containers based off
 docker run -it nginx_windows cmd
 ```
 
-From inside the container the NGINX webserver can be started and web content staged for consumption. To start the NGinx webserver move to the installation folder and run `start nginx`:
+From inside the container the NGINX web server can be started and web content staged for consumption. To start the NGINX web server move to the installation folder and run `start nginx`:
 ```
 cd c:\nginx\nginx-1.9.2
 start nginx
 ```
 
-Once the NGINX software is running, get the IP address of the container using `ipconfig`, open up a web browser and browse to `http//<ip address>`. If everything has been correctly configured you will see the NGINX welcome page.
+Once the NGINX software is running, get the IP address of the container using `ipconfig`, open up a web browser and browse to `http//<ipaddress>`. If everything has been correctly configured you will see the NGINX welcome page.
 
 ![](media/nginx.png)
 
 At this point feel free to update the website, copy in your own sample website or run the following command to replace the NGINX welcome page with a ‘Hello World’ web page.
 
 ```powershell
-Powershell Invoke-WebRequest 'https://raw.githubusercontent.com/neilpeterson/index/master/index.html' -OutFile "C:\nginx\nginx-1.9.3\html\index.html"
+powershell Invoke-WebRequest 'https://raw.githubusercontent.com/neilpeterson/index/master/index.html' -OutFile "C:\nginx\nginx-1.9.3\html\index.html"
 ```
-After the website has been updated navigate back to `http://<IP address>`.
+After the website has been updated navigate back to `http://<ipaddress>`.
 
 ![](media/hello.png)
 
