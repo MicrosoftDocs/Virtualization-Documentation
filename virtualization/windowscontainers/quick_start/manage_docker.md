@@ -128,7 +128,7 @@ This next example will walk through a more practical use case for a Windows Serv
 - Create a container from the Windows Server Core base image.  
 - Deploy web server software into the container.  
 - Create an new image from the modified container.  
-- Deploy a web server ready container and host a simple website in the container.<br />   
+- Deploy a web server ready container and host a simple website in the container.
 
 ##Step 1 - Prepare Web Server Software
 
@@ -187,7 +187,7 @@ cd c:\nginx\nginx-1.9.2
 start nginx
 ```
 
-When the nginx software is running, get the IP address of the container using `ipconfig`, open up a web browser and browse to `http//<ipaddress>`. If everything has been correctly configured you will see the nginx welcome page.
+When the nginx software is running, get the IP address of the container using `ipconfig` and on a different machine open up a web browser and browse to `http//<ip address>`. If everything has been correctly configured you will see the nginx welcome page.
 
 ![](media/nginx.png)
 
