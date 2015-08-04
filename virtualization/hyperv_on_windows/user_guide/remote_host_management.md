@@ -49,7 +49,7 @@ To specify credentials for the remote Hyper-V host, select **Connect as another 
 
 ![](media/HyperVManager-ConnectToRemoteHostAltCreds.png)
 
-> Note:  It's very easy to forget to set the user and click OK with user <none>.  If your connection fails, make sure you actually did set the user.
+> Note:  It's very easy to forget to set the user and click OK with user `<none>`.  If your connection fails, make sure you actually did set the user.
 
 ### Connect to the remote host using IP address
 Sometimes it's easier to connect using IP address rather than host name.  Windows 10 allows your to do just that.
