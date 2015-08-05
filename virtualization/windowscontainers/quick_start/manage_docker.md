@@ -9,7 +9,7 @@ Windows Server Containers can be managed with native Docker commands. While Wind
 
 The following exercise will walk though some basic Windows Server Container management actions using Docker commands. The goal here is to become comfortable creating, managing and removing Windows Server Container Images and Windows Server Containers with Docker.
 
-Please Note – Windows Server Container created with PowerShell need to be managed with PowerShell. Checkout the PowerShell quick start documentation here – [Managing Windows Server Container with PowerShell](./manage_powershell.md).
+> Please Note – Windows Server Container created with PowerShell need to be managed with PowerShell. Checkout the PowerShell quick start documentation here – [Managing Windows Server Container with PowerShell](./manage_powershell.md).
 
 ##Step 1 - Create a Container
 
@@ -58,6 +58,7 @@ Exit
 Notice that on the container host the ipconfig.txt file it is not present. This file was created in the container and will not exist on the host.
 ```
 C:\Windows\system32>type c:\ipconfig.txt
+
 The system cannot find the file specified.
 ```
 

@@ -122,8 +122,10 @@ $newcontainer = New-Container -Name "newcontainer" -ContainerImageName newimage 
 ```
 Start the new container and create a PSSession into the new container.
 ```powershell
+#Start Container
 Start-Container $newcontainer
 
+#Create PowerShell connection into container.
 Enter-PSSession -ContainerId $newcontainer.ContainerId -RunAsAdministrator
 ```
 
@@ -174,12 +176,10 @@ This next example will walk through a more practical use case for a Windows Serv
 
 To prepare for the creation of a web server container image, deploy and start a container from the Windows Server Core base image.
 ```powershell
-$img = Get-ContainerImage -Name WindowsServerCore
+#Create container.
+$container = New-Container -Name webbase -ContainerImageName WindowsServerCore -SwitchName "Virtual Switch"
 
-$net = Get-VMSwitch -Name “Virtual Switch”
-
-$container = New-Container -Name webbase -ContainerImage $img -SwitchName $net.Name
-
+#Start Container
 Start-Container $container
 ```
 
@@ -230,8 +230,10 @@ $webservercontainer = New-Container -Name webserver1 -ContainerImageName nginxwi
 Start the new container and create a PSSesson into the container.
 
 ```powershell
+#Start Container.
 Start-Container $webservercontainer
 
+#Create PowerShell connection into container.
 Enter-PSSession -ContainerId $webservercontainer.ContainerId -RunAsAdministrator
 ```
 
