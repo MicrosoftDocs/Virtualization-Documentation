@@ -40,6 +40,7 @@ ipconfig > c:\ipconfig.txt
 ```
 
 You can read the contents of the file to ensure the command completed successfully. Notice that the IP address contained in the text file matches that of the container.
+
 ```
 Type c:\ipconfig.txt
 
@@ -50,7 +51,6 @@ Ethernet adapter vEthernet (Virtual Switch-b34f32fcdc63b8632eaeb114c6eb901f8982b
    IPv4 Address. . . . . . . . . . . : 192.168.1.55
    Subnet Mask . . . . . . . . . . . : 255.255.255.0
    Default Gateway . . . . . . . . . :
-
 ```
 
 Exit the container by typing <b>exit</b>. This will stop the console session, stop the container, and place you back in the command session of the host.
@@ -67,7 +67,7 @@ The system cannot find the file specified.
 
 ##Step 2 - Create a Container Image
 
-Now that a container has been created and modified, an image can be made from this container that will include all changes made to the container. This image will behave like a snapshot of the container and can be re-deployed many times, each time creating a new container. To see a list of containers that have been created on the host run <b>docker ps –a`</b>. This will return all running and stopped containers. Take note of the Container name or id, these will be used when managing the new container.
+Now that a container has been created and modified, an image can be made from this container that will include all changes made to the container. This image will behave like a snapshot of the container and can be re-deployed many times, each time creating a new container. To see a list of containers that have been created on the host run <b>docker ps –a</b>. This will return all running and stopped containers. Take note of the Container name or id, these will be used when managing the new container.
 
 ```
 docker ps –a
