@@ -81,16 +81,26 @@ HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Virtualization\G
 ### Step 3 - Create a simple guest-side service
 
 ## More information about AF_HYPERV
-Since Hyper-V sockets do not depend on a networking stack, TCP/IP, DNS, etc. the socket end point needed a non-IP, not hostname, format that still describes the connection.  In lieu of an IP or hostname, AF_HYPERV endpoints rely heavily on two GUIDS:
-•	VM ID – this is the unique ID assigned per VM.  A VM’s ID can be found using the following PowerShell snippet.
-`(Get-VM -Name vmname).Id` 
-
-•	Service ID – GUID under which the service is registered in the Hyper-V host registry.  See [Registering a New Service](#GettingStarted).
+Since Hyper-V sockets do not depend on a networking stack, TCP/IP, DNS, etc. the socket end point needed a non-IP, not hostname, format that still describes the connection.  In lieu of an IP or hostname, AF_HYPERV endpoints rely heavily on two GUIDS:  
+* VM ID – this is the unique ID assigned per VM.  A VM’s ID can be found using the following PowerShell snippet.
+```PowerShell
+(Get-VM -Name vmname).Id
+```
+* Service ID – GUID under which the service is registered in the Hyper-V host registry.  See [Registering a New Service](#GettingStarted).
 
 For connections from a service on the host to the service on a VM:  
 VMID and Service ID
 For connections from a service on a VM to the service on the host:  
 Zero GUID and Service ID
+
+## Supported socket commands
+
+Socket()
+Bind()
+Connect ()
+Send()
+Listen()
+Accept()
 
 
  
