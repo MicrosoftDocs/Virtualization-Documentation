@@ -16,7 +16,7 @@ The following exercise walks though some basic Windows Server Container manageme
 
 ##Step 1 - Create a Container
 
-The Windows Server Container host will come pre-loaded with a base container image. To see this image run **docker Images** 
+The Windows Server Container host will come pre-loaded with a base container image. To see this image run docker Images 
 ```
 docker images
 
@@ -32,7 +32,7 @@ docker run -it --name dockerdemo windowsservercore cmd
 ```
 ![](media/docker4.png)
 
-Working in the container is almost identical to working in Windows installed on a virtual or physical machine. You can run commands such as **ipconfig** to return the IP address of the container, **mkdir** to create a new directory, or **powershell** to start a PowerShell session.
+Working in the container is almost identical to working in Windows installed on a virtual or physical machine. You can run commands such as ipconfig to return the IP address of the container, mkdir to create a new directory, or powershell to start a PowerShell session.
 
 Next, make some simple changes to the container. For example, the following command creates a file that contains the output of ipconfig.
 ```
@@ -53,7 +53,7 @@ Ethernet adapter vEthernet (Virtual Switch-b34f32fcdc63b8632eaeb114c6eb901f8982b
    Default Gateway . . . . . . . . . :
 ```
 
-Exit the container by typing **exit**. This will stop the console session, stop the container, and place you back in the command session of the host.
+Exit the container by typing exit. This will stop the console session, stop the container, and place you back in the command session of the host.
 ```
 exit
 ```
@@ -67,7 +67,7 @@ The system cannot find the file specified.
 
 ##Step 2 - Create a Container Image
 
-Now that a container has been created and modified, an image can be made from this container that will include all changes made to the container. This image will behave like a snapshot of the container and can be re-deployed many times, each time creating a new container. To see a list of containers that have been created on the host run **docker ps –a**. This will return all running and stopped containers. Take note of the Container name or id, these will be used when managing the new container.
+Now that a container has been created and modified, an image can be made from this container that will include all changes made to the container. This image will behave like a snapshot of the container and can be re-deployed many times, each time creating a new container. To see a list of containers that have been created on the host run docker ps –a. This will return all running and stopped containers. Take note of the Container name or id, these will be used when managing the new container.
 
 ```
 docker ps –a
@@ -76,14 +76,14 @@ CONTAINER ID        IMAGE               COMMAND             CREATED             
 4f496dbb8048        windowsservercore   "cmd"               2 minutes ago       Exited (0) 2 minutes ago             dockerdemo
 ```
 
-To create a new image from a specific container use **Docker commit containerid newcontainerimage**. This will create a new container image on the container host.
+To create a new image from a specific container use Docker commit containerid newcontainerimage. This will create a new container image on the container host.
 
 ```
 docker commit dockerdemo newcontainerimage
 4f8ebcf0a334601e75070a92294d993b0f182abb6f4c88740c75b05093e6acff	
 ```
 
-To see all images on the host, type **docker images**. Notice that a new image is created with the name that was specified during the container commit.
+To see all images on the host, type docker images. Notice that a new image is created with the name that was specified during the container commit.
 
 ```
 docker images
@@ -96,7 +96,7 @@ windowsservercore   10.0.10254.0        9eca9231f4d4        30 hours ago        
 
 ##Step 3 - Create Container From Image
 
-Now that you have a custom container image, deploy a new container from this image and open an interactive session into the container. This do this, run **docker run –it new container image name or id cmd**.
+Now that you have a custom container image, deploy a new container from this image and open an interactive session into the container. This do this, run docker run –it new container image name or id cmd.
 ```
 docker run –it newcontainerimage cmd
 ```
@@ -105,7 +105,7 @@ Take a look at the c:\ drive of this new container and notice that the ipconfig.
 
 ![](media/docker3.png)
 
-Exit the newly created container by running **exit**. When completed, you will be back in the host session.
+Exit the newly created container by running exit. When completed, you will be back in the host session.
 ```
 exit
 ```
@@ -114,7 +114,7 @@ This exercise has shown that an image taken from a modified container will inclu
 
 ##Step 4 - Remove Containers and Images
 
-To remove a container after it is no longer needed you will need the name or id of the container which can be found with the **docker ps –a** command. 
+To remove a container after it is no longer needed you will need the name or id of the container which can be found with the docker ps –a command. 
 
 ```
 docker ps -a
@@ -122,14 +122,14 @@ docker ps -a
 CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS                     NAMES
 9e613d3ebf9e        windowsservercore   "cmd"               5 minutes ago       Exited (0) 5 minutes ago   elegant_engelbart
 ```
-Run **docker rm container name or id** to remove the container.
+Run docker rm container name or id to remove the container.
 
-To remove containers after they are no longer needed,  run **docker rm container name or ID**:
+To remove containers after they are no longer needed,  run docker rm container name or ID:
 d61216e868e201c57a09288f96b8278a7d5a4818
 ```
 docker rm elegant_engelbart
 ```
-To remove container images when they are no longer needed run **docker rmi <image name or ID>** You can't remove an image if it is referenced by an existing container.
+To remove container images when they are no longer needed run docker rmi <image name or ID> You can't remove an image if it is referenced by an existing container.
 ```
 docker rmi newcontainerimage
 
@@ -181,7 +181,7 @@ The output will look similar to this:
 
 ![](media/docker1.png)
 
-When completed, take a look at all images on the host using the **docker images** command. You should notice a new image. Take note of the name or ID for the new image so you can to deploy a container from this image.
+When completed, take a look at all images on the host using the docker images command. You should notice a new image. Take note of the name or ID for the new image so you can to deploy a container from this image.
 ```
 docker images
 
@@ -194,18 +194,18 @@ windowsservercore   latest              9eca9231f4d4        35 hours ago        
 
 ##Step 3 - Deploy Web Server Container
 
-With a web server image created, you can now deploy multiple containers based off of this image. To deploy a Windows Server Container based off of the nginx_windows image use the **Docker Run** command as seen below. When the command completes you will be in an interactive session on the container.
+With a web server image created, you can now deploy multiple containers based off of this image. To deploy a Windows Server Container based off of the nginx_windows image use the Docker Run command as seen below. When the command completes you will be in an interactive session on the container.
 ```
 docker run -it nginx_windows cmd
 ```
 
-From inside the container the nginx web server can be started and web content staged for consumption. To start the nginx web server move to the installation folder and run **start nginx**:
+From inside the container the nginx web server can be started and web content staged for consumption. To start the nginx web server move to the installation folder and run start nginx:
 ```
 cd c:\nginx\nginx-1.9.2
 start nginx
 ```
 
-When the nginx software is running, get the IP address of the container using **ipconfig** and on a different machine open up a web browser and browse to **http://ipaddress**. If everything has been correctly configured you will see the nginx welcome page.
+When the nginx software is running, get the IP address of the container using ipconfig and on a different machine open up a web browser and browse to http://ipaddress. If everything has been correctly configured you will see the nginx welcome page.
 
 ![](media/nginx.png)
 
@@ -214,7 +214,7 @@ At this point feel free to update the website, copy in your own sample website o
 ```powershell
 powershell Invoke-WebRequest 'https://raw.githubusercontent.com/neilpeterson/index/master/index.html' -OutFile "C:\nginx\nginx-1.9.3\html\index.html"
 ```
-After the website has been updated navigate back to **http://ipaddress**
+After the website has been updated navigate back to http://ipaddress
 
 ![](media/hello.png)
 
