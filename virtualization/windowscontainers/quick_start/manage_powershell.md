@@ -242,7 +242,7 @@ cd c:\nginx-1.9.3\
 start nginx
 ```
 
-When the nginx software is running, get the IP address of the container using **ipconfig**. On a different machine, open up a web browser and browse to **http//<ip address>**. If everything has been correctly configured, you will see the nginx welcome page.
+When the nginx software is running, get the IP address of the container using **ipconfig**. On a different machine, open up a web browser and browse to **http//ipaddress**. If everything has been correctly configured, you will see the nginx welcome page.
 
 ![](media/nginx.png)
 
@@ -251,7 +251,7 @@ At this point, feel free to update the website. Copy in your own sample website,
 ```powershell
 Invoke-WebRequest 'https://raw.githubusercontent.com/neilpeterson/index/master/index.html' -OutFile "C:\nginx-1.9.3\html\index.html"
 ```
-After the website has been updated, navigate back to `http://<ip address>`.
+After the website has been updated, navigate back to **http://ipaddress**.
 
 ![](media/hello.png)
 
