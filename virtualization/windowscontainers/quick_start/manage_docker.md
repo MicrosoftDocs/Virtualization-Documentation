@@ -26,7 +26,7 @@ windowsservercore   10.0.10254.0        9eca9231f4d4        30 hours ago        
 
 ```
 
-To create a new container and open an console session into the container run <b>docker run –it <image name / id> cmd</b>.
+To create a new container and open an console session into the container run:
 ```
 docker run -it --name dockerdemo windowsservercore cmd
 ```
@@ -163,7 +163,7 @@ In the previous example, you created, updated and captured a container. This exa
 
 Create a file named dockerfile and open it with your favorite text editor. It is important that this file have no file extension.
 
-Enter the following text into the dockerfile and save the file to c:\build\nginx on the container host.
+Enter the following text into the dockerfile and save the file to <b>c:\build\nginx</b> on the container host.
 ```
 FROM windowsservercore
 LABEL Description="nginx For Windows" Vendor="nginx" Version="1.9.3"
