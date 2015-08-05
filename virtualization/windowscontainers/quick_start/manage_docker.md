@@ -17,24 +17,27 @@ The following exercise walks though some basic Windows Server Container manageme
 ##Step 1 - Create a Container
 
 The Windows Server Container host will come pre-loaded with a base container image. To see this image run docker Images 
+
 ```
 docker images
 
 REPOSITORY          TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
 windowsservercore   latest              9eca9231f4d4        30 hours ago        9.613 GB
 windowsservercore   10.0.10254.0        9eca9231f4d4        30 hours ago        9.613 GB
-
 ```
 
 To create a new container and open an console session into the container run:
+
 ```
 docker run -it --name dockerdemo windowsservercore cmd
 ```
+
 ![](media/docker4.png)
 
 Working in the container is almost identical to working in Windows installed on a virtual or physical machine. You can run commands such as ipconfig to return the IP address of the container, mkdir to create a new directory, or powershell to start a PowerShell session.
 
 Next, make some simple changes to the container. For example, the following command creates a file that contains the output of ipconfig.
+
 ```
 ipconfig > c:\ipconfig.txt
 ```
@@ -54,11 +57,13 @@ Ethernet adapter vEthernet (Virtual Switch-b34f32fcdc63b8632eaeb114c6eb901f8982b
 ```
 
 Exit the container by typing exit. This will stop the console session, stop the container, and place you back in the command session of the host.
+
 ```
 exit
 ```
 
 Notice that on the container host the ipconfig.txt file it is not present. This file was created in the container and will not exist on the host.
+
 ```
 type c:\ipconfig.txt
 
@@ -67,7 +72,7 @@ The system cannot find the file specified.
 
 ##Step 2 - Create a Container Image
 
-Now that a container has been created and modified, an image can be made from this container that will include all changes made to the container. This image will behave like a snapshot of the container and can be re-deployed many times, each time creating a new container. To see a list of containers that have been created on the host run docker ps –a. This will return all running and stopped containers. Take note of the Container name or containerid, these will be used when managing the new container.
+Now that a container has been created and modified, an image can be made from this container that will include all changes made to the container. This image will behave like a snapshot of the container and can be re-deployed many times, each time creating a new container. To see a list of containers that have been created on the host run docker ps –a. This will return all running and stopped containers. Take note of the Container name or id, these will be used when managing the new container.
 
 ```
 docker ps –a
@@ -97,6 +102,7 @@ windowsservercore   10.0.10254.0        9eca9231f4d4        30 hours ago        
 ##Step 3 - Create Container From Image
 
 Now that you have a custom container image, deploy a new container from this image and open an interactive session into the container. This do this, run docker run –it new container image name or id cmd.
+
 ```
 docker run –it newcontainerimage cmd
 ```
@@ -106,6 +112,7 @@ Take a look at the c:\ drive of this new container and notice that the ipconfig.
 ![](media/docker3.png)
 
 Exit the newly created container by running exit. When completed, you will be back in the host session.
+
 ```
 exit
 ```
@@ -124,8 +131,6 @@ CONTAINER ID        IMAGE               COMMAND             CREATED             
 ```
 Run docker rm container name or id to remove the container.
 
-To remove containers after they are no longer needed,  run docker rm container name or ID:
-d61216e868e201c57a09288f96b8278a7d5a4818
 ```
 docker rm elegant_engelbart
 ```
@@ -154,6 +159,7 @@ mkdir c:\build\nginx\source
 ```
 
 Download and extract the nginx software to c:\build\nginx\source on the container host. The software can be downloaded from [nginx for Windows](http://nginx.org/en/download.html). Or use the following commands on the container host to download and extract the nginx software to c:\build\nginx\source.
+
 ```powershell
 powerShell.exe Invoke-WebRequest 'http://nginx.org/download/nginx-1.9.3.zip' -OutFile "c:\nginx-1.9.3.zip"
 PowerShell.exe Expand-Archive -Path C:\nginx-1.9.3.zip -DestinationPath c:\build\nginx\source -Force
