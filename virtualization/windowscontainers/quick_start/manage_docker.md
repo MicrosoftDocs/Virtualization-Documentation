@@ -96,7 +96,7 @@ windowsservercore   10.0.10254.0        9eca9231f4d4        30 hours ago        
 
 ##Step 3 - Create Container From Image
 
-Now that you have a custom container image, deploy a new container from this image and open an interactive session into the container. This do this, run **docker run –it <new container image name or id> cmd**.
+Now that you have a custom container image, deploy a new container from this image and open an interactive session into the container. This do this, run **docker run –it new container image name or id cmd**.
 ```
 docker run –it newcontainerimage cmd
 ```
@@ -129,7 +129,7 @@ d61216e868e201c57a09288f96b8278a7d5a4818
 ```
 docker rm elegant_engelbart
 ```
-To remove container images when they are no longer needed run **docker rmi <image name or ID>`** You can't remove an image if it is referenced by an existing container.
+To remove container images when they are no longer needed run **docker rmi <image name or ID>** You can't remove an image if it is referenced by an existing container.
 ```
 docker rmi newcontainerimage
 
@@ -163,7 +163,7 @@ In the previous example, you created, updated and captured a container. This exa
 
 Create a file named dockerfile and open it with your favorite text editor. It is important that this file have no file extension.
 
-Enter the following text into the dockerfile and save the file to <b>c:\build\nginx</b> on the container host.
+Enter the following text into the dockerfile and save the file to c:\build\nginx on the container host.
 ```
 FROM windowsservercore
 LABEL Description="nginx For Windows" Vendor="nginx" Version="1.9.3"
