@@ -42,7 +42,7 @@ ipconfig > c:\ipconfig.txt
 You can read the contents of the file to ensure the command completed successfully. Notice that the IP address contained in the text file matches that of the container.
 
 ```
-Type c:\ipconfig.txt
+Type 'c:\ipconfig.txt'
 
 Ethernet adapter vEthernet (Virtual Switch-b34f32fcdc63b8632eaeb114c6eb901f8982bc91f38a8b64e6da0de40ec47a07-0):
 
@@ -163,7 +163,7 @@ In the previous example, you created, updated and captured a container. This exa
 
 Create a file named dockerfile and open it with your favorite text editor. It is important that this file have no file extension.
 
-Enter the following text into the dockerfile and save the file to <b>c:\build\nginx</b> on the container host.
+Enter the following text into the dockerfile and save the file to 'c:\build\nginx' on the container host.
 ```
 FROM windowsservercore
 LABEL Description="nginx For Windows" Vendor="nginx" Version="1.9.3"
