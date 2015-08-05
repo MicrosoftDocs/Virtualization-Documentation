@@ -1,11 +1,11 @@
 ms.ContentId: 347fa279-d588-4094-90ec-8c2fc241f5b6
 title: Manage Windows Server Containers with Docker
 
-#Manage Windows Server Containers with Docker
+#Manage Containers with Docker
 
 Windows Server Containers can be managed with native Docker commands. While Windows Server Containers are comparable to their Linux counterparts and the management experience with Docker is almost identical, not all Docker commands will be used with Windows Server Containers.
 
-##Working with Docker Commands:
+##Working with Docker Commands
 
 The following exercise will walk though some basic Windows Server Container management actions using Docker commands. The goal here is to become comfortable creating, managing and removing Windows Server Container Images and Windows Server Containers with Docker.
 
@@ -122,7 +122,7 @@ Untagged: newcontainerimage:latest
 Deleted: 4f8ebcf0a334601e75070a92294d993b0f182abb6f4c88740c75b05093e6acff
 ```
 
-##Host a Web Server in a Windows Server Container
+##Host a Web Server in a Container
 
 This next example will walk through a more practical use case for a Windows Server Container. The steps included in this exercise will complete the following:  
 - Create a container from the Windows Server Core base image.  
