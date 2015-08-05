@@ -4,15 +4,15 @@ title: Containers Welcome
 
 # Windows Containers
 
-Windows containers provide operating system level virtualization that enables running multiple isolated applications on one container host.
+Windows containers provide operating system level virtualization that allow you to run multiple isolated applications on one container host.
 
 Some advantages of containerization include:
 * Small application footprints
-* Rapid application deployment and scale operations
+* Rapid application deployment and scale operations !--Scaling, re-scale, ability to scale...? Lose the word operations--!
 * Container package reusability 
 * Community driven ecosystem
 
-The following table list topics that will provide more information about Windows containers, a guided quick start so that you can try out Windows containers yourself and additional resources.
+The following table list topics that provide more information about Windows containers, a guided quick start so that you can try out Windows containers, and additional resources.
 
 <table border="1" style="background-color:FFFFCC;border-collapse:collapse;border:1px solid FFCC00;color:000000;width:100%" cellpadding="15" cellspacing="3">
 	<tr valign="top">
@@ -32,7 +32,7 @@ The following table list topics that will provide more information about Windows
 		<td ><center>![](media/try.png)</center></td>
 		<td>		
               <p><strong>Evaluate Windows Containers.</strong></p>
-              <p>The following resources will walk you through the deployment, creation and simple management of a Windows Container..</p>
+              <p>The following resources will walk you through the deployment, creation, and simple management of a Windows Container.</p>
 			<ul>
 			  	<li class="unordered">[Configure Windows Server Containers in Windows Azure](./quick_start/azure_setup.md)<br /><br /></li>
 				<li class="unordered">[Configure Windows Server Containers Locally](./quick_start/container_setup.md)<br /><br /></li>
@@ -46,7 +46,7 @@ The following table list topics that will provide more information about Windows
 		<td ><center>![](media/question.png)</center></td>
 		<td>		
               <p><strong>Connect with Community and Support</strong></p>
-              <p>Additional technical, support and community resources..</p>
+              <p>Additional technical, support and community resources.</p>
  			<ul>
 				<li class="unordered">[Windows Container Forum](https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers)<br /><br /></li>
 				<li class="unordered">[Windows Container Community Resources](https://msdn.microsoft.com/virtualization/community/community_overview)<br /><br /></li>
