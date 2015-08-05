@@ -114,7 +114,7 @@ This exercise has shown that an image taken from a modified container will inclu
 
 ##Step 4 - Remove Containers and Images
 
-To remove a container after it is no longer needed you will need the name or id of the container which can be found with the `docker ps –a` command. 
+To remove a container after it is no longer needed you will need the name or id of the container which can be found with the **docker ps –a** command. 
 
 ```
 docker ps -a
@@ -122,9 +122,9 @@ docker ps -a
 CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS                     NAMES
 9e613d3ebf9e        windowsservercore   "cmd"               5 minutes ago       Exited (0) 5 minutes ago   elegant_engelbart
 ```
-Run **docker rm <container name or id>** to remove the container.
+Run **docker rm container name or id** to remove the container.
 
-To remove containers after they are no longer needed,  run **docker rm <container name or ID>**:
+To remove containers after they are no longer needed,  run **docker rm container name or ID**:
 d61216e868e201c57a09288f96b8278a7d5a4818
 ```
 docker rm elegant_engelbart
