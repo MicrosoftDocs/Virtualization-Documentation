@@ -76,7 +76,7 @@ CONTAINER ID        IMAGE               COMMAND             CREATED             
 4f496dbb8048        windowsservercore   "cmd"               2 minutes ago       Exited (0) 2 minutes ago             dockerdemo
 ```
 
-To create a new image from a specific container use **Docker commit containerid newcontainerimage<b/>. This will create a new container image on the container host.
+To create a new image from a specific container use **Docker commit containerid newcontainerimage**. This will create a new container image on the container host.
 
 ```
 docker commit dockerdemo newcontainerimage
