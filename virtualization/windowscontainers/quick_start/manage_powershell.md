@@ -146,11 +146,11 @@ exit
 
 ##Step 4 - Remove Containers and Images
 
-To stop all running containers run the command below. If any containers are in a stopped state when this is run command you will receive a warning, which is ok.
+To stop all running containers run the command below. If any containers are in a stopped state when you run this command, you receive a warning, which is ok.
 ```powershell
 Get-Container | Stop-Container
 ```
-To remove all contianers:
+To remove all containers:
 
 ```powershell
 Get-Container | Remove-Container -Force
@@ -160,6 +160,7 @@ Finally to remove a particular container image run the following:
 ```powershell
 Get-ContainerImage -Name newimage | Remove-ContainerImage -Force
 ```
+!--Is this really what people would be doing everytime they're creating images? This article seems like more of a walkthrough. For user guide - and maybe for future after we see how this article does, I'd suggest breaking making step 4 a seperate section and not one of the steps. And first 3 steps plus "remove" section would be seperate article from the rest of this content. --!
 ##Host a Web Server in a Container
 
 This next example will walk through a more practical use case for a Windows Server Container. The steps included in this exercise will complete the following:  
