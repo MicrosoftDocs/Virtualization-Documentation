@@ -1,7 +1,7 @@
 ms.ContentId: 347fa279-d588-4094-90ec-8c2fc241f5b6
 title: Manage Windows Server Containers with Docker
 
-#Manage Containers with Docker
+#Manage Windows Server Containers with Docker
 
 Windows Server Containers can be managed with native Docker commands. While Windows Server Containers are comparable to their Linux counterparts and the management experience with Docker is almost identical, not all Docker commands will be used with Windows Server Containers.
 

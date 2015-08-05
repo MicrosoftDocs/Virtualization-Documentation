@@ -1,9 +1,11 @@
 ms.ContentId: d0a07897-5fd2-41a5-856d-dc8b499c6783
 title: Manage Windows Server Containers with PowerShell
 
-##Manage Containers with PowerShell
+#Manage Windows Server Containers with PowerShell
 
 You can create, run, and interact with Windows Server Containers using PowerShell cmdlets. Everything you need to get going is available in-box.
+
+##Working with PowerShell Commands
 
 If you’ve used Hyper-V PowerShell, the design of the cmdlets for Windows Server Containers should be pretty familiar to you. A lot of the workflow is similar to how you’d manage a virtual machine using the Hyper-V module. Instead of `New-VM`, `Get-VM`, `Start-VM`, `Stop-VM`, you have `New-Container`, `Get-Container`, `Start-Container`, `Stop-Container`.  There are quite a few container-specific cmdlets and parameters, but the general lifecycle and management of a Windows container looks roughly like that of a Hyper-V VM.
 
@@ -151,7 +153,7 @@ Finally to remove a particular container image run the following:
 ```powershell
 Get-ContainerImage -Name newimage | Remove-ContainerImage
 ```
-##Host a Web Server in Container
+##Host a Web Server in a Container
 
 This next example will walk through a more practical use case for a Windows Server Container. The steps included in this exercise will complete the following:  
 - Create a container from the Windows Server Core base image.  
