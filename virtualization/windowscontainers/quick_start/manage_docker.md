@@ -3,20 +3,17 @@ title: Manage Windows Server Containers with Docker
 
 #Manage Windows Server Containers with Docker
 
-Windows Server Containers can be managed with native Docker commands. While Windows Server Containers are comparable to their Linux counterparts and the management experience with Docker is almost identical, not all Docker commands can be used with Windows Server Containers.
-
-This walkthrough will demonstrate basic use of Docker command with Windows Server Containers, basic image and container management and finally a simple yet practical use for Windows Server Containers. The lessons learned from this walkthrough should enable you to begin exploring deployment and management of Windows Server Containers using the Docker toolset.
-
-
-##Working with Docker Commands
-
-The following exercise walks though some basic Windows Server Container management actions using Docker commands. The goal here is for you to become comfortable creating, managing and removing Windows Server Container Images and Windows Server Containers with Docker.
+Windows Server Containers can be managed with native Docker commands. While Windows Server Containers are comparable to their Linux counterparts and the management experience with Docker is almost identical, not all Docker commands can be used with Windows Server Containers. This walkthrough will demonstrate basic use of Docker command with Windows Server Containers, basic image and container management and finally a simple yet practical use for Windows Server Containers. The lessons learned from this walkthrough should enable you to begin exploring deployment and management of Windows Server Containers using the Docker toolset.
 
 Please Note – Windows Server Container created with PowerShell need to be managed with PowerShell. To checkout the PowerShell quick start documentation, see  [Managing Windows Server Container with PowerShell](./manage_powershell.md).
 
+##Basic Container Management with Docker
+
+This first example will walk through basic Docker management functionality such as creating a container, creating a container image and removing container and container images.
+
 ##Step 1 - Create a Container
 
-The Windows Server Container host will come pre-loaded with a base container image. To see this image run docker Images 
+The Windows Server Container host will come pre-loaded with a base container image. To see this image run docker Images
 
 ```
 docker images
@@ -85,7 +82,7 @@ To create a new image from a specific container use Docker commit containerid ne
 
 ```
 docker commit dockerdemo newcontainerimage
-4f8ebcf0a334601e75070a92294d993b0f182abb6f4c88740c75b05093e6acff	
+4f8ebcf0a334601e75070a92294d993b0f182abb6f4c88740c75b05093e6acff
 ```
 
 To see all images on the host, type docker images. Notice that a new image is created with the name that was specified during the container commit.
@@ -121,7 +118,7 @@ This exercise has shown that an image taken from a modified container will inclu
 
 ##Step 4 - Remove Containers and Images
 
-To remove a container after it is no longer needed you will need the name or id of the container which can be found with the docker ps –a command. 
+To remove a container after it is no longer needed you will need the name or id of the container which can be found with the docker ps –a command.
 
 ```
 docker ps -a
@@ -177,7 +174,7 @@ ADD source /nginx
 ```
 
 
-At this point the dockerfile will be in c:\build\nginx and the nginx software extracted to c:\build\nginx\source. You are now ready to build the web server image based on the instructions in the dockerfile. To do this, run the following command on the container host. 
+At this point the dockerfile will be in c:\build\nginx and the nginx software extracted to c:\build\nginx\source. You are now ready to build the web server image based on the instructions in the dockerfile. To do this, run the following command on the container host.
 
 ```
 docker build -t nginx_windows c:\build\nginx
