@@ -42,7 +42,7 @@ ipconfig > c:\ipconfig.txt
 You can read the contents of the file to ensure the command completed successfully. Notice that the IP address contained in the text file matches that of the container.
 
 ```
-Type 'c:\ipconfig.txt'
+Type c:\ipconfig.txt
 
 Ethernet adapter vEthernet (Virtual Switch-b34f32fcdc63b8632eaeb114c6eb901f8982bc91f38a8b64e6da0de40ec47a07-0):
 
@@ -76,7 +76,7 @@ CONTAINER ID        IMAGE               COMMAND             CREATED             
 4f496dbb8048        windowsservercore   "cmd"               2 minutes ago       Exited (0) 2 minutes ago             dockerdemo
 ```
 
-To create a new image from a specific container use <b>Docker commit <container id> newcontainerimage<b/>. This will create a new container image on the container host.
+To create a new image from a specific container use <b>Docker commit containerid newcontainerimage<b/>. This will create a new container image on the container host.
 
 ```
 docker commit dockerdemo newcontainerimage
@@ -163,7 +163,7 @@ In the previous example, you created, updated and captured a container. This exa
 
 Create a file named dockerfile and open it with your favorite text editor. It is important that this file have no file extension.
 
-Enter the following text into the dockerfile and save the file to 'c:\build\nginx' on the container host.
+Enter the following text into the dockerfile and save the file to <b>c:\build\nginx</b> on the container host.
 ```
 FROM windowsservercore
 LABEL Description="nginx For Windows" Vendor="nginx" Version="1.9.3"
@@ -205,7 +205,7 @@ cd c:\nginx\nginx-1.9.2
 start nginx
 ```
 
-When the nginx software is running, get the IP address of the container using `ipconfig` and on a different machine open up a web browser and browse to `http//<ip address>`. If everything has been correctly configured you will see the nginx welcome page.
+When the nginx software is running, get the IP address of the container using <b>ipconfig</b> and on a different machine open up a web browser and browse to <b>http//ip address</b>. If everything has been correctly configured you will see the nginx welcome page.
 
 ![](media/nginx.png)
 
@@ -214,7 +214,7 @@ At this point feel free to update the website, copy in your own sample website o
 ```powershell
 powershell Invoke-WebRequest 'https://raw.githubusercontent.com/neilpeterson/index/master/index.html' -OutFile "C:\nginx\nginx-1.9.3\html\index.html"
 ```
-After the website has been updated navigate back to <b>http://<ipaddress></b>.
+After the website has been updated navigate back to <b>http://ipaddress</b>.
 
 ![](media/hello.png)
 
