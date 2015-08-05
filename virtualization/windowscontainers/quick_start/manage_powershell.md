@@ -3,20 +3,20 @@ title: Manage Windows Server Containers with PowerShell
 
 #Manage Windows Server Containers with PowerShell
 
-You can create, run, and interact with Windows Server Containers using PowerShell cmdlets. Everything you need to get going is available in-box.
+You can create, run, and interact with Windows Server Containers using PowerShell cmdlets. Everything you need to get going is available in-box.!--In what box? "with Windows Containers" or "Windows PowerShell"? Be specific. Definitely don't use "in-box"--!
 
-##Working with PowerShell Commands
+##Working with PowerShell Commands !--I'd suggest deleting this heading. I don't think it's adding any value. Generally you don't need a heading for intro.--!
 
 If you’ve used Hyper-V PowerShell, the design of the cmdlets for Windows Server Containers should be pretty familiar to you. A lot of the workflow is similar to how you’d manage a virtual machine using the Hyper-V module. Instead of `New-VM`, `Get-VM`, `Start-VM`, `Stop-VM`, you have `New-Container`, `Get-Container`, `Start-Container`, `Stop-Container`.  There are quite a few container-specific cmdlets and parameters, but the general lifecycle and management of a Windows container looks roughly like that of a Hyper-V VM.
-
+!--Hyper-V PowerShell? PowerShell cmdlets for Hyper-V? Is Hyper-V PowerShell a thing? Also "module" you might put in PowerShell module to be more specific. Also the formating of the cmdlets in the paragraph. Not sure if that's right. My experience is that you bold cmdlet names as you're talking about them and you put them in code format when they're part of a example script. We should check to see how Azure content is doing it. Not a major problem to fix right now though.--!
 The following walkthrough will demonstrate the basics of creating and managing Windows Server Containers and Container Images with PowerShell.
 
-> Please Note - Windows Containers created with Docker need to be managed with Docker – [Managing Windows Containers with Docker](./manage_docker.md)
+> Note - Windows Containers created with Docker need to be managed with Docker. For more information, see [Managing Windows Containers with Docker](./manage_docker.md).
 
 ##Step 1 - Create a Container
 
-Before running PowerShell commands make sure that you have started a PowerShell session, this can be completed by typing `powershell`. You will know that you are in a PowerShell session when the prompt changes from `C:\directory>` to `PS C:\directory>` .
-
+Before running PowerShell commands, make sure that you have started a PowerShell session. To do this, type `powershell` at the command prompt. You will know that you are in a PowerShell session when the prompt changes from `C:\directory>` to `PS C:\directory>` .
+!--I'm trying not to edit...much. But work on using less words and more active verbs/present tense. Just tell them what to do. For example, this is more direct as "Start a PowerShell session from the command prompt by typing "PowerShell"..." It's less words for people to process and easier for non-native english speakers.--!
 To return a list of all Windows Server Container Images loaded on the host run `Get-ContainerImage`. You can see in this example that one image was returned with a name of WindowsServerCore. This is the image that will be used when creating a container.
 ```powershell
 Get-ContainerImage
@@ -25,8 +25,8 @@ Name              Publisher    Version      IsOSImage
 ----              ---------    -------      ---------
 WindowsServerCore CN=Microsoft 10.0.10254.0 True
 ```
-
-When creating a container the name of a Network Switch will also need to be specified. The `Get-VMSwitch` command can be run to return a list of available switches. Take note of the switch that will be used with your container.
+!--Why is this the first step if you haven't created a container yet? I find this confusing. Shouldn't this be after you've created it? If this is a default one, where did it come from? Where is the step to get that? --!
+When creating a container the name of a Network Switch will also need to be specified. Run the `Get-VMSwitch` command to return a list of available switches. Take note of the switch that you want to use with your container.
 ```powershell
 Get-VMSwitch
 
@@ -35,13 +35,13 @@ Name           SwitchType NetAdapterInterfaceDescription
 Virtual Switch External   Microsoft Hyper-V Network Adapter
 ```
 
-Create a new container from the container image using the `New-Container` command. Notice in this example that the output of `New-Container` is being stored in the variable `$container`. This variable will be helpful later on in this exercise.
+Create a new container from the container image using the `New-Container` command. Notice in this example that the output of `New-Container` is stored in the variable `$container`. This variable will be helpful later on in this exercise.
 
 ```powershell
 $container = New-Container -Name "MyContainer" -ContainerImageName WindowsServerCore -SwitchName "Virtual Switch"
 ```
 
-To see a list of containers on the host and verify that the container was created, run the `Get-Container` command. You should see that a new container has been created however is not running. 
+To see a list of containers on the host and verify that the container was created, run the `Get-Container` command. You should see the new container that isn't running. 
 ```powershell
 Get-Container
 
@@ -62,8 +62,8 @@ Enter-PSSession -ContainerId $container.ContainerId -RunAsAdministrator
 [2446380e-629]: PS C:\Windows\system32>
 ```
 
-When in the container it can be managed very much like a physical or virtual machine. Command such as `ipconfig` to return the IP address of the container, `mkdir` to create a directory in the container and PowerShell commands like `Get-ChildItem` all work. Go ahead and make a modification to the container such as creating a file or folder. For instance the following command will created a file which contains network configuration data about the container. 
-
+When in the container it can be managed very much like a physical or virtual machine. Command such as `ipconfig` to return the IP address of the container, `mkdir` to create a directory in the container and PowerShell commands like `Get-ChildItem` all work. Go ahead and make a change to the container such as creating a file or folder. For example, the following command will create a file which contains network configuration data about the container. 
+!--Huh? "When you're in a container, you can manage it very much like..."--!
 ```
 ipconfig > c:\ipconfig.txt
 ```
@@ -81,7 +81,7 @@ Ethernet adapter vEthernet (Virtual Switch-b34f32fcdc63b8632eaeb114c6eb901f8982b
    Default Gateway . . . . . . . . . :
 
 ```
-Now that the container has been modified, exit the remote PSSession by typing `exit` and stop the container using the `Stop-Container` command. When these commands have completed you will be back in control of the container host.
+Now that the container has been modified, exit the remote PSSession by typing `exit` and stop the container using the `Stop-Container` command. When these commands have completed, you will be back in control of the container host.
 
 ```powershell
 exit
@@ -91,7 +91,7 @@ Stop-Container -Container $container
 
 ##Step 2 - Create a Container Image
 
-An image can now be made from this container that will include all changes made to the container. This image will behave like a snapshot of the container and can be re-deployed many times, each time creating a new container.
+An image can now be made from this container that will include all changes made to the container. This image will behave like a snapshot of the container and can be re-deployed many times. Each time you deploy the image, it will create a new container.
 
 To create an image form the container run the following commands:
 
