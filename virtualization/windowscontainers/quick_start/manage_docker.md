@@ -67,7 +67,7 @@ The system cannot find the file specified.
 
 ##Step 2 - Create a Container Image
 
-Now that a container has been created and modified, an image can be made from this container that will include all changes made to the container. This image will behave like a snapshot of the container and can be re-deployed many times, each time creating a new container. To see a list of containers that have been created on the host run docker ps –a. This will return all running and stopped containers. Take note of the Container name or id, these will be used when managing the new container.
+Now that a container has been created and modified, an image can be made from this container that will include all changes made to the container. This image will behave like a snapshot of the container and can be re-deployed many times, each time creating a new container. To see a list of containers that have been created on the host run docker ps –a. This will return all running and stopped containers. Take note of the Container name or containerid, these will be used when managing the new container.
 
 ```
 docker ps –a
