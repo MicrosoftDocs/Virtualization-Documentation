@@ -39,10 +39,6 @@ Create a new container from the container image using the `New-Container` comman
 
 ```powershell
 $container = New-Container -Name "MyContainer" -ContainerImageName WindowsServerCore -SwitchName "Virtual Switch"
-
-Name        State Uptime   ParentImageName
-----        ----- ------   ---------------
-MyContainer Off   00:00:00 WindowsServerCore
 ```
 
 To see a list of containers on the host and verify that the container was created, run the `Get-Container` command. You should see that a new container has been created however is not running. 
@@ -150,7 +146,7 @@ exit
 
 ##Step 4 - Remove Containers and Images
 
-To stop all running containers run the following:
+To stop all running containers run the command below. If any containers are in a stopped state when this is run command you will receive a warning, which is ok.
 ```powershell
 Get-Container | Stop-Container
 ```
@@ -261,6 +257,6 @@ After the website has been updated navigate back to `http://<ip address>`.
 
 This walkthrough has demonstrated basic use of PowerShell with Windows Server Containers, basic image and container management and finally has demonstrated a simple yet practical use for Windows Server Containers. The lessons learned from this walkthrough should enable you to begin exploring deployment and management of Windows Server Containers using PowerShell.
 
-####Links
-[Back to Container Home](../containers_welcome.md)
+####Resources
+[Back to Container Home](../containers_welcome.md)  
 [Managing Windows Containers with Docker](./manage_docker.md)
