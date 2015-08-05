@@ -26,7 +26,7 @@ windowsservercore   10.0.10254.0        9eca9231f4d4        30 hours ago        
 
 ```
 
-To create a new container and open an console session into the container run <b>docker run –it <image name or ID> cmd</b>.
+To create a new container and open an console session into the container run <b>docker run –it <image name / id> cmd</b>.
 ```
 docker run -it --name dockerdemo windowsservercore cmd
 ```
@@ -122,7 +122,7 @@ docker ps -a
 CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS                     NAMES
 9e613d3ebf9e        windowsservercore   "cmd"               5 minutes ago       Exited (0) 5 minutes ago   elegant_engelbart
 ```
-Run `docker rm <container name or id>` to remove the container.
+Run <b>docker rm <container name or id></b> to remove the container.
 
 To remove containers after they are no longer needed,  run <b>docker rm <container name or ID></b>:
 d61216e868e201c57a09288f96b8278a7d5a4818
