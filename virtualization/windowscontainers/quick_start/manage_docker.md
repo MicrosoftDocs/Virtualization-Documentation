@@ -53,7 +53,7 @@ Ethernet adapter vEthernet (Virtual Switch-b34f32fcdc63b8632eaeb114c6eb901f8982b
 
 ```
 
-Exit the container by typing <b>exit<b>. This will stop the console session, stop the container, and place you back in the command session of the host.
+Exit the container by typing <b>exit</b>. This will stop the console session, stop the container, and place you back in the command session of the host.
 ```
 exit
 ```
