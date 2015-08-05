@@ -1,7 +1,7 @@
 ms.ContentId: d0a07897-5fd2-41a5-856d-dc8b499c6783
 title: Manage Windows Server Containers with PowerShell
 
-##Manage Windows Server Containers with PowerShell
+##Manage Containers with PowerShell
 
 You can create, run, and interact with Windows Server Containers using PowerShell cmdlets. Everything you need to get going is available in-box.
 
@@ -151,7 +151,7 @@ Finally to remove a particular container image run the following:
 ```powershell
 Get-ContainerImage -Name newimage | Remove-ContainerImage
 ```
-##Host a Web Server in a Windows Server Container
+##Host a Web Server in Container
 
 This next example will walk through a more practical use case for a Windows Server Container. The steps included in this exercise will complete the following:  
 - Create a container from the Windows Server Core base image.  
