@@ -48,4 +48,4 @@ function waitForPSDirect([string]$VMName, $cred){
 Prints a friendly message and locks in the while loop until the connection to the VM succeeds.  
 Succeeds silently.
 
-
+### 

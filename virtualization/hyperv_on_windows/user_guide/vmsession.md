@@ -13,20 +13,18 @@ If you're managing older virtual machines, use Virtual Machine Connection (VMCon
 ## Create and exit a PowerShell Direct session using PSSession cmdlets
 1. On the Hyper-V host, open Windows PowerShell as Administrator.
 
-2. Run the one of the following commands to create a session by using the virtual machine name or GUID:
-     
-    ``` PowerShell
-	Enter-PSSession -VMName <VMName>
-    Enter-PSSession -VMGUID <VMGUID>
-	```
+2. Run the one of the following commands to create a session by using the virtual machine name or GUID:  
+``` PowerShell
+Enter-PSSession -VMName <VMName>
+Enter-PSSession -VMGUID <VMGUID>
+```
 
 3. Enter credentials for a user account on the virtual machine when prompted.
 4. Run whatever commands you need to. These commands run on the virtual machine that you created the session with.
-5. When you're done, run the following command to close the session:
-
-    ``` PowerShell
-	Exit-PSSession 
-	``` 
+5. When you're done, run the following command to close the session:  
+``` PowerShell
+Exit-PSSession 
+``` 
 
 ## Run script or command with Invoke-Command cmdlet
 
@@ -77,29 +75,11 @@ PowerShell Direct requires that you are correctly authenticated with the guest o
   ```
   Will mean that you only get prompted once per script/PowerShell session for your credentials.
 
- 
-4.Be grossly insecure and code your credentials into your scripts.
- 
-a.Okay - before I go any further let me be really clear - this is a *bad thing to do* *do not do this in a production system* *do not do this with real passwords*.  That said - as someone who builds more system automation code than I care to think about - this is something I do all the time.  You can actually hand craft a PSCredential object with some code like this:
-
-$localCred = new-object -typename System.Management.Automation.PSCredential -argumentlist "Administrator", (ConvertTo-SecureString "P@ssw0rd" -AsPlainText -Force) 
-Grossly insecure - but handy (as these things often are).  Now you get no prompts at all. 
-
-
-
-
-
-
-
-
-
-	
-
-
-	
-	
-
-
-
-
-
+4. Code your credentials into your scripts.  **Don't do this for any real workload or system**
+ > Warning:  _Do not do this in a production system.  Do not do this with real passwords._
+  
+  You can hand craft a PSCredential object with some code like this:  
+  ``` PowerShell
+  $localCred = New-Object -typename System.Management.Automation.PSCredential -argumentlist "Administrator", (ConvertTo-SecureString "P@ssw0rd" -AsPlainText -Force) 
+  ```
+  Grossly insecure - but useful for testing.  Now you get no prompts at all in this session. 
