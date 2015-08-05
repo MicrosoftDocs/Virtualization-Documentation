@@ -10,26 +10,42 @@ All Hyper-V management requires running as administrator so assume all scripts a
 If you aren't sure if you have the right permissions, type `Get-VM` and if it runs with no errors, you're ready to go.
 
 
-## Use PowerShell Direct to see if the guest OS booted
-
-
-Hyper-V Manager doesn't give you visibility into the guest operating system which often makes it difficult to know whether the guest OS has booted once the VM is running.
-
-The following function waits until PowerShell is available in the guest OS (meaning the OS has booted and most services are running) then returns.
-
-``` PowerShell
-function waitForPSDirect([string]$VMName, $cred){
-   Write-Output "[$($VMName)]:: Waiting for PowerShell Direct (using $($cred.username))"
-   while ((icm -VMName $VMName -Credential $cred {"Test"} -ea SilentlyContinue) -ne "Test") {Sleep -Seconds 1}}
-```
+## PowerShell Direct tools
+All of the scripts and snippets in this section will rely on the following basics.
 
 **Requirements** :  
 *  PowerShell Direct.  Windows 10 guest and host OS.
 
-**Parameters** :  
+**Common Variables** :  
 `$VMName` -- this is a string with the VMName.  See a list of available VMs with `Get-VM`  
 `$cred` -- Credential for the guest OS.  Can be populated using `$cred = Get-Credential`  
 
+### Check if the guest has booted
+
+Hyper-V Manager doesn't give you visibility into the guest operating system which often makes it difficult to know whether the guest OS has booted.
+
+Use this command to check whether the guest has booted.
+
+``` PowerShell
+if((Invoke-Command -VMName $VMName -Credential $cred {"Test"}) -ne "Test"){Write-Host "Not Booted"} else {Write-Host "Booted"}
+```  
+
+**Outcome**  
+Prints a friendly message declaring the state of the guest OS.
+
+
+### Script Locking
+
+The following function waits uses the same principle to wait until PowerShell is available in the guest (meaning the OS has booted and most services are running) then returns.
+
+``` PowerShell
+function waitForPSDirect([string]$VMName, $cred){
+   Write-Output "[$($VMName)]:: Waiting for PowerShell Direct (using $($cred.username))"
+   while ((Invoke-Command -VMName $VMName -Credential $cred {"Test"} -ea SilentlyContinue) -ne "Test") {Sleep -Seconds 1}}
+```
+
 **Outcome**  
 Prints a friendly message and locks in the while loop until the connection to the VM succeeds.  
-Succeeds silently.  
+Succeeds silently.
+
+
