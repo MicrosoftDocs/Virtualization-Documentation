@@ -56,7 +56,7 @@ To start the container use **Start-Container**.
 ```
 Start-Container -Name "MyContainer"
 ```
-When a container has been created you can interact with it using PowerShell remoting commands such as **Invoke-Command**, or **Enter-PSSession**. The example below creates a remote PowerShell session into the container using the **Enter-PSSession** command. When the **Enter-PSSession** command completes, the prompt will change to include the first 11 characters of the container id **[2446380e-629]** indicating that the session is now working against the container. !-- Rework this seciton --!
+When a container has been created you can interact with it using PowerShell remoting commands such as **Invoke-Command**, or **Enter-PSSession**. The example below creates a remote PowerShell session into the container using the **Enter-PSSession** command. Notice that once the remote session has been created the command prompt will change to include the first 11 characters of the container id **[2446380e-629]**.
 
 ```powershell
 Enter-PSSession -ContainerId $container.ContainerId -RunAsAdministrator
