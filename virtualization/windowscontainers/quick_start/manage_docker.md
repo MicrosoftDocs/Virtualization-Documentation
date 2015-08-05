@@ -39,7 +39,7 @@ Working in the container is almost identical to working in Windows installed on 
 Next, make some simple changes to the container. For example, the following command creates a file that contains the output of ipconfig.
 
 ```
-ipconfig > c:\ipconfig.txt
+ipconfig | c:\ipconfig.txt
 ```
 
 You can read the contents of the file to ensure the command completed successfully. Notice that the IP address contained in the text file matches that of the container.
