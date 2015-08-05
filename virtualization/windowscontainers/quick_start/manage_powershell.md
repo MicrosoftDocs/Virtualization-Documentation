@@ -6,7 +6,7 @@ title: Manage Windows Server Containers with PowerShell
 This article will demonstrated basic use of PowerShell with Windows Server Containers, basic image and container management, and demonstrate a simple yet practical use for Windows Server Containers. The lessons learned in this walkthrough should enable you to begin exploring deployment and management of Windows Server Containers using PowerShell.
 
 ##Working with PowerShell Commands
-If you’ve used Hyper-V PowerShell, the design of the cmdlets for Windows Server Containers should be pretty familiar to you. A lot of the workflow is similar to how you’d manage a virtual machine using the Hyper-V module. Instead of <b>New-VM</b>, <b>Get-VM</b>, <b>Start-VM</b>, <b>Stop-VM</b>, you have <b>New-Container</b>, <b>Get-Container</b>, <b>Start-Container</b>, <b>Stop-Container</b>. There are quite a few container-specific cmdlets and parameters, but the general lifecycle and management of a Windows container looks roughly like that of a Hyper-V VM.
+If you’ve used Hyper-V PowerShell, the design of the cmdlets for Windows Server Containers should be pretty familiar to you. A lot of the workflow is similar to how you’d manage a virtual machine using the Hyper-V module. Instead of **New-VM**, **Get-VM**, **Start-VM**, **Stop-VM**, you have **New-Container**, **Get-Container**, **Start-Container**, **Stop-Container**. There are quite a few container-specific cmdlets and parameters, but the general lifecycle and management of a Windows container looks roughly like that of a Hyper-V VM.
 
 The following walkthrough will demonstrate the basics of creating and managing Windows Server Containers and Container Images with PowerShell.
 
@@ -17,7 +17,7 @@ Start a PowerShell session from the command prompt by typing `PowerShell`. You w
 
 Before creating a Windows Server Container you will need the name of a Container Image and the name of a virtual switch that will be attached to the container.
 
-Run <b>Get-ContainerImages</b> to return a list of all images loaded on the host. Take note of the image you will use to create a container.
+Run **Get-ContainerImages** to return a list of all images loaded on the host. Take note of the image you will use to create a container.
 ```
 Get-ContainerImage
 
@@ -26,7 +26,7 @@ Name              Publisher    Version      IsOSImage
 WindowsServerCore CN=Microsoft 10.0.10254.0 True
 ```
 
-Run <b>Get-VMSwitch</b> to return a list of switches available on the host. Take note of the switch name that will be attached to the container.
+Run **Get-VMSwitch** to return a list of switches available on the host. Take note of the switch name that will be attached to the container.
 
 ```powershell
 Get-VMSwitch
@@ -36,13 +36,13 @@ Name           SwitchType NetAdapterInterfaceDescription
 Virtual Switch External   Microsoft Hyper-V Network Adapter
 ```
 
-Create a new container using the <b>New-Container</b> command. Notice in this example that the output of <b>New-Container</b> is stored in the variable <b>$container</b>. This variable will be helpful later on in this exercise.
+Create a new container using the **New-Container** command. Notice in this example that the output of **New-Container** is stored in the variable **$container**. This variable will be helpful later on in this exercise.
 
 ```powershell
 $container = New-Container -Name "MyContainer" -ContainerImageName WindowsServerCore -SwitchName "Virtual Switch"
 ```
 
-To see a list of containers on the host and verify that the container was created, run the <b>Get-Container</b> command. You should see that the new container isn't running. 
+To see a list of containers on the host and verify that the container was created, run the **Get-Container** command. You should see that the new container isn't running. 
 ```powershell
 Get-Container
 
@@ -51,11 +51,11 @@ Name        State Uptime   ParentImageName
 MyContainer Off   00:00:00 WindowsServerCore
 ```
 
-To start the container use <b>Start-Container</b>.
+To start the container use **Start-Container**.
 ```
 Start-Container -Name "MyContainer"
 ```
-When a container has been created you can interact with it using PowerShell remoting commands such as <b>Invoke-Command</b>, or <b>Enter-PSSession</b>. The example below creates an interactive session into the container using the <b>Enter-PSSession</b> command. When the <b>Enter-PSSession</b> command completes, the prompt will change to include the first 11 characters of the container id <b>[2446380e-629]</b> indicating that the session is now working against the container.
+When a container has been created you can interact with it using PowerShell remoting commands such as **Invoke-Command**, or **Enter-PSSession**. The example below creates an interactive session into the container using the **Enter-PSSession** command. When the **Enter-PSSession** command completes, the prompt will change to include the first 11 characters of the container id **[2446380e-629]** indicating that the session is now working against the container.
 
 ```powershell
 Enter-PSSession -ContainerId $container.ContainerId -RunAsAdministrator
@@ -63,7 +63,7 @@ Enter-PSSession -ContainerId $container.ContainerId -RunAsAdministrator
 [2446380e-629]: PS C:\Windows\system32>
 ```
 
-A container can be managed very much like a physical or virtual machine. Command such as <b>ipconfig</b> to return the IP address of the container, <b>mkdir</b> to create a directory in the container and PowerShell commands like <b>Get-ChildItem</b> all work. Go ahead and make a change to the container such as creating a file or folder. For example, the following command will create a file which contains network configuration data about the container. 
+A container can be managed very much like a physical or virtual machine. Command such as **ipconfig** to return the IP address of the container, **mkdir** to create a directory in the container and PowerShell commands like **Get-ChildItem** all work. Go ahead and make a change to the container such as creating a file or folder. For example, the following command will create a file which contains network configuration data about the container. 
 
 ```
 ipconfig > c:\ipconfig.txt
@@ -82,7 +82,7 @@ Ethernet adapter vEthernet (Virtual Switch-b34f32fcdc63b8632eaeb114c6eb901f8982b
    Default Gateway . . . . . . . . . :
 
 ```
-Now that the container has been modified, exit the remote PSSession by typing <b>exit</b> and stop the container using the <b>Stop-Container</b> command. When these commands have completed, you will be back in control of the container host.
+Now that the container has been modified, exit the remote PSSession by typing **exit** and stop the container using the **Stop-Container** command. When these commands have completed, you will be back in control of the container host.
 
 ```powershell
 exit
@@ -220,12 +220,12 @@ WindowsServerCore CN=Microsoft 10.0.10254.0 True
 
 ##Step 3 - Deploy Web Server Container
 
-To deploy a Windows Server Container based off of the nginxwindows image, use the <b>New-Container</b> PowerShell command.
+To deploy a Windows Server Container based off of the nginxwindows image, use the **New-Container** PowerShell command.
 
 ```powershell
 $webservercontainer = New-Container -Name webserver1 -ContainerImageName nginxwindows -SwitchName "Virtual Switch"
 ```
-Start the container and create a PowerShell remote session with the container using <b>Enter-PSSession</b>.
+Start the container and create a PowerShell remote session with the container using **Enter-PSSession**.
 
 ```powershell
 #Start Container.
@@ -235,14 +235,14 @@ Start-Container $webservercontainer
 Enter-PSSession -ContainerId $webservercontainer.ContainerId -RunAsAdministrator
 ```
 
-From inside the container, the nginx web server can be started and web content staged. To start the nginx web server, move to the installation folder, and run <b>start nginx</b>.
+From inside the container, the nginx web server can be started and web content staged. To start the nginx web server, move to the installation folder, and run **start nginx**.
 ```
 cd c:\nginx-1.9.3\
 
 start nginx
 ```
 
-When the nginx software is running, get the IP address of the container using <b>ipconfig</b>. On a different machine, open up a web browser and browse to <b>http//<ip address></b>. If everything has been correctly configured, you will see the nginx welcome page.
+When the nginx software is running, get the IP address of the container using **ipconfig**. On a different machine, open up a web browser and browse to **http//<ip address>**. If everything has been correctly configured, you will see the nginx welcome page.
 
 ![](media/nginx.png)
 
