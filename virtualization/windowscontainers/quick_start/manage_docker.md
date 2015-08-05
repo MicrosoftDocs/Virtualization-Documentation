@@ -134,7 +134,7 @@ Run docker rm container name or id to remove the container.
 ```
 docker rm elegant_engelbart
 ```
-To remove container images when they are no longer needed run docker rmi <image name or ID> You can't remove an image if it is referenced by an existing container.
+To remove container images when they are no longer needed run docker rmi imagenameorid. You can't remove an image if it is referenced by an existing container.
 ```
 docker rmi newcontainerimage
 
