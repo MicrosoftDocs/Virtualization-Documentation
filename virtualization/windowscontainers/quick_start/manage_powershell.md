@@ -3,12 +3,10 @@ title: Manage Windows Server Containers with PowerShell
 
 #Manage Windows Server Containers with PowerShell
 
-This article will demonstrated basic use of PowerShell with Windows Server Containers, basic image and container management, and demonstrate a simple yet practical use for Windows Server Containers. The lessons learned in this walkthrough should enable you to begin exploring deployment and management of Windows Server Containers using PowerShell.
+This article will demonstrate basic use of PowerShell with Windows Server Containers, basic image and container management, and a simple yet practical use for Windows Server Containers. The lessons learned in this walkthrough should enable you to begin exploring deployment and management of Windows Server Containers using PowerShell.
 
 ##Working with PowerShell Commands
-If you’ve used Hyper-V PowerShell, the design of the cmdlets for Windows Server Containers should be pretty familiar to you. A lot of the workflow is similar to how you’d manage a virtual machine using the Hyper-V module. Instead of **New-VM**, **Get-VM**, **Start-VM**, **Stop-VM**, you have **New-Container**, **Get-Container**, **Start-Container**, **Stop-Container**. There are quite a few container-specific cmdlets and parameters, but the general lifecycle and management of a Windows container looks roughly like that of a Hyper-V VM.
-
-The following walkthrough will demonstrate the basics of creating and managing Windows Server Containers and Container Images with PowerShell.
+If you’ve used Hyper-V PowerShell, the design of the cmdlets for Windows Server Containers should be pretty familiar to you. A lot of the workflow is similar to how you’d manage a virtual machine using the Hyper-V module. Instead of **New-VM**, **Get-VM**, **Start-VM**, **Stop-VM**, you have **New-Container**, **Get-Container**, **Start-Container**, **Stop-Container**. There are quite a few container-specific cmdlets and parameters, but the general lifecycle and management of a Windows containers with PowerShell looks roughly like that of a Hyper-V VM.
 
 > Note - Windows Containers created with Docker need to be managed with Docker. For more information, see [Managing Windows Containers with Docker](./manage_docker.md).
 
@@ -18,7 +16,8 @@ Start a PowerShell session from the command prompt by typing `PowerShell`. You w
 Before creating a Windows Server Container you will need the name of a Container Image and the name of a virtual switch that will be attached to the container.
 
 Run **Get-ContainerImages** to return a list of all images loaded on the host. Take note of the image you will use to create a container.
-```
+
+```powershell
 Get-ContainerImage
 
 Name              Publisher    Version      IsOSImage
@@ -42,7 +41,8 @@ Create a new container using the **New-Container** command. Notice in this examp
 $container = New-Container -Name "MyContainer" -ContainerImageName WindowsServerCore -SwitchName "Virtual Switch"
 ```
 
-To see a list of containers on the host and verify that the container was created, run the **Get-Container** command. You should see that the new container isn't running. 
+To see a list of containers on the host and verify that the container was created, run the **Get-Container** command. You should see that a new container has been created but is not running.
+
 ```powershell
 Get-Container
 
@@ -52,10 +52,11 @@ MyContainer Off   00:00:00 WindowsServerCore
 ```
 
 To start the container use **Start-Container**.
+
 ```
 Start-Container -Name "MyContainer"
 ```
-When a container has been created you can interact with it using PowerShell remoting commands such as **Invoke-Command**, or **Enter-PSSession**. The example below creates an interactive session into the container using the **Enter-PSSession** command. When the **Enter-PSSession** command completes, the prompt will change to include the first 11 characters of the container id **[2446380e-629]** indicating that the session is now working against the container.
+When a container has been created you can interact with it using PowerShell remoting commands such as **Invoke-Command**, or **Enter-PSSession**. The example below creates a remote PowerShell session into the container using the **Enter-PSSession** command. When the **Enter-PSSession** command completes, the prompt will change to include the first 11 characters of the container id **[2446380e-629]** indicating that the session is now working against the container. !-- Rework this seciton --!
 
 ```powershell
 Enter-PSSession -ContainerId $container.ContainerId -RunAsAdministrator
@@ -85,14 +86,16 @@ Ethernet adapter vEthernet (Virtual Switch-b34f32fcdc63b8632eaeb114c6eb901f8982b
 Now that the container has been modified, exit the remote PSSession by typing **exit** and stop the container using the **Stop-Container** command. When these commands have completed, you will be back in control of the container host.
 
 ```powershell
+#Exit the remote PowerShell session.
 exit
 
+#Stop the container.
 Stop-Container -Container $container
 ```
 
 ##Step 2 - Create a Container Image
 
-An image can now be made from this container that will include all changes made to the container. This image will behave like a snapshot of the container and can be re-deployed many times. Each time you deploy the image, it will create a new container.
+An image can now be made from this container. This image will behave like a snapshot of the container and can be re-deployed many times.
 
 To create an image from the container run the following commands:
 
@@ -183,7 +186,7 @@ Start-Container $container
 
 ##Step 2 - Prepare Web Server Software
 
-The next step to prepare the container to host the web server is to install the web server software. This example will use nginx for Windows. Download and extract the nginx software to c:\nginx-1.9.3 on the container. The software can be downloaded from [nginx for Windows](http://nginx.org/en/download.html). Or use the following commands in the container to download and extract the nginx software to C:\nginx-1.9.3.
+The next step to prepare the container is to install the web server software. This example will use nginx for Windows. Download and extract the nginx software to c:\nginx-1.9.3 on the container. The software can be downloaded from [nginx for Windows](http://nginx.org/en/download.html). Or use the following commands in the container to download and extract the nginx software to C:\nginx-1.9.3.
 
 ```powershell
 #Establish PowerShell session with the container.
@@ -195,10 +198,14 @@ Invoke-WebRequest 'http://nginx.org/download/nginx-1.9.3.zip' -OutFile "c:\nginx
 #Extract nginx software.    
 PowerShell.exe Expand-Archive -Path C:\nginx-1.9.3.zip -DestinationPath c:\ -Force
 ```
+
 Exit the PSSession and stop the container using the following commands. 
+
 ```powershell
+#Exit the remote PowerShell session.
 exit
 
+#Stop the container.
 Stop-Container $container
 ``` 
 ##Step 3 - Create Web Server Image
@@ -207,7 +214,7 @@ With the container updated to include the nginx web server software, you can now
 ```powershell
 $webserverimage = New-ContainerImage -Container $container -Publisher Demo -Name nginxwindows -Version 1.0
 ```
-When completed, run `Get-ContainerImage` to validate that the image is created. 
+When completed, run **Get-ContainerImage** to validate that the image is created. 
 
 ```powershell
 Get-ContainerImage
