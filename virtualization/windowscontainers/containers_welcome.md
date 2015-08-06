@@ -5,12 +5,6 @@ title: Containers Welcome
 
 Windows containers provide operating system level virtualization that allow you to run multiple isolated applications on one container host.
 
-Some advantages of containerization include:
-* Small application footprints
-* Rapid application deployment and ability to scale.
-* Container package reusability 
-* Community driven ecosystem
-
 The following table list topics that provide more information about Windows containers, a guided quick start so that you can try out Windows containers, and additional resources.
 
 <table border="1" style="background-color:FFFFCC;border-collapse:collapse;border:1px solid FFCC00;color:000000;width:100%" cellpadding="15" cellspacing="3">
@@ -48,8 +42,8 @@ The following table list topics that provide more information about Windows cont
               <p><strong>Connect with Community and Support</strong></p>
               <p>Additional technical, support and community resources.</p>
  			<ul>
-				<li class="unordered">[Windows Container Forum](https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers)<br /><br /></li>
-				<li class="unordered">[Windows Container Community Resources](https://msdn.microsoft.com/virtualization/community/community_overview)<br /><br /></li>
+				<li class="unordered">[Get help and support from the Windows Container forum.](https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers)<br /><br /></li>
+				<li class="unordered">[Find additional Windows Container community resources.](https://msdn.microsoft.com/virtualization/community/community_overview)<br /><br /></li>
 			</ul>
 		</td>
 	</tr>	
