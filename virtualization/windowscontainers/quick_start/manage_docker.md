@@ -217,6 +217,8 @@ After the website has been updated, navigate back to `http://ipaddress`.
 
 ![](media/hello.png)
 
-####Resources
+#### Resources
+Have questions?  Ask them on the [Windows Containers forum](https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers)
+
 [Back to Container Home](../containers_welcome.md)  
 [Managing Windows Containers with PowerShell](./manage_powershell.md)
