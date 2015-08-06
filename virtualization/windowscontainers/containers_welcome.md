@@ -7,7 +7,7 @@ Windows containers provide operating system level virtualization that allow you 
 
 Some advantages of containerization include:
 * Small application footprints
-* Rapid application deployment and scale operations !--Scaling, re-scale, ability to scale...? Lose the word operations--!
+* Rapid application deployment and ability to scale.
 * Container package reusability 
 * Community driven ecosystem
 
@@ -23,6 +23,7 @@ The following table list topics that provide more information about Windows cont
 				<li class="unordered">[About Windows Containers](./about/about_overview.md)<br /><br /></li>
                 <li class="unordered">[Windows Server Container Ecosystem](./about/container_ecosystem.md)<br /><br /></li>
 				<li class="unordered">[Frequently Asked Questions](./about/faq.md)<br /><br /></li>
+				<li class="unordered">[Work in Progress](./about/work_in_progress.md)<br /><br /></li>
 			</ul>	
 		</td>
 	</tr>
