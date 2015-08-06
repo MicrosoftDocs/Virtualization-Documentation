@@ -5,7 +5,7 @@ title: Manage Windows Server Containers with Docker
 
 Windows Server Containers can be managed with native Docker commands. While Windows Server Containers are comparable to their Linux counterparts and the management experience with Docker is almost identical, not all Docker commands can be used with Windows Server Containers. This walkthrough will demonstrate basic use of Docker command with Windows Server Containers, basic image and container management and finally a simple yet practical use for Windows Server Containers. The lessons learned from this walkthrough should enable you to begin exploring deployment and management of Windows Server Containers using the Docker toolset.
 
-Please Note – Windows Server Container created with PowerShell need to be managed with PowerShell. To checkout the PowerShell quick start documentation, see  [Managing Windows Server Container with PowerShell](./manage_powershell.md).
+> Please Note – Windows Server Container created with PowerShell need to be managed with PowerShell. To checkout the PowerShell quick start documentation, see  [Managing Windows Server Container with PowerShell](./manage_powershell.md).
 
 ##Basic Container Management with Docker
 
@@ -13,11 +13,15 @@ This first example will walk through basic Docker management functionality such 
 
 ##Step 1 - Create a Container
 
-The Windows Server Container host will come pre-loaded with a base container image. To see this image run docker Images
+Before creating a Windows Server Container with Docker you will need the name or id of a container image. To see all images loaded on the container host run the following:
 
 ```
 docker images
+```
 
+The output will look similar to:
+
+```
 REPOSITORY          TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
 windowsservercore   latest              9eca9231f4d4        30 hours ago        9.613 GB
 windowsservercore   10.0.10254.0        9eca9231f4d4        30 hours ago        9.613 GB
@@ -31,19 +35,22 @@ docker run -it --name dockerdemo windowsservercore cmd
 
 ![](media/docker4.png)
 
-Working in the container is almost identical to working in Windows installed on a virtual or physical machine. You can run commands such as ipconfig to return the IP address of the container, mkdir to create a new directory, or powershell to start a PowerShell session.
+Working in the container is almost identical to working with Windows installed on a virtual or physical machine. You can run commands such as **ipconfig** to return the IP address of the container, **mkdir** to create a new directory, or **powershell** to start a PowerShell session.
 
-Next, make some simple changes to the container. For example, the following command creates a file that contains the output of ipconfig.
+Next, make a simple change to the container. For example, the following command creates a file that contains the output of ipconfig.
 
 ```
 ipconfig | c:\ipconfig.txt
 ```
 
-You can read the contents of the file to ensure the command completed successfully. Notice that the IP address contained in the text file matches that of the container.
+Run the following to verify that the file was successfully created:
 
 ```
 Type c:\ipconfig.txt
+```
+The output will look similar to the following:
 
+```
 Ethernet adapter vEthernet (Virtual Switch-b34f32fcdc63b8632eaeb114c6eb901f8982bc91f38a8b64e6da0de40ec47a07-0):
 
    Connection-specific DNS Suffix  . :
@@ -53,39 +60,34 @@ Ethernet adapter vEthernet (Virtual Switch-b34f32fcdc63b8632eaeb114c6eb901f8982b
    Default Gateway . . . . . . . . . :
 ```
 
-Exit the container by typing exit. This will stop the console session, stop the container, and place you back in the command session of the host.
+Run the following to stop the console session and place you back in the command session of the container host.
 
 ```
 exit
 ```
 
-Notice that on the container host the ipconfig.txt file it is not present. This file was created in the container and will not exist on the host.
-
-```
-type c:\ipconfig.txt
-
-The system cannot find the file specified.
-```
-
 ##Step 2 - Create a Container Image
 
-Now that a container has been created and modified, an image can be made from this container that will include all changes made to the container. This image will behave like a snapshot of the container and can be re-deployed many times, each time creating a new container. To see a list of containers that have been created on the host run docker ps –a. This will return all running and stopped containers. Take note of the Container name or id, these will be used when managing the new container.
+Now that a container has been created and modified, an image can be made from this container. This image will behave like a snapshot of the container and can be re-deployed many times, each time creating a new container. To see a list of containers that have been created on the host run the following.
 
 ```
 docker ps –a
+```
 
+The output will look similar to this:
+
+```
 CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS                     PORTS     NAMES
 4f496dbb8048        windowsservercore   "cmd"               2 minutes ago       Exited (0) 2 minutes ago             dockerdemo
 ```
 
-To create a new image from a specific container use Docker commit containerid newcontainerimage. This will create a new container image on the container host.
+To create a new image from a specific container use the following command where the container name is 'dockerdemo' and the name of the new image will be 'newcontainerimage'.
 
 ```
 docker commit dockerdemo newcontainerimage
-4f8ebcf0a334601e75070a92294d993b0f182abb6f4c88740c75b05093e6acff
 ```
 
-To see all images on the host, type docker images. Notice that a new image is created with the name that was specified during the container commit.
+To see all images on the host, use **docker images**. Notice that a new image has been created with the name that was specified during the container commit.
 
 ```
 docker images
