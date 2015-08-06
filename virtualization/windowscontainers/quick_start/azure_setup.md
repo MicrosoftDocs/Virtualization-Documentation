@@ -14,5 +14,7 @@ To setup Windows Containers on your own virtual machine or system see the follow
 3.	On the ‘choose an image’ menu, select ‘Windows Server Technical Preview 3 – Container Edition’.
 4. 	Add content as the Azure experiance is defined.
 
-##Navigation:
+#### Navigation:
+Have questions?  Ask them on the [Windows Containers forum](https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers)
+
 [Back to Container Home](../containers_welcome.md)

@@ -15,5 +15,6 @@ Customize the workload, save as a new image to send off to wherever? (if that is
 2. Add text once the customer experience has been defined.
 
 
-##Navigation:
+#### Navigation:
+Have questions?  Ask them on the [Windows Containers forum](https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers)
 [Back to Container Home](../containers_welcome.md)
