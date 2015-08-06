@@ -5,23 +5,24 @@ title: Community Resources
 
 Check out resources available to the user community. There is also a lot to see on the [Docker community](https://www.docker.com/community/participate/) pages.
 
+## Contribute 
+
+[Docker for Windows](https://github.com/Microsoft/docker) on GitHub
+[This documentation site and samples](https://github.com/Microsoft/Virtualization-Documentation) on GitHub
+
+## User Forums 
+
+[Windows Containers forum](https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers) 
+[TechNet forums](https://social.technet.microsoft.com/Forums/windowsserver/en-US/home "TechNet Forums")
+[Azure forums](http://azure.microsoft.com/en-us/support/forums/)
+
+
 ## Featured content from Build 
 
 * [Day One Keynote Presentation](http://channel9.msdn.com/Events/Build/2015/KEY01)
 * [Windows Containers: What, Why and How](http://channel9.msdn.com/events/Build/2015/2-704)
 * [Thinking in Containers: Building a Scalable, Next-Gen Application with Docker on Azure](http://channel9.msdn.com/events/Build/2015/2-683)
 * [Deploying Complex Open Source Workloads on Azure](http://channel9.msdn.com/Events/Build/2015/2-732)
-
-## Contribute 
-
-[Docker for Windows](https://github.com/Microsoft/docker) on GitHub
-[This documentation site and samples](https://github.com/Microsoft/Virtualization-Documentation) on GitHub
-
-## Forums 
-
-* [Windows Containers forum](https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers) 
-* [TechNet forums](https://social.technet.microsoft.com/Forums/windowsserver/en-US/home "TechNet Forums")
-* [Azure forums](http://azure.microsoft.com/en-us/support/forums/)
 
 ## Blogs 
 * [Server & Cloud blog](http://blogs.technet.com/b/server-cloud/)
