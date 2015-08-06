@@ -79,4 +79,4 @@ Remote Hyper-V Host:
 3. Set-Item WSMan:\localhost\Client\TrustedHosts * -Force
 So that's the demo-only instructions I used.  Replace * and turn off firewall with a single computer and letting credssp and winRM through
 
-## Manage a downlevel host
+

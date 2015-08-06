@@ -45,9 +45,9 @@ Hyper-V includes integration services for supported guest operating systems.  In
  
 ## Linux and Freed BSD
 
-Here is a quick list of supported Linux OSes.
+Here is a quick list of supported operating systems:
 
-* Linux and FreeBSD
+  * Linux and FreeBSD
   * Ubuntu
   * CentOS and Red Hat Enterprise Linux
   * Debian virtual machines on Hyper-V 
@@ -55,6 +55,5 @@ Here is a quick list of supported Linux OSes.
   * Oracle Linux virtual machines on Hyper-V 
   * FreeBSD virtual machines on Hyper-V
 
-There are many caveats around specific kernel version.  
-For more infromation including past versions of Hyper-V, see [Linux and FreeBSD Virtual Machines on Hyper-V](https://technet.microsoft.com/library/dn531030.aspx).
+There are many caveats around specific kernel versions. For more information, including support information on past versions of Hyper-V, see [Linux and FreeBSD Virtual Machines on Hyper-V](https://technet.microsoft.com/library/dn531030.aspx).
 
