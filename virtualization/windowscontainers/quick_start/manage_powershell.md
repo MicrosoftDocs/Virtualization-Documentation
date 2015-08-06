@@ -7,7 +7,9 @@ This article will walk through the fundamentals of managing windows Server Conta
 
 If you’ve used Hyper-V PowerShell, the design of the cmdlets for Windows Server Containers should be pretty familiar to you. A lot of the workflow is similar to how you’d manage a virtual machine using the Hyper-V module. Instead of `New-VM`, `Get-VM`, `Start-VM`, `Stop-VM`, you have `New-Container`, `Get-Container`, `Start-Container`, `Stop-Container`. There are quite a few container-specific cmdlets and parameters, but the general lifecycle and management of a Windows containers with PowerShell looks roughly like that of a Hyper-V VM.
 
-> Please Note - Windows Containers created with Docker need to be managed with Docker. For more information, see [Managing Windows Containers with Docker](./manage_docker.md).
+Have questions? Ask them on the [Windows Containers forum](https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers).
+
+> Note - Windows Containers created with Docker need to be managed with Docker. For more information, see [Managing Windows Containers with Docker](./manage_docker.md).
 
 ##Basic Container Management with PowerShell:
 
@@ -282,6 +284,5 @@ After the website has been updated, navigate back to `http://ipaddress`.
 
 ![](media/hello.png)
 
-####Resources
 [Back to Container Home](../containers_welcome.md)  
-[Managing Windows Containers with Docker](./manage_docker.md)
+

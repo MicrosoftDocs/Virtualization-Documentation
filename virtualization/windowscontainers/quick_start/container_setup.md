@@ -15,5 +15,4 @@ Customize the workload, save as a new image to send off to wherever? (if that is
 2. Add text once the customer experience has been defined.
 
 
-##Navigation:
 [Back to Container Home](../containers_welcome.md)

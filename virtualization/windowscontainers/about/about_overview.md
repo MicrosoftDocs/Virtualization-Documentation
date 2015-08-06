@@ -40,6 +40,4 @@ Containers and the container ecosystem provide agility, productivity, and freedo
 
 When combined with Docker, Visual Studio, and Azure, containers become an important part of a robust ecosystem. Read more about the [Windows Server Container ecosystem](container_ecosystem.md).
 
-##Navigation:
-
 [Back to Container Home](../containers_welcome.md)
