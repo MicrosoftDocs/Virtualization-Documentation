@@ -34,7 +34,7 @@ if((Invoke-Command -VMName $VMName -Credential $cred {"Test"}) -ne "Test"){Write
 Prints a friendly message declaring the state of the guest OS.
 
 
-### Script Locking
+### Script locking until the guest has booted
 
 The following function waits uses the same principle to wait until PowerShell is available in the guest (meaning the OS has booted and most services are running) then returns.
 
@@ -45,5 +45,17 @@ function waitForPSDirect([string]$VMName, $cred){
 ```
 
 **Outcome**  
-Prints a friendly message and locks in the while loop until the connection to the VM succeeds.  
+Prints a friendly message and locks until the connection to the VM succeeds.  
+Succeeds silently.
+
+### Script locking until the guest has a network
+With PowerShell Direct it is possible to get connected to a PowerShell session inside a virtual machine before the virtual machine has received an IP address.
+
+``` PowerShell
+# Wait for DHCP
+while ((Get-NetIPAddress | ? AddressFamily -eq IPv4 | ? IPAddress -ne 127.0.0.1).SuffixOrigin -ne "Dhcp") {sleep -Milliseconds 10}
+```
+
+** Outcome **
+Locks until a DHCP lease is recieved.  Since this script is not looking for a specific subnet or IP address, it works no matter what network configuration you're using.  
 Succeeds silently.
