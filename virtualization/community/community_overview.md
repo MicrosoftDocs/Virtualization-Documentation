@@ -15,6 +15,7 @@ Check out resources available to the user community. There is also a lot to see 
 ## Contribute 
 
  [Docker for Windows](https://github.com/Microsoft/docker) on GitHub
+ [This documentation site and samples](https://github.com/Microsoft/Virtualization-Documentation) on GitHub
 
 ## Forums 
 - Windows Containers forum is coming soon!
