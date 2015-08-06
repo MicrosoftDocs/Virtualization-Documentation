@@ -14,11 +14,12 @@ Check out resources available to the user community. There is also a lot to see 
 
 ## Contribute 
 
- [Docker for Windows](https://github.com/Microsoft/docker) on GitHub
- [This documentation site and samples](https://github.com/Microsoft/Virtualization-Documentation) on GitHub
+[Docker for Windows](https://github.com/Microsoft/docker) on GitHub
+[This documentation site and samples](https://github.com/Microsoft/Virtualization-Documentation) on GitHub
 
 ## Forums 
-- Windows Containers forum is coming soon!
+
+- [Windows Containers forum](https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers) 
 - [TechNet forums](https://social.technet.microsoft.com/Forums/windowsserver/en-US/home "TechNet Forums")
 - [Azure forums](http://azure.microsoft.com/en-us/support/forums/)
 
