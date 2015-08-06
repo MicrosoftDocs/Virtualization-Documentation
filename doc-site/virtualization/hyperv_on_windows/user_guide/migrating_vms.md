@@ -43,6 +43,7 @@ Minimum VM configuration version for new Hyper-V features:
 | Hot Add/Remove Network Adapters        |                5.0 ||
 | Secure Boot for Linux VMs              |                6.0 ||
 | PowerShell Direct                      |                6.2 ||
+| Production Checkpoints                 |                6.0 ||
 | Virtual Trusted Platform Module (vTPM) |                6.2 ||
 | Virtual Machine Grouping               |                6.2 ||
 
