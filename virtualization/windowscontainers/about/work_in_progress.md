@@ -7,7 +7,9 @@ If you don't see your problem addressed here or have questions, post them on the
 
 ## Application compatability
 
-## Container management
+## Docker management
+
+## PowerShell management
 
 ## General functionality
 
