@@ -35,7 +35,7 @@ This command has instructed the Docker engine to create a new container named **
 Working in the container is almost identical to working with Windows installed on a virtual or physical machine. You can run commands such as `ipconfig` to return the IP address of the container, `mkdir` to create a new directory, or `powershell` to start a PowerShell session. Go ahead and make a change to the container such as creating a file or folder. For example, the following command will create a file which contains network configuration data about the container.
 
 ```
-ipconfig | c:\ipconfig.txt
+ipconfig > c:\ipconfig.txt
 ```
 
 You can read the contents of the file to ensure the command completed successfully. Notice that the IP address contained in the text file matches that of the container.
@@ -61,6 +61,8 @@ exit
 Finally to see a list of container on the container host use the `docker ps –a` command. Notice in the output a container named **dockerdemo** has been created.
 
 ```
+docker ps -a
+
 CONTAINER ID        IMAGE               COMMAND        CREATED             STATUS                     PORTS     NAMES
 4f496dbb8048        windowsservercore   "cmd"          2 minutes ago       Exited (0) 2 minutes ago             dockerdemo
 ``` 
@@ -216,5 +218,5 @@ After the website has been updated, navigate back to `http://ipaddress`.
 ![](media/hello.png)
 
 ####Resources
-[Back to Container Home](../containers_welcome.md)
+[Back to Container Home](../containers_welcome.md)  
 [Managing Windows Containers with PowerShell](./manage_powershell.md)

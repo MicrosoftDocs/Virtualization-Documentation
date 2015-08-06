@@ -18,7 +18,7 @@ First start a PowerShell session from the command prompt by typing `PowerShell`.
 
 Before creating a Windows Server Container you will need the name of a Container Image and the name of a virtual switch that will be attached to the new container.
 
-Use the `Get-ContainerImages` command to return a list of images loaded on the host. Take note of the image name that you will use to create a container, in this example, in this example 'WindowsServerCore'.
+Use the `Get-ContainerImages` command to return a list of images loaded on the host. Take note of the image name that you will use to create a container, in this example **WindowsServerCore**.
 
 ```powershell
 Get-ContainerImage
@@ -28,7 +28,7 @@ Name              Publisher    Version      IsOSImage
 WindowsServerCore CN=Microsoft 10.0.10254.0 True
 ```
 
-Use the ``Get-VMSwitch`` command to return a list of switches available on the host. Take note of the switch name that will be attached to the container, in this case 'Virtual Switch'.
+Use the `Get-VMSwitch` command to return a list of switches available on the host. Take note of the switch name that will be attached to the container, in this case **Virtual Switch**.
 
 ```powershell
 Get-VMSwitch
@@ -38,13 +38,13 @@ Name           SwitchType NetAdapterInterfaceDescription
 Virtual Switch External   Microsoft Hyper-V Network Adapter
 ```
 
-Run the following command to create a container with a name of 'MyContainer'. Notice that this example places the output of the ``New-Container`` into a variable ``$container``. This will be helpful later on.
+Run the following command to create a container with a name of **MyContainer**. Notice that this example places the output of the `New-Container` into a variable `$container`. This will be helpful later on.
 
 ```powershell
 $container = New-Container -Name "MyContainer" -ContainerImageName WindowsServerCore -SwitchName "Virtual Switch"
 ```
 
-To see a list of containers on the host and verify that the container was created, use the `Get-Container` command. Notice that a container has been created with the name of ‘MyContainer’ however is in an off state.
+To see a list of containers on the host and verify that the container was created, use the `Get-Container` command. Notice that a container has been created with the name of **MyContainer** however is in an off state.
 
 ```powershell
 Get-Container
@@ -59,7 +59,9 @@ To start the container use the `Start-Container` command.
 ```
 Start-Container -Name "MyContainer"
 ```
-You can interact with containers using PowerShell remoting commands such as `Invoke-Command`, or `Enter-PSSession`. The example below creates a remote PowerShell session into the container using the `Enter-PSSession` command. The `Enter-PSSession` needs the container id in order to create the remote session, this was stored in the $container variable when we created the new container. Notice that once the remote session has been created the command prompt will change to include the first 11 characters of the container id `[2446380e-629]`.
+You can interact with containers using PowerShell remoting commands such as `Invoke-Command`, or `Enter-PSSession`. The example below creates a remote PowerShell session into the container using the `Enter-PSSession` command. The `Enter-PSSession` needs the container id in order to create the remote session, this was stored in the `$container` variable when we created the new container. 
+
+Notice that once the remote session has been created the command prompt will change to include the first 11 characters of the container id `[2446380e-629]`.
 
 ```powershell
 Enter-PSSession -ContainerId $container.ContainerId -RunAsAdministrator
@@ -101,13 +103,13 @@ Stop-Container -Container $container
 
 An image can now be made from this container. This image will behave like a snapshot of the container and can be re-deployed many times.
 
-To create an image with the name of ``newimage`` run the following.
+To create an image with the name of `newimage` run the following.
 
 ```powershell
 $newimage = New-ContainerImage -ContainerName MyContainer -Publisher Demo -Name newimage -Version 1.0
 ```
 
-Use `Get-ContainerImage` to return a list of Container Images. Notice that a new image with the name ``newimage`` has been created.
+Use `Get-ContainerImage` to return a list of Container Images. Notice that a new image with the name `newimage` has been created.
 
 ```powershell
 Get-ContainerImage
@@ -122,7 +124,7 @@ WindowsServerCore CN=Microsoft 10.0.10254.0 True
 
 Now that you have created a customized container image, go ahead and deploy a new container from this image.
 
-Create a container named ``newcontainer`` from the container image named ``newimage`` and output the result to a variable named ``$newcontainer``.
+Create a container named `newcontainer` from the container image named **newimage** and output the result to a variable named **$newcontainer**.
 
 ```powershell
 $newcontainer = New-Container -Name "newcontainer" -ContainerImageName newimage -SwitchName "Virtual Switch"
@@ -170,7 +172,7 @@ To remove all containers:
 ```powershell
 Get-Container | Remove-Container -Force
 ```
-To remove the container image named `newimage`, run the following.
+To remove the container image named **newimage**, run the following.
 
 ```powershell
 Get-ContainerImage -Name newimage | Remove-ContainerImage -Force
@@ -192,7 +194,7 @@ Start the container.
 Start-Container $container
 ```
 
-when the container has been created, start a remote PowerShell session with the container.
+when the container has been created, start a remote PowerShell session in the container.
 ```powershell
 Enter-PSSession -ContainerId $container.ContainerId -RunAsAdministrator
 ```
