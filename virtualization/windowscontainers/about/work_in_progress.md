@@ -1,10 +1,27 @@
 ms.ContentId: 5bbac9eb-c31e-40db-97b1-f33ea59ac3a3
 title: Work in Progress
 
-##Work in Progress
+If you don't see your problem addressed here or have questions, post them on the [forum](https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers).
 
-<!-- make sure any issues are described from the point of view of the customer, not what is happening in the code.-->
+# Work in Progress
 
-## Item
+## Application compatability
 
-### Workaround or resolution
+## Container management
+
+## General functionality
+
+## Broad category
+
+### Specific issue
+A more detailed explaination to identify the issue.
+
+** Work Around: **  
+Description
+
+** More Information: ** (optional)  
+When does this happen?  Why?
+
+
+
+[Windows Containers forum](https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers).
