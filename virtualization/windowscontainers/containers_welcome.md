@@ -7,15 +7,17 @@ Windows containers provide operating system level virtualization that allow you 
 
 The following table list topics that provide more information about Windows containers, a guided quick start so that you can try out Windows containers, and additional resources.
 
+- [Try Windows Server Container in Azure](./quick_start/azure_setup.md)
+- [Try Windows Server Containers Locally](./quick_start/container_setup.md)
+
 <table border="1" style="background-color:FFFFCC;border-collapse:collapse;border:1px solid FFCC00;color:000000;width:100%" cellpadding="15" cellspacing="3">
 	<tr valign="top">
 		<td ><center>![](media/1.png)</center></td>
 		<td valign="top">		
-              	<p><strong>About Windows Containers</strong></p>
+              	<p><strong>Learn about Windows Containers</strong></p>
               	<p>The following articles provide an introduction and overview of Windows Containers.</p>
 			<ul>
 				<li class="unordered">[About Windows Containers](./about/about_overview.md)<br /><br /></li>
-                <li class="unordered">[Windows Server Container Ecosystem](./about/container_ecosystem.md)<br /><br /></li>
 				<li class="unordered">[Frequently Asked Questions](./about/faq.md)<br /><br /></li>
 				<li class="unordered">[Work in Progress](./about/work_in_progress.md)<br /><br /></li>
 			</ul>	
@@ -30,8 +32,8 @@ The following table list topics that provide more information about Windows cont
 			<ul>
 			  	<li class="unordered">[Configure Windows Server Containers in Windows Azure](./quick_start/azure_setup.md)<br /><br /></li>
 				<li class="unordered">[Configure Windows Server Containers Locally](./quick_start/container_setup.md)<br /><br /></li>
-                <li class="unordered">[Managing Windows Containers with PowerShell](./quick_start/manage_powershell.md)<br /><br /></li>
-				<li class="unordered">[Managing Windows Containers with Docker](./quick_start/manage_docker.md)<br /><br /></li>		
+                <li class="unordered">[Quick Start: Windows Server Containers and PowerShell](./quick_start/manage_powershell.md)<br /><br /></li>
+				<li class="unordered">[Quick Start: Windows Server Containers and Docker](./quick_start/manage_docker.md)<br /><br /></li>		
 			</ul>
 		</td>
 	</tr>

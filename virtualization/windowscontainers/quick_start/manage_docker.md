@@ -5,6 +5,8 @@ title: Manage Windows Server Containers with Docker
 
 This article will walk through the fundamentals of managing windows Server Container with Docker. Items covered will include creating Windows Server Containers and Windows Server Container Images, removing Windows Server Container and Container Images and finally deploying an application into a Windows Server Container. The lessons learned in this walkthrough should enable you to begin exploring deployment and management of Windows Server Containers using Docker.
 
+Have questions? Ask them on the [Windows Containers forum](https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers)
+
 > Please Note – Windows Server Container created with PowerShell need to be managed with PowerShell. To checkout the PowerShell quick start documentation, see  [Managing Windows Server Container with PowerShell](./manage_powershell.md).
 
 ##Basic Container Management with Docker
@@ -217,8 +219,4 @@ After the website has been updated, navigate back to `http://ipaddress`.
 
 ![](media/hello.png)
 
-#### Resources
-Have questions?  Ask them on the [Windows Containers forum](https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers)
-
 [Back to Container Home](../containers_welcome.md)  
-[Managing Windows Containers with PowerShell](./manage_powershell.md)

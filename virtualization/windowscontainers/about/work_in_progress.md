@@ -22,6 +22,5 @@ Description
 ** More Information: ** (optional)  
 When does this happen?  Why?
 
+[Back to Container Home](../containers_welcome.md)
 
-
-[Windows Containers forum](https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers).

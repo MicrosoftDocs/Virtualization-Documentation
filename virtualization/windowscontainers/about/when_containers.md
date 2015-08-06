@@ -10,6 +10,4 @@ There are a number of scenarios where containers could come in handy.  Some of t
 - Applications that normally don't play well togheter (or coexist) can be run next to each other in seperate containers
 - Allows running an application in a sandbox to limit what files it has access to
 
-##Navigation:
-
 [Back to Container Home](../containers_welcome.md)
