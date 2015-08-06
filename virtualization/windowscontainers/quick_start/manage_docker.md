@@ -9,7 +9,7 @@ Windows Server Containers can be managed with native Docker commands. While Wind
 
 ##Basic Container Management with Docker
 
-This first example will walk through basic Docker management functionality such as creating a container, creating a container image and removing container and container images.
+This first example will walk through basic container management functionality using Docker such as creating and removing containers and container images.
 
 ##Step 1 - Create a Container
 
@@ -27,7 +27,7 @@ windowsservercore   latest              9eca9231f4d4        30 hours ago        
 windowsservercore   10.0.10254.0        9eca9231f4d4        30 hours ago        9.613 GB
 ```
 
-To create a new container and open an console session into the container run:
+To create a new container and open a console session into the container run:
 
 ```
 docker run -it --name dockerdemo windowsservercore cmd
@@ -35,9 +35,9 @@ docker run -it --name dockerdemo windowsservercore cmd
 
 ![](media/docker4.png)
 
-Working in the container is almost identical to working with Windows installed on a virtual or physical machine. You can run commands such as **ipconfig** to return the IP address of the container, **mkdir** to create a new directory, or **powershell** to start a PowerShell session.
+Working in the container is almost identical to working with Windows installed on a virtual or physical machine. You can run commands such as `ipconfig` to return the IP address of the container, `mkdir` to create a new directory, or `powershell` to start a PowerShell session.
 
-Next, make a simple change to the container. For example, the following command creates a file that contains the output of ipconfig.
+Make a simple change to the container. For example, the following command creates a file that contains the output of ipconfig.
 
 ```
 ipconfig | c:\ipconfig.txt
@@ -68,7 +68,7 @@ exit
 
 ##Step 2 - Create a Container Image
 
-Now that a container has been created and modified, an image can be made from this container. This image will behave like a snapshot of the container and can be re-deployed many times, each time creating a new container. To see a list of containers that have been created on the host run the following.
+Now that a container has been created and modified, an image can be made from this container. This image will behave like a snapshot of the container and can be re-deployed many times. To see a list of containers that have been created on the host run the following.
 
 ```
 docker ps –a
@@ -81,13 +81,13 @@ CONTAINER ID        IMAGE               COMMAND             CREATED             
 4f496dbb8048        windowsservercore   "cmd"               2 minutes ago       Exited (0) 2 minutes ago             dockerdemo
 ```
 
-To create a new image from a specific container use the following command where the container name is 'dockerdemo' and the name of the new image will be 'newcontainerimage'.
+To create a new image from a specific container use `docker commit`. Run the following command to create an image with the name ‘newcontainerimage’.
 
 ```
 docker commit dockerdemo newcontainerimage
 ```
 
-To see all images on the host, use **docker images**. Notice that a new image has been created with the name that was specified during the container commit.
+To see all images on the host, use `docker images`. Notice that a new image has been created with the name that was specified during the container commit.
 
 ```
 docker images
@@ -100,7 +100,7 @@ windowsservercore   10.0.10254.0        9eca9231f4d4        30 hours ago        
 
 ##Step 3 - Create Container From Image
 
-Now that you have a custom container image, deploy a new container from this image and open an interactive session into the container. This do this, run docker run –it new container image name or id cmd.
+Now that you have a custom container image, deploy a new container from this image and open an interactive session into the container.
 
 ```
 docker run –it newcontainerimage cmd
@@ -225,3 +225,4 @@ After the website has been updated navigate back to http://ipaddress
 
 ####Navigation
 [Back to Container Home](../containers_welcome.md)
+[Managing Windows Containers with PowerShell](./manage_powershell.md)
