@@ -88,8 +88,7 @@ To cleanly delete a checkpoint:
 3.	You might be asked to verify that you want to delete the checkpoint. Confirm that it is the correct checkpoint, and then click **Delete**. 
 4.	The .avhdx and .vhdx files will merge, and when complete, the .avhdx file will be deleted from the file system. 
 
-**Tip **
-You can use Windows Powershell to delete a checkpoint by using the **Remove-VMSnapshot** cmdlet. 
+> **Tip:** You can use Windows Powershell to delete a checkpoint by using the **Remove-VMSnapshot** cmdlet. 
  
  Checkpoints are stored as .avhdx files in the same location as the .vhdx files for the virtual machine. You should not delete the .avhdx files directly.
  
@@ -127,3 +126,5 @@ virtual_machine_name (MM/DD/YYY –hh:mm:ss AM\PM)
 ```
 
 Names are limited to 100 characters or less, and the name cannot be blank. 
+
+
