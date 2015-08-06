@@ -23,12 +23,12 @@ windowsservercore   latest              9eca9231f4d4        30 hours ago        
 windowsservercore   10.0.10254.0        9eca9231f4d4        30 hours ago        9.613 GB
 ```
 
-To create a new Windows Server Container named **dockerdemo** from the **windowservercore** inage and then start a command in the new container run the following.
-To create a new Windows Server Container run the following. 
+To create a new Windows Server Container run the following.
+
 ```
 docker run -it --name dockerdemo windowsservercore cmd
 ```
-This command has instructed the Docker engine to create a new container named **dockerdemo** from the **windowsservercore** image and then to open up a console session in the container. Once it completes you will be working inside of the container. 
+This command has instructed the Docker engine to create a new container named **dockerdemo** from the **windowsservercore** image, and then to open up a console session with the container. Once this command completes you will be working inside of the container. 
 
 ![](media/docker4.png)
 
@@ -58,7 +58,7 @@ Now that the container has been modified, run the following to stop the console 
 exit
 ```
 
-Finally to see a list of container on the container host use the `docker ps –a` command. Notice in the output a container named **dockerdemo** has been created.
+Finally to see a list of containers on the container host use the `docker ps –a` command. Notice in the output a container named **dockerdemo** has been created.
 
 ```
 docker ps -a
@@ -92,7 +92,7 @@ windowsservercore   10.0.10254.0        9eca9231f4d4        30 hours ago        
 
 ##Step 3 - Create New Container From Image
 
-Now that you have a custom container image, deploy a new container named **newcontainer** from this image and open an interactive shell session in the container.
+Now that you have a custom container image, deploy a new container named **newcontainer** from this image and open an interactive shell session with the container.
 
 ```
 docker run –it --name newcontainer newcontainerimage cmd
@@ -169,7 +169,7 @@ At this point the dockerfile will be in `c:\build\nginx` and the nginx software 
 ```
 docker build -t nginx_windows c:\build\nginx
 ```
-This command is instruction the docker engine to use the dockerfile located at `c:\build\nginx` to create an image named **nginx_windows**.
+This command instructs the docker engine to use the dockerfile located at `c:\build\nginx` to create an image named **nginx_windows**.
 
 The output will look similar to this:
 
@@ -188,9 +188,9 @@ windowsservercore   latest              9eca9231f4d4        35 hours ago        
 
 ##Step 3 - Deploy Web Server Ready Container
 
-To deploy a Windows Server Container based off of the **nginx_windows** image use the `docker run' command. The below command will create a new container named **nginxcontainer** and start an console session in the container.
+To deploy a Windows Server Container based off of the **nginx_windows** image use the `docker run` command. The below command will create a new container named **nginxcontainer** and start an console session in the container.
 
-```
+```powershell
 docker run -it --name nginxcontainer nginx_windows cmd
 ```
 Once working inside the container, the nginx web server can be started and web content staged. To start the nginx web server, change to the nginx installation directory.

@@ -161,6 +161,8 @@ Ethernet adapter vEthernet (Container-2446380E-6296-4BF2-8146-18DAAFD85FCA-0):
 exit
 ```
 
+This exercise has shown that an image taken from a modified container will include all modifications. While the example here was a simple file modification, the same would apply if you were to install software into the container such as a web server. Using these methods, custom images can be created that will deploy application ready containers.
+
 ##Step 4 - Remove Containers and Container Images
 
 To stop all running containers run the command below. If any containers are in a stopped state when you run this command, you receive a warning, which is ok.
