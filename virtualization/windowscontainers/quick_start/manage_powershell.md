@@ -238,7 +238,7 @@ nginxwindows      CN=Demo      1.0.0.0      False
 WindowsServerCore CN=Microsoft 10.0.10254.0 True
 ```
 
-##Step 3 - Deploy Web Server Ready Container
+##Step 4 - Deploy Web Server Ready Container
 
 To deploy a Windows Server Container based off of the nginxwindows image, use the `New-Container` PowerShell command.
 
@@ -273,7 +273,7 @@ At this point, feel free to update the website. Copy in your own sample website,
 ```powershell
 Invoke-WebRequest 'https://raw.githubusercontent.com/neilpeterson/index/master/index.html' -OutFile "C:\nginx-1.9.3\html\index.html"
 ```
-After the website has been updated, navigate back to `http://ipaddress.
+After the website has been updated, navigate back to `http://ipaddress`.
 
 ![](media/hello.png)
 
