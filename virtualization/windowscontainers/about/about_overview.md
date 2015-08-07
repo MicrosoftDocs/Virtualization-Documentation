@@ -33,6 +33,8 @@ The following key concepts will be helpful as you begin creating and working wit
 
 **Container Management Technology:** Windows Server Containers can be managed using both PowerShell and Docker. With either one of these tools you can create new containers, container images as well as manage the container lifecycle.
 
+<center>![](media/containerfund.png)</center>
+
 ##Containers for Developers
 
 When you containerize an app, only the app and the components needed to run the app are combined into an "image". Containers are then created from this image as you need them. You can also use an image as a baseline to create another image, making image creation even faster.  Multiple containers can share the same image, which means containers start very quickly and use fewer resources. For example, you can use containers to spin up light-weight and portable app components – or ‘micro-services’ – for distributed apps and quickly scale each service separately.
@@ -48,5 +50,11 @@ Containers helps developers build and ship higher-quality applications, faster.
 IT Professionals can use containers to provide standardized environments for their development, QA, and production teams. They no longer have to worry about complex installation and configuration steps. By using containers, systems administrators abstract away differences in OS installations and underlying infrastructure.
 
 Containers help admins create an infrastructure that is simpler to update and maintain.
+
+##Try Windows Server Containers
+
+[Get started with Windows Server Containers in Windows Azure](../quick_start/azure_setup.md)  
+[Get started with Windows Server Containers Locally](../quick_start/container_setup.md)
+
 
 [Back to Container Home](../containers_welcome.md)
