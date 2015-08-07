@@ -25,6 +25,9 @@ Enter-PSSession -VMGUID <VMGUID>
 Exit-PSSession 
 ``` 
 
+
+> Note:  If you're session won't connect, make sure you're using credentials for the virtual machine you're connecting to -- not the Hyper-V host.
+
 ## Run script or command with Invoke-Command cmdlet
 
 You can use the **Invoke-Command** cmdlet to run a pre-determined set of commands on the virtual machine. Here is an example of how you can use the Invoke-Command cmdlet where PSTest is the virtual machine name and the script to run (foo.ps1) is in the script folder on the C:/ drive:
