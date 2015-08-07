@@ -7,11 +7,11 @@ This article will walk through the fundamentals of managing windows Server Conta
 
 Have questions? Ask them on the [Windows Containers forum](https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers).
 
-> Note - Windows Containers created with Docker need to be managed with Docker. For more information, see [Managing Windows Containers with Docker](./manage_docker.md).
+> Note - Windows Containers created with Docker need to be managed with Docker. For more information see [Quick Start: Windows Server Containers and Docker](./manage_docker.md).
 
 ##Basic Container Management with PowerShell:
 
-This first example will walk through the basics of creating and removing Windows Server Containers and Windows Server Container Images.
+This first example will walk through the basics of creating and removing Windows Server Containers and Windows Server Container Images with PowerShell.
 
 ##Step 1 - Create a New Container
 
