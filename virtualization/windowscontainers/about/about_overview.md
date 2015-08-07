@@ -51,4 +51,9 @@ IT Professionals can use containers to provide standardized environments for the
 
 Containers help admins create an infrastructure that is simpler to update and maintain.
 
+##Try Windows Server Containers
+
+[Get started with Windows Server Containers in Windows Azure](./quick_start/azure_setup.md)  
+[Get started with Windows Server Containers Locally](./quick_start/container_setup.md)
+
 [Back to Container Home](../containers_welcome.md)
