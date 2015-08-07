@@ -42,7 +42,7 @@ The following table list topics that provide more information about Windows cont
 		<td ><center>![](media/question.png)</center></td>
 		<td>		
               <p><strong>Connect with Community and Support</strong></p>
-              <p>Additional technical, support and community resources.</p>
+              <p>Additional technical support and community resources</p>
  			<ul>
 				<li class="unordered">[Ask Question at the Windows Server Container Forum](https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers)<br /><br /></li>
 				<li class="unordered">[Additional Windows Server Container Resources](https://msdn.microsoft.com/virtualization/community/community_overview)<br /><br /></li>
