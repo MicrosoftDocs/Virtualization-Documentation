@@ -33,6 +33,7 @@ The following key concepts will be helpful as you begin creating and working wit
 
 **Container Management Technology:** Windows Server Containers can be managed using both PowerShell and Docker. With either one of these tools you can create new containers, container images as well as manage the container lifecycle.
 
+
 <center>![](media/containerfund.png)</center>
 
 ##Containers for Developers
