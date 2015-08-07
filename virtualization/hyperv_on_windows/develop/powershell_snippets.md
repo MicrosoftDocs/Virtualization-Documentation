@@ -59,3 +59,36 @@ while ((Get-NetIPAddress | ? AddressFamily -eq IPv4 | ? IPAddress -ne 127.0.0.1)
 ** Outcome **
 Locks until a DHCP lease is recieved.  Since this script is not looking for a specific subnet or IP address, it works no matter what network configuration you're using.  
 Succeeds silently.
+
+## Managing credentials with PowerShell
+Hyper-V scripts frequently require handling credentials for one or more virtual machines, Hyper-V host, or both.
+
+There are multiple ways you can achieve this when working with PowerShell Direct or standard PowerShell remoting:
+
+1. The first (and simplest) way is to have the same user credentials be valid in the host and the guest or local and remote host.  
+  This is quite easy if you are logging in with your Microsoft account - or if you are in a domain environment.  
+  In this scenario you can just run `Invoke-Command -VMName "test" {get-process}`.
+
+2. Let PowerShell prompt you for credentials  
+  If your credentials do not match you will automatically get a credential prompt allowing you to provide the appropriate credentials for the virtual machine.
+
+3. Store credentials in a variable for reuse.
+  Running a simple command like this:  
+  ``` PowerShell
+  $localCred = Get-Credential
+   ```
+  And then running something like this:
+  ``` PowerShell
+  Invoke-Command -VMName "test" -Credential $localCred  {get-process} 
+  ```
+  Will mean that you only get prompted once per script/PowerShell session for your credentials.
+
+4. Code your credentials into your scripts.  **Don't do this for any real workload or system**
+ > Warning:  _Do not do this in a production system.  Do not do this with real passwords._
+  
+  You can hand craft a PSCredential object with some code like this:  
+  ``` PowerShell
+  $localCred = New-Object -typename System.Management.Automation.PSCredential -argumentlist "Administrator", (ConvertTo-SecureString "P@ssw0rd" -AsPlainText -Force) 
+  ```
+  Grossly insecure - but useful for testing.  Now you get no prompts at all in this session. 
+
