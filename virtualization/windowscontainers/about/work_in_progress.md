@@ -9,6 +9,41 @@ If you don't see your problem addressed here or have questions, post them on the
 
 ## Docker management
 
+### Docker commands that don't work with Windows Server Containers
+
+Commands known to fail:
+
+| **Docker command** | **Where it runs** | **Error** | **Notes** |
+|:-----|:-----|:-----|:-----|
+
+| **docker diff** | daemon | Error: The windows graphdriver does not support Changes() | |
+| **docker kill** | container | Error: Invalid signal: KILL  Error: failed to kill containers:[] | |
+| **
+
+
+
+### Docker commands that partially work with Windows Server Containers
+
+Commands with partial functionality:
+
+| **Docker command** | **Runs on...** | **Parameter** | **Notes** |
+|:-----|:-----|:-----|:-----|
+| **docker attach** | container | --no-stdin=false | The command doesn't exit when Ctrl-P and CTRL-Q is pressed |
+| | | --sig-proxy=true | works |
+| **docker build** | images | -f, --file | Error: Unable to prepare context: Unable to get synlinks |
+| | | --force-rm=false | works |
+| | | --no-cache=false | works |
+| | | -q, --quiet=false | |
+| | | --rm=true | works|
+| | | -t, --tag="" | works |
+| **docker commit** | images | -a, --author="" | works |
+| | | -c, --change=[] | Error: Failing to create a new container from this commit image. |
+| | | -m, --message="" | works |
+| | | -p, --pause=true | Docker stops running container and doesn’t shows correct error message |
+
+
+
+
 ## PowerShell management
 
 ## General functionality
