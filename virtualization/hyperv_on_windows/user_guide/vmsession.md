@@ -54,5 +54,5 @@ You can use the **Get-VM** cmdlet to check that the credentials you're using hav
 
 ## What can you do with PowerShell Direct?
 
-See our cool [PowerShell Direct snippets](../develop/powershell_snippets.md). 
+See [PowerShell Direct snippets](../develop/powershell_snippets.md). 
 
