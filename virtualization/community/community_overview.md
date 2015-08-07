@@ -13,8 +13,8 @@ Check out resources available to the user community. There is also a lot to see 
 ## User Forums 
 
 * [Windows Containers forum](https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers) 
-* [TechNet forums](https://social.technet.microsoft.com/Forums/windowsserver/en-US/home "TechNet Forums")
-* [Azure forums](http://azure.microsoft.com/en-us/support/forums/)
+* [TechNet forum](https://social.technet.microsoft.com/Forums/windowsserver/en-US/home "TechNet Forums")
+* [Azure forum](http://azure.microsoft.com/en-us/support/forums/)
 
 
 ## Featured content from Build 
