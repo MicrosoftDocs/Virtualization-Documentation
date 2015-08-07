@@ -14,7 +14,7 @@ Customize the workload, save as a new image to send off to wherever? (if that is
 1. Add text once the customer experience has been defined.
 2. Add text once the customer experience has been defined.
 
-##What’s Next
+##Next Steps
 
 You now have a working Windows Server Container environment, now onto the fun stuff.  Windows Server Containers can be created and managed using either PowerShell or Docker. We have put together a quick stat guide for both of these management experiences.
 
