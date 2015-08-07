@@ -15,10 +15,10 @@ Commands known to fail:
 
 | **Docker command** | **Where it runs** | **Error** | **Notes** |
 |:-----|:-----|:-----|:-----|
-
+| **docker commit** | image | Docker stops running container and doesn’t shows correct error message | We're working on it :) |
 | **docker diff** | daemon | Error: The windows graphdriver does not support Changes() | |
 | **docker kill** | container | Error: Invalid signal: KILL  Error: failed to kill containers:[] | |
-| **
+| **docker load** | image | Fails silently | No error but the image isn't loading either |
 
 
 
@@ -36,10 +36,7 @@ Commands with partial functionality:
 | | | -q, --quiet=false | |
 | | | --rm=true | works|
 | | | -t, --tag="" | works |
-| **docker commit** | images | -a, --author="" | works |
-| | | -c, --change=[] | Error: Failing to create a new container from this commit image. |
-| | | -m, --message="" | works |
-| | | -p, --pause=true | Docker stops running container and doesn’t shows correct error message |
+
 
 
 
