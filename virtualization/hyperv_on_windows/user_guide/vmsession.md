@@ -12,14 +12,11 @@ If you're managing older virtual machines, use Virtual Machine Connection (VMCon
 
 ## Create and exit a PowerShell Direct session using PSSession cmdlets
 1. On the Hyper-V host, open Windows PowerShell as Administrator.
-2. Run the following command to get your credentials:
-``` PowerShell
-$cred = Get-Credential
-```
+
 3. Run the one of the following commands to create a session by using the virtual machine name or GUID:  
 ``` PowerShell
-Enter-PSSession -VMName <VMName> -Credential $cred
-Enter-PSSession -VMGUID <VMGUID> -Credential $cred
+Enter-PSSession -VMName <VMName>
+Enter-PSSession -VMGUID <VMGUID>
 ```
 
 4. Run whatever commands you need to. These commands run on the virtual machine that you created the session with.
@@ -33,13 +30,13 @@ Exit-PSSession
 You can use the **Invoke-Command** cmdlet to run a pre-determined set of commands on the virtual machine. Here is an example of how you can use the Invoke-Command cmdlet where PSTest is the virtual machine name and the script to run (foo.ps1) is in the script folder on the C:/ drive:
 
  ``` PowerShell
- Invoke-Command -VMName PSTest -Credential $cred -FilePath C:\script\foo.ps1 
+ Invoke-Command -VMName PSTest -FilePath C:\script\foo.ps1 
  ```
 
 To run a single command, use the **-ScriptBlock** parameter:
 
  ``` PowerShell
- Invoke-Command -VMName PSTest -Credential $cred -ScriptBlock { cmdlet } 
+ Invoke-Command -VMName PSTest -ScriptBlock { cmdlet } 
  ```
 
 ## What's required to use PowerShell Direct?
@@ -54,5 +51,6 @@ You can use the **Get-VM** cmdlet to check that the credentials you're using hav
 
 ## What can you do with PowerShell Direct?
 
-See [PowerShell Direct snippets](../develop/powershell_snippets.md). 
+See [PowerShell Direct snippets](../develop/powershell_snippets.md) for numerous examples of how to use PowerShell Direct in your environment as well as tips and tricks for writing Hyper-V scripts with PowerShell.
+
 
