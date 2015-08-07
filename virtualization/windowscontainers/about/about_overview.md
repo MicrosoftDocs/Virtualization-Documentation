@@ -15,7 +15,25 @@ Basically, a container is an isolated place where an application can run without
 
 If you were inside a container, it would look very much like you were inside a physical computer or a virtual machine. And, to [Docker](https://www.docker.com/), a Windows Server Container looks like any other container.
 
-![](media/WindowsServerContainer.png)
+##Container Fundamentals
+
+When you begin working with containers you will notice many similarities between a container and a virtual machine. A container runs an operating system, has a file system and can be accessed over a network just as if it was a physical or virtual computer system. That said, the technology and concepts behind containers is very different from that of Virtual Machines.
+ 
+The following key concepts will be helpful as you begin creating and working with Windows Server Containers. 
+
+**Container Host:** Physical or Virtual computer system configured with the Windows Server Container feature. The container host will run one or more Windows Server Containers.
+
+**Container Image:** As modifications are made to a containers file system or registry, such as with software installation they are captured in the sandbox.  In many cases you may want to capture this state such that new containers can be created that inherit these changes. That’s what an image is – once the container has stopped you can either discard that sandbox or you can convert it into a new container image. For example, let’s imagine that you have deployed a container from the Windows Server Core OS image. You then install MySQL into this container. Creating a new image from this container would act as a deployable version of the container. This image would only contain the changes made (MySQL), however would work as a layer on top of the Container OS Image.  
+ 
+**Container OS Image:** Containers are deployed from images. The container OS image is the first layer in potentially many image layers that make up a container. This image provides the operating system environment. A Container OS Image is Immutable, it cannot be modified.
+
+**Sandbox:** Once a container has been started, all write actions such as file system modifications, registry modifications or software installations are captured in this ‘sandbox’ layer.
+
+**Container Repository:** Each time a container image is created the container image and its dependencies are stored in a local repository. These images can be reused many times on the container host. The container images can also be stored in a public or private repository such as Docker Hub and be used across many different container host.
+
+**Container Management Technology:** Windows Server Containers can be managed using both PowerShell and Docker. With either one of these tools you can create new containers, container images as well as manage the container lifecycle.
+
+<center>![](media/containerfund.png)</center>
 
 ##Containers for Developers
 
@@ -32,11 +50,5 @@ Containers helps developers build and ship higher-quality applications, faster.
 IT Professionals can use containers to provide standardized environments for their development, QA, and production teams. They no longer have to worry about complex installation and configuration steps. By using containers, systems administrators abstract away differences in OS installations and underlying infrastructure.
 
 Containers help admins create an infrastructure that is simpler to update and maintain.
-
-## What else do I get? ##
-
-Containers and the container ecosystem provide agility, productivity, and freedom-of-choice to build, deploy, and manage modern apps.
-
-When combined with Docker, Visual Studio, and Azure, containers become an important part of a robust ecosystem. Read more about the [Windows Server Container ecosystem](container_ecosystem.md).
 
 [Back to Container Home](../containers_welcome.md)
