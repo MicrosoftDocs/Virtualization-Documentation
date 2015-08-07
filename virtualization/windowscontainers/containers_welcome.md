@@ -1,14 +1,16 @@
 ms.ContentId: c9c3edaf-eca8-4afd-9510-09e78b46d560
 title: Containers Welcome
 
-# Windows Containers
+#Windows Containers
 
 Windows containers provide operating system level virtualization that allow you to run multiple isolated applications on one container host.
 
 The following table list topics that provide more information about Windows containers, a guided quick start so that you can try out Windows containers, and additional resources.
 
-- [Try Windows Server Container in Azure](./quick_start/azure_setup.md)
-- [Try Windows Server Containers Locally](./quick_start/container_setup.md)
+###Try Windows Server Containers:
+
+- [Setup in Azure](./quick_start/azure_setup.md)
+- [Setup Locally](./quick_start/container_setup.md)
 
 <table border="1" style="background-color:FFFFCC;border-collapse:collapse;border:1px solid FFCC00;color:000000;width:100%" cellpadding="15" cellspacing="3">
 	<tr valign="top">
@@ -44,8 +46,8 @@ The following table list topics that provide more information about Windows cont
               <p><strong>Connect with Community and Support</strong></p>
               <p>Additional technical, support and community resources.</p>
  			<ul>
-				<li class="unordered">[Get help and support from the Windows Container forum.](https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers)<br /><br /></li>
-				<li class="unordered">[Find additional Windows Container community resources.](https://msdn.microsoft.com/virtualization/community/community_overview)<br /><br /></li>
+				<li class="unordered">[Ask Question at the Windows Server Container Forum](https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers)<br /><br /></li>
+				<li class="unordered">[Additional Windows Server Container Resources](https://msdn.microsoft.com/virtualization/community/community_overview)<br /><br /></li>
 			</ul>
 		</td>
 	</tr>	
