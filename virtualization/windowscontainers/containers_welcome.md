@@ -53,7 +53,7 @@ The following table list topics that provide more information about Windows cont
               <p><strong>Explore Samples</strong></p>
               <p>Explore and reuse container code samples.</p>
 			<ul>
-				<li class="unordered">Container Sample Code<br /><br /></li>
+				<li class="unordered">[Container Sample Code](https://github.com/Microsoft/Virtualization-Documentation/tree/master/windows-server-container-samples)<br /><br /></li>
 			</ul>
 		</td>
 	</tr>
