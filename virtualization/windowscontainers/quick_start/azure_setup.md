@@ -14,7 +14,7 @@ To setup Windows Containers on your own virtual machine or system see the follow
 3.	On the ‘choose an image’ menu, select ‘Windows Server Technical Preview 3 – Container Edition’.
 4. 	Add content as the Azure experiance is defined.
 
-##What’s Next
+##Next Steps
 
 You now have a working Windows Server Container environment, now onto the fun stuff.  Windows Server Containers can be created and managed using either PowerShell or Docker. We have put together a quick stat guide for both of these management experiences.
 
