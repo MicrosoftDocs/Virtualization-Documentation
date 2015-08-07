@@ -19,6 +19,14 @@ Before creating a Windows Server Container you will need the name of a Container
 
 First start a PowerShell session from the command prompt by typing `PowerShell`. You will know that you are in a PowerShell session when the prompt changes from ``C:\directory>`` to ``PS C:\directory>``.
 
+```
+C:\>powershell
+Windows PowerShell
+Copyright (C) 2015 Microsoft Corporation. All rights reserved.
+
+PS C:\>
+```
+
 Use the `Get-ContainerImage` command to return a list of images loaded on the host. Take note of the image name that you will use to create the container.
 ```powershell
 Get-ContainerImage
@@ -212,7 +220,7 @@ Invoke-WebRequest 'http://nginx.org/download/nginx-1.9.3.zip' -OutFile "c:\nginx
 
 Extract the nginx software.
 ```
-PowerShell.exe Expand-Archive -Path C:\nginx-1.9.3.zip -DestinationPath c:\ -Force
+Expand-Archive -Path C:\nginx-1.9.3.zip -DestinationPath c:\ -Force
 ```
 This is all that needs to be completed for the nginx software installation.
 
