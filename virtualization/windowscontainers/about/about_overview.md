@@ -15,9 +15,7 @@ Basically, a container is an isolated place where an application can run without
 
 If you were inside a container, it would look very much like you were inside a physical computer or a virtual machine. And, to [Docker](https://www.docker.com/), a Windows Server Container looks like any other container.
 
-##Container Fundamentals
-
-<center>![](media/containerfund.png)</center>
+![](media/WindowsServerContainer.png)
 
 ##Containers for Developers
 
