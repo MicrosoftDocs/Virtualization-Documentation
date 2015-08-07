@@ -7,10 +7,8 @@ Windows containers provide operating system level virtualization that allow you 
 
 The following table list topics that provide more information about Windows containers, a guided quick start so that you can try out Windows containers, and additional resources.
 
-###Try Windows Server Containers:
-
-- [Setup in Azure](./quick_start/azure_setup.md)
-- [Setup Locally](./quick_start/container_setup.md)
+#[Try Windows Server Containers in Azure](./quick_start/azure_setup.md)
+#[Try Windows Server Containers Locally](./quick_start/container_setup.md)
 
 <table border="1" style="background-color:FFFFCC;border-collapse:collapse;border:1px solid FFCC00;color:000000;width:100%" cellpadding="15" cellspacing="3">
 	<tr valign="top">
