@@ -27,13 +27,32 @@ When does this happen?  Why?
 In our testing, commands occasionally need to be run multiple times.  Sometimes you need to touch the file.
 We're working on it :).  If you have top do this, let us know via [the forums](https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers).
 
-### Folder mapping
-Can't map folders yet so...
+### Drive mapping
+All non-C:/ drives mapped in the container host appear in all Windows Server Containers.  
 
-**Work Around: **  Everything is mapped!
+Since there is no way to map folders into a container, this is a way to share data.
+
+**Work Around: **
+We're working on it.
 
 
 ## Application compatability
+
+### Can't install IIS in a container using DISM 
+Installing IIS-ASPNET45 in a container doesn't work inside a Windows Server container.  The installation progress sticks around 95.5%.
+
+``` PowerShell
+Enable-WindowsOptionalFeature -Online -FeatureName IIS-ASPNET45
+```
+
+This fails because ASP.NET 4.5 doesn't run in a container.
+
+** Work Around: **  
+ASP 5.0 does work.  Instead, install the Web-Server role.
+
+``` PowerShell
+Enable-WindowsOptionalFeature -Online -FeatureName IIS-WebServerRole
+```
 
 ## Docker management
 
