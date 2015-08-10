@@ -5,6 +5,33 @@ If you don't see your problem addressed here or have questions, post them on the
 
 # Work in Progress
 
+-----------------------
+
+**Template**  
+## Broad category
+
+### Specific issue
+A more detailed explaination to identify the issue.
+
+** Work Around: **  
+Description
+
+** More Information: ** (optional)  
+When does this happen?  Why?
+
+-----------------------
+
+## General functionality
+
+### Run twice
+In our testing, commands occasionally need to be run multiple times.  We're working on it :)
+
+### Folder mapping
+Can't map folders yet so...
+
+**Work Around: **  Everything is mapped!
+
+
 ## Application compatability
 
 ## Docker management
@@ -46,22 +73,8 @@ Commands with partial functionality:
 | **docker rm** | container | -f | Error: A system shutdown is in progress. |
 
 
-
-
 ## PowerShell management
 
-## General functionality
-
-## Broad category
-
-### Specific issue
-A more detailed explaination to identify the issue.
-
-** Work Around: **  
-Description
-
-** More Information: ** (optional)  
-When does this happen?  Why?
 
 [Back to Container Home](../containers_welcome.md)
 
