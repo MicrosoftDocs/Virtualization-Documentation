@@ -24,7 +24,8 @@ When does this happen?  Why?
 ## General functionality
 
 ### Run twice
-In our testing, commands occasionally need to be run multiple times.  We're working on it :)
+In our testing, commands occasionally need to be run multiple times.  Sometimes you need to touch the file.
+We're working on it :).  If you have top do this, let us know via [the forums](https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers).
 
 ### Folder mapping
 Can't map folders yet so...
