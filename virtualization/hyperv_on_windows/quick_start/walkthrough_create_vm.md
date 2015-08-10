@@ -20,7 +20,7 @@ For this step, if you already have a .iso file for a supported 64-bit operating 
   
 3. When everything looks right, click **Finish**. 
 
-**Note** - if you only have 32-bit version of Windows, you need to choose Generation 1 in the **Generation** section of the wizard. Generation 2 VMs only support 64-bit operating systems.
+> **Note:** If you only have 32-bit version of Windows, you need to choose Generation 1 in the **Generation** section of the wizard. Generation 2 VMs only support 64-bit operating systems.
 
 ## Next Step: 
 [Step 5: Connect to the virtual machine and finish the installation](walkthrough_vmconnect.md)

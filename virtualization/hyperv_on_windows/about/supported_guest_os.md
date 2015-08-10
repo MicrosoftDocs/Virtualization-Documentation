@@ -44,5 +44,16 @@ Hyper-V includes integration services for supported guest operating systems.  In
  | Windows XP x64 Edition with Service Pack 2 (SP 2) | 2 | Install the integration services after you set up the operating system in the virtual machine. | Professional. | 	|
  
 ## Linux and Freed BSD
-For information about Linux and FreeBSD support, see [Linux and FreeBSD Virtual Machines on Hyper-V](https://technet.microsoft.com/library/dn531030.aspx).
+
+Here is a quick list of supported operating systems:
+
+  * Linux and FreeBSD
+  * Ubuntu
+  * CentOS and Red Hat Enterprise Linux
+  * Debian virtual machines on Hyper-V 
+  * SUSE
+  * Oracle Linux virtual machines on Hyper-V 
+  * FreeBSD virtual machines on Hyper-V
+
+There are many caveats around specific kernel versions. For more information, including support information on past versions of Hyper-V, see [Linux and FreeBSD Virtual Machines on Hyper-V](https://technet.microsoft.com/library/dn531030.aspx).
 
