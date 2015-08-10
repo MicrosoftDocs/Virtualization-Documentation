@@ -19,6 +19,11 @@ Commands known to fail:
 | **docker diff** | daemon | Error: The windows graphdriver does not support Changes() | |
 | **docker kill** | container | Error: Invalid signal: KILL  Error: failed to kill containers:[] | |
 | **docker load** | image | Fails silently | No error but the image isn't loading either |
+| **docker pause** | container | Error: Windows container cannot be paused.  May be not supported | |
+| **docker port** | container |  | No port is getting listed even we are able to RDP.
+| **docker pull** | daemon | Error: System cannot find the file path. We cant run container using this image. | Image is getting added can't be used.  We're working on it :) |
+| **docker restart** | container | Error: A system shutdown is in progress. |  |
+| **docker unpause** | container |  | Can't test because pause doesn't work yet. |
 
 
 
@@ -36,7 +41,9 @@ Commands with partial functionality:
 | | | -q, --quiet=false | |
 | | | --rm=true | works|
 | | | -t, --tag="" | works |
-
+| **docker login** | daemon | -e, -p, -u | sporratic behavior | 
+| **docker push** | daemon | | Getting occasional "repository does not exit" errors. |
+| **docker rm** | container | -f | Error: A system shutdown is in progress. |
 
 
 
