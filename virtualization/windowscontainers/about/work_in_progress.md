@@ -24,7 +24,7 @@ When does this happen?  Why?
 ## General functionality
 
 ### Run twice
-In our testing, commands occasionally need to be run multiple times.  Sometimes you need to touch the file.
+In our testing, commands occasionally need to be run multiple times.  THe same principle applies to other actions.  For example, if you create a new file and it doesn't appear, try touching the file.  
 We're working on it :).  If you have top do this, let us know via [the forums](https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers).
 
 ### Drive mapping
@@ -51,8 +51,90 @@ This fails because ASP.NET 4.5 doesn't run in a container.
 ASP 5.0 does work.  Instead, install the Web-Server role.
 
 ``` PowerShell
-Enable-WindowsOptionalFeature -Online -FeatureName IIS-WebServerRole
+Enable-WindowsOptionalFeature -Online -FeatureName Web-Server
 ```
+
+### Windows Optional Features that do install
+
+* AD-Certificate
+* ADCS-Cert-Authority
+* File-Services
+ * FS-FileServer
+ * FS-VSS-Agent
+* DirectAccess-VPN
+* Routing
+* Remote-Desktop-Services
+* VolumeActivation
+* Web-Server
+* Web-WebServer
+* Web-Common-Http
+* Web-Default-Doc
+* Web-Dir-Browsing
+* Web-Http-Errors
+* Web-Static-Content
+* Web-Http-Redirect
+* Web-DAV-Publishing
+* Web-Health
+* Web-Http-Logging
+* Web-Custom-Logging
+* Web-Log-Libraries
+* Web-ODBC-Logging
+* Web-Request-Monitor
+* Web-Performance
+* Web-Stat-Compression
+* Web-Dyn-Compression
+* Web-Security
+* Web-Filtering
+* Web-Basic-Auth
+* Web-CertProvider
+* Web-Client-Auth
+* Web-Digest-Auth
+* Web-Cert-Auth
+* Web-IP-Security
+* Web-Url-Auth
+* Web-Windows-Auth
+* Web-App-Dev
+* Web-AppInit
+* Web-CGI
+* Web-ISAPI-Ext
+* Web-ISAPI-Filter
+* Web-Includes
+* Web-WebSockets
+* Web-Mgmt-Compat
+* Web-Metabase
+* BitLocker
+* EnhancedStorage
+* GPMC
+* Isolated-UserMode
+* Server-Media-Foundation
+* MSMQ-DCOM
+* MultiPoint-Connector-Feature
+* qWave
+* RDC
+* RSAT-Feature-Tools-BitLocker
+* RSAT-Clustering-PowerShell
+* RSAT-Clustering-AutomationServer
+* RSAT-Clustering-CmdInterface
+* RSAT-Shielded-VM-Tools
+* RSAT-AD-Tools
+* RSAT-AD-PowerShell
+* RSAT-ADDS
+* RSAT-AD-AdminCenter
+* RSAT-ADDS-Tools
+* RSAT-ADLDS
+* Hyper-V-PowerShell
+* UpdateServices-API
+* RSAT-NetworkController
+* Windows-Fabric-Tools
+* RSAT-HostGuardianService
+* FS-SMBBW
+* Storage-Replica
+* Telnet-Client
+* WAS
+ * WAS-Process-Model
+ * WAS-Config-APIs
+* Windows-Server-Backup
+* Migration
 
 ## Docker management
 
