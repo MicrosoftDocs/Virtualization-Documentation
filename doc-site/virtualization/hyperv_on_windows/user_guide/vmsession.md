@@ -13,18 +13,20 @@ If you're managing older virtual machines, use Virtual Machine Connection (VMCon
 ## Create and exit a PowerShell Direct session using PSSession cmdlets
 1. On the Hyper-V host, open Windows PowerShell as Administrator.
 
-2. Run the one of the following commands to create a session by using the virtual machine name or GUID:  
+3. Run the one of the following commands to create a session by using the virtual machine name or GUID:  
 ``` PowerShell
 Enter-PSSession -VMName <VMName>
 Enter-PSSession -VMGUID <VMGUID>
 ```
 
-3. Enter credentials for a user account on the virtual machine when prompted.
 4. Run whatever commands you need to. These commands run on the virtual machine that you created the session with.
 5. When you're done, run the following command to close the session:  
 ``` PowerShell
 Exit-PSSession 
 ``` 
+
+
+> Note:  If you're session won't connect, make sure you're using credentials for the virtual machine you're connecting to -- not the Hyper-V host.
 
 ## Run script or command with Invoke-Command cmdlet
 
@@ -52,34 +54,6 @@ You can use the **Get-VM** cmdlet to check that the credentials you're using hav
 
 ## What can you do with PowerShell Direct?
 
-See our cool [PowerShell Direct snippets](../develop/powershell_snippets.md). 
+See [PowerShell Direct snippets](../develop/powershell_snippets.md) for numerous examples of how to use PowerShell Direct in your environment as well as tips and tricks for writing Hyper-V scripts with PowerShell.
 
-## Managing virtual machine credentials
-PowerShell Direct requires that you are correctly authenticated with the guest operating system in order to run PowerShell commands inside the virtual machine.  There are multiple ways you can achieve this:
 
-1. The first (and simplest) way is to have the same user credentials be valid in the host and the guest.  
-  This is quite easy if you are logging in with your Microsoft account - or if you are in a domain environment.  
-  In this scenario you can just run `Invoke-Command -VMName "test" {get-process}`.
-
-2. Let PowerShell Direct prompt you for credentials  
-  If your credentials do not match you will automatically get a credential prompt allowing you to provide the appropriate credentials for the virtual machine.
-
-3. Store credentials in a variable for reuse.
-  Running a simple command like this:  
-  ``` PowerShell
-  $localCred = Get-Credential
-   ```
-  And then running something like this:
-  ``` PowerShell
-  Invoke-Command -VMName "test" -Credential $localCred  {get-process} 
-  ```
-  Will mean that you only get prompted once per script/PowerShell session for your credentials.
-
-4. Code your credentials into your scripts.  **Don't do this for any real workload or system**
- > Warning:  _Do not do this in a production system.  Do not do this with real passwords._
-  
-  You can hand craft a PSCredential object with some code like this:  
-  ``` PowerShell
-  $localCred = New-Object -typename System.Management.Automation.PSCredential -argumentlist "Administrator", (ConvertTo-SecureString "P@ssw0rd" -AsPlainText -Force) 
-  ```
-  Grossly insecure - but useful for testing.  Now you get no prompts at all in this session. 
