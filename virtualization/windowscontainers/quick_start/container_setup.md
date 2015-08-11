@@ -9,9 +9,9 @@ To run Windows Server Containers in Azure instead, follow [these instructions](.
  
 ## Step 1 - Requirements
 
-* Running Hyper-V
-* 13GB available (so you can download Server Core and a base image)
-* Docker is installed.  [Download here](https://www.docker.com/toolbox).
+* Hyper-V is enabled
+* 14GB available (so you can download Server Core and a base image)
+* Administrator permissions
 
 ** Why do I need Hyper-V? **  
 Windows Server Containers do not require Hyper-V.  However, this guide and all of the set-up scripts we're providing assume you're running containers in a virtual machine.  It's easier to get going in a virtual machine with Hyper-V.
