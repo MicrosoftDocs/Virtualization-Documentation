@@ -24,6 +24,7 @@ Enter-PSSession -VMGUID <VMGUID>
 ``` PowerShell
 Exit-PSSession 
 ``` 
+
 To learn more about these cmdlets, see [Enter-PSSession](http://technet.microsoft.com/library/hh849707.aspx) and [Exit-PSSession](http://technet.microsoft.com/library/hh849743.aspx). 
 
 > Note:  If you're session won't connect, make sure you're using credentials for the virtual machine you're connecting to -- not the Hyper-V host.
