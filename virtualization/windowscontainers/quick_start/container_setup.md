@@ -1,20 +1,29 @@
 ﻿ms.ContentId: 71a03c62-50fd-48dc-9296-4d285027a96a
 title: Container Setup
 
-#Preparing Windows Server Technical Preview for Windows Containers
+# Preparing Windows Server Technical Preview for Windows Containers
 
-Before creating and managing Windows Containers the Windows Server 2016 Technical Preview environment must be prepared. With this preview release, two hands on experiences are available, one running in an Azure and one running in your on-premises environment. This guide will walk through configuring Windows container in a virtual or physical machine hosted in your own environment.
+In order to create and manage Windows Server Containers, the Windows Server 2016 Technical Preview environment must be prepared.  This guide will walk through configuring Windows Server Containers in a virtual machine running locally with Hyper-V.
+
+To run Windows Server Containers in Azure instead, follow [these instructions](./azure_setup.md).
  
-##Window Container Preparation on a Physical or Virtual Computer:
+## Step 1 - Requirements
 
-**Goal** :  
-Building on the new container, this doc will walk through set up of the container network and a defualt workload. Includes setting up a basic network and installing some workload. 
-Customize the workload, save as a new image to send off to wherever? (if that is possible/ready)
+* Running Hyper-V
+* 13GB available (so you can download Server Core and a base image)
+* Docker is installed.  [Download here](https://www.docker.com/toolbox).
 
-1. Add text once the customer experience has been defined.
-2. Add text once the customer experience has been defined.
+** Why do I need Hyper-V? **  
+Windows Server Containers do not require Hyper-V.  However, this guide and all of the set-up scripts we're providing assume you're running containers in a virtual machine.  It's easier to get going in a virtual machine with Hyper-V.
 
-##Next Steps
+If you really want to run Windows Server Containers on a Server Core Technical Preview machine, there is a script for you.
+
+## Step 2 - Download and run the installation script
+There are a few different components necessary for running Windows Server Containers.
+
+The scripts available in the download center pull all of these dependencies for you.
+
+## Next Steps
 
 You now have a working Windows Server Container environment, now onto the fun stuff.  Windows Server Containers can be created and managed using either PowerShell or Docker. We have put together a quick stat guide for both of these management experiences.
 
