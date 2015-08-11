@@ -4,7 +4,7 @@
 $startTime = get-date
 
 ### Load Convert-WindowsImage
-. "$($workingDir)\Convert-WindowsImage.ps1"
+. "$($workingDir)\resources\Convert-WindowsImage.ps1"
 
 ### Sysprep unattend XML
 $unattendSource = [xml]@"
