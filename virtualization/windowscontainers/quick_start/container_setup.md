@@ -1,4 +1,4 @@
-﻿ms.ContentId: 71a03c62-50fd-48dc-9296-4d285027a96a
+ms.ContentId: 71a03c62-50fd-48dc-9296-4d285027a96a
 title: Container Setup
 
 # Preparing Windows Server Technical Preview for Windows Containers
@@ -36,8 +36,7 @@ There are a few different components necessary for running Windows Server Contai
   license terms. Please confirm you have accepted and agree to the license terms.
   [N] No  [Y] Yes  [?] Help (default is "N"): Y
   ```
-This script will then begin to download and configure the Windows Server Container components. This process will take quite some time due to the large download. Once com
-
+This script will then begin to download and configure the Windows Server Container components. This process will take quite some time due to the large download.  
 Once finished your Virtual Machine will be configured and ready to create and manage Windows Server Containers with both PowerShell and Docker. Jump to the following quick starts to begin working with either of these Windows Server Container Management technologies.
 
 [Quick Start: Windows Server Containers and PowerShell](./manage_powershell.md)  
