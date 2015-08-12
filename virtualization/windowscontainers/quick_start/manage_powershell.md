@@ -289,5 +289,12 @@ After the website has been updated, navigate back to `http://ipaddress`.
 
 ![](media/hello.png)
 
+## Next Steps
+
+### Experiment with PowerShell
+Andy -- use https://int.msdn.microsoft.com/virtualization/hyperv_on_windows/quick_start/walkthrough_powershell as a template
+
+
+
 [Back to Container Home](../containers_welcome.md)  
 
