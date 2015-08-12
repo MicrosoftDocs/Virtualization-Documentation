@@ -14,12 +14,10 @@ To run Windows Server Containers in Azure instead, follow [these instructions](.
 * Administrator permissions
 
 ** Why do I need Hyper-V? **  
-Windows Server Containers do not require Hyper-V. However, this guide and all of the set-up scripts we're providing assume you're running containers in a virtual machine. It's easier to get going in a virtual machine with Hyper-V.
-
-If you really want to run Windows Server Containers on a Server Core Technical Preview machine, there is a script for you.
+Windows Server Containers do not require Hyper-V. However, this guide and all of the set-up scripts we're providing assume you're running containers in a Hyper-V virtual machine. It's easier to get going in a virtual machine with Hyper-V.
 
 ## New Container Host on a New Virtual Machine
-There are a few different components necessary for running Windows Server Container, however we have a script that will pull all of these together for you. The following steps will guide you through the automaed creation of a  new virtual machine configured as a Windows Server Container Host.
+There are a few different components necessary for running Windows Server Container, however we have a script that will pull all of these together for you. The following steps will guide you through the automated creation of a new virtual machine configured as a Windows Server Container Host.
 
 1. Download configuration script from – http://updatelocation .
 2. Launch a PowerShell session as Administrator.
@@ -30,14 +28,14 @@ There are a few different components necessary for running Windows Server Contai
   ```
 4. When the script begins you will be asked to read and accept licensing terms.
 
-```
-Before installing and using the Windows Server Technical Preview 3 with Containers virtual machine you must:
-    1. Review the license terms by navigating to this link: http://aka.ms/WindowsServerTP3ContainerVHDEula
-    2. Print and retain a copy of the license terms for your records.
-By downloading and using the Windows Server Technical Preview 3 with Containers virtual machine you agree to such
-license terms. Please confirm you have accepted and agree to the license terms.
-[N] No  [Y] Yes  [?] Help (default is "N"): Y
-```
+  ```
+  Before installing and using the Windows Server Technical Preview 3 with Containers virtual machine you must:
+      1. Review the license terms by navigating to this link: http://aka.ms/WindowsServerTP3ContainerVHDEula
+      2. Print and retain a copy of the license terms for your records.
+  By downloading and using the Windows Server Technical Preview 3 with Containers virtual machine you agree to such
+  license terms. Please confirm you have accepted and agree to the license terms.
+  [N] No  [Y] Yes  [?] Help (default is "N"): Y
+  ```
 This script will then begin to download and configure the Windows Server Container components. This process will take quite some time due to the large download. Once com
 
 Once finished your Virtual Machine will be configured and ready to create and manage Windows Server Containers with both PowerShell and Docker. Jump to the following quick starts to begin working with either of these Windows Server Container Management technologies.
@@ -45,13 +43,11 @@ Once finished your Virtual Machine will be configured and ready to create and ma
 [Quick Start: Windows Server Containers and PowerShell](./manage_powershell.md)  
 [Quick Start: Windows Server Containers and Docker](./manage_docker.md)  
 
-## New Container Host on an Exsisting Virtual Machine
+## New Container Host on an Existing Virtual Machine
 
 Neil to Run and Doc script.
 
-## Next Steps
-
-You now have a working Windows Server Container environment, now onto the fun stuff.  Windows Server Containers can be created and managed using either PowerShell or Docker. We have put together a quick start guide for both of these management experiences.
+Once finished your Virtual Machine will be configured and ready to create and manage Windows Server Containers with both PowerShell and Docker. Jump to the following quick starts to begin working with either of these Windows Server Container Management technologies.
 
 [Quick Start: Windows Server Containers and PowerShell](./manage_powershell.md)  
 [Quick Start: Windows Server Containers and Docker](./manage_docker.md)  
