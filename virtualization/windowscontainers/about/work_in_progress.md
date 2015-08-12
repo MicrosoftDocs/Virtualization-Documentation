@@ -28,7 +28,7 @@ In our testing, commands occasionally need to be run multiple times.  THe same p
 We're working on it :).  If you have top do this, let us know via [the forums](https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers).
 
 ### Drive mapping
-All non-C:/ drives mapped in the container host appear in all Windows Server Containers.  
+All non-C:/ drives mapped in the container (that represent a physical drive on the host) appear in all Windows Server Containers.  
 
 Since there is no way to map folders into a container, this is a way to share data.
 
@@ -53,6 +53,12 @@ ASP 5.0 does work.  Instead, install the Web-Server role.
 ``` PowerShell
 Enable-WindowsOptionalFeature -Online -FeatureName Web-Server
 ```
+### Remote access of containers
+Windows Server Containers can be managed/interacted with through a RDP session. Exiting the RDP session without logoff may render the container unfit for image creation.
+
+** Work Around: **  
+Exit the RDP session by loogging off instead of exiting.
+
 
 ### Windows Optional Features that do install
 
