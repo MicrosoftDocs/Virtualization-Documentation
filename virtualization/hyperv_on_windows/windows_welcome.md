@@ -21,7 +21,6 @@ Hyper-V in Windows is sometimes referred to as Client Hyper-V.
 		<td valign="top">
 			<p><strong>About Hyper-V on Windows</strong></p>
 			<p>The following articles provide an introduction to and information about Hyper-V on Windows.</p>
-			<p>
 			<ul>
 				<li class="unordered"> Learn more about virtualization with this [introduction to Hyper-V](./about/hyperv_on_windows.md).<br /><br /></li>
 				<li class="unordered">[Supported guest operating systems](about\supported_guest_os.md)<br /><br /></li>
