@@ -289,6 +289,9 @@ After the website has been updated, navigate back to `http://ipaddress`.
 
 ![](media/hello.png)
 
+-----------------------------------
+
+
 ## Next Steps
 
 ### Experiment with PowerShell
