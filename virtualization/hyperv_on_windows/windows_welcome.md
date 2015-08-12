@@ -35,7 +35,7 @@ Hyper-V in Windows is sometimes referred to as Client Hyper-V.
 			<p>To try out Hyper-V, follow this [walkthrough](./quick_start/walkthrough.md).</p>
 			<p>It will walk you through enabling Hyper-V, creating a virtual machine, and simple management through Hyper-V Manager and PowerShell.</p>
 			<ul>
-				<li class="unordered">[Check system requirements](quick_start\walkthrough_compatability.md)<br /><br /></li>
+				<li class="unordered">[Check system requirements](quick_start\walkthrough_compatibility.md)<br /><br /></li>
                 <li class="unordered">[Install Hyper-V](quick_start\walkthrough_install.md)<br /><br /></li>
 				<li class="unordered">[Create a switch](quick_start\walkthrough_virtual_switch.md)<br /><br /></li>
 				<li class="unordered">[Create a virtual machine](quick_start\walkthrough_create_vm.md)<br /><br /></li>
