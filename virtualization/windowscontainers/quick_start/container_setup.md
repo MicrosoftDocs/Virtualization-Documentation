@@ -39,6 +39,14 @@ There are a few different components necessary for running Windows Server Contai
 This script will then begin to download and configure the Windows Server Container components. This process will take quite some time due to the large download.  
 Once finished your Virtual Machine will be configured and ready to create and manage Windows Server Containers with both PowerShell and Docker.
 
+> Note:  If you recieve this message:  
+  ```
+  Currently, your container is not connected to the network.
+  Get-VM | Get-VMNetworkAdapter | Connect-VMNetworkAdapter -Switchname <switchname>
+  ```
+  
+  You already have set up an external switch and should manually it to your virtual machine.
+
 5. Launch your new virtual machine with VM Connect.  `CONTAINERHOST` is the VMName you used with the `New-ContainerHost` script.
   
   ``` PowerShell
