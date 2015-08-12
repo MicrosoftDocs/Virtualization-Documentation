@@ -44,7 +44,8 @@ Hyper-V includes integration services for supported guest operating systems.  In
 ## Linux and Freed BSD
 
 Hyper-V also has support for various Linux and FreeBSD distributions:
-
+| Operating system | |
+| -----|------|
 | [CentOS and Red Hat Enterprise Linux ](https://technet.microsoft.com/library/dn531026.aspx) | |
 | [Debian virtual machines on Hyper-V](https://technet.microsoft.com/library/dn614985.aspx) | |
 | [SUSE](https://technet.microsoft.com/en-us/library/dn531027.aspx) | |
