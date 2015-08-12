@@ -54,10 +54,10 @@ ASP 5.0 does work.  Instead, install the Web-Server role.
 Enable-WindowsOptionalFeature -Online -FeatureName Web-Server
 ```
 ### Remote access of containers
-Windows Server Containers can be managed/interacted with through a RDP session. Exiting the RDP session without logoff may render the container unfit for image creation.
+Windows Server Containers can be managed/interacted with through a RDP session. Exiting the container RDP session without logoff may render the container unfit for image creation.
 
 ** Work Around: **  
-Exit the RDP session by loogging off instead of exiting.
+Exit the RDP session by typing "logoff" instead of "exit" or closing the RDP window..
 
 
 ### Windows Optional Features that do install
