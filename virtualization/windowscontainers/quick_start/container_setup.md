@@ -1,5 +1,5 @@
 ms.ContentId: 71a03c62-50fd-48dc-9296-4d285027a96a
-title: Container Setup
+title: Setup Windows Containers in a local VM
 
 # Preparing Windows Server Technical Preview for Windows Containers
 
@@ -16,7 +16,7 @@ To run Windows Server Containers in Azure instead, follow [these instructions](.
 ** Why do I need Hyper-V? **  
 Windows Server Containers do not require Hyper-V. However, this guide and all of the set-up scripts we're providing assume you're running containers in a Hyper-V virtual machine. It's easier to get going in a virtual machine with Hyper-V.
 
-## New Container Host on a New Virtual Machine
+## Set up a new container host on a new virtual machine
 There are a few different components necessary for running Windows Server Container, however we have a script that will pull all of these together for you. The following steps will guide you through the automated creation of a new virtual machine configured as a Windows Server Container Host.
 
 1. Download configuration script from – http://updatelocation .
@@ -37,18 +37,28 @@ There are a few different components necessary for running Windows Server Contai
   [N] No  [Y] Yes  [?] Help (default is "N"): Y
   ```
 This script will then begin to download and configure the Windows Server Container components. This process will take quite some time due to the large download.  
-Once finished your Virtual Machine will be configured and ready to create and manage Windows Server Containers with both PowerShell and Docker. Jump to the following quick starts to begin working with either of these Windows Server Container Management technologies.
+Once finished your Virtual Machine will be configured and ready to create and manage Windows Server Containers with both PowerShell and Docker.
+
+5. Launch your new virtual machine with VM Connect.  `CONTAINERHOST` is the VMName you used with the `New-ContainerHost` script.
+  
+  ``` PowerShell
+  vmconnect.exe localhost CONTAINERHOST
+  ```
+  
+  The VM should connect to this screen:
+  ![](./media/ContainerHost.png)
+  
+6.  Enter your password.  This is the password you used with the `New-ContainerHost` script.
+
+Now you have a Windows Server Core virtual machine running Docker and Windows Server Containers!
+  
+Jump to the following quick starts to begin containerizing applications and managing Windows Server Containers.
+
+The Docker and PowerShell guides both walk through containerizing a web server and performing equivelant management tasks.  Use whichever toolset you prefer.
 
 [Quick Start: Windows Server Containers and PowerShell](./manage_powershell.md)  
 [Quick Start: Windows Server Containers and Docker](./manage_docker.md)  
 
-## New Container Host on an Existing Virtual Machine
-
-Neil to Run and Doc script.
-
-Once finished your Virtual Machine will be configured and ready to create and manage Windows Server Containers with both PowerShell and Docker. Jump to the following quick starts to begin working with either of these Windows Server Container Management technologies.
-
-[Quick Start: Windows Server Containers and PowerShell](./manage_powershell.md)  
-[Quick Start: Windows Server Containers and Docker](./manage_docker.md)  
+-------------------
 
 [Back to Container Home](../containers_welcome.md)
