@@ -28,7 +28,7 @@ A Windows Server Container requires a opertaing system image that matches the co
 We try to limit this impact by not starting containers with mismatched container OS. 
 
 ** Work Around: **  
-Download and install a container OS matching the OS version and patchlevel of the container host.
+Download and install a container OS matching the OS version and patch level of the container host.
 
 
 ### Run twice
