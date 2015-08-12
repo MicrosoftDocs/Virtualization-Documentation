@@ -19,7 +19,7 @@ The following table list topics that will provide more information about Windows
 		<td ><center>![](media/1.png)</center></td>
 		<td valign="top">		
               	<p><strong>About Windows Containers</strong></p>
-              	<p>The following articles provide an introduction and overview of Windows Containers. .</p>
+              	<p>The following articles provide an introduction and overview of Windows Containers.</p>
 			<ul>
 				<li class="unordered">[About Windows Containers](about\about_overview.md)<br /><br /></li>
                 <li class="unordered">[Windows Server Container Ecosystem](about\container_ecosystem.md)<br /><br /></li>
