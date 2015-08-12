@@ -13,7 +13,7 @@ They are an isolated, resource controlled, and portable operating environment.
 
 Basically, a container is an isolated place where an application can run without affecting the rest of the system and without the system affecting the application. Containers are the next evolution in virtualization.
 
-If you were inside a container, it would look very much like you were inside a physical computer or a virtual machine. And, to [Docker](https://www.docker.com/), a Windows Server Container cn be managed in the same way as any other container.
+If you were inside a container, it would look very much like you were inside a physical computer or a virtual machine. And, to [Docker](https://www.docker.com/), a Windows Server Container can be managed in the same way as any other container.
 
 ##Container Fundamentals
 
