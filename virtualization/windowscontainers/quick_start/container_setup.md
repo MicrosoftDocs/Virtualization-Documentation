@@ -43,8 +43,7 @@ Once finished your Virtual Machine will be configured and ready to create and ma
   ```
   Currently, your container is not connected to the network.
   Get-VM | Get-VMNetworkAdapter | Connect-VMNetworkAdapter -Switchname <switchname>
-  ```
-  
+  ```  
   You already have set up an external switch and should manually it to your virtual machine.
 
 5. Launch your new virtual machine with VM Connect.  `CONTAINERHOST` is the VMName you used with the `New-ContainerHost` script.
@@ -62,10 +61,10 @@ Now you have a Windows Server Core virtual machine running Docker and Windows Se
   
 Jump to the following quick starts to begin containerizing applications and managing Windows Server Containers.
 
-The Docker and PowerShell guides both walk through containerizing a web server and performing equivelant management tasks.  Use whichever toolset you prefer.
-
 [Quick Start: Windows Server Containers and PowerShell](./manage_powershell.md)  
-[Quick Start: Windows Server Containers and Docker](./manage_docker.md)  
+[Quick Start: Windows Server Containers and Docker](./manage_docker.md) 
+
+The Docker and PowerShell guides both walk through containerizing a web server and performing equivelant management tasks.  Use whichever toolset you prefer. 
 
 -------------------
 
