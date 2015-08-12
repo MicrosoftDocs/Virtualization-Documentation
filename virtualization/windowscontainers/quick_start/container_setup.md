@@ -10,7 +10,12 @@ To run Windows Server Containers in Azure instead, follow [these instructions](.
 ## Requirements
 
 * Hyper-V is enabled
-* 14GB available (so you can download Server Core and a base image)
+* 20GB available
+  * 6GB to download a zip file containing:  
+    * Windows Server Core  
+    * Windows Server Container base image
+    * a handfull of setup scripts
+  * 13GB -- to unzip the contents (once the file is extracted, you can delete the zip file).
 * Administrator permissions
 
 ** Why do I need Hyper-V? **  
