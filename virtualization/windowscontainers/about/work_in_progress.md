@@ -23,6 +23,14 @@ When does this happen?  Why?
 
 ## General functionality
 
+### Windows Container Image 
+A Windows Server Container requires a opertaing system image that matches the container host in respect to build and patch level. A mismatch will lead to instability and or unpredictable behaivor for the container and/or the host.
+We try to limit this impact by not starting containers with mismatched container OS. 
+
+** Work Around: **  
+Download and install a container OS matching the OS version and patchlevel of the container host.
+
+
 ### Run twice
 In our testing, commands occasionally need to be run multiple times.  THe same principle applies to other actions.  For example, if you create a new file and it doesn't appear, try touching the file.  
 We're working on it :).  If you have top do this, let us know via [the forums](https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers).
