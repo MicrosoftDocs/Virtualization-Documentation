@@ -40,12 +40,10 @@ Hyper-V includes integration services for supported guest operating systems.  In
  | Windows 7 with Service Pack 1 (SP 1) | 4 | Upgrade the integration services after you set up the operating system in the virtual machine. | Ultimate, Enterprise, and Professional editions (32-bit and 64-bit). | 	|
  | Windows 7 | 4 | Upgrade the integration services after you set up the operating system in the virtual machine. | Ultimate, Enterprise, and Professional editions (32-bit and 64-bit). | 	|
  | Windows Vista with Service Pack 2 (SP2) | 2 | Install the integration services after you set up the operating system in the virtual machine. | Business, Enterprise, and Ultimate, including N and KN editions. |  	|
- | Windows XP with Service Pack 3 (SP3) | 2 | Install the integration services after you set up the operating system in the virtual machine. | Professional. |  	|
- | Windows XP x64 Edition with Service Pack 2 (SP 2) | 2 | Install the integration services after you set up the operating system in the virtual machine. | Professional. | 	|
- 
+
 ## Linux and Freed BSD
 
-Here is a quick list of supported operating systems:
+Here is a list of supported operating systems:
 
   * Linux and FreeBSD
   * Ubuntu
