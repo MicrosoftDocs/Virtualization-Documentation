@@ -11,17 +11,44 @@ Hyper-V in Windows is sometimes referred to as Client Hyper-V.
 
 <table border="1" style="background-color:FFFFCC;border-collapse:collapse;border:1px solid FFCC00;color:000000;width:100%" cellpadding="15" cellspacing="3">
 	<tr valign="top">
-		<td><center>![](MeetsRequirements_65.png)</center></td>
-		<td valign="top"><p>To learn more about virtualization with Hyper-V on Windows 10, read the  [introduction](./about/hyperv_on_windows.md).</p></td></tr>
+		<td><center>![](./media/whats_new.png)</center></td>
+		<td valign="top">
+		<p><strong>What's new in Hyper-V?</strong></p>
+		<p>Read [What's New](./about/whats_new.md) to learn about new and changed features for Hyper-V in Windows 10.</p></td>
+	</tr>
 	<tr valign="top">
-		<td><center>![](whats_new.png)</center></td>
-		<td valign="top"><p>To learn about new and changed features for Hyper-V on Windows 10, read  [What's New](./about/whats_new.md).</p></td></tr>
+		<td><center>![](./media/MeetsRequirements_65.png)</center></td>
+		<td valign="top">
+			<p><strong>About Hyper-V on Windows</strong></p>
+			<p>The following articles provide an introduction to and information about Hyper-V on Windows.</p>
+			<p>
+			<ul>
+				<li class="unordered"> Learn more about virtualization with this [introduction to Hyper-V](./about/hyperv_on_windows.md).<br /><br /></li>
+				<li class="unordered">[Supported guest operating systems](about\supported_guest_os.md)<br /><br /></li>
+			</ul>	
+		</td>
+	</tr>
 	<tr valign="top">
-		<td><center>![](All_ContentTypeIcons_VisualWalkthrough_65.png)</center></td>
-		<td valign="top"><p>To try out Hyper-V, follow this [walkthrough](./quick_start/walkthrough.md).</p></td></tr>
+		<td><center>![](./media/All_ContentTypeIcons_VisualWalkthrough_65.png)</center></td>
+		<td valign="top">
+			<p><strong>Get started with Hyper-V</strong></p>
+			<p>To try out Hyper-V, follow this [walkthrough](./quick_start/walkthrough.md).</p>
+			<p>It will walk you through enabling Hyper-V, creating a virtual machine, and simple management through Hyper-V Manager and PowerShell.</p>
+			<ul>
+				<li class="unordered">[Check system requirements](quick_start\walkthrough_compatability.md)<br /><br /></li>
+                <li class="unordered">[Install Hyper-V](quick_start\walkthrough_install.md)<br /><br /></li>
+				<li class="unordered">[Create a switch](quick_start\walkthrough_virtual_switch.md)<br /><br /></li>
+				<li class="unordered">[Create a virtual machine](quick_start\walkthrough_create_vm.md)<br /><br /></li>
+				<li class="unordered">[Experiment with checkpoints](quick_start\walkthrough_checkpoints.md)<br /><br /></li>
+				<li class="unordered">[Experiment with PowerShell](quick_start\walkthrough_powershell.md)<br /><br /></li>
+			</ul>
+		</td>
+	</tr>
 	<tr valign="top">
-		<td><center>![](Chat_65.png)</center></td>
-		<td valign="top"><p> Have questions? Check out the [forum](https://social.technet.microsoft.com/Forums/windowsserver/en-US/home?forum=winserverhyperv)!</p></td>
+		<td><center>![](./media/Chat_65.png)</center></td>
+		<td valign="top">
+			<p> Have questions? Check out the [forum](https://social.technet.microsoft.com/Forums/windowsserver/en-US/home?forum=winserverhyperv)!</p>
+		</td>
 	</tr>
 </table>
 
