@@ -35,7 +35,7 @@ Hyper-V in Windows is sometimes referred to as Client Hyper-V.
 			<p>To try out Hyper-V, follow this [walkthrough](./quick_start/walkthrough.md).</p>
 			<p>It will walk you through enabling Hyper-V, creating a virtual machine, and simple management through Hyper-V Manager and PowerShell.</p>
 			<ul>
-				<li class="unordered">[Check system requirements](quick_start\walkthrough_compatability.md)<br /><br /></li>
+				<li class="unordered">[Check system requirements](quick_start\walkthrough_compatibility.md)<br /><br /></li>
                 <li class="unordered">[Install Hyper-V](quick_start\walkthrough_install.md)<br /><br /></li>
 				<li class="unordered">[Create a switch](quick_start\walkthrough_virtual_switch.md)<br /><br /></li>
 				<li class="unordered">[Create a virtual machine](quick_start\walkthrough_create_vm.md)<br /><br /></li>
@@ -47,7 +47,12 @@ Hyper-V in Windows is sometimes referred to as Client Hyper-V.
 	<tr valign="top">
 		<td><center>![](./media/Chat_65.png)</center></td>
 		<td valign="top">
-			<p> Have questions? Check out the [forum](https://social.technet.microsoft.com/Forums/windowsserver/en-US/home?forum=winserverhyperv)!</p>
+			<p><strong>Connect with Community and Support</strong></p>
+			<p>Additional technical support and community resources</p>
+			<ul>
+				<li class="unordered"> Have questions? Ask them on the [Hyper-V forums](https://social.technet.microsoft.com/Forums/windowsserver/en-US/home?forum=winserverhyperv)<br /><br /></li>
+				<li class="unordered">[Community Resources for Hyper-V and Windows Containers](..\community\community_overview.md)<br /><br /></li>
+			</ul>	
 		</td>
 	</tr>
 </table>
