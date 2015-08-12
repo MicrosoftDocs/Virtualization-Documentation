@@ -10,26 +10,85 @@ All Hyper-V management requires running as administrator so assume all scripts a
 If you aren't sure if you have the right permissions, type `Get-VM` and if it runs with no errors, you're ready to go.
 
 
-## Use PowerShell Direct to see if the guest OS booted
-
-
-Hyper-V Manager doesn't give you visibility into the guest operating system which often makes it difficult to know whether the guest OS has booted once the VM is running.
-
-The following function waits until PowerShell is available in the guest OS (meaning the OS has booted and most services are running) then returns.
-
-``` PowerShell
-function waitForPSDirect([string]$VMName, $cred){
-   Write-Output "[$($VMName)]:: Waiting for PowerShell Direct (using $($cred.username))"
-   while ((icm -VMName $VMName -Credential $cred {"Test"} -ea SilentlyContinue) -ne "Test") {Sleep -Seconds 1}}
-```
+## PowerShell Direct tools
+All of the scripts and snippets in this section will rely on the following basics.
 
 **Requirements** :  
 *  PowerShell Direct.  Windows 10 guest and host OS.
 
-**Parameters** :  
+**Common Variables** :  
 `$VMName` -- this is a string with the VMName.  See a list of available VMs with `Get-VM`  
 `$cred` -- Credential for the guest OS.  Can be populated using `$cred = Get-Credential`  
 
+### Check if the guest has booted
+
+Hyper-V Manager doesn't give you visibility into the guest operating system which often makes it difficult to know whether the guest OS has booted.
+
+Use this command to check whether the guest has booted.
+
+``` PowerShell
+if((Invoke-Command -VMName $VMName -Credential $cred {"Test"}) -ne "Test"){Write-Host "Not Booted"} else {Write-Host "Booted"}
+```  
+
 **Outcome**  
-Prints a friendly message and locks in the while loop until the connection to the VM succeeds.  
-Succeeds silently.  
+Prints a friendly message declaring the state of the guest OS.
+
+
+### Script locking until the guest has booted
+
+The following function waits uses the same principle to wait until PowerShell is available in the guest (meaning the OS has booted and most services are running) then returns.
+
+``` PowerShell
+function waitForPSDirect([string]$VMName, $cred){
+   Write-Output "[$($VMName)]:: Waiting for PowerShell Direct (using $($cred.username))"
+   while ((Invoke-Command -VMName $VMName -Credential $cred {"Test"} -ea SilentlyContinue) -ne "Test") {Sleep -Seconds 1}}
+```
+
+**Outcome**  
+Prints a friendly message and locks until the connection to the VM succeeds.  
+Succeeds silently.
+
+### Script locking until the guest has a network
+With PowerShell Direct it is possible to get connected to a PowerShell session inside a virtual machine before the virtual machine has received an IP address.
+
+``` PowerShell
+# Wait for DHCP
+while ((Get-NetIPAddress | ? AddressFamily -eq IPv4 | ? IPAddress -ne 127.0.0.1).SuffixOrigin -ne "Dhcp") {sleep -Milliseconds 10}
+```
+
+** Outcome **
+Locks until a DHCP lease is recieved.  Since this script is not looking for a specific subnet or IP address, it works no matter what network configuration you're using.  
+Succeeds silently.
+
+## Managing credentials with PowerShell
+Hyper-V scripts frequently require handling credentials for one or more virtual machines, Hyper-V host, or both.
+
+There are multiple ways you can achieve this when working with PowerShell Direct or standard PowerShell remoting:
+
+1. The first (and simplest) way is to have the same user credentials be valid in the host and the guest or local and remote host.  
+  This is quite easy if you are logging in with your Microsoft account - or if you are in a domain environment.  
+  In this scenario you can just run `Invoke-Command -VMName "test" {get-process}`.
+
+2. Let PowerShell prompt you for credentials  
+  If your credentials do not match you will automatically get a credential prompt allowing you to provide the appropriate credentials for the virtual machine.
+
+3. Store credentials in a variable for reuse.
+  Running a simple command like this:  
+  ``` PowerShell
+  $localCred = Get-Credential
+   ```
+  And then running something like this:
+  ``` PowerShell
+  Invoke-Command -VMName "test" -Credential $localCred  {get-process} 
+  ```
+  Will mean that you only get prompted once per script/PowerShell session for your credentials.
+
+4. Code your credentials into your scripts.  **Don't do this for any real workload or system**
+ > Warning:  _Do not do this in a production system.  Do not do this with real passwords._
+  
+  You can hand craft a PSCredential object with some code like this:  
+  ``` PowerShell
+  $localCred = New-Object -typename System.Management.Automation.PSCredential -argumentlist "Administrator", (ConvertTo-SecureString "P@ssw0rd" -AsPlainText -Force) 
+  ```
+  Grossly insecure - but useful for testing.  Now you get no prompts at all in this session. 
+
