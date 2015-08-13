@@ -1,26 +1,48 @@
 ﻿ms.ContentId: 1ab7bfe1-da35-4ff1-916f-936fedf536a0
 title: Setup Windows Containers in Azure
 
-#Preparing Microsoft Azure for Windows Containers
+# Preparing Microsoft Azure for Windows Containers
 
 Before creating and managing Windows Containers the Windows Server 2016 Technical Preview environment must be prepared. With this preview release, two hands on experiences are available, one running in an Azure and one running in your on-premises environment. This guide will walk through configuring Windows container in a virtual machine hosted on Microsoft Azure. 
 
-To setup Windows Containers on your own virtual machine or system see the following document – [Windows Containers On-premises](./container_setup.md).
+To run Windows Server Containers in a local virtual machine instead, follow [these instructions](./container_setup.md).
 
-##Windows Containers Preparation in Azure
+## Create an Azure Account
+If you have an Azure account and use Azure Portal, skip straight to [creating a container host](#CreateacontainerhostVM).
 
-1.	Log into the Azure portal at [Azure.com](http://azure.com). If you do not have an Azure subscription a free trial can be set up at the following location – [Azure Free Trial](https://azure.microsoft.com/en-us/pricing/free-trial/).
-2.	Once in the Azure Portal click on New > Compute > Virtual Machine > From Gallery:
-3.	On the ‘choose an image’ menu, select ‘Windows Server Technical Preview 3 – Container Edition’.
-4. 	Add content as the Azure experiance is defined.
+1. Go to [azure.com](https://azure.microsoft.com) and follow the steps for an [Azure Free Trial](https://azure.microsoft.com/en-us/pricing/free-trial/).
+2. Sign in with your Microsoft account.
 
-##Next Steps
+## Log in to Azure Portal
 
-You now have a working Windows Server Container environment, now onto the fun stuff.  Windows Server Containers can be created and managed using either PowerShell or Docker. We have put together a quick stat guide for both of these management experiences.
+If you're new to Azure
+
+Once in the Azure Portal click on New > Compute > Virtual Machine > From Gallery
+
+## Create a container host VM
+Create a new virtual machine through Azure Gallery.
+
+On the ‘choose an image’ menu, select ‘Windows Server Technical Preview 3 – Container Edition’.
+
+##  Windows Containers Preparation in Azure
+
+.
+.
+.
+
+6.  Enter your password.  
+
+Now you have a Windows Server Core virtual machine in Azure running Docker and Windows Server Containers!
+  
+## Next - Start using containers
+
+Jump to the following quick starts to begin containerizing applications and managing Windows Server Containers.
 
 [Quick Start: Windows Server Containers and PowerShell](./manage_powershell.md)  
-[Quick Start: Windows Server Containers and Docker](./manage_docker.md)
+[Quick Start: Windows Server Containers and Docker](./manage_docker.md) 
 
+The Docker and PowerShell guides both walk through containerizing a web server and performing equivalent management tasks.  Use whichever toolset you prefer. 
+
+-------------------
 
 [Back to Container Home](../containers_welcome.md)
-

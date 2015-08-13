@@ -3,11 +3,17 @@ title: Manage Windows Server Containers with PowerShell
 
 #Quick Start: Windows Server Containers and PowerShell
 
-This article will walk through the fundamentals of managing windows Server Container with PowerShell. Items covered will include creating Windows Server Containers and Windows Server Container Images, removing Windows Server Container and Container Images and finally deploying an application into a Windows Server Container. The lessons learned in this walkthrough should enable you to begin exploring deployment and management of Windows Server Containers using PowerShell.
+This article will walk through the fundamentals of managing Windows Server Container with PowerShell. Items covered will include creating Windows Server Containers and Windows Server Container Images, removing Windows Server Container and Container Images and finally deploying an application into a Windows Server Container. The lessons learned in this walkthrough should enable you to begin exploring deployment and management of Windows Server Containers using PowerShell.
 
 Have questions? Ask them on the [Windows Containers forum](https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers).
 
-> Note - Windows Containers created with Docker need to be managed with Docker. For more information see [Quick Start: Windows Server Containers and Docker](./manage_docker.md).
+> Note - Windows Containers created with PowerShell can not be managed with Docker right now and visa versa. To create containers with Docker instead, see [Quick Start: Windows Server Containers and Docker](./manage_docker.md).
+
+As you start this guide, you should be looking at a screen that looks like this:
+![](./media/ContainerHost_ready.png)
+If you don't have this set up, see the [Container setup in a local VM](./container_setup.md) or [container setup in Azure](./azure_setup.md) articles.
+
+The window in the forground (highlighted in red) is a cmd prompt from which you will start working with containers.
 
 ##Basic Container Management with PowerShell:
 

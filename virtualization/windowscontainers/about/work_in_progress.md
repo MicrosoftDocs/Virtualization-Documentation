@@ -11,7 +11,7 @@ If you don't see your problem addressed here or have questions, post them on the
 ## Broad category
 
 ### Specific issue
-A more detailed explaination to identify the issue.
+A more detailed explanation to identify the issue.
 
 ** Work Around: **  
 Description
@@ -23,36 +23,47 @@ When does this happen?  Why?
 
 ## General functionality
 
-### Windows Container Image 
-A Windows Server Container requires a opertaing system image that matches the container host in respect to build and patch level. A mismatch will lead to instability and or unpredictable behaivor for the container and/or the host.
-We try to limit this impact by not starting containers with mismatched container OS. 
+### Windows Container Image must exactly match container host
+A Windows Server Container requires an opertaing system image that matches the container host in respect to build and patch level. A mismatch will lead to instability and or unpredictable behavior for the container and/or the host.
+<!-- Can we give examples of behavior or errors?  Makes it more searchable -->
 
 ** Work Around: **  
-Download and install a container OS matching the OS version and patch level of the container host.
+Download and install a container OS <!-- Container base image? --> matching the OS version and patch level of the container host.
 
 
-### Run twice
-In our testing, commands occasionally need to be run multiple times.  THe same principle applies to other actions.  For example, if you create a new file and it doesn't appear, try touching the file.  
-We're working on it :).  If you have top do this, let us know via [the forums](https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers).
+### Commands sporratically fail -- try again
+In our testing, commands occasionally need to be run multiple times.  The same principle applies to other actions.  
+For example, if you create a new file and it doesn't appear, try touching the file.  
 
-### Drive mapping
-All non-C:/ drives mapped in the container (that represent a physical drive on the host) appear in all Windows Server Containers.  
+If you have to do this, let us know via [the forums](https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers).
+
+** Work Around:  **  
+Build scripts such that they try commands multiple times.  If a command fails, try again.  
+
+### All non-C:/ drives appear in the container
+All non-C:/ drives available to the container host are also mapped into all running Windows Server Containers.  
 
 Since there is no way to map folders into a container, this is a way to share data.
 
-**Work Around: **
-We're working on it.
+**Work Around: **  
+We're working on it.  In the future there will be folder sharing.
+
+--------------------------
+
 
 ## Networking
 
 ### Number of compartments per container
 In this release we support one compartment per container. 
 
-**Work Around: **
+**Work Around: **  
 If multiple endpoints exposed by the container are needed, use NAT port mapping.
 
 
-## Application compatability
+--------------------------
+
+
+## Application compatibility
 
 ### Can't install IIS in a container using DISM 
 Installing IIS-ASPNET45 in a container doesn't work inside a Windows Server container.  The installation progress sticks around 95.5%.
@@ -159,12 +170,17 @@ Exit the RDP session by typing "logoff" (instead of "exit" or just closing the R
 * Windows-Server-Backup
 * Migration
 
+--------------------------
+
+
 ## Docker management
 
 ### Docker clients unsecured by default
 In this pre-release, docker communication is public if you know where to look.
 
 To secure your windows server container to Docker communications, use this script: LARS?  STEVE?
+
+
 
 ### Docker commands that don't work with Windows Server Containers
 
@@ -181,6 +197,8 @@ Commands known to fail:
 | **docker pull** | daemon | Error: System cannot find the file path. We cant run container using this image. | Image is getting added can't be used.  We're working on it :) |
 | **docker restart** | container | Error: A system shutdown is in progress. |  |
 | **docker unpause** | container |  | Can't test because pause doesn't work yet. |
+
+If anything that isn't on this list fails (or if a command fails differently than expected), let us know via [the forums](https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers).
 
 
 
@@ -202,6 +220,11 @@ Commands with partial functionality:
 | **docker push** | daemon | | Getting occasional "repository does not exit" errors. |
 | **docker rm** | container | -f | Error: A system shutdown is in progress. |
 
+If anything that isn't on this list fails, if a command fails differently than expected, or if you find a work around, let us know via [the forums](https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers).
+
+
+--------------------------
+
 
 ## PowerShell management
 
@@ -210,6 +233,9 @@ If you encounter error messages like this when creating a new container image us
 ```
 hcsshim::ExportLayer - Win32 API call returned error r1=2147942523 err=The filename, directory name, or volume label syntax is incorrect. layerId=606a2c430fccd1091b9ad2f930bae009956856cf4e6c66062b188aac48aa2e34 flavour=1 folder=C:\ProgramData\docker\windowsfilter\606a2c430fccd1091b9ad2f930bae009956856cf4e6c66062b188aac48aa2e34-1868857733
 ```
+
+
+--------------------------
 
 [Back to Container Home](../containers_welcome.md)
 
