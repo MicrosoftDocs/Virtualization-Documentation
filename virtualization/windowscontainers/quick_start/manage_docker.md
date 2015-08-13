@@ -49,13 +49,13 @@ You can read the contents of the file to ensure the command completed successful
 ```
 Type c:\ipconfig.txt
 
-Ethernet adapter vEthernet (Virtual Switch-b34f32fcdc63b8632eaeb114c6eb901f8982bc91f38a8b64e6da0de40ec47a07-0):
+Ethernet adapter vEthernet (Virtual Switch-94a3e12ad262b3059e08edc4d48fca3c8390e38c3b219023d4a0a4951883e658-0):
 
-   Connection-specific DNS Suffix  . :
-   Link-local IPv6 Address . . . . . : fe80::85b:7834:454c:375b%20
-   IPv4 Address. . . . . . . . . . . : 192.168.1.55
-   Subnet Mask . . . . . . . . . . . : 255.255.255.0
-   Default Gateway . . . . . . . . . :
+   Connection-specific DNS Suffix  . : 
+   Link-local IPv6 Address . . . . . : fe80::cc1f:742:4126:9530%18
+   IPv4 Address. . . . . . . . . . . : 172.16.0.2
+   Subnet Mask . . . . . . . . . . . : 255.240.0.0
+   Default Gateway . . . . . . . . . : 172.16.0.1
 ```
 
 Now that the container has been modified, run the following to stop the console session placing you back in the console session of the container host.
@@ -168,6 +168,7 @@ type NUL > c:\build\nginx\dockerfile
 You will now open the Dockerfile with notepad and place the container build instructions into the file. To open up notepad run the following.
 
 ```
+echo. > c:\build\nginx\dockerfile
 notepad.exe c:\build\nginx\dockerfile
 ```
 
@@ -178,7 +179,9 @@ FROM windowsservercore
 LABEL Description="nginx For Windows" Vendor="nginx" Version="1.9.3"
 ADD source /nginx
 ```
-At this point the dockerfile will be in 'c:\build\nginx' and the nginx software extracted to 'c:\build\nginx\source'. You are now ready to build the web server container image based on the instructions in the dockerfile. To do this, run the following command on the container host.
+
+At this point the dockerfile will be in 'c:\build\nginx' and the nginx software extracted to 'c:\build\nginx\source'. 
+You are now ready to build the web server container image based on the instructions in the dockerfile. To do this, run the following command on the container host.
 
 ```
 docker build -t nginx_windows c:\build\nginx
