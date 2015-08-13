@@ -11,7 +11,7 @@ If you don't see your problem addressed here or have questions, post them on the
 ## Broad category
 
 ### Specific issue
-A more detailed explaination to identify the issue.
+A more detailed explanation to identify the issue.
 
 ** Work Around: **  
 Description
@@ -24,7 +24,7 @@ When does this happen?  Why?
 ## General functionality
 
 ### Windows Container Image must exactly match container host
-A Windows Server Container requires a opertaing system image that matches the container host in respect to build and patch level. A mismatch will lead to instability and or unpredictable behaivor for the container and/or the host.
+A Windows Server Container requires an opertaing system image that matches the container host in respect to build and patch level. A mismatch will lead to instability and or unpredictable behavior for the container and/or the host.
 <!-- Can we give examples of behavior or errors?  Makes it more searchable -->
 
 ** Work Around: **  
@@ -35,7 +35,7 @@ Download and install a container OS <!-- Container base image? --> matching the 
 In our testing, commands occasionally need to be run multiple times.  The same principle applies to other actions.  
 For example, if you create a new file and it doesn't appear, try touching the file.  
 
-If you have top do this, let us know via [the forums](https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers).
+If you have to do this, let us know via [the forums](https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers).
 
 ** Work Around:  **  
 Build scripts such that they try commands multiple times.  If a command fails, try again.  
@@ -63,7 +63,7 @@ If multiple endpoints exposed by the container are needed, use NAT port mapping.
 --------------------------
 
 
-## Application compatability
+## Application compatibility
 
 ### Can't install IIS in a container using DISM 
 Installing IIS-ASPNET45 in a container doesn't work inside a Windows Server container.  The installation progress sticks around 95.5%.
