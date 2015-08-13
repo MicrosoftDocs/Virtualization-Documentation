@@ -206,7 +206,7 @@ Commands with partial functionality:
 ## PowerShell management
 
 ## Issues solved by Zero Day Patch
-If you encounter error messages like this, please apply the Zero Day Patch for Windows Server 2016 TP3. This can occur e.g. when running the Python-3.4.3.msi installer or node-v0.12.7.msi
+If you encounter error messages like this when creating a new container image using Docker, please apply the Zero Day Patch for Windows Server 2016 TP3. This can occur e.g. when running the Python-3.4.3.msi installer or node-v0.12.7.msi
 ```
 hcsshim::ExportLayer - Win32 API call returned error r1=2147942523 err=The filename, directory name, or volume label syntax is incorrect. layerId=606a2c430fccd1091b9ad2f930bae009956856cf4e6c66062b188aac48aa2e34 flavour=1 folder=C:\ProgramData\docker\windowsfilter\606a2c430fccd1091b9ad2f930bae009956856cf4e6c66062b188aac48aa2e34-1868857733
 ```
