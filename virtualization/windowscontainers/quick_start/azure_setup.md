@@ -34,6 +34,8 @@ On the ‘choose an image’ menu, select ‘Windows Server Technical Preview 3 
 
 Now you have a Windows Server Core virtual machine in Azure running Docker and Windows Server Containers!
   
+## Next - Start using containers
+
 Jump to the following quick starts to begin containerizing applications and managing Windows Server Containers.
 
 [Quick Start: Windows Server Containers and PowerShell](./manage_powershell.md)  

@@ -76,7 +76,9 @@ There are a few different components necessary for running Windows Server Contai
 6.  Enter your password.  This is the password you used with the `New-ContainerHost` script.
 
 Now you have a Windows Server Core virtual machine running Docker and Windows Server Containers!
-  
+
+## Next - Start using containers
+
 Jump to the following quick starts to begin containerizing applications and managing Windows Server Containers.
 
 [Quick Start: Windows Server Containers and PowerShell](./manage_powershell.md)  
