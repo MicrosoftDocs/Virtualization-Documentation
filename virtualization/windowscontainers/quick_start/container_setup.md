@@ -9,17 +9,20 @@ To run Windows Server Containers in Azure instead, follow [these instructions](.
  
 ## Requirements
 
+* Running Windows 8.1/Windows Server 2012 R2 or later
 * Hyper-V is enabled
 * 20GB available
   * 6GB to download a zip file containing:  
     * Windows Server Core  
     * Windows Server Container base image
-    * a handfull of setup scripts
+    * a hand full of setup scripts
   * 13GB -- to unzip the contents (once the file is extracted, you can delete the zip file).
 * Administrator permissions
 
 ** Why do I need Hyper-V? **  
 Windows Server Containers do not require Hyper-V. However, this guide and all of the set-up scripts we're providing assume you're running containers in a Hyper-V virtual machine. It's easier to get going in a virtual machine with Hyper-V.
+
+<!-- We need a baremetal setup doc as a userguide -->
 
 ## Set up a new container host on a new virtual machine
 There are a few different components necessary for running Windows Server Container, however we have a script that will pull all of these together for you. The following steps will guide you through the automated creation of a new virtual machine configured as a Windows Server Container Host.
@@ -31,6 +34,7 @@ There are a few different components necessary for running Windows Server Contai
   ```powershell
   .\New-ContainerHost.ps1 -VmName CONTAINERHOST -Password Password12
   ```
+  
 4. When the script begins you will be asked to read and accept licensing terms.
 
   ```
@@ -69,7 +73,7 @@ Jump to the following quick starts to begin containerizing applications and mana
 [Quick Start: Windows Server Containers and PowerShell](./manage_powershell.md)  
 [Quick Start: Windows Server Containers and Docker](./manage_docker.md) 
 
-The Docker and PowerShell guides both walk through containerizing a web server and performing equivelant management tasks.  Use whichever toolset you prefer. 
+The Docker and PowerShell guides both walk through containerizing a web server and performing equivalent management tasks.  Use whichever toolset you prefer. 
 
 -------------------
 
