@@ -157,18 +157,14 @@ PowerShell.exe Expand-Archive -Path C:\nginx-1.9.3.zip -DestinationPath c:\build
 ```
 
 ##Step 2 - Create Web Server Image
-In the previous example, you manually created, updated and captured a container image. This example will demonstrate an automated method for creating container images using a Dockerfile. Dockerfiles contain instructions that the Docker engine uses to build and modify a container, and then commit the container to a container image. For more information on dockerfiles, see [Dockerfile reference](https://docs.docker.com/reference/builder/).
+In the previous example, you manually created, updated and captured a container image. This example will demonstrate an automated method for creating container images using a Dockerfile. Dockerfiles contain instructions that the Docker engine uses to build and modify a container, and then commit the container to a container image. 
+For more information on dockerfiles, see [Dockerfile reference](https://docs.docker.com/reference/builder/).
 
-To create the Dockerfile run the following command.
+First, you will create an empty dockerfile. Then you will open the Dockerfile with notepad and place the container build instructions into the file. 
+To do this run the following two commands in a command line:
 
 ```
 type NUL > c:\build\nginx\dockerfile
-```
-
-You will now open the Dockerfile with notepad and place the container build instructions into the file. To open up notepad run the following.
-
-```
-echo. > c:\build\nginx\dockerfile
 notepad.exe c:\build\nginx\dockerfile
 ```
 
