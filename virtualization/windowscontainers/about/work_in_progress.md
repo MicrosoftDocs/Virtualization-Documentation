@@ -1,4 +1,4 @@
-ms.ContentId: 5bbac9eb-c31e-40db-97b1-f33ea59ac3a3
+?ms.ContentId: 5bbac9eb-c31e-40db-97b1-f33ea59ac3a3
 title: Work in Progress
 
 # Work in Progress
@@ -23,32 +23,39 @@ When does this happen?  Why?
 
 ## General functionality
 
-### Windows Container Image 
+### Windows Container Image must exactly match container host
 A Windows Server Container requires a opertaing system image that matches the container host in respect to build and patch level. A mismatch will lead to instability and or unpredictable behaivor for the container and/or the host.
-We try to limit this impact by not starting containers with mismatched container OS. 
+<!-- Can we give examples of behavior or errors?  Makes it more searchable -->
 
 ** Work Around: **  
-Download and install a container OS matching the OS version and patch level of the container host.
+Download and install a container OS <!-- Container base image? --> matching the OS version and patch level of the container host.
 
 
-### Run twice
-In our testing, commands occasionally need to be run multiple times.  THe same principle applies to other actions.  For example, if you create a new file and it doesn't appear, try touching the file.  
-We're working on it :).  If you have top do this, let us know via [the forums](https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers).
+### Commands sporratically fail -- try again
+In our testing, commands occasionally need to be run multiple times.  The same principle applies to other actions.  
+For example, if you create a new file and it doesn't appear, try touching the file.  
 
-### Drive mapping
-All non-C:/ drives mapped in the container (that represent a physical drive on the host) appear in all Windows Server Containers.  
+If you have top do this, let us know via [the forums](https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers).
+
+** Work Around:  **  
+Build scripts such that they try commands multiple times.  If a command fails, try again.  
+
+### All non-C:/ drives appear in the container
+All non-C:/ drives available to the container host are also mapped into all running Windows Server Containers.  
 
 Since there is no way to map folders into a container, this is a way to share data.
 
-**Work Around: **
-We're working on it.
+**Work Around: **  
+We're working on it.  In the future there will be folder sharing.
+
+--------------------------
 
 ## Networking
 
 ### Number of compartments per container
 In this release we support one compartment per container. 
 
-**Work Around: **
+**Work Around: **  
 If multiple endpoints exposed by the container are needed, use NAT port mapping.
 
 
