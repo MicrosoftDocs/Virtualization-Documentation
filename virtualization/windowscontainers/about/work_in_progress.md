@@ -43,6 +43,14 @@ Since there is no way to map folders into a container, this is a way to share da
 **Work Around: **
 We're working on it.
 
+## Networking
+
+### Number of compartments per container
+In this release we support one compartment per container. 
+
+**Work Around: **
+If multiple endpoints exposed by the container are needed, use NAT port mapping.
+
 
 ## Application compatability
 
