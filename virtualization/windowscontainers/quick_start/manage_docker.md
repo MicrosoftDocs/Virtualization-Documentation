@@ -142,7 +142,7 @@ mkdir c:\build\nginx\source
 Run this command on the container host to download the nginx software to 'c:\nginx-1.9.3.zip'.
 
 ```powershell
-powerShell.exe Invoke-WebRequest 'http://nginx.org/download/nginx-1.9.3.zip' -OutFile "c:\nginx-1.9.3.zip"
+PowerShell.exe Invoke-WebRequest 'http://nginx.org/download/nginx-1.9.3.zip' -OutFile "c:\nginx-1.9.3.zip"
 ```
  
 Finally the following command will extract the nginx software to 'c:\build\nginx\source'. 
