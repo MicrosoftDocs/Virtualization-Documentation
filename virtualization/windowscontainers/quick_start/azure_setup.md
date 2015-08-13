@@ -7,20 +7,21 @@ Before creating and managing Windows Containers the Windows Server 2016 Technica
 
 To run Windows Server Containers in a local virtual machine instead, follow [these instructions](./container_setup.md).
 
-## Create an Azure Account
+## Start using Azure Portal
 If you have an Azure account and use Azure Portal, skip straight to [creating a container host](#CreateacontainerhostVM).
 
 1. Go to [azure.com](https://azure.microsoft.com) and follow the steps for an [Azure Free Trial](https://azure.microsoft.com/en-us/pricing/free-trial/).
 2. Sign in with your Microsoft account.
-
-## Log in to Azure Portal
-
-If you're new to Azure
-
-Once in the Azure Portal click on New > Compute > Virtual Machine > From Gallery
+3. You should now be logged into the [Azure Management Portal](https://manage.windowsazure.com/).
 
 ## Create a container host VM
 Create a new virtual machine through Azure Gallery.
+
+click on "New" (in the bottom left hand corner of the page).  
+From there:  Compute > Virtual Machine > From Gallery.
+
+That should look something like this:
+![](./media/CreateAzureVM.png)
 
 On the ‘choose an image’ menu, select ‘Windows Server Technical Preview 3 – Container Edition’.
 
