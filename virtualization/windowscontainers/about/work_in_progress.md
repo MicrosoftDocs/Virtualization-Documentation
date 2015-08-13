@@ -50,6 +50,7 @@ We're working on it.  In the future there will be folder sharing.
 
 --------------------------
 
+
 ## Networking
 
 ### Number of compartments per container
@@ -57,6 +58,9 @@ In this release we support one compartment per container.
 
 **Work Around: **  
 If multiple endpoints exposed by the container are needed, use NAT port mapping.
+
+
+--------------------------
 
 
 ## Application compatability
@@ -166,12 +170,17 @@ Exit the RDP session by typing "logoff" (instead of "exit" or just closing the R
 * Windows-Server-Backup
 * Migration
 
+--------------------------
+
+
 ## Docker management
 
 ### Docker clients unsecured by default
 In this pre-release, docker communication is public if you know where to look.
 
 To secure your windows server container to Docker communications, use this script: LARS?  STEVE?
+
+
 
 ### Docker commands that don't work with Windows Server Containers
 
@@ -188,6 +197,8 @@ Commands known to fail:
 | **docker pull** | daemon | Error: System cannot find the file path. We cant run container using this image. | Image is getting added can't be used.  We're working on it :) |
 | **docker restart** | container | Error: A system shutdown is in progress. |  |
 | **docker unpause** | container |  | Can't test because pause doesn't work yet. |
+
+If anything that isn't on this list fails (or if a command fails differently than expected), let us know via [the forums](https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers).
 
 
 
@@ -209,9 +220,17 @@ Commands with partial functionality:
 | **docker push** | daemon | | Getting occasional "repository does not exit" errors. |
 | **docker rm** | container | -f | Error: A system shutdown is in progress. |
 
+If anything that isn't on this list fails, if a command fails differently than expected, or if you find a work around, let us know via [the forums](https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers).
+
+
+--------------------------
+
 
 ## PowerShell management
 
+
+
+--------------------------
 
 [Back to Container Home](../containers_welcome.md)
 
