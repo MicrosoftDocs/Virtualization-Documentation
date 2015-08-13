@@ -7,10 +7,11 @@ This article will walk through the fundamentals of managing Windows Server Conta
 
 Have questions? Ask them on the [Windows Containers forum](https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers).
 
-> Note - Windows Containers created with Docker need to be managed with Docker. For more information see [Quick Start: Windows Server Containers and Docker](./manage_docker.md).
+> Note - Windows Containers created with PowerShell can not be managed with Docker right now and visa versa. To create containers with Docker instead, see [Quick Start: Windows Server Containers and Docker](./manage_docker.md).
 
 As you start this guide, you should be looking at a screen that looks like this:
 ![](./media/ContainerHost_ready.png)
+If you don't have this set up, see the [Container setup in a local VM](./container_setup.md) or [container setup in Azure](./azure_setup.md) articles.
 
 The window in the forground (highlighted in red) is a cmd prompt from which you will start working with containers.
 
