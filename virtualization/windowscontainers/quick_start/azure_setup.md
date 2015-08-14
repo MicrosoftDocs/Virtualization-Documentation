@@ -34,7 +34,7 @@ Create and configure a new virtual machine through Azure Gallery.
   
   ![](media/AzurePorts.png)
   
-4. Setup script?
+4. **Setup script?**
 
 5. Create your virtual machine!
 

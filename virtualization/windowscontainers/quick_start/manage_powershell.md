@@ -40,7 +40,7 @@ Get-ContainerImage
 
 Name              Publisher    Version      IsOSImage
 ----              ---------    -------      ---------
-WindowsServerCore CN=Microsoft 10.0.10254.0 True
+WindowsServerCore CN=Microsoft 10.0.10514.0 True
 ```
 
 Use the `Get-VMSwitch` command to return a list of switches available on the host. Take note of the switch name that will be used with the container.
@@ -50,10 +50,10 @@ Get-VMSwitch
 
 Name           SwitchType NetAdapterInterfaceDescription
 ----           ---------- ------------------------------
-Virtual Switch External   Microsoft Hyper-V Network Adapter
+Virtual Switch NAT
 ```
 
-Run the following command to create a container. When running `New-Containewr` you will name the container, specify the container image, and select the network switch to use with the container. Notice in this example that the output is placed in a variable $container. This will be helpful later in this exercise. 
+Run the following command to create a container. When running `New-Container` you will name the container, specify the container image, and select the network switch to use with the container. Notice in this example that the output is placed in a variable $container. This will be helpful later in this exercise. 
 
 ```powershell
 $container = New-Container -Name "MyContainer" -ContainerImageName WindowsServerCore -SwitchName "Virtual Switch"
@@ -86,31 +86,35 @@ Enter-PSSession -ContainerId $container.ContainerId -RunAsAdministrator
 
 A container can be managed very much like a physical or virtual machine. Command such as `ipconfig` to return the IP address of the container, `mkdir` to create a directory in the container and PowerShell commands like `Get-ChildItem` all work. Go ahead and make a change to the container such as creating a file or folder. For example, the following command will create a file which contains network configuration data about the container.
 
-```
+```powershell
 ipconfig > c:\ipconfig.txt
 ```
 
 You can read the contents of the file to ensure the command completed successfully. Notice that the IP address contained in the text file matches that of the container.
-```
+
+```powershell
 type c:\ipconfig.txt
 
-Ethernet adapter vEthernet (Virtual Switch-b34f32fcdc63b8632eaeb114c6eb901f8982bc91f38a8b64e6da0de40ec47a07-0):
+Windows IP Configuration
 
-   Connection-specific DNS Suffix  . :
-   Link-local IPv6 Address . . . . . : fe80::85b:7834:454c:375b%20
-   IPv4 Address. . . . . . . . . . . : 192.168.1.55
-   Subnet Mask . . . . . . . . . . . : 255.255.255.0
-   Default Gateway . . . . . . . . . :
+Ethernet adapter vEthernet (Virtual Switch-E0D87408-325B-4818-ADB2-2EC7A2005739-0):
 
+   Connection-specific DNS Suffix  . : corp.microsoft.com
+   Link-local IPv6 Address . . . . . : fe80::400e:1e0e:591c:beef%18
+   IPv4 Address. . . . . . . . . . . : 172.16.0.2
+   Subnet Mask . . . . . . . . . . . : 255.240.0.0
+   Default Gateway . . . . . . . . . : 172.16.0.1
 ```
+
 Now that the container has been modified, exit the remote PowerShell session by typing `exit`.
-```
+
+``` PowerShell
 exit
 ```
 
 Stop the container by providing the container name to the `Stop-Container` command. When this command has completed, you will be back in control of the container host.
 
-```
+```powershell
 Stop-Container -Name "MyContainer"
 ```
 
