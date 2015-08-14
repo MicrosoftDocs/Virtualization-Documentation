@@ -39,7 +39,7 @@ There are a few different components necessary for running Windows Server Contai
   wget -uri http://aka.ms/newcontainerhost -OutFile New-ContainerHost.ps1
   ```
   
-  Run `Get-Help New-ContainerHost.ps1` to see optional parameters for creating your Container Host VM.
+  Optional - Run `Get-Help New-ContainerHost.ps1` to see optional parameters for creating your Container Host VM.
 
 3. Run the following command to begin an automated deployment of the container host. This example will create a Virtual Machine named CONTAINERHOST with an administrative password or Password12.
 

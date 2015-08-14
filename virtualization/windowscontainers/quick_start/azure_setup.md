@@ -27,9 +27,11 @@ On the ‘choose an image’ menu, select ‘Windows Server Technical Preview 3 
 
 ##  Windows Containers Preparation in Azure
 
-.
-.
-.
+1.  Dowload a script from somewhere?  I'm guessing this is the script you'd use to install containers on your own VM...
+
+.  
+.  
+.  
 
 6.  Enter your password.  
 
