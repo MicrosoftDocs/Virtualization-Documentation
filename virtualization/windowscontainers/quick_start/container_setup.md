@@ -30,7 +30,7 @@ There are a few different components necessary for running Windows Server Contai
 1. Launch a PowerShell session as Administrator.
 
 2. Read this legal reminder:  
-  > PLEASE READ PRIOR TO INSTALLING THE CONTAINER OS IMAGE:  The license terms of the Microsoft Windows Server Pre-Release software (“License Terms”) apply to your use of the Microsoft Windows Container OS Image supplement (the “supplemental software).  By downloading and using the supplemental software, you agree to the License Terms, and you may not use it if you have not accepted the License Terms. Both the Windows Server Pre-Release software and the supplemental software are licensed by Microsoft Corporation.  
+  > **PLEASE READ PRIOR TO INSTALLING THE CONTAINER OS IMAGE:**  The license terms of the Microsoft Windows Server Pre-Release software (“License Terms”) apply to your use of the Microsoft Windows Container OS Image supplement (the “supplemental software).  By downloading and using the supplemental software, you agree to the License Terms, and you may not use it if you have not accepted the License Terms. Both the Windows Server Pre-Release software and the supplemental software are licensed by Microsoft Corporation.  
 
 2. Download configuration script – http://aka.ms/newcontainerhost. Make note of where this script is saved.
 
@@ -39,7 +39,7 @@ There are a few different components necessary for running Windows Server Contai
   wget -uri http://aka.ms/newcontainerhost -OutFile New-ContainerHost.ps1
   ```
   
-  > Run `Get-Help New-ContainerHost.ps1` to see optional parameters for creating your Container Host VM.
+  Run `Get-Help New-ContainerHost.ps1` to see optional parameters for creating your Container Host VM.
 
 3. Run the following command to begin an automated deployment of the container host. This example will create a Virtual Machine named CONTAINERHOST with an administrative password or Password12.
 
