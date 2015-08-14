@@ -317,7 +317,7 @@ New-NetFirewallRule -Name "httpTCP80" -DisplayName "HTTP on TCP/80" -Protocol tc
 Finally if you are working from Azure an external endpoint will need to be created that will expose this port to the internet. For more information on Azure VM Endpoints see this article: [Set up Azure VM Endpoints]( https://azure.microsoft.com/en-us/documentation/articles/virtual-machines-set-up-endpoints/).
 
 ## Step 6 – Access the Container Hosted Website
-With the web server container created and all networking configured, you can now checkout the application hosted in the container. To do so, get the ip address of the container host using `ipconfig`, open up a browser on different machine and enter `http://host-ipaddress`. If everything has been correctly configured, you will see the nginx welcome page.
+With the web server container created and all networking configured, you can now checkout the application hosted in the container. To do so, get the ip address of the container host using `ipconfig`, open up a browser on different machine and enter `http://containerhost-ipaddress`. If everything has been correctly configured, you will see the nginx welcome page.
 
 ![](media/nginx.png)
 
@@ -328,7 +328,15 @@ At this point, feel free to update the website. Copy in your own sample website,
 ``` powershell
 Invoke-WebRequest 'https://raw.githubusercontent.com/neilpeterson/index/master/index.html' -OutFile "C:\nginx-1.9.3\html\index.html"
 ```
-After the website has been updated, navigate back to `http://ipaddress`.
+
+> Note:  If you recieve this error  
+  ```
+  Invoke-WebRequest : Could not find a part of the path 'C:\nginx-1.9.3\html\index.html'.
+  ```
+  You're probably not running the command inside the container.  Connect to the container with `Enter-PSSession -ContainerId $webservercontainer.ContainerId -RunAsAdministrator`
+    
+    
+After the website has been updated, navigate back to `http://containerhost-ipaddress`.
 
 ![](media/hello.png)
 
