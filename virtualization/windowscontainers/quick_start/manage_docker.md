@@ -216,8 +216,23 @@ Start the nginx web server.
 ```
 start nginx
 ```
+##Step 5 - Configure Container Networking
+Depending on the configuration of the container host and network, a container will either receive an IP address from a DHCP server or the container host itself using network address translation (NAT). This guided walk through is configured to use NAT. In this configuration a port from the container is mapped to a port on the container host. The application hosted in the container is then accessed through the IP address / name of the container host. For instance if port 80 from the container was mapped to port 55534 on the container host, a typical http request to the application would look like this http://contianerhost:55534. This allows a container host to run many containers and allow for the applications in these containers to respond to requests using the same port. 
 
-When the nginx software is running, get the IP address of the container using `ipconfig`. On a different machine, open up a web browser and browse to `http//ipaddress`. If everything has been correctly configured, you will see the nginx welcome page.
+For this lab we need to create this port mapping. In order to do so we will need to know the IP address of the container and the internal (application) and external (container host) port that will be configured. For this example let’s keep it simple and map port 80 from the container to port 80 of the host. In order to create this mapping run the following where `ipaddress` is the IP address of the container.
+
+```powershell
+powershell.exe Add-NetNatStaticMapping -NatName "containerNAT" -Protocol TCP -ExternalIPAddress 0.0.0.0 -ExternalPort 80 -InternalIPAddress <ipaddress> -InternalPort 80
+```
+When the port mapping has been created you will also need to configure an inbound firewall rule for the configured port. To do so for port 80 run the following command.
+
+```
+netsh advfirewall firewall add rule name="Port80" dir=in action=allow protocol=TCP localport=80
+```
+Finally if you are working from Azure an external endpoint will need to be created that will expose this port to the internet. For more information on Azure VM Endpoints see this article: [Set up Azure VM Endpoints]( https://azure.microsoft.com/en-us/documentation/articles/virtual-machines-set-up-endpoints/).
+
+##Step 6 – Access the Container Hosted Website
+With the web server container created and all networking configured, you can now checkout the application hosted in the container. To do so, get the ip address of the container host using `ipconfig`, open up a browser on different machine and enter `http://ipaddress`. If everything has been correctly configured, you will see the nginx welcome page.
 
 ![](media/nginx.png)
 
