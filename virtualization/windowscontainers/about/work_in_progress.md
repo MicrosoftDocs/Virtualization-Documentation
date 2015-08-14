@@ -31,7 +31,7 @@ A Windows Server Container requires an opertaing system image that matches the c
 Download and install a container OS <!-- Container base image? --> matching the OS version and patch level of the container host.
 
 
-### Commands sporratically fail -- try again
+### Commands sporadically fail -- try again
 In our testing, commands occasionally need to be run multiple times.  The same principle applies to other actions.  
 For example, if you create a new file and it doesn't appear, try touching the file.  
 
@@ -222,6 +222,9 @@ Commands with partial functionality:
 
 If anything that isn't on this list fails, if a command fails differently than expected, or if you find a work around, let us know via [the forums](https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers).
 
+
+### Pasting commands to interactive Docker session is limited to 50 characters
+If you copy a command line into an interactive Docker session, it is currently limited to 50 characters.
 
 --------------------------
 

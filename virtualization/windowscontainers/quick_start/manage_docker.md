@@ -49,13 +49,13 @@ You can read the contents of the file to ensure the command completed successful
 ```
 Type c:\ipconfig.txt
 
-Ethernet adapter vEthernet (Virtual Switch-b34f32fcdc63b8632eaeb114c6eb901f8982bc91f38a8b64e6da0de40ec47a07-0):
+Ethernet adapter vEthernet (Virtual Switch-94a3e12ad262b3059e08edc4d48fca3c8390e38c3b219023d4a0a4951883e658-0):
 
-   Connection-specific DNS Suffix  . :
-   Link-local IPv6 Address . . . . . : fe80::85b:7834:454c:375b%20
-   IPv4 Address. . . . . . . . . . . : 192.168.1.55
-   Subnet Mask . . . . . . . . . . . : 255.255.255.0
-   Default Gateway . . . . . . . . . :
+   Connection-specific DNS Suffix  . : 
+   Link-local IPv6 Address . . . . . : fe80::cc1f:742:4126:9530%18
+   IPv4 Address. . . . . . . . . . . : 172.16.0.2
+   Subnet Mask . . . . . . . . . . . : 255.240.0.0
+   Default Gateway . . . . . . . . . : 172.16.0.1
 ```
 
 Now that the container has been modified, run the following to stop the console session placing you back in the console session of the container host.
@@ -157,17 +157,14 @@ PowerShell.exe Expand-Archive -Path C:\nginx-1.9.3.zip -DestinationPath c:\build
 ```
 
 ##Step 2 - Create Web Server Image
-In the previous example, you manually created, updated and captured a container image. This example will demonstrate an automated method for creating container images using a Dockerfile. Dockerfiles contain instructions that the Docker engine uses to build and modify a container, and then commit the container to a container image. For more information on dockerfiles, see [Dockerfile reference](https://docs.docker.com/reference/builder/).
+In the previous example, you manually created, updated and captured a container image. This example will demonstrate an automated method for creating container images using a Dockerfile. Dockerfiles contain instructions that the Docker engine uses to build and modify a container, and then commit the container to a container image. 
+For more information on dockerfiles, see [Dockerfile reference](https://docs.docker.com/reference/builder/).
 
-To create the Dockerfile run the following command.
+First, you will create an empty dockerfile. Then you will open the Dockerfile with notepad and place the container build instructions into the file. 
+To do this run the following two commands in a command line:
 
 ```
 type NUL > c:\build\nginx\dockerfile
-```
-
-You will now open the Dockerfile with notepad and place the container build instructions into the file. To open up notepad run the following.
-
-```
 notepad.exe c:\build\nginx\dockerfile
 ```
 
@@ -178,7 +175,9 @@ FROM windowsservercore
 LABEL Description="nginx For Windows" Vendor="nginx" Version="1.9.3"
 ADD source /nginx
 ```
-At this point the dockerfile will be in 'c:\build\nginx' and the nginx software extracted to 'c:\build\nginx\source'. You are now ready to build the web server container image based on the instructions in the dockerfile. To do this, run the following command on the container host.
+
+At this point the dockerfile will be in 'c:\build\nginx' and the nginx software extracted to 'c:\build\nginx\source'. 
+You are now ready to build the web server container image based on the instructions in the dockerfile. To do this, run the following command on the container host.
 
 ```
 docker build -t nginx_windows c:\build\nginx
@@ -217,8 +216,23 @@ Start the nginx web server.
 ```
 start nginx
 ```
+##Step 5 - Configure Container Networking
+Depending on the configuration of the container host and network, a container will either receive an IP address from a DHCP server or the container host itself using network address translation (NAT). This guided walk through is configured to use NAT. In this configuration a port from the container is mapped to a port on the container host. The application hosted in the container is then accessed through the IP address / name of the container host. For instance if port 80 from the container was mapped to port 55534 on the container host, a typical http request to the application would look like this http://contianerhost:55534. This allows a container host to run many containers and allow for the applications in these containers to respond to requests using the same port. 
 
-When the nginx software is running, get the IP address of the container using `ipconfig`. On a different machine, open up a web browser and browse to `http//ipaddress`. If everything has been correctly configured, you will see the nginx welcome page.
+For this lab we need to create this port mapping. In order to do so we will need to know the IP address of the container and the internal (application) and external (container host) port that will be configured. For this example let’s keep it simple and map port 80 from the container to port 80 of the host. In order to create this mapping run the following where `ipaddress` is the IP address of the container.
+
+```powershell
+powershell.exe Add-NetNatStaticMapping -NatName "containerNAT" -Protocol TCP -ExternalIPAddress 0.0.0.0 -ExternalPort 80 -InternalIPAddress <ipaddress> -InternalPort 80
+```
+When the port mapping has been created you will also need to configure an inbound firewall rule for the configured port. To do so for port 80 run the following command.
+
+```
+netsh advfirewall firewall add rule name="Port80" dir=in action=allow protocol=TCP localport=80
+```
+Finally if you are working from Azure an external endpoint will need to be created that will expose this port to the internet. For more information on Azure VM Endpoints see this article: [Set up Azure VM Endpoints]( https://azure.microsoft.com/en-us/documentation/articles/virtual-machines-set-up-endpoints/).
+
+##Step 6 – Access the Container Hosted Website
+With the web server container created and all networking configured, you can now checkout the application hosted in the container. To do so, get the ip address of the container host using `ipconfig`, open up a browser on different machine and enter `http://ipaddress`. If everything has been correctly configured, you will see the nginx welcome page.
 
 ![](media/nginx.png)
 
