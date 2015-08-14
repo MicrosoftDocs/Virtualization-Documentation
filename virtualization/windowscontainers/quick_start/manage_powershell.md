@@ -321,6 +321,8 @@ With the web server container created and all networking configured, you can now
 
 ![](media/nginx.png)
 
+> **Note:**  If the web request times out, make sure you're connecting to the container host IP address (IP for the virtual machine) not the IP address for the container (172.16.0.2).
+
 At this point, feel free to update the website. Copy in your own sample website, or run the following command in the webserver container to replace the nginx welcome page with a ‘Hello World’ web page.
 
 ``` powershell
