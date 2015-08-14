@@ -7,6 +7,7 @@
 ****,windowscontainers/about/faq.md
 ***,oa-toc-container: quick_start
 ****,windowscontainers/quick_start/hello_world.md
+***,windowscontainers/EULA.md
 **,oa-toc-container: hyperv_on_windows
 ***,hyperv_on_windows/windows_welcome.md
 ***,oa-toc-container: about
