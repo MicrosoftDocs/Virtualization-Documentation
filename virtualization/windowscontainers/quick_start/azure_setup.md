@@ -15,15 +15,28 @@ If you have an Azure account and use Azure Portal, skip straight to [creating a 
 3. You should now be logged into the [Azure Management Portal](https://manage.windowsazure.com/).
 
 ## Create a container host VM
-Create a new virtual machine through Azure Gallery.
+Create and configure a new virtual machine through Azure Gallery.
 
-click on "New" (in the bottom left hand corner of the page).  
-From there:  Compute > Virtual Machine > From Gallery.
+1. click on "New" (in the bottom left hand corner of the page).  
+  From there:  Compute > Virtual Machine > From Gallery.
 
-That should look something like this:
-![](./media/CreateAzureVM.png)
+  That should look something like this:  
+  ![](./media/CreateAzureVM.png)
 
-On the ‘choose an image’ menu, select ‘Windows Server Technical Preview 3 – Container Edition’.
+2. On the ‘choose an image’ menu, select ‘Windows Server Container Preview’.  
+  ![](media/AzureGallery.png)
+
+3. Add Port 80 as an endpoint.
+  On page 3 of the Create a Virtual Machine guide, there is a configuration option to set endpoints.
+  
+  Our quick start guide shows you how to create a web server in a container.  You can simplify the quick start by opening port 80 right now.  
+  Port 80 is named "HTTP" in the Name dropdown.
+  
+  ![](media/AzurePorts.png)
+  
+4. Setup script?
+
+5. Create your virtual machine!
 
 ##  Windows Containers Preparation in Azure
 
