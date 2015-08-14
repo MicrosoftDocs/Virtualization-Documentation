@@ -27,15 +27,15 @@ Before creating a Windows Server Container you will need the name of a Container
 First start a PowerShell session from the command prompt by typing `PowerShell`. You will know that you are in a PowerShell session when the prompt changes from ``C:\directory>`` to ``PS C:\directory>``.
 
 ```
-C:\>powershell
+C:\> powershell
 Windows PowerShell
 Copyright (C) 2015 Microsoft Corporation. All rights reserved.
 
-PS C:\>
+PS C:\> _
 ```
 
 Use the `Get-ContainerImage` command to return a list of images loaded on the host. Take note of the image name that you will use to create the container.
-```powershell
+``` powershell
 Get-ContainerImage
 
 Name              Publisher    Version      IsOSImage
@@ -45,7 +45,7 @@ WindowsServerCore CN=Microsoft 10.0.10514.0 True
 
 Use the `Get-VMSwitch` command to return a list of switches available on the host. Take note of the switch name that will be used with the container.
 
-```powershell
+``` powershell
 Get-VMSwitch
 
 Name           SwitchType NetAdapterInterfaceDescription
@@ -55,13 +55,13 @@ Virtual Switch NAT
 
 Run the following command to create a container. When running `New-Container` you will name the container, specify the container image, and select the network switch to use with the container. Notice in this example that the output is placed in a variable $container. This will be helpful later in this exercise. 
 
-```powershell
+``` powershell
 $container = New-Container -Name "MyContainer" -ContainerImageName WindowsServerCore -SwitchName "Virtual Switch"
 ```
 
 To see a list of containers on the host and verify that the container was created, use the `Get-Container` command. Notice that a container has been created with the name of MyContainer, however it has not been started.
 
-```powershell
+``` powershell
 Get-Container
 
 Name        State Uptime   ParentImageName
@@ -71,14 +71,15 @@ MyContainer Off   00:00:00 WindowsServerCore
 
 To start the container, use `Start-Container` proivding the name of the container.
 
-```powershell
+``` powershell
 Start-Container -Name "MyContainer"
 ```
+
 You can interact with containers using PowerShell remoting commands such as `Invoke-Command`, or `Enter-PSSession`. The example below creates a remote PowerShell session into the container using the `Enter-PSSession` command. This command needs the container id in order to create the remote session. The contianer id was stored in the `$container` variable when the container was created. 
 
 Notice that once the remote session has been created the command prompt will change to include the first 11 characters of the container id `[2446380e-629]`.
 
-```powershell
+``` powershell
 Enter-PSSession -ContainerId $container.ContainerId -RunAsAdministrator
 
 [2446380e-629]: PS C:\Windows\system32>
@@ -86,7 +87,7 @@ Enter-PSSession -ContainerId $container.ContainerId -RunAsAdministrator
 
 A container can be managed very much like a physical or virtual machine. Command such as `ipconfig` to return the IP address of the container, `mkdir` to create a directory in the container and PowerShell commands like `Get-ChildItem` all work. Go ahead and make a change to the container such as creating a file or folder. For example, the following command will create a file which contains network configuration data about the container.
 
-```powershell
+``` powershell
 ipconfig > c:\ipconfig.txt
 ```
 
@@ -106,7 +107,7 @@ Ethernet adapter vEthernet (Virtual Switch-E0D87408-325B-4818-ADB2-2EC7A2005739-
    Default Gateway . . . . . . . . . : 172.16.0.1
 ```
 
-Now that the container has been modified, exit the remote PowerShell session by typing `exit`.
+Now that the container has been modified, exit the remote PowerShell session.
 
 ``` PowerShell
 exit
@@ -114,11 +115,11 @@ exit
 
 Stop the container by providing the container name to the `Stop-Container` command. When this command has completed, you will be back in control of the container host.
 
-```powershell
+``` powershell
 Stop-Container -Name "MyContainer"
 ```
 
-##Step 2 - Create a New Container Image
+## Step 2 - Create a New Container Image
 
 An image can now be made from this container. This image will behave like a snapshot of the container and can be re-deployed many times.
 
@@ -145,12 +146,12 @@ Now that you have created a customized container image, go ahead and deploy a ne
 
 Create a container named 'newcontainer' from the container image named 'newimage', output the result to a variable named '$newcontainer'.
 
-```powershell
+``` powershell
 $newcontainer = New-Container -Name "newcontainer" -ContainerImageName newimage -SwitchName "Virtual Switch"
 ```
 Start the new container.
 
-```powershell
+``` powershell
 Start-Container $newcontainer
 ```
 
@@ -161,27 +162,29 @@ Enter-PSSession -ContainerId $newcontainer.ContainerId -RunAsAdministrator
 
 Finally notice that this new container contains the ipconfig.txt file created earlier in this exercise.
 
-```
+``` powershell
 type c:\ipconfig.txt
 
-Ethernet adapter vEthernet (Container-2446380E-6296-4BF2-8146-18DAAFD85FCA-0):
+Windows IP Configuration
 
-   Connection-specific DNS Suffix  . :
-   Link-local IPv6 Address . . . . . : fe80::85b:7834:454c:375b%20
-   IPv4 Address. . . . . . . . . . . : 192.168.1.55
-   Subnet Mask . . . . . . . . . . . : 255.255.255.0
-   Default Gateway . . . . . . . . . :
+Ethernet adapter vEthernet (Virtual Switch-E0D87408-325B-4818-ADB2-2EC7A2005739-0):
+
+   Connection-specific DNS Suffix  . : corp.microsoft.com
+   Link-local IPv6 Address . . . . . : fe80::400e:1e0e:591c:beef%18
+   IPv4 Address. . . . . . . . . . . : 172.16.0.2
+   Subnet Mask . . . . . . . . . . . : 255.240.0.0
+   Default Gateway . . . . . . . . . : 172.16.0.1
 ```
 
  Once you are done working with this container, exit the remote PowerShell session.
 
-```
+``` PowerShell
 exit
 ```
 
 This exercise has shown that an image taken from a modified container will include all modifications. While the example here was a simple file modification, the same would apply if you were to install software into the container such as a web server. Using these methods, custom images can be created that will deploy application ready containers.
 
-##Step 4 - Remove Containers and Container Images
+## Step 4 - Remove Containers and Container Images
 
 To stop all running containers run the command below. If any containers are in a stopped state when you run this command, you receive a warning, which is ok.
 
