@@ -281,8 +281,8 @@ Start the nginx web server.
 ```
 start nginx```
 
-##Step 5 - Configure Container Networking:
-Depending on the configuration of the container host and network, a container will either receive an IP address from a DHCP server or the container host itself through network address translation (NAT). This guided walk through is configured to use NAT. In this configuration a port from the container is mapped to a port on the container host. The application hosted in the container is then accessed through the IP address / name of the container host. For instance if port 80 from the container was mapped to port 55534 or the container host, a typical http request to the application would look like this http://contianerhost:55534. This allows a container host to run many containers and allow for the application in these containers to respond to requests on the same port number. 
+##Step 5 - Configure Container Networking
+Depending on the configuration of the container host and network, a container will either receive an IP address from a DHCP server or the container host itself using network address translation (NAT). This guided walk through is configured to use NAT. In this configuration a port from the container is mapped to a port on the container host. The application hosted in the container is then accessed through the IP address / name of the container host. For instance if port 80 from the container was mapped to port 55534 on the container host, a typical http request to the application would look like this http://contianerhost:55534. This allows a container host to run many containers and allow for the applications in these containers to respond to requests using the same port. 
 
 For this lab we need to create this port mapping. In order to do so we will need to know the IP address of the container and the internal (application) and external (container host) port that will be configured. For this example let’s keep it simple and map port 80 from the container to port 80 of the host. In order to create this mapping run the following where `ipaddress` is the IP address of the container.
 
