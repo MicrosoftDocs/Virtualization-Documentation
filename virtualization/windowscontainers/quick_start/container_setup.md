@@ -9,8 +9,8 @@ To run Windows Server Containers in Azure instead, follow [these instructions](.
  
 ## Requirements
 
-* Running Windows 10 or Windows Server TP3
-* Hyper-V is enabled
+* Running Windows 8.1 or later or Windows Server 2012 R2 or later.
+* Hyper-V role is enabled ([see instructions](https://msdn.microsoft.com/virtualization/hyperv_on_windows/quick_start/walkthrough_install#UsingPowerShell))
 * 20GB available
   * 6GB to download a zip file containing:  
     * Windows Server Core  
@@ -28,6 +28,9 @@ Windows Server Containers do not require Hyper-V. However, this guide and all of
 There are a few different components necessary for running Windows Server Container, however we have a script that will pull all of these together for you. The following steps will guide you through the automated creation of a new virtual machine configured as a Windows Server Container Host.
 
 1. Launch a PowerShell session as Administrator.
+
+2. Read this legal reminder:  
+  > PLEASE READ PRIOR TO INSTALLING THE CONTAINER OS IMAGE:  The license terms of the Microsoft Windows Server Pre-Release software (“License Terms”) apply to your use of the Microsoft Windows Container OS Image supplement (the “supplemental software).  By downloading and using the supplemental software, you agree to the License Terms, and you may not use it if you have not accepted the License Terms. Both the Windows Server Pre-Release software and the supplemental software are licensed by Microsoft Corporation.  
 
 2. Download configuration script – http://aka.ms/newcontainerhost. Make note of where this script is saved.
 
