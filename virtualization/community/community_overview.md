@@ -25,6 +25,7 @@ Check out resources available to the user community. There is also a lot to see 
 * [Deploying Complex Open Source Workloads on Azure](http://channel9.msdn.com/Events/Build/2015/2-732)
 
 ## Blogs 
+* [Channel 9 - The Containers Channel](https://channel9.msdn.com/Blogs/containers)
 * [Server & Cloud blog](http://blogs.technet.com/b/server-cloud/)
 * [Azure blog](http://azure.microsoft.com/blog/)
 
