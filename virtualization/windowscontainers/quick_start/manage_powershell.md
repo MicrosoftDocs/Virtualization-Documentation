@@ -96,8 +96,6 @@ You can read the contents of the file to ensure the command completed successful
 ```powershell
 type c:\ipconfig.txt
 
-Windows IP Configuration
-
 Ethernet adapter vEthernet (Virtual Switch-E0D87408-325B-4818-ADB2-2EC7A2005739-0):
 
    Connection-specific DNS Suffix  . : corp.microsoft.com
@@ -164,8 +162,6 @@ Finally notice that this new container contains the ipconfig.txt file created ea
 
 ``` powershell
 type c:\ipconfig.txt
-
-Windows IP Configuration
 
 Ethernet adapter vEthernet (Virtual Switch-E0D87408-325B-4818-ADB2-2EC7A2005739-0):
 
@@ -287,7 +283,8 @@ cd c:\nginx-1.9.3\
 ```
 Start the nginx web server.
 ```
-start nginx```
+start nginx
+```
 
 ##Step 5 - Configure Container Networking
 Depending on the configuration of the container host and network, a container will either receive an IP address from a DHCP server or the container host itself using network address translation (NAT). This guided walk through is configured to use NAT. In this configuration a port from the container is mapped to a port on the container host. The application hosted in the container is then accessed through the IP address / name of the container host. For instance if port 80 from the container was mapped to port 55534 on the container host, a typical http request to the application would look like this http://contianerhost:55534. This allows a container host to run many containers and allow for the applications in these containers to respond to requests using the same port. 
