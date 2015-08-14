@@ -7,7 +7,7 @@ This article will walk through the fundamentals of managing Windows Server Conta
 
 Have questions? Ask them on the [Windows Containers forum](https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers).
 
-> Note: Windows Containers created with PowerShell can not be managed with Docker right now and visa versa. To create containers with Docker instead, see [Quick Start: Windows Server Containers and Docker](./manage_docker.md).
+> **Note:** Windows Containers created with PowerShell can not be managed with Docker right now and visa versa. To create containers with Docker instead, see [Quick Start: Windows Server Containers and Docker](./manage_docker.md).
 
 As you start this guide, you should be looking at a screen that looks like this:
 ![](./media/ContainerHost_ready.png)
@@ -228,7 +228,7 @@ Download the nginx software.
 Invoke-WebRequest 'http://nginx.org/download/nginx-1.9.3.zip' -OutFile "c:\nginx-1.9.3.zip"
 ```
 
-> Note:  If you hit an error that looks like this
+> **Note:**  If you hit an error that looks like this
   ```
   The remote name could not be resolved: 'http://nginx.org/download/nginx-1.9.3.zip' 
   ```
@@ -329,7 +329,7 @@ At this point, feel free to update the website. Copy in your own sample website,
 Invoke-WebRequest 'https://raw.githubusercontent.com/neilpeterson/index/master/index.html' -OutFile "C:\nginx-1.9.3\html\index.html"
 ```
 
-> Note:  If you recieve this error  
+> **Note:**  If you recieve this error  
   ```
   Invoke-WebRequest : Could not find a part of the path 'C:\nginx-1.9.3\html\index.html'.
   ```
