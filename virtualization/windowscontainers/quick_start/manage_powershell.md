@@ -228,6 +228,8 @@ Download the nginx software.
 Invoke-WebRequest 'http://nginx.org/download/nginx-1.9.3.zip' -OutFile "c:\nginx-1.9.3.zip"
 ```
 
+> Note:  If you recieve an error "The remote name could not be resolved" your virtual machine probably doesn't have an external switch attached.  See [this](https://msdn.microsoft.com/virtualization/hyperv_on_windows/quick_start/walkthrough_virtual_switch) page for setup instructions.
+
 Extract the nginx software.
 ``` PowerShell
 Expand-Archive -Path C:\nginx-1.9.3.zip -DestinationPath c:\ -Force
