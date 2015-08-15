@@ -4,7 +4,7 @@
 $startTime = get-date
 
 ### Load Convert-WindowsImage
-. "$($workingDir)\Convert-WindowsImage.ps1"
+. "$($workingDir)\resources\Convert-WindowsImage.ps1"
 
 ### Sysprep unattend XML
 $unattendSource = [xml]@"
@@ -464,8 +464,8 @@ function RunTheFactory
         MountVHDandRunBlock $baseVHD {
             cleanupFile -file "$($driveLetter):\Convert-WindowsImageInfo.txt";
 
-            # Copy ResourceDirectory in
-            Copy-Item ($ResourceDirectory) -Destination ($driveLetter + ":\") -Recurse;
+            # Copy bits to VHD
+            Copy-Item "$($ResourceDirectory)\bits" -Destination ($driveLetter + ":\") -Recurse;
             
             # Create first logon script
             $updateCheckScriptBlock | Out-String | Out-File -FilePath "$($driveLetter):\Bits\Logon.ps1" -Width 4096;
