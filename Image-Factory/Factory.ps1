@@ -433,6 +433,11 @@ function RunTheFactory
     # Check for a base VHD
     if (-not (test-path $baseVHD))
     {
+        if (-not (Test-Path $ISOFile)) {
+            logger $FriendlyName 'ISO/WIM file missing, skipping this product.'
+            return
+        }
+
         # No base VHD - we need to create one
         logger $FriendlyName "No base VHD!";
 
