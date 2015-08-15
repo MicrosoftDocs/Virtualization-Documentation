@@ -280,6 +280,6 @@ After the website has been updated, navigate back to `http://containerhost-ipadd
 
 ## Reference
 
-Here is a list of [known broken docker commands](../about/work_in_progress#Dockermanagement) amoung other [known issues](../about/work_in_progress) -- this is an alpha release.  We're working on it :).
+Here is a list of [known broken docker commands](../about/work_in_progress.md#Dockermanagement) amoung other [known issues](../about/work_in_progress.md) -- this is an alpha release.  We're working on it :).
 
 [Back to Container Home](../containers_welcome.md)  

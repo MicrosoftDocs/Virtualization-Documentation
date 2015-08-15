@@ -348,7 +348,7 @@ Andy -- use https://int.msdn.microsoft.com/virtualization/hyperv_on_windows/quic
 
 ## Reference
 
-Here is a list of [known issues](../about/work_in_progress) -- this is an alpha release.  We're working on it :).
+Here is a list of [known issues](../../about/work_in_progress) -- this is an alpha release.  We're working on it :).
 
 [Back to Container Home](../containers_welcome.md)  
 
