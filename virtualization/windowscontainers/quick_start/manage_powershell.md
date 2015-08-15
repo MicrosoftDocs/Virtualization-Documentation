@@ -347,5 +347,9 @@ After the website has been updated, navigate back to `http://containerhost-ipadd
 ### Experiment with PowerShell
 Andy -- use https://int.msdn.microsoft.com/virtualization/hyperv_on_windows/quick_start/walkthrough_powershell as a template
 
+## Reference
+
+Here is a list of [known issues](../about/work_in_progress#Dockermanagement) -- this is an alpha release.  We're working on it :).
+
 [Back to Container Home](../containers_welcome.md)  
 
