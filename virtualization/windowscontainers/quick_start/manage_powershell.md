@@ -7,7 +7,7 @@ This article will walk through the fundamentals of managing Windows Server Conta
 
 Have questions? Ask them on the [Windows Containers forum](https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers).
 
-> Note: Windows Containers created with PowerShell can not be managed with Docker right now and visa versa. To create containers with Docker instead, see [Quick Start: Windows Server Containers and Docker](./manage_docker.md).
+> **Note:** Windows Containers created with PowerShell can not be managed with Docker right now and visa versa. To create containers with Docker instead, see [Quick Start: Windows Server Containers and Docker](./manage_docker.md).
 
 As you start this guide, you should be looking at a screen that looks like this:
 ![](./media/ContainerHost_ready.png)
@@ -16,11 +16,11 @@ If you don't have this set up, see the [Container setup in a local VM](./contain
 
 The window in the forground (highlighted in red) is a cmd prompt from which you will start working with containers.
 
-## Basic Container Management with PowerShell:
+## Basic Container Management with PowerShell
 
 This first example will walk through the basics of creating and removing Windows Server Containers and Windows Server Container Images with PowerShell.
 
-## Step 1 - Create a New Container
+### Step 1 - Create a New Container
 
 Before creating a Windows Server Container you will need the name of a Container Image and the name of a virtual switch that will be attached to the new container.
 
@@ -117,7 +117,7 @@ Stop the container by providing the container name to the `Stop-Container` comma
 Stop-Container -Name "MyContainer"
 ```
 
-## Step 2 - Create a New Container Image
+### Step 2 - Create a New Container Image
 
 An image can now be made from this container. This image will behave like a snapshot of the container and can be re-deployed many times.
 
@@ -138,7 +138,7 @@ newimage          CN=Demo      1.0.0.0      False
 WindowsServerCore CN=Microsoft 10.0.10254.0 True
 ```
 
-## Step 3 - Create New Container From Image
+### Step 3 - Create New Container From Image
 
 Now that you have created a customized container image, go ahead and deploy a new container from this image.
 
@@ -180,7 +180,7 @@ exit
 
 This exercise has shown that an image taken from a modified container will include all modifications. While the example here was a simple file modification, the same would apply if you were to install software into the container such as a web server. Using these methods, custom images can be created that will deploy application ready containers.
 
-## Step 4 - Remove Containers and Container Images
+### Step 4 - Remove Containers and Container Images
 
 To stop all running containers run the command below. If any containers are in a stopped state when you run this command, you receive a warning, which is ok.
 
@@ -202,7 +202,7 @@ Get-ContainerImage -Name newimage | Remove-ContainerImage -Force
 
 This next example will demonstrate a more practical use case for Windows Server Containers. The steps included in this exercise will guide you through creating a web server container image that can be used for deploying web applications hosted inside of a Windows Server Container.
 
-## Step 1 – Create Container from the Windows Server Core OS Image
+### Step 1 – Create Container from the Windows Server Core OS Image
 
 To create a web server container image, you first need to deploy and start a container from the Windows Server Core OS image.
 ``` PowerShell
@@ -219,7 +219,7 @@ When the container is up, create a remote PowerShell session with the container.
 Enter-PSSession -ContainerId $container.ContainerId -RunAsAdministrator
 ```
 
-## Step 2 - Install Web Server Software
+### Step 2 - Install Web Server Software
 
 The next step is to install the web server software. This example will use nginx for Windows. Use the following commands to automatically download and extract the nginx software to c:\nginx-1.9.3.
 
@@ -228,8 +228,13 @@ Download the nginx software.
 Invoke-WebRequest 'http://nginx.org/download/nginx-1.9.3.zip' -OutFile "c:\nginx-1.9.3.zip"
 ```
 
-> Note:  If you recieve an error "The remote name could not be resolved" your virtual machine probably doesn't have an external switch attached.  See [this](https://msdn.microsoft.com/virtualization/hyperv_on_windows/quick_start/walkthrough_virtual_switch) page for setup instructions.
-
+> **Note:**  If you hit an error that looks like this
+  ```
+  The remote name could not be resolved: 'http://nginx.org/download/nginx-1.9.3.zip' 
+  ```
+  You probably do not have an external switch attached to your virtual machine.  See [these instructions](https://msdn.microsoft.com/virtualization/hyperv_on_windows/quick_start/walkthrough_virtual_switch) to set one up.
+  
+  
 Extract the nginx software.
 ``` PowerShell
 Expand-Archive -Path C:\nginx-1.9.3.zip -DestinationPath c:\ -Force
@@ -245,7 +250,7 @@ Stop the container using the following command.
 ``` PowerShell
 Stop-Container $container
 ```
-## Step 3 - Create Image from Web Server Container
+### Step 3 - Create Image from Web Server Container
 
 With the container modified to include the nginx web server software, you can now create an image from this container. To do so, run the following command:
 ``` PowerShell
@@ -262,7 +267,7 @@ nginxwindows      CN=Demo      1.0.0.0      False
 WindowsServerCore CN=Microsoft 10.0.10254.0 True
 ```
 
-## Step 4 - Deploy Web Server Ready Container
+### Step 4 - Deploy Web Server Ready Container
 
 To deploy a Windows Server Container based off of the 'nginxwindows' image, use the `New-Container` PowerShell command.
 
@@ -295,7 +300,7 @@ And exit this PS-Session.  The web server will keep running.
 exit
 ```
 
-## Step 5 - Configure Container Networking
+### Step 5 - Configure Container Networking
 Depending on the configuration of the container host and network, a container will either receive an IP address from a DHCP server or the container host itself using network address translation (NAT). This guided walk through is configured to use NAT. In this configuration a port from the container is mapped to a port on the container host. The application hosted in the container is then accessed through the IP address / name of the container host. For instance if port 80 from the container was mapped to port 55534 on the container host, a typical http request to the application would look like this http://contianerhost:55534. This allows a container host to run many containers and allow for the applications in these containers to respond to requests using the same port. 
 
 For this lab we need to create this port mapping. In order to do so we will need to know the IP address of the container and the internal (application) and external (container host) port that will be configured. For this example let’s keep it simple and map port 80 from the container to port 80 of the host. In order to create this mapping run the following where `ipaddress` is the IP address of the container.
@@ -311,17 +316,26 @@ New-NetFirewallRule -Name "httpTCP80" -DisplayName "HTTP on TCP/80" -Protocol tc
 
 Finally if you are working from Azure an external endpoint will need to be created that will expose this port to the internet. For more information on Azure VM Endpoints see this article: [Set up Azure VM Endpoints]( https://azure.microsoft.com/en-us/documentation/articles/virtual-machines-set-up-endpoints/).
 
-## Step 6 – Access the Container Hosted Website
-With the web server container created and all networking configured, you can now checkout the application hosted in the container. To do so, get the ip address of the container host using `ipconfig`, open up a browser on different machine and enter `http://host-ipaddress`. If everything has been correctly configured, you will see the nginx welcome page.
+### Step 6 – Access the Container Hosted Website
+With the web server container created and all networking configured, you can now checkout the application hosted in the container. To do so, get the ip address of the container host using `ipconfig`, open up a browser on different machine and enter `http://containerhost-ipaddress`. If everything has been correctly configured, you will see the nginx welcome page.
 
 ![](media/nginx.png)
+
+> **Note:**  If the web request times out, make sure you're connecting to the container host IP address (IP for the virtual machine) not the IP address for the container (172.16.0.2).
 
 At this point, feel free to update the website. Copy in your own sample website, or run the following command in the webserver container to replace the nginx welcome page with a ‘Hello World’ web page.
 
 ``` powershell
 Invoke-WebRequest 'https://raw.githubusercontent.com/neilpeterson/index/master/index.html' -OutFile "C:\nginx-1.9.3\html\index.html"
 ```
-After the website has been updated, navigate back to `http://ipaddress`.
+
+> **Note:**  If you recieve this error  
+  ```
+  Invoke-WebRequest : Could not find a part of the path 'C:\nginx-1.9.3\html\index.html'.
+  ```
+  You're probably not running the command inside the container.  Connect to the container with `Enter-PSSession -ContainerId $webservercontainer.ContainerId -RunAsAdministrator`
+    
+After the website has been updated, navigate back to `http://containerhost-ipaddress`.
 
 ![](media/hello.png)
 
@@ -332,6 +346,10 @@ After the website has been updated, navigate back to `http://ipaddress`.
 
 ### Experiment with PowerShell
 Andy -- use https://int.msdn.microsoft.com/virtualization/hyperv_on_windows/quick_start/walkthrough_powershell as a template
+
+## Reference
+
+Here is a list of [known issues](../about/work_in_progress#Dockermanagement) -- this is an alpha release.  We're working on it :).
 
 [Back to Container Home](../containers_welcome.md)  
 
