@@ -4,16 +4,14 @@
 ***,oa-toc-container: about,
 ****,windowscontainers/about/about_overview.md,
 ****,windowscontainers/about/container_ecosystem.md,
-****,windowscontainers/about/when_containers.md,
 ****,windowscontainers/about/faq.md,
-****,windowscontainers/about/release_notes.md,
 ****,windowscontainers/about/work_in_progress.md,
 ***,oa-toc-container: quick_start,
 ****,windowscontainers/quick_start/azure_setup.md,
 ****,windowscontainers/quick_start/container_setup.md,
 ****,windowscontainers/quick_start/manage_docker.md,
 ****,windowscontainers/quick_start/manage_powershell.md,
-***,windowscontainers/EULA.md
+***,windowscontainers/EULA.md,
 **,oa-toc-container: hyperv_on_windows,
 ***,hyperv_on_windows/windows_welcome.md,
 ***,oa-toc-container: about,
@@ -44,5 +42,5 @@
 ****,hyperv_on_windows/develop/make_mgmt_service.md,
 ****,oa-toc-external: hyperv_on_windows/develop/web_power,http://technet.microsoft.com/library/hh848559.aspx
 ****,oa-toc-external: hyperv_on_windows/develop/web_wmi,https://msdn.microsoft.com/library/hh850319.aspx
-**,oa-toc-container: community	
-***,community/community_overview.md
+**,"oa-toc-container: community	",
+***,community/community_overview.md,
