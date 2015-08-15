@@ -18,7 +18,7 @@ The window in the forground (highlighted in red) is a cmd prompt from which you 
 
 ## Basic Container Management with PowerShell
 
-This first example will walk through the basics of creating and removing Windows Server Containers and Windows Server Container Images with PowerShell.
+This first example will walk through the basics of creating and removing Windows Server Containers and Windows Server Container Images with PowerShell. You can find the available container cmdlets using 'Get-Command -Module Containers".
 
 ### Step 1 - Create a New Container
 
@@ -75,7 +75,7 @@ To start the container, use `Start-Container` proivding the name of the containe
 Start-Container -Name "MyContainer"
 ```
 
-You can interact with containers using PowerShell remoting commands such as `Invoke-Command`, or `Enter-PSSession`. The example below creates a remote PowerShell session into the container using the `Enter-PSSession` command. This command needs the container id in order to create the remote session. The contianer id was stored in the `$container` variable when the container was created. 
+You can interact with containers using PowerShell remoting commands such as `Invoke-Command`, or `Enter-PSSession`. The example below creates a remote PowerShell session into the container using the `Enter-PSSession` command. This command needs the container id in order to create the remote session. The container id was stored in the `$container` variable when the container was created. 
 
 Notice that once the remote session has been created the command prompt will change to include the first 11 characters of the container id `[2446380e-629]`.
 
@@ -301,7 +301,7 @@ exit
 ```
 
 ### Step 5 - Configure Container Networking
-Depending on the configuration of the container host and network, a container will either receive an IP address from a DHCP server or the container host itself using network address translation (NAT). This guided walk through is configured to use NAT. In this configuration a port from the container is mapped to a port on the container host. The application hosted in the container is then accessed through the IP address / name of the container host. For instance if port 80 from the container was mapped to port 55534 on the container host, a typical http request to the application would look like this http://contianerhost:55534. This allows a container host to run many containers and allow for the applications in these containers to respond to requests using the same port. 
+Depending on the configuration of the container host and network, a container will either receive an IP address from a DHCP server or the container host itself using network address translation (NAT). This guided walk through is configured to use NAT. In this configuration a port from the container is mapped to a port on the container host. The application hosted in the container is then accessed through the IP address / name of the container host. For instance if port 80 from the container was mapped to port 55534 on the container host, a typical http request to the application would look like this http://containerhost:55534. This allows a container host to run many containers and allow for the applications in these containers to respond to requests using the same port. 
 
 For this lab we need to create this port mapping. In order to do so we will need to know the IP address of the container and the internal (application) and external (container host) port that will be configured. For this example,  let’s keep it simple and map port 80 from the container to port 80 of the host. The container IP address is the InternalIPAddress.  It should be `172.16.0.2`.
 
