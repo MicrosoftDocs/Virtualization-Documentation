@@ -308,7 +308,12 @@ function createRunAndWaitVM
     );
     
     # Function for whenever I have a VHD that is ready to run
-    New-VM $factoryVMName -MemoryStartupBytes 2048mb -VHDPath $vhd -Generation $Gen -SwitchName $virtualSwitchName | Out-Null;
+    New-VM $factoryVMName -MemoryStartupBytes $VMMemory -VHDPath $vhd -Generation $Gen -SwitchName $virtualSwitchName -ErrorAction Stop| Out-Null
+
+    If($UseVLAN) {
+        Get-VMNetworkAdapter -VMName $factoryVMName | Set-VMNetworkAdapterVlan -Access -VlanId $VlanId
+    }
+
     set-vm -Name $factoryVMName -ProcessorCount 2;
     Start-VM $factoryVMName;
 

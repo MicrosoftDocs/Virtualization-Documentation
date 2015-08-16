@@ -1,14 +1,26 @@
 # Seperate file for variables - this when you pull down the latest factory file you can keep your paths / product keys etc...
 $workingDir = "C:\FactoryTest"
 $logFile = "$($workingDir)\Share\Details.csv"
-$factoryVMName = "Factory VM"
-$virtualSwitchName = "Virtual Switch"
-$ResourceDirectory = "$($workingDir)\Resources\Bits" 
+$ResourceDirectory = "$($workingDir)\Resources" 
 $Organization = "The Power Elite"
 $Owner = "Ben Armstrong"
 $Timezone = "Pacific Standard Time"
 $adminPassword = "P@ssw0rd"
 $userPassword = "P@ssw0rd"
+
+# VM Settings
+    # Name of the VM - make sure this does not conflict with any existing virtual machine, because it gets deleted automatically!
+    $factoryVMName = "Factory VM"
+
+    # Amount of memory to give the VM - more memory usually makes updates install faster
+    $VMMemory = 1048mb
+
+    # Virtual switch to connect to - needs internet access to download updates
+    $virtualSwitchName = "Virtual Switch"
+
+    # Set to $true and specify VLAN id to connect the VM to a specific VLAN
+    $UseVLAN = $false
+    $VlanId = 1
 
 # Keys
 $Windows10Key = ""
