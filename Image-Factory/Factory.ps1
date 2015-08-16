@@ -1,54 +1,10 @@
 # Load variables from a seperate file - this when you pull down the latest factory file you can keep your paths / product keys etc...
 . .\FactoryVariables.ps1
+
 $startTime = get-date
 
-
-# Helper function to make sure that needed folders are present
-function checkPath
-{
-    param
-    (
-        [string] $path
-    )
-    if (!(Test-Path $path)) 
-    {
-        $null = md $path;
-    }
-}
-
-# Test that necessary paths and files exist
-# Don't create the workingDir automatically - if it doesn't exist, the variables probably need the be configured first.
-if(-not (Test-Path -Path $workingDir -PathType Container)) {
-  Throw "Working directory $workingDir does not exist - edit FactoryVariables.ps1 to configure script"
-}
-
-# Create folders in workingDir if they don't exist
-checkPath "$($workingdir)\Share"
-checkPath "$($workingdir)\Bases"
-checkPath "$($workingdir)\ISOs"
-checkPath "$($workingdir)\Resources"
-checkPath "$($workingdir)\Resources\bits"
-
-### Load Convert-WindowsImage - making sure it exists and is unblocked
-if(Test-Path -Path "$($workingDir)\resources\Convert-WindowsImage.ps1") {
-    . "$($workingDir)\resources\Convert-WindowsImage.ps1"
-    if(!(Get-Command Convert-WindowsImage -ErrorAction SilentlyContinue)) {
-        Write-Host -ForegroundColor Green 'Convert-WindowsImage.ps1 could not be loaded. Unblock the script or check execution policy'
-        Throw 'Convert-WindowsImage was not loaded'
-    }
-} else {
-    Write-Host -ForegroundColor Green 'Please download Convert-WindowsImage.ps1 and place in $($workingDir)\Resources\'
-    Write-Host -ForegroundColor Green "`nhttps://gallery.technet.microsoft.com/scriptcenter/Convert-WindowsImageps1-0fe23a8f`n"
-    Throw 'Missing Convert-WindowsImage.ps1 script'
-}
-
-# Check that PSWindowsUpdate module exists
-if(!(Test-Path -Path "$($workingDir)\Resources\bits\PSWindowsUpdate\PSWindowsUpdate.psm1")) {
-    Write-Host -ForegroundColor Green 'Please download PSWindowsUpdate and extract to $($workingDir)\Resources\bits'
-    Write-Host -ForegroundColor Green "`nhttps://gallery.technet.microsoft.com/scriptcenter/2d191bcd-3308-4edd-9de2-88dff796b0bc`n"
-    Throw 'Missing PSWindowsUpdate module'
-}
-
+### Load Convert-WindowsImage
+. "$($workingDir)\resources\Convert-WindowsImage.ps1"
 
 ### Sysprep unattend XML
 $unattendSource = [xml]@"
@@ -234,7 +190,18 @@ function cleanupFile
     }
 }
 
-
+# Helper function to make sure that needed folders are present
+function checkPath
+{
+    param
+    (
+        [string] $path
+    )
+    if (!(Test-Path $path)) 
+    {
+        md $path;
+    }
+}
 
 function GetUnattendChunk 
 {
@@ -439,6 +406,9 @@ function RunTheFactory
         [switch]$Generation2,
         [bool] $GenericSysprep = $false
     );
+
+    checkPath "$($workingdir)\Share";
+    checkPath "$($workingdir)\Bases";
 
     logger $FriendlyName "Starting a new cycle!"
 
