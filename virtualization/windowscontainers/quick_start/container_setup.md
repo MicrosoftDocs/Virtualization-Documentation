@@ -35,7 +35,7 @@ wget -uri http://aka.ms/newcontainerhost -OutFile New-ContainerHost.ps1
    
 Run the following command to create and configure the container host where `<contianerhost>` will be the virtual machine name and `<password>` will be the password assigned to the Administrator account.
 
-```powershell
+``` powershell
 .\New-ContainerHost.ps1 –VmName <containerhost> -Password <password>
 ```
   
@@ -58,7 +58,7 @@ When the configuration script has completed log into your virtual machine. The V
   
 Now you have a Windows Server Core virtual machine configured with all necessary pieces for the creation and management of Windows Server Container with both PowerShell and Docker.
 
-## Next - Start using containers
+## Next Steps - Start using containers
 
 Now that you have a container host jump to the following guides to begin working with Windows Server containers and Window Server container Images. 
 
