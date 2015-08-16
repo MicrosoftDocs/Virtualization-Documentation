@@ -286,6 +286,6 @@ After the website has been updated, navigate back to `http://containerhost-ipadd
 
 -----------------------------------
 
-[Alpha Release Known Issues](../about/work_in_progress.md)
+[Known Issues for Current Release](../about/work_in_progress.md)
 
 [Back to Container Home](../containers_welcome.md)  
