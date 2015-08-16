@@ -52,9 +52,9 @@ license terms. Please confirm you have accepted and agree to the license terms.
 
 The script will then begin to download and configure the Windows Server Container components. This process will take quite some time due to the large download. When finished your Virtual Machine will be configured and ready for you to create and manage Windows Server Containers with both PowerShell and Docker.  
 
-When the configuration script has completed start your virtual machine. The VM is configured with Windows Server 2016 Core and will look like the following.  
+When the configuration script has completed start your virtual machine. The VM is configured with Windows Server 2016 Core and will look like the following.
   
-<center>![](./media/ContainerHost.png)</center>
+<center>![](./media/ContainerHost.png)</center>  
   
 Now you have a Windows Server Core virtual machine configured with all necessary pieces for the creation and management of Windows Server Container with both PowerShell and Docker.
 
