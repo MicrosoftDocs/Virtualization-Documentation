@@ -21,34 +21,34 @@ To run Windows Server Containers in Azure instead, follow [these instructions](.
 ## Set up a new container host on a new virtual machine
 Windows Server Containers consist of several components such as the Windows Server Container Host and Container OS Base Image. We have put together a script that will download and configure these items. Follow these steps to deploy a new Hyper-V Virtual Machine and configure this system as a Windows Server Container Host.
 
-1. Launch a PowerShell session as Administrator.
+Launch a PowerShell session as Administrator.
 
-  ```
-  powershell
-  ```
+```
+powershell
+```
 
-2. Use the following command to download the configuration script.
+Use the following command to download the configuration script.
  
-  ``` PowerShell
-  wget -uri http://aka.ms/newcontainerhost -OutFile New-ContainerHost.ps1
-  ```
+``` PowerShell
+wget -uri http://aka.ms/newcontainerhost -OutFile New-ContainerHost.ps1
+```
    
-3. Run the following command to create and configure the container host where `contianerhost` will be the virtual machine name and `password` will be the password assigned to the Administrator account.
+Run the following command to create and configure the container host where `contianerhost` will be the virtual machine name and `password` will be the password assigned to the Administrator account.
 
-  ```powershell
-  .\New-ContainerHost.ps1 –VmName <CONTAINERHOST> -Password <password>
-  ```
+```powershell
+.\New-ContainerHost.ps1 –VmName <CONTAINERHOST> -Password <password>
+```
   
-4. When the script begins you will be asked to read and accept licensing terms.
+When the script begins you will be asked to read and accept licensing terms.
 
-  ```
-  Before installing and using the Windows Server Technical Preview 3 with Containers virtual machine you must:
-      1. Review the license terms by navigating to this link: http://aka.ms/WindowsServerTP3ContainerVHDEula
-      2. Print and retain a copy of the license terms for your records.
-  By downloading and using the Windows Server Technical Preview 3 with Containers virtual machine you agree to such
-  license terms. Please confirm you have accepted and agree to the license terms.
-  [N] No  [Y] Yes  [?] Help (default is "N"): Y
-  ```
+```
+Before installing and using the Windows Server Technical Preview 3 with Containers virtual machine you must:
+    1. Review the license terms by navigating to this link: http://aka.ms/WindowsServerTP3ContainerVHDEula
+    2. Print and retain a copy of the license terms for your records.
+By downloading and using the Windows Server Technical Preview 3 with Containers virtual machine you agree to such
+license terms. Please confirm you have accepted and agree to the license terms.
+[N] No  [Y] Yes  [?] Help (default is "N"): Y
+```
 
 This script will then begin to download and configure the Windows Server Container components. This process will take quite some time due to the large download. When finished your Virtual Machine will be configured and ready to create and manage Windows Server Containers with both PowerShell and Docker.  
 
