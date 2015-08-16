@@ -52,9 +52,20 @@ license terms. Please confirm you have accepted and agree to the license terms.
 
 The script will then begin to download and configure the Windows Server Container components. This process will take quite some time due to the large download. When finished your Virtual Machine will be configured and ready for you to create and manage Windows Server Containers with both PowerShell and Docker.  
 
+You may receive the following message during the Window Server Container deployment process. 
+  ```
+  Currently, your container is not connected to the network.
+  Get-VM | Get-VMNetworkAdapter | Connect-VMNetworkAdapter -Switchname <switchname>
+  ```  
+If you do, check the properties of the virtual machine and connect the virtual machine to a virtual switch. You can also run the following PowerShell command to complete this.
+
+``` powershell 
+Get-VM | Get-VMNetworkAdapter | Connect-VMNetworkAdapter -Switchname <switchname>
+```
+
 When the configuration script has completed start your virtual machine. The VM is configured with Windows Server 2016 Core and will look like the following.
   
-<center>![](./media/ContainerHost.png)</center>
+<center>![](./media/ContainerHost.png)</center>  <br />
   
 Now you have a Windows Server Core virtual machine configured with all necessary pieces for the creation and management of Windows Server Container with both PowerShell and Docker.
 
