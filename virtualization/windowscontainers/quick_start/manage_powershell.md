@@ -15,7 +15,7 @@ In order to complete this walkthrough the following items need to be in place.
 - Container host must be connected to a network and able to access the internet.
 - The Windows Server 2016 Container Host should be ready at the command prompt.
 
-If you need to configure a container host, see the following guides: [Container setup in a local VM](./container_setup.md) or [container setup in Azure](./azure_setup.md)
+If you need to configure a container host, see the following guides: [Container Setup in Azure](./azure_setup.md) or [Container Setup in Hyper-V](./container_setup.md). 
 
 <!--
 As you start this guide, you should be looking at a screen that looks like this:

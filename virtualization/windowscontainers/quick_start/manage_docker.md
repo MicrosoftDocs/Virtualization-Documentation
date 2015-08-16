@@ -9,12 +9,20 @@ Have questions? Ask them on the [Windows Containers forum](https://social.msdn.m
 
 > **Note:** Windows Containers created with PowerShell can not currently be managed with Docker and visa versa. To create containers with PowerShell, see  [Quick Start: Windows Server Containers and PowerShell](./manage_powershell.md).
 
-As you start this guide, you should be looking at a screen that looks like this:
+## Prerequisites
+In order to complete this walkthrough the following items need to be in place.
+- Windows Server 2016 Container Host.
+- Container host must be connected to a network and able to access the internet.
+- The Windows Server 2016 Container Host should be ready at the command prompt.
+
+If you need to configure a container host, see the following guides: [Container Setup in Azure](./azure_setup.md) or [Container Setup in Hyper-V](./container_setup.md). 
+
+<!--As you start this guide, you should be looking at a screen that looks like this:
 ![](./media/ContainerHost_ready.png)
 
 If you don't have this set up, see the [Container setup in a local VM](./container_setup.md) or [container setup in Azure](./azure_setup.md) articles.
 
-The window in the forground (highlighted in red) is a cmd prompt from which you will start working with containers.
+The window in the forground (highlighted in red) is a cmd prompt from which you will start working with containers.-->
 
 ## Basic Container Management with Docker
 
