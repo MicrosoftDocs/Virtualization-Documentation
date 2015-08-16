@@ -13,7 +13,7 @@ $userPassword = "P@ssw0rd"
     $factoryVMName = "Factory VM"
 
     # Amount of memory to give the VM - more memory usually makes updates install faster
-    $VMMemory = 1048mb
+    $VMMemory = 2048mb
 
     # Virtual switch to connect to - needs internet access to download updates
     $virtualSwitchName = "Virtual Switch"
