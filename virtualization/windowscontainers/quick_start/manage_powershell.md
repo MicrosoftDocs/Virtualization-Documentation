@@ -3,18 +3,29 @@ title: Manage Windows Server Containers with PowerShell
 
 #Quick Start: Windows Server Containers and PowerShell
 
-This article will walk through the fundamentals of managing Windows Server Container with PowerShell. Items covered will include creating Windows Server Containers and Windows Server Container Images, removing Windows Server Container and Container Images and finally deploying an application into a Windows Server Container. The lessons learned in this walkthrough should enable you to begin exploring deployment and management of Windows Server Containers using PowerShell.
+This article will walk through the fundamentals of managing Windows Server Container with PowerShell. Items covered will include creating Windows Server Containers and Windows Server Container Images, removing Windows Server Containers and Container Images and finally deploying an application into a Windows Server Container. The lessons learned in this walkthrough should enable you to begin exploring deployment and management of Windows Server Containers using PowerShell.
 
 Have questions? Ask them on the [Windows Containers forum](https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers).
 
-> **Note:** Windows Containers created with PowerShell can not be managed with Docker right now and visa versa. To create containers with Docker instead, see [Quick Start: Windows Server Containers and Docker](./manage_docker.md).
+> **Note:** Windows Containers created with PowerShell can not currently be managed with Docker and visa versa. To create containers with Docker instead, see [Quick Start: Windows Server Containers and Docker](./manage_docker.md).
 
+## Prerequisites
+In order to complete this walkthrough the following items need to be in place.
+- Windows Server 2016 Container Host.
+- Container host must be connected to a network and able to access the internet.
+- The Windows Server 2016 Container Host should be ready at the command prompt.
+
+If you need to configure a container host, see the following guides: [Container Setup in Azure](./azure_setup.md) or [Container Setup in Hyper-V](./container_setup.md). 
+
+<!--
 As you start this guide, you should be looking at a screen that looks like this:
 ![](./media/ContainerHost_ready.png)
 
 If you don't have this set up, see the [Container setup in a local VM](./container_setup.md) or [container setup in Azure](./azure_setup.md) articles.
 
 The window in the forground (highlighted in red) is a cmd prompt from which you will start working with containers.
+
+-->
 
 ## Basic Container Management with PowerShell
 
@@ -31,7 +42,7 @@ C:\> powershell
 Windows PowerShell
 Copyright (C) 2015 Microsoft Corporation. All rights reserved.
 
-PS C:\> _
+PS C:\>
 ```
 
 Use the `Get-ContainerImage` command to return a list of images loaded on the host. Take note of the image name that you will use to create the container.
@@ -225,7 +236,7 @@ The next step is to install the web server software. This example will use nginx
 
 Download the nginx software.
 ``` PowerShell
-Invoke-WebRequest 'http://nginx.org/download/nginx-1.9.3.zip' -OutFile "c:\nginx-1.9.3.zip"
+wget -uri 'http://nginx.org/download/nginx-1.9.3.zip' -OutFile "c:\nginx-1.9.3.zip"
 ```
 
 > **Note:**  If you hit an error that looks like this
@@ -326,7 +337,7 @@ With the web server container created and all networking configured, you can now
 At this point, feel free to update the website. Copy in your own sample website, or run the following command in the webserver container to replace the nginx welcome page with a ‘Hello World’ web page.
 
 ``` powershell
-Invoke-WebRequest 'https://raw.githubusercontent.com/neilpeterson/index/master/index.html' -OutFile "C:\nginx-1.9.3\html\index.html"
+wget -uri 'https://raw.githubusercontent.com/neilpeterson/index/master/index.html' -OutFile "C:\nginx-1.9.3\html\index.html"
 ```
 
 > **Note:**  If you recieve this error  
@@ -341,14 +352,7 @@ After the website has been updated, navigate back to `http://containerhost-ipadd
 
 -----------------------------------
 
-## Next Steps
-
-### Experiment with PowerShell
-Andy -- use https://int.msdn.microsoft.com/virtualization/hyperv_on_windows/quick_start/walkthrough_powershell as a template
-
-## Reference
-
-Here is a list of [known issues](../about/work_in_progress.md) -- this is an alpha release.  We're working on it :).
+[Known Issues for Current Release](../about/work_in_progress.md)
 
 [Back to Container Home](../containers_welcome.md)  
 

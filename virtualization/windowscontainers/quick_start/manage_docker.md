@@ -3,18 +3,26 @@ title: Manage Windows Server Containers with Docker
 
 #Quick Start: Windows Server Containers and Docker
 
-This article will walk through the fundamentals of managing windows Server Container with Docker. Items covered will include creating Windows Server Containers and Windows Server Container Images, removing Windows Server Container and Container Images and finally deploying an application into a Windows Server Container. The lessons learned in this walkthrough should enable you to begin exploring deployment and management of Windows Server Containers using Docker.
+This article will walk through the fundamentals of managing windows Server Container with Docker. Items covered will include creating Windows Server Containers and Windows Server Container Images, removing Windows Server Containers and Container Images and finally deploying an application into a Windows Server Container. The lessons learned in this walkthrough should enable you to begin exploring deployment and management of Windows Server Containers using Docker.
 
 Have questions? Ask them on the [Windows Containers forum](https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers).
 
-> **Note:** Windows Containers created with PowerShell can not be managed with Docker right now and visa versa. To create containers with PowerShell, see  [Quick Start: Windows Server Containers and PowerShell](./manage_powershell.md).
+> **Note:** Windows Containers created with PowerShell can not currently be managed with Docker and visa versa. To create containers with PowerShell, see  [Quick Start: Windows Server Containers and PowerShell](./manage_powershell.md).
 
-As you start this guide, you should be looking at a screen that looks like this:
+## Prerequisites
+In order to complete this walkthrough the following items need to be in place.
+- Windows Server 2016 Container Host.
+- Container host must be connected to a network and able to access the internet.
+- The Windows Server 2016 Container Host should be ready at the command prompt.
+
+If you need to configure a container host, see the following guides: [Container Setup in Azure](./azure_setup.md) or [Container Setup in Hyper-V](./container_setup.md). 
+
+<!--As you start this guide, you should be looking at a screen that looks like this:
 ![](./media/ContainerHost_ready.png)
 
 If you don't have this set up, see the [Container setup in a local VM](./container_setup.md) or [container setup in Azure](./azure_setup.md) articles.
 
-The window in the forground (highlighted in red) is a cmd prompt from which you will start working with containers.
+The window in the forground (highlighted in red) is a cmd prompt from which you will start working with containers.-->
 
 ## Basic Container Management with Docker
 
@@ -27,7 +35,7 @@ C:\> powershell
 Windows PowerShell
 Copyright (C) 2015 Microsoft Corporation. All rights reserved.
 
-PS C:\> _
+PS C:\>
 ```
 
 ### Step 1 - Create a New Container
@@ -161,7 +169,7 @@ mkdir c:\build\nginx\source
 Run this command on the container host to download the nginx software to 'c:\nginx-1.9.3.zip'.
 
 ``` PowerShell
-Invoke-WebRequest 'http://nginx.org/download/nginx-1.9.3.zip' -OutFile "c:\nginx-1.9.3.zip"
+wget -uri 'http://nginx.org/download/nginx-1.9.3.zip' -OutFile "c:\nginx-1.9.3.zip"
 ```
 
 > **Note:**  If you hit an error that looks like this
@@ -269,7 +277,7 @@ With the web server container created and all networking configured, you can now
 At this point, feel free to update the website. Copy in your own sample website, or run the following command to replace the nginx welcome page with a ‘Hello World’ web page.
 
 ```powershell
-powershell Invoke-WebRequest 'https://raw.githubusercontent.com/neilpeterson/index/master/index.html' -OutFile "C:\nginx\nginx-1.9.3\html\index.html"
+powershell wget -uri 'https://raw.githubusercontent.com/neilpeterson/index/master/index.html' -OutFile "C:\nginx\nginx-1.9.3\html\index.html"
 ```
 
 After the website has been updated, navigate back to `http://containerhost-ipaddress`.
@@ -278,8 +286,6 @@ After the website has been updated, navigate back to `http://containerhost-ipadd
 
 -----------------------------------
 
-## Reference
-
-Here is a list of [known broken docker commands](../about/work_in_progress.md#Dockermanagement) amoung other [known issues](../about/work_in_progress.md) -- this is an alpha release.  We're working on it :).
+[Known Issues for Current Release](../about/work_in_progress.md)
 
 [Back to Container Home](../containers_welcome.md)  

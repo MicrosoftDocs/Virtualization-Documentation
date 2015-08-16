@@ -60,5 +60,6 @@ Jump to the following quick starts to begin containerizing applications and mana
 The Docker and PowerShell guides both walk through containerizing a web server and performing equivalent management tasks.  Use whichever toolset you prefer. 
 
 -------------------
+[Known Issues for Current Release](../about/work_in_progress.md)
 
 [Back to Container Home](../containers_welcome.md)
