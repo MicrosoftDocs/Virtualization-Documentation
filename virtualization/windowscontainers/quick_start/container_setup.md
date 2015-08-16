@@ -19,9 +19,9 @@ To run Windows Server Containers in Azure instead, follow [these instructions](.
 > Windows Server Containers do not require Hyper-V however to keep things simple this guide assumes that a Hyper-V environment is being used to run the Windows Server Container host.
 
 ## Set up a new container host on a new virtual machine
-Windows Server Containers consist of several components such as the Windows Server Container Host and Container OS Base Image. We have put together a script that will download and configure these items. Follow these steps to deploy a new Hyper-V Virtual Machine and configure this system as a Windows Server Container Host.
+Windows Server Containers consist of several components such as the Windows Server Container Host and Container OS Base Image. We have put together a script that will download and configure these items for you. Follow these steps to deploy a new Hyper-V Virtual Machine and configure this system as a Windows Server Container Host.
 
-Launch a PowerShell session as Administrator.
+Start a PowerShell session as Administrator.
 
 ```
 powershell
@@ -33,10 +33,10 @@ Use the following command to download the configuration script.
 wget -uri http://aka.ms/newcontainerhost -OutFile New-ContainerHost.ps1
 ```
    
-Run the following command to create and configure the container host where `contianerhost` will be the virtual machine name and `password` will be the password assigned to the Administrator account.
+Run the following command to create and configure the container host where `<contianerhost>` will be the virtual machine name and `<password>` will be the password assigned to the Administrator account.
 
 ```powershell
-.\New-ContainerHost.ps1 –VmName <CONTAINERHOST> -Password <password>
+.\New-ContainerHost.ps1 –VmName <containerhost> -Password <password>
 ```
   
 When the script begins you will be asked to read and accept licensing terms.
@@ -50,13 +50,13 @@ license terms. Please confirm you have accepted and agree to the license terms.
 [N] No  [Y] Yes  [?] Help (default is "N"): Y
 ```
 
-This script will then begin to download and configure the Windows Server Container components. This process will take quite some time due to the large download. When finished your Virtual Machine will be configured and ready to create and manage Windows Server Containers with both PowerShell and Docker.  
+The script will then begin to download and configure the Windows Server Container components. This process will take quite some time due to the large download. When finished your Virtual Machine will be configured and ready for you to create and manage Windows Server Containers with both PowerShell and Docker.  
 
 When the configuration script has completed log into your virtual machine. The VM is configured with Windows Server 2016 Core and will look like the following.
   
 <center>![](./media/ContainerHost.png)</center>
   
-Now you have a Windows Server Core virtual machine running Docker and Windows Server Containers!
+Now you have a Windows Server Core virtual machine configured with all necessary pieces for the creation and management of Windows Server Container with both PowerShell and Docker.
 
 ## Next - Start using containers
 
