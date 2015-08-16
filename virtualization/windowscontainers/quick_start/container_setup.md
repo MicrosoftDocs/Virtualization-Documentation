@@ -65,7 +65,7 @@ Get-VM | Get-VMNetworkAdapter | Connect-VMNetworkAdapter -Switchname <switchname
 
 When the configuration script has completed start your virtual machine. The VM is configured with Windows Server 2016 Core and will look like the following.
   
-<center>![](./media/ContainerHost.png)</center>  
+<center>![](./media/ContainerHost.png)</center>  <br /><br />
   
 Now you have a Windows Server Core virtual machine configured with all necessary pieces for the creation and management of Windows Server Container with both PowerShell and Docker.
 
