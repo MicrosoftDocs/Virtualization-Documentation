@@ -169,7 +169,7 @@ mkdir c:\build\nginx\source
 Run this command on the container host to download the nginx software to 'c:\nginx-1.9.3.zip'.
 
 ``` PowerShell
-Invoke-WebRequest 'http://nginx.org/download/nginx-1.9.3.zip' -OutFile "c:\nginx-1.9.3.zip"
+wget -uri 'http://nginx.org/download/nginx-1.9.3.zip' -OutFile "c:\nginx-1.9.3.zip"
 ```
 
 > **Note:**  If you hit an error that looks like this
@@ -277,7 +277,7 @@ With the web server container created and all networking configured, you can now
 At this point, feel free to update the website. Copy in your own sample website, or run the following command to replace the nginx welcome page with a ‘Hello World’ web page.
 
 ```powershell
-powershell Invoke-WebRequest 'https://raw.githubusercontent.com/neilpeterson/index/master/index.html' -OutFile "C:\nginx\nginx-1.9.3\html\index.html"
+powershell wget -uri 'https://raw.githubusercontent.com/neilpeterson/index/master/index.html' -OutFile "C:\nginx\nginx-1.9.3\html\index.html"
 ```
 
 After the website has been updated, navigate back to `http://containerhost-ipaddress`.
