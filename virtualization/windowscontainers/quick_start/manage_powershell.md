@@ -352,9 +352,7 @@ After the website has been updated, navigate back to `http://containerhost-ipadd
 
 -----------------------------------
 
-## Reference
-
-[Alpha Release Known Issues:](../about/work_in_progress.md)
+[Alpha Release Known Issues](../about/work_in_progress.md)
 
 [Back to Container Home](../containers_welcome.md)  
 

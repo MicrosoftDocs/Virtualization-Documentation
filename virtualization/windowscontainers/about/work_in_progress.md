@@ -7,20 +7,6 @@ If you don't see your problem addressed here or have questions, post them on the
 
 -----------------------
 
-**Template**  
-## Broad category
-
-### Specific issue
-A more detailed explanation to identify the issue.
-
-** Work Around: **  
-Description
-
-** More Information: ** (optional)  
-When does this happen?  Why?
-
------------------------
-
 ## General functionality
 
 ### Windows Container Image must exactly match container host
@@ -50,7 +36,6 @@ We're working on it.  In the future there will be folder sharing.
 
 --------------------------
 
-
 ## Networking
 
 ### Number of compartments per container
@@ -59,9 +44,7 @@ In this release we support one compartment per container.
 **Work Around: **  
 If multiple endpoints exposed by the container are needed, use NAT port mapping.
 
-
 --------------------------
-
 
 ## Application compatibility
 

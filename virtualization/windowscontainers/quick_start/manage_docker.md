@@ -35,7 +35,7 @@ C:\> powershell
 Windows PowerShell
 Copyright (C) 2015 Microsoft Corporation. All rights reserved.
 
-PS C:\> _
+PS C:\>
 ```
 
 ### Step 1 - Create a New Container
@@ -286,8 +286,6 @@ After the website has been updated, navigate back to `http://containerhost-ipadd
 
 -----------------------------------
 
-## Reference
-
-[Alpha Release Known Issues:](../about/work_in_progress.md)
+[Alpha Release Known Issues](../about/work_in_progress.md)
 
 [Back to Container Home](../containers_welcome.md)  
