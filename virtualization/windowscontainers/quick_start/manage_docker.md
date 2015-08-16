@@ -3,11 +3,11 @@ title: Manage Windows Server Containers with Docker
 
 #Quick Start: Windows Server Containers and Docker
 
-This article will walk through the fundamentals of managing windows Server Container with Docker. Items covered will include creating Windows Server Containers and Windows Server Container Images, removing Windows Server Container and Container Images and finally deploying an application into a Windows Server Container. The lessons learned in this walkthrough should enable you to begin exploring deployment and management of Windows Server Containers using Docker.
+This article will walk through the fundamentals of managing windows Server Container with Docker. Items covered will include creating Windows Server Containers and Windows Server Container Images, removing Windows Server Containers and Container Images and finally deploying an application into a Windows Server Container. The lessons learned in this walkthrough should enable you to begin exploring deployment and management of Windows Server Containers using Docker.
 
 Have questions? Ask them on the [Windows Containers forum](https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers).
 
-> **Note:** Windows Containers created with PowerShell can not be managed with Docker right now and visa versa. To create containers with PowerShell, see  [Quick Start: Windows Server Containers and PowerShell](./manage_powershell.md).
+> **Note:** Windows Containers created with PowerShell can not currently be managed with Docker and visa versa. To create containers with PowerShell, see  [Quick Start: Windows Server Containers and PowerShell](./manage_powershell.md).
 
 As you start this guide, you should be looking at a screen that looks like this:
 ![](./media/ContainerHost_ready.png)
@@ -280,6 +280,6 @@ After the website has been updated, navigate back to `http://containerhost-ipadd
 
 ## Reference
 
-Here is a list of [known broken docker commands](../about/work_in_progress.md) amoung other [known issues](../about/work_in_progress.md) -- this is an alpha release.  We're working on it :).
+[Alpha Release Known Issues:](../about/work_in_progress.md)
 
 [Back to Container Home](../containers_welcome.md)  
