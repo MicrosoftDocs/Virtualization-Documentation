@@ -13,10 +13,10 @@ To run Windows Server Containers in Azure instead, follow [these instructions](.
  
  ## Requirements
 
-* System running Windows 8.1 / Windows Server 2012 R2 or later
-* Hyper-V role enabled ([see instructions](https://msdn.microsoft.com/virtualization/hyperv_on_windows/quick_start/walkthrough_install#UsingPowerShell))
-* 20GB available storage for container host image, OS Base Image and setup scripts
-* Administrator permissions on the Hyper-V host
+* System running Windows 8.1 / Windows Server 2012 R2 or later.
+* Hyper-V role enabled ([see instructions](https://msdn.microsoft.com/virtualization/hyperv_on_windows/quick_start/walkthrough_install#UsingPowerShell)).
+* 20GB available storage for container host image, OS Base Image and setup scripts.
+* Administrator permissions on the Hyper-V host.
 
 ## Setup a New Container Host on a New Virtual Machine
 Windows Server Containers consist of several components such as the Windows Server Container Host and Container OS Base Image. We have put together a script that will download and configure these items for you. Follow these steps to deploy a new Hyper-V Virtual Machine and configure this system as a Windows Server Container Host.
@@ -24,7 +24,7 @@ Windows Server Containers consist of several components such as the Windows Serv
 Start a PowerShell session as Administrator.
 
 ```
-powershell
+start-process powershell -Verb runAs
 ```
 
 Use the following command to download the configuration script.
@@ -63,11 +63,11 @@ If you do, check the properties of the virtual machine and connect the virtual m
 Get-VM | Get-VMNetworkAdapter | Connect-VMNetworkAdapter -Switchname <switchname>
 ```
 
-When the configuration script has completed start your virtual machine. The VM is configured with Windows Server 2016 Core and will look like the following.
+When the configuration script has completed, start the virtual machine. The VM is configured with Windows Server 2016 Core and will look like the following.
   
-<center>![](./media/ContainerHost.png)</center>  <br />
+<center>![](./media/ContainerHost.png)</center><br />
   
-Now you have a Windows Server Core virtual machine configured with all necessary pieces for the creation and management of Windows Server Container with both PowerShell and Docker.
+Finally log into the virtual machine using the password specified during the configuration process and make sure that the Virtual Machine has a valid IP address. With these items completed your system should be ready for Windows Server Containers. 
 
 ## Next Steps - Start Using Containers
 
