@@ -33,10 +33,8 @@ For more information - read here: http://blogs.msdn.com/b/virtual_pc_guy/archive
 
 This is the list of things currently in my "to do" list.  Feel free to tackle any of them yourself and request a pull.
 
-* Better error handling around missing files (convert-windowsimage, factoryvariables, PSUpdate, etc...)
 * MD5 summing for virtual hard drives in the share folder
 * Make variables for the build and share directories - so they do not have to be under the working directory
 * Add support for static IP addresses inside the factory VM - so the script works when DHCP does not
-* Add support for connecting the factory VM to VLANs
 * Add support for Windows 7 / 2008 R2 guest operating systems
 * Update this readme to have more information from the blog post - and vice versa
