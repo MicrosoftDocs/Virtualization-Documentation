@@ -209,8 +209,10 @@ If anything that isn't on this list fails, if a command fails differently than e
 ### Pasting commands to interactive Docker session is limited to 50 characters
 If you copy a command line into an interactive Docker session, it is currently limited to 50 characters.
 
-### HCS Shim errors when creating new container images
+This is not by design, we're working on lifting the restriction.
 
+
+### HCS Shim errors when creating new container images
 If you encounter error messages like this:
 ```
 hcsshim::ExportLayer - Win32 API call returned error r1=2147942523 err=The filename, directory name, or volume label syntax is incorrect. layerId=606a2c430fccd1091b9ad2f930bae009956856cf4e6c66062b188aac48aa2e34 flavour=1 folder=C:\ProgramData\docker\windowsfilter\606a2c430fccd1091b9ad2f930bae009956856cf4e6c66062b188aac48aa2e34-1868857733
