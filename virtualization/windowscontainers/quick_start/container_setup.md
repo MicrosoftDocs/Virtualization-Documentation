@@ -7,16 +7,9 @@ In order to create and manage Windows Server Containers, the Windows Server 2016
 
 To run Windows Server Containers in Azure instead, follow [these instructions](./azure_setup.md).
 
-<<<<<<< HEAD
   **PLEASE READ PRIOR TO INSTALLING THE CONTAINER OS IMAGE:**  The license terms of the Microsoft Windows Server Pre-Release software (“License Terms”) apply to your use of the Microsoft Windows Container OS Image supplement (the “supplemental software).  By downloading and using the supplemental software, you agree to the License Terms, and you may not use it if you have not accepted the License Terms. Both the Windows Server Pre-Release software and the supplemental software are licensed by Microsoft Corporation.  
 
 ## Requirements
-=======
-**PLEASE READ PRIOR TO INSTALLING THE CONTAINER OS IMAGE:**  The license terms of the Microsoft Windows Server Pre-Release software (“License Terms”) apply to your use of the Microsoft Windows Container OS Image supplement (the “supplemental software).  By downloading and using the supplemental software, you agree to the License Terms, and you may not use it if you have not accepted the License Terms. Both the Windows Server Pre-Release software and the supplemental software are licensed by Microsoft Corporation.
- 
- ## Requirements
->>>>>>> 334773d7f1a74fbd58655d349b90a6873a788fcf
-
 * System running Windows 8.1 / Windows Server 2012 R2 or later.
 * Hyper-V role enabled ([see instructions](https://msdn.microsoft.com/virtualization/hyperv_on_windows/quick_start/walkthrough_install#UsingPowerShell)).
 * 20GB available storage for container host image, OS Base Image and setup scripts.
