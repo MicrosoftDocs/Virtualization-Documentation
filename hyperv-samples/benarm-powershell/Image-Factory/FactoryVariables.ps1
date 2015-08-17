@@ -1,14 +1,26 @@
 # Seperate file for variables - this when you pull down the latest factory file you can keep your paths / product keys etc...
 $workingDir = "C:\FactoryTest"
 $logFile = "$($workingDir)\Share\Details.csv"
-$factoryVMName = "Factory VM"
-$virtualSwitchName = "Virtual Switch"
-$ResourceDirectory = "$($workingDir)\Resources\Bits" 
+$ResourceDirectory = "$($workingDir)\Resources" 
 $Organization = "The Power Elite"
 $Owner = "Ben Armstrong"
 $Timezone = "Pacific Standard Time"
 $adminPassword = "P@ssw0rd"
 $userPassword = "P@ssw0rd"
+
+# VM Settings
+    # Name of the VM - make sure this does not conflict with any existing virtual machine, because it gets deleted automatically!
+    $factoryVMName = "Factory VM"
+
+    # Amount of memory to give the VM - more memory usually makes updates install faster
+    $VMMemory = 2048mb
+
+    # Virtual switch to connect to - needs internet access to download updates
+    $virtualSwitchName = "Virtual Switch"
+
+    # Set to $true and specify VLAN id to connect the VM to a specific VLAN
+    $UseVLAN = $false
+    $VlanId = 1
 
 # Keys
 $Windows10Key = ""
@@ -26,3 +38,8 @@ $81x86Image = "$($workingDir)\ISOs\en_windows_8_1_x86_dvd_2707392.wim"
 $81x64Image = "$($workingDir)\ISOs\en_windows_8_1_x64_dvd_2707217.wim"
 $10x86Image = "$($workingDir)\ISOs\en_windows_10_multiple_editions_x86_dvd_6848465.wim"
 $10x64Image = "$($workingDir)\ISOs\en_windows_10_multiple_editions_x64_dvd_6846432.wim"
+
+# Misc Settings
+
+# If enabled, will use dism.exe to clean the WinSXS folder and remove old updates. This can give significant disk savings, but takes longer (20-30 minutes per image). Updates will not be able to be uninstalled if this is enabled.
+$CleanWinSXS = $false
