@@ -13,7 +13,7 @@ If you don't see your problem addressed here or have questions, post them on the
 A Windows Server Container requires an opertaing system image that matches the container host in respect to build and patch level. A mismatch will lead to instability and or unpredictable behavior for the container and/or the host.
 <!-- Can we give examples of behavior or errors?  Makes it more searchable -->
 
-** Work Around: **  
+**Work Around:**   
 Download and install a container OS <!-- Container base image? --> matching the OS version and patch level of the container host.
 
 
@@ -57,7 +57,7 @@ Enable-WindowsOptionalFeature -Online -FeatureName IIS-ASPNET45
 
 This fails because ASP.NET 4.5 doesn't run in a container.
 
-** Work Around: **  
+**Work Around:**   
 ASP 5.0 does work.  Instead, install the Web-Server role.
 
 ``` PowerShell
@@ -67,7 +67,7 @@ Enable-WindowsOptionalFeature -Online -FeatureName Web-Server
 ### Remote access of containers
 Windows Server Containers can be managed/interacted with through a RDP session. Exiting the container RDP session without logoff may prevent the container from shutting down.
 
-** Work Around: **  
+**Work Around:**   
 Exit the RDP session by typing "logoff" (instead of "exit" or just closing the RDP window) before shutting the container down.
 
 
@@ -158,13 +158,6 @@ Exit the RDP session by typing "logoff" (instead of "exit" or just closing the R
 
 ## Docker management
 
-### Docker clients unsecured by default
-In this pre-release, docker communication is public if you know where to look.
-
-To secure your windows server container to Docker communications, use this script: LARS?  STEVE?
-
-
-
 ### Docker commands that don't work with Windows Server Containers
 
 Commands known to fail:
@@ -208,17 +201,26 @@ If anything that isn't on this list fails, if a command fails differently than e
 
 ### Pasting commands to interactive Docker session is limited to 50 characters
 If you copy a command line into an interactive Docker session, it is currently limited to 50 characters.
+<!-- How does this present?  Does it truncate or fail?  If fail, what's the error? -->
 
---------------------------
+This is not by design, we're working on lifting the restriction.
 
 
-## PowerShell management
-
-## Issues solved by Zero Day Patch
-If you encounter error messages like this when creating a new container image using Docker, please apply the Zero Day Patch for Windows Server 2016 TP3. This can occur e.g. when running the Python-3.4.3.msi installer or node-v0.12.7.msi
+### HCS Shim errors when creating new container images
+If you encounter error messages like this:
 ```
 hcsshim::ExportLayer - Win32 API call returned error r1=2147942523 err=The filename, directory name, or volume label syntax is incorrect. layerId=606a2c430fccd1091b9ad2f930bae009956856cf4e6c66062b188aac48aa2e34 flavour=1 folder=C:\ProgramData\docker\windowsfilter\606a2c430fccd1091b9ad2f930bae009956856cf4e6c66062b188aac48aa2e34-1868857733
 ```
+
+You're hitting an issue addressed by the Zero Day Patch for Windows Server 2016 TP3. This error can also occur when running the Python-3.4.3.msi installer or node-v0.12.7.msi in a container.
+
+If you hit other hcsshim errors, let us know via [the forums](https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers).
+
+
+--------------------------
+
+## PowerShell management
+
 
 --------------------------
 [Back to Container Home](../containers_welcome.md)
