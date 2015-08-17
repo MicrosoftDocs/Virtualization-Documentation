@@ -350,8 +350,5 @@ After the website has been updated, navigate back to `http://containerhost-ipadd
 ![](media/hello.png)
 
 -----------------------------------
-
+[Back to Container Home](../containers_welcome.md)   
 [Known Issues for Current Release](../about/work_in_progress.md)
-
-[Back to Container Home](../containers_welcome.md)  
-
