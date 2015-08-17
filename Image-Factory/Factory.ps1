@@ -548,9 +548,10 @@ function RunTheFactory
 
         logger $FriendlyName "Copy login file for update check, also make sure flag file is cleared"
         MountVHDandRunBlock $updateVHD {
-            # Make the UpdateCheck script the logon script, make sure update flag file is deleted before we start
-            cleanupFile "$($driveLetter):\Bits\changesMade.txt";
-            cleanupFile "$($driveLetter):\Bits\Logon.ps1";
+            # Refresh the Bits folder
+            cleanupFile "$($driveLetter):\Bits"
+            Copy-Item "$($ResourceDirectory)\bits" -Destination ($driveLetter + ":\") -Recurse;
+            # Create the update check logon script
             $updateCheckScriptBlock | Out-String | Out-File -FilePath "$($driveLetter):\Bits\Logon.ps1" -Width 4096;
         }
 
