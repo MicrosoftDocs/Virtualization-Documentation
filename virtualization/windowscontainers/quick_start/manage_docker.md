@@ -11,7 +11,7 @@ Have questions? Ask them on the [Windows Containers forum](https://social.msdn.m
 
 ## Prerequisites
 In order to complete this walkthrough the following items need to be in place.
-- Windows Server 2016 Container host.
+- Windows Server 2016 container host -- if you just finished the setup guide, this is the virtual machine in Azure or that was just created locally.
 - Container host must be connected to a network and able to access the internet.
 - The Windows Server 2016 Container host should be ready at the command prompt.
 
@@ -268,9 +268,9 @@ When the port mapping has been created you will also need to configure an inboun
 New-NetFirewallRule -Name "httpTCP80" -DisplayName "HTTP on TCP/80" -Protocol tcp -LocalPort 80 -Action Allow -Enabled True
 ```
 
-Finally if you are working from Azure an external endpoint will need to be created that will expose this port to the internet. For more information on Azure VM Endpoints see this article: [Set up Azure VM Endpoints]( https://azure.microsoft.com/en-us/documentation/articles/virtual-machines-set-up-endpoints/).-->
+Finally if you are working from Azure an external endpoint will need to be created that will expose this port to the internet. For more information on Azure VM Endpoints see this article: [Set up Azure VM Endpoints]( https://azure.microsoft.com/en-us/documentation/articles/virtual-machines-set-up-endpoints/).
 
-### Step 5 – Access the Container Hosted Website
+### Step 6 – Access the Container Hosted Website
 With the web server container created and all networking configured, you can now checkout the application hosted in the container. To do so, get the ip address of the container host using `ipconfig`, open up a browser on different machine and enter `http://containerhost-ipaddress`. If everything has been correctly configured, you will see the nginx welcome page.
 
 ![](media/nginx.png)
