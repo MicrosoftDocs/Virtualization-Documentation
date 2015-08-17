@@ -9,8 +9,7 @@ To run Windows Server Containers in Azure instead, follow [these instructions](.
 
   **PLEASE READ PRIOR TO INSTALLING THE CONTAINER OS IMAGE:**  The license terms of the Microsoft Windows Server Pre-Release software (“License Terms”) apply to your use of the Microsoft Windows Container OS Image supplement (the “supplemental software).  By downloading and using the supplemental software, you agree to the License Terms, and you may not use it if you have not accepted the License Terms. Both the Windows Server Pre-Release software and the supplemental software are licensed by Microsoft Corporation.  
 
-## Requirements
-* System running Windows 10 / Windows Server Technical Prerview 2 or later.
+* System running Windows 10 / Windows Server Technical Preview 2 or later.
 * Hyper-V role enabled ([see instructions](https://msdn.microsoft.com/virtualization/hyperv_on_windows/quick_start/walkthrough_install#UsingPowerShell)).
 * 20GB available storage for container host image, OS Base Image and setup scripts.
 * Administrator permissions on the Hyper-V host.
