@@ -208,6 +208,7 @@ If anything that isn't on this list fails, if a command fails differently than e
 
 ### Pasting commands to interactive Docker session is limited to 50 characters
 If you copy a command line into an interactive Docker session, it is currently limited to 50 characters.
+<!-- How does this present?  Does it truncate or fail?  If fail, what's the error? -->
 
 This is not by design, we're working on lifting the restriction.
 
