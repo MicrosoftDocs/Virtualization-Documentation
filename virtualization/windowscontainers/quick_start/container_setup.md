@@ -11,7 +11,7 @@ To run Windows Server Containers in Azure instead, follow [these instructions](.
  
  ## Requirements
 
-* System running Windows 8.1 / Windows Server 2012 R2 or later.
+* System running Windows 10 / Windows Server Technical Preview 2 or later.
 * Hyper-V role enabled ([see instructions](https://msdn.microsoft.com/virtualization/hyperv_on_windows/quick_start/walkthrough_install#UsingPowerShell)).
 * 20GB available storage for container host image, OS Base Image and setup scripts.
 * Administrator permissions on the Hyper-V host.
