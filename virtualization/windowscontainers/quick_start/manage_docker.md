@@ -11,7 +11,8 @@ Have questions? Ask them on the [Windows Containers forum](https://social.msdn.m
 
 ## Prerequisites
 In order to complete this walkthrough the following items need to be in place.
-- Windows Server 2016 TP3 or later configured with the Windows Server Container Feature.
+
+- Windows Server 2016 TP3 or later configured with the Windows Server Container Feature. If you have completed the setup guides, this is the VM that was created in Azure of Hyper-V.
 - This system must be connected to a network and able to access the internet.
 
 If you need to configure the container feature, see the following guides: [Container Setup in Azure](./azure_setup.md) or [Container Setup in Hyper-V](./container_setup.md). 
