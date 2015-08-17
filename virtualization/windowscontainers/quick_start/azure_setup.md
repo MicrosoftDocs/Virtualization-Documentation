@@ -7,46 +7,37 @@ Before creating and managing Windows Containers the Windows Server 2016 Technica
 
 To run Windows Server Containers in a local virtual machine instead, follow [these instructions](./container_setup.md).
 
-## Start using Azure Portal
-If you have an Azure account and use Azure Portal, skip straight to [creating a container host](#CreateacontainerhostVM).
+## Start Using Azure Portal
+If you have an Azure account and use Azure Portal, skip straight to [Create a Container Host VM](#CreateacontainerhostVM).
 
 1. Go to [azure.com](https://azure.microsoft.com) and follow the steps for an [Azure Free Trial](https://azure.microsoft.com/en-us/pricing/free-trial/).
 2. Sign in with your Microsoft account.
 3. You should now be logged into the [Azure Management Portal](https://manage.windowsazure.com/).
 
-## Create a container host VM
+## Create a Container Host VM
 Create and configure a new virtual machine through Azure Gallery.
 
-1. click on "New" (in the bottom left hand corner of the page).  
-  From there:  Compute > Virtual Machine > From Gallery.
+Click on New > Compute > Virtual Machine > From Gallery
 
-  That should look something like this:  
-  ![](./media/CreateAzureVM.png)
+![](./media/CreateAzureVM.png)
 
-2. On the ‘choose an image’ menu, select ‘Windows Server Container Preview’.  
-  ![](media/AzureGallery.png)
+Select a name for the Virtual Machine, select a size, user name and Password.
 
-3. Add Port 80 as an endpoint.
-  On page 3 of the Create a Virtual Machine guide, there is a configuration option to set endpoints.
+![](./media/Create_vm2.png)
+
+On the ‘Choose an Image’ menu, select ‘Windows Server Container Preview’.
+
+![](media/AzureGallery.png)
+
+On page 3 of the Create a Virtual Machine wizard there is an option to configure an Endpoint. Endpoints are used to map a VM port (internal) to a port that is exposed to the internet (external). During the Windows Server Container quick starts you will host a website in your container and access this website through port 80. You will need to create an endpoint to allow internet traffic to access this VM through port 80.
+
+Select HTTP from the ‘Enter or Select Value’ drop down. 
+ 
+![](media/AzurePorts.png)
+
+Keep the default on the following page and select the check mark to create the Virtual Machine.
   
-  Our quick start guide shows you how to create a web server in a container.  You can simplify the quick start by opening port 80 right now.  
-  Port 80 is named "HTTP" in the Name dropdown.
-  
-  ![](media/AzurePorts.png)
-  
-4. **Setup script?**
-
-5. Create your virtual machine!
-
-##  Windows Containers Preparation in Azure
-
-1.  Dowload a script from somewhere?  I'm guessing this is the script you'd use to install containers on your own VM...
-
-.  
-.  
-.  
-
-6.  Enter your password.  
+![](media/create_vm3.png)
 
 Now you have a Windows Server Core virtual machine in Azure running Docker and Windows Server Containers!
   
@@ -56,10 +47,6 @@ Jump to the following quick starts to begin containerizing applications and mana
 
 [Quick Start: Windows Server Containers and PowerShell](./manage_powershell.md)  
 [Quick Start: Windows Server Containers and Docker](./manage_docker.md) 
-
-The Docker and PowerShell guides both walk through containerizing a web server and performing equivalent management tasks.  Use whichever toolset you prefer. 
-
 -------------------
+[Back to Container Home](../containers_welcome.md)  
 [Known Issues for Current Release](../about/work_in_progress.md)
-
-[Back to Container Home](../containers_welcome.md)

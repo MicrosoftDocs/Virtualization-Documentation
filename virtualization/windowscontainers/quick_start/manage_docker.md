@@ -228,7 +228,7 @@ windowsservercore   latest              9eca9231f4d4        35 hours ago        
 Because you will be hosting a website inside of a container a few networking related configurations need to be made. First a firewall rule needs to be created on the container host that will allow access to the website. In this example we will be accessing the site through port 80. Run the following script to create this firewall rule.
 
 ``` powershell
-if (!(Get-NetFirewallRule | where {$_.Name -eq "httpTCP80"})) {
+if (!(Get-NetFirewallRule | where {$_.Name -eq "TCP80"})) {
     New-NetFirewallRule -Name "TCP80" -DisplayName "HTTP on TCP/80" -Protocol tcp -LocalPort 80 -Action Allow -Enabled True
 }
 ```
@@ -237,7 +237,7 @@ Next if you are working from Azure an external endpoint will need to be created 
 
 ### Step 4 - Deploy Web Server Ready Container
 
-To deploy a Windows Server Container based off of the 'nginx_windows' container run the following command. This will create a new container named 'nginxcontainer' and start an console session on the container.
+To deploy a Windows Server Container based off of the 'nginx_windows' container run the following command. This will create a new container named 'nginxcontainer' and start an console session on the container. The –p 80:80 portion of this command creates a static port map between port 80 on the host to port 80 on the container. 
 
 ``` PowerShell
 docker run -it --name nginxcontainer -p 80:80 nginx_windows cmd
@@ -252,22 +252,6 @@ Start the nginx web server.
 ``` PowerShell
 start nginx
 ```
-<!--### Step 5 - Configure Container Networking
-Depending on the configuration of the container host and network, a container will either receive an IP address from a DHCP server or the container host itself using network address translation (NAT). This guided walk through is configured to use NAT. In this configuration a port from the container is mapped to a port on the container host. The application hosted in the container is then accessed through the IP address / name of the container host. For instance if port 80 from the container was mapped to port 55534 on the container host, a typical http request to the application would look like this http://contianerhost:55534. This allows a container host to run many containers and allow for the applications in these containers to respond to requests using the same port. 
-
-For this lab we need to create this port mapping. In order to do so we will need to know the IP address of the container and the internal (application) and external (container host) port that will be configured. For this example let’s keep it simple and map port 80 from the container to port 80 of the host. The container IP address is the InternalIPAddress.  It should be `172.16.0.2`.
-
-``` PowerShell
-Add-NetNatStaticMapping -NatName "ContainerNat" -Protocol TCP -ExternalIPAddress 0.0.0.0 -InternalIPAddress 172.16.0.2 -InternalPort 80 -ExternalPort 80
-```
-When the port mapping has been created you will also need to configure an inbound firewall rule for the configured port. To do so for port 80 run the following command.
-
-``` PowerShell
-New-NetFirewallRule -Name "httpTCP80" -DisplayName "HTTP on TCP/80" -Protocol tcp -LocalPort 80 -Action Allow -Enabled True
-```
-
-Finally if you are working from Azure an external endpoint will need to be created that will expose this port to the internet. For more information on Azure VM Endpoints see this article: [Set up Azure VM Endpoints]( https://azure.microsoft.com/en-us/documentation/articles/virtual-machines-set-up-endpoints/).-->
-
 ### Step 5 – Access the Container Hosted Website
 With the web server container created and all networking configured, you can now checkout the application hosted in the container. To do so, get the ip address of the container host using `ipconfig`, open up a browser on different machine and enter `http://containerhost-ipaddress`. If everything has been correctly configured, you will see the nginx welcome page.
 
