@@ -12,9 +12,9 @@ For more information - read here: http://blogs.msdn.com/b/virtual_pc_guy/archive
 8/16/15 -
 
 * Changes from Grant Emsley
-** Support for configuring Factory VM RAM and VLAN
-** Better error handling on missing folders / dependancies
-** Better handling of missing ISO / WIM files
+  * Support for configuring Factory VM RAM and VLAN
+  * Better error handling on missing folders / dependancies
+  * Better handling of missing ISO / WIM files
 
 8/1/15 -
 
