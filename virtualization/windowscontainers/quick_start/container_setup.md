@@ -21,7 +21,7 @@ To run Windows Server Containers in Azure instead, follow [these instructions](.
 ## Setup a New Container Host on a New Virtual Machine
 Windows Server Containers consist of several components such as the Windows Server Container Host and Container OS Base Image. We have put together a script that will download and configure these items for you. Follow these steps to deploy a new Hyper-V Virtual Machine and configure this system as a Windows Server Container Host.
 
-Start a PowerShell session as Administrator.
+Start a PowerShell session as Administrator. This can be done by right clicking on the PowerShell icon and selecting ‘Run as Administrator’ or by running the following command from any PowerShell session.
 
 ```
 start-process powershell -Verb runAs
