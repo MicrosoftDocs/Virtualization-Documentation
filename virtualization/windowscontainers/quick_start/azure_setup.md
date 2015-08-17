@@ -37,7 +37,7 @@ Select HTTP from the ‘Enter or Select Value’ drop down.
 
 Keep the default on the following page and select the check mark to create the Virtual Machine.
   
-![](media/create_vm3.PNG)
+![](media/create_vm3.png)
 
 Now you have a Windows Server Core virtual machine in Azure running Docker and Windows Server Containers!
   
