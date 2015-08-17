@@ -11,7 +11,8 @@ Have questions? Ask them on the [Windows Containers forum](https://social.msdn.m
 
 ## Prerequisites
 In order to complete this walkthrough the following items need to be in place.
-- Windows Server 2016 TP3 or later configured with the Windows Server Container Feature.
+
+- Windows Server 2016 TP3 or later configured with the Windows Server Container Feature. If you have completed a setup guide, this is the VM that was created in Azure or Hyper-V.
 - This system must be connected to a network and able to access the internet.
 
 If you need to configure the container feature, see the following guides: [Container Setup in Azure](./azure_setup.md) or [Container Setup in Hyper-V](./container_setup.md). 
@@ -22,11 +23,7 @@ As you begin this walkthrough you should be at a Windows command prompt.
 
 This first example will walk through the basics of creating and removing Windows Server Containers and Windows Server Container Images with PowerShell. You can find the available container cmdlets using `Get-Command -Module Containers`.
 
-### Step 1 - Create a New Container
-
-Before creating a Windows Server Container you will need the name of a Container Image and the name of a virtual switch that will be attached to the new container.
-
-First start a PowerShell session from the command prompt by typing `PowerShell`. You will know that you are in a PowerShell session when the prompt changes from ``C:\directory>`` to ``PS C:\directory>``.
+Before you begin working with the Container PowerShell module start a PowerShell session by typing `powershell`. You will know that you are in a PowerShell session when the prompt changes from ``C:\directory>`` to ``PS C:\directory>``.
 
 ```
 C:\> powershell
@@ -35,6 +32,23 @@ Copyright (C) 2015 Microsoft Corporation. All rights reserved.
 
 PS C:\>
 ```
+Next make sure that your system has a valid IP Address and make note of this address for later use. 
+
+```
+ipconfig.txt
+
+Ethernet adapter vEthernet (Virtual Switch-94a3e12ad262b3059e08edc4d48fca3c8390e38c3b219023d4a0a4951883e658-0):
+
+   Connection-specific DNS Suffix  . : 
+   Link-local IPv6 Address . . . . . : fe80::cc1f:742:4126:9530%18
+   IPv4 Address. . . . . . . . . . . : 192.168.1.25
+   Subnet Mask . . . . . . . . . . . : 255.255.255.0
+   Default Gateway . . . . . . . . . : 192.168.1.1
+```
+
+### Step 1 - Create a New Container
+
+Before creating a Windows Server Container you will need the name of a Container Image and the name of a virtual switch that will be attached to the new container.
 
 Use the `Get-ContainerImage` command to return a list of container images loaded on the host. Take note of the image name that you will use to create the container.
 ``` PowerShell
