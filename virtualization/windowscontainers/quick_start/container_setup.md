@@ -63,7 +63,7 @@ Get-VM | Get-VMNetworkAdapter | Connect-VMNetworkAdapter -Switchname <switchname
 
 When the configuration script has completed, start the virtual machine. The VM is configured with Windows Server 2016 Core and will look like the following.
   
-<center>![](./media/ContainerHost2.png)</center><br />
+<center>![](./media/containerhost2.png)</center><br />
   
 Finally log into the virtual machine using the password specified during the configuration process and make sure that the Virtual Machine has a valid IP address. With these items completed your system should be ready for Windows Server Containers. 
 
