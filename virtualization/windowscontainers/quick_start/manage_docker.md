@@ -11,18 +11,13 @@ Have questions? Ask them on the [Windows Containers forum](https://social.msdn.m
 
 ## Prerequisites
 In order to complete this walkthrough the following items need to be in place.
-- Windows Server 2016 container host -- if you just finished the setup guide, this is the virtual machine in Azure or that was just created locally.
-- Container host must be connected to a network and able to access the internet.
-- The Windows Server 2016 Container host should be ready at the command prompt.
 
-If you need to configure a container host, see the following guides: [Container Setup in Azure](./azure_setup.md) or [Container Setup in Hyper-V](./container_setup.md). 
+- Windows Server 2016 TP3 or later configured with the Windows Server Container Feature.
+- This system must be connected to a network and able to access the internet.
 
-<!--As you start this guide, you should be looking at a screen that looks like this:
-![](./media/ContainerHost_ready.png)
+If you need to configure the container feature, see the following guides: [Container Setup in Azure](./azure_setup.md) or [Container Setup in Hyper-V](./container_setup.md). 
 
-If you don't have this set up, see the [Container setup in a local VM](./container_setup.md) or [container setup in Azure](./azure_setup.md) articles.
-
-The window in the forground (highlighted in red) is a cmd prompt from which you will start working with containers.-->
+As you begin this walkthrough you should be at a Windows command prompt.
 
 ## Basic Container Management with Docker
 
@@ -233,11 +228,11 @@ if (!(Get-NetFirewallRule | where {$_.Name -eq "TCP80"})) {
 }
 ```
 
-Next if you are working from Azure an external endpoint will need to be created that will expose this port to the internet. For more information on Azure VM Endpoints see this article: [Set up Azure VM Endpoints]( https://azure.microsoft.com/en-us/documentation/articles/virtual-machines-set-up-endpoints/).
+Next if you are working from Azure and have not already created a Virtual Machine endpoint you will need to create one now. For more information on Azure VM Endpoints see this article: [Set up Azure VM Endpoints]( https://azure.microsoft.com/en-us/documentation/articles/virtual-machines-set-up-endpoints/).
 
 ### Step 4 - Deploy Web Server Ready Container
 
-To deploy a Windows Server Container based off of the 'nginx_windows' container run the following command. This will create a new container named 'nginxcontainer' and start an console session on the container. The –p 80:80 portion of this command creates a static port map between port 80 on the host to port 80 on the container. 
+To deploy a Windows Server Container based off of the 'nginx_windows' container run the following command. This will create a new container named 'nginxcontainer' and start an console session on the container. The –p 80:80 portion of this command creates a port mapping between port 80 on the host to port 80 on the container. 
 
 ``` powershell
 docker run -it --name nginxcontainer -p 80:80 nginx_windows cmd

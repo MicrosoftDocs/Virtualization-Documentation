@@ -39,11 +39,13 @@ Keep the default on the following page and select the check mark to create the V
   
 ![](media/create_vm3.png)
 
-Now you have a Windows Server Core virtual machine in Azure running Docker and Windows Server Containers!
-  
-## Next - Start using containers
+To connect to the Azure Virtual Machine, select the virtual machine > click on Dashboard > select the connect bottom towards the bottom of the screen. This will download and open an .rdp file which will create an RDP session with the VM.
 
-Jump to the following quick starts to begin containerizing applications and managing Windows Server Containers.
+Log into the VM using the username and password specified during the VM creation wizard.
+
+## Next Steps - Start Using Containers
+
+Now that you have a Windows Server 2016 system running the Windows Server Container feature jump to the following guides to begin working with Windows Server Containers and Windows Server Container images. 
 
 [Quick Start: Windows Server Containers and PowerShell](./manage_powershell.md)  
 [Quick Start: Windows Server Containers and Docker](./manage_docker.md) 

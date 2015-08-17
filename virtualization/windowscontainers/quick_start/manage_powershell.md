@@ -11,21 +11,12 @@ Have questions? Ask them on the [Windows Containers forum](https://social.msdn.m
 
 ## Prerequisites
 In order to complete this walkthrough the following items need to be in place.
-- Windows Server 2016 Container host.
-- Container host must be connected to a network and able to access the internet.
-- The Windows Server 2016 Container host should be ready at the command prompt.
+- Windows Server 2016 TP3 or later configured with the Windows Server Container Feature.
+- This system must be connected to a network and able to access the internet.
 
-If you need to configure a container host, see the following guides: [Container Setup in Azure](./azure_setup.md) or [Container Setup in Hyper-V](./container_setup.md). 
+If you need to configure the container feature, see the following guides: [Container Setup in Azure](./azure_setup.md) or [Container Setup in Hyper-V](./container_setup.md). 
 
-<!--
-As you start this guide, you should be looking at a screen that looks like this:
-![](./media/ContainerHost_ready.png)
-
-If you don't have this set up, see the [Container setup in a local VM](./container_setup.md) or [container setup in Azure](./azure_setup.md) articles.
-
-The window in the forground (highlighted in red) is a cmd prompt from which you will start working with containers.
-
--->
+As you begin this walkthrough you should be at a Windows command prompt.
 
 ## Basic Container Management with PowerShell
 
