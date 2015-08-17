@@ -252,12 +252,6 @@ Start the nginx web server.
 ``` PowerShell
 start nginx
 ```
-
-And exit this PS-Session.  The web server will keep running.
-``` PowerShell
-exit
-```
-
 <!--### Step 5 - Configure Container Networking
 Depending on the configuration of the container host and network, a container will either receive an IP address from a DHCP server or the container host itself using network address translation (NAT). This guided walk through is configured to use NAT. In this configuration a port from the container is mapped to a port on the container host. The application hosted in the container is then accessed through the IP address / name of the container host. For instance if port 80 from the container was mapped to port 55534 on the container host, a typical http request to the application would look like this http://contianerhost:55534. This allows a container host to run many containers and allow for the applications in these containers to respond to requests using the same port. 
 
@@ -282,7 +276,7 @@ With the web server container created and all networking configured, you can now
 At this point, feel free to update the website. Copy in your own sample website, or run the following command to replace the nginx welcome page with a ‘Hello World’ web page.
 
 ```powershell
-powershell wget -uri 'https://raw.githubusercontent.com/neilpeterson/index/master/index.html' -OutFile "C:\nginx\nginx-1.9.3\html\index.html"
+powershell wget -uri 'https://raw.githubusercontent.com/Microsoft/Virtualization-Documentation/master/doc-site/virtualization/windowscontainers/quick_start/SampleFiles/index.html' -OutFile "C:\nginx\nginx-1.9.3\html\index.html"
 ```
 
 After the website has been updated, navigate back to `http://containerhost-ipaddress`.
