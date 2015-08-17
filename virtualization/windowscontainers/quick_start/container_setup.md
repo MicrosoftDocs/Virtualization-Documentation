@@ -21,19 +21,19 @@ To run Windows Server Containers in Azure instead, follow [these instructions](.
 ## Setup a New Container Host on a New Virtual Machine
 Windows Server Containers consist of several components such as the Windows Server Container Host and Container OS Base Image. We have put together a script that will download and configure these items for you. Follow these steps to deploy a new Hyper-V Virtual Machine and configure this system as a Windows Server Container Host.
 
-Start a PowerShell session as Administrator. This can be done by right clicking on the PowerShell icon and selecting ‘Run as Administrator’ or by running the following command from any PowerShell session.
+Start a PowerShell session as Administrator. This can be done by right clicking on the PowerShell icon and selecting ‘Run as Administrator’, or by running the following command from any PowerShell session.
 
-```
+``` powershell
 start-process powershell -Verb runAs
 ```
 
-Use the following command to download the configuration script.
+Use the following command to download the configuration script. The script can also be manually downloaded from this location - [Configuration Script](http://aka.ms/newcontainerhost).
  
 ``` PowerShell
 wget -uri http://aka.ms/newcontainerhost -OutFile New-ContainerHost.ps1
 ```
    
-Run the following command to create and configure the container host where `<contianerhost>` will be the virtual machine name and `<password>` will be the password assigned to the Administrator account.
+Run the following command to create and configure the container host where `<containerhost>` will be the virtual machine name and `<password>` will be the password assigned to the Administrator account.
 
 ``` powershell
 .\New-ContainerHost.ps1 –VmName <containerhost> -Password <password>
@@ -50,14 +50,14 @@ license terms. Please confirm you have accepted and agree to the license terms.
 [N] No  [Y] Yes  [?] Help (default is "N"): Y
 ```
 
-The script will then begin to download and configure the Windows Server Container components. This process may take quite some time due to the large download. When finished your Virtual Machine will be configured and ready for you to create and manage Windows Server Containers with both PowerShell and Docker.  
+The script will then begin to download and configure the Windows Server Container components. This process may take quite some time due to the large download. When finished your Virtual Machine will be configured and ready for you to create and manage Windows Server Containers and Windows Server Container Images with both PowerShell and Docker.  
 
-You may receive the following message during the Window Server Container deployment process. 
+You may receive the following message during the Window Server Container host deployment process. 
 ```
 This VM is not connected to the network. To connect it, run the following:
 Get-VM | Get-VMNetworkAdapter | Connect-VMNetworkAdapter -Switchname <switchname>
 ```  
-If you do, check the properties of the virtual machine and connect the virtual machine to a virtual switch. You can also run the following PowerShell command to complete this.
+If you do, check the properties of the virtual machine and connect the virtual machine to a virtual switch. You can also run the following PowerShell command to complete this where `<switchname>` is the name of the Hyper-V virtual switch that you would like to connect to the virtual machine.
 
 ``` powershell 
 Get-VM | Get-VMNetworkAdapter | Connect-VMNetworkAdapter -Switchname <switchname>
@@ -77,6 +77,5 @@ Now that you have a container host jump to the following guides to begin working
 [Quick Start: Windows Server Containers and Docker](./manage_docker.md) 
 
 -------------------
-[Known Issues for Current Release](../about/work_in_progress.md)
-
 [Back to Container Home](../containers_welcome.md)
+[Known Issues for Current Release](../about/work_in_progress.md)
