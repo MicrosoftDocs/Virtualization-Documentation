@@ -9,6 +9,11 @@ For more information - read here: http://blogs.msdn.com/b/virtual_pc_guy/archive
 
 # Change Log #
 
+8/17/15 -
+* Changes from Grant Emsley
+  * Optimize final VHD file
+  * Optionally clean the windows component store to save disk space
+
 8/16/15 -
 
 * Changes from Grant Emsley

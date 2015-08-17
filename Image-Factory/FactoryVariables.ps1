@@ -38,3 +38,8 @@ $81x86Image = "$($workingDir)\ISOs\en_windows_8_1_x86_dvd_2707392.wim"
 $81x64Image = "$($workingDir)\ISOs\en_windows_8_1_x64_dvd_2707217.wim"
 $10x86Image = "$($workingDir)\ISOs\en_windows_10_multiple_editions_x86_dvd_6848465.wim"
 $10x64Image = "$($workingDir)\ISOs\en_windows_10_multiple_editions_x64_dvd_6846432.wim"
+
+# Misc Settings
+
+# If enabled, will use dism.exe to clean the WinSXS folder and remove old updates. This can give significant disk savings, but takes longer (20-30 minutes per image). Updates will not be able to be uninstalled if this is enabled.
+$CleanWinSXS = $false
