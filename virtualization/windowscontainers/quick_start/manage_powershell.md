@@ -11,9 +11,9 @@ Have questions? Ask them on the [Windows Containers forum](https://social.msdn.m
 
 ## Prerequisites
 In order to complete this walkthrough the following items need to be in place.
-- Windows Server 2016 Container Host.
+- Windows Server 2016 Container host.
 - Container host must be connected to a network and able to access the internet.
-- The Windows Server 2016 Container Host should be ready at the command prompt.
+- The Windows Server 2016 Container host should be ready at the command prompt.
 
 If you need to configure a container host, see the following guides: [Container Setup in Azure](./azure_setup.md) or [Container Setup in Hyper-V](./container_setup.md). 
 
@@ -239,13 +239,6 @@ Download the nginx software.
 wget -uri 'http://nginx.org/download/nginx-1.9.3.zip' -OutFile "c:\nginx-1.9.3.zip"
 ```
 
-<!-- > **Note:**  If you hit an error that looks like this
-  ```
-  The remote name could not be resolved: 'http://nginx.org/download/nginx-1.9.3.zip' 
-  ```
-  You probably do not have an external switch attached to your virtual machine.  See [these instructions](https://msdn.microsoft.com/virtualization/hyperv_on_windows/quick_start/walkthrough_virtual_switch) to set one up.-->
-  
-  
 Extract the nginx software.
 ``` PowerShell
 Expand-Archive -Path C:\nginx-1.9.3.zip -DestinationPath c:\ -Force
@@ -322,7 +315,9 @@ Add-NetNatStaticMapping -NatName "ContainerNat" -Protocol TCP -ExternalIPAddress
 When the port mapping has been created you will also need to configure an inbound firewall rule for the configured port. To do so for port 80 run the following command.
 
 ``` PowerShell
-New-NetFirewallRule -Name "httpTCP80" -DisplayName "HTTP on TCP/80" -Protocol tcp -LocalPort 80 -Action Allow -Enabled True
+if (!(Get-NetFirewallRule | where {$_.Name -eq "httpTCP80"})) {
+    New-NetFirewallRule -Name "httpTCP80" -DisplayName "HTTP on TCP/80" -Protocol tcp -LocalPort 80 -Action Allow -Enabled True
+}
 ```
 
 Finally if you are working from Azure an external endpoint will need to be created that will expose this port to the internet. For more information on Azure VM Endpoints see this article: [Set up Azure VM Endpoints]( https://azure.microsoft.com/en-us/documentation/articles/virtual-machines-set-up-endpoints/).
