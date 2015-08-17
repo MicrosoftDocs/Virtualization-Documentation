@@ -316,7 +316,7 @@ When the port mapping has been created you will also need to configure an inboun
 
 ``` PowerShell
 if (!(Get-NetFirewallRule | where {$_.Name -eq "httpTCP80"})) {
-    New-NetFirewallRule -Name "httpTCP80" -DisplayName "HTTP on TCP/80" -Protocol tcp -LocalPort 80 -Action Allow -Enabled True
+    New-NetFirewallRule -Name "TCP80" -DisplayName "HTTP on TCP/80" -Protocol tcp -LocalPort 80 -Action Allow -Enabled True
 }
 ```
 

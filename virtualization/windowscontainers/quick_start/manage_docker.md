@@ -182,11 +182,14 @@ Expand-Archive -Path C:\nginx-1.9.3.zip -DestinationPath C:\build\nginx\source -
 In the previous example, you manually created, updated and captured a container image. This example will demonstrate an automated method for creating container images using a Dockerfile. Dockerfiles contain instructions that the Docker engine uses to build and modify a container, and then commit the container to a container image. 
 For more information on dockerfiles, see [Dockerfile reference](https://docs.docker.com/reference/builder/).
 
-First, you will create an empty dockerfile. Then you will open the Dockerfile with notepad and place the container build instructions into the file. 
-To do this run the following two commands in a command line:
+Use the following command to create an empty dockerfile.
 
 ``` PowerShell
 new-item -Type File c:\build\nginx\dockerfile
+```
+Open the dockerfile with notepad.
+
+```
 notepad.exe c:\build\nginx\dockerfile
 ```
 
@@ -226,7 +229,7 @@ Because you will be hosting a website inside of a container a few networking rel
 
 ``` powershell
 if (!(Get-NetFirewallRule | where {$_.Name -eq "httpTCP80"})) {
-    New-NetFirewallRule -Name "httpTCP80" -DisplayName "HTTP on TCP/80" -Protocol tcp -LocalPort 80 -Action Allow -Enabled True
+    New-NetFirewallRule -Name "TCP80" -DisplayName "HTTP on TCP/80" -Protocol tcp -LocalPort 80 -Action Allow -Enabled True
 }
 ```
 
