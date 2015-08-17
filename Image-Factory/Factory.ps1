@@ -368,10 +368,10 @@ $updateCheckScriptBlock = {
     }
      
     # Check to see if files need to be unblocked - if they do, do it and reboot
-    if ((Get-ChildItem $env:SystemDrive\Bits\PSWindowsUpdate | `
+    if ((Get-ChildItem $env:SystemDrive\Bits | `
         Get-Item -Stream "Zone.Identifier" -ErrorAction SilentlyContinue).Count -gt 0)
     {
-        Get-ChildItem $env:SystemDrive\Bits\PSWindowsUpdate | Unblock-File;
+        Get-ChildItem $env:SystemDrive\Bits | Unblock-File;
         Invoke-Expression 'shutdown -r -t 0'
     }
 
