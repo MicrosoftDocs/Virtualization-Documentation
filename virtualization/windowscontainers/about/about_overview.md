@@ -57,5 +57,4 @@ Containers help admins create an infrastructure that is simpler to update and ma
 [Get started with Windows Server Containers Locally](../quick_start/container_setup.md)
 
 -------------------
-
 [Back to Container Home](../containers_welcome.md)

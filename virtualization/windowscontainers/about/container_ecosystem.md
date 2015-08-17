@@ -32,6 +32,5 @@ Docker is two things, the open source group of projects and Docker the company. 
 For more information, see the [New Windows Server containers and Azure support for Docker](http://azure.microsoft.com/blog/2014/10/15/new-windows-server-containers-and-azure-support-for-docker/?WT.mc_id=Blog_ServerCloud_Announce_TTD) blog post.
 
 -------------------
-
 [Back to Container Home](../containers_welcome.md)
 
