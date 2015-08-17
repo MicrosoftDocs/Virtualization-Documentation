@@ -366,7 +366,7 @@ $updateCheckScriptBlock = {
     {
         Remove-Item -Force "$ENV:SystemDrive\Unattend.xml"
     }
-     
+
     # Check to see if files need to be unblocked - if they do, do it and reboot
     if ((Get-ChildItem $env:SystemDrive\Bits | `
         Get-Item -Stream "Zone.Identifier" -ErrorAction SilentlyContinue).Count -gt 0)
@@ -377,6 +377,11 @@ $updateCheckScriptBlock = {
 
     # To get here - the files are unblocked
     Import-Module $env:SystemDrive\Bits\PSWindowsUpdate\PSWindowsUpdate;
+
+    # Run pre-update script if it exists
+    if (Test-Path "$env:SystemDrive\Bits\PreUpdateScript.ps1") {
+        Invoke-Command "$env:SystemDrive\Bits\PreUpdateScript.ps1"
+    }
 
     # Check if any updates are needed - leave a marker if there are
     if ((Get-WUList).Count -gt 0)
@@ -389,6 +394,11 @@ $updateCheckScriptBlock = {
  
     # Apply all the updates
     Get-WUInstall -AcceptAll -IgnoreReboot -IgnoreUserInput -NotCategory "Language packs";
+
+    # Run post-update script if it exists
+    if (Test-Path "$env:SystemDrive\Bits\PostUpdateScript.ps1") {
+        Invoke-Command "$env:SystemDrive\Bits\PostUpdateScript.ps1"
+    }
 
     # Reboot if needed - otherwise shutdown because we are done
     if (Get-WURebootStatus -Silent) 
