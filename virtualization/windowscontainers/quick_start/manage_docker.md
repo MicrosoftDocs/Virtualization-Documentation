@@ -11,7 +11,7 @@ Have questions? Ask them on the [Windows Containers forum](https://social.msdn.m
 
 ## Prerequisites
 In order to complete this walkthrough the following items need to be in place.
-- Windows Server 2016 Container host.
+- Windows Server 2016 container host -- if you just finished the setup guide, this is the virtual machine in Azure or that was just created locally.
 - Container host must be connected to a network and able to access the internet.
 - The Windows Server 2016 Container host should be ready at the command prompt.
 
@@ -239,20 +239,21 @@ Next if you are working from Azure an external endpoint will need to be created 
 
 To deploy a Windows Server Container based off of the 'nginx_windows' container run the following command. This will create a new container named 'nginxcontainer' and start an console session on the container. The –p 80:80 portion of this command creates a static port map between port 80 on the host to port 80 on the container. 
 
-``` PowerShell
+``` powershell
 docker run -it --name nginxcontainer -p 80:80 nginx_windows cmd
 ```
 Once working inside the container, the nginx web server can be started and web content staged. To start the nginx web server, change to the nginx installation directory.
 
-``` PowerShell
+``` powershell
 cd c:\nginx\nginx-1.9.3
 ```
 
 Start the nginx web server.
-``` PowerShell
+``` powershell
 start nginx
 ```
 ### Step 5 – Access the Container Hosted Website
+
 With the web server container created and all networking configured, you can now checkout the application hosted in the container. To do so, get the ip address of the container host using `ipconfig`, open up a browser on different machine and enter `http://containerhost-ipaddress`. If everything has been correctly configured, you will see the nginx welcome page.
 
 ![](media/nginx.png)
