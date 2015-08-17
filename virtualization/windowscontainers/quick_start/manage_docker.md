@@ -182,11 +182,14 @@ Expand-Archive -Path C:\nginx-1.9.3.zip -DestinationPath C:\build\nginx\source -
 In the previous example, you manually created, updated and captured a container image. This example will demonstrate an automated method for creating container images using a Dockerfile. Dockerfiles contain instructions that the Docker engine uses to build and modify a container, and then commit the container to a container image. 
 For more information on dockerfiles, see [Dockerfile reference](https://docs.docker.com/reference/builder/).
 
-First, you will create an empty dockerfile. Then you will open the Dockerfile with notepad and place the container build instructions into the file. 
-To do this run the following two commands in a command line:
+Use the following command to create an empty dockerfile.
 
 ``` PowerShell
 new-item -Type File c:\build\nginx\dockerfile
+```
+Open the dockerfile with notepad.
+
+```
 notepad.exe c:\build\nginx\dockerfile
 ```
 
@@ -226,7 +229,7 @@ Because you will be hosting a website inside of a container a few networking rel
 
 ``` powershell
 if (!(Get-NetFirewallRule | where {$_.Name -eq "httpTCP80"})) {
-    New-NetFirewallRule -Name "httpTCP80" -DisplayName "HTTP on TCP/80" -Protocol tcp -LocalPort 80 -Action Allow -Enabled True
+    New-NetFirewallRule -Name "TCP80" -DisplayName "HTTP on TCP/80" -Protocol tcp -LocalPort 80 -Action Allow -Enabled True
 }
 ```
 
@@ -250,12 +253,8 @@ Start the nginx web server.
 start nginx
 ```
 
-And exit this PS-Session.  The web server will keep running.
-``` PowerShell
-exit
-```
-
 ### Step 5 - Configure Container Networking
+
 Depending on the configuration of the container host and network, a container will either receive an IP address from a DHCP server or the container host itself using network address translation (NAT). This guided walk through is configured to use NAT. In this configuration a port from the container is mapped to a port on the container host. The application hosted in the container is then accessed through the IP address / name of the container host. For instance if port 80 from the container was mapped to port 55534 on the container host, a typical http request to the application would look like this http://contianerhost:55534. This allows a container host to run many containers and allow for the applications in these containers to respond to requests using the same port. 
 
 For this lab we need to create this port mapping. In order to do so we will need to know the IP address of the container and the internal (application) and external (container host) port that will be configured. For this example let’s keep it simple and map port 80 from the container to port 80 of the host. The container IP address is the InternalIPAddress.  It should be `172.16.0.2`.
@@ -279,7 +278,7 @@ With the web server container created and all networking configured, you can now
 At this point, feel free to update the website. Copy in your own sample website, or run the following command to replace the nginx welcome page with a ‘Hello World’ web page.
 
 ```powershell
-powershell wget -uri 'https://raw.githubusercontent.com/neilpeterson/index/master/index.html' -OutFile "C:\nginx\nginx-1.9.3\html\index.html"
+powershell wget -uri 'https://raw.githubusercontent.com/Microsoft/Virtualization-Documentation/master/doc-site/virtualization/windowscontainers/quick_start/SampleFiles/index.html' -OutFile "C:\nginx\nginx-1.9.3\html\index.html"
 ```
 
 After the website has been updated, navigate back to `http://containerhost-ipaddress`.

@@ -317,7 +317,7 @@ When the port mapping has been created you will also need to configure an inboun
 
 ``` PowerShell
 if (!(Get-NetFirewallRule | where {$_.Name -eq "httpTCP80"})) {
-    New-NetFirewallRule -Name "httpTCP80" -DisplayName "HTTP on TCP/80" -Protocol tcp -LocalPort 80 -Action Allow -Enabled True
+    New-NetFirewallRule -Name "TCP80" -DisplayName "HTTP on TCP/80" -Protocol tcp -LocalPort 80 -Action Allow -Enabled True
 }
 ```
 
@@ -337,7 +337,7 @@ Enter-PSSession -ContainerId $webservercontainer.ContainerId -RunAsAdministrator
 Then run the following command to download and replace the index.html file.
 
 ``` powershell
-wget -uri 'https://raw.githubusercontent.com/neilpeterson/index/master/index.html' -OutFile "C:\nginx-1.9.3\html\index.html"
+wget -uri 'https://raw.githubusercontent.com/Microsoft/Virtualization-Documentation/master/doc-site/virtualization/windowscontainers/quick_start/SampleFiles/index.html' -OutFile "C:\nginx-1.9.3\html\index.html"
 ```
    
 After the website has been updated, navigate back to `http://containerhost-ipaddress`.
