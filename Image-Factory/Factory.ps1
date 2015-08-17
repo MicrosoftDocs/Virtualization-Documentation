@@ -640,6 +640,7 @@ function RunTheFactory
         # Remove Page file
         logger $FriendlyName "Removing the page file";
         MountVHDandRunBlock $sysprepVHD {
+
             attrib -s -h "$($driveLetter):\pagefile.sys";
             cleanupFile "$($driveLetter):\pagefile.sys";
         }
@@ -648,6 +649,14 @@ function RunTheFactory
         cleanupFile $finalVHD;
         logger $FriendlyName "Convert differencing disk into pristine base image";
         Convert-VHD -Path $sysprepVHD -DestinationPath $finalVHD -VHDType Dynamic;
+        if($CleanWinSXS) {
+            logger $FriendlyName "Cleaning windows component store. Be patient, this may take awhile."
+            MountVHDandRunBlock $finalVHD {
+                # Clean up the WinSXS store, and remove any superceded components. Updates will no longer be able to be uninstalled,
+                # but saves a considerable amount of disk space.
+                dism.exe /image:$($driveLetter):\ /Cleanup-Image /StartComponentCleanup /ResetBase
+            }
+        }
         logger $FriendlyName "Optimizing VHD file"
         # Mounting the VHD read only allows it to be compacted better.
         # Running Optimize-VHD twice seems to be necessary - don't know why, but it works.
@@ -655,7 +664,6 @@ function RunTheFactory
             Optimize-VHD $finalVHD -Mode Full
             Optimize-VHD $finalVHD -Mode Full
         }
-
         logger $FriendlyName "Delete differencing disk";
         CSVLogger $finalVHD -sysprepped;
         cleanupFile $sysprepVHD;
