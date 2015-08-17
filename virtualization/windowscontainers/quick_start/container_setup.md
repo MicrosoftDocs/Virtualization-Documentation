@@ -77,5 +77,5 @@ Now that you have a container host jump to the following guides to begin working
 [Quick Start: Windows Server Containers and Docker](./manage_docker.md) 
 
 -------------------
-[Back to Container Home](../containers_welcome.md)
+[Back to Container Home](../containers_welcome.md)  
 [Known Issues for Current Release](../about/work_in_progress.md)
