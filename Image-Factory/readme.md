@@ -9,6 +9,13 @@ For more information - read here: http://blogs.msdn.com/b/virtual_pc_guy/archive
 
 # Change Log #
 
+8/16/15 -
+
+* Changes from Grant Emsley
+** Support for configuring Factory VM RAM and VLAN
+** Better error handling on missing folders / dependancies
+** Better handling of missing ISO / WIM files
+
 8/1/15 -
 
 * Tested with Windows 10 (yay!)
