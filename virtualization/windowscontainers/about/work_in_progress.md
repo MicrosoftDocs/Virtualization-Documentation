@@ -171,7 +171,7 @@ Commands known to fail:
 
 | **Docker command** | **Where it runs** | **Error** | **Notes** |
 |:-----|:-----|:-----|:-----|
-| **docker commit** | image | Docker stops running container and doesn’t shows correct error message | We're working on it :) |
+| **docker commit** | image | Docker stops running container and doesn’t show correct error message | Committing a stopped container works. For running containers: We're working on it :) |
 | **docker diff** | daemon | Error: The windows graphdriver does not support Changes() | |
 | **docker kill** | container | Error: Invalid signal: KILL  Error: failed to kill containers:[] | |
 | **docker load** | image | Fails silently | No error but the image isn't loading either |
