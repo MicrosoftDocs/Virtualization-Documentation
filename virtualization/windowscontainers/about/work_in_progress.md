@@ -217,5 +217,34 @@ If you encounter error messages like this when creating a new container image us
 hcsshim::ExportLayer - Win32 API call returned error r1=2147942523 err=The filename, directory name, or volume label syntax is incorrect. layerId=606a2c430fccd1091b9ad2f930bae009956856cf4e6c66062b188aac48aa2e34 flavour=1 folder=C:\ProgramData\docker\windowsfilter\606a2c430fccd1091b9ad2f930bae009956856cf4e6c66062b188aac48aa2e34-1868857733
 ```
 
+## Applications
+The following applications have been tried to run in a Windows Server Container.
+These results are no guarantee that a specific application is working or not working properly. The sole purpose is to share our experience when testing applications in a Container.
+
+| **Name** | **Version** | **Does it work?** | **Comment** |
+| Active Python | 3.4.1 | Yes | |
+| Apache CouchDB | 1.6.1 | No | |
+| Apache HTTPD | 2.4 | Yes | |
+| ASP.NET | 3.5 | No | |
+| ASP.NET | 4.5 | No | |
+| ASP.NET | 5 beta 6 | Yes | Both, x64 and x86 |
+| Erlang/OTP | 18.0 | No | |
+| Go Progamming Language | 1.4.2 | Yes | |
+| Internet Information Service | 10.0 | Yes | |
+| Java | 1.8.0_51 | Yes | Use the server version. The client version does not install properly |
+| MongoDB | 3.0.4 | Yes | |
+| MySQL | 5.6.26 | Yes | |
+| NGinx | 1.9.3 | Yes | |
+| Node.js | 0.12.6 | Partially | Running node itself works. NPM fails to download packages |
+| PHP | 5.6.11 | Yes | |
+| PostgreSQL | 9.4.4 | Yes | |
+| Python | 3.4.3 | Yes | |
+| R | 3.2.1 | No | |
+| Redis | 2.8.2101 | Yes | |
+| Ruby | 2.2.2 | Yes | Both, x64 and x86 | 
+| Ruby on Rails | 4.2.3 | |
+| SQLite | 3.8.11.1 | Yes | |
+| SQL Server Express | 2014 LocalDB | Yes | |
+
 --------------------------
 [Back to Container Home](../containers_welcome.md)
