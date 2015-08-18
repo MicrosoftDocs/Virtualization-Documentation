@@ -222,6 +222,7 @@ The following applications have been tried to run in a Windows Server Container.
 These results are no guarantee that a specific application is working or not working properly. The sole purpose is to share our experience when testing applications in a Container.
 
 | **Name** | **Version** | **Does it work?** | **Comment** |
+|:-----|:-----|:-----|:-----|
 | Active Python | 3.4.1 | Yes | |
 | Apache CouchDB | 1.6.1 | No | |
 | Apache HTTPD | 2.4 | Yes | |
