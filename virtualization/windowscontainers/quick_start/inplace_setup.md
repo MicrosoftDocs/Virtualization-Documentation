@@ -11,8 +11,8 @@ To run Windows Server Containers in a Hyper-V VM instead, follow [these instruct
 
   **PLEASE READ PRIOR TO INSTALLING THE CONTAINER OS IMAGE:**  The license terms of the Microsoft Windows Server Pre-Release software (“License Terms”) apply to your use of the Microsoft Windows Container OS Image supplement (the “supplemental software).  By downloading and using the supplemental software, you agree to the License Terms, and you may not use it if you have not accepted the License Terms. Both the Windows Server Pre-Release software and the supplemental software are licensed by Microsoft Corporation.  
 
-* System running Windows Server Technical Preview 3 or later.
-* 20GB available storage for OS Base Image and setup scripts.
+* System running Windows Server Technical Preview 3 Server Core.
+* 10GB available storage for OS Base Image and setup scripts.
 * Administrator permissions on the machine.
 
 ## Setup an existing Virtual Machine or Bare Metal host for Containers
