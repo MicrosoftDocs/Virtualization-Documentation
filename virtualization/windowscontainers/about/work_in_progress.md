@@ -205,7 +205,6 @@ The following steps require either managing the Container using Docker or, when 
   ```
   Windows IP Configuration
 
-
   Ethernet adapter vEthernet (Virtual Switch-f758a5a9519e1956cc3bef06eb03e5728d3fb61cf6d310246185587be490210a-0):
 
   Connection-specific DNS Suffix  . :
