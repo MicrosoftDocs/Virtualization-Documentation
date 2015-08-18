@@ -55,7 +55,7 @@ You may receive the following message during the Window Server Container host de
 This VM is not connected to the network. To connect it, run the following:
 Get-VM | Get-VMNetworkAdapter | Connect-VMNetworkAdapter -Switchname <switchname>
 ```  
-If you do, check the properties of the virtual machine and connect the virtual machine to a virtual switch. You can also run the following PowerShell command to complete this where `<switchname>` is the name of the Hyper-V virtual switch that you would like to connect to the virtual machine.
+If you do, check the properties of the virtual machine and connect the virtual machine to a virtual switch. You can also run the following PowerShell command where `<switchname>` is the name of the Hyper-V virtual switch that you would like to connect to the virtual machine.
 
 ``` powershell 
 Get-VM | Get-VMNetworkAdapter | Connect-VMNetworkAdapter -Switchname <switchname>
