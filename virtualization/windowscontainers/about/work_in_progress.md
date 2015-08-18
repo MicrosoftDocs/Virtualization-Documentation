@@ -192,11 +192,30 @@ The following steps are needed to remotely connect to a Windows Server Container
 
 ** In the Container you want to connect to **
 
-1. Obtain the containers IP address
+The following steps require either managing the Container using Docker or, when using PowerShell, specifying the `-RunAsAdministrator` switch when connecting to the Container.
+
+1. Obtain the Container's IP address
 
   ```
   ipconfig
   ```
+  
+  Returns something similar to this
+  
+  ```
+  Windows IP Configuration
+
+
+  Ethernet adapter vEthernet (Virtual Switch-f758a5a9519e1956cc3bef06eb03e5728d3fb61cf6d310246185587be490210a-0):
+
+  Connection-specific DNS Suffix  . :
+  Link-local IPv6 Address . . . . . : fe80::91cd:fb4c:4ea5:51df%17
+  IPv4 Address. . . . . . . . . . . : 172.16.0.2
+  Subnet Mask . . . . . . . . . . . : 255.240.0.0
+  Default Gateway . . . . . . . . . : 172.16.0.1
+  ```
+  
+  Please note the IPv4 Address which is typically in the format 172.16.x.x
 
 2. Set the password for the builtin administrator user for the Container
 
@@ -225,18 +244,24 @@ The following steps require a PowerShell launched as Administrator on the host.
 2. Allow an additional port for RDP connection to the Container
 
   ```
-  New-NetFirewallRule -Name "ContainerRDP" -DisplayName "RDP Ports for connecting to containers" -Protocol TCP -LocalPort @(3390) -Action Allow
+  New-NetFirewallRule -Name "ContainerRDP" -DisplayName "RDP Port for connecting to Container" -Protocol TCP -LocalPort @(3390) -Action Allow
   ```
+  
+  This step opens up port 3390 on the Container host. It will be used to open a RDP session to the Container. If you want to connect to multiple Containers, you can repeat this step while providing additional port numbers. 
 
 3. Add a port mapping for the existing NAT
+
+  In this step you need the IP address from step 1 within the Container
 
   ```
   Add-NetNatStaticMapping -NatName ContainerNAT -Protocol TCP -ExternalPort 3390 -ExternalIPAddress 0.0.0.0 -InternalPort 3389 -InternalIPAddress [your container IP]
   ```
+  
+  Here you ensure that communication to the Container host which is coming in on port 3390 is redirected to port 3389 on the Container running at the IP address you specify.
 
 ** Connect to the container via RDP **
 
-Connect to the Container using RDP by running: 
+Finally you can connect to the Container using RDP by running: 
 ```
 mstsc /v:[ContainerHostIP]:3390 /prompt
 ```
