@@ -261,9 +261,14 @@ The following steps require a PowerShell launched as Administrator on the host.
 ** Connect to the container via RDP **
 
 Finally you can connect to the Container using RDP by running: 
+
 ```
 mstsc /v:[ContainerHostIP]:3390 /prompt
 ```
+
+Please specify `administrator` as the user name and the password that you chose as the password.
+
+The Remote Desktop Connection will ask you whether you want connect to the system despite certificate errors. If you select "Yes", the RDP connection will be opened.  
 
 **Note:** Exiting the container RDP session without logoff may prevent the container from shutting down. Please make sure to exit the RDP session by typing "logoff" (instead of "exit" or just closing the RDP window) before shutting the container down.
 
