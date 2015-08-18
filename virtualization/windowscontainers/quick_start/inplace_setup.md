@@ -18,10 +18,16 @@ To run Windows Server Containers in a Hyper-V VM instead, follow [these instruct
 ## Setup an existing Virtual Machine or Bare Metal host for Containers
 Windows Server Containers require the Container OS Base Image. We have put together a script that will download and install this for you. Follow these steps to configure your system as a Windows Server Container Host.
 
-Start a PowerShell session as Administrator. This can be done by running the following command from any PowerShell or cmd session.
+Start a PowerShell session. This can be done by running the following command from the command line.
 
 ``` powershell
-start-process powershell -Verb runAs
+powershell.exe
+```
+
+Make sure the title of the windows is "Administrator: Windows PowerShell". If it does not say administrator, run this command to run with admin priveledges:
+
+``` powershell
+start-process powershell -runas
 ```
 
 Use the following command to download the setup script. The script can also be manually downloaded from this location - [Configuration Script](http://aka.ms/setupcontainers).
