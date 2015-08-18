@@ -7,6 +7,7 @@
 ****,windowscontainers/about/faq.md,
 ****,windowscontainers/about/work_in_progress.md,
 ***,oa-toc-container: quick_start,
+****,windowscontainers/quick_start/quickstart.md,
 ****,windowscontainers/quick_start/azure_setup.md,
 ****,windowscontainers/quick_start/container_setup.md,
 ****,windowscontainers/quick_start/manage_docker.md,
