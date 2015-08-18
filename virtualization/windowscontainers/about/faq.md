@@ -4,7 +4,7 @@ title: Frequently asked questions
 # Frequently Asked Questions
 Last updated: May 1, 2015
 
-## Q: What is a Windows Server Container?
+## What is a Windows Server Container?
 
 Windows Server Containers are a lightweight operating system virtualization method used to separate applications or services from other services running on the same container host. To enable this, each container has its own view of the operating system, processes, file system, registry, and IP addresses.  
 
@@ -41,6 +41,13 @@ Both Window Server Containers and Hyper-V Containers require Windows Server 2016
 ## Is Microsoft participating in the Open Container Initiative (OCI)?
 To guarantee the packaging format remains universal, Docker recently organized the Open Container Initiative (OCI), aiming to ensure container packaging remains an open and foundation-led format with Microsoft as one of the founding members.
 
+## Is Microsoft really partnering with Docker?
+Yes.  
+Our partnership with Docker enables developers to create, manage and deploy both Windows Server and Linux containers using the same Docker tool set. Developers targeting Windows Server will no longer have to make a choice between using the vast range of Windows Server technologies and building containerized applications.  
+
+Docker is two things, the open source group of projects and Docker the company. We consider this partnership to include both. Docker is successful, in part, because of the vibrant ecosystem that has built up around the Docker container technology. Microsoft is contributing to the Docker Project, enabling support for Windows Server Containers and Hyper-V Containers.  
+
+For more information, see the [New Windows Server containers and Azure support for Docker](http://azure.microsoft.com/blog/2014/10/15/new-windows-server-containers-and-azure-support-for-docker/?WT.mc_id=Blog_ServerCloud_Announce_TTD) blog post.
 
 -------------------
 [Back to Container Home](../containers_welcome.md)
