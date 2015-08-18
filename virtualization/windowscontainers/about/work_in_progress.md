@@ -48,7 +48,7 @@ If multiple endpoints exposed by the container are needed, use NAT port mapping.
 
 ## Application compatibility
 
-### Can't install IIS in a container using DISM 
+### Can't install ASP.NET 4.5 with IIS in a container using DISM 
 Installing IIS-ASPNET45 in a container doesn't work inside a Windows Server container.  The installation progress sticks around 95.5%.
 
 ``` PowerShell
@@ -57,19 +57,54 @@ Enable-WindowsOptionalFeature -Online -FeatureName IIS-ASPNET45
 
 This fails because ASP.NET 4.5 doesn't run in a container.
 
-**Work Around:**   
-ASP 5.0 does work.  Instead, install the Web-Server role.
+** Work Around: **  
+Instead, install the Web-Server role to use IIS. ASP 5.0 does work. 
 
 ``` PowerShell
 Enable-WindowsOptionalFeature -Online -FeatureName Web-Server
 ```
 
-### Remote access of containers
-Windows Server Containers can be managed/interacted with through a RDP session. Exiting the container RDP session without logoff may prevent the container from shutting down.
+### Applications
+
 
 **Work Around:**   
-Exit the RDP session by typing "logoff" (instead of "exit" or just closing the RDP window) before shutting the container down.
 
+The following applications have been tried to run in a Windows Server Container.
+These results are no guarantee that a specific application is working or not working properly. The sole purpose is to share our experience when testing applications in a Container.
+
+| **Name** | **Version** | **Does it work?** | **Comment** |
+|:-----|:-----|:-----|:-----|
+| .NET | 4.6 | Yes | Included in base image | 
+| .NET CLR | 5 beta 6 | Yes | Both, x64 and x86 | 
+| Active Python | 3.4.1 | Yes | |
+| Apache CouchDB | 1.6.1 | No | |
+| Apache HTTPD | 2.4 | Yes | |
+| Apache Tomcat | 8.0.24 x64 | Yes | |
+| ASP.NET | 3.5 | No | |
+| ASP.NET | 4.5 | No | |
+| ASP.NET | 5 beta 6 | Yes | Both, x64 and x86 |
+| Erlang/OTP | 18.0 | No | |
+| FileZilla FTP Server | 0.9 | Yes | Has to be installed through an RDP session  into the container | 
+| Go Progamming Language | 1.4.2 | Yes | |
+| Internet Information Service | 10.0 | Yes | |
+| Java | 1.8.0_51 | Yes | Use the server version. The client version does not install properly |
+| Jetty | 9.3 | Partially | Running demo-base fails |
+| MineCraft Server | 1.8.5 | Yes | 
+| MongoDB | 3.0.4 | Yes | |
+| MySQL | 5.6.26 | Yes | |
+| NGinx | 1.9.3 | Yes | |
+| Node.js | 0.12.6 | Partially | Running node with js files works. NPM fails to download packages. Running node interactively does not work properly. |
+| PHP | 5.6.11 | Yes | Both with IIS via FastCGI and Apache|
+| PostgreSQL | 9.4.4 | Yes | |
+| Python | 3.4.3 | Yes | |
+| R | 3.2.1 | No | |
+| RabbitMQ | 3.5.x | Yes | Has to be installed through an RDP session  into the container |
+| Redis | 2.8.2101 | Yes | |
+| Ruby | 2.2.2 | Yes | Both, x64 and x86 | 
+| Ruby on Rails | 4.2.3 | |
+| SQLite | 3.8.11.1 | Yes | |
+| SQL Server Express | 2014 LocalDB | Yes | |
+| Sysinternals Tools | * | Yes | Only tried those not requiring a GUI. PsExec does not work by current design | 
 
 ### Windows Optional Features that do install
 
@@ -153,10 +188,101 @@ Exit the RDP session by typing "logoff" (instead of "exit" or just closing the R
 * Windows-Server-Backup
 * Migration
 
+### Remote desktop access of containers
+Windows Server Containers can be managed/interacted with through a RDP session.
+
+The following steps are needed to remotely connect to a Windows Server Container using RDP. It is assumed that the Container is connected to the network via a NAT switch. This is the default when setting up a Container host through the installation script or creating a new VM in Azure.
+
+** In the Container you want to connect to **
+
+The following steps require either managing the Container using Docker or, when using PowerShell, specifying the `-RunAsAdministrator` switch when connecting to the Container.
+
+1. Obtain the Container's IP address
+
+  ```
+  ipconfig
+  ```
+  
+  Returns something similar to this
+  
+  ```
+  Windows IP Configuration
+
+  Ethernet adapter vEthernet (Virtual Switch-f758a5a9519e1956cc3bef06eb03e5728d3fb61cf6d310246185587be490210a-0):
+
+  Connection-specific DNS Suffix  . :
+  Link-local IPv6 Address . . . . . : fe80::91cd:fb4c:4ea5:51df%17
+  IPv4 Address. . . . . . . . . . . : 172.16.0.2
+  Subnet Mask . . . . . . . . . . . : 255.240.0.0
+  Default Gateway . . . . . . . . . : 172.16.0.1
+  ```
+  
+  Please note the IPv4 Address which is typically in the format 172.16.x.x
+
+2. Set the password for the builtin administrator user for the Container
+
+  ```
+  net user administrator [yourpassword]
+  ```
+
+3. Enable the builtin administrator user for the Container
+
+  ```
+  net user administrator /active:yes
+  ```
+
+** On the Container host **
+
+Since Windows Server has the Windows Firewall with Advanced Security enabled by default we need to open some ports for communication in order for RDP to work. Additionally a port mapping is created so the Container is reachable through a port on the Container host.
+
+The following steps require a PowerShell launched as Administrator on the host.
+
+1. Allow the default RDP port through the Windows Advanced Firewall
+
+  ```
+  New-NetFirewallRule -Name "RDP" -DisplayName "Remote Desktop Protocol" -Protocol TCP -LocalPort @(3389) -Action Allow
+  ```
+
+2. Allow an additional port for RDP connection to the Container
+
+  ```
+  New-NetFirewallRule -Name "ContainerRDP" -DisplayName "RDP Port for connecting to Container" -Protocol TCP -LocalPort @(3390) -Action Allow
+  ```
+  
+  This step opens up port 3390 on the Container host. It will be used to open a RDP session to the Container. If you want to connect to multiple Containers, you can repeat this step while providing additional port numbers. 
+
+3. Add a port mapping for the existing NAT
+
+  In this step you need the IP address from step 1 within the Container
+
+  ```
+  Add-NetNatStaticMapping -NatName ContainerNAT -Protocol TCP -ExternalPort 3390 -ExternalIPAddress 0.0.0.0 -InternalPort 3389 -InternalIPAddress [your container IP]
+  ```
+  
+  Here you ensure that communication to the Container host which is coming in on port 3390 is redirected to port 3389 on the Container running at the IP address you specify.
+
+** Connect to the container via RDP **
+
+Finally you can connect to the Container using RDP by running: 
+
+```
+mstsc /v:[ContainerHostIP]:3390 /prompt
+```
+
+Please specify `administrator` as the user name and the password that you chose as the password.
+
+The Remote Desktop Connection will ask you whether you want connect to the system despite certificate errors. If you select "Yes", the RDP connection will be opened.  
+
+**Note:** Exiting the container RDP session without logoff may prevent the container from shutting down. Please make sure to exit the RDP session by typing "logoff" (instead of "exit" or just closing the RDP window) before shutting the container down.
+
+
 --------------------------
 
 
 ## Docker management
+
+### Docker clients unsecured by default
+In this pre-release, docker communication is public if you know where to look.
 
 ### Docker commands that don't work with Windows Server Containers
 
@@ -164,7 +290,7 @@ Commands known to fail:
 
 | **Docker command** | **Where it runs** | **Error** | **Notes** |
 |:-----|:-----|:-----|:-----|
-| **docker commit** | image | Docker stops running container and doesn’t shows correct error message | We're working on it :) |
+| **docker commit** | image | Docker stops running container and doesn’t show correct error message | Committing a stopped container works. For running containers: We're working on it :) |
 | **docker diff** | daemon | Error: The windows graphdriver does not support Changes() | |
 | **docker kill** | container | Error: Invalid signal: KILL  Error: failed to kill containers:[] | |
 | **docker load** | image | Fails silently | No error but the image isn't loading either |
