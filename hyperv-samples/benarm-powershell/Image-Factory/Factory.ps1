@@ -1,10 +1,54 @@
 # Load variables from a seperate file - this when you pull down the latest factory file you can keep your paths / product keys etc...
 . .\FactoryVariables.ps1
-
 $startTime = get-date
 
-### Load Convert-WindowsImage
-. "$($workingDir)\Convert-WindowsImage.ps1"
+
+# Helper function to make sure that needed folders are present
+function checkPath
+{
+    param
+    (
+        [string] $path
+    )
+    if (!(Test-Path $path)) 
+    {
+        $null = md $path;
+    }
+}
+
+# Test that necessary paths and files exist
+# Don't create the workingDir automatically - if it doesn't exist, the variables probably need the be configured first.
+if(-not (Test-Path -Path $workingDir -PathType Container)) {
+  Throw "Working directory $workingDir does not exist - edit FactoryVariables.ps1 to configure script"
+}
+
+# Create folders in workingDir if they don't exist
+checkPath "$($workingdir)\Share"
+checkPath "$($workingdir)\Bases"
+checkPath "$($workingdir)\ISOs"
+checkPath "$($workingdir)\Resources"
+checkPath "$($workingdir)\Resources\bits"
+
+### Load Convert-WindowsImage - making sure it exists and is unblocked
+if(Test-Path -Path "$($workingDir)\resources\Convert-WindowsImage.ps1") {
+    . "$($workingDir)\resources\Convert-WindowsImage.ps1"
+    if(!(Get-Command Convert-WindowsImage -ErrorAction SilentlyContinue)) {
+        Write-Host -ForegroundColor Green 'Convert-WindowsImage.ps1 could not be loaded. Unblock the script or check execution policy'
+        Throw 'Convert-WindowsImage was not loaded'
+    }
+} else {
+    Write-Host -ForegroundColor Green 'Please download Convert-WindowsImage.ps1 and place in $($workingDir)\Resources\'
+    Write-Host -ForegroundColor Green "`nhttps://gallery.technet.microsoft.com/scriptcenter/Convert-WindowsImageps1-0fe23a8f`n"
+    Throw 'Missing Convert-WindowsImage.ps1 script'
+}
+
+# Check that PSWindowsUpdate module exists
+if(!(Test-Path -Path "$($workingDir)\Resources\bits\PSWindowsUpdate\PSWindowsUpdate.psm1")) {
+    Write-Host -ForegroundColor Green 'Please download PSWindowsUpdate and extract to $($workingDir)\Resources\bits'
+    Write-Host -ForegroundColor Green "`nhttps://gallery.technet.microsoft.com/scriptcenter/2d191bcd-3308-4edd-9de2-88dff796b0bc`n"
+    Throw 'Missing PSWindowsUpdate module'
+}
+
 
 ### Sysprep unattend XML
 $unattendSource = [xml]@"
@@ -154,18 +198,7 @@ function cleanupFile
     }
 }
 
-# Helper function to make sure that needed folders are present
-function checkPath
-{
-    param
-    (
-        [string] $path
-    )
-    if (!(Test-Path $path)) 
-    {
-        md $path;
-    }
-}
+
 
 function GetUnattendChunk 
 {
@@ -213,12 +246,32 @@ function makeUnattendFile ([string]$key, [string]$logonCount, [string]$filePath,
      # Write it out to disk
      cleanupFile $filePath; $Unattend.Save($filePath)}
 
+<<<<<<< HEAD
 Function createRunAndWaitVM ([string]$vhd, [string]$gen) {
       # Function for whenever I have a VHD that is ready to run
       new-vm $factoryVMName -MemoryStartupBytes 2048mb -VHDPath $vhd -Generation $Gen `
                             -SwitchName $virtualSwitchName | Out-Null
       set-vm -Name $factoryVMName -ProcessorCount 2
       Start-VM $factoryVMName
+=======
+function createRunAndWaitVM 
+{
+    param
+    (
+        [string] $vhd, 
+        [string] $gen
+    );
+    
+    # Function for whenever I have a VHD that is ready to run
+    New-VM $factoryVMName -MemoryStartupBytes $VMMemory -VHDPath $vhd -Generation $Gen -SwitchName $virtualSwitchName -ErrorAction Stop| Out-Null
+
+    If($UseVLAN) {
+        Get-VMNetworkAdapter -VMName $factoryVMName | Set-VMNetworkAdapterVlan -Access -VlanId $VlanId
+    }
+
+    set-vm -Name $factoryVMName -ProcessorCount 2;
+    Start-VM $factoryVMName;
+>>>>>>> abba6a537b8f7c6e660ce2921de5af7aaf64e3bc
 
       # Give the VM a moment to start before we start checking for it to stop
       Sleep -Seconds 10
@@ -231,6 +284,7 @@ Function createRunAndWaitVM ([string]$vhd, [string]$gen) {
       # Clean up the VM
       Remove-VM $factoryVMName -Force}
 
+<<<<<<< HEAD
 Function MountVHDandRunBlock ([string]$vhd, [scriptblock]$block) { 
       # This function mounts a VHD, runs a script block and unmounts the VHD.
       # Drive letter of the mounted VHD is stored in $driveLetter - can be used by script blocks
@@ -241,6 +295,31 @@ Function MountVHDandRunBlock ([string]$vhd, [scriptblock]$block) {
       # Wait 2 seconds for activity to clean up
       Start-Sleep -Seconds 2
       }
+=======
+function MountVHDandRunBlock 
+{
+    param
+    (
+        [string]$vhd, 
+        [scriptblock]$block,
+        [switch]$ReadOnly
+    );
+     
+    # This function mounts a VHD, runs a script block and unmounts the VHD.
+    # Drive letter of the mounted VHD is stored in $driveLetter - can be used by script blocks
+    if($ReadOnly) {
+        $driveLetter = (Mount-VHD $vhd -ReadOnly -Passthru | Get-Disk | Get-Partition | Get-Volume).DriveLetter;
+    } else {
+        $driveLetter = (Mount-VHD $vhd -Passthru | Get-Disk | Get-Partition | Get-Volume).DriveLetter;
+    }
+    & $block;
+
+    Dismount-VHD $vhd;
+
+    # Wait 2 seconds for activity to clean up
+    Start-Sleep -Seconds 2;
+}
+>>>>>>> abba6a537b8f7c6e660ce2921de5af7aaf64e3bc
 
 ### Update script block
 $updateCheckScriptBlock = {
@@ -312,9 +391,6 @@ function RunTheFactory
         [bool] $GenericSysprep = $false
     );
 
-    checkPath "$($workingdir)\Share";
-    checkPath "$($workingdir)\Bases";
-
     logger $FriendlyName "Starting a new cycle!"
 
     # Setup a bunch of variables 
@@ -343,6 +419,11 @@ function RunTheFactory
     # Check for a base VHD
     if (-not (test-path $baseVHD))
     {
+        if (-not (Test-Path $ISOFile)) {
+            logger $FriendlyName 'ISO/WIM file missing, skipping this product.'
+            return
+        }
+
         # No base VHD - we need to create one
         logger $FriendlyName "No base VHD!";
 
@@ -369,8 +450,8 @@ function RunTheFactory
         MountVHDandRunBlock $baseVHD {
             cleanupFile -file "$($driveLetter):\Convert-WindowsImageInfo.txt";
 
-            # Copy ResourceDirectory in
-            Copy-Item ($ResourceDirectory) -Destination ($driveLetter + ":\") -Recurse;
+            # Copy bits to VHD
+            Copy-Item "$($ResourceDirectory)\bits" -Destination ($driveLetter + ":\") -Recurse;
             
             # Create first logon script
             $updateCheckScriptBlock | Out-String | Out-File -FilePath "$($driveLetter):\Bits\Logon.ps1" -Width 4096;
@@ -504,6 +585,7 @@ function RunTheFactory
         # Remove Page file
         logger $FriendlyName "Removing the page file";
         MountVHDandRunBlock $sysprepVHD {
+
             attrib -s -h "$($driveLetter):\pagefile.sys";
             cleanupFile "$($driveLetter):\pagefile.sys";
         }
@@ -512,6 +594,21 @@ function RunTheFactory
         cleanupFile $finalVHD;
         logger $FriendlyName "Convert differencing disk into pristine base image";
         Convert-VHD -Path $sysprepVHD -DestinationPath $finalVHD -VHDType Dynamic;
+        if($CleanWinSXS) {
+            logger $FriendlyName "Cleaning windows component store. Be patient, this may take awhile."
+            MountVHDandRunBlock $finalVHD {
+                # Clean up the WinSXS store, and remove any superceded components. Updates will no longer be able to be uninstalled,
+                # but saves a considerable amount of disk space.
+                dism.exe /image:$($driveLetter):\ /Cleanup-Image /StartComponentCleanup /ResetBase
+            }
+        }
+        logger $FriendlyName "Optimizing VHD file"
+        # Mounting the VHD read only allows it to be compacted better.
+        # Running Optimize-VHD twice seems to be necessary - don't know why, but it works.
+        MountVHDandRunBlock -ReadOnly $finalVHD {
+            Optimize-VHD $finalVHD -Mode Full
+            Optimize-VHD $finalVHD -Mode Full
+        }
         logger $FriendlyName "Delete differencing disk";
         CSVLogger $finalVHD -sysprepped;
         cleanupFile $sysprepVHD;
