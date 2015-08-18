@@ -48,7 +48,7 @@ If multiple endpoints exposed by the container are needed, use NAT port mapping.
 
 ## Application compatibility
 
-### Can't install IIS in a container using DISM 
+### Can't install ASP.NET 4.5 with IIS in a container using DISM 
 Installing IIS-ASPNET45 in a container doesn't work inside a Windows Server container.  The installation progress sticks around 95.5%.
 
 ``` PowerShell
@@ -58,7 +58,7 @@ Enable-WindowsOptionalFeature -Online -FeatureName IIS-ASPNET45
 This fails because ASP.NET 4.5 doesn't run in a container.
 
 ** Work Around: **  
-ASP 5.0 does work.  Instead, install the Web-Server role.
+Instead, install the Web-Server role to use IIS. ASP 5.0 does work. 
 
 ``` PowerShell
 Enable-WindowsOptionalFeature -Online -FeatureName Web-Server
