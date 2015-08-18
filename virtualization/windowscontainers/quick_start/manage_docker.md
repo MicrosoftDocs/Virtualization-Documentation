@@ -23,6 +23,8 @@ If you need to configure the container feature, see the following guides: [Conta
 
 As you begin this walkthrough you should be at a Windows command prompt.
 
+![](media/cmd.png)
+
 ## Basic Container Management with Docker
 
 This first example will walk through the basics of creating and removing Windows Server Containers and Windows Server Container Images with Docker.
@@ -37,18 +39,6 @@ Copyright (C) 2015 Microsoft Corporation. All rights reserved.
 PS C:\>
 ```
 Next make sure that your system has a valid IP Address and make note of this address for later use. 
-
-```
-ipconfig
-
-Ethernet adapter vEthernet (Virtual Switch-94a3e12ad262b3059e08edc4d48fca3c8390e38c3b219023d4a0a4951883e658-0):
-
-   Connection-specific DNS Suffix  . : 
-   Link-local IPv6 Address . . . . . : fe80::cc1f:742:4126:9530%18
-   IPv4 Address. . . . . . . . . . . : 192.168.1.25
-   Subnet Mask . . . . . . . . . . . : 255.255.255.0
-   Default Gateway . . . . . . . . . : 192.168.1.1
-```
 
 ### Step 1 - Create a New Container
 
