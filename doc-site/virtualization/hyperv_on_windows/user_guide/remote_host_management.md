@@ -9,6 +9,17 @@ To connect to a Hyper-V host in Hyper-V Manager, make sure **Hyper-V Manager** i
 
 ![](media/HyperVManager-ConnectToHost.png)
 
+## Supported Hyper-V host combinations with Hyper-V Manager
+Hyper-V Manager in Windows 10 allows you to manage:
+* Windows 10
+* Windows 8.1 and Windows Server 2012 R2 Hyper-V hosts
+* Windows 8 and Windows 2012 Hyper-V hosts
+
+Hyper-V Manager in Windows 8.1 and Windows Server 2012 R2 allows you to manage:
+* Windows 8.1 and Windows Server 2012 R2 Hyper-V hosts
+* Windows 8 and Windows 2012 Hyper-V hosts
+
+> **Note:** Not all Hyper-V Manager functionality works for all host versions.
 
 ## Manage localhost ##
 To add localhost to Hyper-V Manager as a Hyper-V host, select **Local computer** in the **Select Computer** dialogue box.
