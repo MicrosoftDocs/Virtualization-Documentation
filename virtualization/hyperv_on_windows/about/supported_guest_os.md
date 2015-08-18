@@ -52,6 +52,7 @@ For Windows 10 Hyper-V Hosts:
 ## Linux and Freed BSD
 
 Hyper-V has support for various Linux and FreeBSD distributions:
+
 | Operating system | |
 | -----|------|
 | [CentOS and Red Hat Enterprise Linux ](https://technet.microsoft.com/library/dn531026.aspx) | |
