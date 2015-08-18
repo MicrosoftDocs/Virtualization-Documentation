@@ -413,6 +413,11 @@ $updateCheckScriptBlock = {
 
 ### Sysprep script block
 $sysprepScriptBlock = {
+    # Run pre-sysprep script if it exists
+    if (Test-Path "$env:SystemDrive\Bits\PreSysprepScript.ps1") {
+        & "$env:SystemDrive\Bits\PreSysprepScript.ps1"
+    }
+
     # Remove autorun key if it exists
     Get-Item -Path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run | ? Property -like Unattend* | Remove-Item;
              
@@ -424,6 +429,11 @@ $sysprepScriptBlock = {
 $postSysprepScriptBlock = {
     # Remove autorun key if it exists
     Get-Item -Path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run | ? Property -like Unattend* | Remove-Item;
+
+    # Run post-sysprep script if it exists
+    if (Test-Path "$env:SystemDrive\Bits\PostSysprepScript.ps1") {
+        & "$env:SystemDrive\Bits\PostSysprepScript.ps1"
+    }
 
     # Clean up unattend file if it is there
     if (Test-Path "$ENV:SystemDrive\Unattend.xml") 
