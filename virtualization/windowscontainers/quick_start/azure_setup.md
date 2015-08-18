@@ -21,13 +21,13 @@ Click on New > Compute > Virtual Machine > From Gallery
 
 ![](./media/CreateAzureVM.png)
 
-Select a name for the Virtual Machine, select a size, user name and Password.
-
-![](./media/Create_vm2.png)
-
 On the ‘Choose an Image’ menu, select ‘Windows Server Container Preview’.
 
 ![](media/AzureGallery.png)
+
+Select a name for the Virtual Machine, select a size, user name and Password.
+
+![](./media/Create_vm2.png)
 
 On page 3 of the Create a Virtual Machine wizard there is an option to configure an Endpoint. Endpoints are used to map a VM port (internal) to a port that is exposed to the internet (external). During the Windows Server Container quick starts you will host a website in your container and access this website through port 80. You will need to create an endpoint to allow internet traffic to access this VM through port 80.
 
