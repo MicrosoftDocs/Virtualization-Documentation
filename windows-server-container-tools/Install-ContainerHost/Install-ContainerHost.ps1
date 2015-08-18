@@ -608,12 +608,11 @@ Test-Admin()
 $runDockerDaemon = @"
 
 @echo off
- 
+set certs=%ProgramData%\docker\certs.d 
+
 if exist %ProgramData%\docker (goto :run)
 mkdir %ProgramData%\docker
 
-set certs=%ProgramData%\docker\certs.d
- 
 :run
 if exist %certs%\server-cert.pem (goto :secure)
  
