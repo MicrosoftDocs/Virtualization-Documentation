@@ -24,7 +24,7 @@
 
     .DESCRIPTION
         Installs the prerequisites for creating Windows containers
-        
+                        
     .PARAMETER DockerPath
         Path to Docker.exe, can be local or URI
             
@@ -100,7 +100,7 @@ Restart-And-Run()
 
     Write-Output "Restart is required; restarting now..."    
     
-    $myInvocationParameters = $script:MyInvocation.Line.replace($script:MyInvocation.InvocationName, "")
+    $argList = $script:MyInvocation.Line.replace($script:MyInvocation.InvocationName, "")
     
     #
     # Update .\ to the invocation directory for the bootstrap
@@ -252,7 +252,7 @@ function
 Install-ContainerHost
 {
     "If this file exists when Install-ContainerHost.ps1 exits, the script failed!" | Out-File -FilePath $global:ErrorFile
-    
+
     #
     # Validate required Windows features
     #

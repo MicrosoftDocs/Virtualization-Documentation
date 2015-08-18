@@ -539,43 +539,43 @@ New-ContainerHost()
     # Create VM
     #
     Write-Output "Creating VM $VmName..."
-    $newVMArguments = "-Name $VmName -VHDPath $bootVhd.Path -Generation 1 "
-    if ($SwitchName -ne "")
-    {
-        $newVMArguments += "-SwitchName $SwitchName"
-    }
 
-    $Vm = New-VM $newVMArguments
+    $vm = New-VM -Name $VmName -VHDPath $bootVhd.Path -Generation 1
 
     Write-Output "Configuring VM..."
-    Get-VMDvdDrive -VMName $VmName | Remove-VMDvdDrive
-    Set-VM -VM $Vm -DynamicMemory | Out-Null
+    $vm | Get-VMDvdDrive | Remove-VMDvdDrive
+    $vm | Set-VM -DynamicMemory | Out-Null
+    
+    if ($SwitchName -ne "")
+    {
+        $vm | Get-VMNetworkAdapter | Connect-VMNetworkAdapter -SwitchName "$SwitchName"
+    }
 
     if ($global:DeveloperMode)
     {
         #
         # Add WIM VHD
         #
-        $wimHardDiskDrive = Add-VMHardDiskDrive -VMName $VmName -Path $wimVhd.Path -ControllerType SCSI
+        $wimHardDiskDrive = $vm | Add-VMHardDiskDrive -Path $wimVhd.Path -ControllerType SCSI
     }
 
-    Write-Output "Starting VM $VmName..."
-    Start-VM $Vm | Out-Null
+    Write-Output "Starting VM $($vm.Name)..."
+    $vm | Start-VM | Out-Null
 
-    Write-Output "Waiting for VM $VmName to boot..."
+    Write-Output "Waiting for VM $($vm.Name) to boot..."
     do 
     {
         Start-Sleep -sec 1
     } 
-    until ((Get-VMIntegrationService $VmName |? Id -match "84EAAE65-2F2E-45F5-9BB5-0E857DC8EB47").PrimaryStatusDescription -eq "OK")
+    until (($vm | Get-VMIntegrationService |? Id -match "84EAAE65-2F2E-45F5-9BB5-0E857DC8EB47").PrimaryStatusDescription -eq "OK")
 
     Write-Output "Heartbeat IC connected."
-    
-    $securePassword = ConvertTo-SecureString $Password -AsPlainText -Force
-    $credential = New-Object System.Management.Automation.PsCredential("Administrator", $securePassword)  
-    
+
     if ($global:PowerShellDirectMode)
     {
+        $securePassword = ConvertTo-SecureString $Password -AsPlainText -Force
+        $credential = New-Object System.Management.Automation.PsCredential("Administrator", $securePassword)  
+        
         $psReady = $false
 
         Write-Output "Waiting for specialization to complete (this may take a few minutes)..."
@@ -591,7 +591,7 @@ New-ContainerHost()
             } 
 
             Start-Sleep -sec 1
-            $psReady = Invoke-Command -VMName $VmName -Credential $credential -ScriptBlock { $True } -ErrorAction SilentlyContinue
+            $psReady = Invoke-Command -VMName $($vm.Name) -Credential $credential -ScriptBlock { $True } -ErrorAction SilentlyContinue
         } 
         until ($psReady)
 
@@ -650,9 +650,9 @@ New-ContainerHost()
         {
             $wimName = $global:localWimName
         }
-        Invoke-Command -VMName $VmName -Credential $credential -ScriptBlock $guestScriptBlock -ArgumentList $wimName,$($PSCmdlet.ParameterSetName)
+        Invoke-Command -VMName $($vm.Name) -Credential $credential -ScriptBlock $guestScriptBlock -ArgumentList $wimName,$($PSCmdlet.ParameterSetName)
     
-        $scriptFailed = Invoke-Command -VMName $VmName -Credential $credential -ScriptBlock { Test-Path "$($env:SystemDrive)\Install-ContainerHost.err" }
+        $scriptFailed = Invoke-Command -VMName $($vm.Name) -Credential $credential -ScriptBlock { Test-Path "$($env:SystemDrive)\Install-ContainerHost.err" }
     
         if ($scriptFailed)
         {
@@ -665,17 +665,17 @@ New-ContainerHost()
         if ($global:DeveloperMode)
         {
             Write-Output "Cleaning up temporary WIM VHD"
-            Get-VMHardDiskDrive -VMName $VmName |? Path -eq $wimVhd.Path | Remove-VMHardDiskDrive 
+            $vm | Get-VMHardDiskDrive |? Path -eq $wimVhd.Path | Remove-VMHardDiskDrive 
             Remove-Item $wimVhd.Path
         }
     
-        Write-Output "VM $VmName is ready for use as a container host."
+        Write-Output "VM $($vm.Name) is ready for use as a container host."
         Write-Output "This VM is not connected to the network. To connect it, run the following:"  
         Write-Output "  Get-VM | Get-VMNetworkAdapter | Connect-VMNetworkAdapter -Switchname <switchname>"  
     }
     else
     {
-        Write-Output "VM $VmName will be ready to use as a container host when Install-ContainerHost.ps1 completes execution inside the VM."
+        Write-Output "VM $($vm.Name) will be ready to use as a container host when Install-ContainerHost.ps1 completes execution inside the VM."
     }
     
 }
