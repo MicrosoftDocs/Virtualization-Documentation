@@ -2,7 +2,6 @@ ms.ContentId: 040B1B51-0F25-4295-B317-8CC4DE0A1AFF
 title: Export and import virtual machines
 
 
-
 <!--Reviewed by liwer 7/8/15 -->
 # Export and Import virtual machines
 You can use the export and import functionality to quickly duplicate virtual machines or to move them from one host to another.

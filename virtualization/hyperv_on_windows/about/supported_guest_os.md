@@ -2,9 +2,8 @@ ms.ContentId: 7561B149-A147-4F71-9840-6AE149B9DED5
 title: Supported Windows Guest Operating Systems
 
 
-# Supported Windows guests
+# Supported Windows guests 
 This article lists the Windows operating systems supported as guests in Hyper-V on Windows, as well provides information about integration services. 
-
 
 ## What does support mean? 
 Support means Microsoft has tested these host/guest combinations.  Issues with these combinations may receive attention from Product Support Services.
@@ -19,6 +18,8 @@ Hyper-V includes integration services for supported guest operating systems.  In
 
 ## Supported Windows Server guest operating systems
 
+For Windows 10 Hyper-V Hosts:
+
  |  Guest operating system  			|  Maximum number of virtual processors  	|  Integration Services  	|  Notes  	| 	 	| 
  | -----				 				| ----- 									| ----- 					| ----- 	| ----- |
  |  Windows Server Technical Preview 	| 64 										| Built-in |    			| 	 		| 		|
@@ -32,6 +33,8 @@ Hyper-V includes integration services for supported guest operating systems.  In
  
 ## Supported Windows guest operating systems
 
+For Windows 10 Hyper-V Hosts:
+
  |  Guest operating system |  Maximum number of virtual processors |  Integration Service  |  Notes  | 	|
  | ----- | ----- | ----- | ----- | ----- |
  | Windows 10 | 32 | Built-in |  | 	|
@@ -40,6 +43,9 @@ Hyper-V includes integration services for supported guest operating systems.  In
  | Windows 7 with Service Pack 1 (SP 1) | 4 | Upgrade the integration services after you set up the operating system in the virtual machine. | Ultimate, Enterprise, and Professional editions (32-bit and 64-bit). | 	|
  | Windows 7 | 4 | Upgrade the integration services after you set up the operating system in the virtual machine. | Ultimate, Enterprise, and Professional editions (32-bit and 64-bit). | 	|
  | Windows Vista with Service Pack 2 (SP2) | 2 | Install the integration services after you set up the operating system in the virtual machine. | Business, Enterprise, and Ultimate, including N and KN editions. |  	|
+ 
+ 
+ Windows 10 is a guest operating system on Windows 8.1 and Windows Server 2012 R2 Hyper-V hosts.
 
 ## Linux and Freed BSD
 
