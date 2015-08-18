@@ -223,29 +223,37 @@ These results are no guarantee that a specific application is working or not wor
 
 | **Name** | **Version** | **Does it work?** | **Comment** |
 |:-----|:-----|:-----|:-----|
+| .NET | 4.6 | Yes | Included in base image | 
+| .NET CLR | 5 beta 6 | Yes | Both, x64 and x86 | 
 | Active Python | 3.4.1 | Yes | |
 | Apache CouchDB | 1.6.1 | No | |
 | Apache HTTPD | 2.4 | Yes | |
+| Apache Tomcat | 8.0.24 x64 | Yes | |
 | ASP.NET | 3.5 | No | |
 | ASP.NET | 4.5 | No | |
 | ASP.NET | 5 beta 6 | Yes | Both, x64 and x86 |
 | Erlang/OTP | 18.0 | No | |
+| FileZilla FTP Server | 0.9 | Yes | Has to be installed through an RDP session  into the container | 
 | Go Progamming Language | 1.4.2 | Yes | |
 | Internet Information Service | 10.0 | Yes | |
 | Java | 1.8.0_51 | Yes | Use the server version. The client version does not install properly |
+| Jetty | 9.3 | Partially | Running demo-base fails |
+| MineCraft Server | 1.8.5 | Yes | 
 | MongoDB | 3.0.4 | Yes | |
 | MySQL | 5.6.26 | Yes | |
 | NGinx | 1.9.3 | Yes | |
-| Node.js | 0.12.6 | Partially | Running node itself works. NPM fails to download packages |
-| PHP | 5.6.11 | Yes | |
+| Node.js | 0.12.6 | Partially | Running node with js files works. NPM fails to download packages. Running node interactively does not work properly. |
+| PHP | 5.6.11 | Yes | Both with IIS via FastCGI and Apache|
 | PostgreSQL | 9.4.4 | Yes | |
 | Python | 3.4.3 | Yes | |
 | R | 3.2.1 | No | |
+| RabbitMQ | 3.5.x | Yes | Has to be installed through an RDP session  into the container |
 | Redis | 2.8.2101 | Yes | |
 | Ruby | 2.2.2 | Yes | Both, x64 and x86 | 
 | Ruby on Rails | 4.2.3 | |
 | SQLite | 3.8.11.1 | Yes | |
 | SQL Server Express | 2014 LocalDB | Yes | |
+| Sysinternals Tools | * | Yes | Only tried those not requiring a GUI. PsExec does not work by current design | 
 
 --------------------------
 [Back to Container Home](../containers_welcome.md)
