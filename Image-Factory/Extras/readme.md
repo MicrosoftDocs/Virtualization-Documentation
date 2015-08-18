@@ -5,7 +5,7 @@ These scripts are examples you can use or modify to control the factory process.
 There are hooks in various parts of the script to allow you to customize the process.
 
 ## PreUpdateScript.ps1
-**Runs on virtual machine**
+**Runs on the virtual machine**
 
 Called every time virtual machine boots up to install new updates, before the update process starts.
 May be called multiple times, if the updates require multiple reboots.
@@ -13,7 +13,7 @@ May be called multiple times, if the updates require multiple reboots.
 Useful for configuring network settings - see the example in `StaticIPAddress`
 
 ## PostUpdateScript.ps1
-**Runs on virtual machine**
+**Runs on the virtual machine**
 
 Called just before the virtual machine reboots or shuts down after each round of installing updates.
 
