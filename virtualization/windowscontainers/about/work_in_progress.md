@@ -64,12 +64,6 @@ Instead, install the Web-Server role to use IIS. ASP 5.0 does work.
 Enable-WindowsOptionalFeature -Online -FeatureName Web-Server
 ```
 
-### Remote access of containers
-Windows Server Containers can be managed/interacted with through a RDP session. Exiting the container RDP session without logoff may prevent the container from shutting down.
-
-** Work Around: **  
-Exit the RDP session by typing "logoff" (instead of "exit" or just closing the RDP window) before shutting the container down.
-
 ### Applications
 
 The following applications have been tried to run in a Windows Server Container.
@@ -190,6 +184,61 @@ These results are no guarantee that a specific application is working or not wor
  * WAS-Config-APIs
 * Windows-Server-Backup
 * Migration
+
+### Remote desktop access of containers
+Windows Server Containers can be managed/interacted with through a RDP session.
+
+The following steps are needed to remotely connect to a Windows Server Container using RDP. It is assumed that the Container is connected to the network via a NAT switch. This is the default when setting up a Container host through the installation script or creating a new VM in Azure.
+
+** In the Container you want to connect to **
+
+1. Obtain the containers IP address
+
+  ```
+  ipconfig
+  ```
+
+2. Set the password for the builtin administrator user for the Container
+
+  ```
+  net user administrator [yourpassword]
+  ```
+
+3. Enable the builtin administrator user for the Container
+
+  ```
+  net user administrator /active:yes
+  ```
+
+** On the Container host **
+
+1. Allow the default RDP port through the Windows Advanced Firewall
+
+  ```
+  New-NetFirewallRule -Name "RDP" -DisplayName "Remote Desktop Protocol" -Protocol TCP -LocalPort @(3389) -Action Allow
+  ```
+
+2. Allow an additional port for RDP connection to the Container
+
+  ```
+  New-NetFirewallRule -Name "ContainerRDP" -DisplayName "RDP Ports for connecting to containers" -Protocol TCP -LocalPort @(3390) -Action Allow
+  ```
+
+3. Add a port mapping for the existing NAT
+
+  ```
+  Add-NetNatStaticMapping -NatName ContainerNAT -Protocol TCP -ExternalPort 3390 -ExternalIPAddress 0.0.0.0 -InternalPort 3389 -InternalIPAddress [your container IP]
+  ```
+
+** Connect to the container via RDP **
+
+Connect to the Container using RDP by running: 
+```
+mstsc /v:[ContainerHostIP]:3390 /prompt
+```
+
+**Note:** Exiting the container RDP session without logoff may prevent the container from shutting down. Please make sure to exit the RDP session by typing "logoff" (instead of "exit" or just closing the RDP window) before shutting the container down.
+
 
 --------------------------
 
