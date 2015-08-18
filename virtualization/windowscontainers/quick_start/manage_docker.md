@@ -21,7 +21,7 @@ If you need to configure the container feature, see the following guides: [Conta
 
 This first example will walk through the basics of creating and removing Windows Server Containers and Windows Server Container Images with Docker.
 
-To begin the walk through, start and log into your Windows Server Container Host System, you will see a Windows command prompt.
+To begin the walk through, log into your Windows Server Container Host System, you will see a Windows command prompt.
 
 ![](media/cmd.png)
 
@@ -34,9 +34,11 @@ Copyright (C) 2015 Microsoft Corporation. All rights reserved.
 
 PS C:\>
 ```
-Next make sure that your system has a valid IP Address and take note of this address for later use. 
+Next make sure that your system has a valid IP Address using `ipconfig` and take note of this address for later use. 
 
 ```
+ipconfig
+
 Ethernet adapter Ethernet 3:
 
    Connection-specific DNS Suffix  . :
@@ -44,9 +46,6 @@ Ethernet adapter Ethernet 3:
    IPv6 Address. . . . . . . . . . . : 2601:600:8f01:84eb:a8c1:a3e:96b7:ffcb
    Link-local IPv6 Address . . . . . : fe80::a8c1:a3e:96b7:ffcb%5
    IPv4 Address. . . . . . . . . . . : 192.168.1.25
-   Subnet Mask . . . . . . . . . . . : 255.255.255.0
-   Default Gateway . . . . . . . . . : fe80::e288:5dff:fec8:4523%5
-                                       192.168.1.1
 ```
 
 ### Step 1 - Create a New Container
@@ -236,7 +235,7 @@ windowsservercore   latest              9eca9231f4d4        35 hours ago        
 ```
 
 ### Step 3 – Configure Networking for Container Application
-Because you will be hosting a website inside of a container a few networking related configurations need to be made. First a firewall rule needs to be created on the container host that will allow access to the website. In this example we will be accessing the site through port 80. Run the following script to create this firewall rule.
+Because you will be hosting a website inside of a container a few networking related configurations need to be made. First a firewall rule needs to be created on the container host that will allow access to the website. In this example we will be accessing the site through port 80. Run the following script to create this firewall rule. This script can be copied into the VM. 
 
 ``` powershell
 if (!(Get-NetFirewallRule | where {$_.Name -eq "TCP80"})) {
@@ -264,7 +263,7 @@ Start the nginx web server.
 start nginx
 ```
 ### Step 5 – Access the Container Hosted Website
-With the web server container created and all networking configured, you can now checkout the application hosted in the container. To do so, get the ip address of the container host using `ipconfig`, open up a browser on different machine and enter `http://containerhost-ipaddress`. If everything has been correctly configured, you will see the nginx welcome page.
+With the web server container created, you can now checkout the application hosted in the container. To do so, open up a browser on different machine and enter `http://containerhost-ipaddress`. Notice here that you will be browsing to the IP Address of the Container Host and not the container itself.  If everything has been correctly configured, you will see the nginx welcome page.
 
 ![](media/nginx.png)
 

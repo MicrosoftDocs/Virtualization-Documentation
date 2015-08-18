@@ -23,9 +23,13 @@ As you begin this walkthrough you should be at a Windows command prompt.
 
 ## Basic Container Management with PowerShell
 
-This first example will walk through the basics of creating and removing Windows Server Containers and Windows Server Container Images with PowerShell. You can find the available container cmdlets using `Get-Command -Module Containers`.
+This first example will walk through the basics of creating and removing Windows Server Containers and Windows Server Container Images with PowerShell.
 
-Before you begin working with the Container PowerShell module start a PowerShell session by typing `powershell`. You will know that you are in a PowerShell session when the prompt changes from ``C:\directory>`` to ``PS C:\directory>``.
+To begin the walk through, log into your Windows Server Container Host System, you will see a Windows command prompt.
+
+![](media/cmd.png)
+
+Start a PowerShell session by typing `powershell`. You will know that you are in a PowerShell session when the prompt changes from `C:\directory>` to `PS C:\directory>`.
 
 ```
 C:\> powershell
@@ -34,7 +38,19 @@ Copyright (C) 2015 Microsoft Corporation. All rights reserved.
 
 PS C:\>
 ```
-Next make sure that your system has a valid IP Address and make note of this address for later use. 
+Next make sure that your system has a valid IP Address using `ipconfig` and take note of this address for later use. 
+
+```
+ipconfig
+
+Ethernet adapter Ethernet 3:
+
+   Connection-specific DNS Suffix  . :
+   IPv6 Address. . . . . . . . . . . : 2601:600:8f01:84eb::e
+   IPv6 Address. . . . . . . . . . . : 2601:600:8f01:84eb:a8c1:a3e:96b7:ffcb
+   Link-local IPv6 Address . . . . . : fe80::a8c1:a3e:96b7:ffcb%5
+   IPv4 Address. . . . . . . . . . . : 192.168.1.25
+```
 
 ### Step 1 - Create a New Container
 
@@ -307,7 +323,7 @@ For this lab we need to create this port mapping. In order to do so we will need
 ``` PowerShell
 Add-NetNatStaticMapping -NatName "ContainerNat" -Protocol TCP -ExternalIPAddress 0.0.0.0 -InternalIPAddress 172.16.0.2 -InternalPort 80 -ExternalPort 80
 ```
-When the port mapping has been created you will also need to configure an inbound firewall rule for the configured port. To do so for port 80 run the following command.
+When the port mapping has been created you will also need to configure an inbound firewall rule for the configured port. To do so for port 80 run the following command. This script can be copied into the VM. 
 
 ``` PowerShell
 if (!(Get-NetFirewallRule | where {$_.Name -eq "TCP80"})) {
@@ -318,7 +334,7 @@ if (!(Get-NetFirewallRule | where {$_.Name -eq "TCP80"})) {
 Finally if you are working from Azure an external endpoint will need to be created that will expose this port to the internet. For more information on Azure VM Endpoints see this article: [Set up Azure VM Endpoints]( https://azure.microsoft.com/en-us/documentation/articles/virtual-machines-set-up-endpoints/).
 
 ### Step 6 – Access the Container Hosted Website
-With the web server container created and all networking configured, you can now checkout the application hosted in the container. To do so, get the ip address of the container host using `ipconfig`, open up a browser on different machine and enter `http://containerhost-ipaddress`. If everything has been correctly configured, you will see the nginx welcome page.
+With the web server container created, you can now checkout the application hosted in the container. To do so, open up a browser on different machine and enter `http://containerhost-ipaddress`. Notice here that you will be browsing to the IP Address of the Container Host and not the container itself.  If everything has been correctly configured, you will see the nginx welcome page.
 
 ![](media/nginx.png)
 
@@ -337,6 +353,8 @@ wget -uri 'https://raw.githubusercontent.com/Microsoft/Virtualization-Documentat
 After the website has been updated, navigate back to `http://containerhost-ipaddress`.
 
 ![](media/hello.png)
+
+> You can find the available container cmdlets using `Get-Command -Module Containers`.
 
 -----------------------------------
 [Back to Container Home](../containers_welcome.md)   
