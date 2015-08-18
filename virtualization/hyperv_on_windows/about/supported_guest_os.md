@@ -14,7 +14,9 @@ Microsoft provides support for guest operating systems in the following manner:
 * For issues found in other operating systems, Microsoft submits the issue to the multi-vendor support community, [TSANet](http://www.tsanet.org/).
 
 ## What are integration services and why do they matter?
-Hyper-V includes integration services for supported guest operating systems.  Integration services improves the integration between the host system and the virtual machine. Some operating systems have the integration services built-in, while others provide integration services through Windows Update.
+Hyper-V includes integration services for supported guest operating systems.  Integration services improve interaction between the host system and the virtual machine.  
+
+Some operating systems (including different versions of Windows) have the integration services built-in, while others provide integration services through Windows Update.
 
 ## Supported Windows Server guest operating systems
 
@@ -49,7 +51,7 @@ For Windows 10 Hyper-V Hosts:
 
 ## Linux and Freed BSD
 
-Hyper-V also has support for various Linux and FreeBSD distributions:
+Hyper-V has support for various Linux and FreeBSD distributions:
 | Operating system | |
 | -----|------|
 | [CentOS and Red Hat Enterprise Linux ](https://technet.microsoft.com/library/dn531026.aspx) | |
