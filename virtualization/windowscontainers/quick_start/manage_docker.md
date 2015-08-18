@@ -17,15 +17,15 @@ In order to complete this walkthrough the following items need to be in place.
 
 If you need to configure the container feature, see the following guides: [Container Setup in Azure](./azure_setup.md) or [Container Setup in Hyper-V](./container_setup.md). 
 
-As you begin this walkthrough you should be at a Windows command prompt.
-
-![](media/cmd.png)
-
 ## Basic Container Management with Docker
 
 This first example will walk through the basics of creating and removing Windows Server Containers and Windows Server Container Images with Docker.
 
-Before you begin working with the Docker commands start a PowerShell session by typing `powershell`. You will know that you are in a PowerShell session when the prompt changes from ``C:\directory>`` to ``PS C:\directory>``.
+To begin the walk through, start and log into your Windows Server Container Host System, you will see a Windows command prompt.
+
+![](media/cmd.png)
+
+Start a PowerShell session by typing `powershell`. You will know that you are in a PowerShell session when the prompt changes from `C:\directory>` to `PS C:\directory>`.
 
 ```
 C:\> powershell
@@ -34,7 +34,20 @@ Copyright (C) 2015 Microsoft Corporation. All rights reserved.
 
 PS C:\>
 ```
-Next make sure that your system has a valid IP Address and make note of this address for later use. 
+Next make sure that your system has a valid IP Address and take note of this address for later use. 
+
+```
+Ethernet adapter Ethernet 3:
+
+   Connection-specific DNS Suffix  . :
+   IPv6 Address. . . . . . . . . . . : 2601:600:8f01:84eb::e
+   IPv6 Address. . . . . . . . . . . : 2601:600:8f01:84eb:a8c1:a3e:96b7:ffcb
+   Link-local IPv6 Address . . . . . : fe80::a8c1:a3e:96b7:ffcb%5
+   IPv4 Address. . . . . . . . . . . : 192.168.1.25
+   Subnet Mask . . . . . . . . . . . : 255.255.255.0
+   Default Gateway . . . . . . . . . : fe80::e288:5dff:fec8:4523%5
+                                       192.168.1.1
+```
 
 ### Step 1 - Create a New Container
 
