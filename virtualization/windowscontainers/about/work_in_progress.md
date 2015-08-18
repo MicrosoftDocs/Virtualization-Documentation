@@ -161,9 +161,6 @@ Exit the RDP session by typing "logoff" (instead of "exit" or just closing the R
 ### Docker clients unsecured by default
 In this pre-release, docker communication is public if you know where to look.
 
-To secure your windows server container to Docker communications, use this script: LARS?  STEVE?
-
-
 
 ### Docker commands that don't work with Windows Server Containers
 
