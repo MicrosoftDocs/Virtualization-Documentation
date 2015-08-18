@@ -34,6 +34,38 @@ Copyright (C) 2015 Microsoft Corporation. All rights reserved.
 
 PS C:\>
 ```
+
+Use `Get-Command` to see the available commands in the containers module
+
+```
+PS C:\> Get-Command -Module containers
+
+CommandType     Name                                               Version    Source
+-----------     ----                                               -------    ------
+Function        Install-ContainerOSImage                           1.0.0.0    Containers
+Function        Uninstall-ContainerOSImage                         1.0.0.0    Containers
+Cmdlet          Add-ContainerNetworkAdapter                        1.0.0.0    Containers
+Cmdlet          Connect-ContainerNetworkAdapter                    1.0.0.0    Containers
+Cmdlet          Disconnect-ContainerNetworkAdapter                 1.0.0.0    Containers
+Cmdlet          Export-ContainerImage                              1.0.0.0    Containers
+Cmdlet          Get-Container                                      1.0.0.0    Containers
+Cmdlet          Get-ContainerHost                                  1.0.0.0    Containers
+Cmdlet          Get-ContainerImage                                 1.0.0.0    Containers
+Cmdlet          Get-ContainerNetworkAdapter                        1.0.0.0    Containers
+Cmdlet          Import-ContainerImage                              1.0.0.0    Containers
+Cmdlet          Move-ContainerImageRepository                      1.0.0.0    Containers
+Cmdlet          New-Container                                      1.0.0.0    Containers
+Cmdlet          New-ContainerImage                                 1.0.0.0    Containers
+Cmdlet          Remove-Container                                   1.0.0.0    Containers
+Cmdlet          Remove-ContainerImage                              1.0.0.0    Containers
+Cmdlet          Remove-ContainerNetworkAdapter                     1.0.0.0    Containers
+Cmdlet          Set-ContainerNetworkAdapter                        1.0.0.0    Containers
+Cmdlet          Start-Container                                    1.0.0.0    Containers
+Cmdlet          Stop-Container                                     1.0.0.0    Containers
+Cmdlet          Test-ContainerImage                                1.0.0.0    Containers
+```
+
+
 Next make sure that your system has a valid IP Address using `ipconfig` and take note of this address for later use. 
 
 ```
