@@ -212,6 +212,10 @@ The following steps are needed to remotely connect to a Windows Server Container
 
 ** On the Container host **
 
+Since Windows Server has the Windows Firewall with Advanced Security enabled by default we need to open some ports for communication in order for RDP to work. Additionally a port mapping is created so the Container is reachable through a port on the Container host.
+
+The following steps require a PowerShell launched as Administrator on the host.
+
 1. Allow the default RDP port through the Windows Advanced Firewall
 
   ```
