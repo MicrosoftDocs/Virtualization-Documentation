@@ -11,17 +11,14 @@ To run Windows Server Containers in a Hyper-V VM instead, follow [these instruct
 
   **PLEASE READ PRIOR TO INSTALLING THE CONTAINER OS IMAGE:**  The license terms of the Microsoft Windows Server Pre-Release software (“License Terms”) apply to your use of the Microsoft Windows Container OS Image supplement (the “supplemental software).  By downloading and using the supplemental software, you agree to the License Terms, and you may not use it if you have not accepted the License Terms. Both the Windows Server Pre-Release software and the supplemental software are licensed by Microsoft Corporation.  
 
-* System running Windows 10 / Windows Server Technical Preview 2 or later.
-* Hyper-V role enabled ([see instructions](https://msdn.microsoft.com/virtualization/hyperv_on_windows/quick_start/walkthrough_install#UsingPowerShell)).
-* 20GB available storage for container host image, OS Base Image and setup scripts.
-* Administrator permissions on the Hyper-V host.
-
-> Windows Server Containers do not require Hyper-V however to keep things simple this guide assumes that a Hyper-V environment is being used to run the Windows Server Container host.
+* System running Windows Server Technical Preview 3 or later.
+* 20GB available storage for OS Base Image and setup scripts.
+* Administrator permissions on the machine.
 
 ## Setup an existing Virtual Machine or Bare Metal host for Containers
-Windows Server Containers consist of several components such as the Windows Server Container Host and Container OS Base Image. We have put together a script that will download and configure these items for you. Follow these steps to configure your system as a Windows Server Container Host.
+Windows Server Containers require the Container OS Base Image. We have put together a script that will download and install this for you. Follow these steps to configure your system as a Windows Server Container Host.
 
-Start a PowerShell session as Administrator. This can be done by right clicking on the PowerShell icon and selecting ‘Run as Administrator’, or by running the following command from any PowerShell or cmd session.
+Start a PowerShell session as Administrator. This can be done by running the following command from any PowerShell or cmd session.
 
 ``` powershell
 start-process powershell -Verb runAs
