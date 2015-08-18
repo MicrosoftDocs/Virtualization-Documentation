@@ -27,7 +27,7 @@ powershell.exe
 Make sure the title of the windows is "Administrator: Windows PowerShell". If it does not say administrator, run this command to run with admin priveledges:
 
 ``` powershell
-start-process powershell -runas
+start-process powershell -Verb runas
 ```
 
 Use the following command to download the setup script. The script can also be manually downloaded from this location - [Configuration Script](http://aka.ms/setupcontainers).
