@@ -380,7 +380,7 @@ $updateCheckScriptBlock = {
 
     # Run pre-update script if it exists
     if (Test-Path "$env:SystemDrive\Bits\PreUpdateScript.ps1") {
-        Invoke-Command "$env:SystemDrive\Bits\PreUpdateScript.ps1"
+        & "$env:SystemDrive\Bits\PreUpdateScript.ps1"
     }
 
     # Check if any updates are needed - leave a marker if there are
@@ -397,7 +397,7 @@ $updateCheckScriptBlock = {
 
     # Run post-update script if it exists
     if (Test-Path "$env:SystemDrive\Bits\PostUpdateScript.ps1") {
-        Invoke-Command "$env:SystemDrive\Bits\PostUpdateScript.ps1"
+        & "$env:SystemDrive\Bits\PostUpdateScript.ps1"
     }
 
     # Reboot if needed - otherwise shutdown because we are done
