@@ -23,7 +23,7 @@ Click on New > Compute > Virtual Machine > From Gallery
 
 On the ‘Choose an Image’ menu, select ‘Windows Server Container Preview’.
 
-![](media/AzureGallery.png)
+![](media/Create_vm4.png)
 
 Select a name for the Virtual Machine, select a size, user name and Password.
 
