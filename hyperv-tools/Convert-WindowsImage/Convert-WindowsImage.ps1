@@ -4087,9 +4087,10 @@ namespace WIM2VHD {
                 $Edition | ForEach-Object -Process {
 
                     $Edition = $PSItem
-    
-                    if ([Int32]::TryParse($Edition, [ref]$null)) {
-                        $openImage = $openWim[[Int32]$Edition]    
+
+                    $editionNumber = $null;
+                    if ([Int32]::TryParse($Edition, [ref]$editionNumber)) {
+                        $openImage = $openWim[[Int32]$editionNumber]
                     } else {
                         $openImage = $openWim[$Edition]
                     }    
