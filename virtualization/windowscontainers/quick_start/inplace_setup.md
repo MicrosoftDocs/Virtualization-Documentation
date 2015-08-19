@@ -46,3 +46,13 @@ The script will then begin to download and configure the Windows Server Containe
  With these items completed your system should be ready for Windows Server Containers. 
 
 ## Next Steps - Start Using Containers
+
+Now that you are running Windows Server Containers, jump to the following guides to begin working with Windows Server Containers and Windows Server Container images. 
+
+[Quick Start: Windows Server Containers and PowerShell](./manage_powershell.md)  
+[Quick Start: Windows Server Containers and Docker](./manage_docker.md) 
+
+-------------------
+
+[Back to Container Home](../containers_welcome.md)  
+[Known Issues for Current Release](../about/work_in_progress.md)
