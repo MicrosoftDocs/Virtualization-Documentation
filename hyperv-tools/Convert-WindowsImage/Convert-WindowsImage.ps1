@@ -32,7 +32,7 @@ Convert-WindowsImage
 
         <build>.<revision>.<architecture>.<branch>.<timestamp>_<skufamily>_<sku>_<language>.<extension>
         i.e.:
-        8250.0.amd64chk.winmain_win8beta.120217-1520_client_professional_en-us.vhd(x)
+        9200.0.amd64fre.winmain_win8rtm.1207257-1247_client_professional_en-us.vhd(x)
 
     .PARAMETER WorkingDirectory
         Specifies the directory where the VHD(X) file should be generated.  
@@ -585,7 +585,7 @@ Convert-WindowsImage
             $vhdMaxSize             = 2040GB                                       # Maximum size for VHD is ~2040GB.
             $vhdxMaxSize            = 64TB                                         # Maximum size for VHDX is ~64TB.
             $lowestSupportedVersion = New-Object Version "6.1"                     # The lowest supported *image* version; making sure we don't run against Vista/2k8.
-            $lowestSupportedBuild   = 8250                                         # The lowest supported *host* build.  Set to Win8 CP.
+            $lowestSupportedBuild   = 9200                                         # The lowest supported *host* build.  Set to Win8 CP.
             $transcripting          = $false
 
             # Since we use the VHDFormat in output, make it uppercase.
