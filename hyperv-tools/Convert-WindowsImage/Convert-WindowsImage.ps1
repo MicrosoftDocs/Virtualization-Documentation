@@ -38,6 +38,10 @@ Convert-WindowsImage
         Specifies the directory where the VHD(X) file should be generated.  
         If specified along with -VHDPath, the -WorkingDirectory value is ignored.
         The default value is the current directory ($pwd).
+        
+    .PARAMETER TempDirectory
+        Specifies the directory where the logs and ISO files should be placed.
+        The default value is the temp directory ($env:Temp).
 
     .PARAMETER SizeBytes
         The size of the Virtual Hard Disk to create.
@@ -183,6 +187,12 @@ Convert-WindowsImage
             [ValidateNotNullOrEmpty()]
             [ValidateScript({ Test-Path $_ })]
             $WorkingDirectory = $pwd,
+
+            [Parameter(ParameterSetName="SRC")]
+            [Alias("TempDir")]
+            [string]
+            [ValidateNotNullOrEmpty()]
+            $TempDirectory = $env:Temp,
 
             [Parameter(ParameterSetName="SRC")]
             [Alias("VHD")]
@@ -581,7 +591,7 @@ Convert-WindowsImage
             $myVersion              = "$($ScriptVersion.Major).$($ScriptVersion.Minor).$($ScriptVersion.Build).$($ScriptVersion.QFE).$($ScriptVersion.Flavor).$($ScriptVersion.Branch).$($ScriptVersion.Timestamp)"
             $scriptName             = "Convert-WindowsImage"                       # Name of the script, obviously.
             $sessionKey             = [Guid]::NewGuid().ToString()                 # Session key, used for keeping records unique between multiple runs.
-            $logFolder              = "$($env:Temp)\$($scriptName)\$($sessionKey)" # Log folder path.
+            $logFolder              = "$($TempDirectory)\$($scriptName)\$($sessionKey)" # Log folder path.
             $vhdMaxSize             = 2040GB                                       # Maximum size for VHD is ~2040GB.
             $vhdxMaxSize            = 64TB                                         # Maximum size for VHDX is ~64TB.
             $lowestSupportedVersion = New-Object Version "6.1"                     # The lowest supported *image* version; making sure we don't run against Vista/2k8.
@@ -3405,8 +3415,8 @@ namespace WIM2VHD
                     -ArgumentList $Arguments   `
                     -NoNewWindow               `
                     -Wait                      `
-                    -RedirectStandardOutput "$($env:temp)\$($scriptName)\$($sessionKey)\$($Executable)-StandardOutput.txt" `
-                    -RedirectStandardError  "$($env:temp)\$($scriptName)\$($sessionKey)\$($Executable)-StandardError.txt"  `
+                    -RedirectStandardOutput "$($TempDirectory)\$($scriptName)\$($sessionKey)\$($Executable)-StandardOutput.txt" `
+                    -RedirectStandardError  "$($TempDirectory)\$($scriptName)\$($sessionKey)\$($Executable)-StandardError.txt"  `
                     -Passthru
 
                 Write-W2VTrace "Return code was $($ret.ExitCode)."
