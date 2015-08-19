@@ -52,13 +52,13 @@ Update-ContainerHost()
     #
     # Stop service
     #
-    Write-Output "Stopping docker..."
+    Write-Output "Stopping Docker..."
     Stop-Service -Name $serviceName
 
     #
     # Update service
     #
-    Write-Output "Updating docker..."
+    Write-Output "Updating Docker..."
 
     if (Test-Path $DockerPath)
     {
@@ -76,7 +76,7 @@ Update-ContainerHost()
     #
     # Start service
     #
-    Write-Output "Starting docker..."
+    Write-Output "Starting Docker..."
     Start-Service -Name $serviceName
 }
 $global:AdminPriviledges = $false
@@ -95,18 +95,19 @@ Get-Nsmm
         [ValidateNotNullOrEmpty()]
         $WorkingDir = "$env:temp"
     )
-        
-    Write-Output "Downloading nsmm..."
+    
+    Write-Output "This script uses a third party tool: NSSM service manager. For more information, see https://nssm.cc/usage"       
+    Write-Output "Downloading NSSM..."
 
     $nssmUri = "http://nssm.cc/release/nssm-2.24.zip"            
     $nssmZip = "$($env:temp)\$(Split-Path $nssmUri -Leaf)"
             
-    $tempDirectory = "$($env:temp)\nsmm"
+    $tempDirectory = "$($env:temp)\nssm"
 
     wget -Uri "http://nssm.cc/release/nssm-2.24.zip" -Outfile $nssmZip -UseBasicParsing
     #TODO Check for errors
             
-    Write-Output "Extracting nssm from archive..."
+    Write-Output "Extracting NSSM from archive..."
     Expand-Archive -Path $nssmZip -DestinationPath $tempDirectory
     Remove-Item $nssmZip
 

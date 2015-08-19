@@ -367,7 +367,7 @@ Install-ContainerHost
 
     if ($imageCollection -eq $null)
     {
-        Write-Output "Installing container image from $WimPath (this may take a few minutes)..."
+        Write-Output "Installing Container OS image from $WimPath (this may take a few minutes)..."
 
         if (Test-Path $WimPath)
         {
@@ -386,7 +386,7 @@ Install-ContainerHost
             # We disable progress display because it kills performance for large downloads (at least on 64-bit PowerShell)
             #
             $ProgressPreference = 'SilentlyContinue'
-            Write-Output "Downloading WIM from $WimPath to $localWimPath..."
+            Write-Output "Downloading Container OS image (WIM) from $WimPath to $localWimPath..."
             wget -Uri $WimPath -OutFile $localWimPath -UseBasicParsing
             $ProgressPreference = 'Continue'   
 
@@ -418,8 +418,7 @@ Install-ContainerHost
     
     if ($baseImage -eq $null)
     {
-        Write-Error "No Base container image installed!"
-        throw
+        throw "No Container OS image installed!"
     }
 
     Write-Output "The following images are present on this machine:"
@@ -442,7 +441,7 @@ Install-ContainerHost
         {
             Test-Admin
 
-            Write-Output "Installing docker..."
+            Write-Output "Installing Docker..."
 
             if (Test-Path $DockerPath)
             {
@@ -471,7 +470,7 @@ Install-ContainerHost
             
             if (Test-Path "$($env:SystemRoot)\System32\nssm.exe")
             {
-                Write-Output "nsmm is already installed"
+                Write-Output "NSSM is already installed"
             }
             else
             {
@@ -491,7 +490,7 @@ Install-ContainerHost
 
             $runDockerDaemon | Out-File -FilePath $dockerDaemonScript -Encoding ASCII
                         
-            Write-Output "Configurating nssm for $serviceName service..."
+            Write-Output "Configuring NSSM for $serviceName service..."
             Start-Process -Wait "nssm" -ArgumentList "install $serviceName $($env:SystemRoot)\System32\cmd.exe /s /c $dockerDaemonScript"
             Start-Process -Wait "nssm" -ArgumentList "set $serviceName DisplayName Docker Daemon"
             Start-Process -Wait "nssm" -ArgumentList "set $serviceName Description The Docker Daemon provides management capabilities of containers for docker clients"
@@ -507,7 +506,7 @@ Install-ContainerHost
             #
             # Waiting for docker to come to steady state
             #
-            Write-Output "Waiting for daemon..."
+            Write-Output "Waiting for Docker daemon..."
             $dockerReady = $false
             $startTime = Get-Date
 
@@ -559,18 +558,19 @@ Get-Nsmm
         [ValidateNotNullOrEmpty()]
         $WorkingDir = "$env:temp"
     )
-        
-    Write-Output "Downloading nsmm..."
+    
+    Write-Output "This script uses a third party tool: NSSM service manager. For more information, see https://nssm.cc/usage"       
+    Write-Output "Downloading NSSM..."
 
     $nssmUri = "http://nssm.cc/release/nssm-2.24.zip"            
     $nssmZip = "$($env:temp)\$(Split-Path $nssmUri -Leaf)"
             
-    $tempDirectory = "$($env:temp)\nsmm"
+    $tempDirectory = "$($env:temp)\nssm"
 
     wget -Uri "http://nssm.cc/release/nssm-2.24.zip" -Outfile $nssmZip -UseBasicParsing
     #TODO Check for errors
             
-    Write-Output "Extracting nssm from archive..."
+    Write-Output "Extracting NSSM from archive..."
     Expand-Archive -Path $nssmZip -DestinationPath $tempDirectory
     Remove-Item $nssmZip
 
@@ -608,7 +608,7 @@ Test-Admin()
 $runDockerDaemon = @"
 
 @echo off
-set certs=%ProgramData%\docker\certs.d 
+set certs=%ProgramData%\docker\certs.d
 
 if exist %ProgramData%\docker (goto :run)
 mkdir %ProgramData%\docker

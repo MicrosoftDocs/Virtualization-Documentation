@@ -187,7 +187,7 @@ Cache-HostFiles
 
         if ($global:DeveloperMode)
         {
-            Write-Output "Copying VHD from $VhdPath to $global:localVhdPath..."
+            Write-Output "Copying $global:vhdBrandName from $VhdPath to $global:localVhdPath..."
             Copy-File -SourcePath $VhdPath -DestinationPath $global:localVhdPath
         }
         else
@@ -215,7 +215,7 @@ Cache-HostFiles
             
             Remove-Item $localZipPath
 
-            Write-Output "Moving VHD to $global:localVhdPath..."
+            Write-Output "Moving $global:vhdBrandName to $global:localVhdPath..."
             Move-Item -Path "$tempDirectory\$global:localVhdName" -Destination $global:localVhdPath
 
             Write-Output "Removing working directory..."
@@ -238,18 +238,18 @@ Cache-HostFiles
         if ($(Test-Path $global:localWimVhdPath) -and
             $(Test-Path $global:localWimVhdVersion))
         {
-            Write-Output "Windows Server Core WIM is already present on this system."
+            Write-Output "Windows Server Core Container OS Image (WIM) is already present on this system."
         }
         else
         {
             if ($(Test-Path $global:localWimVhdPath) -and 
                 -not (Test-Path $global:localWimVhdVersion))
             {
-                Write-Warning "Wrong version base WIM inside $global:localWimVhdPath..."
+                Write-Warning "Wrong version of Container OS Image (WIM) inside $global:localWimVhdPath..."
                 Remove-Item $global:localWimVhdPath
             }
 
-            Write-Output "Creating specialized Windows Server Core VHDX for the Containers Base Image WIM..."
+            Write-Output "Creating temporary VHDX for the Containers OS Image WIM..."
             $dataVhdx = New-VHD -Path $global:localWimVhdPath -Dynamic -SizeBytes 8GB -BlockSizeBytes 1MB
 
             $disk = $dataVhdx | Mount-VHD -PassThru
@@ -262,16 +262,16 @@ Cache-HostFiles
                 #
                 # Create single partition 
                 #
-                Write-Output "Creating single partition..."
+                Write-Verbose "Creating single partition..."
                 $partition = New-Partition -DiskNumber $disk.Number -Size $disk.LargestFreeExtent -MbrType IFS -IsActive
     
-                Write-Output "Formatting volume..."
+                Write-Verbose "Formatting volume..."
                 $volume = Format-Volume -Partition $partition -FileSystem NTFS -Force -Confirm:$false
 
                 $partition | Add-PartitionAccessPath -AssignDriveLetter
                 $driveRoot = $(Get-Partition -Volume $volume).AccessPaths[0].substring(0,2)
 
-                Write-Output "Copying WIM into VHD (this may take a few minutes)..."
+                Write-Output "Copying Container OS Image (WIM) into temporary VHDX (this may take a few minutes)..."
                 Copy-File -SourcePath $WimPath -DestinationPath "$driveRoot\$global:localWimName"
 
                 "This file indicates the web version of the image WIM VHD" | Out-File -FilePath $global:localWimVhdVersion  
@@ -405,11 +405,11 @@ Edit-BootVhd
 
     try
     {
-        Write-Output "Waiting for boot VHD mount mutex..."
+        Write-Output "VHD mount must be synchronized with other running instances of this script.  Waiting for exclusive access..."
         $mutex.WaitOne() | Out-Null;
-        Write-Output "Mutex acquired."
+        Write-Verbose "Mutex acquired."
         
-        Write-Output "Mounting VHD for offline processing..."
+        Write-Output "Mounting $global:vhdBrandName for offline processing..."
         $disk = $bootVhd | Mount-VHD -PassThru | Get-Disk        
     
         #
@@ -422,7 +422,7 @@ Edit-BootVhd
             #
             # Enable containers feature.  This saves a reboot
             #
-            Write-Output "Enabling containers feature on drive $driveLetter..."
+            Write-Output "Enabling Containers feature on drive $driveLetter..."
             Enable-WindowsOptionalFeature -FeatureName Containers -Path "$($driveLetter):"  | Out-Null
         }
         else
@@ -435,10 +435,10 @@ Edit-BootVhd
             #
             # Copy docker
             #
-            Write-Output "Copying Docker into VHD..."
+            Write-Output "Copying Docker into $global:vhdBrandName..."
             Copy-File -SourcePath $DockerPath -DestinationPath "$($driveLetter):\Windows\System32\docker.exe"
 
-            Write-Output "Copying nssm into VHD..."
+            Write-Output "Copying NSSM into $global:vhdBrandName..."
             Get-Nsmm -Destination "$($driveLetter):\Windows\System32"
         }
 
@@ -450,7 +450,7 @@ Edit-BootVhd
         #
         # Add Install-ContainerHost.ps1
         #
-        Write-Output "Copying Install-ContainerHost.ps1 into VHD..."
+        Write-Output "Copying Install-ContainerHost.ps1 into $global:vhdBrandName..."
         Copy-File -SourcePath $ScriptPath -DestinationPath "$($driveLetter):\Install-ContainerHost.ps1"
 
         #
@@ -460,8 +460,6 @@ Edit-BootVhd
         {
             Write-Output "Applying ZDP..."
             Add-WindowsPackage -PackagePath "$($global:localVhdRoot)\zdp.cab" -Path "$($driveLetter):"  | Out-Null
-            #Write-Output "Copying ZDP into VHD..."
-            #Copy-File -SourcePath "$global:localVhdRoot\zdp.cab" "$($driveLetter):\zdp.cab"
         }
     }
     catch 
@@ -538,11 +536,11 @@ New-ContainerHost()
     #
     # Create VM
     #
-    Write-Output "Creating VM $VmName..."
+    Write-Output "Creating VM ($VmName)..."
 
     $vm = New-VM -Name $VmName -VHDPath $bootVhd.Path -Generation 1
 
-    Write-Output "Configuring VM..."
+    Write-Output "Configuring VM $($vm.Name)..."
     $vm | Get-VMDvdDrive | Remove-VMDvdDrive
     $vm | Set-VM -DynamicMemory | Out-Null
     
@@ -569,7 +567,7 @@ New-ContainerHost()
     } 
     until (($vm | Get-VMIntegrationService |? Id -match "84EAAE65-2F2E-45F5-9BB5-0E857DC8EB47").PrimaryStatusDescription -eq "OK")
 
-    Write-Output "Heartbeat IC connected."
+    Write-Output "Connected to VM $($vm.Name) Heartbeat IC."
 
     if ($global:PowerShellDirectMode)
     {
@@ -595,7 +593,7 @@ New-ContainerHost()
         } 
         until ($psReady)
 
-        Write-Output "PowerShell Direct connected."
+        Write-Verbose "PowerShell Direct connected."
     
         $guestScriptBlock = 
         {
@@ -610,7 +608,7 @@ New-ContainerHost()
                 $ParameterSetName
                 )
 
-            Write-Output "Onlining disks..."
+            Write-Verbose "Onlining disks..."
             Get-Disk | ? IsOffline | Set-Disk -IsOffline:$false
 
             Write-Output "Completing container install..."
@@ -670,14 +668,13 @@ New-ContainerHost()
         }
     
         Write-Output "VM $($vm.Name) is ready for use as a container host."
-        Write-Output "This VM is not connected to the network. To connect it, run the following:"  
-        Write-Output "  Get-VM | Get-VMNetworkAdapter | Connect-VMNetworkAdapter -Switchname <switchname>"  
     }
     else
     {
         Write-Output "VM $($vm.Name) will be ready to use as a container host when Install-ContainerHost.ps1 completes execution inside the VM."
     }
-    
+
+    Write-Output "See http://msdn.microsoft.com/virtualization/windowscontainers for more information about using Containers."     
 }
 $global:AdminPriviledges = $false
 
@@ -695,18 +692,19 @@ Get-Nsmm
         [ValidateNotNullOrEmpty()]
         $WorkingDir = "$env:temp"
     )
-        
-    Write-Output "Downloading nsmm..."
+    
+    Write-Output "This script uses a third party tool: NSSM service manager. For more information, see https://nssm.cc/usage"       
+    Write-Output "Downloading NSSM..."
 
     $nssmUri = "http://nssm.cc/release/nssm-2.24.zip"            
     $nssmZip = "$($env:temp)\$(Split-Path $nssmUri -Leaf)"
             
-    $tempDirectory = "$($env:temp)\nsmm"
+    $tempDirectory = "$($env:temp)\nssm"
 
     wget -Uri "http://nssm.cc/release/nssm-2.24.zip" -Outfile $nssmZip -UseBasicParsing
     #TODO Check for errors
             
-    Write-Output "Extracting nssm from archive..."
+    Write-Output "Extracting NSSM from archive..."
     Expand-Archive -Path $nssmZip -DestinationPath $tempDirectory
     Remove-Item $nssmZip
 
@@ -864,7 +862,7 @@ try
     
     if (-not $(Approve-Eula))
     {
-        throw "The EULA must be accepted to continue."
+        throw "Read and accept the EULA to continue."
     }
     
     New-ContainerHost
