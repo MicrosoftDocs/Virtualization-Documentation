@@ -970,8 +970,7 @@ namespace WIM2VHD
 
         [FlagsAttribute]
         internal enum 
-        WimCreateFileDesiredAccess 
-            : uint 
+        WimCreateFileDesiredAccess : uint 
             {
             WimQuery                   = 0x00000000,
             WimGenericRead             = 0x80000000
@@ -982,8 +981,7 @@ namespace WIM2VHD
         /// </summary>
         [FlagsAttribute]
         internal enum
-        WimApplyFlags
-            : uint 
+        WimApplyFlags : uint 
             {
             /// <summary>
             /// No flags.
@@ -1089,29 +1087,25 @@ namespace WIM2VHD
         }
 
         internal enum 
-        WimCreationDisposition 
-            : uint 
+        WimCreationDisposition : uint 
             {
             WimOpenExisting            = 0x00000003,
         }
 
         internal enum 
-        WimActionFlags 
-            : uint 
+        WimActionFlags : uint 
             {
             WimIgnored                 = 0x00000000
         }
 
         internal enum 
-        WimCompressionType 
-            : uint 
+        WimCompressionType : uint 
             {
             WimIgnored                 = 0x00000000
         }
 
         internal enum 
-        WimCreationResult 
-            : uint 
+        WimCreationResult : uint 
             {
             WimCreatedNew              = 0x00000000,
             WimOpenedExisting          = 0x00000001
