@@ -263,7 +263,7 @@ The following steps require a PowerShell launched as Administrator on the host.
 
 ** Connect to the container via RDP **
 
-Finally you can connect to the Container using RDP by running: 
+Finally you can connect to the Container using RDP. In order to do that please run the following command on a system which has the Remote Desktop Client installed: 
 
 ```
 mstsc /v:[ContainerHostIP]:3390 /prompt
