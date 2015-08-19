@@ -5,6 +5,8 @@ title: Setup Windows Containers in Azure
 
 Before creating and managing Windows Containers the Windows Server 2016 Technical Preview environment must be prepared. With this preview release, two hands on experiences are available, one running in an Azure and one running in your on-premises environment. This guide will walk through configuring Windows container in a virtual machine hosted on Microsoft Azure. 
 
+> Note this document will be updated the use the Resource Manager Deployment model once the Windows Server Container Preview is available with the Resource Manager API.
+
 To run Windows Server Containers in a Hyper-V virtual machine instead, follow [these instructions](./container_setup.md).
 
 ## Start Using Azure Portal
