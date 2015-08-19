@@ -82,7 +82,7 @@ Ethernet adapter Ethernet 3:
 
 If you are working from an Azure VM instead of using `ipconfig` you will need to get the public IP address of the Azure Virtual Machine.
 
-![](media/newazure8.png)
+![](media/newazure9.png)
 
 
 ### Step 1 - Create a New Container

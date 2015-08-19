@@ -34,7 +34,7 @@ Select Optional Configuration > Endpoints > and enter an HTTP endpoint with a pr
 
 Select the `create` button to start the Virtual Machine deployment process.
 
-![](media/newazure5.png)
+![](media/newazure2.png)
 
 When the VM deployment is complete, select the connect button to start an RDP session with the Windows Server Container Host.
 
