@@ -360,9 +360,9 @@ Convert-WindowsImage
                         # By default, use 115,200.
                         $BaudRate.Value                = 115200
                         $parameterDictionary.Add("BaudRate", $BaudRate)
-                        break
                         #endregion BaudRate
-
+                        
+                        break
                     } 
         
                     "1394" 
@@ -534,9 +534,9 @@ Convert-WindowsImage
 
                         # Don't set a default key.
                         $parameterDictionary.Add("NewKey", $NewKey)
-                        break
                         #endregion NewKey
-
+                        
+                        break
                     }
         
                     # There's nothing to do for local debugging.
