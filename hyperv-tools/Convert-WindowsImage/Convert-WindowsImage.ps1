@@ -3288,24 +3288,8 @@ namespace WIM2VHD
             function
             Test-WindowsVersion 
             {
-              
-              # This breaks on Windows 10
-
-              # $os = Get-WmiObject -Class Win32_OperatingSystem
-              # $isWin8 = (($os.Version -ge 6.2) -and ($os.BuildNumber -ge $lowestSupportedBuild))
-
-              # New version check which works on Windows 10 an down-level
-                
-                $os = [System.Environment]::OSVersion.Version
-                
-                $isWin8 = (
-                    (
-                        $os -ge 6.2
-                    ) -and
-                    (
-                        $os.Build -ge $lowestSupportedBuild
-                    )
-                )
+                $os = Get-WmiObject -Class Win32_OperatingSystem
+                $isWin8 = [int]($os.BuildNumber) -ge [int]$lowestSupportedBuild
 
                 Write-W2VTrace "is Windows 8 or Higher? $isWin8"
                 return $isWin8
