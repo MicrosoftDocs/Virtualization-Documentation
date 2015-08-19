@@ -1,7 +1,7 @@
 ms.ContentId: d0a07897-5fd2-41a5-856d-dc8b499c6783
 title: Manage Windows Server Containers with PowerShell
 
-#Quick Start: Windows Server Containers and PowerShell
+# Quick Start: Windows Server Containers and PowerShell
 
 This article will walk through the fundamentals of managing Windows Server Containers with PowerShell. Items covered will include creating Windows Server Containers and Windows Server Container Images, removing Windows Server Containers and Container Images and finally deploying an application into a Windows Server Container. The lessons learned in this walkthrough should enable you to begin exploring deployment and management of Windows Server Containers using PowerShell.
 
@@ -66,7 +66,7 @@ Cmdlet          Test-ContainerImage                                1.0.0.0    Co
 ```
 
 
-Next make sure that your system has a valid IP Address using `ipconfig` and take note of this address for later use. 
+Next make sure that your system has a valid IP Address using `ipconfig` and take note of this address for later use.
 
 ```
 ipconfig
@@ -79,6 +79,11 @@ Ethernet adapter Ethernet 3:
    Link-local IPv6 Address . . . . . : fe80::a8c1:a3e:96b7:ffcb%5
    IPv4 Address. . . . . . . . . . . : 192.168.1.25
 ```
+
+If you are working from an Azure VM instead of using `ipconfig` you will need to get the public IP address of the Azure Virtual Machine.
+
+![](media/newazure8.png)
+
 
 ### Step 1 - Create a New Container
 
@@ -363,7 +368,9 @@ if (!(Get-NetFirewallRule | where {$_.Name -eq "TCP80"})) {
 Next if you are working from Azure and have not already created a Virtual Machine endpoint you will need to create one now. For more information on Azure VM Endpoints see this article: [Set up Azure VM Endpoints]( https://azure.microsoft.com/en-us/documentation/articles/virtual-machines-set-up-endpoints/).
 
 ### Step 6 – Access the Container Hosted Website
-With the web server container created, you can now checkout the application hosted in the container. To do so, open up a browser on different machine and enter `http://containerhost-ipaddress`. Notice here that you will be browsing to the IP Address of the Container Host and not the container itself.  If everything has been correctly configured, you will see the nginx welcome page.
+With the web server container created, you can now checkout the application hosted in the container. To do so, open up a browser on different machine and enter `http://containerhost-ipaddress`. Notice here that you will be browsing to the IP Address of the Container Host and not the container itself. If you are working from an Azure Virtual Machine this will be the public IP address or Cloud Service name. 
+
+If everything has been correctly configured, you will see the nginx welcome page.
 
 ![](media/nginx.png)
 
