@@ -17,16 +17,21 @@ Check out resources available to the user community. There is also a lot to see 
 * [Azure forum](http://azure.microsoft.com/en-us/support/forums/)
 
 
-## Featured content from Build 
+## Featured content
+* [Containers: Docker, Windows and Trends](http://azure.microsoft.com/blog/2015/08/17/containers-docker-windows-and-trends/)
 
-* [Day One Keynote Presentation](http://channel9.msdn.com/Events/Build/2015/KEY01)
-* [Windows Containers: What, Why and How](http://channel9.msdn.com/events/Build/2015/2-704)
-* [Thinking in Containers: Building a Scalable, Next-Gen Application with Docker on Azure](http://channel9.msdn.com/events/Build/2015/2-683)
-* [Deploying Complex Open Source Workloads on Azure](http://channel9.msdn.com/Events/Build/2015/2-732)
 
 ## Blogs 
+* [Channel 9 - The Containers Channel](https://channel9.msdn.com/Blogs/containers)
 * [Server & Cloud blog](http://blogs.technet.com/b/server-cloud/)
 * [Azure blog](http://azure.microsoft.com/blog/)
+
+
+## Presentations
+* [Build 2015 - Day One Keynote Presentation](http://channel9.msdn.com/Events/Build/2015/KEY01)
+* [Build 2015 - Windows Containers: What, Why and How](http://channel9.msdn.com/events/Build/2015/2-704)
+* [Build 2015 - Thinking in Containers: Building a Scalable, Next-Gen Application with Docker on Azure](http://channel9.msdn.com/events/Build/2015/2-683)
+* [Build 2015 - Deploying Complex Open Source Workloads on Azure](http://channel9.msdn.com/Events/Build/2015/2-732)
 
 ## Articles 
 * [Virtual Machines and Containers in Azure](https://azure.microsoft.com/en-us/documentation/articles/virtual-machines-vms-containers/)
