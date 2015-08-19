@@ -284,6 +284,10 @@ After the website has been updated, navigate back to `http://containerhost-ipadd
 
 ![](media/hello.png)
 
+## Video Walkthrough
+
+<iframe src="https://channel9.msdn.com/Blogs/containers/Quick-Start-Configure-Windows-Server-Containers-on-a-Local-System/player" width="960" height="540" allowFullScreen="true" frameBorder="0" scrolling="no"></iframe>
+
 -----------------------------------
 [Back to Container Home](../containers_welcome.md)   
 [Known Issues for Current Release](../about/work_in_progress.md)
