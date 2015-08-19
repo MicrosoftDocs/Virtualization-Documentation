@@ -215,7 +215,7 @@ Cache-HostFiles
             #
             # Expand .zip file, remove .zip file, move .vhd to final location, and remove temporary folder
             #
-            Write-Output "Creating working directory..."
+            Write-Verbose "Creating working directory..."
             $tempDirectory = New-Item -ItemType Directory -Force -Path "$global:localVhdRoot\$global:imageBrand"
                        
             Write-Output "Expanding archive..."
@@ -738,8 +738,9 @@ Get-Nsmm
     $nssmUri = "http://nssm.cc/release/nssm-2.24.zip"            
     $nssmZip = "$($env:temp)\$(Split-Path $nssmUri -Leaf)"
             
-    $tempDirectory = "$($env:temp)\nssm"
-
+    Write-Verbose "Creating working directory..."
+    $tempDirectory = New-Item -ItemType Directory -Force -Path "$($env:temp)\nssm"     
+            
     wget -Uri "http://nssm.cc/release/nssm-2.24.zip" -Outfile $nssmZip -UseBasicParsing
     #TODO Check for errors
             
@@ -750,9 +751,6 @@ Get-Nsmm
     }
     else
     {
-        Write-Output "Creating working directory..."
-        $tempDirectory = New-Item -ItemType Directory -Force -Path $tempDirectory            
-
         Expand-ArchivePrivate -Path $nssmZip -DestinationPath $tempDirectory
     }
     Remove-Item $nssmZip
