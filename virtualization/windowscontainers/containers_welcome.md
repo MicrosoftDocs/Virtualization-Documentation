@@ -12,10 +12,11 @@ The following table list topics that provide more information about Windows cont
 		<td ><center>![](media/try.png)</center></td>
 		<td>		
               <p><strong>Get started with Windows Containers</strong></p>
-              <p>The following resources will walk you through the deployment, creation, and simple management of a Windows Container.</p>
+              <p>The following resources will walk you through the deployment, creation, and simple management of Windows Containers.</p>
 			<ul>
 			  	<li class="unordered">[Get started with Windows Server Containers in Windows Azure](./quick_start/azure_setup.md)<br /><br /></li>
-				<li class="unordered">[Get started with Windows Server Containers Locally](./quick_start/container_setup.md)<br /><br /></li>
+				<li class="unordered">[Create a Windows Server Container host in a new Hyper-V Virtual Machine](./quick_start/container_setup.md)<br /><br /></li>
+				<li class="unordered">[Configure Windows Server Containers on an existing Windows Server TP3 Core hnstallation](./quick_start/inplace_setup.md)<br /><br /></li>
                 <li class="unordered">[Quick Start: Windows Server Containers and PowerShell](./quick_start/manage_powershell.md)<br /><br /></li>
 				<li class="unordered">[Quick Start: Windows Server Containers and Docker](./quick_start/manage_docker.md)<br /><br /></li>		
 			</ul>
