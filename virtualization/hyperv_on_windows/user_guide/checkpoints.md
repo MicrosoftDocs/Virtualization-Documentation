@@ -37,10 +37,10 @@ The following table shows when to use production checkpoints or standard checkpo
 
 |   **Virtual Machine State** | **Production Checkpoint** |  **Standard Checkpoint** |
 |:-----|:-----|:-----|
-|**Running with Integration Services**| Yes | Yes 
-|**Running without Integration Services** | No | Yes 
-|**Offline - no saved state**| Yes | Yes 
-|**Offline - with saved state**| No | Yes 
+|**Running with Integration Services**| Yes | Yes |
+|**Running without Integration Services** | No | Yes | 
+|**Offline - no saved state**| Yes | Yes |
+|**Offline - with saved state**| No | Yes |
 |**Paused** | No| Yes |
 
 To see the difference between Standard and Production checkpoints, look at the [checkpoints walkthrough](../quick_start/walkthrough_checkpoints.md).

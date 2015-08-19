@@ -2,9 +2,10 @@ ms.ContentId: 7561B149-A147-4F71-9840-6AE149B9DED5
 title: Supported Windows Guest Operating Systems
 
 
-# Supported Windows guests
+# Supported Windows guests 
 This article lists the Windows operating systems supported as guests in Hyper-V on Windows, as well provides information about integration services. 
 
+> Note: You can also run Windows 10 as a guest operating system on Windows 8.1 and Windows Server 2012 R2 hosts.
 
 ## What does support mean? 
 Support means Microsoft has tested these host/guest combinations.  Issues with these combinations may receive attention from Product Support Services.
@@ -15,9 +16,12 @@ Microsoft provides support for guest operating systems in the following manner:
 * For issues found in other operating systems, Microsoft submits the issue to the multi-vendor support community, [TSANet](http://www.tsanet.org/).
 
 ## What are integration services and why do they matter?
-Hyper-V includes integration services for supported guest operating systems.  Integration services improves the integration between the host system and the virtual machine. Some operating systems have the integration services built-in, while others provide integration services through Windows Update.
+Hyper-V includes integration services for supported guest operating systems.  Integration services improve interaction between the host system and the virtual machine.  
+
+Some operating systems (including different versions of Windows) have the integration services built-in, while others provide integration services through Windows Update.
 
 ## Supported Windows Server guest operating systems
+
 
  |  Guest operating system  			|  Maximum number of virtual processors  	|  Integration Services  	|  Notes  	| 	 	| 
  | -----				 				| ----- 									| ----- 					| ----- 	| ----- |
@@ -32,6 +36,7 @@ Hyper-V includes integration services for supported guest operating systems.  In
  
 ## Supported Windows guest operating systems
 
+
  |  Guest operating system |  Maximum number of virtual processors |  Integration Service  |  Notes  | 	|
  | ----- | ----- | ----- | ----- | ----- |
  | Windows 10 | 32 | Built-in |  | 	|
@@ -40,11 +45,12 @@ Hyper-V includes integration services for supported guest operating systems.  In
  | Windows 7 with Service Pack 1 (SP 1) | 4 | Upgrade the integration services after you set up the operating system in the virtual machine. | Ultimate, Enterprise, and Professional editions (32-bit and 64-bit). | 	|
  | Windows 7 | 4 | Upgrade the integration services after you set up the operating system in the virtual machine. | Ultimate, Enterprise, and Professional editions (32-bit and 64-bit). | 	|
  | Windows Vista with Service Pack 2 (SP2) | 2 | Install the integration services after you set up the operating system in the virtual machine. | Business, Enterprise, and Ultimate, including N and KN editions. |  	|
+ 
 
 ## Linux and Free BSD
 
-Hyper-V also has support for various Linux and FreeBSD distributions:
-| Operating system | |
+
+| Guest operating system |  |
 | -----|------|
 | [CentOS and Red Hat Enterprise Linux ](https://technet.microsoft.com/library/dn531026.aspx) | |
 | [Debian virtual machines on Hyper-V](https://technet.microsoft.com/library/dn614985.aspx) | |
@@ -54,4 +60,3 @@ Hyper-V also has support for various Linux and FreeBSD distributions:
 | [FreeBSD](https://technet.microsoft.com/library/dn848318.aspx) | |
 
 There are caveats around specific kernel versions. For more information, including support information on past versions of Hyper-V, see [Linux and FreeBSD Virtual Machines on Hyper-V](https://technet.microsoft.com/library/dn531030.aspx).
-
