@@ -135,8 +135,6 @@ Stop the container by providing the container name to the `Stop-Container` comma
 Stop-Container -Name "MyContainer"
 ```
 
-> You can find the available container cmdlets using `Get-Command -Module Containers`.
-
 ### Step 2 - Create a New Container Image
 
 An image can now be made from this container. This image will behave like a snapshot of the container and can be re-deployed many times.
