@@ -32,7 +32,7 @@ Convert-WindowsImage
 
         <build>.<revision>.<architecture>.<branch>.<timestamp>_<skufamily>_<sku>_<language>.<extension>
         i.e.:
-        9200.0.amd64fre.winmain_win8rtm.1207257-1247_client_professional_en-us.vhd(x)
+        9200.0.amd64fre.winmain_win8rtm.120725-1247_client_professional_en-us.vhd(x)
 
     .PARAMETER WorkingDirectory
         Specifies the directory where the VHD(X) file should be generated.  
