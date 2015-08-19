@@ -26,7 +26,6 @@ To begin the walk through, log into your Windows Server Container Host System, y
 ![](media/cmd.png)
 
 Start a PowerShell session by typing `powershell`. You will know that you are in a PowerShell session when the prompt changes from `C:\directory>` to `PS C:\directory>`.
-
 ```
 C:\> powershell
 Windows PowerShell
@@ -34,8 +33,7 @@ Copyright (C) 2015 Microsoft Corporation. All rights reserved.
 
 PS C:\>
 ```
-Next make sure that your system has a valid IP Address using `ipconfig` and take note of this address for later use. 
-
+Next make sure that your system has a valid IP Address using `ipconfig` and take note of this address for later use.
 ```
 ipconfig
 
@@ -47,6 +45,10 @@ Ethernet adapter Ethernet 3:
    Link-local IPv6 Address . . . . . : fe80::a8c1:a3e:96b7:ffcb%5
    IPv4 Address. . . . . . . . . . . : 192.168.1.25
 ```
+
+If you are working from an Azure VM instead of using `ipconfig` you will need to get the public IP address of the Azure Virtual Machine.
+
+![](media/newazure8.png)
 
 ### Step 1 - Create a New Container
 
@@ -62,7 +64,7 @@ windowsservercore   latest              9eca9231f4d4        30 hours ago        
 windowsservercore   10.0.10254.0        9eca9231f4d4        30 hours ago        9.613 GB
 ```
 
-Now, use `docker run` To create a new Windows Server Container. This command instructs the Docker daemon to create a new container named ‘dockerdemo’ from the image ‘windowsservercore’ and open an interactive (-it) console session (cmd) with the container.
+Now, use `docker run` To create a new Windows Server Container. This command as seen below will instruct the Docker daemon to create a new container named ‘dockerdemo’ from the image ‘windowsservercore’ and open an interactive (-it) console session (cmd) with the container.
 
 ``` PowerShell
 docker run -it --name dockerdemo windowsservercore cmd
@@ -78,7 +80,7 @@ ipconfig > c:\ipconfig.txt
 You can read the contents of the file to ensure the command completed successfully. Notice that the IP address contained in the text file matches that of the container.
 
 ``` PowerShell
-Type c:\ipconfig.txt
+type c:\ipconfig.txt
 
 Ethernet adapter vEthernet (Virtual Switch-94a3e12ad262b3059e08edc4d48fca3c8390e38c3b219023d4a0a4951883e658-0):
 
@@ -95,7 +97,7 @@ Now that the container has been modified, run the following to stop the console 
 exit
 ```
 
-Finally to see a list of containers on the container host use the `docker ps –a` command. Notice in the output a container named 'dockerdemo' has been created.
+Finally to see a list of containers on the container host use the `docker ps –a` command. Notice from the output that a container named 'dockerdemo' has been created.
 
 ``` PowerShell
 docker ps -a
@@ -264,12 +266,13 @@ start nginx
 ```
 ### Step 5 – Access the Container Hosted Website
 
-With the web server container created, you can now checkout the application hosted in the container. To do so, open up a browser on different machine and enter `http://containerhost-ipaddress`. Notice here that you will be browsing to the IP Address of the Container Host and not the container itself.  If everything has been correctly configured, you will see the nginx welcome page.
+With the web server container created, you can now checkout the application hosted in the container. To do so, open up a browser on different machine and enter `http://containerhost-ipaddress`. Notice here that you will be browsing to the IP Address of the Container Host and not the container itself. If you are working from an Azure Virtual Machine this will be the public IP address or Cloud Service name. 
 
+If everything has been correctly configured, you will see the nginx welcome page.
 
 ![](media/nginx.png)
 
-At this point, feel free to update the website. Copy in your own sample website, or run the following command to replace the nginx welcome page with a ‘Hello World’ web page.
+At this point, feel free to update the website. Copy in your own sample website, or run the following command in the container to replace the nginx welcome page with a ‘Hello World’ web page.
 
 ```powershell
 powershell wget -uri 'https://raw.githubusercontent.com/Microsoft/Virtualization-Documentation/master/doc-site/virtualization/windowscontainers/quick_start/SampleFiles/index.html' -OutFile "C:\nginx\nginx-1.9.3\html\index.html"
