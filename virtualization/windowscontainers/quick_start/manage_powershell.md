@@ -382,7 +382,7 @@ Enter-PSSession -ContainerId $webservercontainer.ContainerId -RunAsAdministrator
 Then run the following command to download and replace the index.html file.
 
 ``` powershell
-"<html><head><body><p>Hello World From a Windows Server Container!!!</p></body></head><html>” | out-file c:\nginx-1.9.3\html\index.html
+wget -uri 'https://raw.githubusercontent.com/Microsoft/Virtualization-Documentation/master/doc-site/virtualization/windowscontainers/quick_start/SampleFiles/index.html' -OutFile "C:\nginx-1.9.3\html\index.html"
 ```
    
 After the website has been updated, navigate back to `http://containerhost-ipaddress`.

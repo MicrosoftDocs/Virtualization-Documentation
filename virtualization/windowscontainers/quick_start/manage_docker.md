@@ -277,7 +277,7 @@ If everything has been correctly configured, you will see the nginx welcome page
 At this point, feel free to update the website. Copy in your own sample website, or run the following command in the container to replace the nginx welcome page with a ‘Hello World’ web page.
 
 ```powershell
-"<html><head><body><p>Hello World From a Windows Server Container!!!</p></body></head><html>” | out-file c:\nginx-1.9.3\html\index.html
+powershell wget -uri 'https://raw.githubusercontent.com/Microsoft/Virtualization-Documentation/master/doc-site/virtualization/windowscontainers/quick_start/SampleFiles/index.html' -OutFile "C:\nginx\nginx-1.9.3\html\index.html"
 ```
 
 After the website has been updated, navigate back to `http://containerhost-ipaddress`.
