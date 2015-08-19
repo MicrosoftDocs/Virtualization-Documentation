@@ -33,7 +33,7 @@ Copyright (C) 2015 Microsoft Corporation. All rights reserved.
 
 PS C:\>
 ```
-> This quick start will be focused on Docker command however some steps such as managing firewall rules and copying files will be run with PowerShell commands. Work through this walkthrough from a PowerShell session.
+> This quick start will be focused on Docker commands however some steps such as managing firewall rules and copying files will be run with PowerShell commands. Work through this walkthrough from a PowerShell session.
 
 Next make sure that your system has a valid IP Address using `ipconfig` and take note of this address for later use.
 ```
