@@ -4396,10 +4396,12 @@ namespace WIM2VHD
                 {
 
                     $Edition = $PSItem
-    
-                    if ([Int32]::TryParse($Edition, [ref]$null)) 
+
+                    $editionNumber = $null;
+
+                    if ([Int32]::TryParse($Edition, [ref]$editionNumber)) 
                     {
-                        $openImage = $openWim[[Int32]$Edition]    
+                        $openImage = $openWim[[Int32]$editionNumber]
                     } 
                     else 
                     {
