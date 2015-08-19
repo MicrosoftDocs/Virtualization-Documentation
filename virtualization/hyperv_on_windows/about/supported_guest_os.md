@@ -22,6 +22,7 @@ Some operating systems (including different versions of Windows) have the integr
 
 ## Supported Windows Server guest operating systems
 
+For Windows 10 Hyper-V Hosts:
 
  |  Guest operating system  			|  Maximum number of virtual processors  	|  Integration Services  	|  Notes  	| 	 	| 
  | -----				 				| ----- 									| ----- 					| ----- 	| ----- |
@@ -36,6 +37,7 @@ Some operating systems (including different versions of Windows) have the integr
  
 ## Supported Windows guest operating systems
 
+For Windows 10 Hyper-V Hosts:
 
  |  Guest operating system |  Maximum number of virtual processors |  Integration Service  |  Notes  | 	|
  | ----- | ----- | ----- | ----- | ----- |
@@ -46,9 +48,16 @@ Some operating systems (including different versions of Windows) have the integr
  | Windows 7 | 4 | Upgrade the integration services after you set up the operating system in the virtual machine. | Ultimate, Enterprise, and Professional editions (32-bit and 64-bit). | 	|
  | Windows Vista with Service Pack 2 (SP2) | 2 | Install the integration services after you set up the operating system in the virtual machine. | Business, Enterprise, and Ultimate, including N and KN editions. |  	|
  
+ Windows 10 is a guest operating system on Windows 8.1 and Windows Server 2012 R2 Hyper-V hosts.
 
 ## Linux and Freed BSD
 
+Hyper-V has support for various Linux and FreeBSD distributions:
+| Operating system | |
+
+## Linux and Free BSD
+
+For Windows 10 Hyper-V Hosts:
 
 | Guest operating system |  |
 | -----|------|
