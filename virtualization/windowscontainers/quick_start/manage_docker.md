@@ -25,8 +25,7 @@ To begin the walk through, log into your Windows Server Container Host System, y
 
 ![](media/cmd.png)
 
-Start a PowerShell session by typing `powershell`. You will know that you are in a PowerShell session when the prompt changes from `C:\directory>` to `PS C:\directory>`. Even though this walkthrough is focused on Docker commands there will be some native Windows actions performed that will need to be run from a PowerShell session such as creating firewall rules. 
-
+Start a PowerShell session by typing `powershell`. You will know that you are in a PowerShell session when the prompt changes from `C:\directory>` to `PS C:\directory>`.
 ```
 C:\> powershell
 Windows PowerShell
