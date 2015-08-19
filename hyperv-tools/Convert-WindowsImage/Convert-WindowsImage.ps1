@@ -284,7 +284,8 @@ Convert-WindowsImage
 
         # Begin Dynamic Parameters
         # Create the parameters for the various types of debugging.
-        DynamicParam {
+        DynamicParam 
+        {
 
             # Set up the dynamic parameters.
             # Dynamic parameters are only available if certain conditions are met, so they'll only show up
@@ -298,10 +299,13 @@ Convert-WindowsImage
             (
                 Test-Path -Path "Variable:\EnableDebugger"
             )
+            
             {
-                switch ($EnableDebugger) {
+                switch ($EnableDebugger) 
+                {
        
-                    "Serial" {
+                    "Serial" 
+                    {
                         #region ComPort
         
                         $ComPortAttr                   = New-Object System.Management.Automation.ParameterAttribute
@@ -361,7 +365,8 @@ Convert-WindowsImage
 
                     } 
         
-                    "1394" {
+                    "1394" 
+                    {
                         $ChannelAttr                   = New-Object System.Management.Automation.ParameterAttribute
                         $ChannelAttr.ParameterSetName  = "__AllParameterSets"
                         $ChannelAttr.Mandatory         = $false
@@ -390,7 +395,8 @@ Convert-WindowsImage
                         break
                     } 
         
-                    "USB" {
+                    "USB" 
+                    {
                         $TargetAttr                    = New-Object System.Management.Automation.ParameterAttribute
                         $TargetAttr.ParameterSetName   = "__AllParameterSets"
                         $TargetAttr.Mandatory          = $false
@@ -413,7 +419,8 @@ Convert-WindowsImage
                         break
                     }
         
-                    "Network" {
+                    "Network" 
+                    {
                         #region IP
                         $IpAttr                        = New-Object System.Management.Automation.ParameterAttribute
                         $IpAttr.ParameterSetName       = "__AllParameterSets"
@@ -535,7 +542,8 @@ Convert-WindowsImage
                     # There's nothing to do for local debugging.
                     # Synthetic debugging is not yet implemented.
         
-                    default {
+                    default 
+                    {
                        break
                     }
                 }
@@ -544,7 +552,8 @@ Convert-WindowsImage
             return $parameterDictionary   
         }
 
-        Begin {
+        Begin 
+        {
             ##########################################################################################
             #                             Constants and Pseudo-Constants
             ##########################################################################################
@@ -552,7 +561,8 @@ Convert-WindowsImage
             $PARTITION_STYLE_GPT    = 0x00000001                                   # Just in case...
 
             # Version information that can be populated by timebuild.
-            $ScriptVersion = DATA {
+            $ScriptVersion = DATA 
+            {
 
             ConvertFrom-StringData -StringData @"
         Major     = 10
@@ -622,13 +632,15 @@ using System.Xml.Linq;
 using System.Xml.XPath;
 using Microsoft.Win32.SafeHandles;
 
-namespace WIM2VHD {
+namespace WIM2VHD 
+{
 
     /// <summary>
     /// P/Invoke methods and associated enums, flags, and structs.
     /// </summary>
     public class
-    NativeMethods {
+    NativeMethods 
+    {
 
         #region Delegates and Callbacks
         #region WIMGAPI
@@ -658,11 +670,13 @@ namespace WIM2VHD {
         public static void
         RegisterMessageCallback(
             WimFileHandle hWim,
-            WimMessageCallback callback) {
+            WimMessageCallback callback) 
+            {
 
             uint _callback = NativeMethods.WimRegisterMessageCallback(hWim, callback, IntPtr.Zero);
             int rc = Marshal.GetLastWin32Error();
-            if (0 != rc) {
+            if (0 != rc) 
+            {
                 // Throw an exception if something bad happened on the Win32 end.
                 throw
                     new InvalidOperationException(
@@ -676,11 +690,13 @@ namespace WIM2VHD {
         public static void 
         UnregisterMessageCallback(
             WimFileHandle hWim,
-            WimMessageCallback registeredCallback) {
+            WimMessageCallback registeredCallback) 
+            {
 
             bool status = NativeMethods.WimUnregisterMessageCallback(hWim, registeredCallback);
             int rc = Marshal.GetLastWin32Error();
-            if (!status) {
+            if (!status) 
+            {
                 throw
                     new InvalidOperationException(
                         string.Format(
@@ -745,13 +761,15 @@ namespace WIM2VHD {
         /// <summary>
         /// Indicates the version of the virtual disk to create.
         /// </summary>
-        public enum CreateVirtualDiskVersion : int {
+        public enum CreateVirtualDiskVersion : int 
+        {
             VersionUnspecified         = 0x00000000,
             Version1                   = 0x00000001,
             Version2                   = 0x00000002
         }
 
-        public enum OpenVirtualDiskVersion : int {
+        public enum OpenVirtualDiskVersion : int 
+        {
             VersionUnspecified         = 0x00000000,
             Version1                   = 0x00000001,
             Version2                   = 0x00000002
@@ -760,13 +778,15 @@ namespace WIM2VHD {
         /// <summary>
         /// Contains the version of the virtual hard disk (VHD) ATTACH_VIRTUAL_DISK_PARAMETERS structure to use in calls to VHD functions.
         /// </summary>
-        public enum AttachVirtualDiskVersion : int {
+        public enum AttachVirtualDiskVersion : int 
+        {
             VersionUnspecified         = 0x00000000,
             Version1                   = 0x00000001,
             Version2                   = 0x00000002
         }
 
-        public enum CompactVirtualDiskVersion : int {
+        public enum CompactVirtualDiskVersion : int 
+        {
             VersionUnspecified         = 0x00000000,
             Version1                   = 0x00000001
         }
@@ -774,7 +794,8 @@ namespace WIM2VHD {
         /// <summary>
         /// Contains the type and provider (vendor) of the virtual storage device.
         /// </summary>
-        public enum VirtualStorageDeviceType : int {
+        public enum VirtualStorageDeviceType : int 
+        {
             /// <summary>
             /// The storage type is unknown or not valid.
             /// </summary>
@@ -797,7 +818,8 @@ namespace WIM2VHD {
         /// Contains virtual hard disk (VHD) open request flags.
         /// </summary>
         [Flags]
-        public enum OpenVirtualDiskFlags {
+        public enum OpenVirtualDiskFlags 
+        {
             /// <summary>
             /// No flags. Use system defaults.
             /// </summary>
@@ -820,7 +842,8 @@ namespace WIM2VHD {
         /// Contains the bit mask for specifying access rights to a virtual hard disk (VHD).
         /// </summary>
         [Flags]
-        public enum VirtualDiskAccessMask {
+        public enum VirtualDiskAccessMask 
+        {
             /// <summary>
             /// Only Version2 of OpenVirtualDisk API accepts this parameter
             /// </summary>
@@ -882,7 +905,8 @@ namespace WIM2VHD {
         /// Contains virtual hard disk (VHD) creation flags.
         /// </summary>
         [Flags]
-        public enum CreateVirtualDiskFlags {
+        public enum CreateVirtualDiskFlags 
+        {
             /// <summary>
             /// Contains virtual hard disk (VHD) creation flags.
             /// </summary>
@@ -900,7 +924,8 @@ namespace WIM2VHD {
         /// Contains virtual disk attach request flags.
         /// </summary>
         [Flags]
-        public enum AttachVirtualDiskFlags {
+        public enum AttachVirtualDiskFlags 
+        {
             /// <summary>
             /// No flags. Use system defaults.
             /// </summary>
@@ -926,12 +951,14 @@ namespace WIM2VHD {
         }
 
         [Flags]
-        public enum DetachVirtualDiskFlag {
+        public enum DetachVirtualDiskFlag 
+        {
             None                       = 0x00000000
         }
 
         [Flags]
-        public enum CompactVirtualDiskFlags {
+        public enum CompactVirtualDiskFlags 
+        {
             None                       = 0x00000000,
             NoZeroScan                 = 0x00000001,
             NoBlockMoves               = 0x00000002
@@ -944,7 +971,8 @@ namespace WIM2VHD {
         [FlagsAttribute]
         internal enum 
         WimCreateFileDesiredAccess 
-            : uint {
+            : uint 
+            {
             WimQuery                   = 0x00000000,
             WimGenericRead             = 0x80000000
         }
@@ -955,7 +983,8 @@ namespace WIM2VHD {
         [FlagsAttribute]
         internal enum
         WimApplyFlags
-            : uint {
+            : uint 
+            {
             /// <summary>
             /// No flags.
             /// </summary>
@@ -1010,7 +1039,8 @@ namespace WIM2VHD {
             WimApplyFlagsMountLegacy   = 0x00000800
         }
 
-        public enum WimMessage : uint {
+        public enum WimMessage : uint 
+        {
             WIM_MSG                    = WM_APP + 0x1476,                
             WIM_MSG_TEXT,
             ///<summary>
@@ -1060,25 +1090,29 @@ namespace WIM2VHD {
 
         internal enum 
         WimCreationDisposition 
-            : uint {
+            : uint 
+            {
             WimOpenExisting            = 0x00000003,
         }
 
         internal enum 
         WimActionFlags 
-            : uint {
+            : uint 
+            {
             WimIgnored                 = 0x00000000
         }
 
         internal enum 
         WimCompressionType 
-            : uint {
+            : uint 
+            {
             WimIgnored                 = 0x00000000
         }
 
         internal enum 
         WimCreationResult 
-            : uint {
+            : uint 
+            {
             WimCreatedNew              = 0x00000000,
             WimOpenedExisting          = 0x00000001
         }
@@ -1090,7 +1124,8 @@ namespace WIM2VHD {
         #region Structs
 
         [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Unicode)]
-        public struct CreateVirtualDiskParameters {
+        public struct CreateVirtualDiskParameters 
+        {
             /// <summary>
             /// A CREATE_VIRTUAL_DISK_VERSION enumeration that specifies the version of the CREATE_VIRTUAL_DISK_PARAMETERS structure being passed to or from the virtual hard disk (VHD) functions.
             /// </summary>
@@ -1158,13 +1193,15 @@ namespace WIM2VHD {
         }
 
         [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Unicode)]
-        public struct VirtualStorageType {
+        public struct VirtualStorageType 
+        {
             public VirtualStorageDeviceType DeviceId;
             public Guid VendorId;
         }
 
         [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Unicode)]
-        public struct SecurityDescriptor {
+        public struct SecurityDescriptor 
+        {
             public byte revision;
             public byte size;
             public short control;
@@ -1176,27 +1213,31 @@ namespace WIM2VHD {
 
         [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Unicode)]
         public struct
-        OpenVirtualDiskParameters {
+        OpenVirtualDiskParameters 
+        {
             public OpenVirtualDiskVersion Version;
             public bool GetInfoOnly;
             public Guid ResiliencyGuid;
         }
 
         [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Unicode)]
-        public struct VirtualDiskProgress {
+        public struct VirtualDiskProgress 
+        {
             public int OperationStatus;
             public ulong CurrentValue;
             public ulong CompletionValue;
         }
 
         [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Unicode)]
-        public struct AttachVirtualDiskParameters {
+        public struct AttachVirtualDiskParameters 
+        {
             public AttachVirtualDiskVersion Version;
             public int Reserved;
         }
 
         [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Unicode)]
-        public struct CompactVirtualDiskParameters {
+        public struct CompactVirtualDiskParameters 
+        {
             public CompactVirtualDiskVersion Version;
             public uint Reserved;
         }
@@ -1305,17 +1346,21 @@ namespace WIM2VHD {
 
         #region SafeHandle wrappers for WimFileHandle and WimImageHandle
 
-        public sealed class WimFileHandle : SafeHandle {
+        public sealed class WimFileHandle : SafeHandle 
+        {
 
             public WimFileHandle(
                 string wimPath)
-                : base(IntPtr.Zero, true) {
+                : base(IntPtr.Zero, true) 
+                {
 
-                if (String.IsNullOrEmpty(wimPath)) {
+                if (String.IsNullOrEmpty(wimPath)) 
+                {
                     throw new ArgumentNullException("wimPath");
                 }
 
-                if (!File.Exists(Path.GetFullPath(wimPath))) {
+                if (!File.Exists(Path.GetFullPath(wimPath))) 
+                {
                     throw new FileNotFoundException((new FileNotFoundException()).Message, wimPath);
                 }
 
@@ -1331,11 +1376,13 @@ namespace WIM2VHD {
                 );
 
                 // Check results.
-                if (creationResult != NativeMethods.WimCreationResult.WimOpenedExisting) {
+                if (creationResult != NativeMethods.WimCreationResult.WimOpenedExisting) 
+                {
                     throw new Win32Exception();
                 }
 
-                if (this.handle == IntPtr.Zero) {
+                if (this.handle == IntPtr.Zero) 
+                {
                     throw new Win32Exception();
                 }
 
@@ -1346,30 +1393,38 @@ namespace WIM2VHD {
                 );
             }
 
-            protected override bool ReleaseHandle() {
+            protected override bool ReleaseHandle() 
+            {
                 return NativeMethods.WimCloseHandle(this.handle);
             }
 
-            public override bool IsInvalid {
-                get { return this.handle == IntPtr.Zero; }
+            public override bool IsInvalid 
+            {
+                get 
+                { return this.handle == IntPtr.Zero; }
             }
         }
 
-        public sealed class WimImageHandle : SafeHandle {
+        public sealed class WimImageHandle : SafeHandle 
+        {
             public WimImageHandle(
                 WimFile Container,
                 uint ImageIndex)
-                : base(IntPtr.Zero, true) {
+                : base(IntPtr.Zero, true) 
+                {
 
-                if (null == Container) {
+                if (null == Container) 
+                {
                     throw new ArgumentNullException("Container");
                 }
 
-                if ((Container.Handle.IsClosed) || (Container.Handle.IsInvalid)) {
+                if ((Container.Handle.IsClosed) || (Container.Handle.IsInvalid)) 
+                {
                     throw new ArgumentNullException("The handle to the WIM file has already been closed, or is invalid.", "Container");
                 }
 
-                if (ImageIndex > Container.ImageCount) {
+                if (ImageIndex > Container.ImageCount) 
+                {
                     throw new ArgumentOutOfRangeException("ImageIndex", "The index does not exist in the specified WIM file.");
                 }
 
@@ -1378,12 +1433,15 @@ namespace WIM2VHD {
                     ImageIndex);
             }
 
-            protected override bool ReleaseHandle() {
+            protected override bool ReleaseHandle() 
+            {
                 return NativeMethods.WimCloseHandle(this.handle);
             }
 
-            public override bool IsInvalid {
-                get { return this.handle == IntPtr.Zero; }
+            public override bool IsInvalid 
+            {
+                get 
+                { return this.handle == IntPtr.Zero; }
             }
         }
 
@@ -1467,7 +1525,8 @@ namespace WIM2VHD {
 
     #region WIM Interop
 
-    public class WimFile {
+    public class WimFile 
+    {
 
         internal XDocument m_xmlInfo;
         internal List<WimImage> m_imageList;
@@ -1520,7 +1579,8 @@ namespace WIM2VHD {
 
         private
         enum
-        ImageEventMessage : uint {
+        ImageEventMessage : uint 
+        {
             ///<summary>
             ///Enables the caller to prevent a file or a directory from being captured or applied.
             ///</summary>
@@ -1581,50 +1641,58 @@ namespace WIM2VHD {
             uint MessageId,
             IntPtr wParam,
             IntPtr lParam,
-            IntPtr UserData) {
+            IntPtr UserData) 
+            {
 
             uint status = (uint) NativeMethods.WimMessage.WIM_MSG_SUCCESS;
 
             DefaultImageEventArgs eventArgs = new DefaultImageEventArgs(wParam, lParam, UserData);
 
-            switch ((ImageEventMessage)MessageId) {
+            switch ((ImageEventMessage)MessageId) 
+            {
 
                 case ImageEventMessage.Progress:
                     ProgressEvent(this, eventArgs);
                     break;
 
                 case ImageEventMessage.Process:
-                    if (null != ProcessFileEvent) {
+                    if (null != ProcessFileEvent) 
+                    {
                         string fileToImage = Marshal.PtrToStringUni(wParam);
                         ProcessFileEventArgs fileToProcess = new ProcessFileEventArgs(fileToImage, lParam);
                         ProcessFileEvent(this, fileToProcess);
 
-                        if (fileToProcess.Abort == true) {
+                        if (fileToProcess.Abort == true) 
+                        {
                             status = (uint)ImageEventMessage.Abort;
                         }
                     }
                     break;
 
                 case ImageEventMessage.Error:
-                    if (null != ErrorEvent) {
+                    if (null != ErrorEvent) 
+                    {
                         ErrorEvent(this, eventArgs);
                     }
                     break;
                     
                 case ImageEventMessage.SetRange:
-                    if (null != SetRangeEvent) {
+                    if (null != SetRangeEvent) 
+                    {
                         SetRangeEvent(this, eventArgs);
                     }
                     break;
 
                 case ImageEventMessage.SetPos:
-                    if (null != SetPosEvent) {
+                    if (null != SetPosEvent) 
+                    {
                         SetPosEvent(this, eventArgs);
                     }
                     break;
 
                 case ImageEventMessage.StepIt:
-                    if (null != StepItEvent) {
+                    if (null != StepItEvent) 
+                    {
                         StepItEvent(this, eventArgs);
                     }
                     break;
@@ -1641,12 +1709,15 @@ namespace WIM2VHD {
         /// </summary>
         /// <param name="wimPath">Path to the WIM container.</param>
         public
-        WimFile(string wimPath) {
-            if (string.IsNullOrEmpty(wimPath)) {
+        WimFile(string wimPath) 
+        {
+            if (string.IsNullOrEmpty(wimPath)) 
+            {
                 throw new ArgumentNullException("wimPath");
             }
 
-            if (!File.Exists(Path.GetFullPath(wimPath))) {
+            if (!File.Exists(Path.GetFullPath(wimPath))) 
+            {
                 throw new FileNotFoundException((new FileNotFoundException()).Message, wimPath);
             }
 
@@ -1661,17 +1732,21 @@ namespace WIM2VHD {
         /// Closes the WIM file.
         /// </summary>
         public void
-        Close() {
-            foreach (WimImage image in Images) {
+        Close() 
+        {
+            foreach (WimImage image in Images) 
+            {
                 image.Close();
             }
 
-            if (null != wimMessageCallback) {
+            if (null != wimMessageCallback) 
+            {
                 NativeMethods.UnregisterMessageCallback(this.Handle, wimMessageCallback);
                 wimMessageCallback = null;
             }
 
-            if ((!Handle.IsClosed) && (!Handle.IsInvalid)) {
+            if ((!Handle.IsClosed) && (!Handle.IsInvalid)) 
+            {
                 Handle.Close();
             }
         }
@@ -1680,13 +1755,17 @@ namespace WIM2VHD {
         /// Provides a list of WimImage objects, representing the images in the WIM container file.
         /// </summary>
         public List<WimImage>
-        Images {
-            get {
-                if (null == m_imageList) {
+        Images 
+        {
+            get 
+            {
+                if (null == m_imageList) 
+                {
 
                     int imageCount = (int)ImageCount;
                     m_imageList = new List<WimImage>(imageCount);
-                    for (int i = 0; i < imageCount; i++) {
+                    for (int i = 0; i < imageCount; i++) 
+                    {
 
                         // Load up each image so it's ready for us.
                         m_imageList.Add(
@@ -1702,10 +1781,13 @@ namespace WIM2VHD {
         /// Provides a list of names of the images in the specified WIM container file.
         /// </summary>
         public List<string>
-        ImageNames {
-            get {
+        ImageNames 
+        {
+            get 
+            {
                 List<string> nameList = new List<string>();
-                foreach (WimImage image in Images) {
+                foreach (WimImage image in Images) 
+                {
                     nameList.Add(image.ImageName);
                 }
                 return nameList;
@@ -1720,8 +1802,10 @@ namespace WIM2VHD {
         /// <param name="ImageIndex">The 1-based index of the image to retrieve.</param>
         /// <returns>WinImage object.</returns>
         public WimImage
-        this[int ImageIndex] {
-            get { return Images[ImageIndex - 1]; }
+        this[int ImageIndex] 
+        {
+            get 
+            { return Images[ImageIndex - 1]; }
         }
 
         /// <summary>
@@ -1733,8 +1817,10 @@ namespace WIM2VHD {
         /// <param name="ImageName"></param>
         /// <returns></returns>
         public WimImage
-        this[string ImageName] {
-            get {
+        this[string ImageName] 
+        {
+            get 
+            {
                 return
                     Images.Where(i => (
                         i.ImageName.ToUpper()  == ImageName.ToUpper() ||
@@ -1748,27 +1834,34 @@ namespace WIM2VHD {
         /// Returns the number of images in the WIM container.
         /// </summary>
         internal uint
-        ImageCount {
-            get { return NativeMethods.WimGetImageCount(Handle); }
+        ImageCount 
+        {
+            get 
+            { return NativeMethods.WimGetImageCount(Handle); }
         }
 
         /// <summary>
         /// Returns an XDocument representation of the XML metadata for the WIM container and associated images.
         /// </summary>
         internal XDocument
-        XmlInfo {
-            get {
+        XmlInfo 
+        {
+            get 
+            {
 
-                if (null == m_xmlInfo) {
+                if (null == m_xmlInfo) 
+                {
                     StringBuilder builder;
                     uint bytes;
-                    if (!NativeMethods.WimGetImageInformation(Handle, out builder, out bytes)) {
+                    if (!NativeMethods.WimGetImageInformation(Handle, out builder, out bytes)) 
+                    {
                         throw new Win32Exception();
                     }
 
                     // Ensure the length of the returned bytes to avoid garbage characters at the end.
                     int charCount = (int)bytes / sizeof(char);
-                    if (null != builder) {
+                    if (null != builder) 
+                    {
                         // Get rid of the unicode file marker at the beginning of the XML.
                         builder.Remove(0, 1);
                         builder.EnsureCapacity(charCount - 1);
@@ -1776,7 +1869,9 @@ namespace WIM2VHD {
 
                         // This isn't likely to change while we have the image open, so cache it.
                         m_xmlInfo = XDocument.Parse(builder.ToString().Trim());
-                    } else {
+                    } 
+                    else 
+                    {
                         m_xmlInfo = null;
                     }
                 }
@@ -1785,31 +1880,37 @@ namespace WIM2VHD {
             }
         }
 
-        public NativeMethods.WimFileHandle Handle {
+        public NativeMethods.WimFileHandle Handle 
+        {
             get;
             private set;
         }
     }
 
     public class
-    WimImage {
+    WimImage 
+    {
 
         internal XDocument m_xmlInfo;
 
         public
         WimImage(
             WimFile Container,
-            uint ImageIndex) {
+            uint ImageIndex) 
+            {
 
-            if (null == Container) {
+            if (null == Container) 
+            {
                 throw new ArgumentNullException("Container");
             }
 
-            if ((Container.Handle.IsClosed) || (Container.Handle.IsInvalid)) {
+            if ((Container.Handle.IsClosed) || (Container.Handle.IsInvalid)) 
+            {
                 throw new ArgumentNullException("The handle to the WIM file has already been closed, or is invalid.", "Container");
             }
 
-            if (ImageIndex > Container.ImageCount) {
+            if (ImageIndex > Container.ImageCount) 
+            {
                 throw new ArgumentOutOfRangeException("ImageIndex", "The index does not exist in the specified WIM file.");
             }
 
@@ -1817,7 +1918,8 @@ namespace WIM2VHD {
         }
 
         public enum
-        Architectures : uint {
+        Architectures : uint 
+        {
             x86   = 0x0,
             ARM   = 0x5,
             IA64  = 0x6,
@@ -1825,23 +1927,28 @@ namespace WIM2VHD {
         }
 
         public void
-        Close() {
-            if ((!Handle.IsClosed) && (!Handle.IsInvalid)) {
+        Close() 
+        {
+            if ((!Handle.IsClosed) && (!Handle.IsInvalid)) 
+            {
                 Handle.Close();
             }
         }
 
         public void
         Apply(
-            string ApplyToPath) {
+            string ApplyToPath) 
+            {
 
-            if (string.IsNullOrEmpty(ApplyToPath)) {
+            if (string.IsNullOrEmpty(ApplyToPath)) 
+            {
                 throw new ArgumentNullException("ApplyToPath");
             }
 
             ApplyToPath = Path.GetFullPath(ApplyToPath);
 
-            if (!Directory.Exists(ApplyToPath)) {
+            if (!Directory.Exists(ApplyToPath)) 
+            {
                 throw new DirectoryNotFoundException("The WIM cannot be applied because the specified directory was not found.");
             }
 
@@ -1849,31 +1956,38 @@ namespace WIM2VHD {
                 this.Handle,
                 ApplyToPath,
                 NativeMethods.WimApplyFlags.WimApplyFlagsNone
-            )) {
+            )) 
+            {
                 throw new Win32Exception();
             }
         }
 
         public NativeMethods.WimImageHandle
-        Handle {
+        Handle 
+        {
             get;
             private set;
         }
 
         internal XDocument
-        XmlInfo {
-            get {
+        XmlInfo 
+        {
+            get 
+            {
 
-                if (null == m_xmlInfo) {
+                if (null == m_xmlInfo) 
+                {
                     StringBuilder builder;
                     uint bytes;
-                    if (!NativeMethods.WimGetImageInformation(Handle, out builder, out bytes)) {
+                    if (!NativeMethods.WimGetImageInformation(Handle, out builder, out bytes)) 
+                    {
                         throw new Win32Exception();
                     }
 
                     // Ensure the length of the returned bytes to avoid garbage characters at the end.
                     int charCount = (int)bytes / sizeof(char);
-                    if (null != builder) {
+                    if (null != builder) 
+                    {
                         // Get rid of the unicode file marker at the beginning of the XML.
                         builder.Remove(0, 1);
                         builder.EnsureCapacity(charCount - 1);
@@ -1881,7 +1995,9 @@ namespace WIM2VHD {
 
                         // This isn't likely to change while we have the image open, so cache it.
                         m_xmlInfo = XDocument.Parse(builder.ToString().Trim());
-                    } else {
+                    } 
+                    else 
+                    {
                         m_xmlInfo = null;
                     }
                 }
@@ -1891,98 +2007,126 @@ namespace WIM2VHD {
         }
 
         public string 
-        ImageIndex {
+        ImageIndex 
+        {
             get { return XmlInfo.Element("IMAGE").Attribute("INDEX").Value; }
         }
 
         public string
-        ImageName {
+        ImageName 
+        {
             get { return XmlInfo.XPathSelectElement("/IMAGE/NAME").Value; }
         }
 
         public string
-        ImageEditionId {
+        ImageEditionId 
+        {
             get { return XmlInfo.XPathSelectElement("/IMAGE/WINDOWS/EDITIONID").Value; }
         }
 
         public string
-        ImageFlags {
+        ImageFlags 
+        {
             get { return XmlInfo.XPathSelectElement("/IMAGE/FLAGS").Value; }
         }
 
         public string
-        ImageProductType {
-            get {
+        ImageProductType 
+        {
+            get 
+            {
                 return XmlInfo.XPathSelectElement("/IMAGE/WINDOWS/PRODUCTTYPE").Value;
             }
         }
 
         public string
-        ImageInstallationType {
+        ImageInstallationType 
+        {
             get { return XmlInfo.XPathSelectElement("/IMAGE/WINDOWS/INSTALLATIONTYPE").Value; }
         }
 
         public string
-        ImageDescription {
+        ImageDescription 
+        {
             get { return XmlInfo.XPathSelectElement("/IMAGE/DESCRIPTION").Value; }
         }
 
         public ulong
-        ImageSize {
+        ImageSize 
+        {
             get { return ulong.Parse(XmlInfo.XPathSelectElement("/IMAGE/TOTALBYTES").Value); }
         }
 
         public Architectures
-        ImageArchitecture {
-            get {
+        ImageArchitecture 
+        {
+            get 
+            {
                 int arch = -1;
-                try {
+                try 
+                {
                     arch = int.Parse(XmlInfo.XPathSelectElement("/IMAGE/WINDOWS/ARCH").Value);
-                } catch { }
+                } 
+                catch 
+                { }
 
                 return (Architectures)arch;
             }
         }
 
         public string
-        ImageDefaultLanguage {
-            get {
+        ImageDefaultLanguage 
+        {
+            get 
+            {
                 string lang = null;
-                try {
+                try 
+                {
                     lang = XmlInfo.XPathSelectElement("/IMAGE/WINDOWS/LANGUAGES/DEFAULT").Value;
-                } catch { }
+                } 
+                catch 
+                { }
 
                 return lang;
             }
         }
 
         public Version
-        ImageVersion {
-            get {
+        ImageVersion 
+        {
+            get 
+            {
                 int major = 0;
                 int minor = 0;
                 int build = 0;
                 int revision = 0;
 
-                try {
+                try 
+                {
                     major = int.Parse(XmlInfo.XPathSelectElement("/IMAGE/WINDOWS/VERSION/MAJOR").Value);
                     minor = int.Parse(XmlInfo.XPathSelectElement("/IMAGE/WINDOWS/VERSION/MINOR").Value);
                     build = int.Parse(XmlInfo.XPathSelectElement("/IMAGE/WINDOWS/VERSION/BUILD").Value);
                     revision = int.Parse(XmlInfo.XPathSelectElement("/IMAGE/WINDOWS/VERSION/SPBUILD").Value);
-                } catch { }
+                } 
+                catch 
+                { }
 
                 return (new Version(major, minor, build, revision));
             }
         }
 
         public string
-        ImageDisplayName {
-            get { return XmlInfo.XPathSelectElement("/IMAGE/DISPLAYNAME").Value; }
+        ImageDisplayName 
+        {
+            get 
+            { return XmlInfo.XPathSelectElement("/IMAGE/DISPLAYNAME").Value; }
         }
 
         public string
-        ImageDisplayDescription {
-            get { return XmlInfo.XPathSelectElement("/IMAGE/DISPLAYDESCRIPTION").Value; }
+        ImageDisplayDescription 
+        {
+            get 
+            { return XmlInfo.XPathSelectElement("/IMAGE/DISPLAYDESCRIPTION").Value; }
         }
     }
 
@@ -1990,7 +2134,8 @@ namespace WIM2VHD {
     ///Describes the file that is being processed for the ProcessFileEvent.
     ///</summary>
     public class
-    DefaultImageEventArgs : EventArgs {
+    DefaultImageEventArgs : EventArgs 
+    {
         ///<summary>
         ///Default constructor.
         ///</summary>
@@ -1998,7 +2143,8 @@ namespace WIM2VHD {
         DefaultImageEventArgs(
             IntPtr wideParameter, 
             IntPtr leftParameter, 
-            IntPtr userData) {
+            IntPtr userData) 
+        {
             
             WideParameter = wideParameter;
             LeftParameter = leftParameter;
@@ -2008,7 +2154,8 @@ namespace WIM2VHD {
         ///<summary>
         ///wParam
         ///</summary>
-        public IntPtr WideParameter {
+        public IntPtr WideParameter 
+        {
             get;
             private set;
         }
@@ -2016,7 +2163,8 @@ namespace WIM2VHD {
         ///<summary>
         ///lParam
         ///</summary>
-        public IntPtr LeftParameter {
+        public IntPtr LeftParameter 
+        {
             get;
             private set;
         }
@@ -2024,7 +2172,8 @@ namespace WIM2VHD {
         ///<summary>
         ///UserData
         ///</summary>
-        public IntPtr UserData {
+        public IntPtr UserData 
+        {
             get;
             private set;
         }
@@ -2034,7 +2183,8 @@ namespace WIM2VHD {
     ///Describes the file that is being processed for the ProcessFileEvent.
     ///</summary>
     public class
-    ProcessFileEventArgs : EventArgs {
+    ProcessFileEventArgs : EventArgs 
+    {
         ///<summary>
         ///Default constructor.
         ///</summary>
@@ -2044,7 +2194,8 @@ namespace WIM2VHD {
         public
         ProcessFileEventArgs(
             string file, 
-            IntPtr skipFileFlag) {
+            IntPtr skipFileFlag) 
+            {
 
             m_FilePath = file;
             m_SkipFileFlag = skipFileFlag;
@@ -2054,8 +2205,10 @@ namespace WIM2VHD {
         ///Skip file from being imaged.
         ///</summary>
         public void
-        SkipFile() {
-            byte[] byteBuffer = {
+        SkipFile() 
+        {
+            byte[] byteBuffer = 
+            {
                     0
             };
             int byteBufferSize = byteBuffer.Length;
@@ -2066,10 +2219,13 @@ namespace WIM2VHD {
         ///Fully qualified path and file name.
         ///</summary>
         public string 
-        FilePath {
-            get {
+        FilePath 
+        {
+            get 
+            {
                 string stringToReturn = "";
-                if (m_FilePath != null) {
+                if (m_FilePath != null) 
+                {
                     stringToReturn = m_FilePath;
                 }
                 return stringToReturn;
@@ -2081,9 +2237,12 @@ namespace WIM2VHD {
         ///Default is false - skip file and continue. Setting to true will
         ///abort the entire image capture.
         ///</summary>
-        public bool Abort {
-            set { m_Abort = value; }
-            get { return m_Abort;  }
+        public bool Abort 
+        {
+            set 
+            { m_Abort = value; }
+            get 
+            { return m_Abort;  }
         }
 
         private string m_FilePath;
@@ -2100,7 +2259,8 @@ namespace WIM2VHD {
     /// The Virtual Hard Disk class provides methods for creating and manipulating Virtual Hard Disk files.
     /// </summary>
     public class
-    VirtualHardDisk : IDisposable {
+    VirtualHardDisk : IDisposable 
+    {
 
         #region Member Variables
 
@@ -2117,7 +2277,8 @@ namespace WIM2VHD {
         /// Disposal method for Virtual Hard Disk objects.
         /// </summary>
         public void
-        Dispose() {
+        Dispose() 
+        {
             this.Dispose(true);
             GC.SuppressFinalize(this);
         }
@@ -2128,14 +2289,18 @@ namespace WIM2VHD {
         /// <param name="disposing"></param>
         public void
         Dispose(
-            bool disposing) {
+            bool disposing) 
+            {
             // Check to see if Dispose has already been called.
-            if (!this.m_isDisposed) {
+            if (!this.m_isDisposed) 
+            {
                 // If disposing equals true, dispose all managed
                 // and unmanaged resources.
-                if (disposing) {
+                if (disposing) 
+                {
                     // Dispose managed resources.
-                    if (this.DiskIndex != 0) {
+                    if (this.DiskIndex != 0) 
+                    {
                         this.Close();
                     }
                 }
@@ -2157,8 +2322,10 @@ namespace WIM2VHD {
         private VirtualHardDisk(
             SafeFileHandle Handle,
             string Path,
-            NativeMethods.VirtualStorageDeviceType DeviceType) {
-            if (Handle.IsInvalid || Handle.IsClosed) {
+            NativeMethods.VirtualStorageDeviceType DeviceType) 
+            {
+            if (Handle.IsInvalid || Handle.IsClosed) 
+            {
                 throw new InvalidOperationException("The handle to the Virtual Hard Disk is invalid.");
             }
 
@@ -2173,7 +2340,8 @@ namespace WIM2VHD {
         /// <summary>
         /// Destroys a VHD object.
         /// </summary>
-        ~VirtualHardDisk() {
+        ~VirtualHardDisk() 
+        {
             this.Dispose(false);
         }
 
@@ -2196,7 +2364,8 @@ namespace WIM2VHD {
             NativeMethods.VirtualStorageDeviceType virtualStorageDeviceType,
             string path,
             ulong size,
-            bool overwrite) {
+            bool overwrite) 
+            {
 
             return CreateSparseDisk(
                 path,
@@ -2241,10 +2410,12 @@ namespace WIM2VHD {
             IntPtr overlapped,
             uint blockSizeInBytes,
             NativeMethods.VirtualStorageDeviceType virtualStorageDeviceType,
-            uint sectorSizeInBytes) {
+            uint sectorSizeInBytes) 
+            {
 
             // Validate the virtualStorageDeviceType
-            if (virtualStorageDeviceType != NativeMethods.VirtualStorageDeviceType.VHD && virtualStorageDeviceType != NativeMethods.VirtualStorageDeviceType.VHDX) {
+            if (virtualStorageDeviceType != NativeMethods.VirtualStorageDeviceType.VHD && virtualStorageDeviceType != NativeMethods.VirtualStorageDeviceType.VHDX) 
+            {
 
                 throw (
                     new ArgumentOutOfRangeException(
@@ -2255,7 +2426,8 @@ namespace WIM2VHD {
             }
 
             // Validate size.  It needs to be a multiple of DISK_SECTOR_SIZE (512)...
-            if ((size % NativeMethods.DISK_SECTOR_SIZE) != 0) {
+            if ((size % NativeMethods.DISK_SECTOR_SIZE) != 0) 
+            {
 
                 throw (
                     new ArgumentOutOfRangeException(
@@ -2265,7 +2437,8 @@ namespace WIM2VHD {
                 ));
             }
 
-            if ((!String.IsNullOrEmpty(source)) && (!System.IO.File.Exists(source))) {
+            if ((!String.IsNullOrEmpty(source)) && (!System.IO.File.Exists(source))) 
+            {
 
                 throw (
                     new System.IO.FileNotFoundException(
@@ -2274,7 +2447,8 @@ namespace WIM2VHD {
                 ));
             }
 
-            if ((overwrite) && (System.IO.File.Exists(path))) {
+            if ((overwrite) && (System.IO.File.Exists(path))) 
+            {
 
                 System.IO.File.Delete(path);
             }
@@ -2304,7 +2478,8 @@ namespace WIM2VHD {
             //
 
             NativeMethods.SecurityDescriptor securityDescriptor;
-            if (!NativeMethods.InitializeSecurityDescriptor(out securityDescriptor, 1)) {
+            if (!NativeMethods.InitializeSecurityDescriptor(out securityDescriptor, 1)) 
+            {
 
                 throw (
                     new SecurityException(
@@ -2331,7 +2506,8 @@ namespace WIM2VHD {
                     overlapped,
                 out vhdHandle);
 
-            if (NativeMethods.ERROR_SUCCESS != returnCode && NativeMethods.ERROR_IO_PENDING != returnCode) {
+            if (NativeMethods.ERROR_SUCCESS != returnCode && NativeMethods.ERROR_IO_PENDING != returnCode) 
+            {
 
                 throw (
                     new Win32Exception(
@@ -2359,7 +2535,8 @@ namespace WIM2VHD {
             NativeMethods.VirtualStorageDeviceType virtualStorageDeviceType,
             string path,
             ulong size,
-            bool overwrite) {
+            bool overwrite) 
+            {
 
             return CreateFixedDisk(
                 path,
@@ -2402,10 +2579,12 @@ namespace WIM2VHD {
             IntPtr overlapped,
             uint blockSizeInBytes,
             NativeMethods.VirtualStorageDeviceType virtualStorageDeviceType,
-            uint sectorSizeInBytes) {
+            uint sectorSizeInBytes) 
+            {
 
             // Validate the virtualStorageDeviceType
-            if (virtualStorageDeviceType != NativeMethods.VirtualStorageDeviceType.VHD && virtualStorageDeviceType != NativeMethods.VirtualStorageDeviceType.VHDX) {
+            if (virtualStorageDeviceType != NativeMethods.VirtualStorageDeviceType.VHD && virtualStorageDeviceType != NativeMethods.VirtualStorageDeviceType.VHDX) 
+            {
 
                 throw (
                     new ArgumentOutOfRangeException(
@@ -2416,7 +2595,8 @@ namespace WIM2VHD {
             }
 
             // Validate size.  It needs to be a multiple of DISK_SECTOR_SIZE (512)...
-            if ((size % NativeMethods.DISK_SECTOR_SIZE) != 0) {
+            if ((size % NativeMethods.DISK_SECTOR_SIZE) != 0) 
+            {
 
                 throw (
                     new ArgumentOutOfRangeException(
@@ -2426,7 +2606,8 @@ namespace WIM2VHD {
                 ));
             }
 
-            if ((!String.IsNullOrEmpty(source)) && (!System.IO.File.Exists(source))) {
+            if ((!String.IsNullOrEmpty(source)) && (!System.IO.File.Exists(source))) 
+            {
 
                 throw (
                     new System.IO.FileNotFoundException(
@@ -2435,7 +2616,8 @@ namespace WIM2VHD {
                 ));
             }
 
-            if ((overwrite) && (System.IO.File.Exists(path))) {
+            if ((overwrite) && (System.IO.File.Exists(path))) 
+            {
 
                 System.IO.File.Delete(path);
             }
@@ -2465,7 +2647,8 @@ namespace WIM2VHD {
             //
 
             NativeMethods.SecurityDescriptor securityDescriptor;
-            if (!NativeMethods.InitializeSecurityDescriptor(out securityDescriptor, 1)) {
+            if (!NativeMethods.InitializeSecurityDescriptor(out securityDescriptor, 1)) 
+            {
                 throw (
                     new SecurityException(
                         "Unable to initialize the security descriptor for the virtual disk."
@@ -2491,7 +2674,8 @@ namespace WIM2VHD {
                     overlapped,
                 out vhdHandle);
 
-            if (NativeMethods.ERROR_SUCCESS != returnCode && NativeMethods.ERROR_IO_PENDING != returnCode) {
+            if (NativeMethods.ERROR_SUCCESS != returnCode && NativeMethods.ERROR_IO_PENDING != returnCode) 
+            {
 
                 throw (
                     new Win32Exception(
@@ -2525,9 +2709,11 @@ namespace WIM2VHD {
             NativeMethods.VirtualDiskAccessMask accessMask,
             uint readWriteDepth,
             NativeMethods.OpenVirtualDiskFlags flags,
-            NativeMethods.VirtualStorageDeviceType virtualStorageDeviceType) {
+            NativeMethods.VirtualStorageDeviceType virtualStorageDeviceType) 
+            {
 
-            if (!File.Exists(path)) {
+            if (!File.Exists(path)) 
+            {
                 throw new FileNotFoundException("The specified VHD was not found.  Please check your path and try again.", path);
             }
 
@@ -2557,7 +2743,8 @@ namespace WIM2VHD {
                 ref openParams,
                 out vhdHandle);
 
-            if (NativeMethods.ERROR_SUCCESS != returnCode) {
+            if (NativeMethods.ERROR_SUCCESS != returnCode) 
+            {
                 throw new Win32Exception((int)returnCode);
             }
 
@@ -2574,14 +2761,17 @@ namespace WIM2VHD {
         /// <remarks>Drives A and B are not included in the collection, even if they are available.</remarks>
         /// <returns>A collection of drive letters that are currently available on the system.</returns>
         public static ReadOnlyCollection<Char>
-        GetAvailableDriveLetters() {
+        GetAvailableDriveLetters() 
+        {
 
             List<Char> availableDrives = new List<Char>();
-            for (int i = (byte)'C'; i <= (byte)'Z'; i++) {
+            for (int i = (byte)'C'; i <= (byte)'Z'; i++) 
+            {
                 availableDrives.Add((char)i);
             }
 
-            foreach (string drive in System.Environment.GetLogicalDrives()) {
+            foreach (string drive in System.Environment.GetLogicalDrives()) 
+            {
                 availableDrives.Remove(drive.ToUpper(CultureInfo.InvariantCulture)[0]);
             }
 
@@ -2594,7 +2784,8 @@ namespace WIM2VHD {
         /// <remarks>Drives A and B will not be returned, even if they are available.</remarks>
         /// <returns>Char representing the first available drive letter.</returns>
         public static char
-        GetFirstAvailableDriveLetter() {
+        GetFirstAvailableDriveLetter() 
+        {
             return GetAvailableDriveLetters()[0];
         }
 
@@ -2610,7 +2801,8 @@ namespace WIM2VHD {
         /// </summary>
         /// <returns>Returns the GCHandle for the pinned overlapped structure</returns>
         public static GCHandle
-        CreatePinnedOverlappedObject() {
+        CreatePinnedOverlappedObject() 
+        {
             NativeOverlapped overlapped = new NativeOverlapped();
             overlapped.EventHandle = NativeMethods.CreateEvent(IntPtr.Zero, true, false, null);
 
@@ -2629,7 +2821,8 @@ namespace WIM2VHD {
         public uint
         GetVirtualDiskOperationProgress(
             ref NativeMethods.VirtualDiskProgress progress,
-                IntPtr overlapped) {
+                IntPtr overlapped) 
+                {
             uint returnCode = NativeMethods.GetVirtualDiskOperationProgress(
                     this.m_virtualHardDiskHandle,
                     overlapped,
@@ -2647,7 +2840,8 @@ namespace WIM2VHD {
         /// If the VHD is currently attached, and the PermanentLifetime was not specified, this operation will detach it.
         /// </summary>
         public void
-        Close() {
+        Close() 
+        {
             m_virtualHardDiskHandle.Close();
         }
 
@@ -2661,9 +2855,11 @@ namespace WIM2VHD {
         /// <exception cref="SecurityException">Thrown when an error occurred while creating the default security descriptor.</exception>
         public void
         Attach(
-            NativeMethods.AttachVirtualDiskFlags attachVirtualDiskFlags) {
+            NativeMethods.AttachVirtualDiskFlags attachVirtualDiskFlags) 
+            {
 
-            if (!this.IsAttached) {
+            if (!this.IsAttached) 
+            {
 
                 // Get the current disk index.  We need it later.
                 int diskIndex = this.DiskIndex;
@@ -2675,7 +2871,8 @@ namespace WIM2VHD {
                 attachParameters.Reserved = 0;
 
                 NativeMethods.SecurityDescriptor securityDescriptor;
-                if (!NativeMethods.InitializeSecurityDescriptor(out securityDescriptor, 1)) {
+                if (!NativeMethods.InitializeSecurityDescriptor(out securityDescriptor, 1)) 
+                {
 
                     throw (new SecurityException("Unable to initialize the security descriptor for the virtual disk."));
                 }
@@ -2688,7 +2885,8 @@ namespace WIM2VHD {
                     ref  attachParameters,
                          IntPtr.Zero);
 
-                switch (returnCode) {
+                switch (returnCode) 
+                {
 
                     case NativeMethods.ERROR_SUCCESS:
                         break;
@@ -2701,7 +2899,8 @@ namespace WIM2VHD {
                 // If the disk index isn't updated, keep checking once per second for five seconds.
                 // If it's not updated after that, it's probably not our fault.
                 short attempts = 5;
-                while ((attempts-- >= 0) && (diskIndex == this.DiskIndex)) {
+                while ((attempts-- >= 0) && (diskIndex == this.DiskIndex)) 
+                {
                     System.Threading.Thread.Sleep(1000);
                 }
             }
@@ -2716,7 +2915,8 @@ namespace WIM2VHD {
         /// <exception cref="Win32Exception">Thrown when an error occurred while attaching the VHD.</exception>
         /// <exception cref="SecurityException">Thrown when an error occurred while creating the default security descriptor.</exception>
         public void
-        Attach() {
+        Attach() 
+        {
 
             this.Attach(NativeMethods.AttachVirtualDiskFlags.None);
         }
@@ -2725,15 +2925,18 @@ namespace WIM2VHD {
         /// Unsurfaces (detaches) a virtual hard disk (VHD) by locating an appropriate VHD provider to accomplish the operation.
         /// </summary>
         public void
-        Detach() {
+        Detach() 
+        {
 
-            if (this.IsAttached) {
+            if (this.IsAttached) 
+            {
                 uint returnCode = NativeMethods.DetachVirtualDisk(
                     m_virtualHardDiskHandle,
                     NativeMethods.DetachVirtualDiskFlag.None,
                     0);
 
-                switch (returnCode) {
+                switch (returnCode) 
+                {
 
                     case NativeMethods.ERROR_NOT_FOUND:
                     // There's nothing to do here.  The device wasn't found, which means there's a 
@@ -2754,7 +2957,8 @@ namespace WIM2VHD {
         /// </summary>
         /// <param name="overlapped">If not null, the operation runs in async mode</param>
         public uint
-        Compact(IntPtr overlapped) {
+        Compact(IntPtr overlapped) 
+        {
             return this.Compact(
                 overlapped,
                 NativeMethods.CompactVirtualDiskFlags.None);
@@ -2768,7 +2972,8 @@ namespace WIM2VHD {
         public uint
         Compact(
             IntPtr overlapped,
-            NativeMethods.CompactVirtualDiskFlags flags) {
+            NativeMethods.CompactVirtualDiskFlags flags) 
+            {
 
             NativeMethods.CompactVirtualDiskParameters compactParams = new NativeMethods.CompactVirtualDiskParameters();
             compactParams.Version = NativeMethods.CompactVirtualDiskVersion.Version1;
@@ -2780,7 +2985,8 @@ namespace WIM2VHD {
                 overlapped);
 
             if ((overlapped == IntPtr.Zero && NativeMethods.ERROR_SUCCESS != returnCode) ||
-                (overlapped != IntPtr.Zero && NativeMethods.ERROR_IO_PENDING != returnCode)) {
+                (overlapped != IntPtr.Zero && NativeMethods.ERROR_IO_PENDING != returnCode)) 
+            {
                 throw new Win32Exception((int)returnCode);
             }
 
@@ -2796,8 +3002,10 @@ namespace WIM2VHD {
         /// The SafeFileHandle object for the opened VHD.
         /// </summary>
         public SafeFileHandle
-        VirtualHardDiskHandle {
-            get {
+        VirtualHardDiskHandle 
+        {
+            get 
+            {
                 return m_virtualHardDiskHandle;
             }
         }
@@ -2807,15 +3015,20 @@ namespace WIM2VHD {
         /// If the virtual hard disk is not currently attached, -1 will be returned.
         /// </summary>
         public int
-        DiskIndex {
-            get {
+        DiskIndex 
+        {
+            get 
+            {
                 string path = PhysicalPath;
 
-                if (null != path) {
+                if (null != path) 
+                {
 
                     Match match = Regex.Match(path, @"\d+$"); // look for the last digits in the path
                     return System.Convert.ToInt32(match.Value, CultureInfo.InvariantCulture);
-                } else {
+                } 
+                else 
+                {
 
                     return -1;
                 }
@@ -2826,8 +3039,10 @@ namespace WIM2VHD {
         /// Indicates whether the current Virtual Hard Disk is attached to the system.
         /// </summary>
         public bool
-        IsAttached {
-            get {
+        IsAttached 
+        {
+            get 
+            {
                 return (this.DiskIndex != -1);
             }
         }
@@ -2837,8 +3052,10 @@ namespace WIM2VHD {
         /// If it is not attached, NULL will be returned.
         /// </summary>
         public string
-        PhysicalPath {
-            get {
+        PhysicalPath 
+        {
+            get 
+            {
                 uint pathSize = 1024;  // Isn't MAX_PATH 255?
                 StringBuilder path = new StringBuilder((int)pathSize);
                 uint returnCode = 0;
@@ -2848,13 +3065,18 @@ namespace WIM2VHD {
                     ref pathSize,
                         path);
 
-                if (NativeMethods.ERROR_ERROR_DEV_NOT_EXIST == returnCode) {
+                if (NativeMethods.ERROR_ERROR_DEV_NOT_EXIST == returnCode) 
+                {
 
                     return null;
-                } else if (NativeMethods.ERROR_SUCCESS == returnCode) {
+                } 
+                else if (NativeMethods.ERROR_SUCCESS == returnCode) 
+                {
 
                     return path.ToString();
-                } else {
+                } 
+                else 
+                {
 
                     throw new Win32Exception((int)returnCode);
                 }
@@ -2884,7 +3106,8 @@ namespace WIM2VHD {
 
                 Consider this a TODO for future versions.
             #>
-            Function Mount-RegistryHive {
+            Function Mount-RegistryHive 
+            {
                 [CmdletBinding()]
                 param(
                     [Parameter(Mandatory = $true, ValueFromPipeline = $true, Position = 0)]
@@ -2897,7 +3120,8 @@ namespace WIM2VHD {
                 $mountKey = [System.Guid]::NewGuid().ToString()
                 $regPath  = "REG.EXE"
 
-                if (Test-Path HKLM:\$mountKey) {
+                if (Test-Path HKLM:\$mountKey) 
+                {
                     throw "The registry path already exists.  I should just regenerate it, but I'm lazy."
                 }
 
@@ -2906,11 +3130,14 @@ namespace WIM2VHD {
                     "HKLM\$mountKey",
                     $Hive.Fullname
                 )
-                try {
+                try 
+                {
 
                     Run-Executable -Executable $regPath -Arguments $regArgs
 
-                } catch {
+                } 
+                catch 
+                {
                     throw
                 }
 
@@ -2923,7 +3150,8 @@ namespace WIM2VHD {
 
             ##########################################################################################
 
-            Function Dismount-RegistryHive {
+            Function Dismount-RegistryHive 
+            {
                 [CmdletBinding()]
                 param(
                     [Parameter(Mandatory = $true, ValueFromPipeline = $true, Position = 0)]
@@ -2947,7 +3175,8 @@ namespace WIM2VHD {
             ##########################################################################################
 
             Function 
-            Apply-BCDStoreChanges {
+            Apply-BCDStoreChanges 
+            {
                 [CmdletBinding()]
                 param(
                     [Parameter(Mandatory = $true)]
@@ -2993,9 +3222,12 @@ namespace WIM2VHD {
                 $options = New-Object Management.ObjectGetOptions
                 $bootMgr = New-Object Management.ManagementObject -ArgumentList $scope, $path, $options
 
-                try {
+                try 
+                {
                     $bootMgr.Get()
-                } catch {
+                } 
+                catch 
+                {
                     throw "Could not get the BootMgr object from the Virtual Disks BCDStore."
                 }
     
@@ -3003,7 +3235,8 @@ namespace WIM2VHD {
     
    
                 $ret = $bootMgr.SetQualifiedPartitionDeviceElement($APPLICATION_DEVICE_TYPE, $PartitionStyle, $DiskSignature, $PartitionOffset)
-                if (!$ret.ReturnValue) {
+                if (!$ret.ReturnValue) 
+                {
                     throw "Unable to set Qualified Partition Device Element in Virtual Disks BCDStore."
                 }
 
@@ -3017,21 +3250,26 @@ namespace WIM2VHD {
 
                 $osLoader= New-Object Management.ManagementObject -ArgumentList $scope, $path, $options
 
-                try {
+                try 
+                {
                     $osLoader.Get()
-                } catch {
+                } 
+                catch 
+                {
                     throw "Could not get the OS Loader..."
                 }
 
                 Write-W2VTrace "Setting Qualified Partition Device Element in the OS Loader Application..."
                 $ret = $osLoader.SetQualifiedPartitionDeviceElement($APPLICATION_DEVICE_TYPE, $PartitionStyle, $DiskSignature, $PartitionOffset)
-                if (!$ret.ReturnValue) {
+                if (!$ret.ReturnValue) 
+                {
                     throw "Could not set Qualified Partition Device Element in the OS Loader Application."
                 }
 
                 Write-W2VTrace "Setting Qualified Partition Device Element in the OS Loader Device..."
                 $ret = $osLoader.SetQualifiedPartitionDeviceElement($OS_DEVICE_TYPE, $PartitionStyle, $DiskSignature, $PartitionOffset)
-                if (!$ret.ReturnValue) {
+                if (!$ret.ReturnValue) 
+                {
                     throw "Could not set Qualified Partition Device Element in the OS Loader Device."
                 }
 
@@ -3041,7 +3279,8 @@ namespace WIM2VHD {
             ##########################################################################################
 
             function 
-            Test-Admin {
+            Test-Admin 
+            {
                 <#
                     .SYNOPSIS
                         Short function to determine whether the logged-on user is an administrator.
@@ -3066,7 +3305,8 @@ namespace WIM2VHD {
             ##########################################################################################
 
             function
-            Test-WindowsVersion {
+            Test-WindowsVersion 
+            {
               
               # This breaks on Windows 10
 
@@ -3093,7 +3333,8 @@ namespace WIM2VHD {
             ##########################################################################################
 
             function
-            Write-W2VInfo {
+            Write-W2VInfo 
+            {
             # Function to make the Write-Host output a bit prettier. 
                 [CmdletBinding()]
                 param(
@@ -3116,7 +3357,8 @@ namespace WIM2VHD {
             ##########################################################################################
 
             function
-            Write-W2VTrace {
+            Write-W2VTrace 
+            {
             # Function to make the Write-Verbose output... well... exactly the same as it was before.
                 [CmdletBinding()]
                 param(
@@ -3131,7 +3373,8 @@ namespace WIM2VHD {
             ##########################################################################################
 
             function
-            Write-W2VError {
+            Write-W2VError 
+            {
             # Function to make the Write-Host (NOT Write-Error) output prettier in the case of an error.
                 [CmdletBinding()]
                 param(
@@ -3146,7 +3389,8 @@ namespace WIM2VHD {
             ##########################################################################################
 
             function
-            Write-W2VWarn {
+            Write-W2VWarn 
+            {
             # Function to make the Write-Host (NOT Write-Warning) output prettier.
                 [CmdletBinding()]
                 param(
@@ -3161,7 +3405,8 @@ namespace WIM2VHD {
             ##########################################################################################
 
             function
-            Run-Executable {
+            Run-Executable 
+            {
                 <#
                     .SYNOPSIS
                         Runs an external executable file, and validates the error level.
@@ -3208,13 +3453,15 @@ namespace WIM2VHD {
 
                 Write-W2VTrace "Return code was $($ret.ExitCode)."
 
-                if ($ret.ExitCode -ne $SuccessfulErrorCode) {
+                if ($ret.ExitCode -ne $SuccessfulErrorCode) 
+                {
                     throw "$Executable failed with code $($ret.ExitCode)!"
                 }
             }
 
             ##########################################################################################
-            Function Test-IsNetworkLocation {
+            Function Test-IsNetworkLocation 
+            {
                 <#
                     .SYNOPSIS
                         Determines whether or not a given path is a network location or a local drive.
@@ -3237,12 +3484,16 @@ namespace WIM2VHD {
 
                 $result = $false
     
-                if ([bool]([URI]$Path).IsUNC) {
+                if ([bool]([URI]$Path).IsUNC) 
+                {
                     $result = $true
-                } else {
+                } 
+                else 
+                {
                     $driveInfo = [IO.DriveInfo]((Resolve-Path $Path).Path)
 
-                    if ($driveInfo.DriveType -eq "Network") {
+                    if ($driveInfo.DriveType -eq "Network") 
+                    {
                         $result = $true
                     }
                 }
@@ -3254,7 +3505,8 @@ namespace WIM2VHD {
             #endregion Helper Functions
         }
 
-        Process {
+        Process 
+        {
 
             $openWim      = $null
             $openVhd      = $null
@@ -3267,20 +3519,25 @@ namespace WIM2VHD {
             $vhd          = @()
 
             Write-Host $header
-            try {
+            try 
+            {
 
                 # Create log folder
-                if (Test-Path $logFolder) {
+                if (Test-Path $logFolder) 
+                {
                     $null = rd $logFolder -Force -Recurse
                 }
 
                 $null = md $logFolder -Force
 
                 # Try to start transcripting.  If it's already running, we'll get an exception and swallow it.
-                try {
+                try 
+                {
                     $null = Start-Transcript -Path (Join-Path $logFolder "Convert-WindowsImageTranscript.txt") -Force -ErrorAction SilentlyContinue
                     $transcripting = $true
-                } catch {
+                } 
+                catch 
+                {
                     Write-W2VWarn "Transcription is already running.  No Convert-WindowsImage-specific transcript will be created."
                     $transcripting = $false
                 }
@@ -3288,21 +3545,25 @@ namespace WIM2VHD {
                 Add-Type -TypeDefinition $code -ReferencedAssemblies "System.Xml","System.Linq","System.Xml.Linq"
 
                 # Check to make sure we're running as Admin.
-                if (!(Test-Admin)) {
+                if (!(Test-Admin)) 
+                {
                     throw "Images can only be applied by an administrator.  Please launch PowerShell elevated and run this script again."
                 }
 
                 # Check to make sure we're running on Win8.
-                if (!(Test-WindowsVersion)) {
+                if (!(Test-WindowsVersion)) 
+                {
                     throw "$scriptName requires Windows 8 Consumer Preview or higher.  Please use WIM2VHD.WSF (http://code.msdn.microsoft.com/wim2vhd) if you need to create VHDs from Windows 7."
                 }
     
                 # Resolve the path for the unattend file.
-                if (![string]::IsNullOrEmpty($UnattendPath)) {
+                if (![string]::IsNullOrEmpty($UnattendPath)) 
+                {
                     $UnattendPath = (Resolve-Path $UnattendPath).Path
                 }
 
-                if ($ShowUI) { 
+                if ($ShowUI) 
+                { 
         
                     Write-W2VInfo "Launching UI..."
                     Add-Type -AssemblyName System.Drawing,System.Windows.Forms
@@ -3341,24 +3602,28 @@ namespace WIM2VHD {
 
                     #region Event scriptblocks.
 
-                    $btnGo_OnClick                          = {
+                    $btnGo_OnClick                          = 
+                    {
                         $frmMain.Close()
                     }
 
-                    $btnWrkBrowse_OnClick                   = {
+                    $btnWrkBrowse_OnClick                   = 
+                    {
                         $openFolderDialog1.RootFolder       = "Desktop"
                         $openFolderDialog1.Description      = "Select the folder you'd like your VHD(X) to be created in."
                         $openFolderDialog1.SelectedPath     = $WorkingDirectory
         
                         $ret = $openFolderDialog1.ShowDialog()
 
-                        if ($ret -ilike "ok") {
+                        if ($ret -ilike "ok") 
+                        {
                             $WorkingDirectory = $txtWorkingDirectory = $openFolderDialog1.SelectedPath
                             Write-W2VInfo "Selected Working Directory is $WorkingDirectory..."
                         }
                     }
 
-                    $btnUnattendBrowse_OnClick              = {
+                    $btnUnattendBrowse_OnClick              = 
+                    {
                         $openFileDialog1.InitialDirectory   = $pwd
                         $openFileDialog1.Filter             = "XML files (*.xml)|*.XML|All files (*.*)|*.*"
                         $openFileDialog1.FilterIndex        = 1
@@ -3370,12 +3635,14 @@ namespace WIM2VHD {
         
                         $ret = $openFileDialog1.ShowDialog()
 
-                        if ($ret -ilike "ok") {
+                        if ($ret -ilike "ok") 
+                        {
                             $UnattendPath = $txtUnattendFile.Text = $openFileDialog1.FileName
                         }
                     }
 
-                    $btnBrowseWim_OnClick                   = {
+                    $btnBrowseWim_OnClick                   = 
+                    {
                         $openFileDialog1.InitialDirectory   = $pwd
                         $openFileDialog1.Filter             = "All compatible files (*.ISO, *.WIM)|*.ISO;*.WIM|All files (*.*)|*.*"
                         $openFileDialog1.FilterIndex        = 1
@@ -3387,11 +3654,14 @@ namespace WIM2VHD {
         
                         $ret = $openFileDialog1.ShowDialog()
 
-                        if ($ret -ilike "ok") {
+                        if ($ret -ilike "ok") 
+                        {
 
-                            if (([IO.FileInfo]$openFileDialog1.FileName).Extension -ilike ".iso") {
+                            if (([IO.FileInfo]$openFileDialog1.FileName).Extension -ilike ".iso") 
+                            {
                     
-                                if (Test-IsNetworkLocation $openFileDialog1.FileName) {
+                                if (Test-IsNetworkLocation $openFileDialog1.FileName) 
+                                {
                                     Write-W2VInfo "Copying ISO $(Split-Path $openFileDialog1.FileName -Leaf) to temp folder..."
                                     Write-W2VWarn "The UI may become non-responsive while this copy takes place..."                        
                                     Copy-Item -Path $openFileDialog1.FileName -Destination $env:Temp -Force
@@ -3411,15 +3681,19 @@ namespace WIM2VHD {
 
                                 # Check to see if there's a WIM file we can muck about with.
                                 Write-W2VInfo "Looking for $($SourcePath)..."
-                                if (!(Test-Path $SourcePath)) {
+                                if (!(Test-Path $SourcePath)) 
+                                {
                                     throw "The specified ISO does not appear to be valid Windows installation media."
                                 }
-                            } else {
+                            } 
+                            else 
+                            {
                                 $txtSourcePath.Text = $script:SourcePath = $openFileDialog1.FileName
                             }
 
                             # Check to see if the WIM is local, or on a network location.  If the latter, copy it locally.
-                            if (Test-IsNetworkLocation $SourcePath) {
+                            if (Test-IsNetworkLocation $SourcePath) 
+                            {
                                 Write-W2VInfo "Copying WIM $(Split-Path $SourcePath -Leaf) to temp folder..."
                                 Write-W2VWarn "The UI may become non-responsive while this copy takes place..."
                                 Copy-Item -Path $SourcePath -Destination $env:Temp -Force
@@ -3432,14 +3706,16 @@ namespace WIM2VHD {
         
                             $tempOpenWim = $null
 
-                            try {
+                            try 
+                            {
 
                                 $tempOpenWim   = New-Object WIM2VHD.WimFile $SourcePath
 
                                 # Let's see if we're running against an unstaged build.  If we are, we need to blow up.
                                 if ($tempOpenWim.ImageNames.Contains("Windows Longhorn Client") -or
                                     $tempOpenWim.ImageNames.Contains("Windows Longhorn Server") -or
-                                    $tempOpenWim.ImageNames.Contains("Windows Longhorn Server Core")) {
+                                    $tempOpenWim.ImageNames.Contains("Windows Longhorn Server Core")) 
+                                    {
                                     [Windows.Forms.MessageBox]::Show(
                                         "Convert-WindowsImage cannot run against unstaged builds. Please try again with a staged build.",
                                         "WIM is incompatible!",
@@ -3448,16 +3724,23 @@ namespace WIM2VHD {
                                     )
 
                                     return
-                                } else {
+                                } 
+                                else 
+                                {
 
-                                    $tempOpenWim.Images | %{ $cmbSkuList.Items.Add($_.ImageFlags) }
+                                    $tempOpenWim.Images | %
+                                    { $cmbSkuList.Items.Add($_.ImageFlags) }
                                     $cmbSkuList.SelectedIndex = 0
                                 }
 
-                            } catch {
+                            } 
+                            catch 
+                            {
 
                                 throw "Unable to load WIM metadata!"
-                            } finally {
+                            } 
+                            finally 
+                            {
 
                                 $tempOpenWim.Close()
                                 Write-W2VTrace "Closing WIM metadata..."
@@ -3465,7 +3748,8 @@ namespace WIM2VHD {
                         }
                     }
 
-                    $OnLoadForm_StateCorrection = {
+                    $OnLoadForm_StateCorrection = 
+                    {
 
                         # Correct the initial state of the form to prevent the .Net maximized form issue
                         $frmMain.WindowState      = $InitialFormWindowState
@@ -3475,7 +3759,8 @@ namespace WIM2VHD {
 
                     # Figure out VHD size and size unit.
                     $unit = $null
-                    switch ([Math]::Round($SizeBytes.ToString().Length / 3)) {
+                    switch ([Math]::Round($SizeBytes.ToString().Length / 3)) 
+                    {
                         3 { $unit = "MB"; break }
                         4 { $unit = "GB"; break }
                         5 { $unit = "TB"; break }
@@ -3941,11 +4226,13 @@ namespace WIM2VHD {
                     # Return the constructed form.
                     $ret = $frmMain.ShowDialog()
 
-                    if (!($ret -ilike "OK")) {
+                    if (!($ret -ilike "OK")) 
+                    {
                         throw "Form session has been cancelled."
                     }
 
-                    if ([string]::IsNullOrEmpty($SourcePath)) {
+                    if ([string]::IsNullOrEmpty($SourcePath)) 
+                    {
                         throw "No source path specified."
                     }
 
@@ -3962,12 +4249,14 @@ namespace WIM2VHD {
                     $WorkingDirectory = $txtWorkingDirectory.Text
 
                     # VHDPath
-                    if (![string]::IsNullOrEmpty($txtVhdName.Text)) {
+                    if (![string]::IsNullOrEmpty($txtVhdName.Text)) 
+                    {
                         $VHDPath      = "$($WorkingDirectory)\$($txtVhdName.Text)"
                     }
 
                     # Edition
-                    if (![string]::IsNullOrEmpty($cmbSkuList.SelectedItem)) {
+                    if (![string]::IsNullOrEmpty($cmbSkuList.SelectedItem)) 
+                    {
                         $Edition      = $cmbSkuList.SelectedItem
                     }
 
@@ -3979,16 +4268,20 @@ namespace WIM2VHD {
                 }
 
                 # There's a difference between the maximum sizes for VHDs and VHDXs.  Make sure we follow it.
-                if ("VHD" -ilike $VHDFormat) {
-                    if ($SizeBytes -gt $vhdMaxSize) {
+                if ("VHD" -ilike $VHDFormat) 
+                {
+                    if ($SizeBytes -gt $vhdMaxSize) 
+                    {
                         Write-W2VWarn "For the VHD file format, the maximum file size is ~2040GB.  We're automatically setting the size to 2040GB for you."
                         $SizeBytes = 2040GB
                     }
                 }
 
                 # Check if -VHDPath and -WorkingDirectory were both specified.
-                if ((![String]::IsNullOrEmpty($VHDPath)) -and (![String]::IsNullOrEmpty($WorkingDirectory))) {
-                    if ($WorkingDirectory -ne $pwd) {
+                if ((![String]::IsNullOrEmpty($VHDPath)) -and (![String]::IsNullOrEmpty($WorkingDirectory))) 
+                {
+                    if ($WorkingDirectory -ne $pwd) 
+                    {
                         # If the WorkingDirectory is anything besides $pwd, tell people that the WorkingDirectory is being ignored.
                         Write-W2VWarn "Specifying -VHDPath and -WorkingDirectory at the same time is contradictory."
                         Write-W2VWarn "Ignoring the WorkingDirectory specification."
@@ -3996,23 +4289,29 @@ namespace WIM2VHD {
                     }
                 }
 
-                if ($VHDPath) {
+                if ($VHDPath) 
+                {
                     # Check to see if there's a conflict between the specified file extension and the VHDFormat being used.
                     $ext = ([IO.FileInfo]$VHDPath).Extension
 
-                    if (!($ext -ilike ".$($VHDFormat)")) {
+                    if (!($ext -ilike ".$($VHDFormat)")) 
+                    {
                         throw "There is a mismatch between the VHDPath file extension ($($ext.ToUpper())), and the VHDFormat (.$($VHDFormat)).  Please ensure that these match and try again."
                     }
                 }
 
                 # Create a temporary name for the VHD(x).  We'll name it properly at the end of the script.
-                if ([String]::IsNullOrEmpty($VHDPath)) {
+                if ([String]::IsNullOrEmpty($VHDPath)) 
+                {
                     $VHDPath      = Join-Path $WorkingDirectory "$($sessionKey).$($VHDFormat.ToLower())"
-                } else {
+                } 
+                else 
+                {
                     # Since we can't do Resolve-Path against a file that doesn't exist, we need to get creative in determining 
                     # the full path that the user specified (or meant to specify if they gave us a relative path).
                     # Check to see if the path has a root specified.  If it doesn't, use the working directory.
-                    if (![IO.Path]::IsPathRooted($VHDPath)){
+                    if (![IO.Path]::IsPathRooted($VHDPath))
+                    {
                         $VHDPath  = Join-Path $WorkingDirectory $VHDPath
                     }
 
@@ -4023,11 +4322,13 @@ namespace WIM2VHD {
                 Write-W2VTrace "Temporary $VHDFormat path is : $VHDPath"
  
                 # If we're using an ISO, mount it and get the path to the WIM file.
-                if (([IO.FileInfo]$SourcePath).Extension -ilike ".ISO") { 
+                if (([IO.FileInfo]$SourcePath).Extension -ilike ".ISO") 
+                { 
 
                     # If the ISO isn't local, copy it down so we don't have to worry about resource contention
                     # or about network latency.
-                    if (Test-IsNetworkLocation $SourcePath) {
+                    if (Test-IsNetworkLocation $SourcePath) 
+                    {
                         Write-W2VInfo "Copying ISO $(Split-Path $SourcePath -Leaf) to temp folder..."
                         Copy-Item -Path $SourcePath -Destination $env:Temp -Force
                         $SourcePath = "$($env:Temp)\$(Split-Path $SourcePath -Leaf)"
@@ -4045,13 +4346,15 @@ namespace WIM2VHD {
 
                     # Check to see if there's a WIM file we can muck about with.
                     Write-W2VInfo "Looking for $($SourcePath)..."
-                    if (!(Test-Path $SourcePath)) {
+                    if (!(Test-Path $SourcePath)) 
+                    {
                         throw "The specified ISO does not appear to be valid Windows installation media."
                     }
                 }
 
                 # Check to see if the WIM is local, or on a network location.  If the latter, copy it locally.
-                if (Test-IsNetworkLocation $SourcePath) {
+                if (Test-IsNetworkLocation $SourcePath) 
+                {
                     $SourceIsNetwork = $true
                     Write-W2VInfo "Copying WIM $(Split-Path $SourcePath -Leaf) to temp folder..."
                     Copy-Item -Path $SourcePath -Destination $env:Temp -Force
@@ -4066,35 +4369,45 @@ namespace WIM2VHD {
                 # Let's see if we're running against an unstaged build.  If we are, we need to blow up.
                 if ($openWim.ImageNames.Contains("Windows Longhorn Client") -or
                     $openWim.ImageNames.Contains("Windows Longhorn Server") -or
-                    $openWim.ImageNames.Contains("Windows Longhorn Server Core")) {
+                    $openWim.ImageNames.Contains("Windows Longhorn Server Core")) 
+                {
                     throw "Convert-WindowsImage cannot run against unstaged builds. Please try again with a staged build."
                 }
 
                 # If there's only one image in the WIM, just selected that.
-                if ($openWim.Images.Count -eq 1) { 
+                if ($openWim.Images.Count -eq 1) 
+                { 
                     $Edition   = $openWim.Images[0].ImageFlags
                     $openImage = $openWim[$Edition]
-                } else {
+                } 
+                else 
+                {
 
-                    if ([String]::IsNullOrEmpty($Edition)) {
+                    if ([String]::IsNullOrEmpty($Edition)) 
+                    {
                         Write-W2VError "You must specify an Edition or SKU index, since the WIM has more than one image."
                         Write-W2VError "Valid edition names are:"
-                        $openWim.Images | %{ Write-W2VError "  $($_.ImageFlags)" }
+                        $openWim.Images | % { Write-W2VError "  $($_.ImageFlags)" }
                         throw
                     } 
                 }
 
-                $Edition | ForEach-Object -Process {
+                $Edition | ForEach-Object -Process 
+                {
 
                     $Edition = $PSItem
     
-                    if ([Int32]::TryParse($Edition, [ref]$null)) {
+                    if ([Int32]::TryParse($Edition, [ref]$null)) 
+                    {
                         $openImage = $openWim[[Int32]$Edition]    
-                    } else {
+                    } 
+                    else 
+                    {
                         $openImage = $openWim[$Edition]
                     }    
 
-                    if ($null -eq $openImage) {
+                    if ($null -eq $openImage) 
+                    {
                         Write-W2VError "The specified edition does not appear to exist in the specified WIM."
                         Write-W2VError "Valid edition names are:"
                         $openWim.Images | %{ Write-W2VError "  $($_.ImageFlags)" }
@@ -4105,7 +4418,8 @@ namespace WIM2VHD {
                     Write-W2VInfo "Image $($openImage.ImageIndex) selected ($($openImage.ImageFlags))..."
 
                     # Check to make sure that the image we're applying is Windows 7 or greater.
-                    if ($openImage.ImageVersion -lt $lowestSupportedVersion) {
+                    if ($openImage.ImageVersion -lt $lowestSupportedVersion) 
+                    {
                         throw "Convert-WindowsImage only supports Windows 7 and Windows 8 WIM files.  The specified image does not appear to contain one of those operating systems."
                     }
 
@@ -4119,7 +4433,8 @@ namespace WIM2VHD {
                         from being dependent on Hyper-V (and thus, x64 systems only), we're using the 
                         VirtDisk APIs directly.
                     #>
-                    if ($VHDType -eq "Dynamic") {
+                    if ($VHDType -eq "Dynamic") 
+                    {
                         Write-W2VInfo "Creating sparse disk..."
                         $openVhd = [WIM2VHD.VirtualHardDisk]::CreateSparseDisk(
                             $VHDFormat,
@@ -4127,7 +4442,9 @@ namespace WIM2VHD {
                             $SizeBytes,
                             $true
                         )
-                    } else {
+                    } 
+                    else 
+                    {
                         Write-W2VInfo "Creating fixed disk..."
                         $openVhd = [WIM2VHD.VirtualHardDisk]::CreateFixedDisk(
                             $VHDFormat,
@@ -4141,20 +4458,26 @@ namespace WIM2VHD {
                     Write-W2VInfo "Attaching $VHDFormat..."
                     $openVhd.Attach()
 
-                    if ($VHDPartitionStyle -eq "MBR" ) {
+                    if ($VHDPartitionStyle -eq "MBR" ) 
+                    {
                         Initialize-Disk -Number $openVhd.DiskIndex -PartitionStyle MBR
                         Write-W2VInfo "Disk initialized with MBR..."
-                    } elseif ($VHDPartitionStyle -eq "GPT" ) {
+                    } 
+                    elseif ($VHDPartitionStyle -eq "GPT" ) 
+                    {
                         Initialize-Disk -Number $openVhd.DiskIndex -PartitionStyle GPT
                         Write-W2VInfo "Disk initialized with GPT..."
                     }
                 
                     $disk      = Get-Disk -Number $openVhd.DiskIndex
 
-                    if ( $VHDPartitionStyle -eq "MBR") {
+                    if ( $VHDPartitionStyle -eq "MBR") 
+                    {
                         $partition       = New-Partition -DiskNumber $openVhd.DiskIndex -Size $disk.LargestFreeExtent -MbrType IFS -IsActive
                         Write-W2VInfo "Disk partitioned..."
-                    } elseif ( $VHDPartitionStyle -eq "GPT" ) {
+                    } 
+                    elseif ( $VHDPartitionStyle -eq "GPT" ) 
+                    {
                 
                         Write-W2VInfo "Disk partitioned"
 
@@ -4172,10 +4495,13 @@ namespace WIM2VHD {
                         Write-W2VInfo "Boot Partition created"
                     }
 
-                    if ( $VHDPartitionStyle -eq "MBR" ) {
+                    if ( $VHDPartitionStyle -eq "MBR" ) 
+                    {
                         $volume    = Format-Volume -Partition $partition -FileSystem NTFS -Force -Confirm:$false
                         Write-W2VInfo "Volume formatted..."
-                    } elseif ( $VHDPartitionStyle -eq "GPT" ) {
+                    } 
+                    elseif ( $VHDPartitionStyle -eq "GPT" ) 
+                    {
 
                         If
                         (
@@ -4200,11 +4526,14 @@ format fs=fat32 label="System"
                         Write-W2VInfo "Boot Volume formatted (with Format-Volume)..."
                     }
         
-                    if ( $VHDPartitionStyle -eq "MBR") {
+                    if ( $VHDPartitionStyle -eq "MBR") 
+                    {
                         $partition       | Add-PartitionAccessPath -AssignDriveLetter
                         $drive           = $(Get-Partition -Disk $disk).AccessPaths[0]
                         Write-W2VInfo "Access path ($drive) has been assigned..."
-                    } elseif ( $VHDPartitionStyle -eq "GPT" ) {
+                    } 
+                    elseif ( $VHDPartitionStyle -eq "GPT" ) 
+                    {
 
                         If
                         (
@@ -4235,7 +4564,8 @@ format fs=fat32 label="System"
 
                     $openImage.Apply($drive)
 
-                    if (![string]::IsNullOrEmpty($UnattendPath)) {
+                    if (![string]::IsNullOrEmpty($UnattendPath)) 
+                    {
                         Write-W2VInfo "Applying unattend file ($(Split-Path $UnattendPath -Leaf))..."
                         Copy-Item -Path $UnattendPath -Destination (Join-Path $drive "unattend.xml") -Force
                     }
@@ -4243,16 +4573,19 @@ format fs=fat32 label="System"
                     Write-W2VInfo "Signing disk..."
                     $flagText | Out-File -FilePath (Join-Path $drive "Convert-WindowsImageInfo.txt") -Encoding Unicode -Force
 
-                    if ($openImage.ImageArchitecture -ne "ARM") {
+                    if ($openImage.ImageArchitecture -ne "ARM") 
+                    {
 
-                        if ( $BCDinVHD -eq "VirtualMachine" ) {
+                        if ( $BCDinVHD -eq "VirtualMachine" ) 
+                        {
                         # We only need this if VHD is prepared for a VM.
                         # In this case VHD is "Self-Sustainable", i.e. contains a boot loader and does not depend on external files.
                         # (There's nothing "External" from the perspecitve of VM by definition).
 
                             Write-W2VInfo "Image applied. Making image bootable..."
 
-                            if ( $VHDPartitionStyle -eq "MBR" ) {
+                            if ( $VHDPartitionStyle -eq "MBR" ) 
+                            {
 
                                 $bcdBootArgs = @(
                                     "$($drive)Windows",    # Path to the \Windows on the VHD
@@ -4261,7 +4594,9 @@ format fs=fat32 label="System"
                                     "/f BIOS"              # Specifies the firmware type of the target system partition
                                 )
 
-                            } elseif ( $VHDPartitionStyle -eq "GPT" ) {
+                            } 
+                            elseif ( $VHDPartitionStyle -eq "GPT" ) 
+                            {
 
                                 $bcdBootArgs = @(
                                     "$($drive)Windows",    # Path to the \Windows on the VHD
@@ -4279,7 +4614,8 @@ format fs=fat32 label="System"
                           # This turns out to affect the VM Role provisioning with Windows Azure Pack.
                           # Nowadays, everything is supposed to work even without specifying the Disk Signature.
 
-                         <# if ( $VHDPartitionStyle -eq "MBR" ) {          
+                         <# if ( $VHDPartitionStyle -eq "MBR" ) 
+                            {          
 
                                 Apply-BcdStoreChanges                     `
                                     -BcdStoreFile    "$($drive)boot\bcd"  `
@@ -4292,7 +4628,8 @@ format fs=fat32 label="System"
                           # The following is added to mitigate the VMM diff disk handling
                           # We're going to change from MBRBootOption to LocateBootOption.
 
-                            if ( $VHDPartitionStyle -eq "MBR" ) {
+                            if ( $VHDPartitionStyle -eq "MBR" ) 
+                            {
 
                                 Write-W2VInfo "Fixing the Device ID in the BCD store on $($VHDFormat)..."
                                 Run-Executable -Executable "BCDEDIT.EXE" -Arguments (
@@ -4312,7 +4649,9 @@ format fs=fat32 label="System"
 
                             Write-W2VInfo "Drive is bootable. Cleaning up..."
 
-                        } elseif ( $BCDinVHD -eq "NativeBoot" ) {
+                        } 
+                        elseif ( $BCDinVHD -eq "NativeBoot" ) 
+                        {
                         # For Native Boot we don't need BCD store inside the VHD.
                         # Both Boot Loader and its configuration store live outside the VHD (on physical disk).
 
@@ -4321,7 +4660,8 @@ format fs=fat32 label="System"
                         }
 
                         # Are we turning the debugger on?
-                        if ($EnableDebugger -inotlike "None") {
+                        if ($EnableDebugger -inotlike "None") 
+                        {
                             Write-W2VInfo "Turning kernel debugging on in the $($VHDFormat)..."
                             Run-Executable -Executable "BCDEDIT.EXE" -Arguments (
                                 "/store $($drive)\boot\bcd",
@@ -4330,9 +4670,11 @@ format fs=fat32 label="System"
                         }
             
                         # Configure the specified debugging transport and other settings.
-                        switch ($EnableDebugger) {
+                        switch ($EnableDebugger) 
+                        {
                 
-                            "Serial" {
+                            "Serial" 
+                            {
                                 Run-Executable -Executable "BCDEDIT.EXE" -Arguments (
                                     "/store $($drive)\boot\bcd",
                                     "/dbgsettings SERIAL",
@@ -4342,7 +4684,8 @@ format fs=fat32 label="System"
                                 break
                             }
                 
-                            "1394" {
+                            "1394" 
+                            {
                                 Run-Executable -Executable "BCDEDIT.EXE" -Arguments (
                                     "/store $($drive)\boot\bcd",
                                     "/dbgsettings 1394",
@@ -4351,7 +4694,8 @@ format fs=fat32 label="System"
                                 break
                             }
                 
-                            "USB" {
+                            "USB" 
+                            {
                                 Run-Executable -Executable "BCDEDIT.EXE" -Arguments (
                                     "/store $($drive)\boot\bcd",
                                     "/dbgsettings USB",
@@ -4360,7 +4704,8 @@ format fs=fat32 label="System"
                                 break
                             }
                 
-                            "Local" {
+                            "Local" 
+                            {
                                 Run-Executable -Executable "BCDEDIT.EXE" -Arguments (
                                     "/store $($drive)\boot\bcd",
                                     "/dbgsettings LOCAL"
@@ -4368,7 +4713,8 @@ format fs=fat32 label="System"
                                 break
                             }
              
-                            "Network" {
+                            "Network" 
+                            {
                                 Run-Executable -Executable "BCDEDIT.EXE" -Arguments (
                                     "/store $($drive)\boot\bcd",
                                     "/dbgsettings NET",
@@ -4379,13 +4725,16 @@ format fs=fat32 label="System"
                                 break
                             }
                                 
-                            default {
+                            default 
+                            {
                                 # Nothing to do here - bail out.
                                 break
                             }
                         }
             
-                    } else {
+                    } 
+                    else 
+                    {
                         # Don't bother to check on debugging.  We can't boot WoA VHDs in VMs, and 
                         # if we're native booting, the changes need to be made to the BCD store on the 
                         # physical computer's boot volume.
@@ -4399,18 +4748,21 @@ format fs=fat32 label="System"
                         ) -or (
                             $ExpandOnNativeBoot -eq $False
                         )
-                    ) {
+                    ) 
+                    {
         
                         $hive         = Mount-RegistryHive -Hive (Join-Path $drive "Windows\System32\Config\System")
         
-                        if ( $RemoteDesktopEnable -eq $True ) {
+                        if ( $RemoteDesktopEnable -eq $True ) 
+                        {
 
                             Write-W2VInfo -text "Enabling Remote Desktop"
                             Set-ItemProperty -Path "HKLM:\$($hive)\ControlSet001\Control\Terminal Server" -Name "fDenyTSConnections" -Value 0
 
                         }
 
-                        if ( $ExpandOnNativeBoot -eq $False ) {
+                        if ( $ExpandOnNativeBoot -eq $False ) 
+                        {
             
                             Write-W2VInfo -text "Disabling automatic $VHDFormat expansion for Native Boot"
                             Set-ItemProperty -Path "HKLM:\$($hive)\ControlSet001\Services\FsDepends\Parameters" -Name "VirtualDiskExpandOnMount" -Value 4
@@ -4421,18 +4773,21 @@ format fs=fat32 label="System"
 
                     }
 
-                    if ( $Driver ) {
+                    if ( $Driver ) 
+                    {
 
                         Write-W2VInfo -text "Adding Windows Drivers to the Image"
 
-                        $Driver | ForEach-Object -Process {
+                        $Driver | ForEach-Object -Process 
+                        {
 
                             Write-W2VInfo -text "Driver path: $PSItem"
                             $Dism = Add-WindowsDriver -Path $drive -Recurse -Driver $PSItem
                         }
                     }
 
-                    If ( $Feature ) {
+                    If ( $Feature ) 
+                    {
             
                         Write-W2VInfo -text "Installing Windows Feature(s) $Feature to the Image"
                         $FeatureSourcePath = Join-Path -Path "$($driveLetter):" -ChildPath "sources\sxs"
@@ -4441,7 +4796,8 @@ format fs=fat32 label="System"
 
                     }
 
-                    if ( $Package ) {
+                    if ( $Package ) 
+                    {
 
                         Write-W2VInfo -text "Adding Windows Packages to the Image"
             
@@ -4452,7 +4808,8 @@ format fs=fat32 label="System"
                         }
                     }
 
-                    if ([String]::IsNullOrEmpty($vhdFinalName)) {
+                    if ([String]::IsNullOrEmpty($vhdFinalName)) 
+                    {
                         # We need to generate a file name. 
                         Write-W2VInfo "Generating name for $($VHDFormat)..."
                         $hive         = Mount-RegistryHive -Hive (Join-Path $drive "Windows\System32\Config\Software")
@@ -4467,16 +4824,22 @@ format fs=fat32 label="System"
                         # Is this ServerCore?
                         # Since we're only doing this string comparison against the InstallType key, we won't get
                         # false positives with the Core SKU.
-                        if ($installType.ToUpper().Contains("CORE")) {
+                        if ($installType.ToUpper().Contains("CORE")) 
+                        {
                             $editionId += "Core"
                         }
 
                         # What type of SKU are we?
-                        if ($installType.ToUpper().Contains("SERVER")) {
+                        if ($installType.ToUpper().Contains("SERVER")) 
+                        {
                             $skuFamily = "Server"
-                        } elseif ($installType.ToUpper().Contains("CLIENT")) {
+                        } 
+                        elseif ($installType.ToUpper().Contains("CLIENT")) 
+                        {
                             $skuFamily = "Client"
-                        } else {
+                        } 
+                        else 
+                        {
                             $skuFamily = "Unknown"
                         }
 
@@ -4491,7 +4854,8 @@ format fs=fat32 label="System"
                     $openVhd.Close()
                     $openVhd = $null
     
-                    if (Test-Path $vhdFinalPathCurrent) {
+                    if (Test-Path $vhdFinalPathCurrent) 
+                    {
                         Write-W2VInfo "Deleting pre-existing $VHDFormat : $(Split-Path $vhdFinalPathCurrent -Leaf)..."
                         Remove-Item -Path $vhdFinalPathCurrent -Force
                     }
@@ -4506,55 +4870,67 @@ format fs=fat32 label="System"
                     $vhdFinalName = $Null
                 }
 
-            } catch {
+            } 
+            catch 
+            {
     
                 Write-W2VError $_
                 Write-W2VInfo "Log folder is $logFolder"
 
-            } finally { 
+            } 
+            finally 
+            { 
  
                 # If we still have a WIM image open, close it.
-                if ($openWim -ne $null) {
+                if ($openWim -ne $null) 
+                {
                     Write-W2VInfo 
                     Write-W2VInfo "Closing Windows image..."
                     $openWim.Close()
                 }
 
                 # If we still have a registry hive mounted, dismount it.
-                if ($mountedHive -ne $null) {
+                if ($mountedHive -ne $null) 
+                {
                     Write-W2VInfo "Closing registry hive..."
                     Dismount-RegistryHive -HiveMountPoint $mountedHive
                 }
 
                 # If we still have a VHD(X) open, close it.
-                if ($openVhd -ne $null) {
+                if ($openVhd -ne $null) 
+                {
                     Write-W2VInfo "Closing $VHDFormat..."
                     $openVhd.Close()
                 }
 
                 # If we still have an ISO open, close it.
-                if ($openIso -ne $null) {
+                if ($openIso -ne $null) 
+                {
                     Write-W2VInfo "Closing ISO..."
                     Dismount-DiskImage $ISOPath
                 }
  
                 # Check to see if the WIM is local, or on a network location.  If the latter, remove the copy.
-                if ( Test-Path -Path "Variable:\SourceIsNetwork" ) {
+                if ( Test-Path -Path "Variable:\SourceIsNetwork" ) 
+                {
 
                     Remove-Item -Path $SourcePath
                 }
     
                 # Close out the transcript and tell the user we're done.
                 Write-W2VInfo "Done."
-                if ($transcripting) {
+                if ($transcripting) 
+                {
                     $null = Stop-Transcript
                 }
             }
         }
 
-        End {
+        End 
+        {
 
-            if ($Passthru) {
+            if ($Passthru) 
+            {
     
                 return $vhd
             }
