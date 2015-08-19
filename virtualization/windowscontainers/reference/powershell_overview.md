@@ -668,16 +668,13 @@ Copy container image out of the local store
 ```
 
 **INPUTS**  
-Microsoft.Containers.PowerShell.Objects.ContainerImage[]
-
+`Microsoft.Containers.PowerShell.Objects.ContainerImage[]`
 
 **OUTPUTS**  
 Microsoft.Containers.PowerShell.Objects.ContainerImage
 
-
 **ALIASES**  
 None
-
 
 **REMARKS**  
 Get-Help cannot find the Help files for this cmdlet on this computer. It is displaying only partial help.  
