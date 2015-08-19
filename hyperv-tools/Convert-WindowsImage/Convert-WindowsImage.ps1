@@ -1796,8 +1796,7 @@ namespace WIM2VHD
         public WimImage
         this[int ImageIndex] 
         {
-            get 
-            { return Images[ImageIndex - 1]; }
+            get { return Images[ImageIndex - 1]; }
         }
 
         /// <summary>
@@ -2055,8 +2054,7 @@ namespace WIM2VHD
                 {
                     arch = int.Parse(XmlInfo.XPathSelectElement("/IMAGE/WINDOWS/ARCH").Value);
                 } 
-                catch 
-                { }
+                catch { }
 
                 return (Architectures)arch;
             }
@@ -2072,8 +2070,7 @@ namespace WIM2VHD
                 {
                     lang = XmlInfo.XPathSelectElement("/IMAGE/WINDOWS/LANGUAGES/DEFAULT").Value;
                 } 
-                catch 
-                { }
+                catch { }
 
                 return lang;
             }
@@ -2096,8 +2093,7 @@ namespace WIM2VHD
                     build = int.Parse(XmlInfo.XPathSelectElement("/IMAGE/WINDOWS/VERSION/BUILD").Value);
                     revision = int.Parse(XmlInfo.XPathSelectElement("/IMAGE/WINDOWS/VERSION/SPBUILD").Value);
                 } 
-                catch 
-                { }
+                catch { }
 
                 return (new Version(major, minor, build, revision));
             }
