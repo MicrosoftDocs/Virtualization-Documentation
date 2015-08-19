@@ -81,6 +81,29 @@ Update-ContainerHost()
 }
 $global:AdminPriviledges = $false
 
+
+function 
+Expand-ArchivePrivate
+{
+    [CmdletBinding()]
+    param 
+    (
+        [Parameter(Mandatory=$true)]
+        [string] 
+        $Path,
+
+        [Parameter(Mandatory=$true)]        
+        [string] 
+        $DestinationPath
+    )
+        
+    $shell = New-Object -com Shell.Application
+    $zipFile = $shell.NameSpace($Path)
+    
+    $shell.Namespace($DestinationPath).CopyHere($zipFile.items())
+}
+
+
 function
 Get-Nsmm
 {
@@ -102,17 +125,27 @@ Get-Nsmm
     $nssmUri = "http://nssm.cc/release/nssm-2.24.zip"            
     $nssmZip = "$($env:temp)\$(Split-Path $nssmUri -Leaf)"
             
-    $tempDirectory = "$($env:temp)\nssm"
-
+    Write-Verbose "Creating working directory..."
+    $tempDirectory = New-Item -ItemType Directory -Force -Path "$($env:temp)\nssm"     
+            
     wget -Uri "http://nssm.cc/release/nssm-2.24.zip" -Outfile $nssmZip -UseBasicParsing
     #TODO Check for errors
             
     Write-Output "Extracting NSSM from archive..."
-    Expand-Archive -Path $nssmZip -DestinationPath $tempDirectory
+    if ($PSVersionTable.PSVersion.Major -ge 5)
+    {
+        Expand-Archive -Path $nssmZip -DestinationPath $tempDirectory
+    }
+    else
+    {
+        Expand-ArchivePrivate -Path $nssmZip -DestinationPath $tempDirectory
+    }
     Remove-Item $nssmZip
 
+    Write-Verbose "Copying NSSM to $Destination..."
     Copy-Item -Path "$tempDirectory\nssm-2.24\win64\nssm.exe" -Destination "$Destination"
 
+    Write-Verbose "Removing temporary directory..."
     Remove-Item $tempDirectory -Recurse
 }
 
