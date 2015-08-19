@@ -36,7 +36,7 @@ Select the `create` button to start the Virtual Machine deployment process.
 
 ![](media/newazure5.png)
 
-When the VM deployment is complete select the connect button to start an RDP session with the Windows Server Container Host.
+When the VM deployment is complete, select the connect button to start an RDP session with the Windows Server Container Host.
 
 ![](media/newazure6.png)
 
