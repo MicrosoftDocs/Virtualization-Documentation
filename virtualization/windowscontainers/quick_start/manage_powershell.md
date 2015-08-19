@@ -3,7 +3,7 @@ title: Manage Windows Server Containers with PowerShell
 
 #Quick Start: Windows Server Containers and PowerShell
 
-This article will walk through the fundamentals of managing Windows Server Container with PowerShell. Items covered will include creating Windows Server Containers and Windows Server Container Images, removing Windows Server Containers and Container Images and finally deploying an application into a Windows Server Container. The lessons learned in this walkthrough should enable you to begin exploring deployment and management of Windows Server Containers using PowerShell.
+This article will walk through the fundamentals of managing Windows Server Containers with PowerShell. Items covered will include creating Windows Server Containers and Windows Server Container Images, removing Windows Server Containers and Container Images and finally deploying an application into a Windows Server Container. The lessons learned in this walkthrough should enable you to begin exploring deployment and management of Windows Server Containers using PowerShell.
 
 Have questions? Ask them on the [Windows Containers forum](https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers).
 
@@ -12,7 +12,7 @@ Have questions? Ask them on the [Windows Containers forum](https://social.msdn.m
 ## Prerequisites
 In order to complete this walkthrough the following items need to be in place.
 
-- Windows Server 2016 TP3 or later configured with the Windows Server Container Feature. If you have completed the setup guide, this is the VM that was created in Azure or Hyper-V.
+- Windows Server 2016 TP3 or later configured with the Windows Server Containers Feature. If you have completed the setup guide, this is the VM that was created in Azure or Hyper-V.
 - This system must be connected to a network and able to access the internet.
 
 If you need to configure the container feature, see the following guides: [Container Setup in Azure](./azure_setup.md) or [Container Setup in Hyper-V](./container_setup.md). 
@@ -166,8 +166,6 @@ Stop the container by providing the container name to the `Stop-Container` comma
 ``` PowerShell
 Stop-Container -Name "MyContainer"
 ```
-
-> You can find the available container cmdlets using `Get-Command -Module Containers`.
 
 ### Step 2 - Create a New Container Image
 
