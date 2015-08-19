@@ -1394,8 +1394,7 @@ namespace WIM2VHD
 
             public override bool IsInvalid 
             {
-                get 
-                { return this.handle == IntPtr.Zero; }
+                get { return this.handle == IntPtr.Zero; }
             }
         }
 
@@ -1434,8 +1433,7 @@ namespace WIM2VHD
 
             public override bool IsInvalid 
             {
-                get 
-                { return this.handle == IntPtr.Zero; }
+                get { return this.handle == IntPtr.Zero; }
             }
         }
 
@@ -1830,8 +1828,7 @@ namespace WIM2VHD
         internal uint
         ImageCount 
         {
-            get 
-            { return NativeMethods.WimGetImageCount(Handle); }
+            get { return NativeMethods.WimGetImageCount(Handle); }
         }
 
         /// <summary>
@@ -2027,10 +2024,7 @@ namespace WIM2VHD
         public string
         ImageProductType 
         {
-            get 
-            {
-                return XmlInfo.XPathSelectElement("/IMAGE/WINDOWS/PRODUCTTYPE").Value;
-            }
+            get { return XmlInfo.XPathSelectElement("/IMAGE/WINDOWS/PRODUCTTYPE").Value; }
         }
 
         public string
@@ -2112,15 +2106,13 @@ namespace WIM2VHD
         public string
         ImageDisplayName 
         {
-            get 
-            { return XmlInfo.XPathSelectElement("/IMAGE/DISPLAYNAME").Value; }
+            get { return XmlInfo.XPathSelectElement("/IMAGE/DISPLAYNAME").Value; }
         }
 
         public string
         ImageDisplayDescription 
         {
-            get 
-            { return XmlInfo.XPathSelectElement("/IMAGE/DISPLAYDESCRIPTION").Value; }
+            get { return XmlInfo.XPathSelectElement("/IMAGE/DISPLAYDESCRIPTION").Value; }
         }
     }
 
@@ -2233,10 +2225,8 @@ namespace WIM2VHD
         ///</summary>
         public bool Abort 
         {
-            set 
-            { m_Abort = value; }
-            get 
-            { return m_Abort;  }
+            set { m_Abort = value; }
+            get { return m_Abort;  }
         }
 
         private string m_FilePath;
