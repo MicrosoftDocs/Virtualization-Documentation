@@ -6,9 +6,9 @@ These guides will first walk you through creating a Windows Server Container env
 
 [Get started with Windows Server Containers in Windows Azure.](./azure_setup.md)
 
-[Create a Windows Server Container host in a new Hyper-V Virtual Machine.](./container_setup.md)
+[Get started with Windows Server Containers in a new Hyper-V Virtual Machine.](./container_setup.md)
 
-[Configure Windows Server Containers on an existing Windows Server TP3 Core installation.](./inplace_setup.md)
+[Get started with Windows Server Containers in an existing Windows Server TP3 Core installation.](./inplace_setup.md)
 
 [Quick Start: Windows Server Containers and PowerShell.](./manage_powershell.md)
 
