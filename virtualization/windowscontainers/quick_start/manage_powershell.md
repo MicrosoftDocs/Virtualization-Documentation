@@ -66,7 +66,7 @@ Cmdlet          Test-ContainerImage                                1.0.0.0    Co
 ```
 
 
-Next make sure that your system has a valid IP Address using `ipconfig` and take note of this address for later use. 
+Next make sure that your system has a valid IP Address using `ipconfig` and take note of this address for later use. If you are working from an Azure VM instead of using `ipconfig` you will need to get the public IP address of the Azure Virtual Machine.
 
 ```
 ipconfig
