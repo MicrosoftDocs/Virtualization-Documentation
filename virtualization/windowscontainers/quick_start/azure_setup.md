@@ -3,45 +3,46 @@ title: Setup Windows Containers in Azure
 
 # Preparing Microsoft Azure for Windows Containers
 
-Before creating and managing Windows Containers the Windows Server 2016 Technical Preview environment must be prepared. With this preview release, two hands on experiences are available, one running in an Azure and one running in your on-premises environment. This guide will walk through configuring Windows container in a virtual machine hosted on Microsoft Azure. 
+Before creating and managing Windows Server Containers in Azure you will need to deploy a Windows Server 2016 Technical Preview image which has been pre-configured with the Windows Server Containers feature. This guide will walk you through this process.
 
 To run Windows Server Containers in a Hyper-V virtual machine instead, follow [these instructions](./container_setup.md).
 
 ## Start Using Azure Portal
-If you have an Azure account and use Azure Portal, skip straight to [Create a Container Host VM](#CreateacontainerhostVM).
+If you have an Azure account, skip straight to [Create a Container Host VM](#CreateacontainerhostVM).
 
-1. Go to [azure.com](https://azure.microsoft.com) and follow the steps for an [Azure Free Trial](https://azure.microsoft.com/en-us/pricing/free-trial/).
+1. Go to [azure.com](https://azure.com) and follow the steps for an [Azure Free Trial](https://azure.microsoft.com/en-us/pricing/free-trial/).
 2. Sign in with your Microsoft account.
-3. You should now be logged into the [Azure Management Portal](https://manage.windowsazure.com/).
+3. When your account is ready to go, sign into the [Azure Management Portal](https://portal.azure.com).
 
 ## Create a Container Host VM
-Create and configure a new virtual machine through Azure Gallery.
 
-Click on New > Compute > Virtual Machine > From Gallery
+Click on the following link to start the VM creation process – [New Windows Server Container Host in Azure]( https://portal.azure.com/#gallery/Microsoft.WindowsServer2016TechnicalPreviewwithContainers). 
 
-![](./media/CreateAzureVM.png)
+You can also search for the image in the Azure gallery.
 
-On the ‘Choose an Image’ menu, select ‘Windows Server Container Preview’.
+Click on the `create` button.
 
-![](media/Create_vm4.png)
+![](./media/newazure1.png)
 
-Select a name for the Virtual Machine, select a size, user name and Password.
+Give the Virtual Machine a name, select a user name and a password.
 
-![](./media/Create_vm2.png)
+![](media/newazure2.png)
 
-On page 3 of the Create a Virtual Machine wizard there is an option to configure an Endpoint. Endpoints are used to map a VM port (internal) to a port that is exposed to the internet (external). During the Windows Server Container quick starts you will host a website in your container and access this website through port 80. You will need to create an endpoint to allow internet traffic to access this VM through port 80.
+Select Optional Configuration > Endpoints > and enter an HTTP endpoint with a private and public port of 80 as seen below. When completed click ok two times.
 
-Select HTTP from the ‘Enter or Select Value’ drop down. 
- 
-![](media/AzurePorts.png)
+![](./media/newazure3.png)
 
-Keep the default on the following page and select the check mark to create the Virtual Machine.
-  
-![](media/create_vm3.png)
+Select the `create` button to start the Virtual Machine deployment process.
 
-To connect to the Azure Virtual Machine, select the virtual machine > click on Dashboard > select the connect bottom towards the bottom of the screen. This will download and open an .rdp file which will create an RDP session with the VM.
+![](media/newazure5.png)
 
-Log into the VM using the username and password specified during the VM creation wizard.
+When the VM deployment is complete, select the connect button to start an RDP session with the Windows Server Container Host.
+
+![](media/newazure6.png)
+
+Log into the VM using the username and password specified during the VM creation wizard. Once logged in you will be looking at a Windows command prompt.
+
+![](media/newazure7.png) 
 
 ## Next Steps - Start Using Containers
 

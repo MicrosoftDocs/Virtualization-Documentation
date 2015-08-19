@@ -10,11 +10,13 @@ If you don't see your problem addressed here or have questions, post them on the
 ## General functionality
 
 ### Windows Container Image must exactly match container host
-A Windows Server Container requires an opertaing system image that matches the container host in respect to build and patch level. A mismatch will lead to instability and or unpredictable behavior for the container and/or the host.
+A Windows Server Container requires an operating system image that matches the container host in respect to build and patch level. A mismatch will lead to instability and or unpredictable behavior for the container and/or the host.
+
+If you install updates against the Windows container host OS you will need to update the container base OS image to have the matching updates.
 <!-- Can we give examples of behavior or errors?  Makes it more searchable -->
 
 **Work Around:**   
-Download and install a container OS <!-- Container base image? --> matching the OS version and patch level of the container host.
+Download and install a container base image matching the OS version and patch level of the container host.
 
 
 ### Commands sporadically fail -- try again
@@ -26,10 +28,10 @@ If you have to do this, let us know via [the forums](https://social.msdn.microso
 ** Work Around:  **  
 Build scripts such that they try commands multiple times.  If a command fails, try again.  
 
-### All non-C:/ drives appear in the container
-All non-C:/ drives available to the container host are also mapped into all running Windows Server Containers.  
+### All non-C:/ drives are automatically mapped into new containers
+All non-C:/ drives available to the container host are automatically mapped into new running Windows Server Containers.
 
-Since there is no way to map folders into a container, this is a way to share data.
+At this point in time there is no way to selectively map folders into a container, as an interim work around drives are mapped automatically.
 
 **Work Around: **  
 We're working on it.  In the future there will be folder sharing.
@@ -38,11 +40,11 @@ We're working on it.  In the future there will be folder sharing.
 
 ## Networking
 
-### Number of compartments per container
-In this release we support one compartment per container. 
+### Number of network compartments per container
+In this release we support one network compartment per container. This means that if you have a container with multiple network adapters, you cannot access the same network port on each adapter (e.g. 192.168.0.1:80 and 192.168.0.2:80 belonging to the same container).
 
 **Work Around: **  
-If multiple endpoints exposed by the container are needed, use NAT port mapping.
+If multiple endpoints need to be exposed by a container, use NAT port mapping.
 
 --------------------------
 
@@ -69,8 +71,9 @@ Enable-WindowsOptionalFeature -Online -FeatureName Web-Server
 
 **Work Around:**   
 
-The following applications have been tried to run in a Windows Server Container.
-These results are no guarantee that a specific application is working or not working properly. The sole purpose is to share our experience when testing applications in a Container.
+We have tried to run in the following applications in a Windows Server Container.
+
+These results do not guarantee that the application is working. The sole purpose is to share our experience when testing applications in a Windows Server Container.
 
 | **Name** | **Version** | **Does it work?** | **Comment** |
 |:-----|:-----|:-----|:-----|
@@ -107,6 +110,8 @@ These results are no guarantee that a specific application is working or not wor
 | Sysinternals Tools | * | Yes | Only tried those not requiring a GUI. PsExec does not work by current design | 
 
 ### Windows Optional Features that do install
+
+The following Windows Optional Features have been confirmed as being able to install.  Many do not function once they are installed at this point in time.
 
 * AD-Certificate
 * ADCS-Cert-Authority
@@ -263,7 +268,7 @@ The following steps require a PowerShell launched as Administrator on the host.
 
 ** Connect to the container via RDP **
 
-Finally you can connect to the Container using RDP by running: 
+Finally you can connect to the Container using RDP. In order to do that please run the following command on a system which has the Remote Desktop Client installed: 
 
 ```
 mstsc /v:[ContainerHostIP]:3390 /prompt
