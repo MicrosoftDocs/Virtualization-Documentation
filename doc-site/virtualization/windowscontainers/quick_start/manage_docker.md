@@ -33,7 +33,7 @@ Copyright (C) 2015 Microsoft Corporation. All rights reserved.
 
 PS C:\>
 ```
-Next make sure that your system has a valid IP Address using `ipconfig` and take note of this address for later use. 
+Next make sure that your system has a valid IP Address using `ipconfig` and take note of this address for later use. If you are working from an Azure VM instead of using `ipconfig` you will need to get the public IP address of the Azure Virtual Machine.
 
 ```
 ipconfig
@@ -263,8 +263,9 @@ start nginx
 ```
 ### Step 5 – Access the Container Hosted Website
 
-With the web server container created, you can now checkout the application hosted in the container. To do so, open up a browser on different machine and enter `http://containerhost-ipaddress`. Notice here that you will be browsing to the IP Address of the Container Host and not the container itself.  If everything has been correctly configured, you will see the nginx welcome page.
+With the web server container created, you can now checkout the application hosted in the container. To do so, open up a browser on different machine and enter `http://containerhost-ipaddress`. Notice here that you will be browsing to the IP Address of the Container Host and not the container itself. If you are working from an Azure Virtual Machine this will be the public IP address or Cloud Service name. 
 
+If everything has been correctly configured, you will see the nginx welcome page.
 
 ![](media/nginx.png)
 
