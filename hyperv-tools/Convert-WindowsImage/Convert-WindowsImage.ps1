@@ -3303,20 +3303,13 @@ namespace WIM2VHD
             # Function to make the Write-Host output a bit prettier. 
                 [CmdletBinding()]
                 param(
-                    [Parameter(Mandatory = $False, ValueFromPipeline = $true)]
+                    [Parameter(Mandatory = $true, ValueFromPipeline = $true)]
                     [string]
                     [ValidateNotNullOrEmpty()]
                     $text
                 )
         
-                If ( $text )
-                {
-                    Write-Host "INFO   : $($text)" -ForegroundColor White
-                }
-                Else
-                {
-                    Write-Host
-                }
+                Write-Host "INFO   : $($text)" -ForegroundColor White
             }
 
             ##########################################################################################
@@ -4375,7 +4368,6 @@ namespace WIM2VHD
                         throw
                     }
 
-                    Write-W2VInfo
                     Write-W2VInfo "Image $($openImage.ImageIndex) selected ($($openImage.ImageFlags))..."
 
                     # Check to make sure that the image we're applying is Windows 7 or greater.
@@ -4848,7 +4840,6 @@ format fs=fat32 label="System"
                 # If we still have a WIM image open, close it.
                 if ($openWim -ne $null) 
                 {
-                    Write-W2VInfo 
                     Write-W2VInfo "Closing Windows image..."
                     $openWim.Close()
                 }
