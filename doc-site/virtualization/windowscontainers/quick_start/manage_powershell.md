@@ -84,7 +84,6 @@ If you are working from an Azure VM instead of using `ipconfig` you will need to
 
 ![](media/newazure8.png)
 
-
 ### Step 1 - Create a New Container
 
 Before creating a Windows Server Container you will need the name of a Container Image and the name of a virtual switch that will be attached to the new container.
