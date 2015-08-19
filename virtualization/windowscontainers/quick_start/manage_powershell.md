@@ -66,7 +66,7 @@ Cmdlet          Test-ContainerImage                                1.0.0.0    Co
 ```
 
 
-Next make sure that your system has a valid IP Address using `ipconfig` and take note of this address for later use. If you are working from an Azure VM instead of using `ipconfig` you will need to get the public IP address of the Azure Virtual Machine.
+Next make sure that your system has a valid IP Address using `ipconfig` and take note of this address for later use.
 
 ```
 ipconfig
@@ -79,6 +79,10 @@ Ethernet adapter Ethernet 3:
    Link-local IPv6 Address . . . . . : fe80::a8c1:a3e:96b7:ffcb%5
    IPv4 Address. . . . . . . . . . . : 192.168.1.25
 ```
+
+If you are working from an Azure VM instead of using `ipconfig` you will need to get the public IP address of the Azure Virtual Machine.
+
+![](media/newazure8.png)
 
 ### Step 1 - Create a New Container
 
