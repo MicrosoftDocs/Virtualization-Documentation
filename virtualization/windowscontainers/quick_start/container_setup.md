@@ -67,6 +67,11 @@ When the configuration script has completed, start the virtual machine. The VM i
   
 Finally log into the virtual machine using the password specified during the configuration process and make sure that the Virtual Machine has a valid IP address. With these items completed your system should be ready for Windows Server Containers. 
 
+## Video Walkthrough
+
+<iframe src="https://channel9.msdn.com/Blogs/containers/Quick-Start-Configure-Windows-Server-Containers-on-a-Local-System/player" width="960" height="540" allowFullScreen="true" frameBorder="0" scrolling="no"></iframe>
+
+
 ## Next Steps - Start Using Containers
 
 Now that you have a Windows Server 2016 system running the Windows Server Container feature jump to the following guides to begin working with Windows Server Containers and Windows Server Container images. 
