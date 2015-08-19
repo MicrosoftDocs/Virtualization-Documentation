@@ -16,7 +16,7 @@ If you install updates against the Windows container host OS you will need to up
 <!-- Can we give examples of behavior or errors?  Makes it more searchable -->
 
 **Work Around:**   
-Download and install a container OS <!-- Container base image? --> matching the OS version and patch level of the container host.
+Download and install a container base image matching the OS version and patch level of the container host.
 
 
 ### Commands sporadically fail -- try again
