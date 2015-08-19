@@ -3567,13 +3567,11 @@ namespace WIM2VHD
 
                     #region Event scriptblocks.
 
-                    $btnGo_OnClick                          = 
-                    {
+                    $btnGo_OnClick                          = {
                         $frmMain.Close()
                     }
 
-                    $btnWrkBrowse_OnClick                   = 
-                    {
+                    $btnWrkBrowse_OnClick                   = {
                         $openFolderDialog1.RootFolder       = "Desktop"
                         $openFolderDialog1.Description      = "Select the folder you'd like your VHD(X) to be created in."
                         $openFolderDialog1.SelectedPath     = $WorkingDirectory
@@ -3587,8 +3585,7 @@ namespace WIM2VHD
                         }
                     }
 
-                    $btnUnattendBrowse_OnClick              = 
-                    {
+                    $btnUnattendBrowse_OnClick              = {
                         $openFileDialog1.InitialDirectory   = $pwd
                         $openFileDialog1.Filter             = "XML files (*.xml)|*.XML|All files (*.*)|*.*"
                         $openFileDialog1.FilterIndex        = 1
@@ -3606,8 +3603,7 @@ namespace WIM2VHD
                         }
                     }
 
-                    $btnBrowseWim_OnClick                   = 
-                    {
+                    $btnBrowseWim_OnClick                   = {
                         $openFileDialog1.InitialDirectory   = $pwd
                         $openFileDialog1.Filter             = "All compatible files (*.ISO, *.WIM)|*.ISO;*.WIM|All files (*.*)|*.*"
                         $openFileDialog1.FilterIndex        = 1
@@ -3693,8 +3689,7 @@ namespace WIM2VHD
                                 else 
                                 {
 
-                                    $tempOpenWim.Images | %
-                                    { $cmbSkuList.Items.Add($_.ImageFlags) }
+                                    $tempOpenWim.Images | % { $cmbSkuList.Items.Add($_.ImageFlags) }
                                     $cmbSkuList.SelectedIndex = 0
                                 }
 
@@ -3713,8 +3708,7 @@ namespace WIM2VHD
                         }
                     }
 
-                    $OnLoadForm_StateCorrection = 
-                    {
+                    $OnLoadForm_StateCorrection = {
 
                         # Correct the initial state of the form to prevent the .Net maximized form issue
                         $frmMain.WindowState      = $InitialFormWindowState
