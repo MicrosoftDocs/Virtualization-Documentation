@@ -4228,52 +4228,55 @@ namespace WIM2VHD
                 }
 
                 $SourcePath  = (Resolve-Path $SourcePath).Path
-    
-                # We're good.  Open the WIM container.
-                $openWim     = New-Object WIM2VHD.WimFile $SourcePath
 
-                # Let's see if we're running against an unstaged build.  If we are, we need to blow up.
-                if ($openWim.ImageNames.Contains("Windows Longhorn Client") -or
-                    $openWim.ImageNames.Contains("Windows Longhorn Server") -or
-                    $openWim.ImageNames.Contains("Windows Longhorn Server Core")) 
-                {
-                    throw "Convert-WindowsImage cannot run against unstaged builds. Please try again with a staged build."
-                }
-
-                # If there's only one image in the WIM, just selected that.
-                if ($openWim.Images.Count -eq 1) 
-                { 
-                    $Edition   = $openWim.Images[0].ImageFlags
-                    $openImage = $openWim[$Edition]
-                } 
-                else 
-                {
-
-                    if ([String]::IsNullOrEmpty($Edition)) 
+                ####################################################################################################  
+                # QUERY WIM INFORMATION AND EXTRACT THE INDEX OF TARGETED IMAGE  
+                ####################################################################################################  
+      
+                Write-W2VInfo "Looking for the requested Windows image in the WIM file"  
+                $WindowsImage = Get-WindowsImage -ImagePath $SourcePath
+  
+                if ($WindowsImage.Count -ne 1)  
+                {  
+                    #
+                    # WIM has multiple images.  Filter on Edition (can be index or name) and try to find a unique image
+                    #
+                    if ([Int32]::TryParse($Edition, [ref]$null)) 
                     {
-                        Write-W2VError "You must specify an Edition or SKU index, since the WIM has more than one image."
-                        Write-W2VError "Valid edition names are:"
-                        $openWim.Images | % { Write-W2VError "  $($_.ImageFlags)" }
-                        throw
-                    } 
-                }
-
-                $Edition | ForEach-Object -Process 
-                {
-
-                    $Edition = $PSItem
-
-                    $editionNumber = $null;
-
-                    if ([Int32]::TryParse($Edition, [ref]$editionNumber)) 
-                    {
-                        $openImage = $openWim[[Int32]$editionNumber]
+                        $WindowsImage = Get-WindowsImage -ImagePath $SourcePath -Index $Edition
                     } 
                     else 
                     {
-                        $openImage = $openWim[$Edition]
-                    }    
+                        $WindowsImage = Get-WindowsImage -ImagePath $SourcePath | Where-Object {$_.ImageName -ilike "*$($Edition)"}              
+                    }        
+            
+                    if ($WindowsImage.Count -ne 1)  
+                    { 
+                        Write-W2VInfo "WIM file has the following $($WindowsImage.Count) images that match filter *$($Edition)"  
+                        Get-WindowsImage -ImagePath $SourcePath  
+  
+                        if ($WindowsImage.Count -eq 0)  
+                        {  
+                            throw "Requested windows Image was not found on the WIM file!!"  
+                        }  
+                        else  
+                        {  
+                            Write-W2VError "You must specify an Edition or SKU index, since the WIM has more than one image."
 
+                            throw "There are more than one images that match ImageName filter *$($Edition)"  
+                        }  
+                    }
+                }
+          
+                $ImageIndex = $WindowsImage[0].ImageIndex  
+         
+                # We're good.  Open the WIM container.
+                # NOTE: this is only required because we want to get the XML-based meta-data at the end.  Is there a better way?
+                # If we can get this information from DISM cmdlets, we can remove the openWim constructs
+                $openWim     = New-Object WIM2VHD.WimFile $SourcePath
+                
+                $openImage = $openWim[[Int32]$ImageIndex]    
+            
                     if ($null -eq $openImage) 
                     {
                         Write-W2VError "The specified edition does not appear to exist in the specified WIM."
@@ -4742,8 +4745,6 @@ format fs=fat32 label="System"
                     $vhd += Get-DiskImage -ImagePath $vhdFinalPathCurrent
 
                     $vhdFinalName = $Null
-                }
-
             } 
             catch 
             {
