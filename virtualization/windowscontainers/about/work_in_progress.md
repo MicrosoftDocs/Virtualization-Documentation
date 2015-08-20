@@ -138,7 +138,7 @@ These results do not guarantee that the application is working. The sole purpose
 | MySQL | 5.6.26 | Yes | |
 | NGinx | 1.9.3 | Yes | |
 | Node.js | 0.12.6 | Partially | Running node with js files works. NPM fails to download packages. Running node interactively does not work properly. |
-| PHP | 5.6.11 | Yes | Both with IIS via FastCGI and Apache|
+| PHP | 5.6.11 | Partially | With Apache, IIS via FastCGI currently does not work. |
 | PostgreSQL | 9.4.4 | Yes | |
 | Python | 3.4.3 | Yes | |
 | R | 3.2.1 | No | |
