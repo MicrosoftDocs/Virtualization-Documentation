@@ -379,7 +379,7 @@ $updateCheckScriptBlock = {
     Import-Module $env:SystemDrive\Bits\PSWindowsUpdate\PSWindowsUpdate;
 
     # Set static IP address - do not change values here, change them in FactoryVariables.ps1
-    $UseStaticIP = false
+    $UseStaticIP = $false
     if($UseStaticIP) {
         $IP = 'IPADDRESSPLACEHOLDER'
         $MaskBits = 'SUBNETMASKPLACEHOLDER'
@@ -396,7 +396,10 @@ $updateCheckScriptBlock = {
             $adapter | Remove-NetRoute -AddressFamily $IPType -Confirm:$false
         }
         # Configure the IP address and default gateway
-        $adapter | New-NetIPAddress -AddressFamily $IPType -IPAddress $IP -PrefixLength $MaskBits -DefaultGateway $Gateway
+        $adapter | New-NetIPAddress -AddressFamily $IPType `
+            -IPAddress $IP `
+            -PrefixLength $MaskBits `
+            -DefaultGateway $Gateway 
         # Configure the DNS client server IP addresses
         $adapter | Set-DnsClientServerAddress -ServerAddresses $DNS  
     }
@@ -570,7 +573,7 @@ function RunTheFactory
             # Create first logon script
             if($UseStaticIP) {
                 $staticUpdateCheckScriptBlock = $updateCheckScriptBlock | Out-String
-                $staticUpdateCheckScriptBlock = $staticUpdateCheckScriptBlock.Replace('$UseStaticIP = false', '$UseStaticIP = true')
+                $staticUpdateCheckScriptBlock = $staticUpdateCheckScriptBlock.Replace('$UseStaticIP = $false', '$UseStaticIP = $true')
                 $staticUpdateCheckScriptBlock = $staticUpdateCheckScriptBlock.Replace('IPADDRESSPLACEHOLDER', $IP)
                 $staticUpdateCheckScriptBlock = $staticUpdateCheckScriptBlock.Replace('SUBNETMASKPLACEHOLDER', $MaskBits)
                 $staticUpdateCheckScriptBlock = $staticUpdateCheckScriptBlock.Replace('GATEWAYPLACEHOLDER', $Gateway)
@@ -614,7 +617,7 @@ function RunTheFactory
             # Create the update check logon script
             if($UseStaticIP) {
                 $staticUpdateCheckScriptBlock = $updateCheckScriptBlock | Out-String
-                $staticUpdateCheckScriptBlock = $staticUpdateCheckScriptBlock.Replace('$UseStaticIP = false', '$UseStaticIP = true')
+                $staticUpdateCheckScriptBlock = $staticUpdateCheckScriptBlock.Replace('$UseStaticIP = $false', '$UseStaticIP = $true')
                 $staticUpdateCheckScriptBlock = $staticUpdateCheckScriptBlock.Replace('IPADDRESSPLACEHOLDER', $IP)
                 $staticUpdateCheckScriptBlock = $staticUpdateCheckScriptBlock.Replace('SUBNETMASKPLACEHOLDER', $MaskBits)
                 $staticUpdateCheckScriptBlock = $staticUpdateCheckScriptBlock.Replace('GATEWAYPLACEHOLDER', $Gateway)
