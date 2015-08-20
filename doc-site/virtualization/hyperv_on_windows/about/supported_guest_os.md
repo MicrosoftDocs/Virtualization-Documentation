@@ -51,7 +51,7 @@ For Windows 10 Hyper-V Hosts:
  
  Windows 10 is a guest operating system on Windows 8.1 and Windows Server 2012 R2 Hyper-V hosts.
 
-## Linux and Freed BSD
+## Linux and Free BSD
 
 Hyper-V has support for various Linux and FreeBSD distributions:
 | Operating system | |
