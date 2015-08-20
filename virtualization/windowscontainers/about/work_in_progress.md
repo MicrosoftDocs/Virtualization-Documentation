@@ -77,6 +77,7 @@ A service specific error occurred: 2182.
 More help is available by typing NET HELPMSG 3547.
 ```
 
+**Work Around: **
 If you want to copy files into a Container you can use the other way round by running `net use` within the Container. For example: 
 ```
 net use S: \\your\sources\here /User:shareuser [yourpassword]
@@ -110,8 +111,6 @@ Enable-WindowsOptionalFeature -Online -FeatureName Web-Server
 
 ### Applications
 
-
-**Work Around:**   
 
 We have tried to run in the following applications in a Windows Server Container.
 
