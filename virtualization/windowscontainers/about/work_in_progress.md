@@ -49,13 +49,38 @@ If multiple endpoints need to be exposed by a container, use NAT port mapping.
 ### Windows containers are not getting IPs
 If you're connecting to the windows server containers with DHCP VM Switches it's possible for the container host to recieve an IP wwhile the containers do not.
 
-The containers get a 169.254.***.*** address.
+The containers get a 169.254.***.*** APIPA IP address.
 
 **Work around:**
 This is a side effect of sharing the kernel.  All containers affectively have the same mac address.
 
 Enable MAC address spoofing on the container host.
 
+This can be achieved using PowerShell
+```
+Get-VMNetworkAdapter -VMName "[YourVMNameHere]"  | Set-VMNetworkAdapter -MacAddressSpoofing On
+```
+
+### Creating file shares does not work in a Container
+
+Currently it is not possible to create a file share within a Container. If you run `net share` you will see an error like this:
+
+```
+The Server service is not started.
+
+Is it OK to start it? (Y/N) [Y]: y
+The Server service is starting.
+The Server service could not be started.
+
+A service specific error occurred: 2182.
+
+More help is available by typing NET HELPMSG 3547.
+```
+
+If you want to copy files into a Container you can use the other way round by running `net use` within the Container. For example: 
+```
+net use S: \\your\sources\here /User:shareuser [yourpassword]
+```
 
 --------------------------
 
@@ -348,10 +373,15 @@ If anything that isn't on this list fails, if a command fails differently than e
 
 
 ### Pasting commands to interactive Docker session is limited to 50 characters
-If you copy a command line into an interactive Docker session, it is currently limited to 50 characters.
-<!-- How does this present?  Does it truncate or fail?  If fail, what's the error? -->
+If you copy a command line into an interactive Docker session, it is currently limited to 50 characters. The pasted string is simply truncated.
 
 This is not by design, we're working on lifting the restriction.
+
+### net use returns System error 1223 instead of prompting for username or password
+Workaround: specify both, the username and password, when running net use. For example:
+```
+net use S: \\your\sources\here /User:shareuser [yourpassword]
+``` 
 
 
 ### HCS Shim errors when creating new container images
