@@ -287,7 +287,7 @@ After the website has been updated, navigate back to `http://containerhost-ipadd
 
 ## Video Walkthrough
 
-<iframe src="https://channel9.msdn.com/Blogs/containers/Quick-Start-Deploying-and-Managing-Windows-Server-Containers-with-Docker/player" width="960" height="540" allowFullScreen="true" frameBorder="0" scrolling="no"></iframe>
+<iframe src="https://channel9.msdn.com/Blogs/containers/Quick-Start-Deploying-and-Managing-Windows-Server-Containers-with-Docker/player" width="800" height="450"  allowFullScreen="true" frameBorder="0" scrolling="no"></iframe>
 
 
 -----------------------------------
