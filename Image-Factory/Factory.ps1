@@ -378,6 +378,31 @@ $updateCheckScriptBlock = {
     # To get here - the files are unblocked
     Import-Module $env:SystemDrive\Bits\PSWindowsUpdate\PSWindowsUpdate;
 
+    # Set static IP address - do not change values here, change them in FactoryVariables.ps1
+    $UseStaticIP = false
+    if($UseStaticIP) {
+        $IP = 'IPADDRESSPLACEHOLDER'
+        $MaskBits = 'SUBNETMASKPLACEHOLDER'
+        $Gateway = 'GATEWAYPLACEHOLDER'
+        $DNS = 'DNSPLACEHOLDER'
+        $IPType = 'IPTYPEPLACEHOLDER'
+
+        $adapter = Get-NetAdapter | Where-Object {$_.Status -eq 'up'}
+        # Remove any existing IP, gateway from our ipv4 adapter
+        If (($adapter | Get-NetIPConfiguration).IPv4Address.IPAddress) {
+            $adapter | Remove-NetIPAddress -AddressFamily $IPType -Confirm:$false
+        }
+        If (($adapter | Get-NetIPConfiguration).Ipv4DefaultGateway) {
+            $adapter | Remove-NetRoute -AddressFamily $IPType -Confirm:$false
+        }
+        # Configure the IP address and default gateway
+        $adapter | New-NetIPAddress -AddressFamily $IPType -IPAddress $IP -PrefixLength $MaskBits -DefaultGateway $Gateway
+        # Configure the DNS client server IP addresses
+        $adapter | Set-DnsClientServerAddress -ServerAddresses $DNS  
+    }
+
+
+
     # Run pre-update script if it exists
     if (Test-Path "$env:SystemDrive\Bits\PreUpdateScript.ps1") {
         & "$env:SystemDrive\Bits\PreUpdateScript.ps1"
@@ -398,6 +423,22 @@ $updateCheckScriptBlock = {
     # Run post-update script if it exists
     if (Test-Path "$env:SystemDrive\Bits\PostUpdateScript.ps1") {
         & "$env:SystemDrive\Bits\PostUpdateScript.ps1"
+    }
+
+    # Remove static IP address
+    if($UseStaticIP) {
+        $adapter = Get-NetAdapter | ? {$_.Status -eq "up"}
+        $interface = $adapter | Get-NetIPInterface -AddressFamily $IPType
+
+        If ($interface.Dhcp -eq "Disabled") {
+            If (($interface | Get-NetIPConfiguration).Ipv4DefaultGateway) { 
+                $interface | Remove-NetRoute -Confirm:$false
+            }
+            $interface | Set-NetIPInterface -DHCP Enabled
+            $interface | Set-DnsClientServerAddress -ResetServerAddresses
+        }
+    }
+    
     }
 
     # Reboot if needed - otherwise shutdown because we are done
@@ -529,7 +570,11 @@ function RunTheFactory
             Copy-Item "$($ResourceDirectory)\bits" -Destination ($driveLetter + ":\") -Recurse;
             
             # Create first logon script
-            $updateCheckScriptBlock | Out-String | Out-File -FilePath "$($driveLetter):\Bits\Logon.ps1" -Width 4096;
+            if($UseStaticIP) {
+
+            } else {
+                $updateCheckScriptBlock | Out-String | Out-File -FilePath "$($driveLetter):\Bits\Logon.ps1" -Width 4096;
+            }
         }
 
         logger $FriendlyName "Create virtual machine, start it and wait for it to stop...";
@@ -562,7 +607,11 @@ function RunTheFactory
             cleanupFile "$($driveLetter):\Bits"
             Copy-Item "$($ResourceDirectory)\bits" -Destination ($driveLetter + ":\") -Recurse;
             # Create the update check logon script
-            $updateCheckScriptBlock | Out-String | Out-File -FilePath "$($driveLetter):\Bits\Logon.ps1" -Width 4096;
+            if($UseStaticIP) {
+
+            } else {
+                $updateCheckScriptBlock | Out-String | Out-File -FilePath "$($driveLetter):\Bits\Logon.ps1" -Width 4096;
+            }
         }
 
         logger $FriendlyName "Create virtual machine, start it and wait for it to stop...";
