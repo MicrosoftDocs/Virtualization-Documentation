@@ -241,7 +241,7 @@ The following steps are needed to remotely connect to a Windows Server Container
 
 ** In the Container you want to connect to **
 
-The following steps require either managing the Container using Docker or, when using PowerShell, specifying the `-RunAsAdministrator` switch when connecting to the Container.
+The following steps require either managing the Container using Docker or, when using PowerShell, specifying the `-RunAsAdministrator` switch when connecting to the Container. Please take the following steps in the Container you want to connect to.
 
 1. Obtain the Container's IP address
 
@@ -281,7 +281,7 @@ The following steps require either managing the Container using Docker or, when 
 
 Since Windows Server has the Windows Firewall with Advanced Security enabled by default we need to open some ports for communication in order for RDP to work. Additionally a port mapping is created so the Container is reachable through a port on the Container host.
 
-The following steps require a PowerShell launched as Administrator on the host.
+The following steps require a PowerShell launched as Administrator on the Container host.
 
 1. Allow the default RDP port through the Windows Advanced Firewall
 
@@ -309,7 +309,7 @@ The following steps require a PowerShell launched as Administrator on the host.
 
 ** Connect to the container via RDP **
 
-Finally you can connect to the Container using RDP. In order to do that please run the following command on a system which has the Remote Desktop Client installed: 
+Finally you can connect to the Container using RDP. In order to do that please run the following command on a system which has the Remote Desktop Client installed (e.g. your system running the Container host VM): 
 
 ```
 mstsc /v:[ContainerHostIP]:3390 /prompt
