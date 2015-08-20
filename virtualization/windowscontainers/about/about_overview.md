@@ -57,7 +57,8 @@ Containers help admins create an infrastructure that is simpler to update and ma
 ## Video Overview
 
 <iframe 
-src="https://channel9.msdn.com/Blogs/containers/Containers-101-with-Microsoft-and-Docker" width="960" height="540" allowFullScreen="true" frameBorder="0" scrolling="no"></iframe>
+src="https://channel9.msdn.com/Blogs/containers/Containers-101-with-Microsoft-and-Docker/player" width="960" height="540" allowFullScreen="true" frameBorder="0" scrolling="no"></iframe>
+
 
 ##Try Windows Server Containers
 

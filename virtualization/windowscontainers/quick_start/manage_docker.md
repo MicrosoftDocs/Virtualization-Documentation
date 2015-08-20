@@ -33,6 +33,8 @@ Copyright (C) 2015 Microsoft Corporation. All rights reserved.
 
 PS C:\>
 ```
+> This quick start will be focused on Docker commands however some steps such as managing firewall rules and copying files will be run with PowerShell commands. Work through this walkthrough from a PowerShell session.
+
 Next make sure that your system has a valid IP Address using `ipconfig` and take note of this address for later use.
 ```
 ipconfig
@@ -282,9 +284,11 @@ After the website has been updated, navigate back to `http://containerhost-ipadd
 
 ![](media/hello.png)
 
+
 ## Video Walkthrough
 
 <iframe src="https://channel9.msdn.com/Blogs/containers/Quick-Start-Deploying-and-Managing-Windows-Server-Containers-with-Docker/player" width="960" height="540" allowFullScreen="true" frameBorder="0" scrolling="no"></iframe>
+
 
 -----------------------------------
 [Back to Container Home](../containers_welcome.md)   

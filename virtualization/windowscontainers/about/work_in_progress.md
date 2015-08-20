@@ -46,9 +46,26 @@ In this release we support one network compartment per container. This means tha
 **Work Around: **  
 If multiple endpoints need to be exposed by a container, use NAT port mapping.
 
+### Windows containers are not getting IPs
+If you're connecting to the windows server containers with DHCP VM Switches it's possible for the container host to recieve an IP wwhile the containers do not.
+
+The containers get a 169.254.***.*** address.
+
+**Work around:**
+This is a side effect of sharing the kernel.  All containers affectively have the same mac address.
+
+Enable MAC address spoofing on the container host.
+
+
 --------------------------
 
 ## Application compatibility
+
+### WinRM won't start in a Windows Server Container
+WinRM starts, throws an error, and stops again.  Errors are not logged in the event log.
+
+**Work Around:**
+Use WMI, [RDP](#RemoteDesktopAccessOfContainers), or Enter-PSSession -ContainerID
 
 ### Can't install ASP.NET 4.5 with IIS in a container using DISM 
 Installing IIS-ASPNET45 in a container doesn't work inside a Windows Server container.  The installation progress sticks around 95.5%.
@@ -59,7 +76,7 @@ Enable-WindowsOptionalFeature -Online -FeatureName IIS-ASPNET45
 
 This fails because ASP.NET 4.5 doesn't run in a container.
 
-** Work Around: **  
+**Work Around:**  
 Instead, install the Web-Server role to use IIS. ASP 5.0 does work. 
 
 ``` PowerShell
