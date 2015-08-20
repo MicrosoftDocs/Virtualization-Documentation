@@ -986,67 +986,6 @@ namespace WIM2VHD
             WimGenericRead             = 0x80000000
         }
 
-        /// <summary>
-        /// Specifies how the file is to be treated and what features are to be used.
-        /// </summary>
-        [FlagsAttribute]
-        internal enum
-        WimApplyFlags : uint 
-            {
-            /// <summary>
-            /// No flags.
-            /// </summary>
-            WimApplyFlagsNone          = 0x00000000,
-            /// <summary>
-            /// Reserved.
-            /// </summary>
-            WimApplyFlagsReserved      = 0x00000001,
-            /// <summary>
-            /// Verifies that files match original data.
-            /// </summary>
-            WimApplyFlagsVerify        = 0x00000002,
-            /// <summary>
-            /// Specifies that the image is to be sequentially read for caching or performance purposes.
-            /// </summary>
-            WimApplyFlagsIndex         = 0x00000004,
-            /// <summary>
-            /// Applies the image without physically creating directories or files. Useful for obtaining a list of files and directories in the image.
-            /// </summary>
-            WimApplyFlagsNoApply       = 0x00000008,
-            /// <summary>
-            /// Disables restoring security information for directories.
-            /// </summary>
-            WimApplyFlagsNoDirAcl      = 0x00000010,
-            /// <summary>
-            /// Disables restoring security information for files
-            /// </summary>
-            WimApplyFlagsNoFileAcl     = 0x00000020,
-            /// <summary>
-            /// The .wim file is opened in a mode that enables simultaneous reading and writing.
-            /// </summary>
-            WimApplyFlagsShareWrite    = 0x00000040,
-            /// <summary>
-            /// Sends a WIM_MSG_FILEINFO message during the apply operation.
-            /// </summary>
-            WimApplyFlagsFileInfo      = 0x00000080,
-            /// <summary>
-            /// Disables automatic path fixups for junctions and symbolic links.
-            /// </summary>
-            WimApplyFlagsNoRpFix       = 0x00000100,
-            /// <summary>
-            /// Returns a handle that cannot commit changes, regardless of the access level requested at mount time.
-            /// </summary>
-            WimApplyFlagsMountReadOnly = 0x00000200,
-            /// <summary>
-            /// Reserved.
-            /// </summary>
-            WimApplyFlagsMountFast     = 0x00000400,
-            /// <summary>
-            /// Reserved.
-            /// </summary>
-            WimApplyFlagsMountLegacy   = 0x00000800
-        }
-
         public enum WimMessage : uint 
         {
             WIM_MSG                    = WM_APP + 0x1476,                
@@ -1478,14 +1417,6 @@ namespace WIM2VHD
         internal static extern uint
         WimGetImageCount(
             [In]    WimFileHandle Handle
-        );
-
-        [DllImport("Wimgapi.dll", CharSet = CharSet.Unicode, SetLastError = true, EntryPoint = "WIMApplyImage")]
-        internal static extern bool
-        WimApplyImage(
-            [In]    WimImageHandle Handle,
-            [In, Optional, MarshalAs(UnmanagedType.LPWStr)] string Path,
-            [In]    WimApplyFlags Flags
         );
 
         [DllImport("Wimgapi.dll", CharSet = CharSet.Unicode, SetLastError = true, EntryPoint = "WIMGetImageInformation")]
@@ -1933,33 +1864,6 @@ namespace WIM2VHD
             if ((!Handle.IsClosed) && (!Handle.IsInvalid)) 
             {
                 Handle.Close();
-            }
-        }
-
-        public void
-        Apply(
-            string ApplyToPath) 
-            {
-
-            if (string.IsNullOrEmpty(ApplyToPath)) 
-            {
-                throw new ArgumentNullException("ApplyToPath");
-            }
-
-            ApplyToPath = Path.GetFullPath(ApplyToPath);
-
-            if (!Directory.Exists(ApplyToPath)) 
-            {
-                throw new DirectoryNotFoundException("The WIM cannot be applied because the specified directory was not found.");
-            }
-
-            if (!NativeMethods.WimApplyImage(
-                this.Handle,
-                ApplyToPath,
-                NativeMethods.WimApplyFlags.WimApplyFlagsNone
-            )) 
-            {
-                throw new Win32Exception();
             }
         }
 
@@ -4523,9 +4427,13 @@ format fs=fat32 label="System"
                         }
                     }
 
+                    ####################################################################################################  
+                    # APPLY IMAGE FROM WIM TO THE NEW VHD  
+                    ####################################################################################################  
+                    
                     Write-W2VInfo "Applying image to $VHDFormat. This could take a while..."
-
-                    $openImage.Apply($drive)
+                    Expand-WindowsImage -ApplyPath $windowsDrive -ImagePath $SourcePath -Index $ImageIndex -LogPath "$($logFolder)\DismLogs.log" | Out-Null
+                    Write-W2VInfo "Image was applied successfully. "
 
                     if (![string]::IsNullOrEmpty($UnattendPath)) 
                     {
