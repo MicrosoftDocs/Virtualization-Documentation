@@ -1,9 +1,9 @@
 ms.ContentId: d0a07897-5fd2-41a5-856d-dc8b499c6783
 title: Manage Windows Server Containers with PowerShell
 
-#Quick Start: Windows Server Containers and PowerShell
+# Quick Start: Windows Server Containers and PowerShell
 
-This article will walk through the fundamentals of managing Windows Server Container with PowerShell. Items covered will include creating Windows Server Containers and Windows Server Container Images, removing Windows Server Containers and Container Images and finally deploying an application into a Windows Server Container. The lessons learned in this walkthrough should enable you to begin exploring deployment and management of Windows Server Containers using PowerShell.
+This article will walk through the fundamentals of managing Windows Server Containers with PowerShell. Items covered will include creating Windows Server Containers and Windows Server Container Images, removing Windows Server Containers and Container Images and finally deploying an application into a Windows Server Container. The lessons learned in this walkthrough should enable you to begin exploring deployment and management of Windows Server Containers using PowerShell.
 
 Have questions? Ask them on the [Windows Containers forum](https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers).
 
@@ -12,20 +12,20 @@ Have questions? Ask them on the [Windows Containers forum](https://social.msdn.m
 ## Prerequisites
 In order to complete this walkthrough the following items need to be in place.
 
-- Windows Server 2016 TP3 or later configured with the Windows Server Container Feature. If you have completed the setup guide, this is the VM that was created in Azure or Hyper-V.
+- Windows Server 2016 TP3 or later configured with the Windows Server Containers Feature. If you have completed the setup guide, this is the VM that was created in Azure or Hyper-V.
 - This system must be connected to a network and able to access the internet.
 
 If you need to configure the container feature, see the following guides: [Container Setup in Azure](./azure_setup.md) or [Container Setup in Hyper-V](./container_setup.md). 
 
-As you begin this walkthrough you should be at a Windows command prompt.
+## Basic Container Management with PowerShell
+
+This first example will walk through the basics of creating and removing Windows Server Containers and Windows Server Container Images with PowerShell.
+
+To begin the walk through, log into your Windows Server Container Host System, you will see a Windows command prompt.
 
 ![](media/cmd.png)
 
-## Basic Container Management with PowerShell
-
-This first example will walk through the basics of creating and removing Windows Server Containers and Windows Server Container Images with PowerShell. You can find the available container cmdlets using `Get-Command -Module Containers`.
-
-Before you begin working with the Container PowerShell module start a PowerShell session by typing `powershell`. You will know that you are in a PowerShell session when the prompt changes from ``C:\directory>`` to ``PS C:\directory>``.
+Start a PowerShell session by typing `powershell`. You will know that you are in a PowerShell session when the prompt changes from `C:\directory>` to `PS C:\directory>`.
 
 ```
 C:\> powershell
@@ -34,7 +34,55 @@ Copyright (C) 2015 Microsoft Corporation. All rights reserved.
 
 PS C:\>
 ```
-Next make sure that your system has a valid IP Address and make note of this address for later use. 
+
+Use `Get-Command` to see the available commands in the containers module
+
+```
+PS C:\> Get-Command -Module containers
+
+CommandType     Name                                               Version    Source
+-----------     ----                                               -------    ------
+Function        Install-ContainerOSImage                           1.0.0.0    Containers
+Function        Uninstall-ContainerOSImage                         1.0.0.0    Containers
+Cmdlet          Add-ContainerNetworkAdapter                        1.0.0.0    Containers
+Cmdlet          Connect-ContainerNetworkAdapter                    1.0.0.0    Containers
+Cmdlet          Disconnect-ContainerNetworkAdapter                 1.0.0.0    Containers
+Cmdlet          Export-ContainerImage                              1.0.0.0    Containers
+Cmdlet          Get-Container                                      1.0.0.0    Containers
+Cmdlet          Get-ContainerHost                                  1.0.0.0    Containers
+Cmdlet          Get-ContainerImage                                 1.0.0.0    Containers
+Cmdlet          Get-ContainerNetworkAdapter                        1.0.0.0    Containers
+Cmdlet          Import-ContainerImage                              1.0.0.0    Containers
+Cmdlet          Move-ContainerImageRepository                      1.0.0.0    Containers
+Cmdlet          New-Container                                      1.0.0.0    Containers
+Cmdlet          New-ContainerImage                                 1.0.0.0    Containers
+Cmdlet          Remove-Container                                   1.0.0.0    Containers
+Cmdlet          Remove-ContainerImage                              1.0.0.0    Containers
+Cmdlet          Remove-ContainerNetworkAdapter                     1.0.0.0    Containers
+Cmdlet          Set-ContainerNetworkAdapter                        1.0.0.0    Containers
+Cmdlet          Start-Container                                    1.0.0.0    Containers
+Cmdlet          Stop-Container                                     1.0.0.0    Containers
+Cmdlet          Test-ContainerImage                                1.0.0.0    Containers
+```
+
+
+Next make sure that your system has a valid IP Address using `ipconfig` and take note of this address for later use.
+
+```
+ipconfig
+
+Ethernet adapter Ethernet 3:
+
+   Connection-specific DNS Suffix  . :
+   IPv6 Address. . . . . . . . . . . : 2601:600:8f01:84eb::e
+   IPv6 Address. . . . . . . . . . . : 2601:600:8f01:84eb:a8c1:a3e:96b7:ffcb
+   Link-local IPv6 Address . . . . . : fe80::a8c1:a3e:96b7:ffcb%5
+   IPv4 Address. . . . . . . . . . . : 192.168.1.25
+```
+
+If you are working from an Azure VM instead of using `ipconfig` you will need to get the public IP address of the Azure Virtual Machine.
+
+![](media/newazure9.png)
 
 ### Step 1 - Create a New Container
 
@@ -308,7 +356,7 @@ For this lab we need to create this port mapping. In order to do so we will need
 ``` PowerShell
 Add-NetNatStaticMapping -NatName "ContainerNat" -Protocol TCP -ExternalIPAddress 0.0.0.0 -InternalIPAddress 172.16.0.2 -InternalPort 80 -ExternalPort 80
 ```
-When the port mapping has been created you will also need to configure an inbound firewall rule for the configured port. To do so for port 80 run the following command.
+When the port mapping has been created you will also need to configure an inbound firewall rule for the configured port. To do so for port 80 run the following command. This script can be copied into the VM. 
 
 ``` PowerShell
 if (!(Get-NetFirewallRule | where {$_.Name -eq "TCP80"})) {
@@ -316,10 +364,12 @@ if (!(Get-NetFirewallRule | where {$_.Name -eq "TCP80"})) {
 }
 ```
 
-Finally if you are working from Azure an external endpoint will need to be created that will expose this port to the internet. For more information on Azure VM Endpoints see this article: [Set up Azure VM Endpoints]( https://azure.microsoft.com/en-us/documentation/articles/virtual-machines-set-up-endpoints/).
+Next if you are working from Azure and have not already created a Virtual Machine endpoint you will need to create one now. For more information on Azure VM Endpoints see this article: [Set up Azure VM Endpoints]( https://azure.microsoft.com/en-us/documentation/articles/virtual-machines-set-up-endpoints/).
 
 ### Step 6 – Access the Container Hosted Website
-With the web server container created and all networking configured, you can now checkout the application hosted in the container. To do so, get the ip address of the container host using `ipconfig`, open up a browser on different machine and enter `http://containerhost-ipaddress`. If everything has been correctly configured, you will see the nginx welcome page.
+With the web server container created, you can now checkout the application hosted in the container. To do so, open up a browser on different machine and enter `http://containerhost-ipaddress`. Notice here that you will be browsing to the IP Address of the Container Host and not the container itself. If you are working from an Azure Virtual Machine this will be the public IP address or Cloud Service name. 
+
+If everything has been correctly configured, you will see the nginx welcome page.
 
 ![](media/nginx.png)
 

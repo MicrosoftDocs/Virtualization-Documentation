@@ -18,6 +18,9 @@ Check out resources available to the user community. There is also a lot to see 
 
 
 ## Featured content
+* [Announcing Windows Server 2016 Containers Preview](http://weblogs.asp.net/scottgu/announcing-windows-server-2016-containers-preview)
+* [Docker -Introducing the Technical Preview of Docker Enging for Windows Server 2016](http://blog.docker.com/2015/08/tp-docker-engine-windows-server-2016/)
+* [Containers 101 Video](https://channel9.msdn.com/Blogs/containers/Containers-101-with-Microsoft-and-Docker)
 * [Containers: Docker, Windows and Trends](http://azure.microsoft.com/blog/2015/08/17/containers-docker-windows-and-trends/)
 
 

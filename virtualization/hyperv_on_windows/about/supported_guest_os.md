@@ -5,6 +5,8 @@ title: Supported Windows Guest Operating Systems
 # Supported Windows guests 
 This article lists the Windows operating systems supported as guests in Hyper-V on Windows, as well provides information about integration services. 
 
+> Windows 10 runs as a guest operating system on Windows 8.1 and Windows Server 2012 R2 Hyper-V hosts.
+
 ## What does support mean? 
 Support means Microsoft has tested these host/guest combinations.  Issues with these combinations may receive attention from Product Support Services.
  
@@ -49,10 +51,16 @@ For Windows 10 Hyper-V Hosts:
  
  Windows 10 is a guest operating system on Windows 8.1 and Windows Server 2012 R2 Hyper-V hosts.
 
-## Linux and Freed BSD
+## Linux and Free BSD
 
 Hyper-V has support for various Linux and FreeBSD distributions:
 | Operating system | |
+
+## Linux and Free BSD
+
+For Windows 10 Hyper-V Hosts:
+
+| Guest operating system |  |
 | -----|------|
 | [CentOS and Red Hat Enterprise Linux ](https://technet.microsoft.com/library/dn531026.aspx) | |
 | [Debian virtual machines on Hyper-V](https://technet.microsoft.com/library/dn614985.aspx) | |
@@ -62,4 +70,3 @@ Hyper-V has support for various Linux and FreeBSD distributions:
 | [FreeBSD](https://technet.microsoft.com/library/dn848318.aspx) | |
 
 There are caveats around specific kernel versions. For more information, including support information on past versions of Hyper-V, see [Linux and FreeBSD Virtual Machines on Hyper-V](https://technet.microsoft.com/library/dn531030.aspx).
-

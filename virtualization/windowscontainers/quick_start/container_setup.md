@@ -1,7 +1,7 @@
 ms.ContentId: 71a03c62-50fd-48dc-9296-4d285027a96a
 title: Setup Windows Containers in a local VM
 
-# Preparing Windows Server Technical Preview for Windows Containers
+# Preparing Windows Server Technical Preview for Windows Server Containers
 
 In order to create and manage Windows Server Containers, the Windows Server 2016 Technical Preview environment must be prepared. This guide will walk through configuring Windows Server Containers in a Hyper-V Virtual Machine.
 
@@ -55,7 +55,7 @@ You may receive the following message during the Window Server Container host de
 This VM is not connected to the network. To connect it, run the following:
 Get-VM | Get-VMNetworkAdapter | Connect-VMNetworkAdapter -Switchname <switchname>
 ```  
-If you do, check the properties of the virtual machine and connect the virtual machine to a virtual switch. You can also run the following PowerShell command to complete this where `<switchname>` is the name of the Hyper-V virtual switch that you would like to connect to the virtual machine.
+If you do, check the properties of the virtual machine and connect the virtual machine to a virtual switch. You can also run the following PowerShell command where `<switchname>` is the name of the Hyper-V virtual switch that you would like to connect to the virtual machine.
 
 ``` powershell 
 Get-VM | Get-VMNetworkAdapter | Connect-VMNetworkAdapter -Switchname <switchname>
