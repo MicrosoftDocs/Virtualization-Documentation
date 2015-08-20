@@ -1,5 +1,5 @@
 ms.ContentId: 347fa279-d588-4094-90ec-8c2fc241f5b6
-title: Manage Windows Server Containers ith Docker
+title: Manage Windows Server Containers with Docker
 
 #Quick Start: Windows Server Containers and Docker
 
@@ -33,6 +33,8 @@ Copyright (C) 2015 Microsoft Corporation. All rights reserved.
 
 PS C:\>
 ```
+> This quick start will be focused on Docker commands however some steps such as managing firewall rules and copying files will be run with PowerShell commands. Work through this walkthrough from a PowerShell session.
+
 Next make sure that your system has a valid IP Address using `ipconfig` and take note of this address for later use.
 ```
 ipconfig
@@ -48,7 +50,7 @@ Ethernet adapter Ethernet 3:
 
 If you are working from an Azure VM instead of using `ipconfig` you will need to get the public IP address of the Azure Virtual Machine.
 
-![](media/newazure8.png)
+![](media/newazure9.png)
 
 ### Step 1 - Create a New Container
 

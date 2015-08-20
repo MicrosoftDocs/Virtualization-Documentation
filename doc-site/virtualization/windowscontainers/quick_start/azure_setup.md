@@ -1,7 +1,7 @@
 ﻿ms.ContentId: 1ab7bfe1-da35-4ff1-916f-936fedf536a0
 title: Setup Windows Containers in Azure
 
-# Preparing Microsoft Azure for Windows Containers
+# Preparing Microsoft Azure for Windows Server Containers
 
 Before creating and managing Windows Server Containers in Azure you will need to deploy a Windows Server 2016 Technical Preview image which has been pre-configured with the Windows Server Containers feature. This guide will walk you through this process.
 
@@ -34,7 +34,7 @@ Select Optional Configuration > Endpoints > and enter an HTTP endpoint with a pr
 
 Select the `create` button to start the Virtual Machine deployment process.
 
-![](media/newazure5.png)
+![](media/newazure2.png)
 
 When the VM deployment is complete, select the connect button to start an RDP session with the Windows Server Container Host.
 
