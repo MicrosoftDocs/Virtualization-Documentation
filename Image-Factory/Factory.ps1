@@ -438,8 +438,6 @@ $updateCheckScriptBlock = {
             $interface | Set-DnsClientServerAddress -ResetServerAddresses
         }
     }
-    
-    }
 
     # Reboot if needed - otherwise shutdown because we are done
     if (Get-WURebootStatus -Silent) 
@@ -571,7 +569,14 @@ function RunTheFactory
             
             # Create first logon script
             if($UseStaticIP) {
-
+                $staticUpdateCheckScriptBlock = $updateCheckScriptBlock | Out-String
+                $staticUpdateCheckScriptBlock = $staticUpdateCheckScriptBlock.Replace('$UseStaticIP = false', '$UseStaticIP = true')
+                $staticUpdateCheckScriptBlock = $staticUpdateCheckScriptBlock.Replace('IPADDRESSPLACEHOLDER', $IP)
+                $staticUpdateCheckScriptBlock = $staticUpdateCheckScriptBlock.Replace('SUBNETMASKPLACEHOLDER', $MaskBits)
+                $staticUpdateCheckScriptBlock = $staticUpdateCheckScriptBlock.Replace('GATEWAYPLACEHOLDER', $Gateway)
+                $staticUpdateCheckScriptBlock = $staticUpdateCheckScriptBlock.Replace('DNSPLACEHOLDER', $DNS)
+                $staticUpdateCheckScriptBlock = $staticUpdateCheckScriptBlock.Replace('IPTYPEPLACEHOLDER', $IPType)
+                $staticUpdateCheckScriptBlock | Out-String | Out-File -FilePath "$($driveLetter):\Bits\Logon.ps1" -Width 4096;
             } else {
                 $updateCheckScriptBlock | Out-String | Out-File -FilePath "$($driveLetter):\Bits\Logon.ps1" -Width 4096;
             }
@@ -608,7 +613,14 @@ function RunTheFactory
             Copy-Item "$($ResourceDirectory)\bits" -Destination ($driveLetter + ":\") -Recurse;
             # Create the update check logon script
             if($UseStaticIP) {
-
+                $staticUpdateCheckScriptBlock = $updateCheckScriptBlock | Out-String
+                $staticUpdateCheckScriptBlock = $staticUpdateCheckScriptBlock.Replace('$UseStaticIP = false', '$UseStaticIP = true')
+                $staticUpdateCheckScriptBlock = $staticUpdateCheckScriptBlock.Replace('IPADDRESSPLACEHOLDER', $IP)
+                $staticUpdateCheckScriptBlock = $staticUpdateCheckScriptBlock.Replace('SUBNETMASKPLACEHOLDER', $MaskBits)
+                $staticUpdateCheckScriptBlock = $staticUpdateCheckScriptBlock.Replace('GATEWAYPLACEHOLDER', $Gateway)
+                $staticUpdateCheckScriptBlock = $staticUpdateCheckScriptBlock.Replace('DNSPLACEHOLDER', $DNS)
+                $staticUpdateCheckScriptBlock = $staticUpdateCheckScriptBlock.Replace('IPTYPEPLACEHOLDER', $IPType)
+                $staticUpdateCheckScriptBlock | Out-String | Out-File -FilePath "$($driveLetter):\Bits\Logon.ps1" -Width 4096;
             } else {
                 $updateCheckScriptBlock | Out-String | Out-File -FilePath "$($driveLetter):\Bits\Logon.ps1" -Width 4096;
             }
