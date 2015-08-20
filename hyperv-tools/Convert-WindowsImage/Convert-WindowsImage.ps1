@@ -32,7 +32,7 @@ Convert-WindowsImage
 
         <build>.<revision>.<architecture>.<branch>.<timestamp>_<skufamily>_<sku>_<language>.<extension>
         i.e.:
-        8250.0.amd64chk.winmain_win8beta.120217-1520_client_professional_en-us.vhd(x)
+        9200.0.amd64fre.winmain_win8rtm.1207257-1247_client_professional_en-us.vhd(x)
 
     .PARAMETER WorkingDirectory
         Specifies the directory where the VHD(X) file should be generated.  
@@ -360,9 +360,9 @@ Convert-WindowsImage
                         # By default, use 115,200.
                         $BaudRate.Value                = 115200
                         $parameterDictionary.Add("BaudRate", $BaudRate)
-                        break
                         #endregion BaudRate
-
+                        
+                        break
                     } 
         
                     "1394" 
@@ -534,9 +534,9 @@ Convert-WindowsImage
 
                         # Don't set a default key.
                         $parameterDictionary.Add("NewKey", $NewKey)
-                        break
                         #endregion NewKey
-
+                        
+                        break
                     }
         
                     # There's nothing to do for local debugging.
@@ -585,7 +585,7 @@ Convert-WindowsImage
             $vhdMaxSize             = 2040GB                                       # Maximum size for VHD is ~2040GB.
             $vhdxMaxSize            = 64TB                                         # Maximum size for VHDX is ~64TB.
             $lowestSupportedVersion = New-Object Version "6.1"                     # The lowest supported *image* version; making sure we don't run against Vista/2k8.
-            $lowestSupportedBuild   = 8250                                         # The lowest supported *host* build.  Set to Win8 CP.
+            $lowestSupportedBuild   = 9200                                         # The lowest supported *host* build.  Set to Win8 CP.
             $transcripting          = $false
 
             # Since we use the VHDFormat in output, make it uppercase.
@@ -970,8 +970,7 @@ namespace WIM2VHD
 
         [FlagsAttribute]
         internal enum 
-        WimCreateFileDesiredAccess 
-            : uint 
+        WimCreateFileDesiredAccess : uint 
             {
             WimQuery                   = 0x00000000,
             WimGenericRead             = 0x80000000
@@ -982,8 +981,7 @@ namespace WIM2VHD
         /// </summary>
         [FlagsAttribute]
         internal enum
-        WimApplyFlags
-            : uint 
+        WimApplyFlags : uint 
             {
             /// <summary>
             /// No flags.
@@ -1089,29 +1087,25 @@ namespace WIM2VHD
         }
 
         internal enum 
-        WimCreationDisposition 
-            : uint 
+        WimCreationDisposition : uint 
             {
             WimOpenExisting            = 0x00000003,
         }
 
         internal enum 
-        WimActionFlags 
-            : uint 
+        WimActionFlags : uint 
             {
             WimIgnored                 = 0x00000000
         }
 
         internal enum 
-        WimCompressionType 
-            : uint 
+        WimCompressionType : uint 
             {
             WimIgnored                 = 0x00000000
         }
 
         internal enum 
-        WimCreationResult 
-            : uint 
+        WimCreationResult : uint 
             {
             WimCreatedNew              = 0x00000000,
             WimOpenedExisting          = 0x00000001
@@ -1400,8 +1394,7 @@ namespace WIM2VHD
 
             public override bool IsInvalid 
             {
-                get 
-                { return this.handle == IntPtr.Zero; }
+                get { return this.handle == IntPtr.Zero; }
             }
         }
 
@@ -1440,8 +1433,7 @@ namespace WIM2VHD
 
             public override bool IsInvalid 
             {
-                get 
-                { return this.handle == IntPtr.Zero; }
+                get { return this.handle == IntPtr.Zero; }
             }
         }
 
@@ -1804,8 +1796,7 @@ namespace WIM2VHD
         public WimImage
         this[int ImageIndex] 
         {
-            get 
-            { return Images[ImageIndex - 1]; }
+            get { return Images[ImageIndex - 1]; }
         }
 
         /// <summary>
@@ -1836,8 +1827,7 @@ namespace WIM2VHD
         internal uint
         ImageCount 
         {
-            get 
-            { return NativeMethods.WimGetImageCount(Handle); }
+            get { return NativeMethods.WimGetImageCount(Handle); }
         }
 
         /// <summary>
@@ -1923,7 +1913,8 @@ namespace WIM2VHD
             x86   = 0x0,
             ARM   = 0x5,
             IA64  = 0x6,
-            AMD64 = 0x9
+            AMD64 = 0x9,
+            ARM64 = 0xC
         }
 
         public void
@@ -2033,10 +2024,7 @@ namespace WIM2VHD
         public string
         ImageProductType 
         {
-            get 
-            {
-                return XmlInfo.XPathSelectElement("/IMAGE/WINDOWS/PRODUCTTYPE").Value;
-            }
+            get { return XmlInfo.XPathSelectElement("/IMAGE/WINDOWS/PRODUCTTYPE").Value; }
         }
 
         public string
@@ -2067,8 +2055,7 @@ namespace WIM2VHD
                 {
                     arch = int.Parse(XmlInfo.XPathSelectElement("/IMAGE/WINDOWS/ARCH").Value);
                 } 
-                catch 
-                { }
+                catch { }
 
                 return (Architectures)arch;
             }
@@ -2084,8 +2071,7 @@ namespace WIM2VHD
                 {
                     lang = XmlInfo.XPathSelectElement("/IMAGE/WINDOWS/LANGUAGES/DEFAULT").Value;
                 } 
-                catch 
-                { }
+                catch { }
 
                 return lang;
             }
@@ -2108,8 +2094,7 @@ namespace WIM2VHD
                     build = int.Parse(XmlInfo.XPathSelectElement("/IMAGE/WINDOWS/VERSION/BUILD").Value);
                     revision = int.Parse(XmlInfo.XPathSelectElement("/IMAGE/WINDOWS/VERSION/SPBUILD").Value);
                 } 
-                catch 
-                { }
+                catch { }
 
                 return (new Version(major, minor, build, revision));
             }
@@ -2118,15 +2103,13 @@ namespace WIM2VHD
         public string
         ImageDisplayName 
         {
-            get 
-            { return XmlInfo.XPathSelectElement("/IMAGE/DISPLAYNAME").Value; }
+            get { return XmlInfo.XPathSelectElement("/IMAGE/DISPLAYNAME").Value; }
         }
 
         public string
         ImageDisplayDescription 
         {
-            get 
-            { return XmlInfo.XPathSelectElement("/IMAGE/DISPLAYDESCRIPTION").Value; }
+            get { return XmlInfo.XPathSelectElement("/IMAGE/DISPLAYDESCRIPTION").Value; }
         }
     }
 
@@ -2239,10 +2222,8 @@ namespace WIM2VHD
         ///</summary>
         public bool Abort 
         {
-            set 
-            { m_Abort = value; }
-            get 
-            { return m_Abort;  }
+            set { m_Abort = value; }
+            get { return m_Abort;  }
         }
 
         private string m_FilePath;
@@ -3307,24 +3288,8 @@ namespace WIM2VHD
             function
             Test-WindowsVersion 
             {
-              
-              # This breaks on Windows 10
-
-              # $os = Get-WmiObject -Class Win32_OperatingSystem
-              # $isWin8 = (($os.Version -ge 6.2) -and ($os.BuildNumber -ge $lowestSupportedBuild))
-
-              # New version check which works on Windows 10 an down-level
-                
-                $os = [System.Environment]::OSVersion.Version
-                
-                $isWin8 = (
-                    (
-                        $os -ge 6.2
-                    ) -and
-                    (
-                        $os.Build -ge $lowestSupportedBuild
-                    )
-                )
+                $os = Get-WmiObject -Class Win32_OperatingSystem
+                $isWin8 = [int]($os.BuildNumber) -ge [int]$lowestSupportedBuild
 
                 Write-W2VTrace "is Windows 8 or Higher? $isWin8"
                 return $isWin8
@@ -3338,20 +3303,13 @@ namespace WIM2VHD
             # Function to make the Write-Host output a bit prettier. 
                 [CmdletBinding()]
                 param(
-                    [Parameter(Mandatory = $False, ValueFromPipeline = $true)]
+                    [Parameter(Mandatory = $true, ValueFromPipeline = $true)]
                     [string]
                     [ValidateNotNullOrEmpty()]
                     $text
                 )
         
-                If ( $text )
-                {
-                    Write-Host "INFO   : $($text)" -ForegroundColor White
-                }
-                Else
-                {
-                    Write-Host
-                }
+                Write-Host "INFO   : $($text)" -ForegroundColor White
             }
 
             ##########################################################################################
@@ -3602,13 +3560,11 @@ namespace WIM2VHD
 
                     #region Event scriptblocks.
 
-                    $btnGo_OnClick                          = 
-                    {
+                    $btnGo_OnClick                          = {
                         $frmMain.Close()
                     }
 
-                    $btnWrkBrowse_OnClick                   = 
-                    {
+                    $btnWrkBrowse_OnClick                   = {
                         $openFolderDialog1.RootFolder       = "Desktop"
                         $openFolderDialog1.Description      = "Select the folder you'd like your VHD(X) to be created in."
                         $openFolderDialog1.SelectedPath     = $WorkingDirectory
@@ -3622,8 +3578,7 @@ namespace WIM2VHD
                         }
                     }
 
-                    $btnUnattendBrowse_OnClick              = 
-                    {
+                    $btnUnattendBrowse_OnClick              = {
                         $openFileDialog1.InitialDirectory   = $pwd
                         $openFileDialog1.Filter             = "XML files (*.xml)|*.XML|All files (*.*)|*.*"
                         $openFileDialog1.FilterIndex        = 1
@@ -3641,8 +3596,7 @@ namespace WIM2VHD
                         }
                     }
 
-                    $btnBrowseWim_OnClick                   = 
-                    {
+                    $btnBrowseWim_OnClick                   = {
                         $openFileDialog1.InitialDirectory   = $pwd
                         $openFileDialog1.Filter             = "All compatible files (*.ISO, *.WIM)|*.ISO;*.WIM|All files (*.*)|*.*"
                         $openFileDialog1.FilterIndex        = 1
@@ -3728,8 +3682,7 @@ namespace WIM2VHD
                                 else 
                                 {
 
-                                    $tempOpenWim.Images | %
-                                    { $cmbSkuList.Items.Add($_.ImageFlags) }
+                                    $tempOpenWim.Images | % { $cmbSkuList.Items.Add($_.ImageFlags) }
                                     $cmbSkuList.SelectedIndex = 0
                                 }
 
@@ -3748,8 +3701,7 @@ namespace WIM2VHD
                         }
                     }
 
-                    $OnLoadForm_StateCorrection = 
-                    {
+                    $OnLoadForm_StateCorrection = {
 
                         # Correct the initial state of the form to prevent the .Net maximized form issue
                         $frmMain.WindowState      = $InitialFormWindowState
@@ -4416,7 +4368,6 @@ namespace WIM2VHD
                         throw
                     }
 
-                    Write-W2VInfo
                     Write-W2VInfo "Image $($openImage.ImageIndex) selected ($($openImage.ImageFlags))..."
 
                     # Check to make sure that the image we're applying is Windows 7 or greater.
@@ -4574,6 +4525,9 @@ format fs=fat32 label="System"
 
                     Write-W2VInfo "Signing disk..."
                     $flagText | Out-File -FilePath (Join-Path $drive "Convert-WindowsImageInfo.txt") -Encoding Unicode -Force
+
+                    if (($openImage.ImageArchitecture -ne "ARM") -and       # No virtualization platform for ARM images
+                        ($openImage.ImageArchitecture -ne "ARM64"))         # No virtualization platform for ARM64 images
 
                     if ($openImage.ImageArchitecture -ne "ARM") 
                     {
@@ -4886,7 +4840,6 @@ format fs=fat32 label="System"
                 # If we still have a WIM image open, close it.
                 if ($openWim -ne $null) 
                 {
-                    Write-W2VInfo 
                     Write-W2VInfo "Closing Windows image..."
                     $openWim.Close()
                 }

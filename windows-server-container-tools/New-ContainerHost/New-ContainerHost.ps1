@@ -51,7 +51,7 @@
         .\Install-ContainerHost.ps1 -SkipDocker
                 
 #>
-#Requires -Version 5.0
+#Requires -Version 4.0
 
 [CmdletBinding(DefaultParameterSetName="IncludeDocker")]
 param(
@@ -150,12 +150,20 @@ Copy-File
     }
     elseif (($SourcePath -as [System.URI]).AbsoluteURI -ne $null)
     {
-        #
-        # We disable progress display because it kills performance for large downloads (at least on 64-bit PowerShell)
-        #
-        $ProgressPreference = 'SilentlyContinue'
-        wget -Uri $SourcePath -OutFile $DestinationPath -UseBasicParsing
-        $ProgressPreference = 'Continue'        
+        if ($PSVersionTable.PSVersion.Major -ge 5)
+        {
+            #
+            # We disable progress display because it kills performance for large downloads (at least on 64-bit PowerShell)
+            #
+            $ProgressPreference = 'SilentlyContinue'
+            wget -Uri $SourcePath -OutFile $DestinationPath -UseBasicParsing
+            $ProgressPreference = 'Continue'
+        }
+        else
+        {
+            $webClient = New-Object System.Net.WebClient
+            $webClient.DownloadFile($SourcePath, $DestinationPath)
+        } 
     }
     else
     {
@@ -207,11 +215,18 @@ Cache-HostFiles
             #
             # Expand .zip file, remove .zip file, move .vhd to final location, and remove temporary folder
             #
-            Write-Output "Creating working directory..."
+            Write-Verbose "Creating working directory..."
             $tempDirectory = New-Item -ItemType Directory -Force -Path "$global:localVhdRoot\$global:imageBrand"
                        
             Write-Output "Expanding archive..."
-            Expand-Archive -Path $localZipPath -DestinationPath $tempDirectory
+            if ($PSVersionTable.PSVersion.Major -ge 5)
+            {
+                Expand-Archive -Path $localZipPath -DestinationPath $tempDirectory
+            }
+            else
+            {
+                Expand-ArchivePrivate -Path $localZipPath -DestinationPath $tempDirectory
+            }
             
             Remove-Item $localZipPath
 
@@ -536,7 +551,7 @@ New-ContainerHost()
     #
     # Create VM
     #
-    Write-Output "Creating VM ($VmName)..."
+    Write-Output "Creating VM $VmName..."
 
     $vm = New-VM -Name $VmName -VHDPath $bootVhd.Path -Generation 1
 
@@ -674,9 +689,33 @@ New-ContainerHost()
         Write-Output "VM $($vm.Name) will be ready to use as a container host when Install-ContainerHost.ps1 completes execution inside the VM."
     }
 
-    Write-Output "See http://msdn.microsoft.com/virtualization/windowscontainers for more information about using Containers."     
+    Write-Output "See http://msdn.microsoft.com/virtualization/windowscontainers for more information about using Containers."
+    Write-Output "The source code for these installation scripts is available here: https://github.com/Microsoft/Virtualization-Documentation/tree/master/windows-server-container-tools"
 }
 $global:AdminPriviledges = $false
+
+
+function 
+Expand-ArchivePrivate
+{
+    [CmdletBinding()]
+    param 
+    (
+        [Parameter(Mandatory=$true)]
+        [string] 
+        $Path,
+
+        [Parameter(Mandatory=$true)]        
+        [string] 
+        $DestinationPath
+    )
+        
+    $shell = New-Object -com Shell.Application
+    $zipFile = $shell.NameSpace($Path)
+    
+    $shell.Namespace($DestinationPath).CopyHere($zipFile.items())
+}
+
 
 function
 Get-Nsmm
@@ -699,17 +738,27 @@ Get-Nsmm
     $nssmUri = "http://nssm.cc/release/nssm-2.24.zip"            
     $nssmZip = "$($env:temp)\$(Split-Path $nssmUri -Leaf)"
             
-    $tempDirectory = "$($env:temp)\nssm"
-
+    Write-Verbose "Creating working directory..."
+    $tempDirectory = New-Item -ItemType Directory -Force -Path "$($env:temp)\nssm"     
+            
     wget -Uri "http://nssm.cc/release/nssm-2.24.zip" -Outfile $nssmZip -UseBasicParsing
     #TODO Check for errors
             
     Write-Output "Extracting NSSM from archive..."
-    Expand-Archive -Path $nssmZip -DestinationPath $tempDirectory
+    if ($PSVersionTable.PSVersion.Major -ge 5)
+    {
+        Expand-Archive -Path $nssmZip -DestinationPath $tempDirectory
+    }
+    else
+    {
+        Expand-ArchivePrivate -Path $nssmZip -DestinationPath $tempDirectory
+    }
     Remove-Item $nssmZip
 
+    Write-Verbose "Copying NSSM to $Destination..."
     Copy-Item -Path "$tempDirectory\nssm-2.24\win64\nssm.exe" -Destination "$Destination"
 
+    Write-Verbose "Removing temporary directory..."
     Remove-Item $tempDirectory -Recurse
 }
 
