@@ -254,14 +254,14 @@ Convert-WindowsImage
             [string[]]
             [ValidateNotNullOrEmpty()]
             [ValidateScript({ Test-Path $(Resolve-Path $_) })]
-            $Driver
-            ,
+            $Driver,
+
             [Parameter(ParameterSetName="SRC")]
             [string[]]
             [ValidateNotNullOrEmpty()]
             [ValidateScript({ Test-Path $(Resolve-Path $_) })]
-            $Package
-            ,
+            $Package,
+
             [Parameter(ParameterSetName="SRC")]
             [Switch]
             $ExpandOnNativeBoot = $True,
