@@ -3532,8 +3532,8 @@ namespace WIM2VHD
                                 {
                                     Write-W2VInfo "Copying ISO $(Split-Path $openFileDialog1.FileName -Leaf) to temp folder..."
                                     Write-W2VWarn "The UI may become non-responsive while this copy takes place..."                        
-                                    Copy-Item -Path $openFileDialog1.FileName -Destination $env:Temp -Force
-                                    $openFileDialog1.FileName = "$($env:Temp)\$(Split-Path $openFileDialog1.FileName -Leaf)"
+                                    Copy-Item -Path $openFileDialog1.FileName -Destination $TempDirectory -Force
+                                    $openFileDialog1.FileName = "$($TempDirectory)\$(Split-Path $openFileDialog1.FileName -Leaf)"
                                 }
                     
                                 $txtSourcePath.Text = $isoPath = (Resolve-Path $openFileDialog1.FileName).Path
@@ -3564,8 +3564,8 @@ namespace WIM2VHD
                             {
                                 Write-W2VInfo "Copying WIM $(Split-Path $SourcePath -Leaf) to temp folder..."
                                 Write-W2VWarn "The UI may become non-responsive while this copy takes place..."
-                                Copy-Item -Path $SourcePath -Destination $env:Temp -Force
-                                $txtSourcePath.Text = $script:SourcePath = "$($env:Temp)\$(Split-Path $SourcePath -Leaf)"
+                                Copy-Item -Path $SourcePath -Destination $TempDirectory -Force
+                                $txtSourcePath.Text = $script:SourcePath = "$($TempDirectory)\$(Split-Path $SourcePath -Leaf)"
                             }
 
                             $script:SourcePath = (Resolve-Path $SourcePath).Path
@@ -4196,8 +4196,8 @@ namespace WIM2VHD
                     if (Test-IsNetworkLocation $SourcePath) 
                     {
                         Write-W2VInfo "Copying ISO $(Split-Path $SourcePath -Leaf) to temp folder..."
-                        Copy-Item -Path $SourcePath -Destination $env:Temp -Force
-                        $SourcePath = "$($env:Temp)\$(Split-Path $SourcePath -Leaf)"
+                        Copy-Item -Path $SourcePath -Destination $TempDirectory -Force
+                        $SourcePath = "$($TempDirectory)\$(Split-Path $SourcePath -Leaf)"
                     }
 
                     $isoPath = (Resolve-Path $SourcePath).Path
@@ -4223,8 +4223,8 @@ namespace WIM2VHD
                 {
                     $SourceIsNetwork = $true
                     Write-W2VInfo "Copying WIM $(Split-Path $SourcePath -Leaf) to temp folder..."
-                    Copy-Item -Path $SourcePath -Destination $env:Temp -Force
-                    $SourcePath = "$($env:Temp)\$(Split-Path $SourcePath -Leaf)"
+                    Copy-Item -Path $SourcePath -Destination $TempDirectory -Force
+                    $SourcePath = "$($TempDirectory)\$(Split-Path $SourcePath -Leaf)"
                 }
 
                 $SourcePath  = (Resolve-Path $SourcePath).Path
