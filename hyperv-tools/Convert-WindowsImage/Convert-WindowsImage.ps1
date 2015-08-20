@@ -32,12 +32,16 @@ Convert-WindowsImage
 
         <build>.<revision>.<architecture>.<branch>.<timestamp>_<skufamily>_<sku>_<language>.<extension>
         i.e.:
-        9200.0.amd64fre.winmain_win8rtm.1207257-1247_client_professional_en-us.vhd(x)
+        9200.0.amd64fre.winmain_win8rtm.120725-1247_client_professional_en-us.vhd(x)
 
     .PARAMETER WorkingDirectory
         Specifies the directory where the VHD(X) file should be generated.  
         If specified along with -VHDPath, the -WorkingDirectory value is ignored.
         The default value is the current directory ($pwd).
+        
+    .PARAMETER TempDirectory
+        Specifies the directory where the logs and ISO files should be placed.
+        The default value is the temp directory ($env:Temp).
 
     .PARAMETER SizeBytes
         The size of the Virtual Hard Disk to create.
@@ -185,6 +189,12 @@ Convert-WindowsImage
             $WorkingDirectory = $pwd,
 
             [Parameter(ParameterSetName="SRC")]
+            [Alias("TempDir")]
+            [string]
+            [ValidateNotNullOrEmpty()]
+            $TempDirectory = $env:Temp,
+
+            [Parameter(ParameterSetName="SRC")]
             [Alias("VHD")]
             [string]
             [ValidateNotNullOrEmpty()]
@@ -244,14 +254,14 @@ Convert-WindowsImage
             [string[]]
             [ValidateNotNullOrEmpty()]
             [ValidateScript({ Test-Path $(Resolve-Path $_) })]
-            $Driver
-            ,
+            $Driver,
+
             [Parameter(ParameterSetName="SRC")]
             [string[]]
             [ValidateNotNullOrEmpty()]
             [ValidateScript({ Test-Path $(Resolve-Path $_) })]
-            $Package
-            ,
+            $Package,
+
             [Parameter(ParameterSetName="SRC")]
             [Switch]
             $ExpandOnNativeBoot = $True,
@@ -581,7 +591,7 @@ Convert-WindowsImage
             $myVersion              = "$($ScriptVersion.Major).$($ScriptVersion.Minor).$($ScriptVersion.Build).$($ScriptVersion.QFE).$($ScriptVersion.Flavor).$($ScriptVersion.Branch).$($ScriptVersion.Timestamp)"
             $scriptName             = "Convert-WindowsImage"                       # Name of the script, obviously.
             $sessionKey             = [Guid]::NewGuid().ToString()                 # Session key, used for keeping records unique between multiple runs.
-            $logFolder              = "$($env:Temp)\$($scriptName)\$($sessionKey)" # Log folder path.
+            $logFolder              = "$($TempDirectory)\$($scriptName)\$($sessionKey)" # Log folder path.
             $vhdMaxSize             = 2040GB                                       # Maximum size for VHD is ~2040GB.
             $vhdxMaxSize            = 64TB                                         # Maximum size for VHDX is ~64TB.
             $lowestSupportedVersion = New-Object Version "6.1"                     # The lowest supported *image* version; making sure we don't run against Vista/2k8.
@@ -974,67 +984,6 @@ namespace WIM2VHD
             {
             WimQuery                   = 0x00000000,
             WimGenericRead             = 0x80000000
-        }
-
-        /// <summary>
-        /// Specifies how the file is to be treated and what features are to be used.
-        /// </summary>
-        [FlagsAttribute]
-        internal enum
-        WimApplyFlags : uint 
-            {
-            /// <summary>
-            /// No flags.
-            /// </summary>
-            WimApplyFlagsNone          = 0x00000000,
-            /// <summary>
-            /// Reserved.
-            /// </summary>
-            WimApplyFlagsReserved      = 0x00000001,
-            /// <summary>
-            /// Verifies that files match original data.
-            /// </summary>
-            WimApplyFlagsVerify        = 0x00000002,
-            /// <summary>
-            /// Specifies that the image is to be sequentially read for caching or performance purposes.
-            /// </summary>
-            WimApplyFlagsIndex         = 0x00000004,
-            /// <summary>
-            /// Applies the image without physically creating directories or files. Useful for obtaining a list of files and directories in the image.
-            /// </summary>
-            WimApplyFlagsNoApply       = 0x00000008,
-            /// <summary>
-            /// Disables restoring security information for directories.
-            /// </summary>
-            WimApplyFlagsNoDirAcl      = 0x00000010,
-            /// <summary>
-            /// Disables restoring security information for files
-            /// </summary>
-            WimApplyFlagsNoFileAcl     = 0x00000020,
-            /// <summary>
-            /// The .wim file is opened in a mode that enables simultaneous reading and writing.
-            /// </summary>
-            WimApplyFlagsShareWrite    = 0x00000040,
-            /// <summary>
-            /// Sends a WIM_MSG_FILEINFO message during the apply operation.
-            /// </summary>
-            WimApplyFlagsFileInfo      = 0x00000080,
-            /// <summary>
-            /// Disables automatic path fixups for junctions and symbolic links.
-            /// </summary>
-            WimApplyFlagsNoRpFix       = 0x00000100,
-            /// <summary>
-            /// Returns a handle that cannot commit changes, regardless of the access level requested at mount time.
-            /// </summary>
-            WimApplyFlagsMountReadOnly = 0x00000200,
-            /// <summary>
-            /// Reserved.
-            /// </summary>
-            WimApplyFlagsMountFast     = 0x00000400,
-            /// <summary>
-            /// Reserved.
-            /// </summary>
-            WimApplyFlagsMountLegacy   = 0x00000800
         }
 
         public enum WimMessage : uint 
@@ -1468,14 +1417,6 @@ namespace WIM2VHD
         internal static extern uint
         WimGetImageCount(
             [In]    WimFileHandle Handle
-        );
-
-        [DllImport("Wimgapi.dll", CharSet = CharSet.Unicode, SetLastError = true, EntryPoint = "WIMApplyImage")]
-        internal static extern bool
-        WimApplyImage(
-            [In]    WimImageHandle Handle,
-            [In, Optional, MarshalAs(UnmanagedType.LPWStr)] string Path,
-            [In]    WimApplyFlags Flags
         );
 
         [DllImport("Wimgapi.dll", CharSet = CharSet.Unicode, SetLastError = true, EntryPoint = "WIMGetImageInformation")]
@@ -1923,33 +1864,6 @@ namespace WIM2VHD
             if ((!Handle.IsClosed) && (!Handle.IsInvalid)) 
             {
                 Handle.Close();
-            }
-        }
-
-        public void
-        Apply(
-            string ApplyToPath) 
-            {
-
-            if (string.IsNullOrEmpty(ApplyToPath)) 
-            {
-                throw new ArgumentNullException("ApplyToPath");
-            }
-
-            ApplyToPath = Path.GetFullPath(ApplyToPath);
-
-            if (!Directory.Exists(ApplyToPath)) 
-            {
-                throw new DirectoryNotFoundException("The WIM cannot be applied because the specified directory was not found.");
-            }
-
-            if (!NativeMethods.WimApplyImage(
-                this.Handle,
-                ApplyToPath,
-                NativeMethods.WimApplyFlags.WimApplyFlagsNone
-            )) 
-            {
-                throw new Win32Exception();
             }
         }
 
@@ -3405,8 +3319,8 @@ namespace WIM2VHD
                     -ArgumentList $Arguments   `
                     -NoNewWindow               `
                     -Wait                      `
-                    -RedirectStandardOutput "$($env:temp)\$($scriptName)\$($sessionKey)\$($Executable)-StandardOutput.txt" `
-                    -RedirectStandardError  "$($env:temp)\$($scriptName)\$($sessionKey)\$($Executable)-StandardError.txt"  `
+                    -RedirectStandardOutput "$($TempDirectory)\$($scriptName)\$($sessionKey)\$($Executable)-StandardOutput.txt" `
+                    -RedirectStandardError  "$($TempDirectory)\$($scriptName)\$($sessionKey)\$($Executable)-StandardError.txt"  `
                     -Passthru
 
                 Write-W2VTrace "Return code was $($ret.ExitCode)."
@@ -3618,8 +3532,8 @@ namespace WIM2VHD
                                 {
                                     Write-W2VInfo "Copying ISO $(Split-Path $openFileDialog1.FileName -Leaf) to temp folder..."
                                     Write-W2VWarn "The UI may become non-responsive while this copy takes place..."                        
-                                    Copy-Item -Path $openFileDialog1.FileName -Destination $env:Temp -Force
-                                    $openFileDialog1.FileName = "$($env:Temp)\$(Split-Path $openFileDialog1.FileName -Leaf)"
+                                    Copy-Item -Path $openFileDialog1.FileName -Destination $TempDirectory -Force
+                                    $openFileDialog1.FileName = "$($TempDirectory)\$(Split-Path $openFileDialog1.FileName -Leaf)"
                                 }
                     
                                 $txtSourcePath.Text = $isoPath = (Resolve-Path $openFileDialog1.FileName).Path
@@ -3650,8 +3564,8 @@ namespace WIM2VHD
                             {
                                 Write-W2VInfo "Copying WIM $(Split-Path $SourcePath -Leaf) to temp folder..."
                                 Write-W2VWarn "The UI may become non-responsive while this copy takes place..."
-                                Copy-Item -Path $SourcePath -Destination $env:Temp -Force
-                                $txtSourcePath.Text = $script:SourcePath = "$($env:Temp)\$(Split-Path $SourcePath -Leaf)"
+                                Copy-Item -Path $SourcePath -Destination $TempDirectory -Force
+                                $txtSourcePath.Text = $script:SourcePath = "$($TempDirectory)\$(Split-Path $SourcePath -Leaf)"
                             }
 
                             $script:SourcePath = (Resolve-Path $SourcePath).Path
@@ -4282,8 +4196,8 @@ namespace WIM2VHD
                     if (Test-IsNetworkLocation $SourcePath) 
                     {
                         Write-W2VInfo "Copying ISO $(Split-Path $SourcePath -Leaf) to temp folder..."
-                        Copy-Item -Path $SourcePath -Destination $env:Temp -Force
-                        $SourcePath = "$($env:Temp)\$(Split-Path $SourcePath -Leaf)"
+                        Copy-Item -Path $SourcePath -Destination $TempDirectory -Force
+                        $SourcePath = "$($TempDirectory)\$(Split-Path $SourcePath -Leaf)"
                     }
 
                     $isoPath = (Resolve-Path $SourcePath).Path
@@ -4309,57 +4223,60 @@ namespace WIM2VHD
                 {
                     $SourceIsNetwork = $true
                     Write-W2VInfo "Copying WIM $(Split-Path $SourcePath -Leaf) to temp folder..."
-                    Copy-Item -Path $SourcePath -Destination $env:Temp -Force
-                    $SourcePath = "$($env:Temp)\$(Split-Path $SourcePath -Leaf)"
+                    Copy-Item -Path $SourcePath -Destination $TempDirectory -Force
+                    $SourcePath = "$($TempDirectory)\$(Split-Path $SourcePath -Leaf)"
                 }
 
                 $SourcePath  = (Resolve-Path $SourcePath).Path
-    
-                # We're good.  Open the WIM container.
-                $openWim     = New-Object WIM2VHD.WimFile $SourcePath
 
-                # Let's see if we're running against an unstaged build.  If we are, we need to blow up.
-                if ($openWim.ImageNames.Contains("Windows Longhorn Client") -or
-                    $openWim.ImageNames.Contains("Windows Longhorn Server") -or
-                    $openWim.ImageNames.Contains("Windows Longhorn Server Core")) 
-                {
-                    throw "Convert-WindowsImage cannot run against unstaged builds. Please try again with a staged build."
-                }
-
-                # If there's only one image in the WIM, just selected that.
-                if ($openWim.Images.Count -eq 1) 
-                { 
-                    $Edition   = $openWim.Images[0].ImageFlags
-                    $openImage = $openWim[$Edition]
-                } 
-                else 
-                {
-
-                    if ([String]::IsNullOrEmpty($Edition)) 
+                ####################################################################################################  
+                # QUERY WIM INFORMATION AND EXTRACT THE INDEX OF TARGETED IMAGE  
+                ####################################################################################################  
+      
+                Write-W2VInfo "Looking for the requested Windows image in the WIM file"  
+                $WindowsImage = Get-WindowsImage -ImagePath $SourcePath
+  
+                if ($WindowsImage.Count -ne 1)  
+                {  
+                    #
+                    # WIM has multiple images.  Filter on Edition (can be index or name) and try to find a unique image
+                    #
+                    if ([Int32]::TryParse($Edition, [ref]$null)) 
                     {
-                        Write-W2VError "You must specify an Edition or SKU index, since the WIM has more than one image."
-                        Write-W2VError "Valid edition names are:"
-                        $openWim.Images | % { Write-W2VError "  $($_.ImageFlags)" }
-                        throw
-                    } 
-                }
-
-                $Edition | ForEach-Object -Process 
-                {
-
-                    $Edition = $PSItem
-
-                    $editionNumber = $null;
-
-                    if ([Int32]::TryParse($Edition, [ref]$editionNumber)) 
-                    {
-                        $openImage = $openWim[[Int32]$editionNumber]
+                        $WindowsImage = Get-WindowsImage -ImagePath $SourcePath -Index $Edition
                     } 
                     else 
                     {
-                        $openImage = $openWim[$Edition]
-                    }    
+                        $WindowsImage = Get-WindowsImage -ImagePath $SourcePath | Where-Object {$_.ImageName -ilike "*$($Edition)"}              
+                    }        
+            
+                    if ($WindowsImage.Count -ne 1)  
+                    { 
+                        Write-W2VInfo "WIM file has the following $($WindowsImage.Count) images that match filter *$($Edition)"  
+                        Get-WindowsImage -ImagePath $SourcePath  
+  
+                        if ($WindowsImage.Count -eq 0)  
+                        {  
+                            throw "Requested windows Image was not found on the WIM file!!"  
+                        }  
+                        else  
+                        {  
+                            Write-W2VError "You must specify an Edition or SKU index, since the WIM has more than one image."
 
+                            throw "There are more than one images that match ImageName filter *$($Edition)"  
+                        }  
+                    }
+                }
+          
+                $ImageIndex = $WindowsImage[0].ImageIndex  
+         
+                # We're good.  Open the WIM container.
+                # NOTE: this is only required because we want to get the XML-based meta-data at the end.  Is there a better way?
+                # If we can get this information from DISM cmdlets, we can remove the openWim constructs
+                $openWim     = New-Object WIM2VHD.WimFile $SourcePath
+                
+                $openImage = $openWim[[Int32]$ImageIndex]    
+            
                     if ($null -eq $openImage) 
                     {
                         Write-W2VError "The specified edition does not appear to exist in the specified WIM."
@@ -4513,9 +4430,13 @@ format fs=fat32 label="System"
                         }
                     }
 
+                    ####################################################################################################  
+                    # APPLY IMAGE FROM WIM TO THE NEW VHD  
+                    ####################################################################################################  
+                    
                     Write-W2VInfo "Applying image to $VHDFormat. This could take a while..."
-
-                    $openImage.Apply($drive)
+                    Expand-WindowsImage -ApplyPath $windowsDrive -ImagePath $SourcePath -Index $ImageIndex -LogPath "$($logFolder)\DismLogs.log" | Out-Null
+                    Write-W2VInfo "Image was applied successfully. "
 
                     if (![string]::IsNullOrEmpty($UnattendPath)) 
                     {
@@ -4824,8 +4745,6 @@ format fs=fat32 label="System"
                     $vhd += Get-DiskImage -ImagePath $vhdFinalPathCurrent
 
                     $vhdFinalName = $Null
-                }
-
             } 
             catch 
             {
