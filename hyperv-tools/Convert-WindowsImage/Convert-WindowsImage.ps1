@@ -53,10 +53,6 @@ Convert-WindowsImage
         Specifies whether to create a VHD or VHDX formatted Virtual Hard Disk.
         The default is VHD.
 
-    .PARAMETER VHDType
-        Specifies whether to create a fixed (fully allocated) VHD(X) or a dynamic (sparse) VHD(X).
-        The default is dynamic.
-
     .PARAMETER UnattendPath
         The complete path to an unattend.xml file that can be injected into the VHD(X).
 
@@ -213,13 +209,6 @@ Convert-WindowsImage
             [ValidateNotNullOrEmpty()]
             [ValidateSet("VHD", "VHDX")]
             $VHDFormat        = "VHDX",
-
-            [Parameter(ParameterSetName="SRC")]
-            [Alias("DiskType")]
-            [string]
-            [ValidateNotNullOrEmpty()]
-            [ValidateSet("Dynamic", "Fixed")]
-            $VHDType          = "Dynamic",
 
             [Parameter(ParameterSetName="SRC")]
             [string]
@@ -2415,173 +2404,6 @@ namespace WIM2VHD
 
         #endregion Sparse Disks
 
-        #region Fixed Disks
-
-        /// <summary>
-        /// Abbreviated signature of CreateFixedDisk so it's easier to use from WIM2VHD.
-        /// </summary>
-        /// <param name="virtualStorageDeviceType">The type of disk to create, VHD or VHDX.</param>
-        /// <param name="path">The path of the disk to create.</param>
-        /// <param name="size">The maximum size of the disk to create.</param>
-        /// <param name="overwrite">Overwrite the VHD if it already exists.</param>
-        /// <returns>Virtual Hard Disk object</returns>
-        public static VirtualHardDisk
-        CreateFixedDisk(
-            NativeMethods.VirtualStorageDeviceType virtualStorageDeviceType,
-            string path,
-            ulong size,
-            bool overwrite) 
-            {
-
-            return CreateFixedDisk(
-                path,
-                size,
-                overwrite,
-                null,
-                IntPtr.Zero,
-                0,
-                virtualStorageDeviceType,
-                NativeMethods.DISK_SECTOR_SIZE);
-        }
-
-        /// <summary>
-        /// Creates a fixed-size Virtual Hard Disk. Supports both sync and async modes. This methods always calls the V2 version of the 
-        /// CreateVirtualDisk API, and creates VHD2. 
-        /// </summary>
-        /// <param name="path">The path and name of the VHD to create.</param>
-        /// <param name="size">The size of the VHD to create in bytes.  
-        /// The VHD image file is pre-allocated on the backing store for the maximum size requested.
-        /// The maximum size of a dynamic VHD is 2,040 GB.  The minimum size is 3 MB.</param>
-        /// <param name="source">Optional path to pre-populate the new virtual disk object with block data from an existing disk
-        /// This path may refer to a VHD or a physical disk.  Use NULL if you don't want a source.</param>
-        /// <param name="overwrite">If the VHD exists, setting this parameter to 'True' will delete it and create a new one.</param>
-        /// <param name="overlapped">If not null, the operation runs in async mode</param>
-        /// <param name="blockSizeInBytes">Block size for the VHD.</param>
-        /// <param name="virtualStorageDeviceType">Virtual storage device type: VHD1 or VHD2.</param>
-        /// <param name="sectorSizeInBytes">Sector size for the VHD.</param>
-        /// <returns>Returns a SafeFileHandle corresponding to the virtual hard disk that was created.</returns>
-        /// <remarks>Creating a fixed disk can be a time consuming process!</remarks>  
-        /// <exception cref="ArgumentOutOfRangeException">Thrown when an invalid size or wrong virtual storage device type is specified.</exception>
-        /// <exception cref="FileNotFoundException">Thrown when source VHD is not found.</exception>
-        /// <exception cref="SecurityException">Thrown when there was an error while creating the default security descriptor.</exception>
-        /// <exception cref="Win32Exception">Thrown when an error occurred while creating the VHD.</exception>
-        public static VirtualHardDisk
-        CreateFixedDisk(
-            string path,
-            ulong size,
-            bool overwrite,
-            string source,
-            IntPtr overlapped,
-            uint blockSizeInBytes,
-            NativeMethods.VirtualStorageDeviceType virtualStorageDeviceType,
-            uint sectorSizeInBytes) 
-            {
-
-            // Validate the virtualStorageDeviceType
-            if (virtualStorageDeviceType != NativeMethods.VirtualStorageDeviceType.VHD && virtualStorageDeviceType != NativeMethods.VirtualStorageDeviceType.VHDX) 
-            {
-
-                throw (
-                    new ArgumentOutOfRangeException(
-                        "virtualStorageDeviceType",
-                        virtualStorageDeviceType,
-                        "VirtualStorageDeviceType must be VHD or VHDX."
-                ));
-            }
-
-            // Validate size.  It needs to be a multiple of DISK_SECTOR_SIZE (512)...
-            if ((size % NativeMethods.DISK_SECTOR_SIZE) != 0) 
-            {
-
-                throw (
-                    new ArgumentOutOfRangeException(
-                        "size",
-                        size,
-                        "The size of the virtual disk must be a multiple of 512."
-                ));
-            }
-
-            if ((!String.IsNullOrEmpty(source)) && (!System.IO.File.Exists(source))) 
-            {
-
-                throw (
-                    new System.IO.FileNotFoundException(
-                        "Unable to find the source file.",
-                        source
-                ));
-            }
-
-            if ((overwrite) && (System.IO.File.Exists(path))) 
-            {
-
-                System.IO.File.Delete(path);
-            }
-
-            NativeMethods.CreateVirtualDiskParameters createParams = new NativeMethods.CreateVirtualDiskParameters();
-
-            // Select the correct version.
-            createParams.Version = (virtualStorageDeviceType == NativeMethods.VirtualStorageDeviceType.VHD)
-                ? NativeMethods.CreateVirtualDiskVersion.Version1
-                : NativeMethods.CreateVirtualDiskVersion.Version2;
-
-            createParams.UniqueId                 = Guid.NewGuid();
-            createParams.MaximumSize              = size;
-            createParams.BlockSizeInBytes         = blockSizeInBytes;
-            createParams.SectorSizeInBytes        = sectorSizeInBytes;
-            createParams.ParentPath               = null;
-            createParams.SourcePath               = source;
-            createParams.OpenFlags                = NativeMethods.OpenVirtualDiskFlags.None;
-            createParams.GetInfoOnly              = false;
-            createParams.ParentVirtualStorageType = new NativeMethods.VirtualStorageType();
-            createParams.SourceVirtualStorageType = new NativeMethods.VirtualStorageType();
-
-            //
-            // Create and init a security descriptor.
-            // Since we're creating an essentially blank SD to use with CreateVirtualDisk
-            // the VHD will take on the security values from the parent directory.
-            //
-
-            NativeMethods.SecurityDescriptor securityDescriptor;
-            if (!NativeMethods.InitializeSecurityDescriptor(out securityDescriptor, 1)) 
-            {
-                throw (
-                    new SecurityException(
-                        "Unable to initialize the security descriptor for the virtual disk."
-                ));
-            }
-
-            NativeMethods.VirtualStorageType virtualStorageType = new NativeMethods.VirtualStorageType();
-            virtualStorageType.DeviceId = virtualStorageDeviceType;
-            virtualStorageType.VendorId = NativeMethods.VirtualStorageTypeVendorMicrosoft;
-
-            SafeFileHandle vhdHandle;
-
-            uint returnCode = NativeMethods.CreateVirtualDisk(
-                ref virtualStorageType,
-                    path,
-                    (virtualStorageDeviceType == NativeMethods.VirtualStorageDeviceType.VHD)
-                        ? NativeMethods.VirtualDiskAccessMask.All
-                        : NativeMethods.VirtualDiskAccessMask.None,
-                ref securityDescriptor,
-                    NativeMethods.CreateVirtualDiskFlags.FullPhysicalAllocation,
-                    0,
-                ref createParams,
-                    overlapped,
-                out vhdHandle);
-
-            if (NativeMethods.ERROR_SUCCESS != returnCode && NativeMethods.ERROR_IO_PENDING != returnCode) 
-            {
-
-                throw (
-                    new Win32Exception(
-                        (int)returnCode
-                ));
-            }
-
-            return new VirtualHardDisk(vhdHandle, path, virtualStorageDeviceType);
-        }
-
-        #endregion Fixed Disks
 
         #region Open
 
@@ -3453,7 +3275,6 @@ namespace WIM2VHD
                     $cmbVhdFormat           = New-Object System.Windows.Forms.ComboBox
                     $label5                 = New-Object System.Windows.Forms.Label
                     $txtWorkingDirectory    = New-Object System.Windows.Forms.TextBox
-                    $cmbVhdType             = New-Object System.Windows.Forms.ComboBox
                     $label4                 = New-Object System.Windows.Forms.Label
                     $label3                 = New-Object System.Windows.Forms.Label
                     $label2                 = New-Object System.Windows.Forms.Label
@@ -3902,26 +3723,6 @@ namespace WIM2VHD
                     $groupBox3.Controls.Add($txtWorkingDirectory)
                     #endregion txtWorkingDirectory
 
-                    #region cmbVhdType
-                    $cmbVhdType.DataBindings.DefaultDataSourceUpdateMode = 0
-                    $cmbVhdType.FormattingEnabled = $True
-                    $cmbVhdType.Items.Add("Dynamic") | Out-Null
-                    $cmbVhdType.Items.Add("Fixed")   | Out-Null
-                    $System_Drawing_Point         = New-Object System.Drawing.Point
-                    $System_Drawing_Point.X       = 176
-                    $System_Drawing_Point.Y       = 42
-                    $cmbVhdType.Location          = $System_Drawing_Point
-                    $cmbVhdType.Name              = "cmbVhdType"
-                    $System_Drawing_Size          = New-Object System.Drawing.Size
-                    $System_Drawing_Size.Height   = 25
-                    $System_Drawing_Size.Width    = 144
-                    $cmbVhdType.Size              = $System_Drawing_Size
-                    $cmbVhdType.TabIndex          = 2
-                    $cmbVhdType.Text              = $VHDType
-
-                    $groupBox3.Controls.Add($cmbVhdType)
-                    #endregion cmbVhdType
-
                     #region label4
                     $label4.DataBindings.DefaultDataSourceUpdateMode = 0
                     $System_Drawing_Point         = New-Object System.Drawing.Point
@@ -4107,9 +3908,6 @@ namespace WIM2VHD
 
                     # VHD Size
                     $SizeBytes        = Invoke-Expression "$($numVhdSize.Value)$($cmbVhdSizeUnit.SelectedItem)"
-
-                    # VHD Type
-                    $VHDType          = $cmbVhdType.SelectedItem
 
                     # Working Directory
                     $WorkingDirectory = $txtWorkingDirectory.Text
@@ -4303,26 +4101,13 @@ namespace WIM2VHD
                         from being dependent on Hyper-V (and thus, x64 systems only), we're using the 
                         VirtDisk APIs directly.
                     #>
-                    if ($VHDType -eq "Dynamic") 
-                    {
-                        Write-W2VInfo "Creating sparse disk..."
-                        $openVhd = [WIM2VHD.VirtualHardDisk]::CreateSparseDisk(
-                            $VHDFormat,
-                            $VHDPath,
-                            $SizeBytes,
-                            $true
-                        )
-                    } 
-                    else 
-                    {
-                        Write-W2VInfo "Creating fixed disk..."
-                        $openVhd = [WIM2VHD.VirtualHardDisk]::CreateFixedDisk(
-                            $VHDFormat,
-                            $VHDPath,
-                            $SizeBytes,
-                            $true
-                        )
-                    }
+                    Write-W2VInfo "Creating sparse disk..."
+                    $openVhd = [WIM2VHD.VirtualHardDisk]::CreateSparseDisk(
+                        $VHDFormat,
+                        $VHDPath,
+                        $SizeBytes,
+                        $true
+                    )
 
                     # Attach the VHD.
                     Write-W2VInfo "Attaching $VHDFormat..."
