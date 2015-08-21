@@ -1,4 +1,4 @@
-﻿Function
+﻿function
 Convert-WindowsImage
 {
 
@@ -23,6 +23,10 @@ Convert-WindowsImage
     .PARAMETER SourcePath
         The complete path to the WIM or ISO file that will be converted to a Virtual Hard Disk.
         The ISO file must be valid Windows installation media to be recognized successfully.
+
+    .PARAMETER CacheSource
+        If the source WIM/ISO was copied locally, we delete it by default.
+        Pass $true to cache the source image from the temp directory.
 
     .PARAMETER VHDPath
         The name and path of the Virtual Hard Disk to create.
@@ -157,12 +161,10 @@ Convert-WindowsImage
     .OUTPUTS
         System.IO.FileInfo
     #>
-
-    #region Data
+    #Requires -Version 3.0
 
     [CmdletBinding(DefaultParameterSetName="SRC",
-    HelpURI="http://gallery.technet.microsoft.com/scriptcenter/Convert-WindowsImageps1-0fe23a8f")]
-
+    HelpURI="https://github.com/Microsoft/Virtualization-Documentation/tree/master/hyperv-tools/Convert-WindowsImage")]
     param(
         [Parameter(ParameterSetName="SRC", Mandatory=$true, ValueFromPipeline=$true)]
         [Alias("WIM")]
@@ -170,6 +172,10 @@ Convert-WindowsImage
         [ValidateNotNullOrEmpty()]
         [ValidateScript({ Test-Path $(Resolve-Path $_) })]
         $SourcePath,
+
+        [Parameter(ParameterSetName="SRC")]
+        [switch]
+        $CacheSource = $false,
 
         [Parameter(ParameterSetName="SRC")]
         [Alias("SKU")]
@@ -276,8 +282,6 @@ Convert-WindowsImage
         $ShowUI
     
     )
-
-#endregion Data
 
 #region Code
 
@@ -2616,13 +2620,13 @@ VirtualHardDisk
     {
         $disk         = $null
         $openWim      = $null
-        $openVhd      = $null
         $openIso      = $null
         $openImage    = $null
         $vhdFinalName = $null
         $vhdFinalPath = $null
         $mountedHive  = $null
         $isoPath      = $null
+        $tempSource     = $null
         $vhd          = @()
 
         Write-Host $header
@@ -3407,8 +3411,10 @@ VirtualHardDisk
                 if (Test-IsNetworkLocation $SourcePath) 
                 {
                     Write-W2VInfo "Copying ISO $(Split-Path $SourcePath -Leaf) to temp folder..."
-                    Copy-Item -Path $SourcePath -Destination $TempDirectory -Force
+                    robocopy $(Split-Path $SourcePath -Parent) $TempDirectory $(Split-Path $SourcePath -Leaf) | Out-Null
                     $SourcePath = "$($TempDirectory)\$(Split-Path $SourcePath -Leaf)"
+            
+                    $tempSource = $SourcePath
                 }
 
                 $isoPath = (Resolve-Path $SourcePath).Path
@@ -3432,10 +3438,11 @@ VirtualHardDisk
             # Check to see if the WIM is local, or on a network location.  If the latter, copy it locally.
             if (Test-IsNetworkLocation $SourcePath) 
             {
-                $SourceIsNetwork = $true
                 Write-W2VInfo "Copying WIM $(Split-Path $SourcePath -Leaf) to temp folder..."
-                Copy-Item -Path $SourcePath -Destination $TempDirectory -Force
+                robocopy $(Split-Path $SourcePath -Parent) $TempDirectory $(Split-Path $SourcePath -Leaf) | Out-Null
                 $SourcePath = "$($TempDirectory)\$(Split-Path $SourcePath -Leaf)"
+            
+                $tempSource = $SourcePath
             }
 
             $SourcePath  = (Resolve-Path $SourcePath).Path
@@ -3543,8 +3550,7 @@ VirtualHardDisk
                 Write-W2VInfo "Disk partitioned..."
             } 
             elseif ( $VHDPartitionStyle -eq "GPT" ) 
-            {
-                
+            {                
                 Write-W2VInfo "Disk partitioned"
 
                 If
@@ -3744,8 +3750,7 @@ format fs=fat32 label="System"
             
                 # Configure the specified debugging transport and other settings.
                 switch ($EnableDebugger) 
-                {
-                
+                {                
                     "Serial" 
                     {
                         Run-Executable -Executable "BCDEDIT.EXE" -Arguments (
@@ -3828,15 +3833,13 @@ format fs=fat32 label="System"
         
                 if ( $RemoteDesktopEnable -eq $True ) 
                 {
-
                     Write-W2VInfo -text "Enabling Remote Desktop"
                     Set-ItemProperty -Path "HKLM:\$($hive)\ControlSet001\Control\Terminal Server" -Name "fDenyTSConnections" -Value 0
 
                 }
 
                 if ( $ExpandOnNativeBoot -eq $False ) 
-                {
-            
+                {            
                     Write-W2VInfo -text "Disabling automatic $VHDFormat expansion for Native Boot"
                     Set-ItemProperty -Path "HKLM:\$($hive)\ControlSet001\Services\FsDepends\Parameters" -Name "VirtualDiskExpandOnMount" -Value 4
             
@@ -3848,7 +3851,6 @@ format fs=fat32 label="System"
 
             if ( $Driver ) 
             {
-
                 Write-W2VInfo -text "Adding Windows Drivers to the Image"
 
                 $Driver | ForEach-Object -Process 
@@ -3860,8 +3862,7 @@ format fs=fat32 label="System"
             }
 
             If ( $Feature ) 
-            {
-            
+            {            
                 Write-W2VInfo -text "Installing Windows Feature(s) $Feature to the Image"
                 $FeatureSourcePath = Join-Path -Path "$($driveLetter):" -ChildPath "sources\sxs"
                 Write-W2VInfo -text "From $FeatureSourcePath"
@@ -3871,7 +3872,6 @@ format fs=fat32 label="System"
 
             if ( $Package ) 
             {
-
                 Write-W2VInfo -text "Adding Windows Packages to the Image"
             
                 $Package | ForEach-Object -Process {
@@ -3946,7 +3946,6 @@ format fs=fat32 label="System"
     
             Write-W2VError $_
             Write-W2VInfo "Log folder is $logFolder"
-
         } 
         finally 
         { 
@@ -3977,12 +3976,13 @@ format fs=fat32 label="System"
                 Write-W2VInfo "Closing ISO..."
                 Dismount-DiskImage $ISOPath
             }
- 
-            # Check to see if the WIM is local, or on a network location.  If the latter, remove the copy.
-            if ( Test-Path -Path "Variable:\SourceIsNetwork" ) 
-            {
 
-                Remove-Item -Path $SourcePath
+            if (-not $CacheSource)
+            {
+                if (Test-Path $tempSource)
+                {
+                    Remove-Item -Path $tempSource -Force
+                }
             }
     
             # Close out the transcript and tell the user we're done.
@@ -3996,10 +3996,8 @@ format fs=fat32 label="System"
 
     End 
     {
-
         if ($Passthru) 
-        {
-    
+        {    
             return $vhd
         }
     }
