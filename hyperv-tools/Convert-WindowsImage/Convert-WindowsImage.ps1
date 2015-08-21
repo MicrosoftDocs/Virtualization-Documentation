@@ -3552,20 +3552,22 @@ VirtualHardDisk
             {
                 Initialize-Disk -Number $disk.Number -PartitionStyle MBR
                 Write-W2VInfo "Disk initialized with MBR..."
+
+                $partition       = New-Partition -DiskNumber $disk.Number -Size $disk.LargestFreeExtent -MbrType IFS -IsActive
+                Write-W2VInfo "Disk partitioned..."
+
+                $volume    = Format-Volume -Partition $partition -FileSystem NTFS -Force -Confirm:$false
+                Write-W2VInfo "Volume formatted..."
+
+                $partition       | Add-PartitionAccessPath -AssignDriveLetter
+                $drive           = $(Get-Partition -Disk $disk).AccessPaths[0]
+                Write-W2VInfo "Access path ($drive) has been assigned..."
             } 
             elseif ($VHDPartitionStyle -eq "GPT" ) 
             {
                 Initialize-Disk -Number $disk.Number -PartitionStyle GPT
                 Write-W2VInfo "Disk initialized with GPT..."
-            }
 
-            if ( $VHDPartitionStyle -eq "MBR") 
-            {
-                $partition       = New-Partition -DiskNumber $disk.Number -Size $disk.LargestFreeExtent -MbrType IFS -IsActive
-                Write-W2VInfo "Disk partitioned..."
-            } 
-            elseif ( $VHDPartitionStyle -eq "GPT" ) 
-            {                
                 Write-W2VInfo "Disk partitioned"
 
                 If
@@ -3580,15 +3582,6 @@ VirtualHardDisk
                 
                 $partition       = New-Partition -DiskNumber $disk.Number -UseMaximumSize -GptType '{ebd0a0a2-b9e5-4433-87c0-68b6b72699c7}'
                 Write-W2VInfo "Boot Partition created"
-            }
-
-            if ( $VHDPartitionStyle -eq "MBR" ) 
-            {
-                $volume    = Format-Volume -Partition $partition -FileSystem NTFS -Force -Confirm:$false
-                Write-W2VInfo "Volume formatted..."
-            } 
-            elseif ( $VHDPartitionStyle -eq "GPT" ) 
-            {
 
                 If
                 (
@@ -3611,16 +3604,6 @@ format fs=fat32 label="System"
               
                 $volume          = Format-Volume -Partition $partition -FileSystem NTFS -Force -Confirm:$false
                 Write-W2VInfo "Boot Volume formatted (with Format-Volume)..."
-            }
-        
-            if ( $VHDPartitionStyle -eq "MBR") 
-            {
-                $partition       | Add-PartitionAccessPath -AssignDriveLetter
-                $drive           = $(Get-Partition -Disk $disk).AccessPaths[0]
-                Write-W2VInfo "Access path ($drive) has been assigned..."
-            } 
-            elseif ( $VHDPartitionStyle -eq "GPT" ) 
-            {
 
                 If
                 (
