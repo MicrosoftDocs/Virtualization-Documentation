@@ -6,8 +6,9 @@ title: Setup Windows Containers in place
 
 In order to create and manage Windows Server Containers, the Windows Server 2016 Technical Preview environment must be prepared. This guide will walk through configuring Windows Server Containers on bare metal or in an existing virtual machine running Windows Server 2016 Technical Preview. 
 
-To run Windows Server Containers in Azure instead, follow [these instructions](./azure_setup.md).
-To run Windows Server Containers in a Hyper-V VM instead, follow [these instructions](./container_setup.md).
+> Other getting started guides:
+  * Run Windows Server Containers in [Azure](./azure_setup.md).
+  * Run Windows Server Containers in [a new Hyper-V VM](./container_setup.md).
 
   **PLEASE READ PRIOR TO INSTALLING THE CONTAINER OS IMAGE:**  The license terms of the Microsoft Windows Server Pre-Release software (“License Terms”) apply to your use of the Microsoft Windows Container OS Image supplement (the “supplemental software).  By downloading and using the supplemental software, you agree to the License Terms, and you may not use it if you have not accepted the License Terms. Both the Windows Server Pre-Release software and the supplemental software are licensed by Microsoft Corporation.  
 
