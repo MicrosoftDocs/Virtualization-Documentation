@@ -12,6 +12,7 @@ For more information - read here: http://blogs.msdn.com/b/virtual_pc_guy/archive
 8/21/15 -
 * Changes from Grant Emsley
   * Support configuration of static IP address on the factory VM
+  * Verify product keys have been set
 
 8/17/15 -
 * Changes from Grant Emsley
