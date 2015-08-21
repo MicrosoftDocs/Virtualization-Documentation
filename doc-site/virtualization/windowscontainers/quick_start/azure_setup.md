@@ -44,6 +44,11 @@ Log into the VM using the username and password specified during the VM creation
 
 ![](media/newazure7.png) 
 
+## Video Walkthrough
+
+<iframe src="https://channel9.msdn.com/Blogs/containers/Quick-Start-Configure-Windows-Server-Containers-in-Microsoft-Azure/player" width="800" height="450"  allowFullScreen="true" frameBorder="0" scrolling="no"></iframe>
+
+
 ## Next Steps - Start Using Containers
 
 Now that you have a Windows Server 2016 system running the Windows Server Container feature jump to the following guides to begin working with Windows Server Containers and Windows Server Container images. 
