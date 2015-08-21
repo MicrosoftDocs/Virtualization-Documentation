@@ -2653,7 +2653,10 @@ VirtualHardDisk
                 $transcripting = $false
             }
 
-            Add-Type -TypeDefinition $code -ReferencedAssemblies "System.Xml","System.Linq","System.Xml.Linq"
+            if (-not (Get-Module Hyper-V))
+            {
+                Add-Type -TypeDefinition $code -ReferencedAssemblies "System.Xml","System.Linq","System.Xml.Linq"
+            }
 
             # Check to make sure we're running as Admin.
             if (!(Test-Admin)) 
@@ -3457,7 +3460,7 @@ VirtualHardDisk
             if ($WindowsImage.Count -ne 1)  
             {  
                 #
-                # WIM has multiple images.  Filter on Edition (can be index or name) and try to find a unique image
+                # WIM may have multiple images.  Filter on Edition (can be index or name) and try to find a unique image
                 #
                 if ([Int32]::TryParse($Edition, [ref]$null)) 
                 {
@@ -3511,27 +3514,39 @@ VirtualHardDisk
                 throw "Convert-WindowsImage only supports Windows 7 and Windows 8 WIM files.  The specified image does not appear to contain one of those operating systems."
             }
 
-            <#
-                Create the VHD using the VirtDisk Win32 API.
-                So, why not use the New-VHD cmdlet here?
-        
-                New-VHD depends on the Hyper-V Cmdlets, which aren't installed by default.
-                Installing those cmdlets isn't a big deal, but they depend on the Hyper-V WMI
-                APIs, which in turn depend on Hyper-V.  In order to prevent Convert-WindowsImage
-                from being dependent on Hyper-V (and thus, x64 systems only), we're using the 
-                VirtDisk APIs directly.
-            #>
-            Write-W2VInfo "Creating sparse disk..."
-            [WIM2VHD.VirtualHardDisk]::CreateSparseDisk(
-                $VHDFormat,
-                $VHDPath,
-                $SizeBytes,
-                $true
-            )
+            if (Get-Module Hyper-V)
+            {
+                Write-W2VInfo "Creating sparse disk..."
+                $newVhd = New-VHD -Path $VHDPath -SizeBytes $SizeBytes -BlockSizeBytes $BlockSizeBytes -Dynamic
 
-            # Attach the VHD.\
-            Write-W2VInfo "Attaching $VHDFormat..."
-            $disk = Mount-DiskImage -ImagePath $VHDPath -PassThru | Get-DiskImage | Get-Disk
+                Write-W2VInfo "Mounting $VHDFormat..."
+                $disk = $newVhd | Mount-VHD -PassThru | Get-Disk
+            }
+            else
+            {
+                <#
+                    Create the VHD using the VirtDisk Win32 API.
+                    So, why not use the New-VHD cmdlet here?
+        
+                    New-VHD depends on the Hyper-V Cmdlets, which aren't installed by default.
+                    Installing those cmdlets isn't a big deal, but they depend on the Hyper-V WMI
+                    APIs, which in turn depend on Hyper-V.  In order to prevent Convert-WindowsImage
+                    from being dependent on Hyper-V (and thus, x64 systems only), we're using the 
+                    VirtDisk APIs directly.
+                #>
+            
+                Write-W2VInfo "Creating sparse disk..."
+                [WIM2VHD.VirtualHardDisk]::CreateSparseDisk(
+                    $VHDFormat,
+                    $VHDPath,
+                    $SizeBytes,
+                    $true
+                )
+
+                # Attach the VHD.\
+                Write-W2VInfo "Attaching $VHDFormat..."
+                $disk = Mount-DiskImage -ImagePath $VHDPath -PassThru | Get-DiskImage | Get-Disk
+            }
 
             if ($VHDPartitionStyle -eq "MBR" ) 
             {
@@ -3922,9 +3937,17 @@ format fs=fat32 label="System"
 
             $vhdFinalPathCurrent = Join-Path (Split-Path $VHDPath -Parent) $vhdFinalName
             Write-W2VTrace "$VHDFormat final path is : $vhdFinalPathCurrent"
-
-            Write-W2VInfo "Closing $VHDFormat..."
-            Dismount-DiskImage -ImagePath $VHDPath
+            
+            if (Get-Module Hyper-V)
+            {
+                Write-W2VInfo "Dismounting $VHDFormat..."
+                Dismount-VHD -Path $VHDPath
+            }
+            else
+            {
+                Write-W2VInfo "Closing $VHDFormat..."
+                Dismount-DiskImage -ImagePath $VHDPath
+            }
     
             if (Test-Path $vhdFinalPathCurrent) 
             {
@@ -3942,8 +3965,7 @@ format fs=fat32 label="System"
             $vhdFinalName = $Null
         } 
         catch 
-        {
-    
+        {    
             Write-W2VError $_
             Write-W2VInfo "Log folder is $logFolder"
         } 
@@ -3967,7 +3989,17 @@ format fs=fat32 label="System"
             # If VHD is mounted, unmount it
             if (Test-Path $VHDPath)
             {
-                Dismount-DiskImage -ImagePath $VHDPath
+                if (Get-Module Hyper-V)
+                {
+                    if ((Get-VHD -Path $VHDPath).Attached)
+                    {
+                        Dismount-VHD -Path $VHDPath
+                    }
+                }
+                else
+                {
+                    Dismount-DiskImage -ImagePath $VHDPath
+                }
             }
 
             # If we still have an ISO open, close it.
