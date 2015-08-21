@@ -366,17 +366,50 @@ $updateCheckScriptBlock = {
     {
         Remove-Item -Force "$ENV:SystemDrive\Unattend.xml"
     }
-     
+
     # Check to see if files need to be unblocked - if they do, do it and reboot
-    if ((Get-ChildItem $env:SystemDrive\Bits\PSWindowsUpdate | `
+    if ((Get-ChildItem $env:SystemDrive\Bits | `
         Get-Item -Stream "Zone.Identifier" -ErrorAction SilentlyContinue).Count -gt 0)
     {
-        Get-ChildItem $env:SystemDrive\Bits\PSWindowsUpdate | Unblock-File;
+        Get-ChildItem $env:SystemDrive\Bits | Unblock-File;
         Invoke-Expression 'shutdown -r -t 0'
     }
 
     # To get here - the files are unblocked
     Import-Module $env:SystemDrive\Bits\PSWindowsUpdate\PSWindowsUpdate;
+
+    # Set static IP address - do not change values here, change them in FactoryVariables.ps1
+    $UseStaticIP = STATICIPBOOLPLACEHOLDER
+    if($UseStaticIP) {
+        $IP = 'IPADDRESSPLACEHOLDER'
+        $MaskBits = 'SUBNETMASKPLACEHOLDER'
+        $Gateway = 'GATEWAYPLACEHOLDER'
+        $DNS = 'DNSPLACEHOLDER'
+        $IPType = 'IPTYPEPLACEHOLDER'
+
+        $adapter = Get-NetAdapter | Where-Object {$_.Status -eq 'up'}
+        # Remove any existing IP, gateway from our ipv4 adapter
+        If (($adapter | Get-NetIPConfiguration).IPv4Address.IPAddress) {
+            $adapter | Remove-NetIPAddress -AddressFamily $IPType -Confirm:$false
+        }
+        If (($adapter | Get-NetIPConfiguration).Ipv4DefaultGateway) {
+            $adapter | Remove-NetRoute -AddressFamily $IPType -Confirm:$false
+        }
+        # Configure the IP address and default gateway
+        $adapter | New-NetIPAddress -AddressFamily $IPType `
+            -IPAddress $IP `
+            -PrefixLength $MaskBits `
+            -DefaultGateway $Gateway 
+        # Configure the DNS client server IP addresses
+        $adapter | Set-DnsClientServerAddress -ServerAddresses $DNS  
+    }
+
+
+
+    # Run pre-update script if it exists
+    if (Test-Path "$env:SystemDrive\Bits\PreUpdateScript.ps1") {
+        & "$env:SystemDrive\Bits\PreUpdateScript.ps1"
+    }
 
     # Check if any updates are needed - leave a marker if there are
     if ((Get-WUList).Count -gt 0)
@@ -390,6 +423,25 @@ $updateCheckScriptBlock = {
     # Apply all the updates
     Get-WUInstall -AcceptAll -IgnoreReboot -IgnoreUserInput -NotCategory "Language packs";
 
+    # Run post-update script if it exists
+    if (Test-Path "$env:SystemDrive\Bits\PostUpdateScript.ps1") {
+        & "$env:SystemDrive\Bits\PostUpdateScript.ps1"
+    }
+
+    # Remove static IP address
+    if($UseStaticIP) {
+        $adapter = Get-NetAdapter | ? {$_.Status -eq "up"}
+        $interface = $adapter | Get-NetIPInterface -AddressFamily $IPType
+
+        If ($interface.Dhcp -eq "Disabled") {
+            If (($interface | Get-NetIPConfiguration).Ipv4DefaultGateway) { 
+                $interface | Remove-NetRoute -Confirm:$false
+            }
+            $interface | Set-NetIPInterface -DHCP Enabled
+            $interface | Set-DnsClientServerAddress -ResetServerAddresses
+        }
+    }
+
     # Reboot if needed - otherwise shutdown because we are done
     if (Get-WURebootStatus -Silent) 
     {
@@ -401,8 +453,29 @@ $updateCheckScriptBlock = {
     }
 };
 
+function Set-UpdateCheckPlaceHolders {
+    $block = $updateCheckScriptBlock | Out-String
+    
+    if($UseStaticIP) {
+        $block = $block.Replace('$UseStaticIP = STATICIPBOOLPLACEHOLDER', '$UseStaticIP = $true')
+        $block = $block.Replace('IPADDRESSPLACEHOLDER', $IP)
+        $block = $block.Replace('SUBNETMASKPLACEHOLDER', $MaskBits)
+        $block = $block.Replace('GATEWAYPLACEHOLDER', $Gateway)
+        $block = $block.Replace('DNSPLACEHOLDER', $DNS)
+        $block = $block.Replace('IPTYPEPLACEHOLDER', $IPType)
+    } else {
+        $block = $block.Replace('$UseStaticIP = STATICIPBOOLPLACEHOLDER', '$UseStaticIP = $false')
+    }
+    return $block
+}
+
 ### Sysprep script block
 $sysprepScriptBlock = {
+    # Run pre-sysprep script if it exists
+    if (Test-Path "$env:SystemDrive\Bits\PreSysprepScript.ps1") {
+        & "$env:SystemDrive\Bits\PreSysprepScript.ps1"
+    }
+
     # Remove autorun key if it exists
     Get-Item -Path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run | ? Property -like Unattend* | Remove-Item;
              
@@ -414,6 +487,11 @@ $sysprepScriptBlock = {
 $postSysprepScriptBlock = {
     # Remove autorun key if it exists
     Get-Item -Path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run | ? Property -like Unattend* | Remove-Item;
+
+    # Run post-sysprep script if it exists
+    if (Test-Path "$env:SystemDrive\Bits\PostSysprepScript.ps1") {
+        & "$env:SystemDrive\Bits\PostSysprepScript.ps1"
+    }
 
     # Clean up unattend file if it is there
     if (Test-Path "$ENV:SystemDrive\Unattend.xml") 
@@ -509,7 +587,7 @@ function RunTheFactory
             Copy-Item "$($ResourceDirectory)\bits" -Destination ($driveLetter + ":\") -Recurse;
             
             # Create first logon script
-            $updateCheckScriptBlock | Out-String | Out-File -FilePath "$($driveLetter):\Bits\Logon.ps1" -Width 4096;
+            Set-UpdateCheckPlaceHolders | Out-File -FilePath "$($driveLetter):\Bits\Logon.ps1" -Width 4096;
         }
 
         logger $FriendlyName "Create virtual machine, start it and wait for it to stop...";
@@ -538,10 +616,11 @@ function RunTheFactory
 
         logger $FriendlyName "Copy login file for update check, also make sure flag file is cleared"
         MountVHDandRunBlock $updateVHD {
-            # Make the UpdateCheck script the logon script, make sure update flag file is deleted before we start
-            cleanupFile "$($driveLetter):\Bits\changesMade.txt";
-            cleanupFile "$($driveLetter):\Bits\Logon.ps1";
-            $updateCheckScriptBlock | Out-String | Out-File -FilePath "$($driveLetter):\Bits\Logon.ps1" -Width 4096;
+            # Refresh the Bits folder
+            cleanupFile "$($driveLetter):\Bits"
+            Copy-Item "$($ResourceDirectory)\bits" -Destination ($driveLetter + ":\") -Recurse;
+            # Create the update check logon script
+            Set-UpdateCheckPlaceHolders | Out-File -FilePath "$($driveLetter):\Bits\Logon.ps1" -Width 4096;
         }
 
         logger $FriendlyName "Create virtual machine, start it and wait for it to stop...";
