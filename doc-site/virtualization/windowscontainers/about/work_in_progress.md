@@ -46,9 +46,52 @@ In this release we support one network compartment per container. This means tha
 **Work Around: **  
 If multiple endpoints need to be exposed by a container, use NAT port mapping.
 
+### Windows containers are not getting IPs
+If you're connecting to the windows server containers with DHCP VM Switches it's possible for the container host to recieve an IP wwhile the containers do not.
+
+The containers get a 169.254.***.*** APIPA IP address.
+
+**Work around:**
+This is a side effect of sharing the kernel.  All containers affectively have the same mac address.
+
+Enable MAC address spoofing on the container host.
+
+This can be achieved using PowerShell
+```
+Get-VMNetworkAdapter -VMName "[YourVMNameHere]"  | Set-VMNetworkAdapter -MacAddressSpoofing On
+```
+
+### Creating file shares does not work in a Container
+
+Currently it is not possible to create a file share within a Container. If you run `net share` you will see an error like this:
+
+```
+The Server service is not started.
+
+Is it OK to start it? (Y/N) [Y]: y
+The Server service is starting.
+The Server service could not be started.
+
+A service specific error occurred: 2182.
+
+More help is available by typing NET HELPMSG 3547.
+```
+
+**Work Around: **
+If you want to copy files into a Container you can use the other way round by running `net use` within the Container. For example: 
+```
+net use S: \\your\sources\here /User:shareuser [yourpassword]
+```
+
 --------------------------
 
 ## Application compatibility
+
+### WinRM won't start in a Windows Server Container
+WinRM starts, throws an error, and stops again.  Errors are not logged in the event log.
+
+**Work Around:**
+Use WMI, [RDP](#RemoteDesktopAccessOfContainers), or Enter-PSSession -ContainerID
 
 ### Can't install ASP.NET 4.5 with IIS in a container using DISM 
 Installing IIS-ASPNET45 in a container doesn't work inside a Windows Server container.  The installation progress sticks around 95.5%.
@@ -59,7 +102,7 @@ Enable-WindowsOptionalFeature -Online -FeatureName IIS-ASPNET45
 
 This fails because ASP.NET 4.5 doesn't run in a container.
 
-** Work Around: **  
+**Work Around:**  
 Instead, install the Web-Server role to use IIS. ASP 5.0 does work. 
 
 ``` PowerShell
@@ -68,8 +111,6 @@ Enable-WindowsOptionalFeature -Online -FeatureName Web-Server
 
 ### Applications
 
-
-**Work Around:**   
 
 We have tried to run in the following applications in a Windows Server Container.
 
@@ -97,7 +138,7 @@ These results do not guarantee that the application is working. The sole purpose
 | MySQL | 5.6.26 | Yes | |
 | NGinx | 1.9.3 | Yes | |
 | Node.js | 0.12.6 | Partially | Running node with js files works. NPM fails to download packages. Running node interactively does not work properly. |
-| PHP | 5.6.11 | Yes | Both with IIS via FastCGI and Apache|
+| PHP | 5.6.11 | Partially | With Apache, IIS via FastCGI currently does not work. |
 | PostgreSQL | 9.4.4 | Yes | |
 | Python | 3.4.3 | Yes | |
 | R | 3.2.1 | No | |
@@ -200,7 +241,7 @@ The following steps are needed to remotely connect to a Windows Server Container
 
 ** In the Container you want to connect to **
 
-The following steps require either managing the Container using Docker or, when using PowerShell, specifying the `-RunAsAdministrator` switch when connecting to the Container.
+The following steps require either managing the Container using Docker or, when using PowerShell, specifying the `-RunAsAdministrator` switch when connecting to the Container. Please take the following steps in the Container you want to connect to.
 
 1. Obtain the Container's IP address
 
@@ -240,7 +281,7 @@ The following steps require either managing the Container using Docker or, when 
 
 Since Windows Server has the Windows Firewall with Advanced Security enabled by default we need to open some ports for communication in order for RDP to work. Additionally a port mapping is created so the Container is reachable through a port on the Container host.
 
-The following steps require a PowerShell launched as Administrator on the host.
+The following steps require a PowerShell launched as Administrator on the Container host.
 
 1. Allow the default RDP port through the Windows Advanced Firewall
 
@@ -268,7 +309,7 @@ The following steps require a PowerShell launched as Administrator on the host.
 
 ** Connect to the container via RDP **
 
-Finally you can connect to the Container using RDP. In order to do that please run the following command on a system which has the Remote Desktop Client installed: 
+Finally you can connect to the Container using RDP. In order to do that please run the following command on a system which has the Remote Desktop Client installed (e.g. your system running the Container host VM): 
 
 ```
 mstsc /v:[ContainerHostIP]:3390 /prompt
@@ -331,10 +372,15 @@ If anything that isn't on this list fails, if a command fails differently than e
 
 
 ### Pasting commands to interactive Docker session is limited to 50 characters
-If you copy a command line into an interactive Docker session, it is currently limited to 50 characters.
-<!-- How does this present?  Does it truncate or fail?  If fail, what's the error? -->
+If you copy a command line into an interactive Docker session, it is currently limited to 50 characters. The pasted string is simply truncated.
 
 This is not by design, we're working on lifting the restriction.
+
+### net use returns System error 1223 instead of prompting for username or password
+Workaround: specify both, the username and password, when running net use. For example:
+```
+net use S: \\your\sources\here /User:shareuser [yourpassword]
+``` 
 
 
 ### HCS Shim errors when creating new container images
@@ -355,6 +401,7 @@ If you hit other hcsshim errors, let us know via [the forums](https://social.msd
 ### Enter-PSSession has containerid argument, New-PSSession doesn't
 
 This is correct.  We're planning on full cimsession support in the future.
+
 
 Feel free to voice feature requests in [the forums](https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers). 
 
