@@ -379,7 +379,7 @@ $updateCheckScriptBlock = {
     Import-Module $env:SystemDrive\Bits\PSWindowsUpdate\PSWindowsUpdate;
 
     # Set static IP address - do not change values here, change them in FactoryVariables.ps1
-    $UseStaticIP = $false
+    $UseStaticIP = STATICIPBOOLPLACEHOLDER
     if($UseStaticIP) {
         $IP = 'IPADDRESSPLACEHOLDER'
         $MaskBits = 'SUBNETMASKPLACEHOLDER'
@@ -452,6 +452,22 @@ $updateCheckScriptBlock = {
         invoke-expression 'shutdown -s -t 0';
     }
 };
+
+function Set-UpdateCheckPlaceHolders {
+    $block = $updateCheckScriptBlock | Out-String
+    
+    if($UseStaticIP) {
+        $block = $block.Replace('$UseStaticIP = STATICIPBOOLPLACEHOLDER', '$UseStaticIP = $true')
+        $block = $block.Replace('IPADDRESSPLACEHOLDER', $IP)
+        $block = $block.Replace('SUBNETMASKPLACEHOLDER', $MaskBits)
+        $block = $block.Replace('GATEWAYPLACEHOLDER', $Gateway)
+        $block = $block.Replace('DNSPLACEHOLDER', $DNS)
+        $block = $block.Replace('IPTYPEPLACEHOLDER', $IPType)
+    } else {
+        $block = $block.Replace('$UseStaticIP = STATICIPBOOLPLACEHOLDER', '$UseStaticIP = $false')
+    }
+    return $block
+}
 
 ### Sysprep script block
 $sysprepScriptBlock = {
@@ -571,18 +587,7 @@ function RunTheFactory
             Copy-Item "$($ResourceDirectory)\bits" -Destination ($driveLetter + ":\") -Recurse;
             
             # Create first logon script
-            if($UseStaticIP) {
-                $staticUpdateCheckScriptBlock = $updateCheckScriptBlock | Out-String
-                $staticUpdateCheckScriptBlock = $staticUpdateCheckScriptBlock.Replace('$UseStaticIP = $false', '$UseStaticIP = $true')
-                $staticUpdateCheckScriptBlock = $staticUpdateCheckScriptBlock.Replace('IPADDRESSPLACEHOLDER', $IP)
-                $staticUpdateCheckScriptBlock = $staticUpdateCheckScriptBlock.Replace('SUBNETMASKPLACEHOLDER', $MaskBits)
-                $staticUpdateCheckScriptBlock = $staticUpdateCheckScriptBlock.Replace('GATEWAYPLACEHOLDER', $Gateway)
-                $staticUpdateCheckScriptBlock = $staticUpdateCheckScriptBlock.Replace('DNSPLACEHOLDER', $DNS)
-                $staticUpdateCheckScriptBlock = $staticUpdateCheckScriptBlock.Replace('IPTYPEPLACEHOLDER', $IPType)
-                $staticUpdateCheckScriptBlock | Out-String | Out-File -FilePath "$($driveLetter):\Bits\Logon.ps1" -Width 4096;
-            } else {
-                $updateCheckScriptBlock | Out-String | Out-File -FilePath "$($driveLetter):\Bits\Logon.ps1" -Width 4096;
-            }
+            Set-UpdateCheckPlaceHolders | Out-File -FilePath "$($driveLetter):\Bits\Logon.ps1" -Width 4096;
         }
 
         logger $FriendlyName "Create virtual machine, start it and wait for it to stop...";
@@ -615,18 +620,7 @@ function RunTheFactory
             cleanupFile "$($driveLetter):\Bits"
             Copy-Item "$($ResourceDirectory)\bits" -Destination ($driveLetter + ":\") -Recurse;
             # Create the update check logon script
-            if($UseStaticIP) {
-                $staticUpdateCheckScriptBlock = $updateCheckScriptBlock | Out-String
-                $staticUpdateCheckScriptBlock = $staticUpdateCheckScriptBlock.Replace('$UseStaticIP = $false', '$UseStaticIP = $true')
-                $staticUpdateCheckScriptBlock = $staticUpdateCheckScriptBlock.Replace('IPADDRESSPLACEHOLDER', $IP)
-                $staticUpdateCheckScriptBlock = $staticUpdateCheckScriptBlock.Replace('SUBNETMASKPLACEHOLDER', $MaskBits)
-                $staticUpdateCheckScriptBlock = $staticUpdateCheckScriptBlock.Replace('GATEWAYPLACEHOLDER', $Gateway)
-                $staticUpdateCheckScriptBlock = $staticUpdateCheckScriptBlock.Replace('DNSPLACEHOLDER', $DNS)
-                $staticUpdateCheckScriptBlock = $staticUpdateCheckScriptBlock.Replace('IPTYPEPLACEHOLDER', $IPType)
-                $staticUpdateCheckScriptBlock | Out-String | Out-File -FilePath "$($driveLetter):\Bits\Logon.ps1" -Width 4096;
-            } else {
-                $updateCheckScriptBlock | Out-String | Out-File -FilePath "$($driveLetter):\Bits\Logon.ps1" -Width 4096;
-            }
+            Set-UpdateCheckPlaceHolders | Out-File -FilePath "$($driveLetter):\Bits\Logon.ps1" -Width 4096;
         }
 
         logger $FriendlyName "Create virtual machine, start it and wait for it to stop...";
