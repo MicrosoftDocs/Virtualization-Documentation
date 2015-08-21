@@ -1,0 +1,154 @@
+<?xml version="1.0"?>
+<ovf:Envelope xmlns:vmmst="http://www.microsoft.com/schema/vmmst" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:vssd="http://schemas.dmtf.org/wbem/wscim/1/cim-schema/2/CIM_VirtualSystemSettingData" xmlns:rasd="http://schemas.dmtf.org/wbem/wscim/1/cim-schema/2/CIM_ResourceAllocationSettingData" vmmst:schemaVersion="4.0" xmlns:ovf="http://schemas.dmtf.org/ovf/envelope/1">
+  <ovf:References>
+    <ovf:File ovf:id="AdminAutoLogon.xml" ovf:href="AdminAutoLogon.xml" ovf:size="828" vmmst:resourceName="AdminAutoLogon.xml" vmmst:resourceFamilyName="" vmmst:resourceRelease="" vmmst:resourceDescription="" vmmst:resourceURI="\\CDMNEBSTDVM0316.cdm.lab\MSSCVMMLibrary\ContainerStuff\AdminAutoLogon.xml" />
+    <ovf:File ovf:id="windowsserver_en-us_tp3_container_vhd.vhd" ovf:href="windowsserver_en-us_tp3_container_vhd.vhd" ovf:size="13198000128" vmmst:resourceName="windowsserver_en-us_tp3_container_vhd.vhd" vmmst:resourceFamilyName="" vmmst:resourceRelease="" vmmst:resourceDescription="" vmmst:resourceURI="\\CDMNEBSTDVM0316.cdm.lab\MSSCVMMLibrary\CONTAINERSCRIPTS\windowsserver_en-us_tp3_container_vhd.vhd" />
+  </ovf:References>
+  <ovf:DiskSection>
+    <ovf:Info>Virtual disks used in the package</ovf:Info>
+    <ovf:Disk ovf:diskId="windowsserver_en-us_tp3_container_vhd.vhd" ovf:fileRef="windowsserver_en-us_tp3_container_vhd.vhd" ovf:capacity="42949672960" ovf:capacityAllocationUnits="bytes" ovf:format="http://www.microsoft.com/technet/virtualserver/downloads/vhdspec.mspx" vmmst:diskType="DynamicallyExpanding" />
+  </ovf:DiskSection>
+  <ovf:NetworkSection>
+    <ovf:Info>Logical networks used in the package</ovf:Info>
+    <ovf:Network ovf:name="cdm">
+      <ovf:Description />
+    </ovf:Network>
+  </ovf:NetworkSection>
+  <ovf:Section xsi:type="vmmst:RunAsAccountSection_Type">
+    <ovf:Info>Run As accounts used in the package</ovf:Info>
+    <vmmst:RunAsAccount vmmst:name="MachineAdmin">
+      <vmmst:Description />
+    </vmmst:RunAsAccount>
+  </ovf:Section>
+  <ovf:VirtualSystem ovf:id="ContainerHostTemplateNoDeps" vmmst:costCenter="" vmmst:quotaPoints="1" vmmst:tag="(none)">
+    <ovf:Info />
+    <ovf:Name>ContainerHostTemplateNoDeps</ovf:Name>
+    <ovf:VirtualHardwareSection>
+      <ovf:Info>Hardware description</ovf:Info>
+      <ovf:System>
+        <vssd:ElementName>Virtual Hardware</vssd:ElementName>
+        <vssd:InstanceID>ContainerHostTemplateNoDeps</vssd:InstanceID>
+        <vssd:VirtualSystemType>vmm-3</vssd:VirtualSystemType>
+      </ovf:System>
+      <ovf:Item>
+        <rasd:Address>0</rasd:Address>
+        <rasd:ElementName>IDE Controller</rasd:ElementName>
+        <rasd:InstanceID>0</rasd:InstanceID>
+        <rasd:ResourceType>5</rasd:ResourceType>
+      </ovf:Item>
+      <ovf:Item>
+        <rasd:Address>1</rasd:Address>
+        <rasd:ElementName>IDE Controller</rasd:ElementName>
+        <rasd:InstanceID>1</rasd:InstanceID>
+        <rasd:ResourceType>5</rasd:ResourceType>
+      </ovf:Item>
+      <ovf:Item>
+        <rasd:ElementName>Memory</rasd:ElementName>
+        <rasd:InstanceID>2</rasd:InstanceID>
+        <rasd:ResourceType>4</rasd:ResourceType>
+        <rasd:VirtualQuantity>2048</rasd:VirtualQuantity>
+      </ovf:Item>
+      <ovf:Item>
+        <rasd:ElementName>Video Adapter</rasd:ElementName>
+        <rasd:InstanceID>3</rasd:InstanceID>
+        <rasd:ResourceType>24</rasd:ResourceType>
+      </ovf:Item>
+      <ovf:Item>
+        <rasd:ElementName>Processor</rasd:ElementName>
+        <rasd:InstanceID>4</rasd:InstanceID>
+        <rasd:Limit>100</rasd:Limit>
+        <rasd:Reservation>0</rasd:Reservation>
+        <rasd:ResourceType>3</rasd:ResourceType>
+        <rasd:VirtualQuantity>1</rasd:VirtualQuantity>
+        <rasd:Weight>100</rasd:Weight>
+        <vmmst:LimitCPUID>false</vmmst:LimitCPUID>
+        <vmmst:LimitProcessorFeatures>false</vmmst:LimitProcessorFeatures>
+        <vmmst:ExpectedCPUUtilization>20</vmmst:ExpectedCPUUtilization>
+        <!--1-processor 3.60 GHz Xeon (2 MB L2 cache)-->
+        <vmmst:BenchmarkProcessorType>b0957fcd95e34d7e899330a280f7207b</vmmst:BenchmarkProcessorType>
+      </ovf:Item>
+      <ovf:Item>
+        <rasd:Address>0</rasd:Address>
+        <rasd:ElementName>SCSI Controller</rasd:ElementName>
+        <rasd:InstanceID>5</rasd:InstanceID>
+        <rasd:ResourceType>6</rasd:ResourceType>
+        <vmmst:AdapterNumber>7</vmmst:AdapterNumber>
+        <vmmst:Shared>false</vmmst:Shared>
+      </ovf:Item>
+      <ovf:Item>
+        <rasd:Connection>cdm</rasd:Connection>
+        <rasd:ElementName>Network Adapter</rasd:ElementName>
+        <rasd:InstanceID>6</rasd:InstanceID>
+        <rasd:ResourceSubType>Synthetic</rasd:ResourceSubType>
+        <rasd:ResourceType>10</rasd:ResourceType>
+        <vmmst:StaticMacAddress>false</vmmst:StaticMacAddress>
+        <vmmst:IPv4AddressType>Dynamic</vmmst:IPv4AddressType>
+        <vmmst:IPv6AddressType>Dynamic</vmmst:IPv6AddressType>
+        <vmmst:AllowMacSpoofing>true</vmmst:AllowMacSpoofing>
+        <vmmst:VirtualNetworkAdapterFlags>None</vmmst:VirtualNetworkAdapterFlags>
+      </ovf:Item>
+      <ovf:Item>
+        <rasd:Address>0</rasd:Address>
+        <rasd:ElementName>COM Port</rasd:ElementName>
+        <rasd:InstanceID>7</rasd:InstanceID>
+        <rasd:ResourceType>21</rasd:ResourceType>
+      </ovf:Item>
+      <ovf:Item>
+        <rasd:Address>1</rasd:Address>
+        <rasd:ElementName>COM Port</rasd:ElementName>
+        <rasd:InstanceID>8</rasd:InstanceID>
+        <rasd:ResourceType>21</rasd:ResourceType>
+      </ovf:Item>
+      <ovf:Item>
+        <rasd:Address>0</rasd:Address>
+        <rasd:ElementName>Disk Drive</rasd:ElementName>
+        <rasd:HostResource>ovf:/disk/windowsserver_en-us_tp3_container_vhd.vhd</rasd:HostResource>
+        <rasd:InstanceID>9</rasd:InstanceID>
+        <rasd:Parent>0</rasd:Parent>
+        <rasd:ResourceType>17</rasd:ResourceType>
+        <vmmst:CreateNewDisk>false</vmmst:CreateNewDisk>
+        <vmmst:VolumeType>BootAndSystem</vmmst:VolumeType>
+        <vmmst:Shared>false</vmmst:Shared>
+        <vmmst:CreateDiffDisk>true</vmmst:CreateDiffDisk>
+      </ovf:Item>
+      <ovf:Item>
+        <rasd:Address>0</rasd:Address>
+        <rasd:ElementName>DVD Drive</rasd:ElementName>
+        <rasd:InstanceID>10</rasd:InstanceID>
+        <rasd:Parent>1</rasd:Parent>
+        <rasd:ResourceType>16</rasd:ResourceType>
+      </ovf:Item>
+      <ovf:Item>
+        <rasd:ElementName>Floppy Drive</rasd:ElementName>
+        <rasd:InstanceID>11</rasd:InstanceID>
+        <rasd:ResourceType>14</rasd:ResourceType>
+      </ovf:Item>
+      <vmmst:HighlyAvailable>false</vmmst:HighlyAvailable>
+      <vmmst:DRProtectionRequired>false</vmmst:DRProtectionRequired>
+      <vmmst:NumLockEnabled>false</vmmst:NumLockEnabled>
+      <vmmst:DiskIO>0</vmmst:DiskIO>
+      <vmmst:NetworkUtilization>0</vmmst:NetworkUtilization>
+      <vmmst:NumaIsolationRequired>false</vmmst:NumaIsolationRequired>
+      <vmmst:Generation>1</vmmst:Generation>
+    </ovf:VirtualHardwareSection>
+    <ovf:OperatingSystemSection ovf:id="0">
+      <ovf:Info>Guest operating system</ovf:Info>
+      <!--Windows Server Technical Preview 3 Standard-->
+      <vmmst:OperatingSystemId>b808453ff2b5451f894f001c49db255a</vmmst:OperatingSystemId>
+    </ovf:OperatingSystemSection>
+    <ovf:Section xsi:type="vmmst:OperatingSystemUnattendedInstallSection_Type">
+      <ovf:Info>Operating system unattended installation details</ovf:Info>
+      <vmmst:FullName />
+      <vmmst:Organization />
+      <vmmst:ComputerName>*</vmmst:ComputerName>
+      <vmmst:JoinWorkgroup>WORKGROUP</vmmst:JoinWorkgroup>
+      <vmmst:TimeZone>4</vmmst:TimeZone>
+      <vmmst:UnattendedInstallFileRef>ovf:/file/AdminAutoLogon.xml</vmmst:UnattendedInstallFileRef>
+      <vmmst:GuiRunOnce>cmd /c "powershell.exe wget -Uri 'http://aka.ms/setupcontainers' -outfile 'c:\Install-ContainerHost.ps1' -UseBasicParsing
+cmd /c "powershell.exe -file c:\Install-ContainerHost.ps1"</vmmst:GuiRunOnce>
+      <vmmst:Shielded>false</vmmst:Shielded>
+      <vmmst:LocalAdminRunAsAccountRef>MachineAdmin</vmmst:LocalAdminRunAsAccountRef>
+      <vmmst:OSType>Windows</vmmst:OSType>
+    </ovf:Section>
+  </ovf:VirtualSystem>
+</ovf:Envelope>
