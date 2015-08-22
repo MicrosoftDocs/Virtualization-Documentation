@@ -3565,8 +3565,8 @@ VirtualHardDisk
                 
                 "UEFI" 
                 {
+                    Write-W2VInfo "Initializing disk..."
                     Initialize-Disk -Number $disk.Number -PartitionStyle GPT
-                    Write-W2VInfo "Disk initialized with GPT..."
 
                     Write-W2VInfo "Disk partitioned"
 
@@ -3575,14 +3575,14 @@ VirtualHardDisk
                         $BCDinVHD -eq "VirtualMachine"
                     )
                     {
+                        Write-W2VInfo "Creating EFI system partition (ESP)..."
                         $systemPartition = New-Partition -DiskNumber $disk.Number -Size 100MB -GptType '{c12a7328-f81f-11d2-ba4b-00a0c93ec93b}'
-                        Write-W2VInfo "System Partition created"
 
                     }
                 
-                    $windowsPartition       = New-Partition -DiskNumber $disk.Number -UseMaximumSize -GptType '{ebd0a0a2-b9e5-4433-87c0-68b6b72699c7}'
-                    Write-W2VInfo "Boot Partition created"
-
+                    Write-W2VInfo "Creating windows partition..."
+                    $windowsPartition = New-Partition -DiskNumber $disk.Number -UseMaximumSize -GptType '{ebd0a0a2-b9e5-4433-87c0-68b6b72699c7}'
+                    
                     If
                     (
                         $BCDinVHD -eq "VirtualMachine"
@@ -3601,8 +3601,8 @@ format fs=fat32 label="System"
                         Write-W2VInfo "System Volume formatted (with DiskPart)..."                
                     }
               
-                    $windowsVolume          = Format-Volume -Partition $windowsPartition -FileSystem NTFS -Force -Confirm:$false
-                    Write-W2VInfo "Boot Volume formatted (with Format-Volume)..."
+                    Write-W2VInfo "Formatting windows volume..."
+                    $windowsVolume = Format-Volume -Partition $windowsPartition -FileSystem NTFS -Force -Confirm:$false
 
                     If
                     (
