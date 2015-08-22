@@ -3556,15 +3556,15 @@ VirtualHardDisk
                     Initialize-Disk -Number $disk.Number -PartitionStyle MBR
                     Write-W2VInfo "Disk initialized with MBR..."
 
-                    $partition       = New-Partition -DiskNumber $disk.Number -Size $disk.LargestFreeExtent -MbrType IFS -IsActive
+                    $windowsPartition       = New-Partition -DiskNumber $disk.Number -Size $disk.LargestFreeExtent -MbrType IFS -IsActive
                     Write-W2VInfo "Disk partitioned..."
 
-                    $volume    = Format-Volume -Partition $partition -FileSystem NTFS -Force -Confirm:$false
+                    $windowsVolume    = Format-Volume -Partition $windowsPartition -FileSystem NTFS -Force -Confirm:$false
                     Write-W2VInfo "Volume formatted..."
 
-                    $partition       | Add-PartitionAccessPath -AssignDriveLetter
-                    $drive           = $(Get-Partition -Disk $disk).AccessPaths[0]
-                    Write-W2VInfo "Access path ($drive) has been assigned..."
+                    $windowsPartition       | Add-PartitionAccessPath -AssignDriveLetter
+                    $windowsDrive           = $(Get-Partition -Disk $disk).AccessPaths[0]
+                    Write-W2VInfo "Access path ($windowsDrive) has been assigned..."
                 } 
                 
                 "UEFI" 
@@ -3579,12 +3579,12 @@ VirtualHardDisk
                         $BCDinVHD -eq "VirtualMachine"
                     )
                     {
-                        $PartitionSystem = New-Partition -DiskNumber $disk.Number -Size 100MB -GptType '{c12a7328-f81f-11d2-ba4b-00a0c93ec93b}'
+                        $systemPartition = New-Partition -DiskNumber $disk.Number -Size 100MB -GptType '{c12a7328-f81f-11d2-ba4b-00a0c93ec93b}'
                         Write-W2VInfo "System Partition created"
 
                     }
                 
-                    $partition       = New-Partition -DiskNumber $disk.Number -UseMaximumSize -GptType '{ebd0a0a2-b9e5-4433-87c0-68b6b72699c7}'
+                    $windowsPartition       = New-Partition -DiskNumber $disk.Number -UseMaximumSize -GptType '{ebd0a0a2-b9e5-4433-87c0-68b6b72699c7}'
                     Write-W2VInfo "Boot Partition created"
 
                     If
@@ -3594,18 +3594,18 @@ VirtualHardDisk
                     {
                 
                         # The following line won't work. Thus we need to substitute it with DiskPart
-                        # $volumeSystem    = Format-Volume -Partition $partitionSystem -FileSystem FAT32 -Force -Confirm:$false
+                        # $volumeSystem    = Format-Volume -Partition $systemPartition -FileSystem FAT32 -Force -Confirm:$false
 
                         @"
 select disk $($disk.Number)
-select partition $($partitionSystem.PartitionNumber)
+select partition $($systemPartition.PartitionNumber)
 format fs=fat32 label="System"
 "@ | & $env:SystemRoot\System32\DiskPart.exe | Out-Null
 
                         Write-W2VInfo "System Volume formatted (with DiskPart)..."                
                     }
               
-                    $volume          = Format-Volume -Partition $partition -FileSystem NTFS -Force -Confirm:$false
+                    $windowsVolume          = Format-Volume -Partition $windowsPartition -FileSystem NTFS -Force -Confirm:$false
                     Write-W2VInfo "Boot Volume formatted (with Format-Volume)..."
 
                     If
@@ -3614,22 +3614,22 @@ format fs=fat32 label="System"
                     )
                     {
 
-                        $partitionSystem | Add-PartitionAccessPath -AssignDriveLetter
-                        $driveSystem     = $(Get-Partition -Disk $disk).AccessPaths[1]
-                        Write-W2VInfo "Access path ($driveSystem) has been assigned to the System Volume..."
+                        $systemPartition | Add-PartitionAccessPath -AssignDriveLetter
+                        $systemDrive     = $(Get-Partition -Disk $disk).AccessPaths[1]
+                        Write-W2VInfo "Access path ($systemDrive) has been assigned to the System Volume..."
 
-                        $partition       | Add-PartitionAccessPath -AssignDriveLetter
-                        $drive           = $(Get-Partition -Disk $disk).AccessPaths[2]
-                        Write-W2VInfo "Access path ($drive) has been assigned to the Boot Volume..."
+                        $windowsPartition       | Add-PartitionAccessPath -AssignDriveLetter
+                        $windowsDrive           = $(Get-Partition -Disk $disk).AccessPaths[2]
+                        Write-W2VInfo "Access path ($windowsDrive) has been assigned to the Boot Volume..."
                     }
                     ElseIf
                     (
                         $BCDinVHD -eq "NativeBoot"
                     )
                     {
-                        $partition       | Add-PartitionAccessPath -AssignDriveLetter
-                        $drive           = $(Get-Partition -Disk $disk).AccessPaths[1]
-                        Write-W2VInfo "Access path ($drive) has been assigned to the Boot Volume..."
+                        $windowsPartition       | Add-PartitionAccessPath -AssignDriveLetter
+                        $windowsDrive           = $(Get-Partition -Disk $disk).AccessPaths[1]
+                        Write-W2VInfo "Access path ($windowsDrive) has been assigned to the Boot Volume..."
                     }
                 }
             }
@@ -3645,11 +3645,11 @@ format fs=fat32 label="System"
             if (![string]::IsNullOrEmpty($UnattendPath)) 
             {
                 Write-W2VInfo "Applying unattend file ($(Split-Path $UnattendPath -Leaf))..."
-                Copy-Item -Path $UnattendPath -Destination (Join-Path $drive "unattend.xml") -Force
+                Copy-Item -Path $UnattendPath -Destination (Join-Path $windowsDrive "unattend.xml") -Force
             }
 
             Write-W2VInfo "Signing disk..."
-            $flagText | Out-File -FilePath (Join-Path $drive "Convert-WindowsImageInfo.txt") -Encoding Unicode -Force
+            $flagText | Out-File -FilePath (Join-Path $windowsDrive "Convert-WindowsImageInfo.txt") -Encoding Unicode -Force
 
             if (($openImage.ImageArchitecture -ne "ARM") -and       # No virtualization platform for ARM images
                 ($openImage.ImageArchitecture -ne "ARM64"))         # No virtualization platform for ARM64 images
@@ -3670,8 +3670,8 @@ format fs=fat32 label="System"
                         "BIOS" 
                         {   
                             $bcdBootArgs = @(
-                                "$($drive)Windows",    # Path to the \Windows on the VHD
-                                "/s $drive",           # Specifies the volume letter of the drive to create the \BOOT folder on.
+                                "$($windowsDrive)Windows",    # Path to the \Windows on the VHD
+                                "/s $windowsDrive",           # Specifies the volume letter of the drive to create the \BOOT folder on.
                                 "/v"                   # Enabled verbose logging.
                                 "/f BIOS"              # Specifies the firmware type of the target system partition
                             )
@@ -3682,8 +3682,8 @@ format fs=fat32 label="System"
                         {
 
                             $bcdBootArgs = @(
-                                "$($drive)Windows",    # Path to the \Windows on the VHD
-                                "/s $driveSystem",     # Specifies the volume letter of the drive to create the \BOOT folder on.
+                                "$($windowsDrive)Windows",    # Path to the \Windows on the VHD
+                                "/s $systemDrive",     # Specifies the volume letter of the drive to create the \BOOT folder on.
                                 "/v"                   # Enabled verbose logging.
                                 "/f UEFI"              # Specifies the firmware type of the target system partition
                             )
@@ -3701,10 +3701,10 @@ format fs=fat32 label="System"
                     {          
 
                         Apply-BcdStoreChanges                     `
-                            -BcdStoreFile    "$($drive)boot\bcd"  `
+                            -BcdStoreFile    "$($windowsDrive)boot\bcd"  `
                             -PartitionStyle  $PARTITION_STYLE_MBR `
                             -DiskSignature   $disk.Signature      `
-                            -PartitionOffset $partition.Offset    
+                            -PartitionOffset $windowsPartition.Offset    
 
                     } #>
 
@@ -3716,15 +3716,15 @@ format fs=fat32 label="System"
 
                         Write-W2VInfo "Fixing the Device ID in the BCD store on $($VHDFormat)..."
                         Run-Executable -Executable "BCDEDIT.EXE" -Arguments (
-                            "/store $($drive)boot\bcd",
+                            "/store $($windowsDrive)boot\bcd",
                             "/set `{bootmgr`} device locate"
                         )
                         Run-Executable -Executable "BCDEDIT.EXE" -Arguments (
-                            "/store $($drive)boot\bcd",
+                            "/store $($windowsDrive)boot\bcd",
                             "/set `{default`} device locate"
                         )
                         Run-Executable -Executable "BCDEDIT.EXE" -Arguments (
-                            "/store $($drive)boot\bcd",
+                            "/store $($windowsDrive)boot\bcd",
                             "/set `{default`} osdevice locate"
                         )
 
@@ -3747,7 +3747,7 @@ format fs=fat32 label="System"
                 {
                     Write-W2VInfo "Turning kernel debugging on in the $($VHDFormat)..."
                     Run-Executable -Executable "BCDEDIT.EXE" -Arguments (
-                        "/store $($drive)\boot\bcd",
+                        "/store $($windowsDrive)\boot\bcd",
                         "/set `{default`} debug on"
                     )
                 }
@@ -3758,7 +3758,7 @@ format fs=fat32 label="System"
                     "Serial" 
                     {
                         Run-Executable -Executable "BCDEDIT.EXE" -Arguments (
-                            "/store $($drive)\boot\bcd",
+                            "/store $($windowsDrive)\boot\bcd",
                             "/dbgsettings SERIAL",
                             "DEBUGPORT:$($ComPort.Value)",
                             "BAUDRATE:$($BaudRate.Value)"
@@ -3769,7 +3769,7 @@ format fs=fat32 label="System"
                     "1394" 
                     {
                         Run-Executable -Executable "BCDEDIT.EXE" -Arguments (
-                            "/store $($drive)\boot\bcd",
+                            "/store $($windowsDrive)\boot\bcd",
                             "/dbgsettings 1394",
                             "CHANNEL:$($Channel.Value)"
                         )
@@ -3779,7 +3779,7 @@ format fs=fat32 label="System"
                     "USB" 
                     {
                         Run-Executable -Executable "BCDEDIT.EXE" -Arguments (
-                            "/store $($drive)\boot\bcd",
+                            "/store $($windowsDrive)\boot\bcd",
                             "/dbgsettings USB",
                             "TARGETNAME:$($Target.Value)"
                         )
@@ -3789,7 +3789,7 @@ format fs=fat32 label="System"
                     "Local" 
                     {
                         Run-Executable -Executable "BCDEDIT.EXE" -Arguments (
-                            "/store $($drive)\boot\bcd",
+                            "/store $($windowsDrive)\boot\bcd",
                             "/dbgsettings LOCAL"
                         )
                         break
@@ -3798,7 +3798,7 @@ format fs=fat32 label="System"
                     "Network" 
                     {
                         Run-Executable -Executable "BCDEDIT.EXE" -Arguments (
-                            "/store $($drive)\boot\bcd",
+                            "/store $($windowsDrive)\boot\bcd",
                             "/dbgsettings NET",
                             "HOSTIP:$($IP.Value)",
                             "PORT:$($Port.Value)",
@@ -3833,7 +3833,7 @@ format fs=fat32 label="System"
             ) 
             {
         
-                $hive         = Mount-RegistryHive -Hive (Join-Path $drive "Windows\System32\Config\System")
+                $hive         = Mount-RegistryHive -Hive (Join-Path $windowsDrive "Windows\System32\Config\System")
         
                 if ( $RemoteDesktopEnable -eq $True ) 
                 {
@@ -3861,7 +3861,7 @@ format fs=fat32 label="System"
                 {
 
                     Write-W2VInfo -text "Driver path: $PSItem"
-                    $Dism = Add-WindowsDriver -Path $drive -Recurse -Driver $PSItem
+                    $Dism = Add-WindowsDriver -Path $windowsDrive -Recurse -Driver $PSItem
                 }
             }
 
@@ -3870,7 +3870,7 @@ format fs=fat32 label="System"
                 Write-W2VInfo -text "Installing Windows Feature(s) $Feature to the Image"
                 $FeatureSourcePath = Join-Path -Path "$($driveLetter):" -ChildPath "sources\sxs"
                 Write-W2VInfo -text "From $FeatureSourcePath"
-                $Dism = Enable-WindowsOptionalFeature -FeatureName $Feature -Source $FeatureSourcePath -Path $drive -All
+                $Dism = Enable-WindowsOptionalFeature -FeatureName $Feature -Source $FeatureSourcePath -Path $windowsDrive -All
 
             }
 
@@ -3881,7 +3881,7 @@ format fs=fat32 label="System"
                 $Package | ForEach-Object -Process {
 
                     Write-W2VInfo -text "Package path: $PSItem"
-                    $Dism = Add-WindowsPackage -Path $drive -PackagePath $PSItem
+                    $Dism = Add-WindowsPackage -Path $windowsDrive -PackagePath $PSItem
                 }
             }
 
@@ -3889,7 +3889,7 @@ format fs=fat32 label="System"
             {
                 # We need to generate a file name. 
                 Write-W2VInfo "Generating name for $($VHDFormat)..."
-                $hive         = Mount-RegistryHive -Hive (Join-Path $drive "Windows\System32\Config\Software")
+                $hive         = Mount-RegistryHive -Hive (Join-Path $windowsDrive "Windows\System32\Config\Software")
 
                 $buildLabEx   = (Get-ItemProperty "HKLM:\$($hive)\Microsoft\Windows NT\CurrentVersion").BuildLabEx
                 $installType  = (Get-ItemProperty "HKLM:\$($hive)\Microsoft\Windows NT\CurrentVersion").InstallationType
