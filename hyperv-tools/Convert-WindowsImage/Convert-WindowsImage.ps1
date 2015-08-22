@@ -3561,10 +3561,6 @@ VirtualHardDisk
 
                     $windowsVolume    = Format-Volume -Partition $windowsPartition -FileSystem NTFS -Force -Confirm:$false
                     Write-W2VInfo "Volume formatted..."
-
-                    $windowsPartition       | Add-PartitionAccessPath -AssignDriveLetter
-                    $windowsDrive           = $(Get-Partition -Disk $disk).AccessPaths[0]
-                    Write-W2VInfo "Access path ($windowsDrive) has been assigned..."
                 } 
                 
                 "UEFI" 
@@ -3617,22 +3613,16 @@ format fs=fat32 label="System"
                         $systemPartition | Add-PartitionAccessPath -AssignDriveLetter
                         $systemDrive     = $(Get-Partition -Disk $disk).AccessPaths[1]
                         Write-W2VInfo "Access path ($systemDrive) has been assigned to the System Volume..."
-
-                        $windowsPartition       | Add-PartitionAccessPath -AssignDriveLetter
-                        $windowsDrive           = $(Get-Partition -Disk $disk).AccessPaths[2]
-                        Write-W2VInfo "Access path ($windowsDrive) has been assigned to the Boot Volume..."
-                    }
-                    ElseIf
-                    (
-                        $BCDinVHD -eq "NativeBoot"
-                    )
-                    {
-                        $windowsPartition       | Add-PartitionAccessPath -AssignDriveLetter
-                        $windowsDrive           = $(Get-Partition -Disk $disk).AccessPaths[1]
-                        Write-W2VInfo "Access path ($windowsDrive) has been assigned to the Boot Volume..."
                     }
                 }
-            }
+            }            
+
+            #
+            # Assign drive letter to Windows partition.  This is required for bcdboot
+            #
+            $windowsPartition | Add-PartitionAccessPath -AssignDriveLetter
+            $windowsDrive = $(Get-Partition -Disk $disk).AccessPaths[0].substring(0,2)
+            Write-W2VInfo "Windows path ($windowsDrive) has been assigned."
 
             ####################################################################################################  
             # APPLY IMAGE FROM WIM TO THE NEW VHD  
