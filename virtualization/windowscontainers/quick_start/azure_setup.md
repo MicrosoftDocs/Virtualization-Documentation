@@ -7,8 +7,8 @@ Before creating and managing Windows Server Containers in Azure you will need to
 
 > Other getting started guides:
   * Run Windows Server Containers in [a new Hyper-V virtual machine](./container_setup.md).
-  * Run Windows Server Containers in [an existing virtual machine](./quick_start/inplace_setup.md)
-  * Setup Windows Server Containers [on a physical Windows Server Core installation](./quick_start/inplace_setup.md)
+  * Run Windows Server Containers in [an existing virtual machine](./inplace_setup.md)
+  * Setup Windows Server Containers [on a physical Windows Server Core installation](./inplace_setup.md)
 
 ## Start Using Azure Portal
 If you have an Azure account, skip straight to [Create a Container Host VM](#CreateacontainerhostVM).
