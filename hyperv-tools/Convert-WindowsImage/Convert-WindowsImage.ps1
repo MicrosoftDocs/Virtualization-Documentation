@@ -57,6 +57,12 @@ Convert-WindowsImage
         Specifies whether to create a VHD or VHDX formatted Virtual Hard Disk.
         The default is VHD.
 
+    .PARAMETER DiskLayout
+        Specifies whether to build the image for BIOS (MBR), UEFI (GPT), or WindowsToGo (MBR).
+        Generation 1 VMs require BIOS (MBR) images.  Generation 2 VMs require UEFI (GPT) images.
+        Windows To Go images will boot in UEFI or BIOS but are not technically supported (upgrade 
+        doesn't work)
+
     .PARAMETER UnattendPath
         The complete path to an unattend.xml file that can be injected into the VHD(X).
 
@@ -71,12 +77,6 @@ Convert-WindowsImage
         By default, the version of BCDBOOT.EXE that is present in \Windows\System32
         is used by Convert-WindowsImage.  If you need to specify an alternate version,
         use this parameter to do so.
-
-    .PARAMETER VHDPartitionStyle
-        Partition style (MBR or GPT) for the newly created disk (VHDX or VHD). By default
-        it will be partitioned with MBR partition style, used for older BIOS-based computers
-        and Generation 1 Virtual Machines in Hyper-V. For modern UEFI-based computers
-        and Generation 2 Virtual Machines, GPT partition layout is required.
 
     .PARAMETER BCDinVHD
         Specifies the purpose of the VHD(x). Use NativeBoot to skip cration of BCD store
@@ -216,11 +216,12 @@ Convert-WindowsImage
         [ValidateSet("VHD", "VHDX")]
         $VHDFormat        = "VHDX",
 
-        [Parameter(ParameterSetName="SRC")]
+        [Parameter(ParameterSetName="SRC", Mandatory=$true)]
+        [Alias("Layout")]
         [string]
         [ValidateNotNullOrEmpty()]
-        [ValidateSet("MBR", "GPT")]
-        $VHDPartitionStyle = "GPT",
+        [ValidateSet("BIOS", "UEFI", "WindowsToGo")]
+        $DiskLayout,
 
         [Parameter(ParameterSetName="SRC")]
         [string]
@@ -3548,85 +3549,88 @@ VirtualHardDisk
                 $disk = Mount-DiskImage -ImagePath $VHDPath -PassThru | Get-DiskImage | Get-Disk
             }
 
-            if ($VHDPartitionStyle -eq "MBR" ) 
-            {
-                Initialize-Disk -Number $disk.Number -PartitionStyle MBR
-                Write-W2VInfo "Disk initialized with MBR..."
-
-                $partition       = New-Partition -DiskNumber $disk.Number -Size $disk.LargestFreeExtent -MbrType IFS -IsActive
-                Write-W2VInfo "Disk partitioned..."
-
-                $volume    = Format-Volume -Partition $partition -FileSystem NTFS -Force -Confirm:$false
-                Write-W2VInfo "Volume formatted..."
-
-                $partition       | Add-PartitionAccessPath -AssignDriveLetter
-                $drive           = $(Get-Partition -Disk $disk).AccessPaths[0]
-                Write-W2VInfo "Access path ($drive) has been assigned..."
-            } 
-            elseif ($VHDPartitionStyle -eq "GPT" ) 
-            {
-                Initialize-Disk -Number $disk.Number -PartitionStyle GPT
-                Write-W2VInfo "Disk initialized with GPT..."
-
-                Write-W2VInfo "Disk partitioned"
-
-                If
-                (
-                    $BCDinVHD -eq "VirtualMachine"
-                )
+            switch ($DiskLayout)            
+            {             
+                "BIOS" 
                 {
-                    $PartitionSystem = New-Partition -DiskNumber $disk.Number -Size 100MB -GptType '{c12a7328-f81f-11d2-ba4b-00a0c93ec93b}'
-                    Write-W2VInfo "System Partition created"
+                    Initialize-Disk -Number $disk.Number -PartitionStyle MBR
+                    Write-W2VInfo "Disk initialized with MBR..."
 
-                }
+                    $partition       = New-Partition -DiskNumber $disk.Number -Size $disk.LargestFreeExtent -MbrType IFS -IsActive
+                    Write-W2VInfo "Disk partitioned..."
+
+                    $volume    = Format-Volume -Partition $partition -FileSystem NTFS -Force -Confirm:$false
+                    Write-W2VInfo "Volume formatted..."
+
+                    $partition       | Add-PartitionAccessPath -AssignDriveLetter
+                    $drive           = $(Get-Partition -Disk $disk).AccessPaths[0]
+                    Write-W2VInfo "Access path ($drive) has been assigned..."
+                } 
                 
-                $partition       = New-Partition -DiskNumber $disk.Number -UseMaximumSize -GptType '{ebd0a0a2-b9e5-4433-87c0-68b6b72699c7}'
-                Write-W2VInfo "Boot Partition created"
-
-                If
-                (
-                    $BCDinVHD -eq "VirtualMachine"
-                )
+                "UEFI" 
                 {
-                
-                    # The following line won't work. Thus we need to substitute it with DiskPart
-                    # $volumeSystem    = Format-Volume -Partition $partitionSystem -FileSystem FAT32 -Force -Confirm:$false
+                    Initialize-Disk -Number $disk.Number -PartitionStyle GPT
+                    Write-W2VInfo "Disk initialized with GPT..."
 
-                    @"
+                    Write-W2VInfo "Disk partitioned"
+
+                    If
+                    (
+                        $BCDinVHD -eq "VirtualMachine"
+                    )
+                    {
+                        $PartitionSystem = New-Partition -DiskNumber $disk.Number -Size 100MB -GptType '{c12a7328-f81f-11d2-ba4b-00a0c93ec93b}'
+                        Write-W2VInfo "System Partition created"
+
+                    }
+                
+                    $partition       = New-Partition -DiskNumber $disk.Number -UseMaximumSize -GptType '{ebd0a0a2-b9e5-4433-87c0-68b6b72699c7}'
+                    Write-W2VInfo "Boot Partition created"
+
+                    If
+                    (
+                        $BCDinVHD -eq "VirtualMachine"
+                    )
+                    {
+                
+                        # The following line won't work. Thus we need to substitute it with DiskPart
+                        # $volumeSystem    = Format-Volume -Partition $partitionSystem -FileSystem FAT32 -Force -Confirm:$false
+
+                        @"
 select disk $($disk.Number)
 select partition $($partitionSystem.PartitionNumber)
 format fs=fat32 label="System"
 "@ | & $env:SystemRoot\System32\DiskPart.exe | Out-Null
 
-                    Write-W2VInfo "System Volume formatted (with DiskPart)..."
-                
-                }
+                        Write-W2VInfo "System Volume formatted (with DiskPart)..."                
+                    }
               
-                $volume          = Format-Volume -Partition $partition -FileSystem NTFS -Force -Confirm:$false
-                Write-W2VInfo "Boot Volume formatted (with Format-Volume)..."
+                    $volume          = Format-Volume -Partition $partition -FileSystem NTFS -Force -Confirm:$false
+                    Write-W2VInfo "Boot Volume formatted (with Format-Volume)..."
 
-                If
-                (
-                    $BCDinVHD -eq "VirtualMachine"
-                )
-                {
+                    If
+                    (
+                        $BCDinVHD -eq "VirtualMachine"
+                    )
+                    {
 
-                    $partitionSystem | Add-PartitionAccessPath -AssignDriveLetter
-                    $driveSystem     = $(Get-Partition -Disk $disk).AccessPaths[1]
-                    Write-W2VInfo "Access path ($driveSystem) has been assigned to the System Volume..."
+                        $partitionSystem | Add-PartitionAccessPath -AssignDriveLetter
+                        $driveSystem     = $(Get-Partition -Disk $disk).AccessPaths[1]
+                        Write-W2VInfo "Access path ($driveSystem) has been assigned to the System Volume..."
 
-                    $partition       | Add-PartitionAccessPath -AssignDriveLetter
-                    $drive           = $(Get-Partition -Disk $disk).AccessPaths[2]
-                    Write-W2VInfo "Access path ($drive) has been assigned to the Boot Volume..."
-                }
-                ElseIf
-                (
-                    $BCDinVHD -eq "NativeBoot"
-                )
-                {
-                    $partition       | Add-PartitionAccessPath -AssignDriveLetter
-                    $drive           = $(Get-Partition -Disk $disk).AccessPaths[1]
-                    Write-W2VInfo "Access path ($drive) has been assigned to the Boot Volume..."
+                        $partition       | Add-PartitionAccessPath -AssignDriveLetter
+                        $drive           = $(Get-Partition -Disk $disk).AccessPaths[2]
+                        Write-W2VInfo "Access path ($drive) has been assigned to the Boot Volume..."
+                    }
+                    ElseIf
+                    (
+                        $BCDinVHD -eq "NativeBoot"
+                    )
+                    {
+                        $partition       | Add-PartitionAccessPath -AssignDriveLetter
+                        $drive           = $(Get-Partition -Disk $disk).AccessPaths[1]
+                        Write-W2VInfo "Access path ($drive) has been assigned to the Boot Volume..."
+                    }
                 }
             }
 
@@ -3661,37 +3665,39 @@ format fs=fat32 label="System"
 
                     Write-W2VInfo "Image applied. Making image bootable..."
 
-                    if ( $VHDPartitionStyle -eq "MBR" ) 
-                    {
+                    switch ($DiskLayout) 
+                    {        
+                        "BIOS" 
+                        {   
+                            $bcdBootArgs = @(
+                                "$($drive)Windows",    # Path to the \Windows on the VHD
+                                "/s $drive",           # Specifies the volume letter of the drive to create the \BOOT folder on.
+                                "/v"                   # Enabled verbose logging.
+                                "/f BIOS"              # Specifies the firmware type of the target system partition
+                            )
 
-                        $bcdBootArgs = @(
-                            "$($drive)Windows",    # Path to the \Windows on the VHD
-                            "/s $drive",           # Specifies the volume letter of the drive to create the \BOOT folder on.
-                            "/v"                   # Enabled verbose logging.
-                            "/f BIOS"              # Specifies the firmware type of the target system partition
-                        )
+                        } 
+                        
+                        "UEFI" 
+                        {
 
-                    } 
-                    elseif ( $VHDPartitionStyle -eq "GPT" ) 
-                    {
+                            $bcdBootArgs = @(
+                                "$($drive)Windows",    # Path to the \Windows on the VHD
+                                "/s $driveSystem",     # Specifies the volume letter of the drive to create the \BOOT folder on.
+                                "/v"                   # Enabled verbose logging.
+                                "/f UEFI"              # Specifies the firmware type of the target system partition
+                            )
 
-                        $bcdBootArgs = @(
-                            "$($drive)Windows",    # Path to the \Windows on the VHD
-                            "/s $driveSystem",     # Specifies the volume letter of the drive to create the \BOOT folder on.
-                            "/v"                   # Enabled verbose logging.
-                            "/f UEFI"              # Specifies the firmware type of the target system partition
-                        )
-
+                        }
                     }
 
                     Run-Executable -Executable $BCDBoot -Arguments $bcdBootArgs
-
-
+                    
                     # I'm commenting this out in order to workaround the bug in VMM diff disk handling.
                     # This turns out to affect the VM Role provisioning with Windows Azure Pack.
                     # Nowadays, everything is supposed to work even without specifying the Disk Signature.
 
-                    <# if ( $VHDPartitionStyle -eq "MBR" ) 
+                    <# if ($DiskLayout -eq "BIOS")
                     {          
 
                         Apply-BcdStoreChanges                     `
@@ -3705,7 +3711,7 @@ format fs=fat32 label="System"
                     # The following is added to mitigate the VMM diff disk handling
                     # We're going to change from MBRBootOption to LocateBootOption.
 
-                    if ( $VHDPartitionStyle -eq "MBR" ) 
+                    if ($DiskLayout -eq "BIOS")
                     {
 
                         Write-W2VInfo "Fixing the Device ID in the BCD store on $($VHDFormat)..."
