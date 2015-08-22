@@ -260,8 +260,8 @@ Add-ContainerNetworkAdapter [-ContainerName] <string[]> [-CimSession <CimSession
 
 
 **INPUTS**  
-System.String[]  
-Microsoft.Containers.PowerShell.Objects.Container[]
+System.String\[\]  
+Microsoft.Containers.PowerShell.Objects.Container\[\]
 
 
 **OUTPUTS**  
@@ -394,7 +394,7 @@ Connect a container network adapter to a virtual switch
 ```
 
 **INPUTS**  
-Microsoft.Containers.PowerShell.Objects.ContainerNetworkAdapter[]
+Microsoft.Containers.PowerShell.Objects.ContainerNetworkAdapter\[\]
 
 
 **OUTPUTS**  
@@ -517,7 +517,7 @@ Disconnect a container network adapter from a virtual switch
 ```
 
 **INPUTS**  
-Microsoft.Containers.PowerShell.Objects.ContainerNetworkAdapter[]
+Microsoft.Containers.PowerShell.Objects.ContainerNetworkAdapter\[\]
 
 
 **OUTPUTS**  
@@ -668,7 +668,7 @@ Copy container image out of the local store
 ```
 
 **INPUTS**  
-Microsoft.Containers.PowerShell.Objects.ContainerImage[]
+Microsoft.Containers.PowerShell.Objects.ContainerImage\[\]
 
 
 **OUTPUTS**  
@@ -756,7 +756,7 @@ Enumerate containers on the current system
 ```
 
 **INPUTS**  
-System.String[]  
+System.String\[\]  
 System.Guid
 
 
@@ -824,9 +824,9 @@ Get the host object for the container host
 ```
 
 **INPUTS**  
-Microsoft.Management.Infrastructure.CimSession[]  
-System.String[]  
-System.Management.Automation.PSCredential[]
+Microsoft.Management.Infrastructure.CimSession\[\]  
+System.String\[\]  
+System.Management.Automation.PSCredential\[]
 
 
 **OUTPUTS**  
@@ -851,9 +851,10 @@ Get-ContainerImage
 List container images on the container host
 
 **SYNTAX**  
+``` PowerShell
 Get-ContainerImage [[-Name] <string>] [[-Publisher] <string>] [[-Version] <version>] [-ChildOf <ContainerImage>]
 [-CimSession <CimSession[]>] [-ComputerName <string[]>] [-Credential <pscredential[]>]  [<CommonParameters>]
-
+```
 
 **PARAMETERS**  
 ``` PowerShell
@@ -1024,8 +1025,8 @@ List network adapters associated with a container
 ```
 
 **INPUTS**  
-Microsoft.Containers.PowerShell.Objects.Container[]  
-System.String[]  
+Microsoft.Containers.PowerShell.Objects.Container\[\]  
+System.String\[\]  
 
 
 **OUTPUTS**  
@@ -1691,8 +1692,8 @@ Remove an existing container from the system
 ```
 
 **INPUTS**  
-System.String[]  
-Microsoft.Containers.PowerShell.Objects.Container[]
+System.String\[\]  
+Microsoft.Containers.PowerShell.Objects.Container\[\]
 
 
 **OUTPUTS**  
@@ -1960,9 +1961,9 @@ Remove a network adapter from a container
 ```
 
 **INPUTS**  
-Microsoft.Containers.PowerShell.Objects.ContainerNetworkAdapter[]  
-System.String[]  
-Microsoft.Containers.PowerShell.Objects.Container[]
+Microsoft.Containers.PowerShell.Objects.ContainerNetworkAdapter\[\]  
+System.String\[\]  
+Microsoft.Containers.PowerShell.Objects.Container\[\]
 
 
 **OUTPUTS**  
@@ -2241,8 +2242,8 @@ Start a container
 ```
 
 **INPUTS**  
-Microsoft.Containers.PowerShell.Objects.Container[]  
-System.String[]
+Microsoft.Containers.PowerShell.Objects.Container\[\]  
+System.String\[\]
 
 
 **OUTPUTS**  
@@ -2374,8 +2375,8 @@ Stop a container
 ```
 
 **INPUTS**  
-Microsoft.Containers.PowerShell.Objects.Container[]  
-System.String[]
+Microsoft.Containers.PowerShell.Objects.Container\[\]  
+System.String\[\]
 
 
 **OUTPUTS**  
