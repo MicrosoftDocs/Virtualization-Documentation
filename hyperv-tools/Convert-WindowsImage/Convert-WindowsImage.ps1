@@ -3556,10 +3556,10 @@ VirtualHardDisk
                     Initialize-Disk -Number $disk.Number -PartitionStyle MBR
                     Write-W2VInfo "Disk initialized with MBR..."
 
-                    $windowsPartition       = New-Partition -DiskNumber $disk.Number -Size $disk.LargestFreeExtent -MbrType IFS -IsActive
+                    $windowsPartition = New-Partition -DiskNumber $disk.Number -Size $disk.LargestFreeExtent -MbrType IFS -IsActive
                     Write-W2VInfo "Disk partitioned..."
 
-                    $windowsVolume    = Format-Volume -Partition $windowsPartition -FileSystem NTFS -Force -Confirm:$false
+                    $windowsVolume = Format-Volume -Partition $windowsPartition -FileSystem NTFS -Force -Confirm:$false
                     Write-W2VInfo "Volume formatted..."
                 } 
                 
