@@ -3727,74 +3727,74 @@ VirtualHardDisk
                 {
                     $bcdEditArgs = $null;
 
-                # Configure the specified debugging transport and other settings.
-                switch ($EnableDebugger) 
-                {
-                    "Serial" 
+                    # Configure the specified debugging transport and other settings.
+                    switch ($EnableDebugger) 
                     {
-                        $bcdEditArgs = @(
-                            "/dbgsettings SERIAL",
-                            "DEBUGPORT:$($ComPort.Value)",
-                            "BAUDRATE:$($BaudRate.Value)"
-                        )
-                    }
+                        "Serial" 
+                        {
+                            $bcdEditArgs = @(
+                                "/dbgsettings SERIAL",
+                                "DEBUGPORT:$($ComPort.Value)",
+                                "BAUDRATE:$($BaudRate.Value)"
+                            )
+                        }
                 
-                    "1394" 
-                    {
-                        $bcdEditArgs = @(
-                            "/dbgsettings 1394",
-                            "CHANNEL:$($Channel.Value)"
-                        )
-                    }
+                        "1394" 
+                        {
+                            $bcdEditArgs = @(
+                                "/dbgsettings 1394",
+                                "CHANNEL:$($Channel.Value)"
+                            )
+                        }
                 
-                    "USB" 
-                    {
-                        $bcdEditArgs = @(
-                            "/dbgsettings USB",
-                            "TARGETNAME:$($Target.Value)"
-                        )
-                    }
+                        "USB" 
+                        {
+                            $bcdEditArgs = @(
+                                "/dbgsettings USB",
+                                "TARGETNAME:$($Target.Value)"
+                            )
+                        }
                 
-                    "Local" 
-                    {
-                        $bcdEditArgs = @(
-                            "/dbgsettings LOCAL"
-                        )
-                        break
-                    }
+                        "Local" 
+                        {
+                            $bcdEditArgs = @(
+                                "/dbgsettings LOCAL"
+                            )
+                            break
+                        }
              
-                    "Network" 
-                    {
-                        $bcdEditArgs = @(
-                            "/store $($windowsDrive)\boot\bcd",
-                            "/dbgsettings NET",
-                            "HOSTIP:$($IP.Value)",
-                            "PORT:$($Port.Value)",
-                            "KEY:$($Key.Value)"
+                        "Network" 
+                        {
+                            $bcdEditArgs = @(
+                                "/store $($windowsDrive)\boot\bcd",
+                                "/dbgsettings NET",
+                                "HOSTIP:$($IP.Value)",
+                                "PORT:$($Port.Value)",
+                                "KEY:$($Key.Value)"
+                            )
+                        }
+                    }  
+
+                    $bcdStores = @(
+                        "$($systemDrive)\boot\bcd",
+                        "$($systemDrive)\efi\microsoft\boot\bcd"
                         )
-                    }
-                }  
 
-                $bcdStores = @(
-                    "$($systemDrive)\boot\bcd",
-                    "$($systemDrive)\efi\microsoft\boot\bcd"
-                    )
-
-                foreach ($bcdStore in $bcdStores) 
-                {
-                    if (Test-Path $bcdStore)
+                    foreach ($bcdStore in $bcdStores) 
                     {
-                        Write-W2VInfo "Turning kernel debugging on in the $($VHDFormat) for $($bcdStore)..."
-                        Run-Executable -Executable "BCDEDIT.EXE" -Arguments (
-                            "/store $($bcdStore)",
-                            "/set `{default`} debug on"
-                            )      
+                        if (Test-Path $bcdStore)
+                        {
+                            Write-W2VInfo "Turning kernel debugging on in the $($VHDFormat) for $($bcdStore)..."
+                            Run-Executable -Executable "BCDEDIT.EXE" -Arguments (
+                                "/store $($bcdStore)",
+                                "/set `{default`} debug on"
+                                )      
 
-                        $bcdEditArguments = @("/store $($bcdStore)") + $bcdEditArgs
+                            $bcdEditArguments = @("/store $($bcdStore)") + $bcdEditArgs
                     
-                        Run-Executable -Executable "BCDEDIT.EXE" -Arguments $bcdEditArguments
+                            Run-Executable -Executable "BCDEDIT.EXE" -Arguments $bcdEditArguments
+                        }
                     }
-                }
                 }
             } 
             else 
