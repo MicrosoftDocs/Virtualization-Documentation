@@ -53,11 +53,6 @@ For Windows 10 Hyper-V Hosts:
 
 ## Linux and Free BSD
 
-Hyper-V has support for various Linux and FreeBSD distributions:
-| Operating system | |
-
-## Linux and Free BSD
-
 For Windows 10 Hyper-V Hosts:
 
 | Guest operating system |  |
