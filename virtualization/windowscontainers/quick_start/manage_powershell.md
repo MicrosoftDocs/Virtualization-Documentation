@@ -398,6 +398,8 @@ After the website has been updated, navigate back to `http://containerhost-ipadd
 ## Next Steps
 Now that you have containers set up and an introduction to the tools, go build your own containerized apps.
 
+Here is a more complete [PowerShell reference](../reference/powershell_overview.md).
+
 Remember, this is a **preview** there are bugs and we have a lot of work in progress.  [This page](../about/work_in_progress.md) contains many of our known issues.
 
 We are also monitoring the [forums](https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers) very closely.
