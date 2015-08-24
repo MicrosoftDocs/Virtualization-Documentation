@@ -37,14 +37,14 @@ if(Test-Path -Path "$($workingDir)\resources\Convert-WindowsImage.ps1") {
         Throw 'Convert-WindowsImage was not loaded'
     }
 } else {
-    Write-Host -ForegroundColor Green 'Please download Convert-WindowsImage.ps1 and place in $($workingDir)\Resources\'
+    Write-Host -ForegroundColor Green "Please download Convert-WindowsImage.ps1 and place in $($workingDir)\Resources\"
     Write-Host -ForegroundColor Green "`nhttps://gallery.technet.microsoft.com/scriptcenter/Convert-WindowsImageps1-0fe23a8f`n"
     Throw 'Missing Convert-WindowsImage.ps1 script'
 }
 
 # Check that PSWindowsUpdate module exists
 if(!(Test-Path -Path "$($workingDir)\Resources\bits\PSWindowsUpdate\PSWindowsUpdate.psm1")) {
-    Write-Host -ForegroundColor Green 'Please download PSWindowsUpdate and extract to $($workingDir)\Resources\bits'
+    Write-Host -ForegroundColor Green "Please download PSWindowsUpdate and extract to $($workingDir)\Resources\bits"
     Write-Host -ForegroundColor Green "`nhttps://gallery.technet.microsoft.com/scriptcenter/2d191bcd-3308-4edd-9de2-88dff796b0bc`n"
     Throw 'Missing PSWindowsUpdate module'
 }
@@ -246,14 +246,6 @@ function makeUnattendFile ([string]$key, [string]$logonCount, [string]$filePath,
      # Write it out to disk
      cleanupFile $filePath; $Unattend.Save($filePath)}
 
-<<<<<<< HEAD
-Function createRunAndWaitVM ([string]$vhd, [string]$gen) {
-      # Function for whenever I have a VHD that is ready to run
-      new-vm $factoryVMName -MemoryStartupBytes 2048mb -VHDPath $vhd -Generation $Gen `
-                            -SwitchName $virtualSwitchName | Out-Null
-      set-vm -Name $factoryVMName -ProcessorCount 2
-      Start-VM $factoryVMName
-=======
 function createRunAndWaitVM 
 {
     param
@@ -271,8 +263,7 @@ function createRunAndWaitVM
 
     set-vm -Name $factoryVMName -ProcessorCount 2;
     Start-VM $factoryVMName;
->>>>>>> abba6a537b8f7c6e660ce2921de5af7aaf64e3bc
-
+    
       # Give the VM a moment to start before we start checking for it to stop
       Sleep -Seconds 10
 
@@ -284,18 +275,6 @@ function createRunAndWaitVM
       # Clean up the VM
       Remove-VM $factoryVMName -Force}
 
-<<<<<<< HEAD
-Function MountVHDandRunBlock ([string]$vhd, [scriptblock]$block) { 
-      # This function mounts a VHD, runs a script block and unmounts the VHD.
-      # Drive letter of the mounted VHD is stored in $driveLetter - can be used by script blocks
-      $driveLetter = (Mount-VHD $vhd –passthru | Get-Disk | Get-Partition | Get-Volume).DriveLetter
-      &$block
-      dismount-vhd $vhd
-
-      # Wait 2 seconds for activity to clean up
-      Start-Sleep -Seconds 2
-      }
-=======
 function MountVHDandRunBlock 
 {
     param
@@ -319,38 +298,131 @@ function MountVHDandRunBlock
     # Wait 2 seconds for activity to clean up
     Start-Sleep -Seconds 2;
 }
->>>>>>> abba6a537b8f7c6e660ce2921de5af7aaf64e3bc
+
 
 ### Update script block
 $updateCheckScriptBlock = {
-     # Clean up unattend file if it is there
-     if (test-path "$ENV:SystemDrive\Unattend.xml") {Remove-Item -Force "$ENV:SystemDrive\Unattend.xml"}
-     
-     # Check to see if files need to be unblocked - if they do, do it and reboot
-     if ((Get-ChildItem $env:SystemDrive\Bits\PSWindowsUpdate | `
-          get-item -Stream "Zone.Identifier" -ErrorAction SilentlyContinue).Count -gt 0)
-        {Get-ChildItem $env:SystemDrive\Bits\PSWindowsUpdate  | Unblock-File
-         invoke-expression 'shutdown -r -t 0'}
 
-     # To get here - the files are unblocked
-     import-module $env:SystemDrive\Bits\PSWindowsUpdate\PSWindowsUpdate
+    # Clean up unattend file if it is there
+    if (Test-Path "$ENV:SystemDrive\Unattend.xml") 
+    {
+        Remove-Item -Force "$ENV:SystemDrive\Unattend.xml"
+    }
 
-     # Check if any updates are needed - leave a marker if there are
-     if ((Get-WUList).Count -gt 0)
-          {if (!(test-path $env:SystemDrive\Bits\changesMade.txt)) 
-          {New-Item $env:SystemDrive\Bits\changesMade.txt -type file}}
+    # Check to see if files need to be unblocked - if they do, do it and reboot
+    if ((Get-ChildItem $env:SystemDrive\Bits | `
+        Get-Item -Stream "Zone.Identifier" -ErrorAction SilentlyContinue).Count -gt 0)
+    {
+        Get-ChildItem $env:SystemDrive\Bits | Unblock-File;
+        Invoke-Expression 'shutdown -r -t 0'
+    }
+
+    # To get here - the files are unblocked
+    Import-Module $env:SystemDrive\Bits\PSWindowsUpdate\PSWindowsUpdate;
+
+    # Set static IP address - do not change values here, change them in FactoryVariables.ps1
+    $UseStaticIP = STATICIPBOOLPLACEHOLDER
+    if($UseStaticIP) {
+        $IP = 'IPADDRESSPLACEHOLDER'
+        $MaskBits = 'SUBNETMASKPLACEHOLDER'
+        $Gateway = 'GATEWAYPLACEHOLDER'
+        $DNS = 'DNSPLACEHOLDER'
+        $IPType = 'IPTYPEPLACEHOLDER'
+
+        $adapter = Get-NetAdapter | Where-Object {$_.Status -eq 'up'}
+        # Remove any existing IP, gateway from our ipv4 adapter
+        If (($adapter | Get-NetIPConfiguration).IPv4Address.IPAddress) {
+            $adapter | Remove-NetIPAddress -AddressFamily $IPType -Confirm:$false
+        }
+        If (($adapter | Get-NetIPConfiguration).Ipv4DefaultGateway) {
+            $adapter | Remove-NetRoute -AddressFamily $IPType -Confirm:$false
+        }
+        # Configure the IP address and default gateway
+        $adapter | New-NetIPAddress -AddressFamily $IPType `
+            -IPAddress $IP `
+            -PrefixLength $MaskBits `
+            -DefaultGateway $Gateway 
+        # Configure the DNS client server IP addresses
+        $adapter | Set-DnsClientServerAddress -ServerAddresses $DNS  
+    }
+
+
+
+    # Run pre-update script if it exists
+    if (Test-Path "$env:SystemDrive\Bits\PreUpdateScript.ps1") {
+        & "$env:SystemDrive\Bits\PreUpdateScript.ps1"
+    }
+
+    # Check if any updates are needed - leave a marker if there are
+    if ((Get-WUList).Count -gt 0)
+    {
+        if (-not (Test-Path $env:SystemDrive\Bits\changesMade.txt))
+        {
+            New-Item $env:SystemDrive\Bits\changesMade.txt -type file;
+        }
+    }
+
  
      # Apply all the updates
      Get-WUInstall -AcceptAll -IgnoreReboot -IgnoreUserInput -NotCategory "Language packs" 
 
-     # Reboot if needed - otherwise shutdown because we are done
-     if (Get-WURebootStatus -Silent) {invoke-expression 'shutdown -r -t 0'} 
-     else {invoke-expression 'shutdown -s -t 0'}}
+    # Run post-update script if it exists
+    if (Test-Path "$env:SystemDrive\Bits\PostUpdateScript.ps1") {
+        & "$env:SystemDrive\Bits\PostUpdateScript.ps1"
+    }
+
+    # Remove static IP address
+    if($UseStaticIP) {
+        $adapter = Get-NetAdapter | ? {$_.Status -eq "up"}
+        $interface = $adapter | Get-NetIPInterface -AddressFamily $IPType
+
+        If ($interface.Dhcp -eq "Disabled") {
+            If (($interface | Get-NetIPConfiguration).Ipv4DefaultGateway) { 
+                $interface | Remove-NetRoute -Confirm:$false
+            }
+            $interface | Set-NetIPInterface -DHCP Enabled
+            $interface | Set-DnsClientServerAddress -ResetServerAddresses
+        }
+    }
+
+    # Reboot if needed - otherwise shutdown because we are done
+    if (Get-WURebootStatus -Silent) 
+    {
+        Invoke-Expression 'shutdown -r -t 0';
+    } 
+    else
+    {
+        invoke-expression 'shutdown -s -t 0';
+    }
+};
+
+
+function Set-UpdateCheckPlaceHolders {
+    $block = $updateCheckScriptBlock | Out-String
+    
+    if($UseStaticIP) {
+        $block = $block.Replace('$UseStaticIP = STATICIPBOOLPLACEHOLDER', '$UseStaticIP = $true')
+        $block = $block.Replace('IPADDRESSPLACEHOLDER', $IP)
+        $block = $block.Replace('SUBNETMASKPLACEHOLDER', $MaskBits)
+        $block = $block.Replace('GATEWAYPLACEHOLDER', $Gateway)
+        $block = $block.Replace('DNSPLACEHOLDER', $DNS)
+        $block = $block.Replace('IPTYPEPLACEHOLDER', $IPType)
+    } else {
+        $block = $block.Replace('$UseStaticIP = STATICIPBOOLPLACEHOLDER', '$UseStaticIP = $false')
+    }
+    return $block
+}
 
 ### Sysprep script block
 $sysprepScriptBlock = {
-     # Remove autorun key if it exists
-     Get-Item -Path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run | ? Property -like Unattend* | Remove-Item
+
+    # Run pre-sysprep script if it exists
+    if (Test-Path "$env:SystemDrive\Bits\PreSysprepScript.ps1") {
+        & "$env:SystemDrive\Bits\PreSysprepScript.ps1"
+    }
+
+    # Remove autorun key if it exists
+    Get-Item -Path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run | ? Property -like Unattend* | Remove-Item;
              
      $unattendedXmlPath = "$ENV:SystemDrive\Bits\Unattend.xml" 
      & "$ENV:SystemRoot\System32\Sysprep\Sysprep.exe" `/generalize `/oobe `/shutdown `/unattend:"$unattendedXmlPath"}
@@ -359,6 +431,11 @@ $sysprepScriptBlock = {
 $postSysprepScriptBlock = {
      # Remove autorun key if it exists
      Get-Item -Path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run | ? Property -like Unattend* | Remove-Item
+
+    # Run post-sysprep script if it exists
+    if (Test-Path "$env:SystemDrive\Bits\PostSysprepScript.ps1") {
+        & "$env:SystemDrive\Bits\PostSysprepScript.ps1"
+    }
 
     # Clean up unattend file if it is there
     if (Test-Path "$ENV:SystemDrive\Unattend.xml") 
@@ -408,6 +485,12 @@ function RunTheFactory
         $Gen = 2;
     }
 
+    # Verify product key
+    if(-not ($ProductKey -imatch '^[a-z0-9]{5}-[a-z0-9]{5}-[a-z0-9]{5}-[a-z0-9]{5}-[a-z0-9]{5}$')) {
+        logger $FriendlyName 'Invalid product key, skipping this product'
+        return
+    }
+
     logger $FriendlyName "Checking for existing Factory VM";
 
     # Check if there is already a factory VM - and kill it if there is
@@ -454,7 +537,7 @@ function RunTheFactory
             Copy-Item "$($ResourceDirectory)\bits" -Destination ($driveLetter + ":\") -Recurse;
             
             # Create first logon script
-            $updateCheckScriptBlock | Out-String | Out-File -FilePath "$($driveLetter):\Bits\Logon.ps1" -Width 4096;
+            Set-UpdateCheckPlaceHolders | Out-File -FilePath "$($driveLetter):\Bits\Logon.ps1" -Width 4096;
         }
 
         logger $FriendlyName "Create virtual machine, start it and wait for it to stop...";
@@ -483,10 +566,11 @@ function RunTheFactory
 
         logger $FriendlyName "Copy login file for update check, also make sure flag file is cleared"
         MountVHDandRunBlock $updateVHD {
-            # Make the UpdateCheck script the logon script, make sure update flag file is deleted before we start
-            cleanupFile "$($driveLetter):\Bits\changesMade.txt";
-            cleanupFile "$($driveLetter):\Bits\Logon.ps1";
-            $updateCheckScriptBlock | Out-String | Out-File -FilePath "$($driveLetter):\Bits\Logon.ps1" -Width 4096;
+            # Refresh the Bits folder
+            cleanupFile "$($driveLetter):\Bits"
+            Copy-Item "$($ResourceDirectory)\bits" -Destination ($driveLetter + ":\") -Recurse;
+            # Create the update check logon script
+            Set-UpdateCheckPlaceHolders | Out-File -FilePath "$($driveLetter):\Bits\Logon.ps1" -Width 4096;
         }
 
         logger $FriendlyName "Create virtual machine, start it and wait for it to stop...";
