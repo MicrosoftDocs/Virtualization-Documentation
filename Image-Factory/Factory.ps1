@@ -37,14 +37,14 @@ if(Test-Path -Path "$($workingDir)\resources\Convert-WindowsImage.ps1") {
         Throw 'Convert-WindowsImage was not loaded'
     }
 } else {
-    Write-Host -ForegroundColor Green 'Please download Convert-WindowsImage.ps1 and place in $($workingDir)\Resources\'
+    Write-Host -ForegroundColor Green "Please download Convert-WindowsImage.ps1 and place in $($workingDir)\Resources\"
     Write-Host -ForegroundColor Green "`nhttps://gallery.technet.microsoft.com/scriptcenter/Convert-WindowsImageps1-0fe23a8f`n"
     Throw 'Missing Convert-WindowsImage.ps1 script'
 }
 
 # Check that PSWindowsUpdate module exists
 if(!(Test-Path -Path "$($workingDir)\Resources\bits\PSWindowsUpdate\PSWindowsUpdate.psm1")) {
-    Write-Host -ForegroundColor Green 'Please download PSWindowsUpdate and extract to $($workingDir)\Resources\bits'
+    Write-Host -ForegroundColor Green "Please download PSWindowsUpdate and extract to $($workingDir)\Resources\bits"
     Write-Host -ForegroundColor Green "`nhttps://gallery.technet.microsoft.com/scriptcenter/2d191bcd-3308-4edd-9de2-88dff796b0bc`n"
     Throw 'Missing PSWindowsUpdate module'
 }
@@ -539,6 +539,12 @@ function RunTheFactory
     {
         $VHDPartitionStyle = "GPT";
         $Gen = 2;
+    }
+
+    # Verify product key
+    if(-not ($ProductKey -imatch '^[a-z0-9]{5}-[a-z0-9]{5}-[a-z0-9]{5}-[a-z0-9]{5}-[a-z0-9]{5}$')) {
+        logger $FriendlyName 'Invalid product key, skipping this product'
+        return
     }
 
     logger $FriendlyName "Checking for existing Factory VM";
