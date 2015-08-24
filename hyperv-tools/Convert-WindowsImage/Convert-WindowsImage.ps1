@@ -3635,8 +3635,6 @@ VirtualHardDisk
 
             if (($openImage.ImageArchitecture -ne "ARM") -and       # No virtualization platform for ARM images
                 ($openImage.ImageArchitecture -ne "ARM64"))         # No virtualization platform for ARM64 images
-
-            if ($openImage.ImageArchitecture -ne "ARM") 
             {
 
                 if ( $BCDinVHD -eq "VirtualMachine" ) 
@@ -3727,51 +3725,39 @@ VirtualHardDisk
                 # Are we turning the debugger on?
                 if ($EnableDebugger -inotlike "None") 
                 {
-                    Write-W2VInfo "Turning kernel debugging on in the $($VHDFormat)..."
-                    Run-Executable -Executable "BCDEDIT.EXE" -Arguments (
-                        "/store $($windowsDrive)\boot\bcd",
-                        "/set `{default`} debug on"
-                    )
-                }
-            
+                    $bcdEditArgs = $null;
+
                 # Configure the specified debugging transport and other settings.
                 switch ($EnableDebugger) 
-                {                
+                {
                     "Serial" 
                     {
-                        Run-Executable -Executable "BCDEDIT.EXE" -Arguments (
-                            "/store $($windowsDrive)\boot\bcd",
+                        $bcdEditArgs = @(
                             "/dbgsettings SERIAL",
                             "DEBUGPORT:$($ComPort.Value)",
                             "BAUDRATE:$($BaudRate.Value)"
                         )
-                        break
                     }
                 
                     "1394" 
                     {
-                        Run-Executable -Executable "BCDEDIT.EXE" -Arguments (
-                            "/store $($windowsDrive)\boot\bcd",
+                        $bcdEditArgs = @(
                             "/dbgsettings 1394",
                             "CHANNEL:$($Channel.Value)"
                         )
-                        break
                     }
                 
                     "USB" 
                     {
-                        Run-Executable -Executable "BCDEDIT.EXE" -Arguments (
-                            "/store $($windowsDrive)\boot\bcd",
+                        $bcdEditArgs = @(
                             "/dbgsettings USB",
                             "TARGETNAME:$($Target.Value)"
                         )
-                        break
                     }
                 
                     "Local" 
                     {
-                        Run-Executable -Executable "BCDEDIT.EXE" -Arguments (
-                            "/store $($windowsDrive)\boot\bcd",
+                        $bcdEditArgs = @(
                             "/dbgsettings LOCAL"
                         )
                         break
@@ -3779,23 +3765,37 @@ VirtualHardDisk
              
                     "Network" 
                     {
-                        Run-Executable -Executable "BCDEDIT.EXE" -Arguments (
+                        $bcdEditArgs = @(
                             "/store $($windowsDrive)\boot\bcd",
                             "/dbgsettings NET",
                             "HOSTIP:$($IP.Value)",
                             "PORT:$($Port.Value)",
                             "KEY:$($Key.Value)"
                         )
-                        break
                     }
-                                
-                    default 
+                }  
+
+                $bcdStores = @(
+                    "$($systemDrive)\boot\bcd",
+                    "$($systemDrive)\efi\microsoft\boot\bcd"
+                    )
+
+                foreach ($bcdStore in $bcdStores) 
+                {
+                    if (Test-Path $bcdStore)
                     {
-                        # Nothing to do here - bail out.
-                        break
+                        Write-W2VInfo "Turning kernel debugging on in the $($VHDFormat) for $($bcdStore)..."
+                        Run-Executable -Executable "BCDEDIT.EXE" -Arguments (
+                            "/store $($bcdStore)",
+                            "/set `{default`} debug on"
+                            )      
+
+                        $bcdEditArguments = @("/store $($bcdStore)") + $bcdEditArgs
+                    
+                        Run-Executable -Executable "BCDEDIT.EXE" -Arguments $bcdEditArguments
                     }
                 }
-            
+                }
             } 
             else 
             {
