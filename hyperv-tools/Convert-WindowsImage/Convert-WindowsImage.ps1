@@ -3666,25 +3666,19 @@ VirtualHardDisk
                 Write-W2VInfo "Image applied. It is not bootable."
             }
 
-            if (
-                ( 
-                    $RemoteDesktopEnable -eq $True
-                ) -or (
-                    $ExpandOnNativeBoot -eq $False
-                )
-            ) 
+            if ($RemoteDesktopEnable -or (-not $ExpandOnNativeBoot)) 
             {
         
-                $hive         = Mount-RegistryHive -Hive (Join-Path $windowsDrive "Windows\System32\Config\System")
+                $hive = Mount-RegistryHive -Hive (Join-Path $windowsDrive "Windows\System32\Config\System")
         
-                if ( $RemoteDesktopEnable -eq $True ) 
+                if ($RemoteDesktopEnable) 
                 {
                     Write-W2VInfo -text "Enabling Remote Desktop"
                     Set-ItemProperty -Path "HKLM:\$($hive)\ControlSet001\Control\Terminal Server" -Name "fDenyTSConnections" -Value 0
 
                 }
 
-                if ( $ExpandOnNativeBoot -eq $False ) 
+                if (-not $ExpandOnNativeBoot) 
                 {            
                     Write-W2VInfo -text "Disabling automatic $VHDFormat expansion for Native Boot"
                     Set-ItemProperty -Path "HKLM:\$($hive)\ControlSet001\Services\FsDepends\Parameters" -Name "VirtualDiskExpandOnMount" -Value 4
@@ -3692,10 +3686,9 @@ VirtualHardDisk
                 }
 
                 Dismount-RegistryHive -HiveMountPoint $hive
-
             }
 
-            if ( $Driver ) 
+            if ($Driver) 
             {
                 Write-W2VInfo -text "Adding Windows Drivers to the Image"
 
@@ -3707,7 +3700,7 @@ VirtualHardDisk
                 }
             }
 
-            If ( $Feature ) 
+            If ($Feature) 
             {            
                 Write-W2VInfo -text "Installing Windows Feature(s) $Feature to the Image"
                 $FeatureSourcePath = Join-Path -Path "$($driveLetter):" -ChildPath "sources\sxs"
@@ -3716,7 +3709,7 @@ VirtualHardDisk
 
             }
 
-            if ( $Package ) 
+            if ($Package) 
             {
                 Write-W2VInfo -text "Adding Windows Packages to the Image"
             
@@ -3725,6 +3718,14 @@ VirtualHardDisk
                     Write-W2VInfo -text "Package path: $PSItem"
                     $Dism = Add-WindowsPackage -Path $windowsDrive -PackagePath $PSItem
                 }
+            }
+
+            #
+            # Remove system partition access path, if necessary
+            #
+            if ($DiskLayout -eq "UEFI")
+            {
+                $systemPartition | Remove-PartitionAccessPath -AccessPath $systemPartition.AccessPaths[0]
             }
 
             if ([String]::IsNullOrEmpty($vhdFinalName)) 
