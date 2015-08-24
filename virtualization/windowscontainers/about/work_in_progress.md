@@ -175,7 +175,6 @@ Workaround: specify both, the username and password, when running net use. For e
 net use S: \\your\sources\here /User:shareuser [yourpassword]
 ``` 
 
-
 ### HCS Shim errors when creating new container images
 If you encounter error messages like this:
 ```
