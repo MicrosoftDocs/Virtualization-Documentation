@@ -113,8 +113,7 @@ Instead, install the Web-Server role to use IIS. ASP 5.0 does work.
 Enable-WindowsOptionalFeature -Online -FeatureName Web-Server
 ```
 
-
-
+See the [application compatability article](../reference/app_compat.md) for more information about what applications can be containerized.
 
 --------------------------
 
