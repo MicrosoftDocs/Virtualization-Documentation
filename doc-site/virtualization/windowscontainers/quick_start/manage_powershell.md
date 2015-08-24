@@ -389,6 +389,20 @@ After the website has been updated, navigate back to `http://containerhost-ipadd
 
 ![](media/hello.png)
 
+## Video Walkthrough
+
+<iframe src="https://channel9.msdn.com/Blogs/containers/Quick-Start-Deploying-and-Managing-Windows-Server-Containers-with-PowerShell/player" width="800" height="450"  allowFullScreen="true" frameBorder="0" scrolling="no"></iframe>
+
+
+## Next Steps
+Now that you have containers set up and an introduction to the tools, go build your own containerized apps.
+
+Remember, this is a **preview** there are bugs and we have a lot of work in progress.  [This page](../about/work_in_progress.md) contains many of our known issues.
+
+We are also monitoring the [forums](https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers) very closely.
+
+There are also pre-made samples on [GitHub](https://github.com/Microsoft/Virtualization-Documentation/tree/master/windows-server-container-samples).
+
 -----------------------------------
 [Back to Container Home](../containers_welcome.md)   
 [Known Issues for Current Release](../about/work_in_progress.md)
