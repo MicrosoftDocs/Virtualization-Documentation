@@ -3553,67 +3553,52 @@ VirtualHardDisk
             {             
                 "BIOS" 
                 {
+                    Write-W2VInfo "Initializing disk..."
                     Initialize-Disk -Number $disk.Number -PartitionStyle MBR
-                    Write-W2VInfo "Disk initialized with MBR..."
 
+                    #
+                    # Create the Windows/system partition 
+                    #
+                    Write-W2VInfo "Creating single partition..."
                     $windowsPartition = New-Partition -DiskNumber $disk.Number -Size $disk.LargestFreeExtent -MbrType IFS -IsActive
-                    Write-W2VInfo "Disk partitioned..."
-
+                    $systemPartition = $windowsPartition
+    
+                    Write-W2VInfo "Formatting windows volume..."
                     $windowsVolume = Format-Volume -Partition $windowsPartition -FileSystem NTFS -Force -Confirm:$false
-                    Write-W2VInfo "Volume formatted..."
+                    $systemVolume = $windowsVolume
                 } 
                 
                 "UEFI" 
                 {
                     Write-W2VInfo "Initializing disk..."
                     Initialize-Disk -Number $disk.Number -PartitionStyle GPT
-
-                    Write-W2VInfo "Disk partitioned"
-
-                    If
-                    (
-                        $BCDinVHD -eq "VirtualMachine"
-                    )
-                    {
-                        Write-W2VInfo "Creating EFI system partition (ESP)..."
-                        $systemPartition = New-Partition -DiskNumber $disk.Number -Size 100MB -GptType '{c12a7328-f81f-11d2-ba4b-00a0c93ec93b}'
-
-                    }
+             
+                    #
+                    # Create the system partition.  Create a data partition so we can format it, then change to ESP
+                    #
+                    Write-W2VInfo "Creating EFI system partition..."
+                    $systemPartition = New-Partition -DiskNumber $disk.Number -Size 200MB -GptType '{ebd0a0a2-b9e5-4433-87c0-68b6b72699c7}'
                 
+                    Write-W2VInfo "Formatting system volume..."
+                    $windowsVolume = Format-Volume -Partition $systemPartition -FileSystem FAT32 -Force -Confirm:$false
+
+                    Write-W2VInfo "Setting system partition as ESP..."
+                    $systemPartition | Set-Partition -GptType '{c12a7328-f81f-11d2-ba4b-00a0c93ec93b}'
+                
+                    #
+                    # Create the reserved partition 
+                    #
+                    Write-W2VInfo "Creating MSR partition..."
+                    $reservedPartition = New-Partition -DiskNumber $disk.Number -Size 128MB -GptType '{e3c9e316-0b5c-4db8-817d-f92df00215ae}'
+        
+                    #
+                    # Create the Windows partition
+                    #
                     Write-W2VInfo "Creating windows partition..."
                     $windowsPartition = New-Partition -DiskNumber $disk.Number -UseMaximumSize -GptType '{ebd0a0a2-b9e5-4433-87c0-68b6b72699c7}'
-                    
-                    If
-                    (
-                        $BCDinVHD -eq "VirtualMachine"
-                    )
-                    {
-                
-                        # The following line won't work. Thus we need to substitute it with DiskPart
-                        # $volumeSystem    = Format-Volume -Partition $systemPartition -FileSystem FAT32 -Force -Confirm:$false
-
-                        @"
-select disk $($disk.Number)
-select partition $($systemPartition.PartitionNumber)
-format fs=fat32 label="System"
-"@ | & $env:SystemRoot\System32\DiskPart.exe | Out-Null
-
-                        Write-W2VInfo "System Volume formatted (with DiskPart)..."                
-                    }
-              
+        
                     Write-W2VInfo "Formatting windows volume..."
                     $windowsVolume = Format-Volume -Partition $windowsPartition -FileSystem NTFS -Force -Confirm:$false
-
-                    If
-                    (
-                        $BCDinVHD -eq "VirtualMachine"
-                    )
-                    {
-
-                        $systemPartition | Add-PartitionAccessPath -AssignDriveLetter
-                        $systemDrive     = $(Get-Partition -Disk $disk).AccessPaths[1]
-                        Write-W2VInfo "Access path ($systemDrive) has been assigned to the System Volume..."
-                    }
                 }
             }            
 
@@ -3621,8 +3606,15 @@ format fs=fat32 label="System"
             # Assign drive letter to Windows partition.  This is required for bcdboot
             #
             $windowsPartition | Add-PartitionAccessPath -AssignDriveLetter
-            $windowsDrive = $(Get-Partition -Disk $disk).AccessPaths[0].substring(0,2)
+            $windowsDrive = $(Get-Partition -Volume $windowsVolume).AccessPaths[0].substring(0,2)
             Write-W2VInfo "Windows path ($windowsDrive) has been assigned."
+            
+            #
+            # Refresh access paths (we have now formatted the volume)
+            #
+            $systemPartition = $systemPartition | Get-Partition            
+            $systemDrive = $systemPartition.AccessPaths[0].trimend("\").replace("\?", "??")
+            Write-W2VInfo "System volume location: $systemDrive"
 
             ####################################################################################################  
             # APPLY IMAGE FROM WIM TO THE NEW VHD  
