@@ -3496,6 +3496,30 @@ VirtualHardDisk
                     Write-W2VInfo "Formatting windows volume..."
                     $windowsVolume = Format-Volume -Partition $windowsPartition -FileSystem NTFS -Force -Confirm:$false
                 }
+
+                "WindowsToGo" 
+                {                
+                    Write-W2VInfo "Initializing disk..."
+                    Initialize-Disk -Number $disk.Number -PartitionStyle MBR
+                
+                    #
+                    # Create the system partition 
+                    #
+                    Write-W2VInfo "Creating system partition..."
+                    $systemPartition = New-Partition -DiskNumber $disk.Number -Size 350MB -MbrType FAT32 -IsActive 
+        
+                    Write-W2VInfo "Formatting system volume..."
+                    $systemVolume    = Format-Volume -Partition $systemPartition -FileSystem FAT32 -Force -Confirm:$false
+            
+                    #
+                    # Create the Windows partition
+                    #
+                    Write-W2VInfo "Creating windows partition..."
+                    $windowsPartition = New-Partition -DiskNumber $disk.Number -Size $disk.LargestFreeExtent -MbrType IFS
+        
+                    Write-W2VInfo "Formatting windows volume..."
+                    $windowsVolume    = Format-Volume -Partition $windowsPartition -FileSystem NTFS -Force -Confirm:$false
+                }
             }            
 
             #
@@ -3555,6 +3579,15 @@ VirtualHardDisk
                         "UEFI" 
                         {   
                             $bcdBootArgs += "/f UEFI"   # Specifies the firmware type of the target system partition
+                        }
+
+                        "WindowsToGo" 
+                        {    
+                            # Create entries for both UEFI and BIOS if possible
+                            if (Test-Path "$($windowsDrive)\Windows\boot\EFI\bootmgfw.efi")
+                            {
+                                $bcdBootArgs += "/f ALL"    
+                            }     
                         }
                     }
 
