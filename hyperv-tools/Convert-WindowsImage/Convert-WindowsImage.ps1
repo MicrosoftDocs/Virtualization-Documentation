@@ -2309,110 +2309,6 @@ VirtualHardDisk
 
         ##########################################################################################
 
-        Function 
-        Apply-BCDStoreChanges 
-        {
-            [CmdletBinding()]
-            param(
-                [Parameter(Mandatory = $true)]
-                [string]
-                [ValidateNotNullOrEmpty()]
-                $BcdStoreFile,
-
-                [Parameter()]
-                [string]
-                [ValidateNotNullOrEmpty()]
-                [ValidateScript({ ($_ -eq $PARTITION_STYLE_MBR) -or ($_ -eq $PARTITION_STYLE_GPT) })]
-                $PartitionStyle = $PARTITION_STYLE_MBR,
-
-                [Parameter()]
-                [UInt64]
-                [ValidateScript({ $_ -ge 0 })]
-                $DiskSignature,
-
-                [Parameter()]
-                [UInt64]
-                [ValidateScript({ $_ -ge 0 })]
-                $PartitionOffset
-            )
-
-            #########  Set Constants #########
-            $BOOTMGR_ID              = "{9DEA862C-5CDD-4E70-ACC1-F32B344D4795}"
-            $DEFAULT_TYPE            = 0x23000003
-            $APPLICATION_DEVICE_TYPE = 0x11000001
-            $OS_DEVICE_TYPE          = 0x21000001
-            ##################################
-
-            Write-W2VInfo "Opening $($BcdStoreFile) for configuration..."
-            Write-W2VTrace "Partition Style : $PartitionStyle"
-            Write-W2VTrace "Disk Signature  : $DiskSignature"
-            Write-W2VTrace "Partition Offset: $PartitionOffset"
-
-            $conn    = New-Object Management.ConnectionOptions
-            $scope   = New-Object Management.ManagementScope -ArgumentList "\\.\ROOT\WMI", $conn
-            $scope.Connect()
-
-            $path    = New-Object Management.ManagementPath `
-                        -ArgumentList "\\.\ROOT\WMI:BCDObject.Id=`"$($BOOTMGR_ID)`",StoreFilePath=`"$($BcdStoreFile.Replace('\', '\\'))`""
-            $options = New-Object Management.ObjectGetOptions
-            $bootMgr = New-Object Management.ManagementObject -ArgumentList $scope, $path, $options
-
-            try 
-            {
-                $bootMgr.Get()
-            } 
-            catch 
-            {
-                throw "Could not get the BootMgr object from the Virtual Disks BCDStore."
-            }
-    
-            Write-W2VTrace "Setting Qualified Partition Device Element for Virtual Disk boot..."
-    
-   
-            $ret = $bootMgr.SetQualifiedPartitionDeviceElement($APPLICATION_DEVICE_TYPE, $PartitionStyle, $DiskSignature, $PartitionOffset)
-            if (!$ret.ReturnValue) 
-            {
-                throw "Unable to set Qualified Partition Device Element in Virtual Disks BCDStore."
-            }
-
-            Write-W2VTrace "Getting the default boot entry..."
-            $defaultBootEntryId = ($bootMgr.GetElement($DEFAULT_TYPE)).Element.Id
-
-            Write-W2VTrace "Getting the OS Loader..."
-
-            $path    = New-Object Management.ManagementPath `
-                        -ArgumentList "\\.\ROOT\WMI:BCDObject.Id=`"$($defaultBootEntryId)`",StoreFilePath=`"$($BcdStoreFile.Replace('\', '\\'))`""
-
-            $osLoader= New-Object Management.ManagementObject -ArgumentList $scope, $path, $options
-
-            try 
-            {
-                $osLoader.Get()
-            } 
-            catch 
-            {
-                throw "Could not get the OS Loader..."
-            }
-
-            Write-W2VTrace "Setting Qualified Partition Device Element in the OS Loader Application..."
-            $ret = $osLoader.SetQualifiedPartitionDeviceElement($APPLICATION_DEVICE_TYPE, $PartitionStyle, $DiskSignature, $PartitionOffset)
-            if (!$ret.ReturnValue) 
-            {
-                throw "Could not set Qualified Partition Device Element in the OS Loader Application."
-            }
-
-            Write-W2VTrace "Setting Qualified Partition Device Element in the OS Loader Device..."
-            $ret = $osLoader.SetQualifiedPartitionDeviceElement($OS_DEVICE_TYPE, $PartitionStyle, $DiskSignature, $PartitionOffset)
-            if (!$ret.ReturnValue) 
-            {
-                throw "Could not set Qualified Partition Device Element in the OS Loader Device."
-            }
-
-            Write-W2VInfo "BCD configuration complete. Moving on..."
-        }
-
-        ##########################################################################################
-
         function 
         Test-Admin 
         {
@@ -3634,59 +3530,35 @@ VirtualHardDisk
             $flagText | Out-File -FilePath (Join-Path $windowsDrive "Convert-WindowsImageInfo.txt") -Encoding Unicode -Force
 
             if (($openImage.ImageArchitecture -ne "ARM") -and       # No virtualization platform for ARM images
-                ($openImage.ImageArchitecture -ne "ARM64"))         # No virtualization platform for ARM64 images
+                ($openImage.ImageArchitecture -ne "ARM64") -and     # No virtualization platform for ARM64 images
+                ($BCDinVHD -ne "NativeBoot"))                       # User asked for a non-bootable image
             {
-
-                if ( $BCDinVHD -eq "VirtualMachine" ) 
+                if (Test-Path "$($systemDrive)\boot\bcd")
                 {
-                # We only need this if VHD is prepared for a VM.
-                # In this case VHD is "Self-Sustainable", i.e. contains a boot loader and does not depend on external files.
-                # (There's nothing "External" from the perspecitve of VM by definition).
-
+                    Write-W2VInfo "Image already has BIOS BCD store..."
+                }
+                elseif (Test-Path "$($systemDrive)\efi\microsoft\boot\bcd")
+                {
+                    Write-W2VInfo "Image already has EFI BCD store..."
+                }
+                else
+                {
                     Write-W2VInfo "Image applied. Making image bootable..."
+                    $bcdBootArgs = @(
+                        "$($windowsDrive)\Windows", # Path to the \Windows on the VHD
+                        "/s $systemDrive",          # Specifies the volume letter of the drive to create the \BOOT folder on.
+                        "/v"                        # Enabled verbose logging.
+                        )
 
                     switch ($DiskLayout) 
                     {        
-                        "BIOS" 
-                        {   
-                            $bcdBootArgs = @(
-                                "$($windowsDrive)Windows",    # Path to the \Windows on the VHD
-                                "/s $windowsDrive",           # Specifies the volume letter of the drive to create the \BOOT folder on.
-                                "/v"                   # Enabled verbose logging.
-                                "/f BIOS"              # Specifies the firmware type of the target system partition
-                            )
-
-                        } 
-                        
                         "UEFI" 
-                        {
-
-                            $bcdBootArgs = @(
-                                "$($windowsDrive)Windows",    # Path to the \Windows on the VHD
-                                "/s $systemDrive",     # Specifies the volume letter of the drive to create the \BOOT folder on.
-                                "/v"                   # Enabled verbose logging.
-                                "/f UEFI"              # Specifies the firmware type of the target system partition
-                            )
-
+                        {   
+                            $bcdBootArgs += "/f UEFI"   # Specifies the firmware type of the target system partition
                         }
                     }
 
                     Run-Executable -Executable $BCDBoot -Arguments $bcdBootArgs
-                    
-                    # I'm commenting this out in order to workaround the bug in VMM diff disk handling.
-                    # This turns out to affect the VM Role provisioning with Windows Azure Pack.
-                    # Nowadays, everything is supposed to work even without specifying the Disk Signature.
-
-                    <# if ($DiskLayout -eq "BIOS")
-                    {          
-
-                        Apply-BcdStoreChanges                     `
-                            -BcdStoreFile    "$($windowsDrive)boot\bcd"  `
-                            -PartitionStyle  $PARTITION_STYLE_MBR `
-                            -DiskSignature   $disk.Signature      `
-                            -PartitionOffset $windowsPartition.Offset    
-
-                    } #>
 
                     # The following is added to mitigate the VMM diff disk handling
                     # We're going to change from MBRBootOption to LocateBootOption.
@@ -3707,20 +3579,10 @@ VirtualHardDisk
                             "/store $($windowsDrive)boot\bcd",
                             "/set `{default`} osdevice locate"
                         )
-
                     }
-
-                    Write-W2VInfo "Drive is bootable. Cleaning up..."
-
-                } 
-                elseif ( $BCDinVHD -eq "NativeBoot" ) 
-                {
-                # For Native Boot we don't need BCD store inside the VHD.
-                # Both Boot Loader and its configuration store live outside the VHD (on physical disk).
-
-                    Write-W2VInfo "Image applied. It is not bootable without an external boot loader. Cleaning up..."
-
                 }
+
+                Write-W2VInfo "Drive is bootable. Cleaning up..."
 
                 # Are we turning the debugger on?
                 if ($EnableDebugger -inotlike "None") 
@@ -3760,13 +3622,11 @@ VirtualHardDisk
                             $bcdEditArgs = @(
                                 "/dbgsettings LOCAL"
                             )
-                            break
                         }
              
                         "Network" 
                         {
                             $bcdEditArgs = @(
-                                "/store $($windowsDrive)\boot\bcd",
                                 "/dbgsettings NET",
                                 "HOSTIP:$($IP.Value)",
                                 "PORT:$($Port.Value)",
@@ -3803,7 +3663,7 @@ VirtualHardDisk
                 # if we're native booting, the changes need to be made to the BCD store on the 
                 # physical computer's boot volume.
             
-                Write-W2VInfo "Not making VHD bootable, since WOA can't boot in VMs."
+                Write-W2VInfo "Image applied. It is not bootable."
             }
 
             if (
