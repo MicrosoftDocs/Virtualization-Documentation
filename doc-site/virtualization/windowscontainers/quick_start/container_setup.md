@@ -5,7 +5,10 @@ title: Setup Windows Containers in a local VM
 
 In order to create and manage Windows Server Containers, the Windows Server 2016 Technical Preview environment must be prepared. This guide will walk through configuring Windows Server Containers in a Hyper-V Virtual Machine.
 
-To run Windows Server Containers in Azure instead, follow [these instructions](./azure_setup.md).
+> Other getting started guides:
+  * Run Windows Server Containers in [Azure](./azure_setup.md).
+  * Run Windows Server Containers in [an existing virtual machine](./inplace_setup.md).
+  * Setup Windows Server Containers [on a physical Windows Server Core installation](./inplace_setup.md).
 
   **PLEASE READ PRIOR TO INSTALLING THE CONTAINER OS IMAGE:**  The license terms of the Microsoft Windows Server Pre-Release software (“License Terms”) apply to your use of the Microsoft Windows Container OS Image supplement (the “supplemental software).  By downloading and using the supplemental software, you agree to the License Terms, and you may not use it if you have not accepted the License Terms. Both the Windows Server Pre-Release software and the supplemental software are licensed by Microsoft Corporation.  
 

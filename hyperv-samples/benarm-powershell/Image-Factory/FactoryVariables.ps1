@@ -22,6 +22,15 @@ $userPassword = "P@ssw0rd"
     $UseVLAN = $false
     $VlanId = 1
 
+    # Enable to use a static IP address for the VM.  Default is to use DHCP
+    $UseStaticIP = $false
+    $IP = '10.10.10.10'
+    $MaskBits = 24
+    $Gateway = '10.10.10.1'
+    $Dns = '10.10.10.2'
+    $IPType = 'IPv4'
+
+
 # Keys
 $Windows10Key = ""
 $Windows81Key = ""
