@@ -1,4 +1,4 @@
-﻿Function
+﻿function
 Convert-WindowsImage
 {
 
@@ -23,6 +23,10 @@ Convert-WindowsImage
     .PARAMETER SourcePath
         The complete path to the WIM or ISO file that will be converted to a Virtual Hard Disk.
         The ISO file must be valid Windows installation media to be recognized successfully.
+
+    .PARAMETER CacheSource
+        If the source WIM/ISO was copied locally, we delete it by default.
+        Pass $true to cache the source image from the temp directory.
 
     .PARAMETER VHDPath
         The name and path of the Virtual Hard Disk to create.
@@ -53,6 +57,12 @@ Convert-WindowsImage
         Specifies whether to create a VHD or VHDX formatted Virtual Hard Disk.
         The default is VHD.
 
+    .PARAMETER DiskLayout
+        Specifies whether to build the image for BIOS (MBR), UEFI (GPT), or WindowsToGo (MBR).
+        Generation 1 VMs require BIOS (MBR) images.  Generation 2 VMs require UEFI (GPT) images.
+        Windows To Go images will boot in UEFI or BIOS but are not technically supported (upgrade 
+        doesn't work)
+
     .PARAMETER UnattendPath
         The complete path to an unattend.xml file that can be injected into the VHD(X).
 
@@ -67,12 +77,6 @@ Convert-WindowsImage
         By default, the version of BCDBOOT.EXE that is present in \Windows\System32
         is used by Convert-WindowsImage.  If you need to specify an alternate version,
         use this parameter to do so.
-
-    .PARAMETER VHDPartitionStyle
-        Partition style (MBR or GPT) for the newly created disk (VHDX or VHD). By default
-        it will be partitioned with MBR partition style, used for older BIOS-based computers
-        and Generation 1 Virtual Machines in Hyper-V. For modern UEFI-based computers
-        and Generation 2 Virtual Machines, GPT partition layout is required.
 
     .PARAMETER BCDinVHD
         Specifies the purpose of the VHD(x). Use NativeBoot to skip cration of BCD store
@@ -157,12 +161,10 @@ Convert-WindowsImage
     .OUTPUTS
         System.IO.FileInfo
     #>
-
-    #region Data
+    #Requires -Version 3.0
 
     [CmdletBinding(DefaultParameterSetName="SRC",
-    HelpURI="http://gallery.technet.microsoft.com/scriptcenter/Convert-WindowsImageps1-0fe23a8f")]
-
+    HelpURI="https://github.com/Microsoft/Virtualization-Documentation/tree/master/hyperv-tools/Convert-WindowsImage")]
     param(
         [Parameter(ParameterSetName="SRC", Mandatory=$true, ValueFromPipeline=$true)]
         [Alias("WIM")]
@@ -170,6 +172,10 @@ Convert-WindowsImage
         [ValidateNotNullOrEmpty()]
         [ValidateScript({ Test-Path $(Resolve-Path $_) })]
         $SourcePath,
+
+        [Parameter(ParameterSetName="SRC")]
+        [switch]
+        $CacheSource = $false,
 
         [Parameter(ParameterSetName="SRC")]
         [Alias("SKU")]
@@ -210,11 +216,12 @@ Convert-WindowsImage
         [ValidateSet("VHD", "VHDX")]
         $VHDFormat        = "VHDX",
 
-        [Parameter(ParameterSetName="SRC")]
+        [Parameter(ParameterSetName="SRC", Mandatory=$true)]
+        [Alias("Layout")]
         [string]
         [ValidateNotNullOrEmpty()]
-        [ValidateSet("MBR", "GPT")]
-        $VHDPartitionStyle = "GPT",
+        [ValidateSet("BIOS", "UEFI", "WindowsToGo")]
+        $DiskLayout,
 
         [Parameter(ParameterSetName="SRC")]
         [string]
@@ -276,8 +283,6 @@ Convert-WindowsImage
         $ShowUI
     
     )
-
-#endregion Data
 
 #region Code
 
@@ -2304,110 +2309,6 @@ VirtualHardDisk
 
         ##########################################################################################
 
-        Function 
-        Apply-BCDStoreChanges 
-        {
-            [CmdletBinding()]
-            param(
-                [Parameter(Mandatory = $true)]
-                [string]
-                [ValidateNotNullOrEmpty()]
-                $BcdStoreFile,
-
-                [Parameter()]
-                [string]
-                [ValidateNotNullOrEmpty()]
-                [ValidateScript({ ($_ -eq $PARTITION_STYLE_MBR) -or ($_ -eq $PARTITION_STYLE_GPT) })]
-                $PartitionStyle = $PARTITION_STYLE_MBR,
-
-                [Parameter()]
-                [UInt64]
-                [ValidateScript({ $_ -ge 0 })]
-                $DiskSignature,
-
-                [Parameter()]
-                [UInt64]
-                [ValidateScript({ $_ -ge 0 })]
-                $PartitionOffset
-            )
-
-            #########  Set Constants #########
-            $BOOTMGR_ID              = "{9DEA862C-5CDD-4E70-ACC1-F32B344D4795}"
-            $DEFAULT_TYPE            = 0x23000003
-            $APPLICATION_DEVICE_TYPE = 0x11000001
-            $OS_DEVICE_TYPE          = 0x21000001
-            ##################################
-
-            Write-W2VInfo "Opening $($BcdStoreFile) for configuration..."
-            Write-W2VTrace "Partition Style : $PartitionStyle"
-            Write-W2VTrace "Disk Signature  : $DiskSignature"
-            Write-W2VTrace "Partition Offset: $PartitionOffset"
-
-            $conn    = New-Object Management.ConnectionOptions
-            $scope   = New-Object Management.ManagementScope -ArgumentList "\\.\ROOT\WMI", $conn
-            $scope.Connect()
-
-            $path    = New-Object Management.ManagementPath `
-                        -ArgumentList "\\.\ROOT\WMI:BCDObject.Id=`"$($BOOTMGR_ID)`",StoreFilePath=`"$($BcdStoreFile.Replace('\', '\\'))`""
-            $options = New-Object Management.ObjectGetOptions
-            $bootMgr = New-Object Management.ManagementObject -ArgumentList $scope, $path, $options
-
-            try 
-            {
-                $bootMgr.Get()
-            } 
-            catch 
-            {
-                throw "Could not get the BootMgr object from the Virtual Disks BCDStore."
-            }
-    
-            Write-W2VTrace "Setting Qualified Partition Device Element for Virtual Disk boot..."
-    
-   
-            $ret = $bootMgr.SetQualifiedPartitionDeviceElement($APPLICATION_DEVICE_TYPE, $PartitionStyle, $DiskSignature, $PartitionOffset)
-            if (!$ret.ReturnValue) 
-            {
-                throw "Unable to set Qualified Partition Device Element in Virtual Disks BCDStore."
-            }
-
-            Write-W2VTrace "Getting the default boot entry..."
-            $defaultBootEntryId = ($bootMgr.GetElement($DEFAULT_TYPE)).Element.Id
-
-            Write-W2VTrace "Getting the OS Loader..."
-
-            $path    = New-Object Management.ManagementPath `
-                        -ArgumentList "\\.\ROOT\WMI:BCDObject.Id=`"$($defaultBootEntryId)`",StoreFilePath=`"$($BcdStoreFile.Replace('\', '\\'))`""
-
-            $osLoader= New-Object Management.ManagementObject -ArgumentList $scope, $path, $options
-
-            try 
-            {
-                $osLoader.Get()
-            } 
-            catch 
-            {
-                throw "Could not get the OS Loader..."
-            }
-
-            Write-W2VTrace "Setting Qualified Partition Device Element in the OS Loader Application..."
-            $ret = $osLoader.SetQualifiedPartitionDeviceElement($APPLICATION_DEVICE_TYPE, $PartitionStyle, $DiskSignature, $PartitionOffset)
-            if (!$ret.ReturnValue) 
-            {
-                throw "Could not set Qualified Partition Device Element in the OS Loader Application."
-            }
-
-            Write-W2VTrace "Setting Qualified Partition Device Element in the OS Loader Device..."
-            $ret = $osLoader.SetQualifiedPartitionDeviceElement($OS_DEVICE_TYPE, $PartitionStyle, $DiskSignature, $PartitionOffset)
-            if (!$ret.ReturnValue) 
-            {
-                throw "Could not set Qualified Partition Device Element in the OS Loader Device."
-            }
-
-            Write-W2VInfo "BCD configuration complete. Moving on..."
-        }
-
-        ##########################################################################################
-
         function 
         Test-Admin 
         {
@@ -2616,13 +2517,13 @@ VirtualHardDisk
     {
         $disk         = $null
         $openWim      = $null
-        $openVhd      = $null
         $openIso      = $null
         $openImage    = $null
         $vhdFinalName = $null
         $vhdFinalPath = $null
         $mountedHive  = $null
         $isoPath      = $null
+        $tempSource     = $null
         $vhd          = @()
 
         Write-Host $header
@@ -2649,7 +2550,10 @@ VirtualHardDisk
                 $transcripting = $false
             }
 
-            Add-Type -TypeDefinition $code -ReferencedAssemblies "System.Xml","System.Linq","System.Xml.Linq"
+            if (-not (Get-Module Hyper-V))
+            {
+                Add-Type -TypeDefinition $code -ReferencedAssemblies "System.Xml","System.Linq","System.Xml.Linq"
+            }
 
             # Check to make sure we're running as Admin.
             if (!(Test-Admin)) 
@@ -3407,8 +3311,10 @@ VirtualHardDisk
                 if (Test-IsNetworkLocation $SourcePath) 
                 {
                     Write-W2VInfo "Copying ISO $(Split-Path $SourcePath -Leaf) to temp folder..."
-                    Copy-Item -Path $SourcePath -Destination $TempDirectory -Force
+                    robocopy $(Split-Path $SourcePath -Parent) $TempDirectory $(Split-Path $SourcePath -Leaf) | Out-Null
                     $SourcePath = "$($TempDirectory)\$(Split-Path $SourcePath -Leaf)"
+            
+                    $tempSource = $SourcePath
                 }
 
                 $isoPath = (Resolve-Path $SourcePath).Path
@@ -3432,10 +3338,11 @@ VirtualHardDisk
             # Check to see if the WIM is local, or on a network location.  If the latter, copy it locally.
             if (Test-IsNetworkLocation $SourcePath) 
             {
-                $SourceIsNetwork = $true
                 Write-W2VInfo "Copying WIM $(Split-Path $SourcePath -Leaf) to temp folder..."
-                Copy-Item -Path $SourcePath -Destination $TempDirectory -Force
+                robocopy $(Split-Path $SourcePath -Parent) $TempDirectory $(Split-Path $SourcePath -Leaf) | Out-Null
                 $SourcePath = "$($TempDirectory)\$(Split-Path $SourcePath -Leaf)"
+            
+                $tempSource = $SourcePath
             }
 
             $SourcePath  = (Resolve-Path $SourcePath).Path
@@ -3450,7 +3357,7 @@ VirtualHardDisk
             if ($WindowsImage.Count -ne 1)  
             {  
                 #
-                # WIM has multiple images.  Filter on Edition (can be index or name) and try to find a unique image
+                # WIM may have multiple images.  Filter on Edition (can be index or name) and try to find a unique image
                 #
                 if ([Int32]::TryParse($Edition, [ref]$null)) 
                 {
@@ -3504,127 +3411,130 @@ VirtualHardDisk
                 throw "Convert-WindowsImage only supports Windows 7 and Windows 8 WIM files.  The specified image does not appear to contain one of those operating systems."
             }
 
-            <#
-                Create the VHD using the VirtDisk Win32 API.
-                So, why not use the New-VHD cmdlet here?
+            if (Get-Module Hyper-V)
+            {
+                Write-W2VInfo "Creating sparse disk..."
+                $newVhd = New-VHD -Path $VHDPath -SizeBytes $SizeBytes -BlockSizeBytes $BlockSizeBytes -Dynamic
+
+                Write-W2VInfo "Mounting $VHDFormat..."
+                $disk = $newVhd | Mount-VHD -PassThru | Get-Disk
+            }
+            else
+            {
+                <#
+                    Create the VHD using the VirtDisk Win32 API.
+                    So, why not use the New-VHD cmdlet here?
         
-                New-VHD depends on the Hyper-V Cmdlets, which aren't installed by default.
-                Installing those cmdlets isn't a big deal, but they depend on the Hyper-V WMI
-                APIs, which in turn depend on Hyper-V.  In order to prevent Convert-WindowsImage
-                from being dependent on Hyper-V (and thus, x64 systems only), we're using the 
-                VirtDisk APIs directly.
-            #>
-            Write-W2VInfo "Creating sparse disk..."
-            [WIM2VHD.VirtualHardDisk]::CreateSparseDisk(
-                $VHDFormat,
-                $VHDPath,
-                $SizeBytes,
-                $true
-            )
-
-            # Attach the VHD.\
-            Write-W2VInfo "Attaching $VHDFormat..."
-            $disk = Mount-DiskImage -ImagePath $VHDPath -PassThru | Get-DiskImage | Get-Disk
-
-            if ($VHDPartitionStyle -eq "MBR" ) 
-            {
-                Initialize-Disk -Number $disk.Number -PartitionStyle MBR
-                Write-W2VInfo "Disk initialized with MBR..."
-            } 
-            elseif ($VHDPartitionStyle -eq "GPT" ) 
-            {
-                Initialize-Disk -Number $disk.Number -PartitionStyle GPT
-                Write-W2VInfo "Disk initialized with GPT..."
-            }
-
-            if ( $VHDPartitionStyle -eq "MBR") 
-            {
-                $partition       = New-Partition -DiskNumber $disk.Number -Size $disk.LargestFreeExtent -MbrType IFS -IsActive
-                Write-W2VInfo "Disk partitioned..."
-            } 
-            elseif ( $VHDPartitionStyle -eq "GPT" ) 
-            {
-                
-                Write-W2VInfo "Disk partitioned"
-
-                If
-                (
-                    $BCDinVHD -eq "VirtualMachine"
+                    New-VHD depends on the Hyper-V Cmdlets, which aren't installed by default.
+                    Installing those cmdlets isn't a big deal, but they depend on the Hyper-V WMI
+                    APIs, which in turn depend on Hyper-V.  In order to prevent Convert-WindowsImage
+                    from being dependent on Hyper-V (and thus, x64 systems only), we're using the 
+                    VirtDisk APIs directly.
+                #>
+            
+                Write-W2VInfo "Creating sparse disk..."
+                [WIM2VHD.VirtualHardDisk]::CreateSparseDisk(
+                    $VHDFormat,
+                    $VHDPath,
+                    $SizeBytes,
+                    $true
                 )
-                {
-                    $PartitionSystem = New-Partition -DiskNumber $disk.Number -Size 100MB -GptType '{c12a7328-f81f-11d2-ba4b-00a0c93ec93b}'
-                    Write-W2VInfo "System Partition created"
 
-                }
-                
-                $partition       = New-Partition -DiskNumber $disk.Number -UseMaximumSize -GptType '{ebd0a0a2-b9e5-4433-87c0-68b6b72699c7}'
-                Write-W2VInfo "Boot Partition created"
+                # Attach the VHD.\
+                Write-W2VInfo "Attaching $VHDFormat..."
+                $disk = Mount-DiskImage -ImagePath $VHDPath -PassThru | Get-DiskImage | Get-Disk
             }
 
-            if ( $VHDPartitionStyle -eq "MBR" ) 
-            {
-                $volume    = Format-Volume -Partition $partition -FileSystem NTFS -Force -Confirm:$false
-                Write-W2VInfo "Volume formatted..."
-            } 
-            elseif ( $VHDPartitionStyle -eq "GPT" ) 
-            {
-
-                If
-                (
-                    $BCDinVHD -eq "VirtualMachine"
-                )
+            switch ($DiskLayout)            
+            {             
+                "BIOS" 
                 {
-                
-                    # The following line won't work. Thus we need to substitute it with DiskPart
-                    # $volumeSystem    = Format-Volume -Partition $partitionSystem -FileSystem FAT32 -Force -Confirm:$false
+                    Write-W2VInfo "Initializing disk..."
+                    Initialize-Disk -Number $disk.Number -PartitionStyle MBR
 
-                    @"
-select disk $($disk.Number)
-select partition $($partitionSystem.PartitionNumber)
-format fs=fat32 label="System"
-"@ | & $env:SystemRoot\System32\DiskPart.exe | Out-Null
-
-                    Write-W2VInfo "System Volume formatted (with DiskPart)..."
+                    #
+                    # Create the Windows/system partition 
+                    #
+                    Write-W2VInfo "Creating single partition..."
+                    $windowsPartition = New-Partition -DiskNumber $disk.Number -Size $disk.LargestFreeExtent -MbrType IFS -IsActive
+                    $systemPartition = $windowsPartition
+    
+                    Write-W2VInfo "Formatting windows volume..."
+                    $windowsVolume = Format-Volume -Partition $windowsPartition -FileSystem NTFS -Force -Confirm:$false
+                    $systemVolume = $windowsVolume
+                } 
                 
-                }
-              
-                $volume          = Format-Volume -Partition $partition -FileSystem NTFS -Force -Confirm:$false
-                Write-W2VInfo "Boot Volume formatted (with Format-Volume)..."
-            }
+                "UEFI" 
+                {
+                    Write-W2VInfo "Initializing disk..."
+                    Initialize-Disk -Number $disk.Number -PartitionStyle GPT
+             
+                    #
+                    # Create the system partition.  Create a data partition so we can format it, then change to ESP
+                    #
+                    Write-W2VInfo "Creating EFI system partition..."
+                    $systemPartition = New-Partition -DiskNumber $disk.Number -Size 200MB -GptType '{ebd0a0a2-b9e5-4433-87c0-68b6b72699c7}'
+                
+                    Write-W2VInfo "Formatting system volume..."
+                    $windowsVolume = Format-Volume -Partition $systemPartition -FileSystem FAT32 -Force -Confirm:$false
+
+                    Write-W2VInfo "Setting system partition as ESP..."
+                    $systemPartition | Set-Partition -GptType '{c12a7328-f81f-11d2-ba4b-00a0c93ec93b}'
+                
+                    #
+                    # Create the reserved partition 
+                    #
+                    Write-W2VInfo "Creating MSR partition..."
+                    $reservedPartition = New-Partition -DiskNumber $disk.Number -Size 128MB -GptType '{e3c9e316-0b5c-4db8-817d-f92df00215ae}'
         
-            if ( $VHDPartitionStyle -eq "MBR") 
-            {
-                $partition       | Add-PartitionAccessPath -AssignDriveLetter
-                $drive           = $(Get-Partition -Disk $disk).AccessPaths[0]
-                Write-W2VInfo "Access path ($drive) has been assigned..."
-            } 
-            elseif ( $VHDPartitionStyle -eq "GPT" ) 
-            {
-
-                If
-                (
-                    $BCDinVHD -eq "VirtualMachine"
-                )
-                {
-
-                    $partitionSystem | Add-PartitionAccessPath -AssignDriveLetter
-                    $driveSystem     = $(Get-Partition -Disk $disk).AccessPaths[1]
-                    Write-W2VInfo "Access path ($driveSystem) has been assigned to the System Volume..."
-
-                    $partition       | Add-PartitionAccessPath -AssignDriveLetter
-                    $drive           = $(Get-Partition -Disk $disk).AccessPaths[2]
-                    Write-W2VInfo "Access path ($drive) has been assigned to the Boot Volume..."
+                    #
+                    # Create the Windows partition
+                    #
+                    Write-W2VInfo "Creating windows partition..."
+                    $windowsPartition = New-Partition -DiskNumber $disk.Number -UseMaximumSize -GptType '{ebd0a0a2-b9e5-4433-87c0-68b6b72699c7}'
+        
+                    Write-W2VInfo "Formatting windows volume..."
+                    $windowsVolume = Format-Volume -Partition $windowsPartition -FileSystem NTFS -Force -Confirm:$false
                 }
-                ElseIf
-                (
-                    $BCDinVHD -eq "NativeBoot"
-                )
-                {
-                    $partition       | Add-PartitionAccessPath -AssignDriveLetter
-                    $drive           = $(Get-Partition -Disk $disk).AccessPaths[1]
-                    Write-W2VInfo "Access path ($drive) has been assigned to the Boot Volume..."
+
+                "WindowsToGo" 
+                {                
+                    Write-W2VInfo "Initializing disk..."
+                    Initialize-Disk -Number $disk.Number -PartitionStyle MBR
+                
+                    #
+                    # Create the system partition 
+                    #
+                    Write-W2VInfo "Creating system partition..."
+                    $systemPartition = New-Partition -DiskNumber $disk.Number -Size 350MB -MbrType FAT32 -IsActive 
+        
+                    Write-W2VInfo "Formatting system volume..."
+                    $systemVolume    = Format-Volume -Partition $systemPartition -FileSystem FAT32 -Force -Confirm:$false
+            
+                    #
+                    # Create the Windows partition
+                    #
+                    Write-W2VInfo "Creating windows partition..."
+                    $windowsPartition = New-Partition -DiskNumber $disk.Number -Size $disk.LargestFreeExtent -MbrType IFS
+        
+                    Write-W2VInfo "Formatting windows volume..."
+                    $windowsVolume    = Format-Volume -Partition $windowsPartition -FileSystem NTFS -Force -Confirm:$false
                 }
-            }
+            }            
+
+            #
+            # Assign drive letter to Windows partition.  This is required for bcdboot
+            #
+            $windowsPartition | Add-PartitionAccessPath -AssignDriveLetter
+            $windowsDrive = $(Get-Partition -Volume $windowsVolume).AccessPaths[0].substring(0,2)
+            Write-W2VInfo "Windows path ($windowsDrive) has been assigned."
+            
+            #
+            # Refresh access paths (we have now formatted the volume)
+            #
+            $systemPartition = $systemPartition | Get-Partition            
+            $systemDrive = $systemPartition.AccessPaths[0].trimend("\").replace("\?", "??")
+            Write-W2VInfo "System volume location: $systemDrive"
 
             ####################################################################################################  
             # APPLY IMAGE FROM WIM TO THE NEW VHD  
@@ -3637,174 +3547,148 @@ format fs=fat32 label="System"
             if (![string]::IsNullOrEmpty($UnattendPath)) 
             {
                 Write-W2VInfo "Applying unattend file ($(Split-Path $UnattendPath -Leaf))..."
-                Copy-Item -Path $UnattendPath -Destination (Join-Path $drive "unattend.xml") -Force
+                Copy-Item -Path $UnattendPath -Destination (Join-Path $windowsDrive "unattend.xml") -Force
             }
 
             Write-W2VInfo "Signing disk..."
-            $flagText | Out-File -FilePath (Join-Path $drive "Convert-WindowsImageInfo.txt") -Encoding Unicode -Force
+            $flagText | Out-File -FilePath (Join-Path $windowsDrive "Convert-WindowsImageInfo.txt") -Encoding Unicode -Force
 
             if (($openImage.ImageArchitecture -ne "ARM") -and       # No virtualization platform for ARM images
-                ($openImage.ImageArchitecture -ne "ARM64"))         # No virtualization platform for ARM64 images
-
-            if ($openImage.ImageArchitecture -ne "ARM") 
+                ($openImage.ImageArchitecture -ne "ARM64") -and     # No virtualization platform for ARM64 images
+                ($BCDinVHD -ne "NativeBoot"))                       # User asked for a non-bootable image
             {
-
-                if ( $BCDinVHD -eq "VirtualMachine" ) 
+                if (Test-Path "$($systemDrive)\boot\bcd")
                 {
-                # We only need this if VHD is prepared for a VM.
-                # In this case VHD is "Self-Sustainable", i.e. contains a boot loader and does not depend on external files.
-                # (There's nothing "External" from the perspecitve of VM by definition).
-
+                    Write-W2VInfo "Image already has BIOS BCD store..."
+                }
+                elseif (Test-Path "$($systemDrive)\efi\microsoft\boot\bcd")
+                {
+                    Write-W2VInfo "Image already has EFI BCD store..."
+                }
+                else
+                {
                     Write-W2VInfo "Image applied. Making image bootable..."
-
-                    if ( $VHDPartitionStyle -eq "MBR" ) 
-                    {
-
-                        $bcdBootArgs = @(
-                            "$($drive)Windows",    # Path to the \Windows on the VHD
-                            "/s $drive",           # Specifies the volume letter of the drive to create the \BOOT folder on.
-                            "/v"                   # Enabled verbose logging.
-                            "/f BIOS"              # Specifies the firmware type of the target system partition
+                    $bcdBootArgs = @(
+                        "$($windowsDrive)\Windows", # Path to the \Windows on the VHD
+                        "/s $systemDrive",          # Specifies the volume letter of the drive to create the \BOOT folder on.
+                        "/v"                        # Enabled verbose logging.
                         )
 
-                    } 
-                    elseif ( $VHDPartitionStyle -eq "GPT" ) 
-                    {
+                    switch ($DiskLayout) 
+                    {        
+                        "UEFI" 
+                        {   
+                            $bcdBootArgs += "/f UEFI"   # Specifies the firmware type of the target system partition
+                        }
 
-                        $bcdBootArgs = @(
-                            "$($drive)Windows",    # Path to the \Windows on the VHD
-                            "/s $driveSystem",     # Specifies the volume letter of the drive to create the \BOOT folder on.
-                            "/v"                   # Enabled verbose logging.
-                            "/f UEFI"              # Specifies the firmware type of the target system partition
-                        )
-
+                        "WindowsToGo" 
+                        {    
+                            # Create entries for both UEFI and BIOS if possible
+                            if (Test-Path "$($windowsDrive)\Windows\boot\EFI\bootmgfw.efi")
+                            {
+                                $bcdBootArgs += "/f ALL"    
+                            }     
+                        }
                     }
 
                     Run-Executable -Executable $BCDBoot -Arguments $bcdBootArgs
 
-
-                    # I'm commenting this out in order to workaround the bug in VMM diff disk handling.
-                    # This turns out to affect the VM Role provisioning with Windows Azure Pack.
-                    # Nowadays, everything is supposed to work even without specifying the Disk Signature.
-
-                    <# if ( $VHDPartitionStyle -eq "MBR" ) 
-                    {          
-
-                        Apply-BcdStoreChanges                     `
-                            -BcdStoreFile    "$($drive)boot\bcd"  `
-                            -PartitionStyle  $PARTITION_STYLE_MBR `
-                            -DiskSignature   $disk.Signature      `
-                            -PartitionOffset $partition.Offset    
-
-                    } #>
-
                     # The following is added to mitigate the VMM diff disk handling
                     # We're going to change from MBRBootOption to LocateBootOption.
 
-                    if ( $VHDPartitionStyle -eq "MBR" ) 
+                    if ($DiskLayout -eq "BIOS")
                     {
 
                         Write-W2VInfo "Fixing the Device ID in the BCD store on $($VHDFormat)..."
                         Run-Executable -Executable "BCDEDIT.EXE" -Arguments (
-                            "/store $($drive)boot\bcd",
+                            "/store $($windowsDrive)boot\bcd",
                             "/set `{bootmgr`} device locate"
                         )
                         Run-Executable -Executable "BCDEDIT.EXE" -Arguments (
-                            "/store $($drive)boot\bcd",
+                            "/store $($windowsDrive)boot\bcd",
                             "/set `{default`} device locate"
                         )
                         Run-Executable -Executable "BCDEDIT.EXE" -Arguments (
-                            "/store $($drive)boot\bcd",
+                            "/store $($windowsDrive)boot\bcd",
                             "/set `{default`} osdevice locate"
                         )
-
                     }
-
-                    Write-W2VInfo "Drive is bootable. Cleaning up..."
-
-                } 
-                elseif ( $BCDinVHD -eq "NativeBoot" ) 
-                {
-                # For Native Boot we don't need BCD store inside the VHD.
-                # Both Boot Loader and its configuration store live outside the VHD (on physical disk).
-
-                    Write-W2VInfo "Image applied. It is not bootable without an external boot loader. Cleaning up..."
-
                 }
+
+                Write-W2VInfo "Drive is bootable. Cleaning up..."
 
                 # Are we turning the debugger on?
                 if ($EnableDebugger -inotlike "None") 
                 {
-                    Write-W2VInfo "Turning kernel debugging on in the $($VHDFormat)..."
-                    Run-Executable -Executable "BCDEDIT.EXE" -Arguments (
-                        "/store $($drive)\boot\bcd",
-                        "/set `{default`} debug on"
-                    )
-                }
-            
-                # Configure the specified debugging transport and other settings.
-                switch ($EnableDebugger) 
-                {
-                
-                    "Serial" 
+                    $bcdEditArgs = $null;
+
+                    # Configure the specified debugging transport and other settings.
+                    switch ($EnableDebugger) 
                     {
-                        Run-Executable -Executable "BCDEDIT.EXE" -Arguments (
-                            "/store $($drive)\boot\bcd",
-                            "/dbgsettings SERIAL",
-                            "DEBUGPORT:$($ComPort.Value)",
-                            "BAUDRATE:$($BaudRate.Value)"
-                        )
-                        break
-                    }
+                        "Serial" 
+                        {
+                            $bcdEditArgs = @(
+                                "/dbgsettings SERIAL",
+                                "DEBUGPORT:$($ComPort.Value)",
+                                "BAUDRATE:$($BaudRate.Value)"
+                            )
+                        }
                 
-                    "1394" 
-                    {
-                        Run-Executable -Executable "BCDEDIT.EXE" -Arguments (
-                            "/store $($drive)\boot\bcd",
-                            "/dbgsettings 1394",
-                            "CHANNEL:$($Channel.Value)"
-                        )
-                        break
-                    }
+                        "1394" 
+                        {
+                            $bcdEditArgs = @(
+                                "/dbgsettings 1394",
+                                "CHANNEL:$($Channel.Value)"
+                            )
+                        }
                 
-                    "USB" 
-                    {
-                        Run-Executable -Executable "BCDEDIT.EXE" -Arguments (
-                            "/store $($drive)\boot\bcd",
-                            "/dbgsettings USB",
-                            "TARGETNAME:$($Target.Value)"
-                        )
-                        break
-                    }
+                        "USB" 
+                        {
+                            $bcdEditArgs = @(
+                                "/dbgsettings USB",
+                                "TARGETNAME:$($Target.Value)"
+                            )
+                        }
                 
-                    "Local" 
-                    {
-                        Run-Executable -Executable "BCDEDIT.EXE" -Arguments (
-                            "/store $($drive)\boot\bcd",
-                            "/dbgsettings LOCAL"
-                        )
-                        break
-                    }
+                        "Local" 
+                        {
+                            $bcdEditArgs = @(
+                                "/dbgsettings LOCAL"
+                            )
+                        }
              
-                    "Network" 
-                    {
-                        Run-Executable -Executable "BCDEDIT.EXE" -Arguments (
-                            "/store $($drive)\boot\bcd",
-                            "/dbgsettings NET",
-                            "HOSTIP:$($IP.Value)",
-                            "PORT:$($Port.Value)",
-                            "KEY:$($Key.Value)"
+                        "Network" 
+                        {
+                            $bcdEditArgs = @(
+                                "/dbgsettings NET",
+                                "HOSTIP:$($IP.Value)",
+                                "PORT:$($Port.Value)",
+                                "KEY:$($Key.Value)"
+                            )
+                        }
+                    }  
+
+                    $bcdStores = @(
+                        "$($systemDrive)\boot\bcd",
+                        "$($systemDrive)\efi\microsoft\boot\bcd"
                         )
-                        break
-                    }
-                                
-                    default 
+
+                    foreach ($bcdStore in $bcdStores) 
                     {
-                        # Nothing to do here - bail out.
-                        break
+                        if (Test-Path $bcdStore)
+                        {
+                            Write-W2VInfo "Turning kernel debugging on in the $($VHDFormat) for $($bcdStore)..."
+                            Run-Executable -Executable "BCDEDIT.EXE" -Arguments (
+                                "/store $($bcdStore)",
+                                "/set `{default`} debug on"
+                                )      
+
+                            $bcdEditArguments = @("/store $($bcdStore)") + $bcdEditArgs
+                    
+                            Run-Executable -Executable "BCDEDIT.EXE" -Arguments $bcdEditArguments
+                        }
                     }
                 }
-            
             } 
             else 
             {
@@ -3812,80 +3696,76 @@ format fs=fat32 label="System"
                 # if we're native booting, the changes need to be made to the BCD store on the 
                 # physical computer's boot volume.
             
-                Write-W2VInfo "Not making VHD bootable, since WOA can't boot in VMs."
+                Write-W2VInfo "Image applied. It is not bootable."
             }
 
-            if (
-                ( 
-                    $RemoteDesktopEnable -eq $True
-                ) -or (
-                    $ExpandOnNativeBoot -eq $False
-                )
-            ) 
+            if ($RemoteDesktopEnable -or (-not $ExpandOnNativeBoot)) 
             {
         
-                $hive         = Mount-RegistryHive -Hive (Join-Path $drive "Windows\System32\Config\System")
+                $hive = Mount-RegistryHive -Hive (Join-Path $windowsDrive "Windows\System32\Config\System")
         
-                if ( $RemoteDesktopEnable -eq $True ) 
+                if ($RemoteDesktopEnable) 
                 {
-
                     Write-W2VInfo -text "Enabling Remote Desktop"
                     Set-ItemProperty -Path "HKLM:\$($hive)\ControlSet001\Control\Terminal Server" -Name "fDenyTSConnections" -Value 0
 
                 }
 
-                if ( $ExpandOnNativeBoot -eq $False ) 
-                {
-            
+                if (-not $ExpandOnNativeBoot) 
+                {            
                     Write-W2VInfo -text "Disabling automatic $VHDFormat expansion for Native Boot"
                     Set-ItemProperty -Path "HKLM:\$($hive)\ControlSet001\Services\FsDepends\Parameters" -Name "VirtualDiskExpandOnMount" -Value 4
             
                 }
 
                 Dismount-RegistryHive -HiveMountPoint $hive
-
             }
 
-            if ( $Driver ) 
+            if ($Driver) 
             {
-
                 Write-W2VInfo -text "Adding Windows Drivers to the Image"
 
                 $Driver | ForEach-Object -Process 
                 {
 
                     Write-W2VInfo -text "Driver path: $PSItem"
-                    $Dism = Add-WindowsDriver -Path $drive -Recurse -Driver $PSItem
+                    $Dism = Add-WindowsDriver -Path $windowsDrive -Recurse -Driver $PSItem
                 }
             }
 
-            If ( $Feature ) 
-            {
-            
+            If ($Feature) 
+            {            
                 Write-W2VInfo -text "Installing Windows Feature(s) $Feature to the Image"
                 $FeatureSourcePath = Join-Path -Path "$($driveLetter):" -ChildPath "sources\sxs"
                 Write-W2VInfo -text "From $FeatureSourcePath"
-                $Dism = Enable-WindowsOptionalFeature -FeatureName $Feature -Source $FeatureSourcePath -Path $drive -All
+                $Dism = Enable-WindowsOptionalFeature -FeatureName $Feature -Source $FeatureSourcePath -Path $windowsDrive -All
 
             }
 
-            if ( $Package ) 
+            if ($Package) 
             {
-
                 Write-W2VInfo -text "Adding Windows Packages to the Image"
             
                 $Package | ForEach-Object -Process {
 
                     Write-W2VInfo -text "Package path: $PSItem"
-                    $Dism = Add-WindowsPackage -Path $drive -PackagePath $PSItem
+                    $Dism = Add-WindowsPackage -Path $windowsDrive -PackagePath $PSItem
                 }
+            }
+
+            #
+            # Remove system partition access path, if necessary
+            #
+            if ($DiskLayout -eq "UEFI")
+            {
+                $systemPartition | Remove-PartitionAccessPath -AccessPath $systemPartition.AccessPaths[0]
             }
 
             if ([String]::IsNullOrEmpty($vhdFinalName)) 
             {
                 # We need to generate a file name. 
                 Write-W2VInfo "Generating name for $($VHDFormat)..."
-                $hive         = Mount-RegistryHive -Hive (Join-Path $drive "Windows\System32\Config\Software")
+                $hive         = Mount-RegistryHive -Hive (Join-Path $windowsDrive "Windows\System32\Config\Software")
 
                 $buildLabEx   = (Get-ItemProperty "HKLM:\$($hive)\Microsoft\Windows NT\CurrentVersion").BuildLabEx
                 $installType  = (Get-ItemProperty "HKLM:\$($hive)\Microsoft\Windows NT\CurrentVersion").InstallationType
@@ -3922,9 +3802,17 @@ format fs=fat32 label="System"
 
             $vhdFinalPathCurrent = Join-Path (Split-Path $VHDPath -Parent) $vhdFinalName
             Write-W2VTrace "$VHDFormat final path is : $vhdFinalPathCurrent"
-
-            Write-W2VInfo "Closing $VHDFormat..."
-            Dismount-DiskImage -ImagePath $VHDPath
+            
+            if (Get-Module Hyper-V)
+            {
+                Write-W2VInfo "Dismounting $VHDFormat..."
+                Dismount-VHD -Path $VHDPath
+            }
+            else
+            {
+                Write-W2VInfo "Closing $VHDFormat..."
+                Dismount-DiskImage -ImagePath $VHDPath
+            }
     
             if (Test-Path $vhdFinalPathCurrent) 
             {
@@ -3942,11 +3830,9 @@ format fs=fat32 label="System"
             $vhdFinalName = $Null
         } 
         catch 
-        {
-    
+        {    
             Write-W2VError $_
             Write-W2VInfo "Log folder is $logFolder"
-
         } 
         finally 
         { 
@@ -3968,7 +3854,17 @@ format fs=fat32 label="System"
             # If VHD is mounted, unmount it
             if (Test-Path $VHDPath)
             {
-                Dismount-DiskImage -ImagePath $VHDPath
+                if (Get-Module Hyper-V)
+                {
+                    if ((Get-VHD -Path $VHDPath).Attached)
+                    {
+                        Dismount-VHD -Path $VHDPath
+                    }
+                }
+                else
+                {
+                    Dismount-DiskImage -ImagePath $VHDPath
+                }
             }
 
             # If we still have an ISO open, close it.
@@ -3977,12 +3873,13 @@ format fs=fat32 label="System"
                 Write-W2VInfo "Closing ISO..."
                 Dismount-DiskImage $ISOPath
             }
- 
-            # Check to see if the WIM is local, or on a network location.  If the latter, remove the copy.
-            if ( Test-Path -Path "Variable:\SourceIsNetwork" ) 
-            {
 
-                Remove-Item -Path $SourcePath
+            if (-not $CacheSource)
+            {
+                if (Test-Path $tempSource)
+                {
+                    Remove-Item -Path $tempSource -Force
+                }
             }
     
             # Close out the transcript and tell the user we're done.
@@ -3996,10 +3893,8 @@ format fs=fat32 label="System"
 
     End 
     {
-
         if ($Passthru) 
-        {
-    
+        {    
             return $vhd
         }
     }
