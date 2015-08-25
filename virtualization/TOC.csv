@@ -15,6 +15,7 @@
 ****,windowscontainers/quick_start/manage_powershell.md,
 ***,oa-toc-container: reference,
 ****,windowscontainers/reference/powershell_overview.md,
+****,windowscontainers/reference/ps_docker_comparison.md,
 ****,windowscontainers/reference/app_compat.md,
 ***,windowscontainers/EULA.md,
 **,oa-toc-container: hyperv_on_windows,
