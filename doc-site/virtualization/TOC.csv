@@ -13,6 +13,8 @@
 ****,windowscontainers/quick_start/inplace_setup.md,
 ****,windowscontainers/quick_start/manage_docker.md,
 ****,windowscontainers/quick_start/manage_powershell.md,
+***,oa-toc-container: reference,
+****,windowscontainers/reference/powershell_overview.md,
 ***,windowscontainers/EULA.md,
 **,oa-toc-container: hyperv_on_windows,
 ***,hyperv_on_windows/windows_welcome.md,

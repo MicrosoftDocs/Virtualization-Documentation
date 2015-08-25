@@ -30,6 +30,18 @@ We expect to deliver a preview of Hyper-V Containers this calendar year.
 Yes – Hyper-V Containers will provide the same level of integration and management with Docker as Windows Server Containers.  The goal is to have an open, consistent, cross-platform experience.  
 The Docker platform will also greatly simplify and enhance the experience of working across our container options. An application developed using Windows Server Containers can be deployed as a Hyper-V Container without change.
 
+## Why do I have to pick between Docker and PowerShell for Windows Server Container management?
+
+**This isn't desired behavior nor our long term plan.**  PowerShell container management tools and Docker container management tools will work side by side in the future.
+
+With that said, using multiple management interfaces to manage the same container can be difficult.
+
+Take, for example, creating a container with PowerShell and naming the image with an upper case character.  Docker doesn’t support caps, PowerShell does.  
+While that specific example is very manageable, what gets much harder are handing state changes (race conditions and different expectations), feature set differences or versions…
+
+Our short term decision was that management interfaces (in this case Docker and PowerShell) only see containers they created – you create a container with Docker and PowerShell doesn’t see it, you create it with PowerShell and Docker doesn’t see it.
+
+
 ## As a developer, do I have to re-write my app for each type of container?
 
 No, Windows container images are common across both Windows Server Containers and Hyper-V Containers. The choice of container type is made when you start the container. From a developer standpoint, Windows Server Containers and Hyper-V Containers are two flavors of the same thing.  They offer the same development, programming and management experience, are open and extensible and will include the same level of integration and support via Docker.
