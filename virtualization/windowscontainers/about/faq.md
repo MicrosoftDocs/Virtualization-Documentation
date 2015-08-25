@@ -1,4 +1,4 @@
-﻿ms.ContentId: F0D47E70-0BA1-4A06-B2F3-0232C496709D
+ms.ContentId: F0D47E70-0BA1-4A06-B2F3-0232C496709D
 title: Frequently asked questions
 
 # Frequently Asked Questions
@@ -60,6 +60,10 @@ The container capabilities will be integrated into Windows Server 2016. Stay tun
 
 Both Window Server Containers and Hyper-V Containers require Windows Server 2016. These technologies will not work with previous versions of Windows.
 
+## Can I run Windows Server Containers on ESXi or another non Hyper-V hypervisor?
+Yes, Windows Server Container run on any TP3 Server Core installation.  Follow the instructions for [enabling the containers feature in-place](../quick_start/inplace_setup.md).
+
+ 
 ## Is Microsoft participating in the Open Container Initiative (OCI)?
 To guarantee the packaging format remains universal, Docker recently organized the Open Container Initiative (OCI), aiming to ensure container packaging remains an open and foundation-led format with Microsoft as one of the founding members.
 
