@@ -3,12 +3,6 @@ title: Running Apps in Windows Containers
 
 # Application Compatability in Windows Server Containers
 
-## WinRM won't start in a Windows Server Container
-WinRM starts, throws an error, and stops again.  Errors are not logged in the event log.
-
-**Work Around:**
-Use WMI, [RDP](../about/work_in_progress.md#RemoteDesktopAccessOfContainers), or Enter-PSSession -ContainerID
-
 ## Which applications run in a Windows Server Container
 
 We have tried to running the following applications in a Windows Server Container.  These results do not guarantee that the application is working.  The sole purpose is to share our experience.
@@ -130,3 +124,5 @@ The following Windows Optional Features have been confirmed as being able to ins
  * WAS-Config-APIs
 * Windows-Server-Backup
 * Migration
+
+Is something not on this list?  Let us know what fails and succeeds in your environment via [the forums](https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers).
