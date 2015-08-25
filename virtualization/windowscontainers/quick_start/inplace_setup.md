@@ -12,20 +12,21 @@ In order to create and manage Windows Server Containers, the Windows Server 2016
 
   **PLEASE READ PRIOR TO INSTALLING THE CONTAINER OS IMAGE:**  The license terms of the Microsoft Windows Server Pre-Release software (“License Terms”) apply to your use of the Microsoft Windows Container OS Image supplement (the “supplemental software).  By downloading and using the supplemental software, you agree to the License Terms, and you may not use it if you have not accepted the License Terms. Both the Windows Server Pre-Release software and the supplemental software are licensed by Microsoft Corporation.  
 
+**System (or VM) requirements:**
 * System running Windows Server Technical Preview 3 Server Core.
 * 10GB available storage for OS Base Image and setup scripts.
-* Administrator permissions on the machine.
+* Administrator permissions on the machine or VM.
 
 ## Setup an existing Virtual Machine or Bare Metal host for Containers
 Windows Server Containers require the Container OS Base Image. We have put together a script that will download and install this for you. Follow these steps to configure your system as a Windows Server Container Host.
 
-Start a PowerShell session. This can be done by running the following command from the command line.
+Start a PowerShell session as administrator. This can be done by running the following command from the command line.
 
 ``` powershell
 powershell.exe
 ```
 
-Make sure the title of the windows is "Administrator: Windows PowerShell". If it does not say administrator, run this command to run with admin priveledges:
+Make sure the title of the windows is "Administrator: Windows PowerShell". If it does not say Administrator, run this command to run with admin priveledges:
 
 ``` powershell
 start-process powershell -Verb runas
@@ -42,16 +43,18 @@ wget -uri http://aka.ms/setupcontainers -OutFile C:\ContainerSetup.ps1
 C:\ContainerSetup.ps1
 ```
 
-The script will then begin to download and configure the Windows Server Container components. This process may take quite some time due to the large download. The machine may reboot during the process. When finished your machine will be configured and ready for you to create and manage Windows Server Containers and Windows Server Container Images with both PowerShell and Docker.  
+The script will then begin to download and configure the Windows Server Container components. This process may take quite some time due to the large download. The machine may reboot during the process. When finished your machine will be configured and ready for you to create and manage Windows Server Containers and Windows Server Container Images with both PowerShell and Docker. 
 
  With these items completed your system should be ready for Windows Server Containers. 
+
 
 ## Next Steps - Start Using Containers
 
 Now that you are running Windows Server Containers, jump to the following guides to begin working with Windows Server Containers and Windows Server Container images. 
-
-[Quick Start: Windows Server Containers and PowerShell](./manage_powershell.md)  
+ 
 [Quick Start: Windows Server Containers and Docker](./manage_docker.md) 
+
+[Quick Start: Windows Server Containers and PowerShell](./manage_powershell.md) 
 
 -------------------
 

@@ -271,12 +271,7 @@ Microsoft.Containers.PowerShell.Objects.ContainerNetworkAdapter
 **ALIASES**  
 None
 
-
-**REMARKS**  
-Get-Help cannot find the Help files for this cmdlet on this computer. It is displaying only partial help.  
--- To download and install Help files for the module that includes this cmdlet, use Update-Help.
-
-##Connect-ContainerNetworkAdapter
+## Connect-ContainerNetworkAdapter
 
 **NAME**  
 Connect-ContainerNetworkAdapter
@@ -404,12 +399,7 @@ Microsoft.Containers.PowerShell.Objects.ContainerNetworkAdapter
 **ALIASES**  
 None
 
-
-**REMARKS**  
-Get-Help cannot find the Help files for this cmdlet on this computer. It is displaying only partial help.  
--- To download and install Help files for the module that includes this cmdlet, use Update-Help.
-
-##Disconnect-ContainerNetworkAdapter
+## Disconnect-ContainerNetworkAdapter
 
 **NAME**  
 Disconnect-ContainerNetworkAdapter
@@ -527,12 +517,7 @@ Microsoft.Containers.PowerShell.Objects.ContainerNetworkAdapter
 **ALIASES**  
 None
 
-
-**REMARKS**  
-Get-Help cannot find the Help files for this cmdlet on this computer. It is displaying only partial help.  
--- To download and install Help files for the module that includes this cmdlet, use Update-Help.
-
-##Export-ContainerImage
+## Export-ContainerImage
 
 **NAME**  
 Export-ContainerImage
@@ -678,13 +663,7 @@ Microsoft.Containers.PowerShell.Objects.ContainerImage
 **ALIASES**  
 None
 
-
-**REMARKS**  
-Get-Help cannot find the Help files for this cmdlet on this computer. It is displaying only partial help.  
--- To download and install Help files for the module that includes this cmdlet, use Update-Help.
-
-
-##Get-Container
+## Get-Container
 
 **NAME**  
 Get-Container
@@ -767,12 +746,7 @@ Microsoft.Containers.PowerShell.Objects.Container
 **ALIASES**  
 None
 
-
-**REMARKS**  
-Get-Help cannot find the Help files for this cmdlet on this computer. It is displaying only partial help.  
--- To download and install Help files for the module that includes this cmdlet, use Update-Help.
-
-##Get-ContainerHost
+## Get-ContainerHost
 
 **NAME**  
 Get-ContainerHost
@@ -836,13 +810,7 @@ Microsoft.Containers.PowerShell.Objects.ContainerHost
 **ALIASES**  
 None
 
-
-**REMARKS**  
-Get-Help cannot find the Help files for this cmdlet on this computer. It is displaying only partial help.  
--- To download and install Help files for the module that includes this cmdlet, use Update-Help.
-
-
-##Get-ContainerImage
+## Get-ContainerImage
 
 **NAME**  
 Get-ContainerImage
@@ -939,13 +907,7 @@ Microsoft.Containers.PowerShell.Objects.ContainerImage
 **ALIASES**  
 None
 
-
-**REMARKS**  
-Get-Help cannot find the Help files for this cmdlet on this computer. It is displaying only partial help.  
--- To download and install Help files for the module that includes this cmdlet, use Update-Help.
-
-
-##Get-ContainerNetworkAdapter
+## Get-ContainerNetworkAdapter
 
 **NAME**  
 Get-ContainerNetworkAdapter
@@ -1036,13 +998,7 @@ Microsoft.Containers.PowerShell.Objects.ContainerNetworkAdapter
 **ALIASES**  
 None  
 
-
-**REMARKS**  
-Get-Help cannot find the Help files for this cmdlet on this computer. It is displaying only partial help.  
--- To download and install Help files for the module that includes this cmdlet, use Update-Help.
-
-
-##Import-ContainerImage
+## Import-ContainerImage
 
 **NAME**  
 Import-ContainerImage
@@ -1139,13 +1095,7 @@ Microsoft.Containers.PowerShell.Objects.ContainerImage
 **ALIASES**  
 None
 
-
-**REMARKS**  
-Get-Help cannot find the Help files for this cmdlet on this computer. It is displaying only partial help.  
--- To download and install Help files for the module that includes this cmdlet, use Update-Help.
-
-
-##Move-ContainerImageRepository
+## Move-ContainerImageRepository
 
 **NAME**  
 Move-ContainerImageRepository
@@ -1251,13 +1201,7 @@ Microsoft.HyperV.PowerShell.VMHost
 **ALIASES**
 None
 
-
-**REMARKS**  
-Get-Help cannot find the Help files for this cmdlet on this computer. It is displaying only partial help.  
--- To download and install Help files for the module that includes this cmdlet, use Update-Help.
-
-
-##New-Container
+## New-Container
 
 **NAME**  
 New-Container
@@ -1422,13 +1366,7 @@ Microsoft.Containers.PowerShell.Objects.Container
 **ALIASES**  
 None
 
-
-**REMARKS**  
-Get-Help cannot find the Help files for this cmdlet on this computer. It is displaying only partial help.  
--- To download and install Help files for the module that includes this cmdlet, use Update-Help.
-
-
-##New-ContainerImage
+## New-ContainerImage
 
 **NAME**  
 New-ContainerImage
@@ -1569,13 +1507,7 @@ Microsoft.Containers.PowerShell.Objects.ContainerImage
 **ALIASES**  
 None
 
-
-**REMARKS**  
-Get-Help cannot find the Help files for this cmdlet on this computer. It is displaying only partial help  .
--- To download and install Help files for the module that includes this cmdlet, use Update-Help.
-
-
-##Remove-Container
+## Remove-Container
 
 **NAME**  
 Remove-Container
@@ -1703,13 +1635,7 @@ Microsoft.Containers.PowerShell.Objects.Container
 **ALIASES**  
 None
 
-
-**REMARKS**  
-Get-Help cannot find the Help files for this cmdlet on this computer. It is displaying only partial help.  
--- To download and install Help files for the module that includes this cmdlet, use Update-Help.
-
-
-##Remove-ContainerImage
+## Remove-ContainerImage
 
 **NAME**  
 Remove-ContainerImage
@@ -1835,13 +1761,7 @@ System.Object
 **ALIASES**  
 None
 
-
-**REMARKS**  
-Get-Help cannot find the Help files for this cmdlet on this computer. It is displaying only partial help.  
--- To download and install Help files for the module that includes this cmdlet, use Update-Help.
-
-
-##Remove-ContainerNetworkAdapter
+## Remove-ContainerNetworkAdapter
 
 **NAME**  
 Remove-ContainerNetworkAdapter
@@ -1973,13 +1893,7 @@ Microsoft.Containers.PowerShell.Objects.ContainerNetworkAdapter
 **ALIASES**  
 None
 
-
-**REMARKS**  
-Get-Help cannot find the Help files for this cmdlet on this computer. It is displaying only partial help.  
--- To download and install Help files for the module that includes this cmdlet, use Update-Help.
-
-
-##Set-ContainerNetworkAdapter
+## Set-ContainerNetworkAdapter
 
 **NAME**  
 Set-ContainerNetworkAdapter
@@ -2130,12 +2044,7 @@ Microsoft.Containers.PowerShell.Objects.ContainerNetworkAdapter
 **ALIASES**  
 None
 
-
-**REMARKS**  
-Get-Help cannot find the Help files for this cmdlet on this computer. It is displaying only partial help.  
--- To download and install Help files for the module that includes this cmdlet, use Update-Help.
-
-##Start-Container
+## Start-Container
 
 **NAME**  
 Start-Container
@@ -2253,12 +2162,7 @@ Microsoft.Containers.PowerShell.Objects.Container
 **ALIASES**  
 None
 
-
-**REMARKS**  
-Get-Help cannot find the Help files for this cmdlet on this computer. It is displaying only partial help.  
--- To download and install Help files for the module that includes this cmdlet, use Update-Help.
-
-##Stop-Container
+## Stop-Container
 
 **NAME**  
 Stop-Container
@@ -2386,12 +2290,7 @@ Microsoft.Containers.PowerShell.Objects.Container
 **ALIASES**  
 None
 
-
-**REMARKS**  
-Get-Help cannot find the Help files for this cmdlet on this computer. It is displaying only partial help.  
--- To download and install Help files for the module that includes this cmdlet, use Update-Help.
-
-##Test-ContainerImage
+## Test-ContainerImage
 
 **NAME**  
 Test-ContainerImage
@@ -2516,8 +2415,3 @@ Microsoft.Containers.PowerShell.Objects.ContainerImageReport
 
 **ALIASES**  
 None
-
-
-**REMARKS**  
-Get-Help cannot find the Help files for this cmdlet on this computer. It is displaying only partial help.  
--- To download and install Help files for the module that includes this cmdlet, use Update-Help.
