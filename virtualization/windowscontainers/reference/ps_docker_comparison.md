@@ -1,10 +1,12 @@
 ms.ContentId: 4981828d-1a08-4d8c-a99d-874a926a153f
 title: PowerShell to Docker Comparison
 
+# PowerShell to Docker comparison for managing Windows Server Containers
+
 There are many ways to manage Windows Server Containers using both in-box Windows tools and Open Source management tools such as Docker.  
 There are good guides outlining both individually available here:
-* Docker
-* PowerShell
+* [Manage Windows Server Containers with Docker](../quick_start/manage_docker.md)
+* [Manage Windows Server Containers with PowerShell](../quick_start/manage_powershell.md) 
 
 This page is a more in depth reference comparing the Docker tools and PowerShell management tools.
 
