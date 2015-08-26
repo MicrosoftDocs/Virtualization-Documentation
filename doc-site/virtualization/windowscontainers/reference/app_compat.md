@@ -11,6 +11,7 @@ We have tried to running the following applications in a Windows Server Containe
 
 | **Name** | **Version** | **Does it work?** | **Comment** |
 |:-----|:-----|:-----|:-----|
+| .NET | 3.5 | No | Fails to install properly | 
 | .NET | 4.6 | Yes | Included in base image | 
 | .NET CLR | 5 beta 6 | Yes | Both, x64 and x86 | 
 | Active Python | 3.4.1 | Yes | |
@@ -26,7 +27,7 @@ We have tried to running the following applications in a Windows Server Containe
 | Internet Information Service | 10.0 | Yes | |
 | Java | 1.8.0_51 | Yes | Use the server version. The client version does not install properly |
 | Jetty | 9.3 | Partially | Running demo-base fails |
-| MineCraft Server | 1.8.5 | Yes | 
+| MineCraft Server | 1.8.5 | Yes | |
 | MongoDB | 3.0.4 | Yes | |
 | MySQL | 5.6.26 | Yes | |
 | NGinx | 1.9.3 | Yes | |
