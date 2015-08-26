@@ -11,6 +11,9 @@ In order to finish building your virtual machine, you need to start the VM and w
 2. In VMConnect, click on the green **Start** button ![](media/start.png). This is like hitting the power button on a physical computer.  
 3. The VM will boot into setup and you can walk through the installation like you would on a physical computer.
 
+> **Note:** Unless you're running a volume licensed version of Windows 10, you do need a seperate license for Windows running inside a virtual machine.  
+  The virtual machine's operating system is completely independent of the host operating system.
+
 
 ## Other stuff you can do in VMConnect
 
