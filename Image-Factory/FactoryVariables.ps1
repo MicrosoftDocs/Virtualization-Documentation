@@ -49,6 +49,8 @@ $10x86Image = "$($workingDir)\ISOs\en_windows_10_multiple_editions_x86_dvd_68484
 $10x64Image = "$($workingDir)\ISOs\en_windows_10_multiple_editions_x64_dvd_6846432.wim"
 
 # Misc Settings
+# If $startfactory is false, just import the functions to use in other scripts.  If true, start image generation.
+$StartFactory = $true
 
 # If enabled, will use dism.exe to clean the WinSXS folder and remove old updates. This can give significant disk savings, but takes longer (20-30 minutes per image). Updates will not be able to be uninstalled if this is enabled.
 $CleanWinSXS = $false
