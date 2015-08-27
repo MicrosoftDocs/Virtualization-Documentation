@@ -299,12 +299,6 @@ Convert-WindowsImage
     
         $parameterDictionary = New-Object System.Management.Automation.RuntimeDefinedParameterDictionary
  
-        If
-        (
-            Test-Path -Path "Variable:\EnableDebugger"
-        )
-            
-        {
             switch ($EnableDebugger) 
             {
        
@@ -551,7 +545,6 @@ Convert-WindowsImage
                     break
                 }
             }
-        }
     
         return $parameterDictionary   
     }
