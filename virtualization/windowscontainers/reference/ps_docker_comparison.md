@@ -155,7 +155,7 @@ A nicer way to discover the syntax is the PowerShell ISE, which you may not have
 PS: Just to prove it can be done, here's a PowerShell function that composes some of the cmdlets we've seen already into an ersatz `docker run`. (To be clear, this is a proof of concept, not under active development.)
 
 ``` PowerShell
-function Run-Container ([string]$ContainerImageName, [string]$Name="boring_wozniak", [switch]$Remove, [switch]$Interactive, [scriptblock]$Command) {
+function Run-Container ([string]$ContainerImageName, [string]$Name="fancy_name", [switch]$Remove, [switch]$Interactive, [scriptblock]$Command) {
     $image = Get-ContainerImage -Name $ContainerImageName
     $container = New-Container -Name $Name -ContainerImage $image
     Start-Container $container
