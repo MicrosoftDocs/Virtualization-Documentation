@@ -579,9 +579,6 @@ Convert-WindowsImage
 "@
     }
 
-        # $vQuality               = "Release to Web"
-        $vQuality               = "Beta"
-
         $myVersion              = "$($ScriptVersion.Major).$($ScriptVersion.Minor).$($ScriptVersion.Build).$($ScriptVersion.QFE).$($ScriptVersion.Flavor).$($ScriptVersion.Branch).$($ScriptVersion.Timestamp)"
         $scriptName             = "Convert-WindowsImage"                       # Name of the script, obviously.
         $sessionKey             = [Guid]::NewGuid().ToString()                 # Session key, used for keeping records unique between multiple runs.
@@ -601,7 +598,7 @@ Convert-WindowsImage
 
         # Text used for flag file embedded in VHD(X)
         $flagText = @"
-This $VHDFormat was created by Convert-WindowsImage.ps1 $myVersion $vQuality
+This $VHDFormat was created by Convert-WindowsImage.ps1 $myVersion
 on $([DateTime]::Now).
 "@
 
@@ -610,7 +607,7 @@ on $([DateTime]::Now).
 
 Windows(R) Image to Virtual Hard Disk Converter for Windows(R) 10
 Copyright (C) Microsoft Corporation.  All rights reserved.
-Version $myVersion $vQuality
+Version $myVersion
 
 "@
 
