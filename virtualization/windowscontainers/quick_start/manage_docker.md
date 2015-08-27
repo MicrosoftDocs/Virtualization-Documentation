@@ -285,11 +285,7 @@ After the website has been updated, navigate back to `http://containerhost-ipadd
 
 ![](media/hello.png)
 
-> **Note:** If you would like to change the Docker Daemon settings (such as to change the port it listens to, to connect to a container remotely), you will need to edit the "runDockerDAemon.cmd" file, which is located in 'C:\ProgramData\docker\', and then you will need to restart the service with PowerShell, using
-
-```powershell
-Restart-Service docker
-```
+> **Note:** If you would like to change the Docker Daemon settings (such as to change the port it listens to, to connect to a container remotely), you will need to edit the file "C:\ProgramData\docker\runDockerDAemon.cmd" in the container, and then you will need to restart the service with PowerShell, using ```Restart-Service docker```.
 
 ## Video Walkthrough
 
