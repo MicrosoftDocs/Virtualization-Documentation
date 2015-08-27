@@ -369,7 +369,12 @@ Install-ContainerHost
     {
         Write-Output "Installing Container OS image from $WimPath (this may take a few minutes)..."
 
-        if (Test-Path $WimPath)
+        #
+        # .wim is on a URI and must be downloaded
+        # 
+        $localWimPath = "$pwd\ContainerBaseImage.wim"
+            
+        if (Test-Path $localWimPath)
         {
             #
             # .wim is present and local
@@ -378,26 +383,19 @@ Install-ContainerHost
         elseif (($WimPath -as [System.URI]).AbsoluteURI -ne $null)
         {
             #
-            # .wim is on a URI and must be downloaded
-            # 
-            $localWimPath = "$pwd\ContainerBaseImage.wim"
-            
-            #
             # We disable progress display because it kills performance for large downloads (at least on 64-bit PowerShell)
             #
             $ProgressPreference = 'SilentlyContinue'
             Write-Output "Downloading Container OS image (WIM) from $WimPath to $localWimPath..."
             wget -Uri $WimPath -OutFile $localWimPath -UseBasicParsing
             $ProgressPreference = 'Continue'   
-
-            $WimPath = $localWimPath
         }
         else
         {
             throw "Cannot copy from invalid WimPath $WimPath"
         }
 
-        Install-ContainerOsImage -WimPath $WimPath -Force
+        Install-ContainerOsImage -WimPath $localWimPath -Force
         
         while ($imageCollection -eq $null)
         {
