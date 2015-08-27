@@ -1812,8 +1812,39 @@ WimImage
 
     public string
     ImageFlags 
-    {
-        get { return XmlInfo.XPathSelectElement("/IMAGE/FLAGS").Value; }
+    {        
+        get 
+        {
+            string flagValue = String.Empty;
+
+            try 
+            {
+                flagValue = XmlInfo.XPathSelectElement("/IMAGE/FLAGS").Value; 
+            } 
+            catch 
+            {
+                
+                // Some WIM files don't contain a FLAGS element in the metadata.  
+                // In an effort to support those WIMs too, inherit the EditionId if there
+                // are no Flags.
+                
+                if (String.IsNullOrEmpty(flagValue)) 
+                {
+                    flagValue = this.ImageEditionId;
+                                    
+                    // Check to see if the EditionId is "ServerHyper".  If so,
+                    // tweak it to be "ServerHyperCore" instead.
+
+                    if (0 == String.Compare("serverhyper", flagValue, true)) 
+                    {
+                        flagValue = "ServerHyperCore";
+                    }
+                }
+
+            }
+
+            return flagValue;
+        }
     }
 
     public string
