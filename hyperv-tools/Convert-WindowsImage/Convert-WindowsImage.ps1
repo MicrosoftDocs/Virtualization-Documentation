@@ -55,7 +55,8 @@ Convert-WindowsImage
 
     .PARAMETER VHDFormat
         Specifies whether to create a VHD or VHDX formatted Virtual Hard Disk.
-        The default is VHD.
+        The default is AUTO, which will create a VHD if using the BIOS disk layout or 
+        VHDX if using UEFI or WindowsToGo layouts.
 
     .PARAMETER DiskLayout
         Specifies whether to build the image for BIOS (MBR), UEFI (GPT), or WindowsToGo (MBR).
@@ -207,14 +208,14 @@ Convert-WindowsImage
         [UInt64]
         [ValidateNotNullOrEmpty()]
         [ValidateRange(512MB, 64TB)]
-        $SizeBytes        = 40GB,
+        $SizeBytes        = 25GB,
 
         [Parameter(ParameterSetName="SRC")]
         [Alias("Format")]
         [string]
         [ValidateNotNullOrEmpty()]
-        [ValidateSet("VHD", "VHDX")]
-        $VHDFormat        = "VHDX",
+        [ValidateSet("VHD", "VHDX", "AUTO")]
+        $VHDFormat        = "AUTO",
 
         [Parameter(ParameterSetName="SRC", Mandatory=$true)]
         [Alias("Layout")]
@@ -3268,6 +3269,23 @@ VirtualHardDisk
 
                 $frmMain.Dispose()
             }
+        
+            if ($VHDFormat -ilike "AUTO")
+            {
+                if ($DiskLayout -eq "BIOS")
+                {            
+                    $VHDFormat = "VHD"
+                }
+                else
+                {
+                    $VHDFormat = "VHDX"
+                }
+            }
+            
+            #
+            # Choose smallest supported block size for dynamic VHD(X)
+            #        
+            $BlockSizeBytes = 1MB
 
             # There's a difference between the maximum sizes for VHDs and VHDXs.  Make sure we follow it.
             if ("VHD" -ilike $VHDFormat) 
@@ -3277,6 +3295,8 @@ VirtualHardDisk
                     Write-W2VWarn "For the VHD file format, the maximum file size is ~2040GB.  We're automatically setting the size to 2040GB for you."
                     $SizeBytes = 2040GB
                 }
+
+                $BlockSizeBytes = 512KB
             }
 
             # Check if -VHDPath and -WorkingDirectory were both specified.
