@@ -7,9 +7,7 @@ This article will walk through the fundamentals of managing Windows Server Conta
 
 Have questions? Ask them on the [Windows Containers forum](https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers).
 
-> **Note:** Windows Server Containers created with PowerShell can not currently be managed with Docker and visa versa. To create containers with Docker instead, see [Quick Start: Windows Server Containers and Docker](./manage_docker.md). 
- 
-  If you want to know more, [read the FAQ](../about/faq.md#WhydoIhavetopickbetweenDockerandPowerShellforWindowsServerContainermanagement).
+> **Note:** Windows Server Containers created with PowerShell can not currently be managed with Docker and visa versa. To create containers with Docker instead, see [Quick Start: Windows Server Containers and Docker](./manage_docker.md). <br /> If you want to know more, [read the FAQ](../about/faq.md#WhydoIhavetopickbetweenDockerandPowerShellforWindowsServerContainermanagement).
 
 ## Prerequisites
 In order to complete this walkthrough the following items need to be in place.
