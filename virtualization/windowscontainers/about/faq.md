@@ -60,7 +60,7 @@ The container capabilities will be integrated into Windows Server 2016. Stay tun
 
 Both Window Server Containers and Hyper-V Containers require Windows Server 2016. These technologies will not work with previous versions of Windows.
 
-## Are Server Nano based container supported?
+## Are Server Nano based containers supported?
 
 For the TP3 release, no they are not. Only Server Core based containers are currently supported.
 
