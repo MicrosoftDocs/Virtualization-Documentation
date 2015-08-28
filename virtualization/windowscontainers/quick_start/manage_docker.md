@@ -284,6 +284,7 @@ After the website has been updated, navigate back to `http://containerhost-ipadd
 
 ![](media/hello.png)
 
+> **Note:** If you would like to change the Docker Daemon settings (such as to change the port it listens to, to connect to a container remotely), you will need to edit the file "C:\ProgramData\docker\runDockerDaemon.cmd" in the container, and then you will need to restart the service with PowerShell, using ```Restart-Service docker```.
 
 ## Video Walkthrough
 
@@ -293,6 +294,8 @@ After the website has been updated, navigate back to `http://containerhost-ipadd
 Now that you have containers set up and an introduction to the tools, go build your own containerized apps.
 
 Remember, this is a **preview** there are bugs and we have a lot of work in progress.  [This page](../about/work_in_progress.md) contains many of our known issues.
+
+Be aware that there are some known Docker commands that [don't work](../about/work_in_progress.md#DockermanagementDockercommandsthatdontworkwithWindowsServerContainers) and some that only [partially work](../about/work_in_progress.md#DockermanagementDockercommandsthatpartiallyworkwithWindowsServerContainers)
 
 We are also monitoring the [forums](https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers) very closely.
 
