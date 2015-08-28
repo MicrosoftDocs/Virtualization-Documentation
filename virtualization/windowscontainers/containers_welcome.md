@@ -16,7 +16,7 @@ The following table list topics that provide more information about Windows cont
 			<ul>
 			  	<li class="unordered">[Get started with Windows Server Containers in Windows Azure](./quick_start/azure_setup.md)<br /><br /></li>
 				<li class="unordered">[Get started with Windows Server Containers in a new Hyper-V virtual machine](./quick_start/container_setup.md)<br /><br /></li>
-				<li class="unordered">[Get started with Windows Server Containers on a Windows Server TP3 Core installation](./quick_start/inplace_setup.md)<br /><br /></li>
+				<li class="unordered">[Get started with Windows Server Containers on an existing Windows Server TP3 Core installation](./quick_start/inplace_setup.md)<br /><br /></li>
                 <li class="unordered">[Quick Start: Windows Server Containers and PowerShell](./quick_start/manage_powershell.md)<br /><br /></li>
 				<li class="unordered">[Quick Start: Windows Server Containers and Docker](./quick_start/manage_docker.md)<br /><br /></li>		
 			</ul>
