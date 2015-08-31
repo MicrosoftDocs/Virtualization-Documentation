@@ -175,8 +175,8 @@ function Run-Container ([string]$ContainerImageName, [string]$Name="fancy_name",
 ```
 
 ## Docker
-Windows Server Containers can be managed with Docker commands.  While Windows containers should be comprable to their Linux counterparts and have the same management experience through Docker, there are some Docker commands that simply don't make sense with a Windows container.  Others simply haven't been tested (we're getting there).
+Windows Server Containers can be managed with Docker commands.  While Windows containers should be comparable to their Linux counterparts and have the same management experience through Docker, there are some Docker commands that simply don't make sense with a Windows container.  Others simply haven't been tested (we're getting there).
 
-In an effort to not duplicate the API documentation acailable in Docker, here is a link to their management APIs.  Their walkthroughs are fantastic.
+In an effort to not duplicate the API documentation available in Docker, here is a link to their management APIs.  Their walkthroughs are fantastic.
 
 We're tracking things that do and don't work in the Docker APIs in our Work in Progress document.
