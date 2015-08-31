@@ -3,7 +3,7 @@ title: Supported Windows Guest Operating Systems
 
 
 # Supported Windows guests 
-This article lists the Windows operating systems supported as guests in Hyper-V on Windows, as well provides information about integration services. 
+This article lists the operating system combinations supported in Hyper-V on Windows.  It will also introduction to integration services and other factors in support.
 
 > Windows 10 runs as a guest operating system on Windows 8.1 and Windows Server 2012 R2 Hyper-V hosts.
 
@@ -22,7 +22,7 @@ Some operating systems (including different versions of Windows) have the integr
 
 ## Supported Windows Server guest operating systems
 
-For Windows 10 Hyper-V Hosts:
+**For Windows 10 Hyper-V Hosts:**
 
  |  Guest operating system  			|  Maximum number of virtual processors  	|  Integration Services  	|  Notes  	| 	 	| 
  | -----				 				| ----- 									| ----- 					| ----- 	| ----- |
