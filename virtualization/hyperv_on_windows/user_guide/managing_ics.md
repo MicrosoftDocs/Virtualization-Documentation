@@ -22,22 +22,30 @@ Most of the coplexity in integration service management comes from spanning the 
 
 With all of this in mind, installing, updating, and enabling/disabling integration services can be difficult to understand.  This article aims to demystify the finer points of managing integration services on any supported Hyper-V environment.
 
-## What is "up to date" for integration services
 
+## Integration service management
 
-## Enable or disable integration services from the Hyper-V host
+### Enable or disable integration services from the Hyper-V host
 
+#### Managing integration services with Hyper-V Manager
 
-### Managing integration services with Hyper-V Manager
-
-### Managing integration services with PowerShell
-
+#### Managing integration services with PowerShell
 IC Version is deprecated in Windows 10 and Server 16.
 
-## Disable integration services from the guest operating system
+### Manage integration services from the guest operating system
 ![](media/HVServices.png) 
 
-## Getting integration services
+## Installing and updating integration services
 
-## Install integration components on offline virtual machines
+### Install integration components on offline virtual machines
 
+## Service details
+
+### Time synchronization
+### Operating system shutdown
+### Data exchange (KVP)
+### Backup (Volume Shadow Copy)
+### Heartbeat 
+### Guest Services
+Guest File Copy
+PowerShell Direct
