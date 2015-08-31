@@ -53,7 +53,7 @@
 param(
     [string]
     [ValidateNotNullOrEmpty()]
-    $DockerPath = "http://aka.ms/ContainerTools",
+    $DockerPath = "https://aka.ms/ContainerTools",
       
     [string]
     $ExternalNetAdapter,
@@ -77,7 +77,7 @@ param(
 
     [string]
     [ValidateNotNullOrEmpty()]
-    $WimPath = "http://aka.ms/ContainerOSImage"
+    $WimPath = "https://aka.ms/ContainerOSImage"
 )
 
 $global:RebootRequired = $false
@@ -585,13 +585,13 @@ Get-Nsmm
     Write-Output "This script uses a third party tool: NSSM service manager. For more information, see https://nssm.cc/usage"       
     Write-Output "Downloading NSSM..."
 
-    $nssmUri = "http://nssm.cc/release/nssm-2.24.zip"            
+    $nssmUri = "https://nssm.cc/release/nssm-2.24.zip"            
     $nssmZip = "$($env:temp)\$(Split-Path $nssmUri -Leaf)"
             
     Write-Verbose "Creating working directory..."
     $tempDirectory = New-Item -ItemType Directory -Force -Path "$($env:temp)\nssm"     
             
-    wget -Uri "http://nssm.cc/release/nssm-2.24.zip" -Outfile $nssmZip -UseBasicParsing
+    wget -Uri $nssmUri -Outfile $nssmZip -UseBasicParsing
     #TODO Check for errors
             
     Write-Output "Extracting NSSM from archive..."

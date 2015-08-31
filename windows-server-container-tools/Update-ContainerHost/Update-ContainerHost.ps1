@@ -19,7 +19,7 @@
         Configures the VM as a new container host
         
     .PARAMETER DockerPath
-        Path to a private Docker.exe.  Defaults to http://aka.ms/ContainerTools
+        Path to a private Docker.exe.  Defaults to https://aka.ms/ContainerTools
 
     .EXAMPLE
         .\Update-ContainerHost.ps1 -SkipDocker
@@ -32,7 +32,7 @@ param(
     [Parameter(ParameterSetName="IncludeDocker")]
     [string]
     [ValidateNotNullOrEmpty()]
-    $DockerPath = "http://aka.ms/ContainerTools"
+    $DockerPath = "https://aka.ms/ContainerTools"
 )
 
 
@@ -122,13 +122,13 @@ Get-Nsmm
     Write-Output "This script uses a third party tool: NSSM service manager. For more information, see https://nssm.cc/usage"       
     Write-Output "Downloading NSSM..."
 
-    $nssmUri = "http://nssm.cc/release/nssm-2.24.zip"            
+    $nssmUri = "https://nssm.cc/release/nssm-2.24.zip"            
     $nssmZip = "$($env:temp)\$(Split-Path $nssmUri -Leaf)"
             
     Write-Verbose "Creating working directory..."
     $tempDirectory = New-Item -ItemType Directory -Force -Path "$($env:temp)\nssm"     
             
-    wget -Uri "http://nssm.cc/release/nssm-2.24.zip" -Outfile $nssmZip -UseBasicParsing
+    wget -Uri $nssmUri -Outfile $nssmZip -UseBasicParsing
     #TODO Check for errors
             
     Write-Output "Extracting NSSM from archive..."
