@@ -18,7 +18,7 @@ Some of the tasks integration services provide include:
 
 Many of these services are conviniences (such as guest services) while others can be quite important to the guest operating system's ability to fucntion correctly (time synchronization).  
 
-Since they span the Hyper-V host and the guest operating systems that run on it, some management actions require Hyper-V Administrator permissions on the host, others require Administrator credentials in the guest.
+The coplexity in integration service management comes from crossing the guest to host boundary.  Since they span the Hyper-V host and the guest operating systems that run on it, some management actions require Hyper-V Administrator permissions on the host, others require Administrator credentials in the guest.  Integration services also have different availability and behavior depeding on the guest and host operating systems.
 
 Integration services have also changed with time.  The services available and deployment mechanisms have also changed.  As such, installing, updating, and enabling/disabling integration services can be difficult to understand.  This article aims to demystify the 
 
@@ -37,6 +37,7 @@ Some operating systems have the integration services built-in, while others prov
 IC Version is deprecated in Windows 10 and Server 16.
 
 ## Disable integration services from the guest operating system
+![](media/HVServices.png) 
 
 ## Getting integration services
 
