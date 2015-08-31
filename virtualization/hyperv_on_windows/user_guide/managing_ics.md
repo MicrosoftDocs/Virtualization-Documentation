@@ -7,22 +7,20 @@ Welcome to the in-depth reference for everything integration service related.
 ## Integration services and what they do
 Integration services (often called integration components) are services that allow virtual machines to communicate with the Hyper-V host.  
 Some of the tasks integration services provide include:
-* Operating system shutdown
 * Time synchronization
+* Operating system shutdown
 * Data exchange (KVP)
-* Heartbeat 
 * Backup (Volume Shadow Copy)
+* Heartbeat 
 * Guest Services
   * Guest File Copy
   * PowerShell Direct
 
-Many of these services are conviniences (such as guest services) while others can be quite important to the guest operating system's ability to fucntion correctly (time synchronization).  
+Many of these services are conviniences (such as guest services) while others can be quite important to the guest operating system's ability to fucntion correctly (time synchronization) -- the list above is loosely organized by importance on a fresh Hyper-V installation.
 
-The coplexity in integration service management comes from crossing the guest to host boundary.  Since they span the Hyper-V host and the guest operating systems that run on it, some management actions require Hyper-V Administrator permissions on the host, others require Administrator credentials in the guest.  Integration services also have different availability and behavior depeding on the guest and host operating systems.
+Most of the coplexity in integration service management comes from spanning the boundary between Hyper-V host and the guest operating systems that run on it.  Some integration service management actions require Hyper-V Administrator permissions on the host, others require Administrator credentials in the guest. Integration services also have different availability and behavior depeding on both the guest and host operating systems.  They are the only item in the guest operating system that is aware of the host operating system; historically, they had to be matched to the host operating system.
 
-Integration services have also changed with time.  The services available and deployment mechanisms have also changed.  As such, installing, updating, and enabling/disabling integration services can be difficult to understand.  This article aims to demystify the 
-
-Some operating systems have the integration services built-in, while others provide integration services through Windows Update.
+With all of this in mind, installing, updating, and enabling/disabling integration services can be difficult to understand.  This article aims to demystify the finer points of managing integration services on any supported Hyper-V environment.
 
 ## What is "up to date" for integration services
 
