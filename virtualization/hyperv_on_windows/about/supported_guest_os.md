@@ -15,6 +15,8 @@ Microsoft provides support for guest operating systems in the following manner:
 * For issues found in other operating systems that have been certified by the operating system vendor to run on Hyper-V, support is provided by the vendor.
 * For issues found in other operating systems, Microsoft submits the issue to the multi-vendor support community, [TSANet](http://www.tsanet.org/).
 
+In order to be supported, both the Hyper-V host and guest must be updated with all critical updates available through Windows Update.
+
 ## What are integration services and why do they matter?
 Hyper-V includes integration services for supported guest operating systems.  Integration services improve interaction between the host system and the virtual machine.  
 
