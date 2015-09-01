@@ -2,7 +2,7 @@ ms.ContentId: C2593EA1-B182-4C71-8504-49691F619158
 title: Step 1: Make sure your machine is compatible
 
 # Step 1: Make sure your machine can run Hyper-V
-- Only the Pro, Enterprise and Education editions of Windows 10 can host Hyper-V virtual machines. Hyper-V is not available in Windows 10 Mobile / Windows 10 Mobile Enterprise
+- Only the Pro, Enterprise and Education editions of Windows 10 can host Hyper-V virtual machines. Hyper-V is not available in the Home, Mobile or Mobile Enterprise eiditons.
 
 > **Tip**: If you're running Windows 10 Home, you can upgrade to Win 10 Pro by right-clicking the **Start** button and then clicking **Settings > Update and Security > Activation**.  **Click on The Go to store** link will take you to a page for [urchasing an upgrade.
 
