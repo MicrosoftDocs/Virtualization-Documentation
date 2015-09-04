@@ -20,13 +20,13 @@
         Configures the VM as a new container host
         
     .PARAMETER DockerPath
-        Path to a private Docker.exe.  Defaults to http://aka.ms/ContainerTools
+        Path to a private Docker.exe.  Defaults to https://aka.ms/ContainerTools
         
     .PARAMETER Password 
         Password for the built-in Administrator account. 
 
     .PARAMETER ScriptPath
-        Path to a private Install-ContainerHost.ps1.  Defaults to http://aka.ms/SetupContainers
+        Path to a private Install-ContainerHost.ps1.  Defaults to https://aka.ms/SetupContainers
 
     .PARAMETER SkipDocker
         If passed, skips Docker install
@@ -39,7 +39,7 @@
         unattend.xml will be used that contains a built-in Administrator account
 
     .PARAMETER VhdPath 
-        Path to a private Windows Server image.  Defaults to http://aka.ms/containerhostvhd
+        Path to a private Windows Server image.  Defaults to https://aka.ms/containerhostvhd
 
     .PARAMETER VmName
         Friendly name for container host VM to be created.  Required.
@@ -58,7 +58,7 @@ param(
     [Parameter(ParameterSetName="IncludeDocker")]
     [string]
     [ValidateNotNullOrEmpty()]
-    $DockerPath = "http://aka.ms/ContainerTools",
+    $DockerPath = "https://aka.ms/ContainerTools",
 
     [Parameter(ParameterSetName="IncludeDocker", Mandatory=$true, Position=1)]
     [Parameter(ParameterSetName="SkipDocker", Mandatory=$true, Position=1)]
@@ -67,7 +67,7 @@ param(
 
     [string]
     [ValidateNotNullOrEmpty()]
-    $ScriptPath = "http://aka.ms/SetupContainers",
+    $ScriptPath = "https://aka.ms/SetupContainers",
     
     [Parameter(ParameterSetName="SkipDocker", Mandatory=$true)]
     [switch]
@@ -89,7 +89,7 @@ param(
     [Parameter(ParameterSetName="Staging", Mandatory=$true)]
     [string]
     [ValidateNotNullOrEmpty()]
-    $VhdPath = "http://aka.ms/containerhostvhd",
+    $VhdPath = "https://aka.ms/containerhostvhd",
 
     [Parameter(Mandatory=$true, Position=0)]
     [string]
@@ -98,7 +98,7 @@ param(
 
     [string]
     [ValidateNotNullOrEmpty()]
-    $WimPath = "http://aka.ms/ContainerOsImage"
+    $WimPath = "https://aka.ms/ContainerOsImage"
 )
 
 $global:PowerShellDirectMode = $true
@@ -242,7 +242,7 @@ Cache-HostFiles
 
     if ($global:DeveloperMode -and ($global:localVhdName -match "\.th2_release\."))
     {
-        Copy-File -SourcePath "http://aka.ms/containerzdp" -DestinationPath "$global:localVhdRoot\zdp.cab"
+        Copy-File -SourcePath "https://aka.ms/containerzdp" -DestinationPath "$global:localVhdRoot\zdp.cab"
     }
     
     if ($global:DeveloperMode)
@@ -689,7 +689,7 @@ New-ContainerHost()
         Write-Output "VM $($vm.Name) will be ready to use as a container host when Install-ContainerHost.ps1 completes execution inside the VM."
     }
 
-    Write-Output "See http://msdn.microsoft.com/virtualization/windowscontainers for more information about using Containers."
+    Write-Output "See https://msdn.microsoft.com/virtualization/windowscontainers/containers_welcome for more information about using Containers."
     Write-Output "The source code for these installation scripts is available here: https://github.com/Microsoft/Virtualization-Documentation/tree/master/windows-server-container-tools"
 }
 $global:AdminPriviledges = $false
@@ -735,13 +735,13 @@ Get-Nsmm
     Write-Output "This script uses a third party tool: NSSM service manager. For more information, see https://nssm.cc/usage"       
     Write-Output "Downloading NSSM..."
 
-    $nssmUri = "http://nssm.cc/release/nssm-2.24.zip"            
+    $nssmUri = "https://nssm.cc/release/nssm-2.24.zip"            
     $nssmZip = "$($env:temp)\$(Split-Path $nssmUri -Leaf)"
             
     Write-Verbose "Creating working directory..."
     $tempDirectory = New-Item -ItemType Directory -Force -Path "$($env:temp)\nssm"     
             
-    wget -Uri "http://nssm.cc/release/nssm-2.24.zip" -Outfile $nssmZip -UseBasicParsing
+    wget -Uri $nssmUri -Outfile $nssmZip -UseBasicParsing
     #TODO Check for errors
             
     Write-Output "Extracting NSSM from archive..."
@@ -813,6 +813,7 @@ $unattendSource = [xml]@"
                <Username>Administrator</Username>
             </AutoLogon>
             <ComputerName>*</ComputerName>
+            <ProductKey>JGNV3-YDJ66-HJMJP-KVRXG-PDGDH</ProductKey>
         </component>
         <component name="Microsoft-Windows-TerminalServices-LocalSessionManager" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"> 
              <fDenyTSConnections>false</fDenyTSConnections> 
@@ -870,7 +871,7 @@ Approve-Eula
     
     $eulaText = @"
 Before installing and using the Windows Server Technical Preview 3 with Containers virtual machine you must: 
-    1.	Review the license terms by navigating to this link: http://aka.ms/WindowsServerTP3ContainerVHDEula
+    1.	Review the license terms by navigating to this link: https://aka.ms/WindowsServerTP3ContainerVHDEula
     2.	Print and retain a copy of the license terms for your records.
 By downloading and using the Windows Server Technical Preview 3 with Containers virtual machine you agree to such license terms. Please confirm you have accepted and agree to the license terms.
 "@
