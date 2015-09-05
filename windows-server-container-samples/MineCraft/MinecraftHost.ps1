@@ -29,9 +29,9 @@ icm -VMName $containerHostVMName -Credential $localVMCred {
          # Create and change to Minecraft Directory
          md \MC | Out-Null; cd \MC
    
-         # Wait for DHCP
-         write-host "[MineCraft-Base]:: Wait for DHCP address to be acquired"
-         while ((Get-NetIPAddress | ? AddressFamily -eq IPv4 | ? IPAddress -ne 127.0.0.1).SuffixOrigin -ne "Dhcp") {sleep -Milliseconds 10}
+         # Wait for DHCP or NAT
+         write-host "[MineCraft-Base]:: Wait for DHCP or NAT address to be acquired"
+         While (((Get-NetIPAddress | ? AddressFamily -eq IPv4 | ? IPAddress -ne 127.0.0.1).SuffixOrigin -ne "Manual") -and ((Get-NetIPAddress | ? AddressFamily -eq IPv4 | ? IPAddress -ne 127.0.0.1).SuffixOrigin -ne "Dhcp")) {Sleep -Milliseconds 10}
 
          # Get the current version of Minecraft, and download the server jar
          write-host "[MineCraft-Base]:: Discover latest version of MineCraft Server"
