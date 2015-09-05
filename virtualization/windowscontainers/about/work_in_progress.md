@@ -39,7 +39,6 @@ We're working on it.  In the future there will be folder sharing.
 ### Default firewall behavior
 In a container host and containers environment, you only have the container host's firewall. All the firewall rules configured in the container host will propagate to all of its containers.
 
-
 --------------------------
 
 ## Networking
