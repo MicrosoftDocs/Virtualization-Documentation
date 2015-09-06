@@ -1,15 +1,19 @@
 ms.ContentId: C2593EA1-B182-4C71-8504-49691F619158
 title: Step 1: Make sure your machine is compatible
 
-# Step 1: Make sure your machine is compatible
+# Step 1: Make sure your machine can run Hyper-V
 
-Only the Profession and Enterprise editions of Windows 10 support Hyper-V. 
+Only Windows 10 Pro and Windows 10 Enterprise support Hyper-V.
+
+> If you're running Windows 10 Home -- you can upgrade to Win 10 Pro in the Activation page located in the security settings.  The "Go to store" link will take you to a page for upgrading.
+
+Hyper-V is not available in Windows 10 Mobile / Windows 10 Mobile Enterprise
 
 Hyper-V requires at least 4 GB of RAM but you might need more if you want to run multiple virtual machines at the same time.
 
 Starting in Windows 10, Hyper-V requires a 64-bit processor with Second Level Address Translation (SLAT).
 
-## Verify compatability
+## Verify hardware compatability
 
 To verify compatability, open PowerShell or a Windows command prompt (cmd.exe) and type: `systeminfo.exe`.  This will give you information about your computer.
 

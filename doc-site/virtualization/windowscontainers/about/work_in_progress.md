@@ -36,6 +36,12 @@ At this point in time there is no way to selectively map folders into a containe
 **Work Around: **  
 We're working on it.  In the future there will be folder sharing.
 
+
+### Windows Server Containers are starting very slowly
+If your container is taking more than 30 seconds to start, it may be performing many duplicate virus scans.
+
+Many anti-malware solutions, such as Windows Defender, maybe unnecessarily scanning files with-in container images including all of the OS binaries and files in the container OS image.  This occurs when ever a new container is created and from the anti-malware’s perspective all of the “container’s files” look like new files that have not previously been scanned.  So when processes inside the container attempt to read these files the anti-malware components first scan them before allowing access to the files.  In reality these files were already scanned when the container image was imported or pulled to the server. In future previews new infrastructure will be in place such that anti-malware solutions, including Windows Defender, will be aware of these situations and can act accordingly to avoid multiple scans. 
+
 --------------------------
 
 ## Networking
@@ -87,13 +93,17 @@ net use S: \\your\sources\here /User:shareuser [yourpassword]
 
 ## Application compatibility
 
+There are so mnay questions about which applications work and don't work in Windows Server Containers, we decided to break application compatability information into [its own article](../reference/app_compat.md).
+
+Some of the most common issues are located here as well.
+
 ### WinRM won't start in a Windows Server Container
 WinRM starts, throws an error, and stops again.  Errors are not logged in the event log.
 
 **Work Around:**
 Use WMI, [RDP](#RemoteDesktopAccessOfContainers), or Enter-PSSession -ContainerID
 
-### Can't install ASP.NET 4.5 with IIS in a container using DISM 
+### Can't install ASP.NET 4.5 or ASP.NET 3.5 with IIS in a container using DISM 
 Installing IIS-ASPNET45 in a container doesn't work inside a Windows Server container.  The installation progress sticks around 95.5%.
 
 ``` PowerShell
@@ -109,132 +119,80 @@ Instead, install the Web-Server role to use IIS. ASP 5.0 does work.
 Enable-WindowsOptionalFeature -Online -FeatureName Web-Server
 ```
 
-### Applications
+See the [application compatability article](../reference/app_compat.md) for more information about what applications can be containerized.
+
+--------------------------
 
 
-We have tried to run in the following applications in a Windows Server Container.
+## Docker management
 
-These results do not guarantee that the application is working. The sole purpose is to share our experience when testing applications in a Windows Server Container.
+### Docker clients unsecured by default
+In this pre-release, docker communication is public if you know where to look.
 
-| **Name** | **Version** | **Does it work?** | **Comment** |
+### Docker commands that don't work with Windows Server Containers
+
+Commands known to fail:
+
+| **Docker command** | **Where it runs** | **Error** | **Notes** |
 |:-----|:-----|:-----|:-----|
-| .NET | 4.6 | Yes | Included in base image | 
-| .NET CLR | 5 beta 6 | Yes | Both, x64 and x86 | 
-| Active Python | 3.4.1 | Yes | |
-| Apache CouchDB | 1.6.1 | No | |
-| Apache HTTPD | 2.4 | Yes | |
-| Apache Tomcat | 8.0.24 x64 | Yes | |
-| ASP.NET | 3.5 | No | |
-| ASP.NET | 4.5 | No | |
-| ASP.NET | 5 beta 6 | Yes | Both, x64 and x86 |
-| Erlang/OTP | 18.0 | No | |
-| FileZilla FTP Server | 0.9 | Yes | Has to be installed through an RDP session  into the container | 
-| Go Progamming Language | 1.4.2 | Yes | |
-| Internet Information Service | 10.0 | Yes | |
-| Java | 1.8.0_51 | Yes | Use the server version. The client version does not install properly |
-| Jetty | 9.3 | Partially | Running demo-base fails |
-| MineCraft Server | 1.8.5 | Yes | 
-| MongoDB | 3.0.4 | Yes | |
-| MySQL | 5.6.26 | Yes | |
-| NGinx | 1.9.3 | Yes | |
-| Node.js | 0.12.6 | Partially | Running node with js files works. NPM fails to download packages. Running node interactively does not work properly. |
-| PHP | 5.6.11 | Partially | With Apache, IIS via FastCGI currently does not work. |
-| PostgreSQL | 9.4.4 | Yes | |
-| Python | 3.4.3 | Yes | |
-| R | 3.2.1 | No | |
-| RabbitMQ | 3.5.x | Yes | Has to be installed through an RDP session  into the container |
-| Redis | 2.8.2101 | Yes | |
-| Ruby | 2.2.2 | Yes | Both, x64 and x86 | 
-| Ruby on Rails | 4.2.3 | |
-| SQLite | 3.8.11.1 | Yes | |
-| SQL Server Express | 2014 LocalDB | Yes | |
-| Sysinternals Tools | * | Yes | Only tried those not requiring a GUI. PsExec does not work by current design | 
+| **docker commit** | image | Docker stops running container and doesn’t show correct error message | Committing a stopped container works. For running containers: We're working on it :) |
+| **docker diff** | daemon | Error: The windows graphdriver does not support Changes() | |
+| **docker kill** | container | Error: Invalid signal: KILL  Error: failed to kill containers:[] | |
+| **docker load** | image | Fails silently | No error but the image isn't loading either |
+| **docker pause** | container | Error: Windows container cannot be paused.  May be not supported | |
+| **docker port** | container |  | No port is getting listed even we are able to RDP.
+| **docker pull** | daemon | Error: System cannot find the file path. We cant run container using this image. | Image is getting added can't be used.  We're working on it :) |
+| **docker restart** | container | Error: A system shutdown is in progress. |  |
+| **docker unpause** | container |  | Can't test because pause doesn't work yet. |
 
-### Windows Optional Features that do install
+If anything that isn't on this list fails (or if a command fails differently than expected), let us know via [the forums](https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers).
 
-The following Windows Optional Features have been confirmed as being able to install.  Many do not function once they are installed at this point in time.
 
-* AD-Certificate
-* ADCS-Cert-Authority
-* File-Services
- * FS-FileServer
- * FS-VSS-Agent
-* DirectAccess-VPN
-* Routing
-* Remote-Desktop-Services
-* VolumeActivation
-* Web-Server
-* Web-WebServer
-* Web-Common-Http
-* Web-Default-Doc
-* Web-Dir-Browsing
-* Web-Http-Errors
-* Web-Static-Content
-* Web-Http-Redirect
-* Web-DAV-Publishing
-* Web-Health
-* Web-Http-Logging
-* Web-Custom-Logging
-* Web-Log-Libraries
-* Web-ODBC-Logging
-* Web-Request-Monitor
-* Web-Performance
-* Web-Stat-Compression
-* Web-Dyn-Compression
-* Web-Security
-* Web-Filtering
-* Web-Basic-Auth
-* Web-CertProvider
-* Web-Client-Auth
-* Web-Digest-Auth
-* Web-Cert-Auth
-* Web-IP-Security
-* Web-Url-Auth
-* Web-Windows-Auth
-* Web-App-Dev
-* Web-AppInit
-* Web-CGI
-* Web-ISAPI-Ext
-* Web-ISAPI-Filter
-* Web-Includes
-* Web-WebSockets
-* Web-Mgmt-Compat
-* Web-Metabase
-* BitLocker
-* EnhancedStorage
-* GPMC
-* Isolated-UserMode
-* Server-Media-Foundation
-* MSMQ-DCOM
-* MultiPoint-Connector-Feature
-* qWave
-* RDC
-* RSAT-Feature-Tools-BitLocker
-* RSAT-Clustering-PowerShell
-* RSAT-Clustering-AutomationServer
-* RSAT-Clustering-CmdInterface
-* RSAT-Shielded-VM-Tools
-* RSAT-AD-Tools
-* RSAT-AD-PowerShell
-* RSAT-ADDS
-* RSAT-AD-AdminCenter
-* RSAT-ADDS-Tools
-* RSAT-ADLDS
-* Hyper-V-PowerShell
-* UpdateServices-API
-* RSAT-NetworkController
-* Windows-Fabric-Tools
-* RSAT-HostGuardianService
-* FS-SMBBW
-* Storage-Replica
-* Telnet-Client
-* WAS
- * WAS-Process-Model
- * WAS-Config-APIs
-* Windows-Server-Backup
-* Migration
 
-### Remote desktop access of containers
+### Docker commands that partially work with Windows Server Containers
+
+Commands with partial functionality:
+
+| **Docker command** | **Runs on...** | **Parameter** | **Notes** |
+|:-----|:-----|:-----|:-----|
+| **docker attach** | container | --no-stdin=false | The command doesn't exit when Ctrl-P and CTRL-Q is pressed |
+| | | --sig-proxy=true | works |
+| **docker build** | images | -f, --file | Error: Unable to prepare context: Unable to get synlinks |
+| | | --force-rm=false | works |
+| | | --no-cache=false | works |
+| | | -q, --quiet=false | |
+| | | --rm=true | works|
+| | | -t, --tag="" | works |
+| **docker login** | daemon | -e, -p, -u | sporratic behavior | 
+| **docker push** | daemon | | Getting occasional "repository does not exit" errors. |
+| **docker rm** | container | -f | Error: A system shutdown is in progress. |
+
+If anything that isn't on this list fails, if a command fails differently than expected, or if you find a work around, let us know via [the forums](https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers).
+
+
+### Pasting commands to interactive Docker session is limited to 50 characters
+If you copy a command line into an interactive Docker session, it is currently limited to 50 characters. The pasted string is simply truncated.
+
+This is not by design, we're working on lifting the restriction.
+
+### net use returns System error 1223 instead of prompting for username or password
+Workaround: specify both, the username and password, when running net use. For example:
+```
+net use S: \\your\sources\here /User:shareuser [yourpassword]
+``` 
+
+### HCS Shim errors when creating new container images
+If you encounter error messages like this:
+```
+hcsshim::ExportLayer - Win32 API call returned error r1=2147942523 err=The filename, directory name, or volume label syntax is incorrect. layerId=606a2c430fccd1091b9ad2f930bae009956856cf4e6c66062b188aac48aa2e34 flavour=1 folder=C:\ProgramData\docker\windowsfilter\606a2c430fccd1091b9ad2f930bae009956856cf4e6c66062b188aac48aa2e34-1868857733
+```
+
+You're hitting an issue addressed by the Zero Day Patch for Windows Server 2016 TP3. This error can also occur when running the Python-3.4.3.msi installer or node-v0.12.7.msi in a container.
+
+If you hit other hcsshim errors, let us know via [the forums](https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers).
+
+
+## Accessing windows server container with Remote Desktop 
 Windows Server Containers can be managed/interacted with through a RDP session.
 
 The following steps are needed to remotely connect to a Windows Server Container using RDP. It is assumed that the Container is connected to the network via a NAT switch. This is the default when setting up a Container host through the installation script or creating a new VM in Azure.
@@ -320,79 +278,6 @@ Please specify `administrator` as the user name and the password that you chose 
 The Remote Desktop Connection will ask you whether you want connect to the system despite certificate errors. If you select "Yes", the RDP connection will be opened.  
 
 **Note:** Exiting the container RDP session without logoff may prevent the container from shutting down. Please make sure to exit the RDP session by typing "logoff" (instead of "exit" or just closing the RDP window) before shutting the container down.
-
-
---------------------------
-
-
-## Docker management
-
-### Docker clients unsecured by default
-In this pre-release, docker communication is public if you know where to look.
-
-### Docker commands that don't work with Windows Server Containers
-
-Commands known to fail:
-
-| **Docker command** | **Where it runs** | **Error** | **Notes** |
-|:-----|:-----|:-----|:-----|
-| **docker commit** | image | Docker stops running container and doesn’t show correct error message | Committing a stopped container works. For running containers: We're working on it :) |
-| **docker diff** | daemon | Error: The windows graphdriver does not support Changes() | |
-| **docker kill** | container | Error: Invalid signal: KILL  Error: failed to kill containers:[] | |
-| **docker load** | image | Fails silently | No error but the image isn't loading either |
-| **docker pause** | container | Error: Windows container cannot be paused.  May be not supported | |
-| **docker port** | container |  | No port is getting listed even we are able to RDP.
-| **docker pull** | daemon | Error: System cannot find the file path. We cant run container using this image. | Image is getting added can't be used.  We're working on it :) |
-| **docker restart** | container | Error: A system shutdown is in progress. |  |
-| **docker unpause** | container |  | Can't test because pause doesn't work yet. |
-
-If anything that isn't on this list fails (or if a command fails differently than expected), let us know via [the forums](https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers).
-
-
-
-### Docker commands that partially work with Windows Server Containers
-
-Commands with partial functionality:
-
-| **Docker command** | **Runs on...** | **Parameter** | **Notes** |
-|:-----|:-----|:-----|:-----|
-| **docker attach** | container | --no-stdin=false | The command doesn't exit when Ctrl-P and CTRL-Q is pressed |
-| | | --sig-proxy=true | works |
-| **docker build** | images | -f, --file | Error: Unable to prepare context: Unable to get synlinks |
-| | | --force-rm=false | works |
-| | | --no-cache=false | works |
-| | | -q, --quiet=false | |
-| | | --rm=true | works|
-| | | -t, --tag="" | works |
-| **docker login** | daemon | -e, -p, -u | sporratic behavior | 
-| **docker push** | daemon | | Getting occasional "repository does not exit" errors. |
-| **docker rm** | container | -f | Error: A system shutdown is in progress. |
-
-If anything that isn't on this list fails, if a command fails differently than expected, or if you find a work around, let us know via [the forums](https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers).
-
-
-### Pasting commands to interactive Docker session is limited to 50 characters
-If you copy a command line into an interactive Docker session, it is currently limited to 50 characters. The pasted string is simply truncated.
-
-This is not by design, we're working on lifting the restriction.
-
-### net use returns System error 1223 instead of prompting for username or password
-Workaround: specify both, the username and password, when running net use. For example:
-```
-net use S: \\your\sources\here /User:shareuser [yourpassword]
-``` 
-
-
-### HCS Shim errors when creating new container images
-If you encounter error messages like this:
-```
-hcsshim::ExportLayer - Win32 API call returned error r1=2147942523 err=The filename, directory name, or volume label syntax is incorrect. layerId=606a2c430fccd1091b9ad2f930bae009956856cf4e6c66062b188aac48aa2e34 flavour=1 folder=C:\ProgramData\docker\windowsfilter\606a2c430fccd1091b9ad2f930bae009956856cf4e6c66062b188aac48aa2e34-1868857733
-```
-
-You're hitting an issue addressed by the Zero Day Patch for Windows Server 2016 TP3. This error can also occur when running the Python-3.4.3.msi installer or node-v0.12.7.msi in a container.
-
-If you hit other hcsshim errors, let us know via [the forums](https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers).
-
 
 --------------------------
 
