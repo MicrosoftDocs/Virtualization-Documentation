@@ -5,7 +5,7 @@ title: Managing integration services
 Welcome to the in-depth reference for everything integration service related.
 
 ## Integration services and what they do
-Integration services (often called integration components) are services that allow virtual machines to communicate with the Hyper-V host.  
+Integration services (often called integration components) are services that allow the virtual machine to communicate with the Hyper-V host.  
 Some of the tasks integration services provide include:
 * Time synchronization
 * Operating system shutdown
@@ -44,6 +44,15 @@ IC Version is deprecated in Windows 10 and Server 16.
 ### Time synchronization
 ### Operating system shutdown
 ### Data exchange (KVP)
+The Data Exchange integration service (often called KVP) allows basic data sharing between the Hyper-V host and virtual machine using the Windows registry.
+
+The data shared can be seen in:
+```
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Virtual Machine\Guest\Parameters
+```
+
+> The data exchange integration service does not expose data between any two virtual machines. It is limited to the host and virtual machine.
+
 ### Backup (Volume Shadow Copy)
 ### Heartbeat 
 ### Guest Services
