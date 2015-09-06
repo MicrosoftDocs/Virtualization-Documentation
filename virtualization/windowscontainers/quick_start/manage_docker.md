@@ -112,7 +112,7 @@ CONTAINER ID        IMAGE               COMMAND        CREATED             STATU
 
 An image can now be made from this container. This image will behave like a snapshot of the container and can be re-deployed many times.
 
-To create a new image run the following. This command instructs the Docker engine to create a new image named 'newcontainerimage' that will include all changes made to the 'deckerdemo' container.
+To create a new image run the following. This command instructs the Docker engine to create a new image named 'newcontainerimage' that will include all changes made to the 'dockerdemo' container.
 
 ``` PowerShell
 docker commit dockerdemo newcontainerimage
