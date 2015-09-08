@@ -452,7 +452,7 @@ switch ($result)
         $vmscriptpath = "C:\IgniteListener.ps1"
         $sitepath = "C:\IgniteSite"
 
-        $username = "Administrator"
+        $username = "Administrator
         $pass = ConvertTo-SecureString -AsPlainText "P@ssw0rd" -Force
 
         $adminCred = new-object -TypeName System.Management.Automation.PSCredential `

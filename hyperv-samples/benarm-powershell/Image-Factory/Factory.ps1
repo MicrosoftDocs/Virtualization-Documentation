@@ -454,11 +454,69 @@ $postSysprepScriptBlock = {
      }
 
 # This is the main function of this script
-function RunTheFactory
+function Start-ImageFactory
 {
+	<#
+			.SYNOPSIS
+			Creates or updates a windows image with the latest windows updates.
+
+            .DESCRIPTION
+            This function creates fully updated VHD images for deployment as virtual machines.
+
+            The first time it is called for a particular windows type, it creates a fresh install in a Hyper-V virtual machine,
+            updates it, and saves a sysprepped image. The unsysprepped VHD is kept so future runs only need to install new updates.
+
+            Much of the configuration is done in FactoryVariables.ps1, which must be edited to suit your environment.
+
+			.PARAMETER FriendlyName
+			Used as the file name for the image.
+
+            .PARAMETER ISOFile
+            The ISO or WIM file to use as the base of the windows image.
+
+            .PARAMETER SKUEdition
+            The name of index number of the edition to use from the ISO/WIM file.  
+            eg. "Professional" or "ServerDataCenter"
+
+            .PARAMETER ProductKey
+            The product key to use for the unattended installation.
+
+            .PARAMETER Desktop
+            Set to $true for desktop windows versions. Creates a regular user account, which is required by the desktop unattended installation.
+
+            .PARAMETER Is32Bit
+            Set to $true for 32 bit images to create the unattend file correctly.
+
+            .PARAMETER Generation2
+            Create a generation 2 virtual machine.  Default is generation 1
+
+            .PARAMETER GenericSysprep
+            Run the final sysprep without specifying a /unattend file.  This is required by some deployment tools like SCVMM which will run their own sysprep when deploying.
+
+            .NOTES
+            This script requires two additional downloads:
+            PSWindowsUpdate from https://gallery.technet.microsoft.com/scriptcenter/2d191bcd-3308-4edd-9de2-88dff796b0bc
+
+            Convert-WindowsImage.ps1 from https://gallery.technet.microsoft.com/scriptcenter/Convert-WindowsImageps1-0fe23a8f
+
+			.LINK
+            https://github.com/BenjaminArmstrong/Hyper-V-PowerShell
+
+            .EXAMPLE
+            Start-ImageFactory -FriendlyName "Windows Server 2012 R2 DataCenter with GUI" -ISOFile c:\path\to\isos\server2012r2.iso -ProductKey "W3GGN-FT8W3-Y4M27-J84CP-Q3VJ9" -SKUEdition "ServerDataCenter"
+
+            .EXAMPLE
+            Start-ImageFactory -FriendlyName "Windows Server 2012 R2 DataCenter Core - Gen 2" -ISOFile c:\path\to\isos\server2012r2.iso -ProductKey "W3GGN-FT8W3-Y4M27-J84CP-Q3VJ9" -SKUEdition "ServerDataCenterCore" -Generation2
+
+            .EXAMPLE
+            Start-ImageFactory -FriendlyName "Windows 8.1 Professional - 32 bit" -ISOFile c:\path\to\isos\windows81.iso -ProductKey "GCRJD-8NW9H-F2CDX-CCM8D-9D6T9" -SKUEdition "Professional" -desktop $true -is32bit $true
+
+	#>
+
+
     param
     (
-        [string]$FriendlyName,
+        [Parameter(Mandatory=$true)][string]$FriendlyName,
         [string]$ISOFile,
         [string]$ProductKey,
         [string]$SKUEdition,
@@ -699,20 +757,30 @@ function RunTheFactory
     }
 }
 
-RunTheFactory -FriendlyName "Windows Server 2012 R2 DataCenter with GUI" -ISOFile $2012R2Image -ProductKey $Windows2012R2Key -SKUEdition "ServerDataCenter";
-RunTheFactory -FriendlyName "Windows Server 2012 R2 DataCenter Core" -ISOFile $2012R2Image -ProductKey $Windows2012R2Key -SKUEdition "ServerDataCenterCore";
-RunTheFactory -FriendlyName "Windows Server 2012 R2 DataCenter with GUI - Gen 2" -ISOFile $2012R2Image -ProductKey $Windows2012R2Key -SKUEdition "ServerDataCenter" -Generation2;
-RunTheFactory -FriendlyName "Windows Server 2012 R2 DataCenter Core - Gen 2" -ISOFile $2012R2Image -ProductKey $Windows2012R2Key -SKUEdition "ServerDataCenterCore" -Generation2;
-RunTheFactory -FriendlyName "Windows Server 2012 DataCenter with GUI" -ISOFile $2012Image -ProductKey $Windows2012Key -SKUEdition "ServerDataCenter";
-RunTheFactory -FriendlyName "Windows Server 2012 DataCenter Core" -ISOFile $2012Image -ProductKey $Windows2012Key -SKUEdition "ServerDataCenterCore";
-RunTheFactory -FriendlyName "Windows Server 2012 DataCenter with GUI - Gen 2" -ISOFile $2012Image -ProductKey $Windows2012Key -SKUEdition "ServerDataCenter" -Generation2;
-RunTheFactory -FriendlyName "Windows Server 2012 DataCenter Core - Gen 2" -ISOFile $2012Image -ProductKey $Windows2012Key -SKUEdition "ServerDataCenterCore" -Generation2;
-RunTheFactory -FriendlyName "Windows 8.1 Professional" -ISOFile $81x64Image -ProductKey $Windows81Key -SKUEdition "Professional" -desktop $true;
-RunTheFactory -FriendlyName "Windows 8.1 Professional - Gen 2" -ISOFile $81x64Image -ProductKey $Windows81Key -SKUEdition "Professional" -Generation2  -desktop $true;
-RunTheFactory -FriendlyName "Windows 8.1 Professional - 32 bit" -ISOFile $81x86Image -ProductKey $Windows81Key -SKUEdition "Professional" -desktop $true -is32bit $true;
-RunTheFactory -FriendlyName "Windows 8 Professional" -ISOFile $8x64Image -ProductKey $Windows8Key -SKUEdition "Professional" -desktop $true;
-RunTheFactory -FriendlyName "Windows 8 Professional - Gen 2" -ISOFile $8x64Image -ProductKey $Windows8Key -SKUEdition "Professional" -Generation2 -desktop $true;
-RunTheFactory -FriendlyName "Windows 8 Professional - 32 bit" -ISOFile $8x86Image -ProductKey $Windows8Key -SKUEdition "Professional" -desktop $true -is32bit $true;
-RunTheFactory -FriendlyName "Windows 10 Professional" -ISOFile $10x64Image -ProductKey $Windows10Key -SKUEdition "Professional" -desktop $true;
-RunTheFactory -FriendlyName "Windows 10 Professional - Gen 2" -ISOFile $10x64Image -ProductKey $Windows10Key -SKUEdition "Professional" -Generation2 -desktop $true;
-RunTheFactory -FriendlyName "Windows 10 Professional - 32 bit" -ISOFile $10x86Image -ProductKey $Windows10Key -SKUEdition "Professional" -desktop $true -is32bit $true;
+if($startfactory) {
+
+    Start-ImageFactory -FriendlyName "Windows Server 2012 R2 DataCenter with GUI" -ISOFile $2012R2Image -ProductKey $Windows2012R2Key -SKUEdition "ServerDataCenter";
+    Start-ImageFactory -FriendlyName "Windows Server 2012 R2 DataCenter Core" -ISOFile $2012R2Image -ProductKey $Windows2012R2Key -SKUEdition "ServerDataCenterCore";
+    Start-ImageFactory -FriendlyName "Windows Server 2012 R2 DataCenter with GUI - Gen 2" -ISOFile $2012R2Image -ProductKey $Windows2012R2Key -SKUEdition "ServerDataCenter" -Generation2;
+    Start-ImageFactory -FriendlyName "Windows Server 2012 R2 DataCenter Core - Gen 2" -ISOFile $2012R2Image -ProductKey $Windows2012R2Key -SKUEdition "ServerDataCenterCore" -Generation2;
+    Start-ImageFactory -FriendlyName "Windows Server 2012 DataCenter with GUI" -ISOFile $2012Image -ProductKey $Windows2012Key -SKUEdition "ServerDataCenter";
+    Start-ImageFactory -FriendlyName "Windows Server 2012 DataCenter Core" -ISOFile $2012Image -ProductKey $Windows2012Key -SKUEdition "ServerDataCenterCore";
+    Start-ImageFactory -FriendlyName "Windows Server 2012 DataCenter with GUI - Gen 2" -ISOFile $2012Image -ProductKey $Windows2012Key -SKUEdition "ServerDataCenter" -Generation2;
+    Start-ImageFactory -FriendlyName "Windows Server 2012 DataCenter Core - Gen 2" -ISOFile $2012Image -ProductKey $Windows2012Key -SKUEdition "ServerDataCenterCore" -Generation2;
+    Start-ImageFactory -FriendlyName "Windows 8.1 Professional" -ISOFile $81x64Image -ProductKey $Windows81Key -SKUEdition "Professional" -desktop $true;
+    Start-ImageFactory -FriendlyName "Windows 8.1 Professional - Gen 2" -ISOFile $81x64Image -ProductKey $Windows81Key -SKUEdition "Professional" -Generation2  -desktop $true;
+    Start-ImageFactory -FriendlyName "Windows 8.1 Professional - 32 bit" -ISOFile $81x86Image -ProductKey $Windows81Key -SKUEdition "Professional" -desktop $true -is32bit $true;
+    Start-ImageFactory -FriendlyName "Windows 8 Professional" -ISOFile $8x64Image -ProductKey $Windows8Key -SKUEdition "Professional" -desktop $true;
+    Start-ImageFactory -FriendlyName "Windows 8 Professional - Gen 2" -ISOFile $8x64Image -ProductKey $Windows8Key -SKUEdition "Professional" -Generation2 -desktop $true;
+    Start-ImageFactory -FriendlyName "Windows 8 Professional - 32 bit" -ISOFile $8x86Image -ProductKey $Windows8Key -SKUEdition "Professional" -desktop $true -is32bit $true;
+    Start-ImageFactory -FriendlyName "Windows 10 Professional" -ISOFile $10x64Image -ProductKey $Windows10Key -SKUEdition "Professional" -desktop $true;
+    Start-ImageFactory -FriendlyName "Windows 10 Professional - Gen 2" -ISOFile $10x64Image -ProductKey $Windows10Key -SKUEdition "Professional" -Generation2 -desktop $true;
+    Start-ImageFactory -FriendlyName "Windows 10 Professional - 32 bit" -ISOFile $10x86Image -ProductKey $Windows10Key -SKUEdition "Professional" -desktop $true -is32bit $true;
+
+} else {
+    If($myinvocation.InvocationName -eq '.') {
+        Write-Host 'Start-ImageFactory is ready to use'
+    } else {
+        Write-Host 'Image Factory is set to be dot sourced.  If you want to run this script directly, changed $startfactory to $true in FactoryVariables.ps1'
+    }
+}
