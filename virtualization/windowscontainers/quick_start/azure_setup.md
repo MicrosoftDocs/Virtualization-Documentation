@@ -5,7 +5,10 @@ title: Setup Windows Containers in Azure
 
 Before creating and managing Windows Server Containers in Azure you will need to deploy a Windows Server 2016 Technical Preview image which has been pre-configured with the Windows Server Containers feature. This guide will walk you through this process.
 
-To run Windows Server Containers in a Hyper-V virtual machine instead, follow [these instructions](./container_setup.md).
+> Other getting started guides:
+  * Run Windows Server Containers in [a new Hyper-V virtual machine](./container_setup.md).
+  * Run Windows Server Containers in [an existing virtual machine](./inplace_setup.md)
+  * Setup Windows Server Containers [on a physical Windows Server Core installation](./inplace_setup.md)
 
 ## Start Using Azure Portal
 If you have an Azure account, skip straight to [Create a Container Host VM](#CreateacontainerhostVM).
@@ -44,12 +47,17 @@ Log into the VM using the username and password specified during the VM creation
 
 ![](media/newazure7.png) 
 
+## Video Walkthrough
+
+<iframe src="https://channel9.msdn.com/Blogs/containers/Quick-Start-Configure-Windows-Server-Containers-in-Microsoft-Azure/player" width="800" height="450"  allowFullScreen="true" frameBorder="0" scrolling="no"></iframe>
+
+
 ## Next Steps - Start Using Containers
 
 Now that you have a Windows Server 2016 system running the Windows Server Container feature jump to the following guides to begin working with Windows Server Containers and Windows Server Container images. 
 
-[Quick Start: Windows Server Containers and PowerShell](./manage_powershell.md)  
-[Quick Start: Windows Server Containers and Docker](./manage_docker.md)
+[Quick Start: Windows Server Containers and Docker](./manage_docker.md)  
+[Quick Start: Windows Server Containers and PowerShell](./manage_powershell.md) 
 
 -------------------
 [Back to Container Home](../containers_welcome.md)  

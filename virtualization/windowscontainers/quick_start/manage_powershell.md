@@ -7,7 +7,7 @@ This article will walk through the fundamentals of managing Windows Server Conta
 
 Have questions? Ask them on the [Windows Containers forum](https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers).
 
-> **Note:** Windows Server Containers created with PowerShell can not currently be managed with Docker and visa versa. To create containers with Docker instead, see [Quick Start: Windows Server Containers and Docker](./manage_docker.md).
+> **Note:** Windows Server Containers created with PowerShell can not currently be managed with Docker and visa versa. To create containers with Docker instead, see [Quick Start: Windows Server Containers and Docker](./manage_docker.md). <br /><br /> If you want to know more, [read the FAQ](../about/faq.md#WhydoIhavetopickbetweenDockerandPowerShellforWindowsServerContainermanagement).
 
 ## Prerequisites
 In order to complete this walkthrough the following items need to be in place.
@@ -388,6 +388,22 @@ wget -uri 'https://raw.githubusercontent.com/Microsoft/Virtualization-Documentat
 After the website has been updated, navigate back to `http://containerhost-ipaddress`.
 
 ![](media/hello.png)
+
+## Video Walkthrough
+
+<iframe src="https://channel9.msdn.com/Blogs/containers/Quick-Start-Deploying-and-Managing-Windows-Server-Containers-with-PowerShell/player" width="800" height="450"  allowFullScreen="true" frameBorder="0" scrolling="no"></iframe>
+
+
+## Next Steps
+Now that you have containers set up and an introduction to the tools, go build your own containerized apps.
+
+Here is a more complete [PowerShell reference](../reference/powershell_overview.md).
+
+Remember, this is a **preview** there are bugs and we have a lot of work in progress.  [This page](../about/work_in_progress.md) contains many of our known issues.
+
+We are also monitoring the [forums](https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers) very closely.
+
+There are also pre-made samples on [GitHub](https://github.com/Microsoft/Virtualization-Documentation/tree/master/windows-server-container-samples).
 
 -----------------------------------
 [Back to Container Home](../containers_welcome.md)   

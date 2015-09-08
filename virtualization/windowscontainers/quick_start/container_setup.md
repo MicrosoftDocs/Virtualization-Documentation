@@ -5,7 +5,10 @@ title: Setup Windows Containers in a local VM
 
 In order to create and manage Windows Server Containers, the Windows Server 2016 Technical Preview environment must be prepared. This guide will walk through configuring Windows Server Containers in a Hyper-V Virtual Machine.
 
-To run Windows Server Containers in Azure instead, follow [these instructions](./azure_setup.md).
+> Other getting started guides:
+  * Run Windows Server Containers in [Azure](./azure_setup.md).
+  * Run Windows Server Containers in [an existing virtual machine](./inplace_setup.md).
+  * Setup Windows Server Containers [on a physical Windows Server Core installation](./inplace_setup.md).
 
   **PLEASE READ PRIOR TO INSTALLING THE CONTAINER OS IMAGE:**  The license terms of the Microsoft Windows Server Pre-Release software (“License Terms”) apply to your use of the Microsoft Windows Container OS Image supplement (the “supplemental software).  By downloading and using the supplemental software, you agree to the License Terms, and you may not use it if you have not accepted the License Terms. Both the Windows Server Pre-Release software and the supplemental software are licensed by Microsoft Corporation.  
 
@@ -28,7 +31,7 @@ start-process powershell -Verb runAs
 Use the following command to download the configuration script. The script can also be manually downloaded from this location - [Configuration Script](http://aka.ms/newcontainerhost).
  
 ``` PowerShell
-wget -uri http://aka.ms/newcontainerhost -OutFile New-ContainerHost.ps1
+wget -uri https://aka.ms/newcontainerhost -OutFile New-ContainerHost.ps1
 ```
    
 Run the following command to create and configure the container host where `<containerhost>` will be the virtual machine name and `<password>` will be the password assigned to the Administrator account.
@@ -67,12 +70,18 @@ When the configuration script has completed, start the virtual machine. The VM i
   
 Finally log into the virtual machine using the password specified during the configuration process and make sure that the Virtual Machine has a valid IP address. With these items completed your system should be ready for Windows Server Containers. 
 
+## Video Walkthrough
+
+<iframe src="https://channel9.msdn.com/Blogs/containers/Quick-Start-Configure-Windows-Server-Containers-on-a-Local-System/player" width="800" height="450" allowFullScreen="true" frameBorder="0" scrolling="no"></iframe>
+
+
 ## Next Steps - Start Using Containers
 
 Now that you have a Windows Server 2016 system running the Windows Server Container feature jump to the following guides to begin working with Windows Server Containers and Windows Server Container images. 
-
-[Quick Start: Windows Server Containers and PowerShell](./manage_powershell.md)  
+ 
 [Quick Start: Windows Server Containers and Docker](./manage_docker.md) 
+
+[Quick Start: Windows Server Containers and PowerShell](./manage_powershell.md) 
 
 -------------------
 
