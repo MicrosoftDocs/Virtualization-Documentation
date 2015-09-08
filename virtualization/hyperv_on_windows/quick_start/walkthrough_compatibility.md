@@ -3,7 +3,7 @@ title: Step 1: Make sure your machine is compatible
 
 # Step 1: Make sure your machine can run Hyper-V
 
-Only Windows 10 Pro and Windows 10 Enterprise support Hyper-V.
+Only Windows 10 Pro, Windows 10 Enterprise, and Windows 10 Education support Hyper-V.
 
 > If you're running Windows 10 Home -- you can upgrade to Win 10 Pro in the Activation page located in the security settings.  The "Go to store" link will take you to a page for upgrading.
 
