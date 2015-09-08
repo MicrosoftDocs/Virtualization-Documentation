@@ -4,7 +4,7 @@ title: Step 1: Make sure your machine is compatible
 # Step 1: Make sure your machine can run Hyper-V
 - Only the Pro, Enterprise and Education editions of Windows 10 can host Hyper-V virtual machines. Hyper-V is not available in the Home, Mobile or Mobile Enterprise eiditons.
 
-> **Tip**: If you're running Windows 10 Home, you can upgrade to Win 10 Pro by right-clicking the **Start** button and then clicking **Settings > Update and Security > Activation**.  **Click on The Go to store** link will take you to a page for [urchasing an upgrade.
+> **Tip**: If you're running Windows 10 Home, you can upgrade to Win 10 Pro by right-clicking the **Start** button and then clicking **Settings > Update and Security > Activation**.  **Click on The Go to store** link will take you to a page for purchasing an upgrade.
 
 - Hyper-V requires at least 4 GB of RAM but you might need more if you want to run multiple virtual machines at the same time.
 
