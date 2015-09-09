@@ -145,6 +145,7 @@ Commands known to fail:
 | **docker port** | container |  | No port is getting listed even we are able to RDP.
 | **docker pull** | daemon | Error: System cannot find the file path. We cant run container using this image. | Image is getting added can't be used.  We're working on it :) |
 | **docker restart** | container | Error: A system shutdown is in progress. |  |
+| **docker stat** | daemon | Fails silently | No error, functionality not yet implemented  |
 | **docker unpause** | container |  | Can't test because pause doesn't work yet. |
 
 If anything that isn't on this list fails (or if a command fails differently than expected), let us know via [the forums](https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers).
