@@ -7,8 +7,7 @@ This article will walk through the fundamentals of managing windows Server Conta
 
 Have questions? Ask them on the [Windows Containers forum](https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers).
 
-> **Note:** Windows Containers created with PowerShell can not currently be managed with Docker and visa versa. To create containers with PowerShell, see  [Quick Start: Windows Server Containers and PowerShell](./manage_powershell.md).  
-  If you want to know more, [read the FAQ](../about/faq.md#WhydoIhavetopickbetweenDockerandPowerShellforWindowsServerContainermanagement).
+> **Note:** Windows Containers created with PowerShell can not currently be managed with Docker and visa versa. To create containers with PowerShell, see  [Quick Start: Windows Server Containers and PowerShell](./manage_powershell.md). <br /><br /> If you want to know more, [read the FAQ](../about/faq.md#WhydoIhavetopickbetweenDockerandPowerShellforWindowsServerContainermanagement).
 
 ## Prerequisites
 In order to complete this walkthrough the following items need to be in place.
@@ -113,7 +112,7 @@ CONTAINER ID        IMAGE               COMMAND        CREATED             STATU
 
 An image can now be made from this container. This image will behave like a snapshot of the container and can be re-deployed many times.
 
-To create a new image run the following. This command instructs the Docker engine to create a new image named 'newcontainerimage' that will include all changes made to the 'deckerdemo' container.
+To create a new image run the following. This command instructs the Docker engine to create a new image named 'newcontainerimage' that will include all changes made to the 'dockerdemo' container.
 
 ``` PowerShell
 docker commit dockerdemo newcontainerimage

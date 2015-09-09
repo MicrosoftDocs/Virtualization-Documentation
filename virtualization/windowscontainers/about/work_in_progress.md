@@ -36,8 +36,16 @@ At this point in time there is no way to selectively map folders into a containe
 **Work Around: **  
 We're working on it.  In the future there will be folder sharing.
 
+<<<<<<< HEAD
 ### Default firewall behavior
 In a container host and containers environment, you only have the container host's firewall. All the firewall rules configured in the container host will propagate to all of its containers.
+=======
+
+### Windows Server Containers are starting very slowly
+If your container is taking more than 30 seconds to start, it may be performing many duplicate virus scans.
+
+Many anti-malware solutions, such as Windows Defender, maybe unnecessarily scanning files with-in container images including all of the OS binaries and files in the container OS image.  This occurs when ever a new container is created and from the anti-malware’s perspective all of the “container’s files” look like new files that have not previously been scanned.  So when processes inside the container attempt to read these files the anti-malware components first scan them before allowing access to the files.  In reality these files were already scanned when the container image was imported or pulled to the server. In future previews new infrastructure will be in place such that anti-malware solutions, including Windows Defender, will be aware of these situations and can act accordingly to avoid multiple scans. 
+>>>>>>> origin/release
 
 --------------------------
 

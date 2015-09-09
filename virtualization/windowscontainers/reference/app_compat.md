@@ -3,12 +3,15 @@ title: Running Apps in Windows Containers
 
 # Application Compatability in Windows Server Containers
 
+Is something not on this list?  Let us know what fails and succeeds in your environment via [the forums](https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers).
+
 ## Which applications run in a Windows Server Container
 
 We have tried to running the following applications in a Windows Server Container.  These results do not guarantee that the application is working.  The sole purpose is to share our experience.
 
 | **Name** | **Version** | **Does it work?** | **Comment** |
 |:-----|:-----|:-----|:-----|
+| .NET | 3.5 | No | Fails to install properly | 
 | .NET | 4.6 | Yes | Included in base image | 
 | .NET CLR | 5 beta 6 | Yes | Both, x64 and x86 | 
 | Active Python | 3.4.1 | Yes | |
@@ -24,7 +27,7 @@ We have tried to running the following applications in a Windows Server Containe
 | Internet Information Service | 10.0 | Yes | |
 | Java | 1.8.0_51 | Yes | Use the server version. The client version does not install properly |
 | Jetty | 9.3 | Partially | Running demo-base fails |
-| MineCraft Server | 1.8.5 | Yes | 
+| MineCraft Server | 1.8.5 | Yes | |
 | MongoDB | 3.0.4 | Yes | |
 | MySQL | 5.6.26 | Yes | |
 | NGinx | 1.9.3 | Yes | |
@@ -36,9 +39,9 @@ We have tried to running the following applications in a Windows Server Containe
 | RabbitMQ | 3.5.x | Yes | Has to be installed through an RDP session  into the container |
 | Redis | 2.8.2101 | Yes | |
 | Ruby | 2.2.2 | Yes | Both, x64 and x86 | 
-| Ruby on Rails | 4.2.3 | |
+| Ruby on Rails | 4.2.3 | Yes | |
 | SQLite | 3.8.11.1 | Yes | |
-| SQL Server Express | 2014 LocalDB | Yes | |
+| SQL Server Express | 2014 LocalDB | No |  |
 | Sysinternals Tools | * | Yes | Only tried those not requiring a GUI. PsExec does not work by current design | 
 
 ## What Optional Windows Features can I install?
