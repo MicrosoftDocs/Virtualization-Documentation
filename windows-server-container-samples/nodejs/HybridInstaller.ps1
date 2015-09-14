@@ -1,21 +1,28 @@
 ﻿Param (
-	[Parameter(ParameterSetName='ContainerNative')]
-	[Switch]$RunNative,
+    [Parameter(ParameterSetName='ContainerNative')]
+    [Switch]$RunNative,
     [Parameter(ParameterSetName='ContainerPowerShell')]
     [Switch]$CreateContainerImageUsingPowerShell,
     [Parameter(ParameterSetName='ContainerPowerShell')]
-    [string]$InternetVirtualSwitchName = "Virtual Switch"
+    [string]$InternetVirtualSwitchName = "Virtual Switch",
+    [String]
+    $LocalSourceRoot
 )
 
 $containerImageName = "NodeJSBase"
 $containerImagePublisher = $env:Username
-$containerImageVersion = 0.12.7
+$containerImageVersion = "4.0.0"
 
 $containerScript = {
+    Param(
+        [String]
+        $LocalSourceRoot
+    )
     $tempdir = Join-Path -Path $env:temp -ChildPath "$(Get-Date -format 'yyyyMMddhhmmss')"
-    $sourceuri = "https://nodejs.org/dist/v0.12.7/x64/node-v0.12.7-x64.msi"
-    $installer = Join-Path -Path $tempdir -ChildPath (Split-Path $sourceuri -Leaf)
-	$log = Join-Path -Path $env:SystemDrive -ChildPath "log\$(Split-Path $sourceuri -Leaf).log"
+    $sourceuri = "https://nodejs.org/dist/v4.0.0/node-v4.0.0-x64.msi"
+    $installer = Split-Path $sourceuri -Leaf
+    $installerpath = Join-Path -Path $tempdir -ChildPath $installer
+	$log = Join-Path -Path $env:SystemDrive -ChildPath "log\$($installer).log"
 
     If (-not (Test-Path $tempdir))
     {
@@ -29,8 +36,14 @@ $containerScript = {
     While (((Get-NetIPAddress | ? AddressFamily -eq IPv4 | ? IPAddress -ne 127.0.0.1).SuffixOrigin -ne "Manual") -and ((Get-NetIPAddress | ? AddressFamily -eq IPv4 | ? IPAddress -ne 127.0.0.1).SuffixOrigin -ne "Dhcp")) {Sleep -Milliseconds 10}
 
     # download sources
+    If ($LocalSourceRoot)
+    {
+	$sourceuri = "$($LocalSourceRoot.Trim("/"))/$installer" 
+    }
+
     Write-Output "[container] Downloading sources from $sourceuri"
-    Invoke-WebRequest -Uri $sourceuri -OutFile $installer
+    Invoke-WebRequest -Uri $sourceuri -OutFile $installer -UseBasicParsing
+    
 
     # run installer
     Write-Output "[container] Running installer: msiexec /i $installer /qn /l*v $log"
@@ -52,10 +65,15 @@ $containerScript = {
 If ($RunNative)
 {
     Write-Output "Running natively (or inside a Container) - simply executing the script block"
-    Invoke-Command -ScriptBlock $containerScript
+    Invoke-Command -ScriptBlock $containerScript -ArgumentList @($LocalSourceRoot, $ShareCredential)
 }
 ElseIf ($CreateContainerImageUsingPowerShell)
 {
+      If (Get-ContainerImage -Name $containerImageName -Version $containerImageVersion)
+      {
+        Throw "Container Image $containerImageName (version $containerImageVersion) already exists."
+      }
+
       Write-Output "Creating new Container using PowerShell"
       $c1 = New-Container "$containerImageName BuildContainer" -ContainerImageName "WindowsServerCore" -Switch $internetVirtualSwitchName
 
@@ -63,7 +81,7 @@ ElseIf ($CreateContainerImageUsingPowerShell)
       Start-Container $c1
 
       Write-Output "Running Script Block inside Container"
-      Invoke-Command -ContainerId $c1.Id -RunAsAdministrator -ScriptBlock $containerScript
+      Invoke-Command -ContainerId $c1.Id -RunAsAdministrator -ScriptBlock $containerScript -ArgumentList @($LocalSourceRoot, $ShareCredential)
 
       Write-Output "Stopping $($c1.Name)"
       Stop-Container $c1
