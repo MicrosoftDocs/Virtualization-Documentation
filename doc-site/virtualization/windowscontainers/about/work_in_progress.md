@@ -36,6 +36,8 @@ At this point in time there is no way to selectively map folders into a containe
 **Work Around: **  
 We're working on it.  In the future there will be folder sharing.
 
+### Default firewall behavior
+In a container host and containers environment, you only have the container host's firewall. All the firewall rules configured in the container host will propagate to all of its containers.
 
 ### Windows Server Containers are starting very slowly
 If your container is taking more than 30 seconds to start, it may be performing many duplicate virus scans.
@@ -135,15 +137,15 @@ Commands known to fail:
 
 | **Docker command** | **Where it runs** | **Error** | **Notes** |
 |:-----|:-----|:-----|:-----|
-| **docker commit** | image | Docker stops running container and doesn’t show correct error message | Committing a stopped container works. For running containers: We're working on it :) |
-| **docker diff** | daemon | Error: The windows graphdriver does not support Changes() | |
+| **docker commit** | image | Docker stops running container and doesn’t show correct error message | Committing a stopped container works. Running containers cannot be committed to an image. |
+| **docker diff** | daemon | Error: The windows graphdriver does not support Changes() | Docker diff will not be supported by the Windows Docker daemon. |
 | **docker kill** | container | Error: Invalid signal: KILL  Error: failed to kill containers:[] | |
 | **docker load** | image | Fails silently | No error but the image isn't loading either |
-| **docker pause** | container | Error: Windows container cannot be paused.  May be not supported | |
+| **docker pause** | container | Error: Windows container cannot be paused.| By design. |
 | **docker port** | container |  | No port is getting listed even we are able to RDP.
-| **docker pull** | daemon | Error: System cannot find the file path. We cant run container using this image. | Image is getting added can't be used.  We're working on it :) |
 | **docker restart** | container | Error: A system shutdown is in progress. |  |
-| **docker unpause** | container |  | Can't test because pause doesn't work yet. |
+| **docker stat** | daemon | Fails silently | No error, functionality not yet implemented  |
+| **docker unpause** | container |  | By design. |
 
 If anything that isn't on this list fails (or if a command fails differently than expected), let us know via [the forums](https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers).
 
