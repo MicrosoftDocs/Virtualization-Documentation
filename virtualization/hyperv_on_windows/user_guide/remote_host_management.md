@@ -31,7 +31,7 @@ Hyper-V Manager in Windows 8 and Windows Server 2012 allow you to manage:
 
 Hyper-V became available on Windows in Windows 8.  Prior to Windows 8.1/Server 2012, Hyper-V manager only managed matched versions of Hyper-V.
 
-> **Note:** Not all Hyper-V Manager functionality works for all host versions.
+> **Note:** Hyper-V Manager functionality matches the functionality available for version you're managing.  In other words, If you're managing a remote Server 2012 host from Server 2012R2, the new Hyper-V Manager tools from 2012R2 won't be available.
 
 ## Manage localhost ##
 To add localhost to Hyper-V Manager as a Hyper-V host, select **Local computer** in the **Select Computer** dialogue box.
@@ -39,18 +39,16 @@ To add localhost to Hyper-V Manager as a Hyper-V host, select **Local computer**
 ![](media/HyperVManager-ConnectToLocalHost.png)
 
 If a connection can't be established:
-*  Make sure the Hyper-V server role is enabled.  See the [walkthrough section for checking compatability](../quick_start/walkthrough_compatibility.md).
+*  Make sure the Hyper-V Platform role is enabled.  
+  See the [walkthrough section for checking compatability](../quick_start/walkthrough_compatibility.md) to see if Hyper-V is supported.
 *  Confirm that your user account is part of the Hyper-V Administrator group.
 
 
-## Manage a Hyper-V host in your domain ##
+## Manage another Hyper-V host in the same domain ##
 
 To add a remote Hyper-V host to Hyper-V Manager, select **Another computer** in the **Select Computer** dialogue box and enter the remote host's hostname, NetBIOS, or FQDN into the text field.
 
 ![](media/HyperVManager-ConnectToRemoteHost.png)
-
-Windows 10 greatly expanded the possible combinations of remote connection types.  
-Now you can connect to a remote Windows 10 or later host using either the host name or IP address.  Hyper-V Manager now supports alternate credentials as well.  
 
 In order to manage remote Hyper-V hosts, remote management must be enabled on both computers.
 
@@ -63,6 +61,10 @@ winrm quickconfig
 If your current user account matches a Hyper-V Administrator account on the remote host, go ahead and press **OK** to Connect.  
 
 This is the only supported way to manage a remote host in Hyper-V Manager in Windows 8 or Windows 8.1.
+
+
+Windows 10 greatly expanded the possible combinations of remote connection types.  
+Now you can connect to a remote Windows 10 or later host using either the host name or IP address.  Hyper-V Manager now supports alternate credentials as well.  
 
 
 ### Connect to the remote host as a different user
