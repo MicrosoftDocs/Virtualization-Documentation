@@ -3,21 +3,33 @@ title: Managing remote Hyper-V hosts
 
 # Manage Remote Hyper-V Hosts with Hyper-V Manager #
 
-Hyper-V Manager provides tools for diagnosing and managing your local Hyper-V host and a small number of remote hosts.  This article documents the configuration steps for connecting to Hyper-V hosts using Hyper-V Manager in all supported configurations.
+Hyper-V Manager is an in-box tool for diagnosing and managing your local Hyper-V host and a small number of remote hosts.  This article documents the configuration steps for connecting to Hyper-V hosts using Hyper-V Manager in all supported configurations.
+
+> Hyper-V Manager is avaliable through **Programs and Features** as **Hyper-V Managememt Tools** on any Windows OS with Hyper-V included.  Hyper-V Platform does not need to be enabled in order to manage remote hosts.
 
 To connect to a Hyper-V host in Hyper-V Manager, make sure **Hyper-V Manager** is selected in the left hand pane and then select **Connect to Server...** in the right-hand pane.
 
 ![](media/HyperVManager-ConnectToHost.png)
 
 ## Supported Hyper-V host combinations with Hyper-V Manager
-Hyper-V Manager in Windows 10 allows you to manage:
+Hyper-V Manager in Windows 10 allows you to manage the following Hyper-V hosts:
 * Windows 10
-* Windows 8.1 and Windows Server 2012 R2 Hyper-V hosts
-* Windows 8 and Windows 2012 Hyper-V hosts
+* Windows 8.1
+* Windows 8
+* Windows Server 2012 R2 + Windows Server Core, Datacenter, and Hyper-V Server
+* Windows 2012 + Windows Server Core, Datacenter, and Hyper-V Server
 
-Hyper-V Manager in Windows 8.1 and Windows Server 2012 R2 allows you to manage:
-* Windows 8.1 and Windows Server 2012 R2 Hyper-V hosts
-* Windows 8 and Windows 2012 Hyper-V hosts
+Hyper-V Manager in Windows 8.1 and Windows Server 2012 R2 allow you to manage:
+* Windows 8.1
+* Windows 8
+* Windows Server 2012 R2 + Windows Server Core, Datacenter, and Hyper-V Server
+* Windows 2012 + Windows Server Core, Datacenter, and Hyper-V Server
+
+Hyper-V Manager in Windows 8 and Windows Server 2012 allow you to manage:
+* Windows 8
+* Windows 2012 + Windows Server Core, Datacenter, and Hyper-V Server
+
+Hyper-V became available on Windows in Windows 8.  Prior to Windows 8.1/Server 2012, Hyper-V manager only managed matched versions of Hyper-V.
 
 > **Note:** Not all Hyper-V Manager functionality works for all host versions.
 
