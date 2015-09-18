@@ -50,7 +50,7 @@ To add a remote Hyper-V host to Hyper-V Manager, select **Another computer** in 
 
 ![](media/HyperVManager-ConnectToRemoteHost.png)
 
-In order to manage remote Hyper-V hosts, remote management must be enabled on both computers.
+In order to manage remote Hyper-V hosts, remote management must be enabled on both the local computer and remote host.
 
 You can do this through `System Properties -> Remote Management Settings` or by running the following PowerShell command as Administrator:  
 
@@ -60,29 +60,34 @@ winrm quickconfig
 
 If your current user account matches a Hyper-V Administrator account on the remote host, go ahead and press **OK** to Connect.  
 
-This is the only supported way to manage a remote host in Hyper-V Manager in Windows 8 or Windows 8.1.
+> This is the only supported way to manage a remote host in Hyper-V Manager in Windows 8 or Windows 8.1.
 
 
 Windows 10 greatly expanded the possible combinations of remote connection types.  
-Now you can connect to a remote Windows 10 or later host using either the host name or IP address.  Hyper-V Manager now supports alternate credentials as well.  
+Now you can connect to a remote Windows 10 or later host using either the host name or IP address.  Hyper-V Manager now supports alternate user credentials as well.  
 
 
 ### Connect to the remote host as a different user
+> This is only available when connecting to a Windows 10 or Server 2016 Technical Preview 3 or later remote host
+
 In Windows 10, if you are not running with the correct user account for the remote host, you can connect as another user with alternate credentials.
 
 To specify credentials for the remote Hyper-V host, select **Connect as another user: ** in the **Select Computer** dialogue box then select **Set User...**.
 
 ![](media/HyperVManager-ConnectToRemoteHostAltCreds.png)
 
-> Note:  It's very easy to forget to set the user and click OK with user not specified.  If your connection fails, make sure you actually did set the user.
 
 ### Connect to the remote host using IP address
+> This is only available when connecting to a Windows 10 or Server 2016 Technical Preview 3 or later remote host
+
 Sometimes it's easier to connect using IP address rather than host name.  Windows 10 allows your to do just that.
 
 To connect using IP address, enter the IP address into the **Another Computer** text field.
 
 
 ## Manage a Hyper-V host outside your domain (or with no domain) ##
+> This is only available when connecting to a Windows 10 or Server 2016 Technical Preview 3 or later remote host
+
 <!--Assuming this isn't done yet...again needs context.-->
 Local Hyper-V Host:
 1.	Enable-PSRemoting
