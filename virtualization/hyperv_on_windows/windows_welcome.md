@@ -4,26 +4,27 @@ title: Hyper-V on Windows 10
 
 # Hyper-V on Windows 10 
 
-Hyper-V lets you run more than one 32-bit or 64-bit x86 operating system at the same time on the same computer. Instead of running directly on the computer’s hardware, the operating systems run inside of a virtual machine (VM).
+Many versions of Windows 10 include the Hyper-V virtualization technology. Hyper-V enables running virtualized computer systems on top of a physical host. These virtualized systems can be used and managed just as if they were physical computer systems, however they exist in virtualized and isolated environment. Special software called a hypervisor manages access between the virtual systems and the physical hardware resources. Virtualization enables quick deployment of computer systems, a way to quickly restore systems to a previously known good state, and the ability to migrate systems between physical hosts.
 
+Hyper-V on Windows 10 enables many scenarios such as deploying computers system for testing, simulation or development activities. Some common examples of where Hyper-V would be useful on top of a client laptop or workstation are:
+- Lab deployment for training and simulation – Hyper-V on Windows 10 allows you to deploy Windows Server or Linux operating systems to simulate datacenter deployments and operations.
+- Isolated development platforms – Application development is made easier in enabling you to host webserver and other application infrastructure in a virtual machine for development and testing purposes.
+- Break Fix Testing – with a virtualized system you can test computer configurations and revert to a known good state once completed.
 
-Hyper-V in Windows is sometimes referred to as Client Hyper-V.
+>Note - Hyper-V for Windows Server documentation can be found here - [Hyper-V on Windows Server 2012 R2](https://technet.microsoft.com/en-us/library/hh831531.aspx), [Hyper-V on Windows Server 2016 Technical Preview](https://technet.microsoft.com/en-us/library/mt126117.aspx) .
+
+The following documents detail the Hyper-V feature in Windows 10, provide a guided quick start and also container links to further resources and community forums. 
 
 <table border="1" style="background-color:FFFFCC;border-collapse:collapse;border:1px solid FFCC00;color:000000;width:100%" cellpadding="15" cellspacing="3">
-	<tr valign="top">
-		<td><center>![](./media/whats_new.png)</center></td>
-		<td valign="top">
-		<p><strong>What's new in Hyper-V?</strong></p>
-		<p>Read [What's New](./about/whats_new.md) to learn about new and changed features for Hyper-V in Windows 10.</p></td>
-	</tr>
 	<tr valign="top">
 		<td><center>![](./media/MeetsRequirements_65.png)</center></td>
 		<td valign="top">
 			<p><strong>About Hyper-V on Windows</strong></p>
 			<p>The following articles provide an introduction to and information about Hyper-V on Windows.</p>
 			<ul>
-				<li class="unordered"> Learn more about virtualization with this [introduction to Hyper-V](./about/hyperv_on_windows.md).<br /><br /></li>
-				<li class="unordered">[Supported guest operating systems](about\supported_guest_os.md)<br /><br /></li>
+				<li class="unordered">[Introduction to Hyper-V](./about/hyperv_on_windows.md)<br /><br /></li>
+				<li class="unordered">[What’s New in Hyper-V for Windows 10](./about/whats_new.md)<br /><br /></li>
+				<li class="unordered">[Supported Guest Operating Systems](about\supported_guest_os.md)<br /><br /></li>
 			</ul>	
 		</td>
 	</tr>
@@ -31,8 +32,13 @@ Hyper-V in Windows is sometimes referred to as Client Hyper-V.
 		<td><center>![](./media/All_ContentTypeIcons_VisualWalkthrough_65.png)</center></td>
 		<td valign="top">
 			<p><strong>Get started with Hyper-V</strong></p>
-			<p>To try out Hyper-V, follow this [walkthrough](./quick_start/walkthrough.md).</p>
-			<p>It will walk you through enabling Hyper-V, creating a virtual machine, and simple management through Hyper-V Manager and PowerShell.</p>
+			<p>The following guided walkthrough will help you quickly learn how to deploy Hyper-V and Virtual Machines on Windows 10, and how to use many of the Hyper-V features.
+			<ul>
+				<li class="unordered">[Windows 10 Hyper-V Quick Start](./quick_start/walkthrough.md)<br /><br /></li>
+			</ul>
+				
+				<p>Here are links to some of the individual quick start topics.</p>
+				
 			<ul>
 				<li class="unordered">[Check system requirements](quick_start\walkthrough_compatibility.md)<br /><br /></li>
                 <li class="unordered">[Install Hyper-V](quick_start\walkthrough_install.md)<br /><br /></li>
@@ -47,24 +53,11 @@ Hyper-V in Windows is sometimes referred to as Client Hyper-V.
 		<td><center>![](./media/Chat_65.png)</center></td>
 		<td valign="top">
 			<p><strong>Connect with Community and Support</strong></p>
-			<p>Additional technical support and community resources</p>
+			<p>Additional technical support and community resources.</p>
 			<ul>
-				<li class="unordered"> Have questions? Ask them on the [Hyper-V forums](https://social.technet.microsoft.com/Forums/windowsserver/en-US/home?forum=winserverhyperv)<br /><br /></li>
+				<li class="unordered">[Hyper-V forums](https://social.technet.microsoft.com/Forums/windowsserver/en-US/home?forum=winserverhyperv)<br /><br /></li>
 				<li class="unordered">[Community Resources for Hyper-V and Windows Containers](..\community\community_overview.md)<br /><br /></li>
 			</ul>	
 		</td>
 	</tr>
 </table>
-
-
-
-**Important:** You must license the software running on each of the guest virtual machines according to their operating system requirements.
-
-
-Here are a few links to other versions of Hyper-V:
-*  [Hyper-V on Windows Server 2016 Technical Preview](https://technet.microsoft.com/en-us/library/mt126117.aspx)
-*  [Hyper-V on Windows Server 2012 R2](https://technet.microsoft.com/en-us/library/hh831531.aspx)
-*  [Microsoft Hyper-V Server](https://technet.microsoft.com/library/hh923062.aspx)
-
-
-
