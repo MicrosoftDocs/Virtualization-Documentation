@@ -1,35 +1,35 @@
 ms.ContentId: C2593EA1-B182-4C71-8504-49691F619158
 title: Step 1: Make sure your machine is compatible
 
-# Step 1: Make sure your machine can run Hyper-V
-- Only the Pro, Enterprise and Education editions of Windows 10 can host Hyper-V virtual machines. Hyper-V is not available in the Home, Mobile or Mobile Enterprise eiditons.
+## Operating System Compatibility
 
-> **Tip**: If you're running Windows 10 Home, you can upgrade to Win 10 Pro by right-clicking the **Start** button and then clicking **Settings > Update and Security > Activation**.  **Click on The Go to store** link will take you to a page for purchasing an upgrade.
+The Hyper-V role can only be installed on the Pro, Enterprise and Education editions of Windows 10. If you are using the Home, Mobile or Mobile Enterprise edition of Windows 10, the Hyper-V role cannot be used.
+Windows 10 Home edition can be upgraded to Windows 10 Professional. To do so open up settings > Update and Security > Activation. Here you can visit the store and purchase an upgrade.
 
-- Hyper-V requires at least 4 GB of RAM but you might need more if you want to run multiple virtual machines at the same time.
+## Hardware Compatibility
 
-- Starting in Windows 10, Hyper-V requires a 64-bit processor with Second Level Address Translation (SLAT).
-
-## Verify hardware compatability
-
-To verify compatability, open PowerShell or a Windows command prompt (cmd.exe) and type: `systeminfo.exe`.  This will give you information about your computer.
-
-All of the items under **Hyper-V Requirements** must have the value if **Yes**.
-
-![](media\systeminfo.png)
-
-Relevant sections:
-*  `OS Name` -- Must be Windows 8 or higher and either Profession or Enterprise.
-*  `Hyper-V Requirements` -- all of these must be true (value of "Yes") but some can be configured in BIOS.
-	*  `VM Monitor Mode Extensions` -- Property of the hardware.  Hyper-V can not run on this machine.
-	*  `Virtualization Enabled in Firmware` -- Can be enabled in BIOS
-	*  `Second Level Address Translation` -- Property of the hardware.  Hyper-V can not run on this machine.
-	*  `Data Execution Prevention Available` -- Can be enabled in BIOS
+While this document will not provide a complete list of Hyper-V compatible hardware the following items are necessary:
 	
-If Hyper-V is already enabled, the Hyper-V Requirements section will read:  
-```
-Hyper-V Requirements: A hypervisor has been detected. Features required for Hyper-V will not be displayed.
-```
+- 64-bit Processor with Second Level Address Translation (SLAT).
+- VM Monitor Mode Extension must be present.
+- Minimum of 4 GB memory, however because virtual machines will share this memory with the Hyper-V host, you will want to provide enough memory to handle the expected virtual workload.
 
+The following items will need to be enabled in the system bios:
+- Virtualization 
+- Data Execution Prevention
+
+## Verify Hardware Compatibility
+
+To verify compatibly, open up PowerShell or a command prompt (cmd.exe) and type `systeminfo.exe`. This will return information about Hyper-V compatibility.
+If all listed item have a value of ‘Yes’ your system can host the Hyper-V role. If any item returns ‘No’, check the requirements listed in this document and make adjustments where possible.
+
+![](media/SystemInfo_upd.png)
+
+## Existing Hyper-V Host
+
+If you run systeminfo.exe on an existing Hyper-V host, the Hyper-V Requirements section will read:
+
+```Hyper-V Requirements: A hypervisor has been detected. Features required for Hyper-V will not be displayed.```
+ 
 ## Next Step: 
 [Step 2: Install Hyper-V](walkthrough_install.md)
