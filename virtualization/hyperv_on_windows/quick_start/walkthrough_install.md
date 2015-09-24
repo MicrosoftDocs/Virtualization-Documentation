@@ -22,9 +22,8 @@ When the installation has completed you will be prompted to restart your compute
 - Open a PowerShell console as Administrator.
 - Enter the following command:
 
-```powershell
-Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V –All
-```
+```Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V –All```
+
 When the installation has completed you will need to reboot the computer.
 
 ## Enable Hyper-V with DISM.

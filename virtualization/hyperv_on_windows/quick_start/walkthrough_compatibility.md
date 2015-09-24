@@ -21,7 +21,7 @@ The following items will need to be enabled in the system bios:
 ## Verify Hardware Compatibility
 
 To verify compatibly, open up PowerShell or a command prompt (cmd.exe) and type `systeminfo.exe`. This will return information about Hyper-V compatibility.
-If all listed item have a value of ‘Yes’ your system can host the Hyper-V role. If any item returns ‘No’, check the requirements listed in this document and make adjustments where possible.
+If all listed item have a value of ‘Yes’ your system can run the Hyper-V role. If any item returns ‘No’, check the requirements listed in this document and make adjustments where possible.
 
 ![](media/SystemInfo_upd.png)
 
