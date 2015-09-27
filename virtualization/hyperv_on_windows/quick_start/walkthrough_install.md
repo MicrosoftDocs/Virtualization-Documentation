@@ -7,11 +7,12 @@ Before you can begin using virtual machines on Windows 10 you will need to enabl
 
 ## Enable Hyper-V Through the GUI
 
-- Right click on the Windows button and select ‘Programs and Features’.
-- Select ‘Turn Windows Features on or off’.
-- Select ‘Hyper-V’ and click ‘OK’.
+1. Right click on the Windows button and select ‘Programs and Features’.
 
-![](media/enable_role_upd.png)
+2. Select ‘Turn Windows Features on or off’.
+
+3. Select ‘Hyper-V’ and click ‘OK’.  
+<br />![](media/enable_role_upd.png)
 
 When the installation has completed you will be prompted to restart your computer.
 
@@ -19,8 +20,9 @@ When the installation has completed you will be prompted to restart your compute
 
 ## Enable Hyper-V with PowerShell
 
-- Open a PowerShell console as Administrator.
-- Enter the following command:
+1. Open a PowerShell console as Administrator.
+
+2. Enter the following command:
 
 ```Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V –All```
 
@@ -32,8 +34,9 @@ The Deployment Image Servicing and Management tool or DISM is used to service Wi
 
 To enable the Hyper-V role using DISM:
 
-- Open up a PowerShell or CMD session as Administrator.
-- Type the following command:
+1. Open up a PowerShell or CMD session as Administrator.
+
+2. Type the following command:
 
 ```DISM /Online /Enable-Feature /All /FeatureName:Microsoft-Hyper-V```
 

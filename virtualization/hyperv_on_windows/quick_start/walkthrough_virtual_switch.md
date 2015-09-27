@@ -3,35 +3,70 @@ title: Step 3: Create a virtual switch
 
 # Step 3: Create a virtual switch 
 
-A virtual switch allows you to create a network connection for your virtual machine.  They are used just like the network adapter (NIC) on your physical computer.  
+Before creating a virtual machine in Hyper-V you will need to provide a way for this virtual machine to connect to a physical network. Hyper-V includes software based networking technology that allows a virtual machines network card to connect to a virtual switch, providing network connectivity. Each virtual switch created in Hyper-V can be configured with one of three connection types:
 
-For this example, we are going to create an External switch.  The external switch will allow your virtual machine to access the host machine's network adapter.  If your host machine is connected to the internet, your virtual machine will be as well. 
- 
-We'll also set the switch to allow the host to share this network adapter. This makes it so both the virtual machines and the host can use the same network.
+- External Network – the virtual switch is connected to a physical network adapted which provides connectivity between the physical network, the Hyper-V host, and the virtual machine. In this configuration you can also enable or disable the hosts ability to communicate over the physically connected network card. This can be useful to isolate only VM traffic to a particular physical network card.
+- Internal Network – the virtual switch is not connected to a physical network adapter, however network connectivity exists between virtual machines and Hyper-V host.
+- Private Network – the virtual switch is not connected to a physical network adapter and connectivity does not exist between virtual machines and Hyper-V host.
 
-<!-- We should have a userguide for setting up a private network/virtual network -->
+This walkthrough will detail working with an external network.
 
-1. In Hyper-V manager, click **Virtual Switch Manager**.
+##Manually Create a Virtual Switch
 
-  ![](media/virtual_switch_manager1.png)
-  
-2. Select **New virtual network switch**.
+This exercise will walk through creating a virtual switch with full network connectivity using the Hyper-V management tools. When completed your Hyper-V host will contain a virtual switch that can be used to connect virtual machines to a physical network. 
 
-  ![](media/new_switch.png)
-  
-3. Select **External** and **Create Virtual Switch**.
+1. Open up Hyper-V Manager.
 
-  ![](media/new_switch_createbutton.png)
-  
-4. Under **Name**, type **External**.
-5. Under **External network**, select the correct network adapter (there will probably only be one option).  
-6. Select **Allow management operating system to share this network adapter** and click **OK**. 
-  
-  ![](media/share_nic.png)  
-  
-7. You'll get a message warning you that your network might disconnect while the virtual switch is created. Just click **Yes**.  Your network will be unavailable for a short time.
-  
-  ![](media/network_warning.png)
+2. Right Click on the name of the Hyper-V host and select ‘Virtual Switch Manager’.
+
+3. Under ‘Virtual Switches’ select ‘new virtual network switch’.
+
+4. Under ‘Create virtual switch’ select ‘External’.
+5. Select the ‘Create Virtual Switch’ button.
+
+6. Under ‘Virtual Switch Properties’ give the new switch a name such as ‘External VM Switch’.
+
+7. Under ‘Connection Type’ ensure that ‘External Network’ has been selected.
+
+8. Select the physical network card that will be paired with the new virtual switch, this will be the network card that is physically connected to the network.  
+<br />![](media/newSwitch_upd.png)
+
+9. Select ‘Apply’ to create the virtual switch. At this point you will most likely see the following message, click ‘Yes’ to continue.  
+<br />![](media/pen_changes_upd.png)
+
+10. Select ‘OK’ to close the Virtual Switch Manager Window.
+
+## Create a Virtual Switch with PowerShell
+
+The following steps can be used to create a virtual switch with an external connection using PowerShell. 
+
+1. Use `Get-NetAdapter` to return a list of network adapters connected to the Windows 10 system.  
+
+	```
+	PS C:\> Get-NetAdapter
+
+	Name                      InterfaceDescription                    ifIndex Status       MacAddress             LinkSpeed
+	----                      --------------------                    ------- ------       ----------             ---------
+	Ethernet 2                Broadcom NetXtreme 57xx Gigabit Cont...       5 Up           BC-30-5B-A8-C1-7F         1 Gbps
+	Ethernet                  Intel(R) PRO/100 M Desktop Adapter            3 Up           00-0E-0C-A8-DC-31        10 Mbps  
+	```
+
+2. Select the network adapter to use with the Hyper-V switch and place an instance in a variable named `$NetAdapter`.
+
+	```
+	$net = Get-NetAdapter -Name 'Ethernet'
+	```
+
+3.	Execute the following command to create the new Hyper-V virtual switch.
+
+	```
+	New-VMSwitch -Name "External VM Switch" -AllowManagementOS $True -NetAdapterName $net.Name
+	```
+
+## Notes on Virtual Switches and Laptops:
+
+If running Windows 10 Hyper-V on a laptop you may want to consider creating a virtual switch for both the Ethernet and wireless network card. With this configuration you can change your virtual machines between theses switches dependent on the laptop is network connected. Virtual machines will not automatically switch between wired and wireless.
+
 
 ## Next step: 
 [Step 4: Create a Windows virtual machine from an .iso file](walkthrough_create_vm.md)
