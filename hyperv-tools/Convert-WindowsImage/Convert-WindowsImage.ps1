@@ -291,6 +291,7 @@ Convert-WindowsImage
     # Create the parameters for the various types of debugging.
     DynamicParam 
     {
+        Set-StrictMode -version 3
 
         # Set up the dynamic parameters.
         # Dynamic parameters are only available if certain conditions are met, so they'll only show up
@@ -299,7 +300,12 @@ Convert-WindowsImage
         # for EnableDebugger, different parameters will light up, as outlined below.
     
         $parameterDictionary = New-Object System.Management.Automation.RuntimeDefinedParameterDictionary
- 
+    
+        if (!(Test-Path Variable:Private:EnableDebugger))
+        {
+            return $parameterDictionary
+        }
+
         switch ($EnableDebugger) 
         {
        
@@ -561,17 +567,16 @@ Convert-WindowsImage
         # Version information that can be populated by timebuild.
         $ScriptVersion = DATA 
         {
-
-        ConvertFrom-StringData -StringData @"
-    Major     = 10
-    Minor     = 0
-    Build     = 9000
-    QFE       = 0
-    Branch    = fbl_core1_hyp_dev(mikekol)
-    Timestamp = 141224-3000
-    Flavor    = amd64fre
+            ConvertFrom-StringData -StringData @"
+Major     = 10
+Minor     = 0
+Build     = 10557
+Qfe       = 1000
+Branch    = th2_xenon_hyp(mebersol)
+Timestamp = 150829-1819
+Flavor    = amd64fre
 "@
-    }
+        }
 
         $myVersion              = "$($ScriptVersion.Major).$($ScriptVersion.Minor).$($ScriptVersion.Build).$($ScriptVersion.QFE).$($ScriptVersion.Flavor).$($ScriptVersion.Branch).$($ScriptVersion.Timestamp)"
         $scriptName             = "Convert-WindowsImage"                       # Name of the script, obviously.
@@ -589,13 +594,7 @@ Convert-WindowsImage
         ##########################################################################################
         #                                      Here Strings
         ##########################################################################################
-
-        # Text used for flag file embedded in VHD(X)
-        $flagText = @"
-This $VHDFormat was created by Convert-WindowsImage.ps1 $myVersion
-on $([DateTime]::Now).
-"@
-
+        
         # Banner text displayed during each run.
         $header    = @"
 
@@ -2358,10 +2357,18 @@ VirtualHardDisk
         ##########################################################################################
 
         function
-        Test-WindowsVersion 
+        Get-WindowsBuildNumber
         {
             $os = Get-WmiObject -Class Win32_OperatingSystem
-            $isWin8 = [int]($os.BuildNumber) -ge [int]$lowestSupportedBuild
+            return [int]($os.BuildNumber)
+        }
+
+        ##########################################################################################
+
+        function
+        Test-WindowsVersion 
+        {
+            $isWin8 = ((Get-WindowsBuildNumber) -ge [int]$lowestSupportedBuild)
 
             Write-W2VTrace "is Windows 8 or Higher? $isWin8"
             return $isWin8
@@ -3395,7 +3402,7 @@ VirtualHardDisk
             Write-W2VInfo "Looking for the requested Windows image in the WIM file"  
             $WindowsImage = Get-WindowsImage -ImagePath $SourcePath
   
-            if ($WindowsImage.Count -ne 1)  
+            if (-not $WindowsImage -or ($WindowsImage -is [System.Array]))
             {  
                 #
                 # WIM may have multiple images.  Filter on Edition (can be index or name) and try to find a unique image
@@ -3409,12 +3416,12 @@ VirtualHardDisk
                     $WindowsImage = Get-WindowsImage -ImagePath $SourcePath | Where-Object {$_.ImageName -ilike "*$($Edition)"}              
                 }        
             
-                if ($WindowsImage.Count -ne 1)  
+                if (-not $WindowsImage -or ($WindowsImage -is [System.Array]))
                 { 
                     Write-W2VInfo "WIM file has the following $($WindowsImage.Count) images that match filter *$($Edition)"  
                     Get-WindowsImage -ImagePath $SourcePath  
   
-                    if ($WindowsImage.Count -eq 0)  
+                    if (-not $WindowsImage)
                     {  
                         throw "Requested windows Image was not found on the WIM file!!"  
                     }  
@@ -3509,18 +3516,40 @@ VirtualHardDisk
                 {
                     Write-W2VInfo "Initializing disk..."
                     Initialize-Disk -Number $disk.Number -PartitionStyle GPT
-             
-                    #
-                    # Create the system partition.  Create a data partition so we can format it, then change to ESP
-                    #
-                    Write-W2VInfo "Creating EFI system partition..."
-                    $systemPartition = New-Partition -DiskNumber $disk.Number -Size 200MB -GptType '{ebd0a0a2-b9e5-4433-87c0-68b6b72699c7}'
+                             
+                    if ((Get-WindowsBuildNumber) -ge 10240)
+                    {
+                        #
+                        # Create the system partition.  Create a data partition so we can format it, then change to ESP
+                        #
+                        Write-W2VInfo "Creating EFI system partition..."
+                        $systemPartition = New-Partition -DiskNumber $disk.Number -Size 200MB -GptType '{ebd0a0a2-b9e5-4433-87c0-68b6b72699c7}'
                 
-                    Write-W2VInfo "Formatting system volume..."
-                    $windowsVolume = Format-Volume -Partition $systemPartition -FileSystem FAT32 -Force -Confirm:$false
+                        Write-W2VInfo "Formatting system volume..."
+                        $systemVolume = Format-Volume -Partition $systemPartition -FileSystem FAT32 -Force -Confirm:$false
 
-                    Write-W2VInfo "Setting system partition as ESP..."
-                    $systemPartition | Set-Partition -GptType '{c12a7328-f81f-11d2-ba4b-00a0c93ec93b}'
+                        Write-W2VInfo "Setting system partition as ESP..."
+                        $systemPartition | Set-Partition -GptType '{c12a7328-f81f-11d2-ba4b-00a0c93ec93b}'
+                        $systemPartition | Add-PartitionAccessPath -AssignDriveLetter
+                    }
+                    else
+                    {
+                        #
+                        # Create the system partition 
+                        #
+                        Write-W2VInfo "Creating EFI system partition (ESP)..."
+                        $systemPartition = New-Partition -DiskNumber $disk.Number -Size 200MB -GptType '{c12a7328-f81f-11d2-ba4b-00a0c93ec93b}' -AssignDriveLetter
+                                
+                        Write-W2VInfo "Formatting ESP..."
+                        $formatArgs = @(
+                            "$($systemPartition.DriveLetter):", # Partition drive letter
+                            "/FS:FAT32",                        # File system
+                            "/Q",                               # Quick format
+                            "/Y"                                # Suppress prompt
+                            )
+
+                        Run-Executable -Executable format -Arguments $formatArgs
+                    }
                 
                     #
                     # Create the reserved partition 
@@ -3556,7 +3585,7 @@ VirtualHardDisk
                     # Create the Windows partition
                     #
                     Write-W2VInfo "Creating windows partition..."
-                    $windowsPartition = New-Partition -DiskNumber $disk.Number -Size $disk.LargestFreeExtent -MbrType IFS
+                    $windowsPartition = New-Partition -DiskNumber $disk.Number -UseMaximumSize -MbrType IFS
         
                     Write-W2VInfo "Formatting windows volume..."
                     $windowsVolume    = Format-Volume -Partition $windowsPartition -FileSystem NTFS -Force -Confirm:$false
@@ -3590,9 +3619,6 @@ VirtualHardDisk
                 Write-W2VInfo "Applying unattend file ($(Split-Path $UnattendPath -Leaf))..."
                 Copy-Item -Path $UnattendPath -Destination (Join-Path $windowsDrive "unattend.xml") -Force
             }
-
-            Write-W2VInfo "Signing disk..."
-            $flagText | Out-File -FilePath (Join-Path $windowsDrive "Convert-WindowsImageInfo.txt") -Encoding Unicode -Force
 
             if (($openImage.ImageArchitecture -ne "ARM") -and       # No virtualization platform for ARM images
                 ($openImage.ImageArchitecture -ne "ARM64") -and     # No virtualization platform for ARM64 images
