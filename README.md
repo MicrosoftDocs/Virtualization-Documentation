@@ -2,7 +2,7 @@
 Place to store our documentation, code samples, etc for public consumption and contributions.
 
 ## Contribute
-To contribute, fork the project and submit a pull request!
+To contribute, fork the project and submit a pull request!  Here's [our wishlist](./TODO.md).
 
 Digging into the repo structure a little:
 
