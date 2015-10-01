@@ -18,9 +18,11 @@ Some of the tasks integration services provide include:
 
 Many of these services are conviniences (such as guest services) while others can be quite important to the guest operating system's ability to fucntion correctly (time synchronization) -- the list above is loosely organized by importance on a fresh Hyper-V installation.
 
-Most of the coplexity in integration service management comes from spanning the boundary between Hyper-V host and the guest operating systems that run on it.  Some integration service management actions require Hyper-V Administrator permissions on the host, others require Administrator credentials in the guest. Integration services also have different availability and behavior depeding on both the guest and host operating systems.  They are the only item in the guest operating system that is aware of the host operating system; historically, they had to be matched to the host operating system.
+Most of the complexity in integration service management comes from spanning the boundary between Hyper-V host and the guest operating systems.  Some integration service management actions require Hyper-V Administrator permissions on the host, others require Administrator credentials in the guest.
 
-With all of this in mind, installing, updating, and enabling/disabling integration services can be difficult to understand.  This article aims to demystify the finer points of managing integration services on any supported Hyper-V environment.
+Integration services also have different availability and behavior depeding on both the guest and host operating systems.  They are the only item in the guest operating system that is aware of the host operating system; historically, they had to be matched to the host operating system.
+
+This article aims to demystify the finer points of managing integration services on any supported Hyper-V environment.
 
 
 ## Integration service management
@@ -33,7 +35,14 @@ With all of this in mind, installing, updating, and enabling/disabling integrati
 IC Version is deprecated in Windows 10 and Server 16.
 
 ### Manage integration services from the guest operating system
+
+> **Note** disabling integration services may severly affect the hosts ability to manage your virtual machine.
+
+Integration components appear as services in virtual machines running Windows.  To enable or disable an integration components from inside the virtual machine, open the Windows Services manager.
+
 ![](media/HVServices.png) 
+
+Find the services containing Hyper-V in the name.  Right click on the service you'd like to enable or disable and start or stop the service.
 
 ## Installing and updating integration services
 
