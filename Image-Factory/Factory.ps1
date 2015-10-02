@@ -279,7 +279,13 @@ function makeUnattendFile
     if ($desktop)
     {
         GetUnattendChunk "oobeSystem" "Microsoft-Windows-Shell-Setup" $unattend | %{$_.UserAccounts.LocalAccounts.LocalAccount.Password.Value = $userPassword};
-    }
+        # HideLocalAccountScreen setting applies only to the Windows Server editions, and only to Windows Server 2012 and above
+        # This will remove the setting for desktop images
+        $ns = New-Object System.Xml.XmlNamespaceManager($unattend.NameTable);
+        $ns.AddNamespace("ns", $unattend.DocumentElement.NamespaceURI);
+        $node = $unattend.SelectSingleNode("//ns:HideLocalAccountScreen", $ns);
+        $node.ParentNode.RemoveChild($node) | Out-Null;
+	}
     else
     {
         # Desktop needs a user other than "Administrator" to be present
@@ -288,6 +294,16 @@ function makeUnattendFile
         $ns.AddNamespace("ns", $unattend.DocumentElement.NamespaceURI);
         $node = $unattend.SelectSingleNode("//ns:LocalAccounts", $ns);
         $node.ParentNode.RemoveChild($node) | Out-Null;
+
+        if ($FriendlyName.substring(0,19) -eq "Windows Server 2008")
+        {
+            # HideLocalAccountScreen setting applies only to the Windows Server editions, and only to Windows Server 2012 and above
+            # This will remove the setting for Windows Server 2008 R2 images
+            $ns = New-Object System.Xml.XmlNamespaceManager($unattend.NameTable);
+            $ns.AddNamespace("ns", $unattend.DocumentElement.NamespaceURI);
+            $node = $unattend.SelectSingleNode("//ns:HideLocalAccountScreen", $ns);
+            $node.ParentNode.RemoveChild($node) | Out-Null;
+    	}
     }
      
     if ($is32bit) 
