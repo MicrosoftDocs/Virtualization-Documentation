@@ -1,5 +1,5 @@
 ms.ContentId: B9414110-BEFD-423F-9AD8-AFD5EE612CDA
-title: Step 8: Experiment with Windows PowerShell
+title: Step 7 - Experiment with Windows PowerShell
 
 # Step 8: Experiment with Windows PowerShell
 

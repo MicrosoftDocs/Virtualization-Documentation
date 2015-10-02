@@ -1,35 +1,52 @@
-ms.ContentId: C2593EA1-B182-4C71-8504-49691F619158
-title: Step 1: Make sure your machine is compatible
+﻿ms.ContentId: C2593EA1-B182-4C71-8504-49691F619158
+title: Step 1 - Operating System and Hardware Compatibility
+
+# Operating System and Hardware Compatibility
+
+Hyper-V on Windows 10 will only work under a specific set of Hardware and Operating System configurations. This document will briefly discuss the software and hardware requirements of Hyper-V as well walk you through determining compatibility of your system with Hyper-V. While this document will not detail every system configuration compatible with Hyper-V, in general the guidance here should help quickly determine if your current system is ready to host Hyper-V Virtual Machines.
 
 ## Operating System Compatibility
 
-The Hyper-V role can only be installed on the Pro, Enterprise and Education editions of Windows 10. If you are using the Home, Mobile or Mobile Enterprise edition of Windows 10, the Hyper-V role cannot be used.
-Windows 10 Home edition can be upgraded to Windows 10 Professional. To do so open up settings > Update and Security > Activation. Here you can visit the store and purchase an upgrade.
+The Hyper-V role can be enabled on these versions of Windows 10:
+
+- Windows 10 Enterprise
+- Windows 10 Professional
+- Windows 10 Education
+
+The Hyper-V role cannot be installed on:
+
+- Windows 10 Home
+- Windows 10 Mobile
+- Windows 10 Mobile Enterprise
+
+>Windows 10 Home edition can be upgraded to Windows 10 Professional. To do so open up **Settings** > **Update and Security** > **Activation**. Here you can visit the store and purchase an upgrade.
 
 ## Hardware Compatibility
 
-While this document will not provide a complete list of Hyper-V compatible hardware the following items are necessary:
+While this document will not provide a complete list of Hyper-V compatible hardware, the following items are necessary:
 	
 - 64-bit Processor with Second Level Address Translation (SLAT).
-- VM Monitor Mode Extension must be present.
-- Minimum of 4 GB memory, however because virtual machines will share this memory with the Hyper-V host, you will want to provide enough memory to handle the expected virtual workload.
+- CPU support for VM Monitor Mode Extension (VT-c on Intel CPU's).
+- Minimum of 4 GB memory, however because virtual machines will share memory with the Hyper-V host, you will want to provide enough memory to handle the expected virtual workload.
 
 The following items will need to be enabled in the system bios:
-- Virtualization 
-- Data Execution Prevention
+- Virtualization Technology - may have a different label depending on motherboard manufacturer.
+- Hardware Enforced Data Execution Prevention.
 
 ## Verify Hardware Compatibility
 
-To verify compatibly, open up PowerShell or a command prompt (cmd.exe) and type `systeminfo.exe`. This will return information about Hyper-V compatibility.
-If all listed item have a value of ‘Yes’ your system can run the Hyper-V role. If any item returns ‘No’, check the requirements listed in this document and make adjustments where possible.
+To verify compatibly, open up PowerShell or a command prompt (cmd.exe) and type **systeminfo.exe**. This will return information about Hyper-V compatibility.
+If all listed Hyper-V requirements have a value of **Yes**, your system can run the Hyper-V role. If any item returns **No**, check the requirements listed in this document and make adjustments where possible.
 
 ![](media/SystemInfo_upd.png)
 
 ## Existing Hyper-V Host
 
-If you run systeminfo.exe on an existing Hyper-V host, the Hyper-V Requirements section will read:
+If you run **systeminfo.exe** on an existing Hyper-V host, the Hyper-V Requirements section will read:
 
-```Hyper-V Requirements: A hypervisor has been detected. Features required for Hyper-V will not be displayed.```
- 
-## Next Step: 
-[Step 2: Install Hyper-V](walkthrough_install.md)
+```powershell
+Hyper-V Requirements: A hypervisor has been detected. Features required for Hyper-V will not be displayed.
+```
+
+## Next Step - Install Hyper-V
+[Next Step - Install Hyper-V](walkthrough_install.md)
