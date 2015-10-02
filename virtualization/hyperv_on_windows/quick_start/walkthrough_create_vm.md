@@ -75,7 +75,7 @@ In order to finish building your virtual machine, you need to start the VM and w
 
   ![](media/OSDeploy_upd.png) 
 
-> Note: Unless you're running a volume licensed version of Windows 10, you will need a seperate license for Windows running inside a virtual machine. The virtual machine's operating system is independent of the host operating system.
+> **Note:** Unless you're running a volume licensed version of Windows 10, you will need a seperate license for Windows running inside a virtual machine. The virtual machine's operating system is independent of the host operating system.
 
 ## Next Step - Virtual Machine Checkpoints
 [Virtual Machine Checkpoints](walkthrough_checkpoints.md)
