@@ -124,7 +124,7 @@ To set the stage for working with checkpoints and PowerShell do the following:
 3. Create a checkpoint using the **CheckPoint-VM** command. This command will create a checkpoint of the type configured for the VM. See the Configuring Checkpoint Type section earlier in this document for instructions on how to change this type.
 
 	```powershell
-	CheckPoint-VM –Name <VMName>
+	Checkpoint-VM –Name <VMName>
 	```
 4. When the checkpoint process has completed, delete the file from the virtual machine.
 
@@ -136,7 +136,7 @@ To set the stage for working with checkpoints and PowerShell do the following:
 6. To apply the checkpoint use the **Restore-VMSnapshot** command.
 
 	```powershell
-	Restore-VMCheckpoint -Name <checkpoint name> -VMName <VMName> -Confirm:$false
+	Restore-VMSnapshot -Name <checkpoint name> -VMName <VMName> -Confirm:$false
 	```
 
 ## Next Step
