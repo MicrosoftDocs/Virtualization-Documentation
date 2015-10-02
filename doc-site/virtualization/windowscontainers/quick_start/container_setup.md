@@ -31,7 +31,7 @@ start-process powershell -Verb runAs
 Use the following command to download the configuration script. The script can also be manually downloaded from this location - [Configuration Script](http://aka.ms/newcontainerhost).
  
 ``` PowerShell
-wget -uri http://aka.ms/newcontainerhost -OutFile New-ContainerHost.ps1
+wget -uri https://aka.ms/newcontainerhost -OutFile New-ContainerHost.ps1
 ```
    
 Run the following command to create and configure the container host where `<containerhost>` will be the virtual machine name and `<password>` will be the password assigned to the Administrator account.

@@ -39,9 +39,9 @@ We have tried to running the following applications in a Windows Server Containe
 | RabbitMQ | 3.5.x | Yes | Has to be installed through an RDP session  into the container |
 | Redis | 2.8.2101 | Yes | |
 | Ruby | 2.2.2 | Yes | Both, x64 and x86 | 
-| Ruby on Rails | 4.2.3 | |
+| Ruby on Rails | 4.2.3 | Yes | |
 | SQLite | 3.8.11.1 | Yes | |
-| SQL Server Express | 2014 LocalDB | Yes | |
+| SQL Server Express | 2014 LocalDB | No |  |
 | Sysinternals Tools | * | Yes | Only tried those not requiring a GUI. PsExec does not work by current design | 
 
 ## What Optional Windows Features can I install?

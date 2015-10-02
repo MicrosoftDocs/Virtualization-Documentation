@@ -35,7 +35,7 @@ start-process powershell -Verb runas
 Use the following command to download the setup script. The script can also be manually downloaded from this location - [Configuration Script](http://aka.ms/setupcontainers).
  
 ``` PowerShell
-wget -uri http://aka.ms/setupcontainers -OutFile C:\ContainerSetup.ps1
+wget -uri https://aka.ms/setupcontainers -OutFile C:\ContainerSetup.ps1
 ```
    
  After the download completes, execute the script.

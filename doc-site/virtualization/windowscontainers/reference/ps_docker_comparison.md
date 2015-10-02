@@ -155,7 +155,7 @@ A nicer way to discover the syntax is the PowerShell ISE, which you may not have
 PS: Just to prove it can be done, here's a PowerShell function that composes some of the cmdlets we've seen already into an ersatz `docker run`. (To be clear, this is a proof of concept, not under active development.)
 
 ``` PowerShell
-function Run-Container ([string]$ContainerImageName, [string]$Name="boring_wozniak", [switch]$Remove, [switch]$Interactive, [scriptblock]$Command) {
+function Run-Container ([string]$ContainerImageName, [string]$Name="fancy_name", [switch]$Remove, [switch]$Interactive, [scriptblock]$Command) {
     $image = Get-ContainerImage -Name $ContainerImageName
     $container = New-Container -Name $Name -ContainerImage $image
     Start-Container $container
@@ -175,8 +175,8 @@ function Run-Container ([string]$ContainerImageName, [string]$Name="boring_wozni
 ```
 
 ## Docker
-Windows Server Containers can be managed with Docker commands.  While Windows containers should be comprable to their Linux counterparts and have the same management experience through Docker, there are some Docker commands that simply don't make sense with a Windows container.  Others simply haven't been tested (we're getting there).
+Windows Server Containers can be managed with Docker commands.  While Windows containers should be comparable to their Linux counterparts and have the same management experience through Docker, there are some Docker commands that simply don't make sense with a Windows container.  Others simply haven't been tested (we're getting there).
 
-In an effort to not duplicate the API documentation acailable in Docker, here is a link to their management APIs.  Their walkthroughs are fantastic.
+In an effort to not duplicate the API documentation available in Docker, here is a link to their management APIs.  Their walkthroughs are fantastic.
 
 We're tracking things that do and don't work in the Docker APIs in our Work in Progress document.
