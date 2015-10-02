@@ -54,7 +54,7 @@ The following steps can be used to create a virtual switch with an external conn
 	Ethernet                  Intel(R) PRO/100 M Desktop Adapter            3 Up           00-0E-0C-A8-DC-31        10 Mbps  
 	```
 
-2. Select the network adapter to use with the Hyper-V switch and place an instance in a variable named **$NetAdapter**.
+2. Select the network adapter to use with the Hyper-V switch and place an instance in a variable named **$net**.
 
 	```
 	$net = Get-NetAdapter -Name 'Ethernet'
