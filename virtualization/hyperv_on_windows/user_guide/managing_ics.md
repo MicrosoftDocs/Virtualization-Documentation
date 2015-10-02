@@ -18,21 +18,16 @@ Some of the tasks integration services provide include:
 
 Many of these services are conviniences (such as guest services) while others can be quite important to the guest operating system's ability to fucntion correctly (time synchronization) -- the list above is loosely organized by importance on a fresh Hyper-V installation.
 
-Most of the complexity in integration service management comes from spanning the boundary between Hyper-V host and the guest operating systems.  Some integration service management actions require Hyper-V Administrator permissions on the host, others require Administrator credentials in the guest.
-
-Integration services also have different availability and behavior depeding on both the guest and host operating systems.  They are the only item in the guest operating system that is aware of the host operating system; historically, they had to be matched to the host operating system.
-
 This article aims to demystify the finer points of managing integration services on any supported Hyper-V environment.
 
 
 ## Integration service management
 
 ### Enable or disable integration services from the Hyper-V host
+Integration services were designed such that they need to be enabled in both the host and the guest in order to function.
 
-#### Managing integration services with Hyper-V Manager
+![](./media/HyperVManager-IntegrationServices.png)
 
-#### Managing integration services with PowerShell
-IC Version is deprecated in Windows 10 and Server 16.
 
 ### Manage integration services from the guest operating system
 
@@ -43,12 +38,20 @@ Integration components appear as services in virtual machines running Windows.  
 ![](media/HVServices.png) 
 
 Find the services containing Hyper-V in the name.  Right click on the service you'd like to enable or disable and start or stop the service.
+ 
+By default, all integration services are enabled in the guest operation system.
 
 ## Installing and updating integration services
+
+> IC Version is deprecated in Windows 10 and Server 16.
 
 ### Install integration components on offline virtual machines
 
 ## Service details
+
+| Service Name | Default State | Supported Guests | Introduced in | 
+|:----------|:---------------|:------------|:------------|
+| Operating system shutdown| jfndkng | kifjhndinf| orfjhndihng |
 
 ### Time synchronization
 ### Operating system shutdown
