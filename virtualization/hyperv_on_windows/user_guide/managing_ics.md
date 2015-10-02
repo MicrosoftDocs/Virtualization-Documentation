@@ -30,9 +30,16 @@ To enable or disable integration services using Hyper-V Manager, select a virtua
 
 ![](./media/HyperVManager-OpenVMSettings.png)
 
+From the virtual machine settings window, go to the Integration Services tab under Management.
+
 ![](./media/HyperVManager-IntegrationServices.png)
 
-Integration services were designed such that they need to be enabled in both the host and the guest in order to function.
+Here you can see all integration services available on this Hyper-V host.  It's worth noting that the guest operating system may or may not support all of the integration services listed.
+
+All integration services selected are enabled.
+
+Integration services were designed such that they need to be enabled in both the host and the guest in order to function.  While all integration services are enabled by default on Windows guest operating systems, they can be disabled.  See how in the next section.
+
 
 ### Manage integration services from the guest operating system
 
