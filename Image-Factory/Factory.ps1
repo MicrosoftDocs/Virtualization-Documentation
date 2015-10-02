@@ -560,6 +560,9 @@ function Start-ImageFactory
             .PARAMETER Desktop
             Set to $true for desktop windows versions. Creates a regular user account, which is required by the desktop unattended installation.
 
+            .PARAMETER LegacyVHD
+            Set to $true to use legacy VHD format, and $false for new VHDX format.
+
             .PARAMETER Is32Bit
             Set to $true for 32 bit images to create the unattend file correctly.
 
@@ -596,6 +599,7 @@ function Start-ImageFactory
         [string]$ISOFile,
         [string]$ProductKey,
         [string]$SKUEdition,
+        [bool]$LegacyVHD = $false,
         [bool]$desktop = $false,
         [bool]$is32bit = $false,
         [switch]$Generation2,
@@ -606,11 +610,18 @@ function Start-ImageFactory
 
     # Setup a bunch of variables 
     $sysprepNeeded = $true;
-    $baseVHD = "$($workingDir)\bases\$($FriendlyName)-base.vhdx";
-    $updateVHD = "$($workingDir)\$($FriendlyName)-update.vhdx";
-    $sysprepVHD = "$($workingDir)\$($FriendlyName)-sysprep.vhdx";
-    $finalVHD = "$($workingDir)\share\$($FriendlyName).vhdx";
-   
+
+    $VHDFormat = "vhdx";
+    if ($LegacyVHD)
+    {
+	    $VHDFormat = "vhd";
+	}
+	
+	$baseVHD = "$($workingDir)\bases\$($FriendlyName)-base.$($VHDFormat)";
+    $updateVHD = "$($workingDir)\$($FriendlyName)-update.$($VHDFormat)";
+    $sysprepVHD = "$($workingDir)\$($FriendlyName)-sysprep.$($VHDFormat)";
+    $finalVHD = "$($workingDir)\share\$($FriendlyName).$($VHDFormat)";
+	
     $VHDPartitionStyle = "MBR";
     $Gen = 1;
     if ($Generation2) 
@@ -654,7 +665,7 @@ function Start-ImageFactory
         logger $FriendlyName "Create base VHD using Convert-WindowsImage.ps1";
         $ConvertCommand = "Convert-WindowsImage";
         $ConvertCommand = $ConvertCommand + " -SourcePath `"$ISOFile`" -VHDPath `"$baseVHD`"";
-        $ConvertCommand = $ConvertCommand + " -SizeBytes 80GB -VHDFormat VHDX -UnattendPath `"$($workingDir)\unattend.xml`"";
+        $ConvertCommand = $ConvertCommand + " -SizeBytes 80GB -VHDFormat $VHDFormat -UnattendPath `"$($workingDir)\unattend.xml`"";
         $ConvertCommand = $ConvertCommand + " -Edition $SKUEdition -VHDPartitionStyle $VHDPartitionStyle";
 
         Invoke-Expression "& $ConvertCommand";
