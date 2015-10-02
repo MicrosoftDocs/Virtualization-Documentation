@@ -541,6 +541,21 @@ $postSysprepScriptBlock = {
         Remove-Item -Force -Recurse "$ENV:SystemDrive\Bits";
     } 
      
+    # Clean up temp
+    if(Test-Path "$ENV:SystemDrive\Temp")
+    {
+        Remove-Item -Force -Recurse "$ENV:SystemDrive\Temp";
+    } 
+
+    # Remove Demo user
+	$computer = $env:computername
+	$user = "Demo"
+	if ([ADSI]::Exists("WinNT://$computer/$user"))
+	{
+	    [ADSI]$server = "WinNT://$computer"
+	    $server.delete("user",$user)
+	}
+	
     # Put any code you want to run Post sysprep here
     Invoke-Expression 'shutdown -r -t 0';
 };
