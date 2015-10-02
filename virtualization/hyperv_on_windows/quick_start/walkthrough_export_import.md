@@ -13,7 +13,7 @@ When creating an export of a virtual machine all associated files will be bundle
 
 2. Specify the location where you will store the exported files and click the **Export** button.
 
-**Note** - this process can be run on a virtual machine that is in either a started or stopped state.
+**Note:** this process can be run on a virtual machine that is in either a started or stopped state.
 
 Once the export has been completed you will be able to see all exported files under the export folder.
 
