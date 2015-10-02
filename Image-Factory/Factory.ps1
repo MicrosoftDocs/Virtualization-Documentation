@@ -454,7 +454,7 @@ $updateCheckScriptBlock = {
 };
 
 function Set-UpdateCheckPlaceHolders {
-    $block = $updateCheckScriptBlock | Out-String
+    $block = $updateCheckScriptBlock | Out-String -Width 4096
     
     if($UseStaticIP) {
         $block = $block.Replace('$UseStaticIP = STATICIPBOOLPLACEHOLDER', '$UseStaticIP = $true')
