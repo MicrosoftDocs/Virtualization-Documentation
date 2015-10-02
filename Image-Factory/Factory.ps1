@@ -476,8 +476,18 @@ $sysprepScriptBlock = {
         & "$env:SystemDrive\Bits\PreSysprepScript.ps1"
     }
 
-    # Remove autorun key if it exists
-    Get-Item -Path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run | ? Property -like Unattend* | Remove-Item;
+    # Remove Unattend entries from the autorun key if they exist
+    foreach ($regvalue in (Get-Item -Path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run).Property)
+	{
+		if ($regvalue -like "Unattend*")
+		{
+		    # could be multiple unattend* entries
+		    foreach ($unattendvalue in $regvalue)
+		    {
+			    Remove-ItemProperty -Path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run -name $unattendvalue
+		    }
+        }
+	}
              
     $unattendedXmlPath = "$ENV:SystemDrive\Bits\Unattend.xml";
     & "$ENV:SystemRoot\System32\Sysprep\Sysprep.exe" `/generalize `/oobe `/shutdown `/unattend:"$unattendedXmlPath";
@@ -485,8 +495,18 @@ $sysprepScriptBlock = {
 
 ### Post Sysprep script block
 $postSysprepScriptBlock = {
-    # Remove autorun key if it exists
-    Get-Item -Path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run | ? Property -like Unattend* | Remove-Item;
+    # Remove Unattend entries from the autorun key if they exist
+    foreach ($regvalue in (Get-Item -Path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run).Property)
+	{
+		if ($regvalue -like "Unattend*")
+		{
+		    # could be multiple unattend* entries
+		    foreach ($unattendvalue in $regvalue)
+		    {
+			    Remove-ItemProperty -Path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run -name $unattendvalue
+		    }
+        }
+	}
 
     # Run post-sysprep script if it exists
     if (Test-Path "$env:SystemDrive\Bits\PostSysprepScript.ps1") {
