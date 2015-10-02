@@ -230,7 +230,7 @@ function cleanupFile
     
     if (Test-Path $file) 
     {
-        Remove-Item $file -Recurse;
+        Remove-Item $file -Recurse > $null;
     }
 }
 
@@ -394,6 +394,68 @@ $updateCheckScriptBlock = {
         Remove-Item -Force "$ENV:SystemDrive\Unattend.xml"
     }
 
+    # Elements of the script rely on PowerShell 3.0, so install updated PowerShell if necessary
+    if ($PSVersionTable.PSVersion.Major -lt 3)
+    {
+        logger "Not running PowerShell 3.0 or above"
+        # First check .NET Framework 4.5 full version prerequisite
+        $DNVersion = Get-ChildItem 'HKLM:\SOFTWARE\Microsoft\NET Framework Setup\NDP' -Recurse | Get-ItemProperty -name Version -EA 0 | Where-Object { $_.PSChildName -match '^(?!S)\p{L}'} | Sort-Object version -Descending | Select-Object -ExpandProperty Version -First 1 
+        $DNVersions = $DNVersion.Split(".") 
+        $DNVersionMajor = $DNVersions[0] 
+        $DNVersionMinor = $DNVersions[1] 
+        $DNVersionBuild = $DNVersions[2]
+
+        if (($DNVersionMajor -eq 4 -and $DNVersionMinor -ge 5) -or ($DNVersionMajor -ge 4))
+        {
+            logger ".NET prerequisites met"
+        }
+        else
+        {
+            logger ".NET update required"
+            if (!(test-path -Path "C:\Temp"))
+            { 
+                New-Item -ItemType Directory -Force -Path "C:\Temp" > $null
+            }
+            logger "Downloading .NET 4.5.2" 
+            $download = New-Object Net.WebClient 
+            $url = "http://download.microsoft.com/download/E/2/1/E21644B5-2DF2-47C2-91BD-63C560427900/NDP452-KB2901907-x86-x64-AllOS-ENU.exe"
+            $file = ("C:\Temp\NDP452-KB2901907-x86-x64-AllOS-ENU.exe") 
+            $download.Downloadfile($url,$file) 
+            if (!(Test-Path -Path "C:\Temp\NDP452-KB2901907-x86-x64-AllOS-ENU.exe"))
+            {
+                logger "Download failed. Please check your Internet connection"
+            }
+            else
+            {
+                logger "Installing .NET 4.5.2"
+                $InstallDotNet = Start-Process $file -ArgumentList "/q /norestart" -Wait -PassThru 
+                logger ".NET 4.5.2 installation complete"
+            }	
+        }    		
+		
+        logger "Downloading Windows Management Framework 4.0"
+        if (!(test-path -Path "C:\Temp"))
+        { 
+            New-Item -ItemType Directory -Force -Path "C:\Temp" > $null
+        }
+        $download = New-Object Net.WebClient 
+        $url = "http://download.microsoft.com/download/3/D/6/3D61D262-8549-4769-A660-230B67E15B25/Windows6.1-KB2819745-x64-MultiPkg.msu"
+        $file = ("C:\Temp\Windows6.1-KB2819745-x64-MultiPkg.msu")
+        $commandline =  "C:\Temp\Windows6.1-KB2819745-x64-MultiPkg.msu /quiet /norestart"
+        $download.Downloadfile($url,$file) 
+        if (!(Test-Path -Path "C:\Temp\Windows6.1-KB2819745-x64-MultiPkg.msu"))
+        {
+            logger "Download failed. Please check your Internet connection"
+        }
+        else
+        {
+            logger "Installing Windows Management Framework 4.0"
+            $InstallWMF = Start-Process -FilePath 'wusa.exe' -ArgumentList "$commandline" -Wait -PassThru 
+            logger "Windows Management Framework 4.0 installation complete"
+        }
+        Invoke-Expression 'shutdown -r -t 0'
+    }
+	
     # Check to see if files need to be unblocked - if they do, do it and reboot
     if ((Get-ChildItem $env:SystemDrive\Bits | `
         Get-Item -Stream "Zone.Identifier" -ErrorAction SilentlyContinue).Count -gt 0)
@@ -433,21 +495,31 @@ $updateCheckScriptBlock = {
 
 
 
+    # Need to add check for Internet connectivity due to Windows 7 driver load timing fail
+	logger "Checking for Internet connection" 
+    do
+    {
+        Start-Sleep -Seconds 5;
+		logger "Checking for Internet connection"
+    } until (Test-Connection -computername www.microsoft.com)
+	
     # Run pre-update script if it exists
     if (Test-Path "$env:SystemDrive\Bits\PreUpdateScript.ps1") {
         & "$env:SystemDrive\Bits\PreUpdateScript.ps1"
     }
 
     # Check if any updates are needed - leave a marker if there are
+	logger "Checking for updates" 
     if ((Get-WUList).Count -gt 0)
     {
         if (-not (Test-Path $env:SystemDrive\Bits\changesMade.txt))
         {
-            New-Item $env:SystemDrive\Bits\changesMade.txt -type file;
+            New-Item $env:SystemDrive\Bits\changesMade.txt -type file > $null;
         }
     }
  
     # Apply all the updates
+    logger "Applying the updates"
     Get-WUInstall -AcceptAll -IgnoreReboot -IgnoreUserInput -NotCategory "Language packs";
 
     # Run post-update script if it exists
