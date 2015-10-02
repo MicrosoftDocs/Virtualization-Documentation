@@ -377,6 +377,17 @@ function MountVHDandRunBlock
 
 ### Update script block
 $updateCheckScriptBlock = {
+    function Logger {
+        param
+        (
+            [string]$message
+        );
+
+        # Function for displaying formatted log messages.  Also displays time in minutes since the script was started
+        write-host (Get-Date).ToShortTimeString() -ForegroundColor Cyan -NoNewline;
+        write-host " - ::$($message)" -ForegroundColor White;
+    }
+
     # Clean up unattend file if it is there
     if (Test-Path "$ENV:SystemDrive\Unattend.xml") 
     {
