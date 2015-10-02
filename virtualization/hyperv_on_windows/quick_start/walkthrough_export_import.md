@@ -3,7 +3,7 @@ title: Step 6 - Virtual Machine Export and Import
 
 # Virtual Machine Export and Import 
 
-Unlike a checkpoint where a snapshot file is created which can then be applied back to the virtual machine, exporting creates a full copy of all virtual machine files. An export can be used for backup, restoration, or a way to move a virtual machine between host. This document will walk through exporting and importing a virtual machine and some of the choices you can make when performing these tasks.
+Unlike a checkpoint where a snapshot file is created which can then be applied back to the virtual machine, exporting creates a full copy of all virtual machine files. An export can be used for backup, restoration, or a way to move a virtual machine between hosts. This document will walk through exporting and importing a virtual machine and some of the choices you can make when performing these tasks.
 
 ## Exporting a Virtual Machine in Hyper-V Manager
 
