@@ -3504,7 +3504,7 @@ VirtualHardDisk
                     # Create the Windows/system partition 
                     #
                     Write-W2VInfo "Creating single partition..."
-                    $windowsPartition = New-Partition -DiskNumber $disk.Number -Size $disk.LargestFreeExtent -MbrType IFS -IsActive
+                    $windowsPartition = New-Partition -DiskNumber $disk.Number -UseMaximumSize -MbrType IFS -IsActive
                     $systemPartition = $windowsPartition
     
                     Write-W2VInfo "Formatting windows volume..."
@@ -3634,7 +3634,7 @@ VirtualHardDisk
                 }
                 else
                 {
-                    Write-W2VInfo "Image applied. Making image bootable..."
+                    Write-W2VInfo "Making image bootable..."
                     $bcdBootArgs = @(
                         "$($windowsDrive)\Windows", # Path to the \Windows on the VHD
                         "/s $systemDrive",          # Specifies the volume letter of the drive to create the \BOOT folder on.
@@ -3943,7 +3943,7 @@ VirtualHardDisk
 
             if (-not $CacheSource)
             {
-                if (Test-Path $tempSource)
+                if ($tempSource -and (Test-Path $tempSource))
                 {
                     Remove-Item -Path $tempSource -Force
                 }
