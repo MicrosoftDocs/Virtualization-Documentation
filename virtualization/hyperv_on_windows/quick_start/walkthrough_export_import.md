@@ -3,7 +3,7 @@ title: Step 6 - Virtual Machine Export and Import
 
 # Virtual Machine Export and Import 
 
-Unlike a checkpoint where a snapshot file is created which can then be applied back to the virtual machine, exporting creates a full copy of all virtual machine files. An export can be used for backup, restoration, or a way to move a virtual machine between host. This document will walk through exporting and importing a virtual machine and some of the choices you can make when performing these tasks.
+Unlike a checkpoint where a snapshot file is created which can then be applied back to the virtual machine, exporting creates a full copy of all virtual machine files. An export can be used for backup, restoration, or a way to move a virtual machine between hosts. This document will walk through exporting and importing a virtual machine and some of the choices you can make when performing these tasks.
 
 ## Exporting a Virtual Machine in Hyper-V Manager
 
@@ -13,7 +13,7 @@ When creating an export of a virtual machine all associated files will be bundle
 
 2. Specify the location where you will store the exported files and click the **Export** button.
 
-**Note** - this process can be run on a virtual machine that is in either a started or stopped state.
+**Note:** this process can be run on a virtual machine that is in either a started or stopped state.
 
 Once the export has been completed you will be able to see all exported files under the export folder.
 
@@ -46,7 +46,7 @@ To import a virtual machine into a Hyper-V host:
 
 - **Register in-place** – export files have been placed in the location where the virtual machine should be run from. Once imported the virtual machine will have the same ID as it did at the time of export. Because of this, If the virtual machine is already registered with Hyper-V it will need to be removed before the import will work. Once the import has completed, the export files have become the running state files and cannot be removed.
 
-- **Restore the virtual machine** – when selecting to restore the export you will be given an option to store the VM files in a specific location or use the locations default to Hyper-V. This process will create a copy of the exported file and move them to the selected location. Once imported the virtual machine will have the same ID as it did at the time of export. Because of this, If the virtual machine is already registered with Hyper-V it will need to be removed before the import will work. Once the import has completed the exported files will remain untouched and can be removed and / or imported again.
+- **Restore the virtual machine** – when selecting to restore the export you will be given an option to store the VM files in a specific location or use the locations default to Hyper-V. This process will create a copy of the exported file and move them to the selected location. Once imported the virtual machine will have the same ID as it did at the time of export. Because of this, if the virtual machine is already registered with Hyper-V it will need to be removed before the import will work. Once the import has completed the exported files will remain untouched and can be removed and / or imported again.
 
 - **Copy the virtual machine** – This import type is similar to the Restore type in that you will be able to select a location for the VM files. The difference is that once imported the virtual machine will have a new unique ID. This allows for the Virtual Machine to be imported into the same host multiple time.
 
