@@ -40,12 +40,12 @@ In this example, we'll enable and then disable the guest file copy integration s
   ``` PowerShell
   VMName      Name                    Enabled PrimaryStatusDescription SecondaryStatusDescription
   ------      ----                    ------- ------------------------ --------------------------
-  vmname Guest Service Interface False    OK
-  vmname Heartbeat               True    OK                       OK
-  vmname Key-Value Pair Exchange True    OK
-  vmname Shutdown                True    OK
-  vmname Time Synchronization    True    OK
-  vmname VSS                     True    OK
+  vmname      Guest Service Interface False   OK
+  vmname      Heartbeat               True    OK                       OK
+  vmname      Key-Value Pair Exchange True    OK
+  vmname      Shutdown                True    OK
+  vmname      Time Synchronization    True    OK
+  vmname      VSS                     True    OK
   ```
 
 2. Enable the `Guest Service Interface` integration service
@@ -97,7 +97,7 @@ ps –eaf|grep hv
 
 ## Installing and updating integration services
 
-> IC Version is deprecated in Windows 10 and Server 16.
+Integration services are built into Windows as well as many versions of Linux.
 
 ### Install integration components on offline virtual machines
 
