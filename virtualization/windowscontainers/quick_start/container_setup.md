@@ -28,7 +28,7 @@ Start a PowerShell session as Administrator. This can be done by right clicking 
 start-process powershell -Verb runAs
 ```
 
-Use the following command to download the configuration script. The script can also be manually downloaded from this location - [Configuration Script](http://aka.ms/newcontainerhost).
+Use the following command to download the configuration script. The script can also be manually downloaded from this location - [Configuration Script](https://aka.ms/newcontainerhost).
  
 ``` PowerShell
 wget -uri https://aka.ms/newcontainerhost -OutFile New-ContainerHost.ps1
@@ -44,7 +44,7 @@ When the script begins you will be asked to read and accept licensing terms.
 
 ```
 Before installing and using the Windows Server Technical Preview 3 with Containers virtual machine you must:
-    1. Review the license terms by navigating to this link: http://aka.ms/WindowsServerTP3ContainerVHDEula
+    1. Review the license terms by navigating to this link: https://aka.ms/WindowsServerTP3ContainerVHDEula
     2. Print and retain a copy of the license terms for your records.
 By downloading and using the Windows Server Technical Preview 3 with Containers virtual machine you agree to such
 license terms. Please confirm you have accepted and agree to the license terms.
