@@ -5,18 +5,9 @@ title: Managing integration services
 Welcome to the in-depth reference for everything integration service related.
 
 ## Integration services and what they do
-Integration services (often called integration components) are services that allow the virtual machine to communicate with the Hyper-V host.  
-Some of the tasks integration services provide include:
-* Time synchronization
-* Operating system shutdown
-* Data exchange (KVP)
-* Backup (Volume Shadow Copy)
-* Heartbeat 
-* Guest Services
-  * Guest File Copy
-  * PowerShell Direct
+Integration services (often called integration components) are services that allow the virtual machine to communicate with the Hyper-V host.
 
-Many of these services are conviniences (such as guest services) while others can be quite important to the guest operating system's ability to fucntion correctly (time synchronization) -- the list above is loosely organized by importance on a fresh Hyper-V installation.
+Many of these services are conviniences (such as guest services) while others can be quite important to the guest operating system's ability to fucntion correctly (time synchronization).
 
 This article aims to demystify the finer points of managing integration services on any supported Hyper-V environment.
 
@@ -45,7 +36,7 @@ Integration services were designed such that they need to be enabled in both the
 
 > **Note:** disabling integration services may severly affect the hosts ability to manage your virtual machine.
 
-Integration components appear as services in virtual machines running Windows.  To enable or disable an integration components from inside the virtual machine, open the Windows Services manager.
+Integration services appear as services in Windows.  To enable or disable an integration services from inside the virtual machine, open the Windows Services manager.
 
 ![](media/HVServices.png) 
 
