@@ -1,11 +1,11 @@
 ﻿ms.ContentId: C2593EA1-B182-4C71-8504-49691F619158
 title: Step 1 - Operating System and Hardware Compatibility
 
-# Operating System and Hardware Compatibility
+# Windows 10 Hyper-V System Requirements
 
-Hyper-V on Windows 10 will only work under a specific set of Hardware and Operating System configurations. This document will briefly discuss the software and hardware requirements of Hyper-V as well walk you through determining compatibility of your system with Hyper-V. While this document will not detail every system configuration compatible with Hyper-V, in general the guidance here should help quickly determine if your current system is ready to host Hyper-V Virtual Machines.
+Hyper-V on Windows 10 will only work under a specific set of Hardware and Operating System configurations. This document will briefly discuss the software and hardware requirements of Hyper-V and show you how to check your system for compatibility with Hyper-V. While this document will not detail every system configuration compatible with Hyper-V, use the guidance here to help you quickly figure out if your current system can host Hyper-V virtual machines.”
 
-## Operating System Compatibility
+## Operating System Requirements
 
 The Hyper-V role can be enabled on these versions of Windows 10:
 
@@ -21,7 +21,7 @@ The Hyper-V role cannot be installed on:
 
 >Windows 10 Home edition can be upgraded to Windows 10 Professional. To do so open up **Settings** > **Update and Security** > **Activation**. Here you can visit the store and purchase an upgrade.
 
-## Hardware Compatibility
+## Hardware Requirements
 
 While this document will not provide a complete list of Hyper-V compatible hardware, the following items are necessary:
 	
@@ -39,8 +39,6 @@ To verify compatibly, open up PowerShell or a command prompt (cmd.exe) and type 
 If all listed Hyper-V requirements have a value of **Yes**, your system can run the Hyper-V role. If any item returns **No**, check the requirements listed in this document and make adjustments where possible.
 
 ![](media/SystemInfo_upd.png)
-
-## Existing Hyper-V Host
 
 If you run **systeminfo.exe** on an existing Hyper-V host, the Hyper-V Requirements section will read:
 
