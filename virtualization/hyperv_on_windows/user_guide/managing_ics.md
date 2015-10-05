@@ -11,7 +11,6 @@ Many of these services are conviniences (such as guest file copy) while others c
 
 This article aims to demystify the finer points of managing integration services on any supported Hyper-V environment.
 
-
 ## Integration service management
 
 ### Enable or disable integration services from the Hyper-V host
@@ -28,38 +27,38 @@ To enable or disable integration services using Hyper-V Manager:
 
 Integration services can also be enabled and disabled with PowerShell by running [`Enable-VMIntegrationService`](https://technet.microsoft.com/en-us/library/hh848500.aspx) and [`Disable-VMIntegrationService`](https://technet.microsoft.com/en-us/library/hh848488.aspx).
 
-In this example, we'll enable and then disable the guest file copy integration service on the "vmname" virtual machine.
+In this example, we'll enable and then disable the guest file copy integration service on the "chost" virtual machine seen above.
 
 1. See what intergration services are running
   
   ``` PowerShell
-  Get-VMIntegrationService -VMName "vmname"
+  Get-VMIntegrationService -VMName "chost"
   ```
 
   The output will look like this:  
   ``` PowerShell
   VMName      Name                    Enabled PrimaryStatusDescription SecondaryStatusDescription
   ------      ----                    ------- ------------------------ --------------------------
-  vmname      Guest Service Interface False   OK
-  vmname      Heartbeat               True    OK                       OK
-  vmname      Key-Value Pair Exchange True    OK
-  vmname      Shutdown                True    OK
-  vmname      Time Synchronization    True    OK
-  vmname      VSS                     True    OK
+  chost       Guest Service Interface False   OK
+  chost       Heartbeat               True    OK                       OK
+  chost       Key-Value Pair Exchange True    OK
+  chost       Shutdown                True    OK
+  chost       Time Synchronization    True    OK
+  chost       VSS                     True    OK
   ```
 
 2. Enable the `Guest Service Interface` integration service
 
    ``` PowerShell
-   Enable-VMIntegrationService -VMName "vmname" -Name "Guest Service Interface"
+   Enable-VMIntegrationService -VMName "chost" -Name "Guest Service Interface"
    ```
    
-   If you run `Get-VMIntegrationService -VMName "vmname"` you will see that the Guest Service Interface integration service is enabled.
+   If you run `Get-VMIntegrationService -VMName "chost"` you will see that the Guest Service Interface integration service is enabled.
  
 3. Disable the `Guest Service Interface` integration service
 
    ``` PowerShell
-   Disable-VMIntegrationService -VMName "vmname" -Name "Guest Service Interface"
+   Disable-VMIntegrationService -VMName "chost" -Name "Guest Service Interface"
    ```
    
 Integration services were designed such that they need to be enabled in both the host and the guest in order to function.  While all integration services are enabled by default on Windows guest operating systems, they can be disabled.  See how in the next section.
@@ -69,14 +68,37 @@ Integration services were designed such that they need to be enabled in both the
 
 #### On Windows Guests
 
-> **Note:** disabling integration services may severly affect the hosts ability to manage your virtual machine.
+> **Note:** disabling integration services may severly affect the hosts ability to manage your virtual machine.  Integration services must be enabled on both the host and guest to operate.
 
 Integration services appear as services in Windows.  To enable or disable an integration services from inside the virtual machine, open the Windows Services manager.
 
 ![](media/HVServices.png) 
 
 Find the services containing Hyper-V in the name.  Right click on the service you'd like to enable or disable and start or stop the service.
- 
+
+Alternately, to see all integration services with PowerShell, run:
+
+```PowerShell
+Get-Service -Name vm*
+```
+
+that will return a list that looks something like this:
+
+```PowerShell
+Status   Name               DisplayName
+------   ----               -----------
+Running  vmicguestinterface Hyper-V Guest Service Interface
+Running  vmicheartbeat      Hyper-V Heartbeat Service
+Running  vmickvpexchange    Hyper-V Data Exchange Service
+Running  vmicrdv            Hyper-V Remote Desktop Virtualizati...
+Running  vmicshutdown       Hyper-V Guest Shutdown Service
+Running  vmictimesync       Hyper-V Time Synchronization Service
+Stopped  vmicvmsession      Hyper-V VM Session Service
+Running  vmicvss            Hyper-V Volume Shadow Copy Requestor
+```
+
+Start or stop services using [`Start-Service`](https://technet.microsoft.com/en-us/library/hh849825.aspx) or [`Stop-Service`](https://technet.microsoft.com/en-us/library/hh849790.aspx).
+
 By default, all integration services are enabled in the guest operation system.
 
 #### On Linux Guests
@@ -95,11 +117,10 @@ Run the following command in your Linux guest operating system to see if the req
 ps –eaf|grep hv
 ```
 
-## Installing and updating integration services
+## Updating integration services
 
-Integration services are built into Windows as well as many versions of Linux.
-
-### Install integration components on offline virtual machines
+**How do I install integration services?**
+Integration services are built into Windows as well as many versions of Linux therefor they rarely (if ever) need to be installed.
 
 ## Integration service details
 
@@ -113,16 +134,21 @@ Integration services are built into Windows as well as many versions of Linux.
 | Guest services | Disabled | Windows Server 2012 R2 | Windows Server 2012 R2 | Hyper-V Guest Services Interface | hv_utils, hv_fcopy_daemon |
 
 ### Time synchronization
-The time synchronization service provides the ability to synchronize your virtual machines’ time with the time from the host. Just as time is critical to physical servers it is critical to virtual machines.
-For additional information about time synchronization and in what scenarios you should disable the service, see Time Synchronization.
-Data Exchange
+The time synchronization service synchronizes your virtual machines’ time with the time from the pysical host.
 
 ### Operating system shutdown
-The operating system shutdown service provides a mechanism to shut down the operating system of a virtual machine from the management interfaces on the host or management computer. This allows the Hyper-V administrator the ability to initiate an orderly shutdown of the virtual machines without having to log into the virtual machine. The virtual machine will attempt to close open processes and write to disk any data in memory before shutting down the virtual machine, in the same way if the administrator had selected Shutdown from within the virtual machine.
-You can shutdown virtual machines from the Hyper-V Manager console or via the Stop-VM PowerShell cmdlet. For more information about Stop-VM cmdlet, see Stop-VM.
+The operating system shutdown service lets the Hyper-V administrator start a friendly shutdown sequence in the virtual machine from the host without logging into the virtual machine.
+
+Using the shutdown service, the virtual machine will attempt to close open processes and write to disk any data in memory before shutting down the virtual machine, in the same way if the administrator had selected Shutdown from within the guest operating system.  Without this integration service, the Hyper-V administrator can only perform hard shutdowns -- this is the equivelant of pulling the powercord.
+
+You can shutdown virtual machines from Hyper-V Manager or PowerShell using [`Stop-VM`](https://technet.microsoft.com/en-us/library/hh848468.aspx).
 
 ### Data exchange (KVP)
 The Data Exchange integration service (often called KVP) allows basic data sharing between the Hyper-V host and virtual machine using the Windows registry.
+information about the virtual machine and host is automatically generated and stored in the registry for virtual machines running Windows and in files for virtual machines running Linux. Additionally there is a registry key and file where information can be created manually that can be shared between the host and the virtual machine. For example a service running in a virtual machine could write to this location when a specific event has occurred that requires the Hyper-V administrator to perform a specific action.
+Access to the data from the host is via WMI scripts only.
+For additional information about data exchange, see Data Exchange: Using key-value pairs to share information between the host and guest on Hyper-V
+Heartbeat
 
 The data shared can be seen in:
 ```
@@ -132,28 +158,17 @@ HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Virtual Machine\Guest\Parameters
 > The data exchange integration service does not expose data between any two virtual machines. It is limited to the host and virtual machine.
 
 ### Backup (Volume Shadow Copy)
-The backup service enables consistent backup of the virtual machines from backup software running on the host. The backup service allows for the virtual machine to be backed up while it is running without any interruption to the virtual machine or the services running in the virtual machine.
-For more information about backing up your virtual machines, see Considerations for backing up and restoring virtual machines.
-Guest services
+The backup service lets the Hyper-V administrator backup the virtual machine while running.
 
 ### Heartbeat 
-The heartbeat service monitors the state of running virtual machines by reporting a heartbeat at regular intervals. This service helps you identify running virtual machines that might have stopped responding. You can check the heartbeat status of a virtual machine on the Summary tab of the Virtual Machines details page or you can use the Get-VMIntegrationSerivce cmdlet. For additional information about the Get-VMIntegrationService cmdlet, see Get-VMIntegrationService.
+The heartbeat service reports that the guest operating system is running.
+
+You can check the heartbeat status of a virtual machine on the Summary tab of the Virtual Machines details page or you can use the Get-VMIntegrationSerivce cmdlet. For additional information about the Get-VMIntegrationService cmdlet.
 
 ### Guest Services
-The data exchange service, also known as key-value pairs (KVP), allows for the sharing of information between the host and virtual machine. General information about the virtual machine and host is automatically generated and stored in the registry for virtual machines running Windows and in files for virtual machines running Linux. Additionally there is a registry key and file where information can be created manually that can be shared between the host and the virtual machine. For example a service running in a virtual machine could write to this location when a specific event has occurred that requires the Hyper-V administrator to perform a specific action.
-Access to the data from the host is via WMI scripts only.
-For additional information about data exchange, see Data Exchange: Using key-value pairs to share information between the host and guest on Hyper-V
-Heartbeat
-
-The Hyper-V Guest Service Interface service enters a running state when the Guest services service is selected on the Integration Services property page of the virtual machine.
-To disable this feature in a virtual machine running Windows, set the Hyper-V Guest Service Interface service startup type to Disabled inside the virtual machine.
-To disable this feature in a virtual machine running Linux, stop and disable the hv_fcopy_daemon daemon. Consult your Linux distribution’s documentation for the steps to stop or disable a daemon process.
 To copy a file to a virtual machine you need to use the Copy-VMFile PowerShell cmdlet. For additional information about the Copy-VMFile Windows PowerShell cmdlet, see Copy-VMFile.
-
 
 Guest File Copy
 The guest service allows the Hyper-V administrator to copy files to a running virtual machine without using a network connection. Beforehand the only way to copy files to the virtual machine was for both the virtual machine and the host be connected to same network and then either use file services to copy file or to create a remote desktop session to the virtual machine and copy files via RDS session.
-
-
 
 PowerShell Direct
