@@ -79,6 +79,9 @@ Convert-WindowsImage
         is used by Convert-WindowsImage.  If you need to specify an alternate version,
         use this parameter to do so.
 
+    .PARAMETER MergeFolder
+        Specifies additional MergeFolder path to be added to the root of the VHD(X)
+
     .PARAMETER BCDinVHD
         Specifies the purpose of the VHD(x). Use NativeBoot to skip cration of BCD store
         inside the VHD(x). Use VirtualMachine (or do not specify this option) to ensure
@@ -216,6 +219,12 @@ Convert-WindowsImage
         [ValidateNotNullOrEmpty()]
         [ValidateSet("VHD", "VHDX", "AUTO")]
         $VHDFormat        = "AUTO",
+
+        [Parameter(ParameterSetName="SRC")]
+        [Alias("MergeFolder")]
+        [string]
+        [ValidateNotNullOrEmpty()]
+        $MergeFolderPath = "",
 
         [Parameter(ParameterSetName="SRC", Mandatory=$true)]
         [Alias("Layout")]
@@ -3504,7 +3513,7 @@ VirtualHardDisk
                     # Create the Windows/system partition 
                     #
                     Write-W2VInfo "Creating single partition..."
-                    $windowsPartition = New-Partition -DiskNumber $disk.Number -Size $disk.LargestFreeExtent -MbrType IFS -IsActive
+                    $windowsPartition = New-Partition -DiskNumber $disk.Number -UseMaximumSize -MbrType IFS -IsActive
                     $systemPartition = $windowsPartition
     
                     Write-W2VInfo "Formatting windows volume..."
@@ -3613,11 +3622,20 @@ VirtualHardDisk
             Write-W2VInfo "Applying image to $VHDFormat. This could take a while..."
             Expand-WindowsImage -ApplyPath $windowsDrive -ImagePath $SourcePath -Index $ImageIndex -LogPath "$($logFolder)\DismLogs.log" | Out-Null
             Write-W2VInfo "Image was applied successfully. "
-
+            
+            #
+            # Here we copy in the unattend file (if specified by the command line)
+            #
             if (![string]::IsNullOrEmpty($UnattendPath)) 
             {
                 Write-W2VInfo "Applying unattend file ($(Split-Path $UnattendPath -Leaf))..."
                 Copy-Item -Path $UnattendPath -Destination (Join-Path $windowsDrive "unattend.xml") -Force
+            }
+
+            if (![string]::IsNullOrEmpty($MergeFolderPath)) 
+            {
+                Write-W2VInfo "Applying merge folder ($MergeFolderPath)..."
+                Copy-Item -Recurse -Path (Join-Path $MergeFolderPath "*") -Destination $windowsDrive -Force #added to handle merge folders
             }
 
             if (($openImage.ImageArchitecture -ne "ARM") -and       # No virtualization platform for ARM images
@@ -3634,7 +3652,7 @@ VirtualHardDisk
                 }
                 else
                 {
-                    Write-W2VInfo "Image applied. Making image bootable..."
+                    Write-W2VInfo "Making image bootable..."
                     $bcdBootArgs = @(
                         "$($windowsDrive)\Windows", # Path to the \Windows on the VHD
                         "/s $systemDrive",          # Specifies the volume letter of the drive to create the \BOOT folder on.
@@ -3943,7 +3961,7 @@ VirtualHardDisk
 
             if (-not $CacheSource)
             {
-                if (Test-Path $tempSource)
+                if ($tempSource -and (Test-Path $tempSource))
                 {
                     Remove-Item -Path $tempSource -Force
                 }
