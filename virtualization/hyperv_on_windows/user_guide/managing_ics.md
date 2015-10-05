@@ -7,7 +7,7 @@ Welcome to the in-depth reference for everything integration service related.
 ## Integration services and what they do
 Integration services (often called integration components) are services that allow the virtual machine to communicate with the Hyper-V host.
 
-Many of these services are conviniences (such as guest services) while others can be quite important to the guest operating system's ability to fucntion correctly (time synchronization).
+Many of these services are conviniences (such as guest file copy) while others can be quite important to the guest operating system's ability to fucntion correctly (time synchronization).
 
 This article aims to demystify the finer points of managing integration services on any supported Hyper-V environment.
 
@@ -15,18 +15,53 @@ This article aims to demystify the finer points of managing integration services
 ## Integration service management
 
 ### Enable or disable integration services from the Hyper-V host
-Integration services can be enabled or disabled on a per-virtual machine basis using both the virtual machine settings in Hyper-V Manager and PowerShell.
 
-To enable or disable integration services using Hyper-V Manager, select a virtual machine and open settings.
+To enable or disable integration services using Hyper-V Manager:
 
-![](./media/HyperVManager-OpenVMSettings.png)
+1. select a virtual machine and open settings.
+  ![](./media/HyperVManager-OpenVMSettings.png)
+  
+2. From the virtual machine settings window, go to the Integration Services tab under Management.
+  ![](./media/HyperVManager-IntegrationServices.png)
+  
+  Here you can see all integration services available on this Hyper-V host.  It's worth noting that the guest operating system may or may not support all of the integration services listed.
 
-From the virtual machine settings window, go to the Integration Services tab under Management.
+Integration services can also be enabled and disabled with PowerShell by running [`Enable-VMIntegrationService`](https://technet.microsoft.com/en-us/library/hh848500.aspx) and [`Disable-VMIntegrationService`](https://technet.microsoft.com/en-us/library/hh848488.aspx).
 
-![](./media/HyperVManager-IntegrationServices.png)
+In this example, we'll enable and then disable the guest file copy integration service on the "vmname" virtual machine.
 
-Here you can see all integration services available on this Hyper-V host.  It's worth noting that the guest operating system may or may not support all of the integration services listed.
+1. See what intergration services are running
+  
+  ``` PowerShell
+  Get-VMIntegrationService -VMName "vmname"
+  ```
 
+  The output will look like this:  
+  ``` PowerShell
+  VMName      Name                    Enabled PrimaryStatusDescription SecondaryStatusDescription
+  ------      ----                    ------- ------------------------ --------------------------
+  vmname Guest Service Interface False    OK
+  vmname Heartbeat               True    OK                       OK
+  vmname Key-Value Pair Exchange True    OK
+  vmname Shutdown                True    OK
+  vmname Time Synchronization    True    OK
+  vmname VSS                     True    OK
+  ```
+
+2. Enable the `Guest Service Interface` integration service
+
+   ``` PowerShell
+   Enable-VMIntegrationService -VMName "vmname" -Name "Guest Service Interface"
+   ```
+   
+   If you run `Get-VMIntegrationService -VMName "vmname"` you will see that the Guest Service Interface integration service is enabled.
+ 
+3. Disable the `Guest Service Interface` integration service
+
+   ``` PowerShell
+   Disable-VMIntegrationService -VMName "vmname" -Name "Guest Service Interface"
+   ```
+   
 Integration services were designed such that they need to be enabled in both the host and the guest in order to function.  While all integration services are enabled by default on Windows guest operating systems, they can be disabled.  See how in the next section.
 
 
