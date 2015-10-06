@@ -32,7 +32,7 @@ Make sure the title of the windows is "Administrator: Windows PowerShell". If it
 start-process powershell -Verb runas
 ```
 
-Use the following command to download the setup script. The script can also be manually downloaded from this location - [Configuration Script](http://aka.ms/setupcontainers).
+Use the following command to download the setup script. The script can also be manually downloaded from this location - [Configuration Script](https://aka.ms/setupcontainers).
  
 ``` PowerShell
 wget -uri https://aka.ms/setupcontainers -OutFile C:\ContainerSetup.ps1
