@@ -17,7 +17,7 @@ This article aims to demystify the finer points of managing integration services
 
 To enable or disable integration services using Hyper-V Manager:
 
-1. select a virtual machine and open settings.
+1. Select a virtual machine and open settings.
   ![](./media/HyperVManager-OpenVMSettings.png)
   
 2. From the virtual machine settings window, go to the Integration Services tab under Management.
@@ -119,8 +119,19 @@ ps –eaf|grep hv
 
 ## Updating integration services
 
+### Why should I update my integration services?
+Integration services recieve updates to enable more management features across the host and guest operating system.
+
+### When do I update integration components?
+
+Starting in Windows 10, integration components are delivered directly through Windows Update and update automatically as part of the important updates.
+
+Prior to Windows 10, integration components needed to be updated any time the Hyper-V host was updated.
+
 **How do I install integration services?**
 Integration services are built into Windows as well as many versions of Linux therefor they rarely (if ever) need to be installed.
+
+### Updating on windows 10
 
 ## Integration service details
 
