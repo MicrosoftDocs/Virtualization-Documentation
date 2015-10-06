@@ -38,6 +38,7 @@
 ***,oa-toc-container: user_guide,
 ****,hyperv_on_windows/user_guide/user_guide_nav.md,
 ****,hyperv_on_windows/user_guide/migrating_vms.md,
+****,hyperv_on_windows/user_guide/managing_ics.md,
 ****,hyperv_on_windows/user_guide/checkpoints.md,
 ****,hyperv_on_windows/user_guide/export_import.md,
 ****,hyperv_on_windows/user_guide/vmsession.md,
