@@ -7,7 +7,7 @@ Welcome to the in-depth reference for everything integration service related.
 ## Integration services and what they do
 Integration services (often called integration components) are services that allow the virtual machine to communicate with the Hyper-V host.
 
-Many of these services are conviniences (such as guest file copy) while others can be quite important to the guest operating system's ability to fucntion correctly (time synchronization).
+Many of these services are conveniences (such as guest file copy) while others can be quite important to the guest operating system's ability to function correctly (time synchronization).
 
 This article aims to demystify the finer points of managing integration services on any supported Hyper-V environment.
 
@@ -29,7 +29,7 @@ Integration services can also be enabled and disabled with PowerShell by running
 
 In this example, we'll enable and then disable the guest file copy integration service on the "chost" virtual machine seen above.
 
-1. See what intergration services are running
+1. See what integration services are running
   
   ``` PowerShell
   Get-VMIntegrationService -VMName "chost"
@@ -66,9 +66,9 @@ Integration services were designed such that they need to be enabled in both the
 
 ### Manage integration services from the guest operating system
 
-#### On Windows Guests
+> **Note:** disabling integration services may severely affect the hosts ability to manage your virtual machine.  Integration services must be enabled on both the host and guest to operate.
 
-> **Note:** disabling integration services may severly affect the hosts ability to manage your virtual machine.  Integration services must be enabled on both the host and guest to operate.
+#### On Windows Guests
 
 Integration services appear as services in Windows.  To enable or disable an integration services from inside the virtual machine, open the Windows Services manager.
 
