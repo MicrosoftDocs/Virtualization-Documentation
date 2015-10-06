@@ -24,6 +24,7 @@
 ****,hyperv_on_windows/about/hyperv_on_windows.md,
 ****,hyperv_on_windows/about/whats_new.md,
 ****,hyperv_on_windows/about/supported_guest_os.md,
+****,oa-toc-external: hyperv_on_windows/about/linux,https://technet.microsoft.com/library/dn531030.aspx
 ****,hyperv_on_windows/about/faq.md,
 ***,oa-toc-container: quick_start,
 ****,hyperv_on_windows/quick_start/walkthrough.md,
