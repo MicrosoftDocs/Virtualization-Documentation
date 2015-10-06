@@ -3,9 +3,9 @@ title: Step 2 - Install Hyper-V on Windows 10
 
 # Install Hyper-V on Windows 10
 
-You must enable the Hyper-V role before you can create virtual machines on Windows 10. This can be done using the Windows 10 control panel, PowerShell or the Deployment Imaging Servicing and Management tool (DISM). This documents will walk through each of these.
+You must enable the Hyper-V role before you can create virtual machines on Windows 10. This can be done using the Windows 10 control panel, PowerShell or the Deployment Imaging Servicing and Management tool (DISM). This documents walks through each of these.
 
-## Manually Enable the Hyper-V Role
+## Manually Install the Hyper-V role
 
 1. Right click on the Windows button and select ‘Programs and Features’.
 
@@ -15,11 +15,11 @@ You must enable the Hyper-V role before you can create virtual machines on Windo
 
 ![](media/enable_role_upd.png)
 
-When the installation has completed you will be prompted to restart your computer.
+When the installation has completed you are prompted to restart your computer.
 
 ![](media/restart_upd.png)
 
-## Enable Hyper-V with PowerShell
+## Install Hyper-V with PowerShell
 
 1. Open a PowerShell console as Administrator.
 
@@ -28,9 +28,9 @@ When the installation has completed you will be prompted to restart your compute
 ```powershell
 Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V –All
 ```
-When the installation has completed you will need to reboot the computer.
+When the installation has completed you need to reboot the computer.
 
-## Enable Hyper-V with DISM
+## Install Hyper-V with DISM
 
 The Deployment Image Servicing and Management tool or DISM is used to service Windows images and prepare Windows Pre installation environments. DISM can also be used to enable Windows features while the operating system is running. For more information, see [DISM Technical Reference](https://technet.microsoft.com/en-us/library/hh824821.aspx).
 
@@ -43,9 +43,6 @@ To enable the Hyper-V role using DISM:
 ```powershell
 DISM /Online /Enable-Feature /All /FeatureName:Microsoft-Hyper-V
 ```
-
-Once completed you will be prompted to reboot.
-
 ![](media/dism_upd.png)
 
 

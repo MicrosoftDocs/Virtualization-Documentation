@@ -1,7 +1,7 @@
 ms.ContentId: B9414110-BEFD-423F-9AD8-AFD5EE612CDA
 title: Step 7 - Experiment with Windows PowerShell
 
-# Step 8: Experiment with Windows PowerShell
+# Step 8: Working with Hyper-V and Windows PowerShell
 
 Now that you have walked through the basics of deploying Hyper-V, creating virtual machines and managing these virtual machines, let’s explore how you can automate many of these activities with PowerShell.
 
@@ -17,7 +17,7 @@ get-command –module hyper-v | out-gridview
 
   ![](media\command_grid.png)
 
-3. To learn more about a particular PowerShell command use `get-help`. For instance running the following command will return information about the `get-vm` Hyper-V command.
+3. To learn more about a particular PowerShell command use `get-help`. For instance running the following command returns information about the `get-vm` Hyper-V command.
 
   ```powershell
 get-help get-vm
@@ -72,15 +72,11 @@ get-vm
 
 ### Create a VM checkpoint
 
-To create a checkpoint using PowerShell, select the virtual machine using the `get-vm` command and pipe this to the `checkpoint-vm` command. Finally give the checkpoint a name using `-snapshotname`. The complete command will look like the following:
+To create a checkpoint using PowerShell, select the virtual machine using the `get-vm` command and pipe this to the `checkpoint-vm` command. Finally give the checkpoint a name using `-snapshotname`. The complete command looks like the following:
 
  ```powershell
  get-vm -Name <VM Name> | checkpoint-vm -snapshotname <name for snapshot>
  ```
-For example, here is a checkpoint with the name DEMOCP:
- 
- ![](media\POSH_CP2.png)
-
 ### Create a new virtual machine
 
 The following example shows how to create a new virtual machine in the PowerShell Integrated Scripting Environment (ISE). This is a simple example and could be expanded on to include additional PowerShell features and more advanced VM deployments.

@@ -3,7 +3,7 @@ title: Step 1 - Operating System and Hardware Compatibility
 
 # Windows 10 Hyper-V System Requirements
 
-Hyper-V on Windows 10 will only work under a specific set of Hardware and Operating System configurations. This document will briefly discuss the software and hardware requirements of Hyper-V and show you how to check your system for compatibility with Hyper-V. While this document will not detail every system configuration compatible with Hyper-V, use the guidance here to help you quickly figure out if your current system can host Hyper-V virtual machines.”
+Hyper-V on Windows 10 only works under a specific set of Hardware and Operating System configurations. This document briefly discuss the software and hardware requirements of Hyper-V and show you how to check your system for compatibility with Hyper-V. While this document does not detail every system configuration compatible with Hyper-V, use the guidance here to help you quickly figure out if your current system can host Hyper-V virtual machines.”
 
 ## Operating System Requirements
 
@@ -23,11 +23,11 @@ The Hyper-V role cannot be installed on:
 
 ## Hardware Requirements
 
-While this document will not provide a complete list of Hyper-V compatible hardware, the following items are necessary:
+While this document does not provide a complete list of Hyper-V compatible hardware, the following items are necessary:
 	
 - 64-bit Processor with Second Level Address Translation (SLAT).
 - CPU support for VM Monitor Mode Extension (VT-c on Intel CPU's).
-- Minimum of 4 GB memory, however because virtual machines will share memory with the Hyper-V host, you will want to provide enough memory to handle the expected virtual workload.
+- Minimum of 4 GB memory, however because virtual machines share memory with the Hyper-V host, you need to provide enough memory to handle the expected virtual workload.
 
 The following items will need to be enabled in the system bios:
 - Virtualization Technology - may have a different label depending on motherboard manufacturer.
@@ -35,15 +35,15 @@ The following items will need to be enabled in the system bios:
 
 ## Verify Hardware Compatibility
 
-To verify compatibly, open up PowerShell or a command prompt (cmd.exe) and type **systeminfo.exe**. This will return information about Hyper-V compatibility.
+To verify compatibly, open up PowerShell or a command prompt (cmd.exe) and type **systeminfo.exe**. This returns information about Hyper-V compatibility.
 If all listed Hyper-V requirements have a value of **Yes**, your system can run the Hyper-V role. If any item returns **No**, check the requirements listed in this document and make adjustments where possible.
 
 ![](media/SystemInfo_upd.png)
 
-If you run **systeminfo.exe** on an existing Hyper-V host, the Hyper-V Requirements section will read:
+If you run **systeminfo.exe** on an existing Hyper-V host, the Hyper-V Requirements section reads:
 
 ```powershell
-Hyper-V Requirements: A hypervisor has been detected. Features required for Hyper-V will not be displayed.
+Hyper-V Requirements: A hypervisor has been detected. Features required for Hyper-V are not be displayed.
 ```
 
 ## Next Step - Install Hyper-V

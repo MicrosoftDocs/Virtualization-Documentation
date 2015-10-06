@@ -1,18 +1,18 @@
 ms.ContentId: FBBAADE6-F1A1-4B5C-8FD2-BDCA3FCF81CA
 title: Step 5 - Experiment with Checkpoints
 
-# Use checkpoints in Hyper-V on Windows 10
+# Use Checkpoints in Hyper-V on Windows 10
 
 One of the great benefits to virtualization is the ability to easily save the state of a virtual machine. In Hyper-V this is done through the use of virtual machine checkpoints. You may want to create a virtual machine checkpoint before making software configuration changes, applying a software update, or installing new software. If a system change were to cause an issue, the virtual machine can be reverted to the state at which it was when then checkpoint was taken.
 
 Windows 10 Hyper-V includes two types of checkpoints:
 
-- **Standard Checkpoints** – takes a snapshot of the virtual machine and virtual machine memory state at the time the checkpoint is initiated. This can be problematic for some workload such as when the virtual machine is hosting a database or other sever / client workload.
-- **Production Checkpoints** – uses Volume Shadow Copy Service or File System Freeze on a Linux virtual machine to create an application consistent storage snapshot.
+- **Standard Checkpoints** – takes a snapshot of the virtual machine and virtual machine memory state at the time the checkpoint is initiated. A snapshot is not a full backup and can cause data consistancy issues with systems that replicate data between different nodes such as Active Directory.
+- **Production Checkpoints** – uses Volume Shadow Copy Service or File System Freeze on a Linux virtual machine to create a data conistenant back of the virtual machine.
 
 Production checkpoints are selected by default however this can be changed using either Hyper-V manager or PowerShell.
 
-## Changing the checkpoint type using Hyper-V Manager
+## Changing the Checkpoint Type Using Hyper-V Manager
 
 1. Open up Hyper-V Manager.
 
@@ -24,34 +24,21 @@ Production checkpoints are selected by default however this can be changed using
 
 ![](media/checkpoint_upd.png)
 
-## Change the checkpoint type using PowerShell
-
-The following commands can be run to change the checkpoint with PowerShell. 
-
-```powershell
-# Set to Standard Checkpoint.
-Set-VM -Name <vmname> -CheckpointType Standard
-
-# Set to Production Checkpoint.
-Set-VM -Name <vmname> -CheckpointType Production
-
-# Set to Production Checkpoint with no failback to Standard. 
-Set-VM -Name <vmname> -CheckpointType ProductionOnly
-```
-
 ## Working with Standard Checkpoints in Hyper-V Manager 
 
-This exercise will walk through creating and applying a standard checkpoint. For this example, you will make a simple change to the virtual machine. The concept of checkpoints would also apply to more significant changes such as changing a software configuration. Before starting this exercise make sure that you have a virtual machine to work with and have changed the checkpoint type to standard checkpoints. 
+This exercise walks through creating and applying a standard checkpoint. For this example, you will make a simple change to the virtual machine. The concept of checkpoints would also apply to more significant changes like installing software, software updates or changing an operating system configuration.. Before you start this exercise make sure that you have a virtual machine to work with and have changed the checkpoint type to standard checkpoints. 
 
 **Modify the virtual machine and Create a Standard Checkpoint**
 
 1. Log into your virtual machine and create a text file on the desktop.
 
-2. In the text file enter the text ‘This is a Standard Checkpoint.’, save the file, but **do not close Notepad**.
+2. Open the file with Notepad and enter the text ‘This is a Standard Checkpoint.’
 
-3. In Hyper-V Manager right click on the virtual machine and select **Checkpoint**.
+3. Save the file, but **do not close Notepad**.
 
-When the checkpoint has been created it will be listed under the Checkpoints tree view of Hyper-V Manager. The checkpoint is given an auto generated name with a timestamp indicating the time at which the checkpoint was created.
+4. In Hyper-V Manager right click on the virtual machine and select **Checkpoint**.
+
+When the checkpoint has been created it is listed under the Checkpoints tree view of Hyper-V Manager. The checkpoint is given an auto generated name with a timestamp indicating the time at which the checkpoint was created.
 
 ![](media/std_checkpoint_upd.png) 
 
@@ -101,43 +88,116 @@ Once the production checkpoint has been applied, noticed that the virtual machin
 
 2. Take note that the text file has been restored. But unlike the standard checkpoint, Notepad is not open.   
 
-## Export, rename, delete checkpoints using Hyper-V Manager 
+## Export, Rename, Delete Checkpoints Using Hyper-V Manager 
 
 In addition to applying a checkpoint using Hyper-V manager several other actions can be completed.
 
-- **Export** – Allows you to export the checkpoint to another location to create a single virtual machine backup. When you import this backup into Hyper-V, it includes no checkpoint data.
+- **Export** – Allows you to export the checkpoint to another location. The export is a virtual machine backup that can be used to import the virtual machine into different location or different Hyper-V host.
 
 - **Rename** – useful for including details about the system state when the checkpoint was created.
 
-- **Delete Checkpoint** – when a checkpoint is no longer needed, deleting it will free up storage space on the Hyper-V host.
+- **Delete Checkpoint** – when a checkpoint is no longer needed, deleting it frees up storage space on the Hyper-V host.
 
-Each of these actions can be accessed through the right click contextual menu or the actions pane in Hyper-V Manager.
+Each of these actions can be accessed through the right click contextual menu of the virtual machine or the actions pane in Hyper-V Manager.
 
-## Export, rename, delete checkpoints using PowerShell
+## Manage Checkpoints with PowerShell
 
-To set the stage for working with checkpoints and PowerShell do the following:
+Just as checkpoints can be created, applied and managed manually with the Hyper-V Manager, these actions can also be automated using PowerShell. Note that when managing checkpoints with PowerShell the commands are run from the Hyper-V host and not from within the virtual machine itself.
+
+**Note** – Checkpoint and Snapshot can be used interchangeably in many but not all commands of the Hyper-V module.  Here is a list of all available commands.
+
+```powershell
+PS C:\> Get-Command –Module Hyper-V | where {$_.Name –Like “*snapshot*”}
+
+CommandType     Name                                               Version    Source                                                                                                                                                                         
+-----------     ----                                               -------    ------                                                                                                                                                                             
+Cmdlet          Export-VMSnapshot                                  2.0.0.0    Hyper-V                                                                                                                                                                            
+Cmdlet          Get-VHDSnapshot                                    2.0.0.0    Hyper-V                                                                                                                                                                            
+Cmdlet          Get-VMSnapshot                                     2.0.0.0    Hyper-V                                                                                                                                                                            
+Cmdlet          Remove-VHDSnapshot                                 2.0.0.0    Hyper-V                                                                                                                                                                            
+Cmdlet          Remove-VMSnapshot                                  2.0.0.0    Hyper-V                                                                                                                                                                            
+Cmdlet          Rename-VMSnapshot                                  2.0.0.0    Hyper-V                                                                                                                                                                            
+Cmdlet          Restore-VMSnapshot                                 2.0.0.0    Hyper-V                                                                                                                                                                            
+
+
+
+PS C:\> Get-Command –Module Hyper-V | where {$_.Name –Like “*checkpoint*”}
+
+CommandType     Name                                               Version    Source                                                                                                                                                                             
+-----------     ----                                               -------    ------                                                                                                                                                                             
+Cmdlet          Checkpoint-VM                                      2.0.0.0    Hyper-V                                                                                                                                                                            
+
+
+
+PS C:\> Get-Alias | where {$_.Name -like "*checkpoint*"}
+
+CommandType     Name                                               Version    Source                                                                                                                                                                             
+-----------     ----                                               -------    ------                                                                                                                                                                             
+Alias           Export-VMCheckpoint                                                                                                                                                                                                                              
+Alias           Get-VMCheckpoint                                                                                                                                                                                                                                 
+Alias           Remove-VMCheckpoint                                                                                                                                                                                                                              
+Alias           Rename-VMCheckpoint                                                                                                                                                                                                                              
+Alias           Restore-VMCheckpoint  
+``` 
+
+## Change the Checkpoint Type Using PowerShell
+
+The following commands can be run to change the checkpoint with PowerShell. 
+
+```powershell
+# Set to Standard Checkpoint.
+Set-VM -Name <vmname> -CheckpointType Standard
+
+# Set to Production Checkpoint, if the production checkpoint fails a standard checkpoint is be created.
+Set-VM -Name <vmname> -CheckpointType Production
+
+# Set to Production Checkpoint, if the production checkpoint fails a standard checkpoint is not be created. 
+Set-VM -Name <vmname> -CheckpointType ProductionOnly
+```
+
+## Create and Apply a Checkpoint with PowerShell
+
+This exercise walks through creating and applying a checkpoint using PowerShell. This procedure can be used with either a standard checkpoint or production checkpoint.
 
 1. Create a text file and enter the text ‘PowerShell checkpoint demonstration’. If you have been following along in this exercises you can use the existing text file.
 
 2. On the Hyper-V Host, open PowerShell by clicking on the Windows Start button and typing powershell.
 
-3. Create a checkpoint using the **CheckPoint-VM** command. This command will create a checkpoint of the type configured for the virtual machine. See the Configuring Checkpoint Type section earlier in this document for instructions on how to change this type.
+3. Create a checkpoint using the **CheckPoint-VM** command. This command creates a checkpoint of the type configured for the virtual machine. See the Configuring Checkpoint Type section earlier in this document for instructions on how to change this type.
 
 	```powershell
 	Checkpoint-VM –Name <VMName>
 	```
 4. When the checkpoint process has completed, delete the file from the virtual machine.
 
-5. To see a list of checkpoints for a virtual machine use the **Get-VMSnapshot** command.
+5. To see a list of checkpoints for a virtual machine use the **Get-VMCheckpoint** command.
 
 	```powershell
-	Get-VMSnapshot -VMName <VMName>
+	Get-VMCheckpoint -VMName <VMName>
 	```
-6. To apply the checkpoint use the **Restore-VMSnapshot** command.
+6. To apply the checkpoint use the **Restore-VMCheckpoint** command.
 
 	```powershell
-	Restore-VMSnapshot -Name <checkpoint name> -VMName <VMName> -Confirm:$false
+	Restore-VMCheckpoint -Name <checkpoint name> -VMName <VMName> -Confirm:$false
 	```
+	
+## Export, Rename, Delete Checkpoints with PowerShell 
+
+To export a virtual machine checkpoint, use the following command.
+
+```powershell
+Export-VMCheckpoint –VMName <virtual machine name>  –Name <checkpoint name> -Path <path for export>
+```
+To rename a virtual machine checkpoint, use the following command.
+
+```powershell
+Rename-VMCheckpoint –VMName <virtual machine name> –Name <checkpoint name> --NewName <new checkpoint name>
+```
+To delete a virtual machine checkpoint, use the following command.
+
+```powershell
+Remove-VMCheckpoint –VMName <virtual machine name> –Name <checkpoint name>
+```
 
 ## Next Step
 [Export and Import Virtual Machines](walkthrough_export_import.md)

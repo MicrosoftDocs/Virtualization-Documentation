@@ -3,7 +3,7 @@ title: Step 3 - Create a Virtual Switch
 
 # Create a Virtual Switch 
 
-Before creating a virtual machine in Hyper-V you will need to provide a way for this virtual machine to connect to a physical network. Hyper-V includes software based networking technology that allows a virtual machines network card to connect to a virtual switch, providing network connectivity. Each virtual switch created in Hyper-V can be configured with one of three connection types:
+Before you create a virtual machine in Hyper-V you need to provide a way for this virtual machine to connect to a physical network. Hyper-V includes software based networking technology that allows a virtual machines network card to connect to a virtual switch, providing network connectivity. Each virtual switch created in Hyper-V can be configured with one of three connection types:
 
 - **External Network** – the virtual switch is connected to a physical network adapted which provides connectivity between the physical network, the Hyper-V host, and the virtual machine. In this configuration you can also enable or disable the hosts ability to communicate over the physically connected network card. This can be useful to isolate only VM traffic to a particular physical network card.
 
@@ -13,7 +13,7 @@ Before creating a virtual machine in Hyper-V you will need to provide a way for 
 
 ## Manually Create a Virtual Switch
 
-This exercise will walk through creating an external virtual switch using the Hyper-V management Manager. When completed your Hyper-V host will contain a virtual switch that can be used to connect virtual machines to a physical network. 
+This exercise walks through how to create an external virtual switch using the Hyper-V management Manager. When completed your Hyper-V host contains a virtual switch that can be used to connect virtual machines to a physical network. 
 
 1. Open up Hyper-V Manager.
 
@@ -29,7 +29,7 @@ This exercise will walk through creating an external virtual switch using the Hy
 
 7. Under ‘Connection Type’ ensure that **External Network** has been selected.
 
-8. Select the physical network card that will be paired with the new virtual switch, this will be the network card that is physically connected to the network.  
+8. Select the physical network card that to be paired with the new virtual switch, this is the network card that is physically connected to the network.  
 
 	![](media/newSwitch_upd.png)
 
@@ -66,9 +66,9 @@ The following steps can be used to create a virtual switch with an external conn
 	New-VMSwitch -Name "External VM Switch" -AllowManagementOS $True -NetAdapterName $net.Name
 	```
 
-## Note on Virtual Switches and Laptops
+## Virtual Switches and Laptops
 
-If running Windows 10 Hyper-V on a laptop you may want to consider creating a virtual switch for both the ethernet and wireless network cards. With this configuration you can change your virtual machines between theses switches dependent on how the laptop is network connected. Virtual machines will not automatically switch between wired and wireless.
+If running Windows 10 Hyper-V on a laptop you may want to create a virtual switch for both the ethernet and wireless network cards. With this configuration you can change your virtual machines between theses switches dependent on how the laptop is network connected. Virtual machines will not automatically switch between wired and wireless.
 
 ## Next Step - Create a Virtual Machine
 [Create a Windows Virtual Machine](walkthrough_create_vm.md)
