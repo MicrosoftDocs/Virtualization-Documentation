@@ -49,7 +49,7 @@ This exercise will walk through creating and applying a standard checkpoint. For
 
 2. In the text file enter the text ‘This is a Standard Checkpoint.’, save the file, but **do not close Notepad**.
 
-3. In Hyper-V Manager either right click on the virtual machine and select **Checkpoint**.
+3. In Hyper-V Manager right click on the virtual machine and select **Checkpoint**.
 
 When the checkpoint has been created it will be listed under the Checkpoints tree view of Hyper-V Manager. The checkpoint is given an auto generated name with a timestamp indicating the time at which the checkpoint was created.
 
