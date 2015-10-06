@@ -104,41 +104,7 @@ Each of these actions can be accessed through the right click contextual menu of
 
 Just as checkpoints can be created, applied and managed manually with the Hyper-V Manager, these actions can also be automated using PowerShell. Note that when managing checkpoints with PowerShell the commands are run from the Hyper-V host and not from within the virtual machine itself.
 
-**Note** – Checkpoint and Snapshot can be used interchangeably in many but not all commands of the Hyper-V module.  Here is a list of all available commands.
-
-```powershell
-PS C:\> Get-Command –Module Hyper-V | where {$_.Name –Like “*snapshot*”}
-
-CommandType     Name                                               Version    Source                                                                                                                                                                         
------------     ----                                               -------    ------                                                                                                                                                                             
-Cmdlet          Export-VMSnapshot                                  2.0.0.0    Hyper-V                                                                                                                                                                            
-Cmdlet          Get-VHDSnapshot                                    2.0.0.0    Hyper-V                                                                                                                                                                            
-Cmdlet          Get-VMSnapshot                                     2.0.0.0    Hyper-V                                                                                                                                                                            
-Cmdlet          Remove-VHDSnapshot                                 2.0.0.0    Hyper-V                                                                                                                                                                            
-Cmdlet          Remove-VMSnapshot                                  2.0.0.0    Hyper-V                                                                                                                                                                            
-Cmdlet          Rename-VMSnapshot                                  2.0.0.0    Hyper-V                                                                                                                                                                            
-Cmdlet          Restore-VMSnapshot                                 2.0.0.0    Hyper-V                                                                                                                                                                            
-
-
-
-PS C:\> Get-Command –Module Hyper-V | where {$_.Name –Like “*checkpoint*”}
-
-CommandType     Name                                               Version    Source                                                                                                                                                                             
------------     ----                                               -------    ------                                                                                                                                                                             
-Cmdlet          Checkpoint-VM                                      2.0.0.0    Hyper-V                                                                                                                                                                            
-
-
-
-PS C:\> Get-Alias | where {$_.Name -like "*checkpoint*"}
-
-CommandType     Name                                               Version    Source                                                                                                                                                                             
------------     ----                                               -------    ------                                                                                                                                                                             
-Alias           Export-VMCheckpoint                                                                                                                                                                                                                              
-Alias           Get-VMCheckpoint                                                                                                                                                                                                                                 
-Alias           Remove-VMCheckpoint                                                                                                                                                                                                                              
-Alias           Rename-VMCheckpoint                                                                                                                                                                                                                              
-Alias           Restore-VMCheckpoint  
-``` 
+**Note** – Several aliases have been created in the Hyper-V PowerShell module so that checkpoint and snapshot can be used interchangeably. This document uses checkpoint, however be aware that you may see similar command using the term snapshot.
 
 ## Change the Checkpoint Type Using PowerShell
 
