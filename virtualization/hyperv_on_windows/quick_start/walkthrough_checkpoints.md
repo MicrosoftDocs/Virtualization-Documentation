@@ -26,7 +26,7 @@ Production checkpoints are selected by default however this can be changed using
 
 ## Working with Standard Checkpoints in Hyper-V Manager 
 
-This exercise walks through creating and applying a standard checkpoint. For this example, you will make a simple change to the virtual machine. The concept of checkpoints would also apply to more significant changes like installing software, software updates or changing an operating system configuration.. Before you start this exercise make sure that you have a virtual machine to work with and have changed the checkpoint type to standard checkpoints. 
+This exercise walks through creating and applying a standard checkpoint. For this example, you will make a simple change to the virtual machine. The concept of checkpoints would also apply to more significant changes like installing software, software updates or changing an operating system configuration. Before you start this exercise make sure that you have a virtual machine to work with and have changed the checkpoint type to standard checkpoints. 
 
 **Modify the virtual machine and Create a Standard Checkpoint**
 
@@ -38,7 +38,7 @@ This exercise walks through creating and applying a standard checkpoint. For thi
 
 4. In Hyper-V Manager right click on the virtual machine and select **Checkpoint**.
 
-When the checkpoint has been created it is listed under the Checkpoints tree view of Hyper-V Manager. The checkpoint is given an auto generated name with a timestamp indicating the time at which the checkpoint was created.
+When the checkpoint has been created, it is listed under the Checkpoints tree view of Hyper-V Manager. The checkpoint is given an auto generated name with a timestamp indicating the time at which the checkpoint was created.
 
 ![](media/std_checkpoint_upd.png) 
 
@@ -54,11 +54,11 @@ Now that a checkpoint exists, make a modification to the virtual machine and the
 
 ![](media/apply_standard_upd.png) 
 
-Once the checkpoint has been applied notice, that not only is the text file present, but the system is in the exact state that it was when the checkpoint was created. In this case Notepad is open and the text file loaded.
+Once the checkpoint has been applied, notice that not only is the text file present, but the system is in the exact state that it was when the checkpoint was created. In this case Notepad is open and the text file loaded.
 
 ## Working with Production Checkpoints in Hyper-V Manager
 
-Let’s now examine production checkpoints. This process is almost identical to working with standard checkpoint however will have slightly different results. Before beginning make sure you have a virtual machine and that you have changes the checkpoint type to Production checkpoints.
+Let’s now examine production checkpoints. This process is almost identical to working with a standard checkpoint, however will have slightly different results. Before beginning make sure you have a virtual machine and that you have changes the checkpoint type to Production checkpoints.
 
 **Modify the virtual machine and Create a Production Checkpoint**
 
@@ -90,7 +90,7 @@ Once the production checkpoint has been applied, noticed that the virtual machin
 
 ## Export, Rename, Delete Checkpoints Using Hyper-V Manager 
 
-In addition to applying a checkpoint using Hyper-V manager several other actions can be completed.
+In addition to applying a checkpoint, using Hyper-V manager several other actions can be completed.
 
 - **Export** – Allows you to export the checkpoint to another location. The export is a virtual machine backup that can be used to import the virtual machine into different location or different Hyper-V host.
 
@@ -102,9 +102,9 @@ Each of these actions can be accessed through the right click contextual menu of
 
 ## Manage Checkpoints with PowerShell
 
-Just as checkpoints can be created, applied and managed manually with the Hyper-V Manager, these actions can also be automated using PowerShell. Note that when managing checkpoints with PowerShell the commands are run from the Hyper-V host and not from within the virtual machine itself.
+Just as checkpoints can be created, applied, and managed manually with the Hyper-V Manager, these actions can also be automated using PowerShell. Note that when managing checkpoints with PowerShell the commands are run from the Hyper-V host and not from within the virtual machine itself.
 
-**Note** – Several aliases have been created in the Hyper-V PowerShell module so that checkpoint and snapshot can be used interchangeably. This document uses checkpoint, however be aware that you may see similar command using the term snapshot.
+> Several aliases have been created in the Hyper-V PowerShell module so that checkpoint and snapshot can be used interchangeably. This document uses checkpoint, however be aware that you may see similar command using the term snapshot.
 
 ## Change the Checkpoint Type Using PowerShell
 
