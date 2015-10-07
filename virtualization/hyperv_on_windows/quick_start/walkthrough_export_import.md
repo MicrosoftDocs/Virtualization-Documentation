@@ -23,7 +23,7 @@ Importing a virtual machine registers the virtual machine with the Hyper-V host.
 
 Hyper-V includes three import types:
 
-- **Register in-place** – Export files have been placed in the location where the virtual machine should be run from. When imported, the virtual machine has the same ID as it did at the time of export. Because of this, If the virtual machine is already registered with Hyper-V it needs to be removed before the import will work. When the import has completed, the export files become the running state files and cannot be removed.
+- **Register in-place** – Export files have been placed in the location where the virtual machine should be run from. When imported, the virtual machine has the same ID as it did at the time of export. Because of this, If the virtual machine is already registered with Hyper-V it needs to be deleted before the import will work. When the import has completed, the export files become the running state files and cannot be removed.
 
 - **Restore the virtual machine** – You are given an option to store the VM files in a specific location or use the locations default to Hyper-V. This import type creates a copy of the exported file and moves them to the selected location. When imported, the virtual machine has the same ID as it did at the time of export. Because of this, if the virtual machine is already running in Hyper-V it needs to be deleted before the import can be completed. When the import has completed the exported files remain untouched and can be removed and / or imported again.
 
@@ -39,7 +39,7 @@ To import a virtual machine into a Hyper-V host:
 
 4. Select the Virtual Machine to import, there will most likely only be one option.
 
-5. Choose an import type from one of the three options (detailed below) and click next. 
+5. Choose an import type from one of the three options and click next. 
 
 6. Select **Finish** on the summary screen.
 
@@ -59,17 +59,18 @@ To complete an in place import of a virtual machine, the command would look simi
 ```powershell
 Import-VM -Path 'C:\<emport path>\2B91FEB3-F1E0-4FFF-B8BE-29CED892A95A.vmcx' 
 ```
+
+
+To import the virtual machine specifying your own path for the virtual machine files, the command would look similar to this.
+
+```powershell
+Import-VM -Path ‘C:\<vm export path>\2B91FEB3-F1E0-4FFF-B8BE-29CED892A95A.vmcx' -Copy -VhdDestinationPath 'D:\Virtual Machines\WIN10DOC' -VirtualMachinePath 'D:\Virtual Machines\WIN10DOC'
+```
+
 To complete a copy import and move the virtual machine files to the default Hyper-V location, the command would be similar to this.
 
 ```powershll
 Import-VM -Path 'C:\<vm export path>\2B91FEB3-F1E0-4FFF-B8BE-29CED892A95A.vmcx' –Copy -GenerateNewId
 ```
-
-Finally, to import the virtual machine specifying your own path for the virtual machine files, the command would look similar to this.
-
-```powershell
-Import-VM -Path ‘C:\<vm export path>\2B91FEB3-F1E0-4FFF-B8BE-29CED892A95A.vmcx' -Copy -VhdDestinationPath 'D:\Virtual Machines\WIN10DOC' -VirtualMachinePath 'D:\Virtual Machines\WIN10DOC' -GenerateNewId 
-```
-
 ## Next Step
 [Hyper-V and Windows PowerShell](walkthrough_powershell.md)
