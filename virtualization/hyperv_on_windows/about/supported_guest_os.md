@@ -3,7 +3,7 @@ title: Supported Windows Guest Operating Systems
 
 
 # Supported Windows guests 
-This article lists the Windows operating systems supported as guests in Hyper-V on Windows, as well provides information about integration services. 
+This article lists the operating system combinations supported in Hyper-V on Windows.  It will also introduction to integration services and other factors in support.
 
 > Windows 10 runs as a guest operating system on Windows 8.1 and Windows Server 2012 R2 Hyper-V hosts.
 
@@ -15,6 +15,8 @@ Microsoft provides support for guest operating systems in the following manner:
 * For issues found in other operating systems that have been certified by the operating system vendor to run on Hyper-V, support is provided by the vendor.
 * For issues found in other operating systems, Microsoft submits the issue to the multi-vendor support community, [TSANet](http://www.tsanet.org/).
 
+In order to be supported, both the Hyper-V host and guest must be updated with all critical updates available through Windows Update.
+
 ## What are integration services and why do they matter?
 Hyper-V includes integration services for supported guest operating systems.  Integration services improve interaction between the host system and the virtual machine.  
 
@@ -22,8 +24,7 @@ Some operating systems (including different versions of Windows) have the integr
 
 ## Supported Windows Server guest operating systems
 
-For Windows 10 Hyper-V Hosts:
-
+**For Windows 10 Hyper-V Hosts:**
 
  |  Guest operating system  			|  Maximum number of virtual processors  	|  Integration Services  	|  Notes  	| 	 	| 
  | -----				 				| ----- 									| ----- 					| ----- 	| ----- |
@@ -48,6 +49,7 @@ For Windows 10 Hyper-V Hosts:
  | Windows 7 with Service Pack 1 (SP 1) | 4 | Upgrade the integration services after you set up the operating system in the virtual machine. | Ultimate, Enterprise, and Professional editions (32-bit and 64-bit). | 	|
  | Windows 7 | 4 | Upgrade the integration services after you set up the operating system in the virtual machine. | Ultimate, Enterprise, and Professional editions (32-bit and 64-bit). | 	|
  | Windows Vista with Service Pack 2 (SP2) | 2 | Install the integration services after you set up the operating system in the virtual machine. | Business, Enterprise, and Ultimate, including N and KN editions. |  	|
+ 
  
  Windows 10 is a guest operating system on Windows 8.1 and Windows Server 2012 R2 Hyper-V hosts.
 
