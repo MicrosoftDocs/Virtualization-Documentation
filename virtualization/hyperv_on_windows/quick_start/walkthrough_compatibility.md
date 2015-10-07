@@ -3,7 +3,7 @@ title: Step 1 - Operating System and Hardware Compatibility
 
 # Windows 10 Hyper-V System Requirements
 
-Hyper-V on Windows 10 only works under a specific set of Hardware and Operating System configurations. This document briefly discuss the software and hardware requirements of Hyper-V and show you how to check your system for compatibility with Hyper-V. While this document does not detail every system configuration compatible with Hyper-V, use the guidance here to help you quickly figure out if your current system can host Hyper-V virtual machines.”
+Hyper-V on Windows 10 only works under a specific set of Hardware and Operating System configurations. This document briefly discuss the software and hardware requirements of Hyper-V and shows you how to check your system for compatibility with Hyper-V. While this document does not detail every system configuration compatible with Hyper-V, use the guidance here to help you quickly figure out if your current system can host Hyper-V virtual machines.”
 
 ## Operating System Requirements
 
@@ -42,7 +42,7 @@ If all listed Hyper-V requirements have a value of **Yes**, your system can run 
 
 If you run **systeminfo.exe** on an existing Hyper-V host, the Hyper-V Requirements section reads:
 
-```powershell
+```
 Hyper-V Requirements: A hypervisor has been detected. Features required for Hyper-V are not be displayed.
 ```
 
