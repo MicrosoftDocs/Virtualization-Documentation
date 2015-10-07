@@ -720,10 +720,17 @@ function Start-ImageFactory
 
     # Setup a bunch of variables 
     $sysprepNeeded = $true;
-    $baseVHD = "$($workingDir)\bases\$($FriendlyName)-base.vhdx";
-    $updateVHD = "$($workingDir)\$($FriendlyName)-update.vhdx";
-    $sysprepVHD = "$($workingDir)\$($FriendlyName)-sysprep.vhdx";
-    $finalVHD = "$($workingDir)\share\$($FriendlyName).vhdx";
+
+    $VHDFormat = "vhdx";
+    if ($LegacyVHD)
+    {
+        $VHDFormat = "vhd";
+    }
+
+    $baseVHD = "$($workingDir)\bases\$($FriendlyName)-base.$($VHDFormat)";
+    $updateVHD = "$($workingDir)\$($FriendlyName)-update.$($VHDFormat)";
+    $sysprepVHD = "$($workingDir)\$($FriendlyName)-sysprep.$($VHDFormat)";
+    $finalVHD = "$($workingDir)\share\$($FriendlyName).$($VHDFormat)";
    
     $VHDPartitionStyle = "MBR";
     $Gen = 1;
@@ -768,7 +775,7 @@ function Start-ImageFactory
         logger $FriendlyName "Create base VHD using Convert-WindowsImage.ps1";
         $ConvertCommand = "Convert-WindowsImage";
         $ConvertCommand = $ConvertCommand + " -SourcePath `"$ISOFile`" -VHDPath `"$baseVHD`"";
-        $ConvertCommand = $ConvertCommand + " -SizeBytes 80GB -VHDFormat VHDX -UnattendPath `"$($workingDir)\unattend.xml`"";
+        $ConvertCommand = $ConvertCommand + " -SizeBytes 80GB -VHDFormat $VHDFormat -UnattendPath `"$($workingDir)\unattend.xml`"";
         $ConvertCommand = $ConvertCommand + " -Edition $SKUEdition -VHDPartitionStyle $VHDPartitionStyle";
 
         Invoke-Expression "& $ConvertCommand";

@@ -61,3 +61,6 @@ $StartFactory = $true
 
 # If enabled, will use dism.exe to clean the WinSXS folder and remove old updates. This can give significant disk savings, but takes longer (20-30 minutes per image). Updates will not be able to be uninstalled if this is enabled.
 $CleanWinSXS = $false
+
+# If enabled, will use the legacy VHD format rather than VHDX to support Hyper-V before Windows Server 2012
+$LegacyVHD = $false
