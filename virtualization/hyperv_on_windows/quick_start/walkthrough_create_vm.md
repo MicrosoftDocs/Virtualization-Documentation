@@ -5,7 +5,7 @@ title: Step 4 - Deploy a Windows Virtual Machine
 
 You can create a virtual machine and deploy an operating system to it in many different ways, for example using Windows Deployment Services, attaching a prepared virtual hard drive, or manually using the installation media. This article walks through how to create a virtual machine and deploy an operating system to the virtual machine using the operating system installation media.
 
-Before starting this exercise, you need an .iso file for the operating system that you would like to deploy. If needed grab an evaluation copy of Windows 8.1 or Windows 10 from the [TechNet Evaluation Center](http://www.microsoft.com/en-us/evalcenter/).
+Before starting this exercise, you need an .iso file for the operating system that you would like to deploy. If needed, grab an evaluation copy of Windows 8.1 or Windows 10 from the [TechNet Evaluation Center](http://www.microsoft.com/en-us/evalcenter/).
 
 ## Create a Virtual Machine with Hyper-V Manager
 These steps walk through how to manually create a virtual machine and deploy an operating system to this virtual machine.
@@ -14,7 +14,7 @@ These steps walk through how to manually create a virtual machine and deploy an 
 
 2. Review the ‘Before You Begin’ content and click **Next**. 
 
-3. Give the Virtual Machine a name. Note, this is name of the Virtual Machine and not the computer name given to the system once the operating system has been deployed.
+3. Give the Virtual Machine a name. Note, this is the name of the Virtual Machine and not the computer name given to the system once the operating system has been deployed.
 
 4. Chose a location where the virtual machine files will be stored such as **c:\virtualmachine**. You can also accept the default location. Click **Next** when done.
 	
@@ -26,7 +26,7 @@ These steps walk through how to manually create a virtual machine and deploy an 
 
 6. Select **2048** for the **Startup Memory** value and leave **Use Dynamic Memory**, selected. Click the **Next** button.  
 
-  Memory is shared between a Hyper-V host and the virtual machine running on the host. The number of virtual machine’s that can run on a single host is in part dependent on available memory. A virtual machine can also be configured to use Dynamic Memory. When enabled, dynamic memory reclaims unused memory from the running virtual machine. This allows more virtual machines to run on the host. For more information on Dynamic Memory see the [Hyper-V Dynamic Memory Overview](https://technet.microsoft.com/en-us/library/hh831766.aspx).
+  Memory is shared between a Hyper-V host and the virtual machine running on the host. The number of virtual machine’s that can run on a single host is in part dependent on available memory. A virtual machine can also be configured to use Dynamic Memory. When enabled, dynamic memory reclaims unused memory from the running virtual machine. This allows more virtual machines to run on the host. For more information on Dynamic Memory, see the [Hyper-V Dynamic Memory Overview](https://technet.microsoft.com/en-us/library/hh831766.aspx).
 
 7. On the Configure Networking wizard, select a virtual switch for the virtual machine and click **Next**. For more information, see [Create a Virtual Switch](walkthrough_virtual_switch.md).
 
@@ -86,7 +86,7 @@ In order to finish building your virtual machine, you need to start the virtual 
 
   ![](media/OSDeploy_upd.png) 
 
-> **Note:** Unless you're running a volume licensed version of Windows 10, you need a seperate license for Windows running inside a virtual machine. The virtual machine's operating system is independent of the host operating system.
+> **Note:** Unless you're running a volume licensed version of Windows, you need a seperate license for Windows running inside a virtual machine. The virtual machine's operating system is independent of the host operating system.
 
 ## Next Step - Virtual Machine Checkpoints
 [Virtual Machine Checkpoints](walkthrough_checkpoints.md)
