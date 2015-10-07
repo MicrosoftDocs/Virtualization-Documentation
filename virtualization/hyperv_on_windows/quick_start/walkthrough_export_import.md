@@ -7,7 +7,7 @@ Unlike a checkpoint where a snapshot file is created which can then be applied b
 
 ## Export a Virtual Machine in Hyper-V Manager
 
-When creating an export of a virtual machine all associated files are bundled in the export. This includes configuration files, hard drive files and also any existing checkpoint files. To create a virtual machine export:
+When creating an export of a virtual machine, all associated files are bundled in the export. This includes configuration files, hard drive files and also any existing checkpoint files. To create a virtual machine export:
 
 1. In Hyper-V Manager right click on the desired virtual machine and select **Export**.
 
@@ -17,13 +17,6 @@ When creating an export of a virtual machine all associated files are bundled in
 
 When the export has been completed you can see all exported files under the export location.
 
-## Export a Virtual Machine with PowerShell
-
-To export a virtual machine using PowerShell use the **Export-VM** command. More information can be found at the [Export-VM Reference](https://technet.microsoft.com/en-us/library/hh848491.aspx).
-
-```powershell
-Export-VM -Name <vm name> -Path <path>
-```
 ## Import a Virtual Machine with Hyper-V Manager
 
 Importing a virtual machine registers the virtual machine with the Hyper-V host. A virtual machine export can be imported back into the host from which it was derived or new host. 
@@ -50,6 +43,13 @@ To import a virtual machine into a Hyper-V host:
 
 6. Select **Finish** on the summary screen.
 
+## Export a Virtual Machine with PowerShell
+
+To export a virtual machine using PowerShell use the **Export-VM** command. More information can be found at the [Export-VM Reference](https://technet.microsoft.com/en-us/library/hh848491.aspx).
+
+```powershell
+Export-VM -Name <vm name> -Path <path>
+```
 ## Import a Virtual Machine with PowerShell
 
 To import a virtual machine using PowerShell, use the **Import-VM** command. More information can be found at the [Import-VM Reference](https://technet.microsoft.com/en-us/library/hh848495.aspx). The following commands demonstrate an import of each of the three import types using PowerShell.
