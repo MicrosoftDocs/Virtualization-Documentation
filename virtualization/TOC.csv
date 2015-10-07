@@ -25,14 +25,16 @@
 ****,hyperv_on_windows/about/whats_new.md,
 ****,hyperv_on_windows/about/supported_guest_os.md,
 ****,oa-toc-external: hyperv_on_windows/about/linux,https://technet.microsoft.com/library/dn531030.aspx
+<<<<<<< HEAD
 ****,hyperv_on_windows/about/faq.md,
+=======
+>>>>>>> release
 ***,oa-toc-container: quick_start,
 ****,hyperv_on_windows/quick_start/walkthrough.md,
 ****,hyperv_on_windows/quick_start/walkthrough_compatibility.md,
 ****,hyperv_on_windows/quick_start/walkthrough_install.md,
 ****,hyperv_on_windows/quick_start/walkthrough_virtual_switch.md,
 ****,hyperv_on_windows/quick_start/walkthrough_create_vm.md,
-****,hyperv_on_windows/quick_start/walkthrough_vmconnect.md,
 ****,hyperv_on_windows/quick_start/walkthrough_checkpoints.md,
 ****,hyperv_on_windows/quick_start/walkthrough_export_import.md,
 ****,hyperv_on_windows/quick_start/walkthrough_powershell.md,
