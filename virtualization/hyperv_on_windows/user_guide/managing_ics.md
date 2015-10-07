@@ -6,7 +6,7 @@ Integration services (often called integration components), are services that al
 
 This article will detail how to manage integration services using both Hyper-V manager and PowerShell in Windows 10.
 
-### Enable or disable integration services using Hyper-V Manager
+### Enable or Disable Integration Services using Hyper-V Manager
 
 1. select a virtual machine and open settings.
 
@@ -16,7 +16,7 @@ This article will detail how to manage integration services using both Hyper-V m
   
   Here you can see all integration services available on this Hyper-V host.  It's worth noting that the guest operating system may or may not support all of the integration services listed.
 
-### Enable or disable integration services using PowerShell
+### Enable or Disable Integration Services Using PowerShell
 
 Integration services can also be enabled and disabled with PowerShell by running [`Enable-VMIntegrationService`](https://technet.microsoft.com/en-us/library/hh848500.aspx) and [`Disable-VMIntegrationService`](https://technet.microsoft.com/en-us/library/hh848488.aspx).
 
@@ -57,7 +57,7 @@ In this example, we'll enable and then disable the guest file copy integration s
 Integration services were designed such that they need to be enabled in both the host and the guest in order to function.  While all integration services are enabled by default on Windows guest operating systems, they can be disabled.  See how in the next section.
 
 
-### Manage Integration Services from Guest Operating System (Windows)
+### Manage Integration Services from Guest OS (Windows)
 
 > **Note:** disabling integration services may severely affect the hosts ability to manage your virtual machine.  Integration services must be enabled on both the host and guest to operate.
 
@@ -92,7 +92,7 @@ Start or stop services using [`Start-Service`](https://technet.microsoft.com/en-
 
 By default, all integration services are enabled in the guest operation system.
 
-### Manage Integration Services from Guest Operating System (Linux)
+### Manage Integration Services from Guest OS (Linux)
 
 Linux integration services are provided through the Linux kernel.
 
