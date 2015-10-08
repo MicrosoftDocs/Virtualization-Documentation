@@ -32,6 +32,8 @@ In order to recieve support, both the Windows guest operating systems and the ho
 | Windows Server 2012 | 64 | |
 | Windows Server 2008 R2 with Service Pack 1 (SP 1) | 64 | Datacenter, Enterprise, Standard and Web editions. |
 | Windows Server 2008 with Service Pack 2 (SP 2) | 4 | Datacenter, Enterprise, Standard and Web editions (32-bit and 64-bit). |
+| Windows Home Server 2011 | 4 | |
+| Windows Small Business Server 2011 | Essentials edition - 2, Standard edition - 4 | |
   
  > Windows 10 can run as a guest operating system on Windows 8.1 and Windows Server 2012 R2 Hyper-V hosts.
 
