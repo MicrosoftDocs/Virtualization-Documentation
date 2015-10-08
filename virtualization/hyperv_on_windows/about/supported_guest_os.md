@@ -38,7 +38,7 @@ In order to be supported, both the Hyper-V host and guest must be updated with a
 ## Supported Linux and Free BSD guest operating systems on Windows 10
 
 | Guest operating system |  |
-| -----|------|
+|:-----|:------|
 | [CentOS and Red Hat Enterprise Linux ](https://technet.microsoft.com/library/dn531026.aspx) | |
 | [Debian virtual machines on Hyper-V](https://technet.microsoft.com/library/dn614985.aspx) | |
 | [SUSE](https://technet.microsoft.com/en-us/library/dn531027.aspx) | |
@@ -46,4 +46,4 @@ In order to be supported, both the Hyper-V host and guest must be updated with a
 | [Ubuntu](https://technet.microsoft.com/en-us/library/dn531029.aspx) | |
 | [FreeBSD](https://technet.microsoft.com/library/dn848318.aspx) | |
 
-There are caveats around specific kernel versions. For more information, including support information on past versions of Hyper-V, see [Linux and FreeBSD Virtual Machines on Hyper-V](https://technet.microsoft.com/library/dn531030.aspx).
+For more information, including support information on past versions of Hyper-V, see [Linux and FreeBSD Virtual Machines on Hyper-V](https://technet.microsoft.com/library/dn531030.aspx).
