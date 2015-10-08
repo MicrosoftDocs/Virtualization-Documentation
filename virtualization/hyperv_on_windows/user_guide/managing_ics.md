@@ -126,7 +126,8 @@ For virtual machines running on Windows 10 hosts:
 | Windows Server 2012 | Windows Update | Requires the Data Exchange integration service. |
 | Windows Server 2008 R2 | Windows Update | Requires the Data Exchange integration service. |
 
-For Windows 8.1 hosts:
+For virtual machines running on Windows 8.1 hosts:
+
 | Guest OS | Update mechanism | Notes |
 |:---------|:---------|:---------|
 | Windows 10 | Windows Update | |
@@ -138,7 +139,8 @@ For Windows 8.1 hosts:
 | Windows Server 2012 | Integration Services disk | |
 | Windows Server 2008 R2 | Integration Services disk | |
 
-For Windows 8 hosts:
+For virtual machines running on Windows 8 hosts:
+
 | Guest OS | Update mechanism | Notes |
 |:---------|:---------|:---------|
 | Windows 8.1 | Windows Update | |
@@ -150,5 +152,3 @@ For Windows 8 hosts:
 | Windows Server 2008 R2 | Integration Services disk | |
 
 Instructions for updating via Integration Services disk for Windows 8 and Windows 8.1.
-
-* 
