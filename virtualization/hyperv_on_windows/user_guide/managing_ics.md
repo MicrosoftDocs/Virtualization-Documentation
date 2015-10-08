@@ -109,9 +109,11 @@ Run the following command in your Linux guest operating system to see if the req
 ps –eaf|grep hv
 ```
 
-## Updating integration services
+## Integration service maintainance
 
-For Windows 10 hosts:
+Keep integration services current in order to recieve the best virtual machine performance and features possible.
+
+For virtual machines running on Windows 10 hosts:
 
 | Guest OS | Update mechanism | 
 |:---------|:---------|
