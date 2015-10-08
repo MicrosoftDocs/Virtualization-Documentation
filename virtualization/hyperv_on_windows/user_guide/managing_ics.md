@@ -119,12 +119,12 @@ For virtual machines running on Windows 10 hosts:
 |:---------|:---------|:---------|
 | Windows 10 | Windows Update | |
 | Windows 8.1 | Windows Update | |
-| Windows 8 | Windows Update | |
-| Windows 7 | Windows Update | |
-| Windows Vista | Windows Update | |
+| Windows 8 | Windows Update | Requires the Data Exchange integration service. |
+| Windows 7 | Windows Update | Requires the Data Exchange integration service. |
+| Windows Vista | Windows Update | Requires the Data Exchange integration service. |
 | Windows Server 2012 R2 | Windows Update | |
-| Windows Server 2012 | Windows Update | |
-| Windows Server 2008 R2 | Windows Update | |
+| Windows Server 2012 | Windows Update | Requires the Data Exchange integration service. |
+| Windows Server 2008 R2 | Windows Update | Requires the Data Exchange integration service. |
 
 For Windows 8.1 hosts:
 | Guest OS | Update mechanism | Notes |
@@ -149,3 +149,6 @@ For Windows 8 hosts:
 | Windows Server 2012 | Integration Services disk | |
 | Windows Server 2008 R2 | Integration Services disk | |
 
+Instructions for updating via Integration Services disk for Windows 8 and Windows 8.1.
+
+* 
