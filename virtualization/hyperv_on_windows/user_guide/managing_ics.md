@@ -167,4 +167,3 @@ Keep integration services current in order to recieve the best virtual machine p
 | Windows Server 2003 (SP 2) | Integration Services disk | |
 
 Instructions for updating via Integration Services disk for Windows 8 and Windows 8.1 are avialable here.
-
