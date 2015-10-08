@@ -109,9 +109,11 @@ Run the following command in your Linux guest operating system to see if the req
 ps –eaf|grep hv
 ```
 
-VSS Snapshot daemon – This daemon is required to create live Linux virtual machine backups.
-KVP daemon – This daemon allows setting and querying intrinsic and extrinsic key value pairs.
-fcopy daemon – This daemon implements a file copying service between the host and guest.
+Daemons you may see:  
+* **VSS Snapshot daemon** – This daemon is required to create live Linux virtual machine backups.
+* **KVP daemon** – This daemon allows setting and querying intrinsic and extrinsic key value pairs.
+* **fcopy daemon** – This daemon implements a file copying service between the host and guest.
+
 To install these daemons when using the linux-virtual package, use the following commands as root (or sudo):
 ``` BASH
 # apt-get update
@@ -145,7 +147,7 @@ Keep integration services current in order to recieve the best virtual machine p
 | Windows Home Server 2011 | Windows Update | Requires the Data Exchange integration service.***** |
 | Windows Small Business Server 2011 | Windows Update | Requires the Data Exchange integration service.***** |
 | - | | |
-| Ubuntu 15.04, 14.10, 14.04, 12.04 | Package manager | [More informantion](https://technet.microsoft.com/en-us/library/dn531029.aspx)**\*\*** |
+| Ubuntu 15.04, 14.10, 14.04, 12.04 | Package manager | [More information](https://technet.microsoft.com/en-us/library/dn531029.aspx)**\*\*** |
 | Debian 8.x, 7.x | Package manager | [More information](https://technet.microsoft.com/en-US/library/dn614985.aspx)**\*\*** |
 
 
@@ -172,7 +174,7 @@ Keep integration services current in order to recieve the best virtual machine p
 | Windows Server 2003 R2 (SP 2) | Integration Services disk | |
 | Windows Server 2003 (SP 2) | Integration Services disk | |
 | - | | |
-| Ubuntu 15.04, 14.10, 14.04, 12.04 | Package manager | [More informantion](https://technet.microsoft.com/en-us/library/dn531029.aspx)**\*\*** |
+| Ubuntu 15.04, 14.10, 14.04, 12.04 | Package manager | [More information](https://technet.microsoft.com/en-us/library/dn531029.aspx)**\*\*** |
 | Debian 8.x, 7.x | Package manager | [More information](https://technet.microsoft.com/en-US/library/dn614985.aspx)**\*\*** |
 
 **For virtual machines running on Windows 8 hosts:**
@@ -194,7 +196,7 @@ Keep integration services current in order to recieve the best virtual machine p
 | Windows Server 2003 R2 (SP 2) | Integration Services disk | |
 | Windows Server 2003 (SP 2) | Integration Services disk | |
 | - | | |
-| Ubuntu 15.04, 14.10, 14.04, 12.04 | Package manager | [More informantion](https://technet.microsoft.com/en-us/library/dn531029.aspx)**\*\*** |
+| Ubuntu 15.04, 14.10, 14.04, 12.04 | Package manager | [More information](https://technet.microsoft.com/en-us/library/dn531029.aspx)**\*\*** |
 | Debian 8.x, 7.x | Package manager | [More information](https://technet.microsoft.com/en-US/library/dn614985.aspx)**\*\*** |
 
 Instructions for updating via Integration Services disk for Windows 8 and Windows 8.1 are avialable [here](https://technet.microsoft.com/en-us/library/hh846766.aspx#BKMK_step4).
