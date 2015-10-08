@@ -125,6 +125,7 @@ For virtual machines running on Windows 10 hosts:
 | Windows Server 2012 R2 | Windows Update | |
 | Windows Server 2012 | Windows Update | Requires the Data Exchange integration service. |
 | Windows Server 2008 R2 | Windows Update | Requires the Data Exchange integration service. |
+| Windows Server 2008 (SP 2) | Windows Update | Requires the Data Exchange integration service. |
 
 For virtual machines running on Windows 8.1 hosts:
 
@@ -138,6 +139,11 @@ For virtual machines running on Windows 8.1 hosts:
 | Windows Server 2012 R2 | Integration Services disk | |
 | Windows Server 2012 | Integration Services disk | |
 | Windows Server 2008 R2 | Integration Services disk | |
+| Windows Server 2008 (SP 2) | Integration Services disk | |
+| Windows Home Server 2011 | Integration Services disk | |
+| Windows Small Business Server 2011 | Integration Services disk | |
+| Windows Server 2003 R2 (SP 2) | Integration Services disk | |
+| Windows Server 2003 (SP 2) | Integration Services disk | |
 
 For virtual machines running on Windows 8 hosts:
 
@@ -146,9 +152,13 @@ For virtual machines running on Windows 8 hosts:
 | Windows 8.1 | Windows Update | |
 | Windows 8 | Integration Services disk | |
 | Windows 7 | Integration Services disk | |
-| Windows Vista | Integration Services disk | |
 | Windows Server 2012 R2 | Integration Services disk | |
 | Windows Server 2012 | Integration Services disk | |
 | Windows Server 2008 R2 | Integration Services disk | |
+| Windows Server 2008 (SP 2) | Integration Services disk | |
+| Windows Home Server 2011 | Integration Services disk | |
+| Windows Small Business Server 2011 | Integration Services disk | |
+| Windows Server 2003 R2 (SP 2) | Integration Services disk | |
+| Windows Server 2003 (SP 2) | Integration Services disk | |
 
 Instructions for updating via Integration Services disk for Windows 8 and Windows 8.1.
