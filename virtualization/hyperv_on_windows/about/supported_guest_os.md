@@ -17,7 +17,7 @@ In order to be supported, both the Hyper-V host and guest must be updated with a
 
 ## Supported Windows guest operating systems on Windows 10
 
-In order to recieve support, both the Windows guest operating systems and the host operating system must be current with all critical updates available through Windows Update.
+In order to receive support, both the Windows guest operating systems and the host operating system must be current with all critical updates available through Windows Update.
 
 | Guest operating system |  Maximum number of virtual processors | Notes | 
 |:-----|:-----|:-----|
