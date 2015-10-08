@@ -109,6 +109,21 @@ Run the following command in your Linux guest operating system to see if the req
 ps –eaf|grep hv
 ```
 
+VSS Snapshot daemon – This daemon is required to create live Linux virtual machine backups.
+KVP daemon – This daemon allows setting and querying intrinsic and extrinsic key value pairs.
+fcopy daemon – This daemon implements a file copying service between the host and guest.
+To install these daemons when using the linux-virtual package, use the following commands as root (or sudo):
+``` BASH
+# apt-get update
+# apt-get install linux-tools-virtual linux-cloud-tools-virtual
+```
+
+If not using linux-virtual, use the following commands as root (or sudo):
+``` BASH
+# apt-get update
+# apt-get install linux-tools linux-cloud-tools 
+```
+
 ## Integration service maintainance
 
 Keep integration services current in order to recieve the best virtual machine performance and features possible.
@@ -130,7 +145,7 @@ Keep integration services current in order to recieve the best virtual machine p
 | Windows Home Server 2011 | Windows Update | Requires the Data Exchange integration service.***** |
 | Windows Small Business Server 2011 | Windows Update | Requires the Data Exchange integration service.***** |
 | - | | |
-| [Linux Guests](https://technet.microsoft.com/en-us/library/dn531030.aspx) | | 
+| Ubuntu 15.04, 14.10, 14.04, 12.04 | Package manager | [More informantion](https://technet.microsoft.com/en-us/library/dn531029.aspx) |
 
 
 **\*** If the Data Exchange integration service can not be enabled, the integration components for these guests are available [here](https://support.microsoft.com/en-us/kb/3071740) as a cabinet (cab) file on the download center.  Instructions for applying a cab are availabe [here](http://blogs.technet.com/b/virtualization/archive/2015/07/24/integration-components-available-for-virtual-machines-not-connected-to-windows-update.aspx).
@@ -156,7 +171,7 @@ Keep integration services current in order to recieve the best virtual machine p
 | Windows Server 2003 R2 (SP 2) | Integration Services disk | |
 | Windows Server 2003 (SP 2) | Integration Services disk | |
 | - | | |
-| [Linux Guests](https://technet.microsoft.com/en-us/library/dn531030.aspx) | | 
+| Ubuntu 15.04, 14.10, 14.04, 12.04 | Package manager | [More informantion](https://technet.microsoft.com/en-us/library/dn531029.aspx) |
 
 **For virtual machines running on Windows 8 hosts:**
 
@@ -177,6 +192,8 @@ Keep integration services current in order to recieve the best virtual machine p
 | Windows Server 2003 R2 (SP 2) | Integration Services disk | |
 | Windows Server 2003 (SP 2) | Integration Services disk | |
 | - | | |
-| [Linux Guests](https://technet.microsoft.com/en-us/library/dn531030.aspx) | | 
+| Ubuntu 15.04, 14.10, 14.04, 12.04 | Package manager | [More informantion](https://technet.microsoft.com/en-us/library/dn531029.aspx) |
 
 Instructions for updating via Integration Services disk for Windows 8 and Windows 8.1 are avialable [here](https://technet.microsoft.com/en-us/library/hh846766.aspx#BKMK_step4).
+
+**\*\*** Find more information about Linux Guests [here](https://technet.microsoft.com/en-us/library/dn531030.aspx). 
