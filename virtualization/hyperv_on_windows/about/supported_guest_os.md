@@ -19,19 +19,21 @@ In order to be supported, both the Hyper-V host and guest must be updated with a
 
 ## Supported Windows guest operating systems on Windows 10
 
+In order to recieve support, both the Windows guest operating systems and the host operating system must be current with all critical updates available through Windows Update.
+
 | Guest operating system |  Maximum number of virtual processors | Notes | 
 |:-----|:-----|:-----|
-| Windows Server 2012 R2 | 64 | |
-| Windows Server 2012 | 64 | |
-| Windows Server 2008 R2 with Service Pack 1 (SP 1) | 64 | Datacenter, Enterprise, Standard and Web editions. |
-| Windows Server 2008 with Service Pack 2 (SP 2) | 4 | Datacenter, Enterprise, Standard and Web editions (32-bit and 64-bit). | 
-| - | | |
 | Windows 10 | 32 | |
 | Windows 8.1 | 32 | |
 | Windows 8 | 32 |	|
 | Windows 7 with Service Pack 1 (SP 1) | 4 | Ultimate, Enterprise, and Professional editions (32-bit and 64-bit). |
 | Windows 7 | 4 | Ultimate, Enterprise, and Professional editions (32-bit and 64-bit). |
-| Windows Vista with Service Pack 2 (SP2) | 2 | Business, Enterprise, and Ultimate, including N and KN editions. |
+| Windows Vista with Service Pack 2 (SP2) | 2 | Business, Enterprise, and Ultimate, including N and KN editions. | 
+| - | | |
+| Windows Server 2012 R2 | 64 | |
+| Windows Server 2012 | 64 | |
+| Windows Server 2008 R2 with Service Pack 1 (SP 1) | 64 | Datacenter, Enterprise, Standard and Web editions. |
+| Windows Server 2008 with Service Pack 2 (SP 2) | 4 | Datacenter, Enterprise, Standard and Web editions (32-bit and 64-bit). |
   
  > Windows 10 can run as a guest operating system on Windows 8.1 and Windows Server 2012 R2 Hyper-V hosts.
 
