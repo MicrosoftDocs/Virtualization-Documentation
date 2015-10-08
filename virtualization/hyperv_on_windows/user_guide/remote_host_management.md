@@ -5,7 +5,7 @@ title: Managing remote Hyper-V hosts
 
 Hyper-V Manager is an in-box tool for diagnosing and managing your local Hyper-V host and a small number of remote hosts.  This article documents the configuration steps for connecting to Hyper-V hosts using Hyper-V Manager in all supported configurations.
 
-> Hyper-V Manager is avaliable through **Programs and Features** as **Hyper-V Managememt Tools** on [any Windows OS with Hyper-V included](../quick_start/walkthrough_compatibility.md#OperatingSystemRequirements).  Hyper-V Platform does not need to be enabled in order to manage remote hosts.
+> Hyper-V Manager is available through **Programs and Features** as **Hyper-V Management Tools** on [any Windows OS with Hyper-V included](../quick_start/walkthrough_compatibility.md#OperatingSystemRequirements).  Hyper-V Platform does not need to be enabled in order to manage remote hosts.
 
 To connect to a Hyper-V host in Hyper-V Manager, make sure **Hyper-V Manager** is selected in the left hand pane and then select **Connect to Server...** in the right-hand pane.
 
@@ -80,7 +80,7 @@ To specify credentials for the remote Hyper-V host, select **Connect as another 
 ### Connect to the remote host using IP address
 > This is only available when connecting to a Windows 10 or Server 2016 Technical Preview 3 or later remote host
 
-Sometimes it's easier to connect using IP address rather than host name.  Windows 10 allows your to do just that.
+Sometimes it's easier to connect using IP address rather than host name.  Windows 10 allows you to do just that.
 
 To connect using IP address, enter the IP address into the **Another Computer** text field.
 
