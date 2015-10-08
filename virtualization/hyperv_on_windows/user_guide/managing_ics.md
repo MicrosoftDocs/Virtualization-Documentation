@@ -139,4 +139,13 @@ For Windows 8.1 hosts:
 | Windows Server 2008 R2 | Integration Services disk | |
 
 For Windows 8 hosts:
+| Guest OS | Update mechanism | Notes |
+|:---------|:---------|:---------|
+| Windows 8.1 | Windows Update | |
+| Windows 8 | Integration Services disk | |
+| Windows 7 | Integration Services disk | |
+| Windows Vista | Integration Services disk | |
+| Windows Server 2012 R2 | Integration Services disk | |
+| Windows Server 2012 | Integration Services disk | |
+| Windows Server 2008 R2 | Integration Services disk | |
 
