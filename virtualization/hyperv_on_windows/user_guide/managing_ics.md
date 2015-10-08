@@ -127,6 +127,8 @@ Keep integration services current in order to recieve the best virtual machine p
 | Windows Server 2012 | Windows Update | Requires the Data Exchange integration service. |
 | Windows Server 2008 R2 | Windows Update | Requires the Data Exchange integration service. |
 | Windows Server 2008 (SP 2) | Windows Update | Requires the Data Exchange integration service. |
+| Windows Home Server 2011 | | |
+| Windows Small Business Server 2011 | | |
 
 
 
