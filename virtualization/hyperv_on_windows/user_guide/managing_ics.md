@@ -115,19 +115,28 @@ Keep integration services current in order to recieve the best virtual machine p
 
 For virtual machines running on Windows 10 hosts:
 
-| Guest OS | Update mechanism | 
-|:---------|:---------|
-| Windows 10 | Windows Update |
-| Windows 8.1 | Windows Update |
-| Windows 8 | Windows Update |
-| Windows 7 | Windows Update |
-| Windows Vista | Windows Update |
-
-| Windows Server 
-
-| 
+| Guest OS | Update mechanism | Notes |
+|:---------|:---------|:---------|
+| Windows 10 | Windows Update | |
+| Windows 8.1 | Windows Update | |
+| Windows 8 | Windows Update | |
+| Windows 7 | Windows Update | |
+| Windows Vista | Windows Update | |
+| Windows Server 2012 R2 | Windows Update | |
+| Windows Server 2012 | Windows Update | |
+| Windows Server 2008 R2 | Windows Update | |
 
 For Windows 8.1 hosts:
+| Guest OS | Update mechanism | Notes |
+|:---------|:---------|:---------|
+| Windows 10 | Windows Update | |
+| Windows 8.1 | Windows Update | |
+| Windows 8 | Integration Services disk | |
+| Windows 7 | Integration Services disk | |
+| Windows Vista | Integration Services disk | |
+| Windows Server 2012 R2 | Integration Services disk | |
+| Windows Server 2012 | Integration Services disk | |
+| Windows Server 2008 R2 | Integration Services disk | |
 
 For Windows 8 hosts:
 
