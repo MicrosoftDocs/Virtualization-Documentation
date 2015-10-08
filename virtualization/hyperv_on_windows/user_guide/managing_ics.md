@@ -121,7 +121,7 @@ Keep integration services current in order to recieve the best virtual machine p
 | Windows 8.1 | Windows Update | |
 | Windows 8 | Windows Update | Requires the Data Exchange integration service.***** |
 | Windows 7 | Windows Update | Requires the Data Exchange integration service.***** |
-| Windows Vista | Windows Update | Requires the Data Exchange integration service.***** |
+| Windows Vista (SP 2) | Windows Update | Requires the Data Exchange integration service.***** |
 | - | | |
 | Windows Server 2012 R2 | Windows Update | |
 | Windows Server 2012 | Windows Update | Requires the Data Exchange integration service.***** |
@@ -129,8 +129,11 @@ Keep integration services current in order to recieve the best virtual machine p
 | Windows Server 2008 (SP 2) | Windows Update | Requires the Data Exchange integration service.***** |
 | Windows Home Server 2011 | Windows Update | Requires the Data Exchange integration service.***** |
 | Windows Small Business Server 2011 | Windows Update | Requires the Data Exchange integration service.***** |
+| - | | |
+| [Linux Guests](https://technet.microsoft.com/en-us/library/dn531030.aspx) | | 
 
-**\*** If the Data Exchange integration service can not be enabled or a connection to a Windows Update server can not be established, the integration components are available [here](https://support.microsoft.com/en-us/kb/3071740) as a cabinet (cab) file on the download center.  Instructions for applying a cab are availabe [here](http://blogs.technet.com/b/virtualization/archive/2015/07/24/integration-components-available-for-virtual-machines-not-connected-to-windows-update.aspx).
+
+**\*** If the Data Exchange integration service can not be enabled, the integration components for these guests are available [here](https://support.microsoft.com/en-us/kb/3071740) as a cabinet (cab) file on the download center.  Instructions for applying a cab are availabe [here](http://blogs.technet.com/b/virtualization/archive/2015/07/24/integration-components-available-for-virtual-machines-not-connected-to-windows-update.aspx).
 
 
 **For virtual machines running on Windows 8.1 hosts:**
@@ -141,7 +144,8 @@ Keep integration services current in order to recieve the best virtual machine p
 | Windows 8.1 | Windows Update | |
 | Windows 8 | Integration Services disk | |
 | Windows 7 | Integration Services disk | |
-| Windows Vista | Integration Services disk | |
+| Windows Vista (SP 2) | Integration Services disk | |
+| Windows XP (SP 2, SP 3) | Integration Services disk | |
 | - | | |
 | Windows Server 2012 R2 | Windows Update | |
 | Windows Server 2012 | Integration Services disk | |
@@ -151,6 +155,8 @@ Keep integration services current in order to recieve the best virtual machine p
 | Windows Small Business Server 2011 | Integration Services disk | |
 | Windows Server 2003 R2 (SP 2) | Integration Services disk | |
 | Windows Server 2003 (SP 2) | Integration Services disk | |
+| - | | |
+| [Linux Guests](https://technet.microsoft.com/en-us/library/dn531030.aspx) | | 
 
 **For virtual machines running on Windows 8 hosts:**
 
@@ -159,6 +165,8 @@ Keep integration services current in order to recieve the best virtual machine p
 | Windows 8.1 | Windows Update | |
 | Windows 8 | Integration Services disk | |
 | Windows 7 | Integration Services disk | |
+| Windows Vista (SP 2) | Integration Services disk | |
+| Windows XP (SP 2, SP 3) | Integration Services disk | |
 | - | | |
 | Windows Server 2012 R2 | Windows Update | |
 | Windows Server 2012 | Integration Services disk | |
@@ -168,5 +176,7 @@ Keep integration services current in order to recieve the best virtual machine p
 | Windows Small Business Server 2011 | Integration Services disk | |
 | Windows Server 2003 R2 (SP 2) | Integration Services disk | |
 | Windows Server 2003 (SP 2) | Integration Services disk | |
+| - | | |
+| [Linux Guests](https://technet.microsoft.com/en-us/library/dn531030.aspx) | | 
 
-Instructions for updating via Integration Services disk for Windows 8 and Windows 8.1 are avialable here.
+Instructions for updating via Integration Services disk for Windows 8 and Windows 8.1 are avialable [here](https://technet.microsoft.com/en-us/library/hh846766.aspx#BKMK_step4).
