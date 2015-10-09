@@ -95,24 +95,35 @@ By default, all integration services are enabled in the guest operation system.
 
 ## Manage Integration Services from Guest OS (Linux)
 
-Linux integration services are provided through the Linux kernel.
+Linux integration services are generally provided through the Linux kernel.
 
-On Linux virtual machines you can check to see if the integration services driver and daemons are running by running the following commands in your Linux guest operating system.
+To see if the integration services driver and daemons are running by running the following commands in your Linux guest operating system.
 
-``` BASH
-lsmod|grep hv_utils
-```
+1. The linux integration services driver is called `hv_utils'.  Run the following to see if it is loaded.
 
-Run the following command in your Linux guest operating system to see if the required daemons are running.
+  ``` BASH
+  lsmod|grep hv_utils
+  ``` 
+  
+  The output should look about like this:  
+  
+  ``` BASH
+  Module                  Size   Used by
+  hv_utils               20480   0
+  hv_vmbus               61440   8 hv_balloon,hyperv_keyboard,hv_netvsc,hid_hyperv,hv_utils,hyperv_fb,hv_storvsc
+  ```
 
-``` BASH
-ps –eaf|grep hv
-```
+2. Run the following command in your Linux guest operating system to see if the required daemons are running.
+  
+  ``` BASH
+  ps –eaf|grep hv
+  ```
+  
+  Daemons you may see:  
+  * **`hv_vss_daemon`** – This daemon is required to create live Linux virtual machine backups.
+  * **`hv_kvp_daemon`** – This daemon allows setting and querying intrinsic and extrinsic key value pairs.
+  * **`hv_fcopy_daemon`** – This daemon implements a file copying service between the host and guest.
 
-Daemons you may see:  
-* **VSS Snapshot daemon** – This daemon is required to create live Linux virtual machine backups.
-* **KVP daemon** – This daemon allows setting and querying intrinsic and extrinsic key value pairs.
-* **fcopy daemon** – This daemon implements a file copying service between the host and guest.
 
 To install these daemons when using the linux-virtual package, use the following commands as root (or sudo):
 ``` BASH
