@@ -32,12 +32,12 @@ In this example, we'll enable and then disable the guest file copy integration s
   ``` PowerShell
   VMName      Name                    Enabled PrimaryStatusDescription SecondaryStatusDescription
   ------      ----                    ------- ------------------------ --------------------------
-  chost       Guest Service Interface False   OK
-  chost       Heartbeat               True    OK                       OK
-  chost       Key-Value Pair Exchange True    OK
-  chost       Shutdown                True    OK
-  chost       Time Synchronization    True    OK
-  chost       VSS                     True    OK
+  demovm      Guest Service Interface False   OK
+  demovm      Heartbeat               True    OK                       OK
+  demovm      Key-Value Pair Exchange True    OK
+  demovm      Shutdown                True    OK
+  demovm      Time Synchronization    True    OK
+  demovm      VSS                     True    OK
   ```
 
 2. Enable the `Guest Service Interface` integration service
