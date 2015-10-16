@@ -48,5 +48,6 @@
 ****,hyperv_on_windows/develop/make_mgmt_service.md,
 ****,oa-toc-external: hyperv_on_windows/develop/web_power,http://technet.microsoft.com/library/hh848559.aspx
 ****,oa-toc-external: hyperv_on_windows/develop/web_wmi,https://msdn.microsoft.com/library/hh850319.aspx
+****,oa-toc-external: hyperv_on_windows/develop/hyperv_architecture,https://msdn.microsoft.com/en-us/library/cc768520(v=bts.10).aspx
 **,"oa-toc-container: community	",
 ***,community/community_overview.md,
