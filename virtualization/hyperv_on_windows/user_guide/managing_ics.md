@@ -102,7 +102,7 @@ To see if the integration services driver and daemons are running by running the
 1. The linux integration services driver is called `hv_utils'.  Run the following to see if it is loaded.
 
   ``` BASH
-  lsmod|grep hv_utils
+  lsmod | grep hv_utils
   ``` 
   
   The output should look about like this:  
