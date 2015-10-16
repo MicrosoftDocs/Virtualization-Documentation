@@ -157,7 +157,7 @@ To see if the integration services driver and daemons are running by running the
 
 In this example, we'll stop and start the KVP daemon `hv_kvp_daemon`.
 
-From there, you can stop the daemon's process using the pid (process ID) located in the second column of the above output.  Alternately, you can find the right process using `pidof`.  Since Hyper-V daemons run as root, you do need root permissions.
+Stop the daemon's process using the pid (process ID) located in the second column of the above output.  Alternately, you can find the right process using `pidof`.  Since Hyper-V daemons run as root, you do need root permissions.
 
 ``` BASH
 sudo kill -15 `pidof hv_kvp_daemon`
