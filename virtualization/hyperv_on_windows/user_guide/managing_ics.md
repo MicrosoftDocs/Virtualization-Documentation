@@ -153,7 +153,7 @@ To see if the integration services driver and daemons are running by running the
   * **`hv_kvp_daemon`** – This daemon allows setting and querying intrinsic and extrinsic key value pairs.
   * **`hv_fcopy_daemon`** – This daemon implements a file copying service between the host and guest.
 
-> **Note:** if the integration services daemons are no available, find more disto specific information [here](https://technet.microsoft.com/en-us/library/dn531030.aspx).
+> **Note:** if the above integration services daemons are not available, they may not be supported on your system or they may not be installed.  Find more disto specific information [here](https://technet.microsoft.com/en-us/library/dn531030.aspx).  
 
 In this example, we'll stop and start the KVP daemon `hv_kvp_daemon`.
 
