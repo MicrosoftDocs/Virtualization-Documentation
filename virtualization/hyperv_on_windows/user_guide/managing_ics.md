@@ -132,7 +132,23 @@ To see if the integration services driver and daemons are running by running the
   scooley  43774 43755  0 21:20 pts/0    00:00:00 grep --color=auto hv          
   ```
   
-  Daemons you may see:  
+  To see what daemons are available, run:
+  ``` BASH
+  compgen -c hv_
+  ```
+  
+  The output should look about like this:
+  
+  ``` BASH
+  hv_vss_daemon
+  hv_get_dhcp_info
+  hv_get_dns_info
+  hv_set_ifconfig
+  hv_kvp_daemon
+  hv_fcopy_daemon     
+  ```
+  
+  Integration service daemons you may see:  
   * **`hv_vss_daemon`** – This daemon is required to create live Linux virtual machine backups.
   * **`hv_kvp_daemon`** – This daemon allows setting and querying intrinsic and extrinsic key value pairs.
   * **`hv_fcopy_daemon`** – This daemon implements a file copying service between the host and guest.
