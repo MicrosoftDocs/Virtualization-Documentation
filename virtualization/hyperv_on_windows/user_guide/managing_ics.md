@@ -13,7 +13,7 @@ This article will detail how to manage integration services using both Hyper-V m
   
 2. From the virtual machine settings window, go to the Integration Services tab under Management.
   
-![](./media/HyperVManager-IntegrationServices.png)
+  ![](./media/HyperVManager-IntegrationServices.png)
   
   Here you can see all integration services available on this Hyper-V host.  It's worth noting that the guest operating system may or may not support all of the integration services listed.
 
