@@ -10,6 +10,7 @@ develop,"Develop"
 wmi,"WMI"
 hyperv_on_windows/develop/web_power,"Hyper-V Cmdlets in Windows PowerShell"
 hyperv_on_windows/develop/web_wmi,"Hyper-V WMI provider (V2)"
+hyperv_on_windows/develop/hyperv_architecture,"Hyper-V Architecture"
 hyperv_on_windows/about/linux,"Linux and FreeBSD Virtual Machines on Hyper-V"
 powershell,"Windows PowerShell"
 
