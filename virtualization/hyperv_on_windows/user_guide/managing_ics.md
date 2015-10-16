@@ -97,7 +97,7 @@ By default, all integration services are enabled in the guest operation system.
 
 Linux integration services are generally provided through the Linux kernel.
 
-To see if the integration services driver and daemons are running by running the following commands in your Linux guest operating system.
+Check to see if the integration service driver and daemons are running by running the following commands in your Linux guest operating system.
 
 1. The linux integration services driver is called `hv_utils'.  Run the following to see if it is loaded.
 
