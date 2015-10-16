@@ -116,7 +116,20 @@ To see if the integration services driver and daemons are running by running the
 2. Run the following command in your Linux guest operating system to see if the required daemons are running.
   
   ``` BASH
-  ps –eaf|grep hv
+  ps -ef | grep hv
+  ```
+  
+  The output should look about like this:  
+  
+  ``` BASH
+  root       236     2  0 Jul11 ?        00:00:00 [hv_vmbus_con]
+  root       237     2  0 Jul11 ?        00:00:00 [hv_vmbus_ctl]
+  ...
+  root       252     2  0 Jul11 ?        00:00:00 [hv_vmbus_ctl]
+  root      1286     1  0 Jul11 ?        00:01:11 /usr/lib/linux-tools/3.13.0-32-generic/hv_kvp_daemon
+  root      9333     1  0 Oct12 ?        00:00:00 /usr/lib/linux-tools/3.13.0-32-generic/hv_kvp_daemon
+  root      9365     1  0 Oct12 ?        00:00:00 /usr/lib/linux-tools/3.13.0-32-generic/hv_vss_daemon
+  scooley  43774 43755  0 21:20 pts/0    00:00:00 grep --color=auto hv          
   ```
   
   Daemons you may see:  
@@ -124,18 +137,24 @@ To see if the integration services driver and daemons are running by running the
   * **`hv_kvp_daemon`** – This daemon allows setting and querying intrinsic and extrinsic key value pairs.
   * **`hv_fcopy_daemon`** – This daemon implements a file copying service between the host and guest.
 
+> **Note:** if the integration services daemons are no available, find more disto specific information [here](https://technet.microsoft.com/en-us/library/dn531030.aspx).
 
-To install these daemons when using the linux-virtual package, use the following commands as root (or sudo):
+In this example, we'll stop and start the KVP daemon `hv_kvp_daemon`.
+
+From there, you can stop the daemon's process using the pid (process ID) located in the second column of the above output.  Alternately, you can find the right process using `pidof`.  Since Hyper-V daemons run as root, you do need root permissions.
+
 ``` BASH
-# apt-get update
-# apt-get install linux-tools-virtual linux-cloud-tools-virtual
+sudo kill -15 `pidof hv_kvp_daemon`
 ```
 
-If not using linux-virtual, use the following commands as root (or sudo):
+Now if you run `ps -ef | hv` again, you'll discover all `hv_kvp_daemon` process are gone.
+
+To start the daemon again, run the daemon as root.
+
 ``` BASH
-# apt-get update
-# apt-get install linux-tools linux-cloud-tools 
-```
+sudo hv_kvp_daemon
+``` 
+
 
 ## Integration service maintainance
 
@@ -157,9 +176,6 @@ Keep integration services current in order to recieve the best virtual machine p
 | Windows Server 2008 (SP 2) | Windows Update | Requires the Data Exchange integration service.***** |
 | Windows Home Server 2011 | Windows Update | Requires the Data Exchange integration service.***** |
 | Windows Small Business Server 2011 | Windows Update | Requires the Data Exchange integration service.***** |
-| - | | |
-| Ubuntu 15.04, 14.10, 14.04, 12.04 | Package manager | [More information](https://technet.microsoft.com/en-us/library/dn531029.aspx)**\*\*** |
-| Debian 8.x, 7.x | Package manager | [More information](https://technet.microsoft.com/en-US/library/dn614985.aspx)**\*\*** |
 
 
 **\*** If the Data Exchange integration service can not be enabled, the integration components for these guests are available [here](https://support.microsoft.com/en-us/kb/3071740) as a cabinet (cab) file on the download center.  Instructions for applying a cab are availabe [here](http://blogs.technet.com/b/virtualization/archive/2015/07/24/integration-components-available-for-virtual-machines-not-connected-to-windows-update.aspx).
@@ -184,9 +200,6 @@ Keep integration services current in order to recieve the best virtual machine p
 | Windows Small Business Server 2011 | Integration Services disk | |
 | Windows Server 2003 R2 (SP 2) | Integration Services disk | |
 | Windows Server 2003 (SP 2) | Integration Services disk | |
-| - | | |
-| Ubuntu 15.04, 14.10, 14.04, 12.04 | Package manager | [More information](https://technet.microsoft.com/en-us/library/dn531029.aspx)**\*\*** |
-| Debian 8.x, 7.x | Package manager | [More information](https://technet.microsoft.com/en-US/library/dn614985.aspx)**\*\*** |
 
 **For virtual machines running on Windows 8 hosts:**
 
@@ -206,9 +219,6 @@ Keep integration services current in order to recieve the best virtual machine p
 | Windows Small Business Server 2011 | Integration Services disk | |
 | Windows Server 2003 R2 (SP 2) | Integration Services disk | |
 | Windows Server 2003 (SP 2) | Integration Services disk | |
-| - | | |
-| Ubuntu 15.04, 14.10, 14.04, 12.04 | Package manager | [More information](https://technet.microsoft.com/en-us/library/dn531029.aspx)**\*\*** |
-| Debian 8.x, 7.x | Package manager | [More information](https://technet.microsoft.com/en-US/library/dn614985.aspx)**\*\*** |
 
 Instructions for updating via Integration Services disk for Windows 8 and Windows 8.1 are avialable [here](https://technet.microsoft.com/en-us/library/hh846766.aspx#BKMK_step4).
 
