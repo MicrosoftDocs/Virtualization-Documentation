@@ -171,6 +171,8 @@ To start the daemon again, run the daemon as root.
 sudo hv_kvp_daemon
 ``` 
 
+Now if you run `ps -ef | hv` again, you'll discover a `hv_kvp_daemon` process with a new process ID.
+
 
 ## Integration service maintainance
 
