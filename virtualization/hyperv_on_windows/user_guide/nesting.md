@@ -11,9 +11,10 @@ Nested virtualization is running virtualization inside a virtualized environment
 
 ![](./media/HyperVNesting.png)
 
+
 ## Enable nested virtualization
 
-1. Create a virtual machine -- [instructions here](../quick_start/walkthrough_create_vm.md).
+1. Create a virtual machine running the same build as your host -- [instructions here](../quick_start/walkthrough_create_vm.md).
 
 2. Run [this script](https://github.com/Microsoft/Virtualization-Documentation/blob/master/hyperv-tools/Nested/Enable-NestedVm.ps1) as administrator on the Hyper-V host.
   
@@ -33,11 +34,17 @@ Nested virtualization is running virtualization inside a virtualized environment
 4. Create nested virtual machines!
 
 ## How does nesting work?
-Hyper-V relies on hardware virtualization support (e.g. Intel VT-x and AMD-V) to run virtual machines. Typically, once Hyper-V is installed, the hypervisor hides this capability from guest virtual machines, preventing guests virtual machines from installing Hyper-V (and many other hypervisors, for that matter).
+Hyper-V relies on hardware virtualization support (e.g. Intel VT-x and AMD-V) to run virtual machines. Typically, once Hyper-V is installed, the hypervisor hides this capability from guest virtual machines.  This prevents guest virtual machines from running Hyper-V server role amoung other hypervisors.
 
-Nested virtualization exposes hardware virtualization support to guest virtual machines. This allows you to install Hyper-V in a guest virtual machine, and create more virtual machines “within” that underlying virtual machine.
+Nested virtualization exposes those hardware virtualization support components to guest virtual machine.
 
-In the image below, you can see a host machine running a virtual machine, which in turn is running its own guest virtual machine. This is made possible by nested virtualization. Behold, three levels of Cortana!
+The diagram below shows Hyper-V without nesting.  The Hyper-V hypervisor takes full control of the hardware virtualization extensions (orange arrow), and does not expose them to the guest operating system.
+
+![](./media/HVNoNesting.png)
+
+In contrast, the diagram below shows Hyper-V with nesting. In this case, Hyper-V exposes the hardware virtualization extensions to its virtual machines. With nesting enabled, a guest virtual machine can install its own hypervisor and run its own guest VMs.
+
+![](./media/HVNesting.png)
 
 ## FAQ and troubleshooting
 
