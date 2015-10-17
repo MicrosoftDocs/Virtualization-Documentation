@@ -9,25 +9,25 @@ title: Insiders - Nesting Hyper-V
 
 Nested virtualization is running virtualization inside a virtualized environment.  In other words, nesting allows you to run the Hyper-V server role inside a virtual machine.
 
+![](./media/HyperVNesting.png)
+
 ## Enable nested virtualization
 
 1. Create a virtual machine -- [instructions here](../quick_start/walkthrough_create_vm.md).
 
-2. Run this script on the Hyper-V host.
+2. Run [this script](https://github.com/Microsoft/Virtualization-Documentation/blob/master/hyperv-tools/Nested/Enable-NestedVm.ps1) as administrator on the Hyper-V host.
   
-  In this early preview, nesting comes with a few configuration requirements.  To make things easier, those requirements are set using this PowerShell script.
-  
-  The script will check your configuration, change anything which is incorrect (with permission), and enable nested virtualization for the specified virtual machine.
+  In this early preview, nesting comes with a few configuration requirements.  To make things easier, [this PowerShell script](https://github.com/Microsoft/Virtualization-Documentation/blob/master/hyperv-tools/Nested/Enable-NestedVm.ps1) script will check your configuration, change anything which is incorrect, and enable nested virtualization for the specified virtual machine.
   
   ``` PowerShell
   Invoke-WebRequest https://raw.githubusercontent.com/Microsoft/Virtualization-Documentation/master/hyperv-tools/Nested/Enable-NestedVm.ps1 -OutFile ~/Enable-NestedVm.ps1 
-  ~/Enable-NestedVm.ps1 -VmName <VmName>
+  ~/Enable-NestedVm.ps1 -VmName "DemoVM"
   ```
 
-3. Install Hyper-V in the virtual machine
+3. Install Hyper-V in the virtual machine.
 
   ``` PowerShell
-  Invoke-Command -VMName "myVM" -ScriptBlock { Enable-WindowsOptionalFeature -FeatureName Microsoft-Hyper-V -Online; Restart-Computer }
+  Invoke-Command -VMName "DemoVM" -ScriptBlock { Enable-WindowsOptionalFeature -FeatureName Microsoft-Hyper-V -Online; Restart-Computer }
   ```
   
 4. Create nested virtual machines!
