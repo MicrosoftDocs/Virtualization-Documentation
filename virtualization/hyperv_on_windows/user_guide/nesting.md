@@ -11,6 +11,30 @@ Nested virtualization is running virtualization inside a virtualized environment
 
 ![](./media/HyperVNesting.png)
 
+## Requirements and Known issues
+Before enabling nested virtualization, be aware this is a preview.  Do not use nesting in production environments.  
+
+Requirements:
+* 4 GB RAM available minimum.  Nested virtualization requires a good amount of memory.
+* Both hypervisors need to be the latest Windows Insider build (10565 or greater).  Other hypervisors will not work.  
+* This feature is currently Intel-only. Intel VT-x is required.
+
+Below is a list of known issues: 
+* Hosts with Device Guard enabled cannot expose virtualization extensions to guests. You must first disable VBS in order to preview nested virtualization.
+
+* Hosts with Virtualization Based Security (VBS) enabled cannot expose virtualization extensions to guests. You must first disable VBS in order to preview nested virtualization.
+
+* Once nested virtualization is enabled in a virtual machine, the following features are no longer compatible with that VM.  
+  These actions will either fail, or cause the virtual machine not to start if it is hosting other virtual machines:  
+  * Dynamic memory must be OFF. This will prevent the VM from booting.
+  * Runtime memory resize will fail.
+  * Applying checkpoints to a running VM will fail.
+  * Live migration will fail -- in other words, a VM which hosts other VMs cannot be live migrated.
+  * Save/restore will fail.
+  
+  > **Note:** these features still work in the “innermost” guest VM. The restrictions only apply to the first layer VM.
+
+* Once nested virtualization is enabled, MAC spoofing must be enabled in the virtual machine for networking to work in the "innermost" guests.
 
 ## Enable nested virtualization
 
