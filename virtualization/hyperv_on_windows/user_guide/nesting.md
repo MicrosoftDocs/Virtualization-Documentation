@@ -1,40 +1,33 @@
 ms.ContentId: a772cbbf-f825-4465-b048-0ca066e4ded7
 title: Insiders - Nesting Hyper-V
 
-# Windows Insiders Preview - Nested Virtualization
+# Nested Virtualization
 
-> **Note:** This feature is only available to Windows Insiders running Build 10565 or later.  
-  It is an early preview with no performance or stability guarantees.  
-  If you run into issues, check the [FAQ](#FAQandTroubleshooting).
+> **Note:** This early preview feature is only available to Windows Insiders, running Build 10565 or later, and comes with no performance or stability guarantees.
 
 Nested virtualization is running virtualization inside a virtualized environment.  In other words, nesting allows you to run the Hyper-V server role inside a virtual machine.
 
+Hyper-V relies on hardware virtualization support (e.g. Intel VT-x and AMD-V) to run virtual machines. Typically, once Hyper-V is installed, the hypervisor hides this capability from guest virtual machines.  This prevents guest virtual machines from running Hyper-V server role amoung other hypervisors.
+
+Nested virtualization exposes those hardware virtualization support components to guest virtual machine.
+
+The diagram below shows Hyper-V without nesting.  The Hyper-V hypervisor takes full control of the hardware virtualization extensions (orange arrow), and does not expose them to the guest operating system.
+
+![](./media/HVNoNesting.png)
+
+In contrast, the diagram below shows Hyper-V with nesting. In this case, Hyper-V exposes the hardware virtualization extensions to its virtual machines. With nesting enabled, a guest virtual machine can install its own hypervisor and run its own guest VMs.
+
+![](./media/HVNesting.png)
+
 ![](./media/HyperVNesting.png)
 
-## Requirements and Known issues
+## Requirements
 Before enabling nested virtualization, be aware this is a preview.  Do not use nesting in production environments.  
 
 Requirements:
 * 4 GB RAM available minimum.  Nested virtualization requires a good amount of memory.
 * Both hypervisors need to be the latest Windows Insider build (10565 or greater).  Other hypervisors will not work.  
 * This feature is currently Intel-only. Intel VT-x is required.
-
-Below is a list of known issues: 
-* Hosts with Device Guard enabled cannot expose virtualization extensions to guests. You must first disable VBS in order to preview nested virtualization.
-
-* Hosts with Virtualization Based Security (VBS) enabled cannot expose virtualization extensions to guests. You must first disable VBS in order to preview nested virtualization.
-
-* Once nested virtualization is enabled in a virtual machine, the following features are no longer compatible with that VM.  
-  These actions will either fail, or cause the virtual machine not to start if it is hosting other virtual machines:  
-  * Dynamic memory must be OFF. This will prevent the VM from booting.
-  * Runtime memory resize will fail.
-  * Applying checkpoints to a running VM will fail.
-  * Live migration will fail -- in other words, a VM which hosts other VMs cannot be live migrated.
-  * Save/restore will fail.
-  
-  > **Note:** these features still work in the “innermost” guest VM. The restrictions only apply to the first layer VM.
-
-* Once nested virtualization is enabled, MAC spoofing must be enabled in the virtual machine for networking to work in the "innermost" guests.
 
 ## Enable nested virtualization
 
@@ -57,18 +50,24 @@ Below is a list of known issues:
   
 4. Create nested virtual machines!
 
-## How does nesting work?
-Hyper-V relies on hardware virtualization support (e.g. Intel VT-x and AMD-V) to run virtual machines. Typically, once Hyper-V is installed, the hypervisor hides this capability from guest virtual machines.  This prevents guest virtual machines from running Hyper-V server role amoung other hypervisors.
+## Known Issues
 
-Nested virtualization exposes those hardware virtualization support components to guest virtual machine.
+Below is a list of known issues: 
+* Hosts with Device Guard enabled cannot expose virtualization extensions to guests. You must first disable VBS in order to preview nested virtualization.
 
-The diagram below shows Hyper-V without nesting.  The Hyper-V hypervisor takes full control of the hardware virtualization extensions (orange arrow), and does not expose them to the guest operating system.
+* Hosts with Virtualization Based Security (VBS) enabled cannot expose virtualization extensions to guests. You must first disable VBS in order to preview nested virtualization.
 
-![](./media/HVNoNesting.png)
+* Once nested virtualization is enabled in a virtual machine, the following features are no longer compatible with that VM.  
+  These actions will either fail, or cause the virtual machine not to start if it is hosting other virtual machines:  
+  * Dynamic memory must be OFF. This will prevent the VM from booting.
+  * Runtime memory resize will fail.
+  * Applying checkpoints to a running VM will fail.
+  * Live migration will fail -- in other words, a VM which hosts other VMs cannot be live migrated.
+  * Save/restore will fail.
+  
+  > **Note:** these features still work in the “innermost” guest VM. The restrictions only apply to the first layer VM.
 
-In contrast, the diagram below shows Hyper-V with nesting. In this case, Hyper-V exposes the hardware virtualization extensions to its virtual machines. With nesting enabled, a guest virtual machine can install its own hypervisor and run its own guest VMs.
-
-![](./media/HVNesting.png)
+* Once nested virtualization is enabled, MAC spoofing must be enabled in the virtual machine for networking to work in the "innermost" guests.
 
 ## FAQ and troubleshooting
 
