@@ -7,7 +7,9 @@ title: Insiders - Nesting Hyper-V
 
 Nested virtualization is running virtualization inside a virtualized environment.  In other words, nesting allows you to run the Hyper-V server role inside a virtual machine.
 
-Hyper-V relies on hardware virtualization support (e.g. Intel VT-x and AMD-V) to run virtual machines. Typically, once Hyper-V is installed, the hypervisor hides this capability from guest virtual machines.  This prevents guest virtual machines from running Hyper-V server role amoung other hypervisors.
+![](./media/HyperVNesting.png)
+
+Hyper-V relies on hardware virtualization support (e.g. Intel VT-x and AMD-V) to run virtual machines. Typically, once Hyper-V is installed, the hypervisor hides this capability from guest virtual machines.  This prevents guest virtual machines from running Hyper-V server role among other hypervisors.
 
 Nested virtualization exposes those hardware virtualization support components to guest virtual machine.
 
@@ -18,8 +20,6 @@ The diagram below shows Hyper-V without nesting.  The Hyper-V hypervisor takes f
 In contrast, the diagram below shows Hyper-V with nesting. In this case, Hyper-V exposes the hardware virtualization extensions to its virtual machines. With nesting enabled, a guest virtual machine can install its own hypervisor and run its own guest VMs.
 
 ![](./media/HVNesting.png)
-
-![](./media/HyperVNesting.png)
 
 ## Requirements
 Before enabling nested virtualization, be aware this is a preview.  Do not use nesting in production environments.  
@@ -53,7 +53,7 @@ Requirements:
 ## Known Issues
 
 Below is a list of known issues: 
-* Hosts with Device Guard enabled cannot expose virtualization extensions to guests. You must first disable VBS in order to preview nested virtualization.
+* Hosts with Device Guard enabled cannot expose virtualization extensions to guests.
 
 * Hosts with Virtualization Based Security (VBS) enabled cannot expose virtualization extensions to guests. You must first disable VBS in order to preview nested virtualization.
 
