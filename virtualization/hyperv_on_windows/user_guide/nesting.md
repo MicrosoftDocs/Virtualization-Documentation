@@ -1,7 +1,7 @@
 ms.ContentId: a772cbbf-f825-4465-b048-0ca066e4ded7
 title: Insiders - Nesting Hyper-V
 
-# Nested Virtualization
+## Nested Virtualization
 
 > **Note:** This early preview feature is only available to Windows Insiders, running Build 10565 or later, and comes with no performance or stability guarantees.
 
@@ -21,7 +21,7 @@ In contrast, the diagram below shows Hyper-V with nesting. In this case, Hyper-V
 
 ![](./media/HVNesting.png)
 
-## Requirements
+## Nested Virtualization Requirements
 Before enabling nested virtualization, be aware this is a preview.  Do not use nesting in production environments.  
 
 Requirements:
@@ -29,7 +29,7 @@ Requirements:
 * Both hypervisors need to be the latest Windows Insider build (10565 or greater).  Other hypervisors will not work.  
 * This feature is currently Intel-only. Intel VT-x is required.
 
-## Enable nested virtualization
+## Enable Nested Virtualization
 
 1. Create a virtual machine running the same build as your host -- [instructions here](../quick_start/walkthrough_create_vm.md).
 
@@ -69,7 +69,7 @@ Below is a list of known issues:
 
 * Once nested virtualization is enabled, MAC spoofing must be enabled in the virtual machine for networking to work in the "innermost" guests.
 
-## FAQ and troubleshooting
+## FAQ and Troubleshooting
 
 ### My virtual machine won’t start, what should I do?
 1. Make sure dynamic memory is OFF.
