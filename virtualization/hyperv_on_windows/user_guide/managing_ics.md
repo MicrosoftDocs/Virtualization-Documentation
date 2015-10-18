@@ -99,7 +99,7 @@ Linux integration services are generally provided through the Linux kernel.
 
 Check to see if the integration service driver and daemons are running by running the following commands in your Linux guest operating system.
 
-1. The linux integration services driver is called `hv_utils'.  Run the following to see if it is loaded.
+1. The Linux integration services driver is called `hv_utils'.  Run the following to see if it is loaded.
 
   ``` BASH
   lsmod | grep hv_utils
@@ -176,7 +176,7 @@ Now if you run `ps -ef | hv` again, you'll discover a `hv_kvp_daemon` process wi
 
 ## Integration service maintainance
 
-Keep integration services current in order to recieve the best virtual machine performance and features possible.
+Keep integration services current in order to receive the best virtual machine performance and features possible.
 
 **For virtual machines running on Windows 10 hosts:**
 
