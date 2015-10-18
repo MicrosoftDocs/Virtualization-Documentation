@@ -42,6 +42,7 @@
 ****,hyperv_on_windows/user_guide/export_import.md,
 ****,hyperv_on_windows/user_guide/vmsession.md,
 ****,hyperv_on_windows/user_guide/remote_host_management.md,
+****,hyperv_on_windows/user_guide/nesting.md,
 ****,hyperv_on_windows/user_guide/troubleshooting.md,
 ***,oa-toc-container: develop,
 ****,hyperv_on_windows/develop/powershell_snippets.md,
