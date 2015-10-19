@@ -1,22 +1,23 @@
 ms.ContentId: c0da5ae7-69b6-49a5-934a-6315b5538d6c
 title: Managing integration services
 
-# Hyper-V Integration Services in Windows 10
+# Managing Hyper-V Integration Services
 Integration services (often called integration components), are services that allow the virtual machine to communicate with the Hyper-V host. Many of these services are conveniences (such as guest file copy), while others can be quite important to the guest operating system's ability to function correctly (time synchronization).
 
 This article will detail how to manage integration services using both Hyper-V manager and PowerShell in Windows 10. For more information on each individual integration service, see [Integration Services]( https://technet.microsoft.com/en-us/library/dn798297.aspx) .
 
-### Enable or Disable Integration Services using Hyper-V Manager
+## Enable or Disable Integration Services using Hyper-V Manager
 
-1. select a virtual machine and open settings.
-
+1. Select a virtual machine and open settings.
+  ![](./media/HyperVManager-OpenVMSettings.png)
+  
 2. From the virtual machine settings window, go to the Integration Services tab under Management.
   
-![](./media/HyperVManager-IntegrationServices.png)
+  ![](./media/HyperVManager-IntegrationServices.png)
   
   Here you can see all integration services available on this Hyper-V host.  It's worth noting that the guest operating system may or may not support all of the integration services listed.
 
-### Enable or Disable Integration Services Using PowerShell
+## Enable or Disable Integration Services Using PowerShell
 
 Integration services can also be enabled and disabled with PowerShell by running [`Enable-VMIntegrationService`](https://technet.microsoft.com/en-us/library/hh848500.aspx) and [`Disable-VMIntegrationService`](https://technet.microsoft.com/en-us/library/hh848488.aspx).
 
@@ -57,7 +58,7 @@ In this example, we'll enable and then disable the guest file copy integration s
 Integration services were designed such that they need to be enabled in both the host and the guest in order to function.  While all integration services are enabled by default on Windows guest operating systems, they can be disabled.  See how in the next section.
 
 
-### Manage Integration Services from Guest OS (Windows)
+## Manage Integration Services from Guest OS (Windows)
 
 > **Note:** disabling integration services may severely affect the hosts ability to manage your virtual machine.  Integration services must be enabled on both the host and guest to operate.
 
@@ -92,18 +93,151 @@ Start or stop services using [`Start-Service`](https://technet.microsoft.com/en-
 
 By default, all integration services are enabled in the guest operation system.
 
-### Manage Integration Services from Guest OS (Linux)
+## Manage Integration Services from Guest OS (Linux)
 
-Linux integration services are provided through the Linux kernel.
+Linux integration services are generally provided through the Linux kernel.
 
-On Linux virtual machines you can check to see if the integration services driver and daemons are running by running the following commands in your Linux guest operating system.
+Check to see if the integration service driver and daemons are running by running the following commands in your Linux guest operating system.
+
+1. The Linux integration services driver is called `hv_utils'.  Run the following to see if it is loaded.
+
+  ``` BASH
+  lsmod | grep hv_utils
+  ``` 
+  
+  The output should look about like this:  
+  
+  ``` BASH
+  Module                  Size   Used by
+  hv_utils               20480   0
+  hv_vmbus               61440   8 hv_balloon,hyperv_keyboard,hv_netvsc,hid_hyperv,hv_utils,hyperv_fb,hv_storvsc
+  ```
+
+2. Run the following command in your Linux guest operating system to see if the required daemons are running.
+  
+  ``` BASH
+  ps -ef | grep hv
+  ```
+  
+  The output should look about like this:  
+  
+  ``` BASH
+  root       236     2  0 Jul11 ?        00:00:00 [hv_vmbus_con]
+  root       237     2  0 Jul11 ?        00:00:00 [hv_vmbus_ctl]
+  ...
+  root       252     2  0 Jul11 ?        00:00:00 [hv_vmbus_ctl]
+  root      1286     1  0 Jul11 ?        00:01:11 /usr/lib/linux-tools/3.13.0-32-generic/hv_kvp_daemon
+  root      9333     1  0 Oct12 ?        00:00:00 /usr/lib/linux-tools/3.13.0-32-generic/hv_kvp_daemon
+  root      9365     1  0 Oct12 ?        00:00:00 /usr/lib/linux-tools/3.13.0-32-generic/hv_vss_daemon
+  scooley  43774 43755  0 21:20 pts/0    00:00:00 grep --color=auto hv          
+  ```
+  
+  To see what daemons are available, run:
+  ``` BASH
+  compgen -c hv_
+  ```
+  
+  The output should look about like this:
+  
+  ``` BASH
+  hv_vss_daemon
+  hv_get_dhcp_info
+  hv_get_dns_info
+  hv_set_ifconfig
+  hv_kvp_daemon
+  hv_fcopy_daemon     
+  ```
+  
+  Integration service daemons you may see:  
+  * **`hv_vss_daemon`** – This daemon is required to create live Linux virtual machine backups.
+  * **`hv_kvp_daemon`** – This daemon allows setting and querying intrinsic and extrinsic key value pairs.
+  * **`hv_fcopy_daemon`** – This daemon implements a file copying service between the host and guest.
+
+> **Note:** if the above integration services daemons are not available, they may not be supported on your system or they may not be installed.  Find more disto specific information [here](https://technet.microsoft.com/en-us/library/dn531030.aspx).  
+
+In this example, we'll stop and start the KVP daemon `hv_kvp_daemon`.
+
+Stop the daemon's process using the pid (process ID) located in the second column of the above output.  Alternately, you can find the right process using `pidof`.  Since Hyper-V daemons run as root, you do need root permissions.
 
 ``` BASH
-lsmod|grep hv_utils
+sudo kill -15 `pidof hv_kvp_daemon`
 ```
 
-Run the following command in your Linux guest operating system to see if the required daemons are running.
+Now if you run `ps -ef | hv` again, you'll discover all `hv_kvp_daemon` process are gone.
+
+To start the daemon again, run the daemon as root.
 
 ``` BASH
-ps –eaf|grep hv
-```
+sudo hv_kvp_daemon
+``` 
+
+Now if you run `ps -ef | hv` again, you'll discover a `hv_kvp_daemon` process with a new process ID.
+
+
+## Integration service maintainance
+
+Keep integration services current in order to receive the best virtual machine performance and features possible.
+
+**For virtual machines running on Windows 10 hosts:**
+
+| Guest OS | Update mechanism | Notes |
+|:---------|:---------|:---------|
+| Windows 10 | Windows Update | |
+| Windows 8.1 | Windows Update | |
+| Windows 8 | Windows Update | Requires the Data Exchange integration service.***** |
+| Windows 7 | Windows Update | Requires the Data Exchange integration service.***** |
+| Windows Vista (SP 2) | Windows Update | Requires the Data Exchange integration service.***** |
+| - | | |
+| Windows Server 2012 R2 | Windows Update | |
+| Windows Server 2012 | Windows Update | Requires the Data Exchange integration service.***** |
+| Windows Server 2008 R2 | Windows Update | Requires the Data Exchange integration service.***** |
+| Windows Server 2008 (SP 2) | Windows Update | Requires the Data Exchange integration service.***** |
+| Windows Home Server 2011 | Windows Update | Requires the Data Exchange integration service.***** |
+| Windows Small Business Server 2011 | Windows Update | Requires the Data Exchange integration service.***** |
+
+
+**\*** If the Data Exchange integration service can not be enabled, the integration components for these guests are available [here](https://support.microsoft.com/en-us/kb/3071740) as a cabinet (cab) file on the download center.  Instructions for applying a cab are availabe [here](http://blogs.technet.com/b/virtualization/archive/2015/07/24/integration-components-available-for-virtual-machines-not-connected-to-windows-update.aspx).
+
+
+**For virtual machines running on Windows 8.1 hosts:**
+
+| Guest OS | Update mechanism | Notes |
+|:---------|:---------|:---------|
+| Windows 10 | Windows Update | |
+| Windows 8.1 | Windows Update | |
+| Windows 8 | Integration Services disk | |
+| Windows 7 | Integration Services disk | |
+| Windows Vista (SP 2) | Integration Services disk | |
+| Windows XP (SP 2, SP 3) | Integration Services disk | |
+| - | | |
+| Windows Server 2012 R2 | Windows Update | |
+| Windows Server 2012 | Integration Services disk | |
+| Windows Server 2008 R2 | Integration Services disk | |
+| Windows Server 2008 (SP 2) | Integration Services disk | |
+| Windows Home Server 2011 | Integration Services disk | |
+| Windows Small Business Server 2011 | Integration Services disk | |
+| Windows Server 2003 R2 (SP 2) | Integration Services disk | |
+| Windows Server 2003 (SP 2) | Integration Services disk | |
+
+**For virtual machines running on Windows 8 hosts:**
+
+| Guest OS | Update mechanism | Notes |
+|:---------|:---------|:---------|
+| Windows 8.1 | Windows Update | |
+| Windows 8 | Integration Services disk | |
+| Windows 7 | Integration Services disk | |
+| Windows Vista (SP 2) | Integration Services disk | |
+| Windows XP (SP 2, SP 3) | Integration Services disk | |
+| - | | |
+| Windows Server 2012 R2 | Windows Update | |
+| Windows Server 2012 | Integration Services disk | |
+| Windows Server 2008 R2 | Integration Services disk | |
+| Windows Server 2008 (SP 2) | Integration Services disk | |
+| Windows Home Server 2011 | Integration Services disk | |
+| Windows Small Business Server 2011 | Integration Services disk | |
+| Windows Server 2003 R2 (SP 2) | Integration Services disk | |
+| Windows Server 2003 (SP 2) | Integration Services disk | |
+
+Instructions for updating via Integration Services disk for Windows 8 and Windows 8.1 are avialable [here](https://technet.microsoft.com/en-us/library/hh846766.aspx#BKMK_step4).
+
+**\*\*** Find even more information about Linux Guests [here](https://technet.microsoft.com/en-us/library/dn531030.aspx). 
