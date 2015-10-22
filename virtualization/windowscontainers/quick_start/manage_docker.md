@@ -293,6 +293,8 @@ After the website has been updated, navigate back to `http://containerhost-ipadd
 ## Next Steps
 Now that you have containers set up and an introduction to the tools, go build your own containerized apps.
 
+Learn more about [Docker](https://www.docker.com/).
+
 Remember, this is a **preview** there are bugs and we have a lot of work in progress.  [This page](../about/work_in_progress.md) contains many of our known issues.
 
 Be aware that there are some known Docker commands that [don't work](../about/work_in_progress.md#DockermanagementDockercommandsthatdontworkwithWindowsServerContainers) and some that only [partially work](../about/work_in_progress.md#DockermanagementDockercommandsthatpartiallyworkwithWindowsServerContainers)
