@@ -36,11 +36,13 @@
 # Run your code that needs to be elevated here
 
 function demoSetupCleanup{
-    Get-VM "psdirect" -Verbose | Get-VMSnapshot -Name "clean" -Verbose | Restore-VMCheckpoint -Confirm:$false
+    Get-VM "psdirect" -Verbose | Get-VMSnapshot -Name "clean" -Verbose | Restore-VMSnapshot -Confirm:$false
     if ((get-vm "psdirect").state -ne "Running") { start-vm "psdirect" }
 }
 
 function guestSetup {
+    while(!(Test-Path "C:\inetpub\wwwroot\HelloWorld\index.html")) { sleep -Milliseconds 500 }
+
     new-website -Name "HelloWorld" -PhysicalPath "C:\inetpub\wwwroot\HelloWorld\"
     Stop-Website -Name "Default Web Site"
     Start-Website -Name "HelloWorld"
@@ -54,7 +56,7 @@ $vmname = "psdirect"
 
 $vmscriptpath = "C:\Users\scooley\scooley-virt-docs\demos\PSDirect\DemoGuest.ps1"
 $guestScriptPath = "C:\Users\scooley\Desktop\DemoGuest.ps1"
-$sitepath = "C:\Users\scooley\scooley-virt-docs\demos\PSDirect\site"
+$sitepath = "C:\Users\scooley\scooley-virt-docs\demos\PSDirect\site\"
 
 $username = "Administrator"
 $pass = ConvertTo-SecureString -AsPlainText "P@ssw0rd" -Force
@@ -62,6 +64,8 @@ $pass = ConvertTo-SecureString -AsPlainText "P@ssw0rd" -Force
 $adminCred = new-object -TypeName System.Management.Automation.PSCredential `
     -ArgumentList $username, $pass
 
+
+demoSetupCleanup
 
 & vmconnect.exe localhost $vmname
 
@@ -106,11 +110,9 @@ Write-Host ""
 Get-ChildItem $sitepath -Recurse -File | % { Copy-VMFile -Name $vmname -SourcePath $_.FullName -DestinationPath ("C:\inetpub\wwwroot\HelloWorld\"+$_) -CreateFullPath -FileSource Host -Force }
 Write-Host ""
 
-Write-Host "Making sure the site copied..."
-Write-Host "Invoke-Command -VMName $vmname -Credential `$adminCred -ScriptBlock { while(!(Test-Path `"C:\inetpub\wwwroot\IgniteSite\index.html`")) { sleep -Milliseconds 500 } }"
-Invoke-Command -VMName $vmname -Credential $adminCred -ScriptBlock { while(!(Test-Path "C:\inetpub\wwwroot\IgniteSite\index.html")) { sleep -Milliseconds 500 } }
+Write-Host "Making sure the site copied and starting the new site..."
 
-Invoke-Command -VMName $vmname -Credential $adminCred -ScriptBlock ${function:IISSite}
+Invoke-Command -VMName $vmname -Credential $adminCred -ScriptBlock ${function:guestSetup}
 
 Write-Host ""
 Write-Host "There you go, unconfigured VM to a running web server."
