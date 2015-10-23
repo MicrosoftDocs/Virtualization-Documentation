@@ -35,7 +35,10 @@ else
 
 cls
 
-$found = $false
+$found = $false 
+
+ipconfig
+
 Write-Host "Current state of IIS:"
 Write-Host 'Get-WindowsOptionalFeature -Online | Where-Object{ $_.FeatureName -match "IIS-*"}'
 Get-WindowsOptionalFeature -Online | Where-Object{ $_.FeatureName -contains "IIS"} | select "Name","State"
