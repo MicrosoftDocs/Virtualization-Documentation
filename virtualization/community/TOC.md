@@ -1,3 +1,3 @@
-# [Community](community_overview.md)
+# Community
 ## [Community](community_overview.md)
 
