@@ -1,3 +1,9 @@
+<<<<<<< HEAD
+=======
+ms.ContentId: 2b4ba69c-51a0-465c-a464-dca696cda744 
+title: Community Resources
+
+>>>>>>> Build Break
 # Community Resources 
 
 Check out resources available to the user community. There is also a lot to see on the [Docker community](https://www.docker.com/community/participate/) pages.
