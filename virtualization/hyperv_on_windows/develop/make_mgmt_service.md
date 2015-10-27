@@ -1,4 +1,4 @@
-# Make a new management service #
+# Make a new management service
 
 This document introduces VM Services built on Hyper-V sockets and how to get started using them.
 

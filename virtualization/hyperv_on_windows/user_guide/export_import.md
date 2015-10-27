@@ -1,5 +1,14 @@
+<<<<<<< HEAD
 # Export and Import virtual machines
 
+=======
+ms.ContentId: 040B1B51-0F25-4295-B317-8CC4DE0A1AFF
+title: Export and import virtual machines
+
+
+<!--Reviewed by liwer 7/8/15 -->
+# Export and Import virtual machines
+>>>>>>> Adding Doc For Test
 You can use the export and import functionality to quickly duplicate virtual machines or to move them from one host to another.
 You don't need to export a virtual machine to be able to import it. You can simply copy a virtual machine and its associated files to the new host, and then use the **Import Virtual Machine** wizard to specify the location of the files. This registers the virtual machine with Hyper-V and makes it available to be used.
 

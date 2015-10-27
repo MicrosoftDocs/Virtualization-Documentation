@@ -1,3 +1,9 @@
+<<<<<<< HEAD
+=======
+ms.ContentId: FBBAADE6-F1A1-4B5C-8FD2-BDCA3FCF81CA
+title: Step 5 - Experiment with Checkpoints
+
+>>>>>>> Adding Doc For Test
 # Use Checkpoints in Hyper-V on Windows 10
 
 One of the great benefits to virtualization is the ability to easily save the state of a virtual machine. In Hyper-V this is done through the use of virtual machine checkpoints. You may want to create a virtual machine checkpoint before making software configuration changes, applying a software update, or installing new software. If a system change were to cause an issue, the virtual machine can be reverted to the state at which it was when then checkpoint was taken.
