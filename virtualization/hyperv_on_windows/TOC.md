@@ -2,6 +2,7 @@
 ## [Introduction to Hyper-V](./about/hyperv_on_windows.md)
 ## [What’s New in Hyper-V for Windows 10](./about/whats_new.md)
 ## [Supported Guest Operating Systems](about\supported_guest_os.md)
+## [Linux and FreeBSD Virtual Machines on Hyper-V](https://technet.microsoft.com/library/dn531030.aspx)
 # Get Started with Hyper-V on Windows 10
 ## [Check system requirements](quick_start\walkthrough_compatibility.md)
 ## [Install Hyper-V](quick_start\walkthrough_install.md)
@@ -10,3 +11,21 @@
 ## [Use Checkpoints with Hyper-V](quick_start\walkthrough_checkpoints.md)
 ## [Virtual Machine Export and Import](quick_start\walkthrough_export_import.md)
 ## [Hyper-V and PowerShell](quick_start\walkthrough_powershell.md)
+# User Guides
+## [Migrate and upgrade virtual machines](migrating_vms.md)
+## [Manage Integration Services](managing_ics.md)
+## [Working with checkpoints](checkpoints.md)
+## [Export and Import virtual machines](export_import.md)
+## [Manage Windows with PowerShell Direct](vmsession.md)
+## [Manage Remote Hyper-V Hosts](remote_host_management.md)
+## [Nested Virtualization](nesting.md)
+## [Troubleshooting](troubleshooting.md)
+# Develop
+## [Hyper-V PowerShell](https://technet.microsoft.com/library/hh848559.aspx)
+## [PowerShell Samples](develop/powershell_snippets.md)
+## [Management Service](develop/make_mgmt_service.md)
+## [Hyper-V WMI Provider (V2)](https://msdn.microsoft.com/library/hh850319.aspx)
+## [Hyper-V Architecture](https://msdn.microsoft.com/en-us/library/cc768520(v=bts.10).aspx)
+# Connect with Community and Support
+## [Hyper-V forums](https://social.technet.microsoft.com/Forums/windowsserver/en-US/home?forum=winserverhyperv)
+## [Community Resources for Hyper-V and Windows Containers](..\community\community_overview.md)
