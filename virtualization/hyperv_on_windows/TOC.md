@@ -28,4 +28,4 @@
 ## [Hyper-V Architecture](https://msdn.microsoft.com/en-us/library/cc768520(v=bts.10).aspx)
 # Connect with Community and Support
 ## [Hyper-V forums](https://social.technet.microsoft.com/Forums/windowsserver/en-US/home?forum=winserverhyperv)
-## [Community Resources for Hyper-V and Windows Containers](..\community\community_overview.md)
+## [Community Resources for Hyper-V and Windows Containers](.\community\community_overview.md)
