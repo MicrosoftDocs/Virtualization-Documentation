@@ -92,7 +92,7 @@ Get-ChildItem $sitepath -Recurse -File | % { Copy-VMFile -Name $vmname -SourcePa
 Write-Host ""
 read-host
 
-Invoke-Command -VMName $vmname -Credential $adminCred -ScriptBlock ${function:guest3}
+Invoke-Command -VMName $vmname -Credential $adminCred -ScriptBlock ${function:guest2}
 
 write-host ""
 Write-Host -NoNewLine "Press any key to continue..."
