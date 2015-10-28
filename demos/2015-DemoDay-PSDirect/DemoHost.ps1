@@ -62,7 +62,7 @@ $adminCred = new-object -TypeName System.Management.Automation.PSCredential `
 $vmname = "psdirect"
 $clean = "clean"
     
-$sitepath = "C:\Users\scooley\scooley-virt-docs\demos\PSDirect\site\"
+$sitepath = "C:\Users\scooley\scooley-virt-docs\demos\2015-DemoDay-PSDirect\site\"
 
 
 
