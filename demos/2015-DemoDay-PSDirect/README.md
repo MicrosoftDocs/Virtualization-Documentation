@@ -21,5 +21,9 @@ Start the VM and set admin credentials for some user account.
 
 
 ## VM Setup
-For simplicity, I manually enabled the guest file copy IC.
+The VM Must be running Win10+ or Server TP3+.
+
+I manually enabled the guest file copy IC. -- I should do this in the script.
 I also enabled logging in as Administrator and my script is using the Administrator account.  Again, demo only.
+
+Once the OS is installed, make sure the script knows the Admin creds.
