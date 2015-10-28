@@ -84,13 +84,13 @@ Write-Host "Refresh IE to see default IIS configured in $vmname"
 Write-Host ""
 Write-Host "Next, Let's our own default page."
 Write-Host "Press enter to load the new site."
+read-host
 
 Write-Host ""
 Write-Host "Invoke-Command -VMName $vmname -Credential `$adminCred -ScriptBlock `${function:SetSite}"
 
 Get-ChildItem $sitepath -Recurse -File | % { Copy-VMFile -Name $vmname -SourcePath $_.FullName -DestinationPath ("C:\inetpub\wwwroot\HelloWorld\"+$_) -CreateFullPath -FileSource Host -Force }
 Write-Host ""
-read-host
 
 Invoke-Command -VMName $vmname -Credential $adminCred -ScriptBlock ${function:guest2}
 
