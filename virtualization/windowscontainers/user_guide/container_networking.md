@@ -2,6 +2,7 @@ ms.ContentId: df65d9b4-5f3a-4ade-8a43-9821a49758c9
 title: Manage Windows Container Networking
 
 When deploying the container infrastructure, you will need to decide on a networking strategy for Windows Containers. Two options are available, assign IP addresses using network address translation technology or assign IP address using a DHCP server.
+
 Network Address Translation – in this configuration the container host will be assigned an IP address that is reachable on the LAN. All containers will be auto assigned an address that cannot be accessed on the LAN. To make the containers accessible an external port of the host is mapped to an internal port of port of the container. These mappings are stored in a NAT port mapping table. The container is accessible through the address and mapped external port of the host. The benefit of NAT in a container configuration is that the container host can scale to hundreds of containers while only using one externally available IP Address.
 
 <insert image>
@@ -89,4 +90,24 @@ After the mapping has been created the container application can be accessed thr
 ![](./media/portmapping.png)
 
 ## Configure DHCP
-## Configure Containers with DHCP
+To configure the container system so that containers receive an IP address from a DHCP server, create a virtual machine switch that is connected to a physical or virtual network adapter.
+The following sample created a virtual machine switch with the name DHCP using a network adapter named Ethernet.
+
+```powershell
+S C:\> New-VMSwitch -Name DHCP -NetAdapterName Ethernet
+Name SwitchType NetAdapterInterfaceDescription
+---- ---------- ------------------------------
+DHCP External   Microsoft Hyper-V Network Adapter
+```
+
+If the container host is itself a virtual machine you will need to enable MacAddressSpoofing for the network adapter used as the container switch. This is completed with the **Set-VMNetworkAdapter** command and is run on the VM Host.
+
+```powershell
+PS C:\> Get-VMNetworkAdapter -VMName TP4FullLatest | Set-VMNetworkAdapter -MacAddressSpoofing On
+```
+The DHCP enabled switch can now be connected to a container, which is then capable of receiving a IP address from a DHCP server.
+
+
+## Other Commands to Include
+
+`Get-ContainerNetworkAdapter'
