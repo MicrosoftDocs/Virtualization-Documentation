@@ -35,8 +35,8 @@
 
 
 function demoSetupCleanup{
-    Get-VM "psdirect" -Verbose | Get-VMSnapshot -Name "clean" -Verbose | Restore-VMSnapshot -Confirm:$false
-    if ((get-vm "psdirect").state -ne "Running") { start-vm "psdirect" }
+    Get-VM $vmname -Verbose | Get-VMSnapshot -Name $clean -Verbose | Restore-VMSnapshot -Confirm:$false
+    if ((get-vm $vmname).state -ne "Running") { start-vm $vmname }
 }
 
 
@@ -52,19 +52,18 @@ function guest2 {
     Start-Website -Name "HelloWorld"
 }
 
-$title = "PSDirect Demo"
-
 cls
-
-$vmname = "psdirect"
-
-$sitepath = "C:\Users\scooley\scooley-virt-docs\demos\PSDirect\site\"
 
 $username = "Administrator"
 $pass = ConvertTo-SecureString -AsPlainText "P@ssw0rd" -Force
-
 $adminCred = new-object -TypeName System.Management.Automation.PSCredential `
     -ArgumentList $username, $pass
+
+$vmname = "psdirect"
+$clean = "clean"
+    
+$sitepath = "C:\Users\scooley\scooley-virt-docs\demos\PSDirect\site\"
+
 
 
 demoSetupCleanup
