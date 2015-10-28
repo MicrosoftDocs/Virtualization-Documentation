@@ -16,4 +16,10 @@ Start the VM and set admin credentials for some user account.
 * `$clean` - name of snapshot to revert to before and after the demo
 * `$sitepath` - location of your site folder on the host OS
 
-**Guest functions**
+**Guest functions - optional**
+`guest2` customizes the site.  All files are pulled from the host so you don't need to change anything here but you can.
+
+
+## VM Setup
+For simplicity, I manually enabled the guest file copy IC.
+I also enabled logging in as Administrator and my script is using the Administrator account.  Again, demo only.
