@@ -4,11 +4,11 @@
 ## [FAQ](about/faq.md)
 ## [Work In Progress](about/work_in_progress.md)
 # Quick Start
-## [Configure in Windows Azure](quick_start/azure_setup.md)
-## [Configure in a new Hyper-V virtual machine](quick_start/container_setup.md)
-## [Configure in Existing System](quick_start/inplace_setup.md)
-## [Windows Server Containers and PowerShell](quick_start/manage_powershell.md)
-## [Windows Server Containers and Docker](quick_start/manage_docker.md)
+## [Get started with Windows Server Containers in Windows Azure](quick_start/azure_setup.md)
+## [Get started with Windows Server Containers in a new Hyper-V virtual machine](quick_start/container_setup.md)
+## [Get started with Windows Server Containers on an existing Windows Server TP3 Core installation](quick_start/inplace_setup.md)
+## [Quick Start: Windows Server Containers and PowerShell](quick_start/manage_powershell.md)
+## [Quick Start: Windows Server Containers and Docker](quick_start/manage_docker.md)
 # Reference
 ## [Windows Contianer PowerShell Reference](reference/powershell_overview.md)
 ## [PowerShell to Docker Comparison](reference/ps_docker_comparison.md)
