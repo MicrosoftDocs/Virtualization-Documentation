@@ -40,6 +40,10 @@ DEMO2         c:\source  c:\source       ReadWrite
 
 To modify and existing shared folder configuration, use the Set-ContainerSharedFolder command.
 
+```powershell
+Add sample code here.
+```
+
 ## Remove Shared Folder
 
 To remove a shared folder, use the **Remove-ContainerSharedFolder** command.
