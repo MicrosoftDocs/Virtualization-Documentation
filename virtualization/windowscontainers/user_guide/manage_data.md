@@ -1,9 +1,12 @@
 ms.ContentId: 95ece47b-4f08-49a5-ba22-4f9f044c282b
 title: Manage Data in Windows Container
 
-To Do:
-Add ReadWrite, Maximum Bandwitch and Maximum IOPS
-Add Simple Docker section with pointer to Docker Docs.
+## Owner: Senthil Rajaram <senthilr@microsoft.com>
+
+## TODO:
+* Verify that this is our prescribed way to get data into a container.
+* Add ReadWrite, Maximum Bandwitch and Maximum IOPS
+* Add Simple Docker section with pointer to Docker Docs.
 
 ## Managing Shared Folders with PowerShell:
 
