@@ -54,7 +54,7 @@ $HostCfgErrorMsgs = @{
     "BcdDisabled" = "Nested virtualization is disabled via BCD HYPERVISORLOADOPTIONS"
     "VbsRunning" = "Virtualization Based Security is running";
     "VbsEnabled" = "The VBS enable reg key is set";
-    "UnsupportedBuild" = "Nested virtualization requires a TH2 or later build"
+    "UnsupportedBuild" = "Nested virtualization requires a build later than 10565"
     }
 
 $HostCfgErrors = $null
@@ -104,7 +104,7 @@ Add-Member -InputObject $HostNested NoteProperty -Name "HypervisorLoadOptionsVal
 Add-Member -InputObject $HostNested NoteProperty -Name "IumInstalled" -Value $false
 Add-Member -InputObject $HostNested NoteProperty -Name "VbsRunning" -Value $false
 Add-Member -InputObject $HostNested NoteProperty -Name "VbsRegEnabled" -Value $false
-Add-Member -InputObject $HostNested NoteProperty -Name "BuildSupported" -Value $false
+Add-Member -InputObject $HostNested NoteProperty -Name "BuildSupported" -Value $true
 
 
 #
@@ -113,8 +113,9 @@ Add-Member -InputObject $HostNested NoteProperty -Name "BuildSupported" -Value $
 #
 
 Write-Host "Validating host information..." -NoNewline
-if ($a.BuildLabEx.split('.')[0] -le 10552) {
-    $HostNested.BuildSupported = $true
+if ($a.BuildLabEx.split('.')[0] -lt 10565) {
+    $HostNested.HostNestedSupport = $false
+    $HostNested.BuildSupported = $false
     $HostCfgErrors += ($HostCfgErrorMsgs["UnsupportedBuild"])
 }
 
