@@ -5,7 +5,7 @@ title: Manage Data in Windows Container
 
 ## TODO:
 * Verify that this is our prescribed way to get data into a container.
-* Add ReadWrite, Maximum Bandwitch and Maximum IOPS
+* Add ReadWrite, Maximum bandwidth and Maximum IOPS
 * Add Simple Docker section with pointer to Docker Docs.
 
 ## Managing Shared Folders with PowerShell:
