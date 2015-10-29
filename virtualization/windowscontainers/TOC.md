@@ -12,6 +12,7 @@
 # Technical Guides
 ##[Container Feature Deployment](user_guide/deployment.md)
 ##[Manage Containers](user_guide/manage_containers.md)
+##[PowerShell Docker inter-op](user_guide/hcs_powershell.md)
 ##[Manage Container Images](user_guide/manage_images.md)
 ##[Manage Container Networking](user_guide/container_networking.md)
 ##[Manage Container Data](user_guide/manage_data.md)
