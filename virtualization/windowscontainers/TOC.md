@@ -11,10 +11,10 @@
 ## [Quick Start: Windows Server Containers and Docker](quick_start/manage_docker.md)
 # Technical Guides
 ##[Container Feature Deployment](user_guide/deployment.md)
-##[Manage Windows Containers](user_guide/manage_containers.md)
-##[Manage Windows Container Images](user_guide/manage_images.md)
-##[Manage Windows Container Networking](user_guide/container_networking.md)
-##[Manage Data in Windows Container](user_guide/manage_data.md)
+##[Manage Containers](user_guide/manage_containers.md)
+##[Manage Container Images](user_guide/manage_images.md)
+##[Manage Container Networking](user_guide/container_networking.md)
+##[Manage Container Data](user_guide/manage_data.md)
 ##[Manage Contianer Resources](user_guide/manage_resources.md)
 # Reference
 ## [Windows Contianer PowerShell Reference](reference/powershell_overview.md)
