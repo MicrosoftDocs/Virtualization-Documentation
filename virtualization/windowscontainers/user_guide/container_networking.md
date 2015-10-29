@@ -44,7 +44,7 @@ Ethernet adapter vEthernet (Virtual Switch-527ED2FB-D56D-4852-AD7B-E83732A032F5-
    Default Gateway . . . . . . . . . : 172.16.0.1
 [DemoNAT]: PS C:\>  
 ```
-For more information on starting and connecting to a Windows Container see [Managing Contianers](mange_containers.md).
+For more information on starting and connecting to a Windows Container see [Managing Contianers](./mange_containers.md).
 
 ## Manage Port Mapping
 
