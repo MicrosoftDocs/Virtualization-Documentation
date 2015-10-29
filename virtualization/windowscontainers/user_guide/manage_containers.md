@@ -132,6 +132,6 @@ PS C:\> Get-Container | Remove-Container -Force
 
 ## Additional Resources
 
-For a complete reference of Container PowerShell commands see the [Container PowerShell Reference]().
+For a complete reference of Container PowerShell commands see the [Container PowerShell Reference](https://technet.microsoft.com/en-us/library/mt433069.aspx).
 
 For documentation on managing Windows Containers with Docker see the Docker document [Working with Containers]( https://docs.docker.com/userguide/usingdocker/).
