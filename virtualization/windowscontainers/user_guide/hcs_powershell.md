@@ -1,6 +1,11 @@
 ms.ContentId: d75b6cee-c235-42a2-92fd-a6ed62f20a44
 title: Host Computing Service PowerShell
 
+## Owner: Andy Atkinson <andyat@microsoft.com>
+
+## TODO
+Neil -- this is for you and Andy to figure out.
+
 For the most part, Windows Containers created with PowerShell need to be managed with PowerShell and those created with Docker need to be managed with Docker. That said, the Host Computing PowerShell module provides the ability to discover and stop containers regardless of how they have been created. This module is like task manage for all containers running on a container host.
 
 ## Display all Containers
