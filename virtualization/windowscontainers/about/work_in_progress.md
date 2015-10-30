@@ -6,8 +6,8 @@ If you don't see your problem addressed here or have questions, post them on the
 
 ## General functionality
 
-### Windows Container Image must exactly match container host
-A Windows Server Container requires an operating system image that matches the container host in respect to build and patch level. A mismatch will lead to instability and or unpredictable behavior for the container and/or the host.
+### Container and host build number match
+A Windows Server Container requires an operating system image that matches the container host in respect to build and patch level. A mismatch will lead to potential instability and or unpredictable behavior for the container and/or the host.
 
 If you install updates against the Windows container host OS you will need to update the container base OS image to have the matching updates.
 <!-- Can we give examples of behavior or errors?  Makes it more searchable -->
@@ -16,16 +16,16 @@ If you install updates against the Windows container host OS you will need to up
 Download and install a container base image matching the OS version and patch level of the container host.
 
 
-### Commands sporadically fail -- try again
+### Commands sometimes fail
 In our testing, commands occasionally need to be run multiple times.  The same principle applies to other actions.  
 For example, if you create a new file and it doesn't appear, try touching the file.  
 
 If you have to do this, let us know via [the forums](https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers).
 
-** Work Around:  **  
+**Work Around:**  
 Build scripts such that they try commands multiple times.  If a command fails, try again.  
 
-### All non-C:/ drives are automatically mapped into new containers
+### All non-C:/ drives are visible in containers
 All non-C:/ drives available to the container host are automatically mapped into new running Windows Server Containers.
 
 At this point in time there is no way to selectively map folders into a container, as an interim work around drives are mapped automatically.
@@ -36,7 +36,7 @@ We're working on it.  In the future there will be folder sharing.
 ### Default firewall behavior
 In a container host and containers environment, you only have the container host's firewall. All the firewall rules configured in the container host will propagate to all of its containers.
 
-### Windows Server Containers are starting very slowly
+### Windows Server Containers start slowly
 If your container is taking more than 30 seconds to start, it may be performing many duplicate virus scans.
 
 Many anti-malware solutions, such as Windows Defender, maybe unnecessarily scanning files with-in container images including all of the OS binaries and files in the container OS image.  This occurs when ever a new container is created and from the anti-malware’s perspective all of the “container’s files” look like new files that have not previously been scanned.  So when processes inside the container attempt to read these files the anti-malware components first scan them before allowing access to the files.  In reality these files were already scanned when the container image was imported or pulled to the server. In future previews new infrastructure will be in place such that anti-malware solutions, including Windows Defender, will be aware of these situations and can act accordingly to avoid multiple scans. 
@@ -45,7 +45,7 @@ Many anti-malware solutions, such as Windows Defender, maybe unnecessarily scann
 
 ## Networking
 
-### Number of network compartments per container
+### Limited network compartments
 In this release we support one network compartment per container. This means that if you have a container with multiple network adapters, you cannot access the same network port on each adapter (e.g. 192.168.0.1:80 and 192.168.0.2:80 belonging to the same container).
 
 **Work Around: **  
@@ -66,28 +66,6 @@ This can be achieved using PowerShell
 Get-VMNetworkAdapter -VMName "[YourVMNameHere]"  | Set-VMNetworkAdapter -MacAddressSpoofing On
 ```
 
-### Creating file shares does not work in a Container
-
-Currently it is not possible to create a file share within a Container. If you run `net share` you will see an error like this:
-
-```
-The Server service is not started.
-
-Is it OK to start it? (Y/N) [Y]: y
-The Server service is starting.
-The Server service could not be started.
-
-A service specific error occurred: 2182.
-
-More help is available by typing NET HELPMSG 3547.
-```
-
-**Work Around: **
-If you want to copy files into a Container you can use the other way round by running `net use` within the Container. For example: 
-```
-net use S: \\your\sources\here /User:shareuser [yourpassword]
-```
-
 --------------------------
 
 ## Application compatibility
@@ -96,13 +74,13 @@ There are so mnay questions about which applications work and don't work in Wind
 
 Some of the most common issues are located here as well.
 
-### WinRM won't start in a Windows Server Container
+### WinRM won't start
 WinRM starts, throws an error, and stops again.  Errors are not logged in the event log.
 
 **Work Around:**
 Use WMI, [RDP](#RemoteDesktopAccessOfContainers), or Enter-PSSession -ContainerID
 
-### Can't install ASP.NET 4.5 or ASP.NET 3.5 with IIS in a container using DISM 
+### Can't install ASP.NET 4.5 or 3.5 
 Installing IIS-ASPNET45 in a container doesn't work inside a Windows Server container.  The installation progress sticks around 95.5%.
 
 ``` PowerShell
@@ -125,10 +103,10 @@ See the [application compatability article](../reference/app_compat.md) for more
 
 ## Docker management
 
-### Docker clients unsecured by default
+### Docker clients unsecured
 In this pre-release, docker communication is public if you know where to look.
 
-### Docker commands that don't work with Windows Server Containers
+### Not all Docker commands work
 
 Commands known to fail:
 
@@ -148,7 +126,7 @@ If anything that isn't on this list fails (or if a command fails differently tha
 
 
 
-### Docker commands that partially work with Windows Server Containers
+### Docker commands that sometimes work
 
 Commands with partial functionality:
 
@@ -170,28 +148,21 @@ If anything that isn't on this list fails, if a command fails differently than e
 
 
 ### Pasting commands to interactive Docker session is limited to 50 characters
+Pasting commands to interactive Docker session is limited to 50 characters.  
 If you copy a command line into an interactive Docker session, it is currently limited to 50 characters. The pasted string is simply truncated.
 
 This is not by design, we're working on lifting the restriction.
 
-### net use returns System error 1223 instead of prompting for username or password
+### Net use errors
+Net use returns System error 1223 instead of prompting for username or password
+
 Workaround: specify both, the username and password, when running net use. For example:
 ```
 net use S: \\your\sources\here /User:shareuser [yourpassword]
 ``` 
 
-### HCS Shim errors when creating new container images
-If you encounter error messages like this:
-```
-hcsshim::ExportLayer - Win32 API call returned error r1=2147942523 err=The filename, directory name, or volume label syntax is incorrect. layerId=606a2c430fccd1091b9ad2f930bae009956856cf4e6c66062b188aac48aa2e34 flavour=1 folder=C:\ProgramData\docker\windowsfilter\606a2c430fccd1091b9ad2f930bae009956856cf4e6c66062b188aac48aa2e34-1868857733
-```
 
-You're hitting an issue addressed by the Zero Day Patch for Windows Server 2016 TP3. This error can also occur when running the Python-3.4.3.msi installer or node-v0.12.7.msi in a container.
-
-If you hit other hcsshim errors, let us know via [the forums](https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers).
-
-
-## Accessing windows server container with Remote Desktop 
+## Remote Desktop 
 Windows Server Containers can be managed/interacted with through a RDP session.
 
 The following steps are needed to remotely connect to a Windows Server Container using RDP. It is assumed that the Container is connected to the network via a NAT switch. This is the default when setting up a Container host through the installation script or creating a new VM in Azure.
