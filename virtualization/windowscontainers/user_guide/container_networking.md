@@ -1,8 +1,6 @@
 ms.ContentId: df65d9b4-5f3a-4ade-8a43-9821a49758c9
 title: Manage Windows Container Networking
 
-![](./media/physicalhost.png)
-
 When deploying the container infrastructure, you will need to decide on a networking strategy for Windows Containers. Two options are available, assign IP addresses using network address translation technology or assign IP address using a DHCP server.
 
 Network Address Translation – in this configuration the container host will be assigned an IP address that is reachable on the LAN. All containers will be auto assigned an address that cannot be accessed on the LAN. To make the containers accessible an external port of the host is mapped to an internal port of port of the container. These mappings are stored in a NAT port mapping table. The container is accessible through the address and mapped external port of the host. The benefit of NAT in a container configuration is that the container host can scale to hundreds of containers while only using one externally available IP Address.
