@@ -1,0 +1,12 @@
+﻿{
+  "build": {
+    "content":
+      [
+        {
+          "files": ["**/**.md"]
+        }
+      ],
+    "template": "op.html",
+    "dest": "virtualization/community"
+  }
+}

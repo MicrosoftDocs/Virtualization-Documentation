@@ -1,0 +1,19 @@
+﻿{
+  "build": {
+    "content":
+      [
+        {
+          "files": ["**/**.md"]
+        }
+      ],
+    "resource": [
+        {
+          "files": ["**/media/**"]
+        }
+    ],
+    "externalReference": [
+    ],
+    "template": "op.html",
+    "dest": "virtualization/windowscontainers"
+  }
+}
