@@ -29,7 +29,7 @@ WindowsServerCore CN=Microsoft 10.0.10584.1000 True
 ```
 # Finding and Downloading New Container Images
 
-<Insert OneGet Deatils>
+<Insert OneGet Deatils - meeting on 10/30 for details.>
 
 # Creating New Images
 
