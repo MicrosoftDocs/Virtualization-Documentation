@@ -3,14 +3,22 @@
     "content":
       [
         {
+<<<<<<< HEAD
           "files": ["**/**.md"],
           "exclude": ["**/obj/**"]
+=======
+          "files": ["**/**.md"]
+>>>>>>> Use docfx as build tool
         }
       ],
     "resource": [
         {
+<<<<<<< HEAD
           "files": ["**/media/**"],
           "exclude": ["**/obj/**"]
+=======
+          "files": ["**/media/**"]
+>>>>>>> Use docfx as build tool
         }
     ],
     "externalReference": [
