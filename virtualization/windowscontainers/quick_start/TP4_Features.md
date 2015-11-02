@@ -86,7 +86,7 @@ PS C:\> Enter-PSSession -ContainerId $con.ContainerId –RunAsAdministrator
 ```
 When in the remote session, notice that a directory has been created ‘c:\share’, and that you can now copy files into the c:\share directory of the host and access them in the container.
 
-For more information on Shared Folder, see the Shred Folders Technical Guide <>
+For more information on Shared Folder, see the [Shared Folders Technical Guide](../user_guide/manage_data.md)
 
 ## Install IIS in the Container
 
