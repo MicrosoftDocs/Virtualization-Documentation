@@ -127,3 +127,73 @@ From inside the container run the following commands to install IIS.
 dism /online /apply-unattend:c:\share\unattend.xml
 ```
 
+Restart Container - is this really needed?
+
+```powershell
+PS C:\> Stop-Container $con
+PS C:\> Start-Container $con
+```
+Now, using an internet browser, browse to the IP Address of the container host. You will see the IIS splash screen.
+
+![](media/iis.png)
+
+## Create IIS Container Image
+
+Stop the Container.
+
+```powershell
+Stop-Container $con
+```
+
+Create new container images from container.
+
+```powershell
+PS C:\> New-ContainerImage -Container $con -Name NanoServerIIS -Publisher Demo -Version 1.0
+```
+
+Run **Get-ContainerImage** to see a complete list of images available on the container host. Notice in the output that a differentiation is made between OS Images and non OS images.
+
+```powershell
+
+PS C:\> Get-ContainerImage
+Name              Publisher    Version         IsOSImage
+----              ---------    -------         ---------
+NanoServerIIS     CN=Demo      1.0.0.0         False
+NanoServer        CN=Microsoft 10.0.10586.1000 True
+WindowsServerCore CN=Microsoft 10.0.10586.1000 True
+```
+
+## Deploy IIS Application
+
+So that you can re-use existing port mapping rules, ensure that all containers are stopped.
+
+Create a new container from the IIS image using the **New-Container** command.
+
+```powershell
+PS C:\> $con = New-Container -Name IISApp -ContainerImageName nanoserverIIS -SwitchName "Virtual Switch" -RuntimeType HyperV
+```
+
+Start the container.
+
+```powershell
+PS C:\> Start-Container $con
+```
+
+Create a remote PowerShell session with the container.
+
+```powershell
+PS C:\> Enter-PSSession -ContainerId $con.ContainerId –RunAsAdministrator
+```
+
+Run the following script to replace the default IIS splash screen with a new static site.
+
+```powershell
+del C:\inetpub\wwwroot\iisstart.htm
+"Hello World From a Hyper-V Container" > C:\inetpub\wwwroot\index.html
+```
+
+Browse to the IP Address of the container host and you will now see the ‘Hello World’ application.
+
+![](media/iisapp.png)
+
+## Container Resource Constraint
