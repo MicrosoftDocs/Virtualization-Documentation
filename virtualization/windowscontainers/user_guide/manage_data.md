@@ -1,4 +1,4 @@
-Owner: Senthil Rajaram
+Owner: Senthil Rajaram <senthilr@microsoft.com>
 To do:
 * Verify that this is our prescribed way to get data into a container.
 * Add ReadWrite, Maximum bandwidth and Maximum IOPS
