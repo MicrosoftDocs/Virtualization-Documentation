@@ -52,7 +52,7 @@ In order to access applications inside of a container connected to a NAT enabled
 Create NAT
 
 ```powershell
-PS C:\Users\Administrator> New-NetNat -Name ContianerNAT -InternalIPInterfaceAddressPrefix "172.16.0.0/12"
+PS C:\> New-NetNat -Name ContianerNAT -InternalIPInterfaceAddressPrefix "172.16.0.0/12"
 
 Name                             : ContianerNAT
 ExternalIPInterfaceAddressPrefix :
