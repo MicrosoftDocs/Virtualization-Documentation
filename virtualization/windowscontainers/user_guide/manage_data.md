@@ -63,6 +63,8 @@ To remove a shared folder, use the **Remove-ContainerSharedFolder** command.
 PS C:\> Remove-ContainerSharedFolder -ContainerName DEMO2 -SourcePath c:\source -DestinationPath c:\source
 ```
 
+## Mounting Volumes with Docker 
+
 When managing Windows Containers with Docker shared folders or volumes can be created using the **-v** option.
 
 In the below example the source folder is c:\sf1 and destination folder c:\fs1.
