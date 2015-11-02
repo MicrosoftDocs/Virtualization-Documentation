@@ -26,6 +26,9 @@
 ##[Manage Container Networking](user_guide/container_networking.md)
 ##[Manage Container Data](user_guide/manage_data.md)
 ##[Manage Contianer Resources](user_guide/manage_resources.md)
+<<<<<<< HEAD
+>>>>>>> Build Break
+=======
 >>>>>>> Build Break
 # Reference
 ## [PowerShell Reference](reference/powershell_overview.md)
