@@ -38,7 +38,7 @@ For more information on managing Windows Containers, see the Managing Containers
 
 Create a folder at the root of your container named ‘shared’.
 ```powershell
-New-Item c:\shared
+PS C:\> New-Item -Type Directory c:\share
 ```
 
 Windows Container Shared Folders provide a way of sharing data between both the container host and container and between containers themselves. We will use a shared folder during this exercise to copy files into a container which will be used to configure an application.
@@ -48,7 +48,7 @@ Use the **Add-ContainerSharedFolder** command to create a shared folder.
 > The container must be in a stopped stated when creating the shared folder.
 
 ```powershell
-PS C:\> Add-ContainerSharedFolder -ContainerName HYPV -SourcePath c:\share -DestinationPath c:\share
+PS C:\> Add-ContainerSharedFolder -Container $con -SourcePath c:\share -DestinationPath c:\share
 ContainerName SourcePath DestinationPath AccessMode
 ------------- ---------- --------------- ----------
 HYPV          c:\share   c:\share        ReadWrite
@@ -56,7 +56,7 @@ HYPV          c:\share   c:\share        ReadWrite
 
 When the shared folder has been created, start the container.
 ```powershell
-Start-Container HYPV
+Start-Container $con
 ```
 Create a PowerShell remote session with the container using the **Enter-PSSession** command.
 
@@ -70,3 +70,17 @@ For more information on Shared Folder, see the Shred Folders Technical Guide <>
 
 ## Install IIS in the Container
 
+Because your container is running a Windows Server Nano OS Image, to install IIS we will need to use IIS packages for Nano Server.
+
+The IIS packages can be found on the Windows Sever Installation media under the NanoServer\Packages directory.
+
+```powershell
+D:\NanoServer\Packages
+```
+Copy the Microsoft-NanoServer-IIS-Package.cab from NanoServer\Packages to c:\source on your container host. Next copy NanoServer\Packages\en-us\Microsoft-NanoServer-IIS-Package.cab to c:\source\en-us on your container host.
+
+Alternatively, use this script to complete this for you. Replace the **mediaPath** value with that of the Windows Server Media
+
+```powershell
+<insert script>
+```
