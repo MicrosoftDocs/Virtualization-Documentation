@@ -9,6 +9,7 @@
 ## [Get started with Windows Server Containers on an existing Windows Server TP3 Core installation](quick_start/inplace_setup.md)
 ## [Quick Start: Windows Server Containers and PowerShell](quick_start/manage_powershell.md)
 ## [Quick Start: Windows Server Containers and Docker](quick_start/manage_docker.md)
+## [Quick Start: TP4 Featured](quick_start/TP4_Features.md)
 # Technical Guides
 ##[Container Feature Deployment](user_guide/deployment.md)
 ##[Manage Containers](user_guide/manage_containers.md)
@@ -17,6 +18,7 @@
 ##[Manage Container Networking](user_guide/container_networking.md)
 ##[Manage Container Data](user_guide/manage_data.md)
 ##[Manage Contianer Resources](user_guide/manage_resources.md)
+##[Docker on Windows](user_guide/docker_windows.md)
 # Reference
 ## [Windows Contianer PowerShell Reference](reference/powershell_overview.md)
 ## [PowerShell to Docker Comparison](reference/ps_docker_comparison.md)

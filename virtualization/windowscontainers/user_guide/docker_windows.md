@@ -34,4 +34,14 @@ Open a command prompt and enter **nssm install**.
 
 ## Automated Installation of the Docker Service
 
+## Removing the Docker Service
+
+If following this guide for creating a Windows service from docke.exe, the following command will remove the service.
+
+```powershell
+PS C:\ sc.exe delete Docker
+[SC] DeleteService SUCESS
+```
+
+
 ## Docker Daemon Startup Options
