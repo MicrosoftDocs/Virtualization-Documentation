@@ -11,7 +11,7 @@ Container Images provide the deployment foundation for containers as well drive 
 
 # Installing Base Images
 
-Container OS Images for Windows Containers have been prepared and can be downloaded using PowerShell or manually from the <insert download location>.
+Container OS Images for Windows Containers have been prepared and can be downloaded using PowerShell or manually from the <!-- insert download location -->.
 
 Once the Container OS Images have been downloaded, they will need to be installed on the container host. This can be completed using the **Install-ContainerOSImage** command.
 
@@ -29,7 +29,7 @@ WindowsServerCore CN=Microsoft 10.0.10584.1000 True
 ```
 # Finding and Downloading New Container Images
 
-<Insert OneGet Deatils - meeting on 10/30 for details.>
+<!-- Insert OneGet Deatils - meeting on 10/30 for details. -->
 
 # Creating New Images
 
@@ -39,7 +39,7 @@ New-ContainerImage -Container $container -Publisher Demo -Name DemoImage -Versio
 
 # Storing Images in a Container Registry
 
-<Can we do this with PowerShell at TP4>
+<!-- Can we do this with PowerShell at TP4 -->
 
 # Removing Images from the Container Host
 
