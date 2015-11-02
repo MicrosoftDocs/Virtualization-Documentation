@@ -84,3 +84,20 @@ Alternatively, use this script to complete this for you. Replace the **mediaPath
 ```powershell
 <insert script>
 ```
+Create a file in the shared folder named unattend.xml, copy these lines into the unattend.xml file.
+
+```powershell
+<?xml version="1.0" encoding="utf-8"?>
+<unattend xmlns="urn:schemas-microsoft-com:unattend">
+    <servicing>
+        <package action="install">
+            <assemblyIdentity name="Microsoft-NanoServer-IIS-Package" version="10.0.10572.1000" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" />
+            <source location="c:\share\Microsoft-NanoServer-IIS-Package.cab" />
+        </package>
+        <package action="install">
+            <assemblyIdentity name="Microsoft-NanoServer-IIS-Package" version="10.0.10572.1000" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="en-US" />
+            <source location="c:\share\en-us\Microsoft-NanoServer-IIS-Package.cab" />
+        </package>
+    </servicing>
+</unattend>
+```
