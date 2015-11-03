@@ -2,7 +2,23 @@
 
 Windows containers function similarly to virtual machines in regards to networking. Each container has a virtual network card, which is connected to a virtual switch, over which inbound and outbound traffic is routed. That’s said there are some distinct differences in networking a container vs. networking a virtual machine. This document will detail these differences and how to configure networking on a container host.
 
-## Network Overview
+[Networking Overview](#overview)
+
+[Network Address Translation Overview](#NAT)
+
+[Configuring NAT](#ContNAT)
+
+Connecting Containers to NAT Enabled Switch
+
+Manage NAT Port Mappings
+
+DHCP Overview
+
+Configure DHCP
+
+Container Network Adapter Management
+
+## <a name="overview"></a>Network Overview
 
 When deploying a physical container host, the logical network layout will look very similar to that of a Virtual Machine host. The containers will connect to a virtual switch, which is connected to a physical network card. However, when a container host has been virtualized, the configuration is a bit different than a standard virtualized environment. In a virtualized configuration a container is connected to a virtual switch, which is connected to a virtual network card, which is connected to a virtual switch on the host, which is finally connected to a physical network card.
 
@@ -12,7 +28,7 @@ The below diagram depicts a physical and virtual container host.
 
 ![](./media/nwconfig.png)
 
-## Containers IP Configuration
+## <a name="test"></a>Containers IP Configuration
 
 When deploying Windows Container infrastructure, you need to decide on a networking strategy for the Containers. Two options are available, assign IP addresses to the containers using network address translation, or assign IP address using a DHCP server. These methods for assigning IP addresses are controlled by the type of Virtual Switch that the container is connected to. A container host can contain multiple virtual switches, and a mixture of NAT and DHCP.
 
@@ -20,7 +36,7 @@ When deploying Windows Container infrastructure, you need to decide on a network
 
 **DHCP** – this configuration is similar to traditional system / virtual machine networking. In this configuration each container receives an IP Address from a DHCP server, and is accessible on this IP address. The advantage here is that a port mapping table is not maintained. The disadvantage is that the ability to scale to large numbers of containers is determined by the number of available addresses in the DHCP scope serving the containers.
 
-## Configuring NAT
+## <a name="NAT"></a>Configuring NAT
 
 To configure the container host with NAT, follow these steps.
 
@@ -35,7 +51,7 @@ Create the Network Address Translation Object. For more information on the **New
 New-NetNat -Name NAT -InternalIPInterfaceAddressPrefix "172.16.0.0/12" 
 ```
 
-### Containers and NAT
+### <a name="c"></a>CContainers and NAT
 
 When creating a Windows Container, a virtual switch can be selected for the container. When the container is connected to a virtual switch configured to use NAT, the container will receive a translated address.
 
