@@ -1,10 +1,4 @@
-Owner: Senthil Rajaram
-To do:
-* Verify that this is our prescribed way to get data into a container.
-* Add ReadWrite, Maximum bandwidth and Maximum IOPS
-* Add Simple Docker section with pointer to Docker Docs.
-
-## Managing Shared Folders with PowerShell:
+# Container Shared Folders
 
 Shared folders allow data to be shared between a container host and container. When the shared folder has been created, the shared folder will be available inside of the container. Any data that is placed in the shared folder from the host, will be available inside of the container. Any data placed in the shared folder from within the container will be available on the host. A single folder on the host can be shared with many containers, in this configuration data can be shared between running containers.
 
