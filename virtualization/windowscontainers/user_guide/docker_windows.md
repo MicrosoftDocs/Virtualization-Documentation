@@ -1,6 +1,6 @@
 ## Docker and Windows
 
-Docker is an open-source container deployment and management solution which works with both Linux and Windows containers. The Docker daemon and command line interface are used to create, manage, and delete containers. Docker enables storing container images in a public registry (Docker Hub) and private registries (Docker Trusted Registries). Docker additional provides container host clustering capabilities with Docker Swarm and deployment automaton with Docker Compose.
+Docker is an open-source container deployment and management platform that works with both Linux and Windows containers. The Docker daemon and command line interface are used to create, manage, and delete containers. Docker enables storing container images in a public registry (Docker Hub) and private registries (Docker Trusted Registries). Docker additional provides container host clustering capabilities with Docker Swarm and deployment automaton with Docker Compose.
 
 For more information on Docker and the Docker toolset visit [Docker.com](https://www.docker.com/).
 
@@ -40,18 +40,25 @@ Extract the files, and copy **nssm-2.24\win64\nssm.exe** into the **c:\windows\s
 
 Open a command prompt and type **nssm install**.
 
-Enter the following data into the corresponding field in nssm.
+Enter the following data into the corresponding fields in the NSSM service installer.
+
+Application Tab:
 
 - **Path:** C:\Windows\System32\cmd.exe
 - **Startup Directory:** C:\Windows\System32
 - **Arguments:** /s /c C:\ProgramData\docker\runDockerDaemon.cmd
+- **Service Name** - Docker
 
 ![](media/nssm1.png)
+
+Details Tab:
 
 - **Display name:** Docker
 - **Description:** The Docker Daemon provides management capabilities of containers for docker clients
 
 ![](media/nssm2.png)
+
+IO Tab:
 
 - **Output (stdout):** C:\ProgramData\docker\daemon.log
 - **Error (stderr):** C:\ProgramData\docker\daemon.log
@@ -72,4 +79,3 @@ If following this guide for creating a Windows service from docke.exe, the follo
 PS C:\ sc.exe delete Docker
 [SC] DeleteService SUCESS
 ```
-## Docker Daemon Startup Options
