@@ -1,18 +1,21 @@
+# Hyper-V Containers
+
 The Windows Container technology includes two distinct types of container technology, Windows Server Containers and Hyper-V Containers. Both types of containers are created, managed and function identically. What differs between them is the level of isolation created between the container, the host operating system, and all of the other container running on that host.
 
-**Windows Server Containers** – multiple containers run on a host with isolation provided through namespace and process isolation technologies.
+- **Windows Server Containers** – multiple containers run on a host with isolation provided through namespace and process isolation technologies.
 
-**Hyper-V Containers** – multiple containers run on a host with each Hyper-V container hosted inside of a utility virtual machine. This provides kernel level isolation between a Hyper-V container, the container host, and any other containers running on the container host.
+- **Hyper-V Containers** – multiple containers run on a host, hoever each container is hosted inside of a utility virtual machine. This provides kernel level isolation between a Hyper-V container, the container host, and any other containers running on the container host.
 
 ## Creating a Hyper-V Container
 
-A Hyper-V container is created identically to a Widows Server Container with the only difference being a parameter indicating that that it will be a Hyper-V container.
+A Hyper-V container is created identically to a Widows Server Container with the only difference being a Runtime parameter indicating that that it will be a Hyper-V container.
 
 Example Creating a Hyper-V Container with PowerShell
 
 ```powershell
 $con = New-Container -Name HYPVCON -ContainerImageName NanoServer -SwitchName "Virtual Switch" -RuntimeType HyperV
 ```
+
 Example Creating a Hyper-V Container with Docker
 
 ```powershell
@@ -22,10 +25,12 @@ docker run -it --isolation=hyperv 646d6317b02f cmd
 In addition to creating a container as a Hyper-V container at build time, containers that have been created with PowerShell can also be converted from a Windows Server Container to a Hyper-V container. 
 
 ```powershell
-<insert script>
+insert script
 ```
 
-## Hyper-V Container Demonstration:
+## Isolation Demo - Non Hyper-V
+
+The following exercise can be used to demonstrate the isolation of a Hyper-V container. In this exercise both a Windows Server and a Hyper-V container will be created. The running process on the container host will be examined and will show how the Windows Server container process is shared on the container host, however that the Hyper-V containers process is not.
 
 ```powershell
 PS C:\> get-process | where {$_.ProcessName -eq 'csrss'}
@@ -35,6 +40,7 @@ Handles  NPM(K)    PM(K)      WS(K) VM(M)   CPU(s)     Id  SI ProcessName
     116      11     1284       3700 ...94     0.25    608   1 csrss
     246      13     1844       5504 ...17     3.45   3484   2 csrss
 ```
+
 Create New Windows Server Container:
 
 ```powershell
@@ -75,7 +81,7 @@ Handles  NPM(K)    PM(K)      WS(K) VM(M)   CPU(s)     Id  SI ProcessName
     175       9     1260       3708 ...97     0.20   1228   3 csrss
     243      13     1736       5512 ...17     3.77   3484   2 csrss
 ```
-## Same Demonstration with a Hyper-V Container
+## Isolation Demo - Hyper-V
 
 Return a list of csrss process form the container host.
 
