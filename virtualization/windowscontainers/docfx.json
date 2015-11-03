@@ -3,12 +3,14 @@
     "content":
       [
         {
-          "files": ["**/**.md"]
+          "files": ["**/**.md"],
+          "exclude": ["**/obj/**"]
         }
       ],
     "resource": [
         {
-          "files": ["**/media/**"]
+          "files": ["**/media/**"],
+          "exclude": ["**/obj/**"]
         }
     ],
     "externalReference": [
