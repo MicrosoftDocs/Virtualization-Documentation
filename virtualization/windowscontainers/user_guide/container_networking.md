@@ -1,4 +1,4 @@
-# Manage Windows Container Networking
+# Container Networking
 
 # Network Overview
 
@@ -6,7 +6,7 @@ Insert some text about networking.
 
 <center>![](./media/nwconfig.png)</center>
 
-## Containers and IP Configuration
+### Containers IP Configuration
 
 When deploying Windows Container infrastructure, you need to decide on a networking strategy for the Containers. Two options are available, assign IP addresses to the containers using network address translation technology, or assign IP address using a DHCP server. These methods for assigning IP addresses are controlled by the type of Virtual Switch that the container is connected to. A container host can container multiple virtual switches and a mixture of NAT and DHCP.
 
@@ -33,7 +33,7 @@ For more information on the **New-VMSwitch** Command see the [New-VMSwitch Refer
 
 For more information on the **New-NetNat** command, see the [New-NetNat Reference](https://technet.microsoft.com/en-us/library/dn283361.aspx)
 
-### Configure Containers with NAT
+### Containers and NAT
 
 When creating a Windows Container, a virtual switch can be selected for the container. When the container is connected to a virtual switch configured to use NAT, the container will receive a translated address.
 
@@ -94,7 +94,7 @@ Get-VMNetworkAdapter -VMName TP4FullLatest | Set-VMNetworkAdapter -MacAddressSpo
 ```
 The DHCP enabled switch can now be connected to a container, which is then capable of receiving a IP address from a DHCP server.
 
-## Manage Container Network Adapters
+## Container Network Adapters
 
 Regardless of network configuration (DHCP or NAT), several command are available that enable managing a containers network adapter and connections to virtual switch.
 
