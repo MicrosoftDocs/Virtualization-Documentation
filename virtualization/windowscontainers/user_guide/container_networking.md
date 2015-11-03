@@ -1,12 +1,12 @@
 # Container Networking
 
+Windows containers function similarly to virtual machines in regards to networking. Each container has a virtual network card, which is connected to a virtual switch, over which inbound and outbound traffic is routed. That’s said there are some distinct differences in networking a container vs. networking a virtual machine. This document will detail these differences and how to configure networking on a container host.
+
 ## Network Overview
 
-Windows containers function similarly to virtual machines in regards to networking, however there are few differences. Each container has a virtual network card, which is connected to a virtual switch, over which inbound and outbound traffic is routed. That’s said there are some distinct differences in networking a container vs. networking a virtual machine. This document will detail these differences and how to configure networking on a container host.
+When deploying a physical container host, the logical network layout will look very similar to that of a Virtual Machine host. The containers will connect to a virtual switch, which is connected to a physical network card. However, when a container host has been virtualized, the configuration is a bit different than a standard virtualized environment. In a virtualized configuration a container is connected to a virtual switch, which is connected to a virtual network card, which is connected to a virtual switch on the host, which is finally connected to a physical network card.
 
-Because a container host can itself be virtualized, in a virtualized configuration, a second layer of virtual networking is required. Notice in the below diagram that the virtual container host includes a virtual switch, which is connected to a virtual network card, which is attached to the virtual machine, which is attached to the virtual switch on the VM host, which is finally attached to a physical network adapter and the local area network.
-
-A second difference is that containers introduce the concept of network address translation. NAT in containers works very much like NAT in an internet service router. An IP Address is exposed on one end (the container host), and internal private addresses are assigned to internal endpoints (the containers). Each internal endpoint is access through the external address. This topic is discussed in detail in this document.
+Containers also introduce the concept of network address translation. NAT in containers works very much like NAT in an internet service router. An IP Address is exposed on one end (the container host), and internal private addresses are assigned to internal endpoints (the containers). Each internal endpoint is access through the external address. This topic is discussed in detail in this document.
 
 The below diagram depicts a physical and virtual container host.
 
@@ -32,7 +32,7 @@ New-VMSwitch -Name "NAT" -SwitchType NAT -NATSubnetAddress "172.16.0.0/12"
 Create the Network Address Translation Object. 
 
 ```powershell
-New-NetNat -Name ContianerNAT -InternalIPInterfaceAddressPrefix "172.16.0.0/12" 
+New-NetNat -Name NAT -InternalIPInterfaceAddressPrefix "172.16.0.0/12" 
 ```
 
 For more information on the **New-VMSwitch** Command see the [New-VMSwitch Reference](https://technet.microsoft.com/en-us/library/hh848455.aspx).
@@ -71,13 +71,13 @@ In order to access applications inside of a 'NAT enabled' container, port mappin
 This example creates a mapping between port **80** of the host to port **80** of a container with IP address **172.16.0.2**.
 
 ```powershell
-Add-NetNatStaticMapping -NatName "ContainerNat" -Protocol TCP -ExternalIPAddress 0.0.0.0 -InternalIPAddress 172.16.0.2 -InternalPort 80 -ExternalPort 80
+Add-NetNatStaticMapping -NatName "Nat" -Protocol TCP -ExternalIPAddress 0.0.0.0 -InternalIPAddress 172.16.0.2 -InternalPort 80 -ExternalPort 80
 ```
 
 This example creates a mapping between port  **82** of the container host to port **80** of a container with IP address **172.16.0.3**.
 
 ```powershell
-Add-NetNatStaticMapping -NatName "ContainerNat" -Protocol TCP -ExternalIPAddress 0.0.0.0 -InternalIPAddress 172.16.0.3 -InternalPort 80 -ExternalPort 82
+Add-NetNatStaticMapping -NatName "Nat" -Protocol TCP -ExternalIPAddress 0.0.0.0 -InternalIPAddress 172.16.0.3 -InternalPort 80 -ExternalPort 82
 ```
 After the mappings have been created, the container applications can be accessed through the IP address of the host, and exposed external port. For example, the below diagram depicts a NAT configuration with a request targeting external port **82** of the container host. Based on the port mapping, this request would return the application being hosted in container 2.
 

@@ -40,12 +40,17 @@ Extract the files, and copy **nssm-2.24\win64\nssm.exe** into the **c:\windows\s
 
 Open a command prompt and type **nssm install**.
 
+Enter the following data into the corresponding fields in the NSSM service installer.
+
 Enter the following data into the corresponding field in nssm.
 
-- **Path:** C:\Windows\System32\cmd.exe
-- **Startup Directory:** C:\Windows\System32
-- **Arguments:** /s /c C:\ProgramData\docker\runDockerDaemon.cmd
+**Path:** C:\Windows\System32\cmd.exe
 
+**Startup Directory:** C:\Windows\System32
+
+**Arguments:** /s /c C:\ProgramData\docker\runDockerDaemon.cmd
+
+**Service Name** - Docker
 
 ![](media/nssm1.png)
 
@@ -62,6 +67,8 @@ Enter the following data into the corresponding field in nssm.
 ![](media/nssm3.png)
 
 When finished, click the install service button.
+
+With this completed, when Windows starts, the Docker daemon (service) will also start.
 
 ## Automated Installation
 
