@@ -1,6 +1,6 @@
-## Manage Windows Container Networking
+# Manage Windows Container Networking
 
-## Network Overview
+# Network Overview
 
 Insert some text about networking.
 
@@ -33,7 +33,7 @@ For more information on the **New-VMSwitch** Command see the [New-VMSwitch Refer
 
 For more information on the **New-NetNat** command, see the [New-NetNat Reference](https://technet.microsoft.com/en-us/library/dn283361.aspx)
 
-## Configure Containers with NAT
+### Configure Containers with NAT
 
 When creating a Windows Container, a virtual switch can be selected for the container. When the container is connected to a virtual switch configured to use NAT, the container will receive a translated address.
 
@@ -58,7 +58,7 @@ Ethernet adapter vEthernet (Virtual Switch-527ED2FB-D56D-4852-AD7B-E83732A032F5-
 
 For more information on starting and connecting to a Windows Container see [Managing Contianers](./manage_containers.md).
 
-## Manage Port Mapping
+### Manage Port Mapping
 
 In order to access applications inside of a container connected to a NAT enabled virtual switch, port mappings need to be created between the container and container host. This process is managed with the **New-NetNatStaticMapping** command. To create the mapping, you need the NAT assigned IP address of the container, the ‘internal’ container port and an ‘external’ host port.
 

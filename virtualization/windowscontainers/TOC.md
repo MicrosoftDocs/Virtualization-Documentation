@@ -11,6 +11,7 @@
 ## [Quick Start: Windows Server Containers and Docker](quick_start/manage_docker.md)
 # Technical Guides
 ##[Container Feature Deployment](user_guide/deployment.md)
+## [Docker on Windows](user_guide/docker_windows.md)
 ##[Manage Containers](user_guide/manage_containers.md)
 ##[PowerShell Docker inter-op](user_guide/hcs_powershell.md)
 ##[Manage Container Images](user_guide/manage_images.md)
