@@ -1,20 +1,46 @@
-## Install Docker Service
+## Docker and Windows
 
-The Docker Daemon and Client is part of an open source software project founded by docker.com. Docker has driven functionality and consistence into the creation and management of container technology. Windows Containers and Container Images can be created and managed using the Docker tools. 
+Docker is an open-source container deployment and management solution which works with both Linux and Windows containers. The Docker daemon and command line interface are used to create, manage, and delete containers. Docker enables storing container images in a public registry (Docker Hub) and private registries (Docker Trusted Registries). Docker additional provides container host clustering capabilities with Docker Swarm and deployment automaton with Docker Compose.
 
-The Docker Daemon and Client are not shipped with Windows out of the box, rather need to be installed. This document will walk through manually installing the Docker daemon and Docker client. Automated methods for competing these task will also be provided.
+For more information on Docker and the Docker toolset visit [Docker.com](docker.com).
 
 ## Install the Docker Client / Daemon for Windows:
 
-The Docker Daemon and Client have been developed in the Go language. At this time, docker.exe does not install as a Windows Service. There are several methods that can be used to create a service, we will give one example here using nssm.exe. 
+The Docker Daemon and CLI are not shipped with Windows, and not installed with the Windows Container feature. Docker will need to be installed separately. This document will walk through manually installing the Docker daemon and Docker client. Automated methods for competing these task will also be provided. 
 
-Download docker.exe from "https://aka.ms/ContainerTools" and copy it into **c:\windows\system32** of your container host.
+The Docker Daemon and CLI have been developed in the Go language. At this time, docker.exe does not install as a Windows Service. There are several methods that can be used to create a Windows service, we will give one example here using nssm.exe. 
 
-Create a folder **c:\programdata\docker** and copy **runDockerDaemon.cmd** into this folder.
+Download docker.exe from "https://aka.ms/ContainerTools".
 
-Download nssm.exe from https://nssm.cc/release/nssm-2.24.zip, extract the files, and copy **nssm-2.24\win64\nssm.exe** into the **c:\windows\system32** directory.
+Copy docker.exe into **c:\windows\system32** of your container host.
 
-Open a command prompt and enter **nssm install**.
+Create a folder **c:\programdata\docker**, and in this folder create a file named **runDockerDaemon.cmd**.
+
+Copy the following text into the runDockerDaemon.cmd file.
+
+```powershell
+@echo off
+set certs=%ProgramData%\docker\certs.d
+
+if exist %ProgramData%\docker (goto :run)
+mkdir %ProgramData%\docker
+
+:run
+if exist %certs%\server-cert.pem (goto :secure)
+
+docker daemon -D -b "Virtual Switch"
+goto :eof
+
+:secure
+docker daemon -D -b "Virtual Switch" -H 0.0.0.0:2376 --tlsverify --tlscacert=%certs%\ca.pem --tlscert=%certs%\server-cert.pem --tlskey=%certs%\server-key.pem
+```
+Download nssm.exe from https://nssm.cc/release/nssm-2.24.zip.
+
+Extract the files, and copy **nssm-2.24\win64\nssm.exe** into the **c:\windows\system32** directory.
+
+Open a command prompt and type **nssm install**.
+
+Enter the following data into the corresponding field in nssm.
 
 - **Path:** C:\Windows\System32\cmd.exe
 - **Startup Directory:** C:\Windows\System32
@@ -32,6 +58,19 @@ Open a command prompt and enter **nssm install**.
 
 ![](media/nssm3.png)
 
+When finished, click the install service button.
+
 ## Automated Installation of the Docker Service
+
+Insert Script Instructions When Available
+
+## Removing the Docker Service
+
+If following this guide for creating a Windows service from docke.exe, the following command will remove the service.
+
+```powershell
+PS C:\ sc.exe delete Docker
+[SC] DeleteService SUCESS
+```
 
 ## Docker Daemon Startup Options
