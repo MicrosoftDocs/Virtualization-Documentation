@@ -2,7 +2,7 @@
 
 Docker is an open-source container deployment and management solution which works with both Linux and Windows containers. The Docker daemon and command line interface are used to create, manage, and delete containers. Docker enables storing container images in a public registry (Docker Hub) and private registries (Docker Trusted Registries). Docker additional provides container host clustering capabilities with Docker Swarm and deployment automaton with Docker Compose.
 
-For more information on Docker and the Docker toolset visit [Docker.com](docker.com).
+For more information on Docker and the Docker toolset visit [Docker.com](https://www.docker.com/).
 
 ## Install the Docker Client / Daemon for Windows:
 
