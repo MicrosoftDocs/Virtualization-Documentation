@@ -4,7 +4,7 @@ Docker is an open-source container deployment and management platform that works
 
 For more information on Docker and the Docker toolset visit [Docker.com](https://www.docker.com/).
 
-## Install the Docker Client / Daemon for Windows:
+## Install Docker:
 
 The Docker Daemon and CLI are not shipped with Windows, and not installed with the Windows Container feature. Docker will need to be installed separately. This document will walk through manually installing the Docker daemon and Docker client. Automated methods for competing these task will also be provided. 
 
@@ -49,12 +49,14 @@ Application Tab:
 - **Arguments:** /s /c C:\ProgramData\docker\runDockerDaemon.cmd
 - **Service Name** - Docker
 
+
 ![](media/nssm1.png)
 
 Details Tab:
 
 - **Display name:** Docker
 - **Description:** The Docker Daemon provides management capabilities of containers for docker clients
+
 
 ![](media/nssm2.png)
 
@@ -63,11 +65,12 @@ IO Tab:
 - **Output (stdout):** C:\ProgramData\docker\daemon.log
 - **Error (stderr):** C:\ProgramData\docker\daemon.log
 
+
 ![](media/nssm3.png)
 
 When finished, click the install service button.
 
-## Automated Installation of the Docker Service
+## Automated Installation
 
 Insert Script Instructions When Available
 
