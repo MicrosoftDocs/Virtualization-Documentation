@@ -4,7 +4,7 @@
 
 Insert some text about networking.
 
-<center>![](./media/nwconfig.png)</center>
+![](./media/nwconfig.png)
 
 ### Containers IP Configuration
 
@@ -73,7 +73,11 @@ This example created a mapping named **ContainerNat2** that maps port **82** of 
 ```powershell
 Add-NetNatStaticMapping -NatName "ContianerNat" -Protocol TCP -ExternalIPAddress 0.0.0.0 -InternalIPAddress 172.16.0.3 -InternalPort 80 -ExternalPort 82
 ```
-After the mappings have been created, the container applications can be accessed through the IP address of the host and external port, for example **10.0.0.5:80** and **10.0.0.5:82**.
+After the mappings have been created, the container applications can be accessed through the IP address of the host and external port, for example **10.0.0.5:80** or **10.0.0.5:82**. The below diagram depicts a NAT configuration with a request targeting external port 82 of the container host. Based on the port mapping, this request would return the application being hosted in container 2.
+
+![](./media/nat1.png)
+
+A view of the request from an internet browser.
 
 ![](./media/portmapping.png)
 
