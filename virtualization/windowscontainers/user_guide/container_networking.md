@@ -1,12 +1,14 @@
 # Container Networking
 
-# Network Overview
+## Network Overview
 
-Insert some text about networking.
+Windows containers function similarly to virtual machines in regards to networking. Each container has a network card which is connected to a virtual switch. The primary differences are that when virtualizing a container host, a second layer of virtual networking is introduced and containers introduce a Network Address Translation approach to assigning IP address to containers. This document will detail managing container networking.
+
+The below diagram depicts a physical and virtual container host.
 
 ![](./media/nwconfig.png)
 
-### Containers IP Configuration
+## Containers IP Configuration
 
 When deploying Windows Container infrastructure, you need to decide on a networking strategy for the Containers. Two options are available, assign IP addresses to the containers using network address translation technology, or assign IP address using a DHCP server. These methods for assigning IP addresses are controlled by the type of Virtual Switch that the container is connected to. A container host can container multiple virtual switches and a mixture of NAT and DHCP.
 
