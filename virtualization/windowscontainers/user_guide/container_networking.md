@@ -24,26 +24,22 @@ When deploying Windows Container infrastructure, you need to decide on a network
 
 To configure the container host with NAT, follow these steps.
 
-Create a Virtual Switch with a type of ‘NAT’. 
+Create a Virtual Switch with a type of ‘NAT’. For more information on the **New-VMSwitch** Command, see the [New-VMSwitch Reference](https://technet.microsoft.com/en-us/library/hh848455.aspx).
 
 ```powershell
 New-VMSwitch -Name "NAT" -SwitchType NAT -NATSubnetAddress "172.16.0.0/12"
 ```
-Create the Network Address Translation Object. 
+Create the Network Address Translation Object. For more information on the **New-NetNat** command, see the [New-NetNat Reference](https://technet.microsoft.com/en-us/library/dn283361.aspx)
 
 ```powershell
 New-NetNat -Name NAT -InternalIPInterfaceAddressPrefix "172.16.0.0/12" 
 ```
 
-For more information on the **New-VMSwitch** Command see the [New-VMSwitch Reference](https://technet.microsoft.com/en-us/library/hh848455.aspx).
-
-For more information on the **New-NetNat** command, see the [New-NetNat Reference](https://technet.microsoft.com/en-us/library/dn283361.aspx)
-
 ### Containers and NAT
 
 When creating a Windows Container, a virtual switch can be selected for the container. When the container is connected to a virtual switch configured to use NAT, the container will receive a translated address.
 
-This example creates a container cpnnected to a NAT enabled virtual switch.
+This example creates a container connected to a NAT enabled virtual switch.
 
 ```powershell
 New-Container -Name DemoNAT -ContainerImageName WindowsServerCore -SwitchName "NAT"
