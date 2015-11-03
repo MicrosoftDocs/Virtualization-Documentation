@@ -4,21 +4,31 @@
       [
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
           "files": ["**/**.md"],
           "exclude": ["**/obj/**"]
 =======
           "files": ["**/**.md"]
 >>>>>>> Use docfx as build tool
+=======
+          "files": ["**/**.md"],
+          "exclude": ["**/obj/**"]
+>>>>>>> Add ignore folder
         }
       ],
     "resource": [
         {
+<<<<<<< HEAD
 <<<<<<< HEAD
           "files": ["**/media/**"],
           "exclude": ["**/obj/**"]
 =======
           "files": ["**/media/**"]
 >>>>>>> Use docfx as build tool
+=======
+          "files": ["**/media/**"],
+          "exclude": ["**/obj/**"]
+>>>>>>> Add ignore folder
         }
     ],
     "externalReference": [
