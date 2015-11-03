@@ -3,7 +3,8 @@
     "content":
       [
         {
-          "files": ["**/**.md"]
+          "files": ["**/**.md"],
+          "exclude": ["**/obj/**"]
         }
       ],
     "template": "op.html",
