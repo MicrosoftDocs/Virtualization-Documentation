@@ -1,16 +1,22 @@
 ## Manage Windows Container Networking
 
-When deploying Windows Container infrastructure, you need to decide on a networking strategy for the Containers. Two options are available, assign IP addresses to the containers using network address translation technology, or assign IP address using a DHCP server. These methods for assigning IP addresses are controlled by the type of Virtual Switch that the container is connected to. A container Host can container multiple virtual switches and a mixture of NAT and DHCP.
+## Network Overview
 
-**Network Address Translation** – in this configuration the container host will be assigned an 'external' IP address that is reachable on the LAN. All containers will be assigned an 'internal' address that cannot be accessed on the LAN. To make the containers accessible, an external port of the host is mapped to an internal port of port of the container. These mappings are stored in a NAT port mapping table. The container is accessible through the hosts address and external port. The benefit of NAT is that the container host can scale to hundreds or thousands of containers while only using one externally available IP Address. The disadvantage in this configuration is the need to manage NAT port mapping tables.
+Insert some text about networking.
 
-![](./media/physicalhost.png)
+<center>![](./media/nwconfig.png)</center>
+
+## Containers and IP Configuration
+
+When deploying Windows Container infrastructure, you need to decide on a networking strategy for the Containers. Two options are available, assign IP addresses to the containers using network address translation technology, or assign IP address using a DHCP server. These methods for assigning IP addresses are controlled by the type of Virtual Switch that the container is connected to. A container host can container multiple virtual switches and a mixture of NAT and DHCP.
+
+**Network Address Translation** – in this configuration the container host will be assigned an 'external' IP address that is reachable on the LAN. All containers will be assigned an 'internal' address that cannot be accessed on the LAN. To make the containers accessible, an external port of the host is mapped to an internal port of port of the container. These mappings are stored in a NAT port mapping table. The container is accessible on the specified internal port through the hosts address and external port. The benefit of NAT is that the container host can scale to hundreds or thousands of containers, while only using one externally available IP Address. The disadvantage in this configuration is the need to manage the NAT port mapping table.
 
 **DHCP** – this configuration is similar to traditional system / virtual machine networking. In this configuration each container receives an IP Address from a DHCP server and is accessible on this IP address. The advantage here is that a port mapping table is not maintained. The disadvantage is that the ability to scale to large numbers of containers is determined by the number of available addresses in the DHCP scope serving the containers.
 
 ## Configuring NAT
 
-To configure the container host to support Network Address Translation to the container these items need to be completed.
+To configure the container host with NAT follow these steps.
 
 Create a Virtual Switch with a type of ‘NAT’. 
 
@@ -25,22 +31,21 @@ New-NetNat -Name ContianerNAT -InternalIPInterfaceAddressPrefix "172.16.0.0/12"
 
 For more information on the **New-VMSwitch** Command see the [New-VMSwitch Reference](https://technet.microsoft.com/en-us/library/hh848455.aspx).
 
-For more information on the **New-NetNat** command, see the [New-NetNat Reference]( https://technet.microsoft.com/en-us/library/dn283361(v=wps.630).aspx)
+For more information on the **New-NetNat** command, see the [New-NetNat Reference](https://technet.microsoft.com/en-us/library/dn283361.aspx)
 
 ## Configure Containers with NAT
 
 When creating a Windows Container, a virtual switch can be selected for the container. When the container is connected to a virtual switch configured to use NAT, the container will receive a translated address.
 
-This example creates a container and connects is to a NAT enabled virtual switch.
+This example creates a container and connconnects it to a NAT enabled virtual switch.
 
 ```powershell
-PS C:\> New-Container -Name DemoNAT -ContainerImageName WindowsServerCore -SwitchName "Virtual Switch"
+New-Container -Name DemoNAT -ContainerImageName WindowsServerCore -SwitchName "Virtual Switch"
 ```
 
 When the container has been started you can connect to the container and view the translated IP Address.
 
 ```powershell
-
 [DemoNAT]: PS C:\> ipconfig
 Windows IP Configuration
 Ethernet adapter vEthernet (Virtual Switch-527ED2FB-D56D-4852-AD7B-E83732A032F5-0):
@@ -49,7 +54,6 @@ Ethernet adapter vEthernet (Virtual Switch-527ED2FB-D56D-4852-AD7B-E83732A032F5-
    IPv4 Address. . . . . . . . . . . : 172.16.0.2
    Subnet Mask . . . . . . . . . . . : 255.240.0.0
    Default Gateway . . . . . . . . . : 172.16.0.1
-[DemoNAT]: PS C:\>  
 ```
 
 For more information on starting and connecting to a Windows Container see [Managing Contianers](./manage_containers.md).
@@ -83,7 +87,7 @@ The following sample creates a virtual switch with the name DHCP using a network
 New-VMSwitch -Name DHCP -NetAdapterName Ethernet
 ```
 
-If the container host is itself a virtual machine you will need to enable MacAddressSpoofing for the network adapter used as the container switch. This is completed with the **Set-VMNetworkAdapter** command and is run on the VM Host.
+If the container host is itself a virtual machine, you need to enable MacAddressSpoofing on the network adapter used as the container switch. This is completed with the **Set-VMNetworkAdapter** command and is run on the VM Host.
 
 ```powershell
 Get-VMNetworkAdapter -VMName TP4FullLatest | Set-VMNetworkAdapter -MacAddressSpoofing On
@@ -92,20 +96,18 @@ The DHCP enabled switch can now be connected to a container, which is then capab
 
 ## Manage Container Network Adapters
 
-Regardless of network configuration (DHCP or NAT), several command are available that enable managing a containers network adapter and the connected virtual switch.
+Regardless of network configuration (DHCP or NAT), several command are available that enable managing a containers network adapter and connections to virtual switch.
 
 Manage a Containers Network Adapter
 
-- Add-ContainerNetworkAdapter
-- Set-ContainerNetworkAdapter
-- Remove-ContainerNetworkAdapter
-- Get-ContainerNetworkAdapter
+- Add-ContainerNetworkAdapter - Adds a network adapter to a container.
+- Set-ContainerNetworkAdapter - Modifies a containers network adapter.
+- Remove-ContainerNetworkAdapter - Removes a containers network adapter.
+- Get-ContainerNetworkAdapter - Returns data about a containers network adapter.
 
 Manage the connection between a containers network adapter and a virtual switch.
 
-- Connect-ContainerNetworkAdapter
-- Disconect-ContainerNetworkAdapter
+- Connect-ContainerNetworkAdapter - connects a container to a virtual switch.
+- Disconect-ContainerNetworkAdapter - disconnects a container from a virtual switch.
 
 For details on each of these command see the [Container PowerShell Reference]( https://technet.microsoft.com/en-us/library/mt433069.aspx).
-
-
