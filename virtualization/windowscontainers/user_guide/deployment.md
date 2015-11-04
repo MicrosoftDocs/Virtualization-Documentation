@@ -7,9 +7,34 @@ The Windows Container feature is only available in Windows Server 2016. The Wind
 
 Configuration Matrix:
 
-This table list the possible deployment configurations between host operating system flavor and container technology.
+This table list the possible deployment configurations between host operating system flavor and container technology.  
 
-<insert matrix>
+
+<center>
+<table border="1" style="background-color:FFFFCC;border-collapse:collapse;border:1px solid FFCC00;color:000000;width:80%" cellpadding="15" cellspacing="3">
+<tr valign="top">
+<td></td>
+<td><center>Windows Server Container</center></td>
+<td><center>Hyper-V Contianer</center></td>
+<tr>
+<tr valign="top">
+<td><center>Windows Server 2016 Full UI</center></td>
+<td><center>Core OS Image</center></td>
+<td><center>Nano OS Image</center></td>
+<tr>
+<tr valign="top">
+<td><center>Windows Server 2016 Core</center></td>
+<td><center>Core OS Image</center></td>
+<td><center> OS Image</center></td>
+<tr>
+<tr valign="top">
+<td><center>Windows Server 2016 Nano</center></td>
+<td><center> Os Image</center></td>
+<td><center>Nano OS Image</center></td>
+<tr>
+</table>
+</center>
+
 
 ## Requirements for Windows Server Containers.
 
