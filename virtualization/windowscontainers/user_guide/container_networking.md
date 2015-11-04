@@ -2,7 +2,7 @@
 
 Windows containers function similarly to virtual machines in regards to networking. Each container has a virtual network card, which is connected to a virtual switch, over which inbound and outbound traffic is routed. That’s said there are some distinct differences in networking a container vs. networking a virtual machine. This document will detail these differences and how to configure networking on a container host.
 
-When deploying a physical container host, the logical network layout will look very similar to that of a Virtual Machine host. The containers will connect to a virtual switch, which is connected to a physical network card. However, when a container host has been virtualized, the configuration is a bit different than a standard virtualized environment. In a virtualized configuration a container is connected to a virtual switch, which is connected to a virtual network card, which is connected to a virtual switch on the host, which is finally connected to a physical network card.
+When deploying a physical container host, a containers connects to a virtual switch, which is connected to a physical network card. However, when a container host has been virtualized, the configuration is a bit different. In a virtualized configuration a container is connected to a virtual switch, which is connected to a virtual network card, which is connected to a virtual switch on the host, which is finally connected to a physical network card.
 
 Containers also introduce the concept of network address translation. NAT in containers works very much like NAT in an internet service router. An IP Address is exposed on one end (the container host), and internal private addresses are assigned to internal endpoints (the containers). Each internal endpoint is access through the external address. This topic is discussed in detail in this document.
 
@@ -81,11 +81,11 @@ A view of the request from an internet browser.
 
 ![](./media/portmapping.png)
 
-## Passthrough
+## Transparent Networking Mode
 
-**Passthrough** – this configuration is similar to traditional system / virtual machine networking. In this configuration each container receives an IP Address from a DHCP server, and is accessible on this IP address. The advantage here is that a port mapping table is not maintained. The disadvantage is that the ability to scale to large numbers of containers is determined by the number of available addresses in the DHCP scope serving the containers.
+**Transparent Networking** – this configuration is similar to traditional system / virtual machine networking. In this configuration each container receives an IP Address from a DHCP server, and is accessible on this IP address. The advantage here is that a port mapping table is not maintained. The disadvantage is that the ability to scale to large numbers of containers is determined by the number of available addresses in the DHCP scope serving the containers.
 
-### Configure Passthrough
+### Configure Transparent Networking
 
 To configure the container system so that containers receive an IP address from a DHCP server, create a virtual switch that is connected to a physical or virtual network adapter.
 
