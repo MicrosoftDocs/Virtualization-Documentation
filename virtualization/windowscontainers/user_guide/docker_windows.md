@@ -6,6 +6,8 @@ For more information on Docker and the Docker toolset visit [Docker.com](https:/
 
 ## Install Docker:
 
+> This process will only work on Windows Server 2016 with Full UI and Windows Server 2016 Core.
+
 The Docker Daemon and CLI are not shipped with Windows, and not installed with the Windows Container feature. Docker will need to be installed separately. This document will walk through manually installing the Docker daemon and Docker client. Automated methods for competing these task will also be provided. 
 
 The Docker Daemon and CLI have been developed in the Go language. At this time, docker.exe does not install as a Windows Service. There are several methods that can be used to create a Windows service, we will give one example here using nssm.exe. 
