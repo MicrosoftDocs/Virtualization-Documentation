@@ -6,21 +6,21 @@ Windows containers function similarly to virtual machines in regards to networki
 
 [Network Address Translation Overview](#NAT)
 
-- [Configuring NAT](#ContNAT)
+[Configuring NAT](#ContNAT)
 
-- Connecting Containers to NAT Enabled Switch
+Connecting Containers to NAT Enabled Switch
 
-- Manage NAT Port Mappings
+Manage NAT Port Mappings
 
 DHCP Overview
 
-- Configure DHCP
+Configure DHCP
 
 Container Network Adapter Management
 
-- PowerShell Management
+PowerShell Management
 
-- Quality of Service 
+Quality of Service 
 
 # <a name="overview"></a>Network Overview
 
