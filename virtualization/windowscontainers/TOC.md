@@ -9,7 +9,7 @@
 ## [Contianer Host on Exsisting Computer ](quick_start/inplace_setup.md)
 ## [Windows Server Containers - PowerShell](quick_start/manage_powershell.md)
 ## [Windows Server Containers -  Docker](quick_start/manage_docker.md)
-## [Hyper-V Container and TP4 Feaatures](quick_start/TP4Features.md)
+## [Hyper-V Container and TP4 Feaatures](quick_start/TP4_Features.md)
 # Technical Guides
 ##[Container Host Deployment](user_guide/deployment.md)
 ##[Docker on Windows](user_guide/docker_windows.md)
