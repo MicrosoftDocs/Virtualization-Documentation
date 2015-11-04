@@ -5,7 +5,6 @@ title: Container Feature Deployment
 
 The Windows Container feature is only available in Windows Server 2016. The container role can be installed on Windows Server 2016, Windows Server 2016 Core and Nano Server. The Windows Container feature includes support for two different types of container, Windows Server Containers and Hyper-V Containers. The Windows Server Technical Preview 4 supports the following Host and Base OS configurations. 
 
-<br />
 <center>
 <table border="1" style="background-color:FFFFCC;border-collapse:collapse;border:1px solid FFCC00;color:000000;width:80%" cellpadding="15" cellspacing="3">
 <tr valign="top">
@@ -29,8 +28,7 @@ The Windows Container feature is only available in Windows Server 2016. The cont
 <td><center>Nano OS Image</center></td>
 <tr>
 </table>
-</center><br /><br />
-
+</center>
 
 ## Requirements for Windows Server Containers.
 
