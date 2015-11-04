@@ -18,7 +18,7 @@ When deploying Windows Container infrastructure, you need to decide on a network
 
 **Network Address Translation** – in this configuration the container host will be assigned an 'external' IP address that is reachable on the LAN. All containers will be assigned an 'internal' address that cannot be accessed on the LAN. To make the containers accessible, an external port of the host is mapped to an internal port of port of the container. These mappings are stored in a NAT port mapping table. The container is accessible on the specified internal port through the hosts address and external port. The benefit of NAT is that the container host can scale to hundreds or thousands of containers, while only using one externally available IP Address. The disadvantage in this configuration is the need to manage the NAT port mapping table.
 
-## Configuring NAT
+### NAT Host Configuration
 
 To configure the container host with NAT, follow these steps.
 
@@ -33,7 +33,7 @@ Create the Network Address Translation Object. For more information on the **New
 New-NetNat -Name NAT -InternalIPInterfaceAddressPrefix "172.16.0.0/12" 
 ```
 
-## Containers and NAT
+### NAT Container Configuration 
 
 When creating a Windows Container, a virtual switch can be selected for the container. When the container is connected to a virtual switch configured to use NAT, the container will receive a translated address.
 
@@ -58,7 +58,7 @@ Ethernet adapter vEthernet (Virtual Switch-527ED2FB-D56D-4852-AD7B-E83732A032F5-
 
 For more information on starting and connecting to a Windows Container see [Managing Contianers](./manage_containers.md).
 
-## NAT Port Mapping
+### NAT Port Mapping
 
 In order to access applications inside of a 'NAT enabled' container, port mappings need to be created between the container and container host. This process is managed with the **New-NetNatStaticMapping** command. To create the mapping, you need the IP address of the container, the ‘internal’ container port and an ‘external’ host port.
 
@@ -85,7 +85,7 @@ A view of the request from an internet browser.
 
 **Passthrough** – this configuration is similar to traditional system / virtual machine networking. In this configuration each container receives an IP Address from a DHCP server, and is accessible on this IP address. The advantage here is that a port mapping table is not maintained. The disadvantage is that the ability to scale to large numbers of containers is determined by the number of available addresses in the DHCP scope serving the containers.
 
-# Configure Passthrough
+### Configure Passthrough
 
 To configure the container system so that containers receive an IP address from a DHCP server, create a virtual switch that is connected to a physical or virtual network adapter.
 
