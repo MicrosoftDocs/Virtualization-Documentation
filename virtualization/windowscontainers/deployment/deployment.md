@@ -35,7 +35,7 @@ The Windows Container feature is only available in Windows Server 2016. The cont
 </table>
 </center>
 
-## Deploy Contianer Host Windows Server
+## Deploy Contianer Host - Windows Server
 
 ### Install Container Role
 
@@ -160,3 +160,4 @@ New-VMSwitch -Name NAT -SwitchType NAT -NATSubnetAddress "172.16.0.0/12"
 
 ### Install Docker - Nano
 
+The Docker Daemon and CLI are not shipped with Windows, and not installed with the Windows Container feature. Docker is not a requirement for working with Windows containers. If you would like to install Docker follow the instructions in this article [Docker and Windows](./docker_windows.md).
