@@ -1,9 +1,13 @@
 ms.ContentId: a7b0cbb8-05d4-4f43-b5e1-7f3d8d83cce1
 title: Container Feature Deployment
 
-## Windows Container Requirements
+# Windows Container Host Deployment and Configuration.
 
-The Windows Container feature is only available in Windows Server 2016. The container role can be installed on Windows Server 2016, Windows Server 2016 Core and Nano Server. The Windows Container feature includes support for two different types of container, Windows Server Containers and Hyper-V Containers. The Windows Server Technical Preview 4 supports the following Host and Base OS configurations. 
+The Windows Container feature is only available in Windows Server 2016. The container role can be installed on Windows Server 2016, Windows Server 2016 Core and Nano Server. The Windows Container feature includes support for two different types of container, Windows Server Containers and Hyper-V Containers. This document will detail supported configurations and deployment steps. 
+
+# Host and OS Image 
+
+OS Images form the base of any Windows Container and are available as both Windows Server Core and Nano Server. At the Technical Preview Release 4, the following OS Image / Host Configurations are avlaiable. 
 
 <center>
 <table border="1" style="background-color:FFFFCC;border-collapse:collapse;border:1px solid FFCC00;color:000000;width:80%" cellpadding="15" cellspacing="3">
@@ -13,7 +17,7 @@ The Windows Container feature is only available in Windows Server 2016. The cont
 <td><center>**Hyper-V Contianer**</center></td>
 <tr>
 <tr valign="top">
-<td><center>Windows Server 2016 Full UI</center></td>
+<td><center>Windows Server 2016</center></td>
 <td><center>Core OS Image</center></td>
 <td><center>Nano OS Image</center></td>
 <tr>
@@ -45,7 +49,7 @@ Preparing Windows Server 2016 TP4 for Windows Server and Hyper-V containers invo
 
 ## Install the Container Role
 
-The container role can be installed using Windows Server Manage (Full server only) or PowerShell (Full 
+The container role can be installed using Windows Server Manage (Full server only) or PowerShell (Full and Core), and using a nano package on Nano Server.  
 
 To install the role using PowerShell run the following command in a PowerShell session.
 ```powershell
@@ -98,6 +102,3 @@ Create the virtual switch using the **New-VirtualSwitch** command.
 ```powershell
 New-VMSwitch -Name "Virtual Switch" -SwitchType NAT -NATSubnetAddress 172.16.0.0/12
 ```
-
-
-
