@@ -14,19 +14,19 @@ The Docker Daemon and CLI have been developed in the Go language. At this time, 
 
 Download docker.exe from "https://aka.ms/ContainerTools".
 
-``powershell
+```powershell
 wget etc etc
 ```
 
 Copy docker.exe into **c:\windows\system32** of your container host.
 
-``powershell
+```powershell
 wget etc etc
 ```
 
 Create a folder **c:\programdata\docker**, and in this folder create a file named **runDockerDaemon.cmd**.
 
-``powershell
+```powershell
 wget etc etc
 ```
 
@@ -50,13 +50,13 @@ docker daemon -D -b "Virtual Switch" -H 0.0.0.0:2376 --tlsverify --tlscacert=%ce
 ```
 Download nssm.exe from https://nssm.cc/release/nssm-2.24.zip.
 
-``powershell
+```powershell
 wget etc etc
 ```
 
 Extract the files, and copy **nssm-2.24\win64\nssm.exe** into the **c:\windows\system32** directory.
 
-``powershell
+```powershell
 wget etc etc
 ```
 
