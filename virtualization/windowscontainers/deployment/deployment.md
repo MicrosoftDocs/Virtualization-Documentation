@@ -35,7 +35,7 @@ The Windows Container feature is only available in Windows Server 2016. The cont
 </table>
 </center>
 
-## Contianer Host Windows Server
+## Deploy Contianer Host Windows Server
 
 ### Install Container Role
 
@@ -94,12 +94,12 @@ New-VMSwitch -Name "Virtual Switch" -SwitchType NAT -NATSubnetAddress 172.16.0.0
 
 The Docker Daemon and CLI are not shipped with Windows, and not installed with the Windows Container feature. Docker is not a requirement for working with Windows containers. If you would like to install Docker follow the instructions in this article [Docker and Windows](./docker_windows.md).
 
-## Contianer Host - Nano Server
+## Deploy Contianer Host - Nano Server
 
 Deploying Nano Server may involve creating a Nano Server ready virtual hard drive which has been prepared with additional feature packages. This guide will detail quickly preparing a Nano Server VHDX that can be used to create a Windows Container ready virtual machine running Nano Server.
 For more information on Nano Server and to explore different Nano Server deployment options see the [Nano Server Documentation]( https://technet.microsoft.com/en-us/library/mt126167.aspx).
 
-### Contianer Ready VHD
+### Create Nano VHD
 
 Create a folder **c:\nano**.
 ```powershell
