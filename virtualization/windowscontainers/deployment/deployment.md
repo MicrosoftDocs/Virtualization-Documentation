@@ -152,7 +152,7 @@ NanoServer        CN=Microsoft 10.0.10572.1001 True
 
 ### Create Virtual Switch
 
-In the remote PowerShell session with the Nano Server, create a virtual switch that will be used by the containers. This example creates a virtual switch with a type of NAT and a NAT subnet of 172.16.0.0. For more information on container network see [Manage Container Networking](../management/contianer_networking.md).
+In the remote PowerShell session with the Nano Server, create a virtual switch that will be used by the containers. This example creates a virtual switch with a type of NAT and a NAT subnet of 172.16.0.0. For more information on container network see [Manage Container Networking](../management/container_networking.md).
 
 ```powershell
 New-VMSwitch -Name NAT -SwitchType NAT -NATSubnetAddress "172.16.0.0/12"
@@ -160,4 +160,3 @@ New-VMSwitch -Name NAT -SwitchType NAT -NATSubnetAddress "172.16.0.0/12"
 
 ### Install Docker in Nano Server 
 
-The Docker Daemon and CLI are not shipped with Windows, and not installed with the Windows Container feature. Docker is not a requirement for working with Windows containers. If you would like to install Docker follow the instructions in this article [Docker and Windows](./docker_windows.md).
