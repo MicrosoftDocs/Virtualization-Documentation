@@ -2,7 +2,7 @@
 
 The Windows Container feature is only available in Windows Server 2016. The container role can be installed on Windows Server 2016, Windows Server 2016 Core and Nano Server. The Windows Container feature includes support for two different types of container, Windows Server Containers and Hyper-V Containers. This document will detail supported configurations and deployment steps. 
 
-## Windows Container Deployment
+## Container Deployment
 
 The Windows Container feature is only available in Windows Server 2016. The container feature can be installed on Windows Server 2016, Windows Server 2016 Core and Nano Server. The Container feature includes support for two different types of containers, Windows Server Containers and Hyper-V Containers, both of which have slightly different configuation requirements. This document will detail configuration requirements, deployment, and configuration of the Windows Containers feature.
 
@@ -35,9 +35,9 @@ The Windows Container feature is only available in Windows Server 2016. The cont
 </table>
 </center>
 
-## Deploy Contianer Host Windows Server and Server Core
+## Contianer Host Windows Server
 
-### Install the Container Role
+### Install Container Role
 
 The container role can be installed using Windows Server Manage (Full server only) or PowerShell (Full and Core), and using a nano package on Nano Server.  
 
@@ -90,16 +90,16 @@ Create the virtual switch using the **New-VirtualSwitch** command.
 New-VMSwitch -Name "Virtual Switch" -SwitchType NAT -NATSubnetAddress 172.16.0.0/12
 ```
 
-### Install Docker in Windows
+### Install Docker - Windows
 
 The Docker Daemon and CLI are not shipped with Windows, and not installed with the Windows Container feature. Docker is not a requirement for working with Windows containers. If you would like to install Docker follow the instructions in this article [Docker and Windows](./docker_windows.md).
 
-## Deploy Contianer Host Nano Server
+## Contianer Host - Nano Server
 
 Deploying Nano Server may involve creating a Nano Server ready virtual hard drive which has been prepared with additional feature packages. This guide will detail quickly preparing a Nano Server VHDX that can be used to create a Windows Container ready virtual machine running Nano Server.
 For more information on Nano Server and to explore different Nano Server deployment options see the [Nano Server Documentation]( https://technet.microsoft.com/en-us/library/mt126167.aspx).
 
-### Create Contianer Ready VHD
+### Contianer Ready VHD
 
 Create a folder **c:\nano**.
 ```powershell
@@ -158,5 +158,5 @@ In the remote PowerShell session with the Nano Server, create a virtual switch t
 New-VMSwitch -Name NAT -SwitchType NAT -NATSubnetAddress "172.16.0.0/12"
 ```
 
-### Install Docker in Nano Server 
+### Install Docker - Nano
 
