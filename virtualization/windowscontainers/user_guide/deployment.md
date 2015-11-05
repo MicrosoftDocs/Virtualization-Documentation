@@ -4,7 +4,7 @@ The Windows Container feature is only available in Windows Server 2016. The cont
 
 ## Windows Container Deployment
 
-The Windows Container feature is only available in Windows Server 2016. The container feature can be installed on Windows Server 2016, Windows Server 2016 Core and Nano Server. The Container feature includes support for two different types of containers, Windows Server Containers and Hyper-V Containers, both of which have slightly different configuation requirements. This document will detail configuration requirements, deployment, and configuration of the Windows Containers feature. Topics include:
+The Windows Container feature is only available in Windows Server 2016. The container feature can be installed on Windows Server 2016, Windows Server 2016 Core and Nano Server. The Container feature includes support for two different types of containers, Windows Server Containers and Hyper-V Containers, both of which have slightly different configuation requirements. This document will detail configuration requirements, deployment, and configuration of the Windows Containers feature.
 
 ### Host and Image Support
  
@@ -34,6 +34,8 @@ The Windows Container feature is only available in Windows Server 2016. The cont
 <tr>
 </table>
 </center>
+
+## Deploy Contianer Host Windows Server and Server Core
 
 ### Install the Container Role
 
@@ -91,3 +93,13 @@ New-VMSwitch -Name "Virtual Switch" -SwitchType NAT -NATSubnetAddress 172.16.0.0
 ### Install Docker in Windows
 
 The Docker Daemon and CLI are not shipped with Windows, and not installed with the Windows Container feature. Docker is not a requirement for working with Windows containers. If you would like to install Docker follow the instructions in this article [Docker and Windows](./docker_windows.md).
+
+## Deploy Contianer Host Nano Server
+
+### Create Contianer Ready VHD
+
+### Install OS Image
+
+### Create Virtual Switch
+
+### Install Docker in Nano Server 
