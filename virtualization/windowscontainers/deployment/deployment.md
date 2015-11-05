@@ -79,7 +79,7 @@ Name              Publisher    Version         IsOSImage
 NanoServer        CN=Microsoft 10.0.10572.1001 True
 WindowsServerCore CN=Microsoft 10.0.10572.1001 True
 ```  
-For more information on Container image management see [Windows Container Images](./manage_images.md).
+For more information on Container image management see [Windows Container Images](../management/manage_images.md).
  
 ### Create Virtual Switch
 
