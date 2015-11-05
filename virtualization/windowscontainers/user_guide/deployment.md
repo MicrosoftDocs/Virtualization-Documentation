@@ -62,7 +62,7 @@ The two Windows Container OS images have been made available in the PowerShell O
 <insert commands>
 ```
 
-You can verify that the images have been installed using the **Get-ContainerImage** command.
+Verify that the images have been installed using the **Get-ContainerImage** command.
 
 ```powershell
 PS C:\> Get-ContainerImage
@@ -86,5 +86,75 @@ New-VMSwitch -Name "Virtual Switch" -SwitchType NAT -NATSubnetAddress 172.16.0.0
 
 The Docker Daemon and CLI are not shipped with Windows, and not installed with the Windows Container feature. Docker is not a requirement for working with Windows containers. If you would like to install Docker follow the instructions in this article [Docker and Windows](./docker_windows.md).
 
+<<<<<<< HEAD:virtualization/windowscontainers/user_guide/deployment.md
 
 
+=======
+## Deploy Contianer Host Nano Server
+
+Deploying Nano Server may involve creating a Nano Server ready virtual hard drive which has been prepared with additional feature packages. This guide will detail quickly preparing a Nano Server VHDX that can be used to create a Windows Container ready virtual machine running Nano Server.
+For more information on Nano Server and to explore different Nano Server deployment options see the [Nano Server Documentation]( https://technet.microsoft.com/en-us/library/mt126167.aspx).
+
+### Create Contianer Ready VHD
+
+Create a folder **c:\nano**.
+```powershell
+New-Item -ItemType Directory c:\nano
+```
+
+Locate the **NanoServerImageGenerator.psm1** and **Convert-WindowsImage.ps1** files from the Nano Server folder on the Windows Server Media and copy these to c:\nano.
+
+```powershell
+Copy-Item "C:\WinServerFolder\NanoServer\Convert-WindowsImage.ps1" c:\nano
+Copy-Item "C:\WinServerFolder\NanoServer\NanoServerImageGenerator.ps1" c:\nano
+```
+Run the following to create a Hyper-V and Container ready Nano Server virtual hard drive. Note – Hyper-V is only a requirement if you will be creating Hyper-V containers.
+
+```powershell
+Import-Module C:\nano\NanoServerImageGenerator.psm1
+New-NanoServerImage -MediaPath "C:\WinServerFolder" -BasePath c:\nano -TargetPath C:\nano\NanoContainer.vhdx -MaxSize 10GB -GuestDrivers -ReverseForwarders -Compute -Containers
+```
+When completed create a virtual machine from the NanoContainer.vhdx file. This virtual machine will be ready to go with the Containers feature.
+
+### Install OS Image
+
+You will need to install a Container OS Image onto the Nano Server container host in order to create containers. Because Nano Server does not allow local logon, a remote PS Session will be created with the Nano Server Container Host. This document will quickly detail creating the remote session, more details can be found at the [Nano Server Documentation]( https://technet.microsoft.com/en-us/library/mt126167.aspx).
+
+Run the following commands to create a remote PowerShell session with the Nano server. You will be prompted for the Administrator password.
+
+```powershell
+Set-Item WSMan:\localhost\Client\TrustedHosts "<IP address of Nano Server>" -Force
+Enter-PSSession -ComputerName <IP address of Nano Server> -Credential ~\Administrator
+```
+
+Return a list of images from PowerShell OneGet package manager:
+```powershell
+Find-ContainerImage
+```
+Download and install an OS image from the PowerShell OneGet package manager. NOTE - At the time of TP4 only a Nano Server OS image is supported on a Nano Server host, you will not need to install the Windows Server Core OS image.
+
+```powershell
+Install-ContainerImage -Name ImageName
+```
+
+Verify that the images have been installed using the **Get-ContainerImage** command.
+
+```powershell
+PS C:\> Get-ContainerImage
+Name              Publisher    Version         IsOSImage
+----              ---------    -------         ---------
+NanoServer        CN=Microsoft 10.0.10572.1001 True
+```  
+
+### Create Virtual Switch
+
+In the remote PowerShell session with the Nano Server, create a virtual switch that will be used by the containers. This example creates a virtual switch with a type of NAT and a NAT subnet of 172.16.0.0. For more information on container network see [Manage Container Networking](../management/contianer_networking.md).
+
+```powershell
+New-VMSwitch -Name NAT -SwitchType NAT -NATSubnetAddress "172.16.0.0/12"
+```
+
+### Install Docker in Nano Server 
+
+The Docker Daemon and CLI are not shipped with Windows, and not installed with the Windows Container feature. Docker is not a requirement for working with Windows containers. If you would like to install Docker follow the instructions in this article [Docker and Windows](./docker_windows.md).
+>>>>>>> Updating Deployment:virtualization/windowscontainers/deployment/deployment.md
