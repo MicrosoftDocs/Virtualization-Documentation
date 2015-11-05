@@ -7,8 +7,6 @@ Container Images provide the deployment foundation for containers as well drive 
 
 # Container Image Architecture
 
-![](./media/image1.png)
-
 # Installing Base Images
 
 Container OS Images for Windows Containers have been prepared and can be downloaded using PowerShell or manually from the <!-- insert download location -->.
