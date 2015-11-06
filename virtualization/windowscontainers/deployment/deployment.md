@@ -2,7 +2,7 @@
 
 The Windows Container feature is only available in Windows Server 2016. The container role can be installed on Windows Server 2016, Windows Server 2016 Core and Nano Server. The Windows Container feature includes support for two different types of containers, Windows Server Containers and Hyper-V Containers. This document will detail supported configurations and deployment steps. 
 
-## Container Deployment
+## Container Host Requirements
 
 The Windows Container feature is only available in Windows Server 2016. The container feature can be installed on Windows Server 2016, Windows Server 2016 Core and Nano Server. The Container feature includes support for two different types of containers, Windows Server Containers and Hyper-V Containers, both of which have slightly different configuation requirements. This document will detail configuration requirements, deployment, and configuration of the Windows Containers feature.
 
@@ -35,7 +35,7 @@ The Windows Container feature is only available in Windows Server 2016. The cont
 </table>
 </center>
 
-## Deploy Contianer Host - Windows Server
+## Windows Server and Core
 
 ### Install Container Role
 
@@ -47,7 +47,7 @@ Install-WindowsFeature containers
 ```
 The system will need to be rebooted when the container role installation has completed.
 
-Use the **Get-ContainerHost** command to verify that the container role has successfully been installed:
+Use the `Get-ContainerHost` command to verify that the container role has successfully been installed:
 
 ```powershell
 PS C:\> Get-ContainerHost
@@ -84,29 +84,29 @@ For more information on Container image management see [Windows Container Images
 ### Create Virtual Switch
 
 Each container will need to be attached to a virtual switch in order to communicate over a network. This exercise demonstrates this process using a virtual switch configured with network address translation enabled. For more information on container networking see [Windows Container Networking] (<>).
-Create the virtual switch using the **New-VirtualSwitch** command.
+Create the virtual switch using the `New-VirtualSwitch` command.
 
 ```powershell
 New-VMSwitch -Name "Virtual Switch" -SwitchType NAT -NATSubnetAddress 172.16.0.0/12
 ```
 
-### Install Docker - Windows
+### Install Docker
 
 The Docker Daemon and CLI are not shipped with Windows, and not installed with the Windows Container feature. Docker is not a requirement for working with Windows containers. If you would like to install Docker follow the instructions in this article [Docker and Windows](./docker_windows.md).
 
-## Deploy Contianer Host - Nano Server
+## Nano Server
 
 Deploying Nano Server may involve creating a Nano Server ready virtual hard drive which has been prepared with additional feature packages. This guide will detail quickly preparing a Nano Server VHDX that can be used to create a Windows Container ready virtual machine running Nano Server.
 For more information on Nano Server and to explore different Nano Server deployment options see the [Nano Server Documentation]( https://technet.microsoft.com/en-us/library/mt126167.aspx).
 
-### Create Nano VHD
+### Prepare Nano Server
 
 Create a folder **c:\nano**.
 ```powershell
 New-Item -ItemType Directory c:\nano
 ```
 
-Locate the **NanoServerImageGenerator.psm1** and **Convert-WindowsImage.ps1** files from the Nano Server folder on the Windows Server Media and copy these to c:\nano.
+Locate the `NanoServerImageGenerator.psm1` and `Convert-WindowsImage.ps1` files from the Nano Server folder on the Windows Server Media and copy these to c:\nano.
 
 ```powershell
 Copy-Item "C:\WinServerFolder\NanoServer\Convert-WindowsImage.ps1" c:\nano
@@ -158,6 +158,6 @@ In the remote PowerShell session with the Nano Server, create a virtual switch t
 New-VMSwitch -Name NAT -SwitchType NAT -NATSubnetAddress "172.16.0.0/12"
 ```
 
-### Install Docker - Nano
+### Install Docker
 
 The Docker Daemon and CLI are not shipped with Windows, and not installed with the Windows Container feature. Docker is not a requirement for working with Windows containers. If you would like to install Docker follow the instructions in this article [Docker and Windows](./docker_windows.md).
