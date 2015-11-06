@@ -1,6 +1,6 @@
 # Windows Container Host Deployment and Configuration.
 
-The Windows Container feature is only available in Windows Server 2016. The container role can be installed on Windows Server 2016, Windows Server 2016 Core and Nano Server. The Windows Container feature includes support for two different types of container, Windows Server Containers and Hyper-V Containers. This document will detail supported configurations and deployment steps. 
+The Windows Container feature is only available in Windows Server 2016. The container role can be installed on Windows Server 2016, Windows Server 2016 Core and Nano Server. The Windows Container feature includes support for two different types of containers, Windows Server Containers and Hyper-V Containers. This document will detail supported configurations and deployment steps. 
 
 ## Container Deployment
 
