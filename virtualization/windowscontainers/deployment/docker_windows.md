@@ -109,7 +109,7 @@ PS C:\ sc.exe delete Docker
 
 ## Nano Server
 
-### Install Docker - Nano
+### Install Docker
 
 Download docker.exe from `https://aka.ms/ContainerTools` and copy it to the `windows\system32` folder of the Nano Server Container host.
 

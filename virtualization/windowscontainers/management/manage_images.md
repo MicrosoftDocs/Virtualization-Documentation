@@ -1,6 +1,3 @@
-ms.ContentId: 4e33f990-eaa8-4a57-a83c-632fb13b4b38
-title: Manage Windows Container Images
-
 # Container Images
 
 Container Images provide the deployment foundation for containers as well drive container system efficiency through image layer capabilities. A container images includes applications and application dependencies and is used to deployed to new containers. Container images can be transferred between container environments, stored in a public registry for public use, and stored in a private registry for organizational use. Container images are created in a layered structure such that multiple containers use a single instance of a common container image. Container images can be created, removed and stored in a container registry for later use.
@@ -9,9 +6,25 @@ Container Images provide the deployment foundation for containers as well drive 
 
 # Installing Base Images
 
-Container OS Images for Windows Containers have been prepared and can be downloaded using PowerShell or manually from the <!-- insert download location -->.
+Container OS Images for Windows Containers have been prepared by Microsoft and can be downloaded and installed using PowerShell OneGet.
 
-Once the Container OS Images have been downloaded, they will need to be installed on the container host. This can be completed using the **Install-ContainerOSImage** command.
+Return a list of images from PowerShell OneGet package manager:
+```powershell
+Find-ContainerImage
+```
+
+Download and install an OS image from the PowerShell OneGet package manager.
+
+```powershell
+Install-ContainerImage -Name ImageName
+```
+
+Alternatively, a container image can be downloaded using one get and stored for later user.
+```powershell
+Save-ContainerImage -Name ImageName -Destination C:\temp\ImageName.wim
+``` 
+
+Once the Container OS Images have been downloaded, they can be installed on the container host using the `Install-ContainerOSImage` command.
 
 ```powerhsell
 PS C:\> Install-ContainerOSImage –WimPath 'C:\CBaseOsPkg_NanoServer\NanoServer_en-us.wim' -Force
@@ -25,10 +38,6 @@ Name              Publisher    Version         IsOSImage
 ----              ---------    -------         ---------
 WindowsServerCore CN=Microsoft 10.0.10584.1000 True
 ```
-# Finding and Downloading New Container Images
-
-<!-- Insert OneGet Deatils - meeting on 10/30 for details. -->
-
 # Creating New Images
 
 ```powershell
