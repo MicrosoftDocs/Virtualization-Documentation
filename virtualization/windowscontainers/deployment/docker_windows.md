@@ -51,9 +51,14 @@ wget https://nssm.cc/release/nssm-2.24.zip -OutFile $env:ALLUSERSPROFILE\nssm.zi
 Extract the files, and copy **nssm-2.24\win64\nssm.exe** into the **c:\windows\system32** directory.
 
 ```powershell
-Expand-Archive -Path $env:ALLUSERSPROFILE\nssm.zip $env:ALLUSERSPROFILE; Copy-Item $env:ALLUSERSPROFILE\nssm-2.24\win64\nssm.exe $env:SystemRoot\system32; Remove-Item $env:ALLUSERSPROFILE\nssm.zip -Force; Remove-Item $env:ALLUSERSPROFILE\nssm-2.24\ -Force
+Expand-Archive -Path $env:ALLUSERSPROFILE\nssm.zip $env:ALLUSERSPROFILE
+Copy-Item $env:ALLUSERSPROFILE\nssm-2.24\win64\nssm.exe $env:SystemRoot\system32
 ```
 Open a command prompt and type **nssm install**.
+
+```powershell
+start-process nssm install
+```
 
 Enter the following data into the corresponding fields in the NSSM service installer.
 
