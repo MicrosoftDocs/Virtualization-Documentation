@@ -4,9 +4,9 @@ Docker is an open-source container deployment and management platform that works
 
 For more information on Docker and the Docker toolset visit [Docker.com](https://www.docker.com/).
 
-## Install Docker Server and Core
+## Windows Server and Server Core
 
-> This process will only work on Windows Server 2016 with Full UI and Windows Server 2016 Core.
+### Install Docker
 
 The Docker Daemon and CLI are not shipped with Windows, and not installed with the Windows Container feature. Docker will need to be installed separately. This document will walk through manually installing the Docker daemon and Docker client. Automated methods for competing these task will also be provided. 
 
@@ -66,13 +66,13 @@ Enter the following data into the corresponding fields in the NSSM service insta
 
 Enter the following data into the corresponding field in nssm.
 
-**Path:** C:\Windows\System32\cmd.exe
+- **Path:** C:\Windows\System32\cmd.exe
 
-**Startup Directory:** C:\Windows\System32
+- **Startup Directory:** C:\Windows\System32
 
-**Arguments:** /s /c C:\ProgramData\docker\runDockerDaemon.cmd
+- **Arguments:** /s /c C:\ProgramData\docker\runDockerDaemon.cmd
 
-**Service Name** - Docker
+- **Service Name** - Docker
 
 ![](media/nssm1.png)
 
@@ -92,9 +92,32 @@ When finished, click the install service button.
 
 With this completed, when Windows starts, the Docker daemon (service) will also start.
 
-## Install Docker - Nano
+### Automated Installation
 
-## Automated Installation
+Insert Script Instructions When Available
+
+### Removing Docker
+
+If following this guide for creating a Windows service from docke.exe, the following command will remove the service.
+
+```powershell
+PS C:\ sc.exe delete Docker
+[SC] DeleteService SUCESS
+```
+
+## Nano Server
+
+### Install Docker - Nano
+
+Download docker.exe from `https://aka.ms/ContainerTools` and copy it to the `windows\system32` folder of the Nano Server Container host.
+
+Run the following command to start the docker daemon, this will need to be run each time the container host is started. This command starts the Docker daemon, specifies a virtual switch for container connectivity, and set’s the daemon to listen on port 2375 for incoming Docker requests. In this configuration Docker can be managed from a remote computer.
+
+```powershell
+start-process cmd "/k docker daemon -D -b <Switch Name> -H 0.0.0.0:2375”
+```
+
+### Automated Installation
 
 Insert Script Instructions When Available
 
