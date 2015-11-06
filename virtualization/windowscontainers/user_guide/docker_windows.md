@@ -77,7 +77,7 @@ Enter the following data into the corresponding field in nssm.
 ![](media/nssm1.png)
 
 - **Display name:** Docker
-- **Description:** The Docker Daemon provides management capabilities of containers for docker clients
+- **Description:** The Docker Daemon provides management capabilities of containers for docker clients.
 
 
 ![](media/nssm2.png)
