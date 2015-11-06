@@ -12,22 +12,16 @@ The Docker Daemon and CLI are not shipped with Windows, and not installed with t
 
 The Docker Daemon and CLI have been developed in the Go language. At this time, docker.exe does not install as a Windows Service. There are several methods that can be used to create a Windows service, one example here using nssm.exe. 
 
-Download docker.exe from "https://aka.ms/ContainerTools".
+Download docker.exe from "https://aka.ms/ContainerTools" into the System32 directory on the Container Host.
 
 ```powershell
-wget etc etc
-```
-
-Copy docker.exe into **c:\windows\system32** of your container host.
-
-```powershell
-wget etc etc
+wget https://aka.ms/ContainerTools -OutFile $env:SystemRoot\system32\docker.exe
 ```
 
 Create a folder **c:\programdata\docker**, and in this folder create a file named **runDockerDaemon.cmd**.
 
 ```powershell
-wget etc etc
+New-Item -ItemType File -Path C:\ProgramData\Docker2\runDockerDaemon.cmd -Force
 ```
 
 Copy the following text into the runDockerDaemon.cmd file.
@@ -51,15 +45,14 @@ docker daemon -D -b "Virtual Switch" -H 0.0.0.0:2376 --tlsverify --tlscacert=%ce
 Download nssm.exe from https://nssm.cc/release/nssm-2.24.zip.
 
 ```powershell
-wget etc etc
+wget https://nssm.cc/release/nssm-2.24.zip -OutFile $env:ALLUSERSPROFILE\nssm.zip
 ```
 
 Extract the files, and copy **nssm-2.24\win64\nssm.exe** into the **c:\windows\system32** directory.
 
 ```powershell
-wget etc etc
+Expand-Archive -Path $env:ALLUSERSPROFILE\nssm.zip $env:ALLUSERSPROFILE; Copy-Item $env:ALLUSERSPROFILE\nssm-2.24\win64\nssm.exe $env:SystemRoot\system32; Remove-Item $env:ALLUSERSPROFILE\nssm.zip -Force; Remove-Item $env:ALLUSERSPROFILE\nssm-2.24\ -Force
 ```
-
 Open a command prompt and type **nssm install**.
 
 Enter the following data into the corresponding fields in the NSSM service installer.
