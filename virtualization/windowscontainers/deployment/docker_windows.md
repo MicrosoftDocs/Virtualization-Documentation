@@ -1,10 +1,10 @@
-## Docker and Windows
+# Docker and Windows
 
 Docker is an open-source container deployment and management platform that works with both Linux and Windows containers. The Docker daemon and command line interface are used to create, manage, and delete containers. Docker enables storing container images in a public registry (Docker Hub) and private registries (Docker Trusted Registries). Docker additionally provides container host clustering capabilities with Docker Swarm and deployment automaton with Docker Compose.
 
 For more information on Docker and the Docker toolset visit [Docker.com](https://www.docker.com/).
 
-## Install Docker:
+## Install Docker Server and Core
 
 > This process will only work on Windows Server 2016 with Full UI and Windows Server 2016 Core.
 
@@ -93,6 +93,8 @@ IO Tab:
 When finished, click the install service button.
 
 With this completed, when Windows starts, the Docker daemon (service) will also start.
+
+## Install Docker - Nano
 
 ## Automated Installation
 
