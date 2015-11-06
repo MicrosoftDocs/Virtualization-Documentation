@@ -77,7 +77,7 @@ Application Tab:
 Details Tab:
 
 - **Display name:** Docker
-- **Description:** The Docker Daemon provides management capabilities of containers for docker clients
+- **Description:** The Docker Daemon provides management capabilities of containers for docker clients.
 
 
 ![](media/nssm2.png)
