@@ -2,9 +2,9 @@
 
 The Windows Container technology includes two distinct types of container technology, Windows Server Containers and Hyper-V Containers. Both types of containers are created, managed and function identically. What differs between them is the level of isolation created between the container, the host operating system, and all of the other container running on that host.
 
-- **Windows Server Containers** – multiple containers run on a host with isolation provided through namespace and process isolation technologies.
+**Windows Server Containers** – multiple containers run on a host with isolation provided through namespace and process isolation technologies.
 
-- **Hyper-V Containers** – multiple containers run on a host, hoever each container is hosted inside of a utility virtual machine. This provides kernel level isolation between a Hyper-V container, the container host, and any other containers running on the container host.
+**Hyper-V Containers** – multiple containers run on a host, hoever each container is hosted inside of a utility virtual machine. This provides kernel level isolation between a Hyper-V container, the container host, and any other containers running on the container host.
 
 ## Hyper-V Container PowerShell
 
@@ -22,13 +22,35 @@ $con = New-Container -Name HYPVCON -ContainerImageName NanoServer -SwitchName "V
 
 In addition to creating a container as a Hyper-V container at build time, containers that have been created with PowerShell can also be converted from a Windows Server Container to a Hyper-V container. 
 
-```powershell
-insert script
-```
-### Discover Container
+Create a new Container with the default runtime. 
 
 ```powershell
-Get-Container | Select *
+New-Container -Name DEMO -ContainerImageName nanoserver -SwitchName NAT
+```
+Return runtime property from the container, notice that the runtime is set as default. 
+
+```powershell
+Get-Container | Select ContainerName, RuntimeType
+
+ContainerName RuntimeType
+------------- -----------
+DEMO              Default
+```
+
+Use the `set-container` command to change the container runtime.
+
+```powershell
+ Set-Container $con -RuntimeType HyperV
+```
+
+Finally return the runtime property once again to see the change.
+
+```powershell
+Get-Container | select ContainerName, RuntimeType
+
+ContainerName RuntimeType
+------------- -----------
+DEMO               HyperV
 ```
 
 ## Hyper-V Container Docker
@@ -41,7 +63,9 @@ Example Creating a Hyper-V Container with Docker
 docker run -it --isolation=hyperv 646d6317b02f cmd
 ```
 
-## Isolation Demo - Non Hyper-V
+## Isolation Demo
+
+### Windows Server Container
 
 The following exercise can be used to demonstrate the isolation of a Hyper-V container. In this exercise both a Windows Server and a Hyper-V container will be created. The running process on the container host will be examined and will show how the Windows Server container process is shared on the container host, however that the Hyper-V containers process is not.
 
@@ -94,7 +118,7 @@ Handles  NPM(K)    PM(K)      WS(K) VM(M)   CPU(s)     Id  SI ProcessName
     175       9     1260       3708 ...97     0.20   1228   3 csrss
     243      13     1736       5512 ...17     3.77   3484   2 csrss
 ```
-## Isolation Demo - Hyper-V
+### Hyper-V Container
 
 Return a list of csrss process form the container host.
 
