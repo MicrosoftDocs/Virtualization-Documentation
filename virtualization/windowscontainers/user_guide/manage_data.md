@@ -9,7 +9,9 @@ Shared folders have the following characteristics.
 - If a container image is taken from a container with shared folders, the data in the shared folder is not captured into the image.*
 - When a container is removed, the source folder on the host is not removed.
 
-## Create Shared Folder
+## Manage Data PowereShell
+
+### Create Shared Folder
 
 To create a shared folder, use the **Add-ContainerSharedFolder** command. 
 
@@ -20,7 +22,7 @@ ContainerName SourcePath DestinationPath AccessMode
 DEMO          c:\source  c:\source       ReadWrite
 ```
 
-## Create a Read Only Shared Folder*
+### Create a Read Only Shared Folder*
 
 ```powershell
 PS C:\> Add-ContainerSharedFolder -ContainerName SFRO -SourcePath c:\sf1 -DestinationPath c:\sf2 -AccessMode ReadOnly
@@ -30,7 +32,7 @@ ContainerName SourcePath DestinationPath AccessMode
 SFRO          c:\sf1     c:\sf2          ReadOnly
 ```
 
-## List Shared Folders
+### List Shared Folders
 
 To see a list of shared folders for a particular container use the **Get-ContainerSharedFolder** command.
 
@@ -41,7 +43,7 @@ ContainerName SourcePath DestinationPath AccessMode
 DEMO2         c:\source  c:\source       ReadWrite
 ```
 
-## Modify Shared Folder*
+### Modify Shared Folder*
 
 To modify and existing shared folder configuration, use the Set-ContainerSharedFolder command.
 
@@ -49,15 +51,16 @@ To modify and existing shared folder configuration, use the Set-ContainerSharedF
 PS C:\> Set-ContainerSharedFolder -ContainerName SFRO -SourcePath c:\sf1 -DestinationPath c:\sf1
 ```
 
-## Remove Shared Folder*
+### Remove Shared Folder*
 
 To remove a shared folder, use the **Remove-ContainerSharedFolder** command.
 
 ```powershell
 PS C:\> Remove-ContainerSharedFolder -ContainerName DEMO2 -SourcePath c:\source -DestinationPath c:\source
 ```
+## Manage Data PowereShell
 
-## Mounting Volumes with Docker 
+### Mounting Volumes
 
 When managing Windows Containers with Docker shared folders or volumes can be created using the **-v** option.
 
