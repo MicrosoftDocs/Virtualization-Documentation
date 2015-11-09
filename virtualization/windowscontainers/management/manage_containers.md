@@ -1,6 +1,8 @@
-## Container Management
+# Container Management
 
 The container life cycle includes actions such as, starting a container, stopping a container, and removing a container. While performing these actions you may also need retrieve a list of container images, manage container networking, and container resources. This document will detail basic container management tasks using PowerShell.
+
+## Container Operations PowerShell
 
 ## Create a Container
 
@@ -14,7 +16,7 @@ NanoServer        CN=Microsoft 10.0.10584.1000 True
 WindowsServerCore CN=Microsoft 10.0.10584.1000 True
 ```
 
-Use the `New-Container` command to create a new container.
+Use the `New-Container` command to create a new container. When a container is created with PowerShell the associated files are stored under `c:\ProgramData\Microsoft\Windows\Hyper-C\Vontainer Image Store`.
 
 ```powershell
 PS C:\> New-Container -Name TST -ContainerImageName WindowsServerCore
@@ -114,7 +116,6 @@ When a container is no longer needed it can be removed. In order to remove a con
 
 ```powershell
 PS C:\> $container = Get-Container -Name TST
-
 ```
 
 To remove the container, use the `Remove-Container` command.

@@ -1,10 +1,12 @@
 # Management Interoperability
 
-For the most part, Windows Containers created with PowerShell need to be managed with PowerShell and those created with Docker need to be managed with Docker. That said, the Host Computing PowerShell module provides the ability to discover and stop containers regardless of how they have been created. This module performs like a 'task manage' for all containers running on a container host.
+For the most part, Windows Containers created with PowerShell need to be managed with PowerShell and those created with Docker need to be managed with Docker. That said, the Host Computing PowerShell module provides the ability to discover and stop containers regardless of how they have been created. This module performs like a 'task manage' for containers running on a container host.
+
+> The HCS module is in early preview, functionality will change.
 
 ## Display all Containers
 
-To return a list of containers use the **Get-ComputeProcess** command.
+To return a list of containers use the `Get-ComputeProcess` command.
 
 ```powershell
 Get-ComputeProcess
@@ -18,9 +20,9 @@ e49cd35542.. 									  e49cd35542.. 								docker Container
 
 ## Stop a Container
 
-To stop a container regardless if it was created using PowerShell or Docker, use the **Stop-ComputeProcess** command.
+To stop a container regardless if it was created using PowerShell or Docker, use the `Stop-ComputeProcess` command.
 
-> At the time of writing, the VMMS service will need to be restarted in order for the containers to be shown as stopped when using the **Get-Container** command.
+> At the time of writing, the VMMS service will need to be restarted in order for the containers to be shown as stopped when using the `Get-Container` command.
 
 ```powershell
 Stop-ComputeProcess -Id 2088E0FA-1F7C-44DE-A4BC-1E29445D082B -Force
