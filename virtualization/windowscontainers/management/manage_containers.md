@@ -4,7 +4,7 @@ The container life cycle includes actions such as, starting a container, stoppin
 
 ## Container Operations PowerShell
 
-## Create a Container
+### Create a Container
 
 When creating a new container, you will need the name of a container image that will serve as the container base. This can be found using the `Get-ContainerImageName` command.
 
@@ -47,7 +47,7 @@ Connect the network adapter the virtual switch using `Connect-ContainerNetowkrAd
 PS C:\> Connect-ContainerNetworkAdapter -ContainerName TST -SwitchName NAT
 ```
 
-## Start a Container
+### Start a Container
 In order to start the container, a PowerShell object representing that container that will be enumerated. This can be done by placing the output of `Get-Container` into a PowerShell variable.
 
 ```powershell
@@ -65,7 +65,7 @@ The following will start all containers on the host.
 PS C:\> Get-Container | Start-Container
 ```
 
-## Connect into a Container
+### Connect with Container
 
 PowerShell remoting can be used to connect to a container. This may be helpful if you need to manually perform a task such as installing software, starting a processes or troubleshooting a container.
 To create an interactive session with the container, use the `Enter-PSSession` command.
@@ -92,7 +92,8 @@ Mode                LastWriteTime         Length Name                           
 d-----       10/28/2015   3:31 PM                application                                          TST
 ```
 
-## Stop a Container
+### Stop a Container
+
 In order to stop the container a PowerShell object representing that container will be stopped. This can be done by placing the output of `Get-Container` into a PowerShell variable.
 
 ```powershell
@@ -110,7 +111,7 @@ The following will stop all containers on the host.
 PS C:\> Get-Container | Stop-Container
 ```
 
-## Remove a Container
+### Remove a Container
 
 When a container is no longer needed it can be removed. In order to remove a container, it needs to be in a stopped state and a PowerShell object needs to be created that represents the container. This can be done using the **Get-Container** command.
 
@@ -130,7 +131,15 @@ The following will remove all containers on the host assuming they are in a stop
 PS C:\> Get-Container | Remove-Container -Force
 ```
 
-## Additional Resources
+## Container Operations Docker
+
+### Create a Container
+### Start a Container
+### Connect with Container
+### Stop a Container
+### Remove a Container
+
+### Additional Resources
 
 For a complete reference of Container PowerShell commands see the [Container PowerShell Reference](https://technet.microsoft.com/en-us/library/mt433069.aspx).
 
