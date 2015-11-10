@@ -347,6 +347,7 @@ Browse to the IP Address of the container host and you will now see the ‘Hello
 
 ## Container Resource Constraint
 
-Image Test:
+Test Image
 
-![](media/nwconfig.png)
+![](media/docker1.png)
+
