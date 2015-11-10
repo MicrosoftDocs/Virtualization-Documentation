@@ -109,7 +109,8 @@ Insert Script Instructions When Available
 If following this guide for creating a Windows service from docke.exe, the following command will remove the service.
 
 ```powershell
-PS C:\ sc.exe delete Docker
+sc.exe delete Docker
+
 [SC] DeleteService SUCESS
 ```
 

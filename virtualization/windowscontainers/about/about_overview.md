@@ -4,7 +4,7 @@ Applications fuel innovation in the cloud and mobile era. Containers, and the ec
 
 Watch a short overview: [Windows-based containers: Modern app development with enterprise-grade control](https://youtu.be/Ryx3o0rD5lY ).
 
-##What are containers?
+## What are containers?
 
 They are an isolated, resource controlled, and portable operating environment.
 
@@ -57,7 +57,7 @@ Containers help admins create an infrastructure that is simpler to update and ma
 src="https://channel9.msdn.com/Blogs/containers/Containers-101-with-Microsoft-and-Docker/player" width="960" height="540" allowFullScreen="true" frameBorder="0" scrolling="no"></iframe>
 
 
-##Try Windows Server Containers
+## Try Windows Server Containers
 
 [Get started with Windows Server Containers in Windows Azure](../quick_start/azure_setup.md)  
 [Get started with Windows Server Containers Locally](../quick_start/container_setup.md)
