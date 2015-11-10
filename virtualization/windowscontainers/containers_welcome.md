@@ -2,19 +2,19 @@ Windows containers provide operating system level virtualization that allow you 
 
 To quickly get started with Windows Containers see the quick start guides:
 
-- Deploy Container Host in Azure – [Azure Quick Start](/quick_start/azure_setup.md)
-- Deploy Container Host in a VM or Physical system – [On-Premise Quick Start](/quick_start/container_setup.md)
-- Quick Start Container Walkthrough PowerShell – [](/quick_start/manage_powershell.md)
-- Quick Start Container Walkthrough Docker – [](/quick_start/manage_docker.md)
+- Deploy Container Host in Azure – [Azure Quick Start](quick_start/azure_setup.md)
+- Deploy Container Host in a VM or Physical system – [On-Premise Quick Start](quick_start/container_setup.md)
+- Quick Start Container Walkthrough PowerShell – [PowerShell Quick Start](quick_start/manage_powershell.md)
+- Quick Start Container Walkthrough Docker – [Docker Quick Start](quick_start/manage_docker.md)
 
 For detailed deployment and management documentation see the following documents:
 
-- Deploy Windows Container Host – [](/quick_start/azure_setup.md)
-- Managing Containers – [](/quick_start/azure_setup.md)
-- Managing Container Images – [](/quick_start/azure_setup.md)
-- Manage Container Networking – [](/quick_start/azure_setup.md)
+- Deploy Windows Container Host – [Deploy Container Host](/quick_start/azure_setup.md)
+- Managing Containers – [Manage Containers](/quick_start/azure_setup.md)
+- Managing Container Images – [Manage Images](/quick_start/azure_setup.md)
+- Manage Container Networking – [Manage Networking](/quick_start/azure_setup.md)
 
 For support and community interaction:
 
-- Windows Container Forum - [](/quick_start/azure_setup.md)
-- Additional Container Resources - (/quick_start/azure_setup.md)[]
+- Windows Container Forum - [Container Forum](/quick_start/azure_setup.md)
+- Additional Container Resources - [Additional Resources](/quick_start/azure_setup.md)[]
