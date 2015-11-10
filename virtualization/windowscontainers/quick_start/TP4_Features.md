@@ -12,10 +12,10 @@ The following concepts will be demonstrated.
 
 The following items are needed in order to complete this quick start.
 
-- A Windows Container Host running Windows 2016 (Full UI or Core) – [Quick Start Host Deployment].
-- The Widows Server 2016 Installation Media – [Download Location].
+- A Windows Container Host running Windows 2016 (Full UI or Core) – Quick Start Host Deployment.
+- The Widows Server 2016 Installation Media – Download Location.
 - This quick start will demonstrate both Windows Server and Hyper-V Containers. To try out Hyper-V containers these additional items will be required.
-- Window Container Host with Nested Virtualization – [Nest Virtualization]. 
+- Window Container Host with Nested Virtualization – Nest Virtualization. 
 
 ## Windows Server Container
 
@@ -97,7 +97,7 @@ WindowsServerCoreIIS CN=Demo   1.0.0.0 False
 
 Run `Get-ContainerImage` to verify that the image has been created.
 
-Take note the in this output the new container image has a property of `IsOSImage = False`. Because the new IIS image was derived from the `WindowsServerCore` image, a dependency is created between the IIS image and the WindowsServerCore image. For more information on Container images see [Manage Container Images].
+Take note the in this output the new container image has a property of `IsOSImage = False`. Because the new IIS image was derived from the `WindowsServerCore` image, a dependency is created between the IIS image and the WindowsServerCore image. For more information on Container images see Manage Container Images.
 
 ```powershell
 Get-ContainerImage
@@ -221,7 +221,7 @@ PS C:\> Enter-PSSession -ContainerId $con.ContainerId –RunAsAdministrator
 ```
 When in the remote session, notice that a directory has been created ‘c:\share’, and that you can now copy files into the c:\share directory of the host and access them in the container.
 
-For more information on Shared Folder, see the [Shared Folders Technical Guide](../management/manage_data.md)
+For more information on Shared Folders, see the [Shared Folders Technical Guide](../management/manage_data.md)
 
 ## Install IIS in the Container
 
