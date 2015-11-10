@@ -1,9 +1,19 @@
+<<<<<<< HEAD
 # Windows Containers
+=======
+Windows containers provide operating system level virtualization that allow you to run multiple isolated applications on one container host. This container documentation includes pre-release information and is subject to change. The documentation has a left hand table of contents that can be used for document navigation. Note, the table of contents can be collapsed for a wider view of the documents.
 
-Windows containers provide operating system level virtualization that allow you to run multiple isolated applications on one container host.
+To quickly get started with Windows Containers see the quick start guides:
+>>>>>>> new landing page
 
-The following table list topics that provide more information about Windows containers, a guided quick start so that you can try out Windows containers, and additional resources.
+- Deploy Container Host in Azure – [Azure Quick Start](/quick_start/azure_setup.md)
+- Deploy Container Host in a VM or Physical system – [On-Premise Quick Start](/quick_start/container_setup.md)
+- Quick Start Container Walkthrough PowerShell – [](/quick_start/manage_powershell.md)
+- Quick Start Container Walkthrough Docker – [](/quick_start/manage_docker.md)
 
+For detailed deployment and management documentation see the following documents:
+
+<<<<<<< HEAD
 <table border="1" style="background-color:FFFFCC;border-collapse:collapse;border:1px solid FFCC00;color:000000;width:100%" cellpadding="15" cellspacing="3">
 		<tr valign="top">
 		<td ><center>![](media/try.png)</center></td>
@@ -32,28 +42,14 @@ The following table list topics that provide more information about Windows cont
 			</ul>	
 		</td>
 	</tr>
+=======
+- Deploy Windows Container Host – [](/quick_start/azure_setup.md)
+- Managing Containers – [](/quick_start/azure_setup.md)
+- Managing Container Images – [](/quick_start/azure_setup.md)
+- Manage Container Networking – [](/quick_start/azure_setup.md)
+>>>>>>> new landing page
 
-	<tr valign="top">
-		<td ><center>![](media/question.png)</center></td>
-		<td>		
-              <p><strong>Connect with Community and Support</strong></p>
-              <p>Additional technical support and community resources</p>
- 			<ul>
-				<li class="unordered">[Ask Question at the Windows Server Container Forum](https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers)<br /><br /></li>
-				<li class="unordered">[Additional Windows Server Container Resources](https://msdn.microsoft.com/virtualization/community/community_overview)<br /><br /></li>
-			</ul>
-		</td>
-	</tr>	
-	
-	<tr valign="top">
-		<td ><center>![](media/explore.png)</center></td>
-		<td>		
-              <p><strong>Explore Samples</strong></p>
-              <p>Explore and reuse container code samples.</p>
-			<ul>
-				<li class="unordered">[Container Sample Code](https://github.com/Microsoft/Virtualization-Documentation/tree/master/windows-server-container-samples)<br /><br /></li>
-			</ul>
-		</td>
-	</tr>
-	
-</table>
+For support and community interaction:
+
+- Windows Container Forum - [](/quick_start/azure_setup.md)
+- Additional Container Resources - (/quick_start/azure_setup.md)[]

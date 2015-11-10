@@ -1,5 +1,9 @@
 # About Windows Container
+<<<<<<< HEAD
 ## [Container Docs Overview](./containers_welcome.md)
+=======
+## [Container Docs Overview](../containers_welcome.md)
+>>>>>>> new landing page
 ## [About Windows Containers](about/about_overview.md)
 ## [Container Ecosystem](about/container_ecosystem.md)
 ## [FAQ](about/faq.md)
