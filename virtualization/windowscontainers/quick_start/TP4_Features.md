@@ -161,9 +161,28 @@ if (!(Get-NetFirewallRule | where {$_.Name -eq "TCP80"})) {
 
 If you are working from Azure and have not already created a Network Security Group, you will need to create one now. For more information on Network Security Groups see this article: [What is a Network Security Group](https://azure.microsoft.com/en-us/documentation/articles/virtual-networks-nsg/).
 
-### Access Application
+### Create Application
 
+Because Network Address Translation is being used, and that port 80 of the container host IP address has been mapped to port 80 of the containers IP address, to access the IIS open up a browser and browse to the IP address of the container host. You will see the IIS splash screen.
 
+![](media/iis.png)
+
+With the IIS instances verified as running, you can now create a ‘Hello World’ static site and host this in the IIS instance. To do so, create a PowerShell session with the container.
+
+```powershell
+Enter-PSSession -ContainerId $con.ContainerId –RunAsAdministrator
+```
+
+Run the following script to replace the default IIS splash screen with a new static site.
+
+```powershell
+del C:\inetpub\wwwroot\iisstart.htm
+"Hello World From a Windows Server Container" > C:\inetpub\wwwroot\index.html
+```
+
+Browse again to the IP Address of the container host and you will now see the ‘Hello World’ application.
+
+![](media/HWWINServer.png)
 
 ## Hyper-V Container
 
