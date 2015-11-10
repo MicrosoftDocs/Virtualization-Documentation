@@ -1,24 +1,27 @@
 # Windows Containers Quick Start
 
-This quick start will walk through basic creation and management of Windows Containers. This exercise will walk through a simple deployment of IIS in both a Windows Server and Hyper-V container. In addition to container management, this exercise will introduce networking, data and resource control concepts. When complete you should have a basic understanding of simple container creation and management. 
+This quick start will walk through basic creation and management of Windows Containers. This exercise will walk through a simple deployment of IIS in both a Windows Server and Hyper-V container. In addition to container management, this exercise will introduce networking, data, and resource control concepts. When complete you should have a basic understanding of simple container creation and management. 
 
 **Note** – the left hand table of contents can be minimized to increase the document display.
-
 
 The following items are needed in order to complete this quick start.
 
 - A Windows Container Host running Windows 2016 (Full UI or Core) – Quick Start Host Deployment.
 - The Widows Server 2016 Installation Media – Download Location.
-- This quick start will demonstrate both Windows Server and Hyper-V Containers. To try out Hyper-V containers these additional items will be required.
+
+This quick start will demonstrate both Windows Server and Hyper-V Containers. To try out Hyper-V containers these additional items will be required.
+
 - Window Container Host with Nested Virtualization – Nest Virtualization. 
 
 ## Windows Server Container
 
-Windows Server Containers provide an isolated, portable, and resource controlled operating environment for running applications and hosting processes. Windows Server Containers provide isolation between the container, host, and other containers running on the host through process and namespace isolation. When running Windows Server Containers, the container hosts’ kernel is shared with all containers, and processes from all containers are visible on the host.
+Windows Server Containers provide an isolated, portable, and resource controlled operating environment for running applications and hosting processes. Windows Server Containers provide isolation between the container, host, and other containers running on the host, through process and namespace isolation. When running Windows Server Containers, the container hosts’ kernel is shared with all containers and processes from all containers are visible on the host.
 
 ### Create Container
 
-At the time of TP4, Windows Server Containers running on a Windows Server 2016 with full UI or a Windows Server 2016 Core container host will require the Windows Server 2016 Core OS Image. This quick start demonstrates this configuration.To validate that the Windows Serve Core OS Image has been installed, use the `Get-ContainerImage` command. You may see multiple OS images, that is ok.
+At the time of TP4, Windows Server Containers running on a Windows Server 2016 with full UI or a Windows Server 2016 Core container host will require the Windows Server 2016 Core OS Image. This quick start demonstrates this configuration. 
+
+To validate that the Windows Serve Core OS Image has been installed, use the `Get-ContainerImage` command. You may see multiple OS images, that is ok.
 
 ```powershell
 Get-ContainerImage
@@ -29,7 +32,7 @@ NanoServer        CN=Microsoft 10.0.10586.0 True
 WindowsServerCore CN=Microsoft 10.0.10586.0 True
 ```
 
-To create a Windows Server Container, use the `New-Container` command. The below example creates a container named `TP4Demo`, from the `WindowsServerCore` OS Image, and connects the container to a VM Switch named `Virtual Switch`. Note also that the output, an object representing the container is being stored in a variable `$con`.
+To create a Windows Server Container, use the `New-Container` command. The below example creates a container named `TP4Demo`, from the `WindowsServerCore` OS Image, and connects the container to a VM Switch named `Virtual Switch`. Note also that the output, an object representing the container, is being stored in a variable `$con`.
 
 ```powershell
  $con = New-Container -Name TP4Demo -ContainerImageName WindowsServerCore -SwitchName "Virtual Switch"
@@ -41,7 +44,7 @@ Start the container using the `Start-Container` command.
 Start-Container $con
 ```
 
-Connect to the container using the `Enter-PSSession` command. Notice that when the PowerShell session has been created with the container that the PowerShell prompt changes to reflect the container name.
+Connect to the container using the `Enter-PSSession` command. Notice that when the PowerShell session has been created with the container, the PowerShell prompt changes to reflect the container name.
 
 ```powershell
 PS C:\> Enter-PSSession -ContainerId $con.ContainerId -RunAsAdministrator
@@ -50,7 +53,7 @@ PS C:\> Enter-PSSession -ContainerId $con.ContainerId -RunAsAdministrator
 
 ### Modify Container
 
-Now that a container has been created and that a PowerShell direct session has been created with the container, the container can be modified, and the modifications captured to create a new container image. For this example, IIS will be installed.
+Now the container can be modified, and these modifications captured to create a new container image. For this example, IIS will be installed.
 
 To install the IIS role, use the `Install-WindowsFeature` command.
 
@@ -92,7 +95,7 @@ WindowsServerCoreIIS CN=Demo   1.0.0.0 False
 
 Run `Get-ContainerImage` to verify that the image has been created.
 
-Take note the in this output the new container image has a property of `IsOSImage = False`. Because the new IIS image was derived from the `WindowsServerCore` image, a dependency is created between the IIS image and the WindowsServerCore image. For more information on Container images see Manage Container Images.
+Take note, in the output of `Get-ContainerImage`, the IIS container image displays a property of `IsOSImage = False`. This property differentiates OS Images from non OS Images. While it is not displayed, a dependency is created between the IIS container image and the Windows Server Core OS image. For more information on Container images see Manage Container Images.
 
 ```powershell
 Get-ContainerImage
@@ -107,6 +110,8 @@ WindowsServerCore    CN=Microsoft 10.0.10586.0 True
 
 ### Create IIS Container
 
+Create a new container, this time from the `WindosServerCoreIIS` container image.
+
 ```powershell
 $con = New-Container -Name IIS -ContainerImageName WindowsServerCoreIIS -SwitchName "Virtual Switch"
 ```    
@@ -117,9 +122,9 @@ Start-Container $con
 
 ### Configure Network
 
-The default network configuration for the Windows Container Quick Starts is to have the containers connected to a virtual switch configured with Network Address Translation (NAT). Because of this, in order to connect to an application running inside of a container, a port on the container host needs to be mapped to a port on the container. This can be done with the `Add-NetNatStaticMapping` command.
+The default network configuration for the Windows Container Quick Starts is to have the containers connected to a virtual switch configured with Network Address Translation (NAT). Because of this, in order to connect to an application running inside of a container, a port on the container host needs to be mapped to a port on the container. This can be done with the `Add-NetNatStaticMapping` command. For more information on Network Address Translation in Containers, see Container Networking.
 
-For this exercise, a website will be hosted on IIS running inside of a container. To access the website on port 80, map port 80 of the container host to port 80 of the container.
+For this exercise, a website will be hosted on IIS running inside of a container. To access the website on port 80, map port 80 of the container hosts IP address to port 80 of the containers IP address.
 
 > NOTE – if running multiple containers on your host you will need to verify the IP address of the container and also that port 80 of the host is not already mapped to a running container. 
 
@@ -130,7 +135,6 @@ Invoke-Command -ContainerId $con.ContainerId {ipconfig}
 
 Windows IP Configuration
 
-
 Ethernet adapter vEthernet (Virtual Switch-04E1CA63-4C67-4457-B065-6ED7E99EC314-0):
 
    Connection-specific DNS Suffix  . : corp.microsoft.com
@@ -140,13 +144,13 @@ Ethernet adapter vEthernet (Virtual Switch-04E1CA63-4C67-4457-B065-6ED7E99EC314-
    Default Gateway . . . . . . . . . : 172.16.0.1
 ```
 
-To create the NAT port mapping, use the `Add-NetNatStaticMapping` command. The following example maps port 80 of the hosts IP Address to port 80 of the containers IP Address. 
+To create the NAT port mapping, use the `Add-NetNatStaticMapping` command. The following example maps port 80 of the host to port 80 of the containers IP Address. 
 
 ```powershell
 Add-NetNatStaticMapping -NatName "ContainerNat" -Protocol TCP -ExternalIPAddress 0.0.0.0 -InternalIPAddress 172.16.0.2 -InternalPort 80 -ExternalPort 80
 ```
 
-When the port mapping has been created you will also need to configure an inbound firewall rule for the configured port. To do so for port 80 run the following command. This script can be copied into the VM.
+When the port mapping has been created, you will also need to configure an inbound firewall rule for the configured port. To do so for port 80, run the following script.
 
 ```powershell
 if (!(Get-NetFirewallRule | where {$_.Name -eq "TCP80"})) {
@@ -154,13 +158,13 @@ if (!(Get-NetFirewallRule | where {$_.Name -eq "TCP80"})) {
 }
 ```
 
-If you are working from Azure and have not already created a Network Security Group, you will need to create one now. For more information on Network Security Groups see this article: [What is a Network Security Group](https://azure.microsoft.com/en-us/documentation/articles/virtual-networks-nsg/).
+If you are working in Azure and have not already created a Network Security Group, you will need to create one now. For more information on Network Security Groups see this article: [What is a Network Security Group](https://azure.microsoft.com/en-us/documentation/articles/virtual-networks-nsg/).
 
-### Create Application
-
-Because Network Address Translation is being used, and that port 80 of the container host IP address has been mapped to port 80 of the containers IP address, to access the IIS open up a browser and browse to the IP address of the container host. You will see the IIS splash screen.
+Because NAT has been configured to pass traffic from port 80 on the hosts, to port 80 of the container, you should now be able to open a browser, enter the IP address of the container host, and see the IIS splash screen.
 
 ![](media/iis.png)
+
+### Create Application
 
 With the IIS instances verified as running, you can now create a ‘Hello World’ static site and host this in the IIS instance. To do so, create a PowerShell session with the container.
 
