@@ -346,3 +346,7 @@ Browse to the IP Address of the container host and you will now see the ‘Hello
 ![](media/iisapp.png)
 
 ## Container Resource Constraint
+
+Image Test:
+
+![](media/nwconfig.png)
