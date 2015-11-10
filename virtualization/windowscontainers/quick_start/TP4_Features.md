@@ -147,9 +147,23 @@ To create the NAT port mapping, use the `Add-NetNatStaticMapping` command. The f
 Add-NetNatStaticMapping -NatName "ContainerNat" -Protocol TCP -ExternalIPAddress 0.0.0.0 -InternalIPAddress 172.16.0.2 -InternalPort 80 -ExternalPort 80
 ```
 
+When the port mapping has been created you will also need to configure an inbound firewall rule for the configured port. To do so for port 80 run the following command. This script can be copied into the VM.
+
+```powershell
+if (!(Get-NetFirewallRule | where {$_.Name -eq "TCP80"})) {
+    New-NetFirewallRule -Name "TCP80" -DisplayName "HTTP on TCP/80" -Protocol tcp -LocalPort 80 -Action Allow -Enabled True
+}
+```
+
+If you are working from Azure and have not already created a Network Security Group, you will need to create one now. For more information on Network Security Groups see this article: [What is a Network Security Group](https://azure.microsoft.com/en-us/documentation/articles/virtual-networks-nsg/).
+
+### Access Application
+
+
+
 ## Create Hyper-V Container
 
-At the time of TP4 Hyper-V containers must use a Nano Server Core OS Image. To validate that the Nano Server Core OS image has been installed on the Container Host, use the **Get-ContainerImage** command.
+At the time of TP4 Hyper-V containers must use a Nano Server Core OS Image. To validate that the Nano Server Core OS image has been installed on the Container Host, use the `Get-ContainerImage` command.
 
 ```powershell
 PS C:\> Get-ContainerImage
