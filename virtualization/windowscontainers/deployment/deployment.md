@@ -38,6 +38,7 @@ Windows Containers use an OS image as the base for any container. Two OS images 
 The container feature can be installed using Windows Server Manager and PowerShell on Windows Server 2016 with full UI, or PowerShell on Windows Server Core.
 
 To install the role using PowerShell run the following command in an elevated PowerShell session.
+
 ```powershell
 Install-WindowsFeature containers
 ```
@@ -81,16 +82,29 @@ For more information on Container image management see [Windows Container Images
  
 ### Create Virtual Switch
 
-Each container will need to be attached to a virtual switch in order to communicate over a network. This exercise demonstrates this process using a virtual switch configured with network address translation enabled. For more information on container networking see [Windows Container Networking] (<>).
+Each container will need to be attached to a virtual switch in order to communicate over a network. This exercise demonstrates this process using a virtual switch configured with network address translation enabled. For more information on container networking see [Windows Container Networking](../management/container_networking.md).
 Create the virtual switch using the `New-VirtualSwitch` command.
 
 ```powershell
-New-VMSwitch -Name "Virtual Switch" -SwitchType NAT -NATSubnetAddress 172.16.0.0/12
+New-VMSwitch -Name "Virtual Switch" -SwitchType NAT -NATSubnetAddress "172.16.0.0/12"
 ```
 
 ### Install Docker
 
 The Docker Daemon and CLI are not shipped with Windows, and not installed with the Windows Container feature. Docker is not a requirement for working with Windows containers. If you would like to install Docker follow the instructions in this article [Docker and Windows](./docker_windows.md).
+
+### Virtual Machine Requirements
+
+If the container host is running inside of a Hyper-V virtual machine, MAC spoofing must be enable in order for the container to receive an IP Address. To enable MAC spoofing run the following command on the Hyper-V host that is running the Windows Server Container Host.
+
+```powershell
+Get-VMNetworkAdapter -VMName <contianer host vm> | Set-VMNetworkAdapter -MacAddressSpoofing On
+```
+
+If Hyper-V containers will be created, Nested virtualization will need to be enabled on the virtualized container host. To do so run the following command.
+```powershell
+Set-VMProcessor -VMName <container host vm> -ExposeVirtualizationExtensions $true
+```
 
 ## Nano Server
 

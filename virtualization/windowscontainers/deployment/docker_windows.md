@@ -10,7 +10,7 @@ For more information on Docker and the Docker toolset visit [Docker.com](https:/
 
 The Docker Daemon and CLI are not shipped with Windows Server or Windows Server Core, and not installed with the Windows Container feature. Docker will need to be installed separately. This document will walk through manually installing the Docker daemon and Docker client. Automated methods for competing these task will also be provided. 
 
-The Docker Daemon and CLI have been developed in the Go language. At this time, docker.exe does not install as a Windows Service. There are several methods that can be used to create a Windows service, one example here using nssm.exe. 
+The Docker Daemon and CLI have been developed in the Go language. At this time, docker.exe does not install as a Windows Service. There are several methods that can be used to create a Windows service, one example shown here uses nssm.exe. 
 
 Download docker.exe from `https://aka.ms/ContainerTools` into the System32 directory on the Container Host.
 
@@ -21,10 +21,10 @@ wget https://aka.ms/ContainerTools -OutFile $env:SystemRoot\system32\docker.exe
 Create a folder `c:\programdata\docker`, in this folder create a file named `runDockerDaemon.cmd`.
 
 ```powershell
-New-Item -ItemType File -Path C:\ProgramData\Docker2\runDockerDaemon.cmd -Force
+New-Item -ItemType File -Path C:\ProgramData\Docker\runDockerDaemon.cmd -Force
 ```
 
-Copy the following text into the `runDockerDaemon.cmd` file.
+Copy the following text into the `runDockerDaemon.cmd` file. This batch file starts the Docker daemon with the command `docker daemon –D –b “Virtual Switch”`. Note that name of the switch will need to match the Virtual Switch that containers will be connected to.
 
 ```powershell
 @echo off
@@ -54,7 +54,7 @@ Extract the files, and copy `nssm-2.24\win64\nssm.exe` into the `c:\windows\syst
 Expand-Archive -Path $env:ALLUSERSPROFILE\nssm.zip $env:ALLUSERSPROFILE
 Copy-Item $env:ALLUSERSPROFILE\nssm-2.24\win64\nssm.exe $env:SystemRoot\system32
 ```
-Open a command prompt and type `nssm install`.
+Run `nssm install` to configure the Docker service.
 
 ```powershell
 start-process nssm install

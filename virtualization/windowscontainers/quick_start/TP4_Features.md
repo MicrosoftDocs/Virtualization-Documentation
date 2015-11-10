@@ -1,16 +1,85 @@
-## TP4 Feature Quick Start
+# Windows Containers Quick Start
 
-This quick start will introduce the following items:
-- Hyper-V Container
-- Container with Nano Server Base OS Image
-- Shared Folder
-- Container Resource Constraint
+This quick start will walk through basic creation and management of Windows Containers. The goal of this quick start is to provide a guided container experience while showing a practical use case. This exercise will walk through creating an IIS container image and deploying a simple web application, on IIS, in a container. This will be demonstrated on both Windows Server Containers and Hyper-V Containers.
 
-To completed this TP4 Quick Start, you need a physical or virtual system running Windows Server 2016 TP4 (Full UI, Core, or Nano), and the system must meet the nested virtualization requirements for Hyper-V containers.
+The following concepts will be demonstrated.
 
-<Insert link for configuration guide>
+- Container Management
+- Container Image Management and Creation
+- Container Networking
+- Container Data Management (Shared Folders)
+- Container Resource Management 
 
-<Insert link for Hyper-V requirements>
+The following items are needed in order to complete this quick start.
+
+- A Windows Container Host running Windows 2016 (Full UI or Core) – [Quick Start Host Deployment]().
+- The Widows Server 2016 Installation Media – [Download Location]().
+- This quick start will demonstrate both Windows Server and Hyper-V Containers. To try out Hyper-V containers these additional items will be required.
+- Window Container Host with Nested Virtualization – [Nest Virtualization](). 
+
+## Windows Server Container
+
+Windows Server Containers share a kernel with the Container Host and all other running Windows Server Container.  
+
+### Create Container
+
+At the time of TP4, Windows Server Containers running on a Windows Server 2016 with full UI or a Windows Server 2016 Core container host will require the Windows Server 2016 Core OS Image. This quick start demonstrates this configuration.To validate that the Windows Serve Core OS Image has been installed, use the `Get-ContainerImage` command. You may see multiple OS images, that is ok.
+
+```powershell
+Get-ContainerImage
+
+Name              Publisher    Version      IsOSImage
+----              ---------    -------      ---------
+NanoServer        CN=Microsoft 10.0.10586.0 True
+WindowsServerCore CN=Microsoft 10.0.10586.0 True
+```
+
+To create a Windows Server Container, use the `New-Container` command. The below example creates a container named `TP4Demo`, from the `WindowsServerCore` OS Image, and connects the container to a VM Switch named `Virtual Switch`. Note also that the output, an object representing the container is being stored in a variable `$con`.
+
+```powershell
+ $con = New-Container -Name TP4Demo -ContainerImageName WindowsServerCore -SwitchName "Virtual Switch"
+```
+
+Start the container using the `Start-Container` command.
+
+```powershell
+Start-Container $con
+```
+
+Connect to the container using the `Enter-PSSession` command. Notice that when the PowerShell session has been created with the container that the PowerShell prompt changes to reflect the container name.
+
+```powershell
+PS C:\> Enter-PSSession -ContainerId $con.ContainerId -RunAsAdministrator
+[TP4Demo]: PS C:\Windows\system32>
+```
+
+### Modify Container
+
+Now that a container has been created and that a PowerShell direct session has been created with the container, the container can be modified, and the modifications captured to create a new container image. For this example, IIS will be installed.
+
+To install the IIS role, use the `Install-WindowsFeature` command.
+
+```powershell
+Install-WindowsFeature web-server
+
+Success Restart Needed Exit Code      Feature Result
+------- -------------- ---------      --------------
+True    No             Success        {Common HTTP Features, Default Document, D...
+```
+When the IIS installation has completed, exit the container by typing `exit`. This will return the PowerShell session to that of the container host.
+
+```powershell
+[TP4Demo]: PS C:\> exit
+PS C:\>
+```
+
+Finally stop the container using the `Stop-Container` command.
+
+```powershell
+Stop-Container $con
+```
+
+### 
 
 ## Create Hyper-V Container
 
