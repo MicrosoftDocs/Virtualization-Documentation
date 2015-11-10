@@ -1,14 +1,9 @@
 # Windows Containers Quick Start
 
-This quick start will walk through basic creation and management of Windows Containers. The goal of this quick start is to provide a guided container experience while showing a practical use case. This exercise will walk through creating an IIS container image and deploying a simple web application, on IIS, in a container. This will be demonstrated on both Windows Server Containers and Hyper-V Containers.
+This quick start will walk through basic creation and management of Windows Containers. This exercise will walk through a simple deployment of IIS in both a Windows Server and Hyper-V container. In addition to container management, this exercise will introduce networking, data and resource control concepts. When complete you should have a basic understanding of simple container creation and management. 
 
-The following concepts will be demonstrated.
+**Note** – the left hand table of contents can be minimized to increase the document display.
 
-- Container Management
-- Container Image Management and Creation
-- Container Networking
-- Container Data Management (Shared Folders)
-- Container Resource Management 
 
 The following items are needed in order to complete this quick start.
 
@@ -19,7 +14,7 @@ The following items are needed in order to complete this quick start.
 
 ## Windows Server Container
 
-Windows Server Containers share a kernel with the Container Host and all other running Windows Server Container.  
+Windows Server Containers provide an isolated, portable, and resource controlled operating environment for running applications and hosting processes. Windows Server Containers provide isolation between the container, host, and other containers running on the host through process and namespace isolation. When running Windows Server Containers, the container hosts’ kernel is shared with all containers, and processes from all containers are visible on the host.
 
 ### Create Container
 
