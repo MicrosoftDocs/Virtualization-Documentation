@@ -2,8 +2,6 @@
 
 This quick start will walk through basic creation and management of Windows Containers. This exercise will walk through a simple deployment of IIS in both a Windows Server and Hyper-V container. In addition to container management, this exercise will introduce networking, data, and resource control concepts. When complete you should have a basic understanding of simple container creation and management. 
 
-**Note** – the left hand table of contents can be minimized to increase the document display.
-
 The following items are needed in order to complete this quick start.
 
 - A Windows Container Host running Windows 2016 (Full UI or Core) – Quick Start Host Deployment.
@@ -17,7 +15,7 @@ This quick start will demonstrate both Windows Server and Hyper-V Containers. To
 
 Windows Server Containers provide an isolated, portable, and resource controlled operating environment for running applications and hosting processes. Windows Server Containers provide isolation between the container, host, and other containers running on the host, through process and namespace isolation. When running Windows Server Containers, the container hosts’ kernel is shared with all containers and processes from all containers are visible on the host.
 
-### Create Container
+### Create Container <!1>
 
 At the time of TP4, Windows Server Containers running on a Windows Server 2016 with full UI or a Windows Server 2016 Core container host will require the Windows Server 2016 Core OS Image. This quick start demonstrates this configuration. 
 
@@ -51,7 +49,7 @@ PS C:\> Enter-PSSession -ContainerId $con.ContainerId -RunAsAdministrator
 [TP4Demo]: PS C:\Windows\system32>
 ```
 
-### Modify Container
+### Modify Windows Server Container
 
 Now the container can be modified, and these modifications captured to create a new container image. For this example, IIS will be installed.
 

@@ -15,7 +15,7 @@ The Windows Container feature is only available in Windows Server 2016. The cont
 ### Host and Image Support
 >>>>>>> update:virtualization/windowscontainers/deployment/deployment.md
  
-Windows Containers use an OS image as the base for any container. Two OS images are available, Windows Server Core and Nano Server. Windows Server Technical Preview 4 supports the following configuration between container host OS, container type, and OS image. For example, based on the below chart, if a Windows Server 2016 OS is deployed with full UI, the container feature will support a Windows Server Containers with the Windows Core OS image or a Hyper-V container with the Nano Server OS image.
+Windows Containers use an OS image as the base for any container. Two OS images are available, Windows Server Core and Nano Server. Windows Server Technical Preview 4 supports the following configuration between container host OS, container type, and OS image. For example, based on the below chart, if the container feature is enabled on a Windows Server 2016 OS with full UI, Windows Server Containers can be created with the Windows Core OS image, and Hyper-V container with the Nano Server OS image.
 
 <center>
 <table border="1" style="background-color:FFFFCC;border-collapse:collapse;border:1px solid FFCC00;color:000000;width:80%" cellpadding="15" cellspacing="3">
@@ -42,6 +42,7 @@ Windows Containers use an OS image as the base for any container. Two OS images 
 </table>
 </center>
 
+<<<<<<< HEAD:virtualization/windowscontainers/user_guide/deployment.md
 ## Install the Container Role
 
 <<<<<<< HEAD:virtualization/windowscontainers/user_guide/deployment.md
@@ -49,6 +50,13 @@ The container role can be installed using Windows Server Manage, PowerShell, or
 =======
 The container feature can be installed using Windows Server Manager and PowerShell on Windows Server 2016 with full UI, or PowerShell on Windows Server Core.
 >>>>>>> update:virtualization/windowscontainers/deployment/deployment.md
+=======
+## Windows Server and Server Core
+
+### Install Container Role
+
+The container feature can be installed using Windows Server Manager or PowerShell on Windows Server 2016 with full UI, and PowerShell on Windows Server Core.
+>>>>>>> Update:virtualization/windowscontainers/deployment/deployment.md
 
 To install the role using PowerShell run the following command in an elevated PowerShell session.
 
@@ -57,7 +65,15 @@ Install-WindowsFeature containers
 ```
 The system will need to be rebooted when the container role installation has completed.
 
+<<<<<<< HEAD:virtualization/windowscontainers/user_guide/deployment.md
 Use the **Get-ContainerHost** command to verify that the container role has successfully been installed:
+=======
+```powershell
+shutdown /r 
+```
+
+After the system has rebooted, use the `Get-ContainerHost` command to verify that the container role has successfully been installed:
+>>>>>>> Update:virtualization/windowscontainers/deployment/deployment.md
 
 ```powershell
 Get-ContainerHost
@@ -68,7 +84,11 @@ WIN-LJGU7HD7TEP C:\ProgramData\Microsoft\Windows\Hyper-V\Container Image Store
 ```
 ## Install OS Images
 
+<<<<<<< HEAD:virtualization/windowscontainers/user_guide/deployment.md
 An OS image is used as the base image in any Windows Server or Hyper-V containers. The image is used to deploy a container, which can then be modified, and captured into a new container image. Base OS images have been created with both Windows Server Core and Nano Server as the underlying operating system. To install the base OS images, follow these steps:
+=======
+An OS image is used as the base to any Windows Server or Hyper-V container. The image is used to deploy a container, which can then be modified, and captured into a new container image. OS images have been created with both Windows Server Core and Nano Server as the underlying operating system. To install the base OS images, follow these steps:
+>>>>>>> Update:virtualization/windowscontainers/deployment/deployment.md
 
 The two Windows Container OS images have been made available in the PowerShell OneGet repository and can be downloaded and installed using PowerShell OneGet. Follow these steps to do so:
 
@@ -146,6 +166,7 @@ Get-VMNetworkAdapter -VMName <contianer host vm> | Set-VMNetworkAdapter -MacAddr
 ```
 
 If Hyper-V containers will be created, Nested virtualization will need to be enabled on the virtualized container host. To do so run the following command.
+
 ```powershell
 Set-VMProcessor -VMName <container host vm> -ExposeVirtualizationExtensions $true
 ```
