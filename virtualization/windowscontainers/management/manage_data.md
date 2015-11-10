@@ -9,67 +9,73 @@ Shared folders have the following characteristics.
 - If a container image is taken from a container with shared folders, the data in the shared folder is not captured into the image.*
 - When a container is removed, the source folder on the host is not removed.
 
-## Manage Data PowereShell
+## Manage Data - PowerShell
 
 ### Create Shared Folder
 
-To create a shared folder, use the **Add-ContainerSharedFolder** command. 
+To create a shared folder, use the `Add-ContainerSharedFolder` command. The below example creates a directory in the container `c:\shared_data`, that is mapped to a directory on the host `c:\data_source`.
+
+> A container must be in a stopped state when adding a shared folder.
 
 ```powershell
-PS C:\> Add-ContainerSharedFolder -ContainerName DEMO -SourcePath c:\source -DestinationPath c:\source
-ContainerName SourcePath DestinationPath AccessMode
-------------- ---------- --------------- ----------
-DEMO          c:\source  c:\source       ReadWrite
+Add-ContainerSharedFolder -ContainerName DEMO -SourcePath c:\data_source -DestinationPath c:\shared_data
+
+ContainerName SourcePath 	   DestinationPath AccessMode
+------------- ---------- 	   --------------- ----------
+DEMO          c:\data_source   c:\shared_data  ReadWrite
 ```
 
 ### Create a Read Only Shared Folder*
 
 ```powershell
-PS C:\> Add-ContainerSharedFolder -ContainerName SFRO -SourcePath c:\sf1 -DestinationPath c:\sf2 -AccessMode ReadOnly
+Add-ContainerSharedFolder -ContainerName DEMO -SourcePath c:\sf1 -DestinationPath c:\sf2 -AccessMode ReadOnly
 
 ContainerName SourcePath DestinationPath AccessMode
 ------------- ---------- --------------- ----------
-SFRO          c:\sf1     c:\sf2          ReadOnly
+DEMO         c:\sf1     c:\sf2          ReadOnly
 ```
 
 ### List Shared Folders
 
-To see a list of shared folders for a particular container use the **Get-ContainerSharedFolder** command.
+To see a list of shared folders for a particular container use the `Get-ContainerSharedFolder` command.
 
 ```powershell
-PS C:\> Get-ContainerSharedFolder -ContainerName DEMO2
+Get-ContainerSharedFolder -ContainerName DEMO2
+
 ContainerName SourcePath DestinationPath AccessMode
 ------------- ---------- --------------- ----------
-DEMO2         c:\source  c:\source       ReadWrite
+DEMO         c:\source  c:\source       ReadWrite
 ```
 
 ### Modify Shared Folder*
 
-To modify and existing shared folder configuration, use the Set-ContainerSharedFolder command.
+To modify and existing shared folder configuration, use the `Set-ContainerSharedFolder` command.
 
 ```powershell
-PS C:\> Set-ContainerSharedFolder -ContainerName SFRO -SourcePath c:\sf1 -DestinationPath c:\sf1
+Set-ContainerSharedFolder -ContainerName SFRO -SourcePath c:\sf1 -DestinationPath c:\sf1
 ```
 
 ### Remove Shared Folder*
 
-To remove a shared folder, use the **Remove-ContainerSharedFolder** command.
+To remove a shared folder, use the `Remove-ContainerSharedFolder` command.
+
+> A container must be in a stopped state when removing shared folder
 
 ```powershell
-PS C:\> Remove-ContainerSharedFolder -ContainerName DEMO2 -SourcePath c:\source -DestinationPath c:\source
+Remove-ContainerSharedFolder -ContainerName DEMO2 -SourcePath c:\source -DestinationPath c:\source
 ```
-## Manage Data PowereShell
+## Manage Data - Docker
 
 ### Mounting Volumes
 
-When managing Windows Containers with Docker shared folders or volumes can be created using the **-v** option.
+When managing Windows Containers with Docker, volumes can be mounted using the `-v` option.
 
-In the below example the source folder is c:\sf1 and destination folder c:\fs1.
+In the below example the source folder is c:\source and destination folder c:\destination.
 
 ```powershell
-C:\>docker run -it -v c:\sf1:c:\sf1 1f62aaf73140 cmd
+docker run -it -v c:\source:c:\destination 1f62aaf73140 cmd
 ```
 
 For more information on managing data in containers with Docker see [Docker Volumes on Docker.com](https://docs.docker.com/userguide/dockervolumes/)
 
-*At the time of writing this functionality may not be fully functional.
+*At the time of writing this functionality may not be fully functional. For a list of current issues and workarounds see [Work in Progress](./reference/work_in_progress.md)

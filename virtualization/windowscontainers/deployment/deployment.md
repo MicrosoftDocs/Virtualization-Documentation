@@ -50,7 +50,8 @@ The system will need to be rebooted when the container role installation has com
 Use the `Get-ContainerHost` command to verify that the container role has successfully been installed:
 
 ```powershell
-PS C:\> Get-ContainerHost
+Get-ContainerHost
+
 Name            ContainerImageRepositoryLocation
 ----            --------------------------------
 WIN-LJGU7HD7TEP C:\ProgramData\Microsoft\Windows\Hyper-V\Container Image Store
@@ -70,10 +71,11 @@ Download and install an OS image from the PowerShell OneGet package manager.
 Install-ContainerImage -Name ImageName
 ```
 
-Verify that the images have been installed using the **Get-ContainerImage** command.
+Verify that the images have been installed using the `Get-ContainerImage` command.
 
 ```powershell
-PS C:\> Get-ContainerImage
+Get-ContainerImage
+
 Name              Publisher    Version         IsOSImage
 ----              ---------    -------         ---------
 NanoServer        CN=Microsoft 10.0.10572.1001 True
@@ -141,10 +143,11 @@ Download and install an OS image from the PowerShell OneGet package manager. NOT
 Install-ContainerImage -Name ImageName
 ```
 
-Verify that the images have been installed using the **Get-ContainerImage** command.
+Verify that the images have been installed using the `Get-ContainerImage` command.
 
 ```powershell
-PS C:\> Get-ContainerImage
+Get-ContainerImage
+
 Name              Publisher    Version         IsOSImage
 ----              ---------    -------         ---------
 NanoServer        CN=Microsoft 10.0.10572.1001 True

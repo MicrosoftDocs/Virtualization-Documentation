@@ -1,6 +1,6 @@
 # Management Interoperability
 
-For the most part, Windows Containers created with PowerShell need to be managed with PowerShell and those created with Docker need to be managed with Docker. That said, the Host Computing PowerShell module provides the ability to discover and stop containers regardless of how they have been created. This module performs like a 'task manage' for containers running on a container host.
+For the most part, Windows Containers created with PowerShell need to be managed with PowerShell and those created with Docker need to be managed with Docker. That said, the Host Computing PowerShell module provides the ability to discover and stop **running** containers, regardless of how they have been created. This module performs like a 'task manager' for containers running on a container host.
 
 > The HCS module is in early preview, functionality will change.
 

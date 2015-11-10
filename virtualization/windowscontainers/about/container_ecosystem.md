@@ -1,7 +1,4 @@
-﻿ms.ContentId: fbd49f81-b6cb-4030-9296-413d68a9428f
-title: Container Ecosystem
-
-# Building a Container Ecosystem
+﻿# Building a Container Ecosystem
 
 To understand why building a container ecosystem is so important, let's first talk about Docker.
 

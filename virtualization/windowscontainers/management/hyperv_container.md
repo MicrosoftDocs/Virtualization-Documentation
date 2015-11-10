@@ -81,19 +81,19 @@ Handles  NPM(K)    PM(K)      WS(K) VM(M)   CPU(s)     Id  SI ProcessName
 Create New Windows Server Container:
 
 ```powershell
-$con = New-Container -Name WINCONT -ContainerImageName WindowsServerCore -SwitchName "Virtual Switch"
+New-Container -Name WINCONT -ContainerImageName WindowsServerCore -SwitchName "Virtual Switch"
 ```
 
 Start the Container:
 
 ```powershell
-PS C:\> Start-Container $con
+Start-Container $con
 ```
 
 Create Remote PS Session with the container.
 
 ```powershell
-PS C:\> Enter-PSSession -ContainerId $con.ContainerId –RunAsAdministrator
+Enter-PSSession -ContainerId $con.ContainerId –RunAsAdministrator
 ```
 
 From the remote container session return all processes with a process name of csrss. Take note of the process id for the running csrss process.
@@ -109,7 +109,7 @@ Handles  NPM(K)    PM(K)      WS(K) VM(M)   CPU(s)     Id  SI ProcessName
 Now return the list of csrss process form the container host. Notice that the same csrss process is also returned from the container host. This demonstrates the shared etc. etc. etc.
 
 ```powershell
-PS C:\> get-process | where {$_.ProcessName -eq 'csrss'}
+get-process | where {$_.ProcessName -eq 'csrss'}
 
 Handles  NPM(K)    PM(K)      WS(K) VM(M)   CPU(s)     Id  SI ProcessName
 -------  ------    -----      ----- -----   ------     --  -- -----------
@@ -123,7 +123,7 @@ Handles  NPM(K)    PM(K)      WS(K) VM(M)   CPU(s)     Id  SI ProcessName
 Return a list of csrss process form the container host.
 
 ```powershell
-PS C:\> get-process | where {$_.ProcessName -eq 'csrss'}
+get-process | where {$_.ProcessName -eq 'csrss'}
 
 Handles  NPM(K)    PM(K)      WS(K) VM(M)   CPU(s)     Id  SI ProcessName
 -------  ------    -----      ----- -----   ------     --  -- -----------
@@ -135,19 +135,19 @@ Handles  NPM(K)    PM(K)      WS(K) VM(M)   CPU(s)     Id  SI ProcessName
 Now, create a Hyper-V container.
 
 ```powershell
-PS C:\> $con = New-Container -Name HYPVCON -ContainerImageName NanoServer -SwitchName "Virtual Switch" -RuntimeType HyperV
+$con = New-Container -Name HYPVCON -ContainerImageName NanoServer -SwitchName "Virtual Switch" -RuntimeType HyperV
 ```
 
 Start the Hyper-V Container
 
 ```powershell
-PS C:\> Start-Container $con
+Start-Container $con
 ```
 
 Create a remote PS session with the Hyper-V container.
 
 ```powershell
-PS C:\> Enter-PSSession -ContainerId $con.ContainerId –RunAsAdministrator
+Enter-PSSession -ContainerId $con.ContainerId –RunAsAdministrator
 ```
 
 Return a list of csrss process running inside the Hyper-V container. Take note of the process id for the csrss process (956 in the below example).
@@ -163,7 +163,7 @@ Handles  NPM(K)    PM(K)      WS(K) VM(M)   CPU(s)     Id  SI ProcessName
 Now return a list of csrss process on the container host. Notice, unlike with the Windows Server Container, where the csrss process was visible both from within the container and also from the container host, the Hyper-V container process is only visible from within the container itself. This is because a Hyper-V Container is encapsulated in a utility virtual machine and the process is isolated to only that utility virtual mahchine.
 
 ```powershell
-PS C:\> get-process | where {$_.ProcessName -eq 'csrss'}
+get-process | where {$_.ProcessName -eq 'csrss'}
 
 Handles  NPM(K)    PM(K)      WS(K) VM(M)   CPU(s)     Id  SI ProcessName
 -------  ------    -----      ----- -----   ------     --  -- -----------
