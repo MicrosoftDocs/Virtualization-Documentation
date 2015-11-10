@@ -122,9 +122,13 @@ Start-Container $con
 
 ### Configure Network
 
-Depending on the configuration of the container host and network, a container will either receive an IP address from a DHCP server or the container host itself using network address translation (NAT). This guided walk through is configured to use NAT. In this configuration a port from the container is mapped to a port on the container host. The application hosted in the container is then accessed through the IP address / name of the container host. For example if port 80 from the container was mapped to port 55534 on the container host, a typical http request to the application would look like this http://contianerhost:55534. This allows a container host to run many containers and allow for the applications in these containers to respond to requests using the same port.
+The default network configuration for the Windows Container Quick Starts is to have the containers connected to a virtual switch configured with Network Address Translation (NAT). Because of this, in order to connect to an application running inside of a container, a port on the container host needs to be mapped to a port on the container. This can be done with the `Add-NetNatStaticMapping` command.
 
-For this lab we need to create this port mapping. In order to do so we will need to know the IP address of the container and the internal (application) and external (container host) ports that will be configured. For this example let’s keep it simple and map port 80 from the container to port 80 of the host. Using the Add-NetNatStaticMapping command, the –InternalIPAddress will be the IP address of the container which for this walkthrough should be ‘172.16.0.2’.
+For this exercise, a website will be hosted on IIS running inside of a container. To access the website on port 80, map port 80 of the container host to port 80 of the container.
+
+> NOTE – if running multiple containers on your host you will need to verify the IP address of the container and also that port 80 of the host is not already mapped to a running container. 
+
+Run the following to return the IP address of the container.
 
 ```powershell
 Invoke-Command -ContainerId $con.ContainerId {ipconfig}
@@ -161,7 +165,9 @@ If you are working from Azure and have not already created a Network Security Gr
 
 
 
-## Create Hyper-V Container
+## Hyper-V Container
+
+### Create Container
 
 At the time of TP4 Hyper-V containers must use a Nano Server Core OS Image. To validate that the Nano Server Core OS image has been installed on the Container Host, use the `Get-ContainerImage` command.
 
@@ -183,7 +189,7 @@ When the container has been created, do not start it.
 
 For more information on managing Windows Containers, see the Managing Containers Technical Guide - <>
 
-## Configure Container Network
+### Configure Container Network
 
 The default network configuration for the Windows Container Quick Starts is to have the containers connected to a virtual switch configured with Network Address Translation (NAT). Because of this, in order to connect to an application running inside of a container, a port on the container host needs to be mapped to a port on the container. This can be done with the **Add-NetNatStaticMapping** command.
 
@@ -204,7 +210,7 @@ if (!(Get-NetFirewallRule | where {$_.Name -eq "TCP80"})) {
 }
 ```
 
-## Create a Shared Folder
+### Create a Shared Folder
 
 Create a folder at the root of your container named ‘shared’.
 ```powershell
@@ -237,7 +243,7 @@ When in the remote session, notice that a directory has been created ‘c:\share
 
 For more information on Shared Folders, see the [Shared Folders Technical Guide](../management/manage_data.md)
 
-## Install IIS in the Container
+### Install IIS
 
 Because your container is running a Windows Server Nano OS Image, to install IIS we will need to use IIS packages for Nano Server.
 
@@ -286,7 +292,7 @@ Now, using an internet browser, browse to the IP Address of the container host. 
 
 ![](media/iis.png)
 
-## Create IIS Container Image
+### Create IIS Image
 
 Stop the Container.
 
@@ -312,7 +318,7 @@ NanoServer        CN=Microsoft 10.0.10586.1000 True
 WindowsServerCore CN=Microsoft 10.0.10586.1000 True
 ```
 
-## Deploy IIS Application
+### Deploy IIS Application
 
 So that you can re-use existing port mapping rules, ensure that all containers are stopped.
 
@@ -345,9 +351,4 @@ Browse to the IP Address of the container host and you will now see the ‘Hello
 
 ![](media/iisapp.png)
 
-## Container Resource Constraint
-
-Test Image
-
-![](media/docker1.png)
-
+### Container Resource Constraint
