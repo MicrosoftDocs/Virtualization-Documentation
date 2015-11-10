@@ -12,10 +12,10 @@ The following concepts will be demonstrated.
 
 The following items are needed in order to complete this quick start.
 
-- A Windows Container Host running Windows 2016 (Full UI or Core) – [Quick Start Host Deployment]().
-- The Widows Server 2016 Installation Media – [Download Location]().
+- A Windows Container Host running Windows 2016 (Full UI or Core) – [Quick Start Host Deployment].
+- The Widows Server 2016 Installation Media – [Download Location].
 - This quick start will demonstrate both Windows Server and Hyper-V Containers. To try out Hyper-V containers these additional items will be required.
-- Window Container Host with Nested Virtualization – [Nest Virtualization](). 
+- Window Container Host with Nested Virtualization – [Nest Virtualization]. 
 
 ## Windows Server Container
 
@@ -79,7 +79,73 @@ Finally stop the container using the `Stop-Container` command.
 Stop-Container $con
 ```
 
-### 
+### Create IIS Image
+
+With a container created from the Windows Server Core OS image, and the modified to include IIS, you can now ‘capture’ the state of this container as a new container image. This new image can then be used to deploy IIS ready containers.
+
+To capture the state of the container into a new image, use the `New-ContainerImage` command.
+
+This example creates a new container image named `WindowsServerCoreIIS`, with a publisher of `Demo`, and a version `1.0`.
+
+```powershell
+New-ContainerImage -Container $con -Name WindowsServerCoreIIS -Publisher Demo -Version 1.0
+
+Name                 Publisher Version IsOSImage
+----                 --------- ------- ---------
+WindowsServerCoreIIS CN=Demo   1.0.0.0 False
+```
+
+Run `Get-ContainerImage` to verify that the image has been created.
+
+Take note the in this output the new container image has a property of `IsOSImage = False`. Because the new IIS image was derived from the `WindowsServerCore` image, a dependency is created between the IIS image and the WindowsServerCore image. For more information on Container images see [Manage Container Images].
+
+```powershell
+Get-ContainerImage
+
+Name                 Publisher    Version      IsOSImage
+----                 ---------    -------      ---------
+WindowsServerCoreIIS CN=Demo      1.0.0.0      False
+NanoServer           CN=Microsoft 10.0.10586.0 True
+WindowsServerCore    CN=Microsoft 10.0.10586.0 True
+
+```
+
+### Create IIS Container
+
+```powershell
+$con = New-Container -Name IIS -ContainerImageName WindowsServerCoreIIS -SwitchName "Virtual Switch"
+```    
+
+```powershell
+Start-Container $con
+```
+
+### Configure Network
+
+Depending on the configuration of the container host and network, a container will either receive an IP address from a DHCP server or the container host itself using network address translation (NAT). This guided walk through is configured to use NAT. In this configuration a port from the container is mapped to a port on the container host. The application hosted in the container is then accessed through the IP address / name of the container host. For example if port 80 from the container was mapped to port 55534 on the container host, a typical http request to the application would look like this http://contianerhost:55534. This allows a container host to run many containers and allow for the applications in these containers to respond to requests using the same port.
+
+For this lab we need to create this port mapping. In order to do so we will need to know the IP address of the container and the internal (application) and external (container host) ports that will be configured. For this example let’s keep it simple and map port 80 from the container to port 80 of the host. Using the Add-NetNatStaticMapping command, the –InternalIPAddress will be the IP address of the container which for this walkthrough should be ‘172.16.0.2’.
+
+```powershell
+Invoke-Command -ContainerId $con.ContainerId {ipconfig}
+
+Windows IP Configuration
+
+
+Ethernet adapter vEthernet (Virtual Switch-04E1CA63-4C67-4457-B065-6ED7E99EC314-0):
+
+   Connection-specific DNS Suffix  . : corp.microsoft.com
+   Link-local IPv6 Address . . . . . : fe80::a9ab:8c0d:9da2:1a9a%17
+   IPv4 Address. . . . . . . . . . . : 172.16.0.2
+   Subnet Mask . . . . . . . . . . . : 255.240.0.0
+   Default Gateway . . . . . . . . . : 172.16.0.1
+```
+
+To create the NAT port mapping, use the `Add-NetNatStaticMapping` command. The following example maps port 80 of the hosts IP Address to port 80 of the containers IP Address. 
+
+```powershell
+Add-NetNatStaticMapping -NatName "ContainerNat" -Protocol TCP -ExternalIPAddress 0.0.0.0 -InternalIPAddress 172.16.0.2 -InternalPort 80 -ExternalPort 80
+```
 
 ## Create Hyper-V Container
 
