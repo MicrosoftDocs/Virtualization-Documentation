@@ -10,7 +10,11 @@ For more information on Docker and the Docker toolset visit [Docker.com](https:/
 
 The Docker Daemon and CLI are not shipped with Windows Server or Windows Server Core, and not installed with the Windows Container feature. Docker will need to be installed separately. This document will walk through manually installing the Docker daemon and Docker client. Automated methods for competing these task will also be provided. 
 
+<<<<<<< HEAD:virtualization/windowscontainers/user_guide/docker_windows.md
 The Docker Daemon and CLI have been developed in the Go language. At this time, docker.exe does not install as a Windows Service. There are several methods that can be used to create a Windows service, we will give one example here using nssm.exe. 
+=======
+The Docker Daemon and CLI have been developed in the Go language. At this time, docker.exe does not install as a Windows Service. There are several methods that can be used to create a Windows service, one example shown here uses nssm.exe. 
+>>>>>>> Updates:virtualization/windowscontainers/deployment/docker_windows.md
 
 <<<<<<< HEAD:virtualization/windowscontainers/user_guide/docker_windows.md
 Download docker.exe from "https://aka.ms/ContainerTools".
@@ -31,10 +35,14 @@ wget etc etc
 Create a folder `c:\programdata\docker`, in this folder create a file named `runDockerDaemon.cmd`.
 
 ```powershell
+<<<<<<< HEAD:virtualization/windowscontainers/user_guide/docker_windows.md
 wget etc etc
+=======
+New-Item -ItemType File -Path C:\ProgramData\Docker\runDockerDaemon.cmd -Force
+>>>>>>> Updates:virtualization/windowscontainers/deployment/docker_windows.md
 ```
 
-Copy the following text into the `runDockerDaemon.cmd` file.
+Copy the following text into the `runDockerDaemon.cmd` file. This batch file starts the Docker daemon with the command `docker daemon –D –b “Virtual Switch”`. Note that name of the switch will need to match the Virtual Switch that containers will be connected to.
 
 ```powershell
 @echo off
@@ -64,9 +72,13 @@ Extract the files, and copy `nssm-2.24\win64\nssm.exe` into the `c:\windows\syst
 wget etc etc
 ```
 <<<<<<< HEAD:virtualization/windowscontainers/user_guide/docker_windows.md
+<<<<<<< HEAD:virtualization/windowscontainers/user_guide/docker_windows.md
 =======
 Open a command prompt and type `nssm install`.
 >>>>>>> Update:virtualization/windowscontainers/deployment/docker_windows.md
+=======
+Run `nssm install` to configure the Docker service.
+>>>>>>> Updates:virtualization/windowscontainers/deployment/docker_windows.md
 
 Open a command prompt and type **nssm install**.
 
