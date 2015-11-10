@@ -18,5 +18,5 @@ For detailed deployment and management documentation see the following documents
 
 For support and community interaction:
 
-- Windows Container Forum - [Container Forum](reference/azure_setup.md)
-- Additional Container Resources - [Additional Resources](reference/azure_setup.md)
+- Windows Container Forum - [Container Forum](https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers)
+
