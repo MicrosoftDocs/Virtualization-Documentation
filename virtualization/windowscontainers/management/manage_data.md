@@ -78,4 +78,4 @@ docker run -it -v c:\source:c:\destination 1f62aaf73140 cmd
 
 For more information on managing data in containers with Docker see [Docker Volumes on Docker.com](https://docs.docker.com/userguide/dockervolumes/)
 
-*At the time of writing this functionality may not be fully functional. For a list of current issues and workarounds see [Work in Progress](./reference/work_in_progress.md)
+*At the time of writing this functionality may not be fully functional. For a list of current issues and workarounds see [Work in Progress](../about/work_in_progress.md)
