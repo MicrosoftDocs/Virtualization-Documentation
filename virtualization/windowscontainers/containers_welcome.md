@@ -11,10 +11,10 @@ To quickly get started with Windows Containers see the quick start guides:
 
 For detailed deployment and management documentation see the following documents:
 
-- Deploy Windows Container Host – [Deploy Container Host](deployment/azure_setup.md)
-- Managing Containers – [Manage Containers](management/azure_setup.md)
-- Managing Container Images – [Manage Images](management/azure_setup.md)
-- Manage Container Networking – [Manage Networking](management/azure_setup.md)
+- Deploy Windows Container Host – [Deploy Container Host](deployment/deployment.md)
+- Managing Containers – [Manage Containers](management/manage_containers.md)
+- Managing Container Images – [Manage Images](management/manage_images.md)
+- Manage Container Networking – [Manage Networking](management/container_networking.md)
 
 For support and community interaction:
 
