@@ -1,3 +1,4 @@
+<<<<<<< HEAD:virtualization/windowscontainers/user_guide/deployment.md
 ms.ContentId: a7b0cbb8-05d4-4f43-b5e1-7f3d8d83cce1
 title: Container Feature Deployment
 
@@ -6,8 +7,15 @@ title: Container Feature Deployment
 The Windows Container feature is only available in Windows Server 2016. The container feature can be installed on Windows Server 2016, Windows Server 2016 Core and Nano Server. The Container feature includes support for two different types of containers, Windows Server Containers and Hyper-V Containers, both of which have slightly different configuation requirements. This document will detail configuration requirements, deployment, and configuration of the Windows Containers feature. Topics include:
 
 ## Host and Image Support
+=======
+## Container Host Requirements
+
+The Windows Container feature is only available in Windows Server 2016. The container feature can be installed on Windows Server 2016, Windows Server 2016 Core, and Nano Server. The Container feature includes support for two different types of containers, Windows Server Containers and Hyper-V Containers, both of which have slightly different configuation requirements. This document will detail configuration requirements, deployment, and configuration of the Windows Containers feature.
+
+### Host and Image Support
+>>>>>>> update:virtualization/windowscontainers/deployment/deployment.md
  
- The Windows Server Technical Preview 4 supports the following Host and Base OS configurations. 
+Windows Containers use an OS image as the base for any container. Two OS images are available, Windows Server Core and Nano Server. Windows Server Technical Preview 4 supports the following configuration between container host OS, container type, and OS image. For example, based on the below chart, if a Windows Server 2016 OS is deployed with full UI, the container feature will support a Windows Server Containers with the Windows Core OS image or a Hyper-V container with the Nano Server OS image.
 
 <center>
 <table border="1" style="background-color:FFFFCC;border-collapse:collapse;border:1px solid FFCC00;color:000000;width:80%" cellpadding="15" cellspacing="3">
@@ -36,9 +44,13 @@ The Windows Container feature is only available in Windows Server 2016. The cont
 
 ## Install the Container Role
 
+<<<<<<< HEAD:virtualization/windowscontainers/user_guide/deployment.md
 The container role can be installed using Windows Server Manage, PowerShell, or 
+=======
+The container feature can be installed using Windows Server Manager and PowerShell on Windows Server 2016 with full UI, or PowerShell on Windows Server Core.
+>>>>>>> update:virtualization/windowscontainers/deployment/deployment.md
 
-To install the role using PowerShell run the following command in a PowerShell session.
+To install the role using PowerShell run the following command in an elevated PowerShell session.
 ```powershell
 Install-WindowsFeature containers
 ```
