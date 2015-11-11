@@ -1,0 +1,7 @@
+{
+    "docset_files": [
+            "virtualization/community/.openpublishing.build.docset.config.json",
+            "virtualization/hyperv_on_windows/.openpublishing.build.docset.config.json",
+            "virtualization/windowscontainers/.openpublishing.build.docset.config.json"
+    ]
+}
