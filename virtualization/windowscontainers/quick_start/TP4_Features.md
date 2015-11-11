@@ -15,7 +15,7 @@ This quick start will demonstrate both Windows Server and Hyper-V Containers. To
 
 Windows Server Containers provide an isolated, portable, and resource controlled operating environment for running applications and hosting processes. Windows Server Containers provide isolation between the container, host, and other containers running on the host, through process and namespace isolation. When running Windows Server Containers, the container hosts’ kernel is shared with all containers and processes from all containers are visible on the host.
 
-### Create Container <!1>
+### Create Container
 
 At the time of TP4, Windows Server Containers running on a Windows Server 2016 with full UI or a Windows Server 2016 Core container host will require the Windows Server 2016 Core OS Image. This quick start demonstrates this configuration. 
 

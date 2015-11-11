@@ -84,13 +84,14 @@ WindowsServerCore CN=Microsoft 10.0.10572.1001 True
 ```  
 For more information on Container image management see [Windows Container Images](../management/manage_images.md).
  
-### Create Virtual Switch
+### Configure Networking
 
-Each container will need to be attached to a virtual switch in order to communicate over a network. This exercise demonstrates this process using a virtual switch configured with network address translation enabled. For more information on container networking see [Windows Container Networking](../management/container_networking.md).
-Create the virtual switch using the `New-VirtualSwitch` command.
+Each container will need to be attached to a virtual switch in order to communicate over a network. A virtual switch is created with the `New-VMSwitch` Command. Containers support a Virtual Switch of Type `External` or Type `NAT`. For more information on container networking see [Windows Container Networking](../management/container_networking.md).
+
+This example creates a virtual switch with the name “Virtual Switch”, a type of NAT, and Nat Subnet of 172.16.0.0/12. 
 
 ```powershell
-New-VMSwitch -Name "Virtual Switch" -SwitchType NAT -NATSubnetAddress "172.16.0.0/12"
+New-VMSwitch -Name "Virtual Switch" -SwitchType NAT -NATSubnetAddress 172.16.0.0/12
 ```
 
 In addition to creating the Virtual Switch, if the switch type is NAT, a NAT object will need to be created. This is completed using the `New-NetNat` command. The NAT object will be used when configuring NAT port mappings.
@@ -113,23 +114,32 @@ Store                            : Local
 Active                           : True
 ```
 
-### Install Docker
-
-The Docker Daemon and CLI are not shipped with Windows, and not installed with the Windows Container feature. Docker is not a requirement for working with Windows containers. If you would like to install Docker follow the instructions in this article [Docker and Windows](./docker_windows.md).
-
-### Virtual Machine Requirements
-
-If the container host is running inside of a Hyper-V virtual machine, MAC spoofing must be enable in order for the container to receive an IP Address. To enable MAC spoofing run the following command on the Hyper-V host that is running the Windows Server Container Host.
+Finally, if the container host is running inside of a Hyper-V virtual machine, MAC spoofing must be enable in order for the container to receive an IP Address. To enable MAC spoofing run the following command on the Hyper-V host that is running the Windows Server Container Host.
 
 ```powershell
 Get-VMNetworkAdapter -VMName <contianer host vm> | Set-VMNetworkAdapter -MacAddressSpoofing On
 ```
 
-If Hyper-V containers will be created, Nested virtualization will need to be enabled on the virtualized container host. To do so run the following command.
+### Hyper-V Container Requirements
+
+If Hyper-V containers will be created the following items will be required.
+
+Enable the Hyper-V Role. The server will need to be rebooted after Hypre-V has been installed.
+
+```powershell
+Install-WindowsFeature hyper-v
+```
+If the container host is running in a virtual machine, and will also be hosting Hyper-V containers, nested virtualization will need to be enabled.
+
+> The virtual machines must be turned off when running this command.
 
 ```powershell
 Set-VMProcessor -VMName <container host vm> -ExposeVirtualizationExtensions $true
 ```
+
+### Install Docker
+
+The Docker Daemon and CLI are not shipped with Windows, and not installed with the Windows Container feature. Docker is not a requirement for working with Windows containers. If you would like to install Docker follow the instructions in this article [Docker and Windows](./docker_windows.md).
 
 ## Nano Server
 
