@@ -7,7 +7,7 @@ The following items are needed in order to complete this quick start.
 - A Windows Container Host running Windows 2016 (Full UI or Core) – Quick Start Host Deployment.
 - The Widows Server 2016 Installation Media – Download Location.
 
-This quick start will demonstrate both Windows Server and Hyper-V Containers. To try out Hyper-V containers these additional items will be required.
+This quick start will demonstrate both Windows Server and Hyper-V Containers. To try out Hyper-V containers these additional items will be required.Also note that at this time Hyper-V contianers 
 
 - Window Container Host with Nested Virtualization – Nest Virtualization. 
 
@@ -77,7 +77,7 @@ Stop-Container $con
 
 ### Create IIS Image
 
-With a container created from the Windows Server Core OS image, and the modified to include IIS, you can now ‘capture’ the state of this container as a new container image. This new image can then be used to deploy IIS ready containers.
+The state of this container can now be captured into a new container image. This new image can then be used to deploy IIS ready containers.
 
 To capture the state of the container into a new image, use the `New-ContainerImage` command.
 
@@ -188,43 +188,21 @@ Browse again to the IP Address of the container host and you will now see the �
 At the time of TP4 Hyper-V containers must use a Nano Server Core OS Image. To validate that the Nano Server Core OS image has been installed on the Container Host, use the `Get-ContainerImage` command.
 
 ```powershell
-PS C:\> Get-ContainerImage
+Get-ContainerImage
 Name              Publisher    Version         IsOSImage
 ----              ---------    -------         ---------
 NanoServer        CN=Microsoft 10.0.10586.1000 True
-WindowsServerCore CN=Microsoft 10.0.10586.1000 True
 ```
 
-To create a Hyper-V container use the **New-Container** command specifying a Runtime of HyperV.
+To create a Hyper-V container use the `New-Container` command specifying a Runtime of HyperV.
 
 ```powershell
-PS C:\> $con = New-Container -Name HYPV -ContainerImageName NanoServer -SwitchName "Virtual Switch" -RuntimeType HyperV
+$con = New-Container -Name HYPV -ContainerImageName NanoServer -SwitchName "Virtual Switch" -RuntimeType HyperV
 ```
 
 When the container has been created, do not start it.
 
 For more information on managing Windows Containers, see the Managing Containers Technical Guide - <>
-
-### Configure Container Network
-
-The default network configuration for the Windows Container Quick Starts is to have the containers connected to a virtual switch configured with Network Address Translation (NAT). Because of this, in order to connect to an application running inside of a container, a port on the container host needs to be mapped to a port on the container. This can be done with the **Add-NetNatStaticMapping** command.
-
-For this exercise, a website will be hosted on IIS running inside of a container. To access the website on port 80, map port 80 of the container host to port 80 of the container.
-
-> NOTE – if running multiple containers on your host you will need to verify the IP address of the container and also that port 80 of the host is not already mapped to a running container. 
-
-To create the port mapping, run the following command.
-
-```powershell
-Add-NetNatStaticMapping -NatName "ContainerNat" -Protocol TCP -ExternalIPAddress 0.0.0.0 -InternalIPAddress 172.16.0.2 -InternalPort 80 -ExternalPort 80
-```
-You will also need to open up port 80 on the container host.
-
-```powershell
-if (!(Get-NetFirewallRule | where {$_.Name -eq "TCP80"})) {
-    New-NetFirewallRule -Name "TCP80" -DisplayName "HTTP on TCP/80" -Protocol tcp -LocalPort 80 -Action Allow -Enabled True
-}
-```
 
 ### Create a Shared Folder
 
@@ -349,6 +327,30 @@ Start the container.
 ```powershell
 PS C:\> Start-Container $con
 ```
+
+
+### Configure Container Network
+
+The default network configuration for the Windows Container Quick Starts is to have the containers connected to a virtual switch configured with Network Address Translation (NAT). Because of this, in order to connect to an application running inside of a container, a port on the container host needs to be mapped to a port on the container. This can be done with the **Add-NetNatStaticMapping** command.
+
+For this exercise, a website will be hosted on IIS running inside of a container. To access the website on port 80, map port 80 of the container host to port 80 of the container.
+
+> NOTE – if running multiple containers on your host you will need to verify the IP address of the container and also that port 80 of the host is not already mapped to a running container. 
+
+To create the port mapping, run the following command.
+
+```powershell
+Add-NetNatStaticMapping -NatName "ContainerNat" -Protocol TCP -ExternalIPAddress 0.0.0.0 -InternalIPAddress 172.16.0.2 -InternalPort 80 -ExternalPort 80
+```
+You will also need to open up port 80 on the container host.
+
+```powershell
+if (!(Get-NetFirewallRule | where {$_.Name -eq "TCP80"})) {
+    New-NetFirewallRule -Name "TCP80" -DisplayName "HTTP on TCP/80" -Protocol tcp -LocalPort 80 -Action Allow -Enabled True
+}
+```
+
+### Create Application
 
 Create a remote PowerShell session with the container.
 
