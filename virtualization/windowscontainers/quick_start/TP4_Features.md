@@ -234,7 +234,7 @@ ls c:\iisinstall
 
 ### Create IIS Image <!--2-->
 
-Because the container is running a Nano Server OS Image, the Nano Server IIS packages will be needed to install IIS. These can be found on the Windows Sever Installation media under the `NanoServer\Packages` directory.
+Because the container is running a Nano Server OS Image, the Nano Server IIS packages will be needed to install IIS. These can be found on the Windows Sever Installation media, under the `NanoServer\Packages` directory.
 
 Copy `Microsoft-NanoServer-IIS-Package.cab` from `NanoServer\Packages` to `c:\source` on the container host. 
 
@@ -258,6 +258,8 @@ Create a file in the shared folder named unattend.xml, copy these lines into the
 </unattend>
 ```
 
+Back in the remote session on the container, note that the IIS packages and unattended.xml files are now visible in the c:\iisinstall directory.
+
 ```powershell
 [HYPV]: PS C:\> ls c:\iisinstall
 
@@ -275,18 +277,18 @@ Run the following command to install IIS.
 ```powershell
 dism /online /apply-unattend:c:\iisinstall\unattend.xml
 ```
+The container will need to be restarted in order for the IIS installation to complete.
 
-When the IIS installation has completed, exit the container by typing `exit`. This will return the PowerShell session to that of the container host.
+First Exit the container.
 
 ```powershell
 [HYPV]: PS C:\> exit
 PS C:\>
 ```
-
-Finally stop the container using the `Stop-Container` command.
+Run the following to reboot the container, which completes the IIS installation, and then finally shuts down the container.
 
 ```powershell
-Stop-Container $con
+Stop-Container $con; Start-Container $con; Stop-Container $con
 ```
 
 The state of this container can now be captured into a new container image using the `New-ContainerImage` command.
