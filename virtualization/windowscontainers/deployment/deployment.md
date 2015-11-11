@@ -31,7 +31,7 @@ Windows Containers use an OS image as the base for any container. Two OS images 
 </table>
 
 
-# Container Deployment Checklist
+# Container Deployment Checklist Windows Server / Windows Server Core
 
 <table border="1" style="background-color:FFFFCC;border-collapse:collapse;border:1px solid FFCC00;color:000000;width:90%" cellpadding="15" cellspacing="3">
 <tr valign="top">
@@ -71,6 +71,46 @@ Windows Containers use an OS image as the base for any container. Two OS images 
 
 <tr valign="top">
 <td><center>[Enable Nested Virtualization](#nest)</center></td>
+<td>If the container host is running on a Hyper-V virtual machine and will also be hosting Hyper-V containers, nested virtualization will need to be enabled.</td>
+<tr>
+
+</table>
+
+# Container Deployment Checklist Nano Server
+
+<table border="1" style="background-color:FFFFCC;border-collapse:collapse;border:1px solid FFCC00;color:000000;width:90%" cellpadding="15" cellspacing="3">
+<tr valign="top">
+<td width="200"><center>**Action**</center></td>
+<td><center>**Information**</center></td>
+<tr>
+
+<tr valign="top">
+<td><center>[Prepare Nano Server Image](#nano)</center></td>
+<td><right>A Nano server image will be created that is prepared with the Hyper-V role and Container feature.</right></td>
+<tr>
+
+<tr valign="top">
+<td><center>[Install OS Images](#nanoos)</center></td>
+<td>Installs OS images which are used as the base for each Windows Container.</td>
+<tr>
+
+<tr valign="top">
+<td><center>[Create Virtual Switch](#nanovswitch)</center></td>
+<td>Each container is connected to a virtual switch for all network communication. The virtual switch is configured as either external or NAT.</td>
+<tr>
+
+<tr valign="top">
+<td><center>[Configure NAT](#nanonat)</center></td>
+<td>If a virtual switch has been configured as type NAT, a NAT object will need to be created.</td>
+<tr>
+
+<tr valign="top">
+<td><center>[Enable MAC Spoofing](#nanomac)</center></td>
+<td>If the container host is running on a Hyper-V virtual machine, enable MAC spoofing on the virtual machines network adapter.</td>
+<tr>
+
+<tr valign="top">
+<td><center>[Enable Nested Virtualization](#nanonest)</center></td>
 <td>If the container host is running on a Hyper-V virtual machine and will also be hosting Hyper-V containers, nested virtualization will need to be enabled.</td>
 <tr>
 
@@ -192,7 +232,7 @@ Deploying Nano Server may involve creating a Nano Server ready virtual hard driv
 
 For more information on Nano Server, and to explore different Nano Server deployment options, see the [Nano Server Documentation]( https://technet.microsoft.com/en-us/library/mt126167.aspx).
 
-### Prepare Nano Server
+### <a name=nano></a>Prepare Nano Server
 
 Create a folder `c:\nano`.
 
@@ -214,7 +254,7 @@ New-NanoServerImage -MediaPath <insert server media path> -BasePath c:\nano -Tar
 ```
 When completed, create a virtual machine from the NanoContainer.vhdx file.
 
-### Install OS Image
+### <a name=nanoos></a>Install OS Image
 
 You will need to install a Container OS Image onto the Nano Server container host. Because Nano Server does not allow local logon, a remote PoiwerShell Session will be used. This document will quickly detail creating the remote session, more details can be found at the [Nano Server Documentation]( https://technet.microsoft.com/en-us/library/mt126167.aspx).
 
@@ -247,7 +287,7 @@ NanoServer        CN=Microsoft 10.0.10572.1001 True
 
 ### Configure Networking
 
-Each container will connect to a virtual switch for network connectivity. This example creates a virtual switch with a type of NAT and a NAT subnet of 172.16.0.0. For more information on container network see [Manage Container Networking](../management/container_networking.md).
+<a name=nanovswitch></a>Each container will connect to a virtual switch for network connectivity. This example creates a virtual switch with a type of NAT and a NAT subnet of 172.16.0.0. For more information on container network see [Manage Container Networking](../management/container_networking.md).
 
 ```powershell
 New-VMSwitch -Name NAT -SwitchType NAT -NATSubnetAddress 172.16.0.0/12
