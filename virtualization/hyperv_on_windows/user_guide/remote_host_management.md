@@ -1,9 +1,12 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 ms.ContentId: 7dcd6da0-dd72-422d-8752-5eccc8116e02
 title: Managing remote Hyper-V hosts
 
 >>>>>>> Adding Doc For Test
+=======
+>>>>>>> removed a ton og guids
 # Manage Remote Hyper-V Hosts with Hyper-V Manager #
 
 Hyper-V Manager is an in-box tool for diagnosing and managing your local Hyper-V host and a small number of remote hosts.  This article documents the configuration steps for connecting to Hyper-V hosts using Hyper-V Manager in all supported configurations.

@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 # Export and Import virtual machines
 
 =======
@@ -7,6 +8,8 @@ title: Export and import virtual machines
 
 
 <!--Reviewed by liwer 7/8/15 -->
+=======
+>>>>>>> removed a ton og guids
 # Export and Import virtual machines
 >>>>>>> Adding Doc For Test
 You can use the export and import functionality to quickly duplicate virtual machines or to move them from one host to another.
