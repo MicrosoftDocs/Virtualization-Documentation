@@ -7,7 +7,7 @@ The following items are needed in order to complete this quick start.
 - A Windows Container Host running Windows 2016 (Full UI or Core) – Quick Start Host Deployment.
 - The Widows Server 2016 Installation Media – Download Location.
 
-This quick start will demonstrate both Windows Server and Hyper-V Containers. To try out Hyper-V containers these additional items will be required.Also note that at this time Hyper-V contianers 
+This quick start will demonstrate both Windows Server and Hyper-V Containers. To try out Hyper-V containers, these additional items will be required. Also note that at this time Hyper-V contianers do not function in Azure.
 
 - Window Container Host with Nested Virtualization – Nest Virtualization. 
 
@@ -15,7 +15,7 @@ This quick start will demonstrate both Windows Server and Hyper-V Containers. To
 
 Windows Server Containers provide an isolated, portable, and resource controlled operating environment for running applications and hosting processes. Windows Server Containers provide isolation between the container, host, and other containers running on the host, through process and namespace isolation. When running Windows Server Containers, the container hosts’ kernel is shared with all containers and processes from all containers are visible on the host.
 
-### Create Container <!--1-->
+### Create Container
 
 At the time of TP4, Windows Server Containers running on a Windows Server 2016 with full UI or a Windows Server 2016 Core container host will require the Windows Server 2016 Core OS Image. This quick start demonstrates this configuration. 
 
@@ -183,7 +183,7 @@ Browse again to the IP Address of the container host and you will now see the �
 
 ## Hyper-V Container
 
-### Create Container <!--2-->
+### Create Container
 
 At the time of TP4, Hyper-V containers must use a Nano Server Core OS Image. To validate that the Nano Server Core OS image has been installed on the Container Host, use the `Get-ContainerImage` command.
 
@@ -205,48 +205,47 @@ When the container has been created, do not start it.
 
 ### Create a Shared Folder
 
-Shared folders expose a directory from the container host to the container. When a shared folder has been created any files placed in the shared folder will be available in the container. For more information on shared folder see Managing Container Data.
+Shared folders expose a directory from the container host to the container. When a shared folder has been created any files placed in the shared folder will be available in the container. For more information on shared folder see Managing Container Data. Shared folders will be used here to copy the Nano Server IIS packages into the container.
 
 Create a directory on the container host that will be shared with the container.
 
 ```powershell
 PS C:\> New-Item -Type Directory c:\share
 ```
-Use the **Add-ContainerSharedFolder** command to create a shared folder.
+
+Use the `Add-ContainerSharedFolder` command to create a shared folder.
 
 > The container must be in a stopped stated when creating the shared folder.
 
 ```powershell
-PS C:\> Add-ContainerSharedFolder -Container $con -SourcePath c:\share -DestinationPath c:\share
+PS C:\> Add-ContainerSharedFolder -Container $con -SourcePath c:\share -DestinationPath c:\iisinstall
 
 ContainerName SourcePath DestinationPath AccessMode
 ------------- ---------- --------------- ----------
-HYPV          c:\share   c:\share        ReadWrite
+HYPV          c:\share   c:\iisinstall        ReadWrite
 ```
 
 When the shared folder has been created, start the container.
+
 ```powershell
 Start-Container $con
 ```
-Create a PowerShell remote session with the container using the **Enter-PSSession** command.
+Create a PowerShell remote session with the container using the `Enter-PSSession` command.
 
 ```powershell
 PS C:\> Enter-PSSession -ContainerId $con.ContainerId –RunAsAdministrator
 ```
-When in the remote session, notice that a directory has been created ‘c:\share’, and that you can now copy files into the c:\share directory of the host and access them in the container.
+When in the remote session, notice that a directory has been created ‘c:\iisinstall’.
 
 ### Install IIS
 
 Because your container is running a Windows Server Nano OS Image, to install IIS we will need to use IIS packages for Nano Server.
 
-The IIS packages can be found on the Windows Sever Installation media under the **NanoServer\Packages** directory.
+The IIS packages can be found on the Windows Sever Installation media under the `NanoServer\Packages` directory.
 
-```powershell
-D:\NanoServer\Packages
-```
-Copy the Microsoft-NanoServer-IIS-Package.cab from NanoServer\Packages to c:\source on your container host. Next copy NanoServer\Packages\en-us\Microsoft-NanoServer-IIS-Package.cab to c:\source\en-us on your container host.
+Copy the Microsoft-NanoServer-IIS-Package.cab from `NanoServer\Packages` to `c:\source` on the container host. Next copy `NanoServer\Packages\en-us\Microsoft-NanoServer-IIS-Package.cab` to `c:\source\en-us` on your container host.
 
-Alternatively, use this script to complete this for you. Replace the **mediaPath** value with that of the Windows Server Media
+Alternatively, use this script to complete this for you. Replace the `mediaPath` value with that of the Windows Server Media
 
 ```powershell
 <insert script>
@@ -259,11 +258,11 @@ Create a file in the shared folder named unattend.xml, copy these lines into the
     <servicing>
         <package action="install">
             <assemblyIdentity name="Microsoft-NanoServer-IIS-Package" version="10.0.10586.1000" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" />
-            <source location="c:\share\Microsoft-NanoServer-IIS-Package.cab" />
+            <source location="c:\iisinstall\Microsoft-NanoServer-IIS-Package.cab" />
         </package>
         <package action="install">
             <assemblyIdentity name="Microsoft-NanoServer-IIS-Package" version="10.0.10586.1000" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="en-US" />
-            <source location="c:\share\en-us\Microsoft-NanoServer-IIS-Package.cab" />
+            <source location="c:\iisinstall\en-us\Microsoft-NanoServer-IIS-Package.cab" />
         </package>
     </servicing>
 </unattend>
@@ -273,20 +272,14 @@ From inside the container run the following commands to install IIS.
 ```powershell
 dism /online /apply-unattend:c:\share\unattend.xml
 ```
-
-Restart Container - is this really needed?
+When the IIS installation has completed, exit the container by typing `exit`. This will return the PowerShell session to that of the container host.
 
 ```powershell
-PS C:\> Stop-Container $con
-PS C:\> Start-Container $con
+[TP4Demo]: PS C:\> exit
+PS C:\>
 ```
-Now, using an internet browser, browse to the IP Address of the container host. You will see the IIS splash screen.
 
-![](media/iis.png)
-
-### Create IIS Image
-
-Stop the Container.
+Finally stop the container using the `Stop-Container` command.
 
 ```powershell
 Stop-Container $con
@@ -310,6 +303,24 @@ NanoServer        CN=Microsoft 10.0.10586.1000 True
 WindowsServerCore CN=Microsoft 10.0.10586.1000 True
 ```
 
+### Create IIS Image
+
+The state of this container can now be captured into a new container image. This new image can then be used to deploy IIS ready containers.
+
+To capture the state of the container into a new image, use the `New-ContainerImage` command.
+
+This example creates a new container image named `NanoServerIIS`, with a publisher of `Demo`, and a version `1.0`.
+
+```powershell
+New-ContainerImage -Container $con -Name NanoServerIIS -Publisher Demo -Version 1.0
+
+Name                 Publisher Version IsOSImage
+----                 --------- ------- ---------
+NanoServerIIS        CN=Demo   1.0.0.0 False
+```
+
+Run `Get-ContainerImage` to verify that the image has been created.
+
 ### Deploy IIS Application
 
 So that you can re-use existing port mapping rules, ensure that all containers are stopped.
@@ -325,7 +336,6 @@ Start the container.
 ```powershell
 PS C:\> Start-Container $con
 ```
-
 
 ### Configure Container Network
 
