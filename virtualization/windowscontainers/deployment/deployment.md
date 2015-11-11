@@ -120,9 +120,9 @@ Finally, if the container host is running inside of a Hyper-V virtual machine, M
 Get-VMNetworkAdapter -VMName <contianer host vm> | Set-VMNetworkAdapter -MacAddressSpoofing On
 ```
 
-### Hyper-V Container Requirements
+### Hyper-V Containers
 
-If Hyper-V containers will be created the following items will be required.
+If Hyper-V containers will be created, the following items will be required.
 
 Enable the Hyper-V Role. The server will need to be rebooted after Hypre-V has been installed.
 
