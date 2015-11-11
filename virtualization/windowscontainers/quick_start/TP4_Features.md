@@ -194,7 +194,9 @@ When the container has been created, do not start it.
 
 ### Create a Shared Folder
 
-Shared folders expose a directory from the container host to the container. When a shared folder has been created any files placed in the shared folder will be available in the container. For more information on shared folder see Managing Container Data. Shared folders will be used here to copy the Nano Server IIS packages into the container.
+Shared folders expose a directory from the container host to the container. When a shared folder has been created any files placed in the shared folder will be available in the container. For more information on shared folder see Managing Container Data. 
+
+Shared folders will be used in this example to copy the Nano Server IIS packages into the container.
 
 Create a directory on the container host that will be shared with the container.
 
@@ -224,13 +226,19 @@ Create a PowerShell remote session with the container using the `Enter-PSSession
 ```powershell
 PS C:\> Enter-PSSession -ContainerId $con.ContainerId –RunAsAdministrator
 ```
-When in the remote session, notice that a directory has been created ‘c:\iisinstall’.
+When in the remote session, notice that the shared folder `c:\iisinstall` has been created however is empty.
+
+```powershell
+ls c:\iisinstall
+```
 
 ### Create IIS Image <!--2-->
 
 Because the container is running a Nano Server OS Image, the Nano Server IIS packages will be needed to install IIS. These can be found on the Windows Sever Installation media under the `NanoServer\Packages` directory.
 
-Copy `Microsoft-NanoServer-IIS-Package.cab` from `NanoServer\Packages` to `c:\source` on the container host. Next copy `NanoServer\Packages\en-us\Microsoft-NanoServer-IIS-Package.cab` to `c:\source\en-us` on the container host.
+Copy `Microsoft-NanoServer-IIS-Package.cab` from `NanoServer\Packages` to `c:\source` on the container host. 
+
+Copy `NanoServer\Packages\en-us\Microsoft-NanoServer-IIS-Package.cab` to `c:\source\en-us` on the container host.
 
 Create a file in the shared folder named unattend.xml, copy these lines into the unattend.xml file.
 
@@ -250,16 +258,28 @@ Create a file in the shared folder named unattend.xml, copy these lines into the
 </unattend>
 ```
 
-From inside the container run the following commands to install IIS.
+```powershell
+[HYPV]: PS C:\> ls c:\iisinstall
+
+    Directory: C:\iisinstall
+
+Mode                LastWriteTime         Length Name
+----                -------------         ------ ----
+d-----       11/11/2015   1:57 PM                en-us
+-a----       10/29/2015  10:27 PM        1919875 Microsoft-NanoServer-IIS-Package.cab
+-a----       11/11/2015   1:58 PM            795 unattend.xml
+```
+
+Run the following command to install IIS.
 
 ```powershell
-dism /online /apply-unattend:c:\share\unattend.xml
+dism /online /apply-unattend:c:\iisinstall\unattend.xml
 ```
 
 When the IIS installation has completed, exit the container by typing `exit`. This will return the PowerShell session to that of the container host.
 
 ```powershell
-[TP4Demo]: PS C:\> exit
+[HYPV]: PS C:\> exit
 PS C:\>
 ```
 
@@ -269,9 +289,7 @@ Finally stop the container using the `Stop-Container` command.
 Stop-Container $con
 ```
 
-The state of this container can now be captured into a new container image. This new image can then be used to deploy Nano Server, IIS ready containers.
-
-To capture the state of the container into a new image, use the `New-ContainerImage` command.
+The state of this container can now be captured into a new container image using the `New-ContainerImage` command.
 
 This example creates a new container image named `NanoServerIIS`, with a publisher of `Demo`, and a version `1.0`.
 
@@ -283,14 +301,12 @@ Name                 Publisher Version IsOSImage
 NanoServerIIS        CN=Demo   1.0.0.0 False
 ```
 
-Run `Get-ContainerImage` to verify that the image has been created.
-
 ### Create IIS Container <!--2-->
 
 Create a new Hyper-V container from the IIS image using the `New-Container` command.
 
 ```powershell
-PS C:\> $con = New-Container -Name IISApp -ContainerImageName nanoserverIIS -SwitchName "Virtual Switch" -RuntimeType HyperV
+PS C:\> $con = New-Container -Name IISApp -ContainerImageName NanoServerIIS -SwitchName "Virtual Switch" -RuntimeType HyperV
 ```
 
 Start the container.
@@ -302,10 +318,6 @@ PS C:\> Start-Container $con
 ### Configure Networking <!--2-->
 
 The default network configuration for the Windows Container Quick Starts is to have the containers connected to a virtual switch configured with Network Address Translation (NAT). Because of this, in order to connect to an application running inside of a container, a port on the container host needs to be mapped to a port on the container. This can be done with the `Add-NetNatStaticMapping` command.
-
-For this exercise, a website will be hosted on IIS running inside of a container. To access the website on port 80, map port 80 of the container host to port 80 of the container.
-
-> NOTE – if running multiple containers on your host you will need to verify the IP address of the container and also that port 80 of the host is not already mapped to a running container. 
 
 To create the port mapping, run the following command.
 
@@ -322,19 +334,30 @@ if (!(Get-NetFirewallRule | where {$_.Name -eq "TCP80"})) {
 
 ### Create Application <!--2-->
 
-Create a remote PowerShell session with the container.
+Now that a container has been created from the IIS image, and networking configured, open up a browser and browse to the IP address of the container host, you should see the IIS splash screen.
+
+![](media/iis1.png)
+
+With the IIS instances verified as running, you can now create a ‘Hello World’ static site, and host this in the IIS instance. To do so, create a PowerShell session with the container.
 
 ```powershell
-PS C:\> Enter-PSSession -ContainerId $con.ContainerId –RunAsAdministrator
+Enter-PSSession -ContainerId $con.ContainerId –RunAsAdministrator
 ```
 
-Run the following script to replace the default IIS splash screen with a new static site.
+Run the following script to replace the default IIS site with a new static site.
 
 ```powershell
 del C:\inetpub\wwwroot\iisstart.htm
 "Hello World From a Hyper-V Container" > C:\inetpub\wwwroot\index.html
 ```
 
-Browse to the IP Address of the container host and you will now see the ‘Hello World’ application.
+Browse again to the IP Address of the container host, you should now see the ‘Hello World’ application.
 
-![](media/iisapp.png)
+![](media/HWWINServer.png)
+
+Exit the remote container session.
+
+```powershell
+[IIS]: PS C:\> exit
+PS C:\>
+```
