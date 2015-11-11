@@ -1,6 +1,3 @@
-ms.ContentId: D1D4969F-52FD-43A2-982B-B531B0343D2B 
-title: Troubleshooting
-
 # Troubleshoot Hyper-V on Windows 10
 
 ## I updated to Windows 10 and now I can't connect to my downlevel (Windows 8.1 or Server 2012 R2) host

@@ -1,6 +1,3 @@
-ms.ContentId: 8DE9250B-556B-47BC-AD9A-8992B3D3D0F9
-title: PowerShell Snippets
-
 # PowerShell Snippets
 
 PowerShell is an awesome scripting, automation, and management tool for Hyper-V.  Here is a toolbox for exploring some of the cool things it can do!
