@@ -158,11 +158,11 @@ if (!(Get-NetFirewallRule | where {$_.Name -eq "TCP80"})) {
 
 If you are working in Azure and have not already created a Network Security Group, you will need to create one now. For more information on Network Security Groups see this article: [What is a Network Security Group](https://azure.microsoft.com/en-us/documentation/articles/virtual-networks-nsg/).
 
-Because NAT has been configured to pass traffic from port 80 on the hosts, to port 80 of the container, you should now be able to open a browser, enter the IP address of the container host, and see the IIS splash screen.
+### Create Application
+
+Now that a container has been created from the IIS image, and networking configured, open up a browser and browse to the IP address of the container host, you should see the IIS splash screen.
 
 ![](media/iis.png)
-
-### Create Application
 
 With the IIS instances verified as running, you can now create a ‘Hello World’ static site and host this in the IIS instance. To do so, create a PowerShell session with the container.
 
@@ -185,16 +185,17 @@ Browse again to the IP Address of the container host and you will now see the �
 
 ### Create Container <!--2-->
 
-At the time of TP4 Hyper-V containers must use a Nano Server Core OS Image. To validate that the Nano Server Core OS image has been installed on the Container Host, use the `Get-ContainerImage` command.
+At the time of TP4, Hyper-V containers must use a Nano Server Core OS Image. To validate that the Nano Server Core OS image has been installed on the Container Host, use the `Get-ContainerImage` command.
 
 ```powershell
 Get-ContainerImage
 Name              Publisher    Version         IsOSImage
 ----              ---------    -------         ---------
-NanoServer        CN=Microsoft 10.0.10586.1000 True
+NanoServer        CN=Microsoft 10.0.10586.0    True
+WindowsServerCore CN=Microsoft 10.0.10586.0    True
 ```
 
-To create a Hyper-V container use the `New-Container` command specifying a Runtime of HyperV.
+To create a Hyper-V container, use the `New-Container` command specifying a Runtime of HyperV.
 
 ```powershell
 $con = New-Container -Name HYPV -ContainerImageName NanoServer -SwitchName "Virtual Switch" -RuntimeType HyperV
@@ -202,23 +203,22 @@ $con = New-Container -Name HYPV -ContainerImageName NanoServer -SwitchName "Virt
 
 When the container has been created, do not start it.
 
-For more information on managing Windows Containers, see the Managing Containers Technical Guide - <>
-
 ### Create a Shared Folder
 
-Create a folder at the root of your container named ‘shared’.
+Shared folders expose a directory from the container host to the container. When a shared folder has been created any files placed in the shared folder will be available in the container. For more information on shared folder see Managing Container Data.
+
+Create a directory on the container host that will be shared with the container.
+
 ```powershell
 PS C:\> New-Item -Type Directory c:\share
 ```
-
-Windows Container Shared Folders provide a way of sharing data between both the container host and container and between containers themselves. We will use a shared folder during this exercise to copy files into a container which will be used to configure an application.
-
 Use the **Add-ContainerSharedFolder** command to create a shared folder.
 
 > The container must be in a stopped stated when creating the shared folder.
 
 ```powershell
 PS C:\> Add-ContainerSharedFolder -Container $con -SourcePath c:\share -DestinationPath c:\share
+
 ContainerName SourcePath DestinationPath AccessMode
 ------------- ---------- --------------- ----------
 HYPV          c:\share   c:\share        ReadWrite
@@ -234,8 +234,6 @@ Create a PowerShell remote session with the container using the **Enter-PSSessio
 PS C:\> Enter-PSSession -ContainerId $con.ContainerId –RunAsAdministrator
 ```
 When in the remote session, notice that a directory has been created ‘c:\share’, and that you can now copy files into the c:\share directory of the host and access them in the container.
-
-For more information on Shared Folders, see the [Shared Folders Technical Guide](../management/manage_data.md)
 
 ### Install IIS
 
