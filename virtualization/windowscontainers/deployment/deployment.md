@@ -7,7 +7,7 @@ The Windows Container feature is only available in Windows Server 2016. The cont
 Windows Containers use an OS image as the base for any container. Two OS images are available, Windows Server Core and Nano Server. Windows Server Technical Preview 4 supports the following configuration between container host OS, container type, and OS image. For example, based on the below chart, if the container feature is enabled on a Windows Server 2016 OS with full UI, Windows Server Containers can be created with the Windows Core OS image, and Hyper-V container with the Nano Server OS image.
 
 
-<table border="1" style="background-color:FFFFCC;border-collapse:collapse;border:1px solid FFCC00;color:000000;width:90%" cellpadding="15" cellspacing="3">
+<table border="1" style="background-color:FFFFCC;border-collapse:collapse;border:1px solid FFCC00;color:000000;width:90%" cellpadding="5" cellspacing="5">
 <tr valign="top">
 <td><center>**Host Operating System**</center></td>
 <td><center>**Windows Server Container**</center></td>
@@ -31,86 +31,46 @@ Windows Containers use an OS image as the base for any container. Two OS images 
 </table>
 
 
-# Container Deployment Checklist Windows Server / Windows Server Core
+# Container Deployment Checklist
 
-<table border="1" style="background-color:FFFFCC;border-collapse:collapse;border:1px solid FFCC00;color:000000;width:90%" cellpadding="15" cellspacing="3">
+<table border="1" style="background-color:FFFFCC;border-collapse:collapse;border:1px solid FFCC00;color:000000;width:90%" cellpadding="5" cellspacing="3">
 <tr valign="top">
 <td width="200"><center>**Action**</center></td>
 <td><center>**Information**</center></td>
 <tr>
 
 <tr valign="top">
-<td><center>[Install Container Role](#role)</center></td>
-<td><right>Enables the container feature and installs the container PowerShell module.</right></td>
+<td>[Install Container Role](#role)</td>
+<td>Enables the container feature and installs the container PowerShell module.</td>
 <tr>
 
 <tr valign="top">
-<td><center>[Install Hyper-V Role](#hypv)</center></td>
-<td><right>Install the Hyper-V Role if the container host will be running Hyper-V containers.</right></td>
+<td>[Install Hyper-V Role](#hypv)</center></td>
+<td>Install the Hyper-V Role if the container host will be running Hyper-V containers.</td>
 <tr>
 
 <tr valign="top">
-<td><center>[Install OS Images](#img)</center></td>
+<td>[Install OS Images](#img)</td>
 <td>Installs OS images which are used as the base for each Windows Container.</td>
 <tr>
 
 <tr valign="top">
-<td><center>[Create Virtual Switch](#vswitch)</center></td>
+<td>[Create Virtual Switch](#vswitch)</td>
 <td>Each container is connected to a virtual switch for all network communication. The virtual switch is configured as either external or NAT.</td>
 <tr>
 
 <tr valign="top">
-<td><center>[Configure NAT](#nat)</center></td>
+<td>[Configure NAT](#nat)</td>
 <td>If a virtual switch has been configured as type NAT, a NAT object will need to be created.</td>
 <tr>
 
 <tr valign="top">
-<td><center>[Enable MAC Spoofing](#mac)</center></td>
+<td>[Enable MAC Spoofing](#mac)</td>
 <td>If the container host is running on a Hyper-V virtual machine, enable MAC spoofing on the virtual machines network adapter.</td>
 <tr>
 
 <tr valign="top">
-<td><center>[Enable Nested Virtualization](#nest)</center></td>
-<td>If the container host is running on a Hyper-V virtual machine and will also be hosting Hyper-V containers, nested virtualization will need to be enabled.</td>
-<tr>
-
-</table>
-
-# Container Deployment Checklist Nano Server
-
-<table border="1" style="background-color:FFFFCC;border-collapse:collapse;border:1px solid FFCC00;color:000000;width:90%" cellpadding="15" cellspacing="3">
-<tr valign="top">
-<td width="200"><center>**Action**</center></td>
-<td><center>**Information**</center></td>
-<tr>
-
-<tr valign="top">
-<td><center>[Prepare Nano Server Image](#nano)</center></td>
-<td><right>A Nano server image will be created that is prepared with the Hyper-V role and Container feature.</right></td>
-<tr>
-
-<tr valign="top">
-<td><center>[Install OS Images](#nanoos)</center></td>
-<td>Installs OS images which are used as the base for each Windows Container.</td>
-<tr>
-
-<tr valign="top">
-<td><center>[Create Virtual Switch](#nanovswitch)</center></td>
-<td>Each container is connected to a virtual switch for all network communication. The virtual switch is configured as either external or NAT.</td>
-<tr>
-
-<tr valign="top">
-<td><center>[Configure NAT](#nanonat)</center></td>
-<td>If a virtual switch has been configured as type NAT, a NAT object will need to be created.</td>
-<tr>
-
-<tr valign="top">
-<td><center>[Enable MAC Spoofing](#nanomac)</center></td>
-<td>If the container host is running on a Hyper-V virtual machine, enable MAC spoofing on the virtual machines network adapter.</td>
-<tr>
-
-<tr valign="top">
-<td><center>[Enable Nested Virtualization](#nanonest)</center></td>
+<td>[Enable Nested Virtualization](#nest)</td>
 <td>If the container host is running on a Hyper-V virtual machine and will also be hosting Hyper-V containers, nested virtualization will need to be enabled.</td>
 <tr>
 
