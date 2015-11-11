@@ -143,33 +143,35 @@ The Docker Daemon and CLI are not shipped with Windows, and not installed with t
 
 ## Nano Server
 
-Deploying Nano Server may involve creating a Nano Server ready virtual hard drive which has been prepared with additional feature packages. This guide will detail quickly preparing a Nano Server VHDX that can be used to create a Windows Container ready virtual machine running Nano Server.
-For more information on Nano Server and to explore different Nano Server deployment options see the [Nano Server Documentation]( https://technet.microsoft.com/en-us/library/mt126167.aspx).
+Deploying Nano Server may involve creating a Nano Server ready virtual hard drive which has been prepared with additional feature packages. This guide will quickly detail preparing a Nano Server virtual hard drive, which can be used to create a Container Host.
+
+For more information on Nano Server, and to explore different Nano Server deployment options, see the [Nano Server Documentation]( https://technet.microsoft.com/en-us/library/mt126167.aspx).
 
 ### Prepare Nano Server
 
-Create a folder **c:\nano**.
+Create a folder `c:\nano`.
+
 ```powershell
 New-Item -ItemType Directory c:\nano
 ```
 
-Locate the `NanoServerImageGenerator.psm1` and `Convert-WindowsImage.ps1` files from the Nano Server folder on the Windows Server Media and copy these to c:\nano.
+Locate the `NanoServerImageGenerator.psm1` and `Convert-WindowsImage.ps1` files from the Nano Server folder, on the Windows Server Media, and copy these to `c:\nano`.
 
 ```powershell
 Copy-Item "C:\WinServerFolder\NanoServer\Convert-WindowsImage.ps1" c:\nano
 Copy-Item "C:\WinServerFolder\NanoServer\NanoServerImageGenerator.ps1" c:\nano
 ```
-Run the following to create a Hyper-V and Container ready Nano Server virtual hard drive. Note – Hyper-V is only a requirement if you will be creating Hyper-V containers.
+Run the following to create a Nano Server virtual hard drive. The `–Containers` parameter indicates that the Container package will be installed, and the –Compute parameter takes care of the Hyper-V package. Hyper-V is only required if Hyper-V container will be created.
 
 ```powershell
 Import-Module C:\nano\NanoServerImageGenerator.psm1
-New-NanoServerImage -MediaPath "C:\WinServerFolder" -BasePath c:\nano -TargetPath C:\nano\NanoContainer.vhdx -MaxSize 10GB -GuestDrivers -ReverseForwarders -Compute -Containers
+New-NanoServerImage -MediaPath <insert server media path> -BasePath c:\nano -TargetPath C:\nano\NanoContainer.vhdx -MaxSize 10GB -GuestDrivers -ReverseForwarders -Compute -Containers
 ```
-When completed create a virtual machine from the NanoContainer.vhdx file. This virtual machine will be ready to go with the Containers feature.
+When completed, create a virtual machine from the NanoContainer.vhdx file.
 
 ### Install OS Image
 
-You will need to install a Container OS Image onto the Nano Server container host in order to create containers. Because Nano Server does not allow local logon, a remote PS Session will be created with the Nano Server Container Host. This document will quickly detail creating the remote session, more details can be found at the [Nano Server Documentation]( https://technet.microsoft.com/en-us/library/mt126167.aspx).
+You will need to install a Container OS Image onto the Nano Server container host. Because Nano Server does not allow local logon, a remote PoiwerShell Session will be used. This document will quickly detail creating the remote session, more details can be found at the [Nano Server Documentation]( https://technet.microsoft.com/en-us/library/mt126167.aspx).
 
 Run the following commands to create a remote PowerShell session with the Nano server. You will be prompted for the Administrator password.
 
@@ -200,7 +202,7 @@ NanoServer        CN=Microsoft 10.0.10572.1001 True
 
 ### Create Virtual Switch
 
-In the remote PowerShell session with the Nano Server, create a virtual switch that will be used by the containers. This example creates a virtual switch with a type of NAT and a NAT subnet of 172.16.0.0. For more information on container network see [Manage Container Networking](../management/container_networking.md).
+Each container will connect to a virtual switch for network connectivity. This example creates a virtual switch with a type of NAT and a NAT subnet of 172.16.0.0. For more information on container network see [Manage Container Networking](../management/container_networking.md).
 
 ```powershell
 New-VMSwitch -Name NAT -SwitchType NAT -NATSubnetAddress "172.16.0.0/12"
