@@ -1,23 +1,25 @@
 # Windows Containers Quick Start
 
-This quick start will walk through basic creation and management of Windows Containers. This exercise will walk through a simple deployment of IIS in both a Windows Server and Hyper-V container. In addition to container management, this exercise will introduce networking, data, and resource control concepts. When complete you should have a basic understanding of simple container creation and management. 
+Windows Containers can be used to rapidly deploy many isolated applications on a single container host. This exercise will walk through simple container creation, container image creation, and application deployment within both a Windows Server Container and a Hyper-V Container. When completed you should have a basic understanding of container creation and management.
 
-The following items are needed in order to complete this quick start.
+This walkthrough demonstrates both Windows Server containers and Hyper-V containers. Each type of container has its own basic requirements. The following items will be required for each exercise.
 
-- A Windows Container Host running Windows 2016 (Full UI or Core) – Quick Start Host Deployment.
-- The Widows Server 2016 Installation Media – Download Location.
+**Windows Server Containers:**
 
-This quick start will demonstrate both Windows Server and Hyper-V Containers. To try out Hyper-V containers, these additional items will be required. Also note that at this time Hyper-V contianers do not function in Azure.
+- A Windows Container Host running Windows Server 2016 (Full or Core), either on-prem or in Azure.
 
-- Window Container Host with Nested Virtualization – Nest Virtualization. 
+**Hyper-V Containers:**
+
+- A Windows Container Host enabled with Nested Virtualization.
+- The Windows Serve 2016 Media.
 
 ## Windows Server Container
 
-Windows Server Containers provide an isolated, portable, and resource controlled operating environment for running applications and hosting processes. Windows Server Containers provide isolation between the container, host, and other containers running on the host, through process and namespace isolation. When running Windows Server Containers, the container hosts’ kernel is shared with all containers and processes from all containers are visible on the host.
+Windows Server Containers provide an isolated, portable, and resource controlled operating environment for running applications and hosting processes. Windows Server Containers provide isolation between the container and host, and between containers running on the host, through process and namespace isolation.
 
 ### Create Container <!--1-->
 
-At the time of TP4, Windows Server Containers running on a Windows Server 2016 with full UI or a Windows Server 2016 Core container host will require the Windows Server 2016 Core OS Image. This quick start demonstrates this configuration. 
+At the time of TP4, Windows Server Containers running on a Windows Server 2016 with full UI or a Windows Server 2016 will require the Windows Server 2016 Core OS Image.
 
 To validate that the Windows Serve Core OS Image has been installed, use the `Get-ContainerImage` command. You may see multiple OS images, that is ok.
 
@@ -75,9 +77,7 @@ Finally stop the container using the `Stop-Container` command.
 Stop-Container $con
 ```
 
-The state of this container can now be captured into a new container image. This new image can then be used to deploy IIS ready containers.
-
-To capture the state of the container into a new image, use the `New-ContainerImage` command.
+The state of this container can now be captured into a new container image using the `New-ContainerImage` command.
 
 This example creates a new container image named `WindowsServerCoreIIS`, with a publisher of `Demo`, and a version `1.0`.
 
@@ -89,21 +89,6 @@ Name                 Publisher Version IsOSImage
 WindowsServerCoreIIS CN=Demo   1.0.0.0 False
 ```
 
-Run `Get-ContainerImage` to verify that the image has been created.
-
-Take note, in the output of `Get-ContainerImage`, the IIS container image displays a property of `IsOSImage = False`. This property differentiates OS Images from non OS Images. While it is not displayed, a dependency is created between the IIS container image and the Windows Server Core OS image. For more information on Container images see Manage Container Images.
-
-```powershell
-Get-ContainerImage
-
-Name                 Publisher    Version      IsOSImage
-----                 ---------    -------      ---------
-WindowsServerCoreIIS CN=Demo      1.0.0.0      False
-NanoServer           CN=Microsoft 10.0.10586.0 True
-WindowsServerCore    CN=Microsoft 10.0.10586.0 True
-
-```
-
 ### Create IIS Container <!--1-->
 
 Create a new container, this time from the `WindosServerCoreIIS` container image.
@@ -111,6 +96,7 @@ Create a new container, this time from the `WindosServerCoreIIS` container image
 ```powershell
 $con = New-Container -Name IIS -ContainerImageName WindowsServerCoreIIS -SwitchName "Virtual Switch"
 ```    
+Start the container.
 
 ```powershell
 Start-Container $con
@@ -118,11 +104,9 @@ Start-Container $con
 
 ### Configure Networking <!--1-->
 
-The default network configuration for the Windows Container Quick Starts is to have the containers connected to a virtual switch configured with Network Address Translation (NAT). Because of this, in order to connect to an application running inside of a container, a port on the container host needs to be mapped to a port on the container. This can be done with the `Add-NetNatStaticMapping` command. For more information on Network Address Translation in Containers, see Container Networking.
+The default network configuration for the Windows Container Quick Starts is to have the containers connected to a virtual switch configured with Network Address Translation (NAT). Because of this, in order to connect to an application running inside of a container, a port on the container host needs to be mapped to a port on the container. For more information on Network Address Translation in Containers, see Container Networking.
 
-For this exercise, a website will be hosted on IIS running inside of a container. To access the website on port 80, map port 80 of the container hosts IP address to port 80 of the containers IP address.
-
-> NOTE – if running multiple containers on your host you will need to verify the IP address of the container and also that port 80 of the host is not already mapped to a running container. 
+For this exercise, a website will be hosted on IIS, running inside of a container. To access the website on port 80, map port 80 of the container hosts IP address to port 80 of the containers IP address.
 
 Run the following to return the IP address of the container.
 
@@ -160,24 +144,31 @@ If you are working in Azure and have not already created a Network Security Grou
 
 Now that a container has been created from the IIS image, and networking configured, open up a browser and browse to the IP address of the container host, you should see the IIS splash screen.
 
-![](media/iis.png)
+![](media/iis1.png)
 
-With the IIS instances verified as running, you can now create a ‘Hello World’ static site and host this in the IIS instance. To do so, create a PowerShell session with the container.
+With the IIS instances verified as running, you can now create a ‘Hello World’ static site, and host this in the IIS instance. To do so, create a PowerShell session with the container.
 
 ```powershell
 Enter-PSSession -ContainerId $con.ContainerId –RunAsAdministrator
 ```
 
-Run the following script to replace the default IIS splash screen with a new static site.
+Run the following script to replace the default IIS site with a new static site.
 
 ```powershell
 del C:\inetpub\wwwroot\iisstart.htm
 "Hello World From a Windows Server Container" > C:\inetpub\wwwroot\index.html
 ```
 
-Browse again to the IP Address of the container host and you will now see the ‘Hello World’ application.
+Browse again to the IP Address of the container host, you should now see the ‘Hello World’ application.
 
 ![](media/HWWINServer.png)
+
+Exit the remote container session.
+
+```powershell
+[IIS]: PS C:\> exit
+PS C:\>
+```
 
 ## Hyper-V Container
 
