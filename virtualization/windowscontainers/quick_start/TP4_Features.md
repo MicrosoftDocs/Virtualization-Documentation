@@ -15,7 +15,7 @@ This quick start will demonstrate both Windows Server and Hyper-V Containers. To
 
 Windows Server Containers provide an isolated, portable, and resource controlled operating environment for running applications and hosting processes. Windows Server Containers provide isolation between the container, host, and other containers running on the host, through process and namespace isolation. When running Windows Server Containers, the container hosts’ kernel is shared with all containers and processes from all containers are visible on the host.
 
-### Create Container
+### Create Container <!--1-->
 
 At the time of TP4, Windows Server Containers running on a Windows Server 2016 with full UI or a Windows Server 2016 Core container host will require the Windows Server 2016 Core OS Image. This quick start demonstrates this configuration. 
 
@@ -75,7 +75,7 @@ Finally stop the container using the `Stop-Container` command.
 Stop-Container $con
 ```
 
-### Create IIS Image
+### Create IIS Image <!--1-->
 
 The state of this container can now be captured into a new container image. This new image can then be used to deploy IIS ready containers.
 
@@ -106,7 +106,7 @@ WindowsServerCore    CN=Microsoft 10.0.10586.0 True
 
 ```
 
-### Create IIS Container
+### Create IIS Container <!--1-->
 
 Create a new container, this time from the `WindosServerCoreIIS` container image.
 
@@ -118,7 +118,7 @@ $con = New-Container -Name IIS -ContainerImageName WindowsServerCoreIIS -SwitchN
 Start-Container $con
 ```
 
-### Configure Network
+### Configure Networking <!--1-->
 
 The default network configuration for the Windows Container Quick Starts is to have the containers connected to a virtual switch configured with Network Address Translation (NAT). Because of this, in order to connect to an application running inside of a container, a port on the container host needs to be mapped to a port on the container. This can be done with the `Add-NetNatStaticMapping` command. For more information on Network Address Translation in Containers, see Container Networking.
 
@@ -158,7 +158,7 @@ if (!(Get-NetFirewallRule | where {$_.Name -eq "TCP80"})) {
 
 If you are working in Azure and have not already created a Network Security Group, you will need to create one now. For more information on Network Security Groups see this article: [What is a Network Security Group](https://azure.microsoft.com/en-us/documentation/articles/virtual-networks-nsg/).
 
-### Create Application
+### Create Application <!--1-->
 
 Now that a container has been created from the IIS image, and networking configured, open up a browser and browse to the IP address of the container host, you should see the IIS splash screen.
 
@@ -183,7 +183,7 @@ Browse again to the IP Address of the container host and you will now see the �
 
 ## Hyper-V Container
 
-### Create Container
+### Create Container <!--2-->
 
 At the time of TP4, Hyper-V containers must use a Nano Server Core OS Image. To validate that the Nano Server Core OS image has been installed on the Container Host, use the `Get-ContainerImage` command.
 
@@ -237,19 +237,12 @@ PS C:\> Enter-PSSession -ContainerId $con.ContainerId –RunAsAdministrator
 ```
 When in the remote session, notice that a directory has been created ‘c:\iisinstall’.
 
-### Install IIS
+### Create IIS Image <!--2-->
 
-Because your container is running a Windows Server Nano OS Image, to install IIS we will need to use IIS packages for Nano Server.
+Because the container is running a Nano Server OS Image, the Nano Server IIS packages will be needed to install IIS. These can be found on the Windows Sever Installation media under the `NanoServer\Packages` directory.
 
-The IIS packages can be found on the Windows Sever Installation media under the `NanoServer\Packages` directory.
+Copy `Microsoft-NanoServer-IIS-Package.cab` from `NanoServer\Packages` to `c:\source` on the container host. Next copy `NanoServer\Packages\en-us\Microsoft-NanoServer-IIS-Package.cab` to `c:\source\en-us` on the container host.
 
-Copy the Microsoft-NanoServer-IIS-Package.cab from `NanoServer\Packages` to `c:\source` on the container host. Next copy `NanoServer\Packages\en-us\Microsoft-NanoServer-IIS-Package.cab` to `c:\source\en-us` on your container host.
-
-Alternatively, use this script to complete this for you. Replace the `mediaPath` value with that of the Windows Server Media
-
-```powershell
-<insert script>
-```
 Create a file in the shared folder named unattend.xml, copy these lines into the unattend.xml file.
 
 ```powershell
@@ -267,11 +260,13 @@ Create a file in the shared folder named unattend.xml, copy these lines into the
     </servicing>
 </unattend>
 ```
+
 From inside the container run the following commands to install IIS.
 
 ```powershell
 dism /online /apply-unattend:c:\share\unattend.xml
 ```
+
 When the IIS installation has completed, exit the container by typing `exit`. This will return the PowerShell session to that of the container host.
 
 ```powershell
@@ -285,27 +280,7 @@ Finally stop the container using the `Stop-Container` command.
 Stop-Container $con
 ```
 
-Create new container images from container.
-
-```powershell
-PS C:\> New-ContainerImage -Container $con -Name NanoServerIIS -Publisher Demo -Version 1.0
-```
-
-Run **Get-ContainerImage** to see a complete list of images available on the container host. Notice in the output that a differentiation is made between OS Images and non OS images.
-
-```powershell
-
-PS C:\> Get-ContainerImage
-Name              Publisher    Version         IsOSImage
-----              ---------    -------         ---------
-NanoServerIIS     CN=Demo      1.0.0.0         False
-NanoServer        CN=Microsoft 10.0.10586.1000 True
-WindowsServerCore CN=Microsoft 10.0.10586.1000 True
-```
-
-### Create IIS Image
-
-The state of this container can now be captured into a new container image. This new image can then be used to deploy IIS ready containers.
+The state of this container can now be captured into a new container image. This new image can then be used to deploy Nano Server, IIS ready containers.
 
 To capture the state of the container into a new image, use the `New-ContainerImage` command.
 
@@ -321,11 +296,9 @@ NanoServerIIS        CN=Demo   1.0.0.0 False
 
 Run `Get-ContainerImage` to verify that the image has been created.
 
-### Deploy IIS Application
+### Create IIS Container <!--2-->
 
-So that you can re-use existing port mapping rules, ensure that all containers are stopped.
-
-Create a new container from the IIS image using the **New-Container** command.
+Create a new Hyper-V container from the IIS image using the `New-Container` command.
 
 ```powershell
 PS C:\> $con = New-Container -Name IISApp -ContainerImageName nanoserverIIS -SwitchName "Virtual Switch" -RuntimeType HyperV
@@ -337,9 +310,9 @@ Start the container.
 PS C:\> Start-Container $con
 ```
 
-### Configure Container Network
+### Configure Networking <!--2-->
 
-The default network configuration for the Windows Container Quick Starts is to have the containers connected to a virtual switch configured with Network Address Translation (NAT). Because of this, in order to connect to an application running inside of a container, a port on the container host needs to be mapped to a port on the container. This can be done with the **Add-NetNatStaticMapping** command.
+The default network configuration for the Windows Container Quick Starts is to have the containers connected to a virtual switch configured with Network Address Translation (NAT). Because of this, in order to connect to an application running inside of a container, a port on the container host needs to be mapped to a port on the container. This can be done with the `Add-NetNatStaticMapping` command.
 
 For this exercise, a website will be hosted on IIS running inside of a container. To access the website on port 80, map port 80 of the container host to port 80 of the container.
 
@@ -358,7 +331,7 @@ if (!(Get-NetFirewallRule | where {$_.Name -eq "TCP80"})) {
 }
 ```
 
-### Create Application
+### Create Application <!--2-->
 
 Create a remote PowerShell session with the container.
 
@@ -376,5 +349,3 @@ del C:\inetpub\wwwroot\iisstart.htm
 Browse to the IP Address of the container host and you will now see the ‘Hello World’ application.
 
 ![](media/iisapp.png)
-
-### Container Resource Constraint
