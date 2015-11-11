@@ -205,7 +205,7 @@ NanoServer        CN=Microsoft 10.0.10572.1001 True
 Each container will connect to a virtual switch for network connectivity. This example creates a virtual switch with a type of NAT and a NAT subnet of 172.16.0.0. For more information on container network see [Manage Container Networking](../management/container_networking.md).
 
 ```powershell
-New-VMSwitch -Name NAT -SwitchType NAT -NATSubnetAddress "172.16.0.0/12"
+New-VMSwitch -Name NAT -SwitchType NAT -NATSubnetAddress 172.16.0.0/12
 ```
 
 ### Install Docker
