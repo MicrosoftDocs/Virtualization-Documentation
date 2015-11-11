@@ -200,12 +200,28 @@ Name              Publisher    Version         IsOSImage
 NanoServer        CN=Microsoft 10.0.10572.1001 True
 ```  
 
-### Create Virtual Switch
+### Configure Networking
 
 Each container will connect to a virtual switch for network connectivity. This example creates a virtual switch with a type of NAT and a NAT subnet of 172.16.0.0. For more information on container network see [Manage Container Networking](../management/container_networking.md).
 
 ```powershell
 New-VMSwitch -Name NAT -SwitchType NAT -NATSubnetAddress 172.16.0.0/12
+```
+
+If the container host is running inside of a Hyper-V virtual machine, MAC spoofing must be enable in order for the container to receive an IP Address. To enable MAC spoofing run the following command on the Hyper-V host that is running the Windows Server Container Host.
+
+```powershell
+Get-VMNetworkAdapter -VMName <contianer host vm> | Set-VMNetworkAdapter -MacAddressSpoofing On
+```
+
+### Hyper-V Containers
+
+If the container host is running in a virtual machine and will be hosting Hyper-V containers, nested virtualization will need to be enabled.
+
+> The virtual machines must be turned off when running this command.
+
+```powershell
+Set-VMProcessor -VMName <container host vm> -ExposeVirtualizationExtensions $true
 ```
 
 ### Install Docker
