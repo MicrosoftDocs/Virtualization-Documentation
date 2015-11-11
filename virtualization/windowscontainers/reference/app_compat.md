@@ -1,6 +1,3 @@
-ms.ContentId: 3fdd690d-4259-4066-8781-360bb0554512
-title: Running Apps in Windows Containers
-
 # Application Compatability in Windows Server Containers
 
 Is something not on this list?  Let us know what fails and succeeds in your environment via [the forums](https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers).
