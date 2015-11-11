@@ -49,7 +49,7 @@ PS C:\> Enter-PSSession -ContainerId $con.ContainerId -RunAsAdministrator
 [TP4Demo]: PS C:\Windows\system32>
 ```
 
-### Modify Windows Server Container
+### Create IIS Image <!--1-->
 
 Now the container can be modified, and these modifications captured to create a new container image. For this example, IIS will be installed.
 
@@ -74,8 +74,6 @@ Finally stop the container using the `Stop-Container` command.
 ```powershell
 Stop-Container $con
 ```
-
-### Create IIS Image <!--1-->
 
 The state of this container can now be captured into a new container image. This new image can then be used to deploy IIS ready containers.
 
