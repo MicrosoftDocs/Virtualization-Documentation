@@ -36,47 +36,56 @@ Windows Containers use an OS image as the base for any container. Two OS images 
 <table border="1" style="background-color:FFFFCC;border-collapse:collapse;border:1px solid FFCC00;color:000000;width:90%" cellpadding="5" cellspacing="3">
 <tr valign="top">
 <td width="200"><center>**Action**</center></td>
+<td><center>**Scenario**</center></td>
 <td><center>**Information**</center></td>
 <tr>
 
 <tr valign="top">
 <td>[Install Container Role](#role)</td>
+<td><center>Windows Server</center></td>
 <td>Enables the container feature and installs the container PowerShell module. If deploying the host to Nano Server, see the [Preparing Nano Server](#nano).</td>
 <tr>
-	
-<tr valign="top">
-<td>[Install Hyper-V Role](#hypv)</center></td>
-<td>Install the Hyper-V Role if the container host will be running Hyper-V containers. If deploying the host to Nano Server, see the [Preparing Nano Server](#nano).</td>
-<tr>
-	
+
 <tr valign="top">
 <td>[Prepare Nano Server](#nano)</td>
+<td><center>Nano Server</center></td>
 <td>If deploying the container host to Nano Server a Nano server image will be prepared with the Hyper-V role and Container feature.</td>
 <tr>
 
 <tr valign="top">
+<td>[Enable Nested Virtualization](#nest)</td>
+<td><center>Virtualized Host</center></td>
+<td>If the container host is running on a Hyper-V virtual machine and will also be hosting Hyper-V containers, nested virtualization will need to be enabled.</td>
+<tr>
+	
+<tr valign="top">
+<td>[Install Hyper-V Role](#hypv)</center></td>
+<td><center>Windows Server</center></td>
+<td>Install the Hyper-V Role if the container host will be running Hyper-V containers. If deploying the host to Nano Server, see the [Preparing Nano Server](#nano).</td>
+<tr>
+	
+<tr valign="top">
 <td>[Install OS Images](#img)</td>
+<td><center>All</center></td>
 <td>Installs OS images which are used as the base for each Windows Container.</td>
 <tr>
 
 <tr valign="top">
 <td>[Create Virtual Switch](#vswitch)</td>
+<td><center>All</center></td>
 <td>Each container is connected to a virtual switch for all network communication. The virtual switch is configured as either external or NAT.</td>
 <tr>
 
 <tr valign="top">
 <td>[Configure NAT](#nat)</td>
+<td><center>All</center></td>
 <td>If a virtual switch has been configured as type NAT, a NAT object will need to be created.</td>
 <tr>
 
 <tr valign="top">
 <td>[Enable MAC Spoofing](#mac)</td>
+<td><center>Virtualized Host</center></td>
 <td>If the container host is running on a Hyper-V virtual machine, enable MAC spoofing on the virtual machines network adapter.</td>
-<tr>
-
-<tr valign="top">
-<td>[Enable Nested Virtualization](#nest)</td>
-<td>If the container host is running on a Hyper-V virtual machine and will also be hosting Hyper-V containers, nested virtualization will need to be enabled.</td>
 <tr>
 
 </table>
@@ -197,19 +206,20 @@ Get-VMNetworkAdapter -VMName <contianer host vm> | Set-VMNetworkAdapter -MacAddr
 
 ### Hyper-V Containers
 
-If Hyper-V containers will be created, the following items will be required.
+If Hyper-V containers will be deployed, the Hyper-V role will need to be installed on the container host.
 
-<a name=hypv></a>Enable the Hyper-V Role. The server will need to be rebooted after Hypre-V has been installed.
-
-```powershell
-Install-WindowsFeature hyper-v
-```
-<a name=nest></a>If the container host is running in a Hyper-V virtual machine, and will be hosting Hyper-V containers, nested virtualization will need to be enabled. Run the following command from the Hyper-V host.
+<a name=nest></a>If the container host is running on a Hyper-V virtual machine, nested virtualization will need to be enabled.
 
 > The virtual machines must be turned off when running this command.
 
 ```powershell
 Set-VMProcessor -VMName <container host vm> -ExposeVirtualizationExtensions $true
+```
+
+<a name=hypv></a>Enable the Hyper-V Role. The server will need to be rebooted after Hypre-V has been installed.
+
+```powershell
+Install-WindowsFeature hyper-v
 ```
 
 ### Install Docker
