@@ -41,12 +41,17 @@ Windows Containers use an OS image as the base for any container. Two OS images 
 
 <tr valign="top">
 <td>[Install Container Role](#role)</td>
-<td>Enables the container feature and installs the container PowerShell module.</td>
+<td>Enables the container feature and installs the container PowerShell module. If deploying the host to Nano Server, see the [Preparing Nano Server](#nano).</td>
 <tr>
-
+	
 <tr valign="top">
 <td>[Install Hyper-V Role](#hypv)</center></td>
-<td>Install the Hyper-V Role if the container host will be running Hyper-V containers.</td>
+<td>Install the Hyper-V Role if the container host will be running Hyper-V containers. If deploying the host to Nano Server, see the [Preparing Nano Server](#nano).</td>
+<tr>
+	
+<tr valign="top">
+<td>[Prepare Nano Server](#nano)</td>
+<td>If deploying the container host to Nano Server a Nano server image will be prepared with the Hyper-V role and Container feature.</td>
 <tr>
 
 <tr valign="top">
@@ -76,8 +81,6 @@ Windows Containers use an OS image as the base for any container. Two OS images 
 
 </table>
 
-## Windows Server and Server Core
-
 ### <a name=role></a>Install Container Role
 
 The container feature can be installed using Windows Server Manager or PowerShell on Windows Server 2016 with full UI, and PowerShell on Windows Server Core.
@@ -102,6 +105,33 @@ Name            ContainerImageRepositoryLocation
 ----            --------------------------------
 WIN-LJGU7HD7TEP C:\ProgramData\Microsoft\Windows\Hyper-V\Container Image Store
 ```
+
+### <a name=nano></a> Prepare Nano Server
+
+Deploying Nano Server may involve creating a Nano Server ready virtual hard drive which has been prepared with additional feature packages. This guide will quickly detail preparing a Nano Server virtual hard drive, which can be used to create a Container Host.
+
+For more information on Nano Server, and to explore different Nano Server deployment options, see the [Nano Server Documentation]( https://technet.microsoft.com/en-us/library/mt126167.aspx).
+
+Create a folder `c:\nano`.
+
+```powershell
+New-Item -ItemType Directory c:\nano
+```
+
+Locate the `NanoServerImageGenerator.psm1` and `Convert-WindowsImage.ps1` files from the Nano Server folder, on the Windows Server Media, and copy these to `c:\nano`.
+
+```powershell
+Copy-Item "C:\WinServerFolder\NanoServer\Convert-WindowsImage.ps1" c:\nano
+Copy-Item "C:\WinServerFolder\NanoServer\NanoServerImageGenerator.ps1" c:\nano
+```
+Run the following to create a Nano Server virtual hard drive. The `–Containers` parameter indicates that the Container package will be installed, and the –Compute parameter takes care of the Hyper-V package. Hyper-V is only required if Hyper-V container will be created.
+
+```powershell
+Import-Module C:\nano\NanoServerImageGenerator.psm1
+New-NanoServerImage -MediaPath <insert server media path> -BasePath c:\nano -TargetPath C:\nano\NanoContainer.vhdx -MaxSize 10GB -GuestDrivers -ReverseForwarders -Compute -Containers
+```
+When completed, create a virtual machine from the NanoContainer.vhdx file.
+
 ### Install OS Images
 
 <a name=img></a>An OS image is used as the base to any Windows Server or Hyper-V container. The image is used to deploy a container, which can then be modified, and captured into a new container image. OS images have been created with both Windows Server Core and Nano Server as the underlying operating system. To install the base OS images, follow these steps:
@@ -175,93 +205,6 @@ If Hyper-V containers will be created, the following items will be required.
 Install-WindowsFeature hyper-v
 ```
 <a name=nest></a>If the container host is running in a Hyper-V virtual machine, and will be hosting Hyper-V containers, nested virtualization will need to be enabled. Run the following command from the Hyper-V host.
-
-> The virtual machines must be turned off when running this command.
-
-```powershell
-Set-VMProcessor -VMName <container host vm> -ExposeVirtualizationExtensions $true
-```
-
-### Install Docker
-
-The Docker Daemon and CLI are not shipped with Windows, and not installed with the Windows Container feature. Docker is not a requirement for working with Windows containers. If you would like to install Docker follow the instructions in this article [Docker and Windows](./docker_windows.md).
-
-## Nano Server
-
-Deploying Nano Server may involve creating a Nano Server ready virtual hard drive which has been prepared with additional feature packages. This guide will quickly detail preparing a Nano Server virtual hard drive, which can be used to create a Container Host.
-
-For more information on Nano Server, and to explore different Nano Server deployment options, see the [Nano Server Documentation]( https://technet.microsoft.com/en-us/library/mt126167.aspx).
-
-### <a name=nano></a>Prepare Nano Server
-
-Create a folder `c:\nano`.
-
-```powershell
-New-Item -ItemType Directory c:\nano
-```
-
-Locate the `NanoServerImageGenerator.psm1` and `Convert-WindowsImage.ps1` files from the Nano Server folder, on the Windows Server Media, and copy these to `c:\nano`.
-
-```powershell
-Copy-Item "C:\WinServerFolder\NanoServer\Convert-WindowsImage.ps1" c:\nano
-Copy-Item "C:\WinServerFolder\NanoServer\NanoServerImageGenerator.ps1" c:\nano
-```
-Run the following to create a Nano Server virtual hard drive. The `–Containers` parameter indicates that the Container package will be installed, and the –Compute parameter takes care of the Hyper-V package. Hyper-V is only required if Hyper-V container will be created.
-
-```powershell
-Import-Module C:\nano\NanoServerImageGenerator.psm1
-New-NanoServerImage -MediaPath <insert server media path> -BasePath c:\nano -TargetPath C:\nano\NanoContainer.vhdx -MaxSize 10GB -GuestDrivers -ReverseForwarders -Compute -Containers
-```
-When completed, create a virtual machine from the NanoContainer.vhdx file.
-
-### <a name=nanoos></a>Install OS Image
-
-You will need to install a Container OS Image onto the Nano Server container host. Because Nano Server does not allow local logon, a remote PoiwerShell Session will be used. This document will quickly detail creating the remote session, more details can be found at the [Nano Server Documentation]( https://technet.microsoft.com/en-us/library/mt126167.aspx).
-
-Run the following commands to create a remote PowerShell session with the Nano server. You will be prompted for the Administrator password.
-
-```powershell
-Set-Item WSMan:\localhost\Client\TrustedHosts "<IP address of Nano Server>" -Force
-Enter-PSSession -ComputerName <IP address of Nano Server> -Credential ~\Administrator
-```
-
-Return a list of images from PowerShell OneGet package manager:
-```powershell
-Find-ContainerImage
-```
-Download and install an OS image from the PowerShell OneGet package manager. NOTE - At the time of TP4 only a Nano Server OS image is supported on a Nano Server host, you will not need to install the Windows Server Core OS image.
-
-```powershell
-Install-ContainerImage -Name ImageName
-```
-
-Verify that the images have been installed using the `Get-ContainerImage` command.
-
-```powershell
-Get-ContainerImage
-
-Name              Publisher    Version         IsOSImage
-----              ---------    -------         ---------
-NanoServer        CN=Microsoft 10.0.10572.1001 True
-```  
-
-### Configure Networking
-
-<a name=nanovswitch></a>Each container will connect to a virtual switch for network connectivity. This example creates a virtual switch with a type of NAT and a NAT subnet of 172.16.0.0. For more information on container network see [Manage Container Networking](../management/container_networking.md).
-
-```powershell
-New-VMSwitch -Name NAT -SwitchType NAT -NATSubnetAddress 172.16.0.0/12
-```
-
-If the container host is running inside of a Hyper-V virtual machine, MAC spoofing must be enable in order for the container to receive an IP Address. To enable MAC spoofing run the following command on the Hyper-V host that is running the Windows Server Container Host.
-
-```powershell
-Get-VMNetworkAdapter -VMName <contianer host vm> | Set-VMNetworkAdapter -MacAddressSpoofing On
-```
-
-### Hyper-V Containers
-
-If the container host is running in a Hyper-V virtual machine, and will be hosting Hyper-V containers, nested virtualization will need to be enabled. Run the following command from the Hyper-V host.
 
 > The virtual machines must be turned off when running this command.
 
