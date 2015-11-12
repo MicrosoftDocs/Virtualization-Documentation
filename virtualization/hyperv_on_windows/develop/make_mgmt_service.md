@@ -1,7 +1,5 @@
-ms.ContentId: 6C7EB25D-66FB-4B6F-AB4A-79D6BB424637
-title: Make a new management service
-
 # Make a new management service #
+
 This document introduces VM Services built on Hyper-V sockets and how to get started using them.
 
 ## What is a VM Service?

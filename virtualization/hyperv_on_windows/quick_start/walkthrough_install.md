@@ -1,6 +1,3 @@
-ms.ContentId: A6DD6776-614C-4D28-9B83-CB2EDFD263A3
-title: Step 2 - Install Hyper-V on Windows 10
-
 # Install Hyper-V on Windows 10
 
 You must enable the Hyper-V role before you can create virtual machines on Windows 10. This can be done using the Windows 10 control panel, PowerShell or the Deployment Imaging Servicing and Management tool (DISM). This documents walks through each of these.
