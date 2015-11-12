@@ -8,9 +8,8 @@
 ## [Contianer Host in Microsoft Azure](quick_start/azure_setup.md)
 ## [Container Host in New VM](quick_start/container_setup.md)
 ## [Contianer Host on Exsisting Computer ](quick_start/inplace_setup.md)
-## [Windows Server Containers - PowerShell](quick_start/manage_powershell.md)
-## [Windows Server Containers -  Docker](quick_start/manage_docker.md)
-## [Hyper-V Container and TP4 Feaatures](quick_start/TP4_Features.md)
+## [Windows Containers - PowerShell](quick_start/manage_powershell.md)
+## [Windows Containers -  Docker](quick_start/manage_docker.md)
 # Deploy Windows Containers
 ##[Deploy Container Host](deployment/deployment.md)
 ##[Deploy Docker on Windows](deployment/docker_windows.md)
