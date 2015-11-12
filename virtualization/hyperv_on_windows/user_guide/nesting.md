@@ -1,7 +1,4 @@
-ms.ContentId: a772cbbf-f825-4465-b048-0ca066e4ded7
-title: Insiders - Nesting Hyper-V
-
-## Nested Virtualization
+# Nested Virtualization
 
 > **Note:** This early preview feature is only available to Windows Insiders, running Build 10565 or later, and comes with no performance or stability guarantees.
 

@@ -1,7 +1,5 @@
-ms.ContentId: c0da5ae7-69b6-49a5-934a-6315b5538d6c
-title: Managing integration services
-
 # Managing Hyper-V Integration Services
+
 Integration services (often called integration components), are services that allow the virtual machine to communicate with the Hyper-V host. Many of these services are conveniences (such as guest file copy), while others can be quite important to the guest operating system's ability to function correctly (time synchronization).
 
 This article will detail how to manage integration services using both Hyper-V manager and PowerShell in Windows 10. For more information on each individual integration service, see [Integration Services]( https://technet.microsoft.com/en-us/library/dn798297.aspx) .

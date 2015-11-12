@@ -1,8 +1,4 @@
-ms.ContentId: 34D5925A-D724-4552-9403-C2703A973234 
-title: Migrating and upgrading virtual machines
-
 # Migrate and upgrade virtual machines 
-
 
 If you move virtual machines to your Windows 10 host that were originally created with Hyper-V in Windows 8.1 or earlier, you won't be able to use the new virtual machine features until you manually update the virtual machine configuration version. 
 
@@ -11,8 +7,6 @@ To upgrade the configuration version, shut down the virtual machine and then sel
  ```PowerShell
 Update-VmVersion <vmname> | <vmobject>
 ```
-
-
 
 ## How do I check the configuration version of the virtual machines running on Hyper-V? 
 

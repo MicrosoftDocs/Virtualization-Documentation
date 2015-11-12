@@ -1,6 +1,3 @@
-ms.ContentId: 8D89E9D8-2501-46A7-9304-2F19F37AFC85
-title: Working with checkpoints
-
 # Using checkpoints to revert virtual machines to a previous state
 
 Checkpoints provide a fast and easy way to revert the virtual machine to a previous state. This is especially helpful when you are about to make a change to a virtual machine and you want to be able to roll-back to the present state if that change cause issues.
