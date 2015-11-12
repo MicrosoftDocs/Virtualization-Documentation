@@ -52,7 +52,7 @@ Windows containers provide operating system level virtualization that allow you 
 <ul>
 <li>[Container Forum](https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers)
 <li>[Container Resources](https://msdn.microsoft.com/virtualization/community/community_overview)
-<li>[Samples and Scripts]()
+<li>[Samples and Scripts](https://github.com/Microsoft/Virtualization-Documentation/tree/master/windows-server-container-samples)
 </td>
 </tr>
 </table>
