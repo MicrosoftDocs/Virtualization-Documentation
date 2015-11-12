@@ -1,0 +1,36 @@
+{
+    "build_entry_point": "",
+    "docsets_to_publish": [
+        {
+            "docset_name": "Microsoft_Windows-Container-Documentation-Private_community",
+            "build_output_subfolder": "virtualization/community",
+            "locale": "en-us",
+            "version": 0,
+            "open_to_public_contributors": "false",
+            "type_mapping": {
+                "Conceptual": "Content"
+            }
+        },
+        {
+            "docset_name": "Microsoft_Windows-Container-Documentation-Private_hyperv_on_windows",
+            "build_output_subfolder": "virtualization/hyperv_on_windows",
+            "locale": "en-us",
+            "version": 0,
+            "open_to_public_contributors": "false",
+            "type_mapping": {
+                "Conceptual": "Content"
+            }
+        },
+        {
+            "docset_name": "Microsoft_Windows-Container-Documentation-Private_windowscontainers",
+            "build_output_subfolder": "virtualization/windowscontainers",
+            "locale": "en-us",
+            "version": 0,
+            "open_to_public_contributors": "false",
+            "type_mapping": {
+                "Conceptual": "Content"
+            }
+        }
+    ],
+    "notification_subscribers": ["nepeters@microsoft.com"]
+}
