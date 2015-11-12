@@ -236,9 +236,9 @@ ls c:\iisinstall
 
 Because the container is running a Nano Server OS Image, the Nano Server IIS packages will be needed to install IIS. These can be found on the Windows Sever Installation media, under the `NanoServer\Packages` directory.
 
-Copy `Microsoft-NanoServer-IIS-Package.cab` from `NanoServer\Packages` to `c:\source` on the container host. 
+Copy `Microsoft-NanoServer-IIS-Package.cab` from `NanoServer\Packages` to `c:\share` on the container host. 
 
-Copy `NanoServer\Packages\en-us\Microsoft-NanoServer-IIS-Package.cab` to `c:\source\en-us` on the container host.
+Copy `NanoServer\Packages\en-us\Microsoft-NanoServer-IIS-Package.cab` to `c:\share\en-us` on the container host.
 
 Create a file in the shared folder named unattend.xml, copy these lines into the unattend.xml file.
 
@@ -256,6 +256,16 @@ Create a file in the shared folder named unattend.xml, copy these lines into the
         </package>
     </servicing>
 </unattend>
+```
+
+When completed, the `c:\share` directory on the container host be configured like this.
+```powershell
+c:\share
+|-- en-us
+|    |-- Microsoft-NanoServer-IIS-Package.cab
+|
+|-- Microsoft-NanoServer-IIS-Package.cab
+|-- unattend.xml
 ```
 
 Back in the remote session on the container, note that the IIS packages and unattended.xml files are now visible in the c:\iisinstall directory.
