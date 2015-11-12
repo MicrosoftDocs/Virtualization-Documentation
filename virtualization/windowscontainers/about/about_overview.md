@@ -1,7 +1,4 @@
-ms.ContentId: 526e4f1a-2936-4c61-b3be-d41b4cf9d10f
-title: About Windows Server Containers
-
-#Windows Server Containers
+# Windows Server Containers
 
 Applications fuel innovation in the cloud and mobile era. Containers, and the ecosystem that is developing around them, will empower software developers to create the next generation of applications experiences.
 

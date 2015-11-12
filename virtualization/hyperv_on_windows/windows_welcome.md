@@ -1,6 +1,3 @@
-ms.ContentId: 09eacb3a-bcd2-4724-9c73-6d47ec06f385
-title: Hyper-V on Windows 10
-
 # Hyper-V on Windows 10 
 
 Many versions of Windows 10 include the Hyper-V virtualization technology. Hyper-V enables running virtualized computer systems on top of a physical host. These virtualized systems can be used and managed just as if they were physical computer systems, however they exist in virtualized and isolated environment. Special software called a hypervisor manages access between the virtual systems and the physical hardware resources. Virtualization enables quick deployment of computer systems, a way to quickly restore systems to a previously known good state, and the ability to migrate systems between physical hosts.
