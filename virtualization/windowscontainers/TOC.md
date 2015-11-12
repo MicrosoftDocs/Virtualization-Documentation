@@ -26,3 +26,4 @@
 ## [PowerShell Reference](reference/powershell_overview.md)
 ## [PowerShell / Docker Comparison](reference/ps_docker_comparison.md)
 ## [Application Compatibility](reference/app_compat.md)
+# [EULA](./EULA.md)
