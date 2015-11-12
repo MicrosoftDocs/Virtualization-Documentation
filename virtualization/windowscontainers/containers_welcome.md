@@ -39,7 +39,7 @@ Windows containers provide operating system level virtualization that allow you 
 <li>[Manage Images](management/manage_images.md)
 <li>[Manage Networking](management/container_networking.md)
 <li>[Manage Container Data](management/manage_data.md)
-<li>[Manage Hyper-V Containers](management/hyperv_containers.md)
+<li>[Manage Hyper-V Containers](management/hyperv_container.md)
 <li>[Manage Container Resources](management/manage_resources.md)
 <li>[Container Interoperability](management/hcs_powershell.md)
 </td>
