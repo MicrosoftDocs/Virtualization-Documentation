@@ -3,17 +3,8 @@
     "content":
       [
         {
-<<<<<<< HEAD
-<<<<<<< HEAD
           "files": ["**/**.md"],
           "exclude": ["**/obj/**"]
-=======
-          "files": ["**/**.md"]
->>>>>>> Use docfx as build tool
-=======
-          "files": ["**/**.md"],
-          "exclude": ["**/obj/**"]
->>>>>>> Add ignore folder
         }
       ],
     "template": "op.html",
