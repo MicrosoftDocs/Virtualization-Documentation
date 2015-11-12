@@ -131,96 +131,60 @@ $unattendSource = [xml]@"
 </unattend>
 "@
 
-function CSVLogger {
-    param
-    (
-        [string] $vhd, 
-        [switch] $sysprepped
-    );
+function CSVLogger ([string]$vhd, [switch]$sysprepped) {
 
-    $createLogFile = $false;
-    $entryExists = $false;
-    $logCsv = @();
-    $newEntry = $null;
+   $createLogFile = $false
+   $entryExists = $false
+   $logCsv = @()
+   $newEntry = $null
 
-    # Check if the log file exists
-    if (-not (Test-Path $logFile))
-    {
-        $createLogFile = $true;
-    }
-    else
-    {
-        $logCsv = import-csv $logFile;
-
-        if (($logCsv.Image -eq $null) -or `
-            ($logCsv.Created -eq $null) -or `
-            ($logCsv.Sysprepped -eq $null) -or `
-            ($logCsv.Checked -eq $null)) 
-        {
-            # Something is wrong with the log file
-            cleanupFile $logFile;
-            $createLogFile = $true;
-        }
-    }
-
-    if ($createLogFile)
-    {
-        $logCsv = @();
-    } 
-    else 
-    {
-        $logCsv = Import-Csv $logFile;
-    }
-
-    # If we find an entry for the VHD, update it
-    foreach ($entry in $logCsv)
-    {
-        if ($entry.Image -eq $vhd)
-        {
-            $entryExists = $true;
-            $entry.Checked = ((Get-Date).ToShortDateString() + "::" + (Get-Date).ToShortTimeString());
-            
-            if ($sysprepped) 
-            {
-                $entry.Sysprepped = ((Get-Date).ToShortDateString() + "::" + (Get-Date).ToShortTimeString());
+   # Check if the log file exists
+   if (!(test-path $logFile))
+      {$createLogFile = $true}
+   else
+      {$logCsv = import-csv $logFile
+       if (($logCsv.Image -eq $null) -or `
+           ($logCsv.Created -eq $null) -or `
+           ($logCsv.Sysprepped -eq $null) -or `
+           ($logCsv.Checked -eq $null)) 
+           {# Something is wrong with the log file
+            cleanupFile $logFile
+            $createLogFile = $true}
             }
+
+   if ($createLogFile) {$logCsv = @()} else {$logCsv = import-csv $logFile}
+
+   # If we find an entry for the VHD, update it
+   foreach ($entry in $logCsv)
+      { if ($entry.Image -eq $vhd)
+        {$entryExists = $true
+         $entry.Checked = ((get-Date).ToShortDateString() + "::" + (Get-Date).ToShortTimeString())
+         if ($sysprepped) {$entry.Sysprepped = ((get-Date).ToShortDateString() + "::" + (Get-Date).ToShortTimeString())}
         }
-    }
+      }
 
-    # if no entry is found, create a new one
-    if (-not $entryExists) 
-    {
-        $newEntry = New-Object PSObject -Property @{
-            Image = $vhd
-            Created = ((Get-Date).ToShortDateString() + "::" + (Get-Date).ToShortTimeString())
-            Sysprepped = ((Get-Date).ToShortDateString() + "::" + (Get-Date).ToShortTimeString())
-            Checked = ((Get-Date).ToShortDateString() + "::" + (Get-Date).ToShortTimeString())
-        };
-    }
+   # if no entry is found, create a new one
+   If (!$entryExists) 
+      {$newEntry = New-Object PSObject -Property @{Image=$vhd; `
+                                                   Created=((get-Date).ToShortDateString() + "::" + (Get-Date).ToShortTimeString()); `
+                                                   Sysprepped=((get-Date).ToShortDateString() + "::" + (Get-Date).ToShortTimeString()); `
+                                                   Checked=((get-Date).ToShortDateString() + "::" + (Get-Date).ToShortTimeString())}}
 
-    # Write out the CSV file
-    $logCsv | Export-CSV $logFile -NoTypeInformation;
-    if (-not ($newEntry -eq $null)) 
-    {
-        $newEntry | Export-CSV $logFile -NoTypeInformation -Append;
-    }
+   # Write out the CSV file
+   $logCsv | Export-CSV $logFile -notype
+   if (!($newEntry -eq $null)) {$newEntry | Export-CSV $logFile -notype -Append}
+   
 }
 
-function Logger {
-    param
-    (
-        [string]$systemName,
-        [string]$message
-    );
-
-    # Function for displaying formatted log messages.  Also displays time in minutes since the script was started
-    write-host (Get-Date).ToShortTimeString() -ForegroundColor Cyan -NoNewline;
-    write-host " - [" -ForegroundColor White -NoNewline;
-    write-host $systemName -ForegroundColor Yellow -NoNewline;
-    write-Host "]::$($message)" -ForegroundColor White;
-}
+function Logger ([string]$systemName, [string]$message)
+    {# Function for displaying formatted log messages.  Also displays time in minutes since the script was started
+     write-host (Get-Date).ToShortTimeString() -ForegroundColor Cyan -NoNewline
+     write-host " - [" -ForegroundColor White -NoNewline
+     write-host $systemName -ForegroundColor Yellow -NoNewline
+     write-Host "]::$($message)" -ForegroundColor White}
 
 # Helper function for no error file cleanup
+
 function cleanupFile
 {
     param
@@ -251,21 +215,11 @@ function GetUnattendChunk
         | ? name -eq $component;
 }
 
-function makeUnattendFile 
-{
-    param
-    (
-        [string] $key, 
-        [string] $logonCount, 
-        [string] $filePath, 
-        [bool] $desktop = $false, 
-        [bool] $is32bit = $false
-    ); 
-
-    # Composes unattend file and writes it to the specified filepath
+function makeUnattendFile ([string]$key, [string]$logonCount, [string]$filePath, [bool]$desktop = $false, [bool]$is32bit = $false) 
+    {# Composes unattend file and writes it to the specified filepath
      
-    # Reload template - clone is necessary as PowerShell thinks this is a "complex" object
-    $unattend = $unattendSource.Clone();
+     # Reload template - clone is necessary as PowerShell thinks this is a "complex" object
+     $unattend = $unattendSource.Clone()
      
     # Customize unattend XML
     GetUnattendChunk "specialize" "Microsoft-Windows-Shell-Setup" $unattend | %{$_.ProductKey = $key};
@@ -306,14 +260,10 @@ function makeUnattendFile
     	}
     }
      
-    if ($is32bit) 
-    {
-        $unattend.InnerXml = $unattend.InnerXml.Replace('processorArchitecture="amd64"', 'processorArchitecture="x86"');
-    }
+     if ($is32bit) {$unattend.InnerXml = $unattend.InnerXml.Replace('processorArchitecture="amd64"', 'processorArchitecture="x86"')}
 
-    # Write it out to disk
-    cleanupFile $filePath; $Unattend.Save($filePath);
-}
+     # Write it out to disk
+     cleanupFile $filePath; $Unattend.Save($filePath)}
 
 function createRunAndWaitVM 
 {
@@ -332,24 +282,17 @@ function createRunAndWaitVM
 
     set-vm -Name $factoryVMName -ProcessorCount 2;
     Start-VM $factoryVMName;
+    
+      # Give the VM a moment to start before we start checking for it to stop
+      Sleep -Seconds 10
 
-    # Give the VM a moment to start before we start checking for it to stop
-    Sleep -Seconds 10;
+      # Wait for the VM to be stopped for a good solid 5 seconds
+      do {$state1 = (Get-VM | ? name -eq $factoryVMName).State; sleep -Seconds 5
+          $state2 = (Get-VM | ? name -eq $factoryVMName).State; sleep -Seconds 5} 
+          until (($state1 -eq "Off") -and ($state2 -eq "Off"))
 
-    # Wait for the VM to be stopped for a good solid 5 seconds
-    do
-    {
-        $state1 = (Get-VM | ? name -eq $factoryVMName).State;
-        Start-Sleep -Seconds 5;
-        
-        $state2 = (Get-VM | ? name -eq $factoryVMName).State;
-        Start-Sleep -Seconds 5;
-    } 
-    until (($state1 -eq "Off") -and ($state2 -eq "Off"))
-
-    # Clean up the VM
-    Remove-VM $factoryVMName -Force;
-}
+      # Clean up the VM
+      Remove-VM $factoryVMName -Force}
 
 function MountVHDandRunBlock 
 {
@@ -374,6 +317,7 @@ function MountVHDandRunBlock
     # Wait 2 seconds for activity to clean up
     Start-Sleep -Seconds 2;
 }
+
 
 ### Update script block
 $updateCheckScriptBlock = {
@@ -517,6 +461,7 @@ $updateCheckScriptBlock = {
             New-Item $env:SystemDrive\Bits\changesMade.txt -type file > $null;
         }
     }
+
  
     # Apply all the updates
     logger "Applying the updates"
@@ -552,6 +497,7 @@ $updateCheckScriptBlock = {
     }
 };
 
+
 function Set-UpdateCheckPlaceHolders {
     $block = $updateCheckScriptBlock | Out-String -Width 4096
     
@@ -570,6 +516,7 @@ function Set-UpdateCheckPlaceHolders {
 
 ### Sysprep script block
 $sysprepScriptBlock = {
+
     # Run pre-sysprep script if it exists
     if (Test-Path "$env:SystemDrive\Bits\PreSysprepScript.ps1") {
         & "$env:SystemDrive\Bits\PreSysprepScript.ps1"
@@ -588,9 +535,8 @@ $sysprepScriptBlock = {
         }
 	}
              
-    $unattendedXmlPath = "$ENV:SystemDrive\Bits\Unattend.xml";
-    & "$ENV:SystemRoot\System32\Sysprep\Sysprep.exe" `/generalize `/oobe `/shutdown `/unattend:"$unattendedXmlPath";
-};
+     $unattendedXmlPath = "$ENV:SystemDrive\Bits\Unattend.xml" 
+     & "$ENV:SystemRoot\System32\Sysprep\Sysprep.exe" `/generalize `/oobe `/shutdown `/unattend:"$unattendedXmlPath"}
 
 ### Post Sysprep script block
 $postSysprepScriptBlock = {
@@ -834,7 +780,7 @@ function Start-ImageFactory
         # Mount the VHD
         logger $FriendlyName "Mount the differencing disk";
         $driveLetter = (Mount-VHD $updateVHD -Passthru | Get-Disk | Get-Partition | Get-Volume).DriveLetter;
-       
+ 
         # Check to see if changes were made
         logger $FriendlyName "Check to see if there were any updates";
         if (Test-Path "$($driveLetter):\Bits\changesMade.txt") 
