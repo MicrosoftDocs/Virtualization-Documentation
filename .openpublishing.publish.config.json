@@ -7,7 +7,7 @@
             "locale": "en-us",
             "version": 0,
             "open_to_public_contributors": "true",
-            "git_repository_url_open_to_public_contributors": "https://github.com/Microsoft/Virtualization-Documentation",
+            "git_repository_url_open_to_public_contributors": "https://github.com/Microsoft/Virtualization-Documentation/tree/master/virtualization/community",
             "type_mapping": {
                 "Conceptual": "Content"
             }
@@ -18,7 +18,7 @@
             "locale": "en-us",
             "version": 0,
             "open_to_public_contributors": "true",
-            "git_repository_url_open_to_public_contributors": "https://github.com/Microsoft/Virtualization-Documentation",
+            "git_repository_url_open_to_public_contributors": "https://github.com/Microsoft/Virtualization-Documentation/tree/master/virtualization/hyperv_on_windows",
             "type_mapping": {
                 "Conceptual": "Content"
             }
@@ -29,7 +29,7 @@
             "locale": "en-us",
             "version": 0,
             "open_to_public_contributors": "true",
-            "git_repository_url_open_to_public_contributors": "https://github.com/Microsoft/Virtualization-Documentation",
+            "git_repository_url_open_to_public_contributors": "https://github.com/Microsoft/Virtualization-Documentation/tree/master/virtualization/windowscontainers",
             "type_mapping": {
                 "Conceptual": "Content"
             }
