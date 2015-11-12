@@ -1,0 +1,15 @@
+## THIS IS NOT SECURE - ONLY FOR DEMO PURPOSES ##
+
+1. Enable Hyper-V 
+2. Enable “Isolated User Mode” feature.
+3. Create a gen2 VM with VHD.
+4. Config vTPM
+
+Add-VMTPM -vmname <vmname>
+$owner = Get-HgsGuardian DefaultOwner
+$kp = New-HgsKeyProtector $owner
+set-VMTPM <vmname> -Enabled $true -KeyProtector $kp.RawData
+   
+5.Start VM, vTPM should show up in guest OS.
+     
+Note, console access is not available for shielded VM.
