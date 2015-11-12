@@ -3,9 +3,11 @@
 Windows containers provide operating system level virtualization that allow you to run multiple isolated applications on one container host. This container documentation includes pre-release information and is subject to change. The documentation has a left hand table of contents that can be used for document navigation. Note, the table of contents can be collapsed for a wider view of the documents.
 
 
-<table border="1" style="background-color:FFFFCC;border-collapse:collapse;border:1px solid FFCC00;color:000000;width:50%" cellpadding="10" cellspacing="5">
+<table border="1" style="background-color:FFFFCC;border-collapse:collapse;border:1px solid FFCC00;color:000000;width:85%" cellpadding="10" cellspacing="5">
 <tr>
-<td colspan=2>**Quick Start**</td>
+<td colspan=2>**Quick Start**<br /><br />
+Try Windows Server and Hyper-V containers with these guided quick start experiences.
+</td>
 </tr>
 <tr>
 <td><center>![](media/try.png)</center></td>
@@ -18,7 +20,9 @@ Windows containers provide operating system level virtualization that allow you 
 </td>
 </tr>
 <tr>
-<td colspan=2>**Deployment**</td>
+<td colspan=2>**Deployment**<br /><br />
+Read about deploying Windows Container in Windows Server 2016 and Nano Server.
+</td>
 </tr>
 <tr>
 <td><center>![](media/1.png)</center></td>
@@ -29,7 +33,9 @@ Windows containers provide operating system level virtualization that allow you 
 </td>
 </tr>
 <tr>
-<td colspan=2>**Management**</td>
+<td colspan=2>**Management**<br /><br />
+Read about managing Windows Container in Windows Server 2016 and Nano Server.
+</td>
 </tr>
 <tr>
 <td><center>![](media/question.png)</center></td>
@@ -44,7 +50,9 @@ Windows containers provide operating system level virtualization that allow you 
 <li>[Container Interoperability](management/hcs_powershell.md)
 </td>
 <tr>
-<td colspan=2>**Community**</td>
+<td colspan=2>**Community**<br /><br />
+Interact with the community, try samples, and find additional resources.
+</td>
 </tr>
 <tr>
 <td><center>![](media/explore.png)</center></td>
