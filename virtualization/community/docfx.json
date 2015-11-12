@@ -1,0 +1,13 @@
+﻿{
+  "build": {
+    "content":
+      [
+        {
+          "files": ["**/**.md"],
+          "exclude": ["**/obj/**"]
+        }
+      ],
+    "template": "op.html",
+    "dest": "virtualization/community"
+  }
+}
