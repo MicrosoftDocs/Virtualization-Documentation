@@ -4,7 +4,6 @@
 ## [Container Ecosystem](about/container_ecosystem.md)
 ## [FAQ](about/faq.md)
 ## [Work In Progress](about/work_in_progress.md)
-## [EULA](EULA.md)
 # Contianer Quick Start
 ## [Contianer Host in Microsoft Azure](quick_start/azure_setup.md)
 ## [Container Host in New VM](quick_start/container_setup.md)
@@ -16,3 +15,4 @@
 ## [PowerShell Reference](reference/powershell_overview.md)
 ## [PowerShell / Docker Comparison](reference/ps_docker_comparison.md)
 ## [Application Compatibility](reference/app_compat.md)
+# [EULA](EULA.md)
