@@ -2,13 +2,11 @@
 
 Check out resources available to the user community. There is also a lot to see on the [Docker community](https://www.docker.com/community/participate/) pages.
 
-## Contribute 
-
+## Contribute
 * [Docker for Windows](https://github.com/Microsoft/docker) on GitHub
 * [This documentation site and samples](https://github.com/Microsoft/Virtualization-Documentation) on GitHub
 
 ## User Forums 
-
 * [Windows Containers forum](https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers) 
 * [TechNet forum](https://social.technet.microsoft.com/Forums/windowsserver/en-US/home "TechNet Forums")
 * [Azure forum](http://azure.microsoft.com/en-us/support/forums/)
