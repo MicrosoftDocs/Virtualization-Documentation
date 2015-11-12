@@ -90,7 +90,7 @@ IO Tab:
 
 ![](media/nssm3.png)
 
-When finished, click the install service button.
+When finished, click the `Install Service` button.
 
 With this completed, when Windows starts, the Docker daemon (service) will also start.
 
