@@ -18,12 +18,71 @@ This walkthrough demonstrates both Windows Server containers and Hyper-V contain
 Windows Server Containers provide an isolated, portable, and resource controlled operating environment for running applications and hosting processes. Windows Server Containers provide isolation between the container and host, and between containers running on the host, through process and namespace isolation.
 
 ### Create Container <!--1-->
+
+```powershell
+C:\>docker images
+REPOSITORY          TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
+windowsservercore   10.0.10586.1000     83b613fea6fc        13 days ago         0 B
+nanoserver          10.0.10586.1000     646d6317b02f        13 days ago         0 B
+```
+
+```powershell
+C:\>docker tag windowsservercore:10.0.10586.1000 windowsservercore:Latest
+```
+
+```powershell
+C:\>docker images
+REPOSITORY          TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
+windowsservercore   10.0.10586.1000     83b613fea6fc        13 days ago         0 B
+windowsservercore   latest              83b613fea6fc        13 days ago         0 B
+nanoserver          10.0.10586.1000     646d6317b02f        13 days ago         0 B
+```
+
+```powershell
+C:\>docker run -it windowsservercore cmd
+```
+
 ### Create IIS Image <!--1-->
+
+```powershell
+C:\>powershell.exe Install-WindowsFeature web-server
+```
+
+```powershell
+c:\exit
+```
+
+```powershell
+C:\>docker ps -a
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS                     PORTS               NAMES
+48355e3cd8e8        windowsservercore   "cmd"               10 minutes ago      Exited (0) 3 minutes ago                       awesome_mirzakhani
+```
+
+```powershell
+C:\>docker commit 48355e3cd8e8 windowsservercoreiis
+87e0ec900efcaf5cbe70b947b7c3d56aeeced4ae12227952f5ca1f545d147f2f
+```
+
 ### Create IIS Container <!--1-->
-### Configure Networking <!--1-->
+
+```powershell
+C:\>docker images
+REPOSITORY             TAG                 IMAGE ID            CREATED              VIRTUAL SIZE
+windowsservercoreiis   latest              87e0ec900efc        About a minute ago   176.3 MB
+windowsservercore      10.0.10586.1000     83b613fea6fc        13 days ago          0 B
+windowsservercore      latest              83b613fea6fc        13 days ago          0 B
+nanoserver             10.0.10586.1000     646d6317b02f        13 days ago          0 B
+```
+
 ### Create Application <!--1-->
 
+```powershell
+C:\>del C:\inetpub\wwwroot\iisstart.htm
+echo "Hello World From a Windows Server Container" > C:\inetpub\wwwroot\index.html
+```
+
 ## Hyper-V Container
+
 ### Create Container <!--2-->
 ### Create a Shared Folder
 ### Create IIS Image <!--2-->
