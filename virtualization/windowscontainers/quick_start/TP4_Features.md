@@ -259,7 +259,8 @@ Create a file in the shared folder named unattend.xml, copy these lines into the
 ```
 
 When completed, the `c:\share` directory on the container host be configured like this.
-```powershell
+
+```
 c:\share
 |-- en-us
 |    |-- Microsoft-NanoServer-IIS-Package.cab
