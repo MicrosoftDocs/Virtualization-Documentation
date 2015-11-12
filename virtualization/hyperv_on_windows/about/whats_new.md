@@ -1,9 +1,3 @@
-<<<<<<< HEAD
-=======
-ms.ContentId: 52DAFFBE-40F5-46D2-96F3-FB8659581594 
-title: What's New in Hyper-V for Windows 10
-
->>>>>>> Adding Doc For Test
 # What's New for Hyper-V on Windows 10
 
 This topic explains the new and changed functionality in Hyper-V on Windows 10®.
