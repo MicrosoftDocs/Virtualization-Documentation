@@ -41,5 +41,3 @@ Walkthroughs and samples.
 
 ### *-tools
 Scripts to automate Hyper-V/Windows Container things.
-
->>>>>>> TP3
