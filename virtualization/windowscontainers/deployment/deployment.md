@@ -41,7 +41,7 @@ Windows Containers use an OS image as the base for any container. Two OS images 
 
 <tr valign="top">
 <td><center>Install Container Feature</center></td>
-<td>The container feature needs to be installed in order to create and manage containers. This feature also installs the container PowerShell module.
+<td>The container feature needs to be installed in order to create and manage containers. This feature also installs the container PowerShell module.<br />
 <ul><li>[Windows Server](#role) - install container role on Windows Server and Window Server Core.</li>
 <li>[Nano Server](#nano) - prepare a Nano Server image with the container feature.</li>
 <ul>
@@ -49,8 +49,8 @@ Windows Containers use an OS image as the base for any container. Two OS images 
 <tr>
 
 <tr valign="top">
-<td><center>Install Hyper-V Role</center></td>
-<td>The Hyper-V role is required if the container host will be running Hyper-V container..
+<td><center>Configure Hyper-V Role</center></td>
+<td>The Hyper-V role is required if the container host will be running Hyper-V container.<br />
 <ul><li>[Enable Nested Virtualization](#nest) – if the container host is running on a Hyper-V virtual machine.</li>
 <li>[Install Hyper-V Role](#hypv) - on Windows Serever and Windows Server Core.</li>
 <li>[Nano Server](#nano) - Hyper-V is installed when creating the Nano Server Image.</li>
@@ -60,14 +60,14 @@ Windows Containers use an OS image as the base for any container. Two OS images 
 	
 <tr valign="top">
 <td><center>Install OS Images</center></td>
-<td>OS images provide the base for all Windows Containers. OS images have been created with both Windows Server Core and Nano Server. The installation of OS images is identical for Windows Server and Nano Server.
+<td>OS images provide the base for all Windows Containers. OS images have been created with both Windows Server Core and Nano Server. The installation of OS images is identical for Windows Server and Nano Server.<br />
 <ul><li>[Install OS Images](#img)</li><ul>
 </td>
 <tr>
 
 <tr valign="top">
 <td><center>Configure Networking</center></td>
-<td>The following networking items are required for Windows Containers.
+<td>The following networking items are required for Windows Containers.<br />
 <ul><li>[Create Virtual Switch](#vswitch) - Each container is connected to a virtual switch for all network communication. The virtual switch is configured as either external or NAT.
 <li>[Configure Network Address Translation (NAT)](#nat) - If a virtual switch has been configured as type NAT, a NAT object will need to be created.
 <li>[Enable MAC Spoofing](#mac) – if the container host is a Hyper-V virtual machine, MAC spoofing will need to be enabled.
@@ -77,7 +77,7 @@ Windows Containers use an OS image as the base for any container. Two OS images 
 
 <tr valign="top">
 <td><center>Install Docker</center></td>
-<td>The Docker daemon and CLI will need to be installed if Docker will be used as the container management tool.
+<td>The Docker daemon and CLI will need to be installed if Docker will be used as the container management tool.<br />
 <ul><li>[Install Docker](#docker)</li></ul>
 </td>
 <tr>
@@ -135,22 +135,25 @@ New-NanoServerImage -MediaPath <insert server media path> -BasePath c:\nano -Tar
 ```
 When completed, create a virtual machine from the NanoContainer.vhdx file.
 
-### Install Hyper-V Role
+### Configure Hyper-V
 
-If Hyper-V containers will be deployed, the Hyper-V role will need to be installed on the container host.
+Two scenarios need to be considered in regard to Hyper-V and Windows Containers.
 
-<a name=nest></a>If the container host is running on a Hyper-V virtual machine, nested virtualization will need to be enabled.
+- The container host will be hosting Hyper-V containers.
+- The container host itself is a Hyper-V virtual machine.
+
+If Hyper-V containers will be hosted on the container host, the Hyper-V role will need to be installed. This can be completed on Windows Server 2016 or Windows Server 2016 Core using the following PowerShell command. For Nano Server Configuration, see [Prepare Nano Server](#nano).
+
+```powershell
+Install-WindowsFeature hyper-v
+```
+
+<a name=nest></a>If the container host itself is a Hyper-V virtual machine, and will also be hosting Hyper-V containers, nested virtualization will need to be enabled before the Hyper-V role can be installed. This can be completed with the following PowerShell Command.
 
 > The virtual machines must be turned off when running this command.
 
 ```powershell
 Set-VMProcessor -VMName <container host vm> -ExposeVirtualizationExtensions $true
-```
-
-<a name=hypv></a>Enable the Hyper-V Role. The server will need to be rebooted after Hypre-V has been installed.
-
-```powershell
-Install-WindowsFeature hyper-v
 ```
 
 ### <a name=img></a>Install OS Images

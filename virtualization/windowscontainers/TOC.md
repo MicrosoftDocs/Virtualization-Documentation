@@ -4,9 +4,9 @@
 ## [FAQ](about/faq.md)
 ## [Work In Progress](about/work_in_progress.md)
 # Contianer Quick Start
-## [Contianer Host in Microsoft Azure](quick_start/azure_setup.md)
-## [Container Host in New VM](quick_start/container_setup.md)
-## [Contianer Host on Exsisting Computer ](quick_start/inplace_setup.md)
+## [Contianers in Microsoft Azure](quick_start/azure_setup.md)
+## [Containes in a New VM](quick_start/container_setup.md)
+## [Contianers on an Exsisting Computer ](quick_start/inplace_setup.md)
 ## [Windows Containers - PowerShell](quick_start/manage_powershell.md)
 ## [Windows Containers -  Docker](quick_start/manage_docker.md)
 # Deploy Windows Containers
