@@ -579,10 +579,10 @@ Convert-WindowsImage
             ConvertFrom-StringData -StringData @"
 Major     = 10
 Minor     = 0
-Build     = 10557
-Qfe       = 1000
-Branch    = th2_xenon_hyp(mebersol)
-Timestamp = 150829-1819
+Build     = 10586
+Qfe       = 0
+Branch    = th2_release
+Timestamp = 151029-1700
 Flavor    = amd64fre
 "@
         }
@@ -2588,10 +2588,10 @@ VirtualHardDisk
                 $transcripting = $false
             }
 
-            if (-not (Get-Module Hyper-V))
-            {
-                Add-Type -TypeDefinition $code -ReferencedAssemblies "System.Xml","System.Linq","System.Xml.Linq"
-            }
+            #
+            # Add types
+            #
+            Add-Type -TypeDefinition $code -ReferencedAssemblies "System.Xml","System.Linq","System.Xml.Linq" -ErrorAction SilentlyContinue
 
             # Check to make sure we're running as Admin.
             if (!(Test-Admin)) 
