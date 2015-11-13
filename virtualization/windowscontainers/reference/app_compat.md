@@ -1,8 +1,10 @@
-# Application Compatability in Windows Server Containers
+# Application Compatability in Windows Containers
+
+This is a preview.  While eventually everything that runs on Windows should also run in a container, this is a good place to see our current application compatability status.
 
 Is something not on this list?  Let us know what fails and succeeds in your environment via [the forums](https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers).
 
-## Which applications run in a Windows Server Container
+## Applications in Windows Server Container
 
 We have tried to running the following applications in a Windows Server Container.  These results do not guarantee that the application is working.  The sole purpose is to share our experience.
 
@@ -39,6 +41,8 @@ We have tried to running the following applications in a Windows Server Containe
 | SQLite | 3.8.11.1 | Yes | No | |
 | SQL Server Express | 2014 LocalDB | No | No |  |
 | Sysinternals Tools | * | Yes | Yes | Only tried those not requiring a GUI. PsExec does not work by current design | 
+
+## 
 
 ## What Optional Windows Features can I install?
 
