@@ -5,7 +5,7 @@
 ## [Work In Progress](about/work_in_progress.md)
 # Contianer Quick Start
 ## [Contianers in Microsoft Azure](quick_start/azure_setup.md)
-## [Containes in a New VM](quick_start/container_setup.md)
+## [Contianers in a New VM](quick_start/container_setup.md)
 ## [Contianers on an Exsisting Computer ](quick_start/inplace_setup.md)
 ## [Windows Containers - PowerShell](quick_start/manage_powershell.md)
 ## [Windows Containers -  Docker](quick_start/manage_docker.md)
