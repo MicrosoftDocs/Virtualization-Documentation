@@ -47,7 +47,7 @@ Start-Container $con
 Connect to the container using the `Enter-PSSession` command. Notice that when the PowerShell session has been created with the container, the PowerShell prompt changes to reflect the container name.
 
 ```powershell
-PS C:\> Enter-PSSession -ContainerId $con.ContainerId -RunAsAdministrator
+Enter-PSSession -ContainerId $con.ContainerId -RunAsAdministrator
 [TP4Demo]: PS C:\Windows\system32>
 ```
 
@@ -124,10 +124,12 @@ Ethernet adapter vEthernet (Virtual Switch-04E1CA63-4C67-4457-B065-6ED7E99EC314-
    Default Gateway . . . . . . . . . : 172.16.0.1
 ```
 
-To create the NAT port mapping, use the `Add-NetNatStaticMapping` command. The following example maps port 80 of the host to port 80 of the containers IP Address. 
+To create the NAT port mapping, use the `Add-NetNatStaticMapping` command. The following examples checks for an existing mapping on external port 80, and if one does not exist, creates it.
 
 ```powershell
+if (!(Get-NetNatStaticMapping | where {$_.ExternalPort -eq 80})) {
 Add-NetNatStaticMapping -NatName "ContainerNat" -Protocol TCP -ExternalIPAddress 0.0.0.0 -InternalIPAddress 172.16.0.2 -InternalPort 80 -ExternalPort 80
+}
 ```
 
 When the port mapping has been created, you will also need to configure an inbound firewall rule for the configured port. To do so for port 80, run the following script.
@@ -168,6 +170,26 @@ Exit the remote container session.
 ```powershell
 [IIS]: PS C:\> exit
 PS C:\>
+```
+
+### Remove Container
+
+To container will need to be stopped before it can be removed.
+
+```powershell
+Stop-Container $con
+```
+
+When the container has been stopped, it can be removed with the `Remove-Container` command.
+
+```powershell
+Remove-Container $con –Force
+```
+
+Finally, a container image can be removed using the ` Remove-ContainerImage` command.
+
+```powershell
+Remove-ContainerImage -Name WindowsServerCoreIIS –Force
 ```
 
 ## Hyper-V Container
