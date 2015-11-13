@@ -174,7 +174,7 @@ PS C:\>
 
 ### Remove Container
 
-To container will need to be stopped before it can be removed.
+A container will need to be stopped, before it can be removed.
 
 ```powershell
 Stop-Container $con
@@ -193,6 +193,10 @@ Remove-ContainerImage -Name WindowsServerCoreIIS –Force
 ```
 
 ## Hyper-V Container
+
+Hyper-V Containers provide an additional layer of isolation over Windows Server Containers. Each Hyper-V Container is created within a highly optimized virtual machine. Where a Windows Server Container shares a kernel with the Container host, and all other Windows Server Containers running on that host, a Hyper-V container is completely isolated from other containers. Hyper-V Containers are created and managed identically to Windows Server Containers. For more informa
+
+Hyper-V containers are not available in Microsoft Azure. To completed this exercise, you must be working on an on-prem system that meets the requirements for Hyper-V containers. 
 
 ### Create Container <!--2-->
 
