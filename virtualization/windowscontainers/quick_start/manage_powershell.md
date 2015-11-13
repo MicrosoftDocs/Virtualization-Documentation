@@ -225,7 +225,7 @@ Shared folders expose a directory from the container host to the container. When
 Create a directory on the container host that will be shared with the container.
 
 ```powershell
-New-Item -Type Directory c:\share
+New-Item -Type Directory c:\share\en-us
 ```
 
 Use the `Add-ContainerSharedFolder` command to create a shared folder.
@@ -322,6 +322,19 @@ First Exit the container.
 [HYPV]: PS C:\> exit
 PS C:\>
 ```
+
+Stop the container.
+
+```powershell
+Stop-Container $con
+```
+
+Start the container.
+
+```powershell
+Start-Container $con
+```
+
 Run the following to reboot the container, which completes the IIS installation, and then finally shuts down the container.
 
 ```powershell
@@ -358,10 +371,12 @@ PS C:\> Start-Container $con
 
 The default network configuration for the Windows Container Quick Starts is to have the containers connected to a virtual switch configured with Network Address Translation (NAT). Because of this, in order to connect to an application running inside of a container, a port on the container host needs to be mapped to a port on the container. This can be done with the `Add-NetNatStaticMapping` command.
 
-To create the port mapping, run the following command.
+To create the NAT port mapping, use the `Add-NetNatStaticMapping` command. The following examples checks for an existing mapping on external port 80, and if one does not exist, creates it.
 
 ```powershell
+if (!(Get-NetNatStaticMapping | where {$_.ExternalPort -eq 80})) {
 Add-NetNatStaticMapping -NatName "ContainerNat" -Protocol TCP -ExternalIPAddress 0.0.0.0 -InternalIPAddress 172.16.0.2 -InternalPort 80 -ExternalPort 80
+}
 ```
 You will also need to open up port 80 on the container host.
 
