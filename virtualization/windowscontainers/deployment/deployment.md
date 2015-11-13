@@ -41,7 +41,7 @@ Windows Containers use an OS image as the base for any container. Two OS images 
 
 <tr valign="top">
 <td><center>Install Container Feature</center></td>
-<td>The container feature needs to be installed in order to create and manage containers. This feature also installs the container PowerShell module.<br />
+<td>The container feature needs to be installed in order to create and manage containers. This feature also installs the container PowerShell module.<br /><br />
 <ul><li>[Windows Server](#role) - install container role on Windows Server and Window Server Core.</li>
 <li>[Nano Server](#nano) - prepare a Nano Server image with the container feature.</li>
 <ul>
@@ -50,7 +50,7 @@ Windows Containers use an OS image as the base for any container. Two OS images 
 
 <tr valign="top">
 <td><center>Configure Hyper-V Role</center></td>
-<td>The Hyper-V role is required if the container host will be running Hyper-V container.<br />
+<td>The Hyper-V role is required if the container host will be running Hyper-V container.<br /><br />
 <ul><li>[Enable Nested Virtualization](#nest) – if the container host is running on a Hyper-V virtual machine.</li>
 <li>[Install Hyper-V Role](#hypv) - on Windows Serever and Windows Server Core.</li>
 <li>[Nano Server](#nano) - Hyper-V is installed when creating the Nano Server Image.</li>
@@ -60,14 +60,14 @@ Windows Containers use an OS image as the base for any container. Two OS images 
 	
 <tr valign="top">
 <td><center>Install OS Images</center></td>
-<td>OS images provide the base for all Windows Containers. OS images have been created with both Windows Server Core and Nano Server. The installation of OS images is identical for Windows Server and Nano Server.<br />
+<td>OS images provide the base for all Windows Containers. OS images have been created with both Windows Server Core and Nano Server. The installation of OS images is identical for Windows Server and Nano Server.<br /><br />
 <ul><li>[Install OS Images](#img)</li><ul>
 </td>
 <tr>
 
 <tr valign="top">
 <td><center>Configure Networking</center></td>
-<td>The following networking items are required for Windows Containers.<br />
+<td>The following networking items are required for Windows Containers.<br /><br />
 <ul><li>[Create Virtual Switch](#vswitch) - Each container is connected to a virtual switch for all network communication. The virtual switch is configured as either external or NAT.
 <li>[Configure Network Address Translation (NAT)](#nat) - If a virtual switch has been configured as type NAT, a NAT object will need to be created.
 <li>[Enable MAC Spoofing](#mac) – if the container host is a Hyper-V virtual machine, MAC spoofing will need to be enabled.
@@ -77,7 +77,7 @@ Windows Containers use an OS image as the base for any container. Two OS images 
 
 <tr valign="top">
 <td><center>Install Docker</center></td>
-<td>The Docker daemon and CLI will need to be installed if Docker will be used as the container management tool.<br />
+<td>The Docker daemon and CLI will need to be installed if Docker will be used as the container management tool.<br /><br />
 <ul><li>[Install Docker](#docker)</li></ul>
 </td>
 <tr>
