@@ -314,9 +314,14 @@ Run the following command to install IIS.
 ```powershell
 dism /online /apply-unattend:c:\iisinstall\unattend.xml
 ```
-The container will need to be restarted in order for the IIS installation to complete.
 
-First Exit the container.
+When the IIS installation has complete, manually start IIS with the following commands.
+
+```powershell
+Net start w3svc
+```
+
+Exit the container session.
 
 ```powershell
 [HYPV]: PS C:\> exit
@@ -327,18 +332,6 @@ Stop the container.
 
 ```powershell
 Stop-Container $con
-```
-
-Start the container.
-
-```powershell
-Start-Container $con
-```
-
-Run the following to reboot the container, which completes the IIS installation, and then finally shuts down the container.
-
-```powershell
-Stop-Container $con; Start-Container $con; Stop-Container $con
 ```
 
 The state of this container can now be captured into a new container image using the `New-ContainerImage` command.
@@ -415,14 +408,3 @@ Exit the remote container session.
 [IIS]: PS C:\> exit
 PS C:\>
 ```
-
-## Next Steps
-Now that you have containers set up and an introduction to the tools, go build your own containerized apps.
-
-Here is a more complete [PowerShell reference](../reference/powershell_overview.md).
-
-Remember, this is a **preview** there are bugs and we have a lot of work in progress.  [This page](../about/work_in_progress.md) contains many of our known issues.
-
-We are also monitoring the [forums](https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers) very closely.
-
-There are also pre-made samples on [GitHub](https://github.com/Microsoft/Virtualization-Documentation/tree/master/windows-server-container-samples).
