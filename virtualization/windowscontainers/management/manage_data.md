@@ -25,7 +25,7 @@ ContainerName SourcePath 	   DestinationPath AccessMode
 DEMO          c:\data_source   c:\shared_data  ReadWrite
 ```
 
-### Create a Read Only Shared Folder*
+### Read Only Shared Folder
 
 ```powershell
 Add-ContainerSharedFolder -ContainerName DEMO -SourcePath c:\sf1 -DestinationPath c:\sf2 -AccessMode ReadOnly
@@ -47,7 +47,7 @@ ContainerName SourcePath DestinationPath AccessMode
 DEMO         c:\source  c:\source       ReadWrite
 ```
 
-### Modify Shared Folder*
+### Modify Shared Folder
 
 To modify and existing shared folder configuration, use the `Set-ContainerSharedFolder` command.
 
@@ -55,7 +55,7 @@ To modify and existing shared folder configuration, use the `Set-ContainerShared
 Set-ContainerSharedFolder -ContainerName SFRO -SourcePath c:\sf1 -DestinationPath c:\sf1
 ```
 
-### Remove Shared Folder*
+### Remove Shared Folder
 
 To remove a shared folder, use the `Remove-ContainerSharedFolder` command.
 

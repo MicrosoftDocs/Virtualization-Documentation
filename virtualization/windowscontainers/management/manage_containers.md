@@ -4,7 +4,7 @@ The container life cycle includes actions such as, starting, stopping, and remov
 
 For documentation on managing Windows Containers with Docker see the Docker document [Working with Containers]( https://docs.docker.com/userguide/usingdocker/).
 
-## Container Operations PowerShell
+## Container Operations
 
 ### Create a Container
 
@@ -140,7 +140,7 @@ The following will remove all containers on the host.
 Get-Container | Remove-Container -Force
 ```
 
-## Container Process Identification 
+## Container Process
 
 ### Container Processes
 
@@ -177,7 +177,7 @@ Handles  NPM(K)    PM(K)      WS(K) VM(M)   CPU(s)     Id  SI ProcessName       
     128       8     5672      10840 ...04            5360   3 WmiPrvSE                     NONIC
 ```
 
-### Additional Resources
+## Additional Resources
 
 For a complete reference of Container PowerShell commands see the [Container PowerShell Reference](https://technet.microsoft.com/en-us/library/mt433069.aspx).
 

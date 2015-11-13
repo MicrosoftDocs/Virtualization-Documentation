@@ -2,7 +2,7 @@
 
 When you create a container, you can now manage how much CPU, IO, network, and memory resources that the container can utilize, in order to provide the appropriate resources for the workload you plan to run in the container. 
 
-## Managing Container Resources with PowerShell
+## Managing Resources - PowerShell
 
 If you choose to manage your containers via PowerShell cmdlets, you have the following options for setting container resource controls on the CPU, Network, Memory, and IO on both local container storage and shared folders. 
 
@@ -57,7 +57,7 @@ Set-ContainerStorage -ContainerName Container1 -MaximumBandwidth 1000000
 Set-ContainerStorage -ContainerName Container1 -MaximumIOPS 32
 ```
 
-## Managing Container Resources through Docker 
+## Managing Resources - Docker 
 
 We offer the ability to manage a subset of container resources through Docker. Specifically, we allow users to specify how the cpu is shared amongst containers. 
 

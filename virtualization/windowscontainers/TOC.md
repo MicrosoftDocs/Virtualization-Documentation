@@ -1,8 +1,8 @@
 # About Windows Container
 ## [Container Docs Overview](./containers_welcome.md)
 ## [About Windows Containers](about/about_overview.md)
-## [FAQ](about/faq.md)
 ## [Work In Progress](about/work_in_progress.md)
+## [FAQ](about/faq.md)
 # Contianer Quick Start
 ## [Contianers in Microsoft Azure](quick_start/azure_setup.md)
 ## [Contianers in a New VM](quick_start/container_setup.md)
@@ -21,7 +21,7 @@
 ##[Contianer Resource Controll](management/manage_resources.md)
 ##[Management Interoperability](management/hcs_powershell.md)
 # Reference
-## [PowerShell Reference](reference/powershell_overview.md)
+## [PowerShell Reference](https://technet.microsoft.com/en-us/library/mt433069.aspx )
 ## [PowerShell / Docker Comparison](reference/ps_docker_comparison.md)
 ## [Application Compatibility](reference/app_compat.md)
 # [EULA](./EULA.md)
