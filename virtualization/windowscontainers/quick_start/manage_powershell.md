@@ -256,7 +256,7 @@ When in the remote session, notice that the shared folder `c:\iisinstall` has be
 ls c:\iisinstall
 ```
 
-For more information on Shared Folders see [Container Data Management](./management.manage_data.md).
+For more information on Shared Folders see [Container Data Management](./management/manage_data.md).
 
 ### Create IIS Image <!--2-->
 
