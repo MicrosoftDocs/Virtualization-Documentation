@@ -7,19 +7,19 @@ Is something not on this list?  Let us know what fails and succeeds in your envi
 We have tried to running the following applications in a Windows Server Container.  These results do not guarantee that the application is working.  The sole purpose is to share our experience.
 
 | **Name** | **Version** | **Windows Server Core base image** | **Nano Server base image** | **Comment** |
-|:-----|:-----|:-----|:-----|
+|:-----|:-----|:-----|:-----|:-----|
 | .NET | 3.5 | Yes | Unknown |  | 
 | .NET | 4.6 | Yes | Unknown |  | 
 | .NET CLR | 5 beta 6 | Yes | Yes| Both, x64 and x86 | 
 | Active Python | 3.4.1 | Yes | Yes | |
-| Apache Cassandra || Yes | Unkown ||
+| Apache Cassandra || Yes | Unkown | 
 | Apache CouchDB | 1.6.1 | No | No | |
 | Apache Hadoop | | Yes | No | |
 | Apache HTTPD | 2.4 | Yes | Yes | |
 | Apache Tomcat | 8.0.24 x64 | Yes | Unknown | |
 | ASP.NET | 4.5 | Yes | Unkown | |
 | ASP.NET | 5 beta 6 | Yes | Yes | Both, x64 and x86 |
-| Django ||Yes|Yes||
+| Django | |Yes|Yes| |
 | Go Progamming Language | 1.4.2 | Yes | Yes | |
 | Internet Information Service | 10.0 | Yes | Yes | |
 | Java | 1.8.0_51 | Yes | Yes | Use the server version. The client version does not install properly |
