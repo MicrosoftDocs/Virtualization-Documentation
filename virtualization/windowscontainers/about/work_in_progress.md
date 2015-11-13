@@ -112,67 +112,28 @@ Some of the most common issues are located here as well.
 Unexpected error occurred inside a localdb instance api method call
 
 ### RTerm doesn't work
+RTerm installs but won't start in a Windows Server Container.
 
-Using Docker:
-1. Create a new Rcontainer using Dockerfile/Sources:
-docker build -t r3.2.1 \\vmstore\public\liwer\docker\buildfiles\R3.2.1\build
-2. docker run --rm -it r3.2.1 cmd
-3. cd "C:\Program Files\R\R-3.2.1\bin\x64"
-4. r.exe
-
-Observed behavior:
-RTerm does not run:
-C:\Program Files\R\R-3.2.1\bin\x64>r
+Error:  
+```
 'C:\Program' is not recognized as an internal or external command,
 operable program or batch file.
+```
 
-Expected behavior:
-RTerm runs:
-C:\Program Files\R\R-3.2.1\bin\x64>r
-R version 3.2.1 (2015-06-18) -- "World-Famous Astronaut"
-Copyright (C) 2015 The R Foundation for Statistical Computing
-Platform: x86_64-w64-mingw32/x64 (64-bit)
-R is free software and comes with ABSOLUTELY NO WARRANTY.
-You are welcome to redistribute it under certain conditions.
-Type 'license()' or 'licence()' for distribution details.
-  Natural language support but running in an English locale
-R is a collaborative project with many contributors.
-Type 'contributors()' for more information and
-'citation()' on how to cite R or R packages in publications.
-Type 'demo()' for some demos, 'help()' for on-line help, or
-'help.start()' for an HTML browser interface to help.
-Type 'q()' to quit R.
->
-
-Additional Information
-This works in the container host.
 
 ### Container: Visual C++ Runtime x64/x86 2015 is not getting installed
-Repro Steps: 
-Sources: \\balajibi9\BuildFiles\vcr_2015_x64\Build\source
-Docker build \\balajibi9\BuildFiles\vcr_2015_x64\Build\
-
-Sources: \\balajibi9\BuildFiles\vcr_2015_x86\Build\source
-Docker build \\balajibi9\BuildFiles\vcr_2015_x86\Build\
 
 Observed behavior:
 In a Container:
+```
 C:\build\vcredist_2015_x64.exe /q /norestart
-<Wait for 2-3 mins>
-
 C:\build>echo %errorlevel%
 0
 C:\build>wmic product get
 No Instance(s) Available.
+```
 
-On the host / Expected behavior:
-Runtime installs correctly and shows as it is added in last command(wmic product get)
-
-
-Scott Brender (a month ago)
-This is an interop issue with the dedup filter. Dedup checks the rename target to see if it is a deduped file. The create it issues fails with STATUS_IO_REPARSE_TAG_NOT_HANDLED because the argon filter is sitting above dedup by design.
-
-
+This is an interop issue with the dedup filter. Dedup checks the rename target to see if it is a deduped file. The create it issues fails with `STATUS_IO_REPARSE_TAG_NOT_HANDLED` because the Windows Server Container filter is sitting above dedup.
 
 
 See the [application compatability article](../reference/app_compat.md) for more information about what applications can be containerized.
