@@ -19,21 +19,21 @@ We have tried to running the following applications in a Windows Server Containe
 | Apache Cassandra || Yes | Unkown | 
 | Apache CouchDB | 1.6.1 | No | No | |
 | Apache Hadoop | | Yes | No | |
-| Apache HTTPD | 2.4 | Yes | Yes | |
+| Apache HTTPD | 2.4 | Yes | Yes | VC++ runtime does not get installed if dedup filter is loaded. Unload dedup using `fltmc unload dedup` |
 | Apache Tomcat | 8.0.24 x64 | Yes | Unknown | |
 | ASP.NET | 4.5 | Yes | Unkown | |
 | ASP.NET | 5 beta 6 | Yes | Yes | Both, x64 and x86 |
 | Django | |Yes|Yes| |
 | Go | 1.4.2 | Yes | Yes | |
-| Internet Information Service | 10.0 | Yes | Yes | |
+| Internet Information Service | 10.0 | Yes | Yes | VC++ runtime does not get installed if dedup filter is loaded. Unload dedup using `fltmc unload dedup` |
 | Java | 1.8.0_51 | Yes | Yes | Use the server version. The client version does not install properly |
 | MongoDB | 3.0.4 | Yes | Unkown | |
 | MySQL | 5.6.26 | Yes | Yes | |
 | NGinx | 1.9.3 | Yes | Yes | |
 | Node.js | 0.12.6 | Partially | Partially | NPM fails to download packages. |
 | Perl | | Yes | Unkown | |
-| PHP | 5.6.11 | Yes | Yes |  |
-| PostgreSQL | 9.4.4 | Yes | Unknown | |
+| PHP | 5.6.11 | Yes | Yes | VC++ runtime does not get installed if dedup filter is loaded. Unload dedup using `fltmc unload dedup` |
+| PostgreSQL | 9.4.4 | Yes | Unknown | VC++ runtime does not get installed if dedup filter is loaded. Unload dedup using `fltmc unload dedup` |
 | Python | 3.4.3 | Yes | Yes | |
 | R | 3.2.1 | No | No | |
 | RabbitMQ | 3.5.x | Yes | Unknown | |
@@ -51,7 +51,7 @@ We have tried to running the following applications in a Hyper-V Container.  The
 | **Name** | **Version** | **Nano Server base image** | **Comment** |
 |:-----|:-----|:-----|:-----|
 | Apache Hadoop | | No | |
-| Apache HTTPD | 2.4 | Yes | |
+| Apache HTTPD | 2.4 | Yes | VC++ runtime does not get installed if dedup filter is loaded. Unload dedup using `fltmc unload dedup` |
 | ASP.NET | 5 beta 6 | Yes | Both, x64 and x86 |
 | Django |  | Yes | If the image is created with a DockerFile and python binaries are copied as part it, Python does not work. Start container and then copy the python binaries. |
 | Go | 1.4.2 | Yes | |
