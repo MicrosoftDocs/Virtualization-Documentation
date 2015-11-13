@@ -84,6 +84,20 @@ echo "Hello World From a Windows Server Container" > C:\inetpub\wwwroot\index.ht
 ## Hyper-V Container
 
 ### Create Container <!--2-->
+
+```powershell
+docker tag nanoserver:10.0.10586.1000 nanoserver:latest
+```
+
+```powershell
+C:\>docker images
+REPOSITORY          TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
+windowsservercore   10.0.10586.1000     83b613fea6fc        13 days ago         0 B
+windowsservercore   latest              83b613fea6fc        13 days ago         0 B
+nanoserver          10.0.10586.1000     646d6317b02f        13 days ago         0 B
+nanoserver          latest              646d6317b02f        13 days ago         0 B
+```
+
 ### Create a Shared Folder
 ### Create IIS Image <!--2-->
 ### Create IIS Container <!--2-->

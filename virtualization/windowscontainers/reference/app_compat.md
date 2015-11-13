@@ -6,40 +6,39 @@ Is something not on this list?  Let us know what fails and succeeds in your envi
 
 We have tried to running the following applications in a Windows Server Container.  These results do not guarantee that the application is working.  The sole purpose is to share our experience.
 
-| **Name** | **Version** | **Does it work?** | **Comment** |
-|:-----|:-----|:-----|:-----|
-| .NET | 3.5 | No | Fails to install properly | 
-| .NET | 4.6 | Yes | Included in base image | 
-| .NET CLR | 5 beta 6 | Yes | Both, x64 and x86 | 
-| Active Python | 3.4.1 | Yes | |
-| Apache CouchDB | 1.6.1 | No | |
-| Apache HTTPD | 2.4 | Yes | |
-| Apache Tomcat | 8.0.24 x64 | Yes | |
-| ASP.NET | 3.5 | No | |
-| ASP.NET | 4.5 | No | |
-| ASP.NET | 5 beta 6 | Yes | Both, x64 and x86 |
-| Erlang/OTP | 18.0 | No | |
-| FileZilla FTP Server | 0.9 | Yes | Has to be installed through an RDP session  into the container | 
-| Go Progamming Language | 1.4.2 | Yes | |
-| Internet Information Service | 10.0 | Yes | |
-| Java | 1.8.0_51 | Yes | Use the server version. The client version does not install properly |
-| Jetty | 9.3 | Partially | Running demo-base fails |
-| MineCraft Server | 1.8.5 | Yes | |
-| MongoDB | 3.0.4 | Yes | |
-| MySQL | 5.6.26 | Yes | |
-| NGinx | 1.9.3 | Yes | |
-| Node.js | 0.12.6 | Partially | Running node with js files works. NPM fails to download packages. Running node interactively does not work properly. |
-| PHP | 5.6.11 | Partially | With Apache, IIS via FastCGI currently does not work. |
-| PostgreSQL | 9.4.4 | Yes | |
-| Python | 3.4.3 | Yes | |
-| R | 3.2.1 | No | |
-| RabbitMQ | 3.5.x | Yes | Has to be installed through an RDP session  into the container |
-| Redis | 2.8.2101 | Yes | |
-| Ruby | 2.2.2 | Yes | Both, x64 and x86 | 
-| Ruby on Rails | 4.2.3 | Yes | |
-| SQLite | 3.8.11.1 | Yes | |
-| SQL Server Express | 2014 LocalDB | No |  |
-| Sysinternals Tools | * | Yes | Only tried those not requiring a GUI. PsExec does not work by current design | 
+| **Name** | **Version** | **Windows Server Core base image** | **Nano Server base image** | **Comment** |
+|:-----|:-----|:-----|:-----|:-----|
+| .NET | 3.5 | Yes | Unknown |  | 
+| .NET | 4.6 | Yes | Unknown |  | 
+| .NET CLR | 5 beta 6 | Yes | Yes| Both, x64 and x86 | 
+| Active Python | 3.4.1 | Yes | Yes | |
+| Apache Cassandra || Yes | Unkown | 
+| Apache CouchDB | 1.6.1 | No | No | |
+| Apache Hadoop | | Yes | No | |
+| Apache HTTPD | 2.4 | Yes | Yes | |
+| Apache Tomcat | 8.0.24 x64 | Yes | Unknown | |
+| ASP.NET | 4.5 | Yes | Unkown | |
+| ASP.NET | 5 beta 6 | Yes | Yes | Both, x64 and x86 |
+| Django | |Yes|Yes| |
+| Go Progamming Language | 1.4.2 | Yes | Yes | |
+| Internet Information Service | 10.0 | Yes | Yes | |
+| Java | 1.8.0_51 | Yes | Yes | Use the server version. The client version does not install properly |
+| MongoDB | 3.0.4 | Yes | Unkown | |
+| MySQL | 5.6.26 | Yes | Yes | |
+| NGinx | 1.9.3 | Yes | Yes | |
+| Node.js | 0.12.6 | Partially | Partially | NPM fails to download packages. |
+| Perl | | Yes | Unkown | |
+| PHP | 5.6.11 | Yes | Yes |  |
+| PostgreSQL | 9.4.4 | Yes | Unknown | |
+| Python | 3.4.3 | Yes | Yes | |
+| R | 3.2.1 | No | No | |
+| RabbitMQ | 3.5.x | Yes | Unknown | |
+| Redis | 2.8.2101 | Yes | Yes | |
+| Ruby | 2.2.2 | Yes | Yes | Both, x64 and x86 | 
+| Ruby on Rails | 4.2.3 | Yes | Yes | |
+| SQLite | 3.8.11.1 | Yes | No | |
+| SQL Server Express | 2014 LocalDB | No | No |  |
+| Sysinternals Tools | * | Yes | Yes | Only tried those not requiring a GUI. PsExec does not work by current design | 
 
 ## What Optional Windows Features can I install?
 
