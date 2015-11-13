@@ -111,8 +111,8 @@ Some of the most common issues are located here as well.
 ### Unexpected error occurred inside a localdb instance api method call
 Unexpected error occurred inside a localdb instance api method call
 
-
 ### RTerm doesn't work
+
 Using Docker:
 1. Create a new Rcontainer using Dockerfile/Sources:
 docker build -t r3.2.1 \\vmstore\public\liwer\docker\buildfiles\R3.2.1\build
@@ -182,51 +182,15 @@ See the [application compatability article](../reference/app_compat.md) for more
 
 ## Docker management
 
-### Docker exec doens't work in Xenon
-
 ### Docker clients unsecured
 In this pre-release, docker communication is public if you know where to look.
 
 ### Not all Docker commands work
+Docker exec fails in Hyper-V Containers.
 
-Commands known to fail:
-
-| **Docker command** | **Where it runs** | **Error** | **Notes** |
-|:-----|:-----|:-----|:-----|
-| **docker commit** | image | Docker stops running container and doesn’t show correct error message | Committing a stopped container works. Running containers cannot be committed to an image. |
-| **docker diff** | daemon | Error: The windows graphdriver does not support Changes() | Docker diff will not be supported by the Windows Docker daemon. |
-| **docker kill** | container | Error: Invalid signal: KILL  Error: failed to kill containers:[] | |
-| **docker load** | image | Fails silently | No error but the image isn't loading either |
-| **docker pause** | container | Error: Windows container cannot be paused.| By design. |
-| **docker port** | container |  | No port is getting listed even we are able to RDP.
-| **docker restart** | container | Error: A system shutdown is in progress. |  |
-| **docker stat** | daemon | Fails silently | No error, functionality not yet implemented  |
-| **docker unpause** | container |  | By design. |
+Commands related to DockerHub aren't supported yet.
 
 If anything that isn't on this list fails (or if a command fails differently than expected), let us know via [the forums](https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers).
-
-
-
-### Docker commands that sometimes work
-
-Commands with partial functionality:
-
-| **Docker command** | **Runs on...** | **Parameter** | **Notes** |
-|:-----|:-----|:-----|:-----|
-| **docker attach** | container | --no-stdin=false | The command doesn't exit when Ctrl-P and CTRL-Q is pressed |
-| | | --sig-proxy=true | works |
-| **docker build** | images | -f, --file | Error: Unable to prepare context: Unable to get synlinks |
-| | | --force-rm=false | works |
-| | | --no-cache=false | works |
-| | | -q, --quiet=false | |
-| | | --rm=true | works|
-| | | -t, --tag="" | works |
-| **docker login** | daemon | -e, -p, -u | sporratic behavior | 
-| **docker push** | daemon | | Getting occasional "repository does not exit" errors. |
-| **docker rm** | container | -f | Error: A system shutdown is in progress. |
-
-If anything that isn't on this list fails, if a command fails differently than expected, or if you find a work around, let us know via [the forums](https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers).
-
 
 ### Pasting commands to interactive Docker session is limited to 50 characters
 Pasting commands to interactive Docker session is limited to 50 characters.  
@@ -237,8 +201,10 @@ This is not by design, we're working on lifting the restriction.
 ### Net use errors
 Net use returns System error 1223 instead of prompting for username or password
 
-Workaround: specify both, the username and password, when running net use. For example:
-```
+**Work Around:**  
+Specify the username and password when running net use.
+
+``` PowerShell
 net use S: \\your\sources\here /User:shareuser [yourpassword]
 ``` 
 
