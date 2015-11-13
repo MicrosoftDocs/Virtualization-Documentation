@@ -1,6 +1,6 @@
 # Application Compatability in Windows Containers
 
-This is a preview.  While eventually everything that runs on Windows should also run in a container, this is a good place to see our current application compatability status.
+This is a preview.  While eventually application that runs on Windows should also run in a container, this is a good place to see our current application compatability status.
 
 Is something not on this list?  Let us know what fails and succeeds in your environment via [the forums](https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers).
 
