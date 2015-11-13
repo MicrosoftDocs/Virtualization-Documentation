@@ -6,7 +6,7 @@ Windows containers provide operating system level virtualization that allow you 
 <table border="1" style="background-color:FFFFCC;border-collapse:collapse;border:1px solid FFCC00;color:000000;width:75%" cellpadding="15" cellspacing="5">
 <tr>
 <td>**Quick Start**<br /><br />
-Try Windows Server and Hyper-V containers with these guided quick start experiences.<br />
+Try Windows Server and Hyper-V containers with these guided quick start experiences.<br /><br />
 <ul>
 <li>[Azure Quick Start](quick_start/azure_setup.md)
 <li>[On-Premise Quick Start](quick_start/container_setup.md)
@@ -16,7 +16,7 @@ Try Windows Server and Hyper-V containers with these guided quick start experien
 </tr>
 <tr>
 <td>**Deployment**<br /><br />
-Read about deploying Windows Container in Windows Server 2016 and Nano Server.<br />
+Read about deploying Windows Container in Windows Server 2016 and Nano Server.<br /><br />
 <ul>
 <li>[Deploy Container Host](deployment/deployment.md)
 <li>[Deploy Docker on Windows](deployment/docker_windows.md)
@@ -24,7 +24,7 @@ Read about deploying Windows Container in Windows Server 2016 and Nano Server.<b
 </tr>
 <tr>
 <td>**Management**<br /><br />
-Read about managing Windows Container in Windows Server 2016 and Nano Server.<br >
+Read about managing Windows Container in Windows Server 2016 and Nano Server.<br ><br />
 <ul>
 <li>[Manage Containers](management/manage_containers.md)
 <li>[Manage Images](management/manage_images.md)
@@ -37,7 +37,7 @@ Read about managing Windows Container in Windows Server 2016 and Nano Server.<br
 </tr>
 <tr>
 <td>**Community**<br /><br />
-Interact with the community, try samples, and find additional resources.<br >
+Interact with the community, try samples, and find additional resources.<br ><br />
 <ul>
 <li>[Container Forum](https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers)
 <li>[Container Resources](https://msdn.microsoft.com/virtualization/community/community_overview)
