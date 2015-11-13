@@ -226,7 +226,7 @@ Create a PowerShell remote session with the container using the `Enter-PSSession
 ```powershell
 PS C:\> Enter-PSSession -ContainerId $con.ContainerId –RunAsAdministrator
 ```
-When in the remote session, notice that the shared folder `c:\iisinstall` has been created however is empty.
+When in the remote session, notice that the shared folder `c:\iisinstall` has been created, however is empty.
 
 ```powershell
 ls c:\iisinstall
@@ -258,7 +258,7 @@ Create a file in the shared folder named unattend.xml, copy these lines into the
 </unattend>
 ```
 
-When completed, the `c:\share` directory on the container host be configured like this.
+When completed, the `c:\share` directory on the container host should be configured like this.
 
 ```
 c:\share
