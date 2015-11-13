@@ -220,14 +220,12 @@ When the container has been created, do not start it.
 
 ### Create a Shared Folder
 
-Shared folders expose a directory from the container host to the container. When a shared folder has been created any files placed in the shared folder will be available in the container. For more information on shared folder see Managing Container Data. 
-
-Shared folders will be used in this example to copy the Nano Server IIS packages into the container.
+Shared folders expose a directory from the container host to the container. When a shared folder has been created any files placed in the shared folder will be available in the container. For more information on shared folder see Managing Container Data. Shared folders will be used in this example to copy the Nano Server IIS packages into the container.
 
 Create a directory on the container host that will be shared with the container.
 
 ```powershell
-PS C:\> New-Item -Type Directory c:\share
+New-Item -Type Directory c:\share
 ```
 
 Use the `Add-ContainerSharedFolder` command to create a shared folder.
@@ -235,7 +233,7 @@ Use the `Add-ContainerSharedFolder` command to create a shared folder.
 > The container must be in a stopped stated when creating the shared folder.
 
 ```powershell
-PS C:\> Add-ContainerSharedFolder -Container $con -SourcePath c:\share -DestinationPath c:\iisinstall
+Add-ContainerSharedFolder -Container $con -SourcePath c:\share -DestinationPath c:\iisinstall
 
 ContainerName SourcePath DestinationPath AccessMode
 ------------- ---------- --------------- ----------
@@ -250,7 +248,7 @@ Start-Container $con
 Create a PowerShell remote session with the container using the `Enter-PSSession` command.
 
 ```powershell
-PS C:\> Enter-PSSession -ContainerId $con.ContainerId –RunAsAdministrator
+Enter-PSSession -ContainerId $con.ContainerId –RunAsAdministrator
 ```
 When in the remote session, notice that the shared folder `c:\iisinstall` has been created, however is empty.
 
@@ -258,9 +256,11 @@ When in the remote session, notice that the shared folder `c:\iisinstall` has be
 ls c:\iisinstall
 ```
 
+For more information on Shared Folders see [Container Data Management](./management.manage_data.md).
+
 ### Create IIS Image <!--2-->
 
-Because the container is running a Nano Server OS Image, the Nano Server IIS packages will be needed to install IIS. These can be found on the Windows Sever Installation media, under the `NanoServer\Packages` directory.
+Because the container is running a Nano Server OS Image, the Nano Server IIS packages will be needed to install IIS. These can be found on the Windows Sever 2016 TP4 Installation media, under the `NanoServer\Packages` directory.
 
 Copy `Microsoft-NanoServer-IIS-Package.cab` from `NanoServer\Packages` to `c:\share` on the container host. 
 
@@ -273,11 +273,11 @@ Create a file in the shared folder named unattend.xml, copy these lines into the
 <unattend xmlns="urn:schemas-microsoft-com:unattend">
     <servicing>
         <package action="install">
-            <assemblyIdentity name="Microsoft-NanoServer-IIS-Package" version="10.0.10586.1000" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" />
+            <assemblyIdentity name="Microsoft-NanoServer-IIS-Package" version="10.0.10586.0" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" />
             <source location="c:\iisinstall\Microsoft-NanoServer-IIS-Package.cab" />
         </package>
         <package action="install">
-            <assemblyIdentity name="Microsoft-NanoServer-IIS-Package" version="10.0.10586.1000" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="en-US" />
+            <assemblyIdentity name="Microsoft-NanoServer-IIS-Package" version="10.0.10586.0" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="en-US" />
             <source location="c:\iisinstall\en-us\Microsoft-NanoServer-IIS-Package.cab" />
         </package>
     </servicing>
