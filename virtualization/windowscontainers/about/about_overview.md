@@ -1,4 +1,4 @@
-# Windows Server Containers
+# Windows Containers
 
 Applications fuel innovation in the cloud and mobile era. Containers, and the ecosystem that is developing around them, will empower software developers to create the next generation of applications experiences.
 
@@ -61,6 +61,3 @@ src="https://channel9.msdn.com/Blogs/containers/Containers-101-with-Microsoft-an
 
 [Get started with Windows Server Containers in Windows Azure](../quick_start/azure_setup.md)  
 [Get started with Windows Server Containers Locally](../quick_start/container_setup.md)
-
--------------------
-[Back to Container Home](../containers_welcome.md)

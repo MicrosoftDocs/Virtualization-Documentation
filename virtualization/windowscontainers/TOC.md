@@ -1,7 +1,6 @@
 # About Windows Container
 ## [Container Docs Overview](./containers_welcome.md)
 ## [About Windows Containers](about/about_overview.md)
-## [Container Ecosystem](about/container_ecosystem.md)
 ## [FAQ](about/faq.md)
 ## [Work In Progress](about/work_in_progress.md)
 # Contianer Quick Start
