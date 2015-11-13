@@ -15,16 +15,6 @@ If you install updates against the Windows container host OS you will need to up
 **Work Around:**   
 Download and install a container base image matching the OS version and patch level of the container host.
 
-
-### Commands sometimes fail
-In our testing, commands occasionally need to be run multiple times.  The same principle applies to other actions.  
-For example, if you create a new file and it doesn't appear, try touching the file.  
-
-If you have to do this, let us know via [the forums](https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers).
-
-**Work Around:**  
-Build scripts such that they try commands multiple times.  If a command fails, try again.  
-
 ### All non-C:/ drives are visible in containers
 All non-C:/ drives available to the container host are automatically mapped into new running Windows Server Containers.
 
@@ -40,6 +30,50 @@ In a container host and containers environment, you only have the container host
 If your container is taking more than 30 seconds to start, it may be performing many duplicate virus scans.
 
 Many anti-malware solutions, such as Windows Defender, maybe unnecessarily scanning files with-in container images including all of the OS binaries and files in the container OS image.  This occurs when ever a new container is created and from the anti-malware’s perspective all of the “container’s files” look like new files that have not previously been scanned.  So when processes inside the container attempt to read these files the anti-malware components first scan them before allowing access to the files.  In reality these files were already scanned when the container image was imported or pulled to the server. In future previews new infrastructure will be in place such that anti-malware solutions, including Windows Defender, will be aware of these situations and can act accordingly to avoid multiple scans. 
+
+### Start/Stop sometimes fails if memory is restricted to < 48MB
+Windows Server Containers experience random, inconsistant, errors when memory is restricted to less than 48MB.
+
+Running the following PowerShell and repeating the start, stop, action multiple will cause failures in either starting or stopping.
+
+```PowerShell
+new-container "Test" -containerimagename "WindowsServerCore" -MaximumBytes 32MB
+start-container test
+stop-container test
+```
+
+**Work Around:**  
+Change the memory value to 48MB. 
+
+
+### Start-container fails when the processor count is 1 or 2 on a 4 core VM
+
+Windows Server Containers fail to start with error:  
+`failed to start: This operation returned because the timeout period expired. (0x800705B4).`
+
+This occurs when the processor count is set to 1 or 2 on a 4 core VM.
+
+``` PowerShell
+new-container "Test2" -containerimagename "WindowsServerCore"
+Set-ContainerProcessor -ContainerName test2 -Maximum 2
+Start-Container test2
+
+Start-Container : 'test2' failed to start.
+'test2' failed to start: This operation returned because the timeout period expired. (0x800705B4).
+'test2' failed to start. (Container ID 133E9DBB-CA23-4473-B49C-441C60ADCE44)
+'test2' failed to start: This operation returned because the timeout period expired. (0x800705B4). (Container ID
+133E9DBB-CA23-4473-B49C-441C60ADCE44)
+At line:1 char:1
++ Start-Container test2
++ ~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : OperationTimeout: (:) [Start-Container], VirtualizationException
+    + FullyQualifiedErrorId : OperationTimeout,Microsoft.Containers.PowerShell.Cmdlets.StartContainer
+PS C:\> Set-ContainerProcessor -ContainerName test2 -Maximum 3
+PS C:\> Start-Container test2
+```
+
+** Work Around:**  
+Increase the processors available to the container, don't explicitly specify processors available to the container, or reduce processors available to the VM.
 
 --------------------------
 
@@ -74,27 +108,72 @@ There are so mnay questions about which applications work and don't work in Wind
 
 Some of the most common issues are located here as well.
 
-### WinRM won't start
-WinRM starts, throws an error, and stops again.  Errors are not logged in the event log.
+### Unexpected error occurred inside a localdb instance api method call
+Unexpected error occurred inside a localdb instance api method call
 
-**Work Around:**
-Use WMI, [RDP](#RemoteDesktopAccessOfContainers), or Enter-PSSession -ContainerID
 
-### Can't install ASP.NET 4.5 or 3.5 
-Installing IIS-ASPNET45 in a container doesn't work inside a Windows Server container.  The installation progress sticks around 95.5%.
+### RTerm doesn't work
+Using Docker:
+1. Create a new Rcontainer using Dockerfile/Sources:
+docker build -t r3.2.1 \\vmstore\public\liwer\docker\buildfiles\R3.2.1\build
+2. docker run --rm -it r3.2.1 cmd
+3. cd "C:\Program Files\R\R-3.2.1\bin\x64"
+4. r.exe
 
-``` PowerShell
-Enable-WindowsOptionalFeature -Online -FeatureName IIS-ASPNET45
-```
+Observed behavior:
+RTerm does not run:
+C:\Program Files\R\R-3.2.1\bin\x64>r
+'C:\Program' is not recognized as an internal or external command,
+operable program or batch file.
 
-This fails because ASP.NET 4.5 doesn't run in a container.
+Expected behavior:
+RTerm runs:
+C:\Program Files\R\R-3.2.1\bin\x64>r
+R version 3.2.1 (2015-06-18) -- "World-Famous Astronaut"
+Copyright (C) 2015 The R Foundation for Statistical Computing
+Platform: x86_64-w64-mingw32/x64 (64-bit)
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+  Natural language support but running in an English locale
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+>
 
-**Work Around:**  
-Instead, install the Web-Server role to use IIS. ASP 5.0 does work. 
+Additional Information
+This works in the container host.
 
-``` PowerShell
-Enable-WindowsOptionalFeature -Online -FeatureName Web-Server
-```
+### Container: Visual C++ Runtime x64/x86 2015 is not getting installed
+Repro Steps: 
+Sources: \\balajibi9\BuildFiles\vcr_2015_x64\Build\source
+Docker build \\balajibi9\BuildFiles\vcr_2015_x64\Build\
+
+Sources: \\balajibi9\BuildFiles\vcr_2015_x86\Build\source
+Docker build \\balajibi9\BuildFiles\vcr_2015_x86\Build\
+
+Observed behavior:
+In a Container:
+C:\build\vcredist_2015_x64.exe /q /norestart
+<Wait for 2-3 mins>
+
+C:\build>echo %errorlevel%
+0
+C:\build>wmic product get
+No Instance(s) Available.
+
+On the host / Expected behavior:
+Runtime installs correctly and shows as it is added in last command(wmic product get)
+
+
+Scott Brender (a month ago)
+This is an interop issue with the dedup filter. Dedup checks the rename target to see if it is a deduped file. The create it issues fails with STATUS_IO_REPARSE_TAG_NOT_HANDLED because the argon filter is sitting above dedup by design.
+
+
+
 
 See the [application compatability article](../reference/app_compat.md) for more information about what applications can be containerized.
 
@@ -102,6 +181,8 @@ See the [application compatability article](../reference/app_compat.md) for more
 
 
 ## Docker management
+
+### Docker exec doens't work in Xenon
 
 ### Docker clients unsecured
 In this pre-release, docker communication is public if you know where to look.
@@ -253,8 +334,7 @@ The Remote Desktop Connection will ask you whether you want connect to the syste
 
 ## PowerShell management
 
-### Enter-PSSession has containerid argument, New-PSSession doesn't
-
+### Not all *-PSSession have a containerid argument
 This is correct.  We're planning on full cimsession support in the future.
 
 
