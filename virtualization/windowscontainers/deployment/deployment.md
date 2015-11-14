@@ -42,8 +42,8 @@ Both container types use a container OS Image during container deployment. A Bas
 <tr valign="top">
 <td><center>Install Container Feature</center></td>
 <td>The container feature needs to be installed in order to create and manage containers. This feature also installs the container PowerShell module.<br /><br />
-<ul><li>[Windows Server](#role) - install container role on Windows Server and Window Server Core.</li>
-<li>[Nano Server](#nano) - prepare a Nano Server image with the container feature.</li>
+<ul><li>[Windows Server](#role)</li>
+<li>[Nano Server](#nano)</li>
 <ul>
 </td>
 <tr>
@@ -51,9 +51,9 @@ Both container types use a container OS Image during container deployment. A Bas
 <tr valign="top">
 <td><center>Configure Hyper-V Role</center></td>
 <td>The Hyper-V role is required if the container host will be running Hyper-V container.<br /><br />
-<ul><li>[Enable Nested Virtualization](#nest) – if the container host is running on a Hyper-V virtual machine.</li>
-<li>[Install Hyper-V Role](#hypv) - on Windows Server and Windows Server Core.</li>
-<li>[Nano Server](#nano) - Hyper-V is installed when creating the Nano Server Image.</li>
+<ul><li>[Enable Nested Virtualization if container host is a VM]](#nest)</li>
+<li>[Windows Server](#hypv)</li>
+<li>[Nano Server](#nano)</li>
 </ul>
 </td>
 <tr>
@@ -68,9 +68,9 @@ Both container types use a container OS Image during container deployment. A Bas
 <tr valign="top">
 <td><center>Configure Networking</center></td>
 <td>The following networking items are required for Windows Containers.<br /><br />
-<ul><li>[Create Virtual Switch](#vswitch) - Each container is connected to a virtual switch for all network communication. The virtual switch is configured as either external or NAT.
-<li>[Configure Network Address Translation (NAT)](#nat) - If a virtual switch has been configured as type NAT, a NAT object will need to be created.
-<li>[Enable MAC Spoofing](#mac) – if the container host is a Hyper-V virtual machine, MAC spoofing will need to be enabled.
+<ul><li>[Create Virtual Switch](#vswitch)
+<li>[Configure Network Address Translation (NAT)](#nat)
+<li>[Enable MAC Spoofing if container host is a VM](#mac)
 </ul>
 </td>
 <tr>
