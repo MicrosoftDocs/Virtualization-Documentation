@@ -13,7 +13,8 @@ On a Windows Container host, container image type is differentiated when using t
 <insert snipp>
 ```
 
-## Container Image Architecture
+## Container Image Architecture <br /><br />
+<center>![](media/imagelayer.png) </center>
 
 ## Managing Container Images
 
