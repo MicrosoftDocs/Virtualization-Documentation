@@ -1,11 +1,11 @@
-# Container Host Requirements
+# Container Requirements and Deployment
 
-The Windows Container feature is only available in Windows Server 2016. The container feature can be installed on Windows Server 2016, Windows Server 2016 Core, and Nano Server. The Container feature includes support for two different types of containers, Windows Server Containers and Hyper-V Containers, both of which have slightly different configuation requirements. This document will detail configuration requirements, deployment, and configuration of the Windows Containers feature.
+The Windows Container feature is on only available with Windows Server 2016 (Full, Core, and Nano Server). Within the Windows Container feature is two different container types, each with slightly different behavior and requirements. The two container types are:
 
-# Host and Image Support
- 
-Windows Containers use an OS image as the base for any container. Two OS images are available, Windows Server Core and Nano Server. Windows Server Technical Preview 4 supports the following configuration between container host OS, container type, and OS image. For example, based on the below chart, if the container feature is enabled on a Windows Server 2016 OS with full UI, Windows Server Containers can be created with the Windows Core OS image, and Hyper-V container with the Nano Server OS image.
+- Windows Server Containers –provide application isolation through namespace and process isolation.
+- Hyper-V Containers – provide application isolation through hosting the container in a super optimized virtual machine. Hyper-V Containers require Hyper-V to be installed on the containers host.
 
+Both container types use a container OS Image during container deployment. A Base OS Image provides the foundational container configuration. At the time of Windows Server Technical Preview 4, two base OD images are available, Windows Server Core and Nano Server. Also at the TP4 release there are limitations between container host, container type, and OS Image compatibility. The following table describes the supported configuiration.
 
 <table border="1" style="background-color:FFFFCC;border-collapse:collapse;border:1px solid FFCC00;color:000000;width:90%" cellpadding="5" cellspacing="5">
 <tr valign="top">
