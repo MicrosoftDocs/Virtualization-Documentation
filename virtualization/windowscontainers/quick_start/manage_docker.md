@@ -20,22 +20,12 @@ Windows Server Containers provide an isolated, portable, and resource controlled
 ### Create Container <!--1-->
 
 ```powershell
-C:\>docker images
+PS C:\> docker images
 REPOSITORY          TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
-windowsservercore   10.0.10586.1000     83b613fea6fc        13 days ago         0 B
-nanoserver          10.0.10586.1000     646d6317b02f        13 days ago         0 B
-```
-
-```powershell
-C:\>docker tag windowsservercore:10.0.10586.1000 windowsservercore:Latest
-```
-
-```powershell
-C:\>docker images
-REPOSITORY          TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
-windowsservercore   10.0.10586.1000     83b613fea6fc        13 days ago         0 B
-windowsservercore   latest              83b613fea6fc        13 days ago         0 B
-nanoserver          10.0.10586.1000     646d6317b02f        13 days ago         0 B
+windowsservercore   latest              6801d964fda5        2 weeks ago         0 B
+windowsservercore   10.0.10586.0        6801d964fda5        2 weeks ago         0 B
+nanoserver          10.0.10586.0        8572198a60f1        2 weeks ago         0 B
+nanoserver          latest              8572198a60f1        2 weeks ago         0 B
 ```
 
 ```powershell
@@ -84,35 +74,14 @@ echo "Hello World From a Windows Server Container" > C:\inetpub\wwwroot\index.ht
 ## Hyper-V Container
 
 ### Create Container <!--2-->
-
-```powershell
-docker tag nanoserver:10.0.10586.1000 nanoserver:latest
-```
-
-```powershell
-C:\>docker images
-REPOSITORY          TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
-windowsservercore   10.0.10586.1000     83b613fea6fc        13 days ago         0 B
-windowsservercore   latest              83b613fea6fc        13 days ago         0 B
-nanoserver          10.0.10586.1000     646d6317b02f        13 days ago         0 B
-nanoserver          latest              646d6317b02f        13 days ago         0 B
-```
-
 ### Create a Shared Folder
 ### Create IIS Image <!--2-->
 ### Create IIS Container <!--2-->
 ### Configure Networking <!--2-->
 ### Create Application <!--2-->
 
-## Next Steps
-Now that you have containers set up and an introduction to the tools, go build your own containerized apps.
+### Dockerfile
 
-Learn more about [Docker](https://www.docker.com/).
+## Create IIS Image
+## Deploy IIS Container
 
-Remember, this is a **preview** there are bugs and we have a lot of work in progress.  [This page](../about/work_in_progress.md) contains many of our known issues.
-
-Be aware that there are some known Docker commands that [don't work](../about/work_in_progress.md#DockermanagementDockercommandsthatdontworkwithWindowsServerContainers) and some that only [partially work](../about/work_in_progress.md#DockermanagementDockercommandsthatpartiallyworkwithWindowsServerContainers)
-
-We are also monitoring the [forums](https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers) very closely.
-
-There are also pre-made samples on [GitHub](https://github.com/Microsoft/Virtualization-Documentation/tree/master/windows-server-container-samples).
