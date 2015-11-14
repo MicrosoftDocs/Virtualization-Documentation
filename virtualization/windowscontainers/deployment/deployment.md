@@ -51,7 +51,7 @@ Both container types use a container OS Image during container deployment. A Bas
 <tr valign="top">
 <td><center>Configure Hyper-V Role</center></td>
 <td>The Hyper-V role is required if the container host will be running Hyper-V container.<br /><br />
-<ul><li>[Enable Nested Virtualization if container host is a VM]](#nest)</li>
+<ul><li>[Enable Nested Virtualization if container host is a VM](#nest)</li>
 <li>[Windows Server](#hypv)</li>
 <li>[Nano Server](#nano)</li>
 </ul>
