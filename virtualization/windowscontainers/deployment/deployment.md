@@ -124,14 +124,17 @@ New-Item -ItemType Directory c:\nano
 Locate the `NanoServerImageGenerator.psm1` and `Convert-WindowsImage.ps1` files from the Nano Server folder, on the Windows Server Media. Copy these to `c:\nano`.
 
 ```powershell
-Copy-Item "C:\WinServerFolder\NanoServer\Convert-WindowsImage.ps1" c:\nano
-Copy-Item "C:\WinServerFolder\NanoServer\NanoServerImageGenerator.ps1" c:\nano
+#Set path to Windows Server 2016 Media
+$WindowsMedia = "C:\Users\Administrator\Desktop\TP4 Release Media"
+	
+Copy-Item $WindowsMedia\NanoServer\Convert-WindowsImage.ps1 c:\nano
+Copy-Item $WindowsMedia\NanoServer\NanoServerImageGenerator.psm1 c:\nano
 ```
 Run the following to create a Nano Server virtual hard drive. The `–Containers` parameter indicates that the Container package will be installed, and the `–Compute` parameter takes care of the Hyper-V package. Hyper-V is only required if Hyper-V containers will be created.
 
 ```powershell
 Import-Module C:\nano\NanoServerImageGenerator.psm1
-New-NanoServerImage -MediaPath <insert server media path> -BasePath c:\nano -TargetPath C:\nano\NanoContainer.vhdx -MaxSize 10GB -GuestDrivers -ReverseForwarders -Compute -Containers
+New-NanoServerImage -MediaPath $WindowsMedia -BasePath c:\nano -TargetPath C:\nano\NanoContainer.vhdx -MaxSize 10GB -GuestDrivers -ReverseForwarders -Compute -Containers
 ```
 When completed, create a virtual machine from the `NanoContainer.vhdx` file. This virtual machine will be running the Nano Server OS, and optional packages.
 

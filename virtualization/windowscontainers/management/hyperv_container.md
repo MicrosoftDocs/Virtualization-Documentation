@@ -83,7 +83,7 @@ TST2      HyperV ccdf6a6e-3358-4419-8dda-ffe87f1de184
 
 Note that the container can be matched to a process by the container id and process User name.
 
-![](media/process.png.png) 
+![](media/process.png) 
 
 This relationship can also be seen using the `Get-ComputeProcess` command.
 
