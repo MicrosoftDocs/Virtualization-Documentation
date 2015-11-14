@@ -1,30 +1,30 @@
 # Docker and Windows
 
-Docker is an open-source container deployment and management platform that works with both Linux and Windows containers. The Docker daemon and command line interface are used to create, manage, and delete containers. Docker enables storing container images in a public registry (Docker Hub) and private registries (Docker Trusted Registries). Docker additionally provides container host clustering capabilities with Docker Swarm and deployment automaton with Docker Compose.
+Docker is an open-source, container deployment and management platform, that works with both Linux and Windows containers. Docker is used to create, manage, and delete containers and container images. Docker enables storing container images in a public registry (Docker Hub) and private registries (Docker Trusted Registries). Docker additionally provides container host clustering capabilities with Docker Swarm and deployment automaton with Docker Compose.
 
 For more information on Docker and the Docker toolset visit [Docker.com](https://www.docker.com/).
 
 ## Windows Server
 
-### Install Docker
+### Install Docker <!--1-->
 
 The Docker Daemon and CLI are not shipped with Windows Server or Windows Server Core, and not installed with the Windows Container feature. Docker will need to be installed separately. This document will walk through manually installing the Docker daemon and Docker client. Automated methods for competing these task will also be provided. 
 
-The Docker Daemon and CLI have been developed in the Go language. At this time, docker.exe does not install as a Windows Service. There are several methods that can be used to create a Windows service, one example shown here uses `nssm.exe`. 
+The Docker Daemon and Docker command line interface have been developed in the Go language. At this time, docker.exe does not install as a Windows Service. There are several methods that can be used to create a Windows service, one example shown here uses `nssm.exe`. 
 
-Download docker.exe from `https://aka.ms/ContainerTools` into the System32 directory on the Container Host.
+Download docker.exe from `https://aka.ms/ContainerTools` and place it in the System32 directory on the Container Host.
 
 ```powershell
 wget https://aka.ms/ContainerTools -OutFile $env:SystemRoot\system32\docker.exe
 ```
 
-Create a folder `c:\programdata\docker`, in this folder create a file named `runDockerDaemon.cmd`.
+Create a directory named `c:\programdata\docker`. In this directory, create a file named `runDockerDaemon.cmd`.
 
 ```powershell
 New-Item -ItemType File -Path C:\ProgramData\Docker\runDockerDaemon.cmd -Force
 ```
 
-Copy the following text into the `runDockerDaemon.cmd` file. This batch file starts the Docker daemon with the command `docker daemon –D –b “Virtual Switch”`. Note: the name of the virtual switch will need to match the virtual switch containers will be connected to.
+Copy the following text into the `runDockerDaemon.cmd` file. This batch file starts the Docker daemon with the command `docker daemon –D –b “Virtual Switch”`. Note: the name of the virtual switch in this file, will need to match the name of the virtual that containers will be using for network connectivity.
 
 ```powershell
 @echo off
@@ -94,11 +94,11 @@ When finished, click the `Install Service` button.
 
 With this completed, when Windows starts, the Docker daemon (service) will also start.
 
-### Automated Installation
+### Automated Installation <!--1-->
 
 Insert Script Instructions When Available
 
-### Removing Docker
+### Removing Docker <!--1-->
 
 If following this guide for creating a Windows service from docke.exe, the following command will remove the service.
 
@@ -110,7 +110,7 @@ sc.exe delete Docker
 
 ## Nano Server
 
-### Install Docker
+### Install Docker <!--2-->
 
 Download docker.exe from `https://aka.ms/ContainerTools` and copy it to the `windows\system32` folder of the Nano Server Container host.
 
@@ -120,11 +120,11 @@ Run the below command to start the docker daemon. This will need to be run each 
 start-process cmd "/k docker daemon -D -b <Switch Name> -H 0.0.0.0:2375”
 ```
 
-### Automated Installation
+### Automated Installation <!--2-->
 
 Insert Script Instructions When Available
 
-### Removing Docker
+### Removing Docker <!--2-->
 
 To remove the docker daemon and cli from Nano Server, delete `docker.exe` from the Windows\system32 directory.
 
