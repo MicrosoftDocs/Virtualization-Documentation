@@ -158,9 +158,24 @@ For more information on the Docker run command, see the [Docker run reference}( 
 
 ### Stop a Container <!--docker-->
 
-## Remove Container <!--docker-->
+Use the `docker stop` command to stop a container with Docker.
 
-To remove a container with Docker.
+```powershell
+PS C:\> docker stop tender_panini
+tender_panini
+```
+
+to stop all running containers with Docker.
+
+```powershell
+PS C:\> docker stop $(docker ps -q)
+fd9a978faac8
+b51e4be8132e
+```
+
+### Remove Container <!--docker-->
+
+To remove a container with Docker us the `docker rm` command.
 
 ```powershell
 PS C:\>docker rm prickly_pike
@@ -179,7 +194,7 @@ dc3e282c064d
 
 For more information on the Docker rm command, see the [Docker rm reference}(https://docs.docker.com/engine/reference/commandline/rm/).
 
-## Container Process
+## Internals
 
 ### Container Processes
 
