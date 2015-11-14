@@ -315,7 +315,7 @@ Run the following command to install IIS.
 dism /online /apply-unattend:c:\iisinstall\unattend.xml
 ```
 
-When the IIS installation has complete, manually start IIS with the following commands.
+When the IIS installation has complete, manually start IIS with the following command.
 
 ```powershell
 Net start w3svc

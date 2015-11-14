@@ -1,9 +1,10 @@
 # Container Images
 
 Container images are used to deploy containers. These images can include an operating system, applications, and all application dependencies. For instance, you may develop a container image that has been pre-configured with Nano Server, IIS, and an application running in IIS. This container image can then be stored in a container registry for later use, deployed on any Windows Container host (on-prem, cloud, or even to a container service), and also used as the base for a new container image.
+
 There are two types of container images:
 
-- Base OS Images – these are provided by Microsoft and have the core OS components. 
+- Base OS Images – these are provided by Microsoft and include the core OS components. 
 - Container Images – a container image that has been created from a Base OS Image.
 
 On a Windows Container host, container image type is differentiated when using the `Get-ContainerImage` command.
@@ -18,6 +19,8 @@ On a Windows Container host, container image type is differentiated when using t
 
 ### Listing images on the Container Host
 
+**PowerShell**
+
 ```powerhsell
 Get-ContainerImage
 
@@ -25,6 +28,17 @@ Name              Publisher    Version      IsOSImage
 ----              ---------    -------      ---------
 NanoServer        CN=Microsoft 10.0.10586.8 True
 WindowsServerCore CN=Microsoft 10.0.10586.8 True
+```
+
+**Docker**
+
+```powershell
+docker images
+
+REPOSITORY             TAG                 IMAGE ID            CREATED              VIRTUAL SIZE
+windowsservercoreiis   latest              ca40b33453f8        About a minute ago   44.88 MB
+windowsservercore      10.0.10586.0        6801d964fda5        2 weeks ago          0 B
+nanoserver             10.0.10586.0        8572198a60f1        2 weeks ago          0 B
 ```
 
 ### Installing Base OS Images
@@ -94,9 +108,20 @@ For more information on Container image management see [Windows Container Images
 
 ### Creating New Images
 
+**PowerShell**
+
 ```powershell
 New-ContainerImage -Container $container -Publisher Demo -Name DemoImage -Version 1.0
 ```
+
+**Docker**
+
+```powershell
+docker commit 475059caef8f windowsservercoreiis
+ca40b33453f803bb2a5737d4d5dd2f887d2b2ad06b55ca681a96de8432b5999d
+```
+
+### Image Dependency
 
 ### Storing Images
 
@@ -104,6 +129,20 @@ New-ContainerImage -Container $container -Publisher Demo -Name DemoImage -Versio
 
 ### Removing Images
 
+Container images cannot be removed is any container, even in a stopped state has a dependency on the image.
+
+Remove a single image with PowerShell. 
+
 ```powershell
 Get-ContainerImage -Name newimage | Remove-ContainerImage -Force
+```
+
+**Docker**
+
+when removing an image with docker, the images can be referenced by image name or id.
+
+```powershell
+C:\>docker rmi windowsservercoreiis
+Untagged: windowsservercoreiis:latest
+Deleted: ca40b33453f803bb2a5737d4d5dd2f887d2b2ad06b55ca681a96de8432b5999d
 ```
