@@ -4,7 +4,7 @@ The container life cycle includes actions such as, starting, stopping, and remov
 
 For documentation on managing Windows Containers with Docker see the Docker document [Working with Containers]( https://docs.docker.com/userguide/usingdocker/).
 
-## Container Operations
+## PowerShell
 
 ### Create a Container
 
@@ -130,8 +130,6 @@ To stop a container with Docker.
 
 When a container is no longer needed it can be removed. In order to remove a container, it needs to be in a stopped state, and a PowerShell object needs to be created that represents the container.
 
-**PowerShell**
-
 ```powershell
 PS C:\>$container = Get-Container -Name TST
 ```
@@ -148,7 +146,19 @@ The following will remove all containers on the host.
 PS C:\>Get-Container | Remove-Container -Force
 ```
 
-**Docker**
+## Docker
+
+### Create a Container <!--docker-->
+
+```powershell
+docker run -p 80:80 windowsservercoreiis
+```
+
+For more information on the Docker run command, see the [Docker run reference}( https://docs.docker.com/engine/reference/run/).
+
+### Stop a Container <!--docker-->
+
+## Remove Container <!--docker-->
 
 To remove a container with Docker.
 
@@ -166,6 +176,8 @@ PS C:\>docker rm $(docker ps -a -q)
 dc3e282c064d
 2230b0433370
 ```
+
+For more information on the Docker rm command, see the [Docker rm reference}(https://docs.docker.com/engine/reference/commandline/rm/).
 
 ## Container Process
 
