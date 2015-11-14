@@ -158,17 +158,57 @@ Set-VMProcessor -VMName <container host vm> -ExposeVirtualizationExtensions $tru
 
 ### <a name=img></a>Install OS Images
 
-An OS image is used as the base to any Windows Server or Hyper-V container. The image is used to deploy a container, which can then be modified, and captured into a new container image. OS images have been created with both Windows Server Core and Nano Server as the underlying operating system. To install the base OS images, follow these steps:
+An OS image is used as the base to any Windows Server or Hyper-V container. The image is used to deploy a container, which can then be modified, and captured into a new container image. OS images have been created with both Windows Server Core and Nano Server as the underlying operating system.
+
+Container OS images can be found and installed using the ContainerProvider PowerShell module. Before using this module, it will need to be installed. The following commands can be used to install the module.
+
+```powershell
+Invoke-RestMethod 'https://go.microsoft.com/fwlink/?LinkID=627338&clcid=0x409'
+Install-PackageProvider NuGet -Force
+Register-PSRepository -name psgetint -SourceLocation http://psget/psgallery/api/v2 
+Install-PackageProvider ContainerProvider -Force
+```
 
 Return a list of images from PowerShell OneGet package manager:
 ```powershell
 Find-ContainerImage
+
+Name                 Version                 Description
+----                 -------                 -----------
+NanoServer           10.0.10586.8            Container OS Image of Windows Server 2016 Techn...
+NanoServer           10.0.10586.7            Container OS Image of Windows Server 2016 Techn...
+NanoServer           10.0.10586.0            Container OS Image of Windows Server 2016 Techn...
+NanoServer           10.0.10585.0            Container OS Image of Windows Server 2016 Techn...
+NanoServer           10.0.10584.0            Container OS Image of Windows Server 2016 Techn...
+NanoServer           10.0.10583.0            Container OS Image of Windows Server 2016 Techn...
+NanoServer           10.0.10582.0            Container OS Image of Windows Server 2016 Techn...
+NanoServer           10.0.10581.0            Container OS Image of Windows Server 2016 Techn...
+NanoServer           10.0.10580.0            Container OS Image of Windows Server 2016 Techn...
+NanoServer           10.0.10579.0            Container OS Image of Windows Server 2016 Techn...
+WindowsServerCore    10.0.10586.8            Container OS Image of Windows Server 2016 Techn...
+WindowsServerCore    10.0.10586.7            Container OS Image of Windows Server 2016 Techn...
+WindowsServerCore    10.0.10586.0            Container OS Image of Windows Server 2016 Techn...
+WindowsServerCore    10.0.10585.0            Container OS Image of Windows Server 2016 Techn...
+WindowsServerCore    10.0.10584.0            Container OS Image of Windows Server 2016 Techn...
+WindowsServerCore    10.0.10583.0            Container OS Image of Windows Server 2016 Techn...
+WindowsServerCore    10.0.10582.0            Container OS Image of Windows Server 2016 Techn...
+WindowsServerCore    10.0.10581.0            Container OS Image of Windows Server 2016 Techn...
+WindowsServerCore    10.0.10580.0            Container OS Image of Windows Server 2016 Techn...
+WindowsServerCore    10.0.10579.0            Container OS Image of Windows Server 2016 Techn...
 ```
 
-Download and install an OS image from the PowerShell OneGet package manager.
+To download and install the Nano Server base OS image, run the following.
 
 ```powershell
-Install-ContainerImage -Name ImageName
+Install-ContainerImage -Name NanoServer -Version 10.0.10586.8
+Downloaded in 0 hours, 0 minutes, 10 seconds.
+```
+
+Likewaise, this command will download and install the Windows Server Core base OS image.
+
+```powershell
+Install-ContainerImage -Name WindowsServerCore -Version 10.0.10586.8
+Downloaded in 0 hours, 2 minutes, 28 seconds.
 ```
 
 Verify that the images have been installed using the `Get-ContainerImage` command.
@@ -176,10 +216,10 @@ Verify that the images have been installed using the `Get-ContainerImage` comman
 ```powershell
 Get-ContainerImage
 
-Name              Publisher    Version         IsOSImage
-----              ---------    -------         ---------
-NanoServer        CN=Microsoft 10.0.10572.1001 True
-WindowsServerCore CN=Microsoft 10.0.10572.1001 True
+Name              Publisher    Version      IsOSImage
+----              ---------    -------      ---------
+NanoServer        CN=Microsoft 10.0.10586.8 True
+WindowsServerCore CN=Microsoft 10.0.10586.8 True
 ```  
 For more information on Container image management see [Windows Container Images](../management/manage_images.md).
  
