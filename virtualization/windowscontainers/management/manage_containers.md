@@ -1,6 +1,6 @@
 # Windows Server Container Management
 
-The container life cycle includes actions such as, starting, stopping, and removing containers. When performing these actions you may also need retrieve a list of container images, manage container networking, and limit container resources. This document will detail basic container management tasks using PowerShell.
+The container life cycle includes actions such as, starting, stopping, and removing containers. When performing these actions, you may also need retrieve a list of container images, manage container networking, and limit container resources. This document will detail basic container management tasks using PowerShell.
 
 For documentation on managing Windows Containers with Docker see the Docker document [Working with Containers]( https://docs.docker.com/userguide/usingdocker/).
 
@@ -72,7 +72,7 @@ PS C:\>Get-Container | Start-Container
 
 ### Connect with Container
 
-PowerShell direct can be used to connect to a container. This may be helpful if you need to manually perform a task such as installing software, starting a processes or troubleshooting a container. Because PowerShell direct is being used, a PowerShell session can be created with the container regardless of network configuration. For more infotmation on PowerShell Direct see the [PowerShell Direct Blog](http://blogs.technet.com/b/virtualization/archive/2015/05/14/powershell-direct-running-powershell-inside-a-virtual-machine-from-the-hyper-v-host.aspx)
+PowerShell direct can be used to connect to a container. This may be helpful if you need to manually perform a task such as installing software, starting a processes or troubleshooting a container. Because PowerShell direct is being used, a PowerShell session can be created with the container regardless of network configuration. For more information on PowerShell Direct see the [PowerShell Direct Blog](http://blogs.technet.com/b/virtualization/archive/2015/05/14/powershell-direct-running-powershell-inside-a-virtual-machine-from-the-hyper-v-host.aspx)
 
 To create an interactive session with the container, use the `Enter-PSSession` command.
 
@@ -150,6 +150,8 @@ PS C:\>Get-Container | Remove-Container -Force
 
 ### Create a Container <!--docker-->
 
+Use `docker run` to create a container with Docker.
+
 ```powershell
 docker run -p 80:80 windowsservercoreiis
 ```
@@ -165,7 +167,7 @@ PS C:\> docker stop tender_panini
 tender_panini
 ```
 
-to stop all running containers with Docker.
+This example stops all running containers with Docker.
 
 ```powershell
 PS C:\> docker stop $(docker ps -q)
@@ -175,7 +177,7 @@ b51e4be8132e
 
 ### Remove Container <!--docker-->
 
-To remove a container with Docker us the `docker rm` command.
+To remove a container with Docker, use the `docker rm` command.
 
 ```powershell
 PS C:\>docker rm prickly_pike
@@ -230,9 +232,3 @@ Handles  NPM(K)    PM(K)      WS(K) VM(M)   CPU(s)     Id  SI ProcessName       
     107       9     1096       4732 ...77            3248   3 wininit                      NONIC
     128       8     5672      10840 ...04            5360   3 WmiPrvSE                     NONIC
 ```
-
-## Additional Resources
-
-For a complete reference of Container PowerShell commands see the [Container PowerShell Reference](https://technet.microsoft.com/en-us/library/mt433069.aspx).
-
-For documentation on managing Windows Containers with Docker see the Docker document [Working with Containers]( https://docs.docker.com/userguide/usingdocker/).
