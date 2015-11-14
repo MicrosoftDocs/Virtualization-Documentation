@@ -5,7 +5,7 @@ The Windows Container feature is on only available with Windows Server 2016 (Ful
 - Windows Server Containers –provide application isolation through namespace and process isolation.
 - Hyper-V Containers – provide application isolation through hosting the container in a super optimized virtual machine. Hyper-V Containers require Hyper-V to be installed on the containers host.
 
-Both container types use a container OS Image during container deployment. A Base OS Image provides the foundational container configuration. At the time of Windows Server Technical Preview 4, two base OD images are available, Windows Server Core and Nano Server. Also at the TP4 release there are limitations between container host, container type, and OS Image compatibility. The following table describes the supported configuiration.
+Both container types use a container OS Image during container deployment. A Base OS Image provides the foundational container configuration. At the time of Windows Server Technical Preview 4, two base OD images are available, Windows Server Core and Nano Server. Also at the TP4 release there are limitations between container host, container type, and OS Image compatibility. The following table describes the supported configuration.
 
 <table border="1" style="background-color:FFFFCC;border-collapse:collapse;border:1px solid FFCC00;color:000000;width:90%" cellpadding="5" cellspacing="5">
 <tr valign="top">
@@ -52,7 +52,7 @@ Both container types use a container OS Image during container deployment. A Bas
 <td><center>Configure Hyper-V Role</center></td>
 <td>The Hyper-V role is required if the container host will be running Hyper-V container.<br /><br />
 <ul><li>[Enable Nested Virtualization](#nest) – if the container host is running on a Hyper-V virtual machine.</li>
-<li>[Install Hyper-V Role](#hypv) - on Windows Serever and Windows Server Core.</li>
+<li>[Install Hyper-V Role](#hypv) - on Windows Server and Windows Server Core.</li>
 <li>[Nano Server](#nano) - Hyper-V is installed when creating the Nano Server Image.</li>
 </ul>
 </td>
@@ -86,9 +86,9 @@ Both container types use a container OS Image during container deployment. A Bas
 
 ### <a name=role></a>Install Container Feature
 
-The container feature can be installed using Windows Server Manager or PowerShell on Windows Server 2016 with full UI, and PowerShell on Windows Server Core.
+The container feature can be installed on Windows Server 2016 or Windows Server 2016 Core, using Windows Server Manager or PowerShell.
 
-To install the role using PowerShell run the following command in an elevated PowerShell session.
+To install the role using PowerShell, run the following command in an elevated PowerShell session.
 
 ```powershell
 Install-WindowsFeature containers
@@ -111,29 +111,29 @@ WIN-LJGU7HD7TEP C:\ProgramData\Microsoft\Windows\Hyper-V\Container Image Store
 
 ### <a name=nano></a> Prepare Nano Server
 
-Deploying Nano Server may involve creating a Nano Server ready virtual hard drive which has been prepared with additional feature packages. This guide will quickly detail preparing a Nano Server virtual hard drive, which can be used to create a Container Host.
+Deploying Nano Server involves creating a prepared virtual hard drive that includes the Nano Server operating system and additional feature packages. This guide will quickly detail preparing a Nano Server virtual hard drive, which can be used to create a Container Host.
 
 For more information on Nano Server, and to explore different Nano Server deployment options, see the [Nano Server Documentation]( https://technet.microsoft.com/en-us/library/mt126167.aspx).
 
-Create a folder `c:\nano`.
+Create a folder named nano.
 
 ```powershell
 New-Item -ItemType Directory c:\nano
 ```
 
-Locate the `NanoServerImageGenerator.psm1` and `Convert-WindowsImage.ps1` files from the Nano Server folder, on the Windows Server Media, and copy these to `c:\nano`.
+Locate the `NanoServerImageGenerator.psm1` and `Convert-WindowsImage.ps1` files from the Nano Server folder, on the Windows Server Media. Copy these to `c:\nano`.
 
 ```powershell
 Copy-Item "C:\WinServerFolder\NanoServer\Convert-WindowsImage.ps1" c:\nano
 Copy-Item "C:\WinServerFolder\NanoServer\NanoServerImageGenerator.ps1" c:\nano
 ```
-Run the following to create a Nano Server virtual hard drive. The `–Containers` parameter indicates that the Container package will be installed, and the –Compute parameter takes care of the Hyper-V package. Hyper-V is only required if Hyper-V container will be created.
+Run the following to create a Nano Server virtual hard drive. The `–Containers` parameter indicates that the Container package will be installed, and the `–Compute` parameter takes care of the Hyper-V package. Hyper-V is only required if Hyper-V containers will be created.
 
 ```powershell
 Import-Module C:\nano\NanoServerImageGenerator.psm1
 New-NanoServerImage -MediaPath <insert server media path> -BasePath c:\nano -TargetPath C:\nano\NanoContainer.vhdx -MaxSize 10GB -GuestDrivers -ReverseForwarders -Compute -Containers
 ```
-When completed, create a virtual machine from the NanoContainer.vhdx file.
+When completed, create a virtual machine from the `NanoContainer.vhdx` file. This virtual machine will be running the Nano Server OS, and optional packages.
 
 ### Configure Hyper-V
 
@@ -185,7 +185,7 @@ For more information on Container image management see [Windows Container Images
  
 ### Configure Networking
 
-<a name=vswitch></a>Each container will need to be attached to a virtual switch in order to communicate over a network. A virtual switch is created with the `New-VMSwitch` command. Containers support a virtual switch with tpye `External` or type `NAT`. For more information on container networking see [Windows Container Networking](../management/container_networking.md).
+<a name=vswitch></a>Each container will need to be attached to a virtual switch in order to communicate over a network. A virtual switch is created with the `New-VMSwitch` command. Containers support a virtual switch with type `External` or type `NAT`. For more information on container networking see [Windows Container Networking](../management/container_networking.md).
 
 This example creates a virtual switch with the name “Virtual Switch”, a type of NAT, and Nat Subnet of 172.16.0.0/12. 
 
@@ -193,7 +193,7 @@ This example creates a virtual switch with the name “Virtual Switch”, a type
 New-VMSwitch -Name "Virtual Switch" -SwitchType NAT -NATSubnetAddress 172.16.0.0/12
 ```
 
-<a name=nat></a>In addition to creating the virtual switch, if the switch type is NAT, a NAT object will need to be created. This is completed using the `New-NetNat` command. The NAT object will be used when configuring NAT port mappings.
+<a name=nat></a>In addition to creating the virtual switch, if the switch type is NAT, a NAT object will need to be created. This is completed using the `New-NetNat` command. This example creates a NAT object with the name `ContainerNat` and an address prefix that matches the NAT subnet assigned to the container switch.
 
 ```powershell
 New-NetNat -Name ContainerNat -InternalIPInterfaceAddressPrefix "172.16.0.0/12"
@@ -213,7 +213,7 @@ Store                            : Local
 Active                           : True
 ```
 
-<a name=mac></a>Finally, if the container host is running inside of a Hyper-V virtual machine, MAC spoofing must be enable in order for the container to receive an IP Address. To enable MAC spoofing run the following command on the Hyper-V host that is running the Windows Server Container Host.
+<a name=mac></a>Finally, if the container host is running inside of a Hyper-V virtual machine, MAC spoofing must be enable. This allows each container to receive an IP Address. To enable MAC address spoofing, run the following command on the Hyper-V host The VMName property will be the name of the container host.
 
 ```powershell
 Get-VMNetworkAdapter -VMName <contianer host vm> | Set-VMNetworkAdapter -MacAddressSpoofing On
@@ -221,4 +221,4 @@ Get-VMNetworkAdapter -VMName <contianer host vm> | Set-VMNetworkAdapter -MacAddr
 
 ### <a name=docker></a>Install Docker
 
-The Docker Daemon and CLI are not shipped with Windows, and not installed with the Windows Container feature. Docker is not a requirement for working with Windows containers. If you would like to install Docker follow the instructions in this article [Docker and Windows](./docker_windows.md).
+The Docker Daemon and command line interface are not shipped with Windows, and not installed with the Windows Container feature. Docker is not a requirement for working with Windows containers. If you would like to install Docker follow the instructions in this article [Docker and Windows](./docker_windows.md).
