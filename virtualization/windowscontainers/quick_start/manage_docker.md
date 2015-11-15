@@ -81,7 +81,7 @@ nanoserver             10.0.10586.1000     646d6317b02f        13 days ago      
 ```
 
 ```powershell
-docker run -it -p 80:80 windowsservercoreiis cmd
+docker run --name iisdemo -it -p 80:80 windowsservercoreiis cmd
 ```
 
 ![](media/iis1.png)
@@ -100,9 +100,36 @@ Browse again to the IP Address of the container host, you should now see the ‘
 
 ![](media/HWWINServer.png)
 
+Exit the interactive session with the container.
+
+```powershell
+exit
+```
+
+Remove the container
+
+```powershell
+docker rm iisdemo
+```
+Remove the IIS image.
+
+```powershell
+docker rmi windowsservercoreiis
+```
+
 ## Dockerfile
 
+Through the last exercise, a container was manually created, modified, and then captured into a new container image. Docker includes a method for automating this process using what is called a dockerfile. This exercise will have identical results as the last, however this time the process will be automated.
+
 ### Create IIS Image
+
+On the container host, create a directory `c:\build’ and in this directory create a file named `docekrfile`.
+
+```powershell
+powershell new-item c:\build\dockerfile -Force
+```
+
+Copy the following text into the dockerfile. These commands will instruct Docker to create a new image, using the `windosservercore`, and include the modifications specified with `RUN`. For more information on Dockerfiles, see the [Dockerfile reference at docker.com](http://docs.docker.com/engine/reference/builder/).
 
 ```powershell
 FROM windowsservercore
@@ -115,7 +142,10 @@ docker build -t iis c:\Build
 ```
 
 ```powershell
-C:\>docker images
+docker images
+
+#output
+
 REPOSITORY          TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
 iis                 latest              afc01d0f59d9        11 minutes ago      175.1 MB
 windowsservercore   10.0.10586.0        6801d964fda5        2 weeks ago         0 B
@@ -127,8 +157,10 @@ nanoserver          lates0t             8572198a60f1        2 weeks ago         
 ### Deploy IIS Container
 
 ```powershell
-C:\>docker run -it -p 80:80 iis
+docker run -it -p 80:80 iis cmd
 ```
+
+![](media/dockerfile2.png)
 
 ## Hyper-V Container
 
