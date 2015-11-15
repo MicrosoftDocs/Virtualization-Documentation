@@ -193,13 +193,104 @@ Hyper-V Containers provide an additional layer of isolation over Windows Server 
 
 ### Create Container <!--2-->
 
-### Create a Shared Folder
+Because the container will be running a Nano Server OS Image, the Nano Server IIS packages will be needed to install IIS. These can be found on the Windows Sever 2016 TP4 Installation media, under the `NanoServer\Packages` directory.
+
+In this example a directory from the container host will be made available to the running container using the `-v` parameter of `docekr run`. Before doing so, the source directory will need to be configured. 
+
+Create a directory on the container host that will be shared with the container.
+
+```powershell
+powershell New-Item -Type Directory c:\share\en-us
+```
+
+Copy `Microsoft-NanoServer-IIS-Package.cab` from `NanoServer\Packages` to `c:\share` on the container host. 
+
+Copy `NanoServer\Packages\en-us\Microsoft-NanoServer-IIS-Package.cab` to `c:\share\en-us` on the container host.
+
+Create a file in the c:\share folder named unattend.xml, copy this text into the unattend.xml file.
+
+```powershell
+<?xml version="1.0" encoding="utf-8"?>
+<unattend xmlns="urn:schemas-microsoft-com:unattend">
+    <servicing>
+        <package action="install">
+            <assemblyIdentity name="Microsoft-NanoServer-IIS-Package" version="10.0.10586.0" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" />
+            <source location="c:\iisinstall\Microsoft-NanoServer-IIS-Package.cab" />
+        </package>
+        <package action="install">
+            <assemblyIdentity name="Microsoft-NanoServer-IIS-Package" version="10.0.10586.0" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="en-US" />
+            <source location="c:\iisinstall\en-us\Microsoft-NanoServer-IIS-Package.cab" />
+        </package>
+    </servicing>
+</unattend>
+```
+
+When completed, the `c:\share` directory, on the container host, should be configured like this.
+
+```
+c:\share
+|-- en-us
+|    |-- Microsoft-NanoServer-IIS-Package.cab
+|
+|-- Microsoft-NanoServer-IIS-Package.cab
+|-- unattend.xml
+```
+
+To create a Hyper-V container using docker, specify the `--isolation=hyperv` parameter. This example mounts the `c:\share` directory from the host, to the `c:\iisinstall` directory of the container, and then creates an interactive shell session with the container.
+
+```powershell
+docker run --name iisnanobase -it -v c:\share:c:\iisinstall --isolation=hyperv nanoserver cmd
+```
 
 ### Create IIS Image <!--2-->
 
+From within the container shell session, IIS can be installed using `dism`.
+
+Run the following command to install IIS.
+
+```powershell
+dism /online /apply-unattend:c:\iisinstall\unattend.xml
+```
+
+When the IIS installation has complete, manually start IIS with the following command.
+
+```powershell
+Net start w3svc
+```
+
+Exit the container session.
+
+```powershell
+exit
+```
+
 ### Create IIS Container <!--2-->
 
-### Configure Networking <!--2-->
+The modified Nano Server container can now be committed to a new container image. To do so, use the `docker commit` command.
+
+```powershell
+docker commit iisnanobase nanoserveriis
+
+#output
+
+aabc90a4002feb715256623a0fdabb83eba62b1fb58e5fed6b5ee9fff051d34f
+```
+
+The results can be seen when returning a list of container images.
+
+```poweershell
+docker images
+
+#output
+
+REPOSITORY          TAG                 IMAGE ID            CREATED              VIRTUAL SIZE
+nanoserveriis       latest              aabc90a4002f        About a minute ago   68.72 MB
+windowsservercore   10.0.10586.0        6801d964fda5        2 weeks ago          0 B
+windowsservercore   latest              6801d964fda5        2 weeks ago          0 B
+nanoserver          10.0.10586.0        8572198a60f1        2 weeks ago          0 B
+nanoserver          latest              8572198a60f1        2 weeks ago          0 B
+
+```
 
 ### Create Application <!--2-->
 
