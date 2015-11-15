@@ -13,6 +13,8 @@ This walkthrough demonstrates both Windows Server containers and Hyper-V contain
 - A Windows Container Host enabled with Nested Virtualization.
 - The Windows Serve 2016 Media.
 
+> Microsoft Azure does not support Hyper-V container. To complete the Hyper-V exercises, you need an on-prem container host.
+
 ## Windows Server Container
 
 Windows Server Containers provide an isolated, portable, and resource controlled operating environment for running applications and hosting processes. Windows Server Containers provide isolation between the container and host, and between containers running on the host, through process and namespace isolation.
@@ -194,9 +196,9 @@ Remove-ContainerImage -Name WindowsServerCoreIIS –Force
 
 ## Hyper-V Container
 
-Hyper-V Containers provide an additional layer of isolation over Windows Server Containers. Each Hyper-V Container is created within a highly optimized virtual machine. Where a Windows Server Container shares a kernel with the Container host, and all other Windows Server Containers running on that host, a Hyper-V container is completely isolated from other containers. Hyper-V Containers are created and managed identically to Windows Server Containers. For more informa
+Hyper-V Containers provide an additional layer of isolation over Windows Server Containers. Each Hyper-V Container is created within a highly optimized virtual machine. Where a Windows Server Container shares a kernel with the Container host, and all other Windows Server Containers running on that host, a Hyper-V container is completely isolated from other containers. Hyper-V Containers are created and managed identically to Windows Server Containers. For more information about Hyper-V Containers see [Managing Hyper-V Containers](../management/hyperv_container.md).
 
-Hyper-V containers are not available in Microsoft Azure. To completed this exercise, you must be working on an on-prem system that meets the requirements for Hyper-V containers. 
+> Microsoft Azure does not support Hyper-V container. To complete the Hyper-V exercises, you need an on-prem container host.
 
 ### Create Container <!--2-->
 
