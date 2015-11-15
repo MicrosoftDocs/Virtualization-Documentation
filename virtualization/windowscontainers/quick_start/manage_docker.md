@@ -23,6 +23,8 @@ Windows Server Containers provide an isolated, portable, and resource controlled
 
 ### Create Container <!--1-->
 
+Before creating a container, list the container images installed on the container host. To see all container images with Docker, use the `docker images` command.
+
 ```powershell
 docker images
 
@@ -35,28 +37,34 @@ nanoserver          10.0.10586.0        8572198a60f1        2 weeks ago         
 nanoserver          latest              8572198a60f1        2 weeks ago         0 B
 ```
 
+For this example, create a container using the Windows Server Core image as the container base. This is done with the `docker run command`. For more information on `docker run`, see the [Docker Run reference on docker.com]( https://docs.docker.com/engine/reference/run/).
+
+This example creates a container named `iisbase` and starts an interactive session with the container. 
+
 ```powershell
 docker run --name iisbase -it windowsservercore cmd
 ```
 
+When the container has been created, you will be working in a shell session from within the container. 
+
+
 ### Create IIS Image <!--1-->
+
+IIS will be installed in the container, and then an image created from the container. 
+
+To install IIS, run the following.
 
 ```powershell
 powershell.exe Install-WindowsFeature web-server
 ```
 
+When completed, exit the interactive shell session.
+
 ```powershell
 exit
 ```
 
-```powershell
-docker ps -a
-
-#output
-
-CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS                     PORTS               NAMES
-48355e3cd8e8        windowsservercore   "cmd"               10 minutes ago      Exited (0) 3 minutes ago                       awesome_mirzakhani
-```
+Finally, the container will be committed to a new container image using `docker commit`. This example creates a new container image with the name ` windowsservercoreiis`.
 
 ```powershell
 docker commit iisbase windowsservercoreiis
@@ -66,7 +74,7 @@ docker commit iisbase windowsservercoreiis
 87e0ec900efcaf5cbe70b947b7c3d56aeeced4ae12227952f5ca1f545d147f2f
 ```
 
-### Create IIS Container <!--1-->
+The new IIS images can be viewed using the `docker images` command.
 
 ```powershell
 docker images
@@ -80,12 +88,19 @@ windowsservercore      latest              83b613fea6fc        13 days ago      
 nanoserver             10.0.10586.1000     646d6317b02f        13 days ago          0 B
 ```
 
+### Create IIS Container <!--1-->
+
+You now have a container image that contains IIS, and can be used to deploy IIS ready operating environments. 
+
+To create a container from the new image, use the `docker run` command, this time specifying the name of the IIS image. Notice that this sample has specified a parameter `-p 80:80`. Because the container is connected to a virtual switch that is supplying IP addresses .via network address translation, a port needs to be mapped from the container host, to a port on the containers NAT IP address. For more information on the `-p` see the [Docker Run reference on docker.com]( https://docs.docker.com/engine/reference/run/)
+
 ```powershell
 docker run --name iisdemo -it -p 80:80 windowsservercoreiis cmd
 ```
 
-![](media/iis1.png)
+When the container has been created, open a browser, and browse to the IP address of the container host. Because port 80 of the host has been mapped to port 80 if the container, the IIS splash screen should be displayed.
 
+![](media/iis1.png)
 
 ### Create Application <!--1-->
 
@@ -119,17 +134,17 @@ docker rmi windowsservercoreiis
 
 ## Dockerfile
 
-Through the last exercise, a container was manually created, modified, and then captured into a new container image. Docker includes a method for automating this process using what is called a dockerfile. This exercise will have identical results as the last, however this time the process will be automated.
+Through the last exercise, a container was manually created, modified, and then captured into a new container image. Docker includes a method for automating this process, using what is called a dockerfile. This exercise will have identical results as the last, however this time the process will be completley automated.
 
 ### Create IIS Image
 
-On the container host, create a directory `c:\build’ and in this directory create a file named `docekrfile`.
+On the container host, create a directory `c:\build’, and in this directory create a file named `dockerfile`.
 
 ```powershell
 powershell new-item c:\build\dockerfile -Force
 ```
 
-Copy the following text into the dockerfile. These commands will instruct Docker to create a new image, using the `windosservercore`, and include the modifications specified with `RUN`. For more information on Dockerfiles, see the [Dockerfile reference at docker.com](http://docs.docker.com/engine/reference/builder/).
+Copy the following text into the dockerfile. These commands will instruct Docker to create a new image, using `windosservercore` as the base, and include the modifications specified with `RUN`. For more information on Dockerfiles, see the [Dockerfile reference at docker.com](http://docs.docker.com/engine/reference/builder/).
 
 ```powershell
 FROM windowsservercore
@@ -137,9 +152,13 @@ RUN dism /online /enable-feature /all /featurename:iis-webserver /NoRestart
 RUN echo "Hello World - Dockerfile" > c:\inetpub\wwwroot\index.html
 ```
 
+This command will start the automate image build process. The `-t` parameter instructs the process to name the new image `iis`.
+
 ```powershell
 docker build -t iis c:\Build
 ```
+
+When completed, you can verify that the image has been created using the `docker images` command.
 
 ```powershell
 docker images
@@ -156,9 +175,13 @@ nanoserver          lates0t             8572198a60f1        2 weeks ago         
 
 ### Deploy IIS Container
 
+Now, just like in the last exercise, deploy the container, mapping port 80 of the host to port 80 of the container.
+
 ```powershell
 docker run -it -p 80:80 iis cmd
 ```
+
+Once the container has been created, browse to the IP address of the container host. You should see the hello world application.
 
 ![](media/dockerfile2.png)
 
