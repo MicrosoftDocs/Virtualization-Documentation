@@ -294,7 +294,27 @@ nanoserver          latest              8572198a60f1        2 weeks ago         
 
 ### Create Application <!--2-->
 
+The Nano Server IIS image can now be deployed to a new container.
 
+```powershell
+docker run -it -p 80:80 --isolation=hyperv nanoserveriis cmd
+```
 
+Run the following script to replace the default IIS site with a new static site.
+
+```powershell
+del C:\inetpub\wwwroot\iisstart.htm
+echo "Hello World From a Hyper-V Container" > C:\inetpub\wwwroot\index.html
+```
+
+Browse to the IP Address of the container host, you should now see the ‘Hello World’ application. Note – you may need to close any existing browser connections, or clear browser cache to see the updated application.
+
+![](media/HWWINServer.png)
+
+Exit the interactive session with the container.
+
+```powershell
+exit
+```
 
 
