@@ -2,7 +2,7 @@
 
 Windows Containers can be used to rapidly deploy many isolated applications on a single computer system. This exercise will demonstrate Windows Container creation and management using Docker. When completed you should have a basic understanding of how Docker integrates with Windows Containers and will have gained hands on experience with the technology.
 
-This walkthrough will detail both Windows Server containers and Hyper-V containers. Each type of container has its own basic requirements. Included with the Windows Container documentation is a procedure for quickly deploying a container host. This is the easiest way to quickly start with Windows Container. If you do not already have a container host see the [Container Host Deployment Quick Start](./container_setup.md).
+This walkthrough will detail both Windows Server containers and Hyper-V containers. Each type of container has its own basic requirements. Included with the Windows Container documentation is a procedure for quickly deploying a container host. This is the easiest way to quickly start with Windows Containers. If you do not already have a container host, see the [Container Host Deployment Quick Start](./container_setup.md).
 
 The following items will be required for each exercise.
 
@@ -24,7 +24,10 @@ Windows Server Containers provide an isolated, portable, and resource controlled
 ### Create Container <!--1-->
 
 ```powershell
-PS C:\> docker images
+docker images
+
+#output
+
 REPOSITORY          TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
 windowsservercore   latest              6801d964fda5        2 weeks ago         0 B
 windowsservercore   10.0.10586.0        6801d964fda5        2 weeks ago         0 B
@@ -33,34 +36,43 @@ nanoserver          latest              8572198a60f1        2 weeks ago         
 ```
 
 ```powershell
-C:\>docker run -it windowsservercore cmd
+docker run --name iisbase -it windowsservercore cmd
 ```
 
 ### Create IIS Image <!--1-->
 
 ```powershell
-C:\>powershell.exe Install-WindowsFeature web-server
+powershell.exe Install-WindowsFeature web-server
 ```
 
 ```powershell
-c:\exit
+exit
 ```
 
 ```powershell
-C:\>docker ps -a
+docker ps -a
+
+#output
+
 CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS                     PORTS               NAMES
 48355e3cd8e8        windowsservercore   "cmd"               10 minutes ago      Exited (0) 3 minutes ago                       awesome_mirzakhani
 ```
 
 ```powershell
-C:\>docker commit 48355e3cd8e8 windowsservercoreiis
+docker commit iisbase windowsservercoreiis
+
+#output
+
 87e0ec900efcaf5cbe70b947b7c3d56aeeced4ae12227952f5ca1f545d147f2f
 ```
 
 ### Create IIS Container <!--1-->
 
 ```powershell
-C:\>docker images
+docker images
+
+#output
+
 REPOSITORY             TAG                 IMAGE ID            CREATED              VIRTUAL SIZE
 windowsservercoreiis   latest              87e0ec900efc        About a minute ago   176.3 MB
 windowsservercore      10.0.10586.1000     83b613fea6fc        13 days ago          0 B
@@ -69,19 +81,22 @@ nanoserver             10.0.10586.1000     646d6317b02f        13 days ago      
 ```
 
 ```powershell
-docker run -p 80:80 windowsservercoreiis
+docker run -it -p 80:80 windowsservercoreiis cmd
 ```
+
+![](media/iis1.png)
+
 
 ### Create Application <!--1-->
 
 Run the following script to replace the default IIS site with a new static site.
 
 ```powershell
-C:\>del C:\inetpub\wwwroot\iisstart.htm
+del C:\inetpub\wwwroot\iisstart.htm
 echo "Hello World From a Windows Server Container" > C:\inetpub\wwwroot\index.html
 ```
 
-Browse again to the IP Address of the container host, you should now see the ‘Hello World’ application.
+Browse again to the IP Address of the container host, you should now see the ‘Hello World’ application. Note – you may need to close any existing browser connections, or clear browser cache to see the updated application.
 
 ![](media/HWWINServer.png)
 

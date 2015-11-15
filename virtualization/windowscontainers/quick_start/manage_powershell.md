@@ -2,7 +2,7 @@
 
 Windows Containers can be used to rapidly deploy many isolated applications on a single container host. This exercise will demonstrate Windows Container creation and management using PowerShell. When completed you should have a basic understanding of container creation and management.
 
-This walkthrough will detail both Windows Server containers and Hyper-V containers. Each type of container has its own basic requirements. Included with the Windows Container documentation is a procedure for quickly deploying a container host. This is the easiest way to quickly start with Windows Container. If you do not already have a container host see the [Container Host Deployment Quick Start](./container_setup.md).
+This walkthrough will detail both Windows Server containers and Hyper-V containers. Each type of container has its own basic requirements. Included with the Windows Container documentation is a procedure for quickly deploying a container host. This is the easiest way to quickly start with Windows Containers. If you do not already have a container host, see the [Container Host Deployment Quick Start](./container_setup.md).
 
 The following items will be required for each exercise.
 
