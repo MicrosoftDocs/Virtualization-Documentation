@@ -14,27 +14,28 @@ Windows containers provide operating system level virtualization that allows mul
 
 # Quick Links
 
-**Quick Start**<br />
-Try Windows Server and Hyper-V containers with these guided quick start experiences.
-<hr>
+<table border="1" style="background-color:FFFFCC;border-collapse:collapse;border:1px solid FFCC00;color:000000;width:100%" cellpadding="15" cellspacing="5">
+<tr>
+<td>**Quick Start**<br /><br />
+Try Windows Server and Hyper-V containers with these guided quick start experiences.<br /><br />
 <ul>
 <li>[Azure Quick Start](quick_start/azure_setup.md)
 <li>[On-Premise Quick Start](quick_start/container_setup.md)
 <li>[PowerShell Quick Start](quick_start/manage_powershell.md)
 <li>[Docker Quick Start](quick_start/manage_docker.md)
-</ul>
-
-**Deployment**<br />
-Read about deploying Windows Container in Windows Server 2016 and Nano Server.
-<hr>
+</td>
+</tr>
+<tr>
+<td>**Deployment**<br /><br />
+Read about deploying Windows Container in Windows Server 2016 and Nano Server.<br /><br />
 <ul>
 <li>[Deploy Container Host](deployment/deployment.md)
 <li>[Deploy Docker on Windows](deployment/docker_windows.md)
-</ul>
-
-**Management**<br />
-Read about managing Windows Container in Windows Server 2016 and Nano Server.
-<hr>
+</td>
+</tr>
+<tr>
+<td>**Management**<br /><br />
+Read about managing Windows Container in Windows Server 2016 and Nano Server.<br ><br />
 <ul>
 <li>[Manage Containers](management/manage_containers.md)
 <li>[Manage Images](management/manage_images.md)
@@ -43,13 +44,15 @@ Read about managing Windows Container in Windows Server 2016 and Nano Server.
 <li>[Manage Hyper-V Containers](management/hyperv_container.md)
 <li>[Manage Container Resources](management/manage_resources.md)
 <li>[Container Interoperability](management/hcs_powershell.md)
-</ul>
-
-**Community**<br />
-Interact with the community, try samples, and find additional resources.
-<hr>
+</td>
+</tr>
+<tr>
+<td>**Community**<br /><br />
+Interact with the community, try samples, and find additional resources.<br ><br />
 <ul>
 <li>[Container Forum](https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers)
 <li>[Container Resources](https://msdn.microsoft.com/virtualization/community/community_overview)
 <li>[Samples and Scripts](https://github.com/Microsoft/Virtualization-Documentation/tree/master/windows-server-container-samples)
-</ul>
+</td>
+</tr>
+</table>
