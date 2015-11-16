@@ -33,14 +33,21 @@ $userPassword = "P@ssw0rd"
 
 # Keys
 $Windows10Key = ""
+$Windows7Key = ""
+$Windows2008R2Key = ""
+
 $Windows81Key = ""
 $Windows2012R2Key = ""
+
 $Windows8Key = ""
 $Windows2012Key = ""
 
 # ISOs /  WIMs
+$2008R2Image = "$($workingDir)\ISOs\en_windows_server_2008_r2_standard_enterprise_datacenter_and_web_with_sp1_x64_dvd_617601.wim"
 $2012Image = "$($workingDir)\ISOs\en_windows_server_2012_x64_dvd_915478.wim"
 $2012R2Image = "$($workingDir)\ISOs\en_windows_server_2012_r2_x64_dvd_2707946.wim"
+$7x86Image = "$($workingDir)\ISOs\en_windows_7_enterprise_with_sp1_x86_dvd_u_677710.wim"
+$7x64Image = "$($workingDir)\ISOs\en_windows_7_enterprise_with_sp1_x64_dvd_u_677651.wim"
 $8x86Image = "$($workingDir)\ISOs\en_windows_8_x86_dvd_915417.wim"
 $8x64Image = "$($workingDir)\ISOs\en_windows_8_x64_dvd_915440.wim"
 $81x86Image = "$($workingDir)\ISOs\en_windows_8_1_x86_dvd_2707392.wim"
@@ -54,3 +61,6 @@ $StartFactory = $true
 
 # If enabled, will use dism.exe to clean the WinSXS folder and remove old updates. This can give significant disk savings, but takes longer (20-30 minutes per image). Updates will not be able to be uninstalled if this is enabled.
 $CleanWinSXS = $false
+
+# If enabled, will use the legacy VHD format rather than VHDX to support Hyper-V before Windows Server 2012
+$LegacyVHD = $false

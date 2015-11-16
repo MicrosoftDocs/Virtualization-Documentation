@@ -31,7 +31,7 @@ If ($RunNative)
 ElseIf ($CreateContainerImageUsingPowerShell)
 {
       Write-Output "Creating new Container using PowerShell"
-      $c1 = New-Container "$containerImageName Container" -ContainerImageName "WindowsServerCore" -Switch $internetVirtualSwitch
+      $c1 = New-Container "$containerImageName Container" -ContainerImageName "WindowsServerCore" -Switch $InternetVirtualSwitchName
 
       Write-Output "Starting $($c1.Name)"
       Start-Container $c1
