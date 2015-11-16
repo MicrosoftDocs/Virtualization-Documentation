@@ -1,6 +1,6 @@
 # Windows Containers Quick Start
 
-Windows Containers can be used to rapidly deploy many isolated applications on a single computer system. This quick start demonstrates deployment and management of both Windows Server and Hyper-V containers using PowerShell. Throughout this exercise you will build from the ground up a very simple ‘hello world’ application running in both a Windows Server Container and a Hyper-V Container. During this process you will created container image, work with container shared folders, and delete containers and container images. When completed, you will have a basic understanding of Widows Container deployment and management.
+Windows Containers can be used to rapidly deploy many isolated applications on a single computer system. This quick start demonstrates deployment and management of both Windows Server and Hyper-V containers using PowerShell. Throughout this exercise you will build from the ground up a very simple ‘hello world’ application, running in both a Windows Server and a Hyper-V Container. During this process, you will create container images, work with container shared folders, and manage the container lifecycle. When completed, you will have a basic understanding of Widows Container deployment and management.
 
 This walkthrough details both Windows Server containers and Hyper-V containers. Each type of container has its own basic requirements. Included with the Windows Container documentation is a procedure for quickly deploying a container host. This is the easiest way to quickly start with Windows Containers. If you do not already have a container host, see the [Container Host Deployment Quick Start](./container_setup.md).
 
@@ -13,7 +13,7 @@ The following items are required for each exercise.
 **Hyper-V Containers:**
 
 - A Windows Container host enabled with Nested Virtualization.
-- The Windows Serve 2016 Media.
+- The Windows Server 2016 Media.
 
 > Microsoft Azure does not support Hyper-V container. To complete the Hyper-V exercises, you need an on-prem container host.
 
@@ -23,9 +23,9 @@ Windows Server Containers provide an isolated, portable, and resource controlled
 
 ### Create Container <!--1-->
 
-At the time of TP4, Windows Server Containers running on a Windows Server 2016 with full UI or a Windows Server 2016 require the Windows Server 2016 Core OS Image.
+At the time of TP4, Windows Server Containers running on a Windows Server 2016, or a Windows Server 2016 core, require the Windows Server 2016 Core OS Image.
 
-To validate that the Windows Serve Core OS Image has been installed, use the `Get-ContainerImage` command. You may see multiple OS images, which is ok.
+To validate that the Windows Server Core OS Image has been installed, use the `Get-ContainerImage` command. You may see multiple OS images, which is ok.
 
 ```powershell
 Get-ContainerImage
@@ -81,7 +81,7 @@ When the IIS installation has completed, exit the container by typing `exit`. Th
 exit
 ```
 
-Finally stop the container using the `Stop-Container` command.
+Finally, stop the container using the `Stop-Container` command.
 
 ```powershell
 Stop-Container $con
@@ -116,9 +116,9 @@ Start-Container $con
 
 ### Configure Networking <!--1-->
 
-The default network configuration for the Windows Container Quick Starts is to have containers connected to a virtual switch, configured with Network Address Translation (NAT). Because of this, in order to connect to an application running inside of a container, a port on the container host, needs to be mapped to a port on the container. For more information on Network Address Translation in Containers, see [Manage Container Networking](../management/container_networking.md).
+The default network configuration for the Windows Container Quick Starts, is to have containers connected to a virtual switch configured with Network Address Translation (NAT). Because of this, in order to connect to an application running inside of a container, a port on the container host, needs to be mapped to a port on the container. For more information on Network Address Translation in Containers, see [Manage Container Networking](../management/container_networking.md).
 
-For this exercise, a website is hosted in IIS, running inside of a container. To access the website on port 80, map port 80 of the container hosts IP address. to port 80 of the containers IP address.
+For this exercise, a website is hosted in IIS, running inside of a container. To access the website on port 80, map port 80 of the container hosts IP address, to port 80 of the containers IP address.
 
 Run the following to return the IP address of the container.
 
@@ -138,7 +138,7 @@ Ethernet adapter vEthernet (Virtual Switch-04E1CA63-4C67-4457-B065-6ED7E99EC314-
    Default Gateway . . . . . . . . . : 172.16.0.1
 ```
 
-To create the NAT port mapping, use the `Add-NetNatStaticMapping` command. The following examples checks for an existing port mapping rule, and if one does not exist, creates it. Note, the `-InternalIPAddress` needs to match the IP address of the container.
+To create the NAT port mapping, use the `Add-NetNatStaticMapping` command. The following example checks for an existing port mapping rule, and if one does not exist, creates it. Note, the `-InternalIPAddress` needs to match the IP address of the container.
 
 ```powershell
 if (!(Get-NetNatStaticMapping | where {$_.ExternalPort -eq 80})) {
@@ -212,7 +212,7 @@ When the container has been stopped, it can be removed with the `Remove-Containe
 Remove-Container $con –Force
 ```
 
-Finally, a container image can be removed using the ` Remove-ContainerImage` command.
+Finally, a container image can be removed using the `Remove-ContainerImage` command.
 
 ```powershell
 Remove-ContainerImage -Name WindowsServerCoreIIS –Force
@@ -226,7 +226,7 @@ Hyper-V Containers provide an additional layer of isolation over Windows Server 
 
 ### Create Container <!--2-->
 
-At the time of TP4, Hyper-V containers must use a Nano Server Core OS Image. To validate that the Nano Server OS image has been installed on the Container Host, use the `Get-ContainerImage` command.
+At the time of TP4, Hyper-V containers must use a Nano Server Core OS Image. To validate that the Nano Server OS image has been installed, use the `Get-ContainerImage` command.
 
 ```powershell
 Get-ContainerImage
@@ -239,7 +239,7 @@ NanoServer        CN=Microsoft 10.0.10586.0    True
 WindowsServerCore CN=Microsoft 10.0.10586.0    True
 ```
 
-To create a Hyper-V container, use the `New-Container` command specifying a Runtime of HyperV.
+To create a Hyper-V container, use the `New-Container` command, specifying a Runtime of HyperV.
 
 ```powershell
 $con = New-Container -Name HYPV -ContainerImageName NanoServer -SwitchName "Virtual Switch" -RuntimeType HyperV
@@ -249,17 +249,17 @@ When the container has been created, **do not start it**.
 
 ### Create a Shared Folder
 
-Shared folders expose a directory from the container host to the container. When a shared folder has been created, any files placed in the shared folder are available in the container. A shared folder is used in this example to copy the Nano Server IIS packages into the container. These packages will then be used to install. For more information on shared folder see [Managing Container Data](../management/manage_data.md). 
+Shared folders expose a directory from the container host, to the container. When a shared folder has been created, any files placed in the shared folder are available in the container. A shared folder is used in this example to copy the Nano Server IIS packages into the container. These packages will then be used to install IIS. For more information on shared folder see [Managing Container Data](../management/manage_data.md). 
 
-Create a directory on the container host that will be shared with the container.
+Create a directory named `c:\share\en-us` on the container host.
 
 ```powershell
 New-Item -Type Directory c:\share\en-us
 ```
 
-Use the `Add-ContainerSharedFolder` command to create a new shared folder with the new container.
+Use the `Add-ContainerSharedFolder` command to create a new shared folder on the new container.
 
-> The container must be in a stopped stated when creating the shared folder.
+> The container must be in a stopped stated when creating a shared folder.
 
 ```powershell
 Add-ContainerSharedFolder -Container $con -SourcePath c:\share -DestinationPath c:\iisinstall
@@ -286,8 +286,6 @@ When in the remote session, notice that the shared folder `c:\iisinstall\en-us` 
 ```powershell
 ls c:\iisinstall
 ```
-
-For more information on Shared Folders see [Container Data Management](../management/manage_data.md).
 
 ### Create IIS Image <!--2-->
 
@@ -398,7 +396,7 @@ Start-Container $con
 
 The default network configuration for the Windows Container Quick Starts is to have containers connected to a virtual switch, configured with Network Address Translation (NAT). Because of this, in order to connect to an application running inside of a container, a port on the container host, needs to be mapped to a port on the container. For more information on Network Address Translation in Containers, see [Manage Container Networking](../management/container_networking.md).
 
-For this exercise, a website is hosted in IIS, running inside of a container. To access the website on port 80, map port 80 of the container hosts IP address. to port 80 of the containers IP address.
+For this exercise, a website is hosted in IIS, running inside of a container. To access the website on port 80, map port 80 of the container hosts IP address, to port 80 of the containers IP address.
 
 Run the following to return the IP address of the container.
 
@@ -439,7 +437,7 @@ Now that a container has been created from the IIS image, and networking configu
 
 ![](media/iis1.png)
 
-With the IIS instances verified as running, you can now create a ‘Hello World’ application, and host this in the IIS instance. To do so, create a PowerShell session with the container.
+With the IIS instances verified as running, you can now create a ‘Hello World’ application, and host this on the IIS instance. To do so, create a PowerShell session with the container.
 
 ```powershell
 Enter-PSSession -ContainerId $con.ContainerId –RunAsAdministrator
