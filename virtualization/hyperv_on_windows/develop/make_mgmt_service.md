@@ -1,20 +1,12 @@
 # Make a new management service #
 
-This document introduces VM Services built on Hyper-V sockets and how to get started using them.
+Starting in Windows 10, Hyper-V allows registered socket connections between the Hyper-V guest and host without relying on a network connection.  Using Hyper-V sockets, services can run independently of the networking stack and all data stays on the same physical memory.
 
-## What is a VM Service?
-VM Services are services that span the Hyper-V host and virtual machines running on the host.
+This document walks through creating a simple application built on Hyper-V sockets and how to get started using them.
 
-Hyper-V now (Windows 10 and Server 2016+) provides a non-network connection which allows you to create services spanning the host/virtual machine boundary while preserving Hyper-V’s fundamental requirements around tenant/hoster isolation, control, and diagnosable.
+[PowerShell Direct](../user_guide/vmsession.md) is an example of an application (in this case an in-box Windows service) which uses Hyper-V sockets to communicate.
 
-Hyper-V will continue to provide a base set of in-box services (integration services) for basics (such as time sync) and for common requests we receive, but now anyone can write and deploy a VM service as needed.
-
-PowerShell Direct is an in-box example of a VM Service.
-
-## What is a Hyper-V socket?
-Hyper-V sockets are TCP-like sockets with no dependence on networking.  Using Hyper-V sockets, services can run independently of the networking stack and all data flow stays on host memory.
-
-## System Requirements
+## Requirements
 
 **Supported Host OS**
 *	Windows 10
@@ -25,7 +17,7 @@ Hyper-V sockets are TCP-like sockets with no dependence on networking.  Using Hy
 *	Windows 10
 *	Windows Server Technical Preview 3
 *	Future releases (Server 2016 +)
-*	Linux
+
 
 ## Capabilities and Limitations
 Kernel mode or user mode  
