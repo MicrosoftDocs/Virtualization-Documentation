@@ -77,7 +77,7 @@ Both container types use a container OS Image during container deployment. A Bas
 
 <tr valign="top">
 <td><center>Install Docker</center></td>
-<td>The Docker daemon and CLI will need to be installed if Docker will be used as the container management tool.<br /><br />
+<td>The Docker daemon and CLI need to be installed if Docker will be used as the container management tool.<br /><br />
 <ul><li>[Install Docker](#docker)</li></ul>
 </td>
 <tr>
@@ -93,7 +93,7 @@ To install the role using PowerShell, run the following command in an elevated P
 ```powershell
 Install-WindowsFeature containers
 ```
-The system will need to be rebooted when the container role installation has completed.
+The system needs to be rebooted when the container role installation has completed.
 
 ```powershell
 shutdown /r 
@@ -111,7 +111,7 @@ WIN-LJGU7HD7TEP C:\ProgramData\Microsoft\Windows\Hyper-V\Container Image Store
 
 ### <a name=nano></a> Prepare Nano Server
 
-Deploying Nano Server involves creating a prepared virtual hard drive that includes the Nano Server operating system and additional feature packages. This guide will quickly detail preparing a Nano Server virtual hard drive, which can be used to create a Container Host.
+Deploying Nano Server involves creating a prepared virtual hard drive that includes the Nano Server operating system and additional feature packages. This guide quickly details preparing a Nano Server virtual hard drive, which can be used to create a Container Host.
 
 For more information on Nano Server, and to explore different Nano Server deployment options, see the [Nano Server Documentation]( https://technet.microsoft.com/en-us/library/mt126167.aspx).
 
@@ -136,7 +136,7 @@ Run the following to create a Nano Server virtual hard drive. The `–Containers
 Import-Module C:\nano\NanoServerImageGenerator.psm1
 New-NanoServerImage -MediaPath $WindowsMedia -BasePath c:\nano -TargetPath C:\nano\NanoContainer.vhdx -MaxSize 10GB -GuestDrivers -ReverseForwarders -Compute -Containers
 ```
-When completed, create a virtual machine from the `NanoContainer.vhdx` file. This virtual machine will be running the Nano Server OS, and optional packages.
+When completed, create a virtual machine from the `NanoContainer.vhdx` file. This virtual machine will be running the Nano Server OS, with optional packages.
 
 ### Configure Hyper-V
 
@@ -145,13 +145,13 @@ Two scenarios need to be considered in regard to Hyper-V and Windows Containers.
 - The container host will be hosting Hyper-V containers.
 - The container host itself is a Hyper-V virtual machine.
 
-If Hyper-V containers will be hosted on the container host, the Hyper-V role will need to be installed. This can be completed on Windows Server 2016 or Windows Server 2016 Core using the following PowerShell command. For Nano Server Configuration, see [Prepare Nano Server](#nano).
+If Hyper-V containers are hosted on the container host, the Hyper-V role needs to be installed. This can be completed on Windows Server 2016 or Windows Server 2016 Core using the following PowerShell command. For Nano Server Configuration, see [Prepare Nano Server](#nano).
 
 ```powershell
 Install-WindowsFeature hyper-v
 ```
 
-<a name=nest></a>If the container host itself is a Hyper-V virtual machine, and will also be hosting Hyper-V containers, nested virtualization will need to be enabled before the Hyper-V role can be installed. This can be completed with the following PowerShell Command.
+<a name=nest></a>If the container host itself is a Hyper-V virtual machine, and will also be hosting Hyper-V containers, nested virtualization needs to be enabled before the Hyper-V role can be installed. This can be completed with the following PowerShell Command.
 
 > The virtual machines must be turned off when running this command.
 
@@ -163,7 +163,7 @@ Set-VMProcessor -VMName <container host vm> -ExposeVirtualizationExtensions $tru
 
 An OS image is used as the base to any Windows Server or Hyper-V container. The image is used to deploy a container, which can then be modified, and captured into a new container image. OS images have been created with both Windows Server Core and Nano Server as the underlying operating system.
 
-Container OS images can be found and installed using the ContainerProvider PowerShell module. Before using this module, it will need to be installed. The following commands can be used to install the module.
+Container OS images can be found and installed using the ContainerProvider PowerShell module. Before using this module, it needs to be installed. The following commands can be used to install the module.
 
 ```powershell
 Invoke-RestMethod 'https://go.microsoft.com/fwlink/?LinkID=627338&clcid=0x409'
@@ -207,7 +207,7 @@ Install-ContainerImage -Name NanoServer -Version 10.0.10586.8
 Downloaded in 0 hours, 0 minutes, 10 seconds.
 ```
 
-Likewaise, this command will download and install the Windows Server Core base OS image.
+Likewise, this command downloads and install the Windows Server Core base OS image.
 
 ```powershell
 Install-ContainerImage -Name WindowsServerCore -Version 10.0.10586.8
@@ -228,7 +228,7 @@ For more information on Container image management see [Windows Container Images
  
 ### Configure Networking
 
-<a name=vswitch></a>Each container will need to be attached to a virtual switch in order to communicate over a network. A virtual switch is created with the `New-VMSwitch` command. Containers support a virtual switch with type `External` or type `NAT`. For more information on container networking see [Windows Container Networking](../management/container_networking.md).
+<a name=vswitch></a>Each container needs to be attached to a virtual switch in order to communicate over a network. A virtual switch is created with the `New-VMSwitch` command. Containers support a virtual switch with type `External` or type `NAT`. For more information on container networking see [Windows Container Networking](../management/container_networking.md).
 
 This example creates a virtual switch with the name “Virtual Switch”, a type of NAT, and Nat Subnet of 172.16.0.0/12. 
 
@@ -236,7 +236,7 @@ This example creates a virtual switch with the name “Virtual Switch”, a type
 New-VMSwitch -Name "Virtual Switch" -SwitchType NAT -NATSubnetAddress 172.16.0.0/12
 ```
 
-<a name=nat></a>In addition to creating the virtual switch, if the switch type is NAT, a NAT object will need to be created. This is completed using the `New-NetNat` command. This example creates a NAT object with the name `ContainerNat` and an address prefix that matches the NAT subnet assigned to the container switch.
+<a name=nat></a>In addition to creating the virtual switch, if the switch type is NAT, a NAT object needs to be created. This is completed using the `New-NetNat` command. This example creates a NAT object with the name `ContainerNat` and an address prefix that matches the NAT subnet assigned to the container switch.
 
 ```powershell
 New-NetNat -Name ContainerNat -InternalIPInterfaceAddressPrefix "172.16.0.0/12"

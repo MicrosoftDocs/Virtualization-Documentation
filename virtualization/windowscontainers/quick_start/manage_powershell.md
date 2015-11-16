@@ -1,10 +1,9 @@
 # Windows Containers Quick Start
 
-Windows Containers can be used to rapidly deploy many isolated applications on a single container host. This exercise will demonstrate Windows Container creation and management using PowerShell. When completed you should have a basic understanding of container creation and management.
+Windows Containers can be used to rapidly deploy many isolated applications on a single computer system. This quick start demonstrates deployment and management of both Windows Server and Hyper-V containers using PowerShell. Throughout this exercise you will build from the ground up a very simple ‘hello world’ application running in both a Windows Server Container and a Hyper-V Container. During this process you will created container image, work with container shared folders, and delete containers and container images. When completed, you will have a basic understanding of Widows Container deployment and management.
+This walkthrough details both Windows Server containers and Hyper-V containers. Each type of container has its own basic requirements. Included with the Windows Container documentation is a procedure for quickly deploying a container host. This is the easiest way to quickly start with Windows Containers. If you do not already have a container host, see the [Container Host Deployment Quick Start](./container_setup.md).
 
-This walkthrough will detail both Windows Server containers and Hyper-V containers. Each type of container has its own basic requirements. Included with the Windows Container documentation is a procedure for quickly deploying a container host. This is the easiest way to quickly start with Windows Containers. If you do not already have a container host, see the [Container Host Deployment Quick Start](./container_setup.md).
-
-The following items will be required for each exercise.
+The following items are required for each exercise.
 
 **Windows Server Containers:**
 
@@ -23,7 +22,7 @@ Windows Server Containers provide an isolated, portable, and resource controlled
 
 ### Create Container <!--1-->
 
-At the time of TP4, Windows Server Containers running on a Windows Server 2016 with full UI or a Windows Server 2016 will require the Windows Server 2016 Core OS Image.
+At the time of TP4, Windows Server Containers running on a Windows Server 2016 with full UI or a Windows Server 2016 require the Windows Server 2016 Core OS Image.
 
 To validate that the Windows Serve Core OS Image has been installed, use the `Get-ContainerImage` command. You may see multiple OS images, which is ok.
 
@@ -38,7 +37,7 @@ NanoServer        CN=Microsoft 10.0.10586.0 True
 WindowsServerCore CN=Microsoft 10.0.10586.0 True
 ```
 
-To create a Windows Server Container, use the `New-Container` command. The below example creates a container named `TP4Demo` from the `WindowsServerCore` OS Image, and connects the container to a VM Switch named `Virtual Switch`. Note that the output, an object representing the container, is stored in a variable `$con`. This variable will be used in subsequent commands.
+To create a Windows Server Container, use the `New-Container` command. The below example creates a container named `TP4Demo` from the `WindowsServerCore` OS Image, and connects the container to a VM Switch named `Virtual Switch`. Note that the output, an object representing the container, is stored in a variable `$con`. This variable is used in subsequent commands.
 
 ```powershell
  $con = New-Container -Name TP4Demo -ContainerImageName WindowsServerCore -SwitchName "Virtual Switch"
@@ -62,7 +61,7 @@ Enter-PSSession -ContainerId $con.ContainerId -RunAsAdministrator
 
 ### Create IIS Image <!--1-->
 
-Now the container can be modified, and these modifications captured to create a new container image. For this example, IIS will be installed.
+Now the container can be modified, and these modifications captured to create a new container image. For this example, IIS is installed.
 
 To install the IIS role, use the `Install-WindowsFeature` command.
 
@@ -75,7 +74,7 @@ Success Restart Needed Exit Code      Feature Result
 ------- -------------- ---------      --------------
 True    No             Success        {Common HTTP Features, Default Document, D...
 ```
-When the IIS installation has completed, exit the container by typing `exit`. This will return the PowerShell session to that of the container host.
+When the IIS installation has completed, exit the container by typing `exit`. This returns the PowerShell session to that of the container host.
 
 ```powershell
 exit
@@ -118,7 +117,7 @@ Start-Container $con
 
 The default network configuration for the Windows Container Quick Starts is to have containers connected to a virtual switch, configured with Network Address Translation (NAT). Because of this, in order to connect to an application running inside of a container, a port on the container host, needs to be mapped to a port on the container. For more information on Network Address Translation in Containers, see [Manage Container Networking](../management/container_networking.md).
 
-For this exercise, a website will be hosted in IIS, running inside of a container. To access the website on port 80, map port 80 of the container hosts IP address. to port 80 of the containers IP address.
+For this exercise, a website is hosted in IIS, running inside of a container. To access the website on port 80, map port 80 of the container hosts IP address. to port 80 of the containers IP address.
 
 Run the following to return the IP address of the container.
 
@@ -159,7 +158,7 @@ InternalRoutingDomainId       : {00000000-0000-0000-0000-000000000000}
 Active                        : True
 ```
 
-When the port mapping has been created, you will also need to configure an inbound firewall rule for the configured port. To do so for port 80, run the following script.
+When the port mapping has been created, you also need to configure an inbound firewall rule for the configured port. To do so for port 80, run the following script.
 
 ```powershell
 if (!(Get-NetFirewallRule | where {$_.Name -eq "TCP80"})) {
@@ -167,7 +166,7 @@ if (!(Get-NetFirewallRule | where {$_.Name -eq "TCP80"})) {
 }
 ```
 
-If you are working in Azure, and have not already created a Network Security Group, you will need to create one now. For more information on Network Security Groups see this article: [What is a Network Security Group](https://azure.microsoft.com/en-us/documentation/articles/virtual-networks-nsg/).
+If you are working in Azure, and have not already created a Network Security Group, you need to create one now. For more information on Network Security Groups see this article: [What is a Network Security Group](https://azure.microsoft.com/en-us/documentation/articles/virtual-networks-nsg/).
 
 ### Create Application <!--1-->
 
@@ -200,7 +199,7 @@ exit
 
 ### Remove Container
 
-A container will need to be stopped, before it can be removed.
+A container needs to be stopped, before it can be removed.
 
 ```powershell
 Stop-Container $con
@@ -249,7 +248,7 @@ When the container has been created, **do not start it**.
 
 ### Create a Shared Folder
 
-Shared folders expose a directory from the container host to the container. When a shared folder has been created, any files placed in the shared folder will be available in the container. A shared folders will be used in this example to copy the Nano Server IIS packages into the container so that IIS can be installed. For more information on shared folder see [Managing Container Data](../management/manage_data.md). 
+Shared folders expose a directory from the container host to the container. When a shared folder has been created, any files placed in the shared folder are available in the container. A shared folder is used in this example to copy the Nano Server IIS packages into the container. These packages will then be used to install. For more information on shared folder see [Managing Container Data](../management/manage_data.md). 
 
 Create a directory on the container host that will be shared with the container.
 
@@ -291,7 +290,7 @@ For more information on Shared Folders see [Container Data Management](../manage
 
 ### Create IIS Image <!--2-->
 
-Because the container is running a Nano Server OS Image, the Nano Server IIS packages will be needed to install IIS. These can be found on the Windows Sever 2016 TP4 Installation media, under the `NanoServer\Packages` directory.
+Because the container is running a Nano Server OS Image, the Nano Server IIS packages are needed to install IIS. These can be found on the Windows Sever 2016 TP4 Installation media, under the `NanoServer\Packages` directory.
 
 Copy `Microsoft-NanoServer-IIS-Package.cab` from `NanoServer\Packages` to `c:\share` on the container host. 
 
@@ -398,7 +397,7 @@ Start-Container $con
 
 The default network configuration for the Windows Container Quick Starts is to have containers connected to a virtual switch, configured with Network Address Translation (NAT). Because of this, in order to connect to an application running inside of a container, a port on the container host, needs to be mapped to a port on the container. For more information on Network Address Translation in Containers, see [Manage Container Networking](../management/container_networking.md).
 
-For this exercise, a website will be hosted in IIS, running inside of a container. To access the website on port 80, map port 80 of the container hosts IP address. to port 80 of the containers IP address.
+For this exercise, a website is hosted in IIS, running inside of a container. To access the website on port 80, map port 80 of the container hosts IP address. to port 80 of the containers IP address.
 
 Run the following to return the IP address of the container.
 
@@ -425,7 +424,7 @@ if (!(Get-NetNatStaticMapping | where {$_.ExternalPort -eq 80})) {
 Add-NetNatStaticMapping -NatName "ContainerNat" -Protocol TCP -ExternalIPAddress 0.0.0.0 -InternalIPAddress 172.16.0.2 -InternalPort 80 -ExternalPort 80
 }
 ```
-You will also need to open up port 80 on the container host.
+You also need to open up port 80 on the container host.
 
 ```powershell
 if (!(Get-NetFirewallRule | where {$_.Name -eq "TCP80"})) {
