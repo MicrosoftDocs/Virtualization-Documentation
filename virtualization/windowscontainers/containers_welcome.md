@@ -1,12 +1,24 @@
 # Windows Containers Documentation
 
-Windows containers provide operating system level virtualization that allow you to run multiple isolated applications on one container host. This container documentation includes pre-release information and is subject to change. The documentation has a left hand table of contents that can be used for document navigation. Note, the table of contents can be collapsed for a wider view of the documents.
+Windows containers provide operating system level virtualization that allows multiple isolated applications to be run on a single system. Windows Containers provides two different types of container runtime, each with a different degree of application isolation. Windows Server Containers achieve isolation through namespace and process isolation and Hyper-V Containers encapsulates each container in a light weight virtual machine. In addition to two runtimes, both can be managed with either PowerShell or Docker. This documentation provides a quick start guide for both runtimes, management experiences as well details deployment and management operations.
 
+> Windows Containers and the Windows Container documentation is in an early pre-release. Container functionality and documentation are subject to change.
 
-<table border="1" style="background-color:FFFFCC;border-collapse:collapse;border:1px solid FFCC00;color:000000;width:75%" cellpadding="15" cellspacing="5">
+# Documentation Notes
+
+- The documentation has a left hand table of contents which can be used for document navigation. Note, the table of contents can be collapsed for a wider view of the documents.
+
+- Each document has a contribute button in the upper right hand corner. This button will navigate to the specific document on GitHub. Feel free to create a pull request against the document or file a document bug.
+
+- The container documentation team monitors the containers forum. Feel free to start or join a conversation at the [Windows Container Form]( https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers).
+
+# Technical Documentation
+
+<table border="1" style="background-color:FFFFCC;border-collapse:collapse;border:1px solid FFCC00;color:000000;width:80%" cellpadding="25" cellspacing="5">
 <tr>
-<td>**Quick Start**<br /><br />
-Try Windows Server and Hyper-V containers with these guided quick start experiences.<br /><br />
+<td>**Quick Start**<br />
+Try Windows Server and Hyper-V containers with these guided quick start experiences.<br />
+<hr>
 <ul>
 <li>[Azure Quick Start](quick_start/azure_setup.md)
 <li>[On-Premise Quick Start](quick_start/container_setup.md)
@@ -15,16 +27,18 @@ Try Windows Server and Hyper-V containers with these guided quick start experien
 </td>
 </tr>
 <tr>
-<td>**Deployment**<br /><br />
-Read about deploying Windows Container in Windows Server 2016 and Nano Server.<br /><br />
+<td>**Deployment**<br />
+Read about deploying Windows Container in Windows Server 2016 and Nano Server.<br />
+<hr>
 <ul>
 <li>[Deploy Container Host](deployment/deployment.md)
 <li>[Deploy Docker on Windows](deployment/docker_windows.md)
 </td>
 </tr>
 <tr>
-<td>**Management**<br /><br />
-Read about managing Windows Container in Windows Server 2016 and Nano Server.<br ><br />
+<td>**Management**<br />
+Read about managing Windows Container in Windows Server 2016 and Nano Server.<br >
+<hr>
 <ul>
 <li>[Manage Containers](management/manage_containers.md)
 <li>[Manage Images](management/manage_images.md)
@@ -36,8 +50,9 @@ Read about managing Windows Container in Windows Server 2016 and Nano Server.<br
 </td>
 </tr>
 <tr>
-<td>**Community**<br /><br />
-Interact with the community, try samples, and find additional resources.<br ><br />
+<td>**Community**<br />
+Interact with the community, try samples, and find additional resources.<br >
+<hr>
 <ul>
 <li>[Container Forum](https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers)
 <li>[Container Resources](https://msdn.microsoft.com/virtualization/community/community_overview)

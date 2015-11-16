@@ -1,21 +1,18 @@
 # Container Resource Management
 
-When you create a container, you can now manage how much CPU, IO, network, and memory resources that the container can utilize, in order to provide the appropriate resources for the workload you plan to run in the container. 
+Windows Containers include the ability to manage how much CPU, disk IO, network and memory resources containers can consume. Constraining container resource consumptions allows host resources to be used efficiently, and prevents over consumption. This document will detail managing container resources with both PowerShell and Docker.
 
-## Managing Resources - PowerShell
+> Windows Containers and the Windows Container documentation is in an early pre-release. Container functionality and documentation are subject to change.
 
-If you choose to manage your containers via PowerShell cmdlets, you have the following options for setting container resource controls on the CPU, Network, Memory, and IO on both local container storage and shared folders. 
-
-All of the `Set-Container` commands take the `ContainerName` flag to specify which container to set the resource usage on. 
+## PowerShell
 
 ### Memory
 
-You can set the memory limit of a container, at creation time, using the `New-Container` command and the `MaximumMemoryBytes` flag.
+Container memory limits can be set when a container is created using the `-MaximumMemoryBytes` parameter of the `New-Container` command. This example sets maximum memory to 256mb.
  
 ```powershell
 New-Container –Name TestContainer –MaximumMemoryBytes 256MB -ContainerimageName WindowsServerCore
 ```
-
 You can also set the memory limit of an existing container using the `Set-ContainerMemory` cmdlet.
 
 ```powershell

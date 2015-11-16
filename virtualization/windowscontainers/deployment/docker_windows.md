@@ -4,6 +4,8 @@ Docker is an open-source, container deployment and management platform, that wor
 
 For more information on Docker and the Docker toolset visit [Docker.com](https://www.docker.com/).
 
+> Windows Containers and the Windows Container documentation is in an early pre-release. Container functionality and documentation are subject to change.
+
 ## Windows Server
 
 ### Install Docker <!--1-->
