@@ -6,6 +6,8 @@ The Windows Container technology includes two distinct types of container techno
 
 **Hyper-V Containers** – multiple containers run on a host, hoever each container is run inside of a utility virtual machine. This provides kernel level isolation between a Hyper-V container, the container host, and any other containers running on the container host.
 
+> Windows Containers and the Windows Container documentation is in an early pre-release. Container functionality and documentation are subject to change.
+
 ## Hyper-V Container PowerShell
 
 ### Create Container

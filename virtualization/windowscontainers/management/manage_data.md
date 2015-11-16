@@ -9,6 +9,8 @@ Shared folders have the following characteristics.
 - If a container image is taken from a container with shared folders, the data in the shared folder is not captured into the image.*
 - When a container is removed, the source folder on the host is not removed.
 
+> Windows Containers and the Windows Container documentation is in an early pre-release. Container functionality and documentation are subject to change.
+
 ## Manage Data - PowerShell
 
 ### Create Shared Folder
