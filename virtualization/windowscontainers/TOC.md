@@ -1,9 +1,8 @@
 # About Windows Container
 ## [Container Docs Overview](./containers_welcome.md)
 ## [About Windows Containers](about/about_overview.md)
-## [Container Ecosystem](about/container_ecosystem.md)
-## [FAQ](about/faq.md)
 ## [Work In Progress](about/work_in_progress.md)
+## [FAQ](about/faq.md)
 # Contianer Quick Start
 ## [Contianer Host in Microsoft Azure](quick_start/azure_setup.md)
 ## [Container Host in New VM](quick_start/container_setup.md)
