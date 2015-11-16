@@ -6,23 +6,20 @@ This document walks through creating a simple application built on Hyper-V socke
 
 [PowerShell Direct](../user_guide/vmsession.md) is an example of an application (in this case an in-box Windows service) which uses Hyper-V sockets to communicate.
 
-## Requirements
-
 **Supported Host OS**
-*	Windows 10
-*	Windows Server Technical Preview 3
-*	Future releases (Server 2016 +)
+* Windows 10
+* Windows Server Technical Preview 3
+* Future releases (Server 2016 +)
 
 **Supported Guest OS**
-*	Windows 10
-*	Windows Server Technical Preview 3
-*	Future releases (Server 2016 +)
+* Windows 10
+* Windows Server Technical Preview 3
+* Future releases (Server 2016 +)
 
-
-## Capabilities and Limitations
-Kernel mode or user mode  
-Data stream only  	
-No block memory so not the best for backup/video  
+**Capabilities and Limitations**  
+* Kernel mode or user mode  
+* Data stream only  	
+* No block memory so not the best for backup/video  
 
 ## Getting started
 To write a simple application, you'll need:
