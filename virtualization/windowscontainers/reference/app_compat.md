@@ -64,7 +64,7 @@ We have tried to running the following applications in a Hyper-V Container.  The
 | Redis | 2.8.2101 | Yes | |
 | Ruby | 2.2.2 | Yes | Both, x64 and x86 | 
 | Ruby on Rails | 4.2.3 | Yes | |
-| Sysinternals Tools | * | Yes | Only tried those not requiring a GUI. PsExec does not work by current design |
+| Sysinternals Tools | | Yes | Only tried those not requiring a GUI. PsExec does not work by current design. |
 
 ## Tell us about your experiences
 Is something not on this list?  Let us know what fails and succeeds in your environment via [the forums](https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers).
