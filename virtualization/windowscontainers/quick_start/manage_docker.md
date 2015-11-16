@@ -178,12 +178,29 @@ nanoserver          lates0t             8572198a60f1        2 weeks ago         
 Now, just like in the last exercise, deploy the container, mapping port 80 of the host to port 80 of the container.
 
 ```powershell
-docker run -it -p 80:80 iis cmd
+docker run --name iisdemo -it -p 80:80 iis cmd
 ```
 
 Once the container has been created, browse to the IP address of the container host. You should see the hello world application.
 
 ![](media/dockerfile2.png)
+
+Exit the interactive session with the container.
+
+```powershell
+exit
+```
+
+Remove the container
+
+```powershell
+docker rm iisdemo
+```
+Remove the IIS image.
+
+```powershell
+docker rmi iis
+```
 
 ## Hyper-V Container
 
