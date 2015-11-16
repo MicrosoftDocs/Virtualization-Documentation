@@ -25,8 +25,11 @@ Data stream only
 No block memory so not the best for backup/video  
 
 ## Getting started
-
-This guide assumes you're familiar with socket programming in C/C++.
+To write a simple application, you'll need:
+* C compiler.  If you don't have one, checkout [Visual Studio Code](https://aka.ms/vs)
+* A computer running Hyper-V with and a virtual machine.  
+  * Host and guest (VM) OS must be Windows 10, Windows Server Technical Preview 3, or later.
+* Windows SDK
 
 ### Step 1 - Register your service on the Hyper-V host
 In order to use a custom service integrated with Hyper-V, the new service must be registered with the Hyper-V Host's registry.
