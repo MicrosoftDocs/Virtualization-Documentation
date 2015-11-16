@@ -2,7 +2,7 @@
 
 Windows containers provide operating system level virtualization that allow you to run multiple isolated applications on one container host.
 
-# Documentation Notes
+**Documentation Notes**
 
 - The documentation has a left hand table of contents which can be used for document navigation. Note, the table of contents can be collapsed for a wider view of the documents.
 
