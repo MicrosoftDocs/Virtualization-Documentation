@@ -1,6 +1,7 @@
 # Windows Containers Quick Start
 
 Windows Containers can be used to rapidly deploy many isolated applications on a single computer system. This quick start demonstrates deployment and management of both Windows Server and Hyper-V containers using PowerShell. Throughout this exercise you will build from the ground up a very simple ‘hello world’ application running in both a Windows Server Container and a Hyper-V Container. During this process you will created container image, work with container shared folders, and delete containers and container images. When completed, you will have a basic understanding of Widows Container deployment and management.
+
 This walkthrough details both Windows Server containers and Hyper-V containers. Each type of container has its own basic requirements. Included with the Windows Container documentation is a procedure for quickly deploying a container host. This is the easiest way to quickly start with Windows Containers. If you do not already have a container host, see the [Container Host Deployment Quick Start](./container_setup.md).
 
 The following items are required for each exercise.
