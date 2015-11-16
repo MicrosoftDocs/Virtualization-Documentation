@@ -3513,12 +3513,12 @@ VirtualHardDisk
                     # Create the Windows/system partition 
                     #
                     Write-W2VInfo "Creating single partition..."
-                    $windowsPartition = New-Partition -DiskNumber $disk.Number -UseMaximumSize -MbrType IFS -IsActive
-                    $systemPartition = $windowsPartition
+                    $systemPartition = New-Partition -DiskNumber $disk.Number -UseMaximumSize -MbrType IFS -IsActive
+                    $windowsPartition = $systemPartition
     
                     Write-W2VInfo "Formatting windows volume..."
-                    $windowsVolume = Format-Volume -Partition $windowsPartition -FileSystem NTFS -Force -Confirm:$false
-                    $systemVolume = $windowsVolume
+                    $systemVolume = Format-Volume -Partition $systemPartition -FileSystem NTFS -Force -Confirm:$false
+                    $windowsVolume = $systemVolume
                 } 
                 
                 "UEFI" 
@@ -3660,7 +3660,12 @@ VirtualHardDisk
                         )
 
                     switch ($DiskLayout) 
-                    {        
+                    {
+                        "BIOS" 
+                        {   
+                            $bcdBootArgs += "/f BIOS"   # Specifies the firmware type of the target system partition
+                        }
+
                         "UEFI" 
                         {   
                             $bcdBootArgs += "/f UEFI"   # Specifies the firmware type of the target system partition
