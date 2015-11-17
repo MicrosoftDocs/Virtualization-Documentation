@@ -1,11 +1,28 @@
 # Container Requirements and Deployment
 
+## Requirements
+
+### Supported Host OS
+
 The Windows Container feature is only available with Windows Server 2016 (Full, Core, and Nano Server). Within the Windows Container feature is two different container types, each with slightly different behavior and set of requirements. The two container types are:
 
 - **Windows Server Containers** –provide application isolation through namespace and process isolation.
 - **Hyper-V Containers** – provide application isolation through hosting each container in a super optimized virtual machine. Hyper-V Containers require Hyper-V to be installed on the containers host.
 
 > Windows Containers and the Windows Container documentation is in an early pre-release. Container functionality and documentation are subject to change.
+
+### Hyper-V Container Requirements
+
+Hyper-V Containers require a container host with the Hyper-V role enabled.
+
+**Physical Hyper-V Host** – must support the Hyper-V role.
+
+**Virtualized Hyper-V Host** – must support nesting virtualization.
+- 4 GB RAM available minimum.
+- Both physical and nested Hyper-V roles need to be running on Windows Server TP4.
+- This feature is currently Intel-only. Intel VT-x is required.
+
+### OS Image Configuration
 
 Both container types use a container OS Image during container deployment. A Base OS Image provides the foundational container configuration. At the time of Windows Server Technical Preview 4, two base OS images are available, Windows Server Core and Nano Server. Also at the TP4 release there are limitations between container host, container type, and OS Image compatibility. The following table details the supported configurations.
 
