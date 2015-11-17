@@ -22,13 +22,15 @@ This document walks through creating a simple application built on Hyper-V socke
 * No block memory so not the best for backup/video  
 
 ## Getting started
+Right now, Hyper-V sockets are available in managed code (C/C++).  
+
 To write a simple application, you'll need:
 * C compiler.  If you don't have one, checkout [Visual Studio Code](https://aka.ms/vs)
 * A computer running Hyper-V with and a virtual machine.  
   * Host and guest (VM) OS must be Windows 10, Windows Server Technical Preview 3, or later.
-* Windows SDK -- here's a link to the [Win10 SDK](https://dev.windows.com/en-us/downloads/windows-10-sdk).
+* Windows SDK -- here's a link to the [Win10 SDK](https://dev.windows.com/en-us/downloads/windows-10-sdk) which includes `hvsocket.h`.
 
-### Step 1 - Register your service on the Hyper-V host
+### Register application
 In order to use a custom service integrated with Hyper-V, the new service must be registered with the Hyper-V Host's registry.
 
 By registering the service in the registry, you get:
