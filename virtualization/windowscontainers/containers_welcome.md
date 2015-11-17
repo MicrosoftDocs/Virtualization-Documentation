@@ -34,7 +34,6 @@ Read about managing Windows Container in Windows Server 2016 and Nano Server.<br
 <ul>
 <li>[Manage Containers](management/manage_containers.md)<br /><br /></li>
 <li>[Manage Images](management/manage_images.md)<br /><br /></li>
-<li>[Manage Networking](management/container_networking.md)<br /><br /></li>
 <li>[Manage Container Data](management/manage_data.md)<br /><br /></li>
 <li>[Manage Hyper-V Containers](management/hyperv_container.md)<br /><br /></li>
 <li>[Manage Container Resources](management/manage_resources.md)<br /><br /></li>
@@ -48,8 +47,6 @@ Interact with the community, try samples, and find additional resources.<br ><br
 <ul>
 <li>[Container Forum](https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers)<br /><br /></li>
 <li>[Container Resources](https://msdn.microsoft.com/virtualization/community/community_overview)<br /><br /></li>
-<<<<<<< HEAD
-<li>[Samples and Scripts](https://github.com/Microsoft/Virtualization-Documentation/tree/master/windows-server-container-samples)<br /><br /></li>
 <li>[Samples and Scripts](https://github.com/Microsoft/Virtualization-Documentation/tree/master/windows-server-container-samples)<br /><br /></li>
 </td>
 </tr>
