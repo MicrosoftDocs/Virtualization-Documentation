@@ -22,7 +22,7 @@ Both of these technologies work well, but each have trade-offs as your Hyper-V d
 
 Windows PowerShell Direct provides a powerful scripting and automation experience with the simplicity of VMConnect. Because Windows PowerShell Direct runs between the host and virtual machine, there is no need for a network connection or to enable remote management. You do need guest credentials to log into the virtual machine.
 
-#### Requirements
+### Requirements
 - You must be connected to a Windows 10 or Windows Server Technical Preview host with virtual machines that run Windows 10 or Windows Server Technical Preview as guests.
 - You need to be logged in with Hyper-V Administrator credentials on the host.
 - You need User credentials for the virtual machine.
@@ -57,7 +57,7 @@ Production checkpoints allow you to easily create “point in time” images of 
 When Hyper-V is enabled on a computer that uses the Always On/Always Connected (AOAC) power model, the Connected Standby power state is now available.
 
 In Windows 8 and 8.1, Hyper-V caused computers that used the Always On/Always Connected (AOAC) power model (also known as InstantON) to never sleep. See this [KB article](
-https://support.microsoft.com/en-us/kb/2973536) for a full discription.
+https://support.microsoft.com/en-us/kb/2973536) for a full description.
 
 
 ## Linux secure boot 
@@ -69,13 +69,13 @@ More Linux operating systems, running on generation 2 virtual machines, can now 
 For more information on running Linux virtual machines on Hyper-V, see [Linux and FreeBSD Virtual Machines on Hyper-V](http://technet.microsoft.com/library/dn531030.aspx).
  
  
-## Virtual Machine Configuration Version 
+## Virtual Machine configuration version
 
 When you move or import a virtual machine to a host running Hyper-V on Windows 10 from host running Windows 8.1, the virtual machine’s configuration file isn't automatically upgraded. This allows the virtual machine to be moved back to a host running Windows 8.1. You won't have access to new virtual machine features until you manually update the virtual machine configuration version. 
 
 The virtual machine configuration version represents what version of Hyper-V the virtual machine’s configuration, saved state, and snapshot files it's compatible with. Virtual machines with configuration version 5 are compatible with Windows 8.1 and can run on both Windows 8.1 and Windows 10. Virtual machines with configuration version 6 are compatible with Windows 10 and won't run on Windows 8.1.
 
-#### How do I check the configuration version of the virtual machines running on Hyper-V? 
+### Check configuration version
 
 From an elevated command prompt, run the following command:
 
@@ -83,7 +83,7 @@ From an elevated command prompt, run the following command:
 Get-VM * | Format-Table Name, Version
 ```
 
-#### How do I upgrade the configuration version of a virtual machine?  
+### Upgrade configuration version 
 
 From an elevated Windows PowerShell command prompt, run one of the following commands:
 
@@ -97,7 +97,6 @@ Or
 Update-VmConfigurationVersion <vmobject>
 ```
 
-
 **Important: **
 - After you upgrade the virtual machine configuration version, you can't move the virtual machine to a host that runs Windows 8.1.
 - You can't downgrade the virtual machine configuration version from version 6 to version 5.
@@ -105,16 +104,14 @@ Update-VmConfigurationVersion <vmobject>
 - After the upgrade, the virtual machine uses the new configuration file format. For more information, see New virtual machine configuration file format.
 
 
-## New virtual machine configuration file format
+## Configuration file format
 
 Virtual machines now have a new configuration file format which is designed to increase the efficiency of reading and writing virtual machine configuration data. It's also designed to reduce the potential for data corruption if there's a storage failure. The new configuration files use the .VMCX extension for virtual machine configuration data and the .VMRS extension for runtime state data. 
 
 
 > **Important:** The .VMCX file is a binary format. Directly editing the .VMCX or .VMRS file isn't supported.
 
-
-
-## Integration Services delivered through Windows Update
+## Integration Services through Windows Update
 
 Updates to integration services for Windows guests are now distributed through Windows Update.
 
@@ -139,8 +136,6 @@ See [this blog](http://blogs.msdn.com/b/virtual_pc_guy/archive/2014/11/12/updati
 
 
 > **Important:** The ISO image file vmguest.iso is no longer needed for updating integration components. It's not included with Hyper-V on Windows 10.
-
-
 
 
 ## Next Step
