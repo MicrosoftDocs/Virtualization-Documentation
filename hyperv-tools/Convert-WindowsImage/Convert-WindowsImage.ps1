@@ -579,10 +579,10 @@ Convert-WindowsImage
             ConvertFrom-StringData -StringData @"
 Major     = 10
 Minor     = 0
-Build     = 10557
-Qfe       = 1000
-Branch    = th2_xenon_hyp(mebersol)
-Timestamp = 150829-1819
+Build     = 10586
+Qfe       = 0
+Branch    = th2_release
+Timestamp = 151029-1700
 Flavor    = amd64fre
 "@
         }
@@ -2588,10 +2588,10 @@ VirtualHardDisk
                 $transcripting = $false
             }
 
-            if (-not (Get-Module Hyper-V))
-            {
-                Add-Type -TypeDefinition $code -ReferencedAssemblies "System.Xml","System.Linq","System.Xml.Linq"
-            }
+            #
+            # Add types
+            #
+            Add-Type -TypeDefinition $code -ReferencedAssemblies "System.Xml","System.Linq","System.Xml.Linq" -ErrorAction SilentlyContinue
 
             # Check to make sure we're running as Admin.
             if (!(Test-Admin)) 
@@ -3513,12 +3513,12 @@ VirtualHardDisk
                     # Create the Windows/system partition 
                     #
                     Write-W2VInfo "Creating single partition..."
-                    $windowsPartition = New-Partition -DiskNumber $disk.Number -UseMaximumSize -MbrType IFS -IsActive
-                    $systemPartition = $windowsPartition
+                    $systemPartition = New-Partition -DiskNumber $disk.Number -UseMaximumSize -MbrType IFS -IsActive
+                    $windowsPartition = $systemPartition
     
                     Write-W2VInfo "Formatting windows volume..."
-                    $windowsVolume = Format-Volume -Partition $windowsPartition -FileSystem NTFS -Force -Confirm:$false
-                    $systemVolume = $windowsVolume
+                    $systemVolume = Format-Volume -Partition $systemPartition -FileSystem NTFS -Force -Confirm:$false
+                    $windowsVolume = $systemVolume
                 } 
                 
                 "UEFI" 
@@ -3660,7 +3660,12 @@ VirtualHardDisk
                         )
 
                     switch ($DiskLayout) 
-                    {        
+                    {
+                        "BIOS" 
+                        {   
+                            $bcdBootArgs += "/f BIOS"   # Specifies the firmware type of the target system partition
+                        }
+
                         "UEFI" 
                         {   
                             $bcdBootArgs += "/f UEFI"   # Specifies the firmware type of the target system partition

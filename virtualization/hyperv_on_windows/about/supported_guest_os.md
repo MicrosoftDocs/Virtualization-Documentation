@@ -12,7 +12,7 @@ Microsoft provides support for guest operating systems in the following manner:
 
 In order to be supported, both the Hyper-V host and guest must be updated with all critical updates available through Windows Update.
 
-## Supported Windows guest operating systems on Windows 10
+## Supported guest operating systems
 
 In order to receive support, both the Windows guest operating systems and the host operating system must be current with all critical updates available through Windows Update.
 
@@ -34,7 +34,7 @@ In order to receive support, both the Windows guest operating systems and the ho
   
  > Windows 10 can run as a guest operating system on Windows 8.1 and Windows Server 2012 R2 Hyper-V hosts.
 
-## Supported Linux and Free BSD guest operating systems on Windows 10
+## Supported Linux and Free BSD
 
 | Guest operating system |  |
 |:-----|:------|
