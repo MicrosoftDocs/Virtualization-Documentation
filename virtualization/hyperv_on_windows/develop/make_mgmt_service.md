@@ -62,13 +62,6 @@ HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Virtualization\G
 [System.Guid]::NewGuid().ToString() | clip.exe
 ```
 
-<!-- How do customers know this worked -->
-
-### Step 2 - Create a simple host-side service
-
-
-
-### Step 3 - Create a simple guest-side service
 
 ## More information about AF_HYPERV
 Since Hyper-V sockets do not depend on a networking stack, TCP/IP, DNS, etc. the socket end point needed a non-IP, not hostname, format that still describes the connection.  In lieu of an IP or hostname, AF_HYPERV endpoints rely heavily on two GUIDS:  
