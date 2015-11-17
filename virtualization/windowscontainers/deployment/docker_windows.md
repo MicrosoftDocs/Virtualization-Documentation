@@ -4,7 +4,7 @@ Docker is a container deployment and management platform, that works with both L
 
 For more information on Docker and the Docker toolset visit [Docker.com](https://www.docker.com/).
 
-> Windows Containers and the Windows Container documentation is in an early pre-release. Container functionality and documentation are subject to change.
+> This is preliminary content and subject to change.
 
 ## Windows Server
 
