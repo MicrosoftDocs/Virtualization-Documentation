@@ -30,9 +30,5 @@ Microsoft is committed to being open and ecosystem friendly.  We actively suppor
 
 Over the coming months, we will be providing more information about additional partners in this developing ecosystem.
 
-<<<<<<< HEAD
-=======
 -------------------
 [Back to Container Home](../containers_welcome.md)
-
->>>>>>> tp3

@@ -6,8 +6,8 @@ If you don't see your problem addressed here or have questions, post them on the
 
 ## General functionality
 
-### Windows Container Image must exactly match container host
-A Windows Server Container requires an operating system image that matches the container host in respect to build and patch level. A mismatch will lead to instability and or unpredictable behavior for the container and/or the host.
+### Container and host build number match
+A Windows Server Container requires an operating system image that matches the container host in respect to build and patch level. A mismatch will lead to potential instability and or unpredictable behavior for the container and/or the host.
 
 If you install updates against the Windows container host OS you will need to update the container base OS image to have the matching updates.
 <!-- Can we give examples of behavior or errors?  Makes it more searchable -->
@@ -15,17 +15,7 @@ If you install updates against the Windows container host OS you will need to up
 **Work Around:**   
 Download and install a container base image matching the OS version and patch level of the container host.
 
-
-### Commands sporadically fail -- try again
-In our testing, commands occasionally need to be run multiple times.  The same principle applies to other actions.  
-For example, if you create a new file and it doesn't appear, try touching the file.  
-
-If you have to do this, let us know via [the forums](https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers).
-
-** Work Around:  **  
-Build scripts such that they try commands multiple times.  If a command fails, try again.  
-
-### All non-C:/ drives are automatically mapped into new containers
+### All non-C:/ drives are visible in containers
 All non-C:/ drives available to the container host are automatically mapped into new running Windows Server Containers.
 
 At this point in time there is no way to selectively map folders into a container, as an interim work around drives are mapped automatically.
@@ -36,16 +26,60 @@ We're working on it.  In the future there will be folder sharing.
 ### Default firewall behavior
 In a container host and containers environment, you only have the container host's firewall. All the firewall rules configured in the container host will propagate to all of its containers.
 
-### Windows Server Containers are starting very slowly
+### Windows Server Containers start slowly
 If your container is taking more than 30 seconds to start, it may be performing many duplicate virus scans.
 
 Many anti-malware solutions, such as Windows Defender, maybe unnecessarily scanning files with-in container images including all of the OS binaries and files in the container OS image.  This occurs when ever a new container is created and from the anti-malware’s perspective all of the “container’s files” look like new files that have not previously been scanned.  So when processes inside the container attempt to read these files the anti-malware components first scan them before allowing access to the files.  In reality these files were already scanned when the container image was imported or pulled to the server. In future previews new infrastructure will be in place such that anti-malware solutions, including Windows Defender, will be aware of these situations and can act accordingly to avoid multiple scans. 
+
+### Start/Stop sometimes fails if memory is restricted to < 48MB
+Windows Server Containers experience random, inconsistant, errors when memory is restricted to less than 48MB.
+
+Running the following PowerShell and repeating the start, stop, action multiple will cause failures in either starting or stopping.
+
+```PowerShell
+new-container "Test" -containerimagename "WindowsServerCore" -MaximumBytes 32MB
+start-container test
+stop-container test
+```
+
+**Work Around:**  
+Change the memory value to 48MB. 
+
+
+### Start-container fails when the processor count is 1 or 2 on a 4 core VM
+
+Windows Server Containers fail to start with error:  
+`failed to start: This operation returned because the timeout period expired. (0x800705B4).`
+
+This occurs when the processor count is set to 1 or 2 on a 4 core VM.
+
+``` PowerShell
+new-container "Test2" -containerimagename "WindowsServerCore"
+Set-ContainerProcessor -ContainerName test2 -Maximum 2
+Start-Container test2
+
+Start-Container : 'test2' failed to start.
+'test2' failed to start: This operation returned because the timeout period expired. (0x800705B4).
+'test2' failed to start. (Container ID 133E9DBB-CA23-4473-B49C-441C60ADCE44)
+'test2' failed to start: This operation returned because the timeout period expired. (0x800705B4). (Container ID
+133E9DBB-CA23-4473-B49C-441C60ADCE44)
+At line:1 char:1
++ Start-Container test2
++ ~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : OperationTimeout: (:) [Start-Container], VirtualizationException
+    + FullyQualifiedErrorId : OperationTimeout,Microsoft.Containers.PowerShell.Cmdlets.StartContainer
+PS C:\> Set-ContainerProcessor -ContainerName test2 -Maximum 3
+PS C:\> Start-Container test2
+```
+
+** Work Around:**  
+Increase the processors available to the container, don't explicitly specify processors available to the container, or reduce processors available to the VM.
 
 --------------------------
 
 ## Networking
 
-### Number of network compartments per container
+### Limited network compartments
 In this release we support one network compartment per container. This means that if you have a container with multiple network adapters, you cannot access the same network port on each adapter (e.g. 192.168.0.1:80 and 192.168.0.2:80 belonging to the same container).
 
 **Work Around: **  
@@ -66,28 +100,6 @@ This can be achieved using PowerShell
 Get-VMNetworkAdapter -VMName "[YourVMNameHere]"  | Set-VMNetworkAdapter -MacAddressSpoofing On
 ```
 
-### Creating file shares does not work in a Container
-
-Currently it is not possible to create a file share within a Container. If you run `net share` you will see an error like this:
-
-```
-The Server service is not started.
-
-Is it OK to start it? (Y/N) [Y]: y
-The Server service is starting.
-The Server service could not be started.
-
-A service specific error occurred: 2182.
-
-More help is available by typing NET HELPMSG 3547.
-```
-
-**Work Around: **
-If you want to copy files into a Container you can use the other way round by running `net use` within the Container. For example: 
-```
-net use S: \\your\sources\here /User:shareuser [yourpassword]
-```
-
 --------------------------
 
 ## Application compatibility
@@ -96,27 +108,33 @@ There are so mnay questions about which applications work and don't work in Wind
 
 Some of the most common issues are located here as well.
 
-### WinRM won't start in a Windows Server Container
-WinRM starts, throws an error, and stops again.  Errors are not logged in the event log.
+### Unexpected error occurred inside a localdb instance api method call
+Unexpected error occurred inside a localdb instance api method call
 
-**Work Around:**
-Use WMI, [RDP](#RemoteDesktopAccessOfContainers), or Enter-PSSession -ContainerID
+### RTerm doesn't work
+RTerm installs but won't start in a Windows Server Container.
 
-### Can't install ASP.NET 4.5 or ASP.NET 3.5 with IIS in a container using DISM 
-Installing IIS-ASPNET45 in a container doesn't work inside a Windows Server container.  The installation progress sticks around 95.5%.
-
-``` PowerShell
-Enable-WindowsOptionalFeature -Online -FeatureName IIS-ASPNET45
+Error:  
+```
+'C:\Program' is not recognized as an internal or external command,
+operable program or batch file.
 ```
 
-This fails because ASP.NET 4.5 doesn't run in a container.
 
-**Work Around:**  
-Instead, install the Web-Server role to use IIS. ASP 5.0 does work. 
+### Container: Visual C++ Runtime x64/x86 2015 is not getting installed
 
-``` PowerShell
-Enable-WindowsOptionalFeature -Online -FeatureName Web-Server
+Observed behavior:
+In a Container:
 ```
+C:\build\vcredist_2015_x64.exe /q /norestart
+C:\build>echo %errorlevel%
+0
+C:\build>wmic product get
+No Instance(s) Available.
+```
+
+This is an interop issue with the dedup filter. Dedup checks the rename target to see if it is a deduped file. The create it issues fails with `STATUS_IO_REPARSE_TAG_NOT_HANDLED` because the Windows Server Container filter is sitting above dedup.
+
 
 See the [application compatability article](../reference/app_compat.md) for more information about what applications can be containerized.
 
@@ -125,73 +143,34 @@ See the [application compatability article](../reference/app_compat.md) for more
 
 ## Docker management
 
-### Docker clients unsecured by default
+### Docker clients unsecured
 In this pre-release, docker communication is public if you know where to look.
 
-### Docker commands that don't work with Windows Server Containers
+### Not all Docker commands work
+Docker exec fails in Hyper-V Containers.
 
-Commands known to fail:
-
-| **Docker command** | **Where it runs** | **Error** | **Notes** |
-|:-----|:-----|:-----|:-----|
-| **docker commit** | image | Docker stops running container and doesn’t show correct error message | Committing a stopped container works. Running containers cannot be committed to an image. |
-| **docker diff** | daemon | Error: The windows graphdriver does not support Changes() | Docker diff will not be supported by the Windows Docker daemon. |
-| **docker kill** | container | Error: Invalid signal: KILL  Error: failed to kill containers:[] | |
-| **docker load** | image | Fails silently | No error but the image isn't loading either |
-| **docker pause** | container | Error: Windows container cannot be paused.| By design. |
-| **docker port** | container |  | No port is getting listed even we are able to RDP.
-| **docker restart** | container | Error: A system shutdown is in progress. |  |
-| **docker stat** | daemon | Fails silently | No error, functionality not yet implemented  |
-| **docker unpause** | container |  | By design. |
+Commands related to DockerHub aren't supported yet.
 
 If anything that isn't on this list fails (or if a command fails differently than expected), let us know via [the forums](https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers).
 
-
-
-### Docker commands that partially work with Windows Server Containers
-
-Commands with partial functionality:
-
-| **Docker command** | **Runs on...** | **Parameter** | **Notes** |
-|:-----|:-----|:-----|:-----|
-| **docker attach** | container | --no-stdin=false | The command doesn't exit when Ctrl-P and CTRL-Q is pressed |
-| | | --sig-proxy=true | works |
-| **docker build** | images | -f, --file | Error: Unable to prepare context: Unable to get synlinks |
-| | | --force-rm=false | works |
-| | | --no-cache=false | works |
-| | | -q, --quiet=false | |
-| | | --rm=true | works|
-| | | -t, --tag="" | works |
-| **docker login** | daemon | -e, -p, -u | sporratic behavior | 
-| **docker push** | daemon | | Getting occasional "repository does not exit" errors. |
-| **docker rm** | container | -f | Error: A system shutdown is in progress. |
-
-If anything that isn't on this list fails, if a command fails differently than expected, or if you find a work around, let us know via [the forums](https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers).
-
-
 ### Pasting commands to interactive Docker session is limited to 50 characters
+Pasting commands to interactive Docker session is limited to 50 characters.  
 If you copy a command line into an interactive Docker session, it is currently limited to 50 characters. The pasted string is simply truncated.
 
 This is not by design, we're working on lifting the restriction.
 
-### net use returns System error 1223 instead of prompting for username or password
-Workaround: specify both, the username and password, when running net use. For example:
-```
+### Net use errors
+Net use returns System error 1223 instead of prompting for username or password
+
+**Work Around:**  
+Specify the username and password when running net use.
+
+``` PowerShell
 net use S: \\your\sources\here /User:shareuser [yourpassword]
 ``` 
 
-### HCS Shim errors when creating new container images
-If you encounter error messages like this:
-```
-hcsshim::ExportLayer - Win32 API call returned error r1=2147942523 err=The filename, directory name, or volume label syntax is incorrect. layerId=606a2c430fccd1091b9ad2f930bae009956856cf4e6c66062b188aac48aa2e34 flavour=1 folder=C:\ProgramData\docker\windowsfilter\606a2c430fccd1091b9ad2f930bae009956856cf4e6c66062b188aac48aa2e34-1868857733
-```
 
-You're hitting an issue addressed by the Zero Day Patch for Windows Server 2016 TP3. This error can also occur when running the Python-3.4.3.msi installer or node-v0.12.7.msi in a container.
-
-If you hit other hcsshim errors, let us know via [the forums](https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers).
-
-
-## Accessing windows server container with Remote Desktop 
+## Remote Desktop 
 Windows Server Containers can be managed/interacted with through a RDP session.
 
 The following steps are needed to remotely connect to a Windows Server Container using RDP. It is assumed that the Container is connected to the network via a NAT switch. This is the default when setting up a Container host through the installation script or creating a new VM in Azure.
@@ -282,8 +261,7 @@ The Remote Desktop Connection will ask you whether you want connect to the syste
 
 ## PowerShell management
 
-### Enter-PSSession has containerid argument, New-PSSession doesn't
-
+### Not all *-PSSession have a containerid argument
 This is correct.  We're planning on full cimsession support in the future.
 
 

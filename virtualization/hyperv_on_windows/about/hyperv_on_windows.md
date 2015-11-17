@@ -25,12 +25,12 @@ Hyper-V requires a 64-bit system that has Second Level Address Translation (SLAT
 
 Hyper-V’s dynamic memory allows memory needed by the VM to be allocated and de-allocated dynamically (you specify a minimum and maximum) and share unused memory between VMs. You can run 3 or 4 VMs on a machine that has 4GB of RAM but you'll need more RAM for 5 or more VMs. On the other end of the spectrum, you can also create large VMs with 32 processors and 512GB RAM, depending on your physical hardware.
 
-## Guest perating ystems ##
+## Operating systems you can run in a virtual machine ##
 
 The term "guest" refers to a virtual machine and "host" refers to the computer running the virtual machine. Hyper-V on Windows supports many different guest operating systems including various releases of Linux, FreeBSD and Windows. For information about which operating systems are supported as guests in Hyper-V on Windows, see [Supported Windows Guest Operating Systems](supported_guest_os.md) and [Linux and FreeBSD Virtual Machines on Hyper-V](https://technet.microsoft.com/library/dn531030.aspx). 
 
 
-## Differences from windows server
+## Differences between Hyper-V on Windows and Hyper-V on Windows Server
 There are some features that work differently in Hyper-V on Windows than they do Hyper-V running on Windows Server. These include the following:
 
 - The memory management model is different for Hyper-V on Windows. On a server, Hyper-V memory is managed with the assumption that only the virtual machines are running on the server. In Hyper-V on Windows, memory is managed with the understanding most client machines are running software in addition to running virtual machines. For example, a developer might be running Visual Studio as well as several virtual machines on the same computer.
@@ -38,7 +38,7 @@ There are some features that work differently in Hyper-V on Windows than they do
 - SR-IOV on a 64-bit guest works normally, but 32-bit does not and is not supported.
 
 
-### Server feature not avaliable
+### Windows Server features not avilable in Windows Hyper-V
 There are some features included in Hyper-V on server that are not included in Hyper-V on Windows. These include the following:
 
 - The Remote FX capability to virtualize GPUs 

@@ -1,6 +1,6 @@
-# Windows Containers
+# Windows Containers Documentation
 
-Windows containers provide operating system level virtualization that allow you to run multiple isolated applications on one container host.
+Windows containers provide operating system level virtualization that allows multiple isolated applications to be run on a single system. Windows Containers provides two different types of container runtime, each with a different degree of application isolation. Windows Server Containers achieve isolation through namespace and process isolation and Hyper-V Containers encapsulates each container in a light weight virtual machine. In addition to two runtimes, both can be managed with either PowerShell or Docker. This documentation provides a quick start guide for both runtimes, management experiences as well details deployment and management operations.
 
 **Documentation Notes**
 
@@ -12,56 +12,57 @@ Windows containers provide operating system level virtualization that allow you 
 
 The following table list topics that provide more information about Windows containers, a guided quick start so that you can try out Windows containers, and additional resources.
 
-<table border="1" style="background-color:FFFFCC;border-collapse:collapse;border:1px solid FFCC00;color:000000;width:100%" cellpadding="15" cellspacing="3">
-		<tr valign="top">
-		<td ><center>![](media/try.png)</center></td>
-		<td>		
-              <p><strong>Get started with Windows Containers</strong></p>
-              <p>The following resources will walk you through the deployment, creation, and simple management of Windows Containers.</p>
-			<ul>
-			  	<li class="unordered">[Get started with Windows Server Containers in Microsoft Azure](./quick_start/azure_setup.md)<br /><br /></li>
-				<li class="unordered">[Get started with Windows Server Containers in a new Hyper-V virtual machine](./quick_start/container_setup.md)<br /><br /></li>
-				<li class="unordered">[Get started with Windows Server Containers on an existing Windows Server TP3 Core installation](./quick_start/inplace_setup.md)<br /><br /></li>
-                <li class="unordered">[Quick Start: Windows Server Containers and PowerShell](./quick_start/manage_powershell.md)<br /><br /></li>
-				<li class="unordered">[Quick Start: Windows Server Containers and Docker](./quick_start/manage_docker.md)<br /><br /></li>		
-			</ul>
-		</td>
-	</tr>
-	
-	<tr valign="top">
-		<td ><center>![](media/1.png)</center></td>
-		<td valign="top">		
-              	<p><strong>Learn about Windows Containers</strong></p>
-              	<p>The following articles provide an introduction and overview of Windows Containers.</p>
-			<ul>
-				<li class="unordered">[About Windows Containers](./about/about_overview.md)<br /><br /></li>
-				<li class="unordered">[Frequently Asked Questions](./about/faq.md)<br /><br /></li>
-				<li class="unordered">[Work in Progress](./about/work_in_progress.md)<br /><br /></li>
-			</ul>	
-		</td>
-	</tr>
+> Windows Containers and the Windows Container documentation is in an early pre-release. Container functionality and documentation are subject to change.
 
-	<tr valign="top">
-		<td ><center>![](media/question.png)</center></td>
-		<td>		
-              <p><strong>Connect with Community and Support</strong></p>
-              <p>Additional technical support and community resources</p>
- 			<ul>
-				<li class="unordered">[Ask Question at the Windows Server Container Forum](https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers)<br /><br /></li>
-				<li class="unordered">[Additional Windows Server Container Resources](https://msdn.microsoft.com/virtualization/community/community_overview)<br /><br /></li>
-			</ul>
-		</td>
-	</tr>	
-	
-	<tr valign="top">
-		<td ><center>![](media/explore.png)</center></td>
-		<td>		
-              <p><strong>Explore Samples</strong></p>
-              <p>Explore and reuse container code samples.</p>
-			<ul>
-				<li class="unordered">[Container Sample Code](https://github.com/Microsoft/Virtualization-Documentation/tree/master/windows-server-container-samples)<br /><br /></li>
-			</ul>
-		</td>
-	</tr>
-	
+# Technical Documentation
+
+<table border="1" style="background-color:FFFFCC;border-collapse:collapse;border:1px solid FFCC00;color:000000;width:80%" cellpadding="25" cellspacing="5">
+<tr>
+<td ><center>![](media/try.png)</center></td>
+<td>**Quick Start**<br /><br />
+Try Windows Server and Hyper-V containers with these guided quick start experiences.<br /><br />
+<ul>
+<li>[Azure Quick Start](quick_start/azure_setup.md)<br /><br /></li>
+<li>[On-Premise Quick Start](quick_start/container_setup.md)<br /><br /></li>
+<li>[PowerShell Quick Start](quick_start/manage_powershell.md)<br /><br /></li>
+<li>[Docker Quick Start](quick_start/manage_docker.md)<br /><br /></li>
+</td>
+</tr>
+<tr>
+<td ><center>![](media/1.png)</center></td>
+<td>**Deployment**<br /><br />
+Read about deploying Windows Container in Windows Server 2016 and Nano Server.<br /><br />
+<ul>
+<li>[Deploy Container Host](deployment/deployment.md)<br /><br /></li>
+<li>[Deploy Docker on Windows](deployment/docker_windows.md)<br /><br /></li>
+</td>
+</tr>
+<tr>
+<td ><center>![](media/question.png)</center></td>
+<td>**Management**<br /><br />
+Read about managing Windows Container in Windows Server 2016 and Nano Server.<br ><br />
+<ul>
+<li>[Manage Containers](management/manage_containers.md)<br /><br /></li>
+<li>[Manage Images](management/manage_images.md)<br /><br /></li>
+<li>[Manage Networking](management/container_networking.md)<br /><br /></li>
+<li>[Manage Container Data](management/manage_data.md)<br /><br /></li>
+<li>[Manage Hyper-V Containers](management/hyperv_container.md)<br /><br /></li>
+<li>[Manage Container Resources](management/manage_resources.md)<br /><br /></li>
+<li>[Container Interoperability](management/hcs_powershell.md)<br /><br /></li>
+</td>
+</tr>
+<tr>
+<td ><center>![](media/explore.png)</center></td>
+<td>**Community**<br /><br />
+Interact with the community, try samples, and find additional resources.<br ><br />
+<ul>
+<li>[Container Forum](https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers)<br /><br /></li>
+<li>[Container Resources](https://msdn.microsoft.com/virtualization/community/community_overview)<br /><br /></li>
+<<<<<<< HEAD
+<li>[Samples and Scripts](https://github.com/Microsoft/Virtualization-Documentation/tree/master/windows-server-container-samples)<br /><br /></li>
+=======
+<li>[Samples and Scripts](https://github.com/Microsoft/Virtualization-Documentation/tree/master/windows-server-container-samples)
+>>>>>>> 56babf55735cf400e52da15f0c996a1033ccce3a
+</td>
+</tr>
 </table>

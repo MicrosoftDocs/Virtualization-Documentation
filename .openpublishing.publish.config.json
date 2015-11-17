@@ -1,13 +1,12 @@
 {
     "build_entry_point": "",
-    "git_repository_url_open_to_public_contributors": "https://github.com/Microsoft/Virtualization-Documentation",
     "docsets_to_publish": [
         {
             "docset_name": "Microsoft_Windows-Container-Documentation-Private_community",
             "build_output_subfolder": "virtualization/community",
             "locale": "en-us",
             "version": 0,
-            "open_to_public_contributors": "true",
+            "open_to_public_contributors": "false",
             "type_mapping": {
                 "Conceptual": "Content"
             }
@@ -17,7 +16,7 @@
             "build_output_subfolder": "virtualization/hyperv_on_windows",
             "locale": "en-us",
             "version": 0,
-            "open_to_public_contributors": "true",
+            "open_to_public_contributors": "false",
             "type_mapping": {
                 "Conceptual": "Content"
             }
@@ -27,7 +26,7 @@
             "build_output_subfolder": "virtualization/windowscontainers",
             "locale": "en-us",
             "version": 0,
-            "open_to_public_contributors": "true",
+            "open_to_public_contributors": "false",
             "type_mapping": {
                 "Conceptual": "Content"
             }

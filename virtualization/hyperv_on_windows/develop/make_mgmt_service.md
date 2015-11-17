@@ -1,4 +1,4 @@
-# Make a new management service #
+# Make a new management service
 
 Starting in Windows 10, Hyper-V allows registered socket connections between the Hyper-V guest and host without relying on a network connection.  Using Hyper-V sockets, services can run independently of the networking stack and all data stays on the same physical memory.
 
