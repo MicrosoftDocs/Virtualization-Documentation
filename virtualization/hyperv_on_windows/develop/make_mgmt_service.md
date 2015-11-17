@@ -31,7 +31,7 @@ To write a simple application, you'll need:
 * Windows SDK -- here's a link to the [Win10 SDK](https://dev.windows.com/en-us/downloads/windows-10-sdk) which includes `hvsocket.h`.
 
 ### Register application
-In order to use a custom service integrated with Hyper-V, the new service must be registered with the Hyper-V Host's registry.
+In order to use Hyper-V sockets, the application must be registered with the Hyper-V Host's registry.
 
 By registering the service in the registry, you get:
 *  WMI management for enable, disable, and listing available services
@@ -40,7 +40,7 @@ By registering the service in the registry, you get:
 ** Registry location and information **  
 
 ``` 
-HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Virtualization\VirtualDevices\6C09BB55-D683-4DA0-8931-C9BF705F6480\GuestCommunicationServices\
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Virtualization\GuestCommunicationServices\
 ```  
 In this registry location, you'll see several GUIDS.  Those are our in-box services.
 
