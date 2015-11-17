@@ -116,7 +116,7 @@ Start-Container $con
 
 ### Configure Networking <!--1-->
 
-The default network configuration for the Windows Container Quick Starts, is to have containers connected to a virtual switch configured with Network Address Translation (NAT). Because of this, in order to connect to an application running inside of a container, a port on the container host, needs to be mapped to a port on the container. For more information on Network Address Translation in Containers, see [Manage Container Networking](../management/container_networking.md).
+The default network configuration for the Windows Container Quick Starts, is to have containers connected to a virtual switch configured with Network Address Translation (NAT). Because of this, in order to connect to an application running inside of a container, a port on the container host, needs to be mapped to a port on the container.
 
 For this exercise, a website is hosted in IIS, running inside of a container. To access the website on port 80, map port 80 of the container hosts IP address, to port 80 of the containers IP address.
 
@@ -394,7 +394,7 @@ Start-Container $con
 
 ### Configure Networking <!--2-->
 
-The default network configuration for the Windows Container Quick Starts is to have containers connected to a virtual switch, configured with Network Address Translation (NAT). Because of this, in order to connect to an application running inside of a container, a port on the container host, needs to be mapped to a port on the container. For more information on Network Address Translation in Containers, see [Manage Container Networking](../management/container_networking.md).
+The default network configuration for the Windows Container Quick Starts is to have containers connected to a virtual switch, configured with Network Address Translation (NAT). Because of this, in order to connect to an application running inside of a container, a port on the container host, needs to be mapped to a port on the container.
 
 For this exercise, a website is hosted in IIS, running inside of a container. To access the website on port 80, map port 80 of the container hosts IP address, to port 80 of the containers IP address.
 

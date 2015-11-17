@@ -34,7 +34,6 @@ Read about managing Windows Container in Windows Server 2016 and Nano Server.<br
 <ul>
 <li>[Manage Containers](management/manage_containers.md)<br /><br /></li>
 <li>[Manage Images](management/manage_images.md)<br /><br /></li>
-<li>[Manage Networking](management/container_networking.md)<br /><br /></li>
 <li>[Manage Container Data](management/manage_data.md)<br /><br /></li>
 <li>[Manage Hyper-V Containers](management/hyperv_container.md)<br /><br /></li>
 <li>[Manage Container Resources](management/manage_resources.md)<br /><br /></li>

@@ -232,7 +232,7 @@ For more information on Container image management see [Windows Container Images
  
 ### Configure Networking
 
-<a name=vswitch></a>Each container needs to be attached to a virtual switch in order to communicate over a network. A virtual switch is created with the `New-VMSwitch` command. Containers support a virtual switch with type `External` or type `NAT`. For more information on container networking see [Windows Container Networking](../management/container_networking.md).
+<a name=vswitch></a>Each container needs to be attached to a virtual switch in order to communicate over a network. A virtual switch is created with the `New-VMSwitch` command. Containers support a virtual switch with type `External` or type `NAT`.
 
 This example creates a virtual switch with the name “Virtual Switch”, a type of NAT, and Nat Subnet of 172.16.0.0/12. 
 
