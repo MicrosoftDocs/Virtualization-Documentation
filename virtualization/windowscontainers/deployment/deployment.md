@@ -5,6 +5,10 @@ The Windows Container feature is only available with Windows Server 2016 (Full, 
 - **Windows Server Containers** –provide application isolation through namespace and process isolation.
 - **Hyper-V Containers** – provide application isolation through hosting each container in a super optimized virtual machine. Hyper-V Containers require Hyper-V to be installed on the containers host.
 
+> This is preliminary content and subject to change.
+
+## OS Image Configuration
+
 Both container types use a container OS Image during container deployment. A Base OS Image provides the foundational container configuration. At the time of Windows Server Technical Preview 4, two base OS images are available, Windows Server Core and Nano Server. Also at the TP4 release there are limitations between container host, container type, and OS Image compatibility. The following table details the supported configurations.
 
 <table border="1" style="background-color:FFFFCC;border-collapse:collapse;border:1px solid FFCC00;color:000000;width:90%" cellpadding="5" cellspacing="5">
