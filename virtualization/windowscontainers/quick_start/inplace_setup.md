@@ -10,7 +10,7 @@ In order to create and manage Windows Server Containers, the Windows Server 2016
   **PLEASE READ PRIOR TO INSTALLING THE CONTAINER OS IMAGE:**  The license terms of the Microsoft Windows Server Pre-Release software (“License Terms”) apply to your use of the Microsoft Windows Container OS Image supplement (the “supplemental software).  By downloading and using the supplemental software, you agree to the License Terms, and you may not use it if you have not accepted the License Terms. Both the Windows Server Pre-Release software and the supplemental software are licensed by Microsoft Corporation.  
 
 **System (or VM) requirements:**
-* System running Windows Server Technical Preview 3 Server Core.
+* System running Windows Server Technical Preview 4.
 * 10GB available storage for OS Base Image and setup scripts.
 * Administrator permissions on the machine or VM.
 
@@ -29,10 +29,10 @@ Make sure the title of the windows is "Administrator: Windows PowerShell". If it
 start-process powershell -Verb runas
 ```
 
-Use the following command to download the setup script. The script can also be manually downloaded from this location - [Configuration Script](https://aka.ms/setupcontainers).
+Use the following command to download the setup script. The script can also be manually downloaded from this location - [Configuration Script](https://aka.ms/tp4/Install-ContainerHost).
  
 ``` PowerShell
-wget -uri https://aka.ms/setupcontainers -OutFile C:\ContainerSetup.ps1
+wget -uri https://aka.ms/tp4/Install-ContainerHost -OutFile C:\ContainerSetup.ps1
 ```
    
  After the download completes, execute the script.
@@ -43,7 +43,6 @@ C:\ContainerSetup.ps1
 The script will then begin to download and configure the Windows Server Container components. This process may take quite some time due to the large download. The machine may reboot during the process. When finished your machine will be configured and ready for you to create and manage Windows Server Containers and Windows Server Container Images with both PowerShell and Docker. 
 
  With these items completed your system should be ready for Windows Server Containers. 
-
 
 ## Next Steps - Start Using Containers
 
