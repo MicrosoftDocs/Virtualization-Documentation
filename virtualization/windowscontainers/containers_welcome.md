@@ -6,7 +6,7 @@ Windows containers provide operating system level virtualization that allow you 
 
 - The documentation has a left hand table of contents which can be used for document navigation. Note, the table of contents can be collapsed for a wider view of the documents.
 
-- Each document has a "Contribute to this topic" link in the upper right hand corner. This button will navigate to the specific document on GitHub. Feel free to create a pull request against the document or file a document bug.
+- Each document has a contribute button in the upper right hand corner. This button will navigate to the specific document on GitHub. Feel free to create a pull request against the document or file a document bug.
 
 - The container documentation team monitors the containers forum. Feel free to start or join a conversation at the [Windows Container Form]( https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers).
 
