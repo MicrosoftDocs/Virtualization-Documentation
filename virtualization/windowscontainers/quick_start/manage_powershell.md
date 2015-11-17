@@ -64,7 +64,7 @@ Enter-PSSession -ContainerId $con.ContainerId -RunAsAdministrator
 
 Now the container can be modified, and these modifications captured to create a new container image. For this example, IIS is installed.
 
-To install the IIS role, use the `Install-WindowsFeature` command.
+To install the IIS role in the container, use the `Install-WindowsFeature` command.
 
 ```powershell
 Install-WindowsFeature web-server

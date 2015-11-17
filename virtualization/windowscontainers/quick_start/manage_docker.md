@@ -13,17 +13,17 @@ The following items will be required for each exercise.
 **Hyper-V Containers:**
 
 - A Windows Container host enabled with Nested Virtualization.
-- The Windows Serve 2016 Media.
+- The Windows Server 2016 Media.
 
-> Microsoft Azure does not support Hyper-V container. To complete the Hyper-V exercises, you need an on-prem container host.
+> Microsoft Azure does not support Hyper-V containers. To complete the Hyper-V exercises, you need an on-prem container host.
 
 ## Windows Server Container
 
-Windows Server Containers provide an isolated, portable, and resource controlled operating environment for running applications and hosting processes. Windows Server Containers provide isolation between the container and host, and between containers running on the host, through process and namespace isolation.
+Windows Server Containers provide an isolated, portable, and resource controlled operating environment for running applications and hosting processes. Windows Server Containers provide isolation between the container and host, through process and namespace isolation.
 
 ### Create Container <!--1-->
 
-Before creating a container, list the container images installed on the container host. To see all container images with Docker, use the `docker images` command.
+Before creating a container, use the `docker images` command to list container images installed on the host.
 
 ```powershell
 docker images
@@ -37,9 +37,9 @@ nanoserver          10.0.10586.0        8572198a60f1        2 weeks ago         
 nanoserver          latest              8572198a60f1        2 weeks ago         0 B
 ```
 
-For this example, create a container using the Windows Server Core image as the container base. This is done with the `docker run command`. For more information on `docker run`, see the [Docker Run reference on docker.com]( https://docs.docker.com/engine/reference/run/).
+For this example, create a container using the Windows Server Core image. This is done with the `docker run command`. For more information on `docker run`, see the [Docker Run reference on docker.com]( https://docs.docker.com/engine/reference/run/).
 
-This example creates a container named `iisbase` and starts an interactive session with the container. 
+This example creates a container named `iisbase`, and starts an interactive session with the container. 
 
 ```powershell
 docker run --name iisbase -it windowsservercore cmd
@@ -50,9 +50,7 @@ When the container has been created, you will be working in a shell session from
 
 ### Create IIS Image <!--1-->
 
-IIS will be installed in the container, and then an image created from the container. 
-
-To install IIS, run the following.
+IIS will be installed, and then an image created from the container. To install IIS, run the following.
 
 ```powershell
 powershell.exe Install-WindowsFeature web-server
@@ -90,7 +88,7 @@ nanoserver             10.0.10586.1000     646d6317b02f        13 days ago      
 
 ### Create IIS Container <!--1-->
 
-You now have a container image that contains IIS, and can be used to deploy IIS ready operating environments. 
+You now have a container image that contains IIS, which can be used to deploy IIS ready operating environments. 
 
 To create a container from the new image, use the `docker run` command, this time specifying the name of the IIS image. Notice that this sample has specified a parameter `-p 80:80`. Because the container is connected to a virtual switch that is supplying IP addresses .via network address translation, a port needs to be mapped from the container host, to a port on the containers NAT IP address. For more information on the `-p` see the [Docker Run reference on docker.com]( https://docs.docker.com/engine/reference/run/)
 
@@ -134,17 +132,17 @@ docker rmi windowsservercoreiis
 
 ## Dockerfile
 
-Through the last exercise, a container was manually created, modified, and then captured into a new container image. Docker includes a method for automating this process, using what is called a dockerfile. This exercise will have identical results as the last, however this time the process will be completley automated.
+Through the last exercise, a container was manually created, modified, and then captured into a new container image. Docker includes a method for automating this process, using what is called a dockerfile. This exercise will have identical results as the last, however this time the process will be completely automated.
 
 ### Create IIS Image
 
-On the container host, create a directory `c:\build’, and in this directory create a file named `dockerfile`.
+On the container host, create a directory `c:\build`, and in this directory create a file named `dockerfile`.
 
 ```powershell
 powershell new-item c:\build\dockerfile -Force
 ```
 
-Copy the following text into the dockerfile. These commands will instruct Docker to create a new image, using `windosservercore` as the base, and include the modifications specified with `RUN`. For more information on Dockerfiles, see the [Dockerfile reference at docker.com](http://docs.docker.com/engine/reference/builder/).
+Copy the following text into the dockerfile. These commands instruct Docker to create a new image, using `windosservercore` as the base, and include the modifications specified with `RUN`. For more information on Dockerfiles, see the [Dockerfile reference at docker.com](http://docs.docker.com/engine/reference/builder/).
 
 ```powershell
 FROM windowsservercore
@@ -152,7 +150,7 @@ RUN dism /online /enable-feature /all /featurename:iis-webserver /NoRestart
 RUN echo "Hello World - Dockerfile" > c:\inetpub\wwwroot\index.html
 ```
 
-This command will start the automate image build process. The `-t` parameter instructs the process to name the new image `iis`.
+This command will start the automated image build process. The `-t` parameter instructs the process to name the new image `iis`.
 
 ```powershell
 docker build -t iis c:\Build
@@ -204,7 +202,7 @@ docker rmi iis
 
 ## Hyper-V Container
 
-Hyper-V Containers provide an additional layer of isolation over Windows Server Containers. Each Hyper-V Container is created within a highly optimized virtual machine. Where a Windows Server Container shares a kernel with the Container host, and all other Windows Server Containers running on that host, a Hyper-V container is completely isolated from other containers. Hyper-V Containers are created and managed identically to Windows Server Containers. For more information about Hyper-V Containers see [Managing Hyper-V Containers](../management/hyperv_container.md).
+Hyper-V Containers provide an additional layer of isolation over Windows Server Containers. Each Hyper-V Container is created within a highly optimized virtual machine. Where a Windows Server Container shares a kernel with the Container host, a Hyper-V container is completely isolated. Hyper-V Containers are created and managed identically to Windows Server Containers. For more information about Hyper-V Containers see [Managing Hyper-V Containers](../management/hyperv_container.md).
 
 > Microsoft Azure does not support Hyper-V container. To complete the Hyper-V exercises, you need an on-prem container host.
 
@@ -212,7 +210,7 @@ Hyper-V Containers provide an additional layer of isolation over Windows Server 
 
 Because the container will be running a Nano Server OS Image, the Nano Server IIS packages will be needed to install IIS. These can be found on the Windows Sever 2016 TP4 Installation media, under the `NanoServer\Packages` directory.
 
-In this example a directory from the container host will be made available to the running container using the `-v` parameter of `docekr run`. Before doing so, the source directory will need to be configured. 
+In this example a directory from the container host will be made available to the running container using the `-v` parameter of `docker run`. Before doing so, the source directory will need to be configured. 
 
 Create a directory on the container host that will be shared with the container.
 
@@ -261,9 +259,7 @@ docker run --name iisnanobase -it -v c:\share:c:\iisinstall --isolation=hyperv n
 
 ### Create IIS Image <!--2-->
 
-From within the container shell session, IIS can be installed using `dism`.
-
-Run the following command to install IIS.
+From within the container shell session, IIS can be installed using `dism`. Run the following command to install IIS in the container.
 
 ```powershell
 dism /online /apply-unattend:c:\iisinstall\unattend.xml
