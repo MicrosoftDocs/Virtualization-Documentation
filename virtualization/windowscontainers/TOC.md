@@ -1,4 +1,4 @@
-# About Windows Container
+# About Windows Containers
 ## [Container Docs Overview](./containers_welcome.md)
 ## [About Windows Containers](about/about_overview.md)
 ## [Work In Progress](about/work_in_progress.md)
@@ -24,4 +24,4 @@
 ## [PowerShell Reference](https://technet.microsoft.com/en-us/library/mt433069.aspx )
 ## [PowerShell / Docker Comparison](reference/ps_docker_comparison.md)
 ## [Application Compatibility](reference/app_compat.md)
-# [EULA](./EULA.md)
+# [EULA](EULA.md)

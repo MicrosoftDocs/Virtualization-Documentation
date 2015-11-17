@@ -2,6 +2,16 @@
 
 Windows containers provide operating system level virtualization that allows multiple isolated applications to be run on a single system. Windows Containers provides two different types of container runtime, each with a different degree of application isolation. Windows Server Containers achieve isolation through namespace and process isolation and Hyper-V Containers encapsulates each container in a light weight virtual machine. In addition to two runtimes, both can be managed with either PowerShell or Docker. This documentation provides a quick start guide for both runtimes, management experiences as well details deployment and management operations.
 
+**Documentation Notes**
+
+- The documentation has a left hand table of contents which can be used for document navigation. Note, the table of contents can be collapsed for a wider view of the documents.
+
+- Each document has a "Contribute to this topic" link in the upper right hand corner. This button will navigate to the specific document on GitHub. Feel free to create a pull request against the document or file a document bug.
+
+- The container documentation team monitors the containers forum. Feel free to start or join a conversation at the [Windows Container Form]( https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers).
+
+The following table list topics that provide more information about Windows containers, a guided quick start so that you can try out Windows containers, and additional resources.
+
 > Windows Containers and the Windows Container documentation is in an early pre-release. Container functionality and documentation are subject to change.
 
 # Technical Documentation
