@@ -20,7 +20,7 @@ Use the steps in this table to deploy a Windows Container Host on Windows Server
 </tr>
 <tr>
 <td>[Configure NAT](#nat)</td>
-<td>If the virtual switch has been configured with Network Address Translation, NAT needs to be configured.</td>
+<td>If a virtual switch is configured with Network Address Translation, NAT itself needs configuration.</td>
 </tr>
 <tr>
 <td>[Configure MAC Address Spoofing](#mac)</td>
@@ -44,12 +44,8 @@ Use the steps in this table to deploy a Windows Container Host on Nano Server.
 
 <table border="1" style="background-color:FFFFCC;border-collapse:collapse;border:1px solid FFCC00;color:000000;width:100%" cellpadding="5" cellspacing="5">
 <tr valign="top">
-<td width = "30%">[Install the Container feature](#role)</td>
-<td width = "70%">The container feature enables use of Windows Server and Hyper-V container.</td>
-</tr>
-<tr>
-<td>[Prepare Nano Server for Containers](#nano)</td>
-<td>Prepare a Nano Server VHD with the container and Hyper-V capabilities.</td>
+<td width = "30%">[Prepare Nano Server for Containers](#nano)</td>
+<td width = "70%">Prepare a Nano Server VHD with the container and Hyper-V capabilities.</td>
 </tr>
 <tr>
 <td>[Create Virtual Switch](#vswitch)</td>
@@ -57,7 +53,7 @@ Use the steps in this table to deploy a Windows Container Host on Nano Server.
 </tr>
 <tr>
 <td>[Configure NAT](#nat)</td>
-<td>If the virtual switch has been configured with Network Address Translation, NAT needs to be configured.</td>
+<td>If a virtual switch is configured with Network Address Translation, NAT itself needs configuration.</td>
 </tr>
 <tr>
 <td>[Configure MAC Address Spoofing](#mac)</td>
