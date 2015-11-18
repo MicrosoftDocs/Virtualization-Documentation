@@ -6,7 +6,7 @@ The Windows Container feature is only available with Windows Server 2016 (Full, 
 
 ## OS Image Configuration
 
-Before deploying a container host, it is important to understand the supported configurations between container host OS and container OS images. The following table details the supported configurations.
+Before deploying a container host, it is important to understand the supported configurations between container host OS, container OS images, and container runtime. The following table details the supported configurations.
 
 <table border="1" style="background-color:FFFFCC;border-collapse:collapse;border:1px solid FFCC00;color:000000;width:90%" cellpadding="5" cellspacing="5">
 <tr valign="top">
@@ -42,7 +42,7 @@ Before deploying a container host, it is important to understand the supported c
 
 <tr valign="top">
 <td><center>Install Container Feature</center></td>
-<td>The container feature needs to be installed in order to create and manage containers. This feature also installs the container PowerShell module.<br /><br />
+<td>The container feature needs to be installed in order to create and manage containers.<br /><br />
 <ul><li>[Windows Server](#role)</li>
 <li>[Nano Server](#nano)</li>
 <ul>
