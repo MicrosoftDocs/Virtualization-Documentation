@@ -2,8 +2,6 @@
 
 Shared folders allow data to be shared between a container host and container. When the shared folder has been created, the shared folder will be available inside of the container. Any data that is placed in the shared folder from the host, will be available inside of the container. Any data placed in the shared folder from within the container will be available on the host. A single folder on the host can be shared with many containers, in this configuration data can be shared between running containers.
 
-> This is preliminary content and subject to change.
-
 ## Manage Data - PowerShell
 
 ### Create Shared Folder

@@ -7,8 +7,6 @@ There are two types of container images:
 - Base OS Images – these are provided by Microsoft and include the core OS components. 
 - Container Images – a container image that has been created from a Base OS Image.
 
-> This is preliminary content and subject to change.
-
 ## Image Management PowerShell
 
 ### List Images

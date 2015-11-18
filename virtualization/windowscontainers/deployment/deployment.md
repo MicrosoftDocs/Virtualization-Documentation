@@ -2,8 +2,6 @@
 
 The Windows Container feature is only available with Windows Server 2016 (Full, Core, and Nano Server). Within the Windows Container feature is two different container types, each with slightly different behavior and sets of requirements. This document steps through the deployment of a container host and will detail the configurations needed for both container types.
 
-> This is preliminary content and subject to change.
-
 ## OS Image Configuration
 
 Before deploying a container host, it is important to understand the supported configurations between container host OS, container OS images, and container runtime. The following table details the supported configurations.

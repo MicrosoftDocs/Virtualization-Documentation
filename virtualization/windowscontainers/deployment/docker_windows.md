@@ -4,8 +4,6 @@ Docker is a container deployment and management platform, that works with both L
 
 For more information on Docker and the Docker toolset visit [Docker.com](https://www.docker.com/).
 
-> This is preliminary content and subject to change.
-
 ## Windows Server
 
 ### Install Docker <!--1-->

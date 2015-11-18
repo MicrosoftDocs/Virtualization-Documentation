@@ -2,8 +2,6 @@
 
 The container life cycle includes actions such as, starting, stopping, and removing containers. When performing these actions, you may also need retrieve a list of container images, manage container networking, and limit container resources. This document will detail basic container management tasks using PowerShell.
 
-> This is preliminary content and subject to change.
-
 For documentation on managing Windows Containers with Docker see the Docker document [Working with Containers]( https://docs.docker.com/userguide/usingdocker/).
 
 ## PowerShell
@@ -196,4 +194,4 @@ dc3e282c064d
 2230b0433370
 ```
 
-For more information on the Docker rm command, see the [Docker rm reference}(https://docs.docker.com/engine/reference/commandline/rm/).
+For more information on the Docker rm command, see the [Docker rm reference](https://docs.docker.com/engine/reference/commandline/rm/).
