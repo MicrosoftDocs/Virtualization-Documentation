@@ -1,7 +1,6 @@
 # About Windows Containers
 ## [Container Docs Overview](./containers_welcome.md)
 ## [About Windows Containers](about/about_overview.md)
-## [System Requirements](about/system_requirements.md)
 ## [Work In Progress](about/work_in_progress.md)
 ## [FAQ](about/faq.md)
 # Container Quick Start
@@ -11,6 +10,7 @@
 ## [PowerShell Quick Start](quick_start/manage_powershell.md)
 ## [Docker Quick Start](quick_start/manage_docker.md)
 # Deploy Windows Containers
+## [System Requirements](deployment/system_requirements.md)
 ##[Deploy Container Host](deployment/deployment.md)
 ##[Deploy Docker on Windows](deployment/docker_windows.md)
 # Manage Windows Containers

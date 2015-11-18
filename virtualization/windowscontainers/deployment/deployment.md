@@ -1,17 +1,29 @@
 
 ## Container Host Deployment
 
-### Windows Server
+Deploying a Windows Container host has different steps depending on the operating system and the host system type (physical or virtual). This document will detail deployment options for Windows Server 2016 and Nano Server to both physical and virtual systems.
 
-Use the steps in this table to deploy a Windows Container Host on Windows Server 2016 or Windows Server 2016 Core.
+For details on system requirements, see [Windows Container Host System Requirements](./system_requirements.md). 
+
+### Windows Server Host
+
+The steps listed in this table can be used to deploy a container host to Windows Server 2016 TP4 and Windows Server Core 2016. Included are the configurations necessary for both Windows Server and Hyper-V Containers. If Hyper-V Containers will not be used, the noted steps can be skipped.
 
 <table border="1" style="background-color:FFFFCC;border-collapse:collapse;border:1px solid FFCC00;color:000000;width:100%" cellpadding="5" cellspacing="5">
 <tr valign="top">
-<td width = "30%">[Install the Container feature](#role)</td>
-<td width = "70%">The container feature enables use of Windows Server and Hyper-V container.</td>
+<td width = "30%">**Deployment Action**</td>
+<td width = "70%">**Details**</td>
 </tr>
 <tr>
-<td>[Enable Hyper-V](#hypv)</td>
+<td>[Install the Container feature](#role)</td>
+<td>The container feature enables use of Windows Server and Hyper-V container.</td>
+</tr>
+<tr>
+<td>[Configure Nested Virtualization *](#nest)</td>
+<td>If the container host is a Hyper-V virtual machine, and will be running Hyper-V Container, nested virtualization needs to be enabled.</td>
+</tr>
+<tr>
+<td>[Enable Hyper-V *](#hypv) </td>
 <td>Hyper-V is only required if Hyper-V Containers will be used.</td>
 </tr>
 <tr>
@@ -36,14 +48,22 @@ Use the steps in this table to deploy a Windows Container Host on Windows Server
 </tr>
 </table>
 
-### Nano Server
+### Nano Server Host
 
-Use the steps in this table to deploy a Windows Container Host on Nano Server.
+The steps listed in this table can be used to deploy a container host to Nano Server. Included are the configurations necessary for both Windows Server and Hyper-V Containers. If Hyper-V Containers will not be used, the noted steps can be skipped.
 
 <table border="1" style="background-color:FFFFCC;border-collapse:collapse;border:1px solid FFCC00;color:000000;width:100%" cellpadding="5" cellspacing="5">
 <tr valign="top">
-<td width = "30%">[Prepare Nano Server for Containers](#nano)</td>
-<td width = "70%">Prepare a Nano Server VHD with the container and Hyper-V capabilities.</td>
+<td width = "30%">**Deployment Action**</td>
+<td width = "70%">**Details**</td>
+</tr>
+<tr>
+<td>[Prepare Nano Server for Containers](#nano)</td>
+<td>Prepare a Nano Server VHD with the container and Hyper-V capabilities.</td>
+</tr>
+<tr>
+<td>[Configure Nested Virtualization *](#nest)</td>
+<td>If the container host is a Hyper-V virtual machine, and will be running Hyper-V Container, nested virtualization needs to be enabled.</td>
 </tr>
 <tr>
 <td>[Create Virtual Switch](#vswitch)</td>
@@ -138,7 +158,7 @@ If Hyper-V containers will be used, the Hyper-V role needs to be installed. This
 Install-WindowsFeature hyper-v
 ```
 
-If the container host itself is a Hyper-V virtual machine, and will be running Hyper-V containers, nested virtualization needs to be enabled. This can be completed with the following PowerShell Command.
+<a name=nest></a>If the container host itself is a Hyper-V virtual machine, and will be running Hyper-V containers, nested virtualization needs to be enabled. This can be completed with the following PowerShell Command.
 
 > The virtual machines must be turned off when running this command.
 
