@@ -111,7 +111,7 @@ Get-ContainerImage -Name newimage | Remove-ContainerImage -Force
 
 ## Docker
 
-### List Images <!--1-->
+### List Images <!--2-->
 
 ```powershell
 docker images
@@ -122,14 +122,14 @@ windowsservercore      10.0.10586.0        6801d964fda5        2 weeks ago      
 nanoserver             10.0.10586.0        8572198a60f1        2 weeks ago          0 B
 ```
 
-### Creating New Image <!--1-->
+### Creating New Image <!--2-->
 
 ```powershell
 docker commit 475059caef8f windowsservercoreiis
 ca40b33453f803bb2a5737d4d5dd2f887d2b2ad06b55ca681a96de8432b5999d
 ```
 
-### Removing Image <!--1-->
+### Removing Image <!--2-->
 
 Container images cannot be removed if any container, even in a stopped state, has a dependency on the image.
 

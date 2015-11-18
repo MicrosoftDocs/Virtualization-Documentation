@@ -1,4 +1,4 @@
-# Windows Containers Quick Start - PowerShell
+# Windows Containers Quick Start - Docker
 
 Windows Containers can be used to rapidly deploy many isolated applications on a single computer system. This exercise will demonstrate Windows Container creation and management using Docker. When completed you should have a basic understanding of how Docker integrates with Windows Containers and will have gained hands on experience with the technology.
 
