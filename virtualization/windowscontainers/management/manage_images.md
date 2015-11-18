@@ -7,9 +7,9 @@ There are two types of container images:
 - Base OS Images – these are provided by Microsoft and include the core OS components. 
 - Container Images – a container image that has been created from a Base OS Image.
 
-## Image Management PowerShell
+## PowerShell
 
-### List Images
+### List Images <!--1-->
 
 Run `get-containerImage` to return a list of images on the container host. The container image type is differentiated when with the `IsOSImage` property.
 
@@ -91,13 +91,13 @@ WindowsServerCore CN=Microsoft 10.0.10586.8 True
 ```  
 For more information on Container image management see [Windows Container Images](../management/manage_images.md).
 
-### Creating New Images
+### Creating New Image <!--1-->
 
 ```powershell
 New-ContainerImage -Container $container -Publisher Demo -Name DemoImage -Version 1.0
 ```
 
-### Removing Images
+### Removing Image <!--1-->
 
 Container images cannot be removed if any container, even in a stopped state, has a dependency on the image.
 
@@ -109,9 +109,9 @@ Get-ContainerImage -Name newimage | Remove-ContainerImage -Force
 
 ### Image Dependency
 
-## Image Management Docker
+## Docker
 
-### List Images
+### List Images <!--1-->
 
 ```powershell
 docker images
@@ -122,14 +122,14 @@ windowsservercore      10.0.10586.0        6801d964fda5        2 weeks ago      
 nanoserver             10.0.10586.0        8572198a60f1        2 weeks ago          0 B
 ```
 
-### Creating New Images
+### Creating New Image <!--1-->
 
 ```powershell
 docker commit 475059caef8f windowsservercoreiis
 ca40b33453f803bb2a5737d4d5dd2f887d2b2ad06b55ca681a96de8432b5999d
 ```
 
-### Removing Images
+### Removing Image <!--1-->
 
 Container images cannot be removed if any container, even in a stopped state, has a dependency on the image.
 

@@ -1,21 +1,18 @@
-# Preparing a physical machine or an existing virtual machine for Windows Server Containers
+# Preparing a physical machine or an existing virtual machine for Windows Containers
 
+In order to create and manage Windows Containers, the Windows Server 2016 Technical Preview environment must be prepared. This guide will walk through configuring Windows Server Containers in a Hyper-V Virtual Machine.
 
-In order to create and manage Windows Server Containers, the Windows Server 2016 Technical Preview environment must be prepared. This guide will walk through configuring Windows Server Containers on bare metal or in an existing virtual machine running Windows Server 2016 Technical Preview. 
+**PLEASE READ PRIOR TO INSTALLING THE CONTAINER OS IMAGE:**  The license terms of the Microsoft Windows Server Pre-Release software (“License Terms”) apply to your use of the Microsoft Windows Container OS Image supplement (the “supplemental software).  By downloading and using the supplemental software, you agree to the License Terms, and you may not use it if you have not accepted the License Terms. Both the Windows Server Pre-Release software and the supplemental software are licensed by Microsoft Corporation.  
 
-> Other getting started guides:
-  * Run Windows Server Containers in [Azure](./azure_setup.md).
-  * Run Windows Server Containers in [a new Hyper-V VM](./container_setup.md).
+The following are required in order to complete both the Windows Server Containers and Hyper-V containers exercises in this quick start.
 
-  **PLEASE READ PRIOR TO INSTALLING THE CONTAINER OS IMAGE:**  The license terms of the Microsoft Windows Server Pre-Release software (“License Terms”) apply to your use of the Microsoft Windows Container OS Image supplement (the “supplemental software).  By downloading and using the supplemental software, you agree to the License Terms, and you may not use it if you have not accepted the License Terms. Both the Windows Server Pre-Release software and the supplemental software are licensed by Microsoft Corporation.  
-
-**System (or VM) requirements:**
-* System running Windows Server Technical Preview 4.
-* 10GB available storage for OS Base Image and setup scripts.
-* Administrator permissions on the machine or VM.
+* System running Windows 10 build 1056 or later / Windows Server Technical Preview 4 or later.
+* Hyper-V role enabled ([see instructions](https://msdn.microsoft.com/virtualization/hyperv_on_windows/quick_start/walkthrough_install#UsingPowerShell)).
+* 10GB available storage for container host image, OS Base Image and setup scripts.
+* Administrator permissions on the Hyper-V host.
 
 ## Setup an existing Virtual Machine or Bare Metal host for Containers
-Windows Server Containers require the Container OS Base Image. We have put together a script that will download and install this for you. Follow these steps to configure your system as a Windows Server Container Host.
+Windows Containers require the Container OS Base Images. We have put together a script that will download and install this for you. Follow these steps to configure your system as a Windows Container Host.
 
 Start a PowerShell session as administrator. This can be done by running the following command from the command line.
 
@@ -40,13 +37,13 @@ wget -uri https://aka.ms/tp4/Install-ContainerHost -OutFile C:\ContainerSetup.ps
 C:\ContainerSetup.ps1 -HyperV
 ```
 
-The script will then begin to download and configure the Windows Server Container components. This process may take quite some time due to the large download. The machine may reboot during the process. When finished your machine will be configured and ready for you to create and manage Windows Server Containers and Windows Server Container Images with both PowerShell and Docker. 
+The script will then begin to download and configure the Windows Container components. This process may take quite some time due to the large download. The machine may reboot during the process. When finished your machine will be configured and ready for you to create and manage Windows Containers and Windows Container Images with both PowerShell and Docker. 
 
- With these items completed your system should be ready for Windows Server Containers. 
+ With these items completed your system should be ready for Windows Containers. 
 
 ## Next Steps - Start Using Containers
 
-Now that you are running Windows Server Containers, jump to the following guides to begin working with Windows Server Containers and Windows Server Container images. 
+Now that you have a Windows Server 2016 system running the Windows Container feature, jump to the following guides to begin working with Windows Server and Hyper-V Containers.
  
 [Quick Start: Windows Server Containers and Docker](./manage_docker.md) 
 
