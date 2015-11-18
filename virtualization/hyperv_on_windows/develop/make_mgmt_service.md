@@ -30,7 +30,7 @@ To write a simple application, you'll need:
   * Host and guest (VM) OS must be Windows 10, Windows Server Technical Preview 3, or later.
 * Windows SDK -- here's a link to the [Win10 SDK](https://dev.windows.com/en-us/downloads/windows-10-sdk) which includes `hvsocket.h`.
 
-### Register application
+### Register a new application
 In order to use Hyper-V sockets, the application must be registered with the Hyper-V Host's registry.
 
 By registering the service in the registry, you get:
@@ -62,6 +62,23 @@ HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Virtualization\G
 > ** Tip: **  To generate a GUID in PowerShell and copy it to the clipboard, run:  
 ``` PowerShell
 [System.Guid]::NewGuid().ToString() | clip.exe
+```
+
+The friendly name will be associated with your new application.  It will appear in performance counters and other places where a GUID isn't appropriate.
+
+Here is a script that will register a new application named "HV Socket Demo".  This must be run as administrator.
+
+```PowerShell
+$friendlyName = "HV Socket Demo"
+
+# Create a new random GUID and add it to the services list then add the name as a value
+
+$service = New-Item -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Virtualization\GuestCommunicationServices" -Name ([System.Guid]::NewGuid().ToString())
+
+$service.SetValue("ElementName", $friendlyName)
+
+# Copy GUID to clipboard for later use
+$service.PSChildName | clip.exe
 ```
 
 
