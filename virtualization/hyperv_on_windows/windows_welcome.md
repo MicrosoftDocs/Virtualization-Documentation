@@ -4,27 +4,44 @@ Many versions of Windows 10 include the Hyper-V virtualization technology. Hyper
 
 The following documents detail the Hyper-V feature in Windows 10, provide a guided quick start, and also contain links to further resources and community forums. 
 
-## ![](./media/MeetsRequirements_65.png) About Hyper-V on Windows
-
-The following articles provide an introduction to and information about Hyper-V on Windows.
-
-* [Introduction to Hyper-V](about/hyperv_on_windows.md)
-* [What’s New in Hyper-V for Windows 10](about/whats_new.md)
-* [Supported Guest Operating Systems](about/supported_guest_os.md)
-
-## ![](./media/All_ContentTypeIcons_VisualWalkthrough_65.png) Get started with Hyper-V
-
-The following documents provide a quick and guided introduction to Hyper-V on Windows 10.
-
-* [Check system requirements](quick_start\walkthrough_compatibility.md)
-* [Install Hyper-V](quick_start\walkthrough_install.md)
-* [Create a Virtual Switch](quick_start\walkthrough_virtual_switch.md)
-* [Create a Virtual Machine](quick_start\walkthrough_create_vm.md)
-* [Use Checkpoints with Hyper-V](quick_start\walkthrough_checkpoints.md)
-* [Virtual Machine Export and Import](quick_start\walkthrough_export_import.md)* [Hyper-V and PowerShell](quick_start\walkthrough_powershell.md)
-
-## ![](./media/Chat_65.png) Connect with Community and Support
-
-Additional technical support and community resources.
-
-* [Hyper-V forums](https://social.technet.microsoft.com/Forums/windowsserver/en-US/home?forum=winserverhyperv)
+<table border="1" style="background-color:FFFFCC;border-collapse:collapse;border:1px solid FFCC00;color:000000;width:100%" cellpadding="15" cellspacing="3">
+	<tr valign="top">
+		<td><center>![](./media/MeetsRequirements_65.png)</center></td>
+		<td valign="top">
+			<p><strong>About Hyper-V on Windows</strong></p>
+			<p>The following articles provide an introduction to and information about Hyper-V on Windows.</p>
+			<ul>
+				<li class="unordered">[Introduction to Hyper-V](./about/hyperv_on_windows.md)<br /><br /></li>
+				<li class="unordered">[What’s New in Hyper-V for Windows 10](./about/whats_new.md)<br /><br /></li>
+				<li class="unordered">[Supported Guest Operating Systems](about\supported_guest_os.md)<br /><br /></li>
+			</ul>	
+		</td>
+	</tr>
+	<tr valign="top">
+		<td><center>![](./media/All_ContentTypeIcons_VisualWalkthrough_65.png)</center></td>
+		<td valign="top">
+			<p><strong>Get started with Hyper-V</strong></p>
+			<p>The following documents provide a quick and guided introduction to Hyper-V on Windows 10.</p>
+			<ul>
+				<li class="unordered">[Check system requirements](quick_start\walkthrough_compatibility.md)<br /><br /></li>
+                <li class="unordered">[Install Hyper-V](quick_start\walkthrough_install.md)<br /><br /></li>
+				<li class="unordered">[Create a Virtual Switch](quick_start\walkthrough_virtual_switch.md)<br /><br /></li>
+				<li class="unordered">[Create a Virtual Machine](quick_start\walkthrough_create_vm.md)<br /><br /></li>
+				<li class="unordered">[Use Checkpoints with Hyper-V](quick_start\walkthrough_checkpoints.md)<br /><br /></li>
+				<li class="unordered">[Virtual Machine Export and Import](quick_start\walkthrough_export_import.md)<br /><br /></li>
+				<li class="unordered">[Hyper-V and PowerShell](quick_start\walkthrough_powershell.md)<br /><br /></li>
+			</ul>
+		</td>
+	</tr>
+	<tr valign="top">
+		<td><center>![](./media/Chat_65.png)</center></td>
+		<td valign="top">
+			<p><strong>Connect with Community and Support</strong></p>
+			<p>Additional technical support and community resources.</p>
+			<ul>
+				<li class="unordered">[Hyper-V forums](https://social.technet.microsoft.com/Forums/windowsserver/en-US/home?forum=winserverhyperv)<br /><br /></li>
+				<li class="unordered">[Community Resources for Hyper-V and Windows Containers](https://msdn.microsoft.com/en-us/virtualization/community/community_overview)<br /><br /></li>
+			</ul>	
+		</td>
+	</tr>
+</table>
