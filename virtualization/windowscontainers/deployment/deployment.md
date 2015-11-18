@@ -29,8 +29,7 @@ Before deploying a container host, it is important to understand the supported c
 <td><center> Nano OS Image</center></td>
 <td><center>Nano OS Image</center></td>
 <tr>
-</table><br>
-
+</table>
 
 ## Container Host Deployment
 
