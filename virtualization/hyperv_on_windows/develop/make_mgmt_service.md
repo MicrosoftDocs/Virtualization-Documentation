@@ -17,9 +17,9 @@ This document walks through creating a simple application built on Hyper-V socke
 * Future releases (Server 2016 +)
 
 **Capabilities and Limitations**  
-* Kernel mode or user mode  
+* Supports kernel mode or user mode actions  
 * Data stream only  	
-* No block memory so not the best for backup/video  
+* No block memory (not the best for backup/video)   
 
 ## Getting started
 Right now, Hyper-V sockets are available in managed code (C/C++).  
@@ -99,7 +99,7 @@ Zero GUID and Service ID
 
 Socket()
 Bind()
-Connect ()
+Connect()
 Send()
 Listen()
 Accept()
