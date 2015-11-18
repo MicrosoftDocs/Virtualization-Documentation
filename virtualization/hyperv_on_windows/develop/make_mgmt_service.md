@@ -37,6 +37,21 @@ By registering the service in the registry, you get:
 *  WMI management for enable, disable, and listing available services
 *  Permission to communicate with virtual machines directly
 
+The following PowerShell will register a new application named "HV Socket Demo".  This must be run as administrator.  Manual instructions below.
+
+``` PowerShell
+$friendlyName = "HV Socket Demo"
+
+# Create a new random GUID and add it to the services list then add the name as a value
+
+$service = New-Item -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Virtualization\GuestCommunicationServices" -Name ([System.Guid]::NewGuid().ToString())
+
+$service.SetValue("ElementName", $friendlyName)
+
+# Copy GUID to clipboard for later use
+$service.PSChildName | clip.exe
+```
+
 ** Registry location and information **  
 
 ``` 
@@ -65,21 +80,6 @@ HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Virtualization\G
 ```
 
 The friendly name will be associated with your new application.  It will appear in performance counters and other places where a GUID isn't appropriate.
-
-Here is a script that will register a new application named "HV Socket Demo".  This must be run as administrator.
-
-```PowerShell
-$friendlyName = "HV Socket Demo"
-
-# Create a new random GUID and add it to the services list then add the name as a value
-
-$service = New-Item -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Virtualization\GuestCommunicationServices" -Name ([System.Guid]::NewGuid().ToString())
-
-$service.SetValue("ElementName", $friendlyName)
-
-# Copy GUID to clipboard for later use
-$service.PSChildName | clip.exe
-```
 
 
 ## More information about AF_HYPERV
