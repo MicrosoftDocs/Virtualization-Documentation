@@ -69,7 +69,9 @@ Use the steps in this table to deploy a Windows Container Host on Nano Server.
 </tr>
 </table>
 
-#### <a name=role></a>Install Container Feature
+## Deployment Steps
+
+### <a name=role></a>Install Container Feature
 
 The container feature can be installed on Windows Server 2016, or Windows Server 2016 Core, using Windows Server Manager or PowerShell.
 
@@ -94,7 +96,7 @@ Name            ContainerImageRepositoryLocation
 WIN-LJGU7HD7TEP C:\ProgramData\Microsoft\Windows\Hyper-V\Container Image Store
 ```
 
-#### <a name=nano></a> Prepare Nano Server
+### <a name=nano></a> Prepare Nano Server
 
 Deploying Nano Server involves creating a prepared virtual hard drive, which includes the Nano Server operating system, and additional feature packages. This guide quickly details preparing a Nano Server virtual hard drive, which can be used for Windows Containers.
 
@@ -123,7 +125,7 @@ New-NanoServerImage -MediaPath $WindowsMedia -BasePath c:\nano -TargetPath C:\na
 ```
 When completed, create a virtual machine from the `NanoContainer.vhdx` file. This virtual machine will be running the Nano Server OS, with optional packages.
 
-#### <a name=hypv></a>Configure Hyper-V
+### <a name=hypv></a>Configure Hyper-V
 
 Two scenarios need to be considered in regard to Hyper-V and Windows Containers.
 
@@ -144,7 +146,7 @@ If the container host itself is a Hyper-V virtual machine, and will be running H
 Set-VMProcessor -VMName <container host vm> -ExposeVirtualizationExtensions $true
 ```
 
-#### Configure Networking
+### Configure Networking
 
 <a name=vswitch></a>Each container needs to be attached to a virtual switch in order to communicate over a network. A virtual switch is created with the `New-VMSwitch` command. Containers support a virtual switch with type `External` or `NAT`.
 
@@ -181,7 +183,7 @@ Active                           : True
 Get-VMNetworkAdapter -VMName <contianer host vm> | Set-VMNetworkAdapter -MacAddressSpoofing On
 ```
 
-#### <a name=img></a>Install OS Images
+### <a name=img></a>Install OS Images
 
 An OS image is used as the base to any Windows Server or Hyper-V container. The image is used to deploy a container, which can then be modified, and captured into a new container image. OS images have been created with both Windows Server Core and Nano Server as the underlying operating system.
 
@@ -252,6 +254,6 @@ WindowsServerCore CN=Microsoft 10.0.10586.8 True
 ```  
 For more information on Container image management see [Windows Container Images](../management/manage_images.md).
  
-#### <a name=docker></a>Install Docker
+### <a name=docker></a>Install Docker
 
 The Docker Daemon and command line interface are not shipped with Windows, and not installed with the Windows Container feature. Docker is not a requirement for working with Windows containers. If you would like to install Docker, follow the instructions in this article [Docker and Windows](./docker_windows.md).

@@ -8,7 +8,7 @@ The following items are required for each exercise.
 
 **Windows Server Containers:**
 
-- A Windows Container Host running Windows Server 2016 (Full or Core), either on-prem or in Azure.
+- A Windows Container Host running Windows Server 2016 Core, either on-prem or in Azure.
 
 **Hyper-V Containers:**
 
@@ -24,6 +24,16 @@ Windows Server Containers provide an isolated, portable, and resource controlled
 ### Create Container <!--1-->
 
 At the time of TP4, Windows Server Containers running on a Windows Server 2016, or a Windows Server 2016 core, require the Windows Server 2016 Core OS Image.
+
+Start a PowerShell session by typing `powershell`.
+
+```powershell
+C:\>powershell
+Windows PowerShell
+Copyright (C) 2015 Microsoft Corporation. All rights reserved.
+
+PS C:\>
+```
 
 To validate that the Windows Server Core OS Image has been installed, use the `Get-ContainerImage` command. You may see multiple OS images, which is ok.
 
