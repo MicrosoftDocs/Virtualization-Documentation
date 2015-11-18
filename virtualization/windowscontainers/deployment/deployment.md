@@ -8,7 +8,7 @@ The Windows Container feature is only available with Windows Server 2016 (Full, 
 
 Before deploying a container host, it is important to understand the supported configurations between container host OS, container OS images, and container runtime. The following table details the supported configurations.
 
-<table border="1" style="background-color:FFFFCC;border-collapse:collapse;border:1px solid FFCC00;color:000000;width:90%" cellpadding="5" cellspacing="5">
+<table border="1" style="background-color:FFFFCC;border-collapse:collapse;border:1px solid FFCC00;color:000000;width:75%" cellpadding="5" cellspacing="5">
 <tr valign="top">
 <td><center>**Host Operating System**</center></td>
 <td><center>**Windows Server Container**</center></td>
@@ -29,7 +29,7 @@ Before deploying a container host, it is important to understand the supported c
 <td><center> Nano OS Image</center></td>
 <td><center>Nano OS Image</center></td>
 <tr>
-</table>
+</table><br>
 
 
 ## Container Host Deployment
@@ -133,6 +133,43 @@ If the container host itself is a Hyper-V virtual machine, and will be running H
 Set-VMProcessor -VMName <container host vm> -ExposeVirtualizationExtensions $true
 ```
 
+### Configure Networking
+
+<a name=vswitch></a>Each container needs to be attached to a virtual switch in order to communicate over a network. A virtual switch is created with the `New-VMSwitch` command. Containers support a virtual switch with type `External` or `NAT`.
+
+This example creates a virtual switch with the name “Virtual Switch”, a type of NAT, and Nat Subnet of 172.16.0.0/12. 
+
+```powershell
+New-VMSwitch -Name "Virtual Switch" -SwitchType NAT -NATSubnetAddress 172.16.0.0/12
+```
+
+<a name=nat></a>In addition to creating the virtual switch, if the switch type is NAT, a NAT object needs to be created. This is completed using the `New-NetNat` command. This example creates a NAT object, with the name `ContainerNat`, and an address prefix that matches the NAT subnet assigned to the container switch.
+
+```powershell
+New-NetNat -Name ContainerNat -InternalIPInterfaceAddressPrefix "172.16.0.0/12"
+	
+#output
+
+Name                             : ContainerNat
+ExternalIPInterfaceAddressPrefix :
+InternalIPInterfaceAddressPrefix : 172.16.0.0/12
+IcmpQueryTimeout                 : 30
+TcpEstablishedConnectionTimeout  : 1800
+TcpTransientConnectionTimeout    : 120
+TcpFilteringBehavior             : AddressDependentFiltering
+UdpFilteringBehavior             : AddressDependentFiltering
+UdpIdleSessionTimeout            : 120
+UdpInboundRefresh                : False
+Store                            : Local
+Active                           : True
+```
+
+<a name=mac></a>Finally, if the container host is running inside of a Hyper-V virtual machine, MAC spoofing must be enable. This allows each container to receive an IP Address. To enable MAC address spoofing, run the following command on the Hyper-V host. The VMName property will be the name of the container host.
+
+```powershell
+Get-VMNetworkAdapter -VMName <contianer host vm> | Set-VMNetworkAdapter -MacAddressSpoofing On
+```
+
 ### <a name=img></a>Install OS Images
 
 An OS image is used as the base to any Windows Server or Hyper-V container. The image is used to deploy a container, which can then be modified, and captured into a new container image. OS images have been created with both Windows Server Core and Nano Server as the underlying operating system.
@@ -204,43 +241,6 @@ WindowsServerCore CN=Microsoft 10.0.10586.8 True
 ```  
 For more information on Container image management see [Windows Container Images](../management/manage_images.md).
  
-### Configure Networking
-
-<a name=vswitch></a>Each container needs to be attached to a virtual switch in order to communicate over a network. A virtual switch is created with the `New-VMSwitch` command. Containers support a virtual switch with type `External` or `NAT`.
-
-This example creates a virtual switch with the name “Virtual Switch”, a type of NAT, and Nat Subnet of 172.16.0.0/12. 
-
-```powershell
-New-VMSwitch -Name "Virtual Switch" -SwitchType NAT -NATSubnetAddress 172.16.0.0/12
-```
-
-<a name=nat></a>In addition to creating the virtual switch, if the switch type is NAT, a NAT object needs to be created. This is completed using the `New-NetNat` command. This example creates a NAT object, with the name `ContainerNat`, and an address prefix that matches the NAT subnet assigned to the container switch.
-
-```powershell
-New-NetNat -Name ContainerNat -InternalIPInterfaceAddressPrefix "172.16.0.0/12"
-	
-#output
-
-Name                             : ContainerNat
-ExternalIPInterfaceAddressPrefix :
-InternalIPInterfaceAddressPrefix : 172.16.0.0/12
-IcmpQueryTimeout                 : 30
-TcpEstablishedConnectionTimeout  : 1800
-TcpTransientConnectionTimeout    : 120
-TcpFilteringBehavior             : AddressDependentFiltering
-UdpFilteringBehavior             : AddressDependentFiltering
-UdpIdleSessionTimeout            : 120
-UdpInboundRefresh                : False
-Store                            : Local
-Active                           : True
-```
-
-<a name=mac></a>Finally, if the container host is running inside of a Hyper-V virtual machine, MAC spoofing must be enable. This allows each container to receive an IP Address. To enable MAC address spoofing, run the following command on the Hyper-V host. The VMName property will be the name of the container host.
-
-```powershell
-Get-VMNetworkAdapter -VMName <contianer host vm> | Set-VMNetworkAdapter -MacAddressSpoofing On
-```
-
 ### <a name=docker></a>Install Docker
 
 The Docker Daemon and command line interface are not shipped with Windows, and not installed with the Windows Container feature. Docker is not a requirement for working with Windows containers. If you would like to install Docker, follow the instructions in this article [Docker and Windows](./docker_windows.md).
