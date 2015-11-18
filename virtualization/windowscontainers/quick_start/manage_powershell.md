@@ -169,7 +169,7 @@ InternalRoutingDomainId       : {00000000-0000-0000-0000-000000000000}
 Active                        : True
 ```
 
-When the port mapping has been created, you also need to configure an inbound firewall rule for the configured port. To do so for port 80, run the following script.
+When the port mapping has been created, you also need to configure an inbound firewall rule for the configured port. To do so for port 80, run the following script. Note, if you’ve created a NAT rule for an external port other then 80, the firewall rule needs to be created to match.
 
 ```powershell
 if (!(Get-NetFirewallRule | where {$_.Name -eq "TCP80"})) {

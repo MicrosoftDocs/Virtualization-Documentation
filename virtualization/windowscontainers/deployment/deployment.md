@@ -36,8 +36,6 @@ Use the steps in this table to deploy a Windows Container Host on Windows Server
 </tr>
 </table>
 
-<br />
-
 ### Nano Server
 
 Use the steps in this table to deploy a Windows Container Host on Nano Server.
@@ -68,6 +66,8 @@ Use the steps in this table to deploy a Windows Container Host on Nano Server.
 <td>In order to manage containers with Docker, it will need to be installed.</td>
 </tr>
 </table>
+
+<br />
 
 ## Deployment Steps
 
