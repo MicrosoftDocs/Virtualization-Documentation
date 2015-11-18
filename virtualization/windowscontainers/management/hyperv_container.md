@@ -1,6 +1,6 @@
 # Hyper-V Containers
 
-The Windows Container technology includes two distinct types of container technology, Windows Server Containers and Hyper-V Containers. Both types of containers are created, managed and function identically. What differs between them is the level of isolation created between the container, the host operating system, and all of the other container running on that host.
+The Windows Container technology includes two distinct types of containers, Windows Server Containers and Hyper-V Containers. Both types of containers are created, managed, and function identically. What differs between them is the level of isolation created between the container, the host operating system, and all of the other container running on that host.
 
 **Windows Server Containers** – multiple containers run on a host with isolation provided through namespace and process isolation technologies.
 
@@ -61,7 +61,7 @@ DEMO               HyperV
 
 ### Create Container
 
-Managing Hyper-V Containers with Docker is almost identical to managing Windows Server Container. When creating a Hyper-V Container with Docker, the `–issolation=hyperv` parameter is used.
+Managing Hyper-V Containers with Docker is almost identical to managing Windows Server Containers. When creating a Hyper-V Container with Docker, the `–issolation=hyperv` parameter is used.
 
 ```powershell
 docker run -it --isolation=hyperv 646d6317b02f cmd
@@ -105,7 +105,7 @@ For more information on the `Get-ComputeProcess` command, see [Management Intero
 
 ### Windows Server Container
 
-The following exercise can be used to demonstrate the isolation of a Hyper-V container. In this exercise both a Windows Server and a Hyper-V container will be created. The running process on the container host will be examined and will show how the Windows Server container process is shared on the container host, however that the Hyper-V containers process is not.
+The following exercise can be used to demonstrate the isolation of a Hyper-V container. In this exercise both a Windows Server, and a Hyper-V container will be created. The running process on the container host will be examined and will show how the Windows Server container process is shared on the container host, however that the Hyper-V containers process is not.
 
 ```powershell
 PS C:\> get-process | where {$_.ProcessName -eq 'csrss'}
@@ -134,7 +134,7 @@ Create Remote PS Session with the container.
 Enter-PSSession -ContainerId $con.ContainerId –RunAsAdministrator
 ```
 
-From the remote container session return all processes with a process name of csrss. Take note of the process id for the running csrss process.
+From the remote container session return all processes with a process name of csrss. Take note of the process id for the running csrss process (1228 in the example below).
 
 ```powershell
 [WINCONT]: PS C:\> get-process | where {$_.ProcessName -eq 'csrss'}
@@ -144,7 +144,7 @@ Handles  NPM(K)    PM(K)      WS(K) VM(M)   CPU(s)     Id  SI ProcessName
     167       9     1276       3720 ...97     0.20   1228   3 csrss
 ```
 
-Now return the list of csrss process form the container host. Notice that the same csrss process is also returned from the container host. This demonstrates the shared etc. etc. etc.
+Now return the list of csrss process form the container host. Notice that the same csrss process is also returned from the container host.
 
 ```powershell
 get-process | where {$_.ProcessName -eq 'csrss'}
@@ -198,7 +198,7 @@ Handles  NPM(K)    PM(K)      WS(K) VM(M)   CPU(s)     Id  SI ProcessName
               4      452       1520 ...63     0.06    956   1 csrss
 ```
 
-Now return a list of csrss process on the container host. Notice, unlike with the Windows Server Container, where the csrss process was visible both from within the container and also from the container host, the Hyper-V container process is only visible from within the container itself. This is because a Hyper-V Container is encapsulated in a utility virtual machine and the process is isolated to only that utility virtual mahchine.
+Now return a list of csrss process on the container host. Notice, unlike with the Windows Server Container, where the csrss process was visible both from within the container and also from the container host, the Hyper-V container process is only visible from within the container itself. This is because a Hyper-V Container is encapsulated in a utility virtual machine, and the process is isolated to only that utility virtual mahchine.
 
 ```powershell
 get-process | where {$_.ProcessName -eq 'csrss'}
@@ -209,7 +209,3 @@ Handles  NPM(K)    PM(K)      WS(K) VM(M)   CPU(s)     Id  SI ProcessName
     113      11     1176       3676 ...93     0.25    608   1 csrss
     243      13     1732       5512 ...18     4.23   3484   2 csrss
 ```
-
-
-
- 

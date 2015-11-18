@@ -2,13 +2,6 @@
 
 Shared folders allow data to be shared between a container host and container. When the shared folder has been created, the shared folder will be available inside of the container. Any data that is placed in the shared folder from the host, will be available inside of the container. Any data placed in the shared folder from within the container will be available on the host. A single folder on the host can be shared with many containers, in this configuration data can be shared between running containers.
 
-Shared folders have the following characteristics.
-
-- A single shared folder can be shared between many containers.
-- A single container can have many shared folders.
-- If a container image is taken from a container with shared folders, the data in the shared folder is not captured into the image.*
-- When a container is removed, the source folder on the host is not removed.
-
 > This is preliminary content and subject to change.
 
 ## Manage Data - PowerShell
@@ -78,6 +71,5 @@ In the below example the source folder is c:\source and destination folder c:\de
 docker run -it -v c:\source:c:\destination 1f62aaf73140 cmd
 ```
 
-For more information on managing data in containers with Docker see [Docker Volumes on Docker.com](https://docs.docker.com/userguide/dockervolumes/)
+For more information on managing data in containers with Docker see [Docker Volumes on Docker.com](https://docs.docker.com/userguide/dockervolumes/).
 
-*At the time of writing this functionality may not be fully functional. For a list of current issues and workarounds see [Work in Progress](../about/work_in_progress.md)
