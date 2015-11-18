@@ -1,4 +1,4 @@
-# Windows Containers Quick Start
+# Windows Containers Quick Start - Docker
 
 Windows Containers can be used to rapidly deploy many isolated applications on a single computer system. This quick start demonstrates deployment and management of both Windows Server and Hyper-V containers using PowerShell. Throughout this exercise you will build from the ground up a very simple ‘hello world’ application, running in both a Windows Server and a Hyper-V Container. During this process, you will create container images, work with container shared folders, and manage the container lifecycle. When completed, you will have a basic understanding of Widows Container deployment and management.
 
@@ -64,7 +64,7 @@ Enter-PSSession -ContainerId $con.ContainerId -RunAsAdministrator
 
 Now the container can be modified, and these modifications captured to create a new container image. For this example, IIS is installed.
 
-To install the IIS role, use the `Install-WindowsFeature` command.
+To install the IIS role in the container, use the `Install-WindowsFeature` command.
 
 ```powershell
 Install-WindowsFeature web-server

@@ -1,14 +1,12 @@
 # Windows Containers Documentation
 
-Windows Containers provide operating system level virtualization that allows multiple isolated applications to be run on a single system. They provide two different types of container runtime, each with a different degree of application isolation. Windows Server Containers achieve isolation through namespace and process isolation, Hyper-V Containers encapsulates each container in a light weight virtual machine. In addition to two runtimes, both can be managed with either PowerShell or Docker. This documentation provides quick start guides, deployment guides, and technical details on management operations.
-
-> This is preliminary content and subject to change.
+Windows Containers provide operating system level virtualization that allows multiple isolated applications to be run on a single system. Two different types of container runtime are included with the feature, each with a different degree of application isolation. Windows Server Containers achieve isolation through namespace and process isolation. Hyper-V Containers encapsulates each container in a light weight virtual machine. In addition to two runtimes, both can be managed with either PowerShell or Docker. This documentation set provides quick start guides, deployment guides, and technical details on management operations.
 
 <table border="1" style="background-color:FFFFCC;border-collapse:collapse;border:1px solid FFCC00;color:000000;width:80%" cellpadding="25" cellspacing="5">
 <tr>
 <td ><center>![](media/try.png)</center></td>
 <td>**Quick Start**<br /><br />
-Try Windows Server and Hyper-V Containers with these guided quick start experiences.<br /><br />
+Try Windows Server and Hyper-V Containers by using the following quick start guides.<br /><br />
 <ul>
 <li>[Azure Quick Start](quick_start/azure_setup.md)<br /><br /></li>
 <li>[On-Premise Quick Start](quick_start/container_setup.md)<br /><br /></li>
@@ -19,7 +17,7 @@ Try Windows Server and Hyper-V Containers with these guided quick start experien
 <tr>
 <td ><center>![](media/1.png)</center></td>
 <td>**Deployment**<br /><br />
-Read about deploying Windows Container in Windows Server 2016 and Nano Server.<br /><br />
+Learn how to deploy Windows Containers on Windows Server 2016 and Nano Server.<br /><br />
 <ul>
 <li>[Deploy Container Host](deployment/deployment.md)<br /><br /></li>
 <li>[Deploy Docker on Windows](deployment/docker_windows.md)<br /><br /></li>
@@ -28,7 +26,7 @@ Read about deploying Windows Container in Windows Server 2016 and Nano Server.<b
 <tr>
 <td ><center>![](media/question.png)</center></td>
 <td>**Management**<br /><br />
-Read about managing Windows Container in Windows Server 2016 and Nano Server.<br ><br />
+Learn about managing Windows Container in Windows Server 2016 and Nano Server.<br ><br />
 <ul>
 <li>[Manage Containers](management/manage_containers.md)<br /><br /></li>
 <li>[Manage Images](management/manage_images.md)<br /><br /></li>

@@ -2,9 +2,7 @@
 
 Windows Containers include the ability to manage how much CPU, disk IO, network and memory resources containers can consume. Constraining container resource consumptions allows host resources to be used efficiently, and prevents over consumption. This document will detail managing container resources with both PowerShell and Docker.
 
-> This is preliminary content and subject to change.
-
-## PowerShell
+## Manage Resources with PowerShell
 
 ### Memory
 
@@ -25,7 +23,9 @@ Network bandwidth limits can be set on an exsisting container. To do so, ensure 
 
 The below sample the maximum bandwitch to 100Mbps.
 
+```powershell
 PS C:\>Set-ContainerNetworkAdapter –ContainerName TestContainer –MaximumBandwidth 100000000
+```
 
 ### CPU 
 
@@ -54,7 +54,7 @@ Set-ContainerStorage -ContainerName Container1 -MaximumBandwidth 1000000
 Set-ContainerStorage -ContainerName Container1 -MaximumIOPS 32
 ```
 
-## Managing Resources - Docker 
+## Manage Resources with Docker 
 
 We offer the ability to manage a subset of container resources through Docker. Specifically, we allow users to specify how the cpu is shared amongst containers. 
 

@@ -2,8 +2,6 @@
 
 The container life cycle includes actions such as, starting, stopping, and removing containers. When performing these actions, you may also need retrieve a list of container images, manage container networking, and limit container resources. This document will detail basic container management tasks using PowerShell.
 
-> This is preliminary content and subject to change.
-
 For documentation on managing Windows Containers with Docker see the Docker document [Working with Containers]( https://docs.docker.com/userguide/usingdocker/).
 
 ## PowerShell
@@ -196,41 +194,4 @@ dc3e282c064d
 2230b0433370
 ```
 
-For more information on the Docker rm command, see the [Docker rm reference}(https://docs.docker.com/engine/reference/commandline/rm/).
-
-## Internals
-
-### Container Processes
-
-When a Windows Server Container has been started, the processes visible inside of the running container, are also visible on the container host. The `csrss.exe` process represents the container runtime. The host will show a copy of certain services such as winintt.exe and services.exe for every running Windows Server Container.
- 
-It may be helpful when troubleshooting container performance or other issues to be able to identify processes associated with a particular container. To return a list of processes visible to the container, run the below command. The ID of each processes visible inside of the container, will matches a process on the container host (Windows Server Containers Only).
-
-```powershell
-Invoke-Command -ContainerId $con.ContainerId {Get-Process}
-
-Handles  NPM(K)    PM(K)      WS(K) VM(M)   CPU(s)     Id  SI ProcessName                  PSComputerName
--------  ------    -----      ----- -----   ------     --  -- -----------                  --------------
-     81       5      928       4492 ...72            5336   3 CExecSvc                     NONIC
-    176       9     1284       3872 ...01            6108   3 csrss                        NONIC
-      0       0        0          4     0               0   0 Idle                         NONIC
-    538      18     2752       9344 ...96             628   3 lsass                        NONIC
-    195      12     2208       8580 ...98            5472   3 msdtc                        NONIC
-    450      24    52332      65580 ...46     1.50   2968   3 powershell                   NONIC
-    204      10     2400       5740 ...78            5220   3 services                     NONIC
-     46       3      368       1136 ...59            3928   0 smss                         NONIC
-    130       8     1492       7076 ...14            6124   3 SppExtComObj                 NONIC
-    205      10     6992      18320 ...10            5028   3 sppsvc                       NONIC
-    252      13     6556      10592 ...96            1564   3 svchost                      NONIC
-    351      28     4228      14112 ...07            2648   3 svchost                      NONIC
-    255      13     1992       6468 ...88            3556   3 svchost                      NONIC
-    284      12     2484       8420 ...97            4160   3 svchost                      NONIC
-    194      14     2948       9136 ...98            4324   3 svchost                      NONIC
-     93       7     1296       5432 ...91            5500   3 svchost                      NONIC
-     81       6     1008       4808 ...92            5724   3 svchost                      NONIC
-    282      13     2752       9948 ...36            5952   3 svchost                      NONIC
-    907      33    12452      27856 ...06            6048   3 svchost                      NONIC
-   2541       0      116        128     3               4   0 System                       NONIC
-    107       9     1096       4732 ...77            3248   3 wininit                      NONIC
-    128       8     5672      10840 ...04            5360   3 WmiPrvSE                     NONIC
-```
+For more information on the Docker rm command, see the [Docker rm reference](https://docs.docker.com/engine/reference/commandline/rm/).

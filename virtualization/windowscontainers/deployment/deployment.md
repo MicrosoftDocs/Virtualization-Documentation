@@ -1,17 +1,12 @@
-# Container Requirements and Deployment
+# Deploy a Container Host
 
-The Windows Container feature is only available with Windows Server 2016 (Full, Core, and Nano Server). Within the Windows Container feature is two different container types, each with slightly different behavior and set of requirements. The two container types are:
-
-- **Windows Server Containers** –provide application isolation through namespace and process isolation.
-- **Hyper-V Containers** – provide application isolation through hosting each container in a super optimized virtual machine. Hyper-V Containers require Hyper-V to be installed on the containers host.
-
-> This is preliminary content and subject to change.
+The Windows Container feature is only available with Windows Server 2016 (Full, Core, and Nano Server). Within the Windows Container feature is two different container types, each with slightly different behavior and sets of requirements. This document steps through the deployment of a container host and will detail the configurations needed for both container types.
 
 ## OS Image Configuration
 
-Both container types use a container OS Image during container deployment. A Base OS Image provides the foundational container configuration. At the time of Windows Server Technical Preview 4, two base OS images are available, Windows Server Core and Nano Server. Also at the TP4 release there are limitations between container host, container type, and OS Image compatibility. The following table details the supported configurations.
+Before deploying a container host, it is important to understand the supported configurations between container host OS, container OS images, and container runtime. The following table details the supported configurations.
 
-<table border="1" style="background-color:FFFFCC;border-collapse:collapse;border:1px solid FFCC00;color:000000;width:90%" cellpadding="5" cellspacing="5">
+<table border="1" style="background-color:FFFFCC;border-collapse:collapse;border:1px solid FFCC00;color:000000;width:75%" cellpadding="5" cellspacing="5">
 <tr valign="top">
 <td><center>**Host Operating System**</center></td>
 <td><center>**Windows Server Container**</center></td>
@@ -34,59 +29,31 @@ Both container types use a container OS Image during container deployment. A Bas
 <tr>
 </table>
 
+## Container Host Deployment
 
-## Container Deployment Checklist
+Use the following sections to help you deploy a Windows Container Host.
 
-<table border="1" style="background-color:FFFFCC;border-collapse:collapse;border:1px solid FFCC00;color:000000;width:90%" cellpadding="8" cellspacing="3">
-<tr valign="top">
-<td width="200"><center>**Action**</center></td>
-<td><center>**Information**</center></td>
-<tr>
+**Install the Container feature:**
 
-<tr valign="top">
-<td><center>Install Container Feature</center></td>
-<td>The container feature needs to be installed in order to create and manage containers. This feature also installs the container PowerShell module.<br /><br />
-<ul><li>[Windows Server](#role)</li>
-<li>[Nano Server](#nano)</li>
-<ul>
-</td>
-<tr>
+- [Install the container feature on Windows Server 2016 or Windows Server 2016 Core](#role).
+- [Install the container feature on Nano Server](#nano).
 
-<tr valign="top">
-<td><center>Configure Hyper-V Role</center></td>
-<td>The Hyper-V role is required if the container host will be running Hyper-V container.<br /><br />
-<ul><li>[Enable Nested Virtualization if the container host is a VM](#nest)</li>
-<li>[Windows Server](#hypv)</li>
-<li>[Nano Server](#nano)</li>
-</ul>
-</td>
-<tr>
-	
-<tr valign="top">
-<td><center>Install OS Images</center></td>
-<td>OS images provide the base for all Windows Containers. The installation of OS images is identical for Windows Server and Nano Server.<br /><br />
-<ul><li>[Install OS Images](#img)</li><ul>
-</td>
-<tr>
+**Configure the container host for Hyper-V Containers:**
 
-<tr valign="top">
-<td><center>Configure Networking</center></td>
-<td>The following networking items are required for Windows Containers.<br /><br />
-<ul><li>[Create Virtual Switch](#vswitch)
-<li>[Configure Network Address Translation (NAT)](#nat)
-<li>[Enable MAC Spoofing if the container host is a VM](#mac)
-</ul>
-</td>
-<tr>
+- [Enable the Hyper-V Role in Windows Server 2016 or Windows Server 2016 Core](#hypv).
+- [Enable the Hyper-V Role in Nano Server](#nano).
 
-<tr valign="top">
-<td><center>Install Docker</center></td>
-<td>The Docker daemon and CLI need to be installed if Docker will be used as the container management tool.<br /><br />
-<ul><li>[Install Docker](#docker)</li></ul>
-</td>
-<tr>
+**Configure Networking in both Windows Server and Nano Server:**
 
-</table>
+- [Create Virtual Switch](#vswitch).
+- [Configure Network Address Translation](#nat).
+- [Configure MAC Address Spoofing](#mac).
+
+**Configure Host for Container Operations:**
+
+- [Install Container OS Images in both Windows Server and Nano Server.](#img)
+- [Install Docker in both Windows Server and Nano Server.](#docker)
+
 
 ### <a name=role></a>Install Container Feature
 
@@ -142,7 +109,7 @@ New-NanoServerImage -MediaPath $WindowsMedia -BasePath c:\nano -TargetPath C:\na
 ```
 When completed, create a virtual machine from the `NanoContainer.vhdx` file. This virtual machine will be running the Nano Server OS, with optional packages.
 
-### Configure Hyper-V
+### <a name=hypv></a>Configure Hyper-V
 
 Two scenarios need to be considered in regard to Hyper-V and Windows Containers.
 
@@ -155,12 +122,49 @@ If Hyper-V containers will be used, the Hyper-V role needs to be installed. This
 Install-WindowsFeature hyper-v
 ```
 
-<a name=nest></a>If the container host itself is a Hyper-V virtual machine, and will be running Hyper-V containers, nested virtualization needs to be enabled. This can be completed with the following PowerShell Command.
+If the container host itself is a Hyper-V virtual machine, and will be running Hyper-V containers, nested virtualization needs to be enabled. This can be completed with the following PowerShell Command.
 
 > The virtual machines must be turned off when running this command.
 
 ```powershell
 Set-VMProcessor -VMName <container host vm> -ExposeVirtualizationExtensions $true
+```
+
+### Configure Networking
+
+<a name=vswitch></a>Each container needs to be attached to a virtual switch in order to communicate over a network. A virtual switch is created with the `New-VMSwitch` command. Containers support a virtual switch with type `External` or `NAT`.
+
+This example creates a virtual switch with the name “Virtual Switch”, a type of NAT, and Nat Subnet of 172.16.0.0/12. 
+
+```powershell
+New-VMSwitch -Name "Virtual Switch" -SwitchType NAT -NATSubnetAddress 172.16.0.0/12
+```
+
+<a name=nat></a>In addition to creating the virtual switch, if the switch type is NAT, a NAT object needs to be created. This is completed using the `New-NetNat` command. This example creates a NAT object, with the name `ContainerNat`, and an address prefix that matches the NAT subnet assigned to the container switch.
+
+```powershell
+New-NetNat -Name ContainerNat -InternalIPInterfaceAddressPrefix "172.16.0.0/12"
+	
+#output
+
+Name                             : ContainerNat
+ExternalIPInterfaceAddressPrefix :
+InternalIPInterfaceAddressPrefix : 172.16.0.0/12
+IcmpQueryTimeout                 : 30
+TcpEstablishedConnectionTimeout  : 1800
+TcpTransientConnectionTimeout    : 120
+TcpFilteringBehavior             : AddressDependentFiltering
+UdpFilteringBehavior             : AddressDependentFiltering
+UdpIdleSessionTimeout            : 120
+UdpInboundRefresh                : False
+Store                            : Local
+Active                           : True
+```
+
+<a name=mac></a>Finally, if the container host is running inside of a Hyper-V virtual machine, MAC spoofing must be enable. This allows each container to receive an IP Address. To enable MAC address spoofing, run the following command on the Hyper-V host. The VMName property will be the name of the container host.
+
+```powershell
+Get-VMNetworkAdapter -VMName <contianer host vm> | Set-VMNetworkAdapter -MacAddressSpoofing On
 ```
 
 ### <a name=img></a>Install OS Images
@@ -234,43 +238,6 @@ WindowsServerCore CN=Microsoft 10.0.10586.8 True
 ```  
 For more information on Container image management see [Windows Container Images](../management/manage_images.md).
  
-### Configure Networking
-
-<a name=vswitch></a>Each container needs to be attached to a virtual switch in order to communicate over a network. A virtual switch is created with the `New-VMSwitch` command. Containers support a virtual switch with type `External` or `NAT`.
-
-This example creates a virtual switch with the name “Virtual Switch”, a type of NAT, and Nat Subnet of 172.16.0.0/12. 
-
-```powershell
-New-VMSwitch -Name "Virtual Switch" -SwitchType NAT -NATSubnetAddress 172.16.0.0/12
-```
-
-<a name=nat></a>In addition to creating the virtual switch, if the switch type is NAT, a NAT object needs to be created. This is completed using the `New-NetNat` command. This example creates a NAT object, with the name `ContainerNat`, and an address prefix that matches the NAT subnet assigned to the container switch.
-
-```powershell
-New-NetNat -Name ContainerNat -InternalIPInterfaceAddressPrefix "172.16.0.0/12"
-	
-#output
-
-Name                             : ContainerNat
-ExternalIPInterfaceAddressPrefix :
-InternalIPInterfaceAddressPrefix : 172.16.0.0/12
-IcmpQueryTimeout                 : 30
-TcpEstablishedConnectionTimeout  : 1800
-TcpTransientConnectionTimeout    : 120
-TcpFilteringBehavior             : AddressDependentFiltering
-UdpFilteringBehavior             : AddressDependentFiltering
-UdpIdleSessionTimeout            : 120
-UdpInboundRefresh                : False
-Store                            : Local
-Active                           : True
-```
-
-<a name=mac></a>Finally, if the container host is running inside of a Hyper-V virtual machine, MAC spoofing must be enable. This allows each container to receive an IP Address. To enable MAC address spoofing, run the following command on the Hyper-V host. The VMName property will be the name of the container host.
-
-```powershell
-Get-VMNetworkAdapter -VMName <contianer host vm> | Set-VMNetworkAdapter -MacAddressSpoofing On
-```
-
 ### <a name=docker></a>Install Docker
 
 The Docker Daemon and command line interface are not shipped with Windows, and not installed with the Windows Container feature. Docker is not a requirement for working with Windows containers. If you would like to install Docker, follow the instructions in this article [Docker and Windows](./docker_windows.md).

@@ -4,8 +4,6 @@ Docker is a container deployment and management platform, that works with both L
 
 For more information on Docker and the Docker toolset visit [Docker.com](https://www.docker.com/).
 
-> This is preliminary content and subject to change.
-
 ## Windows Server
 
 ### Install Docker <!--1-->
@@ -96,10 +94,6 @@ When finished, click the `Install Service` button.
 
 With this completed, when Windows starts, the Docker daemon (service) will also start.
 
-### Automated Installation <!--1-->
-
-Insert Script Instructions When Available
-
 ### Removing Docker <!--1-->
 
 If following this guide for creating a Windows service from docke.exe, the following command will remove the service.
@@ -121,10 +115,6 @@ Run the below command to start the docker daemon. This will need to be run each 
 ```powershell
 start-process cmd "/k docker daemon -D -b <Switch Name> -H 0.0.0.0:2375”
 ```
-
-### Automated Installation <!--2-->
-
-Insert Script Instructions When Available
 
 ### Removing Docker <!--2-->
 
