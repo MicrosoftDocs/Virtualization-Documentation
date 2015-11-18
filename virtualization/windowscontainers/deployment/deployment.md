@@ -5,10 +5,10 @@
 
 Use the steps in this table to deploy a Windows Container Host on Windows Server 2016 or Windows Server 2016 Core.
 
-<table border="1" style="background-color:FFFFCC;border-collapse:collapse;border:1px solid FFCC00;color:000000;width:70%" cellpadding="5" cellspacing="5">
+<table border="1" style="background-color:FFFFCC;border-collapse:collapse;border:1px solid FFCC00;color:000000;width:100%" cellpadding="5" cellspacing="5">
 <tr valign="top">
-<td width = "25%">[Install the Container feature](#role)</td>
-<td width = "75%">The container feature enables use of Windows Server and Hyper-V container.</td>
+<td width = "30%">[Install the Container feature](#role)</td>
+<td width = "70%">The container feature enables use of Windows Server and Hyper-V container.</td>
 </tr>
 <tr>
 <td>[Enable Hyper-V](#hypv)</td>
@@ -42,10 +42,10 @@ Use the steps in this table to deploy a Windows Container Host on Windows Server
 
 Use the steps in this table to deploy a Windows Container Host on Nano Server.
 
-<table border="1" style="background-color:FFFFCC;border-collapse:collapse;border:1px solid FFCC00;color:000000;width:70%" cellpadding="5" cellspacing="5">
+<table border="1" style="background-color:FFFFCC;border-collapse:collapse;border:1px solid FFCC00;color:000000;width:100%" cellpadding="5" cellspacing="5">
 <tr valign="top">
-<td width = "25%">[Install the Container feature](#role)</td>
-<td width = "75%">The container feature enables use of Windows Server and Hyper-V container.</td>
+<td width = "30%">[Install the Container feature](#role)</td>
+<td width = "70%">The container feature enables use of Windows Server and Hyper-V container.</td>
 </tr>
 <tr>
 <td>[Prepare Nano Server for Containers](#nano)</td>
