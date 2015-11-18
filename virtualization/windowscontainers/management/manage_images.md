@@ -109,6 +109,20 @@ Get-ContainerImage -Name newimage | Remove-ContainerImage -Force
 
 ### Image Dependency
 
+When a new image is created, it becomes dependent on the image that it was created from. This dependency can be seen using the `get-containerimage` command. If a parent image is not listed, this indicates that the image is a Base OS image.
+
+```powershell
+Get-ContainerImage | select Name, ParentImage
+
+#output
+
+Name              ParentImage
+----              -----------
+NanoServerIIS     ContainerImage (Name = 'NanoServer') [Publisher = 'CN=Microsoft', Version = '10.0.10586.0']
+NanoServer
+WindowsServerCore
+```
+
 ## Docker
 
 ### List Images <!--2-->
@@ -142,3 +156,15 @@ Deleted: ca40b33453f803bb2a5737d4d5dd2f887d2b2ad06b55ca681a96de8432b5999d
 ```
 
 ### Image Dependency
+
+To see image dependencies with Docker, the `docker history` command can be used.
+
+```powershell
+docker history windowsservercoreiis
+
+#output
+
+IMAGE               CREATED             CREATED BY          SIZE                COMMENT
+2236b49aaaef        3 minutes ago       cmd                 171.2 MB
+6801d964fda5        2 weeks ago                             0 B
+```powershell
