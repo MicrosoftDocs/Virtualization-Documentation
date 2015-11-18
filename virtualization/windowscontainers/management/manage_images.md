@@ -31,9 +31,6 @@ WindowsServerCoreIIS 	CN=Demo   		1.0.0.0 		False
 Container OS images can be found and installed using the ContainerProvider PowerShell module. Before using this module, it will need to be installed. The following commands can be used to install the module.
 
 ```powershell
-Invoke-RestMethod 'https://go.microsoft.com/fwlink/?LinkID=627338&clcid=0x409'
-Install-PackageProvider NuGet -Force
-Register-PSRepository -name psgetint -SourceLocation http://psget/psgallery/api/v2 
 Install-PackageProvider ContainerProvider -Force
 ```
 
@@ -155,6 +152,36 @@ Untagged: windowsservercoreiis:latest
 Deleted: ca40b33453f803bb2a5737d4d5dd2f887d2b2ad06b55ca681a96de8432b5999d
 ```
 
+### Docker Hub
+
+The Docker Hub registry contains pre-built images which can be downloaded onto a container host. Once these images have been downloaded, they can be used as the base for Windows Container Applications.
+
+To see a list of images available from Docker Hub use the `docker search` command. Note – during this pre-release, the output of `docker search` has been hard coded.
+
+```powershell
+docker search windows
+
+#output
+
+NAME                    DESCRIPTION                                     STARS     OFFICIAL   AUTOMATED
+microsoft/aspnet        ASP.NET 5 framework installed in a Windows...   1         [OK]       [OK]
+microsoft/django        Django installed in a Windows Server Core ...   1                    [OK]
+microsoft/dotnet35      .NET 3.5 Runtime installed in a Windows Se...   1         [OK]       [OK]
+microsoft/golang        Go Programming Language installed in a Win...   1                    [OK]
+microsoft/httpd         Apache httpd installed in a Windows Server...   1                    [OK]
+microsoft/iis           Internet Information Services (IIS) instal...   1         [OK]       [OK]
+microsoft/mongodb       MongoDB installed in a Windows Server Core...   1                    [OK]
+microsoft/mysql         MySQL installed in a Windows Server Core b...   1                    [OK]
+microsoft/nginx         Nginx installed in a Windows Server Core b...   1                    [OK]
+microsoft/node          Node installed in a Windows Server Core ba...   1                    [OK]
+microsoft/php           PHP running on Internet Information Servic...   1                    [OK]
+microsoft/python        Python installed in a Windows Server Core ...   1                    [OK]
+microsoft/rails         Ruby on Rails installed in a Windows Serve...   1                    [OK]
+microsoft/redis         Redis installed in a Windows Server Core b...   1                    [OK]
+microsoft/ruby          Ruby installed in a Windows Server Core ba...   1                    [OK]
+microsoft/sqlite        SQLite installed in a Windows Server Core ...   1                    [OK]
+```
+
 ### Image Dependency
 
 To see image dependencies with Docker, the `docker history` command can be used.
@@ -167,4 +194,4 @@ docker history windowsservercoreiis
 IMAGE               CREATED             CREATED BY          SIZE                COMMENT
 2236b49aaaef        3 minutes ago       cmd                 171.2 MB
 6801d964fda5        2 weeks ago                             0 B
-```powershell
+```

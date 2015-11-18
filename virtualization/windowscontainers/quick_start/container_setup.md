@@ -4,14 +4,16 @@ In order to create and manage Windows Containers, the Windows Server 2016 Techni
 
 **PLEASE READ PRIOR TO INSTALLING THE CONTAINER OS IMAGE:**  The license terms of the Microsoft Windows Server Pre-Release software (“License Terms”) apply to your use of the Microsoft Windows Container OS Image supplement (the “supplemental software).  By downloading and using the supplemental software, you agree to the License Terms, and you may not use it if you have not accepted the License Terms. Both the Windows Server Pre-Release software and the supplemental software are licensed by Microsoft Corporation.  
 
-The following are required in order to complete both the Windows Server Containers and Hyper-V containers exercises in this quick start.
+The following are required in order to complete both the **Windows Server** and **Hyper-V Containers** exercises in this quick start.
 
 * System running Windows 10 build 1056 or later / Windows Server Technical Preview 4 or later.
 * Hyper-V role enabled ([see instructions](https://msdn.microsoft.com/virtualization/hyperv_on_windows/quick_start/walkthrough_install#UsingPowerShell)).
 * 20GB available storage for container host image, OS Base Image and setup scripts.
 * Administrator permissions on the Hyper-V host.
 
-## Setup a New Container Host on a New Virtual Machine
+> A virtualized container host, running Hyper-V containers, will require nested virtualization. Both the physical host and virtual host will need to be running an OS that supports nested virtualization. For more information, see What’s New in Hyper-V on [Windows Server 2016 Technical Preview]( https://tnstage.redmond.corp.microsoft.com/en-US/library/dn765471.aspx#BKMK_nested).
+
+## Setup a New Container Host in a New Virtual Machine
 
 Windows Containers consist of several components such as the Windows Container Host and Container OS Base Images. We have put together a script that will download and configure these items for you. Follow these steps to deploy a new Hyper-V Virtual Machine and configure this system as a Windows Container Host.
 
@@ -27,7 +29,7 @@ Use the following command to download the configuration script. The script can a
 wget -uri https://aka.ms/newcontainerhost -OutFile c:\New-ContainerHost.ps1
 ```
    
-Run the following command to create and configure the container host where `<containerhost>` will be the virtual machine name and `<password>` will be the password assigned to the Administrator account.
+Run the following command to create and configure the container host, where `<containerhost>` will be the virtual machine name, and `<password>` will be the password assigned to the Administrator account.
 
 ``` powershell
 c:\New-ContainerHost.ps1 –VmName <containerhost> -Password <password> -WindowsImage ServerDatacenterCore -Hyperv

@@ -11,8 +11,10 @@ The following are required in order to complete both the Windows Server Containe
 * 10GB available storage for container host image, OS Base Image and setup scripts.
 * Administrator permissions on the Hyper-V host.
 
+> A virtualized container host, running Hyper-V containers, will require nested virtualization. Both the physical host and virtual host will need to be running an OS that supports nested virtualization. 
+
 ## Setup an existing Virtual Machine or Bare Metal host for Containers
-Windows Containers require the Container OS Base Images. We have put together a script that will download and install this for you. Follow these steps to configure your system as a Windows Container Host.
+Windows Containers require the Container OS Base Images. We have put together a script that will download and install this for you. Follow these steps to configure your system as a Windows Container Host. For more information, see What’s New in Hyper-V on [Windows Server 2016 Technical Preview]( https://tnstage.redmond.corp.microsoft.com/en-US/library/dn765471.aspx#BKMK_nested).
 
 Start a PowerShell session as administrator. This can be done by running the following command from the command line.
 
