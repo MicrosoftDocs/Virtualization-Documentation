@@ -1,4 +1,4 @@
-# Windows Containers Quick Start - Docker
+# Windows Containers Quick Start - PowerShell
 
 Windows Containers can be used to rapidly deploy many isolated applications on a single computer system. This quick start demonstrates deployment and management of both Windows Server and Hyper-V containers using PowerShell. Throughout this exercise you will build from the ground up a very simple ‘hello world’ application, running in both a Windows Server and a Hyper-V Container. During this process, you will create container images, work with container shared folders, and manage the container lifecycle. When completed, you will have a basic understanding of Widows Container deployment and management.
 
@@ -8,7 +8,7 @@ The following items are required for each exercise.
 
 **Windows Server Containers:**
 
-- A Windows Container Host running Windows Server 2016 (Full or Core), either on-prem or in Azure.
+- A Windows Container Host running Windows Server 2016 Core, either on-prem or in Azure.
 
 **Hyper-V Containers:**
 
@@ -24,6 +24,16 @@ Windows Server Containers provide an isolated, portable, and resource controlled
 ### Create Container <!--1-->
 
 At the time of TP4, Windows Server Containers running on a Windows Server 2016, or a Windows Server 2016 core, require the Windows Server 2016 Core OS Image.
+
+Start a PowerShell session by typing `powershell`.
+
+```powershell
+C:\>powershell
+Windows PowerShell
+Copyright (C) 2015 Microsoft Corporation. All rights reserved.
+
+PS C:\>
+```
 
 To validate that the Windows Server Core OS Image has been installed, use the `Get-ContainerImage` command. You may see multiple OS images, which is ok.
 
@@ -159,7 +169,7 @@ InternalRoutingDomainId       : {00000000-0000-0000-0000-000000000000}
 Active                        : True
 ```
 
-When the port mapping has been created, you also need to configure an inbound firewall rule for the configured port. To do so for port 80, run the following script.
+When the port mapping has been created, you also need to configure an inbound firewall rule for the configured port. To do so for port 80, run the following script. Note, if you’ve created a NAT rule for an external port other then 80, the firewall rule needs to be created to match.
 
 ```powershell
 if (!(Get-NetFirewallRule | where {$_.Name -eq "TCP80"})) {
@@ -423,7 +433,7 @@ if (!(Get-NetNatStaticMapping | where {$_.ExternalPort -eq 80})) {
 Add-NetNatStaticMapping -NatName "ContainerNat" -Protocol TCP -ExternalIPAddress 0.0.0.0 -InternalIPAddress 172.16.0.2 -InternalPort 80 -ExternalPort 80
 }
 ```
-You also need to open up port 80 on the container host.
+You also need to open up port 80 on the container host. Note, if you’ve created a NAT rule for an external port other then 80, the firewall rule needs to be created to match.
 
 ```powershell
 if (!(Get-NetFirewallRule | where {$_.Name -eq "TCP80"})) {

@@ -77,6 +77,7 @@ Application Tab:
 Details Tab:
 
 - **Display name:** Docker
+
 - **Description:** The Docker Daemon provides management capabilities of containers for docker clients.
 
 
@@ -85,6 +86,7 @@ Details Tab:
 IO Tab:
 
 - **Output (stdout):** C:\ProgramData\docker\daemon.log
+
 - **Error (stderr):** C:\ProgramData\docker\daemon.log
 
 

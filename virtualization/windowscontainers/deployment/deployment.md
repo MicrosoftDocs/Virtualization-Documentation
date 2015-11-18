@@ -1,59 +1,75 @@
-# Deploy a Container Host
-
-The Windows Container feature is only available with Windows Server 2016 (Full, Core, and Nano Server). Within the Windows Container feature is two different container types, each with slightly different behavior and sets of requirements. This document steps through the deployment of a container host and will detail the configurations needed for both container types.
-
-## OS Image Configuration
-
-Before deploying a container host, it is important to understand the supported configurations between container host OS, container OS images, and container runtime. The following table details the supported configurations.
-
-<table border="1" style="background-color:FFFFCC;border-collapse:collapse;border:1px solid FFCC00;color:000000;width:75%" cellpadding="5" cellspacing="5">
-<tr valign="top">
-<td><center>**Host Operating System**</center></td>
-<td><center>**Windows Server Container**</center></td>
-<td><center>**Hyper-V Contianer**</center></td>
-<tr>
-<tr valign="top">
-<td><center>Windows Server 2016 Full UI</center></td>
-<td><center>Core OS Image</center></td>
-<td><center>Nano OS Image</center></td>
-<tr>
-<tr valign="top">
-<td><center>Windows Server 2016 Core</center></td>
-<td><center>Core OS Image</center></td>
-<td><center> Nano OS Image</center></td>
-<tr>
-<tr valign="top">
-<td><center>Windows Server 2016 Nano</center></td>
-<td><center> Nano OS Image</center></td>
-<td><center>Nano OS Image</center></td>
-<tr>
-</table>
 
 ## Container Host Deployment
 
-Use the following sections to help you deploy a Windows Container Host.
+### Windows Server
 
-**Install the Container feature:**
+Use the steps in this table to deploy a Windows Container Host on Windows Server 2016 or Windows Server 2016 Core.
 
-- [Install the container feature on Windows Server 2016 or Windows Server 2016 Core](#role).
-- [Install the container feature on Nano Server](#nano).
+<table border="1" style="background-color:FFFFCC;border-collapse:collapse;border:1px solid FFCC00;color:000000;width:100%" cellpadding="5" cellspacing="5">
+<tr valign="top">
+<td width = "30%">[Install the Container feature](#role)</td>
+<td width = "70%">The container feature enables use of Windows Server and Hyper-V container.</td>
+</tr>
+<tr>
+<td>[Enable Hyper-V](#hypv)</td>
+<td>Hyper-V is only required if Hyper-V Containers will be used.</td>
+</tr>
+<tr>
+<td>[Create Virtual Switch](#vswitch)</td>
+<td>Container connect to a virtual switch for network connectivity.</td>
+</tr>
+<tr>
+<td>[Configure NAT](#nat)</td>
+<td>If a virtual switch is configured with Network Address Translation, NAT itself needs configuration.</td>
+</tr>
+<tr>
+<td>[Configure MAC Address Spoofing](#mac)</td>
+<td>If the container host is virtualized, MAC spoofing will need to be enabled.</td>
+</tr>
+<tr>
+<td>[Install Container OS Images](#img)</td>
+<td>OS images provide the base for container deployments.</td>
+</tr>
+<tr>
+<td>[Install Docker](#docker)</td>
+<td>In order to manage containers with Docker, it will need to be installed.</td>
+</tr>
+</table>
 
-**Configure the container host for Hyper-V Containers:**
+### Nano Server
 
-- [Enable the Hyper-V Role in Windows Server 2016 or Windows Server 2016 Core](#hypv).
-- [Enable the Hyper-V Role in Nano Server](#nano).
+Use the steps in this table to deploy a Windows Container Host on Nano Server.
 
-**Configure Networking in both Windows Server and Nano Server:**
+<table border="1" style="background-color:FFFFCC;border-collapse:collapse;border:1px solid FFCC00;color:000000;width:100%" cellpadding="5" cellspacing="5">
+<tr valign="top">
+<td width = "30%">[Prepare Nano Server for Containers](#nano)</td>
+<td width = "70%">Prepare a Nano Server VHD with the container and Hyper-V capabilities.</td>
+</tr>
+<tr>
+<td>[Create Virtual Switch](#vswitch)</td>
+<td>Container connect to a virtual switch for network connectivity.</td>
+</tr>
+<tr>
+<td>[Configure NAT](#nat)</td>
+<td>If a virtual switch is configured with Network Address Translation, NAT itself needs configuration.</td>
+</tr>
+<tr>
+<td>[Configure MAC Address Spoofing](#mac)</td>
+<td>If the container host is virtualized, MAC spoofing will need to be enabled.</td>
+</tr>
+<tr>
+<td>[Install Container OS Images](#img)</td>
+<td>OS images provide the base for container deployments.</td>
+</tr>
+<tr>
+<td>[Install Docker](#docker)</td>
+<td>In order to manage containers with Docker, it will need to be installed.</td>
+</tr>
+</table>
 
-- [Create Virtual Switch](#vswitch).
-- [Configure Network Address Translation](#nat).
-- [Configure MAC Address Spoofing](#mac).
+<br />
 
-**Configure Host for Container Operations:**
-
-- [Install Container OS Images in both Windows Server and Nano Server.](#img)
-- [Install Docker in both Windows Server and Nano Server.](#docker)
-
+## Deployment Steps
 
 ### <a name=role></a>Install Container Feature
 

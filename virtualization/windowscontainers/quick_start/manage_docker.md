@@ -1,4 +1,4 @@
-# Windows Containers Quick Start - PowerShell
+# Windows Containers Quick Start - Docker
 
 Windows Containers can be used to rapidly deploy many isolated applications on a single computer system. This exercise will demonstrate Windows Container creation and management using Docker. When completed you should have a basic understanding of how Docker integrates with Windows Containers and will have gained hands on experience with the technology.
 
@@ -86,6 +86,17 @@ windowsservercore      latest              83b613fea6fc        13 days ago      
 nanoserver             10.0.10586.1000     646d6317b02f        13 days ago          0 B
 ```
 
+### Configure Network
+Before creating a container with Docker, a rule needs to be created for the Windows Firewall that will allow network connectivity to the container. Run the following to create a rule for port 80.
+
+```powershell
+if (!(Get-NetFirewallRule | where {$_.Name -eq "TCP80"})) {
+    New-NetFirewallRule -Name "TCP80" -DisplayName "HTTP on TCP/80" -Protocol tcp -LocalPort 80 -Action Allow -Enabled True
+}
+```
+
+You may also want to take note of the container host IP address. This will be use throughout the exercise.
+
 ### Create IIS Container <!--1-->
 
 You now have a container image that contains IIS, which can be used to deploy IIS ready operating environments. 
@@ -102,10 +113,15 @@ When the container has been created, open a browser, and browse to the IP addres
 
 ### Create Application <!--1-->
 
-Run the following script to replace the default IIS site with a new static site.
+Run the following command to remove the IIS splash screen.
 
 ```powershell
 del C:\inetpub\wwwroot\iisstart.htm
+``
+
+Run the following command to replace the default IIS site with a new static site.
+
+```powershell
 echo "Hello World From a Windows Server Container" > C:\inetpub\wwwroot\index.html
 ```
 
@@ -142,7 +158,13 @@ On the container host, create a directory `c:\build`, and in this directory crea
 powershell new-item c:\build\dockerfile -Force
 ```
 
-Copy the following text into the dockerfile. These commands instruct Docker to create a new image, using `windosservercore` as the base, and include the modifications specified with `RUN`. For more information on Dockerfiles, see the [Dockerfile reference at docker.com](http://docs.docker.com/engine/reference/builder/).
+Open the dockerfile in notepad.
+
+```powershell
+notepad c:\build\dockerfile
+```
+
+Copy the following text into the dockerfile and save the file. These commands instruct Docker to create a new image, using `windosservercore` as the base, and include the modifications specified with `RUN`. For more information on Dockerfiles, see the [Dockerfile reference at docker.com](http://docs.docker.com/engine/reference/builder/).
 
 ```powershell
 FROM windowsservercore
@@ -212,7 +234,7 @@ Because the container will be running a Nano Server OS Image, the Nano Server II
 
 In this example a directory from the container host will be made available to the running container using the `-v` parameter of `docker run`. Before doing so, the source directory will need to be configured. 
 
-Create a directory on the container host that will be shared with the container.
+Create a directory on the container host that will be shared with the container. If you have already completed the PowerShell walkthrough, this directory and the needed files may already exist. 
 
 ```powershell
 powershell New-Item -Type Directory c:\share\en-us
@@ -313,10 +335,15 @@ The Nano Server IIS image can now be deployed to a new container.
 docker run -it -p 80:80 --isolation=hyperv nanoserveriis cmd
 ```
 
-Run the following script to replace the default IIS site with a new static site.
+Run the following command to remove the IIS splash screen.
 
 ```powershell
 del C:\inetpub\wwwroot\iisstart.htm
+``
+
+Run the following command to replace the default IIS site with a new static site.
+
+```powershell
 echo "Hello World From a Hyper-V Container" > C:\inetpub\wwwroot\index.html
 ```
 
