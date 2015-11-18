@@ -15,6 +15,7 @@
 # Manage Windows Containers
 ##[Container Management](management/manage_containers.md)
 ##[Hyper-V Containers](management/hyperv_container.md)
+##[Container Images](management/manage_images.md)
 ##[Container Data](management/manage_data.md)
 ##[Container Resource Control](management/manage_resources.md)
 ##[Management Interoperability](management/hcs_powershell.md)
