@@ -24,13 +24,13 @@ start-process powershell -Verb runAs
 Use the following command to download the configuration script. The script can also be manually downloaded from this location - [Configuration Script](https://aka.ms/newcontainerhost).
  
 ``` PowerShell
-wget -uri https://aka.ms/newcontainerhost -OutFile New-ContainerHost.ps1
+wget -uri https://aka.ms/newcontainerhost -OutFile c:\New-ContainerHost.ps1
 ```
    
 Run the following command to create and configure the container host where `<containerhost>` will be the virtual machine name and `<password>` will be the password assigned to the Administrator account.
 
 ``` powershell
-.\New-ContainerHost.ps1 –VmName <containerhost> -Password <password> -Hyperv
+c:\New-ContainerHost.ps1 –VmName <containerhost> -Password <password> -WindowsImage ServerDatacenterCore -Hyperv
 ```
   
 When the script begins, you will be asked to read and accept licensing terms.
