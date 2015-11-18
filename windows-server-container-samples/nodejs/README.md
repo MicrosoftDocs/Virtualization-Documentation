@@ -1,4 +1,4 @@
-# Sample to create a Windows Server Container Image with node.js v4 installed
+# Sample to create a Windows Server Container Image with node.js v5 installed
 
 These samples were created for Windows Server 2016 Technical Preview 3 with Containers. They assume that the WindowsServerCore Container base image is present.
 
@@ -11,7 +11,7 @@ On the Container host, run:
 .\HybridInstaller.ps1 -CreateContainerImageUsingPowerShell -InternetVirtualSwitchName "Virtual Switch"
 ```
 
-It is important to note that the Container host and the Virtual Switch need Internet access, since the HybridInstaller.ps1 will download the sources for node.js v4.0.0 x64.
+It is important to note that the Container host and the Virtual Switch need Internet access, since the HybridInstaller.ps1 will download the sources for node.js v5.0.0 x64.
 
 The following steps are run in the script:
 
@@ -36,7 +36,7 @@ docker build -t node:0.12.7-x64 C:\build\node
 docker tag node:0.12.7-x64 node:latest
 ```
 
-It is important to note that the Container host and Containers created by Docker need Internet access, since the HybridInstaller.ps1 will download the sources for node.js v4.0.0 x64.
+It is important to note that the Container host and Containers created by Docker need Internet access, since the HybridInstaller.ps1 will download the sources for node.js v5.0.0 x64.
 
 The following steps will be run when building the dockerfile:
 
