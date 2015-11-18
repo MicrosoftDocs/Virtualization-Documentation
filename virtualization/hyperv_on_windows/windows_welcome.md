@@ -40,7 +40,7 @@ The following documents detail the Hyper-V feature in Windows 10, provide a guid
 			<p>Additional technical support and community resources.</p>
 			<ul>
 				<li class="unordered">[Hyper-V forums](https://social.technet.microsoft.com/Forums/windowsserver/en-US/home?forum=winserverhyperv)<br /><br /></li>
-				<li class="unordered">[Community Resources for Hyper-V and Windows Containers](https://msdn.microsoft.com/en-us/virtualization/community/community_overview)<br /><br /></li>
+				<li class="unordered">[Community Resources for Hyper-V and Windows Containers](/virtualization/community/community_overview.md)<br /><br /></li>
 			</ul>	
 		</td>
 	</tr>
