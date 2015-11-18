@@ -52,7 +52,7 @@ In this release we support one network compartment per container. This means tha
 If multiple endpoints need to be exposed by a container, use NAT port mapping.
 
 ### Windows containers are not getting IPs
-If you're connecting to the windows server containers with DHCP VM Switches it's possible for the container host to recieve an IP wwhile the containers do not.
+If you're connecting to the windows server containers with DHCP VM Switches it's possible for the container host to receive an IP while the containers do not.
 
 The containers get a 169.254.***.*** APIPA IP address.
 
@@ -92,7 +92,7 @@ net use S: \\your\sources\here /User:shareuser [yourpassword]
 
 ## Application compatibility
 
-There are so mnay questions about which applications work and don't work in Windows Server Containers, we decided to break application compatability information into [its own article](../reference/app_compat.md).
+There are so many questions about which applications work and don't work in Windows Server Containers, we decided to break application compatibility information into [its own article](../reference/app_compat.md).
 
 Some of the most common issues are located here as well.
 
