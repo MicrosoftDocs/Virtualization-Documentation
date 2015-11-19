@@ -284,7 +284,7 @@ Cache-HostFiles
             }
             else
             {
-                Write-Output "Copying $global:isoBrandName from $IsoPath to $global:localIsoPath..."
+                Write-Output "Copying $global:isoBrandName from $IsoPath to $global:localIsoPath (this may take several minutes)..."
                 Copy-File -SourcePath $IsoPath -DestinationPath $global:localIsoPath
             }
 
@@ -439,7 +439,9 @@ Add-Unattend
     }
     else
     {
-        $unattendFile = $unattendSource.Clone()
+        $credential = New-Object System.Management.Automation.PsCredential("Administrator", $Password)  
+
+        $unattendFile = (Get-Unattend -Password $credential.GetNetworkCredential().Password).Clone()
 
         Write-Output "Writing default unattend.xml..."    
     }
@@ -766,9 +768,9 @@ New-ContainerHost()
         {
             $timeElapsed = $(Get-Date) - $startTime
 
-            if ($($timeElapsed).TotalMinutes -ge 10)
+            if ($($timeElapsed).TotalMinutes -ge 30)
             {
-                throw "Could not connect to PS Direct after 10 minutes"
+                throw "Could not connect to PS Direct after 30 minutes"
             } 
 
             Start-Sleep -sec 1
@@ -1303,7 +1305,16 @@ Write-DockerImageTag()
     Write-Output $dockerOutput
 }
 
-$unattendSource = [xml]@"
+function
+Get-Unattend
+{
+    [CmdletBinding()]
+    param(
+        [string]
+        $Password
+    )
+
+    $unattendSource = [xml]@"
 <?xml version="1.0" encoding="utf-8"?>
 <unattend xmlns="urn:schemas-microsoft-com:unattend">
     <servicing></servicing>
@@ -1372,6 +1383,10 @@ $unattendSource = [xml]@"
     </settings>
 </unattend>
 "@
+
+    return $unattendSource
+}
+
 $global:MinimumWimSaveBuild = 10586
 $global:MinimumPowerShellBuild = 10240
 $global:MinimumSupportedBuild = 9600
