@@ -83,8 +83,8 @@ param(
 
     [Parameter(ParameterSetName="IncludeDocker", Mandatory, Position=1)]
     [Parameter(ParameterSetName="SkipDocker", Mandatory, Position=1)]
-    [string]
-    $Password = "P@ssw0rd",
+    [Security.SecureString]
+    $Password = ("P@ssw0rd" | ConvertTo-SecureString -AsPlainText -Force),
       
     [Parameter(ParameterSetName="Prompt", Mandatory)]
     [switch]
@@ -139,7 +139,7 @@ if ($Prompt)
     $VmName = Read-Host 'Please specify a name for your VM'
 
     #
-    # Do we require nesting
+    # Do we require nesting?
     #
     $nestedChoiceList = New-Object System.Collections.ObjectModel.Collection[System.Management.Automation.Host.ChoiceDescription]
 
@@ -149,7 +149,7 @@ if ($Prompt)
     $HyperV = [boolean]$Host.ui.PromptForChoice($null, "Would you like to enable Hyper-V containers?", $nestedChoiceList, 0)    
         
     #
-    # Which image
+    # Which image?
     #
     $imageChoiceList = New-Object System.Collections.ObjectModel.Collection[System.Management.Automation.Host.ChoiceDescription]
 
@@ -165,9 +165,14 @@ if ($Prompt)
         1 {$WindowsImage = "ServerDatacenter"}
         2 {$WindowsImage = "ServerDatacenterCore"}
     }
-
+    
     #
-    # Install docker
+    # Administrator password?
+    #
+    $Password = Read-Host 'Please specify Administrator password' -AsSecureString
+    
+    #
+    # Install docker?
     #
     $dockerChoiceList = New-Object System.Collections.ObjectModel.Collection[System.Management.Automation.Host.ChoiceDescription]
 
@@ -175,7 +180,7 @@ if ($Prompt)
     $dockerChoiceList.Add((New-Object "System.Management.Automation.Host.ChoiceDescription" -ArgumentList "&No"))
     
     $SkipDocker = [boolean]$Host.ui.PromptForChoice($null, "Would you like to install Docker?", $dockerChoiceList, 0)
-
+    
 
     if ($SkipDocker)
     {
@@ -206,7 +211,6 @@ else
     $global:imageName = "WindowsServerCore"
 }
 $global:imageVersion = "10586.0"
-<<<<<<< HEAD
 
 #
 # Branding strings
@@ -217,18 +221,6 @@ $global:isoBrandName = "$global:brand ISO"
 $global:vhdBrandName = "$global:brand VHD"
 
 #
-=======
-
-#
-# Branding strings
-#
-$global:brand = $WindowsImage
-$global:imageBrand = "$($global:brand)_en-us_TP4_Container"
-$global:isoBrandName = "$global:brand ISO"
-$global:vhdBrandName = "$global:brand VHD"
-
-#
->>>>>>> TP4Stage
 # Get the management service settings
 #
 $global:localVhdRoot = "$((Get-VMHost).VirtualHardDiskPath)".TrimEnd("\")
@@ -300,15 +292,6 @@ Cache-HostFiles
             {
                 $convertScript = $(Join-Path $global:localVhdRoot "Convert-WindowsImage.ps1")
 
-<<<<<<< HEAD
-                Copy-File -SourcePath 'https://aka.ms/tp4/Convert-WindowsImage' -DestinationPath $convertScript
-
-                #
-                # Dot-source until this is a module
-                #
-                . $convertScript
-
-=======
                 Write-Verbose "Copying Convert-WindowsImage..."
                 Copy-File -SourcePath 'https://aka.ms/tp4/Convert-WindowsImage' -DestinationPath $convertScript
 
@@ -317,7 +300,6 @@ Cache-HostFiles
                 #
                 . $convertScript
 
->>>>>>> TP4Stage
                 Write-Output "Mounting ISO..."
                 $openIso = Mount-DiskImage $global:localIsoPath
                 
@@ -328,8 +310,6 @@ Cache-HostFiles
                 Write-Output "Converting WIM to VHD..."
                 if ($WindowsImage -eq "NanoServer")
                 {
-<<<<<<< HEAD
-=======
                     #
                     # Workaround an issue in the RTM version of Convert-WindowsImage.ps1
                     #
@@ -338,14 +318,9 @@ Cache-HostFiles
                         Add-WindowsImageTypes
                     }
 
->>>>>>> TP4Stage
                     Import-Module "$($driveLetter):\NanoServer\NanoServerImageGenerator.psm1"
                     
-                    #
-                    # TODO - make all passwords secure strings
-                    #
-                    $securePassword = ConvertTo-SecureString $Password -AsPlainText -Force
-                    New-NanoServerImage -MediaPath "$($driveLetter):\" -TargetPath $global:localVhdPath -Compute -Containers -ReverseForwarders -GuestDrivers -AdministratorPassword $securePassword
+                    New-NanoServerImage -MediaPath "$($driveLetter):\" -TargetPath $global:localVhdPath -Compute -Containers -ReverseForwarders -GuestDrivers -AdministratorPassword $Password
                 }
                 else
                 {
@@ -411,11 +386,7 @@ Cache-HostFiles
                 if ($WimPath)
                 {
                     Write-Output "Saving private Container OS image ($global:imageName) (this may take a few minutes)..."
-<<<<<<< HEAD
-                    CopyFile -SourcePath $WimPath -DestinationPath $global:localWimVhdVersion  
-=======
                     Copy-File -SourcePath $WimPath -DestinationPath $global:localWimVhdVersion  
->>>>>>> TP4Stage
                 }
                 else
                 {
@@ -727,15 +698,7 @@ New-ContainerHost()
     # Create VM
     #
     Write-Output "Creating VM $VmName..."
-
-    if ($Staging)
-    {
-        $vm = New-VM -Name $VmName -VHDPath $bootVhd.Path -Generation 1 -Version 5.0
-    }
-    else
-    {
-        $vm = New-VM -Name $VmName -VHDPath $bootVhd.Path -Generation 1
-    }
+    $vm = New-VM -Name $VmName -VHDPath $bootVhd.Path -Generation 1
 
     Write-Output "Configuring VM $($vm.Name)..."
     $vm | Get-VMDvdDrive | Remove-VMDvdDrive
@@ -792,8 +755,7 @@ New-ContainerHost()
 
     if ($global:PowerShellDirectMode)
     {
-        $securePassword = ConvertTo-SecureString $Password -AsPlainText -Force
-        $credential = New-Object System.Management.Automation.PsCredential("Administrator", $securePassword)  
+        $credential = New-Object System.Management.Automation.PsCredential("Administrator", $Password)  
         
         $psReady = $false
 
@@ -1064,19 +1026,11 @@ Get-Nsmm
             
     Write-Output "Extracting NSSM from archive..."
     if (Test-Nano)
-<<<<<<< HEAD
     {
         Expand-ArchiveNano -Path $nssmZip -DestinationPath $tempDirectory.FullName
     }
     elseif ($PSVersionTable.PSVersion.Major -ge 5)
     {
-=======
-    {
-        Expand-ArchiveNano -Path $nssmZip -DestinationPath $tempDirectory.FullName
-    }
-    elseif ($PSVersionTable.PSVersion.Major -ge 5)
-    {
->>>>>>> TP4Stage
         Expand-Archive -Path $nssmZip -DestinationPath $tempDirectory.FullName
     }
     else
