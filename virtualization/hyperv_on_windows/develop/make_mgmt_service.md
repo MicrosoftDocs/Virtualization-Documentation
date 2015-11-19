@@ -17,29 +17,46 @@ This document walks through creating a simple application built on Hyper-V socke
 * Future releases (Server 2016 +)
 
 **Capabilities and Limitations**  
-* Kernel mode or user mode  
+* Supports kernel mode or user mode actions  
 * Data stream only  	
-* No block memory so not the best for backup/video  
+* No block memory (not the best for backup/video)   
 
 ## Getting started
+Right now, Hyper-V sockets are available in managed code (C/C++).  
+
 To write a simple application, you'll need:
 * C compiler.  If you don't have one, checkout [Visual Studio Code](https://aka.ms/vs)
 * A computer running Hyper-V with and a virtual machine.  
   * Host and guest (VM) OS must be Windows 10, Windows Server Technical Preview 3, or later.
-* Windows SDK
+* Windows SDK -- here's a link to the [Win10 SDK](https://dev.windows.com/en-us/downloads/windows-10-sdk) which includes `hvsocket.h`.
 
-### Step 1 - Register your service on the Hyper-V host
-In order to use a custom service integrated with Hyper-V, the new service must be registered with the Hyper-V Host's registry.
+### Register a new application
+In order to use Hyper-V sockets, the application must be registered with the Hyper-V Host's registry.
 
 By registering the service in the registry, you get:
 *  WMI management for enable, disable, and listing available services
-*  Onto the list of services allowed to communicate with virtual machines directly.
+*  Permission to communicate with virtual machines directly
+
+The following PowerShell will register a new application named "HV Socket Demo".  This must be run as administrator.  Manual instructions below.
+
+``` PowerShell
+$friendlyName = "HV Socket Demo"
+
+# Create a new random GUID and add it to the services list then add the name as a value
+
+$service = New-Item -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Virtualization\GuestCommunicationServices" -Name ([System.Guid]::NewGuid().ToString())
+
+$service.SetValue("ElementName", $friendlyName)
+
+# Copy GUID to clipboard for later use
+$service.PSChildName | clip.exe
+```
 
 ** Registry location and information **  
 
 ``` 
-HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Virtualization\VirtualDevices\6C09BB55-D683-4DA0-8931-C9BF705F6480\GuestCommunicationServices\
-```
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Virtualization\GuestCommunicationServices\
+```  
 In this registry location, you'll see several GUIDS.  Those are our in-box services.
 
 Information in the registry per service:
@@ -62,13 +79,8 @@ HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Virtualization\G
 [System.Guid]::NewGuid().ToString() | clip.exe
 ```
 
-<!-- How do customers know this worked -->
+The friendly name will be associated with your new application.  It will appear in performance counters and other places where a GUID isn't appropriate.
 
-### Step 2 - Create a simple host-side service
-
-
-
-### Step 3 - Create a simple guest-side service
 
 ## More information about AF_HYPERV
 Since Hyper-V sockets do not depend on a networking stack, TCP/IP, DNS, etc. the socket end point needed a non-IP, not hostname, format that still describes the connection.  In lieu of an IP or hostname, AF_HYPERV endpoints rely heavily on two GUIDS:  
@@ -87,7 +99,7 @@ Zero GUID and Service ID
 
 Socket()
 Bind()
-Connect ()
+Connect()
 Send()
 Listen()
 Accept()

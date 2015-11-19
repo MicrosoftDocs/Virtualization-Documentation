@@ -1,6 +1,8 @@
 # Windows Container Requirements
 
-This guides list the requirements for a Windows Container Host. 
+**This is preliminary content and subject to change.** 
+
+This guides list the requirements for a Windows Container Host.
 
 ## Supported OS Images
 
@@ -28,8 +30,6 @@ Windows Server Technical Preview 4 is being offered with two container OS Images
 <td><center>Nano OS Image</center></td>
 <tr>
 </table>
-
-<br />
 
 ## Hyper-V Container Requirements
 

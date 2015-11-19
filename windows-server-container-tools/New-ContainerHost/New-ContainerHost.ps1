@@ -206,6 +206,7 @@ else
     $global:imageName = "WindowsServerCore"
 }
 $global:imageVersion = "10586.0"
+<<<<<<< HEAD
 
 #
 # Branding strings
@@ -216,6 +217,18 @@ $global:isoBrandName = "$global:brand ISO"
 $global:vhdBrandName = "$global:brand VHD"
 
 #
+=======
+
+#
+# Branding strings
+#
+$global:brand = $WindowsImage
+$global:imageBrand = "$($global:brand)_en-us_TP4_Container"
+$global:isoBrandName = "$global:brand ISO"
+$global:vhdBrandName = "$global:brand VHD"
+
+#
+>>>>>>> TP4Stage
 # Get the management service settings
 #
 $global:localVhdRoot = "$((Get-VMHost).VirtualHardDiskPath)".TrimEnd("\")
@@ -287,6 +300,15 @@ Cache-HostFiles
             {
                 $convertScript = $(Join-Path $global:localVhdRoot "Convert-WindowsImage.ps1")
 
+<<<<<<< HEAD
+                Copy-File -SourcePath 'https://aka.ms/tp4/Convert-WindowsImage' -DestinationPath $convertScript
+
+                #
+                # Dot-source until this is a module
+                #
+                . $convertScript
+
+=======
                 Write-Verbose "Copying Convert-WindowsImage..."
                 Copy-File -SourcePath 'https://aka.ms/tp4/Convert-WindowsImage' -DestinationPath $convertScript
 
@@ -295,6 +317,7 @@ Cache-HostFiles
                 #
                 . $convertScript
 
+>>>>>>> TP4Stage
                 Write-Output "Mounting ISO..."
                 $openIso = Mount-DiskImage $global:localIsoPath
                 
@@ -305,6 +328,8 @@ Cache-HostFiles
                 Write-Output "Converting WIM to VHD..."
                 if ($WindowsImage -eq "NanoServer")
                 {
+<<<<<<< HEAD
+=======
                     #
                     # Workaround an issue in the RTM version of Convert-WindowsImage.ps1
                     #
@@ -313,6 +338,7 @@ Cache-HostFiles
                         Add-WindowsImageTypes
                     }
 
+>>>>>>> TP4Stage
                     Import-Module "$($driveLetter):\NanoServer\NanoServerImageGenerator.psm1"
                     
                     #
@@ -385,7 +411,11 @@ Cache-HostFiles
                 if ($WimPath)
                 {
                     Write-Output "Saving private Container OS image ($global:imageName) (this may take a few minutes)..."
+<<<<<<< HEAD
+                    CopyFile -SourcePath $WimPath -DestinationPath $global:localWimVhdVersion  
+=======
                     Copy-File -SourcePath $WimPath -DestinationPath $global:localWimVhdVersion  
+>>>>>>> TP4Stage
                 }
                 else
                 {
@@ -1034,11 +1064,19 @@ Get-Nsmm
             
     Write-Output "Extracting NSSM from archive..."
     if (Test-Nano)
+<<<<<<< HEAD
     {
         Expand-ArchiveNano -Path $nssmZip -DestinationPath $tempDirectory.FullName
     }
     elseif ($PSVersionTable.PSVersion.Major -ge 5)
     {
+=======
+    {
+        Expand-ArchiveNano -Path $nssmZip -DestinationPath $tempDirectory.FullName
+    }
+    elseif ($PSVersionTable.PSVersion.Major -ge 5)
+    {
+>>>>>>> TP4Stage
         Expand-Archive -Path $nssmZip -DestinationPath $tempDirectory.FullName
     }
     else

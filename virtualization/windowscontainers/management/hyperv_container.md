@@ -1,5 +1,7 @@
 # Hyper-V Containers
 
+**This is preliminary content and subject to change.** 
+
 The Windows Container technology includes two distinct types of containers, Windows Server Containers and Hyper-V Containers. Both types of containers are created, managed, and function identically. What differs between them is the level of isolation created between the container, the host operating system, and all of the other container running on that host.
 
 **Windows Server Containers** – multiple containers run on a host with isolation provided through namespace and process isolation technologies.
@@ -15,7 +17,7 @@ A Hyper-V container is created identically to a Widows Server Container with the
 Example Creating a Hyper-V Container with PowerShell
 
 ```powershell
-$con = New-Container -Name HYPVCON -ContainerImageName NanoServer -SwitchName "Virtual Switch" -RuntimeType HyperV
+PS C:\> $con = New-Container -Name HYPVCON -ContainerImageName NanoServer -SwitchName "Virtual Switch" -RuntimeType HyperV
 ```
 
 ### Convert Container
@@ -27,12 +29,12 @@ In addition to creating a container as a Hyper-V container at build time, contai
 Create a new Container with the default runtime. 
 
 ```powershell
-New-Container -Name DEMO -ContainerImageName nanoserver -SwitchName NAT
+PS C:\> New-Container -Name DEMO -ContainerImageName nanoserver -SwitchName NAT
 ```
 Return the runtime property from the container, notice that the runtime is set as default. 
 
 ```powershell
-Get-Container | Select ContainerName, RuntimeType
+PS C:\> Get-Container | Select ContainerName, RuntimeType
 
 ContainerName RuntimeType
 ------------- -----------
@@ -42,13 +44,13 @@ DEMO              Default
 Use the `set-container` command to change the container runtime.
 
 ```powershell
- Set-Container $con -RuntimeType HyperV
+PS C:\> Set-Container $con -RuntimeType HyperV
 ```
 
 Finally return the runtime property once again to see the change.
 
 ```powershell
-Get-Container | select ContainerName, RuntimeType
+PS C:\> Get-Container | select ContainerName, RuntimeType
 
 ContainerName RuntimeType
 ------------- -----------
@@ -107,6 +109,7 @@ The following exercise can be used to demonstrate the isolation of a Hyper-V con
 
 ```powershell
 PS C:\> get-process | where {$_.ProcessName -eq 'csrss'}
+
 Handles  NPM(K)    PM(K)      WS(K) VM(M)   CPU(s)     Id  SI ProcessName
 -------  ------    -----      ----- -----   ------     --  -- -----------
     255      12     1820       4000 ...98     0.53    532   0 csrss
@@ -117,19 +120,19 @@ Handles  NPM(K)    PM(K)      WS(K) VM(M)   CPU(s)     Id  SI ProcessName
 Create New Windows Server Container:
 
 ```powershell
-New-Container -Name WINCONT -ContainerImageName WindowsServerCore -SwitchName "Virtual Switch"
+PS C:\> New-Container -Name WINCONT -ContainerImageName WindowsServerCore -SwitchName "Virtual Switch"
 ```
 
 Start the Container:
 
 ```powershell
-Start-Container $con
+PS C:\> Start-Container $con
 ```
 
 Create Remote PS Session with the container.
 
 ```powershell
-Enter-PSSession -ContainerId $con.ContainerId –RunAsAdministrator
+PS C:\> Enter-PSSession -ContainerId $con.ContainerId –RunAsAdministrator
 ```
 
 From the remote container session return all processes with a process name of csrss. Take note of the process id for the running csrss process (1228 in the example below).
@@ -145,7 +148,7 @@ Handles  NPM(K)    PM(K)      WS(K) VM(M)   CPU(s)     Id  SI ProcessName
 Now return the list of csrss process form the container host. Notice that the same csrss process is also returned from the container host.
 
 ```powershell
-get-process | where {$_.ProcessName -eq 'csrss'}
+PS C:\> get-process | where {$_.ProcessName -eq 'csrss'}
 
 Handles  NPM(K)    PM(K)      WS(K) VM(M)   CPU(s)     Id  SI ProcessName
 -------  ------    -----      ----- -----   ------     --  -- -----------
@@ -159,7 +162,7 @@ Handles  NPM(K)    PM(K)      WS(K) VM(M)   CPU(s)     Id  SI ProcessName
 Return a list of csrss process form the container host.
 
 ```powershell
-get-process | where {$_.ProcessName -eq 'csrss'}
+PS C:\> get-process | where {$_.ProcessName -eq 'csrss'}
 
 Handles  NPM(K)    PM(K)      WS(K) VM(M)   CPU(s)     Id  SI ProcessName
 -------  ------    -----      ----- -----   ------     --  -- -----------
@@ -171,19 +174,19 @@ Handles  NPM(K)    PM(K)      WS(K) VM(M)   CPU(s)     Id  SI ProcessName
 Now, create a Hyper-V container.
 
 ```powershell
-$con = New-Container -Name HYPVCON -ContainerImageName NanoServer -SwitchName "Virtual Switch" -RuntimeType HyperV
+PS C:\> $con = New-Container -Name HYPVCON -ContainerImageName NanoServer -SwitchName "Virtual Switch" -RuntimeType HyperV
 ```
 
 Start the Hyper-V Container
 
 ```powershell
-Start-Container $con
+PS C:\> Start-Container $con
 ```
 
 Create a remote PS session with the Hyper-V container.
 
 ```powershell
-Enter-PSSession -ContainerId $con.ContainerId –RunAsAdministrator
+PS C:\> Enter-PSSession -ContainerId $con.ContainerId –RunAsAdministrator
 ```
 
 Return a list of csrss process running inside the Hyper-V container. Take note of the process id for the csrss process (956 in the below example).
@@ -199,7 +202,7 @@ Handles  NPM(K)    PM(K)      WS(K) VM(M)   CPU(s)     Id  SI ProcessName
 Now return a list of csrss process on the container host. Notice, unlike with the Windows Server Container, where the csrss process was visible both from within the container and also from the container host, the Hyper-V container process is only visible from within the container itself. This is because a Hyper-V Container is encapsulated in a utility virtual machine, and the process is isolated to only that utility virtual mahchine.
 
 ```powershell
-get-process | where {$_.ProcessName -eq 'csrss'}
+PS C:\> get-process | where {$_.ProcessName -eq 'csrss'}
 
 Handles  NPM(K)    PM(K)      WS(K) VM(M)   CPU(s)     Id  SI ProcessName
 -------  ------    -----      ----- -----   ------     --  -- -----------
