@@ -29,7 +29,7 @@ Use the following command to download the configuration script. The script can a
 PS C:\> wget -uri https://aka.ms/tp4/New-ContainerHost -OutFile c:\New-ContainerHost.ps1
 ```
    
-Run the following command to create and configure the container host, where `<containerhost>` will be the virtual machine name, and `<password>` will be the password assigned to the Administrator account.
+Run the following command to create and configure the container host, where `<containerhost>` will be the virtual machine name.
 
 ``` powershell
 PS C:\> c:\New-ContainerHost.ps1 –VmName <containerhost> -WindowsImage ServerDatacenterCore -Hyperv
