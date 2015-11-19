@@ -13,7 +13,8 @@ Check out resources available to the user community. There is also a lot to see 
 
 
 ## Featured content
-* (Announcing the release of Hyper-V Containers in Windows Server 2016 Technical Preview 4)[http://blogs.technet.com/b/virtualization/archive/2015/11/19/announcing-the-release-of-hyper-v-containers-in-windows-server-2016-technical-preview-4.aspx]
+* [Announcing the release of Hyper-V Containers in Windows Server 2016 Technical Preview 4](http://blogs.technet.com/b/virtualization/archive/2015/11/19/announcing-the-release-of-hyper-v-containers-in-windows-server-2016-technical-preview-4.aspx)
+* [Early look at containers in Windows Server, Hyper-V and Azure – with Mark Russinovich](https://youtu.be/YoA_MMlGPRc)
 * [Announcing Windows Server 2016 Containers Preview](http://weblogs.asp.net/scottgu/announcing-windows-server-2016-containers-preview)
 * [Docker -Introducing the Technical Preview of Docker Enging for Windows Server 2016](http://blog.docker.com/2015/08/tp-docker-engine-windows-server-2016/)
 * [Containers 101 Video](https://channel9.msdn.com/Blogs/containers/Containers-101-with-Microsoft-and-Docker)
