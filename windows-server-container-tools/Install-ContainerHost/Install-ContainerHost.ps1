@@ -444,7 +444,7 @@ Install-ContainerHost
                 
                 $hostBuildInfo = (gp "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion").BuildLabEx.Split(".")
                 $version = $hostBuildInfo[0]
-                $qfe = $hostBuildInfo[1]
+                $qfe = 0
                 $imageVersion = "10.0.$version.$qfe"
 
                 Write-Output "Getting Container OS image ($imageName) version $imageVersion from OneGet (this may take a few minutes)..."
