@@ -21,6 +21,8 @@ This document walks through creating a simple application built on Hyper-V socke
 * Data stream only  	
 * No block memory (not the best for backup/video)   
 
+--------------
+
 ## Getting started
 Right now, Hyper-V sockets are available in managed code (C/C++).  
 
@@ -81,8 +83,38 @@ HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Virtualization\G
 
 The friendly name will be associated with your new application.  It will appear in performance counters and other places where a GUID isn't appropriate.
 
+### Creating a Hyper-V socket
 
-## More information about AF_HYPERV
+In the most basic case, defining a socket requires an address family, connection type, and protocol.
+
+Here is a simple [socket definition](
+https://msdn.microsoft.com/en-us/library/windows/desktop/ms740506(v=vs.85).aspx
+)
+
+``` C
+SOCKET WSAAPI socket(
+  _In_ int af,
+  _In_ int type,
+  _In_ int protocol
+);
+``` 
+
+For a Hyper-V socket:
+* Address family - `AF_HYPERV`
+* type - `SOCK_STREAM`, `SOCK_DGRAM`, or `SOCK_RAW`
+* protocol - `HV_PROTOCOL_RAW`
+
+
+Here is an example declaration/instanciation:  
+``` C
+SOCKET sock = socket(AF_HYPERV, SOCK_STREAM, HV_PROTOCOL_RAW);
+```
+
+
+### Binding to a Hyper-V socket
+
+### Create a Hyper-V socket
+
 Since Hyper-V sockets do not depend on a networking stack, TCP/IP, DNS, etc. the socket end point needed a non-IP, not hostname, format that still describes the connection.  In lieu of an IP or hostname, AF_HYPERV endpoints rely heavily on two GUIDS:  
 * VM ID – this is the unique ID assigned per VM.  A VM’s ID can be found using the following PowerShell snippet.
 ```PowerShell
