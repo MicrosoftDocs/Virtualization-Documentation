@@ -230,6 +230,8 @@ Downloaded in 0 hours, 0 minutes, 10 seconds.
 
 Likewise, this command downloads and installs the Windows Server Core base OS image.
 
+> Save-ContainerImage and Install-ContainerImage cmdlets fail to work with a WindowsServerCore container image in a PowerShell remoting session. Workaround: Logon to the machine using Remote Desktop and use Save-ContainerImage cmdlet directly.
+
 ```powershell
 PS C:\> Install-ContainerImage -Name WindowsServerCore -Version 10.0.10586.0
 Downloaded in 0 hours, 2 minutes, 28 seconds.
