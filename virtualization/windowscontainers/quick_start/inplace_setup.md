@@ -19,24 +19,24 @@ Windows Containers require the Container OS Base Images. We have put together a 
 Start a PowerShell session as administrator. This can be done by running the following command from the command line.
 
 ``` powershell
-powershell.exe
+PS C:\> powershell.exe
 ```
 
 Make sure the title of the windows is "Administrator: Windows PowerShell". If it does not say Administrator, run this command to run with admin priveledges:
 
 ``` powershell
-start-process powershell -Verb runas
+PS C:\> start-process powershell -Verb runas
 ```
 
 Use the following command to download the setup script. The script can also be manually downloaded from this location - [Configuration Script](https://aka.ms/tp4/Install-ContainerHost).
  
 ``` PowerShell
-wget -uri https://aka.ms/tp4/Install-ContainerHost -OutFile C:\Install-ContainerHost.ps1
+PS C:\> wget -uri https://aka.ms/tp4/Install-ContainerHost -OutFile C:\Install-ContainerHost.ps1
 ```
    
  After the download completes, execute the script.
 ``` PowerShell
-C:\Install-ContainerHost.ps1 -HyperV
+PS C:\> C:\Install-ContainerHost.ps1 -HyperV
 ```
 
 The script will then begin to download and configure the Windows Container components. This process may take quite some time due to the large download. The machine may reboot during the process. When finished your machine will be configured and ready for you to create and manage Windows Containers and Windows Container Images with both PowerShell and Docker. 

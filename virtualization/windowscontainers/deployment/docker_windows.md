@@ -17,13 +17,13 @@ The Docker Daemon and Docker command line interface have been developed in the G
 Download docker.exe from `https://aka.ms/ContainerTools` and place it in the System32 directory on the Container Host.
 
 ```powershell
-wget https://aka.ms/ContainerTools -OutFile $env:SystemRoot\system32\docker.exe
+PS C:\> wget https://aka.ms/ContainerTools -OutFile $env:SystemRoot\system32\docker.exe
 ```
 
 Create a directory named `c:\programdata\docker`. In this directory, create a file named `runDockerDaemon.cmd`.
 
 ```powershell
-New-Item -ItemType File -Path C:\ProgramData\Docker\runDockerDaemon.cmd -Force
+PS C:\> New-Item -ItemType File -Path C:\ProgramData\Docker\runDockerDaemon.cmd -Force
 ```
 
 Copy the following text into the `runDockerDaemon.cmd` file. This batch file starts the Docker daemon with the command `docker daemon –D –b “Virtual Switch”`. Note: the name of the virtual switch in this file, will need to match the name of the virtual that containers will be using for network connectivity.
@@ -47,19 +47,19 @@ docker daemon -D -b "Virtual Switch" -H 0.0.0.0:2376 --tlsverify --tlscacert=%ce
 Download nssm.exe from [https://nssm.cc/release/nssm-2.24.zip](https://nssm.cc/release/nssm-2.24.zip).
 
 ```powershell
-wget https://nssm.cc/release/nssm-2.24.zip -OutFile $env:ALLUSERSPROFILE\nssm.zip
+PS C:\> wget https://nssm.cc/release/nssm-2.24.zip -OutFile $env:ALLUSERSPROFILE\nssm.zip
 ```
 
 Extract the files, and copy `nssm-2.24\win64\nssm.exe` into the `c:\windows\system32` directory.
 
 ```powershell
-Expand-Archive -Path $env:ALLUSERSPROFILE\nssm.zip $env:ALLUSERSPROFILE
-Copy-Item $env:ALLUSERSPROFILE\nssm-2.24\win64\nssm.exe $env:SystemRoot\system32
+PS C:\> Expand-Archive -Path $env:ALLUSERSPROFILE\nssm.zip $env:ALLUSERSPROFILE
+PS C:\> Copy-Item $env:ALLUSERSPROFILE\nssm-2.24\win64\nssm.exe $env:SystemRoot\system32
 ```
 Run `nssm install` to configure the Docker service.
 
 ```powershell
-start-process nssm install
+PS C:\> start-process nssm install
 ```
 
 Enter the following data into the corresponding fields in the NSSM service installer.
@@ -103,7 +103,7 @@ With this completed, when Windows starts, the Docker daemon (service) will also 
 If following this guide for creating a Windows service from docke.exe, the following command will remove the service.
 
 ```powershell
-sc.exe delete Docker
+PS C:\> sc.exe delete Docker
 
 [SC] DeleteService SUCESS
 ```
@@ -117,7 +117,7 @@ Download docker.exe from `https://aka.ms/ContainerTools` and copy it to the `win
 Run the below command to start the docker daemon. This will need to be run each time the container host is started. This command starts the Docker daemon, specifies a virtual switch for container connectivity, and set’s the daemon to listen on port 2375 for incoming Docker requests. In this configuration Docker can be managed from a remote computer.
 
 ```powershell
-start-process cmd "/k docker daemon -D -b <Switch Name> -H 0.0.0.0:2375”
+PS C:\> start-process cmd "/k docker daemon -D -b <Switch Name> -H 0.0.0.0:2375”
 ```
 
 ### Removing Docker <!--2-->
@@ -125,5 +125,5 @@ start-process cmd "/k docker daemon -D -b <Switch Name> -H 0.0.0.0:2375”
 To remove the docker daemon and cli from Nano Server, delete `docker.exe` from the Windows\system32 directory.
 
 ```powershell
-Remove-Item $env:SystemRoot\system32\docker.exe
+PS C:\> Remove-Item $env:SystemRoot\system32\docker.exe
 ``` 

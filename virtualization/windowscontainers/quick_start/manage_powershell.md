@@ -28,7 +28,7 @@ At the time of TP4, Windows Server Containers running on a Windows Server 2016, 
 Start a PowerShell session by typing `powershell`.
 
 ```powershell
-C:\>powershell
+C:\> powershell
 Windows PowerShell
 Copyright (C) 2015 Microsoft Corporation. All rights reserved.
 

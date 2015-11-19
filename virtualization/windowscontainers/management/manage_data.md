@@ -13,7 +13,7 @@ To create a shared folder, use the `Add-ContainerSharedFolder` command. The belo
 > A container must be in a stopped state when adding a shared folder.
 
 ```powershell
-Add-ContainerSharedFolder -ContainerName DEMO -SourcePath c:\data_source -DestinationPath c:\shared_data
+PS C:\> Add-ContainerSharedFolder -ContainerName DEMO -SourcePath c:\data_source -DestinationPath c:\shared_data
 
 ContainerName SourcePath 	   DestinationPath AccessMode
 ------------- ---------- 	   --------------- ----------
@@ -23,7 +23,7 @@ DEMO          c:\data_source   c:\shared_data  ReadWrite
 ### Read Only Shared Folder
 
 ```powershell
-Add-ContainerSharedFolder -ContainerName DEMO -SourcePath c:\sf1 -DestinationPath c:\sf2 -AccessMode ReadOnly
+PS C:\> Add-ContainerSharedFolder -ContainerName DEMO -SourcePath c:\sf1 -DestinationPath c:\sf2 -AccessMode ReadOnly
 
 ContainerName SourcePath DestinationPath AccessMode
 ------------- ---------- --------------- ----------
@@ -35,7 +35,7 @@ DEMO         c:\sf1     c:\sf2          ReadOnly
 To see a list of shared folders for a particular container use the `Get-ContainerSharedFolder` command.
 
 ```powershell
-Get-ContainerSharedFolder -ContainerName DEMO2
+PS C:\> Get-ContainerSharedFolder -ContainerName DEMO2
 
 ContainerName SourcePath DestinationPath AccessMode
 ------------- ---------- --------------- ----------
@@ -47,7 +47,7 @@ DEMO         c:\source  c:\source       ReadWrite
 To modify and existing shared folder configuration, use the `Set-ContainerSharedFolder` command.
 
 ```powershell
-Set-ContainerSharedFolder -ContainerName SFRO -SourcePath c:\sf1 -DestinationPath c:\sf1
+PS C:\> Set-ContainerSharedFolder -ContainerName SFRO -SourcePath c:\sf1 -DestinationPath c:\sf1
 ```
 
 ### Remove Shared Folder
@@ -57,7 +57,7 @@ To remove a shared folder, use the `Remove-ContainerSharedFolder` command.
 > A container must be in a stopped state when removing shared folder
 
 ```powershell
-Remove-ContainerSharedFolder -ContainerName DEMO2 -SourcePath c:\source -DestinationPath c:\source
+PS C:\> Remove-ContainerSharedFolder -ContainerName DEMO2 -SourcePath c:\source -DestinationPath c:\source
 ```
 ## Manage Data - Docker
 
@@ -68,7 +68,7 @@ When managing Windows Containers with Docker, volumes can be mounted using the `
 In the below example the source folder is c:\source and destination folder c:\destination.
 
 ```powershell
-docker run -it -v c:\source:c:\destination 1f62aaf73140 cmd
+PS C:\> docker run -it -v c:\source:c:\destination 1f62aaf73140 cmd
 ```
 
 For more information on managing data in containers with Docker see [Docker Volumes on Docker.com](https://docs.docker.com/userguide/dockervolumes/).
