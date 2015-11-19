@@ -24,7 +24,7 @@ This document walks through creating a simple application built on Hyper-V socke
 --------------
 
 ## Getting started
-Right now, Hyper-V sockets are available in managed code (C/C++).  
+Right now, Hyper-V sockets are available in native code (C/C++).  
 
 To write a simple application, you'll need:
 * C compiler.  If you don't have one, checkout [Visual Studio Code](https://aka.ms/vs)
