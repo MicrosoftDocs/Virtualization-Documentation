@@ -9,7 +9,8 @@ Windows Containers provide operating system level virtualization that allows mul
 Try Windows Server and Hyper-V Containers by using the following quick start guides.<br /><br />
 <ul>
 <li>[Azure Quick Start](quick_start/azure_setup.md)<br /><br /></li>
-<li>[On-Premise Quick Start](quick_start/container_setup.md)<br /><br /></li>
+<li>[Deploy New Container Host](quick_start/container_setup.md)<br /><br /></li>
+<li>[Deploy Host in Existing System](quick_start/inplace_setup.md)<br /><br /></li>
 <li>[PowerShell Quick Start](quick_start/manage_powershell.md)<br /><br /></li>
 <li>[Docker Quick Start](quick_start/manage_docker.md)<br /><br /></li>
 </td>
@@ -19,12 +20,13 @@ Try Windows Server and Hyper-V Containers by using the following quick start gui
 <td>**Deployment**<br /><br />
 Learn how to deploy Windows Containers on Windows Server 2016 and Nano Server.<br /><br />
 <ul>
+<li>[System Requirements](deployment/system_requirements.md)<br /><br /></li>
 <li>[Deploy Container Host](deployment/deployment.md)<br /><br /></li>
 <li>[Deploy Docker on Windows](deployment/docker_windows.md)<br /><br /></li>
 </td>
 </tr>
 <tr>
-<td ><center>![](media/question.png)</center></td>
+<td ><center>![](media/explore.png)</center></td>
 <td>**Management**<br /><br />
 Learn about managing Windows Container in Windows Server 2016 and Nano Server.<br ><br />
 <ul>
@@ -37,7 +39,7 @@ Learn about managing Windows Container in Windows Server 2016 and Nano Server.<b
 </td>
 </tr>
 <tr>
-<td ><center>![](media/explore.png)</center></td>
+<td ><center>![](media/question.png)</center></td>
 <td>**Community**<br /><br />
 Interact with the community, try samples, and find additional resources.<br ><br />
 <ul>

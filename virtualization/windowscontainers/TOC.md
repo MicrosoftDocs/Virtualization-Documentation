@@ -1,16 +1,16 @@
 # About Windows Containers
 ## [Container Docs Overview](./containers_welcome.md)
 ## [About Windows Containers](about/about_overview.md)
-## [System Requirements](about/system_requirements.md)
 ## [Work In Progress](about/work_in_progress.md)
 ## [FAQ](about/faq.md)
 # Container Quick Start
 ## [Containers in Azure](quick_start/azure_setup.md)
-## [Containers in a New VM](quick_start/container_setup.md)
-## [Containers in an Existing Computer](quick_start/inplace_setup.md)
+## [Deploy New Container Host](quick_start/container_setup.md)
+## [Deploy Host in Existing System](quick_start/inplace_setup.md)
 ## [PowerShell Quick Start](quick_start/manage_powershell.md)
 ## [Docker Quick Start](quick_start/manage_docker.md)
 # Deploy Windows Containers
+## [System Requirements](deployment/system_requirements.md)
 ##[Deploy Container Host](deployment/deployment.md)
 ##[Deploy Docker on Windows](deployment/docker_windows.md)
 # Manage Windows Containers

@@ -1,5 +1,7 @@
 # Container Resource Management
 
+**This is preliminary content and subject to change.** 
+
 Windows Containers include the ability to manage how much CPU, disk IO, network and memory resources containers can consume. Constraining container resource consumptions allows host resources to be used efficiently, and prevents over consumption. This document will detail managing container resources with both PowerShell and Docker.
 
 ## Manage Resources with PowerShell

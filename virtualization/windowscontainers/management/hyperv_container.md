@@ -1,5 +1,7 @@
 # Hyper-V Containers
 
+**This is preliminary content and subject to change.** 
+
 The Windows Container technology includes two distinct types of containers, Windows Server Containers and Hyper-V Containers. Both types of containers are created, managed, and function identically. What differs between them is the level of isolation created between the container, the host operating system, and all of the other container running on that host.
 
 **Windows Server Containers** – multiple containers run on a host with isolation provided through namespace and process isolation technologies.
