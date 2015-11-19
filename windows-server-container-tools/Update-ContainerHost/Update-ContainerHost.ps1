@@ -19,7 +19,7 @@
         Configures the VM as a new container host
         
     .PARAMETER DockerPath
-        Path to a private Docker.exe.  Defaults to https://aka.ms/ContainerTools
+        Path to a private Docker.exe.  Defaults to https://aka.ms/tp4/docker
 
     .EXAMPLE
         .\Update-ContainerHost.ps1 -SkipDocker
@@ -32,7 +32,7 @@ param(
     [Parameter(ParameterSetName="IncludeDocker")]
     [string]
     [ValidateNotNullOrEmpty()]
-    $DockerPath = "https://aka.ms/ContainerTools"
+    $DockerPath = "https://aka.ms/tp4/docker"
 )
 
 
@@ -41,10 +41,7 @@ Update-ContainerHost()
 {
     Test-Admin
 
-    $serviceName = "Docker"
-    $service = Get-Service -Name $serviceName -ErrorAction SilentlyContinue
-
-    if ($service -eq $null)
+    if (-not (Test-Docker))
     {
         throw "Docker service is not running"
     }
@@ -52,34 +49,104 @@ Update-ContainerHost()
     #
     # Stop service
     #
-    Write-Output "Stopping Docker..."
-    Stop-Service -Name $serviceName
+    Stop-Docker
 
     #
     # Update service
     #
-    Write-Output "Updating Docker..."
-
-    if (Test-Path $DockerPath)
-    {
-        Copy-Item -Path $DockerPath -Destination $env:windir\System32\
-    }
-    elseif (($DockerPath -as [System.URI]).AbsoluteURI -ne $null)
-    {
-        wget -Uri $DockerPath -OutFile $env:windir\System32\docker.exe -UseBasicParsing
-    }
-    else
-    {
-        throw "Cannot copy from $DockerPath"
-    }
+    Write-Output "Updating $global:DockerServiceName..."
+    Copy-File -SourcePath $DockerPath -DestinationPath $env:windir\System32\docker.exe
 
     #
     # Start service
     #
-    Write-Output "Starting Docker..."
-    Start-Service -Name $serviceName
+    Start-Docker
 }
 $global:AdminPriviledges = $false
+$global:DockerServiceName = "Docker"
+
+function
+Copy-File
+{
+    [CmdletBinding()]
+    param(
+        [string]
+        $SourcePath,
+        
+        [string]
+        $DestinationPath
+    )
+    
+    if ($SourcePath -eq $DestinationPath)
+    {
+        return
+    }
+          
+    if (Test-Path $SourcePath)
+    {
+        Copy-Item -Path $SourcePath -Destination $DestinationPath
+    }
+    elseif (($SourcePath -as [System.URI]).AbsoluteURI -ne $null)
+    {
+        if (Test-Nano)
+        {
+            $handler = New-Object System.Net.Http.HttpClientHandler
+            $client = New-Object System.Net.Http.HttpClient($handler)
+            $client.Timeout = New-Object System.TimeSpan(0, 30, 0)
+            $cancelTokenSource = [System.Threading.CancellationTokenSource]::new() 
+            $responseMsg = $client.GetAsync([System.Uri]::new($SourcePath), $cancelTokenSource.Token)
+            $responseMsg.Wait()
+
+            if (!$responseMsg.IsCanceled)
+            {
+                $response = $responseMsg.Result
+                if ($response.IsSuccessStatusCode)
+                {
+                    $downloadedFileStream = [System.IO.FileStream]::new($DestinationPath, [System.IO.FileMode]::Create, [System.IO.FileAccess]::Write)
+                    $copyStreamOp = $response.Content.CopyToAsync($downloadedFileStream)
+                    $copyStreamOp.Wait()
+                    $downloadedFileStream.Close()
+                    if ($copyStreamOp.Exception -ne $null)
+                    {
+                        throw $copyStreamOp.Exception
+                    }      
+                }
+            }  
+        }
+        elseif ($PSVersionTable.PSVersion.Major -ge 5)
+        {
+            #
+            # We disable progress display because it kills performance for large downloads (at least on 64-bit PowerShell)
+            #
+            $ProgressPreference = 'SilentlyContinue'
+            wget -Uri $SourcePath -OutFile $DestinationPath -UseBasicParsing
+            $ProgressPreference = 'Continue'
+        }
+        else
+        {
+            $webClient = New-Object System.Net.WebClient
+            $webClient.DownloadFile($SourcePath, $DestinationPath)
+        } 
+    }
+    else
+    {
+        throw "Cannot copy from $SourcePath"
+    }
+}
+
+
+function 
+Expand-ArchiveNano
+{
+    [CmdletBinding()]
+    param 
+    (
+        [string] $Path,
+        [string] $DestinationPath
+    )
+
+    [System.IO.Compression.ZipFile]::ExtractToDirectory($Path, $DestinationPath)
+}
 
 
 function 
@@ -100,7 +167,23 @@ Expand-ArchivePrivate
     $shell = New-Object -com Shell.Application
     $zipFile = $shell.NameSpace($Path)
     
-    $shell.Namespace($DestinationPath).CopyHere($zipFile.items())
+    $shell.NameSpace($DestinationPath).CopyHere($zipFile.items())
+    
+}
+
+
+function
+Get-InstalledContainerImage
+{
+    [CmdletBinding()]
+    param(
+        [Parameter(Mandatory=$true)]
+        [string]
+        [ValidateNotNullOrEmpty()]
+        $BaseImageName
+    )
+    
+    return Get-ContainerImage |? IsOSImage |? Name -eq $BaseImageName
 }
 
 
@@ -119,34 +202,37 @@ Get-Nsmm
         $WorkingDir = "$env:temp"
     )
     
-    Write-Output "This script uses a third party tool: NSSM service manager. For more information, see https://nssm.cc/usage"       
+    Write-Output "This script uses a third party tool: NSSM. For more information, see https://nssm.cc/usage"       
     Write-Output "Downloading NSSM..."
 
     $nssmUri = "https://nssm.cc/release/nssm-2.24.zip"            
     $nssmZip = "$($env:temp)\$(Split-Path $nssmUri -Leaf)"
             
     Write-Verbose "Creating working directory..."
-    $tempDirectory = New-Item -ItemType Directory -Force -Path "$($env:temp)\nssm"     
-            
-    wget -Uri $nssmUri -Outfile $nssmZip -UseBasicParsing
-    #TODO Check for errors
+    $tempDirectory = New-Item -ItemType Directory -Force -Path "$($env:temp)\nssm"
+    
+    Copy-File -SourcePath $nssmUri -DestinationPath $nssmZip
             
     Write-Output "Extracting NSSM from archive..."
-    if ($PSVersionTable.PSVersion.Major -ge 5)
+    if (Test-Nano)
     {
-        Expand-Archive -Path $nssmZip -DestinationPath $tempDirectory
+        Expand-ArchiveNano -Path $nssmZip -DestinationPath $tempDirectory.FullName
+    }
+    elseif ($PSVersionTable.PSVersion.Major -ge 5)
+    {
+        Expand-Archive -Path $nssmZip -DestinationPath $tempDirectory.FullName
     }
     else
     {
-        Expand-ArchivePrivate -Path $nssmZip -DestinationPath $tempDirectory
+        Expand-ArchivePrivate -Path $nssmZip -DestinationPath $tempDirectory.FullName
     }
     Remove-Item $nssmZip
 
     Write-Verbose "Copying NSSM to $Destination..."
-    Copy-Item -Path "$tempDirectory\nssm-2.24\win64\nssm.exe" -Destination "$Destination"
+    Copy-Item -Path "$($tempDirectory.FullName)\nssm-2.24\win64\nssm.exe" -Destination "$Destination"
 
     Write-Verbose "Removing temporary directory..."
-    Remove-Item $tempDirectory -Recurse
+    $tempDirectory | Remove-Item -Recurse
 }
 
 
@@ -175,6 +261,237 @@ Test-Admin()
         throw "You must run this script as administrator"   
     }
 }
+
+
+function 
+Test-ContainerProvider()
+{
+    if (-not (Get-Command Install-ContainerImage -ea SilentlyContinue))
+    {   
+        Wait-Network
+
+        Write-Output "Installing ContainerProvider package..."
+        Install-PackageProvider ContainerProvider -Force | Out-Null
+    }
+
+    if (-not (Get-Command Install-ContainerImage -ea SilentlyContinue))
+    {
+        throw "Could not install ContainerProvider"
+    }
+}
+
+
+function 
+Test-Nano()
+{
+    $EditionId = (Get-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion' -Name 'EditionID').EditionId
+
+    return ($EditionId -eq "ServerTuva")
+}
+
+
+function 
+Wait-Network()
+{
+    $connectedAdapter = Get-NetAdapter |? ConnectorPresent
+
+    if ($connectedAdapter -eq $null)
+    {
+        throw "No connected network"
+    }
+       
+    $startTime = Get-Date
+    $timeElapsed = $(Get-Date) - $startTime
+
+    while ($($timeElapsed).TotalMinutes -lt 5)
+    {
+        $readyNetAdapter = $connectedAdapter |? Status -eq 'Up'
+
+        if ($readyNetAdapter -ne $null)
+        {
+            return;
+        }
+
+        Write-Output "Waiting for network connectivity..."
+        Start-Sleep -sec 5
+
+        $timeElapsed = $(Get-Date) - $startTime
+    }
+
+    throw "Network not connected after 5 minutes"
+}
+
+
+function
+Find-DockerImages
+{
+    [CmdletBinding()]
+    param(
+        [Parameter(Mandatory=$true)]
+        [string]
+        [ValidateNotNullOrEmpty()]
+        $BaseImageName
+    )
+
+    return docker images | Where { $_ -match $BaseImageName.tolower() }
+}
+
+
+function 
+Start-Docker()
+{
+    Write-Output "Starting $global:DockerServiceName..."
+    if (Test-Nano)
+    {
+        Start-ScheduledTask -TaskName $global:DockerServiceName
+    }
+    else
+    {
+        Start-Service -Name $global:DockerServiceName
+    }
+}
+
+
+function 
+Stop-Docker()
+{
+    Write-Output "Stopping $global:DockerServiceName..."
+    if (Test-Nano)
+    {
+        Stop-ScheduledTask -TaskName $global:DockerServiceName
+
+        #
+        # ISSUE: can we do this more gently?
+        #
+        Get-Process $global:DockerServiceName | Stop-Process -Force
+    }
+    else
+    {
+        Stop-Service -Name $global:DockerServiceName
+    }
+}
+
+
+function 
+Test-Docker()
+{
+    $service = $null
+
+    if (Test-Nano)
+    {
+        $service = Get-ScheduledTask -TaskName $global:DockerServiceName -ErrorAction SilentlyContinue
+    }
+    else
+    {
+        $service = Get-Service -Name $global:DockerServiceName -ErrorAction SilentlyContinue
+    }
+
+    return ($service -ne $null)
+}
+
+
+function 
+Wait-Docker()
+{
+    Write-Output "Waiting for Docker daemon..."
+    $dockerReady = $false
+    $startTime = Get-Date
+
+    while (-not $dockerReady)
+    {
+        try
+        {
+            if (Test-Nano)
+            {
+                #
+                # Nano doesn't support Invoke-RestMethod, we will parse 'docker ps' output
+                #
+                if ((docker ps 2>&1 | Select-String "error") -ne $null)
+                {
+                    throw "Docker daemon is not running yet"
+                }
+            }
+            else
+            {
+                Invoke-RestMethod -Uri http://127.0.0.1:2375/info -Method GET | Out-Null
+            }
+            $dockerReady = $true
+        }
+        catch 
+        {
+            $timeElapsed = $(Get-Date) - $startTime
+
+            if ($($timeElapsed).TotalMinutes -ge 1)
+            {
+                throw "Docker Daemon did not start successfully within 1 minute."
+            } 
+
+            # Swallow error and try again
+            Start-Sleep -sec 1
+        }
+    }
+    Write-Output "Successfully connected to Docker Daemon."
+}
+
+
+function 
+Write-DockerImageTag()
+{
+    [CmdletBinding()]
+    param(
+        [Parameter(Mandatory=$true)]
+        [string]
+        $BaseImageName
+    )
+
+    $dockerOutput = Find-DockerImages $BaseImageName
+
+    if ($dockerOutput.Count -gt 1)
+    {
+        Write-Output "Base image is already tagged:"
+    }
+    else
+    {
+        if ($dockerOutput.Count -lt 1)
+        {
+            #
+            # Docker restart required if the image was installed after Docker was 
+            # last started
+            #
+            Stop-Docker
+            Start-Docker
+
+            $dockerOutput = Find-DockerImages $BaseImageName
+
+            if ($dockerOutput.Count -lt 1)
+            {
+                throw "Could not find Docker image to match '$BaseImageName'"
+            }
+        }
+
+        if ($dockerOutput.Count -gt 1)
+        {
+            Write-Output "Base image is already tagged:"
+        }
+        else
+        {
+            #
+            # Register the base image with Docker
+            #
+            $imageId = ($dockerOutput -split "\s+")[2]
+
+            Write-Output "Tagging new base image ($imageId)..."
+            
+            docker tag $imageId "$($BaseImageName.tolower()):latest"
+            Write-Output "Base image is now tagged:"
+
+            $dockerOutput = Find-DockerImages $BaseImageName
+        }
+    }
+    
+    Write-Output $dockerOutput
+}
+
 try
 {    
     Update-ContainerHost

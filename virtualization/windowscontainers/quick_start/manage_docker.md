@@ -1,305 +1,345 @@
-# Quick Start: Windows Server Containers and Docker
+# Windows Containers Quick Start - Docker
 
-This article will walk through the fundamentals of managing windows Server Containers with [Docker](https://www.docker.com/) container management. Items covered will include creating Windows Server Containers and Windows Server Container Images, removing Windows Server Containers and Container Images and finally deploying an application into a Windows Server Container. The lessons learned in this walkthrough should enable you to begin exploring deployment and management of Windows Server Containers using Docker.
+Windows Containers can be used to rapidly deploy many isolated applications on a single computer system. This exercise will demonstrate Windows Container creation and management using Docker. When completed you should have a basic understanding of how Docker integrates with Windows Containers and will have gained hands on experience with the technology.
 
-Have questions? Ask them on the [Windows Containers forum](https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers).
+This walkthrough will detail both Windows Server containers and Hyper-V containers. Each type of container has its own basic requirements. Included with the Windows Container documentation is a procedure for quickly deploying a container host. This is the easiest way to quickly start with Windows Containers. If you do not already have a container host, see the [Container Host Deployment Quick Start](./container_setup.md).
 
-> **Note:** Windows Containers created with PowerShell can not currently be managed with Docker and visa versa. To create containers with PowerShell, see  [Quick Start: Windows Server Containers and PowerShell](./manage_powershell.md). <br /><br /> If you want to know more, [read the FAQ](../about/faq.md#WhydoIhavetopickbetweenDockerandPowerShellforWindowsServerContainermanagement).
+The following items will be required for each exercise.
 
-## Prerequisites
-In order to complete this walkthrough the following items need to be in place.
+**Windows Server Containers:**
 
-- Windows Server 2016 TP3 or later configured with the Windows Server Container Feature. If you have completed the setup guide, this is the VM that was created in Azure or Hyper-V.
-- This system must be connected to a network and able to access the internet.
+- A Windows Container Host running Windows Server 2016 (Full or Core), either on-prem or in Azure.
 
-If you need to configure the container feature, see the following guides: [Container Setup in Azure](./azure_setup.md) or [Container Setup in Hyper-V](./container_setup.md). 
+**Hyper-V Containers:**
 
-## Basic Container Management with Docker
+- A Windows Container host enabled with Nested Virtualization.
+- The Windows Server 2016 Media - [Download](https://aka.ms/tp4/serveriso).
 
-This first example will walk through the basics of creating and removing Windows Server Containers and Windows Server Container Images with Docker.
+> Microsoft Azure does not support Hyper-V containers. To complete the Hyper-V exercises, you need an on-prem container host.
 
-To begin the walk through, log into your Windows Server Container Host System, you will see a Windows command prompt.
+## Windows Server Container
 
-![](media/cmd.png)
+Windows Server Containers provide an isolated, portable, and resource controlled operating environment for running applications and hosting processes. Windows Server Containers provide isolation between the container and host, through process and namespace isolation.
 
-Start a PowerShell session by typing `powershell`. You will know that you are in a PowerShell session when the prompt changes from `C:\directory>` to `PS C:\directory>`.
-```
-C:\> powershell
-Windows PowerShell
-Copyright (C) 2015 Microsoft Corporation. All rights reserved.
+### Create Container <!--1-->
 
-PS C:\>
-```
-> This quick start will be focused on Docker commands however some steps such as managing firewall rules and copying files will be run with PowerShell commands. Work through this walkthrough from a PowerShell session.
+Before creating a container, use the `docker images` command to list container images installed on the host.
 
-Next make sure that your system has a valid IP Address using `ipconfig` and take note of this address for later use.
-```
-ipconfig
-
-Ethernet adapter Ethernet 3:
-
-   Connection-specific DNS Suffix  . :
-   IPv6 Address. . . . . . . . . . . : 2601:600:8f01:84eb::e
-   IPv6 Address. . . . . . . . . . . : 2601:600:8f01:84eb:a8c1:a3e:96b7:ffcb
-   Link-local IPv6 Address . . . . . : fe80::a8c1:a3e:96b7:ffcb%5
-   IPv4 Address. . . . . . . . . . . : 192.168.1.25
-```
-
-If you are working from an Azure VM instead of using `ipconfig` you will need to get the public IP address of the Azure Virtual Machine.
-
-![](media/newazure9.png)
-
-### Step 1 - Create a New Container
-
-Before creating a Windows Server Container with Docker you will need the name or ID of an exsisitng Windows Server Container image.
-
-To see all images loaded on the container host use the `docker images` command.
-
-``` PowerShell
-docker images
+```powershell
+PS C:\> docker images
 
 REPOSITORY          TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
-windowsservercore   latest              9eca9231f4d4        30 hours ago        9.613 GB
-windowsservercore   10.0.10254.0        9eca9231f4d4        30 hours ago        9.613 GB
+windowsservercore   10.0.10586.0        6801d964fda5        2 weeks ago         0 B
+windowsservercore   latest              6801d964fda5        2 weeks ago         0 B
+nanoserver          10.0.10586.0        8572198a60f1        2 weeks ago         0 B
+nanoserver          latest              8572198a60f1        2 weeks ago         0 B
 ```
 
-Now, use `docker run` To create a new Windows Server Container. This command as seen below will instruct the Docker daemon to create a new container named ‘dockerdemo’ from the image ‘windowsservercore’ and open an interactive (-it) console session (cmd) with the container.
+For this example, create a container using the Windows Server Core image. This is done with the `docker run command`. For more information on `docker run`, see the [Docker Run reference on docker.com]( https://docs.docker.com/engine/reference/run/).
 
-``` PowerShell
-docker run -it --name dockerdemo windowsservercore cmd
-```
-When the command completes you will be working in a console session on the container.
+This example creates a container named `iisbase`, and starts an interactive session with the container. 
 
-Working in a container is almost identical to working with Windows installed on a virtual or physical machine. You can run commands such as `ipconfig` to return the IP address of the container, `mkdir` to create a new directory, or `powershell` to start a PowerShell session. Go ahead and make a change to the container such as creating a file or folder. For example, the following command will create a file which contains network configuration data about the container.
-
-``` PowerShell
-ipconfig > c:\ipconfig.txt
+```powershell
+C:\> docker run --name iisbase -it windowsservercore cmd
 ```
 
-You can read the contents of the file to ensure the command completed successfully. Notice that the IP address contained in the text file matches that of the container.
+When the container has been created, you will be working in a shell session from within the container. 
 
-``` PowerShell
-type c:\ipconfig.txt
 
-Ethernet adapter vEthernet (Virtual Switch-94a3e12ad262b3059e08edc4d48fca3c8390e38c3b219023d4a0a4951883e658-0):
+### Create IIS Image <!--1-->
 
-   Connection-specific DNS Suffix  . : 
-   Link-local IPv6 Address . . . . . : fe80::cc1f:742:4126:9530%18
-   IPv4 Address. . . . . . . . . . . : 172.16.0.2
-   Subnet Mask . . . . . . . . . . . : 255.240.0.0
-   Default Gateway . . . . . . . . . : 172.16.0.1
+IIS will be installed, and then an image created from the container. To install IIS, run the following.
+
+```powershell
+C:\> powershell.exe Install-WindowsFeature web-server
 ```
 
-Now that the container has been modified, run the following to stop the console session placing you back in the console session of the container host.
+When completed, exit the interactive shell session.
 
-``` PowerShell
-exit
+```powershell
+C:\> exit
 ```
 
-Finally to see a list of containers on the container host use the `docker ps –a` command. Notice from the output that a container named 'dockerdemo' has been created.
+Finally, the container will be committed to a new container image using `docker commit`. This example creates a new container image with the name `windowsservercoreiis`.
 
-``` PowerShell
-docker ps -a
-
-CONTAINER ID        IMAGE               COMMAND        CREATED             STATUS                     PORTS     NAMES
-4f496dbb8048        windowsservercore   "cmd"          2 minutes ago       Exited (0) 2 minutes ago             dockerdemo
-``` 
-
-### Step 2 - Create a New Container Image
-
-An image can now be made from this container. This image will behave like a snapshot of the container and can be re-deployed many times.
-
-To create a new image run the following. This command instructs the Docker engine to create a new image named 'newcontainerimage' that will include all changes made to the 'dockerdemo' container.
-
-``` PowerShell
-docker commit dockerdemo newcontainerimage
+```powershell
+C:\> docker commit iisbase windowsservercoreiis
+4193c9f34e320c4e2c52ec52550df225b2243927ed21f014fbfff3f29474b090
 ```
 
-To see all images on the host, run `docker images`. Notice that a new image has been created with the name 'newcontainerimage'.
+The new IIS images can be viewed using the `docker images` command.
 
-``` PowerShell
-docker images
+```powershell
+C:\> docker images
 
-REPOSITORY          TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
-newcontainerimage   latest              4f8ebcf0a334        2 minutes ago       9.613 GB
-windowsservercore   latest              9eca9231f4d4        30 hours ago        9.613 GB
-windowsservercore   10.0.10254.0        9eca9231f4d4        30 hours ago        9.613 GB
+REPOSITORY             TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
+windowsservercoreiis   latest              4193c9f34e32        4 minutes ago       170.8 MB
+windowsservercore      10.0.10586.0        6801d964fda5        2 weeks ago         0 B
+windowsservercore      latest              6801d964fda5        2 weeks ago         0 B
+nanoserver             10.0.10586.0        8572198a60f1        2 weeks ago         0 B
+nanoserver             latest              8572198a60f1        2 weeks ago         0 B
 ```
 
-### Step 3 - Create New Container From Image
+### Configure Network
+Before creating a container with Docker, a rule needs to be created for the Windows Firewall that will allow network connectivity to the container. Run the following to create a rule for port 80.
 
-Now that you have a custom container image, deploy a new container named 'newcontainer' from 'newcontainerimage' and open an interactive shell session with the container.
-
-``` PowerShell
-docker run –it --name newcontainer newcontainerimage cmd
-```
-
-Take a look at the c:\ drive of this new container and notice that the ipconfig.txt file is present.
-
-![](media/docker3.png)
-
-Exit the newly created container to return to the container hosts console session.
-
-``` PowerShell
-exit
-```
-
-This exercise has shown that an image taken from a modified container will include all modifications. While the example here was a simple file modification, the same would apply if you were to install software into the container such as a web server. Using these methods, custom images can be created that will deploy application ready containers.
-
-### Step 4 - Remove Containers and Images
-
-To remove a container after it is no longer needed use the `docker rm` command. The following command will remove the container name 'newcontainer'.
-
-``` PowerShell
-docker rm newcontainer
-```
-To remove container images when they are no longer needed use the `docker rmi` command. You cannot remove an image if it is referenced by an existing container.
-
-The following command removes the container image named 'newcontainerimage'.
-``` PowerShell
-docker rmi newcontainerimage
-
-Untagged: newcontainerimage:latest
-Deleted: 4f8ebcf0a334601e75070a92294d993b0f182abb6f4c88740c75b05093e6acff
-```
-
-## Host a Web Server in a Container
-
-This next example will demonstrate a more practical use case for Windows Server Containers. The steps included in this exercise will guide you through creating a web server container image that can be used for deploying web applications hosted inside of a Windows Server Container.
-
-### Step 1 - Download Web Server Software
-
-Before creating a container image the web server software will need to be downloaded and staged on the container host. We will be using the nginx for Windows software for this example. **Note** that this step will require the container host to be connected to the internet. If this step produces a connectivity or name resolution error check the network configuration of the container host.
-
-Run the following command on the container host to create the directory structure that will be used for this example.
-
-``` PowerShell
-mkdir c:\build\nginx\source
-```
-
-Run this command on the container host to download the nginx software to 'c:\nginx-1.9.3.zip'.
-
-``` PowerShell
-wget -uri 'http://nginx.org/download/nginx-1.9.3.zip' -OutFile "c:\nginx-1.9.3.zip"
-```
-
-Finally the following command will extract the nginx software to 'C:\build\nginx\source'. 
-
-``` PowerShell
-Expand-Archive -Path C:\nginx-1.9.3.zip -DestinationPath C:\build\nginx\source -Force
-```
-
-### Step 2 - Create Web Server Image
-In the previous example, you manually created, updated and captured a container image. This example will demonstrate an automated method for creating container images using a Dockerfile. Dockerfiles contain instructions that the Docker engine uses to build and modify a container, and then commit the container to a container image. 
-For more information on dockerfiles, see [Dockerfile reference](https://docs.docker.com/reference/builder/).
-
-Use the following command to create an empty dockerfile.
-
-``` PowerShell
-new-item -Type File c:\build\nginx\dockerfile
-```
-Open the dockerfile with notepad.
-
-```
-notepad.exe c:\build\nginx\dockerfile
-```
-
-Copy and paste the following text into notepad, save the file and close notepad.
-
-``` PowerShell
-FROM windowsservercore
-LABEL Description="nginx For Windows" Vendor="nginx" Version="1.9.3"
-ADD source /nginx
-```
-
-At this point the dockerfile will be in 'c:\build\nginx' and the nginx software extracted to 'c:\build\nginx\source'. 
-You are now ready to build the web server container image based on the instructions in the dockerfile. To do this, run the following command on the container host.
-
-``` PowerShell
-docker build -t nginx_windows C:\build\nginx
-```
-This command instructs the docker engine to use the dockerfile located at `C:\build\nginx` to create an image named 'nginx_windows'.
-
-The output will look similar to this:
-
-![](media/docker1.png)
-
-When completed, take a look at the images on the host using the `docker images` command. You should see a new image named 'nginx_windows'.
-``` PowerShell
-docker images
-
-REPOSITORY          TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
-
-nginx_windows       latest              d792268338d0        5 seconds ago       9.613 GB
-windowsservercore   10.0.10254.0        9eca9231f4d4        35 hours ago        9.613 GB
-windowsservercore   latest              9eca9231f4d4        35 hours ago        9.613 GB
-```
-
-### Step 3 – Configure Networking for Container Application
-Because you will be hosting a website inside of a container a few networking related configurations need to be made. First a firewall rule needs to be created on the container host that will allow access to the website. In this example we will be accessing the site through port 80. Run the following script to create this firewall rule. This script can be copied into the VM. 
-
-``` powershell
+```powershell
 if (!(Get-NetFirewallRule | where {$_.Name -eq "TCP80"})) {
     New-NetFirewallRule -Name "TCP80" -DisplayName "HTTP on TCP/80" -Protocol tcp -LocalPort 80 -Action Allow -Enabled True
 }
 ```
 
-Next if you are working from Azure and have not already created a Virtual Machine endpoint you will need to create one now. For more information on Azure VM Endpoints see this article: [Set up Azure VM Endpoints]( https://azure.microsoft.com/en-us/documentation/articles/virtual-machines-set-up-endpoints/).
+You may also want to take note of the container host IP address. This will be use throughout the exercise.
 
-### Step 4 - Deploy Web Server Ready Container
+### Create IIS Container <!--1-->
 
-To deploy a Windows Server Container based off of the 'nginx_windows' container run the following command. This will create a new container named 'nginxcontainer' and start an console session on the container. The –p 80:80 portion of this command creates a port mapping between port 80 on the host to port 80 on the container. 
+You now have a container image that contains IIS, which can be used to deploy IIS ready operating environments. 
 
-``` powershell
-docker run -it --name nginxcontainer -p 80:80 nginx_windows cmd
-```
-Once working inside the container, the nginx web server can be started and web content staged. To start the nginx web server, change to the nginx installation directory.
-
-``` powershell
-cd c:\nginx\nginx-1.9.3
-```
-
-Start the nginx web server.
-``` powershell
-start nginx
-```
-### Step 5 – Access the Container Hosted Website
-
-With the web server container created, you can now checkout the application hosted in the container. To do so, open up a browser on different machine and enter `http://containerhost-ipaddress`. Notice here that you will be browsing to the IP Address of the Container Host and not the container itself. If you are working from an Azure Virtual Machine this will be the public IP address or Cloud Service name. 
-
-If everything has been correctly configured, you will see the nginx welcome page.
-
-![](media/nginx.png)
-
-At this point, feel free to update the website. Copy in your own sample website, or run the following command in the container to replace the nginx welcome page with a ‘Hello World’ web page.
+To create a container from the new image, use the `docker run` command, this time specifying the name of the IIS image. Notice that this sample has specified a parameter `-p 80:80`. Because the container is connected to a virtual switch that is supplying IP addresses .via network address translation, a port needs to be mapped from the container host, to a port on the containers NAT IP address. For more information on the `-p` see the [Docker Run reference on docker.com]( https://docs.docker.com/engine/reference/run/)
 
 ```powershell
-powershell wget -uri 'https://raw.githubusercontent.com/Microsoft/Virtualization-Documentation/master/doc-site/virtualization/windowscontainers/quick_start/SampleFiles/index.html' -OutFile "C:\nginx\nginx-1.9.3\html\index.html"
+C:\> docker run --name iisdemo -it -p 80:80 windowsservercoreiis cmd
 ```
 
-After the website has been updated, navigate back to `http://containerhost-ipaddress`.
+When the container has been created, open a browser, and browse to the IP address of the container host. Because port 80 of the host has been mapped to port 80 if the container, the IIS splash screen should be displayed.
 
-![](media/hello.png)
+![](media/iis1.png)
 
-> **Note:** If you would like to change the Docker Daemon settings (such as to change the port it listens to, to connect to a container remotely), you will need to edit the file "C:\ProgramData\docker\runDockerDaemon.cmd" in the container, and then you will need to restart the service with PowerShell, using ```Restart-Service docker```.
+### Create Application <!--1-->
 
-## Video Walkthrough
+Run the following command to remove the IIS splash screen.
 
-<iframe src="https://channel9.msdn.com/Blogs/containers/Quick-Start-Deploying-and-Managing-Windows-Server-Containers-with-Docker/player" width="800" height="450"  allowFullScreen="true" frameBorder="0" scrolling="no"></iframe>
+```powershell
+C:\> del C:\inetpub\wwwroot\iisstart.htm
+```
 
-## Next Steps
-Now that you have containers set up and an introduction to the tools, go build your own containerized apps.
+Run the following command to replace the default IIS site with a new static site.
 
-Learn more about [Docker](https://www.docker.com/).
+```powershell
+C:\> echo "Hello World From a Windows Server Container" > C:\inetpub\wwwroot\index.html
+```
 
-Remember, this is a **preview** there are bugs and we have a lot of work in progress.  [This page](../about/work_in_progress.md) contains many of our known issues.
+Browse again to the IP Address of the container host, you should now see the ‘Hello World’ application. Note – you may need to close any existing browser connections, or clear browser cache to see the updated application.
 
-Be aware that there are some known Docker commands that [don't work](../about/work_in_progress.md#DockermanagementDockercommandsthatdontworkwithWindowsServerContainers) and some that only [partially work](../about/work_in_progress.md#DockermanagementDockercommandsthatpartiallyworkwithWindowsServerContainers)
+![](media/HWWINServer.png)
 
-We are also monitoring the [forums](https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers) very closely.
+Exit the interactive session with the container.
 
-There are also pre-made samples on [GitHub](https://github.com/Microsoft/Virtualization-Documentation/tree/master/windows-server-container-samples).
+```powershell
+C:\> exit
+```
 
------------------------------------
-[Back to Container Home](../containers_welcome.md)   
-[Known Issues for Current Release](../about/work_in_progress.md)
+Remove the container
+
+```powershell
+C:\> docker rm iisdemo
+```
+Remove the IIS image.
+
+```powershell
+C:\> docker rmi windowsservercoreiis
+```
+
+## Dockerfile
+
+Through the last exercise, a container was manually created, modified, and then captured into a new container image. Docker includes a method for automating this process, using what is called a dockerfile. This exercise will have identical results as the last, however this time the process will be completely automated.
+
+### Create IIS Image
+
+On the container host, create a directory `c:\build`, and in this directory create a file named `dockerfile`.
+
+```powershell
+C:\> powershell new-item c:\build\dockerfile -Force
+```
+
+Open the dockerfile in notepad.
+
+```powershell
+C:\> notepad c:\build\dockerfile
+```
+
+Copy the following text into the dockerfile and save the file. These commands instruct Docker to create a new image, using `windosservercore` as the base, and include the modifications specified with `RUN`. For more information on Dockerfiles, see the [Dockerfile reference at docker.com](http://docs.docker.com/engine/reference/builder/).
+
+```powershell
+FROM windowsservercore
+RUN dism /online /enable-feature /all /featurename:iis-webserver /NoRestart
+RUN echo "Hello World - Dockerfile" > c:\inetpub\wwwroot\index.html
+```
+
+This command will start the automated image build process. The `-t` parameter instructs the process to name the new image `iis`.
+
+```powershell
+C:\> docker build -t iis c:\Build
+```
+
+When completed, you can verify that the image has been created using the `docker images` command.
+
+```powershell
+C:\> docker images
+
+REPOSITORY          TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
+iis                 latest              abb93867b6f4        26 seconds ago      209 MB
+windowsservercore   10.0.10586.0        6801d964fda5        2 weeks ago         0 B
+windowsservercore   latest              6801d964fda5        2 weeks ago         0 B
+nanoserver          10.0.10586.0        8572198a60f1        2 weeks ago         0 B
+nanoserver          latest              8572198a60f1        2 weeks ago         0 B
+```
+
+### Deploy IIS Container
+
+Now, just like in the last exercise, deploy the container, mapping port 80 of the host to port 80 of the container.
+
+```powershell
+C:\> docker run --name iisdemo -it -p 80:80 iis cmd
+```
+
+Once the container has been created, browse to the IP address of the container host. You should see the hello world application.
+
+![](media/dockerfile2.png)
+
+Exit the interactive session with the container.
+
+```powershell
+C:\> exit
+```
+
+Remove the container
+
+```powershell
+C:\> docker rm iisdemo
+```
+Remove the IIS image.
+
+```powershell
+C:\> docker rmi iis
+```
+
+## Hyper-V Container
+
+Hyper-V Containers provide an additional layer of isolation over Windows Server Containers. Each Hyper-V Container is created within a highly optimized virtual machine. Where a Windows Server Container shares a kernel with the Container host, a Hyper-V container is completely isolated. Hyper-V Containers are created and managed identically to Windows Server Containers. For more information about Hyper-V Containers see [Managing Hyper-V Containers](../management/hyperv_container.md).
+
+> Microsoft Azure does not support Hyper-V containers. To complete the Hyper-V exercises, you need an on-prem container host.
+
+### Create Container <!--2-->
+
+Because the container will be running a Nano Server OS Image, the Nano Server IIS packages will be needed to install IIS. These can be found on the Windows Sever 2016 TP4 Installation media, under the `NanoServer\Packages` directory.
+
+In this example a directory from the container host will be made available to the running container using the `-v` parameter of `docker run`. Before doing so, the source directory will need to be configured. 
+
+Create a directory on the container host that will be shared with the container. If you have already completed the PowerShell walkthrough, this directory and the needed files may already exist. 
+
+```powershell
+C:\> powershell New-Item -Type Directory c:\share\en-us
+```
+
+Copy `Microsoft-NanoServer-IIS-Package.cab` from `NanoServer\Packages` to `c:\share` on the container host. 
+
+Copy `NanoServer\Packages\en-us\Microsoft-NanoServer-IIS-Package.cab` to `c:\share\en-us` on the container host.
+
+Create a file in the c:\share folder named unattend.xml, copy this text into the unattend.xml file.
+
+```powershell
+<?xml version="1.0" encoding="utf-8"?>
+<unattend xmlns="urn:schemas-microsoft-com:unattend">
+    <servicing>
+        <package action="install">
+            <assemblyIdentity name="Microsoft-NanoServer-IIS-Package" version="10.0.10586.0" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" />
+            <source location="c:\iisinstall\Microsoft-NanoServer-IIS-Package.cab" />
+        </package>
+        <package action="install">
+            <assemblyIdentity name="Microsoft-NanoServer-IIS-Package" version="10.0.10586.0" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="en-US" />
+            <source location="c:\iisinstall\en-us\Microsoft-NanoServer-IIS-Package.cab" />
+        </package>
+    </servicing>
+</unattend>
+```
+
+When completed, the `c:\share` directory, on the container host, should be configured like this.
+
+```
+c:\share
+|-- en-us
+|    |-- Microsoft-NanoServer-IIS-Package.cab
+|
+|-- Microsoft-NanoServer-IIS-Package.cab
+|-- unattend.xml
+```
+
+To create a Hyper-V container using docker, specify the `--isolation=hyperv` parameter. This example mounts the `c:\share` directory from the host, to the `c:\iisinstall` directory of the container, and then creates an interactive shell session with the container.
+
+```powershell
+C:\> docker run --name iisnanobase -it -v c:\share:c:\iisinstall --isolation=hyperv nanoserver cmd
+```
+
+### Create IIS Image <!--2-->
+
+From within the container shell session, IIS can be installed using `dism`. Run the following command to install IIS in the container.
+
+```powershell
+C:\> dism /online /apply-unattend:c:\iisinstall\unattend.xml
+```
+
+When the IIS installation has complete, manually start IIS with the following command.
+
+```powershell
+C:\> Net start w3svc
+```
+
+Exit the container session.
+
+```powershell
+C:\> exit
+```
+
+### Create IIS Container <!--2-->
+
+The modified Nano Server container can now be committed to a new container image. To do so, use the `docker commit` command.
+
+```powershell
+C:\> docker commit iisnanobase nanoserveriis
+```
+
+The results can be seen when returning a list of container images.
+
+```powershell
+C:\> docker images
+
+REPOSITORY          TAG                 IMAGE ID            CREATED              VIRTUAL SIZE
+nanoserveriis       latest              444435a4e30f        About a minute ago   69.14 MB
+windowsservercore   10.0.10586.0        6801d964fda5        2 weeks ago          0 B
+windowsservercore   latest              6801d964fda5        2 weeks ago          0 B
+nanoserver          10.0.10586.0        8572198a60f1        2 weeks ago          0 B
+nanoserver          latest              8572198a60f1        2 weeks ago          0 B
+```
+
+### Create Application <!--2-->
+
+The Nano Server IIS image can now be deployed to a new container.
+
+```powershell
+C:\> docker run -it -p 80:80 --isolation=hyperv nanoserveriis cmd
+```
+
+Run the following command to remove the IIS splash screen.
+
+```powershell
+C:\> del C:\inetpub\wwwroot\iisstart.htm
+```
+
+Run the following command to replace the default IIS site with a new static site.
+
+```powershell
+C:\> echo "Hello World From a Hyper-V Container" > C:\inetpub\wwwroot\index.html
+```
+
+Browse to the IP Address of the container host, you should now see the ‘Hello World’ application. Note – you may need to close any existing browser connections, or clear browser cache to see the updated application.
+
+![](media/HWWINServer.png)
+
+Exit the interactive session with the container.
+
+```powershell
+C:\ >exit
+```
+
+
