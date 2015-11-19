@@ -244,25 +244,14 @@ New-ContainerNatSwitch
         [ValidateNotNullOrEmpty()]
         $SubnetPrefix
     )
+           
+    #
+    # Workaround for switch bootstrap bug
+    #
+    Get-VMHost | Out-Null
 
     Write-Output "Creating container switch (NAT)..."
-    try
-    {
-        New-VmSwitch $global:SwitchName -SwitchType NAT -NatSubnetAddress $SubnetPrefix -ErrorAction SilentlyContinue | Out-Null
-
-        if ((Get-VMSwitch) -eq $null)
-        {
-            throw
-        }
-    }
-    catch
-    {        
-        #
-        # Workaround for switch bootstrap bug
-        #
-        Write-Verbose "Networking bootstrap issue hit.  Retrying..."
-        New-VmSwitch $global:SwitchName -SwitchType NAT -NatSubnetAddress $SubnetPrefix | Out-Null
-    }
+    New-VmSwitch $global:SwitchName -SwitchType NAT -NatSubnetAddress $SubnetPrefix | Out-Null
 }
 
 
