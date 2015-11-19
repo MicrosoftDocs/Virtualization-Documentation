@@ -67,6 +67,8 @@ Information in the registry per service:
 
 To register your own service, create a new registry key using your own GUID and friendly name.
 
+The friendly name will be associated with your new application.  It will appear in performance counters and other places where a GUID isn't appropriate.
+
 The registry entry will look like this:
 ```
 HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Virtualization\GuestCommunicationServices\
@@ -80,9 +82,6 @@ HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Virtualization\G
 ``` PowerShell
 [System.Guid]::NewGuid().ToString() | clip.exe
 ```
-
-The friendly name will be associated with your new application.  It will appear in performance counters and other places where a GUID isn't appropriate.
-
 
 ## Creating a Hyper-V socket
 
