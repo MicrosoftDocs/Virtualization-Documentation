@@ -16,7 +16,7 @@ The steps listed in this table can be used to deploy a container host to Windows
 <td width = "70%">**Details**</td>
 </tr>
 <tr>
-<td>[Install the Container feature](#role)</td>
+<td>[Install the Container Feature](#role)</td>
 <td>The container feature enables use of Windows Server and Hyper-V container.</td>
 </tr>
 <tr>
@@ -146,25 +146,25 @@ New-NanoServerImage -MediaPath $WindowsMedia -BasePath c:\nano -TargetPath C:\na
 ```
 When completed, create a virtual machine from the `NanoContainer.vhdx` file. This virtual machine will be running the Nano Server OS, with optional packages.
 
-### <a name=hypv></a>Configure Hyper-V
+### Configure Hyper-V
 
 Two scenarios need to be considered in regard to Hyper-V and Windows Containers.
 
 - The container host will be hosting Hyper-V containers.
 - The container host itself is a Hyper-V virtual machine.
 
-If Hyper-V containers will be used, the Hyper-V role needs to be installed. This can be completed on Windows Server 2016 or Windows Server 2016 Core using the following PowerShell command. For Nano Server Configuration, see [Prepare Nano Server](#nano).
-
-```powershell
-Install-WindowsFeature hyper-v
-```
-
-<a name=nest></a>If the container host itself is a Hyper-V virtual machine, and will be running Hyper-V containers, nested virtualization needs to be enabled. This can be completed with the following PowerShell Command.
+<a name=nest></a>If the container host itself will be a Hyper-V virtual machine, and will also be running Hyper-V containers, nested virtualization needs to be enabled. This can be completed with the following PowerShell Command.
 
 > The virtual machines must be turned off when running this command.
 
 ```powershell
 Set-VMProcessor -VMName <container host vm> -ExposeVirtualizationExtensions $true
+```
+
+<a name=hypv></a>The Hyper-V role can be installed on Windows Server 2016 or Windows Server 2016 Core using the following PowerShell command. For Nano Server Configuration, see [Prepare Nano Server](#nano).
+
+```powershell
+Install-WindowsFeature hyper-v
 ```
 
 ### Configure Networking
