@@ -158,10 +158,10 @@ Deleted: ca40b33453f803bb2a5737d4d5dd2f887d2b2ad06b55ca681a96de8432b5999d
 
 The Docker Hub registry contains pre-built images which can be downloaded onto a container host. Once these images have been downloaded, they can be used as the base for Windows Container Applications.
 
-To see a list of images available from Docker Hub use the `docker search` command. Note – during this pre-release, the output of `docker search` has been hard coded.
+To see a list of images available from Docker Hub use the `docker search` command. Note – the Windows Serve Core Base OS Image will need to be installed before pulling images dependent on Windows Server Core from Docker Hub.
 
 ```powershell
-docker search windows
+docker search *
 
 #output
 
@@ -182,6 +182,33 @@ microsoft/rails         Ruby on Rails installed in a Windows Serve...   1       
 microsoft/redis         Redis installed in a Windows Server Core b...   1                    [OK]
 microsoft/ruby          Ruby installed in a Windows Server Core ba...   1                    [OK]
 microsoft/sqlite        SQLite installed in a Windows Server Core ...   1                    [OK]
+```
+
+To download an image from Docker Hub, use `docker pull`.
+
+```powershell
+docker pull microsoft/aspnet
+
+#output
+
+Using default tag: latest
+latest: Pulling from microsoft/aspnet
+f9e8a4cc8f6c: Pull complete
+
+b71a5b8be5a2: Download complete
+```
+
+The image will now be visible when running `docker images`.
+
+```powershell
+docker images
+
+#output
+
+REPOSITORY          TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
+microsoft/aspnet    latest              b3842ee505e5        5 hours ago         101.7 MB
+windowsservercore   10.0.10586.0        6801d964fda5        2 weeks ago         0 B
+windowsservercore   latest              6801d964fda5        2 weeks ago         0 B
 ```
 
 ### Image Dependency
