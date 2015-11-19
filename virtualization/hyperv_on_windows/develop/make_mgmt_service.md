@@ -149,6 +149,8 @@ In lieu of an IP or hostname, AF_HYPERV endpoints rely heavily on two GUIDS:
   ```
 * Service ID – GUID, [described above](#RegisterANewApplication), with which the application is registered in the Hyper-V host registry.
 
+There is also a set of VMID wildcards available when a connection isn't to a specific virtual machine.
+ 
 ### VMID Wildcards
 
 | Name | GUID | Description |
@@ -158,18 +160,15 @@ In lieu of an IP or hostname, AF_HYPERV endpoints rely heavily on two GUIDS:
 | HV_GUID_BROADCAST | FFFFFFFF-FFFF-FFFF-FFFF-FFFFFFFFFFFF | |  
 | HV_GUID_CHILDREN | 90db8b89-0d35-4f79-8ce9-49ea0ac8b7cd | Wildcard address for children. Listeners should bind to this VmId to accept connection from its children. |
 | HV_GUID_LOOPBACK | e0e16197-dd56-4a10-9195-5ee7a155a838 | Loopback address. Using this VmId connects to the same partition as the connector. |
-| HV_GUID_PARENT | a42e7cda-d03f-480c-9cc2-a4de20abb878 | Parent address. Using this VmId connects to the parent partition of the connector. |
+| HV_GUID_PARENT | a42e7cda-d03f-480c-9cc2-a4de20abb878 | Parent address. Using this VmId connects to the parent partition of the connector.***** |
 
 
-HV_GUID_PARENT
-Parent address. Using this VmId connects to the parent partition of the connector.
-The parent of a virtual machine is its host.
-The parent of a container is the container's host.
-Connecting from a container running in a virtual machine will connect to the VM hosting the container.
-
-Listening on this VmId accepts connection from:
-(Inside containers): Container host.
-(Inside VM: Container host/ no container): VM host.
+*****HV_GUID_PARENT  
+The parent of a virtual machine is its host.  The parent of a container is the container's host.  
+Connecting from a container running in a virtual machine will connect to the VM hosting the container.  
+Listening on this VmId accepts connection from:  
+(Inside containers): Container host.  
+(Inside VM: Container host/ no container): VM host.  
 (Not inside VM: Container host/ no container): Not supported.
 
 ## Supported socket commands
