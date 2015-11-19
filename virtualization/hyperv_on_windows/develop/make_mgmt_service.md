@@ -160,10 +160,10 @@ There is also a set of VMID wildcards available when a connection isn't to a spe
 | HV_GUID_BROADCAST | FFFFFFFF-FFFF-FFFF-FFFF-FFFFFFFFFFFF | |  
 | HV_GUID_CHILDREN | 90db8b89-0d35-4f79-8ce9-49ea0ac8b7cd | Wildcard address for children. Listeners should bind to this VmId to accept connection from its children. |
 | HV_GUID_LOOPBACK | e0e16197-dd56-4a10-9195-5ee7a155a838 | Loopback address. Using this VmId connects to the same partition as the connector. |
-| HV_GUID_PARENT | a42e7cda-d03f-480c-9cc2-a4de20abb878 | Parent address. Using this VmId connects to the parent partition of the connector.***** |
+| HV_GUID_PARENT | a42e7cda-d03f-480c-9cc2-a4de20abb878 | Parent address. Using this VmId connects to the parent partition of the connector.** \* ** |
 
 
-*****HV_GUID_PARENT  
+** \* ** HV_GUID_PARENT  
 The parent of a virtual machine is its host.  The parent of a container is the container's host.  
 Connecting from a container running in a virtual machine will connect to the VM hosting the container.  
 Listening on this VmId accepts connection from:  
