@@ -224,14 +224,14 @@ WindowsServerCore    10.0.10586.0            Container OS Image of Windows Serve
 To download and install the Nano Server base OS image, run the following.
 
 ```powershell
-PS C:\> Install-ContainerImage -Name NanoServer -Version 10.0.10586.8
+PS C:\> Install-ContainerImage -Name NanoServer -Version 10.0.10586.0
 Downloaded in 0 hours, 0 minutes, 10 seconds.
 ```
 
 Likewise, this command downloads and installs the Windows Server Core base OS image.
 
 ```powershell
-PS C:\> Install-ContainerImage -Name WindowsServerCore -Version 10.0.10586.8
+PS C:\> Install-ContainerImage -Name WindowsServerCore -Version 10.0.10586.0
 Downloaded in 0 hours, 2 minutes, 28 seconds.
 ```
 
@@ -242,8 +242,8 @@ PS C:\> Get-ContainerImage
 
 Name              Publisher    Version      IsOSImage
 ----              ---------    -------      ---------
-NanoServer        CN=Microsoft 10.0.10586.8 True
-WindowsServerCore CN=Microsoft 10.0.10586.8 True
+NanoServer        CN=Microsoft 10.0.10586.0 True
+WindowsServerCore CN=Microsoft 10.0.10586.0 True
 ```  
 For more information on Container image management see [Windows Container Images](../management/manage_images.md).
  
