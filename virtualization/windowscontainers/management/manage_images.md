@@ -65,8 +65,8 @@ PS C:\> Get-ContainerImage
 
 Name              Publisher    Version      IsOSImage
 ----              ---------    -------      ---------
-NanoServer        CN=Microsoft 10.0.10586.8 True
-WindowsServerCore CN=Microsoft 10.0.10586.8 True
+NanoServer        CN=Microsoft 10.0.10586.0 True
+WindowsServerCore CN=Microsoft 10.0.10586.0 True
 ```  
 For more information on Container image management see [Windows Container Images](../management/manage_images.md).
 
