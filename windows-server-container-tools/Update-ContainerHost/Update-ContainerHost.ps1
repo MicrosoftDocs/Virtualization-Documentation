@@ -32,8 +32,7 @@ param(
     [Parameter(ParameterSetName="IncludeDocker")]
     [string]
     [ValidateNotNullOrEmpty()]
-    $DockerPath = "\\vmstore\public\docker\master\latest\docker.exe"
-#    $DockerPath = "https://aka.ms/tp4/docker"
+    $DockerPath = "https://aka.ms/tp4/docker"
 )
 
 
@@ -272,15 +271,6 @@ Test-ContainerProvider()
         Wait-Network
 
         Write-Output "Installing ContainerProvider package..."
-        # TODO: remove below 3 lines when this is published
-        if (-not (Test-Nano))
-        {
-            Invoke-RestMethod 'https://go.microsoft.com/fwlink/?LinkID=627338&clcid=0x409'
-        }
-        
-        Install-PackageProvider NuGet -Force | Out-Null
-        Register-PSRepository -name psgetint -SourceLocation http://psget/psgallery/api/v2 | Out-Null
-        
         Install-PackageProvider ContainerProvider -Force | Out-Null
     }
 

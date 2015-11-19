@@ -20,30 +20,32 @@ Windows Containers consist of several components such as the Windows Container H
 Start a PowerShell session as Administrator. This can be done by right clicking on the PowerShell icon and selecting ‘Run as Administrator’, or by running the following command from any PowerShell session.
 
 ``` powershell
-start-process powershell -Verb runAs
+PS C:\> start-process powershell -Verb runAs
 ```
 
-Use the following command to download the configuration script. The script can also be manually downloaded from this location - [Configuration Script](https://aka.ms/newcontainerhost).
+Use the following command to download the configuration script. The script can also be manually downloaded from this location - [Configuration Script](https://aka.ms/tp4/New-ContainerHost).
  
 ``` PowerShell
-wget -uri https://aka.ms/newcontainerhost -OutFile c:\New-ContainerHost.ps1
+PS C:\> wget -uri https://aka.ms/tp4/New-ContainerHost -OutFile c:\New-ContainerHost.ps1
 ```
    
 Run the following command to create and configure the container host, where `<containerhost>` will be the virtual machine name, and `<password>` will be the password assigned to the Administrator account.
 
 ``` powershell
-c:\New-ContainerHost.ps1 –VmName <containerhost> -Password <password> -WindowsImage ServerDatacenterCore -Hyperv
+PS C:\> c:\New-ContainerHost.ps1 –VmName <containerhost> -WindowsImage ServerDatacenterCore -Hyperv
 ```
+
+When the script begins, you will be prompted for a password. This will be the password assigned to the Administrator account.
   
-When the script begins, you will be asked to read and accept licensing terms.
+Next, you will be asked to read and accept licensing terms.
 
 ```
 Before installing and using the Windows Server Technical Preview 4 with Containers virtual machine you must:
-    1. Review the license terms by navigating to this link: https://aka.ms/WindowsServerTP3ContainerVHDEula
+    1. Review the license terms by navigating to this link: http://aka.ms/tp4/containerseula
     2. Print and retain a copy of the license terms for your records.
 By downloading and using the Windows Server Technical Preview 4 with Containers virtual machine you agree to such
 license terms. Please confirm you have accepted and agree to the license terms.
-[N] No  [Y] Yes  [?] Help (default is "N"): Y
+[N] No  [Y] Yes  [?] Help (default is "N"):
 ```
 
 The script will then begin to download and configure the Windows Container components. This process may take quite some time due to the large download. When finished your Virtual Machine will be configured and ready for you to create and manage Windows Containers and Windows Container Images with both PowerShell and Docker.  
@@ -56,7 +58,7 @@ Get-VM | Get-VMNetworkAdapter | Connect-VMNetworkAdapter -Switchname <switchname
 If you do, check the properties of the virtual machine and connect the virtual machine to a virtual switch. You can also run the following PowerShell command where `<switchname>` is the name of the Hyper-V virtual switch that you would like to connect to the virtual machine.
 
 ``` powershell 
-Get-VM | Get-VMNetworkAdapter | Connect-VMNetworkAdapter -Switchname <switchname>
+PS C:\> Get-VM | Get-VMNetworkAdapter | Connect-VMNetworkAdapter -Switchname <switchname>
 ```
 
 When the configuration script has completed, log into the virtual machine using the password specified during the configuration process and make sure that the Virtual Machine has a valid IP address. With these items completed your system should be ready for Windows Containers. 
