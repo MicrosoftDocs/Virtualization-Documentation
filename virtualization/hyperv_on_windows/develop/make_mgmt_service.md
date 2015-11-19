@@ -32,7 +32,7 @@ To write a simple application, you'll need:
   * Host and guest (VM) OS must be Windows 10, Windows Server Technical Preview 3, or later.
 * Windows SDK -- here's a link to the [Win10 SDK](https://dev.windows.com/en-us/downloads/windows-10-sdk) which includes `hvsocket.h`.
 
-### Register a new application
+## Register a new application
 In order to use Hyper-V sockets, the application must be registered with the Hyper-V Host's registry.
 
 By registering the service in the registry, you get:
@@ -84,7 +84,7 @@ HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Virtualization\G
 The friendly name will be associated with your new application.  It will appear in performance counters and other places where a GUID isn't appropriate.
 
 
-### Creating a Hyper-V socket
+## Creating a Hyper-V socket
 
 In the most basic case, defining a socket requires an address family, connection type, and protocol.
 
@@ -112,7 +112,7 @@ SOCKET sock = socket(AF_HYPERV, SOCK_STREAM, HV_PROTOCOL_RAW);
 ```
 
 
-### Binding to a Hyper-V socket
+## Binding to a Hyper-V socket
 
 Bind associates a socket with connection information.
 
@@ -126,32 +126,51 @@ int bind(
 );
 ```
 
-In contrast to the Internet Protocol address family (`AF_INET`) which consists of the host machine's IP address and a port number on that host, `AF_HYPERV` uses the virtual machine's ID and the application ID defined above to establish a connection. 
+In contrast to the socket address (sockaddr) for a standard Internet Protocol address family (`AF_INET`) which consists of the host machine's IP address and a port number on that host, the socket address for `AF_HYPERV` uses the virtual machine's ID and the application ID defined above to establish a connection. 
+
+Since Hyper-V sockets do not depend on a networking stack, TCP/IP, DNS, etc. the socket end point needed a non-IP, not hostname, format that still describes the connection.
+
+Here is the definition for a Hyper-V socket's socket address:
 
 ``` C
-typedef struct _SOCKADDR_HV
+struct SOCKADDR_HV
 {
      ADDRESS_FAMILY Family;
      USHORT Reserved;
      GUID VmId;
      GUID ServiceId;
-}SOCKADDR_HV, *PSOCKADDR_HV;
+};
 ```
 
+In lieu of an IP or hostname, AF_HYPERV endpoints rely heavily on two GUIDS:  
+* VM ID – this is the unique ID assigned per VM.  A VM’s ID can be found using the following PowerShell snippet.  
+  ```PowerShell
+  (Get-VM -Name $VMName).Id
+  ```
+* Service ID – GUID, [described above](#RegisterANewApplication), with which the application is registered in the Hyper-V host registry.
 
-### Create a Hyper-V socket
+### VMID Wildcards
 
-Since Hyper-V sockets do not depend on a networking stack, TCP/IP, DNS, etc. the socket end point needed a non-IP, not hostname, format that still describes the connection.  In lieu of an IP or hostname, AF_HYPERV endpoints rely heavily on two GUIDS:  
-* VM ID – this is the unique ID assigned per VM.  A VM’s ID can be found using the following PowerShell snippet.
-```PowerShell
-(Get-VM -Name vmname).Id
-```
-* Service ID – GUID under which the service is registered in the Hyper-V host registry.  See [Registering a New Service](#GettingStarted).
+| Name | GUID | Description |
+|:-----|:-----|:-----|
+| HV_GUID_ZERO | 00000000-0000-0000-0000-000000000000 | Listeners should bind to this VmId to accept connection from all partitions. |
+| HV_GUID_WILDCARD | 00000000-0000-0000-0000-000000000000 | Listeners should bind to this VmId to accept connection from all partitions. |
+| HV_GUID_BROADCAST | FFFFFFFF-FFFF-FFFF-FFFF-FFFFFFFFFFFF | |  
+| HV_GUID_CHILDREN | 90db8b89-0d35-4f79-8ce9-49ea0ac8b7cd | Wildcard address for children. Listeners should bind to this VmId to accept connection from its children. |
+| HV_GUID_LOOPBACK | e0e16197-dd56-4a10-9195-5ee7a155a838 | Loopback address. Using this VmId connects to the same partition as the connector. |
+| HV_GUID_PARENT | a42e7cda-d03f-480c-9cc2-a4de20abb878 | Parent address. Using this VmId connects to the parent partition of the connector. |
 
-For connections from a service on the host to the service on a VM:  
-VMID and Service ID
-For connections from a service on a VM to the service on the host:  
-Zero GUID and Service ID
+
+HV_GUID_PARENT
+Parent address. Using this VmId connects to the parent partition of the connector.
+The parent of a virtual machine is its host.
+The parent of a container is the container's host.
+Connecting from a container running in a virtual machine will connect to the VM hosting the container.
+
+Listening on this VmId accepts connection from:
+(Inside containers): Container host.
+(Inside VM: Container host/ no container): VM host.
+(Not inside VM: Container host/ no container): Not supported.
 
 ## Supported socket commands
 
