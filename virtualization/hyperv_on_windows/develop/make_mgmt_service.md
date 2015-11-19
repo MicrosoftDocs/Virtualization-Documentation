@@ -83,6 +83,7 @@ HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Virtualization\G
 
 The friendly name will be associated with your new application.  It will appear in performance counters and other places where a GUID isn't appropriate.
 
+
 ### Creating a Hyper-V socket
 
 In the most basic case, defining a socket requires an address family, connection type, and protocol.
@@ -112,6 +113,31 @@ SOCKET sock = socket(AF_HYPERV, SOCK_STREAM, HV_PROTOCOL_RAW);
 
 
 ### Binding to a Hyper-V socket
+
+Bind associates a socket with connection information.
+
+The function definition is copied below for convinience, read more about bind [here](https://msdn.microsoft.com/en-us/library/windows/desktop/ms737550.aspx).
+
+``` C
+int bind(
+  _In_ SOCKET                s,
+  _In_ const struct sockaddr *name,
+  _In_ int                   namelen
+);
+```
+
+In contrast to the Internet Protocol address family (`AF_INET`) which consists of the host machine's IP address and a port number on that host, `AF_HYPERV` uses the virtual machine's ID and the application ID defined above to establish a connection. 
+
+``` C
+typedef struct _SOCKADDR_HV
+{
+     ADDRESS_FAMILY Family;
+     USHORT Reserved;
+     GUID VmId;
+     GUID ServiceId;
+}SOCKADDR_HV, *PSOCKADDR_HV;
+```
+
 
 ### Create a Hyper-V socket
 
