@@ -15,7 +15,7 @@ The following items will be required for each exercise.
 - A Windows Container host enabled with Nested Virtualization.
 - The Windows Server 2016 Media - [Download](https://aka.ms/tp4/serveriso).
 
-> Microsoft Azure does not support Hyper-V containers. To complete the Hyper-V exercises, you need an on-prem container host.
+> Microsoft Azure does not support Hyper-V containers. To complete the Hyper-V Container exercises, you need an on-prem container host.
 
 ## Windows Server Container
 
