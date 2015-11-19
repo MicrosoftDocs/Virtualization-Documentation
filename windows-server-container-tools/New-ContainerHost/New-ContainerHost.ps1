@@ -703,7 +703,7 @@ New-ContainerHost()
     $vm = New-VM -Name $VmName -VHDPath $bootVhd.Path -Generation 1
 
     Write-Output "Configuring VM $($vm.Name)..."
-    $vm | Set-VMProcessor -Count [Math]::min((Get-VMHost).LogicalProcessorCount, 64)
+    $vm | Set-VMProcessor -Count ([Math]::min((Get-VMHost).LogicalProcessorCount, 64))
     $vm | Get-VMDvdDrive | Remove-VMDvdDrive
     $vm | Set-VM -DynamicMemory | Out-Null
     
