@@ -320,11 +320,7 @@ Cache-HostFiles
 
                     Import-Module "$($driveLetter):\NanoServer\NanoServerImageGenerator.psm1"
                     
-                    #
-                    # TODO - make all passwords secure strings
-                    #
-                    $securePassword = ConvertTo-SecureString $Password -AsPlainText -Force
-                    New-NanoServerImage -MediaPath "$($driveLetter):\" -TargetPath $global:localVhdPath -Compute -Containers -ReverseForwarders -GuestDrivers -AdministratorPassword $securePassword
+                    New-NanoServerImage -MediaPath "$($driveLetter):\" -TargetPath $global:localVhdPath -Compute -Containers -ReverseForwarders -GuestDrivers -AdministratorPassword $Password
                 }
                 else
                 {
@@ -759,8 +755,7 @@ New-ContainerHost()
 
     if ($global:PowerShellDirectMode)
     {
-        $securePassword = ConvertTo-SecureString $Password -AsPlainText -Force
-        $credential = New-Object System.Management.Automation.PsCredential("Administrator", $securePassword)  
+        $credential = New-Object System.Management.Automation.PsCredential("Administrator", $Password)  
         
         $psReady = $false
 
