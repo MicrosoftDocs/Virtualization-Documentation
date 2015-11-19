@@ -2,6 +2,8 @@
 
 Before creating and managing Windows Server Containers in Azure you will need to deploy a Windows Server 2016 Technical Preview image which has been pre-configured with the Windows Server Containers feature. This guide will walk you through this process.
 
+> Microsoft Azure does not support Hyper-V containers. To complete Hyper-V Container exercises, you need an on-prem container host.
+
 ## Start Using Azure Portal
 If you have an Azure account, skip straight to [Create a Container Host VM](#CreateacontainerhostVM).
 
@@ -11,13 +13,13 @@ If you have an Azure account, skip straight to [Create a Container Host VM](#Cre
 
 ## Create a Container Host VM
 
-Click on the following link to start the VM creation process – [New Windows Server Container Host in Azure]( https://portal.azure.com/#gallery/Microsoft.WindowsServer2016TechnicalPreviewwithContainers). 
-
-You can also search for the image in the Azure gallery.
-
-Click on the `create` button.
+Search in the Azure Market Place for ‘containers’, this will return ‘Windows Server 2016 Core with Containers Tech Preview 4’
 
 ![](./media/newazure1.png)
+
+Select the image, and click `create`.
+
+![](./media/tp41.png)
 
 Give the Virtual Machine a name, select a user name and a password.
 
