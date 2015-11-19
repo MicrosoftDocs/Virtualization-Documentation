@@ -685,7 +685,7 @@ New-ContainerHost()
         Write-Warning "You currently have only $global:freeSpaceGB GB of free space available at $global:localVhdRoot)"
     }
 
-    $global:localVhdPath -match ".vhdx?" | Out-Null
+    $global:localVhdPath -match "\.vhdx?" | Out-Null
     
     $bootVhdPath = "$global:localVhdRoot\$($VmName)$($matches[0])"
     if (Test-Path $bootVhdPath)
