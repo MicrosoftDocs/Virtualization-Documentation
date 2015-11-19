@@ -127,7 +127,7 @@ int bind(
 
 In contrast to the socket address (sockaddr) for a standard Internet Protocol address family (`AF_INET`) which consists of the host machine's IP address and a port number on that host, the socket address for `AF_HYPERV` uses the virtual machine's ID and the application ID defined above to establish a connection. 
 
-Since Hyper-V sockets do not depend on a networking stack, TCP/IP, DNS, etc. the socket end point needed a non-IP, not hostname, format that still describes the connection.
+Since Hyper-V sockets do not depend on a networking stack, TCP/IP, DNS, etc. the socket endpoint needed a non-IP, not hostname, format that still unambiguously describes the connection.
 
 Here is the definition for a Hyper-V socket's socket address:
 
@@ -159,10 +159,10 @@ There is also a set of VMID wildcards available when a connection isn't to a spe
 | HV_GUID_BROADCAST | FFFFFFFF-FFFF-FFFF-FFFF-FFFFFFFFFFFF | |  
 | HV_GUID_CHILDREN | 90db8b89-0d35-4f79-8ce9-49ea0ac8b7cd | Wildcard address for children. Listeners should bind to this VmId to accept connection from its children. |
 | HV_GUID_LOOPBACK | e0e16197-dd56-4a10-9195-5ee7a155a838 | Loopback address. Using this VmId connects to the same partition as the connector. |
-| HV_GUID_PARENT | a42e7cda-d03f-480c-9cc2-a4de20abb878 | Parent address. Using this VmId connects to the parent partition of the connector.** \* ** |
+| HV_GUID_PARENT | a42e7cda-d03f-480c-9cc2-a4de20abb878 | Parent address. Using this VmId connects to the parent partition of the connector.* |
 
 
-** \* ** HV_GUID_PARENT  
+***HV_GUID_PARENT**  
 The parent of a virtual machine is its host.  The parent of a container is the container's host.  
 Connecting from a container running in a virtual machine will connect to the VM hosting the container.  
 Listening on this VmId accepts connection from:  
@@ -179,5 +179,8 @@ Send()
 Listen()
 Accept()
 
+[Complete WinSock API](https://msdn.microsoft.com/en-us/library/windows/desktop/ms741394.aspx).
 
- 
+## Work in progress
+Graceful disconnect
+select
