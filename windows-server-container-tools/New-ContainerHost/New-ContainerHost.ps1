@@ -287,6 +287,7 @@ Cache-HostFiles
             {
                 $convertScript = $(Join-Path $global:localVhdRoot "Convert-WindowsImage.ps1")
 
+                Write-Verbose "Copying Convert-WindowsImage..."
                 Copy-File -SourcePath 'https://aka.ms/tp4/Convert-WindowsImage' -DestinationPath $convertScript
 
                 #
@@ -304,6 +305,14 @@ Cache-HostFiles
                 Write-Output "Converting WIM to VHD..."
                 if ($WindowsImage -eq "NanoServer")
                 {
+                    #
+                    # Workaround an issue in the RTM version of Convert-WindowsImage.ps1
+                    #
+                    if (Get-Module Hyper-V)
+                    {
+                        Add-WindowsImageTypes
+                    }
+
                     Import-Module "$($driveLetter):\NanoServer\NanoServerImageGenerator.psm1"
                     
                     #
@@ -376,7 +385,7 @@ Cache-HostFiles
                 if ($WimPath)
                 {
                     Write-Output "Saving private Container OS image ($global:imageName) (this may take a few minutes)..."
-                    CopyFile -SourcePath $WimPath -DestinationPath $global:localWimVhdVersion  
+                    Copy-File -SourcePath $WimPath -DestinationPath $global:localWimVhdVersion  
                 }
                 else
                 {
@@ -664,6 +673,7 @@ New-ContainerHost()
         {
             Remove-Item $wimVhdPath
         }
+
         $wimVhd = New-VHD -Path "$wimVhdPath" -ParentPath $global:localWimVhdPath -Differencing -BlockSizeBytes 1MB
     }
                 
@@ -688,7 +698,14 @@ New-ContainerHost()
     #
     Write-Output "Creating VM $VmName..."
 
-    $vm = New-VM -Name $VmName -VHDPath $bootVhd.Path -Generation 1
+    if ($Staging)
+    {
+        $vm = New-VM -Name $VmName -VHDPath $bootVhd.Path -Generation 1 -Version 5.0
+    }
+    else
+    {
+        $vm = New-VM -Name $VmName -VHDPath $bootVhd.Path -Generation 1
+    }
 
     Write-Output "Configuring VM $($vm.Name)..."
     $vm | Get-VMDvdDrive | Remove-VMDvdDrive
