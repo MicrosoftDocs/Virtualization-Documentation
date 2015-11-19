@@ -179,7 +179,7 @@ Send()
 Listen()
 Accept()
 
-[Complete WinSock API](https://msdn.microsoft.com/en-us/library/windows/desktop/ms741394.aspx).
+[Complete WinSock API](https://msdn.microsoft.com/en-us/library/windows/desktop/ms741394.aspx)
 
 ## Work in progress
 Graceful disconnect
