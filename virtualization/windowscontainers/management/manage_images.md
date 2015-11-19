@@ -1,5 +1,7 @@
 # Container Images
 
+**This is preliminary content and subject to change.** 
+
 Container images are used to deploy containers. These images can include an operating system, applications, and all application dependencies. For instance, you may develop a container image that has been pre-configured with Nano Server, IIS, and an application running in IIS. This container image can then be stored in a container registry for later use, deployed on any Windows Container host (on-prem, cloud, or even to a container service), and also used as the base for a new container image.
 
 There are two types of container images:

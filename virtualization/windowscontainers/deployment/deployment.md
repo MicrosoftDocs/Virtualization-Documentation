@@ -1,5 +1,6 @@
-
 ## Container Host Deployment
+
+**This is preliminary content and subject to change.** 
 
 Deploying a Windows Container host has different steps depending on the operating system and the host system type (physical or virtual). This document will detail deployment options for Windows Server 2016 and Nano Server to both physical and virtual systems.
 
