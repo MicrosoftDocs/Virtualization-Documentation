@@ -23,9 +23,9 @@ Start a PowerShell session as Administrator. This can be done by right clicking 
 PS C:\> start-process powershell -Verb runAs
 ```
 
-Before downloading and running the script, ensue that an external Hyper-V virtual switch has been created. This script will fail without one. 
+Before downloading and running the script, ensure that an external Hyper-V virtual switch has been created. This script will fail without one. 
 
-Run the following to return a list of external virtual switches. If nothing is returned, create a new external virtual switch before proceeding to the next step of this guide.
+Run the following to return a list of external virtual switches. If nothing is returned, create a new external virtual switch, and then proceed to the next step of this guide.
 
 ```powershell
 PS C:\> Get-VMSwitch | where {$_.SwitchType –eq “External”}
