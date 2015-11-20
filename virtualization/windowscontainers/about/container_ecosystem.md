@@ -17,7 +17,7 @@ Now let's talk about that ecosystem of applications and how you can build on Doc
 
 ## Components in a container ecosystem
 
-Windows Server Containers are a key component of a large container ecosystem. We’re working across the industry to deliver developer choice at each layer of the solution stack.
+Windows Containers are a key component of a large container ecosystem. We’re working across the industry to deliver developer choice at each layer of the solution stack.
 
 The container ecosystem provides ways to manage containers, share containers and develop apps that run in containers.
 
@@ -29,6 +29,3 @@ Microsoft wants to empower developer choice and productivity as they build these
 Microsoft is committed to being open and ecosystem friendly.  We actively support the coming together of multiple developer ecosystems of interest – such as Windows and Linux – to drive innovation.
 
 Over the coming months, we will be providing more information about additional partners in this developing ecosystem.
-
--------------------
-[Back to Container Home](../containers_welcome.md)
