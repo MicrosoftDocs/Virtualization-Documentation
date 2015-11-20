@@ -7,7 +7,7 @@ If you don't see your problem addressed here or have questions, post them on the
 ## General functionality
 
 ### Container and host build number match
-A Windows Server Container requires an operating system image that matches the container host in respect to build and patch level. A mismatch will lead to potential instability and or unpredictable behavior for the container and/or the host.
+A Windows Container requires an operating system image that matches the container host in respect to build and patch level. A mismatch will lead to potential instability and or unpredictable behavior for the container and/or the host.
 
 If you install updates against the Windows container host OS you will need to update the container base OS image to have the matching updates.
 <!-- Can we give examples of behavior or errors?  Makes it more searchable -->
@@ -16,7 +16,7 @@ If you install updates against the Windows container host OS you will need to up
 Download and install a container base image matching the OS version and patch level of the container host.
 
 ### All non-C:/ drives are visible in containers
-All non-C:/ drives available to the container host are automatically mapped into new running Windows Server Containers.
+All non-C:/ drives available to the container host are automatically mapped into new running Windows Containers.
 
 At this point in time there is no way to selectively map folders into a container, as an interim work around drives are mapped automatically.
 
@@ -26,13 +26,13 @@ We're working on it.  In the future there will be folder sharing.
 ### Default firewall behavior
 In a container host and containers environment, you only have the container host's firewall. All the firewall rules configured in the container host will propagate to all of its containers.
 
-### Windows Server Containers start slowly
+### Windows Containers start slowly
 If your container is taking more than 30 seconds to start, it may be performing many duplicate virus scans.
 
 Many anti-malware solutions, such as Windows Defender, maybe unnecessarily scanning files with-in container images including all of the OS binaries and files in the container OS image.  This occurs when ever a new container is created and from the anti-malware’s perspective all of the “container’s files” look like new files that have not previously been scanned.  So when processes inside the container attempt to read these files the anti-malware components first scan them before allowing access to the files.  In reality these files were already scanned when the container image was imported or pulled to the server. In future previews new infrastructure will be in place such that anti-malware solutions, including Windows Defender, will be aware of these situations and can act accordingly to avoid multiple scans. 
 
 ### Start/Stop sometimes fails if memory is restricted to < 48MB
-Windows Server Containers experience random, inconsistant, errors when memory is restricted to less than 48MB.
+Windows Containers experience random, inconsistant, errors when memory is restricted to less than 48MB.
 
 Running the following PowerShell and repeating the start, stop, action multiple will cause failures in either starting or stopping.
 
@@ -48,7 +48,7 @@ Change the memory value to 48MB.
 
 ### Start-container fails when the processor count is 1 or 2 on a 4 core VM
 
-Windows Server Containers fail to start with error:  
+Windows Containers fail to start with error:  
 `failed to start: This operation returned because the timeout period expired. (0x800705B4).`
 
 This occurs when the processor count is set to 1 or 2 on a 4 core VM.
@@ -86,7 +86,7 @@ In this release we support one network compartment per container. This means tha
 If multiple endpoints need to be exposed by a container, use NAT port mapping.
 
 ### Windows containers are not getting IPs
-If you're connecting to the windows server containers with DHCP VM Switches it's possible for the container host to receive an IP while the containers do not.
+If you're connecting to the windows containers with DHCP VM Switches it's possible for the container host to receive an IP while the containers do not.
 
 The containers get a 169.254.***.*** APIPA IP address.
 
@@ -104,7 +104,7 @@ Get-VMNetworkAdapter -VMName "[YourVMNameHere]"  | Set-VMNetworkAdapter -MacAddr
 
 ## Application compatibility
 
-There are so many questions about which applications work and don't work in Windows Server Containers, we decided to break application compatibility information into [its own article](../reference/app_compat.md).
+There are so many questions about which applications work and don't work in Windows Containers, we decided to break application compatibility information into [its own article](../reference/app_compat.md).
 
 Some of the most common issues are located here as well.
 
@@ -171,9 +171,9 @@ net use S: \\your\sources\here /User:shareuser [yourpassword]
 
 
 ## Remote Desktop 
-Windows Server Containers can be managed/interacted with through a RDP session.
+Windows Containers can be managed/interacted with through a RDP session.
 
-The following steps are needed to remotely connect to a Windows Server Container using RDP. It is assumed that the Container is connected to the network via a NAT switch. This is the default when setting up a Container host through the installation script or creating a new VM in Azure.
+The following steps are needed to remotely connect to a Windows Container using RDP. It is assumed that the Container is connected to the network via a NAT switch. This is the default when setting up a Container host through the installation script or creating a new VM in Azure.
 
 ** In the Container you want to connect to **
 
@@ -266,6 +266,3 @@ This is correct.  We're planning on full cimsession support in the future.
 
 
 Feel free to voice feature requests in [the forums](https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers). 
-
---------------------------
-[Back to Container Home](../containers_welcome.md)
