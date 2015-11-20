@@ -6,7 +6,12 @@ These samples were created for Windows Server 2016 Technical Preview 3 with Cont
 
 In order to create a node.js Container image when you are running PowerShell-managed Windows Server Containers, you only need to copy the HybridInstaller.ps1 to your local Container host.
 
-On the Container host, run:
+To do this with PowerShell run:
+``` PowerShell
+wget https://raw.githubusercontent.com/Microsoft/Virtualization-Documentation/master/windows-server-container-samples/nodejs/HybridInstaller.ps1
+```
+
+In the same directory as the script on the Container host, run:
 ```
 .\HybridInstaller.ps1 -CreateContainerImageUsingPowerShell -InternetVirtualSwitchName "Virtual Switch"
 ```
