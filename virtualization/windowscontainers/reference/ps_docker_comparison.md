@@ -1,14 +1,14 @@
-# PowerShell to Docker comparison for managing Windows Server Containers
+# PowerShell to Docker comparison for managing Windows Containers
 
-There are many ways to manage Windows Server Containers using both in-box Windows tools (PowerShell, in this preview) and Open Source management tools such as Docker.  
+There are many ways to manage Windows Containers using both in-box Windows tools (PowerShell, in this preview) and Open Source management tools such as Docker.  
 Guides outlining both individually available here:
-* [Manage Windows Server Containers with Docker](../quick_start/manage_docker.md)
-* [Manage Windows Server Containers with PowerShell](../quick_start/manage_powershell.md) 
+* [Manage Windows Containers with Docker](../quick_start/manage_docker.md)
+* [Manage Windows Containers with PowerShell](../quick_start/manage_powershell.md) 
 
 This page is a more in depth reference comparing the Docker tools and PowerShell management tools.
 
 ## PowerShell for containers versus Hyper-V VMs
-You can create, run, and interact with Windows Server Containers using PowerShell cmdlets. Everything you need to get going is available in-box.
+You can create, run, and interact with Windows Containers using PowerShell cmdlets. Everything you need to get going is available in-box.
 
 If you’ve used Hyper-V PowerShell, the design of the cmdlets should be pretty familiar to you. A lot of the workflow is similar to how you’d manage a virtual machine using the Hyper-V module. Instead of `New-VM`, `Get-VM`, `Start-VM`, `Stop-VM`, you have `New-Container`, `Get-Container`, `Start-Container`, `Stop-Container`.  There are quite a few container-specific cmdlets and parameters, but the general lifecycle and management of a Windows container looks roughly like that of a Hyper-V VM.
 
@@ -172,7 +172,7 @@ function Run-Container ([string]$ContainerImageName, [string]$Name="fancy_name",
 ```
 
 ## Docker
-Windows Server Containers can be managed with Docker commands.  While Windows containers should be comparable to their Linux counterparts and have the same management experience through Docker, there are some Docker commands that simply don't make sense with a Windows container.  Others simply haven't been tested (we're getting there).
+Windows Containers can be managed with Docker commands.  While Windows containers should be comparable to their Linux counterparts and have the same management experience through Docker, there are some Docker commands that simply don't make sense with a Windows container.  Others simply haven't been tested (we're getting there).
 
 In an effort to not duplicate the API documentation available in Docker, here is a link to their management APIs.  Their walkthroughs are fantastic.
 
