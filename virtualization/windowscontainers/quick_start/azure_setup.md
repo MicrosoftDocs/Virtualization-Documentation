@@ -48,7 +48,7 @@ Log into the VM using the username and password specified during the VM creation
 
 ## Next Steps - Start Using Containers
 
-Now that you have a Windows Server 2016 system running the Windows Server Container feature jump to the following guides to begin working with Windows Server Containers and Windows Server Container images. 
+Now that you have a Windows Server 2016 system running the Windows Server Container feature, jump to the following guides to begin working with Windows Server Containers and Windows Server Container images. 
 
 [Quick Start: Windows Containers and Docker](./manage_docker.md)  
 [Quick Start: Windows Containers and PowerShell](./manage_powershell.md)
