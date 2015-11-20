@@ -67,5 +67,5 @@ When the configuration script has completed, log into the virtual machine using 
 
 Now that you have a Windows Server 2016 system running the Windows Container feature, jump to the following guides to begin working with Windows Server and Hyper-V Containers.
  
-[Quick Start: Windows Containers and PowerShell](./manage_powershell.md)
+[Quick Start: Windows Containers and PowerShell](./manage_powershell.md)  
 [Quick Start: Windows Containers and Docker](./manage_docker.md) 
