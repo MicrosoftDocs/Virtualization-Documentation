@@ -23,6 +23,14 @@ Start a PowerShell session as Administrator. This can be done by right clicking 
 PS C:\> start-process powershell -Verb runAs
 ```
 
+Before downloading and running the script, ensue that an external Hyper-V virtual switch has been created. This script will fail without one. 
+
+Run the following to return a list of external virtual switches. If nothing is returned, create a new external virtual switch before proceeding to the next step of this guide.
+
+```powershell
+PS C:\> Get-VMSwitch | where {$_.SwitchType –eq “External”}
+```
+
 Use the following command to download the configuration script. The script can also be manually downloaded from this location - [Configuration Script](https://aka.ms/tp4/New-ContainerHost).
  
 ``` PowerShell
@@ -49,17 +57,6 @@ license terms. Please confirm you have accepted and agree to the license terms.
 ```
 
 The script will then begin to download and configure the Windows Container components. This process may take quite some time due to the large download. When finished your Virtual Machine will be configured and ready for you to create and manage Windows Containers and Windows Container Images with both PowerShell and Docker.  
-
-You may receive the following message during the Window Container host deployment process. 
-```
-This VM is not connected to the network. To connect it, run the following:
-Get-VM | Get-VMNetworkAdapter | Connect-VMNetworkAdapter -Switchname <switchname>
-```  
-If you do, check the properties of the virtual machine and connect the virtual machine to a virtual switch. You can also run the following PowerShell command where `<switchname>` is the name of the Hyper-V virtual switch that you would like to connect to the virtual machine.
-
-``` powershell 
-PS C:\> Get-VM | Get-VMNetworkAdapter | Connect-VMNetworkAdapter -Switchname <switchname>
-```
 
 When the configuration script has completed, log into the virtual machine using the password specified during the configuration process and make sure that the Virtual Machine has a valid IP address. With these items completed your system should be ready for Windows Containers. 
 
