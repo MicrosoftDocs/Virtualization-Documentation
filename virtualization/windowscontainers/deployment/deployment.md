@@ -6,9 +6,14 @@ Deploying a Windows Container host has different steps depending on the operatin
 
 For details on system requirements, see [Windows Container Host System Requirements](./system_requirements.md). 
 
+PowerShell scripts are available to automate the deployment of a Windows Container host. 
+- [Deploy a container host in a new Hyper-V Virtual Machine](../quick_start/container_setup.md).
+- [Deploy a container host to an existing system](../quick_start/inplace_setup.md).
+- [Deploy a container host in Azure](../azure_setup.md).
+
 ### Windows Server Host
 
-The steps listed in this table can be used to deploy a container host to Windows Server 2016 TP4 and Windows Server Core 2016. Included are the configurations necessary for both Windows Server and Hyper-V Containers. If Hyper-V Containers will not be used, the noted steps can be skipped.
+The steps listed in this table can be used to deploy a container host to Windows Server 2016 TP4 and Windows Server Core 2016. Included are the configurations necessary for both Windows Server and Hyper-V Containers. If Hyper-V Containers will not be used, the noted* steps can be skipped.
 
 <table border="1" style="background-color:FFFFCC;border-collapse:collapse;border:1px solid FFCC00;color:000000;width:100%" cellpadding="5" cellspacing="5">
 <tr valign="top">
@@ -45,7 +50,7 @@ The steps listed in this table can be used to deploy a container host to Windows
 </tr>
 <tr>
 <td>[Install Docker](#docker)</td>
-<td>In order to manage containers with Docker, it will need to be installed.</td>
+<td>This step is optional, however necessary in order to create and manage Windows containers with Docker.</td>
 </tr>
 </table>
 
@@ -84,7 +89,7 @@ The steps listed in this table can be used to deploy a container host to Nano Se
 </tr>
 <tr>
 <td>[Install Docker](#docker)</td>
-<td>In order to manage containers with Docker, it will need to be installed.</td>
+<td>This step is optional, however necessary in order to create and manage Windows containers with Docker. </td>
 </tr>
 </table>
 
