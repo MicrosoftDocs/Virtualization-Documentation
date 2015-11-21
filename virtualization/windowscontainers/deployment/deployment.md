@@ -9,7 +9,7 @@ For details on system requirements, see [Windows Container Host System Requireme
 PowerShell scripts are available to automate the deployment of a Windows Container host. 
 - [Deploy a container host in a new Hyper-V Virtual Machine](../quick_start/container_setup.md).
 - [Deploy a container host to an existing system](../quick_start/inplace_setup.md).
-- [Deploy a container host in Azure](../azure_setup.md).
+- [Deploy a container host in Azure](../quick_start/azure_setup.md).
 
 ### Windows Server Host
 
