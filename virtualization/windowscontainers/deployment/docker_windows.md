@@ -2,9 +2,9 @@
 
 **This is preliminary content and subject to change.** 
 
-Docker is a container deployment and management platform, that works with both Linux and Windows containers. Docker is used to create, manage, and delete containers and container images. Docker enables storing container images in a public registry (Docker Hub) and private registries (Docker Trusted Registries). Docker additionally provides container host clustering capabilities with Docker Swarm and deployment automaton with Docker Compose.
+Docker is a container deployment and management platform, that works with both Linux and Windows containers. Docker is used to create, manage, and delete containers and container images. Docker enables storing container images in a public registry (Docker Hub) and private registries (Docker Trusted Registries). Docker additionally provides container host clustering capabilities with Docker Swarm and deployment automaton with Docker Compose. For more information on Docker and the Docker toolset visit [Docker.com](https://www.docker.com/).
 
-For more information on Docker and the Docker toolset visit [Docker.com](https://www.docker.com/).
+> The Windows Container feature must be enabled for Docker to create and manage Windows Server and Hyper-V Container. For instructions on enabling this feature see the [Container Host Deployment Guide](./docker_windows.md).
 
 ## Windows Server
 
