@@ -5,8 +5,8 @@
 ## [FAQ](about/faq.md)
 # Container Quick Start
 ## [Containers in Azure](quick_start/azure_setup.md)
-## [Deploy New Container Host](quick_start/container_setup.md)
-## [Deploy Host on Existing System](quick_start/inplace_setup.md)
+## [Deploy Containers to New Hyper-V Virtual Machine](quick_start/container_setup.md)
+## [Deploy Container to Existing Virtual or Physical System](quick_start/inplace_setup.md)
 ## [PowerShell Quick Start](quick_start/manage_powershell.md)
 ## [Docker Quick Start](quick_start/manage_docker.md)
 # Deploy Windows Containers
