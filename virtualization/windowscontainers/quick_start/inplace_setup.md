@@ -1,6 +1,8 @@
-# Preparing a physical machine or an existing virtual machine for Windows Containers
+# Deploy a Windows Container Host to an Existing Virtual or Physical System
 
-In order to create and manage Windows Containers, the Windows Server 2016 Technical Preview environment must be prepared. This guide will walk through configuring Windows Server Containers in a Hyper-V Virtual Machine.
+This document steps through using a PowerShell script to deploy Windows Container host to an existing physical or virtual system.
+
+To step through a scripted deployment of a new Hyper-V virtual machine configured as a Windows Container Host, see [New Hyper-V Windows Container Host](./container_setup.md).
 
 **PLEASE READ PRIOR TO INSTALLING THE CONTAINER OS IMAGE:**  The license terms of the Microsoft Windows Server Pre-Release software (“License Terms”) apply to your use of the Microsoft Windows Container OS Image supplement (the “supplemental software).  By downloading and using the supplemental software, you agree to the License Terms, and you may not use it if you have not accepted the License Terms. Both the Windows Server Pre-Release software and the supplemental software are licensed by Microsoft Corporation.  
 
