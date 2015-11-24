@@ -25,11 +25,11 @@ The steps listed in this table can be used to deploy a container host to Windows
 <td>The container feature enables use of Windows Server and Hyper-V container.</td>
 </tr>
 <tr>
-<td>[Configure Nested Virtualization *](#nest)</td>
-<td>If the container host is a Hyper-V virtual machine, and will be running Hyper-V Container, nested virtualization needs to be enabled.</td>
+<td>[Configure Virtualized Container Host *](#nest)</td>
+<td>If the Container Host is itself a Hyper-V Virtual machine, Nested Virtualization and at least two virtual processors will be required.</td>
 </tr>
 <tr>
-<td>[Enable Hyper-V *](#hypv) </td>
+<td>[Enable Hyper-V Role *](#hypv) </td>
 <td>Hyper-V is only required if Hyper-V Containers will be used.</td>
 </tr>
 <tr>
@@ -68,8 +68,8 @@ The steps listed in this table can be used to deploy a container host to Nano Se
 <td>Prepare a Nano Server VHD with the container and Hyper-V capabilities.</td>
 </tr>
 <tr>
-<td>[Configure Nested Virtualization *](#nest)</td>
-<td>If the container host is a Hyper-V virtual machine, and will be running Hyper-V Container, nested virtualization needs to be enabled.</td>
+<td>[Configure Virtualized Container Host *](#nest)</td>
+<td>If the Container Host is itself a Hyper-V Virtual machine, Nested Virtualization and at least two virtual processors will be required.</td>
 </tr>
 <tr>
 <td>[Create Virtual Switch](#vswitch)</td>
@@ -149,14 +149,13 @@ PS C:\> New-NanoServerImage -MediaPath $WindowsMedia -BasePath c:\nano -TargetPa
 ```
 When completed, create a virtual machine from the `NanoContainer.vhdx` file. This virtual machine will be running the Nano Server OS, with optional packages.
 
-### Configure Hyper-V
+### <a name=nest></a>Configure Virtualized Container Host
 
 Two scenarios need to be considered in regard to Hyper-V and Windows Containers.
 
-- The container host will be hosting Hyper-V containers.
-- The container host itself is a Hyper-V virtual machine.
+**Nested Virtualization**
 
-<a name=nest></a>If the container host itself will be a Hyper-V virtual machine, and will also be running Hyper-V containers, nested virtualization needs to be enabled. This can be completed with the following PowerShell Command.
+If the container host itself will be a Hyper-V virtual machine, and will also be running Hyper-V containers, nested virtualization needs to be enabled. This can be completed with the following PowerShell Command.
 
 > The virtual machines must be turned off when running this command.
 
@@ -164,7 +163,17 @@ Two scenarios need to be considered in regard to Hyper-V and Windows Containers.
 PS C:\> Set-VMProcessor -VMName <container host vm> -ExposeVirtualizationExtensions $true
 ```
 
-<a name=hypv></a>The Hyper-V role can be installed on Windows Server 2016 or Windows Server 2016 Core using the following PowerShell command. For Nano Server Configuration, see [Prepare Nano Server](#nano).
+**Processor Count**
+
+Secondly, if the container host is a Hyper-V Virtual machine, it must be configured with at least two virtual processors. This can be configured through the settings of the virtual machine or with the following PowerShell script.
+
+```poweshell
+Set-VMProcessor –VMName <VM Name> -Count 2
+``` 
+
+### <a name=hypv></a>Enable Hyper-V Role
+
+The Hyper-V role can be installed on Windows Server 2016 or Windows Server 2016 Core using the following PowerShell command. For Nano Server Configuration, see [Prepare Nano Server](#nano).
 
 ```powershell
 PS C:\> Install-WindowsFeature hyper-v
