@@ -111,7 +111,7 @@ WindowsServerCoreIIS CN=Demo   1.0.0.0 False
 
 ### Create IIS Container <!--1-->
 
-Create a new container, this time from the `WindosServerCoreIIS` container image.
+Create a new container, this time from the `WindowsServerCoreIIS` container image.
 
 ```powershell
 PS C:\> New-Container -Name IIS -ContainerImageName WindowsServerCoreIIS -SwitchName "Virtual Switch"
