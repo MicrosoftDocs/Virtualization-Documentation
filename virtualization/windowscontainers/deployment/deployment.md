@@ -26,7 +26,7 @@ The steps listed in this table can be used to deploy a container host to Windows
 </tr>
 <tr>
 <td>[Configure Virtualized Container Host *](#nest)</td>
-<td>If the Container Host is itself a Hyper-V Virtual machine, Nested Virtualization at least two virtual processors will be required.</td>
+<td>If the Container Host is itself a Hyper-V Virtual machine, Nested Virtualization and at least two virtual processors will be required.</td>
 </tr>
 <tr>
 <td>[Enable Hyper-V Role *](#hypv) </td>
@@ -69,7 +69,7 @@ The steps listed in this table can be used to deploy a container host to Nano Se
 </tr>
 <tr>
 <td>[Configure Virtualized Container Host *](#nest)</td>
-<td>If the Container Host is itself a Hyper-V Virtual machine, Nested Virtualization at least two virtual processors will be required.</td>
+<td>If the Container Host is itself a Hyper-V Virtual machine, Nested Virtualization and at least two virtual processors will be required.</td>
 </tr>
 <tr>
 <td>[Create Virtual Switch](#vswitch)</td>
