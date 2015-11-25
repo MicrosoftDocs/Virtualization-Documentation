@@ -13,7 +13,10 @@ PowerShell scripts are available to automate the deployment of a Windows Contain
 
 ### Windows Server Host
 
-The steps listed in this table can be used to deploy a container host to Windows Server 2016 TP4 and Windows Server Core 2016. Included are the configurations necessary for both Windows Server and Hyper-V Containers. If Hyper-V Containers will not be used, the noted* steps can be skipped.
+The steps listed in this table can be used to deploy a container host to Windows Server 2016 TP4 and Windows Server Core 2016. Included are the configurations necessary for both Windows Server and Hyper-V Containers.
+
+\* Only required if Hyper-V Containers will be deployed.  
+\** Only required if Docker will be used to create and manage containers.
 
 <table border="1" style="background-color:FFFFCC;border-collapse:collapse;border:1px solid FFCC00;color:000000;width:100%" cellpadding="5" cellspacing="5">
 <tr valign="top">
@@ -25,8 +28,12 @@ The steps listed in this table can be used to deploy a container host to Windows
 <td>The container feature enables use of Windows Server and Hyper-V container.</td>
 </tr>
 <tr>
-<td>[Configure Virtualized Container Host *](#nest)</td>
-<td>If the Container Host is itself a Hyper-V Virtual machine, Nested Virtualization and at least two virtual processors will be required.</td>
+<td>[Enable Nested Virtualization *](#nest)</td>
+<td>If the Container Host is itself a Hyper-V Virtual machine, Nested Virtualization needs to be enabled.</td>
+</tr>
+<tr>
+<td>[Configure Virtual Processors *](#proc)</td>
+<td>If the Container Host is itself a Hyper-V Virtual machine, at least two virtual processors will need to be configured.</td>
 </tr>
 <tr>
 <td>[Enable Hyper-V Role *](#hypv) </td>
@@ -49,14 +56,17 @@ The steps listed in this table can be used to deploy a container host to Windows
 <td>OS images provide the base for container deployments.</td>
 </tr>
 <tr>
-<td>[Install Docker](#docker)</td>
+<td>[Install Docker **](#docker)</td>
 <td>This step is optional, however necessary in order to create and manage Windows containers with Docker.</td>
 </tr>
 </table>
 
 ### Nano Server Host
 
-The steps listed in this table can be used to deploy a container host to Nano Server. Included are the configurations necessary for both Windows Server and Hyper-V Containers. If Hyper-V Containers will not be used, the noted steps can be skipped.
+The steps listed in this table can be used to deploy a container host to Nano Server. Included are the configurations necessary for both Windows Server and Hyper-V Containers.
+
+\* Only required if Hyper-V Containers will be deployed.  
+\** Only required if Docker will be used to create and manage containers.
 
 <table border="1" style="background-color:FFFFCC;border-collapse:collapse;border:1px solid FFCC00;color:000000;width:100%" cellpadding="5" cellspacing="5">
 <tr valign="top">
@@ -68,8 +78,12 @@ The steps listed in this table can be used to deploy a container host to Nano Se
 <td>Prepare a Nano Server VHD with the container and Hyper-V capabilities.</td>
 </tr>
 <tr>
-<td>[Configure Virtualized Container Host *](#nest)</td>
-<td>If the Container Host is itself a Hyper-V Virtual machine, Nested Virtualization and at least two virtual processors will be required.</td>
+<td>[Enable Nested Virtualization *](#nest)</td>
+<td>If the Container Host is itself a Hyper-V Virtual machine, Nested Virtualization needs to be enabled.</td>
+</tr>
+<tr>
+<td>[Configure Virtual Processors *](#proc)</td>
+<td>If the Container Host is itself a Hyper-V Virtual machine, at least two virtual processors will need to be configured.</td>
 </tr>
 <tr>
 <td>[Create Virtual Switch](#vswitch)</td>
@@ -88,7 +102,7 @@ The steps listed in this table can be used to deploy a container host to Nano Se
 <td>OS images provide the base for container deployments.</td>
 </tr>
 <tr>
-<td>[Install Docker](#docker)</td>
+<td>[Install Docker **](#docker)</td>
 <td>This step is optional, however necessary in order to create and manage Windows containers with Docker. </td>
 </tr>
 </table>
@@ -149,13 +163,9 @@ PS C:\> New-NanoServerImage -MediaPath $WindowsMedia -BasePath c:\nano -TargetPa
 ```
 When completed, create a virtual machine from the `NanoContainer.vhdx` file. This virtual machine will be running the Nano Server OS, with optional packages.
 
-### <a name=nest></a>Configure Virtualized Container Host
+### <a name=nest></a>Configure Nested Virtualization
 
-Two scenarios need to be considered in regard to Hyper-V and Windows Containers.
-
-**Nested Virtualization**
-
-If the container host itself will be a Hyper-V virtual machine, and will also be running Hyper-V containers, nested virtualization needs to be enabled. This can be completed with the following PowerShell Command.
+If the container host itself will be running on a Hyper-V virtual machine, and will also be hosting Hyper-V Containers, nested virtualization needs to be enabled. This can be completed with the following PowerShell command.
 
 > The virtual machines must be turned off when running this command.
 
@@ -163,9 +173,9 @@ If the container host itself will be a Hyper-V virtual machine, and will also be
 PS C:\> Set-VMProcessor -VMName <container host vm> -ExposeVirtualizationExtensions $true
 ```
 
-**Processor Count**
+### <a name=proc></a>Configure Virtual Processors
 
-Secondly, if the container host is a Hyper-V Virtual machine, it must be configured with at least two virtual processors. This can be configured through the settings of the virtual machine or with the following PowerShell script.
+If the container host itself will be running on a Hyper-V virtual machine, and will also be hosting Hyper-V Containers, the virtual machine will require at least two processors. This can be configured through the settings of the virtual machine, or with the following PowerShell script.
 
 ```poweshell
 Set-VMProcessor –VMName <VM Name> -Count 2
