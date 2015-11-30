@@ -135,7 +135,7 @@ if ($Prompt)
     {
         throw "Hyper-V must be enabled to continue"
     }
-    
+  
     $VmName = Read-Host 'Please specify a name for your VM'
 
     #
@@ -1440,12 +1440,24 @@ Test-Version()
     }
 }
 
+function
+Test-VirtualSwitch()
+{
+    If (!(Get-VMSwitch |? SwitchType -eq "External"))
+
+    {
+        throw “An external virtual switch will need to be configured. Once completed, rerun this script.”
+    }
+}
+
 
 try
 {
     Test-Version
     
     Test-Admin
+
+    Test-VirtualSwitch
     
     if (-not $(Approve-Eula))
     {
