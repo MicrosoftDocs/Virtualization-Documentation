@@ -13,7 +13,7 @@ The following are required in order to complete both the **Windows Server** and 
 * 20GB available storage for container host image, OS Base Image and setup scripts.
 * Administrator permissions on the Hyper-V host.
 
-> A virtualized container host, running Hyper-V containers, will require nested virtualization. Both the physical host and virtual host will need to be running an OS that supports nested virtualization. For more information, see What’s New in Hyper-V on [Windows Server 2016 Technical Preview]( https://tnstage.redmond.corp.microsoft.com/en-US/library/dn765471.aspx#BKMK_nested).
+> A virtualized container host, running Hyper-V containers, will require nested virtualization. Both the physical host and virtual host will need to be running an OS that supports nested virtualization. For more information, see What’s New in Hyper-V on [Windows Server 2016 Technical Preview](https://technet.microsoft.com/library/dn765471.aspx#BKMK_nested).
 
 ## Setup a New Container Host in a New Virtual Machine
 
