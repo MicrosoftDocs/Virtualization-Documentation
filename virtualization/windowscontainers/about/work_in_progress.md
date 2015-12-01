@@ -172,7 +172,7 @@ net use S: \\your\sources\here /User:shareuser [yourpassword]
 
 ## Remote Desktop 
 
-In TP4, Windows Containers cannot be managed/interacted with through a RDP session.
+Windows Containers cannot be managed/interacted with through a RDP session in TP4.
 
 --------------------------
 
