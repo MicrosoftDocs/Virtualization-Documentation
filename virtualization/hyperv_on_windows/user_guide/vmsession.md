@@ -69,10 +69,6 @@ Potential causes:
   * Some boot time event needs input
 * The guest credentials couldn't be validated
 
-
-
-
-
 ## Samples
 
 Checkout samples on [GitHub](https://github.com/Microsoft/Virtualization-Documentation/search?l=powershell&q=-VMName+OR+-VMGuid&type=Code&utf8=%E2%9C%93).
