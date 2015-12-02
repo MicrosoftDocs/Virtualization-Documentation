@@ -4,7 +4,7 @@
 ## [What’s New in Windows 10](./about/whats_new.md)
 ## [Supported Guest OS's](about/supported_guest_os.md)
 ## [Linux and FreeBSD on Hyper-V](https://technet.microsoft.com/library/dn531030.aspx)
-# Get Started with Hyper-V on Windows 10
+# Get Started with Hyper-V
 ## [System Requirements](quick_start/walkthrough_compatibility.md)
 ## [Install Hyper-V](quick_start/walkthrough_install.md)
 ## [Create a Virtual Switch](quick_start/walkthrough_virtual_switch.md)
