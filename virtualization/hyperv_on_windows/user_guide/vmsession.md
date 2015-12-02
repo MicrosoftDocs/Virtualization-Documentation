@@ -41,7 +41,8 @@ To run a single command, use the **-ScriptBlock** parameter:
  Invoke-Command -VMName PSTest -ScriptBlock { cmdlet } 
  ```
 
-## What's required to use PowerShell Direct?
+## Troubleshooting
+
 To create a PowerShell Direct session on a virtual machine,
 * The virtual machine must be running locally on the host and booted. 
 * You must be logged into the host computer as a Hyper-V administrator.
@@ -51,7 +52,28 @@ To create a PowerShell Direct session on a virtual machine,
 
 You can use the [Get-VM](http://technet.microsoft.com/library/hh848479.aspx) cmdlet to check that the credentials you're using have the Hyper-V administrator role and to see which VMs are running locally on the host and booted.
 
-## What can you do with PowerShell Direct?
+There are a small set of common error messages surfaced through PowerShell direct.
+
+### Error:  A remote session might have ended
+Specific error message:
+```
+An error has occured which Windows PowerShell cannot handle.  A remote session might have ended. 
+```
+
+Potential causes:
+* The VM is not running
+* The guest OS does not support PowerShell Direct.  See supported operating systems.
+* PowerShell isn't available in the guest yet
+  * The operating system hasn't finished booting
+  * The operating system can't boot correctly
+  * Some boot time event needs input
+* The guest credentials couldn't be validated
+
+
+
+
+
+## Samples
 
 Checkout samples on [GitHub](https://github.com/Microsoft/Virtualization-Documentation/search?l=powershell&q=-VMName+OR+-VMGuid&type=Code&utf8=%E2%9C%93).
 
