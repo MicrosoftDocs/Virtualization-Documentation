@@ -55,18 +55,18 @@ You can use the [Get-VM](http://technet.microsoft.com/library/hh848479.aspx) cmd
 There are a small set of common error messages surfaced through PowerShell direct.
 
 ### Error:  A remote session might have ended
-Specific error message:
+Error message:
 ```
 An error has occured which Windows PowerShell cannot handle.  A remote session might have ended. 
 ```
 
 Potential causes:
 * The VM is not running
-* The guest OS does not support PowerShell Direct.  See supported operating systems.
+* The guest OS does not support PowerShell Direct
 * PowerShell isn't available in the guest yet
   * The operating system hasn't finished booting
   * The operating system can't boot correctly
-  * Some boot time event needs input
+  * Some boot time event needs user input
 * The guest credentials couldn't be validated
 
 ## Samples
