@@ -1,8 +1,9 @@
 {
-  "locales": [ "ja-jp" ],
+  "locales": [ "ja-jp", "de-de", "fr-fr", "zh-cn", "zh-tw", "ko-kr", "es-es", "it-it", "ru-ru", "pt-br" ],
   "files": [
+            "virtualization/*.md", 
 	    "virtualization/**/*.md", 
   ],
-  "includeDependencies": false,
+  "includeDependencies": true,
   "autoPush": true
 }
