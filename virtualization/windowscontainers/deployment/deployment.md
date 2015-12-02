@@ -264,7 +264,7 @@ Downloaded in 0 hours, 2 minutes, 28 seconds.
 Verify that the images have been installed using the `Get-ContainerImage` command.
 
 ```powershell
-PS C:\> Get-ContainerImage
+PS C:\>Get-ContainerImage
 
 Name              Publisher    Version      IsOSImage
 ----              ---------    -------      ---------
