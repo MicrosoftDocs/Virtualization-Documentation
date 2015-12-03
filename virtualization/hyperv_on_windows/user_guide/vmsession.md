@@ -3,12 +3,23 @@
 You can use PowerShell Direct to remotely manage a Windows 10 or Windows Server Technical Preview virtual machine from a Windows 10 or Windows Server Technical Preview Hyper-V host. PowerShell Direct allows PowerShell management inside a virtual machine regardless of the network configuration or remote management settings on either the Hyper-V host or the virtual machine. This makes it easier for Hyper-V Administrators to automate and script virtual machine management and configuration.
 
 There are two ways to run PowerShell Direct:  
-* Create and exit a PowerShell Direct session using PSSession cmdlets
-* Run script or command with the Invoke-Command cmdlet
+* As an interactive session -- [go to this section](#create-and-exit-an-interactive-powerShell-session) to create and exit a PowerShell Direct session using PSSession cmdlets
+* To execute a set of commands or script -- [go to this section](#run-script-or-command-with-invoke-command-cmdlet) to run a script or command with the Invoke-Command cmdlet
+
+
+## Requirements
+**Operating system requirements:**
+* The host operating system must run Windows 10, Windows Server Technical Preview, or a higher version.
+* The virtual machine must run Windows 10, Windows Server Technical Preview, or a higher version.
 
 If you're managing older virtual machines, use Virtual Machine Connection (VMConnect) or [configure a virtual network for the virtual machine](http://technet.microsoft.com/library/cc816585.aspx). 
 
-## Create and exit a PowerShell Direct session using PSSession cmdlets
+To create a PowerShell Direct session on a virtual machine,
+* The virtual machine must be running locally on the host and booted. 
+* You must be logged into the host computer as a Hyper-V administrator.
+* You must supply valid user credentials for the virtual machine.
+
+## Create and exit an interactive PowerShell session
 1. On the Hyper-V host, open Windows PowerShell as Administrator.
 
 3. Run the one of the following commands to create a session by using the virtual machine name or GUID:  
@@ -27,7 +38,7 @@ Exit-PSSession
 
 To learn more about these cmdlets, see [Enter-PSSession](http://technet.microsoft.com/library/hh849707.aspx) and [Exit-PSSession](http://technet.microsoft.com/library/hh849743.aspx). 
 
-## Run script or command with Invoke-Command cmdlet
+## Run a script or command with Invoke-Command
 
 You can use the [Invoke-Command](http://technet.microsoft.com/library/hh849719.aspx) cmdlet to run a pre-determined set of commands on the virtual machine. Here is an example of how you can use the Invoke-Command cmdlet where PSTest is the virtual machine name and the script to run (foo.ps1) is in the script folder on the C:/ drive:
 
@@ -43,16 +54,7 @@ To run a single command, use the **-ScriptBlock** parameter:
 
 ## Troubleshooting
 
-To create a PowerShell Direct session on a virtual machine,
-* The virtual machine must be running locally on the host and booted. 
-* You must be logged into the host computer as a Hyper-V administrator.
-* You must supply valid user credentials for the virtual machine.
-* The host operating system must run Windows 10, Windows Server Technical Preview, or a higher version.  
-* The virtual machine must run Windows 10, Windows Server Technical Preview, or a higher version.  
-
-You can use the [Get-VM](http://technet.microsoft.com/library/hh848479.aspx) cmdlet to check that the credentials you're using have the Hyper-V administrator role and to see which VMs are running locally on the host and booted.
-
-There are a small set of common error messages surfaced through PowerShell direct.
+There are a small set of common error messages surfaced through PowerShell direct.  Here are the most common, some causes, and tools for diagnosing issues.
 
 ### Error:  A remote session might have ended
 Error message:
@@ -62,12 +64,14 @@ An error has occured which Windows PowerShell cannot handle.  A remote session m
 
 Potential causes:
 * The VM is not running
-* The guest OS does not support PowerShell Direct
+* The guest OS does not support PowerShell Direct (see [requirements](#Requirements))
 * PowerShell isn't available in the guest yet
   * The operating system hasn't finished booting
   * The operating system can't boot correctly
   * Some boot time event needs user input
 * The guest credentials couldn't be validated
+
+You can use the [Get-VM](http://technet.microsoft.com/library/hh848479.aspx) cmdlet to check that the credentials you're using have the Hyper-V administrator role and to see which VMs are running locally on the host and booted.
 
 ## Samples
 
