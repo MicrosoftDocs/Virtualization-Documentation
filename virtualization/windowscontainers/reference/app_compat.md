@@ -21,7 +21,7 @@ We have tried to running the following applications in a Windows Server Containe
 | Apache Hadoop | | Yes | No | |
 | Apache HTTPD | 2.4 | Yes | Yes | VC++ runtime does not get installed if dedup filter is loaded. Unload dedup using `fltmc unload dedup` |
 | Apache Tomcat | 8.0.24 x64 | Yes | Unknown | |
-| ASP.NET | 4.5 | Yes | Unkown | |
+| ASP.NET | 4.6 | Yes | Unkown | |
 | ASP.NET | 5 beta 6 | Yes | Yes | Both, x64 and x86 |
 | Django | |Yes|Yes| |
 | Go | 1.4.2 | Yes | Yes | |
