@@ -54,7 +54,9 @@ $HostCfgErrorMsgs = @{
     "BcdDisabled" = "Nested virtualization is disabled via BCD HYPERVISORLOADOPTIONS"
     "VbsRunning" = "Virtualization Based Security is running";
     "VbsEnabled" = "The VBS enable reg key is set";
-    "UnsupportedBuild" = "Nested virtualization requires a build later than 10565"
+    "UnsupportedBuild" = "Nested virtualization requires a build later than 10565";
+    "UnsupportedProcessor" = "Running on an unsupported (AMD) processor";
+    "VsmLaunchTypeSet" = "Vsm launch type is set in the BCD store"
     }
 
 $HostCfgErrors = $null
@@ -68,6 +70,7 @@ $HostCfgErrors = @()
 # get computer details
 Write-Host "Getting system information..." -NoNewline
 $comp = gwmi Win32_ComputerSystem
+$proc = gwmi Win32_Processor
 Write-Host "done."
 
 # grab build info out of registry
@@ -87,6 +90,9 @@ Add-Member -InputObject $HostNested NoteProperty -Name "Computer" -Value $comp.N
 Add-Member -InputObject $HostNested NoteProperty -Name "Maufacturer" -Value $comp.Manufacturer
 Add-Member -InputObject $HostNested NoteProperty -Name "Model" -Value $comp.Model
 
+# processor info
+Add-Member -InputObject $HostNested NoteProperty -Name "ProccessorManufacturer" -Value $proc.Manufacturer
+
 # build info
 Add-Member -InputObject $HostNested NoteProperty -Name "Product Name" -Value $a.ProductName
 Add-Member -InputObject $HostNested NoteProperty -Name "Installation Type" -Value $a.InstallationType
@@ -104,6 +110,7 @@ Add-Member -InputObject $HostNested NoteProperty -Name "HypervisorLoadOptionsVal
 Add-Member -InputObject $HostNested NoteProperty -Name "IumInstalled" -Value $false
 Add-Member -InputObject $HostNested NoteProperty -Name "VbsRunning" -Value $false
 Add-Member -InputObject $HostNested NoteProperty -Name "VbsRegEnabled" -Value $false
+Add-Member -InputObject $HostNested NoteProperty -Name "VsmBcdSetting" -Value $false
 Add-Member -InputObject $HostNested NoteProperty -Name "BuildSupported" -Value $true
 
 
@@ -119,6 +126,14 @@ if ($a.BuildLabEx.split('.')[0] -lt 10565) {
     $HostCfgErrors += ($HostCfgErrorMsgs["UnsupportedBuild"])
 }
 
+#
+# Is this an intel processor
+#
+if($HostNested.ProccessorManufacturer -ne "GenuineIntel")
+{
+    $HostCfgErrors += ($HostCfgErrorMsgs["UnsupportedProcessor"])
+    $HostNested.HostNestedSupport = $false
+}
 
 #
 # Is this even a Hyper-V host?
@@ -175,13 +190,20 @@ if ($dg.VirtualizationBasedSecurityStatus) {
     }
 
 # Is EnableVirtualizationBasedSecurity set in the registry?
-$key = (Get-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\DeviceGuard').EnableVirtualizationBasedSecurity
+$key = (Get-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\DeviceGuard' -ErrorAction SilentlyContinue).EnableVirtualizationBasedSecurity
 if ($key -eq 1) {
     $HostNested.VbsRegEnabled = $true
     $HostNested.HostNestedSupport = $false
     $HostCfgErrors += ($HostCfgErrorMsgs["VbsEnabled"])
     }
 
+# Is the VsxmLaunchType set in the BCD?
+$vsmlaunchtype = bcdedit /enum | Select-String "VsmLaunchType" 
+if ($vsmlaunchtype) {
+   $HostNested.VsmBcdSetting = $true
+   $HostNested.HostNestedSupport = $false
+   $HostCfgErrors += ($HostCfgErrorMsgs["VsmLaunchTypeSet"])
+}
 
 #
 # show results
