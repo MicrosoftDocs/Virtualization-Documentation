@@ -45,7 +45,7 @@ The script will then begin to download and configure the Windows Container compo
 
  With these items completed your system should be ready for Windows Containers. 
 
-## Next Steps - Start Using Containers
+## Next Steps: Start Using Containers
 
 Now that you have a Windows Server 2016 system running the Windows Container feature, jump to the following guides to begin working with Windows Server and Hyper-V Containers.
  
