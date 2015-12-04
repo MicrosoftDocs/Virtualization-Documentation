@@ -10,6 +10,8 @@
 2. Select **Contribute to this topic**  
   This will automatically redirect you to the markdown file in GitHub associated with this file.
   
+  Make sure you are signed into GitHub.  If not, either sign in or create a GitHub account.
+  
   ![](media/GitHubView.png)
   
 3. Select the edit icon to edit with the in browser editor.
@@ -19,13 +21,13 @@
 4. Make changes inline.
   
   Possible actions:
-  * Rename the file via text box presented in the file Path
   * Edit file
+  * Rename the file
   * Preview changes
   
-  
-  
-5. Propose your changes with a pull request.  
+5. Propose your changes
+
+6. Create a [pull request](contribute_to_docs.md#pull-requests)  
 
 ## Pull requests
 
