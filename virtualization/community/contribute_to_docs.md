@@ -5,6 +5,7 @@
 ## Edit an existing doc
 
 1. Find the doc you'd like to edit.
+  ![](media/editDoc.png)
 
 2. Select **Contribute to this topic**  
   This will automatically redirect you to the markdown file in GitHub associated with this file.
