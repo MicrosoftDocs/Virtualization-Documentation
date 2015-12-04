@@ -484,7 +484,7 @@ Run the following command to remove the IIS splash screen.
 Run the following command to replace the default IIS site with a new static site.
 
 ```powershell
-[IISApp]: PS C:\> "Hello World From a Hyper-V Container" > C:\inetpub\wwwroot\index.html
+[IISApp]: PS C:\>"Hello World From a Hyper-V Container" > C:\inetpub\wwwroot\index.html
 ```
 
 Browse again to the IP Address of the container host, you should now see the ‘Hello World’ application. Note – you may need to close any existing browser connections, or clear browser cache to see the updated application.
