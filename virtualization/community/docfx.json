@@ -7,6 +7,14 @@
           "exclude": ["**/obj/**"]
         }
       ],
+    "resource": [
+        {
+          "files": ["**/media/**"],
+          "exclude": ["**/obj/**"]
+        }
+    ],
+    "externalReference": [
+    ],
     "template": "op.html",
     "dest": "virtualization/community"
   }
