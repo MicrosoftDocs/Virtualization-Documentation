@@ -3,8 +3,8 @@
 You can use PowerShell Direct to remotely manage a Windows 10 or Windows Server Technical Preview virtual machine from a Windows 10 or Windows Server Technical Preview Hyper-V host. PowerShell Direct allows PowerShell management inside a virtual machine regardless of the network configuration or remote management settings on either the Hyper-V host or the virtual machine. This makes it easier for Hyper-V Administrators to automate and script virtual machine management and configuration.
 
 There are two ways to run PowerShell Direct:  
-* As an interactive session -- [go to this section](#create-and-exit-an-interactive-powerShell-session) to create and exit a PowerShell Direct session using PSSession cmdlets
-* To execute a set of commands or script -- [go to this section](#run-script-or-command-with-invoke-command-cmdlet) to run a script or command with the Invoke-Command cmdlet
+* As an interactive session -- [go to this section](vmsession.md#create-and-exit-an-interactive-powershell-session) to create and exit a PowerShell Direct session using PSSession cmdlets
+* To execute a set of commands or script -- [go to this section](vmsession.md#run-a-script-or-command-with-invoke-command) to run a script or command with the Invoke-Command cmdlet
 
 
 ## Requirements
