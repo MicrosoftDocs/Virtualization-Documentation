@@ -29,7 +29,7 @@
 
 6. Review your changes
 
-6. Create a [pull request](contribute_to_docs.md#pull-requests)  
+7. Create a [pull request](contribute_to_docs.md#pull-requests)  
 
 ## Pull requests
 
