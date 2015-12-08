@@ -42,7 +42,10 @@ $Windows2012R2Key = ""
 $Windows8Key = ""
 $Windows2012Key = ""
 
+$Windows2016Key = ""
+
 # ISOs /  WIMs
+$2016Image = "$($workingDir)\ISOs\en_windows_server_2016_technical_preview_4_x64_dvd_7258292.iso"
 $2008R2Image = "$($workingDir)\ISOs\en_windows_server_2008_r2_standard_enterprise_datacenter_and_web_with_sp1_x64_dvd_617601.wim"
 $2012Image = "$($workingDir)\ISOs\en_windows_server_2012_x64_dvd_915478.wim"
 $2012R2Image = "$($workingDir)\ISOs\en_windows_server_2012_r2_x64_dvd_2707946.wim"
