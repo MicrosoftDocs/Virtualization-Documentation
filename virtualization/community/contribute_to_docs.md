@@ -1,6 +1,6 @@
 # Contribute to the docs
 
-> **Note:**  In order to contribute, you must have a GitHub account.
+> **Note:**  In order to contribute, you must have a [GitHub](https://www.github.com) account.
 
 ## Edit an existing doc
 
@@ -21,9 +21,11 @@
 4. Make changes inline.
   
   Possible actions:
-  * Edit file
-  * Rename the file
-  * Preview changes
+  1. Edit file
+  2. Preview changes
+  3. Rename the file (it's very unlikely you'll want to do this)
+  
+  ![](media/GitHubEditor.png)
   
 5. Propose your changes
 
