@@ -21,10 +21,13 @@
 ##[Container Data](management/manage_data.md)
 ##[Container Resource Control](management/manage_resources.md)
 ##[Management Interoperability](management/hcs_powershell.md)
-# Configuration and Deployment Examples
+# Container Deployment Examples
 ##[Create .Net 3.5 Container Image](examples/dotnet35.md)
 # Reference
 ## [PowerShell Reference](https://technet.microsoft.com/en-us/library/mt433069.aspx )
 ## [PowerShell / Docker Comparison](reference/ps_docker_comparison.md)
 ## [Application Compatibility](reference/app_compat.md)
+# Connect with Community and Support
+## [Container forums](https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers)
+
 # [EULA](EULA.md)
