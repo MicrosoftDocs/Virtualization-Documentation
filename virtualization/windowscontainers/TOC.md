@@ -18,7 +18,6 @@
 ##[Hyper-V Containers](management/hyperv_container.md)
 ##[Container Images](management/manage_images.md)
 ##[Container Data](management/manage_data.md)
-##[Container Networking](management/container_networking.md)
 ##[Container Resource Control](management/manage_resources.md)
 ##[Management Interoperability](management/hcs_powershell.md)
 # Reference
