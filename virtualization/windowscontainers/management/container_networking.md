@@ -1,16 +1,17 @@
 # Container Networking
 
 **This is preliminary content and subject to change.** 
+
 Windows containers function similarly to virtual machines in regards to networking. Each container has a virtual network adapter, which is connected to a virtual switch, over which inbound and outbound traffic is forwarded. Two types of network configuration are available.
 
-- **Network Address Translation** – each container is connected to an internal virtual switch and will receive an internal IP address. A NAT configuration will translate this internal address to the external address of the container host.
-- **Transparent / DHCP** – each container is connected to an external virtual switch and will receive an IP Address from a DHCP server.
+- **Network Address Translation Mode** – each container is connected to an internal virtual switch and will receive an internal IP address. A NAT configuration will translate this internal address to the external address of the container host.
+- **Transparent Mode** – each container is connected to an external virtual switch and will receive an IP Address from a DHCP server.
 
 This document will detail the benefit and configuration of each of these.
 
 ## Network Address Translation
 
-**Network Address Translation** – in this configuration, the container host has an 'external' IP address which is reachable on a network. All containers are assigned 'internal' address that cannot be accessed on a network. To make a container accessible in this configuration, an external port of the host is mapped to an internal port of port of the container. These mappings are stored in a NAT port mapping table. The container is accessible through the IP Address and external port of the host, which forwards traffic to the internal IP address and port of the container. The benefit of NAT is that the container host can scale to hundreds of containers, while only using one externally available IP Address. Additionally, NAT allows multiple containers to host applications that may require identical communication ports.
+**Network Address Translation** – This configuration is comprised of an internal network switch with a type of NAT, and WinNat. In this configuration, the container host has an 'external' IP address which is reachable on a network. All containers are assigned 'internal' address that cannot be accessed on a network. To make a container accessible in this configuration, an external port of the host is mapped to an internal port of port of the container. These mappings are stored in a NAT port mapping table. The container is accessible through the IP Address and external port of the host, which forwards traffic to the internal IP address and port of the container. The benefit of NAT is that the container host can scale to hundreds of containers, while only using one externally available IP Address. Additionally, NAT allows multiple containers to host applications that may require identical communication ports.
 
 ### NAT Host Configuration
 
@@ -37,13 +38,14 @@ This example creates a container connected to a NAT enabled virtual switch.
 New-Container -Name DemoNAT -ContainerImageName WindowsServerCore -SwitchName "NAT"
 ```
 
-When the container has been started you can connect to the container and view the translated IP Address.
+When the container has been started, the IP address can be viewed from within the container.
 
 ```powershell
 [DemoNAT]: PS C:\> ipconfig
+
 Windows IP Configuration
 Ethernet adapter vEthernet (Virtual Switch-527ED2FB-D56D-4852-AD7B-E83732A032F5-0):
-   Connection-specific DNS Suffix  . : corp.microsoft.com
+   Connection-specific DNS Suffix  . : contoso.com
    Link-local IPv6 Address . . . . . : fe80::384e:a23d:3c4b:a227%16
    IPv4 Address. . . . . . . . . . . : 172.16.0.2
    Subnet Mask . . . . . . . . . . . : 255.240.0.0
@@ -56,13 +58,13 @@ For more information on starting and connecting to a Windows Container see [Mana
 
 In order to access applications inside of a 'NAT enabled' container, port mappings need to be created between the container and container host. To create the mapping, you need the IP address of the container, the ‘internal’ container port and an ‘external’ host port.
 
-This example creates a mapping between port **80** of the host to port **80** of a container with IP address **172.16.0.2**.
+This example creates a mapping between port **80** of the host to port **80** of a container with an IP address of **172.16.0.2**.
 
 ```powershell
 Add-NetNatStaticMapping -NatName "Nat" -Protocol TCP -ExternalIPAddress 0.0.0.0 -InternalIPAddress 172.16.0.2 -InternalPort 80 -ExternalPort 80
 ```
 
-This example creates a mapping between port  **82** of the container host to port **80** of a container with IP address **172.16.0.3**.
+This example creates a mapping between port **82** of the container host to port **80** of a container with an IP address of **172.16.0.3**.
 
 ```powershell
 Add-NetNatStaticMapping -NatName "Nat" -Protocol TCP -ExternalIPAddress 0.0.0.0 -InternalIPAddress 172.16.0.3 -InternalPort 80 -ExternalPort 82
