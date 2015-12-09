@@ -444,8 +444,18 @@ Install-ContainerHost
                 
                 $hostBuildInfo = (gp "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion").BuildLabEx.Split(".")
                 $version = $hostBuildInfo[0]
-                $qfe = 0
-                $imageVersion = "10.0.$version.$qfe"
+
+				# TP4 always uses 10586.0
+				if ($version -eq "10586")
+				{
+					$qfe = 0
+				}
+				else
+				{
+					$qfe = $hostBuildInfo[1]
+				}
+
+				$imageVersion = "10.0.$version.$qfe"
 
                 Write-Output "Getting Container OS image ($imageName) version $imageVersion from OneGet (this may take a few minutes)..."
                 Install-ContainerImage $imageName -Version $imageVersion

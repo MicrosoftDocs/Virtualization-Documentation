@@ -319,8 +319,15 @@ Cache-HostFiles
                     }
 
                     Import-Module "$($driveLetter):\NanoServer\NanoServerImageGenerator.psm1"
-                    
-                    New-NanoServerImage -MediaPath "$($driveLetter):\" -TargetPath $global:localVhdPath -Compute -Containers -ReverseForwarders -GuestDrivers -AdministratorPassword $Password
+                                        
+                    if ($Staging)
+                    {
+                        New-NanoServerImage -MediaPath "$($driveLetter):\" -TargetPath $global:localVhdPath -Containers -ReverseForwarders -GuestDrivers -AdministratorPassword $Password
+                    }
+                    else
+                    {
+                        New-NanoServerImage -MediaPath "$($driveLetter):\" -TargetPath $global:localVhdPath -Compute -Containers -ReverseForwarders -GuestDrivers -AdministratorPassword $Password
+                    }
                 }
                 else
                 {
@@ -655,6 +662,32 @@ New-ContainerHost()
     }
 
     #
+    # Validate network configuration
+    #
+    if ($SwitchName -eq "")
+    {
+        $switches = (Get-VMSwitch |? SwitchType -eq "External")
+
+        if ($switches.Count -gt 0)
+        {
+            $SwitchName = $switches[0].Name
+        }
+    }
+
+    if ($SwitchName -ne "")
+    {
+        Write-Output "Using external switch $SwitchName"
+    }
+    elseif ($Staging)
+    {
+        Write-Output "No external virtual switch connectivity; OK for staging mode"
+    }
+    else
+    {
+        throw "This script requires an external virtual switch.  Please configure a virtual switch (New-VMSwitch) and re-run."
+    }
+
+    #
     # Get prerequisites
     #
     Cache-HostFiles
@@ -663,7 +696,7 @@ New-ContainerHost()
     {
         throw "VM name $VmName already exists on this host"
     }
-
+    
     #
     # Prepare VHDs
     # 
@@ -744,134 +777,141 @@ New-ContainerHost()
         $wimHardDiskDrive = $vm | Add-VMHardDiskDrive -Path $wimVhd.Path -ControllerType SCSI
     }
 
-    Write-Output "Starting VM $($vm.Name)..."
-    $vm | Start-VM | Out-Null
+	if ($Staging -and ($WindowsImage -eq "NanoServer"))
+	{
+		Write-Output "NanoServer VM is staged..."		
+	}
+	else
+	{
+		Write-Output "Starting VM $($vm.Name)..."
+		$vm | Start-VM | Out-Null
 
-    Write-Output "Waiting for VM $($vm.Name) to boot..."
-    do 
-    {
-        Start-Sleep -sec 1
-    } 
-    until (($vm | Get-VMIntegrationService |? Id -match "84EAAE65-2F2E-45F5-9BB5-0E857DC8EB47").PrimaryStatusDescription -eq "OK")
+		Write-Output "Waiting for VM $($vm.Name) to boot..."
+		do 
+		{
+			Start-Sleep -sec 1
+		} 
+		until (($vm | Get-VMIntegrationService |? Id -match "84EAAE65-2F2E-45F5-9BB5-0E857DC8EB47").PrimaryStatusDescription -eq "OK")
 
-    Write-Output "Connected to VM $($vm.Name) Heartbeat IC."
+		Write-Output "Connected to VM $($vm.Name) Heartbeat IC."
 
-    if ($global:PowerShellDirectMode)
-    {
-        $credential = New-Object System.Management.Automation.PsCredential("Administrator", $Password)  
+		if ($global:PowerShellDirectMode)
+		{
+			$credential = New-Object System.Management.Automation.PsCredential("Administrator", $Password)  
         
-        $psReady = $false
+			$psReady = $false
 
-        Write-Output "Waiting for specialization to complete (this may take a few minutes)..."
-        $startTime = Get-Date
+			Write-Output "Waiting for specialization to complete (this may take a few minutes)..."
+			$startTime = Get-Date
 
-        do 
-        {
-            $timeElapsed = $(Get-Date) - $startTime
+			do 
+			{
+				$timeElapsed = $(Get-Date) - $startTime
 
-            if ($($timeElapsed).TotalMinutes -ge 30)
-            {
-                throw "Could not connect to PS Direct after 30 minutes"
-            } 
+				if ($($timeElapsed).TotalMinutes -ge 30)
+				{
+					throw "Could not connect to PS Direct after 30 minutes"
+				} 
 
-            Start-Sleep -sec 1
-            $psReady = Invoke-Command -VMName $($vm.Name) -Credential $credential -ScriptBlock { $True } -ErrorAction SilentlyContinue
-        } 
-        until ($psReady)
+				Start-Sleep -sec 1
+				$psReady = Invoke-Command -VMName $($vm.Name) -Credential $credential -ScriptBlock { $True } -ErrorAction SilentlyContinue
+			} 
+			until ($psReady)
 
-        Write-Verbose "PowerShell Direct connected."
+			Write-Verbose "PowerShell Direct connected."
     
-        $guestScriptBlock = 
-        {
-            [CmdletBinding()]
-            param(
-                [Parameter(Position=0)]
-                [string]
-                $WimName,
+			$guestScriptBlock = 
+			{
+				[CmdletBinding()]
+				param(
+					[Parameter(Position=0)]
+					[string]
+					$WimName,
 
-                [Parameter(Position=1)]
-                [string]
-                $ParameterSetName,
+					[Parameter(Position=1)]
+					[string]
+					$ParameterSetName,
 
-                [Parameter(Position=2)]
-                [bool]
-                $HyperV,
+					[Parameter(Position=2)]
+					[bool]
+					$HyperV,
 
-                [Parameter(Position=3)]
-                [string]
-                $NATSubnetPrefix
-                )
+					[Parameter(Position=3)]
+					[string]
+					$NATSubnetPrefix
+					)
 
-            Write-Verbose "Onlining disks..."
-            Get-Disk | ? IsOffline | Set-Disk -IsOffline:$false
+				Write-Verbose "Onlining disks..."
+				Get-Disk | ? IsOffline | Set-Disk -IsOffline:$false
 
-            Write-Output "Completing container install..."
-            $installCommand = "$($env:SystemDrive)\Install-ContainerHost.ps1 -PSDirect -NATSubnetPrefix $NATSubnetPrefix "
+				Write-Output "Completing container install..."
+				$installCommand = "$($env:SystemDrive)\Install-ContainerHost.ps1 -PSDirect -NATSubnetPrefix $NATSubnetPrefix "
 
-            if ($ParameterSetName -eq "SkipDocker")
-            {
-                $installCommand += "-SkipDocker "
-            }
-            elseif ($ParameterSetName -eq "Staging")
-            {
-                $installCommand += "-Staging "
-            }
-            else
-            {
-                $installCommand += "-DockerPath ""$($env:SystemRoot)\System32\docker.exe"" "
-            }
+				if ($ParameterSetName -eq "SkipDocker")
+				{
+					$installCommand += "-SkipDocker "
+				}
+				elseif ($ParameterSetName -eq "Staging")
+				{
+					$installCommand += "-Staging "
+				}
+				else
+				{
+					$installCommand += "-DockerPath ""$($env:SystemRoot)\System32\docker.exe"" "
+				}
 
-            if ($WimName -ne "")
-            {
-                $installCommand += "-WimPath ""D:\$WimName"" "
-            }
+				if ($WimName -ne "")
+				{
+					$installCommand += "-WimPath ""D:\$WimName"" "
+				}
 
-            if ($HyperV)
-            {
-                $installCommand += "-HyperV "
-            }
+				if ($HyperV)
+				{
+					$installCommand += "-HyperV "
+				}
 
-            #
-            # This is required so that Install-ContainerHost.err goes in the right place
-            #
-            $pwd = "$($env:SystemDrive)\"
+				#
+				# This is required so that Install-ContainerHost.err goes in the right place
+				#
+				$pwd = "$($env:SystemDrive)\"
                 
-            $installCommand += "*>&1 | Tee-Object -FilePath ""$($env:SystemDrive)\Install-ContainerHost.log"" -Append"
+				$installCommand += "*>&1 | Tee-Object -FilePath ""$($env:SystemDrive)\Install-ContainerHost.log"" -Append"
 
-            Invoke-Expression $installCommand
-        }
+				Invoke-Expression $installCommand
+			}
     
-        Write-Output "Executing Install-ContainerHost.ps1 inside the VM..."
-        $wimName = ""
-        if ($global:WimSaveMode)
-        {
-            $wimName = $global:localWimName
-        }
-        Invoke-Command -VMName $($vm.Name) -Credential $credential -ScriptBlock $guestScriptBlock -ArgumentList $wimName,$global:ParameterSet,$HyperV,$NATSubnetPrefix
+			Write-Output "Executing Install-ContainerHost.ps1 inside the VM..."
+			$wimName = ""
+			if ($global:WimSaveMode)
+			{
+				$wimName = $global:localWimName
+			}
+			Invoke-Command -VMName $($vm.Name) -Credential $credential -ScriptBlock $guestScriptBlock -ArgumentList $wimName,$global:ParameterSet,$HyperV,$NATSubnetPrefix
     
-        $scriptFailed = Invoke-Command -VMName $($vm.Name) -Credential $credential -ScriptBlock { Test-Path "$($env:SystemDrive)\Install-ContainerHost.err" }
+			$scriptFailed = Invoke-Command -VMName $($vm.Name) -Credential $credential -ScriptBlock { Test-Path "$($env:SystemDrive)\Install-ContainerHost.err" }
     
-        if ($scriptFailed)
-        {
-            throw "Install-ContainerHost.ps1 failed in the VM"
-        }
+			if ($scriptFailed)
+			{
+				throw "Install-ContainerHost.ps1 failed in the VM"
+			}
 
-        #
-        # Cleanup
-        #
-        if ($global:WimSaveMode)
-        {
-            Write-Output "Cleaning up temporary WIM VHD"
-            $vm | Get-VMHardDiskDrive |? Path -eq $wimVhd.Path | Remove-VMHardDiskDrive 
-            Remove-Item $wimVhd.Path
-        }
+			#
+			# Cleanup
+			#
+			if ($global:WimSaveMode)
+			{
+				Write-Output "Cleaning up temporary WIM VHD"
+				$vm | Get-VMHardDiskDrive |? Path -eq $wimVhd.Path | Remove-VMHardDiskDrive 
+				Remove-Item $wimVhd.Path
+			}
     
-        Write-Output "VM $($vm.Name) is ready for use as a container host."
-    }
-    else
-    {
-        Write-Output "VM $($vm.Name) will be ready to use as a container host when Install-ContainerHost.ps1 completes execution inside the VM."
-    }
+			Write-Output "VM $($vm.Name) is ready for use as a container host."
+		}
+		else
+		{
+			Write-Output "VM $($vm.Name) will be ready to use as a container host when Install-ContainerHost.ps1 completes execution inside the VM."
+		}
+	}
 
     Write-Output "See https://msdn.microsoft.com/virtualization/windowscontainers/containers_welcome for more information about using Containers."
     Write-Output "The source code for these installation scripts is available here: https://github.com/Microsoft/Virtualization-Documentation/tree/master/windows-server-container-tools"
@@ -1340,7 +1380,7 @@ Get-Unattend
                <Username>Administrator</Username>
             </AutoLogon>
             <ComputerName>*</ComputerName>
-            <ProductKey>JGNV3-YDJ66-HJMJP-KVRXG-PDGDH</ProductKey>
+            <ProductKey>2KNJJ-33Y9H-2GXGX-KMQWH-G6H67</ProductKey>
         </component>
         <component name="Microsoft-Windows-TerminalServices-LocalSessionManager" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"> 
              <fDenyTSConnections>false</fDenyTSConnections> 
