@@ -1,32 +1,27 @@
 # Container Networking
 
 **This is preliminary content and subject to change.** 
+Windows containers function similarly to virtual machines in regards to networking. Each container has a virtual network adapter, which is connected to a virtual switch, over which inbound and outbound traffic is forwarded. Two types of network configuration are available.
 
-Windows containers function similarly to virtual machines in regards to networking. Each container has a virtual network adapter, which is connected to a virtual switch, over which inbound and outbound traffic is forwarded. That’s said, there are some distinct differences in networking a container vs. networking a virtual machine. This document will detail these differences and how to configure networking on a container host.
-
-## Containers IP Configuration
-
-When deploying Windows Container infrastructure, you need to decide on a networking strategy for the Containers. Two options are available:
-
-- **Network Address Translation** – each container is connected to an internal virtual switch and will receive an internal IP address. A NAT object will translate this internal address to the external address of the container host.
+- **Network Address Translation** – each container is connected to an internal virtual switch and will receive an internal IP address. A NAT configuration will translate this internal address to the external address of the container host.
 - **Transparent / DHCP** – each container is connected to an external virtual switch and will receive an IP Address from a DHCP server.
 
-Both of these networking methods including pros, cons and configuration steps are detailed in this document. 
+This document will detail the benefit and configuration of each of these.
 
 ## Network Address Translation
 
-**Network Address Translation** – in this configuration, the container host has an 'external' IP address which is reachable on the LAN. All containers are assigned 'internal' address that cannot be accessed on the LAN. To make the containers accessible, an external port of the host is mapped to an internal port of port of the container. These mappings are stored in a NAT port mapping table. The container is accessible through the IP Address and external port of the host, which forwards traffic to the internal port of the container. The benefit of NAT is that the container host can scale to hundreds of containers, while only using one externally available IP Address. Additionally, NAT allows multiple containers to host applications that may require identical communication ports.
+**Network Address Translation** – in this configuration, the container host has an 'external' IP address which is reachable on a network. All containers are assigned 'internal' address that cannot be accessed on a network. To make a container accessible in this configuration, an external port of the host is mapped to an internal port of port of the container. These mappings are stored in a NAT port mapping table. The container is accessible through the IP Address and external port of the host, which forwards traffic to the internal IP address and port of the container. The benefit of NAT is that the container host can scale to hundreds of containers, while only using one externally available IP Address. Additionally, NAT allows multiple containers to host applications that may require identical communication ports.
 
 ### NAT Host Configuration
 
-To configure the container host for NAT, follow these steps.
+To configure the container host for Network Address Translation, follow these steps.
 
-Create a Virtual Switch with a type of ‘NAT’. For more information on the **New-VMSwitch** Command, see the [New-VMSwitch Reference](https://technet.microsoft.com/en-us/library/hh848455.aspx).
+Create a Virtual Switch with a type of ‘NAT’ and configure it with an internal subnet. For more information on the **New-VMSwitch** Command, see the [New-VMSwitch Reference](https://technet.microsoft.com/en-us/library/hh848455.aspx).
 
 ```powershell
 New-VMSwitch -Name "NAT" -SwitchType NAT -NATSubnetAddress "172.16.0.0/12"
 ```
-Create the Network Address Translation Object. For more information on the **New-NetNat** command, see the [New-NetNat Reference](https://technet.microsoft.com/en-us/library/dn283361.aspx)
+Create the Network Address Translation Object. This will object is responsible for the NAT address translation. For more information on the **New-NetNat** command, see the [New-NetNat Reference](https://technet.microsoft.com/en-us/library/dn283361.aspx)
 
 ```powershell
 New-NetNat -Name NAT -InternalIPInterfaceAddressPrefix "172.16.0.0/12" 
@@ -72,7 +67,7 @@ This example creates a mapping between port  **82** of the container host to por
 ```powershell
 Add-NetNatStaticMapping -NatName "Nat" -Protocol TCP -ExternalIPAddress 0.0.0.0 -InternalIPAddress 172.16.0.3 -InternalPort 80 -ExternalPort 82
 ```
-After the port mapping has been created, a containers application can an be accessed through the IP address of the container host (physical or virtual), and exposed external port. For example, the below diagram depicts a NAT configuration with a request targeting external port **82** of the container host. Based on the port mapping, this request would return the application being hosted in container 2.
+After the port mapping has been created, a containers application can be accessed through the IP address of the container host (physical or virtual), and exposed external port. For example, the below diagram depicts a NAT configuration with a request targeting external port **82** of the container host. Based on the port mapping, this request would return the application being hosted in container 2.
 
 ![](./media/nat1.png)
 
@@ -94,22 +89,22 @@ The following sample creates a virtual switch with the name DHCP, using a networ
 New-VMSwitch -Name DHCP -NetAdapterName Ethernet
 ```
 
-If the container host is itself a virtual machine, you need to enable MacAddressSpoofing on the network adapter used as the container switch.
+If the container host is itself a virtual machine, you need to enable MacAddressSpoofing on the network adapter used with the container switch. The following example completes this on a VM named `DemoVm`.
 
 ```powershell
-Get-VMNetworkAdapter -VMName TP4FullLatest | Set-VMNetworkAdapter -MacAddressSpoofing On
+Get-VMNetworkAdapter -VMName DemoVM | Set-VMNetworkAdapter -MacAddressSpoofing On
 ```
 The external virtual switch can now be connected to a container, which is then capable of receiving a IP address from a DHCP server. In this configuration, applications hosted inside of the container will be accessible on the IP Address assigned to the container.
 
 ## Docker Virtual Switch
 
-When starting the Docker daemon, a network bridge can be selected. When running Docker on Windows, this is the External or NAT virtual switch.
+When starting the Docker daemon, a network bridge can be selected. When running Docker on Windows, this is the External or NAT virtual switch. The following example starts the Docker daemon, specifying a virtual switch named `Virtual Switch`.
 
 ```powershell
-Docker daemon –D –b <Switch Name> -H 0.0.0.0:2375
+Docker daemon –D –b “Virtual Switch” -H 0.0.0.0:2375
 ```
 
-If you have deployed the container host, and Docker using the scripts provide in the Windows Container Quick Starts, an internal virtual switch is created with a type of NAT, and a Docker service is created and preconfigured to use this switch. To change the network bridge, or virtual switch that the Docker service is using, the Docker service needs to be stopped, a configuration file modified, and the service started again.
+If you have deployed the container host, and Docker using the scripts provide in the Windows Container Quick Starts, an internal virtual switch is created with a type of NAT, and a Docker service is created and preconfigured to use this switch. To change the virtual switch that the Docker service is using, the Docker service needs to be stopped, a configuration file modified, and the service started again.
 
 To stop the service run the following PowerShell command.
 
@@ -120,7 +115,7 @@ Stop-Service docker
 The configuration file can be found at `c:\programdata\docker\runDockerDaemon.cmd’. Edit the following line, replacing `Virtual Switch` with the name of the virtual switch to be used by the Docker service.
 
 ```powershell
-docker daemon -D -b "Virtual Switch"
+docker daemon -D -b “New Switch Name"
 ```
 Finally start the service.
 
