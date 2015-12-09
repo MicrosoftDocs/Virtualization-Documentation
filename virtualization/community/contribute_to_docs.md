@@ -4,7 +4,7 @@
 
 ## Edit an existing doc
 
-1. Find the doc you'd like to edit.
+1. Find the doc you'd like to edit.  
   ![](media/editDoc.png)
 
 2. Select **Contribute to this topic**  
@@ -28,8 +28,12 @@
   ![](media/GitHubEditor.png)
   
 5. Propose your changes
+  
+  ![](media/GitHubProposeChange.png)
 
 6. Review your changes
+  
+  ![](media/GitHubCreatePR.png)
 
 7. Create a [pull request](contribute_to_docs.md#pull-requests)  
 
