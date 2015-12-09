@@ -6,20 +6,20 @@ This guide details creating a Windows Server Core container that includes the .N
 
 When deploying the .NET 3.5 Framework in Widows Server 2016, the `Microsoft-windows-netfx3-ondemand-package.cab` file is required. This file can be found under the `sources\sxs\` directory of the Windows Server 2016 media. 
 
-Create a directory on the container host named `dotnet35`.
+Create a directory on the container host named `dotnet3.5\source`.
 
 ```powershell
-New-Item -ItemType Directory c:\sources\sxs
+New-Item -ItemType Directory c:\dotnet3.5\source
 ```
 
-Copy the `Microsoft-windows-netfx3-ondemand-package.cab` file into this directory. Replace the path seeen below, with the patch to the `Microsoft-windows-netfx3-ondemand-package.cab` file.
+Copy the `Microsoft-windows-netfx3-ondemand-package.cab` file into this directory. Replace the path seen below, with the patch to the `Microsoft-windows-netfx3-ondemand-package.cab` file.
 
 ```powershell
 $file = "d:\sources\sxs\Microsoft-windows-netfx3-ondemand-package.cab"
-Copy-Item -Path $file -Destination c:\sources\sxs
+Copy-Item -Path $file -Destination c:\dotnet3.5\source
 ```	
 	
-If your container host is running in a Hyper-V virtual machine, and was deployed with the provided quick start script, the following can be run, which will copy this file, to the container host, using a pre-existing copy of the Windows Server 2016 media.  
+Alternatively, if your container host is running in a Hyper-V virtual machine, and was deployed with a quick start script, the following can be run. Note, this is run on the Hyper-V host and not the container host. 
 
 ```powershell
 $vm = "<Container Host VM Name>"
@@ -28,7 +28,7 @@ Mount-DiskImage -ImagePath $iso
 $ISOImage = Get-DiskImage -ImagePath $iso | Get-Volume
 $ISODrive = "$([string]$iSOImage.DriveLetter):"
 Get-VM -Name $vm | Enable-VMIntegrationService -Name "Guest Service Interface"
-Copy-VMFile -Name $vm -SourcePath "$iSODrive\sources\sxs\microsoft-windows-netfx3-ondemand-package.cab" -DestinationPath "c:\sources\sxs\microsoft-windows-netfx3-ondemand-package.cab" -FileSource Host -CreateFullPath
+Copy-VMFile -Name $vm -SourcePath "$iSODrive\sources\sxs\microsoft-windows-netfx3-ondemand-package.cab" -DestinationPath "c:\dotnet3.5\source\microsoft-windows-netfx3-ondemand-package.cab" -FileSource Host -CreateFullPath
 Dismount-DiskImage -ImagePath $iso
 ```
 
@@ -45,14 +45,14 @@ New-Container -Name dotnet35 -ContainerImageName windowsservercore -SwitchName â
 Run the following to create a shared folder. Note, the container must be stopped when running the following command.
 
 ```powershell
-Add-ContainerShareFolder -ContainerName dotnet35 -SourcePath c:\sources\sxs -DestinationPath c:\sources\sxs
+Add-ContainerShareFolder -ContainerName dotnet35 -SourcePath C:\dotnet3.5\source -DestinationPath c:\sxs
 ```
 
 Start the container and run the following command to install .NET 3.5.
 
 ```powershell
 Start-Container dotnet35
-Invoke-Command -ContainerName dotnet35 -ScriptBlock {Add-WindowsFeature -Name NET-Framework-Core -Source c:\sources\sxs } -RunAsAdministrator
+Invoke-Command -ContainerName dotnet35 -ScriptBlock {Add-WindowsFeature -Name NET-Framework-Core -Source c:\sxs } -RunAsAdministrator
 ```
 
 This container now has the .NET 3.5 framework installed. To create an image from this container, run the following on the container host.
@@ -70,16 +70,16 @@ The creation of the container image will be automated using a dockerfile.
 Create a dockerfile and open it in notepad.
 
 ```powershell
-New-Item C:\dotnet35\dockerfile -Force
-Notepad C:\dotnet35\dockerfile
+New-Item C:\dotnet3.5\dockerfile -Force
+Notepad C:\dotnet3.5\dockerfile
 ```
 
 Copy this text into the dockerfile and save it.
 
 ```powershell
 FROM windowsservercore
-ADD source /source/sxs
-RUN powershell -Command "& { Add-WindowsFeature -Name NET-Framework-Core -Source c:\sources\sxs }"
+ADD source /sxs
+RUN powershell -Command "& { Add-WindowsFeature -Name NET-Framework-Core -Source c:\sxs }"
 ```
 
 This dockerfile can be used to create a container image that will have the .NET 3.5 framework installed.
