@@ -1,6 +1,6 @@
 # Create a .NET 3.5 Server Core Container Image
 
-This guide details creating a Windows Server Core container image that includes the .NET 3.5 framework. Before starting this exercise, you will need the Windows Server 2016 .iso file, or access the Windows Server 2016 media.
+This guide details creating a Windows Server Core container that includes the .NET 3.5 framework. Before starting this exercise, you will need the Windows Server 2016 .iso file, or access the Windows Server 2016 media.
 
 ## Prepare Media
 
@@ -78,7 +78,7 @@ Copy this text into the dockerfile and save it.
 
 ```powershell
 FROM windowsservercore
-ADD source /sources\sxs
+ADD source /source/sxs
 RUN powershell -Command "& { Add-WindowsFeature -Name NET-Framework-Core -Source c:\sources\sxs }"
 ```
 
