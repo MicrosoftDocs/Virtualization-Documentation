@@ -5,6 +5,7 @@
 Windows containers function similarly to virtual machines in regards to networking. Each container has a virtual network adapter, which is connected to a virtual switch, over which inbound and outbound traffic is forwarded. Two types of network configuration are available.
 
 - **Network Address Translation Mode** – each container is connected to an internal virtual switch and will receive an internal IP address. A NAT configuration will translate this internal address to the external address of the container host.
+
 - **Transparent Mode** – each container is connected to an external virtual switch and will receive an IP Address from a DHCP server.
 
 This document will detail the benefit and configuration of each of these.
@@ -13,7 +14,7 @@ This document will detail the benefit and configuration of each of these.
 
 **Network Address Translation** – This configuration is comprised of an internal network switch with a type of NAT, and WinNat. In this configuration, the container host has an 'external' IP address which is reachable on a network. All containers are assigned 'internal' address that cannot be accessed on a network. To make a container accessible in this configuration, an external port of the host is mapped to an internal port of port of the container. These mappings are stored in a NAT port mapping table. The container is accessible through the IP Address and external port of the host, which forwards traffic to the internal IP address and port of the container. The benefit of NAT is that the container host can scale to hundreds of containers, while only using one externally available IP Address. Additionally, NAT allows multiple containers to host applications that may require identical communication ports.
 
-### Host Configuration
+### Host Configuration <!--1-->
 
 To configure the container host for Network Address Translation, follow these steps.
 
@@ -81,7 +82,7 @@ A view of the request from an internet browser.
 
 **Transparent Networking** – This configuration is comprised of an external network switch. In this configuration each container receives an IP Address from a DHCP server, and is accessible on this IP address. The advantage here is that a port mapping table is not maintained.
 
-### Host Configuration
+### Host Configuration <!--2-->
 
 To configure the container system so that containers can receive an IP address from a DHCP server, create a virtual switch that is connected to a physical or virtual network adapter.
 
