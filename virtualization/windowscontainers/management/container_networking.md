@@ -9,11 +9,11 @@ Windows containers function similarly to virtual machines in regards to networki
 
 This document will detail the benefit and configuration of each of these.
 
-## Network Address Translation
+## NAT Networking Mode
 
 **Network Address Translation** – This configuration is comprised of an internal network switch with a type of NAT, and WinNat. In this configuration, the container host has an 'external' IP address which is reachable on a network. All containers are assigned 'internal' address that cannot be accessed on a network. To make a container accessible in this configuration, an external port of the host is mapped to an internal port of port of the container. These mappings are stored in a NAT port mapping table. The container is accessible through the IP Address and external port of the host, which forwards traffic to the internal IP address and port of the container. The benefit of NAT is that the container host can scale to hundreds of containers, while only using one externally available IP Address. Additionally, NAT allows multiple containers to host applications that may require identical communication ports.
 
-### NAT Host Configuration
+### Host Configuration
 
 To configure the container host for Network Address Translation, follow these steps.
 
@@ -28,7 +28,7 @@ Create the Network Address Translation Object. This will object is responsible f
 New-NetNat -Name NAT -InternalIPInterfaceAddressPrefix "172.16.0.0/12" 
 ```
 
-### NAT Container Configuration 
+### Container Configuration 
 
 When creating a Windows Container, a virtual switch can be selected for the container. When the container is connected to a virtual switch configured to use NAT, the container will receive a translated address.
 
@@ -54,7 +54,7 @@ Ethernet adapter vEthernet (Virtual Switch-527ED2FB-D56D-4852-AD7B-E83732A032F5-
 
 For more information on starting and connecting to a Windows Container see [Managing Contianers](./manage_containers.md).
 
-### NAT Port Mapping
+### Port Mapping
 
 In order to access applications inside of a 'NAT enabled' container, port mappings need to be created between the container and container host. To create the mapping, you need the IP address of the container, the ‘internal’ container port and an ‘external’ host port.
 
@@ -79,9 +79,9 @@ A view of the request from an internet browser.
 
 ## Transparent Networking Mode
 
-**Transparent Networking** – this configuration is similar to traditional system / virtual machine networking. In this configuration each container receives an IP Address from a DHCP server, and is accessible on this IP address. The advantage here is that a port mapping table is not maintained.
+**Transparent Networking** – This configuration is comprised of an external network switch. In this configuration each container receives an IP Address from a DHCP server, and is accessible on this IP address. The advantage here is that a port mapping table is not maintained.
 
-### Configure Transparent Networking
+### Host Configuration
 
 To configure the container system so that containers can receive an IP address from a DHCP server, create a virtual switch that is connected to a physical or virtual network adapter.
 
@@ -98,7 +98,7 @@ Get-VMNetworkAdapter -VMName DemoVM | Set-VMNetworkAdapter -MacAddressSpoofing O
 ```
 The external virtual switch can now be connected to a container, which is then capable of receiving a IP address from a DHCP server. In this configuration, applications hosted inside of the container will be accessible on the IP Address assigned to the container.
 
-## Docker Virtual Switch
+## Docker Configuration
 
 When starting the Docker daemon, a network bridge can be selected. When running Docker on Windows, this is the External or NAT virtual switch. The following example starts the Docker daemon, specifying a virtual switch named `Virtual Switch`.
 
@@ -127,7 +127,7 @@ Start-Service docker
 
 ## Manage Container Network Adapters
 
-Regardless of network configuration (DHCP or NAT), several commands are available that enable managing a containers network adapter and virtual switch connections.
+Regardless of network configuration (NAT or Transparent), several PowerShell commands are available for managing container network adapter and virtual switch connections.
 
 Manage a Containers Network Adapter
 
