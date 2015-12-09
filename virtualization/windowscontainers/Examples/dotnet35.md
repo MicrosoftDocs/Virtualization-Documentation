@@ -1,54 +1,67 @@
-# How to install the .NET 3.5 framework in a container using a Server Core base image
+# Create a .NET 3.5 Server Core Container Image
 
-This guide assumes that your container host is in a VM in your physical machine, and that you used the script we provided to set up your container host in a new VM. This is important because the PowerShell commands here will reference the WindowsTP4.iso file that was placed in your Virtual Hard Disk Path. If this is not true for you, you will just need to change the value of “$iso” so that it points to where you have the TP4 iso.
-First, you will need to mount the WindowsTP4.iso file, in order to exact the .NET 3.5 cabinet file:
+This guide details creating a Windows Server Core container image that includes the .NET 3.5 framework. Before starting this exercise, you will need the Windows Server 2016 .iso file, or access the Windows Server 2016 media.
+
+## Prepare Media
+
+When deploying .NET 3.5 Framework in Widows Server 2016, the `Microsoft-windows-netfx3-ondemand-package.cab` file is required. This file can be found under the `sources\sxs\` directory of the Windows Server 2016 media. 
+
+Create a directory on the container host named `dotnet35`.
 
 ```powershell
+New-Item -ItemType Directory c:\dotnet35
+```
+
+Copy the `Microsoft-windows-netfx3-ondemand-package.cab` file into this directory. Replace the path below, with the patch to the `Microsoft-windows-netfx3-ondemand-package.cab` file.
+
+```powershell
+$file = "d:\sources\sxs\Microsoft-windows-netfx3-ondemand-package.cab"
+Copy-Item -Path $file -Destination c:\dotnet35
+```	
+	
+If your container host is running in a Hyper-V virtual machine and was deployed with the provided quick start script, the following script will complete this process.
+
+```powershell
+$vm = "<Container Host VM Name>"
 $iso = "$((Get-VMHost).VirtualHardDiskPath)".TrimEnd("\") + "\WindowsServerTP4.iso"
-Mount-DiskImage -ImagePath $Iso
+Mount-DiskImage -ImagePath $iso
 $ISOImage = Get-DiskImage -ImagePath $iso | Get-Volume
 $ISODrive = "$([string]$iSOImage.DriveLetter):"
-```
-
-Now, you’ll need to input the name of your container host VM into the $vm variable. These commands will enable the Guest Service Interface in that VM, which will allow us to copy the .NET 3.5 cab file from the mounted ISO to the VM:
-
-```powershell
-$vm = <name of your container host VM>
 Get-VM -Name $vm | Enable-VMIntegrationService -Name "Guest Service Interface"
 Copy-VMFile -Name $vm -SourcePath "$iSODrive\sources\sxs\microsoft-windows-netfx3-ondemand-package.cab" -DestinationPath "C:\dotnet3.5\source\microsoft-windows-netfx3-ondemand-package.cab" -FileSource Host -CreateFullPath
+Dismount-DiskImage -ImagePath $iso
 ```
 
-You can do the rest through PowerShell or through Docker. This guide shows how to it both ways:
+A container image can now be created that will include the .NET 3.5 framework. This can be completed with either PowerShell or Docker. Examples for both are below.
 
+## Create Image - PowerShell
 
-## PowerShell:
-
-After the cab file is in the VM, you will now create a new container, and create a shared folder so the container can see the cab file:
+Has been copied to the virtual machine, a container can be created with a shared folder, which will make the file accessible from within the container itself.
 
 ```powershell
 New-Container -Name dotnet35 -ContainerImageName windowsservercore -SwitchName “Virtual Switch”
 ```
 
-Note: the container must not be running for the following command
+Run the following to create a shared folder. Note, the container must be stopped when running the following command.
 
 ```powershell
 Add-ContainerShareFolder -ContainerName dotnet35 -SourcePath C:\dotnet3.5\source -DestinationPath C:\b\sxs
 ```
 
-Now we can start the container and run the command to install .NET 3.5:
+Start the container and run the following command to install .NET 3.5.
 
 ```powershell
 Start-Container dotnet35
 Invoke-Command -ContainerName dotnet35 -ScriptBlock {Add-WindowsFeature -Name NET-Framework-Core -Source C:\b\sxs } -RunAsAdministrator
 ```
 
-You can now have a container with the .NET 3.5 framework installed. To create an image from this container, do:
+This container now has the .NET 3.5 framework installed. To create an image from this container, run the following on the container host.
 
 ```powershell
 New-ContainerImage -ContainerName dotnet35 -Name dotnet35 -Publisher Demo -Version 1.0
 ```
 
-## Docker:
+## Create Image - Docker
  
 After the cab file is in the VM, now you will need to go to your container host VM and create a dockerfile. Note that these PowerShell commands are done in the container host VM:
 
@@ -57,7 +70,7 @@ New-Item C:\dotnet3.5\dockerfile -Force
 Notepad C:\dotnet3.5\dockerfile
 ```
 
-Now, copy this text into the dockerfile and save it:
+Copy this text into the dockerfile and save it.
 
 ```powershell
 FROM windowsservercore
@@ -65,13 +78,13 @@ ADD source /b/sxs
 RUN powershell -Command "& { Add-WindowsFeature -Name NET-Framework-Core -Source C:\b\sxs }"
 ```
 
-You can now use this dockerfile to create a container image that will have the .NET 3.5 framework installed:
+This dockerfile can be used to create a container image that will have the .NET 3.5 framework installed.
 
 ```powershell
 Docker build -t dotnet35 C:\dotnet3.5\sources\
 ```
 
-If you do “docker images” you will now see your new image. You can then use this image to start a container with the .NET 3.5 framework installed:
+Run “docker images” to see the new image. This image can be used to run a container with the .NET 3.5 framework installed.
 
 ```powershell
 Docker run -it dotnet35 cmd
