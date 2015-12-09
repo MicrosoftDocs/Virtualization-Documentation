@@ -36,3 +36,8 @@
 ## Pull requests
 
 Most changes will be committed via pull request.  A pull request is a way of reviewing a change set with multiple reviewers, changing, and commenting on the current content.
+
+**What we're looking for in a pull request**  
+* The change is correct -- it acctuately represents the technology
+* Spelling/grammar are correct
+* Logical location in the documentation
