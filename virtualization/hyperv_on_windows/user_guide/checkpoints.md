@@ -1,7 +1,26 @@
 # Using checkpoints to revert virtual machines to a previous state
 
-Checkpoints provide a fast and easy way to revert the virtual machine to a previous state. This is especially helpful when you are about to make a change to a virtual machine and you want to be able to roll-back to the present state if that change cause issues.
+One of the great benefits to virtualization is the ability to easily save the state of a virtual machine. In Hyper-V this is done through the use of virtual machine checkpoints. You may want to create a virtual machine checkpoint before making software configuration changes, applying a software update, or installing new software. If a system change were to cause an issue, the virtual machine can be reverted to the state at which it was when then checkpoint was taken.
 
+Windows 10 Hyper-V includes two types of checkpoints:
+
+* **Standard Checkpoints** -- takes a snapshot of the virtual machine and virtual machine memory state at the time the checkpoint is initiated. A snapshot is not a full backup and can cause data consistancy issues with systems that replicate data between different nodes such as Active Directory.
+
+* **Production Checkpoints** –- uses Volume Shadow Copy Service or File System Freeze on a Linux virtual machine to create a data conistenant back of the virtual machine.
+
+Production checkpoints are selected by default however this can be changed using either Hyper-V manager or PowerShell.
+
+## Changing the Checkpoint Type Using Hyper-V Manager
+
+1. Open up Hyper-V Manager.
+
+2. Right click on a virtual machine and select **settings**.
+
+3. Under Management select **Checkpoints**.
+
+4. Select the desired checkpoint type.
+
+![](media/checkpoint_upd.png)
 
 ## Enable or disable checkpoints
 
