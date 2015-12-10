@@ -36,7 +36,7 @@ Once the container has been created, add a network adapter to the container.
 PS C:\> Add-ContainerNetworkAdapter -ContainerName TST
 ```
 
-In order to connected the containers network adapter to a virtual switch, the switch name is needed. Use `Get-VMSwitch` to return a list of virtual switches. 
+In order to connect the container's network adapter to a virtual switch, the switch name is needed. Use `Get-VMSwitch` to return a list of virtual switches. 
 
 ```powershell
 PS C:\> Get-VMSwitch
@@ -47,7 +47,7 @@ DHCP External   Microsoft Hyper-V Network Adapter
 NAT  NAT
 ```
 
-Connect the network adapter the virtual switch using `Connect-ContainerNetowkrAdapter`. NOTE – this can also be completed when the container is crated using the –SwitchName parameter.
+Connect the network adapter to the virtual switch using `Connect-ContainerNetowkrAdapter`. NOTE – this can also be completed when the container is created using the –SwitchName parameter.
 
 ```powershell
 PS C:\> Connect-ContainerNetworkAdapter -ContainerName TST -SwitchName NAT
