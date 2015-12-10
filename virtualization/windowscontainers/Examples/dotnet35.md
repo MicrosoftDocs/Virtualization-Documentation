@@ -4,7 +4,7 @@ This guide details creating a Windows Server Core container that includes the .N
 
 ## Prepare Media
 
-When deploying the .NET 3.5 Framework in Widows Server 2016, the `Microsoft-windows-netfx3-ondemand-package.cab` file is required. This file can be found under the `sources\sxs\` directory of the Windows Server 2016 media. 
+Before creating a .NET 3.5 enabled container image, the .NET 3.5 package needs to be staged for use within a container. For this example, the `Microsoft-windows-netfx3-ondemand-package.cab` file will be copied from the Windows Server 2016 media to the container host.
 
 Create a directory on the container host named `dotnet3.5\source`.
 
@@ -12,7 +12,7 @@ Create a directory on the container host named `dotnet3.5\source`.
 New-Item -ItemType Directory c:\dotnet3.5\source
 ```
 
-Copy the `Microsoft-windows-netfx3-ondemand-package.cab` file into this directory. Replace the path seen below, with the patch to the `Microsoft-windows-netfx3-ondemand-package.cab` file.
+Copy the `Microsoft-windows-netfx3-ondemand-package.cab` file into this directory. This file can be found under the sources\sxs folder of the Windows Server 2016 media.
 
 ```powershell
 $file = "d:\sources\sxs\Microsoft-windows-netfx3-ondemand-package.cab"
@@ -32,17 +32,19 @@ Copy-VMFile -Name $vm -SourcePath "$iSODrive\sources\sxs\microsoft-windows-netfx
 Dismount-DiskImage -ImagePath $iso
 ```
 
-A container image can now be created, which will include the .NET 3.5 framework. This can be completed with either PowerShell or Docker. Examples for both are below.
+A container image can now be created that will include the .NET 3.5 framework. This can be completed with either PowerShell or Docker. Examples for both are below.
 
 ## Create Image - PowerShell
 
-With the .NET 3.5 cab file copied to the container host, a container can be created with a shared folder, which will make the file accessible from within the container itself.
+To create a new image using PowerShell, a container will be created, modified with all desired changes, and then captured into a new image.
+
+Create a new container form the Windows Server Core base image.
 
 ```powershell
 New-Container -Name dotnet35 -ContainerImageName windowsservercore -SwitchName “Virtual Switch”
 ```
 
-Run the following to create a shared folder. Note, the container must be stopped when running the following command.
+Create a shared folder with the new container. This will be used to make the .NET 3.5 cab file accessible inside of the new container.  Note, the container must be stopped when running the following command.
 
 ```powershell
 Add-ContainerShareFolder -ContainerName dotnet35 -SourcePath C:\dotnet3.5\source -DestinationPath c:\sxs
@@ -61,11 +63,15 @@ This container now has the .NET 3.5 framework installed. To create an image from
 New-ContainerImage -ContainerName dotnet35 -Name dotnet35 -Publisher Demo -Version 1.0
 ```
 
+Run `Get-ContainerImages` to see the new image. This image can now be used to run a container with the .NET 3.5 framework pre-installed.
+
+```powershell
+Get-ContainerImages
+```
+
 ## Create Image - Docker
  
-With the .NET 3.5 cab file copied to the container host, Docker can be used to create a container image, which will also include the .NET 3.5 Framework. Note, the following commands are run on the container host VM.
-
-The creation of the container image will be automated using a dockerfile.
+To create a new image using Docker, a dockerfile will be create with instructions on how to create the new image. This dockerfile will then be run, which will result in a new container image. Note, the following commands are run on the container host VM.
 
 Create a dockerfile and open it in notepad.
 
@@ -82,13 +88,13 @@ ADD source /sxs
 RUN powershell -Command "& { Add-WindowsFeature -Name NET-Framework-Core -Source c:\sxs }"
 ```
 
-This dockerfile can be used to create a container image that will have the .NET 3.5 framework installed.
+Run `docker build` which will consume the dockerfile and create the new container image.
 
 ```powershell
 Docker build -t dotnet35 C:\dotnet35\
 ```
 
-Run “docker images” to see the new image. This image can be used to run a container with the .NET 3.5 framework installed.
+Run “docker images” to see the new image. This image can now be used to run a container with the .NET 3.5 framework pre-installed.
 
 ```powershell
 Docker run -it dotnet35 cmd
