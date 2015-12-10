@@ -10,7 +10,6 @@
 ## [Create a Virtual Switch](quick_start/walkthrough_virtual_switch.md)
 ## [Create a Virtual Machine](quick_start/walkthrough_create_vm.md)
 ## [Checkpoints with Hyper-V](quick_start/walkthrough_checkpoints.md)
-## [Export and Import](quick_start/walkthrough_export_import.md)
 ## [Hyper-V and PowerShell](quick_start/walkthrough_powershell.md)
 # User Guides
 ## [Migrate and Upgrade Virtual Machines](user_guide/migrating_vms.md)

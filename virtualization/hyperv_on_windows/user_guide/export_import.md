@@ -1,9 +1,15 @@
 # Export and Import virtual machines
 
-You can use the export and import functionality to quickly duplicate virtual machines or to move them from one host to another.
-You don't need to export a virtual machine to be able to import it. You can simply copy a virtual machine and its associated files to the new host, and then use the **Import Virtual Machine** wizard to specify the location of the files. This registers the virtual machine with Hyper-V and makes it available to be used.
+You can use Hyper-V's export and import functionality to quickly duplicate virtual machines.  Exported virtual machines can be used for backup or as a way to move a virtual machine between Hyper-V hosts.  
 
-## Export virtual machines
+Import allows you to restore virtual machines.  You don't need to export a virtual machine to be able to import it. Import will try to recreate the virtual machine from whatever is available.  Use the **Import Virtual Machine** wizard to specify the location of the files. This registers the virtual machine with Hyper-V and makes it available to be used.
+ 
+This document walks through exporting and importing a virtual machine and some of the choices you can make when performing these tasks.
+
+## Export virtual machines  
+
+Export creates a full copy of all virtual machine files.
+
 An easy way to prepare virtual machines to be imported is the **Export Virtual Machine** wizard.
 
 1. In Hyper-V Manager, select one or multiple virtual machines, right-click on your selection and select **Export**.
