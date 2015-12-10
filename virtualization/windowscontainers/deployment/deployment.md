@@ -20,8 +20,8 @@ The steps listed in this table can be used to deploy a container host to Windows
 
 <table border="1" style="background-color:FFFFCC;border-collapse:collapse;border:1px solid FFCC00;color:000000;width:100%" cellpadding="5" cellspacing="5">
 <tr valign="top">
-<td width = "30%">**Deployment Action**</td>
-<td width = "70%">**Details**</td>
+<td width = "30%"><strong>Deployment Action</strong></td>
+<td width = "70%"><strong>Details</strong></td>
 </tr>
 <tr>
 <td>[Install the Container Feature](#role)</td>
@@ -70,8 +70,8 @@ The steps listed in this table can be used to deploy a container host to Nano Se
 
 <table border="1" style="background-color:FFFFCC;border-collapse:collapse;border:1px solid FFCC00;color:000000;width:100%" cellpadding="5" cellspacing="5">
 <tr valign="top">
-<td width = "30%">**Deployment Action**</td>
-<td width = "70%">**Details**</td>
+<td width = "30%"><strong>Deployment Action</strong></td>
+<td width = "70%"><strong>Details</strong></td>
 </tr>
 <tr>
 <td>[Prepare Nano Server for Containers](#nano)</td>
