@@ -65,7 +65,7 @@ We offer the ability to manage a subset of container resources through Docker. S
 CPU shares amongst containers can be managed at runtime via the --cpu-shares flag. By default, all containers enjoy an equal proportion of CPU time. To change the relative share of CPU that containers use run the --cpu-shares flag with a value from 1-10000. By default, all containers receive a weight of 5000. 
 
 ```powershell 
-C:\> docker run –it --cpu-shares 2 --name dockerdemo windowsservercore cmd
+C:\>docker run –it --cpu-shares 2 --name dockerdemo windowsservercore cmd
 ```
 
 ## Known Issues

@@ -68,7 +68,7 @@ When managing Windows Containers with Docker, volumes can be mounted using the `
 In the below example the source folder is c:\source and destination folder c:\destination.
 
 ```powershell
-PS C:\> docker run -it -v c:\source:c:\destination 1f62aaf73140 cmd
+PS C:\>docker run -it -v c:\source:c:\destination 1f62aaf73140 cmd
 ```
 
 For more information on managing data in containers with Docker see [Docker Volumes on Docker.com](https://docs.docker.com/userguide/dockervolumes/).

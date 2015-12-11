@@ -190,7 +190,7 @@ windowsservercore   latest              6801d964fda5        2 weeks ago         
 To see image dependencies with Docker, the `docker history` command can be used.
 
 ```powershell
-C:\> docker history windowsservercoreiis
+C:\>docker history windowsservercoreiis
 
 IMAGE               CREATED             CREATED BY          SIZE                COMMENT
 2236b49aaaef        3 minutes ago       cmd                 171.2 MB
