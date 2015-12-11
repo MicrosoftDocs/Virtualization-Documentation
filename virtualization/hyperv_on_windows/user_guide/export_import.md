@@ -75,7 +75,7 @@ To import a virtual machine, the wizard does the following:
 
 ### Using PowerShell
 
-To import a virtual machine using PowerShell, use the **Import-VM** command. More information can be found at the [Import-VM Reference](https://technet.microsoft.com/en-us/library/hh848495.aspx). The following commands demonstrate an import of each of the three import types using PowerShell.
+To import a virtual machine using PowerShell, use the **Import-VM** command.  The following commands demonstrate an import of each of the three import types using PowerShell.
 
 To complete an in place import of a virtual machine, the command would look similar to this. Recall that an in place import uses the files where they are stored at the time of import and retains the virtual machines id.
 
@@ -95,4 +95,4 @@ To complete a copy import and move the virtual machine files to the default Hype
 Import-VM -Path 'C:\<vm export path>\2B91FEB3-F1E0-4FFF-B8BE-29CED892A95A.vmcx' –Copy -GenerateNewId
 ```
 
-In addition to the wizard, the Hyper-V module for Windows PowerShell includes cmdlets for importing virtual machines. For more information, see [Import-VM](https://technet.microsoft.com/library/hh848495.aspx).
+For more information, see [Import-VM](https://technet.microsoft.com/library/hh848495.aspx).
