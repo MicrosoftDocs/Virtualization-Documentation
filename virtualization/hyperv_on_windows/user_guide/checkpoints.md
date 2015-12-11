@@ -83,15 +83,12 @@ If you want to revert your virtual machine to a previous point-in-time, you can 
 
 1.	In **Hyper-V Manager**, under **Virtual Machines**, select the virtual machine.
 2.	In the Checkpoints section, right-click the checkpoint that you want to use and click **Apply**.
-3.	A dialog box appears with the following options: 
-
-```	
-**Create Checkpoint and Apply**: Creates a new checkpoint of the virtual machine before it applies the earlier checkpoint. 
-
-**Apply**: Applies only the checkpoint that you have chosen. You cannot undo this action.
-
-**Cancel**: Closes the dialog box without doing anything.
-```
+3.	A dialog box appears with the following options:  
+  * **Create Checkpoint and Apply**: Creates a new checkpoint of the virtual machine before it applies the earlier checkpoint. 
+  * **Apply**: Applies only the checkpoint that you have chosen. You cannot undo this action.
+  * **Cancel**: Closes the dialog box without doing anything.
+  
+  Select either Apply option to create apply the checkpoint.
 
 ### Using PowerShell
 
