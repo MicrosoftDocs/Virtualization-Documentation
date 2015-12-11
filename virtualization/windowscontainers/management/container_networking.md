@@ -53,7 +53,7 @@ Ethernet adapter vEthernet (Virtual Switch-527ED2FB-D56D-4852-AD7B-E83732A032F5-
    Default Gateway . . . . . . . . . : 172.16.0.1
 ```
 
-For more information on starting and connecting to a Windows Container see [Managing Contianers](./manage_containers.md).
+For more information on starting and connecting to a Windows Container see [Managing Containers](./manage_containers.md).
 
 ### Port Mapping
 
@@ -70,7 +70,7 @@ This example creates a mapping between port **82** of the container host to port
 ```powershell
 Add-NetNatStaticMapping -NatName "Nat" -Protocol TCP -ExternalIPAddress 0.0.0.0 -InternalIPAddress 172.16.0.3 -InternalPort 80 -ExternalPort 82
 ```
-> A corresponding fire wall rule will be required for each external port. This can be created with the `New-NetFirewallRule`. For more information see the [New-NetFirewallRule Reference](https://technet.microsoft.com/en-us/library/jj554908.aspx).
+> A corresponding firewall rule will be required for each external port. This can be created with the `New-NetFirewallRule`. For more information see the [New-NetFirewallRule Reference](https://technet.microsoft.com/en-us/library/jj554908.aspx).
 
 After the port mapping has been created, a containers application can be accessed through the IP address of the container host (physical or virtual), and exposed external port. For example, the below diagram depicts a NAT configuration with a request targeting external port **82** of the container host. Based on the port mapping, this request would return the application being hosted in container 2.
 
