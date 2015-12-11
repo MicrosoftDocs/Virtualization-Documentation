@@ -125,5 +125,5 @@ PS C:\> start-process cmd "/k docker daemon -D -b <Switch Name> -H 0.0.0.0:2375â
 To remove the docker daemon and cli from Nano Server, delete `docker.exe` from the Windows\system32 directory.
 
 ```powershell
-PS C:\>Remove-Item $env:SystemRoot\system32\docker.exe
+PS C:\> Remove-Item $env:SystemRoot\system32\docker.exe
 ``` 

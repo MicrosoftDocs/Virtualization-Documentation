@@ -184,7 +184,7 @@ prickly_pike
 To remove all containers with Docker.
 
 ```powershell
-PS C:\>docker rm $(docker ps -a -q)
+PS C:\> docker rm $(docker ps -a -q)
 
 dc3e282c064d
 2230b0433370
