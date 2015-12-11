@@ -37,64 +37,49 @@ There is also a guide contrating production and standard checkpoints.
 
 The following commands can be run to change the checkpoint with PowerShell. 
 
+Set to Standard Checkpoint:
 ```powershell
-# Set to Standard Checkpoint.
 Set-VM -Name <vmname> -CheckpointType Standard
 ```
 
+Set to Production Checkpoint, if the production checkpoint fails a standard checkpoint is be created:
 ```powershell
-# Set to Production Checkpoint, if the production checkpoint fails a standard checkpoint is be created.
 Set-VM -Name <vmname> -CheckpointType Production
 ```
 
+Set to Production Checkpoint, if the production checkpoint fails a standard checkpoint is not be created. 
 ```powershell
-# Set to Production Checkpoint, if the production checkpoint fails a standard checkpoint is not be created. 
 Set-VM -Name <vmname> -CheckpointType ProductionOnly
 ```
 
 ## Creating checkpoints
+Creates a checkpoint of the type configured for the virtual machine. See the [Configuring Checkpoint Type](checkpoints.md#changing-the-checkpoint-type-for-a-VM) section earlier in this document for instructions on how to change this type.
 
 ### Using Hyper-V Manager
 
-To create a checkpoint
+To create a checkpoint:  
 1.	In Hyper-V Manager, select the virtual machine.
 2.	Right-click the name of the virtual machine, and then click **Checkpoint**.
 3.	When the process is complete, the checkpoint will appear under **Checkpoints** in the **Hyper-V Manager**. 
 
-If you want to revert your virtual machine to a previous point-in-time, you can apply an existing checkpoint.
-
-1.	In **Hyper-V Manager**, under **Virtual Machines**, select the virtual machine.
-2.	In the Checkpoints section, right-click the checkpoint that you want to use and click **Apply**.
-3.	A dialog box appears with the following options: 
-
-```	
-**Create Checkpoint and Apply**: Creates a new checkpoint of the virtual machine before it applies the earlier checkpoint. 
-
-**Apply**: Applies only the checkpoint that you have chosen. You cannot undo this action.
-
-**Cancel**: Closes the dialog box without doing anything.
-```
-
 ### Using PowerShell
 
-3. Create a checkpoint using the **CheckPoint-VM** command. This command creates a checkpoint of the type configured for the virtual machine. See the Configuring Checkpoint Type section earlier in this document for instructions on how to change this type.
+Create a checkpoint using the **CheckPoint-VM** command.  
 
-	```powershell
-	Checkpoint-VM –Name <VMName>
-	```
-4. When the checkpoint process has completed, delete the file from the virtual machine.
+```powershell
+Checkpoint-VM –Name <VMName>
+```
 
-5. To see a list of checkpoints for a virtual machine use the **Get-VMCheckpoint** command.
+When the checkpoint process has completed, view a list of checkpoints for a virtual machine use the **Get-VMCheckpoint** command.
 
-	```powershell
-	Get-VMCheckpoint -VMName <VMName>
-	```
+```powershell
+Get-VMCheckpoint -VMName <VMName>
+```
 
 ## Applying checkpoints
+If you want to revert your virtual machine to a previous point-in-time, you can apply an existing checkpoint.
 
 ### Using Hyper-V Manager
-
-If you want to revert your virtual machine to a previous point-in-time, you can apply an existing checkpoint.
 
 1.	In **Hyper-V Manager**, under **Virtual Machines**, select the virtual machine.
 2.	In the Checkpoints section, right-click the checkpoint that you want to use and click **Apply**.
@@ -121,7 +106,7 @@ If you want to revert your virtual machine to a previous point-in-time, you can 
 	Restore-VMCheckpoint -Name <checkpoint name> -VMName <VMName> -Confirm:$false
 	```
 
-## Manage Checkpoints with PowerShell
+## Manage Checkpoints
 
 Just as checkpoints can be created, applied, and managed manually with the Hyper-V Manager, these actions can also be automated using PowerShell. Note that when managing checkpoints with PowerShell the commands are run from the Hyper-V host and not from within the virtual machine itself.
 
