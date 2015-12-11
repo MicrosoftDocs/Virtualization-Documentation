@@ -17,11 +17,17 @@
 ##[Container Management](management/manage_containers.md)
 ##[Hyper-V Containers](management/hyperv_container.md)
 ##[Container Images](management/manage_images.md)
+##[Container Networking](management/container_networking.md)
 ##[Container Data](management/manage_data.md)
 ##[Container Resource Control](management/manage_resources.md)
 ##[Management Interoperability](management/hcs_powershell.md)
+# Container Deployment Examples
+##[Create .Net 3.5 Container Image](examples/dotnet35.md)
+# Community and Support
+## [Container forums](https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers)
 # Reference
 ## [PowerShell Reference](https://technet.microsoft.com/en-us/library/mt433069.aspx )
 ## [PowerShell / Docker Comparison](reference/ps_docker_comparison.md)
 ## [Application Compatibility](reference/app_compat.md)
+
 # [EULA](EULA.md)

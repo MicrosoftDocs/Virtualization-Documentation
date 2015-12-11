@@ -339,7 +339,7 @@ Browse to the IP Address of the container host, you should now see the ‘Hello 
 Exit the interactive session with the container.
 
 ```powershell
-C:\>exit
+C:\> exit
 ```
 
 
