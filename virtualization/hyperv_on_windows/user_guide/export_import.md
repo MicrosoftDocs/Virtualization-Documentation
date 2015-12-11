@@ -6,7 +6,9 @@ Import allows you to restore virtual machines.  You don't need to export a virtu
  
 This document walks through exporting and importing a virtual machine and some of the choices you can make when performing these tasks.
 
-## Export a Virtual Machine in Hyper-V Manager
+## Export a Virtual Machine
+
+### Using Hyper-V Manager
 
 When creating an export of a virtual machine, all associated files are bundled in the export. This includes configuration files, hard drive files and also any existing checkpoint files. To create a virtual machine export:
 
@@ -18,7 +20,17 @@ When creating an export of a virtual machine, all associated files are bundled i
 
 When the export has been completed you can see all exported files under the export location.
 
-## Import a Virtual Machine with Hyper-V Manager
+### Using PowerShell
+
+To export a virtual machine using PowerShell use the **Export-VM** command. 
+
+```powershell
+Export-VM -Name <vm name> -Path <path>
+```
+
+For information about using Windows PowerShell to export virtual machines, see [Export-VM](https://technet.microsoft.com/library/hh848491.aspx)
+
+## Import a Virtual Machine 
 
 Importing a virtual machine registers the virtual machine with the Hyper-V host. A virtual machine export can be imported back into the host from which it was derived or new host. 
 
@@ -29,6 +41,9 @@ Hyper-V includes three import types:
 - **Restore the virtual machine** – You are given an option to store the VM files in a specific location or use the locations default to Hyper-V. This import type creates a copy of the exported file and moves them to the selected location. When imported, the virtual machine has the same ID as it did at the time of export. Because of this, if the virtual machine is already running in Hyper-V it needs to be deleted before the import can be completed. When the import has completed the exported files remain untouched and can be removed and / or imported again.
 
 - **Copy the virtual machine** – This import type is similar to the Restore type in that you select a location for the VM files. The difference is that when imported the virtual machine has a new unique ID. This allows for the Virtual Machine to be imported into the same host multiple time.
+
+
+### Using Hyper-V Manager
 
 To import a virtual machine into a Hyper-V host:
 
@@ -57,27 +72,16 @@ To import a virtual machine, the wizard does the following:
 
 5. Removes the copy of the configuration file. After the wizard does this, the virtual machine is ready to be started.
 
-## Export a Virtual Machine with PowerShell
 
-To export a virtual machine using PowerShell use the **Export-VM** command. More information can be found at the [Export-VM Reference](https://technet.microsoft.com/en-us/library/hh848491.aspx).
+### Using PowerShell
 
-```powershell
-Export-VM -Name <vm name> -Path <path>
-```
-
-For information about using Windows PowerShell to export virtual machines, see [Export-VM](https://technet.microsoft.com/library/hh848491.aspx)
-
-
-## Import a Virtual Machine with PowerShell
-
-To import a virtual machine using PowerShell, use the **Import-VM** command. More information can be found at the [Import-VM Reference](https://technet.microsoft.com/en-us/library/hh848495.aspx). The following commands demonstrate an import of each of the three import types using PowerShell.
+To import a virtual machine using PowerShell, use the **Import-VM** command.  The following commands demonstrate an import of each of the three import types using PowerShell.
 
 To complete an in place import of a virtual machine, the command would look similar to this. Recall that an in place import uses the files where they are stored at the time of import and retains the virtual machines id.
 
 ```powershell
 Import-VM -Path 'C:\<emport path>\2B91FEB3-F1E0-4FFF-B8BE-29CED892A95A.vmcx' 
 ```
-
 
 To import the virtual machine specifying your own path for the virtual machine files, the command would look similar to this.
 
@@ -87,7 +91,8 @@ Import-VM -Path ‘C:\<vm export path>\2B91FEB3-F1E0-4FFF-B8BE-29CED892A95A.vmcx
 
 To complete a copy import and move the virtual machine files to the default Hyper-V location, the command would be similar to this.
 
-```powershll
+``` PowerShell
 Import-VM -Path 'C:\<vm export path>\2B91FEB3-F1E0-4FFF-B8BE-29CED892A95A.vmcx' –Copy -GenerateNewId
+```
 
-In addition to the wizard, the Hyper-V module for Windows PowerShell includes cmdlets for importing virtual machines. For more information, see [Import-VM](https://technet.microsoft.com/library/hh848495.aspx).
+For more information, see [Import-VM](https://technet.microsoft.com/library/hh848495.aspx).
