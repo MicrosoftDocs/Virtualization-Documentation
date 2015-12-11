@@ -3,5 +3,3 @@
 **This document has been deprecated.**
 
 To learn about checkpoints, checkout [this userguide](../user_guide/checkpoints.md).
-
-
