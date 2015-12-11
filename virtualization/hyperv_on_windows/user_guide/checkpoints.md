@@ -10,13 +10,10 @@ Windows 10 Hyper-V includes two types of checkpoints:
 
 Production checkpoints are selected by default however this can be changed using either Hyper-V manager or PowerShell.
 
-This document will outline important checkpoint actions such as:
-* Choosing the checkpoint type
-* Creating a checkpoint
-* Applying checkpoints
-* Renaming checkpoints
+> **Note:** The Hyper-V PowerShell module has several aliases so that checkpoint and snapshot can be used interchangeably.  
+  This document uses checkpoint, however be aware that you may see similar command using the term snapshot.
 
-There is also a guide contrating production and standard checkpoints.
+There is a step by step guide comparing production and standard checkpoints [here](checkpoints.md#demonstrating-checkpoints-in-hyper-v-manager).
 
 
 ## Changing the Checkpoint Type for a VM
@@ -103,31 +100,49 @@ If you want to revert your virtual machine to a previous point-in-time, you can 
 	Restore-VMCheckpoint -Name <checkpoint name> -VMName <VMName> -Confirm:$false
 	```
 
-## Manage Checkpoints
+## Renaming checkpoints
+- **Rename** – useful for including details about the system state when the checkpoint was created.
 
-Just as checkpoints can be created, applied, and managed manually with the Hyper-V Manager, these actions can also be automated using PowerShell. Note that when managing checkpoints with PowerShell the commands are run from the Hyper-V host and not from within the virtual machine itself.
+### Using Hyper-V Manager
 
-> Several aliases have been created in the Hyper-V PowerShell module so that checkpoint and snapshot can be used interchangeably. This document uses checkpoint, however be aware that you may see similar command using the term snapshot.
+### Using PowerShell
 
+To rename a checkpoint, use the following command.
 
-## Export, Rename, Delete Checkpoints with PowerShell 
-
-To export a virtual machine checkpoint, use the following command.
-
-```powershell
-Export-VMCheckpoint –VMName <virtual machine name>  –Name <checkpoint name> -Path <path for export>
-```
-
-
-To rename a virtual machine checkpoint, use the following command.
-
-```powershell
+``` powershell
 Rename-VMCheckpoint –VMName <virtual machine name> –Name <checkpoint name> --NewName <new checkpoint name>
 ```
+
+## Deleting checkpoints
+**Delete Checkpoint** – when a checkpoint is no longer needed, deleting it frees up storage space on the Hyper-V host.
+
+Behind the scenes, checkpoints are stored as .avhdx files in the same location as the .vhdx files for the virtual machine. When you delete a checkpoint, Hyper-V merges the .avhdx and .vhdx files for you.  Once completed, the checkpoint's .avhdx file will be deleted from the file system. 
+
+You should not delete the .avhdx files directly.
+ 
+### Using Hyper-V Manager
+To cleanly delete a checkpoint: 
+
+1.	In **Hyper-V Manager**, select the virtual machine.
+2.	In the **Checkpoints** section, right-click the checkpoint that you want to delete, and click Delete. You can also delete a checkpoint and all subsequent checkpoints. To do so, right-click the earliest checkpoint that you want to delete, and then click ****Delete Checkpoint** Subtree**.
+3.	You might be asked to verify that you want to delete the checkpoint. Confirm that it is the correct checkpoint, and then click **Delete**. 
+
+ 
+### Using PowerShell
 To delete a virtual machine checkpoint, use the following command.
 
 ```powershell
 Remove-VMCheckpoint –VMName <virtual machine name> –Name <checkpoint name>
+```
+
+## Exporting checkpoints
+Export bundles the checkpoint as a virtual machine so the checkpoint can be moved to a new location. Once imported, the checkpoint is restored as a virtual machine.  Exported checkpoints can be used for backup.
+
+### Using PowerShell
+To export a virtual machine checkpoint, use the following command.
+
+``` powershell
+Export-VMCheckpoint –VMName <virtual machine name>  –Name <checkpoint name> -Path <path for export>
 ```
 
 ## Enable or disable checkpoints
@@ -161,35 +176,8 @@ The following table shows when to use production checkpoints or standard checkpo
 
 
 
-
-##Delete a checkpoint
-
-To cleanly delete a checkpoint: 
-
-1.	In **Hyper-V Manager**, select the virtual machine.
-2.	In the **Checkpoints** section, right-click the checkpoint that you want to delete, and click Delete. You can also delete a checkpoint and all subsequent checkpoints. To do so, right-click the earliest checkpoint that you want to delete, and then click ****Delete Checkpoint** Subtree**.
-3.	You might be asked to verify that you want to delete the checkpoint. Confirm that it is the correct checkpoint, and then click **Delete**. 
-4.	The .avhdx and .vhdx files will merge, and when complete, the .avhdx file will be deleted from the file system. 
-
-> **Tip:** You can use Windows Powershell to delete a checkpoint by using the **Remove-VMSnapshot** cmdlet. 
- 
- Checkpoints are stored as .avhdx files in the same location as the .vhdx files for the virtual machine. You should not delete the .avhdx files directly.
-
-
-
-
-
 ## Export, Rename, Delete Checkpoints Using Hyper-V Manager 
 
-In addition to applying a checkpoint, using Hyper-V manager several other actions can be completed.
-
-- **Export** – Allows you to export the checkpoint to another location. The export is a virtual machine backup that can be used to import the virtual machine into different location or different Hyper-V host.
-
-- **Rename** – useful for including details about the system state when the checkpoint was created.
-
-- **Delete Checkpoint** – when a checkpoint is no longer needed, deleting it frees up storage space on the Hyper-V host.
-
-Each of these actions can be accessed through the right click contextual menu of the virtual machine or the actions pane in Hyper-V Manager.
 
 ## Change where checkpoint settings and save state files are stored
 If the virtual machine has no checkpoints, you can change where the checkpoint configuration and saved state files are stored.
