@@ -10,6 +10,15 @@ Windows 10 Hyper-V includes two types of checkpoints:
 
 Production checkpoints are selected by default however this can be changed using either Hyper-V manager or PowerShell.
 
+This document will outline important checkpoint actions such as:
+* Choosing the checkpoint type
+* Creating a checkpoint
+* Applying checkpoints
+* Renaming checkpoints
+
+There is also a guide contrating production and standard checkpoints.
+
+
 ## Changing the Checkpoint Type for a VM
 
 ### Using Hyper-V Manager
@@ -43,11 +52,12 @@ Set-VM -Name <vmname> -CheckpointType Production
 Set-VM -Name <vmname> -CheckpointType ProductionOnly
 ```
 
-## Creating and applying checkpoints
+## Creating checkpoints
 
 ### Using Hyper-V Manager
+
 To create a checkpoint
-1.	In **Hyper-V Manager**, under **Virtual Machines**, select the virtual machine.
+1.	In Hyper-V Manager, select the virtual machine.
 2.	Right-click the name of the virtual machine, and then click **Checkpoint**.
 3.	When the process is complete, the checkpoint will appear under **Checkpoints** in the **Hyper-V Manager**. 
 
@@ -73,6 +83,32 @@ If you want to revert your virtual machine to a previous point-in-time, you can 
 	Checkpoint-VM –Name <VMName>
 	```
 4. When the checkpoint process has completed, delete the file from the virtual machine.
+
+5. To see a list of checkpoints for a virtual machine use the **Get-VMCheckpoint** command.
+
+	```powershell
+	Get-VMCheckpoint -VMName <VMName>
+	```
+
+## Applying checkpoints
+
+### Using Hyper-V Manager
+
+If you want to revert your virtual machine to a previous point-in-time, you can apply an existing checkpoint.
+
+1.	In **Hyper-V Manager**, under **Virtual Machines**, select the virtual machine.
+2.	In the Checkpoints section, right-click the checkpoint that you want to use and click **Apply**.
+3.	A dialog box appears with the following options: 
+
+```	
+**Create Checkpoint and Apply**: Creates a new checkpoint of the virtual machine before it applies the earlier checkpoint. 
+
+**Apply**: Applies only the checkpoint that you have chosen. You cannot undo this action.
+
+**Cancel**: Closes the dialog box without doing anything.
+```
+
+### Using PowerShell
 
 5. To see a list of checkpoints for a virtual machine use the **Get-VMCheckpoint** command.
 
