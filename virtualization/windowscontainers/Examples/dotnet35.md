@@ -54,10 +54,16 @@ Start the container and run the following command to install .NET 3.5.
 
 ```powershell
 Start-Container dotnet35
-Invoke-Command -ContainerName dotnet35 -ScriptBlock {Add-WindowsFeature -Name NET-Framework-Core -Source c:\sxs } -RunAsAdministrator
+Invoke-Command -ContainerName dotnet35 -ScriptBlock {Add-WindowsFeature -Name NET-Framework-Core -Source c:\sxs} -RunAsAdministrator
 ```
 
-This container now has the .NET 3.5 framework installed. To create an image from this container, run the following on the container host.
+When the installation has completed, stop the container.
+
+```powershell
+Stop-Container dotnet35
+```
+
+To create an image from this container, run the following on the container host.
 
 ```powershell
 New-ContainerImage -ContainerName dotnet35 -Name dotnet35 -Publisher Demo -Version 1.0
@@ -85,17 +91,17 @@ Copy this text into the dockerfile and save it.
 ```powershell
 FROM windowsservercore
 ADD source /sxs
-RUN powershell -Command "& { Add-WindowsFeature -Name NET-Framework-Core -Source c:\sxs }"
+RUN powershell -Command "& {Add-WindowsFeature -Name NET-Framework-Core -Source c:\sxs}"
 ```
 
 Run `docker build` which will consume the dockerfile and create the new container image.
 
 ```powershell
-Docker build -t dotnet35 C:\dotnet35\
+Docker build -t dotnet35 C:\dotnet3.5\
 ```
 
 Run “docker images” to see the new image. This image can now be used to run a container with the .NET 3.5 framework pre-installed.
 
 ```powershell
-Docker run -it dotnet35 cmd
+docker images
 ```
