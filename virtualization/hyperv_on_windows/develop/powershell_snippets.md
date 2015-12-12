@@ -21,20 +21,14 @@ All of the scripts and snippets in this section will rely on the following basic
 
 Hyper-V Manager doesn't give you visibility into the guest operating system which often makes it difficult to know whether the guest OS has booted.
 
-Use this command to check whether the guest has booted.
+Here are two views of the same functionality, first as a code snippet then as a PowerShell function.
 
+Snippet:  
 ``` PowerShell
 if((Invoke-Command -VMName $VMName -Credential $cred {"Test"}) -ne "Test"){Write-Host "Not Booted"} else {Write-Host "Booted"}
 ```  
 
-**Outcome**  
-Prints a friendly message declaring the state of the guest OS.
-
-
-### Script locking until the guest has booted
-
-The following function waits uses the same principle to wait until PowerShell is available in the guest (meaning the OS has booted and most services are running) then returns.
-
+Function:  
 ``` PowerShell
 function waitForPSDirect([string]$VMName, $cred){
    Write-Output "[$($VMName)]:: Waiting for PowerShell Direct (using $($cred.username))"

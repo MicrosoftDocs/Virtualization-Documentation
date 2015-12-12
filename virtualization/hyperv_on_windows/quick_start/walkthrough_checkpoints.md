@@ -163,6 +163,4 @@ Remove-VMCheckpoint –VMName <virtual machine name> –Name <checkpoint name>
 ```
 
 ## Next Step
-[Export and Import Virtual Machines](walkthrough_export_import.md)
-
-
+[Hyper-V and Windows PowerShell](walkthrough_powershell.md)
