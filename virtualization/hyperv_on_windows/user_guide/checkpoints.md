@@ -119,14 +119,12 @@ Names are limited to 100 characters or less, and the name cannot be blank.
 
 ### Using PowerShell
 
-To rename a checkpoint, use the following command.
-
 ``` powershell
 Rename-VMCheckpoint –VMName <virtual machine name> –Name <checkpoint name> --NewName <new checkpoint name>
 ```
 
 ## Deleting checkpoints
-**Delete Checkpoint** – when a checkpoint is no longer needed, deleting it frees up storage space on the Hyper-V host.
+Deleting checkpoints can help create space on your Hyper-V host.
 
 Behind the scenes, checkpoints are stored as .avhdx files in the same location as the .vhdx files for the virtual machine. When you delete a checkpoint, Hyper-V merges the .avhdx and .vhdx files for you.  Once completed, the checkpoint's .avhdx file will be deleted from the file system. 
 
@@ -138,7 +136,6 @@ To cleanly delete a checkpoint:
 1.	In **Hyper-V Manager**, select the virtual machine.
 2.	In the **Checkpoints** section, right-click the checkpoint that you want to delete, and click Delete. You can also delete a checkpoint and all subsequent checkpoints. To do so, right-click the earliest checkpoint that you want to delete, and then click ****Delete Checkpoint** Subtree**.
 3.	You might be asked to verify that you want to delete the checkpoint. Confirm that it is the correct checkpoint, and then click **Delete**. 
-
  
 ### Using PowerShell
 ```powershell
@@ -172,36 +169,13 @@ If the virtual machine has no checkpoints, you can change where the checkpoint c
 	
 5.	Click **Apply** to apply your changes. If you are done, click **OK** to close the dialog box.
 
-The default location for storing checkpoint configuration files is: %systemroot%\ProgramData\Microsoft\Windows\Hyper-V\Snapshots.
+The default location for storing checkpoint configuration files is: `%systemroot%\ProgramData\Microsoft\Windows\Hyper-V\Snapshots`.
 
 
 <!-- This belongs in dev docs
 
 This folder will contain the .VMRS file with the runtime and saved state data and a .VMCX configuration file, which uses the checkpoint GUID as the file name.
 -->
-
-
-
-## Choose standard or production checkpoints
-
-Standard checkpoints (formerly known as snapshots) capture the exact memory state of your virtual machine.  That means the virtual machine will restore with **exactly** the same state in which the checkpoint was taken down to the exact application state.  
-Standard checkpoints may contain information about client connections, transactions, and the external network state. This information may not be valid when the checkpoint is applied.  Additionally, if a checkpoint is taken during an application crash, restoring that checkpoint will be in the middle of that crash.
-
-The presence of a standard checkpoint for a virtual machine may impact the disk performance of the virtual machine.  We do not recommend using standard checkpoints on virtual machines when performance or the availability of storage space is critical.
-
-
-Applying a production checkpoint involves booting the guest operating system from an offline state. This means that no application state or security information is captured as part of the checkpoint process. 
-
-The following table shows when to use production checkpoints or standard checkpoints, depending on the state of the virtual machine.
-
-|   **Virtual Machine State** | **Production Checkpoint** |  **Standard Checkpoint** |
-|:-----|:-----|:-----|
-|**Running with Integration Services**| Yes | Yes |
-|**Running without Integration Services** | No | Yes | 
-|**Offline - no saved state**| Yes | Yes |
-|**Offline - with saved state**| No | Yes |
-|**Paused** | No| Yes |
-
 
 ## Demonstrating checkpoints in Hyper-V Manager 
 
