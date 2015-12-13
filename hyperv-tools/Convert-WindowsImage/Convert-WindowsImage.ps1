@@ -269,12 +269,12 @@ Convert-WindowsImage
         $Package,
 
         [Parameter(ParameterSetName="SRC")]
-        [Switch]
-        $ExpandOnNativeBoot = $True,
+        [switch]
+        $ExpandOnNativeBoot = $true,
 
         [Parameter(ParameterSetName="SRC")]
-        [Switch]
-        $RemoteDesktopEnable = $False,
+        [switch]
+        $RemoteDesktopEnable = $false,
 
         [Parameter(ParameterSetName="SRC")]
         [Alias("Unattend")]
@@ -1831,7 +1831,7 @@ You can use the fields below to configure the VHD or VHDX that you want to creat
                 throw "Convert-WindowsImage only supports Windows 7 and Windows 8 WIM files.  The specified image does not appear to contain one of those operating systems."
             }
 
-            if (Get-Module Hyper-V)
+            if ((Get-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V).State -eq "Enabled")
             {
                 Write-W2VInfo "Creating sparse disk..."
                 $newVhd = New-VHD -Path $VHDPath -SizeBytes $SizeBytes -BlockSizeBytes $BlockSizeBytes -Dynamic
@@ -2054,15 +2054,15 @@ You can use the fields below to configure the VHD or VHDX that you want to creat
 
                         Write-W2VInfo "Fixing the Device ID in the BCD store on $($VHDFormat)..."
                         Run-Executable -Executable "BCDEDIT.EXE" -Arguments (
-                            "/store $($windowsDrive)boot\bcd",
+                            "/store $($systemDrive)\boot\bcd",
                             "/set `{bootmgr`} device locate"
                         )
                         Run-Executable -Executable "BCDEDIT.EXE" -Arguments (
-                            "/store $($windowsDrive)boot\bcd",
+                            "/store $($systemDrive)\boot\bcd",
                             "/set `{default`} device locate"
                         )
                         Run-Executable -Executable "BCDEDIT.EXE" -Arguments (
-                            "/store $($windowsDrive)boot\bcd",
+                            "/store $($systemDrive)\boot\bcd",
                             "/set `{default`} osdevice locate"
                         )
                     }
@@ -2161,14 +2161,12 @@ You can use the fields below to configure the VHD or VHDX that you want to creat
                 {
                     Write-W2VInfo -text "Enabling Remote Desktop"
                     Set-ItemProperty -Path "HKLM:\$($hive)\ControlSet001\Control\Terminal Server" -Name "fDenyTSConnections" -Value 0
-
                 }
 
                 if (-not $ExpandOnNativeBoot) 
                 {            
                     Write-W2VInfo -text "Disabling automatic $VHDFormat expansion for Native Boot"
-                    Set-ItemProperty -Path "HKLM:\$($hive)\ControlSet001\Services\FsDepends\Parameters" -Name "VirtualDiskExpandOnMount" -Value 4
-            
+                    Set-ItemProperty -Path "HKLM:\$($hive)\ControlSet001\Services\FsDepends\Parameters" -Name "VirtualDiskExpandOnMount" -Value 4            
                 }
 
                 Dismount-RegistryHive -HiveMountPoint $hive
@@ -2180,9 +2178,8 @@ You can use the fields below to configure the VHD or VHDX that you want to creat
 
                 $Driver | ForEach-Object -Process 
                 {
-
                     Write-W2VInfo -text "Driver path: $PSItem"
-                    $Dism = Add-WindowsDriver -Path $windowsDrive -Recurse -Driver $PSItem
+                    Add-WindowsDriver -Path $windowsDrive -Recurse -Driver $PSItem -Verbose | Out-Null
                 }
             }
 
@@ -2191,7 +2188,7 @@ You can use the fields below to configure the VHD or VHDX that you want to creat
                 Write-W2VInfo -text "Installing Windows Feature(s) $Feature to the Image"
                 $FeatureSourcePath = Join-Path -Path "$($driveLetter):" -ChildPath "sources\sxs"
                 Write-W2VInfo -text "From $FeatureSourcePath"
-                $Dism = Enable-WindowsOptionalFeature -FeatureName $Feature -Source $FeatureSourcePath -Path $windowsDrive -All
+                Enable-WindowsOptionalFeature -FeatureName $Feature -Source $FeatureSourcePath -Path $windowsDrive -All | Out-Null
 
             }
 
@@ -2199,10 +2196,10 @@ You can use the fields below to configure the VHD or VHDX that you want to creat
             {
                 Write-W2VInfo -text "Adding Windows Packages to the Image"
             
-                $Package | ForEach-Object -Process {
-
+                $Package | ForEach-Object -Process 
+                {
                     Write-W2VInfo -text "Package path: $PSItem"
-                    $Dism = Add-WindowsPackage -Path $windowsDrive -PackagePath $PSItem
+                    Add-WindowsPackage -Path $windowsDrive -PackagePath $PSItem | Out-Null
                 }
             }
 
