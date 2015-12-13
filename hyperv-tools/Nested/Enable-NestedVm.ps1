@@ -76,7 +76,7 @@ $prompt = $false;
 
 # Output text for proposed actions
 if ($vmInfo.State -eq 'Saved') {
-    Write-Host "\tSaveed state will be removed"
+    Write-Host "\tSaved state will be removed"
     $prompt = $true
 }
 if ($vmInfo.State -ne 'Off' -or $vmInfo.State -eq 'Saved') {
@@ -132,7 +132,7 @@ if($char.StartsWith('Y')) {
 
     # Optionally turn on mac spoofing
     if($vmInfo.MacAddressSpoofing -eq 'Off') {
-        Write-Host "Mac Adderess Spoofing isn't enabled, nested guests won't have network!" -ForegroundColor Yellow 
+        Write-Host "Mac Address Spoofing isn't enabled, nested guests won't have network!" -ForegroundColor Yellow 
         Write-Host "Would you like to enable? (Y/N)" -NoNewline
         $input = Read-Host
 
@@ -150,7 +150,7 @@ if($char.StartsWith('Y')) {
         Write-Host "Would you like to set Vm memory to 4GB? (Y/N)" -NoNewline
         $input = Read-Host 
 
-        if($input -eq 'y' -or 'Y') {
+        if($input -eq 'y' -or $input -eq 'Y') {
             Set-VMMemory -VMName $vmName -StartupBytes $4GB
         }
         else {
