@@ -1983,9 +1983,24 @@ You can use the fields below to configure the VHD or VHDX that you want to creat
             ####################################################################################################  
             # APPLY IMAGE FROM WIM TO THE NEW VHD  
             ####################################################################################################  
-                    
+
             Write-W2VInfo "Applying image to $VHDFormat. This could take a while..."
-            Expand-WindowsImage -ApplyPath $windowsDrive -ImagePath $SourcePath -Index $ImageIndex -LogPath "$($logFolder)\DismLogs.log" | Out-Null
+            if (Get-Command Expand-WindowsImage -ErrorAction SilentlyContinue)
+            {
+                Expand-WindowsImage -ApplyPath $windowsDrive -ImagePath $SourcePath -Index $ImageIndex -LogPath "$($logFolder)\DismLogs.log" | Out-Null
+            }
+            else
+            {
+                $dismArgs = @("/Apply-Image /ImageFile:`"$SourcePath`" /Index:$ImageIndex /ApplyDir:$windowsDrive /LogPath:`"$($logFolder)\DismLogs.log`"")
+                Write-W2VInfo "Applying image: $Dism $dismArgs"
+                $process  = Start-Process -Passthru -Wait -NoNewWindow -FilePath $(Join-Path $env:WinDir "system32\dism.exe") `
+                            -ArgumentList $dismArgs `
+
+                if ($process.ExitCode -ne 0)  
+                {  
+ 	                throw "Image Apply failed! See DismImageApply logs for details"  
+                }  
+            }
             Write-W2VInfo "Image was applied successfully. "
             
             #
