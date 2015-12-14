@@ -182,7 +182,7 @@ This exercise walks through creating and applying a standard checkpoint versus a
 3. Change the checkpoint to standard -- instructions [here](checkpoints.md#changing-the-checkpoint-type-using-hyper-V-manager).
 4. Create a new checkpoint.
   
-  ![](media/std_checkpoint_upd.png) 
+![](media/std_checkpoint_upd.png) 
 
 **Apply the Standard Checkpoint with Hyper-V Manager**
 
