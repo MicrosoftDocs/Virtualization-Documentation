@@ -1,7 +1,6 @@
 ﻿function
 Convert-WindowsImage
 {
-
     <#
     .NOTES
         Copyright (c) Microsoft Corporation.  All rights reserved.
@@ -2249,9 +2248,6 @@ You can use the fields below to configure the VHD or VHDX that you want to creat
                 $vhdFinalName = "$($buildLabEx)_$($skuFamily)_$($editionId)_$($openImage.ImageDefaultLanguage).$($VHDFormat.ToLower())"
                 Write-W2VTrace "$VHDFormat final name is : $vhdFinalName"
             }
-
-            $vhdFinalPathCurrent = Join-Path (Split-Path $VHDPath -Parent) $vhdFinalName
-            Write-W2VTrace "$VHDFormat final path is : $vhdFinalPathCurrent"
             
             if (Get-Module Hyper-V)
             {
@@ -2263,21 +2259,22 @@ You can use the fields below to configure the VHD or VHDX that you want to creat
                 Write-W2VInfo "Closing $VHDFormat..."
                 Dismount-DiskImage -ImagePath $VHDPath
             }
+
+            $vhdFinalPath = Join-Path (Split-Path $VHDPath -Parent) $vhdFinalName
+            Write-W2VTrace "$VHDFormat final path is : $vhdFinalPath"
     
-            if (Test-Path $vhdFinalPathCurrent) 
+            if (Test-Path $vhdFinalPath) 
             {
-                Write-W2VInfo "Deleting pre-existing $VHDFormat : $(Split-Path $vhdFinalPathCurrent -Leaf)..."
-                Remove-Item -Path $vhdFinalPathCurrent -Force
+                Write-W2VInfo "Deleting pre-existing $VHDFormat : $(Split-Path $vhdFinalPath -Leaf)..."
+                Remove-Item -Path $vhdFinalPath -Force
             }
-            
-            $vhdFinalPath += $vhdFinalPathCurrent
 
             Write-W2VTrace -Text "Renaming $VHDFormat at $VHDPath to $vhdFinalName"
             Rename-Item -Path (Resolve-Path $VHDPath).Path -NewName $vhdFinalName -Force
 
-            $vhd += Get-DiskImage -ImagePath $vhdFinalPathCurrent
+            $vhd += Get-DiskImage -ImagePath $vhdFinalPath
 
-            $vhdFinalName = $Null
+            $vhdFinalName = $null
         } 
         catch 
         {    
