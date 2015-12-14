@@ -924,6 +924,9 @@ You can use the fields below to configure the VHD or VHDX that you want to creat
         $mountedHive  = $null
         $isoPath      = $null
         $tempSource     = $null
+
+        $hyperVEnabled  = $((Get-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V).State -eq "Enabled")
+
         $vhd          = @()
 
         Write-Host $header
@@ -1830,7 +1833,7 @@ You can use the fields below to configure the VHD or VHDX that you want to creat
                 throw "Convert-WindowsImage only supports Windows 7 and Windows 8 WIM files.  The specified image does not appear to contain one of those operating systems."
             }
 
-            if ((Get-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V).State -eq "Enabled")
+            if ($hyperVEnabled)
             {
                 Write-W2VInfo "Creating sparse disk..."
                 $newVhd = New-VHD -Path $VHDPath -SizeBytes $SizeBytes -BlockSizeBytes $BlockSizeBytes -Dynamic
@@ -2249,7 +2252,7 @@ You can use the fields below to configure the VHD or VHDX that you want to creat
                 Write-W2VTrace "$VHDFormat final name is : $vhdFinalName"
             }
             
-            if (Get-Module Hyper-V)
+            if ($hyperVEnabled)
             {
                 Write-W2VInfo "Dismounting $VHDFormat..."
                 Dismount-VHD -Path $VHDPath
@@ -2301,7 +2304,7 @@ You can use the fields below to configure the VHD or VHDX that you want to creat
             # If VHD is mounted, unmount it
             if (Test-Path $VHDPath)
             {
-                if (Get-Module Hyper-V)
+                if ($hyperVEnabled)
                 {
                     if ((Get-VHD -Path $VHDPath).Attached)
                     {
