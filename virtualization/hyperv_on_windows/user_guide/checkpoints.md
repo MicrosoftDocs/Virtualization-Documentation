@@ -13,10 +13,7 @@ Production checkpoints are selected by default however this can be changed using
 > **Note:** The Hyper-V PowerShell module has several aliases so that checkpoint and snapshot can be used interchangeably.  
   This document uses checkpoint, however be aware that you may see similar command using the term snapshot.
 
-There is a step by step guide comparing production and standard checkpoints [here](checkpoints.md#demonstrating-checkpoints-in-hyper-v-manager).
-
-
-## Changing the Checkpoint Type for a VM
+## Changing the Checkpoint Type
 
 ### Using Hyper-V Manager
 
@@ -55,9 +52,9 @@ Creates a checkpoint of the type configured for the virtual machine. See the [Co
 ### Using Hyper-V Manager
 
 To create a checkpoint:  
-1.	In Hyper-V Manager, select the virtual machine.
-2.	Right-click the name of the virtual machine, and then click **Checkpoint**.
-3.	When the process is complete, the checkpoint will appear under **Checkpoints** in the **Hyper-V Manager**. 
+1. In Hyper-V Manager, select the virtual machine.
+2. Right-click the name of the virtual machine, and then click **Checkpoint**.
+3. When the process is complete, the checkpoint will appear under **Checkpoints** in the **Hyper-V Manager**.
 
 ### Using PowerShell
 
@@ -161,12 +158,9 @@ To disable checkpoints, deselect the **Enable Checkpoints** check box.
 ## Change where checkpoint settings and save state files are stored
 If the virtual machine has no checkpoints, you can change where the checkpoint configuration and saved state files are stored.
 
-1.	In **Hyper-V Manager**, right-click the name of the virtual machine, and click **Settings**.
-	
-2.	In the **Management** section, select **Checkpoints** or **Checkpoint File Location**.
-	
-4.	In **Checkpoint File Location**, enter the path to the folder where you would like to store the files.
-	
+1.	In **Hyper-V Manager**, right-click the name of the virtual machine, and click **Settings**.	
+2.	In the **Management** section, select **Checkpoints** or **Checkpoint File Location**.	
+4.	In **Checkpoint File Location**, enter the path to the folder where you would like to store the files.	
 5.	Click **Apply** to apply your changes. If you are done, click **OK** to close the dialog box.
 
 The default location for storing checkpoint configuration files is: `%systemroot%\ProgramData\Microsoft\Windows\Hyper-V\Snapshots`.
@@ -184,14 +178,9 @@ This exercise walks through creating and applying a standard checkpoint versus a
 ### Standard checkpoint
 
 1. Log into your virtual machine and create a text file on the desktop.
-
-2. Open the file with Notepad and enter the text ‘This is a Standard Checkpoint.’  
-  **do not save the file or close Notepad**.  
-
+2. Open the file with Notepad and enter the text ‘This is a Standard Checkpoint.’ **Do not save the file or close Notepad**.  
 3. Change the checkpoint to standard -- instructions [here](checkpoints.md#changing-the-checkpoint-type-using-hyper-V-manager).
-
-4. Create a new checkpoint 
-  Once created, the checkpoint will be listed under the Checkpoints tree view of Hyper-V Manager. The checkpoint is given an auto generated name with a timestamp indicating the time at which the checkpoint was created.
+4. Create a new checkpoint.
   
   ![](media/std_checkpoint_upd.png) 
 
@@ -200,9 +189,7 @@ This exercise walks through creating and applying a standard checkpoint versus a
 Now that a checkpoint exists, make a modification to the virtual machine and then apply the checkpoint to revert the virtual machine back to the saved state. 
 
 1. Close the text file if it is still open and delete it from the virtual machines desktop.
-
 2. Open Hyper-V Manager, right click on the standard checkpoint, and select Apply.
-
 3. Select Apply on the Apply Checkpoint notification window.
 
 ![](media/apply_standard_upd.png) 
@@ -216,11 +203,8 @@ Let’s now examine production checkpoints. This process is almost identical to 
 **Modify the virtual machine and Create a Production Checkpoint**
 
 1. Log into the virtual machine and create a new text file. If you have been following along in this exercises you can use the existing text file.
-
 2. Enter ‘This is a Production Checkpoint.’ into the text file, save the file but **do not close Notepad**.
-
 3. Open up Hyper-V Manager > right click on the virtual machine > select **Checkpoint**.
-
 4. Click **OK** on the Production Checkpoint Created Window.
 
 ![](media/production_Checkpoin_upd.png) 
@@ -230,13 +214,10 @@ Let’s now examine production checkpoints. This process is almost identical to 
 Now that a checkpoint exists make a modification to the system and then apply the checkpoint to revert the virtual machine back to the saved state. 
 
 1. Close the text file if it is still open and delete it from the virtual machines desktop.
-
 2. Open up Hyper-V Manager, right click on the production checkpoint, and select **Apply**.
-
 3. Select **Apply** on the Apply Checkpoint notification window.
 
 Once the production checkpoint has been applied, noticed that the virtual machine is in an off state.
 
 1. Start and log into the virtual machine.
-
 2. Take note that the text file has been restored. But unlike the standard checkpoint, Notepad is not open.   
