@@ -15,7 +15,7 @@ Production checkpoints are selected by default however this can be changed using
 
 ## Changing the Checkpoint Type
 
-### Using Hyper-V Manager
+**Using Hyper-V Manager**
 
 1. Open Hyper-V Manager.
 
@@ -27,7 +27,7 @@ Production checkpoints are selected by default however this can be changed using
 
 ![](media/checkpoint_upd.png)
 
-### Using PowerShell
+**Using PowerShell**
 
 The following commands can be run to change the checkpoint with PowerShell. 
 
@@ -49,14 +49,14 @@ Set-VM -Name <vmname> -CheckpointType ProductionOnly
 ## Creating checkpoints
 Creates a checkpoint of the type configured for the virtual machine. See the [Configuring Checkpoint Type](checkpoints.md#changing-the-checkpoint-type-for-a-VM) section earlier in this document for instructions on how to change this type.
 
-### Using Hyper-V Manager
+**Using Hyper-V Manager**
 
 To create a checkpoint:  
 1. In Hyper-V Manager, select the virtual machine.
 2. Right-click the name of the virtual machine, and then click **Checkpoint**.
 3. When the process is complete, the checkpoint will appear under **Checkpoints** in the **Hyper-V Manager**.
 
-### Using PowerShell
+**Using PowerShell**
 
 Create a checkpoint using the **CheckPoint-VM** command.  
 
@@ -73,7 +73,7 @@ Get-VMCheckpoint -VMName <VMName>
 ## Applying checkpoints
 If you want to revert your virtual machine to a previous point-in-time, you can apply an existing checkpoint.
 
-### Using Hyper-V Manager
+**Using Hyper-V Manager**
 
 1.	In **Hyper-V Manager**, under **Virtual Machines**, select the virtual machine.
 2.	In the Checkpoints section, right-click the checkpoint that you want to use and click **Apply**.
@@ -84,7 +84,7 @@ If you want to revert your virtual machine to a previous point-in-time, you can 
   
   Select either Apply option to create apply the checkpoint.
 
-### Using PowerShell
+**Using PowerShell**
 
 5. To see a list of checkpoints for a virtual machine use the **Get-VMCheckpoint** command.
 
@@ -108,13 +108,14 @@ virtual_machine_name (MM/DD/YYY –hh:mm:ss AM\PM)
 
 Names are limited to 100 characters or less, and the name cannot be blank. 
 
-### Using Hyper-V Manager
+**Using Hyper-V Manager**
+
 1.	In **Hyper-V Manager**, select the virtual machine.
 2.	Right-click the checkpoint, and then select **Rename**.
 3.	Enter in the new name for the checkpoint. It must be less than 100 characters, and the field cannot be empty.
 4.	Click **ENTER** when you are done.
 
-### Using PowerShell
+**Using PowerShell**
 
 ``` powershell
 Rename-VMCheckpoint –VMName <virtual machine name> –Name <checkpoint name> --NewName <new checkpoint name>
@@ -127,14 +128,15 @@ Behind the scenes, checkpoints are stored as .avhdx files in the same location a
 
 You should not delete the .avhdx files directly.
  
-### Using Hyper-V Manager
+**Using Hyper-V Manager**
+
 To cleanly delete a checkpoint: 
 
 1.	In **Hyper-V Manager**, select the virtual machine.
 2.	In the **Checkpoints** section, right-click the checkpoint that you want to delete, and click Delete. You can also delete a checkpoint and all subsequent checkpoints. To do so, right-click the earliest checkpoint that you want to delete, and then click ****Delete Checkpoint** Subtree**.
 3.	You might be asked to verify that you want to delete the checkpoint. Confirm that it is the correct checkpoint, and then click **Delete**. 
  
-### Using PowerShell
+**Using PowerShell**
 ```powershell
 Remove-VMCheckpoint –VMName <virtual machine name> –Name <checkpoint name>
 ```
@@ -142,7 +144,7 @@ Remove-VMCheckpoint –VMName <virtual machine name> –Name <checkpoint name>
 ## Exporting checkpoints
 Export bundles the checkpoint as a virtual machine so the checkpoint can be moved to a new location. Once imported, the checkpoint is restored as a virtual machine.  Exported checkpoints can be used for backup.
 
-### Using PowerShell
+**Using PowerShell**
 ``` powershell
 Export-VMCheckpoint –VMName <virtual machine name>  –Name <checkpoint name> -Path <path for export>
 ```
@@ -155,7 +157,7 @@ Export-VMCheckpoint –VMName <virtual machine name>  –Name <checkpoint name> 
 To disable checkpoints, deselect the **Enable Checkpoints** check box.
 4.	Click **Apply** to apply your changes. If you are done, click **OK** to close the dialog box.
 
-## Change where checkpoint settings and save state files are stored
+## Configure checkpoint location
 If the virtual machine has no checkpoints, you can change where the checkpoint configuration and saved state files are stored.
 
 1.	In **Hyper-V Manager**, right-click the name of the virtual machine, and click **Settings**.	
@@ -171,7 +173,7 @@ The default location for storing checkpoint configuration files is: `%systemroot
 This folder will contain the .VMRS file with the runtime and saved state data and a .VMCX configuration file, which uses the checkpoint GUID as the file name.
 -->
 
-## Demonstrating checkpoints in Hyper-V Manager 
+## Checkpoint demo
 
 This exercise walks through creating and applying a standard checkpoint versus a production checkpoint.  For this example, you will make a simple change to the virtual machine and observe the different behavior. 
 
