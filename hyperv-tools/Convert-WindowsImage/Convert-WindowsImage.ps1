@@ -1,7 +1,6 @@
 ﻿function
 Convert-WindowsImage
 {
-
     <#
     .NOTES
         Copyright (c) Microsoft Corporation.  All rights reserved.
@@ -269,12 +268,12 @@ Convert-WindowsImage
         $Package,
 
         [Parameter(ParameterSetName="SRC")]
-        [Switch]
-        $ExpandOnNativeBoot = $True,
+        [switch]
+        $ExpandOnNativeBoot = $true,
 
         [Parameter(ParameterSetName="SRC")]
-        [Switch]
-        $RemoteDesktopEnable = $False,
+        [switch]
+        $RemoteDesktopEnable = $false,
 
         [Parameter(ParameterSetName="SRC")]
         [Alias("Unattend")]
@@ -760,7 +759,7 @@ You can use the fields below to configure the VHD or VHDX that you want to creat
                 $text
             )
         
-            Write-Host "INFO   : $($text)" -ForegroundColor White
+            Write-Host "INFO   : $($text)"
         }
 
         ##########################################################################################
@@ -792,7 +791,7 @@ You can use the fields below to configure the VHD or VHDX that you want to creat
                 [ValidateNotNullOrEmpty()]
                 $text
             )
-            Write-Host "ERROR  : $($text)" -ForegroundColor Red
+            Write-Host "ERROR  : $($text)" -ForegroundColor (Get-Host).PrivateData.ErrorForegroundColor
         }
 
         ##########################################################################################
@@ -808,7 +807,7 @@ You can use the fields below to configure the VHD or VHDX that you want to creat
                 [ValidateNotNullOrEmpty()]
                 $text
             )
-            Write-Host "WARN   : $($text)" -ForegroundColor Yellow
+            Write-Host "WARN   : $($text)" -ForegroundColor (Get-Host).PrivateData.WarningForegroundColor
         }
 
         ##########################################################################################
@@ -925,6 +924,9 @@ You can use the fields below to configure the VHD or VHDX that you want to creat
         $mountedHive  = $null
         $isoPath      = $null
         $tempSource     = $null
+
+        $hyperVEnabled  = $((Get-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V).State -eq "Enabled")
+
         $vhd          = @()
 
         Write-Host $header
@@ -1831,7 +1833,7 @@ You can use the fields below to configure the VHD or VHDX that you want to creat
                 throw "Convert-WindowsImage only supports Windows 7 and Windows 8 WIM files.  The specified image does not appear to contain one of those operating systems."
             }
 
-            if (Get-Module Hyper-V)
+            if ($hyperVEnabled)
             {
                 Write-W2VInfo "Creating sparse disk..."
                 $newVhd = New-VHD -Path $VHDPath -SizeBytes $SizeBytes -BlockSizeBytes $BlockSizeBytes -Dynamic
@@ -1981,9 +1983,24 @@ You can use the fields below to configure the VHD or VHDX that you want to creat
             ####################################################################################################  
             # APPLY IMAGE FROM WIM TO THE NEW VHD  
             ####################################################################################################  
-                    
+
             Write-W2VInfo "Applying image to $VHDFormat. This could take a while..."
-            Expand-WindowsImage -ApplyPath $windowsDrive -ImagePath $SourcePath -Index $ImageIndex -LogPath "$($logFolder)\DismLogs.log" | Out-Null
+            if (Get-Command Expand-WindowsImage -ErrorAction SilentlyContinue)
+            {
+                Expand-WindowsImage -ApplyPath $windowsDrive -ImagePath $SourcePath -Index $ImageIndex -LogPath "$($logFolder)\DismLogs.log" | Out-Null
+            }
+            else
+            {
+                $dismArgs = @("/Apply-Image /ImageFile:`"$SourcePath`" /Index:$ImageIndex /ApplyDir:$windowsDrive /LogPath:`"$($logFolder)\DismLogs.log`"")
+                Write-W2VInfo "Applying image: $Dism $dismArgs"
+                $process  = Start-Process -Passthru -Wait -NoNewWindow -FilePath $(Join-Path $env:WinDir "system32\dism.exe") `
+                            -ArgumentList $dismArgs `
+
+                if ($process.ExitCode -ne 0)  
+                {  
+ 	                throw "Image Apply failed! See DismImageApply logs for details"  
+                }  
+            }
             Write-W2VInfo "Image was applied successfully. "
             
             #
@@ -2054,15 +2071,15 @@ You can use the fields below to configure the VHD or VHDX that you want to creat
 
                         Write-W2VInfo "Fixing the Device ID in the BCD store on $($VHDFormat)..."
                         Run-Executable -Executable "BCDEDIT.EXE" -Arguments (
-                            "/store $($windowsDrive)boot\bcd",
+                            "/store $($systemDrive)\boot\bcd",
                             "/set `{bootmgr`} device locate"
                         )
                         Run-Executable -Executable "BCDEDIT.EXE" -Arguments (
-                            "/store $($windowsDrive)boot\bcd",
+                            "/store $($systemDrive)\boot\bcd",
                             "/set `{default`} device locate"
                         )
                         Run-Executable -Executable "BCDEDIT.EXE" -Arguments (
-                            "/store $($windowsDrive)boot\bcd",
+                            "/store $($systemDrive)\boot\bcd",
                             "/set `{default`} osdevice locate"
                         )
                     }
@@ -2161,14 +2178,12 @@ You can use the fields below to configure the VHD or VHDX that you want to creat
                 {
                     Write-W2VInfo -text "Enabling Remote Desktop"
                     Set-ItemProperty -Path "HKLM:\$($hive)\ControlSet001\Control\Terminal Server" -Name "fDenyTSConnections" -Value 0
-
                 }
 
                 if (-not $ExpandOnNativeBoot) 
                 {            
                     Write-W2VInfo -text "Disabling automatic $VHDFormat expansion for Native Boot"
-                    Set-ItemProperty -Path "HKLM:\$($hive)\ControlSet001\Services\FsDepends\Parameters" -Name "VirtualDiskExpandOnMount" -Value 4
-            
+                    Set-ItemProperty -Path "HKLM:\$($hive)\ControlSet001\Services\FsDepends\Parameters" -Name "VirtualDiskExpandOnMount" -Value 4            
                 }
 
                 Dismount-RegistryHive -HiveMountPoint $hive
@@ -2180,9 +2195,8 @@ You can use the fields below to configure the VHD or VHDX that you want to creat
 
                 $Driver | ForEach-Object -Process 
                 {
-
                     Write-W2VInfo -text "Driver path: $PSItem"
-                    $Dism = Add-WindowsDriver -Path $windowsDrive -Recurse -Driver $PSItem
+                    Add-WindowsDriver -Path $windowsDrive -Recurse -Driver $PSItem -Verbose | Out-Null
                 }
             }
 
@@ -2191,7 +2205,7 @@ You can use the fields below to configure the VHD or VHDX that you want to creat
                 Write-W2VInfo -text "Installing Windows Feature(s) $Feature to the Image"
                 $FeatureSourcePath = Join-Path -Path "$($driveLetter):" -ChildPath "sources\sxs"
                 Write-W2VInfo -text "From $FeatureSourcePath"
-                $Dism = Enable-WindowsOptionalFeature -FeatureName $Feature -Source $FeatureSourcePath -Path $windowsDrive -All
+                Enable-WindowsOptionalFeature -FeatureName $Feature -Source $FeatureSourcePath -Path $windowsDrive -All | Out-Null
 
             }
 
@@ -2199,10 +2213,10 @@ You can use the fields below to configure the VHD or VHDX that you want to creat
             {
                 Write-W2VInfo -text "Adding Windows Packages to the Image"
             
-                $Package | ForEach-Object -Process {
-
+                $Package | ForEach-Object -Process 
+                {
                     Write-W2VInfo -text "Package path: $PSItem"
-                    $Dism = Add-WindowsPackage -Path $windowsDrive -PackagePath $PSItem
+                    Add-WindowsPackage -Path $windowsDrive -PackagePath $PSItem | Out-Null
                 }
             }
 
@@ -2252,11 +2266,8 @@ You can use the fields below to configure the VHD or VHDX that you want to creat
                 $vhdFinalName = "$($buildLabEx)_$($skuFamily)_$($editionId)_$($openImage.ImageDefaultLanguage).$($VHDFormat.ToLower())"
                 Write-W2VTrace "$VHDFormat final name is : $vhdFinalName"
             }
-
-            $vhdFinalPathCurrent = Join-Path (Split-Path $VHDPath -Parent) $vhdFinalName
-            Write-W2VTrace "$VHDFormat final path is : $vhdFinalPathCurrent"
             
-            if (Get-Module Hyper-V)
+            if ($hyperVEnabled)
             {
                 Write-W2VInfo "Dismounting $VHDFormat..."
                 Dismount-VHD -Path $VHDPath
@@ -2266,21 +2277,22 @@ You can use the fields below to configure the VHD or VHDX that you want to creat
                 Write-W2VInfo "Closing $VHDFormat..."
                 Dismount-DiskImage -ImagePath $VHDPath
             }
+
+            $vhdFinalPath = Join-Path (Split-Path $VHDPath -Parent) $vhdFinalName
+            Write-W2VTrace "$VHDFormat final path is : $vhdFinalPath"
     
-            if (Test-Path $vhdFinalPathCurrent) 
+            if (Test-Path $vhdFinalPath) 
             {
-                Write-W2VInfo "Deleting pre-existing $VHDFormat : $(Split-Path $vhdFinalPathCurrent -Leaf)..."
-                Remove-Item -Path $vhdFinalPathCurrent -Force
+                Write-W2VInfo "Deleting pre-existing $VHDFormat : $(Split-Path $vhdFinalPath -Leaf)..."
+                Remove-Item -Path $vhdFinalPath -Force
             }
-            
-            $vhdFinalPath += $vhdFinalPathCurrent
 
             Write-W2VTrace -Text "Renaming $VHDFormat at $VHDPath to $vhdFinalName"
             Rename-Item -Path (Resolve-Path $VHDPath).Path -NewName $vhdFinalName -Force
 
-            $vhd += Get-DiskImage -ImagePath $vhdFinalPathCurrent
+            $vhd += Get-DiskImage -ImagePath $vhdFinalPath
 
-            $vhdFinalName = $Null
+            $vhdFinalName = $null
         } 
         catch 
         {    
@@ -2307,7 +2319,7 @@ You can use the fields below to configure the VHD or VHDX that you want to creat
             # If VHD is mounted, unmount it
             if (Test-Path $VHDPath)
             {
-                if (Get-Module Hyper-V)
+                if ($hyperVEnabled)
                 {
                     if ((Get-VHD -Path $VHDPath).Attached)
                     {
