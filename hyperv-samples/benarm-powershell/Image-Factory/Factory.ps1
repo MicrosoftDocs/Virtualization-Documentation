@@ -902,6 +902,8 @@ function Start-ImageFactory
 
 if($startfactory) {
 
+    Start-ImageFactory -FriendlyName "Windows Server 2016 DataCenter Core - Gen 2" -ISOFile $2016Image -ProductKey $Windows2016Key -SKUEdition "ServerDataCenterCore" -Generation2;
+    Start-ImageFactory -FriendlyName "Windows Server 2016 DataCenter with GUI - Gen 2" -ISOFile $2016Image -ProductKey $Windows2016Key -SKUEdition "ServerDataCenter" -Generation2;
     Start-ImageFactory -FriendlyName "Windows Server 2012 R2 DataCenter with GUI" -ISOFile $2012R2Image -ProductKey $Windows2012R2Key -SKUEdition "ServerDataCenter";
     Start-ImageFactory -FriendlyName "Windows Server 2012 R2 DataCenter Core" -ISOFile $2012R2Image -ProductKey $Windows2012R2Key -SKUEdition "ServerDataCenterCore";
     Start-ImageFactory -FriendlyName "Windows Server 2012 R2 DataCenter with GUI - Gen 2" -ISOFile $2012R2Image -ProductKey $Windows2012R2Key -SKUEdition "ServerDataCenter" -Generation2;
