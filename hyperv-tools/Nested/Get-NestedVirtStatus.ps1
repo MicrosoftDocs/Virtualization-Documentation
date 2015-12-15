@@ -56,7 +56,6 @@ $HostCfgErrorMsgs = @{
     "VbsRegKey" = "The VBS enable reg key is set";
     "UnsupportedBuild" = "Nested virtualization requires a build later than 10565";
     "UnsupportedProcessor" = "Running on an unsupported (AMD) processor";
-    "VsmLaunchTypeSet" = "Vsm launch type is set in the BCD store";
     "VbsPresent" = 'Virtualization Based Security is partly installed on you system. To completely remove Virtualizaiton Based Security, please follow instructions under "Remove Credential Guard" found here: https://technet.microsoft.com/en-us/library/mt483740%28v=vs.85%29.aspx'; 
     }
 
@@ -111,7 +110,6 @@ Add-Member -InputObject $HostNested NoteProperty -Name "HypervisorLoadOptionsVal
 Add-Member -InputObject $HostNested NoteProperty -Name "IumInstalled" -Value $false
 Add-Member -InputObject $HostNested NoteProperty -Name "VbsRunning" -Value $false
 Add-Member -InputObject $HostNested NoteProperty -Name "VbsRegEnabled" -Value $false
-Add-Member -InputObject $HostNested NoteProperty -Name "VsmBcdSetting" -Value $false
 Add-Member -InputObject $HostNested NoteProperty -Name "BuildSupported" -Value $true
 Add-Member -InputObject $HostNested NoteProperty -Name "VbsPresent" -Value $false
 
@@ -194,28 +192,21 @@ if ($key -eq 1) {
     $HostCfgErrors += ($HostCfgErrorMsgs["VbsRegKey"])
     }
 
-# Is the VsxmLaunchType set in the BCD?
-$vsmlaunchtype = bcdedit /enum | Select-String "VsmLaunchType" 
-if ($vsmlaunchtype) {
-   $HostNested.VsmBcdSetting = $true
-   $HostNested.HostNestedSupport = $false
-   $HostCfgErrors += ($HostCfgErrorMsgs["VsmLaunchTypeSet"])
-}
-
 # Check for residual Device Guard EFI variables
-$VbsEventErrors = Get-WinEvent -LogName System -FilterXPath "*[System[EventID=124]]"
-if(($VbsEventErrors.Count -gt 0)) {
-    # Check if event was generated from latest boot
-    $BootEvents = get-winevent -LogName System -FilterXPath "*[System/Provider[@Name='Microsoft-Windows-Kernel-General'] and System/EventID=12] "
-    $LastBoot = $BootEvents[0].TimeCreated # returns newest by default 
-    $EfiBoot = $VbsEventErrors[0].TimeCreated 
-    if($LastBoot -lt $EfiBoot){
-        $HostNested.VbsPresent = $true
-        $HostNested.HostNestedSupport = $false
-        $HostCfgErrors += ($HostCfgErrorMsgs["VbsPresent"])
-    }
-} 
-
+if(Confirm-SecureBootUEFI -ea SilentlyContinue){
+    $VbsEventErrors = Get-WinEvent -LogName System -FilterXPath "*[System[EventID=124]]"
+    if(($VbsEventErrors.Count -gt 0)) {
+        # Check if event was generated from latest boot
+        $BootEvents = get-winevent -LogName System -FilterXPath "*[System/Provider[@Name='Microsoft-Windows-Kernel-General'] and System/EventID=12] "
+        $LastBoot = $BootEvents[0].TimeCreated # returns newest by default 
+        $EfiBoot = $VbsEventErrors[0].TimeCreated 
+        if($LastBoot -lt $EfiBoot){
+            $HostNested.VbsPresent = $true
+            $HostNested.HostNestedSupport = $false
+            $HostCfgErrors += ($HostCfgErrorMsgs["VbsPresent"])
+        }
+    } 
+}
 #
 # show results
 #
