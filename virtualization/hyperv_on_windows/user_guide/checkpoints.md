@@ -22,6 +22,7 @@ Production checkpoints are selected by default however this can be changed using
 3. Under Management select **Checkpoints**.
 4. Select the desired checkpoint type.
 
+<br />
 
 ![](media/checkpoint_upd.png)
 
@@ -188,6 +189,7 @@ This exercise walks through creating and applying a standard checkpoint versus a
 3. Change the checkpoint to standard -- instructions [here](checkpoints.md#changing-the-checkpoint-type-using-hyper-V-manager).
 4. Create a new checkpoint.
 
+<br />
   
 ![](media/std_checkpoint_upd.png) 
 
@@ -199,6 +201,7 @@ Now that a checkpoint exists, make a modification to the virtual machine and the
 2. Open Hyper-V Manager, right click on the standard checkpoint, and select Apply.
 3. Select Apply on the Apply Checkpoint notification window.
 
+<br />
 
 ![](media/apply_standard_upd.png) 
 
@@ -215,6 +218,7 @@ Let’s now examine production checkpoints. This process is almost identical to 
 3. Open up Hyper-V Manager > right click on the virtual machine > select **Checkpoint**.
 4. Click **OK** on the Production Checkpoint Created Window.
 
+<br />
 
 ![](media/production_Checkpoin_upd.png) 
 	
