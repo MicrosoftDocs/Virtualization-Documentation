@@ -14,6 +14,7 @@ When creating a new container, you need the name of a container image that will 
 
 ```powershell
 PS C:\> Get-ContainerImage
+
 Name              Publisher    Version         IsOSImage
 ----              ---------    -------         ---------
 NanoServer        CN=Microsoft 10.0.10584.1000 True
