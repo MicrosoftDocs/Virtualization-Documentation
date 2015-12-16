@@ -18,11 +18,8 @@ Production checkpoints are selected by default however this can be changed using
 **Using Hyper-V Manager**
 
 1. Open Hyper-V Manager.
-
 2. Right click on a virtual machine and select **settings**.
-
 3. Under Management select **Checkpoints**.
-
 4. Select the desired checkpoint type.
 
 ![](media/checkpoint_upd.png)
