@@ -150,7 +150,7 @@ PS C:\> Get-Container | Remove-Container -Force
 Use `docker run` to create a container with Docker.
 
 ```powershell
-docker run -p 80:80 windowsservercoreiis
+PS C:\> docker run -p 80:80 windowsservercoreiis
 ```
 
 For more information on the Docker run command, see the [Docker run reference}( https://docs.docker.com/engine/reference/run/).
