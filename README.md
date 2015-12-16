@@ -34,7 +34,7 @@ Folders you don't care about -- _I will not review pull requests that modify any
 ### demos
 Demos of Hyper-V.  These are public scripts from various presentations and conferences.
 
-Everything in here was made to present once.  There are many agregious hacks.  Don't use any of it in production.
+Everything in here was made to present once.  There are many egregious hacks.  Don't use any of it in production.
 
 ### *-samples
 Walkthroughs and samples.
