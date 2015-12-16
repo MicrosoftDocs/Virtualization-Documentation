@@ -178,7 +178,7 @@ PS C:\> Set-VMProcessor -VMName <container host vm> -ExposeVirtualizationExtensi
 If the container host itself will be running on a Hyper-V virtual machine, and will also be hosting Hyper-V Containers, the virtual machine will require at least two processors. This can be configured through the settings of the virtual machine, or with the following PowerShell script.
 
 ```poweshell
-Set-VMProcessor –VMName <VM Name> -Count 2
+PS C:\> Set-VMProcessor –VMName <VM Name> -Count 2
 ``` 
 
 ### <a name=hypv></a>Enable Hyper-V Role
