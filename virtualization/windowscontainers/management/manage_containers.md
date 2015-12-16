@@ -168,6 +168,7 @@ This example stops all running containers with Docker.
 
 ```powershell
 PS C:\> docker stop $(docker ps -q)
+
 fd9a978faac8
 b51e4be8132e
 ```
