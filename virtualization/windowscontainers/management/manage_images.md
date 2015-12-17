@@ -90,7 +90,7 @@ Remove a single image with PowerShell.
 PS C:\> Get-ContainerImage -Name newimage | Remove-ContainerImage -Force
 ```
 
-### Image Dependency
+### Image Dependency <!--1-->
 
 When a new image is created, it becomes dependent on the image that it was created from. This dependency can be seen using the `get-containerimage` command. If a parent image is not listed, this indicates that the image is a Base OS image.
 
@@ -189,7 +189,7 @@ windowsservercore   10.0.10586.0        6801d964fda5        2 weeks ago         
 windowsservercore   latest              6801d964fda5        2 weeks ago         0 B
 ```
 
-### Image Dependency
+### Image Dependency <!--2-->
 
 To see image dependencies with Docker, the `docker history` command can be used.
 
