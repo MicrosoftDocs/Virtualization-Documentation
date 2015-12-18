@@ -2,7 +2,7 @@
   "locales": [ "ja-jp", "de-de", "fr-fr", "zh-cn", "zh-tw", "ko-kr", "es-es", "it-it", "ru-ru", "pt-br", "tr-tr" ],
   "files": [
             "virtualization/*.md", 
-	    "virtualization/**/*.md", 
+	    "virtualization/**/*.md",  "virtualization/**/**/*.md", 
   ],
   "includeDependencies": true,
   "autoPush": true
