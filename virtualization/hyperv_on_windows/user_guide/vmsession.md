@@ -59,7 +59,7 @@ There are a small set of common error messages surfaced through PowerShell direc
 ### Error:  A remote session might have ended
 Error message:
 ```
-An error has occured which Windows PowerShell cannot handle.  A remote session might have ended. 
+Enter-PSSession : An error has occurred which Windows PowerShell cannot handle. A remote session might have ended.
 ```
 
 Potential causes:
@@ -70,6 +70,9 @@ Potential causes:
   * The operating system can't boot correctly
   * Some boot time event needs user input
 * The guest credentials couldn't be validated
+  * The supplied credentials were incorrect
+  * There are no user accounts in the guest (the OS hasn't booted before)
+  * If connecting as Administrator:  Administrator has not been set as an active user.  Learn more [here](https://technet.microsoft.com/en-us/library/hh825104.aspx).
 
 You can use the [Get-VM](http://technet.microsoft.com/library/hh848479.aspx) cmdlet to check that the credentials you're using have the Hyper-V administrator role and to see which VMs are running locally on the host and booted.
 
