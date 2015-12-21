@@ -109,6 +109,17 @@ Name                 Publisher Version IsOSImage
 WindowsServerCoreIIS CN=Demo   1.0.0.0 False
 ```
 
+Now that the container has been captured into the new image, it is no longer needed. You may remove it using the `Remove-Container` command.
+
+```powershell
+PS C:\> Remove-Container -Name TP4Demo
+
+Confirm
+Are you sure you want to remove container "TP4Demo"?
+[Y] Yes  [A] Yes to All  [N] No  [L] No to All  [S] Suspend  [?] Help (default is "Y"):
+```
+
+
 ### Create IIS Container <!--1-->
 
 Create a new container, this time from the `WindowsServerCoreIIS` container image.
