@@ -13,22 +13,22 @@ Windows Server Technical Preview 4 is being offered with two container OS Images
 <td><center>**Host Operating System**</center></td>
 <td><center>**Windows Server Container**</center></td>
 <td><center>**Hyper-V Container**</center></td>
-<tr>
+</tr>
 <tr valign="top">
 <td><center>Windows Server 2016 Full UI</center></td>
 <td><center>Core OS Image</center></td>
 <td><center>Nano OS Image</center></td>
-<tr>
+</tr>
 <tr valign="top">
 <td><center>Windows Server 2016 Core</center></td>
 <td><center>Core OS Image</center></td>
 <td><center> Nano OS Image</center></td>
-<tr>
+</tr>
 <tr valign="top">
 <td><center>Windows Server 2016 Nano</center></td>
 <td><center> Nano OS Image</center></td>
 <td><center>Nano OS Image</center></td>
-<tr>
+</tr>
 </table>
 
 ## Hyper-V Container Requirements
