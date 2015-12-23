@@ -56,6 +56,16 @@ Name    State Uptime   ParentImageName
 TP4Demo Off   00:00:00 WindowsServerCore
 ```
 
+To visualize exisiting containers, use the `Get-Container` command.
+
+```powershell
+PS C:\> Get-Container
+
+Name    State Uptime   ParentImageName
+----    ----- ------   ---------------
+TP4Demo Off   00:00:00 WindowsServerCore
+```
+
 Start the container using the `Start-Container` command.
 
 ```powershell
