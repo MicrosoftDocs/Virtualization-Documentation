@@ -37,7 +37,7 @@ The steps listed in this table can be used to deploy a container host to Windows
 </tr>
 <tr>
 <td>[Disable Dynamic Memory *](#dyn)</td>
-<td>If the Container Host is itself a Hyper-V Virtual machine, dynamic memory must be disabled on the container host virtual machine.</td>
+<td>If the Container Host is itself a Hyper-V Virtual machine, dynamic memory must be disabled.</td>
 </tr>
 <tr>
 <td>[Enable Hyper-V Role *](#hypv) </td>
@@ -92,7 +92,7 @@ The steps listed in this table can be used to deploy a container host to Nano Se
 <tr>
 <tr>
 <td>[Disable Dynamic Memory *](#dyn)</td>
-<td>If the Container Host is itself a Hyper-V Virtual machine, dynamic memory must be disabled on the container host virtual machine.</td>
+<td>If the Container Host is itself a Hyper-V Virtual machine, dynamic memory must be disabled.</td>
 </tr>
 <td>[Create Virtual Switch](#vswitch)</td>
 <td>Containers connect to a virtual switch for network connectivity.</td>
