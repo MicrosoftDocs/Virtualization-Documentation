@@ -36,6 +36,10 @@ The steps listed in this table can be used to deploy a container host to Windows
 <td>If the Container Host is itself a Hyper-V Virtual machine, at least two virtual processors will need to be configured.</td>
 </tr>
 <tr>
+<td>[Disable Dynamic Memory *](#dyn)</td>
+<td>If the Container Host is itself a Hyper-V Virtual machine, dynamic memory must be disabled on the container host virtual machine.</td>
+</tr>
+<tr>
 <td>[Enable Hyper-V Role *](#hypv) </td>
 <td>Hyper-V is only required if Hyper-V Containers will be used.</td>
 </tr>
@@ -86,6 +90,10 @@ The steps listed in this table can be used to deploy a container host to Nano Se
 <td>If the Container Host is itself a Hyper-V Virtual machine, at least two virtual processors will need to be configured.</td>
 </tr>
 <tr>
+<tr>
+<td>[Disable Dynamic Memory *](#dyn)</td>
+<td>If the Container Host is itself a Hyper-V Virtual machine, dynamic memory must be disabled on the container host virtual machine.</td>
+</tr>
 <td>[Create Virtual Switch](#vswitch)</td>
 <td>Containers connect to a virtual switch for network connectivity.</td>
 </tr>
@@ -170,7 +178,7 @@ If the container host itself will be running on a Hyper-V virtual machine, and w
 > The virtual machines must be turned off when running this command.
 
 ```powershell
-PS C:\> Set-VMProcessor -VMName <container host vm> -ExposeVirtualizationExtensions $true
+PS C:\> Set-VMProcessor -VMName <VM Name> -ExposeVirtualizationExtensions $true
 ```
 
 ### <a name=proc></a>Configure Virtual Processors
@@ -179,6 +187,16 @@ If the container host itself will be running on a Hyper-V virtual machine, and w
 
 ```poweshell
 PS C:\> Set-VMProcessor –VMName <VM Name> -Count 2
+``` 
+
+### <a name=dyn></a>Disable Dynamic Memory
+
+If the Container Host is itself a Hyper-V Virtual machine, dynamic memory must be disabled on the container host virtual machine. This can be configured through the settings of the virtual machine, or with the following PowerShell script.
+
+> The virtual machines must be turned off when running this command.
+
+```poweshell
+PS C:\> Set-VMMemory <VM Name> -DynamicMemoryEnabled $false
 ``` 
 
 ### <a name=hypv></a>Enable Hyper-V Role
@@ -223,7 +241,7 @@ Active                           : True
 <a name=mac></a>Finally, if the container host is running inside of a Hyper-V virtual machine, MAC spoofing must be enable. This allows each container to receive an IP Address. To enable MAC address spoofing, run the following command on the Hyper-V host. The VMName property will be the name of the container host.
 
 ```powershell
-PS C:\> Get-VMNetworkAdapter -VMName <contianer host vm> | Set-VMNetworkAdapter -MacAddressSpoofing On
+PS C:\> Get-VMNetworkAdapter -VMName <VM Name> | Set-VMNetworkAdapter -MacAddressSpoofing On
 ```
 
 ### <a name=img></a>Install OS Images
