@@ -13,7 +13,7 @@ PowerShell scripts are available to automate the deployment of a Windows Contain
 
 ### Windows Server Host
 
-The steps listed in this table can be used to deploy a container host to Windows Server 2016 TP4 and Windows Server Core 2016. Included are the configurations necessary for both Windows Server and Hyper-V Containers.
+The steps listed in this table can be used to deploy a container host on Windows Server 2016 and Windows Server 2016 Core. Included are the configurations necessary for both Windows Server and Hyper-V Containers.
 
 \* Only required if Hyper-V Containers will be deployed.  
 \*\* Only required if Docker will be used to create and manage containers.
