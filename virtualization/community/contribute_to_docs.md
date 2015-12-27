@@ -35,7 +35,7 @@
 6. Review your changes
   
   **What we're looking for in a pull request**  
-  * The change is correct -- it acctuately represents the technology
+  * The change is correct -- it accurately represents the technology
   * Spelling/grammar are correct
   * Logical location in the documentation
     
