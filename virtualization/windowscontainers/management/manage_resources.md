@@ -16,7 +16,7 @@ PS C:\> New-Container –Name TestContainer –MaximumMemoryBytes 256MB -Contain
 You can also set the memory limit of an existing container using the `Set-ContainerMemory` cmdlet.
 
 ```powershell
-PS C:\> Set-ContainerMemory -ContainerName TestContainer -MaximumBytes 500mb
+PS C:\> Set-ContainerMemory -ContainerName TestContainer -MaximumBytes 256mb
 ```
 
 ### Network Bandwidth
