@@ -1,3 +1,8 @@
+# Build sql server 2014 express image listening on static port 1433,
+# with support for data internal-to-container or on host
+#
+# May be customized for any other sql server edition
+#
 # IMAGE USAGE:
 #   detached, data in container:
 #     docker run -d -p <hostport>:1433 <imagename>
@@ -28,6 +33,9 @@
 # .NET 3.5 required for SQL Server
 FROM docker.io/microsoft/dotnet35
 
+# maintainer for image metadata
+MAINTAINER yourname
+
 #note backslash must be escaped in env var as of TP4
 ENV sqlinstance SQL
 ENV sql c:\\sql
@@ -53,11 +61,11 @@ WORKDIR /install
 
 # BEGIN sql-express-download-in-one-step section
 # Download sql express 2014 engine-only installer
-#RUN powershell invoke-webrequest http://download.microsoft.com/download/E/A/E/EAE6F7FC-767A-4038-A954-49B8B05D04EB/Express%2064BIT/SQLEXPR_x64_ENU.exe" \
-#  -OutFile sqlexpr_x64_enu.exe
+RUN powershell invoke-webrequest http://download.microsoft.com/download/E/A/E/EAE6F7FC-767A-4038-A954-49B8B05D04EB/Express%2064BIT/SQLEXPR_x64_ENU.exe" \
+  -OutFile sqlexpr_x64_enu.exe
 
 # Note: High-permission System account must be used for SQL Server as of Win 2016 TP4
-# RUN /install/sqlexpr_x64_enu.exe /q /x:/install/setup
+RUN /install/sqlexpr_x64_enu.exe /q /x:/install/setup
 # END sql-express-download-in-one-step section
 
 # if verbose install log to console desired, use this:
