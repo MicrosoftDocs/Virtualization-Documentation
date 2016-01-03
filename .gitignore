@@ -1,0 +1,4 @@
+*.exe
+sqlexpress/setup
+test
+iis-hello
