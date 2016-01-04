@@ -3,7 +3,7 @@
 * sqlexpress: SQL Server 2014 Express
 * jdk8: Java JDK 8
 
-Each of the above is entirely self-contained - all you need is what is in the dockerfile folder:
+Each of the above is entirely self-contained - all you need is what's in the dockerfile folder:
 * docker build -t sqlexpress ./sqlexpress
 * docker build -t jdk8 ./jdk8
 
