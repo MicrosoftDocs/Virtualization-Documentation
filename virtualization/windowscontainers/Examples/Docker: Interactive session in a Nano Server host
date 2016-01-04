@@ -1,0 +1,39 @@
+#Docker: Interactive session in a Nano Server host
+
+*Note: For info how to manage a nano server remotely, go [here](https://technet.microsoft.com/en-us/library/mt126167.aspx) and look for the section tittled “Using Windows PowerShell remoting.”*
+
+When you are using a Nano Server as your container host, you may see this error when trying to start a container with Docker:
+
+```powershell
+docker : cannot enable tty mode on non tty input
+    + CategoryInfo          : NotSpecified: (cannot enable tty mode on non tty input:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError 
+```
+
+This will happen if you try to start a container with an interactive session, using -it:
+```powershell
+Docker run -it <image> <command>
+```
+Or if you try to attach to a running container:
+```powershell
+Docker attach <container name>
+```
+
+This is because an interactive session cannot be started in the Nano Server host. You will have to do it remotely. Follow these steps to do so:
+
+1. You will need to have a copy of Docker in the machine you are using to remotely manage the Nano Server. To get a copy of the version of Docker used in TP4, go here. This link will download Docker. You can place Docker wherever you like.
+2. On your Nano Server, you will need to set up the docker daemon to listen to commands remotely. Run the command:
+```powershell
+Docker daemon -D -H <ip address of Nano Server>:2375
+```
+You should see a stream of red text after running the command.
+ 
+3. On the machine you are using to manage the Nano Server, open a PowerShell session a go to the directory where you have Docker.
+4. From here, you can now manage the docker daemon that is in your Nano Server. You will need to structure your commands like this:
+```powershell
+.\docker.exe -H tcp://<ip address of Nano Server>:2375
+```
+For example, if you would like to see the available images: 
+```powershell
+.\docker.exe -H tcp://<ip address of Nano Server>:2375 images
+```
