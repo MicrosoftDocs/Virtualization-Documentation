@@ -125,8 +125,8 @@ You may receive this error when interactively managing a container on a Nano Ser
 
 ```powershell
 docker : cannot enable tty mode on non tty input
-    + CategoryInfo          : NotSpecified: (cannot enable tty mode on non tty input:String) [], RemoteException
-    + FullyQualifiedErrorId : NativeCommandError 
++ CategoryInfo          : NotSpecified: (cannot enable tty mode on non tty input:String) [], RemoteException
++ FullyQualifiedErrorId : NativeCommandError 
 ```
 
 This can happen when trying to run a container with an interactive session, using -it:
