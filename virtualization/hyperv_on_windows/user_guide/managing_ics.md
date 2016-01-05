@@ -194,7 +194,7 @@ Keep integration services current in order to receive the best virtual machine p
 | Windows Small Business Server 2011 | Windows Update | Requires the Data Exchange integration service.***** |
 
 
-**\*** If the Data Exchange integration service can not be enabled, the integration components for these guests are available [here](https://support.microsoft.com/en-us/kb/3071740) as a cabinet (cab) file on the download center.  Instructions for applying a cab are availabe [here](http://blogs.technet.com/b/virtualization/archive/2015/07/24/integration-components-available-for-virtual-machines-not-connected-to-windows-update.aspx).
+**\*** If the Data Exchange integration service can not be enabled, the integration components for these guests are available [here](https://support.microsoft.com/en-us/kb/3071740) as a cabinet (cab) file on the download center.  Instructions for applying a cab are available  [here](http://blogs.technet.com/b/virtualization/archive/2015/07/24/integration-components-available-for-virtual-machines-not-connected-to-windows-update.aspx).
 
 
 **For virtual machines running on Windows 8.1 hosts:**
@@ -236,6 +236,6 @@ Keep integration services current in order to receive the best virtual machine p
 | Windows Server 2003 R2 (SP 2) | Integration Services disk | |
 | Windows Server 2003 (SP 2) | Integration Services disk | |
 
-Instructions for updating via Integration Services disk for Windows 8 and Windows 8.1 are avialable [here](https://technet.microsoft.com/en-us/library/hh846766.aspx#BKMK_step4).
+Instructions for updating via Integration Services disk for Windows 8 and Windows 8.1 are available  [here](https://technet.microsoft.com/en-us/library/hh846766.aspx#BKMK_step4).
 
 **\*\*** Find even more information about Linux Guests [here](https://technet.microsoft.com/en-us/library/dn531030.aspx). 
