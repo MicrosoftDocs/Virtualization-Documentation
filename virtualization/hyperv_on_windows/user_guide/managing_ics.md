@@ -172,7 +172,7 @@ sudo hv_kvp_daemon
 Now if you run `ps -ef | hv` again, you'll discover a `hv_kvp_daemon` process with a new process ID.
 
 
-## Integration service maintainance
+## Integration service maintenance
 
 Keep integration services current in order to receive the best virtual machine performance and features possible.
 
