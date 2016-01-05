@@ -13,7 +13,7 @@
 ## [System Requirements](deployment/system_requirements.md)
 ## [Deploy Container Host](deployment/deployment.md)
 ## [Deploy Docker on Windows](deployment/docker_windows.md)
-## [Nano Installation Preview](deployment/dNano_Preview.md)
+## [Nano Installation Preview](deployment/Nano_Preview.md)
 # Manage Windows Containers
 ## [Container Management](management/manage_containers.md)
 ## [Hyper-V Containers](management/hyperv_container.md)
