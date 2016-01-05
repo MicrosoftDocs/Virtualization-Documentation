@@ -131,6 +131,8 @@ docker : cannot enable tty mode on non tty input
 
 In order to create an interactive session with a Docker created container on a Nano Server host, the Docker daemon must be managed remotely. To do so download the docker.exe from [this location](https://aka.ms/ContainerTools) and copy it to a remote system.
 
+Open a PowerShell or CMD session and enter run Docker commands like this:
+
 ```powershell
 .\docker.exe -H tcp://<ip address of Nano Server>:2375
 ```
