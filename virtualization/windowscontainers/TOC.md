@@ -30,5 +30,6 @@
 ## [PowerShell / Docker Comparison](reference/ps_docker_comparison.md)
 ## [Application Compatibility](reference/app_compat.md)
 
+# [Windows Server EULA](EULA.md)
 # [Nano Server EULA](Nano_EULA.md)
-# [EULA](EULA.md)
+
