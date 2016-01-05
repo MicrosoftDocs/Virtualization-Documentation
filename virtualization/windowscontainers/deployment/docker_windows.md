@@ -129,9 +129,9 @@ docker : cannot enable tty mode on non tty input
     + FullyQualifiedErrorId : NativeCommandError 
 ```
 
-In order to create an interactive session with a Docker created container on a Nano Server host, the Docker daemon must be managed remotely. To do so download the docker.exe from [this location](https://aka.ms/ContainerTools) and copy it to a remote system.
+In order to create an interactive session with a Docker created container on a Nano Server host, the Docker daemon must be managed remotely. To do so, download docker.exe from [this location](https://aka.ms/ContainerTools) and copy it to a remote system.
 
-Open a PowerShell or CMD session and enter run Docker commands like this:
+Open a PowerShell or CMD session, and run the Docker commands specifying the remote host with `-H`.
 
 ```powershell
 .\docker.exe -H tcp://<ip address of Nano Server>:2375
