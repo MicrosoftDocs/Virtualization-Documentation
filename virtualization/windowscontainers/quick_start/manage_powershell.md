@@ -46,7 +46,7 @@ NanoServer        CN=Microsoft 10.0.10586.0 True
 WindowsServerCore CN=Microsoft 10.0.10586.0 True
 ```
 
-To create a Windows Server Container, use the `New-Container` command. The below example creates a container named `TP4Demo` from the `WindowsServerCore` OS Image, and connects the container to a VM Switch named `Virtual Switch`. Note that the output, an object representing the container, is stored in a variable `$con`. This variable is used in subsequent commands.
+To create a Windows Server Container, use the `New-Container` command. The below example creates a container named `TP4Demo` from the `WindowsServerCore` OS Image, and connects the container to a VM Switch named `Virtual Switch`. 
 
 ```powershell
 PS C:\> New-Container -Name TP4Demo -ContainerImageName WindowsServerCore -SwitchName "Virtual Switch"
