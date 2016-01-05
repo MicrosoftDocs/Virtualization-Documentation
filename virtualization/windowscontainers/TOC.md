@@ -13,7 +13,6 @@
 ## [System Requirements](deployment/system_requirements.md)
 ## [Deploy Container Host](deployment/deployment.md)
 ## [Deploy Docker on Windows](deployment/docker_windows.md)
-## [Nano Installation Preview](deployment/Nano_Preview.md)
 # Manage Windows Containers
 ## [Container Management](management/manage_containers.md)
 ## [Hyper-V Containers](management/hyperv_container.md)
@@ -32,3 +31,4 @@
 ## [Application Compatibility](reference/app_compat.md)
 
 # [EULA](EULA.md)
+# [Nano Server EULA](Nano_EULA.md)
