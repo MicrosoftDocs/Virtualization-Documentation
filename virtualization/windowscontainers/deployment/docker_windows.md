@@ -121,12 +121,23 @@ PS C:\> start-process cmd "/k docker daemon -D -b <Switch Name> -H 0.0.0.0:2375â
 ```
 ### Interactive Nano Session
 
-You may receive this error when creating an interactive session with a Container created with Docker on a Nano Serve Host.
+You may receive this error when interactively managing a container on a Nano Server Host.
 
 ```powershell
 docker : cannot enable tty mode on non tty input
     + CategoryInfo          : NotSpecified: (cannot enable tty mode on non tty input:String) [], RemoteException
     + FullyQualifiedErrorId : NativeCommandError 
+```
+
+This can happen when trying to run a container with an interactive session, using -it:
+
+```powershell
+Docker run -it <image> <command>
+```
+Or trying to attach to a running container:
+
+```powershell
+Docker attach <container name>
 ```
 
 In order to create an interactive session with a Docker created container on a Nano Server host, the Docker daemon must be managed remotely. To do so, download docker.exe from [this location](https://aka.ms/ContainerTools) and copy it to a remote system.
