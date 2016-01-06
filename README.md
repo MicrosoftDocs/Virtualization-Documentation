@@ -4,7 +4,7 @@ Place to store our documentation, code samples, etc for public consumption and c
 ## Contribute
 To contribute, fork the project and submit a pull request!  Here's [our wishlist](./TODO.md).
 
-If you want to submit prospective content but contributing to public documentation takes too much time/planning, submit your idea or draft to the "Prospective Docs" folder and we'll figure it out from there.
+If you want to submit prospective content but contributing to public documentation takes too much time/planning, submit your idea or draft to the [Prospective Docs](./prospective-docs/README.md) folder and we'll figure it out from there.
 
 Digging into the repo structure a little:
 
