@@ -60,7 +60,7 @@ PS C:\> Set-ContainerStorage -ContainerName Container1 -MaximumIOPS 32
 
 We offer the ability to manage a subset of container resources through Docker. Specifically, we allow users to specify how the cpu is shared amongst containers. 
 
-### CPU
+### CPU <!--docker-->
 
 CPU shares amongst containers can be managed at runtime via the --cpu-shares flag. By default, all containers enjoy an equal proportion of CPU time. To change the relative share of CPU that containers use run the --cpu-shares flag with a value from 1-10000. By default, all containers receive a weight of 5000. 
 
