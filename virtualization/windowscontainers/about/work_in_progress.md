@@ -72,7 +72,7 @@ PS C:\> Set-ContainerProcessor -ContainerName test2 -Maximum 3
 PS C:\> Start-Container test2
 ```
 
-** Work Around:**  
+**Work Around:**  
 Increase the processors available to the container, don't explicitly specify processors available to the container, or reduce processors available to the VM.
 
 --------------------------
@@ -183,7 +183,7 @@ Windows Containers cannot be managed/interacted with through a RDP session in TP
 ### Not all *-PSSession have a containerid argument
 This is correct.  We're planning on full cimsession support in the future.
 
-### Exitting a container in a Nano Server container host cannot be done with "exit"
+### Exiting a container in a Nano Server container host cannot be done with "exit"
 If you try to exit a container that is in a Nano Server container host, using "exit" will disconnect you from the Nano Server container host, and will not exit the container.
 
 **Work Around:**
