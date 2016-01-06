@@ -1,10 +1,8 @@
 # Prospective Documentation
 
-This folder is home to documents that should probably exist somewhere but don't have a clear home.  
+This folder is home to documents that should probably exist somewhere but don't have a clear home.  The goal is to provide a low-stress way to propose content without worrying about its publication readiness.
 
-The goal is to provide a low-stress way to propose content without worrying about its publication readiness.
-
-If a document appears here, the documentation team and Hyper-V team will:  
+If a document appears here, the documentation team and Hyper-V team will:
 
 1.  Review the content and determine if it belongs in the documentation
 2.  Determine where in the documentation this content belongs
