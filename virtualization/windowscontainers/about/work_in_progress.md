@@ -99,6 +99,8 @@ This can be achieved using PowerShell
 ```
 Get-VMNetworkAdapter -VMName "[YourVMNameHere]"  | Set-VMNetworkAdapter -MacAddressSpoofing On
 ```
+### HTTPS and TLS are not supported
+Windows Server Containers and Hyper-V Containers do not support either HTTPS or TLS. We are working on making this available in the future.
 
 --------------------------
 
@@ -180,5 +182,12 @@ Windows Containers cannot be managed/interacted with through a RDP session in TP
 
 ### Not all *-PSSession have a containerid argument
 This is correct.  We're planning on full cimsession support in the future.
+
+### Exitting a container in a Nano Server container host cannot be done with "exit"
+If you try to exit a container that is in a Nano Server container host, using "exit" will disconnect you from the Nano Server container host, and will not exit the container.
+
+**Work Around:**
+Use Exit-PSSession instead to exit the container.
+
 
 Feel free to voice feature requests in [the forums](https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers). 
