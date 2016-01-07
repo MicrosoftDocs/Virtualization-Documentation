@@ -14,10 +14,10 @@ The Docker Daemon and CLI are not shipped with Windows Server or Windows Server 
 
 The Docker Daemon and Docker command line interface have been developed in the Go language. At this time, docker.exe does not install as a Windows Service. There are several methods that can be used to create a Windows service, one example shown here uses `nssm.exe`. 
 
-Download docker.exe from `https://aka.ms/ContainerTools` and place it in the System32 directory on the Container Host.
+Download docker.exe from `https://aka.ms/tp4/docker` and place it in the System32 directory on the Container Host.
 
 ```powershell
-PS C:\> wget https://aka.ms/ContainerTools -OutFile $env:SystemRoot\system32\docker.exe
+PS C:\> wget https://aka.ms/tp4/docker -OutFile $env:SystemRoot\system32\docker.exe
 ```
 
 Create a directory named `c:\programdata\docker`. In this directory, create a file named `runDockerDaemon.cmd`.
@@ -112,7 +112,7 @@ PS C:\> sc.exe delete Docker
 
 ### Install Docker <!--2-->
 
-Download docker.exe from `https://aka.ms/ContainerTools` and copy it to the `windows\system32` folder of the Nano Server Container host.
+Download docker.exe from `https://aka.ms/tp4/docker` and copy it to the `windows\system32` folder of the Nano Server Container host.
 
 Run the below command to start the docker daemon. This will need to be run each time the container host is started. This command starts the Docker daemon, specifies a virtual switch for container connectivity, and set’s the daemon to listen on port 2375 for incoming Docker requests. In this configuration Docker can be managed from a remote computer.
 
@@ -140,7 +140,7 @@ Or trying to attach to a running container:
 Docker attach <container name>
 ```
 
-In order to create an interactive session with a Docker created container on a Nano Server host, the Docker daemon must be managed remotely. To do so, download docker.exe from [this location](https://aka.ms/ContainerTools) and copy it to a remote system.
+In order to create an interactive session with a Docker created container on a Nano Server host, the Docker daemon must be managed remotely. To do so, download docker.exe from [this location](https://aka.ms/tp4/docker) and copy it to a remote system.
 
 Open a PowerShell or CMD session, and run the Docker commands specifying the remote host with `-H`.
 
