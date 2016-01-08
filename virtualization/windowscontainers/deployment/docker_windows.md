@@ -26,7 +26,7 @@ Create a directory named `c:\programdata\docker`. In this directory, create a fi
 PS C:\> New-Item -ItemType File -Path C:\ProgramData\Docker\runDockerDaemon.cmd -Force
 ```
 
-Copy the following text into the `runDockerDaemon.cmd` file. This batch file starts the Docker daemon with the command `docker daemon –D –b “Virtual Switch”`. Note: the name of the virtual switch in this file, will need to match the name of the virtual that containers will be using for network connectivity.
+Copy the following text into the `runDockerDaemon.cmd` file. This batch file starts the Docker daemon with the command `docker daemon –D –b “Virtual Switch”`. Note: the name of the virtual switch in this file, will need to match the name of the virtual switch that containers will be using for network connectivity.
 
 ```powershell
 @echo off
