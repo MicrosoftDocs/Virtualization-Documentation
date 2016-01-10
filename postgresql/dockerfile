@@ -5,6 +5,10 @@
 #     docker run -d -p <hostport>:5432 <imagename>
 #   interactive:
 #     docker run -it -p <hostport>:5432 <imagename> "powershell /install/start"
+#
+# For ideas on volume mapping with PostgreSQL, see these notes from the 
+# linux Dockerfile implementation:
+#   https://docs.docker.com/engine/examples/postgresql_service/
 
 FROM windowsservercore
 
