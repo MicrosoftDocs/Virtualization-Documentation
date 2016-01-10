@@ -1,8 +1,17 @@
+# Build PostgreSQL 9.5 image listening on static port 5432
+#
+# IMAGE USAGE:
+#   detached:
+#     docker run -d -p <hostport>:5432 <imagename>
+#   interactive:
+#     docker run -it -p <hostport>:5432 <imagename> "powershell /install/start"
+
 FROM windowsservercore
 
 ENV PGDATA c:\\sql
 ENV PGPORT 5432
-ENV PGUSER postgres
+#not using PGUSER here due to need to run createuser downstream to create role
+ENV PGUSERVAR postgres
 ENV PGDOWNLOADVER postgresql-9.5.0-1-windows-x64-binaries.zip
 
 # download and extract binaries
@@ -25,8 +34,8 @@ COPY . /install
 
 WORKDIR /postgresql/pgsql/bin
 
-# configure for remote access
-RUN powershell /install/init-config-start-service %PGDATA% %PGUSER%
+# init postgresql db cluster, config and create and start service
+RUN powershell /install/init-config-start-service %PGDATA% %PGUSERVAR%
 
 # start postgreSQL using the designated data dir
-CMD powershell /install/start detached %PGDATA%
+CMD powershell /install/start detached %PGDATA% %PGUSERVAR%
