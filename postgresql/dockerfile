@@ -1,0 +1,32 @@
+FROM windowsservercore
+
+ENV PGDATA c:\\sql
+ENV PGPORT 5432
+ENV PGUSER postgres
+ENV PGDOWNLOADVER postgresql-9.5.0-1-windows-x64-binaries.zip
+
+# download and extract binaries
+RUN powershell wget http://get.enterprisedb.com/postgresql/%PGDOWNLOADVER% \
+  -outfile %PGDOWNLOADVER%
+
+RUN powershell expand-archive %PGDOWNLOADVER% \
+  -force -destinationpath /postgresql
+
+# reduce image size by removing download zip
+RUN del %PGDOWNLOADVER%
+
+#install VC 2013 runtime required by postgresql
+#use chocolatey pkg mgr to facilitate downloading jdk without prompting
+RUN @powershell -NoProfile -ExecutionPolicy unrestricted -Command "(iex ((new-object net.webclient).DownloadString('https://chocolatey.org/install.ps1'))) >$null 2>&1" && SET PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin
+RUN choco install vcredist2013 -y
+
+# copy dependent script(s)
+COPY . /install
+
+WORKDIR /postgresql/pgsql/bin
+
+# configure for remote access
+RUN powershell /install/init-config-start-service %PGDATA% %PGUSER%
+
+# start postgreSQL using the designated data dir
+CMD powershell /install/start detached %PGDATA%
