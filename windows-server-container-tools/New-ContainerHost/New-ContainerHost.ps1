@@ -54,7 +54,7 @@
         Path to a private .wim file that contains the base package image.  Only required if -VhdPath is also passed
 
     .PARAMETER WindowsImage
-        Image to use for the VM.  One of NanoServer, WindowsServer, or WindowsServerCore [default]
+        Image to use for the VM.  One of NanoServer, ServerDatacenter, or ServerDatacenterCore [default]
 
     .EXAMPLE
         .\Install-ContainerHost.ps1 -SkipDocker
