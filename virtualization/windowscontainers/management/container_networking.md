@@ -128,7 +128,7 @@ Finally start the service.
 Start-Service docker
 ```
 
-## Manage Container Network Adapters
+## Manage Network Adapters
 
 Regardless of network configuration (NAT or Transparent), several PowerShell commands are available for managing container network adapter and virtual switch connections.
 
