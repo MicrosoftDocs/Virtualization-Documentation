@@ -57,12 +57,12 @@ To run a single command, use the **-ScriptBlock** parameter:
 There are a small set of common error messages surfaced through PowerShell direct.  Here are the most common, some causes, and tools for diagnosing issues.
 
 ### Error: A remote session might have ended
-Error message:
+**Error message:**
 ```
 Enter-PSSession : An error has occurred which Windows PowerShell cannot handle. A remote session might have ended.
 ```
 
-Potential causes:
+**Potential causes:**
 * The VM is not running
 * The guest OS does not support PowerShell Direct (see [requirements](#Requirements))
 * PowerShell isn't available in the guest yet
@@ -78,14 +78,16 @@ You can use the [Get-VM](http://technet.microsoft.com/library/hh848479.aspx) cmd
 
 ### Error: Parameter set cannot be resolved
 
-Error message:  
+**Error message:**  
 ``` 
 Enter-PSSession : Parameter set cannot be resolved using the specified named parameters.
 ```
 
-Potential causes:  
-* `-RunAsAdministrator` is not supported when connecting to virtual machines.  
-PowerShell Direct has different behaviors when connecting to virtual machines versus Windows containers.  When connecting to a Windows container, the `-RunAsAdministrator` flag allows Administrator connections without explicit credentials.  Since virtual machines do not give the host implied administrator access, you need to explicitly enter credentials.  
+**Potential causes:**  
+`-RunAsAdministrator` is not supported when connecting to virtual machines.  
+
+PowerShell Direct has different behaviors when connecting to virtual machines versus Windows containers.  When connecting to a Windows container, the `-RunAsAdministrator` flag allows Administrator connections without explicit credentials.  Since virtual machines do not give the host implied administrator access, you need to explicitly enter credentials.
+
 Administrator credentials can be passed to the virtual machine with the `-credential` parameter or by entering them manually when prompted.
 
 
