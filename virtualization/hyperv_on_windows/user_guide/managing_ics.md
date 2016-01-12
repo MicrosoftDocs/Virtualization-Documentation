@@ -189,8 +189,8 @@ Keep integration services current in order to receive the best virtual machine p
 | Windows Server 2012 R2 | Windows Update | |
 | Windows Server 2012 | Windows Update | Requires the Data Exchange integration service.***** |
 | Windows Server 2008 R2 (SP 1) | Windows Update | Requires the Data Exchange integration service.***** |
-| Windows Server 2008 (SP 2) | Windows Update | Will not be supported in Server 2016.  Requires the Data Exchange integration service.***** |
-| Windows Home Server 2011 | Windows Update | Will not be supported in Server 2016.  Requires the Data Exchange integration service.***** |
+| Windows Server 2008 (SP 2) | Windows Update | Extended support only in Server 2016 ([read more](https://support.microsoft.com/en-us/lifecycle?p1=12925)). |
+| Windows Home Server 2011 | Windows Update | Will not be supported in Server 2016 ([read more](https://support.microsoft.com/en-us/lifecycle?p1=15820)). |
 | Windows Small Business Server 2011 | Windows Update | Not under mainstream support ([read more](https://support.microsoft.com/en-us/lifecycle?p1=15817)). |
 
 
