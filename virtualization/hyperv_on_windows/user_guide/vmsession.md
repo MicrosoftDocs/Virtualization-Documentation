@@ -56,7 +56,7 @@ To run a single command, use the **-ScriptBlock** parameter:
 
 There are a small set of common error messages surfaced through PowerShell direct.  Here are the most common, some causes, and tools for diagnosing issues.
 
-### Error:  A remote session might have ended
+### Error: A remote session might have ended
 Error message:
 ```
 Enter-PSSession : An error has occurred which Windows PowerShell cannot handle. A remote session might have ended.
@@ -75,6 +75,18 @@ Potential causes:
   * If connecting as Administrator:  Administrator has not been set as an active user.  Learn more [here](https://technet.microsoft.com/en-us/library/hh825104.aspx).
 
 You can use the [Get-VM](http://technet.microsoft.com/library/hh848479.aspx) cmdlet to check that the credentials you're using have the Hyper-V administrator role and to see which VMs are running locally on the host and booted.
+
+### Error: Parameter set cannot be resolved
+
+Error message:  
+``` PowerShell
+Enter-PSSession : Parameter set cannot be resolved using the specified named parameters.
+```
+
+Potential causes:  
+* `-RunAsAdministrator` is not supported when connecting to virtual machines.  
+PowerShell Direct has different behaviors when connecting to virtual machines versus Windows containers.  With a Windows container the `-RunAsAdministrator` flag allows administrator connections to the container.  Since virtual machines do not give the host implied administrator access, you need to explicitly pass Administrator credentials in order to run as Administrator.
+
 
 ## Samples
 
