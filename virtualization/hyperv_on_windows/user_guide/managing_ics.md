@@ -188,10 +188,10 @@ Keep integration services current in order to receive the best virtual machine p
 | - | | |
 | Windows Server 2012 R2 | Windows Update | |
 | Windows Server 2012 | Windows Update | Requires the Data Exchange integration service.***** |
-| Windows Server 2008 R2 | Windows Update | Requires the Data Exchange integration service.***** |
-| Windows Server 2008 (SP 2) | Windows Update | Requires the Data Exchange integration service.***** |
-| Windows Home Server 2011 | Windows Update | Requires the Data Exchange integration service.***** |
-| Windows Small Business Server 2011 | Windows Update | Requires the Data Exchange integration service.***** |
+| Windows Server 2008 R2 (SP 1) | Windows Update | Requires the Data Exchange integration service.***** |
+| Windows Server 2008 (SP 2) | Windows Update | Will not be supported in Server 2016.  Requires the Data Exchange integration service.***** |
+| Windows Home Server 2011 | Windows Update | Will not be supported in Server 2016.  Requires the Data Exchange integration service.***** |
+| Windows Small Business Server 2011 | Windows Update | Not under mainstream support ([read more](https://support.microsoft.com/en-us/lifecycle?p1=15817)). |
 
 
 **\*** If the Data Exchange integration service can not be enabled, the integration components for these guests are available [here](https://support.microsoft.com/en-us/kb/3071740) as a cabinet (cab) file on the download center.  Instructions for applying a cab are available  [here](http://blogs.technet.com/b/virtualization/archive/2015/07/24/integration-components-available-for-virtual-machines-not-connected-to-windows-update.aspx).
