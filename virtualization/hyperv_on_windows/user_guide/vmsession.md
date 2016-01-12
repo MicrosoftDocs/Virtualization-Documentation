@@ -79,13 +79,14 @@ You can use the [Get-VM](http://technet.microsoft.com/library/hh848479.aspx) cmd
 ### Error: Parameter set cannot be resolved
 
 Error message:  
-``` PowerShell
+``` 
 Enter-PSSession : Parameter set cannot be resolved using the specified named parameters.
 ```
 
 Potential causes:  
 * `-RunAsAdministrator` is not supported when connecting to virtual machines.  
-PowerShell Direct has different behaviors when connecting to virtual machines versus Windows containers.  With a Windows container the `-RunAsAdministrator` flag allows administrator connections to the container.  Since virtual machines do not give the host implied administrator access, you need to explicitly pass Administrator credentials in order to run as Administrator.
+PowerShell Direct has different behaviors when connecting to virtual machines versus Windows containers.  When connecting to a Windows container, the `-RunAsAdministrator` flag allows Administrator connections without explicit credentials.  Since virtual machines do not give the host implied administrator access, you need to explicitly enter credentials.  
+Administrator credentials can be passed to the virtual machine with the `-credential` parameter or by entering them manually when prompted.
 
 
 ## Samples
