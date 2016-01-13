@@ -2,6 +2,8 @@
 
 This folder is home to documents that should probably exist somewhere but don't have a clear home.  The goal is to provide a low-stress way to propose content without worrying about its publication readiness.
 
+> Warning:  The documentation here hasn't necessarily been reviewed and is very likely incomplete.  Do not assume it's correct.
+
 If a document appears here, the documentation team and Hyper-V team will:
 
 1.  Review the content and determine if it belongs in the documentation
