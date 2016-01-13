@@ -1,24 +1,29 @@
+# The history of Hyper-V Backup
 
- 
-Do you manage Hyper-V backup? Do you build backup solutions for Hyper-V? If so, then this post is a "must-read" for you, because Hyper-V is completely reinventing backup and restore in Windows Server 2016.
-In this blog post, I will step you through what’s being the history and the journey of Hyper-V backup since Virtual PC and Virtual Server days and the completely new innovations coming in Windows Server 2016 Hyper-V, so hopefully by the end of this post you can have a better understanding of how Hyper-V backup has been evolved over the years.  
+Doc team metadata:
+This doc seems like it would fit well into a narravive about the history of backup in the reference section of the documentation leads up to where we are now and why.  It could be added to as backup continues to develop.
 
-Virtual Server / Hyper-V Inception
-The beginning, in 2004 Microsoft released the original Microsoft Virtual Server 2005, if you ever realized that Virtual Server 2005 didn’t support for clustering, no support for checkpoints, no support for backup at all, and was 64-bit host but 32-bit guest only.
-At that time, Microsoft started working on the follow-up release which is Virtual Server 2005 R2 and half-way through, the leaders at Microsoft started contemplating building a brand new hypervisor Windows based virtualization solution. There were intense architectural meetings, long discussions on finding a code name for the project, and eventually Hyper-V was born (aka code name Viridian).
-In 2005, the DPM team started working with the Virtual Server engineering team to come up with the first implementation of agentless backup for virtual machines based on Virtual Server 2005 R2, back then the average system that was available in the market was 1 processor, dual core system, and can run up to 6/7 virtual machines. However, the average deployment was 3 to 4 virtual machines. The original implementation of backup on Virtual Server 2005 R2 was done while the Hyper-V team were busy on getting Hyper-V up and running, then Hyper-V technical preview was released and customers started asking where is the backup support?
+
+Hyper-V is completely changed backup and restore in Windows Server 2016.
+This document follows the journey of Hyper-V backup from Virtual PC and Virtual Server to Windows Server 2016 with Hyper-V.  This doc should provide a better understanding of how Hyper-V backup has evolved over the years.
+
+## Virtual PC and Virtual Server
+In 2004, Microsoft released the original Microsoft Virtual Server 2005.  Virtual Server 2005 didn’t support for clustering, no support for checkpoints, no support for backup at all, and was 64-bit host but 32-bit guest only.  
+
+At that time, Microsoft started working on the follow-up release which is Virtual Server 2005 R2 and half-way through, the leaders at Microsoft started contemplating building a brand new hypervisor Windows based virtualization solution. There were intense architectural meetings, long discussions on finding a code name for the project, and eventually Hyper-V was born.  
+In 2005, the DPM team started working with the Virtual Server engineering team to come up with the first implementation of agentless backup for virtual machines based on Virtual Server 2005 R2, back then the average system available in the market was a 1 processor, dual core system, and could run up to 6/7 virtual machines. However, the average deployment was 3 to 4 virtual machines. The original implementation of backup on Virtual Server 2005 R2 was done while the Hyper-V team were busy on getting Hyper-V up and running, then Hyper-V technical preview was released and customers started asking where is the backup support?
 The Hyper-V team took the backup architecture that was built for Virtual Server 2005 R2 and they did the same for Hyper-V V1.
 
-Windows Server 2008 R2 / 2012 Hyper-V
+## Windows Server 2008 R2 / 2012 Hyper-V
 In order to understand how backup initially started in Hyper-V, I will explain the basic of Volume Shadow Copy Service (VSS) concepts.
 Volume Shadow Copy Service (VSS) provides the system infrastructure for running VSS applications on Windows-based systems.
 The VSS requester is any application that uses the VSS API to request the services of the Volume Shadow Copy Service to create and manage shadow copies and shadow copy sets of one or more volumes.
 The VSS Writers are applications (Hyper-V) or services that store persistent information in files on disk and that provide the names and locations of these files to requesters by using the shadow copy interface.
 The VSS Providers manage running volumes and create the shadow copies of them on demand (storage).
 What VSS does in the background is the following:
-•	Coordinates activities of providers, writers, and requesters in the creation and use of shadow copies.
-•	Furnishes the default system provider.
-•	Implements low-level driver functionality necessary for any provider to work.
+* Coordinates activities of providers, writers, and requesters in the creation and use of shadow copies.
+* Furnishes the default system provider.
+* Implements low-level driver functionality necessary for any provider to work.
 
 Now in the physical computer, you have a backup application which comes in as VSS requester goes to the VSS system and request, I want a backup of this system, VSS then goes and talk to all the writers on the system which are the various server applications they are installed including Windows components and tell them to get ready for backup, once they are ready for backup, then VSS goes and talk to the provider from the storage infrastructure and says ok take the backup, and finally that goes back to the original VSS requester (backup application), that is the basic workflow in the physical world.       
 
