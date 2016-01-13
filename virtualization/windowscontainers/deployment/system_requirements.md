@@ -9,26 +9,30 @@ This guides list the requirements for a Windows Container Host.
 Windows Server Technical Preview 4 is being offered with two container OS Images, Windows Server Core and Nano Server. Not all configurations support both OS images. This table details the supported configurations.
 
 <table border="1" style="background-color:FFFFCC;border-collapse:collapse;border:1px solid FFCC00;color:000000;width:75%" cellpadding="5" cellspacing="5">
+<thead>
 <tr valign="top">
-<td><center>**Host Operating System**</center></td>
-<td><center>**Windows Server Container**</center></td>
-<td><center>**Hyper-V Container**</center></td>
-<tr>
+<th><center>Host Operating System</center></th>
+<th><center>Windows Server Container</center></th>
+<th><center>Hyper-V Container</center></th>
+</tr>
+</thead>
+<tbody>
 <tr valign="top">
 <td><center>Windows Server 2016 Full UI</center></td>
 <td><center>Core OS Image</center></td>
 <td><center>Nano OS Image</center></td>
-<tr>
+</tr>
 <tr valign="top">
 <td><center>Windows Server 2016 Core</center></td>
 <td><center>Core OS Image</center></td>
 <td><center> Nano OS Image</center></td>
-<tr>
+</tr>
 <tr valign="top">
 <td><center>Windows Server 2016 Nano</center></td>
 <td><center> Nano OS Image</center></td>
 <td><center>Nano OS Image</center></td>
-<tr>
+</tr>
+</tbody>
 </table>
 
 ## Hyper-V Container Requirements

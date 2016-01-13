@@ -23,7 +23,7 @@ Create a Virtual Switch with a type of ‘NAT’ and configure it with an intern
 ```powershell
 New-VMSwitch -Name "NAT" -SwitchType NAT -NATSubnetAddress "172.16.0.0/12"
 ```
-Create the Network Address Translation Object. This will object is responsible for the NAT address translation. For more information on the **New-NetNat** command, see the [New-NetNat Reference](https://technet.microsoft.com/en-us/library/dn283361.aspx)
+Create the Network Address Translation Object. This object is responsible for the NAT address translation. For more information on the **New-NetNat** command, see the [New-NetNat Reference](https://technet.microsoft.com/en-us/library/dn283361.aspx)
 
 ```powershell
 New-NetNat -Name NAT -InternalIPInterfaceAddressPrefix "172.16.0.0/12" 
@@ -128,7 +128,7 @@ Finally start the service.
 Start-Service docker
 ```
 
-## Manage Container Network Adapters
+## Manage Network Adapters
 
 Regardless of network configuration (NAT or Transparent), several PowerShell commands are available for managing container network adapter and virtual switch connections.
 

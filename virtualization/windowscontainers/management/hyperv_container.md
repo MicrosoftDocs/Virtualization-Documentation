@@ -59,9 +59,9 @@ DEMO               HyperV
 
 ## Hyper-V Container Docker
 
-### Create Container
+### Create Container <!--docker-->
 
-Managing Hyper-V Containers with Docker is almost identical to managing Windows Server Containers. When creating a Hyper-V Container with Docker, the `–issolation=hyperv` parameter is used.
+Managing Hyper-V Containers with Docker is almost identical to managing Windows Server Containers. When creating a Hyper-V Container with Docker, the `–-isolation=hyperv` parameter is used.
 
 ```powershell
 docker run -it --isolation=hyperv 646d6317b02f cmd

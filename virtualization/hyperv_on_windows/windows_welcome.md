@@ -27,8 +27,6 @@ The following documents detail the Hyper-V feature in Windows 10, provide a guid
                 <li class="unordered">[Install Hyper-V](quick_start\walkthrough_install.md)<br /><br /></li>
 				<li class="unordered">[Create a Virtual Switch](quick_start\walkthrough_virtual_switch.md)<br /><br /></li>
 				<li class="unordered">[Create a Virtual Machine](quick_start\walkthrough_create_vm.md)<br /><br /></li>
-				<li class="unordered">[Use Checkpoints with Hyper-V](quick_start\walkthrough_checkpoints.md)<br /><br /></li>
-				<li class="unordered">[Virtual Machine Export and Import](quick_start\walkthrough_export_import.md)<br /><br /></li>
 				<li class="unordered">[Hyper-V and PowerShell](quick_start\walkthrough_powershell.md)<br /><br /></li>
 			</ul>
 		</td>

@@ -51,12 +51,12 @@ $HostCfgErrorMsgs = $null # for debug purposes
 $HostCfgErrorMsgs = @{
     "noHypervisor" = "Hypervisor is not running on this host";
     "noFullHyp" = "Full Hyper-V role is not enabled on this host";
-    "BcdDisabled" = "Nested virtualization is disabled via BCD HYPERVISORLOADOPTIONS"
+    "BcdDisabled" = "Nested virtualization is disabled via BCD HYPERVISORLOADOPTIONS";
     "VbsRunning" = "Virtualization Based Security is running";
-    "VbsEnabled" = "The VBS enable reg key is set";
+    "VbsRegKey" = "The VBS enable reg key is set";
     "UnsupportedBuild" = "Nested virtualization requires a build later than 10565";
     "UnsupportedProcessor" = "Running on an unsupported (AMD) processor";
-    "VsmLaunchTypeSet" = "Vsm launch type is set in the BCD store"
+    "VbsPresent" = 'Virtualization Based Security is partly installed on you system. To completely remove Virtualizaiton Based Security, please follow instructions under "Remove Credential Guard" found here: https://technet.microsoft.com/en-us/library/mt483740%28v=vs.85%29.aspx'; 
     }
 
 $HostCfgErrors = $null
@@ -110,14 +110,9 @@ Add-Member -InputObject $HostNested NoteProperty -Name "HypervisorLoadOptionsVal
 Add-Member -InputObject $HostNested NoteProperty -Name "IumInstalled" -Value $false
 Add-Member -InputObject $HostNested NoteProperty -Name "VbsRunning" -Value $false
 Add-Member -InputObject $HostNested NoteProperty -Name "VbsRegEnabled" -Value $false
-Add-Member -InputObject $HostNested NoteProperty -Name "VsmBcdSetting" -Value $false
 Add-Member -InputObject $HostNested NoteProperty -Name "BuildSupported" -Value $true
+Add-Member -InputObject $HostNested NoteProperty -Name "VbsPresent" -Value $false
 
-
-#
-# Validate the build number is >= TH2
-# TODO: (what's that build num?)
-#
 
 Write-Host "Validating host information..." -NoNewline
 if ($a.BuildLabEx.split('.')[0] -lt 10565) {
@@ -177,9 +172,9 @@ if ($hvloadoptions) {
 # N.B. The presence of the IUM feature doesn't mean it's actually running,
 # so IUM being installed doesn't by itself preclude Nested
 
-if ((Get-WindowsFeature -Name Isolated-UserMode).InstallState -eq 'Installed') {
+if(Get-WindowsOptionalFeature -Online | where FeatureName -eq IsolatedUserMode | where State -eq Enabled) {
     $HostNested.IumInstalled = $true
-    }
+}
 
 # is VBS running?
 $dg = Get-CimInstance -classname Win32_DeviceGuard -namespace root\Microsoft\Windows\DeviceGuard
@@ -194,17 +189,24 @@ $key = (Get-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\DeviceGua
 if ($key -eq 1) {
     $HostNested.VbsRegEnabled = $true
     $HostNested.HostNestedSupport = $false
-    $HostCfgErrors += ($HostCfgErrorMsgs["VbsEnabled"])
+    $HostCfgErrors += ($HostCfgErrorMsgs["VbsRegKey"])
     }
 
-# Is the VsxmLaunchType set in the BCD?
-$vsmlaunchtype = bcdedit /enum | Select-String "VsmLaunchType" 
-if ($vsmlaunchtype) {
-   $HostNested.VsmBcdSetting = $true
-   $HostNested.HostNestedSupport = $false
-   $HostCfgErrors += ($HostCfgErrorMsgs["VsmLaunchTypeSet"])
+# Check for residual Device Guard EFI variables
+if(Confirm-SecureBootUEFI -ea SilentlyContinue){
+    $VbsEventErrors = Get-WinEvent -LogName System -FilterXPath "*[System[EventID=124]]"
+    if(($VbsEventErrors.Count -gt 0)) {
+        # Check if event was generated from latest boot
+        $BootEvents = get-winevent -LogName System -FilterXPath "*[System/Provider[@Name='Microsoft-Windows-Kernel-General'] and System/EventID=12] "
+        $LastBoot = $BootEvents[0].TimeCreated # returns newest by default 
+        $EfiBoot = $VbsEventErrors[0].TimeCreated 
+        if($LastBoot -lt $EfiBoot){
+            $HostNested.VbsPresent = $true
+            $HostNested.HostNestedSupport = $false
+            $HostCfgErrors += ($HostCfgErrorMsgs["VbsPresent"])
+        }
+    } 
 }
-
 #
 # show results
 #
