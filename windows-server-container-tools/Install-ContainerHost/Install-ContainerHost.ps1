@@ -895,7 +895,7 @@ Test-Nano()
 {
     $EditionId = (Get-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion' -Name 'EditionID').EditionId
 
-    return ($EditionId -eq "ServerTuva")
+    return (($EditionId -eq "NanoServer") -or ($EditionId -eq "ServerTuva"))
 }
 
 
