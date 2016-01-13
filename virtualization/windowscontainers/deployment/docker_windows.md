@@ -100,7 +100,7 @@ With this completed, when Windows starts, the Docker daemon (service) will also 
 
 ### Removing Docker <!--1-->
 
-If following this guide for creating a Windows service from docke.exe, the following command will remove the service.
+If following this guide for creating a Windows service from docker.exe, the following command will remove the service.
 
 ```powershell
 PS C:\> sc.exe delete Docker
