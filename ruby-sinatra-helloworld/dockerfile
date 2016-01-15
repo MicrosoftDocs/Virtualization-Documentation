@@ -1,0 +1,13 @@
+FROM microsoft/ruby
+
+# use chocolatey pkg mgr to facilitate downloading jdk without prompting
+RUN @powershell -NoProfile -ExecutionPolicy unrestricted -Command "(iex ((new-object net.webclient).DownloadString('https://chocolatey.org/install.ps1'))) >$null 2>&1" && SET PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin
+
+COPY . \app
+
+RUN powershell \app\install-ruby-devkit2
+
+RUN gem install sinatra \
+    && gem install thin
+
+CMD ruby \app\app.rb
