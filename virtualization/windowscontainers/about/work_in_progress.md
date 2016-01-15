@@ -205,7 +205,7 @@ Local user accounts may be created and used for running Windows services and app
 
 
 ### Domain Membership
-Containers cannot join Active Directory domains, and cannot run services or applications as domain users in Windows Server 2016 Technical Preview 4.
+Containers cannot join Active Directory domains, and cannot run services or applications as domain users, service accounts, or machine accounts.
 
 Containers are designed to start quickly to a known consistent state. Joining a domain and applying group policy settings from the domain would increase the time it takes to start a container, and also change how it functions over time and as it is moved between dev and production deployments.
 
