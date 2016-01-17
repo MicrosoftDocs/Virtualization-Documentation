@@ -18,6 +18,7 @@ param(
 [string]$sqlbackup
 )
 
+set-strictmode -version latest
 $ErrorActionPreference = "Stop"
 
 $datatemp = "\datatemp"

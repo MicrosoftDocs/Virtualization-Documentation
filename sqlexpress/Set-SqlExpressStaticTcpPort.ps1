@@ -5,6 +5,7 @@ param(
 [string]$sqlinstance
 )
 
+set-strictmode -version latest
 $ErrorActionPreference = "Stop"
 
 $servicename = "mssql$" + $sqlinstance

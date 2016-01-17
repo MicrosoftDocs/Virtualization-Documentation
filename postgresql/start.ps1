@@ -7,6 +7,7 @@ param(
 [string]$pguser="postgres"
 )
 
+set-strictmode -version latest
 $ErrorActionPreference = "Stop"
 
 #create postgres role for postgres user / db if needed (first time this script is run in container)
