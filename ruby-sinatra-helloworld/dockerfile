@@ -1,13 +1,56 @@
+# Build ruby sinatra "hello world" web app port 4567 image
+#
+# IMAGE USAGE:
+#   detached:
+#     docker run -d -p <hostport>:4567 <imagename>
+#   interactive:
+#     docker run -it -p <hostport>:4567 <imagename> "powershell"
+#
+# Implementation notes:
+#  This rev of the docker file has run reliably on various TP4 hosts.
+#  There are two things commented-out (Plan A below) that work only on an Azure P4 host, 
+#  but not a Windows 10 Hyper-V host - (Plan B described in parens)
+#    x Installing ruby devkit2 using chocolatey (instead installing devkit manually)
+#    x Installing ruby thin gem (instead relying on WEBRick web server)
+
 FROM microsoft/ruby
 
-# use chocolatey pkg mgr to facilitate downloading jdk without prompting
+ENV DEVKITFILENAME DevKit-mingw64-64-4.7.2-20130224-1432-sfx.exe
+ENV APPDIR c:\\app
+ENV DEVKITDIR devkit
+
+RUN mkdir %APPDIR%
+WORKDIR /app
+
+# use chocolatey pkg mgr to facilitate command-line installations
 RUN @powershell -NoProfile -ExecutionPolicy unrestricted -Command "(iex ((new-object net.webclient).DownloadString('https://chocolatey.org/install.ps1'))) >$null 2>&1" && SET PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin
 
-COPY . \app
+# Plan A: install ruby devkit using chocolatey, use thin web server
+# WORKS ON SOME TP4 HOSTS (Azure) BUT NOT OTHERS (Windows 10 Hyper-V)
+# RUN choco install ruby2.devkit -y
 
-RUN powershell \app\install-ruby-devkit2
+#Plan B: download devkit and manually install, use WEBRick
 
-RUN gem install sinatra \
-    && gem install thin
+RUN powershell -command "wget 'http://dl.bintray.com/oneclick/rubyinstaller/%DEVKITFILENAME%' \
+  -outfile %DEVKITFILENAME%"
 
-CMD ruby \app\app.rb
+RUN choco install 7zip -y
+
+RUN powershell -command "& '%PROGRAMFILES%\7-zip\7z' e -r -y -o%DEVKITDIR% %DEVKITFILENAME%"
+
+RUN powershell -command "cd %DEVKITDIR%; ruby dk.rb init"
+
+RUN powershell -command "cd %DEVKITDIR%; add-content config.yml '- c:\ruby'"
+
+RUN powershell -command "cd %DEVKITDIR%; ruby dk.rb install"
+
+# install sinatra gem (Plan A: thin fails to install on some TP4 hosts (Windows 10 Hyper-V),
+#  falling back to Plan B: WEBRick as web server)
+RUN gem install sinatra 
+#    && gem install thin
+
+# copy app to image
+COPY . /app
+
+# run sinatra app, specifying remote network access
+CMD ruby app.rb -o 0.0.0.0

@@ -1,8 +1,8 @@
 # app.rb
+# simple hello world web app
+
 require 'sinatra'
 
-class HelloWorldApp < Sinatra::Base
-  get '/' do
-    "Hello, world!"
-  end
+get '/' do
+  "Hello, world!"
 end
