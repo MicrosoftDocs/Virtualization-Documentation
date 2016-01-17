@@ -29,7 +29,7 @@ RUN powershell expand-archive %PGDOWNLOADVER% \
 RUN del %PGDOWNLOADVER%
 
 #install VC 2013 runtime required by postgresql
-#use chocolatey pkg mgr to facilitate downloading jdk without prompting
+#use chocolatey pkg mgr to facilitate command-line installations
 RUN @powershell -NoProfile -ExecutionPolicy unrestricted -Command "(iex ((new-object net.webclient).DownloadString('https://chocolatey.org/install.ps1'))) >$null 2>&1" && SET PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin
 RUN choco install vcredist2013 -y
 
