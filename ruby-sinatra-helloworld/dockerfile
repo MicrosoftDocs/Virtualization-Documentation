@@ -8,7 +8,7 @@
 #
 # Implementation notes:
 #  This rev of the docker file has run reliably on various TP4 hosts.
-#  There are two things commented-out (Plan A below) that work only on an Azure P4 host, 
+#  There are two things commented-out (Plan A below) that work only on an Azure TP4 host, 
 #  but not a Windows 10 Hyper-V host - (Plan B described in parens)
 #    x Installing ruby devkit2 using chocolatey (instead installing devkit manually)
 #    x Installing ruby thin gem (instead relying on WEBRick web server)
