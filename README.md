@@ -19,4 +19,4 @@ Please see the blog post [Dockerfile to create SQL Server Express windows contai
 
 # References
 [Stefan Scherer: Windows Dockerfiles](https://github.com/StefanScherer/dockerfiles-windows) - includes compose, consul, golang, jenkins-swarm-slave, node, swarm <br />
-[Stefan Sherer: Docker-themed blog](https://stefanscherer.github.io/) - includes using chocolatey to setup to run Docker Linux containers on Windows, and even docker on Raspberry Pi <br />
+[Stefan Sherer: Docker-themed blog](https://stefanscherer.github.io/) - includes using chocolatey to get set up to run Docker Linux containers on Window, and a post describing a port of docker to Raspberry Pi <br />
