@@ -15,6 +15,8 @@
 
 FROM microsoft/ruby
 
+MAINTAINER Buc Rogers
+
 ENV DEVKITFILENAME DevKit-mingw64-64-4.7.2-20130224-1432-sfx.exe
 ENV APPDIR c:\\app
 ENV DEVKITDIR devkit

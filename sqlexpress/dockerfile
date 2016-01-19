@@ -34,7 +34,7 @@
 FROM docker.io/microsoft/dotnet35
 
 # maintainer for image metadata
-MAINTAINER yourname
+MAINTAINER Buc Rogers
 
 #note backslash must be escaped in env var as of TP4
 ENV sqlinstance SQL

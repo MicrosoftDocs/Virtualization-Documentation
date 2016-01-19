@@ -12,6 +12,9 @@
 
 FROM windowsservercore
 
+# maintainer for image metadata
+MAINTAINER Buc Rogers
+
 ENV PGDATA c:\\sql
 ENV PGPORT 5432
 #not using PGUSER here due to need to run createuser downstream to create role
