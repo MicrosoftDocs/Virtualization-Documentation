@@ -3,7 +3,7 @@
 #
 # Checks a virtualization host and VM for compatibility with Nested Virtualization
 #
-# Author: Allen Marshall
+# Author: Allen Marshall, Theo Thompson
 
 
 #
@@ -22,7 +22,7 @@ if ($myWindowsPrincipal.IsInRole($adminRole)) {
     # We are running as an administrator, so change the title and background colour to indicate this
     $Host.UI.RawUI.WindowTitle = $myInvocation.MyCommand.Definition + "(Elevated)";
     #$Host.UI.RawUI.BackgroundColor = "DarkBlue";
-    Clear-Host;
+
     } else {
     # We are not running as an administrator, so relaunch as administrator
 
@@ -69,8 +69,16 @@ $HostCfgErrors = @()
 
 # get computer details
 Write-Host "Getting system information..." -NoNewline
-$comp = gwmi Win32_ComputerSystem
-$proc = gwmi Win32_Processor
+
+if($PSVersionTable.PSVersion.Major -ge 3){
+    $comp = Get-CimInstance -ClassName Win32_ComputerSystem
+    $proc = Get-CimInstance -ClassName Win32_Processor
+}
+else{
+    $comp = Get-WmiObject Win32_ComputerSystem
+    $proc = Get-WmiObject Win32_Processor
+}
+
 Write-Host "done."
 
 # grab build info out of registry
@@ -87,7 +95,7 @@ $HostNested = New-Object PSObject
 
 # computer info
 Add-Member -InputObject $HostNested NoteProperty -Name "Computer" -Value $comp.Name
-Add-Member -InputObject $HostNested NoteProperty -Name "Maufacturer" -Value $comp.Manufacturer
+Add-Member -InputObject $HostNested NoteProperty -Name "Manufacturer" -Value $comp.Manufacturer
 Add-Member -InputObject $HostNested NoteProperty -Name "Model" -Value $comp.Model
 
 # processor info
@@ -177,7 +185,7 @@ if(Get-WindowsOptionalFeature -Online | where FeatureName -eq IsolatedUserMode |
 }
 
 # is VBS running?
-$dg = Get-CimInstance -classname Win32_DeviceGuard -namespace root\Microsoft\Windows\DeviceGuard
+$dg = Get-CimInstance -classname Win32_DeviceGuard -namespace root\Microsoft\Windows\DeviceGuard -ea SilentlyContinue
 if ($dg.VirtualizationBasedSecurityStatus) {
     $HostNested.VbsRunning = $true
     $HostNested.HostNestedSupport = $false
@@ -193,8 +201,8 @@ if ($key -eq 1) {
     }
 
 # Check for residual Device Guard EFI variables
-if(Confirm-SecureBootUEFI -ea SilentlyContinue){
-    $VbsEventErrors = Get-WinEvent -LogName System -FilterXPath "*[System[EventID=124]]"
+if((Get-Command Confirm-SecureBootUEFI -ea SilentlyContinue) -and (Confirm-SecureBootUEFI -ea SilentlyContinue)){
+    $VbsEventErrors = Get-WinEvent -LogName System -FilterXPath "*[System[EventID=124]]" -ea SilentlyContinue
     if(($VbsEventErrors.Count -gt 0)) {
         # Check if event was generated from latest boot
         $BootEvents = get-winevent -LogName System -FilterXPath "*[System/Provider[@Name='Microsoft-Windows-Kernel-General'] and System/EventID=12] "
@@ -212,7 +220,6 @@ if(Confirm-SecureBootUEFI -ea SilentlyContinue){
 #
 
 Write-Host "done."
-Clear-Host
 Write-Host
  
 Write-Host ("The virtualization host " + $HostNested.Computer + " supports nested virtualization: ") -NoNewline
