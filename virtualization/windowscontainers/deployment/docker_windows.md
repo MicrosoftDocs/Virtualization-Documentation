@@ -130,6 +130,8 @@ PS C:\> Remove-Item $env:SystemRoot\system32\docker.exe
 
 ### Interactive Nano Session
 
+*Note: For info on how to manage Nano Servers, go [here.](https://technet.microsoft.com/en-us/library/mt126167.aspx) To find out how to remotely manage a Nano Server, search for "Using Windows PowerShell remoting".
+
 You may receive this error when interactively managing a container on a Nano Server Host.
 
 ```powershell
