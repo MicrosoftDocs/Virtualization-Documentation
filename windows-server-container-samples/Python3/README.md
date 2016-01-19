@@ -9,7 +9,7 @@ WindowsServerCore Container base image is present.
 
 On the Container host, enter the directory with the file, then build it:
 ```
-docker build --tag=python3
+docker build --tag=python3 --no-cache .
 ```
 
   
