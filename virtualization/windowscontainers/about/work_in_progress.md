@@ -149,9 +149,8 @@ See the [application compatability article](../reference/app_compat.md) for more
 In this pre-release, docker communication is public if you know where to look.
 
 ### Not all Docker commands work
-Docker exec fails in Hyper-V Containers.
-
-Commands related to DockerHub aren't supported yet.
+* Docker exec fails in Hyper-V Containers.
+* Commands related to DockerHub aren't supported yet.
 
 If anything that isn't on this list fails (or if a command fails differently than expected), let us know via [the forums](https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers).
 
@@ -172,6 +171,10 @@ net use S: \\your\sources\here /User:shareuser [yourpassword]
 ``` 
 
 
+--------------------------
+
+
+
 ## Remote Desktop 
 
 Windows Containers cannot be managed/interacted with through a RDP session in TP4.
@@ -189,5 +192,21 @@ If you try to exit a container that is in a Nano Server container host, using "e
 **Work Around:**
 Use Exit-PSSession instead to exit the container.
 
-
 Feel free to voice feature requests in [the forums](https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers). 
+
+
+--------------------------
+
+
+## Users and Domains
+
+### Local Users
+Local user accounts may be created and used for running Windows services and applications in containers.
+
+
+### Domain Membership
+Containers cannot join Active Directory domains, and cannot run services or applications as domain users, service accounts, or machine accounts. 
+
+Containers are designed to start quickly to a known consistent state that is largely environment agnostic. Joining a domain and applying group policy settings from the domain would increase the time it takes to start a container, change how it functions over time, and limit the ability to move or share images between developers and across deployments.
+
+We're carefully considering feedback on how services & applications use Active Directory and the intersection of deploying those in containers. If you have details on what would work best for you, please share it with us in [the forums](https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers). We are actively looking at solutions to support these types of scenarios.
