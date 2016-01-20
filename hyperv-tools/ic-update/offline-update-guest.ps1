@@ -1,4 +1,9 @@
-$integrationServicesCabPath="C:\Users\sarah\Downloads\windows6.2-hypervintegrationservices-x86.cab"
+Param(
+  [Parameter(Mandatory=$True)]
+  [string]$cabPath
+)
+
+
 
 #Install the patch
-Add-WindowsPackage -Online -PackagePath $integrationServicesCabPath
+Add-WindowsPackage -Online -PackagePath $cabPath
