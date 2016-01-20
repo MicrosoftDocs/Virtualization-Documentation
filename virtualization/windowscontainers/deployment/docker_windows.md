@@ -130,7 +130,7 @@ PS C:\> Remove-Item $env:SystemRoot\system32\docker.exe
 
 ### Interactive Nano Session
 
-> For information on remotely managing Nano Server, see [Getting Started with Nano Server](https://technet.microsoft.com/en-us/library/mt126167.aspx).
+> For information on remotely managing Nano Server, see [Getting Started with Nano Server](https://technet.microsoft.com/en-us/library/mt126167.aspx#bkmk_ManageRemote).
 
 You may receive this error when interactively managing a container on a Nano Server Host.
 
