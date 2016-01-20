@@ -91,7 +91,7 @@ If you're connecting to the windows containers with DHCP VM Switches it's possib
 The containers get a 169.254.***.*** APIPA IP address.
 
 **Work around:**
-This is a side effect of sharing the kernel.  All containers affectively have the same mac address.
+This is a side effect of sharing the kernel.  All containers effectively have the same mac address.
 
 Enable MAC address spoofing on the container host.
 
