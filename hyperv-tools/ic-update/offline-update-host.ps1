@@ -1,8 +1,13 @@
-$virtualHardDiskToUpdate="D:\client_professional_en-us_vl.vhd"
-$integrationServicesCabPath="C:\Users\sarah\Downloads\windows6.2-hypervintegrationservices-x86.cab"
+Param(
+  [Parameter(Mandatory=$True)]
+  [string]$vhdPath,
+  
+  [Parameter(Mandatory=$True)]
+  [string]$cabPath,
+)
 
 #Mount the VHD
-$diskNo=(Mount-VHD -Path $virtualHardDiskToUpdate –Passthru).DiskNumber
+$diskNo=(Mount-VHD -Path $vhdPath –Passthru).DiskNumber
 
 #Get the driver letter associated with the mounted VHD, note this assumes it only has one partition if there are more use the one with OS bits
 $driveLetter=(Get-Disk $diskNo | Get-Partition).DriveLetter
@@ -12,7 +17,7 @@ if ((Get-Disk $diskNo).OperationalStatus -ne 'Online')
 {Set-Disk $MountedVHD.Number -IsOffline:$false -IsReadOnly:$false}
 
 #Install the patch
-Add-WindowsPackage -PackagePath $integrationServicesCabPath -Path ($driveLetter + ":\")
+Add-WindowsPackage -PackagePath $cabPath -Path ($driveLetter + ":\")
 
 #Dismount the VHD
-Dismount-VHD-Path $virtualHardDiskToUpdate
+Dismount-VHD-Path $vhdPath
