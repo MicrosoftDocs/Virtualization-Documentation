@@ -1,8 +1,10 @@
 {
-  "locales": [ "ja-jp", "de-de", "fr-fr", "zh-cn", "zh-tw", "ko-kr", "es-es", "it-it", "ru-ru", "pt-br", "tr-tr" ],
+  "locales": [ "ja-jp", "de-de", "fr-fr", "zh-cn", "zh-tw", "ko-kr", "es-es", "it-it", "ru-ru", "pt-br" ],
   "files": [
-            "virtualization/*.md", 
-	    "virtualization/**/*.md",  "virtualization/**/**/*.md", 
+            "virtualization/hyperv_on_windows/*.md", 
+	    "virtualization/hyperv_on_windows/**/*.md",  "virtualization/hyperv_on_windows/**/**/*.md", 
+	    "virtualization/windowscontainers/*.md", 
+	    "virtualization/windowscontainers/**/*.md",  "virtualization/windowscontainers/**/**/*.md",
   ],
   "includeDependencies": true,
   "autoPush": true
