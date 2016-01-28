@@ -60,7 +60,8 @@ This is broken into three sections:
 * [Set up git](contribute_to_docs.md#set-up-git)
   * git installation
   * initial set up
-  * cloning the private documentation repo
+  * forking the documentation repo
+  * cloning your copy to your local machine
 * [Initial credential management](contribute_to_docs.md#validate-and-stash-credentials)
   * information about stashing credentials and cred helper.
 * [Set up doc environment](contribute_to_docs.md#set-up-markdown-editing-environment)
@@ -111,7 +112,7 @@ This is broken into three sections:
    The first time you need to authenticate against GitHub - you will be prompted for your username, and the two-factor authcode if you have it enabled.
    Example:
    ```
-   C:\Users\plang\Source\Repos\Virtualization-Documentation-Private [master]> git pull
+   C:\Users\plang\Source\Repos\Virtualization-Documentation [master]> git pull
    Please enter your GitHub credentials for https://github.com/
    username: plang@microsoft.com
    password:
@@ -130,13 +131,13 @@ This is broken into three sections:
 
   ``` PowerShell
   cd ~
-  git clone https://github.com/Microsoft/Virtualization-Documentation-Private.git
+  git clone https://github.com/Microsoft/Virtualization-Documentation.git
   ```
 
-  If successful, you now have a `Virtualization-Documentation-Private` folder.
+  If successful, you now have a `Virtualization-Documentation` folder.
 
   ``` PowerShell
-  cd Virtualization-Documentation-Private
+  cd Virtualization-Documentation
   ```
 
 5. [Optional] Set up Posh-Git
@@ -163,8 +164,6 @@ This is broken into three sections:
     return "> "
   }
   ```
-
-  ![](media/PoshGitUsage.PNG)
 
 ### Validate and stash credentials
 
