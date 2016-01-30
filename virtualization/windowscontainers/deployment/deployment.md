@@ -10,7 +10,7 @@ PowerShell scripts are also available to automate the deployment of a Windows Co
 - [Deploy a container host in a new Hyper-V Virtual Machine](../quick_start/container_setup.md).
 - [Deploy a container host to an existing system](../quick_start/inplace_setup.md).
 
-## Windows Server Host
+# Windows Server Host
 
 The steps listed in this table can be used to deploy a container host on Windows Server 2016 and Windows Server 2016 Core. Included are the configurations necessary for both Windows Server and Hyper-V Containers.
 
@@ -180,7 +180,7 @@ For more information on Container image management see [Windows Container Images
 The Docker Daemon and command line interface are not shipped with Windows, and not installed with the Windows Container feature. Docker is not a requirement for working with Windows containers. If you would like to install Docker, follow the instructions in this article [Docker and Windows](./docker_windows.md).
 
 
-## Hyper-V Container Additional Steps
+## Hyper-V Container Host
 
 ### <a name=hypv></a>Enable the Hyper-V Role
 
