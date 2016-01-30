@@ -1,18 +1,19 @@
-# Container Host Deployment - Windows Server
+# Container Host Deployment - Nano Server
 
 **This is preliminary content and subject to change.** 
 
-Deploying a Windows Container host has different steps depending on the operating system and the host system type (physical or virtual). The steps in this document are used to deploy a Windows Container host to either Windows Server 2016 or Windows Server Core 2016, on a physical or virtual system. To install a Windows Container host to Nano Server see [Container Host Deployment - Nano Server](./deployment_nano.md).
+Deploying a Windows Container host has different steps depending on the operating system and the host system type (physical or virtual). The steps in this document are used to deploy a Windows Container host to Nano Server, on a physical or virtual system. To install a Windows Container host to Windows Server see [Container Host Deployment - Windows Server](./deployment.md).
 
 For details on system requirements, see [Windows Container Host System Requirements](./system_requirements.md). 
 
-PowerShell scripts are also available to automate the deployment of a Windows Container host. 
+PowerShell scripts are available to automate the deployment of a Windows Container host. 
 - [Deploy a container host in a new Hyper-V Virtual Machine](../quick_start/container_setup.md).
 - [Deploy a container host to an existing system](../quick_start/inplace_setup.md).
 
-## Windows Server Host
 
-The steps listed in this table can be used to deploy a container host on Windows Server 2016 and Windows Server 2016 Core. Included are the configurations necessary for both Windows Server and Hyper-V Containers.
+## Nano Server Host
+
+The steps listed in this table can be used to deploy a container host to Nano Server. Included are the configurations necessary for both Windows Server and Hyper-V Containers.
 
 <table border="1" style="background-color:FFFFCC;border-collapse:collapse;border:1px solid FFCC00;color:000000;width:100%" cellpadding="5" cellspacing="5">
 <tr valign="top">
@@ -20,8 +21,8 @@ The steps listed in this table can be used to deploy a container host on Windows
 <td width = "70%"><strong>Details</strong></td>
 </tr>
 <tr>
-<td>[Install the Container Feature](#role)</td>
-<td>The container feature enables use of Windows Server and Hyper-V container.</td>
+<td>[Prepare Nano Server for Containers](#nano)</td>
+<td>Prepare a Nano Server VHD with the container and Hyper-V capabilities.</td>
 </tr>
 <tr>
 <td>[Create Virtual Switch](#vswitch)</td>
@@ -37,7 +38,7 @@ The steps listed in this table can be used to deploy a container host on Windows
 </tr>
 <tr>
 <td>[Install Docker](#docker)</td>
-<td>This step is optional, however necessary in order to create and manage Windows containers with Docker.</td>
+<td>This step is optional, however necessary in order to create and manage Windows containers with Docker. </td>
 </tr>
 </table>
 
@@ -52,6 +53,7 @@ These additional steps need to be taken to use Hyper-V Containers. Note, the ste
 <td>[Enable Hyper-V Role](#hypv) </td>
 <td>Hyper-V is only required if Hyper-V Containers will be used.</td>
 </tr>
+<tr>
 <td>[Enable Nested Virtualization *](#nest)</td>
 <td>If the Container Host is itself a Hyper-V Virtual machine, Nested Virtualization needs to be enabled.</td>
 </tr>
@@ -70,29 +72,34 @@ These additional steps need to be taken to use Hyper-V Containers. Note, the ste
 
 ## Deployment Steps
 
-### <a name=role></a>Install Container Feature
+### <a name=nano></a> Prepare Nano Server
 
-The container feature can be installed on Windows Server 2016, or Windows Server 2016 Core, using Windows Server Manager or PowerShell.
+Deploying Nano Server involves creating a prepared virtual hard drive, which includes the Nano Server operating system, and additional feature packages. This guide quickly details preparing a Nano Server virtual hard drive, which can be used for Windows Containers. For more information on Nano Server, and to explore different Nano Server deployment options, see the [Nano Server Documentation]( https://technet.microsoft.com/en-us/library/mt126167.aspx).
 
-To install the role using PowerShell, run the following command in an elevated PowerShell session.
-
-```powershell
-PS C:\> Install-WindowsFeature containers
-```
-The system needs to be rebooted when the container role installation has completed.
+Create a folder named `nano`.
 
 ```powershell
-PS C:\> shutdown /r 
+PS C:\> New-Item -ItemType Directory c:\nano
 ```
-After the system has rebooted, use the `Get-ContainerHost` command to verify that the container role has successfully been installed:
+
+Locate the `NanoServerImageGenerator.psm1` and `Convert-WindowsImage.ps1` files from the Nano Server folder, on the Windows Server Media. Copy these to `c:\nano`.
 
 ```powershell
-PS C:\> Get-ContainerHost
+#Set path to Windows Server 2016 Media
+PS C:\> $WindowsMedia = "C:\Users\Administrator\Desktop\TP4 Release Media"
+	
+PS C:\> Copy-Item $WindowsMedia\NanoServer\Convert-WindowsImage.ps1 c:\nano
 
-Name            ContainerImageRepositoryLocation
-----            --------------------------------
-WIN-LJGU7HD7TEP C:\ProgramData\Microsoft\Windows\Hyper-V\Container Image Store
+PS C:\> Copy-Item $WindowsMedia\NanoServer\NanoServerImageGenerator.psm1 c:\nano
 ```
+Run the following to create a Nano Server virtual hard drive. The `–Containers` parameter indicates that the container package is installed, and the `–Compute` parameter takes care of the Hyper-V package. Hyper-V is only required if using Hyper-V containers.
+
+```powershell
+PS C:\> Import-Module C:\nano\NanoServerImageGenerator.psm1
+
+PS C:\> New-NanoServerImage -MediaPath $WindowsMedia -BasePath c:\nano -TargetPath C:\nano\NanoContainer.vhdx -MaxSize 10GB -GuestDrivers -ReverseForwarders -Compute -Containers
+```
+When completed, create a virtual machine from the `NanoContainer.vhdx` file. This virtual machine will be running the Nano Server OS, and optional packages.
 
 ### <a name=vswitch></a>Create Virtual Switch
 
@@ -101,7 +108,7 @@ Each container needs to be attached to a virtual switch in order to communicate 
 This example creates a virtual switch with the name “Virtual Switch”, a type of NAT, and Nat Subnet of 172.16.0.0/12. 
 
 ```powershell
-PS C:\> New-VMSwitch -Name "Virtual Switch" -SwitchType NAT -NATSubnetAddress 172.16.0.0/12
+PS C:\> New-VMSwitch -Name "Virtual Switch" -SwitchType NAT -NATSubnetAddress "172.16.0.0/12"
 ```
 
 ### <a name=nat></a>Configure NAT
@@ -135,7 +142,8 @@ Container OS images can be found and installed using the ContainerProvider Power
 PS C:\> Install-PackageProvider ContainerProvider -Force
 ```
 
-Use `Find-ContainerImage` to return a list of images from PowerShell OneGet package manager:
+Use `Find-ContainerImage` to return a list of images from PowerShell OneGet package manager. 
+
 ```powershell
 PS C:\> Find-ContainerImage
 
@@ -145,7 +153,7 @@ NanoServer           10.0.10586.0            Container OS Image of Windows Serve
 WindowsServerCore    10.0.10586.0            Container OS Image of Windows Server 2016 Techn...
 
 ```
-To download and install the Nano Server base OS image, run the following.
+**Note** - At this time, only the Nano Server OS Image is compatible with a Nano Server container host. To download and install the Nano Server base OS image, run the following.
 
 ```powershell
 PS C:\> Install-ContainerImage -Name NanoServer -Version 10.0.10586.0
@@ -153,17 +161,7 @@ PS C:\> Install-ContainerImage -Name NanoServer -Version 10.0.10586.0
 Downloaded in 0 hours, 0 minutes, 10 seconds.
 ```
 
-Likewise, this command downloads and installs the Windows Server Core base OS image.
-
-**Issue:** Save-ContainerImage and Install-ContainerImage cmdlets fail to work with a WindowsServerCore container image, from a remote PowerShell session.<br /> **Workaround:** Logon to the machine using Remote Desktop and use Save-ContainerImage cmdlet directly.
-
-```powershell
-PS C:\> Install-ContainerImage -Name WindowsServerCore -Version 10.0.10586.0
-
-Downloaded in 0 hours, 2 minutes, 28 seconds.
-```
-
-Verify that the images have been installed using the `Get-ContainerImage` command.
+Verify that the image is installed using the `Get-ContainerImage` command.
 
 ```powershell
 PS C:\> Get-ContainerImage
@@ -171,7 +169,6 @@ PS C:\> Get-ContainerImage
 Name              Publisher    Version      IsOSImage
 ----              ---------    -------      ---------
 NanoServer        CN=Microsoft 10.0.10586.0 True
-WindowsServerCore CN=Microsoft 10.0.10586.0 True
 ```  
 For more information on Container image management see [Windows Container Images](../management/manage_images.md).
  
@@ -184,11 +181,7 @@ The Docker Daemon and command line interface are not shipped with Windows, and n
 
 ### <a name=hypv></a>Enable the Hyper-V Role
 
-If Hyper-V Containers will be deployed, the Hyper-V role needs to be enabled on the container host. If the container host is a virtual machine, make sure that nested virtualization has been enabled. The Hyper-V role can be installed on Windows Server 2016 or Windows Server 2016 Core using the following PowerShell command. If the container host is itself a Hyper-V virtual machine, nested virtualization will need to be enabled first. To do so see [Configure Nested Virtualization]( #nest).
-
-```powershell
-PS C:\> Install-WindowsFeature hyper-v
-```
+On Nano Server this can be completed when creating the Nano Server image. See [Prepare Nano Server for Containers](#nano) for these instructions.
 
 ### <a name=nest></a>Configure Nested Virtualization
 
@@ -227,4 +220,3 @@ Finally, if the container host is running inside of a Hyper-V virtual machine, M
 ```powershell
 PS C:\> Get-VMNetworkAdapter -VMName <VM Name> | Set-VMNetworkAdapter -MacAddressSpoofing On
 ```
-
