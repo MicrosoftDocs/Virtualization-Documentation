@@ -38,7 +38,7 @@ The steps listed in this table can be used to deploy a container host to Nano Se
 </tr>
 <tr>
 <td>[Install Docker](#docker)</td>
-<td>This step is optional, however necessary in order to create and manage Windows containers with Docker. </td>
+<td>Optional, however necessary in order to create and manage Windows containers with Docker. </td>
 </tr>
 </table>
 

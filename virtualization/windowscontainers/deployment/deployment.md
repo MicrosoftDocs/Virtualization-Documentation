@@ -37,7 +37,7 @@ The steps listed in this table can be used to deploy a container host on Windows
 </tr>
 <tr>
 <td>[Install Docker](#docker)</td>
-<td>This step is optional, however necessary in order to create and manage Windows containers with Docker.</td>
+<td>Optional, however necessary in order to create and manage Windows containers with Docker.</td>
 </tr>
 </table>
 
@@ -155,13 +155,13 @@ Downloaded in 0 hours, 0 minutes, 10 seconds.
 
 Likewise, this command downloads and installs the Windows Server Core base OS image.
 
-**Issue:** Save-ContainerImage and Install-ContainerImage cmdlets fail to work with a WindowsServerCore container image, from a remote PowerShell session.<br /> **Workaround:** Logon to the machine using Remote Desktop and use Save-ContainerImage cmdlet directly.
-
 ```powershell
 PS C:\> Install-ContainerImage -Name WindowsServerCore -Version 10.0.10586.0
 
 Downloaded in 0 hours, 2 minutes, 28 seconds.
 ```
+
+**Issue:** Save-ContainerImage and Install-ContainerImage cmdlets fail to work with a WindowsServerCore container image, from a remote PowerShell session.<br /> **Workaround:** Logon to the machine using Remote Desktop and use Save-ContainerImage cmdlet directly.
 
 Verify that the images have been installed using the `Get-ContainerImage` command.
 
@@ -184,7 +184,7 @@ The Docker Daemon and command line interface are not shipped with Windows, and n
 
 ### <a name=hypv></a>Enable the Hyper-V Role
 
-If Hyper-V Containers will be deployed, the Hyper-V role needs to be enabled on the container host. If the container host is a virtual machine, make sure that nested virtualization has been enabled. The Hyper-V role can be installed on Windows Server 2016 or Windows Server 2016 Core using the following PowerShell command. If the container host is itself a Hyper-V virtual machine, nested virtualization will need to be enabled first. To do so see [Configure Nested Virtualization]( #nest).
+If Hyper-V Containers will be deployed, the Hyper-V role needs to be enabled on the container host. The Hyper-V role can be installed on Windows Server 2016 or Windows Server 2016 Core using the `Install-WindowsFeature` command. If the container host is itself a Hyper-V virtual machine, nested virtualization will need to be enabled first. To do so see [Configure Nested Virtualization]( #nest).
 
 ```powershell
 PS C:\> Install-WindowsFeature hyper-v
