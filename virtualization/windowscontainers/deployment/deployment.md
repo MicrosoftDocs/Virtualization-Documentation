@@ -41,7 +41,7 @@ The steps listed in this table can be used to deploy a container host on Windows
 </tr>
 </table>
 
-These additional steps need to be taken to use Hyper-V Containers. Note, the steps marked with and * are only necessary if the container host is itself a Hyper-V virtual machine.
+These steps need to be taken if Hyper-V Containers will be used. Note, the steps marked with and * are only necessary if the container host is itself a Hyper-V virtual machine.
 
 <table border="1" style="background-color:FFFFCC;border-collapse:collapse;border:1px solid FFCC00;color:000000;width:100%" cellpadding="5" cellspacing="5">
 <tr valign="top">
