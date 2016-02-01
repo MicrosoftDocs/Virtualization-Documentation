@@ -209,4 +209,6 @@ Containers cannot join Active Directory domains, and cannot run services or appl
 
 Containers are designed to start quickly to a known consistent state that is largely environment agnostic. Joining a domain and applying group policy settings from the domain would increase the time it takes to start a container, change how it functions over time, and limit the ability to move or share images between developers and across deployments.
 
-We're carefully considering feedback on how services & applications use Active Directory and the intersection of deploying those in containers. If you have details on what would work best for you, please share it with us in [the forums](https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers). We are actively looking at solutions to support these types of scenarios.
+We're carefully considering feedback on how services & applications use Active Directory and the intersection of deploying those in containers. If you have details on what would work best for you, please share it with us in [the forums](https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers). 
+
+We are actively looking at solutions to support these types of scenarios.
