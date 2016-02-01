@@ -1,0 +1,4 @@
+FROM windowsservercore
+LABEL Description="GO Programming Language" Vendor="Google" Version="1.5.1"
+ADD sources /build
+RUN msiexec /i C:\build\go1.5.1.windows-amd64.msi /qn /l*v C:\build\go1.5.1.windows-amd64.msi.log & del C:\build\go1.5.1.windows-amd64.msi 
