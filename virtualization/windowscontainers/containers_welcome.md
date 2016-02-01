@@ -43,6 +43,16 @@ Learn about managing Windows Container in Windows Server 2016 and Nano Server.<b
 </td>
 </tr>
 <tr>
+<td ><center><!-- TODO: need icon --></center></td>
+<td>**Watch**<br /><br />
+Want to watch some demos from the Windows Containers team? <br /><br />
+<center>
+Start at the [Containers Channel](https://channel9.msdn.com/Blogs/containers)<br />
+[![](media/ContainersChannel.png)](https://channel9.msdn.com/Blogs/containers)<br />
+</center>
+</td>
+</tr>
+<tr>
 <td ><center>![](media/question.png)</center></td>
 <td>**Community**<br /><br />
 Interact with the community, try samples, and find additional resources.<br /><br />
