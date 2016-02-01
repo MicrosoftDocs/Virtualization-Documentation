@@ -1,0 +1,6 @@
+FROM windowsservercore
+LABEL Description="Apache HTTPD 2.4 for Windows compiled by Apache Lounge" Vendor="Apache Foundation" Version="2.4"
+ADD sources/vc_redist.x64.exe /build/vc_redist.x64.exe
+ADD sources/httpd-2.4.17-win64-VC14 /
+RUN /build/vc_redist.x64.exe /q 
+CMD /Apache24/bin/httpd.exe -w
