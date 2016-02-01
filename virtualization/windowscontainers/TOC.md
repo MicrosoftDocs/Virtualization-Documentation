@@ -11,7 +11,7 @@
 ## [Docker Quick Start](quick_start/manage_docker.md)
 # Deploy Windows Containers
 ## [System Requirements](deployment/system_requirements.md)
-## [Contianers on Windows Server](deployment/deployment.md)
+## [Containers on Windows Server](deployment/deployment.md)
 ## [Containers on Nano Server](deployment/deployment_nano.md)
 ## [Docker on Windows](deployment/docker_windows.md)
 # Manage Windows Containers
