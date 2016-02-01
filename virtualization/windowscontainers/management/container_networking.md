@@ -135,9 +135,9 @@ Regardless of network configuration (NAT or Transparent), several PowerShell com
 Manage a Containers Network Adapter
 
 - Add-ContainerNetworkAdapter - Adds a network adapter to a container.
-- Set-ContainerNetworkAdapter - Modifies a containers network adapter.
-- Remove-ContainerNetworkAdapter - Removes a containers network adapter.
-- Get-ContainerNetworkAdapter - Returns data about a containers network adapter.
+- Set-ContainerNetworkAdapter - Modifies a container's network adapter.
+- Remove-ContainerNetworkAdapter - Removes a container's network adapter.
+- Get-ContainerNetworkAdapter - Returns data about a container's network adapter.
 
 Manage the connection between a containers network adapter and a virtual switch.
 
