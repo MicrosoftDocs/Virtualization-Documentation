@@ -117,7 +117,7 @@ To stop the service run the following PowerShell command.
 Stop-Service docker
 ```
 
-The configuration file can be found at `c:\programdata\docker\runDockerDaemon.cmd’. Edit the following line, replacing `Virtual Switch` with the name of the virtual switch to be used by the Docker service.
+The configuration file can be found at `c:\programdata\docker\runDockerDaemon.cmd`. Edit the following line, replacing `Virtual Switch` with the name of the virtual switch to be used by the Docker service.
 
 ```powershell
 docker daemon -D -b “New Switch Name"
