@@ -1,0 +1,4 @@
+FROM windowsservercore
+LABEL Description="Ruby Programming Language for Windows" Vendor="Ruby" Version="2.2.3-x64"
+ADD sources /build
+RUN C:\build\rubyinstaller-2.2.3-x64.exe /VERYSILENT /DIR="c:\ruby" /LOG=C:\build\rubyinstaller-2.2.3-x64.log /tasks="assocfiles,modpath" /NORESTART /SUPPRESSMSGBOXES /SP- & del C:\build\rubyinstaller-2.2.3-x64.exe
