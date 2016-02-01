@@ -1,0 +1,4 @@
+FROM windowsservercore
+LABEL Description="Redis" Vendor="MSOpenTech" Version="3.0.500-rc1"
+ADD sources /build
+RUN msiexec /i C:\build\Redis-x64-3.0.500-rc1.msi /qn /l*v C:\build\Redis-x64-3.0.500-rc1.log & del C:\build\Redis-x64-3.0.500-rc1.msi
