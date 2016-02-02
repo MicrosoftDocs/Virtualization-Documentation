@@ -22,7 +22,7 @@
 # Develop
 ## [Hyper-V PowerShell](https://technet.microsoft.com/library/hh848559.aspx)
 ## [PowerShell Samples](develop/powershell_snippets.md)
-## [Custom integration Service](develop/make_mgmt_service.md)
+## [Build an integration Service](develop/make_mgmt_service.md)
 ## [Hyper-V WMI Provider (V2)](https://msdn.microsoft.com/library/hh850319.aspx)
 ## [Hyper-V Architecture](https://msdn.microsoft.com/en-us/library/cc768520(v=bts.10).aspx)
 # Connect with Community and Support
