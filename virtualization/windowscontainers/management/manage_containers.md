@@ -10,7 +10,7 @@ For documentation on managing Windows Containers with Docker see the Docker docu
 
 ### Create a Container
 
-When creating a new container, you need the name of a container image that will serve as the container base. This can be found using the `Get-ContainerImageName` command.
+When creating a new container, you need the name of a container image that will serve as the container base. This can be found using the `Get-ContainerImage` command.
 
 ```powershell
 PS C:\> Get-ContainerImage
@@ -48,7 +48,7 @@ DHCP External   Microsoft Hyper-V Network Adapter
 NAT  NAT
 ```
 
-Connect the network adapter to the virtual switch using `Connect-ContainerNetowkrAdapter`. NOTE – this can also be completed when the container is created using the –SwitchName parameter.
+Connect the network adapter to the virtual switch using `Connect-ContainerNetworkAdapter`. NOTE – this can also be completed when the container is created using the –SwitchName parameter.
 
 ```powershell
 PS C:\> Connect-ContainerNetworkAdapter -ContainerName TST -SwitchName NAT
