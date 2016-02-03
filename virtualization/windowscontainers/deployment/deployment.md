@@ -52,6 +52,7 @@ These steps need to be taken if Hyper-V Containers will be used. Note, the steps
 <td>[Enable Hyper-V Role](#hypv) </td>
 <td>Hyper-V is only required if Hyper-V Containers will be used.</td>
 </tr>
+<tr>
 <td>[Enable Nested Virtualization *](#nest)</td>
 <td>If the Container Host is itself a Hyper-V Virtual machine, Nested Virtualization needs to be enabled.</td>
 </tr>
@@ -63,6 +64,7 @@ These steps need to be taken if Hyper-V Containers will be used. Note, the steps
 <td>[Disable Dynamic Memory *](#dyn)</td>
 <td>If the Container Host is itself a Hyper-V Virtual machine, dynamic memory must be disabled.</td>
 </tr>
+<tr>
 <td>[Configure MAC Address Spoofing *](#mac)</td>
 <td>If the container host is virtualized, MAC spoofing will need to be enabled.</td>
 </tr>
