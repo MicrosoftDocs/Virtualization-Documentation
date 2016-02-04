@@ -43,7 +43,7 @@ Learn about managing Windows Container in Windows Server 2016 and Nano Server.<b
 </td>
 </tr>
 <tr>
-<td ><center><!-- TODO: need icon --></center></td>
+<td ><center>![](media/video.png)</center></td>
 <td>**Watch**<br /><br />
 Want to watch some demos from the Windows Containers team? <br /><br />
 <center>
