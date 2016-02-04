@@ -85,6 +85,23 @@ In this release we support one network compartment per container. This means tha
 **Work Around: **  
 If multiple endpoints need to be exposed by a container, use NAT port mapping.
 
+
+### Static NAT mappings could conflict with port mappings through Docker
+If you are creating containers using Windows PowerShell and adding static NAT mappings, they may cause conflicts if you don't remove them before starting a container using `docker -p <src>:<dst>`
+
+Example error:
+```
+
+```
+
+
+***Mitigation***
+This can be resolved by removing the port mappings created using PowerShell
+```powershell
+Get-NetNatStaticMapping | Remove-NetNatStaticMapping
+```
+
+
 ### Windows containers are not getting IPs
 If you're connecting to the windows containers with DHCP VM Switches it's possible for the container host to receive an IP while the containers do not.
 
