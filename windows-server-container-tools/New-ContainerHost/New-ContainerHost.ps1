@@ -393,7 +393,7 @@ Cache-HostFiles
                 if ($WimPath)
                 {
                     Write-Output "Saving private Container OS image ($global:imageName) (this may take a few minutes)..."
-                    Copy-File -SourcePath $WimPath -DestinationPath $global:localWimVhdVersion  
+                    Copy-File -SourcePath $WimPath -DestinationPath "$($driveLetter):\$global:localWimName"  
                 }
                 else
                 {
