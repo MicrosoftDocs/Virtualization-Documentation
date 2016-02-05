@@ -73,3 +73,7 @@ C:\> docker run –it --cpu-shares 2 --name dockerdemo windowsservercore cmd
 - CPU and IO Resource Controls are not currently supported with Hyper-V Containers.
 - IO Resource Controls are not currently supported with Container Shared Folders.
 
+## Video Walkthrough
+
+<iframe src="https://channel9.msdn.com/Blogs/containers/Container-Fundamentals--Part-4-Resource-Management/player" width="800" height="450"  allowFullScreen="true" frameBorder="0" scrolling="no"></iframe>
+
