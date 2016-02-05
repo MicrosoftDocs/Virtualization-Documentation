@@ -5,7 +5,7 @@ Before creating and managing Windows Server Containers in Azure you will need to
 > Microsoft Azure does not support Hyper-V containers. To complete Hyper-V Container exercises, you need an on-prem container host.
 
 ## Start Using Azure Portal
-If you have an Azure account, skip straight to [Create a Container Host VM](#CreateacontainerhostVM).
+If you have an Azure account, jump to [Create a Container Host VM](#CreateacontainerhostVM).
 
 1. Go to [azure.com](https://azure.com) and follow the steps for an [Azure Free Trial](https://azure.microsoft.com/en-us/pricing/free-trial/).
 2. Sign in with your Microsoft account.
