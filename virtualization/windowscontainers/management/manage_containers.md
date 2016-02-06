@@ -21,7 +21,7 @@ NanoServer        CN=Microsoft 10.0.10584.1000 True
 WindowsServerCore CN=Microsoft 10.0.10584.1000 True
 ```
 
-Use the `New-Container` command to create a new container. The container can also be given a netbios name using the `-ContainerComputerName` parameter.
+Use the `New-Container` command to create a new container. The container can also be given a NetBIOS name using the `-ContainerComputerName` parameter.
 
 ```powershell
 PS C:\> New-Container -ContainerImageName WindowsServerCore -Name demo -ContainerComputerName demo
