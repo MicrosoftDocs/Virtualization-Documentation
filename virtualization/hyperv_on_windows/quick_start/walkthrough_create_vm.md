@@ -87,5 +87,5 @@ In order to finish building your virtual machine, you need to start the virtual 
 
 > **Note:** Unless you're running a volume licensed version of Windows, you need a seperate license for Windows running inside a virtual machine. The virtual machine's operating system is independent of the host operating system.
 
-## Next Step - Virtual Machine Checkpoints
+## Next Step - Work with PowerShell and Hyper-V
 [Hyper-V and Windows PowerShell](walkthrough_powershell.md)
