@@ -2,7 +2,7 @@
 
 Windows Containers provide operating system level virtualization that allows multiple isolated applications to be run on a single system. Two different types of container runtime are included with the feature, each with a different degree of application isolation. Windows Server Containers achieve isolation through namespace and process isolation. Hyper-V Containers encapsulates each container in a light weight virtual machine. In addition to two runtimes, both can be managed with either PowerShell or Docker. This documentation set provides quick start guides, deployment guides, and technical details on management operations.
 
-<table border="1" style="background-color:FFFFCC;border-collapse:collapse;border:1px solid FFCC00;color:000000;width:80%" cellpadding="25" cellspacing="5">
+<table border="1" style="background-color:FFFFCC;border-collapse:collapse;border:1px solid FFCC00;color:000000;width:90%" cellpadding="25" cellspacing="5">
 <tr>
 <td ><center>![](media/try.png)</center></td>
 <td>**Quick Start**<br /><br />
@@ -40,6 +40,16 @@ Learn about managing Windows Container in Windows Server 2016 and Nano Server.<b
 <li>[Manage Container Resources](management/manage_resources.md)<br /><br /></li>
 <li>[Container Interoperability](management/hcs_powershell.md)<br /><br /></li>
 </ul>
+</td>
+</tr>
+<tr>
+<td ><center>![](media/video.png)</center></td>
+<td>**Watch**<br /><br />
+Interested in demos and interviews from the Windows Container team?<br /><br />
+<ul>
+<li>[Containers Channel](https://channel9.msdn.com/Blogs/containers)</li>
+</ul>
+<br />
 </td>
 </tr>
 <tr>
