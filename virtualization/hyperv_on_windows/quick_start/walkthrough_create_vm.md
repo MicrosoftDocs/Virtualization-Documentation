@@ -21,7 +21,7 @@ These steps walk through how to manually create a virtual machine and deploy an 
 
   Generation 2 virtual machines were introduced with Windows Server 2012 R2 and provide a simplified virtual hardware model and some additional functionality. You can only install a 64-bit operating system on a generation 2 virtual machine. For more information on Generation 2 virtual machines see the [Generation 2 Virtual Machine Overview](https://technet.microsoft.com/en-us/library/dn282285.aspx).
   
-  > If the new virtual machine is configured as generation 2, and will be running a Linux distribution, secure boot will need to be disabled. For more information on secure boot see [Secure Boot](https://technet.microsoft.com/en-us/library/dn486875.aspx).
+  > If the new virtual machine is configured as generation 2, and will be running a Linux distribution, secure boot will need to be disabled for the virtual machine. For more information on secure boot see [Secure Boot](https://technet.microsoft.com/en-us/library/dn486875.aspx).
 
 6. Select **2048** for the **Startup Memory** value and leave **Use Dynamic Memory**, selected. Click the **Next** button.  
 
