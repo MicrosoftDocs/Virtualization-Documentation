@@ -35,7 +35,7 @@ PS C:\> wget -uri https://aka.ms/tp4/Install-ContainerHost -OutFile C:\Install-C
    
  After the download completes, execute the script.
 ``` PowerShell
-PS C:\> C:\Install-ContainerHost.ps1 -HyperV
+PS C:\> powershell.exe -NoProfile C:\Install-ContainerHost.ps1 -HyperV
 ```
 
 The script will then begin to download and configure the Windows Container components. This process may take quite some time due to the large download. The machine may reboot during the process. When finished your machine will be configured and ready for you to create and manage Windows Containers and Windows Container Images with both PowerShell and Docker. 
