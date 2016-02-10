@@ -29,8 +29,7 @@ $adminRole = [System.Security.Principal.WindowsBuiltInRole]::Administrator;
 if ($myWindowsPrincipal.IsInRole($adminRole)) {
     # We are running as an administrator, so change the title and background colour to indicate this
     $Host.UI.RawUI.WindowTitle = $myInvocation.MyCommand.Definition + "(Elevated)";
-    #$Host.UI.RawUI.BackgroundColor = "DarkBlue";
-    Clear-Host;
+
     } else {
     # We are not running as an administrator, so relaunch as administrator
 
@@ -132,29 +131,29 @@ if($char.StartsWith('Y')) {
 
     # Optionally turn on mac spoofing
     if($vmInfo.MacAddressSpoofing -eq 'Off') {
-        Write-Host "Mac Address Spoofing isn't enabled, nested guests won't have network!" -ForegroundColor Yellow 
-        Write-Host "Would you like to enable? (Y/N)" -NoNewline
+        Write-Host "Mac Address Spoofing isn't enabled (nested guests won't have network)." -ForegroundColor Yellow 
+        Write-Host "Would you like to enable MAC address spoofing? (Y/N)" -NoNewline
         $input = Read-Host
 
-        if($input -eq 'y' -or 'Y') {
+        if($input -eq 'Y') {
             Set-VMNetworkAdapter -VMName $vmName -MacAddressSpoofing on
         }
         else {
-            Write-Host "Not setting Mac Address Spoofing feature (can be enabled via UI)."
+            Write-Host "Not enabling Mac address spoofing."
         }
 
     }
 
     if($vmInfo.MemorySize -lt $4GB) {
-        Write-Host "Vm memory is set less than 4GB, without 4GB or more, you may not be able to start VMs!" -ForegroundColor Yellow
+        Write-Host "VM memory is set less than 4GB, without 4GB or more, you may not be able to start VMs." -ForegroundColor Yellow
         Write-Host "Would you like to set Vm memory to 4GB? (Y/N)" -NoNewline
         $input = Read-Host 
 
-        if($input -eq 'y' -or $input -eq 'Y') {
+        if($input -eq 'Y') {
             Set-VMMemory -VMName $vmName -StartupBytes $4GB
         }
         else {
-            Write-Host "Not setting Vm Memory to 4GB"
+            Write-Host "Not setting Vm Memory to 4GB."
         }
     }
     Exit;

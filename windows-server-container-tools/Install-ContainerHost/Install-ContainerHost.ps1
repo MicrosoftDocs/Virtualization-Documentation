@@ -601,9 +601,12 @@ Install-ContainerHost
 
                 Write-Output "Creating scheduled task trigger..."
                 $trigger = New-ScheduledTaskTrigger -AtStartup
-
+                
+                Write-Output "Creating scheduled task trigger..."
+                $settings = New-ScheduledTaskSettingsSet -Priority 5
+                
                 Write-Output "Registering Docker daemon to launch at startup..."
-                Register-ScheduledTask -TaskName $global:DockerServiceName -Action $action -Trigger $trigger -User SYSTEM -RunLevel Highest | Out-Null
+                Register-ScheduledTask -TaskName $global:DockerServiceName -Action $action -Trigger $trigger -Settings $settings -User SYSTEM -RunLevel Highest | Out-Null
 
                 Write-Output "Launching daemon..."
                 Start-ScheduledTask -TaskName $global:DockerServiceName
@@ -895,7 +898,7 @@ Test-Nano()
 {
     $EditionId = (Get-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion' -Name 'EditionID').EditionId
 
-    return ($EditionId -eq "ServerTuva")
+    return (($EditionId -eq "NanoServer") -or ($EditionId -eq "ServerTuva"))
 }
 
 

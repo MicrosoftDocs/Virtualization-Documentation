@@ -54,7 +54,7 @@
         Path to a private .wim file that contains the base package image.  Only required if -VhdPath is also passed
 
     .PARAMETER WindowsImage
-        Image to use for the VM.  One of NanoServer, WindowsServer, or WindowsServerCore [default]
+        Image to use for the VM.  One of NanoServer, ServerDatacenter, or ServerDatacenterCore [default]
 
     .EXAMPLE
         .\Install-ContainerHost.ps1 -SkipDocker
@@ -393,7 +393,7 @@ Cache-HostFiles
                 if ($WimPath)
                 {
                     Write-Output "Saving private Container OS image ($global:imageName) (this may take a few minutes)..."
-                    Copy-File -SourcePath $WimPath -DestinationPath $global:localWimVhdVersion  
+                    Copy-File -SourcePath $WimPath -DestinationPath "$($driveLetter):\$global:localWimName"  
                 }
                 else
                 {
@@ -1140,7 +1140,7 @@ Test-Nano()
 {
     $EditionId = (Get-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion' -Name 'EditionID').EditionId
 
-    return ($EditionId -eq "ServerTuva")
+    return (($EditionId -eq "NanoServer") -or ($EditionId -eq "ServerTuva"))
 }
 
 

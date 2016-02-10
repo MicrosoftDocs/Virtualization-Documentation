@@ -13,6 +13,7 @@ Try Windows Server and Hyper-V Containers by using the following quick start gui
 <li>[Deploy Host in Existing System](quick_start/inplace_setup.md)<br /><br /></li>
 <li>[PowerShell Quick Start](quick_start/manage_powershell.md)<br /><br /></li>
 <li>[Docker Quick Start](quick_start/manage_docker.md)<br /><br /></li>
+</ul>
 </td>
 </tr>
 <tr>
@@ -23,12 +24,13 @@ Learn how to deploy Windows Containers on Windows Server 2016 and Nano Server.<b
 <li>[System Requirements](deployment/system_requirements.md)<br /><br /></li>
 <li>[Deploy Container Host](deployment/deployment.md)<br /><br /></li>
 <li>[Deploy Docker on Windows](deployment/docker_windows.md)<br /><br /></li>
+</ul>
 </td>
 </tr>
 <tr>
 <td ><center>![](media/explore.png)</center></td>
 <td>**Management**<br /><br />
-Learn about managing Windows Container in Windows Server 2016 and Nano Server.<br ><br />
+Learn about managing Windows Container in Windows Server 2016 and Nano Server.<br /><br />
 <ul>
 <li>[Manage Containers](management/manage_containers.md)<br /><br /></li>
 <li>[Manage Images](management/manage_images.md)<br /><br /></li>
@@ -37,16 +39,18 @@ Learn about managing Windows Container in Windows Server 2016 and Nano Server.<b
 <li>[Manage Hyper-V Containers](management/hyperv_container.md)<br /><br /></li>
 <li>[Manage Container Resources](management/manage_resources.md)<br /><br /></li>
 <li>[Container Interoperability](management/hcs_powershell.md)<br /><br /></li>
+</ul>
 </td>
 </tr>
 <tr>
 <td ><center>![](media/question.png)</center></td>
 <td>**Community**<br /><br />
-Interact with the community, try samples, and find additional resources.<br ><br />
+Interact with the community, try samples, and find additional resources.<br /><br />
 <ul>
 <li>[Container Forum](https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers)<br /><br /></li>
 <li>[Container Resources](https://msdn.microsoft.com/virtualization/community/community_overview)<br /><br /></li>
 <li>[Samples and Scripts](https://github.com/Microsoft/Virtualization-Documentation/tree/master/windows-server-container-samples)<br /><br /></li>
+</ul>
 </td>
 </tr>
 </table>

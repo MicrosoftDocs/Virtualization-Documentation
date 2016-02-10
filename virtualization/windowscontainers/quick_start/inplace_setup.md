@@ -1,6 +1,6 @@
 # Deploy a Windows Container Host to an Existing Virtual or Physical System
 
-This document steps through using a PowerShell script to deploy Windows Container host to an existing physical or virtual system.
+This document steps through using a PowerShell script to deploy and configure the Windows Container role on an existing physical or virtual system.
 
 To step through a scripted deployment of a new Hyper-V virtual machine configured as a Windows Container Host, see [New Hyper-V Windows Container Host](./container_setup.md).
 
@@ -8,12 +8,9 @@ To step through a scripted deployment of a new Hyper-V virtual machine configure
 
 The following are required in order to complete both the Windows Server Containers and Hyper-V containers exercises in this quick start.
 
-* System running Windows 10 build 1056 or later / Windows Server Technical Preview 4 or later.
-* Hyper-V role enabled ([see instructions](https://msdn.microsoft.com/virtualization/hyperv_on_windows/quick_start/walkthrough_install#UsingPowerShell)).
+* System running Windows Server Technical Preview 4 or later.
 * 10GB available storage for container host image, OS Base Image and setup scripts.
-* Administrator permissions on the Hyper-V host.
-
-> A virtualized container host, running Hyper-V containers, will require nested virtualization. Both the physical host and virtual host will need to be running an OS that supports nested virtualization. 
+* Administrator permissions on the system.
 
 ## Setup an existing Virtual Machine or Bare Metal host for Containers
 Windows Containers require the Container OS Base Images. We have put together a script that will download and install this for you. Follow these steps to configure your system as a Windows Container Host. For more information, see What’s New in Hyper-V on [Windows Server 2016 Technical Preview]( https://tnstage.redmond.corp.microsoft.com/en-US/library/dn765471.aspx#BKMK_nested).

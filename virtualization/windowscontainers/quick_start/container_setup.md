@@ -8,7 +8,7 @@ To step through a scripted deployment, of a Windows Container host, to an existi
 
 The following are required in order to complete both the **Windows Server** and **Hyper-V Containers** exercises in this quick start.
 
-* System running Windows 10 build 1056 or later / Windows Server Technical Preview 4 or later.
+* System running Windows 10 build 10586 or later / Windows Server Technical Preview 4 or later.
 * Hyper-V role enabled ([see instructions](https://msdn.microsoft.com/virtualization/hyperv_on_windows/quick_start/walkthrough_install#UsingPowerShell)).
 * 20GB available storage for container host image, OS Base Image and setup scripts.
 * Administrator permissions on the Hyper-V host.

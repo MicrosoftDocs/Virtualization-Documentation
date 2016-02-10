@@ -10,10 +10,11 @@ For documentation on managing Windows Containers with Docker see the Docker docu
 
 ### Create a Container
 
-When creating a new container, you need the name of a container image that will serve as the container base. This can be found using the `Get-ContainerImageName` command.
+When creating a new container, you need the name of a container image that will serve as the container base. This can be found using the `Get-ContainerImage` command.
 
 ```powershell
 PS C:\> Get-ContainerImage
+
 Name              Publisher    Version         IsOSImage
 ----              ---------    -------         ---------
 NanoServer        CN=Microsoft 10.0.10584.1000 True
@@ -47,7 +48,7 @@ DHCP External   Microsoft Hyper-V Network Adapter
 NAT  NAT
 ```
 
-Connect the network adapter to the virtual switch using `Connect-ContainerNetowkrAdapter`. NOTE – this can also be completed when the container is created using the –SwitchName parameter.
+Connect the network adapter to the virtual switch using `Connect-ContainerNetworkAdapter`. NOTE – this can also be completed when the container is created using the –SwitchName parameter.
 
 ```powershell
 PS C:\> Connect-ContainerNetworkAdapter -ContainerName TST -SwitchName NAT
@@ -149,7 +150,7 @@ PS C:\> Get-Container | Remove-Container -Force
 Use `docker run` to create a container with Docker.
 
 ```powershell
-docker run -p 80:80 windowsservercoreiis
+PS C:\> docker run -p 80:80 windowsservercoreiis
 ```
 
 For more information on the Docker run command, see the [Docker run reference}( https://docs.docker.com/engine/reference/run/).
@@ -167,6 +168,7 @@ This example stops all running containers with Docker.
 
 ```powershell
 PS C:\> docker stop $(docker ps -q)
+
 fd9a978faac8
 b51e4be8132e
 ```

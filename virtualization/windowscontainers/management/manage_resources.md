@@ -16,12 +16,12 @@ PS C:\> New-Container –Name TestContainer –MaximumMemoryBytes 256MB -Contain
 You can also set the memory limit of an existing container using the `Set-ContainerMemory` cmdlet.
 
 ```powershell
-PS C:\> Set-ContainerMemory -ContainerName TestContainer -MaximumBytes 500mb
+PS C:\> Set-ContainerMemory -ContainerName TestContainer -MaximumBytes 256mb
 ```
 
 ### Network Bandwidth
 
-Network bandwidth limits can be set on an exsisting container. To do so, ensure the container has a network adapter using the `Get-ContainerNetworkAdapter` command. If a network adapter does nto exist, use the `Add-ContainerNetworkAdapter` command to create one. Finally, use the `Set-ContainerNetworkAdapter` command to limit the maximum egress network bandwidth of the container.
+Network bandwidth limits can be set on an exsisting container. To do so, ensure the container has a network adapter using the `Get-ContainerNetworkAdapter` command. If a network adapter does not exist, use the `Add-ContainerNetworkAdapter` command to create one. Finally, use the `Set-ContainerNetworkAdapter` command to limit the maximum egress network bandwidth of the container.
 
 The below sample the maximum bandwitch to 100Mbps.
 
@@ -36,7 +36,7 @@ You can limit the amount of compute a container can use by either setting a Maxi
 The below sets the relative weight of the container to 1000. The default weight of a container is 100, so this container while have 10 times the priority of a container set to the default. The max value is 10000.
 
 ```powershell
-PS C:\> Set-ContainerProcessor -ContainerName Container1 –RelativeWeight 10000.
+PS C:\> Set-ContainerProcessor -ContainerName Container1 –RelativeWeight 10000
 ```
  
 You can also set a hard limit on the amount of CPU a container can use in terms of percentage of CPU time. By default, a container can use 100% of the CPU. The below sets the max percent of a CPU a container can use to 30%. Using the –Maximum flag automatically sets the RelativeWeight to 100. 
@@ -60,9 +60,9 @@ PS C:\> Set-ContainerStorage -ContainerName Container1 -MaximumIOPS 32
 
 We offer the ability to manage a subset of container resources through Docker. Specifically, we allow users to specify how the cpu is shared amongst containers. 
 
-### CPU
+### CPU <!--docker-->
 
-CPU shares amongst containers can be managed at runtime via the --cpu-shares flag. By default, all containers enjoy an equal proportion of CPU time. To change the relative share of CPU that containers use run the --cpu-shares flag with a value from 1-10000. By default, all containers receive a weight of 5000. 
+CPU shares amongst containers can be managed at runtime via the --cpu-shares flag. By default, all containers enjoy an equal proportion of CPU time. To change the relative share of CPU that containers use run the --cpu-shares flag with a value from 1-10000. By default, all containers receive a weight of 5000. For more information on CPU share constraint see the [Docker Run Reference]( https://docs.docker.com/engine/reference/run/#cpu-share-constraint). 
 
 ```powershell 
 C:\> docker run –it --cpu-shares 2 --name dockerdemo windowsservercore cmd

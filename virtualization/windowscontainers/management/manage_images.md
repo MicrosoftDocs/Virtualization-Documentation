@@ -44,19 +44,21 @@ NanoServer           10.0.10586.0            Container OS Image of Windows Serve
 WindowsServerCore    10.0.10586.0            Container OS Image of Windows Server 2016 Techn...
 ```
 
-To download and install the Nano Server base OS image, run the following.
+To download and install the Nano Server base OS image, run the following. The `–version` parameter is optional. Without a base OS image version specified, the latest version will be installed.
 
 ```powershell
 PS C:\> Install-ContainerImage -Name NanoServer -Version 10.0.10586.0
+
 Downloaded in 0 hours, 0 minutes, 10 seconds.
 ```
 
-Likewaise, this command will download and install the Windows Server Core base OS image.
+Likewaise, this command will download and install the Windows Server Core base OS image. The `–version` parameter is optional. Without a base OS image version specified, the latest version will be installed.
 
 > **Issue** Save-ContainerImage and Install-ContainerImage cmdlets fail to work with a WindowsServerCore container image in a PowerShell remoting session. **Workaround:** Logon to the machine using Remote Desktop and use Save-ContainerImage cmdlet directly.
 
 ```powershell
 PS C:\> Install-ContainerImage -Name WindowsServerCore -Version 10.0.10586.0
+
 Downloaded in 0 hours, 2 minutes, 28 seconds.
 ```
 
@@ -88,7 +90,7 @@ Remove a single image with PowerShell.
 PS C:\> Get-ContainerImage -Name newimage | Remove-ContainerImage -Force
 ```
 
-### Image Dependency
+### Image Dependency <!--1-->
 
 When a new image is created, it becomes dependent on the image that it was created from. This dependency can be seen using the `get-containerimage` command. If a parent image is not listed, this indicates that the image is a Base OS image.
 
@@ -119,6 +121,7 @@ nanoserver             10.0.10586.0        8572198a60f1        2 weeks ago      
 
 ```powershell
 C:\> docker commit 475059caef8f windowsservercoreiis
+
 ca40b33453f803bb2a5737d4d5dd2f887d2b2ad06b55ca681a96de8432b5999d
 ```
 
@@ -130,6 +133,7 @@ When removing an image with docker, the images can be referenced by image name o
 
 ```powershell
 C:\> docker rmi windowsservercoreiis
+
 Untagged: windowsservercoreiis:latest
 Deleted: ca40b33453f803bb2a5737d4d5dd2f887d2b2ad06b55ca681a96de8432b5999d
 ```
@@ -185,7 +189,7 @@ windowsservercore   10.0.10586.0        6801d964fda5        2 weeks ago         
 windowsservercore   latest              6801d964fda5        2 weeks ago         0 B
 ```
 
-### Image Dependency
+### Image Dependency <!--2-->
 
 To see image dependencies with Docker, the `docker history` command can be used.
 

@@ -9,7 +9,6 @@
 ## [Install Hyper-V](quick_start/walkthrough_install.md)
 ## [Create a Virtual Switch](quick_start/walkthrough_virtual_switch.md)
 ## [Create a Virtual Machine](quick_start/walkthrough_create_vm.md)
-## [Checkpoints with Hyper-V](quick_start/walkthrough_checkpoints.md)
 ## [Hyper-V and PowerShell](quick_start/walkthrough_powershell.md)
 # User Guides
 ## [Migrate and Upgrade Virtual Machines](user_guide/migrating_vms.md)
@@ -23,7 +22,7 @@
 # Develop
 ## [Hyper-V PowerShell](https://technet.microsoft.com/library/hh848559.aspx)
 ## [PowerShell Samples](develop/powershell_snippets.md)
-## [Management Service](develop/make_mgmt_service.md)
+## [Build an integration Service](develop/make_mgmt_service.md)
 ## [Hyper-V WMI Provider (V2)](https://msdn.microsoft.com/library/hh850319.aspx)
 ## [Hyper-V Architecture](https://msdn.microsoft.com/en-us/library/cc768520(v=bts.10).aspx)
 # Connect with Community and Support

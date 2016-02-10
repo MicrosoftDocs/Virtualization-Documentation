@@ -158,7 +158,7 @@ Open the dockerfile in notepad.
 C:\> notepad c:\build\dockerfile
 ```
 
-Copy the following text into the dockerfile and save the file. These commands instruct Docker to create a new image, using `windosservercore` as the base, and include the modifications specified with `RUN`. For more information on Dockerfiles, see the [Dockerfile reference at docker.com](http://docs.docker.com/engine/reference/builder/).
+Copy the following text into the dockerfile and save the file. These commands instruct Docker to create a new image, using `windowsservercore` as the base, and include the modifications specified with `RUN`. For more information on Dockerfiles, see the [Dockerfile reference at docker.com](http://docs.docker.com/engine/reference/builder/).
 
 ```powershell
 FROM windowsservercore
@@ -222,7 +222,7 @@ Hyper-V Containers provide an additional layer of isolation over Windows Server 
 
 ### Create Container <!--2-->
 
-Because the container will be running a Nano Server OS Image, the Nano Server IIS packages will be needed to install IIS. These can be found on the Windows Sever 2016 TP4 Installation media, under the `NanoServer\Packages` directory.
+Because the container will be running a Nano Server OS Image, the Nano Server IIS packages will be needed to install IIS. These can be found on the Windows Server 2016 TP4 Installation media, under the `NanoServer\Packages` directory.
 
 In this example a directory from the container host will be made available to the running container using the `-v` parameter of `docker run`. Before doing so, the source directory will need to be configured. 
 

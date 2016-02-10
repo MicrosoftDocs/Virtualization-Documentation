@@ -1,6 +1,6 @@
-# Make a new management service
+# Make your own integration services
 
-Starting in Windows 10, Hyper-V allows registered socket connections between the Hyper-V guest and host without relying on a network connection.  Using Hyper-V sockets, services can run independently of the networking stack and all data stays on the same physical memory.
+Starting in Windows 10, anyone can make a service very similar to the in-box Hyper-V integration services using a new socket-based communication channel between the Hyper-V host and the virtual machines running on it.  Using these Hyper-V sockets, services can run independently of the networking stack and all data stays on the same physical memory.
 
 This document walks through creating a simple application built on Hyper-V sockets and how to get started using them.
 
