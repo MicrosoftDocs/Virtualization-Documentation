@@ -2195,8 +2195,7 @@ You can use the fields below to configure the VHD or VHDX that you want to creat
             if ($Driver)
             {
                 Write-W2VInfo -text "Adding Windows Drivers to the Image"
-                $Driver | ForEach-Object -Process
-                {
+                $Driver | ForEach-Object -Process {
                     Write-W2VInfo -text "Driver path: $PSItem"
                     Add-WindowsDriver -Path $windowsDrive -Recurse -Driver $PSItem -Verbose | Out-Null
                 }
@@ -2214,8 +2213,7 @@ You can use the fields below to configure the VHD or VHDX that you want to creat
             {
                 Write-W2VInfo -text "Adding Windows Packages to the Image"
 
-                $Package | ForEach-Object -Process
-                {
+                $Package | ForEach-Object -Process {
                     Write-W2VInfo -text "Package path: $PSItem"
                     Add-WindowsPackage -Path $windowsDrive -PackagePath $PSItem | Out-Null
                 }
