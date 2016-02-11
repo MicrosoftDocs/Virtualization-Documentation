@@ -31,9 +31,15 @@
     .PARAMETER ExternalNetAdapter
         Specify a specific network adapter to bind to a DHCP switch
         
+    .PARAMETER Force 
+        If a restart is required, forces an immediate restart.
+        
     .PARAMETER HyperV 
         If passed, prepare the machine for Hyper-V containers
             
+    .PARAMETER NATSubnetPrefix
+        Use to override NAT Subnet when in NAT mode.  Defaults to 172.16.0.0/12
+
     .PARAMETER NoRestart
         If a restart is required the script will terminate and will not reboot the machine
 
@@ -63,6 +69,9 @@ param(
       
     [string]
     $ExternalNetAdapter,
+       
+    [switch]
+    $Force,
 
     [switch]
     $HyperV,
@@ -141,7 +150,14 @@ Restart-And-Run()
 
     try
     {
-        Restart-Computer
+        if ($Force)
+        {
+            Restart-Computer -Force
+        }
+        else
+        {
+            Restart-Computer
+        }
     }
     catch 
     {
@@ -189,6 +205,11 @@ Install-Feature
     {
         if ((Get-WindowsOptionalFeature -Online -FeatureName $FeatureName).State -eq "Disabled")
         {
+            if (Test-Nano)
+            {
+                throw "This NanoServer deployment does not include $FeatureName.  Please add the appropriate package"
+            }
+
             Test-Admin
 
             Write-Output "Enabling feature $FeatureName..."
@@ -452,13 +473,16 @@ Install-ContainerHost
 				}
 				else
 				{
-					$qfe = $hostBuildInfo[1]
+                    $qfe = $hostBuildInfo[1]
 				}
 
 				$imageVersion = "10.0.$version.$qfe"
 
                 Write-Output "Getting Container OS image ($imageName) version $imageVersion from OneGet (this may take a few minutes)..."
-                Install-ContainerImage $imageName -Version $imageVersion
+                #
+                # TODO: expect the follow to have default ErrorAction of stop
+                #
+                Install-ContainerImage $imageName -Version $imageVersion -ErrorAction Stop
             }
             else
             {
@@ -602,7 +626,7 @@ Install-ContainerHost
                 Write-Output "Creating scheduled task trigger..."
                 $trigger = New-ScheduledTaskTrigger -AtStartup
                 
-                Write-Output "Creating scheduled task trigger..."
+                Write-Output "Creating scheduled task settings..."
                 $settings = New-ScheduledTaskSettingsSet -Priority 5
                 
                 Write-Output "Registering Docker daemon to launch at startup..."
