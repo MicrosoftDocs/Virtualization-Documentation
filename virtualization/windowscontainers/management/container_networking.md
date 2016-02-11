@@ -117,7 +117,7 @@ To stop the service run the following PowerShell command.
 Stop-Service docker
 ```
 
-The configuration file can be found at `c:\programdata\docker\runDockerDaemon.cmd’. Edit the following line, replacing `Virtual Switch` with the name of the virtual switch to be used by the Docker service.
+The configuration file can be found at `c:\programdata\docker\runDockerDaemon.cmd`. Edit the following line, replacing `Virtual Switch` with the name of the virtual switch to be used by the Docker service.
 
 ```powershell
 docker daemon -D -b “New Switch Name"
@@ -135,13 +135,13 @@ Regardless of network configuration (NAT or Transparent), several PowerShell com
 Manage a Containers Network Adapter
 
 - Add-ContainerNetworkAdapter - Adds a network adapter to a container.
-- Set-ContainerNetworkAdapter - Modifies a containers network adapter.
-- Remove-ContainerNetworkAdapter - Removes a containers network adapter.
-- Get-ContainerNetworkAdapter - Returns data about a containers network adapter.
+- Set-ContainerNetworkAdapter - Modifies a container's network adapter.
+- Remove-ContainerNetworkAdapter - Removes a container's network adapter.
+- Get-ContainerNetworkAdapter - Returns data about a container's network adapter.
 
 Manage the connection between a containers network adapter and a virtual switch.
 
 - Connect-ContainerNetworkAdapter - connects a container to a virtual switch.
-- Disconect-ContainerNetworkAdapter - disconnects a container from a virtual switch.
+- Disconnect-ContainerNetworkAdapter - disconnects a container from a virtual switch.
 
 For details on each of these command see the [Container PowerShell Reference]( https://technet.microsoft.com/en-us/library/mt433069.aspx).

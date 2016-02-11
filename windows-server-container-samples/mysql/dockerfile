@@ -1,0 +1,4 @@
+FROM windowsservercore
+LABEL Description="MySQL Community Server" Vendor="Oracle Corporation" Version="5.7.9"
+ADD sources /
+RUN setx /M PATH "%PATH%;C:\mysql-5.7.9-winx64"

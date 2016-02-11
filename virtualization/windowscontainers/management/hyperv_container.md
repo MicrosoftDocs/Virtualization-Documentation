@@ -210,3 +210,7 @@ Handles  NPM(K)    PM(K)      WS(K) VM(M)   CPU(s)     Id  SI ProcessName
     113      11     1176       3676 ...93     0.25    608   1 csrss
     243      13     1732       5512 ...18     4.23   3484   2 csrss
 ```
+
+## Video Walkthrough
+
+<iframe src="https://channel9.msdn.com/Blogs/containers/Container-Fundamentals--Part-5-Hyper-V-Containers/player" width="800" height="450"  allowFullScreen="true" frameBorder="0" scrolling="no"></iframe>
