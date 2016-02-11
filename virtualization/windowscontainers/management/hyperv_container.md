@@ -2,11 +2,11 @@
 
 **This is preliminary content and subject to change.** 
 
-The Windows Container technology includes two distinct types of containers, Windows Server Containers and Hyper-V Containers. Both types of containers are created, managed, and function identically. What differs between them is the level of isolation created between the container, the host operating system, and all of the other container running on that host.
+The Windows Container technology includes two distinct types of containers, Windows Server Containers and Hyper-V Containers. Both types of containers are created, managed, and function identically as well as producing and consuming the same container images. What differs between them is the level of isolation created between the container, the host operating system, and all of the other container running on that host.
 
-**Windows Server Containers** – multiple containers run on a host with isolation provided through namespace and process isolation technologies.
+**Windows Server Containers** – multiple container instances can run concurrently on a host with isolation provided through namespace, resource control and process isolation technologies.  Windows Server Containers share the same kernel with the host as well as each other.
 
-**Hyper-V Containers** – multiple containers run on a host, however each container is run inside of a utility virtual machine. This provides kernel level isolation between a Hyper-V container, the container host, and any other containers running on the container host.
+**Hyper-V Containers** – multiple container instances can run concurrently on a host; however, each container is run inside of a special virtual machine. This provides kernel level isolation between each Hyper-V container and the container host.
 
 ## Hyper-V Container PowerShell
 
