@@ -232,6 +232,19 @@ $global:freeSpaceGB = 0
 if ($VhdPath -and ($(Split-Path -Leaf $VhdPath) -match ".*\.vhdx?"))
 {
     $global:localVhdName = $(Split-Path -Leaf $VhdPath)
+
+    #
+    # Assume this is an official Windows build VHD/X.  We parse the build number and QFE from the filename
+    #
+    if ($VhdPath -match "(\d{5})\.(\d{1,5}).*\.(vhdx)?")
+    {
+        $global:imageVersion = "$($Matches[1]).$($Matches[2])"
+    }
+
+    #
+    # Save-ContainerImage doesn't work for internal shares yet
+    #
+    $global:WimSaveMode = $false
 }
 else
 {
@@ -400,7 +413,11 @@ Cache-HostFiles
                     $imageVersion = "10.0.$global:imageVersion"
                     Write-Output "Saving Container OS image ($global:imageName) version $imageVersion from OneGet to $($driveLetter): (this may take a few minutes)..."
                     Test-ContainerProvider
-                    Save-ContainerImage $global:imageName -Version $imageVersion -Destination "$($driveLetter):\$global:localWimName"
+
+                    #
+                    # TODO: should be error action stop by default
+                    #
+                    Save-ContainerImage $global:imageName -Version $imageVersion -Destination "$($driveLetter):\$global:localWimName" -ErrorAction Stop
                 }
 
                 if (-not (Test-Path "$($driveLetter):\$global:localWimName"))
