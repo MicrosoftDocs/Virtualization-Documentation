@@ -81,7 +81,7 @@ nanoserver             latest              8572198a60f1        2 weeks ago      
 ```
 
 ### Configure Network
-Before creating a container with Docker, a rule needs to be created for the Windows Firewall that will allow network connectivity to the container. Run the following to create a rule for port 80.
+Before creating a container with Docker, a rule needs to be created for the Windows Firewall that will allow network connectivity to the container. Run the following PowerShell script to create a rule for port 80. Note - this needs to be run from a PowerShell session. 
 
 ```powershell
 if (!(Get-NetFirewallRule | where {$_.Name -eq "TCP80"})) {
