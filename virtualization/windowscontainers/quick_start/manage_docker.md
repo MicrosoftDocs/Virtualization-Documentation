@@ -84,9 +84,7 @@ nanoserver             latest              8572198a60f1        2 weeks ago      
 Before creating a container with Docker, a rule needs to be created for the Windows Firewall that will allow network connectivity to the container. Run the following to create a rule for port 80.
 
 ```powershell
-if (!(Get-NetFirewallRule | where {$_.Name -eq "TCP80"})) {
-    New-NetFirewallRule -Name "TCP80" -DisplayName "HTTP on TCP/80" -Protocol tcp -LocalPort 80 -Action Allow -Enabled True
-}
+powershell.exe if (!(Get-NetFirewallRule | where {$_.Name -eq "TCP80"})) { New-NetFirewallRule -Name "TCP80" -DisplayName "HTTP on TCP/80" -Protocol tcp -LocalPort 80 -Action Allow -Enabled True }
 ```
 
 You may also want to take note of the container host IP address. This will be use throughout the exercise.
