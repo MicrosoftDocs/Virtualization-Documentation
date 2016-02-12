@@ -1,12 +1,10 @@
----
-title: |
-    Hypervisor Top-Level Functional Specification: Windows Server 2016
-    Technical Preview 4, Windows 10
-...
+# Hypervisor Top-Level Functional Specification
+
+Windows Server 2016 Technical Preview 4, Windows 10
 
 December, 2015: Released Version 5.0a
 
-Abstract
+## Abstract
 
 This document is the top-level functional specification (TLFS) of the
 fifth-generation Microsoft hypervisor. It specifies the hypervisor’s
@@ -18,7 +16,7 @@ This draft corresponds to Windows Server 2016 Technical Preview 4.
 This specification is provided under the Microsoft Open Specification
 Promise. For further details on the Microsoft Open Specification
 Promise, please refer to:
-http://www.microsoft.com/interop/osp/default.mspx. Microsoft may have
+[http://www.microsoft.com/interop/osp/default.mspx](http://www.microsoft.com/interop/osp/default.mspx). Microsoft may have
 patents, patent applications, trademarks, copyrights, or other
 intellectual property rights covering subject matter in these materials.
 Except as expressly provided in the Microsoft Open Specification
@@ -26,9 +24,9 @@ Promise, the furnishing of these materials does not give you any license
 to these patents, trademarks, copyrights, or other intellectual
 property.
 
-**Copyright Information**
+## Copyright Information  
 
-This document is provided “as-is”. Information and views expressed in
+This document is provided “as-is". Information and views expressed in
 this document, including URL and other Internet Web site references, may
 change without notice.
 
@@ -48,8 +46,7 @@ the United States and/or other countries.
 
 All other trademarks are property of their respective owners.
 
-Introduction
-============
+## Introduction
 
 This document is the top-level functional specification (TLFS) of the
 fifth-generation Microsoft hypervisor. It specifies the
@@ -61,8 +58,7 @@ This document is intended to be sufficiently complete and precise to
 allow a developer to implement a guest partition interface with the
 Microsoft hypervisor.
 
-<span id="_Toc108167918" class="anchor"><span id="_Toc108167920" class="anchor"><span id="_Toc108167922" class="anchor"><span id="_Toc108167924" class="anchor"><span id="_Toc108167925" class="anchor"><span id="_Toc108167926" class="anchor"><span id="_Toc108167928" class="anchor"><span id="_Toc108167930" class="anchor"><span id="_Toc105831130" class="anchor"><span id="_Toc106181308" class="anchor"><span id="_Toc106422354" class="anchor"><span id="_Toc106525719" class="anchor"><span id="_Toc105831131" class="anchor"><span id="_Toc106181309" class="anchor"><span id="_Toc106422355" class="anchor"><span id="_Toc106525720" class="anchor"><span id="_Toc110172648" class="anchor"><span id="_Toc127596634" class="anchor"><span id="_Toc127786255" class="anchor"><span id="_Toc127786571" class="anchor"><span id="_Toc127786887" class="anchor"><span id="_Toc127877483" class="anchor"><span id="_Toc128289554" class="anchor"><span id="_Toc128289947" class="anchor"><span id="_Toc130189629" class="anchor"><span id="_Toc130200845" class="anchor"><span id="_Toc130201161" class="anchor"><span id="_Toc130201482" class="anchor"><span id="_Toc131936569" class="anchor"><span id="_Toc133901007" class="anchor"><span id="_Toc137460912" class="anchor"><span id="_Toc139096427" class="anchor"><span id="_Toc139188348" class="anchor"><span id="_Toc139191211" class="anchor"><span id="_Toc140490261" class="anchor"><span id="_Toc140571164" class="anchor"><span id="_Toc141257434" class="anchor"><span id="_Toc141257761" class="anchor"><span id="_Toc141267288" class="anchor"><span id="_Toc141522306" class="anchor"><span id="_Toc141529397" class="anchor"><span id="_Toc141529714" class="anchor"><span id="_Toc141851321" class="anchor"><span id="_Toc141852255" class="anchor"><span id="_Toc141887797" class="anchor"><span id="_Toc141889637" class="anchor"><span id="_Toc141893306" class="anchor"><span id="_Toc142113155" class="anchor"><span id="_Toc142114183" class="anchor"><span id="_Toc142729343" class="anchor"><span id="_Toc142730627" class="anchor"><span id="_Toc142731000" class="anchor"><span id="_Toc142998365" class="anchor"><span id="_Toc143063456" class="anchor"><span id="_Toc143509566" class="anchor"><span id="_Toc143510013" class="anchor"><span id="_Toc144026103" class="anchor"><span id="_Toc144026434" class="anchor"><span id="_Toc144276077" class="anchor"><span id="_Toc144276421" class="anchor"><span id="_Toc144280009" class="anchor"><span id="_Toc144280355" class="anchor"><span id="_Toc144540570" class="anchor"><span id="_Toc144554452" class="anchor"><span id="_Toc144722074" class="anchor"><span id="_Toc145503536" class="anchor"><span id="_Toc145511978" class="anchor"><span id="_Toc145513001" class="anchor"><span id="_Toc145513385" class="anchor"><span id="_Toc222907142" class="anchor"><span id="_Toc342652712" class="anchor"><span id="_Toc439863921" class="anchor"></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span>Specification Style
--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+### Specification Style
 
 This specification is informal; that is, the interfaces are not
 specified in a formal language. Nevertheless, it is a goal to be
@@ -73,18 +69,18 @@ future implementations.
 
 Segments of code and algorithms are presented with a grey background.
 
-<span id="_Toc110172649" class="anchor"><span id="_Toc127596635" class="anchor"><span id="_Toc127786256" class="anchor"><span id="_Toc127786572" class="anchor"><span id="_Toc127786888" class="anchor"><span id="_Toc127877484" class="anchor"><span id="_Toc128289555" class="anchor"><span id="_Toc128289948" class="anchor"><span id="_Toc130189630" class="anchor"><span id="_Toc130200846" class="anchor"><span id="_Toc130201162" class="anchor"><span id="_Toc130201483" class="anchor"><span id="_Toc131936570" class="anchor"><span id="_Toc133901008" class="anchor"><span id="_Toc137460913" class="anchor"><span id="_Toc139096428" class="anchor"><span id="_Toc139188349" class="anchor"><span id="_Toc139191212" class="anchor"><span id="_Toc140490262" class="anchor"><span id="_Toc140571165" class="anchor"><span id="_Toc141257435" class="anchor"><span id="_Toc141257762" class="anchor"><span id="_Toc141267289" class="anchor"><span id="_Toc141522307" class="anchor"><span id="_Toc141529398" class="anchor"><span id="_Toc141529715" class="anchor"><span id="_Toc141851322" class="anchor"><span id="_Toc141852256" class="anchor"><span id="_Toc141887798" class="anchor"><span id="_Toc141889638" class="anchor"><span id="_Toc141893307" class="anchor"><span id="_Toc142113156" class="anchor"><span id="_Toc142114184" class="anchor"><span id="_Toc142729344" class="anchor"><span id="_Toc142730628" class="anchor"><span id="_Toc142731001" class="anchor"><span id="_Toc142998366" class="anchor"><span id="_Toc143063457" class="anchor"><span id="_Toc143509567" class="anchor"><span id="_Toc143510014" class="anchor"><span id="_Toc144026104" class="anchor"><span id="_Toc144026435" class="anchor"><span id="_Toc144276078" class="anchor"><span id="_Toc144276422" class="anchor"><span id="_Toc144280010" class="anchor"><span id="_Toc144280356" class="anchor"><span id="_Toc144540571" class="anchor"><span id="_Toc144554453" class="anchor"><span id="_Toc144722075" class="anchor"><span id="_Toc145503537" class="anchor"><span id="_Toc145511979" class="anchor"><span id="_Toc145513002" class="anchor"><span id="_Toc145513386" class="anchor"><span id="_Toc222907143" class="anchor"><span id="_Toc342652713" class="anchor"><span id="_Toc439863922" class="anchor"></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span>Interface Requirements and Goals
-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
+### Interface Requirements and Goals
 The hypervisor interfaces are designed with the following requirements
-and goals in mind:
+and goals in mind:  
 
-**Performance –** The amount of time spent in the hypervisor in response
+**Performance:**  
+The amount of time spent in the hypervisor in response
 to a hypercall should be bounded to 50µs. This restriction requires that
 operations acting on large lists or ranges must be piece-wise
 interruptible.
 
-**Hardware Independence –** To the extent possible, the interfaces
+**Hardware Independence –**  
+To the extent possible, the interfaces
 should be independent of hardware architecture. Although the
 first-generation hypervisor will run only on x64 processors, it is
 highly likely that future versions will be ported to other
@@ -93,41 +89,33 @@ architecture in a transparent manner. The x64 implementation exposes
 architecture-specifics with the handling of the CPUID instruction (the
 specifics are detailed in this specification).
 
-**Scalability –** The interfaces should provide significant “future
-proofing” and therefore should not impose short-sighted restrictions on
+**Scalability –**  
+The interfaces should provide significant “future
+proofing" and therefore should not impose short-sighted restrictions on
 memory size, address space size, processor count, and so on.
 
-**Flexibility –** The interfaces should allow a conforming hypervisor
+**Flexibility –**  
+The interfaces should allow a conforming hypervisor
 implementation to correctly virtualize all aspects of the underlying
 system architecture. In some cases, the architecture may allow
 implementations the freedom not to virtualize all aspects correctly, but
 it should not constrain an implementation in a way that it cannot
-virtualize all aspects correctly.<span id="_Toc110148863"
-class="anchor"><span id="_Toc110170456" class="anchor"><span
-id="_Toc110170824" class="anchor"><span id="_Toc110171085"
-class="anchor"><span id="_Toc110171346" class="anchor"><span
-id="_Toc110171607" class="anchor"><span id="_Toc110171868"
-class="anchor"><span id="_Toc110172389" class="anchor"><span
-id="_Toc110172650" class="anchor"><span id="_Toc106525724"
-class="anchor"><span id="_Toc110172651"
-class="anchor"></span></span></span></span></span></span></span></span></span></span></span>
+virtualize all aspects correctly.
 
-<span id="_Toc127596636" class="anchor"><span id="_Toc127786257" class="anchor"><span id="_Toc127786573" class="anchor"><span id="_Toc127786889" class="anchor"><span id="_Toc127877485" class="anchor"><span id="_Toc128289556" class="anchor"><span id="_Toc128289949" class="anchor"><span id="_Toc130189631" class="anchor"><span id="_Toc130200847" class="anchor"><span id="_Toc130201163" class="anchor"><span id="_Toc130201484" class="anchor"><span id="_Toc131936571" class="anchor"><span id="_Toc133901009" class="anchor"><span id="_Toc137460914" class="anchor"><span id="_Toc139096429" class="anchor"><span id="_Toc139188350" class="anchor"><span id="_Toc139191213" class="anchor"><span id="_Toc140490263" class="anchor"><span id="_Toc140571166" class="anchor"><span id="_Toc141257436" class="anchor"><span id="_Toc141257763" class="anchor"><span id="_Toc141267290" class="anchor"><span id="_Toc141522308" class="anchor"><span id="_Toc141529399" class="anchor"><span id="_Toc141529716" class="anchor"><span id="_Toc141851323" class="anchor"><span id="_Toc141852257" class="anchor"><span id="_Toc141887799" class="anchor"><span id="_Toc141889639" class="anchor"><span id="_Toc141893308" class="anchor"><span id="_Toc142113157" class="anchor"><span id="_Toc142114185" class="anchor"><span id="_Toc142729345" class="anchor"><span id="_Toc142730629" class="anchor"><span id="_Toc142731002" class="anchor"><span id="_Toc142998367" class="anchor"><span id="_Toc143063458" class="anchor"><span id="_Toc143509568" class="anchor"><span id="_Toc143510015" class="anchor"><span id="_Toc144026105" class="anchor"><span id="_Toc144026436" class="anchor"><span id="_Toc144276079" class="anchor"><span id="_Toc144276423" class="anchor"><span id="_Toc144280011" class="anchor"><span id="_Toc144280357" class="anchor"><span id="_Toc144540572" class="anchor"><span id="_Toc144554454" class="anchor"><span id="_Toc144722076" class="anchor"><span id="_Toc145503538" class="anchor"><span id="_Toc145511980" class="anchor"><span id="_Toc145513003" class="anchor"><span id="_Toc145513387" class="anchor"><span id="_Toc222907144" class="anchor"><span id="_Toc342652714" class="anchor"><span id="_Toc439863923" class="anchor"></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span>Reserved Values
---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-This specification documents some fields as “reserved.” These fields may
+### Reserved Values  
+This specification documents some fields as "reserved." These fields may
 be given specific meaning in future versions of the hypervisor
 architecture. For maximum forward compatibility, clients of the
 hypervisor interface should follow the guidance provided within this
 document. In general, two forms of guidance are provided.
 
-**Preserve value** (documented as *RsvdP* in diagrams and ReservedP in
+**Preserve value** (documented as "RsvdP" in diagrams and `ReservedP` in
 code segments) **–** For maximum forward compatibility, clients should
 preserve the value within this field. This is typically done by reading
 the current value, modifying the values of the non-reserved fields, and
 writing the value back.
 
-**Zero value** (documented as *RsvdZ* in diagrams and ReservedZ in code
+**Zero value** (documented as "RsvdZ" in diagrams and `ReservedZ` in code
 segments) **–** For maximum forward compatibility, clients should zero
 the value within this field.
 
@@ -136,29 +124,22 @@ Reserved fields within read-only structures are simply documented as
 forward compatibility, the values within these fields should be ignored.
 Clients should not assume these values will always be zero.
 
-Note regarding previous versions
---------------------------------
-
+> Note regarding previous versions  
 Previous versions of this document included documentation of
 non-essential interfaces between the root partition and the hypervisor.
 In the interest of clarity, the documentation of these interfaces has
 been removed. Only useful overview information and guest interfaces are
-included.
-
+included.  
 If root interface documentation is required, please contact Microsoft
 directly.
 
-Report Issues
--------------
-
+** Report Issues **  
 If you notice errors in this document, or would like to give feedback,
 please file an issue in our GitHub repository.
 
-1.  <span id="_Toc127596637" class="anchor"><span id="_Toc127786258" class="anchor"><span id="_Toc127786574" class="anchor"><span id="_Toc127786890" class="anchor"><span id="_Toc127877486" class="anchor"><span id="_Toc128289557" class="anchor"><span id="_Toc128289950" class="anchor"><span id="_Toc130189632" class="anchor"><span id="_Toc130200848" class="anchor"><span id="_Toc130201164" class="anchor"><span id="_Toc130201485" class="anchor"><span id="_Toc131936572" class="anchor"><span id="_Toc133901010" class="anchor"><span id="_Toc137460915" class="anchor"><span id="_Toc139096430" class="anchor"><span id="_Toc139188351" class="anchor"><span id="_Toc139191214" class="anchor"><span id="_Toc140490264" class="anchor"><span id="_Toc140571167" class="anchor"><span id="_Toc141257437" class="anchor"><span id="_Toc141257764" class="anchor"><span id="_Toc141267291" class="anchor"><span id="_Toc141522309" class="anchor"><span id="_Toc141529400" class="anchor"><span id="_Toc141529717" class="anchor"><span id="_Toc141851324" class="anchor"><span id="_Toc141852258" class="anchor"><span id="_Toc141887800" class="anchor"><span id="_Toc141889640" class="anchor"><span id="_Toc141893309" class="anchor"><span id="_Toc142113158" class="anchor"><span id="_Toc142114186" class="anchor"><span id="_Toc142729346" class="anchor"><span id="_Toc142730630" class="anchor"><span id="_Toc142731003" class="anchor"><span id="_Toc142998368" class="anchor"><span id="_Toc143063459" class="anchor"><span id="_Toc143509569" class="anchor"><span id="_Toc143510016" class="anchor"><span id="_Toc144026106" class="anchor"><span id="_Toc144026437" class="anchor"><span id="_Toc144276080" class="anchor"><span id="_Toc144276424" class="anchor"><span id="_Toc144280012" class="anchor"><span id="_Toc144280358" class="anchor"><span id="_Toc144540573" class="anchor"><span id="_Toc144554455" class="anchor"><span id="_Toc144722077" class="anchor"><span id="_Toc145503539" class="anchor"><span id="_Toc145511981" class="anchor"><span id="_Toc145513004" class="anchor"><span id="_Toc145513388" class="anchor"><span id="_Toc222907145" class="anchor"><span id="_Toc342652715" class="anchor"><span id="_Toc439863926" class="anchor"></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span>Basic Data Types, Concepts and Notation
-    ================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================
+## Basic Data Types, Concepts and Notation
 
-    1.  <span id="_Toc106525726" class="anchor"><span id="_Toc106525727" class="anchor"><span id="_Toc110172653" class="anchor"><span id="_Toc127596638" class="anchor"><span id="_Toc127786259" class="anchor"><span id="_Toc127786575" class="anchor"><span id="_Toc127786891" class="anchor"><span id="_Toc127877487" class="anchor"><span id="_Toc128289558" class="anchor"><span id="_Toc128289951" class="anchor"><span id="_Toc130189633" class="anchor"><span id="_Toc130200849" class="anchor"><span id="_Toc130201165" class="anchor"><span id="_Toc130201486" class="anchor"><span id="_Toc131936573" class="anchor"><span id="_Toc133901011" class="anchor"><span id="_Toc137460916" class="anchor"><span id="_Toc139096431" class="anchor"><span id="_Toc139188352" class="anchor"><span id="_Toc139191215" class="anchor"><span id="_Toc140490265" class="anchor"><span id="_Toc140571168" class="anchor"><span id="_Toc141257438" class="anchor"><span id="_Toc141257765" class="anchor"><span id="_Toc141267292" class="anchor"><span id="_Toc141522310" class="anchor"><span id="_Toc141529401" class="anchor"><span id="_Toc141529718" class="anchor"><span id="_Toc141851325" class="anchor"><span id="_Toc141852259" class="anchor"><span id="_Toc141887801" class="anchor"><span id="_Toc141889641" class="anchor"><span id="_Toc141893310" class="anchor"><span id="_Toc142113159" class="anchor"><span id="_Toc142114187" class="anchor"><span id="_Toc142729347" class="anchor"><span id="_Toc142730631" class="anchor"><span id="_Toc142731004" class="anchor"><span id="_Toc142998369" class="anchor"><span id="_Toc143063460" class="anchor"><span id="_Toc143509570" class="anchor"><span id="_Toc143510017" class="anchor"><span id="_Toc144026107" class="anchor"><span id="_Toc144026438" class="anchor"><span id="_Toc144276081" class="anchor"><span id="_Toc144276425" class="anchor"><span id="_Toc144280013" class="anchor"><span id="_Toc144280359" class="anchor"><span id="_Toc144540574" class="anchor"><span id="_Toc144554456" class="anchor"><span id="_Toc144722078" class="anchor"><span id="_Toc145503540" class="anchor"><span id="_Toc145511982" class="anchor"><span id="_Toc145513005" class="anchor"><span id="_Toc145513389" class="anchor"><span id="_Toc222907146" class="anchor"><span id="_Toc342652716" class="anchor"><span id="_Toc439863927" class="anchor"></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span>Simple Scalar Types
-        ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+### Simple Scalar Types
 
 Hypervisor data types are built up from simple scalar types UINT8,
 UINT16, UINT32, UINT64 and UINT128. Each of these represents a simple
@@ -250,7 +231,7 @@ specification are defined in terms of C-style enumerations and
 structures. The C language purposely avoids defining certain
 implementation details. However, this document assumes the following:
 
--   All enumerations declared with the “enum” keyword define 32-bit
+-   All enumerations declared with the “enum" keyword define 32-bit
     signed integer values.
 
 -   All structures are padded in such a way that fields are aligned
@@ -273,8 +254,8 @@ will need to be amended if and when a big-endian port is attempted.
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 The document uses a naming convention for pointer types. In particular,
-a “P” prepended to a defined type indicates a pointer to that type. A
-“PC” prepended to a defined type indicates a pointer to a constant value
+a “P" prepended to a defined type indicates a pointer to that type. A
+“PC" prepended to a defined type indicates a pointer to a constant value
 of that type.
 
 1.  <span id="_Toc127596644" class="anchor"><span id="_Toc127786265" class="anchor"><span id="_Toc127786581" class="anchor"><span id="_Toc127786897" class="anchor"><span id="_Toc127877493" class="anchor"><span id="_Toc128289564" class="anchor"><span id="_Toc128289957" class="anchor"><span id="_Toc130189639" class="anchor"><span id="_Toc130200855" class="anchor"><span id="_Toc130201171" class="anchor"><span id="_Toc130201492" class="anchor"><span id="_Toc131936579" class="anchor"><span id="_Toc133901017" class="anchor"><span id="_Toc137460922" class="anchor"><span id="_Toc139096437" class="anchor"><span id="_Toc139188358" class="anchor"><span id="_Toc139191221" class="anchor"><span id="_Toc140490271" class="anchor"><span id="_Toc140571174" class="anchor"><span id="_Toc141257444" class="anchor"><span id="_Toc141257771" class="anchor"><span id="_Toc141267298" class="anchor"><span id="_Toc141522316" class="anchor"><span id="_Toc141529407" class="anchor"><span id="_Toc141529724" class="anchor"><span id="_Toc141851331" class="anchor"><span id="_Toc141852265" class="anchor"><span id="_Toc141887809" class="anchor"><span id="_Toc141889649" class="anchor"><span id="_Toc141893318" class="anchor"><span id="_Toc142113167" class="anchor"><span id="_Toc142114195" class="anchor"><span id="_Toc142729355" class="anchor"><span id="_Toc142730639" class="anchor"><span id="_Toc142731012" class="anchor"><span id="_Toc142998377" class="anchor"><span id="_Toc143063468" class="anchor"><span id="_Toc143509578" class="anchor"><span id="_Toc143510025" class="anchor"><span id="_Toc144026115" class="anchor"><span id="_Toc144026446" class="anchor"><span id="_Toc144276089" class="anchor"><span id="_Toc144276433" class="anchor"><span id="_Toc144280021" class="anchor"><span id="_Toc144280367" class="anchor"><span id="_Toc144540582" class="anchor"><span id="_Toc144554464" class="anchor"><span id="_Toc144722086" class="anchor"><span id="_Toc145503548" class="anchor"><span id="_Toc145511990" class="anchor"><span id="_Toc145513013" class="anchor"><span id="_Toc145513397" class="anchor"><span id="_Toc222907152" class="anchor"><span id="_Toc342652722" class="anchor"><span id="_Toc439863933" class="anchor"></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span>Feature and Interface Discovery
@@ -311,11 +292,11 @@ Before using any hypervisor interfaces, software should first determine
 whether it’s running within a virtualized environment. On x64 platforms
 that conform to this specification, this is done by executing the CPUID
 instruction with an input (EAX) value of 1. Upon execution, code should
-check bit 31 of register ECX (the “hypervisor present bit”). If this bit
+check bit 31 of register ECX (the “hypervisor present bit"). If this bit
 is set, a hypervisor is present. In a non-virtualized environment, the
 bit will be clear.
 
-If the “hypervisor present bit” is set, additional CPUID leafs can be
+If the “hypervisor present bit" is set, additional CPUID leafs can be
 queried for more information about the conformant hypervisor and its
 capabilities. Two such leaves are guaranteed to be available: 0x40000000
 and 0x40000001. Subsequently-numbered leaves may also be available.
@@ -372,7 +353,7 @@ values:
                ECX
                EDX
 
-Hypervisors conforming to the “Hv\#1” interface also provide at least
+Hypervisors conforming to the “Hv\#1" interface also provide at least
 the following leaves:
 
   Leaf         Information Provided
@@ -582,7 +563,7 @@ write zeros.
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 There are two classes of hypercalls: *simple* and *rep* (short for
-“repeat”). A *simple hypercall* performs a single operation and has a
+“repeat"). A *simple hypercall* performs a single operation and has a
 fixed-size set of input and output parameters. A *rep hypercall* acts
 like a series of simple hypercalls. In addition to a fixed-size set of
 input and output parameters, rep hypercalls involve a list of fixed-size
@@ -700,7 +681,7 @@ output parameters, the hypervisor ignores the corresponding GPA pointer.
 
 The input and output parameter lists cannot overlap or cross page
 boundaries. Hypercall input and output pages are expected to be GPA
-pages and not “overlay” pages (for a discussion of overlay pages, see
+pages and not “overlay" pages (for a discussion of overlay pages, see
 section 8.1.3). If the virtual processor writes the input parameters to
 an overlay page and specifies a GPA within this page, hypervisor access
 to the input parameter list is undefined.
@@ -717,7 +698,7 @@ that the partition can be write to the output page. This validation
 consists of two checks: the specified GPA is mapped and the GPA is
 marked *writable*. If either of these tests fails, the hypervisor
 attempts to generate a memory intercept message. If the validation
-succeeds, the hypervisor “locks” the output GPA for the duration of the
+succeeds, the hypervisor “locks" the output GPA for the duration of the
 operation. Any attempt to remap or unmap this GPA will be deferred until
 after the hypercall is complete.
 
@@ -892,7 +873,7 @@ mapping depends on whether the caller is running in 32-bit (x86) or
 Each hypercall in this document is described in two ways: a *wrapper
 interface* and a *native interface*. The wrapper interface is the
 recommended high-level (C-style) calling convention typically provided
-by a “wrapper library” that runs within the guest (for example,
+by a “wrapper library" that runs within the guest (for example,
 *winhv.sys* on Microsoft Windows^®^). The native interface is the one
 actually provided by the hypervisor.
 
@@ -1077,7 +1058,7 @@ will remain zero even if a one is written to it. Furthermore, if the
 guest OS identity is cleared to zero after the hypercall page has been
 enabled, it will become disabled.
 
-The hypercall page appears as an “overlay” to the GPA space; that is, it
+The hypercall page appears as an “overlay" to the GPA space; that is, it
 covers whatever else is mapped to the GPA range. Its contents are
 readable and executable by the guest. Attempts to write to the hypercall
 page will result in a protection (\#GP) exception.
@@ -1095,7 +1076,7 @@ the hypercall page:
     hypervisor CPUID leaf (returned in register EAX) and CPUID leaf
     0x40000001 to determine the interface signature (returned in
     register EAX). It verifies that the maximum leaf value is at least
-    0x40000005 and that the interface signature is equal to “Hv\#1”.
+    0x40000005 and that the interface signature is equal to “Hv\#1".
     This signature implies that HV\_X64\_MSR\_GUEST\_OS\_ID,
     HV\_X64\_MSR\_HYPERCALL and HV\_X64\_MSR\_VP\_INDEX are implemented.
 
@@ -1145,7 +1126,7 @@ state.
 
 Partitions are identified by using a partition ID. This 64-bit number is
 allocated by the hypervisor. All partitions are guaranteed by the
-hypervisor to have unique IDs. Note that these are not “globally unique”
+hypervisor to have unique IDs. Note that these are not “globally unique"
 in that the same ID may be generated across a power cycle (that is, a
 reboot of the hypervisor). However, the hypervisor guarantees that IDs
 created within a single power cycle are unique.
@@ -1156,7 +1137,7 @@ typedef HV\_PARTITION\_ID \*PHV\_PARTITION\_ID;
 
 <span id="_Ref108576137" class="anchor"><span id="_Toc110172682"
 class="anchor"></span></span>The guest should not ascribe any meaning to
-the value of a partition ID. The “invalid” partition ID is used in
+the value of a partition ID. The “invalid" partition ID is used in
 several interfaces to indicate an invalid partition.
 
 \#define HV\_PARTITION\_ID\_INVALID ((HV\_PARTITION\_ID) 0x0)
@@ -2289,7 +2270,7 @@ The following invariants are assumed (and enforced) by the hypervisor:
 -   No two RAM page ranges can overlap.
 
 -   Pages that are not within defined RAM page ranges are assumed to be
-    “not backed” or backed by device memory and are not used by
+    “not backed" or backed by device memory and are not used by
     the hypervisor. They are inaccessible to all partitions except for
     the root partition.
 
@@ -2326,12 +2307,12 @@ node are assumed to have similar proximity (that is, similar access
 times to intra-node hardware resources).
 
 The hypervisor maintains a map between pairs of physical nodes that
-indicate the “distance” (that is, the cost of accessing resources)
+indicate the “distance" (that is, the cost of accessing resources)
 between the nodes.
 
 ### <span id="_Toc222907211" class="anchor"><span id="_Toc342652791" class="anchor"><span id="_Toc439863998" class="anchor"></span></span></span>System Reset
 
-The hypervisor provides an interface for “enlightened reboot”, that is,
+The hypervisor provides an interface for “enlightened reboot", that is,
 a mechanism through which a guest may request the hypervisor to reboot
 the hardware platform. The interface is provided through an MSR that is
 accessible on all virtual processors of a partition that possesses the
@@ -2809,7 +2790,7 @@ In accordance with the overall microkernel architecture of the
 hypervisor, support for specific resource policy types, such as quotas
 or reserves, are moved from the hypervisor into guests. The hypervisor
 must provide minimal support for resource management in connection with
-several hypercalls that “consume” memory, where “consume” means that the
+several hypercalls that “consume" memory, where “consume" means that the
 calls may need to allocate memory for internal data structures and that
 this memory remains allocated beyond the duration of the call.
 
@@ -2832,7 +2813,7 @@ draws the required memory from the pool. If the balance in the pool is
 insufficient, the call fails. If such a hypercall is made by one guest
 *on behalf of* another guest (in another partition), the hypervisor
 draws the required memory from the pool of the latter partition. The
-phrase “on behalf of” refers to any hypervisor call with a
+phrase “on behalf of" refers to any hypervisor call with a
 HV\_PARTITION\_ID parameter. Examples of such calls are HvCreateVp and
 HvMapGpaPages.
 
@@ -3011,7 +2992,7 @@ machine exposed by the partition.
     partition’s parent. Code within the parent will typically respond by
     creating a mapping or by emulating the instruction that generated
     the memory access. In either case, it is up to the software in the
-    parent partition to “unsuspend” the child’s virtual processor. For a
+    parent partition to “unsuspend" the child’s virtual processor. For a
     detailed description of the memory access messages, see
     section 19.2.6.
 
@@ -3051,7 +3032,7 @@ an instruction boundary) and a message is sent to the parent partition.
 Code within the parent will typically respond by adjusting the access
 rights to allow the access or emulating the instruction that performed
 the memory access. In either case, it is up to the software in the
-parent partition to “unsuspend” the child’s virtual processor. For a
+parent partition to “unsuspend" the child’s virtual processor. For a
 detailed description of the memory access messages, see section 19.2.6.
 
 <span id="_Ref108576503" class="anchor"><span id="_Ref108576532"
@@ -3065,27 +3046,27 @@ but the second is not, the first two bytes are not written.
 
 ### <span id="_GPA_Overlays" class="anchor"><span id="_Ref119463930" class="anchor"><span id="_Toc127596716" class="anchor"><span id="_Toc127786337" class="anchor"><span id="_Toc127786653" class="anchor"><span id="_Toc127786969" class="anchor"><span id="_Toc127877565" class="anchor"><span id="_Toc128289636" class="anchor"><span id="_Toc128290029" class="anchor"><span id="_Toc130189711" class="anchor"><span id="_Toc130200927" class="anchor"><span id="_Toc130201243" class="anchor"><span id="_Toc130201564" class="anchor"><span id="_Toc131936651" class="anchor"><span id="_Toc133901115" class="anchor"><span id="_Toc137460990" class="anchor"><span id="_Toc139096505" class="anchor"><span id="_Toc139188428" class="anchor"><span id="_Toc139191291" class="anchor"><span id="_Toc140490342" class="anchor"><span id="_Toc140571245" class="anchor"><span id="_Toc141257518" class="anchor"><span id="_Toc141257845" class="anchor"><span id="_Toc141267373" class="anchor"><span id="_Toc141522391" class="anchor"><span id="_Toc141529479" class="anchor"><span id="_Toc141529796" class="anchor"><span id="_Toc141851403" class="anchor"><span id="_Toc141852337" class="anchor"><span id="_Toc141887881" class="anchor"><span id="_Toc141889721" class="anchor"><span id="_Toc141893390" class="anchor"><span id="_Toc142113243" class="anchor"><span id="_Toc142114271" class="anchor"><span id="_Toc142729431" class="anchor"><span id="_Toc142730715" class="anchor"><span id="_Toc142731088" class="anchor"><span id="_Toc142998453" class="anchor"><span id="_Toc143063544" class="anchor"><span id="_Toc143509654" class="anchor"><span id="_Toc143510101" class="anchor"><span id="_Toc144026191" class="anchor"><span id="_Toc144026522" class="anchor"><span id="_Toc144276165" class="anchor"><span id="_Toc144276509" class="anchor"><span id="_Toc144280097" class="anchor"><span id="_Toc144280443" class="anchor"><span id="_Toc144540658" class="anchor"><span id="_Toc144554540" class="anchor"><span id="_Toc144722162" class="anchor"><span id="_Toc145503624" class="anchor"><span id="_Toc145512066" class="anchor"><span id="_Toc145513089" class="anchor"><span id="_Toc145513473" class="anchor"><span id="_Toc222907245" class="anchor"><span id="_Toc342652856" class="anchor"><span id="_Toc439864041" class="anchor"></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span>GPA Overlay Pages
 
-The hypervisor defines several special pages that “overlay” the guest’s
+The hypervisor defines several special pages that “overlay" the guest’s
 GPA space. The hypercall code page is an example of an overlay page.
 Overlays are addressed by guest physical addresses but are not included
 in the normal GPA map maintained internally by the hypervisor.
 Conceptually, they exist in a separate map that overlays the GPA map.
 
 If a page within the GPA space is overlaid, any SPA page mapped to the
-GPA page is effectively “obscured” and generally unreachable by the
+GPA page is effectively “obscured" and generally unreachable by the
 virtual processor through processor memory accesses. Furthermore, access
 rights installed on the underlying GPA page are not honored when
 accessing an overlay page.
 
 If an overlay page is disabled or is moved to a new location in the GPA
-space, the underlying GPA page is “uncovered”, and an existing mapping
+space, the underlying GPA page is “uncovered", and an existing mapping
 becomes accessible to the guest.
 
 If multiple overlay pages are programmed to appear on top of each other
 (for example, the guest programs the APIC to appear on top of the
 hypercall page), the hypervisor will choose an ordering (which is
 undefined) and only one of these overlays will be visible to code
-running within the partition. In such cases, if the “top-most” overlay
+running within the partition. In such cases, if the “top-most" overlay
 is disabled or moved, another overlay page will become visible.
 
 Parent partitions that include instruction completion logic should use
@@ -3276,7 +3257,7 @@ mirrors the expected behavior in physical hardware.
 
 An intercept only affects the state of a single virtual processor. Other
 virtual processors within the same partition continue to run. Therefore,
-it’s possible that multiple intercept messages can be “in progress”
+it’s possible that multiple intercept messages can be “in progress"
 concurrently. Intercept messages are queued to the parent in the order
 in which they are detected.
 
@@ -3352,12 +3333,12 @@ implementations of the hypervisor.
 Unsupported functionality errors are delivered to the parent if the
 guest uses a feature of the underlying processor architecture that is
 not virtualized by the hypervisor and cannot otherwise be reported as
-“not implemented”. For example, on the x64 architecture, some features
-can be reported as “not implemented” by using CPUID feature bits or by
+“not implemented". For example, on the x64 architecture, some features
+can be reported as “not implemented" by using CPUID feature bits or by
 generating a \#GP fault when accessing an MSR. If there is no
 architectural way for a guest to determine whether a feature is
 supported, the hypervisor may detect the use of the unsupported feature
-and deliver an “unsupported functionality” error to the parent.
+and deliver an “unsupported functionality" error to the parent.
 
 1.  <span id="_Toc110172748" class="anchor"><span id="_Toc127596726" class="anchor"><span id="_Toc127786347" class="anchor"><span id="_Toc127786663" class="anchor"><span id="_Toc127786979" class="anchor"><span id="_Toc127877575" class="anchor"><span id="_Toc128289646" class="anchor"><span id="_Toc128290039" class="anchor"><span id="_Toc130189721" class="anchor"><span id="_Toc130200937" class="anchor"><span id="_Toc130201253" class="anchor"><span id="_Toc130201574" class="anchor"><span id="_Toc131936661" class="anchor"><span id="_Toc133901125" class="anchor"><span id="_Toc137461000" class="anchor"><span id="_Toc139096515" class="anchor"><span id="_Toc139188438" class="anchor"><span id="_Toc139191301" class="anchor"><span id="_Toc140490352" class="anchor"><span id="_Toc140571255" class="anchor"><span id="_Toc141257528" class="anchor"><span id="_Toc141257855" class="anchor"><span id="_Toc141267383" class="anchor"><span id="_Toc141522401" class="anchor"><span id="_Toc141529489" class="anchor"><span id="_Toc141529806" class="anchor"><span id="_Toc141851413" class="anchor"><span id="_Toc141852347" class="anchor"><span id="_Toc141887891" class="anchor"><span id="_Toc141889731" class="anchor"><span id="_Toc141893400" class="anchor"><span id="_Toc142113253" class="anchor"><span id="_Toc142114281" class="anchor"><span id="_Toc142729441" class="anchor"><span id="_Toc142730725" class="anchor"><span id="_Toc142731098" class="anchor"><span id="_Toc142998463" class="anchor"><span id="_Toc143063554" class="anchor"><span id="_Toc143509664" class="anchor"><span id="_Toc143510111" class="anchor"><span id="_Toc144026201" class="anchor"><span id="_Toc144026532" class="anchor"><span id="_Toc144276175" class="anchor"><span id="_Toc144276519" class="anchor"><span id="_Toc144280107" class="anchor"><span id="_Toc144280453" class="anchor"><span id="_Toc144540668" class="anchor"><span id="_Toc144554550" class="anchor"><span id="_Toc144722172" class="anchor"><span id="_Toc145503634" class="anchor"><span id="_Toc145512076" class="anchor"><span id="_Toc145513099" class="anchor"><span id="_Toc145513483" class="anchor"><span id="_Toc222907256" class="anchor"><span id="_Toc342652867" class="anchor"><span id="_Toc439858038" class="anchor"><span id="_Toc439864052" class="anchor"></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span>
     ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -3449,7 +3430,7 @@ Conceptually, a virtual processor is in one of four states:
 -   *Waiting—*in a state defined by the processor architecture that does
     not involve the active execution of instructions (for example, for
     the x64 architecture, at a HLT instruction, within “waiting for
-    SIPI” state or if the scheduler has capped the virtual processor)
+    SIPI" state or if the scheduler has capped the virtual processor)
 
 -   *Suspended—*stopped on a guest instruction boundary either
     explicitly suspended or implicitly suspended due to an intercept.
@@ -3542,7 +3523,7 @@ leaf 0x40000005. A virtual processor index must be less than the maximum
 number of virtual processors per partition.
 
 A special value HV\_ANY\_VP can be used in certain situations to specify
-“any virtual processor”.
+“any virtual processor".
 
 typedef UINT32 HV\_VP\_INDEX;
 
@@ -4315,7 +4296,7 @@ quantity is measured in 100ns units.
 
 The *interrupt state* register provides information about the interrupt
 state of the virtual processor. It indicates whether the virtual
-processor is in an “interrupt shadow” and whether non-maskable
+processor is in an “interrupt shadow" and whether non-maskable
 interrupts are currently masked. Certain instructions inhibit the
 delivery of hardware interrupts and debug traps for one instruction.
 Furthermore, when a non-maskable interrupt is delivered to the virtual
@@ -4553,10 +4534,10 @@ UINT16 Attributes;
 The limit is encoded as a 32-bit value. For X64 long-mode segments, the
 limit is ignored. For legacy x86 segments, the limit must be expressible
 within the bounds of the x64 processor architecture. For example, if the
-“G” (granularity) bit is set within the attributes of a code or data
+“G" (granularity) bit is set within the attributes of a code or data
 segment, the low-order 12 bits of the limit must be 1s.
 
-The “Present” bit controls whether the segment acts like a null segment
+The “Present" bit controls whether the segment acts like a null segment
 (that is, whether a memory access performed through that segment
 generates a \#GP fault).
 
@@ -4708,7 +4689,7 @@ register state.
 Restrictions
 
 -   The partition specified by *PartitionId* must be in the
-    “active” state.
+    “active" state.
 
 -   The caller must be the parent of the partition specified by
     *PartitionId* or the partition specifying its own partition ID.
@@ -5367,7 +5348,7 @@ guest-observable differences exist:
     cache attributes. This affects, in particular, *accessed* and
     *dirty* bits written to the page table entries. If the guest sets
     the PAT, PWT, or PCD bits within non-leaf page table entries, an
-    “unsupported feature” message may be generated when a virtual
+    “unsupported feature" message may be generated when a virtual
     processor accesses a page that is mapped by that page table.
 
 -   The CR0.CD (cache disable) bit may not be supported in some
@@ -5411,11 +5392,11 @@ TLBs. The following mechanisms are virtualized by the hypervisor:
     from the processor’s TLB. If the specified virtual address was
     originally mapped as a 4‑K page, the translation for this page is
     removed from the TLB. If the specified virtual address was
-    originally mapped as a “large page” (either 2 MB or 4 MB, depending
+    originally mapped as a “large page" (either 2 MB or 4 MB, depending
     on the MMU mode), the translation for the entire large page is
     removed from the TLB. The INVLPG instruction flushes both global and
     non-global translations. Global translations are defined as those
-    which have the “global” bit set within the page table entry.
+    which have the “global" bit set within the page table entry.
 
 -   The MOV to CR3 instruction and task switches that modify CR3
     invalidate translations for all non-global pages within the
@@ -5428,7 +5409,7 @@ TLBs. The following mechanisms are virtualized by the hypervisor:
 
 Note that all of these invalidation operations affect only one
 processor. To invalidate translations on other processors, software must
-use a software-based “TLB shoot-down” mechanism (typically implemented
+use a software-based “TLB shoot-down" mechanism (typically implemented
 by using inter-process interrupts).
 
 ### <span id="_Toc110172795" class="anchor"><span id="_Toc127596775" class="anchor"><span id="_Toc127786396" class="anchor"><span id="_Toc127786712" class="anchor"><span id="_Toc127787028" class="anchor"><span id="_Toc127877624" class="anchor"><span id="_Toc128289695" class="anchor"><span id="_Toc128290088" class="anchor"><span id="_Toc130189770" class="anchor"><span id="_Toc130200986" class="anchor"><span id="_Toc130201302" class="anchor"><span id="_Toc130201623" class="anchor"><span id="_Toc131936710" class="anchor"><span id="_Toc133901174" class="anchor"><span id="_Toc137461048" class="anchor"><span id="_Toc139096563" class="anchor"><span id="_Toc139188486" class="anchor"><span id="_Toc139191349" class="anchor"><span id="_Toc140490400" class="anchor"><span id="_Toc140571303" class="anchor"><span id="_Toc141257576" class="anchor"><span id="_Toc141257903" class="anchor"><span id="_Toc141267431" class="anchor"><span id="_Toc141522449" class="anchor"><span id="_Toc141529537" class="anchor"><span id="_Toc141529854" class="anchor"><span id="_Toc141851461" class="anchor"><span id="_Toc141852395" class="anchor"><span id="_Toc141887939" class="anchor"><span id="_Toc141889779" class="anchor"><span id="_Toc141893448" class="anchor"><span id="_Toc142113301" class="anchor"><span id="_Toc142114329" class="anchor"><span id="_Toc142729546" class="anchor"><span id="_Toc142730830" class="anchor"><span id="_Toc142731203" class="anchor"><span id="_Toc142998570" class="anchor"><span id="_Toc143063662" class="anchor"><span id="_Toc143509772" class="anchor"><span id="_Toc143510219" class="anchor"><span id="_Toc144026251" class="anchor"><span id="_Toc144026582" class="anchor"><span id="_Toc144276225" class="anchor"><span id="_Toc144276569" class="anchor"><span id="_Toc144280157" class="anchor"><span id="_Toc144280503" class="anchor"><span id="_Toc144540718" class="anchor"><span id="_Toc144554600" class="anchor"><span id="_Toc144722222" class="anchor"><span id="_Toc145503684" class="anchor"><span id="_Toc145512126" class="anchor"><span id="_Toc145513149" class="anchor"><span id="_Toc145513533" class="anchor"><span id="_Toc222907306" class="anchor"><span id="_Toc342652947" class="anchor"><span id="_Toc439864110" class="anchor"></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span>Virtual TLB Enhancements
@@ -5478,7 +5459,7 @@ occur.
 To prevent this situation, the hypervisor provides a way to inhibit TLB
 flush hypercalls until intercept processing is complete. When a memory
 intercept message is generated by the hypervisor, the “TLB Flush
-Inhibit” bit (TlbFlushInhibit) will consequently be set. Any attempt to
+Inhibit" bit (TlbFlushInhibit) will consequently be set. Any attempt to
 flush the TLB with a hypercall will place the caller’s virtual processor
 in a suspended state. The instruction pointer will not be incremented
 past the instruction that invoked the hypercall. After the memory
@@ -5801,7 +5782,7 @@ its index by reading from MSR HV\_X64\_MSR\_VP\_INDEX.
 
 Future versions of the hypervisor may support more than 64 virtual
 processors per partition. In that case, a new field will be added to the
-flags value that allows the caller to define the “processor bank” to
+flags value that allows the caller to define the “processor bank" to
 which the processor mask applies.
 
 The following flags can be used to modify the behavior of the flush:
@@ -5816,7 +5797,7 @@ The following flags can be used to modify the behavior of the flush:
 
 -   *HV\_FLUSH\_NON\_GLOBAL\_MAPPINGS\_ONLY* indicates that the
     hypervisor is required only to flush page mappings that were not
-    mapped as “global” (that is, the x64 “G” bit was set in the page
+    mapped as “global" (that is, the x64 “G" bit was set in the page
     table entry). Global entries may be (but are not required to be)
     left unflushed by the hypervisor.
 
@@ -5827,8 +5808,8 @@ caller, the observable effects of all flushes on the specified virtual
 processors have occurred.
 
 If a target virtual processor’s TLB requires flushing and that virtual
-processor’s TLB is currently “locked”, the caller’s virtual processor is
-suspended. When the caller’s virtual processor is “unsuspended”, the
+processor’s TLB is currently “locked", the caller’s virtual processor is
+suspended. When the caller’s virtual processor is “unsuspended", the
 hypercall will be reissued. For more information on TLB locking, see
 section 15.1.4.
 
@@ -5854,7 +5835,7 @@ Return Values
 
   Status code                      Error condition
   -------------------------------- ----------------------------------------------------------------------------------------------------------------------------
-  HV\_STATUS\_INVALID\_PARAMETER   The specified address space ID is not a valid CR3 value and the ”flush all virtual address spaces” flag was not specified.
+  HV\_STATUS\_INVALID\_PARAMETER   The specified address space ID is not a valid CR3 value and the "flush all virtual address spaces" flag was not specified.
                                    One or more reserved bits in the specified address space ID (as defined by the x64 architecture) were set.
                                    One or more reserved bits within the flags register are set.
                                    All of the bits in the processor bit mask are set to zero, and the "flush all processors" flag was not specified.
@@ -5926,7 +5907,7 @@ GVA can be used to define a range length. These bits encode the number
 of additional pages (beyond the initial page) within the range. This
 allows each entry to encode a range of 1 to 4096 pages.
 
-A GVA that falls within a “large page” mapping (2MB or 4MB) will cause
+A GVA that falls within a “large page" mapping (2MB or 4MB) will cause
 the entire large page to be flushed from the virtual TLB.
 
 This call guarantees that by the time control returns back to the
@@ -5939,7 +5920,7 @@ partition’s GVA space) are ignored.
 If a target virtual processor’s TLB requires flushing and that virtual
 processor is inhibiting TLB flushes, the caller’s virtual processor is
 suspended. When TLB flushes are no longer inhibited, the virtual
-processor is “unsuspended” and the hypercall will be reissued. For more
+processor is “unsuspended" and the hypercall will be reissued. For more
 information on TLB flush inhibit, see section 15.1.4.
 
 Input Parameters
@@ -5966,7 +5947,7 @@ Return Values
 
   Status code                      Error condition
   -------------------------------- ----------------------------------------------------------------------------------------------------------------------------
-  HV\_STATUS\_INVALID\_PARAMETER   The specified address space ID is not a valid CR3 value and the "flush all virtual address spaces” flag was not specified.
+  HV\_STATUS\_INVALID\_PARAMETER   The specified address space ID is not a valid CR3 value and the "flush all virtual address spaces" flag was not specified.
                                    One or more reserved bits in the specified address space ID (as defined by the x64 architecture) were set.
                                    One or more reserved bits within the flags register are set.
                                    All of the bits in the processor bit mask are set to zero, and the "flush all processors" flag was not specified.
@@ -6050,7 +6031,7 @@ the virtual processor to determine whether to perform a two-level,
 three-level, or four-level page table walk.
 
 During the page table walk, a number of conditions can arise that cause
-the walk to be terminated.A table entry is marked “not present” or the
+the walk to be terminated.A table entry is marked “not present" or the
 GVA is beyond the range permitted for the paging mode. In this case,
 *HvTranslateGvaPageNotPresent* is returned.
 
@@ -6127,7 +6108,7 @@ return parameter is invalid.
 Restrictions
 
 -   The partition specified by *PartitionId* must be in the
-    “active” state.
+    “active" state.
 
 -   The caller must be the parent of the partition specified by
     *PartitionId*.
@@ -6141,7 +6122,7 @@ Return Values
   HV\_STATUS\_INVALID\_VP\_INDEX                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             The specified VP index does not reference a virtual processor within the specified partition.
   HV\_STATUS\_INVALID\_PARAMETER                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             All three of the control flags HV\_TRANSLATE\_GVA\_VALIDATE\_READ, HV\_TRANSLATE\_GVA\_VALIDATE\_WRITE, and HV\_TRANSLATE\_GVA\_VALIDATE\_EXECUTE are cleared. At least one of these must be set.
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              One or more reserved bits in the specified control flags are set.
-  HV\_STATUS\_INVALID\_PARTITION\_STATE                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      The specified partition is not in the “active” state.
+  HV\_STATUS\_INVALID\_PARTITION\_STATE                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      The specified partition is not in the “active" state.
   <span id="_Toc127596791" class="anchor"><span id="_Toc127786412" class="anchor"><span id="_Toc127786728" class="anchor"><span id="_Toc127787044" class="anchor"><span id="_Toc127877640" class="anchor"><span id="_Toc128289711" class="anchor"><span id="_Toc128290104" class="anchor"><span id="_Toc130189786" class="anchor"><span id="_Toc130201002" class="anchor"><span id="_Toc130201318" class="anchor"><span id="_Toc130201639" class="anchor"><span id="_Toc131936726" class="anchor"><span id="_Toc133901190" class="anchor"><span id="_Toc137461064" class="anchor"><span id="_Toc139096579" class="anchor"><span id="_Toc139188502" class="anchor"><span id="_Toc139191365" class="anchor"><span id="_Toc140490416" class="anchor"><span id="_Toc140571319" class="anchor"><span id="_Toc141257592" class="anchor"><span id="_Toc141257919" class="anchor"><span id="_Toc141267447" class="anchor"><span id="_Toc141522465" class="anchor"><span id="_Toc141529553" class="anchor"><span id="_Toc141529870" class="anchor"><span id="_Toc141851477" class="anchor"><span id="_Toc141852411" class="anchor"><span id="_Toc141887955" class="anchor"><span id="_Toc141889795" class="anchor"><span id="_Toc141893464" class="anchor"><span id="_Toc142113317" class="anchor"><span id="_Toc142114345" class="anchor"><span id="_Toc142729562" class="anchor"><span id="_Toc142730846" class="anchor"><span id="_Toc142731219" class="anchor"><span id="_Toc142998586" class="anchor"><span id="_Toc143063678" class="anchor"><span id="_Toc143509788" class="anchor"><span id="_Toc143510235" class="anchor"><span id="_Toc144026267" class="anchor"><span id="_Toc144026598" class="anchor"><span id="_Toc144276241" class="anchor"><span id="_Toc144276585" class="anchor"><span id="_Toc144280173" class="anchor"><span id="_Toc144280519" class="anchor"><span id="_Toc144540734" class="anchor"><span id="_Toc144554617" class="anchor"><span id="_Toc144722238" class="anchor"><span id="_Toc145503700" class="anchor"><span id="_Toc145512142" class="anchor"><span id="_Toc145513165" class="anchor"><span id="_Toc145513549" class="anchor"><span id="_Toc222907322" class="anchor"><span id="_Toc342652977" class="anchor"></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span>HV\_STATUS\_INVALID\_VP\_STATE   A virtual processor is not in the correct state for the performance of the indicated operation.
 
 ### <span id="_Toc439858115" class="anchor"><span id="_Toc439864126" class="anchor"></span></span>
@@ -6294,7 +6275,7 @@ APIC operation in the following minor ways:
     the value may effectively propagate to all virtual processors within
     the partition.
 
--   The IA32\_APIC\_BASE MSR defines a “global enable” bit for enabling
+-   The IA32\_APIC\_BASE MSR defines a “global enable" bit for enabling
     or disabling the APIC. The virtualized APIC may always be enabled.
     If so, this bit will always be set to 1.
 
@@ -6532,7 +6513,7 @@ The format of the EOI assist field is as follows:
 
 The OS performs an EOI by atomically writing zero to the EOI Assist
 field of the virtual VP assist page and checking whether the “No EOI
-required” field was previously zero. If it was, the OS must write to the
+required" field was previously zero. If it was, the OS must write to the
 HV\_X64\_APIC\_EOI MSR thereby triggering an intercept into the
 hypervisor. The following code is recommended to perform an EOI:
 
@@ -6548,7 +6529,7 @@ wrmsr
 
 NoEoiRequired:
 
-The hypervisor sets the “No EOI required” bit when it injects a virtual
+The hypervisor sets the “No EOI required" bit when it injects a virtual
 interrupt if the following conditions are satisfied:
 
 -   The virtual interrupt is edge-triggered, and
@@ -6556,29 +6537,29 @@ interrupt if the following conditions are satisfied:
 -   There are no lower priority interrupts pending
 
 If, at a later time, a lower priority interrupt is requested, the
-hypervisor clears the “No EOI required” such that a subsequent EOI
+hypervisor clears the “No EOI required" such that a subsequent EOI
 causes an intercept.
 
 In case of nested interrupts, the EOI intercept is avoided only for the
 highest priority interrupt. This is necessary since no count is
 maintained for the number of EOIs performed by the OS. Therefore only
 the first EOI can be avoided and since the first EOI clears the “No EOI
-Required” bit, the next EOI generates an intercept. However nested
+Required" bit, the next EOI generates an intercept. However nested
 interrupts are rare, so this is not a problem in the common case.
 
 Note that devices and/or the I/O APIC (physical or synthetic) need not
 be notified of an EOI for an edge-triggered interrupt – the hypervisor
 intercepts such EOIs only to update the virtual APIC state. In some
 cases, the virtual APIC state can be lazily updated – in such cases, the
-“NoEoiRequired” bit is set by the hypervisor indicating to the guest
+“NoEoiRequired" bit is set by the hypervisor indicating to the guest
 that an EOI intercept is not necessary. At a later instant, the
 hypervisor can derive the state of the local APIC depending on the
-current value of the “NoEoiRequired” bit.
+current value of the “NoEoiRequired" bit.
 
 Enabling and disabling this enlightenment can be done at any time
 independently of the interrupt activity and the APIC state at that
 moment. While the enlightenment is enabled, conventional EOIs can still
-be performed irrespective of the “No EOI required” value but they will
+be performed irrespective of the “No EOI required" value but they will
 not realize the performance benefit of the enlightenment.
 
 <span id="_Toc437513619" class="anchor"></span>
@@ -6631,7 +6612,7 @@ UINT32 Reserved:30;
 ### <span id="_Toc127596810" class="anchor"><span id="_Toc127786431" class="anchor"><span id="_Toc127786747" class="anchor"><span id="_Toc127787063" class="anchor"><span id="_Toc127877660" class="anchor"><span id="_Toc128289731" class="anchor"><span id="_Toc128290124" class="anchor"><span id="_Toc130189805" class="anchor"><span id="_Toc130201021" class="anchor"><span id="_Toc130201337" class="anchor"><span id="_Toc130201658" class="anchor"><span id="_Toc131936745" class="anchor"><span id="_Toc133901209" class="anchor"><span id="_Toc137461083" class="anchor"><span id="_Toc139096598" class="anchor"><span id="_Toc139188521" class="anchor"><span id="_Toc139191384" class="anchor"><span id="_Toc140490436" class="anchor"><span id="_Toc140571338" class="anchor"><span id="_Toc141257611" class="anchor"><span id="_Toc141257938" class="anchor"><span id="_Toc141267466" class="anchor"><span id="_Toc141522484" class="anchor"><span id="_Toc141529572" class="anchor"><span id="_Toc141529889" class="anchor"><span id="_Toc141851496" class="anchor"><span id="_Toc141852430" class="anchor"><span id="_Toc141887974" class="anchor"><span id="_Toc141889814" class="anchor"><span id="_Toc141893483" class="anchor"><span id="_Toc142113336" class="anchor"><span id="_Toc142114364" class="anchor"><span id="_Toc142729581" class="anchor"><span id="_Toc142730865" class="anchor"><span id="_Toc142731238" class="anchor"><span id="_Toc142998605" class="anchor"><span id="_Toc143063697" class="anchor"><span id="_Toc143509807" class="anchor"><span id="_Toc143510254" class="anchor"><span id="_Toc144026286" class="anchor"><span id="_Toc144026617" class="anchor"><span id="_Toc144276260" class="anchor"><span id="_Toc144276604" class="anchor"><span id="_Toc144280192" class="anchor"><span id="_Toc144280538" class="anchor"><span id="_Toc144540753" class="anchor"><span id="_Toc144554636" class="anchor"><span id="_Toc144722257" class="anchor"><span id="_Toc145503719" class="anchor"><span id="_Toc145512161" class="anchor"><span id="_Toc145513184" class="anchor"><span id="_Toc145513568" class="anchor"><span id="_Toc222907342" class="anchor"><span id="_Toc342653003" class="anchor"><span id="_Toc439864142" class="anchor"></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span>Interrupt Vectors
 
 Interrupt vectors are represented by a 32-bit value. A special value is
-used to indicate “no interrupt vector” and is used by calls that
+used to indicate “no interrupt vector" and is used by calls that
 indicate whether a previous interrupt was acknowledged.
 
 typedef UINT32 HV\_INTERRUPT\_VECTOR;
@@ -6772,7 +6753,7 @@ When a message is sent, the hypervisor selects a free message buffer.
 The set of available message buffers depends on the event that triggered
 the sending of the message.
 
-The hypervisor marks the message buffer “in use” and fills in the
+The hypervisor marks the message buffer “in use" and fills in the
 message header with the message type, payload size, and information
 about the sender. Finally, it fills in the message payload. The contents
 of the payload depend on the event that triggered the message. This
@@ -6818,10 +6799,10 @@ one of three events occur:
 
 -   Another message buffer is queued.
 
--   The guest indicates the “end of interrupt” by writing to the APIC’s
+-   The guest indicates the “end of interrupt" by writing to the APIC’s
     EOI register.
 
--   The guest indicates the “end of message” by writing to the SynIC’s
+-   The guest indicates the “end of message" by writing to the SynIC’s
     EOM register.
 
 In all three cases, the hypervisor will scan one or more message buffer
@@ -6867,7 +6848,7 @@ follows:
     is already queued when an intercept occurs, it is removed from the
     queue, overwritten, and placed back on the queue. This should occur
     only if the software running in the parent partition clears the
-    “suspended for intercept” register before receiving the
+    “suspended for intercept" register before receiving the
     intercept message. This situation is considered a programming error.
 
 -   **Timers:** The timer mechanism defined in chapter 18 will cause
@@ -6949,7 +6930,7 @@ with a destination *port*.
 
 A port is allocated from the receiver’s memory pool and specifies which
 virtual processor and SINTx to target. Event ports have a “base flag
-number” and “flag count” that allow the caller to specify a range of
+number" and “flag count" that allow the caller to specify a range of
 valid event flags for that port.
 
 Connections are allocated from the sender’s memory pool. When a
@@ -7201,7 +7182,7 @@ them by programming an appropriate vector and clearing bit 16.
 The AutoEOI flag indicates that an implicit EOI should be performed by
 the hypervisor when an interrupt is delivered to the virtual processor.
 In addition, the hypervisor will automatically clear the corresponding
-flag in the “in service register” (ISR) of the virtual APIC. If the
+flag in the “in service register" (ISR) of the virtual APIC. If the
 guest enables this behavior, then it must not perform an EOI in its
 interrupt service routine.
 
@@ -7239,7 +7220,7 @@ marked free. If the corresponding SINTx is not masked, an edge-triggered
 interrupt is delivered (that is, the corresponding bit in the IRR is
 set).
 
-This register can be used by guests to “poll” for messages. It can also
+This register can be used by guests to “poll" for messages. It can also
 be used as a way to drain the message queue for a SINTx that has been
 disabled (that is, masked).
 
@@ -7286,7 +7267,7 @@ element corresponds to a single synthetic interrupt source (SINTx).
 The SIM page consists of a 16-element array of 256-byte messages (see
 the following HV\_MESSAGE data structure). Each array element (also
 known as a *message slot*) corresponds to a single synthetic interrupt
-source (SINTx). A message slot is said to be “empty” if the message type
+source (SINTx). A message slot is said to be “empty" if the message type
 of the message in the slot is equal to HvMessageTypeNone.
 
 1.  <span id="_Toc127596835" class="anchor"><span id="_Toc127786456" class="anchor"><span id="_Toc127786772" class="anchor"><span id="_Toc127787088" class="anchor"><span id="_Toc127877762" class="anchor"><span id="_Toc128289833" class="anchor"><span id="_Toc128290226" class="anchor"><span id="_Toc130189829" class="anchor"><span id="_Toc130201045" class="anchor"><span id="_Toc130201361" class="anchor"><span id="_Toc130201682" class="anchor"><span id="_Toc131936771" class="anchor"><span id="_Toc133901235" class="anchor"><span id="_Toc137461109" class="anchor"><span id="_Toc139096624" class="anchor"><span id="_Toc139188547" class="anchor"><span id="_Toc139191410" class="anchor"><span id="_Toc140490462" class="anchor"><span id="_Toc140571364" class="anchor"><span id="_Toc141257637" class="anchor"><span id="_Toc141257964" class="anchor"><span id="_Toc141267492" class="anchor"><span id="_Toc141522510" class="anchor"><span id="_Toc141529598" class="anchor"><span id="_Toc141529915" class="anchor"><span id="_Toc141851522" class="anchor"><span id="_Toc141852456" class="anchor"><span id="_Toc141888000" class="anchor"><span id="_Toc141889840" class="anchor"><span id="_Toc141893509" class="anchor"><span id="_Toc142113362" class="anchor"><span id="_Toc142114390" class="anchor"><span id="_Toc142729607" class="anchor"><span id="_Toc142730891" class="anchor"><span id="_Toc142731264" class="anchor"><span id="_Toc142998631" class="anchor"><span id="_Toc143063723" class="anchor"><span id="_Toc143509833" class="anchor"><span id="_Toc143510280" class="anchor"><span id="_Toc144026312" class="anchor"><span id="_Toc144026643" class="anchor"><span id="_Toc144276286" class="anchor"><span id="_Toc144276630" class="anchor"><span id="_Toc144280218" class="anchor"><span id="_Toc144280564" class="anchor"><span id="_Toc144540779" class="anchor"><span id="_Toc144554662" class="anchor"><span id="_Toc144722283" class="anchor"><span id="_Toc145503745" class="anchor"><span id="_Toc145512187" class="anchor"><span id="_Toc145513210" class="anchor"><span id="_Toc145513594" class="anchor"><span id="_Toc222907373" class="anchor"><span id="_Toc342653043" class="anchor"><span id="_Toc439864172" class="anchor"></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span>Inter-Partition Communication Data Types
@@ -7378,12 +7359,12 @@ For a complete list of messages sent by the hypervisor, see section
 
 The *MessagePending* flag indicates whether or not there are any
 messages pending in the message queue of the synthetic interrupt source.
-If there are, then an “end of message” must be performed by the guest
+If there are, then an “end of message" must be performed by the guest
 after emptying the message slot. This allows for opportunistic writes to
 the EOM MSR (only when required). Note that this flag may be set by the
 hypervisor upon message delivery or at any time afterwards. The flag
 should be tested after the message slot has been emptied and if set,
-then there are one or more pending messages and the “end of message”
+then there are one or more pending messages and the “end of message"
 should be performed.
 
 typedef struct
@@ -8114,7 +8095,7 @@ None.
 Restrictions
 
 -   The partition that is the target of the connection must be in the
-    “active” state.
+    “active" state.
 
 Return Values
 
@@ -8123,7 +8104,7 @@ Return Values
   HV\_STATUS\_ACCESS\_DENIED            The caller’s partition does not possess the *PostMessages* privilege.
   HV\_STATUS\_INVALID\_CONNECTION\_ID   The specified connection ID is invalid.
   HV\_STATUS\_INVALID\_PORT\_ID         The port associated with the specified connection has been deleted.
-                                        The port associated with the specified connection belongs to a partition that is not in the “active” state.
+                                        The port associated with the specified connection belongs to a partition that is not in the “active" state.
                                         The port associated with the specified connection is not a "message" type port.
   HV\_STATUS\_INVALID\_PARAMETER        The most significant bit of the specified message type is set.
                                         The *MessageType* parameter specifies a value of zero.
@@ -8181,7 +8162,7 @@ None.
 Restrictions
 
 -   The partition that is the target of the connection must be in the
-    “active” state.
+    “active" state.
 
 Return Values
 
@@ -8190,7 +8171,7 @@ Return Values
   HV\_STATUS\_ACCESS\_DENIED                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         The caller’s partition does not possess the *SignalEvents* privilege.
   HV\_STATUS\_INVALID\_CONNECTION\_ID                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                The specified connection ID is invalid.
   HV\_STATUS\_INVALID\_PORT\_ID                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      The port associated with the specified connection has been deleted.
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     The port associated with the specified connection belongs to a partition that is not in the “active” state.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     The port associated with the specified connection belongs to a partition that is not in the “active" state.
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      The port associated with the specified connection is not an "event" type port.
   HV\_STATUS\_INVALID\_PARAMETER                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     The specified flag number is greater than or equal to the port’s flag count.
   HV\_STATUS\_INVALID\_VP\_INDEX                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     The target VP no longer exists or there are no available VPs to which the message can be posted.
@@ -8339,7 +8320,7 @@ If a virtual processor is unavailable for a sufficiently long period of
 time, a full timer period may be missed. In this case, the hypervisor
 uses one of two techniques. The first technique involves timer period
 modulation, in effect shortening the period until the timer “catches
-up”.
+up".
 
 The following diagram shows the period modulation technique.
 
@@ -8436,7 +8417,7 @@ HvPartitionPropertyEmulatedTimerControl are changed without disabling
 the timer, the new values will take effect immediately.
 
 The periodic timer assist acts in the same way as the non-lazy periodic
-timer described in the previous section, i.e. it will try to “catch up”
+timer described in the previous section, i.e. it will try to “catch up"
 if timer ticks are missed.
 
 ### <span id="_Toc141851546" class="anchor"><span id="_Toc141852480" class="anchor"><span id="_Ref141884001" class="anchor"><span id="_Toc141888024" class="anchor"><span id="_Toc141889864" class="anchor"><span id="_Toc141893533" class="anchor"><span id="_Toc142113386" class="anchor"><span id="_Toc142114414" class="anchor"><span id="_Ref142384877" class="anchor"><span id="_Toc142729631" class="anchor"><span id="_Toc142730915" class="anchor"><span id="_Toc142731288" class="anchor"><span id="_Toc142998655" class="anchor"><span id="_Toc143063747" class="anchor"><span id="_Toc143509857" class="anchor"><span id="_Toc143510304" class="anchor"><span id="_Toc144026336" class="anchor"><span id="_Toc144026667" class="anchor"><span id="_Toc144276310" class="anchor"><span id="_Toc144276654" class="anchor"><span id="_Toc144280242" class="anchor"><span id="_Toc144280588" class="anchor"><span id="_Toc144540803" class="anchor"><span id="_Toc144554686" class="anchor"><span id="_Toc144722307" class="anchor"><span id="_Toc145503769" class="anchor"><span id="_Toc145512211" class="anchor"><span id="_Toc145513234" class="anchor"><span id="_Toc145513618" class="anchor"><span id="_Ref147656081" class="anchor"><span id="_Toc222907402" class="anchor"><span id="_Toc342653103" class="anchor"><span id="_Toc439864199" class="anchor"></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span>PM Timer Assist
@@ -8986,7 +8967,7 @@ combinations are reserved.
 *StringOp* indicates that the instruction is a string form (INS or
 OUTS).
 
-*RepPrefix* indicates that the instruction has a “rep” prefix. This flag
+*RepPrefix* indicates that the instruction has a “rep" prefix. This flag
 is used only for string operations.
 
 ### <span id="_Toc110172864" class="anchor"><span id="_Toc127596870" class="anchor"><span id="_Toc127786491" class="anchor"><span id="_Toc127786807" class="anchor"><span id="_Toc127787123" class="anchor"><span id="_Toc127877797" class="anchor"><span id="_Toc128289867" class="anchor"><span id="_Toc128290260" class="anchor"><span id="_Toc130189865" class="anchor"><span id="_Toc130201081" class="anchor"><span id="_Toc130201397" class="anchor"><span id="_Toc130201718" class="anchor"><span id="_Toc131936910" class="anchor"><span id="_Toc133901271" class="anchor"><span id="_Toc137461145" class="anchor"><span id="_Toc139096660" class="anchor"><span id="_Toc139188583" class="anchor"><span id="_Toc139191446" class="anchor"><span id="_Toc140490498" class="anchor"><span id="_Toc140571400" class="anchor"><span id="_Toc141257673" class="anchor"><span id="_Toc141258000" class="anchor"><span id="_Toc141267528" class="anchor"><span id="_Toc141522546" class="anchor"><span id="_Toc141529634" class="anchor"><span id="_Toc141529951" class="anchor"><span id="_Toc141851560" class="anchor"><span id="_Toc141852494" class="anchor"><span id="_Toc141888038" class="anchor"><span id="_Toc141889878" class="anchor"><span id="_Toc141893547" class="anchor"><span id="_Toc142113400" class="anchor"><span id="_Toc142114428" class="anchor"><span id="_Toc142729645" class="anchor"><span id="_Toc142730929" class="anchor"><span id="_Toc142731302" class="anchor"><span id="_Toc142998669" class="anchor"><span id="_Toc143063761" class="anchor"><span id="_Toc143509871" class="anchor"><span id="_Toc143510318" class="anchor"><span id="_Toc144026350" class="anchor"><span id="_Toc144026681" class="anchor"><span id="_Toc144276324" class="anchor"><span id="_Toc144276668" class="anchor"><span id="_Toc144280256" class="anchor"><span id="_Toc144280602" class="anchor"><span id="_Toc144540817" class="anchor"><span id="_Toc144554700" class="anchor"><span id="_Toc144722321" class="anchor"><span id="_Toc145503784" class="anchor"><span id="_Toc145512226" class="anchor"><span id="_Toc145513249" class="anchor"><span id="_Toc145513633" class="anchor"><span id="_Toc222907419" class="anchor"><span id="_Toc342653124" class="anchor"><span id="_Toc439864219" class="anchor"></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span>Exception Information
@@ -9185,7 +9166,7 @@ performed by a virtual processor.
 An APIC EOI message is delivered by the hypervisor after a virtual
 processor executes an instruction that writes to the APIC’s
 memory-mapped EOI register or APIC EOI MSR, indicating the “end of
-interrupt”. This message is generated only for level-triggered fixed or
+interrupt". This message is generated only for level-triggered fixed or
 external interrupts.
 
   ---------------------------------------------------------------------------------------------
@@ -10610,7 +10591,7 @@ The lifetime of a stats page is the same as the lifetime for its
 corresponding object. If that object is deleted and its stats page is
 still mapped within a partition’s GPA space, that stats page mapping is
 removed. As with any overlay page, removal of a stats page mapping
-reveals whatever is “beneath” the overlay page.
+reveals whatever is “beneath" the overlay page.
 
 ### <span id="_Toc141889947" class="anchor"><span id="_Toc141893616" class="anchor"><span id="_Toc142113469" class="anchor"><span id="_Toc142114497" class="anchor"><span id="_Toc142729695" class="anchor"><span id="_Toc142730979" class="anchor"><span id="_Toc142731352" class="anchor"><span id="_Toc142998719" class="anchor"><span id="_Toc143063811" class="anchor"><span id="_Toc143509920" class="anchor"><span id="_Toc143510368" class="anchor"><span id="_Toc144026413" class="anchor"><span id="_Toc144026744" class="anchor"><span id="_Toc144276387" class="anchor"><span id="_Toc144276731" class="anchor"><span id="_Toc144280319" class="anchor"><span id="_Toc144280665" class="anchor"><span id="_Toc144540902" class="anchor"><span id="_Toc144554805" class="anchor"><span id="_Toc144722406" class="anchor"><span id="_Toc145503869" class="anchor"><span id="_Toc145512289" class="anchor"><span id="_Toc145513342" class="anchor"><span id="_Toc145513726" class="anchor"><span id="_Toc222907518" class="anchor"><span id="_Toc342653272" class="anchor"><span id="_Toc439864318" class="anchor"></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span>Format of Statistics Pages
 
@@ -10924,7 +10905,7 @@ For global stats types, the caller must be the root partition.
 For local stats types, the caller must be the parent of the partition
 specified by *PartitionId*.
 
-The partition specified by *PartitionId* must be in the “active” state.
+The partition specified by *PartitionId* must be in the “active" state.
 
 Return Values
 
@@ -10949,7 +10930,7 @@ Return Values
 
   HV\_STATUS\_INSUFFICIENT\_MEMORY        The number of pages in the memory pool of the caller is insufficient to perform the operation.
 
-  HV\_STATUS\_INVALID\_PARTITION\_STATE   The specified partition is not in the “active” state.
+  HV\_STATUS\_INVALID\_PARTITION\_STATE   The specified partition is not in the “active" state.
   ----------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 ### <span id="_Toc127596942" class="anchor"><span id="_Toc127786563" class="anchor"><span id="_Toc127786879" class="anchor"><span id="_Toc127787195" class="anchor"><span id="_Toc127877869" class="anchor"><span id="_Toc128289939" class="anchor"><span id="_Toc128290332" class="anchor"><span id="_Toc130189937" class="anchor"><span id="_Toc130201153" class="anchor"><span id="_Toc130201469" class="anchor"><span id="_Toc130201790" class="anchor"><span id="_Toc131937050" class="anchor"><span id="_Toc133901342" class="anchor"><span id="_Toc137461216" class="anchor"><span id="_Toc139096731" class="anchor"><span id="_Toc139188654" class="anchor"><span id="_Toc139191517" class="anchor"><span id="_Toc140490569" class="anchor"><span id="_Toc140571471" class="anchor"><span id="_Toc141257744" class="anchor"><span id="_Toc141258071" class="anchor"><span id="_Toc141267599" class="anchor"><span id="_Toc141522617" class="anchor"><span id="_Toc141529706" class="anchor"><span id="_Toc141530023" class="anchor"><span id="_Toc141851634" class="anchor"><span id="_Toc141852568" class="anchor"><span id="_Toc141888112" class="anchor"><span id="_Toc141889953" class="anchor"><span id="_Toc141893622" class="anchor"><span id="_Toc142113475" class="anchor"><span id="_Toc142114503" class="anchor"><span id="_Toc142729701" class="anchor"><span id="_Toc142730985" class="anchor"><span id="_Toc142731358" class="anchor"><span id="_Toc142998725" class="anchor"><span id="_Toc143063817" class="anchor"><span id="_Toc143509926" class="anchor"><span id="_Toc143510374" class="anchor"><span id="_Toc144026419" class="anchor"><span id="_Toc144026750" class="anchor"><span id="_Toc144276405" class="anchor"><span id="_Toc144276749" class="anchor"><span id="_Toc144280337" class="anchor"><span id="_Toc144280683" class="anchor"><span id="_Toc144540921" class="anchor"><span id="_Toc144554824" class="anchor"><span id="_Toc144722412" class="anchor"><span id="_Toc145503875" class="anchor"><span id="_Toc145512295" class="anchor"><span id="_Toc145513348" class="anchor"><span id="_Toc145513732" class="anchor"><span id="_Toc222907524" class="anchor"><span id="_Toc342653281" class="anchor"><span id="_Toc439864324" class="anchor"></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span>HvUnmapStatsPage
@@ -11033,7 +11014,7 @@ Restrictions
 
 -   For local stats types, the caller must be the parent of the
     partition specified by *PartitionId.* The partition specified by
-    *PartitionId* must be in the “active” state.
+    *PartitionId* must be in the “active" state.
 
 Return Values
 
@@ -11054,7 +11035,7 @@ Return Values
 
                                           Reserved fields within the *ObjectIdentity* parameter are not set to zero.
 
-  HV\_STATUS\_INVALID\_PARTITION\_STATE   The specified partition is not in the “active” state.
+  HV\_STATUS\_INVALID\_PARTITION\_STATE   The specified partition is not in the “active" state.
 
   HV\_STATUS\_OPERATION\_DENIED           The specified page is not initialized or mapped.
   ----------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -11180,15 +11161,15 @@ following conditions are guaranteed to exist:
 -   None of the root partition’s virtual processors are suspended.
 
 -   All virtual processors corresponding to potential logical processors
-    are assumed to be in the “offline” power state. All other virtual
-    processors are assumed to be in the “C0” power state.
+    are assumed to be in the “offline" power state. All other virtual
+    processors are assumed to be in the “C0" power state.
 
 -   After a successful hypervisor boot, the root partition’s virtual
     processors are left in the same initialization state as their
     corresponding logical processors before the boot. For example, if a
     processor was already initialized and executing code, it will
     continue to execute code after hypervisor boot. If a processor was
-    in the “wait for SIPI” state, it will effectively remain in this
+    in the “wait for SIPI" state, it will effectively remain in this
     state after hypervisor boot.
 
 -   The initial register state of a root partition’s virtual processor
@@ -11216,7 +11197,7 @@ following conditions are guaranteed to exist:
     1.  <span id="_Toc127596947" class="anchor"><span id="_Toc127786568" class="anchor"><span id="_Toc127786884" class="anchor"><span id="_Toc127787200" class="anchor"><span id="_Toc127877874" class="anchor"><span id="_Toc128289944" class="anchor"><span id="_Toc128290337" class="anchor"><span id="_Toc130189942" class="anchor"><span id="_Toc130201158" class="anchor"><span id="_Toc130201474" class="anchor"><span id="_Toc130201795" class="anchor"><span id="_Toc131937055" class="anchor"><span id="_Toc133901347" class="anchor"><span id="_Toc137461221" class="anchor"><span id="_Toc139096736" class="anchor"><span id="_Toc139188659" class="anchor"><span id="_Toc139191522" class="anchor"><span id="_Toc140490574" class="anchor"><span id="_Toc140571476" class="anchor"><span id="_Toc141257749" class="anchor"><span id="_Toc141258076" class="anchor"><span id="_Toc141267604" class="anchor"><span id="_Toc141522622" class="anchor"><span id="_Toc141529711" class="anchor"><span id="_Toc141530028" class="anchor"><span id="_Toc141851639" class="anchor"><span id="_Toc141852573" class="anchor"><span id="_Toc141888117" class="anchor"><span id="_Toc141889958" class="anchor"><span id="_Toc141893627" class="anchor"><span id="_Toc142113480" class="anchor"><span id="_Toc142114508" class="anchor"><span id="_Toc142729706" class="anchor"><span id="_Toc142730990" class="anchor"><span id="_Toc142731363" class="anchor"><span id="_Toc142998730" class="anchor"><span id="_Toc143063822" class="anchor"><span id="_Toc143509931" class="anchor"><span id="_Toc143510379" class="anchor"><span id="_Toc144026424" class="anchor"><span id="_Toc144026755" class="anchor"><span id="_Toc144276410" class="anchor"><span id="_Toc144276754" class="anchor"><span id="_Toc144280342" class="anchor"><span id="_Toc144280688" class="anchor"><span id="_Toc144540926" class="anchor"><span id="_Toc144554829" class="anchor"><span id="_Toc144722417" class="anchor"><span id="_Toc145503880" class="anchor"><span id="_Toc145512300" class="anchor"><span id="_Toc145513353" class="anchor"><span id="_Toc145513737" class="anchor"><span id="_Ref145840572" class="anchor"><span id="_Ref145840614" class="anchor"><span id="_Toc222907530" class="anchor"><span id="_Toc342653290" class="anchor"><span id="_Toc439864330" class="anchor"></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span>Root Partition
         -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-The root partition is special in a number of ways. It is “born” with
+The root partition is special in a number of ways. It is “born" with
 certain properties, capabilities, and privileges that non-root
 partitions do not possess. These include the following:
 
@@ -11353,10 +11334,10 @@ following guidelines should be honored for all interfaces:
 
 -   Names of calls, types, structures, and constants should be clearly
     marked as being associated with the hypervisor. In general, this is
-    done by prepending “Hv” or “HV”.
+    done by prepending “Hv" or “HV".
 
 -   Names of calls, types, structures, and constants should be clear and
-    not overly generic (for example, “HvSetFlag” is probably
+    not overly generic (for example, “HvSetFlag" is probably
     too generic).
 
 -   All hypervisor types (including enumerations) must have
@@ -11364,7 +11345,7 @@ following guidelines should be honored for all interfaces:
 
 -   Names of types and constants that are platform-specific should
     include such an indication (for example, by prepending
-    with “HV\_X64”).
+    with “HV\_X64").
 
 -   In general, abbreviations should be avoided. However, if
     abbreviations are used, they should be used consistently throughout
@@ -11414,9 +11395,9 @@ following guidelines should be honored for all interfaces:
     especially true when the interface in question operates on memory
     with page-level granularity.
 
--   The verb “Set” should be used only for calls that set a
+-   The verb “Set" should be used only for calls that set a
     specific value. Generally, such calls should have an accompanying
-    “Get” call.
+    “Get" call.
 
 -   The name of rep hypercalls should indicate that they operate on
     multiple parameters (for example, HvSetVpRegisters instead
@@ -12282,15 +12263,15 @@ processors in the system.
 
   EAX                       The maximum input value for hypervisor CPUID information                                                           0               31            At least 0x40000005                                                                        At least 0x40000005
 
-  EBX                       Hypervisor Vendor ID Signature                                                                                     0               31            0x7263694D—“Micr”                                                                          0x7263694D—“Micr”
+  EBX                       Hypervisor Vendor ID Signature                                                                                     0               31            0x7263694D—“Micr"                                                                          0x7263694D—“Micr"
 
-  ECX                       Hypervisor Vendor ID Signature                                                                                     0               31            0x666F736F—“osof”                                                                          0x666F736F—“osof”
+  ECX                       Hypervisor Vendor ID Signature                                                                                     0               31            0x666F736F—“osof"                                                                          0x666F736F—“osof"
 
-  EDX                       Hypervisor Vendor ID Signature                                                                                     0               31            0x76482074—“t Hv”                                                                          0x76482074—“t Hv”
+  EDX                       Hypervisor Vendor ID Signature                                                                                     0               31            0x76482074—“t Hv"                                                                          0x76482074—“t Hv"
 
   0x40000001                Hypervisor vendor-neutral interface identification                                                                                                                                                                                           
 
-  EAX                       Hypervisor Interface Signature                                                                                     0               31            0x31237648—“Hv\#1”                                                                         0x31237648—“Hv\#1”
+  EAX                       Hypervisor Interface Signature                                                                                     0               31            0x31237648—“Hv\#1"                                                                         0x31237648—“Hv\#1"
 
   EBX                       RsvdZ                                                                                                              0               31            Cleared                                                                                    Cleared
 
@@ -13689,8 +13670,8 @@ following is a table of new MSR values defined by the hypervisor.
 <span id="_Ref141888937" class="anchor"><span id="_Toc221334080" class="anchor"><span id="_Toc222907549" class="anchor"><span id="_Toc342653323" class="anchor"><span id="_Toc439864354" class="anchor"></span></span></span></span></span>Appendix I: Event Log Entries
 ========================================================================================================================================================================================================================================================================
 
-Note: In the table below, rows with bold entries in the “Event Name”
-column and 8-byte entries in the “Event Number” column represent event
+Note: In the table below, rows with bold entries in the “Event Name"
+column and 8-byte entries in the “Event Number" column represent event
 groups, not individual events. Not all groups have events defined, but
 the groups are included for completeness.
 
