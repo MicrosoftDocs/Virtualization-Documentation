@@ -192,7 +192,7 @@ If Hyper-V Containers will be deployed, the Hyper-V role needs to be enabled on 
 PS C:\> Install-WindowsFeature hyper-v
 ```
 
-### <a name=nest></a>Configure Nested Virtualization
+### <a name=nest></a>Nested Virtualization
 
 If the container host itself will be running on a Hyper-V virtual machine, and will also be hosting Hyper-V Containers, nested virtualization needs to be enabled. This can be completed with the following PowerShell command.
 
@@ -222,7 +222,7 @@ If the Container Host is itself a Hyper-V Virtual machine, dynamic memory must b
 PS C:\> Set-VMMemory <VM Name> -DynamicMemoryEnabled $false
 ``` 
 
-### <a name=mac></a>Configure MAC Address Spoofing
+### <a name=mac></a>MAC Address Spoofing
 
 Finally, if the container host is running inside of a Hyper-V virtual machine, MAC spoofing must be enable. This allows each container to receive an IP Address. To enable MAC address spoofing, run the following command on the Hyper-V host. The VMName property will be the name of the container host.
 
