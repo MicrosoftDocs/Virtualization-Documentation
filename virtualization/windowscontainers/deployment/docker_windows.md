@@ -70,7 +70,7 @@ Application Tab:
 
 - **Startup Directory:** C:\Windows\System32
 
-- **Arguments:** /s /c C:\ProgramData\docker\runDockerDaemon.cmd
+- **Arguments:** /s /c C:\ProgramData\docker\runDockerDaemon.cmd < nul
 
 - **Service Name** - Docker
 
