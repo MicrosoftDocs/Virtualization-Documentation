@@ -27,4 +27,4 @@
 ## [Build an integration Service](develop/make_mgmt_service.md)
 ## [Hyper-V WMI Provider (V2)](https://msdn.microsoft.com/library/hh850319.aspx)
 ## [Hyper-V Architecture](https://msdn.microsoft.com/en-us/library/cc768520(v=bts.10).aspx)
-## [Hypervisor TLFS](https://github.com/Microsoft/Virtualization-Documentation/tree/master/tlfs)
+## [Hypervisor TLFS](develop/tlfs.md)
