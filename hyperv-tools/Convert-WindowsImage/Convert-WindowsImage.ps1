@@ -1,3 +1,4 @@
+
 function
 Convert-WindowsImage
 {
@@ -581,7 +582,7 @@ Branch    = th2_release
 Timestamp = 151029-1700
 Flavor    = amd64fre
 "@
-}
+        }
 
         $myVersion              = "$($ScriptVersion.Major).$($ScriptVersion.Minor).$($ScriptVersion.Build).$($ScriptVersion.QFE).$($ScriptVersion.Flavor).$($ScriptVersion.Branch).$($ScriptVersion.Timestamp)"
         $scriptName             = "Convert-WindowsImage"                       # Name of the script, obviously.
@@ -911,6 +912,8 @@ You can use the fields below to configure the VHD or VHDX that you want to creat
 
     Process
     {
+        Write-Host $header
+        
         $disk           = $null
         $openWim        = $null
         $openIso        = $null
@@ -923,7 +926,19 @@ You can use the fields below to configure the VHD or VHDX that you want to creat
 
         if (Get-Command Get-WindowsOptionalFeature -ErrorAction SilentlyContinue)
         {
-            $hyperVEnabled  = $((Get-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V).State -eq "Enabled")
+            try
+            {
+                $hyperVEnabled  = $((Get-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V).State -eq "Enabled")
+            }
+            catch
+            {
+                # WinPE DISM does not support online queries.  This will throw on non-WinPE machines
+                $winpeVersion = (Get-ItemProperty -Path 'HKLM:\Software\Microsoft\Windows NT\CurrentVersion\WinPE').Version
+
+                Write-W2VInfo "Running WinPE version $winpeVersion"
+
+                $hyperVEnabled = $false
+            }
         }
         else
         {
@@ -932,7 +947,6 @@ You can use the fields below to configure the VHD or VHDX that you want to creat
 
         $vhd            = @()
 
-        Write-Host $header
         try
         {
             # Create log folder
