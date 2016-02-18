@@ -1,3 +1,7 @@
+---
+author: neilpeterson
+---
+
 # Azure Quick Start
 
 Before creating and managing Windows Server Containers in Azure you will need to deploy a Windows Server 2016 Technical Preview image which has been pre-configured with the Windows Server Containers feature. This guide will walk you through this process.
