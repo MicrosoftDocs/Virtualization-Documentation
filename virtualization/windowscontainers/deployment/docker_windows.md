@@ -1,3 +1,7 @@
+---
+author: neilpeterson
+---
+
 # Docker and Windows
 
 **This is preliminary content and subject to change.** 

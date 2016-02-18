@@ -1,3 +1,7 @@
+---
+author: scooley
+---
+
 # PowerShell to Docker comparison for managing Windows Containers
 
 There are many ways to manage Windows Containers using both in-box Windows tools (PowerShell, in this preview) and Open Source management tools such as Docker.  

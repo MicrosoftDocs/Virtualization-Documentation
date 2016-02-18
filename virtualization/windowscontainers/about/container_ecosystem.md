@@ -1,4 +1,8 @@
-﻿# Building a Container Ecosystem
+﻿---
+author: scooley
+---
+
+# Building a Container Ecosystem
 
 To understand why building a container ecosystem is so important, let's first talk about Docker.
 
