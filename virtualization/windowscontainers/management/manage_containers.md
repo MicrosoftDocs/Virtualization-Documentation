@@ -34,7 +34,7 @@ demo  Off   00:00:00 WindowsServerCore
 Once the container has been created, add a network adapter to the container.
 
 ```powershell
-PS C:\> Add-ContainerNetworkAdapter -ContainerName TST
+PS C:\> Add-ContainerNetworkAdapter -ContainerName demo
 ```
 
 In order to connect the container's network adapter to a virtual switch, the switch name is needed. Use `Get-VMSwitch` to return a list of virtual switches. 
@@ -51,14 +51,14 @@ NAT  NAT
 Connect the network adapter to the virtual switch using `Connect-ContainerNetworkAdapter`. **NOTE** – this can also be completed when the container is created using the –SwitchName parameter.
 
 ```powershell
-PS C:\> Connect-ContainerNetworkAdapter -ContainerName TST -SwitchName NAT
+PS C:\> Connect-ContainerNetworkAdapter -ContainerName demo -SwitchName NAT
 ```
 
 ### Start a Container
 In order to start the container, a PowerShell object representing that container that will be enumerated. This can be done by placing the output of `Get-Container` into a PowerShell variable.
 
 ```powershell
-PS C:\> $container = Get-Container -Name TST
+PS C:\> $container = Get-Container -Name demo
 ```
 
 This data can then be used with the `Start-Container` command to start the container.
@@ -80,13 +80,13 @@ PowerShell direct can be used to connect to a container. This may be helpful if 
 To create an interactive session with the container, use the `Enter-PSSession` command.
 
  ```powershell
-PS C:\> Enter-PSSession -ContainerName TST –RunAsAdministrator
+PS C:\> Enter-PSSession -ContainerName demo –RunAsAdministrator
 ```
 
 Notice that once the remote PowerShell session has been created, the shell prompt changes to reflect the container name.
 
 ```powershell
-[TST]: PS C:\>
+[demo]: PS C:\>
 ```
 
 Commands can also be run against a container without creating a persistent PowerShell session. To do so use `Invoke-Command`.
@@ -95,12 +95,12 @@ The following sample creates a folder named ‘Application’ in the container.
 
 ```powershell
 
-PS C:\> Invoke-Command -ContainerName TST -ScriptBlock {New-Item -ItemType Directory -Path c:\application }
+PS C:\> Invoke-Command -ContainerName demo -ScriptBlock {New-Item -ItemType Directory -Path c:\application }
 
 Directory: C:\
 Mode                LastWriteTime         Length Name                                                 PSComputerName
 ----                -------------         ------ ----                                                 --------------
-d-----       10/28/2015   3:31 PM                application                                          TST
+d-----       10/28/2015   3:31 PM                application                                          demo
 ```
 
 ### Stop a Container
@@ -108,7 +108,7 @@ d-----       10/28/2015   3:31 PM                application                    
 In order to stop the container, a PowerShell object representing that container will be needed. This can be done by placing the output of `Get-Container` into a PowerShell variable.
 
 ```powershell
-PS C:\> $container = Get-Container -Name TST
+PS C:\> $container = Get-Container -Name demo
 ```
 
 This can then be used with the `Stop-Container` command to stop the container.
@@ -128,7 +128,7 @@ PS C:\> Get-Container | Stop-Container
 When a container is no longer needed it can be removed. In order to remove a container, it needs to be in a stopped state, and a PowerShell object needs to be created that represents the container.
 
 ```powershell
-PS C:\> $container = Get-Container -Name TST
+PS C:\> $container = Get-Container -Name demo
 ```
 
 To remove the container, use the `Remove-Container` command.
