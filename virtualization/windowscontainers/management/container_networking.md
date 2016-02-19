@@ -1,3 +1,7 @@
+---
+author: neilpeterson
+---
+
 # Container Networking
 
 **This is preliminary content and subject to change.** 

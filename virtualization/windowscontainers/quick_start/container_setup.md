@@ -1,3 +1,7 @@
+---
+author: neilpeterson
+---
+
 # Deploy a Windows Container Host to a New Hyper-V Virtual Machine
 
 This document steps through using a PowerShell script to deploy a new Hyper-V virtual machine, which is then configured as a Windows Container Host.
