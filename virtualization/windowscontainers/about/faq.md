@@ -33,9 +33,9 @@ Windows Server Containers will offer greater density and performance (e.g. lower
 
 The container capabilities will be integrated into Windows Server 2016. Stay tuned for more information closer to the general availability.  
 
-**What is the relationship between Windows Server Containers and Draw Bridge?**
+**What is the relationship between Windows Server Containers and Drawbridge?**
 
-DrawBridge was a Microsoft Research project that provided us insight and ideas about containers.  We have no product plans for DrawBridge.
+Drawbridge was one of many research projects that helped us gain valuable insights into containers.  Much of container technology in Windows Server 2016 was born from the experience we had with Drawbridge and we are excited to be bringing world class container technologies to our customers in Windows Server 2016.
 
 **What are the prerequisites for Windows Server Containers and Hyper-V Containers?**
 
