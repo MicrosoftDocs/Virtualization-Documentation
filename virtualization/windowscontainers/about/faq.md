@@ -34,6 +34,7 @@ Windows Server Containers will offer greater density and performance (e.g. lower
 The container capabilities will be integrated into Windows Server 2016. Stay tuned for more information closer to the general availability.  
 
 **What is the relationship between Windows Server Containers and Draw Bridge?**
+
 DrawBridge was a Microsoft Research project that provided us insight and ideas about containers.  We have no product plans for DrawBridge.
 
 **What are the prerequisites for Windows Server Containers and Hyper-V Containers?**
@@ -60,15 +61,18 @@ While that specific example is very manageable, what gets much harder are handin
 Our short term decision was that management interfaces (in this case Docker and PowerShell) only see containers they created – you create a container with Docker and PowerShell doesn’t see it, you create it with PowerShell and Docker doesn’t see it.
 
 **Can I run Windows Containers on ESXi or another non Hyper-V hypervisor?**
+
 Yes, Windows Container run on any TP3 Server Core installation.  Follow the instructions for [enabling the containers feature in-place](../quick_start/inplace_setup.md).
 
 
 ## Microsoft's open ecosystem
 
 **Is Microsoft participating in the Open Container Initiative (OCI)?**
+
 To guarantee the packaging format remains universal, Docker recently organized the Open Container Initiative (OCI), aiming to ensure container packaging remains an open and foundation-led format with Microsoft as one of the founding members.
 
 **Is Microsoft really partnering with Docker?**
+
 Yes.  
 Our partnership with Docker enables developers to create, manage and deploy both Windows Server and Linux containers using the same Docker tool set. Developers targeting Windows Server will no longer have to make a choice between using the vast range of Windows Server technologies and building containerized applications.  
 
