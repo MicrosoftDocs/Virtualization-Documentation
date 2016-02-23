@@ -8,7 +8,7 @@ Now that you have walked through the basics of deploying Hyper-V, creating virtu
 2.	Run the following command to display a searchable list of PowerShell commands available with the Hyper-V PowerShell Module.
 
  ```powershell
-get-command –module hyper-v | out-gridview
+get-command -module hyper-v | out-gridview
 ```
   You get something like this:
 
@@ -40,12 +40,12 @@ get-vm
 2. To return a list of only powered on virtual machines add a filter to the `get-vm` command. A filter can be added by using the where-object command. For more information on filtering see the [Using the Where-Object](https://technet.microsoft.com/en-us/library/ee177028.aspx) documentation.   
 
  ```powershell
- get-vm | where {$_.State –eq ‘Running’}
+ get-vm | where {$_.State -eq ‘Running’}
  ```
 3.  To list all virtual machines in a powered off state, run the following command. This command is a copy of the command from step 2 with the filter changed from ‘Running’ to ‘Off’.
 
  ```powershell
- get-vm | where {$_.State –eq ‘Off’}
+ get-vm | where {$_.State -eq ‘Off’}
  ```
 
 ### Start and shut down virtual machines
@@ -53,18 +53,18 @@ get-vm
 1. To start a particular virtual machine, run the following command with name of the virtual machine:
 
  ```powershell
- Start-vm –Name <virtual machine name>
+ Start-vm -Name <virtual machine name>
  ```
 
 2. To start all currently powered off virtual machines, get a list of those machines and pipe the list to the 'start-vm' command:
 
   ```powershell
- get-vm | where {$_.State –eq ‘Off’} | start-vm
+ get-vm | where {$_.State -eq ‘Off’} | start-vm
  ```
 3. To shut down all running virtual machines, run this:
  
   ```powershell
- get-vm | where {$_.State –eq ‘Running’} | stop-vm
+ get-vm | where {$_.State -eq ‘Running’} | stop-vm
  ```
 
 ### Create a VM checkpoint

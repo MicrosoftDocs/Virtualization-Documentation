@@ -84,7 +84,7 @@ PowerShell direct can be used to connect to a container. This may be helpful if 
 To create an interactive session with the container, use the `Enter-PSSession` command.
 
  ```powershell
-PS C:\> Enter-PSSession -ContainerName demo –RunAsAdministrator
+PS C:\> Enter-PSSession -ContainerName demo -RunAsAdministrator
 ```
 
 Notice that once the remote PowerShell session has been created, the shell prompt changes to reflect the container name.

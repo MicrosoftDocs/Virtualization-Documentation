@@ -34,7 +34,7 @@ Before downloading and running the script, ensure that an external Hyper-V virtu
 Run the following to return a list of external virtual switches. If nothing is returned, create a new external virtual switch, and then proceed to the next step of this guide.
 
 ```powershell
-PS C:\> Get-VMSwitch | where {$_.SwitchType –eq “External”}
+PS C:\> Get-VMSwitch | where {$_.SwitchType -eq “External”}
 ```
 
 Use the following command to download the configuration script. The script can also be manually downloaded from this location - [Configuration Script](https://aka.ms/tp4/New-ContainerHost).
@@ -46,7 +46,7 @@ PS C:\> wget -uri https://aka.ms/tp4/New-ContainerHost -OutFile c:\New-Container
 Run the following command to create and configure the container host, where `<containerhost>` will be the virtual machine name.
 
 ``` powershell
-PS C:\> powershell.exe -NoProfile c:\New-ContainerHost.ps1 –VmName testcont -WindowsImage ServerDatacenterCore -Hyperv
+PS C:\> powershell.exe -NoProfile c:\New-ContainerHost.ps1 -VMName testcont -WindowsImage ServerDatacenterCore -Hyperv
 ```
 
 When the script begins, you will be prompted for a password. This will be the password assigned to the Administrator account.

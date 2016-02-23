@@ -69,14 +69,14 @@ function CreateBaseVM([string]$VMName, `
          dism.exe /Online /Enable-Feature:Microsoft-Hyper-V /All /NoRestart | out-null}
       if ($enableClustering) {
          Write-Output "[$($VMName)]:: Enabling Clustering"
-         Install-WindowsFeature Failover-Clustering –IncludeManagementTools | out-null}
+         Install-WindowsFeature Failover-Clustering -IncludeManagementTools | out-null}
       if ($DomainController) {
          Write-Output "[$($VMName)]:: Enabling iSCSI, AD and DHCP"
          Add-WindowsFeature -Name FS-iSCSITarget-Server | out-null
-         Install-WindowsFeature AD-Domain-Services, DHCP –IncludeManagementTools | out-null}
+         Install-WindowsFeature AD-Domain-Services, DHCP -IncludeManagementTools | out-null}
       if ($SOFSnode) {
          Write-Output "[$($VMName)]:: Enabling file services"
-         Install-WindowsFeature File-Services, FS-FileServer –IncludeManagementTools | Out-Null}
+         Install-WindowsFeature File-Services, FS-FileServer -IncludeManagementTools | Out-Null}
       Write-Output "[$($VMName)]:: Configuring WSMAN Trusted hosts"
       Set-Item WSMan:\localhost\Client\TrustedHosts "*.ignite.demo" -Force
       Set-Item WSMan:\localhost\client\trustedhosts "10.100.7.*" -force -concatenate
@@ -118,11 +118,11 @@ function CreateBaseVM([string]$VMName, `
       icm -VMName $VMName -Credential $domainCred {
          param($VMName)
          Write-Output "[$($VMName)]:: Creating VHDXs for iSCSI targets"
-         New-IscsiVirtualDisk C:\iSCSITargetDisks\Quorum.vhdx –size 10GB | Out-Null
-         New-IscsiVirtualDisk C:\iSCSITargetDisks\Data.vhdx –size 120GB | Out-Null
+         New-IscsiVirtualDisk C:\iSCSITargetDisks\Quorum.vhdx -Size 10GB | Out-Null
+         New-IscsiVirtualDisk C:\iSCSITargetDisks\Data.vhdx -Size 120GB | Out-Null
          Write-Output "[$($VMName)]:: Creating iSCSI targets"
-         New-IscsiServerTarget ISCSIQuorum –InitiatorIds "Iqn:iqn.1991-05.com.microsoft:sofs-n1.ignite.demo" | Out-Null
-         New-IscsiServerTarget ISCSIData –InitiatorIds "Iqn:iqn.1991-05.com.microsoft:sofs-n1.ignite.demo" | Out-Null
+         New-IscsiServerTarget ISCSIQuorum -InitiatorIds "Iqn:iqn.1991-05.com.microsoft:sofs-n1.ignite.demo" | Out-Null
+         New-IscsiServerTarget ISCSIData -InitiatorIds "Iqn:iqn.1991-05.com.microsoft:sofs-n1.ignite.demo" | Out-Null
          Write-Output "[$($VMName)]:: Mapping VHDX files to iSCSI targets"
          Add-IscsiVirtualDiskTargetMapping ISCSIQuorum C:\iSCSITargetDisks\Quorum.vhdx -lun 0 
          Add-IscsiVirtualDiskTargetMapping ISCSIData C:\iSCSITargetDisks\Data.vhdx -lun 0
@@ -155,7 +155,7 @@ function CreateBaseVM([string]$VMName, `
             Initialize-Disk -Number $_.Number -PartitionStyle MBR 
             New-Partition -DiskNumber $_.Number -UseMaximumSize | Set-Partition -NewDriveLetter $d  
             Initialize-Volume -DriveLetter $d -FileSystem NTFS -Confirm:$false}
-         New-Cluster –Name SOFS -Node $env:COMPUTERNAME -StaticAddress 10.100.7.3 
+         New-Cluster -Name SOFS -Node $env:COMPUTERNAME -StaticAddress 10.100.7.3 
          Get-Disk | ?{$_.BusType -eq "iSCSI"} | Add-ClusterDisk
          Get-ClusterResource | ? Name -eq "Cluster Disk 1" | %{Set-ClusterQuorum -DiskWitness $_}
          Get-ClusterResource | ? Name -eq "Cluster Disk 2" | Add-ClusterSharedVolume
@@ -163,15 +163,15 @@ function CreateBaseVM([string]$VMName, `
 
          MD C:\ClusterStorage\Volume1\VHDX
          New-SmbShare -Name VHDX -Path C:\ClusterStorage\Volume1\VHDX -FullAccess Ignite.demo\administrator
-         Set-SmbPathAcl –ShareName VHDX
+         Set-SmbPathAcl -ShareName VHDX
 
          MD C:\ClusterStorage\Volume1\ClusQuorum
          New-SmbShare -Name ClusQuorum -Path C:\ClusterStorage\Volume1\ClusQuorum -FullAccess Ignite.demo\administrator
-         Set-SmbPathAcl –ShareName ClusQuorum
+         Set-SmbPathAcl -ShareName ClusQuorum
 
          MD C:\ClusterStorage\Volume1\ClusData
          New-SmbShare -Name ClusData -Path C:\ClusterStorage\Volume1\ClusData -FullAccess Ignite.demo\administrator
-         Set-SmbPathAcl –ShareName ClusData}
+         Set-SmbPathAcl -ShareName ClusData}
          }
 
 
