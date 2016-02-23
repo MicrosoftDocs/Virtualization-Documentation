@@ -6,7 +6,7 @@ Windows 10 Hyper-V includes two types of checkpoints:
 
 * **Standard Checkpoints** -- takes a snapshot of the virtual machine and virtual machine memory state at the time the checkpoint is initiated. A snapshot is not a full backup and can cause data consistancy issues with systems that replicate data between different nodes such as Active Directory.  Hyper-V only offered standard checkpoints (formerly called snapshots) prior to Windows 10.
 
-* **Production Checkpoints** –- uses Volume Shadow Copy Service or File System Freeze on a Linux virtual machine to create a data conistenant back of the virtual machine.
+* **Production Checkpoints** -- uses Volume Shadow Copy Service or File System Freeze on a Linux virtual machine to create a data conistenant back of the virtual machine.
 
 Production checkpoints are selected by default however this can be changed using either Hyper-V manager or PowerShell.
 
@@ -60,7 +60,7 @@ To create a checkpoint:
 Create a checkpoint using the **CheckPoint-VM** command.  
 
 ```powershell
-Checkpoint-VM –Name <VMName>
+Checkpoint-VM -Name <VMName>
 ```
 
 When the checkpoint process has completed, view a list of checkpoints for a virtual machine use the **Get-VMCheckpoint** command.
@@ -104,7 +104,7 @@ Many checkpoints are created at a specific point.  Giving them an identifyable n
 By default, the name of a checkpoint is the name of the virtual machine combined with the date and time the checkpoint was taken. This is the standard format: 
 
 ```
-virtual_machine_name (MM/DD/YYY –hh:mm:ss AM\PM)
+virtual_machine_name (MM/DD/YYY -hh:mm:ss AM\PM)
 ```
 
 Names are limited to 100 characters or less, and the name cannot be blank. 
@@ -119,7 +119,7 @@ Names are limited to 100 characters or less, and the name cannot be blank.
 **Using PowerShell**
 
 ``` powershell
-Rename-VMCheckpoint –VMName <virtual machine name> –Name <checkpoint name> --NewName <new checkpoint name>
+Rename-VMCheckpoint -VMName <virtual machine name> -Name <checkpoint name> --NewName <new checkpoint name>
 ```
 
 ## Deleting checkpoints
@@ -140,7 +140,7 @@ To cleanly delete a checkpoint:
  
 **Using PowerShell**
 ```powershell
-Remove-VMCheckpoint –VMName <virtual machine name> –Name <checkpoint name>
+Remove-VMCheckpoint -VMName <virtual machine name> -Name <checkpoint name>
 ```
 
 ## Exporting checkpoints
@@ -149,7 +149,7 @@ Export bundles the checkpoint as a virtual machine so the checkpoint can be move
 
 **Using PowerShell**
 ``` powershell
-Export-VMCheckpoint –VMName <virtual machine name>  –Name <checkpoint name> -Path <path for export>
+Export-VMCheckpoint -VMName <virtual machine name>  -Name <checkpoint name> -Path <path for export>
 ```
 
 ## Enable or disable checkpoints

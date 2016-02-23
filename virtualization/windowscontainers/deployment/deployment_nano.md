@@ -98,7 +98,7 @@ PS C:\> Copy-Item $WindowsMedia\NanoServer\Convert-WindowsImage.ps1 c:\nano
 
 PS C:\> Copy-Item $WindowsMedia\NanoServer\NanoServerImageGenerator.psm1 c:\nano
 ```
-Run the following to create a Nano Server virtual hard drive. The `–Containers` parameter indicates that the container package is installed, and the `–Compute` parameter takes care of the Hyper-V package. Hyper-V is only required if using Hyper-V containers.
+Run the following to create a Nano Server virtual hard drive. The `-Containers` parameter indicates that the container package is installed, and the `-Compute` parameter takes care of the Hyper-V package. Hyper-V is only required if using Hyper-V containers.
 
 ```powershell
 PS C:\> Import-Module C:\nano\NanoServerImageGenerator.psm1
@@ -206,7 +206,7 @@ If the container host itself will be running on a Hyper-V virtual machine, and w
 **Note** - The virtual machines must be turned off when running this command.
 
 ```poweshell
-PS C:\> Set-VMProcessor –VMName <VM Name> -Count 2
+PS C:\> Set-VMProcessor -VMName <VM Name> -Count 2
 ``` 
 
 ### <a name=dyn></a>Disable Dynamic Memory

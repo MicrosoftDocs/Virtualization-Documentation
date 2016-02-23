@@ -25,7 +25,7 @@ When the installation has completed you are prompted to restart your computer.
 2. Run the following command:
 
 ```powershell
-Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V –All
+Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V -All
 ```
 When the installation has completed you need to reboot the computer.
 
@@ -46,4 +46,4 @@ DISM /Online /Enable-Feature /All /FeatureName:Microsoft-Hyper-V
 
 
 ## Next Step - Create a Virtual Switch
-[Create a Virtual Switch](walkthrough_virtual_switch.md) 
+[Create a Virtual Switch](walkthrough_virtual_switch.md)

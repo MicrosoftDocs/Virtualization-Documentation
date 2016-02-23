@@ -92,7 +92,7 @@ Import-VM -Path ‘C:\<vm export path>\2B91FEB3-F1E0-4FFF-B8BE-29CED892A95A.vmcx
 To complete a copy import and move the virtual machine files to the default Hyper-V location, the command would be similar to this.
 
 ``` PowerShell
-Import-VM -Path 'C:\<vm export path>\2B91FEB3-F1E0-4FFF-B8BE-29CED892A95A.vmcx' –Copy -GenerateNewId
+Import-VM -Path 'C:\<vm export path>\2B91FEB3-F1E0-4FFF-B8BE-29CED892A95A.vmcx' -Copy -GenerateNewId
 ```
 
 For more information, see [Import-VM](https://technet.microsoft.com/library/hh848495.aspx).
