@@ -1,3 +1,7 @@
+---
+author: neilpeterson
+---
+
 # Hyper-V Containers
 
 **This is preliminary content and subject to change.** 
@@ -61,7 +65,7 @@ DEMO               HyperV
 
 ### Create Container <!--docker-->
 
-Managing Hyper-V Containers with Docker is almost identical to managing Windows Server Containers. When creating a Hyper-V Container with Docker, the `–-isolation=hyperv` parameter is used.
+Managing Hyper-V Containers with Docker is almost identical to managing Windows Server Containers. When creating a Hyper-V Container with Docker, the `--isolation=hyperv` parameter is used.
 
 ```powershell
 docker run -it --isolation=hyperv 646d6317b02f cmd
@@ -132,7 +136,7 @@ PS C:\> Start-Container $con
 Create Remote PS Session with the container.
 
 ```powershell
-PS C:\> Enter-PSSession -ContainerId $con.ContainerId –RunAsAdministrator
+PS C:\> Enter-PSSession -ContainerId $con.ContainerId -RunAsAdministrator
 ```
 
 From the remote container session return all processes with a process name of csrss. Take note of the process id for the running csrss process (1228 in the example below).
@@ -186,7 +190,7 @@ PS C:\> Start-Container $con
 Create a remote PS session with the Hyper-V container.
 
 ```powershell
-PS C:\> Enter-PSSession -ContainerId $con.ContainerId –RunAsAdministrator
+PS C:\> Enter-PSSession -ContainerId $con.ContainerId -RunAsAdministrator
 ```
 
 Return a list of csrss process running inside the Hyper-V container. Take note of the process id for the csrss process (956 in the below example).

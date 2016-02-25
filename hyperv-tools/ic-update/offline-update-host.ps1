@@ -7,7 +7,7 @@ Param(
 )
 
 #Mount the VHD
-$diskNo=(Mount-VHD -Path $vhdPath –Passthru).DiskNumber
+$diskNo=(Mount-VHD -Path $vhdPath -Passthru).DiskNumber
 
 #Get the driver letter associated with the mounted VHD, note this assumes it only has one partition if there are more use the one with OS bits
 $driveLetter=(Get-Disk $diskNo | Get-Partition).DriveLetter
