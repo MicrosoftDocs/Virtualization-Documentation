@@ -1,3 +1,7 @@
+---
+author: neilpeterson
+---
+
 # Management Interoperability
 
 **This is preliminary content and subject to change.** 
