@@ -8,5 +8,6 @@
 	    "virtualization/windowscontainers/**/*.md",  "virtualization/windowscontainers/**/**/*.md",
   ],
   "includeDependencies": true,
-  "autoPush": true
+  "autoPush": true,
+  "useJavascriptMarkdownTransformer": true
 }
