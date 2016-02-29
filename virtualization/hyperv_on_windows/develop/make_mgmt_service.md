@@ -46,7 +46,7 @@ $friendlyName = "HV Socket Demo"
 
 # Create a new random GUID and add it to the services list then add the name as a value
 
-$service = New-Item -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Virtualization\GuestCommunicationServices" -Name ([System.Guid]::NewGuid().ToString())
+$service = New-Item -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Virtualization\GuestCommunicationServices" -Name ((New-Guid).Guid)
 
 $service.SetValue("ElementName", $friendlyName)
 
@@ -59,7 +59,7 @@ $service.PSChildName | clip.exe
 ``` 
 HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Virtualization\GuestCommunicationServices\
 ```  
-In this registry location, you'll see several GUIDS.  Those are our in-box services.
+In this registry location, you'll see several GUIDs.  Those are our in-box services.
 
 Information in the registry per service:
 * `Service GUID`   
@@ -80,7 +80,7 @@ HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Virtualization\G
 
 > ** Tip: **  To generate a GUID in PowerShell and copy it to the clipboard, run:  
 ``` PowerShell
-[System.Guid]::NewGuid().ToString() | clip.exe
+(New-Guid).Guid | clip.exe
 ```
 
 ## Creating a Hyper-V socket
@@ -105,7 +105,7 @@ For a Hyper-V socket:
 * protocol - `HV_PROTOCOL_RAW`
 
 
-Here is an example declaration/instanciation:  
+Here is an example declaration/instantiation:  
 ``` C
 SOCKET sock = socket(AF_HYPERV, SOCK_STREAM, HV_PROTOCOL_RAW);
 ```
@@ -141,7 +141,7 @@ struct SOCKADDR_HV
 };
 ```
 
-In lieu of an IP or hostname, AF_HYPERV endpoints rely heavily on two GUIDS:  
+In lieu of an IP or hostname, AF_HYPERV endpoints rely heavily on two GUIDs:  
 * VM ID – this is the unique ID assigned per VM.  A VM’s ID can be found using the following PowerShell snippet.  
   ```PowerShell
   (Get-VM -Name $VMName).Id
