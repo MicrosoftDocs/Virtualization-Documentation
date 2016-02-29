@@ -19,6 +19,14 @@ If you install updates against the Windows container host OS you will need to up
 **Work Around:**   
 Download and install a container base image matching the OS version and patch level of the container host.
 
+### All non-C:/ drives are visible in containers
+All non-C:/ drives available to the container host are automatically mapped into new running Windows Containers.
+
+At this point in time there is no way to selectively map folders into a container, as an interim work around drives are mapped automatically.
+
+**Work Around: **  
+We're working on it.  In the future there will be folder sharing.
+
 ### Default firewall behavior
 In a container host and containers environment, you only have the container host's firewall. All the firewall rules configured in the container host will propagate to all of its containers.
 
