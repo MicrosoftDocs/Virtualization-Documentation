@@ -443,7 +443,7 @@ Install-ContainerHost
     {        
         $imageName = "WindowsServerCore"
 
-        if ($HyperV -or Test-Nano)
+        if ($HyperV -or (Test-Nano))
         {
             $imageName = "NanoServer"
         }
