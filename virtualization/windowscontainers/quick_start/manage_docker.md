@@ -160,7 +160,7 @@ C:\> notepad c:\build\dockerfile
 
 Copy the following text into the dockerfile and save the file. These commands instruct Docker to create a new image, using `windowsservercore` as the base, and include the modifications specified with `RUN`. For more information on Dockerfiles, see the [Dockerfile reference at docker.com](http://docs.docker.com/engine/reference/builder/).
 
-```powershell
+```
 FROM windowsservercore
 RUN dism /online /enable-feature /all /featurename:iis-webserver /NoRestart
 RUN echo "Hello World - Dockerfile" > c:\inetpub\wwwroot\index.html
