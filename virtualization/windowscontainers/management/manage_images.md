@@ -200,3 +200,6 @@ IMAGE               CREATED             CREATED BY          SIZE                
 2236b49aaaef        3 minutes ago       cmd                 171.2 MB
 6801d964fda5        2 weeks ago                             0 B
 ```
+
+### Optimizing Images
+There are a lot of factors that influence the size and how quickly an image can be built and deployed. Read more at [Windows Dockerfiles](manage_windows_dockerfile.md)
