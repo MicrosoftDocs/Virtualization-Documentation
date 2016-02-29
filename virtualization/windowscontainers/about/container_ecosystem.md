@@ -27,6 +27,7 @@ The container ecosystem provides ways to manage containers, share containers and
 
 ![](media/containerEcosystem.png)
 
+
 Microsoft wants to empower developer choice and productivity as they build these next-gen apps.  Our goal is to fuel developer productivity which means enabling applications to target any Microsoft cloud without having to modify, rewrite, or reconfigure code.
 
 Microsoft is committed to being open and ecosystem friendly.  We actively support the coming together of multiple developer ecosystems of interest – such as Windows and Linux – to drive innovation.
