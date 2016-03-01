@@ -8,12 +8,12 @@ This document walks through creating a simple application built on Hyper-V socke
 
 **Supported Host OS**
 * Windows 10
-* Windows Server Technical Preview 3
+* Windows Server Technical Preview 3 and later
 * Future releases (Server 2016 +)
 
 **Supported Guest OS**
 * Windows 10
-* Windows Server Technical Preview 3
+* Windows Server Technical Preview 3 and later
 * Future releases (Server 2016 +)
 
 **Capabilities and Limitations**  
@@ -30,7 +30,7 @@ To write a simple application, you'll need:
 * C compiler.  If you don't have one, checkout [Visual Studio Code](https://aka.ms/vs)
 * A computer running Hyper-V with and a virtual machine.  
   * Host and guest (VM) OS must be Windows 10, Windows Server Technical Preview 3, or later.
-* Windows SDK -- here's a link to the [Win10 SDK](https://dev.windows.com/en-us/downloads/windows-10-sdk) which includes `hvsocket.h`.
+* Windows SDK -- We're in the process of publishing this.
 
 ## Register a new application
 In order to use Hyper-V sockets, the application must be registered with the Hyper-V Host's registry.
@@ -101,7 +101,7 @@ SOCKET WSAAPI socket(
 
 For a Hyper-V socket:
 * Address family - `AF_HYPERV`
-* type - `SOCK_STREAM`, `SOCK_DGRAM`, or `SOCK_RAW`
+* type - `SOCK_STREAM`
 * protocol - `HV_PROTOCOL_RAW`
 
 
