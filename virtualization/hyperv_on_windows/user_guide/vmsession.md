@@ -40,7 +40,7 @@ To learn more about these cmdlets, see [Enter-PSSession](http://technet.microsof
 
 ## Run a script or command with Invoke-Command
 
-You can use the [Invoke-Command](http://technet.microsoft.com/library/hh849719.aspx) cmdlet to run a pre-determined set of commands on the virtual machine. Here is an example of how you can use the Invoke-Command cmdlet where PSTest is the virtual machine name and the script to run (foo.ps1) is in the script folder on the C:\ drive:
+You can use the [Invoke-Command](http://technet.microsoft.com/library/hh849719.aspx) cmdlet to run a pre-determined set of commands on the virtual machine. Here is an example of how you can use the Invoke-Command cmdlet where PSTest is the virtual machine name and the script to run (foo.ps1) is in the script directory on the C drive:
 
  ``` PowerShell
  Invoke-Command -VMName PSTest -FilePath C:\script\foo.ps1 
