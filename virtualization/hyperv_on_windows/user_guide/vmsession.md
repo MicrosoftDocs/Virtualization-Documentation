@@ -34,13 +34,13 @@ Enter-PSSession -VMGUID <VMGUID>
 Exit-PSSession 
 ``` 
 
-> Note:  If you're session won't connect, make sure you're using credentials for the virtual machine you're connecting to -- not the Hyper-V host.
+> Note:  If your session won't connect, make sure you're using credentials for the virtual machine you're connecting to -- not the Hyper-V host.
 
 To learn more about these cmdlets, see [Enter-PSSession](http://technet.microsoft.com/library/hh849707.aspx) and [Exit-PSSession](http://technet.microsoft.com/library/hh849743.aspx). 
 
 ## Run a script or command with Invoke-Command
 
-You can use the [Invoke-Command](http://technet.microsoft.com/library/hh849719.aspx) cmdlet to run a pre-determined set of commands on the virtual machine. Here is an example of how you can use the Invoke-Command cmdlet where PSTest is the virtual machine name and the script to run (foo.ps1) is in the script folder on the C:/ drive:
+You can use the [Invoke-Command](http://technet.microsoft.com/library/hh849719.aspx) cmdlet to run a pre-determined set of commands on the virtual machine. Here is an example of how you can use the Invoke-Command cmdlet where PSTest is the virtual machine name and the script to run (foo.ps1) is in the script folder on the C:\ drive:
 
  ``` PowerShell
  Invoke-Command -VMName PSTest -FilePath C:\script\foo.ps1 
@@ -54,7 +54,7 @@ To run a single command, use the **-ScriptBlock** parameter:
 
 ## Troubleshooting
 
-There are a small set of common error messages surfaced through PowerShell direct.  Here are the most common, some causes, and tools for diagnosing issues.
+There are a small set of common error messages surfaced through PowerShell Direct.  Here are the most common, some causes, and tools for diagnosing issues.
 
 ### Error: A remote session might have ended
 **Error message:**
@@ -88,7 +88,7 @@ Enter-PSSession : Parameter set cannot be resolved using the specified named par
 
 PowerShell Direct has different behaviors when connecting to virtual machines versus Windows containers.  When connecting to a Windows container, the `-RunAsAdministrator` flag allows Administrator connections without explicit credentials.  Since virtual machines do not give the host implied administrator access, you need to explicitly enter credentials.
 
-Administrator credentials can be passed to the virtual machine with the `-credential` parameter or by entering them manually when prompted.
+Administrator credentials can be passed to the virtual machine with the `-Credential` parameter or by entering them manually when prompted.
 
 
 ## Samples
