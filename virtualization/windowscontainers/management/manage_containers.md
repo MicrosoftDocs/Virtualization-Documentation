@@ -59,7 +59,7 @@ PS C:\> Connect-ContainerNetworkAdapter -ContainerName demo -SwitchName NAT
 ```
 
 ### Start a Container
-In order to start the container, a PowerShell object representing that container that will be enumerated. This can be done by placing the output of `Get-Container` into a PowerShell variable.
+In order to start the container, a PowerShell object representing that container will be enumerated. This can be done by placing the output of `Get-Container` into a PowerShell variable.
 
 ```powershell
 PS C:\> $container = Get-Container -Name demo
@@ -79,7 +79,7 @@ PS C:\> Get-Container | Start-Container
 
 ### Connect with Container
 
-PowerShell direct can be used to connect to a container. This may be helpful if you need to manually perform a task such as installing software, starting a processes or troubleshooting a container. Because PowerShell direct is being used, a PowerShell session can be created with the container regardless of network configuration. For more information on PowerShell Direct see the [PowerShell Direct Blog](http://blogs.technet.com/b/virtualization/archive/2015/05/14/powershell-direct-running-powershell-inside-a-virtual-machine-from-the-hyper-v-host.aspx)
+PowerShell Direct can be used to connect to a container. This may be helpful if you need to manually perform a task such as installing software, starting a process, or troubleshooting a container. Because PowerShell Direct is being used, a PowerShell session can be created with the container regardless of network configuration. For more information on PowerShell Direct see the [PowerShell Direct user guide](https://msdn.microsoft.com/en-us/virtualization/hyperv_on_windows/user_guide/vmsession)
 
 To create an interactive session with the container, use the `Enter-PSSession` command.
 
@@ -157,7 +157,7 @@ Use `docker run` to create a container with Docker.
 PS C:\> docker run -p 80:80 windowsservercoreiis
 ```
 
-For more information on the Docker run command, see the [Docker run reference}( https://docs.docker.com/engine/reference/run/).
+For more information on the Docker run command, see the [Docker run reference]( https://docs.docker.com/engine/reference/run/).
 
 ### Stop a Container <!--docker-->
 
