@@ -281,7 +281,7 @@ Shared folders expose a directory from the container host, to the container. Whe
 Create a directory named `c:\share\en-us` on the container host.
 
 ```powershell
-S C:\> New-Item -Type Directory c:\share\en-us
+PS C:\> New-Item -Type Directory c:\share\en-us
 
     Directory: C:\share
 
@@ -500,7 +500,7 @@ PS C:\> Enter-PSSession -ContainerName IISApp -RunAsAdministrator
 Run the following command to remove the IIS splash screen.
 
 ```powershell
-[IIS]: PS C:\> del C:\inetpub\wwwroot\iisstart.htm
+[IISApp]: PS C:\> del C:\inetpub\wwwroot\iisstart.htm
 ```
 Run the following command to replace the default IIS site with a new static site.
 
