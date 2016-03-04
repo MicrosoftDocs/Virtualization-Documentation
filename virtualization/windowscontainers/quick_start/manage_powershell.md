@@ -281,7 +281,7 @@ Shared folders expose a directory from the container host, to the container. Whe
 Create a directory named `c:\share\en-us` on the container host.
 
 ```powershell
-S C:\> New-Item -Type Directory c:\share\en-us
+PS C:\> New-Item -Type Directory c:\share\en-us
 
     Directory: C:\share
 
