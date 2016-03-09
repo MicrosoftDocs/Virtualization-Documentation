@@ -8,12 +8,12 @@ This document walks through creating a simple application built on Hyper-V socke
 
 **Supported Host OS**
 * Windows 10
-* Windows Server Technical Preview 3
+* Windows Server Technical Preview 3 and later
 * Future releases (Server 2016 +)
 
 **Supported Guest OS**
 * Windows 10
-* Windows Server Technical Preview 3
+* Windows Server Technical Preview 3 and later
 * Future releases (Server 2016 +)
 
 **Capabilities and Limitations**  
@@ -30,7 +30,7 @@ To write a simple application, you'll need:
 * C compiler.  If you don't have one, checkout [Visual Studio Code](https://aka.ms/vs)
 * A computer running Hyper-V with and a virtual machine.  
   * Host and guest (VM) OS must be Windows 10, Windows Server Technical Preview 3, or later.
-* Windows SDK -- here's a link to the [Win10 SDK](https://dev.windows.com/en-us/downloads/windows-10-sdk) which includes `hvsocket.h`.
+* Windows SDK -- We're in the process of publishing this.
 
 ## Register a new application
 In order to use Hyper-V sockets, the application must be registered with the Hyper-V Host's registry.
@@ -46,7 +46,7 @@ $friendlyName = "HV Socket Demo"
 
 # Create a new random GUID and add it to the services list then add the name as a value
 
-$service = New-Item -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Virtualization\GuestCommunicationServices" -Name ([System.Guid]::NewGuid().ToString())
+$service = New-Item -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Virtualization\GuestCommunicationServices" -Name ((New-Guid).Guid)
 
 $service.SetValue("ElementName", $friendlyName)
 
@@ -59,7 +59,7 @@ $service.PSChildName | clip.exe
 ``` 
 HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Virtualization\GuestCommunicationServices\
 ```  
-In this registry location, you'll see several GUIDS.  Those are our in-box services.
+In this registry location, you'll see several GUIDs.  Those are our in-box services.
 
 Information in the registry per service:
 * `Service GUID`   
@@ -80,7 +80,7 @@ HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Virtualization\G
 
 > ** Tip: **  To generate a GUID in PowerShell and copy it to the clipboard, run:  
 ``` PowerShell
-[System.Guid]::NewGuid().ToString() | clip.exe
+(New-Guid).Guid | clip.exe
 ```
 
 ## Creating a Hyper-V socket
@@ -101,11 +101,11 @@ SOCKET WSAAPI socket(
 
 For a Hyper-V socket:
 * Address family - `AF_HYPERV`
-* type - `SOCK_STREAM`, `SOCK_DGRAM`, or `SOCK_RAW`
+* type - `SOCK_STREAM`
 * protocol - `HV_PROTOCOL_RAW`
 
 
-Here is an example declaration/instanciation:  
+Here is an example declaration/instantiation:  
 ``` C
 SOCKET sock = socket(AF_HYPERV, SOCK_STREAM, HV_PROTOCOL_RAW);
 ```
@@ -141,7 +141,7 @@ struct SOCKADDR_HV
 };
 ```
 
-In lieu of an IP or hostname, AF_HYPERV endpoints rely heavily on two GUIDS:  
+In lieu of an IP or hostname, AF_HYPERV endpoints rely heavily on two GUIDs:  
 * VM ID – this is the unique ID assigned per VM.  A VM’s ID can be found using the following PowerShell snippet.  
   ```PowerShell
   (Get-VM -Name $VMName).Id

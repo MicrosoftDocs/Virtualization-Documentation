@@ -33,7 +33,7 @@ In addition to creating a container as a Hyper-V container at build time, contai
 Create a new Container with the default runtime. 
 
 ```powershell
-PS C:\> New-Container -Name DEMO -ContainerImageName nanoserver -SwitchName NAT
+PS C:\> $con = New-Container -Name DEMO -ContainerImageName nanoserver -SwitchName NAT
 ```
 Return the runtime property from the container, notice that the runtime is set as default. 
 
@@ -124,7 +124,7 @@ Handles  NPM(K)    PM(K)      WS(K) VM(M)   CPU(s)     Id  SI ProcessName
 Create New Windows Server Container:
 
 ```powershell
-PS C:\> New-Container -Name WINCONT -ContainerImageName WindowsServerCore -SwitchName "Virtual Switch"
+PS C:\> $con = New-Container -Name WINCONT -ContainerImageName WindowsServerCore -SwitchName "Virtual Switch"
 ```
 
 Start the Container:
