@@ -168,7 +168,18 @@ microsoft/rails         Ruby on Rails installed in a Windows Serve...   1       
 microsoft/redis         Redis installed in a Windows Server Core b...   1                    [OK]
 microsoft/ruby          Ruby installed in a Windows Server Core ba...   1                    [OK]
 microsoft/sqlite        SQLite installed in a Windows Server Core ...   1                    [OK]
+microsoft/nano-golang   Go Programming Language installed in a Nan...   1                    [OK]
+microsoft/nano-httpd    Apache httpd installed in a Nano Server ba...   1                    [OK]
+microsoft/nano-iis      Internet Information Services (IIS) instal...   1         [OK]       [OK]
+microsoft/nano-mysql    MySQL installed in a Nano Server based con...   1                    [OK]
+microsoft/nano-nginx    Nginx installed in a Nano Server based con...   1                    [OK]
+microsoft/nano-node     Node installed in a Nano Server based cont...   1                    [OK]
+microsoft/nano-python   Python installed in a Nano Server based co...   1                    [OK]
+microsoft/nano-rails    Ruby on Rails installed in a Nano Server b...   1                    [OK]
+microsoft/nano-redis    Redis installed in a Nano Server based con...   1                    [OK]
+microsoft/nano-ruby     Ruby installed in a Nano Server based cont...   1                    [OK]
 ```
+Note – the images that start with "nano-" are for Nano Server containers.
 
 To download an image from Docker Hub, use `docker pull`.
 
