@@ -9,7 +9,7 @@ This is an initial set of PowerShell scripts that utalize OpenSSL to automate cr
 ## Example Workflow:
 On your client machine run:
 ```powershell
-  .\DockerCertificateTools.ps1
+  . .\DockerCertificateTools.ps1
   Install-OpenSSL
   New-OpenSSLCertAuth
   New-ClientKeyandCert
