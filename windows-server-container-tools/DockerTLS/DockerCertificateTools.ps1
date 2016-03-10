@@ -17,7 +17,7 @@
         Provides CmdLets for Installing OpenSSL, Creating a certifcate authority, Creating Server/Client Certificates.
                         
     .EXAMPLE
-        .\DockerCertificateTools.ps1
+        . .\DockerCertificateTools.ps1
         Install-OpenSSL
         New-OpenSSLCertAuth
         New-ClientKeyandCert
@@ -28,9 +28,9 @@
 $Global:PathToOpenSSL = "C:\Program Files\OpenSSL\bin\openssl.exe"
 $Global:caPasskey = "pass:p@ssw0rd"
 
+$Global:keyPath = "c:\myDockerKeys\"
 $Global:caFile = ($keyPath + "ca.pem")
 $Global:caKayFile = ($keyPath + "ca-key.pem")
-$Global:keyPath = "c:\myDockerKeys\"
 
 <#    
     .SYNOPSIS
