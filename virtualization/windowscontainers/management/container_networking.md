@@ -4,7 +4,7 @@ author: neilpeterson
 
 # Container Networking
 
-**This is preliminary content and subject to change.** 
+**This is preliminary content and subject to change.**
 
 Windows containers function similarly to virtual machines in regards to networking. Each container has a virtual network adapter, which is connected to a virtual switch, over which inbound and outbound traffic is forwarded. Two types of network configuration are available.
 
@@ -30,10 +30,10 @@ New-VMSwitch -Name "NAT" -SwitchType NAT -NATSubnetAddress "172.16.0.0/12"
 Create the Network Address Translation Object. This object is responsible for the NAT address translation. For more information on the **New-NetNat** command, see the [New-NetNat Reference](https://technet.microsoft.com/en-us/library/dn283361.aspx)
 
 ```powershell
-New-NetNat -Name NAT -InternalIPInterfaceAddressPrefix "172.16.0.0/12" 
+New-NetNat -Name NAT -InternalIPInterfaceAddressPrefix "172.16.0.0/12"
 ```
 
-### Container Configuration 
+### Container Configuration
 
 When creating a Windows Container, a virtual switch can be selected for the container. When the container is connected to a virtual switch configured to use NAT, the container will receive a translated address.
 
@@ -110,7 +110,7 @@ The external virtual switch can now be connected to a container, which is then c
 When starting the Docker daemon, a network bridge can be selected. When running Docker on Windows, this is the External or NAT virtual switch. The following example starts the Docker daemon, specifying a virtual switch named `Virtual Switch`.
 
 ```powershell
-Docker daemon -D -b “Virtual Switch” -H 0.0.0.0:2375
+docker daemon -D -b "Virtual Switch"
 ```
 
 If you have deployed the container host, and Docker using the scripts provide in the Windows Container Quick Starts, an internal virtual switch is created with a type of NAT, and a Docker service is created and preconfigured to use this switch. To change the virtual switch that the Docker service is using, the Docker service needs to be stopped, a configuration file modified, and the service started again.
@@ -124,7 +124,7 @@ Stop-Service docker
 The configuration file can be found at `c:\programdata\docker\runDockerDaemon.cmd`. Edit the following line, replacing `Virtual Switch` with the name of the virtual switch to be used by the Docker service.
 
 ```powershell
-docker daemon -D -b “New Switch Name"
+docker daemon -D -b "New Switch Name"
 ```
 Finally start the service.
 
