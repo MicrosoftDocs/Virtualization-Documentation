@@ -182,6 +182,11 @@ For more information on Container image management see [Windows Container Images
 
 The Docker Daemon and command line interface are not shipped with Windows, and not installed with the Windows Container feature. Docker is not a requirement for working with Windows containers. If you would like to install Docker, follow the instructions in this article [Docker and Windows](./docker_windows.md).
 
+You can use the `Enter-PSSession` command in the Hyper-V management host to connect to the container host.
+
+```powershell
+PS C:\> Enter-PSSession -VMName <VM Name>
+```
 
 ## Hyper-V Container Host
 
