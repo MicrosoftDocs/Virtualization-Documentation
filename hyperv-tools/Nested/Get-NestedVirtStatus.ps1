@@ -3,7 +3,7 @@
 #
 # Checks a virtualization host and VM for compatibility with Nested Virtualization
 #
-# Author: Allen Marshall
+# Author: Allen Marshall, Theo Thompson
 
 
 #
@@ -22,7 +22,7 @@ if ($myWindowsPrincipal.IsInRole($adminRole)) {
     # We are running as an administrator, so change the title and background colour to indicate this
     $Host.UI.RawUI.WindowTitle = $myInvocation.MyCommand.Definition + "(Elevated)";
     #$Host.UI.RawUI.BackgroundColor = "DarkBlue";
-    Clear-Host;
+
     } else {
     # We are not running as an administrator, so relaunch as administrator
 
@@ -51,10 +51,12 @@ $HostCfgErrorMsgs = $null # for debug purposes
 $HostCfgErrorMsgs = @{
     "noHypervisor" = "Hypervisor is not running on this host";
     "noFullHyp" = "Full Hyper-V role is not enabled on this host";
-    "BcdDisabled" = "Nested virtualization is disabled via BCD HYPERVISORLOADOPTIONS"
+    "BcdDisabled" = "Nested virtualization is disabled via BCD HYPERVISORLOADOPTIONS";
     "VbsRunning" = "Virtualization Based Security is running";
-    "VbsEnabled" = "The VBS enable reg key is set";
-    "UnsupportedBuild" = "Nested virtualization requires a build later than 10565"
+    "VbsRegKey" = "The VBS enable reg key is set";
+    "UnsupportedBuild" = "Nested virtualization requires a build later than 10565";
+    "UnsupportedProcessor" = "Running on an unsupported (AMD) processor";
+    "VbsPresent" = 'Virtualization Based Security is partly installed on you system. To completely remove Virtualizaiton Based Security, please follow instructions under "Remove Credential Guard" found here: https://technet.microsoft.com/en-us/library/mt483740%28v=vs.85%29.aspx'; 
     }
 
 $HostCfgErrors = $null
@@ -67,7 +69,16 @@ $HostCfgErrors = @()
 
 # get computer details
 Write-Host "Getting system information..." -NoNewline
-$comp = gwmi Win32_ComputerSystem
+
+if($PSVersionTable.PSVersion.Major -ge 3){
+    $comp = Get-CimInstance -ClassName Win32_ComputerSystem
+    $proc = Get-CimInstance -ClassName Win32_Processor
+}
+else{
+    $comp = Get-WmiObject Win32_ComputerSystem
+    $proc = Get-WmiObject Win32_Processor
+}
+
 Write-Host "done."
 
 # grab build info out of registry
@@ -84,8 +95,11 @@ $HostNested = New-Object PSObject
 
 # computer info
 Add-Member -InputObject $HostNested NoteProperty -Name "Computer" -Value $comp.Name
-Add-Member -InputObject $HostNested NoteProperty -Name "Maufacturer" -Value $comp.Manufacturer
+Add-Member -InputObject $HostNested NoteProperty -Name "Manufacturer" -Value $comp.Manufacturer
 Add-Member -InputObject $HostNested NoteProperty -Name "Model" -Value $comp.Model
+
+# processor info
+Add-Member -InputObject $HostNested NoteProperty -Name "ProccessorManufacturer" -Value $proc.Manufacturer
 
 # build info
 Add-Member -InputObject $HostNested NoteProperty -Name "Product Name" -Value $a.ProductName
@@ -105,12 +119,8 @@ Add-Member -InputObject $HostNested NoteProperty -Name "IumInstalled" -Value $fa
 Add-Member -InputObject $HostNested NoteProperty -Name "VbsRunning" -Value $false
 Add-Member -InputObject $HostNested NoteProperty -Name "VbsRegEnabled" -Value $false
 Add-Member -InputObject $HostNested NoteProperty -Name "BuildSupported" -Value $true
+Add-Member -InputObject $HostNested NoteProperty -Name "VbsPresent" -Value $false
 
-
-#
-# Validate the build number is >= TH2
-# TODO: (what's that build num?)
-#
 
 Write-Host "Validating host information..." -NoNewline
 if ($a.BuildLabEx.split('.')[0] -lt 10565) {
@@ -119,6 +129,14 @@ if ($a.BuildLabEx.split('.')[0] -lt 10565) {
     $HostCfgErrors += ($HostCfgErrorMsgs["UnsupportedBuild"])
 }
 
+#
+# Is this an intel processor
+#
+if($HostNested.ProccessorManufacturer -ne "GenuineIntel")
+{
+    $HostCfgErrors += ($HostCfgErrorMsgs["UnsupportedProcessor"])
+    $HostNested.HostNestedSupport = $false
+}
 
 #
 # Is this even a Hyper-V host?
@@ -141,7 +159,7 @@ $hvloadoptions = bcdedit /enum | Select-String "hypervisorloadoptions"
 if ($hvloadoptions) {
     $HostNested.HypervisorLoadOptionsPresent = $true
     $setting = $hvloadoptions.line.split(' ')
-    if($hvloadoptions.line –match “OFFERNESTEDVIRT=FALSE”) {
+    if($hvloadoptions.line -match “OFFERNESTEDVIRT=FALSE”) {
         $HostNested.HostNestedSupport = $false
         $HostCfgErrors += ($HostCfgErrorMsgs["BcdDisabled"])
 
@@ -162,12 +180,12 @@ if ($hvloadoptions) {
 # N.B. The presence of the IUM feature doesn't mean it's actually running,
 # so IUM being installed doesn't by itself preclude Nested
 
-if ((Get-WindowsFeature -Name Isolated-UserMode).InstallState -eq 'Installed') {
+if(Get-WindowsOptionalFeature -Online | where FeatureName -eq IsolatedUserMode | where State -eq Enabled) {
     $HostNested.IumInstalled = $true
-    }
+}
 
 # is VBS running?
-$dg = Get-CimInstance -classname Win32_DeviceGuard -namespace root\Microsoft\Windows\DeviceGuard
+$dg = Get-CimInstance -classname Win32_DeviceGuard -namespace root\Microsoft\Windows\DeviceGuard -ea SilentlyContinue
 if ($dg.VirtualizationBasedSecurityStatus) {
     $HostNested.VbsRunning = $true
     $HostNested.HostNestedSupport = $false
@@ -175,20 +193,33 @@ if ($dg.VirtualizationBasedSecurityStatus) {
     }
 
 # Is EnableVirtualizationBasedSecurity set in the registry?
-$key = (Get-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\DeviceGuard').EnableVirtualizationBasedSecurity
+$key = (Get-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\DeviceGuard' -ErrorAction SilentlyContinue).EnableVirtualizationBasedSecurity
 if ($key -eq 1) {
     $HostNested.VbsRegEnabled = $true
     $HostNested.HostNestedSupport = $false
-    $HostCfgErrors += ($HostCfgErrorMsgs["VbsEnabled"])
+    $HostCfgErrors += ($HostCfgErrorMsgs["VbsRegKey"])
     }
 
-
+# Check for residual Device Guard EFI variables
+if((Get-Command Confirm-SecureBootUEFI -ea SilentlyContinue) -and (Confirm-SecureBootUEFI -ea SilentlyContinue)){
+    $VbsEventErrors = Get-WinEvent -LogName System -FilterXPath "*[System[EventID=124]]" -ea SilentlyContinue
+    if(($VbsEventErrors.Count -gt 0)) {
+        # Check if event was generated from latest boot
+        $BootEvents = get-winevent -LogName System -FilterXPath "*[System/Provider[@Name='Microsoft-Windows-Kernel-General'] and System/EventID=12] "
+        $LastBoot = $BootEvents[0].TimeCreated # returns newest by default 
+        $EfiBoot = $VbsEventErrors[0].TimeCreated 
+        if($LastBoot -lt $EfiBoot){
+            $HostNested.VbsPresent = $true
+            $HostNested.HostNestedSupport = $false
+            $HostCfgErrors += ($HostCfgErrorMsgs["VbsPresent"])
+        }
+    } 
+}
 #
 # show results
 #
 
 Write-Host "done."
-Clear-Host
 Write-Host
  
 Write-Host ("The virtualization host " + $HostNested.Computer + " supports nested virtualization: ") -NoNewline

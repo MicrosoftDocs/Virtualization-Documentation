@@ -9,9 +9,9 @@
     $LocalSourceRoot
 )
 
-$containerImageName = "NodeJSBase"
+$containerImageName = "NodeBase"
 $containerImagePublisher = $env:Username
-$containerImageVersion = "4.0.0"
+$containerImageVersion = "5.0.0"
 
 $containerScript = {
     Param(
@@ -19,7 +19,7 @@ $containerScript = {
         $LocalSourceRoot
     )
     $tempdir = Join-Path -Path $env:temp -ChildPath "$(Get-Date -format 'yyyyMMddhhmmss')"
-    $sourceuri = "https://nodejs.org/dist/v4.0.0/node-v4.0.0-x64.msi"
+    $sourceuri = "https://nodejs.org/dist/v5.0.0/node-v5.0.0-x64.msi"
     $installer = Split-Path $sourceuri -Leaf
     $installerpath = Join-Path -Path $tempdir -ChildPath $installer
 	$log = Join-Path -Path $env:SystemDrive -ChildPath "log\$($installer).log"
