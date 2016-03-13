@@ -13,6 +13,8 @@ There are two types of container images:
 - Base OS Images – these are provided by Microsoft and include the core OS components. 
 - Container Images – a container image that has been created from a Base OS Image.
 
+**Using the Install-ContainerImage cmdlet installs a BASE OS image for use in either PowerShell or Docker managed containers.  If you download a BASE OS image and it does not show up under Docker after downloading.  Restart the Docker service using the services control panel applet or the command 'sc docker stop' and then 'sc docker start'
+
 ## PowerShell
 
 ### List Images <!--1-->
