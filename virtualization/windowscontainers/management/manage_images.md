@@ -65,10 +65,10 @@ For more information on Container image management see [Windows Container Images
 
 ### Tag Images
 
-When running a Docker command such as Docker run, the Docker engine by defaults searches for an image with a version of ‘latest’. The Windows Server Core and Nano Server base OS images will need to be given this tag. To do so, use the `docker tag command`. For more information on `docker tag` see 
+When running a Docker command such as `docker run, the Docker engine by defaults searches for an image with a version of ‘latest’. The Windows Server Core and Nano Server base OS images will need to be given this tag. To do so, use the `docker tag command`. For more information on `docker tag` see [Tag, push, and pull you images on docker.com](https://docs.docker.com/mac/step_six/). 
 
 ```powershell
-docker tag 290ab6758cec windowsservercore:latest
+PS C:\> docker tag <image id> windowsservercore:latest
 ```
 
 ## Manage Images PowerShell
