@@ -11,8 +11,9 @@ Container images are used to deploy containers. These images can include an oper
 There are two types of container images:
 
 - **Base OS Images** – these are provided by Microsoft and include the core OS components. 
-- **Container Images** – a container image that has been created from a Base OS Image.  
+- **Container Images** – a container image that has been created from a Base OS Image.
 
+This document details installing and managing base OS images for both PowerShell and Docker.
 
 ## Install Base OS Images
 
@@ -76,7 +77,7 @@ PS C:\> docker tag <image id> windowsservercore:latest
 
 ### List Images <!--1-->
 
-Run `get-containerImage` to return a list of images on the container host. The container image type is differentiated when with the `IsOSImage` property.
+Run `Get-ContainerImage` to return a list of images on the container host. The container image type is differentiated when with the `IsOSImage` property.
 
 ```powershell
 PS C:\> Get-ContainerImage
@@ -107,7 +108,7 @@ PS C:\> Get-ContainerImage -Name newimage | Remove-ContainerImage -Force
 
 ### Image Dependency <!--1-->
 
-When a new image is created, it becomes dependent on the image that it was created from. This dependency can be seen using the `get-containerimage` command. If a parent image is not listed, this indicates that the image is a Base OS image.
+When a new image is created, it becomes dependent on the image that it was created from. This dependency can be seen using the `Get-ContainerImage` command. If a parent image is not listed, this indicates that the image is a Base OS image.
 
 ```powershell
 PS C:\> Get-ContainerImage | select Name, ParentImage
