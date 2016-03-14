@@ -10,8 +10,9 @@ Container images are used to deploy containers. These images can include an oper
 
 There are two types of container images:
 
-- Base OS Images – these are provided by Microsoft and include the core OS components. 
-- Container Images – a container image that has been created from a Base OS Image.
+- **Base OS Images** – these are provided by Microsoft and include the core OS components. 
+- **Container Images** – a container image that has been created from a Base OS Image.  
+
 
 ## Install Base OS Images
 
@@ -65,7 +66,7 @@ For more information on Container image management see [Windows Container Images
 
 ### Tag Images
 
-When running a Docker command such as `docker run, the Docker engine by defaults searches for an image with a version of ‘latest’. The Windows Server Core and Nano Server base OS images will need to be given this tag. To do so, use the `docker tag command`. For more information on `docker tag` see [Tag, push, and pull you images on docker.com](https://docs.docker.com/mac/step_six/). 
+When running a Docker command such as `docker run`, the Docker engine by defaults searches for an image with a version of ‘latest’. The Windows Server Core and Nano Server base OS images will need to be given this tag. To do so, use the `docker tag command`. For more information on `docker tag` see [Tag, push, and pull you images on docker.com](https://docs.docker.com/mac/step_six/). 
 
 ```powershell
 PS C:\> docker tag <image id> windowsservercore:latest
