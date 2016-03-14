@@ -13,26 +13,11 @@ There are two types of container images:
 - Base OS Images – these are provided by Microsoft and include the core OS components. 
 - Container Images – a container image that has been created from a Base OS Image.
 
-## PowerShell
-
-### List Images <!--1-->
-
-Run `get-containerImage` to return a list of images on the container host. The container image type is differentiated when with the `IsOSImage` property.
-
-```powershell
-PS C:\> Get-ContainerImage
-
-Name              		Publisher    	Version      	IsOSImage
-----              		---------    	-------      	---------
-NanoServer        		CN=Microsoft 	10.0.10586.0 	True
-WindowsServerCore 		CN=Microsoft 	10.0.10586.0 	True
-WindowsServerCoreIIS 	CN=Demo   		1.0.0.0 		False
-
-```
+## Install Base OS Images
 
 ### Installing Base OS Images
 
-Container OS images can be found and installed using the ContainerProvider PowerShell module. Before using this module, it will need to be installed. The following commands can be used to install the module.
+Container OS images can be found and installed for both PowerShell and Docker management using the ContainerProvider PowerShell module. Before using this module, it will need to be installed. The following commands can be used to install the module.
 
 ```powershell
 PS C:\> Install-PackageProvider ContainerProvider -Force
@@ -78,6 +63,31 @@ WindowsServerCore CN=Microsoft 10.0.10586.0 True
 ```  
 For more information on Container image management see [Windows Container Images](../management/manage_images.md).
 
+## Tagging Images for Docker
+
+When running a Docker command such as Docker run, the Docker engine by defaults searches for an image with a version of ‘latest’. The Windows Server Core and Nano Server base OS images will need to be given this tag. To do so, use the `docker tag command`. For more information on `docker tag` see 
+
+```powershell
+docker tag 290ab6758cec windowsservercore:latest
+```
+
+## Manage Images PowerShell
+
+### List Images <!--1-->
+
+Run `get-containerImage` to return a list of images on the container host. The container image type is differentiated when with the `IsOSImage` property.
+
+```powershell
+PS C:\> Get-ContainerImage
+
+Name              		Publisher    	Version      	IsOSImage
+----              		---------    	-------      	---------
+NanoServer        		CN=Microsoft 	10.0.10586.0 	True
+WindowsServerCore 		CN=Microsoft 	10.0.10586.0 	True
+WindowsServerCoreIIS 	CN=Demo   		1.0.0.0 		False
+
+```
+
 ### Creating New Image <!--1-->
 
 ```powershell
@@ -108,7 +118,7 @@ NanoServer
 WindowsServerCore
 ```
 
-## Docker
+## Manage Images Docker
 
 ### List Images <!--2-->
 
