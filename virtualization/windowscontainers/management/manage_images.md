@@ -15,7 +15,7 @@ There are two types of container images:
 
 ## Install Base OS Images
 
-### Installing Base OS Images
+### Installing Images
 
 Container OS images can be found and installed for both PowerShell and Docker management using the ContainerProvider PowerShell module. Before using this module, it will need to be installed. The following commands can be used to install the module.
 
@@ -63,7 +63,7 @@ WindowsServerCore CN=Microsoft 10.0.10586.0 True
 ```  
 For more information on Container image management see [Windows Container Images](../management/manage_images.md).
 
-## Tagging Images for Docker
+### Tag Images
 
 When running a Docker command such as Docker run, the Docker engine by defaults searches for an image with a version of ‘latest’. The Windows Server Core and Nano Server base OS images will need to be given this tag. To do so, use the `docker tag command`. For more information on `docker tag` see 
 
