@@ -15,17 +15,18 @@ There are two types of container images:
 
 This document details installing and managing base OS images for both PowerShell and Docker.
 
-## Install Base OS Images
+## Base OS Images
 
 ### Installing Images
 
-Container OS images can be found and installed for both PowerShell and Docker management using the ContainerProvider PowerShell module. Before using this module, it will need to be installed. The following commands can be used to install the module.
+Container OS images can be found and installed for both PowerShell and Docker management using the ContainerProvider PowerShell module. Before using this module, it will need to be installed. The following command can be used to install the module.
 
 ```powershell
 PS C:\> Install-PackageProvider ContainerProvider -Force
 ```
 
-Return a list of images from PowerShell OneGet package manager:
+Once installed, a list of Base OS images can be returned using `Find-ContainerImage`.
+
 ```powershell
 PS C:\> Find-ContainerImage
 
@@ -43,9 +44,9 @@ PS C:\> Install-ContainerImage -Name NanoServer -Version 10.0.10586.0
 Downloaded in 0 hours, 0 minutes, 10 seconds.
 ```
 
-Likewaise, this command will download and install the Windows Server Core base OS image. The `-version` parameter is optional. Without a base OS image version specified, the latest version will be installed.
+Likewise, this command will download and install the Windows Server Core base OS image. The `-version` parameter is optional. Without a base OS image version specified, the latest version will be installed.
 
-> **Issue** Save-ContainerImage and Install-ContainerImage cmdlets fail to work with a WindowsServerCore container image in a PowerShell remoting session. **Workaround:** Logon to the machine using Remote Desktop and use Save-ContainerImage cmdlet directly.
+> **Issue** Save-ContainerImage and Install-ContainerImage cmdlets may fail to work with a WindowsServerCore container image in a PowerShell remoting session. **Workaround:** Logon to the machine using Remote Desktop and use Save-ContainerImage cmdlet directly.
 
 ```powershell
 PS C:\> Install-ContainerImage -Name WindowsServerCore -Version 10.0.10586.0
@@ -63,13 +64,12 @@ Name              Publisher    Version      IsOSImage
 NanoServer        CN=Microsoft 10.0.10586.0 True
 WindowsServerCore CN=Microsoft 10.0.10586.0 True
 ```  
-For more information on Container image management see [Windows Container Images](../management/manage_images.md).
 
 ### Offline Installation
 
-Base OS images can also be installed without an internet connection. To do so, the images will be downloaded on a computer system with an internet connection, copied to the target system, and then imported using the `Install-ContainerOSImages` command.
+Base OS images can also be installed without an internet connection. To do so, the images will be downloaded on a computer with an internet connection, copied to the target system, and then imported using the `Install-ContainerOSImages` command.
 
-Before downloading the Base OS image, prepare the system with the Container Image Provider by running the following command.
+Before downloading the Base OS image, prepare the system with the container image provider by running the following command.
 
 ```powershell
 PS C:\> Install-PackageProvider ContainerProvider -Force
@@ -92,7 +92,7 @@ To download an image, use the `Save-ContainerImage` command.
 PS C:\> Save-ContainerImage -Name NanoServer -Destination c:\container-image\NanoServer.wim
 ```
 
-The downloaded container image can now be copied to a different container host and installed using the `Install-ContainerOSImage` command.
+The downloaded container image can now be copied to a different container host, and installed using the `Install-ContainerOSImage` command.
 
 ```powershell
 Install-ContainerOSImage -WimPath C:\container-image\NanoServer.wim -Force
@@ -100,7 +100,9 @@ Install-ContainerOSImage -WimPath C:\container-image\NanoServer.wim -Force
 
 ### Tag Images
 
-When running a Docker command such as `docker run`, the Docker engine by defaults searches for an image with a version of ‘latest’. The Windows Server Core and Nano Server base OS images will need to be given this tag. To do so, use the `docker tag command`. For more information on `docker tag` see [Tag, push, and pull you images on docker.com](https://docs.docker.com/mac/step_six/). 
+When running a Docker command such as `docker run`, the Docker engine by default searches for an image with a version of ‘latest’. The Windows Server Core and Nano Server base OS images will need to be given this tag. To do so, use the `docker tag command`. 
+
+For more information on `docker tag` see [Tag, push, and pull you images on docker.com](https://docs.docker.com/mac/step_six/). 
 
 ```powershell
 PS C:\> docker tag <image id> windowsservercore:latest
@@ -114,7 +116,7 @@ Container OS images can be uninstalled using the `Uninstall-ContainerOSImage` co
 Get-ContainerImage -Name NanoServer | Uninstall-ContainerOSImage
 ```
 
-## Manage Images PowerShell
+## Container Images PowerShell
 
 ### List Images <!--1-->
 
@@ -132,6 +134,8 @@ WindowsServerCoreIIS 	CN=Demo   		1.0.0.0 		False
 ```
 
 ### Creating New Image <!--1-->
+
+A new container image can be created from any existing container. To do so, use the `New-ContainerImage` command.
 
 ```powershell
 PS C:\> New-ContainerImage -Container $container -Publisher Demo -Name DemoImage -Version 1.0
@@ -163,14 +167,14 @@ WindowsServerCore
 
 ### Move Image Repository 
 
-When a new container image is created using the `New-ContainerImage` command, this image is stored in the default location `C:\ProgramData\Microsoft\Windows\Hyper-V\Container Image Store`. This repository can be moved using the `Move-ContainerImageRepository` command. For example, the following would create a new container image repository at the location of `c:\contianer-images`.
+When a new container image is created using the `New-ContainerImage` command, this image is stored in the default location 'C:\ProgramData\Microsoft\Windows\Hyper-V\Container Image Store'. This repository can be moved using the `Move-ContainerImageRepository` command. For example, the following would create a new container image repository at the location of 'c:\container-images'.
 
 ```powershell
 Move-ContainerImageRepository -Path c:\container-images
 ```
 > The path used with `Move-ContainerImageRepository` command must not already exist when running the command.
 
-## Manage Images Docker
+## Container Images Docker
 
 ### List Images <!--2-->
 
@@ -184,6 +188,8 @@ nanoserver             10.0.10586.0        8572198a60f1        2 weeks ago      
 ```
 
 ### Creating New Image <!--2-->
+
+A new container image can be created from any existing container. To do so, use the `docker commit` command. The following example creates a new container image with the name ‘windowsservercoreiis’.
 
 ```powershell
 C:\> docker commit 475059caef8f windowsservercoreiis
@@ -208,7 +214,9 @@ Deleted: ca40b33453f803bb2a5737d4d5dd2f887d2b2ad06b55ca681a96de8432b5999d
 
 The Docker Hub registry contains pre-built images which can be downloaded onto a container host. Once these images have been downloaded, they can be used as the base for Windows Container Applications.
 
-To see a list of images available from Docker Hub use the `docker search` command. Note – the Windows Serve Core Base OS Image will need to be installed before pulling images dependent on Windows Server Core from Docker Hub.
+To see a list of images available from Docker Hub use the `docker search` command. Note – the Windows Serve Core or Nano Server base OS images will need to be installed before pulling these dependent container images from Docker Hub.
+
+> The images that start with "nano-" have a dependency on the Nano Server Base OS Image.
 
 ```powershell
 C:\> docker search *
@@ -241,7 +249,6 @@ microsoft/nano-rails    Ruby on Rails installed in a Nano Server b...   1       
 microsoft/nano-redis    Redis installed in a Nano Server based con...   1                    [OK]
 microsoft/nano-ruby     Ruby installed in a Nano Server based cont...   1                    [OK]
 ```
-Note – the images that start with "nano-" are for Nano Server containers.
 
 To download an image from Docker Hub, use `docker pull`.
 
