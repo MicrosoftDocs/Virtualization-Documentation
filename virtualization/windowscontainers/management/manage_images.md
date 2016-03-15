@@ -108,6 +108,17 @@ For more information on `docker tag` see [Tag, push, and pull you images on dock
 PS C:\> docker tag <image id> windowsservercore:latest
 ```
 
+When tagged, the output of `docker images` will show two versions of the same image, one with a tag of the image version, and a second with a tag of 'latest'. The image can now be referenced by name.
+
+```powershell
+PS C:\> docker images
+
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+nanoserver          10.0.14289.1000     df03a4b28c50        2 days ago          783.2 MB
+windowsservercore   10.0.14289.1000     290ab6758cec        2 days ago          9.148 GB
+windowsservercore   latest              290ab6758cec        2 days ago          9.148 GB
+```
+
 ### Uninstall OS Image
 
 Container OS images can be uninstalled using the `Uninstall-ContainerOSImage` command. The following example will uninstall the NanoServer OS Image.
