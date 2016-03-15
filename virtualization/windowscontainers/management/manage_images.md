@@ -11,7 +11,7 @@ Container images are used to deploy containers. These images can include an oper
 There are two types of container images:
 
 - **Base OS Images** – these are provided by Microsoft and include the core OS components. 
-- **Container Images** – a container image that has been created from a Base OS Image.
+- **Container Images** – a custom container image that is derived from a Base OS image.
 
 This document details installing and managing base OS images for both PowerShell and Docker.
 
@@ -89,13 +89,13 @@ WindowsServerCore    10.0.10586.0            Container OS Image of Windows Serve
 To download an image, use the `Save-ContainerImage` command.
 
 ```powershell
-Save-ContainerImage -Name WindowsServerCore -Destination C:\Users\Administrator\Desktop\windowsservercore.wim
+PS C:\> Save-ContainerImage -Name NanoServer -Destination c:\container-image\NanoServer.wim
 ```
 
 The downloaded container image can now be copied to a different container host and installed using the `Install-ContainerOSImage` command.
 
 ```powershell
-Install-ContainerOSImage -Path c:\container-image\windowsservercore.wim
+Install-ContainerOSImage -WimPath C:\container-image\NanoServer.wim -Force
 ```
 
 ### Tag Images
@@ -104,6 +104,14 @@ When running a Docker command such as `docker run`, the Docker engine by default
 
 ```powershell
 PS C:\> docker tag <image id> windowsservercore:latest
+```
+
+## Uninstall OS Image
+
+Container OS images can be uninstalled using the `Uninstall-ContainerOSImage` command. The following example will uninstall the NanoServer OS Image.
+
+```powershell
+Get-ContainerImage -Name NanoServer | Uninstall-ContainerOSImage
 ```
 
 ## Manage Images PowerShell
@@ -139,15 +147,6 @@ Remove a single image with PowerShell.
 PS C:\> Get-ContainerImage -Name newimage | Remove-ContainerImage -Force
 ```
 
-## Move Image Repository 
-
-When a new container image is created using the `New-ContainerImage` command, this image is stored in the default location `C:\ProgramData\Microsoft\Windows\Hyper-V\Container Image Store`. This repository can be moved using the `Move-ContainerImageRepository` command. For example, the following would create a new container image repository at the location of `c:\contianer-images`.
-
-```powershell
-Move-ContainerImageRepository -Path c:\container-images
-```
-> The path used with `Move-ContainerImageRepository` command must not already exist when running the command.
-
 ### Image Dependency <!--1-->
 
 When a new image is created, it becomes dependent on the image that it was created from. This dependency can be seen using the `Get-ContainerImage` command. If a parent image is not listed, this indicates that the image is a Base OS image.
@@ -161,6 +160,15 @@ NanoServerIIS     ContainerImage (Name = 'NanoServer') [Publisher = 'CN=Microsof
 NanoServer
 WindowsServerCore
 ```
+
+### Move Image Repository 
+
+When a new container image is created using the `New-ContainerImage` command, this image is stored in the default location `C:\ProgramData\Microsoft\Windows\Hyper-V\Container Image Store`. This repository can be moved using the `Move-ContainerImageRepository` command. For example, the following would create a new container image repository at the location of `c:\contianer-images`.
+
+```powershell
+Move-ContainerImageRepository -Path c:\container-images
+```
+> The path used with `Move-ContainerImageRepository` command must not already exist when running the command.
 
 ## Manage Images Docker
 
