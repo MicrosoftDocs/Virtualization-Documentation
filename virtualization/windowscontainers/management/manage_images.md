@@ -65,6 +65,39 @@ WindowsServerCore CN=Microsoft 10.0.10586.0 True
 ```  
 For more information on Container image management see [Windows Container Images](../management/manage_images.md).
 
+### Offline Installation
+
+Base OS images can also be installed without an internet connection. To do so, the images will be downloaded on a computer system with an internet connection, copied to the target system, and then imported using the `Install-ContainerOSImages` command.
+
+Before downloading the Base OS image, prepare the system with the Container Image Provider by running the following command.
+
+```powershell
+PS C:\> Install-PackageProvider ContainerProvider -Force
+```
+
+Return a list of images from PowerShell OneGet package manager:
+
+```powershell
+PS C:\> Find-ContainerImage
+
+Name                 Version                 Description
+----                 -------                 -----------
+NanoServer           10.0.10586.0            Container OS Image of Windows Server 2016 Techn...
+WindowsServerCore    10.0.10586.0            Container OS Image of Windows Server 2016 Techn...
+```
+
+To download an image, use the `Save-ContainerImage` command.
+
+```powershell
+Save-ContainerImage -Name WindowsServerCore -Destination C:\Users\Administrator\Desktop\windowsservercore.wim
+```
+
+The downloaded container image can now be copied to a different container host and installed using the `Install-ContainerOSImage` command.
+
+```powershell
+Install-ContainerOSImage -Path c:\container-image\windowsservercore.wim
+```
+
 ### Tag Images
 
 When running a Docker command such as `docker run`, the Docker engine by defaults searches for an image with a version of ‘latest’. The Windows Server Core and Nano Server base OS images will need to be given this tag. To do so, use the `docker tag command`. For more information on `docker tag` see [Tag, push, and pull you images on docker.com](https://docs.docker.com/mac/step_six/). 
