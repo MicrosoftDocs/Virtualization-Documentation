@@ -45,6 +45,16 @@ Log into the VM using the username and password specified during the VM creation
 
 ![](media/newazure7.png) 
 
+## Update Docker Engine
+
+In order to use `docker pull` with the Windows Container TP4 Azure image, the Docker engine needs to be updated. Run the following PowerShell commands on the Azure virtual machine to update docker.exe.
+
+```powershell
+PS C:\> wget https://raw.githubusercontent.com/Microsoft/Virtualization-Documentation/live/windows-server-container-tools/Update-ContainerHost/Update-ContainerHost.ps1 -OutFile Update-ContainerHost.ps1
+
+PS C:\> ./Update-ContainerHost.ps1
+``` 
+
 ## Video Walkthrough
 
 <iframe src="https://channel9.msdn.com/Blogs/containers/Quick-Start-Configure-Windows-Server-Containers-in-Microsoft-Azure/player" width="800" height="450"  allowFullScreen="true" frameBorder="0" scrolling="no"></iframe>
