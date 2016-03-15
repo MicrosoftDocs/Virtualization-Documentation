@@ -106,6 +106,15 @@ Remove a single image with PowerShell.
 PS C:\> Get-ContainerImage -Name newimage | Remove-ContainerImage -Force
 ```
 
+## Move Image Repository 
+
+When a new container image is created using the `New-ContainerImage` command, this image is stored in the default location `C:\ProgramData\Microsoft\Windows\Hyper-V\Container Image Store`. This repository can be moved using the `Move-ContainerImageRepository` command. For example, the following would create a new container image repository at the location of `c:\contianer-images`.
+
+```powershell
+Move-ContainerImageRepository -Path c:\container-images
+```
+> The path used with `Move-ContainerImageRepository` command must not already exist when running the command.
+
 ### Image Dependency <!--1-->
 
 When a new image is created, it becomes dependent on the image that it was created from. This dependency can be seen using the `Get-ContainerImage` command. If a parent image is not listed, this indicates that the image is a Base OS image.
