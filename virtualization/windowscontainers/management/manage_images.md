@@ -106,7 +106,7 @@ When running a Docker command such as `docker run`, the Docker engine by default
 PS C:\> docker tag <image id> windowsservercore:latest
 ```
 
-## Uninstall OS Image
+### Uninstall OS Image
 
 Container OS images can be uninstalled using the `Uninstall-ContainerOSImage` command. The following example will uninstall the NanoServer OS Image.
 
