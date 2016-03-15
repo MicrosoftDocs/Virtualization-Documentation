@@ -47,7 +47,7 @@ Log into the VM using the username and password specified during the VM creation
 
 ## Update Docker Engine
 
-In order to use `docker pull` with the Windows Container Technical Preview image in Azure, the Docker engine needs to be updated. Run the following PowerShell commands on the Azure virtual machine to complete this update.
+In order to use `docker pull` with the Azure Windows Container Technical Preview image, the Docker engine needs to be updated. Run the following PowerShell commands on the Azure virtual machine to complete this update.
 
 ```powershell
 PS C:\> wget https://raw.githubusercontent.com/Microsoft/Virtualization-Documentation/live/windows-server-container-tools/Update-ContainerHost/Update-ContainerHost.ps1 -OutFile Update-ContainerHost.ps1
