@@ -100,7 +100,7 @@ Install-ContainerOSImage -WimPath C:\container-image\NanoServer.wim -Force
 
 ### Tag Images
 
-When referencing a container image by name, the Docker engine will search for the latest version of the image. If the latest version cannot be determined the following error will be thrown.
+When referencing a container image by name, the Docker engine will search for the latest version of the image. If the latest version cannot be determined, the following error will be thrown.
 
 ```powershell
 PS C:\> docker run -it windowsservercore cmd
@@ -110,7 +110,7 @@ Pulling repository docker.io/library/windowsservercore
 C:\Windows\system32\docker.exe: Error: image library/windowsservercore not found.
 ```
 
-After installing the WindowsServerCore or NanoServer Base OS image, these will need to be tagged with a version of ‘latest’. To do so, use the `docker tag command`. 
+After installing the Windows Server Core or Nano Server Base OS images, these will need to be tagged with a version of ‘latest’. To do so, use the `docker tag` command. 
 
 For more information on `docker tag` see [Tag, push, and pull you images on docker.com](https://docs.docker.com/mac/step_six/). 
 
