@@ -100,7 +100,17 @@ Install-ContainerOSImage -WimPath C:\container-image\NanoServer.wim -Force
 
 ### Tag Images
 
-When running a Docker command such as `docker run`, the Docker engine by default searches for an image with a version of ‘latest’. The Windows Server Core and Nano Server base OS images will need to be given this tag. To do so, use the `docker tag command`. 
+When referencing a container image by name, the Docker engine will search for the latest version of the image. If the latest version cannot be determined the following error will be thrown.
+
+```powershell
+PS C:\> docker run -it windowsservercore cmd
+
+Unable to find image 'windowsservercore:latest' locally
+Pulling repository docker.io/library/windowsservercore
+C:\Windows\system32\docker.exe: Error: image library/windowsservercore not found.
+```
+
+After installing the WindowsServerCore or NanoServer Base OS image, these will need to be tagged with a version of ‘latest’. To do so, use the `docker tag command`. 
 
 For more information on `docker tag` see [Tag, push, and pull you images on docker.com](https://docs.docker.com/mac/step_six/). 
 
@@ -121,7 +131,7 @@ windowsservercore   latest              290ab6758cec        2 days ago          
 
 ### Uninstall OS Image
 
-Container OS images can be uninstalled using the `Uninstall-ContainerOSImage` command. The following example will uninstall the NanoServer OS Image.
+Base OS images can be uninstalled using the `Uninstall-ContainerOSImage` command. The following example will uninstall the NanoServer base OS image.
 
 ```powershell
 Get-ContainerImage -Name NanoServer | Uninstall-ContainerOSImage
