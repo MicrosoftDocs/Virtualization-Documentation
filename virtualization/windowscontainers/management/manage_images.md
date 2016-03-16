@@ -17,7 +17,7 @@ This document details installing and managing base OS images for both PowerShell
 
 ## Base OS Images
 
-### Installing Images
+### Install Image
 
 Container OS images can be found and installed for both PowerShell and Docker management using the ContainerProvider PowerShell module. Before using this module, it will need to be installed. The following command can be used to install the module.
 
@@ -144,7 +144,7 @@ WindowsServerCoreIIS 	CN=Demo   		1.0.0.0 		False
 
 ```
 
-### Creating New Image <!--1-->
+### Create New Image <!--1-->
 
 A new container image can be created from any existing container. To do so, use the `New-ContainerImage` command.
 
@@ -152,7 +152,7 @@ A new container image can be created from any existing container. To do so, use 
 PS C:\> New-ContainerImage -Container $container -Publisher Demo -Name DemoImage -Version 1.0
 ```
 
-### Removing Image <!--1-->
+### Remove Image <!--1-->
 
 Container images cannot be removed if any container, even in a stopped state, has a dependency on the image.
 
@@ -198,7 +198,7 @@ windowsservercore      10.0.10586.0        6801d964fda5        2 weeks ago      
 nanoserver             10.0.10586.0        8572198a60f1        2 weeks ago          0 B
 ```
 
-### Creating New Image <!--2-->
+### Create New Image <!--2-->
 
 A new container image can be created from any existing container. To do so, use the `docker commit` command. The following example creates a new container image with the name ‘windowsservercoreiis’.
 
@@ -208,7 +208,7 @@ C:\> docker commit 475059caef8f windowsservercoreiis
 ca40b33453f803bb2a5737d4d5dd2f887d2b2ad06b55ca681a96de8432b5999d
 ```
 
-### Removing Image <!--2-->
+### Remove Image <!--2-->
 
 Container images cannot be removed if any container, even in a stopped state, has a dependency on the image.
 
