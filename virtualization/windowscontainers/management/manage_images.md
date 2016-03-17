@@ -13,8 +13,6 @@ There are two types of container images:
 - **Base OS Images** – these are provided by Microsoft and include the core OS components. 
 - **Container Images** – a custom container image that is derived from a Base OS image.
 
-This document details installing and managing base OS images for both PowerShell and Docker.
-
 ## Base OS Images
 
 ### Install Image
@@ -64,6 +62,8 @@ Name              Publisher    Version      IsOSImage
 NanoServer        CN=Microsoft 10.0.10586.0 True
 WindowsServerCore CN=Microsoft 10.0.10586.0 True
 ```  
+
+> Install-ContainerImage installs a Base OS image for use in either PowerShell or Docker managed containers. If the Base OS image is downloade, but does not show when running `docker images`, restart the Docker service using the services control panel applet or the command 'sc docker stop' and then 'sc docker start'
 
 ### Offline Installation
 
