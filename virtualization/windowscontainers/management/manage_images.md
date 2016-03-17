@@ -63,7 +63,7 @@ NanoServer        CN=Microsoft 10.0.10586.0 True
 WindowsServerCore CN=Microsoft 10.0.10586.0 True
 ```  
 
-> Install-ContainerImage installs a Base OS image for use in either PowerShell or Docker managed containers. If the Base OS image is downloade, but does not show when running `docker images`, restart the Docker service using the services control panel applet or the command 'sc docker stop' and then 'sc docker start'
+> **Install-ContainerImage** installs a Base OS image for use in either PowerShell or Docker managed containers. If the Base OS image is downloaded, but does not show when running `docker images`, restart the Docker service using the services control panel applet or the command 'sc docker stop' and then 'sc docker start'
 
 ### Offline Installation
 
