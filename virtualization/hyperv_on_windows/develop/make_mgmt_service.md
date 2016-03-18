@@ -15,6 +15,7 @@ This document walks through creating a simple application built on Hyper-V socke
 * Windows 10
 * Windows Server Technical Preview 3 and later
 * Future releases (Server 2016 +)
+* Linux guests with Linux Integration Services (see [Supported Linux and FreeBSD virtual machines for Hyper-V on Windows](https://technet.microsoft.com/library/dn531030(ws.12).aspx))
 
 **Capabilities and Limitations**  
 * Supports kernel mode or user mode actions  
