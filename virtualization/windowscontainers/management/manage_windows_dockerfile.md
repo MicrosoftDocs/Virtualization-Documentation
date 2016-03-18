@@ -1,11 +1,184 @@
 # Dockerfile on Windows
 
-## FROM
-```FROM windowsservercore```
+The Docker engine includes tooling to automate the creation of container images. Building automation around image creation allows for effortless, repeatable, and consistent creation of container images. The component that drives this automation is a dockerfile, which is a text file containing a list of instructions to be run and captured into a new container image.
+
+Two components drive the automation of image creation:
+
+- **Dockerfile** – a text file containing instructions on how to derive the image, commands to run and captured into the image, and run time commands.
+- **Docker Build** – the Docker engine command that triggers the image creation process.
+
+This document will introduce using a dockerfile with Windows Containers, detail some best practices, and provide some ready to use examples. For a complete look at the Docker engine and Dockerfile, see the [Dockerfile reference at docker.com]( https://docs.docker.com/engine/reference/builder/).
+
+## Dockerfile Introduction
+
+### Basic Syntax
+
+In its most basic form, a dockerfile can be very simple. The following example creates a new image that includes IIS and a customized ‘hello world’ site. This example uses only two dockerfile instructions, FROM, RUN and CMD. This section will cover some basic Dockerfile instructions. For a complete list of dockerfile instructions, see [Dockerfile Reference on Docker.com] (https://docs.docker.com/engine/reference/builder/).
+```
+FROM windowsservercore
+RUN dism /online /enable-feature /all /featurename:iis-webserver /NoRestart
+RUN echo "Hello World - Dockerfile" > c:\inetpub\wwwroot\index.html
+CMD [ "ping localhost -t" ]
+```
+
+### FROM
+
+The FROM instruction set the existing container image that will be used during the image creation process. For instance, when using the instruction `FROM WindowsServerCore`, the resulting image will be derived from, and have a dependency on the WindowsServerCore Base OS image.
+
+Examples:
+
+```
+FROM WindowsServerCore
+```
+
+```
+FROM NanoServer
+```
+
+For detailed information on the FROM instruction see the [FROM Reference on Docker.com]( https://docs.docker.com/engine/reference/builder/#from). 
+
+### RUN
+
+The RUN instruction specifies commands to be run, that will be captured into the container image. These commands can include items such as installing software, creating files and directories, and creating environment configuration.
+
+Examples:
+
+```
+RUN dism /online /enable-feature /all /featurename:iis-webserver /NoRestart
+```
+
+```
+RUN powershell -Command	c:\vcredist_x86.exe /quiet
+``` 
+
+For detailed information on the RUN instruction see the [RUN Reference on Docker.com]( https://docs.docker.com/engine/reference/builder/#run). 
+
+### ADD
+
+The ADD instruction copies files and directories to the filesystem of the container. The files and directories can be relative to the docker file, or on a remote location with a URL specification. 
+
+Examples:
+
+```
+ADD sources /sqlite
+```
+
+```
+ADD https://github.com/neilpeterson/demoapp/archive/master.zip /temp/master.zip
+```
+
+For detailed information on the ADD instruction see the [ADD Reference on Docker.com]( https://docs.docker.com/engine/reference/builder/#add). 
 
 
+### WORKDIR
 
-## RUN
+The WORKDIR instruction sets a working directory for other dockerfile instructions such as RUN, CMD, and ADD. 
+
+Examples:
+
+```
+WORKDIR c:\Apache24\bin
+```
+
+```
+WORKDIR c:\nginx
+```
+
+For detailed information on the WORKDIR instruction see the [WORKDIR Reference on Docker.com]( https://docs.docker.com/engine/reference/builder/#workdir). 
+
+### CMD
+
+The `CMD` instruction set the default command to be run when starting a new container from the container image. For instance, if the container will be hosting an NGINX web server, the `CMD` might include instructions to start the web server, such as `nginx.exe`. There can only be one `CMD` instruction in a dockerfile.
+
+```
+CMD ["httpd.exe"]
+```
+
+```
+CMD ["nginx.exe"]
+```
+
+For detailed information on the CMD instruction see the [CMD Reference on Docker.com]( https://docs.docker.com/engine/reference/builder/#cmd). 
+
+## Docker Build operations
+
+Once a dockerfile has created and saved to disk, `docker build` can be run to create the new image. 
+
+### Docker Build 
+
+Docker Build Operations
+
+The `docker build` command takes several optional parameters and a path to the dockerfile.
+
+```
+Docker build [OPTIONS] PATH
+```
+For example, the following command will create an image named ‘iis’ and look in the path relative to execution for the dockerfile. This is indicated with the period.
+
+```
+docker build -t iis .
+```
+
+For a complete documentation on Docker Build, including a list of all build options, see [Build at Docker.com](https://docs.docker.com/engine/reference/commandline/build/#build-with).
+
+
+When the build process has been initiated, the output will indicate status, and return any thrown errors.
+
+```
+C:\> docker build -t iis .
+
+Sending build context to Docker daemon 2.048 kB
+Step 1 : FROM windowsservercore
+ ---> 6801d964fda5
+
+Step 2 : RUN dism /online /enable-feature /all /featurename:iis-webserver /NoRestart
+ ---> Running in ae8759fb47db
+
+Deployment Image Servicing and Management tool
+Version: 10.0.10586.0
+
+Image Version: 10.0.10586.0
+
+Enabling feature(s)
+The operation completed successfully.
+
+ ---> 4cd675d35444
+Removing intermediate container ae8759fb47db
+
+Step 3 : RUN echo "Hello World - Dockerfile" > c:\inetpub\wwwroot\index.html
+ ---> Running in 9a26b8bcaa3a
+ ---> e2aafdfbe392
+Removing intermediate container 9a26b8bcaa3a
+
+Successfully built e2aafdfbe392
+```
+
+The result is a new container image with the name 'iis'.
+
+```
+C:\> docker images
+
+REPOSITORY          TAG                 IMAGE ID            CREATED              VIRTUAL SIZE
+iis                 latest              e2aafdfbe392        About a minute ago   207.8 MB
+windowsservercore   latest              6801d964fda5        4 months ago         0 B
+```
+
+### Image Layers
+
+During the Docker Build process, the Docker engine executes each dockerfile instruction one-by-one, each in its own temporary container. The result is a new image layer for each actionable command in the dockerfile. Looking back at the simple example given above, one might expect the resulting image to consist of two layers, WindowsServerCore, and then the new layer including the IIS configuration. This however is not the case. We can inspect a container image using the `docker history` command. Doing so against the image created with the simple example dockerfile will show that the image consists of three layers, the base, and then two, one for each actionable instruction from the dockerfile. 
+
+
+```
+C:\> docker history iis
+
+IMAGE               CREATED              CREATED BY                                      SIZE                COMMENT
+e2aafdfbe392        About a minute ago   cmd /S /C echo "Hello World - Dockerfile" > c   46.05 MB
+4cd675d35444        2 minutes ago        cmd /S /C dism /online /enable-feature /all /   161.8 MB
+6801d964fda5        4 months ago                                                         0 B
+```
+
+## Dockerfile Optimization
+
 
 ### Do fewer operations per line
 This makes caching more effective. If the same step has been done in a similar build, then this step could be cached. Although adding a script is convenient, breaking it into multiple RUN commands will cache more and build faster.
