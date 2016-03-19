@@ -2346,7 +2346,7 @@ namespace WIM2VHD {
         }
 
         /// <summary>
-        /// Creates a fixed-size Virtual Hard Disk. Supports both sync and async modes. This methods always calls the V2 version of the 
+        /// Creates a fixed-Size Virtual Hard Disk. Supports both sync and async modes. This methods always calls the V2 version of the 
         /// CreateVirtualDisk API, and creates VHD2. 
         /// </summary>
         /// <param name="path">The path and name of the VHD to create.</param>

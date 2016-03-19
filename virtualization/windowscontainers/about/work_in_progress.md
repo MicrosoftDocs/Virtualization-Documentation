@@ -1,3 +1,7 @@
+---
+author: scooley
+---
+
 # Work in Progress
 
 If you don't see your problem addressed here or have questions, post them on the [forum](https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers).
@@ -14,14 +18,6 @@ If you install updates against the Windows container host OS you will need to up
 
 **Work Around:**   
 Download and install a container base image matching the OS version and patch level of the container host.
-
-### All non-C:/ drives are visible in containers
-All non-C:/ drives available to the container host are automatically mapped into new running Windows Containers.
-
-At this point in time there is no way to selectively map folders into a container, as an interim work around drives are mapped automatically.
-
-**Work Around: **  
-We're working on it.  In the future there will be folder sharing.
 
 ### Default firewall behavior
 In a container host and containers environment, you only have the container host's firewall. All the firewall rules configured in the container host will propagate to all of its containers.
@@ -84,6 +80,56 @@ In this release we support one network compartment per container. This means tha
 
 **Work Around: **  
 If multiple endpoints need to be exposed by a container, use NAT port mapping.
+
+
+### Static NAT mappings could conflict with port mappings through Docker
+If you are creating containers using Windows PowerShell and adding static NAT mappings, they may cause conflicts if you don't remove them before starting a container using `docker -p <src>:<dst>`
+
+Here's an example of a conflict with a static mapping on port 80
+```
+PS C:\IISDemo> Add-NetNatStaticMapping -NatName "ContainerNat" -Protocol TCP -ExternalIPAddress 0.0.0.0 -InternalIPAddress
+ 172.16.0.2 -InternalPort 80 -ExternalPort 80
+
+
+StaticMappingID               : 1
+NatName                       : ContainerNat
+Protocol                      : TCP
+RemoteExternalIPAddressPrefix : 0.0.0.0/0
+ExternalIPAddress             : 0.0.0.0
+ExternalPort                  : 80
+InternalIPAddress             : 172.16.0.2
+InternalPort                  : 80
+InternalRoutingDomainId       : {00000000-0000-0000-0000-000000000000}
+Active                        : True
+
+
+
+PS C:\IISDemo> docker run -it -p 80:80 microsoft/iis cmd
+docker: Error response from daemon: Cannot start container 30b17cbe85539f08282340cc01f2797b42517924a70c8133f9d8db83707a2c66: 
+HCSShim::CreateComputeSystem - Win32 API call returned error r1=2147942452 err=You were not connected because a 
+duplicate name exists on the network. If joining a domain, go to System in Control Panel to change the computer name
+ and try again. If joining a workgroup, choose another workgroup name. 
+ id=30b17cbe85539f08282340cc01f2797b42517924a70c8133f9d8db83707a2c66 configuration= {"SystemType":"Container",
+ "Name":"30b17cbe85539f08282340cc01f2797b42517924a70c8133f9d8db83707a2c66","Owner":"docker","IsDummy":false,
+ "VolumePath":"\\\\?\\Volume{4b239270-c94f-11e5-a4c6-00155d016f0a}","Devices":[{"DeviceType":"Network","Connection":
+ {"NetworkName":"Virtual Switch","EnableNat":false,"Nat":{"Name":"ContainerNAT","PortBindings":[{"Protocol":"TCP",
+ InternalPort":80,"ExternalPort":80}]}},"Settings":null}],"IgnoreFlushesDuringBoot":true,
+ "LayerFolderPath":"C:\\ProgramData\\docker\\windowsfilter\\30b17cbe85539f08282340cc01f2797b42517924a70c8133f9d8db83707a2c66",
+ "Layers":[{"ID":"4b91d267-ecbc-53fa-8392-62ac73812c7b","Path":"C:\\ProgramData\\docker\\windowsfilter\\39b8f98ccaf1ed6ae267fa3e98edcfe5e8e0d5414c306f6c6bb1740816e536fb"},
+ {"ID":"ff42c322-58f2-5dbe-86a0-8104fcb55c2a",
+"Path":"C:\\ProgramData\\docker\\windowsfilter\\6a182c7eba7e87f917f4806f53b2a7827d2ff0c8a22d200706cd279025f830f5"},
+{"ID":"84ea5d62-64ed-574d-a0b6-2d19ec831a27",
+"Path":"C:\\ProgramData\\Microsoft\\Windows\\Images\\CN=Microsoft_WindowsServerCore_10.0.10586.0"}],
+"HostName":"30b17cbe8553","MappedDirectories":[],"SandboxPath":"","HvPartition":false}.
+```
+
+
+***Mitigation***
+This may be resolved by removing the port mapping using PowerShell. This will remove the port 80 conflict caused in the the example above.
+```powershell
+Get-NetNatStaticMapping | ? ExternalPort -eq 80 | Remove-NetNatStaticMapping
+```
+
 
 ### Windows containers are not getting IPs
 If you're connecting to the windows containers with DHCP VM Switches it's possible for the container host to receive an IP while the containers do not.

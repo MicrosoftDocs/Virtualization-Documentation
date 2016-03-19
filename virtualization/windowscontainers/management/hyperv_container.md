@@ -1,12 +1,16 @@
+---
+author: neilpeterson
+---
+
 # Hyper-V Containers
 
 **This is preliminary content and subject to change.** 
 
-The Windows Container technology includes two distinct types of containers, Windows Server Containers and Hyper-V Containers. Both types of containers are created, managed, and function identically. What differs between them is the level of isolation created between the container, the host operating system, and all of the other container running on that host.
+The Windows Container technology includes two distinct types of containers, Windows Server Containers and Hyper-V Containers. Both types of containers are created, managed, and function identically.  They even produce and consume the same container images. What differs between them is the level of isolation created between the container, the host operating system, and all of the other container running on that host.
 
-**Windows Server Containers** – multiple containers run on a host with isolation provided through namespace and process isolation technologies.
+**Windows Server Containers** – multiple container instances can run concurrently on a host with isolation provided through namespace, resource control, and process isolation technologies.  Windows Server Containers share the same kernel with the host as well as each other.
 
-**Hyper-V Containers** – multiple containers run on a host, however each container is run inside of a utility virtual machine. This provides kernel level isolation between a Hyper-V container, the container host, and any other containers running on the container host.
+**Hyper-V Containers** – multiple container instances can run concurrently on a host; however, each container runs inside of a special virtual machine. This provides kernel level isolation between each Hyper-V container and the container host.
 
 ## Hyper-V Container PowerShell
 
@@ -29,7 +33,7 @@ In addition to creating a container as a Hyper-V container at build time, contai
 Create a new Container with the default runtime. 
 
 ```powershell
-PS C:\> New-Container -Name DEMO -ContainerImageName nanoserver -SwitchName NAT
+PS C:\> $con = New-Container -Name DEMO -ContainerImageName nanoserver -SwitchName NAT
 ```
 Return the runtime property from the container, notice that the runtime is set as default. 
 
@@ -61,7 +65,7 @@ DEMO               HyperV
 
 ### Create Container <!--docker-->
 
-Managing Hyper-V Containers with Docker is almost identical to managing Windows Server Containers. When creating a Hyper-V Container with Docker, the `–-isolation=hyperv` parameter is used.
+Managing Hyper-V Containers with Docker is almost identical to managing Windows Server Containers. When creating a Hyper-V Container with Docker, the `--isolation=hyperv` parameter is used.
 
 ```powershell
 docker run -it --isolation=hyperv 646d6317b02f cmd
@@ -120,7 +124,7 @@ Handles  NPM(K)    PM(K)      WS(K) VM(M)   CPU(s)     Id  SI ProcessName
 Create New Windows Server Container:
 
 ```powershell
-PS C:\> New-Container -Name WINCONT -ContainerImageName WindowsServerCore -SwitchName "Virtual Switch"
+PS C:\> $con = New-Container -Name WINCONT -ContainerImageName WindowsServerCore -SwitchName "Virtual Switch"
 ```
 
 Start the Container:
@@ -132,7 +136,7 @@ PS C:\> Start-Container $con
 Create Remote PS Session with the container.
 
 ```powershell
-PS C:\> Enter-PSSession -ContainerId $con.ContainerId –RunAsAdministrator
+PS C:\> Enter-PSSession -ContainerId $con.ContainerId -RunAsAdministrator
 ```
 
 From the remote container session return all processes with a process name of csrss. Take note of the process id for the running csrss process (1228 in the example below).
@@ -186,7 +190,7 @@ PS C:\> Start-Container $con
 Create a remote PS session with the Hyper-V container.
 
 ```powershell
-PS C:\> Enter-PSSession -ContainerId $con.ContainerId –RunAsAdministrator
+PS C:\> Enter-PSSession -ContainerId $con.ContainerId -RunAsAdministrator
 ```
 
 Return a list of csrss process running inside the Hyper-V container. Take note of the process id for the csrss process (956 in the below example).
@@ -210,3 +214,7 @@ Handles  NPM(K)    PM(K)      WS(K) VM(M)   CPU(s)     Id  SI ProcessName
     113      11     1176       3676 ...93     0.25    608   1 csrss
     243      13     1732       5512 ...18     4.23   3484   2 csrss
 ```
+
+## Video Walkthrough
+
+<iframe src="https://channel9.msdn.com/Blogs/containers/Container-Fundamentals--Part-5-Hyper-V-Containers/player" width="800" height="450"  allowFullScreen="true" frameBorder="0" scrolling="no"></iframe>

@@ -267,7 +267,7 @@ CreateVM $vmName $GuestOSName $IPNumber
       icm -VMName $VMName -Credential $localCred {
          param($VMName, $domainName, $domainAdminPassword)
          Write-Output "[$($VMName)]:: Installing AD"
-         Install-WindowsFeature AD-Domain-Services –IncludeManagementTools | out-null
+         Install-WindowsFeature AD-Domain-Services -IncludeManagementTools | out-null
          Write-Output "[$($VMName)]:: Enabling Active Directory and promoting to domain controller"
          Install-ADDSForest -DomainName $domainName -InstallDNS -NoDNSonNetwork -NoRebootOnCompletion `
                             -SafeModeAdministratorPassword (ConvertTo-SecureString $domainAdminPassword -AsPlainText -Force) -confirm:$false
@@ -300,7 +300,7 @@ CreateVM $vmName $GuestOSName $IPNumber
       icm -VMName $VMName -Credential $localCred {
          param($VMName, $domainCred, $domainName)
          Write-Output "[$($VMName)]:: Installing DHCP"
-         Install-WindowsFeature DHCP –IncludeManagementTools | out-null
+         Install-WindowsFeature DHCP -IncludeManagementTools | out-null
          Write-Output "[$($VMName)]:: Joining domain as `"$($env:computername)`""
          while (!(Test-Connection -Computername $domainName -BufferSize 16 -Count 1 -Quiet -ea SilentlyContinue)) {sleep -seconds 1}
          do {Add-Computer -DomainName $domainName -Credential $domainCred -ea SilentlyContinue} until ($?)
@@ -341,7 +341,7 @@ CreateVM $vmName $GuestOSName $IPNumber
       icm -VMName $VMName -Credential $localCred {
          param($VMName, $domainCred, $domainName)
          Write-Output "[$($VMName)]:: Installing AD"
-         Install-WindowsFeature AD-Domain-Services –IncludeManagementTools | out-null
+         Install-WindowsFeature AD-Domain-Services -IncludeManagementTools | out-null
          Write-Output "[$($VMName)]:: Joining domain as `"$($env:computername)`""
          while (!(Test-Connection -Computername $domainName -BufferSize 16 -Count 1 -Quiet -ea SilentlyContinue)) {sleep -seconds 1}
          do {Add-Computer -DomainName $domainName -Credential $domainCred -ea SilentlyContinue} until ($?)
@@ -420,7 +420,7 @@ CreateVM $vmName $GuestOSName
       icm -VMName $VMName -Credential $localCred {
          param($VMName, $domainCred, $domainName)
          Write-Output "[$($VMName)]:: Installing Clustering"
-         Install-WindowsFeature –Name File-Services, Failover-Clustering –IncludeManagementTools | out-null
+         Install-WindowsFeature -Name File-Services, Failover-Clustering -IncludeManagementTools | out-null
          Write-Output "[$($VMName)]:: Joining domain as `"$($env:computername)`""
          while (!(Test-Connection -Computername $domainName -BufferSize 16 -Count 1 -Quiet -ea SilentlyContinue)) {sleep -seconds 1}
          do {Add-Computer -DomainName $domainName -Credential $domainCred -ea SilentlyContinue} until ($?)
@@ -440,7 +440,7 @@ waitForPSDirect "Storage Node 4" -cred $domainCred
 
 icm -VMName "Management Console" -Credential $domainCred {
 param ($domainName)
-do {New-Cluster –Name S2DCluster –Node S2DNode1,S2DNode2,S2DNode3,S2DNode4 –NoStorage} until ($?)
+do {New-Cluster -Name S2DCluster -Node S2DNode1,S2DNode2,S2DNode3,S2DNode4 -NoStorage} until ($?)
 while (!(Test-Connection -Computername "S2DCluster.$($domainName)" -BufferSize 16 -Count 1 -Quiet -ea SilentlyContinue)) 
       {ipconfig /flushdns; sleep -seconds 1}
 Enable-ClusterStorageSpacesDirect -Cluster "S2DCluster.$($domainName)"
@@ -450,20 +450,20 @@ Add-ClusterScaleoutFileServerRole -name S2DFileServer -cluster "S2DCluster.$($do
 icm -VMName "Storage Node 1" -Credential $domainCred {
 param ($domainName)
 New-StoragePool -StorageSubSystemName "S2DCluster.$($domainName)" -FriendlyName S2DPool -WriteCacheSizeDefault 0 -ProvisioningTypeDefault Fixed -ResiliencySettingNameDefault Mirror -PhysicalDisk (Get-StorageSubSystem  -Name "S2DCluster.$($domainName)" | Get-PhysicalDisk)
-New-Volume -StoragePoolFriendlyName S2DPool -FriendlyName S2DDisk -PhysicalDiskRedundancy 2 -FileSystem CSVFS_REFS –Size 500GB
-Set-FileIntegrity "C:\ClusterStorage\Volume1" –Enable $false
+New-Volume -StoragePoolFriendlyName S2DPool -FriendlyName S2DDisk -PhysicalDiskRedundancy 2 -FileSystem CSVFS_REFS -Size 500GB
+Set-FileIntegrity "C:\ClusterStorage\Volume1" -Enable $false
 
          MD C:\ClusterStorage\Volume1\VHDX
          New-SmbShare -Name VHDX -Path C:\ClusterStorage\Volume1\VHDX -FullAccess "$($domainName)\administrator", "$($domainName)\Benjamin", "$($domainName)\Management$"
-         Set-SmbPathAcl –ShareName VHDX
+         Set-SmbPathAcl -ShareName VHDX
 
          MD C:\ClusterStorage\Volume1\ClusQuorum
          New-SmbShare -Name ClusQuorum -Path C:\ClusterStorage\Volume1\ClusQuorum -FullAccess "$($domainName)\administrator", "$($domainName)\Benjamin", "$($domainName)\Management$"
-         Set-SmbPathAcl –ShareName ClusQuorum
+         Set-SmbPathAcl -ShareName ClusQuorum
 
          MD C:\ClusterStorage\Volume1\ClusData
          New-SmbShare -Name ClusData -Path C:\ClusterStorage\Volume1\ClusData -FullAccess "$($domainName)\administrator", "$($domainName)\Benjamin", "$($domainName)\Management$"
-         Set-SmbPathAcl –ShareName ClusData
+         Set-SmbPathAcl -ShareName ClusData
 
 } -ArgumentList $domainName
 
@@ -477,7 +477,7 @@ icm -VMName $VMName -Credential $localCred {
         stop-container "IIS"
         New-ContainerImage -ContainerName "IIS" -Name "IIS" -Publisher "Armstrong" -Version 1.0
         Remove-Container -Name "IIS" -Force
-        New-NetFirewallRule -DisplayName "Allow inbound TCP Port 80" -Direction inbound –LocalPort 80 -Protocol TCP -Action Allow}
+        New-NetFirewallRule -DisplayName "Allow inbound TCP Port 80" -Direction inbound -LocalPort 80 -Protocol TCP -Action Allow}
 icm -VMName $VMName -Credential $localCred {& cmd /c "C:\windows\system32\Sysprep\sysprep.exe /quiet /generalize /oobe /shutdown /unattend:C:\unattend.xml"}
 
 logger $VMName "Ready to inject Container Host into Storage Cluster"
@@ -558,7 +558,7 @@ waitForPSDirect "Hyper-V Node 8" -cred $domainCred
 
 icm -VMName "Management Console" -Credential $domainCred {
 param ($domainName)
-do {New-Cluster –Name HVCluster –Node HVNode1,HVNode2,HVNode3,HVNode4,HVNode5,HVNode6,HVNode7,HVNode8 –NoStorage} until ($?)
+do {New-Cluster -Name HVCluster -Node HVNode1,HVNode2,HVNode3,HVNode4,HVNode5,HVNode6,HVNode7,HVNode8 -NoStorage} until ($?)
 while (!(Test-Connection -Computername "S2DCluster.$($domainName)" -BufferSize 16 -Count 1 -Quiet -ea SilentlyContinue)) 
       {ipconfig /flushdns; sleep -seconds 1}
 } -ArgumentList $domainName
@@ -580,9 +580,9 @@ get-SmbShareAccess ClusData | Grant-SmbShareAccess -AccountName "$($domainName)\
                                              "$($domainName)\HVNode7$","$($domainName)\HVNode8$","$($domainName)\HVCluster$" `
                                              -AccessRight full -Confirm:$false
 
-Set-SmbPathAcl –ShareName VHDX
-Set-SmbPathAcl –ShareName ClusQuorum
-Set-SmbPathAcl –ShareName ClusData
+Set-SmbPathAcl -ShareName VHDX
+Set-SmbPathAcl -ShareName ClusQuorum
+Set-SmbPathAcl -ShareName ClusData
 } -ArgumentList $domainName
 
 icm -VMName "Management Console" -Credential $domainCred {

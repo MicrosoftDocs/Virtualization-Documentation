@@ -1,4 +1,4 @@
-# integration component scripts
+# Integration component scripts
 
 ## offline-update-host.ps1
 This script updates integration components in an offline VM from the Hyper-V host.

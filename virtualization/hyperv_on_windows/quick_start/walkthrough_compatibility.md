@@ -44,4 +44,4 @@ Hyper-V Requirements: A hypervisor has been detected. Features required for Hype
 ```
 
 ## Next Step - Install Hyper-V
-[Next Step - Install Hyper-V](walkthrough_install.md)
+[Install Hyper-V](walkthrough_install.md)

@@ -31,9 +31,15 @@
     .PARAMETER ExternalNetAdapter
         Specify a specific network adapter to bind to a DHCP switch
         
+    .PARAMETER Force 
+        If a restart is required, forces an immediate restart.
+        
     .PARAMETER HyperV 
         If passed, prepare the machine for Hyper-V containers
             
+    .PARAMETER NATSubnetPrefix
+        Use to override NAT Subnet when in NAT mode.  Defaults to 172.16.0.0/12
+
     .PARAMETER NoRestart
         If a restart is required the script will terminate and will not reboot the machine
 
@@ -63,6 +69,9 @@ param(
       
     [string]
     $ExternalNetAdapter,
+       
+    [switch]
+    $Force,
 
     [switch]
     $HyperV,
@@ -141,7 +150,14 @@ Restart-And-Run()
 
     try
     {
-        Restart-Computer
+        if ($Force)
+        {
+            Restart-Computer -Force
+        }
+        else
+        {
+            Restart-Computer
+        }
     }
     catch 
     {
@@ -189,6 +205,11 @@ Install-Feature
     {
         if ((Get-WindowsOptionalFeature -Online -FeatureName $FeatureName).State -eq "Disabled")
         {
+            if (Test-Nano)
+            {
+                throw "This NanoServer deployment does not include $FeatureName.  Please add the appropriate package"
+            }
+
             Test-Admin
 
             Write-Output "Enabling feature $FeatureName..."
@@ -422,7 +443,7 @@ Install-ContainerHost
     {        
         $imageName = "WindowsServerCore"
 
-        if (Test-Nano)
+        if ($HyperV -or (Test-Nano))
         {
             $imageName = "NanoServer"
         }
@@ -452,13 +473,16 @@ Install-ContainerHost
 				}
 				else
 				{
-					$qfe = $hostBuildInfo[1]
+                    $qfe = $hostBuildInfo[1]
 				}
 
 				$imageVersion = "10.0.$version.$qfe"
 
                 Write-Output "Getting Container OS image ($imageName) version $imageVersion from OneGet (this may take a few minutes)..."
-                Install-ContainerImage $imageName -Version $imageVersion
+                #
+                # TODO: expect the follow to have default ErrorAction of stop
+                #
+                Install-ContainerImage $imageName -Version $imageVersion -ErrorAction Stop
             }
             else
             {
@@ -511,24 +535,7 @@ Install-ContainerHost
             }
 
             Write-Output "Container base image install complete.  Querying container images..."
-            $newBaseImages += Get-InstalledContainerImage $imageName
-
-            while ($newBaseImages.Count -eq 0)
-            {
-                #
-                # Sleeping to ensure VMMS has restarted to workaround TP3 issue
-                #
-                Write-Output "Waiting for VMMS to return image at ($(get-date))..."
-
-                Start-Sleep -Sec 2
-                
-                $newBaseImages += Get-InstalledContainerImage $imageName
-            }
-    
-            if ($newBaseImages.Count -eq 0)
-            {
-                throw "No Container OS image installed!"
-            }
+            $newBaseImages += Wait-InstalledContainerImage $imageName
         }
 
         #
@@ -602,7 +609,7 @@ Install-ContainerHost
                 Write-Output "Creating scheduled task trigger..."
                 $trigger = New-ScheduledTaskTrigger -AtStartup
                 
-                Write-Output "Creating scheduled task trigger..."
+                Write-Output "Creating scheduled task settings..."
                 $settings = New-ScheduledTaskSettingsSet -Priority 5
                 
                 Write-Output "Registering Docker daemon to launch at startup..."
@@ -623,7 +630,7 @@ Install-ContainerHost
                 }
                         
                 Write-Output "Configuring NSSM for $global:DockerServiceName service..."
-                Start-Process -Wait "nssm" -ArgumentList "install $global:DockerServiceName $($env:SystemRoot)\System32\cmd.exe /s /c $dockerDaemonScript"
+                Start-Process -Wait "nssm" -ArgumentList "install $global:DockerServiceName $($env:SystemRoot)\System32\cmd.exe /s /c $dockerDaemonScript < nul"
                 Start-Process -Wait "nssm" -ArgumentList "set $global:DockerServiceName DisplayName Docker Daemon"
                 Start-Process -Wait "nssm" -ArgumentList "set $global:DockerServiceName Description The Docker Daemon provides management capabilities of containers for docker clients"
                 # Pipe output to daemon.log
@@ -898,7 +905,11 @@ Test-Nano()
 {
     $EditionId = (Get-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion' -Name 'EditionID').EditionId
 
-    return (($EditionId -eq "NanoServer") -or ($EditionId -eq "ServerTuva"))
+    return (($EditionId -eq "ServerStandardNano ") -or 
+            ($EditionId -eq "ServerDataCenterNano") -or 
+            ($EditionId -eq "NanoServer") -or 
+            ($EditionId -eq "ServerTuva"))
+
 }
 
 
@@ -999,6 +1010,44 @@ Test-Docker()
     }
 
     return ($service -ne $null)
+}
+
+
+function
+Wait-InstalledContainerImage
+{
+    [CmdletBinding()]
+    param(
+        [Parameter(Mandatory=$true)]
+        [string]
+        [ValidateNotNullOrEmpty()]
+        $BaseImageName
+    )
+    
+    $newBaseImages = Get-InstalledContainerImage $BaseImageName
+
+    $startTime = Get-Date
+
+    while ($newBaseImages.Count -eq 0)
+    {            
+        $timeElapsed = $(Get-Date) - $startTime
+
+        if ($($timeElapsed).TotalMinutes -gt 5)
+        {
+            throw "Image $BaseImageName not found after 5 minutes"
+        }
+
+        #
+        # Sleeping to ensure VMMS has restarted to workaround TP3 issue
+        #
+        Write-Output "Waiting for VMMS to return image at ($(get-date))..."
+
+        Start-Sleep -Sec 2
+                
+        $newBaseImages += Get-InstalledContainerImage $BaseImageName            
+    }
+
+    return $newBaseImages
 }
 
 

@@ -1,8 +1,27 @@
+---
+author: neilpeterson
+---
+
 # Windows Container Requirements
 
 **This is preliminary content and subject to change.** 
 
 This guides list the requirements for a Windows Container Host.
+
+## Windows Containers on a physical System
+
+- The Windows Container role is only available on Windows Server 2016 TP4 (Full and Core) and Nano Server.
+- If Hyper-V Containers will be run, the Hyper-V role will need to be installed.
+
+## Windows Containers on a virtual system
+
+If a Windows Container host will be run from a Hyper-V virtual machine, and will also be hosting Hyper-V Containers, nested virtualization will need to be enabled. Nested virtualization has the following requirements:
+
+- At least 4 GB RAM available for the virtualized Hyper-V host.
+- Windows Server 2016 Technical Preview 4, or Windows 10 build 10565 on the host system, and Windows Server Technical Preview 4 (Full, Core) or Nano Server in the virtual machine.
+- A processor with Intel VT-x (this feature is currently only available for Intel processors).
+- The Container host VM will also need at least 2 virtual processors.
+
 
 ## Supported OS Images
 
@@ -34,13 +53,3 @@ Windows Server Technical Preview 4 is being offered with two container OS Images
 </tr>
 </tbody>
 </table>
-
-## Hyper-V Container Requirements
-
-If a Windows Container host will be run from a Hyper-V virtual machine, and will also be hosting Hyper-V Containers, nested virtualization will need to be enabled. Nested virtualization has the following requirements:
-
-- At least 4 GB RAM available for the virtualized Hyper-V host.
-- Windows Server 2016 Technical Preview 4, or Windows 10 build 10565, on both the physical and the virtualized host.
-- A processor with Intel VT-x (this feature is currently only available for Intel processors).
-- The Container host VM will also need at least 2 virtual processors.
-

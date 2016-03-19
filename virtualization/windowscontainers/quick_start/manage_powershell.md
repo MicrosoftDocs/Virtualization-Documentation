@@ -1,3 +1,7 @@
+---
+author: neilpeterson
+---
+
 # Windows Containers Quick Start - PowerShell
 
 Windows Containers can be used to rapidly deploy many isolated applications on a single computer system. This quick start demonstrates deployment and management of both Windows Server and Hyper-V containers using PowerShell. Throughout this exercise you will build from the ground up a very simple ‘hello world’ application, running in both a Windows Server and a Hyper-V Container. During this process, you will create container images, work with container shared folders, and manage the container lifecycle. When completed, you will have a basic understanding of Windows Container deployment and management.
@@ -277,7 +281,7 @@ Shared folders expose a directory from the container host, to the container. Whe
 Create a directory named `c:\share\en-us` on the container host.
 
 ```powershell
-S C:\> New-Item -Type Directory c:\share\en-us
+PS C:\> New-Item -Type Directory c:\share\en-us
 
     Directory: C:\share
 
@@ -496,7 +500,7 @@ PS C:\> Enter-PSSession -ContainerName IISApp -RunAsAdministrator
 Run the following command to remove the IIS splash screen.
 
 ```powershell
-[IIS]: PS C:\> del C:\inetpub\wwwroot\iisstart.htm
+[IISApp]: PS C:\> del C:\inetpub\wwwroot\iisstart.htm
 ```
 Run the following command to replace the default IIS site with a new static site.
 

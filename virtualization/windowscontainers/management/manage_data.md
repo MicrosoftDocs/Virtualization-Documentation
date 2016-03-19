@@ -1,3 +1,7 @@
+---
+author: neilpeterson
+---
+
 # Container Shared Folders
 
 **This is preliminary content and subject to change.** 
@@ -73,3 +77,6 @@ PS C:\> docker run -it -v c:\source:c:\destination 1f62aaf73140 cmd
 
 For more information on managing data in containers with Docker see [Docker Volumes on Docker.com](https://docs.docker.com/userguide/dockervolumes/).
 
+## Video Walkthrough
+
+<iframe src="https://channel9.msdn.com/Blogs/containers/Container-Fundamentals--Part-3-Shared-Folders/player" width="800" height="450"  allowFullScreen="true" frameBorder="0" scrolling="no"></iframe>

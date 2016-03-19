@@ -1,3 +1,7 @@
+---
+author: neilpeterson
+---
+
 # Azure Quick Start
 
 Before creating and managing Windows Server Containers in Azure you will need to deploy a Windows Server 2016 Technical Preview image which has been pre-configured with the Windows Server Containers feature. This guide will walk you through this process.
@@ -5,7 +9,7 @@ Before creating and managing Windows Server Containers in Azure you will need to
 > Microsoft Azure does not support Hyper-V containers. To complete Hyper-V Container exercises, you need an on-prem container host.
 
 ## Start Using Azure Portal
-If you have an Azure account, skip straight to [Create a Container Host VM](#CreateacontainerhostVM).
+If you have an Azure account, skip to [Create a Container Host VM](#CreateacontainerhostVM).
 
 1. Go to [azure.com](https://azure.com) and follow the steps for an [Azure Free Trial](https://azure.microsoft.com/en-us/pricing/free-trial/).
 2. Sign in with your Microsoft account.
@@ -40,6 +44,16 @@ When the VM deployment is complete, select the connect button to start an RDP se
 Log into the VM using the username and password specified during the VM creation wizard. Once logged in you will be looking at a Windows command prompt.
 
 ![](media/newazure7.png) 
+
+## Update Docker Engine
+
+In order to use `docker pull` with the Azure Windows Container Technical Preview image, the Docker engine needs to be updated. Run the following PowerShell commands on the Azure virtual machine to complete this update.
+
+```powershell
+PS C:\> wget https://raw.githubusercontent.com/Microsoft/Virtualization-Documentation/live/windows-server-container-tools/Update-ContainerHost/Update-ContainerHost.ps1 -OutFile Update-ContainerHost.ps1
+
+PS C:\> ./Update-ContainerHost.ps1
+``` 
 
 ## Video Walkthrough
 

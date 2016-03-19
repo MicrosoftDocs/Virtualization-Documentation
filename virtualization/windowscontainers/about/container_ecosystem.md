@@ -1,4 +1,8 @@
-﻿# Building a Container Ecosystem
+﻿---
+author: scooley
+---
+
+# Building a Container Ecosystem
 
 To understand why building a container ecosystem is so important, let's first talk about Docker.
 
@@ -22,7 +26,6 @@ Windows Containers are a key component of a large container ecosystem. We’re w
 The container ecosystem provides ways to manage containers, share containers and develop apps that run in containers.
 
 ![](media/containerEcosystem.png)
-
 
 Microsoft wants to empower developer choice and productivity as they build these next-gen apps.  Our goal is to fuel developer productivity which means enabling applications to target any Microsoft cloud without having to modify, rewrite, or reconfigure code.
 

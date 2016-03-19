@@ -1,3 +1,4 @@
+
 function
 Convert-WindowsImage
 {
@@ -139,6 +140,13 @@ Convert-WindowsImage
             -Key       - The key used to encrypt the connection.  Only [0-9] and [a-z] are allowed.
             -nodhcp    - Prevents the use of DHCP to obtain the target IP address.
             -newkey    - Specifies that a new encryption key should be generated for the connection.
+
+    .PARAMETER DismPath
+        Full Path to an alternative version of the Dism.exe tool. The default is the current OS version.
+
+    .PARAMETER ApplyEA
+        Specifies that any EAs captured in the WIM should be applied to the VHD.
+        The default is False.
 
     .EXAMPLE
         .\Convert-WindowsImage.ps1 -SourcePath D:\foo\install.wim -Edition Professional -WorkingDirectory D:\foo
@@ -286,6 +294,16 @@ Convert-WindowsImage
         [Parameter(ParameterSetName="UI")]
         [switch]
         $Passthru,
+
+        [Parameter(ParameterSetName="SRC")]
+        [string]
+        [ValidateNotNullOrEmpty()]
+        [ValidateScript({ Test-Path $(Resolve-Path $_) })]
+        $DismPath,
+
+        [Parameter(ParameterSetName="SRC")]
+        [switch]
+        $ApplyEA = $false,
 
         [Parameter(ParameterSetName="UI")]
         [switch]
@@ -570,16 +588,16 @@ Convert-WindowsImage
         $PARTITION_STYLE_GPT    = 0x00000001                                   # Just in case...
 
         # Version information that can be populated by timebuild.
-        $ScriptVersion = DATA 
+        $ScriptVersion = DATA
         {
-            ConvertFrom-StringData -StringData @"
-Major     = 10
-Minor     = 0
-Build     = 10586
-Qfe       = 0
-Branch    = th2_release
-Timestamp = 151029-1700
-Flavor    = amd64fre
+    ConvertFrom-StringData -StringData @"
+        Major     = 10
+        Minor     = 0
+        Build     = 14278
+        Qfe       = 1000
+        Branch    = rs1_es_media
+        Timestamp = 160201-1707
+        Flavor    = amd64fre
 "@
 }
 
@@ -911,6 +929,8 @@ You can use the fields below to configure the VHD or VHDX that you want to creat
 
     Process
     {
+        Write-Host $header
+        
         $disk           = $null
         $openWim        = $null
         $openIso        = $null
@@ -923,7 +943,19 @@ You can use the fields below to configure the VHD or VHDX that you want to creat
 
         if (Get-Command Get-WindowsOptionalFeature -ErrorAction SilentlyContinue)
         {
-            $hyperVEnabled  = $((Get-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V).State -eq "Enabled")
+            try
+            {
+                $hyperVEnabled  = $((Get-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V).State -eq "Enabled")
+            }
+            catch
+            {
+                # WinPE DISM does not support online queries.  This will throw on non-WinPE machines
+                $winpeVersion = (Get-ItemProperty -Path 'HKLM:\Software\Microsoft\Windows NT\CurrentVersion\WinPE').Version
+
+                Write-W2VInfo "Running WinPE version $winpeVersion"
+
+                $hyperVEnabled = $false
+            }
         }
         else
         {
@@ -932,7 +964,6 @@ You can use the fields below to configure the VHD or VHDX that you want to creat
 
         $vhd            = @()
 
-        Write-Host $header
         try
         {
             # Create log folder
@@ -1990,15 +2021,30 @@ You can use the fields below to configure the VHD or VHDX that you want to creat
             ####################################################################################################
 
             Write-W2VInfo "Applying image to $VHDFormat. This could take a while..."
-            if (Get-Command Expand-WindowsImage -ErrorAction SilentlyContinue)
+            if ((Get-Command Expand-WindowsImage -ErrorAction SilentlyContinue) -and ((-not $ApplyEA) -and ([string]::IsNullOrEmpty($DismPath))))
             {
                 Expand-WindowsImage -ApplyPath $windowsDrive -ImagePath $SourcePath -Index $ImageIndex -LogPath "$($logFolder)\DismLogs.log" | Out-Null
             }
             else
             {
-                $dismArgs = @("/Apply-Image /ImageFile:`"$SourcePath`" /Index:$ImageIndex /ApplyDir:$windowsDrive /LogPath:`"$($logFolder)\DismLogs.log`"")
-                Write-W2VInfo "Applying image: $Dism $dismArgs"
-                $process  = Start-Process -Passthru -Wait -NoNewWindow -FilePath $(Join-Path $env:WinDir "system32\dism.exe") `
+                if (![string]::IsNullOrEmpty($DismPath))
+                {
+                    $dismPath = $DismPath
+                }
+                else
+                {
+                    $dismPath = $(Join-Path (get-item env:\windir).value "system32\dism.exe")
+                }
+
+                $applyImage = "/Apply-Image"
+                if ($ApplyEA)
+                {
+                    $applyImage = $applyImage + " /EA"
+                }
+
+                $dismArgs = @("$applyImage /ImageFile:`"$SourcePath`" /Index:$ImageIndex /ApplyDir:$windowsDrive /LogPath:`"$($logFolder)\DismLogs.log`"")
+                Write-W2VInfo "Applying image: $dismPath $dismArgs"
+                $process  = Start-Process -Passthru -Wait -NoNewWindow -FilePath $dismPath `
                             -ArgumentList $dismArgs `
 
                 if ($process.ExitCode -ne 0)
@@ -2195,8 +2241,7 @@ You can use the fields below to configure the VHD or VHDX that you want to creat
             if ($Driver)
             {
                 Write-W2VInfo -text "Adding Windows Drivers to the Image"
-                $Driver | ForEach-Object -Process
-                {
+                $Driver | ForEach-Object -Process {
                     Write-W2VInfo -text "Driver path: $PSItem"
                     Add-WindowsDriver -Path $windowsDrive -Recurse -Driver $PSItem -Verbose | Out-Null
                 }
@@ -2214,8 +2259,7 @@ You can use the fields below to configure the VHD or VHDX that you want to creat
             {
                 Write-W2VInfo -text "Adding Windows Packages to the Image"
 
-                $Package | ForEach-Object -Process
-                {
+                $Package | ForEach-Object -Process {
                     Write-W2VInfo -text "Package path: $PSItem"
                     Add-WindowsPackage -Path $windowsDrive -PackagePath $PSItem | Out-Null
                 }

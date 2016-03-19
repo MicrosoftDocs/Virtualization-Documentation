@@ -1,3 +1,7 @@
+---
+author: neilpeterson
+---
+
 # Windows Containers
 
 Applications fuel innovation in the cloud and mobile era. Containers, and the ecosystem that is developing around them, will empower software developers to create the next generation of applications experiences.
@@ -12,7 +16,7 @@ Basically, a container is an isolated place where an application can run without
 
 If you were inside a container, it would look very much like you were inside a freshly installed physical computer or a virtual machine. And, to [Docker](https://www.docker.com/), a Windows Server Container can be managed in the same way as any other container.
 
-## Windows Containers
+## Windows Container Types
 
 Windows Containers include two different container types, or runtimes.
 

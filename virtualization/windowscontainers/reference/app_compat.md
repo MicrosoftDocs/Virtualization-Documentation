@@ -1,3 +1,7 @@
+---
+author: scooley
+---
+
 # Application Compatability in Windows Containers
 
 This is a preview.  While eventually application that runs on Windows should also run in a container, this is a good place to see our current application compatability status.
@@ -25,7 +29,7 @@ We have tried to running the following applications in a Windows Server Containe
 | ASP.NET | 5 beta 6 | Yes | Yes | Both, x64 and x86 |
 | Django | |Yes|Yes| |
 | Go | 1.4.2 | Yes | Yes | |
-| Internet Information Service | 10.0 | Yes | Yes | VC++ runtime does not get installed if dedup filter is loaded. Unload dedup using `fltmc unload dedup` |
+| Internet Information Service | 10.0 | Yes | Yes | HTTPS/TLS does not work.  VC++ runtime does not get installed if dedup filter is loaded. Unload dedup using `fltmc unload dedup` |
 | Java | 1.8.0_51 | Yes | Yes | Use the server version. The client version does not install properly |
 | MongoDB | 3.0.4 | Yes | Unkown | |
 | MySQL | 5.6.26 | Yes | Yes | |
@@ -41,7 +45,7 @@ We have tried to running the following applications in a Windows Server Containe
 | Ruby | 2.2.2 | Yes | Yes | Both, x64 and x86 | 
 | Ruby on Rails | 4.2.3 | Yes | Yes | |
 | SQLite | 3.8.11.1 | Yes | No | |
-| SQL Server Express | 2014 LocalDB | No | No |  |
+| SQL Server Express | 2014 | Yes | Unknown | You can quickly start by building this [community-contributed Dockerfile](https://github.com/brogersyh/Dockerfiles-for-windows/tree/master/sqlexpress) that installs SQL Express 2014. |
 | Sysinternals Tools | * | Yes | Yes | Only tried those not requiring a GUI. PsExec does not work by current design | 
 
 ## Hyper-V Containers
@@ -55,7 +59,7 @@ We have tried to running the following applications in a Hyper-V Container.  The
 | ASP.NET | 5 beta 6 | Yes | Both, x64 and x86 |
 | Django |  | Yes | If the image is created with a DockerFile and python binaries are copied as part it, Python does not work. Start container and then copy the python binaries. |
 | Go | 1.4.2 | Yes | |
-| Internet Information Service | 10.0 | Yes | IIS does not install using dism directly.  Do unattended installation of IIS using dism commands. |
+| Internet Information Service | 10.0 | Yes | HTTPS/TLS does not work.  IIS does not install using dism directly.  Do unattended installation of IIS using dism commands. |
 | Java | 1.8.0_51 | Yes | Use the server version. The client version does not install properly |
 | MySQL | 5.6.26 | Yes | |
 | NGinx | 1.9.3 | Yes | |

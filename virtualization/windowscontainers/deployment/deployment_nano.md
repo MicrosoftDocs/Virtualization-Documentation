@@ -1,3 +1,8 @@
+---
+author: neilpeterson
+---
+
+
 # Container Host Deployment - Nano Server
 
 **This is preliminary content and subject to change.** 
@@ -93,7 +98,7 @@ PS C:\> Copy-Item $WindowsMedia\NanoServer\Convert-WindowsImage.ps1 c:\nano
 
 PS C:\> Copy-Item $WindowsMedia\NanoServer\NanoServerImageGenerator.psm1 c:\nano
 ```
-Run the following to create a Nano Server virtual hard drive. The `–Containers` parameter indicates that the container package is installed, and the `–Compute` parameter takes care of the Hyper-V package. Hyper-V is only required if using Hyper-V containers.
+Run the following to create a Nano Server virtual hard drive. The `-Containers` parameter indicates that the container package is installed, and the `-Compute` parameter takes care of the Hyper-V package. Hyper-V is only required if using Hyper-V containers.
 
 ```powershell
 PS C:\> Import-Module C:\nano\NanoServerImageGenerator.psm1
@@ -177,6 +182,11 @@ For more information on Container image management see [Windows Container Images
 
 The Docker Daemon and command line interface are not shipped with Windows, and not installed with the Windows Container feature. Docker is not a requirement for working with Windows containers. If you would like to install Docker, follow the instructions in this article [Docker and Windows](./docker_windows.md).
 
+You can use the `Enter-PSSession` command in the Hyper-V management host to connect to the container host.
+
+```powershell
+PS C:\> Enter-PSSession -VMName <VM Name>
+```
 
 ## Hyper-V Container Host
 
@@ -184,7 +194,7 @@ The Docker Daemon and command line interface are not shipped with Windows, and n
 
 On Nano Server this can be completed when creating the Nano Server image. See [Prepare Nano Server for Containers](#nano) for these instructions.
 
-### <a name=nest></a>Configure Nested Virtualization
+### <a name=nest></a>Nested Virtualization
 
 If the container host itself will be running on a Hyper-V virtual machine, and will also be hosting Hyper-V Containers, nested virtualization needs to be enabled. This can be completed with the following PowerShell command.
 
@@ -201,7 +211,7 @@ If the container host itself will be running on a Hyper-V virtual machine, and w
 **Note** - The virtual machines must be turned off when running this command.
 
 ```poweshell
-PS C:\> Set-VMProcessor –VMName <VM Name> -Count 2
+PS C:\> Set-VMProcessor -VMName <VM Name> -Count 2
 ``` 
 
 ### <a name=dyn></a>Disable Dynamic Memory
@@ -214,7 +224,7 @@ If the Container Host is itself a Hyper-V Virtual machine, dynamic memory must b
 PS C:\> Set-VMMemory <VM Name> -DynamicMemoryEnabled $false
 ``` 
 
-### <a name=mac></a>Configure MAC Address Spoofing
+### <a name=mac></a>MAC Address Spoofing
 
 Finally, if the container host is running inside of a Hyper-V virtual machine, MAC spoofing must be enable. This allows each container to receive an IP Address. To enable MAC address spoofing, run the following command on the Hyper-V host. The VMName property will be the name of the container host.
 
