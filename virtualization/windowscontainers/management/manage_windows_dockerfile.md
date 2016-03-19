@@ -106,8 +106,6 @@ Once a dockerfile has created and saved to disk, `docker build` can be run to cr
 
 ### Docker Build 
 
-Docker Build Operations
-
 The `docker build` command takes several optional parameters and a path to the dockerfile.
 
 ```
@@ -165,8 +163,9 @@ windowsservercore   latest              6801d964fda5        4 months ago        
 
 ### Image Layers
 
-During the Docker Build process, the Docker engine executes each dockerfile instruction one-by-one, each in its own temporary container. The result is a new image layer for each actionable command in the dockerfile. Looking back at the simple example given above, one might expect the resulting image to consist of two layers, WindowsServerCore, and then the new layer including the IIS configuration. This however is not the case. We can inspect a container image using the `docker history` command. Doing so against the image created with the simple example dockerfile will show that the image consists of three layers, the base, and then two, one for each actionable instruction from the dockerfile. 
+During the Docker Build process, the Docker engine executes each dockerfile instruction one-by-one, each in its own temporary container. The result is a new image layer for each actionable command in the dockerfile. Looking back at the simple example given above, one might expect the resulting image to consist of two layers, WindowsServerCore, and then the new layer including the IIS configuration. This however is not the case. 
 
+To innspect a container image, use the `docker history` command. Doing so against the image created with the simple example dockerfile will show that the image consists of three layers, the base, and then two additional layers, one for each actionable instruction in the dockerfile. 
 
 ```
 C:\> docker history iis
@@ -179,8 +178,9 @@ e2aafdfbe392        About a minute ago   cmd /S /C echo "Hello World - Dockerfil
 
 ## Dockerfile Optimization
 
+There are several strategies that can be used when building Dockerfiles that will result in an optimized image. This section will detail some of these dockerfile tactics specific to Windows Containers. For additional information on Dockerfile best practices, see [Best practices for writing Dockerfiles on Docker.com]( https://docs.docker.com/engine/userguide/eng-image/dockerfile_best-practices/).
 
-### Do fewer operations per line
+### Minimize operations per instruction
 This makes caching more effective. If the same step has been done in a similar build, then this step could be cached. Although adding a script is convenient, breaking it into multiple RUN commands will cache more and build faster.
 
 ```
@@ -194,7 +194,7 @@ RUN bar
 ```
 <!-- build twice, show docker history excerpt -->
 
-### Remove excess files in the same step
+### Remove excess files
 If a file, such as an installer, isn't required after the RUN step, you can delete it to save space in the layer.
 
 Example:
@@ -212,11 +212,11 @@ Example:
 [@StefanScherer](http://www.github.com/StefanScherer) shared his experiences optimizing an image for building applications using Go in [Issue:dockerfiles-windows#1](https://github.com/StefanScherer/dockerfiles-windows/issues/1)  
 
 
-## WORKDIR
+<!--## WORKDIR -->
 <!-- Topics: compare to RUN cd ... -->
 
 
-## CMD
+<!-- ## CMD -->
 <!-- Topics: envvar scope & set /x workaround -->
 
 
@@ -225,4 +225,4 @@ Example:
 * [Optimizing Docker Images](https://www.ctl.io/developers/blog/post/optimizing-docker-images/)
 
 <!-- These URLs can't be used with the typical [text](link) syntax, so the reference style was used instead -->
-[msi]: https://msdn.microsoft.com/en-us/library/aa367449(v=vs.85).aspx "About Windows Installer"
+<!--[msi]: https://msdn.microsoft.com/en-us/library/aa367449(v=vs.85).aspx "About Windows Installer"-->
