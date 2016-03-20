@@ -13,17 +13,17 @@ This document will introduce using a dockerfile with Windows Containers, detail 
 
 ### Basic Syntax
 
-In its most basic form, a dockerfile can be very simple. The following example creates a new image that includes IIS and a customized ‘hello world’ site. This example uses only two dockerfile instructions, FROM, RUN and CMD. This section will cover some basic Dockerfile instructions. For a complete list of dockerfile instructions, see [Dockerfile Reference on Docker.com] (https://docs.docker.com/engine/reference/builder/).
+In its most basic form, a dockerfile can be very simple. The following example creates a new image that includes IIS and a customized ‘hello world’ site. This example uses only three dockerfile instructions, FROM, RUN and CMD. This section will cover some basic Dockerfile instructions. For a complete list of dockerfile instructions, see [Dockerfile Reference on Docker.com] (https://docs.docker.com/engine/reference/builder/).
 ```
 FROM windowsservercore
 RUN dism /online /enable-feature /all /featurename:iis-webserver /NoRestart
 RUN echo "Hello World - Dockerfile" > c:\inetpub\wwwroot\index.html
-CMD [ "ping localhost -t" ]
+CMD [ "cmd" ]
 ```
 
 ### FROM
 
-The FROM instruction set the existing container image that will be used during the image creation process. For instance, when using the instruction `FROM WindowsServerCore`, the resulting image will be derived from, and have a dependency on the WindowsServerCore Base OS image.
+The FROM instruction sets the container image that will be used during the new image creation process. For instance, when using the instruction `FROM WindowsServerCore`, the resulting image will be derived from, and have a dependency on the WindowsServerCore Base OS image.
 
 Examples:
 
@@ -39,7 +39,7 @@ For detailed information on the FROM instruction see the [FROM Reference on Dock
 
 ### RUN
 
-The RUN instruction specifies commands to be run, that will be captured into the container image. These commands can include items such as installing software, creating files and directories, and creating environment configuration.
+The RUN instruction specifies commands to be run, and captured, into the new container image. These commands can include items such as installing software, creating files and directories, and creating environment configuration.
 
 Examples:
 
@@ -72,7 +72,7 @@ For detailed information on the ADD instruction see the [ADD Reference on Docker
 
 ### WORKDIR
 
-The WORKDIR instruction sets a working directory for other dockerfile instructions such as RUN, CMD, and ADD. 
+The WORKDIR instruction sets a working directory, for other dockerfile instructions such as RUN, CMD, and ADD. 
 
 Examples:
 
@@ -88,7 +88,7 @@ For detailed information on the WORKDIR instruction see the [WORKDIR Reference o
 
 ### CMD
 
-The `CMD` instruction set the default command to be run when starting a new container from the container image. For instance, if the container will be hosting an NGINX web server, the `CMD` might include instructions to start the web server, such as `nginx.exe`. There can only be one `CMD` instruction in a dockerfile.
+The `CMD` instruction sets the default command to be run when starting a new container from the container image. For instance, if the container will be hosting an NGINX web server, the `CMD` might include instructions to start the web server, such as `nginx.exe`. There can only be one `CMD` instruction in a dockerfile.
 
 ```
 CMD ["httpd.exe"]
@@ -102,7 +102,7 @@ For detailed information on the CMD instruction see the [CMD Reference on Docker
 
 ## Docker Build operations
 
-Once a dockerfile has created and saved to disk, `docker build` can be run to create the new image. 
+Once a dockerfile has created, and saved to disk, `docker build` can be run to create the new image. 
 
 ### Docker Build 
 
@@ -111,13 +111,13 @@ The `docker build` command takes several optional parameters and a path to the d
 ```
 Docker build [OPTIONS] PATH
 ```
-For example, the following command will create an image named ‘iis’ and look in the path relative to execution for the dockerfile. This is indicated with the period.
+For example, the following command will create an image named ‘iis’ and look in the relative path for the dockerfile.
 
 ```
 docker build -t iis .
 ```
 
-For a complete documentation on Docker Build, including a list of all build options, see [Build at Docker.com](https://docs.docker.com/engine/reference/commandline/build/#build-with).
+For complete documentation on Docker Build, including a list of all build options, see [Build at Docker.com](https://docs.docker.com/engine/reference/commandline/build/#build-with).
 
 
 When the build process has been initiated, the output will indicate status, and return any thrown errors.
@@ -165,7 +165,7 @@ windowsservercore   latest              6801d964fda5        4 months ago        
 
 During the Docker Build process, the Docker engine executes each dockerfile instruction one-by-one, each in its own temporary container. The result is a new image layer for each actionable command in the dockerfile. Looking back at the simple example given above, one might expect the resulting image to consist of two layers, WindowsServerCore, and then the new layer including the IIS configuration. This however is not the case. 
 
-To innspect a container image, use the `docker history` command. Doing so against the image created with the simple example dockerfile will show that the image consists of three layers, the base, and then two additional layers, one for each actionable instruction in the dockerfile. 
+To inspect a container image, use the `docker history` command. Doing so against the image created with the simple example dockerfile will show that the image consists of three layers, the base, and then two additional layers, one for each actionable instruction in the dockerfile. 
 
 ```
 C:\> docker history iis
@@ -178,7 +178,7 @@ e2aafdfbe392        About a minute ago   cmd /S /C echo "Hello World - Dockerfil
 
 ## Dockerfile Optimization
 
-There are several strategies that can be used when building Dockerfiles that will result in an optimized image. This section will detail some of these dockerfile tactics specific to Windows Containers. For additional information on Dockerfile best practices, see [Best practices for writing Dockerfiles on Docker.com]( https://docs.docker.com/engine/userguide/eng-image/dockerfile_best-practices/).
+There are several strategies that can be used when building Dockerfiles, that will result in an optimized image. This section will detail some of these dockerfile tactics, specific to Windows Containers. For additional information on Dockerfile best practices, see [Best practices for writing Dockerfiles on Docker.com]( https://docs.docker.com/engine/userguide/eng-image/dockerfile_best-practices/).
 
 ### Minimize operations per instruction
 This makes caching more effective. If the same step has been done in a similar build, then this step could be cached. Although adding a script is convenient, breaking it into multiple RUN commands will cache more and build faster.
