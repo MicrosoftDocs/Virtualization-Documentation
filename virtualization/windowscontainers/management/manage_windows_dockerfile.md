@@ -13,13 +13,17 @@ This document will introduce using a dockerfile with Windows Containers, detail 
 
 ### Basic Syntax
 
-In its most basic form, a dockerfile can be very simple. The following example creates a new image that includes IIS and a customized ‘hello world’ site. This example uses only three dockerfile instructions, FROM, RUN and CMD. This section will cover some basic Dockerfile instructions. For a complete list of dockerfile instructions, see [Dockerfile Reference on Docker.com] (https://docs.docker.com/engine/reference/builder/).
+In its most basic form, a dockerfile can be very simple. The following example creates a new image that includes IIS and a customized ‘hello world’ site. This example uses only three dockerfile instructions, FROM, RUN and CMD. Also note that a # can be used to add comments to the Dockerfile.
 ```
+# Sample Dockerfile
+
 FROM windowsservercore
 RUN dism /online /enable-feature /all /featurename:iis-webserver /NoRestart
 RUN echo "Hello World - Dockerfile" > c:\inetpub\wwwroot\index.html
 CMD [ "cmd" ]
 ```
+
+Here are the details for some basic Dockerfile instructions. For a complete list of dockerfile instructions, see [Dockerfile Reference on Docker.com] (https://docs.docker.com/engine/reference/builder/).
 
 ### FROM
 
@@ -180,36 +184,110 @@ e2aafdfbe392        About a minute ago   cmd /S /C echo "Hello World - Dockerfil
 
 There are several strategies that can be used when building Dockerfiles, that will result in an optimized image. This section will detail some of these dockerfile tactics, specific to Windows Containers. For additional information on Dockerfile best practices, see [Best practices for writing Dockerfiles on Docker.com]( https://docs.docker.com/engine/userguide/eng-image/dockerfile_best-practices/).
 
+### Group related actions
+Because each RUN operations creates a new layer in the container image, grouping actions into one RUN operation can reduce the number of layers in the image. The backslash character ‘\’ can be used to organize the operation onto separate lines of the Dockerfile, while still using one Run operation.
+
+This example downloads, extracts, and cleans up a PHP installation. Each of these actions are run in their own RUN operation.
+
+```
+FROM windowsservercore
+
+RUN powershell Invoke-WebRequest -Method Get -Uri http://windows.php.net/downloads/releases/php-5.5.33-Win32-VC11-x86.zip -OutFile c:\php.zip
+RUN powershell	Expand-Archive -Path c:\php.zip -DestinationPath c:\php
+RUN powershell	Remove-Item c:\php.zip -Force
+```
+
+The resulting image will consist of three layers, one for each operation completed.
+
+```
+C:\> docker history example1
+IMAGE               CREATED             CREATED BY                                      SIZE                COMMENT
+b4a936eed201        2 minutes ago       cmd /S /C powershell Remove-Item c:\php.zip -   24.57 MB
+b9eaf6ddbda9        2 minutes ago       cmd /S /C powershell Expand-Archive -Path c:\   73.88 MB
+114054baa14a        2 minutes ago       cmd /S /C powershell Invoke-WebRequest -Metho   98.68 MB
+```
+To compare, here is the same operation, however all steps executed in the same RUN operation.
+
+```
+FROM windowsservercore
+
+RUN powershell -Command \
+	Sleep 2 ; \
+	Invoke-WebRequest -Method Get -Uri http://windows.php.net/downloads/releases/php-5.5.33-Win32-VC11-x86.zip -OutFile c:\php.zip ; \
+	Expand-Archive -Path c:\php.zip -DestinationPath c:\php ; \
+	Remove-Item c:\php.zip -Force
+```
+
+The resulting image here consists of only one layer.
+
+```
+C:\> docker history example2
+
+IMAGE               CREATED             CREATED BY                                      SIZE                COMMENT
+286051e85b58        46 seconds ago      cmd /S /C powershell -Command  Sleep 2 ;  Inv   128.3 MB
+```
+
 ### Minimize operations per instruction
-This makes caching more effective. If the same step has been done in a similar build, then this step could be cached. Although adding a script is convenient, breaking it into multiple RUN commands will cache more and build faster.
+
+Contrasting with grouping action in one RUN operation, there is also benefit in having unrelated operations being executed by individual RUN operations. Having multiple RUN operations increase caching effectiveness. If the same step has been done in a similar build, then this step could be cached. Although adding a script is convenient, breaking it into multiple RUN commands will cache more and build faster.
+
+In the following example, both Apache and the Visual Studio Redistribute packages are downloaded, installed, and then the un-needed files cleaned up. This is all done with one RUN operations. If any of these actions are updated, the Dockerfile re-built, all actions will re-run.
 
 ```
-RUN script.cmd
+FROM windowsservercore
+
+RUN powershell -Command \
+	Invoke-WebRequest -Method Get -Uri https://www.apachelounge.com/download/VC11/binaries/httpd-2.4.18-win32-VC11.zip -OutFile c:\apache.zip ; \
+	Expand-Archive -Path c:\apache.zip -DestinationPath c:\ ; \
+    Invoke-WebRequest -Method Get -Uri "https://download.microsoft.com/download/1/6/B/16B06F60-3B20-4FF2-B699-5E9B7962F9AE/VSU_4/vcredist_x86.exe" -OutFile c:\vcredist_x86.exe ; \
+    c:\vcredist_x86.exe /quiet ; \
+    Remove-Item c:\apache.zip -Force; \
+    Remove-Item c:\vcredist_x86.exe -Force
 ```
-<!-- build twice, show docker history excerpt -->
+
+To contrast, here are the same actions broken down into two RUN instructions. In this case each RUN instruction is cached in a layer, and only those that have changed will need to re-run on subsequent Dockerfile builds.
+
+> The docker engine consumes a Dockerfile from the top to the bottom. As soon as any change is detected, all remaining actions will be re-run. Because of this, place all frequently changing actions towards the bottom of the Dockerfile.
 
 ```
-RUN foo
-RUN bar
+FROM windowsservercore
+
+RUN powershell -Command \
+	Sleep 2 ; \
+	Invoke-WebRequest -Method Get -Uri https://www.apachelounge.com/download/VC11/binaries/httpd-2.4.18-win32-VC11.zip -OutFile c:\apache.zip ; \
+	Expand-Archive -Path c:\apache.zip -DestinationPath c:\ ; \
+	Remove-Item c:\apache.zip -Force
+
+RUN powershell -Command \
+	Sleep 2 ; \
+	Invoke-WebRequest -Method Get -Uri "https://download.microsoft.com/download/1/6/B/16B06F60-3B20-4FF2-B699-5E9B7962F9AE/VSU_4/vcredist_x86.exe" -OutFile c:\vcredist_x86.exe ; \
+	c:\vcredist_x86.exe /quiet ; \
+	Sleep 20 ; \
+	Remove-Item c:\vcredist_x86.exe -Force
 ```
-<!-- build twice, show docker history excerpt -->
 
 ### Remove excess files
-If a file, such as an installer, isn't required after the RUN step, you can delete it to save space in the layer.
+If a file, such as an installer, isn't required after the RUN step, delete it to minimize image size. Perform the delete operation in the same RUN instruction as it was used. This will prevent a second image layer. 
 
-Example:
-<!-- compare wget & unzip to wget & unzip & delete -->
-
+In this example, the Visual Studio Redistribute package is downloaded, executed, and then the executable removed. This is all completed in one RUN operation and will result in a single image layer in the final image.
+```
+RUN powershell -Command \
+	Sleep 2 ; \
+	Invoke-WebRequest -Method Get -Uri "https://download.microsoft.com/download/1/6/B/16B06F60-3B20-4FF2-B699-5E9B7962F9AE/VSU_4/vcredist_x86.exe" -OutFile c:\vcredist_x86.exe ; \
+	c:\vcredist_x86.exe /quiet ; \
+	Remove-Item c:\vcredist_x86.exe -Force
+```
 
 ### Consider using copy-based installs instead of MSI-based installs  
-The [Windows Installer][msi] is designed to install, upgrade, repair, and remove applications from a Windows machine. This is convenient for desktop machines and servers that may be maintained for a long time, but may not be necessary for a container that can easily be redeployed or rebuilt. Using ADD to copy the needed files into a container, or unzipping an archive may produce fewer changes in the container, and make the resulting image smaller.
+The [Windows Installer](https://msdn.microsoft.com/en-us/library/aa367449(v=vs.85).aspx) package format is designed to install, upgrade, repair, and remove applications from a Windows machine. This is convenient for desktop machines and servers that may be maintained for a long time, but may not be necessary for a container that can easily be redeployed or rebuilt. Using ADD to copy the needed files into a container, or unzipping an archive may produce fewer changes in the container, and make the resulting image smaller.
 
 Example:
-<!-- compare a Git installation vs UNZIP -->
 
+```
+ADD Example
+```
 
-
-[@StefanScherer](http://www.github.com/StefanScherer) shared his experiences optimizing an image for building applications using Go in [Issue:dockerfiles-windows#1](https://github.com/StefanScherer/dockerfiles-windows/issues/1)  
+[@StefanScherer](http://www.github.com/StefanScherer) shared his experiences optimizing an image for building applications using Go in [Issue:dockerfiles-windows#1](https://github.com/StefanScherer/dockerfiles-windows/issues/1).  
 
 
 <!--## WORKDIR -->
@@ -219,10 +297,7 @@ Example:
 <!-- ## CMD -->
 <!-- Topics: envvar scope & set /x workaround -->
 
-
-
 ## Further Reading & References
 * [Optimizing Docker Images](https://www.ctl.io/developers/blog/post/optimizing-docker-images/)
 
-<!-- These URLs can't be used with the typical [text](link) syntax, so the reference style was used instead -->
-<!--[msi]: https://msdn.microsoft.com/en-us/library/aa367449(v=vs.85).aspx "About Windows Installer"-->
+
