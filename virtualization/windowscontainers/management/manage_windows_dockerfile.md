@@ -88,7 +88,7 @@ For detailed information on the WORKDIR instruction see the [WORKDIR Reference o
 
 ### CMD
 
-The `CMD` instruction sets the default command to be run when starting a new container from the container image. For instance, if the container will be hosting an NGINX web server, the `CMD` might include instructions to start the web server, such as `nginx.exe`. There can only be one `CMD` instruction in a dockerfile.
+The `CMD` instruction sets the default command to be run when starting a new container. For instance, if the container will be hosting an NGINX web server, the `CMD` might include instructions to start the web server, such as `nginx.exe`. There can only be one `CMD` instruction in a dockerfile.
 
 ```
 CMD ["httpd.exe"]
