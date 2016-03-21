@@ -104,6 +104,16 @@ CMD ["nginx.exe"]
 
 For detailed information on the CMD instruction see the [CMD Reference on Docker.com]( https://docs.docker.com/engine/reference/builder/#cmd). 
 
+### Helpful Syntax Reference 
+
+Keep the following items in mind when writing a dockerfile.
+
+- **Comments** - The # character is used for commenting a dockerfile.
+- **Line Wrapping** - To wrap a single instruction onto multiple lines, place a / at the end of the line.
+- **Case Sensitivity** - Instruction such as FROM, RUN, and ADD are not case sensitive however convention is to differentiate instructions with upper case.
+- **Variables** - Environment variables can be created using the ENV instruction. They can be referenced with ${variable_name}. For more information on environment variables see [Docekrfile Reference on Docker.com]( https://docs.docker.com/engine/reference/builder/#environment-replacement).
+- **Omitting Files** - A .dockerignore file can be used to exclude files from the scope of docker build. For more information on dockerignore, see [Dockerfiel Reference on Docker.com]( https://docs.docker.com/engine/reference/builder/#dockerignore-file). 
+
 ## Docker Build operations
 
 Once a dockerfile has created, and saved to disk, `docker build` can be run to create the new image. 
