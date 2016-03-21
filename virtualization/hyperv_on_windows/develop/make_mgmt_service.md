@@ -35,6 +35,7 @@ To write a simple application, you'll need:
 
 > The SDK became available in Windows 10 build 14290 -- the flighting download matches the latest insider fast track flighting build.  If you experience strange bahavior make sure the SDK matches the host OS.
 
+
 ## Register a new application
 In order to use Hyper-V sockets, the application must be registered with the Hyper-V Host's registry.
 
