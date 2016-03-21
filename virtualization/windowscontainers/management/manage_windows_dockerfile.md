@@ -1,19 +1,18 @@
 # Dockerfile on Windows
 
-The Docker engine includes tooling to automate the creation of container images. Building automation around image creation allows for effortless, repeatable, and consistent creation of container images. The component that drives this automation is a dockerfile, which is a text file containing a list of instructions to be run and captured into a new container image.
+The Docker engine includes tooling to automate the creation of container images. Building automation around image creation allows for effortless, repeatable, and consistent creation of container images. The components that drive this automation are dockerfiles and the Docker Build command.
 
-Two components drive the automation of image creation:
+- **Dockerfile** – a text file containing instructions on how to derive the image, commands to run and captured into the image, and the run time commands for running instances of the container image.
+- **Docker Build** – the Docker engine command that consumes a Dockerfile and triggers the image creation process.
 
-- **Dockerfile** – a text file containing instructions on how to derive the image, commands to run and captured into the image, and run time commands.
-- **Docker Build** – the Docker engine command that triggers the image creation process.
-
-This document will introduce using a dockerfile with Windows Containers, detail some best practices, and provide some ready to use examples. For a complete look at the Docker engine and Dockerfile, see the [Dockerfile reference at docker.com]( https://docs.docker.com/engine/reference/builder/).
+This document will introduce using a dockerfile with Windows Containers, discuss syntax, and detail commonly used Dockerfile instructions. For a complete look at the Docker engine and Dockerfile, see the [Dockerfile reference at docker.com]( https://docs.docker.com/engine/reference/builder/).
 
 ## Dockerfile Introduction
 
 ### Basic Syntax
 
-In its most basic form, a dockerfile can be very simple. The following example creates a new image that includes IIS and a customized ‘hello world’ site. This example uses only three dockerfile instructions, FROM, RUN and CMD. Also note that a # can be used to add comments to the Dockerfile.
+In its most basic form, a dockerfile can be very simple. The following example creates a new image that includes IIS and a customized ‘hello world’ site. This example includes one comment, indicated by the ‘#’ symbol, and four instructions (FROM, RUN, and CMD). Notice that each instruction is on its own line of the Dockerfile, and that the instructions are not encapsulated in quotation marks. Subsequent sections of this article will detail syntax rules and Dockerfile instructions. 
+
 ```
 # Sample Dockerfile
 
@@ -23,9 +22,23 @@ RUN echo "Hello World - Dockerfile" > c:\inetpub\wwwroot\index.html
 CMD [ "cmd" ]
 ```
 
+For additional examples of Dockerfiles for Windows see the [Dockerfile for Windows Repository] (https://github.com/Microsoft/Virtualization-Documentation/tree/master/windows-server-container-samples).
+
+### Syntax Reference 
+
+The following table details several Dockerfile syntax items.
+
+|Syntax Detail| Description |
+|------------------|-------------|
+|**Comments**| To wrap a single instruction onto multiple lines, place a / at the end of the line. |
+|**Line Wrapping**|To wrap a single instruction onto multiple lines, place a / at the end of the line.|
+|**Case Sensitivity**|Instruction such as FROM, RUN, and ADD are not case sensitive however convention is to differentiate instructions with upper case.|
+|**Variables**|Environment variables can be created using the ENV instruction. They can be referenced with ${variable_name}. For more information on environment variables see [Docekrfile Reference on Docker.com]( https://docs.docker.com/engine/reference/builder/#environment-replacement).|
+|**Omitting Files**| A .dockerignore file can be used to exclude files from the scope of docker build. For more information on dockerignore, see [Dockerfiel Reference on Docker.com]( https://docs.docker.com/engine/reference/builder/#dockerignore-file).|
+
 ### Instructions
 
-Here are the details for some basic Dockerfile instructions. For a complete list of dockerfile instructions, see [Dockerfile Reference on Docker.com] (https://docs.docker.com/engine/reference/builder/).
+Dockerfile instruction provide the Docker Engine with the steps needed in order to create a container image. These instructions are performed in order and one-by-one. Here are the details for some basic Dockerfile instructions. For a complete list of dockerfile instructions, see [Dockerfile Reference on Docker.com] (https://docs.docker.com/engine/reference/builder/).
 
 ### FROM
 
@@ -106,19 +119,9 @@ CMD ["nginx.exe"]
 
 For detailed information on the CMD instruction see the [CMD Reference on Docker.com]( https://docs.docker.com/engine/reference/builder/#cmd). 
 
-### Helpful Syntax Reference 
-
-Keep the following items in mind when writing a dockerfile.
-
-- **Comments** - The # character is used for commenting a dockerfile.
-- **Line Wrapping** - To wrap a single instruction onto multiple lines, place a / at the end of the line.
-- **Case Sensitivity** - Instruction such as FROM, RUN, and ADD are not case sensitive however convention is to differentiate instructions with upper case.
-- **Variables** - Environment variables can be created using the ENV instruction. They can be referenced with ${variable_name}. For more information on environment variables see [Docekrfile Reference on Docker.com]( https://docs.docker.com/engine/reference/builder/#environment-replacement).
-- **Omitting Files** - A .dockerignore file can be used to exclude files from the scope of docker build. For more information on dockerignore, see [Dockerfiel Reference on Docker.com]( https://docs.docker.com/engine/reference/builder/#dockerignore-file). 
-
 ## Docker Build 
 
-Once a dockerfile has created, and saved to disk, `docker build` can be run to create the new image.  The `docker build` command takes several optional parameters and a path to the dockerfile.
+Once a dockerfile has been created, and saved to disk, `docker build` can be run to create the new image.  The `docker build` command takes several optional parameters and a path to the dockerfile. For complete documentation on Docker Build, including a list of all build options, see [Build at Docker.com](https://docs.docker.com/engine/reference/commandline/build/#build-with).
 
 ```
 Docker build [OPTIONS] PATH
@@ -128,9 +131,6 @@ For example, the following command will create an image named ‘iis’ and look
 ```
 docker build -t iis .
 ```
-
-For complete documentation on Docker Build, including a list of all build options, see [Build at Docker.com](https://docs.docker.com/engine/reference/commandline/build/#build-with).
-
 
 When the build process has been initiated, the output will indicate status, and return any thrown errors.
 
@@ -163,7 +163,7 @@ Removing intermediate container 9a26b8bcaa3a
 Successfully built e2aafdfbe392
 ```
 
-The result is a new container image with the name 'iis'.
+The result is a new container image, in this example named 'iis'.
 
 ```
 C:\> docker images
@@ -175,6 +175,6 @@ windowsservercore   latest              6801d964fda5        4 months ago        
 
 ## Further Reading & References
 
-- [Optimize Dockerfiles and Docker Build for Windows] (./optimize_windows_dockerfile.md)
-- [Dockerfile Reference on Docker.com](https://docs.docker.com/engine/reference/builder/)
+[Optimize Dockerfiles and Docker Build for Windows] (./optimize_windows_dockerfile.md)
+[Dockerfile Reference on Docker.com](https://docs.docker.com/engine/reference/builder/)
 

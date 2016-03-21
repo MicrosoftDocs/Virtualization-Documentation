@@ -6,9 +6,18 @@ Several methods can be used to optimize both the Docker Build process and the re
 
 ### Image Layers
 
-During the Docker Build process, the Docker engine executes each dockerfile instruction one-by-one, each in its own temporary container. The result is a new image layer for each actionable command in the dockerfile. Looking back at the simple example given above, one might expect the resulting image to consist of two layers, WindowsServerCore, and then the new layer including the IIS configuration. This however is not the case. 
+During the Docker Build process, the Docker engine executes each dockerfile instruction one-by-one, each in its own temporary container. The result is a new image layer for each actionable command in the dockerfile. Take a look at the following Dokcerfile. In this sample, the WindowsServerCore base OS image is being used, IIS installed, and then a simple ‘Hello World’ static site created. From this Dockerfile, one might expect the resulting image to consist of two layers, WindowsServerCore, and then the new layer including the IIS configuration, this however is not the case.
 
-To inspect a container image, use the `docker history` command. Doing so against the image created with the simple example dockerfile will show that the image consists of three layers, the base, and then two additional layers, one for each actionable instruction in the dockerfile. 
+```
+# Sample Dockerfile
+
+FROM windowsservercore
+RUN dism /online /enable-feature /all /featurename:iis-webserver /NoRestart
+RUN echo "Hello World - Dockerfile" > c:\inetpub\wwwroot\index.html
+CMD [ "cmd" ]
+```
+
+To inspect a container images layers, use the `docker history` command. Doing so against the image created with the simple example dockerfile will show that the image consists of three layers, the base, and then two additional layers, one for each actionable instruction in the dockerfile.
 
 ```
 C:\> docker history iis
@@ -19,12 +28,14 @@ e2aafdfbe392        About a minute ago   cmd /S /C echo "Hello World - Dockerfil
 6801d964fda5        4 months ago                                                         0 B
 ```
 
+This build behavior can be advantageous and may be desirable when troubleshooting individual image layers. However, if desired, the number of layers can be minimized using several tricks detailed later in this article.
+
 ## Dockerfile Optimization
 
 There are several strategies that can be used when building Dockerfiles, that will result in an optimized image. This section will detail some of these dockerfile tactics, specific to Windows Containers. For additional information on Dockerfile best practices, see [Best practices for writing Dockerfiles on Docker.com]( https://docs.docker.com/engine/userguide/eng-image/dockerfile_best-practices/).
 
 ### Group related actions
-Because each RUN operations creates a new layer in the container image, grouping actions into one RUN operation can reduce the number of layers in the image. The backslash character ‘\’ can be used to organize the operation onto separate lines of the Dockerfile, while still using one Run operation.
+Because each RUN instruction creates a new layer in the container image, grouping actions into one RUN instruction can reduce the number of layers in the image. The backslash character ‘\’ can be used to organize the operation onto separate lines of the Dockerfile, while still using only one Run instruction.
 
 This example downloads, extracts, and cleans up a PHP installation. Each of these actions are run in their own RUN operation.
 
@@ -36,7 +47,7 @@ RUN powershell	Expand-Archive -Path c:\php.zip -DestinationPath c:\php
 RUN powershell	Remove-Item c:\php.zip -Force
 ```
 
-The resulting image will consist of three layers, one for each operation completed.
+The resulting image will consist of four layers, one for the Base image, and then one for each operation completed.
 
 ```
 C:\> docker history example1
@@ -57,7 +68,7 @@ RUN powershell -Command \
 	Remove-Item c:\php.zip -Force
 ```
 
-The resulting image here consists of only one layer.
+The resulting image here consists of two layers, one for the Base image and then one for the Run instruction.
 
 ```
 C:\> docker history example2
