@@ -33,7 +33,9 @@ To write a simple application, you'll need:
   * Host and guest (VM) OS must be Windows 10, Windows Server Technical Preview 3, or later.
 * Windows SDK -- Available [here](http://aka.ms/flightingSDK).
 
-> The SDK became available in Windows 10 build 14290 -- the flighting download matches the latest insider fast track flighting build.  If you experience strange bahavior make sure the SDK matches the host OS.
+> The API for Hyper-V sockets became available in Windows 10 build 14290 -- the flighting download matches the latest insider fast track flighting build.  If you experience strange bahavior make sure the SDK matches the host OS.  
+You can see the SDK build number is visible in the title of the SDK installer:  
+![](./media/flightingSDK.png)
 
 
 ## Register a new application
