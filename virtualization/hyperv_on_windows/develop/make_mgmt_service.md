@@ -7,7 +7,7 @@ This document walks through creating a simple application built on Hyper-V socke
 [PowerShell Direct](../user_guide/vmsession.md) is an example of an application (in this case an in-box Windows service) which uses Hyper-V sockets to communicate.
 
 **Supported Host OS**
-* Windows 10
+* Windows 10 build 14290 and beyond
 * Windows Server Technical Preview 4 and later
 * Future releases (Server 2016 +)
 
@@ -32,6 +32,8 @@ To write a simple application, you'll need:
 * A computer running Hyper-V with and a virtual machine.  
   * Host and guest (VM) OS must be Windows 10, Windows Server Technical Preview 3, or later.
 * Windows SDK -- Available [here](http://aka.ms/flightingSDK).
+
+> The SDK became available in Windows 10 build 14290 -- the flighting download matches the latest insider fast track flighting build.  If you experience strange bahavior make sure the SDK matches the host OS.
 
 ## Register a new application
 In order to use Hyper-V sockets, the application must be registered with the Hyper-V Host's registry.
