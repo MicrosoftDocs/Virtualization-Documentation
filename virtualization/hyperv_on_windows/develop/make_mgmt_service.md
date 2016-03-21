@@ -29,11 +29,20 @@ Right now, Hyper-V sockets are available in native code (C/C++).
 
 To write a simple application, you'll need:
 * C compiler.  If you don't have one, checkout [Visual Studio Code](https://aka.ms/vs)
-* A computer running Hyper-V with and a virtual machine.  
+* A computer running Hyper-V and a virtual machine.  
   * Host and guest (VM) OS must be Windows 10, Windows Server Technical Preview 3, or later.
-* Windows SDK -- Available [here](http://aka.ms/flightingSDK).
+* [Windows 10 SDK](http://aka.ms/flightingSDK) installed on the Hyper-V host
 
-> The API for Hyper-V sockets became available in Windows 10 build 14290 -- the flighting download matches the latest insider fast track flighting build.  If you experience strange bahavior, let us know in the forums.  Please include the behavior as well as the OS and build numbers for the host, guest, and SDK.  
+**Windows SDK Details**
+
+Links to the Windows 10 SDK:
+* [Windows 10 insiders preview](http://aka.ms/flightingSDK)
+* [Windows 10](https://dev.windows.com/en-us/downloads/windows-10-sdk)
+
+The API for Hyper-V sockets became available in Windows 10 build 14290 -- the flighting download matches the latest insider fast track flighting build.  
+If you experience strange bahavior, let us know in the [TechNet forum](https://social.technet.microsoft.com/Forums/windowsserver/en-US/home "TechNet Forums").  In your post, please include:
+* The unexpected behavior 
+* The OS and build numbers for the host, guest, and SDK.  
   
   The SDK build number is visible in the title of the SDK installer:  
   ![](./media/flightingSDK.png)
