@@ -2,7 +2,7 @@
 
 The Docker engine includes tooling to automate the creation of container images. Building automation around image creation allows for effortless, repeatable, and consistent creation of container images. The components that drive this automation are dockerfiles and the Docker Build command.
 
-- **Dockerfile** – a text file containing instructions on how to derive the image, commands to run and captured into the image, and the run time commands for running instances of the container image.
+- **Dockerfile** – a text file containing instructions on how to derive the image, commands to be run and captured into the image, and run time commands for running instances of the container image.
 - **Docker Build** – the Docker engine command that consumes a Dockerfile and triggers the image creation process.
 
 This document will introduce using a dockerfile with Windows Containers, discuss syntax, and detail commonly used Dockerfile instructions. For a complete look at the Docker engine and Dockerfile, see the [Dockerfile reference at docker.com]( https://docs.docker.com/engine/reference/builder/).
@@ -30,15 +30,15 @@ The following table details several Dockerfile syntax items.
 
 |Syntax Detail| Description |
 |------------------|-------------|
-|**Comments**| To wrap a single instruction onto multiple lines, place a / at the end of the line. |
-|**Line Wrapping**|To wrap a single instruction onto multiple lines, place a / at the end of the line.|
-|**Case Sensitivity**|Instruction such as FROM, RUN, and ADD are not case sensitive however convention is to differentiate instructions with upper case.|
+|**Comments**| Comments can be added to a Dockerfile using the **#** symbol. |
+|**Line Wrapping**|To wrap a single instruction onto multiple lines, place a **/** at the end of the line.|
+|**Case Sensitivity**|Instruction such as FROM, RUN, and ADD are not case sensitive, however convention is to differentiate instructions with upper case.|
 |**Variables**|Environment variables can be created using the ENV instruction. They can be referenced with ${variable_name}. For more information on environment variables see [Docekrfile Reference on Docker.com]( https://docs.docker.com/engine/reference/builder/#environment-replacement).|
 |**Omitting Files**| A .dockerignore file can be used to exclude files from the scope of docker build. For more information on dockerignore, see [Dockerfiel Reference on Docker.com]( https://docs.docker.com/engine/reference/builder/#dockerignore-file).|
 
 ### Instructions
 
-Dockerfile instruction provide the Docker Engine with the steps needed in order to create a container image. These instructions are performed in order and one-by-one. Here are the details for some basic Dockerfile instructions. For a complete list of dockerfile instructions, see [Dockerfile Reference on Docker.com] (https://docs.docker.com/engine/reference/builder/).
+Dockerfile instructions provide the Docker Engine with the steps needed in order to create a container image. These instructions are performed in order and one-by-one. Here are the details for some basic Dockerfile instructions. For a complete list of dockerfile instructions, see [Dockerfile Reference on Docker.com] (https://docs.docker.com/engine/reference/builder/).
 
 ### FROM
 
@@ -50,22 +50,20 @@ Examples:
 FROM WindowsServerCore
 ```
 
-```
-FROM NanoServer
-```
-
 For detailed information on the FROM instruction see the [FROM Reference on Docker.com]( https://docs.docker.com/engine/reference/builder/#from). 
 
 ### RUN
 
-The RUN instruction specifies commands to be run, and captured, into the new container image. These commands can include items such as installing software, creating files and directories, and creating environment configuration.
+The RUN instruction specifies commands to be run, and captured into the new container image. These commands can include items such as installing software, creating files and directories, and creating environment configuration.
 
 Examples:
 
+This example uses DISM to install IIS in the container image.
 ```
 RUN dism /online /enable-feature /all /featurename:iis-webserver /NoRestart
 ```
 
+This example installs the Visual Studio Redistribute package.
 ```
 RUN powershell -Command	c:\vcredist_x86.exe /quiet
 ``` 
@@ -78,10 +76,12 @@ The ADD instruction copies files and directories to the filesystem of the contai
 
 Examples:
 
+This example add the contents of the sources directory to a directory sqllite in the container image.
 ```
 ADD sources /sqlite
 ```
 
+This example creates a copy of master.zip from GitHub to the temp directory in the container image.
 ```
 ADD https://github.com/neilpeterson/demoapp/archive/master.zip /temp/master.zip
 ```
@@ -91,7 +91,7 @@ For detailed information on the ADD instruction see the [ADD Reference on Docker
 
 ### WORKDIR
 
-The WORKDIR instruction sets a working directory, for other dockerfile instructions such as RUN, CMD, and ADD. 
+The WORKDIR instruction sets a working directory for other dockerfile instructions such as RUN, CMD, and ADD. 
 
 Examples:
 
@@ -99,22 +99,14 @@ Examples:
 WORKDIR c:\Apache24\bin
 ```
 
-```
-WORKDIR c:\nginx
-```
-
 For detailed information on the WORKDIR instruction see the [WORKDIR Reference on Docker.com]( https://docs.docker.com/engine/reference/builder/#workdir). 
 
 ### CMD
 
-The `CMD` instruction sets the default command to be run when starting a new container. For instance, if the container will be hosting an NGINX web server, the `CMD` might include instructions to start the web server, such as `nginx.exe`. There can only be one `CMD` instruction in a dockerfile.
+The `CMD` instruction sets the default command to be run when starting a new container. For instance, if the container will be hosting an NGINX web server, the `CMD` might include instructions to start the web server, such as `nginx.exe`. If multiple CMD instructions are specified in a Dockerfile, only the last will be evaluated.
 
 ```
 CMD ["httpd.exe"]
-```
-
-```
-CMD ["nginx.exe"]
 ```
 
 For detailed information on the CMD instruction see the [CMD Reference on Docker.com]( https://docs.docker.com/engine/reference/builder/#cmd). 
