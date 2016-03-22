@@ -35,9 +35,9 @@ To write a simple application, you'll need:
 
 **Windows SDK Details**
 
-Links to the Windows 10 SDK:
-* [Windows 10 insiders preview](http://aka.ms/flightingSDK)
-* [Windows 10](https://dev.windows.com/en-us/downloads/windows-10-sdk)
+Links to the Windows SDK:
+* [Windows 10 SDK for insiders preview](http://aka.ms/flightingSDK)
+* [Windows 10 SDK](https://dev.windows.com/en-us/downloads/windows-10-sdk)
 
 The API for Hyper-V sockets became available in Windows 10 build 14290 -- the flighting download matches the latest insider fast track flighting build.  
 If you experience strange bahavior, let us know in the [TechNet forum](https://social.technet.microsoft.com/Forums/windowsserver/en-US/home "TechNet Forums").  In your post, please include:
