@@ -85,25 +85,35 @@ nanoserver             latest              8572198a60f1        2 weeks ago      
 ```
 
 ### Configure Network
-Before creating a container with Docker, a rule needs to be created for the Windows Firewall that will allow network connectivity to the container. Run the following to create a rule for port 80. 
-
-```powershell
-powershell.exe "if(!(Get-NetFirewallRule | where {$_.Name -eq 'TCP80'})) { New-NetFirewallRule -Name 'TCP80' -DisplayName 'HTTP on TCP/80' -Protocol tcp -LocalPort 80 -Action Allow -Enabled True }" 
-```
-
-You may also want to take note of the container host IP address. This will be use throughout the exercise.
+Beginning in Windows Server Technical Preview 5, you no longer need to explicitly create a Windows Firewall rule to allow external access to a specific network port. You may want to take note of the container host IP address. This will be use throughout the exercise.
 
 ### Create IIS Container <!--1-->
 
 You now have a container image that contains IIS, which can be used to deploy IIS ready operating environments. 
 
-To create a container from the new image, use the `docker run` command, this time specifying the name of the IIS image. Notice that this sample has specified a parameter `-p 80:80`. Because the container is connected to a virtual switch that is supplying IP addresses .via network address translation, a port needs to be mapped from the container host, to a port on the containers NAT IP address. For more information on the `-p` see the [Docker Run reference on docker.com]( https://docs.docker.com/engine/reference/run/)
+To create a container from the new image, use the `docker run` command, this time specifying the name of the IIS image. Notice that this sample has specified a parameter `-p 80:80`. Because the container is connected to a virtual switch that is supplying IP addresses via network address translation, a port needs to be mapped from the container host, to a port on the containers NAT IP address. You can specify a static port mapping by using the -p parameter with two integers (e.g. `-p <external port>:<internal port>`). Alternatively, you can use dynamic port mapping by using the -p parameter with only one integer (e.g. `-p 80`). In the dynamic port mapping case, the docker engine will return the external port chosen through which the network service can be accessed. For more information on the `-p` see the [Docker Run reference on docker.com]( https://docs.docker.com/engine/reference/run/)
 
 ```powershell
 C:\> docker run --name iisdemo -it -p 80:80 windowsservercoreiis cmd
 ```
 
 When the container has been created, open a browser, and browse to the IP address of the container host. Because port 80 of the host has been mapped to port 80 if the container, the IIS splash screen should be displayed.
+
+```powershell
+C:\> docker run --name iisdemo -it -p 80 windowsservercoreiis cmd
+```
+
+In another command window, you can run docker images to see which port was dynamically assigned to map to port 80.
+
+```powershell
+C:\> docker ps
+
+CONTAINER ID        IMAGE                  COMMAND             CREATED              STATUS              PORTS                   NAMES
+bbb0f9c12326        windowsservercoreiis   "cmd"               About a minute ago   Up About a minute   0.0.0.0:32360->80/tcp   iisdemo
+```
+
+Because port 32360 of the host has been mapped to port 80 if the container, you must specify the port in the URL to access the IIS webserver (http://<containerhostIP>:32360).
+
 
 ![](media/iis1.png)
 
