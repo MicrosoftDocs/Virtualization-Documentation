@@ -1,59 +1,79 @@
----
+﻿---
 author: neilpeterson
+author: jmesser81
 ---
 
 # Container Networking
 
 **This is preliminary content and subject to change.** 
 
-Windows containers function similarly to virtual machines in regards to networking. Each container has a virtual network adapter, which is connected to a virtual switch, over which inbound and outbound traffic is forwarded. Two types of network configuration are available.
+Windows containers function similarly to virtual machines in regards to networking. Each container has a virtual network adapter, which is connected to a virtual switch, over which inbound and outbound traffic is forwarded. In order to enforce isolation between containers on the same host, a network compartment is created for each Windows Server and Hyper-V Container into which the network adapter for the container is installed. Windows Server containers use a Host vNIC to attached to the virtual switch while Hyper-V Containers use a Synthetic VM NIC (not exposed to the Utility VM) to attach to the virtual switch.
 
-- **Network Address Translation Mode** – each container is connected to an internal virtual switch and will receive an internal IP address. A NAT configuration will translate this internal address to the external address of the container host.
+Windows containers support four different networking modes. They are:
 
-- **Transparent Mode** – each container is connected to an external virtual switch and will receive an IP Address from a DHCP server.
+- **Network Address Translation Mode** – each container is connected to an internal virtual switch and will use WinNAT to connect containers to a private IP subnet. WinNAT will perform both network address translation (NAT) and port address translation (PAT) between the container host and the containers themselves.
+
+- **Transparent Mode** – each container is connected to an external virtual switch and will be directly attached to the physical network. IPs can be assigned statically or dynamically using an external DHCP server. The raw container network traffic frames are placed directly on the physical network without any address translation.
+
+- **L2 Bridge Mode** - each container is connected to an external virtual switch. Network traffic between two containers in the same IP subnet and attached to the same container host will be directly bridged. Network traffic between two containers on different IP subnets or attached to different container hosts will be sent out through the external virtual switch. On egress, network traffic originating from the container will have the source MAC address re-written to that of the container host. On ingress, network traffic destined for a container will have the destination MAC address re-written to that of the container itself.
+
+- **L2 Tunnel Mode** - (this mode should only be used in a Microsoft Cloud Stack). Similar to L2 Bridge mode, each container is connected to an external virtual switch with the MAC addresses re-written on egress and ingress. However, ALL container network traffic is forwarded to the physical host's virtual switch regardless of Layer-2 connectivity such that network policy is enforced in the physical host's virtual switch as programmed by higher-levels (e.g. Network Controller or Network Resource Provider) in a Microosft cloud stack.
 
 This document will detail the benefit and configuration of each of these.
 
 ## NAT Networking Mode
 
-**Network Address Translation** – This configuration is comprised of an internal network switch with a type of NAT, and WinNat. In this configuration, the container host has an 'external' IP address which is reachable on a network. All containers are assigned 'internal' address that cannot be accessed on a network. To make a container accessible in this configuration, an external port of the host is mapped to an internal port of port of the container. These mappings are stored in a NAT port mapping table. The container is accessible through the IP Address and external port of the host, which forwards traffic to the internal IP address and port of the container. The benefit of NAT is that the container host can scale to hundreds of containers, while only using one externally available IP Address. Additionally, NAT allows multiple containers to host applications that may require identical communication ports.
+**Network Address Translation** – This networking mode is useful when you need a quick and easy way to assign private IP addresses to containers which do not require direct connectivity to a physical or virtual network (described below).  In this configuration, all network services running in a container which need to be externally accessible will require a port mapping between the 'external' IP address and port assigned to the container host and the 'internal' IP address and port assigned to the container. These mappings are stored in the WinNAT port mapping tables. All network traffic received on the external IP address and port is forwarded to the container. Additionally, NAT allows multiple containers to host applications that may require identical communication ports by mapping unique external ports.
 
 ### Host Configuration <!--1-->
 
-To configure the container host for Network Address Translation, follow these steps.
-
-Create a Virtual Switch with a type of ‘NAT’ and configure it with an internal subnet. For more information on the **New-VMSwitch** Command, see the [New-VMSwitch Reference](https://technet.microsoft.com/en-us/library/hh848455.aspx).
+To use the NAT Networking mode, create a Container Network with mode 'NAT' and specify an internal subnet prefix. 
 
 ```powershell
-New-VMSwitch -Name "NAT" -SwitchType NAT -NATSubnetAddress "172.16.0.0/12"
-```
-Create the Network Address Translation Object. This object is responsible for the NAT address translation. For more information on the **New-NetNat** command, see the [New-NetNat Reference](https://technet.microsoft.com/en-us/library/dn283361.aspx)
-
-```powershell
-New-NetNat -Name NAT -InternalIPInterfaceAddressPrefix "172.16.0.0/12" 
+New-ContainerNetwork -Name nat -Mode NAT -SubnetPrefix "172.16.0.0/12" [-GatewayAddress <string[]>] [-DNSServers <string[]>] [-DNSSuffix <string>]
 ```
 
 ### Container Configuration 
 
-When creating a Windows Container, a virtual switch can be selected for the container. When the container is connected to a virtual switch configured to use NAT, the container will receive a translated address.
+When creating a Windows Container, a network can be specified to which the container network adapter will be connected.
 
-This example creates a container connected to a NAT enabled virtual switch.
+This example creates a container connected to the "nat" container network
 
 ```powershell
-New-Container -Name DemoNAT -ContainerImageName WindowsServerCore -SwitchName "NAT"
+New-Container -Name DemoNAT -ContainerImageName WindowsServerCore -NetworkName "nat"
 ```
 
-When the container has been started, the IP address can be viewed from within the container.
+In order to assign a specific IP address to the container, you must set a static IP address (from within the range of the container network's subnet prefix defined above) on the container's network adapter.
 
 ```powershell
-[DemoNAT]: PS C:\> ipconfig
+PS C:\> Get-ContainerNetworkAdapter -ContainerName "DemoNAT"
+
+ContainerName Name            Network Id                           Static MacAddress Static IPAddress Maximum Bandwidth
+------------- ----            ----------                           ----------------- ---------------- -----------------
+DemoNAT       Network Adapter C475D31C-FB42-408E-8493-6DB6C9586915                   			0
+
+PS C:\> Set-ContainerNetworkAdapter -ContainerName "DemoNAT" -StaticIPAddress 172.16.0.100
+```
+
+If you would rather the IP address be chosen automatically from the range specified in the container network's subnet prefix, you can simply start the container as-is without applying any settings to the container network adapter.
+
+```powershell
+PS C:\> Start-Container "DemoNAT"
+```
+
+When the container has been started, the IP address of the container can be viewed from the container host.
+
+```powershell
+PS C:\> Invoke-Command -ContainerName DemoNAT {ipconfig}
 
 Windows IP Configuration
-Ethernet adapter vEthernet (Virtual Switch-527ED2FB-D56D-4852-AD7B-E83732A032F5-0):
-   Connection-specific DNS Suffix  . : contoso.com
-   Link-local IPv6 Address . . . . . : fe80::384e:a23d:3c4b:a227%16
-   IPv4 Address. . . . . . . . . . . : 172.16.0.2
-   Subnet Mask . . . . . . . . . . . : 255.240.0.0
+
+Ethernet adapter vEthernet (Temp Nic Name):
+
+   Connection-specific DNS Suffix  . :
+   Link-local IPv6 Address . . . . . : fe80::2d76:2fc0:73e7:5cda%12
+   IPv4 Address. . . . . . . . . . . : 172.16.0.100
+   Subnet Mask . . . . . . . . . . . : 255.255.255.0
    Default Gateway . . . . . . . . . : 172.16.0.1
 ```
 
@@ -61,22 +81,23 @@ For more information on starting and connecting to a Windows Container see [Mana
 
 ### Port Mapping
 
-In order to access applications inside of a 'NAT enabled' container, port mappings need to be created between the container and container host. To create the mapping, you need the IP address of the container, the ‘internal’ container port and an ‘external’ host port.
+In order to access applications inside of a container connected to a NAT network, port mappings need to be created between the container host and container network adapter. These mappings must be created while the container is in a STOPPED state.
 
-This example creates a mapping between port **80** of the host to port **80** of a container with an IP address of **172.16.0.2**.
-
-```powershell
-Add-NetNatStaticMapping -NatName "Nat" -Protocol TCP -ExternalIPAddress 0.0.0.0 -InternalIPAddress 172.16.0.2 -InternalPort 80 -ExternalPort 80
-```
-
-This example creates a mapping between port **82** of the container host to port **80** of a container with an IP address of **172.16.0.3**.
+This example creates a mapping between port **80** of the container host to port **80** of the container to which the specified container network adapter is attached.
 
 ```powershell
-Add-NetNatStaticMapping -NatName "Nat" -Protocol TCP -ExternalIPAddress 0.0.0.0 -InternalIPAddress 172.16.0.3 -InternalPort 80 -ExternalPort 82
+Add-ContainerNetworkAdapterStaticMapping -ContainerName "DemoNAT" -AdapterName "Network Adapter" -ExternalPort 80 -InternalPort 80 -Protocol TCP
 ```
-> A corresponding firewall rule will be required for each external port. This can be created with the `New-NetFirewallRule`. For more information see the [New-NetFirewallRule Reference](https://technet.microsoft.com/en-us/library/jj554908.aspx).
 
-After the port mapping has been created, a containers application can be accessed through the IP address of the container host (physical or virtual), and exposed external port. For example, the below diagram depicts a NAT configuration with a request targeting external port **82** of the container host. Based on the port mapping, this request would return the application being hosted in container 2.
+This example creates a mapping between port **8082** of the container host to port **80** of the container to which the specified container network adapter is attached.
+
+```powershell
+Add-ContainerNetworkAdapterStaticMapping -ContainerName "DemoNAT" -AdapterName "Network Adapter" -ExternalPort 8082 -InternalPort 80 -Protocol TCP
+```
+
+Beginning in Technical Preview 5, it is no longer necessary to create an explicit firewall rule. 
+
+After the port mapping has been created, a container's application can be accessed through the IP address of the container host (physical or virtual), and exposed external port. For example, the below diagram depicts a NAT configuration with a request targeting external port **82** of the container host. Based on the port mapping, this request would return the application being hosted in container 2.
 
 ![](./media/nat1.png)
 
@@ -86,31 +107,63 @@ A view of the request from an internet browser.
 
 ## Transparent Networking Mode
 
-**Transparent Networking** – This configuration is comprised of an external network switch. In this configuration each container receives an IP Address from a DHCP server, and is accessible on this IP address. The advantage here is that a port mapping table is not maintained.
+**Transparent Networking** – This networking mode should only be used in very small deployments when you do not require address translation but rather want direct connectivity between your containers and the physical network. In this configuration, all network services running in a container will be directly accessible from the physical network. IP addresses can be assigned statically assuming they are within the physical network's IP subnet prefix and do not conflict with other IPs on the physical network. IP addresses can also be assigned dynamically from an external DHCP server on the physical network. 
 
 ### Host Configuration <!--2-->
 
-To configure the container system so that containers can receive an IP address from a DHCP server, create a virtual switch that is connected to a physical or virtual network adapter.
-
-The following sample creates a virtual switch with the name DHCP, using a network adapter named Ethernet.
+To use the Transparent Networking mode, create a Container Network with mode 'Transparent' and specify a physical or virtual network adapter to which the external vSwitch will be connected. 
 
 ```powershell
-New-VMSwitch -Name DHCP -NetAdapterName Ethernet
+New-ContainerNetwork -Name MyTransparentNet -Mode Transparent -NetworkAdapterName "Ethernet"
 ```
 
-If the container host is itself a virtual machine, you need to enable MacAddressSpoofing on the network adapter used with the container switch. The following example completes this on a VM named `DemoVm`.
+If the container host is itself a virtual machine and you wish to use DHCP for IP assignment, you must enable MACAddressSpoofing in the physical host on the VM Network Adapter to which the container host VM is attached. The following example completes this on a VM named `ContaiherHostVm`.
 
 ```powershell
-Get-VMNetworkAdapter -VMName DemoVM | Set-VMNetworkAdapter -MacAddressSpoofing On
+Get-VMNetworkAdapter -VMName ContainerHostVM | Set-VMNetworkAdapter -MacAddressSpoofing On
 ```
-The external virtual switch can now be connected to a container, which is then capable of receiving a IP address from a DHCP server. In this configuration, applications hosted inside of the container will be accessible on the IP Address assigned to the container.
+Containers can now connect directly to the 'Transparent' network named "MyTransparentNet" which is capable of receiving a IP address from a DHCP server. In this configuration, applications hosted inside of the container will be directly accessible by external clients using the IP Address assigned to the container.
+
+This example creates a container connected to the "MyTransparentNet" container network
+
+```powershell
+New-Container -Name DemoTransparent -ContainerImageName WindowsServerCore -NetworkName "MyTransparentNet"
+```
+
+If you want to specify a static IP address for containers connected to a Transparent network, you must do so while the container is STOPPED.
+
+```powershell
+PS C:\> Set-ContainerNetworkAdapter -ContainerName "DemoTransparent" -StaticIPAddress 10.123.174.22
+PS C:\> Get-ContainerNetworkAdapter -ContainerName "DemoTransparent"
+
+ContainerName   Name            Network Id                           Static MacAddress Static IPAddress Maximum
+                                                                                                        Bandwidth
+-------------   ----            ----------                           ----------------- ---------------- ---------------
+DemoTransparent Network Adapter 1D139A5C-EFF4-4878-8EB0-0E2A39A48745                   10.123.174.22    0
+```
+
+## L2 Bridge Networking Mode
+
+**L2 Bridge Networking** - This networking mode...
+
+### Host Configuration <!--3-->
+
+## L2 Tunnel Networking Mode
+
+**L2 Tunnel Networking** - This networking mode...
+
+### Host Configuration <!--4-->
+
+
 
 ## Docker Configuration
 
-When starting the Docker daemon, a network bridge can be selected. When running Docker on Windows, this is the External or NAT virtual switch. The following example starts the Docker daemon, specifying a virtual switch named `Virtual Switch`.
+The Docker daemon refers to different networking modes by the name of the driver used to create the network. For instance, the NAT networking mode has a corresponding Docker network driver named nat. By default, the Docker engine on Windows will look for a network with a nat driver. If a nat network does not exist, the Docker engine will create one. All containers created will be attached to the nat network by default.
+
+This behavior can be overriden by specifying a specific "bridge" named "none" using the -b none option when starting the Docker daemon engine. This will require a specific network to be created 
 
 ```powershell
-Docker daemon -D -b “Virtual Switch” -H 0.0.0.0:2375
+Docker daemon -D -b “none” -H 0.0.0.0:2375
 ```
 
 If you have deployed the container host, and Docker using the scripts provide in the Windows Container Quick Starts, an internal virtual switch is created with a type of NAT, and a Docker service is created and preconfigured to use this switch. To change the virtual switch that the Docker service is using, the Docker service needs to be stopped, a configuration file modified, and the service started again.
