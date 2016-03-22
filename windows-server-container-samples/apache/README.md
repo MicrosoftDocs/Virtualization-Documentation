@@ -9,9 +9,11 @@ Windows Server Core Base OS Image
 # Usage:
 
 **Docker Build**
+
 Docker Build –t apache-windows .
 
 **Docker Run** 
+
 Docker Run –d –p 80:80 apache-windows
 
 ## Dockerfile Details:
