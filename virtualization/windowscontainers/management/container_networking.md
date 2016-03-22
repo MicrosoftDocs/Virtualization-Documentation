@@ -160,13 +160,7 @@ DemoTransparent Network Adapter 1D139A5C-EFF4-4878-8EB0-0E2A39A48745            
 
 The Docker daemon refers to different networking modes by the name of the driver used to create the network. For instance, the NAT networking mode has a corresponding Docker network driver named nat. By default, the Docker engine on Windows will look for a network with a nat driver. If a nat network does not exist, the Docker engine will create one. All containers created will be attached to the nat network by default.
 
-This behavior can be overriden by specifying a specific "bridge" named "none" using the -b none option when starting the Docker daemon engine. This will require a specific network to be created 
-
-```powershell
-Docker daemon -D -b “none” -H 0.0.0.0:2375
-```
-
-If you have deployed the container host, and Docker using the scripts provide in the Windows Container Quick Starts, an internal virtual switch is created with a type of NAT, and a Docker service is created and preconfigured to use this switch. To change the virtual switch that the Docker service is using, the Docker service needs to be stopped, a configuration file modified, and the service started again.
+This behavior (using a NAT network driver by default) can be overriden by specifying a specific "bridge" named "none" using the -b none option when starting the Docker daemon engine. The configuration file can be found at `c:\programdata\docker\runDockerDaemon.cmd` and requires that the docker service be restarted.
 
 To stop the service run the following PowerShell command.
 
@@ -174,20 +168,56 @@ To stop the service run the following PowerShell command.
 Stop-Service docker
 ```
 
-The configuration file can be found at `c:\programdata\docker\runDockerDaemon.cmd`. Edit the following line, replacing `Virtual Switch` with the name of the virtual switch to be used by the Docker service.
+The configuration file can be found at `c:\programdata\docker\runDockerDaemon.cmd`. Edit the following line, and add `-b "none"`
 
 ```powershell
-docker daemon -D -b “New Switch Name"
+Docker daemon -D -b “none” -H 0.0.0.0:2375
 ```
-Finally start the service.
+
+Restart the service.
 
 ```powershell
 Start-Service docker
 ```
 
+In this mode, a specific network will need to be be created and referenced during container start.
+
+You can check and see which container networks are available through docker by executing the docker network ls command.
+
+```powershell
+C:\>docker network ls
+
+NETWORK ID          NAME                DRIVER
+e660288f15f3        nat                 nat
+e55acdfbd0f8        none                null
+```
+
+You can also inspect networks to see what container endpoints are already connected to a given network.
+
+```powershell
+C:\>docker network inspect nat
+```
+
+Lastly, you can create new networks by specifying the network driver to use and any associated parameters.
+***Note: You can only have one NAT network***
+
+For instance, in order to create a new Transparent network through docker, you would issue the following command:
+***Note: Docker network drivers are all lower-case***
+
+```powershell
+C:\> docker network create -d transparent MyTransparentNet
+```
+
+In order to attach a container to the non-default NAT network (or when -b "none" is in use), use the --net option to the docker run command.
+
+```powershell
+C:\> docker run -it --net=MyTransparentNet windowsservercore cmd
+```
+
+
 ## Manage Network Adapters
 
-Regardless of network configuration (NAT or Transparent), several PowerShell commands are available for managing container network adapter and virtual switch connections.
+Regardless of networking mode or driver, several PowerShell commands are available for managing container network adapter and virtual switch connections.
 
 Manage a Containers Network Adapter
 
