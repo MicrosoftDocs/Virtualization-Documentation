@@ -1,23 +1,23 @@
 # Optimize Windows Dockerfiles
 
-Several methods can be used to optimize both the Docker Build process and the resulting Docker images. This document will detail how the Docker Build process operates, and demonstrate several tactics that can be used for optimal Docker Buils performance and container image output with Windows Containers. 
+Several methods can be used to optimize both the Docker build process and the resulting Docker images. This document will detail how the Docker build process operates, and demonstrate several tactics that can be used for optimal Docker build performance and container image output with Windows containers. 
 
 ## Docker Build
 
 ### Image Layers
 
-During the Docker Build process, the Docker engine executes each Dockerfile instruction one-by-one, each in its own temporary container. The result is a new image layer for each actionable command in the Dockerfile. Take a look at the following Dokcerfile. In this sample, the WindowsServerCore base OS image is being used, IIS installed, and then a simple ‘Hello World’ static site created. From this Dockerfile, one might expect the resulting image to consist of two layers, one for the base OS image, and then the new layer including the IIS configuration, this however is not the case.
+During the Docker build process, the Docker engine executes each dockerfile instruction one-by-one, each in its own temporary container. The result is a new image layer for each actionable command in the dockerfile. Take a look at the following Dokcerfile. In this sample, the WindowsServerCore container OS image is being used, IIS installed, and then a simple ‘Hello World’ static site created. From this dockerfile one might expect the resulting image to consist of two layers, one for the container OS image and a secound new layer including the IIS configuration and static 'Hello World' site, this however is not the case.  
 
 ```
 # Sample Dockerfile
 
 FROM windowsservercore
 RUN dism /online /enable-feature /all /featurename:iis-webserver /NoRestart
-RUN echo "Hello World - Dockerfile" > c:\inetpub\wwwroot\index.html
+RUN echo "Hello World - dockerfile" > c:\inetpub\wwwroot\index.html
 CMD [ "cmd" ]
 ```
 
-To inspect the layers of a container image, use the `docker history` command. Doing so against the image created with the simple example Dockerfile will show that the image consists of four layers, the base, and then three additional layers, one for each actionable instruction in the Dockerfile.
+To inspect the layers of a container image, use the `docker history` command. Doing so against the image created with the simple example dockerfile will show that the image consists of four layers, the base, and then three additional layers, one for each actionable instruction in the dockerfile.
 
 ```
 C:\> docker history iis
@@ -33,10 +33,10 @@ This build behavior can be advantageous and may be desirable when troubleshootin
 
 ## Dockerfile Optimization
 
-There are several strategies that can be used when building Dockerfiles, that will result in an optimized image. This section will detail some of these Dockerfile tactics specific to Windows Containers. For additional information on Dockerfile best practices, see [Best practices for writing Dockerfiles on Docker.com]( https://docs.docker.com/engine/userguide/eng-image/dockerfile_best-practices/).
+There are several strategies that can be used when building dockerfiles, that will result in an optimized image. This section will detail some of these dockerfile tactics specific to Windows Containers. For additional information on dockerfile best practices, see [Best practices for writing dockerfiles on Docker.com]( https://docs.docker.com/engine/userguide/eng-image/dockerfile_best-practices/).
 
 ### Group related actions
-Because each RUN instruction creates a new layer in the container image, grouping actions into one RUN instruction can reduce the number of layers in the image. The backslash character ‘\’ can be used to organize the operation onto separate lines of the Dockerfile, while still using only one Run instruction.
+Because each RUN instruction creates a new layer in the container image, grouping actions into one RUN instruction can reduce the number of layers in the image. The backslash character ‘\’ can be used to organize the operation onto separate lines of the dockerfile, while still using only one Run instruction.
 
 This example downloads, extracts, and cleans up a PHP installation. Each of these actions are run in their own RUN operation.
 
@@ -58,7 +58,7 @@ ec2d672c3609        30 minutes ago      cmd /S /C powershell Expand-Archive -Pat
 99f4dcd0275a        31 minutes ago      cmd /S /C powershell Invoke-WebRequest -Metho   99.21 MB
 6801d964fda5        4 months ago
 ```
-To compare, here is the same operation, however all steps executed in the same RUN operation. Note that while each step in the RUN instruction is on a new line of the Dockerfile, the / symbol is being used to line wrap. 
+To compare, here is the same operation, however all steps executed in the same RUN operation. Note that while each step in the RUN instruction is on a new line of the dockerfile, the / symbol is being used to line wrap. 
 
 ```
 FROM windowsservercore
@@ -84,7 +84,7 @@ IMAGE               CREATED             CREATED BY                              
 
 Contrasting to grouping action in one RUN operation, there may also benefit in having unrelated operations executed by multiple individual RUN operations. Having multiple RUN operations increase caching effectiveness. Because individual layers are created for each RUN instruction, if an identical step has already been run in a different Docker Build operation, then this operation will not be re-run. The result is that Docker Build runtime will be decreased.
 
-In the following example, both Apache and the Visual Studio Redistribute packages are downloaded, installed, and then the un-needed files cleaned up. This is all done with one RUN operations. If any of these actions are updated, the Dockerfile updated, all actions will re-run.
+In the following example, both Apache and the Visual Studio Redistribute packages are downloaded, installed, and then the un-needed files cleaned up. This is all done with one RUN operations. If any of these actions are updated, the dockerfile updated, all actions will re-run.
 
 ```
 FROM windowsservercore
@@ -98,9 +98,9 @@ RUN powershell -Command \
     Remove-Item c:\vcredist_x86.exe -Force
 ```
 
-To contrast, here are the same actions broken down into two RUN instructions. In this case each RUN instruction is cached in a contianer image layer, and only those that have changed will need to re-run on subsequent Dockerfile builds.
+To contrast, here are the same actions broken down into two RUN instructions. In this case each RUN instruction is cached in a contianer image layer, and only those that have changed will need to re-run on subsequent dockerfile builds.
 
-> The docker engine consumes a Dockerfile from the top to the bottom. As soon as any change is detected, all remaining actions will be re-run. Because of this, place all frequently changing actions towards the bottom of the Dockerfile.
+> The docker engine consumes a Dockerfile from the top to the bottom. As soon as any change is detected, all remaining actions will be re-run. Because of this, place all frequently changing actions towards the bottom of the dockerfile.
 
 ```
 FROM windowsservercore
