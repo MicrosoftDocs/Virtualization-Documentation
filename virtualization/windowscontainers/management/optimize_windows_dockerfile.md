@@ -6,7 +6,7 @@ Several methods can be used to optimize both the Docker build process and the re
 
 ### Image Layers
 
-During the Docker build process, the Docker engine executes each dockerfile instruction one-by-one, each in its own temporary container. The result is a new image layer for each actionable command in the dockerfile. Take a look at the following Dokcerfile. In this sample, the WindowsServerCore container OS image is being used, IIS installed, and then a simple ‘Hello World’ static site created. From this dockerfile one might expect the resulting image to consist of two layers, one for the container OS image and a secound new layer including the IIS configuration and static 'Hello World' site, this however is not the case.  
+During the Docker build process, the Docker engine executes each dockerfile instruction one-by-one, each in its own temporary container. The result is a new image layer for each actionable command in the dockerfile. Take a look at the following dockerfile. In this sample, the WindowsServerCore container OS image is being used, IIS installed, and then a simple ‘Hello World’ static site created. From this dockerfile one might expect the resulting image to consist of two layers, one for the container OS image and a secound new layer including the IIS configuration and static 'Hello World' site, this however is not the case.  
 
 ```
 # Sample Dockerfile
