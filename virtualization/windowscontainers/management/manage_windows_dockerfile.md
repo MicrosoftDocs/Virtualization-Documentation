@@ -47,7 +47,7 @@ The FROM instruction sets the container image that will be used during the new i
 Examples:
 
 ```
-FROM WindowsServerCore
+FROM windowsservercore
 ```
 
 For detailed information on the FROM instruction see the [FROM Reference on Docker.com]( https://docs.docker.com/engine/reference/builder/#from). 
@@ -72,7 +72,7 @@ For detailed information on the RUN instruction see the [RUN Reference on Docker
 
 ### ADD
 
-The ADD instruction copies files and directories to the filesystem of the container. The files and directories can be relative to the docker file, or on a remote location with a URL specification. 
+The ADD instruction copies files and directories to the filesystem of the container. The files and directories can be relative to the dockerfile, or on a remote location with a URL specification. 
 
 Examples:
 
