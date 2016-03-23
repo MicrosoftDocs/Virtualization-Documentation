@@ -6,7 +6,7 @@ Several methods can be used to optimize both the Docker build process and the re
 
 ### Image Layers
 
-During the Docker build process, the Docker engine executes each dockerfile instruction one-by-one, each in its own temporary container. The result is a new image layer for each actionable command in the dockerfile. Take a look at the following dockerfile. In this sample, the WindowsServerCore container OS image is being used, IIS installed, and then a simple ‘Hello World’ static site created. From this dockerfile one might expect the resulting image to consist of two layers, one for the container OS image and a secound new layer including the IIS configuration and static 'Hello World' site, this however is not the case.  
+During the Docker build process, the Docker engine executes each dockerfile instruction one-by-one, each in its own temporary container. The result is a new image layer for each actionable command in the dockerfile. Take a look at the following dockerfile. In this sample, the WindowsServerCore container OS image is being used, IIS installed, and then a simple ‘Hello World’ static site created. From this dockerfile one might expect the resulting image to consist of two layers, one for the container OS image and a second new layer including the IIS configuration and static 'Hello World' site, this however is not the case.  
 
 ```
 # Sample Dockerfile
@@ -30,6 +30,8 @@ f0e017e5b088        21 seconds ago       cmd /S /C echo "Hello World - Dockerfil
 ```
 
 This build behavior can be advantageous and may be desirable when troubleshooting individual image layers. However, if desired, the number of layers can be minimized using several tricks detailed later in this article.
+
+If you are pushing the image to a repository such as Docker Hub, optimizing to fewer layers could decrease the size of the image to save network bandwidth and disk space. As you read through the examples below, you can sum up the size of all layers to determine how much data would be pushed or pulled from the repository.
 
 ## Dockerfile Optimization
 
@@ -133,7 +135,9 @@ RUN powershell -Command \
 
 ### MSI base installation
  
-The [Windows Installer](https://msdn.microsoft.com/en-us/library/aa367449(v=vs.85).aspx) package format is designed to install, upgrade, repair, and remove applications from a Windows machine. This is convenient for desktop machines and servers that may be maintained for a long time, but may not be necessary for a container that can easily be redeployed or rebuilt. Using ADD to copy the needed files into a container, or unzipping an archive may produce fewer changes in the container, and make the resulting image smaller.
+The [Windows Installer](https://msdn.microsoft.com/en-us/library/aa367449.aspx) package format is designed to install, upgrade, repair, and remove applications from a Windows machine. All packages are tracked in the registry, as well as files needed for repair and uninstall steps.
+
+Windows Installer is convenient for workstations and servers that may be upgraded and maintained over time, but those capabilities may not be needed for a container that can easily be redeployed or rebuilt. The extra registry and files  changed by the Windows Installer increases the size of the container image. By comparison, using ADD to copy the needed files into a container, or unzipping an archive may change fewer files in the container and make the resulting image smaller.
 
 Example:
 
@@ -152,4 +156,5 @@ ADD Example
 <!-- Topics: envvar scope & set /x workaround -->
 
 ## Further Reading & References
-* [Optimizing Docker Images](https://www.ctl.io/developers/blog/post/optimizing-docker-images/)
+* [Best practices for writing dockerfiles - Docker.com]( https://docs.docker.com/engine/userguide/eng-image/dockerfile_best-practices/)
+* [Optimizing Docker Images - ctl.io](https://www.ctl.io/developers/blog/post/optimizing-docker-images/)

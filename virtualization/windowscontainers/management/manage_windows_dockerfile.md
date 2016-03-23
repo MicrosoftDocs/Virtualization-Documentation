@@ -28,13 +28,13 @@ For additional examples of Dockerfiles for Windows see the [Dockerfile for Windo
 
 The following table details several Dockerfile syntax items.
 
-|Syntax Detail| Description |
-|------------------|-------------|
-|**Comments**| Comments can be added to a Dockerfile using the **#** symbol. |
-|**Line Wrapping**|To wrap a single instruction onto multiple lines, place a **/** at the end of the line.|
-|**Case Sensitivity**|Instruction such as FROM, RUN, and ADD are not case sensitive, however convention is to differentiate instructions with upper case.|
-|**Variables**|Environment variables can be created using the ENV instruction. They can be referenced with ${variable_name}. For more information on environment variables see [Docekrfile Reference on Docker.com]( https://docs.docker.com/engine/reference/builder/#environment-replacement).|
-|**Omitting Files**| A .dockerignore file can be used to exclude files from the scope of docker build. For more information on dockerignore, see [Dockerfiel Reference on Docker.com]( https://docs.docker.com/engine/reference/builder/#dockerignore-file).|
+|Syntax Detail        | Description                                            |
+|---------------------|--------------------------------------------------------|
+|**Comments**         | Comments can be added to a Dockerfile using the **#** symbol. |
+|**Line Wrapping**    | To wrap a single instruction onto multiple lines, place a **\** at the end of the line.|
+|**Case Sensitivity** | Instruction such as FROM, RUN, and ADD are not case sensitive, however convention is to differentiate instructions with upper case.|
+|**Variables**        | Environment variables can be created using the ENV instruction. They can be referenced with ${variable_name}. For more information on environment variables see [Dockerfile Reference on Docker.com]( https://docs.docker.com/engine/reference/builder/#environment-replacement).|
+|**Omitting Files**   | A .dockerignore file can be used to exclude files from the scope of docker build. For more information on dockerignore, see [Dockerfiel Reference on Docker.com]( https://docs.docker.com/engine/reference/builder/#dockerignore-file).|
 
 ### Instructions
 
@@ -42,7 +42,7 @@ Dockerfile instructions provide the Docker Engine with the steps needed in order
 
 ### FROM
 
-The FROM instruction sets the container image that will be used during the new image creation process. For instance, when using the instruction `FROM WindowsServerCore`, the resulting image will be derived from, and have a dependency on the WindowsServerCore Base OS image.
+The FROM instruction sets the container image that will be used during the new image creation process. For instance, when using the instruction `FROM windowsservercore`, the resulting image will be derived from, and have a dependency on the Windows Server Core Base OS image.
 
 Examples:
 
@@ -63,7 +63,7 @@ This example uses DISM to install IIS in the container image.
 RUN dism /online /enable-feature /all /featurename:iis-webserver /NoRestart
 ```
 
-This example installs the Visual Studio Redistribute package.
+This example installs the Visual Studio redistributable package.
 ```
 RUN powershell -Command	c:\vcredist_x86.exe /quiet
 ``` 
