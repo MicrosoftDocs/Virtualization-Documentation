@@ -1,36 +1,46 @@
 # Dockerfile on Windows
 
-Containers are running instances of a container image. New Images can be created manually by snapshotting existing container with the `docker commit` commit, however there is benefit in creating image with automation. The Docker engine includes tooling that automates the creation of container images. 
+The Docker engine includes tools for automating the creation of container images. While container images can be created manually by using the ‘docker commit’ command, adopting an automated image creation process provides many benefits. Some of these include:
 
-The components that drive this automation are dockerfile and the Docker Build command.
-
-- **Dockerfile** – a text file containing the instruction needed to create a new container image. These instructions include selecting an existing image to derive the new image from, commands to be run during the image creation process, and then run time commands for running instances of the new container image.
-
-- **Docker Build** – the Docker engine command that consumes a Dockerfile and triggers the image creation process.
-
-Once automated image creation has been adopted, several benefits come into focus. Some of these include:
-- The ability to store container images as code.
+- Storing container images as code.
 - Rapid and precise recreation of container images. 
 - Continuous integration between container images and the development cycle.
 
-This document will introduce using a dockerfile with Windows Containers, discuss syntax, and detail commonly used Dockerfile instructions. Throughout this document, the concept of Images and Image layers will be discussed. For more information on images and image layering see [Manage Windows Container Images](./manage_images). For a complete look at the Docker engine and Dockerfile, see the [Dockerfile reference at docker.com]( https://docs.docker.com/engine/reference/builder/).
+The components that drive this automation are dockerfile and the Docker Build command.
+
+- Dockerfile – a text file containing the instruction needed to create a new container image. These instructions include selecting an existing image to derive the new image from, commands to be run during the image creation process, and then run time commands for running instances of the new container image.
+- Docker Build - the Docker engine command that consumes a Dockerfile and triggers the image creation process.
+
+This document will introduce using a dockerfile with Windows Containers, discuss syntax, and detail commonly used Dockerfile instructions. 
+
+Throughout this document, the concept of continer images and contianer image layers will be discussed. For more information on images and image layering see [Manage Windows Container Images](./manage_images). 
+
+For a complete look at the Docker engine and Dockerfile, see the [Dockerfile reference at docker.com]( https://docs.docker.com/engine/reference/builder/).
 
 ## Dockerfile Introduction
 
 ### Basic Syntax
 
-In its most basic form, a dockerfile can be very simple. The following example creates a new image that includes IIS and a customized ‘hello world’ site. In this example the instruction FROM is indicating that the new container image will be created as a layer or multiple layers on top of the existing `windowsservercore` image. The RUN instructions provide commands that will be run and captured into the new container, such as installing software and performing configuration. Finally, the CMD instruction specifies the command or process that will be started each time a running instance of the new image is created. This of CMD as bootstrapping the container image. This Dockerfile also includes some comments, indicated by the # and some metadata (MAINTAINER). Subsequent sections of this article will detail syntax rules and Dockerfile instructions.
-```
+In its most basic form, a dockerfile can be very simple. The following example creates a new image, which includes IIS and a new ‘hello world’ site. The dockerfile includes comments (indicated with a ‘#’) that explains each line. Subsequent sections of this article will detail syntax rules and Dockerfile instructions.
+
+<pre>```
 # Sample Dockerfile
 
+# Indicates that the windowsservercore image will be used as the base image.
 FROM windowsservercore
 
-MAINTAINER Neil Peterson
+# Metadata indicating an image maintainer.
+MAINTAINER someguy@contoso.com
 
+# Uses dism.exe to install the IIS role.
 RUN dism.exe /online /enable-feature /all /featurename:iis-webserver /NoRestart
+
+# Creates an html file and adds content to this file.
 RUN echo "Hello World - Dockerfile" > c:\inetpub\wwwroot\index.html
+
+# Sets a command or process that will run each time a container is run from the new image.
 CMD [ "cmd" ]
-```
+```</pre>
 
 For additional examples of Dockerfiles for Windows see the [Dockerfile for Windows Repository] (https://github.com/Microsoft/Virtualization-Documentation/tree/master/windows-server-container-samples).
 
@@ -40,11 +50,11 @@ The following table details several Dockerfile syntax items.
 
 |Syntax Detail        | Description                                            |
 |---------------------|--------------------------------------------------------|
-|**Comments**         | Comments can be added to a Dockerfile using the **#** symbol. |
-|**Line Wrapping**    | To wrap a single instruction onto multiple lines, place a **\** at the end of the line.|
-|**Case Sensitivity** | Instruction such as FROM, RUN, and ADD are not case sensitive, however convention is to differentiate instructions with upper case.|
-|**Variables**        | Environment variables can be created using the ENV instruction. They can be referenced with ${variable_name}. For more information on environment variables see [Dockerfile Reference on Docker.com]( https://docs.docker.com/engine/reference/builder/#environment-replacement).|
-|**Omitting Files**   | A .dockerignore file can be used to exclude files from the scope of docker build. For more information on dockerignore, see [Dockerfile Reference on Docker.com]( https://docs.docker.com/engine/reference/builder/#dockerignore-file).|
+|Comments           | Comments can be added to a Dockerfile using the '#' symbol. |
+|Line Wrapping      | To wrap a single instruction onto multiple lines, place a '\' at the end of the line.|
+|Case Sensitivity   | Instruction such as FROM, RUN, and ADD are not case sensitive, however convention is to differentiate instructions with upper case.|
+|Variables          | Environment variables can be created using the ENV instruction. They can be referenced with ${variable_name}. For more information on environment variables see [Dockerfile Reference on Docker.com]( https://docs.docker.com/engine/reference/builder/#environment-replacement).|
+|Omitting Files     | A .dockerignore file can be used to exclude files from the scope of docker build. For more information on dockerignore, see [Dockerfile Reference on Docker.com]( https://docs.docker.com/engine/reference/builder/#dockerignore-file).|
 
 ### Instructions
 
@@ -112,7 +122,7 @@ For detailed information on the WORKDIR instruction see the [WORKDIR Reference o
 
 ### CMD
 
-The `CMD` instruction sets the default command to be run when starting a new container. For instance, if the container will be hosting an NGINX web server, the `CMD` might include instructions to start the web server, such as `nginx.exe`. If multiple CMD instructions are specified in a Dockerfile, only the last will be evaluated. Note – when running docker build on a Windows system the CMD must be specified using a similar file path notation to Linux. For example, `c:\Apache24\bin\httpd.exe` would be represented as `/Apache24/bin/httpd.exe`.
+The `CMD` instruction sets the default command to be run when starting a new container. For instance, if the container will be hosting an NGINX web server, the `CMD` might include instructions to start the web server, such as `nginx.exe`. If multiple CMD instructions are specified in a Dockerfile, only the last will be evaluated.
 
 ```
 CMD ["httpd.exe"]
