@@ -23,7 +23,7 @@ For a complete look at the Docker engine and Dockerfile, see the [Dockerfile ref
 
 In its most basic form, a dockerfile can be very simple. The following example creates a new image, which includes IIS and a new ‘hello world’ site. The dockerfile includes comments (indicated with a ‘#’) that explains each line. Subsequent sections of this article will detail syntax rules and Dockerfile instructions.
 
-<pre>```
+```
 # Sample Dockerfile
 
 # Indicates that the windowsservercore image will be used as the base image.
@@ -40,7 +40,7 @@ RUN echo "Hello World - Dockerfile" > c:\inetpub\wwwroot\index.html
 
 # Sets a command or process that will run each time a container is run from the new image.
 CMD [ "cmd" ]
-```</pre>
+```
 
 For additional examples of Dockerfiles for Windows see the [Dockerfile for Windows Repository] (https://github.com/Microsoft/Virtualization-Documentation/tree/master/windows-server-container-samples).
 
