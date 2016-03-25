@@ -27,7 +27,7 @@ For a complete look at the Docker engine and Dockerfile, see the [Dockerfile ref
 
 In its most basic form, a dockerfile can be very simple. The following example creates a new image, which includes IIS and a new ‘hello world’ site. The dockerfile includes comments (indicated with a ‘#’) that explains each line. Subsequent sections of this article will detail syntax rules and Dockerfile instructions.
 
-```
+```none
 # Sample Dockerfile
 
 # Indicates that the windowsservercore image will be used as the base image.
@@ -60,7 +60,7 @@ The following table details several Dockerfile syntax items.
 |Variables          | Environment variables can be created using the ENV instruction. They can be referenced with ${variable_name}. For more information on environment variables see [Dockerfile Reference on Docker.com]( https://docs.docker.com/engine/reference/builder/#environment-replacement).|
 |Omitting Files     | A .dockerignore file can be used to exclude files from the scope of docker build. For more information on dockerignore, see [Dockerfile Reference on Docker.com]( https://docs.docker.com/engine/reference/builder/#dockerignore-file).|
 
-### Instructions
+## Instructions
 
 Dockerfile instructions provide the Docker Engine with the steps needed in order to create a container image. These instructions are performed in order and one-by-one. Here are the details for some basic Dockerfile instructions. For a complete list of dockerfile instructions, see [Dockerfile Reference on Docker.com] (https://docs.docker.com/engine/reference/builder/).
 
@@ -102,11 +102,15 @@ The ADD instruction copies files and directories to the filesystem of the contai
 
 The ADD instruction takes a format of: 
 
-```ADD <source> <destination>``` 
+```
+ADD <source> <destination>
+``` 
 
 If either source or destination include whitespace, enclose the path in square brackets and double quotes:
  
-```ADD [“<source>” “<destination>”]```
+```
+ADD [“<source>” “<destination>”]
+```
 
 **Windows Considerations:**
  
@@ -150,7 +154,9 @@ The WORKDIR instruction sets a working directory for other dockerfile instructio
 
 The WORKDIR instruction takes a format of: 
 
-```WORKDIR <path to working directory>``` 
+```
+WORKDIR <path to working directory>
+``` 
 
 **Windows Considerations:**
 
