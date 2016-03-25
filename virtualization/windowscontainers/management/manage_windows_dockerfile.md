@@ -48,18 +48,6 @@ CMD [ "cmd" ]
 
 For additional examples of Dockerfiles for Windows see the [Dockerfile for Windows Repository] (https://github.com/Microsoft/Virtualization-Documentation/tree/master/windows-server-container-samples).
 
-### Syntax Reference 
-
-The following table details several Dockerfile syntax items.
-
-|Syntax Detail        | Description                                            |
-|---------------------|--------------------------------------------------------|
-|Comments           | Comments can be added to a Dockerfile using the '#' symbol. |
-|Line Wrapping      | To wrap a single instruction onto multiple lines, place a '\' at the end of the line.|
-|Case Sensitivity   | Instruction such as FROM, RUN, and ADD are not case sensitive, however convention is to differentiate instructions with upper case.|
-|Variables          | Environment variables can be created using the ENV instruction. They can be referenced with ${variable_name}. For more information on environment variables see [Dockerfile Reference on Docker.com]( https://docs.docker.com/engine/reference/builder/#environment-replacement).|
-|Omitting Files     | A .dockerignore file can be used to exclude files from the scope of docker build. For more information on dockerignore, see [Dockerfile Reference on Docker.com]( https://docs.docker.com/engine/reference/builder/#dockerignore-file).|
-
 ## Instructions
 
 Dockerfile instructions provide the Docker Engine with the steps needed in order to create a container image. These instructions are performed in order and one-by-one. Here are the details for some basic Dockerfile instructions. For a complete list of dockerfile instructions, see [Dockerfile Reference on Docker.com] (https://docs.docker.com/engine/reference/builder/).
@@ -68,7 +56,15 @@ Dockerfile instructions provide the Docker Engine with the steps needed in order
 
 The FROM instruction sets the container image that will be used during the new image creation process. For instance, when using the instruction `FROM windowsservercore`, the resulting image will be derived from, and have a dependency on the Windows Server Core Base OS image. If the specified image is not present on the system where the Docker build process is being run, the Docker engine will attempt to download the image from a public or private container image registry.
 
-Examples:
+**Format:**
+
+The FROM instruction takes a format of: 
+
+```
+FROM <image>
+```
+
+**Example:**
 
 ```
 FROM windowsservercore
@@ -80,7 +76,15 @@ For detailed information on the FROM instruction see the [FROM Reference on Dock
 
 The RUN instruction specifies commands to be run, and captured into the new container image. These commands can include items such as installing software, creating files and directories, and creating environment configuration.
 
-Examples:
+**Format:**
+
+The RUN instruction takes a format of: 
+
+```
+RUN <command>
+```
+
+**Examples:**
 
 This example uses DISM to install IIS in the container image.
 ```
@@ -176,7 +180,11 @@ WORKDIR c:\application\
 **Examples:**
 
 ```
-WORKDIR c:\Apache24\bin
+WORKDIR /Apache24/bin
+```
+
+```
+WORKDIR c:/Apache24/bin
 ```
 
 For detailed information on the WORKDIR instruction see the [WORKDIR Reference on Docker.com]( https://docs.docker.com/engine/reference/builder/#workdir). 
@@ -184,6 +192,18 @@ For detailed information on the WORKDIR instruction see the [WORKDIR Reference o
 ### CMD
 
 The `CMD` instruction sets the default command to be run when starting a new container. For instance, if the container will be hosting an NGINX web server, the `CMD` might include instructions to start the web server, such as `nginx.exe`. If multiple CMD instructions are specified in a Dockerfile, only the last will be evaluated.
+
+**Format:**
+
+The CMD instruction takes a format of: 
+
+```
+CMD <command>
+```
+
+**Windows Considerations:**
+
+**Examples:**
 
 ```
 CMD ["httpd.exe"]
@@ -206,7 +226,7 @@ docker build -t iis .
 
 When the build process has been initiated, the output will indicate status, and return any thrown errors.
 
-```
+```none
 C:\> docker build -t iis .
 
 Sending build context to Docker daemon 2.048 kB
