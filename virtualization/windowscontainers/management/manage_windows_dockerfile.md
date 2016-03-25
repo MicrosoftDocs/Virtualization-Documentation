@@ -27,7 +27,7 @@ For a complete look at the Docker engine and Dockerfile, see the [Dockerfile ref
 
 In its most basic form, a dockerfile can be very simple. The following example creates a new image, which includes IIS and a new ‘hello world’ site. The dockerfile includes comments (indicated with a ‘#’) that explains each line. Subsequent sections of this article will detail syntax rules and Dockerfile instructions.
 
-```none
+```
 # Sample Dockerfile
 
 # Indicates that the windowsservercore image will be used as the base image.
@@ -98,7 +98,7 @@ For detailed information on the RUN instruction see the [RUN Reference on Docker
 
 The ADD instruction copies files and directories to the filesystem of the container. The files and directories can be relative to the dockerfile, or on a remote location with a URL specification.
 
-Format:
+**Format:**
 
 The ADD instruction takes a format of: 
 
@@ -108,22 +108,31 @@ If either source or destination include whitespace, enclose the path in square b
  
 ```ADD [“<source>” “<destination>”]```
 
- [!IMPORTANT]
+**Windows Considerations:**
  
-On Windows the destination format must use forward slashes, for example, these are valid destinations:
+On Windows, the destination format must use forward slashes. For example, These are valid ADD instructions:
 
-    ADD test1.txt /temp/
-    ADD test1.txt c:/temp/
+```
+ADD test1.txt /temp/
+ADD test1.txt c:/temp/
+```
 
-However the following will not work
+However the following will not work:
 
-    ADD test1.txt c:\temp\
+```
+ADD test1.txt c:\temp\
+```
 
-Examples:
+**Examples:**
 
 This example adds the contents of the sources directory to a directory sqllite in the container image.
 ```
-ADD sources /sqlite
+ADD sources /sqlite/
+```
+
+This example will add all file that begin with config* to the c:\temp directory.
+```
+ADD config* c:/temp/
 ```
 
 This example creates a copy of master.zip from GitHub to the temp directory in the container image.
@@ -131,15 +140,34 @@ This example creates a copy of master.zip from GitHub to the temp directory in t
 ADD https://github.com/neilpeterson/demoapp/archive/master.zip /temp/master.zip
 ```
 
-[!IMPORTANT]
-
 For detailed information on the ADD instruction see the [ADD Reference on Docker.com]( https://docs.docker.com/engine/reference/builder/#add). 
 
 ### WORKDIR
 
 The WORKDIR instruction sets a working directory for other dockerfile instructions such as RUN, CMD, and ADD. 
 
-Examples:
+**Format:**
+
+The WORKDIR instruction takes a format of: 
+
+```WORKDIR <path to working directory>``` 
+
+**Windows Considerations:**
+
+On Windows, the working directory format must use forward slashes. For example, These are valid WORKDIR instructions:
+
+```
+WORKDIR /application/
+WORKDIR c:/application/
+```
+
+However the following will not work:
+
+```
+WORKDIR c:\application\
+```
+
+**Examples:**
 
 ```
 WORKDIR c:\Apache24\bin
