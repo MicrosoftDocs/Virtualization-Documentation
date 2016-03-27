@@ -7,28 +7,28 @@ author: neilpeterson
 The Docker engine includes tools for automating the creation of container images. While container images can be created manually by using the ‘docker commit’ command, adopting an automated image creation process provides many benefits. Some of these include:
 
 - Storing container images as code.
-- Rapid and precise recreation of container images. 
+- Rapid and precise recreation of container images for maintenance and upgrade purposes  
 - Continuous integration between container images and the development cycle.
 
-The components that drive this automation are dockerfile and the Docker Build command.
+The Docker components that drive this automation are dockerfiles and the Docker build command.
 
-- Dockerfile – a text file containing the instruction needed to create a new container image. These instructions include selecting an existing image to derive the new image from, commands to be run during the image creation process, and then run time commands for running instances of the new container image.
-- Docker Build - the Docker engine command that consumes a Dockerfile and triggers the image creation process.
+- Dockerfile – a text file containing the instruction needed to create a new container image. These instructions include selecting an existing image to derive the new image from, commands to be run during the image creation process, and run time commands for running instances of the new container image.
+- Docker build - the Docker engine command that consumes a dockerfile and triggers the image creation process.
 
-This document will introduce using a dockerfile with Windows Containers, discuss syntax, and detail commonly used Dockerfile instructions. 
+This document will introduce using a dockerfile with Windows Containers, discuss syntax, and detail commonly used dockerfile instructions. 
 
 Throughout this document, the concept of continer images and contianer image layers will be discussed. For more information on images and image layering see [Manage Windows Container Images](./manage_images). 
 
-For a complete look at the Docker engine and Dockerfile, see the [Dockerfile reference at docker.com]( https://docs.docker.com/engine/reference/builder/).
+For a complete look at the Docker engine and dockerfile, see the [Dockerfile reference at docker.com]( https://docs.docker.com/engine/reference/builder/).
 
 ## Dockerfile Introduction
 
 ### Basic Syntax
 
-In its most basic form, a dockerfile can be very simple. The following example creates a new image, which includes IIS and a new ‘hello world’ site. The dockerfile includes comments (indicated with a ‘#’) that explains each line. Subsequent sections of this article will detail syntax rules and Dockerfile instructions.
+In its most basic form, a dockerfile can be very simple. The following example creates a new image, which includes IIS and a new ‘hello world’ site. The dockerfile includes comments (indicated with a ‘#’) that explains each line. Subsequent sections of this article will detail syntax rules and dockerfile instructions.
 
 ```none
-# Sample Dockerfile
+# Sample dockerfile
 
 # Indicates that the windowsservercore image will be used as the base image.
 FROM windowsservercore
@@ -46,11 +46,11 @@ RUN echo "Hello World - Dockerfile" > c:\inetpub\wwwroot\index.html
 CMD [ "cmd" ]
 ```
 
-For additional examples of Dockerfiles for Windows see the [Dockerfile for Windows Repository] (https://github.com/Microsoft/Virtualization-Documentation/tree/master/windows-server-container-samples).
+For additional examples of dockerfiles for Windows see the [Dockerfile for Windows Repository] (https://github.com/Microsoft/Virtualization-Documentation/tree/master/windows-server-container-samples).
 
 ## Instructions
 
-Dockerfile instructions provide the Docker Engine with the steps needed in order to create a container image. These instructions are performed in order and one-by-one. Here are the details for some basic Dockerfile instructions. For a complete list of dockerfile instructions, see [Dockerfile Reference on Docker.com] (https://docs.docker.com/engine/reference/builder/).
+Dockerfile instructions provide the Docker Engine with the steps needed in order to create a container image. These instructions are performed in order and one-by-one. Here are the details for some basic dockerfile instructions. For a complete list of dockerfile instructions, see [Dockerfile Reference on Docker.com] (https://docs.docker.com/engine/reference/builder/).
 
 ### FROM
 
@@ -191,22 +191,54 @@ For detailed information on the WORKDIR instruction see the [WORKDIR Reference o
 
 ### CMD
 
-The `CMD` instruction sets the default command to be run when starting a new container. For instance, if the container will be hosting an NGINX web server, the `CMD` might include instructions to start the web server, such as `nginx.exe`. If multiple CMD instructions are specified in a Dockerfile, only the last will be evaluated.
+The `CMD` instruction sets the default command to be run when starting a new container. For instance, if the container will be hosting an NGINX web server, the `CMD` might include instructions to start the web server, such as `nginx.exe`. If multiple CMD instructions are specified in a dockerfile, only the last is evaluated.
 
 **Format:**
 
 The CMD instruction takes a format of: 
 
 ```
+# exec form
+
+CMD ["<executable";"<param>"]
+
+# shell form
+
 CMD <command>
 ```
 
 **Windows Considerations:**
 
+On Windows, file paths specified in the CMD instruction must use forward slashes.. For example, These are valid CMD instructions:
+
+```
+# exec form
+
+CMD ["/Apache24/bin/httpd.exe","-w"]
+CMD ["c:/Apache24/bin/httpd.exe","-w"]
+
+# shell form
+
+CMD /Apache24/bin/httpd.exe -w
+CMD c:/Apache24/bin/httpd.exe -w
+```
+
+However the following will not work:
+
+```
+CMD ["c:\Apache24\bin\httpd.exe","-w"]
+CMD c:\Apache24\bin\httpd.exe -w
+
+```
+
 **Examples:**
 
 ```
-CMD ["httpd.exe"]
+CMD ["/Apache24/bin/httpd.exe","-w"]
+```
+
+```
+CMD c:/Apache24/bin/httpd.exe -w
 ```
 
 For detailed information on the CMD instruction see the [CMD Reference on Docker.com]( https://docs.docker.com/engine/reference/builder/#cmd). 
@@ -267,6 +299,6 @@ windowsservercore   latest              6801d964fda5        4 months ago        
 
 ## Further Reading & References
 
-[Optimize Dockerfiles and Docker Build for Windows] (./optimize_windows_dockerfile.md)
+[Optimize dockerfiles and Docker build for Windows] (./optimize_windows_dockerfile.md)
 
 [Dockerfile Reference on Docker.com](https://docs.docker.com/engine/reference/builder/)
