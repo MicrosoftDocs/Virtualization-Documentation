@@ -17,6 +17,7 @@
 # Manage Windows Containers
 ## [Container Management](management/manage_containers.md)
 ## [Hyper-V Containers](management/hyperv_container.md)
+## [Container Images](management/manage_images.md)
 ## [Container Networking](management/container_networking.md)
 ## [Container Shared Folders](management/manage_data.md)
 ## [Container Resource Control](management/manage_resources.md)
