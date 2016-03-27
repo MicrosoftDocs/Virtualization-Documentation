@@ -12,8 +12,8 @@ The Docker engine includes tools for automating the creation of container images
 
 The Docker components that drive this automation are dockerfiles and the Docker build command.
 
-- Dockerfile – a text file containing the instruction needed to create a new container image. These instructions include selecting an existing image to derive the new image from, commands to be run during the image creation process, and run time commands for running instances of the new container image.
-- Docker build - the Docker engine command that consumes a dockerfile and triggers the image creation process.
+- **Dockerfile** – a text file containing the instruction needed to create a new container image. These instructions include selecting an existing image to derive the new image from, commands to be run during the image creation process, and run time commands for running instances of the new container image.
+- **Docker build** - the Docker engine command that consumes a dockerfile and triggers the image creation process.
 
 This document will introduce using a dockerfile with Windows Containers, discuss syntax, and detail commonly used dockerfile instructions. 
 
@@ -80,19 +80,19 @@ The RUN instruction specifies commands to be run, and captured into the new cont
 
 The RUN instruction takes a format of: 
 
-```
+```none
 RUN <command>
 ```
 
 **Examples:**
 
 This example uses DISM to install IIS in the container image.
-```
+```none
 RUN dism.exe /online /enable-feature /all /featurename:iis-webserver /NoRestart
 ```
 
 This example installs the Visual Studio redistributable package.
-```
+```none
 RUN powershell.exe -Command	c:\vcredist_x86.exe /quiet
 ``` 
 
@@ -106,13 +106,13 @@ The ADD instruction copies files and directories to the filesystem of the contai
 
 The ADD instruction takes a format of: 
 
-```
+```none
 ADD <source> <destination>
 ``` 
 
 If either source or destination include whitespace, enclose the path in square brackets and double quotes:
  
-```
+```none
 ADD [“<source>” “<destination>”]
 ```
 
@@ -120,31 +120,31 @@ ADD [“<source>” “<destination>”]
  
 On Windows, the destination format must use forward slashes. For example, These are valid ADD instructions:
 
-```
+```none
 ADD test1.txt /temp/
 ADD test1.txt c:/temp/
 ```
 
 However the following will not work:
 
-```
+```none
 ADD test1.txt c:\temp\
 ```
 
 **Examples:**
 
 This example adds the contents of the sources directory to a directory sqllite in the container image.
-```
+```none
 ADD sources /sqlite/
 ```
 
 This example will add all file that begin with config* to the c:\temp directory.
-```
+```none
 ADD config* c:/temp/
 ```
 
 This example creates a copy of master.zip from GitHub to the temp directory in the container image.
-```
+```none
 ADD https://github.com/neilpeterson/demoapp/archive/master.zip /temp/master.zip
 ```
 
@@ -158,7 +158,7 @@ The WORKDIR instruction sets a working directory for other dockerfile instructio
 
 The WORKDIR instruction takes a format of: 
 
-```
+```none
 WORKDIR <path to working directory>
 ``` 
 
@@ -166,24 +166,24 @@ WORKDIR <path to working directory>
 
 On Windows, the working directory format must use forward slashes. For example, These are valid WORKDIR instructions:
 
-```
+```none
 WORKDIR /application/
 WORKDIR c:/application/
 ```
 
 However the following will not work:
 
-```
+```none
 WORKDIR c:\application\
 ```
 
 **Examples:**
 
-```
+```none
 WORKDIR /Apache24/bin
 ```
 
-```
+```none
 WORKDIR c:/Apache24/bin
 ```
 
@@ -197,7 +197,7 @@ The `CMD` instruction sets the default command to be run when starting a new con
 
 The CMD instruction takes a format of: 
 
-```
+```none
 # exec form
 
 CMD ["<executable";"<param>"]
@@ -211,7 +211,7 @@ CMD <command>
 
 On Windows, file paths specified in the CMD instruction must use forward slashes.. For example, These are valid CMD instructions:
 
-```
+```none
 # exec form
 
 CMD ["/Apache24/bin/httpd.exe","-w"]
@@ -225,7 +225,7 @@ CMD c:/Apache24/bin/httpd.exe -w
 
 However the following will not work:
 
-```
+```none
 CMD ["c:\Apache24\bin\httpd.exe","-w"]
 CMD c:\Apache24\bin\httpd.exe -w
 
@@ -233,11 +233,11 @@ CMD c:\Apache24\bin\httpd.exe -w
 
 **Examples:**
 
-```
+```none
 CMD ["/Apache24/bin/httpd.exe","-w"]
 ```
 
-```
+```none
 CMD c:/Apache24/bin/httpd.exe -w
 ```
 
@@ -247,12 +247,12 @@ For detailed information on the CMD instruction see the [CMD Reference on Docker
 
 Once a dockerfile has been created, and saved to disk, `docker build` can be run to create the new image.  The `docker build` command takes several optional parameters and a path to the dockerfile. For complete documentation on Docker Build, including a list of all build options, see [Build at Docker.com](https://docs.docker.com/engine/reference/commandline/build/#build-with).
 
-```
+```none
 Docker build [OPTIONS] PATH
 ```
 For example, the following command will create an image named ‘iis’ and look in the relative path for the dockerfile.
 
-```
+```none
 docker build -t iis .
 ```
 
@@ -289,7 +289,7 @@ Successfully built e2aafdfbe392
 
 The result is a new container image, in this example named 'iis'.
 
-```
+```none
 C:\> docker images
 
 REPOSITORY          TAG                 IMAGE ID            CREATED              VIRTUAL SIZE
