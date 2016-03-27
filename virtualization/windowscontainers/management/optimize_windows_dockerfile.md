@@ -6,7 +6,8 @@ Several methods can be used to optimize both the Docker build process and the re
 
 ### Image Layers
 
-During the Docker build process, the Docker engine executes each dockerfile instruction one-by-one, each in its own temporary container. The result is a new image layer for each actionable command in the dockerfile. Take a look at the following dockerfile. In this sample, the WindowsServerCore container OS image is being used, IIS installed, and then a simple ‘Hello World’ static site created. From this dockerfile one might expect the resulting image to consist of two layers, one for the container OS image and a second new layer including the IIS configuration and static 'Hello World' site, this however is not the case.  
+During the Docker build process, the Docker engine executes each dockerfile instruction one-by-one, each in its own temporary container. The result is a new image layer for each actionable command in the dockerfile. Take a look at the following dockerfile. In this sample, the WindowsServerCore container OS image is being used, IIS installed, and then a simple ‘Hello World’ static site created.   
+
 
 ```
 # Sample Dockerfile
@@ -16,6 +17,7 @@ RUN dism /online /enable-feature /all /featurename:iis-webserver /NoRestart
 RUN echo "Hello World - dockerfile" > c:\inetpub\wwwroot\index.html
 CMD [ "cmd" ]
 ```
+From this dockerfile one might expect the resulting image to consist of two layers, one for the container OS image and a secound new layer including the IIS configuration and static 'Hello World' site, this however is not the case.  It is true that the resulting image depends on the windowsservercore container os image, thus a container created from this image depends on both images being present but what is not as apparent is that the image the dockerfile built is constructed itself of multiple layers.  Each line of a dockerfile constructs a new layer (think of each layer as a mini container image) and when the build is compleated all of those layers are wrapped up together into a single image.
 
 To inspect the layers of a container image, use the `docker history` command. Doing so against the image created with the simple example dockerfile will show that the image consists of four layers, the base, and then three additional layers, one for each actionable instruction in the dockerfile.
 
