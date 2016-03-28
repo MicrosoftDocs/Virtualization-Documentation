@@ -36,7 +36,7 @@ In its most basic form, a dockerfile can be very simple. The following example c
 FROM windowsservercore
 
 # Metadata indicating an image maintainer.
-MAINTAINER someguy@contoso.com
+MAINTAINER jshelton@contoso.com
 
 # Uses dism.exe to install the IIS role.
 RUN dism.exe /online /enable-feature /all /featurename:iis-webserver /NoRestart
