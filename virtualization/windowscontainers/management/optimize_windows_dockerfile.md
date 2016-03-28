@@ -6,10 +6,10 @@ Several methods can be used to optimize both the Docker build process and the re
 
 ### Image Layers
 
-During the Docker build process, the Docker engine executes each dockerfile instruction one-by-one, each in its own temporary container. The result is a new image layer for each actionable command in the dockerfile. Take a look at the following dockerfile. In this sample, the WindowsServerCore container OS image is being used, IIS installed, and then a simple ‘Hello World’ static site created.   
+Before examining container image optimization strategy, it is important to understand how docker build works, and to understand how Docker images are created. During the Docker build process, the Docker engine executes each actionable instruction, one-by-one, each in its own temporary container. The result is a new image layer for each actionable instruction.
+Take a look at the following dockerfile. In this sample the windowsservercore base OS image is being used, IIS is installed, and then a simple website created.
 
-
-```
+```none
 # Sample Dockerfile
 
 FROM windowsservercore
@@ -17,9 +17,10 @@ RUN dism /online /enable-feature /all /featurename:iis-webserver /NoRestart
 RUN echo "Hello World - dockerfile" > c:\inetpub\wwwroot\index.html
 CMD [ "cmd" ]
 ```
-From this dockerfile one might expect the resulting image to consist of two layers, one for the container OS image and a secound new layer including the IIS configuration and static 'Hello World' site, this however is not the case.  It is true that the resulting image depends on the windowsservercore container os image, thus a container created from this image depends on both images being present but what is not as apparent is that the image the dockerfile built is constructed itself of multiple layers.  Each line of a dockerfile constructs a new layer (think of each layer as a mini container image) and when the build is compleated all of those layers are wrapped up together into a single image.
 
-To inspect the layers of a container image, use the `docker history` command. Doing so against the image created with the simple example dockerfile will show that the image consists of four layers, the base, and then three additional layers, one for each actionable instruction in the dockerfile.
+From this dockerfile, one might expect the resulting image to consist of two layers, one for the container OS image, and a second for the new layer including IIS and the website, this however is not the case. What may not be apparent is that the new image is constructed of many layers, each on dependent on the previous. To visualize this, the `docker history` command can be run against the new image.
+
+Doing so against the image created with the simple example dockerfile will show that the image consists of four layers, the base, and then three additional layers, one for each actionable instruction in the dockerfile.
 
 ```
 C:\> docker history iis
@@ -31,13 +32,13 @@ f0e017e5b088        21 seconds ago       cmd /S /C echo "Hello World - Dockerfil
 6801d964fda5        4 months ago                                                         0 B                                                       0 B
 ```
 
-This build behavior can be advantageous and may be desirable when troubleshooting individual image layers. However, if desired, the number of layers can be minimized using several tricks detailed later in this article.
+Here we can map each layer to an instruction in the dockerfile. The bottom layer (6801d964fda5 in this example) represents the base OS image. One layer up, the IIS installation can be see, one layer up from that the website is created, and so on.
 
-If you are pushing the image to a repository such as Docker Hub, optimizing to fewer layers could decrease the size of the image to save network bandwidth and disk space. As you read through the examples below, you can sum up the size of all layers to determine how much data would be pushed or pulled from the repository.
+Dockerfiles can be written to minimize image layers, optimize build performance, and also subtler things such as to improve readability. Ultimately there are many ways to complete the same image build task, and selecting the dockerfile format to optimize for your needs is the optimal configuration. 
 
 ## Dockerfile Optimization
 
-There are several strategies that can be used when building dockerfiles, that will result in an optimized image. This section will detail some of these dockerfile tactics specific to Windows Containers. For additional information on dockerfile best practices, see [Best practices for writing dockerfiles on Docker.com]( https://docs.docker.com/engine/userguide/eng-image/dockerfile_best-practices/).
+There are several strategies that can be used when building dockerfiles, that will result in an optimized image or build process. This section will detail some of these dockerfile tactics specific to Windows Containers. For additional information on dockerfile best practices, see [Best practices for writing dockerfiles on Docker.com]( https://docs.docker.com/engine/userguide/eng-image/dockerfile_best-practices/).
 
 ### Group related actions
 Because each RUN instruction creates a new layer in the container image, grouping actions into one RUN instruction can reduce the number of layers in the image. The backslash character ‘\’ can be used to organize the operation onto separate lines of the dockerfile, while still using only one Run instruction.
@@ -124,6 +125,7 @@ RUN powershell -Command \
 ```
 
 ### Remove excess files
+
 If a file, such as an installer, isn't required after the RUN step, delete it to minimize image size. Perform the delete operation in the same RUN instruction as it was used. This will prevent a second image layer. 
 
 In this example, the Visual Studio Redistribute package is downloaded, executed, and then the executable removed. This is all completed in one RUN operation and will result in a single image layer in the final image.
@@ -134,6 +136,8 @@ RUN powershell -Command \
 	c:\vcredist_x86.exe /quiet ; \
 	Remove-Item c:\vcredist_x86.exe -Force
 ```
+
+### Optimize build time
 
 ### MSI base installation
  
@@ -156,6 +160,8 @@ ADD Example
 
 <!-- ## CMD -->
 <!-- Topics: envvar scope & set /x workaround -->
+
+### Improve readability
 
 ## Further Reading & References
 * [Best practices for writing dockerfiles - Docker.com]( https://docs.docker.com/engine/userguide/eng-image/dockerfile_best-practices/)
