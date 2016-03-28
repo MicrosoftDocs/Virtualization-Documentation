@@ -4,18 +4,20 @@ author: neilpeterson
 
 # Dockerfile on Windows
 
+**This is preliminary content and subject to change.** 
+
 The Docker engine includes tools for automating the creation of container images. While container images can be created manually by using the ‘docker commit’ command, adopting an automated image creation process provides many benefits. Some of these include:
 
 - Storing container images as code.
-- Rapid and precise recreation of container images for maintenance and upgrade purposes  
+- Rapid and precise recreation of container images for maintenance and upgrade purposes.
 - Continuous integration between container images and the development cycle.
 
 The Docker components that drive this automation are dockerfiles and the Docker build command.
 
-- **Dockerfile** – a text file containing the instruction needed to create a new container image. These instructions include selecting an existing image to derive the new image from, commands to be run during the image creation process, and run time commands for running instances of the new container image.
-- **Docker build** - the Docker engine command that consumes a dockerfile and triggers the image creation process.
+- **Dockerfile** – a text file containing the instruction needed to create a new container image. These instructions include identification of an existing image to be used as a base, , commands to be run during the image creation process, and run time commands for running instances of the new container image.
+- **Docker build** - the Docker engine command that consumes a dockerfile, and triggers the image creation process.
 
-This document will introduce using a dockerfile with Windows Containers, discuss syntax, and detail commonly used dockerfile instructions. 
+This document will introduce using a dockerfile with Windows containers, discuss syntax, and detail commonly used dockerfile instructions. 
 
 Throughout this document, the concept of continer images and contianer image layers will be discussed. For more information on images and image layering see [Manage Windows Container Images](./manage_images). 
 
@@ -25,7 +27,7 @@ For a complete look at the Docker engine and dockerfile, see the [Dockerfile ref
 
 ### Basic Syntax
 
-In its most basic form, a dockerfile can be very simple. The following example creates a new image, which includes IIS and a new ‘hello world’ site. The dockerfile includes comments (indicated with a ‘#’) that explains each line. Subsequent sections of this article will detail syntax rules and dockerfile instructions.
+In its most basic form, a dockerfile can be very simple. The following example creates a new image, which includes IIS, and a new ‘hello world’ site. The dockerfile includes comments (indicated with a ‘#’) that explain each line. Subsequent sections of this article will detail syntax rules and dockerfile instructions.
 
 ```none
 # Sample dockerfile
@@ -50,13 +52,13 @@ For additional examples of dockerfiles for Windows see the [Dockerfile for Windo
 
 ## Instructions
 
-Dockerfile instructions provide the Docker Engine with the steps needed in order to create a container image. These instructions are performed in order and one-by-one. Here are the details for some basic dockerfile instructions. For a complete list of dockerfile instructions, see [Dockerfile Reference on Docker.com] (https://docs.docker.com/engine/reference/builder/).
+Dockerfile instructions provide the Docker Engine with the steps needed to create a container image. These instructions are performed in order, and one-by-one. Here are the details for some basic dockerfile instructions. For a complete list of dockerfile instructions, see [Dockerfile Reference on Docker.com] (https://docs.docker.com/engine/reference/builder/).
 
 ### FROM
 
-The FROM instruction sets the container image that will be used during the new image creation process. For instance, when using the instruction `FROM windowsservercore`, the resulting image will be derived from, and have a dependency on the Windows Server Core Base OS image. If the specified image is not present on the system where the Docker build process is being run, the Docker engine will attempt to download the image from a public or private container image registry.
+The FROM instruction sets the container image that will be used during the new image creation process. For instance, when using the instruction `FROM windowsservercore`, the resulting image will be derived from, and have a dependency on, the Windows Server Core Base OS image. If the specified image is not present on the system where the Docker build process is being run, the Docker engine will attempt to download the image from a public or private container image registry.
 
-**Format:**
+**Format**
 
 The FROM instruction takes a format of: 
 
@@ -64,27 +66,33 @@ The FROM instruction takes a format of:
 FROM <image>
 ```
 
-**Example:**
+**Example**
 
 ```
 FROM windowsservercore
 ```
 
-For detailed information on the FROM instruction see the [FROM Reference on Docker.com]( https://docs.docker.com/engine/reference/builder/#from). 
+For detailed information on the FROM instruction, see the [FROM Reference on Docker.com]( https://docs.docker.com/engine/reference/builder/#from). 
 
 ### RUN
 
 The RUN instruction specifies commands to be run, and captured into the new container image. These commands can include items such as installing software, creating files and directories, and creating environment configuration.
 
-**Format:**
+**Format**
 
 The RUN instruction takes a format of: 
 
 ```none
+# exec form
+
+RUN ["<executable", "<param 1>", "<param 2>"
+
+# shell form
+
 RUN <command>
 ```
 
-**Examples:**
+**Examples**
 
 This example uses DISM to install IIS in the container image.
 ```none
@@ -96,13 +104,13 @@ This example installs the Visual Studio redistributable package.
 RUN powershell.exe -Command	c:\vcredist_x86.exe /quiet
 ``` 
 
-For detailed information on the RUN instruction see the [RUN Reference on Docker.com]( https://docs.docker.com/engine/reference/builder/#run). 
+For detailed information on the RUN instruction, see the [RUN Reference on Docker.com]( https://docs.docker.com/engine/reference/builder/#run). 
 
 ### ADD
 
 The ADD instruction copies files and directories to the filesystem of the container. The files and directories can be relative to the dockerfile, or on a remote location with a URL specification.
 
-**Format:**
+**Format**
 
 The ADD instruction takes a format of: 
 
@@ -110,51 +118,51 @@ The ADD instruction takes a format of:
 ADD <source> <destination>
 ``` 
 
-If either source or destination include whitespace, enclose the path in square brackets and double quotes:
+If either source or destination include whitespace, enclose the path in square brackets and double quotes.
  
 ```none
 ADD [“<source>” “<destination>”]
 ```
 
-**Windows Considerations:**
+**Windows Considerations**
  
-On Windows, the destination format must use forward slashes. For example, These are valid ADD instructions:
+On Windows, the destination format must use forward slashes. For example, these are valid ADD instructions.
 
 ```none
 ADD test1.txt /temp/
 ADD test1.txt c:/temp/
 ```
 
-However the following will not work:
+However, the following will not work.
 
 ```none
 ADD test1.txt c:\temp\
 ```
 
-**Examples:**
+**Examples**
 
-This example adds the contents of the sources directory to a directory sqllite in the container image.
+This example adds the contents of the sources directory, to a directory named sqllite in the container image.
 ```none
 ADD sources /sqlite/
 ```
 
-This example will add all file that begin with config* to the c:\temp directory.
+This example will add all file that begin with config, to the c:\temp directory.
 ```none
 ADD config* c:/temp/
 ```
 
-This example creates a copy of master.zip from GitHub to the temp directory in the container image.
+This example creates a copy of master.zip from GitHub, to the temp directory in the container image.
 ```none
 ADD https://github.com/neilpeterson/demoapp/archive/master.zip /temp/master.zip
 ```
 
-For detailed information on the ADD instruction see the [ADD Reference on Docker.com]( https://docs.docker.com/engine/reference/builder/#add). 
+For detailed information on the ADD instruction, see the [ADD Reference on Docker.com]( https://docs.docker.com/engine/reference/builder/#add). 
 
 ### WORKDIR
 
-The WORKDIR instruction sets a working directory for other dockerfile instructions such as RUN, CMD, and ADD. 
+The WORKDIR instruction sets a working directory for other dockerfile instructions, such as RUN, CMD, and also the working directory for running instances of the new container image.
 
-**Format:**
+**Format**
 
 The WORKDIR instruction takes a format of: 
 
@@ -162,22 +170,22 @@ The WORKDIR instruction takes a format of:
 WORKDIR <path to working directory>
 ``` 
 
-**Windows Considerations:**
+**Windows Considerations**
 
-On Windows, the working directory format must use forward slashes. For example, These are valid WORKDIR instructions:
+On Windows, the working directory format must use forward slashes. For example, These are valid WORKDIR instructions.
 
 ```none
 WORKDIR /application/
 WORKDIR c:/application/
 ```
 
-However the following will not work:
+However, the following will not work.
 
 ```none
 WORKDIR c:\application\
 ```
 
-**Examples:**
+**Examples**
 
 ```none
 WORKDIR /Apache24/bin
@@ -187,13 +195,13 @@ WORKDIR /Apache24/bin
 WORKDIR c:/Apache24/bin
 ```
 
-For detailed information on the WORKDIR instruction see the [WORKDIR Reference on Docker.com]( https://docs.docker.com/engine/reference/builder/#workdir). 
+For detailed information on the WORKDIR instruction, see the [WORKDIR Reference on Docker.com]( https://docs.docker.com/engine/reference/builder/#workdir). 
 
 ### CMD
 
 The `CMD` instruction sets the default command to be run when starting a new container. For instance, if the container will be hosting an NGINX web server, the `CMD` might include instructions to start the web server, such as `nginx.exe`. If multiple CMD instructions are specified in a dockerfile, only the last is evaluated.
 
-**Format:**
+**Format**
 
 The CMD instruction takes a format of: 
 
@@ -207,9 +215,9 @@ CMD ["<executable";"<param>"]
 CMD <command>
 ```
 
-**Windows Considerations:**
+**Windows Considerations**
 
-On Windows, file paths specified in the CMD instruction must use forward slashes.. For example, These are valid CMD instructions:
+On Windows, file paths specified in the CMD instruction must use forward slashes. For example, These are valid CMD instructions.
 
 ```none
 # exec form
@@ -223,7 +231,7 @@ CMD /Apache24/bin/httpd.exe -w
 CMD c:/Apache24/bin/httpd.exe -w
 ```
 
-However the following will not work:
+However the following will not work.
 
 ```none
 CMD ["c:\Apache24\bin\httpd.exe","-w"]
@@ -231,7 +239,7 @@ CMD c:\Apache24\bin\httpd.exe -w
 
 ```
 
-**Examples:**
+**Examples**
 
 ```none
 CMD ["/Apache24/bin/httpd.exe","-w"]
@@ -241,16 +249,16 @@ CMD ["/Apache24/bin/httpd.exe","-w"]
 CMD c:/Apache24/bin/httpd.exe -w
 ```
 
-For detailed information on the CMD instruction see the [CMD Reference on Docker.com]( https://docs.docker.com/engine/reference/builder/#cmd). 
+For detailed information on the CMD instruction, see the [CMD Reference on Docker.com]( https://docs.docker.com/engine/reference/builder/#cmd). 
 
 ## Docker Build 
 
-Once a dockerfile has been created, and saved to disk, `docker build` can be run to create the new image.  The `docker build` command takes several optional parameters and a path to the dockerfile. For complete documentation on Docker Build, including a list of all build options, see [Build at Docker.com](https://docs.docker.com/engine/reference/commandline/build/#build-with).
+Once a dockerfile has been created, and saved to disk, `docker build` can be run to create the new image. The `docker build` command takes several optional parameters and a path to the dockerfile. For complete documentation on Docker Build, including a list of all build options, see [Build at Docker.com](https://docs.docker.com/engine/reference/commandline/build/#build-with).
 
 ```none
 Docker build [OPTIONS] PATH
 ```
-For example, the following command will create an image named ‘iis’ and look in the relative path for the dockerfile.
+For example, the following command will create an image named ‘iis’.
 
 ```none
 docker build -t iis .
