@@ -32,7 +32,7 @@ param(
     [Parameter(ParameterSetName="IncludeDocker")]
     [string]
     [ValidateNotNullOrEmpty()]
-    $DockerPath = "https://aka.ms/tp4/docker"
+    $DockerPath = "https://aka.ms/tp5/docker"
 )
 
 
@@ -286,7 +286,10 @@ Test-Nano()
 {
     $EditionId = (Get-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion' -Name 'EditionID').EditionId
 
-    return (($EditionId -eq "NanoServer") -or ($EditionId -eq "ServerTuva"))
+    return (($EditionId -eq "ServerStandardNano") -or 
+            ($EditionId -eq "ServerDataCenterNano") -or 
+            ($EditionId -eq "NanoServer") -or 
+            ($EditionId -eq "ServerTuva"))
 }
 
 
@@ -390,6 +393,44 @@ Test-Docker()
 }
 
 
+function
+Wait-InstalledContainerImage
+{
+    [CmdletBinding()]
+    param(
+        [Parameter(Mandatory=$true)]
+        [string]
+        [ValidateNotNullOrEmpty()]
+        $BaseImageName
+    )
+    
+    $newBaseImages = Get-InstalledContainerImage $BaseImageName
+
+    $startTime = Get-Date
+
+    while ($newBaseImages.Count -eq 0)
+    {            
+        $timeElapsed = $(Get-Date) - $startTime
+
+        if ($($timeElapsed).TotalMinutes -gt 5)
+        {
+            throw "Image $BaseImageName not found after 5 minutes"
+        }
+
+        #
+        # Sleeping to ensure VMMS has restarted to workaround TP3 issue
+        #
+        Write-Output "Waiting for VMMS to return image at ($(get-date))..."
+
+        Start-Sleep -Sec 2
+                
+        $newBaseImages += Get-InstalledContainerImage $BaseImageName            
+    }
+
+    return $newBaseImages
+}
+
+
 function 
 Wait-Docker()
 {
@@ -401,20 +442,13 @@ Wait-Docker()
     {
         try
         {
-            if (Test-Nano)
+            docker version | Out-Null
+
+            if (-not $?)
             {
-                #
-                # Nano doesn't support Invoke-RestMethod, we will parse 'docker ps' output
-                #
-                if ((docker ps 2>&1 | Select-String "error") -ne $null)
-                {
-                    throw "Docker daemon is not running yet"
-                }
+                throw "Docker daemon is not running yet"
             }
-            else
-            {
-                Invoke-RestMethod -Uri http://127.0.0.1:2375/info -Method GET | Out-Null
-            }
+
             $dockerReady = $true
         }
         catch 

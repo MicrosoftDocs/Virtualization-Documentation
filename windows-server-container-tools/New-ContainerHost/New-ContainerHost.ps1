@@ -20,7 +20,7 @@
         Configures the VM as a new container host
         
     .PARAMETER DockerPath
-        Path to a private Docker.exe.  Defaults to https://aka.ms/tp4/docker
+        Path to a private Docker.exe.  Defaults to https://aka.ms/tp5/docker
 
     .PARAMETER Password 
         Password for the built-in Administrator account. 
@@ -32,7 +32,7 @@
         Prefix for container hosts NAT range.
 
     .PARAMETER ScriptPath
-        Path to a private Install-ContainerHost.ps1.  Defaults to https://aka.ms/SetupContainers
+        Path to a private Install-ContainerHost.ps1.  Defaults to https://aka.ms/tp5/Install-ContainerHost
 
     .PARAMETER SkipDocker
         If passed, skips Docker install
@@ -67,7 +67,7 @@ param(
     [Parameter(ParameterSetName="IncludeDocker")]
     [string]
     [ValidateNotNullOrEmpty()]
-    $DockerPath = "https://aka.ms/tp4/docker",
+    $DockerPath = "https://aka.ms/tp5/docker",
 
     [switch]
     $HyperV,
@@ -76,7 +76,7 @@ param(
     [Parameter(ParameterSetName="SkipDocker")]
     [string]
     [ValidateNotNullOrEmpty()]
-    $IsoPath = "https://aka.ms/tp4/serveriso",   
+    $IsoPath = "https://aka.ms/tp5/serveriso",   
 
     [string]
     $NATSubnetPrefix = "172.16.0.0/24",
@@ -92,8 +92,8 @@ param(
 
     [string]
     [ValidateNotNullOrEmpty()]
-    $ScriptPath = "https://aka.ms/tp4/Install-ContainerHost",
-    
+    $ScriptPath = "https://aka.ms/tp5/Install-ContainerHost",
+
     [Parameter(ParameterSetName="SkipDocker", Mandatory)]
     [switch]
     $SkipDocker,
@@ -199,10 +199,12 @@ else
 $global:WimSaveMode = $true
 $global:PowerShellDirectMode = $true
 
+$global:VmGeneration = 2
+
 #
 # Image information
 #
-if ($WindowsImage -eq "NanoServer")
+if ($HyperV -or ($WindowsImage -eq "NanoServer"))
 {
     $global:imageName = "NanoServer"
 }
@@ -216,7 +218,7 @@ $global:imageVersion = "10586.0"
 # Branding strings
 #
 $global:brand = $WindowsImage
-$global:imageBrand = "$($global:brand)_en-us_TP4_Container"
+$global:imageBrand = "$($global:brand)_en-us_TP5_Container"
 $global:isoBrandName = "$global:brand ISO"
 $global:vhdBrandName = "$global:brand VHD"
 
@@ -236,22 +238,25 @@ if ($VhdPath -and ($(Split-Path -Leaf $VhdPath) -match ".*\.vhdx?"))
     #
     # Assume this is an official Windows build VHD/X.  We parse the build number and QFE from the filename
     #
-    if ($VhdPath -match "(\d{5})\.(\d{1,5}).*\.(vhdx)?")
+    if ($global:localVhdName -match "(\d{5})\.(\d{1,5}).(.*\.\d{6}-\d{4})_.*\.vhdx?")
     {
         $global:imageVersion = "$($Matches[1]).$($Matches[2])"
-    }
 
-    #
-    # Save-ContainerImage doesn't work for internal shares yet
-    #
-    $global:WimSaveMode = $false
+        if (-not $WimPath)
+        {
+            #
+            # Register the private 
+            #
+            .\Register-TestContainerHost.ps1 -BuildName "$($Matches[1]).$($Matches[2]).$($Matches[3])"
+        }
+    }
 }
 else
 {
     $global:localVhdName = "$($global:imageBrand).vhd"
 }
 
-$global:localIsoName = "WindowsServerTP4.iso"
+$global:localIsoName = "WindowsServerTP5.iso"
 $global:localIsoPath = "$global:localVhdRoot\$global:localIsoName"
 $global:localIsoVersion = "$global:localVhdRoot\ContainerISOVersion.$($global:imageVersion).txt"
 
@@ -259,7 +264,7 @@ $global:localVhdPath = "$global:localVhdRoot\$global:localVhdName"
 $global:localVhdVersion = "$global:localVhdRoot\ContainerVHDVersion.$($global:imageVersion).txt"
 
 $global:localWimName = "$global:imageName.wim"
-$global:localWimVhdPath = "$global:localVhdRoot\$($global:imageName)-WIM.vhdx"
+$global:localWimVhdPath = "$global:localVhdRoot\$($global:imageName)-WIM-$($global:imageVersion).vhdx"
 $global:localWimVhdVersion = "$global:localVhdRoot\$($global:imageName)Version.$($global:imageVersion).txt"
 
 
@@ -306,7 +311,7 @@ Cache-HostFiles
                 $convertScript = $(Join-Path $global:localVhdRoot "Convert-WindowsImage.ps1")
 
                 Write-Verbose "Copying Convert-WindowsImage..."
-                Copy-File -SourcePath 'https://aka.ms/tp4/Convert-WindowsImage' -DestinationPath $convertScript
+                Copy-File -SourcePath 'https://aka.ms/tp5/Convert-WindowsImage' -DestinationPath $convertScript
 
                 #
                 # Dot-source until this is a module
@@ -335,16 +340,16 @@ Cache-HostFiles
                                         
                     if ($Staging)
                     {
-                        New-NanoServerImage -MediaPath "$($driveLetter):\" -TargetPath $global:localVhdPath -Containers -ReverseForwarders -GuestDrivers -AdministratorPassword $Password
+                        New-NanoServerImage -ImageFormat "vhdx" -DeploymentType Guest -Edition Standard -MediaPath "$($driveLetter):\" -TargetPath $global:localVhdPath -Containers -AdministratorPassword $Password
                     }
                     else
                     {
-                        New-NanoServerImage -MediaPath "$($driveLetter):\" -TargetPath $global:localVhdPath -Compute -Containers -ReverseForwarders -GuestDrivers -AdministratorPassword $Password
+                        New-NanoServerImage -ImageFormat "vhdx" -DeploymentType Guest -Edition Standard -MediaPath "$($driveLetter):\" -TargetPath $global:localVhdPath -Compute -Containers -AdministratorPassword $Password
                     }
                 }
                 else
                 {
-                    Convert-WindowsImage -DiskLayout BIOS -SourcePath "$($driveLetter):\sources\install.wim" -Edition $WindowsImage -VhdPath $global:localVhdPath
+                    Convert-WindowsImage -DiskLayout UEFI -SourcePath "$($driveLetter):\sources\install.wim" -Edition $WindowsImage -VhdPath $global:localVhdPath
                 }
             }
             catch 
@@ -363,6 +368,8 @@ Cache-HostFiles
     
     if ($global:WimSaveMode -or $WimPath)
     {
+        $global:WimSaveMode = $true
+
         #
         # The combo VHD already contains the WIM.  Only cache if we are NOT using the combo VHD.
         #
@@ -410,14 +417,15 @@ Cache-HostFiles
                 }
                 else
                 {
-                    $imageVersion = "10.0.$global:imageVersion"
-                    Write-Output "Saving Container OS image ($global:imageName) version $imageVersion from OneGet to $($driveLetter): (this may take a few minutes)..."
                     Test-ContainerProvider
 
+                    $imageVersion = "10.0.$global:imageVersion"
+                    Write-Output "Saving Container OS image ($global:imageName) version $imageVersion from OneGet to $($driveLetter): (this may take a few minutes)..."
+                    
                     #
                     # TODO: should be error action stop by default
                     #
-                    Save-ContainerImage $global:imageName -Version $imageVersion -Destination "$($driveLetter):\$global:localWimName" -ErrorAction Stop
+                    Save-ContainerImage $global:imageName -Version $imageVersion -Destination "$($driveLetter):\$($global:localWimName)" -ErrorAction Stop
                 }
 
                 if (-not (Test-Path "$($driveLetter):\$global:localWimName"))
@@ -565,11 +573,22 @@ Edit-BootVhd
         Write-Output "Mounting $global:vhdBrandName for offline processing..."
         $disk = $bootVhd | Mount-VHD -PassThru | Get-Disk        
     
-        #
-        # We can assume there is one partition/volume
-        #
-        $driveLetter = ($disk | Get-Partition | Get-Volume).DriveLetter
-        
+        if ($disk.PartitionStyle -eq "GPT")
+        {            
+            #
+            # Generation 2: we assume the only partition with a drive letter is the Windows partition
+            #
+            $driveLetter = ($disk | Get-Partition | Where-Object DriveLetter).DriveLetter
+        }
+        else
+        {
+            #
+            # Generation 1: we will assume there is one partition/volume
+            #
+            $global:VmGeneration = 1
+            $driveLetter = ($disk | Get-Partition | Get-Volume).DriveLetter
+        }
+
         if ($WindowsImage -eq "NanoServer")
         {
             if ((Test-Path $global:localIsoPath) -and $Staging)
@@ -650,6 +669,14 @@ Edit-BootVhd
         #
         Write-Output "Copying Install-ContainerHost.ps1 into $global:vhdBrandName..."
         Copy-File -SourcePath $ScriptPath -DestinationPath "$($driveLetter):\Install-ContainerHost.ps1"
+
+        #
+        # Copy test tools
+        #
+        if (Test-Path ".\Register-TestContainerHost.ps1")
+        {
+            Copy-Item ".\Register-TestContainerHost.ps1" "$($driveLetter):\"
+        }
     }
     catch 
     {
@@ -750,7 +777,7 @@ New-ContainerHost()
     # Create VM
     #
     Write-Output "Creating VM $VmName..."
-    $vm = New-VM -Name $VmName -VHDPath $bootVhd.Path -Generation 1
+    $vm = New-VM -Name $VmName -VHDPath $bootVhd.Path -Generation $global:VmGeneration
 
     Write-Output "Configuring VM $($vm.Name)..."
     $vm | Set-VMProcessor -Count ([Math]::min((Get-VMHost).LogicalProcessorCount, 64))
@@ -1157,7 +1184,10 @@ Test-Nano()
 {
     $EditionId = (Get-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion' -Name 'EditionID').EditionId
 
-    return (($EditionId -eq "NanoServer") -or ($EditionId -eq "ServerTuva"))
+    return (($EditionId -eq "ServerStandardNano") -or 
+            ($EditionId -eq "ServerDataCenterNano") -or 
+            ($EditionId -eq "NanoServer") -or 
+            ($EditionId -eq "ServerTuva"))
 }
 
 
@@ -1261,6 +1291,44 @@ Test-Docker()
 }
 
 
+function
+Wait-InstalledContainerImage
+{
+    [CmdletBinding()]
+    param(
+        [Parameter(Mandatory=$true)]
+        [string]
+        [ValidateNotNullOrEmpty()]
+        $BaseImageName
+    )
+    
+    $newBaseImages = Get-InstalledContainerImage $BaseImageName
+
+    $startTime = Get-Date
+
+    while ($newBaseImages.Count -eq 0)
+    {            
+        $timeElapsed = $(Get-Date) - $startTime
+
+        if ($($timeElapsed).TotalMinutes -gt 5)
+        {
+            throw "Image $BaseImageName not found after 5 minutes"
+        }
+
+        #
+        # Sleeping to ensure VMMS has restarted to workaround TP3 issue
+        #
+        Write-Output "Waiting for VMMS to return image at ($(get-date))..."
+
+        Start-Sleep -Sec 2
+                
+        $newBaseImages += Get-InstalledContainerImage $BaseImageName            
+    }
+
+    return $newBaseImages
+}
+
+
 function 
 Wait-Docker()
 {
@@ -1272,20 +1340,13 @@ Wait-Docker()
     {
         try
         {
-            if (Test-Nano)
+            docker version | Out-Null
+
+            if (-not $?)
             {
-                #
-                # Nano doesn't support Invoke-RestMethod, we will parse 'docker ps' output
-                #
-                if ((docker ps 2>&1 | Select-String "error") -ne $null)
-                {
-                    throw "Docker daemon is not running yet"
-                }
+                throw "Docker daemon is not running yet"
             }
-            else
-            {
-                Invoke-RestMethod -Uri http://127.0.0.1:2375/info -Method GET | Out-Null
-            }
+
             $dockerReady = $true
         }
         catch 
@@ -1459,10 +1520,10 @@ Approve-Eula
     $choiceList.Add((New-Object "System.Management.Automation.Host.ChoiceDescription" -ArgumentList "&Yes"))
     
     $eulaText = @"
-Before installing and using the Windows Server Technical Preview 4 with Containers virtual machine you must: 
-    1.	Review the license terms by navigating to this link: http://aka.ms/tp4/containerseula
+Before installing and using the Windows Server Technical Preview 5 with Containers virtual machine you must: 
+    1.	Review the license terms by navigating to this link: http://aka.ms/tp5/containerseula
     2.	Print and retain a copy of the license terms for your records.
-By downloading and using the Windows Server Technical Preview 4 with Containers virtual machine you agree to such license terms. Please confirm you have accepted and agree to the license terms.
+By downloading and using the Windows Server Technical Preview 5 with Containers virtual machine you agree to such license terms. Please confirm you have accepted and agree to the license terms.
 "@
 
     return [boolean]$Host.ui.PromptForChoice($null, $eulaText, $choiceList, 0)     
