@@ -1026,6 +1026,8 @@ Wait-InstalledContainerImage
     
     $newBaseImages = Get-InstalledContainerImage $BaseImageName
 
+    $startTime = Get-Date
+
     while ($newBaseImages.Count -eq 0)
     {            
         $timeElapsed = $(Get-Date) - $startTime
