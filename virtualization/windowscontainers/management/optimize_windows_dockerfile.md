@@ -37,13 +37,72 @@ Dockerfiles can be written to minimize image layers, optimize build performance,
 ## Cosmetic Optimization
 
 ### Instruction Case
+
+Dockerfile instructions are not case sensitive, however convention is to use upper case. This improves readability by differentiating between Instruction call, and instruction operation. The below two examples demonstrate this concept. 
+
+Lower case:
+```none
+# Sample Dockerfile
+
+from windowsservercore
+run dism /online /enable-feature /all /featurename:iis-webserver /NoRestart
+run echo "Hello World - dockerfile" > c:\inetpub\wwwroot\index.html
+cmd [ "cmd" ]
+```
+Upper case: 
+```none
+# Sample Dockerfile
+
+FROM windowsservercore
+RUN dism /online /enable-feature /all /featurename:iis-webserver /NoRestart
+RUN echo "Hello World - dockerfile" > c:\inetpub\wwwroot\index.html
+CMD [ "cmd" ]
+```
+
 ### Line Wrapping
+
+Long and complex operations can be separated onto multiple line using the backslash ‘\’ character. The following dockerfile installs the Visual Studio Redistributable package, removes the installer files, and then creates a configuration file. These three operations are all specified on one line.
+
+```
+FROM windowsservercore
+
+RUN powershell -Command c:\vcredist_x86.exe /quiet ; Remove-Item c:\vcredist_x86.exe -Force ; New-Item c:\config.ini
+```
+The command can be re-written so that each operation from the one RUN instruction is specified on its own line. 
+```
+FROM windowsservercore
+
+RUN powershell -Command \
+	c:\vcredist_x86.exe /quiet ; \
+	Remove-Item c:\vcredist_x86.exe -Force ; \
+	New-Item c:\config.ini
+```
 
 ## PowerShell in Dockerfile
 
 ### PowerShell Commands
+
+Powershell commands can be run in a dockerfile using the RUN operation. 
+
+```none
+FROM windowsservercore
+
+RUN powershell -command Expand-Archive -Path c:\apache.zip -DestinationPath c:\
+```
+
 ### PowerShell Scripts
+
 ### REST Calls
+
+```none
+FROM windowsservercore
+
+RUN powershell -Command \
+	Sleep 2 ; \
+	Invoke-WebRequest -Method Get -Uri https://www.apachelounge.com/download/VC11/binaries/httpd-2.4.18-win32-VC11.zip -OutFile c:\apache.zip ; \
+	Expand-Archive -Path c:\apache.zip -DestinationPath c:\ ; \
+	Remove-Item c:\apache.zip -Force
+```
 
 ## Optimize Image Size
 
