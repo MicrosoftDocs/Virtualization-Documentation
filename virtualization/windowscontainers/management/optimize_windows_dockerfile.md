@@ -34,7 +34,20 @@ Each layer can be mapped to an instruction in the dockerfile. The bottom layer (
 
 Dockerfiles can be written to minimize image layers, optimize build performance, and also more cosmetic things such as to improve readability. Ultimately, there are many ways to complete the same image build task. Understanding how the format of a dockerfile effects build time and resulting image will improve the automation experience. 
 
-## Dockerfile Optimization
+## Cosmetic Optimization
+
+### Instruction Case
+### Line Wrapping
+
+## PowerShell in Dockerfile
+
+### PowerShell Commands
+### PowerShell Scripts
+### REST Calls
+
+## Optimize Image Size
+
+### Consolidate Instructions
 
 There are several strategies that can be used when building dockerfiles, that result in an optimized image or build process. This section will detail some of these dockerfile tactics specific to Windows Containers. For additional information on dockerfile best practices, see [Best practices for writing dockerfiles on Docker.com]( https://docs.docker.com/engine/userguide/eng-image/dockerfile_best-practices/).
 
@@ -83,7 +96,22 @@ IMAGE               CREATED             CREATED BY                              
 6801d964fda5        4 months ago                                                        0 B
 ```
 
-### Minimize operations per instruction
+### Remove excess files
+
+If a file, such as an installer, isn't required after the RUN step, delete it to minimize image size. Perform the delete operation in the same RUN instruction as it was used. This will prevent a second image layer. 
+
+In this example, the Visual Studio Redistribute package is downloaded, executed, and then the executable removed. This is all completed in one RUN operation and will result in a single image layer in the final image.
+```
+RUN powershell -Command \
+	Sleep 2 ; \
+	Invoke-WebRequest -Method Get -Uri "https://download.microsoft.com/download/1/6/B/16B06F60-3B20-4FF2-B699-5E9B7962F9AE/VSU_4/vcredist_x86.exe" -OutFile c:\vcredist_x86.exe ; \
+	c:\vcredist_x86.exe /quiet ; \
+	Remove-Item c:\vcredist_x86.exe -Force
+```
+
+## Optimize Build Speed
+
+### Multiple Lines
 
 Contrasting to grouping action in one RUN operation, there may also benefit in having unrelated operations executed by multiple individual RUN instruction. Having multiple RUN operations increase caching effectiveness. Because individual layers are created for each RUN instruction, if an identical step has already been run in a different Docker Build operation, then this operation will not be re-run. The result is that Docker Build runtime will be decreased.
 
@@ -142,15 +170,5 @@ d43abb81204a        7 days ago          cmd /S /C powershell -Command  Sleep 2 ;
 6801d964fda5        5 months ago                                                        0 B
 ```
 
-### Remove excess files
+### Ordering Instructions
 
-If a file, such as an installer, isn't required after the RUN step, delete it to minimize image size. Perform the delete operation in the same RUN instruction as it was used. This will prevent a second image layer. 
-
-In this example, the Visual Studio Redistribute package is downloaded, executed, and then the executable removed. This is all completed in one RUN operation and will result in a single image layer in the final image.
-```
-RUN powershell -Command \
-	Sleep 2 ; \
-	Invoke-WebRequest -Method Get -Uri "https://download.microsoft.com/download/1/6/B/16B06F60-3B20-4FF2-B699-5E9B7962F9AE/VSU_4/vcredist_x86.exe" -OutFile c:\vcredist_x86.exe ; \
-	c:\vcredist_x86.exe /quiet ; \
-	Remove-Item c:\vcredist_x86.exe -Force
-```
