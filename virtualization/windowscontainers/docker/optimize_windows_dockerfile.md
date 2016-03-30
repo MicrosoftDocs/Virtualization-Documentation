@@ -39,17 +39,17 @@ Dockerfiles can be written to minimize image layers, optimize build performance,
 
 ## Optimize Image Size
 
-When building Docker container images, image size may be an important factor. Container images will be moved between registries and host, exported and imported, and ultimately consume space. Several tactics can be used during the Docker build process, to minimize image size. This section will detail some of these tactics specific to Windows Containers. 
+When building Docker container images, image size may be an important factor. Container images will be moved between registries and host, exported and imported, and ultimately consume space. Several tactics can be used during the Docker build process to minimize image size. This section will detail some of these tactics specific to Windows Containers. 
 
 For additional information on dockerfile best practices, see [Best practices for writing dockerfiles on Docker.com]( https://docs.docker.com/engine/userguide/eng-image/dockerfile_best-practices/).
 
 ### Group related actions
 
-Because each RUN instruction creates a new layer in the container image, grouping actions into one RUN instruction, can reduce the number of layers in the image. The backslash character ‘\’ can be used to organize the operation onto separate lines of the dockerfile, while still using only one Run instruction.
+Because each RUN instruction creates a new layer in the container image, grouping actions into one RUN instruction, can reduce the number of layers. The backslash character ‘\’ is used to organize the instruction onto separate lines of the dockerfile, while still using only one Run instruction.
 
-The following two examples will demonstrate the same operations, which will result in a container image of identical capibility, however the two dockerfiles constructed differently. The resulting images will also be compared. 
+The following two examples will demonstrate the same operation, which results in container images of identical capibility, however the two dockerfiles constructed differently. The resulting images will also be compared. 
 
-This first example downloads, extracts, and cleans up the Visual Studio redistributable package. Each of these actions are run in their own RUN operation.
+This first example downloads, extracts, and cleans up the Visual Studio redistributable package. Each of these actions are run in their own RUN instruction.
 
 ```
 FROM windowsservercore
@@ -70,9 +70,9 @@ bd6c831b55b8        2 minutes ago       cmd /S /C powershell.exe -command Remove
 91508fd744e5        3 minutes ago       cmd /S /C powershell.exe -command Invoke-WebR   51.92 MB
 6801d964fda5        5 months ago
 ```
-To compare, here is the same operation, however all steps run with the same RUN instruction. Note that each step in the RUN instruction is on a new line of the dockerfile, the / symbol is being used to line wrap. 
+To compare, here is the same operation, however all steps run with the same RUN instruction. Note that each step in the RUN instruction is on a new line of the dockerfile, the '/' character is being used to line wrap. 
 
-```
+```none
 FROM windowsservercore
 
 RUN powershell -Command \
@@ -93,10 +93,10 @@ IMAGE               CREATED             CREATED BY                              
 
 ### Remove excess files
 
-If a file, such as an installer, isn't required after the RUN step, delete it to minimize image size. Perform the delete operation in the same RUN instruction as it was used. This will prevent a second image layer. 
+If a file, such as an installer, is not required after it has been used, remove the file to reduce image size. This will need to occur in the same step in which the file was copied into the image layer. Doing so will prevent the file from persisting in a lower level image layer.
 
-In this example, the Visual Studio Redistribute package is downloaded, executed, and then the executable removed. This is all completed in one RUN operation and will result in a single image layer in the final image.
-```
+In this example, the Visual Studio Redistribute package is downloaded, executed, and then the executable removed. This is all completed in one RUN operation and will result in a single image layer.
+```none
 RUN powershell -Command \
 	Sleep 2 ; \
 	Invoke-WebRequest -Method Get -Uri "https://download.microsoft.com/download/1/6/B/16B06F60-3B20-4FF2-B699-5E9B7962F9AE/VSU_4/vcredist_x86.exe" -OutFile c:\vcredist_x86.exe ; \
@@ -108,11 +108,11 @@ RUN powershell -Command \
 
 ### Multiple Lines
 
-When optimizing for Docker build speed, it may be advantageous to separate operations into multiple individual instructions. Having multiple RUN operations increase caching effectiveness. Because individual layers are created for each RUN instruction, if an identical step has already been run in a different Docker Build operation, this caches operation (image layer) will be re-used and the operation will not be re-run. The result is that Docker Build runtime will be decreased.
+When optimizing for Docker build speed, it may be advantageous to separate operations into multiple individual instructions. Having multiple RUN operations increase caching effectiveness. Because individual layers are created for each RUN instruction, if an identical step has already been run in a different Docker Build operation, this cached operation (image layer) will be re-used. The result is that Docker Build runtime will be decreased.
 
-In the following example, both Apache and the Visual Studio Redistribute packages are downloaded, installed, and then the un-needed files cleaned up. This is all done with one RUN operations. If any of these actions are updated, all actions will re-run.
+In the following example, both Apache and the Visual Studio Redistribute packages are downloaded, installed, and then the un-needed files cleaned up. This is all done with one RUN instruction. If any of these actions are updated, all actions will re-run.
 
-```
+```none
 FROM windowsservercore
 
 RUN powershell -Command \
@@ -144,7 +144,7 @@ IMAGE               CREATED             CREATED BY                              
 6801d964fda5        5 months ago                                                        0 B
 ```
 
-To contrast, here are the same actions broken down into three RUN instructions. In this case each RUN instruction is cached in a contianer image layer, and only those that have changed will need to re-run on subsequent dockerfile builds.
+To contrast, here are the same actions broken down into three RUN instructions. In this case, each RUN instruction is cached in a contianer image layer, and only those that have changed will need to re-run on subsequent dockerfile builds.
 
 ```
 FROM windowsservercore
@@ -182,7 +182,7 @@ d43abb81204a        7 days ago          cmd /S /C powershell -Command  Sleep 2 ;
 
 ### Ordering Instructions
 
-A Dockerfile is processed from top to the bottom, each Instruction compared against cached layers. When an instruction is found without a cached layer, this instruction and all subsequent instructions will be processed in a new container image layer. Because of this, the order in which instructions are placed is important. Place instructions that will remain constant towards the top of the Dockerfile. Place instructions that may change towards the bottom of the Dockerfile. Doing so will reduce the likelihood of negating existing cache.
+A Dockerfile is processed from top to the bottom, each Instruction compared against cached layers. When an instruction is found without a cached layer, this instruction and all subsequent instructions will be processed in new container image layers. Because of this, the order in which instructions are placed is important. Place instructions that will remain constant towards the top of the Dockerfile. Place instructions that may change towards the bottom of the Dockerfile. Doing so will reduce the likelihood of negating existing cache.
 
 The intention of this example is to demonstrated how dockerfile instruction ordering can effect caching effectiveness. In this simple dockerfile, four numbered folders are created.  
 
