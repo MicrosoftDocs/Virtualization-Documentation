@@ -78,43 +78,6 @@ RUN powershell -Command \
 	New-Item c:\config.ini
 ```
 
-## PowerShell in Dockerfile
-
-### PowerShell Commands
-
-Powershell commands can be run in a dockerfile using the RUN operation. 
-
-```none
-FROM windowsservercore
-
-RUN powershell -command Expand-Archive -Path c:\apache.zip -DestinationPath c:\
-```
-
-### REST Calls
-
-PowerShell and the `Invoke-WebRequest` command can be useful when gathering information or files from a web service. For instance, if building an image that includes the Apache webserver, the following example could be used. Notice here that a single RUN instruction is used to perform three operations.
-
-```none
-FROM windowsservercore
-
-RUN powershell -Command \
-	Invoke-WebRequest -Method Get -Uri https://www.apachelounge.com/download/VC11/binaries/httpd-2.4.18-win32-VC11.zip -OutFile c:\apache.zip ; \
-	Expand-Archive -Path c:\apache.zip -DestinationPath c:\ ; \
-	Remove-Item c:\apache.zip -Force
-```
-
-### PowerShell Scripts
-
-In some cases it may be helpful to copy a script to the containers being used during the image creation process and run it from within the container. Note that this process will limit any image layer caching and decrease readability of the Dockerfile.
-
-This example copies a script from the build machine, into the container using the ADD instruction. This script is the run using the RUN instruction.
-
-```
-FROM windowsservercore
-ADD script.ps1 /windows/temp/script.ps1
-RUN powershell.exe -executionpolicy bypass c:\windows\temp\script.ps1
-```
-
 ## Optimize Image Size
 
 ### Consolidate Instructions
