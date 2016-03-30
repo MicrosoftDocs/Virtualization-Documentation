@@ -8,7 +8,9 @@ Several methods can be used to optimize both the Docker build process, and the r
 
 ### Image Layers
 
-Before examining Docker build optimization, it is important to understand how Docker build works. During the Docker build process, a Dockerfile is consumed, and each actionable instruction is run, one-by-one, in its own temporary container. The result is a new image layer for each actionable instruction. Take a look at the following dockerfile. In this example, the windowsservercore base OS image is being used, IIS installed, and then a simple website created.
+Before examining Docker build optimization, it is important to understand how Docker build works. During the Docker build process, a Dockerfile is consumed, and each actionable instruction is run, one-by-one, in its own temporary container. The result is a new image layer for each actionable instruction. 
+
+Take a look at the following dockerfile. In this example, the windowsservercore base OS image is being used, IIS installed, and then a simple website created.
 
 ```none
 # Sample Dockerfile
@@ -19,7 +21,7 @@ RUN echo "Hello World - dockerfile" > c:\inetpub\wwwroot\index.html
 CMD [ "cmd" ]
 ```
 
-From this dockerfile, one might expect the resulting image to consist of two layers, one for the container OS image, and a second what includes IIS and the website, this however is not the case. The new image is constructed of many layers, each one dependent on the previous. To visualize this, the `docker history` command can be run against the new image. Doing so will show that the image consists of four layers, the base, and then three additional layers, one for each instruction in the dockerfile.
+From this dockerfile, one might expect the resulting image to consist of two layers, one for the container OS image, and a second that includes IIS and the website, this however is not the case. The new image is constructed of many layers, each one dependent on the previous. To visualize this, the `docker history` command can be run against the new image. Doing so will show that the image consists of four layers, the base, and then three additional layers, one for each instruction in the dockerfile.
 
 ```none
 C:\> docker history iis
@@ -31,59 +33,62 @@ f0e017e5b088        21 seconds ago       cmd /S /C echo "Hello World - Dockerfil
 6801d964fda5        4 months ago                                                         0 B                                                       0 B
 ```
 
-Each layer can be mapped to an instruction in the dockerfile. The bottom layer (6801d964fda5 in this example) represents the base OS image. One layer up, the IIS installation can be seen. The next layer includes the new website, and so on.
+Each of these layers can be mapped to an instruction from the dockerfile. The bottom layer (6801d964fda5 in this example) represents the base OS image. One layer up, the IIS installation can be seen. The next layer includes the new website, and so on.
 
-Dockerfiles can be written to minimize image layers, optimize build performance, and also more cosmetic things such as to improve readability. Ultimately, there are many ways to complete the same image build task. Understanding how the format of a dockerfile effects build time, and resulting image, will improve the automation experience. 
+Dockerfiles can be written to minimize image layers, optimize build performance, and also optimize cosmetic things such as readability. Ultimately, there are many ways to complete the same image build task. Understanding how the format of a dockerfile effects build time, and resulting image, will improve the automation experience. 
 
 ## Optimize Image Size
 
-### Consolidate Instructions
+When building Docker container images, image size may be an important factor. Container images will be moved between registries and host, exported and imported, and ultimately consume space. Several tactics can be used during the Docker build process, to minimize image size. This section will detail some of these tactics specific to Windows Containers. 
 
-There are several strategies that can be used when building dockerfiles, that result in an optimized image or build process. This section will detail some of these dockerfile tactics specific to Windows Containers. For additional information on dockerfile best practices, see [Best practices for writing dockerfiles on Docker.com]( https://docs.docker.com/engine/userguide/eng-image/dockerfile_best-practices/).
+For additional information on dockerfile best practices, see [Best practices for writing dockerfiles on Docker.com]( https://docs.docker.com/engine/userguide/eng-image/dockerfile_best-practices/).
 
 ### Group related actions
-Because each RUN instruction creates a new layer in the container image, grouping actions into one RUN instruction can reduce the number of layers in the image. The backslash character ‘\’ can be used to organize the operation onto separate lines of the dockerfile, while still using only one Run instruction.
 
-The following two examples will demonstrate the same operation run with many individual RUN instructions, and then consolidated into one RUN instruction. The resulting images will also be compared. This example downloads, extracts, and cleans up a PHP installation. Each of these actions are run in their own RUN operation.
+Because each RUN instruction creates a new layer in the container image, grouping actions into one RUN instruction, can reduce the number of layers in the image. The backslash character ‘\’ can be used to organize the operation onto separate lines of the dockerfile, while still using only one Run instruction.
+
+The following two examples will demonstrate the same operations, which will result in a container image of identical capibility, however the two dockerfiles constructed differently. The resulting images will also be compared. 
+
+This first example downloads, extracts, and cleans up the Visual Studio redistributable package. Each of these actions are run in their own RUN operation.
 
 ```
 FROM windowsservercore
 
-RUN powershell Invoke-WebRequest -Method Get -Uri http://windows.php.net/downloads/releases/php-5.5.33-Win32-VC11-x86.zip -OutFile c:\php.zip
-RUN powershell	Expand-Archive -Path c:\php.zip -DestinationPath c:\php
-RUN powershell	Remove-Item c:\php.zip -Force
+RUN powershell.exe -command Invoke-WebRequest -Method Get -Uri "https://download.microsoft.com/download/1/6/B/16B06F60-3B20-4FF2-B699-5E9B7962F9AE/VSU_4/vcredist_x86.exe" -OutFile c:\vcredist_x86.exe
+RUN powershell.exe -command c:\vcredist_x86.exe /quiet
+RUN powershell.exe -command Remove-Item c:\vcredist_x86.exe -Force
 ```
 
-The resulting image will consist of four layers, one for the Base image, and then one for each operation completed.
+The resulting image will consist of four layers, one for the Base image, and then one for each RUN instruction.
 
 ```
-C:\> docker history example1
+C:\> docker history doc-example-1
+
 IMAGE               CREATED             CREATED BY                                      SIZE                COMMENT
-dbe8eaac141f        30 minutes ago      cmd /S /C powershell Remove-Item c:\php.zip -   45.74 MB
-ec2d672c3609        30 minutes ago      cmd /S /C powershell Expand-Archive -Path c:\   95.97 MB
-99f4dcd0275a        31 minutes ago      cmd /S /C powershell Invoke-WebRequest -Metho   99.21 MB
-6801d964fda5        4 months ago
+bd6c831b55b8        2 minutes ago       cmd /S /C powershell.exe -command Remove-Item   46.23 MB
+02b0752ebd10        2 minutes ago       cmd /S /C powershell.exe -command c:\vcredist   45.29 MB
+91508fd744e5        3 minutes ago       cmd /S /C powershell.exe -command Invoke-WebR   51.92 MB
+6801d964fda5        5 months ago
 ```
-To compare, here is the same operation, however all steps executed in the same RUN operation. Note that while each step in the RUN instruction is on a new line of the dockerfile, the / symbol is being used to line wrap. 
+To compare, here is the same operation, however all steps run with the same RUN instruction. Note that each step in the RUN instruction is on a new line of the dockerfile, the / symbol is being used to line wrap. 
 
 ```
 FROM windowsservercore
 
 RUN powershell -Command \
-	Sleep 2 ; \
-	Invoke-WebRequest -Method Get -Uri http://windows.php.net/downloads/releases/php-5.5.33-Win32-VC11-x86.zip -OutFile c:\php.zip ; \
-	Expand-Archive -Path c:\php.zip -DestinationPath c:\php ; \
-	Remove-Item c:\php.zip -Force
+	Invoke-WebRequest -Method Get -Uri "https://download.microsoft.com/download/1/6/B/16B06F60-3B20-4FF2-B699-5E9B7962F9AE/VSU_4/vcredist_x86.exe" -OutFile c:\vcredist_x86.exe ; \
+	c:\vcredist_x86.exe /quiet ; \
+	Sleep 20 ; \
+	Remove-Item c:\vcredist_x86.exe -Force
 ```
 
 The resulting image here consists of two layers, one for the Base image and then one for the Run instruction.
 
 ```
-C:\> docker history example2
-
+C:\> docker history doc-example-2
 IMAGE               CREATED             CREATED BY                                      SIZE                COMMENT
-95bc97a63e47        4 minutes ago       cmd /S /C powershell -Command  Sleep 2 ;  Inv   128.6 MB
-6801d964fda5        4 months ago                                                        0 B
+6d013914b19d        45 seconds ago      cmd /S /C powershell -Command  Invoke-WebRequ   65.44 MB
+6801d964fda5        5 months ago                                                        0 B                                                      0 B
 ```
 
 ### Remove excess files
