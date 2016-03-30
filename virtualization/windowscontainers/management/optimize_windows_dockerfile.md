@@ -259,6 +259,8 @@ d43abb81204a        7 days ago          cmd /S /C powershell -Command  Sleep 2 ;
 
 A Dockerfile is processed from top to the bottom, each Instruction compared against cached layers. When an instruction is found without a cached layer, this instruction and all subsequent instructions will be processed in a new container image layer. Because of this, the order in which instructions are placed is important. Place instructions that will remain constant towards the top of the Dockerfile. Place instructions that may change towards the bottom of the Dockerfile. Doing so will reduce the likelihood of negating existing cache.
 
+The intention of this example is to demonstrated how dockerfile instruction ordering can effect caching effectiveness. In this simple dockerfile, four numbered folders are created.  
+
 ```
 FROM windowsservercore
 
@@ -267,6 +269,7 @@ RUN mkdir test-2
 RUN mkdir test-3
 RUN mkdir test-4
 ```
+The resulting image has five layers, one for the base OS image, and one for each of the RUN instructions.
 
 ```
 C:\> docker history doc-sample-1
@@ -279,6 +282,8 @@ afba1a3def0a        38 seconds ago       cmd /S /C mkdir test-4   42.46 MB
 6801d964fda5        5 months ago                                  0 B    
 ```
 
+The docker file has now been slightly modified. Notice that the third RUN instruction has changed. When Docker build is run against this dockerfile, the first three instructions, which are identical to those in the last example, will use cached image layers. However, because the changed RUN instruction has not been cached, a new layer will be created for itself and all subsequent instructions.
+
 ```
 FROM windowsservercore
 
@@ -287,6 +292,8 @@ RUN mkdir test-2
 RUN mkdir test-5
 RUN mkdir test-4
 ```
+
+Comparing Image ID’s of the new image, to that in the last example, you will see that the first three layers (bottom to the top) are shared, however the fourth and fifth are unique.
 
 ```
 C:\> docker history doc-sample-2
