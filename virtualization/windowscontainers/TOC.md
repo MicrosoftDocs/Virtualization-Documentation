@@ -23,10 +23,9 @@
 ## [Container Resource Control](management/manage_resources.md)
 ## [Management Interoperability](management/hcs_powershell.md)
 # Docker on Windows
+## [Docker Engine on Windows](deployment/docker_windows.md)
 ## [Dockerfiles on Windows](docker/manage_windows_dockerfile.md)
 ## [Optimize Dockerfiles](docker/optimize_windows_dockerfile.md)
-# Container Deployment Examples
-## [Create .Net 3.5 Container Image](examples/dotnet35.md)
 # Community and Support
 ## [Container forums](https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers)
 # Reference
