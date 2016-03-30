@@ -2,14 +2,13 @@
 
 # Optimize Windows Dockerfiles
 
-Several methods can be used to optimize both the Docker build process and the resulting Docker images. This document will detail how the Docker build process operates, and demonstrate several tactics that can be used for optimal Docker build performance and container image output with Windows containers. 
+Several methods can be used to optimize both the Docker build process, and the resulting Docker images. This document details how the Docker build process operates, and demonstrates several tactics that can be used for optimal image create with Windows Containers.
 
 ## Docker Build
 
 ### Image Layers
 
-Before examining Docker build optimization, it is important to understand how Docker build works, and to understand how Docker images are created. During the Docker build process, the Docker engine executes each actionable instruction, one-by-one, each in its own temporary container. The result is a new image layer for each actionable instruction.
-Take a look at the following dockerfile. In this sample the windowsservercore base OS image is being used, IIS is installed, and then a simple website created.
+Before examining Docker build optimization, it is important to understand how Docker build works. During the Docker build process, a Dockerfile is consumed, and each actionable instruction is run, one-by-one, in its own temporary container. The result is a new image layer for each actionable instruction. Take a look at the following dockerfile. In this example, the windowsservercore base OS image is being used, IIS installed, and then a simple website created.
 
 ```none
 # Sample Dockerfile
@@ -20,9 +19,9 @@ RUN echo "Hello World - dockerfile" > c:\inetpub\wwwroot\index.html
 CMD [ "cmd" ]
 ```
 
-From this dockerfile, one might expect the resulting image to consist of two layers, one for the container OS image, and a second for the new layer including IIS and the website, this however is not the case. The new image is constructed of many layers, each one dependent on the previous. To visualize this, the `docker history` command can be run against the new image. Doing so will show that the image consists of four layers, the base, and then three additional layers, one for each instruction in the dockerfile.
+From this dockerfile, one might expect the resulting image to consist of two layers, one for the container OS image, and a second what includes IIS and the website, this however is not the case. The new image is constructed of many layers, each one dependent on the previous. To visualize this, the `docker history` command can be run against the new image. Doing so will show that the image consists of four layers, the base, and then three additional layers, one for each instruction in the dockerfile.
 
-```
+```none
 C:\> docker history iis
 
 IMAGE               CREATED              CREATED BY                                      SIZE                COMMENT
@@ -32,53 +31,9 @@ f0e017e5b088        21 seconds ago       cmd /S /C echo "Hello World - Dockerfil
 6801d964fda5        4 months ago                                                         0 B                                                       0 B
 ```
 
-Each layer can be mapped to an instruction in the dockerfile. The bottom layer (6801d964fda5 in this example) represents the base OS image. One layer up, the IIS installation can be see, one layer up from that the website is created, and so on.
+Each layer can be mapped to an instruction in the dockerfile. The bottom layer (6801d964fda5 in this example) represents the base OS image. One layer up, the IIS installation can be seen. The next layer includes the new website, and so on.
 
-Dockerfiles can be written to minimize image layers, optimize build performance, and also more cosmetic things such as to improve readability. Ultimately, there are many ways to complete the same image build task. Understanding how the format of a dockerfile effects build time and resulting image will improve the automation experience. 
-
-## Cosmetic Optimization
-
-### Instruction Case
-
-Dockerfile instructions are not case sensitive, however convention is to use upper case. This improves readability by differentiating between Instruction call, and instruction operation. The below two examples demonstrate this concept. 
-
-Lower case:
-```none
-# Sample Dockerfile
-
-from windowsservercore
-run dism /online /enable-feature /all /featurename:iis-webserver /NoRestart
-run echo "Hello World - dockerfile" > c:\inetpub\wwwroot\index.html
-cmd [ "cmd" ]
-```
-Upper case: 
-```none
-# Sample Dockerfile
-
-FROM windowsservercore
-RUN dism /online /enable-feature /all /featurename:iis-webserver /NoRestart
-RUN echo "Hello World - dockerfile" > c:\inetpub\wwwroot\index.html
-CMD [ "cmd" ]
-```
-
-### Line Wrapping
-
-Long and complex operations can be separated onto multiple line using the backslash ‘\’ character. The following dockerfile installs the Visual Studio Redistributable package, removes the installer files, and then creates a configuration file. These three operations are all specified on one line.
-
-```
-FROM windowsservercore
-
-RUN powershell -Command c:\vcredist_x86.exe /quiet ; Remove-Item c:\vcredist_x86.exe -Force ; New-Item c:\config.ini
-```
-The command can be re-written so that each operation from the one RUN instruction is specified on its own line. 
-```
-FROM windowsservercore
-
-RUN powershell -Command \
-	c:\vcredist_x86.exe /quiet ; \
-	Remove-Item c:\vcredist_x86.exe -Force ; \
-	New-Item c:\config.ini
-```
+Dockerfiles can be written to minimize image layers, optimize build performance, and also more cosmetic things such as to improve readability. Ultimately, there are many ways to complete the same image build task. Understanding how the format of a dockerfile effects build time, and resulting image, will improve the automation experience. 
 
 ## Optimize Image Size
 
@@ -270,3 +225,53 @@ c92cc95632fb        28 seconds ago      cmd /S /C mkdir test-4   5.644 MB
 5e5aa8ba1bc2        4 minutes ago       cmd /S /C mkdir test-1   7.12 MB
 6801d964fda5        5 months ago                                 0 B
 ```
+
+## Cosmetic Optimization
+
+### Instruction Case
+
+Dockerfile instructions are not case sensitive, however convention is to use upper case. This improves readability by differentiating between Instruction call, and instruction operation. The below two examples demonstrate this concept. 
+
+Lower case:
+```none
+# Sample Dockerfile
+
+from windowsservercore
+run dism /online /enable-feature /all /featurename:iis-webserver /NoRestart
+run echo "Hello World - dockerfile" > c:\inetpub\wwwroot\index.html
+cmd [ "cmd" ]
+```
+Upper case: 
+```none
+# Sample Dockerfile
+
+FROM windowsservercore
+RUN dism /online /enable-feature /all /featurename:iis-webserver /NoRestart
+RUN echo "Hello World - dockerfile" > c:\inetpub\wwwroot\index.html
+CMD [ "cmd" ]
+```
+
+### Line Wrapping
+
+Long and complex operations can be separated onto multiple line using the backslash ‘\’ character. The following dockerfile installs the Visual Studio Redistributable package, removes the installer files, and then creates a configuration file. These three operations are all specified on one line.
+
+```
+FROM windowsservercore
+
+RUN powershell -Command c:\vcredist_x86.exe /quiet ; Remove-Item c:\vcredist_x86.exe -Force ; New-Item c:\config.ini
+```
+The command can be re-written so that each operation from the one RUN instruction is specified on its own line. 
+```
+FROM windowsservercore
+
+RUN powershell -Command \
+	c:\vcredist_x86.exe /quiet ; \
+	Remove-Item c:\vcredist_x86.exe -Force ; \
+	New-Item c:\config.ini
+```
+
+## Further Reading & References
+
+[Dockerfile on Windows] (./manage_windows_dockerfile.md)
+
+[Best practices for writing Dockerfiles on Docker.com](https://docs.docker.com/engine/reference/builder/)
