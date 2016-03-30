@@ -90,9 +90,9 @@ FROM windowsservercore
 RUN powershell -command Expand-Archive -Path c:\apache.zip -DestinationPath c:\
 ```
 
-### PowerShell Scripts
-
 ### REST Calls
+
+PowerShell and the `Invoke-WebRequest` command can be useful when gathering information or files from a web service. For instance, if building an image that includes the Apache webserver, the following example could be used. Notice here that a single RUN instruction is used to perform three operations, download the software, expand the compressed package, and delete the compressed package.
 
 ```none
 FROM windowsservercore
@@ -103,6 +103,17 @@ RUN powershell -Command \
 	Expand-Archive -Path c:\apache.zip -DestinationPath c:\ ; \
 	Remove-Item c:\apache.zip -Force
 ```
+
+### PowerShell Scripts
+
+In some cases it may be helpful to copy a script to the containers being used during the image creation process and run it from within the container. Note that this process will limit any image layer caching and decrease readability of the Dockerfile.
+
+This example copies a script from the build machine, into the container using the ADD instruction. This script is the run using the RUN instruction.
+
+```
+FROM windowsservercore
+ADD script.ps1 /windows/temp/script.ps1
+RUN powershell.exe -executionpolicy bypass c:\windows\temp\script.ps1
 
 ## Optimize Image Size
 
@@ -172,24 +183,36 @@ RUN powershell -Command \
 
 ### Multiple Lines
 
-Contrasting to grouping action in one RUN operation, there may also benefit in having unrelated operations executed by multiple individual RUN instruction. Having multiple RUN operations increase caching effectiveness. Because individual layers are created for each RUN instruction, if an identical step has already been run in a different Docker Build operation, then this operation will not be re-run. The result is that Docker Build runtime will be decreased.
+When optimizing for Docker build speed, it may be advantageous to separate operations into multiple individual instructions. Having multiple RUN operations increase caching effectiveness. Because individual layers are created for each RUN instruction, if an identical step has already been run in a different Docker Build operation, this caches operation (image layer) will be re-used and the operation will not be re-run. The result is that Docker Build runtime will be decreased.
 
-In the following example, both Apache and the Visual Studio Redistribute packages are downloaded, installed, and then the un-needed files cleaned up. This is all done with one RUN operations. If any of these actions are updated, the dockerfile updated, all actions will re-run.
+In the following example, both Apache and the Visual Studio Redistribute packages are downloaded, installed, and then the un-needed files cleaned up. This is all done with one RUN operations. If any of these actions are updated, all actions will re-run.
+
+TODO - Test and capture image history
 
 ```
 FROM windowsservercore
 
 RUN powershell -Command \
-	Invoke-WebRequest -Method Get -Uri https://www.apachelounge.com/download/VC11/binaries/httpd-2.4.18-win32-VC11.zip -OutFile c:\apache.zip ; \
-	Expand-Archive -Path c:\apache.zip -DestinationPath c:\ ; \
+	
+    # Download software ; \
+    
+    Invoke-WebRequest -Method Get -Uri https://www.apachelounge.com/download/VC11/binaries/httpd-2.4.18-win32-VC11.zip -OutFile c:\apache.zip ; \
     Invoke-WebRequest -Method Get -Uri "https://download.microsoft.com/download/1/6/B/16B06F60-3B20-4FF2-B699-5E9B7962F9AE/VSU_4/vcredist_x86.exe" -OutFile c:\vcredist_x86.exe ; \
-    c:\vcredist_x86.exe /quiet ; \
-    Sleep 20 ; \
+    Invoke-WebRequest -Method Get -Uri http://windows.php.net/downloads/releases/php-5.5.33-Win32-VC11-x86.zip -OutFile c:\php.zip ; \
+	
+    # Install Software ; \
+    
+    Expand-Archive -Path c:\php.zip -DestinationPath c:\php ; \
+    Expand-Archive -Path c:\apache.zip -DestinationPath c:\ ; \
+    c:\vcredist_x86.exe /quiet ; Sleep 20 ; \
+    
+    # Remove unneeded files ; \
+     
     Remove-Item c:\apache.zip -Force; \
     Remove-Item c:\vcredist_x86.exe -Force
 ```
 
-The resulting image consists of two layers, one for the base OS image, and the second contains all operations from the single RUN instruction. If any of these operations need to be modified, then all operations will be re-run.
+The resulting image consists of two layers, one for the base OS image, and the second that contains all operations from the single RUN instruction.
 
 ```none
 c:\>docker history doc-sample-1
@@ -198,9 +221,11 @@ IMAGE               CREATED             CREATED BY                              
 6801d964fda5        5 months ago                                                        0 B
 ```
 
-To contrast, here are the same actions broken down into two RUN instructions. In this case each RUN instruction is cached in a contianer image layer, and only those that have changed will need to re-run on subsequent dockerfile builds.
+To contrast, here are the same actions broken down into three RUN instructions. In this case each RUN instruction is cached in a contianer image layer, and only those that have changed will need to re-run on subsequent dockerfile builds.
 
 > The docker engine consumes a Dockerfile from the top to the bottom. As soon as any change is detected, all remaining actions will be re-run. Because of this, place all frequently changing actions towards the bottom of the dockerfile.
+
+TODO - test and capture image history
 
 ```
 FROM windowsservercore
@@ -217,9 +242,15 @@ RUN powershell -Command \
 	c:\vcredist_x86.exe /quiet ; \
 	Sleep 20 ; \
 	Remove-Item c:\vcredist_x86.exe -Force
+
+RUN powershell -Command \
+	Sleep 2 ; \
+	Invoke-WebRequest -Method Get -Uri http://windows.php.net/downloads/releases/php-5.5.33-Win32-VC11-x86.zip -OutFile c:\php.zip ; \
+	Expand-Archive -Path c:\php.zip -DestinationPath c:\php ; \
+	Remove-Item c:\php.zip -Force
 ```
 
-The resulting image consists of three layers, one for the base OS image, and then one for each RUN instruction.
+The resulting image consists of four layers, one for the base OS image, and then one for each RUN instruction. Because each RUN instruction has been run in its own layer, any subsequent runs of this Dockerfile or identical instructions in a different Dockerfile will use the cached image layer, thus reducing build time. Instruction ordering is important when working with image cache, for more details, see Instruction Ordering.
 
 ```none
 c:\>docker history doc-sample-2
@@ -230,4 +261,8 @@ d43abb81204a        7 days ago          cmd /S /C powershell -Command  Sleep 2 ;
 ```
 
 ### Ordering Instructions
+
+A Dockerfile is processed from top to the bottom, each Instruction compared against cached layers. When an instruction is found without a cached layer, this instruction and all subsequent instructions will be processed in a container image layer. Because of this the order in which instructions are placed is important. Place instructions that will remain constant towards the top of the Dockerfile. Place instructions that may change towards the bottom of the Dockerfile. Doing so will reduce the likelihood of negating existing cache.
+
+TODO - ADD Example 
 
