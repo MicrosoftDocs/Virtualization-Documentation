@@ -1,3 +1,5 @@
+**This is preliminary content and subject to change.** 
+
 # Optimize Windows Dockerfiles
 
 Several methods can be used to optimize both the Docker build process and the resulting Docker images. This document will detail how the Docker build process operates, and demonstrate several tactics that can be used for optimal Docker build performance and container image output with Windows containers. 
