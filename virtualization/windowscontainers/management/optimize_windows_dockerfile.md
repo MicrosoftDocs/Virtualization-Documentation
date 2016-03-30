@@ -92,13 +92,12 @@ RUN powershell -command Expand-Archive -Path c:\apache.zip -DestinationPath c:\
 
 ### REST Calls
 
-PowerShell and the `Invoke-WebRequest` command can be useful when gathering information or files from a web service. For instance, if building an image that includes the Apache webserver, the following example could be used. Notice here that a single RUN instruction is used to perform three operations, download the software, expand the compressed package, and delete the compressed package.
+PowerShell and the `Invoke-WebRequest` command can be useful when gathering information or files from a web service. For instance, if building an image that includes the Apache webserver, the following example could be used. Notice here that a single RUN instruction is used to perform three operations.
 
 ```none
 FROM windowsservercore
 
 RUN powershell -Command \
-	Sleep 2 ; \
 	Invoke-WebRequest -Method Get -Uri https://www.apachelounge.com/download/VC11/binaries/httpd-2.4.18-win32-VC11.zip -OutFile c:\apache.zip ; \
 	Expand-Archive -Path c:\apache.zip -DestinationPath c:\ ; \
 	Remove-Item c:\apache.zip -Force
@@ -114,6 +113,7 @@ This example copies a script from the build machine, into the container using th
 FROM windowsservercore
 ADD script.ps1 /windows/temp/script.ps1
 RUN powershell.exe -executionpolicy bypass c:\windows\temp\script.ps1
+```
 
 ## Optimize Image Size
 
@@ -187,8 +187,6 @@ When optimizing for Docker build speed, it may be advantageous to separate opera
 
 In the following example, both Apache and the Visual Studio Redistribute packages are downloaded, installed, and then the un-needed files cleaned up. This is all done with one RUN operations. If any of these actions are updated, all actions will re-run.
 
-TODO - Test and capture image history
-
 ```
 FROM windowsservercore
 
@@ -215,17 +213,13 @@ RUN powershell -Command \
 The resulting image consists of two layers, one for the base OS image, and the second that contains all operations from the single RUN instruction.
 
 ```none
-c:\>docker history doc-sample-1
+c:\> docker history doc-sample-1
 IMAGE               CREATED             CREATED BY                                      SIZE                COMMENT
-54a1d2d3a700        2 minutes ago       cmd /S /C powershell -Command  Invoke-WebRequ   136.6 MB
+9bdf3a21fd41        8 minutes ago       cmd /S /C powershell -Command     Invoke-WebR   205.8 MB
 6801d964fda5        5 months ago                                                        0 B
 ```
 
 To contrast, here are the same actions broken down into three RUN instructions. In this case each RUN instruction is cached in a contianer image layer, and only those that have changed will need to re-run on subsequent dockerfile builds.
-
-> The docker engine consumes a Dockerfile from the top to the bottom. As soon as any change is detected, all remaining actions will be re-run. Because of this, place all frequently changing actions towards the bottom of the dockerfile.
-
-TODO - test and capture image history
 
 ```
 FROM windowsservercore
@@ -250,19 +244,57 @@ RUN powershell -Command \
 	Remove-Item c:\php.zip -Force
 ```
 
-The resulting image consists of four layers, one for the base OS image, and then one for each RUN instruction. Because each RUN instruction has been run in its own layer, any subsequent runs of this Dockerfile or identical instructions in a different Dockerfile will use the cached image layer, thus reducing build time. Instruction ordering is important when working with image cache, for more details, see Instruction Ordering.
+The resulting image consists of four layers, one for the base OS image, and then one for each RUN instruction. Because each RUN instruction has been run in its own layer, any subsequent runs of this Dockerfile or identical set of instructions in a different Dockerfile, will use the cached image layer, thus reducing build time. Instruction ordering is important when working with image cache, for more details, see Instruction Ordering.
 
 ```none
-c:\>docker history doc-sample-2
+C:\> docker history doc-sample-2
 IMAGE               CREATED             CREATED BY                                      SIZE                COMMENT
+ddf43b1f3751        6 days ago          cmd /S /C powershell -Command  Sleep 2 ;  Inv   127.2 MB
 d43abb81204a        7 days ago          cmd /S /C powershell -Command  Sleep 2 ;  Inv   66.46 MB
 7a21073861a1        7 days ago          cmd /S /C powershell -Command  Sleep 2 ;  Inv   115.8 MB
-6801d964fda5        5 months ago                                                        0 B
+6801d964fda5        5 months ago
 ```
 
 ### Ordering Instructions
 
-A Dockerfile is processed from top to the bottom, each Instruction compared against cached layers. When an instruction is found without a cached layer, this instruction and all subsequent instructions will be processed in a container image layer. Because of this the order in which instructions are placed is important. Place instructions that will remain constant towards the top of the Dockerfile. Place instructions that may change towards the bottom of the Dockerfile. Doing so will reduce the likelihood of negating existing cache.
+A Dockerfile is processed from top to the bottom, each Instruction compared against cached layers. When an instruction is found without a cached layer, this instruction and all subsequent instructions will be processed in a new container image layer. Because of this, the order in which instructions are placed is important. Place instructions that will remain constant towards the top of the Dockerfile. Place instructions that may change towards the bottom of the Dockerfile. Doing so will reduce the likelihood of negating existing cache.
 
-TODO - ADD Example 
+```
+FROM windowsservercore
 
+RUN mkdir test-1
+RUN mkdir test-2
+RUN mkdir test-3
+RUN mkdir test-4
+```
+
+```
+C:\> docker history doc-sample-1
+
+IMAGE               CREATED              CREATED BY               SIZE                COMMENT
+afba1a3def0a        38 seconds ago       cmd /S /C mkdir test-4   42.46 MB
+86f1fe772d5c        49 seconds ago       cmd /S /C mkdir test-3   42.35 MB
+68fda53ce682        About a minute ago   cmd /S /C mkdir test-2   6.745 MB
+5e5aa8ba1bc2        About a minute ago   cmd /S /C mkdir test-1   7.12 MB
+6801d964fda5        5 months ago                                  0 B    
+```
+
+```
+FROM windowsservercore
+
+RUN mkdir test-1
+RUN mkdir test-2
+RUN mkdir test-5
+RUN mkdir test-4
+```
+
+```
+C:\> docker history doc-sample-2
+
+IMAGE               CREATED             CREATED BY               SIZE                COMMENT
+c92cc95632fb        28 seconds ago      cmd /S /C mkdir test-4   5.644 MB
+2f05e6f5c523        37 seconds ago      cmd /S /C mkdir test-5   5.01 MB
+68fda53ce682        3 minutes ago       cmd /S /C mkdir test-2   6.745 MB
+5e5aa8ba1bc2        4 minutes ago       cmd /S /C mkdir test-1   7.12 MB
+6801d964fda5        5 months ago                                 0 B
+```
