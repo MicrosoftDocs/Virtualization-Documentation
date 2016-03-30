@@ -12,25 +12,25 @@ The Docker engine includes tools for automating the creation of container images
 - Rapid and precise recreation of container images for maintenance and upgrade purposes.
 - Continuous integration between container images and the development cycle.
 
-The Docker components that drive this automation are the dockerfile and the Docker build command.
+The Docker components that drive this automation are the Dockerfile and the Docker build command.
 
 - **Dockerfile** – a text file containing the instruction needed to create a new container image. These instructions include identification of an existing image to be used as a base, commands to be run during the image creation process, and run time commands for running instances of the new container image.
-- **Docker build** - the Docker engine command that consumes a dockerfile, and triggers the image creation process.
+- **Docker build** - the Docker engine command that consumes a Dockerfile, and triggers the image creation process.
 
-This document will introduce using a dockerfile with Windows containers, discuss syntax, and detail commonly used dockerfile instructions. 
+This document will introduce using a Dockerfile with Windows containers, discuss syntax, and detail commonly used Dockerfile instructions. 
 
 Throughout this document, the concept of container images and container image layers will be discussed. For more information on images and image layering see [Manage Windows Container Images](./manage_images). 
 
-For a complete look at the Docker engine and dockerfile, see the [Dockerfile reference at docker.com]( https://docs.docker.com/engine/reference/builder/).
+For a complete look at the Docker engine and Dockerfile, see the [Dockerfile reference at docker.com]( https://docs.docker.com/engine/reference/builder/).
 
 ## Dockerfile Introduction
 
 ### Basic Syntax
 
-In its most basic form, a dockerfile can be very simple. The following example creates a new image, which includes IIS, and a new ‘hello world’ site. This example includes comments (indicated with a ‘#’), that explain each line. Subsequent sections of this article will detail syntax rules and dockerfile instructions.
+In its most basic form, a Dockerfile can be very simple. The following example creates a new image, which includes IIS, and a new ‘hello world’ site. This example includes comments (indicated with a ‘#’), that explain each line. Subsequent sections of this article will detail syntax rules and Dockerfile instructions.
 
 ```none
-# Sample dockerfile
+# Sample Dockerfile
 
 # Indicates that the windowsservercore image will be used as the base image.
 FROM windowsservercore
@@ -48,11 +48,11 @@ RUN echo "Hello World - Dockerfile" > c:\inetpub\wwwroot\index.html
 CMD [ "cmd" ]
 ```
 
-For additional examples of dockerfiles for Windows, see the [Dockerfile for Windows Repository] (https://github.com/Microsoft/Virtualization-Documentation/tree/master/windows-server-container-samples).
+For additional examples of Dockerfiles for Windows, see the [Dockerfile for Windows Repository] (https://github.com/Microsoft/Virtualization-Documentation/tree/master/windows-server-container-samples).
 
 ## Instructions
 
-Dockerfile instructions provide the Docker Engine with the steps needed to create a container image. These instructions are performed in order, and one-by-one. Here are the details for some basic dockerfile instructions. For a complete list of dockerfile instructions, see [Dockerfile Reference on Docker.com] (https://docs.docker.com/engine/reference/builder/).
+Dockerfile instructions provide the Docker Engine with the steps needed to create a container image. These instructions are performed in order, and one-by-one. Here are the details for some basic Dockerfile instructions. For a complete list of Dockerfile instructions, see [Dockerfile Reference on Docker.com] (https://docs.docker.com/engine/reference/builder/).
 
 ### FROM
 
@@ -108,7 +108,7 @@ For detailed information on the RUN instruction, see the [RUN Reference on Docke
 
 ### ADD
 
-The ADD instruction copies files and directories to the filesystem of the container. The files and directories can be relative to the dockerfile, or on a remote location with a URL specification.
+The ADD instruction copies files and directories to the filesystem of the container. The files and directories can be relative to the Dockerfile, or on a remote location with a URL specification.
 
 **Format**
 
@@ -160,7 +160,7 @@ For detailed information on the ADD instruction, see the [ADD Reference on Docke
 
 ### WORKDIR
 
-The WORKDIR instruction sets a working directory for other dockerfile instructions, such as RUN, CMD, and also the working directory for running instances of the new container image.
+The WORKDIR instruction sets a working directory for other Dockerfile instructions, such as RUN, CMD, and also the working directory for running instances of the new container image.
 
 **Format**
 
@@ -199,7 +199,7 @@ For detailed information on the WORKDIR instruction, see the [WORKDIR Reference 
 
 ### CMD
 
-The `CMD` instruction sets the default command to be run when starting a new container. For instance, if the container will be hosting an NGINX web server, the `CMD` might include instructions to start the web server, such as `nginx.exe`. If multiple CMD instructions are specified in a dockerfile, only the last is evaluated.
+The `CMD` instruction sets the default command to be run when starting a new container. For instance, if the container will be hosting an NGINX web server, the `CMD` might include instructions to start the web server, such as `nginx.exe`. If multiple CMD instructions are specified in a Dockerfile, only the last is evaluated.
 
 **Format**
 
@@ -255,7 +255,7 @@ For detailed information on the CMD instruction, see the [CMD Reference on Docke
 
 ### PowerShell Commands
 
-Powershell commands can be run in a dockerfile using the RUN operation. 
+Powershell commands can be run in a Dockerfile using the RUN operation. 
 
 ```none
 FROM windowsservercore
@@ -292,7 +292,7 @@ RUN powershell.exe -executionpolicy bypass c:\windows\temp\script.ps1
 
 ## Docker Build 
 
-Once a dockerfile has been created and saved to disk, `docker build` can be run to create the new image. The `docker build` command takes several optional parameters and a path to the dockerfile. For complete documentation on Docker Build, including a list of all build options, see [Build at Docker.com](https://docs.docker.com/engine/reference/commandline/build/#build-with).
+Once a Dockerfile has been created and saved to disk, `docker build` can be run to create the new image. The `docker build` command takes several optional parameters and a path to the Dockerfile. For complete documentation on Docker Build, including a list of all build options, see [Build at Docker.com](https://docs.docker.com/engine/reference/commandline/build/#build-with).
 
 ```none
 Docker build [OPTIONS] PATH
@@ -346,6 +346,6 @@ windowsservercore   latest              6801d964fda5        4 months ago        
 
 ## Further Reading & References
 
-[Optimize dockerfiles and Docker build for Windows] (./optimize_windows_dockerfile.md)
+[Optimize Dockerfiles and Docker build for Windows] (./optimize_windows_dockerfile.md)
 
 [Dockerfile Reference on Docker.com](https://docs.docker.com/engine/reference/builder/)
