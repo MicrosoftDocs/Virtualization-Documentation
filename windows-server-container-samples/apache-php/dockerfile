@@ -1,5 +1,7 @@
 FROM windowsservercore
 
+MAINTAINER neil.peterson@microsoft.com
+
 RUN powershell -Command \
 	Sleep 2 ; \
 	Invoke-WebRequest -Method Get -Uri https://www.apachelounge.com/download/VC11/binaries/httpd-2.4.18-win32-VC11.zip -OutFile c:\apache.zip ; \
@@ -22,7 +24,7 @@ RUN powershell -Command \
 RUN powershell -Command \
 	Remove-Item c:\Apache24\conf\httpd.conf ; \
 	new-item -Type Directory c:\www -Force ; \
-	Add-Content -Value '"<?php phpinfo() ?>"' -Path c:\www\index.php
+	Add-Content -Value "'<?php phpinfo() ?>'" -Path c:\www\index.php
 
 ADD httpd.conf /apache24/conf
 

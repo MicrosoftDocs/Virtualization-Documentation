@@ -1,6 +1,6 @@
 # Description:
 
-Creates an image containing Apache 2.4.18 for Windows, PHP and the required Visual Studio Redistribute package. Additionally, a sample Apache configuration file (included in the repo) is copied into the Apache folder, and a sample PHP site created (to validate functionality.
+Creates an image containing Apache 2.4.18 for Windows, PHP and the required Visual Studio redistributable package. Additionally, a sample Apache configuration file (included in the repo) is copied into the Apache folder, and a sample PHP site created (to validate functionality).
 
 # Environment:
 

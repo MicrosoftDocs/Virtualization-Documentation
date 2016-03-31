@@ -1,6 +1,6 @@
 # Description:
 
-Creates an image containing Apache 2.4.18 for Windows and the required Visual Studio Redistribute package.
+Creates an image containing Apache 2.4.18 for Windows and the required Visual Studio redistributable package.
 
 # Environment:
 

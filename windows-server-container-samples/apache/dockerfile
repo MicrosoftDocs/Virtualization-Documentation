@@ -1,5 +1,7 @@
 FROM windowsservercore
 
+MAINTAINER neil.peterson@microsoft.com
+
 RUN powershell -Command \
 	Sleep 2 ; \
 	Invoke-WebRequest -Method Get -Uri https://www.apachelounge.com/download/VC11/binaries/httpd-2.4.18-win32-VC11.zip -OutFile c:\apache.zip ; \

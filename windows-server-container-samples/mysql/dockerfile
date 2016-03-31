@@ -1,4 +1,20 @@
 FROM windowsservercore
-LABEL Description="MySQL Community Server" Vendor="Oracle Corporation" Version="5.7.9"
-ADD sources /
-RUN setx /M PATH "%PATH%;C:\mysql-5.7.9-winx64"
+
+MAINTAINER neil.peterson@microsoft.com
+
+RUN powershell -Command \
+	Invoke-WebRequest -Method Get -Uri https://dev.mysql.com/get/Downloads/MySQL-5.6/mysql-5.6.29-winx64.zip -OutFile c:\mysql.zip ; \
+	Expand-Archive -Path c:\mysql.zip -DestinationPath c:\ ; \
+	Remove-Item c:\mysql.zip -Force
+
+RUN SETX /M Path %path%;C:\mysql-5.6.29-winx64\bin
+
+RUN powershell -Command \
+	mysqld.exe --install ; \
+	Start-Service mysql ; \
+	Stop-Service mysql ; \
+	Start-Service mysql
+
+RUN mysql -u root -e "GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY '' WITH GRANT OPTION;"
+
+CMD [ "ping localhost -t" ]
