@@ -6,7 +6,7 @@ author: neilpeterson
 
 **This is preliminary content and subject to change.** 
 
-The Docker engine includes tools for automating the creation of container images. While container images can be created manually using the ‘docker commit’ command, adopting an automated image creation process provides many benefits, including:
+The Docker engine includes tools for automating the creation of container images. While container images can be created manually using the ‘docker commit’ command, adopting an automated image creation process provides many benefits including:
 
 - Storing container images as code.
 - Rapid and precise recreation of container images for maintenance and upgrade purposes.
@@ -21,13 +21,13 @@ This document will introduce using a Dockerfile with Windows containers, discuss
 
 Throughout this document, the concept of container images and container image layers will be discussed. For more information on images and image layering see [Manage Windows Container Images](./manage_images). 
 
-For a complete look at the Docker engine and Dockerfile, see the [Dockerfile reference at docker.com]( https://docs.docker.com/engine/reference/builder/).
+For a complete look at Dockerfiles, see the [Dockerfile reference at docker.com]( https://docs.docker.com/engine/reference/builder/).
 
 ## Dockerfile Introduction
 
 ### Basic Syntax
 
-In its most basic form, a Dockerfile can be very simple. The following example creates a new image, which includes IIS, and a new ‘hello world’ site. This example includes comments (indicated with a ‘#’), that explain each line. Subsequent sections of this article will detail syntax rules and Dockerfile instructions.
+In its most basic form, a Dockerfile can be very simple. The following example creates a new image, which includes IIS, and a ‘hello world’ site. This example includes comments (indicated with a ‘#’), that explain each line. Subsequent sections of this article will detail syntax rules and Dockerfile instructions.
 
 ```none
 # Sample Dockerfile
@@ -56,7 +56,7 @@ Dockerfile instructions provide the Docker Engine with the steps needed to creat
 
 ### FROM
 
-The FROM instruction sets the container image that will be used during the new image creation process. For instance, when using the instruction `FROM windowsservercore`, the resulting image will be derived from, and have a dependency on, the Windows Server Core Base OS image. If the specified image is not present on the system where the Docker build process is being run, the Docker engine will attempt to download the image from a public or private image registry.
+The FROM instruction sets the container image that will be used during the new image creation process. For instance, when using the instruction `FROM windowsservercore`, the resulting image is derived from, and has a dependency on, the Windows Server Core base OS image. If the specified image is not present on the system where the Docker build process is being run, the Docker engine will attempt to download the image from a public or private image registry.
 
 **Format**
 
@@ -90,6 +90,54 @@ RUN ["<executable", "<param 1>", "<param 2>"
 # shell form
 
 RUN <command>
+```
+
+The difference between the exec and shell form, is in how the RUN instruction is executed. When using the exec method, the specified program is run explicitly. The following example used the exec form.
+
+```
+FROM windowsservercore
+RUN ["powershell","New-Item","c:/test"]
+```
+
+Examining the resulting image, the command the was run is `poweshell new-item c:/test’.
+
+```
+C:\> docker history doc-exe-method
+
+IMAGE               CREATED             CREATED BY                    SIZE                COMMENT
+b3452b13e472        2 minutes ago       powershell New-Item c:/test   30.76 MB
+```
+
+To contrast, the following example runs the same operation, however using the shell form.
+
+```
+FROM windowsservercore
+
+RUN powershell new-item c:\test
+```
+
+Which results in a run instruction of `cmd /S /C powershell new-item c:\test`. 
+
+```
+C:\> docker history doc-shell-method
+
+IMAGE               CREATED             CREATED BY                              SIZE                COMMENT
+062a543374fc        19 seconds ago      cmd /S /C powershell new-item c:\test   30.76 MB
+```
+
+**Windows Considerations**
+ 
+On Windows, when using the RUN instruction with the exec format, forward slashes must be used. These are valid RUN instructions.
+
+```none
+RUN ["powershell","New-Item","c:/test"]
+RUN powershell new-item c:\test
+```
+
+However, the following will not work.
+
+```none
+RUN ["powershell","New-Item","c:\test"]
 ```
 
 **Examples**
