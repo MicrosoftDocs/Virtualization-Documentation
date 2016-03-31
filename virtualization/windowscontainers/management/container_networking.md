@@ -1,5 +1,4 @@
 ﻿---
-author: neilpeterson
 author: jmesser81
 ---
 
@@ -80,6 +79,9 @@ IsDeleted          : False
 
 We will now look at the different network modes (drivers) individually.
 
+***Note: In docker, driver names for specific networking modes are case-sensitive. In PowerShell, networking mode names are not case-sensitive.
+
+
 ## NAT Networking Mode
 
 **Network Address Translation** – This networking mode is useful when you need a quick and easy way to assign private IP addresses to containers which do not require direct connectivity to a physical or virtual network (described below).  In this configuration, all network services running in a container which need to be externally accessible will require a port mapping between the 'external' IP address and port assigned to the container host and the 'internal' IP address and port assigned to the container. These mappings are stored in the WinNAT port mapping tables. All network traffic received on the external IP address and port is forwarded to the container. Additionally, NAT allows multiple containers to host applications that may require identical communication ports by mapping unique external ports.
@@ -131,6 +133,44 @@ Since the Transparent network is connected directly to the underlying physical n
 ## L2 Bridge Networking Mode
 
 **L2 Bridge Networking** - This networking mode can be used in any deployment including when containers are hosted on a bare-metal server, in a container host VM, or in a Microsoft private cloud (e.g. Microsoft Azure Stack) deployment. In this configuration, the Virtual Filtering Platform (VFP) vSwitch extension in the container host will act as a Bridge and perform Layer-2 address translation (MAC address re-write) as required. The Layer-3 IP addresses and Layer-4 ports will remain unchanged. IP Addresses can be statically assigned to correspond with the physical network's IP subnet prefix or, if using a Microsoft private cloud deployment, with an IP from the virtual network's subnet prefix.
+
+### Docker Network Creation Options
+
+Different docker networking commands can be supplied at either container network creation time or container creation time. In addition to the -d (--driver=<network mode>) option to specify networking mode, the --gateway, --subnet, and -o options are also supported when creating a container network.
+
+A user can specify a specific gateway IP address when using static IP allocation / network configuration (e.g. for Transparent networks). If using NAT or Transparent mode with DHCP you should not change the gateway IP address.
+```powershell
+docker network create -d transparent --gateway=10.50.34.1 "MyTransparentNet"
+```
+
+A user can also specify a specific IP subnet prefix to represent a specific network segment and from which IP addresses will be allocated.
+```powershell
+docker network create -d nat --subnet=192.168.0.0/24 "MyCustomNatNetwork"
+```
+Additional customizations to a container network can be made through docker by using the -o (--opt=map[]) parameter. 
+
+In order to specify which network adapter in the container host to use for Transparent, L2Bridge, or L2Tunnel networks, a user can specify the *com.docker.network.windowsshim.interface* option
+```powershell
+PS C:\> Get-NetAdapter
+
+
+docker network create -d transparent -o com.docker.network.windowsshim.interface="Ethernet 2" "TransparentNetTwo"
+```
+
+In order for container networks created through Docker to be accessible by the same name using PowerShell cmdlets the *com.docker.network.windowsshim.networkname* option must be given:
+```powershell
+docker network create -d transparent -o com.docker.network.windowsshim.networkname="MyTransparentNet" "MyTransparentNet"
+```
+**Note: 
+Container networks which are created through PowerShell will not be available in Docker until the Docker daemon is restarted. Any other changes made to a container network via PowerShell also requires a restart of the docker daemon.
+
+
+### Support for Multiple Container Networks on a Single Container Host
+
+Multiple container networks can be created on a single container host with the following caveats:
+* Only one NAT network can be created per container host
+* Multiple networks which use an external vSwitch for connectivity (e.g. Transparent, L2 Bridge, L2 Transparent) must each use its own network adapter. Different networking modes cannot re-use the same vSwitch
+
 
 ### Host Configuration <!--3-->
 
@@ -214,6 +254,14 @@ Ethernet adapter vEthernet (Temp Nic Name):
    Default Gateway . . . . . . . . . : 172.16.0.1
 ```
 
+### Container Creation
+
+In addition to the -p (--publish=[], -P and --net commands documented separately, a user can also specify a MAC by using the --mac-address option after docker run
+```powershell
+docker run -it --mac="92:d0:c6:0a:29:33" --name="MyContainer" windowsservercore cmd
+```
+
+
 ### Port Mapping
 
 In order to access applications inside of a container connected to a NAT network, port mappings need to be created between the container host and container network adapter. These mappings must be created while the container is in a STOPPED state.
@@ -278,6 +326,16 @@ Remove-ContainerNetwork -Name <network name>
 ```
 
 This will clean up any Hyper-V Virtual switches which the container network used and also any Nats created for nat container networks.
+
+## Caveats and Gotchas
+
+ * The container host requires specific Firewall rules to be created to enable ICMP (Ping), DHCP, and RDP (Remote Desktop). ICMP and DHCP are required by Windows Server Containers to ping between two containers on the same host and to receive dynamically assigned IP addresses through DHCP (RDP to a container is not supported). In TP5, these rules will be created through the Install-ContainerHost.ps1 script. Post-TP5, these rules will be created automatically. All Firewall rules corresponding to NAT port forwarding rules will be created automatically and cleaned up when the container stops.
+ *
+
+The following networking features are not supported today through docker CLI
+ * container linking
+ * name-based IP resolution for containers
+ * 
 
 ## Manage Network Adapters
 
