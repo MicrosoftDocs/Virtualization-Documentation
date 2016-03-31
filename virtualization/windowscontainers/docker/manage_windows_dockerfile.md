@@ -102,7 +102,7 @@ FROM windowsservercore
 RUN ["powershell","New-Item","c:/test"]
 ```
 
-Examining the resulting image, the command the was run is `poweshell new-item c:/test’.
+Examining the resulting image, the command the was run is `poweshell new-item c:/test`.
 
 ```none
 C:\> docker history doc-exe-method
