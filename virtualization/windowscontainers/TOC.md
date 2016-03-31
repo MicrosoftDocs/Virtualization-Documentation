@@ -25,6 +25,7 @@
 ## [Docker Engine on Windows](deployment/docker_windows.md)
 ## [Dockerfiles on Windows](docker/manage_windows_dockerfile.md)
 ## [Optimize Dockerfiles](docker/optimize_windows_dockerfile.md)
+## [Dockerfile Examples for Windows](https://github.com/Microsoft/Virtualization-Documentation/tree/master/windows-server-container-samples)
 # Community and Support
 ## [Container forums](https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers)
 # Reference
