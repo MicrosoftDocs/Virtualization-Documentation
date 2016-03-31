@@ -7,14 +7,15 @@ This document walks through creating a simple application built on Hyper-V socke
 [PowerShell Direct](../user_guide/vmsession.md) is an example of an application (in this case an in-box Windows service) which uses Hyper-V sockets to communicate.
 
 **Supported Host OS**
-* Windows 10
-* Windows Server Technical Preview 3 and later
+* Windows 10 build 14290 and beyond
+* Windows Server Technical Preview 4 and later
 * Future releases (Server 2016 +)
 
 **Supported Guest OS**
 * Windows 10
-* Windows Server Technical Preview 3 and later
+* Windows Server Technical Preview 4 and later
 * Future releases (Server 2016 +)
+* Linux guests with Linux Integration Services (see [Supported Linux and FreeBSD virtual machines for Hyper-V on Windows](https://technet.microsoft.com/library/dn531030(ws.12).aspx))
 
 **Capabilities and Limitations**  
 * Supports kernel mode or user mode actions  
@@ -27,10 +28,25 @@ This document walks through creating a simple application built on Hyper-V socke
 Right now, Hyper-V sockets are available in native code (C/C++).  
 
 To write a simple application, you'll need:
-* C compiler.  If you don't have one, checkout [Visual Studio Code](https://aka.ms/vs)
-* A computer running Hyper-V with and a virtual machine.  
+* C compiler.  If you don't have one, checkout [Visual Studio Community](https://aka.ms/vs)
+* A computer running Hyper-V and a virtual machine.  
   * Host and guest (VM) OS must be Windows 10, Windows Server Technical Preview 3, or later.
-* Windows SDK -- We're in the process of publishing this.
+* [Windows 10 SDK](http://aka.ms/flightingSDK) installed on the Hyper-V host
+
+**Windows SDK Details**
+
+Links to the Windows SDK:
+* [Windows 10 SDK for insiders preview](http://aka.ms/flightingSDK)
+* [Windows 10 SDK](https://dev.windows.com/en-us/downloads/windows-10-sdk)
+
+The API for Hyper-V sockets became available in Windows 10 build 14290 -- the flighting download matches the latest insider fast track flighting build.  
+If you experience strange bahavior, let us know in the [TechNet forum](https://social.technet.microsoft.com/Forums/windowsserver/en-US/home "TechNet Forums").  In your post, please include:
+* The unexpected behavior 
+* The OS and build numbers for the host, guest, and SDK.  
+  
+  The SDK build number is visible in the title of the SDK installer:  
+  ![](./media/flightingSDK.png)
+
 
 ## Register a new application
 In order to use Hyper-V sockets, the application must be registered with the Hyper-V Host's registry.
