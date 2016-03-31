@@ -173,7 +173,7 @@ RUN powershell -Command \
 	Remove-Item c:\php.zip -Force
 ```
 
-The resulting image consists of four layers, one for the base OS image, and then one for each RUN instruction. Because each RUN instruction has been run in its own layer, any subsequent runs of this Dockerfile or identical set of instructions in a different Dockerfile, will use the cached image layer, thus reducing build time. Instruction ordering is important when working with image cache, for more details, see Instruction Ordering.
+The resulting image consists of four layers, one for the base OS image, and then one for each RUN instruction. Because each RUN instruction has been run in its own layer, any subsequent runs of this Dockerfile or identical set of instructions in a different Dockerfile, will use the cached image layer, thus reducing build time. Instruction ordering is important when working with image cache, for more details, see the next section of this document.
 
 ```none
 C:\> docker history doc-sample-2
