@@ -92,16 +92,19 @@ RUN ["<executable", "<param 1>", "<param 2>"
 RUN <command>
 ```
 
-The difference between the exec and shell form, is in how the RUN instruction is executed. When using the exec method, the specified program is run explicitly. The following example used the exec form.
+The difference between the exec. and shell form, is in how the RUN instruction is executed. When using the exec method, the specified program is run explicitly. 
 
-```
+The following example used the exec. form.
+
+```none
 FROM windowsservercore
+
 RUN ["powershell","New-Item","c:/test"]
 ```
 
 Examining the resulting image, the command the was run is `poweshell new-item c:/test’.
 
-```
+```none
 C:\> docker history doc-exe-method
 
 IMAGE               CREATED             CREATED BY                    SIZE                COMMENT
@@ -110,7 +113,7 @@ b3452b13e472        2 minutes ago       powershell New-Item c:/test   30.76 MB
 
 To contrast, the following example runs the same operation, however using the shell form.
 
-```
+```none
 FROM windowsservercore
 
 RUN powershell new-item c:\test
@@ -118,7 +121,7 @@ RUN powershell new-item c:\test
 
 Which results in a run instruction of `cmd /S /C powershell new-item c:\test`. 
 
-```
+```none
 C:\> docker history doc-shell-method
 
 IMAGE               CREATED             CREATED BY                              SIZE                COMMENT
