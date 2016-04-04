@@ -1,6 +1,6 @@
 # Description:
 
-Creates an image with containing Python 3.5.1. Also included is a ‘World Script’ to test functionality.
+Creates an image containing Python 3.5.1 and Django 1.8.6.
 
 This dockerfile is for demonstration purposes and may require modification for production use. 
 
@@ -12,16 +12,16 @@ Windows Server Core Base OS Image
 
 **Docker Build**
 
-Docker Build –t python .
+Docker Build –t django .
 
 **Docker Run** 
 
-Docker Run -it python
+Docker Run -it python-django
 
 ## Dockerfile Details:
 ```
 # This dockerfile utilizes components licensed by their respective owners/authors.
-# Prior to utilizing this file or resulting images please review the respective licenses at: https://docs.python.org/3/license.html
+# Prior to utilizing this file or resulting images please review the respective licenses at: https://docs.python.org/3/license.html, https://github.com/django/django/blob/master/LICENSE
 
 FROM windowsservercore
 
@@ -35,10 +35,9 @@ RUN powershell.exe -Command \
 	Sleep 60 ; \
 	Remove-Item c:\python-3.5.1.exe -Force
 
-RUN echo print("Hello World!") > c:\hello.py
+RUN ["pip", "install", "Django==1.8.6"]
 
-CMD ["py c:/hello.py"]
-	
+CMD ["django-admin --version"]
 	
 ```
 

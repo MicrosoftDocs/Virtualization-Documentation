@@ -1,5 +1,5 @@
 # This dockerfile utilizes components licensed by their respective owners/authors.
-# Prior to utilizing this file or resulting images please review the respective licenses at: https://docs.python.org/3/license.html
+# Prior to utilizing this file or resulting images please review the respective licenses at: https://docs.python.org/3/license.html, https://github.com/django/django/blob/master/LICENSE
 
 FROM windowsservercore
 
@@ -13,7 +13,7 @@ RUN powershell.exe -Command \
 	Sleep 60 ; \
 	Remove-Item c:\python-3.5.1.exe -Force
 
-RUN echo print("Hello World!") > c:\hello.py
+RUN ["pip", "install", "Django==1.8.6"]
 
-CMD ["py c:/hello.py"]
+CMD ["django-admin --version"]
 	
