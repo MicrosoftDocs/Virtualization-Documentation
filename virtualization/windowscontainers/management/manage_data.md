@@ -23,28 +23,6 @@ docker run -it -v c:\new-data-volume windowsservercore cmd
 
 For more information on creating volumes, see [Manage data in containers on docker.com](https://docs.docker.com/engine/userguide/containers/dockervolumes/#data-volumes).
 
-### Inspect new data volume
-
-To list date volumes for a specific container, use the `docker inspect` command.
-
-```none
-docker inspect gloomy_pare
-```
-
-The output will include a section named ‘Mounts’. Here you can see information about the data volume such as source and destination.
-
-```none
-"Mounts": [
-    {
-        "Name": "faf0ed35b9cffc0df8e4175802b21a237c006f61ed00204e30a0492960437344",
-        "Source": "C:\\ProgramData\\Docker\\volumes\\faf0ed35b9cffc0df8e4175802b21a237c006f61ed00204e30a0492960437344\\_data",
-        "Destination": "c:\\new-data-volume",
-        "Driver": "local",
-        "Mode": "",
-        "RW": true,
-        "Propagation": ""
-    }
-```
 
 For more information on inspecting volumes, see [Manage data in containers on docker.com](https://docs.docker.com/engine/userguide/containers/dockervolumes/#locating-a-volume).
 
@@ -59,6 +37,44 @@ PS C:\> docker run -it -v c:\source:c:\destination windowsservercore cmd
 ```
 
 For more information on monting host directories, see [Manage data in containers on docker.com](https://docs.docker.com/engine/userguide/containers/dockervolumes/#mount-a-host-directory-as-a-data-volume).
+
+### Mount single files
+
+A single file can be mounted into a container by explicitly specifying the file. In this example, the container-share directory include several files, however the test.txt file specified in the `docker` run command. 
+
+```
+docker run -it -v c:\container-share\test.txt windowsservercore cmd
+```
+
+Inside the running container, only the test.txt file is visible.
+
+```none
+c:\container-share>dir
+ Volume in drive C has no label.
+ Volume Serial Number is 7CD5-AC14
+
+ Directory of c:\container-share
+
+04/04/2016  12:53 PM    <DIR>          .
+04/04/2016  12:53 PM    <DIR>          ..
+04/04/2016  12:53 PM    <SYMLINKD>     test.txt
+               0 File(s)              0 bytes
+               3 Dir(s)  21,184,208,896 bytes free
+```
+
+For more information on mounting single files, see [Manage data in containers on docker.com](https://docs.docker.com/engine/userguide/containers/dockervolumes/#mount-a-host-directory-as-a-data-volume).
+
+### Data volume containers
+
+Data volumes can be inherited from other running containers using the `--volumes-from` parameter of the `docker run` command. Using this inheritance, a container can be created with the explicit purpose of hosting data volumes for containerized applications. 
+
+This example mounts the data volumes from the container ‘cocky_bell` into a new container. Once the new container has been started, the data found in this volume will be available for applications running in the container.  
+
+```none
+docker run -it --volumes-from cocky_bell windowsservercore cmd
+```
+
+For more information on data containers see [Manage data in containers on docker.com](https://docs.docker.com/engine/userguide/containers/dockervolumes/#mount-a-host-file-as-a-data-volume).
 
 ### Inspect shared data volume
 
@@ -79,36 +95,5 @@ This will return a large blob of information about the container, including a se
         "RW": true,
         "Propagation": ""
 }
-````
-
-### Data volume containers
-
-Data volumes can be inherited from other running containers using the `--volumes-from` parameter of the `docker run` command. Using this inheritance, a container can be created with the explicit purpose of hosting data volumes for containerized applications. 
-
-This example mounts the data volumes from the container ‘cocky_bell` into a new container. Once the new container has been started, the data found in this volume will be available for applications running in the container.  
-
-```none
-docker run -it --volumes-from cocky_bell windowsservercore cmd
 ```
-
-A volume mounted from another container can be inspected just like any other mounted volume. 
-
-```none
-docker inspect backstabbing_archimedes
-```
-
-```none
-"Mounts": [
-    {
-        "Name": "f9786fdea26a8e0e800564d5b75a6705128a21236da6a905ea882da013490208",
-        "Source": "C:\\ProgramData\\Docker\\volumes\\f9786fdea26a8e0e800564d5b75a6705128a21236da6a905ea882da013490208\\_data",
-        "Destination": "c:\\share",
-        "Driver": "local",
-        "Mode": "",
-        "RW": true,
-        "Propagation": ""
-    }
-```
-
-For more information on data containers see [Manage data in containers on docker.com](https://docs.docker.com/engine/userguide/containers/dockervolumes/#creating-and-mounting-a-data-volume-container).
 
