@@ -13,9 +13,9 @@ This document will detail creating, inspecting, and removing data volumes.
 
 ### Create new volume
 
-Create a new data volume using `-v` parameter of the `docker run` command. By default, new data volumes are stored on the host under `c:\ProgramData\Docker\volumes`.
+Create a new data volume using `-v` parameter of the `docker run` command. By default, new data volumes are stored on the host under 'c:\ProgramData\Docker\volumes'.
 
-This example creates a data volume named `new-data-volume`. This data volume will be accessible in the running container at `c:\new-data-volume`.
+This example creates a data volume named 'new-data-volume'. This data volume will be accessible in the running container at 'c:\new-data-volume'.
 
 ```none
 docker run -it -v c:\new-data-volume windowsservercore cmd
@@ -23,14 +23,11 @@ docker run -it -v c:\new-data-volume windowsservercore cmd
 
 For more information on creating volumes, see [Manage data in containers on docker.com](https://docs.docker.com/engine/userguide/containers/dockervolumes/#data-volumes).
 
-
-For more information on inspecting volumes, see [Manage data in containers on docker.com](https://docs.docker.com/engine/userguide/containers/dockervolumes/#locating-a-volume).
-
 ### Mounting existing directory
 
-In addition to creating new data volumes, you may want to pass an existing director from the host, through to one or many containers. This can also be accomplished with the `-v` parameter of the `docker run` command.
+In addition to creating a new data volume, you may want to pass an existing directory from the host, through to the container. This can also be accomplished with the `-v` parameter of the `docker run` command. All files inside host directory will also be available in the container. Any files created by the container in the mounted volume, will be available on the host. The same directory can be mounted to many containers. In this configuration, data can be shared between containers.
 
-In the below example the source directory, `c:\source`, is mounted into a container as `c:\destination`.
+In this example, the source directory, 'c:\source', is mounted into a container as 'c:\destination'.
 
 ```none
 PS C:\> docker run -it -v c:\source:c:\destination windowsservercore cmd
@@ -40,10 +37,10 @@ For more information on monting host directories, see [Manage data in containers
 
 ### Mount single files
 
-A single file can be mounted into a container by explicitly specifying the file. In this example, the container-share directory include several files, however the test.txt file specified in the `docker` run command. 
+A single file can be mounted into a container by explicitly specifying the file name. In this example, the directory being shared includes many files, however only the 'config.ini' file is available inside of the container. 
 
 ```
-docker run -it -v c:\container-share\test.txt windowsservercore cmd
+docker run -it -v c:\container-share\config.ini windowsservercore cmd
 ```
 
 Inside the running container, only the test.txt file is visible.
@@ -57,7 +54,7 @@ c:\container-share>dir
 
 04/04/2016  12:53 PM    <DIR>          .
 04/04/2016  12:53 PM    <DIR>          ..
-04/04/2016  12:53 PM    <SYMLINKD>     test.txt
+04/04/2016  12:53 PM    <SYMLINKD>     config.ini
                0 File(s)              0 bytes
                3 Dir(s)  21,184,208,896 bytes free
 ```
@@ -96,4 +93,6 @@ This will return a large blob of information about the container, including a se
         "Propagation": ""
 }
 ```
+
+For more information on inspecting volumes, see [Manage data in containers on docker.com](https://docs.docker.com/engine/userguide/containers/dockervolumes/#locating-a-volume).
 
