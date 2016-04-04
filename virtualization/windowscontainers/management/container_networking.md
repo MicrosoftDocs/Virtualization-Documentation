@@ -6,7 +6,7 @@ author: jmesser81
 
 **This is preliminary content and subject to change.** 
 
-Windows containers function similarly to virtual machines in regards to networking. Each container has a virtual network adapter, which is connected to a virtual switch, over which inbound and outbound traffic is forwarded. In order to enforce isolation between containers on the same host, a network compartment is created for each Windows Server and Hyper-V Container into which the network adapter for the container is installed. Windows Server containers use a Host vNIC to attached to the virtual switch while Hyper-V Containers use a Synthetic VM NIC (not exposed to the Utility VM) to attach to the virtual switch.
+Windows containers function similarly to virtual machines in regards to networking. Each container has a virtual network adapter which is connected to a virtual switch over which inbound and outbound traffic is forwarded. In order to enforce isolation between containers on the same host, a network compartment is created for each Windows Server and Hyper-V Container into which the network adapter for the container is installed. Windows Server containers use a Host vNIC to attach to the virtual switch while Hyper-V Containers use a Synthetic VM NIC (not exposed to the Utility VM) to attach to the virtual switch.
 
 Windows containers support four different networking modes. They are:
 
@@ -16,7 +16,7 @@ Windows containers support four different networking modes. They are:
 
 - **L2 Bridge Mode** - each container is connected to an external virtual switch. Network traffic between two containers in the same IP subnet and attached to the same container host will be directly bridged. Network traffic between two containers on different IP subnets or attached to different container hosts will be sent out through the external virtual switch. On egress, network traffic originating from the container will have the source MAC address re-written to that of the container host. On ingress, network traffic destined for a container will have the destination MAC address re-written to that of the container itself.
 
-- **L2 Tunnel Mode** - (this mode should only be used in a Microsoft Cloud Stack). Similar to L2 Bridge mode, each container is connected to an external virtual switch with the MAC addresses re-written on egress and ingress. However, ALL container network traffic is forwarded to the physical host's virtual switch regardless of Layer-2 connectivity such that network policy can be enforced in the physical host's virtual switch as programmed by higher-levels of the networking stack (e.g. Network Controller or Network Resource Provider) in a Microosft cloud stack.
+- **L2 Tunnel Mode** - *(this mode should only be used in a Microsoft Cloud Stack)*. Similar to L2 Bridge mode, each container is connected to an external virtual switch with the MAC addresses re-written on egress and ingress. However, ALL container network traffic is forwarded to the physical host's virtual switch regardless of Layer-2 connectivity such that network policy can be enforced in the physical host's virtual switch as programmed by higher-levels of the networking stack (e.g. Network Controller or Network Resource Provider) in a Microosft cloud stack.
 
 This document will detail the benefit and configuration of each of these.
 
@@ -27,9 +27,9 @@ Either PowerShell or Docker can be used to create container networks, connect co
 The list of acceptable drivers for docker network creation are 'transparent', 'nat', and 'l2bridge'. As was stated previously, the L2 tunnel driver, should only be used in Microsoft Azure public cloud deployment scenarios. 
 ***Note: Docker network drivers are all lower-case***
 
-The Docker daemon refers to different networking modes by the name of the driver used to create the network. For instance, the NAT networking mode has a corresponding Docker network driver named nat. By default, the Docker engine on Windows will look for a network with a nat driver. If a nat network does not exist, the Docker engine will create one. All containers created will be attached to the nat network by default.
+The Docker daemon refers to different networking modes by the name of the driver used to create the network. For instance, the NAT networking mode has a corresponding Docker network driver named nat. By default, the Docker engine on Windows will look for a network with a nat driver. If a NAT network does not exist, the Docker engine will create one. All containers created will be attached to the nat network by default.
 
-This behavior (using a NAT network driver by default) can be overriden by specifying a specific "bridge" named "none" using the -b none option when starting the Docker daemon engine. The configuration file can be found at `c:\programdata\docker\runDockerDaemon.cmd` and requires that the docker service be restarted.
+This behavior (using a NAT network driver by default) can be overriden by specifying a specific "bridge" named "none" using the -b none option when starting the Docker daemon engine.
 
 To stop the service run the following PowerShell command.
 
@@ -79,20 +79,22 @@ IsDeleted          : False
 
 We will now look at the different network modes (drivers) individually.
 
-***Note: In docker, driver names for specific networking modes are case-sensitive. In PowerShell, networking mode names are not case-sensitive.***
+***Note: In PowerShell, networking mode names are not case-sensitive.***
 
 
 ## NAT Networking Mode
 
-**Network Address Translation** – This networking mode is useful when you need a quick and easy way to assign private IP addresses to containers which do not require direct connectivity to a physical or virtual network (described below).  In this configuration, all network services running in a container which need to be externally accessible will require a port mapping between the 'external' IP address and port on the container host and the 'internal' IP address and port on the container on which the network service is listening. These mappings are stored in the WinNAT port mapping tables. All network traffic received on an external IP address and port which has an entry in the mapping table will be forwarded to the specific container endpiont to the destination port specified in the port mapping table. Additionally, NAT allows multiple containers to host applications that may require identical (internal) communication ports by mapping unique external ports.
+**Network Address Translation** – This networking mode is useful when you need a quick and easy way to assign private IP addresses to containers which do not require direct connectivity to a physical or virtual network (described below).  In this configuration, all network services running in a container which need to be externally accessible will require a port mapping between the 'external' IP address and port on the container host and the 'internal' IP address and port on the container on which the network service is listening. These mappings are stored in the WinNAT port mapping tables. All network traffic received on an external IP address and port which has an entry in the mapping table will be forwarded to the specific container endpoint to the destination port specified in the port mapping table. Additionally, NAT allows multiple containers to host applications that may require identical (internal) communication ports by mapping these to unique external ports.
 
-***Note: In TP5, a single firewall rule will be automatically created for a NAT static port mapping. This firewall rule will be global to the container host and not localized to a specific container endpoint or network adapter. As such, any network service running inside a container on a given port for which a firewall ALLOW rule exists will be accessible directly from the container host.***
+***Note: In TP5, a single firewall rule will be automatically created for a NAT static port mapping. This firewall rule will be global to the container host and not localized to a specific container endpoint or network adapter.***
 
 ***Note: In TP5, when you create a NAT container network in which the container host is connected to a specific physical network (e.g. Corporate Network) this network's settings (e.g. DNS Server) will be persisted. If the container host is mobile (e.g. laptop) and connects to a different physical network (e.g. Home Network) any containers which are created and attached to the NAT container network will still use the DNS server settings from that first physical network (i.e. the one on which the container host was connected when the container network was created). This is a bug which will be fixed in the next release.***
 
 ### Host Configuration <!--1-->
 
-To use the NAT Networking mode, create a Container Network with mode 'NAT' and specify an internal subnet prefix. By default, a NAT network is created when the Docker daemon starts if one does not already exist. 
+To use the NAT Networking mode, create a Container Network with driver name 'nat'.
+
+***Note: By default, a NAT network is created when the Docker daemon starts if one does not already exist.***
 
 ```powershell
 docker network create -d nat MyNatNetwork
@@ -114,7 +116,7 @@ New-ContainerNetwork -Name MyNatNetwork -Mode NAT -SubnetPrefix "172.16.0.0/12" 
 
 ### Host Configuration <!--2-->
 
-To use the Transparent Networking mode, create a Container Network with mode 'Transparent' and specify a physical or virtual network adapter to which the external vSwitch will be connected. 
+To use the Transparent Networking mode, create a Container Network with driver name 'transparent'. 
 
 ```powershell
 docker network create -d transparent MyTransparentNetwork
@@ -140,7 +142,7 @@ Since the Transparent network is connected directly to the underlying physical n
 
 ### Host Configuration <!--3-->
 
-To use the L2 Bridge Networking mode, create a Container Network with mode 'L2 Bridge' and specify a physical or virtual network adapter on which to connect the external vSwitch.
+To use the L2 Bridge Networking mode, create a Container Network with driver name 'l2bridge'.
 
 ```powershell
 C:\> docker network create -d l2bridge MyBridgeNetwork
@@ -154,9 +156,9 @@ New-ContainerNetwork -Name MyBridgeNetwork -Mode L2Bridge -NetworkAdapterName "E
 
 **L2 Tunnel Networking** - This networking mode should not be used in any environment except Microsoft Azure public cloud. 
 
-### Docker Network Creation Options
+## Docker Network Creation Options
 
-Different docker networking commands can be supplied at either container network creation time or container creation time. In addition to the -d (--driver=<network mode>) option to specify networking mode, the --gateway, --subnet, and -o options are also supported when creating a container network.
+Different docker networking commands and options can be specified at either container network creation time or container creation time. In addition to the -d (--driver=<network mode>) option to specify networking mode, the --gateway, --subnet, and -o options are also supported when creating a container network.
 
 A user can specify a specific gateway IP address when using static IP allocation / network configuration (e.g. for Transparent networks). If using NAT or Transparent mode with DHCP you should not change the gateway IP address.
 ```powershell
@@ -186,13 +188,14 @@ docker network create -d transparent -o com.docker.network.windowsshim.networkna
 
 Multiple container networks can be created on a single container host with the following caveats:
 * Only one NAT network can be created per container host
-* Multiple networks which use an external vSwitch for connectivity (e.g. Transparent, L2 Bridge, L2 Transparent) must each use its own network adapter. Different networking modes cannot re-use the same vSwitch
+* Multiple networks which use an external vSwitch for connectivity (e.g. Transparent, L2 Bridge, L2 Transparent) must each use its own network adapter
+* Different networks must use different vSwitches
 
 ### Container Configuration 
 
 When creating a Windows Container, a network can be specified to which the container network adapter will be connected. If no network is specified, the default NAT network will be used to provide connectivity. 
 
-In order to attach a container to the non-default NAT network (or when -b "none" is in use), use the --net option to the docker run command. This example creates a container explicitly connected to the default "nat" container network
+In order to attach a container to the non-default NAT network (or when -b "none" is in use), use the --net option with the docker run command. This example creates a container explicitly connected to the default "nat" container network
 
 ```powershell
 C:\> docker run -it --net=nat windowsservercore cmd
@@ -232,7 +235,7 @@ docker run -it --net=nat windowsservercore cmd
 PS C:\> Start-Container "DemoNAT"
 ```
 
-***Note: Static IP Address assignment will not work on container endpoints attached to Transparent or L2 Tunnel networks.***
+***Note: Static IP Address assignment through PowerShell will not work on container endpoints attached to a Transparent network***
 
 In order to see which containers are connected to a specific network and the IPs associated with these container endpoints you can run the following.
 
