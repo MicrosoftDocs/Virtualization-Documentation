@@ -44,7 +44,7 @@ The output will include a section named ‘Mounts’. Here you can see informati
         "RW": true,
         "Propagation": ""
     }
-````
+```
 
 For more information on inspecting volumes, see [Manage data in containers on docker.com](https://docs.docker.com/engine/userguide/containers/dockervolumes/#locating-a-volume).
 
@@ -60,7 +60,7 @@ PS C:\> docker run -it -v c:\source:c:\destination windowsservercore cmd
 
 For more information on monting host directories, see [Manage data in containers on docker.com](https://docs.docker.com/engine/userguide/containers/dockervolumes/#mount-a-host-directory-as-a-data-volume).
 
-### Inspecting shared data volume
+### Inspect shared data volume
 
 Mounted volumes can be viewed using the `docker inspect` command against a container.
 
@@ -81,11 +81,17 @@ This will return a large blob of information about the container, including a se
 }
 ````
 
-## Data volume contianers
+### Data volume containers
+
+Data volumes can be inherited from other running containers using the `--volumes-from` parameter of the `docker run` command. Using this inheritance, a container can be created with the explicit purpose of hosting data volumes for containerized applications. 
+
+This example mounts the data volumes from the container ‘cocky_bell` into a new container. Once the new container has been started, the data found in this volume will be available for applications running in the container.  
 
 ```none
 docker run -it --volumes-from cocky_bell windowsservercore cmd
 ```
+
+A volume mounted from another container can be inspected just like any other mounted volume. 
 
 ```none
 docker inspect backstabbing_archimedes
@@ -104,5 +110,5 @@ docker inspect backstabbing_archimedes
     }
 ```
 
-
 For more information on data containers see [Manage data in containers on docker.com](https://docs.docker.com/engine/userguide/containers/dockervolumes/#creating-and-mounting-a-data-volume-container).
+
