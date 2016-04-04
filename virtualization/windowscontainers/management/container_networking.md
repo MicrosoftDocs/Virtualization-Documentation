@@ -63,7 +63,7 @@ bd8b691a8286        nat                 nat
 ```
 
 ```powershell
-Get-ContainerNetwork |fl
+PS C:\> Get-ContainerNetwork |fl
 
 Name               : nat
 SubnetPrefix       : {172.16.0.0/12}
@@ -79,22 +79,26 @@ IsDeleted          : False
 
 We will now look at the different network modes (drivers) individually.
 
-***Note: In docker, driver names for specific networking modes are case-sensitive. In PowerShell, networking mode names are not case-sensitive.
+***Note: In docker, driver names for specific networking modes are case-sensitive. In PowerShell, networking mode names are not case-sensitive.***
 
 
 ## NAT Networking Mode
 
-**Network Address Translation** – This networking mode is useful when you need a quick and easy way to assign private IP addresses to containers which do not require direct connectivity to a physical or virtual network (described below).  In this configuration, all network services running in a container which need to be externally accessible will require a port mapping between the 'external' IP address and port assigned to the container host and the 'internal' IP address and port assigned to the container. These mappings are stored in the WinNAT port mapping tables. All network traffic received on the external IP address and port is forwarded to the container. Additionally, NAT allows multiple containers to host applications that may require identical communication ports by mapping unique external ports.
+**Network Address Translation** – This networking mode is useful when you need a quick and easy way to assign private IP addresses to containers which do not require direct connectivity to a physical or virtual network (described below).  In this configuration, all network services running in a container which need to be externally accessible will require a port mapping between the 'external' IP address and port on the container host and the 'internal' IP address and port on the container on which the network service is listening. These mappings are stored in the WinNAT port mapping tables. All network traffic received on an external IP address and port which has an entry in the mapping table will be forwarded to the specific container endpiont to the destination port specified in the port mapping table. Additionally, NAT allows multiple containers to host applications that may require identical (internal) communication ports by mapping unique external ports.
+
+***Note: In TP5, a single firewall rule will be automatically created for a NAT static port mapping. This firewall rule will be global to the container host and not localized to a specific container endpoint or network adapter. As such, any network service running inside a container on a given port for which a firewall ALLOW rule exists will be accessible directly from the container host.***
+
+***Note: In TP5, when you create a NAT container network in which the container host is connected to a specific physical network (e.g. Corporate Network) this network's settings (e.g. DNS Server) will be persisted. If the container host is mobile (e.g. laptop) and connects to a different physical network (e.g. Home Network) any containers which are created and attached to the NAT container network will still use the DNS server settings from that first physical network (i.e. the one on which the container host was connected when the container network was created). This is a bug which will be fixed in the next release.***
 
 ### Host Configuration <!--1-->
 
 To use the NAT Networking mode, create a Container Network with mode 'NAT' and specify an internal subnet prefix. By default, a NAT network is created when the Docker daemon starts if one does not already exist. 
 
 ```powershell
-C:\> docker network create -d nat MyNatNetwork
+docker network create -d nat MyNatNetwork
 ```
 
-Additional parameters such as Gateway IP address (--gateway=<string[]>) and subnet prefix (--subnet=<string[]>) can be added on to the docker network create command.
+Additional parameters such as Gateway IP address (--gateway=<string[]>) and subnet prefix (--subnet=<string[]>) can be added on to the docker network create command. See below for additional details.
 
 In order to create a NAT network using PowerShell, one would use the following syntax. Notice that additional parameters including DNSServers and DNSSuffix can be specified by using PowerShell. If not specified, these settings are inherited from the container host and used in the container itself.
 
@@ -113,7 +117,7 @@ New-ContainerNetwork -Name MyNatNetwork -Mode NAT -SubnetPrefix "172.16.0.0/12" 
 To use the Transparent Networking mode, create a Container Network with mode 'Transparent' and specify a physical or virtual network adapter to which the external vSwitch will be connected. 
 
 ```powershell
-C:\> docker network create -d transparent MyTransparentNetwork
+docker network create -d transparent MyTransparentNetwork
 ```
 The PowerShell syntax is similar.
 
@@ -134,44 +138,6 @@ Since the Transparent network is connected directly to the underlying physical n
 
 **L2 Bridge Networking** - This networking mode can be used in any deployment including when containers are hosted on a bare-metal server, in a container host VM, or in a Microsoft private cloud (e.g. Microsoft Azure Stack) deployment. In this configuration, the Virtual Filtering Platform (VFP) vSwitch extension in the container host will act as a Bridge and perform Layer-2 address translation (MAC address re-write) as required. The Layer-3 IP addresses and Layer-4 ports will remain unchanged. IP Addresses can be statically assigned to correspond with the physical network's IP subnet prefix or, if using a Microsoft private cloud deployment, with an IP from the virtual network's subnet prefix.
 
-### Docker Network Creation Options
-
-Different docker networking commands can be supplied at either container network creation time or container creation time. In addition to the -d (--driver=<network mode>) option to specify networking mode, the --gateway, --subnet, and -o options are also supported when creating a container network.
-
-A user can specify a specific gateway IP address when using static IP allocation / network configuration (e.g. for Transparent networks). If using NAT or Transparent mode with DHCP you should not change the gateway IP address.
-```powershell
-docker network create -d transparent --gateway=10.50.34.1 "MyTransparentNet"
-```
-
-A user can also specify a specific IP subnet prefix to represent a specific network segment and from which IP addresses will be allocated.
-```powershell
-docker network create -d nat --subnet=192.168.0.0/24 "MyCustomNatNetwork"
-```
-Additional customizations to a container network can be made through docker by using the -o (--opt=map[]) parameter. 
-
-In order to specify which network adapter in the container host to use for Transparent, L2Bridge, or L2Tunnel networks, a user can specify the *com.docker.network.windowsshim.interface* option
-```powershell
-PS C:\> Get-NetAdapter
-
-
-docker network create -d transparent -o com.docker.network.windowsshim.interface="Ethernet 2" "TransparentNetTwo"
-```
-
-In order for container networks created through Docker to be accessible by the same name using PowerShell cmdlets the *com.docker.network.windowsshim.networkname* option must be given:
-```powershell
-docker network create -d transparent -o com.docker.network.windowsshim.networkname="MyTransparentNet" "MyTransparentNet"
-```
-**Note: 
-Container networks which are created through PowerShell will not be available in Docker until the Docker daemon is restarted. Any other changes made to a container network via PowerShell also requires a restart of the docker daemon.
-
-
-### Support for Multiple Container Networks on a Single Container Host
-
-Multiple container networks can be created on a single container host with the following caveats:
-* Only one NAT network can be created per container host
-* Multiple networks which use an external vSwitch for connectivity (e.g. Transparent, L2 Bridge, L2 Transparent) must each use its own network adapter. Different networking modes cannot re-use the same vSwitch
-
-
 ### Host Configuration <!--3-->
 
 To use the L2 Bridge Networking mode, create a Container Network with mode 'L2 Bridge' and specify a physical or virtual network adapter on which to connect the external vSwitch.
@@ -187,6 +153,40 @@ New-ContainerNetwork -Name MyBridgeNetwork -Mode L2Bridge -NetworkAdapterName "E
 ## L2 Tunnel Networking Mode
 
 **L2 Tunnel Networking** - This networking mode should not be used in any environment except Microsoft Azure public cloud. 
+
+### Docker Network Creation Options
+
+Different docker networking commands can be supplied at either container network creation time or container creation time. In addition to the -d (--driver=<network mode>) option to specify networking mode, the --gateway, --subnet, and -o options are also supported when creating a container network.
+
+A user can specify a specific gateway IP address when using static IP allocation / network configuration (e.g. for Transparent networks). If using NAT or Transparent mode with DHCP you should not change the gateway IP address.
+```powershell
+docker network create -d transparent --gateway=10.50.34.1 "MyTransparentNet"
+```
+
+A user can also specify a specific IP subnet prefix to represent a specific network segment and from which IP addresses will be allocated.
+```powershell
+docker network create -d nat --subnet=192.168.0.0/24 "MyCustomNatNetwork"
+```
+Additional customizations to a container network can be made through docker by using the -o (--opt=map[]) parameter. 
+
+In order to specify which network adapter in the container host to use for a Transparent, L2Bridge, or L2 Tunnel network, a user can specify the *com.docker.network.windowsshim.interface* option
+```powershell
+PS C:\> Get-NetAdapter
+
+docker network create -d transparent -o com.docker.network.windowsshim.interface="Ethernet 2" "TransparentNetTwo"
+```
+
+In order for container networks created through Docker to be accessible by the same name using PowerShell cmdlets the *com.docker.network.windowsshim.networkname* option must be given:
+```powershell
+docker network create -d transparent -o com.docker.network.windowsshim.networkname="MyTransparentNet" "MyTransparentNet"
+```
+***Note: Container networks which are created through PowerShell will not be available in Docker until the Docker daemon is restarted. Any other changes made to a container network via PowerShell also requires a restart of the docker daemon.***
+
+### Support for Multiple Container Networks on a Single Container Host
+
+Multiple container networks can be created on a single container host with the following caveats:
+* Only one NAT network can be created per container host
+* Multiple networks which use an external vSwitch for connectivity (e.g. Transparent, L2 Bridge, L2 Transparent) must each use its own network adapter. Different networking modes cannot re-use the same vSwitch
 
 ### Container Configuration 
 
@@ -231,6 +231,8 @@ docker run -it --net=nat windowsservercore cmd
 ```powershell
 PS C:\> Start-Container "DemoNAT"
 ```
+
+***Note: Static IP Address assignment will not work on container endpoints attached to Transparent or L2 Tunnel networks.***
 
 In order to see which containers are connected to a specific network and the IPs associated with these container endpoints you can run the following.
 
@@ -333,9 +335,19 @@ This will clean up any Hyper-V Virtual switches which the container network used
  *
 
 The following networking features are not supported today through docker CLI
- * container linking
+ * container linking (e.g. --link)
  * name-based IP resolution for containers
- * 
+
+The following network options are not supported on Windows docker at this time:
+ * --add-host
+ * --dns
+ * --dns-opt
+ * --dns-search
+ * -h, --hostname
+ * --net-alias
+ * --aux-address
+ * --internal
+ * --ip-range
 
 ## Manage Network Adapters
 
