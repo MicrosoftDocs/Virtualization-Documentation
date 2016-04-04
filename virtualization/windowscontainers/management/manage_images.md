@@ -67,7 +67,7 @@ WindowsServerCore CN=Microsoft 10.0.10586.0 True
 
 ### Offline Installation
 
-Base OS images can also be installed without an internet connection. To do so, the images will be downloaded on a computer with an internet connection, copied to the target system, and then imported using the `Install-ContainerOSImages` command.
+Base OS images can also be installed without an internet connection. To do so, downloaded the image on a computer with an internet connection, copy it to the target system, and then imported using the `Install-ContainerOSImages` command.
 
 Before downloading the Base OS image, prepare the system with the container image provider by running the following command.
 
@@ -136,68 +136,9 @@ Base OS images can be uninstalled using the `Uninstall-ContainerOSImage` command
 ```powershell
 Get-ContainerImage -Name NanoServer | Uninstall-ContainerOSImage
 ```
-
-## Container Images PowerShell
-
-### List Images <!--1-->
-
-Run `Get-ContainerImage` to return a list of images on the container host. The container image type is differentiated when with the `IsOSImage` property.
-
-```powershell
-PS C:\> Get-ContainerImage
-
-Name              		Publisher    	Version      	IsOSImage
-----              		---------    	-------      	---------
-NanoServer        		CN=Microsoft 	10.0.10586.0 	True
-WindowsServerCore 		CN=Microsoft 	10.0.10586.0 	True
-WindowsServerCoreIIS 	CN=Demo   		1.0.0.0 		False
-
-```
-
-### Create New Image <!--1-->
-
-A new container image can be created from any existing container. To do so, use the `New-ContainerImage` command.
-
-```powershell
-PS C:\> New-ContainerImage -Container $container -Publisher Demo -Name DemoImage -Version 1.0
-```
-
-### Remove Image <!--1-->
-
-Container images cannot be removed if any container, even in a stopped state, has a dependency on the image.
-
-Remove a single image with PowerShell. 
-
-```powershell
-PS C:\> Get-ContainerImage -Name newimage | Remove-ContainerImage -Force
-```
-
-### Image Dependency <!--1-->
-
-When a new image is created, it becomes dependent on the image that it was created from. This dependency can be seen using the `Get-ContainerImage` command. If a parent image is not listed, this indicates that the image is a Base OS image.
-
-```powershell
-PS C:\> Get-ContainerImage | select Name, ParentImage
-
-Name              ParentImage
-----              -----------
-NanoServerIIS     ContainerImage (Name = 'NanoServer') [Publisher = 'CN=Microsoft', Version = '10.0.10586.0']
-NanoServer
-WindowsServerCore
-```
-
-### Move Image Repository 
-
-When a new container image is created using the `New-ContainerImage` command, this image is stored in the default location 'C:\ProgramData\Microsoft\Windows\Hyper-V\Container Image Store'. This repository can be moved using the `Move-ContainerImageRepository` command. For example, the following would create a new container image repository at the location of 'c:\container-images'.
-
-```powershell
-Move-ContainerImageRepository -Path c:\container-images
-```
-> The path used with `Move-ContainerImageRepository` command must not already exist when running the command.
-
 ## Container Images Docker
 
-### List Images <!--2-->
+### List Images
 
 ```powershell
 C:\> docker images
@@ -208,7 +149,7 @@ windowsservercore      10.0.10586.0        6801d964fda5        2 weeks ago      
 nanoserver             10.0.10586.0        8572198a60f1        2 weeks ago          0 B
 ```
 
-### Create New Image <!--2-->
+### Create New Image
 
 A new container image can be created from any existing container. To do so, use the `docker commit` command. The following example creates a new container image with the name ‘windowsservercoreiis’.
 
@@ -218,7 +159,7 @@ C:\> docker commit 475059caef8f windowsservercoreiis
 ca40b33453f803bb2a5737d4d5dd2f887d2b2ad06b55ca681a96de8432b5999d
 ```
 
-### Remove Image <!--2-->
+### Remove Image
 
 Container images cannot be removed if any container, even in a stopped state, has a dependency on the image.
 
@@ -231,7 +172,7 @@ Untagged: windowsservercoreiis:latest
 Deleted: ca40b33453f803bb2a5737d4d5dd2f887d2b2ad06b55ca681a96de8432b5999d
 ```
 
-### Image Dependency <!--2-->
+### Image Dependency
 
 To see image dependencies with Docker, the `docker history` command can be used.
 

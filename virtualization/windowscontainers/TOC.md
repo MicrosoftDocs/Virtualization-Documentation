@@ -7,7 +7,6 @@
 ## [Containers in Azure](quick_start/azure_setup.md)
 ## [Containers in a New Hyper-V VM](quick_start/container_setup.md)
 ## [Containers in an Existing System](quick_start/inplace_setup.md)
-## [PowerShell Quick Start](quick_start/manage_powershell.md)
 ## [Docker Quick Start](quick_start/manage_docker.md)
 # Deploy Windows Containers
 ## [System Requirements](deployment/system_requirements.md)
