@@ -17,15 +17,15 @@ There are two types of container images:
 
 ### Install Image
 
-Container OS images can be found and installed for both PowerShell and Docker management using the ContainerProvider PowerShell module. Before using this module, it will need to be installed. The following command can be used to install the module.
+Container OS images can be found and installed using the ContainerProvider PowerShell module. Before using this module, it will need to be installed. The following command can be used to install the module.
 
-```powershell
+```none
 PS C:\> Install-PackageProvider ContainerProvider -Force
 ```
 
 Once installed, a list of Base OS images can be returned using `Find-ContainerImage`.
 
-```powershell
+```none
 PS C:\> Find-ContainerImage
 
 Name                 Version                 Description
@@ -36,7 +36,7 @@ WindowsServerCore    10.0.10586.0            Container OS Image of Windows Serve
 
 To download and install the Nano Server base OS image, run the following. The `-version` parameter is optional. Without a base OS image version specified, the latest version will be installed.
 
-```powershell
+```none
 PS C:\> Install-ContainerImage -Name NanoServer -Version 10.0.10586.0
 
 Downloaded in 0 hours, 0 minutes, 10 seconds.
@@ -44,40 +44,37 @@ Downloaded in 0 hours, 0 minutes, 10 seconds.
 
 Likewise, this command will download and install the Windows Server Core base OS image. The `-version` parameter is optional. Without a base OS image version specified, the latest version will be installed.
 
-> **Issue** Save-ContainerImage and Install-ContainerImage cmdlets may fail to work with a WindowsServerCore container image in a PowerShell remoting session. **Workaround:** Logon to the machine using Remote Desktop and use Save-ContainerImage cmdlet directly.
-
-```powershell
+```none
 PS C:\> Install-ContainerImage -Name WindowsServerCore -Version 10.0.10586.0
 
 Downloaded in 0 hours, 2 minutes, 28 seconds.
 ```
 
-Verify that the images have been installed using the `Get-ContainerImage` command.
+Verify that the images have been installed using the `docker images` command.
 
-```powershell
-PS C:\> Get-ContainerImage
+```none
+C:\> docker images
 
-Name              Publisher    Version      IsOSImage
-----              ---------    -------      ---------
-NanoServer        CN=Microsoft 10.0.10586.0 True
-WindowsServerCore CN=Microsoft 10.0.10586.0 True
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+nanoserver          10.0.14304.1003     40356b90dc80        2 weeks ago         793.3 MB
+windowsservercore   10.0.14304.1003     7837d9445187        2 weeks ago         9.176 GB
 ```  
 
-> **Install-ContainerImage** installs a Base OS image for use in either PowerShell or Docker managed containers. If the Base OS image is downloaded, but does not show when running `docker images`, restart the Docker service using the services control panel applet or the command 'sc docker stop' and then 'sc docker start'
+> If the Base OS image is downloaded, but is not show when running `docker images`, restart the Docker service using the services control panel applet or the command 'sc docker stop' and then 'sc docker start'
 
 ### Offline Installation
 
-Base OS images can also be installed without an internet connection. To do so, downloaded the image on a computer with an internet connection, copy it to the target system, and then imported using the `Install-ContainerOSImages` command.
+Base OS images can also be installed without an internet connection. To do so, download the image on a computer with an internet connection, copy it to the target system, and then imported using the `Install-ContainerOSImages` command.
 
 Before downloading the Base OS image, prepare the system with the container image provider by running the following command.
 
-```powershell
+```none
 PS C:\> Install-PackageProvider ContainerProvider -Force
 ```
 
 Return a list of images from PowerShell OneGet package manager:
 
-```powershell
+```none
 PS C:\> Find-ContainerImage
 
 Name                 Version                 Description
@@ -88,13 +85,13 @@ WindowsServerCore    10.0.10586.0            Container OS Image of Windows Serve
 
 To download an image, use the `Save-ContainerImage` command.
 
-```powershell
+```none
 PS C:\> Save-ContainerImage -Name NanoServer -Destination c:\container-image\NanoServer.wim
 ```
 
 The downloaded container image can now be copied to a different container host, and installed using the `Install-ContainerOSImage` command.
 
-```powershell
+```none
 Install-ContainerOSImage -WimPath C:\container-image\NanoServer.wim -Force
 ```
 
@@ -102,7 +99,7 @@ Install-ContainerOSImage -WimPath C:\container-image\NanoServer.wim -Force
 
 When referencing a container image by name, the Docker engine will search for the latest version of the image. If the latest version cannot be determined, the following error will be thrown.
 
-```powershell
+```none
 PS C:\> docker run -it windowsservercore cmd
 
 Unable to find image 'windowsservercore:latest' locally
@@ -114,13 +111,13 @@ After installing the Windows Server Core or Nano Server Base OS images, these wi
 
 For more information on `docker tag` see [Tag, push, and pull you images on docker.com](https://docs.docker.com/mac/step_six/). 
 
-```powershell
+```none
 PS C:\> docker tag <image id> windowsservercore:latest
 ```
 
 When tagged, the output of `docker images` will show two versions of the same image, one with a tag of the image version, and a second with a tag of 'latest'. The image can now be referenced by name.
 
-```powershell
+```none
 PS C:\> docker images
 
 REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
@@ -133,14 +130,14 @@ windowsservercore   latest              290ab6758cec        2 days ago          
 
 Base OS images can be uninstalled using the `Uninstall-ContainerOSImage` command. The following example will uninstall the NanoServer base OS image.
 
-```powershell
+```none
 Get-ContainerImage -Name NanoServer | Uninstall-ContainerOSImage
 ```
 ## Container Images Docker
 
 ### List Images
 
-```powershell
+```none
 C:\> docker images
 
 REPOSITORY             TAG                 IMAGE ID            CREATED              VIRTUAL SIZE
@@ -153,7 +150,7 @@ nanoserver             10.0.10586.0        8572198a60f1        2 weeks ago      
 
 A new container image can be created from any existing container. To do so, use the `docker commit` command. The following example creates a new container image with the name ‘windowsservercoreiis’.
 
-```powershell
+```none
 C:\> docker commit 475059caef8f windowsservercoreiis
 
 ca40b33453f803bb2a5737d4d5dd2f887d2b2ad06b55ca681a96de8432b5999d
@@ -165,7 +162,7 @@ Container images cannot be removed if any container, even in a stopped state, ha
 
 When removing an image with docker, the images can be referenced by image name or id.
 
-```powershell
+```none
 C:\> docker rmi windowsservercoreiis
 
 Untagged: windowsservercoreiis:latest
@@ -176,7 +173,7 @@ Deleted: ca40b33453f803bb2a5737d4d5dd2f887d2b2ad06b55ca681a96de8432b5999d
 
 To see image dependencies with Docker, the `docker history` command can be used.
 
-```powershell
+```none
 C:\> docker history windowsservercoreiis
 
 IMAGE               CREATED             CREATED BY          SIZE                COMMENT
@@ -192,7 +189,7 @@ To see a list of images available from Docker Hub use the `docker search` comman
 
 > The images that start with "nano-" have a dependency on the Nano Server Base OS Image.
 
-```powershell
+```none
 C:\> docker search *
 
 NAME                    DESCRIPTION                                     STARS     OFFICIAL   AUTOMATED
@@ -226,7 +223,7 @@ microsoft/nano-ruby     Ruby installed in a Nano Server based cont...   1       
 
 To download an image from Docker Hub, use `docker pull`.
 
-```powershell
+```none
 C:\> docker pull microsoft/aspnet
 
 Using default tag: latest
@@ -238,7 +235,7 @@ b71a5b8be5a2: Download complete
 
 The image will now be visible when running `docker images`.
 
-```powershell
+```none
 C:\> docker images
 
 REPOSITORY          TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
@@ -251,7 +248,7 @@ windowsservercore   latest              6801d964fda5        2 weeks ago         
 
 To see image dependencies with Docker, the `docker history` command can be used.
 
-```powershell
+```none
 C:\> docker history windowsservercoreiis
 
 IMAGE               CREATED             CREATED BY          SIZE                COMMENT
