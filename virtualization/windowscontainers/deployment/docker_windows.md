@@ -42,7 +42,7 @@ mkdir %ProgramData%\docker
 :run
 if exist %certs%\server-cert.pem (goto :secure)
 
-docker daemon -D -H npipe:// 0.0.0.0:2375
+docker daemon -D -H npipe:// -H 0.0.0.0:2375
 goto :eof
 
 :secure
