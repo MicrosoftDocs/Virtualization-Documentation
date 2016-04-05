@@ -13,7 +13,7 @@ Windows Server Core Base OS Image
 **Docker Build**
 
 ```
-Docker Build –t nginx .
+Docker Build -t nginx .
 ```
 
 **Docker Run**
