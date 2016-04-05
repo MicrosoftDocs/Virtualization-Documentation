@@ -1,8 +1,8 @@
 # Sample - IIS with HTTPS
-This builds another layer on top of the sample [iis-10.0](../iis-10.0/readme.md), which installs Internet Information Server on a Windows Server Core container. It adds a self-signed certificate and enables HTTPS for the default site.
+This builds another layer on top of the [iis](../iis/readme.md) sample, which installs Internet Information Server on a Windows Server Core container. It adds a self-signed certificate and enables HTTPS for the default site.
 
 ## Steps to Build and Run
-1. First, build the "iis" image (see [iis-10.0 sample readme](..\iis-10.0\readme.md))
+1. First, build the "iis" image (see [iis/readme.md](../iis/readme.md))
 2. Next, build this image: 
 ```none
 docker build -t iis-contoso-https .
