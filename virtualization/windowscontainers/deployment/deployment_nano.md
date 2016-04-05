@@ -30,20 +30,12 @@ The steps listed in this table can be used to deploy a container host to Nano Se
 <td>Prepare a Nano Server VHD with the container and Hyper-V capabilities.</td>
 </tr>
 <tr>
-<td>[Create Virtual Switch](#vswitch)</td>
-<td>Containers connect to a virtual switch for network connectivity.</td>
-</tr>
-<tr>
-<td>[Configure NAT](#nat)</td>
-<td>If a virtual switch is configured with Network Address Translation, NAT itself needs configuration.</td>
-</tr>
-<tr>
 <td>[Install Container OS Images](#img)</td>
 <td>OS images provide the base for container deployments.</td>
 </tr>
 <tr>
 <td>[Install Docker](#docker)</td>
-<td>Optional, however necessary in order to create and manage Windows containers with Docker. </td>
+<td>Follow these steps to install and configure the Docker engine on Windows.</td>
 </tr>
 </table>
 
@@ -106,37 +98,6 @@ PS C:\> Import-Module C:\nano\NanoServerImageGenerator.psm1
 PS C:\> New-NanoServerImage -MediaPath $WindowsMedia -BasePath c:\nano -TargetPath C:\nano\NanoContainer.vhdx -MaxSize 10GB -GuestDrivers -ReverseForwarders -Compute -Containers
 ```
 When completed, create a virtual machine from the `NanoContainer.vhdx` file. This virtual machine will be running the Nano Server OS, and optional packages.
-
-### <a name=vswitch></a>Create Virtual Switch
-
-Each container needs to be attached to a virtual switch in order to communicate over a network. A virtual switch is created with the `New-VMSwitch` command. Containers support a virtual switch with type `External` or `NAT`. For more information on Windows Container networking see [Container Networking](../management/container_networking.md).
-
-This example creates a virtual switch with the name “Virtual Switch”, a type of NAT, and Nat Subnet of 172.16.0.0/12. 
-
-```powershell
-PS C:\> New-VMSwitch -Name "Virtual Switch" -SwitchType NAT -NATSubnetAddress "172.16.0.0/12"
-```
-
-### <a name=nat></a>Configure NAT
-
-In addition to creating a virtual switch, if the switch type is NAT, a NAT object needs to be created. This is completed using the `New-NetNat` command. This example creates a NAT object, with the name `ContainerNat`, and an address prefix that matches the NAT subnet assigned to the container switch.
-
-```powershell
-PS C:\> New-NetNat -Name ContainerNat -InternalIPInterfaceAddressPrefix "172.16.0.0/12"
-	
-Name                             : ContainerNat
-ExternalIPInterfaceAddressPrefix :
-InternalIPInterfaceAddressPrefix : 172.16.0.0/12
-IcmpQueryTimeout                 : 30
-TcpEstablishedConnectionTimeout  : 1800
-TcpTransientConnectionTimeout    : 120
-TcpFilteringBehavior             : AddressDependentFiltering
-UdpFilteringBehavior             : AddressDependentFiltering
-UdpIdleSessionTimeout            : 120
-UdpInboundRefresh                : False
-Store                            : Local
-Active                           : True
-```
 
 ### <a name=img></a>Install OS Images
 

@@ -42,11 +42,11 @@ mkdir %ProgramData%\docker
 :run
 if exist %certs%\server-cert.pem (goto :secure)
 
-docker daemon -D -b "Virtual Switch"
+docker daemon -D
 goto :eof
 
 :secure
-docker daemon -D -b "Virtual Switch" -H 0.0.0.0:2376 --tlsverify --tlscacert=%certs%\ca.pem --tlscert=%certs%\server-cert.pem --tlskey=%certs%\server-key.pem
+docker daemon -D -H 0.0.0.0:2376 --tlsverify --tlscacert=%certs%\ca.pem --tlscert=%certs%\server-cert.pem --tlskey=%certs%\server-key.pem
 ```
 Download nssm.exe from [https://nssm.cc/release/nssm-2.24.zip](https://nssm.cc/release/nssm-2.24.zip).
 
@@ -54,10 +54,15 @@ Download nssm.exe from [https://nssm.cc/release/nssm-2.24.zip](https://nssm.cc/r
 PS C:\> wget https://nssm.cc/release/nssm-2.24.zip -OutFile $env:ALLUSERSPROFILE\nssm.zip
 ```
 
-Extract the files, and copy `nssm-2.24\win64\nssm.exe` into the `c:\windows\system32` directory.
+Extract the the compressed package.
 
 ```powershell
 PS C:\> Expand-Archive -Path $env:ALLUSERSPROFILE\nssm.zip $env:ALLUSERSPROFILE
+```
+
+Copy `nssm-2.24\win64\nssm.exe` into the `c:\windows\system32` directory.
+
+```powershell
 PS C:\> Copy-Item $env:ALLUSERSPROFILE\nssm-2.24\win64\nssm.exe $env:SystemRoot\system32
 ```
 Run `nssm install` to configure the Docker service.
@@ -118,10 +123,45 @@ PS C:\> sc.exe delete Docker
 
 Download docker.exe from `https://aka.ms/tp4/docker` and copy it to the `windows\system32` folder of the Nano Server Container host.
 
-Run the below command to start the docker daemon. This will need to be run each time the container host is started. This command starts the Docker daemon, specifies a virtual switch for container connectivity, and set’s the daemon to listen on port 2375 for incoming Docker requests. In this configuration Docker can be managed from a remote computer.
+Create a directory named `c:\programdata\docker`. In this directory, create a file named `runDockerDaemon.cmd`.
 
 ```powershell
-PS C:\> start-process cmd "/k docker daemon -D -b <Switch Name> -H 0.0.0.0:2375”
+PS C:\> New-Item -ItemType File -Path C:\ProgramData\Docker\runDockerDaemon.cmd -Force
+```
+
+Copy the following text into the `runDockerDaemon.cmd` file. This batch file starts the Docker daemon with the command `docker daemon -D -b “Virtual Switch”`. Note: the name of the virtual switch in this file, will need to match the name of the virtual switch that containers will be using for network connectivity.
+
+```powershell
+@echo off
+set certs=%ProgramData%\docker\certs.d
+
+if exist %ProgramData%\docker (goto :run)
+mkdir %ProgramData%\docker
+
+:run
+if exist %certs%\server-cert.pem (goto :secure)
+
+docker daemon -D
+goto :eof
+
+:secure
+docker daemon -D -H 0.0.0.0:2376 --tlsverify --tlscacert=%certs%\ca.pem --tlscert=%certs%\server-cert.pem --tlskey=%certs%\server-key.pem
+```
+
+The following script can be used to create a scheduled task to start the Docker daemon at system startup.
+
+```powershell
+
+#TODO - Update Script
+
+$dockerData = "$($env:ProgramData)\docker"
+$dockerDaemonScript = "$dockerData\runDockerDaemon.cmd"
+$dockerLog = "$dockerData\daemon.log"
+$action = New-ScheduledTaskAction -Execute "cmd.exe" -Argument "/c $dockerDaemonScript > $dockerLog 2>&1"
+$trigger = New-ScheduledTaskTrigger -AtStartup
+$settings = New-ScheduledTaskSettingsSet -Priority 5
+Register-ScheduledTask -TaskName Docker -Action $action -Trigger $trigger -Settings $settings -User SYSTEM -RunLevel Highest | Out-Null
+Start-ScheduledTask -TaskName Docker 
 ```
 
 ### Removing Docker <!--2-->
@@ -131,6 +171,15 @@ To remove the docker daemon and cli from Nano Server, delete `docker.exe` from t
 ```powershell
 PS C:\> Remove-Item $env:SystemRoot\system32\docker.exe
 ``` 
+
+Run the following to un-register the Docker scheduled task.
+
+```powershell
+
+#TODO - Test
+
+Get-ScheduledTask -TaskName Docker | UnRegister-ScheduledTask
+```
 
 ### Interactive Nano Session
 
