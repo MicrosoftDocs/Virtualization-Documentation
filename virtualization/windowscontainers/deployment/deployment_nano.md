@@ -39,6 +39,8 @@ The steps listed in this table can be used to deploy a container host to Nano Se
 </tr>
 </table>
 
+<br /><br />
+
 These steps need to be taken if Hyper-V Containers will be used. Note, the steps marked with and * are only necessary if the container host is itself a Hyper-V virtual machine.
 
 <table border="1" style="background-color:FFFFCC;border-collapse:collapse;border:1px solid FFCC00;color:000000;width:100%" cellpadding="5" cellspacing="5">
@@ -141,7 +143,7 @@ For more information on Container image management see [Windows Container Images
  
 ### <a name=docker></a>Install Docker
 
-The Docker Daemon and command line interface are not shipped with Windows, and not installed with the Windows Container feature. Docker is not a requirement for working with Windows containers. If you would like to install Docker, follow the instructions in this article [Docker and Windows](./docker_windows.md).
+The Docker Engine is not shipped with Windows, and not installed with the Windows Container feature. To install Docker, follow the instructions in this article [Docker and Windows](./docker_windows.md).
 
 You can use the `Enter-PSSession` command in the Hyper-V management host to connect to the container host.
 
