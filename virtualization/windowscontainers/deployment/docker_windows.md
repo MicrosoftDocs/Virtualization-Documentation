@@ -32,7 +32,7 @@ PS C:\> New-Item -ItemType File -Path C:\ProgramData\Docker\runDockerDaemon.cmd 
 
 Copy the following text into the `runDockerDaemon.cmd` file. This batch file starts the Docker daemon with the command `docker daemon -D -b “Virtual Switch”`. Note: the name of the virtual switch in this file, will need to match the name of the virtual switch that containers will be using for network connectivity.
 
-```powershell
+```none
 @echo off
 set certs=%ProgramData%\docker\certs.d
 
@@ -42,7 +42,7 @@ mkdir %ProgramData%\docker
 :run
 if exist %certs%\server-cert.pem (goto :secure)
 
-docker daemon -D
+docker daemon -D -H npipe:// 0.0.0.0:2375
 goto :eof
 
 :secure
