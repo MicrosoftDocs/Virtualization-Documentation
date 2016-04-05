@@ -1,4 +1,6 @@
-# This builds on top of the IIS-10.0 sample
+# This dockerfile utilizes components licensed by their respective owners/authors.
+
+# This builds on top of the IIS sample
 FROM iis
 
 RUN powershell.exe -Command " \
