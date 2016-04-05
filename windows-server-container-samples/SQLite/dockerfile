@@ -1,4 +1,0 @@
-FROM windowsservercore
-LABEL Description="SQLite" Vendor="SQLite" Version="3.9.2"
-ADD sources /sqlite
-RUN setx /M PATH "%PATH%;C:\sqlite"
