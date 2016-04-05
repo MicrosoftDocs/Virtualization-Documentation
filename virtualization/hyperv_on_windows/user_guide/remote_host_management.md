@@ -13,6 +13,7 @@ Hyper-V Manager in Windows 10 allows you to manage the following Hyper-V hosts:
 * Windows 10
 * Windows 8.1
 * Windows 8
+* Windows Server 2016 + Windows Server Core, Nano Server, and Hyper-V Server
 * Windows Server 2012 R2 + Windows Server Core, Datacenter, and Hyper-V Server
 * Windows 2012 + Windows Server Core, Datacenter, and Hyper-V Server
 
