@@ -39,7 +39,7 @@ The steps listed in this table can be used to deploy a container host to Nano Se
 </tr>
 </table>
 
-<br /><br />
+<br />
 
 These steps need to be taken if Hyper-V Containers will be used. Note, the steps marked with and * are only necessary if the container host is itself a Hyper-V virtual machine.
 
