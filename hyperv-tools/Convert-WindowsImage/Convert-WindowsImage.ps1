@@ -1819,21 +1819,17 @@ You can use the fields below to configure the VHD or VHDX that you want to creat
                     $WindowsImage = Get-WindowsImage -ImagePath $SourcePath | Where-Object {$_.ImageName -ilike "*$($Edition)"}
                 }
 
-                if (-not $WindowsImage -or ($WindowsImage -is [System.Array]))
+                if (-not $WindowsImage)
+                {
+                    throw "Requested windows Image was not found on the WIM file!"
+                }
+                if ($WindowsImage -is [System.Array])
                 {
                     Write-W2VInfo "WIM file has the following $($WindowsImage.Count) images that match filter *$($Edition)"
                     Get-WindowsImage -ImagePath $SourcePath
 
-                    if (-not $WindowsImage)
-                    {
-                        throw "Requested windows Image was not found on the WIM file!!"
-                    }
-                    else
-                    {
-                        Write-W2VError "You must specify an Edition or SKU index, since the WIM has more than one image."
-
-                        throw "There are more than one images that match ImageName filter *$($Edition)"
-                    }
+                    Write-W2VError "You must specify an Edition or SKU index, since the WIM has more than one image."
+                    throw "There are more than one images that match ImageName filter *$($Edition)"
                 }
             }
 
