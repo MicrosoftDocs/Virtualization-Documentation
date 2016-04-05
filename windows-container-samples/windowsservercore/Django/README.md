@@ -14,7 +14,7 @@ Windows Server Core Base OS Image
 
 **Docker Build**
 
-Docker Build –t django .
+Docker Build -t django .
 
 **Docker Run** 
 

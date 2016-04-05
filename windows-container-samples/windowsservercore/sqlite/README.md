@@ -12,7 +12,7 @@ Windows Server Core Base OS Image
 
 **Docker Build**
 
-Docker Build –t sqlite .
+Docker Build -t sqlite .
 
 **Docker Run** 
 
