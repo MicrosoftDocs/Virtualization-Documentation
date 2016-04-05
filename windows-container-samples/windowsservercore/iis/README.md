@@ -18,7 +18,7 @@ docker Build –t iis .
 
 **Docker Run** 
 
-This will enter the container and display the SQLite version to validate functionality. Type `.exit` to exit.
+This will enter the container and do a persistent ping to validate functionality.
 
 ```
 docker run -d -p 80:80 iis
