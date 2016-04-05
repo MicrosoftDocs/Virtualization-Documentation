@@ -12,11 +12,15 @@ Windows Server Core Base OS Image
 
 **Docker Build**
 
-Docker Build –t python .
+```
+Docker Build –t python:latest .
+```
 
 **Docker Run** 
 
+```
 Docker Run -it python
+```
 
 ## Dockerfile Details:
 ```

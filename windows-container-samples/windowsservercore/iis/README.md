@@ -13,7 +13,7 @@ Windows Server Core Base OS Image
 **Docker Build**
 
 ```
-docker Build –t iis .
+docker Build –t iis:latest .
 ```
 
 **Docker Run** 

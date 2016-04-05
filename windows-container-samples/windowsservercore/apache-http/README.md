@@ -12,11 +12,15 @@ Windows Server Core Base OS Image
 
 **Docker Build**
 
-Docker Build –t apache-windows .
+```
+Docker Build –t apache-windows:latest .
+```
 
 **Docker Run** 
 
+```
 Docker Run –d –p 80:80 apache-windows
+```
 
 ## Dockerfile Details:
 ```

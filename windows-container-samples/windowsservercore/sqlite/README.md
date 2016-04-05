@@ -12,13 +12,17 @@ Windows Server Core Base OS Image
 
 **Docker Build**
 
-Docker Build –t sqlite .
+```
+Docker Build –t sqlite:latest .
+```
 
 **Docker Run** 
 
 This will enter the container and display the SQLite version to validate functionality. Type `.exit` to exit.
 
-`docker run -it sqlite`
+```
+docker run -it sqlite
+```
 
 ## Dockerfile Details:
 ```

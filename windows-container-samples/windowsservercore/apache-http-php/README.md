@@ -9,10 +9,16 @@ Windows Server Core Base OS Image
 # Usage:
 
 **Docker Build**
-Docker Build –t apache-php-windows .
+
+```
+Docker Build –t apache-php-windows:latest .
+```
 
 **Docker Run** 
+
+```
 Docker Run –d –p 80:80 apache-php-windows
+```
 
 ## Dockerfile Details:
 ```

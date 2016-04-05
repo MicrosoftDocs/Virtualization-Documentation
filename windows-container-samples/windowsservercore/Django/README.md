@@ -14,11 +14,15 @@ Windows Server Core Base OS Image
 
 **Docker Build**
 
-Docker Build –t django .
+```
+Docker Build –t django:latest .
+```
 
 **Docker Run** 
 
+```
 Docker Run -it 80:80 django
+```
 
 ## Dockerfile Details:
 ```
