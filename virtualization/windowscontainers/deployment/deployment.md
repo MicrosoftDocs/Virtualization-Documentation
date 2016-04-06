@@ -34,7 +34,7 @@ PowerShell scripts are also available to automate the deployment of a Windows Co
 <td>Follow these steps to install and configure the Docker engine on Windows.</td>
 </tr>
 </table>
-
+<br />
 These steps need to be taken if Hyper-V Containers will be used. Note, the steps marked with and * are only necessary if the container host is itself a Hyper-V virtual machine.
 
 <table border="1" style="background-color:FFFFCC;border-collapse:collapse;border:1px solid FFCC00;color:000000;width:100%" cellpadding="5" cellspacing="5">
