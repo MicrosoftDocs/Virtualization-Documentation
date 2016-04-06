@@ -13,13 +13,15 @@ Windows Server Core Base OS Image
 **Docker Build**
 
 ```
-Docker Build –t ruby:latest .
+docker build -t ruby:latest .
 ```
 
 **Docker Run** 
 
+This will display the Ruby version and exit. Modify the Dockerfile appropriately for application use.
+
 ```
-Docker Run –it ruby
+docker run –it ruby
 ```
 
 ## Dockerfile Details:

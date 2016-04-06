@@ -13,13 +13,15 @@ Windows Server Core Base OS Image
 **Docker Build**
 
 ```
-Docker Build –t python:latest .
+docker build -t python:latest .
 ```
 
 **Docker Run** 
 
+This will start a container, run the sample ‘Hello World’ script, and then exit.  Modify the Dockerfile appropriately for application use. 
+
 ```
-Docker Run -it python
+docker run -it python
 ```
 
 ## Dockerfile Details:
@@ -42,7 +44,6 @@ RUN powershell.exe -Command \
 RUN echo print("Hello World!") > c:\hello.py
 
 CMD ["py c:/hello.py"]
-	
 	
 ```
 

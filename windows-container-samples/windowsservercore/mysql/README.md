@@ -13,7 +13,7 @@ Windows Server Core Base OS Image
 **Docker Build**
 
 ```
-Docker Build –t mysql:latest .
+docker build -t mysql:latest .
 ```
 
 **Docker Run**

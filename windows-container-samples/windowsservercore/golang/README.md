@@ -13,13 +13,15 @@ Windows Server Core Base OS Image
 **Docker Build**
 
 ```
-Docker Build –t golang:latest .
+docker build -t golang:latest .
 ```
 
 **Docker Run** 
 
+This will start a container, display the Go version, and then exit.  Modify the Dockerfile appropriately for application use. 
+
 ```
-Docker Run –it golang
+docker run –it golang
 ```
 
 ## Dockerfile Details:

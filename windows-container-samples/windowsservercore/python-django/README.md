@@ -13,13 +13,15 @@ Windows Server Core Base OS Image
 **Docker Build**
 
 ```
-Docker Build –t django .
+docker build -t python-django:latest .
 ```
 
 **Docker Run** 
 
+This will run a container, display the Django version, and then exit. Modify the Dockerfile appropriately for application use.
+
 ```
-Docker Run -it python-django
+docker run -it python-django
 ```
 
 ## Dockerfile Details:
