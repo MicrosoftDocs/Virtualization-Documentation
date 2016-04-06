@@ -6,7 +6,7 @@ author: neilpeterson
 
 **This is preliminary content and subject to change.** 
 
-Docker is a container deployment and management platform, that works with both Linux and Windows containers. Docker is used to create, manage, and delete containers and container images. Docker enables storing container images in a public registry (Docker Hub) and private registries (Docker Trusted Registries). Docker additionally provides container host clustering capabilities with Docker Swarm and deployment automaton with Docker Compose. For more information on Docker and the Docker toolset visit [Docker.com](https://www.docker.com/).
+Docker is a container deployment and management platform, that works with both Linux and Windows containers. Docker is used to create, manage, and delete containers and container images. Docker enables storing container images in a public registry (Docker Hub) and private registries (Docker Trusted Registries). Docker additionally provides container host clustering capabilities with Docker Swarm and deployment automaton with Docker Compose. For more information on Docker and the Docker toolset visit [Docker.com](https://www.docker.com/). The Docker Daemon and CLI are not shipped with Windows and will need to be installed separately. This document will walk through manually installing the Docker engine on Windows. 
 
 > The Windows Container feature must be enabled before Docker can be used to create and manage Windows Server and Hyper-V Container. For instructions on enabling this feature, see the [Container Host Deployment Guide](./docker_windows.md).
 
@@ -14,23 +14,21 @@ Docker is a container deployment and management platform, that works with both L
 
 ### Install Docker <!--1-->
 
-The Docker Daemon and CLI are not shipped with Windows Server or Windows Server Core, and not installed with the Windows Container feature. Docker will need to be installed separately. This document will walk through manually installing the Docker daemon and Docker client. Automated methods for competing these task will also be provided. 
-
-The Docker Daemon and Docker command line interface have been developed in the Go language. At this time, docker.exe does not install as a Windows Service. There are several methods that can be used to create a Windows service, one example shown here uses `nssm.exe`. 
+TODO - update this text: Docker.exe does not natively install as a Windows Service. There are several methods that can be used to create a Windows service, one example shown here uses `nssm.exe`. 
 
 Download docker.exe from `https://aka.ms/tp4/docker` and place it in the System32 directory on the Container Host.
 
 ```powershell
-PS C:\> wget https://aka.ms/tp4/docker -OutFile $env:SystemRoot\system32\docker.exe
+wget https://aka.ms/tp4/docker -OutFile $env:SystemRoot\system32\docker.exe
 ```
 
 Create a directory named `c:\programdata\docker`. In this directory, create a file named `runDockerDaemon.cmd`.
 
 ```powershell
-PS C:\> New-Item -ItemType File -Path C:\ProgramData\Docker\runDockerDaemon.cmd -Force
+New-Item -ItemType File -Path C:\ProgramData\Docker\runDockerDaemon.cmd -Force
 ```
 
-Copy the following text into the `runDockerDaemon.cmd` file. This batch file starts the Docker daemon with the command `docker daemon -D -b “Virtual Switch”`. Note: the name of the virtual switch in this file, will need to match the name of the virtual switch that containers will be using for network connectivity.
+Copy the following text into the `runDockerDaemon.cmd` file.
 
 ```none
 @echo off
@@ -51,24 +49,24 @@ docker daemon -D -H 0.0.0.0:2376 --tlsverify --tlscacert=%certs%\ca.pem --tlscer
 Download nssm.exe from [https://nssm.cc/release/nssm-2.24.zip](https://nssm.cc/release/nssm-2.24.zip).
 
 ```powershell
-PS C:\> wget https://nssm.cc/release/nssm-2.24.zip -OutFile $env:ALLUSERSPROFILE\nssm.zip
+wget https://nssm.cc/release/nssm-2.24.zip -OutFile $env:ALLUSERSPROFILE\nssm.zip
 ```
 
 Extract the the compressed package.
 
 ```powershell
-PS C:\> Expand-Archive -Path $env:ALLUSERSPROFILE\nssm.zip $env:ALLUSERSPROFILE
+Expand-Archive -Path $env:ALLUSERSPROFILE\nssm.zip $env:ALLUSERSPROFILE
 ```
 
 Copy `nssm-2.24\win64\nssm.exe` into the `c:\windows\system32` directory.
 
 ```powershell
-PS C:\> Copy-Item $env:ALLUSERSPROFILE\nssm-2.24\win64\nssm.exe $env:SystemRoot\system32
+Copy-Item $env:ALLUSERSPROFILE\nssm-2.24\win64\nssm.exe $env:SystemRoot\system32
 ```
 Run `nssm install` to configure the Docker service.
 
 ```powershell
-PS C:\> start-process nssm install
+start-process nssm install
 ```
 
 Enter the following data into the corresponding fields in the NSSM service installer.
@@ -112,9 +110,7 @@ With this completed, when Windows starts, the Docker daemon (service) will also 
 If following this guide for creating a Windows service from docker.exe, the following command will remove the service.
 
 ```powershell
-PS C:\> sc.exe delete Docker
-
-[SC] DeleteService SUCESS
+sc.exe delete Docker
 ```
 
 ## Nano Server
@@ -126,12 +122,12 @@ Download docker.exe from `https://aka.ms/tp4/docker` and copy it to the `windows
 Create a directory named `c:\programdata\docker`. In this directory, create a file named `runDockerDaemon.cmd`.
 
 ```powershell
-PS C:\> New-Item -ItemType File -Path C:\ProgramData\Docker\runDockerDaemon.cmd -Force
+New-Item -ItemType File -Path C:\ProgramData\Docker\runDockerDaemon.cmd -Force
 ```
 
 Copy the following text into the `runDockerDaemon.cmd` file. This batch file starts the Docker daemon with the command `docker daemon -D -b “Virtual Switch”`. Note: the name of the virtual switch in this file, will need to match the name of the virtual switch that containers will be using for network connectivity.
 
-```powershell
+```none
 @echo off
 set certs=%ProgramData%\docker\certs.d
 
@@ -141,7 +137,7 @@ mkdir %ProgramData%\docker
 :run
 if exist %certs%\server-cert.pem (goto :secure)
 
-docker daemon -D
+docker daemon -D -H npipe:// -H 0.0.0.0:2375
 goto :eof
 
 :secure
@@ -169,7 +165,7 @@ Start-ScheduledTask -TaskName Docker
 To remove the docker daemon and cli from Nano Server, delete `docker.exe` from the Windows\system32 directory.
 
 ```powershell
-PS C:\> Remove-Item $env:SystemRoot\system32\docker.exe
+Remove-Item $env:SystemRoot\system32\docker.exe
 ``` 
 
 Run the following to un-register the Docker scheduled task.
