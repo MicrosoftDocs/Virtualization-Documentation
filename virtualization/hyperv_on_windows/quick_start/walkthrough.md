@@ -1,5 +1,5 @@
 # Walkthrough Hyper-V on Windows 10 
-These topics will help your get acquainted with Hyper-V on Windows 10. We'll walk you through all of the steps needed to get a computer up and running with Hyper-V and check out some of the new features and old favorites.
+These topics will help you get acquainted with Hyper-V on Windows 10. We'll walk you through all of the steps needed to get a computer up and running with Hyper-V and check out some of the new features and old favorites.
 
 [Step 1: Make sure your machine is compatible](walkthrough_compatibility.md)
 
