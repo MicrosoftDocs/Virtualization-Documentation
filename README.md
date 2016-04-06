@@ -1,4 +1,7 @@
 # Virtualization-Documentation
+
+Rendered documentation website [msdn.microsoft.com/virtualization](http://msdn.microsoft.com/virtualization).
+
 Place to store our documentation, code samples, etc for public consumption and contributions.
 
 ## Contribute
