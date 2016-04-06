@@ -40,7 +40,7 @@ mkdir %ProgramData%\docker
 :run
 if exist %certs%\server-cert.pem (goto :secure)
 
-docker daemon -D -H npipe:// -H 0.0.0.0:2375
+docker daemon -D
 goto :eof
 
 :secure
@@ -137,7 +137,7 @@ mkdir %ProgramData%\docker
 :run
 if exist %certs%\server-cert.pem (goto :secure)
 
-docker daemon -D -H npipe:// -H 0.0.0.0:2375
+docker daemon -D
 goto :eof
 
 :secure
@@ -147,8 +147,7 @@ docker daemon -D -H 0.0.0.0:2376 --tlsverify --tlscacert=%certs%\ca.pem --tlscer
 The following script can be used to create a scheduled task to start the Docker daemon at system startup.
 
 ```powershell
-
-#TODO - Update Script
+# Creates a scheduled task to start docker.exe at computer start up.
 
 $dockerData = "$($env:ProgramData)\docker"
 $dockerDaemonScript = "$dockerData\runDockerDaemon.cmd"
@@ -171,9 +170,6 @@ Remove-Item $env:SystemRoot\system32\docker.exe
 Run the following to un-register the Docker scheduled task.
 
 ```powershell
-
-#TODO - Test
-
 Get-ScheduledTask -TaskName Docker | UnRegister-ScheduledTask
 ```
 

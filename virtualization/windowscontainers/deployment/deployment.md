@@ -46,15 +46,15 @@ These steps need to be taken if Hyper-V Containers will be used. Note, the steps
 </tr>
 <tr>
 <td>[Enable nested virtualization *](#nest)</td>
-<td>If the Container Host is itself a Hyper-V Virtual machine, Nested Virtualization needs to be enabled.</td>
+<td>If the container host is virtualized, Nested Virtualization needs to be enabled.</td>
 </tr>
 <tr>
 <td>[Configure virtual processors *](#proc)</td>
-<td>If the Container Host is itself a Hyper-V Virtual machine, at least two virtual processors will need to be configured.</td>
+<td>If the container host is virtualized, at least two virtual processors will need to be configured.</td>
 </tr>
 <tr>
 <td>[Disable dynamic memory *](#dyn)</td>
-<td>If the Container Host is itself a Hyper-V Virtual machine, dynamic memory must be disabled.</td>
+<td>If the container host is virtualized, dynamic memory must be disabled.</td>
 </tr>
 <tr>
 <td>[Configure MAC address spoofing *](#mac)</td>
