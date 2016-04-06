@@ -38,7 +38,7 @@ To add localhost to Hyper-V Manager as a Hyper-V host, select **Local computer**
 
 If a connection can't be established:
 *  Make sure the Hyper-V Platform role is enabled.  
-  See the [walkthrough section for checking compatability](../quick_start/walkthrough_compatibility.md) to see if Hyper-V is supported.
+  See the [walkthrough section for checking compatibility](../quick_start/walkthrough_compatibility.md) to see if Hyper-V is supported.
 *  Confirm that your user account is part of the Hyper-V Administrator group.
 
 
