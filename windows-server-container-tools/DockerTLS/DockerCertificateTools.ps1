@@ -69,9 +69,9 @@ Param(
     if ($process.ExitCode -ne 0)
     {
         $errorString= $process.StandardError.ReadToEnd()
-        Write-Error "OpenSSL Returned Nonzero results: $process.ExitCode"
+        Write-Error "OpenSSL Returned Nonzero results: $($process.ExitCode)"
         Write-Error "OpenSSL Error Out:  $errorString"
-        thrown "OpenSSL Returned Nonzero results: $process.ExitCode"
+        throw "OpenSSL Returned Nonzero results: $($process.ExitCode)"
     }
 }
 
@@ -150,12 +150,12 @@ function New-OpenSSLCertAuth{
         New-Item -p $Global:keyPath -ItemType Directory | Out-Null
     }
 
-    Write-Host "-Createing CA private key"
+    Write-Host "-Creating CA private key"
     #generate CA private keys
     $openSSLCmd = @("genrsa", "-aes256", "-passout", $Global:caPasskey, "-out", $Global:caKayFile,  "4096" )
     Invoke-OpenSSLCmd -OpenSSLArguments $openSSLCmd
 
-    Write-Host "-Createing CA public key"
+    Write-Host "-Creating CA public key"
     #generate CA public keys
     $subLine = "/C=US/ST=Washington/L=Redmond/O=./OU=."   #CommonName?
     $openSSLCmd = @("req", "-subj", $subLine, "-new", "-x509", "-days", "365", "-passin", $Global:caPasskey, "-key", $Global:caKayFile, "-sha256", "-out", $Global:caFile)
@@ -229,19 +229,19 @@ Param(
         throw "CA Private Key Not Found"
     }
 
-    Write-Host "-Createing Server key"
+    Write-Host "-Creating Server key"
     #create a server key
     $openSSLCmd =   @("genrsa", "-out", $serverKeyFile, "4096")
     Invoke-OpenSSLCmd -OpenSSLArguments $openSSLCmd
 
-    Write-Host "-Createing Server certificate request"
+    Write-Host "-Creating Server certificate request"
     #create certificate signing request
     $subLine = ("/CN='" + $serverName + "'/")
 
     $openSSLCmd =  @("req", "-subj", $subLine, "-sha256", "-new", "-key", $serverKeyFile, "-out",  $serverCSRFile )
     Invoke-OpenSSLCmd -OpenSSLArguments $openSSLCmd
 
-    Write-Host "-Createing extended key use extention file"
+    Write-Host "-Creating extended key use extention file"
     #created a extendedkeyusage file and sign the public key with our CA
     "subjectAltName = " | Out-File -FilePath $openSSLExtFile -NoNewline -Encoding ascii
 
@@ -256,7 +256,7 @@ Param(
     $openSSLCmd =  @("x509", "-req", "-days", "365", "-passin", $Global:caPasskey, "-sha256", "-in",  $serverCSRFile, "-CA", $Global:caFile, "-CAkey", $Global:caKayFile, "-CAcreateserial",  "-out", $serverCert, "-extfile", $openSSLExtFile)
     Invoke-OpenSSLCmd -OpenSSLArguments $openSSLCmd
 
-    Write-Host "-Clening up extention file and cerficate request file"
+    Write-Host "-Cleaning up extention file and cerficate request file"
     #Remove Client ExtFile
     Remove-Item $openSSLExtFile
     Remove-Item $serverCSRFile
@@ -290,7 +290,7 @@ Param(
 function New-ClientKeyandCert {
 Param(
   [String]
-    $clientKeyFile = ($Global:keyPath + "key.pem"),
+   $clientKeyFile = ($Global:keyPath + "key.pem"),
   
   [String]
   $clientCSRFile = ($Global:keyPath + "client.csr"),
@@ -299,7 +299,10 @@ Param(
   $clientCert = ($Global:keyPath + "cert.pem"),
     
   [String]
-  $openSSLExtFile = ($Global:keyPath + "extfile.cnf")
+  $openSSLExtFile = ($Global:keyPath + "extfile.cnf"),
+
+  [String]
+  $pfxFile = ($Global:keyPath + "key.pfx")
 )
     Write-Host "Creating Client Key and Certifcate"
 
@@ -316,22 +319,26 @@ Param(
         throw "CA Private Key Not Found"
     }
 
-    Write-Host "-Createing client key"
+    Write-Host "-Creating client key"
     #create a client key
     $openSSLCmd = @("genrsa", "-passout", $Global:caPasskey, "-out", $clientKeyFile, "4096")
     Invoke-OpenSSLCmd -OpenSSLArguments $openSSLCmd
 
-    Write-Host "-Createing cient certificate request"
+    Write-Host "-Creating cient certificate request"
     #create certificate signing request
     $openSSLCmd =  @("req", "-subj", "/CN=client", "-new",  "-passin", $Global:caPasskey, "-key", $clientKeyFile, "-out",  $clientCSRFile)
     Invoke-OpenSSLCmd -OpenSSLArguments $openSSLCmd
 
-    Write-Host "-Createing extended key use extention file"
+    Write-Host "-Creating extended key use extention file"
     #created a extendedkeyusage file and sign the public key with our CA
     "extendedKeyUsage = clientAuth" | Out-File -FilePath $openSSLExtFile -NoNewline -Encoding ascii
 
     Write-Host "-Signing client request and generating certificate"
     $openSSLCmd =  @("x509", "-req", "-days", "365", "-passin", $Global:caPasskey, "-sha256", "-in",  $clientCSRFile, "-CA", $Global:caFile, "-CAkey", $Global:caKayFile, "-CAcreateserial",  "-out", $clientCert, "-extfile", $openSSLExtFile)
+    Invoke-OpenSSLCmd -OpenSSLArguments $openSSLCmd
+
+    Write-Host "-Creating PFX file for Windows"
+    $openSSLCmd = @("pkcs12", "-export", "-inkey", $clientKeyFile, "-in", $clientCert, "-out", $pfxFile, "-password", $Global:caPasskey)
     Invoke-OpenSSLCmd -OpenSSLArguments $openSSLCmd
 
     Write-Host "-Clening up extention file and cerficate request file"
