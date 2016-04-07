@@ -27,11 +27,7 @@ Once installed, a list of Base OS images can be returned using `Find-ContainerIm
 
 ```none
 Find-ContainerImage
-```
 
-Output:
-
-```
 Name                 Version                 Description
 ----                 -------                 -----------
 NanoServer           10.0.10586.0            Container OS Image of Windows Server 2016 Techn...
@@ -54,11 +50,7 @@ Verify that the images have been installed using the `docker images` command.
 
 ```none
 docker images
-```
 
-Output:
-
-```
 REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
 nanoserver          10.0.14304.1003     40356b90dc80        2 weeks ago         793.3 MB
 windowsservercore   10.0.14304.1003     7837d9445187        2 weeks ago         9.176 GB
@@ -109,11 +101,7 @@ When referencing a container image by name, the Docker engine will search for th
 
 ```none
 docker run -it windowsservercore cmd
-```
 
-Output:
-
-```
 Unable to find image 'windowsservercore:latest' locally
 Pulling repository docker.io/library/windowsservercore
 C:\Windows\system32\docker.exe: Error: image library/windowsservercore not found.
@@ -131,11 +119,7 @@ When tagged, the output of `docker images` will show two versions of the same im
 
 ```none
 docker images
-```
 
-Output:
-
-```
 REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
 nanoserver          10.0.14289.1000     df03a4b28c50        2 days ago          783.2 MB
 windowsservercore   10.0.14289.1000     290ab6758cec        2 days ago          9.148 GB
@@ -156,11 +140,7 @@ Uninstall-ContainerOSImage -FullName CN=Microsoft_NanoServer_10.0.14304.1003
 
 ```none
 docker images
-```
 
-Output:
-
-```
 REPOSITORY             TAG                 IMAGE ID            CREATED              VIRTUAL SIZE
 windowsservercoreiis   latest              ca40b33453f8        About a minute ago   44.88 MB
 windowsservercore      10.0.10586.0        6801d964fda5        2 weeks ago          0 B
@@ -191,11 +171,7 @@ To see image dependencies with Docker, the `docker history` command can be used.
 
 ```none
 docker history windowsservercoreiis
-```
 
-Output:
-
-```
 IMAGE               CREATED             CREATED BY          SIZE                COMMENT
 2236b49aaaef        3 minutes ago       cmd                 171.2 MB
 6801d964fda5        2 weeks ago                             0 B
@@ -211,11 +187,7 @@ To see a list of images available from Docker Hub use the `docker search` comman
 
 ```none
 docker search *
-```
 
-Output:
-
-```
 NAME                    DESCRIPTION                                     STARS     OFFICIAL   AUTOMATED
 microsoft/aspnet        ASP.NET 5 framework installed in a Windows...   1         [OK]       [OK]
 microsoft/django        Django installed in a Windows Server Core ...   1                    [OK]
@@ -249,11 +221,7 @@ To download an image from Docker Hub, use `docker pull`.
 
 ```none
 docker pull microsoft/aspnet
-```
 
-Output:
-
-```
 Using default tag: latest
 latest: Pulling from microsoft/aspnet
 f9e8a4cc8f6c: Pull complete
@@ -265,11 +233,7 @@ The image will now be visible when running `docker images`.
 
 ```none
 docker images
-```
 
-Output:
-
-```
 REPOSITORY          TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
 microsoft/aspnet    latest              b3842ee505e5        5 hours ago         101.7 MB
 windowsservercore   10.0.10586.0        6801d964fda5        2 weeks ago         0 B
