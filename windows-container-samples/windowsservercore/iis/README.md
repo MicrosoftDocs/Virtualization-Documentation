@@ -13,12 +13,10 @@ Windows Server Core Base OS Image
 **Docker Build**
 
 ```
-docker Build -t iis .
+docker build -t iis:latest .
 ```
 
 **Docker Run** 
-
-This will enter the container and display the SQLite version to validate functionality. Type `.exit` to exit.
 
 ```
 docker run -d -p 80:80 iis
