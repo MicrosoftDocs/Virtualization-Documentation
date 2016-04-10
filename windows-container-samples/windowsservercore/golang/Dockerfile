@@ -11,5 +11,5 @@ RUN powershell -Command \
 	start-Process go.msi -ArgumentList '/qn' -Wait ; \
 	Remove-Item go.msi -Force
 
-ENV GOPATH c:\go
+ENV GOPATH c:\\go
 WORKDIR $GOPATH
