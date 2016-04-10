@@ -3,15 +3,13 @@
 
 FROM windowsservercore
 
-MAINTAINER neil.peterson@microsoft.com
-
-LABEL Description="GO Programming Language" Vendor="Google" Version="1.5.1"
+ENV GOLANG_VERSION 1.6
+ENV GOLANG_DOWNLOAD_URL https://golang.org/dl/go$GOLANG_VERSION.windows-amd64.msi
 
 RUN powershell -Command \
-	Invoke-WebRequest -Method Get -Uri https://storage.googleapis.com/golang/go1.6.windows-amd64.msi -OutFile c:\go1.6.windows-amd64.msi ; \
-	start-Process c:\go1.6.windows-amd64.msi -ArgumentList '/qn' -Wait ; \
-	Remove-Item c:\go1.6.windows-amd64.msi -Force
+	Invoke-WebRequest -Method Get -Uri %GOLANG_DOWNLOAD_URL% -OutFile go.msi ; \
+	start-Process go.msi -ArgumentList '/qn' -Wait ; \
+	Remove-Item go.msi -Force
 
-WORKDIR /go/bin
-
-CMD ["go.exe version"]
+ENV GOPATH c:\go
+WORKDIR $GOPATH
