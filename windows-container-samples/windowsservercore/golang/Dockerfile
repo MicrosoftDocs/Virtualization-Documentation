@@ -1,6 +1,3 @@
-# This dockerfile utilizes components licensed by their respective owners/authors.
-# Prior to utilizing this file or resulting images please review the respective licenses at: https://golang.org/LICENSE
-
 FROM windowsservercore
 
 ENV GOLANG_VERSION 1.6
