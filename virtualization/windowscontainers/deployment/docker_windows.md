@@ -154,7 +154,7 @@ The following script can be used to create a scheduled task to start the Docker 
 $dockerData = "$($env:ProgramData)\docker"
 $dockerDaemonScript = "$dockerData\runDockerDaemon.cmd"
 $dockerLog = "$dockerData\daemon.log"
-$action = New-ScheduledTaskAction -Execute "cmd.exe" -Argument "/c $dockerDaemonScript > $dockerLog 2>&1"
+$action = New-ScheduledTaskAction -Execute "cmd.exe" -Argument "/c $dockerDaemonScript > $dockerLog 2>&1" -WorkingDirectory $dockerData
 $trigger = New-ScheduledTaskTrigger -AtStartup
 $settings = New-ScheduledTaskSettingsSet -Priority 5
 Register-ScheduledTask -TaskName Docker -Action $action -Trigger $trigger -Settings $settings -User SYSTEM -RunLevel Highest | Out-Null
