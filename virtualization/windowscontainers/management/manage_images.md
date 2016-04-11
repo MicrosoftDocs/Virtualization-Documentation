@@ -305,3 +305,16 @@ microsoft/aspnet    latest              b3842ee505e5        5 hours ago         
 windowsservercore   10.0.10586.0        6801d964fda5        2 weeks ago         0 B
 windowsservercore   latest              6801d964fda5        2 weeks ago         0 B
 ```
+
+### Image Dependency <!--2-->
+
+To see image dependencies with Docker, the `docker history` command can be used.
+
+```powershell
+C:\> docker history windowsservercoreiis
+
+IMAGE               CREATED             CREATED BY          SIZE                COMMENT
+2236b49aaaef        3 minutes ago       cmd                 171.2 MB
+6801d964fda5        2 weeks ago                             0 B
+```
+

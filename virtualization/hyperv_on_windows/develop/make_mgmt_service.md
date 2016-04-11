@@ -1,3 +1,8 @@
+---
+author: scooley
+---
+
+
 # Make your own integration services
 
 Starting in Windows 10, anyone can make a service very similar to the in-box Hyper-V integration services using a new socket-based communication channel between the Hyper-V host and the virtual machines running on it.  Using these Hyper-V sockets, services can run independently of the networking stack and all data stays on the same physical memory.
@@ -28,7 +33,7 @@ This document walks through creating a simple application built on Hyper-V socke
 Right now, Hyper-V sockets are available in native code (C/C++).  
 
 To write a simple application, you'll need:
-* C compiler.  If you don't have one, checkout [Visual Studio Code](https://aka.ms/vs)
+* C compiler.  If you don't have one, checkout [Visual Studio Community](https://aka.ms/vs)
 * A computer running Hyper-V and a virtual machine.  
   * Host and guest (VM) OS must be Windows 10, Windows Server Technical Preview 3, or later.
 * [Windows 10 SDK](http://aka.ms/flightingSDK) installed on the Hyper-V host
