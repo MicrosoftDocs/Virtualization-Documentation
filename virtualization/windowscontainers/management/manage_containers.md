@@ -1,5 +1,6 @@
 ---
 author: neilpeterson
+redirect_url: ./manage_docker
 ---
 
 # Windows Server Container Management

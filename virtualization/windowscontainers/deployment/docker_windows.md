@@ -6,15 +6,17 @@ author: neilpeterson
 
 **This is preliminary content and subject to change.** 
 
-Docker is a container deployment and management platform, that works with both Linux and Windows containers. Docker is used to create, manage, and delete containers and container images. Docker enables storing container images in a public registry (Docker Hub) and private registries (Docker Trusted Registries). Docker additionally provides container host clustering capabilities with Docker Swarm and deployment automaton with Docker Compose. For more information on Docker and the Docker toolset visit [Docker.com](https://www.docker.com/). The Docker Daemon and CLI are not shipped with Windows and will need to be installed separately. This document will walk through manually installing the Docker engine on Windows. 
+The Docker engine is not included with Windows and will need to be installed and configured individually. The steps used to run the Docker Engine on Windows will vary from those used to run in on Linux. This document will step through installing and configuring the Docker engine on Windows Server 2016, Nano Server, and Windows Client.
+
+For more information on Docker and the Docker toolset visit [Docker.com](https://www.docker.com/). 
 
 > The Windows Container feature must be enabled before Docker can be used to create and manage Windows Server and Hyper-V Container. For instructions on enabling this feature, see the [Container Host Deployment Guide](./docker_windows.md).
 
-## Windows Server
+## Windows Server 2016
 
 ### Install Docker <!--1-->
 
-TODO - update this text: Docker.exe does not natively install as a Windows Service. There are several methods that can be used to create a Windows service, one example shown here uses `nssm.exe`. 
+There are several methods that can be used to create a Windows service, one example shown here uses `nssm.exe`. 
 
 Download docker.exe from `https://aka.ms/tp4/docker` and place it in the System32 directory on the Container Host.
 
@@ -173,7 +175,7 @@ Run the following to un-register the Docker scheduled task.
 Get-ScheduledTask -TaskName Docker | UnRegister-ScheduledTask
 ```
 
-### Interactive Nano Session
+### Interactive Nano session
 
 > For information on remotely managing Nano Server, see [Getting Started with Nano Server](https://technet.microsoft.com/en-us/library/mt126167.aspx#bkmk_ManageRemote).
 

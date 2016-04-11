@@ -43,12 +43,8 @@ These steps need to be taken if Hyper-V Containers will be used. Note, the steps
 <td width = "70%"><strong>Details</strong></td>
 </tr>
 <tr>
-<td>[Enable nested virtualization *](#nest)</td>
-<td>If the container host is virtualized, Nested Virtualization needs to be enabled.</td>
-</tr>
-<tr>
-<td>[Configure virtual processors *](#proc)</td>
-<td>If the container host is virtualized, at least two virtual processors will need to be configured.</td>
+<td>[Configure nested virtualization *](#nest)</td>
+<td>If the container host is virtualized, Nested Virtualization needs to be configured.</td>
 </tr>
 <tr>
 <td>[Disable dynamic memory *](#dyn)</td>
@@ -126,25 +122,15 @@ The Docker Engine is not shipped with Windows, and not installed with the Window
 
 ## Hyper-V container host
 
-### <a name=nest></a>Nested virtualization
+### <a name=nest></a>Configure nested virtualization
 
-If the container host itself will be running on a Hyper-V virtual machine, and will also be hosting Hyper-V Containers, nested virtualization needs to be enabled. This can be completed with the following PowerShell command.
+If the container host will be virtualized, the Hyper-V virtual processor will need to be configured for nested virtualization. This includes configuring the virtual machine with at least two virtual processors and enabling the nested virtualization extension. This can be completed with the following command.
 
 **Note** - The virtual machines must be turned off when running this command.
 
 ```powershell
-Set-VMProcessor -VMName <VM Name> -ExposeVirtualizationExtensions $true
+Set-VMProcessor -VMName <VM Name> -ExposeVirtualizationExtensions $true -Count 2
 ```
-
-### <a name=proc></a>Configure virtual processors
-
-If the container host itself will be running on a Hyper-V virtual machine, and will also be hosting Hyper-V Containers, the virtual machine will require at least two processors. This can be configured through the settings of the virtual machine, or with the following command.
-
-**Note** - The virtual machines must be turned off when running this command.
-
-```powershell
-Set-VMProcessor -VMName <VM Name> -Count 2
-``` 
 
 ### <a name=dyn></a>Disable dynamic memory
 
