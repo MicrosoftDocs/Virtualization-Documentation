@@ -119,7 +119,7 @@ sc.exe delete Docker
 
 ### Install Docker <!--2-->
 
-Download docker.exe from `https://aka.ms/tp4/docker` and copy it to the `windows\system32` folder of the Nano Server container host.
+Download docker.exe from `https://aka.ms/tp5/docker` and copy it to the `windows\system32` folder of the Nano Server Container host.
 
 Create a directory named `c:\programdata\docker`. In this directory, create a file named `runDockerDaemon.cmd`.
 
@@ -146,7 +146,7 @@ goto :eof
 docker daemon -D -H npipe:// -H tcp://0.0.0.0:2376 --tlsverify --tlscacert=%certs%\ca.pem --tlscert=%certs%\server-cert.pem --tlskey=%certs%\server-key.pem
 ```
 
-The following script can be used to create a scheduled task to start the Docker daemon at system startup.
+The following script can be used to create a scheduled task to start the Docker daemon. 
 
 ```powershell
 # Creates a scheduled task to start docker.exe at computer start up.
@@ -159,6 +159,12 @@ $trigger = New-ScheduledTaskTrigger -AtStartup
 $settings = New-ScheduledTaskSettingsSet -Priority 5
 Register-ScheduledTask -TaskName Docker -Action $action -Trigger $trigger -Settings $settings -User SYSTEM -RunLevel Highest | Out-Null
 Start-ScheduledTask -TaskName Docker 
+```
+
+If you wish to enable remote Docker management, you also need to open TCP port 2375.
+
+```powershell
+netsh advfirewall firewall add rule name="Docker daemon " dir=in action=allow protocol=TCP localport=2375
 ```
 
 ### Removing Docker <!--2-->
