@@ -2485,7 +2485,7 @@ You can use the fields below to configure the VHD or VHDX that you want to creat
 				  # Remove system partition access path, if necessary
 					If
 					(
-						$DiskLayout -eq "UEFI"
+						$DiskLayout -eq "UEFI" -and $BcdInVhd -eq "VirtualMachine"
 					)
 					{
 						$RemovePartitionAccessPath = Remove-PartitionAccessPath -InputObject $systemPartition -AccessPath $systemPartition.AccessPaths[0] -PassThru
