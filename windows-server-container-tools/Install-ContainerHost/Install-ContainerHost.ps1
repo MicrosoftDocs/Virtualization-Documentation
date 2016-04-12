@@ -18,25 +18,25 @@
         please see the license agreement between you and Microsoft or, if applicable,
         see the LICENSE.RTF on your install media or the root of your tools installation.
         THE SAMPLE SOURCE CODE IS PROVIDED "AS IS", WITH NO WARRANTIES.
-    
+
     .SYNOPSIS
         Installs the prerequisites for creating Windows containers
 
     .DESCRIPTION
         Installs the prerequisites for creating Windows containers
-                        
+
     .PARAMETER DockerPath
         Path to Docker.exe, can be local or URI
-            
+
     .PARAMETER ExternalNetAdapter
-        Specify a specific network adapter to bind to a DHCP switch
-        
+        Specify a specific network adapter to bind to a DHCP network
+
     .PARAMETER Force 
         If a restart is required, forces an immediate restart.
         
     .PARAMETER HyperV 
         If passed, prepare the machine for Hyper-V containers
-            
+
     .PARAMETER NATSubnetPrefix
         Use to override NAT Subnet when in NAT mode.  Defaults to 172.16.0.0/12
 
@@ -48,16 +48,16 @@
 
     .PARAMETER SkipImageImport
         Skips import of the base WindowsServerCore image.
-            
-    .PARAMETER $UseDHCP
-        If passed, use DHCP configuration.  Otherwise, use NAT.
+
+    .PARAMETER $TransparentNetwork
+        If passed, use DHCP configuration.  Otherwise, use NAT. (alias -UseDHCP)
 
     .PARAMETER WimPath
         Path to .wim file that contains the base package image
 
     .EXAMPLE
         .\Install-ContainerHost.ps1 -SkipDocker
-                
+
 #>
 #Requires -Version 5.0
 
@@ -65,20 +65,20 @@
 param(
     [string]
     [ValidateNotNullOrEmpty()]
-    $DockerPath = "https://aka.ms/tp4/docker",
-      
+    $DockerPath = "https://aka.ms/tp5/docker",
+
     [string]
     $ExternalNetAdapter,
-       
+
     [switch]
     $Force,
 
     [switch]
     $HyperV,
-         
+
     [string]
     $NATSubnetPrefix = "172.16.0.0/12",
-       
+
     [switch]
     $NoRestart,
 
@@ -98,7 +98,8 @@ param(
     $Staging,
 
     [switch]
-    $UseDHCP,
+    [alias("UseDHCP")]
+    $TransparentNetwork,
 
     [string]
     [ValidateNotNullOrEmpty()]
@@ -111,26 +112,24 @@ $global:ErrorFile = "$pwd\Install-ContainerHost.err"
 
 $global:BootstrapTask = "ContainerBootstrap"
 
-$global:SwitchName = "Virtual Switch"
-
 $global:HyperVImage = "NanoServer"
 
-function 
-Restart-And-Run() 
+function
+Restart-And-Run()
 {
     Test-Admin
 
-    Write-Output "Restart is required; restarting now..."    
-    
+    Write-Output "Restart is required; restarting now..."
+
     $argList = $script:MyInvocation.Line.replace($script:MyInvocation.InvocationName, "")
-    
+
     #
     # Update .\ to the invocation directory for the bootstrap
-    #    
-    $scriptPath = $script:MyInvocation.MyCommand.Path 
+    #
+    $scriptPath = $script:MyInvocation.MyCommand.Path
 
     $argList = $argList -replace "\.\\", "$pwd\"
-    
+
     if ((Split-Path -Parent -Path $scriptPath) -ne $pwd)
     {
         $sourceScriptPath = $scriptPath
@@ -138,7 +137,7 @@ Restart-And-Run()
 
         Copy-Item $sourceScriptPath $scriptPath
     }
-        
+
     Write-Output "Creating scheduled task action ($scriptPath $argList)..."
     $action = New-ScheduledTaskAction -Execute "powershell.exe" -Argument "-NoExit $scriptPath $argList"
 
@@ -159,7 +158,7 @@ Restart-And-Run()
             Restart-Computer
         }
     }
-    catch 
+    catch
     {
         Write-Error $_
 
@@ -193,7 +192,7 @@ Install-Feature
 
             Write-Output "Enabling feature $FeatureName..."
         }
-        
+
         $featureInstall = Add-WindowsFeature $FeatureName
 
         if ($featureInstall.RestartNeeded -eq "Yes")
@@ -228,7 +227,7 @@ Install-Feature
             {
                 #
                 # Get-WindowsEdition is not present on Nano.  On Nano, we assume reboot is not needed
-                #            
+                #
             }
             elseif ((Get-WindowsEdition -Online).RestartNeeded)
             {
@@ -240,7 +239,7 @@ Install-Feature
 
 
 function
-New-ContainerDhcpSwitch
+New-ContainerTransparentNetwork
 {
     if ($ExternalNetAdapter)
     {
@@ -251,33 +250,13 @@ New-ContainerDhcpSwitch
         $netAdapter = (Get-NetAdapter |? {($_.Status -eq 'Up') -and ($_.ConnectorPresent)})[0]
     }
 
-    Write-Output "Creating container switch (DHCP)..."
-    New-VmSwitch $global:SwitchName -NetAdapterName $netAdapter.Name | Out-Null
+    Write-Output "Creating container network (Transparent)..."
+    New-ContainerNetwork -Name "Transparent" -Mode Transparent -NetworkAdapterName $netAdapter.Name | Out-Null
 }
 
 
 function
-New-ContainerNatSwitch
-{
-    [CmdletBinding()]
-    param(
-        [string]
-        [ValidateNotNullOrEmpty()]
-        $SubnetPrefix
-    )
-           
-    #
-    # Workaround for switch bootstrap bug
-    #
-    Get-VMHost | Out-Null
-
-    Write-Output "Creating container switch (NAT)..."
-    New-VmSwitch $global:SwitchName -SwitchType NAT -NatSubnetAddress $SubnetPrefix | Out-Null
-}
-
-
-function
-New-ContainerNat
+New-ContainerNatNetwork
 {
     [CmdletBinding()]
     param(
@@ -286,8 +265,8 @@ New-ContainerNat
         $SubnetPrefix
     )
 
-    Write-Output "Creating NAT for $SubnetPrefix..."
-    New-NetNat -Name ContainerNAT -InternalIPInterfaceAddressPrefix $SubnetPrefix | Out-Null
+    Write-Output "Creating container network (NAT)..."
+    New-ContainerNetwork -Name "nat" -Mode NAT -SubnetPrefix $SubnetPrefix | Out-Null
 }
 
 
@@ -302,7 +281,7 @@ Install-ContainerHost
     Install-Feature -FeatureName Containers
 
     if ($HyperV)
-    {        
+    {
         Install-Feature -FeatureName Hyper-V
     }
 
@@ -320,7 +299,12 @@ Install-ContainerHost
     #
     # Unregister the bootstrap task, if it was previously created
     #
-    Unregister-ScheduledTask -TaskName $global:BootstrapTask -Confirm $true -ErrorAction SilentlyContinue
+    if ((Get-ScheduledTask -TaskName $global:BootstrapTask -ErrorAction SilentlyContinue) -ne $null)
+    {
+        schtasks /DELETE /TN $global:BootstrapTask /F
+        #Unregister-ScheduledTask -TaskName $global:BootstrapTask -Confirm $true
+    }
+    
 
     #
     # Configure networking
@@ -328,46 +312,44 @@ Install-ContainerHost
     if ($($PSCmdlet.ParameterSetName) -ne "Staging")
     {
         Write-Output "Waiting for Hyper-V Management..."
-        $switchCollection = $null
+        $networks = $null
 
         try
         {
-            $switchCollection = Get-VmSwitch -ErrorAction SilentlyContinue
+            $networks = Get-ContainerNetwork -ErrorAction SilentlyContinue
         }
-        catch 
+        catch
         {
             #
-            # If we can't query switches, we are in bootstrap mode.  Assume no switches
+            # If we can't query network, we are in bootstrap mode.  Assume no networks
             #
         }
 
-        if ($switchCollection.Count -eq 0)
+        if ($networks.Count -eq 0)
         {
             Write-Output "Enabling container networking..."
-            
-            if ($UseDHCP)
+
+            if ($TransparentNetwork)
             {
-                New-ContainerDhcpSwitch
+                New-ContainerTransparentNetwork
             }
             else
-            {   
-                New-ContainerNatSwitch $NATSubnetPrefix
-
-                New-ContainerNat $NATSubnetPrefix
-            }    
+            {
+                New-ContainerNatNetwork $NATSubnetPrefix
+            }
         }
         else
         {
             Write-Output "Networking is already configured.  Confirming configuration..."
 
-            if ($UseDHCP)
+            if ($TransparentNetwork)
             {
-                $dhcpSwitchCollection = $switchCollection |? { $_.SwitchType -eq "External" }
+                $transparentNetwork = $networks |? { $_.Mode -eq "Transparent" }
 
-                if ($dhcpSwitchCollection -eq $null)
+                if ($transparentNetwork -eq $null)
                 {
-                    Write-Output "We didn't find a configured external switch; configuring now..."
-                    New-ContainerDhcpSwitch
+                    Write-Output "We didn't find a configured external network; configuring now..."
+                    New-ContainerTransparentNetwork
                 }
                 else
                 {
@@ -381,57 +363,41 @@ Install-ContainerHost
                         }
 
                         $netAdapter = $netAdapters[0]
-                        $dhcpSwitch = $dhcpSwitchCollection |? { $_.NetAdapterInterfaceDescription -eq $netAdapter.InterfaceDescription }
+                        $transparentNetwork = $networks |? { $_.NetworkAdapterName -eq $netAdapter.InterfaceDescription }
 
-                        if ($dhcpSwitch -eq $null)
+                        if ($transparentNetwork -eq $null)
                         {
-                            throw "One or more external switches are configured, but none match the expected switch name ($global:SwitchName)"
+                            throw "One or more external networks are configured, but not on the requested adapter ($ExternalNetAdapter)"
                         }
 
-                        $global:SwitchName = $dhcpSwitch.Name
-                        Write-Output "Configured DHCP switch found: $global:SwitchName"
+                        Write-Output "Configured transparent network found: $($transparentNetwork.Name)"
                     }
-                    else 
+                    else
                     {
-                        if ($($dhcpSwitchCollection |? { $_.Name -eq $global:SwitchName }) -eq $null)
-                        {
-                            throw "One or more external switches are configured, but none match the expected switch name ($global:SwitchName)"
-                        }
+                        Write-Output "Configured transparent network found: $($transparentNetwork.Name)"
                     }
                 }
             }
             else
             {
                 $subnetPrefix = $NATSubnetPrefix
-                $natSwitchExists = $false
+                $natNetworkExists = $false
 
-                foreach ($switch in $($switchCollection |? { $_.SwitchType -eq "NAT" }))
+                foreach ($network in $($networks |? { $_.Mode -eq "NAT" }))
                 {
-                    if (($switch.Name -eq $global:SwitchName) -and
-                        ($switch.NATSubnetAddress -ne ""))
+                    if (($network.Name -eq "nat") -and
+                        ($network.SubnetPrefix -ne ""))
                     {
-                        $subnetPrefix = $switch.NATSubnetAddress
-                        $natSwitchExists = $true
+                        $subnetPrefix = $network.SubnetPrefix
+                        $natNetworkExists = $true
                         break
                     }
                 }
 
-                if (-not $natSwitchExists)
+                if (-not $natNetworkExists)
                 {
-                    Write-Output "We didn't find a configured NAT switch; configuring now..."
-                    New-ContainerNatSwitch $subnetPrefix
-                }
-
-                $existingNat = Get-NetNat
-
-                if ($existingNat -eq $null)
-                {
-                    Write-Output "We didn't find a configured NAT; configuring now..."
-                    New-ContainerNat $subnetPrefix
-                }
-                elseif ($existingNat.InternalIPInterfaceAddressPrefix -ne $subnetPrefix)
-                {
-                    throw "Unexpected NAT configuration.  Switch subnet ($subnetPrefix) does not match NAT subnet ($($existingNat.InternalIPInterfaceAddressPrefix))"
+                    Write-Output "We didn't find a configured NAT network; configuring now..."
+                    New-ContainerNatNetwork $subnetPrefix
                 }
             }
         }
@@ -440,26 +406,26 @@ Install-ContainerHost
     $newBaseImages = @()
 
     if (-not $SkipImageImport)
-    {        
-        $imageName = "WindowsServerCore"
-
-        if ($HyperV -or (Test-Nano))
+    {   
+        if ($WimPath -eq "")
         {
-            $imageName = "NanoServer"
-        }
+            $imageName = "WindowsServerCore"
 
-        #
-        # Install the base package
-        #
-        $imageCollection = Get-InstalledContainerImage $imageName
+            if ($HyperV -or (Test-Nano))
+            {
+                $imageName = "NanoServer"
+            }
 
-        if ($imageCollection.Count -gt 0)
-        {
-            Write-Output "Image $imageName is already installed on this machine."
-        }
-        else
-        {
-            if ($WimPath -eq "")
+            #
+            # Install the base package
+            #
+            $imageCollection = Get-InstalledContainerImage $imageName
+
+            if ($imageCollection.Count -gt 0)
+            {
+                Write-Output "Image $imageName is already installed on this machine."
+            }
+            else
             {
                 Test-ContainerProvider
                 
@@ -483,59 +449,59 @@ Install-ContainerHost
                 # TODO: expect the follow to have default ErrorAction of stop
                 #
                 Install-ContainerImage $imageName -Version $imageVersion -ErrorAction Stop
+                    
+                Write-Output "Container base image install complete.  Querying container images..."
+                $newBaseImages += Wait-InstalledContainerImage $imageName
+            }
+        }
+        else
+        {
+            Write-Output "Installing Container OS image from $WimPath (this may take a few minutes)..."
+
+            if (Test-Path $WimPath)
+            {
+                #
+                # .wim is present and local
+                #            
+            }
+            elseif (($WimPath -as [System.URI]).AbsoluteURI -ne $null)
+            {
+                #
+                # .wim is on a URI and must be downloaded
+                # 
+                $localWimPath = "$pwd\ContainerBaseImage.wim"
+                                
+                Copy-File -SourcePath $WimPath -DestinationPath $localWimPath
+
+                $WimPath = $localWimPath
             }
             else
             {
-                Write-Output "Installing Container OS image from $WimPath (this may take a few minutes)..."
-
-                if (Test-Path $WimPath)
-                {
-                    #
-                    # .wim is present and local
-                    #            
-                }
-                elseif (($WimPath -as [System.URI]).AbsoluteURI -ne $null)
-                {
-                    #
-                    # .wim is on a URI and must be downloaded
-                    # 
-                    $localWimPath = "$pwd\ContainerBaseImage.wim"
-                                
-                    Copy-File -SourcePath $WimPath -DestinationPath $localWimPath
-
-                    $WimPath = $localWimPath
-                }
-                else
-                {
-                    throw "Cannot copy from invalid WimPath $WimPath"
-                }
-
-                if ($PSDirect -and (Test-Nano))
-                {
-                    #
-                    # This is a gross hack for TP4 to avoid a CoreCLR issue
-                    #
-                    $modulePath = "$($env:Temp)\Containers2.psm1"
-
-                    $cmdletContent = gc $env:windir\System32\WindowsPowerShell\v1.0\Modules\Containers\1.0.0.0\Containers.psm1
-
-                    $cmdletContent = $cmdletContent.replace('Set-Acl $fileToReAcl -AclObject $acl', '[System.IO.FileSystemAclExtensions]::SetAccessControl($fileToReAcl, $acl)')
-                    $cmdletContent = $cmdletContent.replace('function Install-ContainerOSImage','function Install-ContainerOSImage2')
-                    
-                    $cmdletContent | sc $modulePath
-                    
-                    Import-Module $modulePath -DisableNameChecking
-                    Install-ContainerOSImage2 -WimPath $WimPath -Force
-                    Remove-Item $modulePath
-                }
-                else
-                {
-                    Install-ContainerOsImage -WimPath $WimPath -Force
-                }
+                throw "Cannot copy from invalid WimPath $WimPath"
             }
 
-            Write-Output "Container base image install complete.  Querying container images..."
-            $newBaseImages += Wait-InstalledContainerImage $imageName
+            if ($PSDirect -and (Test-Nano))
+            {
+                #
+                # This is a gross hack for TP4 to avoid a CoreCLR issue
+                #
+                $modulePath = "$($env:Temp)\Containers2.psm1"
+
+                $cmdletContent = gc $env:windir\System32\WindowsPowerShell\v1.0\Modules\Containers\1.0.0.0\Containers.psm1
+
+                $cmdletContent = $cmdletContent.replace('Set-Acl $fileToReAcl -AclObject $acl', '[System.IO.FileSystemAclExtensions]::SetAccessControl($fileToReAcl, $acl)')
+                $cmdletContent = $cmdletContent.replace('function Install-ContainerOSImage','function Install-ContainerOSImage2')
+                    
+                $cmdletContent | sc $modulePath
+                    
+                Import-Module $modulePath -DisableNameChecking
+                Install-ContainerOSImage2 -WimPath $WimPath -Force
+                Remove-Item $modulePath
+            }
+            else
+            {
+                Install-ContainerOsImage -WimPath $WimPath -Force
+            }
         }
 
         #
@@ -545,15 +511,15 @@ Install-ContainerHost
         {
             if ((Get-InstalledContainerImage $global:HyperVImage).Count -gt 0)
             {
-                Write-Output "OS image ($global:HyperVImage) is already installed."                
+                Write-Output "OS image ($global:HyperVImage) is already installed."
             }
             else
             {
                 Test-ContainerProvider
-                
+
                 Write-Output "Getting Container OS image ($global:HyperVImage) from OneGet (this may take a few minutes)..."
                 Install-ContainerImage $global:HyperVImage
-                
+
                 #
                 # Sleeping to ensure VMMS has restarted to workaround TP3 issue
                 #
@@ -576,81 +542,14 @@ Install-ContainerHost
     # Install, register, and start Docker
     #
     if ($($PSCmdlet.ParameterSetName) -eq "IncludeDocker")
-    {   
+    {
         if (Test-Docker)
         {
             Write-Output "Docker is already installed."
         }
         else
         {
-            Test-Admin
-
-            Write-Output "Installing Docker..."
-            Copy-File -SourcePath $DockerPath -DestinationPath $env:windir\System32\docker.exe
-
-            $dockerData = "$($env:ProgramData)\docker"
-            $dockerLog = "$dockerData\daemon.log"
-                                
-            if (-not (Test-Path $dockerData))
-            {
-                Write-Output "Creating Docker program data..."
-                New-Item -ItemType Directory -Force -Path $dockerData | Out-Null
-            }
-
-            $dockerDaemonScript = "$dockerData\runDockerDaemon.cmd"
-
-            New-DockerDaemonRunText | Out-File -FilePath $dockerDaemonScript -Encoding ASCII
-            
-            if (Test-Nano)
-            {
-                Write-Output "Creating scheduled task action..."
-                $action = New-ScheduledTaskAction -Execute "cmd.exe" -Argument "/c $dockerDaemonScript > $dockerLog 2>&1"
-
-                Write-Output "Creating scheduled task trigger..."
-                $trigger = New-ScheduledTaskTrigger -AtStartup
-                
-                Write-Output "Creating scheduled task settings..."
-                $settings = New-ScheduledTaskSettingsSet -Priority 5
-                
-                Write-Output "Registering Docker daemon to launch at startup..."
-                Register-ScheduledTask -TaskName $global:DockerServiceName -Action $action -Trigger $trigger -Settings $settings -User SYSTEM -RunLevel Highest | Out-Null
-
-                Write-Output "Launching daemon..."
-                Start-ScheduledTask -TaskName $global:DockerServiceName
-            }
-            else
-            {            
-                if (Test-Path "$($env:SystemRoot)\System32\nssm.exe")
-                {
-                    Write-Output "NSSM is already installed"
-                }
-                else
-                {
-                    Get-Nsmm -Destination "$($env:SystemRoot)\System32" -WorkingDir "$env:temp"
-                }
-                        
-                Write-Output "Configuring NSSM for $global:DockerServiceName service..."
-                Start-Process -Wait "nssm" -ArgumentList "install $global:DockerServiceName $($env:SystemRoot)\System32\cmd.exe /s /c $dockerDaemonScript < nul"
-                Start-Process -Wait "nssm" -ArgumentList "set $global:DockerServiceName DisplayName Docker Daemon"
-                Start-Process -Wait "nssm" -ArgumentList "set $global:DockerServiceName Description The Docker Daemon provides management capabilities of containers for docker clients"
-                # Pipe output to daemon.log
-                Start-Process -Wait "nssm" -ArgumentList "set $global:DockerServiceName AppStderr $dockerLog"
-                Start-Process -Wait "nssm" -ArgumentList "set $global:DockerServiceName AppStdout $dockerLog"
-                # Allow 30 seconds for graceful shutdown before process is terminated
-                Start-Process -Wait "nssm" -ArgumentList "set $global:DockerServiceName AppStopMethodConsole 30000"
-            
-                Start-Service -Name $global:DockerServiceName            
-            }
-            
-            #
-            # Waiting for docker to come to steady state
-            #
-            Wait-Docker
-
-            #
-            # If we have installed Docker, assume all base images must be tagged
-            #
-            $newBaseImages = Get-ContainerImage |? IsOSImage
+            Install-Docker -DockerPath $DockerPath
         }
 
         if ($newBaseImages.Count -gt 0)
@@ -677,7 +576,7 @@ Install-ContainerHost
             }
         }
     }
-    
+
     Remove-Item $global:ErrorFile
 
     Write-Output "Script complete!"
@@ -905,11 +804,10 @@ Test-Nano()
 {
     $EditionId = (Get-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion' -Name 'EditionID').EditionId
 
-    return (($EditionId -eq "ServerStandardNano ") -or 
+    return (($EditionId -eq "ServerStandardNano") -or 
             ($EditionId -eq "ServerDataCenterNano") -or 
             ($EditionId -eq "NanoServer") -or 
             ($EditionId -eq "ServerTuva"))
-
 }
 
 
@@ -957,6 +855,114 @@ Find-DockerImages
     )
 
     return docker images | Where { $_ -match $BaseImageName.tolower() }
+}
+
+
+function 
+Install-Docker()
+{
+    [CmdletBinding()]
+    param(
+        [string]
+        [ValidateNotNullOrEmpty()]
+        $DockerPath = "https://aka.ms/tp5/docker"
+    )
+
+    Test-Admin
+
+    Write-Output "Installing Docker..."
+    Copy-File -SourcePath $DockerPath -DestinationPath $env:windir\System32\docker.exe
+
+    $dockerData = "$($env:ProgramData)\docker"
+    $dockerLog = "$dockerData\daemon.log"
+
+    if (-not (Test-Path $dockerData))
+    {
+        Write-Output "Creating Docker program data..."
+        New-Item -ItemType Directory -Force -Path $dockerData | Out-Null
+    }
+
+    $dockerDaemonScript = "$dockerData\runDockerDaemon.cmd"
+
+    New-DockerDaemonRunText | Out-File -FilePath $dockerDaemonScript -Encoding ASCII
+
+    if (Test-Nano)
+    {
+        Write-Output "Creating scheduled task action..."
+        $action = New-ScheduledTaskAction -Execute "cmd.exe" -Argument "/c $dockerDaemonScript > $dockerLog 2>&1"
+
+        Write-Output "Creating scheduled task trigger..."
+        $trigger = New-ScheduledTaskTrigger -AtStartup
+
+        Write-Output "Creating scheduled task settings..."
+        $settings = New-ScheduledTaskSettingsSet -Priority 5
+
+        Write-Output "Registering Docker daemon to launch at startup..."
+        Register-ScheduledTask -TaskName $global:DockerServiceName -Action $action -Trigger $trigger -Settings $settings -User SYSTEM -RunLevel Highest | Out-Null
+
+        Write-Output "Launching daemon..."
+        Start-ScheduledTask -TaskName $global:DockerServiceName
+    }
+    else
+    {
+        if (Test-Path "$($env:SystemRoot)\System32\nssm.exe")
+        {
+            Write-Output "NSSM is already installed"
+        }
+        else
+        {
+            Get-Nsmm -Destination "$($env:SystemRoot)\System32" -WorkingDir "$env:temp"
+        }
+
+        Write-Output "Configuring NSSM for $global:DockerServiceName service..."
+        Start-Process -Wait "nssm" -ArgumentList "install $global:DockerServiceName $($env:SystemRoot)\System32\cmd.exe /s /c $dockerDaemonScript < nul"
+        Start-Process -Wait "nssm" -ArgumentList "set $global:DockerServiceName DisplayName Docker Daemon"
+        Start-Process -Wait "nssm" -ArgumentList "set $global:DockerServiceName Description The Docker Daemon provides management capabilities of containers for docker clients"
+        # Pipe output to daemon.log
+        Start-Process -Wait "nssm" -ArgumentList "set $global:DockerServiceName AppStderr $dockerLog"
+        Start-Process -Wait "nssm" -ArgumentList "set $global:DockerServiceName AppStdout $dockerLog"
+        # Allow 30 seconds for graceful shutdown before process is terminated
+        Start-Process -Wait "nssm" -ArgumentList "set $global:DockerServiceName AppStopMethodConsole 30000"
+
+        Start-Service -Name $global:DockerServiceName
+    }
+
+    #
+    # Waiting for docker to come to steady state
+    #
+    Wait-Docker
+
+    Write-Output "The following images are present on this machine:"
+    foreach ($image in (Get-DockerImages))
+    {
+        Write-Output "    $image"
+    }
+    Write-Output ""
+}
+
+
+function
+New-DockerDaemonRunText
+{
+    return @"
+
+@echo off
+set certs=%ProgramData%\docker\certs.d
+
+if exist %ProgramData%\docker (goto :run)
+mkdir %ProgramData%\docker
+
+:run
+if exist %certs%\server-cert.pem (if exist %ProgramData%\docker\tag.txt (goto :secure))
+
+docker daemon -D 
+goto :eof
+
+:secure
+docker daemon -D -H 0.0.0.0:2376 --tlsverify --tlscacert=%certs%\ca.pem --tlscert=%certs%\server-cert.pem --tlskey=%certs%\server-key.pem
+
+"@
+
 }
 
 
@@ -1062,20 +1068,13 @@ Wait-Docker()
     {
         try
         {
-            if (Test-Nano)
+            docker version | Out-Null
+
+            if (-not $?)
             {
-                #
-                # Nano doesn't support Invoke-RestMethod, we will parse 'docker ps' output
-                #
-                if ((docker ps 2>&1 | Select-String "error") -ne $null)
-                {
-                    throw "Docker daemon is not running yet"
-                }
+                throw "Docker daemon is not running yet"
             }
-            else
-            {
-                Invoke-RestMethod -Uri http://127.0.0.1:2375/info -Method GET | Out-Null
-            }
+
             $dockerReady = $true
         }
         catch 
@@ -1154,30 +1153,6 @@ Write-DockerImageTag()
 }
 
 
-
-function
-New-DockerDaemonRunText
-{
-    return @"
-
-@echo off
-set certs=%ProgramData%\docker\certs.d
-
-if exist %ProgramData%\docker (goto :run)
-mkdir %ProgramData%\docker
-
-:run
-if exist %certs%\server-cert.pem (if exist %ProgramData%\docker\tag.txt (goto :secure))
- 
-docker daemon -D -b "$global:SwitchName"
-goto :eof
- 
-:secure
-docker daemon -D -b "$global:SwitchName" -H 0.0.0.0:2376 --tlsverify --tlscacert=%certs%\ca.pem --tlscert=%certs%\server-cert.pem --tlskey=%certs%\server-key.pem
-
-"@
-
-}
 try
 {
     Install-ContainerHost
