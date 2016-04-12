@@ -1,4 +1,4 @@
-# Get access to pre-release features for Hyper-V VMs on Windows 
+# Access pre-release features for Hyper-V
 
 > This is preliminary content and subject to change.  
   Pre-release virtual machines are intended for development or test environments only as they are not supported by Microsoft.
