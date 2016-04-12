@@ -353,5 +353,3 @@ Exit the interactive session with the container.
 ```powershell
 C:\> exit
 ```
-
-

@@ -1,13 +1,11 @@
 # About Windows Containers
-## [Container Docs Overview](./containers_welcome.md)
-## [About Windows Containers](about/about_overview.md)
+## [Windows Containers Overview](about/about_overview.md)
 ## [Work In Progress](about/work_in_progress.md)
 ## [FAQ](about/faq.md)
 # Container Quick Start
 ## [Containers in Azure](quick_start/azure_setup.md)
 ## [Containers in a New Hyper-V VM](quick_start/container_setup.md)
 ## [Containers in an Existing System](quick_start/inplace_setup.md)
-## [PowerShell Quick Start](quick_start/manage_powershell.md)
 ## [Docker Quick Start](quick_start/manage_docker.md)
 # Deploy Windows Containers
 ## [System Requirements](deployment/system_requirements.md)
@@ -15,13 +13,11 @@
 ## [Containers on Nano Server](deployment/deployment_nano.md)
 ## [Docker on Windows](deployment/docker_windows.md)
 # Manage Windows Containers
-## [Container Management](management/manage_containers.md)
 ## [Hyper-V Containers](management/hyperv_container.md)
 ## [Container Images](management/manage_images.md)
 ## [Container Networking](management/container_networking.md)
-## [Container Shared Folders](management/manage_data.md)
+## [Container Data Volumes](management/manage_data.md)
 ## [Container Resource Control](management/manage_resources.md)
-## [Management Interoperability](management/hcs_powershell.md)
 # Container Deployment Examples
 ## [Create .Net 3.5 Container Image](examples/dotnet35.md)
 # Community and Support
