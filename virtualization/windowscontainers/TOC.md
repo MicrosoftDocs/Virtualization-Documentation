@@ -11,15 +11,17 @@
 ## [System Requirements](deployment/system_requirements.md)
 ## [Containers on Windows Server](deployment/deployment.md)
 ## [Containers on Nano Server](deployment/deployment_nano.md)
-## [Docker on Windows](deployment/docker_windows.md)
 # Manage Windows Containers
 ## [Hyper-V Containers](management/hyperv_container.md)
 ## [Container Images](management/manage_images.md)
 ## [Container Networking](management/container_networking.md)
 ## [Container Data Volumes](management/manage_data.md)
 ## [Container Resource Control](management/manage_resources.md)
-# Container Deployment Examples
-## [Create .Net 3.5 Container Image](examples/dotnet35.md)
+# Docker on Windows
+## [Docker Engine on Windows](deployment/docker_windows.md)
+## [Dockerfiles on Windows](docker/manage_windows_dockerfile.md)
+## [Optimize Dockerfiles](docker/optimize_windows_dockerfile.md)
+## [Dockerfile Examples for Windows](https://github.com/Microsoft/Virtualization-Documentation/tree/master/windows-server-container-samples)
 # Community and Support
 ## [Container forums](https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers)
 # Reference
