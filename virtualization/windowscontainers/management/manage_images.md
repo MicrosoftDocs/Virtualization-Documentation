@@ -6,7 +6,7 @@ author: neilpeterson
 
 **This is preliminary content and subject to change.** 
 
-Container images are used to deploy containers. These images can include an operating system, applications, and all application dependencies. For instance, you may develop a container image that has been pre-configured with Nano Server, IIS, and an application running in IIS. This container image can then be stored in a container registry for later use, deployed on any Windows Container host (on-prem, cloud, or even to a container service), and also used as the base for a new container image.
+Container images are used to deploy containers. These images can include an operating system, applications, and all application dependencies. For instance, you may develop a container image that has been pre-configured with Nano Server, IIS, and an application running in IIS. This container image can then be stored in a container registry for later use, deployed on any Windows container host (on-prem, cloud, or even to a container service), and also used as the base for a new container image.
 
 There are two types of container images:
 
@@ -179,7 +179,7 @@ IMAGE               CREATED             CREATED BY          SIZE                
 
 ### Docker Hub
 
-The Docker Hub registry contains pre-built images which can be downloaded onto a container host. Once these images have been downloaded, they can be used as the base for Windows Container Applications.
+The Docker Hub registry contains pre-built images which can be downloaded onto a container host. Once these images have been downloaded, they can be used as the base for Windows container Applications.
 
 To see a list of images available from Docker Hub use the `docker search` command. Note – the Windows Serve Core or Nano Server base OS images will need to be installed before pulling these dependent container images from Docker Hub.
 

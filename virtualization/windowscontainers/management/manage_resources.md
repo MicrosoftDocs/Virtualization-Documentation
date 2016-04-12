@@ -6,7 +6,7 @@ author: neilpeterson
 
 **This is preliminary content and subject to change.** 
 
-Windows Containers include the ability to manage how much CPU, disk IO, network and memory resources containers can consume. Constraining container resource consumptions allows host resources to be used efficiently, and prevents over consumption. This document will detail managing container resources with both PowerShell and Docker.
+Windows containers include the ability to manage how much CPU, disk IO, network and memory resources containers can consume. Constraining container resource consumptions allows host resources to be used efficiently, and prevents over consumption. This document will detail managing container resources with both PowerShell and Docker.
 
 ## Manage Resources with Docker 
 
@@ -22,8 +22,8 @@ C:\> docker run -it --cpu-shares 2 --name dockerdemo windowsservercore cmd
 
 ## Known Issues
 
-- CPU and IO Resource Controls are not currently supported with Hyper-V Containers.
-- IO Resource Controls are not currently supported with Container Shared Folders.
+- CPU and IO Resource Controls are not currently supported with Hyper-V containers.
+- IO Resource Controls are not currently supported with container data volumes.
 
 ## Video Walkthrough
 

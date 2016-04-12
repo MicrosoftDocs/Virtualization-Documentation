@@ -6,12 +6,12 @@ author: neilpeterson
 
 **This is preliminary content and subject to change.** 
 
-Deploying a Windows Container host has different steps depending on the operating system and the host system type (physical or virtual). The steps in this document are used to deploy a Windows Container host to either Windows Server 2016 or Windows Server Core 2016, on a physical or virtual system. To install a Windows Container host to Nano Server see [Container Host Deployment - Nano Server](./deployment_nano.md).
+Deploying a Windows container host has different steps depending on the operating system and the host system type (physical or virtual). The steps in this document are used to deploy a Windows Container host to either Windows Server 2016 or Windows Server Core 2016, on a physical or virtual system. To install a Windows container host to Nano Server see [Container host deployment - Nano Server](./deployment_nano.md).
 
-For details on system requirements, see [Windows Container Host System Requirements](./system_requirements.md). 
+For details on system requirements, see [Windows container host system requirements](./system_requirements.md). 
 
-PowerShell scripts are also available to automate the deployment of a Windows Container host. 
-- [Deploy a container host in a new Hyper-V Virtual Machine](../quick_start/container_setup.md).
+PowerShell scripts are also available to automate the deployment of a Windows container host. 
+- [Deploy a container host in a new Hyper-V virtual machine](../quick_start/container_setup.md).
 - [Deploy a container host to an existing system](../quick_start/inplace_setup.md).
 
 # Windows Server host
@@ -35,7 +35,7 @@ PowerShell scripts are also available to automate the deployment of a Windows Co
 </tr>
 </table>
 <br />
-These steps need to be taken if Hyper-V Containers will be used. Note, the steps marked with and * are only necessary if the container host is itself a Hyper-V virtual machine.
+These steps need to be taken if Hyper-V containers will be used. Note, the steps marked with and * are only necessary if the container host is itself a Hyper-V virtual machine.
 
 <table border="1" style="background-color:FFFFCC;border-collapse:collapse;border:1px solid FFCC00;color:000000;width:100%" cellpadding="5" cellspacing="5">
 <tr valign="top">
@@ -56,7 +56,7 @@ These steps need to be taken if Hyper-V Containers will be used. Note, the steps
 </tr>
 <tr>
 <td>[Enable Hyper-V role](#hypv) </td>
-<td>Hyper-V is only required if Hyper-V Containers will be used.</td>
+<td>Hyper-V is only required if Hyper-V containers will be used.</td>
 </tr>
 </table>
 
@@ -113,11 +113,11 @@ Likewise, this command downloads and installs the Windows Server Core base OS im
 PS C:\> Install-ContainerImage -Name WindowsServerCore
 ```
 
-For more information on Container image management see [Windows Container Images](../management/manage_images.md).
+For more information on Container image management see [Windows container images](../management/manage_images.md).
  
 ### <a name=docker></a>Install Docker
 
-The Docker Engine is not shipped with Windows, and not installed with the Windows Container feature. To install Docker, follow the instructions in this article [Docker and Windows](./docker_windows.md).
+The Docker Engine is not shipped with Windows, and not installed with the Windows container feature. To install Docker, follow the instructions in this article [Docker and Windows](./docker_windows.md).
 
 
 ## Hyper-V container host
@@ -134,7 +134,7 @@ Set-VMProcessor -VMName <VM Name> -ExposeVirtualizationExtensions $true -Count 2
 
 ### <a name=dyn></a>Disable dynamic memory
 
-If the Container host is itself a Hyper-V virtual machine, dynamic memory must be disabled on the container host virtual machine. This can be configured through the settings of the virtual machine, or with the following command.
+If the container host is itself a Hyper-V virtual machine, dynamic memory must be disabled on the container host virtual machine. This can be configured through the settings of the virtual machine, or with the following command.
 
 **Note** - The virtual machine must be turned off when running this command.
 
@@ -152,7 +152,7 @@ Get-VMNetworkAdapter -VMName <VM Name> | Set-VMNetworkAdapter -MacAddressSpoofin
 
 ### <a name=hypv></a>Enable the Hyper-V role
 
-If Hyper-V Containers will be deployed, the Hyper-V role needs to be enabled on the container host. The Hyper-V role can be installed on Windows Server 2016 or Windows Server 2016 Core using the `Install-WindowsFeature` command. If the container host is itself a Hyper-V virtual machine, nested virtualization will need to be enabled first. To do so see [Configure Nested Virtualization]( #nest).
+If Hyper-V containers will be deployed, the Hyper-V role needs to be enabled on the container host. The Hyper-V role can be installed on Windows Server 2016 or Windows Server 2016 Core using the `Install-WindowsFeature` command. If the container host is itself a Hyper-V virtual machine, nested virtualization will need to be enabled first. To do so see [Configure nested virtualization]( #nest).
 
 ```powershell
 Install-WindowsFeature hyper-v

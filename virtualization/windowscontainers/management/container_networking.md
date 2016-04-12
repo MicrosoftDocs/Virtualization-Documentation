@@ -295,6 +295,4 @@ Manage the connection between a containers network adapter and a virtual switch.
 - Connect-ContainerNetworkAdapter - connects a container to a virtual switch.
 - Disconnect-ContainerNetworkAdapter - disconnects a container from a virtual switch.
 
-For details on each of these command see the [Container PowerShell Reference]( https://technet.microsoft.com/en-us/library/mt433069.aspx).
-
-For more information on starting and connecting to a Windows Container see [Managing Containers](./manage_containers.md).
+For details on each of these command see the [Container PowerShell reference]( https://technet.microsoft.com/en-us/library/mt433069.aspx).

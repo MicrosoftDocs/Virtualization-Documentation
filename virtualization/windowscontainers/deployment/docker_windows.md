@@ -10,7 +10,7 @@ The Docker engine is not included with Windows and will need to be installed and
 
 For more information on Docker and the Docker toolset visit [Docker.com](https://www.docker.com/). 
 
-> The Windows Container feature must be enabled before Docker can be used to create and manage Windows Server and Hyper-V Container. For instructions on enabling this feature, see the [Container Host Deployment Guide](./docker_windows.md).
+> The Windows container feature must be enabled before Docker can be used to create and manage Windows Server and Hyper-V container. For instructions on enabling this feature, see the [Container host deployment guide](./docker_windows.md).
 
 ## Windows Server 2016
 
@@ -18,7 +18,7 @@ For more information on Docker and the Docker toolset visit [Docker.com](https:/
 
 There are several methods that can be used to create a Windows service, one example shown here uses `nssm.exe`. 
 
-Download docker.exe from `https://aka.ms/tp4/docker` and place it in the System32 directory on the Container Host.
+Download docker.exe from `https://aka.ms/tp4/docker` and place it in the System32 directory on the container Host.
 
 ```powershell
 wget https://aka.ms/tp4/docker -OutFile $env:SystemRoot\system32\docker.exe
@@ -119,7 +119,7 @@ sc.exe delete Docker
 
 ### Install Docker <!--2-->
 
-Download docker.exe from `https://aka.ms/tp4/docker` and copy it to the `windows\system32` folder of the Nano Server Container host.
+Download docker.exe from `https://aka.ms/tp4/docker` and copy it to the `windows\system32` folder of the Nano Server container host.
 
 Create a directory named `c:\programdata\docker`. In this directory, create a file named `runDockerDaemon.cmd`.
 
@@ -177,7 +177,7 @@ Get-ScheduledTask -TaskName Docker | UnRegister-ScheduledTask
 
 ### Interactive Nano session
 
-> For information on remotely managing Nano Server, see [Getting Started with Nano Server](https://technet.microsoft.com/en-us/library/mt126167.aspx#bkmk_ManageRemote).
+> For information on remotely managing Nano Server, see [Getting started with Nano Server](https://technet.microsoft.com/en-us/library/mt126167.aspx#bkmk_ManageRemote).
 
 You may receive this error when interactively managing a container on a Nano Server Host.
 

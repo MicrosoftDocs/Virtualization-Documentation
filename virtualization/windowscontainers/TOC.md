@@ -18,7 +18,6 @@
 ## [Container Networking](management/container_networking.md)
 ## [Container Data Volumes](management/manage_data.md)
 ## [Container Resource Control](management/manage_resources.md)
-## [Management Interoperability](management/hcs_powershell.md)
 # Container Deployment Examples
 ## [Create .Net 3.5 Container Image](examples/dotnet35.md)
 # Community and Support
