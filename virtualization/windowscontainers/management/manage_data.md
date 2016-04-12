@@ -30,7 +30,7 @@ In addition to creating a new data volume, you may want to pass an existing dire
 In this example, the source directory, 'c:\source', is mounted into a container as 'c:\destination'.
 
 ```none
-PS C:\> docker run -it -v c:\source:c:\destination windowsservercore cmd
+docker run -it -v c:\source:c:\destination windowsservercore cmd
 ```
 
 For more information on monting host directories, see [Manage data in containers on docker.com](https://docs.docker.com/engine/userguide/containers/dockervolumes/#mount-a-host-directory-as-a-data-volume).
