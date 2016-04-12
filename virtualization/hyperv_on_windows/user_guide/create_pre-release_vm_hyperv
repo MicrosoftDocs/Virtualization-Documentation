@@ -10,9 +10,9 @@ The virtual machines you create as pre-release have no build-to-build compatibil
 
 ## Create a pre-release virtual machine
 You can create a pre-release virtual machine on Hyper-V hosts that run Windows Server 2016 Technical Preview.
-1. On the Windows desktop, click the Start button and type any part of the name Windows PowerShell.
-2. Right-click Windows PowerShell and select Run as Administrator.
-3. Use the New-VM cmdlet with the -Prerelease flag to create the pre-release virtual machine. Run the following command where VM Name is the name of the virtual machine you want to create.
+1. On the Windows desktop, click the Start button and type any part of the name **Windows PowerShell**.
+2. Right-click **Windows PowerShell** and select **Run as Administrator**.
+3. Use the [New-VM](https://technet.microsoft.com/library/hh848537.aspx) cmdlet with the -Prerelease flag to create the pre-release virtual machine. Run the following command where VM Name is the name of the virtual machine that you want to create.
 ```
 New-VM -Name <VM Name> –Prerelease 
 ```
