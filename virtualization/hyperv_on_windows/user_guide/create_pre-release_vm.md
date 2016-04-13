@@ -31,5 +31,5 @@ Other examples:
  The examples covered in those articles work for Hyper-V hosts that run Windows 10 or Windows Server 2016 Technical Preview. But right now, you can only use the -Prerelease flag to create a pre-release virtual machine on Hyper-V hosts that run Windows Server 2016 Technical Preview.
 
 ## See also
-- To learn about the pre-release features that are available and how to try them out, see the [Virtualization Blog](https://blogs.technet.microsoft.com/virtualization/).
-- To learn about virtual machine configuration versions, see [Supported virtual machine configuration versions](https://technet.microsoft.com/en-us/library/dn765471.aspx#BKMK_ConfgVersion).
+-  [Virtualization Blog](https://blogs.technet.microsoft.com/virtualization/) - Learn about the pre-release features that are available and how to try them out.
+- [Supported virtual machine configuration versions](https://technet.microsoft.com/en-us/library/dn765471.aspx#BKMK_ConfgVersion) - Learn how to check the virtual machine configuration version and which versions are supported by Microsoft.
