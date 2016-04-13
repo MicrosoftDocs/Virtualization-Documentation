@@ -19,8 +19,17 @@ You can create a pre-release virtual machine on Hyper-V hosts that run Windows S
 
 1. On the Windows desktop, click the Start button and type any part of the name **Windows PowerShell**.
 2. Right-click **Windows PowerShell** and select **Run as Administrator**.
-3. Use the [New-VM](https://technet.microsoft.com/library/hh848537.aspx) cmdlet with the -Prerelease flag to create the pre-release virtual machine. Run the following command where VM Name is the name of the virtual machine that you want to create.
+3. Use the [New-VM](https://technet.microsoft.com/library/hh848537.aspx) cmdlet with the -Prerelease flag to create the pre-release virtual machine. For example, run the following command where VM Name is the name of the virtual machine that you want to create.
 
 ``` PowerShell
 New-VM -Name <VM Name> –Prerelease 
 ```
+Other examples:
+ - To create a virtual machine that uses an existing virtual hard disk or a new hard disk, see the PowerShell examples in [Create a virtual machine in Hyper-V on Windows Server 2016 Technical Preview](https://technet.microsoft.com/library/mt126140.aspx#BKMK_PowerShell). 
+ - To create a new virtual hard disk that boots to an operating system image, see the PowerShell example in [Deploy a Windows Virtual Machine in Hyper-V on Windows 10](https://msdn.microsoft.com/en-us/virtualization/hyperv_on_windows/quick_start/walkthrough_create_vm). 
+ 
+ The examples covered in those articles work for Hyper-V hosts that run Windows 10 or Windows Server 2016 Technical Preview. But right now, you can only use the -Prerelease flag to create a pre-release virtual machine on Hyper-V hosts that run Windows Server 2016 Technical Preview.
+
+## See also
+- To learn about the pre-release features that are available and how to try them out, see the [Virtualization Blog](https://blogs.technet.microsoft.com/virtualization/).
+- To learn about virtual machine configuration versions, see [Supported virtual machine configuration versions](https://technet.microsoft.com/en-us/library/dn765471.aspx#BKMK_ConfgVersion).
