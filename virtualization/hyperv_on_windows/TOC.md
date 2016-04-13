@@ -18,6 +18,7 @@
 ## [PowerShell Direct](user_guide/vmsession.md)
 ## [Remote Management](user_guide/remote_host_management.md)
 ## [Nested Virtualization](user_guide/nesting.md)
+## [Pre-release VMs](user_guide/create_pre-release_vm.md)
 ## [Troubleshooting](user_guide/troubleshooting.md)
 # Community and Support
 ## [Hyper-V forums](https://social.technet.microsoft.com/Forums/windowsserver/en-US/home?forum=winserverhyperv)
