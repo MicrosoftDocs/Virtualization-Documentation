@@ -24,7 +24,7 @@ You can create a pre-release virtual machine on Hyper-V hosts that run Windows S
 ``` PowerShell
 New-VM -Name <VM Name> –Prerelease 
 ```
-Other examples:
+Other examples you can use the -Prerelease flag with:
  - To create a virtual machine that uses an existing virtual hard disk or a new hard disk, see the PowerShell examples in [Create a virtual machine in Hyper-V on Windows Server 2016 Technical Preview](https://technet.microsoft.com/library/mt126140.aspx#BKMK_PowerShell). 
  - To create a new virtual hard disk that boots to an operating system image, see the PowerShell example in [Deploy a Windows Virtual Machine in Hyper-V on Windows 10](https://msdn.microsoft.com/en-us/virtualization/hyperv_on_windows/quick_start/walkthrough_create_vm). 
  
