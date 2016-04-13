@@ -32,4 +32,4 @@ Other examples you can use the -Prerelease flag with:
 
 ## See also
 -  [Virtualization Blog](https://blogs.technet.microsoft.com/virtualization/) - Learn about the pre-release features that are available and how to try them out.
-- [Supported virtual machine configuration versions](https://technet.microsoft.com/en-us/library/dn765471.aspx#BKMK_ConfgVersion) - Learn how to check the virtual machine configuration version and which versions are supported by Microsoft.
+- [Supported virtual machine configuration versions](https://technet.microsoft.com/library/mt695898.aspx#BKMK_SupportedConfigVersions) - Learn how to check the virtual machine configuration version and which versions are supported by Microsoft.
