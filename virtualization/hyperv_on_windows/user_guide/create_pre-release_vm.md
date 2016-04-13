@@ -1,11 +1,11 @@
-# Access pre-release features for Hyper-V
+# Try pre-release features for Hyper-V
 
 > This is preliminary content and subject to change.  
   Pre-release virtual machines are intended for development or test environments only as they are not supported by Microsoft.
 
 Get early access to pre-release features for Hyper-V on Windows Server 2016 Technical Preview to try out in your development or test environments. You can be the first to see the latest Hyper-V features and help shape the product by providing early feedback.
 
-The virtual machines you create as pre-release have no build-to-build compatibility or future support.  Don't use them in production environment.
+The virtual machines you create as pre-release have no build-to-build compatibility or future support.  Don't use them in a production environment.
 
 Here are some more reasons why these are for non-production environments only:
 
