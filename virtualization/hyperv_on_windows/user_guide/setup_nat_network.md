@@ -1,13 +1,13 @@
 # Set up a NAT network
 
-Windows 10 Hyper-V now supports native network address translation(NAT).  This guide will walk you through:
+Windows 10 Hyper-V now supports native network address translation (NAT).  This guide will walk you through:
 * creating a NAT network
 * connecting an existing virtual machine to your new network
 * confirming that the virtual machine is connected correctly
 
 Requirements:
-* Windows build **BUILD NUMBER**
-* Hyper-V role is enabled (instructions here)
+* Windows build **BUILD NUMBER** or later
+* Hyper-V role is enabled (instructions [here](../quick_start/walkthrough_create_vm.md))
 
 ## Create a NAT network
 Let's walk through setting up a new NAT network.
