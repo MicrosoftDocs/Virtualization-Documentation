@@ -21,8 +21,13 @@ Let's walk through setting up a new NAT network.
   New-VMSwitch –SwitchName “SwitchName” –SwitchType Internal
   ```
 
-3. Set up the IP address to use as the NAT gateway.  
-   
+3. Choose and configure the IP address you're using as the NAT gateway using [New-NetIPAddress](https://technet.microsoft.com/en-us/library/hh826150.aspx).  
+  
+  Numbers to choose and what they mean:
+  * **IPAddress** -- Specifies the IPv4 or IPv6 address to use as the NAT gateway IP.
+  * **PrefixLength** --  Defines the local subnet size (subnet mask).
+  * **InterfaceIndex** -- 
+    
   ``` PowerShell
   New-NetIPAddress – IPAddress <NAT Gateway IP> -PrefixLength <Nat Subnet Prefix Length> -InterfaceIndex <X>
   ```
