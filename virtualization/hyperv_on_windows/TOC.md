@@ -17,6 +17,7 @@
 ## [Export and Import](user_guide/export_import.md)
 ## [PowerShell Direct](user_guide/vmsession.md)
 ## [Remote Management](user_guide/remote_host_management.md)
+## [Set up a NAT network](user_guide/setup_nat_network.md)
 ## [Nested Virtualization](user_guide/nesting.md)
 ## [Troubleshooting](user_guide/troubleshooting.md)
 # Community and Support
