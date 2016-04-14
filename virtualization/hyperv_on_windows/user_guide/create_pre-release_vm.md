@@ -1,3 +1,7 @@
+---
+author: cwatsonMSFT
+---
+
 # Try pre-release features for Hyper-V
 
 > This is preliminary content and subject to change.  
