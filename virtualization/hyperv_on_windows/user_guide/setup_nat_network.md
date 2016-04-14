@@ -1,14 +1,28 @@
 # Set up a NAT network
 
-Windows 10 Hyper-V now supports native network address translation (NAT).
+Windows 10 Hyper-V now supports native network address translation (NAT).  This guide will walk you through creating a NAT network and connecting a virtual machine.
 
 Requirements:
 * Windows build blah
 * Hyper-V role is enabled (instructions here)
 
+Let's walk through setting up a new NAT network.
+
+1.  Open a PowerShell console as Administrator -- you must also be part of the Hyper-V Administrators group.  
+  You can run `Get-VM` to confirm that those are both true.
+
+2. Create an internal switch  
+  
+  ``` PowerShell
+  New-VMSwitch –SwitchName “SwitchName” –SwitchType Internal
+  ```
+
+3. 
+  ``` PowerShell
+  New-NetIPAddress – IPAddress <NAT Gateway IP> -PrefixLength <Nat Subnet Prefix Length> -InterfaceIndex <X>
+  ```
+
 ``` PowerShell
-New-VMSwitch –SwitchName “<Switch Name>” –SwitchType Internal
-New-NetIPAddress – IPAddress <NAT Gateway IP> -PrefixLength <Nat Subnet Prefix Length> -InterfaceIndex <X>
 New-NetNat –Name NATOutside –InternalIPInterfaceAddressPrefix <NAT subnet prefix>
 
 <Switch Name> := string (e.g. “MyNat”)
