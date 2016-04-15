@@ -175,7 +175,7 @@ function
 Convert-WindowsImage
 {
     [CmdletBinding(
-    
+
         DefaultParameterSetName = "DiskLayout",
         HelpURI                 =
             "https://github.com/Microsoft/Virtualization-Documentation/tree/master/hyperv-tools/Convert-WindowsImage"
@@ -195,9 +195,9 @@ Convert-WindowsImage
         [ValidateNotNullOrEmpty()]
         [ValidateScript(
             {
-            
+
               # This helps to work around the issue when PowerShell does not immediately
-              # recognize newly mounted drives    
+              # recognize newly mounted drives
                 $Drive = Get-psDrive
                 Test-Path -Path ( Resolve-Path -Path $PSItem ).Path
             }
@@ -276,7 +276,7 @@ Convert-WindowsImage
         $MergeFolderPath = "",
 
         [Parameter(
-            ParameterSetName = "DiskLayout", 
+            ParameterSetName = "DiskLayout",
             Mandatory        = $True
         )]
         [Alias("Layout")]
@@ -291,7 +291,7 @@ Convert-WindowsImage
 
         [Parameter(
             ParameterSetName = "PartitionStyle",
-            Mandatory        = $True    
+            Mandatory        = $True
         )]
         [string]
         [ValidateNotNullOrEmpty()]
@@ -410,7 +410,7 @@ Convert-WindowsImage
   # Begin Dynamic Parameters
   # Create the parameters for the various types of debugging.
 
-    DynamicParam {        
+    DynamicParam {
 
       # Set up the dynamic parameters.
       # Dynamic parameters are only available if certain conditions are met, so they'll only show up
@@ -420,15 +420,9 @@ Convert-WindowsImage
 
         $parameterDictionary = New-Object -TypeName "System.Management.Automation.RuntimeDefinedParameterDictionary"
 
-        If
-        (
-            Test-Path -Path "Variable:\EnableDebugger"
-        )
+        If (Test-Path -Path "Variable:\EnableDebugger")
         {
-            Switch
-            (
-                $EnableDebugger
-            )
+            Switch ($EnableDebugger)
             {
                 "Serial"
                 {
@@ -678,7 +672,7 @@ Convert-WindowsImage
     }
 
     Begin {
-       
+
         Set-StrictMode -version 3
         $Module = Import-ModuleEx -Name "Dism"
         $Module = Import-ModuleEx -Name "Storage"
@@ -710,28 +704,28 @@ Convert-WindowsImage
             $myVersion             += $ScriptVersion.Flavor    + "."
             $myVersion             += $ScriptVersion.Branch    + "."
             $myVersion             += $ScriptVersion.Timestamp
-        
+
           # Name of the script, obviously.
-            $scriptName             = "Convert-WindowsImage"                       
-        
-          # Session key, used for keeping records unique between multiple runs.        
-            $sessionKey             = [Guid]::NewGuid().ToString()                 
+            $scriptName             = "Convert-WindowsImage"
+
+          # Session key, used for keeping records unique between multiple runs.
+            $sessionKey             = [Guid]::NewGuid().ToString()
 
           # Log folder path.
             $logFolder              = [io.path]::Combine( $TempDirectory, $scriptName, $sessionKey )
-        
-          # Maximum size for VHD is ~2040GB.        
-            $vhdMaxSize             = 2040GB                                       
-        
-          # Maximum size for VHDX is ~64TB.        
-            $vhdxMaxSize            = 64TB                                         
-        
-          # The lowest supported *image* version; making sure we don't run against Vista/2k8.        
+
+          # Maximum size for VHD is ~2040GB.
+            $vhdMaxSize             = 2040GB
+
+          # Maximum size for VHDX is ~64TB.
+            $vhdxMaxSize            = 64TB
+
+          # The lowest supported *image* version; making sure we don't run against Vista/2k8.
             $lowestSupportedVersion = New-Object -TypeName "Version" -ArgumentList "6.1"
-        
-          # The lowest supported *host* build.  Set to Win8 CP.        
-            $lowestSupportedBuild   = 9200                                         
-      
+
+          # The lowest supported *host* build.  Set to Win8 CP.
+            $lowestSupportedBuild   = 9200
+
           # Keeps track on whether the script itself enabled Transcript
           # (vs. it was enabled by user)
             $Transcripting          = $false
@@ -740,15 +734,9 @@ Convert-WindowsImage
           # We'll make it lowercase again when we use it as a file extension.
             $VhdFormat              = $VhdFormat.ToUpper()
 
-            If
-            (
-                Test-Path -Path "Variable:\VhdPartitionStyle"
-            )
+            If (Test-Path -Path "Variable:\VhdPartitionStyle")
             {
-                Switch
-                (
-                    $VhdPartitionStyle
-                )
+                Switch ($VhdPartitionStyle)
                 {
                     "Mbr"
                     {
@@ -765,27 +753,22 @@ Convert-WindowsImage
                         $DiskLayout = "WindowsToGo"
                     }
                 }
-            }            
+            }
 
-            If
-            (
-                Get-Command -Name "Get-WindowsOptionalFeature" -ErrorAction "SilentlyContinue"
-            )
+            If (Get-Command -Name "Get-WindowsOptionalFeature" -ErrorAction "SilentlyContinue")
             {
                 Try
                 {
-                    $hyperVEnabled  = 
+                    $hyperVEnabled  =
                         [bool]( Get-WindowsOptionalFeature -Online -FeatureName "Microsoft-Hyper-V-Services" -Verbose:$False ).State -and
                         [bool]( Get-WindowsOptionalFeature -Online -FeatureName "Microsoft-Hyper-V-Management-PowerShell" -Verbose:$False ).State
                 }
                 Catch
                 {
-              
+
                   # WinPE DISM does not support online queries.  This will throw on non-WinPE machines
 
-                    $winpeVersion = (
-                        Get-ItemProperty -Path 'HKLM:\Software\Microsoft\Windows NT\CurrentVersion\WinPE'
-                    ).Version
+                    $winpeVersion = (Get-ItemProperty -Path 'HKLM:\Software\Microsoft\Windows NT\CurrentVersion\WinPE').Version
 
                     Write-Verbose -Message "Running WinPE version $winpeVersion"
 
@@ -835,13 +818,10 @@ You can use the fields below to configure the VHD or VHDX that you want to creat
 
         Try
         {
-           #region Prepare variables        
+           #region Prepare variables
 
               # Create log folder
-                If
-                (
-                    Test-Path -Path $logFolder
-                )
+                If (Test-Path -Path $logFolder)
                 {
                     $Item = Remove-Item -Path $logFolder -Force -Recurse
                 }
@@ -865,37 +845,25 @@ You can use the fields below to configure the VHD or VHDX that you want to creat
                 Add-WindowsImageTypes
 
               # Check to make sure we're running as Admin.
-                If
-                (
-                    -Not ( Test-Admin )
-                )
+                If (-Not ( Test-Admin ))
                 {
                     Throw "Images can only be applied by an administrator.  Please launch PowerShell elevated and run this script again."
                 }
 
               # Check to make sure we're running (at least) on Win8.
-                If
-                (
-                    -Not ( Test-WindowsVersion )
-                )
+                If (-Not ( Test-WindowsVersion ))
                 {
                     Throw "$scriptName requires Windows 8 Consumer Preview or higher.  Please use WIM2VHD.WSF (http://code.msdn.microsoft.com/wim2vhd) if you need to create VHDs from Windows 7."
                 }
 
               # Resolve the path for the unattend file.
-                If
-                (
-                    -Not [string]::IsNullOrEmpty( $UnattendPath )
-                )
+                If (-Not [string]::IsNullOrEmpty( $UnattendPath ))
                 {
                     $UnattendPath = ( Resolve-Path -Path $UnattendPath ).Path
                 }
 
               # Note: UI code is deprecated and not maintained anymore.
-                If
-                (
-                    $ShowUI
-                )
+                If ($ShowUI)
                 {
                     Write-Verbose -Message "Launching UI..."
                     Add-Type -AssemblyName System.Drawing,System.Windows.Forms
@@ -1565,15 +1533,9 @@ You can use the fields below to configure the VHD or VHDX that you want to creat
                     $frmMain.Dispose()
                 }
 
-                If
-                (
-                    $VhdFormat -ilike "AUTO"
-                )
+                If ($VhdFormat -ilike "AUTO")
                 {
-                    Switch
-                    (
-                        $DiskLayout
-                    )
+                    Switch ($DiskLayout)
                     {
                         "Bios"
                         {
@@ -1591,15 +1553,9 @@ You can use the fields below to configure the VHD or VHDX that you want to creat
                 $BlockSizeBytes = 1MB
 
               # There's a difference between the maximum sizes for VHDs and VHDXs.  Make sure we follow it.
-                If
-                (
-                    "VHD" -ilike $VhdFormat
-                )
+                If ("VHD" -ilike $VhdFormat)
                 {
-                    If
-                    (
-                        $SizeBytes -gt $vhdMaxSize
-                    )
+                    If ($SizeBytes -gt $vhdMaxSize)
                     {
                         Write-Warning -Message "For the VHD file format, the maximum file size is ~2040GB.  We're automatically setting the size to 2040GB for you."
                         $SizeBytes = 2040GB
@@ -1608,18 +1564,12 @@ You can use the fields below to configure the VHD or VHDX that you want to creat
                 }
 
               # Check if -VHDPath and -WorkingDirectory were both specified.
-                If
-                (
-                    -Not [String]::IsNullOrEmpty( $VhdPath ) -And
-                    -Not [String]::IsNullOrEmpty( $WorkingDirectory )
-                )
+                If (-Not [String]::IsNullOrEmpty( $VhdPath ) -And
+                    -Not [String]::IsNullOrEmpty( $WorkingDirectory ))
                 {
-                    If
-                    (
-                        $WorkingDirectory -ne $pwd
-                    )
+                    If ($WorkingDirectory -ne $pwd)
                     {
-                
+
                       # If the WorkingDirectory is anything besides $pwd, tell people that the WorkingDirectory is being ignored.
                         Write-Warning -Message "Specifying -VHDPath and -WorkingDirectory at the same time is contradictory."
                         Write-Warning -Message "Ignoring the WorkingDirectory specification."
@@ -1627,29 +1577,20 @@ You can use the fields below to configure the VHD or VHDX that you want to creat
                     }
                 }
 
-                If
-                (
-                    $VhdPath
-                )
+                If ($VhdPath)
                 {
 
                   # Check to see if there's a conflict between the specified file extension and the VhdFormat being used.
                     $Ext = ( [IO.FileInfo]$VhdPath ).Extension
 
-                    If
-                    (
-                        -Not ( $Ext -ilike ".$( $VhdFormat )" )
-                    )
+                    If (-Not ( $Ext -ilike ".$( $VhdFormat )" ))
                     {
                         Throw "There is a mismatch between the VHDPath file extension ($($ext.ToUpper())), and the VhdFormat (.$($VhdFormat)).  Please ensure that these match and try again."
                     }
                 }
 
               # Create a temporary name for the VHD(x).  We'll name it properly at the end of the script.
-                If
-                (
-                    [String]::IsNullOrEmpty( $VhdPath )
-                )
+                If ([String]::IsNullOrEmpty( $VhdPath ))
                 {
                     $vhdNameTemp  = [system.string]( $sessionKey + "." + $VhdFormat.ToLower() )
                     $VhdPath      = Join-Path -Path $WorkingDirectory -ChildPath $vhdNameTemp
@@ -1657,15 +1598,12 @@ You can use the fields below to configure the VHD or VHDX that you want to creat
 
                 Else
                 {
-            
+
                   # Since we can't do Resolve-Path against a file that doesn't exist, we need to get creative in determining
                   # the full path that the user specified (or meant to specify if they gave us a relative path).
                   # Check to see if the path has a root specified.  If it doesn't, use the working directory.
 
-                    If
-                    (
-                        -Not [IO.Path]::IsPathRooted( $VhdPath )
-                    )
+                    If (-Not [IO.Path]::IsPathRooted( $VhdPath ))
                     {
                         $VhdPath  = Join-Path -Path $WorkingDirectory -ChildPath $VhdPath
                     }
@@ -1683,26 +1621,20 @@ You can use the fields below to configure the VHD or VHDX that you want to creat
            #region Mount source images
 
               # If we're using an ISO, mount it and get the path to the WIM file.
-                If
-                (
-                    ( [IO.FileInfo]$SourcePath ).Extension -ilike ".ISO"
-                )
+                If (( [IO.FileInfo]$SourcePath ).Extension -ilike ".ISO")
                 {
 
                   # If the ISO isn't local, copy it down so we don't have to worry about resource contention
                   # or about network latency.
-                    If
-                    (
-                        Test-IsNetworkLocation -Path $SourcePath
-                    )
+                    If (Test-IsNetworkLocation -Path $SourcePath)
                     {
                         $IsoFileName = Split-Path -Path $SourcePath -Leaf
 
                         Write-Verbose -Message "Copying ISO `“$IsoFileName`” to temp folder..."
-                    
+
                     #    Robocopy.exe $(Split-Path $SourcePath -Parent) $TempDirectory $(Split-Path $SourcePath -Leaf) | Out-Null
                         $Item = Copy-Item -Path $SourcePath -Destination $TempDirectory -PassThru
-                    
+
                         $SourcePath = Join-Path -Path $TempDirectory -ChildPath $IsoFileName
 
                         $tempSource = $SourcePath
@@ -1722,29 +1654,23 @@ You can use the fields below to configure the VHD or VHDX that you want to creat
 
                   # Check to see if there's a WIM file we can muck about with.
                     Write-Verbose -Message "Looking for `“$SourcePath`”..."
-                    
-                    If
-                    (
-                        -Not ( Test-Path -Path $SourcePath )
-                    )
+
+                    If (-Not ( Test-Path -Path $SourcePath ))
                     {
                         Throw "The specified ISO does not appear to be valid Windows installation media."
                     }
                 }
 
               # Check to see if the WIM is local, or on a network location.  If the latter, copy it locally.
-                If
-                (
-                    Test-IsNetworkLocation -Path $SourcePath
-                )
+                If (Test-IsNetworkLocation -Path $SourcePath)
                 {
                     $WimFileName = Split-Path -Path $SourcePath -Leaf
 
                     Write-Verbose -Message "Copying WIM $WimFileName to temp folder..."
-              
-                  # robocopy $(Split-Path $SourcePath -Parent) $TempDirectory $(Split-Path $SourcePath -Leaf) | Out-Null      
+
+                  # robocopy $(Split-Path $SourcePath -Parent) $TempDirectory $(Split-Path $SourcePath -Leaf) | Out-Null
                     $Item = Copy-Item -Path $SourcePath -Destination $TempDirectory -PassThru
-              
+
                     $SourcePath = Join-Path -Path $TempDirectory -ChildPath $WimFileName
 
                     $tempSource = $SourcePath
@@ -1776,13 +1702,10 @@ You can use the fields below to configure the VHD or VHDX that you want to creat
                   # WIM may have multiple images.  Filter on Edition (can be index or name) and try to find a unique image
 
                     Write-Verbose -Message ( [system.string]::Empty )
-              
+
                     $EditionIndex = 0;
 
-                    If
-                    (
-                        [Int32]::TryParse( $Edition, [ref]$EditionIndex )
-                    )
+                    If ([Int32]::TryParse( $Edition, [ref]$EditionIndex ))
                     {
                         $WindowsImage = Get-WindowsImage -ImagePath $SourcePath -Index $EditionIndex -Verbose:$False
                     }
@@ -1791,18 +1714,12 @@ You can use the fields below to configure the VHD or VHDX that you want to creat
                         $WindowsImage = Get-WindowsImage -ImagePath $SourcePath -Verbose:$False | Where-Object { $PSItem.ImageName -ilike "*$($Edition)" }
                     }
 
-                    If
-                    (
-                        -Not $WindowsImage
-                    )
+                    If (-Not $WindowsImage)
                     {
                         Throw "Requested windows Image was not found on the WIM file!"
                     }
 
-                    If
-                    (
-                        $WindowsImage -is [System.Array]
-                    )
+                    If ($WindowsImage -is [System.Array])
                     {
                         $ImageCount = $($WindowsImage.Count)
 
@@ -1812,15 +1729,12 @@ You can use the fields below to configure the VHD or VHDX that you want to creat
                         Write-Error -Message "You must specify an Edition or SKU index, since the WIM has more than one image."
                         Throw "There are more than one images that match ImageName filter *$Edition"
                     }
-                
+
                     $ImageIndex = $WindowsImage[0].ImageIndex
 
                     $openImage = $openWim[[Int32]$ImageIndex]
 
-                    If
-                    (
-                        $Null -eq $openImage
-                    )
+                    If ($Null -eq $openImage)
                     {
                         Write-Error -Message "The specified edition does not appear to exist in the specified WIM."
                         Write-Error -Message "Valid edition names are:"
@@ -1832,19 +1746,13 @@ You can use the fields below to configure the VHD or VHDX that you want to creat
                     $OpenImageIndex   = $openImage.ImageIndex
                     $OpenImageFlags   = $openImage.ImageFlags
                     $OpenImageVersion = $openImage.ImageVersion
-                                        
+
                     Write-Verbose -Message "Image $OpenImageIndex selected: `“$OpenImageFlags`”..."
 
                   # Check to make sure that the image we're applying is Windows 7 or greater.
-                    If
-                    (
-                        $OpenImageVersion -lt $lowestSupportedVersion
-                    )
+                    If ($OpenImageVersion -lt $lowestSupportedVersion)
                     {
-                        If
-                        (
-                            $OpenImageVersion -eq "0.0.0.0"
-                        )
+                        If ($OpenImageVersion -eq "0.0.0.0")
                         {
                             Write-Warning -Message "The specified WIM does not encode the Windows version."
                         }
@@ -1858,24 +1766,18 @@ You can use the fields below to configure the VHD or VHDX that you want to creat
 
                #region Create and partition VHD
 
-                    If
-                    (
-                        $hyperVEnabled
-                    )
+                    If ($hyperVEnabled)
                     {
                         Write-Verbose -Message "Creating sparse disk..."
-                    
+
                         $NewVhdParam = @{
-                    
+
                             Path           = $VhdPath
                             SizeBytes      = $SizeBytes
                             BlockSizeBytes = $BlockSizeBytes
                         }
 
-                        Switch
-                        (
-                            $VhdType
-                        )
+                        Switch ($VhdType)
                         {
                             "Dynamic"
                             {
@@ -1907,10 +1809,7 @@ You can use the fields below to configure the VHD or VHDX that you want to creat
                             VirtDisk APIs directly.
                         #>
 
-                        Switch
-                        (
-                            $VhdType
-                        )
+                        Switch ($VhdType)
                         {
                             "Dynamic"
                             {
@@ -1926,14 +1825,14 @@ You can use the fields below to configure the VHD or VHDX that you want to creat
 
                             "Fixed"
                             {
-                                Write-Verbose -Message "Creating fixed disk..."    
-                            
+                                Write-Verbose -Message "Creating fixed disk..."
+
                                 [WIM2VHD.VirtualHardDisk]::CreateFixedDisk(
                                     $VhdFormat,
                                     $VhdPath,
                                     $SizeBytes,
                                     $true
-                                )                                                
+                                )
                             }
                         }
 
@@ -1943,17 +1842,14 @@ You can use the fields below to configure the VHD or VHDX that you want to creat
                         $Disk = Mount-DiskImage -ImagePath $VhdPath -PassThru | Get-DiskImage | Get-Disk
                     }
 
-                    Switch
-                    (
-                        $DiskLayout
-                    )
+                    Switch ($DiskLayout)
                     {
                         "BIOS"
                         {
                             Write-Verbose -Message "Initializing disk..."
 
                             $InitializeDisk = Initialize-Disk -Number $disk.Number -PartitionStyle MBR -PassThru
-                
+
                           # Create the Windows/system partition
                             Write-Verbose -Message "Creating single partition..."
 
@@ -1971,17 +1867,11 @@ You can use the fields below to configure the VHD or VHDX that you want to creat
                             Write-Verbose -Message "Initializing disk..."
                             $InitializeDisk = Initialize-Disk -Number $disk.Number -PartitionStyle GPT -PassThru
 
-                            If
-                            (
-                                $BcdInVhd -eq "VirtualMachine"
-                            )
+                            If ($BcdInVhd -eq "VirtualMachine")
                             {
-                                If
-                                (
-                                    ( Get-WindowsBuildNumber ) -ge 10240
-                                )
+                                If (( Get-WindowsBuildNumber ) -ge 10240)
                                 {
-                        
+
                                   # Create the system partition.  Create a data partition so we can format it, then change to ESP
                                   # Size should be at least 260 MB to accomodate for Native 4K drives.
                                     Write-Verbose -Message "Creating EFI System partition (ESP)..."
@@ -2046,17 +1936,14 @@ You can use the fields below to configure the VHD or VHDX that you want to creat
                         }
                     }
 
-                    If
-                    (
-                        ( $DiskLayout -eq "UEFI" -and $BcdInVhd -eq "VirtualMachine" ) -or
-                          $DiskLayout -eq "WindowsToGo"
-                    )
+                    If (( $DiskLayout -eq "UEFI" -and $BcdInVhd -eq "VirtualMachine" ) -or
+                          $DiskLayout -eq "WindowsToGo")
                     {
 
-                      # Retreive access path for System partition.           
+                      # Retreive access path for System partition.
                         $systemPartition = Get-Partition -UniqueId $systemPartition.UniqueId
                         $systemDrive = $systemPartition.AccessPaths[0].trimend("\").replace("\?", "??")
-                        $systemDrive = ( Resolve-Path -Path $systemDrive ).Path                    
+                        $systemDrive = ( Resolve-Path -Path $systemDrive ).Path
                         Write-Verbose -Message "System volume path: `“$systemDrive`”"
                     }
 
@@ -2068,11 +1955,8 @@ You can use the fields below to configure the VHD or VHDX that you want to creat
                     {
                         $windowsPartition | Add-PartitionAccessPath -AssignDriveLetter
                         $windowsPartition = $windowsPartition | Get-Partition
-                
-                        If
-                        (
-                            $windowsPartition.DriveLetter -ne 0
-                        )
+
+                        If ($windowsPartition.DriveLetter -ne 0)
                         {
                             $assigned = $true
                         }
@@ -2085,24 +1969,18 @@ You can use the fields below to configure the VHD or VHDX that you want to creat
                             $attempts++
                         }
                     }
-                    While
-                    (
-                        $attempts -le 100 -and -not $assigned
-                    )
+                    While ($attempts -le 100 -and -not $assigned)
 
-                    If
-                    (
-                        -Not $assigned
-                    )
+                    If (-Not $assigned)
                     {
                         Throw "Unable to get Partition after retry"
                     }
 
                     $windowsDrive = ( Get-Partition -Volume $windowsVolume ).AccessPaths[0].substring(0,2)
-                    
+
                   # This is to workaround “No such drive exists” error in PowerShell
                     $Drive = Get-psDrive
-                    
+
                     $windowsDrive = ( Resolve-Path -Path $windowsDrive ).Path
 
                     Write-Verbose -Message "Boot volume path: `“$windowsDrive`”. (Took $attempts attempt(s) to assign.)"
@@ -2113,45 +1991,33 @@ You can use the fields below to configure the VHD or VHDX that you want to creat
 
                     Write-Verbose -Message "Applying image to $VhdFormat. This could take a while..."
 
-                    If
-                    (
-                        ( Get-Command -Name "Expand-WindowsImage" -ErrorAction "SilentlyContinue" ) -and
-                        ( -not $ApplyEA -and [string]::IsNullOrEmpty( $DismPath ) )
-                    )
+                    If (( Get-Command -Name "Expand-WindowsImage" -ErrorAction "SilentlyContinue" ) -and
+                        ( -not $ApplyEA -and [string]::IsNullOrEmpty( $DismPath ) ))
                     {
                         $ExpandWindowsImage = Expand-WindowsImage -ApplyPath $windowsDrive -ImagePath $SourcePath -Index $ImageIndex -LogPath "$($logFolder)\DismLogs.log" -Verbose:$False
                     }
-            
+
                     Else
                     {
-                        If
-                        (
-                            [string]::IsNullOrEmpty( $DismPath )
-                        )
+                        If ([string]::IsNullOrEmpty( $DismPath ))
                         {
                             $DismPath = Join-Path -Path $env:windir -ChildPath "system32\dism.exe"
                         }
 
                         $applyImage = "/Apply-Image"
 
-                        If
-                        (
-                            $ApplyEA
-                        )
+                        If ($ApplyEA)
                         {
                             $applyImage = $applyImage + " /EA"
                         }
 
                         $dismArgs = @("$applyImage /ImageFile:`"$SourcePath`" /Index:$ImageIndex /ApplyDir:$windowsDrive /LogPath:`"$($logFolder)\DismLogs.log`"")
-                
+
                         Write-Verbose -Message "Applying image: $dismPath $dismArgs"
-                
+
                         $process = Start-Process -Passthru -Wait -NoNewWindow -FilePath $dismPath -ArgumentList $dismArgs
 
-                        If
-                        (
-                            $process.ExitCode -ne 0
-                        )
+                        If ($process.ExitCode -ne 0)
                         {
                              Throw "Image Apply failed! See DismImageApply logs for details"
                         }
@@ -2160,23 +2026,17 @@ You can use the fields below to configure the VHD or VHDX that you want to creat
 
                   # Here we copy in the unattend file (if specified by the command line)
 
-                    If
-                    (
-                        -Not [string]::IsNullOrEmpty( $UnattendPath )
-                    )
+                    If (-Not [string]::IsNullOrEmpty( $UnattendPath ))
                     {
                         Write-Verbose -Message "Applying unattend file ($(Split-Path $UnattendPath -Leaf))..."
-                    
+
                         $UnattendDestination = Join-Path -Path $windowsDrive -ChildPath "unattend.xml"
                         Copy-Item -Path $UnattendPath -Destination $UnattendDestination -Force
                     }
 
                   # Added to handle merge folders
 
-                    If
-                    (
-                        -Not [string]::IsNullOrEmpty( $MergeFolderPath )
-                    )
+                    If (-Not [string]::IsNullOrEmpty( $MergeFolderPath ))
                     {
                         Write-Verbose -Message "Applying merge folder ($MergeFolderPath)..."
 
@@ -2189,24 +2049,15 @@ You can use the fields below to configure the VHD or VHDX that you want to creat
 
                #region BCD manipulation
 
-                    If
-                    (
-                        ( $openImage.ImageArchitecture -ne "ARM" ) -and       # No virtualization platform for ARM images
+                    If (( $openImage.ImageArchitecture -ne "ARM" ) -and       # No virtualization platform for ARM images
                         ( $openImage.ImageArchitecture -ne "ARM64" ) -and     # No virtualization platform for ARM64 images
-                        ( $BcdInVhd -ne "NativeBoot" )                        # User asked for a non-bootable image
-                    )
+                        ( $BcdInVhd -ne "NativeBoot" )                        # User asked for a non-bootable image)
                     {
-                        If
-                        (
-                            Test-Path -Path "$($systemDrive)\boot\bcd"
-                        )
+                        If (Test-Path -Path "$($systemDrive)\boot\bcd")
                         {
                             Write-Verbose -Message "Image already has BIOS BCD store..."
                         }
-                        ElseIf
-                        (
-                            Test-Path -Path "$($systemDrive)\efi\microsoft\boot\bcd"
-                        )
+                        ElseIf (Test-Path -Path "$($systemDrive)\efi\microsoft\boot\bcd")
                         {
                             Write-Verbose -Message "Image already has EFI BCD store..."
                         }
@@ -2225,9 +2076,7 @@ You can use the fields below to configure the VHD or VHDX that you want to creat
 
                             $bcdPath = @()
 
-                            Switch
-                            (
-                                $DiskLayout
+                            Switch ($DiskLayout
                             )
                             {
                                 "BIOS"
@@ -2244,13 +2093,10 @@ You can use the fields below to configure the VHD or VHDX that you want to creat
 
                                 "WindowsToGo"
                                 {
-                            
+
                                   # Create entries for both UEFI and BIOS if possible
 
-                                    If
-                                    (
-                                        Test-Path -Path "$($windowsDrive)\Windows\boot\EFI\bootmgfw.efi"
-                                    )
+                                    If (Test-Path -Path "$($windowsDrive)\Windows\boot\EFI\bootmgfw.efi")
                                     {
                                         $bcdBootArgs += "/f ALL"
                                         $bcdPath     += Join-Path -Path $systemDrive -ChildPath "boot\bcd"
@@ -2264,10 +2110,7 @@ You can use the fields below to configure the VHD or VHDX that you want to creat
                                 }
                             }
 
-                            If
-                            (
-                                Test-Path -Path "Variable:\BcdLocale"
-                            )
+                            If (Test-Path -Path "Variable:\BcdLocale")
                             {
                                 $bcdBootArgs += "/l $BcdLocale.Name"
                             }
@@ -2279,7 +2122,7 @@ You can use the fields below to configure the VHD or VHDX that you want to creat
 
                             Write-Verbose -Message "Fixing the Device ID in the BCD store on $($VhdFormat)..."
 
-                            $bcdPath | ForEach-Object -Process {                                
+                            $bcdPath | ForEach-Object -Process {
 
                                 Start-Executable -Executable "BCDEDIT.EXE" -Arguments (
                                     "/store $PSItem",
@@ -2299,18 +2142,12 @@ You can use the fields below to configure the VHD or VHDX that you want to creat
                         Write-Verbose -Message "Drive is bootable."
 
                       # Are we turning the debugger on?
-                        If
-                        (
-                            $EnableDebugger -inotlike "None"
-                        )
+                        If ($EnableDebugger -inotlike "None")
                         {
                             $bcdEditArgs = $null;
 
                           # Configure the specified debugging transport and other settings.
-                            Switch
-                            (
-                                $EnableDebugger
-                            )
+                            Switch ($EnableDebugger)
                             {
                                 "Serial"
                                 {
@@ -2366,15 +2203,9 @@ You can use the fields below to configure the VHD or VHDX that you want to creat
                                 "$($systemDrive)\efi\microsoft\boot\bcd"
                             )
 
-                            Foreach
-                            (
-                                $bcdStore In $bcdStores
-                            )
+                            Foreach ($bcdStore In $bcdStores)
                             {
-                                If
-                                (
-                                    Test-Path -Path $bcdStore
-                                )
+                                If (Test-Path -Path $bcdStore)
                                 {
                                     Write-Verbose -Message "Turning kernel debugging on in the $VhdFormat for $bcdStore..."
 
@@ -2391,10 +2222,10 @@ You can use the fields below to configure the VHD or VHDX that you want to creat
                             }
                         }
                     }
-            
+
                     Else
                     {
-            
+
                       # Don't bother to check on debugging.  We can't boot WoA VHDs in VMs, and
                       # if we're native booting, the changes need to be made to the BCD store on the
                       # physical computer's boot volume.
@@ -2406,29 +2237,20 @@ You can use the fields below to configure the VHD or VHDX that you want to creat
 
                #region Additional image enhancements
 
-                    If
-                    (
-                        $RemoteDesktopEnable -or -not $ExpandOnNativeBoot
-                    )
+                    If ($RemoteDesktopEnable -or -not $ExpandOnNativeBoot)
                     {
                         $hivePath = Join-Path -Path $windowsDrive -ChildPath "Windows\System32\Config\System"
 
                         $hive = Mount-RegistryHive -Hive $hivePath
 
-                        If
-                        (
-                            $RemoteDesktopEnable
-                        )
+                        If ($RemoteDesktopEnable)
                         {
                             Write-Verbose -Message "Enabling Remote Desktop"
 
                             Set-ItemProperty -Path "HKLM:\$($hive)\ControlSet001\Control\Terminal Server" -Name "fDenyTSConnections" -Value 0
                         }
 
-                        If
-                        (
-                            -not $ExpandOnNativeBoot
-                        )
+                        If (-not $ExpandOnNativeBoot)
                         {
                             Write-Verbose -Message "Disabling automatic $VhdFormat expansion for Native Boot"
 
@@ -2438,10 +2260,7 @@ You can use the fields below to configure the VHD or VHDX that you want to creat
                         Dismount-RegistryHive -HiveMountPoint $hive
                     }
 
-                    If
-                    (
-                        $Driver
-                    )
+                    If ($Driver)
                     {
                         Write-Verbose -Message "Adding Windows Drivers to the Image"
 
@@ -2452,10 +2271,7 @@ You can use the fields below to configure the VHD or VHDX that you want to creat
                         }
                     }
 
-                    If
-                    (
-                        $Feature
-                    )
+                    If ($Feature)
                     {
                         Write-Verbose -Message "Installing Windows Feature(s) $Feature to the Image"
 
@@ -2464,10 +2280,7 @@ You can use the fields below to configure the VHD or VHDX that you want to creat
                         $WindowsOptionalFeature = Enable-WindowsOptionalFeature -FeatureName $Feature -Source $FeatureSourcePath -Path $windowsDrive -All -Verbose:$False
                     }
 
-                    If
-                    (
-                        $Package
-                    )
+                    If ($Package)
                     {
                         Write-Verbose -Message "Adding Windows Packages to the Image"
 
@@ -2483,20 +2296,14 @@ You can use the fields below to configure the VHD or VHDX that you want to creat
                #region Dispose paths and dismount VHD
 
                   # Remove system partition access path, if necessary
-                    If
-                    (
-                        $DiskLayout -eq "UEFI" -and $BcdInVhd -eq "VirtualMachine"
-                    )
+                    If ($DiskLayout -eq "UEFI" -and $BcdInVhd -eq "VirtualMachine")
                     {
                         $RemovePartitionAccessPath = Remove-PartitionAccessPath -InputObject $systemPartition -AccessPath $systemPartition.AccessPaths[0] -PassThru
                     }
 
-                    If
-                    (
-                        [String]::IsNullOrEmpty( $VhdFinalName )
-                    )
+                    If ([String]::IsNullOrEmpty( $VhdFinalName ))
                     {
-            
+
                       # We need to generate a file name.
 
                         Write-Verbose -Message "Generating name for $VhdFormat..."
@@ -2516,27 +2323,18 @@ You can use the fields below to configure the VHD or VHDX that you want to creat
                       # Since we're only doing this string comparison against the InstallType key, we won't get
                       # false positives with the Core SKU.
 
-                        If
-                        (
-                            $installType.ToUpper().Contains("CORE")
-                        )
+                        If ($installType.ToUpper().Contains("CORE"))
                         {
                             $editionId += "Core"
                         }
 
                       # What type of SKU are we?
 
-                        If
-                        (
-                            $installType.ToUpper().Contains("SERVER")
-                        )
+                        If ($installType.ToUpper().Contains("SERVER"))
                         {
                             $skuFamily = "Server"
                         }
-                        ElseIf
-                        (
-                            $installType.ToUpper().Contains("CLIENT")
-                        )
+                        ElseIf ($installType.ToUpper().Contains("CLIENT"))
                         {
                             $skuFamily = "Client"
                         }
@@ -2551,10 +2349,7 @@ You can use the fields below to configure the VHD or VHDX that you want to creat
                         Write-Debug -Message "    $VhdFormat final name is: `“$VhdFinalName`”"
                     }
 
-                    If
-                    (
-                        $hyperVEnabled
-                    )
+                    If ($hyperVEnabled)
                     {
                         Write-Verbose -Message "Dismounting $VhdFormat..."
                         Dismount-VHD -Path $VhdPath
@@ -2570,10 +2365,7 @@ You can use the fields below to configure the VHD or VHDX that you want to creat
 
                     Write-Debug -Message "    $VhdFormat final path is: `“$vhdFinalPath`”"
 
-                    If
-                    (
-                        Test-Path -Path $vhdFinalPath
-                    )
+                    If (Test-Path -Path $vhdFinalPath)
                     {
                         $VhdNameOld = Split-Path -Path $vhdFinalPath -Leaf
 
@@ -2595,23 +2387,20 @@ You can use the fields below to configure the VHD or VHDX that you want to creat
                #endregion Dispose paths and dismount images
             }
         }
-        
+
         Catch
         {
             Write-Verbose -Message ( [system.string]::Empty )
             Write-Error   -Message $PSItem
             Write-Verbose -Message "Log folder is `“$logFolder`”"
         }
-        
+
         Finally
         {
             Write-Verbose -Message ( [system.string]::Empty )
-            
+
           # If we still have a WIM image open, close it.
-            If
-            (
-                $openWim -ne $null
-            )
+            If ($openWim -ne $null)
             {
                 Write-Verbose -Message "Closing Windows image..."
 
@@ -2619,10 +2408,7 @@ You can use the fields below to configure the VHD or VHDX that you want to creat
             }
 
           # If we still have a registry hive mounted, dismount it.
-            If
-            (
-                $mountedHive -ne $null
-            )
+            If ($mountedHive -ne $null)
             {
                 Write-Verbose -Message "Closing registry hive..."
 
@@ -2630,20 +2416,11 @@ You can use the fields below to configure the VHD or VHDX that you want to creat
             }
 
           # If VHD is mounted, unmount it
-            If
-            (
-                Test-Path -Path $VhdPath
-            )
+            If (Test-Path -Path $VhdPath)
             {
-                If
-                (
-                    $hyperVEnabled
-                )
+                If ($hyperVEnabled)
                 {
-                    If
-                    (
-                        ( Get-VHD -Path $VhdPath ).Attached
-                    )
+                    If (( Get-VHD -Path $VhdPath ).Attached)
                     {
                         Dismount-VHD -Path $VhdPath
                     }
@@ -2655,25 +2432,16 @@ You can use the fields below to configure the VHD or VHDX that you want to creat
             }
 
           # If we still have an ISO open, close it.
-            If
-            (
-                $openIso -ne $Null
-            )
+            If ($openIso -ne $Null)
             {
                 Write-Verbose -Message "Closing ISO..."
 
                 $DismountDiskImage = Dismount-DiskImage -ImagePath $IsoPath -PassThru
             }
 
-            If
-            (
-                -not $CacheSource
-            )
+            If (-not $CacheSource)
             {
-                If
-                (
-                    $tempSource -and ( Test-Path -Path $tempSource )
-                )
+                If ($tempSource -and ( Test-Path -Path $tempSource ))
                 {
                     $Item = Remove-Item -Path $tempSource -Force
                 }
@@ -2681,11 +2449,8 @@ You can use the fields below to configure the VHD or VHDX that you want to creat
 
           # Close out the transcript and tell the user we're done.
             Write-Verbose -Message "Done."
-            
-            If
-            (
-                $transcripting
-            )
+
+            If ($transcripting)
             {
                 $Null = Stop-Transcript
             }
@@ -2694,10 +2459,7 @@ You can use the fields below to configure the VHD or VHDX that you want to creat
 
     End {
 
-        If
-        (
-            $Passthru
-        )
+        If ($Passthru)
         {
             Return $vhd
         }
@@ -4371,11 +4133,11 @@ VirtualHardDisk
     }
 
     /// <summary>
-    /// Creates a fixed-size Virtual Hard Disk. Supports both sync and async modes. This methods always calls the V2 version of the 
-    /// CreateVirtualDisk API, and creates VHD2. 
+    /// Creates a fixed-size Virtual Hard Disk. Supports both sync and async modes. This methods always calls the V2 version of the
+    /// CreateVirtualDisk API, and creates VHD2.
     /// </summary>
     /// <param name="path">The path and name of the VHD to create.</param>
-    /// <param name="size">The size of the VHD to create in bytes.  
+    /// <param name="size">The size of the VHD to create in bytes.
     /// The VHD image file is pre-allocated on the backing store for the maximum size requested.
     /// The maximum size of a dynamic VHD is 2,040 GB.  The minimum size is 3 MB.</param>
     /// <param name="source">Optional path to pre-populate the new virtual disk object with block data from an existing disk
@@ -4385,7 +4147,7 @@ VirtualHardDisk
     /// <param name="blockSizeInBytes">Block size for the VHD.</param>
     /// <param name="virtualStorageDeviceType">Virtual storage device type: VHD1 or VHD2.</param>
     /// <param name="sectorSizeInBytes">Sector size for the VHD.</param>
-    /// <remarks>Creating a fixed disk can be a time consuming process!</remarks>  
+    /// <remarks>Creating a fixed disk can be a time consuming process!</remarks>
     /// <exception cref="ArgumentOutOfRangeException">Thrown when an invalid size or wrong virtual storage device type is specified.</exception>
     /// <exception cref="FileNotFoundException">Thrown when source VHD is not found.</exception>
     /// <exception cref="SecurityException">Thrown when there was an error while creating the default security descriptor.</exception>
@@ -4526,7 +4288,7 @@ Function
 Set-TokenPrivilege
 {
     param(
-        
+
       # The privilege to adjust. This set is taken from
       # http://msdn.microsoft.com/library/bb530716
 
@@ -4581,7 +4343,7 @@ Set-TokenPrivilege
   # Taken from P/Invoke.NET with minor adjustments.
     $Definition = @'
 
-    using System; 
+    using System;
 
     using System.Runtime.InteropServices;
     public class AdjPriv
@@ -4701,7 +4463,7 @@ public static extern long RegLoadKey(int hKey, String lpSubKey, String lpFile);
   # Set a global variable containing the name of the mounted registry key
   # so we can unmount it if there's an error.
     $global:mountedHive = $mountKey
-    
+
     return $mountKey
 }
 
@@ -4766,9 +4528,9 @@ Test-Admin
     param()
 
     $currentUser = New-Object -TypeName "Security.Principal.WindowsPrincipal" -ArgumentList $( [Security.Principal.WindowsIdentity]::GetCurrent() )
-    
+
     $isAdmin = $currentUser.IsInRole([Security.Principal.WindowsBuiltinRole]::Administrator)
-    
+
     Write-Debug -Message "  is current user Admin?    $isAdmin"
 
     Return $isAdmin
@@ -4843,10 +4605,7 @@ Start-Executable
 
     Write-Debug -Message "    Return code was $($ret.ExitCode)."
 
-    If
-    (
-        $ret.ExitCode -ne $SuccessfulErrorCode
-    )
+    If ($ret.ExitCode -ne $SuccessfulErrorCode)
     {
         throw "$Executable failed with code $($ret.ExitCode)!"
     }
@@ -4877,10 +4636,7 @@ Test-IsNetworkLocation
 
     $Result = $False
 
-    If
-    (
-        [Bool]( [URI]$Path ).IsUNC
-    )
+    If ([Bool]( [URI]$Path ).IsUNC)
     {
         $Result = $True
     }
@@ -4888,10 +4644,7 @@ Test-IsNetworkLocation
     {
         $driveInfo = [IO.DriveInfo]( ( Resolve-Path -Path $Path ).Path )
 
-        If
-        (
-            $driveInfo.DriveType -eq "Network"
-        )
+        If ($driveInfo.DriveType -eq "Network")
         {
             $Result = $True
         }
@@ -4943,10 +4696,7 @@ Import-ModuleEx
         $VerbosePreferenceCurrent = $VerbosePreference
         $Global:VerbosePreference = "SilentlyContinue"
 
-        If
-        (
-            Test-Path -Path "Variable:\ModuleInternal"
-        )
+        If (Test-Path -Path "Variable:\ModuleInternal")
         {
           # $Item = Remove-Item -Path "Variable:\ModuleInternal" -Confirm:$false
 
@@ -4955,35 +4705,26 @@ Import-ModuleEx
             Remove-Variable -Name "Module" -Scope "Script"
         }
 
-        Switch
-        (
-            $PsCmdlet.ParameterSetName
-        ) 
-        { 
+        Switch ($PsCmdlet.ParameterSetName)
+        {
             "Name"
             {
-                If
-                (
-                    ( Get-Module -Name $Name -ListAvailable ) -Or
-                    ( Test-Path  -Path $Name )                    
-                )
+                If (( Get-Module -Name $Name -ListAvailable ) -Or
+                    ( Test-Path  -Path $Name ))
                 {
                     $ModuleInternal = Import-Module -Name $Name -PassThru -WarningAction Ignore
                 }
-            } 
+            }
 
             "ModuleInfo"
             {
                 $ModuleInternal = Import-Module -ModuleInfo $ModuleInfo -PassThru -WarningAction Ignore
-            } 
+            }
         }
 
         $Global:VerbosePreference = $VerbosePreferenceCurrent
 
-        If
-        (
-            Test-Path -Path "Variable:\ModuleInternal"
-        )
+        If (Test-Path -Path "Variable:\ModuleInternal")
         {
             Return $ModuleInternal
         }
