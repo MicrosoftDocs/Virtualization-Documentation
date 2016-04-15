@@ -1819,21 +1819,17 @@ You can use the fields below to configure the VHD or VHDX that you want to creat
                     $WindowsImage = Get-WindowsImage -ImagePath $SourcePath | Where-Object {$_.ImageName -ilike "*$($Edition)"}
                 }
 
-                if (-not $WindowsImage -or ($WindowsImage -is [System.Array]))
+                if (-not $WindowsImage)
+                {
+                    throw "Requested windows Image was not found on the WIM file!"
+                }
+                if ($WindowsImage -is [System.Array])
                 {
                     Write-W2VInfo "WIM file has the following $($WindowsImage.Count) images that match filter *$($Edition)"
                     Get-WindowsImage -ImagePath $SourcePath
 
-                    if (-not $WindowsImage)
-                    {
-                        throw "Requested windows Image was not found on the WIM file!!"
-                    }
-                    else
-                    {
-                        Write-W2VError "You must specify an Edition or SKU index, since the WIM has more than one image."
-
-                        throw "There are more than one images that match ImageName filter *$($Edition)"
-                    }
+                    Write-W2VError "You must specify an Edition or SKU index, since the WIM has more than one image."
+                    throw "There are more than one images that match ImageName filter *$($Edition)"
                 }
             }
 
@@ -2005,9 +2001,36 @@ You can use the fields below to configure the VHD or VHDX that you want to creat
             #
             # Assign drive letter to Windows partition.  This is required for bcdboot
             #
-            $windowsPartition | Add-PartitionAccessPath -AssignDriveLetter
+
+            $attempts = 1
+            $assigned = $false
+
+            do
+            {
+                $windowsPartition | Add-PartitionAccessPath -AssignDriveLetter
+                $windowsPartition = $windowsPartition | Get-Partition
+                if($windowsPartition.DriveLetter -ne 0)
+                {
+                    $assigned = $true
+                }
+                else
+                {
+                    #sleep for up to 10 seconds and retry
+                    Get-Random -Minimum 1 -Maximum 10 | Start-Sleep
+
+                    $attempts++
+                }
+            }
+            while ($attempts -le 100 -and -not($assigned))
+
+            if (-not($assigned))
+            {
+                throw "Unable to get Partition after retry"
+            }
+
             $windowsDrive = $(Get-Partition -Volume $windowsVolume).AccessPaths[0].substring(0,2)
             Write-W2VInfo "Windows path ($windowsDrive) has been assigned."
+            Write-W2VInfo "Windows path ($windowsDrive) took $attempts attempts to be assigned."
 
             #
             # Refresh access paths (we have now formatted the volume)

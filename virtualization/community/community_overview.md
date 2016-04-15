@@ -13,6 +13,7 @@ Check out resources available to the user community. There is also a lot to see 
 
 
 ## Featured content
+* [//build 2016 Container Announcements: Hyper-V Containers and Windows 10 and PowerShell For Docker!](https://blogs.technet.microsoft.com/virtualization/2016/04/01/build-2016-container-announcements-hyper-v-containers-and-windows-10-and-powershell-for-docker/)
 * [Announcing the release of Hyper-V Containers in Windows Server 2016 Technical Preview 4](http://blogs.technet.com/b/virtualization/archive/2015/11/19/announcing-the-release-of-hyper-v-containers-in-windows-server-2016-technical-preview-4.aspx)
 * [Early look at containers in Windows Server, Hyper-V and Azure – with Mark Russinovich](https://youtu.be/YoA_MMlGPRc)
 * [Announcing Windows Server 2016 Containers Preview](http://weblogs.asp.net/scottgu/announcing-windows-server-2016-containers-preview)
