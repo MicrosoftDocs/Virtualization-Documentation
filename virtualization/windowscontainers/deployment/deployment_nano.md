@@ -6,14 +6,7 @@ author: neilpeterson
 
 **This is preliminary content and subject to change.** 
 
-Deploying a Windows container host has different steps depending on the operating system and the host system type (physical or virtual). The steps in this document are used to deploy a Windows Container host to Nano Server, on a physical or virtual system. To install a Windows Container host to Windows Server see [Container host deployment - Windows Server](./deployment.md).
-
-For details on system requirements, see [Windows container host system requirements](./system_requirements.md). 
-
-PowerShell scripts are available to automate the deployment of a Windows container host. 
-- [Deploy a container host in a new Hyper-V virtual machine](../quick_start/container_setup.md).
-- [Deploy a container host to an existing system](../quick_start/inplace_setup.md).
-
+Deploying a Windows container host has different steps depending on the operating system and the host system type (physical or virtual). The steps in this document are used to deploy a Windows Container host to Nano Server, on a physical or virtual system.
 
 # Nano server host
 
@@ -38,7 +31,7 @@ PowerShell scripts are available to automate the deployment of a Windows contain
 
 <br />
 
-These steps need to be taken if Hyper-V containers will be used. Note, the steps marked with and * are only necessary if the container host is itself a Hyper-V virtual machine.
+These steps need to be taken if Hyper-V containers will be used. Note, the steps marked with and * are only necessary if the container host will be virtualized.
 
 <table border="1" style="background-color:FFFFCC;border-collapse:collapse;border:1px solid FFCC00;color:000000;width:100%" cellpadding="5" cellspacing="5">
 <tr valign="top">
@@ -71,33 +64,37 @@ Deploying Nano Server involves creating a prepared virtual hard drive, which inc
 
 Create a folder named `nano`.
 
-```powershell
+```none
 New-Item -ItemType Directory c:\nano
 ```
 
 Locate the `NanoServerImageGenerator.psm1` and `Convert-WindowsImage.ps1` files on the Windows Server Media. Copy these to `c:\nano`.
 
-```powershell
+```none
 # Set path to Windows Server 2016 Media
+
 $WindowsMedia = "C:\TP5Media"
 
-# Copy Files	
+# Copy Files
+	
 Copy-Item $WindowsMedia\NanoServer\NanoServerImageGenerator\Convert-WindowsImage.ps1 c:\nano
 Copy-Item $WindowsMedia\NanoServer\NanoServerImageGenerator\NanoServerImageGenerator.psm1 c:\nano
 ```
 Run the following to create a Nano Server virtual hard drive. The `-Containers` parameter indicates that the container package is installed, and the `-Compute` parameter takes care of the Hyper-V package. Hyper-V is only required if using Hyper-V containers.
 
-```powershell
+```none
 # Set path to Windows Server 2016 Media
+
 $WindowsMedia = "C:\TP5Media"
 
 # Create Nano Server Image
+
 Import-Module C:\nano\NanoServerImageGenerator.psm1
 New-NanoServerImage -MediaPath $WindowsMedia -BasePath c:\nano -TargetPath c:\nano\nanocontainer.vhdx -MaxSize 10GB -Compute -Containers -DeploymentType Guest -Edition Datacenter
 ```
 When completed, create a virtual machine from the `NanoContainer.vhdx` file. For more information on this process, see [Deploy a Windows virtual machine in Hyper-V]( https://msdn.microsoft.com/en-us/virtualization/hyperv_on_windows/quick_start/walkthrough_create_vm).
 
-One the virtual machine is ready, create a remote connection with Nano Server operating system. For more information on this operation, see [Using Windows PowerShell remoting in Getting Started with Nano Server]( https://technet.microsoft.com/en-us/library/mt126167.aspx).
+When the virtual machine is ready, create a remote connection with Nano Server operating system. For more information on this operation, see [Using Windows PowerShell remoting in Getting Started with Nano Server]( https://technet.microsoft.com/en-us/library/mt126167.aspx).
 
 ### <a name=img></a>Install OS images
 
@@ -105,19 +102,19 @@ An OS image is used as the base to any Windows Server or Hyper-V container. OS i
 
 The following command can be used to install the Container Provider PowerShell module.
 
-```powershell
+```none
 Install-PackageProvider ContainerProvider -Force
 ```
 
 Use `Find-ContainerImage` to return a list of images.
 
-```powershell
+```none
 Find-ContainerImage
 ```
 
 Which will output something similar to this.
 
-```
+```none
 Name                 Version                 Description
 ----                 -------                 -----------
 NanoServer           10.0.10586.0            Container OS Image of Windows Server 2016 Techn...
@@ -126,7 +123,7 @@ WindowsServerCore    10.0.10586.0            Container OS Image of Windows Serve
 ```
 To download and install the Nano Server base OS image, run the following.
 
-```powershell
+```none
 Install-ContainerImage -Name NanoServer
 ```
 
@@ -150,7 +147,7 @@ If the container host will be virtualized, the Hyper-V virtual processor will ne
 
 **Note** - The virtual machines must be turned off when running this command.
 
-```powershell
+```none
 Set-VMProcessor -VMName <VM Name> -ExposeVirtualizationExtensions $true -Count 2
 ```
 
@@ -160,7 +157,7 @@ If the Container Host is virtualized, dynamic memory must be disabled on the con
 
 **Note** - The virtual machines must be turned off when running this command.
 
-```powershell
+```none
 Set-VMMemory <VM Name> -DynamicMemoryEnabled $false
 ``` 
 
@@ -168,6 +165,6 @@ Set-VMMemory <VM Name> -DynamicMemoryEnabled $false
 
 Finally, if the container host is virtualized, MAC spoofing must be enable. This allows each container to receive an IP Address. To enable MAC address spoofing, run the following command on the Hyper-V host. The VMName property will be the name of the container host.
 
-```powershell
+```none
 Get-VMNetworkAdapter -VMName <VM Name> | Set-VMNetworkAdapter -MacAddressSpoofing On
 ```

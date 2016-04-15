@@ -4,6 +4,8 @@ author: neilpeterson
 
 # Azure Quick Start
 
+**This is preliminary content and subject to change.** 
+
 Before creating and managing Windows Server Containers in Azure you will need to deploy a Windows Server 2016 Technical Preview image which has been pre-configured with the Windows Server Containers feature. This guide will walk you through this process.
 
 > Microsoft Azure does not support Hyper-V containers. To complete Hyper-V Container exercises, you need an on-prem container host.

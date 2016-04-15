@@ -1,10 +1,9 @@
 ---
 author: neilpeterson
 ---
+# Optimize Windows Dockerfiles
 
 **This is preliminary content and subject to change.** 
-
-# Optimize Windows Dockerfiles
 
 Several methods can be used to optimize both the Docker build process, and the resulting Docker images. This document details how the Docker build process operates, and demonstrates several tactics that can be used for optimal image create with Windows Containers.
 
@@ -25,7 +24,7 @@ RUN echo "Hello World - Dockerfile" > c:\inetpub\wwwroot\index.html
 CMD [ "cmd" ]
 ```
 
-From this Dockerfile, one might expect the resulting image to consist of two layers, one for the container OS image, and a second that includes IIS and the website, this however is not the case. The new image is constructed of many layers, each one dependent on the previous. To visualize this, the `docker history` command can be run against the new image. Doing so will show that the image consists of four layers, the base, and then three additional layers, one for each instruction in the Dockerfile.
+From this Dockerfile, one might expect the resulting image to consist of two layers, one for the container OS image, and a second that includes IIS and the website, this however is not the case. The new image is constructed of many layers, each one dependent on the previous. To visualize this, the `docker history` command can be run against the new image. Doing so shows that the image consists of four layers, the base, and then three additional layers, one for each instruction in the Dockerfile.
 
 ```none
 C:\> docker history iis
@@ -39,11 +38,11 @@ f0e017e5b088        21 seconds ago       cmd /S /C echo "Hello World - Dockerfil
 
 Each of these layers can be mapped to an instruction from the Dockerfile. The bottom layer (6801d964fda5 in this example) represents the base OS image. One layer up, the IIS installation can be seen. The next layer includes the new website, and so on.
 
-Dockerfiles can be written to minimize image layers, optimize build performance, and also optimize cosmetic things such as readability. Ultimately, there are many ways to complete the same image build task. Understanding how the format of a Dockerfile effects build time, and resulting image, will improve the automation experience. 
+Dockerfiles can be written to minimize image layers, optimize build performance, and also optimize cosmetic things such as readability. Ultimately, there are many ways to complete the same image build task. Understanding how the format of a Dockerfile effects build time, and the resulting image, improves the automation experience. 
 
 ## Optimize Image Size
 
-When building Docker container images, image size may be an important factor. Container images will be moved between registries and host, exported and imported, and ultimately consume space. Several tactics can be used during the Docker build process to minimize image size. This section will detail some of these tactics specific to Windows Containers. 
+When building Docker container images, image size may be an important factor. Container images are moved between registries and host, exported and imported, and ultimately consume space. Several tactics can be used during the Docker build process to minimize image size. This section details some of these tactics specific to Windows Containers. 
 
 For additional information on Dockerfile best practices, see [Best practices for writing Dockerfiles on Docker.com]( https://docs.docker.com/engine/userguide/eng-image/dockerfile_best-practices/).
 
@@ -51,7 +50,7 @@ For additional information on Dockerfile best practices, see [Best practices for
 
 Because each RUN instruction creates a new layer in the container image, grouping actions into one RUN instruction, can reduce the number of layers. The backslash character ‘\’ is used to organize the instruction onto separate lines of the Dockerfile, while still using only one Run instruction.
 
-The following two examples will demonstrate the same operation, which results in container images of identical capability, however the two Dockerfiles constructed differently. The resulting images will also be compared.  
+The following two examples demonstrate the same operation, which results in container images of identical capability, however the two Dockerfiles constructed differently. The resulting images are also compared.  
 
 This first example downloads, extracts, and cleans up the Visual Studio redistributable package. Each of these actions are run in their own RUN instruction.
 
@@ -63,7 +62,7 @@ RUN powershell.exe -command c:\vcredist_x86.exe /quiet
 RUN powershell.exe -command Remove-Item c:\vcredist_x86.exe -Force
 ```
 
-The resulting image will consist of four layers, one for the Base image, and then one for each RUN instruction.
+The resulting image consists of four layers, one for the Base image, and then one for each RUN instruction.
 
 ```none
 C:\> docker history doc-example-1
@@ -97,9 +96,9 @@ IMAGE               CREATED             CREATED BY                              
 
 ### Remove excess files
 
-If a file, such as an installer, is not required after it has been used, remove the file to reduce image size. This will need to occur in the same step in which the file was copied into the image layer. Doing so will prevent the file from persisting in a lower level image layer.
+If a file, such as an installer, is not required after it has been used, remove the file to reduce image size. This needs to occur in the same step in which the file was copied into the image layer. Doing so prevents the file from persisting in a lower level image layer.
 
-In this example, the Visual Studio Redistribute package is downloaded, executed, and then the executable removed. This is all completed in one RUN operation and will result in a single image layer.
+In this example, the Visual Studio Redistribute package is downloaded, executed, and then the executable removed. This is all completed in one RUN operation and results in a single image layer.
 ```none
 RUN powershell -Command \
 	Sleep 2 ; \
@@ -112,7 +111,7 @@ RUN powershell -Command \
 
 ### Multiple Lines
 
-When optimizing for Docker build speed, it may be advantageous to separate operations into multiple individual instructions. Having multiple RUN operations increase caching effectiveness. Because individual layers are created for each RUN instruction, if an identical step has already been run in a different Docker Build operation, this cached operation (image layer) will be re-used. The result is that Docker Build runtime will be decreased.
+When optimizing for Docker build speed, it may be advantageous to separate operations into multiple individual instructions. Having multiple RUN operations increase caching effectiveness. Because individual layers are created for each RUN instruction, if an identical step has already been run in a different Docker Build operation, this cached operation (image layer) is re-useds. The result is that Docker Build runtime is decreased.
 
 In the following example, both Apache and the Visual Studio Redistribute packages are downloaded, installed, and then the un-needed files cleaned up. This is all done with one RUN instruction. If any of these actions are updated, all actions will re-run.
 
@@ -148,7 +147,7 @@ IMAGE               CREATED             CREATED BY                              
 6801d964fda5        5 months ago                                                        0 B
 ```
 
-To contrast, here are the same actions broken down into three RUN instructions. In this case, each RUN instruction is cached in a contianer image layer, and only those that have changed will need to re-run on subsequent Dockerfile builds.
+To contrast, here are the same actions broken down into three RUN instructions. In this case, each RUN instruction is cached in a contianer image layer, and only those that have changed, need to be re-run on subsequent Dockerfile builds.
 
 ```none
 FROM windowsservercore
@@ -173,7 +172,7 @@ RUN powershell -Command \
 	Remove-Item c:\php.zip -Force
 ```
 
-The resulting image consists of four layers, one for the base OS image, and then one for each RUN instruction. Because each RUN instruction has been run in its own layer, any subsequent runs of this Dockerfile or identical set of instructions in a different Dockerfile, will use the cached image layer, thus reducing build time. Instruction ordering is important when working with image cache, for more details, see the next section of this document.
+The resulting image consists of four layers, one for the base OS image, and then one for each RUN instruction. Because each RUN instruction has been run in its own layer, any subsequent runs of this Dockerfile or identical set of instructions in a different Dockerfile, will use cached image layer, thus reducing build time. Instruction ordering is important when working with image cache, for more details, see the next section of this document.
 
 ```none
 C:\> docker history doc-sample-2
@@ -186,7 +185,7 @@ d43abb81204a        7 days ago          cmd /S /C powershell -Command  Sleep 2 ;
 
 ### Ordering Instructions
 
-A Dockerfile is processed from top to the bottom, each Instruction compared against cached layers. When an instruction is found without a cached layer, this instruction and all subsequent instructions will be processed in new container image layers. Because of this, the order in which instructions are placed is important. Place instructions that will remain constant towards the top of the Dockerfile. Place instructions that may change towards the bottom of the Dockerfile. Doing so will reduce the likelihood of negating existing cache.
+A Dockerfile is processed from top to the bottom, each Instruction compared against cached layers. When an instruction is found without a cached layer, this instruction and all subsequent instructions are processed in new container image layers. Because of this, the order in which instructions are placed is important. Place instructions that will remain constant towards the top of the Dockerfile. Place instructions that may change towards the bottom of the Dockerfile. Doing so reduces the likelihood of negating existing cache.
 
 The intention of this example is to demonstrated how Dockerfile instruction ordering can effect caching effectiveness. In this simple Dockerfile, four numbered folders are created.  
 
@@ -211,7 +210,7 @@ afba1a3def0a        38 seconds ago       cmd /S /C mkdir test-4   42.46 MB
 6801d964fda5        5 months ago                                  0 B    
 ```
 
-The docker file has now been slightly modified. Notice that the third RUN instruction has changed. When Docker build is run against this Dockerfile, the first three instructions, which are identical to those in the last example, will use cached image layers. However, because the changed RUN instruction has not been cached, a new layer will be created for itself and all subsequent instructions.
+The docker file has now been slightly modified. Notice that the third RUN instruction has changed. When Docker build is run against this Dockerfile, the first three instructions, which are identical to those in the last example, use the cached image layers. However, because the changed RUN instruction has not been cached, a new layer is created for itself and all subsequent instructions.
 
 ```none
 FROM windowsservercore

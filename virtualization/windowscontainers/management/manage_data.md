@@ -39,7 +39,7 @@ For more information on monting host directories, see [Manage data in containers
 
 A single file can be mounted into a container by explicitly specifying the file name. In this example, the directory being shared includes many files, however only the 'config.ini' file is available inside of the container. 
 
-```
+```none
 docker run -it -v c:\container-share\config.ini windowsservercore cmd
 ```
 

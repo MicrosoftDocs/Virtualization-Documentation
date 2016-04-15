@@ -1,6 +1,6 @@
 ---
 author: neilpeterson
-redirect_url: ./manage_docker
+redirect_url: ../quickstart/manage_docker
 ---
 
 # Windows Server Container Management
@@ -15,7 +15,7 @@ The container life cycle includes actions such as, starting, stopping, and remov
 
 Use `docker run` to create a container with Docker.
 
-```powershell
+```none
 PS C:\> docker run -p 80:80 windowsservercoreiis
 ```
 
@@ -25,7 +25,7 @@ For more information on the Docker run command, see the [Docker run reference]( 
 
 Use the `docker stop` command to stop a container with Docker.
 
-```powershell
+```none
 PS C:\> docker stop tender_panini
 
 tender_panini
@@ -33,7 +33,7 @@ tender_panini
 
 This example stops all running containers with Docker.
 
-```powershell
+```none
 PS C:\> docker stop $(docker ps -q)
 
 fd9a978faac8
@@ -44,7 +44,7 @@ b51e4be8132e
 
 To remove a container with Docker, use the `docker rm` command.
 
-```powershell
+```none
 PS C:\> docker rm prickly_pike
 
 prickly_pike
@@ -52,7 +52,7 @@ prickly_pike
 
 To remove all containers with Docker.
 
-```powershell
+```none
 PS C:\> docker rm $(docker ps -a -q)
 
 dc3e282c064d

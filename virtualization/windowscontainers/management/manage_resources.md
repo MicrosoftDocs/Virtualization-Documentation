@@ -16,16 +16,11 @@ We offer the ability to manage a subset of container resources through Docker. S
 
 CPU shares amongst containers can be managed at runtime via the --cpu-shares flag. By default, all containers enjoy an equal proportion of CPU time. To change the relative share of CPU that containers use run the --cpu-shares flag with a value from 1-10000. By default, all containers receive a weight of 5000. For more information on CPU share constraint see the [Docker Run Reference]( https://docs.docker.com/engine/reference/run/#cpu-share-constraint). 
 
-```powershell 
-C:\> docker run -it --cpu-shares 2 --name dockerdemo windowsservercore cmd
+```none 
+docker run -it --cpu-shares 2 --name dockerdemo windowsservercore cmd
 ```
 
 ## Known Issues
 
 - CPU and IO Resource Controls are not currently supported with Hyper-V containers.
 - IO Resource Controls are not currently supported with container data volumes.
-
-## Video Walkthrough
-
-<iframe src="https://channel9.msdn.com/Blogs/containers/Container-Fundamentals--Part-4-Resource-Management/player" width="800" height="450"  allowFullScreen="true" frameBorder="0" scrolling="no"></iframe>
-

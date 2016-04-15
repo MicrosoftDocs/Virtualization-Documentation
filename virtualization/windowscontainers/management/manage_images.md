@@ -2,7 +2,7 @@
 author: neilpeterson
 ---
 
-# Container images
+# Container Images
 
 **This is preliminary content and subject to change.** 
 
@@ -76,7 +76,7 @@ Find-ContainerImage
 
 Output:
 
-```
+```none
 Name                 Version                 Description
 ----                 -------                 -----------
 NanoServer           10.0.10586.0            Container OS Image of Windows Server 2016 Techn...

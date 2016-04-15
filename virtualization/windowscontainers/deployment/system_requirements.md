@@ -25,7 +25,7 @@ If a Windows container host will be run from a Hyper-V virtual machine, and will
 
 ## Supported OS images
 
-Windows Server Technical Preview 4 is being offered with two container OS Images, Windows Server Core and Nano Server. Not all configurations support both OS images. This table details the supported configurations.
+Windows Server Technical Preview 5 is being offered with two container OS Images, Windows Server Core and Nano Server. Not all configurations support both OS images. This table details the supported configurations.
 
 <table border="1" style="background-color:FFFFCC;border-collapse:collapse;border:1px solid FFCC00;color:000000;width:75%" cellpadding="5" cellspacing="5">
 <thead>
@@ -49,6 +49,11 @@ Windows Server Technical Preview 4 is being offered with two container OS Images
 <tr valign="top">
 <td><center>Windows Server 2016 Nano</center></td>
 <td><center> Nano Server image</center></td>
+<td><center>Nano Server image</center></td>
+</tr>
+<tr valign="top">
+<td><center>Windows 10 Insider Releases</center></td>
+<td><center>Not Avaliable</center></td>
 <td><center>Nano Server image</center></td>
 </tr>
 </tbody>

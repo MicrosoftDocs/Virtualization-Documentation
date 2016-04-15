@@ -1,5 +1,6 @@
 ---
 author: neilpeterson
+redirect_url: ./quick_start_configure_host
 ---
 
 # Deploy a Windows Container Host to an Existing Virtual or Physical System

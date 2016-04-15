@@ -4,6 +4,8 @@ author: neilpeterson
 
 # Windows Containers
 
+**This is preliminary content and subject to change.** 
+
 Applications fuel innovation in the cloud and mobile era. Containers, and the ecosystem that is developing around them, will empower software developers to create the next generation of applications experiences.
 
 Watch a short overview: [Windows-based containers: Modern app development with enterprise-grade control](https://youtu.be/Ryx3o0rD5lY).
@@ -73,5 +75,7 @@ src="https://channel9.msdn.com/Blogs/containers/Containers-101-with-Microsoft-an
 
 ## Try Windows Server Containers
 
-[Get started with Windows Containers in Windows Azure](../quick_start/azure_setup.md)  
-[Get started with Windows Containers Locally](../quick_start/container_setup.md)
+[Container Quick Start Introduction](../quickstart/quick_start.md)
+
+[Deploy container host](../quickstart/quick__start_configure_host.md)
+

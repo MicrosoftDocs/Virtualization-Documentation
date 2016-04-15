@@ -6,13 +6,7 @@ author: neilpeterson
 
 **This is preliminary content and subject to change.** 
 
-Deploying a Windows container host has different steps depending on the operating system and the host system type (physical or virtual). The steps in this document are used to deploy a Windows Container host to either Windows Server 2016 or Windows Server Core 2016, on a physical or virtual system. To install a Windows container host to Nano Server see [Container host deployment - Nano Server](./deployment_nano.md).
-
-For details on system requirements, see [Windows container host system requirements](./system_requirements.md). 
-
-PowerShell scripts are also available to automate the deployment of a Windows container host. 
-- [Deploy a container host in a new Hyper-V virtual machine](../quick_start/container_setup.md).
-- [Deploy a container host to an existing system](../quick_start/inplace_setup.md).
+Deploying a Windows container host has different steps depending on the operating system and the host system type (physical or virtual). The steps in this document are used to deploy a Windows Container host to either Windows Server 2016 or Windows Server Core 2016, on a physical or virtual system.
 
 # Windows Server host
 
@@ -37,7 +31,7 @@ PowerShell scripts are also available to automate the deployment of a Windows co
 
 <br />
 
-These steps need to be taken if Hyper-V containers will be used. Note, the steps marked with and * are only necessary if the container host is itself a Hyper-V virtual machine.
+These steps need to be taken if Hyper-V containers will be used. Note, the steps marked with and * are only necessary if the container host will be virtualized.
 
 <table border="1" style="background-color:FFFFCC;border-collapse:collapse;border:1px solid FFCC00;color:000000;width:100%" cellpadding="5" cellspacing="5">
 <tr valign="top">
@@ -70,12 +64,12 @@ The container feature can be installed on Windows Server 2016, or Windows Server
 
 To install the role using PowerShell, run the following command in an elevated PowerShell session.
 
-```powershell
+```none
 Install-WindowsFeature containers
 ```
 The system needs to be rebooted when the container role installation has completed.
 
-```powershell
+```none
 shutdown /r /t 0
 ```
 
@@ -85,18 +79,18 @@ An OS image is used as the base to any Windows Server or Hyper-V container. OS i
 
 The following command can be used to install the Container Provider PowerShell module.
 
-```powershell
-PS C:\> Install-PackageProvider ContainerProvider -Force
+```none
+Install-PackageProvider ContainerProvider -Force
 ```
 
 Use `Find-ContainerImage` to return a list of images.
-```powershell
+```none
 Find-ContainerImage
 ```
 
 Which will output something similar to this.
 
-```
+```none
 Name                 Version                 Description
 ----                 -------                 -----------
 NanoServer           10.0.10586.0            Container OS Image of Windows Server 2016 Techn...
@@ -105,22 +99,31 @@ WindowsServerCore    10.0.10586.0            Container OS Image of Windows Serve
 ```
 To download and install the Nano Server base OS image, run the following.
 
-```powershell
+```none
 Install-ContainerImage -Name NanoServer
 ```
 
 Likewise, this command downloads and installs the Windows Server Core base OS image.
 
-```powershell
-PS C:\> Install-ContainerImage -Name WindowsServerCore
+```none
+Install-ContainerImage -Name WindowsServerCore
 ```
 
 For more information on Container image management see [Windows container images](../management/manage_images.md).
  
 ### <a name=docker></a>Install Docker
 
-The Docker Engine is not shipped with Windows, and not installed with the Windows container feature. To install Docker, follow the instructions in this article [Docker and Windows](./docker_windows.md).
+A script has been created to install and configure the Docker service. Run the following commands to download the script
 
+```none
+Invoke-WebRequest https://raw.githubusercontent.com/Microsoft/Virtualization-Documentation/container-docs-development/windows-server-container-tools/Update-ContainerHost/Update-ContainerHost.ps1 -OutFile docker.exe
+```
+Run the script to install the Docker service.
+
+```none
+.\docker.ps1
+```
+For manual installation and configuration steps, see [Docker and Windows](../docker/docker_windows.md).
 
 ## Hyper-V container host
 
@@ -130,7 +133,7 @@ If the container host will be virtualized, the Hyper-V virtual processor will ne
 
 **Note** - The virtual machines must be turned off when running this command.
 
-```powershell
+```none
 Set-VMProcessor -VMName <VM Name> -ExposeVirtualizationExtensions $true -Count 2
 ```
 
@@ -140,7 +143,7 @@ If the container host is itself a Hyper-V virtual machine, dynamic memory must b
 
 **Note** - The virtual machine must be turned off when running this command.
 
-```powershell
+```none
 Set-VMMemory <VM Name> -DynamicMemoryEnabled $false
 ``` 
 
@@ -148,7 +151,7 @@ Set-VMMemory <VM Name> -DynamicMemoryEnabled $false
 
 Finally, if the container host is running inside of a Hyper-V virtual machine, MAC spoofing must be enable. This allows each container to receive an IP Address. To enable MAC address spoofing, run the following command on the Hyper-V host. The VMName property will be the name of the container host.
 
-```powershell
+```none
 Get-VMNetworkAdapter -VMName <VM Name> | Set-VMNetworkAdapter -MacAddressSpoofing On
 ```
 
@@ -156,7 +159,7 @@ Get-VMNetworkAdapter -VMName <VM Name> | Set-VMNetworkAdapter -MacAddressSpoofin
 
 If Hyper-V containers will be deployed, the Hyper-V role needs to be enabled on the container host. The Hyper-V role can be installed on Windows Server 2016 or Windows Server 2016 Core using the `Install-WindowsFeature` command. If the container host is itself a Hyper-V virtual machine, nested virtualization will need to be enabled first. To do so see [Configure nested virtualization]( #nest).
 
-```powershell
+```none
 Install-WindowsFeature hyper-v
 ```
 

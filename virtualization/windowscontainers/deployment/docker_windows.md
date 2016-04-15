@@ -18,15 +18,15 @@ For more information on Docker and the Docker toolset visit [Docker.com](https:/
 
 There are several methods that can be used to create a Windows service, one example shown here uses `nssm.exe`. 
 
-Download docker.exe from `https://aka.ms/tp4/docker` and place it in the System32 directory on the container Host.
+Download docker.exe from `https://aka.ms/tp5/docker` and place it in the System32 directory on the container Host.
 
-```powershell
-wget https://aka.ms/tp4/docker -OutFile $env:SystemRoot\system32\docker.exe
+```none
+wget https://aka.ms/tp5/docker -OutFile $env:SystemRoot\system32\docker.exe
 ```
 
 Create a directory named `c:\programdata\docker`. In this directory, create a file named `runDockerDaemon.cmd`.
 
-```powershell
+```none
 New-Item -ItemType File -Path C:\ProgramData\Docker\runDockerDaemon.cmd -Force
 ```
 
@@ -50,24 +50,24 @@ docker daemon -D -H npipe:// -H tcp://0.0.0.0:2376 --tlsverify --tlscacert=%cert
 ```
 Download nssm.exe from [https://nssm.cc/release/nssm-2.24.zip](https://nssm.cc/release/nssm-2.24.zip).
 
-```powershell
+```none
 wget https://nssm.cc/release/nssm-2.24.zip -OutFile $env:ALLUSERSPROFILE\nssm.zip
 ```
 
 Extract the the compressed package.
 
-```powershell
+```none
 Expand-Archive -Path $env:ALLUSERSPROFILE\nssm.zip $env:ALLUSERSPROFILE
 ```
 
 Copy `nssm-2.24\win64\nssm.exe` into the `c:\windows\system32` directory.
 
-```powershell
+```none
 Copy-Item $env:ALLUSERSPROFILE\nssm-2.24\win64\nssm.exe $env:SystemRoot\system32
 ```
 Run `nssm install` to configure the Docker service.
 
-```powershell
+```none
 start-process nssm install
 ```
 
@@ -75,31 +75,29 @@ Enter the following data into the corresponding fields in the NSSM service insta
 
 Application Tab:
 
-- **Path:** C:\Windows\System32\cmd.exe
+**Path:** C:\Windows\System32\cmd.exe
 
-- **Startup Directory:** C:\Windows\System32
+**Startup Directory:** C:\Windows\System32
 
-- **Arguments:** /s /c C:\ProgramData\docker\runDockerDaemon.cmd < nul
+**Arguments:** /s /c C:\ProgramData\docker\runDockerDaemon.cmd < nul
 
-- **Service Name** - Docker
+**Service Name** - Docker
 
 ![](media/nssm1.png)
 
 Details Tab:
 
-- **Display name:** Docker
+**Display name:** Docker
 
-- **Description:** The Docker Daemon provides management capabilities of containers for docker clients.
-
+**Description:** The Docker Daemon provides management capabilities of containers for docker clients.
 
 ![](media/nssm2.png)
 
 IO Tab:
 
-- **Output (stdout):** C:\ProgramData\docker\daemon.log
+**Output (stdout):** C:\ProgramData\docker\daemon.log
 
-- **Error (stderr):** C:\ProgramData\docker\daemon.log
-
+**Error (stderr):** C:\ProgramData\docker\daemon.log
 
 ![](media/nssm3.png)
 
@@ -111,7 +109,7 @@ With this completed, when Windows starts, the Docker daemon (service) will also 
 
 If following this guide for creating a Windows service from docker.exe, the following command will remove the service.
 
-```powershell
+```none
 sc.exe delete Docker
 ```
 
@@ -123,7 +121,7 @@ Download docker.exe from `https://aka.ms/tp5/docker` and copy it to the `windows
 
 Create a directory named `c:\programdata\docker`. In this directory, create a file named `runDockerDaemon.cmd`.
 
-```powershell
+```none
 New-Item -ItemType File -Path C:\ProgramData\Docker\runDockerDaemon.cmd -Force
 ```
 
@@ -148,7 +146,7 @@ docker daemon -D -H npipe:// -H tcp://0.0.0.0:2376 --tlsverify --tlscacert=%cert
 
 The following script can be used to create a scheduled task to start the Docker daemon. 
 
-```powershell
+```none
 # Creates a scheduled task to start docker.exe at computer start up.
 
 $dockerData = "$($env:ProgramData)\docker"
@@ -163,63 +161,46 @@ Start-ScheduledTask -TaskName Docker
 
 If you wish to enable remote Docker management, you also need to open TCP port 2375.
 
-```powershell
+```none
 netsh advfirewall firewall add rule name="Docker daemon " dir=in action=allow protocol=TCP localport=2375
+```
+
+### Interactive Nano session
+
+Nano server is managed through a remote powershell session. Not all docker operations, such as starting an interactive session with a container can be performed through this remote powershell session. To get around this, ensure docker.exe is available on a remote system, and manage the Docker host through a TCP connection. 
+
+For more information on remotely managing Nano Server, see [Getting Started with Nano Server]( https://technet.microsoft.com/en-us/library/mt126167.aspx#bkmk_ManageRemote).
+
+> As a best practice, Docker should be managed remotely through a secure TCP connection.
+
+To remotely deploy a container and enter an interactive session, run the following command.
+
+```none
+docker –H tcp://<ipaddress of server>:2376 run –it nanoserver cmd
+```
+
+An environmental variable DOCKER_HOST can be created that will remove the –H parameter requirement. The following PowerShell command can be used for this.
+
+```none
+$env:DOCKER_HOST = "tcp://<ipaddress of server:2376"
+```
+
+With this variable set, the command would not look like this.
+
+```none
+docker run –it nanoserver cms
 ```
 
 ### Removing Docker <!--2-->
 
 To remove the docker daemon and cli from Nano Server, delete `docker.exe` from the Windows\system32 directory.
 
-```powershell
+```none
 Remove-Item $env:SystemRoot\system32\docker.exe
 ``` 
 
 Run the following to un-register the Docker scheduled task.
 
-```powershell
+```none
 Get-ScheduledTask -TaskName Docker | UnRegister-ScheduledTask
-```
-
-### Interactive Nano session
-
-> For information on remotely managing Nano Server, see [Getting started with Nano Server](https://technet.microsoft.com/en-us/library/mt126167.aspx#bkmk_ManageRemote).
-
-You may receive this error when interactively managing a container on a Nano Server Host.
-
-```powershell
-docker : cannot enable tty mode on non tty input
-+ CategoryInfo          : NotSpecified: (cannot enable tty mode on non tty input:String) [], RemoteException
-+ FullyQualifiedErrorId : NativeCommandError 
-```
-
-This can happen when trying to run a container with an interactive session, using -it:
-
-```powershell
-Docker run -it <image> <command>
-```
-Or trying to attach to a running container:
-
-```powershell
-Docker attach <container name>
-```
-
-In order to create an interactive session with a Docker created container on a Nano Server host, the Docker daemon must be managed remotely. To do so, download docker.exe from [this location](https://aka.ms/ContainerTools) and copy it to a remote system.
-
-First, you will need to set up the Docker daemon in your Nano Server to listen to remote commands. You can do this by running this command in the Nano Server:
-
-```powershell
-docker daemon -D -H <ip address of Nano Server>:2375
-```
-
-Now, on your machine, open a PowerShell or CMD session, and run the Docker commands specifying the remote host with `-H`.
-
-```powershell
-.\docker.exe -H tcp://<ip address of Nano Server>:2375
-```
-
-For example, if you would like to see the available images: 
-
-```powershell
-.\docker.exe -H tcp://<ip address of Nano Server>:2375 images
 ```
