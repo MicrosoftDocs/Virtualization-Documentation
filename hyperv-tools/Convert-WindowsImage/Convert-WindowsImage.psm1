@@ -1509,17 +1509,13 @@ You can use the fields below to configure the VHD or VHDX that you want to creat
 
                 If ($VhdFormat -ilike "AUTO")
                 {
-                    Switch ($DiskLayout)
+                    If ($DiskLayout -eq "Bios")
                     {
-                        "Bios"
-                        {
-                            $VhdFormat = "VHD"
-                        }
-
-                        "Uefi"
-                        {
-                            $VhdFormat = "VHDX"
-                        }
+                        $VhdFormat = "VHD"
+                    }
+                    Else
+                    {
+                        $VhdFormat = "VHDX"
                     }
                 }
 
