@@ -1765,7 +1765,6 @@ You can use the fields below to configure the VHD or VHDX that you want to creat
                         Write-Verbose -Message "Mounting $VhdFormat..."
                         $disk = $newVhd | Mount-VHD -PassThru | Get-Disk
                     }
-
                     Else
                     {
                         <#
@@ -1809,7 +1808,7 @@ You can use the fields below to configure the VHD or VHDX that you want to creat
                       # Attach the VHD.
 
                         Write-Verbose -Message "Attaching $VhdFormat..."
-                        $Disk = Mount-DiskImage -ImagePath $VhdPath -PassThru | Get-DiskImage | Get-Disk
+                        $disk = Mount-DiskImage -ImagePath $VhdPath -PassThru | Get-DiskImage | Get-Disk
                     }
 
                     Switch ($DiskLayout)
@@ -1817,8 +1816,7 @@ You can use the fields below to configure the VHD or VHDX that you want to creat
                         "BIOS"
                         {
                             Write-Verbose -Message "Initializing disk..."
-
-                            $InitializeDisk = Initialize-Disk -Number $disk.Number -PartitionStyle MBR -PassThru
+                            Initialize-Disk -Number $disk.Number -PartitionStyle MBR
 
                           # Create the Windows/system partition
                             Write-Verbose -Message "Creating single partition..."
@@ -1835,7 +1833,7 @@ You can use the fields below to configure the VHD or VHDX that you want to creat
                         "UEFI"
                         {
                             Write-Verbose -Message "Initializing disk..."
-                            $InitializeDisk = Initialize-Disk -Number $disk.Number -PartitionStyle GPT -PassThru
+                            Initialize-Disk -Number $disk.Number -PartitionStyle GPT
 
                             If ($BcdInVhd -eq "VirtualMachine")
                             {
@@ -1888,7 +1886,7 @@ You can use the fields below to configure the VHD or VHDX that you want to creat
                         "WindowsToGo"
                         {
                             Write-Verbose -Message "Initializing disk..."
-                            $InitializeDisk = Initialize-Disk -Number $disk.Number -PartitionStyle MBR -PassThru
+                            Initialize-Disk -Number $disk.Number -PartitionStyle MBR
 
                           # Create the system partition
                             Write-Verbose -Message "Creating system partition..."
@@ -1909,11 +1907,12 @@ You can use the fields below to configure the VHD or VHDX that you want to creat
                     If (( $DiskLayout -eq "UEFI" -and $BcdInVhd -eq "VirtualMachine" ) -or
                           $DiskLayout -eq "WindowsToGo")
                     {
+                        Write-Verbose -Message "Disk layout: `“$DiskLayout`”"
+                        Write-Verbose -Message "BcdInVhd: `“$BcdInVhd`”"
 
                       # Retreive access path for System partition.
                         $systemPartition = Get-Partition -UniqueId $systemPartition.UniqueId
                         $systemDrive = $systemPartition.AccessPaths[0].trimend("\").replace("\?", "??")
-                        $systemDrive = ( Resolve-Path -Path $systemDrive ).Path
                         Write-Verbose -Message "System volume path: `“$systemDrive`”"
                     }
 
@@ -2021,7 +2020,7 @@ You can use the fields below to configure the VHD or VHDX that you want to creat
 
                     If (( $openImage.ImageArchitecture -ne "ARM" ) -and       # No virtualization platform for ARM images
                         ( $openImage.ImageArchitecture -ne "ARM64" ) -and     # No virtualization platform for ARM64 images
-                        ( $BcdInVhd -ne "NativeBoot" )                        # User asked for a non-bootable image)
+                        ( $BcdInVhd -ne "NativeBoot" ))                       # User asked for a non-bootable image
                     {
                         If (Test-Path -Path "$($systemDrive)\boot\bcd")
                         {
