@@ -22,6 +22,9 @@
     .PARAMETER DockerPath
         Path to a private Docker.exe.  Defaults to https://aka.ms/tp5/docker
 
+    .PARAMETER DockerDPath
+        Path to a private DockerD.exe.  Defaults to https://aka.ms/tp5/dockerd
+
     .PARAMETER Password 
         Password for the built-in Administrator account. 
 
@@ -33,9 +36,6 @@
 
     .PARAMETER ScriptPath
         Path to a private Install-ContainerHost.ps1.  Defaults to https://aka.ms/tp5/Install-ContainerHost
-
-    .PARAMETER SkipDocker
-        If passed, skips Docker install
             
     .PARAMETER SwitchName
         Specify a switch to give the container host network connectivity
@@ -57,23 +57,25 @@
         Image to use for the VM.  One of NanoServer, ServerDatacenter, or ServerDatacenterCore [default]
 
     .EXAMPLE
-        .\Install-ContainerHost.ps1 -SkipDocker
+        .\Install-ContainerHost.ps1 
                 
 #>
 #Requires -Version 4.0
 
-[CmdletBinding(DefaultParameterSetName="IncludeDocker")]
+[CmdletBinding(DefaultParameterSetName="Deploy")]
 param(
-    [Parameter(ParameterSetName="IncludeDocker")]
     [string]
     [ValidateNotNullOrEmpty()]
     $DockerPath = "https://aka.ms/tp5/docker",
 
+    [string]
+    [ValidateNotNullOrEmpty()]
+    $DockerDPath = "https://aka.ms/tp5/dockerd",
+
     [switch]
     $HyperV,
     
-    [Parameter(ParameterSetName="IncludeDocker")]
-    [Parameter(ParameterSetName="SkipDocker")]
+    [Parameter(ParameterSetName="Deploy")]
     [string]
     [ValidateNotNullOrEmpty()]
     $IsoPath = "https://aka.ms/tp5/serveriso",   
@@ -81,8 +83,7 @@ param(
     [string]
     $NATSubnetPrefix = "172.16.0.0/24",
 
-    [Parameter(ParameterSetName="IncludeDocker", Mandatory, Position=1)]
-    [Parameter(ParameterSetName="SkipDocker", Mandatory, Position=1)]
+    [Parameter(ParameterSetName="Deploy", Mandatory, Position=1)]
     [Security.SecureString]
     $Password = ("P@ssw0rd" | ConvertTo-SecureString -AsPlainText -Force),
       
@@ -93,10 +94,6 @@ param(
     [string]
     [ValidateNotNullOrEmpty()]
     $ScriptPath = "https://aka.ms/tp5/Install-ContainerHost",
-
-    [Parameter(ParameterSetName="SkipDocker", Mandatory)]
-    [switch]
-    $SkipDocker,
 
     [Parameter(ParameterSetName="Staging", Mandatory)]
     [switch]
@@ -113,8 +110,7 @@ param(
     [ValidateNotNullOrEmpty()]
     $VhdPath,
 
-    [Parameter(ParameterSetName="IncludeDocker", Mandatory, Position=0)]
-    [Parameter(ParameterSetName="SkipDocker", Mandatory, Position=0)]
+    [Parameter(ParameterSetName="Deploy", Mandatory, Position=0)]
     [Parameter(ParameterSetName="Staging", Mandatory, Position=0)]
     [string]
     [ValidateNotNullOrEmpty()]
@@ -171,25 +167,7 @@ if ($Prompt)
     #
     $Password = Read-Host 'Please specify Administrator password' -AsSecureString
     
-    #
-    # Install docker?
-    #
-    $dockerChoiceList = New-Object System.Collections.ObjectModel.Collection[System.Management.Automation.Host.ChoiceDescription]
-
-    $dockerChoiceList.Add((New-Object "System.Management.Automation.Host.ChoiceDescription" -ArgumentList "&Yes"))
-    $dockerChoiceList.Add((New-Object "System.Management.Automation.Host.ChoiceDescription" -ArgumentList "&No"))
-    
-    $SkipDocker = [boolean]$Host.ui.PromptForChoice($null, "Would you like to install Docker?", $dockerChoiceList, 0)
-    
-
-    if ($SkipDocker)
-    {
-        $global:ParameterSet = "SkipDocker"
-    } 
-    else
-    {
-        $global:ParameterSet = "IncludeDocker"
-    }
+    $global:ParameterSet = "Deploy"
 }
 else
 {
@@ -484,17 +462,13 @@ Add-Unattend
 
         $installCommand = "%SystemDrive%\Install-ContainerHost.ps1 "
 
-        if ($SkipDocker)
-        {
-            $installCommand += '-SkipDocker '
-        }
-        elseif ($Staging)
+        if ($Staging)
         {
             $installCommand += '-Staging '
         }
         else
         {
-            $installCommand += '-DockerPath %SystemRoot%\System32\docker.exe '
+            $installCommand += '-DockerPath %SystemRoot%\System32\docker.exe -DockerDPath %SystemRoot%\System32\dockerd.exe'
         }
 
         if ($global:WimSaveMode)
@@ -551,10 +525,7 @@ Edit-BootVhd
     [CmdletBinding()]
     param(
         [string]
-        $BootVhdPath,
-
-        [bool]
-        $IncludeDocker
+        $BootVhdPath
     )
 
     #
@@ -644,19 +615,21 @@ Edit-BootVhd
             }
         }
 
-        if ($IncludeDocker)
-        {
-            #
-            # Copy docker
-            #
-            Write-Output "Copying Docker into $global:vhdBrandName..."
-            Copy-File -SourcePath $DockerPath -DestinationPath "$($driveLetter):\Windows\System32\docker.exe"
+        
+        #
+        # Copy docker
+        #
+        Write-Output "Copying Docker into $global:vhdBrandName..."
+        Copy-File -SourcePath $DockerPath -DestinationPath "$($driveLetter):\Windows\System32\docker.exe"
+        
+        Write-Output "Copying Docker daemon into $global:vhdBrandName..."
+        Copy-File -SourcePath $DockerDPath -DestinationPath "$($driveLetter):\Windows\System32\dockerd.exe"
 
-            if ($WindowsImage -ne "NanoServer")
-            {
-                Write-Output "Copying NSSM into $global:vhdBrandName..."
-                Get-Nsmm -Destination "$($driveLetter):\Windows\System32"
-            }
+
+        if ($WindowsImage -ne "NanoServer")
+        {
+            Write-Output "Copying NSSM into $global:vhdBrandName..."
+            Get-Nsmm -Destination "$($driveLetter):\Windows\System32"
         }
 
         #
@@ -771,7 +744,7 @@ New-ContainerHost()
     }
     $bootVhd = New-VHD -Path "$bootVhdPath" -ParentPath $global:localVhdPath -Differencing
     
-    Edit-BootVhd -BootVhdPath $bootVhdPath -IncludeDocker $($global:ParameterSet -eq "IncludeDocker")
+    Edit-BootVhd -BootVhdPath $bootVhdPath 
     
     #
     # Create VM
@@ -821,141 +794,137 @@ New-ContainerHost()
         $wimHardDiskDrive = $vm | Add-VMHardDiskDrive -Path $wimVhd.Path -ControllerType SCSI
     }
 
-	if ($Staging -and ($WindowsImage -eq "NanoServer"))
-	{
-		Write-Output "NanoServer VM is staged..."		
-	}
-	else
-	{
-		Write-Output "Starting VM $($vm.Name)..."
-		$vm | Start-VM | Out-Null
+    if ($Staging -and ($WindowsImage -eq "NanoServer"))
+    {
+        Write-Output "NanoServer VM is staged..."        
+    }
+    else
+    {
+        Write-Output "Starting VM $($vm.Name)..."
+        $vm | Start-VM | Out-Null
 
-		Write-Output "Waiting for VM $($vm.Name) to boot..."
-		do 
-		{
-			Start-Sleep -sec 1
-		} 
-		until (($vm | Get-VMIntegrationService |? Id -match "84EAAE65-2F2E-45F5-9BB5-0E857DC8EB47").PrimaryStatusDescription -eq "OK")
+        Write-Output "Waiting for VM $($vm.Name) to boot..."
+        do 
+        {
+            Start-Sleep -sec 1
+        } 
+        until (($vm | Get-VMIntegrationService |? Id -match "84EAAE65-2F2E-45F5-9BB5-0E857DC8EB47").PrimaryStatusDescription -eq "OK")
 
-		Write-Output "Connected to VM $($vm.Name) Heartbeat IC."
+        Write-Output "Connected to VM $($vm.Name) Heartbeat IC."
 
-		if ($global:PowerShellDirectMode)
-		{
-			$credential = New-Object System.Management.Automation.PsCredential("Administrator", $Password)  
+        if ($global:PowerShellDirectMode)
+        {
+            $credential = New-Object System.Management.Automation.PsCredential("Administrator", $Password)  
         
-			$psReady = $false
+            $psReady = $false
 
-			Write-Output "Waiting for specialization to complete (this may take a few minutes)..."
-			$startTime = Get-Date
+            Write-Output "Waiting for specialization to complete (this may take a few minutes)..."
+            $startTime = Get-Date
 
-			do 
-			{
-				$timeElapsed = $(Get-Date) - $startTime
+            do 
+            {
+                $timeElapsed = $(Get-Date) - $startTime
 
-				if ($($timeElapsed).TotalMinutes -ge 30)
-				{
-					throw "Could not connect to PS Direct after 30 minutes"
-				} 
+                if ($($timeElapsed).TotalMinutes -ge 30)
+                {
+                    throw "Could not connect to PS Direct after 30 minutes"
+                } 
 
-				Start-Sleep -sec 1
-				$psReady = Invoke-Command -VMName $($vm.Name) -Credential $credential -ScriptBlock { $True } -ErrorAction SilentlyContinue
-			} 
-			until ($psReady)
+                Start-Sleep -sec 1
+                $psReady = Invoke-Command -VMName $($vm.Name) -Credential $credential -ScriptBlock { $True } -ErrorAction SilentlyContinue
+            } 
+            until ($psReady)
 
-			Write-Verbose "PowerShell Direct connected."
+            Write-Verbose "PowerShell Direct connected."
     
-			$guestScriptBlock = 
-			{
-				[CmdletBinding()]
-				param(
-					[Parameter(Position=0)]
-					[string]
-					$WimName,
+            $guestScriptBlock = 
+            {
+                [CmdletBinding()]
+                param(
+                    [Parameter(Position=0)]
+                    [string]
+                    $WimName,
 
-					[Parameter(Position=1)]
-					[string]
-					$ParameterSetName,
+                    [Parameter(Position=1)]
+                    [string]
+                    $ParameterSetName,
 
-					[Parameter(Position=2)]
-					[bool]
-					$HyperV,
+                    [Parameter(Position=2)]
+                    [bool]
+                    $HyperV,
 
-					[Parameter(Position=3)]
-					[string]
-					$NATSubnetPrefix
-					)
+                    [Parameter(Position=3)]
+                    [string]
+                    $NATSubnetPrefix
+                    )
 
-				Write-Verbose "Onlining disks..."
-				Get-Disk | ? IsOffline | Set-Disk -IsOffline:$false
+                Write-Verbose "Onlining disks..."
+                Get-Disk | ? IsOffline | Set-Disk -IsOffline:$false
 
-				Write-Output "Completing container install..."
-				$installCommand = "$($env:SystemDrive)\Install-ContainerHost.ps1 -PSDirect -NATSubnetPrefix $NATSubnetPrefix "
+                Write-Output "Completing container install..."
+                $installCommand = "$($env:SystemDrive)\Install-ContainerHost.ps1 -PSDirect -NATSubnetPrefix $NATSubnetPrefix "
 
-				if ($ParameterSetName -eq "SkipDocker")
-				{
-					$installCommand += "-SkipDocker "
-				}
-				elseif ($ParameterSetName -eq "Staging")
-				{
-					$installCommand += "-Staging "
-				}
-				else
-				{
-					$installCommand += "-DockerPath ""$($env:SystemRoot)\System32\docker.exe"" "
-				}
+                if ($ParameterSetName -eq "Staging")
+                {
+                    $installCommand += "-Staging "
+                }
+                else
+                {
+                    $installCommand += "-DockerPath ""$($env:SystemRoot)\System32\docker.exe"" -DockerDPath ""$($env:SystemRoot)\System32\dockerd.exe"""
+                }
 
-				if ($WimName -ne "")
-				{
-					$installCommand += "-WimPath ""D:\$WimName"" "
-				}
+                if ($WimName -ne "")
+                {
+                    $installCommand += "-WimPath ""D:\$WimName"" "
+                }
 
-				if ($HyperV)
-				{
-					$installCommand += "-HyperV "
-				}
+                if ($HyperV)
+                {
+                    $installCommand += "-HyperV "
+                }
 
-				#
-				# This is required so that Install-ContainerHost.err goes in the right place
-				#
-				$pwd = "$($env:SystemDrive)\"
+                #
+                # This is required so that Install-ContainerHost.err goes in the right place
+                #
+                $pwd = "$($env:SystemDrive)\"
                 
-				$installCommand += "*>&1 | Tee-Object -FilePath ""$($env:SystemDrive)\Install-ContainerHost.log"" -Append"
+                $installCommand += "*>&1 | Tee-Object -FilePath ""$($env:SystemDrive)\Install-ContainerHost.log"" -Append"
 
-				Invoke-Expression $installCommand
-			}
+                Invoke-Expression $installCommand
+            }
     
-			Write-Output "Executing Install-ContainerHost.ps1 inside the VM..."
-			$wimName = ""
-			if ($global:WimSaveMode)
-			{
-				$wimName = $global:localWimName
-			}
-			Invoke-Command -VMName $($vm.Name) -Credential $credential -ScriptBlock $guestScriptBlock -ArgumentList $wimName,$global:ParameterSet,$HyperV,$NATSubnetPrefix
+            Write-Output "Executing Install-ContainerHost.ps1 inside the VM..."
+            $wimName = ""
+            if ($global:WimSaveMode)
+            {
+                $wimName = $global:localWimName
+            }
+            Invoke-Command -VMName $($vm.Name) -Credential $credential -ScriptBlock $guestScriptBlock -ArgumentList $wimName,$global:ParameterSet,$HyperV,$NATSubnetPrefix
     
-			$scriptFailed = Invoke-Command -VMName $($vm.Name) -Credential $credential -ScriptBlock { Test-Path "$($env:SystemDrive)\Install-ContainerHost.err" }
+            $scriptFailed = Invoke-Command -VMName $($vm.Name) -Credential $credential -ScriptBlock { Test-Path "$($env:SystemDrive)\Install-ContainerHost.err" }
     
-			if ($scriptFailed)
-			{
-				throw "Install-ContainerHost.ps1 failed in the VM"
-			}
+            if ($scriptFailed)
+            {
+                throw "Install-ContainerHost.ps1 failed in the VM"
+            }
 
-			#
-			# Cleanup
-			#
-			if ($global:WimSaveMode)
-			{
-				Write-Output "Cleaning up temporary WIM VHD"
-				$vm | Get-VMHardDiskDrive |? Path -eq $wimVhd.Path | Remove-VMHardDiskDrive 
-				Remove-Item $wimVhd.Path
-			}
+            #
+            # Cleanup
+            #
+            if ($global:WimSaveMode)
+            {
+                Write-Output "Cleaning up temporary WIM VHD"
+                $vm | Get-VMHardDiskDrive |? Path -eq $wimVhd.Path | Remove-VMHardDiskDrive 
+                Remove-Item $wimVhd.Path
+            }
     
-			Write-Output "VM $($vm.Name) is ready for use as a container host."
-		}
-		else
-		{
-			Write-Output "VM $($vm.Name) will be ready to use as a container host when Install-ContainerHost.ps1 completes execution inside the VM."
-		}
-	}
+            Write-Output "VM $($vm.Name) is ready for use as a container host."
+        }
+        else
+        {
+            Write-Output "VM $($vm.Name) will be ready to use as a container host when Install-ContainerHost.ps1 completes execution inside the VM."
+        }
+    }
 
     Write-Output "See https://msdn.microsoft.com/virtualization/windowscontainers/containers_welcome for more information about using Containers."
     Write-Output "The source code for these installation scripts is available here: https://github.com/Microsoft/Virtualization-Documentation/tree/master/windows-server-container-tools"
@@ -1071,7 +1040,7 @@ Expand-ArchivePrivate
 
 
 function
-Get-InstalledContainerImage
+Test-InstalledContainerImage
 {
     [CmdletBinding()]
     param(
@@ -1080,8 +1049,10 @@ Get-InstalledContainerImage
         [ValidateNotNullOrEmpty()]
         $BaseImageName
     )
+
+    $path = Join-Path (Join-Path $env:ProgramData "Microsoft\Windows\Images") "*$BaseImageName*"
     
-    return Get-ContainerImage |? IsOSImage |? Name -eq $BaseImageName
+    return Test-Path $path
 }
 
 
@@ -1224,6 +1195,12 @@ Wait-Network()
 
 
 function
+Get-DockerImages
+{
+    return docker images
+}
+
+function
 Find-DockerImages
 {
     [CmdletBinding()]
@@ -1235,6 +1212,121 @@ Find-DockerImages
     )
 
     return docker images | Where { $_ -match $BaseImageName.tolower() }
+}
+
+
+function 
+Install-Docker()
+{
+    [CmdletBinding()]
+    param(
+        [string]
+        [ValidateNotNullOrEmpty()]
+        $DockerPath = "https://aka.ms/tp5/docker",
+
+        [string]
+        [ValidateNotNullOrEmpty()]
+        $DockerDPath = "https://aka.ms/tp5/dockerd"
+    )
+
+    Test-Admin
+
+    Write-Output "Installing Docker..."
+    Copy-File -SourcePath $DockerPath -DestinationPath $env:windir\System32\docker.exe
+
+    Write-Output "Installing Docker daemon..."
+    Copy-File -SourcePath $DockerDPath -DestinationPath $env:windir\System32\dockerd.exe
+
+    $dockerData = "$($env:ProgramData)\docker"
+    $dockerLog = "$dockerData\daemon.log"
+
+    if (-not (Test-Path $dockerData))
+    {
+        Write-Output "Creating Docker program data..."
+        New-Item -ItemType Directory -Force -Path $dockerData | Out-Null
+    }
+
+    $dockerDaemonScript = "$dockerData\runDockerDaemon.cmd"
+
+    New-DockerDaemonRunText | Out-File -FilePath $dockerDaemonScript -Encoding ASCII
+
+    if (Test-Nano)
+    {
+        Write-Output "Creating scheduled task action..."
+        $action = New-ScheduledTaskAction -Execute "cmd.exe" -Argument "/c $dockerDaemonScript > $dockerLog 2>&1"
+
+        Write-Output "Creating scheduled task trigger..."
+        $trigger = New-ScheduledTaskTrigger -AtStartup
+
+        Write-Output "Creating scheduled task settings..."
+        $settings = New-ScheduledTaskSettingsSet -Priority 5
+
+        Write-Output "Registering Docker daemon to launch at startup..."
+        Register-ScheduledTask -TaskName $global:DockerServiceName -Action $action -Trigger $trigger -Settings $settings -User SYSTEM -RunLevel Highest | Out-Null
+
+        Write-Output "Launching daemon..."
+        Start-ScheduledTask -TaskName $global:DockerServiceName
+    }
+    else
+    {
+        if (Test-Path "$($env:SystemRoot)\System32\nssm.exe")
+        {
+            Write-Output "NSSM is already installed"
+        }
+        else
+        {
+            Get-Nsmm -Destination "$($env:SystemRoot)\System32" -WorkingDir "$env:temp"
+        }
+
+        Write-Output "Configuring NSSM for $global:DockerServiceName service..."
+        Start-Process -Wait "nssm" -ArgumentList "install $global:DockerServiceName $($env:SystemRoot)\System32\cmd.exe /s /c $dockerDaemonScript < nul"
+        Start-Process -Wait "nssm" -ArgumentList "set $global:DockerServiceName DisplayName Docker Daemon"
+        Start-Process -Wait "nssm" -ArgumentList "set $global:DockerServiceName Description The Docker Daemon provides management capabilities of containers for docker clients"
+        # Pipe output to daemon.log
+        Start-Process -Wait "nssm" -ArgumentList "set $global:DockerServiceName AppStderr $dockerLog"
+        Start-Process -Wait "nssm" -ArgumentList "set $global:DockerServiceName AppStdout $dockerLog"
+        # Allow 30 seconds for graceful shutdown before process is terminated
+        Start-Process -Wait "nssm" -ArgumentList "set $global:DockerServiceName AppStopMethodConsole 30000"
+
+        Start-Service -Name $global:DockerServiceName
+    }
+
+    #
+    # Waiting for docker to come to steady state
+    #
+    Wait-Docker
+
+    Write-Output "The following images are present on this machine:"
+    foreach ($image in (Get-DockerImages))
+    {
+        Write-Output "    $image"
+    }
+    Write-Output ""
+}
+
+
+function
+New-DockerDaemonRunText
+{
+    return @"
+
+@echo off
+set certs=%ProgramData%\docker\certs.d
+
+if exist %ProgramData%\docker (goto :run)
+mkdir %ProgramData%\docker
+
+:run
+if exist %certs%\server-cert.pem (if exist %ProgramData%\docker\tag.txt (goto :secure))
+
+dockerd daemon -H nipe:// 
+goto :eof
+
+:secure
+dockerd daemon -H 0.0.0.0:2376 --tlsverify --tlscacert=%certs%\ca.pem --tlscert=%certs%\server-cert.pem --tlskey=%certs%\server-key.pem
+
+"@
+
 }
 
 
@@ -1288,44 +1380,6 @@ Test-Docker()
     }
 
     return ($service -ne $null)
-}
-
-
-function
-Wait-InstalledContainerImage
-{
-    [CmdletBinding()]
-    param(
-        [Parameter(Mandatory=$true)]
-        [string]
-        [ValidateNotNullOrEmpty()]
-        $BaseImageName
-    )
-    
-    $newBaseImages = Get-InstalledContainerImage $BaseImageName
-
-    $startTime = Get-Date
-
-    while ($newBaseImages.Count -eq 0)
-    {            
-        $timeElapsed = $(Get-Date) - $startTime
-
-        if ($($timeElapsed).TotalMinutes -gt 5)
-        {
-            throw "Image $BaseImageName not found after 5 minutes"
-        }
-
-        #
-        # Sleeping to ensure VMMS has restarted to workaround TP3 issue
-        #
-        Write-Output "Waiting for VMMS to return image at ($(get-date))..."
-
-        Start-Sleep -Sec 2
-                
-        $newBaseImages += Get-InstalledContainerImage $BaseImageName            
-    }
-
-    return $newBaseImages
 }
 
 
