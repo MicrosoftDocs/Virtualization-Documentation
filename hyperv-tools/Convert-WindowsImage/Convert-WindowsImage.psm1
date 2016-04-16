@@ -781,7 +781,7 @@ You can use the fields below to configure the VHD or VHDX that you want to creat
         $openWim        = $null
         $openIso        = $null
         $openImage      = $null
-        $VhdFinalName   = $null
+        $vhdFinalName   = $null
         $vhdFinalPath   = $null
         $mountedHive    = $null
         $IsoPath        = $null
@@ -1509,17 +1509,13 @@ You can use the fields below to configure the VHD or VHDX that you want to creat
 
                 If ($VhdFormat -ilike "AUTO")
                 {
-                    Switch ($DiskLayout)
+                    If ($DiskLayout -eq "Bios")
                     {
-                        "Bios"
-                        {
-                            $VhdFormat = "VHD"
-                        }
-
-                        "Uefi"
-                        {
-                            $VhdFormat = "VHDX"
-                        }
+                        $VhdFormat = "VHD"
+                    }
+                    Else
+                    {
+                        $VhdFormat = "VHDX"
                     }
                 }
 
@@ -1582,7 +1578,7 @@ You can use the fields below to configure the VHD or VHDX that you want to creat
                         $VhdPath  = Join-Path -Path $WorkingDirectory -ChildPath $VhdPath
                     }
 
-                    $VhdFinalName = Split-Path -Path $VhdPath -Leaf
+                    $vhdFinalName = Split-Path -Path $VhdPath -Leaf
                     $VhdPath      = Split-Path -Path $VhdPath -Parent
                     $vhdNameTemp  = [system.string]( $sessionKey + "." + $VhdFormat.ToLower() )
                     $VhdPath      = Join-Path  -Path $VhdPath -ChildPath $vhdNameTemp
@@ -1769,7 +1765,6 @@ You can use the fields below to configure the VHD or VHDX that you want to creat
                         Write-Verbose -Message "Mounting $VhdFormat..."
                         $disk = $newVhd | Mount-VHD -PassThru | Get-Disk
                     }
-
                     Else
                     {
                         <#
@@ -1813,7 +1808,7 @@ You can use the fields below to configure the VHD or VHDX that you want to creat
                       # Attach the VHD.
 
                         Write-Verbose -Message "Attaching $VhdFormat..."
-                        $Disk = Mount-DiskImage -ImagePath $VhdPath -PassThru | Get-DiskImage | Get-Disk
+                        $disk = Mount-DiskImage -ImagePath $VhdPath -PassThru | Get-DiskImage | Get-Disk
                     }
 
                     Switch ($DiskLayout)
@@ -1821,8 +1816,7 @@ You can use the fields below to configure the VHD or VHDX that you want to creat
                         "BIOS"
                         {
                             Write-Verbose -Message "Initializing disk..."
-
-                            $InitializeDisk = Initialize-Disk -Number $disk.Number -PartitionStyle MBR -PassThru
+                            Initialize-Disk -Number $disk.Number -PartitionStyle MBR
 
                           # Create the Windows/system partition
                             Write-Verbose -Message "Creating single partition..."
@@ -1839,7 +1833,7 @@ You can use the fields below to configure the VHD or VHDX that you want to creat
                         "UEFI"
                         {
                             Write-Verbose -Message "Initializing disk..."
-                            $InitializeDisk = Initialize-Disk -Number $disk.Number -PartitionStyle GPT -PassThru
+                            Initialize-Disk -Number $disk.Number -PartitionStyle GPT
 
                             If ($BcdInVhd -eq "VirtualMachine")
                             {
@@ -1892,7 +1886,7 @@ You can use the fields below to configure the VHD or VHDX that you want to creat
                         "WindowsToGo"
                         {
                             Write-Verbose -Message "Initializing disk..."
-                            $InitializeDisk = Initialize-Disk -Number $disk.Number -PartitionStyle MBR -PassThru
+                            Initialize-Disk -Number $disk.Number -PartitionStyle MBR
 
                           # Create the system partition
                             Write-Verbose -Message "Creating system partition..."
@@ -1913,11 +1907,9 @@ You can use the fields below to configure the VHD or VHDX that you want to creat
                     If (( $DiskLayout -eq "UEFI" -and $BcdInVhd -eq "VirtualMachine" ) -or
                           $DiskLayout -eq "WindowsToGo")
                     {
-
                       # Retreive access path for System partition.
                         $systemPartition = Get-Partition -UniqueId $systemPartition.UniqueId
                         $systemDrive = $systemPartition.AccessPaths[0].trimend("\").replace("\?", "??")
-                        $systemDrive = ( Resolve-Path -Path $systemDrive ).Path
                         Write-Verbose -Message "System volume path: `“$systemDrive`”"
                     }
 
@@ -1968,9 +1960,8 @@ You can use the fields below to configure the VHD or VHDX that you want to creat
                     If (( Get-Command -Name "Expand-WindowsImage" -ErrorAction "SilentlyContinue" ) -and
                         ( -not $ApplyEA -and [string]::IsNullOrEmpty( $DismPath ) ))
                     {
-                        $ExpandWindowsImage = Expand-WindowsImage -ApplyPath $windowsDrive -ImagePath $SourcePath -Index $ImageIndex -LogPath "$($logFolder)\DismLogs.log" -Verbose:$False
+                        Expand-WindowsImage -ApplyPath $windowsDrive -ImagePath $SourcePath -Index $ImageIndex -LogPath "$($logFolder)\DismLogs.log" -Verbose:$False | Out-Null
                     }
-
                     Else
                     {
                         If ([string]::IsNullOrEmpty( $DismPath ))
@@ -2025,7 +2016,7 @@ You can use the fields below to configure the VHD or VHDX that you want to creat
 
                     If (( $openImage.ImageArchitecture -ne "ARM" ) -and       # No virtualization platform for ARM images
                         ( $openImage.ImageArchitecture -ne "ARM64" ) -and     # No virtualization platform for ARM64 images
-                        ( $BcdInVhd -ne "NativeBoot" )                        # User asked for a non-bootable image)
+                        ( $BcdInVhd -ne "NativeBoot" ))                       # User asked for a non-bootable image
                     {
                         If (Test-Path -Path "$($systemDrive)\boot\bcd")
                         {
@@ -2050,8 +2041,7 @@ You can use the fields below to configure the VHD or VHDX that you want to creat
 
                             $bcdPath = @()
 
-                            Switch ($DiskLayout
-                            )
+                            Switch ($DiskLayout)
                             {
                                 "BIOS"
                                 {
@@ -2241,7 +2231,7 @@ You can use the fields below to configure the VHD or VHDX that you want to creat
                         $Driver | ForEach-Object -Process {
 
                             Write-Verbose -Message "Driver path: $PSItem"
-                            $WindowsDriver = Add-WindowsDriver -Path $windowsDrive -Recurse -Driver $PSItem -Verbose:$False
+                            Add-WindowsDriver -Path $windowsDrive -Recurse -Driver $PSItem -Verbose:$False | Out-Null
                         }
                     }
 
@@ -2251,7 +2241,7 @@ You can use the fields below to configure the VHD or VHDX that you want to creat
 
                         $FeatureSourcePath = Join-Path -Path "$($driveLetter):" -ChildPath "sources\sxs"
                         Write-Verbose -Message "From $FeatureSourcePath"
-                        $WindowsOptionalFeature = Enable-WindowsOptionalFeature -FeatureName $Feature -Source $FeatureSourcePath -Path $windowsDrive -All -Verbose:$False
+                        Enable-WindowsOptionalFeature -FeatureName $Feature -Source $FeatureSourcePath -Path $windowsDrive -All -Verbose:$False | Out-Null
                     }
 
                     If ($Package)
@@ -2261,7 +2251,7 @@ You can use the fields below to configure the VHD or VHDX that you want to creat
                         $Package | ForEach-Object -Process {
 
                             Write-Verbose -Message "Package path: $PSItem"
-                            $AddWindowsPackage = Add-WindowsPackage -Path $windowsDrive -PackagePath $PSItem -Verbose:$False
+                            Add-WindowsPackage -Path $windowsDrive -PackagePath $PSItem -Verbose:$False | Out-Null
                         }
                     }
 
@@ -2272,10 +2262,10 @@ You can use the fields below to configure the VHD or VHDX that you want to creat
                   # Remove system partition access path, if necessary
                     If ($DiskLayout -eq "UEFI" -and $BcdInVhd -eq "VirtualMachine")
                     {
-                        $RemovePartitionAccessPath = Remove-PartitionAccessPath -InputObject $systemPartition -AccessPath $systemPartition.AccessPaths[0] -PassThru
+                        Remove-PartitionAccessPath -InputObject $systemPartition -AccessPath $systemPartition.AccessPaths[0] -PassThru | Out-Null
                     }
 
-                    If ([String]::IsNullOrEmpty( $VhdFinalName ))
+                    If ([String]::IsNullOrEmpty( $vhdFinalName ))
                     {
 
                       # We need to generate a file name.
@@ -2312,15 +2302,15 @@ You can use the fields below to configure the VHD or VHDX that you want to creat
                         {
                             $skuFamily = "Client"
                         }
-                        else
+                        Else
                         {
                             $skuFamily = "Unknown"
                         }
 
                       # ISSUE - do we want VL here?
 
-                        $VhdFinalName = "$($buildLabEx)_$($skuFamily)_$($editionId)_$($openImage.ImageDefaultLanguage).$($VhdFormat.ToLower())"
-                        Write-Debug -Message "    $VhdFormat final name is: `“$VhdFinalName`”"
+                        $vhdFinalName = "$($buildLabEx)_$($skuFamily)_$($editionId)_$($openImage.ImageDefaultLanguage).$($VhdFormat.ToLower())"
+                        Write-Debug -Message "    $VhdFormat final name is: `“$vhdFinalName`”"
                     }
 
                     If ($hyperVEnabled)
@@ -2335,7 +2325,7 @@ You can use the fields below to configure the VHD or VHDX that you want to creat
                     }
 
                     $vhdParentPath = Split-Path -Path $VhdPath -Parent
-                    $vhdFinalPath  = Join-Path  -Path $vhdParentPath -ChildPath $VhdFinalName
+                    $vhdFinalPath  = Join-Path  -Path $vhdParentPath -ChildPath $vhdFinalName
 
                     Write-Debug -Message "    $VhdFormat final path is: `“$vhdFinalPath`”"
 
@@ -2352,23 +2342,21 @@ You can use the fields below to configure the VHD or VHDX that you want to creat
 
                     $VhdPathFull = ( Resolve-Path -Path $VhdPath ).Path
 
-                    $RenameItem = Rename-Item -Path $VhdPathFull -NewName $VhdFinalName -Force -PassThru
+                    $RenameItem = Rename-Item -Path $VhdPathFull -NewName $vhdFinalName -Force -PassThru
 
                     $vhd += Get-DiskImage -ImagePath $vhdFinalPath
 
-                    $VhdFinalName = $null
+                    $vhdFinalName = $null
 
                #endregion Dispose paths and dismount images
             }
         }
-
         Catch
         {
             Write-Verbose -Message ( [system.string]::Empty )
             Write-Error   -Message $PSItem
             Write-Verbose -Message "Log folder is `“$logFolder`”"
         }
-
         Finally
         {
             Write-Verbose -Message ( [system.string]::Empty )
@@ -2430,8 +2418,8 @@ You can use the fields below to configure the VHD or VHDX that you want to creat
             }
         }
     }
-
-    End {
+    End 
+    {
 
         If ($Passthru)
         {
