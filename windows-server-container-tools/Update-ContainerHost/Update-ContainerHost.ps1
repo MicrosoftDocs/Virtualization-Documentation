@@ -18,6 +18,9 @@
         
     .PARAMETER DockerPath
         Path to a private Docker.exe.  Defaults to https://aka.ms/tp5/docker
+        
+    .PARAMETER DockerDPath
+        Path to a private DockerD.exe.  Defaults to https://aka.ms/tp5/dockerd
 
     .EXAMPLE
         .\Update-ContainerHost.ps1 -DockerPath "https://aka.ms/tp5/docker"
@@ -30,7 +33,11 @@ param(
     [Parameter(ParameterSetName="IncludeDocker")]
     [string]
     [ValidateNotNullOrEmpty()]
-    $DockerPath = "https://aka.ms/tp5/docker"
+    $DockerPath = "https://aka.ms/tp5/docker",
+
+    [string]
+    [ValidateNotNullOrEmpty()]
+    $DockerDPath = "https://aka.ms/tp5/dockerd"
 )
 
 
@@ -51,6 +58,7 @@ Update-ContainerHost()
         #
         Write-Output "Updating $global:DockerServiceName..."
         Copy-File -SourcePath $DockerPath -DestinationPath $env:windir\System32\docker.exe
+        Copy-File -SourcePath $DockerDPath -DestinationPath $env:windir\System32\dockerd.exe
 
         #
         # Start service
@@ -59,7 +67,7 @@ Update-ContainerHost()
     }
     else
     {
-        Install-Docker -DockerPath $DockerPath
+        Install-Docker -DockerPath $DockerPath -DockerDPath $DockerDPath
     }    
 }
 $global:AdminPriviledges = $false
@@ -173,7 +181,7 @@ Expand-ArchivePrivate
 
 
 function
-Get-InstalledContainerImage
+Test-InstalledContainerImage
 {
     [CmdletBinding()]
     param(
@@ -182,8 +190,10 @@ Get-InstalledContainerImage
         [ValidateNotNullOrEmpty()]
         $BaseImageName
     )
+
+    $path = Join-Path (Join-Path $env:ProgramData "Microsoft\Windows\Images") "*$BaseImageName*"
     
-    return Get-ContainerImage |? IsOSImage |? Name -eq $BaseImageName
+    return Test-Path $path
 }
 
 
@@ -326,6 +336,12 @@ Wait-Network()
 
 
 function
+Get-DockerImages
+{
+    return docker images
+}
+
+function
 Find-DockerImages
 {
     [CmdletBinding()]
@@ -347,13 +363,20 @@ Install-Docker()
     param(
         [string]
         [ValidateNotNullOrEmpty()]
-        $DockerPath = "https://aka.ms/tp5/docker"
+        $DockerPath = "https://aka.ms/tp5/docker",
+
+        [string]
+        [ValidateNotNullOrEmpty()]
+        $DockerDPath = "https://aka.ms/tp5/dockerd"
     )
 
     Test-Admin
 
     Write-Output "Installing Docker..."
     Copy-File -SourcePath $DockerPath -DestinationPath $env:windir\System32\docker.exe
+
+    Write-Output "Installing Docker daemon..."
+    Copy-File -SourcePath $DockerDPath -DestinationPath $env:windir\System32\dockerd.exe
 
     $dockerData = "$($env:ProgramData)\docker"
     $dockerLog = "$dockerData\daemon.log"
@@ -437,11 +460,11 @@ mkdir %ProgramData%\docker
 :run
 if exist %certs%\server-cert.pem (if exist %ProgramData%\docker\tag.txt (goto :secure))
 
-docker daemon -D 
+dockerd daemon -H nipe:// 
 goto :eof
 
 :secure
-docker daemon -D -H 0.0.0.0:2376 --tlsverify --tlscacert=%certs%\ca.pem --tlscert=%certs%\server-cert.pem --tlskey=%certs%\server-key.pem
+dockerd daemon -H 0.0.0.0:2376 --tlsverify --tlscacert=%certs%\ca.pem --tlscert=%certs%\server-cert.pem --tlskey=%certs%\server-key.pem
 
 "@
 
@@ -498,44 +521,6 @@ Test-Docker()
     }
 
     return ($service -ne $null)
-}
-
-
-function
-Wait-InstalledContainerImage
-{
-    [CmdletBinding()]
-    param(
-        [Parameter(Mandatory=$true)]
-        [string]
-        [ValidateNotNullOrEmpty()]
-        $BaseImageName
-    )
-    
-    $newBaseImages = Get-InstalledContainerImage $BaseImageName
-
-    $startTime = Get-Date
-
-    while ($newBaseImages.Count -eq 0)
-    {            
-        $timeElapsed = $(Get-Date) - $startTime
-
-        if ($($timeElapsed).TotalMinutes -gt 5)
-        {
-            throw "Image $BaseImageName not found after 5 minutes"
-        }
-
-        #
-        # Sleeping to ensure VMMS has restarted to workaround TP3 issue
-        #
-        Write-Output "Waiting for VMMS to return image at ($(get-date))..."
-
-        Start-Sleep -Sec 2
-                
-        $newBaseImages += Get-InstalledContainerImage $BaseImageName            
-    }
-
-    return $newBaseImages
 }
 
 

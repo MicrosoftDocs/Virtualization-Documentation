@@ -3,7 +3,6 @@
 # Script assembled with makeps1.js from
 # Install-ContainerHost-Source.ps1
 # ..\common\ContainerHost-Common.ps1
-# Install-ContainerHost-Docker.ps1
 # Install-ContainerHost-Main.ps1
 ############################################################
 
@@ -28,6 +27,9 @@
     .PARAMETER DockerPath
         Path to Docker.exe, can be local or URI
 
+    .PARAMETER DockerDPath
+        Path to DockerD.exe, can be local or URI
+
     .PARAMETER ExternalNetAdapter
         Specify a specific network adapter to bind to a DHCP network
 
@@ -43,9 +45,6 @@
     .PARAMETER NoRestart
         If a restart is required the script will terminate and will not reboot the machine
 
-    .PARAMETER SkipDocker
-        If passed, skip Docker install
-
     .PARAMETER SkipImageImport
         Skips import of the base WindowsServerCore image.
 
@@ -56,7 +55,7 @@
         Path to .wim file that contains the base package image
 
     .EXAMPLE
-        .\Install-ContainerHost.ps1 -SkipDocker
+        .\Install-ContainerHost.ps1
 
 #>
 #Requires -Version 5.0
@@ -66,6 +65,10 @@ param(
     [string]
     [ValidateNotNullOrEmpty()]
     $DockerPath = "https://aka.ms/tp5/docker",
+
+    [string]
+    [ValidateNotNullOrEmpty()]
+    $DockerDPath = "https://aka.ms/tp5/dockerd",
 
     [string]
     $ExternalNetAdapter,
@@ -85,10 +88,6 @@ param(
     [Parameter(DontShow)]
     [switch]
     $PSDirect,
-
-    [Parameter(ParameterSetName="SkipDocker", Mandatory)]
-    [switch]
-    $SkipDocker,
 
     [switch]
     $SkipImageImport,
@@ -275,6 +274,14 @@ Install-ContainerHost
 {
     "If this file exists when Install-ContainerHost.ps1 exits, the script failed!" | Out-File -FilePath $global:ErrorFile
 
+    if (-not ((Get-Command Get-WindowsFeature -ErrorAction SilentlyContinue) -or (Test-Nano)))
+    {
+        if (-not $HyperV)
+        {
+            Write-Output "Enabling Hyper-V containers by default for Client SKU"
+            $HyperV = $true
+        }    
+    }
     #
     # Validate required Windows features
     #
@@ -283,6 +290,25 @@ Install-ContainerHost
     if ($HyperV)
     {
         Install-Feature -FeatureName Hyper-V
+
+        #
+        # TODO: remove if/else when IUM and DirectMap can coexist
+        #
+        if ((Get-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\DeviceGuard" -Name HyperVVirtualizationBasedSecurityOptOut -ErrorAction SilentlyContinue).HyperVVirtualizationBasedSecurityOptOut -eq 1)
+        {
+            Write-Output "IUM is already disabled (DirectMap will be operational)."
+        }
+        else
+        {
+            Write-Output "Disabling IUM to enable DirectMap"
+            if (-not (Get-Item -Path "HKLM:\SYSTEM\CurrentControlSet\Control\DeviceGuard" -ErrorAction SilentlyContinue))
+            {
+                New-Item -Path "HKLM:\SYSTEM\CurrentControlSet\Control\DeviceGuard"
+            }
+
+            Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\DeviceGuard" -Name HyperVVirtualizationBasedSecurityOptOut -Value 1
+            $global:RebootRequired = $true
+        }
     }
 
     if ($global:RebootRequired)
@@ -406,7 +432,7 @@ Install-ContainerHost
     $newBaseImages = @()
 
     if (-not $SkipImageImport)
-    {   
+    {        
         if ($WimPath -eq "")
         {
             $imageName = "WindowsServerCore"
@@ -419,39 +445,37 @@ Install-ContainerHost
             #
             # Install the base package
             #
-            $imageCollection = Get-InstalledContainerImage $imageName
-
-            if ($imageCollection.Count -gt 0)
+            if (Test-InstalledContainerImage $imageName)
             {
                 Write-Output "Image $imageName is already installed on this machine."
             }
             else
             {
                 Test-ContainerProvider
-                
+
                 $hostBuildInfo = (gp "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion").BuildLabEx.Split(".")
                 $version = $hostBuildInfo[0]
 
-				# TP4 always uses 10586.0
-				if ($version -eq "10586")
-				{
-					$qfe = 0
-				}
-				else
-				{
+                # TP4 always uses 10586.0
+                if ($version -eq "10586")
+                {
+                    $qfe = 0
+                }
+                else
+                {
                     $qfe = $hostBuildInfo[1]
-				}
+                }
 
-				$imageVersion = "10.0.$version.$qfe"
+                $imageVersion = "10.0.$version.$qfe"
 
                 Write-Output "Getting Container OS image ($imageName) version $imageVersion from OneGet (this may take a few minutes)..."
                 #
                 # TODO: expect the follow to have default ErrorAction of stop
                 #
                 Install-ContainerImage $imageName -Version $imageVersion -ErrorAction Stop
-                    
-                Write-Output "Container base image install complete.  Querying container images..."
-                $newBaseImages += Wait-InstalledContainerImage $imageName
+            
+                Write-Output "Container base image install complete."
+                $newBaseImages += $imageName
             }
         }
         else
@@ -462,15 +486,15 @@ Install-ContainerHost
             {
                 #
                 # .wim is present and local
-                #            
+                #
             }
             elseif (($WimPath -as [System.URI]).AbsoluteURI -ne $null)
             {
                 #
                 # .wim is on a URI and must be downloaded
-                # 
+                #
                 $localWimPath = "$pwd\ContainerBaseImage.wim"
-                                
+
                 Copy-File -SourcePath $WimPath -DestinationPath $localWimPath
 
                 $WimPath = $localWimPath
@@ -480,28 +504,9 @@ Install-ContainerHost
                 throw "Cannot copy from invalid WimPath $WimPath"
             }
 
-            if ($PSDirect -and (Test-Nano))
-            {
-                #
-                # This is a gross hack for TP4 to avoid a CoreCLR issue
-                #
-                $modulePath = "$($env:Temp)\Containers2.psm1"
+            $imageName = (get-windowsimage -imagepath $WimPath -LogPath ($env:temp+"dism_$(random)_GetImageInfo.log") -Index 1).imagename
 
-                $cmdletContent = gc $env:windir\System32\WindowsPowerShell\v1.0\Modules\Containers\1.0.0.0\Containers.psm1
-
-                $cmdletContent = $cmdletContent.replace('Set-Acl $fileToReAcl -AclObject $acl', '[System.IO.FileSystemAclExtensions]::SetAccessControl($fileToReAcl, $acl)')
-                $cmdletContent = $cmdletContent.replace('function Install-ContainerOSImage','function Install-ContainerOSImage2')
-                    
-                $cmdletContent | sc $modulePath
-                    
-                Import-Module $modulePath -DisableNameChecking
-                Install-ContainerOSImage2 -WimPath $WimPath -Force
-                Remove-Item $modulePath
-            }
-            else
-            {
-                Install-ContainerOsImage -WimPath $WimPath -Force
-            }
+            Install-ContainerOsImage -WimPath $WimPath
         }
 
         #
@@ -509,7 +514,7 @@ Install-ContainerHost
         #
         if ($HyperV -and (-not (Test-Nano)))
         {
-            if ((Get-InstalledContainerImage $global:HyperVImage).Count -gt 0)
+            if ((Test-InstalledContainerImage $global:HyperVImage))
             {
                 Write-Output "OS image ($global:HyperVImage) is already installed."
             }
@@ -526,16 +531,9 @@ Install-ContainerHost
                 Write-Output "Waiting for VMMS to return image at ($(get-date))..."
                 Start-Sleep -Sec 5
 
-                $newBaseImages += (Get-InstalledContainerImage $global:HyperVImage)
+                $newBaseImages += $global:HyperVImage
             }
         }
-
-        Write-Output "The following images are present on this machine:"
-        foreach ($image in (Get-ContainerImage))
-        {
-            Write-Output "    $image"
-        }
-        Write-Output ""
     }
 
     #
@@ -549,14 +547,14 @@ Install-ContainerHost
         }
         else
         {
-            Install-Docker -DockerPath $DockerPath
+            Install-Docker -DockerPath $DockerPath -DockerDPath $DockerDPath
         }
 
         if ($newBaseImages.Count -gt 0)
         {
             foreach ($baseImage in $newBaseImages)
             {
-                Write-DockerImageTag -BaseImageName $baseImage.Name
+                Write-DockerImageTag -BaseImageName $baseImage
             }
 
             "tag complete" | Out-File -FilePath "$dockerData\tag.txt" -Encoding ASCII
@@ -691,7 +689,7 @@ Expand-ArchivePrivate
 
 
 function
-Get-InstalledContainerImage
+Test-InstalledContainerImage
 {
     [CmdletBinding()]
     param(
@@ -700,8 +698,10 @@ Get-InstalledContainerImage
         [ValidateNotNullOrEmpty()]
         $BaseImageName
     )
+
+    $path = Join-Path (Join-Path $env:ProgramData "Microsoft\Windows\Images") "*$BaseImageName*"
     
-    return Get-ContainerImage |? IsOSImage |? Name -eq $BaseImageName
+    return Test-Path $path
 }
 
 
@@ -844,6 +844,12 @@ Wait-Network()
 
 
 function
+Get-DockerImages
+{
+    return docker images
+}
+
+function
 Find-DockerImages
 {
     [CmdletBinding()]
@@ -865,13 +871,20 @@ Install-Docker()
     param(
         [string]
         [ValidateNotNullOrEmpty()]
-        $DockerPath = "https://aka.ms/tp5/docker"
+        $DockerPath = "https://aka.ms/tp5/docker",
+
+        [string]
+        [ValidateNotNullOrEmpty()]
+        $DockerDPath = "https://aka.ms/tp5/dockerd"
     )
 
     Test-Admin
 
     Write-Output "Installing Docker..."
     Copy-File -SourcePath $DockerPath -DestinationPath $env:windir\System32\docker.exe
+
+    Write-Output "Installing Docker daemon..."
+    Copy-File -SourcePath $DockerDPath -DestinationPath $env:windir\System32\dockerd.exe
 
     $dockerData = "$($env:ProgramData)\docker"
     $dockerLog = "$dockerData\daemon.log"
@@ -955,11 +968,11 @@ mkdir %ProgramData%\docker
 :run
 if exist %certs%\server-cert.pem (if exist %ProgramData%\docker\tag.txt (goto :secure))
 
-docker daemon -D 
+dockerd daemon -H nipe:// 
 goto :eof
 
 :secure
-docker daemon -D -H 0.0.0.0:2376 --tlsverify --tlscacert=%certs%\ca.pem --tlscert=%certs%\server-cert.pem --tlskey=%certs%\server-key.pem
+dockerd daemon -H 0.0.0.0:2376 --tlsverify --tlscacert=%certs%\ca.pem --tlscert=%certs%\server-cert.pem --tlskey=%certs%\server-key.pem
 
 "@
 
@@ -1016,44 +1029,6 @@ Test-Docker()
     }
 
     return ($service -ne $null)
-}
-
-
-function
-Wait-InstalledContainerImage
-{
-    [CmdletBinding()]
-    param(
-        [Parameter(Mandatory=$true)]
-        [string]
-        [ValidateNotNullOrEmpty()]
-        $BaseImageName
-    )
-    
-    $newBaseImages = Get-InstalledContainerImage $BaseImageName
-
-    $startTime = Get-Date
-
-    while ($newBaseImages.Count -eq 0)
-    {            
-        $timeElapsed = $(Get-Date) - $startTime
-
-        if ($($timeElapsed).TotalMinutes -gt 5)
-        {
-            throw "Image $BaseImageName not found after 5 minutes"
-        }
-
-        #
-        # Sleeping to ensure VMMS has restarted to workaround TP3 issue
-        #
-        Write-Output "Waiting for VMMS to return image at ($(get-date))..."
-
-        Start-Sleep -Sec 2
-                
-        $newBaseImages += Get-InstalledContainerImage $BaseImageName            
-    }
-
-    return $newBaseImages
 }
 
 
@@ -1151,7 +1126,6 @@ Write-DockerImageTag()
     
     Write-Output $dockerOutput
 }
-
 
 try
 {
