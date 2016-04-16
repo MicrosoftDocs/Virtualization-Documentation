@@ -671,40 +671,15 @@ Convert-WindowsImage
         return $parameterDictionary
     }
 
-    Begin {
+    Begin 
+    {
 
         Set-StrictMode -version 3
         $Module = Import-ModuleEx -Name "Dism"
         $Module = Import-ModuleEx -Name "Storage"
 
        #region Constants and Pseudo-Constants
-
-            $PARTITION_STYLE_MBR    = 0x00000000    # The default value
-            $PARTITION_STYLE_GPT    = 0x00000001    # Just in case...
-
-          # Version information that can be populated by timebuild.
-            $ScriptVersion = DATA
-            {
-                ConvertFrom-StringData -StringData @"
-                    Major     = 10
-                    Minor     = 0
-                    Build     = 14300
-                    Qfe       = 1000
-                    Branch    = rs1_es_media
-                    Timestamp = 160411-1200
-                    Flavor    = amd64fre
-"@
-            }
-
-            $myVersion              = [system.string]::Empty
-            $myVersion             += $ScriptVersion.Major     + "."
-            $myVersion             += $ScriptVersion.Minor     + "."
-            $myVersion             += $ScriptVersion.Build     + "."
-            $myVersion             += $ScriptVersion.QFE       + "."
-            $myVersion             += $ScriptVersion.Flavor    + "."
-            $myVersion             += $ScriptVersion.Branch    + "."
-            $myVersion             += $ScriptVersion.Timestamp
-
+        
           # Name of the script, obviously.
             $scriptName             = "Convert-WindowsImage"
 
@@ -789,7 +764,6 @@ Convert-WindowsImage
 
 Windows(R) Image to Virtual Hard Disk Converter for Windows(R) 10
 Copyright (C) Microsoft Corporation.  All rights reserved.
-Version $myVersion
 
 "@
 
@@ -4670,8 +4644,7 @@ Import-ModuleEx
                 Mandatory        =  $True
             )]
             [System.String]
-            $Name
-        ,
+            $Name,
             [parameter(
                 ParameterSetName = "ModuleInfo",
                 Mandatory        =  $True
