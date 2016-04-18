@@ -43,7 +43,7 @@ A single file can be mounted into a container by explicitly specifying the file 
 docker run -it -v c:\container-share\config.ini windowsservercore cmd
 ```
 
-Inside the running container, only the test.txt file is visible.
+Inside the running container, only the config.ini file is visible.
 
 ```none
 c:\container-share>dir
@@ -75,13 +75,13 @@ For more information on data containers see [Manage data in containers on docker
 
 ### Inspect shared data volume
 
-Mounted volumes can be viewed using the `docker inspect` command against a container.
+Mounted volumes can be viewed using the `docker inspect` command.
 
 ```none
 docker inspect backstabbing_kowalevski
 ```
 
-This will return a large blob of information about the container, including a section named ‘Mounts’, which contains data about the mounted volumes such as the source and destination directory.
+This will return information about the container, including a section named ‘Mounts’, which contains data about the mounted volumes such as the source and destination directory.
 
 ```none
 "Mounts": [

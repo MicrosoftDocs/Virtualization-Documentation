@@ -12,9 +12,9 @@ The Docker engine includes tools for automating the creation of container images
 - Rapid and precise recreation of container images for maintenance and upgrade purposes.
 - Continuous integration between container images and the development cycle.
 
-The Docker components that drive this automation are the Dockerfile and the Docker build command.
+The Docker components that drive this automation are the Dockerfile, and the Docker build command.
 
-- **Dockerfile** – a text file containing the instruction needed to create a new container image. These instructions include identification of an existing image to be used as a base, commands to be run during the image creation process, and run time commands for running instances of the new container image.
+- **Dockerfile** – a text file containing the instruction needed to create a new container image. These instructions include identification of an existing image to be used as a base, commands to be run during the image creation process, and commands that will be run when new instances of the container image are deployed.
 - **Docker build** - the Docker engine command that consumes a Dockerfile, and triggers the image creation process.
 
 This document will introduce using a Dockerfile with Windows containers, discuss syntax, and detail commonly used Dockerfile instructions. 
@@ -27,7 +27,7 @@ For a complete look at Dockerfiles, see the [Dockerfile reference at docker.com]
 
 ### Basic Syntax
 
-In its most basic form, a Dockerfile can be very simple. The following example creates a new image, which includes IIS, and a ‘hello world’ site. This example includes comments (indicated with a ‘#’), that explain each line. Subsequent sections of this article will detail syntax rules and Dockerfile instructions.
+In its most basic form, a Dockerfile can be very simple. The following example creates a new image, which includes IIS, and a ‘hello world’ site. This example includes comments (indicated with a ‘#’), that explain each step. Subsequent sections of this article will go into more detail on Dockerfile syntax rules, and Dockerfile instructions.
 
 ```none
 # Sample Dockerfile
@@ -56,7 +56,7 @@ Dockerfile instructions provide the Docker Engine with the steps needed to creat
 
 ### FROM
 
-The FROM instruction sets the container image that will be used during the new image creation process. For instance, when using the instruction `FROM windowsservercore`, the resulting image is derived from, and has a dependency on, the Windows Server Core base OS image. If the specified image is not present on the system where the Docker build process is being run, the Docker engine will attempt to download the image from a public or private image registry.
+The FROM instruction, sets the container image that will be used during the new image creation process. For instance, when using the instruction `FROM windowsservercore`, the resulting image is derived from, and has a dependency on, the Windows Server Core base OS image. If the specified image is not present on the system where the Docker build process is being run, the Docker engine will attempt to download the image from a public or private image registry.
 
 **Format**
 
@@ -159,7 +159,7 @@ For detailed information on the RUN instruction, see the [RUN Reference on Docke
 
 ### ADD
 
-The ADD instruction copies files and directories to the filesystem of the container. The files and directories can be relative to the Dockerfile, or on a remote location with a URL specification.
+The ADD instruction, copies files and directories to the filesystem of the container. The files and directories can be relative to the Dockerfile, or on a remote location with a URL specification.
 
 **Format**
 
@@ -197,7 +197,7 @@ This example adds the contents of the source directory, to a directory named sql
 ADD source /sqlite/
 ```
 
-This example will add all file that begin with config, to the c:\temp directory of the container image.
+This example will add all files that begin with config, to the c:\temp directory of the container image.
 ```none
 ADD config* c:/temp/
 ```
@@ -211,7 +211,7 @@ For detailed information on the ADD instruction, see the [ADD Reference on Docke
 
 ### WORKDIR
 
-The WORKDIR instruction sets a working directory for other Dockerfile instructions, such as RUN, CMD, and also the working directory for running instances of the new container image.
+The WORKDIR instruction, sets a working directory for other Dockerfile instructions, such as RUN, CMD, and also the working directory for running instances of the container image.
 
 **Format**
 
@@ -250,7 +250,7 @@ For detailed information on the WORKDIR instruction, see the [WORKDIR Reference 
 
 ### CMD
 
-The `CMD` instruction sets the default command to be run when starting a new container. For instance, if the container will be hosting an NGINX web server, the `CMD` might include instructions to start the web server, such as `nginx.exe`. If multiple CMD instructions are specified in a Dockerfile, only the last is evaluated.
+The `CMD` instruction, sets the default command to be run when deploying an instance of the container image. For instance, if the container will be hosting an NGINX web server, the `CMD` might include instructions to start the web server, such as `nginx.exe`. If multiple CMD instructions are specified in a Dockerfile, only the last is evaluated.
 
 **Format**
 
@@ -316,7 +316,7 @@ RUN powershell -command Expand-Archive -Path c:\apache.zip -DestinationPath c:\
 
 ### REST Calls
 
-PowerShell and the `Invoke-WebRequest` command can be useful when gathering information or files from a web service. For instance, if building an image that includes the Apache webserver, the following example could be used. Notice here that a single RUN instruction is used to perform three operations.
+PowerShell, and the `Invoke-WebRequest` command, can be useful when gathering information or files from a web service. For instance, if building an image that includes the Apache webserver, the following example could be used.
 
 ```none
 FROM windowsservercore
@@ -328,6 +328,19 @@ RUN powershell -Command \
 ```
 
 > Invoke-WebRequest is not currently supported in Nano Server
+
+Another option for using PowerShell to download files during the image creation process is to use the .Net WebClient library. This can increase download performance. The following example downloads the Apache Webserver software, using the WebClient library.
+
+```none
+FROM windowsservercore
+
+RUN powershell -Command \
+	(New-Object System.Net.WebClient).DownloadFile('https://www.apachelounge.com/download/VC11/binaries/httpd-2.4.18-win32-VC11.zip ', 'c:\apache.zip') ; \
+	Expand-Archive -Path c:\apache.zip -DestinationPath c:\ ; \
+	Remove-Item c:\apache.zip -Force
+```
+
+> WebClient is not currently supported in Nano Server
 
 ### PowerShell Scripts
 
@@ -343,7 +356,7 @@ RUN powershell.exe -executionpolicy bypass c:\windows\temp\script.ps1
 
 ## Docker Build 
 
-Once a Dockerfile has been created and saved to disk, `docker build` can be run to create the new image. The `docker build` command takes several optional parameters and a path to the Dockerfile. For complete documentation on Docker Build, including a list of all build options, see [Build at Docker.com](https://docs.docker.com/engine/reference/commandline/build/#build-with).
+Once a Dockerfile has been created, and saved to disk, `docker build` can be run to create the new image. The `docker build` command takes several optional parameters and a path to the Dockerfile. For complete documentation on Docker Build, including a list of all build options, see [Build at Docker.com](https://docs.docker.com/engine/reference/commandline/build/#build-with).
 
 ```none
 Docker build [OPTIONS] PATH
@@ -354,7 +367,7 @@ For example, the following command will create an image named ‘iis’.
 docker build -t iis .
 ```
 
-When the build process has been initiated, the output will indicate status and return any thrown errors.
+When the build process has been initiated, the output will indicate status, and return any thrown errors.
 
 ```none
 C:\> docker build -t iis .

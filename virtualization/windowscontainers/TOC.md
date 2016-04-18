@@ -35,7 +35,7 @@
 ## [Container forums](https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers)
 
 # Reference
-## [PowerShell Reference](https://technet.microsoft.com/en-us/library/mt433069.aspx )
+## [PowerShell Reference](https://technet.microsoft.com/en-us/library/mt433069.aspx)
 ## [Application Compatibility](reference/app_compat.md)
 # [Windows Server EULA](EULA.md)
 # [Nano Server EULA](Nano_EULA.md)

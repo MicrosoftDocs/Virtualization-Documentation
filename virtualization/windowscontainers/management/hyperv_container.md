@@ -26,7 +26,7 @@ docker run -it --isolation=hyperv windowsservercore cmd
 
 This example will differentiate the isolation capabilities between Windows Server and Hyper-V containers. 
 
-Here a Windows Server containers is being run and is also hosting a long running ping process.
+Here, a Windows Server containers is being deployed, and will be hosting a long running ping process.
 
 ```none
 docker run -d windowsservercore ping localhost -t
@@ -64,7 +64,7 @@ docker top 5d5611e38b31a41879d37a94468a1e11dc1086dcd009e2640d36023aa1663e62
 1732 ping
 ```
 
-However, when searching for the process on the container host, a ping process is not found, and en error is thrown.
+However, when searching for the process on the container host, a ping process is not found, and an error is thrown.
 
 ```none
 get-process -Name ping
@@ -77,7 +77,7 @@ At line:1 char:1
     + FullyQualifiedErrorId : NoProcessFoundForGivenName,Microsoft.PowerShell.Commands.GetProcessCommand
 ```
 
-Finally, on the host, the `vmwp` process is visible, which is the running virtual machine that is encapsulating the running container and protecting the running processes form the host operating system.
+Finally, on the host, the `vmwp` process is visible, which is the running virtual machine that is encapsulating the running container and protecting the running processes from the host operating system.
 
 ```none
 get-process -Name vmwp
