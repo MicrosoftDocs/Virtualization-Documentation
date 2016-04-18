@@ -622,9 +622,15 @@ Edit-BootVhd
         Write-Output "Copying Docker into $global:vhdBrandName..."
         Copy-File -SourcePath $DockerPath -DestinationPath "$($driveLetter):\Windows\System32\docker.exe"
         
-        Write-Output "Copying Docker daemon into $global:vhdBrandName..."
-        Copy-File -SourcePath $DockerDPath -DestinationPath "$($driveLetter):\Windows\System32\dockerd.exe"
-
+        try
+        {
+            Write-Output "Copying Docker daemon into $global:vhdBrandName..."
+            Copy-File -SourcePath $DockerDPath -DestinationPath "$($driveLetter):\Windows\System32\dockerd.exe"
+        }
+        catch 
+        {
+            Write-Warning "DockerD not yet present."
+        }
 
         if ($WindowsImage -ne "NanoServer")
         {
@@ -1234,8 +1240,15 @@ Install-Docker()
     Write-Output "Installing Docker..."
     Copy-File -SourcePath $DockerPath -DestinationPath $env:windir\System32\docker.exe
 
-    Write-Output "Installing Docker daemon..."
-    Copy-File -SourcePath $DockerDPath -DestinationPath $env:windir\System32\dockerd.exe
+    try
+    {
+        Write-Output "Installing Docker daemon..."
+        Copy-File -SourcePath $DockerDPath -DestinationPath $env:windir\System32\dockerd.exe
+    }
+    catch 
+    {
+        Write-Warning "DockerD not yet present."
+    }
 
     $dockerData = "$($env:ProgramData)\docker"
     $dockerLog = "$dockerData\daemon.log"
@@ -1319,11 +1332,22 @@ mkdir %ProgramData%\docker
 :run
 if exist %certs%\server-cert.pem (if exist %ProgramData%\docker\tag.txt (goto :secure))
 
-dockerd daemon -H nipe:// 
+if not exist %systemroot%\system32\dockerd.exe (goto :legacy)
+
+dockerd -H npipe:// 
+goto :eof
+
+:legacy
+docker daemon -H npipe:// 
 goto :eof
 
 :secure
-dockerd daemon -H 0.0.0.0:2376 --tlsverify --tlscacert=%certs%\ca.pem --tlscert=%certs%\server-cert.pem --tlskey=%certs%\server-key.pem
+if not exist %systemroot%\system32\dockerd.exe (goto :legacysecure)
+dockerd -H npipe:// -H 0.0.0.0:2376 --tlsverify --tlscacert=%certs%\ca.pem --tlscert=%certs%\server-cert.pem --tlskey=%certs%\server-key.pem
+goto :eof
+
+:legacysecure
+docker daemon -H npipe:// -H 0.0.0.0:2376 --tlsverify --tlscacert=%certs%\ca.pem --tlscert=%certs%\server-cert.pem --tlskey=%certs%\server-key.pem
 
 "@
 
