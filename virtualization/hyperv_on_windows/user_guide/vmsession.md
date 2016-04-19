@@ -12,7 +12,7 @@ Starting in Windows builds 14280 and later, PowerShell Direct supports a wide se
 
 * Moving data between the virtual machine and the Hyper-V host with persistent PowerShell Direct sessions and [Copy-Item](https://technet.microsoft.com/en-us/library/hh849793.aspx).  
   ``` PowerShell
-  $s = New-PSSession -VMName WindowsServerCore
+  $s = New-PSSession -VMName <VMName>
   
   Copy-Item -ToSession $s -Path c:\test\host.txt -Destination c:\test
   Copy-Item -FromSession $s -Path c:\test\host.txt -Destination c:\test2
