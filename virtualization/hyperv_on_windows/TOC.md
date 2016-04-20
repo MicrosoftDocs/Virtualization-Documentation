@@ -23,7 +23,6 @@
 ## [Hyper-V forums](https://social.technet.microsoft.com/Forums/windowsserver/en-US/home?forum=winserverhyperv)
 # Reference
 ## [Hyper-V PowerShell](https://technet.microsoft.com/library/hh848559.aspx)
-## [PowerShell Samples](develop/powershell_snippets.md)
 ## [Hyper-V WMI Provider (V2)](https://msdn.microsoft.com/library/hh850319.aspx)
 ## [Hyper-V Architecture](https://msdn.microsoft.com/en-us/library/cc768520(v=bts.10).aspx)
 ## [Hypervisor Specifications](develop/tlfs.md)
