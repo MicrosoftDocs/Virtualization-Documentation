@@ -1,9 +1,9 @@
-# About Hyper-V on Windows
+# About Hyper-V
 ## [Hyper-V on Windows](./windows_welcome.md)
 ## [Introduction to Hyper-V](./about/hyperv_on_windows.md)
 ## [Supported Guest OS's](about/supported_guest_os.md)
 ## [Linux and FreeBSD on Hyper-V](https://technet.microsoft.com/library/dn531030.aspx)
-# Hyper-V on Windows Quick Start
+# Hyper-V Quick Start
 ## [System Requirements](quick_start/walkthrough_compatibility.md)
 ## [Install Hyper-V](quick_start/walkthrough_install.md)
 ## [Create a Virtual Switch](quick_start/walkthrough_virtual_switch.md)
@@ -12,13 +12,12 @@
 # Manage Virtual Machines with Hyper-V
 ## [Migrate and Upgrade Virtual Machines](user_guide/migrating_vms.md)
 ## [Manage Integration Services](user_guide/managing_ics.md)
-## [Working with Checkpoints](user_guide/checkpoints.md)
-## [Export and Import](user_guide/export_import.md)
-## [PowerShell Direct](user_guide/vmsession.md)
-# Manage the Hyper-V Host
-## [Remote Management](user_guide/remote_host_management.md)
-## [Nested Virtualization](user_guide/nesting.md)
-## [Troubleshooting](user_guide/troubleshooting.md)
+## [Work with Checkpoints](user_guide/checkpoints.md)
+## [Export and Import Virtual Machines](user_guide/export_import.md)
+## [Connect with PowerShell Direct](user_guide/vmsession.md)
+# Manage the Hyper-V Hosts
+## [Manage Remote Hyper-V Hosts](user_guide/remote_host_management.md)
+## [Enable Nested Virtualization](user_guide/nesting.md)
 ## [Build an integration Service](develop/make_mgmt_service.md)
 # Community and Support
 ## [Hyper-V forums](https://social.technet.microsoft.com/Forums/windowsserver/en-US/home?forum=winserverhyperv)
