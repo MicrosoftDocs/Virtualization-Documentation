@@ -2,10 +2,7 @@
 
 > **Note:** This early preview feature is only available to Windows Insiders, running Build 10565 or later, and comes with no performance or stability guarantees.  
 You can check your Windows build using the following command:  
-
-  ```PowerShell
-  [System.Environment]::OSVersion.Version
-  ```
+  `[System.Environment]::OSVersion.Version`
 
 Nested virtualization is running virtualization inside a virtualized environment.  In other words, nesting allows you to run the Hyper-V server role inside a virtual machine.
 
