@@ -1,7 +1,6 @@
 # About Hyper-V on Windows
 ## [Hyper-V on Windows](./windows_welcome.md)
 ## [Introduction to Hyper-V](./about/hyperv_on_windows.md)
-## [What’s New in Windows 10](./about/whats_new.md)
 ## [Supported Guest OS's](about/supported_guest_os.md)
 ## [Linux and FreeBSD on Hyper-V](https://technet.microsoft.com/library/dn531030.aspx)
 # Hyper-V on Windows Quick Start

@@ -178,6 +178,8 @@ Keep integration services current in order to receive the best virtual machine p
 
 **For virtual machines running on Windows 10 hosts:**
 
+> **Note:** The ISO image file vmguest.iso is no longer needed for updating integration components. It's not included with Hyper-V on Windows 10.
+
 | Guest OS | Update mechanism | Notes |
 |:---------|:---------|:---------|
 | Windows 10 | Windows Update | |
