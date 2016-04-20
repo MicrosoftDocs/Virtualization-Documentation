@@ -68,6 +68,28 @@ To run a single command, use the **-ScriptBlock** parameter:
 
 There are a small set of common error messages surfaced through PowerShell Direct.  Here are the most common, some causes, and tools for diagnosing issues.
 
+### -VMName or -VMID parameters don't exist
+**Problem:**  
+`Enter-PSSession`, `Invoke-Command`, or `New-PSSession` do not have a `-VMName` or `-VMID` parameter.
+
+**Potential causes:**  
+The most likely issue is that PowerShell Direct isn't supported by your host operating system.
+
+You can check your Windows build by running the following command:
+
+``` PowerShell
+[System.Environment]::OSVersion.Version
+```
+
+If you are running a supported build, it is also possible your version of PowerShell does not run PowerShell Direct.  For PowerShell Direct and JEA, the major version must be 5 or later.
+
+You can check your PowerShell version build by running the following command:
+
+``` PowerShell
+$PSVersionTable.PSVersion
+```
+
+
 ### Error: A remote session might have ended
 **Error message:**
 ```
