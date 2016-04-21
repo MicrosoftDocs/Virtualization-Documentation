@@ -21,4 +21,4 @@ RUN powershell.exe -Command ; \
 	[System.IO.Compression.ZipFile]::ExtractToDirectory('c:\go.zip','c:\') ; \
 	Remove-Item c:\go.zip -Force
 
-RUN powershell.exe -Command $env:path = $env:path + ';c:\go\bin'
+RUN powershell.exe -Command $path = $env:path + ';c:\go\bin'; Set-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\Environment\' -Name Path -Value $path
