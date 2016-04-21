@@ -10,13 +10,11 @@ The Docker engine is not included with Windows and will need to be installed and
 
 For more information on Docker and the Docker toolset visit [Docker.com](https://www.docker.com/). 
 
-> The Windows container feature must be enabled before Docker can be used to create and manage Windows Server and Hyper-V container. For instructions on enabling this feature, see the [Container host deployment guide](./docker_windows.md).
+> The Windows container feature must be enabled before Docker can be used to create and manage Windows containers. For instructions on enabling this feature, see the [Container host deployment guide](./docker_windows.md).
 
 ## Windows Server 2016
 
 ### Install Docker <!--1-->
-
-There are several methods that can be used to create a Windows service, one example shown here uses `nssm.exe`. 
 
 Download docker.exe from `https://aka.ms/tp5/docker` and place it in the System32 directory on the container Host.
 
@@ -24,7 +22,7 @@ Download docker.exe from `https://aka.ms/tp5/docker` and place it in the System3
 wget https://aka.ms/tp5/docker -OutFile $env:SystemRoot\system32\docker.exe
 ```
 
-Create a directory named `c:\programdata\docker`. In this directory, create a file named `runDockerDaemon.cmd`.
+Create a directory named `c:\programdata\docker`. In this directory create a file named `runDockerDaemon.cmd`.
 
 ```none
 New-Item -ItemType File -Path C:\ProgramData\Docker\runDockerDaemon.cmd -Force
@@ -103,11 +101,19 @@ IO Tab:
 
 When finished, click the `Install Service` button.
 
-With this completed, when Windows starts, the Docker daemon (service) will also start.
+The Docker daemon is now configured as a Windows service.
+
+### Firewall <!--1-->
+
+If you wish to enable remote Docker management, you also need to open TCP port 2376.
+
+```none
+netsh advfirewall firewall add rule name="Docker daemon " dir=in action=allow protocol=TCP localport=2376
+```
 
 ### Removing Docker <!--1-->
 
-If following this guide for creating a Windows service from docker.exe, the following command will remove the service.
+The following command will remove the Docker service.
 
 ```none
 sc.exe delete Docker
@@ -125,7 +131,7 @@ Create a directory named `c:\programdata\docker`. In this directory, create a fi
 New-Item -ItemType File -Path C:\ProgramData\Docker\runDockerDaemon.cmd -Force
 ```
 
-Copy the following text into the `runDockerDaemon.cmd` file. This batch file starts the Docker daemon with the command `docker daemon -D -b “Virtual Switch”`. Note: the name of the virtual switch in this file, will need to match the name of the virtual switch that containers will be using for network connectivity.
+Copy the following text into the `runDockerDaemon.cmd` file.
 
 ```none
 @echo off
@@ -144,7 +150,7 @@ goto :eof
 docker daemon -D -H npipe:// -H tcp://0.0.0.0:2376 --tlsverify --tlscacert=%certs%\ca.pem --tlscert=%certs%\server-cert.pem --tlskey=%certs%\server-key.pem
 ```
 
-The following script can be used to create a scheduled task to start the Docker daemon. 
+The following script can be used to create a scheduled task, that will start the Docker daemon when Windows boots.
 
 ```none
 # Creates a scheduled task to start docker.exe at computer start up.
@@ -159,19 +165,21 @@ Register-ScheduledTask -TaskName Docker -Action $action -Trigger $trigger -Setti
 Start-ScheduledTask -TaskName Docker 
 ```
 
-If you wish to enable remote Docker management, you also need to open TCP port 2375.
+### Firewall <!--2-->
+
+If you wish to enable remote Docker management, you also need to open TCP port 2376.
 
 ```none
-netsh advfirewall firewall add rule name="Docker daemon " dir=in action=allow protocol=TCP localport=2375
+netsh advfirewall firewall add rule name="Docker daemon " dir=in action=allow protocol=TCP localport=2376
 ```
 
 ### Interactive Nano session
 
-Nano server is managed through a remote powershell session. Not all docker operations, such as starting an interactive session with a container can be performed through this remote powershell session. To get around this, ensure docker.exe is available on a remote system, and manage the Docker host through a TCP connection. 
+Nano server is managed through a remote PowerShell session. For more information on remotely managing Nano Server, see [Getting Started with Nano Server]( https://technet.microsoft.com/en-us/library/mt126167.aspx#bkmk_ManageRemote).
 
-For more information on remotely managing Nano Server, see [Getting Started with Nano Server]( https://technet.microsoft.com/en-us/library/mt126167.aspx#bkmk_ManageRemote).
+Not all docker operations, such as 'docker attach' can be performed through this remote powershell session. To get around this, and as a best practice in general, manage Docker from a remote client through a secure TCP connection.
 
-> As a best practice, Docker should be managed remotely through a secure TCP connection.
+To do so, ensure that the Docker daemon has been configured to listen on a TCP port, and that the Docker command line interface is available on a remote client machine. When configured, docker commands can be issued to the host with the -H parameter.
 
 To remotely deploy a container and enter an interactive session, run the following command.
 
@@ -204,3 +212,30 @@ Run the following to un-register the Docker scheduled task.
 ```none
 Get-ScheduledTask -TaskName Docker | UnRegister-ScheduledTask
 ```
+
+## Configuring Docker Startup
+
+Several start options are available for the Docker daemon. In this section some of these relevant to the Docker daemon on Windows will be detailed. For complete coverage of all daemon options, see the [Docker daemon documentation on docker.com]( https://docs.docker.com/engine/reference/commandline/daemon/)
+
+### Listening TCP port
+
+The Docker daemon can be configured to listen for incoming connections locally via. a local named pipe or remotely via. a TCP connection. The default startup behavior is to listen on only the named pipe, which will prevent remote connections.
+
+```none
+docker daemon -D
+```
+
+This can be modified to listen for secure incoming connections with the following startup command. For more information on securing the connection, see the [Security Confguration docs on docker.com](https://docs.docker.com/engine/security/https/).
+
+```none
+docker daemon -D -H npipe:// -H tcp://0.0.0.0:2376 --tlsverify --tlscacert=%certs%\ca.pem --tlscert=%certs%\server-cert.pem --tlskey=%certs%\server-key.pem
+``` 
+
+### Default runtime
+
+Windows containers have two distinct runtime types, Windows Server and Hyper-V. The Docker daemon is configured to use the Windows Server runtime by default, however this can be changed. To set Hyper-V as the default runtime, specify ‘—exec-opt isolation=hyperv` when initializing the Docker daemon.
+
+```none
+docker daemon -D —exec-opt isolation=hyperv
+```
+

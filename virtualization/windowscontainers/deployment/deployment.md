@@ -6,7 +6,7 @@ author: neilpeterson
 
 **This is preliminary content and subject to change.** 
 
-Deploying a Windows container host has different steps depending on the operating system and the host system type (physical or virtual). The steps in this document are used to deploy a Windows Container host to either Windows Server 2016 or Windows Server Core 2016, on a physical or virtual system.
+Deploying a Windows container host has different steps depending on the operating system and the host system type (physical or virtual). This document details deploying a Windows container host to either Windows Server 2016 or Windows Server Core 2016 on a physical or virtual system.
 
 # Windows Server host
 
@@ -20,12 +20,12 @@ Deploying a Windows container host has different steps depending on the operatin
 <td>The container feature enables use of Windows Server and Hyper-V containers.</td>
 </tr>
 <tr>
-<td>[Install container OS images](#img)</td>
-<td>OS images provide the base for container deployments.</td>
+<td>[Install base OS images](#img)</td>
+<td>Base OS images provide the base for container deployments.</td>
 </tr>
 <tr>
 <td>[Install Docker](#docker)</td>
-<td>Follow these steps to install and configure the Docker engine on Windows.</td>
+<td>Follow these steps to install and configure the Docker on Windows.</td>
 </tr>
 </table>
 
@@ -52,7 +52,7 @@ These steps need to be taken if Hyper-V containers will be used. Note, the steps
 </tr>
 <tr>
 <td>[Enable Hyper-V role](#hypv) </td>
-<td>Hyper-V is only required if Hyper-V containers will be used.</td>
+<td>The Hyper-V role is only required if Hyper-V containers will be deployed.</td>
 </tr>
 </table>
 
@@ -75,12 +75,12 @@ shutdown /r /t 0
 
 ### <a name=img></a>Install OS images
 
-An OS image is used as the base to any Windows Server or Hyper-V container. OS images have been created with both Windows Server Core and Nano Server as the underlying operating system, and can be installed using the Container Provider PowerShell module. 
+Base OS images are used as the base to any Windows Server or Hyper-V container. Base OS images are avaliable with both Windows Server Core and Nano Server as the underlying operating system, and can be installed using the Container Provider PowerShell module. 
 
 The following command can be used to install the Container Provider PowerShell module.
 
 ```none
-Install-PackageProvider ContainerProvider -Force
+Install-PackageProvider ContainerImage -Force
 ```
 
 Use `Find-ContainerImage` to return a list of images.
@@ -116,14 +116,14 @@ For more information on Container image management see [Windows container images
 A script has been created to install and configure the Docker service. Run the following commands to download the script
 
 ```none
-Invoke-WebRequest https://raw.githubusercontent.com/Microsoft/Virtualization-Documentation/container-docs-development/windows-server-container-tools/Update-ContainerHost/Update-ContainerHost.ps1 -OutFile docker.exe
+Invoke-WebRequest https://raw.githubusercontent.com/Microsoft/Virtualization-Documentation/container-docs-development/windows-server-container-tools/Update-ContainerHost/Update-ContainerHost.ps1 -OutFile Update-ContainerHost.ps1
 ```
 Run the script to install the Docker service.
 
 ```none
-.\docker.ps1
+.\Update-ContainerHost.ps1
 ```
-For manual installation and configuration steps, see [Docker and Windows](../docker/docker_windows.md).
+For manual installation and configuration steps, see [Docker and Windows](./docker_windows.md).
 
 ## Hyper-V container host
 
@@ -139,7 +139,7 @@ Set-VMProcessor -VMName <VM Name> -ExposeVirtualizationExtensions $true -Count 2
 
 ### <a name=dyn></a>Disable dynamic memory
 
-If the container host is itself a Hyper-V virtual machine, dynamic memory must be disabled on the container host virtual machine. This can be configured through the settings of the virtual machine, or with the following command.
+If the container host will be virtualized, dynamic memory must be disabled on the container host virtual machine. This can be configured through the settings of the virtual machine, or with the following command.
 
 **Note** - The virtual machine must be turned off when running this command.
 
@@ -157,7 +157,7 @@ Get-VMNetworkAdapter -VMName <VM Name> | Set-VMNetworkAdapter -MacAddressSpoofin
 
 ### <a name=hypv></a>Enable the Hyper-V role
 
-If Hyper-V containers will be deployed, the Hyper-V role needs to be enabled on the container host. The Hyper-V role can be installed on Windows Server 2016 or Windows Server 2016 Core using the `Install-WindowsFeature` command. If the container host is itself a Hyper-V virtual machine, nested virtualization will need to be enabled first. To do so see [Configure nested virtualization]( #nest).
+If Hyper-V containers will be deployed, the Hyper-V role needs to be enabled on the container host. The Hyper-V role can be installed on Windows Server 2016, or Windows Server 2016 Core using the `Install-WindowsFeature` command.
 
 ```none
 Install-WindowsFeature hyper-v

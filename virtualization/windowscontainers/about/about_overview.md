@@ -75,7 +75,5 @@ src="https://channel9.msdn.com/Blogs/containers/Containers-101-with-Microsoft-an
 
 ## Try Windows Server Containers
 
-[Container Quick Start Introduction](../quickstart/quick_start.md)
-
-[Deploy container host](../quickstart/quick__start_configure_host.md)
+[Container Quick Start Introduction](../quick_start/quick_start.md)
 

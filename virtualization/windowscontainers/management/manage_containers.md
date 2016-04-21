@@ -1,6 +1,6 @@
 ---
 author: neilpeterson
-redirect_url: ../quickstart/manage_docker
+redirect_url: ../quick_start/manage_docker
 ---
 
 # Windows Server Container Management

@@ -19,7 +19,7 @@ The following items will be required for each exercise.
 **Hyper-V Containers:**
 
 - A Windows Container host enabled with Nested Virtualization.
-- The Windows Server 2016 Media - [Download](https://aka.ms/tp4/serveriso).
+- The Windows Server 2016 Media - [Download](https://aka.ms/tp5/serveriso).
 
 > Microsoft Azure does not support Hyper-V containers. To complete the Hyper-V Container exercises, you need an on-prem container host.
 
@@ -92,9 +92,9 @@ Beginning in Windows Server Technical Preview 5, you no longer need to explicitl
 
 ### Create IIS Container <!--1-->
 
-You now have a container image that contains IIS, which can be used to deploy IIS ready operating environments. 
+You now have a container image that contains IIS which can be used to deploy IIS ready operating environments. 
 
-To create a container from the new image, use the `docker run` command, this time specifying the name of the IIS image. Notice that this sample has specified a parameter `-p 80:80`. Because the container is connected to a virtual switch that is supplying IP addresses via network address translation, a port needs to be mapped from the container host, to a port on the containers NAT IP address. You can specify a static port mapping by using the -p parameter with two integers (e.g. `-p <external port>:<internal port>`). Alternatively, you can use dynamic port mapping by using the -p parameter with only one integer (e.g. `-p 80`). In the dynamic port mapping case, the docker engine will return the external port chosen through which the network service can be accessed. For more information on the `-p` see the [Docker Run reference on docker.com]( https://docs.docker.com/engine/reference/run/)
+To create a container from the new image, use the `docker run` command, this time specifying the name of the IIS image. Notice that this sample has specified a parameter `-p 80:80`. Because the container is connected to a virtual switch that is supplying IP addresses via network address translation,a port needs to be mapped from the container host, to a port on the containers NAT IP address. You can specify a static port mapping by using the -p parameter with two integers (e.g. `-p <external port>:<internal port>`). Alternatively, you can use dynamic port mapping by using the -p parameter with only one integer (e.g. `-p 80`). In the dynamic port mapping case, the docker engine will return the external port, through which the network service can be accessed. For more information on the `-p` parameter see the [Docker Run reference on docker.com]( https://docs.docker.com/engine/reference/run/)
 
 ```none
 docker run --name iisdemo -it -p 80:80 windowsservercoreiis cmd

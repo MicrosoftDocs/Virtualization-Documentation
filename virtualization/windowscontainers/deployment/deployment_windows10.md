@@ -30,15 +30,13 @@ Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V –All
 
 ### Install container feature <!--2-->
 
-To enable the container feature using the 'Turn Windows featuer on or off' wizard, select the ‘Containers’ feature from the list, and follow the dialog prompts.
+To enable the container feature using the 'Turn Windows featuer on or off' wizard, select the ‘Containers’ feature from the list and follow the dialog prompts.
 
 ![](media/win101.png)
 
 ### Install Hyper-V feature <!--2-->
 
-Because Windows 10 only supports Hyper-V containers, the Hyper-V feature must be enabled. This can be completed from the ‘Turn Windows feature on or off` wizard.
-
-To enable the container feature using the 'Turn Windows featuer on or off' wizard, select the ‘Hyper-V’ feature from the list, and follow the dialog prompts.
+To enable the container feature using the 'Turn Windows featuer on or off' wizard, select the ‘Hyper-V’ feature from the list and follow the dialog prompts.
 
 ![](media/win102.png)
 
@@ -49,7 +47,7 @@ A base OS image is used as the base to any Hyper-V container. The container feat
 The following command can be used to install the Container Provider PowerShell module.
 
 ```none
-Install-PackageProvider ContainerProvider -Force
+Install-PackageProvider ContainerImage -Force
 ```
 
 Use `Find-ContainerImage` to return a list of images.
@@ -80,11 +78,11 @@ For more information on Container image management see [Windows container images
 A script has been created to install and configure the Docker service. Run the following commands to download the script
 
 ```none
-Invoke-WebRequest https://raw.githubusercontent.com/Microsoft/Virtualization-Documentation/container-docs-development/windows-server-container-tools/Update-ContainerHost/Update-ContainerHost.ps1 -OutFile docker.exe
+Invoke-WebRequest https://raw.githubusercontent.com/Microsoft/Virtualization-Documentation/container-docs-development/windows-server-container-tools/Update-ContainerHost/Update-ContainerHost.ps1 -OutFile docker.ps1
 ```
 Run the script to install the Docker service.
 
 ```none
 .\docker.ps1
 ```
-For manual installation and configuration steps, see [Docker and Windows](../docker/docker_windows.md).
+For manual installation and configuration steps, see [Docker and Windows](./docker_windows.md).

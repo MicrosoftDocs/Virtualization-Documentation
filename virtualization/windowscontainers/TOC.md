@@ -29,13 +29,14 @@
 
 # Container Samples
 ## [Dockerfiles – Windows Server Core](https://github.com/Microsoft/Virtualization-Documentation/tree/master/windows-container-samples/windowsservercore)
-## [Dockerfiles – Nano Server](https://github.com/Microsoft/Virtualization-Documentation/tree/master/windows-server-container-samples)
+## [Dockerfiles – Nano Server](https://github.com/Microsoft/Virtualization-Documentation/tree/master/windows-container-samples/nanoserver)
 
 # Community and Support
 ## [Container forums](https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers)
 
 # Reference
 ## [PowerShell Reference](https://technet.microsoft.com/en-us/library/mt433069.aspx)
+## [Container Image Provider](https://github.com/PowerShell/ContainerProvider)
 ## [Application Compatibility](reference/app_compat.md)
 # [Windows Server EULA](EULA.md)
 # [Nano Server EULA](Nano_EULA.md)

@@ -31,19 +31,7 @@ Learn how to deploy Windows Containers on Windows Server 2016, Nano Server, and 
 </ul>
 </td>
 </tr>
-<tr>
-<td ><center>![](media/1.png)</center></td>
-<td>**Docker**<br /><br />
-Learn how to deploy Windows Containers on Windows Server 2016, Nano Server, and Windows 10.<br /><br />
-<ul>
-<li>[Docker on Windows](docker/docker_windows.md)<br /><br /></li>
-<li>[Dockerfile on Windows](docker/manage_windows_dockerfile.md)<br /><br /></li>
-<li>[Optimize Dockerfile for Windows](docker/optimize_windows_dockerfile.md)<br /><br /></li>
-<li>[Dockerfile Samples – Windows Server Core](https://github.com/Microsoft/Virtualization-Documentation/tree/master/windows-container-samples/windowsservercore)<br /><br /></li>
-<li>[Dockerfile Samples – Windows Nano Server](https://github.com/Microsoft/Virtualization-Documentation/tree/master/windows-container-samples/nanoserver)<br /><br /></li>
-</ul>
-</td>
-</tr>
+
 <tr>
 <td ><center>![](media/explore.png)</center></td>
 <td>**Management**<br /><br />

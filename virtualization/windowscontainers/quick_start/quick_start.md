@@ -6,11 +6,11 @@ author: neilpeterson
 
 **This is preliminary content and subject to change.** 
 
-This Windows container quick start introduces the product, guide you through deployment options, and then provide hands lab using the product. 
+This Windows container quick start introduces the product, guides you through deployment options, and then provide hands lab using the product. 
 
 ## Introducing Windows Containers:
 
-These resources introduce the Windows Container technology. Start here to gain a basic understanding of the technology.
+These resources introduce the Windows Container technology. Start here to gain a basic understanding of Windows Containers.
 
 [Windows containers overview](../about/about_overview.md)
 
@@ -18,7 +18,7 @@ These resources introduce the Windows Container technology. Start here to gain a
 
 ## Deploy a Container Host
 
-Windows Containers can be deployed to Windows Server 2016, Nano Server, and Windows 10 Insiders releases. The container host quick start documentation walks you through automated, or manual configuration of a Windows container host.
+Windows Containers can be deployed to Windows Server 2016, Nano Server, and Windows 10 Insiders releases. The container host quick start documentation walks you through automated or manual configuration of a Windows container host.
 
 [Container Host Deployment Quick Start](./quick_start_configure_host.md)
 
@@ -36,4 +36,4 @@ Once you have completed the Windows container quick start, additional documentat
 
 [Windows Container Samples]( https://github.com/Microsoft/Virtualization-Documentation/tree/master/windows-container-samples)
 
-Feel free to contribute to this documentation, or report issues at the [Windows container documentation GitHub site](https://github.com/Microsoft/Virtualization-Documentation).
+Feel free to contribute to this documentation or report issues at the [Windows container documentation GitHub site](https://github.com/Microsoft/Virtualization-Documentation).

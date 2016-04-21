@@ -19,7 +19,7 @@ The Docker components that drive this automation are the Dockerfile, and the Doc
 
 This document will introduce using a Dockerfile with Windows containers, discuss syntax, and detail commonly used Dockerfile instructions. 
 
-Throughout this document, the concept of container images and container image layers will be discussed. For more information on images and image layering see [Manage Windows Container Images](./manage_images). 
+Throughout this document, the concept of container images and container image layers will be discussed. For more information on images and image layering see [Manage Windows Container Images](../management/manage_images.md). 
 
 For a complete look at Dockerfiles, see the [Dockerfile reference at docker.com]( https://docs.docker.com/engine/reference/builder/).
 
@@ -48,7 +48,7 @@ RUN echo "Hello World - Dockerfile" > c:\inetpub\wwwroot\index.html
 CMD [ "cmd" ]
 ```
 
-For additional examples of Dockerfiles for Windows, see the [Dockerfile for Windows Repository] (https://github.com/Microsoft/Virtualization-Documentation/tree/master/windows-server-container-samples).
+For additional examples of Dockerfiles for Windows, see the [Dockerfile for Windows Repository] (https://github.com/Microsoft/Virtualization-Documentation/tree/master/windows-container-samples).
 
 ## Instructions
 

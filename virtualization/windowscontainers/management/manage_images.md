@@ -17,10 +17,10 @@ There are two types of container images:
 
 ### Install image
 
-Container OS images can be found and installed using the ContainerProvider PowerShell module. Before using this module, it will need to be installed. The following command can be used to install the module.
+Container OS images can be found and installed using the ContainerImage PowerShell module. Before using this module, it will need to be installed. The following command can be used to install the module.
 
 ```none
-Install-PackageProvider ContainerProvider -Force
+Install-PackageProvider ContainerImage -Force
 ```
 
 Once installed, a list of Base OS images can be returned using `Find-ContainerImage`.
@@ -65,7 +65,7 @@ Base OS images can also be installed without an internet connection. To do so, d
 Before downloading the Base OS image, prepare the system with the container image provider by running the following command.
 
 ```none
-Install-PackageProvider ContainerProvider -Force
+Install-PackageProvider ContainerImage -Force
 ```
 
 Return a list of images from PowerShell OneGet package manager:
