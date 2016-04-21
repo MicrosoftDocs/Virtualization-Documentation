@@ -1,6 +1,4 @@
 ﻿---
-author: scooley
-
 title: Container Ecosystem
 description: Building a Container Ecosystem.
 keywords: metadata, containers

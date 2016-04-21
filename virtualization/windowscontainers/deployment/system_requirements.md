@@ -1,10 +1,8 @@
 ---
-author: neilpeterson
-
 title: Windows Container Requirements
 description: Windows Container Requirements.
 keywords: metadata, containers
-author: nepeters
+author: neilpeterson
 manager: timlt
 ms.date: 04/20/2016
 ms.topic: deployment-article
