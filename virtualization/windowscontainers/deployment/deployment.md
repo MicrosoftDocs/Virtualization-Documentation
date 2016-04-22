@@ -114,9 +114,9 @@ For manual installation and configuration steps, see [Docker and Windows](./dock
 
 ## Hyper-V container host
 
-### <a name=nest></a>Configure nested virtualization
+### <a name=nest></a>Nested virtualization
 
-Nested virtualization allows the Hyper-V role to function inside of a Hyper-V virtual machine. This is required if the container host is virtualized and also running Hyper-V containers. Several steps need to be completed for a nested virtualization configuration including configuring the virtual processor for nested virtualization, turning off dynamic memory, and enabeling MAC spoofing. For more information on nested virtualization, see [Nested Virtualizaton]( https://msdn.microsoft.com/en-us/virtualization/hyperv_on_windows/user_guide/nesting).
+Nested virtualization allows the Hyper-V role to function inside of a Hyper-V virtual machine. This is required if the container host is virtualized and also running Hyper-V containers. Several steps need to be completed for a nested virtualization configuration including configuring the virtual processor, turning off dynamic memory, and enabeling MAC spoofing. For more information on nested virtualization, see [Nested Virtualizaton]( https://msdn.microsoft.com/en-us/virtualization/hyperv_on_windows/user_guide/nesting).
 
 The following script will configure nested virtualization for the container host. This script is run on the Hyper-V machine that is hosting the container host virtual machine. Ensure that the container host virtual machine is turned off when running this script.
 

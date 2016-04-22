@@ -46,14 +46,6 @@ These steps need to be taken if Hyper-V containers will be used. Note, the steps
 <td>[Configure nested virtualization *](#nest)</td>
 <td>If the container host is virtualized, Nested Virtualization needs to be configured.</td>
 </tr>
-<tr>
-<td>[Disable dynamic memory *](#dyn)</td>
-<td>If the container host is virtualized, dynamic memory must be disabled.</td>
-</tr>
-<tr>
-<td>[Configure MAC address spoofing *](#mac)</td>
-<td>If the container host is virtualized, MAC spoofing will need to be enabled.</td>
-</tr>
 </table>
 
 ## Deployment steps
@@ -100,7 +92,7 @@ When the virtual machine is ready, create a remote connection with Nano Server o
 
 Base OS images are used as the base to any Windows Server or Hyper-V container. Base OS images are avaliable with both Windows Server Core and Nano Server as the underlying operating system and can be installed using the container Provider PowerShell module. 
 
-The following command can be used to install the Container Provider PowerShell module.
+The following command can be used to install the Container Image PowerShell module.
 
 ```none
 Install-PackageProvider ContainerImage -Force
@@ -141,30 +133,22 @@ The Docker Engine is not shipped with Windows and not installed with the Windows
 
 Hyper-V can be enabled when creating the Nano Server virtual hard drive, see [Prepare Nano Server for containers](#nano) for these instructions.
 
-### <a name=nest></a>Configure nested virtualization
+### <a name=nest></a>Nested virtualization
 
-If the container host is virtualized, the Hyper-V virtual processor will need to be configured for nested virtualization. This includes configuring the virtual machine with at least two virtual processors and enabling the nested virtualization extension. This can be completed with the following command.
+Nested virtualization allows the Hyper-V role to function inside of a Hyper-V virtual machine. This is required if the container host is virtualized and also running Hyper-V containers. Several steps need to be completed for a nested virtualization configuration including configuring the virtual processor, turning off dynamic memory, and enabeling MAC spoofing. For more information on nested virtualization, see [Nested Virtualizaton]( https://msdn.microsoft.com/en-us/virtualization/hyperv_on_windows/user_guide/nesting).
 
-**Note** - The virtual machines must be turned off when running this command:
-
-```none
-Set-VMProcessor -VMName <VM Name> -ExposeVirtualizationExtensions $true -Count 2
-```
-
-### <a name=dyn></a>Disable dynamic memory
-
-If the Container Host is virtualized, dynamic memory must be disabled on the container host virtual machine. This can be configured through the settings of the virtual machine, or with the following command.
-
-**Note** - The virtual machines must be turned off when running this command:
+The following script will configure nested virtualization for the container host. This script is run on the Hyper-V machine that is hosting the container host virtual machine. Ensure that the container host virtual machine is turned off when running this script.
 
 ```none
-Set-VMMemory <VM Name> -DynamicMemoryEnabled $false
-``` 
+#replace with the virtual machine name
+$vm = "<virtual-machine>"
 
-### <a name=mac></a>MAC address spoofing
+#configure virtual processor
+Set-VMProcessor -VMName $vm -ExposeVirtualizationExtensions $true -Count 2
 
-Finally, if the container host is virtualized, MAC spoofing must be enable. This allows each container to receive an IP Address. To enable MAC address spoofing run the following command on the Hyper-V host:
+#disable dynamic memory
+Set-VMMemory $vm -DynamicMemoryEnabled $false
 
-```none
-Get-VMNetworkAdapter -VMName <VM Name> | Set-VMNetworkAdapter -MacAddressSpoofing On
+$enable mac spoofing
+Get-VMNetworkAdapter -VMName $vm | Set-VMNetworkAdapter -MacAddressSpoofing On
 ```
