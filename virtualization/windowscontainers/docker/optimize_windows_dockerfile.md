@@ -48,7 +48,7 @@ For additional information on Dockerfile best practices, see [Best practices for
 
 ### Group related actions
 
-Because each RUN instruction creates a new layer in the container image, grouping actions into one RUN instruction, can reduce the number of layers. While minimizing image layers may not reduce the container image by much, there may be instances where grouping related actions can, such as when removing temporary files. The backslash character ‘\’ is used to organize the instruction onto separate lines of the Dockerfile, while still using only one Run instruction.
+Because each RUN instruction creates a new layer in the container image, grouping actions into one RUN instruction can reduce the number of layers. While minimizing layers may not effect image size much, grouping related actions can, which will be seen in subsequent examples.
 
 The following two examples demonstrate the same operation, which results in container images of identical capability, however the two Dockerfiles constructed differently. The resulting images are also compared.  
 

@@ -219,7 +219,7 @@ Several start options are available for the Docker daemon. In this section some 
 
 ### Listening TCP port
 
-The Docker daemon can be configured to listen for incoming connections locally via. a local named pipe or remotely via. a TCP connection. The default startup behavior is to listen on only the named pipe, which will prevent remote connections.
+The Docker daemon can be configured to listen for incoming connections locally through a named pipe or remotely through a TCP connection. The default startup behavior is to listen on only the named pipe, which will prevent remote connections.
 
 ```none
 docker daemon -D

@@ -130,17 +130,10 @@ IMAGE               CREATED             CREATED BY                              
 
 **Windows Considerations**
  
-On Windows, when using the RUN instruction with the exec format, forward slashes must be used. These are valid RUN instructions.
+On Windows, when using the RUN instruction with the exec format, backslashes must be escaped.
 
 ```none
-RUN ["powershell","New-Item","c:/test"]
-RUN powershell new-item c:\test
-```
-
-However, the following will not work.
-
-```none
-RUN ["powershell","New-Item","c:\test"]
+RUN ["powershell","New-Item","c:\\test"]
 ```
 
 **Examples**
@@ -223,27 +216,16 @@ WORKDIR <path to working directory>
 
 **Windows Considerations**
 
-On Windows, the working directory format must use forward slashes. For example, these are valid WORKDIR instructions.
+On Windows, if the working directory includes a backslash, it must be escaped.
 
 ```none
-WORKDIR /application/
-WORKDIR c:/application/
-```
-
-However, the following will not work.
-
-```none
-WORKDIR c:\application\
+WORKDIR c:\\windows
 ```
 
 **Examples**
 
 ```none
-WORKDIR /Apache24/bin
-```
-
-```none
-WORKDIR c:/Apache24/bin
+WORKDIR c:\\Apache24\\bin
 ```
 
 For detailed information on the WORKDIR instruction, see the [WORKDIR Reference on Docker.com]( https://docs.docker.com/engine/reference/builder/#workdir). 
@@ -273,31 +255,15 @@ On Windows, file paths specified in the CMD instruction must use forward slashes
 ```none
 # exec form
 
-CMD ["/Apache24/bin/httpd.exe","-w"]
-CMD ["c:/Apache24/bin/httpd.exe","-w"]
+CMD ["c:\\Apache24\\bin\\httpd.exe","-w"]
 
 # shell form
 
-CMD /Apache24/bin/httpd.exe -w
-CMD c:/Apache24/bin/httpd.exe -w
+CMD c:\\Apache24\\bin\\httpd.exe -w
 ```
 
-However, the following will not work.
-
 ```none
-CMD ["c:\Apache24\bin\httpd.exe","-w"]
 CMD c:\Apache24\bin\httpd.exe -w
-
-```
-
-**Examples**
-
-```none
-CMD ["/Apache24/bin/httpd.exe","-w"]
-```
-
-```none
-CMD c:/Apache24/bin/httpd.exe -w
 ```
 
 For detailed information on the CMD instruction, see the [CMD Reference on Docker.com]( https://docs.docker.com/engine/reference/builder/#cmd). 
