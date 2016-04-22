@@ -70,15 +70,17 @@ Finally, the container will be committed to a new container image using `docker 
 
 ```none
 docker commit iisbase windowsservercoreiis
-
-4193c9f34e320c4e2c52ec52550df225b2243927ed21f014fbfff3f29474b090
 ```
 
 The new IIS images can be viewed using the `docker images` command.
 
 ```none
 docker images
+```
 
+Which will output something similar to the following:
+
+```
 REPOSITORY             TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
 windowsservercoreiis   latest              4193c9f34e32        4 minutes ago       170.8 MB
 windowsservercore      10.0.10586.0        6801d964fda5        2 weeks ago         0 B
@@ -92,31 +94,17 @@ Beginning in Windows Server Technical Preview 5, you no longer need to explicitl
 
 ### Create IIS Container <!--1-->
 
-You now have a container image that contains IIS which can be used to deploy IIS ready operating environments. 
+To create a container from the new image, use the `docker run` command, this time specifying the name of the IIS image. Notice that this sample has specified a parameter `-p 80:80`. Because the container is connected to a virtual switch which is supplying IP addresses via network address translation, a port needs to be mapped from the container host, to a port on the containers NAT IP address. In this case the container will be accessible through port 80 of the container host.
 
-To create a container from the new image, use the `docker run` command, this time specifying the name of the IIS image. Notice that this sample has specified a parameter `-p 80:80`. Because the container is connected to a virtual switch that is supplying IP addresses via network address translation,a port needs to be mapped from the container host, to a port on the containers NAT IP address. You can specify a static port mapping by using the -p parameter with two integers (e.g. `-p <external port>:<internal port>`). Alternatively, you can use dynamic port mapping by using the -p parameter with only one integer (e.g. `-p 80`). In the dynamic port mapping case, the docker engine will return the external port, through which the network service can be accessed. For more information on the `-p` parameter see the [Docker Run reference on docker.com]( https://docs.docker.com/engine/reference/run/)
+For more information on Windows container networking, see [Container networking](../management/container_networking.md).
+
+For more information on the `-p` parameter see the [Docker Run reference on docker.com]( https://docs.docker.com/engine/reference/run/).
 
 ```none
 docker run --name iisdemo -it -p 80:80 windowsservercoreiis cmd
 ```
 
-When the container has been created, open a browser, and browse to the IP address of the container host. Because port 80 of the host has been mapped to port 80 if the container, the IIS splash screen should be displayed.
-
-```none
-docker run --name iisdemo -it -p 80 windowsservercoreiis cmd
-```
-
-In another command window, you can run docker images to see which port was dynamically assigned to map to port 80.
-
-```none
-docker ps
-
-CONTAINER ID        IMAGE                  COMMAND             CREATED              STATUS              PORTS                   NAMES
-bbb0f9c12326        windowsservercoreiis   "cmd"               About a minute ago   Up About a minute   0.0.0.0:32360->80/tcp   iisdemo
-```
-
-Because port 32360 of the host has been mapped to port 80 if the container, you must specify the port in the URL to access the IIS webserver (http://<containerhostIP>:32360).
-
+When the container has been created, open a browser and browse to the IP address of the container host. Because port 80 of the host has been mapped to port 80 of the container, the IIS splash screen should be displayed.
 
 ![](media/iis1.png)
 
@@ -157,7 +145,7 @@ docker rmi windowsservercoreiis
 
 ## Dockerfile
 
-Through the last exercise, a container was manually created, modified, and then captured into a new container image. Docker includes a method for automating this process, using what is called a dockerfile. This exercise will have identical results as the last, however this time the process will be completely automated.
+Through the last exercise, a container was manually created, modified, and then captured into a new container image. Docker includes a method for automating this process using what is called a dockerfile. This exercise will have identical results as the last, however this time the process will be completely automated.
 
 ### Create IIS Image
 
@@ -173,7 +161,9 @@ Open the dockerfile in notepad.
 notepad c:\build\dockerfile
 ```
 
-Copy the following text into the dockerfile and save the file. These commands instruct Docker to create a new image, using `windowsservercore` as the base, and include the modifications specified with `RUN`. For more information on Dockerfiles, see the [Dockerfile reference at docker.com](http://docs.docker.com/engine/reference/builder/).
+Copy the following text into the dockerfile and save the file. These commands instruct Docker to create a new image, using `windowsservercore` as the base, and include the modifications specified with `RUN`. 
+
+For more information on Dockerfiles, see the [Dockerfiles on Windows](../docker/manage_windows_dockerfile.md).
 
 ```none
 FROM windowsservercore
@@ -191,7 +181,11 @@ When completed, you can verify that the image has been created using the `docker
 
 ```none
 docker images
+```
 
+Which will output something similar to this:
+
+```
 REPOSITORY          TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
 iis                 latest              abb93867b6f4        26 seconds ago      209 MB
 windowsservercore   10.0.10586.0        6801d964fda5        2 weeks ago         0 B
@@ -237,35 +231,33 @@ Hyper-V Containers provide an additional layer of isolation over Windows Server 
 
 ### Create Container <!--2-->
 
-Because the container will be running a Nano Server OS Image, the Nano Server IIS packages will be needed to install IIS. These can be found on the Windows Server 2016 TP4 Installation media, under the `NanoServer\Packages` directory.
-
-In this example a directory from the container host will be made available to the running container using the `-v` parameter of `docker run`. Before doing so, the source directory will need to be configured. 
-
-Create a directory on the container host that will be shared with the container. If you have already completed the PowerShell walkthrough, this directory and the needed files may already exist. 
-
+First, create a directory on the container host name ‘share’, with a sub directory of ‘en-us’
 ```none
 powershell New-Item -Type Directory c:\share\en-us
 ```
 
+Hyper-V containers use the Nano Server base OS image. Because Nano Server is light weight operating system and does not include the IIS package, this needs to be obtained in order to complete this exercise. This can be found on the Window Server 2016 technical preview media under the NanoServer\Packages directory.
+
 Copy `Microsoft-NanoServer-IIS-Package.cab` from `NanoServer\Packages` to `c:\share` on the container host. 
 
-Copy `NanoServer\Packages\en-us\Microsoft-NanoServer-IIS-Package.cab` to `c:\share\en-us` on the container host.
+Copy `NanoServer\Packages\en-us\Microsoft-NanoServer-IIS-Package_en-us.cab` to `c:\share\en-us` on the container host.
 
 Create a file in the c:\share folder named unattend.xml, copy this text into the unattend.xml file.
 
 ```none
 <?xml version="1.0" encoding="utf-8"?>
-<unattend xmlns="urn:schemas-microsoft-com:unattend">
+    <unattend xmlns="urn:schemas-microsoft-com:unattend">
     <servicing>
         <package action="install">
-            <assemblyIdentity name="Microsoft-NanoServer-IIS-Package" version="10.0.10586.0" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" />
+            <assemblyIdentity name="Microsoft-NanoServer-IIS-Feature-Package" version="10.0.14300.1000" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" />
             <source location="c:\iisinstall\Microsoft-NanoServer-IIS-Package.cab" />
         </package>
         <package action="install">
-            <assemblyIdentity name="Microsoft-NanoServer-IIS-Package" version="10.0.10586.0" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="en-US" />
-            <source location="c:\iisinstall\en-us\Microsoft-NanoServer-IIS-Package.cab" />
+            <assemblyIdentity name="Microsoft-NanoServer-IIS-Feature-Package" version="10.0.14300.1000" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="en-US" />
+            <source location="c:\iisinstall\en-us\Microsoft-NanoServer-IIS-Package_en-us.cab" />
         </package>
     </servicing>
+    <cpi:offlineImage cpi:source="" xmlns:cpi="urn:schemas-microsoft-com:cpi" />
 </unattend>
 ```
 
@@ -274,7 +266,7 @@ When completed, the `c:\share` directory, on the container host, should be confi
 ```none
 c:\share
 |-- en-us
-|    |-- Microsoft-NanoServer-IIS-Package.cab
+|    |-- Microsoft-NanoServer-IIS-Package_en-us.cab
 |
 |-- Microsoft-NanoServer-IIS-Package.cab
 |-- unattend.xml

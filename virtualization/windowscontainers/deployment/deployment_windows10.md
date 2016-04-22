@@ -78,11 +78,11 @@ For more information on Container image management see [Windows container images
 A script has been created to install and configure the Docker service. Run the following commands to download the script
 
 ```none
-Invoke-WebRequest https://raw.githubusercontent.com/Microsoft/Virtualization-Documentation/container-docs-development/windows-server-container-tools/Update-ContainerHost/Update-ContainerHost.ps1 -OutFile docker.ps1
+Invoke-WebRequest https://aka.ms/tp5/Update-Container-Host -OutFile update-containerhost.ps1
 ```
 Run the script to install the Docker service.
 
 ```none
-.\docker.ps1
+.\update-containerhost.ps1
 ```
 For manual installation and configuration steps, see [Docker and Windows](./docker_windows.md).
