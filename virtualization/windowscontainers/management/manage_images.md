@@ -2,7 +2,7 @@
 author: neilpeterson
 ---
 
-# Container Images
+# Windows Container Images
 
 **This is preliminary content and subject to change.** 
 
@@ -10,14 +10,15 @@ Container images are used to deploy containers. These images can include an oper
 
 There are two types of container images:
 
-- **Base OS Images** – these are provided by Microsoft and include the core OS components. 
-- **Container Images** – a custom container image that is derived from a Base OS image.
+**Base OS Images** – these are provided by Microsoft and include the core OS components. 
+
+**Container Images** – a custom container image that is derived from a Base OS image.
 
 ## Base OS images
 
 ### Install image
 
-Container OS images can be found and installed using the ContainerImage PowerShell module. Before using this module, it will need to be installed. The following command can be used to install the module.
+Container OS images can be found and installed using the ContainerImage PowerShell module. Before using this module, it will need to be installed. The following command can be used to install the module. For more information on using the Container Image OneGet PowerShell module see, [Container Image Provider](https://github.com/PowerShell/ContainerProvider). 
 
 ```none
 Install-PackageProvider ContainerImage -Force
@@ -86,7 +87,7 @@ WindowsServerCore    10.0.10586.0            Container OS Image of Windows Serve
 To download an image, use the `Save-ContainerImage` command.
 
 ```none
-Save-ContainerImage -Name NanoServer -Destination c:\container-image\NanoServer.wim
+Save-ContainerImage -Name NanoServer -Path c:\container-image
 ```
 
 The downloaded container image can now be copied to a different container host, and installed using the `Install-ContainerOSImage` command.
