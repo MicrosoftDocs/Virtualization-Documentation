@@ -49,21 +49,10 @@ Both Window Server Containers and Hyper-V Containers require Windows Server 2016
 Yes – Hyper-V Containers will provide the same level of integration and management with Docker as Windows Server Containers.  The goal is to have an open, consistent, cross-platform experience.  
 The Docker platform will also greatly simplify and enhance the experience of working across our container options. An application developed using Windows Server Containers can be deployed as a Hyper-V Container without change.
 
-**Why do I have to pick between Docker and PowerShell for Windows Server Container management?**
-
-_This isn't desired behavior nor our long term plan._  PowerShell container management tools and Docker container management tools will work side by side in the future.
-
-With that said, using multiple management interfaces to manage the same container can be difficult.
-
-Take, for example, creating a container with PowerShell and naming the image with an upper case character.  Docker doesn’t support caps, PowerShell does.  
-While that specific example is very manageable, what gets much harder are handing state changes (race conditions and different expectations), feature set differences or versions…
-
-Our short term decision was that management interfaces (in this case Docker and PowerShell) only see containers they created – you create a container with Docker and PowerShell doesn’t see it, you create it with PowerShell and Docker doesn’t see it.
 
 **Can I run Windows Containers on ESXi or another non Hyper-V hypervisor?**
 
 Yes, Windows Container run on any TP3 Server Core installation.  Follow the instructions for [enabling the containers feature in-place](../quick_start/inplace_setup.md).
-
 
 ## Microsoft's open ecosystem
 

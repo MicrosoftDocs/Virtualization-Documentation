@@ -177,7 +177,7 @@ netsh advfirewall firewall add rule name="Docker daemon " dir=in action=allow pr
 
 Nano server is managed through a remote PowerShell session. For more information on remotely managing Nano Server, see [Getting Started with Nano Server]( https://technet.microsoft.com/en-us/library/mt126167.aspx#bkmk_ManageRemote).
 
-Not all docker operations, such as 'docker attach' can be performed through this remote powershell session. To get around this, and as a best practice in general, manage Docker from a remote client through a secure TCP connection.
+Not all docker operations, such as 'docker attach' can be performed through this remote PowerShell session. To get around this, and as a best practice in general, manage Docker from a remote client through a secure TCP connection.
 
 To do so, ensure that the Docker daemon has been configured to listen on a TCP port, and that the Docker command line interface is available on a remote client machine. When configured, docker commands can be issued to the host with the -H parameter.
 

@@ -45,8 +45,6 @@ The following key concepts will be helpful as you begin creating and working wit
 
 **Container Repository:** Each time a container image is created the container image and its dependencies are stored in a local repository. These images can be reused many times on the container host. The container images can also be stored in a public or private registry  such as DockerHub so that they can be used across many different container host.
 
-**Container Management Technology:** Windows Containers can be managed using both PowerShell and Docker. With either one of these tools you can create new containers, container images as well as manage the container lifecycle.
-
 <center>![](media/containerfund.png)</center>
 
 ## Containers for Developers
