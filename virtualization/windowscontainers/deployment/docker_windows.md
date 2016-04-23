@@ -52,7 +52,7 @@ Download nssm.exe from [https://nssm.cc/release/nssm-2.24.zip](https://nssm.cc/r
 wget https://nssm.cc/release/nssm-2.24.zip -OutFile $env:ALLUSERSPROFILE\nssm.zip
 ```
 
-Extract the the compressed package.
+Extract the compressed package.
 
 ```none
 Expand-Archive -Path $env:ALLUSERSPROFILE\nssm.zip $env:ALLUSERSPROFILE
@@ -196,7 +196,7 @@ $env:DOCKER_HOST = "tcp://<ipaddress of server:2376"
 With this variable set, the command would not look like this.
 
 ```none
-docker run –it nanoserver cms
+docker run –it nanoserver cmd
 ```
 
 ### Removing Docker <!--2-->
@@ -225,7 +225,7 @@ The Docker daemon can be configured to listen for incoming connections locally t
 docker daemon -D
 ```
 
-This can be modified to listen for secure incoming connections with the following startup command. For more information on securing the connection, see the [Security Confguration docs on docker.com](https://docs.docker.com/engine/security/https/).
+This can be modified to listen for secure incoming connections with the following startup command. For more information on securing the connection, see the [Security Configuration docs on docker.com](https://docs.docker.com/engine/security/https/).
 
 ```none
 docker daemon -D -H npipe:// -H tcp://0.0.0.0:2376 --tlsverify --tlscacert=%certs%\ca.pem --tlscert=%certs%\server-cert.pem --tlskey=%certs%\server-key.pem

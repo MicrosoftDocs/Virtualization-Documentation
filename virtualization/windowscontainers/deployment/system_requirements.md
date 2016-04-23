@@ -53,7 +53,7 @@ Windows Server Technical Preview 5 is being offered with two container OS Images
 </tr>
 <tr valign="top">
 <td><center>Windows 10 Insider Releases</center></td>
-<td><center>Not Avaliable</center></td>
+<td><center>Not Available</center></td>
 <td><center>Nano Server image</center></td>
 </tr>
 </tbody>

@@ -8,7 +8,7 @@ author: neilpeterson
 
 The Windows container feature is available in Windows 10 insider releases. Windows containers on Windows 10 only support the Hyper-V container runtime, and the Nano Server base OS image. Follow the steps in this article to configure the feature. 
 
-## Deploy Contianers - PowerShell
+## Deploy Containers - PowerShell
 
 ### Install container feature <!--1-->
 
@@ -26,17 +26,17 @@ Because Windows 10 only supports Hyper-V containers, the Hyper-V feature must be
 Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V –All
 ```
 
-## Deploy Contianers - Wizard
+## Deploy Containers - Wizard
 
 ### Install container feature <!--2-->
 
-To enable the container feature using the 'Turn Windows featuer on or off' wizard, select the ‘Containers’ feature from the list and follow the dialog prompts.
+To enable the container feature using the 'Turn Windows feature on or off' wizard, select the ‘Containers’ feature from the list and follow the dialog prompts.
 
 ![](media/win101.png)
 
 ### Install Hyper-V feature <!--2-->
 
-To enable the container feature using the 'Turn Windows featuer on or off' wizard, select the ‘Hyper-V’ feature from the list and follow the dialog prompts.
+To enable the container feature using the 'Turn Windows feature on or off' wizard, select the ‘Hyper-V’ feature from the list and follow the dialog prompts.
 
 ![](media/win102.png)
 

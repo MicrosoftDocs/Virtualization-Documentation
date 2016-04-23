@@ -111,7 +111,7 @@ RUN powershell -Command \
 
 ### Multiple Lines
 
-When optimizing for Docker build speed, it may be advantageous to separate operations into multiple individual instructions. Having multiple RUN operations increase caching effectiveness. Because individual layers are created for each RUN instruction, if an identical step has already been run in a different Docker Build operation, this cached operation (image layer) is re-useds. The result is that Docker Build runtime is decreased.
+When optimizing for Docker build speed, it may be advantageous to separate operations into multiple individual instructions. Having multiple RUN operations increase caching effectiveness. Because individual layers are created for each RUN instruction, if an identical step has already been run in a different Docker Build operation, this cached operation (image layer) is re-used. The result is that Docker Build runtime is decreased.
 
 In the following example, both Apache and the Visual Studio Redistribute packages are downloaded, installed, and then the un-needed files cleaned up. This is all done with one RUN instruction. If any of these actions are updated, all actions will re-run.
 
@@ -147,7 +147,7 @@ IMAGE               CREATED             CREATED BY                              
 6801d964fda5        5 months ago                                                        0 B
 ```
 
-To contrast, here are the same actions broken down into three RUN instructions. In this case, each RUN instruction is cached in a contianer image layer, and only those that have changed, need to be re-run on subsequent Dockerfile builds.
+To contrast, here are the same actions broken down into three RUN instructions. In this case, each RUN instruction is cached in a container image layer, and only those that have changed, need to be re-run on subsequent Dockerfile builds.
 
 ```none
 FROM windowsservercore

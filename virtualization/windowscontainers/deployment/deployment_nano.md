@@ -90,7 +90,7 @@ When the virtual machine is ready, create a remote connection with Nano Server o
 
 ### <a name=img></a>Install OS images
 
-Base OS images are used as the base to any Windows Server or Hyper-V container. Base OS images are avaliable with both Windows Server Core and Nano Server as the underlying operating system and can be installed using the container Provider PowerShell module. 
+Base OS images are used as the base to any Windows Server or Hyper-V container. Base OS images are available with both Windows Server Core and Nano Server as the underlying operating system and can be installed using the container Provider PowerShell module. 
 
 The following command can be used to install the Container Image PowerShell module.
 
@@ -135,7 +135,7 @@ Hyper-V can be enabled when creating the Nano Server virtual hard drive, see [Pr
 
 ### <a name=nest></a>Nested virtualization
 
-Nested virtualization allows the Hyper-V role to function inside of a Hyper-V virtual machine. This is required if the container host is virtualized and also running Hyper-V containers. Several steps need to be completed for a nested virtualization configuration including configuring the virtual processor, turning off dynamic memory, and enabeling MAC spoofing. For more information on nested virtualization, see [Nested Virtualizaton]( https://msdn.microsoft.com/en-us/virtualization/hyperv_on_windows/user_guide/nesting).
+Nested virtualization allows the Hyper-V role to function inside of a Hyper-V virtual machine. This is required if the container host is virtualized and also running Hyper-V containers. Several steps need to be completed for a nested virtualization configuration including configuring the virtual processor, turning off dynamic memory, and enabling MAC spoofing. For more information on nested virtualization, see [Nested Virtualization]( https://msdn.microsoft.com/en-us/virtualization/hyperv_on_windows/user_guide/nesting).
 
 The following script will configure nested virtualization for the container host. This script is run on the Hyper-V machine that is hosting the container host virtual machine. Ensure that the container host virtual machine is turned off when running this script.
 

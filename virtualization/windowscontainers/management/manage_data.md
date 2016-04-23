@@ -33,7 +33,7 @@ In this example, the source directory, 'c:\source', is mounted into a container 
 docker run -it -v c:\source:c:\destination windowsservercore cmd
 ```
 
-For more information on monting host directories, see [Manage data in containers on docker.com](https://docs.docker.com/engine/userguide/containers/dockervolumes/#mount-a-host-directory-as-a-data-volume).
+For more information on mounting host directories, see [Manage data in containers on docker.com](https://docs.docker.com/engine/userguide/containers/dockervolumes/#mount-a-host-directory-as-a-data-volume).
 
 ### Mount single files
 
