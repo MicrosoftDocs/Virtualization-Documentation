@@ -8,7 +8,7 @@ There are many ways to run PowerShell Direct:
 
 **New PowerShell Direct features -- 14280 and later**
 
-Starting in Windows builds 14280 and later, PowerShell Direct has recieved some new functionality:
+Starting in Windows builds 14280 and later, PowerShell Direct has received some new functionality:
 
 * Moving data between the virtual machine and the Hyper-V host with persistent PowerShell Direct sessions and [Copy-Item](https://technet.microsoft.com/en-us/library/hh849793.aspx).  
   ``` PowerShell

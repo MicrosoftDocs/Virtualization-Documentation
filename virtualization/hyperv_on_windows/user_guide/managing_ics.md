@@ -88,6 +88,7 @@ Running  vmicvss            Hyper-V Volume Shadow Copy Requestor
 ```
 
 Start or stop services using [`Start-Service`](https://technet.microsoft.com/en-us/library/hh849825.aspx) or [`Stop-Service`](https://technet.microsoft.com/en-us/library/hh849790.aspx).
+
 For example, to disable PowerShell Direct you can run `Stop-Service -Name vmicvmsession`.
 
 By default, all integration services are enabled in the guest operation system.
