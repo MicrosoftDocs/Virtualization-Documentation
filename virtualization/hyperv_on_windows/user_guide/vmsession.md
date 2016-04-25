@@ -5,7 +5,7 @@ You can use PowerShell Direct to remotely manage a Windows 10 or Windows Server 
 There are many ways to run PowerShell Direct:  
 * As an interactive session -- [go to this section](vmsession.md#create-and-exit-an-interactive-powershell-session) to create and exit a PowerShell Direct session using PSSession cmdlets
 * To execute a set of commands or script -- [go to this section](vmsession.md#run-a-script-or-command-with-invoke-command) to run a script or command with the Invoke-Command cmdlet
-* As a peristant session (build 14280 and later) -- [go to this section]() to create a persistant session with the New-PSSession cmdlet, use that session it to copy a file with Copy-Item, then disconnect with Disconnect-PSSession.
+* As a peristant session (build 14280 and later) -- [go to this section]() to create a persistent session with the New-PSSession cmdlet, use that session it to copy a file with Copy-Item, then disconnect with Disconnect-PSSession.
 
 
 ## Requirements
@@ -70,18 +70,18 @@ To run a single command, use the **-ScriptBlock** parameter:
 
 ## Copy data to and from a VM with New-PSSession and Copy-Item
 
-> **Note: ** PowerShell Direct only supports persistant sessions in Windows builds 14280 and later
+> **Note: ** PowerShell Direct only supports persistent sessions in Windows builds 14280 and later
 
-Persistant PowerShell sessions are incredibly useful when writing scripts that coordinate actions across one or more remote machines.  Once created, persistant sessions hold all of your connection information.  You can connect to a persistant session with `Invoke-Command` or `Enter-PSSession` without passing credentials. 
+persistent PowerShell sessions are incredibly useful when writing scripts that coordinate actions across one or more remote machines.  Once created, persistent sessions hold all of your connection information.  You can connect to a persistent session with `Invoke-Command` or `Enter-PSSession` without passing credentials. 
 
-Session also hold state.  Any variables created in a session or passed to a session will be preserved across multiple calls. There are a number of tools available for working with persistant sessions.  For this example, we will use [New-PSSession](https://technet.microsoft.com/en-us/library/hh849717.aspx) and [Copy-Item](https://technet.microsoft.com/en-us/library/hh849793.aspx) in conjunction to move data from the host to a virtual machine and from a virtual machine to the host.
+Session also hold state.  Any variables created in a session or passed to a session will be preserved across multiple calls. There are a number of tools available for working with persistent sessions.  For this example, we will use [New-PSSession](https://technet.microsoft.com/en-us/library/hh849717.aspx) and [Copy-Item](https://technet.microsoft.com/en-us/library/hh849793.aspx) in conjunction to move data from the host to a virtual machine and from a virtual machine to the host.
 
 1. On the Hyper-V host, open Windows PowerShell as Administrator.
 
-2. Create a persistant PowerShell session to the virtual machine (PSTest) using New-PSSession
+2. Create a persistent PowerShell session to the virtual machine using `New-PSSession`.
   
   ``` PowerShell
-  $s = New-PSSession -VMName PSTest
+  $s = New-PSSession -VMName <VMName>
   ```
   
   Provide credentials for the virtual machine when prompted.
