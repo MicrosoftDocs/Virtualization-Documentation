@@ -10,15 +10,16 @@ There are many ways to run PowerShell Direct:
 
 ## Requirements
 **Operating system requirements:**
-* The host operating system must run Windows 10, Windows Server Technical Preview, or a higher version.
-* The virtual machine must run Windows 10, Windows Server Technical Preview, or a higher version.
+* **Host: ** Windows 10, Windows Server Technical Preview, or later.
+* **Guest/Virtual Machine: ** Windows 10, Windows Server Technical Preview, or later.
 
 If you're managing older virtual machines, use Virtual Machine Connection (VMConnect) or [configure a virtual network for the virtual machine](http://technet.microsoft.com/library/cc816585.aspx). 
 
-To create a PowerShell Direct session on a virtual machine,
+In order to connect to a virtual machine with PowerShell Direct,  
 * The virtual machine must be running locally on the host and booted. 
 * You must be logged into the host computer as a Hyper-V administrator.
 * You must supply valid user credentials for the virtual machine.
+
 
 ## Create and exit an interactive PowerShell session
 1. On the Hyper-V host, open Windows PowerShell as Administrator.
@@ -39,6 +40,7 @@ Exit-PSSession
 
 To learn more about these cmdlets, see [Enter-PSSession](http://technet.microsoft.com/library/hh849707.aspx) and [Exit-PSSession](http://technet.microsoft.com/library/hh849743.aspx). 
 
+
 ## Run a script or command with Invoke-Command
 
 You can use the [Invoke-Command](http://technet.microsoft.com/library/hh849719.aspx) cmdlet to run a pre-determined set of commands on the virtual machine. Here is an example of how you can use the Invoke-Command cmdlet where PSTest is the virtual machine name and the script to run (foo.ps1) is in the script directory on the C drive:
@@ -53,19 +55,21 @@ To run a single command, use the **-ScriptBlock** parameter:
  Invoke-Command -VMName PSTest -ScriptBlock { cmdlet } 
  ```
 
+
 ## Copy data to and from a VM with New-PSSession and Copy-Item
 
 > **Note: ** PowerShell Direct only supports persistant sessions in Windows builds 14280 and later
 
-Starting in Windows builds 14280, PowerShell Direct has received some new functionality:
+You can use [New-PSSession](https://technet.microsoft.com/en-us/library/hh849717.aspx) and [Copy-Item](https://technet.microsoft.com/en-us/library/hh849793.aspx) in conjunction to move data from the host to a virtual machine and from a virtual machine to the host.
 
-* Moving data between the virtual machine and the Hyper-V host with persistent PowerShell Direct sessions and [Copy-Item](https://technet.microsoft.com/en-us/library/hh849793.aspx).  
-  ``` PowerShell
-  $s = New-PSSession -VMName <VMName>
+In this example, PSTest is the virtual machine name and the files we're moving are located in C: on the host and guest.  The file on the host is named host.txt, the file on the guest is guest.txt
+
+``` PowerShell
+$s = New-PSSession -VMName <VMName>
   
-  Copy-Item -ToSession $s -Path c:\test\host.txt -Destination c:\test
-  Copy-Item -FromSession $s -Path c:\test\host.txt -Destination c:\test2
-  ``` 
+Copy-Item -ToSession $s -Path c:\host.txt -Destination c:\
+Copy-Item -FromSession $s -Path c:\guest.txt -Destination c:\
+``` 
 
 
 
