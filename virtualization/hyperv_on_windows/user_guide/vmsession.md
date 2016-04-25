@@ -5,7 +5,7 @@ You can use PowerShell Direct to remotely manage a Windows 10 or Windows Server 
 There are many ways to run PowerShell Direct:  
 * As an interactive session -- [go to this section](vmsession.md#create-and-exit-an-interactive-powershell-session) to create and exit a PowerShell Direct session using PSSession cmdlets
 * To execute a set of commands or script -- [go to this section](vmsession.md#run-a-script-or-command-with-invoke-command) to run a script or command with the Invoke-Command cmdlet
-* As a peristant session (build 14280 and later) -- [go to this section](vmsession.md#copy-data-to-and-from-a-VM-with-New-PSSession-and-Copy-Item) to create a persistent session with the New-PSSession cmdlet, use that session it to copy a file with Copy-Item, then disconnect with Disconnect-PSSession.
+* As a peristant session (build 14280 and later) -- [go to this section](vmsession.md#copy-files-with-New-PSSession-and-Copy-Item) to create a persistent session with the New-PSSession cmdlet, use that session it to copy a file with Copy-Item, then disconnect with Remove-PSSession.
 
 
 ## Requirements
@@ -69,9 +69,9 @@ To run a single command, use the **-ScriptBlock** parameter:
  ```
 
 
-## Copy data to and from a VM with New-PSSession and Copy-Item
+## Copy files with New-PSSession and Copy-Item
 
-> **Note: ** PowerShell Direct only supports persistent sessions in Windows builds 14280 and later
+> **Note:** PowerShell Direct only supports persistent sessions in Windows builds 14280 and later
 
 Persistent PowerShell sessions are incredibly useful when writing scripts that coordinate actions across one or more remote machines.  Once created, persistent sessions exist in the background until you decide to delete them.  This means you can reference the same session over and over again with `Invoke-Command` or `Enter-PSSession` without passing credentials.
 
