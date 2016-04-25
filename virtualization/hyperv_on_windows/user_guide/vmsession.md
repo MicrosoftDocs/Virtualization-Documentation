@@ -22,7 +22,8 @@ In order to connect to a virtual machine with PowerShell Direct,
 
 
 ## Create and exit an interactive PowerShell session
-1. On the Hyper-V host, open Windows PowerShell as Administrator.
+
+1. On the Hyper-V host, open PowerShell as Administrator.
 
 3. Run the one of the following commands to create a session by using the virtual machine name or GUID:  
 ``` PowerShell
@@ -76,7 +77,7 @@ Persistent PowerShell sessions are incredibly useful when writing scripts that c
 
 By the same token, sessions hold state.  Since persistent sessions persist, any variables created in a session or passed to a session will be preserved across multiple calls. There are a number of tools available for working with persistent sessions.  For this example, we will use [New-PSSession](https://technet.microsoft.com/en-us/library/hh849717.aspx) and [Copy-Item](https://technet.microsoft.com/en-us/library/hh849793.aspx) in conjunction to move data from the host to a virtual machine and from a virtual machine to the host.
 
-1. On the Hyper-V host, open Windows PowerShell as Administrator.
+1. On the Hyper-V host, open PowerShell as Administrator.
 
 2. Create a persistent PowerShell session to the virtual machine using `New-PSSession`.
   
@@ -94,7 +95,7 @@ By the same token, sessions hold state.  Since persistent sessions persist, any 
   Copy-Item -ToSession $s -Path c:\host.txt -Destination c:\
   ```
   
-4.  Copy a file from the virtual machine to the host. 
+4.  Copy a file to the host. 
    
    To move `C:\guest.txt` to the host from the virtual machine, run:
   
