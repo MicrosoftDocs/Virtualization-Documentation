@@ -72,9 +72,9 @@ To run a single command, use the **-ScriptBlock** parameter:
 
 > **Note: ** PowerShell Direct only supports persistent sessions in Windows builds 14280 and later
 
-persistent PowerShell sessions are incredibly useful when writing scripts that coordinate actions across one or more remote machines.  Once created, persistent sessions hold all of your connection information.  You can connect to a persistent session with `Invoke-Command` or `Enter-PSSession` without passing credentials. 
+Persistent PowerShell sessions are incredibly useful when writing scripts that coordinate actions across one or more remote machines.  Once created, persistent sessions exist in the background until you decide to delete them.  This means you can reference the same session over and over again with `Invoke-Command` or `Enter-PSSession` without passing credentials.
 
-Session also hold state.  Any variables created in a session or passed to a session will be preserved across multiple calls. There are a number of tools available for working with persistent sessions.  For this example, we will use [New-PSSession](https://technet.microsoft.com/en-us/library/hh849717.aspx) and [Copy-Item](https://technet.microsoft.com/en-us/library/hh849793.aspx) in conjunction to move data from the host to a virtual machine and from a virtual machine to the host.
+By the same token, session also hold state.  Any variables created in a session or passed to a session will be preserved across multiple calls. There are a number of tools available for working with persistent sessions.  For this example, we will use [New-PSSession](https://technet.microsoft.com/en-us/library/hh849717.aspx) and [Copy-Item](https://technet.microsoft.com/en-us/library/hh849793.aspx) in conjunction to move data from the host to a virtual machine and from a virtual machine to the host.
 
 1. On the Hyper-V host, open Windows PowerShell as Administrator.
 
@@ -86,15 +86,28 @@ Session also hold state.  Any variables created in a session or passed to a sess
   
   Provide credentials for the virtual machine when prompted.
   
-3. 
-In this example, PSTest is the virtual machine name and the files we're moving are located directly in the root directory of C: on both the host and guest.  The file on the host is named host.txt, the file on the guest is guest.txt
-``` PowerShell
-Copy-Item -ToSession $s -Path c:\host.txt -Destination c:\
-Copy-Item -FromSession $s -Path c:\guest.txt -Destination c:\
-``` 
+3. Copy a file into the virtual machine.
+  
+  To move `C:\host.txt` to the virtual machine from the host machine, run:
+  
+  ``` PowerShell
+  Copy-Item -ToSession $s -Path c:\host.txt -Destination c:\
+  ```
+  
+4.  Copy a file from the virtual machine to the host. 
+   
+   To move `C:\guest.txt` to the host from the virtual machine, run:
+  
+  ``` PowerShell
+  Copy-Item -FromSession $s -Path c:\guest.txt -Destination c:\
+  ```
 
-
-
+5. Stop the persistent session using `Remove-PSSession`.
+  
+  ``` PowerShell 
+  Remove-PSSession $s
+  ```
+  
 
 ## Troubleshooting
 
