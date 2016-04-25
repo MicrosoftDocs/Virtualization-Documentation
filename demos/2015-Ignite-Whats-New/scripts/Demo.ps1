@@ -527,7 +527,7 @@ write-host "VHDX operations on NTFS"
 write-host
 write-host "Press enter to create a 1GB fixed VHDX on an NTFS partition"
 read-host
-$time = (measure-command {icm -ComputerName demo-laptop-2 -Credential $domainCred -Authentication Credssp {new-vhd -path F:\1GB.vhdx -size 1GB -fixed | out-null}}).totalseconds
+$time = (measure-command {icm -ComputerName demo-laptop-2 -Credential $domainCred -Authentication Credssp {new-vhd -path F:\1GB.vhdx -Size 1GB -fixed | out-null}}).totalseconds
 Write-host
 Write-host "Total time for creation of 1GB fixed VHDX: $($time) seconds"
 icm -ComputerName demo-laptop-2 -Credential $domainCred -Authentication Credssp {del f:\1GB.VHDX}
@@ -536,14 +536,14 @@ write-host "VHDX operations on REFS"
 write-host
 write-host "Press enter to create a 1GB fixed VHDX on an REFS partition"
 read-host
-$time = (measure-command {icm -ComputerName demo-laptop-2 -Credential $domainCred -Authentication Credssp {new-vhd -path G:\1GB.vhdx -size 1GB -fixed | out-null}}).totalseconds
+$time = (measure-command {icm -ComputerName demo-laptop-2 -Credential $domainCred -Authentication Credssp {new-vhd -path G:\1GB.vhdx -Size 1GB -fixed | out-null}}).totalseconds
 Write-host
 Write-host "Total time for creation of 1GB fixed VHDX: $($time) seconds"
 icm -ComputerName demo-laptop-2 -Credential $domainCred -Authentication Credssp {del G:\1GB.VHDX}
 write-host
 write-host "Press enter to create a 50GB fixed VHDX on an REFS partition"
 read-host
-$time = (measure-command {icm -ComputerName demo-laptop-2 -Credential $domainCred -Authentication Credssp {new-vhd -path G:\50GB.vhdx -size 50GB -fixed | out-null}}).totalseconds
+$time = (measure-command {icm -ComputerName demo-laptop-2 -Credential $domainCred -Authentication Credssp {new-vhd -path G:\50GB.vhdx -Size 50GB -fixed | out-null}}).totalseconds
 Write-host
 Write-host "Total time for creation of 50GB fixed VHDX: $($time) seconds"
 icm -ComputerName demo-laptop-2 -Credential $domainCred -Authentication Credssp {del G:\50GB.VHDX}
