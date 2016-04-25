@@ -5,18 +5,7 @@ You can use PowerShell Direct to remotely manage a Windows 10 or Windows Server 
 There are many ways to run PowerShell Direct:  
 * As an interactive session -- [go to this section](vmsession.md#create-and-exit-an-interactive-powershell-session) to create and exit a PowerShell Direct session using PSSession cmdlets
 * To execute a set of commands or script -- [go to this section](vmsession.md#run-a-script-or-command-with-invoke-command) to run a script or command with the Invoke-Command cmdlet
-
-**New PowerShell Direct features -- 14280 and later**
-
-Starting in Windows builds 14280 and later, PowerShell Direct has received some new functionality:
-
-* Moving data between the virtual machine and the Hyper-V host with persistent PowerShell Direct sessions and [Copy-Item](https://technet.microsoft.com/en-us/library/hh849793.aspx).  
-  ``` PowerShell
-  $s = New-PSSession -VMName <VMName>
-  
-  Copy-Item -ToSession $s -Path c:\test\host.txt -Destination c:\test
-  Copy-Item -FromSession $s -Path c:\test\host.txt -Destination c:\test2
-  ``` 
+* As a peristant session (build 14280 and later) -- [go to this section]() to create a persistant session with the New-PSSession cmdlet, use that session it to copy a file with Copy-Item, then disconnect with Disconnect-PSSession.
 
 
 ## Requirements
@@ -63,6 +52,23 @@ To run a single command, use the **-ScriptBlock** parameter:
  ``` PowerShell
  Invoke-Command -VMName PSTest -ScriptBlock { cmdlet } 
  ```
+
+## Copy data to and from a VM with New-PSSession and Copy-Item
+
+> **Note: ** PowerShell Direct only supports persistant sessions in Windows builds 14280 and later
+
+Starting in Windows builds 14280, PowerShell Direct has received some new functionality:
+
+* Moving data between the virtual machine and the Hyper-V host with persistent PowerShell Direct sessions and [Copy-Item](https://technet.microsoft.com/en-us/library/hh849793.aspx).  
+  ``` PowerShell
+  $s = New-PSSession -VMName <VMName>
+  
+  Copy-Item -ToSession $s -Path c:\test\host.txt -Destination c:\test
+  Copy-Item -FromSession $s -Path c:\test\host.txt -Destination c:\test2
+  ``` 
+
+
+
 
 ## Troubleshooting
 
