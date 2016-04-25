@@ -5,7 +5,7 @@ You can use PowerShell Direct to remotely manage a Windows 10 or Windows Server 
 There are many ways to run PowerShell Direct:  
 * As an interactive session -- [go to this section](vmsession.md#create-and-exit-an-interactive-powershell-session) to create and exit a PowerShell Direct session using PSSession cmdlets
 * To execute a set of commands or script -- [go to this section](vmsession.md#run-a-script-or-command-with-invoke-command) to run a script or command with the Invoke-Command cmdlet
-* As a peristant session (build 14280 and later) -- [go to this section](vmsession.md#copy-data-to-and-from-a-VM-with-New-PSSession-and-Copy-Item) to create a persistent session with the New-PSSession cmdlet, use that session it to copy a file with Copy-Item, then disconnect with Disconnect-PSSession.
+* As a persistent session (build 14280 and later) -- [go to this section](vmsession.md#copy-data-to-and-from-a-VM-with-New-PSSession-and-Copy-Item) to create a persistent session with the New-PSSession cmdlet, use that session it to copy a file with Copy-Item, then disconnect with Disconnect-PSSession.
 
 
 ## Requirements
