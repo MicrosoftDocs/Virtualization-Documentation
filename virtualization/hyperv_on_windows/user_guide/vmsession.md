@@ -10,8 +10,8 @@ There are many ways to run PowerShell Direct:
 
 ## Requirements
 **Operating system requirements:**
-* **Host: ** Windows 10, Windows Server Technical Preview, or later.
-* **Guest/Virtual Machine: ** Windows 10, Windows Server Technical Preview, or later.
+* **Host: ** Windows 10, Windows Server Technical Preview 2, or later running Hyper-V.
+* **Guest/Virtual Machine: ** Windows 10, Windows Server Technical Preview 2, or later.
 
 If you're managing older virtual machines, use Virtual Machine Connection (VMConnect) or [configure a virtual network for the virtual machine](http://technet.microsoft.com/library/cc816585.aspx). 
 
@@ -31,12 +31,14 @@ Enter-PSSession -VMGUID <VMGUID>
 ```
 
 4. Run whatever commands you need to. These commands run on the virtual machine that you created the session with.
-5. When you're done, run the following command to close the session:  
-``` PowerShell
-Exit-PSSession 
-``` 
 
-> Note:  If your session won't connect, make sure you're using credentials for the virtual machine you're connecting to -- not the Hyper-V host.
+5. When you're done, run the following command to close the session:  
+
+ ``` PowerShell
+ Exit-PSSession 
+ ``` 
+
+> Note:  If your session won't connect, see the [troubleshooting](vmsession.md#troubleshooting) for potential causes. 
 
 To learn more about these cmdlets, see [Enter-PSSession](http://technet.microsoft.com/library/hh849707.aspx) and [Exit-PSSession](http://technet.microsoft.com/library/hh849743.aspx). 
 
@@ -62,11 +64,18 @@ To run a single command, use the **-ScriptBlock** parameter:
 
 You can use [New-PSSession](https://technet.microsoft.com/en-us/library/hh849717.aspx) and [Copy-Item](https://technet.microsoft.com/en-us/library/hh849793.aspx) in conjunction to move data from the host to a virtual machine and from a virtual machine to the host.
 
-In this example, PSTest is the virtual machine name and the files we're moving are located in C: on the host and guest.  The file on the host is named host.txt, the file on the guest is guest.txt
+In this example, PSTest is the virtual machine name and the files we're moving are located directly in the root directory of C: on both the host and guest.  The file on the host is named host.txt, the file on the guest is guest.txt
 
-``` PowerShell
-$s = New-PSSession -VMName <VMName>
+1. On the Hyper-V host, open Windows PowerShell as Administrator.
+
+2. Create a persistant session to the virtual machine named PSTest using New-PSSession
   
+  ``` PowerShell
+  $s = New-PSSession -VMName PSTest
+  ```
+
+2) 
+``` PowerShell
 Copy-Item -ToSession $s -Path c:\host.txt -Destination c:\
 Copy-Item -FromSession $s -Path c:\guest.txt -Destination c:\
 ``` 
