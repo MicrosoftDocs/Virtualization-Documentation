@@ -10,8 +10,8 @@ There are many ways to run PowerShell Direct:
 
 ## Requirements
 **Operating system requirements:**
-* **Host: ** Windows 10, Windows Server Technical Preview 2, or later running Hyper-V.
-* **Guest/Virtual Machine: ** Windows 10, Windows Server Technical Preview 2, or later.
+* **Host:** Windows 10, Windows Server Technical Preview 2, or later running Hyper-V.
+* **Guest/Virtual Machine:** Windows 10, Windows Server Technical Preview 2, or later.
 
 If you're managing older virtual machines, use Virtual Machine Connection (VMConnect) or [configure a virtual network for the virtual machine](http://technet.microsoft.com/library/cc816585.aspx). 
 
@@ -39,7 +39,7 @@ Enter-PSSession -VMGUID <VMGUID>
   [VMName] PS C:\ >
   ```
   
-  Any command run will be running on your virtual machine.  To test, you can run `ipconfig` or `hostname` to show that this is running in the virtual machine.
+  Any command run will be running on your virtual machine.  To test, you can run `ipconfig` or `hostname` to make sure that these commands are running in the virtual machine.
   
 5. When you're done, run the following command to close the session:  
 
