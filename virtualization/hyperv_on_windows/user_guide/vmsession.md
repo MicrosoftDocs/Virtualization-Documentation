@@ -30,8 +30,16 @@ Enter-PSSession -VMName <VMName>
 Enter-PSSession -VMGUID <VMGUID>
 ```
 
-4. Run whatever commands you need to. These commands run on the virtual machine that you created the session with.
-
+4. Run commands on your virtual machine.
+  
+  You should see the VMName as the prefix for your PowerShell prompt as shown:
+  
+  ``` 
+  [VMName] PS C:\ >
+  ```
+  
+  Any command run will be running on your virtual machine.  To test, you can run `ipconfig` or `hostname` to show that this is running in the virtual machine.
+  
 5. When you're done, run the following command to close the session:  
 
  ``` PowerShell
@@ -45,7 +53,9 @@ To learn more about these cmdlets, see [Enter-PSSession](http://technet.microsof
 
 ## Run a script or command with Invoke-Command
 
-You can use the [Invoke-Command](http://technet.microsoft.com/library/hh849719.aspx) cmdlet to run a pre-determined set of commands on the virtual machine. Here is an example of how you can use the Invoke-Command cmdlet where PSTest is the virtual machine name and the script to run (foo.ps1) is in the script directory on the C drive:
+You can use the [Invoke-Command](http://technet.microsoft.com/library/hh849719.aspx) cmdlet to run a pre-determined set of commands on the virtual machine. Here is an example of how you can use the Invoke-Command cmdlet. 
+
+PSTest is the virtual machine name and the script to run (foo.ps1) is in the script directory on the C drive:
 
  ``` PowerShell
  Invoke-Command -VMName PSTest -FilePath C:\script\foo.ps1 
@@ -62,19 +72,22 @@ To run a single command, use the **-ScriptBlock** parameter:
 
 > **Note: ** PowerShell Direct only supports persistant sessions in Windows builds 14280 and later
 
-You can use [New-PSSession](https://technet.microsoft.com/en-us/library/hh849717.aspx) and [Copy-Item](https://technet.microsoft.com/en-us/library/hh849793.aspx) in conjunction to move data from the host to a virtual machine and from a virtual machine to the host.
+Persistant PowerShell sessions are incredibly useful when writing scripts that coordinate actions across one or more remote machines.  Once created, persistant sessions hold all of your connection information.  You can connect to a persistant session with `Invoke-Command` or `Enter-PSSession` without passing credentials. 
 
-In this example, PSTest is the virtual machine name and the files we're moving are located directly in the root directory of C: on both the host and guest.  The file on the host is named host.txt, the file on the guest is guest.txt
+Session also hold state.  Any variables created in a session or passed to a session will be preserved across multiple calls. There are a number of tools available for working with persistant sessions.  For this example, we will use [New-PSSession](https://technet.microsoft.com/en-us/library/hh849717.aspx) and [Copy-Item](https://technet.microsoft.com/en-us/library/hh849793.aspx) in conjunction to move data from the host to a virtual machine and from a virtual machine to the host.
 
 1. On the Hyper-V host, open Windows PowerShell as Administrator.
 
-2. Create a persistant session to the virtual machine named PSTest using New-PSSession
+2. Create a persistant PowerShell session to the virtual machine (PSTest) using New-PSSession
   
   ``` PowerShell
   $s = New-PSSession -VMName PSTest
   ```
-
-2) 
+  
+  Provide credentials for the virtual machine when prompted.
+  
+3. 
+In this example, PSTest is the virtual machine name and the files we're moving are located directly in the root directory of C: on both the host and guest.  The file on the host is named host.txt, the file on the guest is guest.txt
 ``` PowerShell
 Copy-Item -ToSession $s -Path c:\host.txt -Destination c:\
 Copy-Item -FromSession $s -Path c:\guest.txt -Destination c:\
