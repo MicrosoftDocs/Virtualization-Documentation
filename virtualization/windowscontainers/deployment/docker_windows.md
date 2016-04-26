@@ -152,13 +152,24 @@ if exist %ProgramData%\docker (goto :run)
 mkdir %ProgramData%\docker
 
 :run
-if exist %certs%\server-cert.pem (goto :secure)
+if exist %certs%\server-cert.pem (if exist %ProgramData%\docker\tag.txt (goto :secure))
 
-docker daemon -D
+if not exist %systemroot%\system32\dockerd.exe (goto :legacy)
+
+dockerd -H npipe:// 
+goto :eof
+
+:legacy
+docker daemon -H npipe:// 
 goto :eof
 
 :secure
-docker daemon -D -H npipe:// -H tcp://0.0.0.0:2376 --tlsverify --tlscacert=%certs%\ca.pem --tlscert=%certs%\server-cert.pem --tlskey=%certs%\server-key.pem
+if not exist %systemroot%\system32\dockerd.exe (goto :legacysecure)
+dockerd -H npipe:// -H 0.0.0.0:2376 --tlsverify --tlscacert=%certs%\ca.pem --tlscert=%certs%\server-cert.pem --tlskey=%certs%\server-key.pem
+goto :eof
+
+:legacysecure
+docker daemon -H npipe:// -H 0.0.0.0:2376 --tlsverify --tlscacert=%certs%\ca.pem --tlscert=%certs%\server-cert.pem --tlskey=%certs%\server-key.pem
 ```
 
 The following script can be used to create a scheduled task, that will start the Docker daemon when Windows boots.
@@ -226,7 +237,7 @@ Get-ScheduledTask -TaskName Docker | UnRegister-ScheduledTask
 
 ## Configuring Docker Startup
 
-Several start options are available for the Docker daemon. In this section some of these relevant to the Docker daemon on Windows will be detailed. For complete coverage of all daemon options, see the [Docker daemon documentation on docker.com]( https://docs.docker.com/engine/reference/commandline/daemon/)
+Several startup options are available for the Docker daemon. In this section, some of these relevant to the Docker daemon on Windows will be detailed. For complete coverage of all daemon options, see the [Docker daemon documentation on docker.com]( https://docs.docker.com/engine/reference/commandline/daemon/)
 
 ### Listening TCP port
 

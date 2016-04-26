@@ -10,24 +10,6 @@ The Windows container feature is available on Windows Server 2016, Nano Server, 
 
 Use the navigation at the right hand side to select your desired deployment configuration.
 
-## Azure Container Host 
-
-Perhaps the quickest way to get a Windows container host up and running is in Azure. An Azure virtual machine can be deployed with the container role in one of several ways.
-
-> Azure does not support Hyper-V containers.
-
-### Azure Template
-
-A sample template is available on GitHub that deploys and configures a Windows Container host in Azure. For more information, see [Windows Container Azure Template]( https://github.com/Azure/azure-quickstart-templates/tree/master/windows-server-containers-preview).
-
-### Manual Configuration <!--1-->
-
-To manually configure a Windows Container host in Azure, first deploy a virtual machine with Windows Server 2016 or Nano Server, and then follow the directions found in these articles.
-
-[Windows Server Container Deployment Guide](../deployment/deployment.md).
-
-[Nano Server Container Deployment Guide](../deployment/deployment_nano.md).
-
 ## Windows Server
 
 ### Scripted - New VM <!--1-->
@@ -87,13 +69,23 @@ The script downloads and configures the Windows Container components. This proce
 
 To manually configure the host, see the [Nano Server Container Deployment Guide](../deployment/deployment_nano.md).
 
+## Azure
+
+### Manual Configuration <!--1-->
+
+To manually configure a Windows Container host in Azure, first deploy a virtual machine with Windows Server 2016 or Nano Server, and then follow the directions found in these articles.
+
+[Windows Server Container Deployment Guide](../deployment/deployment.md).
+
+[Nano Server Container Deployment Guide](../deployment/deployment_nano.md).
+
 ## Windows 10 Insiders Releases
 
-A Windows 10 Insiders Releases physical or virtual system can be configured using multiple methods.
+The Windows containers feature is available on Windows 10 insiders build. 
 
 ### Manual Configuration <!--4-->
 
-To manually configure the host, see the [Windows 10 Container Deployment Guide](../deployment/deployment_windows10.md).
+To manually configure the Windows container feature on a Windows 10 insiders build, see the [Windows 10 Container Deployment Guide](../deployment/deployment_windows10.md).
 
 ## Next Steps
 

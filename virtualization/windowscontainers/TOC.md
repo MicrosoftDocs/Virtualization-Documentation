@@ -10,7 +10,6 @@
 
 # Deploy Windows Containers
 ## [System Requirements](deployment/system_requirements.md)
-## [Container Host - Azure](deployment/deployment_azure.md)
 ## [Container Host - Windows Server](deployment/deployment.md)
 ## [Container Host - Nano Server](deployment/deployment_nano.md)
 ## [Container Host - Windows 10](deployment/deployment_Windows10.md)

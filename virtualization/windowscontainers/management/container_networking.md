@@ -75,7 +75,7 @@ Get-ContainerNetwork |fl
 
 Which will output something similar to:
 
-```
+```none
 Name               : nat
 SubnetPrefix       : {172.16.0.0/12}
 Gateways           : {172.16.0.1}
