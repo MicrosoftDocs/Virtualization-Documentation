@@ -1,12 +1,12 @@
-# Manage Windows with PowerShell Direct
+# Manage Windows Virtual Machines with PowerShell Direct
  
-You can use PowerShell Direct to remotely manage a Windows 10 or Windows Server Technical Preview virtual machine from a Windows 10 or Windows Server Technical Preview Hyper-V host. PowerShell Direct allows PowerShell management inside a virtual machine regardless of the network configuration or remote management settings on either the Hyper-V host or the virtual machine. This makes it easier for Hyper-V Administrators to automate and script virtual machine management and configuration.
+You can use PowerShell Direct to remotely manage a Windows 10 or Windows Server Technical Preview virtual machine from a Windows 10 or Windows Server Technical Preview Hyper-V host. PowerShell Direct allows PowerShell management inside a virtual machine regardless of the network configuration or remote management settings on either the Hyper-V host or the virtual machine. This makes it easier for Hyper-V Administrators to automate and script management and configuration tasks.
 
-There are many ways to run PowerShell Direct:  
-* As an interactive session -- [go to this section](vmsession.md#create-and-exit-an-interactive-powershell-session) to create and exit a PowerShell Direct session using PSSession cmdlets
-* To execute a set of commands or script -- [go to this section](vmsession.md#run-a-script-or-command-with-invoke-command) to run a script or command with the Invoke-Command cmdlet
-* As a peristant session (build 14280 and later) -- [go to this section](vmsession.md#copy-files-with-New-PSSession-and-Copy-Item) to create a persistent session with the New-PSSession cmdlet, use that session it to copy a file with Copy-Item, then disconnect with Remove-PSSession.
-
+**Ways to run PowerShell Direct:**  
+* As an interactive session -- [click here](vmsession.md#create-and-exit-an-interactive-powershell-session) to create and exit an interactive PowerShell session using Enter-PSSession.
+* As a single-use session to execute a single command or script -- [click here](vmsession.md#run-a-script-or-command-with-invoke-command) to run a script or command using Invoke-Command.
+* As a peristant session (build 14280 and later) -- [click here](vmsession.md#copy-files-with-New-PSSession-and-Copy-Item) to create a persistent session using New-PSSession.  
+Continue by coping a file to and from the virtual machine using Copy-Item then disconnect with Remove-PSSession.
 
 ## Requirements
 **Operating system requirements:**
