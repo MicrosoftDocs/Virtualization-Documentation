@@ -36,7 +36,7 @@ Enter-PSSession -VMGUID <VMGUID>
   You should see the VMName as the prefix for your PowerShell prompt as shown:
   
   ``` 
-  [VMName] PS C:\ >
+  [VMName]: PS C:\ >
   ```
   
   Any command run will be running on your virtual machine.  To test, you can run `ipconfig` or `hostname` to make sure that these commands are running in the virtual machine.
