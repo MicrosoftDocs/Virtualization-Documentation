@@ -4,7 +4,7 @@ author: neilpeterson
 
 # Docker and Windows
 
-**This is preliminary content and subject to change.** 
+**This is preliminary content and subject to change.**
 
 Docker is a container deployment and management platform, that works with both Linux and Windows containers. Docker is used to create, manage, and delete containers and container images. Docker enables storing container images in a public registry (Docker Hub) and private registries (Docker Trusted Registries). Docker additionally provides container host clustering capabilities with Docker Swarm and deployment automaton with Docker Compose. For more information on Docker and the Docker toolset visit [Docker.com](https://www.docker.com/).
 
@@ -14,9 +14,9 @@ Docker is a container deployment and management platform, that works with both L
 
 ### Install Docker <!--1-->
 
-The Docker Daemon and CLI are not shipped with Windows Server or Windows Server Core, and not installed with the Windows Container feature. Docker will need to be installed separately. This document will walk through manually installing the Docker daemon and Docker client. Automated methods for competing these task will also be provided. 
+The Docker Daemon and CLI are not shipped with Windows Server or Windows Server Core, and not installed with the Windows Container feature. Docker will need to be installed separately. This document will walk through manually installing the Docker daemon and Docker client. Automated methods for competing these task will also be provided.
 
-The Docker Daemon and Docker command line interface have been developed in the Go language. At this time, docker.exe does not install as a Windows Service. There are several methods that can be used to create a Windows service, one example shown here uses `nssm.exe`. 
+The Docker Daemon and Docker command line interface have been developed in the Go language. At this time, docker.exe does not install as a Windows Service. There are several methods that can be used to create a Windows service, one example shown here uses `nssm.exe`.
 
 Download docker.exe from `https://aka.ms/tp4/docker` and place it in the System32 directory on the Container Host.
 
@@ -46,7 +46,7 @@ docker daemon -D -b "Virtual Switch"
 goto :eof
 
 :secure
-docker daemon -D -b "Virtual Switch" -H 0.0.0.0:2376 --tlsverify --tlscacert=%certs%\ca.pem --tlscert=%certs%\server-cert.pem --tlskey=%certs%\server-key.pem
+docker daemon -D -b "Virtual Switch" -H npipe:// -H tcp://0.0.0.0:2376 --tlsverify --tlscacert=%certs%\ca.pem --tlscert=%certs%\server-cert.pem --tlskey=%certs%\server-key.pem
 ```
 Download nssm.exe from [https://nssm.cc/release/nssm-2.24.zip](https://nssm.cc/release/nssm-2.24.zip).
 
@@ -121,7 +121,7 @@ Download docker.exe from `https://aka.ms/tp4/docker` and copy it to the `windows
 Run the below command to start the docker daemon. This will need to be run each time the container host is started. This command starts the Docker daemon, specifies a virtual switch for container connectivity, and set’s the daemon to listen on port 2375 for incoming Docker requests. In this configuration Docker can be managed from a remote computer.
 
 ```powershell
-PS C:\> start-process cmd "/k docker daemon -D -b <Switch Name> -H 0.0.0.0:2375”
+PS C:\> start-process cmd "/k docker daemon -D -b <Switch Name>"
 ```
 
 ### Removing Docker <!--2-->
@@ -130,7 +130,7 @@ To remove the docker daemon and cli from Nano Server, delete `docker.exe` from t
 
 ```powershell
 PS C:\> Remove-Item $env:SystemRoot\system32\docker.exe
-``` 
+```
 
 ### Interactive Nano Session
 
@@ -141,7 +141,7 @@ You may receive this error when interactively managing a container on a Nano Ser
 ```powershell
 docker : cannot enable tty mode on non tty input
 + CategoryInfo          : NotSpecified: (cannot enable tty mode on non tty input:String) [], RemoteException
-+ FullyQualifiedErrorId : NativeCommandError 
++ FullyQualifiedErrorId : NativeCommandError
 ```
 
 This can happen when trying to run a container with an interactive session, using -it:
@@ -169,7 +169,7 @@ Now, on your machine, open a PowerShell or CMD session, and run the Docker comma
 .\docker.exe -H tcp://<ip address of Nano Server>:2375
 ```
 
-For example, if you would like to see the available images: 
+For example, if you would like to see the available images:
 
 ```powershell
 .\docker.exe -H tcp://<ip address of Nano Server>:2375 images
