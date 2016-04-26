@@ -124,7 +124,7 @@ echo "Hello World From a Windows Server Container" > C:\inetpub\wwwroot\index.ht
 
 Browse again to the IP Address of the container host, you should now see the ‘Hello World’ application. Note – you may need to close any existing browser connections, or clear browser cache to see the updated application.
 
-![](media/HWWINServer.png)
+![](media/hello.png)
 
 Exit the interactive session with the container.
 
@@ -227,8 +227,6 @@ docker rmi iis
 
 Hyper-V Containers provide an additional layer of isolation over Windows Server Containers. Each Hyper-V Container is created within a highly optimized virtual machine. Where a Windows Server Container shares a kernel with the Container host, a Hyper-V container is completely isolated. Hyper-V Containers are created and managed identically to Windows Server Containers. For more information about Hyper-V Containers see [Managing Hyper-V Containers](../management/hyperv_container.md).
 
-In this exercise a Hyper-V container will be created, IIS will be installed, and a custom website created. This exercise can be completed on Windows Server 2016, Nano Server, or Windows 10.
-
 > Microsoft Azure does not support Hyper-V containers. To complete the Hyper-V exercises, you need an on-prem container host.
 
 ### Create Container <!--2-->
@@ -277,7 +275,7 @@ c:\share
 To create a Hyper-V container using docker, specify the `--isolation=hyperv` parameter. This example mounts the `c:\share` directory from the host, to the `c:\iisinstall` directory of the container, and then creates an interactive shell session with the container.
 
 ```none
-docker run --name iisnanobase -it -v c:\share:c:\iisinstall --isolation=hyperv nanoserver cmd
+docker run --name iisnanobase -it -p 80:80 -v c:\share:c:\iisinstall --isolation=hyperv nanoserver cmd
 ```
 
 ### Create IIS Image <!--2-->
@@ -288,57 +286,23 @@ From within the container shell session, IIS can be installed using `dism`. Run 
 dism /online /apply-unattend:c:\iisinstall\unattend.xml
 ```
 
-When the IIS installation has complete, manually start IIS with the following command.
+When the IIS installation has complete, run the following command to remove the IIS splash screen:
 
-```none
-Net start w3svc
-```
-
-Exit the container session.
-
-```none
-exit
-```
-
-### Create IIS Container <!--2-->
-
-The modified Nano Server container can now be committed to a new container image. To do so, use the `docker commit` command.
-
-```none
-docker commit iisnanobase nanoserveriis
-```
-
-The results can be seen when returning a list of container images.
-
-```none
-docker images
-
-REPOSITORY          TAG                 IMAGE ID            CREATED              VIRTUAL SIZE
-nanoserveriis       latest              444435a4e30f        About a minute ago   69.14 MB
-windowsservercore   10.0.10586.0        6801d964fda5        2 weeks ago          0 B
-windowsservercore   latest              6801d964fda5        2 weeks ago          0 B
-nanoserver          10.0.10586.0        8572198a60f1        2 weeks ago          0 B
-nanoserver          latest              8572198a60f1        2 weeks ago          0 B
-```
-
-### Create Application <!--2-->
-
-The Nano Server IIS image can now be deployed to a new container.
-
-```none
-docker run -it -p 80:80 --isolation=hyperv nanoserveriis cmd
-```
-
-Run the following command to remove the IIS splash screen.
 
 ```none
 del C:\inetpub\wwwroot\iisstart.htm
 ```
 
-Run the following command to replace the default IIS site with a new static site.
+Run the following command to replace the default IIS site with a new static site:
 
 ```none
 echo "Hello World From a Hyper-V Container" > C:\inetpub\wwwroot\index.html
+```
+
+Next, manually start IIS with the following command:
+
+```none
+Net start w3svc
 ```
 
 Browse to the IP Address of the container host, you should now see the ‘Hello World’ application. Note – you may need to close any existing browser connections, or clear browser cache to see the updated application.
