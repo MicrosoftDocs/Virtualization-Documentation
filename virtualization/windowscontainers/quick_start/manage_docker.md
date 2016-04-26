@@ -227,6 +227,8 @@ docker rmi iis
 
 Hyper-V Containers provide an additional layer of isolation over Windows Server Containers. Each Hyper-V Container is created within a highly optimized virtual machine. Where a Windows Server Container shares a kernel with the Container host, a Hyper-V container is completely isolated. Hyper-V Containers are created and managed identically to Windows Server Containers. For more information about Hyper-V Containers see [Managing Hyper-V Containers](../management/hyperv_container.md).
 
+In this exercise a Hyper-V container will be created, IIS will be installed, and a custom website created. This exercise can be completed on Windows Server 2016, Nano Server, or Windows 10.
+
 > Microsoft Azure does not support Hyper-V containers. To complete the Hyper-V exercises, you need an on-prem container host.
 
 ### Create Container <!--2-->

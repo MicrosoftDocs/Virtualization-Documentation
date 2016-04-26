@@ -3,6 +3,7 @@ author: enderb-ms
 redirect_url: https://github.com/Microsoft/Virtualization-Documentation/tree/master/windows-container-samples
 ---
 
+
 # Create a .NET 3.5 Server Core Container Image
 
 This guide details creating a Windows Server Core container that includes the .NET 3.5 framework. Before starting this exercise, you will need the Windows Server 2016 .iso file, or access the Windows Server 2016 media.

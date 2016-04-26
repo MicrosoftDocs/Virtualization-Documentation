@@ -86,3 +86,8 @@ Run the script to install the Docker service.
 .\update-containerhost.ps1
 ```
 For manual installation and configuration steps, see [Docker and Windows](./docker_windows.md).
+
+## Next Steps 
+
+[Working with Hyper-V contianers]( https://msdn.microsoft.com/en-us/virtualization/windowscontainers/quick_start/manage_docker#hyper-v-container)
+
