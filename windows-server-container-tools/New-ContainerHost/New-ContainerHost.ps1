@@ -232,7 +232,7 @@ if ($VhdPath -and ($(Split-Path -Leaf $VhdPath) -match ".*\.vhdx?"))
 }
 else
 {
-    $global:localVhdName = "$($global:imageBrand).vhd"
+    $global:localVhdName = "$($global:imageBrand).vhdx"
 }
 
 $global:localIsoName = "WindowsServerTP5.iso"
@@ -1163,6 +1163,13 @@ Test-ContainerImageProvider()
 
 
 function 
+Test-Client()
+{
+    return (-not ((Get-Command Get-WindowsFeature -ErrorAction SilentlyContinue) -or (Test-Nano)))
+}
+
+
+function 
 Test-Nano()
 {
     $EditionId = (Get-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion' -Name 'EditionID').EditionId
@@ -1605,7 +1612,7 @@ Approve-Eula
     
     $eulaText = @"
 Before installing and using the Windows Server Technical Preview 5 with Containers virtual machine you must: 
-    1.	Review the license terms by navigating to this link: http://aka.ms/tp5/containerseula
+    1.	Review the license terms by navigating to this link: https://aka.ms/tp5/containerseula
     2.	Print and retain a copy of the license terms for your records.
 By downloading and using the Windows Server Technical Preview 5 with Containers virtual machine you agree to such license terms. Please confirm you have accepted and agree to the license terms.
 "@
