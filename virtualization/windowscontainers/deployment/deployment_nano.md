@@ -98,21 +98,23 @@ The following command can be used to install the Container Image PowerShell modu
 Install-PackageProvider ContainerImage -Force
 ```
 
-Use `Find-ContainerImage` to return a list of images.
+Next run the import command.
+
+```
+Import-PackageProvider ContainerImage -force
+```
+
+Once installed, a list of Base OS images can be returned using `Find-ContainerImage`.
 
 ```none
 Find-ContainerImage
+
+Name                           Version          Source           Summary
+----                           -------          ------           -------
+NanoServer                     10.0.14300.1010  ContainerImag... Container OS Image of Windows Server 2016 Technical...
+WindowsServerCore              10.0.14300.1000  ContainerImag... Container OS Image of Windows Server 2016 Technical...
 ```
 
-Which will output something similar to this.
-
-```none
-Name                 Version                 Description
-----                 -------                 -----------
-NanoServer           10.0.10586.0            Container OS Image of Windows Server 2016 Techn...
-WindowsServerCore    10.0.10586.0            Container OS Image of Windows Server 2016 Techn...
-
-```
 To download and install the Nano Server base OS image, run the following:
 
 ```none
