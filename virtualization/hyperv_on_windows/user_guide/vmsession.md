@@ -10,12 +10,12 @@ Continue by coping a file to and from the virtual machine using Copy-Item then d
 
 ## Requirements
 **Operating system requirements:**
-* **Host:** Windows 10, Windows Server Technical Preview 2, or later running Hyper-V.
-* **Guest/Virtual Machine:** Windows 10, Windows Server Technical Preview 2, or later.
+* Host: Windows 10, Windows Server Technical Preview 2, or later running Hyper-V.
+* Guest/Virtual Machine: Windows 10, Windows Server Technical Preview 2, or later.
 
 If you're managing older virtual machines, use Virtual Machine Connection (VMConnect) or [configure a virtual network for the virtual machine](http://technet.microsoft.com/library/cc816585.aspx). 
 
-In order to connect to a virtual machine with PowerShell Direct,  
+**Configuration requirements:**    
 * The virtual machine must be running locally on the host.
 * The virtual machine must be turned on and running with at least one configured user profile.
 * You must be logged into the host computer as a Hyper-V administrator.
