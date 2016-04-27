@@ -8,13 +8,14 @@ author: neilpeterson
 
 Windows Containers can be used to rapidly deploy many isolated applications on a single computer system. This exercise will demonstrate Windows Container creation and management using Docker. When completed you should have a basic understanding of how Docker integrates with Windows Containers and will have gained hands on experience with the technology.
 
-This walkthrough will detail both Windows Server containers and Hyper-V containers. Each type of container has its own basic requirements. Included with the Windows Container documentation is a procedure for quickly deploying a container host. This is the easiest way to quickly start with Windows Containers. If you do not already have a container host, see the [Container Host Deployment Quick Start](./quick_start_configure_host.md).
+This walkthrough will detail both Windows Server containers and Hyper-V containers. Each type of container has its own basic requirements. Included with the Windows Container documentation is a procedure for quickly deploying a container host. This is the easiest way to quickly start with Windows Containers. If you do not already have a container host, see [Install Base OS Images](https://msdn.microsoft.com/en-us/virtualization/windowscontainers/management/manage_images#install-image).
 
 The following items will be required for each exercise.
 
 **Windows Server Containers:**
 
 - A Windows Container Host running Windows Server 2016 (Full or Core), either on-prem or in Azure.
+- The Windows Server Core base OS image. For information on installing Base OS images see [Install Base OS Images](https://msdn.microsoft.com/en-us/virtualization/windowscontainers/management/manage_images#install-image).
 
 
 **Hyper-V Containers:**
