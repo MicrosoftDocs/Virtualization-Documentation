@@ -111,28 +111,29 @@ By the same token, sessions hold state.  Since persistent sessions persist, any 
 
 1. On the Hyper-V host, open PowerShell as Administrator.
 
-2. Create a persistent PowerShell session to the virtual machine using `New-PSSession`.
+2. Run one of the following commands to create a persistent PowerShell session to the virtual machine using `New-PSSession`.
   
   ``` PowerShell
   $s = New-PSSession -VMName <VMName>
+  $s = New-PSSession -VMGuid <VMGuid>
   ```
   
   Provide credentials for the virtual machine when prompted.
   
 3. Copy a file into the virtual machine.
   
-  To move `C:\host.txt` to the virtual machine from the host machine, run:
+  To move `C:\host_path\data.txt` to the virtual machine from the host machine, run:
   
   ``` PowerShell
-  Copy-Item -ToSession $s -Path c:\host.txt -Destination c:\
+  Copy-Item -ToSession $s -Path C:\host_path\data.txt -Destination C:\guest_path\
   ```
   
 4.  Copy a file to the host. 
    
-   To move `C:\guest.txt` to the host from the virtual machine, run:
+   To move `C:\guest_path\data.txt` to the host from the virtual machine, run:
   
   ``` PowerShell
-  Copy-Item -FromSession $s -Path c:\guest.txt -Destination c:\
+  Copy-Item -FromSession $s -Path C:\guest_path\data.txt -Destination C:\host_path\
   ```
 
 5. Stop the persistent session using `Remove-PSSession`.
