@@ -6,14 +6,23 @@ Windows 10 Hyper-V now supports native network address translation (NAT).  This 
 * confirming that the virtual machine is connected correctly
 
 Requirements:
-* Windows build **BUILD NUMBER** or later
+* Windows build 14295 or later
 * Hyper-V role is enabled (instructions [here](../quick_start/walkthrough_create_vm.md))
+
+> **Note:**  Currently, Hyper-V only allows you to create one NAT network.
+
+## NAT Overview
+Network Address Translation (NAT) is a networking mode designed to conserve IP addresses by mapping an external IP address and port to a much larger set of internal IP addresses.  Basically, a NAT switch uses a NAT mapping table to route traffic from an IP Address and port number to the correct internal IP address and port associated with a device on the network (virtual machine, computer, container, etc.)
+
+Additionally, NAT allows multiple virtual machines to host applications that require identical (internal) communication ports by mapping these to unique external ports.
+
+For all of these reasons, NAT networking is very common for container technology (see [Container Networking](https://msdn.microsoft.com/en-us/virtualization/windowscontainers/management/container_networking)). 
+
 
 ## Create a NAT network
 Let's walk through setting up a new NAT network.
 
-1.  Open a PowerShell console as Administrator -- you must also be part of the Hyper-V Administrators group.  
-  You can run `Get-VM` to confirm that those are both true.
+1.  Open a PowerShell console as Administrator.  
 
 2. Create an internal switch  
   
