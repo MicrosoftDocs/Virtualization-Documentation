@@ -29,7 +29,7 @@ The script downloads and configures the Windows Container components. This proce
 
 ### Scripted - Existing System <!--1-->
 
-To install and configure the container role on an existing system, download and run the Install-ContainerHost.ps1 script. If the existing system is a Hyper-V virtual machine and will be hosting Hyper-V containers, ensure that nested virtualization is enabled and configured. For more information see, [Nested Virtualization]( https://msdn.microsoft.com/virtualization/hyperv_on_windows/windows_welcome).
+To install and configure the container role on an existing system, download and run the Install-ContainerHost.ps1 script. If the existing system is a Hyper-V virtual machine and will be hosting Hyper-V containers, ensure that nested virtualization is enabled and configured. For more information see, [Nested Virtualization](https://msdn.microsoft.com/virtualization/hyperv_on_windows/windows_welcome).
 
 ```none
 # Download configuration script
