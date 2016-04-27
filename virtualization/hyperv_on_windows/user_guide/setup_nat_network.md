@@ -1,6 +1,8 @@
 # Set up a NAT network
 
-Windows 10 Hyper-V now supports native network address translation (NAT).  This guide will walk you through:
+Windows 10 Hyper-V allows native network address translation (NAT).
+
+This guide will walk you through:
 * creating a NAT network
 * connecting an existing virtual machine to your new network
 * confirming that the virtual machine is connected correctly
@@ -14,7 +16,7 @@ Requirements:
 ## NAT Overview
 NAT gives a virtual machine access to network resources using the host computer's IP address and a port.
 
-Network Address Translation (NAT) is a networking mode designed to conserve IP addresses by mapping an external IP address and port to a much larger set of internal IP addresses.  Basically, a NAT switch uses a NAT mapping table to route traffic from an IP Address and port number to the correct internal IP address and port associated with a device on the network (virtual machine, computer, container, etc.)
+Network Address Translation (NAT) is a networking mode designed to conserve IP addresses by mapping an external IP address and port to a much larger set of internal IP addresses.  Basically, a NAT switch uses a NAT mapping table to route traffic from an IP Address and port number to the correct internal IP address associated with a device on the network (virtual machine, computer, container, etc.)
 
 Additionally, NAT allows multiple virtual machines to host applications that require identical (internal) communication ports by mapping these to unique external ports.
 
@@ -103,6 +105,9 @@ Let's walk through setting up a new NAT network.
 Congratulations!  You now have a virtual NAT network!  To add a virtual machine, to the NAT network follow [these instructions](setup_nat_network.md#connect-a-virtual-machine).
 
 ## Connect a virtual machine
+
+To connect a virtual machine to your new NAT network, connect the internal switch you created in the first step of the [NAT Network Setup](setup_nat_network.md#create-a-nat-virtual-network) section to your virtual machine.
+ 
 
 ## Test the NAT network
 

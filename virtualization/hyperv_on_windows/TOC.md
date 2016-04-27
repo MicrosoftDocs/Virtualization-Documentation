@@ -9,7 +9,6 @@
 ## [Create a Virtual Switch](quick_start/walkthrough_virtual_switch.md)
 ## [Create a Virtual Machine](quick_start/walkthrough_create_vm.md)
 ## [Hyper-V and PowerShell](quick_start/walkthrough_powershell.md)
-## [Set up a NAT network](user_guide/setup_nat_network.md)
 # Manage Virtual Machines with Hyper-V
 ## [Migrate and Upgrade Virtual Machines](user_guide/migrating_vms.md)
 ## [Manage Integration Services](user_guide/managing_ics.md)
@@ -19,6 +18,7 @@
 # Manage the Hyper-V Hosts
 ## [Manage Remote Hyper-V Hosts](user_guide/remote_host_management.md)
 ## [Enable Nested Virtualization](user_guide/nesting.md)
+## [Set up a NAT network](user_guide/setup_nat_network.md)
 ## [Build an integration Service](develop/make_mgmt_service.md)
 # Community and Support
 ## [Hyper-V forums](https://social.technet.microsoft.com/Forums/windowsserver/en-US/home?forum=winserverhyperv)
