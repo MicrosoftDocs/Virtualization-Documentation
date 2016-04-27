@@ -1,9 +1,11 @@
 ---
 author: neilpeterson
-redirect_url: ../deployment/deployment_azure
+redirect_url: ./deployment
 ---
 
 # Azure Quick Start
+
+**This is preliminary content and subject to change.** 
 
 Before creating and managing Windows Server Containers in Azure you will need to deploy a Windows Server 2016 Technical Preview image which has been pre-configured with the Windows Server Containers feature. This guide will walk you through this process.
 
@@ -65,5 +67,4 @@ PS C:\> ./Update-ContainerHost.ps1
 
 Now that you have a Windows Server 2016 system running the Windows Server Container feature, jump to the following guides to begin working with Windows Server Containers and Windows Server Container images. 
 
-[Quick Start: Windows Containers and Docker](./manage_docker.md)  
-[Quick Start: Windows Containers and PowerShell](./manage_powershell.md)
+[Quick Start: Windows Containers and Docker](../quick_start/manage_docker.md)

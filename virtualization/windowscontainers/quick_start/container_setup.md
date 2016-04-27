@@ -1,5 +1,6 @@
 ---
 author: neilpeterson
+redirect_url: quick_start_configure_host
 ---
 
 # Deploy a Windows Container Host to a New Hyper-V Virtual Machine

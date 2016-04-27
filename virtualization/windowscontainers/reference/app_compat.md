@@ -4,6 +4,8 @@ author: scooley
 
 # Application Compatability in Windows Containers
 
+**This is preliminary content and subject to change.** 
+
 This is a preview.  While eventually application that runs on Windows should also run in a container, this is a good place to see our current application compatability status.
 
 The sole purpose of this document is to share our experience.
