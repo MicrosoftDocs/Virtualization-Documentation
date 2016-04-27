@@ -21,6 +21,7 @@ In order to connect to a virtual machine with PowerShell Direct,
 * You must be logged into the host computer as a Hyper-V administrator.
 * You must supply valid user credentials for the virtual machine.
 
+-------------
 
 ## Create and exit an interactive PowerShell session
 
@@ -62,6 +63,7 @@ To start an interactive session:
 
 To learn more about these cmdlets, see [Enter-PSSession](http://technet.microsoft.com/library/hh849707.aspx) and [Exit-PSSession](http://technet.microsoft.com/library/hh849743.aspx). 
 
+-------------
 
 ## Run a script or command with Invoke-Command
 
@@ -100,6 +102,7 @@ To run a script:
 
 To learn more about this cmdlet, see [Invoke-Command](http://technet.microsoft.com/library/hh849719.aspx). 
 
+-------------
 
 ## Copy files with New-PSSession and Copy-Item
 
@@ -142,6 +145,7 @@ By the same token, sessions hold state.  Since persistent sessions persist, any 
   Remove-PSSession $s
   ```
   
+-------------
 
 ## Troubleshooting
 
