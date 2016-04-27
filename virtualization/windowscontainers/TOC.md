@@ -6,7 +6,8 @@
 # Container Quick Start
 ## [1 – Get Started with Containers](quick_start/quick_start.md)
 ## [2 - Configure a Container Host](quick_start/quick_start_configure_host.md)
-## [3 – Docker Quick Start](quick_start/manage_docker.md)
+## [3 – Windows Server Containers](quick_start/manage_docker.md)
+## [4 – Hyper-V Contianers](quick_start/manage_docker_hyperv.md)
 
 # Deploy Windows Containers
 ## [System Requirements](deployment/system_requirements.md)
