@@ -473,10 +473,11 @@ Install-ContainerHost
                     Name = $imageName
                 }
 
-                if ($global:BuildVersion -eq "14300")
+                if ($version -eq "14300")
                 {
                     $InstallParams.Add("MinimumVersion", "10.0.14300.1000")
-                    $versionString = "-MinimumVersion 10.0.14300.1000"
+                    $InstallParams.Add("MaximumVersion", "10.0.14300.1010")
+                    $versionString = "-MinimumVersion 10.0.14300.1000 -MaximumVersion 10.0.14300.1010"
                 }
                 else
                 {
