@@ -478,10 +478,31 @@ Install-ContainerHost
             {
                 throw "Cannot copy from invalid WimPath $WimPath"
             }
-
+            
             $imageName = (get-windowsimage -imagepath $WimPath -LogPath ($env:temp+"dism_$(random)_GetImageInfo.log") -Index 1).imagename
+                        
+            if ($PSDirect -and (Test-Nano))
+            {
+                #
+                # This is a gross hack for TP5 to avoid a CoreCLR issue
+                #
+                $modulePath = "$($env:Temp)\Containers2.psm1"
 
-            Install-ContainerOsImage -WimPath $WimPath -Force
+                $cmdletContent = gc $env:windir\System32\WindowsPowerShell\v1.0\Modules\Containers\1.0.0.0\Containers.psm1
+
+                $cmdletContent = $cmdletContent.replace('Set-Acl $fileToReAcl -AclObject $acl', '[System.IO.FileSystemAclExtensions]::SetAccessControl($fileToReAcl, $acl)')
+                $cmdletContent = $cmdletContent.replace('function Install-ContainerOSImage','function Install-ContainerOSImage2')
+
+                $cmdletContent | sc $modulePath
+
+                Import-Module $modulePath -DisableNameChecking
+                Install-ContainerOSImage2 -WimPath $WimPath -Force
+                Remove-Item $modulePath
+            }
+            else
+            {
+                Install-ContainerOsImage -WimPath $WimPath -Force
+            }
 
             $newBaseImages += $imageName
         }
