@@ -43,6 +43,8 @@ powershell.exe -NoProfile C:\Install-ContainerHost.ps1 -HyperV
 
 The script downloads and configure the Windows Container components. This process may take quite some time due to the large download. When finished, the system is configured and ready with the Windows container role.
 
+> Once the script has started, the system will be rebooted. After the reboot the script will continue. It is safe to log back into the system; the script progress will be displayed.
+
 ### Manual Configuration <!--2-->
 
 To manually configure the host, see the [Windows Server Container Deployment Guide](../deployment/deployment.md).
@@ -68,6 +70,8 @@ The script downloads and configures the Windows Container components. This proce
 ### Scripted - Existing System <!--2-->
 
 To install and configure the container role on an existing system, download and run the Install-ContainerHost.ps1 script. If the existing system is a Hyper-V virtual machine and will be hosting Hyper-V containers, ensure that nested virtualization is enabled and configured. For more information see, [Nested Virtualization]( https://msdn.microsoft.com/virtualization/hyperv_on_windows/windows_welcome).
+
+> Nano Server does not support the wget command. Download the script on a separate system and copy it to the Nano Server system
 
 ```none
 # Download configuration script
