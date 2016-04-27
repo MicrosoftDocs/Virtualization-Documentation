@@ -60,7 +60,7 @@
 #>
 #Requires -Version 5.0
 
-[CmdletBinding(DefaultParameterSetName="IncludeDocker")]
+[CmdletBinding(DefaultParameterSetName="Standard")]
 param(
     [string]
     [ValidateNotNullOrEmpty()]
@@ -294,21 +294,21 @@ Install-ContainerHost
         #
         # TODO: remove if/else when IUM and DirectMap can coexist
         #
-        if ((Get-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\DeviceGuard" -Name HyperVVirtualizationBasedSecurityOptOut -ErrorAction SilentlyContinue).HyperVVirtualizationBasedSecurityOptOut -eq 1)
-        {
-            Write-Output "IUM is already disabled (DirectMap will be operational)."
-        }
-        else
-        {
-            Write-Output "Disabling IUM to enable DirectMap"
-            if (-not (Get-Item -Path "HKLM:\SYSTEM\CurrentControlSet\Control\DeviceGuard" -ErrorAction SilentlyContinue))
-            {
-                New-Item -Path "HKLM:\SYSTEM\CurrentControlSet\Control\DeviceGuard"
-            }
-
-            Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\DeviceGuard" -Name HyperVVirtualizationBasedSecurityOptOut -Value 1
-            $global:RebootRequired = $true
-        }
+        #if ((Get-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\DeviceGuard" -Name HyperVVirtualizationBasedSecurityOptOut -ErrorAction SilentlyContinue).HyperVVirtualizationBasedSecurityOptOut -eq 1)
+        #{
+        #    Write-Output "IUM is already disabled (DirectMap will be operational)."
+        #}
+        #else
+        #{
+        #    Write-Output "Disabling IUM to enable DirectMap"
+        #    if (-not (Get-Item -Path "HKLM:\SYSTEM\CurrentControlSet\Control\DeviceGuard" -ErrorAction SilentlyContinue))
+        #    {
+        #        New-Item -Path "HKLM:\SYSTEM\CurrentControlSet\Control\DeviceGuard"
+        #    }
+        #
+        #    Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\DeviceGuard" -Name HyperVVirtualizationBasedSecurityOptOut -Value 1
+        #    $global:RebootRequired = $true
+        #}
     }
 
     if ($global:RebootRequired)
@@ -429,6 +429,18 @@ Install-ContainerHost
         }
     }
 
+    #
+    # Install, register, and start Docker
+    #
+    if (Test-Docker)
+    {
+        Write-Output "Docker is already installed."
+    }
+    else
+    {
+        Install-Docker -DockerPath $DockerPath -DockerDPath $DockerDPath
+    }
+
     $newBaseImages = @()
 
     if (-not $SkipImageImport)
@@ -451,28 +463,34 @@ Install-ContainerHost
             }
             else
             {
-                Test-ContainerProvider
+                Test-ContainerImageProvider
 
                 $hostBuildInfo = (gp "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion").BuildLabEx.Split(".")
                 $version = $hostBuildInfo[0]
 
-                # TP4 always uses 10586.0
-                if ($version -eq "10586")
+                $InstallParams = @{
+                    ErrorAction = "Stop"
+                    Name = $imageName
+                }
+
+                if ($global:BuildVersion -eq "14300")
                 {
-                    $qfe = 0
+                    $InstallParams.Add("MinimumVersion", "10.0.14300.1000")
+                    $versionString = "-MinimumVersion 10.0.14300.1000"
                 }
                 else
                 {
                     $qfe = $hostBuildInfo[1]
+
+                    $InstallParams.Add("RequiredVersion", "10.0.$version.$qfe")
+                    $versionString = "-RequiredVersion 10.0.$version.$qfe"
                 }
 
-                $imageVersion = "10.0.$version.$qfe"
-
-                Write-Output "Getting Container OS image ($imageName) version $imageVersion from OneGet (this may take a few minutes)..."
+                Write-Output "Getting Container OS image ($imageName $versionString) from OneGet (this may take a few minutes)..."
                 #
                 # TODO: expect the follow to have default ErrorAction of stop
                 #
-                Install-ContainerImage $imageName -Version $imageVersion -ErrorAction Stop
+                Install-ContainerImage @InstallParams
             
                 Write-Output "Container base image install complete."
                 $newBaseImages += $imageName
@@ -507,6 +525,8 @@ Install-ContainerHost
             $imageName = (get-windowsimage -imagepath $WimPath -LogPath ($env:temp+"dism_$(random)_GetImageInfo.log") -Index 1).imagename
 
             Install-ContainerOsImage -WimPath $WimPath
+
+            $newBaseImages += $imageName
         }
 
         #
@@ -520,57 +540,36 @@ Install-ContainerHost
             }
             else
             {
-                Test-ContainerProvider
+                Test-ContainerImageProvider
 
                 Write-Output "Getting Container OS image ($global:HyperVImage) from OneGet (this may take a few minutes)..."
                 Install-ContainerImage $global:HyperVImage
-
-                #
-                # Sleeping to ensure VMMS has restarted to workaround TP3 issue
-                #
-                Write-Output "Waiting for VMMS to return image at ($(get-date))..."
-                Start-Sleep -Sec 5
 
                 $newBaseImages += $global:HyperVImage
             }
         }
     }
 
-    #
-    # Install, register, and start Docker
-    #
-    if ($($PSCmdlet.ParameterSetName) -eq "IncludeDocker")
+    if ($newBaseImages.Count -gt 0)
     {
-        if (Test-Docker)
+        foreach ($baseImage in $newBaseImages)
         {
-            Write-Output "Docker is already installed."
-        }
-        else
-        {
-            Install-Docker -DockerPath $DockerPath -DockerDPath $DockerDPath
+            Write-DockerImageTag -BaseImageName $baseImage
         }
 
-        if ($newBaseImages.Count -gt 0)
+        "tag complete" | Out-File -FilePath "$dockerData\tag.txt" -Encoding ASCII
+
+        #
+        # if certs.d exists, restart docker in TLS mode
+        #
+        $dockerCerts = "$($env:ProgramData)\docker\certs.d"
+
+        if (Test-Path $dockerCerts)
         {
-            foreach ($baseImage in $newBaseImages)
+            if ((Get-ChildItem $dockerCerts).Count -gt 0)
             {
-                Write-DockerImageTag -BaseImageName $baseImage
-            }
-
-            "tag complete" | Out-File -FilePath "$dockerData\tag.txt" -Encoding ASCII
-
-            #
-            # if certs.d exists, restart docker in TLS mode
-            #
-            $dockerCerts = "$($env:ProgramData)\docker\certs.d"
-
-            if (Test-Path $dockerCerts)
-            {
-                if ((Get-ChildItem $dockerCerts).Count -gt 0)
-                {
-                    Stop-Docker
-                    Start-Docker
-                }
+                Stop-Docker
+                Start-Docker
             }
         }
     }
@@ -782,19 +781,19 @@ Test-Admin()
 
 
 function 
-Test-ContainerProvider()
+Test-ContainerImageProvider()
 {
     if (-not (Get-Command Install-ContainerImage -ea SilentlyContinue))
     {   
         Wait-Network
 
-        Write-Output "Installing ContainerProvider package..."
-        Install-PackageProvider ContainerProvider -Force | Out-Null
+        Write-Output "Installing ContainerImage provider..."
+        Install-PackageProvider ContainerImage -Force | Out-Null
     }
 
     if (-not (Get-Command Install-ContainerImage -ea SilentlyContinue))
     {
-        throw "Could not install ContainerProvider"
+        throw "Could not install ContainerImage provider"
     }
 }
 
