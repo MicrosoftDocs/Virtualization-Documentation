@@ -39,6 +39,8 @@ To start an interactive session:
   Enter-PSSession -VMName <VMName>
   Enter-PSSession -VMGuid <VMGuid>
   ```
+  
+  Provide credentials for the virtual machine when prompted.
 
 4. Run commands on your virtual machine.
   
@@ -73,8 +75,10 @@ To run a single command:
    
    ``` PowerShell
    Invoke-Command -VMName <VMName> -ScriptBlock { cmdlet } 
-   Invoke-Command -VMGuid <VMGuid> -ScriptBlock { cmdlet } 
+   Invoke-Command -VMGuid <VMGuid> -ScriptBlock { cmdlet }
    ```
+   
+   Provide credentials for the virtual machine when prompted.
    
    The command will execute on the virtual machine, if there is output to the console, it'll be printed to your console.  The connection will be closed automatically as soon as the command runs.
    
@@ -90,6 +94,8 @@ To run a script:
    Invoke-Command -VMGuid <VMGuid> -FilePath C:\host\script_path\script.ps1 
    ```
    
+   Provide credentials for the virtual machine when prompted.
+   
    The script will execute on the virtual machine.  The connection will be closed automatically as soon as the command runs.
 
 To learn more about this cmdlet, see [Invoke-Command](http://technet.microsoft.com/library/hh849719.aspx). 
@@ -101,7 +107,7 @@ To learn more about this cmdlet, see [Invoke-Command](http://technet.microsoft.c
 
 Persistent PowerShell sessions are incredibly useful when writing scripts that coordinate actions across one or more remote machines.  Once created, persistent sessions exist in the background until you decide to delete them.  This means you can reference the same session over and over again with `Invoke-Command` or `Enter-PSSession` without passing credentials.
 
-By the same token, sessions hold state.  Since persistent sessions persist, any variables created in a session or passed to a session will be preserved across multiple calls. There are a number of tools available for working with persistent sessions.  For this example, we will use [New-PSSession](https://technet.microsoft.com/en-us/library/hh849717.aspx) and [Copy-Item](https://technet.microsoft.com/en-us/library/hh849793.aspx) in conjunction to move data from the host to a virtual machine and from a virtual machine to the host.
+By the same token, sessions hold state.  Since persistent sessions persist, any variables created in a session or passed to a session will be preserved across multiple calls. There are a number of tools available for working with persistent sessions.  For this example, we will use [New-PSSession](https://technet.microsoft.com/en-us/library/hh849717.aspx) and [Copy-Item](https://technet.microsoft.com/en-us/library/hh849793.aspx) to move data from the host to a virtual machine and from a virtual machine to the host.
 
 1. On the Hyper-V host, open PowerShell as Administrator.
 
