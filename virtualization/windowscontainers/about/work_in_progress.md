@@ -75,57 +75,30 @@ Increase the processors available to the container, don't explicitly specify pro
 
 ## Networking
 
-### Limited network compartments
-In this release we support one network compartment per container. This means that if you have a container with multiple network adapters, you cannot access the same network port on each adapter (e.g. 192.168.0.1:80 and 192.168.0.2:80 belonging to the same container).
+### Network Compartment Isolation and Implications
+Each container uses a network compartment to provide isolation. All container network adapters (endpoints) attached to a given container, will be resident in the same network compartment. Depending on the networking mode (driver) used, you may be unable to access two different container endpoints using the same IP address or port. Moreover, Windows firewall rules are not compartment- or container-aware and so any firewall rules plumbed will apply to all containers on the container host irrespective of a particular endpoint.
 
-**Work Around: **  
-If multiple endpoints need to be exposed by a container, use NAT port mapping.
+*** Transpraent Networking ***
+
+
+*** NAT Networking ***
+You may expose multiple endpoints attached to a single container using NAT port forwarding rules which are applied on a per-endpoint basis. These forwarding rules must use different external ports (on the container host) when mapped to the same internal port (in the container).  As stated above, however, the firewall rules plumbed will have global scope across the container host.
+
 
 
 ### Static NAT mappings could conflict with port mappings through Docker
-If you are creating containers using Windows PowerShell and adding static NAT mappings, they may cause conflicts if you don't remove them before starting a container using `docker -p <src>:<dst>`
+Beginning in Windows Server Technical Preview 5, NAT creation and port mapping rules are integrated into the *ContainerNetwork* cmdlets and docker commands. The Windows Host Network Service (HNS) will manage the NAT on your behalf. However, it is possible that an external client could try and create a duplicate port mapping rule using the same NAT created by HNS.
 
-Here's an example of a conflict with a static mapping on port 80
+
+Here's an example of a conflict with a static mapping on port 80 and the error reported by docker when this occurs.
 ```
-PS C:\IISDemo> Add-NetNatStaticMapping -NatName "ContainerNat" -Protocol TCP -ExternalIPAddress 0.0.0.0 -InternalIPAddress
- 172.16.0.2 -InternalPort 80 -ExternalPort 80
-
-
-StaticMappingID               : 1
-NatName                       : ContainerNat
-Protocol                      : TCP
-RemoteExternalIPAddressPrefix : 0.0.0.0/0
-ExternalIPAddress             : 0.0.0.0
-ExternalPort                  : 80
-InternalIPAddress             : 172.16.0.2
-InternalPort                  : 80
-InternalRoutingDomainId       : {00000000-0000-0000-0000-000000000000}
-Active                        : True
-
-
-
-PS C:\IISDemo> docker run -it -p 80:80 microsoft/iis cmd
-docker: Error response from daemon: Cannot start container 30b17cbe85539f08282340cc01f2797b42517924a70c8133f9d8db83707a2c66: 
-HCSShim::CreateComputeSystem - Win32 API call returned error r1=2147942452 err=You were not connected because a 
-duplicate name exists on the network. If joining a domain, go to System in Control Panel to change the computer name
- and try again. If joining a workgroup, choose another workgroup name. 
- id=30b17cbe85539f08282340cc01f2797b42517924a70c8133f9d8db83707a2c66 configuration= {"SystemType":"Container",
- "Name":"30b17cbe85539f08282340cc01f2797b42517924a70c8133f9d8db83707a2c66","Owner":"docker","IsDummy":false,
- "VolumePath":"\\\\?\\Volume{4b239270-c94f-11e5-a4c6-00155d016f0a}","Devices":[{"DeviceType":"Network","Connection":
- {"NetworkName":"Virtual Switch","EnableNat":false,"Nat":{"Name":"ContainerNAT","PortBindings":[{"Protocol":"TCP",
- InternalPort":80,"ExternalPort":80}]}},"Settings":null}],"IgnoreFlushesDuringBoot":true,
- "LayerFolderPath":"C:\\ProgramData\\docker\\windowsfilter\\30b17cbe85539f08282340cc01f2797b42517924a70c8133f9d8db83707a2c66",
- "Layers":[{"ID":"4b91d267-ecbc-53fa-8392-62ac73812c7b","Path":"C:\\ProgramData\\docker\\windowsfilter\\39b8f98ccaf1ed6ae267fa3e98edcfe5e8e0d5414c306f6c6bb1740816e536fb"},
- {"ID":"ff42c322-58f2-5dbe-86a0-8104fcb55c2a",
-"Path":"C:\\ProgramData\\docker\\windowsfilter\\6a182c7eba7e87f917f4806f53b2a7827d2ff0c8a22d200706cd279025f830f5"},
-{"ID":"84ea5d62-64ed-574d-a0b6-2d19ec831a27",
-"Path":"C:\\ProgramData\\Microsoft\\Windows\\Images\\CN=Microsoft_WindowsServerCore_10.0.10586.0"}],
-"HostName":"30b17cbe8553","MappedDirectories":[],"SandboxPath":"","HvPartition":false}.
+C:\Users\Administrator>docker run -it -p 80:80 windowsservercore cmd
+docker: Error response from daemon: failed to create endpoint berserk_bassi on network nat: hnsCall failed in Win32: The remote procedure call failed. (0x6be).
 ```
 
 
 ***Mitigation***
-This may be resolved by removing the port mapping using PowerShell. This will remove the port 80 conflict caused in the the example above.
+In general, it is highly unlikely that this will occur since HNS will be managing the NAT. All port forwarding/mapping rules should be created using `docker run -p <external>:<internal>` or Add-ContainerNetworkAdapterStaticMapping. However, if the mappings are not cleaned up automatically by HNS, this error may be resolved by removing the port mapping using PowerShell. This will remove the port 80 conflict caused in the the example above.
 ```powershell
 Get-NetNatStaticMapping | ? ExternalPort -eq 80 | Remove-NetNatStaticMapping
 ```
@@ -139,15 +112,12 @@ The containers get a 169.254.***.*** APIPA IP address.
 **Work around:**
 This is a side effect of sharing the kernel.  All containers effectively have the same mac address.
 
-Enable MAC address spoofing on the container host.
+Enable MAC address spoofing on the physical host which is hosting the container host VM.
 
 This can be achieved using PowerShell
 ```
 Get-VMNetworkAdapter -VMName "[YourVMNameHere]"  | Set-VMNetworkAdapter -MacAddressSpoofing On
 ```
-### HTTPS and TLS are not supported
-Windows Server Containers and Hyper-V Containers do not support either HTTPS or TLS. We are working on making this available in the future.
-
 --------------------------
 
 ## Application compatibility
@@ -196,7 +166,6 @@ In this pre-release, docker communication is public if you know where to look.
 
 ### Not all Docker commands work
 * Docker exec fails in Hyper-V Containers.
-* Commands related to DockerHub aren't supported yet.
 
 If anything that isn't on this list fails (or if a command fails differently than expected), let us know via [the forums](https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers).
 
@@ -226,11 +195,6 @@ net use S: \\your\sources\here /User:shareuser [yourpassword]
 Windows Containers cannot be managed/interacted with through a RDP session in TP4.
 
 --------------------------
-
-## PowerShell management
-
-### Not all *-PSSession have a containerid argument
-This is correct.  We're planning on full cimsession support in the future.
 
 ### Exiting a container in a Nano Server container host cannot be done with "exit"
 If you try to exit a container that is in a Nano Server container host, using "exit" will disconnect you from the Nano Server container host, and will not exit the container.
