@@ -484,6 +484,7 @@ Install-ContainerHost
             if ($PSDirect -and (Test-Nano))
             {
                 #
+                # This is a gross hack for TP5 to avoid a CoreCLR issue
                 #
                 $modulePath = "$($env:Temp)\Containers2.psm1"
 
