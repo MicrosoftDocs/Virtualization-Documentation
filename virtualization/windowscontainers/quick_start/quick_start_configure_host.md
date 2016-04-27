@@ -38,7 +38,7 @@ wget -uri https://aka.ms/tp5/Install-ContainerHost -OutFile C:\Install-Container
 
 # Run configuration script
 
-powershell.exe -NoProfile C:\Install-ContainerHost.ps1 -HyperV
+powershell.exe -NoProfile -ExecutionPolicy Bypass C:\Install-ContainerHost.ps1 -HyperV
 ```
 
 The script downloads and configure the Windows Container components. This process may take quite some time due to the large download. When finished, the system is configured and ready with the Windows container role.
