@@ -1,6 +1,6 @@
 # Set up a NAT network
 
-Windows 10 Hyper-V allows native network address translation (NAT).
+Windows 10 Hyper-V allows native network address translation (NAT) for a virtual network.
 
 This guide will walk you through:
 * creating a NAT network
