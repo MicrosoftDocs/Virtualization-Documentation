@@ -300,6 +300,13 @@ Test-ContainerImageProvider()
 
 
 function 
+Test-Client()
+{
+    return (-not ((Get-Command Get-WindowsFeature -ErrorAction SilentlyContinue) -or (Test-Nano)))
+}
+
+
+function 
 Test-Nano()
 {
     $EditionId = (Get-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion' -Name 'EditionID').EditionId
