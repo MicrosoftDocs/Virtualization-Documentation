@@ -7,7 +7,7 @@ Windows 10 Hyper-V now supports native network address translation (NAT).  This 
 
 Requirements:
 * Windows build 14295 or later
-* Hyper-V role is enabled (instructions [here](../quick_start/walkthrough_create_vm.md))
+* The Hyper-V role is enabled (instructions [here](../quick_start/walkthrough_create_vm.md))
 
 > **Note:**  Currently, Hyper-V only allows you to create one NAT network.
 
@@ -61,11 +61,11 @@ Let's walk through setting up a new NAT network.
     ```
     PS C:\Users\sarah> Get-NetAdapter
     
-    Name                      InterfaceDescription                    ifIndex Status       MacAddress             LinkSpeed
-    ----                      --------------------                    ------- ------       ----------             ---------
-    vEthernet (intSwitch)     Hyper-V Virtual Ethernet Adapter             24 Up           00-15-5D-00-6A-01        10 Gbps
-    Wi-Fi                     Marvell AVASTAR Wireless-AC Network ...      18 Up           98-5F-D3-34-0C-D3       300 Mbps
-    Bluetooth Network Conn... Bluetooth Device (Personal Area Netw...      21 Disconnected 98-5F-D3-34-0C-D4         3 Mbps
+    Name                  InterfaceDescription               ifIndex Status       MacAddress           LinkSpeed
+    ----                  --------------------               ------- ------       ----------           ---------
+    vEthernet (intSwitch) Hyper-V Virtual Ethernet Adapter        24 Up           00-15-5D-00-6A-01      10 Gbps
+    Wi-Fi                 Marvell AVASTAR Wireless-AC Net...      18 Up           98-5F-D3-34-0C-D3     300 Mbps
+    Bluetooth Network ... Bluetooth Device (Personal Area...      21 Disconnected 98-5F-D3-34-0C-D4       3 Mbps
 
     ```
     
@@ -82,12 +82,14 @@ Let's walk through setting up a new NAT network.
   Here is the generic command:
     
   ``` PowerShell
-  New-NetNat –Name NATOutside –InternalIPInterfaceAddressPrefix <NAT subnet prefix>
+  New-NetNat –Name <NATOutsideName> –InternalIPInterfaceAddressPrefix <NAT subnet prefix>
   ```
   
   In order to configure the gateway, you'll need to provide information about the network and NAT Gateway:  
-  * **Name** -- 
-  * **InternalIPInterfaceAddressPrefix** -- 
+  * **Name** -- NATOutsideName describes the name of the NAT network.  You'll use this to remove the NAT network.
+  
+  * **InternalIPInterfaceAddressPrefix** -- NAT subnet prefix describes both the NAT Gateway IP from above as well as the NAT Subnet Prefix Length from above.
+    
     Nat Subnet Prefix := a.b.c.0/<Nat Subnet Prefix Length (e.g. 172.16.0.0/24)
   
   For our example, run the following to setup the NAT network:
