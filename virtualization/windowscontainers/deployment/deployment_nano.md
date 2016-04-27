@@ -98,12 +98,6 @@ The following command can be used to install the Container Image PowerShell modu
 Install-PackageProvider ContainerImage -Force
 ```
 
-Next run the import command.
-
-```
-Import-PackageProvider ContainerImage -force
-```
-
 Once installed, a list of Base OS images can be returned using `Find-ContainerImage`.
 
 ```none

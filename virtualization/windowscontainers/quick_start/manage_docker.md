@@ -15,10 +15,13 @@ The following items will be required for each exercise.
 **Windows Server Containers:**
 
 - A Windows Container Host running Windows Server 2016 (Full or Core), either on-prem or in Azure.
+- The Windows Server Core base OS image. For information on installing Base OS images see, [Install Base OS Images](https://msdn.microsoft.com/en-us/virtualization/windowscontainers/management/manage_images#install-image).
+
 
 **Hyper-V Containers:**
 
-- A Windows Container host enabled with Nested Virtualization.
+- A physical Windows container host, or a virtualized host with nested virtualization enabled.
+- The Nano Serverbase OS image. For information on installing Base OS images see, [Install Base OS Images](https://msdn.microsoft.com/en-us/virtualization/windowscontainers/management/manage_images#install-image).
 - The Windows Server 2016 Media - [Download](https://aka.ms/tp5/serveriso).
 
 > Microsoft Azure does not support Hyper-V containers. To complete the Hyper-V Container exercises, you need an on-prem container host.
