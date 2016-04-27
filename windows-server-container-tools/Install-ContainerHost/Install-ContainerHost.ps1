@@ -274,7 +274,7 @@ Install-ContainerHost
 {
     "If this file exists when Install-ContainerHost.ps1 exits, the script failed!" | Out-File -FilePath $global:ErrorFile
 
-    if (-not ((Get-Command Get-WindowsFeature -ErrorAction SilentlyContinue) -or (Test-Nano)))
+    if (Test-Client)
     {
         if (-not $HyperV)
         {
@@ -481,10 +481,17 @@ Install-ContainerHost
                 }
                 else
                 {
-                    $qfe = $hostBuildInfo[1]
+                    if (Test-Client)
+                    {
+                        $versionString = " [latest version]"
+                    }
+                    else
+                    {
+                        $qfe = $hostBuildInfo[1]
 
-                    $InstallParams.Add("RequiredVersion", "10.0.$version.$qfe")
-                    $versionString = "-RequiredVersion 10.0.$version.$qfe"
+                        $InstallParams.Add("RequiredVersion", "10.0.$version.$qfe")
+                        $versionString = "-RequiredVersion 10.0.$version.$qfe"
+                    }                    
                 }
 
                 Write-Output "Getting Container OS image ($imageName $versionString) from OneGet (this may take a few minutes)..."
@@ -525,7 +532,7 @@ Install-ContainerHost
 
             $imageName = (get-windowsimage -imagepath $WimPath -LogPath ($env:temp+"dism_$(random)_GetImageInfo.log") -Index 1).imagename
 
-            Install-ContainerOsImage -WimPath $WimPath
+            Install-ContainerOsImage -WimPath $WimPath -Force
 
             $newBaseImages += $imageName
         }
@@ -796,6 +803,13 @@ Test-ContainerImageProvider()
     {
         throw "Could not install ContainerImage provider"
     }
+}
+
+
+function 
+Test-Client()
+{
+    return (-not ((Get-Command Get-WindowsFeature -ErrorAction SilentlyContinue) -or (Test-Nano)))
 }
 
 
