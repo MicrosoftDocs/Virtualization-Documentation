@@ -31,9 +31,6 @@
     .PARAMETER HyperV 
         If passed, prepare the machine for Hyper-V containers
 
-    .PARAMETER NatSubnetPrefix
-        Prefix for container hosts NAT range.
-
     .PARAMETER ScriptPath
         Path to a private Install-ContainerHost.ps1.  Defaults to https://aka.ms/tp5/Install-ContainerHost
             
@@ -78,10 +75,7 @@ param(
     [Parameter(ParameterSetName="Deploy")]
     [string]
     [ValidateNotNullOrEmpty()]
-    $IsoPath = "https://aka.ms/tp5/serveriso",   
-
-    [string]
-    $NATSubnetPrefix = "172.16.0.0/24",
+    $IsoPath = "https://aka.ms/tp5/serveriso",  
 
     [Parameter(ParameterSetName="Deploy", Mandatory, Position=1)]
     [Security.SecureString]
@@ -863,18 +857,14 @@ New-ContainerHost()
 
                     [Parameter(Position=2)]
                     [bool]
-                    $HyperV,
-
-                    [Parameter(Position=3)]
-                    [string]
-                    $NATSubnetPrefix
+                    $HyperV
                     )
 
                 Write-Verbose "Onlining disks..."
                 Get-Disk | ? IsOffline | Set-Disk -IsOffline:$false
 
                 Write-Output "Completing container install..."
-                $installCommand = "$($env:SystemDrive)\Install-ContainerHost.ps1 -PSDirect -NATSubnetPrefix $NATSubnetPrefix "
+                $installCommand = "$($env:SystemDrive)\Install-ContainerHost.ps1 -PSDirect "
 
                 if ($ParameterSetName -eq "Staging")
                 {
@@ -911,7 +901,7 @@ New-ContainerHost()
             {
                 $wimName = $global:localWimName
             }
-            Invoke-Command -VMName $($vm.Name) -Credential $credential -ScriptBlock $guestScriptBlock -ArgumentList $wimName,$global:ParameterSet,$HyperV,$NATSubnetPrefix
+            Invoke-Command -VMName $($vm.Name) -Credential $credential -ScriptBlock $guestScriptBlock -ArgumentList $wimName,$global:ParameterSet,$HyperV
     
             $scriptFailed = Invoke-Command -VMName $($vm.Name) -Credential $credential -ScriptBlock { Test-Path "$($env:SystemDrive)\Install-ContainerHost.err" }
     

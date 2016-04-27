@@ -17,31 +17,38 @@ Use the navigation at the right hand side to select your desired deployment conf
 To deploy a new Hyper-V virtual machine with the container role ready to go, download and run the New-ContainerHost.ps1 script.
 
 ```none
-# Download configuration script
+# Download configuration script.
 
 wget -uri https://aka.ms/tp5/New-ContainerHost -OutFile c:\New-ContainerHost.ps1
 
-# Run configuration script
+# Run configuration script.
+# Using the -hyperv parameter prepares the container host for Hyper-V containers. 
+# This can be removed if Hyper-V containers will not be used.
 
-powershell.exe -NoProfile c:\New-ContainerHost.ps1 -VMName MyContainerHost -WindowsImage ServerDatacenterCore –Hyperv
+powershell.exe -NoProfile -ExecutionPolicy Bypass c:\New-ContainerHost.ps1 -VMName MyContainerHost -WindowsImage ServerDatacenterCore –Hyperv
+
 ```
 The script downloads and configures the Windows Container components. This process may take quite some time due to the large download. When finished, a new Virtual Machine is configured and ready with the Windows container role.
 
 ### Scripted - Existing System <!--1-->
 
-To install and configure the container role on an existing system, download and run the Install-ContainerHost.ps1 script. If the existing system is a Hyper-V virtual machine and will be hosting Hyper-V containers, ensure that nested virtualization is enabled and configured. For more information see, [Nested Virtualization]( https://msdn.microsoft.com/virtualization/hyperv_on_windows/windows_welcome).
+To install and configure the container role on an existing system, download and run the Install-ContainerHost.ps1 script. If the existing system is a Hyper-V virtual machine and will be hosting Hyper-V containers, ensure that nested virtualization is enabled and configured. For more information see, [Nested Virtualization](https://msdn.microsoft.com/virtualization/hyperv_on_windows/windows_welcome).
 
 ```none
-# Download configuration script
+# Download configuration script.
 
 wget -uri https://aka.ms/tp5/Install-ContainerHost -OutFile C:\Install-ContainerHost.ps1
 
-# Run configuration script
+# Run configuration script.
+# Using the -hyperv parameter prepares the container host for Hyper-V containers. 
+# This can be removed if Hyper-V containers will not be used.
 
-powershell.exe -NoProfile C:\Install-ContainerHost.ps1 -HyperV
+powershell.exe -NoProfile -ExecutionPolicy Bypass C:\Install-ContainerHost.ps1 -HyperV
 ```
 
 The script downloads and configure the Windows Container components. This process may take quite some time due to the large download. When finished, the system is configured and ready with the Windows container role.
+
+> Once the script has started, the system will be rebooted. After the reboot the script will continue. It is safe to log back into the system; the script progress will be displayed.
 
 ### Manual Configuration <!--2-->
 
@@ -54,13 +61,15 @@ To manually configure the host, see the [Windows Server Container Deployment Gui
 To deploy a new virtual machine, with the container role ready to go, run the following commands on a Hyper-V host.
 
 ```none
-# Download configuration script
+# Download configuration script.
 
 wget -uri https://aka.ms/tp5/New-ContainerHost -OutFile c:\New-ContainerHost.ps1
 
-# Run configuration script
+# Run configuration script.
+# Using the -hyperv parameter prepares the container host for Hyper-V containers. 
+# This can be removed if Hyper-V containers will not be used.
 
-powershell.exe -NoProfile c:\New-ContainerHost.ps1 -VMName MyContainerHost -WindowsImage NanoServer –Hyperv
+powershell.exe -NoProfile c:\New-ContainerHost.ps1 -VMName vmname -WindowsImage NanoServer –Hyperv
 ```
 
 The script downloads and configures the Windows Container components. This process may take quite some time due to the large download. When finished, a new Virtual Machine is configured and ready with the Windows container role.
@@ -69,14 +78,18 @@ The script downloads and configures the Windows Container components. This proce
 
 To install and configure the container role on an existing system, download and run the Install-ContainerHost.ps1 script. If the existing system is a Hyper-V virtual machine and will be hosting Hyper-V containers, ensure that nested virtualization is enabled and configured. For more information see, [Nested Virtualization]( https://msdn.microsoft.com/virtualization/hyperv_on_windows/windows_welcome).
 
+> Nano Server does not support the wget command. Download the script on a separate system and copy it to the Nano Server system
+
 ```none
 # Download configuration script
 
 wget -uri https://aka.ms/tp5/Install-ContainerHost -OutFile C:\Install-ContainerHost.ps1
 
-# Run configuration script
+# Run configuration script.
+# Using the -hyperv parameter prepares the container host for Hyper-V containers. 
+# This can be removed if Hyper-V containers will not be used.
 
-powershell.exe -NoProfile C:\Install-ContainerHost.ps1 -HyperV
+powershell.exe -NoProfile -ExecutionPolicy Bypass C:\Install-ContainerHost.ps1 -HyperV
 ```
 
 The script downloads and configure the Windows Container components. This process may take quite some time due to the large download. When finished, the system is configured and ready with the Windows container role.
@@ -105,9 +118,9 @@ powershell.exe -NoProfile C:\Install-ContainerHost.ps1
 
 To manually configure a Windows Container host in Azure, first deploy a virtual machine with Windows Server 2016 or Nano Server, and then follow the directions found in these articles.
 
-[Windows Server Container Deployment Guide](../deployment/deployment.md).
+[Windows Server Container Deployment Guide](../deployment/deployment.md)
 
-[Nano Server Container Deployment Guide](../deployment/deployment_nano.md).
+[Nano Server Container Deployment Guide](../deployment/deployment_nano.md)
 
 ## Next Steps
 
