@@ -30,7 +30,7 @@ interactive session.
 
 When the session starts, the commands that you type run on the virtual machine, just as though you typed them directy into a PowerShell session on the virtual machine itself.
 
-To start an interactive session:
+**To start an interactive session:**
 
 1. On the Hyper-V host, open PowerShell as Administrator.
 
@@ -69,7 +69,7 @@ To learn more about these cmdlets, see [Enter-PSSession](http://technet.microsof
 
 PowerShell Direct with Invoke-Command is perfect for situations where you need to run one command or one script on a virtual machine but do not need to continue interacting with the virtual machine beyond that point.
 
-To run a single command:
+**To run a single command:**
 
 1. On the Hyper-V host, open PowerShell as Administrator.
 
@@ -85,7 +85,7 @@ To run a single command:
    The command will execute on the virtual machine, if there is output to the console, it'll be printed to your console.  The connection will be closed automatically as soon as the command runs.
    
    
-To run a script:
+**To run a script:**
 
 1. On the Hyper-V host, open PowerShell as Administrator.
 
@@ -111,6 +111,8 @@ To learn more about this cmdlet, see [Invoke-Command](http://technet.microsoft.c
 Persistent PowerShell sessions are incredibly useful when writing scripts that coordinate actions across one or more remote machines.  Once created, persistent sessions exist in the background until you decide to delete them.  This means you can reference the same session over and over again with `Invoke-Command` or `Enter-PSSession` without passing credentials.
 
 By the same token, sessions hold state.  Since persistent sessions persist, any variables created in a session or passed to a session will be preserved across multiple calls. There are a number of tools available for working with persistent sessions.  For this example, we will use [New-PSSession](https://technet.microsoft.com/en-us/library/hh849717.aspx) and [Copy-Item](https://technet.microsoft.com/en-us/library/hh849793.aspx) to move data from the host to a virtual machine and from a virtual machine to the host.
+
+**To create a session then copy files:**  
 
 1. On the Hyper-V host, open PowerShell as Administrator.
 
