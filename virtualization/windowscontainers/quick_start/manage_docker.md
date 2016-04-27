@@ -2,47 +2,32 @@
 author: neilpeterson
 ---
 
-# Windows Containers Quick Start - Docker
+# Windows Server Containers - Quick Start
 
 **This is preliminary content and subject to change.** 
 
-Windows Containers can be used to rapidly deploy many isolated applications on a single computer system. This exercise will demonstrate Windows Container creation and management using Docker. When completed you should have a basic understanding of how Docker integrates with Windows Containers and will have gained hands on experience with the technology.
+Windows Containers can be used to rapidly deploy many isolated applications on a single computer system. This exercise will demonstrate creating and managing Windows Server containers. When completed, you should have a basic understanding of how Docker integrates with Windows Server containers and will have gained hands on experience with the technology.
 
-This walkthrough will detail both Windows Server containers and Hyper-V containers. Each type of container has its own basic requirements. Included with the Windows Container documentation is a procedure for quickly deploying a container host. This is the easiest way to quickly start with Windows Containers. If you do not already have a container host, see the [Container Host Deployment Quick Start](./quick_start_configure_host.md).
-
-The following items will be required for each exercise.
-
-**Windows Server Containers:**
+The following items will be required for this exercise.
 
 - A Windows Container Host running Windows Server 2016 (Full or Core), either on-prem or in Azure.
 - The Windows Server Core base OS image. For information on installing Base OS images see, [Install Base OS Images](https://msdn.microsoft.com/en-us/virtualization/windowscontainers/management/manage_images#install-image).
 
+## Windows Server Containers
 
-**Hyper-V Containers:**
+### Validate container image
 
-- A physical Windows container host, or a virtualized host with nested virtualization enabled.
-- The Nano Serverbase OS image. For information on installing Base OS images see, [Install Base OS Images](https://msdn.microsoft.com/en-us/virtualization/windowscontainers/management/manage_images#install-image).
-- The Windows Server 2016 Media - [Download](https://aka.ms/tp5/serveriso).
+Before starting this exercise, validate that the Server Core base OS image has been installed on your container host. Do so using the `docker images` command. You should see a ‘windowsservercore image with a tag of `latest`. If you do not, the Windows Server Core image will need to be installed. For instructions see, [Install Base OS Images](https://msdn.microsoft.com/en-us/virtualization/windowscontainers/management/manage_images#install-image).
 
-> Microsoft Azure does not support Hyper-V containers. To complete the Hyper-V Container exercises, you need an on-prem container host.
-
-## Windows Server Container
-
-Windows Server Containers provide an isolated, portable, and resource controlled operating environment for running applications and hosting processes. Windows Server Containers provide isolation between the container and host, through process and namespace isolation.
-
-### Create Container <!--1-->
-
-Before creating a container, use the `docker images` command to list container images installed on the host.
-
-```none
+```
 docker images
 
-REPOSITORY          TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
-windowsservercore   10.0.10586.0        6801d964fda5        2 weeks ago         0 B
-windowsservercore   latest              6801d964fda5        2 weeks ago         0 B
-nanoserver          10.0.10586.0        8572198a60f1        2 weeks ago         0 B
-nanoserver          latest              8572198a60f1        2 weeks ago         0 B
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+windowsservercore   10.0.14300.1000     dbfee88ee9fd        4 weeks ago         9.344 GB
+windowsservercore   latest              dbfee88ee9fd        4 weeks ago         9.344 GB
 ```
+
+### Create Container <!--1-->
 
 For this example, create a container using the Windows Server Core image. This is done with the `docker run command`. For more information on `docker run`, see the [Docker Run reference on docker.com]( https://docs.docker.com/engine/reference/run/).
 
@@ -226,94 +211,6 @@ Remove the IIS image.
 docker rmi iis
 ```
 
-## Hyper-V Container
+## Next Steps
 
-Hyper-V Containers provide an additional layer of isolation over Windows Server Containers. Each Hyper-V Container is created within a highly optimized virtual machine. Where a Windows Server Container shares a kernel with the Container host, a Hyper-V container is completely isolated. Hyper-V Containers are created and managed identically to Windows Server Containers. For more information about Hyper-V Containers see [Managing Hyper-V Containers](../management/hyperv_container.md).
-
-> Microsoft Azure does not support Hyper-V containers. To complete the Hyper-V exercises, you need an on-prem container host.
-
-### Create Container <!--2-->
-
-First, create a directory on the container host name ‘share’, with a sub directory of ‘en-us’
-```none
-powershell New-Item -Type Directory c:\share\en-us
-```
-
-Hyper-V containers use the Nano Server base OS image. Because Nano Server is light weight operating system and does not include the IIS package, this needs to be obtained in order to complete this exercise. This can be found on the Window Server 2016 technical preview media under the NanoServer\Packages directory.
-
-Copy `Microsoft-NanoServer-IIS-Package.cab` from `NanoServer\Packages` to `c:\share` on the container host. 
-
-Copy `NanoServer\Packages\en-us\Microsoft-NanoServer-IIS-Package_en-us.cab` to `c:\share\en-us` on the container host.
-
-Create a file in the c:\share folder named unattend.xml, copy this text into the unattend.xml file.
-
-```none
-<?xml version="1.0" encoding="utf-8"?>
-    <unattend xmlns="urn:schemas-microsoft-com:unattend">
-    <servicing>
-        <package action="install">
-            <assemblyIdentity name="Microsoft-NanoServer-IIS-Feature-Package" version="10.0.14300.1000" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" />
-            <source location="c:\iisinstall\Microsoft-NanoServer-IIS-Package.cab" />
-        </package>
-        <package action="install">
-            <assemblyIdentity name="Microsoft-NanoServer-IIS-Feature-Package" version="10.0.14300.1000" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="en-US" />
-            <source location="c:\iisinstall\en-us\Microsoft-NanoServer-IIS-Package_en-us.cab" />
-        </package>
-    </servicing>
-    <cpi:offlineImage cpi:source="" xmlns:cpi="urn:schemas-microsoft-com:cpi" />
-</unattend>
-```
-
-When completed, the `c:\share` directory, on the container host, should be configured like this.
-
-```none
-c:\share
-|-- en-us
-|    |-- Microsoft-NanoServer-IIS-Package_en-us.cab
-|
-|-- Microsoft-NanoServer-IIS-Package.cab
-|-- unattend.xml
-```
-
-To create a Hyper-V container using docker, specify the `--isolation=hyperv` parameter. This example mounts the `c:\share` directory from the host, to the `c:\iisinstall` directory of the container, and then creates an interactive shell session with the container.
-
-```none
-docker run --name iisnanobase -it -p 80:80 -v c:\share:c:\iisinstall --isolation=hyperv nanoserver cmd
-```
-
-### Create IIS Image <!--2-->
-
-From within the container shell session, IIS can be installed using `dism`. Run the following command to install IIS in the container.
-
-```none
-dism /online /apply-unattend:c:\iisinstall\unattend.xml
-```
-
-When the IIS installation has complete, run the following command to remove the IIS splash screen:
-
-
-```none
-del C:\inetpub\wwwroot\iisstart.htm
-```
-
-Run the following command to replace the default IIS site with a new static site:
-
-```none
-echo "Hello World From a Hyper-V Container" > C:\inetpub\wwwroot\index.html
-```
-
-Next, manually start IIS with the following command:
-
-```none
-Net start w3svc
-```
-
-Browse to the IP Address of the container host, you should now see the ‘Hello World’ application. Note – you may need to close any existing browser connections, or clear browser cache to see the updated application.
-
-![](media/HWWINServer.png)
-
-Exit the interactive session with the container.
-
-```none
-exit
-```
+[Hyper-V Containers – Quick Start](./manage_docker_hyperv.md)
