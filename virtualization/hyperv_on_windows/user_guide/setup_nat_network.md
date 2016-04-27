@@ -88,12 +88,19 @@ Let's walk through setting up a new NAT network.
   In order to configure the gateway, you'll need to provide information about the network and NAT Gateway:  
   * **Name** -- NATOutsideName describes the name of the NAT network.  You'll use this to remove the NAT network.
   
-  * **InternalIPInterfaceAddressPrefix** -- NAT subnet prefix describes both the NAT Gateway IP from above as well as the NAT Subnet Prefix Length from above.
+  * **InternalIPInterfaceAddressPrefix** -- NAT subnet prefix describes both the NAT Gateway IP prefix from above as well as the NAT Subnet Prefix Length from above.
     
-    Nat Subnet Prefix := a.b.c.0/<Nat Subnet Prefix Length (e.g. 172.16.0.0/24)
+    The generic form will be a.b.c.0/Nat Subnet Prefix Length 
+    
+    From the above, for this example, we'll use 192.168.0.0/24
   
   For our example, run the following to setup the NAT network:
   
+  ``` PowerShell
+  New-NetNat –Name MyNATnetwork –InternalIPInterfaceAddressPrefix 192.168.0.0/24
+  ```
+  
+Congratulations!  You now have a virtual NAT network!  To add a virtual machine, to the NAT network follow [these instructions](setup_nat_network.md#connect-a-virtual-machine).
 
 ## Connect a virtual machine
 
