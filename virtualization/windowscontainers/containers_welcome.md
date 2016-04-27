@@ -21,7 +21,7 @@ Try Windows Server and Hyper-V Containers by using the following quick start gui
 <tr>
 <td ><center>![](media/1.png)</center></td>
 <td>**Deployment**<br /><br />
-Learn how to deploy Windows Containers on Windows Server 2016, Nano Server, and Windows 10.<br /><br />
+Learn how to deploy Windows Containers on Windows Server 2016 and Nano Server..<br /><br />
 <ul>
 <li>[System Requirements](deployment/system_requirements.md)<br /><br /></li>
 <li>[Deploy Container Host - Windows Server](deployment/deployment.md)<br /><br /></li>
