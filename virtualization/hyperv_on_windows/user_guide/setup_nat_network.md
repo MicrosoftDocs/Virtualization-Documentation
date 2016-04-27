@@ -30,12 +30,32 @@ Let's walk through setting up a new NAT network.
   New-VMSwitch –SwitchName “SwitchName” –SwitchType Internal
   ```
 
-3. Choose and configure the IP address you're using as the NAT gateway using [New-NetIPAddress](https://technet.microsoft.com/en-us/library/hh826150.aspx).  
+3. Configure the NAT gateway using [New-NetIPAddress](https://technet.microsoft.com/en-us/library/hh826150.aspx).  
   
-  Numbers to choose and what they mean:
+  In order to configure the gateway, you'll need a bit of information about your network:
   * **IPAddress** -- Specifies the IPv4 or IPv6 address to use as the NAT gateway IP.
+  
   * **PrefixLength** --  Defines the local subnet size (subnet mask).
-  * **InterfaceIndex** -- 
+  
+  * **InterfaceIndex** -- This is the interface index of the virtual switch created above.
+    
+    You can find the interface index by running `Get-NetAdapter`
+    
+    Your output should look something like this:
+    
+    ```
+    PS C:\Users\sarah> Get-NetAdapter
+    
+    Name                      InterfaceDescription                    ifIndex Status       MacAddress             LinkSpeed
+    ----                      --------------------                    ------- ------       ----------             ---------
+    vEthernet (intSwitch)     Hyper-V Virtual Ethernet Adapter             24 Up           00-15-5D-00-6A-01        10 Gbps
+    Wi-Fi                     Marvell AVASTAR Wireless-AC Network ...      18 Up           98-5F-D3-34-0C-D3       300 Mbps
+    Bluetooth Network Conn... Bluetooth Device (Personal Area Netw...      21 Disconnected 98-5F-D3-34-0C-D4         3 Mbps
+
+    ```
+    
+    
+    
     
   ``` PowerShell
   New-NetIPAddress – IPAddress <NAT Gateway IP> -PrefixLength <Nat Subnet Prefix Length> -InterfaceIndex <X>
