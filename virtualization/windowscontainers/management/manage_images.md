@@ -189,38 +189,28 @@ The Docker Hub registry contains pre-built images which can be downloaded onto a
 
 To see a list of images available from Docker Hub use the `docker search` command. Note – the Windows Serve Core or Nano Server base OS images will need to be installed before pulling these dependent container images from Docker Hub.
 
+Most of these images have a Windows Server Core and a Nano Server version. To get a specific version just add the tag ":windowsservercore" or ":nanoserver". The "latest" tag will return the Windows Server Core version by default, unless there is only a Nano Server version available.
+
 > The images that start with "nano-" have a dependency on the Nano Server Base OS Image.
 
 ```none
 docker search *
 
-NAME                    DESCRIPTION                                     STARS     OFFICIAL   AUTOMATED
-microsoft/aspnet        ASP.NET 5 framework installed in a Windows...   1         [OK]       [OK]
-microsoft/django        Django installed in a Windows Server Core ...   1                    [OK]
-microsoft/dotnet35      .NET 3.5 Runtime installed in a Windows Se...   1         [OK]       [OK]
-microsoft/golang        Go Programming Language installed in a Win...   1                    [OK]
-microsoft/httpd         Apache httpd installed in a Windows Server...   1                    [OK]
-microsoft/iis           Internet Information Services (IIS) instal...   1         [OK]       [OK]
-microsoft/mongodb       MongoDB installed in a Windows Server Core...   1                    [OK]
-microsoft/mysql         MySQL installed in a Windows Server Core b...   1                    [OK]
-microsoft/nginx         Nginx installed in a Windows Server Core b...   1                    [OK]
-microsoft/node          Node installed in a Windows Server Core ba...   1                    [OK]
-microsoft/php           PHP running on Internet Information Servic...   1                    [OK]
-microsoft/python        Python installed in a Windows Server Core ...   1                    [OK]
-microsoft/rails         Ruby on Rails installed in a Windows Serve...   1                    [OK]
-microsoft/redis         Redis installed in a Windows Server Core b...   1                    [OK]
-microsoft/ruby          Ruby installed in a Windows Server Core ba...   1                    [OK]
-microsoft/sqlite        SQLite installed in a Windows Server Core ...   1                    [OK]
-microsoft/nano-golang   Go Programming Language installed in a Nan...   1                    [OK]
-microsoft/nano-httpd    Apache httpd installed in a Nano Server ba...   1                    [OK]
-microsoft/nano-iis      Internet Information Services (IIS) instal...   1         [OK]       [OK]
-microsoft/nano-mysql    MySQL installed in a Nano Server based con...   1                    [OK]
-microsoft/nano-nginx    Nginx installed in a Nano Server based con...   1                    [OK]
-microsoft/nano-node     Node installed in a Nano Server based cont...   1                    [OK]
-microsoft/nano-python   Python installed in a Nano Server based co...   1                    [OK]
-microsoft/nano-rails    Ruby on Rails installed in a Nano Server b...   1                    [OK]
-microsoft/nano-redis    Redis installed in a Nano Server based con...   1                    [OK]
-microsoft/nano-ruby     Ruby installed in a Nano Server based cont...   1                    [OK]
+NAME                     DESCRIPTION                                     STARS     OFFICIAL   AUTOMATED
+microsoft/sample-django  Django installed in a Windows Server Core ...   1                    [OK]
+microsoft/dotnet35       .NET 3.5 Runtime installed in a Windows Se...   1         [OK]       [OK]
+microsoft/sample-golang  Go Programming Language installed in a Win...   1                    [OK]
+microsoft/sample-httpd   Apache httpd installed in a Windows Server...   1                    [OK]
+microsoft/iis            Internet Information Services (IIS) instal...   1         [OK]       [OK]
+microsoft/sample-mongodb MongoDB installed in a Windows Server Core...   1                    [OK]
+microsoft/sample-mysql   MySQL installed in a Windows Server Core b...   1                    [OK]
+microsoft/sample-nginx   Nginx installed in a Windows Server Core b...   1                    [OK]
+microsoft/sample-node    Node installed in a Windows Server Core ba...   1                    [OK]
+microsoft/sample-python  Python installed in a Windows Server Core ...   1                    [OK]
+microsoft/sample-rails   Ruby on Rails installed in a Windows Serve...   1                    [OK]
+microsoft/sample-redis   Redis installed in a Windows Server Core b...   1                    [OK]
+microsoft/sample-ruby    Ruby installed in a Windows Server Core ba...   1                    [OK]
+microsoft/sample-sqlite  SQLite installed in a Windows Server Core ...   1                    [OK]
 ```
 
 To download an image from Docker Hub, use `docker pull`.
