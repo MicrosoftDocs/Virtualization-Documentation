@@ -316,8 +316,9 @@ Install-ContainerHost
     #
     if ($($PSCmdlet.ParameterSetName) -ne "Staging")
     {
-        netsh advfirewall firewall add rule name="ICMP for containers" dir=in protocol=icmpv4 action=allow
-        netsh advfirewall firewall add rule name="ICMP for containers" dir=out protocol=icmpv4 action=allow
+        Write-Output "Configuring ICMP firewall rules for containers..."
+        netsh advfirewall firewall add rule name="ICMP for containers" dir=in protocol=icmpv4 action=allow | Out-Null
+        netsh advfirewall firewall add rule name="ICMP for containers" dir=out protocol=icmpv4 action=allow | Out-Null
         
         if ($TransparentNetwork)
         {
