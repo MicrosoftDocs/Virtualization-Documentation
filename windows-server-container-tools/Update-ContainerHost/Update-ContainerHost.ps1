@@ -11,18 +11,19 @@
         Copyright (c) Microsoft Corporation.  All rights reserved.
     
     .SYNOPSIS
-        Updates a container host with latest docker.exe
+        Installs or updates a container host with latest docker.exe
 
     .DESCRIPTION
-        Collects collateral required to create a container host
-        Creates a VM
-        Configures the VM as a new container host
+        Ensures the container host has the latest Docker
         
     .PARAMETER DockerPath
-        Path to a private Docker.exe.  Defaults to https://aka.ms/tp4/docker
+        Path to a private Docker.exe.  Defaults to https://aka.ms/tp5/docker
+        
+    .PARAMETER DockerDPath
+        Path to a private DockerD.exe.  Defaults to https://aka.ms/tp5/dockerd
 
     .EXAMPLE
-        .\Update-ContainerHost.ps1 -SkipDocker
+        .\Update-ContainerHost.ps1 -DockerPath "https://aka.ms/tp5/docker"
                 
 #>
 #Requires -Version 5.0
@@ -32,7 +33,11 @@ param(
     [Parameter(ParameterSetName="IncludeDocker")]
     [string]
     [ValidateNotNullOrEmpty()]
-    $DockerPath = "https://aka.ms/tp4/docker"
+    $DockerPath = "https://aka.ms/tp5/docker",
+
+    [string]
+    [ValidateNotNullOrEmpty()]
+    $DockerDPath = "https://aka.ms/tp5/dockerd"
 )
 
 
@@ -41,26 +46,37 @@ Update-ContainerHost()
 {
     Test-Admin
 
-    if (-not (Test-Docker))
+    if (Test-Docker)
     {
-        throw "Docker service is not running"
+        #
+        # Stop service
+        #
+        Stop-Docker
+
+        #
+        # Update service
+        #
+        Write-Output "Updating $global:DockerServiceName..."
+        Copy-File -SourcePath $DockerPath -DestinationPath $env:windir\System32\docker.exe
+
+        try
+        {
+            Copy-File -SourcePath $DockerDPath -DestinationPath $env:windir\System32\dockerd.exe
+        }
+        catch 
+        {
+            Write-Warning "DockerD not yet present."
+        }        
+
+        #
+        # Start service
+        #
+        Start-Docker
     }
-
-    #
-    # Stop service
-    #
-    Stop-Docker
-
-    #
-    # Update service
-    #
-    Write-Output "Updating $global:DockerServiceName..."
-    Copy-File -SourcePath $DockerPath -DestinationPath $env:windir\System32\docker.exe
-
-    #
-    # Start service
-    #
-    Start-Docker
+    else
+    {
+        Install-Docker -DockerPath $DockerPath -DockerDPath $DockerDPath
+    }    
 }
 $global:AdminPriviledges = $false
 $global:DockerServiceName = "Docker"
@@ -173,7 +189,7 @@ Expand-ArchivePrivate
 
 
 function
-Get-InstalledContainerImage
+Test-InstalledContainerImage
 {
     [CmdletBinding()]
     param(
@@ -182,8 +198,10 @@ Get-InstalledContainerImage
         [ValidateNotNullOrEmpty()]
         $BaseImageName
     )
+
+    $path = Join-Path (Join-Path $env:ProgramData "Microsoft\Windows\Images") "*$BaseImageName*"
     
-    return Get-ContainerImage |? IsOSImage |? Name -eq $BaseImageName
+    return Test-Path $path
 }
 
 
@@ -264,20 +282,27 @@ Test-Admin()
 
 
 function 
-Test-ContainerProvider()
+Test-ContainerImageProvider()
 {
     if (-not (Get-Command Install-ContainerImage -ea SilentlyContinue))
     {   
         Wait-Network
 
-        Write-Output "Installing ContainerProvider package..."
-        Install-PackageProvider ContainerProvider -Force | Out-Null
+        Write-Output "Installing ContainerImage provider..."
+        Install-PackageProvider ContainerImage -Force | Out-Null
     }
 
     if (-not (Get-Command Install-ContainerImage -ea SilentlyContinue))
     {
-        throw "Could not install ContainerProvider"
+        throw "Could not install ContainerImage provider"
     }
+}
+
+
+function 
+Test-Client()
+{
+    return (-not ((Get-Command Get-WindowsFeature -ErrorAction SilentlyContinue) -or (Test-Nano)))
 }
 
 
@@ -286,7 +311,10 @@ Test-Nano()
 {
     $EditionId = (Get-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion' -Name 'EditionID').EditionId
 
-    return (($EditionId -eq "NanoServer") -or ($EditionId -eq "ServerTuva"))
+    return (($EditionId -eq "ServerStandardNano") -or 
+            ($EditionId -eq "ServerDataCenterNano") -or 
+            ($EditionId -eq "NanoServer") -or 
+            ($EditionId -eq "ServerTuva"))
 }
 
 
@@ -323,6 +351,12 @@ Wait-Network()
 
 
 function
+Get-DockerImages
+{
+    return docker images
+}
+
+function
 Find-DockerImages
 {
     [CmdletBinding()]
@@ -334,6 +368,139 @@ Find-DockerImages
     )
 
     return docker images | Where { $_ -match $BaseImageName.tolower() }
+}
+
+
+function 
+Install-Docker()
+{
+    [CmdletBinding()]
+    param(
+        [string]
+        [ValidateNotNullOrEmpty()]
+        $DockerPath = "https://aka.ms/tp5/docker",
+
+        [string]
+        [ValidateNotNullOrEmpty()]
+        $DockerDPath = "https://aka.ms/tp5/dockerd"
+    )
+
+    Test-Admin
+
+    Write-Output "Installing Docker..."
+    Copy-File -SourcePath $DockerPath -DestinationPath $env:windir\System32\docker.exe
+
+    try
+    {
+        Write-Output "Installing Docker daemon..."
+        Copy-File -SourcePath $DockerDPath -DestinationPath $env:windir\System32\dockerd.exe
+    }
+    catch 
+    {
+        Write-Warning "DockerD not yet present."
+    }
+
+    $dockerData = "$($env:ProgramData)\docker"
+    $dockerLog = "$dockerData\daemon.log"
+
+    if (-not (Test-Path $dockerData))
+    {
+        Write-Output "Creating Docker program data..."
+        New-Item -ItemType Directory -Force -Path $dockerData | Out-Null
+    }
+
+    $dockerDaemonScript = "$dockerData\runDockerDaemon.cmd"
+
+    New-DockerDaemonRunText | Out-File -FilePath $dockerDaemonScript -Encoding ASCII
+
+    if (Test-Nano)
+    {
+        Write-Output "Creating scheduled task action..."
+        $action = New-ScheduledTaskAction -Execute "cmd.exe" -Argument "/c $dockerDaemonScript > $dockerLog 2>&1"
+
+        Write-Output "Creating scheduled task trigger..."
+        $trigger = New-ScheduledTaskTrigger -AtStartup
+
+        Write-Output "Creating scheduled task settings..."
+        $settings = New-ScheduledTaskSettingsSet -Priority 5
+
+        Write-Output "Registering Docker daemon to launch at startup..."
+        Register-ScheduledTask -TaskName $global:DockerServiceName -Action $action -Trigger $trigger -Settings $settings -User SYSTEM -RunLevel Highest | Out-Null
+
+        Write-Output "Launching daemon..."
+        Start-ScheduledTask -TaskName $global:DockerServiceName
+    }
+    else
+    {
+        if (Test-Path "$($env:SystemRoot)\System32\nssm.exe")
+        {
+            Write-Output "NSSM is already installed"
+        }
+        else
+        {
+            Get-Nsmm -Destination "$($env:SystemRoot)\System32" -WorkingDir "$env:temp"
+        }
+
+        Write-Output "Configuring NSSM for $global:DockerServiceName service..."
+        Start-Process -Wait "nssm" -ArgumentList "install $global:DockerServiceName $($env:SystemRoot)\System32\cmd.exe /s /c $dockerDaemonScript < nul"
+        Start-Process -Wait "nssm" -ArgumentList "set $global:DockerServiceName DisplayName Docker Daemon"
+        Start-Process -Wait "nssm" -ArgumentList "set $global:DockerServiceName Description The Docker Daemon provides management capabilities of containers for docker clients"
+        # Pipe output to daemon.log
+        Start-Process -Wait "nssm" -ArgumentList "set $global:DockerServiceName AppStderr $dockerLog"
+        Start-Process -Wait "nssm" -ArgumentList "set $global:DockerServiceName AppStdout $dockerLog"
+        # Allow 30 seconds for graceful shutdown before process is terminated
+        Start-Process -Wait "nssm" -ArgumentList "set $global:DockerServiceName AppStopMethodConsole 30000"
+
+        Start-Service -Name $global:DockerServiceName
+    }
+
+    #
+    # Waiting for docker to come to steady state
+    #
+    Wait-Docker
+
+    Write-Output "The following images are present on this machine:"
+    foreach ($image in (Get-DockerImages))
+    {
+        Write-Output "    $image"
+    }
+    Write-Output ""
+}
+
+
+function
+New-DockerDaemonRunText
+{
+    return @"
+
+@echo off
+set certs=%ProgramData%\docker\certs.d
+
+if exist %ProgramData%\docker (goto :run)
+mkdir %ProgramData%\docker
+
+:run
+if exist %certs%\server-cert.pem (if exist %ProgramData%\docker\tag.txt (goto :secure))
+
+if not exist %systemroot%\system32\dockerd.exe (goto :legacy)
+
+dockerd -H npipe:// 
+goto :eof
+
+:legacy
+docker daemon -H npipe:// 
+goto :eof
+
+:secure
+if not exist %systemroot%\system32\dockerd.exe (goto :legacysecure)
+dockerd -H npipe:// -H 0.0.0.0:2376 --tlsverify --tlscacert=%certs%\ca.pem --tlscert=%certs%\server-cert.pem --tlskey=%certs%\server-key.pem
+goto :eof
+
+:legacysecure
+docker daemon -H npipe:// -H 0.0.0.0:2376 --tlsverify --tlscacert=%certs%\ca.pem --tlscert=%certs%\server-cert.pem --tlskey=%certs%\server-key.pem
+
+"@
+
 }
 
 
@@ -401,20 +568,13 @@ Wait-Docker()
     {
         try
         {
-            if (Test-Nano)
+            docker version | Out-Null
+
+            if (-not $?)
             {
-                #
-                # Nano doesn't support Invoke-RestMethod, we will parse 'docker ps' output
-                #
-                if ((docker ps 2>&1 | Select-String "error") -ne $null)
-                {
-                    throw "Docker daemon is not running yet"
-                }
+                throw "Docker daemon is not running yet"
             }
-            else
-            {
-                Invoke-RestMethod -Uri http://127.0.0.1:2375/info -Method GET | Out-Null
-            }
+
             $dockerReady = $true
         }
         catch 
