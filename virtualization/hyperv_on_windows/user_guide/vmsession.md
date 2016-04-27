@@ -16,20 +16,29 @@ Continue by coping a file to and from the virtual machine using Copy-Item then d
 If you're managing older virtual machines, use Virtual Machine Connection (VMConnect) or [configure a virtual network for the virtual machine](http://technet.microsoft.com/library/cc816585.aspx). 
 
 In order to connect to a virtual machine with PowerShell Direct,  
-* The virtual machine must be running locally on the host and booted. 
+* The virtual machine must be running locally on the host.
+* The virtual machine must be turned on and running with at least one configured user profile.
 * You must be logged into the host computer as a Hyper-V administrator.
 * You must supply valid user credentials for the virtual machine.
 
 
 ## Create and exit an interactive PowerShell session
 
+The easiest way to run PowerShell commands in a virtual machine is to start an
+interactive session.
+
+When the session starts, the commands that you type run on the virtual machine, just as though you typed them directy into a PowerShell session on the virtual machine itself.
+
+To start an interactive session:
+
 1. On the Hyper-V host, open PowerShell as Administrator.
 
-3. Run the one of the following commands to create a session by using the virtual machine name or GUID:  
-``` PowerShell
-Enter-PSSession -VMName <VMName>
-Enter-PSSession -VMGUID <VMGUID>
-```
+3. Run the one of the following commands to create an interactive session using the virtual machine name or GUID:  
+  
+  ``` PowerShell
+  Enter-PSSession -VMName <VMName>
+  Enter-PSSession -VMGuid <VMGuid>
+  ```
 
 4. Run commands on your virtual machine.
   
@@ -42,10 +51,10 @@ Enter-PSSession -VMGUID <VMGUID>
   Any command run will be running on your virtual machine.  To test, you can run `ipconfig` or `hostname` to make sure that these commands are running in the virtual machine.
   
 5. When you're done, run the following command to close the session:  
-
- ``` PowerShell
- Exit-PSSession 
- ``` 
+  
+   ``` PowerShell
+   Exit-PSSession 
+   ``` 
 
 > Note:  If your session won't connect, see the [troubleshooting](vmsession.md#troubleshooting) for potential causes. 
 
@@ -54,19 +63,36 @@ To learn more about these cmdlets, see [Enter-PSSession](http://technet.microsof
 
 ## Run a script or command with Invoke-Command
 
-You can use the [Invoke-Command](http://technet.microsoft.com/library/hh849719.aspx) cmdlet to run a pre-determined set of commands on the virtual machine. Here is an example of how you can use the Invoke-Command cmdlet. 
+PowerShell Direct with Invoke-Command is perfect for situations where you need to run one command or one script on a virtual machine but do not need to continue interacting with the virtual machine beyond that point.
 
-PSTest is the virtual machine name and the script to run (foo.ps1) is in the script directory on the C drive:
+To run a single command:
 
- ``` PowerShell
- Invoke-Command -VMName PSTest -FilePath C:\script\foo.ps1 
- ```
+1. On the Hyper-V host, open PowerShell as Administrator.
 
-To run a single command, use the **-ScriptBlock** parameter:
+3. Run the one of the following commands to create an interactive session using the virtual machine name or GUID:  
+   
+   ``` PowerShell
+   Invoke-Command -VMName <VMName> -ScriptBlock { cmdlet } 
+   Invoke-Command -VMGuid <VMGuid> -ScriptBlock { cmdlet } 
+   ```
+   
+   The command will execute on the virtual machine, if there is output to the console, it'll be printed to your console.  The connection will be closed automatically as soon as the command runs.
+   
+   
+To run a script:
 
- ``` PowerShell
- Invoke-Command -VMName PSTest -ScriptBlock { cmdlet } 
- ```
+1. On the Hyper-V host, open PowerShell as Administrator.
+
+2. Run the one of the following commands to create an interactive session using the virtual machine name or GUID:  
+   
+   ``` PowerShell
+   Invoke-Command -VMName <VMName> -FilePath C:\host\script_path\script.ps1 
+   Invoke-Command -VMGuid <VMGuid> -FilePath C:\host\script_path\script.ps1 
+   ```
+   
+   The script will execute on the virtual machine.  The connection will be closed automatically as soon as the command runs.
+
+To learn more about this cmdlet, see [Invoke-Command](http://technet.microsoft.com/library/hh849719.aspx). 
 
 
 ## Copy files with New-PSSession and Copy-Item
