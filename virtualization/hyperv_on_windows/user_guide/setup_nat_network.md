@@ -106,12 +106,8 @@ Congratulations!  You now have a virtual NAT network!  To add a virtual machine,
 
 ## Connect a virtual machine
 
-To connect a virtual machine to your new NAT network, connect the internal switch you created in the first step of the [NAT Network Setup](setup_nat_network.md#create-a-nat-virtual-network) section to your virtual machine.
- 
+To connect a virtual machine to your new NAT network, connect the internal switch you created in the first step of the [NAT Network Setup](setup_nat_network.md#create-a-nat-virtual-network) section to your virtual machine using the VM Settings menu.
 
-## Test the NAT network
-
-## Remove NAT network
 
 ## References
 Read more about [NAT networks](https://en.wikipedia.org/wiki/Network_address_translation)
