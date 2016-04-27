@@ -1,3 +1,3 @@
 ---
-redirect_url: walkthrough_install.md
+redirect_url: walkthrough_install
 ---
