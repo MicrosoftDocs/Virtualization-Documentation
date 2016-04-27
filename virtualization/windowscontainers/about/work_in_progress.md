@@ -166,7 +166,6 @@ In this pre-release, docker communication is public if you know where to look.
 
 ### Not all Docker commands work
 * Docker exec fails in Hyper-V Containers.
-* Commands related to DockerHub aren't supported yet.
 
 If anything that isn't on this list fails (or if a command fails differently than expected), let us know via [the forums](https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers).
 
@@ -196,11 +195,6 @@ net use S: \\your\sources\here /User:shareuser [yourpassword]
 Windows Containers cannot be managed/interacted with through a RDP session in TP4.
 
 --------------------------
-
-## PowerShell management
-
-### Not all *-PSSession have a containerid argument
-This is correct.  We're planning on full cimsession support in the future.
 
 ### Exiting a container in a Nano Server container host cannot be done with "exit"
 If you try to exit a container that is in a Nano Server container host, using "exit" will disconnect you from the Nano Server container host, and will not exit the container.
