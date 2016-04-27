@@ -39,17 +39,14 @@
     .PARAMETER HyperV 
         If passed, prepare the machine for Hyper-V containers
 
-    .PARAMETER NATSubnetPrefix
-        Use to override NAT Subnet when in NAT mode.  Defaults to 172.16.0.0/12
-
     .PARAMETER NoRestart
         If a restart is required the script will terminate and will not reboot the machine
 
     .PARAMETER SkipImageImport
         Skips import of the base WindowsServerCore image.
 
-    .PARAMETER $TransparentNetwork
-        If passed, use DHCP configuration.  Otherwise, use NAT. (alias -UseDHCP)
+    .PARAMETER TransparentNetwork
+        If passed, use DHCP configuration.  Otherwise, will use default docker network (NAT). (alias -UseDHCP)
 
     .PARAMETER WimPath
         Path to .wim file that contains the base package image
@@ -78,9 +75,6 @@ param(
 
     [switch]
     $HyperV,
-
-    [string]
-    $NATSubnetPrefix = "172.16.0.0/12",
 
     [switch]
     $NoRestart,
@@ -255,26 +249,11 @@ New-ContainerTransparentNetwork
 
 
 function
-New-ContainerNatNetwork
-{
-    [CmdletBinding()]
-    param(
-        [string]
-        [ValidateNotNullOrEmpty()]
-        $SubnetPrefix
-    )
-
-    Write-Output "Creating container network (NAT)..."
-    New-ContainerNetwork -Name "nat" -Mode NAT -SubnetPrefix $SubnetPrefix | Out-Null
-}
-
-
-function
 Install-ContainerHost
 {
     "If this file exists when Install-ContainerHost.ps1 exits, the script failed!" | Out-File -FilePath $global:ErrorFile
 
-    if (-not ((Get-Command Get-WindowsFeature -ErrorAction SilentlyContinue) -or (Test-Nano)))
+    if (Test-Client)
     {
         if (-not $HyperV)
         {
@@ -337,39 +316,31 @@ Install-ContainerHost
     #
     if ($($PSCmdlet.ParameterSetName) -ne "Staging")
     {
-        Write-Output "Waiting for Hyper-V Management..."
-        $networks = $null
-
-        try
+        if ($TransparentNetwork)
         {
-            $networks = Get-ContainerNetwork -ErrorAction SilentlyContinue
-        }
-        catch
-        {
-            #
-            # If we can't query network, we are in bootstrap mode.  Assume no networks
-            #
-        }
+            Write-Output "Waiting for Hyper-V Management..."
+            $networks = $null
 
-        if ($networks.Count -eq 0)
-        {
-            Write-Output "Enabling container networking..."
-
-            if ($TransparentNetwork)
+            try
             {
+                $networks = Get-ContainerNetwork -ErrorAction SilentlyContinue
+            }
+            catch
+            {
+                #
+                # If we can't query network, we are in bootstrap mode.  Assume no networks
+                #
+            }
+
+            if ($networks.Count -eq 0)
+            {
+                Write-Output "Enabling container networking..."
                 New-ContainerTransparentNetwork
             }
             else
             {
-                New-ContainerNatNetwork $NATSubnetPrefix
-            }
-        }
-        else
-        {
-            Write-Output "Networking is already configured.  Confirming configuration..."
-
-            if ($TransparentNetwork)
-            {
+                Write-Output "Networking is already configured.  Confirming configuration..."
+                
                 $transparentNetwork = $networks |? { $_.Mode -eq "Transparent" }
 
                 if ($transparentNetwork -eq $null)
@@ -402,28 +373,6 @@ Install-ContainerHost
                     {
                         Write-Output "Configured transparent network found: $($transparentNetwork.Name)"
                     }
-                }
-            }
-            else
-            {
-                $subnetPrefix = $NATSubnetPrefix
-                $natNetworkExists = $false
-
-                foreach ($network in $($networks |? { $_.Mode -eq "NAT" }))
-                {
-                    if (($network.Name -eq "nat") -and
-                        ($network.SubnetPrefix -ne ""))
-                    {
-                        $subnetPrefix = $network.SubnetPrefix
-                        $natNetworkExists = $true
-                        break
-                    }
-                }
-
-                if (-not $natNetworkExists)
-                {
-                    Write-Output "We didn't find a configured NAT network; configuring now..."
-                    New-ContainerNatNetwork $subnetPrefix
                 }
             }
         }
@@ -473,17 +422,25 @@ Install-ContainerHost
                     Name = $imageName
                 }
 
-                if ($global:BuildVersion -eq "14300")
+                if ($version -eq "14300")
                 {
                     $InstallParams.Add("MinimumVersion", "10.0.14300.1000")
-                    $versionString = "-MinimumVersion 10.0.14300.1000"
+                    $InstallParams.Add("MaximumVersion", "10.0.14300.1010")
+                    $versionString = "-MinimumVersion 10.0.14300.1000 -MaximumVersion 10.0.14300.1010"
                 }
                 else
                 {
-                    $qfe = $hostBuildInfo[1]
+                    if (Test-Client)
+                    {
+                        $versionString = " [latest version]"
+                    }
+                    else
+                    {
+                        $qfe = $hostBuildInfo[1]
 
-                    $InstallParams.Add("RequiredVersion", "10.0.$version.$qfe")
-                    $versionString = "-RequiredVersion 10.0.$version.$qfe"
+                        $InstallParams.Add("RequiredVersion", "10.0.$version.$qfe")
+                        $versionString = "-RequiredVersion 10.0.$version.$qfe"
+                    }                    
                 }
 
                 Write-Output "Getting Container OS image ($imageName $versionString) from OneGet (this may take a few minutes)..."
@@ -524,7 +481,7 @@ Install-ContainerHost
 
             $imageName = (get-windowsimage -imagepath $WimPath -LogPath ($env:temp+"dism_$(random)_GetImageInfo.log") -Index 1).imagename
 
-            Install-ContainerOsImage -WimPath $WimPath
+            Install-ContainerOsImage -WimPath $WimPath -Force
 
             $newBaseImages += $imageName
         }
@@ -795,6 +752,13 @@ Test-ContainerImageProvider()
     {
         throw "Could not install ContainerImage provider"
     }
+}
+
+
+function 
+Test-Client()
+{
+    return (-not ((Get-Command Get-WindowsFeature -ErrorAction SilentlyContinue) -or (Test-Nano)))
 }
 
 

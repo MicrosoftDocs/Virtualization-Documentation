@@ -31,9 +31,6 @@
     .PARAMETER HyperV 
         If passed, prepare the machine for Hyper-V containers
 
-    .PARAMETER NatSubnetPrefix
-        Prefix for container hosts NAT range.
-
     .PARAMETER ScriptPath
         Path to a private Install-ContainerHost.ps1.  Defaults to https://aka.ms/tp5/Install-ContainerHost
             
@@ -78,10 +75,7 @@ param(
     [Parameter(ParameterSetName="Deploy")]
     [string]
     [ValidateNotNullOrEmpty()]
-    $IsoPath = "https://aka.ms/tp5/serveriso",   
-
-    [string]
-    $NATSubnetPrefix = "172.16.0.0/24",
+    $IsoPath = "https://aka.ms/tp5/serveriso",  
 
     [Parameter(ParameterSetName="Deploy", Mandatory, Position=1)]
     [Security.SecureString]
@@ -232,7 +226,7 @@ if ($VhdPath -and ($(Split-Path -Leaf $VhdPath) -match ".*\.vhdx?"))
 }
 else
 {
-    $global:localVhdName = "$($global:imageBrand).vhd"
+    $global:localVhdName = "$($global:imageBrand).vhdx"
 }
 
 $global:localIsoName = "WindowsServerTP5.iso"
@@ -863,18 +857,14 @@ New-ContainerHost()
 
                     [Parameter(Position=2)]
                     [bool]
-                    $HyperV,
-
-                    [Parameter(Position=3)]
-                    [string]
-                    $NATSubnetPrefix
+                    $HyperV
                     )
 
                 Write-Verbose "Onlining disks..."
                 Get-Disk | ? IsOffline | Set-Disk -IsOffline:$false
 
                 Write-Output "Completing container install..."
-                $installCommand = "$($env:SystemDrive)\Install-ContainerHost.ps1 -PSDirect -NATSubnetPrefix $NATSubnetPrefix "
+                $installCommand = "$($env:SystemDrive)\Install-ContainerHost.ps1 -PSDirect "
 
                 if ($ParameterSetName -eq "Staging")
                 {
@@ -911,7 +901,7 @@ New-ContainerHost()
             {
                 $wimName = $global:localWimName
             }
-            Invoke-Command -VMName $($vm.Name) -Credential $credential -ScriptBlock $guestScriptBlock -ArgumentList $wimName,$global:ParameterSet,$HyperV,$NATSubnetPrefix
+            Invoke-Command -VMName $($vm.Name) -Credential $credential -ScriptBlock $guestScriptBlock -ArgumentList $wimName,$global:ParameterSet,$HyperV
     
             $scriptFailed = Invoke-Command -VMName $($vm.Name) -Credential $credential -ScriptBlock { Test-Path "$($env:SystemDrive)\Install-ContainerHost.err" }
     
@@ -1159,6 +1149,13 @@ Test-ContainerImageProvider()
     {
         throw "Could not install ContainerImage provider"
     }
+}
+
+
+function 
+Test-Client()
+{
+    return (-not ((Get-Command Get-WindowsFeature -ErrorAction SilentlyContinue) -or (Test-Nano)))
 }
 
 
@@ -1605,7 +1602,7 @@ Approve-Eula
     
     $eulaText = @"
 Before installing and using the Windows Server Technical Preview 5 with Containers virtual machine you must: 
-    1.	Review the license terms by navigating to this link: http://aka.ms/tp5/containerseula
+    1.	Review the license terms by navigating to this link: https://aka.ms/tp5/containerseula
     2.	Print and retain a copy of the license terms for your records.
 By downloading and using the Windows Server Technical Preview 5 with Containers virtual machine you agree to such license terms. Please confirm you have accepted and agree to the license terms.
 "@
