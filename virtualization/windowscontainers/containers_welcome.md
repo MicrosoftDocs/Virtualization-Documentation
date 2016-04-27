@@ -26,7 +26,6 @@ Learn how to deploy Windows Containers on Windows Server 2016, Nano Server, and 
 <li>[System Requirements](deployment/system_requirements.md)<br /><br /></li>
 <li>[Deploy Container Host - Windows Server](deployment/deployment.md)<br /><br /></li>
 <li>[Deploy Container Host - Nano Server](deployment/deployment_nano.md)<br /><br /></li>
-<li>[Deploy Container Host - Windows 10](deployment/deployment_windows10.md)<br /><br /></li>
 
 </ul>
 </td>
