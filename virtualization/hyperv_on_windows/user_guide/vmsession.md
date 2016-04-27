@@ -209,6 +209,7 @@ PowerShell Direct has different behaviors when connecting to virtual machines ve
 
 Administrator credentials can be passed to the virtual machine with the `-Credential` parameter or by entering them manually when prompted.
 
+-------------
 
 ## Samples
 
