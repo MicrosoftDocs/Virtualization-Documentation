@@ -190,7 +190,8 @@ else
 {
     $global:imageName = "WindowsServerCore"
 }
-$global:imageVersion = "10586.0"
+
+$global:imageVersion = "14300.1000"
 
 #
 # Branding strings
@@ -395,15 +396,20 @@ Cache-HostFiles
                 }
                 else
                 {
-                    Test-ContainerProvider
+                    Test-ContainerImageProvider
 
                     $imageVersion = "10.0.$global:imageVersion"
-                    Write-Output "Saving Container OS image ($global:imageName) version $imageVersion from OneGet to $($driveLetter): (this may take a few minutes)..."
+                    Write-Output "Saving Container OS image ($global:imageName -MinimumVersion $imageVersion) from OneGet to $($driveLetter): (this may take a few minutes)..."
                     
                     #
                     # TODO: should be error action stop by default
                     #
-                    Save-ContainerImage $global:imageName -Version $imageVersion -Destination "$($driveLetter):\$($global:localWimName)" -ErrorAction Stop
+                    Save-ContainerImage -Name $global:imageName -MinimumVersion $imageVersion -Path $env:TEMP -ErrorAction Stop | Out-Null
+
+                    #
+                    # TODO: don't use env:temp once OneGet supports mounted drives
+                    #
+                    Move-Item -Path (Resolve-Path "$env:TEMP\*-*.wim") -Destination "$($driveLetter):\$global:localWimName"  
                 }
 
                 if (-not (Test-Path "$($driveLetter):\$global:localWimName"))
@@ -1139,19 +1145,19 @@ Test-Admin()
 
 
 function 
-Test-ContainerProvider()
+Test-ContainerImageProvider()
 {
     if (-not (Get-Command Install-ContainerImage -ea SilentlyContinue))
     {   
         Wait-Network
 
-        Write-Output "Installing ContainerProvider package..."
-        Install-PackageProvider ContainerProvider -Force | Out-Null
+        Write-Output "Installing ContainerImage provider..."
+        Install-PackageProvider ContainerImage -Force | Out-Null
     }
 
     if (-not (Get-Command Install-ContainerImage -ea SilentlyContinue))
     {
-        throw "Could not install ContainerProvider"
+        throw "Could not install ContainerImage provider"
     }
 }
 
