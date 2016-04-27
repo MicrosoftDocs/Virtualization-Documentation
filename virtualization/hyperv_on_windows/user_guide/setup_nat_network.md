@@ -12,6 +12,8 @@ Requirements:
 > **Note:**  Currently, Hyper-V only allows you to create one NAT network.
 
 ## NAT Overview
+NAT gives a virtual machine access to network resources using the host computer's IP address and a port.
+
 Network Address Translation (NAT) is a networking mode designed to conserve IP addresses by mapping an external IP address and port to a much larger set of internal IP addresses.  Basically, a NAT switch uses a NAT mapping table to route traffic from an IP Address and port number to the correct internal IP address and port associated with a device on the network (virtual machine, computer, container, etc.)
 
 Additionally, NAT allows multiple virtual machines to host applications that require identical (internal) communication ports by mapping these to unique external ports.
@@ -19,7 +21,7 @@ Additionally, NAT allows multiple virtual machines to host applications that req
 For all of these reasons, NAT networking is very common for container technology (see [Container Networking](https://msdn.microsoft.com/en-us/virtualization/windowscontainers/management/container_networking)). 
 
 
-## Create a NAT network
+## Create a NAT virtual network
 Let's walk through setting up a new NAT network.
 
 1.  Open a PowerShell console as Administrator.  
@@ -32,12 +34,25 @@ Let's walk through setting up a new NAT network.
 
 3. Configure the NAT gateway using [New-NetIPAddress](https://technet.microsoft.com/en-us/library/hh826150.aspx).  
   
-  In order to configure the gateway, you'll need a bit of information about your network:
-  * **IPAddress** -- Specifies the IPv4 or IPv6 address to use as the NAT gateway IP.
+  Here is the generic command:
+  ``` PowerShell
+  New-NetIPAddress – IPAddress <NAT Gateway IP> -PrefixLength <Nat Subnet Prefix Length> -InterfaceIndex <ifIndex>
+  ```
   
-  * **PrefixLength** --  Defines the local subnet size (subnet mask).
+  In order to configure the gateway, you'll need a bit of information about your network:  
+  * **IPAddress** -- NAT Gateway IP specifies the IPv4 or IPv6 address to use as the NAT gateway IP.  
+    The generic form will be a.b.c.1 (e.g. 172.16.0.1).  While the final position doesn’t have to be .1, it usually is (based on prefix length)
+    
+    A common gateway IP is 192.168.0.1  
   
-  * **InterfaceIndex** -- This is the interface index of the virtual switch created above.
+  * **PrefixLength** --  NAT Subnet Prefix Length defines the NAT local subnet size (subnet mask). 
+    The subnet prefix length will be an int value between 0 and 32.
+    
+    0 would map the entire internet, 32 would only allow one mapped IP.  Common values range from 24 to 12 depending on how many IPs need to be attached to the NAT.
+     
+    A common PrefixLength is 24 -- this is a subnet mask of 255.255.255.0
+  
+  * **InterfaceIndex** -- ifIndex is the interface index of the virtual switch created above.
     
     You can find the interface index by running `Get-NetAdapter`
     
@@ -54,28 +69,35 @@ Let's walk through setting up a new NAT network.
 
     ```
     
-    
-    
+    The internal switch will have a name like `vEthernet (SwitchName)` and an Interface Description of `Hyper-V Virtual Ethernet Adapter`.
+  
+  Run the following to create the NAT Gateway:
     
   ``` PowerShell
-  New-NetIPAddress – IPAddress <NAT Gateway IP> -PrefixLength <Nat Subnet Prefix Length> -InterfaceIndex <X>
+  New-NetIPAddress – IPAddress 192.168.0.1 -PrefixLength 24 -InterfaceIndex 24
   ```
 
-4. 
-
+4. Configure the NAT network using [New-NetNat](https://technet.microsoft.com/en-us/library/dn283361(v=wps.630).aspx).  
+  
+  Here is the generic command:
+    
   ``` PowerShell
   New-NetNat –Name NATOutside –InternalIPInterfaceAddressPrefix <NAT subnet prefix>
-
-  <Switch Name> := string (e.g. “MyNat”)
-  <NAT Gateway IP> := a.b.c.1 (e.g. 172.16.0.1) – doesn’t have to be .1 but usually is (based on prefix length) 
-  <Nat Subnet Prefix Length> := int (e.g. 24, 16, or 12 depending on how many IPs need to be attached to the NAT)
-  <X> := int (this is the interface index of the management vNIC – e.g. vEthernet (MyNat))
-  <Nat Subnet Prefix> := a.b.c.0/<Nat Subnet Prefix Length (e.g. 172.16.0.0/24)
   ```
+  
+  In order to configure the gateway, you'll need to provide information about the network and NAT Gateway:  
+  * **Name** -- 
+  * **InternalIPInterfaceAddressPrefix** -- 
+    Nat Subnet Prefix := a.b.c.0/<Nat Subnet Prefix Length (e.g. 172.16.0.0/24)
+  
+  For our example, run the following to setup the NAT network:
+  
 
 ## Connect a virtual machine
 
 ## Test the NAT network
+
+## Remove NAT network
 
 ## References
 Read more about [NAT networks](https://en.wikipedia.org/wiki/Network_address_translation)
