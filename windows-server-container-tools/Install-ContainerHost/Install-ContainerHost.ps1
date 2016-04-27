@@ -316,6 +316,9 @@ Install-ContainerHost
     #
     if ($($PSCmdlet.ParameterSetName) -ne "Staging")
     {
+        netsh advfirewall firewall add rule name="ICMP for containers" dir=in protocol=icmpv4 action=allow
+        netsh advfirewall firewall add rule name="ICMP for containers" dir=out protocol=icmpv4 action=allow
+        
         if ($TransparentNetwork)
         {
             Write-Output "Waiting for Hyper-V Management..."
@@ -478,7 +481,7 @@ Install-ContainerHost
             {
                 throw "Cannot copy from invalid WimPath $WimPath"
             }
-            
+
             $imageName = (get-windowsimage -imagepath $WimPath -LogPath ($env:temp+"dism_$(random)_GetImageInfo.log") -Index 1).imagename
                         
             if ($PSDirect -and (Test-Nano))
