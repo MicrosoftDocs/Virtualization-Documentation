@@ -536,7 +536,25 @@ Install-ContainerHost
     {
         foreach ($baseImage in $newBaseImages)
         {
-            Write-DockerImageTag -BaseImageName $baseImage
+            if ($baseImage -eq "WindowsServerCore")
+            {
+                #
+                # Workaround for trusted installer thing
+                #
+                Write-Output "Creating a first boot layer..."
+
+                $dockerFile = Join-Path $pwd "dockerfile"
+                $dockerFileContents = @"
+"@
+
+                $dockerFileContents | Out-File -FilePath $dockerFile -Encoding ASCII
+
+                docker build -t windowsservercore:10.0.14300.1000 .
+            }
+            else
+            {
+                Write-DockerImageTag -BaseImageName $baseImage
+            }
         }
 
         "tag complete" | Out-File -FilePath "$dockerData\tag.txt" -Encoding ASCII
