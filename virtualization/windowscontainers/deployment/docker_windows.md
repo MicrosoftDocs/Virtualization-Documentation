@@ -6,7 +6,7 @@ author: neilpeterson
 
 **This is preliminary content and subject to change.** 
 
-The Docker engine is not included with Windows and will need to be installed and configured individually. The steps used to run the Docker Engine on Windows will vary from those used to run in on Linux. This document will step through installing and configuring the Docker engine on Windows Server 2016, Nano Server, and Windows Client.
+The Docker engine is not included with Windows and will need to be installed and configured individually. The steps used to run the Docker Engine on Windows will vary from those used to run in on Linux. This document will step through installing and configuring the Docker engine on Windows Server 2016, Nano Server, and Windows Client. Also note, the Docker engine and command line interface have recently been split into two files. This document includes instructions for installing both.
 
 For more information on Docker and the Docker toolset visit [Docker.com](https://www.docker.com/). 
 
@@ -14,12 +14,12 @@ For more information on Docker and the Docker toolset visit [Docker.com](https:/
 
 ## Windows Server 2016
 
-### Install Docker <!--1-->
+### Install Docker daemon <!--1-->
 
-Download docker.exe from `https://aka.ms/tp5/docker` and place it in the System32 directory on the container Host.
+Download dockerd.exe from `https://aka.ms/tp5/dockerd` and place it in the System32 directory on the container Host.
 
 ```none
-wget https://aka.ms/tp5/docker -OutFile $env:SystemRoot\system32\docker.exe
+wget https://aka.ms/tp5/dockerd -OutFile $env:SystemRoot\system32\dockerd.exe
 ```
 
 Create a directory named `c:\programdata\docker`. In this directory create a file named `runDockerDaemon.cmd`.
@@ -130,11 +130,19 @@ The following command will remove the Docker service.
 sc.exe delete Docker
 ```
 
+### Install Docker CLI
+
+Download docker.exe from `https://aka.ms/tp5/docker` and place it in the System32 directory of the container host or any other system where you will run Docker commands.
+
+```none
+wget https://aka.ms/tp5/docker -OutFile $env:SystemRoot\system32\docker.exe
+```
+
 ## Nano Server
 
 ### Install Docker <!--2-->
 
-Download docker.exe from `https://aka.ms/tp5/docker` and copy it to the `windows\system32` folder of the Nano Server Container host.
+Download dockerd.exe from `https://aka.ms/tp5/dockerd` and copy it to the `windows\system32` folder of the Nano Server Container host.
 
 Create a directory named `c:\programdata\docker`. In this directory, create a file named `runDockerDaemon.cmd`.
 
@@ -233,6 +241,14 @@ Run the following to un-register the Docker scheduled task.
 
 ```none
 Get-ScheduledTask -TaskName Docker | UnRegister-ScheduledTask
+```
+
+### Install Docker CLI
+
+Download docker.exe from `https://aka.ms/tp5/docker` and copy it to the windows\system32 folder of the Nano Server Container host.
+
+```none
+wget https://aka.ms/tp5/docker -OutFile $env:SystemRoot\system32\docker.exe
 ```
 
 ## Configuring Docker Startup
