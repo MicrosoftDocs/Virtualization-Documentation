@@ -545,11 +545,15 @@ Install-ContainerHost
 
                 $dockerFile = Join-Path $pwd "dockerfile"
                 $dockerFileContents = @"
+FROM windowsservercore:10.0.14300.1000
+RUN echo "Building first boot layer..."
 "@
 
                 $dockerFileContents | Out-File -FilePath $dockerFile -Encoding ASCII
 
                 docker build -t windowsservercore:10.0.14300.1000 .
+
+                Remove-Item $dockerFile
             }
             else
             {
