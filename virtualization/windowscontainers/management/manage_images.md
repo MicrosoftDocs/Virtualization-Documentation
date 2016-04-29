@@ -47,7 +47,7 @@ Likewise, this command will download and install the Windows Server Core base OS
 Install-ContainerImage -Name WindowsServerCore -Version 10.0.10586.0
 ```
 
-Verify that the images have been installed using the `docker images` command.
+Verify that the images have been installed using the `docker images` command. 
 
 ```none
 docker images
@@ -57,7 +57,40 @@ nanoserver          10.0.14304.1003     40356b90dc80        2 weeks ago         
 windowsservercore   10.0.14304.1003     7837d9445187        2 weeks ago         9.176 GB
 ```  
 
+Once installed, you may also want to tag the images with the ‘latest’ tag. These instructions are detailed in the tag section found below.
+
 > If the Base OS image is downloaded, but is not show when running `docker images`, restart the Docker service using the services control panel applet or the command 'sc docker stop' and then 'sc docker start'
+
+### Tag images
+
+When referencing a container image by name, the Docker engine will search for the latest version of the image. If the latest version cannot be determined, the following error will be thrown.
+
+```none
+docker run -it windowsservercore cmd
+
+Unable to find image 'windowsservercore:latest' locally
+Pulling repository docker.io/library/windowsservercore
+C:\Windows\system32\docker.exe: Error: image library/windowsservercore not found.
+```
+
+After installing the Windows Server Core or Nano Server Base OS images, these will need to be tagged with a version of ‘latest’. To do so, use the `docker tag` command. 
+
+For more information on `docker tag` see [Tag, push, and pull you images on docker.com](https://docs.docker.com/mac/step_six/). 
+
+```none
+docker tag <image id> windowsservercore:latest
+```
+
+When tagged, the output of `docker images` will show two versions of the same image, one with a tag of the image version, and a second with a tag of 'latest'. The image can now be referenced by name.
+
+```none
+docker images
+
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+nanoserver          10.0.14289.1000     df03a4b28c50        2 days ago          783.2 MB
+windowsservercore   10.0.14289.1000     290ab6758cec        2 days ago          9.148 GB
+windowsservercore   latest              290ab6758cec        2 days ago          9.148 GB
+```
 
 ### Offline installation
 
@@ -94,37 +127,6 @@ The downloaded container image can now be copied to a different container host, 
 
 ```none
 Install-ContainerOSImage -WimPath C:\container-image\NanoServer.wim -Force
-```
-
-### Tag images
-
-When referencing a container image by name, the Docker engine will search for the latest version of the image. If the latest version cannot be determined, the following error will be thrown.
-
-```none
-docker run -it windowsservercore cmd
-
-Unable to find image 'windowsservercore:latest' locally
-Pulling repository docker.io/library/windowsservercore
-C:\Windows\system32\docker.exe: Error: image library/windowsservercore not found.
-```
-
-After installing the Windows Server Core or Nano Server Base OS images, these will need to be tagged with a version of ‘latest’. To do so, use the `docker tag` command. 
-
-For more information on `docker tag` see [Tag, push, and pull you images on docker.com](https://docs.docker.com/mac/step_six/). 
-
-```none
-docker tag <image id> windowsservercore:latest
-```
-
-When tagged, the output of `docker images` will show two versions of the same image, one with a tag of the image version, and a second with a tag of 'latest'. The image can now be referenced by name.
-
-```none
-docker images
-
-REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
-nanoserver          10.0.14289.1000     df03a4b28c50        2 days ago          783.2 MB
-windowsservercore   10.0.14289.1000     290ab6758cec        2 days ago          9.148 GB
-windowsservercore   latest              290ab6758cec        2 days ago          9.148 GB
 ```
 
 ### Uninstall OS image
