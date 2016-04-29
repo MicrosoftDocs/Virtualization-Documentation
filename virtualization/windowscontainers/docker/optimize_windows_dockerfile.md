@@ -13,7 +13,7 @@ Several methods can be used to optimize both the Docker build process, and the r
 
 Before examining Docker build optimization, it is important to understand how Docker build works. During the Docker build process, a Dockerfile is consumed, and each actionable instruction is run, one-by-one, in its own temporary container. The result is a new image layer for each actionable instruction. 
 
-Take a look at the following Dockerfile. In this example, the windowsservercore base OS image is being used, IIS installed, and then a simple website created.
+Take a look at the following Dockerfile. In this example, the `windowsservercore` base OS image is being used, IIS installed, and then a simple website created.
 
 ```none
 # Sample Dockerfile
@@ -36,7 +36,7 @@ f0e017e5b088        21 seconds ago       cmd /S /C echo "Hello World - Dockerfil
 6801d964fda5        4 months ago                                                         0 B                                                       0 B
 ```
 
-Each of these layers can be mapped to an instruction from the Dockerfile. The bottom layer (6801d964fda5 in this example) represents the base OS image. One layer up, the IIS installation can be seen. The next layer includes the new website, and so on.
+Each of these layers can be mapped to an instruction from the Dockerfile. The bottom layer (`6801d964fda5` in this example) represents the base OS image. One layer up, the IIS installation can be seen. The next layer includes the new website, and so on.
 
 Dockerfiles can be written to minimize image layers, optimize build performance, and also optimize cosmetic things such as readability. Ultimately, there are many ways to complete the same image build task. Understanding how the format of a Dockerfile effects build time, and the resulting image, improves the automation experience. 
 
@@ -48,7 +48,7 @@ For additional information on Dockerfile best practices, see [Best practices for
 
 ### Group related actions
 
-Because each RUN instruction creates a new layer in the container image, grouping actions into one RUN instruction can reduce the number of layers. While minimizing layers may not effect image size much, grouping related actions can, which will be seen in subsequent examples.
+Because each `RUN` instruction creates a new layer in the container image, grouping actions into one `RUN` instruction can reduce the number of layers. While minimizing layers may not effect image size much, grouping related actions can, which will be seen in subsequent examples.
 
 The following two examples demonstrate the same operation, which results in container images of identical capability, however the two Dockerfiles constructed differently. The resulting images are also compared.  
 
@@ -62,7 +62,7 @@ RUN powershell.exe -command c:\vcredist_x86.exe /quiet
 RUN powershell.exe -command Remove-Item c:\vcredist_x86.exe -Force
 ```
 
-The resulting image consists of four layers, one for the Base image, and then one for each RUN instruction.
+The resulting image consists of four layers, one for the Base image, and then one for each `RUN` instruction.
 
 ```none
 C:\> docker history doc-example-1
@@ -73,7 +73,7 @@ bd6c831b55b8        2 minutes ago       cmd /S /C powershell.exe -command Remove
 91508fd744e5        3 minutes ago       cmd /S /C powershell.exe -command Invoke-WebR   51.92 MB
 6801d964fda5        5 months ago
 ```
-To compare, here is the same operation, however all steps run with the same RUN instruction. Note that each step in the RUN instruction is on a new line of the Dockerfile, the '/' character is being used to line wrap. 
+To compare, here is the same operation, however all steps run with the same RUN instruction. Note that each step in the RUN instruction is on a new line of the Dockerfile, the `/` character is being used to line wrap. 
 
 ```none
 FROM windowsservercore
@@ -85,7 +85,7 @@ RUN powershell -Command \
 	Remove-Item c:\vcredist_x86.exe -Force
 ```
 
-The resulting image here consists of two layers, one for the Base image and then one for the Run instruction.
+The resulting image here consists of two layers, one for the Base image and then one for the `RUN` instruction.
 
 ```none
 C:\> docker history doc-example-2
@@ -111,9 +111,9 @@ RUN powershell -Command \
 
 ### Multiple Lines
 
-When optimizing for Docker build speed, it may be advantageous to separate operations into multiple individual instructions. Having multiple RUN operations increase caching effectiveness. Because individual layers are created for each RUN instruction, if an identical step has already been run in a different Docker Build operation, this cached operation (image layer) is re-used. The result is that Docker Build runtime is decreased.
+When optimizing for Docker build speed, it may be advantageous to separate operations into multiple individual instructions. Having multiple RUN operations increase caching effectiveness. Because individual layers are created for each `RUN` instruction, if an identical step has already been run in a different Docker Build operation, this cached operation (image layer) is re-used. The result is that Docker Build runtime is decreased.
 
-In the following example, both Apache and the Visual Studio Redistribute packages are downloaded, installed, and then the un-needed files cleaned up. This is all done with one RUN instruction. If any of these actions are updated, all actions will re-run.
+In the following example, both Apache and the Visual Studio Redistribute packages are downloaded, installed, and then the un-needed files cleaned up. This is all done with one `RUN` instruction. If any of these actions are updated, all actions will re-run.
 
 ```none
 FROM windowsservercore
@@ -138,7 +138,7 @@ RUN powershell -Command \
     Remove-Item c:\vcredist_x86.exe -Force
 ```
 
-The resulting image consists of two layers, one for the base OS image, and the second that contains all operations from the single RUN instruction.
+The resulting image consists of two layers, one for the base OS image, and the second that contains all operations from the single `RUN` instruction.
 
 ```none
 c:\> docker history doc-sample-1
@@ -147,7 +147,7 @@ IMAGE               CREATED             CREATED BY                              
 6801d964fda5        5 months ago                                                        0 B
 ```
 
-To contrast, here are the same actions broken down into three RUN instructions. In this case, each RUN instruction is cached in a container image layer, and only those that have changed, need to be re-run on subsequent Dockerfile builds.
+To contrast, here are the same actions broken down into three `RUN` instructions. In this case, each `RUN` instruction is cached in a container image layer, and only those that have changed, need to be re-run on subsequent Dockerfile builds.
 
 ```none
 FROM windowsservercore
@@ -172,7 +172,7 @@ RUN powershell -Command \
 	Remove-Item c:\php.zip -Force
 ```
 
-The resulting image consists of four layers, one for the base OS image, and then one for each RUN instruction. Because each RUN instruction has been run in its own layer, any subsequent runs of this Dockerfile or identical set of instructions in a different Dockerfile, will use cached image layer, thus reducing build time. Instruction ordering is important when working with image cache, for more details, see the next section of this document.
+The resulting image consists of four layers, one for the base OS image, and then one for each `RUN` instruction. Because each `RUN` instruction has been run in its own layer, any subsequent runs of this Dockerfile or identical set of instructions in a different Dockerfile, will use cached image layer, thus reducing build time. Instruction ordering is important when working with image cache, for more details, see the next section of this document.
 
 ```none
 C:\> docker history doc-sample-2
@@ -197,7 +197,7 @@ RUN mkdir test-2
 RUN mkdir test-3
 RUN mkdir test-4
 ```
-The resulting image has five layers, one for the base OS image, and one for each of the RUN instructions.
+The resulting image has five layers, one for the base OS image, and one for each of the `RUN` instructions.
 
 ```none
 C:\> docker history doc-sample-1
@@ -210,7 +210,7 @@ afba1a3def0a        38 seconds ago       cmd /S /C mkdir test-4   42.46 MB
 6801d964fda5        5 months ago                                  0 B    
 ```
 
-The docker file has now been slightly modified. Notice that the third RUN instruction has changed. When Docker build is run against this Dockerfile, the first three instructions, which are identical to those in the last example, use the cached image layers. However, because the changed RUN instruction has not been cached, a new layer is created for itself and all subsequent instructions.
+The docker file has now been slightly modified. Notice that the third `RUN` instruction has changed. When Docker build is run against this Dockerfile, the first three instructions, which are identical to those in the last example, use the cached image layers. However, because the changed `RUN` instruction has not been cached, a new layer is created for itself and all subsequent instructions.
 
 ```none
 FROM windowsservercore
@@ -261,14 +261,14 @@ CMD [ "cmd" ]
 
 ### Line Wrapping
 
-Long and complex operations can be separated onto multiple line using the backslash ‘\’ character. The following Dockerfile installs the Visual Studio Redistributable package, removes the installer files, and then creates a configuration file. These three operations are all specified on one line.
+Long and complex operations can be separated onto multiple line using the backslash `\` character. The following Dockerfile installs the Visual Studio Redistributable package, removes the installer files, and then creates a configuration file. These three operations are all specified on one line.
 
 ```none
 FROM windowsservercore
 
 RUN powershell -Command c:\vcredist_x86.exe /quiet ; Remove-Item c:\vcredist_x86.exe -Force ; New-Item c:\config.ini
 ```
-The command can be re-written so that each operation from the one RUN instruction is specified on its own line. 
+The command can be re-written so that each operation from the one `RUN` instruction is specified on its own line. 
 
 ```none
 FROM windowsservercore
