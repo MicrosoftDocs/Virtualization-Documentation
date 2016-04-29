@@ -269,6 +269,15 @@ This can be modified to listen for secure incoming connections with the followin
 docker daemon -D -H npipe:// -H tcp://0.0.0.0:2376 --tlsverify --tlscacert=%certs%\ca.pem --tlscert=%certs%\server-cert.pem --tlskey=%certs%\server-key.pem
 ``` 
 
+### Named pipe access
+
+Docker commands run locally on the container host are received through a named pipe. In order to run these commands, administrative access is needed. Another option is to specify a group that will have access to the named pipe. In the following example, a Windows group named `docker` is given this access.
+
+```none
+dockerd -H npipe:// -G docker
+```  
+
+
 ### Default runtime
 
 Windows containers have two distinct runtime types, Windows Server and Hyper-V. The Docker daemon is configured to use the Windows Server runtime by default, however this can be changed. To set Hyper-V as the default runtime, specify ‘—exec-opt isolation=hyperv` when initializing the Docker daemon.
