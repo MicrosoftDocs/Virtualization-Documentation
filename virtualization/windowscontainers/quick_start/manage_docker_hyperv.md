@@ -13,12 +13,13 @@ The following items will be required for this exercise.
 - A physical Windows container host, or a virtualized host with nested virtualization enabled.
 - The Nano Serverbase OS image. For information on installing Base OS images see, [Install Base OS Images](https://msdn.microsoft.com/en-us/virtualization/windowscontainers/management/manage_images#install-image).
 - The Windows Server 2016 Media - [Download](https://aka.ms/tp5/serveriso).
-
-> Microsoft Azure does not support Hyper-V containers. To complete the Hyper-V Container exercises, you need an on-prem container host.
+- Microsoft Azure does not support Hyper-V containers. To complete the Hyper-V Container exercises, you need an on-prem container host.
 
 ## Hyper-V Container
 
 ### Validate container image
+
+> When running Docker commands locally on the container host, the shell must be running with elevated permissions. Start the command session, or PowerShell session as Administrator. 
 
 Before starting this exercise, validate that the Nano Server base OS image has been installed on your container host. Do so using the `docker images` command. You should see a ‘nanoserver’ image with a tag of `latest`. If you do not, the Nano Server image will need to be installed. For instructions see, [Install Base OS Images](https://msdn.microsoft.com/en-us/virtualization/windowscontainers/management/manage_images#install-image).
 

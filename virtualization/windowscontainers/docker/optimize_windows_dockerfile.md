@@ -73,15 +73,14 @@ bd6c831b55b8        2 minutes ago       cmd /S /C powershell.exe -command Remove
 91508fd744e5        3 minutes ago       cmd /S /C powershell.exe -command Invoke-WebR   51.92 MB
 6801d964fda5        5 months ago
 ```
-To compare, here is the same operation, however all steps run with the same RUN instruction. Note that each step in the RUN instruction is on a new line of the Dockerfile, the '/' character is being used to line wrap. 
+To compare, here is the same operation, however all steps run with the same RUN instruction. Note that each step in the RUN instruction is on a new line of the Dockerfile, the '\' character is being used to line wrap. 
 
 ```none
 FROM windowsservercore
 
 RUN powershell -Command \
 	Invoke-WebRequest -Method Get -Uri "https://download.microsoft.com/download/1/6/B/16B06F60-3B20-4FF2-B699-5E9B7962F9AE/VSU_4/vcredist_x86.exe" -OutFile c:\vcredist_x86.exe ; \
-	c:\vcredist_x86.exe /quiet ; \
-	Sleep 20 ; \
+	start-Process c:\vcredist_x86.exe -ArgumentList '/quiet' -Wait ; \
 	Remove-Item c:\vcredist_x86.exe -Force
 ```
 
@@ -101,9 +100,8 @@ If a file, such as an installer, is not required after it has been used, remove 
 In this example, the Visual Studio Redistribute package is downloaded, executed, and then the executable removed. This is all completed in one RUN operation and results in a single image layer.
 ```none
 RUN powershell -Command \
-	Sleep 2 ; \
 	Invoke-WebRequest -Method Get -Uri "https://download.microsoft.com/download/1/6/B/16B06F60-3B20-4FF2-B699-5E9B7962F9AE/VSU_4/vcredist_x86.exe" -OutFile c:\vcredist_x86.exe ; \
-	c:\vcredist_x86.exe /quiet ; \
+	start-Process c:\vcredist_x86.exe -ArgumentList '/quiet' -Wait ; \
 	Remove-Item c:\vcredist_x86.exe -Force
 ```
 
@@ -130,7 +128,7 @@ RUN powershell -Command \
     
     Expand-Archive -Path c:\php.zip -DestinationPath c:\php ; \
     Expand-Archive -Path c:\apache.zip -DestinationPath c:\ ; \
-    c:\vcredist_x86.exe /quiet ; Sleep 20 ; \
+    start-Process c:\vcredist_x86.exe -ArgumentList '/quiet' -Wait ; \
     
     # Remove unneeded files ; \
      
@@ -153,20 +151,16 @@ To contrast, here are the same actions broken down into three RUN instructions. 
 FROM windowsservercore
 
 RUN powershell -Command \
-	Sleep 2 ; \
 	Invoke-WebRequest -Method Get -Uri https://www.apachelounge.com/download/VC11/binaries/httpd-2.4.18-win32-VC11.zip -OutFile c:\apache.zip ; \
 	Expand-Archive -Path c:\apache.zip -DestinationPath c:\ ; \
 	Remove-Item c:\apache.zip -Force
 
 RUN powershell -Command \
-	Sleep 2 ; \
 	Invoke-WebRequest -Method Get -Uri "https://download.microsoft.com/download/1/6/B/16B06F60-3B20-4FF2-B699-5E9B7962F9AE/VSU_4/vcredist_x86.exe" -OutFile c:\vcredist_x86.exe ; \
-	c:\vcredist_x86.exe /quiet ; \
-	Sleep 20 ; \
+	start-Process c:\vcredist_x86.exe -ArgumentList '/quiet' -Wait ; \
 	Remove-Item c:\vcredist_x86.exe -Force
 
 RUN powershell -Command \
-	Sleep 2 ; \
 	Invoke-WebRequest -Method Get -Uri http://windows.php.net/downloads/releases/php-5.5.33-Win32-VC11-x86.zip -OutFile c:\php.zip ; \
 	Expand-Archive -Path c:\php.zip -DestinationPath c:\php ; \
 	Remove-Item c:\php.zip -Force
@@ -274,7 +268,7 @@ The command can be re-written so that each operation from the one RUN instructio
 FROM windowsservercore
 
 RUN powershell -Command \
-	c:\vcredist_x86.exe /quiet ; \
+	start-Process c:\vcredist_x86.exe -ArgumentList '/quiet' -Wait ; \
 	Remove-Item c:\vcredist_x86.exe -Force ; \
 	New-Item c:\config.ini
 ```

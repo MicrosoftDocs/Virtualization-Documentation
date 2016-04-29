@@ -13,10 +13,9 @@ RUN powershell -Command \
 	Remove-Item c:\apache.zip -Force
 
 RUN powershell -Command \
-	Invoke-WebRequest -Method Get -Uri "https://download.microsoft.com/download/1/6/B/16B06F60-3B20-4FF2-B699-5E9B7962F9AE/VSU_4/vcredist_x86.exe" -OutFile c:\vcredist_x86.exe ; \
-	c:\vcredist_x86.exe /quiet ; \
-	Sleep 20 ; \
-	Remove-Item c:\vcredist_x86.exe -Force
+    	Invoke-WebRequest -Method Get -Uri "https://download.microsoft.com/download/1/6/B/16B06F60-3B20-4FF2-B699-5E9B7962F9AE/VSU_4/vcredist_x86.exe" -OutFile c:\vcredist_x86.exe ; \
+    	start-Process c:\vcredist_x86.exe -ArgumentList '/quiet' -Wait ; \
+    	Remove-Item c:\vcredist_x86.exe -Force
 
 WORKDIR /Apache24/bin
 

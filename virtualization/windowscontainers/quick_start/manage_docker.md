@@ -19,6 +19,8 @@ The following items will be required for this exercise.
 
 Before starting this exercise, validate that the Server Core base OS image has been installed on your container host. Do so using the `docker images` command. You should see a ‘windowsservercore image with a tag of `latest`. If you do not, the Windows Server Core image will need to be installed. For instructions see, [Install Base OS Images](https://msdn.microsoft.com/en-us/virtualization/windowscontainers/management/manage_images#install-image).
 
+> When running Docker commands locally on the container host, the shell must be running with elevated permissions. Start the command session, or PowerShell session as Administrator. 
+
 ```
 docker images
 
