@@ -33,8 +33,6 @@ docker run -it 80:80 django
 
 FROM microsoft/python
 
-MAINTAINER neil.peterson@microsoft.com
-
 LABEL Description="Django" Vendor="Django Software Foundation" Version="1.8.6"
 
 RUN ["pip", "install", "Django==1.8.6"]
