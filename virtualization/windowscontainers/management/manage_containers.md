@@ -19,7 +19,7 @@ Use `docker run` to create a container with Docker.
 PS C:\> docker run -p 80:80 windowsservercoreiis
 ```
 
-For more information on the Docker run command, see the [Docker run reference]( https://docs.docker.com/engine/reference/run/).
+For more information on the Docker `run` command, see the [Docker run reference]( https://docs.docker.com/engine/reference/run/).
 
 ### Stop a container
 
@@ -53,7 +53,7 @@ prickly_pike
 To remove all containers with Docker.
 
 ```none
-PS C:\> docker rm $(docker ps -a -q)
+PS C:\> docker rm $(docker ps -aq)
 
 dc3e282c064d
 2230b0433370
