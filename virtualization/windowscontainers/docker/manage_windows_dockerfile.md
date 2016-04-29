@@ -105,7 +105,7 @@ RUN ["powershell","New-Item","c:/test"]
 Examining the resulting image, the command that was run is `powershell new-item c:/test`.
 
 ```none
-C:\> docker history doc-exe-method
+docker history doc-exe-method
 
 IMAGE               CREATED             CREATED BY                    SIZE                COMMENT
 b3452b13e472        2 minutes ago       powershell New-Item c:/test   30.76 MB
@@ -122,7 +122,7 @@ RUN powershell new-item c:\test
 Which results in a run instruction of `cmd /S /C powershell new-item c:\test`. 
 
 ```none
-C:\> docker history doc-shell-method
+docker history doc-shell-method
 
 IMAGE               CREATED             CREATED BY                              SIZE                COMMENT
 062a543374fc        19 seconds ago      cmd /S /C powershell new-item c:\test   30.76 MB
@@ -195,9 +195,9 @@ This example will add all files that begin with config, to the `c:\temp` directo
 ADD config* c:/temp/
 ```
 
-This example will download the Visual Studio redistributable package into the `c:\temp` directory of the container image.
+This example will download Python for Windows into the `c:\temp` directory of the container image.
 ```none
-ADD https://download.microsoft.com/download/1/6/B/16B06F60-3B20-4FF2-B699-5E9B7962F9AE/VSU_4/vcredist_x86.exe /temp/vcredist_x86.exe
+ADD https://www.python.org/ftp/python/3.5.1/python-3.5.1.exe /temp/python-3.5.1.exe
 ```
 
 For detailed information on the `ADD` instruction, see the [ADD Reference on Docker.com]( https://docs.docker.com/engine/reference/builder/#add). 
@@ -282,30 +282,30 @@ RUN powershell -command Expand-Archive -Path c:\apache.zip -DestinationPath c:\
 
 ### REST Calls
 
-PowerShell, and the `Invoke-WebRequest` command, can be useful when gathering information or files from a web service. For instance, if building an image that includes the Apache webserver, the following example could be used.
+PowerShell, and the `Invoke-WebRequest` command, can be useful when gathering information or files from a web service. For instance, if building an image that includes Python, the following example could be used.
 
 ```none
 FROM windowsservercore
 
-RUN powershell -Command \
-	$ErrorActionPreference = 'Stop'; \
-	Invoke-WebRequest -Method Get -Uri https://www.apachelounge.com/download/VC11/binaries/httpd-2.4.18-win32-VC11.zip -OutFile c:\apache.zip ; \
-	Expand-Archive -Path c:\apache.zip -DestinationPath c:\ ; \
-	Remove-Item c:\apache.zip -Force
+RUN powershell.exe -Command \
+  $ErrorActionPreference = 'Stop'; \
+  Invoke-WebRequest https://www.python.org/ftp/python/3.5.1/python-3.5.1.exe -OutFile c:\python-3.5.1.exe ; \
+  Start-Process c:\python-3.5.1.exe -ArgumentList '/quiet InstallAllUsers=1 PrependPath=1' -Wait ; \
+  Remove-Item c:\python-3.5.1.exe -Force
 ```
 
 > Invoke-WebRequest is not currently supported in Nano Server
 
-Another option for using PowerShell to download files during the image creation process is to use the .Net WebClient library. This can increase download performance. The following example downloads the Apache Webserver software, using the WebClient library.
+Another option for using PowerShell to download files during the image creation process is to use the .Net WebClient library. This can increase download performance. The following example downloads the Python software, using the WebClient library.
 
 ```none
 FROM windowsservercore
 
-RUN powershell -Command \
-	$ErrorActionPreference = 'Stop'; \
-	(New-Object System.Net.WebClient).DownloadFile('https://www.apachelounge.com/download/VC11/binaries/httpd-2.4.18-win32-VC11.zip ', 'c:\apache.zip') ; \
-	Expand-Archive -Path c:\apache.zip -DestinationPath c:\ ; \
-	Remove-Item c:\apache.zip -Force
+RUN powershell.exe -Command \
+  $ErrorActionPreference = 'Stop'; \
+  (New-Object System.Net.WebClient).DownloadFile('https://www.python.org/ftp/python/3.5.1/python-3.5.1.exe','c:\python-3.5.1.exe') ; \
+  Start-Process c:\python-3.5.1.exe -ArgumentList '/quiet InstallAllUsers=1 PrependPath=1' -Wait ; \
+  Remove-Item c:\python-3.5.1.exe -Force
 ```
 
 > WebClient is not currently supported in Nano Server
@@ -369,7 +369,7 @@ Successfully built e2aafdfbe392
 The result is a new container image, in this example named 'iis'.
 
 ```none
-C:\> docker images
+docker images
 
 REPOSITORY          TAG                 IMAGE ID            CREATED              VIRTUAL SIZE
 iis                 latest              e2aafdfbe392        About a minute ago   207.8 MB
