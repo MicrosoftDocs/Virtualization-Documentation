@@ -31,20 +31,19 @@ docker run -it python-django
 
 FROM windowsservercore
 
-MAINTAINER neil.peterson@microsoft.com
-
 LABEL Description="Python" Vendor="Python Software Foundation" Version="3.5.1"
 
 RUN powershell.exe -Command \
+	$ErrorActionPreference = 'Stop'; \
  	Invoke-WebRequest https://www.python.org/ftp/python/3.5.1/python-3.5.1.exe -OutFile c:\python-3.5.1.exe ; \
-	c:\python-3.5.1.exe /quiet InstallAllUsers=1 PrependPath=1 ; \
+	start-Process  c:\python-3.5.1.exe -ArgumentList '/quiet InstallAllUsers=1 PrependPath=1' -Wait  ; \
 	Sleep 60 ; \
 	Remove-Item c:\python-3.5.1.exe -Force
 
 RUN ["pip", "install", "Django==1.8.6"]
 
 CMD ["django-admin --version"]
-	
+		
 ```
 
 

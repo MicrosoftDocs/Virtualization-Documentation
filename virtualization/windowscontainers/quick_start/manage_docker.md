@@ -19,6 +19,8 @@ The following items will be required for this exercise.
 
 Before starting this exercise, validate that the Server Core base OS image has been installed on your container host. Do so using the `docker images` command. You should see a ‘windowsservercore image with a tag of `latest`. If you do not, the Windows Server Core image will need to be installed. For instructions see, [Install Base OS Images](https://msdn.microsoft.com/en-us/virtualization/windowscontainers/management/manage_images#install-image).
 
+> When running Docker commands locally on the container host, the shell must be running with elevated permissions. Start the command session, or PowerShell session as Administrator. 
+
 ```
 docker images
 
@@ -133,23 +135,23 @@ docker rmi windowsservercoreiis
 
 ## Dockerfile
 
-Through the last exercise, a container was manually created, modified, and then captured into a new container image. Docker includes a method for automating this process using what is called a dockerfile. This exercise will have identical results as the last, however this time the process will be completely automated.
+Through the last exercise, a container was manually created, modified, and then captured into a new container image. Docker includes a method for automating this process using what is called a Dockerfile. This exercise will have identical results as the last, however this time the process will be completely automated.
 
 ### Create IIS Image
 
-On the container host, create a directory `c:\build`, and in this directory create a file named `dockerfile`.
+On the container host, create a directory `c:\build`, and in this directory create a file named `Dockerfile`.
 
 ```none
-powershell new-item c:\build\dockerfile -Force
+powershell new-item c:\build\Dockerfile -Force
 ```
 
-Open the dockerfile in notepad.
+Open the Dockerfile in notepad.
 
 ```none
-notepad c:\build\dockerfile
+notepad c:\build\Dockerfile
 ```
 
-Copy the following text into the dockerfile and save the file. These commands instruct Docker to create a new image, using `windowsservercore` as the base, and include the modifications specified with `RUN`. 
+Copy the following text into the Dockerfile and save the file. These commands instruct Docker to create a new image, using `windowsservercore` as the base, and include the modifications specified with `RUN`. 
 
 For more information on Dockerfiles, see the [Dockerfiles on Windows](../docker/manage_windows_dockerfile.md).
 

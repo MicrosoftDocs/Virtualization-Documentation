@@ -288,6 +288,7 @@ PowerShell, and the `Invoke-WebRequest` command, can be useful when gathering in
 FROM windowsservercore
 
 RUN powershell -Command \
+	$ErrorActionPreference = 'Stop'; \
 	Invoke-WebRequest -Method Get -Uri https://www.apachelounge.com/download/VC11/binaries/httpd-2.4.18-win32-VC11.zip -OutFile c:\apache.zip ; \
 	Expand-Archive -Path c:\apache.zip -DestinationPath c:\ ; \
 	Remove-Item c:\apache.zip -Force
@@ -301,6 +302,7 @@ Another option for using PowerShell to download files during the image creation 
 FROM windowsservercore
 
 RUN powershell -Command \
+	$ErrorActionPreference = 'Stop'; \
 	(New-Object System.Net.WebClient).DownloadFile('https://www.apachelounge.com/download/VC11/binaries/httpd-2.4.18-win32-VC11.zip ', 'c:\apache.zip') ; \
 	Expand-Archive -Path c:\apache.zip -DestinationPath c:\ ; \
 	Remove-Item c:\apache.zip -Force
