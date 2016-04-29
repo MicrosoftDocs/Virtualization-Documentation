@@ -52,7 +52,7 @@ Because each `RUN` instruction creates a new layer in the container image, group
 
 The following two examples demonstrate the same operation, which results in container images of identical capability, however the two Dockerfiles constructed differently. The resulting images are also compared.  
 
-This first example downloads, extracts, and cleans up the Visual Studio redistributable package. Each of these actions are run in their own RUN instruction.
+This first example downloads, extracts, and cleans up the Visual Studio redistributable package. Each of these actions are run in their own `RUN` instruction.
 
 ```none
 FROM windowsservercore
@@ -74,7 +74,7 @@ bd6c831b55b8        2 minutes ago       cmd /S /C powershell.exe -command Remove
 6801d964fda5        5 months ago
 ```
 
-To compare, here is the same operation, however all steps run with the same RUN instruction. Note that each step in the RUN instruction is on a new line of the Dockerfile, the '\' character is being used to line wrap. 
+To compare, here is the same operation, however all steps run with the same `RUN` instruction. Note that each step in the `RUN` instruction is on a new line of the Dockerfile, the '\' character is being used to line wrap. 
 
 ```none
 FROM windowsservercore
@@ -98,7 +98,7 @@ IMAGE               CREATED             CREATED BY                              
 
 If a file, such as an installer, is not required after it has been used, remove the file to reduce image size. This needs to occur in the same step in which the file was copied into the image layer. Doing so prevents the file from persisting in a lower level image layer.
 
-In this example, the Visual Studio Redistribute package is downloaded, executed, and then the executable removed. This is all completed in one RUN operation and results in a single image layer.
+In this example, the Visual Studio Redistribute package is downloaded, executed, and then the executable removed. This is all completed in one `RUN` operation and results in a single image layer.
 ```none
 RUN powershell -Command \
 	$ErrorActionPreference = 'Stop'; \
@@ -111,7 +111,7 @@ RUN powershell -Command \
 
 ### Multiple Lines
 
-When optimizing for Docker build speed, it may be advantageous to separate operations into multiple individual instructions. Having multiple RUN operations increase caching effectiveness. Because individual layers are created for each `RUN` instruction, if an identical step has already been run in a different Docker Build operation, this cached operation (image layer) is re-used. The result is that Docker Build runtime is decreased.
+When optimizing for Docker build speed, it may be advantageous to separate operations into multiple individual instructions. Having multiple `RUN` operations increase caching effectiveness. Because individual layers are created for each `RUN` instruction, if an identical step has already been run in a different Docker Build operation, this cached operation (image layer) is re-used. The result is that Docker Build runtime is decreased.
 
 In the following example, both Apache and the Visual Studio Redistribute packages are downloaded, installed, and then the un-needed files cleaned up. This is all done with one `RUN` instruction. If any of these actions are updated, all actions will re-run.
 
