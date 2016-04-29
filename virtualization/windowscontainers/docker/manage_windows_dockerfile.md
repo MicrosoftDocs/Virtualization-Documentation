@@ -14,7 +14,7 @@ The Docker engine includes tools for automating the creation of container images
 
 The Docker components that drive this automation are the Dockerfile, and the `docker build` command.
 
-- **Dockerfile** – a text file containing the instruction needed to create a new container image. These instructions include identification of an existing image to be used as a base, commands to be run during the image creation process, and commands that will be run when new instances of the container image are deployed.
+- **Dockerfile** – a text file containing the instruction needed to create a new container image. These instructions include identification of an existing image to be used as a base, commands to be run during the image creation process, and a command that will run when new instances of the container image are deployed.
 - **Docker build** - the Docker engine command that consumes a Dockerfile, and triggers the image creation process.
 
 This document will introduce using a Dockerfile with Windows containers, discuss syntax, and detail commonly used Dockerfile instructions. 
@@ -185,7 +185,7 @@ ADD test1.txt c:\temp\
 
 **Examples**
 
-This example adds the contents of the source directory, to a directory named sqllite in the container image.
+This example adds the contents of the source directory, to a directory named `sqllite` in the container image.
 ```none
 ADD source /sqlite/
 ```
@@ -204,7 +204,7 @@ For detailed information on the `ADD` instruction, see the [ADD Reference on Doc
 
 ### WORKDIR
 
-The WORKDIR instruction, sets a working directory for other Dockerfile instructions, such as RUN, CMD, and also the working directory for running instances of the container image.
+The `WORKDIR` instruction, sets a working directory for other Dockerfile instructions, such as `RUN`, `CMD`, and also the working directory for running instances of the container image.
 
 **Format**
 
