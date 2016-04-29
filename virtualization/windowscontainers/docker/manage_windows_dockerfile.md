@@ -6,13 +6,13 @@ author: neilpeterson
 
 **This is preliminary content and subject to change.** 
 
-The Docker engine includes tools for automating the creation of container images. While container images can be created manually using the ‘docker commit’ command, adopting an automated image creation process provides many benefits including:
+The Docker engine includes tools for automating the creation of container images. While container images can be created manually using the `docker commit` command, adopting an automated image creation process provides many benefits including:
 
 - Storing container images as code.
 - Rapid and precise recreation of container images for maintenance and upgrade purposes.
 - Continuous integration between container images and the development cycle.
 
-The Docker components that drive this automation are the Dockerfile, and the Docker build command.
+The Docker components that drive this automation are the Dockerfile, and the `docker build` command.
 
 - **Dockerfile** – a text file containing the instruction needed to create a new container image. These instructions include identification of an existing image to be used as a base, commands to be run during the image creation process, and commands that will be run when new instances of the container image are deployed.
 - **Docker build** - the Docker engine command that consumes a Dockerfile, and triggers the image creation process.
@@ -27,7 +27,7 @@ For a complete look at Dockerfiles, see the [Dockerfile reference at docker.com]
 
 ### Basic Syntax
 
-In its most basic form, a Dockerfile can be very simple. The following example creates a new image, which includes IIS, and a ‘hello world’ site. This example includes comments (indicated with a ‘#’), that explain each step. Subsequent sections of this article will go into more detail on Dockerfile syntax rules, and Dockerfile instructions.
+In its most basic form, a Dockerfile can be very simple. The following example creates a new image, which includes IIS, and a ‘hello world’ site. This example includes comments (indicated with a `#`), that explain each step. Subsequent sections of this article will go into more detail on Dockerfile syntax rules, and Dockerfile instructions.
 
 ```none
 # Sample Dockerfile
@@ -56,7 +56,7 @@ Dockerfile instructions provide the Docker Engine with the steps needed to creat
 
 ### FROM
 
-The FROM instruction, sets the container image that will be used during the new image creation process. For instance, when using the instruction `FROM windowsservercore`, the resulting image is derived from, and has a dependency on, the Windows Server Core base OS image. If the specified image is not present on the system where the Docker build process is being run, the Docker engine will attempt to download the image from a public or private image registry.
+The `FROM` instruction, sets the container image that will be used during the new image creation process. For instance, when using the instruction `FROM windowsservercore`, the resulting image is derived from, and has a dependency on, the Windows Server Core base OS image. If the specified image is not present on the system where the Docker build process is being run, the Docker engine will attempt to download the image from a public or private image registry.
 
 **Format**
 
@@ -76,7 +76,7 @@ For detailed information on the FROM instruction, see the [FROM Reference on Doc
 
 ### RUN
 
-The RUN instruction specifies commands to be run, and captured into the new container image. These commands can include items such as installing software, creating files and directories, and creating environment configuration.
+The `RUN` instruction specifies commands to be run, and captured into the new container image. These commands can include items such as installing software, creating files and directories, and creating environment configuration.
 
 **Format**
 
@@ -92,7 +92,7 @@ RUN ["<executable", "<param 1>", "<param 2>"
 RUN <command>
 ```
 
-The difference between the exec. and shell form, is in how the RUN instruction is executed. When using the exec method, the specified program is run explicitly. 
+The difference between the exec. and shell form, is in how the `RUN` instruction is executed. When using the exec method, the specified program is run explicitly. 
 
 The following example used the exec. form.
 
@@ -130,7 +130,7 @@ IMAGE               CREATED             CREATED BY                              
 
 **Windows Considerations**
  
-On Windows, when using the RUN instruction with the exec format, backslashes must be escaped.
+On Windows, when using the `RUN` instruction with the exec format, backslashes must be escaped.
 
 ```none
 RUN ["powershell","New-Item","c:\\test"]
@@ -152,11 +152,11 @@ For detailed information on the RUN instruction, see the [RUN Reference on Docke
 
 ### ADD
 
-The ADD instruction, copies files and directories to the filesystem of the container. The files and directories can be relative to the Dockerfile, or on a remote location with a URL specification.
+The `ADD` instruction, copies files and directories to the filesystem of the container. The files and directories can be relative to the Dockerfile, or on a remote location with a URL specification.
 
 **Format**
 
-The ADD instruction takes a format of: 
+The `ADD` instruction takes a format of: 
 
 ```none
 ADD <source> <destination>
@@ -170,7 +170,7 @@ ADD [“<source>” “<destination>”]
 
 **Windows Considerations**
  
-On Windows, the destination format must use forward slashes. For example, these are valid ADD instructions.
+On Windows, the destination format must use forward slashes. For example, these are valid `ADD` instructions.
 
 ```none
 ADD test1.txt /temp/
@@ -190,17 +190,17 @@ This example adds the contents of the source directory, to a directory named sql
 ADD source /sqlite/
 ```
 
-This example will add all files that begin with config, to the c:\temp directory of the container image.
+This example will add all files that begin with config, to the `c:\temp` directory of the container image.
 ```none
 ADD config* c:/temp/
 ```
 
-This example will download the Visual Studio redistributable package into the c:\temp directory of the container image.
+This example will download the Visual Studio redistributable package into the `c:\temp` directory of the container image.
 ```none
 ADD https://download.microsoft.com/download/1/6/B/16B06F60-3B20-4FF2-B699-5E9B7962F9AE/VSU_4/vcredist_x86.exe /temp/vcredist_x86.exe
 ```
 
-For detailed information on the ADD instruction, see the [ADD Reference on Docker.com]( https://docs.docker.com/engine/reference/builder/#add). 
+For detailed information on the `ADD` instruction, see the [ADD Reference on Docker.com]( https://docs.docker.com/engine/reference/builder/#add). 
 
 ### WORKDIR
 
@@ -208,7 +208,7 @@ The WORKDIR instruction, sets a working directory for other Dockerfile instructi
 
 **Format**
 
-The WORKDIR instruction takes a format of: 
+The `WORKDIR` instruction takes a format of: 
 
 ```none
 WORKDIR <path to working directory>
@@ -228,15 +228,15 @@ WORKDIR c:\\windows
 WORKDIR c:\\Apache24\\bin
 ```
 
-For detailed information on the WORKDIR instruction, see the [WORKDIR Reference on Docker.com]( https://docs.docker.com/engine/reference/builder/#workdir). 
+For detailed information on the `WORKDIR` instruction, see the [WORKDIR Reference on Docker.com]( https://docs.docker.com/engine/reference/builder/#workdir). 
 
 ### CMD
 
-The `CMD` instruction, sets the default command to be run when deploying an instance of the container image. For instance, if the container will be hosting an NGINX web server, the `CMD` might include instructions to start the web server, such as `nginx.exe`. If multiple CMD instructions are specified in a Dockerfile, only the last is evaluated.
+The `CMD` instruction, sets the default command to be run when deploying an instance of the container image. For instance, if the container will be hosting an NGINX web server, the `CMD` might include instructions to start the web server, such as `nginx.exe`. If multiple `CMD` instructions are specified in a Dockerfile, only the last is evaluated.
 
 **Format**
 
-The CMD instruction takes a format of: 
+The `CMD` instruction takes a format of: 
 
 ```none
 # exec form
@@ -250,7 +250,7 @@ CMD <command>
 
 **Windows Considerations**
 
-On Windows, file paths specified in the CMD instruction must use forward slashes. For example, these are valid CMD instructions.
+On Windows, file paths specified in the `CMD` instruction must use forward slashes. For example, these are valid `CMD` instructions.
 
 ```none
 # exec form
@@ -266,13 +266,13 @@ CMD c:\\Apache24\\bin\\httpd.exe -w
 CMD c:\Apache24\bin\httpd.exe -w
 ```
 
-For detailed information on the CMD instruction, see the [CMD Reference on Docker.com]( https://docs.docker.com/engine/reference/builder/#cmd). 
+For detailed information on the `CMD` instruction, see the [CMD Reference on Docker.com]( https://docs.docker.com/engine/reference/builder/#cmd). 
 
 ## PowerShell in Dockerfile
 
 ### PowerShell Commands
 
-Powershell commands can be run in a Dockerfile using the RUN operation. 
+Powershell commands can be run in a Dockerfile using the `RUN` operation. 
 
 ```none
 FROM windowsservercore
@@ -312,7 +312,7 @@ RUN powershell -Command \
 
 In some cases, it may be helpful to copy a script into the containers being used during the image creation process, and then run from within the container. Note - this will limit any image layer caching, and decrease readability of the Dockerfile.
 
-This example copies a script from the build machine, into the container using the ADD instruction. This script is the run using the RUN instruction.
+This example copies a script from the build machine, into the container using the `ADD` instruction. This script is the run using the RUN instruction.
 
 ```
 FROM windowsservercore
