@@ -197,9 +197,9 @@ Enter-PSSession : Parameter set cannot be resolved using the specified named par
 ```
 
 **Potential causes:**  
-`-RunAsAdministrator` is not supported when connecting to virtual machines.  
-
-PowerShell Direct has different behaviors when connecting to virtual machines versus Windows containers.  When connecting to a Windows container, the `-RunAsAdministrator` flag allows Administrator connections without explicit credentials.  Since virtual machines do not give the host implied administrator access, you need to explicitly enter credentials.
+* `-RunAsAdministrator` is not supported when connecting to virtual machines.
+     
+  When connecting to a Windows container, the `-RunAsAdministrator` flag allows Administrator connections without explicit credentials.  Since virtual machines do not give the host implied administrator access, you need to explicitly enter credentials.
 
 Administrator credentials can be passed to the virtual machine with the `-Credential` parameter or by entering them manually when prompted.
 
@@ -222,8 +222,9 @@ Enter-PSSession : The input VMName parameter does not resolve to any virtual mac
 
 **Potential causes:**  
 * You are not a Hyper-V Administrator.  
-  You can use the [Get-VM](http://technet.microsoft.com/library/hh848479.aspx) cmdlet to check that the credentials you're using have the Hyper-V administrator role and to see which VMs are running locally on the host and booted.
 * The virtual machine doesn't exist.
+
+You can use the [Get-VM](http://technet.microsoft.com/library/hh848479.aspx) cmdlet to check that the credentials you're using have the Hyper-V administrator role and to see which VMs are running locally on the host and booted.
 
 
 -------------
