@@ -184,7 +184,7 @@ IMAGE               CREATED             CREATED BY          SIZE                
 
 The Docker Hub registry contains pre-built images which can be downloaded onto a container host. Once these images have been downloaded, they can be used as the base for Windows container Applications.
 
-To see a list of images available from Docker Hub use the `docker search` command. Note – the Windows Serve Core or Nano Server base OS images will need to be installed before pulling these dependent container images from Docker Hub.
+To see a list of images available from Docker Hub use the `docker search` command. Note – the Windows Server Core or Nano Server base OS images will need to be installed before pulling these dependent container images from Docker Hub.
 
 Most of these images have a Windows Server Core and a Nano Server version. To get a specific version just add the tag ":windowsservercore" or ":nanoserver". The "latest" tag will return the Windows Server Core version by default, unless there is only a Nano Server version available.
 
