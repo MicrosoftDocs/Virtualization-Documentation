@@ -181,13 +181,22 @@ $PSVersionTable.PSVersion
 Enter-PSSession : An error has occurred which Windows PowerShell cannot handle. A remote session might have ended.
 ```
 
+or
+
+```
+New-PSSession : An error has occurred which Windows PowerShell cannot handle. A remote session might have ended.
+```
+
+
 **Potential causes:**
-* The VM is not running
+* The virtual machine exists but is not running.
 * The guest OS does not support PowerShell Direct (see [requirements](#Requirements))
 * PowerShell isn't available in the guest yet
   * The operating system hasn't finished booting
   * The operating system can't boot correctly
   * Some boot time event needs user input
+  
+You can use the [Get-VM](http://technet.microsoft.com/library/hh848479.aspx) cmdlet to check to see which VMs are running on the host.
 
 ### Error: Parameter set cannot be resolved
 
