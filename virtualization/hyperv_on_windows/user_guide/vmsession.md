@@ -119,8 +119,8 @@ By the same token, sessions hold state.  Since persistent sessions persist, any 
 2. Run one of the following commands to create a persistent PowerShell session to the virtual machine using `New-PSSession`.
   
   ``` PowerShell
-  $s = New-PSSession -VMName <VMName>
-  $s = New-PSSession -VMGuid <VMGuid>
+  $s = New-PSSession -VMName <VMName> -Credential (Get-Credential)
+  $s = New-PSSession -VMGuid <VMGuid> -Credential (Get-Credential)
   ```
   
   Provide credentials for the virtual machine when prompted.
@@ -211,7 +211,9 @@ Administrator credentials can be passed to the virtual machine with the `-Creden
 
 -------------
 
-## Samples
+## Samples and User Guides
+
+PowerShell Direct supports JEA (Just Enough Administration).  Checkout this user guide to try it.
 
 Checkout samples on [GitHub](https://github.com/Microsoft/Virtualization-Documentation/search?l=powershell&q=-VMName+OR+-VMGuid&type=Code&utf8=%E2%9C%93).
 
