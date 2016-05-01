@@ -531,6 +531,9 @@ Install-ContainerHost
             }
         }
     }
+    
+    #restart engine so images are seen
+    restart-service docker
 
     if ($newBaseImages.Count -gt 0)
     {
@@ -542,8 +545,11 @@ Install-ContainerHost
                 # Workaround for trusted installer thing
                 #
                 Write-Output "Creating a first boot layer..."
+                
+                $dockerFileDir = Join-Path $env:TEMP "dockerTemp"
+                md -force $dockerFileDir
 
-                $dockerFile = Join-Path $pwd "dockerfile"
+                $dockerFile = Join-Path $dockerFileDir "dockerfile"
                 $dockerFileContents = @"
 FROM windowsservercore:10.0.14300.1000
 RUN echo "Building first boot layer..."
@@ -551,7 +557,7 @@ RUN echo "Building first boot layer..."
 
                 $dockerFileContents | Out-File -FilePath $dockerFile -Encoding ASCII
 
-                docker build -t windowsservercore:10.0.14300.1000 .
+                docker build -t windowsservercore:10.0.14300.1000 $dockerFileDir
 
                 Remove-Item $dockerFile
             }
