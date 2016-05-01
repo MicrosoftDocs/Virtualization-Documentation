@@ -189,8 +189,6 @@ Enter-PSSession : An error has occurred which Windows PowerShell cannot handle. 
   * The operating system can't boot correctly
   * Some boot time event needs user input
 
-You can use the [Get-VM](http://technet.microsoft.com/library/hh848479.aspx) cmdlet to check that the credentials you're using have the Hyper-V administrator role and to see which VMs are running locally on the host and booted.
-
 ### Error: Parameter set cannot be resolved
 
 **Error message:**  
@@ -217,7 +215,15 @@ Enter-PSSession : The credential is invalid.
   * There are no user accounts in the guest (the OS hasn't booted before)
   * If connecting as Administrator:  Administrator has not been set as an active user.  Learn more [here](https://technet.microsoft.com/en-us/library/hh825104.aspx).
   
-### Enter-PSSession : The input VMName parameter does not resolve to any virtual machine.
+### Error: The input VMName parameter does not resolve to any virtual machine.
+
+**Error message:**  
+Enter-PSSession : The input VMName parameter does not resolve to any virtual machine.
+
+**Potential causes:**  
+* You are not a Hyper-V Administrator.  
+  You can use the [Get-VM](http://technet.microsoft.com/library/hh848479.aspx) cmdlet to check that the credentials you're using have the Hyper-V administrator role and to see which VMs are running locally on the host and booted.
+* The virtual machine doesn't exist.
 
 
 -------------
