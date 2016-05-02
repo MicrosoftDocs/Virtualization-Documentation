@@ -929,9 +929,6 @@ Install-Docker()
 
         Write-Output "Registering Docker daemon to launch at startup..."
         Register-ScheduledTask -TaskName $global:DockerServiceName -Action $action -Trigger $trigger -Settings $settings -User SYSTEM -RunLevel Highest | Out-Null
-
-        Write-Output "Launching daemon..."
-        Start-ScheduledTask -TaskName $global:DockerServiceName
     }
     else
     {
@@ -953,9 +950,9 @@ Install-Docker()
         Start-Process -Wait "nssm" -ArgumentList "set $global:DockerServiceName AppStdout $dockerLog"
         # Allow 30 seconds for graceful shutdown before process is terminated
         Start-Process -Wait "nssm" -ArgumentList "set $global:DockerServiceName AppStopMethodConsole 30000"
-
-        Start-Service -Name $global:DockerServiceName
     }
+
+    Start-Docker
 
     #
     # Waiting for docker to come to steady state
@@ -1014,6 +1011,7 @@ Start-Docker()
     if (Test-Nano)
     {
         Start-ScheduledTask -TaskName $global:DockerServiceName
+        Start-Sleep -Seconds 5
     }
     else
     {
@@ -1033,7 +1031,7 @@ Stop-Docker()
         #
         # ISSUE: can we do this more gently?
         #
-        Get-Process $global:DockerServiceName | Stop-Process -Force
+        Get-Process dockerd | Stop-Process -Force
     }
     else
     {
