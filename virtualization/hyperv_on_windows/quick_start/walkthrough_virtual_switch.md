@@ -1,3 +1,16 @@
+---
+title: Create a Virtual Switch 
+description: Create a Virtual Switch 
+keywords: windows 10, hyper-v
+author: neilpeterson
+manager: timlt
+ms.date: 05/02/2016
+ms.topic: article
+ms.prod: windows-10-hyperv
+ms.service: windows-10-hyperv
+ms.assetid: 532195c6-564b-4954-97c2-5a5795368c09
+---
+
 # Create a Virtual Switch 
 
 Before you create a virtual machine in Hyper-V you need to provide a way for this virtual machine to connect to a physical network. Hyper-V includes software based networking technology that allows a virtual machines network card to connect to a virtual switch, providing network connectivity. Each virtual switch created in Hyper-V can be configured with one of three connection types:

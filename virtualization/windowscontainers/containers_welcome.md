@@ -1,5 +1,14 @@
 ---
+title: Windows Containers Documentation
+description: Windows containers documentation
+keywords: docker, containers
 author: neilpeterson
+manager: timlt
+ms.date: 05/02/2016
+ms.topic: article
+ms.prod: windows-contianers
+ms.service: windows-containers
+ms.assetid: 74c9d604-0915-4d89-bc69-0263b76bc66b
 ---
 
 # Windows Containers Documentation

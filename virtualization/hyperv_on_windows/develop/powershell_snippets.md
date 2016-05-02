@@ -1,3 +1,16 @@
+---
+title: PowerShell Snippets
+description: PowerShell Snippets
+keywords: windows 10, hyper-v
+author: scooley
+manager: timlt
+ms.date: 05/02/2016
+ms.topic: article
+ms.prod: windows-10-hyperv
+ms.service: windows-10-hyperv
+ms.assetid: dc33c703-c5bc-434e-893b-0c0976b7cb88
+---
+
 # PowerShell Snippets
 
 PowerShell is an awesome scripting, automation, and management tool for Hyper-V.  Here is a toolbox for exploring some of the cool things it can do!

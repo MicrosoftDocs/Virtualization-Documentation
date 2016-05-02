@@ -1,3 +1,16 @@
+---
+title: Deploy a Windows Virtual Machine in Hyper-V on Windows 10
+description: Deploy a Windows Virtual Machine in Hyper-V on Windows 10
+keywords: windows 10, hyper-v
+author: neilpeterson
+manager: timlt
+ms.date: 05/02/2016
+ms.topic: article
+ms.prod: windows-10-hyperv
+ms.service: windows-10-hyperv
+ms.assetid: 66723f33-b12c-49d1-82cf-71ba9d6087e9
+---
+
 # Deploy a Windows Virtual Machine in Hyper-V on Windows 10
 
 You can create a virtual machine and deploy an operating system to it in many different ways, for example using Windows Deployment Services, attaching a prepared virtual hard drive, or manually using the installation media. This article walks through how to create a virtual machine and deploy an operating system to the virtual machine using the operating system installation media.

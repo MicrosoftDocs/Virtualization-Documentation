@@ -1,3 +1,16 @@
+---
+title: Set up a NAT network
+description: Set up a NAT network
+keywords: windows 10, hyper-v
+author: scooley
+manager: timlt
+ms.date: 05/02/2016
+ms.topic: article
+ms.prod: windows-10-hyperv
+ms.service: windows-10-hyperv
+ms.assetid: 1f8a691c-ca75-42da-8ad8-a35611ad70ec
+---
+
 # Set up a NAT network
 
 Windows 10 Hyper-V allows native network address translation (NAT) for a virtual network.
