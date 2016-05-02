@@ -1,5 +1,14 @@
 ---
-author: cwatsonMSFT
+title: Try pre-release features for Hyper-V
+description: Try pre-release features for Hyper-V
+keywords: windows 10, hyper-v
+author: scooley
+manager: timlt
+ms.date: 05/02/2016
+ms.topic: article
+ms.prod: windows-10-hyperv
+ms.service: windows-10-hyperv
+ms.assetid: 426c87cc-fa50-4b8d-934e-0b653d7dea7d
 ---
 
 # Try pre-release features for Hyper-V

@@ -1,3 +1,16 @@
+---
+title: Using checkpoints
+description: Using checkpoints
+keywords: windows 10, hyper-v
+author: scooley
+manager: timlt
+ms.date: 05/02/2016
+ms.topic: article
+ms.prod: windows-10-hyperv
+ms.service: windows-10-hyperv
+ms.assetid: d9c398c4-ee72-45c6-9ce8-4f06569dae6c
+---
+
 # Using checkpoints to revert virtual machines to a previous state
 
 One of the great benefits to virtualization is the ability to easily save the state of a virtual machine. In Hyper-V this is done through the use of virtual machine checkpoints. You may want to create a virtual machine checkpoint before making software configuration changes, applying a software update, or installing new software. If a system change were to cause an issue, the virtual machine can be reverted to the state at which it was when then checkpoint was taken.
