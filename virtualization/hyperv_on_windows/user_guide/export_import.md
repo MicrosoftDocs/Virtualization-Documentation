@@ -1,3 +1,16 @@
+---
+title: Export and Import virtual machines
+description: Export and Import virtual machines
+keywords: windows 10, hyper-v
+author: neilpeterson
+manager: timlt
+ms.date: 05/02/2016
+ms.topic: article
+ms.prod: windows-10-hyperv
+ms.service: windows-10-hyperv
+ms.assetid: 7fd996f5-1ea9-4b16-9776-85fb39a3aa34
+---
+
 # Export and Import virtual machines
 
 You can use Hyper-V's export and import functionality to quickly duplicate virtual machines.  Exported virtual machines can be used for backup or as a way to move a virtual machine between Hyper-V hosts.  

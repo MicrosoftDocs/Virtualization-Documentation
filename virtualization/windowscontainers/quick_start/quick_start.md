@@ -1,5 +1,14 @@
 ---
+title: Windows Containers Quick Start
+description: Windows containers quick start.
+keywords: docker, containers
 author: neilpeterson
+manager: timlt
+ms.date: 05/02/2016
+ms.topic: article
+ms.prod: windows-contianers
+ms.service: windows-containers
+ms.assetid: 4878f5d2-014f-4f3c-9933-97f03348a147
 ---
 
 # Windows Containers Quick Start

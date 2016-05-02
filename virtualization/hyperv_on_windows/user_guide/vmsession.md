@@ -1,3 +1,16 @@
+---
+title: Manage Windows Virtual Machines with PowerShell Direct
+description: Manage Windows Virtual Machines with PowerShell Direct
+keywords: windows 10, hyper-v
+author: scooley
+manager: timlt
+ms.date: 05/02/2016
+ms.topic: article
+ms.prod: windows-10-hyperv
+ms.service: windows-10-hyperv
+ms.assetid: fb228e06-e284-45c0-b6e6-e7b0217c3a49
+---
+
 # Manage Windows Virtual Machines with PowerShell Direct
  
 You can use PowerShell Direct to remotely manage a Windows 10 or Windows Server Technical Preview virtual machine from a Windows 10 or Windows Server Technical Preview Hyper-V host. PowerShell Direct allows PowerShell management inside a virtual machine regardless of the network configuration or remote management settings on either the Hyper-V host or the virtual machine. This makes it easier for Hyper-V Administrators to automate and script management and configuration tasks.
@@ -125,6 +138,9 @@ By the same token, sessions hold state.  Since persistent sessions persist, any 
   
   Provide credentials for the virtual machine when prompted.
   
+  > **Warning:**  
+   There is a bug in builds before 14500.  If credentials aren't explicitly specified with `-Credential` flag, the service in the guest will crash and will need to be restarted.  If you hit this issue, work-around instructions are available [here](vmsession.md#error-a-remote-session-might-have-ended).
+  
 3. Copy a file into the virtual machine.
   
   To move `C:\host_path\data.txt` to the virtual machine from the host machine, run:
@@ -171,23 +187,39 @@ If you are running a supported build, it is also possible your version of PowerS
 You can check your PowerShell version build by running the following command:
 
 ``` PowerShell
-$PSVersionTable.PSVersion
+$PSVersionTable.PSVersionTable
 ```
 
 
 ### Error: A remote session might have ended
+
+> **Note:**  
+For Enter-PSSession between host builds 10240 and 12400, all errors below reported as "A remote session might have ended".
+
 **Error message:**
 ```
 Enter-PSSession : An error has occurred which Windows PowerShell cannot handle. A remote session might have ended.
 ```
 
+or
+
+```
+New-PSSession : An error has occurred which Windows PowerShell cannot handle. A remote session might have ended.
+```
+
 **Potential causes:**
-* The VM is not running
+* The virtual machine exists but is not running.
 * The guest OS does not support PowerShell Direct (see [requirements](#Requirements))
 * PowerShell isn't available in the guest yet
   * The operating system hasn't finished booting
   * The operating system can't boot correctly
   * Some boot time event needs user input
+
+You can use the [Get-VM](http://technet.microsoft.com/library/hh848479.aspx) cmdlet to check to see which VMs are running on the host.
+
+
+
+
 
 ### Error: Parameter set cannot be resolved
 
@@ -207,7 +239,9 @@ Administrator credentials can be passed to the virtual machine with the `-Creden
 ### Error: The credential is invalid.
 
 **Error message:**  
+```
 Enter-PSSession : The credential is invalid.
+```
 
 **Potential causes:** 
 * The guest credentials couldn't be validated
@@ -218,7 +252,9 @@ Enter-PSSession : The credential is invalid.
 ### Error: The input VMName parameter does not resolve to any virtual machine.
 
 **Error message:**  
+```
 Enter-PSSession : The input VMName parameter does not resolve to any virtual machine.
+```
 
 **Potential causes:**  
 * You are not a Hyper-V Administrator.  

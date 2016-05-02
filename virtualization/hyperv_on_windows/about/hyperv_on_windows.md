@@ -1,3 +1,16 @@
+---
+title: Introduction to Hyper-V on Windows 10
+description: Introduction to Hyper-V on Windows 10.
+keywords: windows 10, hyper-v
+author: scooley
+manager: timlt
+ms.date: 05/02/2016
+ms.topic: article
+ms.prod: windows-10-hyperv
+ms.service: windows-10-hyperv
+ms.assetid: eb2b827c-4a6c-4327-9354-50d14fee7ed8
+---
+
 # Introduction to Hyper-V on Windows 10
 
 Whether you are a software developer, an ITPro, or a tech enthusiast, many of you need to run multiple operating systems, occasionally on many different machines. Not all of us have access to a full suite of labs to house all these machines, and so virtualization can be a space and time saver.
