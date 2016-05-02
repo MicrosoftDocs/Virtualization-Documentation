@@ -921,7 +921,7 @@ New-ContainerHost()
     }
 
     Write-Output "See https://msdn.microsoft.com/virtualization/windowscontainers/containers_welcome for more information about using Containers."
-    Write-Output "The source code for these installation scripts is available here: https://github.com/Microsoft/Virtualization-Documentation/tree/master/windows-server-container-tools"
+    Write-Output "The source code for these installation scripts is available here: https://github.com/Microsoft/Virtualization-Documentation/tree/live/windows-server-container-tools"
 }
 $global:AdminPriviledges = $false
 $global:DockerServiceName = "Docker"
