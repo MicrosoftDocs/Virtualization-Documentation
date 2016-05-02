@@ -38,7 +38,7 @@ Let's walk through setting up a new NAT network.
   
   Here is the generic command:
   ``` PowerShell
-  New-NetIPAddress – IPAddress <NAT Gateway IP> -PrefixLength <Nat Subnet Prefix Length> -InterfaceIndex <ifIndex>
+  New-NetIPAddress –IPAddress <NAT Gateway IP> -PrefixLength <Nat Subnet Prefix Length> -InterfaceIndex <ifIndex>
   ```
   
   In order to configure the gateway, you'll need a bit of information about your network:  
