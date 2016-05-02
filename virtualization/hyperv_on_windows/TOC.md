@@ -15,6 +15,7 @@
 ## [Work with Checkpoints](user_guide/checkpoints.md)
 ## [Export and Import Virtual Machines](user_guide/export_import.md)
 ## [Connect with PowerShell Direct](user_guide/vmsession.md)
+## [Create pre-release VMs](user_guide/create_pre-release_vm.md) 
 # Manage the Hyper-V Hosts
 ## [Manage Remote Hyper-V Hosts](user_guide/remote_host_management.md)
 ## [Enable Nested Virtualization](user_guide/nesting.md)
