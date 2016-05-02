@@ -1,3 +1,7 @@
+---
+redirect_url: ../user_guide/export_import
+---
+
 # Virtual Machine Export and Import 
 
 **This document has been deprecated.**

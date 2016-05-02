@@ -1,3 +1,16 @@
+---
+title: Manage Windows Virtual Machines with PowerShell Direct
+description: Manage Windows Virtual Machines with PowerShell Direct
+keywords: windows 10, hyper-v
+author: scooley
+manager: timlt
+ms.date: 05/02/2016
+ms.topic: article
+ms.prod: windows-10-hyperv
+ms.service: windows-10-hyperv
+ms.assetid: fb228e06-e284-45c0-b6e6-e7b0217c3a49
+---
+
 # Manage Windows Virtual Machines with PowerShell Direct
  
 You can use PowerShell Direct to remotely manage a Windows 10 or Windows Server Technical Preview virtual machine from a Windows 10 or Windows Server Technical Preview Hyper-V host. PowerShell Direct allows PowerShell management inside a virtual machine regardless of the network configuration or remote management settings on either the Hyper-V host or the virtual machine. This makes it easier for Hyper-V Administrators to automate and script management and configuration tasks.
