@@ -301,14 +301,6 @@ Cache-HostFiles
                 Write-Output "Converting WIM to VHD..."
                 if ($WindowsImage -eq "NanoServer")
                 {
-                    #
-                    # Workaround an issue in the RTM version of Convert-WindowsImage.ps1
-                    #
-                    if (Get-Module Hyper-V)
-                    {
-                        Add-WindowsImageTypes
-                    }
-
                     Import-Module "$($driveLetter):\NanoServer\NanoServerImageGenerator.psm1"
                                         
                     if ($Staging)
