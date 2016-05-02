@@ -29,7 +29,7 @@ Requirements:
 ## NAT Overview
 NAT gives a virtual machine access to network resources using the host computer's IP address and a port.
 
-Network Address Translation (NAT) is a networking mode designed to conserve IP addresses by mapping an external IP address and port to a much larger set of internal IP addresses.  Basically, a NAT switch uses a NAT mapping table to route traffic from an IP Address and port number to the correct internal IP address associated with a device on the network (virtual machine, computer, container, etc.)
+Network Address Translation (NAT) is a networking mode designed to conserve IP addresses by mapping an external IP address and port to a much larger set of internal IP addresses.  Basically, a NAT switch uses a NAT mapping table to route traffic from an IP address and port number to the correct internal IP address associated with a device on the network (virtual machine, computer, container, etc.)
 
 Additionally, NAT allows multiple virtual machines to host applications that require identical (internal) communication ports by mapping these to unique external ports.
 
@@ -51,7 +51,7 @@ Let's walk through setting up a new NAT network.
   
   Here is the generic command:
   ``` PowerShell
-  New-NetIPAddress –IPAddress <NAT Gateway IP> -PrefixLength <Nat Subnet Prefix Length> -InterfaceIndex <ifIndex>
+  New-NetIPAddress –IPAddress <NAT Gateway IP> -PrefixLength <NAT Subnet Prefix Length> -InterfaceIndex <ifIndex>
   ```
   
   In order to configure the gateway, you'll need a bit of information about your network:  
@@ -61,7 +61,7 @@ Let's walk through setting up a new NAT network.
     A common gateway IP is 192.168.0.1  
   
   * **PrefixLength** --  NAT Subnet Prefix Length defines the NAT local subnet size (subnet mask). 
-    The subnet prefix length will be an int value between 0 and 32.
+    The subnet prefix length will be an integer value between 0 and 32.
     
     0 would map the entire internet, 32 would only allow one mapped IP.  Common values range from 24 to 12 depending on how many IPs need to be attached to the NAT.
      
@@ -74,7 +74,7 @@ Let's walk through setting up a new NAT network.
     Your output should look something like this:
     
     ```
-    PS C:\Users\sarah> Get-NetAdapter
+    PS C:\> Get-NetAdapter
     
     Name                  InterfaceDescription               ifIndex Status       MacAddress           LinkSpeed
     ----                  --------------------               ------- ------       ----------           ---------
@@ -105,7 +105,7 @@ Let's walk through setting up a new NAT network.
   
   * **InternalIPInterfaceAddressPrefix** -- NAT subnet prefix describes both the NAT Gateway IP prefix from above as well as the NAT Subnet Prefix Length from above.
     
-    The generic form will be a.b.c.0/Nat Subnet Prefix Length 
+    The generic form will be a.b.c.0/NAT Subnet Prefix Length 
     
     From the above, for this example, we'll use 192.168.0.0/24
   
