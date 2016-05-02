@@ -301,15 +301,15 @@ Cache-HostFiles
                 Write-Output "Converting WIM to VHD..."
                 if ($WindowsImage -eq "NanoServer")
                 {
-                    Import-Module "$($driveLetter):\NanoServer\NanoServerImageGenerator.psm1"
+                    Import-Module "$($driveLetter):\NanoServer\NanoServerImageGenerator\NanoServerImageGenerator.psm1"
                                         
                     if ($Staging)
                     {
-                        New-NanoServerImage -ImageFormat "vhdx" -DeploymentType Guest -Edition Standard -MediaPath "$($driveLetter):\" -TargetPath $global:localVhdPath -Containers -AdministratorPassword $Password
+                        New-NanoServerImage -DeploymentType Guest -Edition Standard -MediaPath "$($driveLetter):\" -TargetPath $global:localVhdPath -Containers -AdministratorPassword $Password
                     }
                     else
                     {
-                        New-NanoServerImage -ImageFormat "vhdx" -DeploymentType Guest -Edition Standard -MediaPath "$($driveLetter):\" -TargetPath $global:localVhdPath -Compute -Containers -AdministratorPassword $Password
+                        New-NanoServerImage -DeploymentType Guest -Edition Standard -MediaPath "$($driveLetter):\" -TargetPath $global:localVhdPath -Compute -Containers -AdministratorPassword $Password
                     }
                 }
                 else
