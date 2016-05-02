@@ -192,19 +192,12 @@ $PSVersionTable.PSVersionTable
 
 
 ### Error: A remote session might have ended
-
 > **Note:**  
 For Enter-PSSession between host builds 10240 and 12400, all errors below reported as "A remote session might have ended".
 
 **Error message:**
 ```
 Enter-PSSession : An error has occurred which Windows PowerShell cannot handle. A remote session might have ended.
-```
-
-or
-
-```
-New-PSSession : An error has occurred which Windows PowerShell cannot handle. A remote session might have ended.
 ```
 
 **Potential causes:**
@@ -217,12 +210,22 @@ New-PSSession : An error has occurred which Windows PowerShell cannot handle. A 
 
 You can use the [Get-VM](http://technet.microsoft.com/library/hh848479.aspx) cmdlet to check to see which VMs are running on the host.
 
+**Error message:**  
+```
+New-PSSession : An error has occurred which Windows PowerShell cannot handle. A remote session might have ended.
+```
 
+**Potential causes:**
+* One of the reasons listed above -- they all are equally applicable to `New-PSSession`  
+* A bug in current builds where credentials must be explicitly passed with `-Credential`.  When this happens, the entire service hangs in the guest operating system and needs to be restarted.  You can check if the session is still available with Enter-PSSession.
 
+To work around the credential issue, log into the virtual machine using VMConnect, open PowerShell, and restart the vmicvmsession service using the following PowerShell:
 
+``` PowerShell
+Restart-Service -Name vmicvmsession
+```
 
 ### Error: Parameter set cannot be resolved
-
 **Error message:**  
 ``` 
 Enter-PSSession : Parameter set cannot be resolved using the specified named parameters.
