@@ -24,7 +24,7 @@ Search in the Azure Market Place for ‘containers’, this will return ‘Windo
 
 Select the image, and click `create`.
 
-![](./media/tp41.png)
+![](media/newazure1.png)
 
 Give the Virtual Machine a name, select a user name and a password.
 
