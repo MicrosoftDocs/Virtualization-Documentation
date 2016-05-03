@@ -36,20 +36,9 @@ Deploying a Windows container host has different steps depending on the operatin
 <td>[Install Docker](#docker)</td>
 <td>Follow these steps to install and configure the Docker on Windows.</td>
 </tr>
-</table>
-
-<br />
-
-These steps need to be taken if Hyper-V containers will be used. Note, the steps marked with and * are only necessary if the container host will be virtualized.
-
-<table border="1" style="background-color:FFFFCC;border-collapse:collapse;border:1px solid FFCC00;color:000000;width:100%" cellpadding="5" cellspacing="5">
-<tr valign="top">
-<td width = "30%"><strong>Deployment Action</strong></td>
-<td width = "70%"><strong>Details</strong></td>
-</tr>
 <tr>
-<td>[Configure nested virtualization *](#nest)</td>
-<td>If the container host is virtualized, Nested Virtualization needs to be configured.</td>
+<td>[Configure nested virtualization](#nest)</td>
+<td>If the container host will be virtualized and running Hyper-V container.</td>
 </tr>
 <tr>
 <td>[Enable Hyper-V role](#hypv) </td>
