@@ -38,7 +38,7 @@ Deploying a Windows container host has different steps depending on the operatin
 </tr>
 <tr>
 <td>[Configure nested virtualization](#nest)</td>
-<td>This is only required if the container host will be virtualized and running Hyper-V container.</td>
+<td>If the container host will be virtualized and running Hyper-V container.</td>
 </tr>
 <tr>
 <td>[Enable Hyper-V role](#hypv) </td>
