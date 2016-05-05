@@ -17,8 +17,6 @@ ms.assetid: 4878f5d2-014f-4f3c-9933-97f03348a147
 
 This Windows container quick start introduces the product, guides you through deployment options, and then provide hands lab using the product. 
 
-All of these documents assume you have Hyper-V enabled and installed.  [This guide](https://msdn.microsoft.com/en-us/virtualization/hyperv_on_windows/quick_start/walkthrough_install) tells you how to enable Hyper-V.
-
 ## Introducing Windows Containers
 
 These resources introduce the Windows Container technology. Start here to gain a basic understanding of Windows Containers.
