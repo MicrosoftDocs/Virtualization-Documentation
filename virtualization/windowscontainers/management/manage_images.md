@@ -47,13 +47,13 @@ WindowsServerCore    10.0.14300.1000  ContainerImag... Container OS Image of Win
 To download and install the Nano Server base OS image, run the following. The `-version` parameter is optional. Without a base OS image version specified, the latest version will be installed.
 
 ```none
-Install-ContainerImage -Name NanoServer -Version 10.0.10586.0
+Install-ContainerImage -Name NanoServer -Version 10.0.14300.1010
 ```
 
 Likewise, this command will download and install the Windows Server Core base OS image. The `-version` parameter is optional. Without a base OS image version specified, the latest version will be installed.
 
 ```none
-Install-ContainerImage -Name WindowsServerCore -Version 10.0.10586.0
+Install-ContainerImage -Name WindowsServerCore -Version 10.0.14300.1000
 ```
 
 Verify that the images have been installed using the `docker images` command. 
@@ -62,8 +62,8 @@ Verify that the images have been installed using the `docker images` command.
 docker images
 
 REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
-nanoserver          10.0.14304.1003     40356b90dc80        2 weeks ago         793.3 MB
-windowsservercore   10.0.14304.1003     7837d9445187        2 weeks ago         9.176 GB
+nanoserver          10.0.14300.1010     40356b90dc80        2 weeks ago         793.3 MB
+windowsservercore   10.0.14304.1000     7837d9445187        2 weeks ago         9.176 GB
 ```  
 
 Once installed, you may also want to tag the images with the ‘latest’ tag. These instructions are detailed in the tag section found below.
@@ -96,8 +96,8 @@ When tagged, the output of `docker images` will show two versions of the same im
 docker images
 
 REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
-nanoserver          10.0.14289.1000     df03a4b28c50        2 days ago          783.2 MB
-windowsservercore   10.0.14289.1000     290ab6758cec        2 days ago          9.148 GB
+nanoserver          10.0.14300.1010     df03a4b28c50        2 days ago          783.2 MB
+windowsservercore   10.0.14300.1000     290ab6758cec        2 days ago          9.148 GB
 windowsservercore   latest              290ab6758cec        2 days ago          9.148 GB
 ```
 
@@ -122,8 +122,8 @@ Output:
 ```none
 Name                 Version                 Description
 ----                 -------                 -----------
-NanoServer           10.0.10586.0            Container OS Image of Windows Server 2016 Techn...
-WindowsServerCore    10.0.10586.0            Container OS Image of Windows Server 2016 Techn...
+NanoServer           10.0.14300.1010         Container OS Image of Windows Server 2016 Techn...
+WindowsServerCore    10.0.14300.1000         Container OS Image of Windows Server 2016 Techn...
 ```
 
 To download an image, use the `Save-ContainerImage` command.
@@ -155,8 +155,8 @@ docker images
 
 REPOSITORY             TAG                 IMAGE ID            CREATED              VIRTUAL SIZE
 windowsservercoreiis   latest              ca40b33453f8        About a minute ago   44.88 MB
-windowsservercore      10.0.10586.0        6801d964fda5        2 weeks ago          0 B
-nanoserver             10.0.10586.0        8572198a60f1        2 weeks ago          0 B
+windowsservercore      10.0.14300.1000     6801d964fda5        2 weeks ago          0 B
+nanoserver             10.0.14300.1010     8572198a60f1        2 weeks ago          0 B
 ```
 
 ### Create new image
@@ -238,7 +238,7 @@ docker images
 
 REPOSITORY          TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
 microsoft/aspnet    latest              b3842ee505e5        5 hours ago         101.7 MB
-windowsservercore   10.0.10586.0        6801d964fda5        2 weeks ago         0 B
+windowsservercore   10.0.14300.1000     6801d964fda5        2 weeks ago         0 B
 windowsservercore   latest              6801d964fda5        2 weeks ago         0 B
 ```
 
