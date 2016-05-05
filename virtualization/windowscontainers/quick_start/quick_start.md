@@ -17,6 +17,8 @@ ms.assetid: 4878f5d2-014f-4f3c-9933-97f03348a147
 
 This Windows container quick start introduces the product, guides you through deployment options, and then provide hands lab using the product. 
 
+All of these documents assume you have Hyper-V enabled and installed.  [This guide](https://msdn.microsoft.com/en-us/virtualization/hyperv_on_windows/quick_start/walkthrough_install) tells you how to enable Hyper-V.
+
 ## Introducing Windows Containers
 
 These resources introduce the Windows Container technology. Start here to gain a basic understanding of Windows Containers.
@@ -36,6 +38,7 @@ Windows Containers can be deployed to Windows Server 2016, Nano Server, and Wind
 The Docker quick start walks through common container management tasks such as deploying containers, creating container images, and managing the life cycle of a container. See this guide as your entry point into working with Windows containers.
 
 [Windows Server Containers - Quick Start](./manage_docker.md)
+
 [Hyper-V Containers - Quick Start](./manage_docker_hyperv.md)
 
 ## Next Steps
