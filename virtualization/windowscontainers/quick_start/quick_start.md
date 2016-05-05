@@ -36,6 +36,7 @@ Windows Containers can be deployed to Windows Server 2016, Nano Server, and Wind
 The Docker quick start walks through common container management tasks such as deploying containers, creating container images, and managing the life cycle of a container. See this guide as your entry point into working with Windows containers.
 
 [Windows Server Containers - Quick Start](./manage_docker.md)
+
 [Hyper-V Containers - Quick Start](./manage_docker_hyperv.md)
 
 ## Next Steps
