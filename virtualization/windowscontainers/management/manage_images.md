@@ -68,7 +68,7 @@ windowsservercore   10.0.14304.1003     7837d9445187        2 weeks ago         
 
 Once installed, you may also want to tag the images with the ‘latest’ tag. These instructions are detailed in the tag section found below.
 
-> If the Base OS image is downloaded, but is not show when running `docker images`, restart the Docker service using the services control panel applet or the command 'sc docker stop' and then 'sc docker start'
+> If the Base OS image is downloaded, but is not shown when running `docker images`, restart the Docker service using the services control panel applet or the command 'sc docker stop' and then 'sc docker start'
 
 ### Tag images
 

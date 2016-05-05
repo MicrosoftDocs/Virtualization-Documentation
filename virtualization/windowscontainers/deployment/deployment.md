@@ -91,6 +91,9 @@ Likewise, this command downloads and installs the Windows Server Core base OS im
 Install-ContainerImage -Name WindowsServerCore
 ```
 
+> If the Base OS image is downloaded, but is not shown when running `docker images`, restart the Docker service using the services control panel applet or the command 'sc docker stop' and then 'sc docker start'
+
+
 For more information on Container image management see [Windows container images](../management/manage_images.md).
  
 ### <a name=docker></a>Install Docker
