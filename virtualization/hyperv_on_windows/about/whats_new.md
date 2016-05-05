@@ -37,7 +37,7 @@ https://support.microsoft.com/en-us/kb/2973536) for a full description.
 
 More Linux operating systems, running on generation 2 virtual machines, can now boot with the secure boot option enabled.  Ubuntu 14.04 and later, and SUSE Linux Enterprise Server 12, are enabled for secure boot on hosts that run the Technical Preview. Before you boot the virtual machine for the first time, you must specify that the virtual machine should use the Microsoft UEFI Certificate Authority.  At an elevated Windows Powershell prompt, type:
 
-    Set-VMFirmware vmname -SecureBootTemplate MicrosoftUEFICertificateAuthority
+    Set-VMFirmware [-VMName] <VMName> [-SecureBootTemplate] <MicrosoftUEFICertificateAuthority>
 
 For more information on running Linux virtual machines on Hyper-V, see [Linux and FreeBSD Virtual Machines on Hyper-V](http://technet.microsoft.com/library/dn531030.aspx).
  
@@ -61,13 +61,13 @@ Get-VM * | Format-Table Name, Version
 From an elevated Windows PowerShell command prompt, run one of the following commands:
 
 ``` PowerShell
-Update-VmConfigurationVersion <vmname>
+Update-VmConfigurationVersion <VMName>
 ```
 
 Or
 
 ``` PowerShell
-Update-VmConfigurationVersion <vmobject>
+Update-VmConfigurationVersion <VMObject>
 ```
 
 **Important: **
