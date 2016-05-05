@@ -63,7 +63,7 @@ docker images
 
 REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
 nanoserver          10.0.14300.1010     40356b90dc80        2 weeks ago         793.3 MB
-windowsservercore   10.0.14304.1003     7837d9445187        2 weeks ago         9.176 GB
+windowsservercore   10.0.14304.1000     7837d9445187        2 weeks ago         9.176 GB
 ```  
 
 Once installed, you may also want to tag the images with the ‘latest’ tag. These instructions are detailed in the tag section found below.
