@@ -47,13 +47,13 @@ WindowsServerCore    10.0.14300.1000  ContainerImag... Container OS Image of Win
 To download and install the Nano Server base OS image, run the following. The `-version` parameter is optional. Without a base OS image version specified, the latest version will be installed.
 
 ```none
-Install-ContainerImage -Name NanoServer -Version 10.0.10586.0
+Install-ContainerImage -Name NanoServer -Version 10.0.14300.1010
 ```
 
 Likewise, this command will download and install the Windows Server Core base OS image. The `-version` parameter is optional. Without a base OS image version specified, the latest version will be installed.
 
 ```none
-Install-ContainerImage -Name WindowsServerCore -Version 10.0.10586.0
+Install-ContainerImage -Name WindowsServerCore -Version 10.0.14300.1000
 ```
 
 Verify that the images have been installed using the `docker images` command. 
@@ -62,7 +62,7 @@ Verify that the images have been installed using the `docker images` command.
 docker images
 
 REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
-nanoserver          10.0.14304.1003     40356b90dc80        2 weeks ago         793.3 MB
+nanoserver          10.0.14300.1010     40356b90dc80        2 weeks ago         793.3 MB
 windowsservercore   10.0.14304.1003     7837d9445187        2 weeks ago         9.176 GB
 ```  
 
