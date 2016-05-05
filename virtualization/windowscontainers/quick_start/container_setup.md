@@ -27,7 +27,7 @@ Windows Containers consist of several components such as the Windows Container H
 Start a PowerShell session as Administrator. This can be done by right clicking on the PowerShell icon and selecting ‘Run as Administrator’, or by running the following command from any PowerShell session.
 
 ``` powershell
-PS C:\> start-process powershell -Verb runAs
+PS C:\> Start-Process powershell -Verb RunAs
 ```
 
 Before downloading and running the script, ensure that an external Hyper-V virtual switch has been created. This script will fail without one. 
@@ -35,19 +35,19 @@ Before downloading and running the script, ensure that an external Hyper-V virtu
 Run the following to return a list of external virtual switches. If nothing is returned, create a new external virtual switch, and then proceed to the next step of this guide.
 
 ```powershell
-PS C:\> Get-VMSwitch | where {$_.SwitchType -eq “External”}
+PS C:\> Get-VMSwitch | Where-Object {$_.SwitchType -eq “External”}
 ```
 
 Use the following command to download the configuration script. The script can also be manually downloaded from this location - [Configuration Script](https://aka.ms/tp4/New-ContainerHost).
  
 ``` PowerShell
-PS C:\> wget -uri https://aka.ms/tp4/New-ContainerHost -OutFile c:\New-ContainerHost.ps1
+PS C:\> wget -uri https://aka.ms/tp4/New-ContainerHost -OutFile C:\New-ContainerHost.ps1
 ```
    
 Run the following command to create and configure the container host, where `<containerhost>` will be the virtual machine name.
 
 ``` powershell
-PS C:\> powershell.exe -NoProfile c:\New-ContainerHost.ps1 -VMName testcont -WindowsImage ServerDatacenterCore -Hyperv
+PS C:\> powershell.exe -NoProfile C:\New-ContainerHost.ps1 -VMName testcont -WindowsImage ServerDatacenterCore -HyperV
 ```
 
 When the script begins, you will be prompted for a password. This will be the password assigned to the Administrator account.
@@ -74,7 +74,7 @@ Now that you have a Windows Server 2016 system running the Windows Container fea
 You can use the `Enter-PSSession` command in the Hyper-V management host to connect to the container host.
 
 ```powershell
-PS C:\> Enter-PSSession -VMName <VM Name>
+PS C:\> Enter-PSSession -VMName <VMName>
 ```
  
 [Quick Start: Windows Containers and PowerShell](./manage_powershell.md)  
