@@ -561,7 +561,7 @@ RUN echo "Building first boot layer..."
             }
         }
 
-        "tag complete" | Out-File -FilePath "$dockerData\tag.txt" -Encoding ASCII
+        "tag complete" | Out-File -FilePath "$($env:ProgramData)\docker\tag.txt" -Encoding ASCII
 
         #
         # if certs.d exists, restart docker in TLS mode
