@@ -36,15 +36,12 @@ Hyper-V can be used in many ways. For example:
 
 
 ## System requirements
-
 Hyper-V requires a 64-bit system that has Second Level Address Translation (SLAT). SLAT is a feature present in the current generation of 64-bit processors by Intel and AMD. You’ll also need a 64-bit version of Windows 8 or greater, and at least 4GB of RAM. Hyper-V does support creation of both 32-bit and 64-bit operating systems in the VMs.
 
 Hyper-V’s dynamic memory allows memory needed by the VM to be allocated and de-allocated dynamically (you specify a minimum and maximum) and share unused memory between VMs. You can run 3 or 4 VMs on a machine that has 4GB of RAM, though you'll need more RAM for 5 or more VMs. On the other end of the spectrum, you can also create large VMs with 32 processors and 512GB RAM, depending on your physical hardware.
 
-## Operating systems you can run in a virtual machine ##
-
+## Operating systems you can run in a virtual machine
 The term "guest" refers to a virtual machine and "host" refers to the computer running the virtual machine. Hyper-V on Windows supports many different guest operating systems including various releases of Linux, FreeBSD, and Windows. For information about which operating systems are supported as guests in Hyper-V on Windows, see [Supported Windows Guest Operating Systems](supported_guest_os.md) and [Linux and FreeBSD Virtual Machines on Hyper-V](https://technet.microsoft.com/library/dn531030.aspx). 
-
 
 ## Differences between Hyper-V on Windows and Hyper-V on Windows Server
 There are some features that work differently in Hyper-V on Windows than they do in Hyper-V running on Windows Server. These include the following:
@@ -53,9 +50,8 @@ There are some features that work differently in Hyper-V on Windows than they do
 
 - SR-IOV on a 64-bit guest works normally, but 32-bit does not and is not supported.
 
-
 ### Windows Server features not available in Windows Hyper-V
-There are some features included in Hyper-V on server that are not included in Hyper-V on Windows. These include the following:
+There are some features included in Hyper-V on Windows Server that are not included in Hyper-V on Windows. These include the following:
 
 - Virtualizating GPUs using RemoteFX 
 
@@ -69,7 +65,6 @@ There are some features included in Hyper-V on server that are not included in H
 
 - Shared .VHDX
 
-
 > **Warning**: Virtual machines running on Hyper-V do not automatically handle moving from a wired to a wireless connection. You must change the virtual machine's network adapter settings manually.
 
 ## Limitations
@@ -79,7 +74,7 @@ In addition, if you have virtualization enabled, latency-sensitive, high-precisi
 
 As a reminder, you'll need to have a valid license for any operating systems you use in the VMs.
 
-## Next step: 
+## Next step
 [Walkthrough: Hyper-V on Windows 10](..\quick_start\walkthrough.md) 
 
 Check out [What's New](whats_new.md) in Hyper-V on Windows 10.
