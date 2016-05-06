@@ -551,7 +551,7 @@ RUN echo "Building first boot layer..."
 
                 $dockerFileContents | Out-File -FilePath $dockerFile -Encoding ASCII
 
-                docker build -t windowsservercore:10.0.14300.1000 .
+                docker build -t windowsservercore:latest .
 
                 Remove-Item $dockerFile
             }
