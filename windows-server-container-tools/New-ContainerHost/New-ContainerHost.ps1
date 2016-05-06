@@ -924,6 +924,7 @@ New-ContainerHost()
     Write-Output "The source code for these installation scripts is available here: https://github.com/Microsoft/Virtualization-Documentation/tree/live/windows-server-container-tools"
 }
 $global:AdminPriviledges = $false
+$global:DockerData = "$($env:ProgramData)\docker"
 $global:DockerServiceName = "Docker"
 
 function
@@ -1245,16 +1246,15 @@ Install-Docker()
         Write-Warning "DockerD not yet present."
     }
 
-    $dockerData = "$($env:ProgramData)\docker"
-    $dockerLog = "$dockerData\daemon.log"
+    $dockerLog = "$global:DockerData\daemon.log"
 
-    if (-not (Test-Path $dockerData))
+    if (-not (Test-Path $global:DockerData))
     {
         Write-Output "Creating Docker program data..."
         New-Item -ItemType Directory -Force -Path $dockerData | Out-Null
     }
 
-    $dockerDaemonScript = "$dockerData\runDockerDaemon.cmd"
+    $dockerDaemonScript = "$global:DockerData\runDockerDaemon.cmd"
 
     New-DockerDaemonRunText | Out-File -FilePath $dockerDaemonScript -Encoding ASCII
 
