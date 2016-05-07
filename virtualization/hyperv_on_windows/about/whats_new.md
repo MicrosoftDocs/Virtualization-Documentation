@@ -25,7 +25,7 @@ Production checkpoints allow you to easily create “point in time” images of 
 - **Updated management protocol** - Hyper-V Manager has been updated to communicate with remote Hyper-V hosts using the WS-MAN protocol, which permits CredSSP, Kerberos or NTLM authentication. When you use CredSSP to connect to a remote Hyper-V host, it allows you to perform a live migration without first enabling constrained delegation in Active Directory. WS-MAN-based infrastructure also simplifies the configuration necessary to enable a host for remote management. WS-MAN connects over port 80, which is open by default.
 
 
-## Connected Standby works 
+## Connected Standby compatibility 
 
 When Hyper-V is enabled on a computer that uses the Always On/Always Connected (AOAC) power model, the Connected Standby power state is now available.
 

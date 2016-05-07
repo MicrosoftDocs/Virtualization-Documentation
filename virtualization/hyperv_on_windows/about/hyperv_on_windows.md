@@ -53,7 +53,7 @@ There are some features that work differently in Hyper-V on Windows than they do
 ### Windows Server features not available in Windows Hyper-V
 There are some features included in Hyper-V on Windows Server that are not included in Hyper-V on Windows. These include the following:
 
-- Virtualizating GPUs using RemoteFX 
+- Virtualizing GPUs using RemoteFX 
 
 - Live migration of virtual machines from one host to another
 
