@@ -23,7 +23,7 @@ Use the navigation at the right hand side to select your desired deployment conf
 
 ### Scripted - New VM <!--1-->
 
-To deploy a new Hyper-V virtual machine with the container role ready to go, download and run the New-ContainerHost.ps1 script. This script assumes that Hyper-V is enabled on the system. For instruction on installing the Hyper-V role, see [Installing the Hyper-V role](https://technet.microsoft.com/en-US/library/mt126155.aspx).
+To deploy a new Hyper-V virtual machine with the container role ready to go, download and run the New-ContainerHost.ps1 script. This script assumes that Hyper-V is enabled on the system. For instructions on installing the Hyper-V role, see [Installing the Hyper-V role](https://technet.microsoft.com/en-US/library/mt126155.aspx).
 
 
 ```none
@@ -63,7 +63,7 @@ To manually configure the host, see the [Windows Server Container Deployment Gui
 
 ### Scripted - New VM <!--2-->
 
-To deploy a new virtual machine, with the container role ready to go, run the following commands on a Hyper-V host. This script assumes that Hyper-V is enabled on the system. For instruction on installing the Hyper-V role, see [Installing the Hyper-V role](https://technet.microsoft.com/en-US/library/mt126155.aspx).
+To deploy a new virtual machine, with the container role ready to go, run the following commands on a Hyper-V host. This script assumes that Hyper-V is enabled on the system. For instructions on installing the Hyper-V role, see [Installing the Hyper-V role](https://technet.microsoft.com/en-US/library/mt126155.aspx).
 
 
 ```none
