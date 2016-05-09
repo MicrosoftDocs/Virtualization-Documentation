@@ -82,11 +82,11 @@ The script downloads and configures the Windows Container components. This proce
 
 The Install-ContainerHost script can be used to configure Windows containers on Nano Server. The following prerequisites will need to be completed before running the script.
 
-- Container role installed – [Prepare Nano Server with the container role]( https://msdn.microsoft.com/en-us/virtualization/windowscontainers/deployment/deployment_nano#-a-name-nano-a-deploy-nano-server).
+Container role installed – [Prepare Nano Server with the container role]( https://msdn.microsoft.com/en-us/virtualization/windowscontainers/deployment/deployment_nano#-a-name-nano-a-deploy-nano-server).
 
-- Hyper-V role installed if Hyper-V containers will be deployed –  [Prepare Nano Server with the Hyper-V role](https://msdn.microsoft.com/en-us/virtualization/windowscontainers/deployment/deployment_nano#-a-name-hypv-a-enable-the-hyper-v-role).
+Hyper-V role installed - if Hyper-V containers will be deployed –  [Prepare Nano Server with the Hyper-V role](https://msdn.microsoft.com/en-us/virtualization/windowscontainers/deployment/deployment_nano#-a-name-hypv-a-enable-the-hyper-v-role).
 
-- Nested virtualization enabled if Hyper-V containers will be deployed and the container host is a Hyper-V virtual machine – [Enable nested virtualization](https://msdn.microsoft.com/en-us/virtualization/windowscontainers/deployment/deployment_nano#-a-name-nest-a-nested-virtualization).
+Nested virtualization enabled - if Hyper-V containers will be deployed and container host is virtualized – [Enable nested virtualization](https://msdn.microsoft.com/en-us/virtualization/windowscontainers/deployment/deployment_nano#-a-name-nest-a-nested-virtualization).
 
 Once the prerequisites have been completed, download and run the Install-ContianerHost script to configure the Windows containers role.
 
