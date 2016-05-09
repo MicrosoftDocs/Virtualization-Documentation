@@ -31,12 +31,9 @@ To deploy a new Hyper-V virtual machine with the container role ready to go, dow
 
 wget -uri https://aka.ms/tp5/New-ContainerHost -OutFile c:\New-ContainerHost.ps1
 
-# Run configuration script.
-# Using the -hyperv parameter prepares the container host for Hyper-V containers. 
-# This can be removed if Hyper-V containers will not be used.
+# Run the configuration script – remove the Hyper-V parameter if Hyper-V containers will not be deployed.
 
 powershell.exe -NoProfile -ExecutionPolicy Bypass c:\New-ContainerHost.ps1 -VMName MyContainerHost -WindowsImage ServerDatacenterCore –Hyperv
-
 ```
 The script downloads and configures the Windows Container components. This process may take quite some time due to the large download. When finished, a new Virtual Machine is configured and ready with the Windows container role.
 
@@ -49,9 +46,7 @@ To install and configure the container role on an existing system, download and 
 
 wget -uri https://aka.ms/tp5/Install-ContainerHost -OutFile C:\Install-ContainerHost.ps1
 
-# Run configuration script.
-# Using the -hyperv parameter prepares the container host for Hyper-V containers. 
-# This can be removed if Hyper-V containers will not be used.
+# Run the configuration script – remove the Hyper-V parameter if Hyper-V containers will not be deployed.
 
 powershell.exe -NoProfile -ExecutionPolicy Bypass C:\Install-ContainerHost.ps1 -HyperV
 ```
@@ -76,9 +71,7 @@ To deploy a new virtual machine, with the container role ready to go, run the fo
 
 wget -uri https://aka.ms/tp5/New-ContainerHost -OutFile c:\New-ContainerHost.ps1
 
-# Run configuration script.
-# Using the -hyperv parameter prepares the container host for Hyper-V containers. 
-# This can be removed if Hyper-V containers will not be used.
+# Run the configuration script – remove the Hyper-V parameter if Hyper-V containers will not be deployed.
 
 powershell.exe -NoProfile c:\New-ContainerHost.ps1 -VMName vmname -WindowsImage NanoServer –Hyperv
 ```
@@ -87,7 +80,15 @@ The script downloads and configures the Windows Container components. This proce
 
 ### Scripted - Existing System <!--2-->
 
-To install and configure the container role on an existing system, download and run the Install-ContainerHost.ps1 script. If the existing system is a Hyper-V virtual machine and will be hosting Hyper-V containers, ensure that nested virtualization is enabled and configured. For more information see, [Nested Virtualization]( https://msdn.microsoft.com/virtualization/hyperv_on_windows/windows_welcome).
+The Install-ContainerHost script can be used to configure Windows containers on Nano Server. The following prerequisites will need to be completed before running the script.
+
+- Container role installed – [Prepare Nano Server with the container role]( https://msdn.microsoft.com/en-us/virtualization/windowscontainers/deployment/deployment_nano#-a-name-nano-a-deploy-nano-server).
+
+- Hyper-V role installed if Hyper-V containers will be deployed –  [Prepare Nano Server with the Hyper-V role](https://msdn.microsoft.com/en-us/virtualization/windowscontainers/deployment/deployment_nano#-a-name-hypv-a-enable-the-hyper-v-role).
+
+- Nested virtualization enabled if Hyper-V containers will be deployed and the container host is a Hyper-V virtual machine – [Enable nested virtualization](https://msdn.microsoft.com/en-us/virtualization/windowscontainers/deployment/deployment_nano#-a-name-nest-a-nested-virtualization).
+
+Once the prerequisites have been completed, download and run the Install-ContianerHost script to configure the Windows containers role.
 
 > Nano Server does not support the wget command. Download the script on a separate system and copy it to the Nano Server system
 
@@ -96,9 +97,7 @@ To install and configure the container role on an existing system, download and 
 
 wget -uri https://aka.ms/tp5/Install-ContainerHost -OutFile C:\Install-ContainerHost.ps1
 
-# Run configuration script.
-# Using the -hyperv parameter prepares the container host for Hyper-V containers. 
-# This can be removed if Hyper-V containers will not be used.
+# Run the configuration script – remove the Hyper-V parameter if Hyper-V containers will not be deployed.
 
 powershell.exe -NoProfile -ExecutionPolicy Bypass C:\Install-ContainerHost.ps1 -HyperV
 ```
