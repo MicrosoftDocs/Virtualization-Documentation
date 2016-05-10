@@ -88,7 +88,9 @@ When the virtual machine is ready, create a remote connection with Nano Server o
 
 ### <a name=img></a>Install OS images
 
-Base OS images are used as the base to any Windows Server or Hyper-V container. Base OS images are available with both Windows Server Core and Nano Server as the underlying operating system and can be installed using the container Provider PowerShell module. 
+Base OS images are used as the base to any Windows Server or Hyper-V container. Base OS images are available with both Windows Server Core and Nano Server as the underlying operating system and can be installed using the container Provider PowerShell module.
+
+For instructions on installing base OS images in an offline or non-internet connected environment see, [Offline image installation]( https://msdn.microsoft.com/en-us/virtualization/windowscontainers/management/manage_images#offline-installation). 
 
 The following command can be used to install the Container Image PowerShell module.
 
