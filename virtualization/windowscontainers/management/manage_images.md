@@ -103,7 +103,7 @@ windowsservercore   latest              290ab6758cec        2 days ago          
 
 ### Offline installation
 
-Base OS images can also be installed without an internet connection. To do so, download the image on a computer with an internet connection, copy it to the target system, and then imported using the `Install-ContainerOSImages` command.
+Base OS images can also be installed without an internet connection. To do so, download the image on a computer with an internet connection, copy it to the target system, and then import the image using the `Install-ContainerOSImages` command.
 
 Before downloading the Base OS image, prepare the **internet connected** system with the container image provider by running the following command.
 
