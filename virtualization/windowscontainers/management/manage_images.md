@@ -105,7 +105,7 @@ windowsservercore   latest              290ab6758cec        2 days ago          
 
 Base OS images can also be installed without an internet connection. To do so, download the image on a computer with an internet connection, copy it to the target system, and then imported using the `Install-ContainerOSImages` command.
 
-Before downloading the Base OS image, prepare the system with the container image provider by running the following command.
+Before downloading the Base OS image, prepare the **internet connected** system with the container image provider by running the following command.
 
 ```none
 Install-PackageProvider ContainerImage -Force
@@ -132,7 +132,7 @@ To download an image, use the `Save-ContainerImage` command.
 Save-ContainerImage -Name NanoServer -Path c:\container-image
 ```
 
-The downloaded container image can now be copied to a different container host, and installed using the `Install-ContainerOSImage` command.
+The downloaded container image can now be copied to the **offline container host**, and installed using the `Install-ContainerOSImage` command.
 
 ```none
 Install-ContainerOSImage -WimPath C:\container-image\NanoServer.wim -Force
