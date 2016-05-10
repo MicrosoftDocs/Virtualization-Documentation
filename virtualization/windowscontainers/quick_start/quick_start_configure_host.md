@@ -15,7 +15,7 @@ ms.assetid: 42ea9737-5d0d-447a-96d8-6fd5ed126b25
 
 **This is preliminary content and subject to change.** 
 
-The Windows container feature is available on Windows Server 2016 and Nano Server. A Windows container host can be deployed onto physical systems, on-prem virtual machines, and cloud hosted virtual machines. The steps to deploy a container host may vary by operating system, and system type. This document provides the details needed to quickly provision a Windows container host. This document also links through to more detailed instruction on manual deployments for all configuration types.
+The Windows container feature is available on Windows Server 2016, Nano Server, and Windows 10 insider releases. A Windows container host can be deployed onto physical systems, on-prem virtual machines, and cloud hosted virtual machines. The steps to deploy a container host may vary by operating system, and system type. This document provides the details needed to quickly provision a Windows container host. This document also links through to more detailed instruction on manual deployments for all configuration types.
 
 Use the navigation at the right hand side to select your desired deployment configuration.
 
@@ -131,6 +131,14 @@ To manually configure a Windows Container host in Azure, first deploy a virtual 
 [Windows Server Container Deployment Guide](../deployment/deployment.md)
 
 [Nano Server Container Deployment Guide](../deployment/deployment_nano.md)
+
+## Windows 10 Insiders Releases
+
+The Windows containers feature is available on Windows 10 insiders build. 
+
+### Manual Configuration <!--4-->
+
+To manually configure the Windows container feature on a Windows 10 insiders build, see the [Windows 10 Container Deployment Guide](../deployment/deployment_windows10.md).
 
 ## Next Steps
 

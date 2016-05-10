@@ -13,6 +13,7 @@
 ## [System Requirements](deployment/system_requirements.md)
 ## [Container Host - Windows Server](deployment/deployment.md)
 ## [Container Host - Nano Server](deployment/deployment_nano.md)
+## [Container Host - Windows 10](deployment/deployment_windows10.md)
 
 # Manage Windows Containers
 ## [Hyper-V Containers](management/hyperv_container.md)
