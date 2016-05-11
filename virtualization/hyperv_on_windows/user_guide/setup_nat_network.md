@@ -160,33 +160,23 @@ This workflow assumes that there are no other NATs on the host. However, sometim
 
 Some scenarios require multiple applications or services to use the same NAT. In this case, the following workflow must be followed so that multiple applications / services can use a larger NAT internal subnet prefix
 
-*We will detail the Docker 4 Windows - Docker Beta - Linux VM co-existing with the Windows Container feature on the same host as an example. THis workflow is subject to change*
+**_We will detail the Docker 4 Windows - Docker Beta - Linux VM co-existing with the Windows Container feature on the same host as an example. THis workflow is subject to change_**
 
-1. net stop docker
+1. C:\> net stop docker
 2. Stop Docker4Windows MobyLinux VM
-3. Get-ContainerNetwork | remove-containerNetwork -force
-4. Get-NetNat | Remove-NetNat
-
+3. PS C:\> Get-ContainerNetwork | remove-containerNetwork -force
+4. PS C:\> Get-NetNat | Remove-NetNat
 *Removes any previously existing container networks (i.e. deletes vSwitch, deletes NetNat, cleans up)*
-
 5. New-containernetwork –name nat –Mode NAT –subnetprefix 10.0.76.0/24 (this subnet will be used for Windows containers feature)
-
 *Creates internal vSwitch named nat*
 *Creates NAT network named “nat” with IP prefix 10.0.76.0/24*
-
 6. Remove-NetNAT
-
 *Removes both DockerNAT and nat NAT networks (keeps internal vSwitches)*
-
 7. New-NetNat -Name DockerNAT -InternalIPInterfaceAddressPrefix 10.0.0.0/17 (this will create a larger NAT network for both D4W and containers to share)
-
 *Creates NAT network named DockerNAT with larger prefix 10.0.0.0/17*
-
 8. Run Docker4Windows (MobyLinux.ps1)
-
 *Creates internal vSwitch DockerNAT*
 *Creates NAT network named “DockerNAT” with IP prefix 10.0.75.0/24*
-
 9. Net start docker
 *Docker will use the user-defined NAT network as the default to connect Windows containers*
  
