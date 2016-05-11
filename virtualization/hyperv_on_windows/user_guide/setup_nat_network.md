@@ -155,7 +155,7 @@ This workflow assumes that there are no other NATs on the host. However, sometim
   Remove-NetIPAddress -InterfaceAlias "vEthernet(<name of vSwitch>)" -IPAddress <IPAddress>
   ```
 
-## Multiple NATs
+## Multiple Applications using the same NAT
 
 Some scenarios require multiple applications or services to use the same NAT. In this case, the following workflow must be followed so that multiple applications / services can use a larger NAT internal subnet prefix
 
@@ -163,7 +163,7 @@ Some scenarios require multiple applications or services to use the same NAT. In
 
 1. C:\> net stop docker 
 2. Stop Docker4Windows MobyLinux VM 
-3. PS C:\> Get-ContainerNetwork | remove-containerNetwork -force 
+3. PS C:\> Get-ContainerNetwork | remove-containerNetwork -force  
 4. PS C:\> Get-NetNat | Remove-NetNat  
    *Removes any previously existing container networks (i.e. deletes vSwitch, deletes NetNat, cleans up)*  
 
