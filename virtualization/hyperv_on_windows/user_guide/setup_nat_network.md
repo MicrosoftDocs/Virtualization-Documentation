@@ -150,9 +150,8 @@ This workflow assumes that there are no other NATs on the host. However, sometim
   Get-NetIPAddress -InterfaceAlias "vEthernet(<name of vSwitch>)"
   ```
 
-5. If an old private IP address is in use, please delete it
-  
-  ``` PowerShell
+5. If an old private IP address is in use, please delete it  
+   ``` PowerShell
   Remove-NetIPAddress -InterfaceAlias "vEthernet(<name of vSwitch>)" -IPAddress <IPAddress>
   ```
 
@@ -166,28 +165,23 @@ Some scenarios require multiple applications or services to use the same NAT. In
 2. Stop Docker4Windows MobyLinux VM 
 3. PS C:\> Get-ContainerNetwork | remove-containerNetwork -force 
 4. PS C:\> Get-NetNat | Remove-NetNat  
-
    *Removes any previously existing container networks (i.e. deletes vSwitch, deletes NetNat, cleans up)*  
 
 5. New-containernetwork –name nat –Mode NAT –subnetprefix 10.0.76.0/24 (this subnet will be used for Windows containers feature)  
-
    *Creates internal vSwitch named nat*  
    *Creates NAT network named “nat” with IP prefix 10.0.76.0/24*  
 
 6. Remove-NetNAT  
    *Removes both DockerNAT and nat NAT networks (keeps internal vSwitches)*  
 
-7. New-NetNat -Name DockerNAT -InternalIPInterfaceAddressPrefix 10.0.0.0/17 (this will create a larger NAT network for both D4W and containers to share) 
-
+7. New-NetNat -Name DockerNAT -InternalIPInterfaceAddressPrefix 10.0.0.0/17 (this will create a larger NAT network for both D4W and containers to share)  
    *Creates NAT network named DockerNAT with larger prefix 10.0.0.0/17*  
 
-8. Run Docker4Windows (MobyLinux.ps1) 
-   
+8. Run Docker4Windows (MobyLinux.ps1)  
    *Creates internal vSwitch DockerNAT*  
    *Creates NAT network named “DockerNAT” with IP prefix 10.0.75.0/24*  
 
-9. Net start docker 
-
+9. Net start docker  
    *Docker will use the user-defined NAT network as the default to connect Windows containers*  
  
 In the end, you should have two internal vSwitches – one named DockerNAT and the other named nat. You will only have one NAT network (10.0.0.0/17) confirmed by running Get-NetNat. IP addresses for Windows containers will be assigned by the Windows Host Network Service (HNS) from the 10.0.76.0/24 subnet. Based on the existing MobyLinux.ps1 script, IP addresses for Docker 4 Windows will be assigned from the 10.0.75.0/24 subnet.
