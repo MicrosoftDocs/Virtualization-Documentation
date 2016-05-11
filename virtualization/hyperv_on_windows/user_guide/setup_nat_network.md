@@ -165,17 +165,16 @@ Some scenarios require multiple applications or services to use the same NAT. In
 1. C:\> net stop docker 
 2. Stop Docker4Windows MobyLinux VM 
 3. PS C:\> Get-ContainerNetwork | remove-containerNetwork -force 
-4. PS C:\> Get-NetNat | Remove-NetNat 
+4. PS C:\> Get-NetNat | Remove-NetNat  
 
    *Removes any previously existing container networks (i.e. deletes vSwitch, deletes NetNat, cleans up)*  
 
-5. New-containernetwork –name nat –Mode NAT –subnetprefix 10.0.76.0/24 (this subnet will be used for Windows containers feature) 
+5. New-containernetwork –name nat –Mode NAT –subnetprefix 10.0.76.0/24 (this subnet will be used for Windows containers feature)  
 
    *Creates internal vSwitch named nat*  
    *Creates NAT network named “nat” with IP prefix 10.0.76.0/24*  
 
-6. Remove-NetNAT 
-
+6. Remove-NetNAT  
    *Removes both DockerNAT and nat NAT networks (keeps internal vSwitches)*  
 
 7. New-NetNat -Name DockerNAT -InternalIPInterfaceAddressPrefix 10.0.0.0/17 (this will create a larger NAT network for both D4W and containers to share) 
