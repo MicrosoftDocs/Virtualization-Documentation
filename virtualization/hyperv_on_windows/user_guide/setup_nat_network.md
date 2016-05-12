@@ -2,7 +2,7 @@
 title: Set up a NAT network
 description: Set up a NAT network
 keywords: windows 10, hyper-v
-author: scooley, jmesser81
+author: scooley
 manager: timlt
 ms.date: 05/02/2016
 ms.topic: article
@@ -159,7 +159,7 @@ This workflow assumes that there are no other NATs on the host. However, sometim
 
 Some scenarios require multiple applications or services to use the same NAT. In this case, the following workflow must be followed so that multiple applications / services can use a larger NAT internal subnet prefix
 
-**_We will detail the Docker 4 Windows - Docker Beta - Linux VM co-existing with the Windows Container feature on the same host as an example. THis workflow is subject to change_**
+**_We will detail the Docker 4 Windows - Docker Beta - Linux VM co-existing with the Windows Container feature on the same host as an example. This workflow is subject to change_**
 
 1. C:\> net stop docker 
 2. Stop Docker4Windows MobyLinux VM 
