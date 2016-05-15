@@ -1,34 +1,34 @@
 Function Expand-VMConfig ($VMConfig) {
     $tempVM = (Compare-VM -Copy -Path $VMConfig -GenerateNewID).VM
 
-    write-host "VM Configuration Data"
-    write-host "====================="
+    Write-Host "VM Configuration Data"
+    Write-Host "====================="
     $tempVM | Select *
 
-    write-host "VM Network Adapters"
-    write-host "====================="
+    Write-Host "VM Network Adapters"
+    Write-Host "====================="
     $tempVM.NetworkAdapters
 
-    write-host "VM Hard Drives"
-    write-host "====================="
+    Write-Host "VM Hard Drives"
+    Write-Host "====================="
     $tempVM.HardDrives
 
-    write-host "VM DVD Drives"
-    write-host "====================="
+    Write-Host "VM DVD Drives"
+    Write-Host "====================="
     $tempVM.DVDDrives
 
-    write-host "VM Floppy Drive"
-    write-host "====================="
+    Write-Host "VM Floppy Drive"
+    Write-Host "====================="
     $tempVM.FloppyDrive
 
-    write-host "VM Fibre Channel"
-    write-host "====================="
+    Write-Host "VM Fibre Channel"
+    Write-Host "====================="
     $tempVM.FibreChannelHostBusAdapters
 
-    write-host "VM COM1"
-    write-host "====================="
+    Write-Host "VM COM1"
+    Write-Host "====================="
     $tempVM.ComPort1
 
-    write-host "VM COM2"
-    write-host "====================="
+    Write-Host "VM COM2"
+    Write-Host "====================="
     $tempVM.ComPort2}
