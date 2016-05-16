@@ -47,7 +47,7 @@ To create a new image using PowerShell, a container will be created, modified wi
 Create a new container form the Windows Server Core base image.
 
 ```powershell
-New-Container -Name dotnet35 -ContainerImageName windowsservercore -SwitchName “Virtual Switch”
+New-Container -Name dotnet35 -ContainerImageName windowsservercore -SwitchName "Virtual Switch"
 ```
 
 Create a shared folder with the new container. This will be used to make the .NET 3.5 cab file accessible inside of the new container.  Note, the container must be stopped when running the following command.
@@ -106,7 +106,7 @@ Run `docker build` which will consume the dockerfile and create the new containe
 Docker build -t dotnet35 C:\dotnet3.5\
 ```
 
-Run “docker images” to see the new image. This image can now be used to run a container with the .NET 3.5 framework pre-installed.
+Run `docker images` to see the new image. This image can now be used to run a container with the .NET 3.5 framework pre-installed.
 
 ```powershell
 docker images
