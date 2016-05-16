@@ -6,7 +6,7 @@ author: scooley
 manager: timlt
 ms.date: 05/02/2016
 ms.topic: article
-ms.prod: windows-contianers
+ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: 5d9f1cb4-ffb3-433d-8096-b085113a9d7b
 ---
