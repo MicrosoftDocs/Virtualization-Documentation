@@ -174,7 +174,7 @@ ADD <source> <destination>
 If either source or destination include whitespace, enclose the path in square brackets and double quotes.
  
 ```none
-ADD [“<source>” “<destination>”]
+ADD ["<source>" "<destination>"]
 ```
 
 **Windows Considerations**

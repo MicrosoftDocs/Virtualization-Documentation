@@ -52,7 +52,7 @@ Stop-Service docker
 The configuration file can be found at `c:\programdata\docker\runDockerDaemon.cmd`. Edit the following line, and add `-b "none"`
 
 ```none
-dockerd -b “none”
+dockerd -b "none"
 ```
 
 Restart the service.

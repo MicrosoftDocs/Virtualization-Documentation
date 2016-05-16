@@ -35,7 +35,7 @@ Before downloading and running the script, ensure that an external Hyper-V virtu
 Run the following to return a list of external virtual switches. If nothing is returned, create a new external virtual switch, and then proceed to the next step of this guide.
 
 ```powershell
-PS C:\> Get-VMSwitch | Where-Object {$_.SwitchType -eq “External”}
+PS C:\> Get-VMSwitch | Where-Object {$_.SwitchType -eq "External"}
 ```
 
 Use the following command to download the configuration script. The script can also be manually downloaded from this location - [Configuration Script](https://aka.ms/tp4/New-ContainerHost).
