@@ -6,7 +6,7 @@ author: neilpeterson
 manager: timlt
 ms.date: 05/02/2016
 ms.topic: article
-ms.prod: windows-contianers
+ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: 42ea9737-5d0d-447a-96d8-6fd5ed126b25
 ---
@@ -88,7 +88,7 @@ The Install-ContainerHost script can be used to configure Windows containers on 
 
 - Enable nested virtualization - if Hyper-V containers will be deployed and container host is virtualized – [documentation](https://msdn.microsoft.com/en-us/virtualization/windowscontainers/deployment/deployment_nano#-a-name-nest-a-nested-virtualization).
 
-Once the prerequisites have been completed, download and run the Install-ContianerHost script to configure the Windows containers role.
+Once the prerequisites have been completed, download and run the Install-ContainerHost script to configure the Windows containers role.
 
 > Nano Server does not support the wget command. Download the script on a separate system and copy it to the Nano Server system
 
