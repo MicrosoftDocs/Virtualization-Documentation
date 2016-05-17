@@ -31,9 +31,7 @@ To install the feature using PowerShell, run the following command in an elevate
 Install-WindowsFeature containers
 ```
 
-If Hyper-V containers will be deployed, the Hyper-V role will be required. The following Powershell command can be used to install the role.
-
-> If the container host is also a Hyper-V virtual machine, and will be hosting Hyper-V containers, nested virtualization will need to be configured. For details on this configuration see, [Nested Virtualization]( https://msdn.microsoft.com/en-us/virtualization/hyperv_on_windows/user_guide/nesting).
+If Hyper-V containers will be deployed, the Hyper-V role will be required. The following Powershell command can be used to install the role. If the container host is also a Hyper-V virtual machine, and will be hosting Hyper-V containers, nested virtualization will need to be configured. For details on this configuration see, [Nested Virtualization]( https://msdn.microsoft.com/en-us/virtualization/hyperv_on_windows/user_guide/nesting).
 
 ```none
 Install-WindowsFeature hyper-v
@@ -65,40 +63,20 @@ Install-PackageProvider ContainerImage -Force
 
 Once installed, a list of Base OS images can be returned using `Find-ContainerImage`.
 
-```none
-Find-ContainerImage
 
-Name                 Version          Source           Summary
-----                 -------          ------           -------
-NanoServer           10.0.14300.1010  ContainerImag... Container OS Image of Windows Server 2016 Technical...
-WindowsServerCore    10.0.14300.1000  ContainerImag... Container OS Image of Windows Server 2016 Technical...
+To download and install the Nano Server base OS image, run the following.
+
+```none
+Install-ContainerImage -Name NanoServer
 ```
 
-To download and install the Nano Server base OS image, run the following. The `-version` parameter is optional. Without a base OS image version specified, the latest version will be installed.
+Likewise, this command will download and install the Windows Server Core base OS image.
 
 ```none
-Install-ContainerImage -Name NanoServer -Version 10.0.14300.1010
+Install-ContainerImage -Name WindowsServerCore
 ```
 
-Likewise, this command will download and install the Windows Server Core base OS image. The `-version` parameter is optional. Without a base OS image version specified, the latest version will be installed.
-
-```none
-Install-ContainerImage -Name WindowsServerCore -Version 10.0.14300.1000
-```
-
-Verify that the images have been installed using the `docker images` command. 
-
-```none
-docker images
-
-REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
-nanoserver          10.0.14300.1010     40356b90dc80        2 weeks ago         793.3 MB
-windowsservercore   10.0.14304.1000     7837d9445187        2 weeks ago         9.176 GB
-``` 
-
-After installing the Windows Server Core or Nano Server Base OS images, these will need to be tagged with a version of ‘latest’. To do so, use the `docker tag` command. 
-
-For more information on `docker tag` see [Tag, push, and pull you images on docker.com](https://docs.docker.com/mac/step_six/). 
+After installing the Windows Server Core or Nano Server Base OS images, these will need to be tagged with a version of ‘latest’. To do so, use the `docker tag` command. For more information on `docker tag` see [Tag, push, and pull you images on docker.com](https://docs.docker.com/mac/step_six/). 
 
 ```none
 docker tag <image id> windowsservercore:latest
@@ -129,12 +107,9 @@ Install-PackageProvider NanoServerPackage
 Install-NanoServerPackage -Name Microsoft-NanoServer-Containers-Package
 ```
 
-If Hyper-V containers will be deployed, the Hyper-V role will be required. The following Powershell command can be used to install the role.
-
-> If the container host is also a Hyper-V virtual machine, and will be hosting Hyper-V containers, nested virtualization will need to be configured. For details on this configuration see, [Nested Virtualization]( https://msdn.microsoft.com/en-us/virtualization/hyperv_on_windows/user_guide/nesting).
+If Hyper-V containers will be deployed, the Hyper-V role will be required. The following Powershell command can be used to install the role. If the container host is also a Hyper-V virtual machine, and will be hosting Hyper-V containers, nested virtualization will need to be configured. For details on this configuration see, [Nested Virtualization]( https://msdn.microsoft.com/en-us/virtualization/hyperv_on_windows/user_guide/nesting).
 
 ```none
-# Install Hyper-V role (if container host will run Hyper-V containers)
 Install-NanoServerPackage -Name Microsoft-NanoServer-Computer <verify>
 ```
 
@@ -168,35 +143,14 @@ Container OS images can be found and installed using the ContainerImage PowerShe
 Install-PackageProvider ContainerImage -Force
 ```
 
-Once installed, a list of Base OS images can be returned using `Find-ContainerImage`.
+To download and install the Nano Server base OS image, run the following.
 
 ```none
-Find-ContainerImage
-
-Name                 Version          Source           Summary
-----                 -------          ------           -------
-NanoServer           10.0.14300.1010  ContainerImag... Container OS Image of Windows Server 2016 Technical...
-WindowsServerCore    10.0.14300.1000  ContainerImag... Container OS Image of Windows Server 2016 Technical...
+Install-ContainerImage -Name NanoServer
 ```
 
-To download and install the Nano Server base OS image, run the following. The `-version` parameter is optional. Without a base OS image version specified, the latest version will be installed.
 
-```none
-Install-ContainerImage -Name NanoServer -Version 10.0.14300.1010
-```
-
-Verify that the images have been installed using the `docker images` command. 
-
-```none
-docker images
-
-REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
-nanoserver          10.0.14300.1010     40356b90dc80        2 weeks ago         793.3 MB
-``` 
-
-After installing the Windows Server Core or Nano Server Base OS images, these will need to be tagged with a version of ‘latest’. To do so, use the `docker tag` command. 
-
-For more information on `docker tag` see [Tag, push, and pull you images on docker.com](https://docs.docker.com/mac/step_six/). 
+After installing the Nano Server Base OS image, it will need to be tagged with a version of ‘latest’. To do so, use the `docker tag` command. For more information on `docker tag` see [Tag, push, and pull you images on docker.com](https://docs.docker.com/mac/step_six/). 
 
 ```none
 docker tag <image id> nanoserver:latest
@@ -242,35 +196,13 @@ Container OS images can be found and installed using the ContainerImage PowerShe
 Install-PackageProvider ContainerImage -Force
 ```
 
-Once installed, a list of Base OS images can be returned using `Find-ContainerImage`.
+To download and install the Nano Server base OS image, run the following.
 
 ```none
-Find-ContainerImage
-
-Name                 Version          Source           Summary
-----                 -------          ------           -------
-NanoServer           10.0.14300.1010  ContainerImag... Container OS Image of Windows Server 2016 Technical...
-WindowsServerCore    10.0.14300.1000  ContainerImag... Container OS Image of Windows Server 2016 Technical...
+Install-ContainerImage -Name NanoServer
 ```
 
-To download and install the Nano Server base OS image, run the following. The `-version` parameter is optional. Without a base OS image version specified, the latest version will be installed.
-
-```none
-Install-ContainerImage -Name NanoServer -Version 10.0.14300.1010
-```
-
-Verify that the images have been installed using the `docker images` command. 
-
-```none
-docker images
-
-REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
-nanoserver          10.0.14300.1010     40356b90dc80        2 weeks ago         793.3 MB
-``` 
-
-After installing the Windows Server Core or Nano Server Base OS images, these will need to be tagged with a version of ‘latest’. To do so, use the `docker tag` command. 
-
-For more information on `docker tag` see [Tag, push, and pull you images on docker.com](https://docs.docker.com/mac/step_six/). 
+After installing the Nano Server Base OS image, it will need to be tagged with a version of ‘latest’. To do so, use the `docker tag` command. For more information on `docker tag` see [Tag, push, and pull you images on docker.com](https://docs.docker.com/mac/step_six/). 
 
 ```none
 docker tag <image id> nanoserver:latest
