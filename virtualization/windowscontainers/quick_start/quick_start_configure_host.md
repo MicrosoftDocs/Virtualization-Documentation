@@ -169,8 +169,6 @@ To enable the container feature using PowerShell, run the following command in a
 Enable-WindowsOptionalFeature -Online -FeatureName containers –All
 ```
 
-### Install Hyper-V feature
-
 Because Windows 10 only supports Hyper-V containers, the Hyper-V feature must be enabled. To enable the Hyper-V feature using PowerShell, run the following command in an elevated PowerShell session.
 
 ```none
