@@ -45,14 +45,23 @@ If the container host is also a Hyper-V virtual machine, and will be hosting Hyp
 Docker is required to manage Windows Containers, however needs to be installed separately. The following PowerShell commands will install and perform basic configuration of the Docker engine and Docker client. For detailed information on configuring the Docker engine, including securing the Docker engine on Windows see, [Docker Daemon on Windows](../docker/docker_daemon_windows.md).
 
 ```none
-# Download Docker Engine, Docker Client, and add folder to path
+# Download Docker Engine
 Invoke-WebRequest https://aka.ms/tp5/dockerd -OutFile $env:programfiles\docker\dockerd.exe
-Invoke-WebRequest https://aka.ms/tp5/dockerd -OutFile $env:programfiles\docker\docker.exe
+
+# Add Docker folder to the path
 $env:Path += ";$env:programfiles\docker"
 
 # Install Docker Engine as a Windows Service
 dockerd --register-service
 ```
+
+The following command will download the Docker client.
+
+```none
+# Download Docker Client
+Invoke-WebRequest https://aka.ms/tp5/docker -OutFile $env:programfiles\docker\docker.exe
+```
+
 
 ### Install Base OS Image
 
@@ -177,14 +186,24 @@ Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V –All
 
 ### Install Docker
 
+Docker is required to manage Windows Containers, however needs to be installed separately. The following PowerShell commands will install and perform basic configuration of the Docker engine and Docker client. For detailed information on configuring the Docker engine, including securing the Docker engine on Windows see, [Docker Daemon on Windows](../docker/docker_daemon_windows.md).
+
 ```none
-# Download Docker Engine, Docker Client, and add folder to path
+# Download Docker Engine
 Invoke-WebRequest https://aka.ms/tp5/dockerd -OutFile $env:programfiles\docker\dockerd.exe
-Invoke-WebRequest https://aka.ms/tp5/dockerd -OutFile $env:programfiles\docker\docker.exe
+
+# Add Docker folder to the path
 $env:Path += ";$env:programfiles\docker"
 
 # Install Docker Engine as a Windows Service
 dockerd --register-service
+```
+
+The following command will download the Docker client.
+
+```none
+# Download Docker Client
+Invoke-WebRequest https://aka.ms/tp5/docker -OutFile $env:programfiles\docker\docker.exe
 ```
 
 ### Install Base OS Image
