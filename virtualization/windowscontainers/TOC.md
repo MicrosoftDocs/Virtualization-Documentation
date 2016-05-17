@@ -9,12 +9,6 @@
 ## [3 – Windows Server Containers](quick_start/manage_docker.md)
 ## [4 – Hyper-V Contianers](quick_start/manage_docker_hyperv.md)
 
-# Deploy Windows Containers
-## [System Requirements](deployment/system_requirements.md)
-## [Container Host - Windows Server](deployment/deployment.md)
-## [Container Host - Nano Server](deployment/deployment_nano.md)
-## [Container Host - Windows 10](deployment/deployment_windows10.md)
-
 # Manage Windows Containers
 ## [Hyper-V Containers](management/hyperv_container.md)
 ## [Container Images](management/manage_images.md)
@@ -23,6 +17,7 @@
 ## [Container Resource Control](management/manage_resources.md)
 
 # Docker on Windows
+## [System Requirements](deployment/system_requirements.md)
 ## [Docker Engine on Windows](deployment/docker_windows.md)
 ## [Dockerfiles on Windows](docker/manage_windows_dockerfile.md)
 ## [Optimize Dockerfiles](docker/optimize_windows_dockerfile.md)

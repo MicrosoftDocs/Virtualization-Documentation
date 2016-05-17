@@ -21,124 +21,100 @@ Use the navigation at the right hand side to select your desired deployment conf
 
 ## Windows Server
 
-### Scripted - New VM <!--1-->
+### Install container feature
 
-To deploy a new Hyper-V virtual machine with the container role ready to go, download and run the New-ContainerHost.ps1 script. This script assumes that Hyper-V is enabled on the system. For instructions on installing the Hyper-V role, see [Installing the Hyper-V role](https://technet.microsoft.com/en-US/library/mt126155.aspx).
+The container feature can be installed on Windows Server 2016, or Windows Server 2016 Core, using Windows Server Manager or PowerShell.
 
-
-```none
-# Download configuration script.
-
-wget -uri https://aka.ms/tp5/New-ContainerHost -OutFile c:\New-ContainerHost.ps1
-
-# Run the configuration script – remove the Hyper-V parameter if Hyper-V containers will not be deployed.
-
-powershell.exe -NoProfile -ExecutionPolicy Bypass c:\New-ContainerHost.ps1 -VMName MyContainerHost -WindowsImage ServerDatacenterCore –Hyperv
-```
-The script downloads and configures the Windows Container components. This process may take quite some time due to the large download. When finished, a new Virtual Machine is configured and ready with the Windows container role.
-
-### Scripted - Existing System <!--1-->
-
-To install and configure the container role on an existing system, download and run the Install-ContainerHost.ps1 script. If the existing system is a Hyper-V virtual machine and will be hosting Hyper-V containers, ensure that nested virtualization is enabled and configured. For more information see, [Nested Virtualization](https://msdn.microsoft.com/virtualization/hyperv_on_windows/windows_welcome).
+To install the role using PowerShell, run the following command in an elevated PowerShell session.
 
 ```none
-# Download configuration script.
-
-wget -uri https://aka.ms/tp5/Install-ContainerHost -OutFile C:\Install-ContainerHost.ps1
-
-# Run the configuration script – remove the Hyper-V parameter if Hyper-V containers will not be deployed.
-
-powershell.exe -NoProfile -ExecutionPolicy Bypass C:\Install-ContainerHost.ps1 -HyperV
+Install-WindowsFeature containers
 ```
 
-The script downloads and configure the Windows Container components. This process may take quite some time due to the large download. When finished, the system is configured and ready with the Windows container role.
+### Install Docker
 
-> Once the script has started, the system will be rebooted. After the reboot the script will continue. It is safe to log back into the system; the script progress will be displayed.
+```none
+# Download Docker Engine and Docker Client
+Invoke-WebRequest https://aka.ms/tp5/dockerd -OutFile $env:programfiles\docker\dockerd.exe
+Invoke-WebRequest https://aka.ms/tp5/dockerd -OutFile $env:programfiles\docker\docker.exe
 
-### Manual Configuration <!--2-->
+# Add Docker folder to path
+$env:Path += ";$env:programfiles\docker"
 
-To manually configure the host, see the [Windows Server Container Deployment Guide](../deployment/deployment.md).
+# Install Docker Engine as a Windows Service
+dockerd --register-service
+```
 
 ## Nano Server
 
-### Scripted - New VM <!--2-->
-
-To deploy a new virtual machine, with the container role ready to go, run the following commands on a Hyper-V host. This script assumes that Hyper-V is enabled on the system. For instructions on installing the Hyper-V role, see [Installing the Hyper-V role](https://technet.microsoft.com/en-US/library/mt126155.aspx).
-
+### Install container feature
 
 ```none
-# Download configuration script.
+# Install Nano Server Package Provider
+Install-PackageProvider NanoServerPackage
 
-wget -uri https://aka.ms/tp5/New-ContainerHost -OutFile c:\New-ContainerHost.ps1
+# Install container feature
+Install-NanoServerPackage -Name Microsoft-NanoServer-Containers-Package
 
-# Run the configuration script – remove the Hyper-V parameter if Hyper-V containers will not be deployed.
-
-powershell.exe -NoProfile c:\New-ContainerHost.ps1 -VMName vmname -WindowsImage NanoServer –Hyperv
+# Install Hyper-V role (if container host will run Hyper-V containers)
+Install-NanoServerPackage -Name Microsoft-NanoServer-Computer <verify>
 ```
 
-The script downloads and configures the Windows Container components. This process may take quite some time due to the large download. When finished, a new Virtual Machine is configured and ready with the Windows container role.
-
-### Scripted - Existing System <!--2-->
-
-The Install-ContainerHost script can be used to configure Windows containers on Nano Server. The following prerequisites will need to be completed before running the script.
-
-- Install container role – [documentation]( https://msdn.microsoft.com/en-us/virtualization/windowscontainers/deployment/deployment_nano#-a-name-nano-a-deploy-nano-server).
-
-- Install Hyper-V role - if Hyper-V containers will be deployed – [documentation](https://msdn.microsoft.com/en-us/virtualization/windowscontainers/deployment/deployment_nano#-a-name-hypv-a-enable-the-hyper-v-role).
-
-- Enable nested virtualization - if Hyper-V containers will be deployed and container host is virtualized – [documentation](https://msdn.microsoft.com/en-us/virtualization/windowscontainers/deployment/deployment_nano#-a-name-nest-a-nested-virtualization).
-
-Once the prerequisites have been completed, download and run the Install-ContianerHost script to configure the Windows containers role.
-
-> Nano Server does not support the wget command. Download the script on a separate system and copy it to the Nano Server system
+### Install Docker
 
 ```none
-# Download configuration script
+# Download Docker Engine and Docker Client
+Invoke-WebRequest https://aka.ms/tp5/dockerd -OutFile $env:programfiles\docker\dockerd.exe
+Invoke-WebRequest https://aka.ms/tp5/dockerd -OutFile $env:programfiles\docker\docker.exe
 
-wget -uri https://aka.ms/tp5/Install-ContainerHost -OutFile C:\Install-ContainerHost.ps1
+# Add Docker folder to path
+$env:Path += ";$env:programfiles\docker"
 
-# Run the configuration script – remove the Hyper-V parameter if Hyper-V containers will not be deployed.
-
-powershell.exe -NoProfile -ExecutionPolicy Bypass C:\Install-ContainerHost.ps1 -HyperV
+# Install Docker Engine as a Windows Service
+dockerd --register-service
 ```
 
-The script downloads and configure the Windows Container components. This process may take quite some time due to the large download. When finished, the system is configured and ready with the Windows container role.
+## Windows 10
 
-### Manual Configuration <!--3-->
+### Install container feature
 
-To manually configure the host, see the [Nano Server Container Deployment Guide](../deployment/deployment_nano.md).
+To enable the container feature using PowerShell, run the following command in an elevated PowerShell session.
+
+```none
+Enable-WindowsOptionalFeature -Online -FeatureName containers –All
+```
+
+### Install Hyper-V feature
+
+Because Windows 10 only supports Hyper-V containers, the Hyper-V feature must be enabled. To enable the Hyper-V feature using PowerShell, run the following command in an elevated PowerShell session.
+
+```none
+Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V –All
+```
+
+### Install Docker
+
+```none
+# Download Docker Engine and Docker Client
+Invoke-WebRequest https://aka.ms/tp5/dockerd -OutFile $env:programfiles\docker\dockerd.exe
+Invoke-WebRequest https://aka.ms/tp5/dockerd -OutFile $env:programfiles\docker\docker.exe
+
+# Add Docker folder to path
+$env:Path += ";$env:programfiles\docker"
+
+# Install Docker Engine as a Windows Service
+dockerd --register-service
+```
 
 ## Azure
 
-### Scripted - Existing System <!--3-->
+### Azure template
 
-Deploy a Windows Server 2016 or Nano Server virtual machine from the Azure Gallery, and then run then download and run the ‘install-containerhost.ps1’ script on the virtual machine. Note – Azure does not support nested virtualization and cannot support Hyper-V containers.
+https://github.com/Azure/azure-quickstart-templates/tree/master/windows-server-containers-preview
 
-```none
-# Download configuration script
-
-wget -uri https://aka.ms/tp5/Install-ContainerHost -OutFile C:\Install-ContainerHost.ps1
-
-# Run configuration script
-
-powershell.exe -NoProfile C:\Install-ContainerHost.ps1
-```
-
-### Manual Configuration <!--1-->
-
-To manually configure a Windows Container host in Azure, first deploy a virtual machine with Windows Server 2016 or Nano Server, and then follow the directions found in these articles.
-
-[Windows Server Container Deployment Guide](../deployment/deployment.md)
-
-[Nano Server Container Deployment Guide](../deployment/deployment_nano.md)
-
-## Windows 10 Insiders Releases
-
-The Windows containers feature is available on Windows 10 insiders build. 
-
-### Manual Configuration <!--4-->
-
-To manually configure the Windows container feature on a Windows 10 insiders build, see the [Windows 10 Container Deployment Guide](../deployment/deployment_windows10.md).
+<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2Fwindows-server-containers-preview%2Fazuredeploy.json" target="_blank">
+    <img src="http://azuredeploy.net/deploybutton.png"/>
+</a>
 
 ## Next Steps
 
