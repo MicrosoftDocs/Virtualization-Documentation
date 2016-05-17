@@ -31,22 +31,23 @@ To install the feature using PowerShell, run the following command in an elevate
 Install-WindowsFeature containers
 ```
 
-If Hyper-V containers will be deployed, the Hyper-V role will be required. The following Powershell command can be used to install the role. If the container host is also a Hyper-V virtual machine, and will be hosting Hyper-V containers, nested virtualization will need to be configured. For details on this configuration see, [Nested Virtualization]( https://msdn.microsoft.com/en-us/virtualization/hyperv_on_windows/user_guide/nesting).
+If Hyper-V containers will be deployed, the Hyper-V role will be required. The following Powershell command can be used to install the role.
 
 ```none
 Install-WindowsFeature hyper-v
 ```
+
+If the container host is also a Hyper-V virtual machine, and will be hosting Hyper-V containers, nested virtualization will need to be configured. For details on this configuration see, [Nested Virtualization]( https://msdn.microsoft.com/en-us/virtualization/hyperv_on_windows/user_guide/nesting).
+
 
 ### Install Docker
 
 Docker is required to manage Windows Containers, however needs to be installed separately. The following PowerShell commands will install and perform basic configuration of the Docker engine and Docker client. For detailed information on configuring the Docker engine, including securing the Docker engine on Windows see, [Docker Daemon on Windows](../docker/docker_daemon_windows.md).
 
 ```none
-# Download Docker Engine and Docker Client
+# Download Docker Engine, Docker Client, and add folder to path
 Invoke-WebRequest https://aka.ms/tp5/dockerd -OutFile $env:programfiles\docker\dockerd.exe
 Invoke-WebRequest https://aka.ms/tp5/dockerd -OutFile $env:programfiles\docker\docker.exe
-
-# Add Docker folder to path
 $env:Path += ";$env:programfiles\docker"
 
 # Install Docker Engine as a Windows Service
@@ -107,11 +108,13 @@ Install-PackageProvider NanoServerPackage
 Install-NanoServerPackage -Name Microsoft-NanoServer-Containers-Package
 ```
 
-If Hyper-V containers will be deployed, the Hyper-V role will be required. The following Powershell command can be used to install the role. If the container host is also a Hyper-V virtual machine, and will be hosting Hyper-V containers, nested virtualization will need to be configured. For details on this configuration see, [Nested Virtualization]( https://msdn.microsoft.com/en-us/virtualization/hyperv_on_windows/user_guide/nesting).
+If Hyper-V containers will be deployed, the Hyper-V role will be required. The following Powershell command can be used to install the role.
 
 ```none
 Install-NanoServerPackage -Name Microsoft-NanoServer-Computer <verify>
 ```
+
+If the container host is also a Hyper-V virtual machine, and will be hosting Hyper-V containers, nested virtualization will need to be configured. For details on this configuration see, [Nested Virtualization]( https://msdn.microsoft.com/en-us/virtualization/hyperv_on_windows/user_guide/nesting).
 
 ### Install Docker
 
@@ -177,11 +180,9 @@ Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V –All
 ### Install Docker
 
 ```none
-# Download Docker Engine and Docker Client
+# Download Docker Engine, Docker Client, and add folder to path
 Invoke-WebRequest https://aka.ms/tp5/dockerd -OutFile $env:programfiles\docker\dockerd.exe
 Invoke-WebRequest https://aka.ms/tp5/dockerd -OutFile $env:programfiles\docker\docker.exe
-
-# Add Docker folder to path
 $env:Path += ";$env:programfiles\docker"
 
 # Install Docker Engine as a Windows Service
