@@ -13,7 +13,7 @@ ms.assetid: 2605ece3-5918-4898-bc6b-60ef09e44d9d
 
 # Connecting with the Docker daemon
 
-On Windows, the Docker daemon accepts client and API connections locally through a non-networked named piped, and remotely through a TCP port. As a best practice, the Docker daemon should be accessed from a remote machine, through a TCP port. Furthermore, when doing so, the connection should be secured with SSL. This document will detail configuring incoming client connections, creating SSL certificates, and how to use these certificates with the Docker client and Docker daemon.
+On Windows, the Docker daemon accepts client and API connections locally through a non-networked named piped, and remotely through a TCP port. As a best practice, the Docker daemon should be accessed from a remote machine, through a TCP port. Furthermore, when doing so, the connection should be secured with TLS. This document will detail configuring incoming client connections, creating TLS certificates, and how to use these certificates with the Docker client and Docker daemon.
 
 For detailed information on securing the Docker daemon, see [Protect the Docker daemon socket on Docker.com](https://docs.docker.com/engine/security/https/).
 
@@ -43,7 +43,7 @@ A TCP port can also be specified using the -H parameter. In this example port 23
 dockerd -H 0.0.0.0:2375
 ```
 
-The TCP port can be secured using SSL certificates and the **--tlsverify** parameter. In this configuration the **--tlscacert**, **--tlscert**, and **--tlskey** parameters are used to specify the location of the required SSL components.
+The TCP port can be secured using TLS certificates and the **--tlsverify** parameter. In this configuration the **--tlscacert**, **--tlscert**, and **--tlskey** parameters are used to specify the location of the required TLS components.
 
 ```none
 dockerd -H 0.0.0.0:2376 --tlsverify --tlscacert=C:\ProgramData\Docker\certs.d\ca.pem --tlscert=C:\ProgramData\Docker\certs.d\server-cert.pem --tlskey=C:\ProgramData\Docker\certs.d\server-key.pem
@@ -57,11 +57,11 @@ If a TCP port is specified, and the named pipe will also be used, the named pipe
 dockerd -H npipe:// -H 0.0.0.0:2376 --tlsverify --tlscacert=C:\ProgramData\Docker\certs.d\ca.pem --tlscert=C:\ProgramData\Docker\certs.d\server-cert.pem --tlskey=C:\ProgramData\Docker\certs.d\server-key.pem
 ```
 
-## Create SSL Certificates
+## Create TLS Certificates
 
-### Open SSL on Windows
+### Open TLS on Windows
 
-There are several option available for creating SSL certificates on Windows. In this example, OpenSSL for Windows will be downloaded from https://indy.fulgan.com/SSL/.
+There are several option available for creating TLS certificates on Windows. In this example, OpenSSL for Windows will be downloaded from https://indy.fulgan.com/SSL/.
 
 ```none
 # Download Open SSL for Windows
@@ -94,7 +94,7 @@ echo subjectAltName = IP:10.0.0.13,IP:127.0.0.1 > ./cert/extfile.cnf
 openssl x509 -req -days 365 -sha256 -in ./cert/server.csr -CA ./cert/ca.pem -CAkey ./cert/ca-key.pem -CAcreateserial -out ./cert/server-cert.pem -extfile ./cert/extfile.cnf
 ```
     
-### Client SSL Certificates
+### Client TLS Certificates
 
 Create client key and signing request:
 
@@ -110,23 +110,23 @@ echo extendedKeyUsage = clientAuth > ./cert/extfile.cnf
 openssl x509 -req -days 365 -sha256 -in ./cert/client.csr -CA ./cert/ca.pem -CAkey ./cert/ca-key.pem -CAcreateserial -out ./cert/cert.pem -extfile ./cert/extfile.cnf
 ```
 
-## Configure Docker SSL
+## Configure Docker TLS
 
 If you need to install the Docker daemon or Docker client, see [Docker on Windows](../deployment/docker_windows.md).
 
 ### Docker daemon
 
-Copy the server SSL certificates to the ` C:\ProgramData\Docker\certs.d` folder on the container host.
+Copy the server TLS certificates to the ` C:\ProgramData\Docker\certs.d` folder on the container host.
 
 ### Docker client
 
-Create an environmental variable named `DOCKER_CERT_PATH` and give it a value of the directory where the client SSL certificates will be copied.
+Create an environmental variable named `DOCKER_CERT_PATH` and give it a value of the directory where the client TLS certificates will be copied.
 
 ```none
 $env: DOCKER_CERT_PATH = "c:\dokcercerts"
 ```
 
-Copy the client SSL certificates into the `DOCKER_CERT_PATH` directory.
+Copy the client TLS certificates into the `DOCKER_CERT_PATH` directory.
 
 ## Remote client connection
 
@@ -153,6 +153,3 @@ When set, the remote Docker command would be similar to this.
 ```none
 Docker -H -–tlsverify images
 ```
-
-
-

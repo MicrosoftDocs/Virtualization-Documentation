@@ -55,6 +55,55 @@ $env:Path += ";$env:programfiles\docker"
 dockerd --register-service
 ```
 
+### Install Base OS Image
+
+Container OS images can be found and installed using the ContainerImage PowerShell module. Before using this module, it will need to be installed. The following command can be used to install the module. For more information on using the Container Image OneGet PowerShell module see, [Container Image Provider](https://github.com/PowerShell/ContainerProvider). 
+
+```none
+Install-PackageProvider ContainerImage -Force
+```
+
+Once installed, a list of Base OS images can be returned using `Find-ContainerImage`.
+
+```none
+Find-ContainerImage
+
+Name                 Version          Source           Summary
+----                 -------          ------           -------
+NanoServer           10.0.14300.1010  ContainerImag... Container OS Image of Windows Server 2016 Technical...
+WindowsServerCore    10.0.14300.1000  ContainerImag... Container OS Image of Windows Server 2016 Technical...
+```
+
+To download and install the Nano Server base OS image, run the following. The `-version` parameter is optional. Without a base OS image version specified, the latest version will be installed.
+
+```none
+Install-ContainerImage -Name NanoServer -Version 10.0.14300.1010
+```
+
+Likewise, this command will download and install the Windows Server Core base OS image. The `-version` parameter is optional. Without a base OS image version specified, the latest version will be installed.
+
+```none
+Install-ContainerImage -Name WindowsServerCore -Version 10.0.14300.1000
+```
+
+Verify that the images have been installed using the `docker images` command. 
+
+```none
+docker images
+
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+nanoserver          10.0.14300.1010     40356b90dc80        2 weeks ago         793.3 MB
+windowsservercore   10.0.14304.1000     7837d9445187        2 weeks ago         9.176 GB
+``` 
+
+After installing the Windows Server Core or Nano Server Base OS images, these will need to be tagged with a version of ‘latest’. To do so, use the `docker tag` command. 
+
+For more information on `docker tag` see [Tag, push, and pull you images on docker.com](https://docs.docker.com/mac/step_six/). 
+
+```none
+docker tag <image id> windowsservercore:latest
+``` 
+
 ## Nano Server
 
 ### Install container feature
@@ -111,6 +160,48 @@ $env:Path += ";$env:programfiles\docker"
 dockerd --register-service
 ```
 
+### Install Base OS Image
+
+Container OS images can be found and installed using the ContainerImage PowerShell module. Before using this module, it will need to be installed. The following command can be used to install the module. For more information on using the Container Image OneGet PowerShell module see, [Container Image Provider](https://github.com/PowerShell/ContainerProvider). 
+
+```none
+Install-PackageProvider ContainerImage -Force
+```
+
+Once installed, a list of Base OS images can be returned using `Find-ContainerImage`.
+
+```none
+Find-ContainerImage
+
+Name                 Version          Source           Summary
+----                 -------          ------           -------
+NanoServer           10.0.14300.1010  ContainerImag... Container OS Image of Windows Server 2016 Technical...
+WindowsServerCore    10.0.14300.1000  ContainerImag... Container OS Image of Windows Server 2016 Technical...
+```
+
+To download and install the Nano Server base OS image, run the following. The `-version` parameter is optional. Without a base OS image version specified, the latest version will be installed.
+
+```none
+Install-ContainerImage -Name NanoServer -Version 10.0.14300.1010
+```
+
+Verify that the images have been installed using the `docker images` command. 
+
+```none
+docker images
+
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+nanoserver          10.0.14300.1010     40356b90dc80        2 weeks ago         793.3 MB
+``` 
+
+After installing the Windows Server Core or Nano Server Base OS images, these will need to be tagged with a version of ‘latest’. To do so, use the `docker tag` command. 
+
+For more information on `docker tag` see [Tag, push, and pull you images on docker.com](https://docs.docker.com/mac/step_six/). 
+
+```none
+docker tag <image id> nanoserver:latest
+``` 
+
 ## Windows 10
 
 ### Install container feature
@@ -142,6 +233,48 @@ $env:Path += ";$env:programfiles\docker"
 # Install Docker Engine as a Windows Service
 dockerd --register-service
 ```
+
+### Install Base OS Image
+
+Container OS images can be found and installed using the ContainerImage PowerShell module. Before using this module, it will need to be installed. The following command can be used to install the module. For more information on using the Container Image OneGet PowerShell module see, [Container Image Provider](https://github.com/PowerShell/ContainerProvider). 
+
+```none
+Install-PackageProvider ContainerImage -Force
+```
+
+Once installed, a list of Base OS images can be returned using `Find-ContainerImage`.
+
+```none
+Find-ContainerImage
+
+Name                 Version          Source           Summary
+----                 -------          ------           -------
+NanoServer           10.0.14300.1010  ContainerImag... Container OS Image of Windows Server 2016 Technical...
+WindowsServerCore    10.0.14300.1000  ContainerImag... Container OS Image of Windows Server 2016 Technical...
+```
+
+To download and install the Nano Server base OS image, run the following. The `-version` parameter is optional. Without a base OS image version specified, the latest version will be installed.
+
+```none
+Install-ContainerImage -Name NanoServer -Version 10.0.14300.1010
+```
+
+Verify that the images have been installed using the `docker images` command. 
+
+```none
+docker images
+
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+nanoserver          10.0.14300.1010     40356b90dc80        2 weeks ago         793.3 MB
+``` 
+
+After installing the Windows Server Core or Nano Server Base OS images, these will need to be tagged with a version of ‘latest’. To do so, use the `docker tag` command. 
+
+For more information on `docker tag` see [Tag, push, and pull you images on docker.com](https://docs.docker.com/mac/step_six/). 
+
+```none
+docker tag <image id> nanoserver:latest
+``` 
 
 ## Azure
 
