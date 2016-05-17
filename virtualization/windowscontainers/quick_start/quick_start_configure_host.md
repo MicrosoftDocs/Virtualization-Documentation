@@ -15,7 +15,7 @@ ms.assetid: 42ea9737-5d0d-447a-96d8-6fd5ed126b25
 
 **This is preliminary content and subject to change.** 
 
-The Windows container feature is available on Windows Server 2016, Nano Server, and Windows 10 insider releases. A Windows container host can be deployed onto physical systems, on-prem virtual machines, and cloud hosted virtual machines. The steps to deploy a container host may vary by operating system, and system type. This document provides the details needed to quickly provision a Windows container host. This document also links through to more detailed instruction on manual deployments for all configuration types.
+The Windows container feature is available on Windows Server 2016, Nano Server, and Windows 10 insider releases. A Windows container host can be deployed onto physical systems, on-prem virtual machines, and cloud hosted virtual machines. The steps to deploy a container host may vary by operating system, and system type. This document provides the details needed to quickly provision a Windows container host.
 
 Use the navigation at the right hand side to select your desired deployment configuration.
 
@@ -25,13 +25,23 @@ Use the navigation at the right hand side to select your desired deployment conf
 
 The container feature can be installed on Windows Server 2016, or Windows Server 2016 Core, using Windows Server Manager or PowerShell.
 
-To install the role using PowerShell, run the following command in an elevated PowerShell session.
+To install the feature using PowerShell, run the following command in an elevated PowerShell session.
 
 ```none
 Install-WindowsFeature containers
 ```
 
+If Hyper-V containers will be deployed, the Hyper-V role will be required. The following Powershell command can be used to install the role.
+
+> If the container host is also a Hyper-V virtual machine, and will be hosting Hyper-V containers, nested virtualization will need to be configured. For details on this configuration see, [Nested Virtualization]( https://msdn.microsoft.com/en-us/virtualization/hyperv_on_windows/user_guide/nesting).
+
+```none
+Install-WindowsFeature hyper-v
+```
+
 ### Install Docker
+
+Docker is required to manage Windows Containers, however needs to be installed separately. The following PowerShell commands will install and perform basic configuration of the Docker engine and Docker client. For detailed information on configuring the Docker engine, including securing the Docker engine on Windows see, [Docker Daemon on Windows](../docker/docker_daemon_windows.md).
 
 ```none
 # Download Docker Engine and Docker Client
@@ -49,24 +59,51 @@ dockerd --register-service
 
 ### Install container feature
 
+In order to configure the Windows container feature on Nano Server, a remote PowerShell session must be created with the Nano Server. To do so, run the following commands on a remote management system. Note – replace the IP address with the IP address of the Nano Server.
+
+```none
+Set-Item WSMan:\localhost\Client\TrustedHosts 10.0.0.5
+```
+
+```none
+Enter-PSSession -ComputerName 10.0.0.5 -Credential ~\Administrator
+```
+
+Once the remote session has been created, the following commands can be used to install the Windows container feature.
+
+
 ```none
 # Install Nano Server Package Provider
 Install-PackageProvider NanoServerPackage
 
 # Install container feature
 Install-NanoServerPackage -Name Microsoft-NanoServer-Containers-Package
+```
 
+If Hyper-V containers will be deployed, the Hyper-V role will be required. The following Powershell command can be used to install the role.
+
+> If the container host is also a Hyper-V virtual machine, and will be hosting Hyper-V containers, nested virtualization will need to be configured. For details on this configuration see, [Nested Virtualization]( https://msdn.microsoft.com/en-us/virtualization/hyperv_on_windows/user_guide/nesting).
+
+```none
 # Install Hyper-V role (if container host will run Hyper-V containers)
 Install-NanoServerPackage -Name Microsoft-NanoServer-Computer <verify>
 ```
 
 ### Install Docker
 
+Docker is required to manage Windows Containers, however needs to be installed separately. The following PowerShell commands will install and perform basic configuration of the Docker engine and Docker client. For detailed information on configuring the Docker engine, including securing the Docker engine on Windows see, [Docker Daemon on Windows](../docker/docker_daemon_windows.md).
+
+Nano Server does not currently support the `Invoke-WebRequest` command. Run this commands on a remote system and copy `dockerd.exe` and `docker.exe` to `c:\program files\docker` of the Nano Server container host.
+
 ```none
 # Download Docker Engine and Docker Client
-Invoke-WebRequest https://aka.ms/tp5/dockerd -OutFile $env:programfiles\docker\dockerd.exe
-Invoke-WebRequest https://aka.ms/tp5/dockerd -OutFile $env:programfiles\docker\docker.exe
+Invoke-WebRequest https://aka.ms/tp5/dockerd -OutFile ./dockerd.exe
+Invoke-WebRequest https://aka.ms/tp5/dockerd -OutFile ./docker.exe
+```
 
+Run the following commands to add the Docker program folder to the Windows path and then to configure the Docker service.
+
+```none
 # Add Docker folder to path
 $env:Path += ";$env:programfiles\docker"
 
@@ -110,7 +147,9 @@ dockerd --register-service
 
 ### Azure template
 
-https://github.com/Azure/azure-quickstart-templates/tree/master/windows-server-containers-preview
+The Windows container feature can be configured in Azure using the methods detailed in previous sections of this document. Additionally, the following template can be used to deploy a Windows container ready virtual machine.
+
+> Azure does not support Hyper-V containers.
 
 <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2Fwindows-server-containers-preview%2Fazuredeploy.json" target="_blank">
     <img src="http://azuredeploy.net/deploybutton.png"/>
