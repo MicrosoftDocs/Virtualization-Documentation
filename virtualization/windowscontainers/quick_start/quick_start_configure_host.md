@@ -232,11 +232,41 @@ docker tag <image id> nanoserver:latest
 
 The Windows container feature can be configured in Azure using the methods detailed in previous sections of this document. Additionally, the following template can be used to deploy a Windows container ready virtual machine.
 
-> Azure does not support Hyper-V containers.
-
 <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2Fwindows-server-containers-preview%2Fazuredeploy.json" target="_blank">
     <img src="http://azuredeploy.net/deploybutton.png"/>
 </a>
+
+## Scripted Deployments
+
+Scripts are available that will deploy Windows containers hosts. These scripts will eventually be deprecated. 
+
+### New Virtual Machine
+
+To deploy a new Hyper-V virtual machine, and configure this virtual machine as a Windows container host, run the following commands. This needs to be run on an existing Hyper-V host. 
+
+```none
+# Download configuration script.
+
+wget -uri https://aka.ms/tp5/New-ContainerHost -OutFile c:\New-ContainerHost.ps1
+
+# Run the configuration script – remove the Hyper-V parameter if Hyper-V containers will not be deployed.
+
+powershell.exe -NoProfile -ExecutionPolicy Bypass c:\New-ContainerHost.ps1 -VMName MyContainerHost -WindowsImage ServerDatacenterCore –Hyperv
+```
+
+### Existing System
+
+To configure an existing system as a Windows container host, run the following commands.
+
+```none
+# Download configuration script.
+
+wget -uri https://aka.ms/tp5/Install-ContainerHost -OutFile C:\Install-ContainerHost.ps1
+
+# Run the configuration script – remove the Hyper-V parameter if Hyper-V containers will not be deployed.
+
+powershell.exe -NoProfile -ExecutionPolicy Bypass C:\Install-ContainerHost.ps1 -HyperV
+```
 
 ## Next Steps
 
