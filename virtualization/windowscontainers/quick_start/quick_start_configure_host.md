@@ -49,7 +49,7 @@ Set-VMMemory $vm -DynamicMemoryEnabled $false
 Get-VMNetworkAdapter -VMName $vm | Set-VMNetworkAdapter -MacAddressSpoofing On
 ```
 
-Back in the virtual machine, the Hyper-V role can now be installed. Do so with the following command.
+Back in the virtual machine, the Hyper-V role can now be installed. Do so with the following command. This process will require a reboot.
 
 ```none
 Install-WindowsFeature hyper-v
@@ -60,8 +60,11 @@ Install-WindowsFeature hyper-v
 Docker is required to manage Windows Containers, however needs to be installed separately. The following PowerShell commands will install and perform basic configuration of the Docker engine and Docker client. For detailed information on configuring the Docker engine, including securing the Docker engine on Windows see, [Docker Daemon on Windows](../docker/docker_daemon_windows.md).
 
 ```none
+# Create Docker directory
+New-Item -Type Directory $env:programfiles\docker
+
 # Download Docker Engine
-Invoke-WebRequest https://aka.ms/tp5/dockerd -OutFile $env:programfiles\docker\dockerd.exe
+Invoke-WebRequest https://master.dockerproject.org/windows/amd64/dockerd-1.12.0-dev.exe -OutFile $env:programfiles\docker\dockerd.exe
 
 # Add Docker folder to the path
 $env:Path += ";$env:programfiles\docker"
@@ -74,7 +77,7 @@ The following command will download the Docker client.
 
 ```none
 # Download Docker Client
-Invoke-WebRequest https://aka.ms/tp5/docker -OutFile $env:programfiles\docker\docker.exe
+Invoke-WebRequest https://master.dockerproject.org/windows/amd64/docker.exe -OutFile $env:programfiles\docker\docker.exe
 ```
 
 
