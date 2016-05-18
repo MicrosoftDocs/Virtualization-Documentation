@@ -254,16 +254,6 @@ After installing the Nano Server Base OS image, it will need to be tagged with a
 docker tag <image id> nanoserver:latest
 ``` 
 
-## Azure
-
-### Azure template
-
-The Windows container feature can be configured in Azure using the methods detailed in previous sections of this document. Additionally, the following template can be used to deploy a Windows container ready virtual machine.
-
-<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2Fwindows-server-containers-preview%2Fazuredeploy.json" target="_blank">
-    <img src="http://azuredeploy.net/deploybutton.png"/>
-</a>
-
 ## Scripted Deployments
 
 Scripts are available that will deploy Windows containers hosts. These scripts will eventually be deprecated. 
