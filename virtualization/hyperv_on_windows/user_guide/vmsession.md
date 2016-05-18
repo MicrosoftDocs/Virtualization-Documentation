@@ -13,7 +13,7 @@ ms.assetid: fb228e06-e284-45c0-b6e6-e7b0217c3a49
 
 # Manage Windows Virtual Machines with PowerShell Direct
  
-You can use PowerShell Direct to remotely manage a Windows 10 or Windows Server Technical Preview virtual machine from a Windows 10 or Windows Server Technical Preview Hyper-V host. PowerShell Direct allows PowerShell management inside a virtual machine regardless of the network configuration or remote management settings on either the Hyper-V host or the virtual machine. This makes it easier for Hyper-V Administrators to automate and script management and configuration tasks.
+You can use PowerShell Direct to remotely manage a Windows 10 or Windows Server Technical Preview virtual machine from a Windows 10 or Windows Server Technical Preview Hyper-V host. PowerShell Direct allows PowerShell management inside a virtual machine regardless of any network configuration or remote management settings on either the Hyper-V host or the virtual machine. This makes it easier for Hyper-V Administrators to automate and script management and configuration tasks.
 
 **Ways to run PowerShell Direct:**  
 * As an interactive session -- [click here](vmsession.md#create-and-exit-an-interactive-powershell-session) to create and exit an interactive PowerShell session using Enter-PSSession.
@@ -41,13 +41,13 @@ If you're managing older virtual machines, use Virtual Machine Connection (VMCon
 The easiest way to run PowerShell commands in a virtual machine is to start an
 interactive session.
 
-When the session starts, the commands that you type run on the virtual machine, just as though you typed them directy into a PowerShell session on the virtual machine itself.
+When the session starts, the commands that you type run on the virtual machine, just as though you typed them directly into a PowerShell session on the virtual machine itself.
 
 **To start an interactive session:**
 
 1. On the Hyper-V host, open PowerShell as Administrator.
 
-3. Run the one of the following commands to create an interactive session using the virtual machine name or GUID:  
+2. Run one of the following commands to create an interactive session using the virtual machine name or GUID:  
   
   ``` PowerShell
   Enter-PSSession -VMName <VMName>
@@ -56,7 +56,7 @@ When the session starts, the commands that you type run on the virtual machine, 
   
   Provide credentials for the virtual machine when prompted.
 
-4. Run commands on your virtual machine.
+3. Run commands on your virtual machine.
   
   You should see the VMName as the prefix for your PowerShell prompt as shown:
   
@@ -66,7 +66,7 @@ When the session starts, the commands that you type run on the virtual machine, 
   
   Any command run will be running on your virtual machine.  To test, you can run `ipconfig` or `hostname` to make sure that these commands are running in the virtual machine.
   
-5. When you're done, run the following command to close the session:  
+4. When you're done, run the following command to close the session:  
   
    ``` PowerShell
    Exit-PSSession 
@@ -86,7 +86,7 @@ PowerShell Direct with Invoke-Command is perfect for situations where you need t
 
 1. On the Hyper-V host, open PowerShell as Administrator.
 
-3. Run the one of the following commands to create an interactive session using the virtual machine name or GUID:  
+2. Run one of the following commands to create a session using the virtual machine name or GUID:  
    
    ``` PowerShell
    Invoke-Command -VMName <VMName> -ScriptBlock { cmdlet } 
@@ -102,7 +102,7 @@ PowerShell Direct with Invoke-Command is perfect for situations where you need t
 
 1. On the Hyper-V host, open PowerShell as Administrator.
 
-2. Run the one of the following commands to create an interactive session using the virtual machine name or GUID:  
+2. Run one of the following commands to create a session using the virtual machine name or GUID:  
    
    ``` PowerShell
    Invoke-Command -VMName <VMName> -FilePath C:\host\script_path\script.ps1 
@@ -143,15 +143,15 @@ By the same token, sessions hold state.  Since persistent sessions persist, any 
   
 3. Copy a file into the virtual machine.
   
-  To move `C:\host_path\data.txt` to the virtual machine from the host machine, run:
+  To copy `C:\host_path\data.txt` to the virtual machine from the host machine, run:
   
   ``` PowerShell
   Copy-Item -ToSession $s -Path C:\host_path\data.txt -Destination C:\guest_path\
   ```
   
-4.  Copy a file to the host. 
+4.  Copy a file from the virtual machine (on to the host). 
    
-   To move `C:\guest_path\data.txt` to the host from the virtual machine, run:
+   To copy `C:\guest_path\data.txt` to the host from the virtual machine, run:
   
   ``` PowerShell
   Copy-Item -FromSession $s -Path C:\guest_path\data.txt -Destination C:\host_path\
