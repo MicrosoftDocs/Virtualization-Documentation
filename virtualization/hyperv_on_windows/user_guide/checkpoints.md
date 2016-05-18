@@ -19,7 +19,7 @@ Windows 10 Hyper-V includes two types of checkpoints:
 
 * **Standard Checkpoints** -- takes a snapshot of the virtual machine and virtual machine memory state at the time the checkpoint is initiated. A snapshot is not a full backup and can cause data consistancy issues with systems that replicate data between different nodes such as Active Directory.  Hyper-V only offered standard checkpoints (formerly called snapshots) prior to Windows 10.
 
-* **Production Checkpoints** -- uses Volume Shadow Copy Service or File System Freeze on a Linux virtual machine to create a data conistenant back of the virtual machine.
+* **Production Checkpoints** -- uses Volume Shadow Copy Service or File System Freeze on a Linux virtual machine to create a data conistenant back of the virtual machine. No snapshot of the virtual machine memory state is taken.
 
 Production checkpoints are selected by default however this can be changed using either Hyper-V manager or PowerShell.
 
@@ -120,7 +120,7 @@ By default, the name of a checkpoint is the name of the virtual machine combined
 virtual_machine_name (MM/DD/YYY -hh:mm:ss AM\PM)
 ```
 
-Names are limited to 100 characters or less, and the name cannot be blank. 
+Names are limited to 100 characters, and the name cannot be blank. 
 
 **Using Hyper-V Manager**
 
@@ -132,7 +132,7 @@ Names are limited to 100 characters or less, and the name cannot be blank.
 **Using PowerShell**
 
 ``` powershell
-Rename-VMCheckpoint -VMName <virtual machine name> -Name <checkpoint name> --NewName <new checkpoint name>
+Rename-VMCheckpoint -VMName <virtual machine name> -Name <checkpoint name> -NewName <new checkpoint name>
 ```
 
 ## Deleting checkpoints
