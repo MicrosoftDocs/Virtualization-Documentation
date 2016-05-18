@@ -25,6 +25,8 @@ There are two types of container images:
 
 ## Base OS images
 
+### Install Images
+
 Container OS images can be found and installed using the ContainerImage PowerShell module. Before using this module, it will need to be installed. The following command can be used to install the module. For more information on using the Container Image OneGet PowerShell module see, [Container Image Provider](https://github.com/PowerShell/ContainerProvider). 
 
 ```none
@@ -64,21 +66,9 @@ nanoserver          10.0.14300.1010     40356b90dc80        2 weeks ago         
 windowsservercore   10.0.14304.1000     7837d9445187        2 weeks ago         9.176 GB
 ```  
 
-Once installed, you may also want to tag the images with the ‘latest’ tag. These instructions are detailed in the tag section found below.
-
 > If the Base OS image is downloaded, but is not shown when running `docker images`, restart the Docker service using the services control panel applet or the command 'sc docker stop' and then 'sc docker start'
 
 ### Tag images
-
-When referencing a container image by name, the Docker engine will search for the latest version of the image. If the latest version cannot be determined, the following error will be thrown.
-
-```none
-docker run -it windowsservercore cmd
-
-Unable to find image 'windowsservercore:latest' locally
-Pulling repository docker.io/library/windowsservercore
-C:\Windows\system32\docker.exe: Error: image library/windowsservercore not found.
-```
 
 After installing the Windows Server Core or Nano Server Base OS images, these will need to be tagged with a version of ‘latest’. To do so, use the `docker tag` command. 
 
@@ -101,6 +91,6 @@ windowsservercore   latest              290ab6758cec        2 days ago          
 
 ## Next Steps
 
-[Windows Server Containers - Quick Start](./manage_docker.md)
+[Windows Server Containers - Quick Start](./manage_docker.md)  
 [Hyper-V Containers - Quick Start](./manage_docker_hyperv.md)
 
