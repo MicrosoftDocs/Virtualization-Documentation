@@ -15,7 +15,7 @@ ms.assetid: 42ea9737-5d0d-447a-96d8-6fd5ed126b25
 
 **This is preliminary content and subject to change.** 
 
-The Windows container feature is available on Windows Server 2016, Nano Server, and Windows 10 insider releases. A Windows container host can be deployed onto physical systems, on-prem virtual machines, and cloud hosted virtual machines. The steps to deploy a container host may vary by operating system, and system type. This document provides the details needed to quickly provision a Windows container host.
+The Windows container feature is available on Windows Server 2016, Nano Server, and Windows 10 insider releases. A Windows container host can be deployed onto physical systems, on-premises virtual machines, and cloud hosted virtual machines. The steps to deploy a container host may vary by operating system, and system type. This document provides the details needed to quickly provision a Windows container host.
 
 Use the navigation at the right hand side to select your desired deployment configuration.
 
@@ -31,14 +31,29 @@ To install the feature using PowerShell, run the following command in an elevate
 Install-WindowsFeature containers
 ```
 
-If Hyper-V containers will be deployed, the Hyper-V role will be required. The following Powershell command can be used to install the role.
+If Hyper-V containers will be deployed, the Hyper-V role will be required. If the container host is also a Hyper-V virtual machine, nested virtualization will need to be enabled. To do so, turn off the virtual machine and run the following commands. Once complete, turn the virtual machine back on.
+
+This step can be skipped if the host is not virtualized, or will not be running Hyper-V containers.
+
+```none
+#replace with the virtual machine name
+$vm = "<virtual-machine>"
+
+#configure virtual processor
+Set-VMProcessor -VMName $vm -ExposeVirtualizationExtensions $true -Count 2
+
+#disable dynamic memory
+Set-VMMemory $vm -DynamicMemoryEnabled $false
+
+#enable mac spoofing
+Get-VMNetworkAdapter -VMName $vm | Set-VMNetworkAdapter -MacAddressSpoofing On
+```
+
+Back in the virtual machine, the Hyper-V role can now be installed. Do so with the following command.
 
 ```none
 Install-WindowsFeature hyper-v
 ```
-
-If the container host is also a Hyper-V virtual machine, and will be hosting Hyper-V containers, nested virtualization will need to be configured. For details on this configuration see, [Nested Virtualization]( https://msdn.microsoft.com/en-us/virtualization/hyperv_on_windows/user_guide/nesting).
-
 
 ### Install Docker
 
@@ -109,15 +124,25 @@ Enter-PSSession -ComputerName 10.0.0.5 -Credential ~\Administrator
 Once the remote session has been created, the following commands can be used to install the Windows container feature.
 
 
-```none
-# Install Nano Server Package Provider
-Install-PackageProvider NanoServerPackage
+If Hyper-V containers will be deployed, the Hyper-V role will be required. If the container host is also a Hyper-V virtual machine, nested virtualization will need to be enabled. To do so, turn off the virtual machine and run the following commands. Once complete, turn the virtual machine back on.
 
-# Install container feature
-Install-NanoServerPackage -Name Microsoft-NanoServer-Containers-Package
+This step can be skipped if the host is not virtualized, or will not be running Hyper-V containers.
+
+```none
+#replace with the virtual machine name
+$vm = "<virtual-machine>"
+
+#configure virtual processor
+Set-VMProcessor -VMName $vm -ExposeVirtualizationExtensions $true -Count 2
+
+#disable dynamic memory
+Set-VMMemory $vm -DynamicMemoryEnabled $false
+
+#enable mac spoofing
+Get-VMNetworkAdapter -VMName $vm | Set-VMNetworkAdapter -MacAddressSpoofing On
 ```
 
-If Hyper-V containers will be deployed, the Hyper-V role will be required. The following Powershell command can be used to install the role.
+Back in the virtual machine, the Hyper-V role can now be installed. Do so with the following command.
 
 ```none
 Install-NanoServerPackage -Name Microsoft-NanoServer-Computer <verify>
