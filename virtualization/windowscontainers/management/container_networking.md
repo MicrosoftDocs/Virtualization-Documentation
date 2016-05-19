@@ -6,7 +6,7 @@ author: jmesser81
 manager: timlt
 ms.date: 05/02/2016
 ms.topic: article
-ms.prod: windows-contianers
+ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: 538871ba-d02e-47d3-a3bf-25cda4a40965
 ---
@@ -52,7 +52,7 @@ Stop-Service docker
 The configuration file can be found at `c:\programdata\docker\runDockerDaemon.cmd`. Edit the following line, and add `-b "none"`
 
 ```none
-dockerd -b “none”
+dockerd -b "none"
 ```
 
 Restart the service.

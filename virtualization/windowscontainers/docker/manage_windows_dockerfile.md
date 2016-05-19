@@ -6,7 +6,7 @@ author: neilpeterson
 manager: timlt
 ms.date: 05/02/2016
 ms.topic: article
-ms.prod: windows-contianers
+ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: 75fed138-9239-4da9-bce4-4f2e2ad469a1
 ---
@@ -174,7 +174,7 @@ ADD <source> <destination>
 If either source or destination include whitespace, enclose the path in square brackets and double quotes.
  
 ```none
-ADD [“<source>” “<destination>”]
+ADD ["<source>" "<destination>"]
 ```
 
 **Windows Considerations**

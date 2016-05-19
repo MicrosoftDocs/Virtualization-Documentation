@@ -164,7 +164,7 @@ Invoke-WebRequest https://aka.ms/tp5/dockerd -OutFile ./dockerd.exe
 Invoke-WebRequest https://aka.ms/tp5/dockerd -OutFile ./docker.exe
 ```
 
-Run the following commands to add the Docker program folder to the Windows path and then to configure the Docker service.
+Run the following commands to add the Docker program folder to the Windows path, and then to configure the Docker service.
 
 ```none
 # Add Docker folder to path

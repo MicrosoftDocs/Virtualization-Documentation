@@ -2,7 +2,7 @@
 title: Set up a NAT network
 description: Set up a NAT network
 keywords: windows 10, hyper-v
-author: scooley
+author: jmesser81
 manager: timlt
 ms.date: 05/02/2016
 ms.topic: article
@@ -120,6 +120,71 @@ Congratulations!  You now have a virtual NAT network!  To add a virtual machine,
 ## Connect a virtual machine
 
 To connect a virtual machine to your new NAT network, connect the internal switch you created in the first step of the [NAT Network Setup](setup_nat_network.md#create-a-nat-virtual-network) section to your virtual machine using the VM Settings menu.
+
+
+## Troubleshooting
+
+This workflow assumes that there are no other NATs on the host. However, sometimes multiple applications or services will require the use of a NAT. Since Windows (WinNAT) only supports one internal NAT subnet prefix, trying to create multiple NATs will place the system into an unknown state.
+
+### Troubleshooting Steps
+1. Make sure you only have one NAT 
+  
+  ``` PowerShell
+  Get-NetNat
+  ```
+2. If a NAT already exists, please delete it
+  
+  ``` PowerShell
+  Get-NetNat | Remove-NetNat
+  ```
+
+3. Make sure you only have one "internal" vmSwitch for the NAT. Record the name of the vSwitch for Step 4
+  
+  ``` PowerShell
+  Get-VMSwitch
+  ```
+
+4. Check to see if there are private IP addresses (e.g. NAT default Gateway IP Address - usually *.1) from the old NAT still assigned to an adapter
+  
+  ``` PowerShell
+  Get-NetIPAddress -InterfaceAlias "vEthernet(<name of vSwitch>)"
+  ```
+
+5. If an old private IP address is in use, please delete it  
+   ``` PowerShell
+  Remove-NetIPAddress -InterfaceAlias "vEthernet(<name of vSwitch>)" -IPAddress <IPAddress>
+  ```
+
+## Multiple Applications using the same NAT
+
+Some scenarios require multiple applications or services to use the same NAT. In this case, the following workflow must be followed so that multiple applications / services can use a larger NAT internal subnet prefix
+
+**_We will detail the Docker 4 Windows - Docker Beta - Linux VM co-existing with the Windows Container feature on the same host as an example. This workflow is subject to change_**
+
+1. C:\> net stop docker 
+2. Stop Docker4Windows MobyLinux VM 
+3. PS C:\> Get-ContainerNetwork | remove-containerNetwork -force  
+4. PS C:\> Get-NetNat | Remove-NetNat  
+   *Removes any previously existing container networks (i.e. deletes vSwitch, deletes NetNat, cleans up)*  
+
+5. New-containernetwork –name nat –Mode NAT –subnetprefix 10.0.76.0/24 (this subnet will be used for Windows containers feature)  
+   *Creates internal vSwitch named nat*  
+   *Creates NAT network named “nat” with IP prefix 10.0.76.0/24*  
+
+6. Remove-NetNAT  
+   *Removes both DockerNAT and nat NAT networks (keeps internal vSwitches)*  
+
+7. New-NetNat -Name DockerNAT -InternalIPInterfaceAddressPrefix 10.0.0.0/17 (this will create a larger NAT network for both D4W and containers to share)  
+   *Creates NAT network named DockerNAT with larger prefix 10.0.0.0/17*  
+
+8. Run Docker4Windows (MobyLinux.ps1)  
+   *Creates internal vSwitch DockerNAT*  
+   *Creates NAT network named “DockerNAT” with IP prefix 10.0.75.0/24*  
+
+9. Net start docker  
+   *Docker will use the user-defined NAT network as the default to connect Windows containers*  
+ 
+In the end, you should have two internal vSwitches – one named DockerNAT and the other named nat. You will only have one NAT network (10.0.0.0/17) confirmed by running Get-NetNat. IP addresses for Windows containers will be assigned by the Windows Host Network Service (HNS) from the 10.0.76.0/24 subnet. Based on the existing MobyLinux.ps1 script, IP addresses for Docker 4 Windows will be assigned from the 10.0.75.0/24 subnet.
 
 
 ## References

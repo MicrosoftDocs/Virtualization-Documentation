@@ -6,7 +6,7 @@ author: neilpeterson
 manager: timlt
 ms.date: 05/02/2016
 ms.topic: article
-ms.prod: windows-contianers
+ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: ba4eb594-0cdb-4148-81ac-a83b4bc337bc
 ---
@@ -60,7 +60,9 @@ Install-WindowsFeature containers
 
 ### <a name=img></a>Install OS images
 
-Base OS images are used as the base to any Windows Server or Hyper-V container. Base OS images are available with both Windows Server Core and Nano Server as the underlying operating system, and can be installed using the Container Image PowerShell module. 
+Base OS images are used as the base to any Windows Server or Hyper-V container. Base OS images are available with both Windows Server Core and Nano Server as the underlying operating system, and can be installed using the Container Image PowerShell module.
+
+For instructions on installing base OS images in an offline or non-internet connected environment see, [Offline image installation]( https://msdn.microsoft.com/en-us/virtualization/windowscontainers/management/manage_images#offline-installation). 
 
 The following command can be used to install the Container Provider PowerShell module.
 
@@ -109,7 +111,7 @@ Run the script to install the Docker service.
 .\update-containerhost.ps1
 ```
 
-For manual installation and configuration steps, see [Docker and Windows](./docker_windows.md).
+For manual or offline installation and configuration steps, see [Docker and Windows](./docker_windows.md).
 
 ## Hyper-V container host
 
