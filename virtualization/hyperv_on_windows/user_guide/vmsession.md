@@ -51,7 +51,7 @@ When the session starts, the commands that you type run on the virtual machine, 
   
   ``` PowerShell
   Enter-PSSession -VMName <VMName>
-  Enter-PSSession -VMGuid <VMGuid>
+  Enter-PSSession -VMId <VMId>
   ```
   
   Provide credentials for the virtual machine when prompted.
@@ -90,7 +90,7 @@ PowerShell Direct with Invoke-Command is perfect for situations where you need t
    
    ``` PowerShell
    Invoke-Command -VMName <VMName> -ScriptBlock { cmdlet } 
-   Invoke-Command -VMGuid <VMGuid> -ScriptBlock { cmdlet }
+   Invoke-Command -VMId <VMId> -ScriptBlock { cmdlet }
    ```
    
    Provide credentials for the virtual machine when prompted.
@@ -106,7 +106,7 @@ PowerShell Direct with Invoke-Command is perfect for situations where you need t
    
    ``` PowerShell
    Invoke-Command -VMName <VMName> -FilePath C:\host\script_path\script.ps1 
-   Invoke-Command -VMGuid <VMGuid> -FilePath C:\host\script_path\script.ps1 
+   Invoke-Command -VMId <VMId> -FilePath C:\host\script_path\script.ps1 
    ```
    
    Provide credentials for the virtual machine when prompted.
@@ -133,7 +133,7 @@ By the same token, sessions hold state.  Since persistent sessions persist, any 
   
   ``` PowerShell
   $s = New-PSSession -VMName <VMName> -Credential (Get-Credential)
-  $s = New-PSSession -VMGuid <VMGuid> -Credential (Get-Credential)
+  $s = New-PSSession -VMId <VMId> -Credential (Get-Credential)
   ```
   
   Provide credentials for the virtual machine when prompted.
