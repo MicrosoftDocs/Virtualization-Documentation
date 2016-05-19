@@ -19,7 +19,7 @@ This guides list the requirements for a Windows container Host.
 
 ## Windows containers on a physical system
 
-- The Windows container role is only available on Windows Server 2016 TP4 (Full and Core) and Nano Server.
+- The Windows container role is only available on Windows Server 2016 TP5 (Full and Core) and Nano Server.
 - If Hyper-V containers will be run, the Hyper-V role will need to be installed.
 
 ## Windows containers on a virtual system

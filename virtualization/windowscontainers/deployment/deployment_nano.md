@@ -136,15 +136,15 @@ Nested virtualization allows the Hyper-V role to function inside of a Hyper-V vi
 The following script will configure nested virtualization for the container host. This script is run on the Hyper-V machine that is hosting the container host virtual machine. Ensure that the container host virtual machine is turned off when running this script.
 
 ```none
-#replace with the virtual machine name
+# Replace with the virtual machine name
 $vm = "<virtual-machine>"
 
-#configure virtual processor
+# Configure virtual processor
 Set-VMProcessor -VMName $vm -ExposeVirtualizationExtensions $true -Count 2
 
-#disable dynamic memory
+# Disable dynamic memory
 Set-VMMemory $vm -DynamicMemoryEnabled $false
 
-$enable mac spoofing
+# Enable mac spoofing
 Get-VMNetworkAdapter -VMName $vm | Set-VMNetworkAdapter -MacAddressSpoofing On
 ```
