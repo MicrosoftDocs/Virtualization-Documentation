@@ -161,7 +161,7 @@ For detailed information on the RUN instruction, see the [RUN Reference on Docke
 
 ### COPY
 
-The `COPY` instruction, copies files and directories to the filesystem of the container. The files and directories can be relative to the Dockerfile.
+The `COPY` instruction, copies files and directories to the filesystem of the container. The files and directories need to be in a path relative to the Dockerfile.
 
 **Format**
 
