@@ -23,9 +23,8 @@ Try Windows Server and Hyper-V Containers by using the following quick start gui
 <ul>
 <li>[1 - Quick Start Introduction](quick_start/quick_start.md)<br /><br /></li>
 <li>[2 - Deploy Container Host](quick_start/quick_start_configure_host.md)<br /><br /></li>
-<li>[3 - Container Images](quick_start/quick_start_images.md)<br /><br /></li>
-<li>[4 - Windows Server Containers](quick_start/manage_docker.md)<br /><br /></li>
-<li>[5 - Hyper-V Containers](quick_start/manage_docker_hyperv.md)<br /><br /></li>
+<li>[3 - Windows Server Containers](quick_start/manage_docker.md)<br /><br /></li>
+<li>[4 - Hyper-V Containers](quick_start/manage_docker_hyperv.md)<br /><br /></li>
 </ul>
 </td>
 </tr>

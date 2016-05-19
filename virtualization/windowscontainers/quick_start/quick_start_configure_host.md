@@ -36,16 +36,16 @@ If Hyper-V containers will be deployed, the Hyper-V role will be required. If th
 This step can be skipped if the host is not virtualized, or will not be running Hyper-V containers.
 
 ```none
-#replace with the virtual machine name
+# Replace with the virtual machine name
 $vm = "<virtual-machine>"
 
-#configure virtual processor
+# Configure virtual processor
 Set-VMProcessor -VMName $vm -ExposeVirtualizationExtensions $true -Count 2
 
-#disable dynamic memory
+# Disable dynamic memory
 Set-VMMemory $vm -DynamicMemoryEnabled $false
 
-#enable mac spoofing
+# Enable mac spoofing
 Get-VMNetworkAdapter -VMName $vm | Set-VMNetworkAdapter -MacAddressSpoofing On
 ```
 
@@ -57,7 +57,7 @@ Install-WindowsFeature hyper-v
 
 ### Install Docker
 
-Docker is required to manage Windows Containers, however needs to be installed separately. The following PowerShell commands will install and perform basic configuration of the Docker engine and Docker client. For detailed information on configuring the Docker engine, including securing the Docker engine on Windows see, [Docker Daemon on Windows](../docker/docker_daemon_windows.md).
+Docker is required to manage Windows Containers, however needs to be installed separately. The following PowerShell commands will install and perform basic configuration of the Docker engine. For detailed information on configuring the Docker engine, including securing the Docker engine on Windows see, [Docker Daemon on Windows](../docker/docker_daemon_windows.md).
 
 ```none
 # Create Docker directory
@@ -79,6 +79,35 @@ The following command will download the Docker client.
 # Download Docker Client
 Invoke-WebRequest https://master.dockerproject.org/windows/amd64/docker.exe -OutFile $env:programfiles\docker\docker.exe
 ```
+
+### Install Base OS Image    
+   
+Container OS images can be found and installed using the ContainerImage PowerShell module. Before using this module, it will need to be installed. The following command can be used to install the module. For more information on using the Container Image OneGet PowerShell module see, [Container Image Provider](https://github.com/PowerShell/ContainerProvider).     
+    
+```none    
+Install-PackageProvider ContainerImage -Force    
+```    
+    
+Once installed, a list of Base OS images can be returned using `Find-ContainerImage`.    
+    
+    
+To download and install the Nano Server base OS image, run the following.    
+    
+```none    
+Install-ContainerImage -Name NanoServer    
+```    
+    
+Likewise, this command will download and install the Windows Server Core base OS image.    
+   
+```none    
+Install-ContainerImage -Name WindowsServerCore    
+```    
+    
+After installing the Windows Server Core or Nano Server Base OS images, these will need to be tagged with a version of ‘latest’. To do so, use the `docker tag` command. For more information on `docker tag` see [Tag, push, and pull you images on docker.com](https://docs.docker.com/mac/step_six/).     
+    
+```none    
+docker tag <image id> windowsservercore:latest    
+```   
 
 ## Nano Server
 
@@ -145,6 +174,27 @@ $env:Path += ";$env:programfiles\docker"
 dockerd --register-service
 ```
 
+### Install Base OS Image    
+    
+Container OS images can be found and installed using the ContainerImage PowerShell module. Before using this module, it will need to be installed. The following command can be used to install the module. For more information on using the Container Image OneGet PowerShell module see, [Container Image Provider](https://github.com/PowerShell/ContainerProvider).     
+    
+```none    
+Install-PackageProvider ContainerImage -Force    
+```    
+    
+To download and install the Nano Server base OS image, run the following.    
+    
+```none    
+Install-ContainerImage -Name NanoServer    
+```    
+    
+    
+After installing the Nano Server Base OS image, it will need to be tagged with a version of ‘latest’. To do so, use the `docker tag` command. For more information on `docker tag` see [Tag, push, and pull you images on docker.com](https://docs.docker.com/mac/step_six/).     
+    
+```none    
+docker tag <image id> nanoserver:latest    
+```     
+ 
 ## Windows 10
 
 ### Install container feature
@@ -215,7 +265,28 @@ wget -uri https://aka.ms/tp5/Install-ContainerHost -OutFile C:\Install-Container
 powershell.exe -NoProfile -ExecutionPolicy Bypass C:\Install-ContainerHost.ps1 -HyperV
 ```
 
+### Install Base OS Image    
+    
+Container OS images can be found and installed using the ContainerImage PowerShell module. Before using this module, it will need to be installed. The following command can be used to install the module. For more information on using the Container Image OneGet PowerShell module see, [Container Image Provider](https://github.com/PowerShell/ContainerProvider).     
+    
+```none    
+Install-PackageProvider ContainerImage -Force    
+```    
+    
+To download and install the Nano Server base OS image, run the following.    
+    
+```none    
+Install-ContainerImage -Name NanoServer    
+```    
+    
+    
+After installing the Nano Server Base OS image, it will need to be tagged with a version of ‘latest’. To do so, use the `docker tag` command. For more information on `docker tag` see [Tag, push, and pull you images on docker.com](https://docs.docker.com/mac/step_six/).     
+    
+```none    
+docker tag <image id> nanoserver:latest    
+```     
+ 
 ## Next Steps
 
-[Install Base OS Images](./quick_start_images.md)
+[Windows Server Containers - Quick Start](./manage_docker.md)
 
