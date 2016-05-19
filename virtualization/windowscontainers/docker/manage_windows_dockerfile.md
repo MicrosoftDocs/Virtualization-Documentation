@@ -159,9 +159,54 @@ RUN powershell.exe -Command c:\vcredist_x86.exe /quiet
 
 For detailed information on the RUN instruction, see the [RUN Reference on Docker.com]( https://docs.docker.com/engine/reference/builder/#run). 
 
+### COPY
+
+The `COPY` instruction, copies files and directories to the filesystem of the container. The files and directories can be relative to the Dockerfile.
+
+**Format**
+
+The `COPY` instruction takes a format of: 
+
+```none
+COPY <source> <destination>
+``` 
+
+If either source or destination include whitespace, enclose the path in square brackets and double quotes.
+ 
+```none
+COPY ["<source>" "<destination>"]
+```
+
+**Windows Considerations**
+ 
+On Windows, the destination format must use forward slashes. For example, these are valid `ADD` instructions.
+
+```none
+COPY test1.txt /temp/
+COPY test1.txt c:/temp/
+```
+
+However, the following will not work.
+
+```none
+COPY test1.txt c:\temp\
+```
+
+**Examples**
+
+This example adds the contents of the source directory, to a directory named `sqllite` in the container image.
+```none
+COPY source /sqlite/
+```
+
+This example will add all files that begin with config, to the `c:\temp` directory of the container image.
+```none
+COPY config* c:/temp/
+```
+
 ### ADD
 
-The `ADD` instruction, copies files and directories to the filesystem of the container. The files and directories can be relative to the Dockerfile, or on a remote location with a URL specification.
+The ADD instruction is very much like the COPY instruction, however includes additional capabilities. In addition to copying files from the host into the container image, the `ADD` instruction can also copy files from a remote location with a URL specification.
 
 **Format**
 
@@ -191,6 +236,8 @@ However, the following will not work.
 ```none
 ADD test1.txt c:\temp\
 ```
+
+Additionally, on Linux the `ADD` instruction will expand compressed packages on copy. This functionality is not available in Windows.
 
 **Examples**
 
