@@ -187,8 +187,7 @@ To download and install the Nano Server base OS image, run the following.
 ```none    
 Install-ContainerImage -Name NanoServer    
 ```    
-    
-    
+ 
 After installing the Nano Server Base OS image, it will need to be tagged with a version of ‘latest’. To do so, use the `docker tag` command. For more information on `docker tag` see [Tag, push, and pull you images on docker.com](https://docs.docker.com/mac/step_six/).     
     
 ```none    
@@ -232,6 +231,26 @@ The following command will download the Docker client.
 # Download Docker Client
 Invoke-WebRequest https://aka.ms/tp5/docker -OutFile $env:programfiles\docker\docker.exe
 ```
+
+### Install Base OS Image    
+    
+Container OS images can be found and installed using the ContainerImage PowerShell module. Before using this module, it will need to be installed. The following command can be used to install the module. For more information on using the Container Image OneGet PowerShell module see, [Container Image Provider](https://github.com/PowerShell/ContainerProvider).     
+    
+```none    
+Install-PackageProvider ContainerImage -Force    
+```    
+    
+To download and install the Nano Server base OS image, run the following.    
+    
+```none    
+Install-ContainerImage -Name NanoServer    
+```    
+        
+After installing the Nano Server Base OS image, it will need to be tagged with a version of ‘latest’. To do so, use the `docker tag` command. For more information on `docker tag` see [Tag, push, and pull you images on docker.com](https://docs.docker.com/mac/step_six/).     
+    
+```none    
+docker tag <image id> nanoserver:latest    
+```    
 
 ## Scripted Deployments
 
