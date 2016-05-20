@@ -11,7 +11,9 @@ ms.service: windows-containers
 ms.assetid: 479e05b1-2642-47c7-9db4-d2a23592d29f
 ---
 
-## 1. Create Container Image - Manual
+# Create Container Images
+
+## 1. Container Image - Manual
 
 Run the following command to remove the IIS splash screen.
 
@@ -46,7 +48,7 @@ Remove the IIS image.
 docker rmi windowsservercoreiis
 ```
 
-## 2. Create Container Image - Dockerfile
+## 2. Container Image - Dockerfile
 
 Through the last exercise, a container was manually created, modified, and then captured into a new container image. Docker includes a method for automating this process using what is called a Dockerfile. This exercise will have identical results as the last, however this time the process will be completely automated.
 
@@ -92,8 +94,6 @@ REPOSITORY          TAG                 IMAGE ID            CREATED             
 iis                 latest              abb93867b6f4        26 seconds ago      209 MB
 windowsservercore   10.0.10586.0        6801d964fda5        2 weeks ago         0 B
 windowsservercore   latest              6801d964fda5        2 weeks ago         0 B
-nanoserver          10.0.10586.0        8572198a60f1        2 weeks ago         0 B
-nanoserver          latest              8572198a60f1        2 weeks ago         0 B
 ```
 
 
@@ -124,4 +124,4 @@ Remove the IIS image.
 docker rmi iis
 ```
 
-## 1. Upload Image to Docker Hub
+## 3. Upload to Docker Hub
