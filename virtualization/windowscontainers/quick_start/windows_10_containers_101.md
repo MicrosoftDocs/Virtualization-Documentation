@@ -11,7 +11,7 @@ ms.service: windows-containers
 ms.assetid: 
 ---
 
-## Windows Container on Windows 10
+# Windows Containers on Windows 10
 
 This exercise will walk through the basic deployment of the Windows container feature and Docker on Windows 10. This exercise assumes that you have familiarized yourself with basic container concepts and terminology. If you need to review concepts and terminology, see the [Quick Start Introduction](./quick_start.md).
 

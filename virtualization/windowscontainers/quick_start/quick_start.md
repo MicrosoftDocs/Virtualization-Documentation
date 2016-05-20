@@ -45,6 +45,8 @@ When you begin working with containers you will notice many similarities between
 
 **Container Registry:** - Container images are stored in a container registry, and can be downloaded on demand. 
 
+**Dockerfile:** - Dockerfiles are used to automate the creation of container images.
+
 ## Next Step:
 
 [Windows Server Container Quick Start](./windows_containers_101.md)  
