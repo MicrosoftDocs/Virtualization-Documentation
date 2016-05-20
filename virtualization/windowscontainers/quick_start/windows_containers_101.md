@@ -19,7 +19,7 @@ This exercise must be run on **Windows Server 2016 Technical Preview 5**. The Wi
 If you would like to work through this exercise on Windows 10, see the [Windows 10 Container Quick Start](./windows_10_containers_101.md).
 
 
-## 1. Install Container Feature and Docker
+## 1. Install Container Feature
 
 The container feature needs to be enabled before working with Windows containers. To do so run the following command in an elevated PowerShell session. 
 

@@ -19,22 +19,18 @@ Windows Containers provide operating system level virtualization that allows mul
 <tr>
 <td ><center>![](media/try.png)</center></td>
 <td>**Quick Start**<br /><br />
-<ul>
-<li>[Quick Start Step 1](./quick_start/quick_start.md) – Quick overview of container concepts and terminology.<br /><br />
-<li>[Quick Start Step 2](./quick_start/windows_containers_101.md) – Windows Contianers 101 - Windows Server.<br /><br />
-<li>[Quick Start Step 3](./quick_start/windows_10_containers_101.md) – Windows Contianers 101 - Windows 10.<br /><br />
-<li>[Quick Start Step 4](./quick_start/container_images.md) – Create Container Images.<br /><br />
-</ul>
+[Quick Start Step 1](./quick_start/quick_start.md) – Quick overview of container concepts and terminology.<br /><br />
+[Quick Start Step 2](./quick_start/windows_containers_101.md) – Windows Contianers 101 - Windows Server.<br /><br />
+[Quick Start Step 3](./quick_start/windows_10_containers_101.md) – Windows Contianers 101 - Windows 10.<br /><br />
+>Quick Start Step 4](./quick_start/container_images.md) – Create Container Images.<br /><br />
 </td>
 </tr>
 <tr>
 <td ><center>![](media/question.png)</center></td>
 <td>**Community**<br /><br />
 Interact with the community, try samples, and find additional resources.<br /><br />
-<ul>
-<li>[Container Forum](https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers)<br /><br /></li>
-<li>[Container Resources](https://msdn.microsoft.com/virtualization/community/community_overview)<br /><br /></li>
-</ul>
+[Container Forum](https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers)<br /><br /></li>
+[Container Resources](https://msdn.microsoft.com/virtualization/community/community_overview)<br /><br /></li>
 </td>
 </tr>
 </table>
