@@ -91,20 +91,20 @@ To search Docker Hub for Windows container images, run `docker search Microsoft`
 ```none
 docker search microsoft
 
-NAME                                         DESCRIPTION                                     STARS     OFFICIAL   AUTOMATED
-microsoft/sample-django:windowsservercore    Django installed in a Windows Server Core ...   1                    [OK]
-microsoft/dotnet35:windowsservercore         .NET 3.5 Runtime installed in a Windows Se...   1         [OK]       [OK]
-microsoft/sample-golang:windowsservercore    Go Programming Language installed in a Win...   1                    [OK]
-microsoft/sample-httpd:windowsservercore     Apache httpd installed in a Windows Server...   1                    [OK]
-microsoft/iis:windowsservercore              Internet Information Services (IIS) instal...   1         [OK]       [OK]
-microsoft/sample-mongodb:windowsservercore   MongoDB installed in a Windows Server Core...   1                    [OK]
-microsoft/sample-mysql:windowsservercore     MySQL installed in a Windows Server Core b...   1                    [OK]
-microsoft/sample-nginx:windowsservercore     Nginx installed in a Windows Server Core b...   1                    [OK]
-microsoft/sample-python:windowsservercore    Python installed in a Windows Server Core ...   1                    [OK]
-microsoft/sample-rails:windowsservercore     Ruby on Rails installed in a Windows Serve...   1                    [OK]
-microsoft/sample-redis:windowsservercore     Redis installed in a Windows Server Core b...   1                    [OK]
-microsoft/sample-ruby:windowsservercore      Ruby installed in a Windows Server Core ba...   1                    [OK]
-microsoft/sample-sqlite:windowsservercore    SQLite installed in a Windows Server Core ...   1                    [OK]
+NAME                                         DESCRIPTION                                     
+microsoft/sample-django:windowsservercore    Django installed in a Windows Server Core ...   
+microsoft/dotnet35:windowsservercore         .NET 3.5 Runtime installed in a Windows Se...   
+microsoft/sample-golang:windowsservercore    Go Programming Language installed in a Win...   
+microsoft/sample-httpd:windowsservercore     Apache httpd installed in a Windows Server...   
+microsoft/iis:windowsservercore              Internet Information Services (IIS) instal...   
+microsoft/sample-mongodb:windowsservercore   MongoDB installed in a Windows Server Core...   
+microsoft/sample-mysql:windowsservercore     MySQL installed in a Windows Server Core b...   
+microsoft/sample-nginx:windowsservercore     Nginx installed in a Windows Server Core b...  
+microsoft/sample-python:windowsservercore    Python installed in a Windows Server Core ...   
+microsoft/sample-rails:windowsservercore     Ruby on Rails installed in a Windows Serve...  
+microsoft/sample-redis:windowsservercore     Redis installed in a Windows Server Core b...   
+microsoft/sample-ruby:windowsservercore      Ruby installed in a Windows Server Core ba...   
+microsoft/sample-sqlite:windowsservercore    SQLite installed in a Windows Server Core ...  
 ```
 
 Download the IIS image using `docker pull`.  
@@ -123,12 +123,7 @@ microsoft/iis       windowsservercore   c26f4ceb81db        2 weeks ago         
 windowsservercore   10.0.14300.1000     dbfee88ee9fd        7 weeks ago         9.344 GB
 ```
 
-User `docker run` to deploy your IIS container. This command has several parameters, those in the example below are:
-
-- `-d` this starts the container as a background process.  
-- `-p` this bind port 80 of the container to port 80 of this container host. In this configuration http request made to the container host on port 80 will be forwarded to the container. Read more about container networking at [Manage Container Networking](../management/container_networking.md).  
-- `microsot/iis:windowsservercore` - this specifies the image that will be deployed. Read more about container images including image tagging at [Manage Container Images](../management/manage_images.md).  
-- `ping localhost -t` - this give the container a long running process. A container will only stay running when it’s delegated process is running.  
+User `docker run` to deploy your IIS container.
 
 ```none
 docker run -d -p 80:80 microsoft/iis:windowsservercore ping -t localhost
