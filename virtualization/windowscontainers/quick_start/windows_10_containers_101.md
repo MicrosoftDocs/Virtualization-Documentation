@@ -42,9 +42,15 @@ Docker is required in order to work with Windows containers. Docker consists of 
 # Create Docker directory
 New-Item -Type Directory $env:programfiles\docker
 
-# Download Docker Engine and Client
+# Download Docker Engine
 Invoke-WebRequest https://master.dockerproject.org/windows/amd64/dockerd-1.12.0-dev.exe -OutFile $env:programfiles\docker\dockerd.exe
+```
+
+Download the Docker client.
+
+```none
 Invoke-WebRequest https://master.dockerproject.org/windows/amd64/docker.exe -OutFile $env:programfiles\docker\docker.exe
+```
 
 Next, add the docker directory to the path variable. This will allow Docker commands to be run from any path. 
 
@@ -70,7 +76,11 @@ Install-PackageProvider ContainerImage -Force
 Install-ContainerImage -Name WindowsServerCore    
 ```
 
-## 4. Verify Deployment
+After the base image has been installed, the docker service needs to be restarted.
+
+```none
+Restart-service docker
+```
 
 At this stage the Windows container feature and Docker are ready to deploy containers. To verify, open up a Windows command prompt and type `docker images’, this will display the installed images.
 
@@ -81,5 +91,5 @@ REPOSITORY          TAG                 IMAGE ID            CREATED             
 nanoserver          10.0.14300.1010     cb48429c84fa        7 weeks ago         817.1 MB
 ```
 
-## 5. Deploy Your First Container
+## 4. Deploy Your First Container
 

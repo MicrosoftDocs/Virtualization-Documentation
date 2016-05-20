@@ -71,7 +71,11 @@ Install-PackageProvider ContainerImage -Force
 Install-ContainerImage -Name WindowsServerCore    
 ```
 
-## 4. Verify Deployment
+After the base image has been installed, the docker service needs to be restarted.
+
+```none
+Restart-service docker
+```
 
 At this stage the Windows container feature and Docker are ready to deploy containers. To verify, open up a Windows command prompt and type `docker images’, this will display the installed images.
 
@@ -82,7 +86,7 @@ REPOSITORY          TAG                 IMAGE ID            CREATED             
 windowsservercore   10.0.14300.1000     dbfee88ee9fd        7 weeks ago         9.344 GB
 ```
 
-## 5. Deploy Your First Container
+## 4. Deploy Your First Container
 
 For this exercise, you will download a pre-created IIS image from the Docker Hub registry, and deploy a simple container running IIS.  
 
@@ -134,8 +138,8 @@ All running containers can be seen with the `docker ps` command. Take note of th
 ```none
 docker ps
 
-CONTAINER ID        IMAGE                             COMMAND               CREATED              STATUS              PORTS                NAMES
-9cad3ea5b7bc        microsoft/iis:windowsservercore   "ping -t localhost"   About a minute ago   Up About a minute   0.0.0.0:80->80/tcp   grave_jang
+CONTAINER ID    IMAGE                             COMMAND               CREATED              STATUS   PORTS                NAMES
+9cad3ea5b7bc    microsoft/iis:windowsservercore   "ping -t localhost"   About a minute ago   Up       0.0.0.0:80->80/tcp   grave_jang
 ```
 
 From a different computer system, open up a web browser and enter the IP address of the container host. If everything has been configured correctly, you should see the IIS splash screen. This is being served from the IIS instance hosted in the Windows container.
