@@ -19,10 +19,10 @@ Windows Containers provide operating system level virtualization that allows mul
 <tr>
 <td ><center>![](media/try.png)</center></td>
 <td>**Quick Start**<br /><br />
-[Quick Start Step 1](./quick_start/quick_start.md) – Quick overview of container concepts and terminology.<br /><br />
-[Quick Start Step 2](./quick_start/windows_containers_101.md) – Windows Contianers 101 - Windows Server.<br /><br />
-[Quick Start Step 3](./quick_start/windows_10_containers_101.md) – Windows Contianers 101 - Windows 10.<br /><br />
-[Quick Start Step 4](./quick_start/container_images.md) – Create Container Images.<br /><br />
+[Quick Start Step 1](./quick_start/quick_start.md): Container concepts and terminology<br /><br />
+[Quick Start Step 2](./quick_start/windows_containers_101.md): Windows Contianers 101 - Windows Server<br /><br />
+[Quick Start Step 3](./quick_start/windows_10_containers_101.md): Windows Contianers 101 - Windows 10<br /><br />
+[Quick Start Step 4](./quick_start/container_images.md): Create Container Images.<br /><br />
 </td>
 </tr>
 <tr>
