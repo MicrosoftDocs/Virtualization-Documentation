@@ -32,29 +32,30 @@ Because Windows 10 only supports Hyper-V containers, the Hyper-V feature must be
 Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V –All
 ```
 
+When the installation has completed, reboot the computer.
+
 ## 2. Install Docker
 
-Docker is required in order to work with Windows containers. Docker consists of the Docker Engine, or server components, and the Docker client. For this exercise, both will be installed. Run the following commands to do so. 
+Docker is required in order to work with Windows containers. Docker consists of the Docker Engine, and the Docker client. For this exercise, both will be installed. Run the following commands to do so. 
 
 ```none
 # Create Docker directory
 New-Item -Type Directory $env:programfiles\docker
 
-# Download Docker Engine
+# Download Docker Engine and Client
 Invoke-WebRequest https://master.dockerproject.org/windows/amd64/dockerd-1.12.0-dev.exe -OutFile $env:programfiles\docker\dockerd.exe
+Invoke-WebRequest https://master.dockerproject.org/windows/amd64/docker.exe -OutFile $env:programfiles\docker\docker.exe
 
-# Add Docker folder to the path
-$env:Path += ";$env:programfiles\docker"
-
-# Install Docker Engine as a Windows Service
-dockerd --register-service
-```
-
-The following command will download the Docker client.
+Next, add the docker directory to the path variable. This will allow Docker commands to be run from any path. 
 
 ```none
-# Download Docker Client
-Invoke-WebRequest https://master.dockerproject.org/windows/amd64/docker.exe -OutFile $env:programfiles\docker\docker.exe
+$env:Path += ";$env:programfiles\docker"
+```
+
+Finally, to install Docker as a Windows service, run the following.
+
+```none
+dockerd --register-service
 ```
 
 ## 3. Install Base Container Images
