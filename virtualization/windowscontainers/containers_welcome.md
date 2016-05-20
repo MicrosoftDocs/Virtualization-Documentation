@@ -19,37 +19,12 @@ Windows Containers provide operating system level virtualization that allows mul
 <tr>
 <td ><center>![](media/try.png)</center></td>
 <td>**Quick Start**<br /><br />
-Try Windows Server and Hyper-V Containers by using the following quick start guides.<br /><br />
 <ul>
-<li>[1 - Quick Start Introduction](quick_start/quick_start.md)<br /><br /></li>
-<li>[2 - Deploy Container Host](quick_start/quick_start_configure_host.md)<br /><br /></li>
-<li>[3 - Windows Server Containers](quick_start/manage_docker.md)<br /><br /></li>
-<li>[4 - Hyper-V Containers](quick_start/manage_docker_hyperv.md)<br /><br /></li>
+<li>[Quick Start Step 1](./quick_start/windows_containers_101.md) – Quick overview of container concepts and terminology.<br /><br />
+<li>[Quick Start Step 2](./quick_start/windows_containers_101.md) – Windows Contianers 101 - Windows Server.<br /><br />
+<li>[Quick Start Step 3](./quick_start/windows_10_containers_101.md) – Windows Contianers 101 - Windows 10.<br /><br />
+<li>[Quick Start Step 4](./quick_start/container_images.md) – Create Container Images.<br /><br />
 </ul>
-</td>
-</tr>
-
-<tr>
-<td ><center>![](media/explore.png)</center></td>
-<td>**Management**<br /><br />
-Learn about managing Windows Container in Windows Server 2016 and Nano Server.<br /><br />
-<ul>
-<li>[Manage Images](management/manage_images.md)<br /><br /></li>
-<li>[Manage Networking](management/container_networking.md)<br /><br /></li>
-<li>[Manage Container Data](management/manage_data.md)<br /><br /></li>
-<li>[Manage Hyper-V Containers](management/hyperv_container.md)<br /><br /></li>
-<li>[Manage Container Resources](management/manage_resources.md)<br /><br /></li>
-</ul>
-</td>
-</tr>
-<tr>
-<td ><center>![](media/video.png)</center></td>
-<td>**Watch**<br /><br />
-Interested in demos and interviews from the Windows Container team?<br /><br />
-<ul>
-<li>[Containers Channel](https://channel9.msdn.com/Blogs/containers)</li>
-</ul>
-<br />
 </td>
 </tr>
 <tr>

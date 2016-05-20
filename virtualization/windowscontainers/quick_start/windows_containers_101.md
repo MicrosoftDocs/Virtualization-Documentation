@@ -1,5 +1,5 @@
 ---
-title: Container Deployment Quick Start - Images
+title: 
 description: Container deployment quick start
 keywords: docker, containers
 author: neilpeterson
@@ -8,10 +8,10 @@ ms.date: 05//2016
 ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
-ms.assetid: 479e05b1-2642-47c7-9db4-d2a23592d29f
+ms.assetid: 
 ---
 
-## Windows Server Container
+## Windows Server Containers
 
 This exercise will walk through the basic deployment of the Windows container feature and Docker on Windows Server 2016. This exercise assumes that you have familiarized yourself with basic container concepts and terminology. If you need to review concepts and terminology, see the [Quick Start Introduction](./quick_start.md).
 
