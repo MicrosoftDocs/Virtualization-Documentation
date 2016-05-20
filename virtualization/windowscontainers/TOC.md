@@ -4,10 +4,10 @@
 ## [FAQ](about/faq.md)
 
 # Container Quick Start
-## [1 – Container concepts and terminology](quick_start/quick_start.md)
-## [2 - Windows Contianers 101 - Windows Server](quick_start/windows_containers_101.md)
-## [3 – Windows Contianers 101 - Windows 10(quick_start/windows_10_containers_101.md)
-## [4 – Create Container Images](quick_start/container_images.md)
+## [1 – Concepts and terminology](quick_start/quick_start.md)
+## [2 - Windows Server](quick_start/windows_containers_101.md)
+## [3 – Windows 10](quick_start/windows_10_containers_101.md)
+## [4 – Container Images](quick_start/container_images.md)
 
 # Deploy Windows Containers
 ## [System Requirements](deployment/system_requirements.md)

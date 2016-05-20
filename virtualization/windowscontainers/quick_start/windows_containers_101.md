@@ -105,15 +105,6 @@ microsoft/sample-rails:windowsservercore     Ruby on Rails installed in a Window
 microsoft/sample-redis:windowsservercore     Redis installed in a Windows Server Core b...   1                    [OK]
 microsoft/sample-ruby:windowsservercore      Ruby installed in a Windows Server Core ba...   1                    [OK]
 microsoft/sample-sqlite:windowsservercore    SQLite installed in a Windows Server Core ...   1                    [OK]
-microsoft/sample-golang:nanoserver           Go Programming Language installed in a Nan...   1                    [OK]
-microsoft/sample-httpd:nanoserver            Apache httpd installed in a Nano Server ba...   1                    [OK]
-microsoft/sample-mysql:nanoserver            MySQL installed in a Nano Server based con...   1                    [OK]
-microsoft/sample-nginx:nanoserver            Nginx installed in a Nano Server based con...   1                    [OK]
-microsoft/sample-node:nanoserver             Node installed in a Nano Server based cont...   1                    [OK]
-microsoft/sample-python:nanoserver           Python installed in a Nano Server based co...   1
-microsoft/sample-rails:nanoserver            Ruby on Rails installed in a Nano Server b...   1                    [OK]
-microsoft/sample-redis:nanoserver            Redis installed in a Nano Server based con...   1                    [OK]
-microsoft/sample-ruby:nanoserver             Ruby installed in a Nano Server based cont...   1                    [OK]
 ```
 
 Download the IIS image using `docker pull`.  
@@ -134,10 +125,10 @@ windowsservercore   10.0.14300.1000     dbfee88ee9fd        7 weeks ago         
 
 User `docker run` to deploy your IIS container. This command has several parameters, those in the example below are:
 
-`-d` this starts the container as a background process.  
-`-p` this bind port 80 of the container to port 80 of this container host. In this configuration http request made to the container host on port 80 will be forwarded to the container. Read more about container networking at [Manage Container Networking](../management/container_networking.md).  
-`microsot/iis:windowsservercore` - this specifies the image that will be deployed. Read more about container images including image tagging at [Manage Container Images](../management/manage_images.md).  
-`ping localhost -t` - this give the container a long running process. A container will only stay running when it’s delegated process is running.  
+- `-d` this starts the container as a background process.  
+- `-p` this bind port 80 of the container to port 80 of this container host. In this configuration http request made to the container host on port 80 will be forwarded to the container. Read more about container networking at [Manage Container Networking](../management/container_networking.md).  
+- `microsot/iis:windowsservercore` - this specifies the image that will be deployed. Read more about container images including image tagging at [Manage Container Images](../management/manage_images.md).  
+- `ping localhost -t` - this give the container a long running process. A container will only stay running when it’s delegated process is running.  
 
 ```none
 docker run -d -p 80:80 microsoft/iis:windowsservercore ping -t localhost
