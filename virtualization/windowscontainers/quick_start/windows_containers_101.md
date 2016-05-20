@@ -77,13 +77,19 @@ After the base image has been installed, the docker service needs to be restarte
 Restart-service docker
 ```
 
-At this stage the Windows container feature and Docker are ready to deploy containers. To verify, open up a Windows command prompt and type `docker images’, this will display the installed images.
+At this stage, running `docker images` will return the Windows Server Core image.
 
 ```none
 docker images
 
 REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
 windowsservercore   10.0.14300.1000     dbfee88ee9fd        7 weeks ago         9.344 GB
+```
+
+Before proceeding, this image needs to be tagged with a version of ‘latest’. To do so, run the following command.
+
+```none
+docker tag windowsservercore:10.0.14300.1000 windowsservercore:latest
 ```
 
 ## 4. Deploy Your First Container

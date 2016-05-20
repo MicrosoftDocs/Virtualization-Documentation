@@ -55,7 +55,7 @@ Invoke-WebRequest https://master.dockerproject.org/windows/amd64/docker.exe -Out
 Next, add the docker directory to the path variable. This will allow Docker commands to be run from any path. 
 
 ```none
-$env:Path += ";$env:programfiles\docker"
+setx PATH %PATH%;%programfiles%\docker
 ```
 
 Finally, to install Docker as a Windows service, run the following.
@@ -70,10 +70,10 @@ Before a container can be deployed, a container base OS image needs to be downlo
     
 ```none
 # Install Container Image Provider    
-Install-PackageProvider ContainerImage -Force    
+Install-PackageProvider ContainerImage -Force
 
 # Install Windows Server Core Image  
-Install-ContainerImage -Name WindowsServerCore    
+Install-ContainerImage -Name NanoServer   
 ```
 
 After the base image has been installed, the docker service needs to be restarted.
@@ -82,14 +82,33 @@ After the base image has been installed, the docker service needs to be restarte
 Restart-service docker
 ```
 
-At this stage the Windows container feature and Docker are ready to deploy containers. To verify, open up a Windows command prompt and type `docker images’, this will display the installed images.
+At this stage, running `docker images` will return the Windows Server Core image.
 
 ```none
 docker images
 
 REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
-nanoserver          10.0.14300.1010     cb48429c84fa        7 weeks ago         817.1 MB
+nanoserver          10.0.14300.1010     cb48429c84fa        8 weeks ago         817.1 MB
+```
+
+Before proceeding, this image needs to be tagged with a version of ‘latest’. To do so, run the following command.
+
+```none
+docker tag nanoserver:10.0.14300.1010 nanoserver:latest
 ```
 
 ## 4. Deploy Your First Container
 
+
+```none
+docker pull microsoft/sample-nginx:nanoserver
+```
+
+```none
+docker images
+
+REPOSITORY               TAG                 IMAGE ID            CREATED             SIZE
+microsoft/sample-nginx   nanoserver          01afe1442f41        2 weeks ago         821.7 MB
+nanoserver               10.0.14300.1010     cb48429c84fa        8 weeks ago         817.1 MB
+nanoserver               latest              cb48429c84fa        8 weeks ago         817.1 MB
+```
