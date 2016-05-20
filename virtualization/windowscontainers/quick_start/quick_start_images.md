@@ -13,6 +13,10 @@ ms.assetid: 479e05b1-2642-47c7-9db4-d2a23592d29f
 
 # Create Container Images
 
+In the previous quick starts a Windows container was created from a pre-existing container image. This exercise will detail creating your own container images manually, creating images using a Dockerfile, and uploading these images to Docker Hub.
+
+**Prerequisites** -  in order to complete this exercise, you will need a Windows Server host fully configured with the container feature and Docker.
+
 ## 1. Container Image - Manual
 
 Run the following command to remove the IIS splash screen.
