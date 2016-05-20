@@ -37,9 +37,15 @@ Docker is required in order to work with Windows containers. Docker consists of 
 # Create Docker directory
 New-Item -Type Directory $env:programfiles\docker
 
-# Download Docker Engine and Client
+# Download Docker Engine
 Invoke-WebRequest https://master.dockerproject.org/windows/amd64/dockerd-1.12.0-dev.exe -OutFile $env:programfiles\docker\dockerd.exe
+```
+
+Download the Docker client.
+
+```none
 Invoke-WebRequest https://master.dockerproject.org/windows/amd64/docker.exe -OutFile $env:programfiles\docker\docker.exe
+```
 
 Next, add the docker directory to the path variable. This will allow Docker commands to be run from any path. 
 
