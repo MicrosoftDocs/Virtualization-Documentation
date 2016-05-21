@@ -50,7 +50,7 @@ Invoke-WebRequest https://master.dockerproject.org/windows/amd64/docker.exe -Out
 Next, add the docker directory to the path variable. This will allow Docker commands to be run from any path. 
 
 ```none
-$env:Path += ";$env:programfiles\docker"
+[Environment]::SetEnvironmentVariable("Path",$Env:Path + ";%programfiles%\docker", "Machine")
 ```
 
 Finally, to install Docker as a Windows service, run the following.
