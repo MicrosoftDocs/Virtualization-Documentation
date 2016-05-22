@@ -13,9 +13,14 @@ ms.assetid:
 
 # Windows Containers on Windows 10
 
-This exercise will walk through the basic deployment of the Windows container feature and Docker on Windows 10. This exercise assumes that you have familiarized yourself with basic container concepts and terminology. If you need to review concepts and terminology, see the [Quick Start Introduction](./quick_start.md).
+The exercise will walk through a basic deployment and use of the Windows container feature. After completion, you will have installed the container role, and deployed a simple Hyper-V container. Before starting this quick start, familiarize yourself with basic container concepts and terminology. This information can be found on the [Quick Start Introduction](./quick_start.md).   
 
-This exercise must be run on **Windows Server 10** Insiders release. If you would like to work through this exercise on Windows 10, see the [Windows 10 Container Quick Start](./windows_containers_101.md).
+Prerequisites:
+
+- One physical computer system running a [Windows Server 10 Insiders release](https://insider.windows.com/). 
+- This quick start can be run on a Windows 10 virtual machine if nested virtualization is configured on the system.  More information can be found in the [Nested Virtualization Guide](https://msdn.microsoft.com/en-us/virtualization/hyperv_on_windows/user_guide/nesting).
+
+If you would like to work through this exercise on Windows Server 2016, see the [Windows Server Container Quick Start](./quick_start_windows_server.md).
 
 
 ## 1. Install Container Feature

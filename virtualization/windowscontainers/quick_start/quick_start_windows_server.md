@@ -13,11 +13,13 @@ ms.assetid:
 
 # Windows Containers on Windows Server
 
-This exercise will walk through the basic deployment of the Windows container feature and Docker on Windows Server 2016. This exercise assumes that you have familiarized yourself with basic container concepts and terminology. If you need to review concepts and terminology, see the [Quick Start Introduction](./quick_start.md).
+The exercise will walk through a basic deployment and use of the Windows container feature. After completion, you will have installed the container role, and deployed a simple Windows Server container. Before starting this quick start, familiarize yourself with basic container concepts and terminology. This information can be found on the [Quick Start Introduction](./quick_start.md).   
 
-This exercise must be run on **Windows Server 2016 Technical Preview 5**. The Windows Server 2016 Technical Preview 5 installation media can be found [here]( https://www.microsoft.com/en-us/evalcenter/evaluate-windows-server-technical-preview).
-If you would like to work through this exercise on Windows 10, see the [Windows 10 Container Quick Start](./windows_10_containers_101.md).
+Prerequisites:
 
+- One computer system (physical or virtual) running [Windows Server 2016 Technical Preview 5](https://www.microsoft.com/en-us/evalcenter/evaluate-windows-server-technical-preview).
+
+If you would like to work through this exercise on Windows 10, see the [Windows 10 Container Quick Start](./quick_start_windows_10.md).
 
 ## 1. Install Container Feature
 
