@@ -93,7 +93,7 @@ To import a virtual machine using PowerShell, use the **Import-VM** command.  Th
 To complete an in place import of a virtual machine, the command would look similar to this. Recall that an in place import uses the files where they are stored at the time of import and retains the virtual machines id.
 
 ```powershell
-Import-VM -Path 'C:\<emport path>\2B91FEB3-F1E0-4FFF-B8BE-29CED892A95A.vmcx' 
+Import-VM -Path 'C:\<vm export path>\2B91FEB3-F1E0-4FFF-B8BE-29CED892A95A.vmcx' 
 ```
 
 To import the virtual machine specifying your own path for the virtual machine files, the command would look similar to this.
