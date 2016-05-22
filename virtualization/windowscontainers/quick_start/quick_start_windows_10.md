@@ -17,11 +17,8 @@ The exercise will walk through a basic deployment and use of the Windows contain
 
 Prerequisites:
 
-- One physical computer system running a [Windows Server 10 Insiders release](https://insider.windows.com/). 
-- This quick start can be run on a Windows 10 virtual machine if nested virtualization is configured on the system.  More information can be found in the [Nested Virtualization Guide](https://msdn.microsoft.com/en-us/virtualization/hyperv_on_windows/user_guide/nesting).
-
-If you would like to work through this exercise on Windows Server 2016, see the [Windows Server Container Quick Start](./quick_start_windows_server.md).
-
+One physical computer system running a [Windows Server 10 Insiders release](https://insider.windows.com/).   
+This quick start can be run on a Windows 10 virtual machine if nested virtualization is configured on the system. More information can be found in the [Nested Virtualization Guide](https://msdn.microsoft.com/en-us/virtualization/hyperv_on_windows/user_guide/nesting).
 
 ## 1. Install Container Feature
 

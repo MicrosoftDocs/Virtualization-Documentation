@@ -17,9 +17,7 @@ The exercise will walk through a basic deployment and use of the Windows contain
 
 Prerequisites:
 
-- One computer system (physical or virtual) running [Windows Server 2016 Technical Preview 5](https://www.microsoft.com/en-us/evalcenter/evaluate-windows-server-technical-preview).
-
-If you would like to work through this exercise on Windows 10, see the [Windows 10 Container Quick Start](./quick_start_windows_10.md).
+One computer system (physical or virtual) running [Windows Server 2016 Technical Preview 5](https://www.microsoft.com/en-us/evalcenter/evaluate-windows-server-technical-preview).
 
 ## 1. Install Container Feature
 

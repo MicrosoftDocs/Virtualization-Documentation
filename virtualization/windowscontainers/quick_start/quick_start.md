@@ -17,7 +17,7 @@ ms.assetid: 4878f5d2-014f-4f3c-9933-97f03348a147
 
 The windows container quick start introduces the product and container terminology, steps through simple container deployment examples, and also provides reference for more advanced topics. If you are new to containers or even Windows containers, walking through each step of this quick start will provide you with practical hands on experiences with the technology.
 
-## What are Containers
+## 1. What are Containers
 
 They are an isolated, resource controlled, and portable operating environment.
 
@@ -25,7 +25,7 @@ Basically, a container is an isolated place where an application can run without
 
 If you were inside a container, it would look very much like you were inside a freshly installed physical computer or a virtual machine. And, to [Docker](https://www.docker.com/), a Windows container can be managed in the same way as any other container.
 
-## Windows Container Types
+## 2. Windows Container Types
 
 Windows Containers include two different container types, or runtimes.
 
@@ -33,7 +33,7 @@ Windows Containers include two different container types, or runtimes.
 
 **Hyper-V Containers** – expand on the isolation provided by Windows Server Containers by running each container in a highly optimized virtual machine. In this configuration the kernel of the container host is not shared with the Hyper-V Containers.
 
-## Container Fundamentals
+## 3. Container Fundamentals
 
 When you begin working with containers you will notice many similarities between a container and a virtual machine. A container runs an operating system, has a file system and can be accessed over a network just as if it was a physical or virtual computer system. That said, the technology and concepts behind containers are very different from that of virtual machines. The following key concepts will be helpful as you begin creating and working with Windows Containers. 
 
@@ -47,7 +47,7 @@ When you begin working with containers you will notice many similarities between
 
 **Dockerfile:** - Dockerfiles are used to automate the creation of container images.
 
-## Next Step:
+## 4. Next Step:
 
 [Windows Server Container Quick Start](./quick_start_windows_server.md)  
 [Windows 10 Container Quick Start](./quick_start_windows_10.md)
