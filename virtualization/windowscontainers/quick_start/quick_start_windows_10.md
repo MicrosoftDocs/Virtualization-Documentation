@@ -66,6 +66,7 @@ Finally, to install Docker as a Windows service, run the following.
 
 ```none
 dockerd --register-service
+Start-Service Docker
 ```
 
 ## 3. Install Base Container Images
@@ -83,7 +84,7 @@ Install-ContainerImage -Name NanoServer
 After the base image has been installed, the docker service needs to be restarted.
 
 ```none
-Restart-service docker
+Restart-Service docker
 ```
 
 At this stage, running `docker images` will return the Windows Server Core image.
