@@ -74,11 +74,14 @@ Start-Service Docker
 Before a container can be deployed, a container base OS image needs to be downloaded. The following commands will download the Windows Server Core base OS image. This process can take some time, so teak a break and pick back up once the download has completed. 
     
 ```none
+# Enable running script-based providers
+Set-ExecutionPolicy -Scope LocalMachine Bypass
+
 # Install Container Image Provider    
 Install-PackageProvider ContainerImage -Force
 
 # Install Windows Server Core Image  
-Install-ContainerImage -Name NanoServer   
+Install-ContainerImage -Name NanoServer
 ```
 
 After the base image has been installed, the docker service needs to be restarted.
