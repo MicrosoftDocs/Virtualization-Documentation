@@ -59,6 +59,8 @@ Next, add the docker directory to the path variable. This will allow Docker comm
 ```none
 [Environment]::SetEnvironmentVariable("Path",$Env:Path + ";%programfiles%\docker", "Machine")
 ```
+> Note: Please start a new Windows PowerShell window after running this command so it can take effect. Otherwise, the next steps will fail.
+
 
 Finally, to install Docker as a Windows service, run the following.
 
