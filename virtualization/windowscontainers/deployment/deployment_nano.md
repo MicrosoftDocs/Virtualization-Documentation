@@ -15,11 +15,9 @@ ms.assetid: b82acdf9-042d-4b5c-8b67-1a8013fa1435
 
 **This is preliminary content and subject to change.** 
 
-Deploying a Windows container host has different steps, depending on the operating system and the host system type (physical or virtual). The steps in this document are used to deploy a Windows Container host to Nano Server on a physical or virtual system.
+Before starting the configuration of Windows container on Nano server, you will need a system running Nano Server and also have a remote PowerShell connection with this system.
 
-Before starting the configuration of Windows container on Nano server, you will need a system running Nano Server, and have a connected PowerShell session with the Nano Server system.
-
-For more information on deploying Nano server and creating the remote PowerShell session, see [Getting Started with Nano Server]( https://technet.microsoft.com/en-us/library/mt126167.aspx) .
+For more information on deploying Nano Server, see [Getting Started with Nano Server]( https://technet.microsoft.com/en-us/library/mt126167.aspx) .
 
 An evaluation copy of Nano Server can be found [here](https://msdn.microsoft.com/en-us/virtualization/windowscontainers/nano_eula).
 
@@ -76,8 +74,6 @@ dockerd --register-service
 ## 3. Install Base Container Images
 
 Base OS images are used as the base to any Windows Server or Hyper-V container. Base OS images are available with both Windows Server Core and Nano Server as the underlying operating system and can be installed using the container Provider PowerShell module.
-
-For instructions on installing base OS images in an offline or non-internet connected environment see, [Offline image installation]( https://msdn.microsoft.com/en-us/virtualization/windowscontainers/management/manage_images#offline-installation). 
 
 The following command can be used to install the Container Image PowerShell module.
 
