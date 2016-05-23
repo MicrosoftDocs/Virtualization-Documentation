@@ -17,76 +17,63 @@ ms.assetid: b82acdf9-042d-4b5c-8b67-1a8013fa1435
 
 Deploying a Windows container host has different steps, depending on the operating system and the host system type (physical or virtual). The steps in this document are used to deploy a Windows Container host to Nano Server on a physical or virtual system.
 
-# Nano server host
+Before starting the configuration of Windows container on Nano server, you will need a system running Nano Server, and have a connected PowerShell session with the Nano Server system.
 
-<table border="1" style="background-color:FFFFCC;border-collapse:collapse;border:1px solid FFCC00;color:000000;width:100%" cellpadding="5" cellspacing="5">
-<tr valign="top">
-<td width = "30%"><strong>Deployment Action</strong></td>
-<td width = "70%"><strong>Details</strong></td>
-</tr>
-<tr>
-<td>[Prepare Nano Server for containers](#nano)</td>
-<td>Prepare a Nano Server VHD with the container and Hyper-V capabilities.</td>
-</tr>
-<tr>
-<td>[Install container OS images](#img)</td>
-<td>Base OS images provide the base for container deployments.</td>
-</tr>
-<tr>
-<td>[Install Docker](#docker)</td>
-<td>Follow these steps to install and configure the Docker on Windows.</td>
-</tr>
-<tr>
-<td>[Enable Hyper-V role](#hypv) </td>
-<td>Hyper-V is only required if Hyper-V containers will be deployed.</td>
-</tr>
-<tr>
-<td>[Configure nested virtualization](#nest)</td>
-<td>If the container host will be virtualized and running Hyper-V container.</td>
-</tr>
-</table>
+For more information on deploying Nano server and creating the remote PowerShell session, see [Getting Started with Nano Server]( https://technet.microsoft.com/en-us/library/mt126167.aspx) .
 
-## Deployment steps
+An evaluation copy of Nano Server can be found [here](https://msdn.microsoft.com/en-us/virtualization/windowscontainers/nano_eula).
 
-### <a name=nano></a> Deploy Nano Server
+## 1. Install Container Feature
 
-Deploying Nano Server involves creating a prepared virtual hard drive, which includes the Nano Server operating system and additional feature packages. This guide quickly details preparing a Nano Server virtual hard drive, which can be used for Windows containers. For more information on Nano Server and to explore different Nano Server deployment options, see the [Nano Server documentation]( https://technet.microsoft.com/en-us/library/mt126167.aspx).
-
-Create a folder named `nano`.
+Install the Nano Server package management provider.
 
 ```none
-New-Item -ItemType Directory c:\nano
+Install-PackageProvider NanoServerPackage
 ```
 
-Locate the `NanoServerImageGenerator.psm1` and `Convert-WindowsImage.ps1` files on the Windows Server Media. Copy these to `c:\nano`.
+After the package provide has been installed, install the container feature.
 
 ```none
-# Set path to Windows Server 2016 Media
-
-$WindowsMedia = "C:\TP5Media"
-
-# Copy Files
-	
-Copy-Item $WindowsMedia\NanoServer\NanoServerImageGenerator\Convert-WindowsImage.ps1 c:\nano
-Copy-Item $WindowsMedia\NanoServer\NanoServerImageGenerator\NanoServerImageGenerator.psm1 c:\nano
+Install-NanoServerPackage -Name Microsoft-NanoServer-Containers-Package
 ```
-Run the following to create a Nano Server virtual hard drive. The `-Containers` parameter indicates that the container package is installed and the `-Compute` parameter takes care of the Hyper-V package. Hyper-V is only required if using Hyper-V containers.
+
+Optionally, if Hyper-V containers will be deployed, install the Hyper-V role. If the Nano Server is virtualized, nested virtualization will need to be enabled, for more information see [Nested Virtualization]( https://msdn.microsoft.com/en-us/virtualization/hyperv_on_windows/user_guide/nesting).
 
 ```none
-# Set path to Windows Server 2016 Media
-
-$WindowsMedia = "C:\TP5Media"
-
-# Create Nano Server Image
-
-Import-Module C:\nano\NanoServerImageGenerator.psm1
-New-NanoServerImage -MediaPath $WindowsMedia -BasePath c:\nano -TargetPath c:\nano\nanocontainer.vhdx -MaxSize 10GB -Compute -Containers -DeploymentType Guest -Edition Datacenter
+Install-NanoServerPackage Microsoft-NanoServer-Compute-Package
 ```
-When completed, create a virtual machine from the `NanoContainer.vhdx` file. For more information on this process, see [Deploy a Windows virtual machine in Hyper-V]( https://msdn.microsoft.com/en-us/virtualization/hyperv_on_windows/quick_start/walkthrough_create_vm).
 
-When the virtual machine is ready, create a remote connection with Nano Server operating system. For more information on this operation, see [Using Windows PowerShell remoting in Getting Started with Nano Server]( https://technet.microsoft.com/en-us/library/mt126167.aspx).
+## 2. Install Docker
 
-### <a name=img></a>Install OS images
+Docker is required in order to work with Windows containers. Docker consists of the Docker Engine, and the Docker client. For this exercise, both will be installed. Run the following commands to do so. 
+
+```none
+# Create Docker directory
+New-Item -Type Directory $env:programfiles\docker
+
+# Download Docker Engine
+Invoke-WebRequest https://master.dockerproject.org/windows/amd64/dockerd-1.12.0-dev.exe -OutFile $env:programfiles\docker\dockerd.exe
+```
+
+Download the Docker client.
+
+```none
+Invoke-WebRequest https://master.dockerproject.org/windows/amd64/docker.exe -OutFile $env:programfiles\docker\docker.exe
+```
+
+Next, add the docker directory to the path variable. This will allow Docker commands to be run from any path. 
+
+```none
+[Environment]::SetEnvironmentVariable("Path",$Env:Path + ";%programfiles%\docker", "Machine")
+```
+
+Finally, to install Docker as a Windows service, run the following.
+
+```none
+dockerd --register-service
+```
+
+## 3. Install Base Container Images
 
 Base OS images are used as the base to any Windows Server or Hyper-V container. Base OS images are available with both Windows Server Core and Nano Server as the underlying operating system and can be installed using the container Provider PowerShell module.
 
@@ -118,33 +105,3 @@ Install-ContainerImage -Name NanoServer
 **Note** - At this time, only the Nano Server OS Image is compatible with a Nano Server container host.
 
 For more information on container image management, see [Windows container images](../management/manage_images.md).
- 
-### <a name=docker></a>Install Docker
-
-The Docker Engine is not shipped with Windows and not installed with the Windows container feature. To install Docker, follow the instructions in this [Docker and Windows](./docker_windows.md).
-
-## Hyper-V container host
-
-### <a name=hypv></a>Enable the Hyper-V Role
-
-Hyper-V can be enabled when creating the Nano Server virtual hard drive, see [Prepare Nano Server for containers](#nano) for these instructions.
-
-### <a name=nest></a>Nested virtualization
-
-Nested virtualization allows the Hyper-V role to function inside of a Hyper-V virtual machine. This is required if the container host is virtualized and also running Hyper-V containers. Several steps need to be completed for a nested virtualization configuration including configuring the virtual processor, turning off dynamic memory, and enabling MAC spoofing. For more information on nested virtualization, see [Nested Virtualization]( https://msdn.microsoft.com/en-us/virtualization/hyperv_on_windows/user_guide/nesting).
-
-The following script will configure nested virtualization for the container host. This script is run on the Hyper-V machine that is hosting the container host virtual machine. Ensure that the container host virtual machine is turned off when running this script.
-
-```none
-# Replace with the virtual machine name
-$vm = "<virtual-machine>"
-
-# Configure virtual processor
-Set-VMProcessor -VMName $vm -ExposeVirtualizationExtensions $true -Count 2
-
-# Disable dynamic memory
-Set-VMMemory $vm -DynamicMemoryEnabled $false
-
-# Enable mac spoofing
-Get-VMNetworkAdapter -VMName $vm | Set-VMNetworkAdapter -MacAddressSpoofing On
-```
