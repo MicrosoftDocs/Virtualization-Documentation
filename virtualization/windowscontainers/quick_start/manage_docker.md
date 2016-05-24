@@ -15,12 +15,12 @@ ms.assetid: b2efa940-d5cc-4afd-a200-b71e1eeed5ed
 
 **This is preliminary content and subject to change.** 
 
-Windows Containers can be used to rapidly deploy many isolated applications on a single computer system. This exercise will demonstrate creating and managing Windows Server containers. When completed, you should have a basic understanding of how Docker integrates with Windows Server containers and will have gained hands on experience with the technology.
+Windows Server Containers can be used to rapidly deploy many isolated applications on a single computer system. This exercise will demonstrate creating and managing Windows Server containers. When completed, you should have a basic understanding of how Docker integrates with Windows Server containers and will have gained hands on experience with the technology.
 
 The following items will be required for this exercise.
 
-- A Windows Container Host running Windows Server 2016 (Full or Core), either on-prem or in Azure.
-- The Windows Server Core base OS image. For information on installing Base OS images see, [Install Base OS Images](https://msdn.microsoft.com/en-us/virtualization/windowscontainers/management/manage_images#install-image).
+- A Windows Container Host running Windows Server 2016 (Full or Core), either on-premises or in Azure.
+- The Windows Server Core base OS image. For information on installing base OS images see, [Install Base OS Images](https://msdn.microsoft.com/en-us/virtualization/windowscontainers/management/manage_images#install-image).
 
 ## Windows Server Containers
 
@@ -28,7 +28,7 @@ The following items will be required for this exercise.
 
 Before starting this exercise, validate that the Server Core base OS image has been installed on your container host. Do so using the `docker images` command. You should see a ‘windowsservercore image with a tag of `latest`. If you do not, the Windows Server Core image will need to be installed. For instructions see, [Install Base OS Images](https://msdn.microsoft.com/en-us/virtualization/windowscontainers/management/manage_images#install-image).
 
-> When running Docker commands locally on the container host, the shell must be running with elevated permissions. Start the command session, or PowerShell session as Administrator. 
+> When running Docker commands locally on the container host, the shell must be running with elevated permissions. Start the command prompt session, or PowerShell session as Administrator. 
 
 ```
 docker images
@@ -53,7 +53,7 @@ When the container has been created, you will be working in a shell session from
 
 ### Create IIS Image <!--1-->
 
-IIS will be installed, and then an image created from the container. To install IIS, run the following.
+IIS will be installed, and then an image created from the container. To install IIS, run the following:
 
 ```none
 powershell.exe Install-WindowsFeature web-server
@@ -71,7 +71,7 @@ Finally, the container will be committed to a new container image using `docker 
 docker commit iisbase windowsservercoreiis
 ```
 
-The new IIS images can be viewed using the `docker images` command.
+The new IIS image can be viewed using the `docker images` command.
 
 ```none
 docker images
@@ -82,14 +82,14 @@ Which will output something similar to the following:
 ```
 REPOSITORY             TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
 windowsservercoreiis   latest              4193c9f34e32        4 minutes ago       170.8 MB
-windowsservercore      10.0.10586.0        6801d964fda5        2 weeks ago         0 B
+windowsservercore      10.0.14300.1000     6801d964fda5        2 weeks ago         0 B
 windowsservercore      latest              6801d964fda5        2 weeks ago         0 B
-nanoserver             10.0.10586.0        8572198a60f1        2 weeks ago         0 B
+nanoserver             10.0.14300.1010     8572198a60f1        2 weeks ago         0 B
 nanoserver             latest              8572198a60f1        2 weeks ago         0 B
 ```
 
 ### Configure Network
-Beginning in Windows Server Technical Preview 5, you no longer need to explicitly create a Windows Firewall rule to allow external access to a specific network port. You may want to take note of the container host IP address. This will be use throughout the exercise.
+Beginning in Windows Server Technical Preview 5, you no longer need to explicitly create a Windows Firewall rule to allow external access to a specific network port. You may want to take note of the container host IP address. This will be used throughout the exercise.
 
 ### Create IIS Container <!--1-->
 
@@ -118,10 +118,10 @@ del C:\inetpub\wwwroot\iisstart.htm
 Run the following command to replace the default IIS site with a new static site.
 
 ```none
-echo "Hello World From a Windows Server Container" > C:\inetpub\wwwroot\index.html
+echo "Hello World from a Windows Server Container" > C:\inetpub\wwwroot\index.html
 ```
 
-Browse again to the IP Address of the container host, you should now see the ‘Hello World’ application. Note – you may need to close any existing browser connections, or clear browser cache to see the updated application.
+Browse again to the IP address of the container host, you should now see the ‘Hello World’ application. Note – you may need to close any existing browser connections, or clear browser cache to see the updated application.
 
 ![](media/hello.png)
 
@@ -151,7 +151,7 @@ Through the last exercise, a container was manually created, modified, and then 
 On the container host, create a directory `c:\build`, and in this directory create a file named `Dockerfile`.
 
 ```none
-powershell new-item c:\build\Dockerfile -Force
+powershell New-Item c:\build\Dockerfile -Force
 ```
 
 Open the Dockerfile in notepad.
@@ -187,9 +187,9 @@ Which will output something similar to this:
 ```
 REPOSITORY          TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
 iis                 latest              abb93867b6f4        26 seconds ago      209 MB
-windowsservercore   10.0.10586.0        6801d964fda5        2 weeks ago         0 B
+windowsservercore   10.0.14300.1000     6801d964fda5        2 weeks ago         0 B
 windowsservercore   latest              6801d964fda5        2 weeks ago         0 B
-nanoserver          10.0.10586.0        8572198a60f1        2 weeks ago         0 B
+nanoserver          10.0.14300.1010     8572198a60f1        2 weeks ago         0 B
 nanoserver          latest              8572198a60f1        2 weeks ago         0 B
 ```
 
@@ -201,7 +201,7 @@ Now, just like in the last exercise, deploy the container, mapping port 80 of th
 docker run --name iisdemo -it -p 80:80 iis cmd
 ```
 
-Once the container has been created, browse to the IP address of the container host. You should see the hello world application.
+Once the container has been created, browse to the IP address of the container host. You should see the "Hello World" application.
 
 ![](media/dockerfile2.png)
 
