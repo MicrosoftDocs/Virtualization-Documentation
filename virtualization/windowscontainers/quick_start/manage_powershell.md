@@ -1,6 +1,6 @@
 ---
 author: neilpeterson
-redirect_url: manage_docker
+redirect_url: ./quick_start
 ---
 
 # Windows Containers Quick Start - PowerShell

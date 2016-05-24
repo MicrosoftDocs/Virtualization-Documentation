@@ -13,7 +13,7 @@ ms.assetid:
 
 # Windows Containers on Windows Server
 
-The exercise will walk through a basic deployment and use of the Windows container feature. After completion, you will have installed the container role, and deployed a simple Windows Server container. Before starting this quick start, familiarize yourself with basic container concepts and terminology. This information can be found on the [Quick Start Introduction](./quick_start.md).   
+This exercise will walk through basic deployment and use of the Windows container feature. After completion, you will have installed the container role and have deployed a simple Windows Server container. Before starting this quick start, familiarize yourself with basic container concepts and terminology. This information can be found in the [Quick Start Introduction](./quick_start.md).   
 
 Prerequisites:
 
@@ -31,13 +31,15 @@ When the feature installation has completed, reboot the computer.
 
 ## 2. Install Docker
 
-Docker is required in order to work with Windows containers. Docker consists of the Docker Engine, and the Docker client. For this exercise, both will be installed. Run the following commands to do so. 
+Docker is required in order to work with Windows containers. Docker consists of the Docker Engine, and the Docker client. For this exercise, both will be installed.
+
+Create a folder for Docker and download the daemon.
 
 ```none
 # Create Docker directory
 New-Item -Type Directory $env:programfiles\docker
 
-# Download Docker Engine
+# Download Docker daemon
 Invoke-WebRequest https://master.dockerproject.org/windows/amd64/dockerd-1.12.0-dev.exe -OutFile $env:programfiles\docker\dockerd.exe
 ```
 
@@ -50,8 +52,10 @@ Invoke-WebRequest https://master.dockerproject.org/windows/amd64/docker.exe -Out
 Next, add the docker directory to the path variable. This will allow Docker commands to be run from any path. 
 
 ```none
-[Environment]::SetEnvironmentVariable("Path",$Env:Path + ";%programfiles%\docker", "Machine")
+[Environment]::SetEnvironmentVariable("Path",$Env:Path + ";c:\program files\docker", "Machine")
 ```
+
+> Note: Please start a new Windows PowerShell window after running this command so it can take effect. Otherwise, the next steps will fail.
 
 Finally, to install Docker as a Windows service, run the following.
 
@@ -71,7 +75,7 @@ Install-PackageProvider ContainerImage -Force
 Install-ContainerImage -Name WindowsServerCore    
 ```
 
-After the base image has been installed, the docker service needs to be restarted.
+After the base image has been installed, the Docker service needs to be restarted.
 
 ```none
 Restart-service docker
@@ -94,7 +98,7 @@ docker tag windowsservercore:10.0.14300.1000 windowsservercore:latest
 
 ## 4. Deploy Your First Container
 
-For this exercise, you will download a pre-created IIS image from the Docker Hub registry, and deploy a simple container running IIS.  
+For this exercise, you will download a pre-created IIS image from the Docker Hub registry and deploy a simple container running IIS.  
 
 To search Docker Hub for Windows container images, run `docker search Microsoft`.  
 
@@ -130,10 +134,11 @@ docker images
 
 REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
 microsoft/iis       windowsservercore   c26f4ceb81db        2 weeks ago         9.48 GB
-windowsservercore   10.0.14300.1000     dbfee88ee9fd        7 weeks ago         9.344 GB
+windowsservercore   10.0.14300.1000     dbfee88ee9fd        8 weeks ago         9.344 GB
+windowsservercore   latest              dbfee88ee9fd        8 weeks ago         9.344 GB
 ```
 
-User `docker run` to deploy your IIS container.
+User `docker run` to deploy the IIS container.
 
 ```none
 docker run -d -p 80:80 microsoft/iis:windowsservercore ping -t localhost
@@ -148,11 +153,11 @@ CONTAINER ID    IMAGE                             COMMAND               CREATED 
 9cad3ea5b7bc    microsoft/iis:windowsservercore   "ping -t localhost"   About a minute ago   Up       0.0.0.0:80->80/tcp   grave_jang
 ```
 
-From a different computer system, open up a web browser and enter the IP address of the container host. If everything has been configured correctly, you should see the IIS splash screen. This is being served from the IIS instance hosted in the Windows container.
+From a different computer, open up a web browser and enter the IP address of the container host. If everything has been configured correctly, you should see the IIS splash screen. This is being served from the IIS instance hosted in the Windows container.
 
 ![](media/iis1.png)
 
-Back on the container host, use the `docker rm` command to remove the container.
+Back on the container host, use the `docker rm` command to remove the container. Note – replace the name of the container with the actual container name.
 
 ```none
 docker rm -f grave_jang
