@@ -23,7 +23,6 @@
 
 # Docker on Windows
 ## [Docker Engine on Windows](deployment/docker_windows.md)
-## [Docker Daemon Configuration](docker/docker_daemon_windows.md)
 ## [Dockerfiles on Windows](docker/manage_windows_dockerfile.md)
 ## [Optimize Dockerfiles](docker/optimize_windows_dockerfile.md)
 
