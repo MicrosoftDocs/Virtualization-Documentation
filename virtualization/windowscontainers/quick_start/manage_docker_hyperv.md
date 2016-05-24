@@ -20,15 +20,15 @@ Hyper-V Containers provide an additional layer of isolation over Windows Server 
 The following items will be required for this exercise.
 
 - A physical Windows container host, or a virtualized host with nested virtualization enabled.
-- The Nano Serverbase OS image. For information on installing Base OS images see, [Install Base OS Images](https://msdn.microsoft.com/en-us/virtualization/windowscontainers/management/manage_images#install-image).
+- The Nano Server base OS image. For information on installing base OS images see, [Install Base OS Images](https://msdn.microsoft.com/en-us/virtualization/windowscontainers/management/manage_images#install-image).
 - The Windows Server 2016 Media - [Download](https://aka.ms/tp5/serveriso).
-- Microsoft Azure does not support Hyper-V containers. To complete the Hyper-V Container exercises, you need an on-prem container host.
+- Microsoft Azure does not support Hyper-V containers. To complete the Hyper-V Container exercises, you need an on-premises container host.
 
 ## Hyper-V Container
 
 ### Validate container image
 
-> When running Docker commands locally on the container host, the shell must be running with elevated permissions. Start the command session, or PowerShell session as Administrator. 
+> When running Docker commands locally on the container host, the shell must be running with elevated permissions. Start the command prompt session, or PowerShell session as Administrator. 
 
 Before starting this exercise, validate that the Nano Server base OS image has been installed on your container host. Do so using the `docker images` command. You should see a ‘nanoserver’ image with a tag of `latest`. If you do not, the Nano Server image will need to be installed. For instructions see, [Install Base OS Images](https://msdn.microsoft.com/en-us/virtualization/windowscontainers/management/manage_images#install-image).
 
@@ -48,7 +48,7 @@ First, create a directory on the container host name ‘share’, with a sub dir
 powershell New-Item -Type Directory c:\share\en-us
 ```
 
-Hyper-V containers use the Nano Server base OS image. Because Nano Server is light weight operating system and does not include the IIS package, this needs to be obtained in order to complete this exercise. This can be found on the Window Server 2016 technical preview media under the NanoServer\Packages directory.
+Hyper-V containers use the Nano Server base OS image. Because Nano Server is lightweight operating system and does not include the IIS package, this needs to be obtained in order to complete this exercise. This can be found on the Window Server 2016 technical preview media under the NanoServer\Packages directory.
 
 Copy `Microsoft-NanoServer-IIS-Package.cab` from `NanoServer\Packages` to `c:\share` on the container host. 
 
@@ -108,16 +108,16 @@ del C:\inetpub\wwwroot\iisstart.htm
 Run the following command to replace the default IIS site with a new static site:
 
 ```none
-echo "Hello World From a Hyper-V Container" > C:\inetpub\wwwroot\index.html
+echo "Hello World from a Hyper-V Container" > C:\inetpub\wwwroot\index.html
 ```
 
 Next, manually start IIS with the following command:
 
 ```none
-Net start w3svc
+net start w3svc
 ```
 
-Browse to the IP Address of the container host, you should now see the ‘Hello World’ application. Note – you may need to close any existing browser connections, or clear browser cache to see the updated application.
+Browse to the IP address of the container host, you should now see the ‘Hello World’ application. Note – you may need to close any existing browser connections, or clear browser cache to see the updated application.
 
 ![](media/HWWINServer.png)
 
