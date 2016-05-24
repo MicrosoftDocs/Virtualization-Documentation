@@ -41,32 +41,34 @@ Optionally, if Hyper-V containers will be deployed, install the Hyper-V role. If
 Install-NanoServerPackage Microsoft-NanoServer-Compute-Package
 ```
 
+The Nano Server host will need to be re-booted after these features have been installed.
+
 ## 2. Install Docker
 
-Docker is required in order to work with Windows containers. Docker consists of the Docker Engine, and the Docker client. For this exercise, both will be installed. Run the following commands to do so. 
+Docker is required in order to work with Windows containers. Docker consists of the Docker Engine, and the Docker client. Install the Docker daemon using these steps.
 
 ```none
 # Create Docker directory
 New-Item -Type Directory $env:programfiles\docker
 ```
 
-Download the Docker daemon and copy it to ` $env:programfiles\docker` of the Docker host.
+Download the Docker daemon and copy it to ` $env:programfiles\docker` of the Docker host. Nano Server does not currently support `Invoke-Webrequest`, this will need to be completed from a remote system
 
 ```
 # Download Docker Engine
 Invoke-WebRequest https://master.dockerproject.org/windows/amd64/dockerd-1.12.0-dev.exe -OutFile .\dockerd.exe
 ```
 
-Create a Docker daemon configuration file `c:\ProgramData\docker\config\daemon.json`
-
-```none
-new-item -Type File c:\ProgramData\docker\config\daemon.json
-```
-
 Install Docker as a Windows service, run the following.
 
 ```none
 & 'C:\Program Files\docker\dockerd.exe' --register-service
+```
+
+Start the Docker service.
+
+```none
+Start-Service Docker
 ```
 
 ## 3. Install Base Container Images
@@ -98,6 +100,12 @@ Install-ContainerImage -Name NanoServer
 
 **Note** - At this time, only the Nano Server OS Image is compatible with a Nano Server container host.
 
+Restart the Docker service.
+
+```none
+Restart-Service Docker
+```
+
 For more information on container image management, see [Windows container images](../management/manage_images.md).
 
 ## 4. Work with Docker on Nano Server
@@ -111,6 +119,12 @@ netsh advfirewall firewall add rule name="Docker daemon " dir=in action=allow pr
 ```
 
 Configure the Docker daemon configuration file to accept remote connections. This file is located at `c:\ProgramData\docker\config\daemon.json` on the Nano Server host.
+
+Create a Docker daemon configuration file `c:\ProgramData\docker\config\daemon.json`
+
+```none
+new-item -Type File c:\ProgramData\docker\config\daemon.json
+```
 
 Copying these content into the file will allow the Docker daemon to accept all unsecure requests. This is not advised but can be used for isolated testing.
 
@@ -140,5 +154,3 @@ Invoke-WebRequest https://master.dockerproject.org/windows/amd64/docker.exe -Out
 ```
 
 Once completed the Docker daemon can be accessed with the `Docker -H` parameter.
-
-```
