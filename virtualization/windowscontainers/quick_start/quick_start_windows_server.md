@@ -40,13 +40,13 @@ Create a folder for Docker and download the daemon.
 New-Item -Type Directory $env:programfiles\docker
 
 # Download Docker daemon
-Invoke-WebRequest https://master.dockerproject.org/windows/amd64/dockerd-1.12.0-dev.exe -OutFile $env:programfiles\docker\dockerd.exe
+Invoke-WebRequest https://aka.ms/tp5/b/dockerd -OutFile $env:programfiles\docker\dockerd.exe
 ```
 
 Download the Docker client.
 
 ```none
-Invoke-WebRequest https://master.dockerproject.org/windows/amd64/docker.exe -OutFile $env:programfiles\docker\docker.exe
+Invoke-WebRequest https://aka.ms/tp5/b/docker -OutFile $env:programfiles\docker\docker.exe
 ```
 
 Next, add the docker directory to the path variable. This will allow Docker commands to be run from any path. 
@@ -57,10 +57,16 @@ Next, add the docker directory to the path variable. This will allow Docker comm
 
 > Note: Please start a new Windows PowerShell window after running this command so it can take effect. Otherwise, the next steps will fail.
 
-Finally, to install Docker as a Windows service, run the following.
+To install Docker as a Windows service, run the following.
 
 ```none
 dockerd --register-service
+```
+
+Once installed, the service can be started.
+
+```none
+Start-Service Docker
 ```
 
 ## 3. Install Base Container Images
