@@ -17,7 +17,7 @@ ms.assetid: b82acdf9-042d-4b5c-8b67-1a8013fa1435
 
 Before starting the configuration of Windows container on Nano server, you will need a system running Nano Server and also have a remote PowerShell connection with this system.
 
-For more information on deploying Nano Server, see [Getting Started with Nano Server]( https://technet.microsoft.com/en-us/library/mt126167.aspx) .
+For more information on deploying Nano Server, see [Getting Started with Nano Server]( https://technet.microsoft.com/en-us/library/mt126167.aspx).
 
 An evaluation copy of Nano Server can be found [here](https://msdn.microsoft.com/en-us/virtualization/windowscontainers/nano_eula).
 
@@ -48,27 +48,25 @@ Docker is required in order to work with Windows containers. Docker consists of 
 ```none
 # Create Docker directory
 New-Item -Type Directory $env:programfiles\docker
+```
 
+Download the Docker daemon and copy it to ` $env:programfiles\docker` of the Docker host.
+
+```
 # Download Docker Engine
-Invoke-WebRequest https://master.dockerproject.org/windows/amd64/dockerd-1.12.0-dev.exe -OutFile $env:programfiles\docker\dockerd.exe
+Invoke-WebRequest https://master.dockerproject.org/windows/amd64/dockerd-1.12.0-dev.exe -OutFile .\dockerd.exe
 ```
 
-Download the Docker client.
+Create a Docker daemon configuration file `c:\ProgramData\docker\config\daemon.json`
 
 ```none
-Invoke-WebRequest https://master.dockerproject.org/windows/amd64/docker.exe -OutFile $env:programfiles\docker\docker.exe
+new-item -Type File c:\ProgramData\docker\config\daemon.json
 ```
 
-Next, add the docker directory to the path variable. This will allow Docker commands to be run from any path. 
+Install Docker as a Windows service, run the following.
 
 ```none
-[Environment]::SetEnvironmentVariable("Path",$Env:Path + ";%programfiles%\docker", "Machine")
-```
-
-Finally, to install Docker as a Windows service, run the following.
-
-```none
-dockerd --register-service
+& 'C:\Program Files\docker\dockerd.exe' --register-service
 ```
 
 ## 3. Install Base Container Images
@@ -101,3 +99,46 @@ Install-ContainerImage -Name NanoServer
 **Note** - At this time, only the Nano Server OS Image is compatible with a Nano Server container host.
 
 For more information on container image management, see [Windows container images](../management/manage_images.md).
+
+## 4. Work with Docker on Nano Server
+
+For the best experience, manage Docker on Nano Server from a remote system. In order to do so, the following items need to be completed.
+
+Create a firewall rule for the Docker connection, this will be port `2375` or an insecure connection, or port `2376` for a secure connection.
+
+```none
+netsh advfirewall firewall add rule name="Docker daemon " dir=in action=allow protocol=TCP localport=2376
+```
+
+Configure the Docker daemon configuration file to accept remote connections. This file is located at `c:\ProgramData\docker\config\daemon.json` on the Nano Server host.
+
+Copying these content into the file will allow the Docker daemon to accept all unsecure requests. This is not advised but can be used for isolated testing.
+
+```none
+{
+    "hosts": ["tcp://0.0.0.0:2375", "npipe://"]
+}
+```
+
+The following example will configure a secure remote connection. The TLS certificates will need to be created and copied to the proper locations. For more information see, []().
+
+```none
+ADD Example
+```
+
+Download the Docker client to the remote management system.
+
+```none
+# Create Docker directory
+New-Item -Type Directory $env:programfiles\docker
+
+# Download client
+Invoke-WebRequest https://master.dockerproject.org/windows/amd64/docker.exe -OutFile $env:programfiles\docker\docker.exe
+
+# Set path environment variable
+[Environment]::SetEnvironmentVariable("Path",$Env:Path + ";%programfiles%\docker", "Machine")
+```
+
+Once completed the Docker daemon can be accessed with the `Docker -H` parameter.
+
+```
