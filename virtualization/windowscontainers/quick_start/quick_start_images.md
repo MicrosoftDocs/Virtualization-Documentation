@@ -13,7 +13,7 @@ ms.assetid: 479e05b1-2642-47c7-9db4-d2a23592d29f
 
 # Create Container Images
 
-In the previous Windows Server quick start a Windows container was created from a pre-existing container image. This exercise will detail creating your own container images manually, creating images using a Dockerfile, and uploading these images to Docker Hub.
+In the previous Windows Server quick start, a Windows container was created from a pre-existing container image. This exercise will detail creating your own container images manually, creating images using a Dockerfile, and uploading these images to Docker Hub.
 
 Prerequisites:
 
@@ -22,7 +22,7 @@ Prerequisites:
 
 ## 1. Container Image - Manual
 
-The first step in manually creating a container image is to deploy a container. For this example, deploy an IIS container from the pre-created container images. Once the container has been deployed, you will be working in a shell session from within the container.  
+The first step in manually creating a container image is to deploy a container. For this example, deploy an IIS container from the pre-created IIS image. Once the container has been deployed, you will be working in a shell session from within the container.  
 
 ```none
 docker run -it -p 80:80 microsoft/iis:windowsservercore cmd
@@ -40,7 +40,7 @@ And the following to replace the default IIS site with a new static site.
 echo "Hello World From a Windows Server Container" > C:\inetpub\wwwroot\index.html
 ```
 
-From a different system, browse browse to the IP address of the container host. You should now see the ‘Hello World’ application.
+From a different system, browse to the IP address of the container host. You should now see the ‘Hello World’ application.
 
 ![](media/hello.png)
 
@@ -55,11 +55,11 @@ The modified container can now be captured into a new container image. To do so,
 ```none
 docker ps -a
 
-CONTAINER ID        IMAGE                             COMMAND             CREATED             STATUS                          PORTS               NAMES
-489b0b447949        microsoft/iis:windowsservercore   "cmd"               About an hour ago   Exited (0) About a minute ago                       pedantic_lichterman
+CONTAINER ID     IMAGE                             COMMAND   CREATED             STATUS   PORTS   NAMES
+489b0b447949     microsoft/iis:windowsservercore   "cmd"     About an hour ago   Exited           pedantic_lichterman
 ```
 
-To create a the new container image use the `docker commit` command.
+To create a the new container image use the `docker commit` command. Docker commit takes a form of “docker commit container-name new-image-name”.
 
 ```none
 docker commit pedantic_lichterman modified-iis
@@ -77,7 +77,7 @@ windowsservercore   10.0.14300.1000     dbfee88ee9fd        8 weeks ago         
 windowsservercore   latest              dbfee88ee9fd        8 weeks ago          9.344 GB
 ```
 
-This image can now be deployed and the resulting container ill include all captured modifications.
+This image can now be deployed. The resulting container will include all captured modifications.
 
 ## 2. Container Image - Dockerfile
 
@@ -95,7 +95,7 @@ Open the Dockerfile in notepad.
 notepad c:\build\Dockerfile
 ```
 
-Copy the following text into the Dockerfile and save the file. These commands instruct Docker to create a new image, using `windowsservercore` as the base, and include the modifications specified with `RUN`. 
+Copy the following text into the Dockerfile, and save the file. These commands instruct Docker to create a new image, using `windowsservercore` as the base, and include the modifications specified with the `RUN` instruction. 
 
 For more information on Dockerfiles, see the [Dockerfiles on Windows](../docker/manage_windows_dockerfile.md).
 
@@ -126,7 +126,7 @@ windowsservercore   10.0.14300.1000     dbfee88ee9fd        8 weeks ago         
 windowsservercore   latest              dbfee88ee9fd        8 weeks ago         9.344 GB
 ```
 
-Now, deploy the container with the folllwing command. 
+Now, deploy the container with the following command. 
 
 ```none
 docker run -it -p 80:80 iis-dockerfile cmd

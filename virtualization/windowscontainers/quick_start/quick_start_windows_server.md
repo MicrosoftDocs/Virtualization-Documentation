@@ -84,7 +84,7 @@ Install-ContainerImage -Name WindowsServerCore
 After the base image has been installed, the Docker service needs to be restarted.
 
 ```none
-Restart-service docker
+Restart-Service docker
 ```
 
 At this stage, running `docker images` will return the Windows Server Core image.

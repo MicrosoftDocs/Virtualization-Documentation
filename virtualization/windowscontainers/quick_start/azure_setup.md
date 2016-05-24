@@ -1,6 +1,6 @@
 ---
 author: neilpeterson
-redirect_url: ../deployment/deployment_azure
+redirect_url: https://github.com/Azure/azure-quickstart-templates/tree/master/windows-server-containers-preview
 ---
 
 # Azure Quick Start
