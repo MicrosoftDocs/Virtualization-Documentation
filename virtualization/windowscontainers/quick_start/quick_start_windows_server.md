@@ -17,7 +17,7 @@ The exercise will walk through a basic deployment and use of the Windows contain
 
 Prerequisites:
 
-One computer system (physical or virtual) running [Windows Server 2016 Technical Preview 5](https://www.microsoft.com/en-us/evalcenter/evaluate-windows-server-technical-preview).
+- One computer system (physical or virtual) running [Windows Server 2016 Technical Preview 5](https://www.microsoft.com/en-us/evalcenter/evaluate-windows-server-technical-preview).
 
 ## 1. Install Container Feature
 

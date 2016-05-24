@@ -15,9 +15,10 @@ ms.assetid:
 
 The exercise will walk through a basic deployment and use of the Windows container feature. After completion, you will have installed the container role, and deployed a simple Hyper-V container. Before starting this quick start, familiarize yourself with basic container concepts and terminology. This information can be found on the [Quick Start Introduction](./quick_start.md).   
 
-Prerequisites:
+**Prerequisites:**
 
-One physical computer system running a [Windows Server 10 Insiders release](https://insider.windows.com/).   
+- One physical computer system running a [Windows Server 10 Insiders release](https://insider.windows.com/).   
+
 This quick start can be run on a Windows 10 virtual machine if nested virtualization is configured on the system. More information can be found in the [Nested Virtualization Guide](https://msdn.microsoft.com/en-us/virtualization/hyperv_on_windows/user_guide/nesting).
 
 ## 1. Install Container Feature

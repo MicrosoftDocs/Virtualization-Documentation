@@ -17,7 +17,7 @@ ms.assetid: b82acdf9-042d-4b5c-8b67-1a8013fa1435
 
 Before starting the configuration of Windows container on Nano server, you will need a system running Nano Server and also have a remote PowerShell connection with this system.
 
-For more information on deploying Nano Server, see [Getting Started with Nano Server]( https://technet.microsoft.com/en-us/library/mt126167.aspx).
+For more information on deploying and connecting with Nano Server, see [Getting Started with Nano Server]( https://technet.microsoft.com/en-us/library/mt126167.aspx).
 
 An evaluation copy of Nano Server can be found [here](https://msdn.microsoft.com/en-us/virtualization/windowscontainers/nano_eula).
 
@@ -35,7 +35,7 @@ After the package provide has been installed, install the container feature.
 Install-NanoServerPackage -Name Microsoft-NanoServer-Containers-Package
 ```
 
-Optionally, if Hyper-V containers will be deployed, install the Hyper-V role. If the Nano Server is virtualized, nested virtualization will need to be enabled, for more information see [Nested Virtualization]( https://msdn.microsoft.com/en-us/virtualization/hyperv_on_windows/user_guide/nesting).
+Optionally, if Hyper-V containers will be deployed, install the Hyper-V role. If the Nano Server container host is virtualized and Hyper-V contianers will be deployed, nested virtualization will need to be enabled. For more information on nested virtualization, see [Nested Virtualization]( https://msdn.microsoft.com/en-us/virtualization/hyperv_on_windows/user_guide/nesting).
 
 ```none
 Install-NanoServerPackage Microsoft-NanoServer-Compute-Package
@@ -52,14 +52,14 @@ Docker is required in order to work with Windows containers. Docker consists of 
 New-Item -Type Directory $env:programfiles\docker
 ```
 
-Download the Docker daemon and copy it to ` $env:programfiles\docker` of the Docker host. Nano Server does not currently support `Invoke-Webrequest`, this will need to be completed from a remote system
+Download the Docker daemon and copy it to ` $env:programfiles\docker` of the container host. Nano Server does not currently support `Invoke-Webrequest`, this will need to be completed from a remote system
 
-```
+```none
 # Download Docker Engine
 Invoke-WebRequest https://master.dockerproject.org/windows/amd64/dockerd-1.12.0-dev.exe -OutFile .\dockerd.exe
 ```
 
-Install Docker as a Windows service, run the following.
+Install Docker as a Windows service.
 
 ```none
 & 'C:\Program Files\docker\dockerd.exe' --register-service
@@ -110,23 +110,25 @@ For more information on container image management, see [Windows container image
 
 ## 4. Work with Docker on Nano Server
 
+### Prepare the Docker Daemon
+
 For the best experience, manage Docker on Nano Server from a remote system. In order to do so, the following items need to be completed.
 
-Create a firewall rule for the Docker connection, this will be port `2375` or an insecure connection, or port `2376` for a secure connection.
+Create a firewall rule on the contianer host for the Docker connection. This will be port `2375` for an insecure connection, or port `2376` for a secure connection.
 
 ```none
 netsh advfirewall firewall add rule name="Docker daemon " dir=in action=allow protocol=TCP localport=2376
 ```
 
-Configure the Docker daemon configuration file to accept remote connections. This file is located at `c:\ProgramData\docker\config\daemon.json` on the Nano Server host.
+Configure the Docker daemon to accept incoming connection over TCP.
 
-Create a Docker daemon configuration file `c:\ProgramData\docker\config\daemon.json`
+First create a `daemon.json` file at `c:\ProgramData\docker\config\daemon.json`.
 
 ```none
 new-item -Type File c:\ProgramData\docker\config\daemon.json
 ```
 
-Copying these content into the file will allow the Docker daemon to accept all unsecure requests. This is not advised but can be used for isolated testing.
+Next, copy this JSON into the file to allow the Docker daemon to accept all unsecure requests. This is not advised, but can be used for isolated testing.
 
 ```none
 {
@@ -139,6 +141,14 @@ The following example will configure a secure remote connection. The TLS certifi
 ```none
 ADD Example
 ```
+
+Restart the Docker service.
+
+```none
+Restart-Service docker
+```
+
+### Prepare the Docker Client
 
 Download the Docker client to the remote management system.
 
