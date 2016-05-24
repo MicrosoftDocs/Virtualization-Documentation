@@ -59,11 +59,14 @@ Next, add the docker directory to the path variable. This will allow Docker comm
 ```none
 [Environment]::SetEnvironmentVariable("Path",$Env:Path + ";%programfiles%\docker", "Machine")
 ```
+> Note: Please start a new Windows PowerShell window after running this command so it can take effect. Otherwise, the next steps will fail.
+
 
 Finally, to install Docker as a Windows service, run the following.
 
 ```none
 dockerd --register-service
+Start-Service Docker
 ```
 
 ## 3. Install Base Container Images
@@ -71,17 +74,20 @@ dockerd --register-service
 Before a container can be deployed, a container base OS image needs to be downloaded. The following commands will download the Windows Server Core base OS image. This process can take some time, so teak a break and pick back up once the download has completed. 
     
 ```none
+# Enable running script-based providers
+Set-ExecutionPolicy -Scope LocalMachine Bypass
+
 # Install Container Image Provider    
 Install-PackageProvider ContainerImage -Force
 
 # Install Windows Server Core Image  
-Install-ContainerImage -Name NanoServer   
+Install-ContainerImage -Name NanoServer
 ```
 
 After the base image has been installed, the docker service needs to be restarted.
 
 ```none
-Restart-service docker
+Restart-Service docker
 ```
 
 At this stage, running `docker images` will return the Windows Server Core image.
