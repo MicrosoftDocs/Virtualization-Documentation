@@ -87,7 +87,7 @@ Increase the processors available to the container, don't explicitly specify pro
 ### Network Compartment Isolation and Implications
 Each container uses a network compartment to provide isolation. All container network adapters (endpoints) attached to a given container, will be resident in the same network compartment. Depending on the networking mode (driver) used, you may be unable to access two different container endpoints using the same IP address or port. Moreover, Windows firewall rules are not compartment- or container-aware and so any firewall rules plumbed will apply to all containers on the container host irrespective of a particular endpoint.
 
-*** Transpraent Networking ***
+*** Transparent Networking ***
 
 
 *** NAT Networking ***
