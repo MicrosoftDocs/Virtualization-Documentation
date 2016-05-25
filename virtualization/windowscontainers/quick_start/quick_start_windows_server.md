@@ -15,9 +15,9 @@ ms.assetid:
 
 This exercise will walk through basic deployment and use of the Windows container feature on Windows Server. After completion, you will have installed the container role and have deployed a simple Windows Server container. Before starting this quick start, familiarize yourself with basic container concepts and terminology. This information can be found in the [Quick Start Introduction](./quick_start.md).   
 
-Prerequisites:
+**Prerequisites:**
 
-- One computer system (physical or virtual) running [Windows Server 2016 Technical Preview 5](https://www.microsoft.com/en-us/evalcenter/evaluate-windows-server-technical-preview).
+One computer system (physical or virtual) running [Windows Server 2016 Technical Preview 5](https://www.microsoft.com/en-us/evalcenter/evaluate-windows-server-technical-preview).
 
 ## 1. Install Container Feature
 
@@ -163,6 +163,6 @@ docker rm -f grave_jang
 ```
 ## 5. Next Steps
 
-[Container Images on Windows Server](./quick_start_windows_server.msd)
+[Container Images on Windows Server](./quick_start_windows_server.md)
 
 [Windows Containers on Windows 10](./quick_start_windows_10.md)
