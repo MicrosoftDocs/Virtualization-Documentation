@@ -19,18 +19,59 @@ Windows Containers provide operating system level virtualization that allows mul
 <tr>
 <td ><center>![](media/try.png)</center></td>
 <td>**Quick Start**<br /><br />
-[Step 1](./quick_start/quick_start.md) - Container concepts and terminology<br /><br />
-[Step 2](./quick_start/quick_start_windows_server.md) - Windows Server Quick Start<br /><br />
-[Step 3](./quick_start/quick_start_windows_10.md) - Windows 10 Quick Start<br /><br />
-[Step 4](./quick_start/quick_start_images.md) - Create Images Quick Start<br /><br />
+Try Windows Server and Hyper-V Containers by using the following quick start guides.<br /><br />
+<ul>
+<li>[1 - Concepts and Terminology](quick_start/quick_start.md)<br /><br /></li>
+<li>[2 - Containers on Windows Server](quick_start/quick_start_configure_host.md)<br /><br /></li>
+<li>[3 - Containers Images on Windows Server](quick_start/manage_docker.md)<br /><br /></li>
+<li>[4 - Containers on Windows 10](quick_start/manage_docker_hyperv.md)<br /><br /></li>
+</ul>
+</td>
+</tr>
+<tr>
+<td ><center>![](media/1.png)</center></td>
+<td>**Deployment**<br /><br />
+Learn how to deploy Windows Containers on Windows Server 2016 and Nano Server..<br /><br />
+<ul>
+<li>[System Requirements](deployment/system_requirements.md)<br /><br /></li>
+<li>[Deploy Container Host - Windows Server](deployment/deployment.md)<br /><br /></li>
+<li>[Deploy Container Host - Nano Server](deployment/deployment_nano.md)<br /><br /></li>
+
+</ul>
+</td>
+</tr>
+
+<tr>
+<td ><center>![](media/explore.png)</center></td>
+<td>**Management**<br /><br />
+Learn about managing Windows Container in Windows Server 2016 and Nano Server.<br /><br />
+<ul>
+<li>[Manage Images](management/manage_images.md)<br /><br /></li>
+<li>[Manage Networking](management/container_networking.md)<br /><br /></li>
+<li>[Manage Container Data](management/manage_data.md)<br /><br /></li>
+<li>[Manage Hyper-V Containers](management/hyperv_container.md)<br /><br /></li>
+<li>[Manage Container Resources](management/manage_resources.md)<br /><br /></li>
+</ul>
+</td>
+</tr>
+<tr>
+<td ><center>![](media/video.png)</center></td>
+<td>**Watch**<br /><br />
+Interested in demos and interviews from the Windows Container team?<br /><br />
+<ul>
+<li>[Containers Channel](https://channel9.msdn.com/Blogs/containers)</li>
+</ul>
+<br />
 </td>
 </tr>
 <tr>
 <td ><center>![](media/question.png)</center></td>
 <td>**Community**<br /><br />
 Interact with the community, try samples, and find additional resources.<br /><br />
-[Container Forum](https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers)<br /><br /></li>
-[Container Resources](https://msdn.microsoft.com/virtualization/community/community_overview)<br /><br /></li>
+<ul>
+<li>[Container Forum](https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers)<br /><br /></li>
+<li>[Container Resources](https://msdn.microsoft.com/virtualization/community/community_overview)<br /><br /></li>
+</ul>
 </td>
 </tr>
 </table>
