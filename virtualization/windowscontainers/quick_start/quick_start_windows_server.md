@@ -13,7 +13,9 @@ ms.assetid:
 
 # Windows Containers on Windows Server
 
-This exercise will walk through basic deployment and use of the Windows container feature on Windows Server. After completion, you will have installed the container role and have deployed a simple Windows Server container. Before starting this quick start, familiarize yourself with basic container concepts and terminology. This information can be found in the [Quick Start Introduction](./quick_start.md).   
+This exercise will walk through basic deployment and use of the Windows container feature on Windows Server. After completion, you will have installed the container role and have deployed a simple Windows Server container. Before starting this quick start, familiarize yourself with basic container concepts and terminology. This information can be found in the [Quick Start Introduction](./quick_start.md). 
+
+> This quick start is specific to Windows Server containers on Windows Server 2016. Additional quick start documentation is available for other configuration. See the table of contents for these.  
 
 **Prerequisites:**
 

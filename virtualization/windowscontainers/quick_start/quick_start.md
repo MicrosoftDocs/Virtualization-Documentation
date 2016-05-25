@@ -15,7 +15,7 @@ ms.assetid: 4878f5d2-014f-4f3c-9933-97f03348a147
 
 **This is preliminary content and subject to change.** 
 
-The windows container quick start introduces the product and container terminology, steps through simple container deployment examples, and also provides reference for more advanced topics. If you are new to containers or even Windows containers, walking through each step of this quick start will provide you with practical hands on experiences with the technology.
+The Windows container quick start introduces the product and container terminology, steps through simple container deployment examples, and also provides reference for more advanced topics. If you are new to containers or Windows containers, walking through each step of this quick start will provide you with practical hands on experiences with the technology.
 
 ## 1. What are Containers
 

@@ -13,7 +13,9 @@ ms.assetid:
 
 # Windows Containers on Windows 10
 
-The exercise will walk through a basic deployment and use of the Windows container feature on Windows 10. After completion, you will have installed the container role, and deployed a simple Hyper-V container. Before starting this quick start, familiarize yourself with basic container concepts and terminology. This information can be found on the [Quick Start Introduction](./quick_start.md).   
+The exercise will walk through basic deployment and use of the Windows container feature on Windows 10. After completion, you will have installed the container role, and deployed a simple Hyper-V container. Before starting this quick start, familiarize yourself with basic container concepts and terminology. This information can be found on the [Quick Start Introduction](./quick_start.md). 
+
+> This quick start is specific to Hyper-V containers on Windows 10. Additional quick start documentation is available for other configuration. See the table of contents for these.  
 
 **Prerequisites:**
 
