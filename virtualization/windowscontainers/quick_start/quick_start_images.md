@@ -15,10 +15,10 @@ ms.assetid: 479e05b1-2642-47c7-9db4-d2a23592d29f
 
 In the previous Windows Server quick start, a Windows container was created from a pre-existing container image. This exercise will detail creating your own container images manually, creating images using a Dockerfile, and uploading these images to Docker Hub.
 
-Prerequisites:
+**Prerequisites:**
 
-- One computer system (physical or virtual) running [Windows Server 2016 Technical Preview 5](https://www.microsoft.com/en-us/evalcenter/evaluate-windows-server-technical-preview).
-- Configure this system with the Windows Container feature and Docker. For a walkthrough on these steps, see [Windows Containers on Windows Server](./quick_start_windows_server.md).
+One computer system (physical or virtual) running [Windows Server 2016 Technical Preview 5](https://www.microsoft.com/en-us/evalcenter/evaluate-windows-server-technical-preview).
+Configure this system with the Windows Container feature and Docker. For a walkthrough on these steps, see [Windows Containers on Windows Server](./quick_start_windows_server.md).
 
 ## 1. Container Image - Manual
 
