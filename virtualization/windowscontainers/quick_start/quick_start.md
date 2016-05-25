@@ -50,5 +50,6 @@ When you begin working with containers you will notice many similarities between
 ## 4. Next Step:
 
 [Windows Server Container Quick Start](./quick_start_windows_server.md)  
+
 [Windows 10 Container Quick Start](./quick_start_windows_10.md)
 
