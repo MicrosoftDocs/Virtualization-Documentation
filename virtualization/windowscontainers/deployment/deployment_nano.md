@@ -47,22 +47,18 @@ The Nano Server host will need to be re-booted after these features have been in
 
 Docker is required in order to work with Windows containers. Docker consists of the Docker Engine, and the Docker client. Install the Docker daemon using these steps.
 
-```none
-# Create Docker directory
-New-Item -Type Directory $env:programfiles\docker
-```
 
-Download the Docker daemon and copy it to ` $env:programfiles\docker` of the container host. Nano Server does not currently support `Invoke-Webrequest`, this will need to be completed from a remote system
+Download the Docker daemon and copy it to `$env:SystemRoot\system32\` of the container host. Nano Server does not currently support `Invoke-Webrequest`, this will need to be completed from a remote system
 
 ```none
 # Download Docker Engine
-Invoke-WebRequest https://master.dockerproject.org/windows/amd64/dockerd-1.12.0-dev.exe -OutFile .\dockerd.exe
+Invoke-WebRequest https://aka.ms/tp5/b/dockerd -OutFile .\dockerd.exe
 ```
 
 Install Docker as a Windows service.
 
 ```none
-& 'C:\Program Files\docker\dockerd.exe' --register-service
+dockerd.exe --register-service
 ```
 
 Start the Docker service.
@@ -153,14 +149,19 @@ Restart-Service docker
 Download the Docker client to the remote management system.
 
 ```none
-# Create Docker directory
-New-Item -Type Directory $env:programfiles\docker
-
-# Download client
-Invoke-WebRequest https://master.dockerproject.org/windows/amd64/docker.exe -OutFile $env:programfiles\docker\docker.exe
-
-# Set path environment variable
-[Environment]::SetEnvironmentVariable("Path",$Env:Path + ";%programfiles%\docker", "Machine")
+Invoke-WebRequest https://aka.ms/tp5/b/docker  -OutFile $env:SystemRoot\system32\docker.exe
 ```
 
 Once completed the Docker daemon can be accessed with the `Docker -H` parameter.
+
+```none
+docker -H tcp://10.0.0.5:2375 images
+```
+
+An environmental variable DOCKER_HOST can be created that will remove the –H parameter requirement. The following PowerShell command can be used for this.
+
+With this variable set, the command would now look like this.
+
+```none
+docker images
+```
