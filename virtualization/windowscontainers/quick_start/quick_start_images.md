@@ -95,7 +95,7 @@ Open the Dockerfile in notepad.
 notepad c:\build\Dockerfile
 ```
 
-Copy the following text into the Dockerfile, and save the file. These commands instruct Docker to create a new image, using `windowsservercore` as the base, and include the modifications specified with the `RUN` instruction. 
+Copy the following text into the Dockerfile, and save the file. These commands instruct Docker to create a new image, using `microsoft/iis` as the base, and include the modifications specified with the `RUN` instruction. 
 
 For more information on Dockerfiles, see the [Dockerfiles on Windows](../docker/manage_windows_dockerfile.md).
 
@@ -135,3 +135,7 @@ docker run -it -p 80:80 iis-dockerfile cmd
 Once the container has been created, browse to the IP address of the container host. You should see the hello world application.
 
 ![](media/dockerfile2.png)
+
+## 3. Next Steps
+
+[Windows Containers on Windows 10](./quick_start_windows_10.md)
