@@ -106,7 +106,7 @@ For more information on container image management, see [Windows container image
 
 ## 4. Work with Docker on Nano Server
 
-### Prepare the Docker Daemon
+**Prepare the Docker Daemon:**
 
 For the best experience, manage Docker on Nano Server from a remote system. In order to do so, the following items need to be completed.
 
@@ -144,7 +144,7 @@ Restart the Docker service.
 Restart-Service docker
 ```
 
-### Prepare the Docker Client
+**Prepare the Docker Client:**
 
 Download the Docker client to the remote management system.
 
