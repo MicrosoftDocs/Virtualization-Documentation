@@ -19,7 +19,7 @@ Deploying a Windows container host has different steps depending on the operatin
 
 ## Deployment steps
 
-## 1. Install Container Feature
+## Install Container Feature
 
 The container feature needs to be enabled before working with Windows containers. To do so run the following command in an elevated PowerShell session. 
 
@@ -29,7 +29,7 @@ Install-WindowsFeature containers
 
 When the feature installation has completed, reboot the computer.
 
-## 2. Install Docker
+## Install Docker
 
 Docker is required in order to work with Windows containers. Docker consists of the Docker Engine, and the Docker client. For this exercise, both will be installed.
 
@@ -57,11 +57,10 @@ Once installed, the service can be started.
 Start-Service Docker
 ```
 
-## 3. Install Base Container Images
+## Install Base Container Images
 
-Before a container can be deployed, a container base OS image needs to be downloaded. The following commands will download the Windows Server Core base OS image. 
+Before a container can be deployed, a container base OS image needs to be downloaded. The following commands will download the Windows Server Core base OS image. For detailed information on Windows container images, see [Managing Container Images](../management/manage_images.md).
     
-
 First, install the container image package provider.
 
 ```none
@@ -95,7 +94,7 @@ Before proceeding, this image needs to be tagged with a version of ‘latest’.
 docker tag windowsservercore:10.0.14300.1000 windowsservercore:latest
 ```
 
-## 4. Hyper-V container host
+## Hyper-V Container Host
 
 In order to deploy Hyper-V containers, the Hyper-V role will be required. If the Windows container host is itself a Hyper-V virtual machine, nested virtualization will need to be enabled before installing the Hyper-V role. For more information on nested virtualization, see [Nested Virtualization]( https://msdn.microsoft.com/en-us/virtualization/hyperv_on_windows/user_guide/nesting).
 

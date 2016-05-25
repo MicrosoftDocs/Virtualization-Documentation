@@ -21,7 +21,7 @@ For more information on deploying and connecting with Nano Server, see [Getting 
 
 An evaluation copy of Nano Server can be found [here](https://msdn.microsoft.com/en-us/virtualization/windowscontainers/nano_eula).
 
-## 1. Install Container Feature
+## Install Container Feature
 
 Install the Nano Server package management provider.
 
@@ -43,7 +43,7 @@ Install-NanoServerPackage Microsoft-NanoServer-Compute-Package
 
 The Nano Server host will need to be re-booted after these features have been installed.
 
-## 2. Install Docker
+## Install Docker
 
 Docker is required in order to work with Windows containers. Docker consists of the Docker Engine, and the Docker client. Install the Docker daemon using these steps.
 
@@ -67,25 +67,14 @@ Start the Docker service.
 Start-Service Docker
 ```
 
-## 3. Install Base Container Images
+## Install Base Container Images
 
-Base OS images are used as the base to any Windows Server or Hyper-V container. Base OS images are available with both Windows Server Core and Nano Server as the underlying operating system and can be installed using the container Provider PowerShell module.
+Base OS images are used as the base to any Windows Server or Hyper-V container. Base OS images are available with both Windows Server Core and Nano Server as the underlying operating system and can be installed using the container Provider PowerShell module. For detailed information on Windows container images, see [Managing Container Images](../management/manage_images.md).
 
 The following command can be used to install the Container Image PowerShell module.
 
 ```none
 Install-PackageProvider ContainerImage -Force
-```
-
-Once installed, a list of Base OS images can be returned using `Find-ContainerImage`.
-
-```none
-Find-ContainerImage
-
-Name                           Version          Source           Summary
-----                           -------          ------           -------
-NanoServer                     10.0.14300.1010  ContainerImag... Container OS Image of Windows Server 2016 Technical...
-WindowsServerCore              10.0.14300.1000  ContainerImag... Container OS Image of Windows Server 2016 Technical...
 ```
 
 To download and install the Nano Server base OS image, run the following:
@@ -102,9 +91,7 @@ Restart the Docker service.
 Restart-Service Docker
 ```
 
-For more information on container image management, see [Windows container images](../management/manage_images.md).
-
-## 4. Work with Docker on Nano Server
+## Manage Docker on Nano Server
 
 **Prepare the Docker Daemon:**
 
