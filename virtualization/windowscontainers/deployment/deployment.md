@@ -17,8 +17,6 @@ ms.assetid: ba4eb594-0cdb-4148-81ac-a83b4bc337bc
 
 Deploying a Windows container host has different steps depending on the operating system and the host system type (physical or virtual). This document details deploying a Windows container host to either Windows Server 2016 or Windows Server Core 2016 on a physical or virtual system.
 
-## Deployment steps
-
 ## Install Container Feature
 
 The container feature needs to be enabled before working with Windows containers. To do so run the following command in an elevated PowerShell session. 

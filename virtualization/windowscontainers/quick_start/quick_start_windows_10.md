@@ -110,19 +110,31 @@ docker tag nanoserver:10.0.14300.1010 nanoserver:latest
 
 ## 4. Deploy Your First Container
 
+For this simple example a .NET Core image has been pre-created. When run, a container will be started, the simple .NET Core application will execute, and then container will then exit. 
+
+First, pull the .NET sample image.
 
 ```none
-docker pull microsoft/sample-nginx:nanoserver
+docker pull microsoft/sample-dotnet
 ```
+
+This can be verified with the `docker images` command.
 
 ```none
 docker images
 
 REPOSITORY               TAG                 IMAGE ID            CREATED             SIZE
-microsoft/sample-nginx   nanoserver          01afe1442f41        2 weeks ago         821.7 MB
+microsoft/sample-dotnet   latest              289f9cdaf773        32 minutes ago      929.9 MB
 nanoserver               10.0.14300.1010     cb48429c84fa        8 weeks ago         817.1 MB
 nanoserver               latest              cb48429c84fa        8 weeks ago         817.1 MB
 ```
+
+Run the container with the `docker run` command. This will output the results of the ‘Hello World’ application to you shell. Once the application has been executed, the container will stop and be removed.
+
+```none
+docker run --isolation=hyperv --rm microsoft/sample-dotnet
+```
+
 ## 5. Next Steps
 
 [Windows Containers on Windows Server](./quick_start_windows_server.md)

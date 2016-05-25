@@ -17,12 +17,12 @@ ms.assetid: 3c3d4c69-503d-40e8-973b-ecc4e1f523ed
 
 This guides list the requirements for a Windows container Host.
 
-## Windows containers on a physical system
+## OS Requirements
 
-- The Windows container role is only available on Windows Server 2016 TP5 (Full and Core) and Nano Server.
+- The Windows container role is only available on Windows Server 2016 TP5 (Full and Core), Nano Server, and Windows 10 Insiders releases.
 - If Hyper-V containers will be run, the Hyper-V role will need to be installed.
 
-## Windows containers on a virtual system
+## Virtualized Container Hosts
 
 If a Windows container host will be run from a Hyper-V virtual machine, and will also be hosting Hyper-V containers, nested virtualization will need to be enabled. Nested virtualization has the following requirements:
 
@@ -30,7 +30,6 @@ If a Windows container host will be run from a Hyper-V virtual machine, and will
 - Windows Server 2016 Technical Preview 5, or Windows 10 build 10565 on the host system, and Windows Server Technical Preview 5 (Full, Core) or Nano Server in the virtual machine.
 - A processor with Intel VT-x (this feature is currently only available for Intel processors).
 - The container host VM will also need at least 2 virtual processors.
-
 
 ## Supported OS images
 

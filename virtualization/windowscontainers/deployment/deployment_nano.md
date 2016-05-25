@@ -119,7 +119,7 @@ Next, copy this JSON into the file to allow the Docker daemon to accept all unse
 }
 ```
 
-The following example will configure a secure remote connection. The TLS certificates will need to be created and copied to the proper locations. For more information see, []().
+The following example will configure a secure remote connection. The TLS certificates will need to be created and copied to the proper locations. For more information see, [Docker daemon ion Windows](./docker_windows.md).
 
 ```none
 ADD Example
@@ -142,13 +142,17 @@ Invoke-WebRequest https://aka.ms/tp5/b/docker  -OutFile $env:SystemRoot\system32
 Once completed the Docker daemon can be accessed with the `Docker -H` parameter.
 
 ```none
-docker -H tcp://10.0.0.5:2375 images
+docker -H tcp://10.0.0.5:2375 run -it nanoserver cmd
 ```
 
 An environmental variable DOCKER_HOST can be created that will remove the –H parameter requirement. The following PowerShell command can be used for this.
 
+```none
+$env:DOCKER_HOST = "tcp://<ipaddress of server:2376"
+```
+
 With this variable set, the command would now look like this.
 
 ```none
-docker images
+docker run -it nanoserver cmd
 ```

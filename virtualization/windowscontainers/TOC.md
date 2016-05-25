@@ -4,7 +4,7 @@
 ## [FAQ](about/faq.md)
 
 # Container Quick Start
-## [1 – Concepts and terminology](quick_start/quick_start.md)
+## [1 – Concepts and Terminology](quick_start/quick_start.md)
 ## [2 - Windows Server Quick Start](quick_start/quick_start_windows_server.md)
 ## [3 – Windows Server Images](quick_start/quick_start_images.md)
 ## [4 – Windows 10 Quick Start](quick_start/quick_start_windows_10.md)
@@ -31,7 +31,7 @@
 ## [Dockerfiles – Nano Server](https://github.com/Microsoft/Virtualization-Documentation/tree/master/windows-container-samples/nanoserver)
 
 # Community and Support
-## [Container forums](https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers)
+## [Container Forums](https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers)
 
 # Reference
 ## [Container Image Provider](https://github.com/PowerShell/ContainerProvider)
