@@ -28,7 +28,7 @@ Configure this system with the Windows Container feature and Docker. For a walkt
 
 ## 1. Container Image - Manual
 
-> For the best experience, walk through this exercise from a Windows command shell (cmd.exe).
+For the best experience, walk through this exercise from a Windows command shell (cmd.exe).
 
 The first step in manually creating a container image is to deploy a container. For this example, deploy an IIS container from the pre-created IIS image. Once the container has been deployed, you will be working in a shell session from within the container. The interactive session is initiated with the `-it` flag. For in depth details on Docker Run commands, see [Docker Run Reference on Docker.com]( https://docs.docker.com/engine/reference/run/). 
 
