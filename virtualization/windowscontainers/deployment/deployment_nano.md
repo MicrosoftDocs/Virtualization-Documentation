@@ -35,12 +35,6 @@ After the package provide has been installed, install the container feature.
 Install-NanoServerPackage -Name Microsoft-NanoServer-Containers-Package
 ```
 
-Optionally, if Hyper-V containers will be deployed, install the Hyper-V role. If the Nano Server container host is virtualized and Hyper-V contianers will be deployed, nested virtualization will need to be enabled. For more information on nested virtualization, see [Nested Virtualization]( https://msdn.microsoft.com/en-us/virtualization/hyperv_on_windows/user_guide/nesting).
-
-```none
-Install-NanoServerPackage Microsoft-NanoServer-Compute-Package
-```
-
 The Nano Server host will need to be re-booted after these features have been installed.
 
 ## Install Docker
@@ -93,6 +87,34 @@ Finally, the image needs to be tagged with a version of ‘latest’. To do so, 
 
 ```none
 docker tag nanoserver:10.0.14300.1010 nanoserver:latest
+```
+
+## Hyper-V Container Host
+
+In order to deploy Hyper-V containers, the Hyper-V role will be required. If the Windows container host is itself a Hyper-V virtual machine, nested virtualization will need to be enabled before installing the Hyper-V role. For more information on nested virtualization, see Nested Virtualization.
+
+### Nested Virtualization
+
+The following script will configure nested virtualization for the container host. This script is run on the Hyper-V machine that is hosting the container host virtual machine. Ensure that the container host virtual machine is turned off when running this script.
+
+```none
+#replace with the virtual machine name
+$vm = "<virtual-machine>"
+
+#configure virtual processor
+Set-VMProcessor -VMName $vm -ExposeVirtualizationExtensions $true -Count 2
+
+#disable dynamic memory
+Set-VMMemory $vm -DynamicMemoryEnabled $false
+
+#enable mac spoofing
+Get-VMNetworkAdapter -VMName $vm | Set-VMNetworkAdapter -MacAddressSpoofing On
+```
+
+### Enable the Hyper-V role
+
+```none
+Install-NanoServerPackage Microsoft-NanoServer-Compute-Package
 ```
 
 ## Manage Docker on Nano Server

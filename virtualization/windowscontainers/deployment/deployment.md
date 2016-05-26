@@ -57,7 +57,7 @@ Start-Service Docker
 
 ## Install Base Container Images
 
-Before a container can be deployed, a container base OS image needs to be downloaded. The following example will download the Windows Server Core base OS image. For detailed information on Windows container images, see [Managing Container Images](../management/manage_images.md).
+Before a container can be deployed, a container base OS image needs to be downloaded. The following example will download the Windows Server Core base OS image. This same procedure can be completed to install the Nano Server base image. This same procedure can be completed to install the Nano Server base image. For detailed information on Windows container images, see [Managing Container Images](../management/manage_images.md).
     
 First, install the container image package provider.
 
