@@ -57,7 +57,7 @@ Start-Service Docker
 
 ## Install Base Container Images
 
-Before a container can be deployed, a container base OS image needs to be downloaded. The following commands will download the Windows Server Core base OS image. For detailed information on Windows container images, see [Managing Container Images](../management/manage_images.md).
+Before a container can be deployed, a container base OS image needs to be downloaded. The following example will download the Windows Server Core base OS image. For detailed information on Windows container images, see [Managing Container Images](../management/manage_images.md).
     
 First, install the container image package provider.
 
@@ -77,16 +77,7 @@ After the base image has been installed, the Docker service needs to be restarte
 Restart-Service docker
 ```
 
-At this stage, running `docker images` will return the Windows Server Core image.
-
-```none
-docker images
-
-REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
-windowsservercore   10.0.14300.1000     dbfee88ee9fd        7 weeks ago         9.344 GB
-```
-
-Before proceeding, this image needs to be tagged with a version of ‘latest’. To do so, run the following command.
+Finally, the image needs to be tagged with a version of ‘latest’. To do so, run the following command.
 
 ```none
 docker tag windowsservercore:10.0.14300.1000 windowsservercore:latest

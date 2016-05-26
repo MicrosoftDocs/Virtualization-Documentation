@@ -89,6 +89,12 @@ Restart the Docker service.
 Restart-Service Docker
 ```
 
+Finally, the image needs to be tagged with a version of ‘latest’. To do so, run the following command.
+
+```none
+docker tag nanoserver:10.0.14300.1010 nanoserver:latest
+```
+
 ## Manage Docker on Nano Server
 
 **Prepare the Docker Daemon:**

@@ -11,7 +11,7 @@ ms.service: windows-containers
 ms.assetid: 479e05b1-2642-47c7-9db4-d2a23592d29f
 ---
 
-# Create Container Images
+# Container Images on Windows Server
 
 **This is preliminary content and subject to change.** 
 
@@ -140,7 +140,7 @@ Once the container has been created, browse to the IP address of the container h
 
 ![](media/dockerfile2.png)
 
-Back on the container host, use `docker ps` to get the name of the container and `docker rm` to remove the container. Note – replace the name of the container in this example with the actual container name.
+Back on the container host, use `docker ps` to get the name of the container, and `docker rm` to remove the container. Note – replace the name of the container in this example with the actual container name.
 
 Get container name.
 
