@@ -4,7 +4,7 @@ description: Windows Containers Work in Progress
 keywords: docker, containers
 author: scooley
 manager: timlt
-ms.date: 05/02/2016
+ms.date: 05/26/2016
 ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
@@ -170,9 +170,6 @@ See the [application compatability article](../reference/app_compat.md) for more
 
 ## Docker management
 
-### Docker clients unsecured
-In this pre-release, docker communication is public if you know where to look.
-
 ### Not all Docker commands work
 * Docker exec fails in Hyper-V Containers.
 
@@ -201,7 +198,7 @@ net use S: \\your\sources\here /User:shareuser [yourpassword]
 
 ## Remote Desktop 
 
-Windows Containers cannot be managed/interacted with through a RDP session in TP4.
+Windows Containers cannot be managed/interacted with through a RDP session in TP5.
 
 --------------------------
 
