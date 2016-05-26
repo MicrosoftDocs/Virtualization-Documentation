@@ -22,7 +22,7 @@ The exercise will walk through basic deployment and use of the Windows container
 
 One physical computer system running a [Windows Server 10 Insiders release](https://insider.windows.com/).   
 
-This quick start can be run on a Windows 10 virtual machine, if nested virtualization is configured on the system. More information can be found in the [Nested Virtualization Guide](https://msdn.microsoft.com/en-us/virtualization/hyperv_on_windows/user_guide/nesting).
+This quick start can be run on a Windows 10 virtual machine however nested virtualization will need to be enabled. More information can be found in the [Nested Virtualization Guide](https://msdn.microsoft.com/en-us/virtualization/hyperv_on_windows/user_guide/nesting).
 
 > This quick start is specific to Hyper-V containers on Windows 10. Additional quick start documentation can be found in the table of contents on the left hand side of this page.
 
@@ -117,9 +117,9 @@ For in depth information on Windows container images see, [Managing Container Im
 
 ## 4. Deploy Your First Container
 
-For this simple example a .NET Core image has been pre-created. When run, a container will be started, the simple .NET Core application will execute, and then container will then exit. 
+For this simple example a .NET Core image has been pre-created. Download this image using the `docker pull` command.
 
-First, pull the .NET sample image.
+When run, a container will be started, the simple .NET Core application will execute, and then container will then exit. 
 
 ```none
 docker pull microsoft/sample-dotnet
@@ -136,11 +136,16 @@ nanoserver               10.0.14300.1010     cb48429c84fa        8 weeks ago    
 nanoserver               latest              cb48429c84fa        8 weeks ago         817.1 MB
 ```
 
-Run the container with the `docker run` command. This will output the results of the ‘Hello World’ application to you shell. Once the application has been executed, the container will stop and be removed. For in depth information on the Docker Run command, see [Docker Run Reference on Docker.com]( https://docs.docker.com/engine/reference/run/).
+Run the container with the `docker run` command. The following example specifies the `--rm` parameter, this instructs the Docker engine to delete the container once it is not longer running. 
+
+For in depth information on the Docker Run command, see [Docker Run Reference on Docker.com]( https://docs.docker.com/engine/reference/run/).
 
 ```none
 docker run --isolation=hyperv --rm microsoft/sample-dotnet
 ```
+
+The outcome of this command was that a Hyper-V container was created from the sample-dotnet image, a sample application was then executed, and then the container stopped and was removed. 
+Subsequent Windows 10 and container quick starts will dig into creating and deploying application in containers on Windows 10.
 
 ## 5. Next Steps
 
