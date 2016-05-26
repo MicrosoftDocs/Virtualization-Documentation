@@ -26,5 +26,6 @@
 # Reference
 ## [Hyper-V PowerShell](https://technet.microsoft.com/library/hh848559.aspx)
 ## [Hyper-V WMI Provider (V2)](https://msdn.microsoft.com/library/hh850319.aspx)
+## [Hyper-V Integration Services](reference/ic_info.md)
 ## [Hyper-V Architecture](https://msdn.microsoft.com/en-us/library/cc768520(v=bts.10).aspx)
-## [Hypervisor Specifications](develop/tlfs.md)
+## [Hypervisor Specifications](reference/tlfs.md)
