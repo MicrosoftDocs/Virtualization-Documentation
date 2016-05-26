@@ -136,7 +136,7 @@ nanoserver               10.0.14300.1010     cb48429c84fa        8 weeks ago    
 nanoserver               latest              cb48429c84fa        8 weeks ago         817.1 MB
 ```
 
-Run the container with the `docker run` command. The following example specifies the `--rm` parameter, this instructs the Docker engine to delete the container once it is not longer running. 
+Run the container with the `docker run` command. The following example specifies the `--rm` parameter, this instructs the Docker engine to delete the container once it is no longer running. 
 
 For in depth information on the Docker Run command, see [Docker Run Reference on Docker.com]( https://docs.docker.com/engine/reference/run/).
 
@@ -144,7 +144,7 @@ For in depth information on the Docker Run command, see [Docker Run Reference on
 docker run --isolation=hyperv --rm microsoft/sample-dotnet
 ```
 
-The outcome of this command is that a Hyper-V container was created from the sample-dotnet image, a sample application was then executed, and then the container stopped and was removed. 
+The outcome of this command is that a Hyper-V container was created from the sample-dotnet image, a sample application was then executed (output echoed to the shell), and then the container stopped and removed. 
 Subsequent Windows 10 and container quick starts will dig into creating and deploying application in containers on Windows 10.
 
 ## Next Steps

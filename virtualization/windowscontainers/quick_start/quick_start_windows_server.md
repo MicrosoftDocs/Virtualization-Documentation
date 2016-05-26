@@ -174,6 +174,6 @@ docker rm -f grave_jang
 ```
 ## Next Steps
 
-[Container Images on Windows Server](./quick_start_windows_server.md)
+[Container Images on Windows Server](./quick_start_images.md)
 
 [Windows Containers on Windows 10](./quick_start_windows_10.md)

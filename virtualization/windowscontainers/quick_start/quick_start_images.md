@@ -28,6 +28,8 @@ Configure this system with the Windows Container feature and Docker. For a walkt
 
 ## 1. Container Image - Manual
 
+> For the best experience, walk through this exercise from a Windows command shell (cmd.exe).
+
 The first step in manually creating a container image is to deploy a container. For this example, deploy an IIS container from the pre-created IIS image. Once the container has been deployed, you will be working in a shell session from within the container. The interactive session is initiated with the `-it` flag. For in depth details on Docker Run commands, see [Docker Run Reference on Docker.com]( https://docs.docker.com/engine/reference/run/). 
 
 ```none
@@ -131,17 +133,27 @@ windowsservercore   latest              dbfee88ee9fd        8 weeks ago         
 Now, deploy a container with the following command. 
 
 ```none
-docker run -it -p 80:80 iis-dockerfile ping -t localhost
+docker run -d -p 80:80 iis-dockerfile ping -t localhost
 ```
 
 Once the container has been created, browse to the IP address of the container host. You should see the hello world application.
 
 ![](media/dockerfile2.png)
 
-Back on the container host, use the `docker rm` command to remove the container. Note – replace the name of the container in this example with the actual container name.
+Back on the container host, use `docker ps` to get the name of the container and `docker rm` to remove the container. Note – replace the name of the container in this example with the actual container name.
+
+Get container name.
 
 ```none
-docker rm -f grave_jang
+docker ps
+
+CONTAINER ID   IMAGE            COMMAND               CREATED              STATUS              PORTS                NAMES
+c1dc6c1387b9   iis-dockerfile   "ping -t localhost"   About a minute ago   Up About a minute   0.0.0.0:80->80/tcp   cranky_brown
+
+Remove container.
+
+```none
+docker rm -f cranky_brown
 ```
 
 ## Next Steps
