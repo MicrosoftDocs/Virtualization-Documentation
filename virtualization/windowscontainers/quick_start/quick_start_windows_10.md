@@ -16,7 +16,7 @@ ms.assetid: bb9bfbe0-5bdc-4984-912f-9c93ea67105f
 **This is preliminary content and subject to change.** 
 
 
-The exercise will walk through basic deployment and use of the Windows container feature on Windows 10. After completion, you will have installed the container role, and deployed a simple Hyper-V container. Before starting this quick start, familiarize yourself with basic container concepts and terminology. This information can be found on the [Quick Start Introduction](./quick_start.md). 
+The exercise will walk through basic deployment and use of the Windows container feature on Windows 10 (insiders build 14352 and up). After completion, you will have installed the container role, and deployed a simple Hyper-V container. Before starting this quick start, familiarize yourself with basic container concepts and terminology. This information can be found on the [Quick Start Introduction](./quick_start.md). 
 
 **Prerequisites:**
 
