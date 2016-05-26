@@ -47,7 +47,7 @@ When you begin working with containers you will notice many similarities between
 
 **Dockerfile:** - Dockerfiles are used to automate the creation of container images.
 
-## 4. Next Step:
+## Next Step:
 
 [Windows Server Container Quick Start](./quick_start_windows_server.md)  
 

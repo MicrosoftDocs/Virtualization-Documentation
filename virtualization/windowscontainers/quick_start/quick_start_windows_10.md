@@ -147,7 +147,7 @@ docker run --isolation=hyperv --rm microsoft/sample-dotnet
 The outcome of this command is that a Hyper-V container was created from the sample-dotnet image, a sample application was then executed, and then the container stopped and was removed. 
 Subsequent Windows 10 and container quick starts will dig into creating and deploying application in containers on Windows 10.
 
-## 5. Next Steps
+## Next Steps
 
 [Windows Containers on Windows Server](./quick_start_windows_server.md)
 

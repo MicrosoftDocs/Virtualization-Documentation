@@ -144,6 +144,6 @@ Back on the container host, use the `docker rm` command to remove the container.
 docker rm -f grave_jang
 ```
 
-## 3. Next Steps
+## Next Steps
 
 [Windows Containers on Windows 10](./quick_start_windows_10.md)

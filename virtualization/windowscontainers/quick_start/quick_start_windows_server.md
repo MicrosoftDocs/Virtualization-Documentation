@@ -172,7 +172,7 @@ Back on the container host, use the `docker rm` command to remove the container.
 ```none
 docker rm -f grave_jang
 ```
-## 5. Next Steps
+## Next Steps
 
 [Container Images on Windows Server](./quick_start_windows_server.md)
 
