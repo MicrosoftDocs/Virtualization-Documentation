@@ -47,11 +47,9 @@ The Nano Server host will need to be re-booted after these features have been in
 
 Docker is required in order to work with Windows containers. Docker consists of the Docker Engine, and the Docker client. Install the Docker daemon using these steps.
 
-
-Download the Docker daemon and copy it to `$env:SystemRoot\system32\` of the container host. Nano Server does not currently support `Invoke-Webrequest`, this will need to be completed from a remote system
+Download the Docker daemon and copy it to `$env:SystemRoot\system32\` of the container host. Nano Server does not currently support `Invoke-Webrequest`, this will need to be completed from a remote system.
 
 ```none
-# Download Docker Engine
 Invoke-WebRequest https://aka.ms/tp5/b/dockerd -OutFile .\dockerd.exe
 ```
 
@@ -69,21 +67,21 @@ Start-Service Docker
 
 ## Install Base Container Images
 
-Base OS images are used as the base to any Windows Server or Hyper-V container. Base OS images are available with both Windows Server Core and Nano Server as the underlying operating system and can be installed using the container Provider PowerShell module. For detailed information on Windows container images, see [Managing Container Images](../management/manage_images.md).
+Base OS images are used as the base to any Windows Server or Hyper-V container. Base OS images are available with both Windows Server Core and Nano Server as the underlying operating system and can be installed using the container image provider. For detailed information on Windows container images, see [Managing Container Images](../management/manage_images.md).
 
-The following command can be used to install the Container Image PowerShell module.
+The following command can be used to install the container image provider.
 
 ```none
 Install-PackageProvider ContainerImage -Force
 ```
 
-To download and install the Nano Server base OS image, run the following:
+To download and install the Nano Server base image, run the following:
 
 ```none
 Install-ContainerImage -Name NanoServer
 ```
 
-**Note** - At this time, only the Nano Server OS Image is compatible with a Nano Server container host.
+**Note** - At this time, only the Nano Server base image is compatible with a Nano Server container host.
 
 Restart the Docker service.
 
@@ -111,7 +109,7 @@ First create a `daemon.json` file at `c:\ProgramData\docker\config\daemon.json`.
 new-item -Type File c:\ProgramData\docker\config\daemon.json
 ```
 
-Next, copy this JSON into the file to allow the Docker daemon to accept all unsecure requests. This is not advised, but can be used for isolated testing.
+Next, copy this JSON into the file. This configures the Docker daemon to accept incoming connections over TCP port 2375. This is an insecure connection and is not advised, but can be used for isolated testing.
 
 ```none
 {
@@ -119,10 +117,16 @@ Next, copy this JSON into the file to allow the Docker daemon to accept all unse
 }
 ```
 
-The following example will configure a secure remote connection. The TLS certificates will need to be created and copied to the proper locations. For more information see, [Docker daemon ion Windows](./docker_windows.md).
+The following example will configure a secure remote connection. The TLS certificates will need to be created and copied to the proper locations. For more information see, [Docker Daemon on Windows](./docker_windows.md).
 
 ```none
-ADD Example
+{
+    "hosts": ["tcp://0.0.0.0:2376", "npipe://"],
+    "tlsverify": true,
+    "tlscacert": "C:\\ProgramData\\docker\\certs.d\\ca.pem",
+    "tlscert": "C:\\ProgramData\\docker\\certs.d\\server-cert.pem",
+    "tlskey": "C:\\ProgramData\\docker\\certs.d\\server-key.pem",
+}
 ```
 
 Restart the Docker service.
@@ -133,19 +137,19 @@ Restart-Service docker
 
 **Prepare the Docker Client:**
 
-Download the Docker client to the remote management system.
+Download the Docker client on the remote management system.
 
 ```none
-Invoke-WebRequest https://aka.ms/tp5/b/docker  -OutFile $env:SystemRoot\system32\docker.exe
+Invoke-WebRequest https://aka.ms/tp5/b/docker -OutFile $env:SystemRoot\system32\docker.exe
 ```
 
 Once completed the Docker daemon can be accessed with the `Docker -H` parameter.
 
 ```none
-docker -H tcp://10.0.0.5:2375 run -it nanoserver cmd
+docker -H tcp://10.0.0.5:2376 run -it nanoserver cmd
 ```
 
-An environmental variable DOCKER_HOST can be created that will remove the –H parameter requirement. The following PowerShell command can be used for this.
+An environmental variable `DOCKER_HOST` can be created which will remove the `–H` parameter requirement. The following PowerShell command can be used for this.
 
 ```none
 $env:DOCKER_HOST = "tcp://<ipaddress of server:2376"

@@ -4,11 +4,11 @@ description: Container deployment quick start
 keywords: docker, containers
 author: neilpeterson
 manager: timlt
-ms.date: 05//2016
+ms.date: 05/26/2016
 ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
-ms.assetid: 
+ms.assetid: e3b2a4dc-9082-4de3-9c95-5d516c03482b
 ---
 
 # Windows Containers on Windows Server
@@ -22,7 +22,7 @@ This exercise will walk through basic deployment and use of the Windows containe
 
 One computer system (physical or virtual) running [Windows Server 2016 Technical Preview 5](https://www.microsoft.com/en-us/evalcenter/evaluate-windows-server-technical-preview).
 
-> This quick start is specific to Windows Server containers on Windows Server 2016. Additional quick start documentation is available for other configuration. See the table of contents for these.  
+> This quick start is specific to Windows Server containers on Windows Server 2016. Additional quick start documentation can be found in the table of contents on the left hand side of this page.  
 
 ## 1. Install Container Feature
 
@@ -64,7 +64,7 @@ Start-Service Docker
 
 ## 3. Install Base Container Images
 
-Before a container can be deployed, a container base OS image needs to be downloaded. The following commands will download the Windows Server Core base OS image. 
+Windows containers are deployed from templates or images. Before a container can be deployed, a base OS image needs to be downloaded. The following commands will download the Windows Server Core base image. 
     
 
 First, install the container image package provider.
@@ -85,7 +85,7 @@ After the base image has been installed, the Docker service needs to be restarte
 Restart-Service docker
 ```
 
-At this stage, running `docker images` will return the Windows Server Core image.
+At this stage, running `docker images` will return a list of installed images, in this case the Windows Server Core image.
 
 ```none
 docker images
@@ -99,6 +99,8 @@ Before proceeding, this image needs to be tagged with a version of ‘latest’.
 ```none
 docker tag windowsservercore:10.0.14300.1000 windowsservercore:latest
 ```
+
+For in depth information on Windows container images see, [Managing Container Images](../management/manage_images.md).
 
 ## 4. Deploy Your First Container
 
@@ -148,7 +150,11 @@ User `docker run` to deploy the IIS container.
 docker run -d -p 80:80 microsoft/iis:windowsservercore ping -t localhost
 ```
 
-All running containers can be seen with the `docker ps` command. Take note of the container name, this will be used in a later step.
+This command runs the IIS image as a background service (-d) and configures networking such that port 80 of the container host is mapped to port 80 of the container.
+For in depth information on the Docker Run command, see [Docker Run Reference on Docker.com]( https://docs.docker.com/engine/reference/run/).
+
+
+Running containers can be seen with the `docker ps` command. Take note of the container name, this will be used in a later step.
 
 ```none
 docker ps
@@ -161,7 +167,7 @@ From a different computer, open up a web browser and enter the IP address of the
 
 ![](media/iis1.png)
 
-Back on the container host, use the `docker rm` command to remove the container. Note – replace the name of the container with the actual container name.
+Back on the container host, use the `docker rm` command to remove the container. Note – replace the name of the container in this example with the actual container name.
 
 ```none
 docker rm -f grave_jang

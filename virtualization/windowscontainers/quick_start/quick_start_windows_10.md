@@ -4,11 +4,11 @@ description: Container deployment quick start
 keywords: docker, containers
 author: neilpeterson
 manager: timlt
-ms.date: 05//2016
+ms.date: 05/26/2016
 ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
-ms.assetid: 
+ms.assetid: bb9bfbe0-5bdc-4984-912f-9c93ea67105f
 ---
 
 # Windows Containers on Windows 10
@@ -22,9 +22,9 @@ The exercise will walk through basic deployment and use of the Windows container
 
 One physical computer system running a [Windows Server 10 Insiders release](https://insider.windows.com/).   
 
-This quick start can be run on a Windows 10 virtual machine if nested virtualization is configured on the system. More information can be found in the [Nested Virtualization Guide](https://msdn.microsoft.com/en-us/virtualization/hyperv_on_windows/user_guide/nesting).
+This quick start can be run on a Windows 10 virtual machine, if nested virtualization is configured on the system. More information can be found in the [Nested Virtualization Guide](https://msdn.microsoft.com/en-us/virtualization/hyperv_on_windows/user_guide/nesting).
 
-> This quick start is specific to Hyper-V containers on Windows 10. Additional quick start documentation is available for other configuration. See the table of contents for these.  
+> This quick start is specific to Hyper-V containers on Windows 10. Additional quick start documentation can be found in the table of contents on the left hand side of this page.
 
 ## 1. Install Container Feature
 
@@ -34,7 +34,7 @@ The container feature needs to be enabled before working with Windows containers
 Enable-WindowsOptionalFeature -Online -FeatureName containers –All
 ```
 
-Because Windows 10 only supports Hyper-V containers, the Hyper-V feature must be enabled. To enable the Hyper-V feature using PowerShell, run the following command in an elevated PowerShell session.
+Because Windows 10 only supports Hyper-V containers, the Hyper-V feature must also be enabled. To enable the Hyper-V feature using PowerShell, run the following command in an elevated PowerShell session.
 
 ```none
 Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V –All
@@ -72,7 +72,7 @@ Start-Service Docker
 
 ## 3. Install Base Container Images
 
-Before a container can be deployed, a container base OS image needs to be downloaded. The following commands will download the Windows Server Core base OS image. This process can take some time, so teak a break and pick back up once the download has completed. 
+Windows containers are deployed from templates or images. Before a container can be deployed, a container base OS image needs to be downloaded. The following commands will download the Nano Server base image.
     
 Set the PowerShell execution policy.
 
@@ -98,7 +98,7 @@ After the base image has been installed, the docker service needs to be restarte
 Restart-Service docker
 ```
 
-At this stage, running `docker images` will return the Nano Server image.
+At this stage, running `docker images` will return a list of installed images, in this case the Nano Server image.
 
 ```none
 docker images
@@ -112,6 +112,8 @@ Before proceeding, this image needs to be tagged with a version of ‘latest’.
 ```none
 docker tag nanoserver:10.0.14300.1010 nanoserver:latest
 ```
+
+For in depth information on Windows container images see, [Managing Container Images](../management/manage_images.md).
 
 ## 4. Deploy Your First Container
 
@@ -134,7 +136,7 @@ nanoserver               10.0.14300.1010     cb48429c84fa        8 weeks ago    
 nanoserver               latest              cb48429c84fa        8 weeks ago         817.1 MB
 ```
 
-Run the container with the `docker run` command. This will output the results of the ‘Hello World’ application to you shell. Once the application has been executed, the container will stop and be removed.
+Run the container with the `docker run` command. This will output the results of the ‘Hello World’ application to you shell. Once the application has been executed, the container will stop and be removed. For in depth information on the Docker Run command, see [Docker Run Reference on Docker.com]( https://docs.docker.com/engine/reference/run/).
 
 ```none
 docker run --isolation=hyperv --rm microsoft/sample-dotnet
