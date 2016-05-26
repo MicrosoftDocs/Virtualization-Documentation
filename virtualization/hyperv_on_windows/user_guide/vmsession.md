@@ -171,7 +171,7 @@ There are a small set of common error messages surfaced through PowerShell Direc
 
 ### -VMName or -VMID parameters don't exist
 **Problem:**  
-`Enter-PSSession`, `Invoke-Command`, or `New-PSSession` do not have a `-VMName` or `-VMID` parameter.
+`Enter-PSSession`, `Invoke-Command`, or `New-PSSession` do not have a `-VMName` or `-VMId` parameter.
 
 **Potential causes:**  
 The most likely issue is that PowerShell Direct isn't supported by your host operating system.
@@ -270,8 +270,8 @@ You can use the [Get-VM](http://technet.microsoft.com/library/hh848479.aspx) cmd
 
 ## Samples and User Guides
 
-PowerShell Direct supports JEA (Just Enough Administration).  Checkout this user guide to try it.
+PowerShell Direct supports JEA (Just Enough Administration).  Check out this user guide to try it.
 
-Checkout samples on [GitHub](https://github.com/Microsoft/Virtualization-Documentation/search?l=powershell&q=-VMName+OR+-VMGuid&type=Code&utf8=%E2%9C%93).
+Check out samples on [GitHub](https://github.com/Microsoft/Virtualization-Documentation/search?l=powershell&q=-VMName+OR+-VMGuid&type=Code&utf8=%E2%9C%93).
 
 See [PowerShell Direct snippets](../develop/powershell_snippets.md) for numerous examples of how to use PowerShell Direct in your environment as well as tips and tricks for writing Hyper-V scripts with PowerShell.
