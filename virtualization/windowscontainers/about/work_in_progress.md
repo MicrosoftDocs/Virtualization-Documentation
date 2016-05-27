@@ -135,6 +135,20 @@ There are so many questions about which applications work and don't work in Wind
 
 Some of the most common issues are located here as well.
 
+### Event logs are not available inside the container
+
+PowerShell commands such as `get-eventlog Application` and APIs that query the event log will return an error similar to this:
+```
+get-eventlog : Cannot open log Application on machine .. Windows has not provided an error code.
+At line:1 char:1
+```
+
+As a workaround, you can add this step to a Dockerfile. Images built with this step included will have event logging enabled.
+```
+RUN powershell.exe -command Set-ItemProperty HKLM:\SYSTEM\CurrentControlSet\Control\WMI\Autologger\EventLog-Application Start 1
+```
+
+
 ### Unexpected error occurred inside a localdb instance api method call
 Unexpected error occurred inside a localdb instance api method call
 
