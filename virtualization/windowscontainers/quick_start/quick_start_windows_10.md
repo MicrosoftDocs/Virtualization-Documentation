@@ -17,7 +17,7 @@ ms.assetid: bb9bfbe0-5bdc-4984-912f-9c93ea67105f
 
 The exercise will walk through basic deployment and use of the Windows container feature on Windows 10 (insiders build 14352 and up). After completion, you will have installed the container role, and deployed a simple Hyper-V container. Before starting this quick start, familiarize yourself with basic container concepts and terminology. This information can be found on the [Quick Start Introduction](./quick_start.md). 
 
-> This quick start is specific to Hyper-V containers on Windows 10. Additional quick start documentation can be found in the table of contents on the left hand side of this page.
+This quick start is specific to Hyper-V containers on Windows 10. Additional quick start documentation can be found in the table of contents on the left hand side of this page.
 
 **Prerequisites:**
 
@@ -44,17 +44,31 @@ When the installation has completed, reboot the computer.
 
 Docker is required in order to work with Windows containers. Docker consists of the Docker Engine, and the Docker client. For this exercise, both will be installed. Run the following commands to do so. 
 
+Create a folder for the Docker executables.
+
+```none
+New-Item -Type Directory -Path 'C:\Program Files\docker\'
+```
+
 Download the Docker daemon.
 
 ```none
-Invoke-WebRequest https://aka.ms/tp5/b/dockerd -OutFile $env:SystemRoot\system32\dockerd.exe
+Invoke-WebRequest https://aka.ms/tp5/b/dockerd -OutFile $env:ProgramFiles\docker\dockerd.exe
 ```
 
 Download the Docker client.
 
 ```none
-Invoke-WebRequest https://aka.ms/tp5/b/docker -OutFile $env:SystemRoot\system32\docker.exe
+Invoke-WebRequest https://aka.ms/tp5/b/docker -OutFile $env:ProgramFiles\docker\docker.exe
 ```
+
+Add the Docker directory to the system path.
+
+```none
+[Environment]::SetEnvironmentVariable("Path", $env:Path + ";C:\Program Files\Docker", [EnvironmentVariableTarget]::Machine)
+```
+
+Restart the PowerShell session so that the modified path is recognized.
 
 To install Docker as a Windows service, run the following.
 
@@ -72,10 +86,10 @@ Start-Service Docker
 
 Windows containers are deployed from templates or images. Before a container can be deployed, a container base OS image needs to be downloaded. The following commands will download the Nano Server base image.
     
-Set the PowerShell execution policy.
+Set the PowerShell execution policy for the current PowerShell process. This will only effect scripts executed in the current PowerShell session, however caution should be taken when changing execution policy.
 
 ```none
-Set-ExecutionPolicy -Scope LocalMachine Bypass
+Set-ExecutionPolicy Bypass -scope Process
 ```
 
 Install the container image package provider.
@@ -143,7 +157,7 @@ docker run --isolation=hyperv --rm microsoft/sample-dotnet
 ```
 
 The outcome of this command is that a Hyper-V container was created from the sample-dotnet image, a sample application was then executed (output echoed to the shell), and then the container stopped and removed. 
-Subsequent Windows 10 and container quick starts will dig into creating and deploying application in containers on Windows 10.
+Subsequent Windows 10 and container quick starts will dig into creating and deploying applications in containers on Windows 10.
 
 ## Next Steps
 
