@@ -261,14 +261,14 @@ Install-ContainerHost
         
         if (-not $IgnoreClient)
         {
-            Write-Warning "We recommend that you use the steps outlined in our documentation at http://aka.ms/containers. \nIf you would like to proceed with this script, include the flag -IgnoreClient."
+            Write-Warning "We recommend that you use the steps outlined in our documentation at https://aka.ms/windowscontainers/hypervonwin10. If you would like to proceed with this script, include the flag -IgnoreClient."
             throw "Ran on client without -IgnoreClient flag."
         }
         else
         {
             if (-not $HyperV)
             {
-                Write-Output "Enabling Hyper-V containers by default for Client SKU"
+                Write-Output "Exiting. This is not recommended with you OS version."
                 $HyperV = $true
             }                
         }
