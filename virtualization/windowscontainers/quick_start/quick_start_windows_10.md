@@ -72,7 +72,7 @@ Start-Service Docker
 
 Windows containers are deployed from templates or images. Before a container can be deployed, a container base OS image needs to be downloaded. The following commands will download the Nano Server base image.
     
-Set the PowerShell execution policy for the current PowerShell process, this will only effect scripts executed in the current PowerShell session.
+Set the PowerShell execution policy for the current PowerShell process. This will only effect scripts executed in the current PowerShell session.
 
 ```none
 Set-ExecutionPolicy Bypass -scope Process
