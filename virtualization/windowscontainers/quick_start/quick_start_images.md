@@ -17,7 +17,7 @@ ms.assetid: 479e05b1-2642-47c7-9db4-d2a23592d29f
 
 In the previous Windows Server quick start, a Windows container was created from a pre-existing container image. This exercise will detail creating your own container images manually and creating images using a Dockerfile.
 
-> This quick start is specific to Windows Server containers on Windows Server 2016. Additional quick start documentation can be found in the table of contents on the left hand side of this page. 
+This quick start is specific to Windows Server containers on Windows Server 2016. Additional quick start documentation can be found in the table of contents on the left hand side of this page. 
 
 **Prerequisites:**
 

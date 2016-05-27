@@ -17,7 +17,7 @@ ms.assetid: e3b2a4dc-9082-4de3-9c95-5d516c03482b
 
 This exercise will walk through basic deployment and use of the Windows container feature on Windows Server. After completion, you will have installed the container role and have deployed a simple Windows Server container. Before starting this quick start, familiarize yourself with basic container concepts and terminology. This information can be found in the [Quick Start Introduction](./quick_start.md). 
 
-> This quick start is specific to Windows Server containers on Windows Server 2016. Additional quick start documentation can be found in the table of contents on the left hand side of this page.
+This quick start is specific to Windows Server containers on Windows Server 2016. Additional quick start documentation can be found in the table of contents on the left hand side of this page.
 
 **Prerequisites:**
 
@@ -37,17 +37,31 @@ When the feature installation has completed, reboot the computer.
 
 Docker is required in order to work with Windows containers. Docker consists of the Docker Engine, and the Docker client. For this exercise, both will be installed.
 
+Create a folder for the Docker executables.
+
+```none
+New-Item -Type Directory -Path 'C:\Program Files\docker\'
+```
+
 Download the Docker daemon.
 
 ```none
-Invoke-WebRequest https://aka.ms/tp5/b/dockerd -OutFile $env:SystemRoot\system32\dockerd.exe
+Invoke-WebRequest https://aka.ms/tp5/b/dockerd -OutFile $env:ProgramFiles\docker\dockerd.exe
 ```
 
 Download the Docker client.
 
 ```none
-Invoke-WebRequest https://aka.ms/tp5/b/docker -OutFile $env:SystemRoot\system32\docker.exe
+Invoke-WebRequest https://aka.ms/tp5/b/docker -OutFile $env:ProgramFiles\docker\docker.exe
 ```
+
+Add the Docker directory to the system path.
+
+```none
+[Environment]::SetEnvironmentVariable("Path", $env:Path + ";C:\Program Files\Docker", [EnvironmentVariableTarget]::Machine)
+```
+
+Restart the PowerShell session so that the modified path is recognized. When starting the new PowerShell session, do not run it as administrator.
 
 To install Docker as a Windows service, run the following.
 
@@ -65,7 +79,6 @@ Start-Service Docker
 
 Windows containers are deployed from templates or images. Before a container can be deployed, a base OS image needs to be downloaded. The following commands will download the Windows Server Core base image. 
     
-
 First, install the container image package provider.
 
 ```none
