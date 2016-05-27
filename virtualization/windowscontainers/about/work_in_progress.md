@@ -34,7 +34,7 @@ In a container host and containers environment, you only have the container host
 ### Windows Containers start slowly
 If your container is taking more than 30 seconds to start, it may be performing many duplicate virus scans.
 
-Many anti-malware solutions, such as Windows Defender, may be unnecessarily scanning files with-in container images including all of the OS binaries and files in the container OS image.  This occurs when ever a new container is created and from the anti-malware’s perspective all of the “container’s files” look like new files that have not previously been scanned.  So when processes inside the container attempt to read these files the anti-malware components first scan them before allowing access to the files.  In reality these files were already scanned when the container image was imported or pulled to the server. In future previews new infrastructure will be in place such that anti-malware solutions, including Windows Defender, will be aware of these situations and can act accordingly to avoid multiple scans. 
+Many anti-malware solutions, such as Windows Defender, may be unnecessarily scanning files with-in container images including all of the OS binaries and files in the container OS image.  This occurs whenever a new container is created and from the anti-malware’s perspective all of the “container’s files” look like new files that have not previously been scanned.  So when processes inside the container attempt to read these files the anti-malware components first scan them before allowing access to the files.  In reality these files were already scanned when the container image was imported or pulled to the server. From Windows Server Technical Preview 5, the infrastructure is available in place such that anti-malware solutions, including Windows Defender, will be aware of the situations and can act accordingly to avoid multiple scans. Anti-malware solutions can update their solution using the guidance described [here](https://msdn.microsoft.com/en-us/windows/hardware/drivers/ifs/anti-virus-optimization-for-windows-containers) and avoid multiple scans. 
 
 ### Start/Stop sometimes fails if memory is restricted to < 48MB
 Windows Containers experience random, inconsistant, errors when memory is restricted to less than 48MB.
@@ -134,6 +134,20 @@ Get-VMNetworkAdapter -VMName "[YourVMNameHere]"  | Set-VMNetworkAdapter -MacAddr
 There are so many questions about which applications work and don't work in Windows Containers, we decided to break application compatibility information into [its own article](../reference/app_compat.md).
 
 Some of the most common issues are located here as well.
+
+### Event logs are not available inside the container
+
+PowerShell commands such as `get-eventlog Application` and APIs that query the event log will return an error similar to this:
+```
+get-eventlog : Cannot open log Application on machine .. Windows has not provided an error code.
+At line:1 char:1
+```
+
+As a workaround, you can add this step to a Dockerfile. Images built with this step included will have event logging enabled.
+```
+RUN powershell.exe -command Set-ItemProperty HKLM:\SYSTEM\CurrentControlSet\Control\WMI\Autologger\EventLog-Application Start 1
+```
+
 
 ### Unexpected error occurred inside a localdb instance api method call
 Unexpected error occurred inside a localdb instance api method call
