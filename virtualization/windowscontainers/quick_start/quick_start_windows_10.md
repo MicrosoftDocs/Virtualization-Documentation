@@ -21,7 +21,7 @@ The exercise will walk through basic deployment and use of the Windows container
 
 **Prerequisites:**
 
-- One physical computer system running a [Windows Server 10 Insiders release](https://insider.windows.com/).   
+- One physical computer system running a [Windows 10 Insiders release](https://insider.windows.com/).   
 - This quick start can be run on a Windows 10 virtual machine however nested virtualization will need to be enabled. More information can be found in the [Nested Virtualization Guide](https://msdn.microsoft.com/en-us/virtualization/hyperv_on_windows/user_guide/nesting).
 
 ## 1. Install Container Feature
