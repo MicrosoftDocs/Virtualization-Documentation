@@ -72,6 +72,9 @@ param(
 
     [switch]
     $Force,
+    
+    [switch]
+    $IgnoreClient,
 
     [switch]
     $HyperV,
@@ -255,11 +258,21 @@ Install-ContainerHost
 
     if (Test-Client)
     {
-        if (-not $HyperV)
+        
+        if (-not $IgnoreClient)
         {
-            Write-Output "Enabling Hyper-V containers by default for Client SKU"
-            $HyperV = $true
-        }    
+            Write-Warning "We recommend that you use the steps outlined in our documentation at http://aka.ms/containers. \nIf you would like to proceed with this script, include the flag -IgnoreClient."
+            throw "Ran on client without -IgnoreClient flag."
+        }
+        else
+        {
+            if (-not $HyperV)
+            {
+                Write-Output "Enabling Hyper-V containers by default for Client SKU"
+                $HyperV = $true
+            }                
+        }
+        
     }
     #
     # Validate required Windows features
