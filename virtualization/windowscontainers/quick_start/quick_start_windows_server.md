@@ -61,7 +61,7 @@ Add the Docker directory to the system path.
 [Environment]::SetEnvironmentVariable("Path", $env:Path + ";C:\Program Files\Docker", [EnvironmentVariableTarget]::Machine)
 ```
 
-Restart the PowerShell session so that the modified path is recognized. When starting the new PowerShell session, do not run it as administrator.
+Restart the PowerShell session so that the modified path is recognized.
 
 To install Docker as a Windows service, run the following.
 
