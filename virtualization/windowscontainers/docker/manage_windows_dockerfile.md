@@ -4,7 +4,7 @@ description: Create Dockerfiles for Windows containers.
 keywords: docker, containers
 author: neilpeterson
 manager: timlt
-ms.date: 05/02/2016
+ms.date: 05/26/2016
 ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
@@ -306,7 +306,7 @@ CMD <command>
 
 **Windows Considerations**
 
-On Windows, file paths specified in the `CMD` instruction must use forward slashes. For example, these are valid `CMD` instructions.
+On Windows, file paths specified in the `CMD` instruction must use forward slashes or have escaped backslashes `\\`. For example, these are valid `CMD` instructions.
 
 ```none
 # exec form
@@ -317,6 +317,7 @@ CMD ["c:\\Apache24\\bin\\httpd.exe","-w"]
 
 CMD c:\\Apache24\\bin\\httpd.exe -w
 ```
+However, the following will not work.
 
 ```none
 CMD c:\Apache24\bin\httpd.exe -w

@@ -21,10 +21,10 @@ Windows Containers provide operating system level virtualization that allows mul
 <td>**Quick Start**<br /><br />
 Try Windows Server and Hyper-V Containers by using the following quick start guides.<br /><br />
 <ul>
-<li>[1 - Quick Start Introduction](quick_start/quick_start.md)<br /><br /></li>
-<li>[2 - Deploy Container Host](quick_start/quick_start_configure_host.md)<br /><br /></li>
-<li>[3 - Windows Server Containers](quick_start/manage_docker.md)<br /><br /></li>
-<li>[4 - Hyper-V Containers](quick_start/manage_docker_hyperv.md)<br /><br /></li>
+<li>[1 - Concepts and Terminology](quick_start/quick_start.md)<br /><br /></li>
+<li>[2 - Containers on Windows Server](quick_start/quick_start_windows_server.md)<br /><br /></li>
+<li>[3 - Containers Images on Windows Server](quick_start/quick_start_images.md)<br /><br /></li>
+<li>[4 - Containers on Windows 10](quick_start/quick_start_windows_10.md)<br /><br /></li>
 </ul>
 </td>
 </tr>
