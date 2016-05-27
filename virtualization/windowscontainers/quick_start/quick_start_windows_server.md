@@ -55,13 +55,11 @@ Download the Docker client.
 Invoke-WebRequest https://aka.ms/tp5/b/docker -OutFile $env:ProgramFiles\docker\docker.exe
 ```
 
-Add the Docker directory to the system path.
+Add the Docker directory to the system path. When complete, restart the PowerShell session so that the modified path is recognized.
 
 ```none
 [Environment]::SetEnvironmentVariable("Path", $env:Path + ";C:\Program Files\Docker", [EnvironmentVariableTarget]::Machine)
 ```
-
-Restart the PowerShell session so that the modified path is recognized.
 
 To install Docker as a Windows service, run the following.
 
