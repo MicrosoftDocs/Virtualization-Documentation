@@ -177,7 +177,7 @@ Once completed the Docker daemon can be accessed with the `Docker -H` parameter.
 docker -H tcp://10.0.0.5:2376 run -it nanoserver cmd
 ```
 
-An environmental variable `DOCKER_HOST` can be created which will remove the `–H` parameter requirement. The following PowerShell command can be used for this.
+An environmental variable `DOCKER_HOST` can be created which will remove the `-H` parameter requirement. The following PowerShell command can be used for this.
 
 ```none
 $env:DOCKER_HOST = "tcp://<ipaddress of server:2376"

@@ -22,9 +22,9 @@ The virtual machines you create as pre-release have no build-to-build compatibil
 
 Here are some more reasons why these are for non-production environments only:
 
-* There is no forward compatibility for pre-release virtual machines. You can't upgrade these virtual machines to a new configuration version. 
+* There is no forward compatibility for pre-release virtual machines. You can't upgrade these virtual machines to a new configuration version.
 * Pre-release virtual machines don't have a consistent definition between builds. If you update the host operating system, existing pre-release virtual machines may be incompatible with the host. These virtual machines may not start, or may initially appear to work but later run into significant compatibility issues.
-* If you import a pre-release virtual machine to a host with a different build, the results are unpredictable. You can move a pre-release virtual machine to another host. But this scenario is only expected to work if both hosts are running the same build. 
+* If you import a pre-release virtual machine to a host with a different build, the results are unpredictable. You can move a pre-release virtual machine to another host. But this scenario is only expected to work if both hosts are running the same build.
 
 ## Create a pre-release virtual machine
 
@@ -35,12 +35,12 @@ You can create a pre-release virtual machine on Hyper-V hosts that run Windows S
 3. Use the [New-VM](https://technet.microsoft.com/library/hh848537.aspx) cmdlet with the -Prerelease flag to create the pre-release virtual machine. For example, run the following command where VM Name is the name of the virtual machine that you want to create.
 
 ``` PowerShell
-New-VM -Name <VM Name> –Prerelease 
+New-VM -Name <VM Name> -Prerelease
 ```
 Other examples you can use the -Prerelease flag with:
- - To create a virtual machine that uses an existing virtual hard disk or a new hard disk, see the PowerShell examples in [Create a virtual machine in Hyper-V on Windows Server 2016 Technical Preview](https://technet.microsoft.com/library/mt126140.aspx#BKMK_PowerShell). 
- - To create a new virtual hard disk that boots to an operating system image, see the PowerShell example in [Deploy a Windows Virtual Machine in Hyper-V on Windows 10](https://msdn.microsoft.com/en-us/virtualization/hyperv_on_windows/quick_start/walkthrough_create_vm). 
- 
+ - To create a virtual machine that uses an existing virtual hard disk or a new hard disk, see the PowerShell examples in [Create a virtual machine in Hyper-V on Windows Server 2016 Technical Preview](https://technet.microsoft.com/library/mt126140.aspx#BKMK_PowerShell).
+ - To create a new virtual hard disk that boots to an operating system image, see the PowerShell example in [Deploy a Windows Virtual Machine in Hyper-V on Windows 10](https://msdn.microsoft.com/en-us/virtualization/hyperv_on_windows/quick_start/walkthrough_create_vm).
+
  The examples covered in those articles work for Hyper-V hosts that run Windows 10 or Windows Server 2016 Technical Preview. But right now, you can only use the -Prerelease flag to create a pre-release virtual machine on Hyper-V hosts that run Windows Server 2016 Technical Preview.
 
 ## See also
