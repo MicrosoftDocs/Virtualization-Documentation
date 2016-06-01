@@ -29,13 +29,13 @@ This quick start is specific to Hyper-V containers on Windows 10. Additional qui
 The container feature needs to be enabled before working with Windows containers. To do so run the following command in an elevated PowerShell session. 
 
 ```none
-Enable-WindowsOptionalFeature -Online -FeatureName containers –All
+Enable-WindowsOptionalFeature -Online -FeatureName containers -All
 ```
 
 Because Windows 10 only supports Hyper-V containers, the Hyper-V feature must also be enabled. To enable the Hyper-V feature using PowerShell, run the following command in an elevated PowerShell session.
 
 ```none
-Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V –All
+Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V -All
 ```
 
 When the installation has completed, reboot the computer.

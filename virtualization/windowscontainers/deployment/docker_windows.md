@@ -223,10 +223,10 @@ To do so, ensure that the Docker daemon has been configured to listen on a TCP p
 To remotely deploy a container and enter an interactive session, run the following command.
 
 ```none
-docker –H tcp://<ipaddress of server>:2376 run –it nanoserver cmd
+docker -H tcp://<ipaddress of server>:2376 run -it nanoserver cmd
 ```
 
-An environmental variable DOCKER_HOST can be created that will remove the –H parameter requirement. The following PowerShell command can be used for this.
+An environmental variable DOCKER_HOST can be created that will remove the -H parameter requirement. The following PowerShell command can be used for this.
 
 ```none
 $env:DOCKER_HOST = "tcp://<ipaddress of server:2376"
@@ -235,7 +235,7 @@ $env:DOCKER_HOST = "tcp://<ipaddress of server:2376"
 With this variable set, the command would now look like this.
 
 ```none
-docker run –it nanoserver cmd
+docker run -it nanoserver cmd
 ```
 
 ### Removing Docker <!--2-->
