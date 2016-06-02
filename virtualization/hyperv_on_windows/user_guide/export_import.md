@@ -1,3 +1,16 @@
+---
+title: Export and Import virtual machines
+description: Export and Import virtual machines
+keywords: windows 10, hyper-v
+author: neilpeterson
+manager: timlt
+ms.date: 05/02/2016
+ms.topic: article
+ms.prod: windows-10-hyperv
+ms.service: windows-10-hyperv
+ms.assetid: 7fd996f5-1ea9-4b16-9776-85fb39a3aa34
+---
+
 # Export and Import virtual machines
 
 You can use Hyper-V's export and import functionality to quickly duplicate virtual machines.  Exported virtual machines can be used for backup or as a way to move a virtual machine between Hyper-V hosts.  
@@ -80,7 +93,7 @@ To import a virtual machine using PowerShell, use the **Import-VM** command.  Th
 To complete an in place import of a virtual machine, the command would look similar to this. Recall that an in place import uses the files where they are stored at the time of import and retains the virtual machines id.
 
 ```powershell
-Import-VM -Path 'C:\<emport path>\2B91FEB3-F1E0-4FFF-B8BE-29CED892A95A.vmcx' 
+Import-VM -Path 'C:\<vm export path>\2B91FEB3-F1E0-4FFF-B8BE-29CED892A95A.vmcx' 
 ```
 
 To import the virtual machine specifying your own path for the virtual machine files, the command would look similar to this.

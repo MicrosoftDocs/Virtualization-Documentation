@@ -1,6 +1,19 @@
+---
+title: Supported Windows guests 
+description: Supported Windows guests.
+keywords: windows 10, hyper-v
+author: scooley
+manager: timlt
+ms.date: 05/02/2016
+ms.topic: article
+ms.prod: windows-10-hyperv
+ms.service: windows-10-hyperv
+ms.assetid: ae4a18ed-996b-4104-90c5-539c90798e4c
+---
+
 # Supported Windows guests 
 
-This article lists the operating system combinations supported in Hyper-V on Windows.  It will also introduction to integration services and other factors in support.
+This article lists the operating system combinations supported in Hyper-V on Windows.  It also serves as an introduction to integration services and other factors in support.
 
 ## What does support mean? 
 Support means Microsoft has tested these host/guest combinations.  Issues with these combinations may receive attention from Product Support Services.

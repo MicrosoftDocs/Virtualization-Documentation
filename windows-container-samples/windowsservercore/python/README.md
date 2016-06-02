@@ -41,7 +41,7 @@ RUN powershell.exe -Command \
 
 RUN echo print("Hello World!") > c:\hello.py
 
-CMD ["py c:/hello.py"]
+CMD ["py", "c:/hello.py"]
 		
 ```
 

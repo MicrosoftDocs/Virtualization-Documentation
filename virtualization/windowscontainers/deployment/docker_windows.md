@@ -1,5 +1,14 @@
 ---
+title: Deploy Docker in Windows
+description: Deploy Docker in Windows
+keywords: docker, containers
 author: neilpeterson
+manager: timlt
+ms.date: 05/26/2016
+ms.topic: article
+ms.prod: windows-containers
+ms.service: windows-containers
+ms.assetid: bdfa4545-2291-4827-8165-2d6c98d72d37
 ---
 
 # Docker and Windows
@@ -209,24 +218,24 @@ Nano server is managed through a remote PowerShell session. For more information
 
 Not all docker operations, such as 'docker attach' can be performed through this remote PowerShell session. To get around this, and as a best practice in general, manage Docker from a remote client through a secure TCP connection.
 
-To do so, ensure that the Docker daemon has been configured to listen on a TCP port, and that the Docker command line interface is available on a remote client machine. When configured, docker commands can be issued to the host with the -H parameter.
+To do so, ensure that the Docker daemon has been configured to listen on a TCP port, and that the Docker command line interface is available on a remote client machine. When configured, docker commands can be issued to the host with the -H parameter. For more information on accessing the Docker daemon from a remote system, see [Daemon socket options on Docker.com](https://docs.docker.com/engine/reference/commandline/daemon/#daemon-socket-option).
 
 To remotely deploy a container and enter an interactive session, run the following command.
 
 ```none
-docker –H tcp://<ipaddress of server>:2376 run –it nanoserver cmd
+docker -H tcp://<ipaddress of server>:2376 run -it nanoserver cmd
 ```
 
-An environmental variable DOCKER_HOST can be created that will remove the –H parameter requirement. The following PowerShell command can be used for this.
+An environmental variable DOCKER_HOST can be created that will remove the -H parameter requirement. The following PowerShell command can be used for this.
 
 ```none
 $env:DOCKER_HOST = "tcp://<ipaddress of server:2376"
 ```
 
-With this variable set, the command would not look like this.
+With this variable set, the command would now look like this.
 
 ```none
-docker run –it nanoserver cmd
+docker run -it nanoserver cmd
 ```
 
 ### Removing Docker <!--2-->
@@ -268,6 +277,15 @@ This can be modified to listen for secure incoming connections with the followin
 ```none
 docker daemon -D -H npipe:// -H tcp://0.0.0.0:2376 --tlsverify --tlscacert=%certs%\ca.pem --tlscert=%certs%\server-cert.pem --tlskey=%certs%\server-key.pem
 ``` 
+
+### Named pipe access
+
+Docker commands run locally on the container host are received through a named pipe. In order to run these commands, administrative access is needed. Another option is to specify a group that will have access to the named pipe. In the following example, a Windows group named `docker` is given this access.
+
+```none
+dockerd -H npipe:// -G docker
+```  
+
 
 ### Default runtime
 

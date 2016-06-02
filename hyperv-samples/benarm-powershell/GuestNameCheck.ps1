@@ -1,5 +1,5 @@
 # Get the virtual machine name from the parent partition
- $vmName = (Get-ItemProperty -path “HKLM:\SOFTWARE\Microsoft\Virtual Machine\Guest\Parameters”).VirtualMachineName
+ $vmName = (Get-ItemProperty -path "HKLM:\SOFTWARE\Microsoft\Virtual Machine\Guest\Parameters").VirtualMachineName
  # Replace any non-alphanumeric characters with an underscore
  $vmName = [Regex]::Replace($vmName,"\W","_")
  # Trim names that are longer than 15 characters

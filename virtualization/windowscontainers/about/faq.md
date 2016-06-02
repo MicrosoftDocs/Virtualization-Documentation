@@ -1,5 +1,14 @@
 ---
+title: Windows Containers FAQ
+description: Windows Containers FAQ
+keywords: docker, containers
 author: scooley
+manager: timlt
+ms.date: 05/02/2016
+ms.topic: article
+ms.prod: windows-containers
+ms.service: windows-containers
+ms.assetid: 25de368c-5a10-40a4-b4aa-ac8c9a9ca022
 ---
 
 # Frequently Asked Questions

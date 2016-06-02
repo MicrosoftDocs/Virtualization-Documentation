@@ -1,3 +1,16 @@
+---
+title: Troubleshoot Hyper-V on Windows 10
+description: Troubleshoot Hyper-V on Windows 10
+keywords: windows 10, hyper-v
+author: scooley
+manager: timlt
+ms.date: 05/02/2016
+ms.topic: article
+ms.prod: windows-10-hyperv
+ms.service: windows-10-hyperv
+ms.assetid: f0ec8eb4-ffc4-4bf1-9a19-7a8c3975b359
+---
+
 # Troubleshoot Hyper-V on Windows 10
 
 ## I updated to Windows 10 and now I can't connect to my downlevel (Windows 8.1 or Server 2012 R2) host

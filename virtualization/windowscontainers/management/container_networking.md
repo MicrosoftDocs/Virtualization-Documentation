@@ -1,5 +1,14 @@
 ﻿---
+title: Windows Container Networking
+description: Configure networking for Windows containers.
+keywords: docker, containers
 author: jmesser81
+manager: timlt
+ms.date: 05/02/2016
+ms.topic: article
+ms.prod: windows-containers
+ms.service: windows-containers
+ms.assetid: 538871ba-d02e-47d3-a3bf-25cda4a40965
 ---
 
 # Container Networking
