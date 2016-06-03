@@ -1,5 +1,6 @@
 ---
 author: neilpeterson
+redirect_url: manage_docker
 ---
 
 # Windows Containers Quick Start - PowerShell
@@ -50,10 +51,10 @@ NanoServer        CN=Microsoft 10.0.10586.0 True
 WindowsServerCore CN=Microsoft 10.0.10586.0 True
 ```
 
-To create a Windows Server Container, use the `New-Container` command. The below example creates a container named `TP4Demo` from the `WindowsServerCore` OS Image, and connects the container to a VM Switch named `Virtual Switch`. 
+To create a Windows Server Container, use the `New-Container` command. The below example creates a container named `TP4Demo` from the `WindowsServerCore` OS Image, and connects the container to a Container Network named `nat`. 
 
 ```powershell
-PS C:\> New-Container -Name TP4Demo -ContainerImageName WindowsServerCore -SwitchName "Virtual Switch"
+PS C:\> New-Container -Name TP4Demo -ContainerImageName WindowsServerCore -NetworkName "nat"
 
 Name    State Uptime   ParentImageName
 ----    ----- ------   ---------------
@@ -135,62 +136,60 @@ PS C:\> Remove-Container -Name TP4Demo -Force
 Create a new container, this time from the `WindowsServerCoreIIS` container image.
 
 ```powershell
-PS C:\> New-Container -Name IIS -ContainerImageName WindowsServerCoreIIS -SwitchName "Virtual Switch"
+PS C:\> New-Container -Name IIS -ContainerImageName WindowsServerCoreIIS -NetworkName "nat"
 
 Name State Uptime   ParentImageName
 ---- ----- ------   ---------------
 IIS  Off   00:00:00 WindowsServerCoreIIS
 ```    
-Start the container.
-
-```powershell
-PS C:\> Start-Container -Name IIS
-```
 
 ### Configure Networking <!--1-->
 
-The default network configuration for the Windows Container Quick Starts, is to have containers connected to a virtual switch configured with Network Address Translation (NAT). Because of this, in order to connect to an application running inside of a container, a port on the container host, needs to be mapped to a port on the container. For detailed information on container networking see [Container Networking](../management/container_networking.md).
-
-For this exercise, a website is hosted in IIS, running inside of a container. To access the website on port 80, map port 80 of the container hosts IP address, to port 80 of the containers IP address.
-
-Run the following to return the IP address of the container.
+The default network configuration for the Windows Container Quick Starts, is to have containers connected to a Network Address Translation (NAT) container network. You can see the current container networks available by using the Get-ContainerNetwork command.
 
 ```powershell
-PS C:\> Invoke-Command -ContainerName IIS {ipconfig}
+PS C:\> Get-ContainerNetwork
 
-Windows IP Configuration
-
-
-Ethernet adapter vEthernet (Virtual Switch-7570F6B1-E1CA-41F1-B47D-F3CA73121654-0):
-
-   Connection-specific DNS Suffix  . : DNS
-   Link-local IPv6 Address . . . . . : fe80::ed23:c1c6:310a:5c10%16
-   IPv4 Address. . . . . . . . . . . : 172.16.0.2
-   Subnet Mask . . . . . . . . . . . : 255.255.255.0
-   Default Gateway . . . . . . . . . : 172.16.0.1
+Name Id                                   Subnets         Mode SourceMac DNSServers    DNSSuffix
+---- --                                   -------         ---- --------- ----------    ---------
+nat  c475d31c-fb42-408e-8493-6db6c9586915 {172.16.0.0/24} NAT            {192.168.1.1}
 ```
 
-To create the NAT port mapping, use the `Add-NetNatStaticMapping` command. The following example checks for an existing port mapping rule, and if one does not exist, creates it. Note, the `-InternalIPAddress` needs to match the IP address of the container.
+Because we are using a NAT and want external clients to be able to connect to an application running inside of a container, a port on the container host, needs to be mapped to a port on the container. For detailed information on container networking see [Container Networking](../management/container_networking.md).
+
+For this exercise, a website is hosted in IIS, running inside of a container. To access the website on port 80, map port 80 of the container host to port 80 on the container network adapter. (The container must be stopped to add the port mapping).
+
+First, determine the name of the container network adapter.
 
 ```powershell
-if (!(Get-NetNatStaticMapping | where {$_.ExternalPort -eq 80})) {
-Add-NetNatStaticMapping -NatName "ContainerNat" -Protocol TCP -ExternalIPAddress 0.0.0.0 -InternalIPAddress 172.16.0.2 -InternalPort 80 -ExternalPort 80
-}
+PS C:\> Get-ContainerNetworkAdapter IIS
+
+ContainerName Name            Network Id                           Static MacAddress Static IPAddress Maximum Bandwidth
+------------- ----            ----------                           ----------------- ---------------- -----------------
+IIS           Network Adapter C475D31C-FB42-408E-8493-6DB6C9586915                                    0
 ```
 
-When the port mapping has been created, you also need to configure an inbound firewall rule for the configured port. To do so for port 80, run the following script. Note, if you’ve created a NAT rule for an external port other then 80, the firewall rule needs to be created to match.
+Next, create a static mapping using the Add-ContainerNetworkAdapterStaticMapping cmdlet. 
 
 ```powershell
-if (!(Get-NetFirewallRule | where {$_.Name -eq "TCP80"})) {
-    New-NetFirewallRule -Name "TCP80" -DisplayName "HTTP on TCP/80" -Protocol tcp -LocalPort 80 -Action Allow -Enabled True
-}
+PS C:\> Add-ContainerNetworkAdapterStaticMapping IIS -AdapterName "Network Adapter" -ExternalPort 80
+ -InternalPort 80 -Protocol TCP
 ```
+
+Beginning with TP5, a firewall rule will be automatically created to correspond to this static port mapping - there is no longer a need to create a new rule.
 
 If you are working in Azure, and have not already created a Network Security Group, you need to create one now. For more information on Network Security Groups see this article: [What is a Network Security Group](https://azure.microsoft.com/en-us/documentation/articles/virtual-networks-nsg/).
 
 ### Create Application <!--1-->
 
-Now that a container has been created from the IIS image, and networking configured, open up a browser and browse to the IP address of the container host. You should see the IIS splash screen.
+Now that a container has been created from the IIS image, and networking configured, start the container.
+
+```powershell
+PS C:\> Start-Container -Name IIS
+```
+
+Open up a browser and browse to the IP address of the container host. You should see the IIS splash screen.
+
 
 ![](media/iis1.png)
 
@@ -265,7 +264,7 @@ WindowsServerCore CN=Microsoft 10.0.10586.0 True
 To create a Hyper-V container, use the `New-Container` command, specifying a Runtime of HyperV.
 
 ```powershell
-PS C:\> New-Container -Name HYPV -ContainerImageName NanoServer -SwitchName "Virtual Switch" -RuntimeType HyperV
+PS C:\> New-Container -Name HYPV -ContainerImageName NanoServer -NetworkName "nat" -RuntimeType HyperV
 
 Name State Uptime   ParentImageName
 ---- ----- ------   ---------------
@@ -433,7 +432,7 @@ NanoServerIIS CN=Demo   1.0.0.0 False
 Create a new Hyper-V container from the IIS image using the `New-Container` command.
 
 ```powershell
-PS C:\> New-Container -Name IISApp -ContainerImageName NanoServerIIS -SwitchName "Virtual Switch" -RuntimeType HyperV
+PS C:\> New-Container -Name IISApp -ContainerImageName NanoServerIIS -NetworkName "nat" -RuntimeType HyperV
 
 Name   State Uptime   ParentImageName
 ----   ----- ------   ---------------
@@ -448,41 +447,51 @@ PS C:\> Start-Container -Name IISApp
 
 ### Configure Networking <!--2-->
 
-The default network configuration for the Windows Container Quick Starts is to have containers connected to a virtual switch, configured with Network Address Translation (NAT). Because of this, in order to connect to an application running inside of a container, a port on the container host, needs to be mapped to a port on the container.
-
-For this exercise, a website is hosted in IIS, running inside of a container. To access the website on port 80, map port 80 of the container hosts IP address, to port 80 of the containers IP address.
-
-Run the following to return the IP address of the container.
+The default network configuration for the Windows Container Quick Starts, is to have containers connected to a Network Address Translation (NAT) container network. You can see the current container networks available by using the Get-ContainerNetwork command.
 
 ```powershell
-PS C:\> Invoke-Command -ContainerName IISApp {ipconfig}
+PS C:\> Get-ContainerNetwork
 
-Windows IP Configuration
-
-
-Ethernet adapter Ethernet:
-
-   Connection-specific DNS Suffix  . : DNS
-   Link-local IPv6 Address . . . . . : fe80::c574:5a5e:d5f5:18a0%4
-   IPv4 Address. . . . . . . . . . . : 172.16.0.2
-   Subnet Mask . . . . . . . . . . . : 255.255.255.0
-   Default Gateway . . . . . . . . . : 172.16.0.1
+Name Id                                   Subnets         Mode SourceMac DNSServers    DNSSuffix
+---- --                                   -------         ---- --------- ----------    ---------
+nat  c475d31c-fb42-408e-8493-6db6c9586915 {172.16.0.0/24} NAT            {192.168.1.1}
 ```
 
-To create the NAT port mapping, use the `Add-NetNatStaticMapping` command. The following examples checks for an existing port mapping rule, and if one does not exist, creates it. Note, the `-InternalIPAddress` needs to match the IP address of the container.
+
+Because we are using a NAT and want external clients to be able to connect to an application running inside of a container, a port on the container host, needs to be mapped to a port on the container. For detailed information on container networking see [Container Networking](../management/container_networking.md).
+
+For this exercise, a website is hosted in IIS, running inside of a container. To access the website on port 80, map port 80 of the container host to port 80 on the container network adapter. (The container must be stopped to add the port mapping).
+
+First, determine the name of the container network adapter.
 
 ```powershell
-if (!(Get-NetNatStaticMapping | where {$_.ExternalPort -eq 80})) {
-Add-NetNatStaticMapping -NatName "ContainerNat" -Protocol TCP -ExternalIPAddress 0.0.0.0 -InternalIPAddress 172.16.0.2 -InternalPort 80 -ExternalPort 80
-}
+PS C:\> Get-ContainerNetworkAdapter IISApp
+
+ContainerName Name            Network Id                           Static MacAddress Static IPAddress Maximum Bandwidth
+------------- ----            ----------                           ----------------- ---------------- -----------------
+IISApp           Network Adapter C475D31C-FB42-408E-8493-6DB6C9586915                                    0
 ```
-You also need to open up port 80 on the container host. Note, if you’ve created a NAT rule for an external port other then 80, the firewall rule needs to be created to match.
+
+Next, create a static mapping using the Add-ContainerNetworkAdapterStaticMapping cmdlet. 
 
 ```powershell
-if (!(Get-NetFirewallRule | where {$_.Name -eq "TCP80"})) {
-    New-NetFirewallRule -Name "TCP80" -DisplayName "HTTP on TCP/80" -Protocol tcp -LocalPort 80 -Action Allow -Enabled True
-}
+PS C:\> Add-ContainerNetworkAdapterStaticMapping IISApp -AdapterName "Network Adapter" -ExternalPort 80
+ -InternalPort 80 -Protocol TCP
 ```
+
+Beginning with TP5, a firewall rule will be automatically created to correspond to this static port mapping - there is no longer a need to create a new rule.
+
+If you are working in Azure, and have not already created a Network Security Group, you need to create one now. For more information on Network Security Groups see this article: [What is a Network Security Group](https://azure.microsoft.com/en-us/documentation/articles/virtual-networks-nsg/).
+
+### Create Application <!--1-->
+
+Now that a container has been created from the IIS image, and networking configured, start the container.
+
+```powershell
+PS C:\> Start-Container -Name IIS
+```
+
+Open up a browser and browse to the IP address of the container host. You should see the IIS splash screen.
 
 ### Create Application <!--2-->
 

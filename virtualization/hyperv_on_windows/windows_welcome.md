@@ -12,7 +12,6 @@ The following documents detail the Hyper-V feature in Windows 10, provide a guid
 			<p>The following articles provide an introduction to and information about Hyper-V on Windows.</p>
 			<ul>
 				<li class="unordered">[Introduction to Hyper-V](./about/hyperv_on_windows.md)<br /><br /></li>
-				<li class="unordered">[What’s New in Hyper-V for Windows 10](./about/whats_new.md)<br /><br /></li>
 				<li class="unordered">[Supported Guest Operating Systems](about\supported_guest_os.md)<br /><br /></li>
 			</ul>	
 		</td>

@@ -4,6 +4,8 @@ author: neilpeterson
 
 # Windows Containers
 
+**This is preliminary content and subject to change.** 
+
 Applications fuel innovation in the cloud and mobile era. Containers, and the ecosystem that is developing around them, will empower software developers to create the next generation of applications experiences.
 
 Watch a short overview: [Windows-based containers: Modern app development with enterprise-grade control](https://youtu.be/Ryx3o0rD5lY).
@@ -43,8 +45,6 @@ The following key concepts will be helpful as you begin creating and working wit
 
 **Container Repository:** Each time a container image is created the container image and its dependencies are stored in a local repository. These images can be reused many times on the container host. The container images can also be stored in a public or private registry  such as DockerHub so that they can be used across many different container host.
 
-**Container Management Technology:** Windows Containers can be managed using both PowerShell and Docker. With either one of these tools you can create new containers, container images as well as manage the container lifecycle.
-
 <center>![](media/containerfund.png)</center>
 
 ## Containers for Developers
@@ -73,5 +73,5 @@ src="https://channel9.msdn.com/Blogs/containers/Containers-101-with-Microsoft-an
 
 ## Try Windows Server Containers
 
-[Get started with Windows Containers in Windows Azure](../quick_start/azure_setup.md)  
-[Get started with Windows Containers Locally](../quick_start/container_setup.md)
+[Container Quick Start Introduction](../quick_start/quick_start.md)
+

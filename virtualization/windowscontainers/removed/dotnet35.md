@@ -1,6 +1,8 @@
 ---
 author: enderb-ms
+redirect_url: https://github.com/Microsoft/Virtualization-Documentation/tree/master/windows-container-samples
 ---
+
 
 # Create a .NET 3.5 Server Core Container Image
 

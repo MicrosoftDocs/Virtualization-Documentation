@@ -6,33 +6,31 @@ author: neilpeterson
 
 **This is preliminary content and subject to change.** 
 
-Docker is a container deployment and management platform, that works with both Linux and Windows containers. Docker is used to create, manage, and delete containers and container images. Docker enables storing container images in a public registry (Docker Hub) and private registries (Docker Trusted Registries). Docker additionally provides container host clustering capabilities with Docker Swarm and deployment automaton with Docker Compose. For more information on Docker and the Docker toolset visit [Docker.com](https://www.docker.com/).
+The Docker engine is not included with Windows and will need to be installed and configured individually. The steps used to run the Docker Engine on Windows will vary from those used to run in on Linux. This document will step through installing and configuring the Docker engine on Windows Server 2016, Nano Server, and Windows Client. Also note, the Docker engine and command line interface have recently been split into two files. This document includes instructions for installing both.
 
-> The Windows Container feature must be enabled before Docker can be used to create and manage Windows Server and Hyper-V Container. For instructions on enabling this feature, see the [Container Host Deployment Guide](./docker_windows.md).
+For more information on Docker and the Docker toolset visit [Docker.com](https://www.docker.com/). 
 
-## Windows Server
+> The Windows container feature must be enabled before Docker can be used to create and manage Windows containers. For instructions on enabling this feature, see the [Container host deployment guide](./docker_windows.md).
 
-### Install Docker <!--1-->
+## Windows Server 2016
 
-The Docker Daemon and CLI are not shipped with Windows Server or Windows Server Core, and not installed with the Windows Container feature. Docker will need to be installed separately. This document will walk through manually installing the Docker daemon and Docker client. Automated methods for competing these task will also be provided. 
+### Install Docker daemon <!--1-->
 
-The Docker Daemon and Docker command line interface have been developed in the Go language. At this time, docker.exe does not install as a Windows Service. There are several methods that can be used to create a Windows service, one example shown here uses `nssm.exe`. 
+Download dockerd.exe from `https://aka.ms/tp5/dockerd` and place it in the System32 directory on the container Host.
 
-Download docker.exe from `https://aka.ms/tp4/docker` and place it in the System32 directory on the Container Host.
-
-```powershell
-PS C:\> wget https://aka.ms/tp4/docker -OutFile $env:SystemRoot\system32\docker.exe
+```none
+wget https://aka.ms/tp5/dockerd -OutFile $env:SystemRoot\system32\dockerd.exe
 ```
 
-Create a directory named `c:\programdata\docker`. In this directory, create a file named `runDockerDaemon.cmd`.
+Create a directory named `c:\programdata\docker`. In this directory create a file named `runDockerDaemon.cmd`.
 
-```powershell
-PS C:\> New-Item -ItemType File -Path C:\ProgramData\Docker\runDockerDaemon.cmd -Force
+```none
+New-Item -ItemType File -Path C:\ProgramData\Docker\runDockerDaemon.cmd -Force
 ```
 
-Copy the following text into the `runDockerDaemon.cmd` file. This batch file starts the Docker daemon with the command `docker daemon -D -b “Virtual Switch”`. Note: the name of the virtual switch in this file, will need to match the name of the virtual switch that containers will be using for network connectivity.
+Copy the following text into the `runDockerDaemon.cmd` file.
 
-```powershell
+```none
 @echo off
 set certs=%ProgramData%\docker\certs.d
 
@@ -40,137 +38,242 @@ if exist %ProgramData%\docker (goto :run)
 mkdir %ProgramData%\docker
 
 :run
-if exist %certs%\server-cert.pem (goto :secure)
+if exist %certs%\server-cert.pem (if exist %ProgramData%\docker\tag.txt (goto :secure))
 
-docker daemon -D -b "Virtual Switch"
+if not exist %systemroot%\system32\dockerd.exe (goto :legacy)
+
+dockerd -H npipe:// 
+goto :eof
+
+:legacy
+docker daemon -H npipe:// 
 goto :eof
 
 :secure
-docker daemon -D -b "Virtual Switch" -H 0.0.0.0:2376 --tlsverify --tlscacert=%certs%\ca.pem --tlscert=%certs%\server-cert.pem --tlskey=%certs%\server-key.pem
+if not exist %systemroot%\system32\dockerd.exe (goto :legacysecure)
+dockerd -H npipe:// -H 0.0.0.0:2376 --tlsverify --tlscacert=%certs%\ca.pem --tlscert=%certs%\server-cert.pem --tlskey=%certs%\server-key.pem
+goto :eof
+
+:legacysecure
+docker daemon -H npipe:// -H 0.0.0.0:2376 --tlsverify --tlscacert=%certs%\ca.pem --tlscert=%certs%\server-cert.pem --tlskey=%certs%\server-key.pem
 ```
 Download nssm.exe from [https://nssm.cc/release/nssm-2.24.zip](https://nssm.cc/release/nssm-2.24.zip).
 
-```powershell
-PS C:\> wget https://nssm.cc/release/nssm-2.24.zip -OutFile $env:ALLUSERSPROFILE\nssm.zip
+```none
+wget https://nssm.cc/release/nssm-2.24.zip -OutFile $env:ALLUSERSPROFILE\nssm.zip
 ```
 
-Extract the files, and copy `nssm-2.24\win64\nssm.exe` into the `c:\windows\system32` directory.
+Extract the compressed package.
 
-```powershell
-PS C:\> Expand-Archive -Path $env:ALLUSERSPROFILE\nssm.zip $env:ALLUSERSPROFILE
-PS C:\> Copy-Item $env:ALLUSERSPROFILE\nssm-2.24\win64\nssm.exe $env:SystemRoot\system32
+```none
+Expand-Archive -Path $env:ALLUSERSPROFILE\nssm.zip $env:ALLUSERSPROFILE
+```
+
+Copy `nssm-2.24\win64\nssm.exe` into the `c:\windows\system32` directory.
+
+```none
+Copy-Item $env:ALLUSERSPROFILE\nssm-2.24\win64\nssm.exe $env:SystemRoot\system32
 ```
 Run `nssm install` to configure the Docker service.
 
-```powershell
-PS C:\> start-process nssm install
+```none
+start-process nssm install
 ```
 
 Enter the following data into the corresponding fields in the NSSM service installer.
 
 Application Tab:
 
-- **Path:** C:\Windows\System32\cmd.exe
+**Path:** C:\Windows\System32\cmd.exe
 
-- **Startup Directory:** C:\Windows\System32
+**Startup Directory:** C:\Windows\System32
 
-- **Arguments:** /s /c C:\ProgramData\docker\runDockerDaemon.cmd < nul
+**Arguments:** /s /c C:\ProgramData\docker\runDockerDaemon.cmd < nul
 
-- **Service Name** - Docker
+**Service Name** - Docker
 
 ![](media/nssm1.png)
 
 Details Tab:
 
-- **Display name:** Docker
+**Display name:** Docker
 
-- **Description:** The Docker Daemon provides management capabilities of containers for docker clients.
-
+**Description:** The Docker Daemon provides management capabilities of containers for docker clients.
 
 ![](media/nssm2.png)
 
 IO Tab:
 
-- **Output (stdout):** C:\ProgramData\docker\daemon.log
+**Output (stdout):** C:\ProgramData\docker\daemon.log
 
-- **Error (stderr):** C:\ProgramData\docker\daemon.log
-
+**Error (stderr):** C:\ProgramData\docker\daemon.log
 
 ![](media/nssm3.png)
 
 When finished, click the `Install Service` button.
 
-With this completed, when Windows starts, the Docker daemon (service) will also start.
+The Docker daemon is now configured as a Windows service.
+
+### Firewall <!--1-->
+
+If you wish to enable remote Docker management, you also need to open TCP port 2376.
+
+```none
+netsh advfirewall firewall add rule name="Docker daemon " dir=in action=allow protocol=TCP localport=2376
+```
 
 ### Removing Docker <!--1-->
 
-If following this guide for creating a Windows service from docker.exe, the following command will remove the service.
+The following command will remove the Docker service.
 
-```powershell
-PS C:\> sc.exe delete Docker
+```none
+sc.exe delete Docker
+```
 
-[SC] DeleteService SUCESS
+### Install Docker CLI
+
+Download docker.exe from `https://aka.ms/tp5/docker` and place it in the System32 directory of the container host or any other system where you will run Docker commands.
+
+```none
+wget https://aka.ms/tp5/docker -OutFile $env:SystemRoot\system32\docker.exe
 ```
 
 ## Nano Server
 
 ### Install Docker <!--2-->
 
-Download docker.exe from `https://aka.ms/tp4/docker` and copy it to the `windows\system32` folder of the Nano Server Container host.
+Download dockerd.exe from `https://aka.ms/tp5/dockerd` and copy it to the `windows\system32` folder of the Nano Server Container host.
 
-Run the below command to start the docker daemon. This will need to be run each time the container host is started. This command starts the Docker daemon, specifies a virtual switch for container connectivity, and set’s the daemon to listen on port 2375 for incoming Docker requests. In this configuration Docker can be managed from a remote computer.
+Create a directory named `c:\programdata\docker`. In this directory, create a file named `runDockerDaemon.cmd`.
 
-```powershell
-PS C:\> start-process cmd "/k docker daemon -D -b <Switch Name> -H 0.0.0.0:2375”
+```none
+New-Item -ItemType File -Path C:\ProgramData\Docker\runDockerDaemon.cmd -Force
+```
+
+Copy the following text into the `runDockerDaemon.cmd` file.
+
+```none
+@echo off
+set certs=%ProgramData%\docker\certs.d
+
+if exist %ProgramData%\docker (goto :run)
+mkdir %ProgramData%\docker
+
+:run
+if exist %certs%\server-cert.pem (if exist %ProgramData%\docker\tag.txt (goto :secure))
+
+if not exist %systemroot%\system32\dockerd.exe (goto :legacy)
+
+dockerd -H npipe:// 
+goto :eof
+
+:legacy
+docker daemon -H npipe:// 
+goto :eof
+
+:secure
+if not exist %systemroot%\system32\dockerd.exe (goto :legacysecure)
+dockerd -H npipe:// -H 0.0.0.0:2376 --tlsverify --tlscacert=%certs%\ca.pem --tlscert=%certs%\server-cert.pem --tlskey=%certs%\server-key.pem
+goto :eof
+
+:legacysecure
+docker daemon -H npipe:// -H 0.0.0.0:2376 --tlsverify --tlscacert=%certs%\ca.pem --tlscert=%certs%\server-cert.pem --tlskey=%certs%\server-key.pem
+```
+
+The following script can be used to create a scheduled task, that will start the Docker daemon when Windows boots.
+
+```none
+# Creates a scheduled task to start docker.exe at computer start up.
+
+$dockerData = "$($env:ProgramData)\docker"
+$dockerDaemonScript = "$dockerData\runDockerDaemon.cmd"
+$dockerLog = "$dockerData\daemon.log"
+$action = New-ScheduledTaskAction -Execute "cmd.exe" -Argument "/c $dockerDaemonScript > $dockerLog 2>&1" -WorkingDirectory $dockerData
+$trigger = New-ScheduledTaskTrigger -AtStartup
+$settings = New-ScheduledTaskSettingsSet -Priority 5
+Register-ScheduledTask -TaskName Docker -Action $action -Trigger $trigger -Settings $settings -User SYSTEM -RunLevel Highest | Out-Null
+Start-ScheduledTask -TaskName Docker 
+```
+
+### Firewall <!--2-->
+
+If you wish to enable remote Docker management, you also need to open TCP port 2376.
+
+```none
+netsh advfirewall firewall add rule name="Docker daemon " dir=in action=allow protocol=TCP localport=2376
+```
+
+### Interactive Nano session
+
+Nano server is managed through a remote PowerShell session. For more information on remotely managing Nano Server, see [Getting Started with Nano Server]( https://technet.microsoft.com/en-us/library/mt126167.aspx#bkmk_ManageRemote).
+
+Not all docker operations, such as 'docker attach' can be performed through this remote PowerShell session. To get around this, and as a best practice in general, manage Docker from a remote client through a secure TCP connection.
+
+To do so, ensure that the Docker daemon has been configured to listen on a TCP port, and that the Docker command line interface is available on a remote client machine. When configured, docker commands can be issued to the host with the -H parameter.
+
+To remotely deploy a container and enter an interactive session, run the following command.
+
+```none
+docker –H tcp://<ipaddress of server>:2376 run –it nanoserver cmd
+```
+
+An environmental variable DOCKER_HOST can be created that will remove the –H parameter requirement. The following PowerShell command can be used for this.
+
+```none
+$env:DOCKER_HOST = "tcp://<ipaddress of server:2376"
+```
+
+With this variable set, the command would not look like this.
+
+```none
+docker run –it nanoserver cmd
 ```
 
 ### Removing Docker <!--2-->
 
 To remove the docker daemon and cli from Nano Server, delete `docker.exe` from the Windows\system32 directory.
 
-```powershell
-PS C:\> Remove-Item $env:SystemRoot\system32\docker.exe
+```none
+Remove-Item $env:SystemRoot\system32\docker.exe
 ``` 
 
-### Interactive Nano Session
+Run the following to un-register the Docker scheduled task.
 
-> For information on remotely managing Nano Server, see [Getting Started with Nano Server](https://technet.microsoft.com/en-us/library/mt126167.aspx#bkmk_ManageRemote).
-
-You may receive this error when interactively managing a container on a Nano Server Host.
-
-```powershell
-docker : cannot enable tty mode on non tty input
-+ CategoryInfo          : NotSpecified: (cannot enable tty mode on non tty input:String) [], RemoteException
-+ FullyQualifiedErrorId : NativeCommandError 
+```none
+Get-ScheduledTask -TaskName Docker | UnRegister-ScheduledTask
 ```
 
-This can happen when trying to run a container with an interactive session, using -it:
+### Install Docker CLI
 
-```powershell
-Docker run -it <image> <command>
-```
-Or trying to attach to a running container:
+Download docker.exe from `https://aka.ms/tp5/docker` and copy it to the windows\system32 folder of the Nano Server Container host.
 
-```powershell
-Docker attach <container name>
+```none
+wget https://aka.ms/tp5/docker -OutFile $env:SystemRoot\system32\docker.exe
 ```
 
-In order to create an interactive session with a Docker created container on a Nano Server host, the Docker daemon must be managed remotely. To do so, download docker.exe from [this location](https://aka.ms/ContainerTools) and copy it to a remote system.
+## Configuring Docker Startup
 
-First, you will need to set up the Docker daemon in your Nano Server to listen to remote commands. You can do this by running this command in the Nano Server:
+Several startup options are available for the Docker daemon. In this section, some of these relevant to the Docker daemon on Windows will be detailed. For complete coverage of all daemon options, see the [Docker daemon documentation on docker.com]( https://docs.docker.com/engine/reference/commandline/daemon/)
 
-```powershell
-docker daemon -D -H <ip address of Nano Server>:2375
+### Listening TCP port
+
+The Docker daemon can be configured to listen for incoming connections locally through a named pipe or remotely through a TCP connection. The default startup behavior is to listen on only the named pipe, which will prevent remote connections.
+
+```none
+docker daemon -D
 ```
 
-Now, on your machine, open a PowerShell or CMD session, and run the Docker commands specifying the remote host with `-H`.
+This can be modified to listen for secure incoming connections with the following startup command. For more information on securing the connection, see the [Security Configuration docs on docker.com](https://docs.docker.com/engine/security/https/).
 
-```powershell
-.\docker.exe -H tcp://<ip address of Nano Server>:2375
+```none
+docker daemon -D -H npipe:// -H tcp://0.0.0.0:2376 --tlsverify --tlscacert=%certs%\ca.pem --tlscert=%certs%\server-cert.pem --tlskey=%certs%\server-key.pem
+``` 
+
+### Default runtime
+
+Windows containers have two distinct runtime types, Windows Server and Hyper-V. The Docker daemon is configured to use the Windows Server runtime by default, however this can be changed. To set Hyper-V as the default runtime, specify ‘—exec-opt isolation=hyperv` when initializing the Docker daemon.
+
+```none
+docker daemon -D —exec-opt isolation=hyperv
 ```
 
-For example, if you would like to see the available images: 
-
-```powershell
-.\docker.exe -H tcp://<ip address of Nano Server>:2375 images
-```

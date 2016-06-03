@@ -20,7 +20,10 @@
         Configures the VM as a new container host
         
     .PARAMETER DockerPath
-        Path to a private Docker.exe.  Defaults to https://aka.ms/tp4/docker
+        Path to a private Docker.exe.  Defaults to https://aka.ms/tp5/docker
+
+    .PARAMETER DockerDPath
+        Path to a private DockerD.exe.  Defaults to https://aka.ms/tp5/dockerd
 
     .PARAMETER Password 
         Password for the built-in Administrator account. 
@@ -28,14 +31,8 @@
     .PARAMETER HyperV 
         If passed, prepare the machine for Hyper-V containers
 
-    .PARAMETER NatSubnetPrefix
-        Prefix for container hosts NAT range.
-
     .PARAMETER ScriptPath
-        Path to a private Install-ContainerHost.ps1.  Defaults to https://aka.ms/SetupContainers
-
-    .PARAMETER SkipDocker
-        If passed, skips Docker install
+        Path to a private Install-ContainerHost.ps1.  Defaults to https://aka.ms/tp5/Install-ContainerHost
             
     .PARAMETER SwitchName
         Specify a switch to give the container host network connectivity
@@ -57,32 +54,30 @@
         Image to use for the VM.  One of NanoServer, ServerDatacenter, or ServerDatacenterCore [default]
 
     .EXAMPLE
-        .\Install-ContainerHost.ps1 -SkipDocker
+        .\Install-ContainerHost.ps1 
                 
 #>
 #Requires -Version 4.0
 
-[CmdletBinding(DefaultParameterSetName="IncludeDocker")]
+[CmdletBinding(DefaultParameterSetName="Deploy")]
 param(
-    [Parameter(ParameterSetName="IncludeDocker")]
     [string]
     [ValidateNotNullOrEmpty()]
-    $DockerPath = "https://aka.ms/tp4/docker",
+    $DockerPath = "https://aka.ms/tp5/docker",
+
+    [string]
+    [ValidateNotNullOrEmpty()]
+    $DockerDPath = "https://aka.ms/tp5/dockerd",
 
     [switch]
     $HyperV,
     
-    [Parameter(ParameterSetName="IncludeDocker")]
-    [Parameter(ParameterSetName="SkipDocker")]
+    [Parameter(ParameterSetName="Deploy")]
     [string]
     [ValidateNotNullOrEmpty()]
-    $IsoPath = "https://aka.ms/tp4/serveriso",   
+    $IsoPath = "https://aka.ms/tp5/serveriso",  
 
-    [string]
-    $NATSubnetPrefix = "172.16.0.0/24",
-
-    [Parameter(ParameterSetName="IncludeDocker", Mandatory, Position=1)]
-    [Parameter(ParameterSetName="SkipDocker", Mandatory, Position=1)]
+    [Parameter(ParameterSetName="Deploy", Mandatory, Position=1)]
     [Security.SecureString]
     $Password = ("P@ssw0rd" | ConvertTo-SecureString -AsPlainText -Force),
       
@@ -92,11 +87,7 @@ param(
 
     [string]
     [ValidateNotNullOrEmpty()]
-    $ScriptPath = "https://aka.ms/tp4/Install-ContainerHost",
-    
-    [Parameter(ParameterSetName="SkipDocker", Mandatory)]
-    [switch]
-    $SkipDocker,
+    $ScriptPath = "https://aka.ms/tp5/Install-ContainerHost",
 
     [Parameter(ParameterSetName="Staging", Mandatory)]
     [switch]
@@ -113,8 +104,7 @@ param(
     [ValidateNotNullOrEmpty()]
     $VhdPath,
 
-    [Parameter(ParameterSetName="IncludeDocker", Mandatory, Position=0)]
-    [Parameter(ParameterSetName="SkipDocker", Mandatory, Position=0)]
+    [Parameter(ParameterSetName="Deploy", Mandatory, Position=0)]
     [Parameter(ParameterSetName="Staging", Mandatory, Position=0)]
     [string]
     [ValidateNotNullOrEmpty()]
@@ -171,25 +161,7 @@ if ($Prompt)
     #
     $Password = Read-Host 'Please specify Administrator password' -AsSecureString
     
-    #
-    # Install docker?
-    #
-    $dockerChoiceList = New-Object System.Collections.ObjectModel.Collection[System.Management.Automation.Host.ChoiceDescription]
-
-    $dockerChoiceList.Add((New-Object "System.Management.Automation.Host.ChoiceDescription" -ArgumentList "&Yes"))
-    $dockerChoiceList.Add((New-Object "System.Management.Automation.Host.ChoiceDescription" -ArgumentList "&No"))
-    
-    $SkipDocker = [boolean]$Host.ui.PromptForChoice($null, "Would you like to install Docker?", $dockerChoiceList, 0)
-    
-
-    if ($SkipDocker)
-    {
-        $global:ParameterSet = "SkipDocker"
-    } 
-    else
-    {
-        $global:ParameterSet = "IncludeDocker"
-    }
+    $global:ParameterSet = "Deploy"
 }
 else
 {
@@ -199,10 +171,12 @@ else
 $global:WimSaveMode = $true
 $global:PowerShellDirectMode = $true
 
+$global:VmGeneration = 2
+
 #
 # Image information
 #
-if ($WindowsImage -eq "NanoServer")
+if ($HyperV -or ($WindowsImage -eq "NanoServer"))
 {
     $global:imageName = "NanoServer"
 }
@@ -210,13 +184,14 @@ else
 {
     $global:imageName = "WindowsServerCore"
 }
-$global:imageVersion = "10586.0"
+
+$global:imageVersion = "14300.1000"
 
 #
 # Branding strings
 #
 $global:brand = $WindowsImage
-$global:imageBrand = "$($global:brand)_en-us_TP4_Container"
+$global:imageBrand = "$($global:brand)_en-us_TP5_Container"
 $global:isoBrandName = "$global:brand ISO"
 $global:vhdBrandName = "$global:brand VHD"
 
@@ -236,22 +211,25 @@ if ($VhdPath -and ($(Split-Path -Leaf $VhdPath) -match ".*\.vhdx?"))
     #
     # Assume this is an official Windows build VHD/X.  We parse the build number and QFE from the filename
     #
-    if ($VhdPath -match "(\d{5})\.(\d{1,5}).*\.(vhdx)?")
+    if ($global:localVhdName -match "(\d{5})\.(\d{1,5}).(.*\.\d{6}-\d{4})_.*\.vhdx?")
     {
         $global:imageVersion = "$($Matches[1]).$($Matches[2])"
-    }
 
-    #
-    # Save-ContainerImage doesn't work for internal shares yet
-    #
-    $global:WimSaveMode = $false
+        if (-not $WimPath)
+        {
+            #
+            # Register the private 
+            #
+            .\Register-TestContainerHost.ps1 -BuildName "$($Matches[1]).$($Matches[2]).$($Matches[3])"
+        }
+    }
 }
 else
 {
-    $global:localVhdName = "$($global:imageBrand).vhd"
+    $global:localVhdName = "$($global:imageBrand).vhdx"
 }
 
-$global:localIsoName = "WindowsServerTP4.iso"
+$global:localIsoName = "WindowsServerTP5.iso"
 $global:localIsoPath = "$global:localVhdRoot\$global:localIsoName"
 $global:localIsoVersion = "$global:localVhdRoot\ContainerISOVersion.$($global:imageVersion).txt"
 
@@ -259,7 +237,7 @@ $global:localVhdPath = "$global:localVhdRoot\$global:localVhdName"
 $global:localVhdVersion = "$global:localVhdRoot\ContainerVHDVersion.$($global:imageVersion).txt"
 
 $global:localWimName = "$global:imageName.wim"
-$global:localWimVhdPath = "$global:localVhdRoot\$($global:imageName)-WIM.vhdx"
+$global:localWimVhdPath = "$global:localVhdRoot\$($global:imageName)-WIM-$($global:imageVersion).vhdx"
 $global:localWimVhdVersion = "$global:localVhdRoot\$($global:imageName)Version.$($global:imageVersion).txt"
 
 
@@ -306,7 +284,7 @@ Cache-HostFiles
                 $convertScript = $(Join-Path $global:localVhdRoot "Convert-WindowsImage.ps1")
 
                 Write-Verbose "Copying Convert-WindowsImage..."
-                Copy-File -SourcePath 'https://aka.ms/tp4/Convert-WindowsImage' -DestinationPath $convertScript
+                Copy-File -SourcePath 'https://aka.ms/tp5/Convert-WindowsImage' -DestinationPath $convertScript
 
                 #
                 # Dot-source until this is a module
@@ -335,16 +313,16 @@ Cache-HostFiles
                                         
                     if ($Staging)
                     {
-                        New-NanoServerImage -MediaPath "$($driveLetter):\" -TargetPath $global:localVhdPath -Containers -ReverseForwarders -GuestDrivers -AdministratorPassword $Password
+                        New-NanoServerImage -ImageFormat "vhdx" -DeploymentType Guest -Edition Standard -MediaPath "$($driveLetter):\" -TargetPath $global:localVhdPath -Containers -AdministratorPassword $Password
                     }
                     else
                     {
-                        New-NanoServerImage -MediaPath "$($driveLetter):\" -TargetPath $global:localVhdPath -Compute -Containers -ReverseForwarders -GuestDrivers -AdministratorPassword $Password
+                        New-NanoServerImage -ImageFormat "vhdx" -DeploymentType Guest -Edition Standard -MediaPath "$($driveLetter):\" -TargetPath $global:localVhdPath -Compute -Containers -AdministratorPassword $Password
                     }
                 }
                 else
                 {
-                    Convert-WindowsImage -DiskLayout BIOS -SourcePath "$($driveLetter):\sources\install.wim" -Edition $WindowsImage -VhdPath $global:localVhdPath
+                    Convert-WindowsImage -DiskLayout UEFI -SourcePath "$($driveLetter):\sources\install.wim" -Edition $WindowsImage -VhdPath $global:localVhdPath
                 }
             }
             catch 
@@ -363,6 +341,8 @@ Cache-HostFiles
     
     if ($global:WimSaveMode -or $WimPath)
     {
+        $global:WimSaveMode = $true
+
         #
         # The combo VHD already contains the WIM.  Only cache if we are NOT using the combo VHD.
         #
@@ -410,14 +390,20 @@ Cache-HostFiles
                 }
                 else
                 {
-                    $imageVersion = "10.0.$global:imageVersion"
-                    Write-Output "Saving Container OS image ($global:imageName) version $imageVersion from OneGet to $($driveLetter): (this may take a few minutes)..."
-                    Test-ContainerProvider
+                    Test-ContainerImageProvider
 
+                    $imageVersion = "10.0.$global:imageVersion"
+                    Write-Output "Saving Container OS image ($global:imageName -MinimumVersion $imageVersion) from OneGet to $($driveLetter): (this may take a few minutes)..."
+                    
                     #
                     # TODO: should be error action stop by default
                     #
-                    Save-ContainerImage $global:imageName -Version $imageVersion -Destination "$($driveLetter):\$global:localWimName" -ErrorAction Stop
+                    Save-ContainerImage -Name $global:imageName -MinimumVersion $imageVersion -Path $env:TEMP -ErrorAction Stop | Out-Null
+
+                    #
+                    # TODO: don't use env:temp once OneGet supports mounted drives
+                    #
+                    Move-Item -Path (Resolve-Path "$env:TEMP\*-*.wim") -Destination "$($driveLetter):\$global:localWimName"  
                 }
 
                 if (-not (Test-Path "$($driveLetter):\$global:localWimName"))
@@ -476,17 +462,13 @@ Add-Unattend
 
         $installCommand = "%SystemDrive%\Install-ContainerHost.ps1 "
 
-        if ($SkipDocker)
-        {
-            $installCommand += '-SkipDocker '
-        }
-        elseif ($Staging)
+        if ($Staging)
         {
             $installCommand += '-Staging '
         }
         else
         {
-            $installCommand += '-DockerPath %SystemRoot%\System32\docker.exe '
+            $installCommand += '-DockerPath %SystemRoot%\System32\docker.exe -DockerDPath %SystemRoot%\System32\dockerd.exe'
         }
 
         if ($global:WimSaveMode)
@@ -543,10 +525,7 @@ Edit-BootVhd
     [CmdletBinding()]
     param(
         [string]
-        $BootVhdPath,
-
-        [bool]
-        $IncludeDocker
+        $BootVhdPath
     )
 
     #
@@ -565,11 +544,22 @@ Edit-BootVhd
         Write-Output "Mounting $global:vhdBrandName for offline processing..."
         $disk = $bootVhd | Mount-VHD -PassThru | Get-Disk        
     
-        #
-        # We can assume there is one partition/volume
-        #
-        $driveLetter = ($disk | Get-Partition | Get-Volume).DriveLetter
-        
+        if ($disk.PartitionStyle -eq "GPT")
+        {            
+            #
+            # Generation 2: we assume the only partition with a drive letter is the Windows partition
+            #
+            $driveLetter = ($disk | Get-Partition | Where-Object DriveLetter).DriveLetter
+        }
+        else
+        {
+            #
+            # Generation 1: we will assume there is one partition/volume
+            #
+            $global:VmGeneration = 1
+            $driveLetter = ($disk | Get-Partition | Get-Volume).DriveLetter
+        }
+
         if ($WindowsImage -eq "NanoServer")
         {
             if ((Test-Path $global:localIsoPath) -and $Staging)
@@ -625,19 +615,27 @@ Edit-BootVhd
             }
         }
 
-        if ($IncludeDocker)
+        
+        #
+        # Copy docker
+        #
+        Write-Output "Copying Docker into $global:vhdBrandName..."
+        Copy-File -SourcePath $DockerPath -DestinationPath "$($driveLetter):\Windows\System32\docker.exe"
+        
+        try
         {
-            #
-            # Copy docker
-            #
-            Write-Output "Copying Docker into $global:vhdBrandName..."
-            Copy-File -SourcePath $DockerPath -DestinationPath "$($driveLetter):\Windows\System32\docker.exe"
+            Write-Output "Copying Docker daemon into $global:vhdBrandName..."
+            Copy-File -SourcePath $DockerDPath -DestinationPath "$($driveLetter):\Windows\System32\dockerd.exe"
+        }
+        catch 
+        {
+            Write-Warning "DockerD not yet present."
+        }
 
-            if ($WindowsImage -ne "NanoServer")
-            {
-                Write-Output "Copying NSSM into $global:vhdBrandName..."
-                Get-Nsmm -Destination "$($driveLetter):\Windows\System32"
-            }
+        if ($WindowsImage -ne "NanoServer")
+        {
+            Write-Output "Copying NSSM into $global:vhdBrandName..."
+            Get-Nsmm -Destination "$($driveLetter):\Windows\System32"
         }
 
         #
@@ -650,6 +648,14 @@ Edit-BootVhd
         #
         Write-Output "Copying Install-ContainerHost.ps1 into $global:vhdBrandName..."
         Copy-File -SourcePath $ScriptPath -DestinationPath "$($driveLetter):\Install-ContainerHost.ps1"
+
+        #
+        # Copy test tools
+        #
+        if (Test-Path ".\Register-TestContainerHost.ps1")
+        {
+            Copy-Item ".\Register-TestContainerHost.ps1" "$($driveLetter):\"
+        }
     }
     catch 
     {
@@ -744,13 +750,13 @@ New-ContainerHost()
     }
     $bootVhd = New-VHD -Path "$bootVhdPath" -ParentPath $global:localVhdPath -Differencing
     
-    Edit-BootVhd -BootVhdPath $bootVhdPath -IncludeDocker $($global:ParameterSet -eq "IncludeDocker")
+    Edit-BootVhd -BootVhdPath $bootVhdPath 
     
     #
     # Create VM
     #
     Write-Output "Creating VM $VmName..."
-    $vm = New-VM -Name $VmName -VHDPath $bootVhd.Path -Generation 1
+    $vm = New-VM -Name $VmName -VHDPath $bootVhd.Path -Generation $global:VmGeneration
 
     Write-Output "Configuring VM $($vm.Name)..."
     $vm | Set-VMProcessor -Count ([Math]::min((Get-VMHost).LogicalProcessorCount, 64))
@@ -794,141 +800,133 @@ New-ContainerHost()
         $wimHardDiskDrive = $vm | Add-VMHardDiskDrive -Path $wimVhd.Path -ControllerType SCSI
     }
 
-	if ($Staging -and ($WindowsImage -eq "NanoServer"))
-	{
-		Write-Output "NanoServer VM is staged..."		
-	}
-	else
-	{
-		Write-Output "Starting VM $($vm.Name)..."
-		$vm | Start-VM | Out-Null
+    if ($Staging -and ($WindowsImage -eq "NanoServer"))
+    {
+        Write-Output "NanoServer VM is staged..."        
+    }
+    else
+    {
+        Write-Output "Starting VM $($vm.Name)..."
+        $vm | Start-VM | Out-Null
 
-		Write-Output "Waiting for VM $($vm.Name) to boot..."
-		do 
-		{
-			Start-Sleep -sec 1
-		} 
-		until (($vm | Get-VMIntegrationService |? Id -match "84EAAE65-2F2E-45F5-9BB5-0E857DC8EB47").PrimaryStatusDescription -eq "OK")
+        Write-Output "Waiting for VM $($vm.Name) to boot..."
+        do 
+        {
+            Start-Sleep -sec 1
+        } 
+        until (($vm | Get-VMIntegrationService |? Id -match "84EAAE65-2F2E-45F5-9BB5-0E857DC8EB47").PrimaryStatusDescription -eq "OK")
 
-		Write-Output "Connected to VM $($vm.Name) Heartbeat IC."
+        Write-Output "Connected to VM $($vm.Name) Heartbeat IC."
 
-		if ($global:PowerShellDirectMode)
-		{
-			$credential = New-Object System.Management.Automation.PsCredential("Administrator", $Password)  
+        if ($global:PowerShellDirectMode)
+        {
+            $credential = New-Object System.Management.Automation.PsCredential("Administrator", $Password)  
         
-			$psReady = $false
+            $psReady = $false
 
-			Write-Output "Waiting for specialization to complete (this may take a few minutes)..."
-			$startTime = Get-Date
+            Write-Output "Waiting for specialization to complete (this may take a few minutes)..."
+            $startTime = Get-Date
 
-			do 
-			{
-				$timeElapsed = $(Get-Date) - $startTime
+            do 
+            {
+                $timeElapsed = $(Get-Date) - $startTime
 
-				if ($($timeElapsed).TotalMinutes -ge 30)
-				{
-					throw "Could not connect to PS Direct after 30 minutes"
-				} 
+                if ($($timeElapsed).TotalMinutes -ge 30)
+                {
+                    throw "Could not connect to PS Direct after 30 minutes"
+                } 
 
-				Start-Sleep -sec 1
-				$psReady = Invoke-Command -VMName $($vm.Name) -Credential $credential -ScriptBlock { $True } -ErrorAction SilentlyContinue
-			} 
-			until ($psReady)
+                Start-Sleep -sec 1
+                $psReady = Invoke-Command -VMName $($vm.Name) -Credential $credential -ScriptBlock { $True } -ErrorAction SilentlyContinue
+            } 
+            until ($psReady)
 
-			Write-Verbose "PowerShell Direct connected."
+            Write-Verbose "PowerShell Direct connected."
     
-			$guestScriptBlock = 
-			{
-				[CmdletBinding()]
-				param(
-					[Parameter(Position=0)]
-					[string]
-					$WimName,
+            $guestScriptBlock = 
+            {
+                [CmdletBinding()]
+                param(
+                    [Parameter(Position=0)]
+                    [string]
+                    $WimName,
 
-					[Parameter(Position=1)]
-					[string]
-					$ParameterSetName,
+                    [Parameter(Position=1)]
+                    [string]
+                    $ParameterSetName,
 
-					[Parameter(Position=2)]
-					[bool]
-					$HyperV,
+                    [Parameter(Position=2)]
+                    [bool]
+                    $HyperV
+                    )
 
-					[Parameter(Position=3)]
-					[string]
-					$NATSubnetPrefix
-					)
+                Write-Verbose "Onlining disks..."
+                Get-Disk | ? IsOffline | Set-Disk -IsOffline:$false
 
-				Write-Verbose "Onlining disks..."
-				Get-Disk | ? IsOffline | Set-Disk -IsOffline:$false
+                Write-Output "Completing container install..."
+                $installCommand = "$($env:SystemDrive)\Install-ContainerHost.ps1 -PSDirect "
 
-				Write-Output "Completing container install..."
-				$installCommand = "$($env:SystemDrive)\Install-ContainerHost.ps1 -PSDirect -NATSubnetPrefix $NATSubnetPrefix "
+                if ($ParameterSetName -eq "Staging")
+                {
+                    $installCommand += "-Staging "
+                }
+                else
+                {
+                    $installCommand += "-DockerPath ""$($env:SystemRoot)\System32\docker.exe"" -DockerDPath ""$($env:SystemRoot)\System32\dockerd.exe"""
+                }
 
-				if ($ParameterSetName -eq "SkipDocker")
-				{
-					$installCommand += "-SkipDocker "
-				}
-				elseif ($ParameterSetName -eq "Staging")
-				{
-					$installCommand += "-Staging "
-				}
-				else
-				{
-					$installCommand += "-DockerPath ""$($env:SystemRoot)\System32\docker.exe"" "
-				}
+                if ($WimName -ne "")
+                {
+                    $installCommand += "-WimPath ""D:\$WimName"" "
+                }
 
-				if ($WimName -ne "")
-				{
-					$installCommand += "-WimPath ""D:\$WimName"" "
-				}
+                if ($HyperV)
+                {
+                    $installCommand += "-HyperV "
+                }
 
-				if ($HyperV)
-				{
-					$installCommand += "-HyperV "
-				}
-
-				#
-				# This is required so that Install-ContainerHost.err goes in the right place
-				#
-				$pwd = "$($env:SystemDrive)\"
+                #
+                # This is required so that Install-ContainerHost.err goes in the right place
+                #
+                $pwd = "$($env:SystemDrive)\"
                 
-				$installCommand += "*>&1 | Tee-Object -FilePath ""$($env:SystemDrive)\Install-ContainerHost.log"" -Append"
+                $installCommand += "*>&1 | Tee-Object -FilePath ""$($env:SystemDrive)\Install-ContainerHost.log"" -Append"
 
-				Invoke-Expression $installCommand
-			}
+                Invoke-Expression $installCommand
+            }
     
-			Write-Output "Executing Install-ContainerHost.ps1 inside the VM..."
-			$wimName = ""
-			if ($global:WimSaveMode)
-			{
-				$wimName = $global:localWimName
-			}
-			Invoke-Command -VMName $($vm.Name) -Credential $credential -ScriptBlock $guestScriptBlock -ArgumentList $wimName,$global:ParameterSet,$HyperV,$NATSubnetPrefix
+            Write-Output "Executing Install-ContainerHost.ps1 inside the VM..."
+            $wimName = ""
+            if ($global:WimSaveMode)
+            {
+                $wimName = $global:localWimName
+            }
+            Invoke-Command -VMName $($vm.Name) -Credential $credential -ScriptBlock $guestScriptBlock -ArgumentList $wimName,$global:ParameterSet,$HyperV
     
-			$scriptFailed = Invoke-Command -VMName $($vm.Name) -Credential $credential -ScriptBlock { Test-Path "$($env:SystemDrive)\Install-ContainerHost.err" }
+            $scriptFailed = Invoke-Command -VMName $($vm.Name) -Credential $credential -ScriptBlock { Test-Path "$($env:SystemDrive)\Install-ContainerHost.err" }
     
-			if ($scriptFailed)
-			{
-				throw "Install-ContainerHost.ps1 failed in the VM"
-			}
+            if ($scriptFailed)
+            {
+                throw "Install-ContainerHost.ps1 failed in the VM"
+            }
 
-			#
-			# Cleanup
-			#
-			if ($global:WimSaveMode)
-			{
-				Write-Output "Cleaning up temporary WIM VHD"
-				$vm | Get-VMHardDiskDrive |? Path -eq $wimVhd.Path | Remove-VMHardDiskDrive 
-				Remove-Item $wimVhd.Path
-			}
+            #
+            # Cleanup
+            #
+            if ($global:WimSaveMode)
+            {
+                Write-Output "Cleaning up temporary WIM VHD"
+                $vm | Get-VMHardDiskDrive |? Path -eq $wimVhd.Path | Remove-VMHardDiskDrive 
+                Remove-Item $wimVhd.Path
+            }
     
-			Write-Output "VM $($vm.Name) is ready for use as a container host."
-		}
-		else
-		{
-			Write-Output "VM $($vm.Name) will be ready to use as a container host when Install-ContainerHost.ps1 completes execution inside the VM."
-		}
-	}
+            Write-Output "VM $($vm.Name) is ready for use as a container host."
+        }
+        else
+        {
+            Write-Output "VM $($vm.Name) will be ready to use as a container host when Install-ContainerHost.ps1 completes execution inside the VM."
+        }
+    }
 
     Write-Output "See https://msdn.microsoft.com/virtualization/windowscontainers/containers_welcome for more information about using Containers."
     Write-Output "The source code for these installation scripts is available here: https://github.com/Microsoft/Virtualization-Documentation/tree/master/windows-server-container-tools"
@@ -1044,7 +1042,7 @@ Expand-ArchivePrivate
 
 
 function
-Get-InstalledContainerImage
+Test-InstalledContainerImage
 {
     [CmdletBinding()]
     param(
@@ -1053,8 +1051,10 @@ Get-InstalledContainerImage
         [ValidateNotNullOrEmpty()]
         $BaseImageName
     )
+
+    $path = Join-Path (Join-Path $env:ProgramData "Microsoft\Windows\Images") "*$BaseImageName*"
     
-    return Get-ContainerImage |? IsOSImage |? Name -eq $BaseImageName
+    return Test-Path $path
 }
 
 
@@ -1135,20 +1135,27 @@ Test-Admin()
 
 
 function 
-Test-ContainerProvider()
+Test-ContainerImageProvider()
 {
     if (-not (Get-Command Install-ContainerImage -ea SilentlyContinue))
     {   
         Wait-Network
 
-        Write-Output "Installing ContainerProvider package..."
-        Install-PackageProvider ContainerProvider -Force | Out-Null
+        Write-Output "Installing ContainerImage provider..."
+        Install-PackageProvider ContainerImage -Force | Out-Null
     }
 
     if (-not (Get-Command Install-ContainerImage -ea SilentlyContinue))
     {
-        throw "Could not install ContainerProvider"
+        throw "Could not install ContainerImage provider"
     }
+}
+
+
+function 
+Test-Client()
+{
+    return (-not ((Get-Command Get-WindowsFeature -ErrorAction SilentlyContinue) -or (Test-Nano)))
 }
 
 
@@ -1157,7 +1164,10 @@ Test-Nano()
 {
     $EditionId = (Get-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion' -Name 'EditionID').EditionId
 
-    return (($EditionId -eq "NanoServer") -or ($EditionId -eq "ServerTuva"))
+    return (($EditionId -eq "ServerStandardNano") -or 
+            ($EditionId -eq "ServerDataCenterNano") -or 
+            ($EditionId -eq "NanoServer") -or 
+            ($EditionId -eq "ServerTuva"))
 }
 
 
@@ -1194,6 +1204,12 @@ Wait-Network()
 
 
 function
+Get-DockerImages
+{
+    return docker images
+}
+
+function
 Find-DockerImages
 {
     [CmdletBinding()]
@@ -1205,6 +1221,139 @@ Find-DockerImages
     )
 
     return docker images | Where { $_ -match $BaseImageName.tolower() }
+}
+
+
+function 
+Install-Docker()
+{
+    [CmdletBinding()]
+    param(
+        [string]
+        [ValidateNotNullOrEmpty()]
+        $DockerPath = "https://aka.ms/tp5/docker",
+
+        [string]
+        [ValidateNotNullOrEmpty()]
+        $DockerDPath = "https://aka.ms/tp5/dockerd"
+    )
+
+    Test-Admin
+
+    Write-Output "Installing Docker..."
+    Copy-File -SourcePath $DockerPath -DestinationPath $env:windir\System32\docker.exe
+
+    try
+    {
+        Write-Output "Installing Docker daemon..."
+        Copy-File -SourcePath $DockerDPath -DestinationPath $env:windir\System32\dockerd.exe
+    }
+    catch 
+    {
+        Write-Warning "DockerD not yet present."
+    }
+
+    $dockerData = "$($env:ProgramData)\docker"
+    $dockerLog = "$dockerData\daemon.log"
+
+    if (-not (Test-Path $dockerData))
+    {
+        Write-Output "Creating Docker program data..."
+        New-Item -ItemType Directory -Force -Path $dockerData | Out-Null
+    }
+
+    $dockerDaemonScript = "$dockerData\runDockerDaemon.cmd"
+
+    New-DockerDaemonRunText | Out-File -FilePath $dockerDaemonScript -Encoding ASCII
+
+    if (Test-Nano)
+    {
+        Write-Output "Creating scheduled task action..."
+        $action = New-ScheduledTaskAction -Execute "cmd.exe" -Argument "/c $dockerDaemonScript > $dockerLog 2>&1"
+
+        Write-Output "Creating scheduled task trigger..."
+        $trigger = New-ScheduledTaskTrigger -AtStartup
+
+        Write-Output "Creating scheduled task settings..."
+        $settings = New-ScheduledTaskSettingsSet -Priority 5
+
+        Write-Output "Registering Docker daemon to launch at startup..."
+        Register-ScheduledTask -TaskName $global:DockerServiceName -Action $action -Trigger $trigger -Settings $settings -User SYSTEM -RunLevel Highest | Out-Null
+
+        Write-Output "Launching daemon..."
+        Start-ScheduledTask -TaskName $global:DockerServiceName
+    }
+    else
+    {
+        if (Test-Path "$($env:SystemRoot)\System32\nssm.exe")
+        {
+            Write-Output "NSSM is already installed"
+        }
+        else
+        {
+            Get-Nsmm -Destination "$($env:SystemRoot)\System32" -WorkingDir "$env:temp"
+        }
+
+        Write-Output "Configuring NSSM for $global:DockerServiceName service..."
+        Start-Process -Wait "nssm" -ArgumentList "install $global:DockerServiceName $($env:SystemRoot)\System32\cmd.exe /s /c $dockerDaemonScript < nul"
+        Start-Process -Wait "nssm" -ArgumentList "set $global:DockerServiceName DisplayName Docker Daemon"
+        Start-Process -Wait "nssm" -ArgumentList "set $global:DockerServiceName Description The Docker Daemon provides management capabilities of containers for docker clients"
+        # Pipe output to daemon.log
+        Start-Process -Wait "nssm" -ArgumentList "set $global:DockerServiceName AppStderr $dockerLog"
+        Start-Process -Wait "nssm" -ArgumentList "set $global:DockerServiceName AppStdout $dockerLog"
+        # Allow 30 seconds for graceful shutdown before process is terminated
+        Start-Process -Wait "nssm" -ArgumentList "set $global:DockerServiceName AppStopMethodConsole 30000"
+
+        Start-Service -Name $global:DockerServiceName
+    }
+
+    #
+    # Waiting for docker to come to steady state
+    #
+    Wait-Docker
+
+    Write-Output "The following images are present on this machine:"
+    foreach ($image in (Get-DockerImages))
+    {
+        Write-Output "    $image"
+    }
+    Write-Output ""
+}
+
+
+function
+New-DockerDaemonRunText
+{
+    return @"
+
+@echo off
+set certs=%ProgramData%\docker\certs.d
+
+if exist %ProgramData%\docker (goto :run)
+mkdir %ProgramData%\docker
+
+:run
+if exist %certs%\server-cert.pem (if exist %ProgramData%\docker\tag.txt (goto :secure))
+
+if not exist %systemroot%\system32\dockerd.exe (goto :legacy)
+
+dockerd -H npipe:// 
+goto :eof
+
+:legacy
+docker daemon -H npipe:// 
+goto :eof
+
+:secure
+if not exist %systemroot%\system32\dockerd.exe (goto :legacysecure)
+dockerd -H npipe:// -H 0.0.0.0:2376 --tlsverify --tlscacert=%certs%\ca.pem --tlscert=%certs%\server-cert.pem --tlskey=%certs%\server-key.pem
+goto :eof
+
+:legacysecure
+docker daemon -H npipe:// -H 0.0.0.0:2376 --tlsverify --tlscacert=%certs%\ca.pem --tlscert=%certs%\server-cert.pem --tlskey=%certs%\server-key.pem
+
+"@
+
 }
 
 
@@ -1272,20 +1421,13 @@ Wait-Docker()
     {
         try
         {
-            if (Test-Nano)
+            docker version | Out-Null
+
+            if (-not $?)
             {
-                #
-                # Nano doesn't support Invoke-RestMethod, we will parse 'docker ps' output
-                #
-                if ((docker ps 2>&1 | Select-String "error") -ne $null)
-                {
-                    throw "Docker daemon is not running yet"
-                }
+                throw "Docker daemon is not running yet"
             }
-            else
-            {
-                Invoke-RestMethod -Uri http://127.0.0.1:2375/info -Method GET | Out-Null
-            }
+
             $dockerReady = $true
         }
         catch 
@@ -1459,10 +1601,10 @@ Approve-Eula
     $choiceList.Add((New-Object "System.Management.Automation.Host.ChoiceDescription" -ArgumentList "&Yes"))
     
     $eulaText = @"
-Before installing and using the Windows Server Technical Preview 4 with Containers virtual machine you must: 
-    1.	Review the license terms by navigating to this link: http://aka.ms/tp4/containerseula
+Before installing and using the Windows Server Technical Preview 5 with Containers virtual machine you must: 
+    1.	Review the license terms by navigating to this link: https://aka.ms/tp5/containerseula
     2.	Print and retain a copy of the license terms for your records.
-By downloading and using the Windows Server Technical Preview 4 with Containers virtual machine you agree to such license terms. Please confirm you have accepted and agree to the license terms.
+By downloading and using the Windows Server Technical Preview 5 with Containers virtual machine you agree to such license terms. Please confirm you have accepted and agree to the license terms.
 "@
 
     return [boolean]$Host.ui.PromptForChoice($null, $eulaText, $choiceList, 0)     

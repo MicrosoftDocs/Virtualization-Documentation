@@ -26,11 +26,12 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <ItemGroup />
   <ItemGroup>
+    <Compile Include="Convert-WindowsImage.ps1" />
     <Compile Include="Convert-WindowsImage.psd1" />
     <Compile Include="Convert-WindowsImage.psm1" />
     <Compile Include="Convert-WindowsImage.tests.ps1" />
+    <Compile Include="README.md" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Target Name="Build" />

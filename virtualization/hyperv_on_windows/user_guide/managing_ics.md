@@ -87,7 +87,9 @@ Stopped  vmicvmsession      Hyper-V VM Session Service
 Running  vmicvss            Hyper-V Volume Shadow Copy Requestor
 ```
 
-Start or stop services using [`Start-Service`](https://technet.microsoft.com/en-us/library/hh849825.aspx) or [`Stop-Service`](https://technet.microsoft.com/en-us/library/hh849790.aspx) .
+Start or stop services using [`Start-Service`](https://technet.microsoft.com/en-us/library/hh849825.aspx) or [`Stop-Service`](https://technet.microsoft.com/en-us/library/hh849790.aspx).
+
+For example, to disable PowerShell Direct you can run `Stop-Service -Name vmicvmsession`.
 
 By default, all integration services are enabled in the guest operation system.
 
@@ -177,6 +179,8 @@ Now if you run `ps -ef | hv` again, you'll discover a `hv_kvp_daemon` process wi
 Keep integration services current in order to receive the best virtual machine performance and features possible.
 
 **For virtual machines running on Windows 10 hosts:**
+
+> **Note:** The ISO image file vmguest.iso is no longer needed for updating integration components. It's not included with Hyper-V on Windows 10.
 
 | Guest OS | Update mechanism | Notes |
 |:---------|:---------|:---------|

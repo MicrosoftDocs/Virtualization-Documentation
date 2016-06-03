@@ -2,81 +2,97 @@
 author: neilpeterson
 ---
 
-# Container Shared Folders
+# Container Data Volumes
 
 **This is preliminary content and subject to change.** 
 
-Shared folders allow data to be shared between a container host and container. When the shared folder has been created, the shared folder will be available inside of the container. Any data that is placed in the shared folder from the host, will be available inside of the container. Any data placed in the shared folder from within the container will be available on the host. A single folder on the host can be shared with many containers, in this configuration data can be shared between running containers.
+When creating containers, you may need to create a new data directory, or add an existing directory to the container. This can be accomplished through adding data volumes. Data volumes are visible to both container and continuer host, and data can be shared between them. Data volumes can also be shared between multiple containers on the same container host. 
+This document will detail creating, inspecting, and removing data volumes.
 
-## Manage Data - PowerShell
+## Data volumes
 
-### Create Shared Folder
+### Create new volume
 
-To create a shared folder, use the `Add-ContainerSharedFolder` command. The below example creates a directory in the container `c:\shared_data`, that is mapped to a directory on the host `c:\data_source`.
+Create a new data volume using `-v` parameter of the `docker run` command. By default, new data volumes are stored on the host under 'c:\ProgramData\Docker\volumes'.
 
-> A container must be in a stopped state when adding a shared folder.
+This example creates a data volume named 'new-data-volume'. This data volume will be accessible in the running container at 'c:\new-data-volume'.
 
-```powershell
-PS C:\> Add-ContainerSharedFolder -ContainerName DEMO -SourcePath c:\data_source -DestinationPath c:\shared_data
-
-ContainerName SourcePath 	   DestinationPath AccessMode
-------------- ---------- 	   --------------- ----------
-DEMO          c:\data_source   c:\shared_data  ReadWrite
+```none
+docker run -it -v c:\new-data-volume windowsservercore cmd
 ```
 
-### Read Only Shared Folder
+For more information on creating volumes, see [Manage data in containers on docker.com](https://docs.docker.com/engine/userguide/containers/dockervolumes/#data-volumes).
 
-```powershell
-PS C:\> Add-ContainerSharedFolder -ContainerName DEMO -SourcePath c:\sf1 -DestinationPath c:\sf2 -AccessMode ReadOnly
+### Mounting existing directory
 
-ContainerName SourcePath DestinationPath AccessMode
-------------- ---------- --------------- ----------
-DEMO         c:\sf1     c:\sf2          ReadOnly
+In addition to creating a new data volume, you may want to pass an existing directory from the host, through to the container. This can also be accomplished with the `-v` parameter of the `docker run` command. All files inside host directory will also be available in the container. Any files created by the container in the mounted volume, will be available on the host. The same directory can be mounted to many containers. In this configuration, data can be shared between containers.
+
+In this example, the source directory, 'c:\source', is mounted into a container as 'c:\destination'.
+
+```none
+docker run -it -v c:\source:c:\destination windowsservercore cmd
 ```
 
-### List Shared Folders
+For more information on mounting host directories, see [Manage data in containers on docker.com](https://docs.docker.com/engine/userguide/containers/dockervolumes/#mount-a-host-directory-as-a-data-volume).
 
-To see a list of shared folders for a particular container use the `Get-ContainerSharedFolder` command.
+### Mount single files
 
-```powershell
-PS C:\> Get-ContainerSharedFolder -ContainerName DEMO2
+A single file can be mounted into a container by explicitly specifying the file name. In this example, the directory being shared includes many files, however only the 'config.ini' file is available inside of the container. 
 
-ContainerName SourcePath DestinationPath AccessMode
-------------- ---------- --------------- ----------
-DEMO         c:\source  c:\source       ReadWrite
+```none
+docker run -it -v c:\container-share\config.ini windowsservercore cmd
 ```
 
-### Modify Shared Folder
+Inside the running container, only the config.ini file is visible.
 
-To modify and existing shared folder configuration, use the `Set-ContainerSharedFolder` command.
+```none
+c:\container-share>dir
+ Volume in drive C has no label.
+ Volume Serial Number is 7CD5-AC14
 
-```powershell
-PS C:\> Set-ContainerSharedFolder -ContainerName SFRO -SourcePath c:\sf1 -DestinationPath c:\sf1
+ Directory of c:\container-share
+
+04/04/2016  12:53 PM    <DIR>          .
+04/04/2016  12:53 PM    <DIR>          ..
+04/04/2016  12:53 PM    <SYMLINKD>     config.ini
+               0 File(s)              0 bytes
+               3 Dir(s)  21,184,208,896 bytes free
 ```
 
-### Remove Shared Folder
+For more information on mounting single files, see [Manage data in containers on docker.com](https://docs.docker.com/engine/userguide/containers/dockervolumes/#mount-a-host-directory-as-a-data-volume).
 
-To remove a shared folder, use the `Remove-ContainerSharedFolder` command.
+### Data volume containers
 
-> A container must be in a stopped state when removing shared folder
+Data volumes can be inherited from other running containers using the `--volumes-from` parameter of the `docker run` command. Using this inheritance, a container can be created with the explicit purpose of hosting data volumes for containerized applications. 
 
-```powershell
-PS C:\> Remove-ContainerSharedFolder -ContainerName DEMO2 -SourcePath c:\source -DestinationPath c:\source
-```
-## Manage Data - Docker
+This example mounts the data volumes from the container ‘cocky_bell` into a new container. Once the new container has been started, the data found in this volume will be available for applications running in the container.  
 
-### Mounting Volumes
-
-When managing Windows Containers with Docker, volumes can be mounted using the `-v` option.
-
-In the below example the source folder is c:\source and destination folder c:\destination.
-
-```powershell
-PS C:\> docker run -it -v c:\source:c:\destination 1f62aaf73140 cmd
+```none
+docker run -it --volumes-from cocky_bell windowsservercore cmd
 ```
 
-For more information on managing data in containers with Docker see [Docker Volumes on Docker.com](https://docs.docker.com/userguide/dockervolumes/).
+For more information on data containers see [Manage data in containers on docker.com](https://docs.docker.com/engine/userguide/containers/dockervolumes/#mount-a-host-file-as-a-data-volume).
 
-## Video Walkthrough
+### Inspect shared data volume
 
-<iframe src="https://channel9.msdn.com/Blogs/containers/Container-Fundamentals--Part-3-Shared-Folders/player" width="800" height="450"  allowFullScreen="true" frameBorder="0" scrolling="no"></iframe>
+Mounted volumes can be viewed using the `docker inspect` command.
+
+```none
+docker inspect backstabbing_kowalevski
+```
+
+This will return information about the container, including a section named ‘Mounts’, which contains data about the mounted volumes such as the source and destination directory.
+
+```none
+"Mounts": [
+    {
+        "Source": "c:\\container-share",
+        "Destination": "c:\\data",
+        "Mode": "",
+        "RW": true,
+        "Propagation": ""
+}
+```
+
+For more information on inspecting volumes, see [Manage data in containers on docker.com](https://docs.docker.com/engine/userguide/containers/dockervolumes/#locating-a-volume).
+

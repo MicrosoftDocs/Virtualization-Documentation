@@ -1,8 +1,8 @@
-# Nano Server installation option of Windows Server Technical Preview 4 for Developers
+# Nano Server installation option of Windows Server Technical Preview 5 for Developers
 
 PLEASE READ PRIOR TO DOWNLOAD: By downloading and using the VHD at the link below, you agree to the License Terms, and you may not use it if you have not accepted the License Terms.
 
-Download VHD:  [Nano Server installation option of Windows Server Technical Preview 4 for Developers](http://aka.ms/nanoevalvhd)
+Download VHD:  [Nano Server installation option of Windows Server Technical Preview 5 for Developers](http://aka.ms/nanoevalvhd)
 
 # End User License Agreement
 

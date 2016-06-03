@@ -1,5 +1,14 @@
 ﻿---
+title: Container Ecosystem
+description: Building a Container Ecosystem.
+keywords: metadata, containers
 author: scooley
+manager: timlt
+ms.date: 04/20/2016
+ms.topic: about-article
+ms.prod: windows-contianers
+ms.service: windows-containers
+ms.assetid: 29fbe13a-228a-4eaa-9d4d-90ae60da5965
 ---
 
 # Building a Container Ecosystem

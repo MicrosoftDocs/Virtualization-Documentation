@@ -1,5 +1,6 @@
 ---
 author: neilpeterson
+redirect_url: ../deployment/deployment_azure
 ---
 
 # Azure Quick Start
