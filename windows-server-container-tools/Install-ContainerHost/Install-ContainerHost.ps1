@@ -61,17 +61,20 @@
 param(
     [string]
     [ValidateNotNullOrEmpty()]
-    $DockerPath = "https://aka.ms/tp5/docker",
+    $DockerPath = "https://aka.ms/tp5/b/docker",
 
     [string]
     [ValidateNotNullOrEmpty()]
-    $DockerDPath = "https://aka.ms/tp5/dockerd",
+    $DockerDPath = "https://aka.ms/tp5/b/dockerd",
 
     [string]
     $ExternalNetAdapter,
 
     [switch]
     $Force,
+    
+    [switch]
+    $IgnoreClient,
 
     [switch]
     $HyperV,
@@ -255,10 +258,18 @@ Install-ContainerHost
 
     if (Test-Client)
     {
-        if (-not $HyperV)
+        if (-not $IgnoreClient)
         {
-            Write-Output "Enabling Hyper-V containers by default for Client SKU"
-            $HyperV = $true
+            Write-Warning "We recommend that you use the steps outlined in our documentation at https://aka.ms/windowscontainers/hypervonwin10. If you would like to proceed with this script, include the flag -IgnoreClient."
+            throw "Ran on client without -IgnoreClient flag."
+        }
+        else
+        {
+            if (-not $HyperV)
+            {
+                Write-Output "Enabling Hyper-V containers by default for Client SKU"
+                $HyperV = $true
+            }
         }    
     }
     #
@@ -269,25 +280,6 @@ Install-ContainerHost
     if ($HyperV)
     {
         Install-Feature -FeatureName Hyper-V
-
-        #
-        # TODO: remove if/else when IUM and DirectMap can coexist
-        #
-        #if ((Get-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\DeviceGuard" -Name HyperVVirtualizationBasedSecurityOptOut -ErrorAction SilentlyContinue).HyperVVirtualizationBasedSecurityOptOut -eq 1)
-        #{
-        #    Write-Output "IUM is already disabled (DirectMap will be operational)."
-        #}
-        #else
-        #{
-        #    Write-Output "Disabling IUM to enable DirectMap"
-        #    if (-not (Get-Item -Path "HKLM:\SYSTEM\CurrentControlSet\Control\DeviceGuard" -ErrorAction SilentlyContinue))
-        #    {
-        #        New-Item -Path "HKLM:\SYSTEM\CurrentControlSet\Control\DeviceGuard"
-        #    }
-        #
-        #    Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\DeviceGuard" -Name HyperVVirtualizationBasedSecurityOptOut -Value 1
-        #    $global:RebootRequired = $true
-        #}
     }
 
     if ($global:RebootRequired)
@@ -306,10 +298,8 @@ Install-ContainerHost
     #
     if ((Get-ScheduledTask -TaskName $global:BootstrapTask -ErrorAction SilentlyContinue) -ne $null)
     {
-        schtasks /DELETE /TN $global:BootstrapTask /F
-        #Unregister-ScheduledTask -TaskName $global:BootstrapTask -Confirm $true
-    }
-    
+        Unregister-ScheduledTask -TaskName $global:BootstrapTask -Confirm:$false
+    }    
 
     #
     # Configure networking
@@ -319,7 +309,7 @@ Install-ContainerHost
         Write-Output "Configuring ICMP firewall rules for containers..."
         netsh advfirewall firewall add rule name="ICMP for containers" dir=in protocol=icmpv4 action=allow | Out-Null
         netsh advfirewall firewall add rule name="ICMP for containers" dir=out protocol=icmpv4 action=allow | Out-Null
-        
+
         if ($TransparentNetwork)
         {
             Write-Output "Waiting for Hyper-V Management..."
@@ -484,7 +474,7 @@ Install-ContainerHost
             }
 
             $imageName = (get-windowsimage -imagepath $WimPath -LogPath ($env:temp+"dism_$(random)_GetImageInfo.log") -Index 1).imagename
-                        
+
             if ($PSDirect -and (Test-Nano))
             {
                 #
@@ -536,45 +526,7 @@ Install-ContainerHost
     {
         foreach ($baseImage in $newBaseImages)
         {
-            if ($baseImage -eq "WindowsServerCore")
-            {
-                #
-                # Workaround for trusted installer thing
-                #
-                Write-Output "Creating a first boot layer..."
-
-                $dockerFile = Join-Path $pwd "dockerfile"
-                $dockerFileContents = @"
-FROM windowsservercore:10.0.14300.1000
-RUN echo "Building first boot layer..."
-"@
-
-                $dockerFileContents | Out-File -FilePath $dockerFile -Encoding ASCII
-
-                docker build -t windowsservercore:latest .
-
-                Remove-Item $dockerFile
-            }
-            else
-            {
-                Write-DockerImageTag -BaseImageName $baseImage
-            }
-        }
-
-        "tag complete" | Out-File -FilePath "$global:DockerData\tag.txt" -Encoding ASCII
-
-        #
-        # if certs.d exists, restart docker in TLS mode
-        #
-        $dockerCerts = "$($env:ProgramData)\docker\certs.d"
-
-        if (Test-Path $dockerCerts)
-        {
-            if ((Get-ChildItem $dockerCerts).Count -gt 0)
-            {
-                Stop-Docker
-                Start-Docker
-            }
+            Write-DockerImageTag -BaseImageName $baseImage
         }
     }
 
@@ -583,7 +535,7 @@ RUN echo "Building first boot layer..."
     Write-Output "Script complete!"
 }$global:AdminPriviledges = $false
 $global:DockerData = "$($env:ProgramData)\docker"
-$global:DockerServiceName = "Docker"
+$global:DockerServiceName = "docker"
 
 function
 Copy-File
@@ -706,55 +658,6 @@ Test-InstalledContainerImage
     $path = Join-Path (Join-Path $env:ProgramData "Microsoft\Windows\Images") "*$BaseImageName*"
     
     return Test-Path $path
-}
-
-
-function
-Get-Nsmm
-{
-    [CmdletBinding()]
-    param(
-        [Parameter(Mandatory=$true)]
-        [string]
-        [ValidateNotNullOrEmpty()]
-        $Destination,
-
-        [string]
-        [ValidateNotNullOrEmpty()]
-        $WorkingDir = "$env:temp"
-    )
-    
-    Write-Output "This script uses a third party tool: NSSM. For more information, see https://nssm.cc/usage"       
-    Write-Output "Downloading NSSM..."
-
-    $nssmUri = "https://nssm.cc/release/nssm-2.24.zip"            
-    $nssmZip = "$($env:temp)\$(Split-Path $nssmUri -Leaf)"
-            
-    Write-Verbose "Creating working directory..."
-    $tempDirectory = New-Item -ItemType Directory -Force -Path "$($env:temp)\nssm"
-    
-    Copy-File -SourcePath $nssmUri -DestinationPath $nssmZip
-            
-    Write-Output "Extracting NSSM from archive..."
-    if (Test-Nano)
-    {
-        Expand-ArchiveNano -Path $nssmZip -DestinationPath $tempDirectory.FullName
-    }
-    elseif ($PSVersionTable.PSVersion.Major -ge 5)
-    {
-        Expand-Archive -Path $nssmZip -DestinationPath $tempDirectory.FullName
-    }
-    else
-    {
-        Expand-ArchivePrivate -Path $nssmZip -DestinationPath $tempDirectory.FullName
-    }
-    Remove-Item $nssmZip
-
-    Write-Verbose "Copying NSSM to $Destination..."
-    Copy-Item -Path "$($tempDirectory.FullName)\nssm-2.24\win64\nssm.exe" -Destination "$Destination"
-
-    Write-Verbose "Removing temporary directory..."
-    $tempDirectory | Remove-Item -Recurse
 }
 
 
@@ -893,64 +796,37 @@ Install-Docker()
 
     Write-Output "Installing Docker..."
     Copy-File -SourcePath $DockerPath -DestinationPath $env:windir\System32\docker.exe
+        
+    Write-Output "Installing Docker daemon..."
+    Copy-File -SourcePath $DockerDPath -DestinationPath $env:windir\System32\dockerd.exe
 
-    try
+    #
+    # Register the docker service.
+    # Configuration options should be placed at %programdata%\docker\config\daemon.json
+    #
+    $daemonSettings = New-Object PSObject
+        
+    $certsPath = Join-Path $global:DockerData "certs.d"
+
+    if (Test-Path $certsPath)
     {
-        Write-Output "Installing Docker daemon..."
-        Copy-File -SourcePath $DockerDPath -DestinationPath $env:windir\System32\dockerd.exe
-    }
-    catch 
-    {
-        Write-Warning "DockerD not yet present."
-    }
-
-    $dockerLog = "$global:DockerData\daemon.log"
-
-    if (-not (Test-Path $global:DockerData))
-    {
-        Write-Output "Creating Docker program data..."
-        New-Item -ItemType Directory -Force -Path $global:DockerData | Out-Null
-    }
-
-    $dockerDaemonScript = "$global:DockerData\runDockerDaemon.cmd"
-
-    New-DockerDaemonRunText | Out-File -FilePath $dockerDaemonScript -Encoding ASCII
-
-    if (Test-Nano)
-    {
-        Write-Output "Creating scheduled task action..."
-        $action = New-ScheduledTaskAction -Execute "cmd.exe" -Argument "/c $dockerDaemonScript > $dockerLog 2>&1"
-
-        Write-Output "Creating scheduled task trigger..."
-        $trigger = New-ScheduledTaskTrigger -AtStartup
-
-        Write-Output "Creating scheduled task settings..."
-        $settings = New-ScheduledTaskSettingsSet -Priority 5
-
-        Write-Output "Registering Docker daemon to launch at startup..."
-        Register-ScheduledTask -TaskName $global:DockerServiceName -Action $action -Trigger $trigger -Settings $settings -User SYSTEM -RunLevel Highest | Out-Null
+        $daemonSettings | Add-Member NoteProperty hosts @("npipe://", "0.0.0.0:2376")
+        $daemonSettings | Add-Member NoteProperty tlsverify true
+        $daemonSettings | Add-Member NoteProperty tlscacert (Join-Path $certsPath "ca.pem")
+        $daemonSettings | Add-Member NoteProperty tlscert (Join-Path $certsPath "server-cert.pem")
+        $daemonSettings | Add-Member NoteProperty tlskey (Join-Path $certsPath "server-key.pem")
     }
     else
     {
-        if (Test-Path "$($env:SystemRoot)\System32\nssm.exe")
-        {
-            Write-Output "NSSM is already installed"
-        }
-        else
-        {
-            Get-Nsmm -Destination "$($env:SystemRoot)\System32" -WorkingDir "$env:temp"
-        }
-
-        Write-Output "Configuring NSSM for $global:DockerServiceName service..."
-        Start-Process -Wait "nssm" -ArgumentList "install $global:DockerServiceName $($env:SystemRoot)\System32\cmd.exe /s /c $dockerDaemonScript < nul"
-        Start-Process -Wait "nssm" -ArgumentList "set $global:DockerServiceName DisplayName Docker Daemon"
-        Start-Process -Wait "nssm" -ArgumentList "set $global:DockerServiceName Description The Docker Daemon provides management capabilities of containers for docker clients"
-        # Pipe output to daemon.log
-        Start-Process -Wait "nssm" -ArgumentList "set $global:DockerServiceName AppStderr $dockerLog"
-        Start-Process -Wait "nssm" -ArgumentList "set $global:DockerServiceName AppStdout $dockerLog"
-        # Allow 30 seconds for graceful shutdown before process is terminated
-        Start-Process -Wait "nssm" -ArgumentList "set $global:DockerServiceName AppStopMethodConsole 30000"
+        # Default local host
+        $daemonSettings | Add-Member NoteProperty hosts @("npipe://")
     }
+
+    & dockerd --register-service --service-name $global:DockerServiceName
+
+    $daemonSettingsFile = "$global:DockerData\config\daemon.json"
+
+    $daemonSettings | ConvertTo-Json | Out-File -FilePath $daemonSettingsFile -Encoding ASCII
 
     Start-Docker
 
@@ -968,91 +844,24 @@ Install-Docker()
 }
 
 
-function
-New-DockerDaemonRunText
-{
-    return @"
-
-@echo off
-set certs=%ProgramData%\docker\certs.d
-
-if exist %ProgramData%\docker (goto :run)
-mkdir %ProgramData%\docker
-
-:run
-if exist %certs%\server-cert.pem (if exist %ProgramData%\docker\tag.txt (goto :secure))
-
-if not exist %systemroot%\system32\dockerd.exe (goto :legacy)
-
-dockerd -H npipe:// 
-goto :eof
-
-:legacy
-docker daemon -H npipe:// 
-goto :eof
-
-:secure
-if not exist %systemroot%\system32\dockerd.exe (goto :legacysecure)
-dockerd -H npipe:// -H 0.0.0.0:2376 --tlsverify --tlscacert=%certs%\ca.pem --tlscert=%certs%\server-cert.pem --tlskey=%certs%\server-key.pem
-goto :eof
-
-:legacysecure
-docker daemon -H npipe:// -H 0.0.0.0:2376 --tlsverify --tlscacert=%certs%\ca.pem --tlscert=%certs%\server-cert.pem --tlskey=%certs%\server-key.pem
-
-"@
-
-}
-
-
 function 
 Start-Docker()
 {
-    Write-Output "Starting $global:DockerServiceName..."
-    if (Test-Nano)
-    {
-        Start-ScheduledTask -TaskName $global:DockerServiceName
-        Start-Sleep -Seconds 5
-    }
-    else
-    {
-        Start-Service -Name $global:DockerServiceName
-    }
+    Start-Service -Name $global:DockerServiceName
 }
 
 
 function 
 Stop-Docker()
 {
-    Write-Output "Stopping $global:DockerServiceName..."
-    if (Test-Nano)
-    {
-        Stop-ScheduledTask -TaskName $global:DockerServiceName
-
-        #
-        # ISSUE: can we do this more gently?
-        #
-        Get-Process dockerd | Stop-Process -Force
-    }
-    else
-    {
-        Stop-Service -Name $global:DockerServiceName
-    }
+    Stop-Service -Name $global:DockerServiceName
 }
 
 
 function 
 Test-Docker()
 {
-    $service = $null
-
-    if (Test-Nano)
-    {
-        $service = Get-ScheduledTask -TaskName $global:DockerServiceName -ErrorAction SilentlyContinue
-    }
-    else
-    {
-        $service = Get-Service -Name $global:DockerServiceName -ErrorAction SilentlyContinue
-    }
+    $service = Get-Service -Name $global:DockerServiceName -ErrorAction SilentlyContinue
 
     return ($service -ne $null)
 }
