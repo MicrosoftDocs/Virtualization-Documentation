@@ -1,5 +1,14 @@
 ---
+title: About Windows Containers
+description: Learn about Windows containers.
+keywords: docker, containers
 author: neilpeterson
+manager: timlt
+ms.date: 05/02/2016
+ms.topic: article
+ms.prod: windows-containers
+ms.service: windows-containers
+ms.assetid: 8e273856-3620-4e58-9d1a-d1e06550448
 ---
 
 # Windows Containers

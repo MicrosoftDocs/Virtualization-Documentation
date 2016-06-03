@@ -551,7 +551,7 @@ RUN echo "Building first boot layer..."
 
                 $dockerFileContents | Out-File -FilePath $dockerFile -Encoding ASCII
 
-                docker build -t windowsservercore:10.0.14300.1000 .
+                docker build -t windowsservercore:latest .
 
                 Remove-Item $dockerFile
             }
@@ -561,7 +561,7 @@ RUN echo "Building first boot layer..."
             }
         }
 
-        "tag complete" | Out-File -FilePath "$dockerData\tag.txt" -Encoding ASCII
+        "tag complete" | Out-File -FilePath "$global:DockerData\tag.txt" -Encoding ASCII
 
         #
         # if certs.d exists, restart docker in TLS mode
@@ -582,6 +582,7 @@ RUN echo "Building first boot layer..."
 
     Write-Output "Script complete!"
 }$global:AdminPriviledges = $false
+$global:DockerData = "$($env:ProgramData)\docker"
 $global:DockerServiceName = "Docker"
 
 function
@@ -903,16 +904,15 @@ Install-Docker()
         Write-Warning "DockerD not yet present."
     }
 
-    $dockerData = "$($env:ProgramData)\docker"
-    $dockerLog = "$dockerData\daemon.log"
+    $dockerLog = "$global:DockerData\daemon.log"
 
-    if (-not (Test-Path $dockerData))
+    if (-not (Test-Path $global:DockerData))
     {
         Write-Output "Creating Docker program data..."
-        New-Item -ItemType Directory -Force -Path $dockerData | Out-Null
+        New-Item -ItemType Directory -Force -Path $global:DockerData | Out-Null
     }
 
-    $dockerDaemonScript = "$dockerData\runDockerDaemon.cmd"
+    $dockerDaemonScript = "$global:DockerData\runDockerDaemon.cmd"
 
     New-DockerDaemonRunText | Out-File -FilePath $dockerDaemonScript -Encoding ASCII
 
@@ -929,9 +929,6 @@ Install-Docker()
 
         Write-Output "Registering Docker daemon to launch at startup..."
         Register-ScheduledTask -TaskName $global:DockerServiceName -Action $action -Trigger $trigger -Settings $settings -User SYSTEM -RunLevel Highest | Out-Null
-
-        Write-Output "Launching daemon..."
-        Start-ScheduledTask -TaskName $global:DockerServiceName
     }
     else
     {
@@ -953,9 +950,9 @@ Install-Docker()
         Start-Process -Wait "nssm" -ArgumentList "set $global:DockerServiceName AppStdout $dockerLog"
         # Allow 30 seconds for graceful shutdown before process is terminated
         Start-Process -Wait "nssm" -ArgumentList "set $global:DockerServiceName AppStopMethodConsole 30000"
-
-        Start-Service -Name $global:DockerServiceName
     }
+
+    Start-Docker
 
     #
     # Waiting for docker to come to steady state
@@ -1014,6 +1011,7 @@ Start-Docker()
     if (Test-Nano)
     {
         Start-ScheduledTask -TaskName $global:DockerServiceName
+        Start-Sleep -Seconds 5
     }
     else
     {
@@ -1033,7 +1031,7 @@ Stop-Docker()
         #
         # ISSUE: can we do this more gently?
         #
-        Get-Process $global:DockerServiceName | Stop-Process -Force
+        Get-Process dockerd | Stop-Process -Force
     }
     else
     {

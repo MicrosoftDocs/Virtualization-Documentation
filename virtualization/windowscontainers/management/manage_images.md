@@ -1,5 +1,14 @@
 ---
+title: Windows Container Images
+description: Create and manage container images with Windows containers.
+keywords: docker, containers
 author: neilpeterson
+manager: timlt
+ms.date: 05/02/2016
+ms.topic: article
+ms.prod: windows-containers
+ms.service: windows-containers
+ms.assetid: d8163185-9860-4ee4-9e96-17b40fb508bc
 ---
 
 # Windows Container Images
@@ -38,13 +47,13 @@ WindowsServerCore    10.0.14300.1000  ContainerImag... Container OS Image of Win
 To download and install the Nano Server base OS image, run the following. The `-version` parameter is optional. Without a base OS image version specified, the latest version will be installed.
 
 ```none
-Install-ContainerImage -Name NanoServer -Version 10.0.10586.0
+Install-ContainerImage -Name NanoServer -Version 10.0.14300.1010
 ```
 
 Likewise, this command will download and install the Windows Server Core base OS image. The `-version` parameter is optional. Without a base OS image version specified, the latest version will be installed.
 
 ```none
-Install-ContainerImage -Name WindowsServerCore -Version 10.0.10586.0
+Install-ContainerImage -Name WindowsServerCore -Version 10.0.14300.1000
 ```
 
 Verify that the images have been installed using the `docker images` command. 
@@ -53,13 +62,13 @@ Verify that the images have been installed using the `docker images` command.
 docker images
 
 REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
-nanoserver          10.0.14304.1003     40356b90dc80        2 weeks ago         793.3 MB
-windowsservercore   10.0.14304.1003     7837d9445187        2 weeks ago         9.176 GB
+nanoserver          10.0.14300.1010     40356b90dc80        2 weeks ago         793.3 MB
+windowsservercore   10.0.14304.1000     7837d9445187        2 weeks ago         9.176 GB
 ```  
 
 Once installed, you may also want to tag the images with the ‘latest’ tag. These instructions are detailed in the tag section found below.
 
-> If the Base OS image is downloaded, but is not show when running `docker images`, restart the Docker service using the services control panel applet or the command 'sc docker stop' and then 'sc docker start'
+> If the Base OS image is downloaded, but is not shown when running `docker images`, restart the Docker service using the services control panel applet or the command 'sc stop docker' and then 'sc start docker'
 
 ### Tag images
 
@@ -87,16 +96,16 @@ When tagged, the output of `docker images` will show two versions of the same im
 docker images
 
 REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
-nanoserver          10.0.14289.1000     df03a4b28c50        2 days ago          783.2 MB
-windowsservercore   10.0.14289.1000     290ab6758cec        2 days ago          9.148 GB
+nanoserver          10.0.14300.1010     df03a4b28c50        2 days ago          783.2 MB
+windowsservercore   10.0.14300.1000     290ab6758cec        2 days ago          9.148 GB
 windowsservercore   latest              290ab6758cec        2 days ago          9.148 GB
 ```
 
 ### Offline installation
 
-Base OS images can also be installed without an internet connection. To do so, download the image on a computer with an internet connection, copy it to the target system, and then imported using the `Install-ContainerOSImages` command.
+Base OS images can also be installed without an internet connection. To do so, download the image on a computer with an internet connection, copy it to the target system, and then import the image using the `Install-ContainerOSImages` command.
 
-Before downloading the Base OS image, prepare the system with the container image provider by running the following command.
+Before downloading the Base OS image, prepare the **internet connected** system with the container image provider by running the following command.
 
 ```none
 Install-PackageProvider ContainerImage -Force
@@ -113,8 +122,8 @@ Output:
 ```none
 Name                 Version                 Description
 ----                 -------                 -----------
-NanoServer           10.0.10586.0            Container OS Image of Windows Server 2016 Techn...
-WindowsServerCore    10.0.10586.0            Container OS Image of Windows Server 2016 Techn...
+NanoServer           10.0.14300.1010         Container OS Image of Windows Server 2016 Techn...
+WindowsServerCore    10.0.14300.1000         Container OS Image of Windows Server 2016 Techn...
 ```
 
 To download an image, use the `Save-ContainerImage` command.
@@ -123,7 +132,7 @@ To download an image, use the `Save-ContainerImage` command.
 Save-ContainerImage -Name NanoServer -Path c:\container-image
 ```
 
-The downloaded container image can now be copied to a different container host, and installed using the `Install-ContainerOSImage` command.
+The downloaded container image can now be copied to the **offline container host**, and installed using the `Install-ContainerOSImage` command.
 
 ```none
 Install-ContainerOSImage -WimPath C:\container-image\NanoServer.wim -Force
@@ -146,8 +155,8 @@ docker images
 
 REPOSITORY             TAG                 IMAGE ID            CREATED              VIRTUAL SIZE
 windowsservercoreiis   latest              ca40b33453f8        About a minute ago   44.88 MB
-windowsservercore      10.0.10586.0        6801d964fda5        2 weeks ago          0 B
-nanoserver             10.0.10586.0        8572198a60f1        2 weeks ago          0 B
+windowsservercore      10.0.14300.1000     6801d964fda5        2 weeks ago          0 B
+nanoserver             10.0.14300.1010     8572198a60f1        2 weeks ago          0 B
 ```
 
 ### Create new image
@@ -184,7 +193,7 @@ IMAGE               CREATED             CREATED BY          SIZE                
 
 The Docker Hub registry contains pre-built images which can be downloaded onto a container host. Once these images have been downloaded, they can be used as the base for Windows container Applications.
 
-To see a list of images available from Docker Hub use the `docker search` command. Note – the Windows Serve Core or Nano Server base OS images will need to be installed before pulling these dependent container images from Docker Hub.
+To see a list of images available from Docker Hub use the `docker search` command. Note – the Windows Server Core or Nano Server base OS images will need to be installed before pulling these dependent container images from Docker Hub.
 
 Most of these images have a Windows Server Core and a Nano Server version. To get a specific version just add the tag ":windowsservercore" or ":nanoserver". The "latest" tag will return the Windows Server Core version by default, unless there is only a Nano Server version available.
 
@@ -229,7 +238,7 @@ docker images
 
 REPOSITORY          TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
 microsoft/aspnet    latest              b3842ee505e5        5 hours ago         101.7 MB
-windowsservercore   10.0.10586.0        6801d964fda5        2 weeks ago         0 B
+windowsservercore   10.0.14300.1000     6801d964fda5        2 weeks ago         0 B
 windowsservercore   latest              6801d964fda5        2 weeks ago         0 B
 ```
 

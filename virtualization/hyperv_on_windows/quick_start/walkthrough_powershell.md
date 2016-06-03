@@ -1,4 +1,17 @@
-# Step 8: Working with Hyper-V and Windows PowerShell
+---
+title: Working with Hyper-V and Windows PowerShell
+description: Working with Hyper-V and Windows PowerShell
+keywords: windows 10, hyper-v
+author: neilpeterson
+manager: timlt
+ms.date: 05/02/2016
+ms.topic: article
+ms.prod: windows-10-hyperv
+ms.service: windows-10-hyperv
+ms.assetid: 6d1ae036-0841-4ba5-b7e0-733aad31e9a7
+---
+
+# Working with Hyper-V and Windows PowerShell
 
 Now that you have walked through the basics of deploying Hyper-V, creating virtual machines and managing these virtual machines, let’s explore how you can automate many of these activities with PowerShell.
 

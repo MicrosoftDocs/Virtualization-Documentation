@@ -1,3 +1,16 @@
+---
+title: Nested Virtualization
+description: Nested Virtualization
+keywords: windows 10, hyper-v
+author: theodthompson
+manager: timlt
+ms.date: 05/02/2016
+ms.topic: article
+ms.prod: windows-10-hyperv
+ms.service: windows-10-hyperv
+ms.assetid: 68c65445-ce13-40c9-b516-57ded76c1b15
+---
+
 # Nested Virtualization
 
 > **Note:** This early preview feature is only available to Windows Insiders, running Build 10565 or later, and comes with no performance or stability guarantees.  

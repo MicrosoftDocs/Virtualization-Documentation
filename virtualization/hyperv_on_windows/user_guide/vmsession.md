@@ -1,6 +1,19 @@
+---
+title: Manage Windows Virtual Machines with PowerShell Direct
+description: Manage Windows Virtual Machines with PowerShell Direct
+keywords: windows 10, hyper-v
+author: scooley
+manager: timlt
+ms.date: 05/02/2016
+ms.topic: article
+ms.prod: windows-10-hyperv
+ms.service: windows-10-hyperv
+ms.assetid: fb228e06-e284-45c0-b6e6-e7b0217c3a49
+---
+
 # Manage Windows Virtual Machines with PowerShell Direct
  
-You can use PowerShell Direct to remotely manage a Windows 10 or Windows Server Technical Preview virtual machine from a Windows 10 or Windows Server Technical Preview Hyper-V host. PowerShell Direct allows PowerShell management inside a virtual machine regardless of the network configuration or remote management settings on either the Hyper-V host or the virtual machine. This makes it easier for Hyper-V Administrators to automate and script management and configuration tasks.
+You can use PowerShell Direct to remotely manage a Windows 10 or Windows Server Technical Preview virtual machine from a Windows 10 or Windows Server Technical Preview Hyper-V host. PowerShell Direct allows PowerShell management inside a virtual machine regardless of any network configuration or remote management settings on either the Hyper-V host or the virtual machine. This makes it easier for Hyper-V Administrators to automate and script management and configuration tasks.
 
 **Ways to run PowerShell Direct:**  
 * As an interactive session -- [click here](vmsession.md#create-and-exit-an-interactive-powershell-session) to create and exit an interactive PowerShell session using Enter-PSSession.
@@ -28,22 +41,22 @@ If you're managing older virtual machines, use Virtual Machine Connection (VMCon
 The easiest way to run PowerShell commands in a virtual machine is to start an
 interactive session.
 
-When the session starts, the commands that you type run on the virtual machine, just as though you typed them directy into a PowerShell session on the virtual machine itself.
+When the session starts, the commands that you type run on the virtual machine, just as though you typed them directly into a PowerShell session on the virtual machine itself.
 
 **To start an interactive session:**
 
 1. On the Hyper-V host, open PowerShell as Administrator.
 
-3. Run the one of the following commands to create an interactive session using the virtual machine name or GUID:  
+2. Run one of the following commands to create an interactive session using the virtual machine name or GUID:  
   
   ``` PowerShell
   Enter-PSSession -VMName <VMName>
-  Enter-PSSession -VMGuid <VMGuid>
+  Enter-PSSession -VMId <VMId>
   ```
   
   Provide credentials for the virtual machine when prompted.
 
-4. Run commands on your virtual machine.
+3. Run commands on your virtual machine.
   
   You should see the VMName as the prefix for your PowerShell prompt as shown:
   
@@ -53,7 +66,7 @@ When the session starts, the commands that you type run on the virtual machine, 
   
   Any command run will be running on your virtual machine.  To test, you can run `ipconfig` or `hostname` to make sure that these commands are running in the virtual machine.
   
-5. When you're done, run the following command to close the session:  
+4. When you're done, run the following command to close the session:  
   
    ``` PowerShell
    Exit-PSSession 
@@ -73,11 +86,11 @@ PowerShell Direct with Invoke-Command is perfect for situations where you need t
 
 1. On the Hyper-V host, open PowerShell as Administrator.
 
-3. Run the one of the following commands to create an interactive session using the virtual machine name or GUID:  
+2. Run one of the following commands to create a session using the virtual machine name or GUID:  
    
    ``` PowerShell
    Invoke-Command -VMName <VMName> -ScriptBlock { cmdlet } 
-   Invoke-Command -VMGuid <VMGuid> -ScriptBlock { cmdlet }
+   Invoke-Command -VMId <VMId> -ScriptBlock { cmdlet }
    ```
    
    Provide credentials for the virtual machine when prompted.
@@ -89,11 +102,11 @@ PowerShell Direct with Invoke-Command is perfect for situations where you need t
 
 1. On the Hyper-V host, open PowerShell as Administrator.
 
-2. Run the one of the following commands to create an interactive session using the virtual machine name or GUID:  
+2. Run one of the following commands to create a session using the virtual machine name or GUID:  
    
    ``` PowerShell
    Invoke-Command -VMName <VMName> -FilePath C:\host\script_path\script.ps1 
-   Invoke-Command -VMGuid <VMGuid> -FilePath C:\host\script_path\script.ps1 
+   Invoke-Command -VMId <VMId> -FilePath C:\host\script_path\script.ps1 
    ```
    
    Provide credentials for the virtual machine when prompted.
@@ -119,23 +132,26 @@ By the same token, sessions hold state.  Since persistent sessions persist, any 
 2. Run one of the following commands to create a persistent PowerShell session to the virtual machine using `New-PSSession`.
   
   ``` PowerShell
-  $s = New-PSSession -VMName <VMName>
-  $s = New-PSSession -VMGuid <VMGuid>
+  $s = New-PSSession -VMName <VMName> -Credential (Get-Credential)
+  $s = New-PSSession -VMId <VMId> -Credential (Get-Credential)
   ```
   
   Provide credentials for the virtual machine when prompted.
   
+  > **Warning:**  
+   There is a bug in builds before 14500.  If credentials aren't explicitly specified with `-Credential` flag, the service in the guest will crash and will need to be restarted.  If you hit this issue, work-around instructions are available [here](vmsession.md#error-a-remote-session-might-have-ended).
+  
 3. Copy a file into the virtual machine.
   
-  To move `C:\host_path\data.txt` to the virtual machine from the host machine, run:
+  To copy `C:\host_path\data.txt` to the virtual machine from the host machine, run:
   
   ``` PowerShell
   Copy-Item -ToSession $s -Path C:\host_path\data.txt -Destination C:\guest_path\
   ```
   
-4.  Copy a file to the host. 
+4.  Copy a file from the virtual machine (on to the host). 
    
-   To move `C:\guest_path\data.txt` to the host from the virtual machine, run:
+   To copy `C:\guest_path\data.txt` to the host from the virtual machine, run:
   
   ``` PowerShell
   Copy-Item -FromSession $s -Path C:\guest_path\data.txt -Destination C:\host_path\
@@ -155,7 +171,7 @@ There are a small set of common error messages surfaced through PowerShell Direc
 
 ### -VMName or -VMID parameters don't exist
 **Problem:**  
-`Enter-PSSession`, `Invoke-Command`, or `New-PSSession` do not have a `-VMName` or `-VMID` parameter.
+`Enter-PSSession`, `Invoke-Command`, or `New-PSSession` do not have a `-VMName` or `-VMId` parameter.
 
 **Potential causes:**  
 The most likely issue is that PowerShell Direct isn't supported by your host operating system.
@@ -171,48 +187,91 @@ If you are running a supported build, it is also possible your version of PowerS
 You can check your PowerShell version build by running the following command:
 
 ``` PowerShell
-$PSVersionTable.PSVersion
+$PSVersionTable.PSVersionTable
 ```
 
 
 ### Error: A remote session might have ended
+> **Note:**  
+For Enter-PSSession between host builds 10240 and 12400, all errors below reported as "A remote session might have ended".
+
 **Error message:**
 ```
 Enter-PSSession : An error has occurred which Windows PowerShell cannot handle. A remote session might have ended.
 ```
 
 **Potential causes:**
-* The VM is not running
+* The virtual machine exists but is not running.
 * The guest OS does not support PowerShell Direct (see [requirements](#Requirements))
 * PowerShell isn't available in the guest yet
   * The operating system hasn't finished booting
   * The operating system can't boot correctly
   * Some boot time event needs user input
-* The guest credentials couldn't be validated
-  * The supplied credentials were incorrect
-  * There are no user accounts in the guest (the OS hasn't booted before)
-  * If connecting as Administrator:  Administrator has not been set as an active user.  Learn more [here](https://technet.microsoft.com/en-us/library/hh825104.aspx).
 
-You can use the [Get-VM](http://technet.microsoft.com/library/hh848479.aspx) cmdlet to check that the credentials you're using have the Hyper-V administrator role and to see which VMs are running locally on the host and booted.
+You can use the [Get-VM](http://technet.microsoft.com/library/hh848479.aspx) cmdlet to check to see which VMs are running on the host.
+
+**Error message:**  
+```
+New-PSSession : An error has occurred which Windows PowerShell cannot handle. A remote session might have ended.
+```
+
+**Potential causes:**
+* One of the reasons listed above -- they all are equally applicable to `New-PSSession`  
+* A bug in current builds where credentials must be explicitly passed with `-Credential`.  When this happens, the entire service hangs in the guest operating system and needs to be restarted.  You can check if the session is still available with Enter-PSSession.
+
+To work around the credential issue, log into the virtual machine using VMConnect, open PowerShell, and restart the vmicvmsession service using the following PowerShell:
+
+``` PowerShell
+Restart-Service -Name vmicvmsession
+```
 
 ### Error: Parameter set cannot be resolved
-
 **Error message:**  
 ``` 
 Enter-PSSession : Parameter set cannot be resolved using the specified named parameters.
 ```
 
 **Potential causes:**  
-`-RunAsAdministrator` is not supported when connecting to virtual machines.  
-
-PowerShell Direct has different behaviors when connecting to virtual machines versus Windows containers.  When connecting to a Windows container, the `-RunAsAdministrator` flag allows Administrator connections without explicit credentials.  Since virtual machines do not give the host implied administrator access, you need to explicitly enter credentials.
+* `-RunAsAdministrator` is not supported when connecting to virtual machines.
+     
+  When connecting to a Windows container, the `-RunAsAdministrator` flag allows Administrator connections without explicit credentials.  Since virtual machines do not give the host implied administrator access, you need to explicitly enter credentials.
 
 Administrator credentials can be passed to the virtual machine with the `-Credential` parameter or by entering them manually when prompted.
 
+
+### Error: The credential is invalid.
+
+**Error message:**  
+```
+Enter-PSSession : The credential is invalid.
+```
+
+**Potential causes:** 
+* The guest credentials couldn't be validated
+  * The supplied credentials were incorrect.
+  * There are no user accounts in the guest (the OS hasn't booted before)
+  * If connecting as Administrator:  Administrator has not been set as an active user.  Learn more [here](https://technet.microsoft.com/en-us/library/hh825104.aspx).
+  
+### Error: The input VMName parameter does not resolve to any virtual machine.
+
+**Error message:**  
+```
+Enter-PSSession : The input VMName parameter does not resolve to any virtual machine.
+```
+
+**Potential causes:**  
+* You are not a Hyper-V Administrator.  
+* The virtual machine doesn't exist.
+
+You can use the [Get-VM](http://technet.microsoft.com/library/hh848479.aspx) cmdlet to check that the credentials you're using have the Hyper-V administrator role and to see which VMs are running locally on the host and booted.
+
+
 -------------
 
-## Samples
+## Samples and User Guides
 
-Checkout samples on [GitHub](https://github.com/Microsoft/Virtualization-Documentation/search?l=powershell&q=-VMName+OR+-VMGuid&type=Code&utf8=%E2%9C%93).
+PowerShell Direct supports JEA (Just Enough Administration).  Check out this user guide to try it.
+
+Check out samples on [GitHub](https://github.com/Microsoft/Virtualization-Documentation/search?l=powershell&q=-VMName+OR+-VMGuid&type=Code&utf8=%E2%9C%93).
 
 See [PowerShell Direct snippets](../develop/powershell_snippets.md) for numerous examples of how to use PowerShell Direct in your environment as well as tips and tricks for writing Hyper-V scripts with PowerShell.

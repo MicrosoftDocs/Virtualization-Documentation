@@ -1,7 +1,15 @@
 ---
+title: Make your own integration services
+description: Windows 10 integration services.
+keywords: windows 10, hyper-v
 author: scooley
+manager: timlt
+ms.date: 05/02/2016
+ms.topic: article
+ms.prod: windows-10-hyperv
+ms.service: windows-10-hyperv
+ms.assetid: 1ef8f18c-3d76-4c06-87e4-11d8d4e31aea
 ---
-
 
 # Make your own integration services
 

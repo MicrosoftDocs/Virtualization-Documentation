@@ -3,11 +3,11 @@
 
 FROM windowsservercore
 
-LABEL Description="Apache-PHP" Vendor1="Apache Software Foundation" Version1="2.4.18" Vendor2="The PGP Group" Version2="5.5.33"
+LABEL Description="Apache-PHP" Vendor1="Apache Software Foundation" Version1="2.4.20" Vendor2="The PGP Group" Version2="5.5.36"
 
 RUN powershell -Command \
 	$ErrorActionPreference = 'Stop'; \
-	Invoke-WebRequest -Method Get -Uri https://www.apachelounge.com/download/VC11/binaries/httpd-2.4.18-win32-VC11.zip -OutFile c:\apache.zip ; \
+	Invoke-WebRequest -Method Get -Uri https://www.apachelounge.com/download/VC11/binaries/httpd-2.4.20-win32-VC11.zip -OutFile c:\apache.zip ; \
 	Expand-Archive -Path c:\apache.zip -DestinationPath c:\ ; \
 	Remove-Item c:\apache.zip -Force
 
@@ -19,7 +19,7 @@ RUN powershell -Command \
 
 RUN powershell -Command \
 	$ErrorActionPreference = 'Stop'; \
-	Invoke-WebRequest -Method Get -Uri http://windows.php.net/downloads/releases/php-5.5.33-Win32-VC11-x86.zip -OutFile c:\php.zip ; \
+	Invoke-WebRequest -Method Get -Uri http://windows.php.net/downloads/releases/php-5.5.36-Win32-VC11-x86.zip -OutFile c:\php.zip ; \
 	Expand-Archive -Path c:\php.zip -DestinationPath c:\php ; \
 	Remove-Item c:\php.zip -Force
 

@@ -2,7 +2,7 @@
 
 Creates an image containing golang 1.5.1.
 
-This dockerfile is for demonstration purposes and may require modification for production use. 
+This dockerfile is for demonstration purposes and may require modification for production use.
 
 # Environment:
 
@@ -16,12 +16,12 @@ Windows Server Core Base OS Image
 docker build -t golang:latest .
 ```
 
-**Docker Run** 
+**Docker Run**
 
-This will start a container, display the Go version, and then exit.  Modify the Dockerfile appropriately for application use. 
+This will start a container, display the Go version, and then exit.  Modify the Dockerfile appropriately for application use.
 
 ```
-docker run –it golang
+docker run -it golang
 ```
 
 ## Dockerfile Details:
@@ -39,5 +39,3 @@ RUN powershell -Command \
 
 RUN setx PATH %PATH%;c:\go\bin
 ```
-
-

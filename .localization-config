@@ -9,5 +9,5 @@
   ],
   "includeDependencies": true,
   "autoPush": true,
-  "useJavascriptMarkdownTransformer": false
+  "useJavascriptMarkdownTransformer": true
 }

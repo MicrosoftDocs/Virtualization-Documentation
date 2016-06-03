@@ -1,3 +1,16 @@
+---
+title: Community Resources 
+description: Community Resources 
+keywords: windows 10, hyper-v, container, docker
+author: scooley
+manager: timlt
+ms.date: 05/02/2016
+ms.topic: article
+ms.prod: virtualization
+ms.service: virtualization
+ms.assetid: 9ee0be0c-fc79-4099-b6db-52873589f09e
+---
+
 # Community Resources 
 
 Check out resources available to the user community. There is also a lot to see on the [Docker community](https://www.docker.com/community/participate/) pages.

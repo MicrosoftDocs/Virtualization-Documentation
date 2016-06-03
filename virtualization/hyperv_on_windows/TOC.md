@@ -10,11 +10,12 @@
 ## [Create a Virtual Machine](quick_start/walkthrough_create_vm.md)
 ## [Hyper-V and PowerShell](quick_start/walkthrough_powershell.md)
 # Manage Virtual Machines with Hyper-V
-## [Migrate and Upgrade Virtual Machines](user_guide/migrating_vms.md)
+## [Migrate and Upgrade Virtual Machines](http://aka.ms/upgradevmconfig)
 ## [Manage Integration Services](user_guide/managing_ics.md)
 ## [Work with Checkpoints](user_guide/checkpoints.md)
 ## [Export and Import Virtual Machines](user_guide/export_import.md)
 ## [Connect with PowerShell Direct](user_guide/vmsession.md)
+## [Create pre-release VMs](user_guide/create_pre-release_vm.md) 
 # Manage the Hyper-V Hosts
 ## [Manage Remote Hyper-V Hosts](user_guide/remote_host_management.md)
 ## [Enable Nested Virtualization](user_guide/nesting.md)

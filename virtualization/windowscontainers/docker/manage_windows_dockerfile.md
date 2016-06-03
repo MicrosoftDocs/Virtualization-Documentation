@@ -1,5 +1,14 @@
 ---
+title: Dockerfile and Windows Containers
+description: Create Dockerfiles for Windows containers.
+keywords: docker, containers
 author: neilpeterson
+manager: timlt
+ms.date: 05/26/2016
+ms.topic: article
+ms.prod: windows-containers
+ms.service: windows-containers
+ms.assetid: 75fed138-9239-4da9-bce4-4f2e2ad469a1
 ---
 
 # Dockerfile on Windows
@@ -105,7 +114,7 @@ RUN ["powershell","New-Item","c:/test"]
 Examining the resulting image, the command that was run is `powershell new-item c:/test`.
 
 ```none
-C:\> docker history doc-exe-method
+docker history doc-exe-method
 
 IMAGE               CREATED             CREATED BY                    SIZE                COMMENT
 b3452b13e472        2 minutes ago       powershell New-Item c:/test   30.76 MB
@@ -122,7 +131,7 @@ RUN powershell new-item c:\test
 Which results in a run instruction of `cmd /S /C powershell new-item c:\test`. 
 
 ```none
-C:\> docker history doc-shell-method
+docker history doc-shell-method
 
 IMAGE               CREATED             CREATED BY                              SIZE                COMMENT
 062a543374fc        19 seconds ago      cmd /S /C powershell new-item c:\test   30.76 MB
@@ -150,9 +159,54 @@ RUN powershell.exe -Command c:\vcredist_x86.exe /quiet
 
 For detailed information on the RUN instruction, see the [RUN Reference on Docker.com]( https://docs.docker.com/engine/reference/builder/#run). 
 
+### COPY
+
+The `COPY` instruction, copies files and directories to the filesystem of the container. The files and directories need to be in a path relative to the Dockerfile.
+
+**Format**
+
+The `COPY` instruction takes a format of: 
+
+```none
+COPY <source> <destination>
+``` 
+
+If either source or destination include whitespace, enclose the path in square brackets and double quotes.
+ 
+```none
+COPY ["<source>" "<destination>"]
+```
+
+**Windows Considerations**
+ 
+On Windows, the destination format must use forward slashes. For example, these are valid `ADD` instructions.
+
+```none
+COPY test1.txt /temp/
+COPY test1.txt c:/temp/
+```
+
+However, the following will not work.
+
+```none
+COPY test1.txt c:\temp\
+```
+
+**Examples**
+
+This example adds the contents of the source directory, to a directory named `sqllite` in the container image.
+```none
+COPY source /sqlite/
+```
+
+This example will add all files that begin with config, to the `c:\temp` directory of the container image.
+```none
+COPY config* c:/temp/
+```
+
 ### ADD
 
-The `ADD` instruction, copies files and directories to the filesystem of the container. The files and directories can be relative to the Dockerfile, or on a remote location with a URL specification.
+The ADD instruction is very much like the COPY instruction, however includes additional capabilities. In addition to copying files from the host into the container image, the `ADD` instruction can also copy files from a remote location with a URL specification.
 
 **Format**
 
@@ -165,7 +219,7 @@ ADD <source> <destination>
 If either source or destination include whitespace, enclose the path in square brackets and double quotes.
  
 ```none
-ADD [“<source>” “<destination>”]
+ADD ["<source>" "<destination>"]
 ```
 
 **Windows Considerations**
@@ -183,6 +237,8 @@ However, the following will not work.
 ADD test1.txt c:\temp\
 ```
 
+Additionally, on Linux the `ADD` instruction will expand compressed packages on copy. This functionality is not available in Windows.
+
 **Examples**
 
 This example adds the contents of the source directory, to a directory named `sqllite` in the container image.
@@ -195,9 +251,9 @@ This example will add all files that begin with config, to the `c:\temp` directo
 ADD config* c:/temp/
 ```
 
-This example will download the Visual Studio redistributable package into the `c:\temp` directory of the container image.
+This example will download Python for Windows into the `c:\temp` directory of the container image.
 ```none
-ADD https://download.microsoft.com/download/1/6/B/16B06F60-3B20-4FF2-B699-5E9B7962F9AE/VSU_4/vcredist_x86.exe /temp/vcredist_x86.exe
+ADD https://www.python.org/ftp/python/3.5.1/python-3.5.1.exe /temp/python-3.5.1.exe
 ```
 
 For detailed information on the `ADD` instruction, see the [ADD Reference on Docker.com]( https://docs.docker.com/engine/reference/builder/#add). 
@@ -250,7 +306,7 @@ CMD <command>
 
 **Windows Considerations**
 
-On Windows, file paths specified in the `CMD` instruction must use forward slashes. For example, these are valid `CMD` instructions.
+On Windows, file paths specified in the `CMD` instruction must use forward slashes or have escaped backslashes `\\`. For example, these are valid `CMD` instructions.
 
 ```none
 # exec form
@@ -261,6 +317,7 @@ CMD ["c:\\Apache24\\bin\\httpd.exe","-w"]
 
 CMD c:\\Apache24\\bin\\httpd.exe -w
 ```
+However, the following will not work.
 
 ```none
 CMD c:\Apache24\bin\httpd.exe -w
@@ -282,30 +339,30 @@ RUN powershell -command Expand-Archive -Path c:\apache.zip -DestinationPath c:\
 
 ### REST Calls
 
-PowerShell, and the `Invoke-WebRequest` command, can be useful when gathering information or files from a web service. For instance, if building an image that includes the Apache webserver, the following example could be used.
+PowerShell, and the `Invoke-WebRequest` command, can be useful when gathering information or files from a web service. For instance, if building an image that includes Python, the following example could be used.
 
 ```none
 FROM windowsservercore
 
-RUN powershell -Command \
-	$ErrorActionPreference = 'Stop'; \
-	Invoke-WebRequest -Method Get -Uri https://www.apachelounge.com/download/VC11/binaries/httpd-2.4.18-win32-VC11.zip -OutFile c:\apache.zip ; \
-	Expand-Archive -Path c:\apache.zip -DestinationPath c:\ ; \
-	Remove-Item c:\apache.zip -Force
+RUN powershell.exe -Command \
+  $ErrorActionPreference = 'Stop'; \
+  Invoke-WebRequest https://www.python.org/ftp/python/3.5.1/python-3.5.1.exe -OutFile c:\python-3.5.1.exe ; \
+  Start-Process c:\python-3.5.1.exe -ArgumentList '/quiet InstallAllUsers=1 PrependPath=1' -Wait ; \
+  Remove-Item c:\python-3.5.1.exe -Force
 ```
 
 > Invoke-WebRequest is not currently supported in Nano Server
 
-Another option for using PowerShell to download files during the image creation process is to use the .Net WebClient library. This can increase download performance. The following example downloads the Apache Webserver software, using the WebClient library.
+Another option for using PowerShell to download files during the image creation process is to use the .Net WebClient library. This can increase download performance. The following example downloads the Python software, using the WebClient library.
 
 ```none
 FROM windowsservercore
 
-RUN powershell -Command \
-	$ErrorActionPreference = 'Stop'; \
-	(New-Object System.Net.WebClient).DownloadFile('https://www.apachelounge.com/download/VC11/binaries/httpd-2.4.18-win32-VC11.zip ', 'c:\apache.zip') ; \
-	Expand-Archive -Path c:\apache.zip -DestinationPath c:\ ; \
-	Remove-Item c:\apache.zip -Force
+RUN powershell.exe -Command \
+  $ErrorActionPreference = 'Stop'; \
+  (New-Object System.Net.WebClient).DownloadFile('https://www.python.org/ftp/python/3.5.1/python-3.5.1.exe','c:\python-3.5.1.exe') ; \
+  Start-Process c:\python-3.5.1.exe -ArgumentList '/quiet InstallAllUsers=1 PrependPath=1' -Wait ; \
+  Remove-Item c:\python-3.5.1.exe -Force
 ```
 
 > WebClient is not currently supported in Nano Server
@@ -369,7 +426,7 @@ Successfully built e2aafdfbe392
 The result is a new container image, in this example named 'iis'.
 
 ```none
-C:\> docker images
+docker images
 
 REPOSITORY          TAG                 IMAGE ID            CREATED              VIRTUAL SIZE
 iis                 latest              e2aafdfbe392        About a minute ago   207.8 MB

@@ -1,5 +1,14 @@
 ---
+title: Optimize Windows Dockerfiles
+description: Optimize Dockerfiles for Windows containers.
+keywords: docker, containers
 author: neilpeterson
+manager: timlt
+ms.date: 05/26/2016
+ms.topic: article
+ms.prod: windows-containers
+ms.service: windows-containers
+ms.assetid: bb2848ca-683e-4361-a750-0d1d14ec8031
 ---
 # Optimize Windows Dockerfiles
 
@@ -27,13 +36,13 @@ CMD [ "cmd" ]
 From this Dockerfile, one might expect the resulting image to consist of two layers, one for the container OS image, and a second that includes IIS and the website, this however is not the case. The new image is constructed of many layers, each one dependent on the previous. To visualize this, the `docker history` command can be run against the new image. Doing so shows that the image consists of four layers, the base, and then three additional layers, one for each instruction in the Dockerfile.
 
 ```none
-C:\> docker history iis
+docker history iis
 
 IMAGE               CREATED              CREATED BY                                      SIZE                COMMENT
 f4caf476e909        16 seconds ago       cmd /S /C REM (nop) CMD ["cmd"]                 41.84 kB
 f0e017e5b088        21 seconds ago       cmd /S /C echo "Hello World - Dockerfile" > c   6.816 MB
 88438e174b7c        About a minute ago   cmd /S /C dism /online /enable-feature /all /   162.7 MB
-6801d964fda5        4 months ago                                                         0 B                                                       0 B
+6801d964fda5        4 months ago                                                         0 B
 ```
 
 Each of these layers can be mapped to an instruction from the Dockerfile. The bottom layer (`6801d964fda5` in this example) represents the base OS image. One layer up, the IIS installation can be seen. The next layer includes the new website, and so on.
@@ -57,21 +66,20 @@ This first example downloads, extracts, and cleans up the Visual Studio redistri
 ```none
 FROM windowsservercore
 
-RUN powershell.exe -command Invoke-WebRequest -Method Get -Uri "https://download.microsoft.com/download/1/6/B/16B06F60-3B20-4FF2-B699-5E9B7962F9AE/VSU_4/vcredist_x86.exe" -OutFile c:\vcredist_x86.exe
-RUN powershell.exe -command c:\vcredist_x86.exe /quiet
-RUN powershell.exe -command Remove-Item c:\vcredist_x86.exe -Force
+RUN powershell.exe -Command Invoke-WebRequest "https://www.python.org/ftp/python/3.5.1/python-3.5.1.exe" -OutFile c:\python-3.5.1.exe
+RUN powershell.exe -Command Start-Process c:\python-3.5.1.exe -ArgumentList '/quiet InstallAllUsers=1 PrependPath=1' -Wait
+RUN powershell.exe -Command Remove-Item c:\python-3.5.1.exe -Force
 ```
 
-The resulting image consists of four layers, one for the Base image, and then one for each `RUN` instruction.
+The resulting image consists of three additional layers, one for each `RUN` instruction.
 
 ```none
-C:\> docker history doc-example-1
+docker history doc-example-1
 
 IMAGE               CREATED             CREATED BY                                      SIZE                COMMENT
-bd6c831b55b8        2 minutes ago       cmd /S /C powershell.exe -command Remove-Item   46.23 MB
-02b0752ebd10        2 minutes ago       cmd /S /C powershell.exe -command c:\vcredist   45.29 MB
-91508fd744e5        3 minutes ago       cmd /S /C powershell.exe -command Invoke-WebR   51.92 MB
-6801d964fda5        5 months ago
+a395ca26777f        15 seconds ago      cmd /S /C powershell.exe -Command Remove-Item   24.56 MB
+6c137f466d28        28 seconds ago      cmd /S /C powershell.exe -Command Start-Proce   178.6 MB
+957147160e8d        3 minutes ago       cmd /S /C powershell.exe -Command Invoke-WebR   125.7 MB
 ```
 
 To compare, here is the same operation, however all steps run with the same `RUN` instruction. Note that each step in the `RUN` instruction is on a new line of the Dockerfile, the '\' character is being used to line wrap. 
@@ -79,32 +87,36 @@ To compare, here is the same operation, however all steps run with the same `RUN
 ```none
 FROM windowsservercore
 
-RUN powershell -Command \
-	Invoke-WebRequest -Method Get -Uri "https://download.microsoft.com/download/1/6/B/16B06F60-3B20-4FF2-B699-5E9B7962F9AE/VSU_4/vcredist_x86.exe" -OutFile c:\vcredist_x86.exe ; \
-	start-Process c:\vcredist_x86.exe -ArgumentList '/quiet' -Wait ; \
-	Remove-Item c:\vcredist_x86.exe -Force
+RUN powershell.exe -Command \
+  $ErrorActionPreference = 'Stop'; \
+  Invoke-WebRequest https://www.python.org/ftp/python/3.5.1/python-3.5.1.exe -OutFile c:\python-3.5.1.exe ; \
+  Start-Process c:\python-3.5.1.exe -ArgumentList '/quiet InstallAllUsers=1 PrependPath=1' -Wait ; \
+  Remove-Item c:\python-3.5.1.exe -Force
 ```
 
-The resulting image here consists of two layers, one for the Base image and then one for the `RUN` instruction.
+The resulting image here consists of one additional layer for the `RUN` instruction.
 
 ```none
-C:\> docker history doc-example-2
+docker history doc-example-2
+
 IMAGE               CREATED             CREATED BY                                      SIZE                COMMENT
-6d013914b19d        45 seconds ago      cmd /S /C powershell -Command  Invoke-WebRequ   65.44 MB
-6801d964fda5        5 months ago                                                        0 B                                                      0 B
+69e44f37c748        54 seconds ago      cmd /S /C powershell.exe -Command   $ErrorAct   216.3 MB                
 ```
 
 ### Remove excess files
 
 If a file, such as an installer, is not required after it has been used, remove the file to reduce image size. This needs to occur in the same step in which the file was copied into the image layer. Doing so prevents the file from persisting in a lower level image layer.
 
-In this example, the Visual Studio Redistribute package is downloaded, executed, and then the executable removed. This is all completed in one `RUN` operation and results in a single image layer.
+In this example, the Python package is downloaded, executed, and then the executable removed. This is all completed in one `RUN` operation and results in a single image layer.
+
 ```none
-RUN powershell -Command \
-	$ErrorActionPreference = 'Stop'; \
-	Invoke-WebRequest -Method Get -Uri "https://download.microsoft.com/download/1/6/B/16B06F60-3B20-4FF2-B699-5E9B7962F9AE/VSU_4/vcredist_x86.exe" -OutFile c:\vcredist_x86.exe ; \
-	start-Process c:\vcredist_x86.exe -ArgumentList '/quiet' -Wait ; \
-	Remove-Item c:\vcredist_x86.exe -Force
+FROM windowsservercore
+
+RUN powershell.exe -Command \
+  $ErrorActionPreference = 'Stop'; \
+  Invoke-WebRequest https://www.python.org/ftp/python/3.5.1/python-3.5.1.exe -OutFile c:\python-3.5.1.exe ; \
+  Start-Process c:\python-3.5.1.exe -ArgumentList '/quiet InstallAllUsers=1 PrependPath=1' -Wait ; \
+  Remove-Item c:\python-3.5.1.exe -Force
 ```
 
 ## Optimize Build Speed
@@ -120,28 +132,29 @@ FROM windowsservercore
 
 RUN powershell -Command \
 	
-    # Download software ; \
+  # Download software ; \
     
-    Invoke-WebRequest -Method Get -Uri https://www.apachelounge.com/download/VC11/binaries/httpd-2.4.18-win32-VC11.zip -OutFile c:\apache.zip ; \
-    Invoke-WebRequest -Method Get -Uri "https://download.microsoft.com/download/1/6/B/16B06F60-3B20-4FF2-B699-5E9B7962F9AE/VSU_4/vcredist_x86.exe" -OutFile c:\vcredist_x86.exe ; \
-    Invoke-WebRequest -Method Get -Uri http://windows.php.net/downloads/releases/php-5.5.33-Win32-VC11-x86.zip -OutFile c:\php.zip ; \
+  wget https://www.apachelounge.com/download/VC11/binaries/httpd-2.4.18-win32-VC11.zip -OutFile c:\apache.zip ; \
+  wget "https://download.microsoft.com/download/1/6/B/16B06F60-3B20-4FF2-B699-5E9B7962F9AE/VSU_4/vcredist_x86.exe" -OutFile c:\vcredist.exe ; \
+  wget -Uri http://windows.php.net/downloads/releases/php-5.5.33-Win32-VC11-x86.zip -OutFile c:\php.zip ; \
 	
-    # Install Software ; \
+  # Install Software ; \
     
-    Expand-Archive -Path c:\php.zip -DestinationPath c:\php ; \
-    Expand-Archive -Path c:\apache.zip -DestinationPath c:\ ; \
-    start-Process c:\vcredist_x86.exe -ArgumentList '/quiet' -Wait ; \
+  Expand-Archive -Path c:\php.zip -DestinationPath c:\php ; \
+  Expand-Archive -Path c:\apache.zip -DestinationPath c:\ ; \
+  start-Process c:\vcredistexe -ArgumentList '/quiet' -Wait ; \
     
-    # Remove unneeded files ; \
+  # Remove unneeded files ; \
      
-    Remove-Item c:\apache.zip -Force; \
-    Remove-Item c:\vcredist_x86.exe -Force
+  Remove-Item c:\apache.zip -Force; \
+  Remove-Item c:\vcredist.exe -Force
 ```
 
 The resulting image consists of two layers, one for the base OS image, and the second that contains all operations from the single `RUN` instruction.
 
 ```none
-c:\> docker history doc-sample-1
+docker history doc-sample-1
+
 IMAGE               CREATED             CREATED BY                                      SIZE                COMMENT
 9bdf3a21fd41        8 minutes ago       cmd /S /C powershell -Command     Invoke-WebR   205.8 MB
 6801d964fda5        5 months ago                                                        0 B
@@ -154,19 +167,19 @@ FROM windowsservercore
 
 RUN powershell -Command \
 	$ErrorActionPreference = 'Stop'; \
-	Invoke-WebRequest -Method Get -Uri https://www.apachelounge.com/download/VC11/binaries/httpd-2.4.18-win32-VC11.zip -OutFile c:\apache.zip ; \
+	wget https://www.apachelounge.com/download/VC11/binaries/httpd-2.4.18-win32-VC11.zip -OutFile c:\apache.zip ; \
 	Expand-Archive -Path c:\apache.zip -DestinationPath c:\ ; \
 	Remove-Item c:\apache.zip -Force
 
 RUN powershell -Command \
 	$ErrorActionPreference = 'Stop'; \
-	Invoke-WebRequest -Method Get -Uri "https://download.microsoft.com/download/1/6/B/16B06F60-3B20-4FF2-B699-5E9B7962F9AE/VSU_4/vcredist_x86.exe" -OutFile c:\vcredist_x86.exe ; \
-	start-Process c:\vcredist_x86.exe -ArgumentList '/quiet' -Wait ; \
-	Remove-Item c:\vcredist_x86.exe -Force
+	wget "https://download.microsoft.com/download/1/6/B/16B06F60-3B20-4FF2-B699-5E9B7962F9AE/VSU_4/vcredist_x86.exe" -OutFile c:\vcredist.exe ; \
+	start-Process c:\vcredist.exe -ArgumentList '/quiet' -Wait ; \
+	Remove-Item c:\vcredist.exe -Force
 
 RUN powershell -Command \
 	$ErrorActionPreference = 'Stop'; \
-	Invoke-WebRequest -Method Get -Uri http://windows.php.net/downloads/releases/php-5.5.33-Win32-VC11-x86.zip -OutFile c:\php.zip ; \
+	wget http://windows.php.net/downloads/releases/php-5.5.33-Win32-VC11-x86.zip -OutFile c:\php.zip ; \
 	Expand-Archive -Path c:\php.zip -DestinationPath c:\php ; \
 	Remove-Item c:\php.zip -Force
 ```
@@ -174,7 +187,8 @@ RUN powershell -Command \
 The resulting image consists of four layers, one for the base OS image, and then one for each `RUN` instruction. Because each `RUN` instruction has been run in its own layer, any subsequent runs of this Dockerfile or identical set of instructions in a different Dockerfile, will use cached image layer, thus reducing build time. Instruction ordering is important when working with image cache, for more details, see the next section of this document.
 
 ```none
-C:\> docker history doc-sample-2
+docker history doc-sample-2
+
 IMAGE               CREATED             CREATED BY                                      SIZE                COMMENT
 ddf43b1f3751        6 days ago          cmd /S /C powershell -Command  Sleep 2 ;  Inv   127.2 MB
 d43abb81204a        7 days ago          cmd /S /C powershell -Command  Sleep 2 ;  Inv   66.46 MB
@@ -199,7 +213,7 @@ RUN mkdir test-4
 The resulting image has five layers, one for the base OS image, and one for each of the `RUN` instructions.
 
 ```none
-C:\> docker history doc-sample-1
+docker history doc-sample-1
 
 IMAGE               CREATED              CREATED BY               SIZE                COMMENT
 afba1a3def0a        38 seconds ago       cmd /S /C mkdir test-4   42.46 MB
@@ -223,7 +237,7 @@ RUN mkdir test-4
 Comparing Image ID’s of the new image, to that in the last example, you will see that the first three layers (bottom to the top) are shared, however the fourth and fifth are unique.
 
 ```none
-C:\> docker history doc-sample-2
+docker history doc-sample-2
 
 IMAGE               CREATED             CREATED BY               SIZE                COMMENT
 c92cc95632fb        28 seconds ago      cmd /S /C mkdir test-4   5.644 MB

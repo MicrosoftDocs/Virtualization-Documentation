@@ -21,7 +21,7 @@ docker build -t ruby:latest .
 This will display the Ruby version and exit. Modify the Dockerfile appropriately for application use.
 
 ```
-docker run –it ruby
+docker run -it ruby
 ```
 
 ## Dockerfile Details:
