@@ -52,7 +52,7 @@ Stop-Service docker
 The configuration file can be found at `c:\programdata\docker\runDockerDaemon.cmd`. Edit the following line, and add `-b "none"`
 
 ```none
-dockerd -b "none"
+dockerd <options> -b “none”
 ```
 
 Restart the service.
@@ -102,24 +102,47 @@ IsDeleted          : False
 
 ### NAT Networking
 
-**Network Address Translation** – This networking mode is useful to quickly assign private IP addresses to a containers. External access to the container is provided through mapping a port between the external IP address and port (container host), and the internal IP address and port of the container. All network traffic received on the external IP address / port combo is compared to a WinNAT port mapping table, and forwarded to the correct container IP address and port. Additionally, NAT allows multiple containers to host applications that may require identical (internal) communication ports by mapping these to unique external ports. In TP5, only one NAT network can exist.
+**Network Address Translation** – This networking mode is useful to quickly assign private IP addresses to a containers. External access to the container is provided through mapping a port between the external IP address and port (container host), and the internal IP address and port of the container. All network traffic received on the external IP address / port combo is compared to a WinNAT port mapping table, and forwarded to the correct container IP address and port. Additionally, NAT allows multiple containers to host applications that may require identical (internal) communication ports by mapping these to unique external ports. Windows only suppots the existence of one NAT network internal prefix per host. For more information read the blog post [WinNAT capabilities and limitations](https://blogs.technet.microsoft.com/virtualization/2016/05/25/windows-nat-winnat-capabilities-and-limitations/) 
 
-> In TP5, a firewall rule will be automatically created for all NAT static port mappings. This firewall rule will be global to the container host and not localized to a specific container endpoint or network adapter.
+> Beginning in TP5, a firewall rule will be automatically created for all NAT static port mappings. This firewall rule will be global to the container host and not localized to a specific container endpoint or network adapter.
 
 #### Host Configuration <!--1-->
 
-To use the NAT Networking mode, create a Container Network with driver name 'nat'.
+To use the NAT Networking mode, create a Container Network with driver name 'nat'. 
+
+> Since only one _nat_ default network can be created per host, make sure you only create a new NAT network when all other NAT networks have been removed and docker daemon is run with the '-b "none"' option. Alternatively, if you simply want to control which internal IP network is used by NAT, you can add the _--fixed-cidr=<NAT internal prefix / mask>_ option to the dockerd command in C:\ProgramData\docker\runDockerDaemon.cmd.
 
 ```none
-docker network create -d nat MyNatNetwork
+docker network create -d nat MyNatNetwork [--subnet=<string[]>] [--gateway=<string[]>]
 ```
-
-Additional parameters such as Gateway IP address (--gateway=<string[]>) and subnet prefix (--subnet=<string[]>) can be added on to the Docker network create command. See below for additional details.
 
 In order to create a NAT network using PowerShell, one would use the following syntax. Notice that additional parameters including DNSServers and DNSSuffix can be specified by using PowerShell. If not specified, these settings are inherited from the container host.
 
 ```none
 New-ContainerNetwork -Name MyNatNetwork -Mode NAT -SubnetPrefix "172.16.0.0/12" [-GatewayAddress <address>] [-DNSServers <address>] [-DNSSuffix <string>]
+```
+
+> There is a known bug in Windows Server 2016 Technical Preview 5 and recent Windows Insider Preview (WIP) "flighted" builds where, upon upgrade to a new build results in a duplicate (i.e. "leaked") container network and vSwitch. In order to work-around this issue, please run the following script.
+```none
+PS> $KeyPath = "HKLM:\SYSTEM\CurrentControlSet\Services\vmsmp\parameters\SwitchList"
+PS> $keys = get-childitem $KeyPath
+PS> foreach($key in $keys)
+PS> {
+PS>    if ($key.GetValue("FriendlyName") -eq 'nat')
+PS>    {
+PS>       $newKeyPath = $KeyPath+"\"+$key.PSChildName
+PS>       Remove-Item -Path $newKeyPath -Recurse
+PS>    }
+PS> }
+PS> remove-netnat -Confirm:$false
+PS> Get-ContainerNetwork | Remove-ContainerNetwork
+PS>	Get-VmSwitch -Name nat | Remove-VmSwitch (_failure is expected_)
+PS>	Stop-Service docker
+PS> Set-Service docker -StartupType Disabled
+Reboot Host
+PS> Get-NetNat | Remove-NetNat
+PS> Set-Service docker -StartupType automaticac
+PS> Start-Service docker 
 ```
 
 ### Transparent Networking
@@ -140,18 +163,14 @@ In this example the transparent network is being created and assigned a gateway.
 docker network create -d transparent --gateway=10.50.34.1 "MyTransparentNet"
 ```
 
-The PowerShell command would be similar to this:
-
-```none
-New-ContainerNetwork -Name MyTransparentNet -Mode Transparent -NetworkAdapterName "Ethernet"
-```
-
 If the container host is virtualized, and you wish to use DHCP for IP assignment, you must enable MACAddressSpoofing on the virtual machines network adapter.
 
 ```none
 Get-VMNetworkAdapter -VMName ContainerHostVM | Set-VMNetworkAdapter -MacAddressSpoofing On
 ```
 
+> If you wish to create more than one transparent (or l2bridge) networks you must specify to which (virtual) network adapter the external Hyper-V Virtual Switch (created automatically) should bind.
+ 
 ### L2 Bridge Networking
 
 **L2 Bridge Networking** - In this configuration, the Virtual Filtering Platform (VFP) vSwitch extension in the container host, will act as a Bridge and perform Layer-2 address translation (MAC address re-write) as required. The Layer-3 IP addresses and Layer-4 ports will remain unchanged. IP Addresses can be statically assigned to correspond with the physical network's IP subnet prefix or, if using a Microsoft private cloud deployment, with an IP from the virtual network's subnet prefix.
@@ -164,12 +183,6 @@ To use the L2 Bridge Networking mode, create a Container Network with driver nam
 docker network create -d l2bridge --subnet=192.168.1.0/24 --gateway=192.168.1.1 MyBridgeNetwork
 ```
 
-The PowerShell command would be similar to this:
-
-```none
-New-ContainerNetwork -Name MyBridgeNetwork -Mode L2Bridge -NetworkAdapterName "Ethernet"
-```
-
 ## Remove a Network
 
 Use `docker network rm` to delete a container network.
@@ -178,11 +191,6 @@ Use `docker network rm` to delete a container network.
 docker network rm "<network name>"
 ```
 Or `Remove-ContainerNetwork` with PowerShell:
-
-Through PowerShell
-```
-Remove-ContainerNetwork -Name <network name>
-```
 
 This will clean up any Hyper-V Virtual switches which the container network used, and also any network address translation objects created for nat container networks.
 
@@ -217,7 +225,6 @@ docker network create -d transparent -o com.docker.network.windowsshim.interface
 Multiple container networks can be created on a single container host with the following caveats:
 * Only one NAT network can be created per container host.
 * Multiple networks which use an external vSwitch for connectivity (e.g. Transparent, L2 Bridge, L2 Transparent) must each use its own network adapter.
-* Different networks must use different vSwitches.
 
 ### Network Selection
 
@@ -231,7 +238,7 @@ docker run -it --net=MyTransparentNet windowsservercore cmd
 
 ### Static IP Address
 
-Static IP addresses are set on the containers network adapter, and are only supported for NAT, Transparent, and L2Bridge networking modes. Furthermore, Static IP assignment is not supported for the default "nat" network through Docker.
+Static IP addresses are set on the containers network adapter, and are only supported for NAT, Transparent (pending [PR](https://github.com/docker/docker/pull/22208), and L2Bridge networking modes. Furthermore, Static IP assignment is not supported for the default "nat" network through Docker.
 
 ```none
 docker run -it --net=MyTransparentNet --ip=10.80.123.32 windowsservercore cmd
@@ -302,7 +309,6 @@ After the port mapping has been created, a container's application can be access
 A view of the request from an internet browser.
 
 ![](./media/PortMapping.png)
-
 
 ## Caveats and Gotchas
 
