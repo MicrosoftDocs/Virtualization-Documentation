@@ -13,9 +13,9 @@ ms.assetid: e3b2a4dc-9082-4de3-9c95-5d516c03482b
 
 # Windows Containers on Windows Server
 
-**This is preliminary content and subject to change.** 
+**This is preliminary content and subject to change.**
 
-This exercise will walk through basic deployment and use of the Windows container feature on Windows Server. After completion, you will have installed the container role and have deployed a simple Windows Server container. Before starting this quick start, familiarize yourself with basic container concepts and terminology. This information can be found in the [Quick Start Introduction](./quick_start.md). 
+This exercise will walk through basic deployment and use of the Windows container feature on Windows Server. After completion, you will have installed the container role and have deployed a simple Windows Server container. Before starting this quick start, familiarize yourself with basic container concepts and terminology. This information can be found in the [Quick Start Introduction](./quick_start.md).
 
 This quick start is specific to Windows Server containers on Windows Server 2016. Additional quick start documentation can be found in the table of contents on the left hand side of this page.
 
@@ -25,7 +25,7 @@ This quick start is specific to Windows Server containers on Windows Server 2016
 
 ## 1. Install Container Feature
 
-The container feature needs to be enabled before working with Windows containers. To do so run the following command in an elevated PowerShell session. 
+The container feature needs to be enabled before working with Windows containers. To do so run the following command in an elevated PowerShell session.
 
 ```none
 Install-WindowsFeature containers
@@ -75,17 +75,17 @@ Start-Service Docker
 
 ## 3. Install Base Container Images
 
-Windows containers are deployed from templates or images. Before a container can be deployed, a base OS image needs to be downloaded. The following commands will download the Windows Server Core base image. 
-    
+Windows containers are deployed from templates or images. Before a container can be deployed, a base OS image needs to be downloaded. The following commands will download the Windows Server Core base image.
+
 First, install the container image package provider.
 
 ```none
 Install-PackageProvider ContainerImage -Force
 ```
 
-Next, install the Windows Server Core image. This process can take some time, so teak a break and pick back up once the download has completed.
+Next, install the Windows Server Core image. This process can take some time, so take a break and pick back up once the download has completed.
 
-```none 
+```none
 Install-ContainerImage -Name WindowsServerCore    
 ```
 
