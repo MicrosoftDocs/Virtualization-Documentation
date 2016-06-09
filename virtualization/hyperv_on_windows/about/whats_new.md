@@ -1,5 +1,5 @@
 ---
-redirect_url: https://msdn.microsoft.com/virtualization/hyperv_on_windows/windows_welcome
+redirect_url: ../windows_welcome
 ---
 
 ## Hot add and remove for network adapters and memory

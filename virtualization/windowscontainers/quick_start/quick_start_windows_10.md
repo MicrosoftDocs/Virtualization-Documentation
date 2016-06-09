@@ -40,6 +40,10 @@ Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V -All
 
 When the installation has completed, reboot the computer.
 
+```none
+Restart-Computer -Force
+```
+
 ## 2. Install Docker
 
 Docker is required in order to work with Windows containers. Docker consists of the Docker Engine, and the Docker client. For this exercise, both will be installed. Run the following commands to do so. 
