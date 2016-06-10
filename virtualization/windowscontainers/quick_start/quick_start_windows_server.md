@@ -33,6 +33,10 @@ Install-WindowsFeature containers
 
 When the feature installation has completed, reboot the computer.
 
+```none
+Restart-Computer -Force
+```
+
 ## 2. Install Docker
 
 Docker is required in order to work with Windows containers. Docker consists of the Docker Engine, and the Docker client. For this exercise, both will be installed.
