@@ -11,7 +11,49 @@ ms.service: windows-containers
 ms.assetid: 6885400c-5623-4cde-8012-f6a00019fafa
 ---
 
-The Docker daemon includes many different configuration options. Some examples include configuring how the daemon accepts incoming requests, default networking options, and debug / log settings. On Windows, these configurations can be specified in a configuration file or by using Windows Service control manager. This document will detail how to configure the docker daemon with both methods, and also provide some examples of commonly used configurations.
+The Docker engine is not included with Windows and will need to be installed and configured individually. Furthermore, the Docker daemon can accept many custom configurations. Some examples include configuring how the daemon accepts incoming requests, default networking options, and debug / log settings. On Windows, these configurations can be specified in a configuration file or by using Windows Service control manager. This document will detail how to install and configure the docker daemon, and will also provide some examples of commonly used configurations.
+
+## Install Docker
+
+Docker is required in order to work with Windows containers. Docker consists of the Docker Engine, and the Docker client. For this exercise, both will be installed.
+
+Create a folder for the Docker executables.
+
+```none
+New-Item -Type Directory -Path 'C:\Program Files\docker\'
+```
+
+Download the Docker daemon.
+
+```none
+Invoke-WebRequest https://aka.ms/tp5/b/dockerd -OutFile $env:ProgramFiles\docker\dockerd.exe
+```
+
+Download the Docker client.
+
+```none
+Invoke-WebRequest https://aka.ms/tp5/b/docker -OutFile $env:ProgramFiles\docker\docker.exe
+```
+
+Add the Docker directory to the system path. When complete, restart the PowerShell session so that the modified path is recognized.
+
+```none
+[Environment]::SetEnvironmentVariable("Path", $env:Path + ";C:\Program Files\Docker", [EnvironmentVariableTarget]::Machine)
+```
+
+To install Docker as a Windows service, run the following.
+
+```none
+dockerd --register-service
+```
+
+Once installed, the service can be started.
+
+```none
+Start-Service Docker
+```
+
+Before Docker can be used container images will need to be installed. For more information see, [Manage Container Images](../management/manage_images.md).
 
 ## Docker Configuration File
 

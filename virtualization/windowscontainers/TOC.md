@@ -14,18 +14,17 @@
 ## [Container Host - Windows Server](deployment/deployment.md)
 ## [Container Host - Nano Server](deployment/deployment_nano.md)
 
+# Docker on Windows
+## [Docker Daemon on Windows](docker/configure_docker_daemon.md)
+## [Dockerfiles on Windows](docker/manage_windows_dockerfile.md)
+## [Optimize Dockerfiles](docker/optimize_windows_dockerfile.md)
+
 # Manage Windows Containers
 ## [Hyper-V Containers](management/hyperv_container.md)
 ## [Container Images](management/manage_images.md)
 ## [Container Networking](management/container_networking.md)
 ## [Container Data Volumes](management/manage_data.md)
 ## [Container Resource Control](management/manage_resources.md)
-
-# Docker on Windows
-## [Docker Engine on Windows](deployment/docker_windows.md)
-## [Configure the Docker Daemon](docker/configure_docker_daemon.md)
-## [Dockerfiles on Windows](docker/manage_windows_dockerfile.md)
-## [Optimize Dockerfiles](docker/optimize_windows_dockerfile.md)
 
 # Container Samples
 ## [Dockerfiles – Windows Server Core](https://github.com/Microsoft/Virtualization-Documentation/tree/master/windows-container-samples/windowsservercore)
