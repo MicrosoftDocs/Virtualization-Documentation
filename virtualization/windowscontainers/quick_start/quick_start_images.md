@@ -48,7 +48,7 @@ echo "Hello World From a Windows Server Container" > C:\inetpub\wwwroot\index.ht
 
 From a different system, browse to the IP address of the container host. You should now see the ‘Hello World’ application.
 
-Note: if you are working in Azure, a network security group rule will need to exist allowing traffic over port 80. For more information see, [Create Rule in a Network Security Group]( https://azure.microsoft.com/en-us/documentation/articles/virtual-networks-create-nsg-arm-pportal/#create-rules-in-an-existing-nsg).
+**Note:** if you are working in Azure, a network security group rule will need to exist allowing traffic over port 80. For more information see, [Create Rule in a Network Security Group]( https://azure.microsoft.com/en-us/documentation/articles/virtual-networks-create-nsg-arm-pportal/#create-rules-in-an-existing-nsg).
 
 ![](media/hello.png)
 
