@@ -179,6 +179,8 @@ CONTAINER ID    IMAGE                             COMMAND               CREATED 
 
 From a different computer, open up a web browser and enter the IP address of the container host. If everything has been configured correctly, you should see the IIS splash screen. This is being served from the IIS instance hosted in the Windows container.
 
+**Note:** if you are working in Azure, a network security group rule will need to exist allowing traffic over port 80. For more information see, [Create Rule in a Network Security Group]( https://azure.microsoft.com/en-us/documentation/articles/virtual-networks-create-nsg-arm-pportal/#create-rules-in-an-existing-nsg).
+
 ![](media/iis1.png)
 
 Back on the container host, use the `docker rm` command to remove the container. Note – replace the name of the container in this example with the actual container name.
