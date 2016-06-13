@@ -8,15 +8,15 @@
     
 #### SYNTAX
     Install-ContainerHost.ps1 [-DockerPath <String>] [-ExternalNetAdapter <String>] 
-    [-Force] [-HyperV] [-NATSubnetPrefix <String>] [-NoRestart] [-PSDirect] [-SkipImageImport]  
+    [-Force] [-HyperV] [-NoRestart] [-PSDirect] [-SkipImageImport]  
     [-UseDHCP] [-WimPath <String>] [<CommonParameters>]
     
     Install-ContainerHost.ps1 [-DockerPath <String>] [-ExternalNetAdapter <String>] 
-    [-Force] [-HyperV] [-NATSubnetPrefix <String>] [-NoRestart] [-PSDirect] -SkipDocker  
+    [-Force] [-HyperV] [-NoRestart] [-PSDirect] 
     [-SkipImageImport] [-UseDHCP] [-WimPath <String>] [<CommonParameters>]
     
     Install-ContainerHost.ps1 [-DockerPath <String>] [-ExternalNetAdapter <String>] 
-    [-Force] [-HyperV] [-NATSubnetPrefix <String>] [-NoRestart] [-PSDirect]  
+    [-Force] [-HyperV] [-NoRestart] [-PSDirect]  
     [-SkipImageImport] -Staging [-UseDHCP] [-WimPath <String>] [<CommonParameters>]
     
     
@@ -61,15 +61,6 @@
         Accept pipeline input?       false
         Accept wildcard characters?  false
         
-    -NATSubnetPrefix <String>
-        Use to override NAT Subnet when in NAT mode.  Defaults to 172.16.0.0/12
-        
-        Required?                    false
-        Position?                    named
-        Default value                172.16.0.0/12
-        Accept pipeline input?       false
-        Accept wildcard characters?  false
-        
     -NoRestart [<SwitchParameter>]
         If a restart is required the script will terminate and will not reboot the machine
         
@@ -82,15 +73,6 @@
     -PSDirect [<SwitchParameter>]
         
         Required?                    false
-        Position?                    named
-        Default value                False
-        Accept pipeline input?       false
-        Accept wildcard characters?  false
-        
-    -SkipDocker [<SwitchParameter>]
-        If passed, skip Docker install
-        
-        Required?                    true
         Position?                    named
         Default value                False
         Accept pipeline input?       false
@@ -149,7 +131,7 @@
     
 #### Examples
     
-    PS C:\>.\Install-ContainerHost.ps1 -SkipDocker
+    PS C:\>.\Install-ContainerHost.ps1
     
 #### Prerequisites
 Requires PowerShell version 5.0
