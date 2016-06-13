@@ -47,12 +47,12 @@ Set to Standard Checkpoint:
 Set-VM -Name <vmname> -CheckpointType Standard
 ```
 
-Set to Production Checkpoint, if the production checkpoint fails a standard checkpoint is be created:
+Set to Production Checkpoint, if the production checkpoint fails a standard checkpoint is being created:
 ```powershell
 Set-VM -Name <vmname> -CheckpointType Production
 ```
 
-Set to Production Checkpoint, if the production checkpoint fails a standard checkpoint is not be created. 
+Set to Production Checkpoint, if the production checkpoint fails a standard checkpoint is not being created. 
 ```powershell
 Set-VM -Name <vmname> -CheckpointType ProductionOnly
 ```
@@ -162,7 +162,7 @@ Export bundles the checkpoint as a virtual machine so the checkpoint can be move
 
 **Using PowerShell**
 ``` powershell
-Export-VMCheckpoint -VMName <virtual machine name>  -Name <checkpoint name> -Path <path for export>
+Export-VMCheckpoint -VMName <virtual machine name> -Name <checkpoint name> -Path <path for export>
 ```
 
 ## Enable or disable checkpoints
