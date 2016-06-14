@@ -74,7 +74,7 @@ dockerd --register-service
 Once installed, the service can be started.
 
 ```none
-Start-Service Docker
+Start-Service docker
 ```
 
 ## 3. Install Base Container Images
