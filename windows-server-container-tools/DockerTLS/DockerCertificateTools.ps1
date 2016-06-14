@@ -100,7 +100,7 @@ Param(
 #>
 function Install-OpenSSL {
 Param(
-  [String] $OpenSSLDownloadPath = "https://slproweb.com/download/Win64OpenSSL_Light-1_0_2g.exe",
+  [String] $OpenSSLDownloadPath = "https://slproweb.com/download/Win64OpenSSL_Light-1_0_2h.exe",
   [String] $DownloadLocation = $env:TEMP,
   [String] $InstallLocation = $Global:PathToOpenSSL.Replace("bin\openssl.exe", "")
   )
@@ -118,8 +118,8 @@ Param(
     if ($Continue)
     {
         New-Item -Path $InstallLocation -ItemType Directory -ErrorAction SilentlyContinue | Out-Null
-        wget -uri $OpenSSLDownloadPath -OutFile ($DownloadLocation + "Win64OpenSSL_Light-1_0_2g.exe")
-        Start-Process -FilePath ($DownloadLocation + "Win64OpenSSL_Light-1_0_2g.exe") -ArgumentList @("/VERYSILENT", ("/DIR=`"" + $InstallLocation + "`"")) -Wait
+        wget -uri $OpenSSLDownloadPath -OutFile ($DownloadLocation + "Win64OpenSSL_Light-1_0_2h.exe")
+        Start-Process -FilePath ($DownloadLocation + "Win64OpenSSL_Light-1_0_2h.exe") -ArgumentList @("/VERYSILENT", ("/DIR=`"" + $InstallLocation + "`"")) -Wait
     }
 }
 
