@@ -236,7 +236,7 @@ Keep integration services current in order to receive the best virtual machine p
 | Windows Server 2003 R2 (SP 2) | Integration Services disk | |
 | Windows Server 2003 (SP 2) | Integration Services disk | |
 | - | | |
-| Linux guests | package manager | Integration components for Linux are built into the distro but there may be optional updates available. ******** |
+| Linux guests | package manager | Integration components for Linux are built into the distro but there may be optional updates available. ** |
 
 
 **For virtual machines running on Windows 8 hosts:**
@@ -258,9 +258,9 @@ Keep integration services current in order to receive the best virtual machine p
 | Windows Server 2003 R2 (SP 2) | Integration Services disk | |
 | Windows Server 2003 (SP 2) | Integration Services disk | |
 | - | | |
-| Linux guests | package manager | Integration components for Linux are built into the distro but there may be optional updates available. ******** |
+| Linux guests | package manager | Integration components for Linux are built into the distro but there may be optional updates available. ** |
 
 
 Instructions for updating via Integration Services disk for Windows 8 and Windows 8.1 are available  [here](https://technet.microsoft.com/en-us/library/hh846766.aspx#BKMK_step4).
 
- **\****** Find more information about Linux Guests [here](https://technet.microsoft.com/en-us/library/dn531030.aspx). 
+ > ** Find more information about Linux Guests [here](https://technet.microsoft.com/en-us/library/dn531030.aspx). 
