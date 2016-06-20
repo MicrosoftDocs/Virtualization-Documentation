@@ -101,14 +101,14 @@ RUN ["<executable", "<param 1>", "<param 2>"
 RUN <command>
 ```
 
-The difference between the exec. and shell form, is in how the `RUN` instruction is executed. When using the exec method, the specified program is run explicitly. 
+The difference between the exec and shell form, is in how the `RUN` instruction is executed. When using the exec form, the specified program is run explicitly. 
 
-The following example used the exec. form.
+The following example used the exec form.
 
 ```none
 FROM windowsservercore
 
-RUN ["powershell","New-Item","c:/test"]
+RUN ["powershell", "New-Item", "c:/test"]
 ```
 
 Examining the resulting image, the command that was run is `powershell new-item c:/test`.
@@ -142,7 +142,7 @@ IMAGE               CREATED             CREATED BY                              
 On Windows, when using the `RUN` instruction with the exec format, backslashes must be escaped.
 
 ```none
-RUN ["powershell","New-Item","c:\\test"]
+RUN ["powershell", "New-Item", "c:\\test"]
 ```
 
 **Examples**
@@ -161,7 +161,7 @@ For detailed information on the RUN instruction, see the [RUN Reference on Docke
 
 ### COPY
 
-The `COPY` instruction, copies files and directories to the filesystem of the container. The files and directories need to be in a path relative to the Dockerfile.
+The `COPY` instruction copies files and directories to the filesystem of the container. The files and directories need to be in a path relative to the Dockerfile.
 
 **Format**
 
@@ -179,7 +179,7 @@ COPY ["<source>" "<destination>"]
 
 **Windows Considerations**
  
-On Windows, the destination format must use forward slashes. For example, these are valid `ADD` instructions.
+On Windows, the destination format must use forward slashes. For example, these are valid `COPY` instructions.
 
 ```none
 COPY test1.txt /temp/
@@ -204,9 +204,11 @@ This example will add all files that begin with config, to the `c:\temp` directo
 COPY config* c:/temp/
 ```
 
+For detailed information on the `COPY` instruction, see the [COPY Reference on Docker.com]( https://docs.docker.com/engine/reference/builder/#copy).
+
 ### ADD
 
-The ADD instruction is very much like the COPY instruction, however includes additional capabilities. In addition to copying files from the host into the container image, the `ADD` instruction can also copy files from a remote location with a URL specification.
+The ADD instruction is very much like the COPY instruction; however, it includes additional capabilities. In addition to copying files from the host into the container image, the `ADD` instruction can also copy files from a remote location with a URL specification.
 
 **Format**
 
@@ -297,7 +299,7 @@ The `CMD` instruction takes a format of:
 ```none
 # exec form
 
-CMD ["<executable";"<param>"]
+CMD ["<executable", "<param>"]
 
 # shell form
 
@@ -311,7 +313,7 @@ On Windows, file paths specified in the `CMD` instruction must use forward slash
 ```none
 # exec form
 
-CMD ["c:\\Apache24\\bin\\httpd.exe","-w"]
+CMD ["c:\\Apache24\\bin\\httpd.exe", "-w"]
 
 # shell form
 
@@ -371,7 +373,7 @@ RUN powershell.exe -Command \
 
 In some cases, it may be helpful to copy a script into the containers being used during the image creation process, and then run from within the container. Note - this will limit any image layer caching, and decrease readability of the Dockerfile.
 
-This example copies a script from the build machine, into the container using the `ADD` instruction. This script is the run using the RUN instruction.
+This example copies a script from the build machine into the container using the `ADD` instruction. This script is then run using the RUN instruction.
 
 ```
 FROM windowsservercore
@@ -381,7 +383,7 @@ RUN powershell.exe -executionpolicy bypass c:\windows\temp\script.ps1
 
 ## Docker Build 
 
-Once a Dockerfile has been created, and saved to disk, `docker build` can be run to create the new image. The `docker build` command takes several optional parameters and a path to the Dockerfile. For complete documentation on Docker Build, including a list of all build options, see [Build at Docker.com](https://docs.docker.com/engine/reference/commandline/build/#build-with).
+Once a Dockerfile has been created and saved to disk, `docker build` can be run to create the new image. The `docker build` command takes several optional parameters and a path to the Dockerfile. For complete documentation on Docker Build, including a list of all build options, see [build Reference on Docker.com](https://docs.docker.com/engine/reference/commandline/build/#build).
 
 ```none
 Docker build [OPTIONS] PATH

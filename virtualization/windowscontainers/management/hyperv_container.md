@@ -28,7 +28,7 @@ The Windows container technology includes two distinct types of containers, Wind
 Managing Hyper-V containers with Docker is almost identical to managing Windows Server containers. When creating a Hyper-V container with Docker, the `--isolation=hyperv` parameter is used.
 
 ```none
-docker run -it --isolation=hyperv windowsservercore cmd
+docker run -it --isolation=hyperv nanoserver cmd
 ```
 
 ### Isolation explanation

@@ -40,6 +40,10 @@ Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V -All
 
 When the installation has completed, reboot the computer.
 
+```none
+Restart-Computer -Force
+```
+
 ## 2. Install Docker
 
 Docker is required in order to work with Windows containers. Docker consists of the Docker Engine, and the Docker client. For this exercise, both will be installed. Run the following commands to do so. 
@@ -116,13 +120,13 @@ At this stage, running `docker images` will return a list of installed images, i
 docker images
 
 REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
-nanoserver          10.0.14300.1010     cb48429c84fa        8 weeks ago         817.1 MB
+nanoserver          10.0.14300.1016     3f5112ddd185        3 weeks ago         810.2 MB
 ```
 
 Before proceeding, this image needs to be tagged with a version of ‘latest’. To do so, run the following command.
 
 ```none
-docker tag nanoserver:10.0.14300.1010 nanoserver:latest
+docker tag nanoserver:10.0.14300.1016 nanoserver:latest
 ```
 
 For in depth information on Windows container images see, [Managing Container Images](../management/manage_images.md).
@@ -143,9 +147,9 @@ This can be verified with the `docker images` command.
 docker images
 
 REPOSITORY               TAG                 IMAGE ID            CREATED             SIZE
-microsoft/sample-dotnet   latest              289f9cdaf773        32 minutes ago      929.9 MB
-nanoserver               10.0.14300.1010     cb48429c84fa        8 weeks ago         817.1 MB
-nanoserver               latest              cb48429c84fa        8 weeks ago         817.1 MB
+microsoft/sample-dotnet  latest              28da49c3bff4        41 hours ago        918.3 MB
+nanoserver               10.0.14300.1016     3f5112ddd185        3 weeks ago         810.2 MB
+nanoserver               latest              3f5112ddd185        3 weeks ago         810.2 MB
 ```
 
 Run the container with the `docker run` command. The following example specifies the `--rm` parameter, this instructs the Docker engine to delete the container once it is no longer running. 

@@ -13,19 +13,23 @@ ms.assetid: ba4eb594-0cdb-4148-81ac-a83b4bc337bc
 
 # Container Host Deployment - Windows Server
 
-**This is preliminary content and subject to change.** 
+**This is preliminary content and subject to change.**
 
 Deploying a Windows container host has different steps depending on the operating system and the host system type (physical or virtual). This document details deploying a Windows container host to either Windows Server 2016 or Windows Server Core 2016 on a physical or virtual system.
 
 ## Install Container Feature
 
-The container feature needs to be enabled before working with Windows containers. To do so run the following command in an elevated PowerShell session. 
+The container feature needs to be enabled before working with Windows containers. To do so run the following command in an elevated PowerShell session.
 
 ```none
 Install-WindowsFeature containers
 ```
 
 When the feature installation has completed, reboot the computer.
+
+```none
+Restart-Computer -Force
+```
 
 ## Install Docker
 
@@ -71,17 +75,17 @@ Start-Service Docker
 
 ## Install Base Container Images
 
-Before a container can be deployed, a container base OS image needs to be downloaded. The following example will download the Windows Server Core base OS image. This same procedure can be completed to install the Nano Server base image. This same procedure can be completed to install the Nano Server base image. For detailed information on Windows container images, see [Managing Container Images](../management/manage_images.md).
-    
+Before a container can be deployed, a container base OS image needs to be downloaded. The following example will download the Windows Server Core base OS image. This same procedure can be completed to install the Nano Server base image. For detailed information on Windows container images, see [Managing Container Images](../management/manage_images.md).
+
 First, install the container image package provider.
 
 ```none
 Install-PackageProvider ContainerImage -Force
 ```
 
-Next, install the Windows Server Core image. This process can take some time, so teak a break and pick back up once the download has completed.
+Next, install the Windows Server Core image. This process can take some time, so take a break and pick back up once the download has completed.
 
-```none 
+```none
 Install-ContainerImage -Name WindowsServerCore    
 ```
 
@@ -99,11 +103,11 @@ docker tag windowsservercore:10.0.14300.1000 windowsservercore:latest
 
 ## Hyper-V Container Host
 
-In order to deploy Hyper-V containers, the Hyper-V role will be required. If the Windows container host is itself a Hyper-V virtual machine, nested virtualization will need to be enabled before installing the Hyper-V role. For more information on nested virtualization, see [Nested Virtualization]( https://msdn.microsoft.com/en-us/virtualization/hyperv_on_windows/user_guide/nesting).
+In order to run Hyper-V containers, the Hyper-V role is required. If the Windows container host is itself a Hyper-V virtual machine, nested virtualization will need to be enabled before installing the Hyper-V role. For more information on nested virtualization, see [Nested Virtualization]( https://msdn.microsoft.com/en-us/virtualization/hyperv_on_windows/user_guide/nesting).
 
 ### Nested Virtualization
 
-The following script will configure nested virtualization for the container host. This script is run on the Hyper-V machine that is hosting the container host virtual machine. Ensure that the container host virtual machine is turned off when running this script.
+The following script will configure nested virtualization for the container host. This script is run on the parent Hyper-V machine. Ensure that the container host virtual machine is turned off when running this script.
 
 ```none
 #replace with the virtual machine name
@@ -126,4 +130,3 @@ To enable the Hyper-V feature using PowerShell, run the following command in an 
 ```none
 Install-WindowsFeature hyper-v
 ```
-

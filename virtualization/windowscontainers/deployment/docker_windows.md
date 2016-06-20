@@ -9,6 +9,7 @@ ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: bdfa4545-2291-4827-8165-2d6c98d72d37
+redirect_url: ../docker/configure_docker_daemon
 ---
 
 # Docker and Windows

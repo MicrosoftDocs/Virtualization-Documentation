@@ -270,7 +270,7 @@ Install-ContainerHost
                 Write-Output "Enabling Hyper-V containers by default for Client SKU"
                 $HyperV = $true
             }
-        }    
+        }  
     }
     #
     # Validate required Windows features
