@@ -4,7 +4,7 @@ description: Nested Virtualization
 keywords: windows 10, hyper-v
 author: theodthompson
 manager: timlt
-ms.date: 05/02/2016
+ms.date: 06/20/2016
 ms.topic: article
 ms.prod: windows-10-hyperv
 ms.service: windows-10-hyperv
@@ -37,16 +37,16 @@ Set-VMMemory -VMName <VMName> -DynamicMemoryEnabled $false
 
 When these steps have been completed, the virtual machine can be started and Hyper-V installed. For more information on installing Hyper-V see, [Install Hyper-V]( https://msdn.microsoft.com/en-us/virtualization/hyperv_on_windows/quick_start/walkthrough_install).
 
-## Nested Virtual Machine Networking
+## Networking Options
 There are two options for networking with nested virtual machines: MAC address spoofing and NAT mode.
 
-### Option 1: MAC Address Spoofing
+### MAC Address Spoofing
 In order for network packets to be routed through two virtual switches, MAC address spoofing must be enabled on the first level of virtual switch. This is completed with the following PowerShell command.
 
 ```none
 Get-VMNetworkAdapter -VMName <VMName> | Set-VMNetworkAdapter -MacAddressSpoofing On
 ```
-### Option 2: NAT Mode
+### Network Address Translation
 The second option relies on network address translation (NAT). This approach is best suited for cases where MAC address spoofing is not possible, like in a public cloud environment.
 
 First, a virtual NAT switch must be created in the host virtual machine (the "middle" VM). Note that the IP addresses are just an example, and will vary across environments:
