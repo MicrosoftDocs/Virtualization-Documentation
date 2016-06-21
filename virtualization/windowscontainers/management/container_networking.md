@@ -293,7 +293,7 @@ docker run -it --name=DemoNat -p 8082:80 windowsservercore cmd
 Dynamic port mappings are also supported through Docker such that a user does not need to specify a specific port to map from the container host. A randomly chosen ephemeral port will be chosen on the container host and can be inspected when running Docker ps.
 
 ```none
-docker run -itd --name=DemoNat -p 80 windowsservercore cmd
+docker run -d --name=DemoNat -p 80 windowsservercore cmd
 
 docker ps
 CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS                   NAMES
