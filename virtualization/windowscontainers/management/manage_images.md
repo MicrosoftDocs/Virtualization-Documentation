@@ -197,7 +197,6 @@ To see a list of images available from Docker Hub use the `docker search` comman
 
 Most of these images have a Windows Server Core and a Nano Server version. To get a specific version just add the tag ":windowsservercore" or ":nanoserver". The "latest" tag will return the Windows Server Core version by default, unless there is only a Nano Server version available.
 
-> The images that start with "nano-" have a dependency on the Nano Server Base OS Image.
 
 ```none
 docker search *
@@ -219,7 +218,9 @@ microsoft/sample-ruby    Ruby installed in a Windows Server Core ba...   1      
 microsoft/sample-sqlite  SQLite installed in a Windows Server Core ...   1                    [OK]
 ```
 
-To download an image from Docker Hub, use `docker pull`.
+### Docker Pull
+
+To download an image from Docker Hub, use `docker pull`. For more information, see [Docker Pull on Docker.com](https://docs.docker.com/engine/reference/commandline/pull/).
 
 ```none
 docker pull microsoft/aspnet
@@ -241,4 +242,43 @@ microsoft/aspnet    latest              b3842ee505e5        5 hours ago         
 windowsservercore   10.0.14300.1000     6801d964fda5        2 weeks ago         0 B
 windowsservercore   latest              6801d964fda5        2 weeks ago         0 B
 ```
+
+### Docker Push
+
+Container images can also be uploaded to Docker Hub or a Docker Trusted Registry. Once uploaded these images can be downloaded and re-used across different Windows container environments.
+
+To upload a container image to Docker Hub, first log into the registry. For more information, see [Docker Login on Docker.com]( https://docs.docker.com/engine/reference/commandline/login/) .
+
+```none
+docker login
+
+Login with your Docker ID to push and pull images from Docker Hub. If you don't have a Docker ID, head over to https://hub.docker.com to create one.
+Username: username
+Password:
+
+Login Succeeded
+```
+
+Once logged into Docker hub or your Docker Trusted registry, use `docker push` to upload a container image. The container image can be referenced by name or ID. For more information, see [Docker Push on Docker.com]( https://docs.docker.com/engine/reference/commandline/push/).
+
+```none
+docker push username/containername
+
+The push refers to a repository [docker.io/username/containername]
+b567cea5d325: Pushed
+00f57025c723: Pushed
+2e05e94480e9: Pushed
+63f3aa135163: Pushed
+469f4bf35316: Pushed
+2946c9dcfc7d: Pushed
+7bfd967a5e43: Pushed
+f64ea92aaebc: Pushed
+4341be770beb: Pushed
+fed398573696: Pushed
+latest: digest: sha256:ae3a2971628c04d5df32c3bbbfc87c477bb814d5e73e2787900da13228676c4f size: 2410
+```
+
+At this point the container image is now available and can be accessed with `docker pull`.
+
+
 
