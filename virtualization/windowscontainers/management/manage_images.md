@@ -243,6 +243,8 @@ windowsservercore   10.0.14300.1000     6801d964fda5        2 weeks ago         
 windowsservercore   latest              6801d964fda5        2 weeks ago         0 B
 ```
 
+> If Docker Pull fails, ensure that the latest cumulative updates have been applied to the container host. The TP5 update can be found at [KB3157663]( https://support.microsoft.com/en-us/kb/3157663).
+
 ### Docker Push
 
 Container images can also be uploaded to Docker Hub or a Docker Trusted Registry. Once uploaded these images can be downloaded and re-used across different Windows container environments.
