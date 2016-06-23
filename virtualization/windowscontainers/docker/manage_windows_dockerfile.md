@@ -327,6 +327,40 @@ CMD c:\Apache24\bin\httpd.exe -w
 
 For detailed information on the `CMD` instruction, see the [CMD Reference on Docker.com]( https://docs.docker.com/engine/reference/builder/#cmd). 
 
+## Escape Character
+
+In many cases a Dockerfile instruction will need to span multiple lines; this is done with an escape character. The default Dockerfile escape character is a backslash `\`. Because the backslash is also a file path separator in Windows, it can be problematic. To change the default escape character, a parser directive can be used. For more information on Parser directives, see [Parser Directives on Docker.com]( https://docs.docker.com/engine/reference/builder/#parser-directives).
+
+The following example shows a single RUN instruction that spans multiple lines using the default escape character.
+
+```none
+FROM windowsservercore
+
+RUN powershell.exe -Command \
+    $ErrorActionPreference = 'Stop'; \
+    wget https://www.python.org/ftp/python/3.5.1/python-3.5.1.exe -OutFile c:\python-3.5.1.exe ; \
+    Start-Process c:\python-3.5.1.exe -ArgumentList '/quiet InstallAllUsers=1 PrependPath=1' -Wait ; \
+    Remove-Item c:\python-3.5.1.exe -Force
+```
+
+To modify the escape character, place an escape parser directive on the very first line of the Dockerfile. This can be seen in the below example.
+
+> Note, only two values can be used as escape characters, the `\` and the `` ` ``.
+
+```none
+# escape=`
+
+FROM windowsservercore
+
+RUN powershell.exe -Command `
+    $ErrorActionPreference = 'Stop'; `
+    wget https://www.python.org/ftp/python/3.5.1/python-3.5.1.exe -OutFile c:\python-3.5.1.exe ; `
+    Start-Process c:\python-3.5.1.exe -ArgumentList '/quiet InstallAllUsers=1 PrependPath=1' -Wait ; `
+    Remove-Item c:\python-3.5.1.exe -Force
+```
+
+For more information on the escape parser directive, see [Escape Parser Directive on Docker.com]( https://docs.docker.com/engine/reference/builder/#escape).
+
 ## PowerShell in Dockerfile
 
 ### PowerShell Commands

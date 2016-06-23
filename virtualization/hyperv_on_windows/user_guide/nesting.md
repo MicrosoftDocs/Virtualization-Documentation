@@ -13,7 +13,7 @@ ms.assetid: 68c65445-ce13-40c9-b516-57ded76c1b15
 
 # Run Hyper-V in a Virtual Machine with Nested Virtualization
 
-Nested virtualization is a feature that allows you to run Hyper-V inside of a Hyper-V virtual machine. In other words, with nested virtualization, a Hyper-V host itself can be virtualized. Some use cases for nested virtualization would be to run a Hyper-V Container in a virtualized container host, set-up a Hyper-V lab in a virtualized environment, or to test multi-machine scenarios without the need for individual hardware. This document will detail software and hardware prerequisites, configuration steps, and provide troubleshooting details.
+Nested virtualization is a feature that allows you to run Hyper-V inside of a Hyper-V virtual machine. In other words, with nested virtualization, a Hyper-V host itself can be virtualized. Some use cases for nested virtualization would be to run a Hyper-V Container in a virtualized container host, set-up a Hyper-V lab in a virtualized environment, or to test multi-machine scenarios without the need for individual hardware. This document will detail software and hardware prerequisites, configuration steps, and provide troubleshooting details. If you run Hyper-V on a Windows Insider preview build 14361 or later, see [Nested Virtualization Preview for Windows Insiders: Builds 14361+](https://msdn.microsoft.com/en-us/virtualization/hyperv_on_windows/user_guide/nesting#nested-virtualization-preview-for-windows-insiders-builds-14361-).
 
 ## Prerequisites
 
@@ -85,3 +85,46 @@ My virtual machine won’t start, what should I do?
 ## Feedback
 
 Report additional issue through the Windows feedback app, the [virtualization forums](https://social.technet.microsoft.com/Forums/windowsserver/En-us/home?forum=winserverhyperv), or through [GitHub](https://github.com/Microsoft/Virtualization-Documentation).
+
+##Nested Virtualization Preview for Windows Insiders: Builds 14361+
+A few months ago, we announced an early preview of Hyper-V Nested Virtualization with build 10565. We were thrilled to see the excitement that this feature generated, and are happy to share an update with Windows Insiders.
+
+###A new VM version required for nested virtualization
+Starting with build 14361, version 8.0 is required for VMs with nested virtualization enabled. This will require a version update for VMs with nested enabled that were created on older hosts. 
+
+####Update VM version
+To continue using nested virtualization, you need to update the VM version to 8.0. This means saved state must be removed and the VM needs to be shut down. The following PowerShell cmdlet will update the VM version:
+```none
+Update-VMVersion -Name <VMName>
+```
+####Disable nested virtualization
+If you do not wish to update the VM, you can disable nested virtualization so that the VM can boot:
+```none
+Set-VMProcessor -VMName <VMName> -ExposeVirtualizationExtensions $false
+```
+
+###New behavior for VM version 8.0 
+There are several changes to how VMs with nested enabled work in this preview:
+-	Creating and applying checkpoints now work for VM’s with nested virtualization enabled.
+-	You can now Save and Start nested-enabled VMs.
+-	VMs with nested virtualization enabled can now run on hosts with Virtualization Based Security enabled (including Device Guard and Credential Guard).
+-	We’ve improved error messages for existing limitations.
+
+###Functional limitations
+-	Nested virtualization is designed to run Hyper-V within a Hyper-V virtual machine. 3rd party virtualization applications are not supported and likely to fail in Hyper-V VMs.
+-	Dynamic Memory is not compatible with nested virtualization. Once Hyper-V is running inside a VM, the VM cannot change its memory at runtime. 
+-	Runtime Memory Resize is not compatible with nested virtualization. Resizing a VM’s memory while Hyper-V is running inside will fail. 
+-	Nested virtualization is only supported on Intel systems.
+
+###Known issue
+There is a known issue on build 14361 where generation 2 VMs will not boot with the following error:
+```none
+“Cannot modify property without enabling VirtualizationBasedSecurityOptOut”
+```
+This can be temporarily fixed by either disabling nested virtualization, or opting out of virtualization based security:
+```none
+Set-VMSecurity -VMName <vmname> -VirtualizationBasedSecurityOptOut $true
+```
+
+###We're listening
+As always, please continue to send in feedback with the Windows Feedback app. If you have any questions, please file an issue on our documentation [GitHub](https://github.com/Microsoft/Virtualization-Documentation) page. 
