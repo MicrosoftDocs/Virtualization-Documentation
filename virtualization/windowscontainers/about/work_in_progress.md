@@ -9,6 +9,7 @@ ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: 5d9f1cb4-ffb3-433d-8096-b085113a9d7b
+redirect_url: ../containers_welcome
 ---
 
 # Work in Progress
