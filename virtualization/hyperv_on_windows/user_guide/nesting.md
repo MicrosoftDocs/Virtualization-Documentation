@@ -90,7 +90,7 @@ Report additional issue through the Windows feedback app, the [virtualization fo
 A few months ago, we announced an early preview of Hyper-V Nested Virtualization with build 10565. We were thrilled to see the excitement that this feature generated, and are happy to share an update with Windows Insiders.
 
 ###A new VM version required for nested virtualization
-Starting with build 14361, version 8.0 is required for VM’s with nested virtualization enabled. This will require a version update for VM’s with nested enabled that were created on older hosts. 
+Starting with build 14361, version 8.0 is required for VMs with nested virtualization enabled. This will require a version update for VMs with nested enabled that were created on older hosts. 
 
 ####Update VM version
 To continue using nested virtualization, you need to update the VM version to 8.0. This means saved state must be removed and the VM needs to be shut down. The following PowerShell cmdlet will update the VM version:
@@ -104,10 +104,10 @@ Set-VMProcessor -VMName <VMName> -ExposeVirtualizationExtensions $false
 ```
 
 ###New behavior for VM version 8.0 
-There are several changes to how VM’s with nested enabled work in this preview:
+There are several changes to how VMs with nested enabled work in this preview:
 -	Creating and applying checkpoints now work for VM’s with nested virtualization enabled.
--	You can now Save and Start nested-enabled VM’s.
--	VM’s with nested virtualization enabled can now run on hosts with Virtualization Based Security enabled (including Device Guard and Credential Guard).
+-	You can now Save and Start nested-enabled VMs.
+-	VMs with nested virtualization enabled can now run on hosts with Virtualization Based Security enabled (including Device Guard and Credential Guard).
 -	We’ve improved error messages for existing limitations.
 
 ###Functional limitations
@@ -117,7 +117,7 @@ There are several changes to how VM’s with nested enabled work in this preview
 -	Nested virtualization is only supported on Intel systems.
 
 ###Known issue
-There is a known issue on build 14361 where generation 2 VM’s will not boot with the following error:
+There is a known issue on build 14361 where generation 2 VMs will not boot with the following error:
 ```none
 “Cannot modify property without enabling VirtualizationBasedSecurityOptOut”
 ```
