@@ -13,7 +13,7 @@ ms.assetid: 68c65445-ce13-40c9-b516-57ded76c1b15
 
 # Run Hyper-V in a Virtual Machine with Nested Virtualization
 
-Nested virtualization is a feature that allows you to run Hyper-V inside of a Hyper-V virtual machine. In other words, with nested virtualization, a Hyper-V host itself can be virtualized. Some use cases for nested virtualization would be to run a Hyper-V Container in a virtualized container host, set-up a Hyper-V lab in a virtualized environment, or to test multi-machine scenarios without the need for individual hardware. This document will detail software and hardware prerequisites, configuration steps, and provide troubleshooting details.
+Nested virtualization is a feature that allows you to run Hyper-V inside of a Hyper-V virtual machine. In other words, with nested virtualization, a Hyper-V host itself can be virtualized. Some use cases for nested virtualization would be to run a Hyper-V Container in a virtualized container host, set-up a Hyper-V lab in a virtualized environment, or to test multi-machine scenarios without the need for individual hardware. This document will detail software and hardware prerequisites, configuration steps, and provide troubleshooting details. If run Hyper-V on a Windows Insider preview build 14361 or later, see [Nested Virtualization Preview for Windows Insiders: Builds 14361+](https://msdn.microsoft.com/en-us/virtualization/hyperv_on_windows/user_guide/nesting#nested-virtualization-preview-for-windows-insiders-builds-14361).
 
 ## Prerequisites
 
@@ -117,7 +117,7 @@ There are several changes to how VM’s with nested enabled work in this preview
 -	Nested virtualization is only supported on Intel systems.
 
 ##Known issue
-There is a known issue on build 14361 where Gen2 VM’s will not boot with the following error:
+There is a known issue on build 14361 where generation 2 VM’s will not boot with the following error:
 ```none
 “Cannot modify property without enabling VirtualizationBasedSecurityOptOut”
 ```
