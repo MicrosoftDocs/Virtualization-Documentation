@@ -11,6 +11,8 @@ ms.service: windows-containers
 ms.assetid: 6885400c-5623-4cde-8012-f6a00019fafa
 ---
 
+# Docker Daemon on Windows
+
 The Docker engine is not included with Windows and will need to be installed and configured individually. Furthermore, the Docker daemon can accept many custom configurations. Some examples include configuring how the daemon accepts incoming requests, default networking options, and debug / log settings. On Windows, these configurations can be specified in a configuration file or by using Windows Service control manager. This document will detail how to install and configure the docker daemon, and will also provide some examples of commonly used configurations.
 
 ## Install Docker
