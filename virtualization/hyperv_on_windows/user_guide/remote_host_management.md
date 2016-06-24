@@ -103,9 +103,16 @@ On the Hyper-V Host to be managed, run the following as an administrator:
 
 1.	[Enable-PSRemoting](https://technet.microsoft.com/en-us/library/hh849694.aspx)
   * [Enable-PSRemoting](https://technet.microsoft.com/en-us/library/hh849694.aspx) will create the necessary firewall rules for *private* network zones. To allow this access on public zones you will need to enable the rules for CredSSP and WinRM.
-2. Set-Item WSMan:\localhost\Client\TrustedHosts -value "fqdn-of-managing-pc"
+2.  [Enable-WSManCredSSP](https://technet.microsoft.com/en-us/library/hh849872.aspx) -Role server
+
+On the managing PC, run the following as an administrator:
+
+1. Set-Item WSMan:\localhost\Client\TrustedHosts -value "fqdn-of-hyper-v-host"
   * Alternately, you can allow all hosts to be trusted to manage via:
   * Set-Item WSMan:\localhost\Client\TrustedHosts -value * -force
-3. [Enable-WSManCredSSP](https://technet.microsoft.com/en-us/library/hh849872.aspx) -Role client -DelegateComputer "fqdn-of-managing-pc"
+2. [Enable-WSManCredSSP](https://technet.microsoft.com/en-us/library/hh849872.aspx) -Role client -DelegateComputer "fqdn-of-hyper-v-host"
   * Alternately, you can allow all hosts to be trusted to manage via:
   * [Enable-WSManCredSSP](https://technet.microsoft.com/en-us/library/hh849872.aspx) -Role client -DelegateComputer *
+3. Additionally you may need to configure the following group policy: ** Computer Configuration | Administrative Templates | System | Credentials Delegation | Allow Fresh Credentials with NTLM-only Server Authentication **
+    * Click **Enable** and add *wsman/fqdn-of-hyper-v-host*
+    * Alternatively, you can allow all hosts to be trusted to manage by adding _wsman/*_
