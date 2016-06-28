@@ -4,7 +4,7 @@ description: Container deployment quick start
 keywords: docker, containers
 author: neilpeterson
 manager: timlt
-ms.date: 05/26/2016
+ms.date: 06/28/2016
 ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
@@ -160,7 +160,13 @@ For in depth information on the Docker Run command, see [Docker Run Reference on
 docker run --isolation=hyperv --rm microsoft/sample-dotnet
 ```
 
-The outcome of this command is that a Hyper-V container was created from the sample-dotnet image, a sample application was then executed (output echoed to the shell), and then the container stopped and removed. 
+**Note** - If an error is thrown indicating a timeout event, run the following PowerShell script and retry the operation.
+
+```none
+Set-ItemProperty -Path 'HKLM:SOFTWARE\Microsoft\Windows NT\CurrentVersion\Virtualization\Containers' -Name VSmbDisableOplocks -Type DWord -Value 1 -Force
+```
+
+The outcome of the `docker run` command is that a Hyper-V container was created from the sample-dotnet image, a sample application was then executed (output echoed to the shell), and then the container stopped and removed. 
 Subsequent Windows 10 and container quick starts will dig into creating and deploying applications in containers on Windows 10.
 
 ## Next Steps
