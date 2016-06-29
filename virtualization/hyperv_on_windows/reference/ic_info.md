@@ -62,13 +62,15 @@ Also called KVP.  Read more [here](https://technet.microsoft.com/en-us/library/d
 
 
 ## Hyper-V Guest Service Interface
-Windows Service Name
-Linux Daemon Name
-Description
-Added In
-Impact
 
-| vmicguestinterface | hv_fcopy_daemon | Provides an interface for the Hyper-V host to bidirectionally copy files to or from the virtual machine. | Windows Server 2012 R2, Windows 8.1 | When disabled, the host can not copy files to and from the guest using `Copy-VMFile`.  Read more about the [Copy-VMFile cmdlet](https://technet.microsoft.com/library/dn464282.aspx). | Depricated in Windows 10.  Disabled by default.  See PowerShell Direct using Copy-Item. |
+**Windows Service Name:** vmicguestinterface  
+**Linux Daemon Name:** hv_fcopy_daemon  
+**Description:** Provides an interface for the Hyper-V host to bidirectionally copy files to or from the virtual machine.  
+**Added In:** Windows Server 2012 R2, Windows 8.1
+**Impact:** When disabled, the host can not copy files to and from the guest using `Copy-VMFile`.  Read more about the [Copy-VMFile cmdlet](https://technet.microsoft.com/library/dn464282.aspx).  
+
+**Notes:**  
+Depricated in Windows 10.  Disabled by default.  See PowerShell Direct using Copy-Item.
 
 
 ## Hyper-V PowerShell Direct Service
@@ -77,10 +79,17 @@ Impact
 **Linux Daemon Name:** n/a
 **Description:** Provides a mechanism to manage virtual machine with PowerShell via VM session without a virtual network.  
 **Added In:** Windows Server TP3, Windows 10  
-**Impact:** Disabling this service prevents the host from being able to connect to the virtual machine with PowerShell Direct.  Read more [here](https://msdn.microsoft.com/en-us/virtualization/hyperv_on_windows/user_guide/vmsession). 
+**Impact:** Disabling this service prevents the host from being able to connect to the virtual machine with PowerShell Direct. 
 
 **Notes:**  
-The service originally was Hyper-V VM Session Service.  This service is under active development.
+The service name was originally was Hyper-V VM Session Service.  This service is under active development.
+
+[Read more about PowerShell Direct](../user_guide/vmsession.md).  
+
+**User Guides:**  
+* [Running script in a virtual machine](../user_guide/vmsession.md#run-a-script-or-command-with-invoke-command)
+* [Copying files to and from a virtual machine](../user_guide/vmsession.md#copy-files-with-new-pssession-and-copy-item)
+
 
 ## Additional Resources
 
