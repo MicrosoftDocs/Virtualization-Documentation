@@ -32,32 +32,34 @@ ms.assetid: 18930864-476a-40db-aa21-b03dfb4fda98
 
 
 ## Hyper-V Time Synchronization Service
-Windows Service Name
-Linux Daemon Name
-Description
-Added In
-Impact
 
- | vmictimesync | hv_utils | Synchronizes the virtual machine's system clock with the system clock of the physical computer. | Windows Server 2012, Windows 8 | **High Impact**  When disabled, the virtual machine's clock will drift erratically. |  |
+**Windows Service Name:** vmictimesync  
+**Linux Daemon Name:** hv_utils  
+**Description:** Synchronizes the virtual machine's system clock with the system clock of the physical computer.  
+**Added In:** Windows Server 2012, Windows 8  
+**Impact:** **High Impact**  When disabled, the virtual machine's clock will drift erratically.  
 
 
 ## Hyper-V Data Exchange Service (KVP)
-Windows Service Name
-Linux Daemon Name
-Description
-Added In
-Impact
 
-vmickvpexchange | hv_kvp_daemon | Provides a mechanism to exchange basic metadata between the virtual machine and the host. | Windows Server 2012, Windows 8 | | Also called KVP.  Read more [here](https://technet.microsoft.com/en-us/library/dn798287.aspx) |
+**Windows Service Name:** vmickvpexchange  
+**Linux Daemon Name:** hv_kvp_daemon  
+**Description:** Provides a mechanism to exchange basic metadata between the virtual machine and the host.  
+**Added In:** Windows Server 2012, Windows 8  
+**Impact:** When disabled, virtual machines running Windows 8 or Windows Server 2012 or earlier will not recieve updates to Hyper-V integration services.  Disabling data exchange may also impact some kinds of monitoring and host-side diagnostics.
+
+**Notes:**  
+Also called KVP.  Read more [here](https://technet.microsoft.com/en-us/library/dn798287.aspx).
+
 
 ## Hyper-V Volume Shadow Copy Requestor
-Windows Service Name
-Linux Daemon Name
-Description
-Added In
-Impact
 
- | vmicvss | hv_vss_daemon | Allows Volume Shadow Copy Service to back up applications and data on the virtual machine. | Windows Server 2012, Windows 8 | When disabled, the virtual machine can not be backed up while running (using VSS). |  | 
+**Windows Service Name:** vmicvss  
+**Linux Daemon Name:** hv_vss_daemon  
+**Description:** Allows Volume Shadow Copy Service to back up applications and data on the virtual machine.  
+**Added In:** Windows Server 2012, Windows 8  
+**Impact:** When disabled, the virtual machine can not be backed up while running (using VSS).  
+
 
 ## Hyper-V Guest Service Interface
 Windows Service Name
@@ -70,13 +72,15 @@ Impact
 
 
 ## Hyper-V PowerShell Direct Service
-Windows Service Name
-Linux Daemon Name
-Description
-Added In
-Impact
 
-| vmicvmsession | | Provides a mechanism to manage virtual machine with PowerShell via VM session without a virtual network. | Windows Server TP3, Windows 10 | Disabling this service prevents the host from being able to connect to the virtual machine with PowerShell Direct.  Read more [here](https://msdn.microsoft.com/en-us/virtualization/hyperv_on_windows/user_guide/vmsession). | The service originally was Hyper-V VM Session Service.  This service is under active development.  |  
+**Windows Service Name:** vmicvmsession
+**Linux Daemon Name:** n/a
+**Description:** Provides a mechanism to manage virtual machine with PowerShell via VM session without a virtual network.  
+**Added In:** Windows Server TP3, Windows 10  
+**Impact:** Disabling this service prevents the host from being able to connect to the virtual machine with PowerShell Direct.  Read more [here](https://msdn.microsoft.com/en-us/virtualization/hyperv_on_windows/user_guide/vmsession). 
+
+**Notes:**  
+The service originally was Hyper-V VM Session Service.  This service is under active development.
 
 ## Additional Resources
 
