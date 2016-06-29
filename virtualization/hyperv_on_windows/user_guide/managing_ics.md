@@ -1,7 +1,7 @@
 ---
 title: Managing Hyper-V Integration Services
 description: Managing Hyper-V Integration Services
-keywords: windows 10, hyper-v
+keywords: windows 10, hyper-v, integration services, integration components
 author: scooley
 manager: timlt
 ms.date: 05/02/2016
