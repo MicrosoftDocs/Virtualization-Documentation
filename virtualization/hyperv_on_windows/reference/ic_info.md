@@ -12,6 +12,18 @@ ms.assetid: 18930864-476a-40db-aa21-b03dfb4fda98
 ---
 
 # Hyper-V Integration Services
+## Quick Reference
+
+| Name | Windows Service Name | Linux Daemon Name |  Description | Added In | Impact on VM when disabled |
+|:---------|:---------|:---------|:---------|:---------|:---------|
+| Hyper-V Heartbeat Service |  vmicheartbeat | hv_utils | Reports a single bit heartbeat at regular intervals to show that the virtual machine is running correctly. | Windows Server 2012, Windows 8 | Varies |
+| Hyper-V Guest Shutdown Service | vmicshutdown | hv_utils |  Provides a mechanism to cleanly shut down the virtual machine from the host. | Windows Server 2012, Windows 8 | **High** |
+| Hyper-V Time Synchronization Service | vmictimesync | hv_utils | Synchronizes the virtual machine's system clock with the system clock of the physical computer. | Windows Server 2012, Windows 8 | **High** |
+| Hyper-V Data Exchange Service (KVP) | vmickvpexchange | hv_kvp_daemon | Provides a mechanism to exchange basic metadata between the virtual machine and the host. | Windows Server 2012, Windows 8 | Medium |
+| Hyper-V Volume Shadow Copy Requestor | vmicvss | hv_vss_daemon | Allows Volume Shadow Copy Service to back up applications and data on the virtual machine. | Windows Server 2012, Windows 8 | Varies |
+| Hyper-V Guest Service Interface | vmicguestinterface | hv_fcopy_daemon | Provides an interface for the Hyper-V host to bidirectionally copy files to or from the virtual machine. | Windows Server 2012 R2, Windows 8.1 | Low |
+| Hyper-V PowerShell Direct Service | vmicvmsession | | Provides a mechanism to manage virtual machine with PowerShell via VM session without a virtual network. | Windows Server TP3, Windows 10 | Low |  
+
 
 ## Hyper-V Heartbeat Service
 
