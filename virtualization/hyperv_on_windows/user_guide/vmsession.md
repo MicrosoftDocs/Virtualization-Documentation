@@ -1,7 +1,7 @@
 ---
 title: Manage Windows Virtual Machines with PowerShell Direct
 description: Manage Windows Virtual Machines with PowerShell Direct
-keywords: windows 10, hyper-v
+keywords: windows 10, hyper-v, powershell, integration services, integration components, automation
 author: scooley
 manager: timlt
 ms.date: 05/02/2016
