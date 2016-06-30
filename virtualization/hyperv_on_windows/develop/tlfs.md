@@ -1,5 +1,5 @@
 ---
-redirect_url: https://msdn.microsoft.com/virtualization/reference/tlfs
+redirect_url: ../reference/tlfs
 ---
 
 # Redirected – No Title
