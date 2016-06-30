@@ -17,7 +17,7 @@ ms.assetid: 18930864-476a-40db-aa21-b03dfb4fda98
 | Name | Windows Service Name | Linux Daemon Name |  Description | Impact on VM when disabled |
 |:---------|:---------|:---------|:---------|:---------|
 | Hyper-V Heartbeat Service |  vmicheartbeat | hv_utils | Reports a single bit heartbeat at regular intervals to show that the virtual machine is running correctly. | Varies |
-| Hyper-V Guest Shutdown Service | vmicshutdown | hv_utils |  Provides a mechanism to cleanly shut down the virtual machine from the host. | Windows Server 2012, Windows 8 | **High** |
+| Hyper-V Guest Shutdown Service | vmicshutdown | hv_utils |  Provides a mechanism to cleanly shut down the virtual machine from the host. | **High** |
 | Hyper-V Time Synchronization Service | vmictimesync | hv_utils | Synchronizes the virtual machine's system clock with the system clock of the physical computer. | **High** |
 | Hyper-V Data Exchange Service (KVP) | vmickvpexchange | hv_kvp_daemon | Provides a mechanism to exchange basic metadata b etween the virtual machine and the host. | Medium |
 | Hyper-V Volume Shadow Copy Requestor | vmicvss | hv_vss_daemon | Allows Volume Shadow Copy Service to back up applications and data on the virtual machine. | Varies |
@@ -87,11 +87,11 @@ Depricated in Windows 10.  Disabled by default.  See PowerShell Direct using Cop
 
 ## Hyper-V PowerShell Direct Service
 
-**Windows Service Name:** vmicvmsession
-**Linux Daemon Name:** n/a
-**Description:** Provides a mechanism to manage virtual machine with PowerShell via VM session without a virtual network.  
-**Added In:** Windows Server TP3, Windows 10  
-**Impact:** Disabling this service prevents the host from being able to connect to the virtual machine with PowerShell Direct. 
+**Windows Service Name:** vmicvmsession  
+**Linux Daemon Name:** n/a  
+**Description:** Provides a mechanism to manage virtual machine with PowerShell via VM session without a virtual network.    
+**Added In:** Windows Server TP3, Windows 10    
+**Impact:** Disabling this service prevents the host from being able to connect to the virtual machine with PowerShell Direct.  
 
 **Notes:**  
 The service name was originally was Hyper-V VM Session Service.  This service is under active development.
