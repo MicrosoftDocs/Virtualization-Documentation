@@ -22,7 +22,7 @@ ms.assetid: 18930864-476a-40db-aa21-b03dfb4fda98
 | [Hyper-V Data Exchange Service (KVP)](#hyper-v-data-exchange-service-kvp) | vmickvpexchange | hv_kvp_daemon | Provides a mechanism to exchange basic metadata b etween the virtual machine and the host. | Medium |
 | [Hyper-V Volume Shadow Copy Requestor](#hyper-v-volume-shadow-copy-requestor) | vmicvss | hv_vss_daemon | Allows Volume Shadow Copy Service to back up applications and data on the virtual machine. | Varies |
 | [Hyper-V Guest Service Interface](#hyper-v-powershell-direct-service) | vmicguestinterface | hv_fcopy_daemon | Provides an interface for the Hyper-V host to bidirectionally copy files to or from the virtual machine. | Low |
-| [Hyper-V PowerShell Direct Service](#hyper-v-powershell-direct-service) | vmicvmsession | | Provides a mechanism to manage virtual machine with PowerShell via VM session without a virtual network. | Low |  
+| [Hyper-V PowerShell Direct Service](#hyper-v-powershell-direct-service) | vmicvmsession | not available | Provides a mechanism to manage virtual machine with PowerShell via VM session without a virtual network. | Low |  
 
 
 ## Hyper-V Heartbeat Service
