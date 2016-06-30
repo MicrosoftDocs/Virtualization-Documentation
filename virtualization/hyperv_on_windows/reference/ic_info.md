@@ -16,7 +16,7 @@ ms.assetid: 18930864-476a-40db-aa21-b03dfb4fda98
 
 | Name | Windows Service Name | Linux Daemon Name |  Description | Impact on VM when disabled |
 |:---------|:---------|:---------|:---------|:---------|
-| Hyper-V Heartbeat Service |  vmicheartbeat | hv_utils | Reports a single bit heartbeat at regular intervals to show that the virtual machine is running correctly. | Varies |
+| [Hyper-V Heartbeat Service](#hyper-v-heartbeat-service) |  vmicheartbeat | hv_utils | Reports a single bit heartbeat at regular intervals to show that the virtual machine is running correctly. | Varies |
 | Hyper-V Guest Shutdown Service | vmicshutdown | hv_utils |  Provides a mechanism to cleanly shut down the virtual machine from the host. | **High** |
 | Hyper-V Time Synchronization Service | vmictimesync | hv_utils | Synchronizes the virtual machine's system clock with the system clock of the physical computer. | **High** |
 | Hyper-V Data Exchange Service (KVP) | vmickvpexchange | hv_kvp_daemon | Provides a mechanism to exchange basic metadata b etween the virtual machine and the host. | Medium |
