@@ -201,12 +201,12 @@ Listening on this VmId accepts connection from:
 
 ## Supported socket commands
 
-Socket()
-Bind()
-Connect()
-Send()
-Listen()
-Accept()
+Socket()  
+Bind()  
+Connect()  
+Send()  
+Listen()  
+Accept()  
 
 [Complete WinSock API](https://msdn.microsoft.com/en-us/library/windows/desktop/ms741394.aspx)
 
