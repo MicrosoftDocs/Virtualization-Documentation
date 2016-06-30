@@ -201,7 +201,7 @@ Listening on this VmId accepts connection from:
 
 ## Supported socket commands
 
-Socket() 
+Socket()  
 Bind()  
 Connect()  
 Send()  
