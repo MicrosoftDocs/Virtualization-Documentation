@@ -29,7 +29,7 @@ ms.assetid: 18930864-476a-40db-aa21-b03dfb4fda98
 
 **Windows Service Name:** vmicheartbeat  
 **Linux Daemon Name:** hv_utils  
-**Description:** Reports a single bit heartbeat at regular intervals to show that the virtual machine is running correctly.  
+**Description:** Tells the Hyper-V host that the virtual machine is running correctly.  
 **Added In:** Windows Server 2012, Windows 8  
 **Impact:** When disabled, the virtual machine can't report that the guest is operating correctly.  This may impact some kinds of monitoring and host-side diagnostics.   
 
@@ -38,7 +38,7 @@ ms.assetid: 18930864-476a-40db-aa21-b03dfb4fda98
 
 **Windows Service Name:** vmicshutdown  
 **Linux Daemon Name:** hv_utils  
-**Description:** Provides a mechanism to cleanly shut down the virtual machine from the host.  
+**Description:** Allows the Hyper-V host to request that the virtual machine shutdown.  The host can always force the virtual machine to turn off, but that is like flipping the powerswitch as opposed to selecting shutdown.
 **Added In:** Windows Server 2012, Windows 8  
 **Impact:** **High Impact**  When disabled, the host can't trigger a friendly shutdown inside the virtual machine.  All shutdowns will be a hard power-off.
 
