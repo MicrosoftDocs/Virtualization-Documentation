@@ -16,13 +16,13 @@ ms.assetid: 18930864-476a-40db-aa21-b03dfb4fda98
 
 | Name | Windows Service Name | Linux Daemon Name |  Description | Impact on VM when disabled |
 |:---------|:---------|:---------|:---------|:---------|
-| [Hyper-V Heartbeat Service](#hyper-v-heartbeat-service) |  vmicheartbeat | hv_utils | Reports a single bit heartbeat at regular intervals to show that the virtual machine is running correctly. | Varies |
-| [Hyper-V Guest Shutdown Service](#hyper-v-guest-shutdown-service) | vmicshutdown | hv_utils |  Provides a mechanism to cleanly shut down the virtual machine from the host. | **High** |
-| [Hyper-V Time Synchronization Service](#hyper-v-time-synchronization-service) | vmictimesync | hv_utils | Synchronizes the virtual machine's system clock with the system clock of the physical computer. | **High** |
-| [Hyper-V Data Exchange Service (KVP)](#hyper-v-data-exchange-service-kvp) | vmickvpexchange | hv_kvp_daemon | Provides a mechanism to exchange basic metadata b etween the virtual machine and the host. | Medium |
-| [Hyper-V Volume Shadow Copy Requestor](#hyper-v-volume-shadow-copy-requestor) | vmicvss | hv_vss_daemon | Allows Volume Shadow Copy Service to back up applications and data on the virtual machine. | Varies |
-| [Hyper-V Guest Service Interface](#hyper-v-powershell-direct-service) | vmicguestinterface | hv_fcopy_daemon | Provides an interface for the Hyper-V host to bidirectionally copy files to or from the virtual machine. | Low |
-| [Hyper-V PowerShell Direct Service](#hyper-v-powershell-direct-service) | vmicvmsession | not available | Provides a mechanism to manage virtual machine with PowerShell via VM session without a virtual network. | Low |  
+| [Hyper-V Heartbeat Service](#hyper-v-heartbeat-service) |  vmicheartbeat | hv_utils | Reports that the virtual machine is running correctly. | Varies |
+| [Hyper-V Guest Shutdown Service](#hyper-v-guest-shutdown-service) | vmicshutdown | hv_utils |  Allows the host to trigger virtual machines shutdown. | **High** |
+| [Hyper-V Time Synchronization Service](#hyper-v-time-synchronization-service) | vmictimesync | hv_utils | Synchronizes the virtual machine's clock with the host computer's clock. | **High** |
+| [Hyper-V Data Exchange Service (KVP)](#hyper-v-data-exchange-service-kvp) | vmickvpexchange | hv_kvp_daemon | Provides a way to exchange basic metadata b etween the virtual machine and the host. | Medium |
+| [Hyper-V Volume Shadow Copy Requestor](#hyper-v-volume-shadow-copy-requestor) | vmicvss | hv_vss_daemon | Allows Volume Shadow Copy Service to back up the virtual machine with out shutting it down. | Varies |
+| [Hyper-V Guest Service Interface](#hyper-v-powershell-direct-service) | vmicguestinterface | hv_fcopy_daemon | Provides an interface for the Hyper-V host to copy files to or from the virtual machine. | Low |
+| [Hyper-V PowerShell Direct Service](#hyper-v-powershell-direct-service) | vmicvmsession | not available | Provides a way to manage virtual machine with PowerShell without a network connection. | Low |  
 
 
 ## Hyper-V Heartbeat Service
