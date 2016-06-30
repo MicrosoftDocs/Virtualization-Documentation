@@ -17,6 +17,14 @@ ms.assetid: ba4eb594-0cdb-4148-81ac-a83b4bc337bc
 
 Deploying a Windows container host has different steps depending on the operating system and the host system type (physical or virtual). This document details deploying a Windows container host to either Windows Server 2016 or Windows Server Core 2016 on a physical or virtual system.
 
+## Azure Image 
+
+A fully configured Windows Server image is available in Azure. To use this image, deploy a virtual machine by clicking on the button below. If deploying a Windows container system to Azure using this temple, the remainder of this document can be skipped.
+
+<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FMicrosoft%2FVirtualization-Documentation%2Fmaster%2Fwindows-server-container-tools%2Fcontainers-azure-template%2Fazuredeploy.json" target="_blank">
+    <img src="http://azuredeploy.net/deploybutton.png"/>
+</a>
+
 ## Install Container Feature
 
 The container feature needs to be enabled before working with Windows containers. To do so run the following command in an elevated PowerShell session.
