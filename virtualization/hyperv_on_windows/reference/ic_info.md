@@ -106,6 +106,10 @@ The data exchange service is a great tool for preserving information about the v
 **Added In:** Windows Server 2012, Windows 8  
 **Impact:** When disabled, the virtual machine can not be backed up while running (using VSS).  
 
+The Volume Shadow Copy Requestor integration service is required for Volume Shadow Copy Service ([VSS](https://msdn.microsoft.com/en-us/library/aa384589.aspx)).  The Volume Shadow Copy Service (VSS) captures and copies images for backup on running systems, particularly servers, without unduly degrading the performance and stability of the services they provide.  This integration service makes that possible by coordinating the virtual machine's workloads with the host's backup process.
+
+Read more about Volume Shadow Copy [here](https://msdn.microsoft.com/en-us/library/dd405549.aspx).
+
 
 ## Hyper-V Guest Service Interface
 
