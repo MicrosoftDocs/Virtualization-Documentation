@@ -45,7 +45,7 @@ When Hyper-V reports that a virtual machine state is "running" (see the example 
 
 ### Check heartbeat with PowerShell
 
-Run the following PowerShell command as Administrator to see a virtual machine's heartbeat:
+Run [Get-VM](https://technet.microsoft.com/en-us/library/hh848479.aspx) as Administrator to see a virtual machine's heartbeat:
 ``` PowerShell
 Get-VM -VMName $VMName | select Name, State, Status
 ```
