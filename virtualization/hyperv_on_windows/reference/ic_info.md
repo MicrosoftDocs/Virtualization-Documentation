@@ -35,9 +35,30 @@ This article is a reference for each integration service available in Windows.  
 
 **Windows Service Name:** vmicheartbeat  
 **Linux Daemon Name:** hv_utils  
-**Description:** Tells the Hyper-V host that the virtual machine is running correctly.  
+**Description:** Tells the Hyper-V host that the virtual machine has an operating system installed and that it booted correctly.  
 **Added In:** Windows Server 2012, Windows 8  
-**Impact:** When disabled, the virtual machine can't report that the guest is operating correctly.  This may impact some kinds of monitoring and host-side diagnostics.     
+**Impact:** When disabled, the virtual machine can't report that the operating system inside of the virtual machine is operating correctly.  This may impact some kinds of monitoring and host-side diagnostics.  
+
+The heartbeat service makes it possible to answer basic questions like "did the virtual machine boot?".  
+
+When Hyper-V reports that a virtual machine state is "running" (see the example below), it means Hyper-V set aside resources for a virtual machine; it does not mean that there is an operating system installed or functioning.  This is where heartbeat becomes useful.  The heartbeat service tells Hyper-V that the operating system inside the virtual machine has booted.  
+
+### Check heartbeat with PowerShell
+
+Run the following PowerShell command as Administrator to see a virtual machine's heartbeat:
+``` PowerShell
+Get-VM -VMName $VMName | select Name, State, Status
+```
+
+Your output should look something like this:
+```
+Name    State    Status
+----    -----    ------
+DemoVM  Running  Operating normally
+```
+
+The `Status` field is determined by the heartbeat service.
+
 
 
 ## Hyper-V Guest Shutdown Service
