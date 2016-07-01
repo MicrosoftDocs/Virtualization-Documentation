@@ -112,11 +112,11 @@ The data exchange service is a great tool for preserving information about the v
 **Windows Service Name:** vmicguestinterface  
 **Linux Daemon Name:** hv_fcopy_daemon  
 **Description:** Provides an interface for the Hyper-V host to bidirectionally copy files to or from the virtual machine.  
-**Added In:** Windows Server 2012 R2, Windows 8.1
+**Added In:** Windows Server 2012 R2, Windows 8.1  
 **Impact:** When disabled, the host can not copy files to and from the guest using `Copy-VMFile`.  Read more about the [Copy-VMFile cmdlet](https://technet.microsoft.com/library/dn464282.aspx).  
 
 **Notes:**  
-Disabled by default.  See [PowerShell Direct using Copy-Item](../user_guide/vmsession.md#copy-files-with-new-pssession-and-copy-item).
+Disabled by default.  See [PowerShell Direct using Copy-Item](../user_guide/vmsession.md#copy-files-with-new-pssession-and-copy-item). 
 
 
 ## Hyper-V PowerShell Direct Service
@@ -124,11 +124,13 @@ Disabled by default.  See [PowerShell Direct using Copy-Item](../user_guide/vmse
 **Windows Service Name:** vmicvmsession  
 **Linux Daemon Name:** n/a  
 **Description:** Provides a mechanism to manage virtual machine with PowerShell via VM session without a virtual network.    
-**Added In:** Windows Server TP3, Windows 10    
+**Added In:** Windows Server TP3, Windows 10  
 **Impact:** Disabling this service prevents the host from being able to connect to the virtual machine with PowerShell Direct.  
 
 **Notes:**  
-The service name was originally was Hyper-V VM Session Service.  This service is under active development.
+The service name was originally was Hyper-V VM Session Service.  
+PowerShell Direct is under active development and only available on Windows 10/Windows Server Technical Preview 3 or later hosts/guests.  
+
 
 PowerShell Direct allows PowerShell management inside a virtual machine from the Hyper-V host regardless of any network configuration or remote management settings on either the Hyper-V host or the virtual machine. This makes it easier for Hyper-V Administrators to automate and script management and configuration tasks.
 
