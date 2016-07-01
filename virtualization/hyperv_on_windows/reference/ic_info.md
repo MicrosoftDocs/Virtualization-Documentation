@@ -12,6 +12,12 @@ ms.assetid: 18930864-476a-40db-aa21-b03dfb4fda98
 ---
 
 # Hyper-V Integration Services
+
+Integration services (often called integration components), are services that allow the virtual machine to communicate with the Hyper-V host. Many of these services are conveniences while others can be quite important to the virtual machine's ability to function correctly.
+
+This article is a reference for each integration service available in Windows.  It will also act as a starting point for any information related to specific integration services or their history.
+
+
 ## Quick Reference
 
 | Name | Windows Service Name | Linux Daemon Name |  Description | Impact on VM when disabled |
@@ -31,7 +37,7 @@ ms.assetid: 18930864-476a-40db-aa21-b03dfb4fda98
 **Linux Daemon Name:** hv_utils  
 **Description:** Tells the Hyper-V host that the virtual machine is running correctly.  
 **Added In:** Windows Server 2012, Windows 8  
-**Impact:** When disabled, the virtual machine can't report that the guest is operating correctly.  This may impact some kinds of monitoring and host-side diagnostics.   
+**Impact:** When disabled, the virtual machine can't report that the guest is operating correctly.  This may impact some kinds of monitoring and host-side diagnostics.     
 
 
 ## Hyper-V Guest Shutdown Service
@@ -40,7 +46,7 @@ ms.assetid: 18930864-476a-40db-aa21-b03dfb4fda98
 **Linux Daemon Name:** hv_utils  
 **Description:** Allows the Hyper-V host to request that the virtual machine shutdown.  The host can always force the virtual machine to turn off, but that is like flipping the powerswitch as opposed to selecting shutdown.
 **Added In:** Windows Server 2012, Windows 8  
-**Impact:** **High Impact**  When disabled, the host can't trigger a friendly shutdown inside the virtual machine.  All shutdowns will be a hard power-off.
+**Impact:** **High Impact**  When disabled, the host can't trigger a friendly shutdown inside the virtual machine.  All shutdowns will be a hard power-off wich could cause data loss or data corruption.
 
 
 ## Hyper-V Time Synchronization Service
@@ -60,8 +66,15 @@ ms.assetid: 18930864-476a-40db-aa21-b03dfb4fda98
 **Added In:** Windows Server 2012, Windows 8  
 **Impact:** When disabled, virtual machines running Windows 8 or Windows Server 2012 or earlier will not recieve updates to Hyper-V integration services.  Disabling data exchange may also impact some kinds of monitoring and host-side diagnostics.
 
-**Notes:**  
-Also called KVP.  Read more [here](https://technet.microsoft.com/en-us/library/dn798287.aspx).
+The data exchange service (sometimes called KVP) shares small amounts of machine information between virtual machine and the Hyper-V host using key-value pairs (KVP) through the Windows registry.  The same mechanism can also be used to share customized data between the virtual machine and the host.
+
+Key-value pairs consist of a “key” and a “value”. Both the key and the value are strings, no other data types are supported. When a key-value pair is created or changed, it is visible to the guest and the host. The key-value pair information is transferred across the Hyper-V VMbus and does not require any kind of network connection between the guest and the Hyper-V host. 
+
+The data exchange service is a great tool for preserving information about the virtual machine -- for interactive data sharing or data transfer, use [PowerShell Direct](#hyper-v-powershell-direct-service). 
+
+
+**User Guides:**  
+* [Using key-value pairs to share information between the host and guest on Hyper-V](https://technet.microsoft.com/en-us/library/dn798287.aspx).
 
 
 ## Hyper-V Volume Shadow Copy Requestor
