@@ -116,7 +116,7 @@ The data exchange service is a great tool for preserving information about the v
 **Impact:** When disabled, the host can not copy files to and from the guest using `Copy-VMFile`.  Read more about the [Copy-VMFile cmdlet](https://technet.microsoft.com/library/dn464282.aspx).  
 
 **Notes:**  
-Depricated in Windows 10.  Disabled by default.  See PowerShell Direct using Copy-Item.
+Disabled by default.  See [PowerShell Direct using Copy-Item](../user_guide/vmsession.md#copy-files-with-new-pssession-and-copy-item).
 
 
 ## Hyper-V PowerShell Direct Service
@@ -129,6 +129,8 @@ Depricated in Windows 10.  Disabled by default.  See PowerShell Direct using Cop
 
 **Notes:**  
 The service name was originally was Hyper-V VM Session Service.  This service is under active development.
+
+PowerShell Direct allows PowerShell management inside a virtual machine from the Hyper-V host regardless of any network configuration or remote management settings on either the Hyper-V host or the virtual machine. This makes it easier for Hyper-V Administrators to automate and script management and configuration tasks.
 
 [Read more about PowerShell Direct](../user_guide/vmsession.md).  
 
