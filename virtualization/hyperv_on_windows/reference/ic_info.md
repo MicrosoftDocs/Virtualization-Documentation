@@ -139,5 +139,9 @@ The service name was originally was Hyper-V VM Session Service.  This service is
 
 ## Additional Resources
 
-**Integration service update and maintainance**
-* [user guide](../user_guide/managing_ics.md)
+**User Guides:**  
+* [Enable/disable integration services from the Hyper-V host](../user_guide/managing_ics.md#enable-or-disable-integration-services-using-powershell)
+* Enable/disable integration services from the virtual machine.
+** [Windows](../user_guide/managing_ics.md#manage-integration-services-from-guest-os-windows)
+** [Linux](../user_guide/managing_ics.md#manage-integration-services-from-guest-os-linux)
+* [Integration service update and maintainance](../user_guide/managing_ics.md#integration-service-maintenance)
