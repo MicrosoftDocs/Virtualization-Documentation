@@ -4,11 +4,12 @@ description: Windows Containers Work in Progress
 keywords: docker, containers
 author: scooley
 manager: timlt
-ms.date: 05/02/2016
+ms.date: 05/26/2016
 ms.topic: article
-ms.prod: windows-contianers
+ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: 5d9f1cb4-ffb3-433d-8096-b085113a9d7b
+redirect_url: ../containers_welcome
 ---
 
 # Work in Progress
@@ -34,7 +35,7 @@ In a container host and containers environment, you only have the container host
 ### Windows Containers start slowly
 If your container is taking more than 30 seconds to start, it may be performing many duplicate virus scans.
 
-Many anti-malware solutions, such as Windows Defender, may be unnecessarily scanning files with-in container images including all of the OS binaries and files in the container OS image.  This occurs when ever a new container is created and from the anti-malware’s perspective all of the “container’s files” look like new files that have not previously been scanned.  So when processes inside the container attempt to read these files the anti-malware components first scan them before allowing access to the files.  In reality these files were already scanned when the container image was imported or pulled to the server. In future previews new infrastructure will be in place such that anti-malware solutions, including Windows Defender, will be aware of these situations and can act accordingly to avoid multiple scans. 
+Many anti-malware solutions, such as Windows Defender, may be unnecessarily scanning files with-in container images including all of the OS binaries and files in the container OS image.  This occurs whenever a new container is created and from the anti-malware’s perspective all of the “container’s files” look like new files that have not previously been scanned.  So when processes inside the container attempt to read these files the anti-malware components first scan them before allowing access to the files.  In reality these files were already scanned when the container image was imported or pulled to the server. From Windows Server Technical Preview 5, the infrastructure is available in place such that anti-malware solutions, including Windows Defender, will be aware of the situations and can act accordingly to avoid multiple scans. Anti-malware solutions can update their solution using the guidance described [here](https://msdn.microsoft.com/en-us/windows/hardware/drivers/ifs/anti-virus-optimization-for-windows-containers) and avoid multiple scans. 
 
 ### Start/Stop sometimes fails if memory is restricted to < 48MB
 Windows Containers experience random, inconsistant, errors when memory is restricted to less than 48MB.
@@ -87,7 +88,7 @@ Increase the processors available to the container, don't explicitly specify pro
 ### Network Compartment Isolation and Implications
 Each container uses a network compartment to provide isolation. All container network adapters (endpoints) attached to a given container, will be resident in the same network compartment. Depending on the networking mode (driver) used, you may be unable to access two different container endpoints using the same IP address or port. Moreover, Windows firewall rules are not compartment- or container-aware and so any firewall rules plumbed will apply to all containers on the container host irrespective of a particular endpoint.
 
-*** Transpraent Networking ***
+*** Transparent Networking ***
 
 
 *** NAT Networking ***
@@ -135,6 +136,20 @@ There are so many questions about which applications work and don't work in Wind
 
 Some of the most common issues are located here as well.
 
+### Event logs are not available inside the container
+
+PowerShell commands such as `get-eventlog Application` and APIs that query the event log will return an error similar to this:
+```
+get-eventlog : Cannot open log Application on machine .. Windows has not provided an error code.
+At line:1 char:1
+```
+
+As a workaround, you can add this step to a Dockerfile. Images built with this step included will have event logging enabled.
+```
+RUN powershell.exe -command Set-ItemProperty HKLM:\SYSTEM\CurrentControlSet\Control\WMI\Autologger\EventLog-Application Start 1
+```
+
+
 ### Unexpected error occurred inside a localdb instance api method call
 Unexpected error occurred inside a localdb instance api method call
 
@@ -170,9 +185,6 @@ See the [application compatability article](../reference/app_compat.md) for more
 
 ## Docker management
 
-### Docker clients unsecured
-In this pre-release, docker communication is public if you know where to look.
-
 ### Not all Docker commands work
 * Docker exec fails in Hyper-V Containers.
 
@@ -201,7 +213,7 @@ net use S: \\your\sources\here /User:shareuser [yourpassword]
 
 ## Remote Desktop 
 
-Windows Containers cannot be managed/interacted with through a RDP session in TP4.
+Windows Containers cannot be managed/interacted with through a RDP session in TP5.
 
 --------------------------
 

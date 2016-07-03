@@ -159,7 +159,7 @@ $hvloadoptions = bcdedit /enum | Select-String "hypervisorloadoptions"
 if ($hvloadoptions) {
     $HostNested.HypervisorLoadOptionsPresent = $true
     $setting = $hvloadoptions.line.split(' ')
-    if($hvloadoptions.line -match “OFFERNESTEDVIRT=FALSE”) {
+    if($hvloadoptions.line -match "OFFERNESTEDVIRT=FALSE") {
         $HostNested.HostNestedSupport = $false
         $HostCfgErrors += ($HostCfgErrorMsgs["BcdDisabled"])
 

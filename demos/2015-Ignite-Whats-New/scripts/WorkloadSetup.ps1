@@ -149,7 +149,7 @@ function CreateBaseVM([string]$VMName, `
          Get-iSCSITarget | Connect-iSCSITarget 
          Get-iSCSISession | Register-iSCSISession
          Get-Disk | ?{$_.BusType -eq "iSCSI"} | %{
-            $d = “WXYZ”[$_.Number] 
+            $d = "WXYZ"[$_.Number]
             Set-Disk -Number $_.Number -IsReadOnly 0 
             Set-Disk -Number $_.Number -IsOffline 0 
             Initialize-Disk -Number $_.Number -PartitionStyle MBR 

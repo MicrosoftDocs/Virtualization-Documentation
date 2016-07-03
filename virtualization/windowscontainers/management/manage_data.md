@@ -6,7 +6,7 @@ author: neilpeterson
 manager: timlt
 ms.date: 05/02/2016
 ms.topic: article
-ms.prod: windows-contianers
+ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: f5998534-917b-453c-b873-2953e58535b1
 ---
@@ -15,12 +15,12 @@ ms.assetid: f5998534-917b-453c-b873-2953e58535b1
 
 **This is preliminary content and subject to change.** 
 
-When creating containers, you may need to create a new data directory, or add an existing directory to the container. This can be accomplished through adding data volumes. Data volumes are visible to both container and continuer host, and data can be shared between them. Data volumes can also be shared between multiple containers on the same container host. 
+When creating containers, you may need to create a new data directory, or add an existing directory to the container. This can be accomplished through adding data volumes. Data volumes are visible to both container and container host, and data can be shared between them. Data volumes can also be shared between multiple containers on the same container host. 
 This document will detail creating, inspecting, and removing data volumes.
 
 ## Data volumes
 
-### Create new volume
+### Create new data volume
 
 Create a new data volume using `-v` parameter of the `docker run` command. By default, new data volumes are stored on the host under 'c:\ProgramData\Docker\volumes'.
 

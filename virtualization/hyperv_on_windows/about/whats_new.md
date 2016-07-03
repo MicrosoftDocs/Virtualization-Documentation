@@ -1,12 +1,12 @@
 ---
-redirect_url: https://msdn.microsoft.com/virtualization/hyperv_on_windows/windows_welcome
+redirect_url: ../windows_welcome
 ---
 
 ## Hot add and remove for network adapters and memory
 
-You can now add or remove a Network Adapter while the virtual machine is running, without downtime. This works for generation 2 virtual machines running both Windows and Linux operating systems. 
+You can now add or remove a network adapter while the virtual machine is running, without downtime. This works for Generation 2 virtual machines running both Windows and Linux operating systems. 
 
-You can also adjust the amount of memory assigned to a virtual machine while it's running, even if you haven’t enabled Dynamic Memory. This works for both generation 1 and generation 2 virtual machines.
+You can also adjust the amount of memory assigned to a virtual machine while it's running, even if you haven’t enabled Dynamic Memory. This works for both Generation 1 and Generation 2 virtual machines.
 
 ## Production checkpoints
 
@@ -18,14 +18,14 @@ Production checkpoints allow you to easily create “point in time” images of 
 
 ## Hyper-V Manager improvements
 
-- **Alternate credentials support** – You can now use a different set of credentials in Hyper-V manager when you connect to another Windows 10 Technical Preview remote host. You can also save these credentials so it's easier to log on later. 
+- **Alternate credentials support** – You can now use a different set of credentials in Hyper-V Manager when you connect to another Windows 10 Technical Preview remote host. You can also save these credentials so it's easier to log on later. 
 
-- **Down-level management** - You can now use Hyper-V manager to manage more versions of Hyper-V. With Hyper-V manager in Windows 10 Technical Preview, you can manage computers running Hyper-V on Windows Server 2012, Windows 8, Windows Server 2012 R2 and Windows 8.1.
+- **Down-level management** - You can now use Hyper-V Manager to manage more versions of Hyper-V. With Hyper-V Manager in Windows 10 Technical Preview, you can manage computers running Hyper-V on Windows Server 2012, Windows 8, Windows Server 2012 R2, and Windows 8.1.
 
-- **Updated management protocol** - Hyper-V manager has been updated to communicate with remote Hyper-V hosts using the WS-MAN protocol, which permits CredSSP, Kerberos or NTLM authentication. When you use CredSSP to connect to a remote Hyper-V host, it allows you to perform a live migration without first enabling constrained delegation in Active Directory. WS-MAN-based infrastructure also simplifies the configuration necessary to enable a host for remote management. WS-MAN connects over port 80, which is open by default.
+- **Updated management protocol** - Hyper-V Manager has been updated to communicate with remote Hyper-V hosts using the WS-MAN protocol, which permits CredSSP, Kerberos or NTLM authentication. When you use CredSSP to connect to a remote Hyper-V host, it allows you to perform a live migration without first enabling constrained delegation in Active Directory. WS-MAN-based infrastructure also simplifies the configuration necessary to enable a host for remote management. WS-MAN connects over port 80, which is open by default.
 
 
-## Connected Standby works 
+## Connected Standby compatibility 
 
 When Hyper-V is enabled on a computer that uses the Always On/Always Connected (AOAC) power model, the Connected Standby power state is now available.
 
@@ -35,7 +35,7 @@ https://support.microsoft.com/en-us/kb/2973536) for a full description.
 
 ## Linux secure boot 
 
-More Linux operating systems, running on generation 2 virtual machines, can now boot with the secure boot option enabled.  Ubuntu 14.04 and later, and SUSE Linux Enterprise Server 12, are enabled for secure boot on hosts that run the Technical Preview. Before you boot the virtual machine for the first time, you must specify that the virtual machine should use the Microsoft UEFI Certificate Authority.  At an elevated Windows Powershell prompt, type:
+More Linux operating systems, running on Generation 2 virtual machines, can now boot with the secure boot option enabled.  Ubuntu 14.04 and later, and SUSE Linux Enterprise Server 12, are enabled for secure boot on hosts that run the Technical Preview. Before you boot the virtual machine for the first time, you must specify that the virtual machine should use the Microsoft UEFI Certificate Authority.  At an elevated Windows PowerShell prompt, type:
 
     Set-VMFirmware [-VMName] <VMName> [-SecureBootTemplate] <MicrosoftUEFICertificateAuthority>
 
@@ -44,9 +44,9 @@ For more information on running Linux virtual machines on Hyper-V, see [Linux an
  
 ## Virtual Machine configuration version
 
-When you move or import a virtual machine to a host running Hyper-V on Windows 10 from host running Windows 8.1, the virtual machine’s configuration file isn't automatically upgraded. This allows the virtual machine to be moved back to a host running Windows 8.1. You won't have access to new virtual machine features until you manually update the virtual machine configuration version. 
+When you move or import a virtual machine to a host running Hyper-V on Windows 10 from a host running Windows 8.1, the virtual machine’s configuration file isn’t automatically upgraded. This allows the virtual machine to be moved back to a host running Windows 8.1. You won’t be able to use new Hyper-V features with your virtual machine until you manually update the virtual machine configuration version. 
 
-The virtual machine configuration version represents what version of Hyper-V the virtual machine’s configuration, saved state, and snapshot files it's compatible with. Virtual machines with configuration version 5 are compatible with Windows 8.1 and can run on both Windows 8.1 and Windows 10. Virtual machines with configuration version 6 are compatible with Windows 10 and won't run on Windows 8.1.
+The virtual machine configuration version represents what versions of Hyper-V the virtual machine’s configuration, saved state, and snapshot files are compatible with. Virtual machines with configuration version 5 are compatible with Windows 8.1 and can run on both Windows 8.1 and Windows 10. Virtual machines with configuration version 6 are compatible with Windows 10 and won't run on Windows 8.1.
 
 ### Check configuration version
 
@@ -58,26 +58,27 @@ Get-VM * | Format-Table Name, Version
 
 ### Upgrade configuration version 
 
-From an elevated Windows PowerShell command prompt, run one of the following commands:
+From an elevated Windows PowerShell prompt, run one of the following commands:
 
-``` PowerShell
+``` 
 Update-VmConfigurationVersion <VMName>
 ```
 
 Or
 
-``` PowerShell
+``` 
 Update-VmConfigurationVersion <VMObject>
 ```
 
-**Important: **
+> **Important:**
+>
 - After you upgrade the virtual machine configuration version, you can't move the virtual machine to a host that runs Windows 8.1.
 - You can't downgrade the virtual machine configuration version from version 6 to version 5.
 - You must turn off the virtual machine to upgrade the virtual machine configuration.
-- After the upgrade, the virtual machine uses the new configuration file format. For more information, see New virtual machine configuration file format.
+- After the upgrade, the virtual machine uses the new configuration file format. For more information, see [Configuration file format](#configuration-file-format).
 
 
-## Configuration file format
+## <a name="configuration-file-format"></a>Configuration file format
 
 Virtual machines now have a new configuration file format which is designed to increase the efficiency of reading and writing virtual machine configuration data. It's also designed to reduce the potential for data corruption if there's a storage failure. The new configuration files use the .VMCX extension for virtual machine configuration data and the .VMRS extension for runtime state data. 
 

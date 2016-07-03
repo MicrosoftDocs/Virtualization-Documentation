@@ -4,11 +4,12 @@ description: Deploy Docker in Windows
 keywords: docker, containers
 author: neilpeterson
 manager: timlt
-ms.date: 05/02/2016
+ms.date: 05/26/2016
 ms.topic: article
-ms.prod: windows-contianers
+ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: bdfa4545-2291-4827-8165-2d6c98d72d37
+redirect_url: ../docker/configure_docker_daemon
 ---
 
 # Docker and Windows
@@ -223,10 +224,10 @@ To do so, ensure that the Docker daemon has been configured to listen on a TCP p
 To remotely deploy a container and enter an interactive session, run the following command.
 
 ```none
-docker –H tcp://<ipaddress of server>:2376 run –it nanoserver cmd
+docker -H tcp://<ipaddress of server>:2376 run -it nanoserver cmd
 ```
 
-An environmental variable DOCKER_HOST can be created that will remove the –H parameter requirement. The following PowerShell command can be used for this.
+An environmental variable DOCKER_HOST can be created that will remove the -H parameter requirement. The following PowerShell command can be used for this.
 
 ```none
 $env:DOCKER_HOST = "tcp://<ipaddress of server:2376"
@@ -235,7 +236,7 @@ $env:DOCKER_HOST = "tcp://<ipaddress of server:2376"
 With this variable set, the command would now look like this.
 
 ```none
-docker run –it nanoserver cmd
+docker run -it nanoserver cmd
 ```
 
 ### Removing Docker <!--2-->
