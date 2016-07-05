@@ -51,7 +51,7 @@ Docker is required in order to work with Windows containers. Docker consists of 
 Create a folder for the Docker executables.
 
 ```none
-New-Item -Type Directory -Path 'C:\Program Files\docker\'
+New-Item -Type Directory -Path $env:ProgramFiles\docker\
 ```
 
 Download the Docker daemon.
@@ -69,7 +69,7 @@ Invoke-WebRequest https://aka.ms/tp5/b/docker -OutFile $env:ProgramFiles\docker\
 Add the Docker directory to the system path.
 
 ```none
-[Environment]::SetEnvironmentVariable("Path", $env:Path + ";C:\Program Files\Docker", [EnvironmentVariableTarget]::Machine)
+[Environment]::SetEnvironmentVariable("Path", $env:Path + ";$env:ProgramFiles\docker\\Docker", [EnvironmentVariableTarget]::Machine)
 ```
 
 Restart the PowerShell session so that the modified path is recognized.
