@@ -18,7 +18,7 @@ You can use PowerShell Direct to run arbitrary PowerShell in a Windows 10 or Win
 **Ways to run PowerShell Direct:**  
 * As an interactive session -- [click here](vmsession.md#create-and-exit-an-interactive-powershell-session) to create and exit an interactive PowerShell session using Enter-PSSession.
 * As a single-use session to execute a single command or script -- [click here](vmsession.md#run-a-script-or-command-with-invoke-command) to run a script or command using Invoke-Command.
-* As a peristant session (build 14280 and later) -- [click here](vmsession.md#copy-files-with-New-PSSession-and-Copy-Item) to create a persistent session using New-PSSession.  
+* As a persistant session (build 14280 and later) -- [click here](vmsession.md#copy-files-with-New-PSSession-and-Copy-Item) to create a persistent session using New-PSSession.  
 Continue by coping a file to and from the virtual machine using Copy-Item then disconnect with Remove-PSSession.
 
 ## Requirements
