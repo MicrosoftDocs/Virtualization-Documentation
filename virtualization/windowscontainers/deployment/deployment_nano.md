@@ -168,7 +168,7 @@ Invoke-WebRequest https://aka.ms/tp5/b/docker -OutFile "C:\Program Files\docker\
 Add the Docker directory to the system path.
 
 ```none
-[Environment]::SetEnvironmentVariable("Path", $env:Path + ";C:\Program Files\Docker", [EnvironmentVariableTarget]::Machine)
+$env:Path += ";C:\Program Files\Docker"
 ```
 
 Restart the PowerShell or command session so that the modified path is recognized.
