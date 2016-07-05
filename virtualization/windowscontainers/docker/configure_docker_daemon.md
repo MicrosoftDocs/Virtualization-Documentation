@@ -151,3 +151,16 @@ When logged into the Docker host and running Docker commands locally, these comm
     "group" : "docker"
 }
 ```
+
+
+## Collecting Logs
+The Docker daemon logs to the Windows 'Application' event log, rather than to a file. These logs can easily be read, sorted, and filtered using Windows PowerShell
+
+For example, this will show the Docker daemon logs from the last 5 minutes starting with the oldest.
+```
+Get-EventLog -LogName Application -Source Docker -After (Get-Date).AddMinutes(-5) | Sort-Object Time 
+```
+
+This could also easily be piped into a CSV file to be read by another tool or spreadsheet.
+```
+Get-EventLog -LogName Application -Source Docker -After (Get-Date).AddMinutes(-30)  | Sort-Object Time | Export-CSV ~/last30minutes.csv ```
