@@ -94,7 +94,7 @@ The RUN instruction takes a format of:
 ```none
 # exec form
 
-RUN ["<executable", "<param 1>", "<param 2>"
+RUN ["<executable", "<param 1>", "<param 2>"]
 
 # shell form
 
@@ -145,6 +145,8 @@ On Windows, when using the `RUN` instruction with the exec format, backslashes m
 RUN ["powershell", "New-Item", "c:\\test"]
 ```
 
+When the target program is a Windows Installer, an extra step is required before launching the actual (silent) installation procedure:  extraction of the setup, via the `/x:<directory>` flag. Besides this, the command needs to be waited for exit. Otherwise, the process will end prematurely, without installing anything. For details, please consult the example below.
+
 **Examples**
 
 This example uses DISM to install IIS in the container image.
@@ -156,6 +158,13 @@ This example installs the Visual Studio redistributable package.
 ```none
 RUN powershell.exe -Command c:\vcredist_x86.exe /quiet
 ``` 
+
+This example installs the .NET Framework 4.5.2 Developer Pack, by extracting it first and then launching the actual installer. 
+```none
+RUN start /wait C:\temp\NDP452-KB2901951-x86-x64-DevPack.exe /q /x:C:\temp\NDP452DevPackSetupDir && \
+    start /wait C:\temp\NDP452DevPackSetupDir\Setup.exe /norestart /q /log %TEMP%\ndp452_install_log.txt && \
+    rmdir /s /q C:\temp\NDP452DevPackSetupDir
+```
 
 For detailed information on the RUN instruction, see the [RUN Reference on Docker.com]( https://docs.docker.com/engine/reference/builder/#run). 
 
