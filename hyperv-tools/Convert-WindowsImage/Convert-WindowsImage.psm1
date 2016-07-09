@@ -1,5 +1,5 @@
 <#
-    This is PS Module � the new long-term home for Convert-WindowsImage and sister functions.
+    This is PS Module — the new long-term home for Convert-WindowsImage and sister functions.
 
     Copyright (c) Microsoft Corporation.  All rights reserved.
 
