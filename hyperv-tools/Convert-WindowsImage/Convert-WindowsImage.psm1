@@ -1,5 +1,5 @@
 <#
-    This is PS Module — the new long-term home for Convert-WindowsImage and sister functions.
+    This is PS Module ï¿½ the new long-term home for Convert-WindowsImage and sister functions.
 
     Copyright (c) Microsoft Corporation.  All rights reserved.
 
@@ -1905,7 +1905,7 @@ You can use the fields below to configure the VHD or VHDX that you want to creat
                     }
 
                     If (( $DiskLayout -eq "UEFI" -and $BcdInVhd -eq "VirtualMachine" ) -or
-                          $DiskLayout -eq "WindowsToGo")
+                          $DiskLayout -in @("WindowsToGo", "BIOS"))
                     {
                       # Retreive access path for System partition.
                         $systemPartition = Get-Partition -UniqueId $systemPartition.UniqueId
