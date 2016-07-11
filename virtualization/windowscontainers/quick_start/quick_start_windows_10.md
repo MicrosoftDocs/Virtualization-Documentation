@@ -4,7 +4,7 @@ description: Container deployment quick start
 keywords: docker, containers
 author: neilpeterson
 manager: timlt
-ms.date: 06/28/2016
+ms.date: 07/07/2016
 ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
@@ -15,7 +15,7 @@ ms.assetid: bb9bfbe0-5bdc-4984-912f-9c93ea67105f
 
 **This is preliminary content and subject to change.** 
 
-The exercise will walk through basic deployment and use of the Windows container feature on Windows 10 (insiders build 14352 and up). After completion, you will have installed the container role, and deployed a simple Hyper-V container. Before starting this quick start, familiarize yourself with basic container concepts and terminology. This information can be found on the [Quick Start Introduction](./quick_start.md). 
+The exercise will walk through basic deployment and use of the Windows container feature on Windows 10 (insiders build 14372 and up). After completion, you will have installed the container role, and deployed a simple Hyper-V container. Before starting this quick start, familiarize yourself with basic container concepts and terminology. This information can be found on the [Quick Start Introduction](./quick_start.md). 
 
 This quick start is specific to Hyper-V containers on Windows 10. Additional quick start documentation can be found in the table of contents on the left hand side of this page.
 
@@ -57,13 +57,13 @@ New-Item -Type Directory -Path $env:ProgramFiles\docker\
 Download the Docker daemon.
 
 ```none
-Invoke-WebRequest https://aka.ms/tp5/b/dockerd -OutFile $env:ProgramFiles\docker\dockerd.exe
+Invoke-WebRequest https://master.dockerproject.org/windows/amd64/dockerd.exe -OutFile $env:ProgramFiles\docker\dockerd.exe
 ```
 
 Download the Docker client.
 
 ```none
-Invoke-WebRequest https://aka.ms/tp5/b/docker -OutFile $env:ProgramFiles\docker\docker.exe
+Invoke-WebRequest https://master.dockerproject.org/windows/amd64/docker.exe -OutFile $env:ProgramFiles\docker\docker.exe
 ```
 
 Add the Docker directory to the system path.
@@ -90,28 +90,18 @@ Start-Service Docker
 
 Windows containers are deployed from templates or images. Before a container can be deployed, a container base OS image needs to be downloaded. The following commands will download the Nano Server base image.
     
-Set the PowerShell execution policy for the current PowerShell process. This will only effect scripts executed in the current PowerShell session, however caution should be taken when changing execution policy.
+> This procedure applies to Windows Insiders builds greater than 14372 and is temporary until ‘docker pull’ is functional.
+
+Download the Nano Server base image. 
 
 ```none
-Set-ExecutionPolicy Bypass -scope Process
+Start-BitsTransfer https://aka.ms/tp5/6b/docker/nanoserver -Destination nanoserver.tar.gz
 ```
 
-Install the container image package provider.
+Install the base image.
 
 ```none  
-Install-PackageProvider ContainerImage -Force
-```
-
-Next, install the Nano Server image.
-
-```none
-Install-ContainerImage -Name NanoServer
-```
-
-After the base image has been installed, the docker service needs to be restarted.
-
-```none
-Restart-Service docker
+docker load -i nanoserver.tar.gz
 ```
 
 At this stage, running `docker images` will return a list of installed images, in this case the Nano Server image.
@@ -120,13 +110,13 @@ At this stage, running `docker images` will return a list of installed images, i
 docker images
 
 REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
-nanoserver          10.0.14300.1016     3f5112ddd185        3 weeks ago         810.2 MB
+nanoserver          10.0.14300.1030     3f5112ddd185        3 weeks ago         810.2 MB
 ```
 
 Before proceeding, this image needs to be tagged with a version of ‘latest’. To do so, run the following command.
 
 ```none
-docker tag nanoserver:10.0.14300.1016 nanoserver:latest
+docker tag microsoft/nanoserver:10.0.14300.1030 nanoserver:latest
 ```
 
 For in depth information on Windows container images see, [Managing Container Images](../management/manage_images.md).
@@ -144,11 +134,11 @@ docker pull microsoft/sample-dotnet
 This can be verified with the `docker images` command.
 
 ```none
-docker images
+docker 
 
 REPOSITORY               TAG                 IMAGE ID            CREATED             SIZE
 microsoft/sample-dotnet  latest              28da49c3bff4        41 hours ago        918.3 MB
-nanoserver               10.0.14300.1016     3f5112ddd185        3 weeks ago         810.2 MB
+nanoserver               10.0.14300.1030     3f5112ddd185        3 weeks ago         810.2 MB
 nanoserver               latest              3f5112ddd185        3 weeks ago         810.2 MB
 ```
 
