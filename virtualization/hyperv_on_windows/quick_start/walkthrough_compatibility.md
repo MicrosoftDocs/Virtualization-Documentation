@@ -39,7 +39,7 @@ Although this document does not provide a complete list of Hyper-V compatible ha
 - CPU support for VM Monitor Mode Extension (VT-c on Intel CPU's).
 - Minimum of 4 GB memory. As virtual machines share memory with the Hyper-V host, you will need to provide enough memory to handle the expected virtual workload.
 
-The following items will need to be enabled in the system bios:
+The following items will need to be enabled in the system BIOS:
 - Virtualization Technology - may have a different label depending on motherboard manufacturer.
 - Hardware Enforced Data Execution Prevention.
 
