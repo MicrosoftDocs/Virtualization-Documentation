@@ -40,7 +40,7 @@ With that said, Hyper-V does support both 32-bit and 64-bit operating systems in
 
 You can run 3 or 4 basic virtual machines on a host that has 4GB of RAM, though you'll need more resources for more virtual machines. On the other end of the spectrum, you can also create large virtual machines with 32 processors and 512GB RAM, depending on your physical hardware.
 
-For more information about Hyper-V's system requirements and how to verify that Hyper-V runs on your machine, see [Walkthrough: Windows 10 Hyper-V System Requirements](..\quick_start\walkthrough_install.md)
+For more information about Hyper-V's system requirements and how to verify that Hyper-V runs on your machine, see [Walkthrough: Windows 10 Hyper-V System Requirements](..\quick_start\walkthrough_install.md).
 
 
 ## Operating systems you can run in a virtual machine
