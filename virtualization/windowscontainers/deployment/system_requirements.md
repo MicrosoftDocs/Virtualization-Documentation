@@ -40,19 +40,19 @@ Windows Server Technical Preview 5 is being offered with two container OS Images
 <thead>
 <tr valign="top">
 <th><center>Host Operating System</center></th>
-<th><center>Windows Server container</center></th>
-<th><center>Hyper-V container</center></th>
+<th><center>Windows Server Container</center></th>
+<th><center>Hyper-V Container</center></th>
 </tr>
 </thead>
 <tbody>
 <tr valign="top">
-<td><center>Windows Server 2016 Full UI</center></td>
-<td><center>Server Core image</center></td>
+<td><center>Windows Server 2016 with Desktop Experience</center></td>
+<td><center>Server Core image<br>Nano Server image</center></td>
 <td><center>Nano Server image</center></td>
 </tr>
 <tr valign="top">
 <td><center>Windows Server 2016 Core</center></td>
-<td><center>Server Core image</center></td>
+<td><center>Server Core image<br>Nano Server image</center></td>
 <td><center> Nano Server image</center></td>
 </tr>
 <tr valign="top">
