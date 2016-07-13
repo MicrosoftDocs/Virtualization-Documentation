@@ -17,6 +17,13 @@ Integration services (often called integration components), are services that al
 
 This article is a reference for each integration service available in Windows.  It will also act as a starting point for any information related to specific integration services or their history.
 
+**User Guides:**  
+* [Enable/disable integration services from the Hyper-V host](../user_guide/managing_ics.md#enable-or-disable-integration-services-using-powershell)
+* Enable/disable integration services from inside the virtual machine.
+  * [Windows](../user_guide/managing_ics.md#manage-integration-services-from-guest-os-windows)
+  * [Linux](../user_guide/managing_ics.md#manage-integration-services-from-guest-os-linux)
+* [Integration service update and maintainance](../user_guide/managing_ics.md#integration-service-maintenance)
+
 
 ## Quick Reference
 
@@ -143,13 +150,3 @@ PowerShell Direct allows PowerShell management inside a virtual machine from the
 **User Guides:**  
 * [Running script in a virtual machine](../user_guide/vmsession.md#run-a-script-or-command-with-invoke-command)
 * [Copying files to and from a virtual machine](../user_guide/vmsession.md#copy-files-with-new-pssession-and-copy-item)
-
-
-## Additional Resources
-
-**User Guides:**  
-* [Enable/disable integration services from the Hyper-V host](../user_guide/managing_ics.md#enable-or-disable-integration-services-using-powershell)
-* Enable/disable integration services from the virtual machine.
-** [Windows](../user_guide/managing_ics.md#manage-integration-services-from-guest-os-windows)
-** [Linux](../user_guide/managing_ics.md#manage-integration-services-from-guest-os-linux)
-* [Integration service update and maintainance](../user_guide/managing_ics.md#integration-service-maintenance)
