@@ -236,7 +236,7 @@ Param(
 
     Write-Host "-Creating Server certificate request"
     #create certificate signing request
-    $subLine = ("/CN='" + $serverName + "'/")
+    $subLine = ("/CN=" + $serverName + "/")
 
     $openSSLCmd =  @("req", "-subj", $subLine, "-sha256", "-new", "-key", $serverKeyFile, "-out",  $serverCSRFile )
     Invoke-OpenSSLCmd -OpenSSLArguments $openSSLCmd
