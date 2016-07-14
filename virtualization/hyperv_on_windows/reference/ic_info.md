@@ -72,9 +72,9 @@ The `Status` field is determined by the heartbeat service.
 
 **Windows Service Name:** vmicshutdown  
 **Linux Daemon Name:** hv_utils  
-**Description:** Allows the Hyper-V host to request that the virtual machine shutdown.  The host can always force the virtual machine to turn off, but that is like flipping the power switch as opposed to selecting shutdown.
+**Description:** Allows the Hyper-V host to request that the virtual machine shutdown.  The host can always force the virtual machine to turn off, but that is like flipping the power switch as opposed to selecting shutdown.  
 **Added In:** Windows Server 2012, Windows 8  
-**Impact:** **High Impact**  When disabled, the host can't trigger a friendly shutdown inside the virtual machine.  All shutdowns will be a hard power-off wich could cause data loss or data corruption.
+**Impact:** **High Impact**  When disabled, the host can't trigger a friendly shutdown inside the virtual machine.  All shutdowns will be a hard power-off wich could cause data loss or data corruption.  
 
 
 ## Hyper-V Time Synchronization Service
@@ -92,7 +92,7 @@ The `Status` field is determined by the heartbeat service.
 **Linux Daemon Name:** hv_kvp_daemon  
 **Description:** Provides a mechanism to exchange basic metadata between the virtual machine and the host.  
 **Added In:** Windows Server 2012, Windows 8  
-**Impact:** When disabled, virtual machines running Windows 8 or Windows Server 2012 or earlier will not receive updates to Hyper-V integration services.  Disabling data exchange may also impact some kinds of monitoring and host-side diagnostics.
+**Impact:** When disabled, virtual machines running Windows 8 or Windows Server 2012 or earlier will not receive updates to Hyper-V integration services.  Disabling data exchange may also impact some kinds of monitoring and host-side diagnostics.  
 
 The data exchange service (sometimes called KVP) shares small amounts of machine information between virtual machine and the Hyper-V host using key-value pairs (KVP) through the Windows registry.  The same mechanism can also be used to share customized data between the virtual machine and the host.
 
@@ -102,7 +102,7 @@ The data exchange service is a great tool for preserving information about the v
 
 
 **User Guides:**  
-* [Using key-value pairs to share information between the host and guest on Hyper-V](https://technet.microsoft.com/en-us/library/dn798287.aspx).
+* [Using key-value pairs to share information between the host and guest on Hyper-V](https://technet.microsoft.com/en-us/library/dn798287.aspx).  
 
 
 ## Hyper-V Volume Shadow Copy Requestor
