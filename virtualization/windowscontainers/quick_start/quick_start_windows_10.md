@@ -129,7 +129,7 @@ For in depth information on Windows container images see, [Managing Container Im
 
 ## 4. Deploy Your First Container
 
-For this simple example a ‘Hello World’ container image will be created and deployed. For the best experience run these commands in a Windows CMD shell.
+For this simple example a ‘Hello World’ container image will be created and deployed. For the best experience run these commands in an elevated Windows CMD shell.
 
 First, start a container with an interactive session from the `nanoserver` image. Once the container has started, you will be presented with a command shell from within the container.  
 
@@ -140,7 +140,7 @@ docker run -it nanoserver cmd
 Inside the container we will create a simple ‘Hello World’ script.
 
 ```none
- powershell.exe Add-Content C:\helloworld.ps1 'Write-Host "Hello World"'
+powershell.exe Add-Content C:\helloworld.ps1 'Write-Host "Hello World"'
 ```   
 
 When completed, exit the container.
@@ -173,7 +173,7 @@ Finally, to run the container, use the `docker run` command.
 docker run --rm helloworld powershell c:\helloworld.ps1
 ```
 
-The outcome of the `docker run` command is that a Hyper-V container was created from the 'HelloWorld' image, a sample application was then executed (output echoed to the shell), and then the container stopped and removed. 
+The outcome of the `docker run` command is that a Hyper-V container was created from the 'HelloWorld' image, a sample 'Hello World' script was then executed (output echoed to the shell), and then the container stopped and removed. 
 Subsequent Windows 10 and container quick starts will dig into creating and deploying applications in containers on Windows 10.
 
 ## Next Steps
