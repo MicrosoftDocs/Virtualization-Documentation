@@ -155,7 +155,7 @@ When logged into the Docker host and running Docker commands locally, these comm
 To set proxy information for `docker search` and `docker pull`, create a Windows environment variable with the name `HTTP_PROXY` or `HTTPS_PROXY`, and a value of the proxy information. This can be completed with PowerShell using a command similar to this:
 
 ```none
-$env:HTTP_PROXY = "http://username:password@proxy:port/"
+[Environment]::SetEnvironmentVariable("HTTP_PROXY”, “http://username:password@proxy:port/”, [EnvironmentVariableTarget]::Machine)
 ```
 
 Once the variable has been set, restart the Docker service.
