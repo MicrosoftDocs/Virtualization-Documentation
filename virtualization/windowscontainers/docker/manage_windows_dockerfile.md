@@ -154,17 +154,11 @@ This example uses DISM to install IIS in the container image.
 RUN dism.exe /online /enable-feature /all /featurename:iis-webserver /NoRestart
 ```
 
-This example installs the Visual Studio redistributable package.
-```none
-RUN powershell.exe -Command c:\vcredist_x86.exe /quiet
-``` 
+This example installs the Visual Studio redistributable package. Note here that `start-process` and the `-wait` parameter are used to run the installer. This will ensure that the installation completed before moving onto the next step in the Dockerfile.
 
-This example installs the .NET Framework 4.5.2 Developer Pack, by extracting it first and then launching the actual installer. 
 ```none
-RUN start /wait C:\temp\NDP452-KB2901951-x86-x64-DevPack.exe /q /x:C:\temp\NDP452DevPackSetupDir && \
-    start /wait C:\temp\NDP452DevPackSetupDir\Setup.exe /norestart /q /log %TEMP%\ndp452_install_log.txt && \
-    rmdir /s /q C:\temp\NDP452DevPackSetupDir
-```
+RUN start-Process c:\vcredist_x86.exe -ArgumentList '/quiet' -Wait
+``` 
 
 For detailed information on the RUN instruction, see the [RUN Reference on Docker.com]( https://docs.docker.com/engine/reference/builder/#run). 
 

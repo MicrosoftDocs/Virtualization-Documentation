@@ -4,7 +4,7 @@ description: Container deployment quick start
 keywords: docker, containers
 author: neilpeterson
 manager: timlt
-ms.date: 07/07/2016
+ms.date: 07/13/2016
 ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
@@ -42,6 +42,12 @@ When the installation has completed, reboot the computer.
 
 ```none
 Restart-Computer -Force
+```
+
+Once back up, run the following command to fix a known issue with the Windows Containers technical preview.  
+
+ ```none
+Set-ItemProperty -Path 'HKLM:SOFTWARE\Microsoft\Windows NT\CurrentVersion\Virtualization\Containers' -Name VSmbDisableOplocks -Type DWord -Value 1 -Force
 ```
 
 ## 2. Install Docker
@@ -123,40 +129,51 @@ For in depth information on Windows container images see, [Managing Container Im
 
 ## 4. Deploy Your First Container
 
-For this simple example a .NET Core image has been pre-created. Download this image using the `docker pull` command.
+For this simple example a ‘Hello World’ container image will be created and deployed. For the best experience run these commands in an elevated Windows CMD shell.
 
-When run, a container will be started, the simple .NET Core application will execute, and then container will then exit. 
-
-```none
-docker pull microsoft/sample-dotnet
-```
-
-This can be verified with the `docker images` command.
+First, start a container with an interactive session from the `nanoserver` image. Once the container has started, you will be presented with a command shell from within the container.  
 
 ```none
-docker 
-
-REPOSITORY               TAG                 IMAGE ID            CREATED             SIZE
-microsoft/sample-dotnet  latest              28da49c3bff4        41 hours ago        918.3 MB
-nanoserver               10.0.14300.1030     3f5112ddd185        3 weeks ago         810.2 MB
-nanoserver               latest              3f5112ddd185        3 weeks ago         810.2 MB
+docker run -it nanoserver cmd
 ```
 
-Run the container with the `docker run` command. The following example specifies the `--rm` parameter, this instructs the Docker engine to delete the container once it is no longer running. 
-
-For in depth information on the Docker Run command, see [Docker Run Reference on Docker.com]( https://docs.docker.com/engine/reference/run/).
+Inside the container we will create a simple ‘Hello World’ script.
 
 ```none
-docker run --isolation=hyperv --rm microsoft/sample-dotnet
-```
+powershell.exe Add-Content C:\helloworld.ps1 'Write-Host "Hello World"'
+```   
 
-**Note** - If an error is thrown indicating a timeout event, run the following PowerShell script and retry the operation.
+When completed, exit the container.
 
 ```none
-Set-ItemProperty -Path 'HKLM:SOFTWARE\Microsoft\Windows NT\CurrentVersion\Virtualization\Containers' -Name VSmbDisableOplocks -Type DWord -Value 1 -Force
+exit
 ```
 
-The outcome of the `docker run` command is that a Hyper-V container was created from the sample-dotnet image, a sample application was then executed (output echoed to the shell), and then the container stopped and removed. 
+You will now create a new container image from the modified container. To see a list of containers run the following and take note of the container id.
+
+```none
+docker ps -a
+```
+
+Run the following command to create the new ‘HelloWorld’ image. Replace <containerid> with the id of your container.
+
+```none
+docker commit <containerid> helloworld
+```
+
+When completed, you now have a custom image that contains the hello world script. This can be seen with the following command.
+
+```none
+docker images
+```
+
+Finally, to run the container, use the `docker run` command.
+
+```none
+docker run --rm helloworld powershell c:\helloworld.ps1
+```
+
+The outcome of the `docker run` command is that a Hyper-V container was created from the 'HelloWorld' image, a sample 'Hello World' script was then executed (output echoed to the shell), and then the container stopped and removed. 
 Subsequent Windows 10 and container quick starts will dig into creating and deploying applications in containers on Windows 10.
 
 ## Next Steps
