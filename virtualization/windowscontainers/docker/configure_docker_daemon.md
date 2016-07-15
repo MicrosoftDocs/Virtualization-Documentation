@@ -4,7 +4,7 @@ description: Configure Docker in Windows
 keywords: docker, containers
 author: neilpeterson
 manager: timlt
-ms.date: 06/02/2016
+ms.date: 07/15/2016
 ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
@@ -117,8 +117,6 @@ Likewise, this sample configures the Docker daemon to only accept secured connec
 }
 ```
 
-
-
 ## Service Control Manager
 
 The Docker daemon can also be configured by modifying the Docker service using `sc config`. Using this method, Docker daemon flags are set directly on the Docker service.
@@ -152,6 +150,21 @@ When logged into the Docker host and running Docker commands locally, these comm
 }
 ```
 
+## Proxy Configuration
+
+To set proxy information for `docker search` and `docker pull`, create a Windows environment variable with the name `HTTP_PROXY` or `HTTPS_PROXY`, and a value of the proxy information. This can be completed with PowerShell using a command similar to this:
+
+```none
+$env:HTTP_PROXY = "http://username:password@proxy:port/"
+```
+
+Once the variable has been set, restart the Docker service.
+
+```none
+restart-service docker
+```
+
+For more information see, [Daemon Socket Options on Docker.com](https://docs.docker.com/v1.10/engine/reference/commandline/daemon/#daemon-socket-option).
 
 ## Collecting Logs
 The Docker daemon logs to the Windows 'Application' event log, rather than to a file. These logs can easily be read, sorted, and filtered using Windows PowerShell
