@@ -70,6 +70,20 @@ c:\container-share>dir
 
 For more information on mounting single files, see [Manage data in containers on docker.com](https://docs.docker.com/engine/userguide/containers/dockervolumes/#mount-a-host-directory-as-a-data-volume).
 
+### Mount full drive
+
+A complete drive can be mounted using a command similar to this. Note, do not include a backslash.
+
+```none
+docker run -it -v d: windowsservercore cmd
+```
+
+At this time, mounting a portion of the second drive does not work. For instance, the following is not possible.
+
+```none
+docker run -it -v d:\source:d:\destination windowsservercore cmd
+```
+
 ### Data volume containers
 
 Data volumes can be inherited from other running containers using the `--volumes-from` parameter of the `docker run` command. Using this inheritance, a container can be created with the explicit purpose of hosting data volumes for containerized applications. 
