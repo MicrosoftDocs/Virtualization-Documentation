@@ -19,7 +19,7 @@ This guides list the requirements for a Windows container Host.
 
 ## OS Requirements
 
-- The Windows container role is only available on Windows Server 2016 TP5 (Full and Core), Nano Server, and Windows 10 (insiders build 14352 and up).
+- The Windows container feature is only available on Windows Server 2016 (Core and with Desktop Experience), Nano Server, and Windows 10 Professional and Enterprise (insiders build 14352 and up).
 - If Hyper-V containers will be run, the Hyper-V role will need to be installed.
 - Windows Server container hosts must have Windows installed to c:\\. If only Hyper-V containers will be deployed, this restriction does not apply.
 
