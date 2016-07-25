@@ -218,6 +218,11 @@ In order to specify which network adapter in the container host to use for a Tra
 docker network create -d transparent -o com.docker.network.windowsshim.interface="Ethernet 2" "TransparentNetTwo"
 ```
 
+Value for *com.docker.network.windowsshim.interface* is the adapter's *Name* from: 
+```none
+Get-NetAdapter
+```
+
 > Container networks which are created through PowerShell will not be available in Docker until the Docker daemon is restarted. Any other changes made to a container network via PowerShell also requires a restart of the Docker daemon.
 
 ### Multiple Container Networks
