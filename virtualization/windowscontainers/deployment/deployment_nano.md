@@ -151,7 +151,7 @@ For the best experience, and as a best practice, manage Docker on Nano Server fr
 Create a firewall rule on the container host for the Docker connection. This will be port `2375` for an unsecure connection, or port `2376` for a secure connection.
 
 ```none
-netsh advfirewall firewall add rule name="Docker daemon " dir=in action=allow protocol=TCP localport=2376
+netsh advfirewall firewall add rule name="Docker daemon " dir=in action=allow protocol=TCP localport=2375
 ```
 
 Configure the Docker daemon to accept incoming connection over TCP.
