@@ -50,7 +50,7 @@ Docker is required in order to work with Windows containers. Docker consists of 
 Create a folder for the Docker executables.
 
 ```none
-New-Item -Type Directory -Path 'C:\Program Files\docker\'
+New-Item -Type Directory -Path $env:ProgramFiles\docker
 ```
 
 Download the Docker daemon.
