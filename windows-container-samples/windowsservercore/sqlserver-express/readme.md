@@ -1,1 +1,1 @@
-See the official SQL Server 2014 Express Dockerfile in the [SQL Serve Samples GitHub repo]( https://github.com/Microsoft/sql-server-samples/tree/master/samples/manage/windows-containers/mssql-server-2014-express-windows).
+See the official SQL Server 2014 Express Dockerfile in the [SQL Server Samples GitHub repo]( https://github.com/Microsoft/sql-server-samples/tree/master/samples/manage/windows-containers/mssql-server-2014-express-windows).
