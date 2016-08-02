@@ -7,7 +7,7 @@ $Query = "Select * from __InstanceModificationEvent within 3 where TargetInstanc
    $VMName = $Event.SourceEventArgs.NewEvent.TargetInstance.ElementName
 
    switch ($Event.SourceEventArgs.NewEvent.TargetInstance.EnabledState)
-      {
+   {
         2 {$vmState = "running"}
         3 {$vmState = "turned off"}
         9 {$vmState = "paused"}
@@ -15,12 +15,15 @@ $Query = "Select * from __InstanceModificationEvent within 3 where TargetInstanc
         10 {$vmState = "starting"}
         4 {$vmState = "stopping"}
         default {$vmState = "in an unknown state..."}
-       }
+    }
 
-   if ($Event.SourceEventArgs.NewEvent.TargetInstance.EnabledState -eq 1)
-      {$vmState = $Event.SourceEventArgs.NewEvent.TargetInstance.OtherEnabledState}
+    if ($Event.SourceEventArgs.NewEvent.TargetInstance.EnabledState -eq 1)
+    {
+        $vmState = $Event.SourceEventArgs.NewEvent.TargetInstance.OtherEnabledState
+    }
 
-   write-host "The virtual machine '$($vmName)' is now $($vmState)."}
+    Write-Host "The virtual machine '$($vmName)' is now $($vmState)."
+}
 
 # Register for the events
 Register-WMIEvent -Query $Query -Action $Action -Namespace root\virtualization\v2
