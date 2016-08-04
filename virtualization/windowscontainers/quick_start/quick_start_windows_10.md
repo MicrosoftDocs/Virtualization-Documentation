@@ -107,12 +107,6 @@ REPOSITORY             TAG                 IMAGE ID            CREATED          
 microsoft/nanoserver   latest              3a703c6e97a2        7 weeks ago         969.8 MB
 ```
 
-Before proceeding, this image needs to be tagged with a version of ‘latest’. To do so, run the following command.
-
-```none
-docker tag microsoft/nanoserver:10.0.14300.1030 nanoserver:latest
-```
-
 For in depth information on Windows container images see, [Managing Container Images](../management/manage_images.md).
 
 ## 4. Deploy Your First Container
