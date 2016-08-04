@@ -136,7 +136,7 @@ foreach($key in $keys)
 }
 remove-netnat -Confirm:$false
 Get-ContainerNetwork | Remove-ContainerNetwork
-Get-VmSwitch -Name nat | Remove-VmSwitch (_failure is expected_)
+Get-VmSwitch -Name nat | Remove-VmSwitch # Note: failure is expected
 Stop-Service docker
 Set-Service docker -StartupType Disabled
 ```
