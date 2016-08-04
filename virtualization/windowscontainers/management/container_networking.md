@@ -140,8 +140,7 @@ Get-VmSwitch -Name nat | Remove-VmSwitch (_failure is expected_)
 Stop-Service docker
 Set-Service docker -StartupType Disabled
 ```
-
-Reboot the host, then run the remaining steps:
+> Reboot the host, then run the remaining steps:
 ```none
 Get-NetNat | Remove-NetNat
 Set-Service docker -StartupType automatic
