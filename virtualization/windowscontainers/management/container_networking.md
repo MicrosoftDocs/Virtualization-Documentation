@@ -142,7 +142,7 @@ Set-Service docker -StartupType Disabled
 ```
 > Reboot the host, then run the remaining steps:
 ```none
-Get-NetNat | Remove-NetNat
+Get-NetNat | Remove-NetNat -Confirm $false
 Set-Service docker -StartupType automatic
 Start-Service docker 
 ```
