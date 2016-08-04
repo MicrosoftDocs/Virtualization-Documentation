@@ -79,39 +79,21 @@ Start-Service docker
 
 ## 3. Install Base Container Images
 
-Windows containers are deployed from templates or images. Before a container can be deployed, a base OS image needs to be downloaded. The following commands will download the Windows Server Core base image.
-
-First, install the container image package provider.
+Windows containers are deployed from templates or images. Before a container can be deployed, a base OS image needs to be downloaded. The following command will download the Windows Server Core base image.
 
 ```none
-Install-PackageProvider ContainerImage -Force
+docker pull microsoft/windowsservercore
 ```
 
-Next, install the Windows Server Core image. This process can take some time, so take a break and pick back up once the download has completed.
+This process can take some time, so take a break and pick back up once the pull has completed.
 
-```none
-Install-ContainerImage -Name WindowsServerCore    
-```
-
-After the base image has been installed, the Docker service needs to be restarted.
-
-```none
-Restart-Service docker
-```
-
-At this stage, running `docker images` will return a list of installed images, in this case the Windows Server Core image.
+Once the image is pulled, running `docker images` will return a list of installed images, in this case the Windows Server Core image.
 
 ```none
 docker images
 
-REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
-windowsservercore   10.0.14300.1000     dbfee88ee9fd        7 weeks ago         9.344 GB
-```
-
-Before proceeding, this image needs to be tagged with a version of ‘latest’. To do so, run the following command.
-
-```none
-docker tag windowsservercore:10.0.14300.1000 windowsservercore:latest
+REPOSITORY                    TAG                 IMAGE ID            CREATED             SIZE
+microsoft/windowsservercore   latest              02cb7f65d61b        7 weeks ago         7.764 GB
 ```
 
 For in depth information on Windows container images see, [Managing Container Images](../management/manage_images.md).
