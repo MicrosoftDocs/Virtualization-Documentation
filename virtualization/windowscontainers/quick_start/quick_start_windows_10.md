@@ -50,6 +50,8 @@ Once back up, run the following command to fix a known issue with the Windows Co
 Set-ItemProperty -Path 'HKLM:SOFTWARE\Microsoft\Windows NT\CurrentVersion\Virtualization\Containers' -Name VSmbDisableOplocks -Type DWord -Value 1 -Force
 ```
 
+> In current releases you need to disable OpLocks in order to reliably use Hyper-V Containers. To re-enable OpLocks, use the following  command:  `Set-ItemProperty -Path 'HKLM:SOFTWARE\Microsoft\Windows NT\CurrentVersion\Virtualization\Containers' -Name VSmbDisableOplocks -Type DWord -Value 0 -Force`
+
 ## 2. Install Docker
 
 Docker is required in order to work with Windows containers. Docker consists of the Docker Engine, and the Docker client. For this exercise, both will be installed. Run the following commands to do so. 
@@ -89,28 +91,20 @@ Start-Service Docker
 ## 3. Install Base Container Images
 
 Windows containers are deployed from templates or images. Before a container can be deployed, a container base OS image needs to be downloaded. The following commands will download the Nano Server base image.
-    
-> This procedure applies to Windows Insiders builds greater than 14372 and is temporary until ‘docker pull’ is functional.
 
-Download the Nano Server base image. 
+Pull the Nano Server base image. 
 
 ```none
-Start-BitsTransfer https://aka.ms/tp5/6b/docker/nanoserver -Destination nanoserver.tar.gz
+docker pull microsoft/nanoserver
 ```
 
-Install the base image.
-
-```none  
-docker load -i nanoserver.tar.gz
-```
-
-At this stage, running `docker images` will return a list of installed images, in this case the Nano Server image.
+Once the image is pulled, running `docker images` will return a list of installed images, in this case the Nano Server image.
 
 ```none
 docker images
 
-REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
-nanoserver          10.0.14300.1030     3f5112ddd185        3 weeks ago         810.2 MB
+REPOSITORY             TAG                 IMAGE ID            CREATED             SIZE
+microsoft/nanoserver   latest              3a703c6e97a2        7 weeks ago         969.8 MB
 ```
 
 Before proceeding, this image needs to be tagged with a version of ‘latest’. To do so, run the following command.
