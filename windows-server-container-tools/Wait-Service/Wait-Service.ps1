@@ -65,7 +65,7 @@ function Wait-Service()
     do 
     {
         #Importing the System.ServiceProcess Assembly
-        Add-Type -AssemblyName System.ServiceProcess 
+        Add-Type -AssemblyName System.ServiceProcess -ErrorAction SilentlyContinue
 
         #Adding a PInvoke call for QueryServiceStatus which is used to get the error return.
         # https://github.com/dotnet/corefx/blob/master/src/Common/src/Interop/Windows/mincore/Interop.ENUM_SERVICE_STATUS.cs
