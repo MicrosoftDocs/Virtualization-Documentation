@@ -7,7 +7,6 @@ Windows Server 2016 TP5 and Windows Containers are in an early preview release a
 This template will deploy a Windows Server 2016 Technical Preview virtual machine with the Windows container feature, and Docker, fully installed and configured.
 
 <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Faztemplateupdate%2Fwindows-server-containers-preview%2Fazuredeploy.json" target="_blank">
-    
     <img src="http://azuredeploy.net/deploybutton.png"/>
 </a>
 <a href="http://armviz.io/#/?load=https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2Fwindows-server-containers-preview%2Fazuredeploy.json" target="_blank">
