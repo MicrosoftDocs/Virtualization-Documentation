@@ -45,6 +45,7 @@
     "windowsOSVersion": "2016-Technical-Preview-with-Containers",
     "imagePublisher": "MicrosoftWindowsServer",
     "imageOffer": "WindowsServer",
+    "imageVersion": "5.0.20160803",
     "OSDiskName": "[concat(parameters('VMName'),'_osdisk')]",
     "nicName": "[concat(parameters('VMName'),'_nic')]",
     "addressPrefix": "10.0.0.0/16",
@@ -234,7 +235,7 @@
             "publisher": "[variables('imagePublisher')]",
             "offer": "[variables('imageOffer')]",
             "sku": "[variables('windowsOSVersion')]",
-            "version": "latest"
+            "version": "[variables('imageVersion')]"
           },
           "osDisk": {
             "name": "osdisk",
