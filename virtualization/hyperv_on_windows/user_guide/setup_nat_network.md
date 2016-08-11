@@ -125,6 +125,7 @@ Since WinNAT by itself does not allocate and assign IP addresses to an endpoint 
 
 
 ## Configuration Example: Attaching VMs and Containers to a NAT network
+
 _If you need to attach multiple VMs and containers to a single NAT, you will need to ensure that the NAT internal subnet prefix is large enough to encompass the IP ranges being assigned by different applications or services (e.g. Docker for Windows and Windows Container – HNS). This will require either application-level assignment of IPs and network configuration or manual configuration which must be done by an admin and guaranteed not to re-use existing IP assignments on the same host._
 
 ### Docker for Windows (Linux VM) and Windows Containers
@@ -161,85 +162,6 @@ Admin will assign IPs to VMs from the difference set of the <shared prefix> and 
 
 In the end, you should have two internal VM switches and one NetNat shared between them.
 
-## Troubleshooting
-Make sure you only have one NAT
-```none
-Get-NetNat
-```
-If a NAT already exists, please delete it
-```none
-Get-NetNat | Remove-NetNat
-```
-Make sure you only have one “internal” vmSwitch for the application or feature (e.g. Windows containers). Record the name of the vSwitch
-```none
-Get-VMSwitch
-```
-Check to see if there are private IP addresses (e.g. NAT default Gateway IP Address – usually *.1) from the old NAT still assigned to an adapter
-```none
-Get-NetIPAddress -InterfaceAlias "vEthernet(<name of vSwitch>)"
-```
-If an old private IP address is in use, please delete it
-```none
-Remove-NetIPAddress -InterfaceAlias "vEthernet(<name of vSwitch>)" -IPAddress <IPAddress>
-```
-Removing Multiple NATs
-We have seen reports of multiple NAT networks created inadvertently. This is due to a bug in recent builds (including Windows Server 2016 Technical Preview 5 and Windows 10 Insider Preview builds). If you see multiple NAT networks, after running docker network ls or Get-ContainerNetwork, please perform the following from an elevated PowerShell:
-
-```none
-PS> $KeyPath = "HKLM:\SYSTEM\CurrentControlSet\Services\vmsmp\parameters\SwitchList"
-PS> $keys = get-childitem $KeyPath
-PS> foreach($key in $keys)
-PS> {
-PS>    if ($key.GetValue("FriendlyName") -eq 'nat')
-PS>    {
-PS>       $newKeyPath = $KeyPath+"\"+$key.PSChildName
-PS>       Remove-Item -Path $newKeyPath -Recurse
-PS>    }
-PS> }
-PS> remove-netnat -Confirm:$false
-PS> Get-ContainerNetwork | Remove-ContainerNetwork
-PS>	Get-VmSwitch -Name nat | Remove-VmSwitch (_failure is expected_)
-PS>	Stop-Service docker
-PS> Set-Service docker -StartupType Disabled
-Reboot Host
-PS> Get-NetNat | Remove-NetNat
-PS> Set-Service docker -StartupType automaticac
-PS> Start-Service docker 
-```
-
-## Troubleshooting
-
-This workflow assumes that there are no other NATs on the host. However, sometimes multiple applications or services will require the use of a NAT. Since Windows (WinNAT) only supports one internal NAT subnet prefix, trying to create multiple NATs will place the system into an unknown state.
-
-### Troubleshooting Steps
-1. Make sure you only have one NAT
-
-  ``` PowerShell
-  Get-NetNat
-  ```
-2. If a NAT already exists, please delete it
-
-  ``` PowerShell
-  Get-NetNat | Remove-NetNat
-  ```
-
-3. Make sure you only have one "internal" vmSwitch for the NAT. Record the name of the vSwitch for Step 4
-
-  ``` PowerShell
-  Get-VMSwitch
-  ```
-
-4. Check to see if there are private IP addresses (e.g. NAT default Gateway IP Address - usually *.1) from the old NAT still assigned to an adapter
-
-  ``` PowerShell
-  Get-NetIPAddress -InterfaceAlias "vEthernet(<name of vSwitch>)"
-  ```
-
-5. If an old private IP address is in use, please delete it  
-   ``` PowerShell
-  Remove-NetIPAddress -InterfaceAlias "vEthernet(<name of vSwitch>)" -IPAddress <IPAddress>
-  ```
-
 ## Multiple Applications using the same NAT
 
 Some scenarios require multiple applications or services to use the same NAT. In this case, the following workflow must be followed so that multiple applications / services can use a larger NAT internal subnet prefix
@@ -271,6 +193,62 @@ Some scenarios require multiple applications or services to use the same NAT. In
 
 In the end, you should have two internal vSwitches – one named DockerNAT and the other named nat. You will only have one NAT network (10.0.0.0/17) confirmed by running Get-NetNat. IP addresses for Windows containers will be assigned by the Windows Host Network Service (HNS) from the 10.0.76.0/24 subnet. Based on the existing MobyLinux.ps1 script, IP addresses for Docker 4 Windows will be assigned from the 10.0.75.0/24 subnet.
 
+
+## Troubleshooting
+
+### Multiple NAT networks are not supported  
+This guide assumes that there are no other NATs on the host. However, applications or services will require the use of a NAT and may create one as part of setup. Since Windows (WinNAT) only supports one internal NAT subnet prefix, trying to create multiple NATs will place the system into an unknown state.
+
+To see if this may be the problem, make sure you only have one NAT:
+``` PowerShell
+Get-NetNat
+```
+
+If a NAT already exists, delete it
+``` PowerShell
+Get-NetNat | Remove-NetNat
+```
+Make sure you only have one “internal” vmSwitch for the application or feature (e.g. Windows containers). Record the name of the vSwitch
+``` PowerShell
+Get-VMSwitch
+```
+
+Check to see if there are private IP addresses (e.g. NAT default Gateway IP Address – usually *.1) from the old NAT still assigned to an adapter
+``` PowerShell
+Get-NetIPAddress -InterfaceAlias "vEthernet(<name of vSwitch>)"
+```
+
+If an old private IP address is in use, please delete it
+``` PowerShell
+Remove-NetIPAddress -InterfaceAlias "vEthernet(<name of vSwitch>)" -IPAddress <IPAddress>
+```
+
+**Removing Multiple NATs**  
+We have seen reports of multiple NAT networks created inadvertently. This is due to a bug in recent builds (including Windows Server 2016 Technical Preview 5 and Windows 10 Insider Preview builds). If you see multiple NAT networks, after running docker network ls or Get-ContainerNetwork, please perform the following from an elevated PowerShell:
+
+```none
+PS> $KeyPath = "HKLM:\SYSTEM\CurrentControlSet\Services\vmsmp\parameters\SwitchList"
+PS> $keys = get-childitem $KeyPath
+PS> foreach($key in $keys)
+PS> {
+PS>    if ($key.GetValue("FriendlyName") -eq 'nat')
+PS>    {
+PS>       $newKeyPath = $KeyPath+"\"+$key.PSChildName
+PS>       Remove-Item -Path $newKeyPath -Recurse
+PS>    }
+PS> }
+PS> remove-netnat -Confirm:$false
+PS> Get-ContainerNetwork | Remove-ContainerNetwork
+PS>	Get-VmSwitch -Name nat | Remove-VmSwitch (_failure is expected_)
+PS>	Stop-Service docker
+PS> Set-Service docker -StartupType Disabled
+Reboot Host
+PS> Get-NetNat | Remove-NetNat
+PS> Set-Service docker -StartupType automaticac
+PS> Start-Service docker 
+```
+
+See this [setup guide for multiple applications using the same NAT](setup_nat_network.md#multiple-applications-using-the-same-nat) to rebuild your NAT environment, if necessary. 
 
 ## References
 Read more about [NAT networks](https://en.wikipedia.org/wiki/Network_address_translation)
