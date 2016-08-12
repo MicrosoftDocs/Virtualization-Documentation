@@ -33,20 +33,12 @@ Additional networks using a different driver (e.g. transparent, l2bridge) can be
 
 - **L2 Tunnel** - _this mode should only be used in a Microsoft Cloud Stack_
 
-| Single-Node                              | Multi-Node                               |
-| ---------------------------------------- | ---------------------------------------- |
-| Container-Container | Container-External | Container-Container | Container-External |
-| ---------------     |  ---                |   ---             |  ---               |
-| nat: Bridged connection through Hyper-V Virtual Switch | nat: routed through WinNAT with address translations applied | nat: must reference external container host IP and port; routed through WinNAT with address translations applied | 
-| transparent: Bridged connection through Hyper-V Virtual Switch | transparent: direct access to physical network | | transparent: Bridged connection through Hyper-V Virtual Switch | transparent: direct access to physical network | 
-| l2bridge: Bridged connection through Hyper-V Virtual Switch| l2bridge: access to physical network with MAC address translation| | l2bridge: Bridged connection through Hyper-V Virtual Switch| l2bridge: access to physical network with MAC address translation| 
-
 > To learn how to connect container endpoints to an overlay virtual network with the Microsoft SDN stack, reference the [Attaching Containers to a Virtual Network](location) topic.
 
 ## Single-Node
 
-| --- | Container-Container | Container-External |
-| --- | ---------------     |  ---                |
+|  | Container-Container | Container-External |
+| :---: | :---------------     |  :---                |
 | nat | Bridged connection through Hyper-V Virtual Switch | routed through WinNAT with address translations applied | 
 | transparent | Bridged connection through Hyper-V Virtual Switch | direct access to physical network | 
 | l2bridge | Bridged connection through Hyper-V Virtual Switch|  access to physical network with MAC address translation|  
@@ -55,7 +47,8 @@ Additional networks using a different driver (e.g. transparent, l2bridge) can be
 
 ## Multi-Node
 
-| --- | Container-Container | Container-External |
+|  | Container-Container | Container-External |
+| :---: | :----       | :---------- |
 | nat | must reference external container host IP and port; routed through WinNAT with address translations applied | must reference external host; routed through WinNAT with address translations applied | 
 | transparent | must reference container IP endpoint directly | direct access to physical network | 
 | l2bridge | must reference container IP endpoint directly| access to physical network with MAC address translation| 
