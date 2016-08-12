@@ -61,7 +61,7 @@ Because each `RUN` instruction creates a new layer in the container image, group
 
 The following two examples demonstrate the same operation, which results in container images of identical capability, however the two Dockerfiles constructed differently. The resulting images are also compared.  
 
-This first example downloads, extracts, and cleans up the Visual Studio redistributable package. Each of these actions are run in their own `RUN` instruction.
+This first example downloads Python for Windows, installs it and cleans up by removing the downloaded setup file. Each of these actions are run in their own `RUN` instruction.
 
 ```none
 FROM windowsservercore
@@ -290,6 +290,22 @@ RUN powershell -Command \
 	$ErrorActionPreference = 'Stop'; \
 	start-Process c:\vcredist_x86.exe -ArgumentList '/quiet' -Wait ; \
 	Remove-Item c:\vcredist_x86.exe -Force ; \
+	New-Item c:\config.ini
+```
+
+### Escape Characters
+
+The backslash `\` character for line wrapping can be confusing in a Dockerfile for a Windows image, where it is used as the path separator. You can specify an alternatve escape character with the `escape` parser directive at the top of the Dockerfile. Replacing the backslash `\` character with the backtick `` ` `` permits line wrapping in standard Powershell format.
+
+```none
+# escape=`
+
+FROM windowsservercore
+
+RUN powershell -Command `
+	$ErrorActionPreference = 'Stop'; `
+	start-Process c:\vcredist_x86.exe -ArgumentList '/quiet' -Wait ; `
+	Remove-Item c:\vcredist_x86.exe -Force ; `
 	New-Item c:\config.ini
 ```
 
