@@ -15,7 +15,15 @@ ms.assetid: 538871ba-d02e-47d3-a3bf-25cda4a40965
 
 Windows containers function similarly to virtual machines in regards to networking. Each container has a virtual network adapter which is connected to a virtual switch, over which inbound and outbound traffic is forwarded. In order to enforce isolation between containers on the same host, a network compartment is created for each Windows Server and Hyper-V Container into which the network adapter for the container is installed. Windows Server containers use a Host vNIC to attach to the virtual switch. Hyper-V Containers use a Synthetic VM NIC (not exposed to the Utility VM) to attach to the virtual switch.
 
-Windows containers support four different networking drivers or modes: *nat*, *transparent*, *l2bridge*, and *l2tunnel*. Depending on your physical network infrastructure and single- vs multi-host networking requirements, you should chose the network mode which best suits your needs. The docker engine creates a nat network by default when the dockerd service first runs. The default internal IP prefix created is 172.16.0.0/12. Container endpoints will be attached to this default network and be assigned an IP address from the internal prefix. Only one NAT network is currently supported in Windows (although a pending Pull Request might help work-around this restriction). Additional networks using a different driver (e.g. transparent, l2bridge) can be created on the same container host. The table below shows how network connectivity is provided for internal (container-to-container) and external connections for each mode.
+Windows containers support four different networking drivers or modes: *nat*, *transparent*, *l2bridge*, and *l2tunnel*. Depending on your physical network infrastructure and single- vs multi-host networking requirements, you should chose the network mode which best suits your needs. 
+
+The docker engine creates a nat network by default when the dockerd service first runs. The default internal IP prefix created is 172.16.0.0/12. 
+
+> Note: If your container host IP is in this same prefix, you will need to change the NAT internal IP prefix as documented below
+
+Container endpoints will be attached to this default network and be assigned an IP address from the internal prefix. Only one NAT network is currently supported in Windows (although a pending [Pull Request](https://github.com/docker/docker/pull/25097) might help work-around this restriction). 
+
+Additional networks using a different driver (e.g. transparent, l2bridge) can be created on the same container host. The table below shows how network connectivity is provided for internal (container-to-container) and external connections for each mode.
 
 - **Network Address Translation** – each container will receive an IP address from an internal, private IP prefix (e.g. 172.16.0.0/12). Port forwarding / mapping from the container host to container endpoints is supported
 
@@ -28,15 +36,37 @@ Windows containers support four different networking drivers or modes: *nat*, *t
 | Single-Node                              | Multi-Node                               |
 | ---------------------------------------- | ---------------------------------------- |
 | Container-Container | Container-External | Container-Container | Container-External |
-| nat: Bridged connection through Hyper-V Virtual Switch | nat: routed through WinNAT with address translations applied | nat: Bridged connection through Hyper-V Virtual Switch | nat: routed through WinNAT with address translations applied | 
+| ---------------     |  ---                |   ---             |  ---               |
+| nat: Bridged connection through Hyper-V Virtual Switch | nat: routed through WinNAT with address translations applied | nat: must reference external container host IP and port; routed through WinNAT with address translations applied | 
 | transparent: Bridged connection through Hyper-V Virtual Switch | transparent: direct access to physical network | | transparent: Bridged connection through Hyper-V Virtual Switch | transparent: direct access to physical network | 
 | l2bridge: Bridged connection through Hyper-V Virtual Switch| l2bridge: access to physical network with MAC address translation| | l2bridge: Bridged connection through Hyper-V Virtual Switch| l2bridge: access to physical network with MAC address translation| 
 
+> To learn how to connect container endpoints to an overlay virtual network with the Microsoft SDN stack, reference the [Attaching Containers to a Virtual Network](location) topic.
 
-## (Default) NAT Network
+## Single-Node
+
+| --- | Container-Container | Container-External |
+| --- | ---------------     |  ---                |
+| nat | Bridged connection through Hyper-V Virtual Switch | routed through WinNAT with address translations applied | 
+| transparent | Bridged connection through Hyper-V Virtual Switch | direct access to physical network | 
+| l2bridge | Bridged connection through Hyper-V Virtual Switch|  access to physical network with MAC address translation|  
+
+
+
+## Multi-Node
+
+| --- | Container-Container | Container-External |
+| nat | must reference external container host IP and port; routed through WinNAT with address translations applied | must reference external host; routed through WinNAT with address translations applied | 
+| transparent | must reference container IP endpoint directly | direct access to physical network | 
+| l2bridge | must reference container IP endpoint directly| access to physical network with MAC address translation| 
+
+
+## Network Creation 
+
+### (Default) NAT Network
 
 The Windows docker engine creates a default 'nat' network with IP prefix 172.16.0.0/12. Only one nat network is currently allowed on a Windows container host. If a user wants to create a nat network with a specific IP prefix, they can do one of two things by changing the options in the docker config daemon.json file (located at C:\ProgramData\Docker\config\daemon.json - create it it doesn't already exist).
- 1. Use the _"fixed-cidr": "<IP Prefix>/Mask"_ option which will create the default nat network with the IP prefix and match specified
+ 1. Use the _"fixed-cidr": "< IP Prefix > / Mask"_ option which will create the default nat network with the IP prefix and match specified
  2. Use the _"bridge": "none"_ option which will not create a default network; a user can create a user-defined network with any driver using the *docker network create -d <driver>* command
 
 Before performing either of these configuration options, the Docker service must first be stopped and any pre-existing nat networks need to be deleted.
@@ -50,35 +80,29 @@ PS C:\> Get-ContainerNetwork | Remove-ContainerNetwork
 PS C:\> Start-Service docker
 ```
 
-If the user added the "fixed-cidr" option to the daemon.json file, the docker engine will now create a user-defined nat network with the custom IP prefix and mask. If instead the user added the "bridge:none" option, they will need to create a network manually.
+If the user added the "fixed-cidr" option to the daemon.json file, the docker engine will now create a user-defined nat network with the custom IP prefix and mask specified. If instead the user added the "bridge:none" option, they will need to create a network manually.
 
 ```none
-# list container networks
-C:\> docker network ls
-
-NETWORK ID          NAME                DRIVER
-7b055c7ed373        none                null
-
 # Create a user-defined nat network
 C:\> docker network create -d nat --subnet=192.168.1.0/24 --gateway=192.168.1.1 MyNatNetwork
 ```
 
-By default, container endpoints will be connected to the default nat network. If the default nat network was not created (using "bridge:none" option) or access to a different, user-defined network is required, users can specify the *--network* parameter with the docker run command.
+By default, container endpoints will be connected to the default nat network. If the default nat network was not created (because "bridge:none" was specified in daemon.json) or access to a different, user-defined network is required, users can specify the *--network* parameter with the docker run command.
 
 ```none
 # Connect new container to the MyNatNetwork
 C:\> docker run -it --network=MyNatNetwork <image> <cmd>
 ```
 
-### Port Mapping
+#### Port Mapping
 
-In order to access applications inside of a container connected to a NAT network, port mappings need to be created between the container host and container endpoint. These mappings must be created while the container is in a STOPPED state.
+In order to access applications running inside of a container connected to a NAT network, port mappings need to be created between the container host and container endpoint. These mappings must be specified at container CREATION time or while the container is in a STOPPED state.
 
 ```none
-# Creates a static mapping between port TCP:80 of the container host to TCP:80 of the container
+# Creates a static mapping between port TCP:80 of the container host and TCP:80 of the container
 C:\> docker run -it -p 80:80 <image> <cmd>
 
-# Create a static mapping between port 8082 of the container host to port 80 of the container.
+# Create a static mapping between port 8082 of the container host and port 80 of the container.
 C:\> docker run -it -p 8082:80 windowsservercore cmd
 ```
 
@@ -91,6 +115,9 @@ C:\> docker run -itd -p 80 windowsservercore cmd
 C:\> docker ps
 CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS                   NAMES
 bbf72109b1fc        windowsservercore   "cmd"               6 seconds ago       Up 2 seconds        *0.0.0.0:14824->80/tcp*   drunk_stonebraker
+
+# Container image specified EXPOSE 80 in Dockerfile - publish this port mapping
+C:\> docker network 
 ```
 > Beginning in WS2016 TP5 and Windows Insider Builds greater than 14300, a firewall rule will be automatically created for all NAT port mappings. This firewall rule will be global to the container host and not localized to a specific container endpoint or network adapter.
 
@@ -102,7 +129,7 @@ Additional networks can be created using different drivers.
 
 > Docker network drivers are all lower-case.
 
-## Transparent Network
+### Transparent Network
 
 To use the Transparent networking mode, create a container network with driver name 'transparent'. 
 
@@ -148,7 +175,7 @@ C:\> docker run -it --network=TransparentNet3 --ip 10.123.174.105 <image> <cmd>
 
 Since the container endpoints have direct access to the physical network, there is no need to specify port mappings
 
-## L2 Bridge 
+### L2 Bridge 
 
 To use the L2 Bridge Networking mode, create a Container Network with driver name 'l2bridge'. A subnet and gateway - again, corresponding to the physical network - must be specified.
 
@@ -158,9 +185,20 @@ C:\> docker network create -d l2bridge --subnet=192.168.1.0/24 --gateway=192.168
 
 Only static IP assignment is supported with l2bridge networks. 
 
-> When using an l2bridge network on an SDN fabric, dynamic IP assignment is supported
+> When using an l2bridge network on an SDN fabric, only dynamic IP assignment is supported. Reference the [Attaching Containers to a Virtual Network](location) topic for more information.
 
 ## Other Operations and Configurations
+
+### List Available Networks
+
+```none
+# list container networks
+C:\> docker network ls
+
+NETWORK ID          NAME                DRIVER              SCOPE
+0a297065f06a        nat                 nat                 local
+d42516aa0250        none                null                local
+```
 
 ### Remove a Network
 
