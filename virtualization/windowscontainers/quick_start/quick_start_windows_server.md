@@ -173,7 +173,7 @@ From a different computer, open up a web browser and enter the IP address of the
 Back on the container host, use the `docker rm` command to remove the container. Note – replace the name of the container in this example with the actual container name.
 
 ```none
-docker rm -f grave_jang
+docker rm -f big_jang
 ```
 ## Next Steps
 
