@@ -31,7 +31,7 @@ For the best experience, walk through this exercise from a Windows command shell
 The first step in manually creating a container image is to deploy a container. For this example, deploy an IIS container from the pre-created IIS image. Once the container has been deployed, you will be working in a shell session from within the container. The interactive session is initiated with the `-it` flag. For in depth details on Docker Run commands, see [Docker Run Reference on Docker.com]( https://docs.docker.com/engine/reference/run/). 
 
 ```none
-docker run -it -p 80:80 microsoft/iis:windowsservercore cmd
+docker run -it -p 80:80 microsoft/iis cmd
 ```
 
 Next, a modification will be made to container. Run the following command to remove the IIS splash screen.
@@ -64,7 +64,7 @@ The modified container can now be captured into a new container image. To do so,
 docker ps -a
 
 CONTAINER ID     IMAGE                             COMMAND   CREATED             STATUS   PORTS   NAMES
-489b0b447949     microsoft/iis:windowsservercore   "cmd"     About an hour ago   Exited           pedantic_lichterman
+489b0b447949     microsoft/iis   "cmd"     About an hour ago   Exited           pedantic_lichterman
 ```
 
 To create a the new container image, use the `docker commit` command. Docker commit takes a form of “docker commit container-name new-image-name”. Note – replace the name of the container in this example with the actual container name.
@@ -108,7 +108,7 @@ Copy the following text into the Dockerfile, and save the file. These commands i
 For more information on Dockerfiles, see the [Dockerfiles on Windows](../docker/manage_windows_dockerfile.md).
 
 ```none
-FROM microsoft/iis:windowsservercore
+FROM microsoft/iis
 RUN echo "Hello World - Dockerfile" > c:\inetpub\wwwroot\index.html
 ```
 
