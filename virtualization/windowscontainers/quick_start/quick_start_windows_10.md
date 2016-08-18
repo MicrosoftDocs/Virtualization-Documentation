@@ -116,7 +116,7 @@ For this simple example a ‘Hello World’ container image will be created and 
 First, start a container with an interactive session from the `nanoserver` image. Once the container has started, you will be presented with a command shell from within the container.  
 
 ```none
-docker run -it nanoserver cmd
+docker run -it microsoft/nanoserver cmd
 ```
 
 Inside the container we will create a simple ‘Hello World’ script.
