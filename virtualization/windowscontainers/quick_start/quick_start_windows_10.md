@@ -59,13 +59,13 @@ Docker is required in order to work with Windows containers. Docker consists of 
 Download the Docker engine and client as a zip archive.
 
 ```none
-Invoke-WebRequest "https://get.docker.com/builds/Windows/x86_64/docker-1.12.0.zip" -OutFile "$env:TEMP\docker-1.12.0.zip" -UseBasicParsing
+Invoke-WebRequest "https://master.dockerproject.org/windows/amd64/docker-1.13.0-dev.zip" -OutFile "$env:TEMP\docker-1.13.0-dev.zip" -UseBasicParsing
 ```
 
 Expand the zip archive into Program Files, the archive contents is already in docker directory.
 
 ```none
-Expand-Archive -Path "$env:TEMP\docker-1.12.0.zip" -DestinationPath $env:ProgramFiles
+Expand-Archive -Path "$env:TEMP\docker-1.13.0-dev.zip" -DestinationPath $env:ProgramFiles
 ```
 
 Add the Docker directory to the system path.
@@ -116,7 +116,7 @@ For this simple example a ‘Hello World’ container image will be created and 
 First, start a container with an interactive session from the `nanoserver` image. Once the container has started, you will be presented with a command shell from within the container.  
 
 ```none
-docker run -it nanoserver cmd
+docker run -it microsoft/nanoserver cmd
 ```
 
 Inside the container we will create a simple ‘Hello World’ script.
