@@ -65,7 +65,7 @@ Invoke-WebRequest "https://master.dockerproject.org/windows/amd64/docker-1.13.0-
 Expand the zip archive into Program Files, the archive contents is already in docker directory.
 
 ```none
-Expand-Archive -Path "$env:TEMP\docker-1.12.0.zip" -DestinationPath $env:ProgramFiles
+Expand-Archive -Path "$env:TEMP\docker-1.13.0-dev.zip" -DestinationPath $env:ProgramFiles
 ```
 
 Add the Docker directory to the system path.
