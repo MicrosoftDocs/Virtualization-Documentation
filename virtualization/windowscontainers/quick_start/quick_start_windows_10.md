@@ -21,7 +21,7 @@ This quick start is specific to Hyper-V containers on Windows 10. Additional qui
 
 **Prerequisites:**
 
-- One physical computer system running a [Windows 10 Insiders release](https://insider.windows.com/).   
+- One physical computer system running Windows 10 Anniversary Edition (Professional or Enterprise).   
 - This quick start can be run on a Windows 10 virtual machine however nested virtualization will need to be enabled. More information can be found in the [Nested Virtualization Guide](https://msdn.microsoft.com/en-us/virtualization/hyperv_on_windows/user_guide/nesting).
 
 ## 1. Install Container Feature
