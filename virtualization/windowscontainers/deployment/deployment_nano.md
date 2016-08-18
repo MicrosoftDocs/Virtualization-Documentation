@@ -70,7 +70,7 @@ Once it is back up, re-establish the remote PowerShell connection.
 
 ## Install Docker
 
-Docker is required in order to work with Windows containers. Docker consists of the Docker Engine, and the Docker client. Install the Docker daemon and client using these steps.
+Docker is required in order to work with Windows containers. Docker consists of the Docker Engine, and the Docker client. Install the Docker Engine and client using these steps.
 
 Create a folder on the Nano Server host for the Docker executables.
 
@@ -78,7 +78,7 @@ Create a folder on the Nano Server host for the Docker executables.
 New-Item -Type Directory -Path $env:ProgramFiles'\docker\'
 ```
 
-Download the Docker daemon and client and copy these into 'C:\Program Files\docker\' of the container host. 
+Download the Docker Engine and client and copy these into 'C:\Program Files\docker\' of the container host. 
 
 **Note** - Nano Server does not currently support `Invoke-WebRequest`, the downloads will need to be completed from a remote system and then copied to the Nano Server host.
 
@@ -92,7 +92,7 @@ Download the Docker client.
 Invoke-WebRequest https://aka.ms/tp5/b/docker -OutFile .\docker.exe
 ```
 
-Once the Docker daemon and client have been downloaded, copy them to the 'C:\Program Files\docker\' folder in the Nano Server container host. The Nano Server firewall will need to be configured to allow incoming SMB connections. This can be completed using PowerShell or the Nano Server recovery console. 
+Once the Docker Engine and client have been downloaded, copy them to the 'C:\Program Files\docker\' folder in the Nano Server container host. The Nano Server firewall will need to be configured to allow incoming SMB connections. This can be completed using PowerShell or the Nano Server recovery console. 
 
 ```none
 Set-NetFirewallRule -Name FPS-SMB-In-TCP -Enabled True
@@ -154,7 +154,7 @@ Create a firewall rule on the container host for the Docker connection. This wil
 netsh advfirewall firewall add rule name="Docker daemon " dir=in action=allow protocol=TCP localport=2376
 ```
 
-Configure the Docker daemon to accept incoming connection over TCP.
+Configure the Docker Engine to accept incoming connection over TCP.
 
 First create a `daemon.json` file at `c:\ProgramData\docker\config\daemon.json` on the Nano Server host.
 
@@ -162,7 +162,7 @@ First create a `daemon.json` file at `c:\ProgramData\docker\config\daemon.json` 
 new-item -Type File c:\ProgramData\docker\config\daemon.json
 ```
 
-Next, run the following command to add connection configuration to the `daemon.json` file. This configures the Docker daemon to accept incoming connections over TCP port 2375. This is an unsecure connection and is not advised, but can be used for isolated testing. For more information on securing this connection, see [Protect the Docker Daemon on Docker.com](https://docs.docker.com/engine/security/https/).
+Next, run the following command to add connection configuration to the `daemon.json` file. This configures the Docker Engine to accept incoming connections over TCP port 2375. This is an unsecure connection and is not advised, but can be used for isolated testing. For more information on securing this connection, see [Protect the Docker Daemon on Docker.com](https://docs.docker.com/engine/security/https/).
 
 ```none
 Add-Content 'c:\programdata\docker\config\daemon.json' '{ "hosts": ["tcp://0.0.0.0:2375", "npipe://"] }'

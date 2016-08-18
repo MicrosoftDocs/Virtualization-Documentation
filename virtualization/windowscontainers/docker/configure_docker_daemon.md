@@ -4,16 +4,16 @@ description: Configure Docker in Windows
 keywords: docker, containers
 author: neilpeterson
 manager: timlt
-ms.date: 07/15/2016
+ms.date: 08/17/2016
 ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: 6885400c-5623-4cde-8012-f6a00019fafa
 ---
 
-# Docker Daemon on Windows
+# Docker Engine on Windows
 
-The Docker engine is not included with Windows and will need to be installed and configured individually. Furthermore, the Docker daemon can accept many custom configurations. Some examples include configuring how the daemon accepts incoming requests, default networking options, and debug / log settings. On Windows, these configurations can be specified in a configuration file or by using Windows Service control manager. This document will detail how to install and configure the docker daemon, and will also provide some examples of commonly used configurations.
+The Docker Engine and client are not included with Windows and will need to be installed and configured individually. Furthermore, the Docker Engine can accept many custom configurations. Some examples include configuring how the daemon accepts incoming requests, default networking options, and debug / log settings. On Windows, these configurations can be specified in a configuration file or by using Windows Service control manager. This document will detail how to install and configure the Docker Engine, and will also provide some examples of commonly used configurations.
 
 ## Install Docker
 
@@ -25,7 +25,7 @@ Create a folder for the Docker executables.
 New-Item -Type Directory -Path 'C:\Program Files\docker\'
 ```
 
-Download the Docker daemon.
+Download the Docker Engine.
 
 ```none
 Invoke-WebRequest https://aka.ms/tp5/b/dockerd -OutFile $env:ProgramFiles\docker\dockerd.exe
@@ -59,9 +59,9 @@ Before Docker can be used container images will need to be installed. For more i
 
 ## Docker Configuration File
 
-The preferred method for configuring the Docker daemon on Windows is using a configuration file. The configuration file can be found at 'c:\ProgramData\docker\config\daemon.json'. If this file does not already exist, it can be created.
+The preferred method for configuring the Docker Engine on Windows is using a configuration file. The configuration file can be found at 'c:\ProgramData\docker\config\daemon.json'. If this file does not already exist, it can be created.
 
-Note – not every available Docker configuration option is applicable to Docker on Windows. The below example shows those that are. For complete documentation on Docker daemon configuration, including for Linux, see [Docker Daemon]( https://docs.docker.com/v1.10/engine/reference/commandline/daemon/).
+Note – not every available Docker configuration option is applicable to Docker on Windows. The below example shows those that are. For complete documentation on Docker Engine configuration, including for Linux, see [Docker Daemon]( https://docs.docker.com/v1.10/engine/reference/commandline/daemon/).
 
 ```none
 {
@@ -97,7 +97,7 @@ Note – not every available Docker configuration option is applicable to Docker
 }
 ```
 
-Only the desired configuration changes need to be added to the configuration file. For example, this sample configures the Docker daemon to accept incoming connections on port 2375. All other configuration options will use default values.
+Only the desired configuration changes need to be added to the configuration file. For example, this sample configures the Docker Engine to accept incoming connections on port 2375. All other configuration options will use default values.
 
 ```none
 {
@@ -119,7 +119,7 @@ Likewise, this sample configures the Docker daemon to only accept secured connec
 
 ## Service Control Manager
 
-The Docker daemon can also be configured by modifying the Docker service using `sc config`. Using this method, Docker daemon flags are set directly on the Docker service.
+The Docker Engine can also be configured by modifying the Docker service using `sc config`. Using this method, Docker Engine flags are set directly on the Docker service.
 
 
 ```none
@@ -132,7 +132,7 @@ The following configuration file examples show common Docker configurations. The
 
 ### Default Network Creation 
 
-To configure the Docker daemon so that a default NAT network is not created, use the following. For more information, see [Manage Docker Networks](../management/container_networking.md).
+To configure the Docker Engine so that a default NAT network is not created, use the following. For more information, see [Manage Docker Networks](../management/container_networking.md).
 
 ```none
 {
@@ -142,7 +142,7 @@ To configure the Docker daemon so that a default NAT network is not created, use
 
 ### Set Docker Security Group
 
-When logged into the Docker host and running Docker commands locally, these commands are run through a named pipe. By default, only members of the Administrators group can access the Docker daemon through the named pipe. To specify a security group that has this access, use the `group` flag.
+When logged into the Docker host and running Docker commands locally, these commands are run through a named pipe. By default, only members of the Administrators group can access the Docker Engine through the named pipe. To specify a security group that has this access, use the `group` flag.
 
 ```none
 {
@@ -167,9 +167,9 @@ restart-service docker
 For more information see, [Daemon Socket Options on Docker.com](https://docs.docker.com/v1.10/engine/reference/commandline/daemon/#daemon-socket-option).
 
 ## Collecting Logs
-The Docker daemon logs to the Windows 'Application' event log, rather than to a file. These logs can easily be read, sorted, and filtered using Windows PowerShell
+The Docker Engine logs to the Windows 'Application' event log, rather than to a file. These logs can easily be read, sorted, and filtered using Windows PowerShell
 
-For example, this will show the Docker daemon logs from the last 5 minutes starting with the oldest.
+For example, this will show the Docker Engine logs from the last 5 minutes starting with the oldest.
 ```
 Get-EventLog -LogName Application -Source Docker -After (Get-Date).AddMinutes(-5) | Sort-Object Time 
 ```

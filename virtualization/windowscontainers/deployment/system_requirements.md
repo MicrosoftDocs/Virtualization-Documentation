@@ -4,7 +4,7 @@ description: Windows Container Requirements.
 keywords: metadata, containers
 author: neilpeterson
 manager: timlt
-ms.date: 05/26/2016
+ms.date: 08/17/2016
 ms.topic: deployment-article
 ms.prod: windows-containers
 ms.service: windows-containers
@@ -19,7 +19,7 @@ This guides list the requirements for a Windows container Host.
 
 ## OS Requirements
 
-- The Windows container feature is only available on Windows Server 2016 (Core and with Desktop Experience), Nano Server, and Windows 10 Professional and Enterprise (insiders build 14352 and up).
+- The Windows container feature is only available on Windows Server 2016 (Core and with Desktop Experience), Nano Server, and Windows 10 Professional and Enterprise (Anniversary Edition).
 - If Hyper-V containers will be run, the Hyper-V role will need to be installed.
 - Windows Server container hosts must have Windows installed to c:\\. If only Hyper-V containers will be deployed, this restriction does not apply.
 
@@ -61,7 +61,7 @@ Windows Server Technical Preview 5 is being offered with two container OS Images
 <td><center>Nano Server image</center></td>
 </tr>
 <tr valign="top">
-<td><center>Windows 10 Insider Releases</center></td>
+<td><center>Windows 10 Anniversary Edition</center></td>
 <td><center>Not Available</center></td>
 <td><center>Nano Server image</center></td>
 </tr>

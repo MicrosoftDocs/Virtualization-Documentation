@@ -14,7 +14,7 @@
 ## [Container Host - Nano Server](deployment/deployment_nano.md)
 
 # Docker on Windows
-## [Docker Daemon on Windows](docker/configure_docker_daemon.md)
+## [Docker Engine on Windows](docker/configure_docker_daemon.md)
 ## [Dockerfiles on Windows](docker/manage_windows_dockerfile.md)
 ## [Optimize Dockerfiles](docker/optimize_windows_dockerfile.md)
 
