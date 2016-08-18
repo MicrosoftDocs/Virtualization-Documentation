@@ -93,7 +93,7 @@ Once the image is pulled, running `docker images` will return a list of installe
 docker images
 
 REPOSITORY                    TAG                 IMAGE ID            CREATED             SIZE
-microsoft/windowsservercore   latest              02cb7f65d61b        7 weeks ago         7.764 GB
+microsoft/windowsservercore   latest              02cb7f65d61b        8 weeks ago         7.764 GB
 ```
 
 For in depth information on Windows container images see, [Managing Container Images](../management/manage_images.md).
@@ -107,26 +107,32 @@ To search Docker Hub for Windows container images, run `docker search Microsoft`
 ```none
 docker search microsoft
 
-NAME                                         DESCRIPTION                                     
-microsoft/sample-django:windowsservercore    Django installed in a Windows Server Core ...   
-microsoft/dotnet35:windowsservercore         .NET 3.5 Runtime installed in a Windows Se...   
-microsoft/sample-golang:windowsservercore    Go Programming Language installed in a Win...   
-microsoft/sample-httpd:windowsservercore     Apache httpd installed in a Windows Server...   
-microsoft/iis:windowsservercore              Internet Information Services (IIS) instal...   
-microsoft/sample-mongodb:windowsservercore   MongoDB installed in a Windows Server Core...   
-microsoft/sample-mysql:windowsservercore     MySQL installed in a Windows Server Core b...   
-microsoft/sample-nginx:windowsservercore     Nginx installed in a Windows Server Core b...  
-microsoft/sample-python:windowsservercore    Python installed in a Windows Server Core ...   
-microsoft/sample-rails:windowsservercore     Ruby on Rails installed in a Windows Serve...  
-microsoft/sample-redis:windowsservercore     Redis installed in a Windows Server Core b...   
-microsoft/sample-ruby:windowsservercore      Ruby installed in a Windows Server Core ba...   
-microsoft/sample-sqlite:windowsservercore    SQLite installed in a Windows Server Core ...  
+NAME                                         DESCRIPTION
+microsoft/aspnet                             ASP.NET is an open source server-side Web ...
+microsoft/dotnet                             Official images for working with .NET Core...
+mono                                         Mono is an open source implementation of M...
+microsoft/azure-cli                          Docker image for Microsoft Azure Command L...
+microsoft/iis                                Internet Information Services (IIS) instal...
+microsoft/mssql-server-2014-express-windows  Microsoft SQL Server 2014 Express installe...
+microsoft/nanoserver                         Nano Server base OS image for Windows cont...
+microsoft/windowsservercore                  Windows Server Core base OS image for Wind...
+microsoft/oms                                Monitor your containers using the Operatio...
+microsoft/dotnet-preview                     Preview bits for microsoft/dotnet image
+microsoft/dotnet35
+microsoft/applicationinsights                Application Insights for Docker helps you ...
+microsoft/sample-redis                       Redis installed in Windows Server Core and...
+microsoft/sample-node                        Node installed in a Nano Server based cont...
+microsoft/sample-nginx                       Nginx installed in Windows Server Core and...
+microsoft/sample-httpd                       Apache httpd installed in Windows Server C...
+microsoft/sample-dotnet                      .NET Core running in a Nano Server container
+microsoft/sqlite                             SQLite installed in a Windows Server Core ...
+...
 ```
 
 Download the IIS image using `docker pull`.  
 
 ```none
-docker pull microsoft/iis:windowsservercore
+docker pull microsoft/iis
 ```
 
 The image download can be verified with the `docker images` command. Notice here that you will see both the base image (windowsservercore) and the IIS image.
@@ -134,16 +140,15 @@ The image download can be verified with the `docker images` command. Notice here
 ```none
 docker images
 
-REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
-microsoft/iis       windowsservercore   c26f4ceb81db        2 weeks ago         9.48 GB
-windowsservercore   10.0.14300.1000     dbfee88ee9fd        8 weeks ago         9.344 GB
-windowsservercore   latest              dbfee88ee9fd        8 weeks ago         9.344 GB
+REPOSITORY                    TAG                 IMAGE ID            CREATED             SIZE
+microsoft/iis                 latest              accd044753c1        11 days ago         7.907 GB
+microsoft/windowsservercore   latest              02cb7f65d61b        8 weeks ago         7.764 GB
 ```
 
 User `docker run` to deploy the IIS container.
 
 ```none
-docker run -d -p 80:80 microsoft/iis:windowsservercore ping -t localhost
+docker run -d -p 80:80 microsoft/iis ping -t localhost
 ```
 
 This command runs the IIS image as a background service (-d) and configures networking such that port 80 of the container host is mapped to port 80 of the container.
@@ -155,8 +160,8 @@ Running containers can be seen with the `docker ps` command. Take note of the co
 ```none
 docker ps
 
-CONTAINER ID    IMAGE                             COMMAND               CREATED              STATUS   PORTS                NAMES
-9cad3ea5b7bc    microsoft/iis:windowsservercore   "ping -t localhost"   About a minute ago   Up       0.0.0.0:80->80/tcp   grave_jang
+CONTAINER ID  IMAGE          COMMAND              CREATED             STATUS             PORTS               NAME
+09c9cc6e4f83  microsoft/iis  "ping -t localhost"  About a minute ago  Up About a minute  0.0.0.0:80->80/tcp  big_jang
 ```
 
 From a different computer, open up a web browser and enter the IP address of the container host. If everything has been configured correctly, you should see the IIS splash screen. This is being served from the IIS instance hosted in the Windows container.
@@ -168,7 +173,7 @@ From a different computer, open up a web browser and enter the IP address of the
 Back on the container host, use the `docker rm` command to remove the container. Note – replace the name of the container in this example with the actual container name.
 
 ```none
-docker rm -f grave_jang
+docker rm -f big_jang
 ```
 ## Next Steps
 
