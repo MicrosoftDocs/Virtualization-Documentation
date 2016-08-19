@@ -34,7 +34,6 @@
 
 # Reference
 ## [Container Image Provider](https://github.com/PowerShell/ContainerProvider)
-## [Application Compatibility](reference/app_compat.md)
 ## [Anti-Virus Optimization](https://msdn.microsoft.com/en-us/windows/hardware/drivers/ifs/anti-virus-optimization-for-windows-containers)
 # [Windows Server EULA](EULA.md)
 # [Nano Server EULA](Nano_EULA.md)
