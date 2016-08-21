@@ -53,7 +53,7 @@ Download the Docker engine and client as a zip archive.
 Invoke-WebRequest "https://get.docker.com/builds/Windows/x86_64/docker-1.12.0.zip" -OutFile "$env:TEMP\docker-1.12.0.zip" -UseBasicParsing
 ```
 
-Expand the zip archive into Program Files, the archive contents is already in docker directory.
+Expand the zip archive into Program Files.
 
 ```none
 Expand-Archive -Path "$env:TEMP\docker-1.12.0.zip" -DestinationPath $env:ProgramFiles
