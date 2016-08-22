@@ -33,7 +33,7 @@ Additional networks using a different driver (e.g. transparent, l2bridge) can be
 
 - **L2 Tunnel** - _this mode should only be used in a Microsoft Cloud Stack_
 
-> To learn how to connect container endpoints to an overlay virtual network with the Microsoft SDN stack, reference the [Attaching Containers to a Virtual Network](location) topic.
+> To learn how to connect container endpoints to an overlay virtual network with the Microsoft SDN stack, reference the [Attaching Containers to a Virtual Network](https://technet.microsoft.com/en-us/windows-server-docs/networking/sdn/manage/connect-container-endpoints-to-a-tenant-virtual-network) topic.
 
 ## Single-Node
 
@@ -178,7 +178,7 @@ C:\> docker network create -d l2bridge --subnet=192.168.1.0/24 --gateway=192.168
 
 Only static IP assignment is supported with l2bridge networks. 
 
-> When using an l2bridge network on an SDN fabric, only dynamic IP assignment is supported. Reference the [Attaching Containers to a Virtual Network](location) topic for more information.
+> When using an l2bridge network on an SDN fabric, only dynamic IP assignment is supported. Reference the [Attaching Containers to a Virtual Network](https://technet.microsoft.com/en-us/windows-server-docs/networking/sdn/manage/connect-container-endpoints-to-a-tenant-virtual-network) topic for more information.
 
 ## Other Operations and Configurations
 
