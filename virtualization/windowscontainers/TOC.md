@@ -33,7 +33,6 @@
 ## [Container Forums](https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers)
 
 # Reference
-## [Container Image Provider](https://github.com/PowerShell/ContainerProvider)
 ## [Anti-Virus Optimization](https://msdn.microsoft.com/en-us/windows/hardware/drivers/ifs/anti-virus-optimization-for-windows-containers)
 # [Windows Server EULA](EULA.md)
 # [Nano Server EULA](Nano_EULA.md)

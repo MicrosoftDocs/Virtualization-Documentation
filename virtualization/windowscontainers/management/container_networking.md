@@ -4,7 +4,7 @@ description: Configure networking for Windows containers.
 keywords: docker, containers
 author: jmesser81
 manager: timlt
-ms.date: 05/02/2016
+ms.date: 08/22/2016
 ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers

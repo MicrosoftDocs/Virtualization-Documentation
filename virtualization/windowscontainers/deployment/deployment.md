@@ -4,7 +4,7 @@ description: Deploy Windows Containers on Windows Server
 keywords: docker, containers
 author: neilpeterson
 manager: timlt
-ms.date: 05/26/2016
+ms.date: 08/22/2016
 ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
@@ -77,30 +77,18 @@ Start-Service Docker
 
 ## Install Base Container Images
 
-Before a container can be deployed, a container base OS image needs to be downloaded. The following example will download the Windows Server Core base OS image. This same procedure can be completed to install the Nano Server base image. For detailed information on Windows container images, see [Managing Container Images](../management/manage_images.md).
+Before working with Windows Containers, a base image needs to be installed. Base images are available with either Windows Server Core or Nano Server as the underlying operating system. For detailed information on Windows container images, see [Managing Container Images](../management/manage_images.md).
 
-First, install the container image package provider.
+To install the Windows Server Core base image run the following:
 
 ```none
-Install-PackageProvider ContainerImage -Force
+docker pull microsoft/windowsservercore
 ```
 
-Next, install the Windows Server Core image. This process can take some time, so take a break and pick back up once the download has completed.
+To install the Nano Server base image run the following:
 
 ```none
-Install-ContainerImage -Name WindowsServerCore    
-```
-
-After the base image has been installed, the Docker service needs to be restarted.
-
-```none
-Restart-Service docker
-```
-
-Finally, the image needs to be tagged with a version of ‘latest’. To do so, run the following command.
-
-```none
-docker tag windowsservercore:10.0.14300.1000 windowsservercore:latest
+docker pull microsoft/nanoserver
 ```
 
 ## Hyper-V Container Host

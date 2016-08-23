@@ -4,7 +4,7 @@ description: Create and manage container images with Windows containers.
 keywords: docker, containers
 author: neilpeterson
 manager: timlt
-ms.date: 05/02/2016
+ms.date: 08/22/2016
 ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
@@ -21,7 +21,7 @@ Container images are used to deploy containers. These images can include applica
 
 ### Install image
 
-Before working with Windows Containers a base image needs to be installed. Base images are available with wither Windows Server Core or Nano Server as the underlying operating system. For information on supported configurations, see [Windows Container System Requirements](../deployment/system_requirements.md).
+Before working with Windows Containers a base image needs to be installed. Base images are available with either Windows Server Core or Nano Server as the underlying operating system. For information on supported configurations, see [Windows Container System Requirements](../deployment/system_requirements.md).
 
 To install the Windows Server Core base image run the following:
 
