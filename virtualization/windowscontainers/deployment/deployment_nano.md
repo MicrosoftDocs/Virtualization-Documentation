@@ -4,7 +4,7 @@ description: Deploy Windows Containers on Nano Server
 keywords: docker, containers
 author: neilpeterson
 manager: timlt
-ms.date: 07/06/2016
+ms.date: 08/23/2016
 ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
@@ -80,27 +80,29 @@ New-Item -Type Directory -Path $env:ProgramFiles'\docker\'
 
 Download the Docker Engine and client and copy these into 'C:\Program Files\docker\' of the container host. 
 
-**Note** - Nano Server does not currently support `Invoke-WebRequest`, the downloads will need to be completed from a remote system and then copied to the Nano Server host.
+> Nano Server does not currently support `Invoke-WebRequest`. the download will need to be completed on a remote system, and the files copied to the Nano Server host.
 
 ```none
-Invoke-WebRequest https://aka.ms/tp5/b/dockerd -OutFile .\dockerd.exe
+Invoke-WebRequest "https://get.docker.com/builds/Windows/x86_64/docker-1.12.0.zip" -OutFile .\docker-1.12.0.zip -UseBasicParsing
 ```
 
-Download the Docker client.
+Extract the downloaded package.
 
 ```none
-Invoke-WebRequest https://aka.ms/tp5/b/docker -OutFile .\docker.exe
+Expand-Archive .\docker-1.12.0.zip
 ```
 
-Once the Docker Engine and client have been downloaded, copy them to the 'C:\Program Files\docker\' folder in the Nano Server container host. The Nano Server firewall will need to be configured to allow incoming SMB connections. This can be completed using PowerShell or the Nano Server recovery console. 
+Once completed you will have a directory containing both `dockerd.exe` and `docker.exe`.
+
+Ensure that the Nano Server firewall has been configured for SMB. This can be completed by running this command on the Nano Server host.
 
 ```none
 Set-NetFirewallRule -Name FPS-SMB-In-TCP -Enabled True
 ```
 
-The files can now be copied using and standard SMB file copy methods.
+Copy both of these to the 'C:\Program Files\docker\' folder in the Nano Server container host. 
 
-With the dockerd.exe file copied to the host, run this command to install Docker as a Windows service.
+With the dockerd.exe file copied to the host, run this command on the Nano Server to install Docker as a Windows service.
 
 ```none
 & $env:ProgramFiles'\docker\dockerd.exe' --register-service
@@ -114,33 +116,15 @@ Start-Service Docker
 
 ## Install Base Container Images
 
-Base OS images are used as the base to any Windows Server or Hyper-V container. Base OS images are available with both Windows Server Core and Nano Server as the underlying operating system and can be installed using the container image provider. For detailed information on Windows container images, see [Managing Container Images](../management/manage_images.md).
-
-The following command can be used to install the container image provider.
-
-```none
-Install-PackageProvider ContainerImage -Force
-```
+Base OS images are used as the base to any Windows Server or Hyper-V container. Base OS images are available with both Windows Server Core and Nano Server as the underlying operating system and can be installed using `docker pull`. For detailed information on Windows container images, see [Managing Container Images](../management/manage_images.md).
 
 To download and install the Nano Server base image, run the following:
 
 ```none
-Install-ContainerImage -Name NanoServer
+& $env:ProgramFiles\docker\docker.exe pull microsoft/nanoserver
 ```
 
-**Note** - At this time, only the Nano Server base image is compatible with a Nano Server container host.
-
-Restart the Docker service.
-
-```none
-Restart-Service Docker
-```
-
-Tag the Nano Server base image as latest.
-
-```none
-& $env:ProgramFiles'\docker\docker.exe' tag nanoserver:10.0.14300.1016 nanoserver:latest
-```
+> At this time, only the Nano Server base image is compatible with a Nano Server container host.
 
 ## Manage Docker on Nano Server
 
@@ -151,7 +135,7 @@ For the best experience, and as a best practice, manage Docker on Nano Server fr
 Create a firewall rule on the container host for the Docker connection. This will be port `2375` for an unsecure connection, or port `2376` for a secure connection.
 
 ```none
-netsh advfirewall firewall add rule name="Docker daemon " dir=in action=allow protocol=TCP localport=2376
+netsh advfirewall firewall add rule name="Docker daemon " dir=in action=allow protocol=TCP localport=2375
 ```
 
 Configure the Docker Engine to accept incoming connection over TCP.
@@ -176,22 +160,22 @@ Restart-Service docker
 
 ### Prepare Remote Client
 
-On the remote system where you will be working, create a directory to hold the Docker client.
+On the remote system where you will be working, download the Docker client.
 
 ```none
-New-Item -Type Directory -Path 'C:\Program Files\docker\'
+Invoke-WebRequest "https://get.docker.com/builds/Windows/x86_64/docker-1.12.0.zip" -OutFile "$env:TEMP\docker-1.12.0.zip" -UseBasicParsing
 ```
 
-Download the Docker client into this directory.
+Extract the compressed package.
 
 ```none
-Invoke-WebRequest https://aka.ms/tp5/b/docker -OutFile "$env:ProgramFiles\docker\docker.exe"
+Expand-Archive -Path "$env:TEMP\docker-1.12.0.zip" -DestinationPath $env:ProgramFiles
 ```
 
 Add the Docker directory to the system path.
 
 ```none
-$env:Path += ";$env:ProgramFiles\Docker"
+[Environment]::SetEnvironmentVariable("Path", $env:Path + ";C:\Program Files\Docker", [EnvironmentVariableTarget]::Machine)
 ```
 
 Restart the PowerShell or command session so that the modified path is recognized.
