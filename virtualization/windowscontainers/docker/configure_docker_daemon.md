@@ -4,7 +4,7 @@ description: Configure Docker in Windows
 keywords: docker, containers
 author: neilpeterson
 manager: timlt
-ms.date: 08/17/2016
+ms.date: 08/23/2016
 ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
@@ -19,22 +19,16 @@ The Docker Engine and client are not included with Windows and will need to be i
 
 Docker is required in order to work with Windows containers. Docker consists of the Docker Engine, and the Docker client. For this exercise, both will be installed.
 
-Create a folder for the Docker executables.
-
-```none
-New-Item -Type Directory -Path 'C:\Program Files\docker\'
-```
-
 Download the Docker Engine.
 
 ```none
-Invoke-WebRequest https://aka.ms/tp5/b/dockerd -OutFile $env:ProgramFiles\docker\dockerd.exe
+Invoke-WebRequest "https://get.docker.com/builds/Windows/x86_64/docker-1.12.0.zip" -OutFile "$env:TEMP\docker-1.12.0.zip" -UseBasicParsing
 ```
 
-Download the Docker client.
+Expand the zip archive into Program Files.
 
-```none
-Invoke-WebRequest https://aka.ms/tp5/b/docker -OutFile $env:ProgramFiles\docker\docker.exe
+```
+Expand-Archive -Path "$env:TEMP\docker-1.12.0.zip" -DestinationPath $env:ProgramFiles
 ```
 
 Add the Docker directory to the system path. When complete, restart the PowerShell session so that the modified path is recognized.
