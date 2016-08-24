@@ -25,22 +25,20 @@ The following section will detail the deployment of a very basic Nano Server con
 
 First download the Nano Server evaluation VHD from [this location](https://msdn.microsoft.com/en-us/virtualization/windowscontainers/nano_eula). Create a virtual machine from this VHD, start the virtual machine, and connect to it using the Hyper-V connect option, or equivalent based on the virtualization platform being used.
 
-Next, the administrative password will need to be set. To do so pre `F11` on the Nano Server recovery console. This will provide the change password dialog.
-
 ### Create Remote PowerShell Session
 
-Because Nano Server does not have interactive log on capabilities, all management will be completed from a remote PowerShell session. To create the remote session, get the IP address of the system using the networking section of the Nano Server recovery console, and then run the following commands on the remote host. Replace IPADDRESS with the actual IP address of Nano Server system.
+Because Nano Server does not have interactive log on capabilities, all management will be completed from a remote system using PowerShell.
 
-Add the Nano Server system to trusted hosts.
+Add the Nano Server system to trusted hosts of the remote system. Replace the IP Address with the IP Address of the Nano Server.
 
 ```none
-set-item WSMan:\localhost\Client\TrustedHosts IPADDRESS -Force
+Set-Item WSMan:\localhost\Client\TrustedHosts 192.168.1.50 -Force
 ```
 
 Create the remote PowerShell session.
 
 ```none
-Enter-PSSession -ComputerName IPADDRESS -Credential ~\Administrator
+Enter-PSSession -ComputerName 192.168.1.50 -Credential ~\Administrator
 ```
 
 When these steps have been completed, you will be in remote PowerShell session with the Nano Server system. The remainder of this document, unless noted otherwise, will take place from the remote session.
@@ -70,7 +68,13 @@ Once it is back up, re-establish the remote PowerShell connection.
 
 ## Install Docker
 
-Docker is required in order to work with Windows containers. Docker consists of the Docker Engine, and the Docker client. Install the Docker Engine and client using these steps.
+The Docker Engine is required in order to work with Windows containers. Install the Docker Engine using these steps.
+
+First, ensure that the Nano Server firewall has been configured for SMB. This can be completed by running this command on the Nano Server host.
+
+```none
+Set-NetFirewallRule -Name FPS-SMB-In-TCP -Enabled True
+```
 
 Create a folder on the Nano Server host for the Docker executables.
 
@@ -86,26 +90,28 @@ Download the Docker Engine and client and copy these into 'C:\Program Files\dock
 Invoke-WebRequest "https://get.docker.com/builds/Windows/x86_64/docker-1.12.0.zip" -OutFile .\docker-1.12.0.zip -UseBasicParsing
 ```
 
-Extract the downloaded package.
+Extract the downloaded package. Once completed you will have a directory containing both **dockerd.exe** and **docker.exe**. Copy both of these to the **C:\Program Files\docker\** folder in the Nano Server container host. 
 
 ```none
 Expand-Archive .\docker-1.12.0.zip
 ```
 
-Once completed you will have a directory containing both `dockerd.exe` and `docker.exe`.
+Add the Docker directory to the system path on the Nano Server.
 
-Ensure that the Nano Server firewall has been configured for SMB. This can be completed by running this command on the Nano Server host.
+> Make sure to switch back to the remote Nano Server session.
 
 ```none
-Set-NetFirewallRule -Name FPS-SMB-In-TCP -Enabled True
+# for quick use, does not require shell to be restarted
+$env:path += “;C:\program files\docker”
+
+# for persistent use, will apply even after a reboot 
+setx PATH $env:path /M
 ```
 
-Copy both of these to the 'C:\Program Files\docker\' folder in the Nano Server container host. 
-
-With the dockerd.exe file copied to the host, run this command on the Nano Server to install Docker as a Windows service.
+Install Docker as a Windows service.
 
 ```none
-& $env:ProgramFiles'\docker\dockerd.exe' --register-service
+dockerd --register-service
 ```
 
 Start the Docker service.
@@ -121,7 +127,7 @@ Base OS images are used as the base to any Windows Server or Hyper-V container. 
 To download and install the Nano Server base image, run the following:
 
 ```none
-& $env:ProgramFiles\docker\docker.exe pull microsoft/nanoserver
+docker pull microsoft/nanoserver
 ```
 
 > At this time, only the Nano Server base image is compatible with a Nano Server container host.
@@ -172,13 +178,15 @@ Extract the compressed package.
 Expand-Archive -Path "$env:TEMP\docker-1.12.0.zip" -DestinationPath $env:ProgramFiles
 ```
 
-Add the Docker directory to the system path.
+Run the following two commands to add the Docker directory to the system path.
 
 ```none
+# for quick use, does not require shell to be restarted
+$env:path += ";c:\program files\docker"
+
+# for persistent use, will apply even after a reboot 
 [Environment]::SetEnvironmentVariable("Path", $env:Path + ";C:\Program Files\Docker", [EnvironmentVariableTarget]::Machine)
 ```
-
-Restart the PowerShell or command session so that the modified path is recognized.
 
 Once completed the remote Docker host can be accessed with the `docker -H` parameter.
 
