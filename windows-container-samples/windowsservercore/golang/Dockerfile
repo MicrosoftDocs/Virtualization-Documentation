@@ -1,4 +1,4 @@
-FROM windowsservercore
+FROM microsoft/windowsservercore
 
 ENV GOLANG_VERSION 1.6
 ENV GOLANG_DOWNLOAD_URL "https://golang.org/dl/go$GOLANG_VERSION.windows-amd64.zip"

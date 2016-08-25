@@ -1,7 +1,7 @@
 # This dockerfile utilizes components licensed by their respective owners/authors.
 # Prior to utilizing this file or resulting images please review the respective licenses at: http://nginx.org/LICENSE
 
-FROM windowsservercore
+FROM microsoft/windowsservercore
 
 LABEL Description="Nginx" Vendor=Nginx" Version="1.0.13"
 

@@ -1,4 +1,4 @@
-FROM windowsservercore
+FROM microsoft/windowsservercore
 
 #Globally install DNVM in program data.
 ADD globalinstall.ps1 /Windows/Temp/globalinstall.ps1

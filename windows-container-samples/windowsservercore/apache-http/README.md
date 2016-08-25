@@ -28,7 +28,7 @@ docker run -d -p 80:80 apache-http
 # This dockerfile utilizes components licensed by their respective owners/authors.
 # Prior to utilizing this file or resulting images please review the respective licenses at: http://www.apache.org/licenses/
 
-FROM windowsservercore
+FROM microsoft/windowsservercore
 
 LABEL Description="Apache" Vendor="Apache Software Foundation" Version="2.4.18"
 

@@ -1,7 +1,7 @@
 # This dockerfile utilizes components licensed by their respective owners/authors.
 # Prior to utilizing this file or resulting images please review the respective licenses at: http://www.mysql.com/about/legal/licensing/oem/
 
-FROM windowsservercore
+FROM microsoft/windowsservercore
 
 LABEL Description="MySql" Vendor="Oracle" Version="5.6.29"
 

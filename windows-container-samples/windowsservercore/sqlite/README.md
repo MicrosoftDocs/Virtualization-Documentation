@@ -29,7 +29,7 @@ docker run -it sqlite
 # This dockerfile utilizes components licensed by their respective owners/authors.
 # Prior to utilizing this file or resulting images please review the respective licenses at: https://www.sqlite.org/copyright.html
 
-FROM windowsservercore
+FROM microsoft/windowsservercore
 
 LABEL Description="SQLite" Vendor="SQLite" Version="3.12.0"
 

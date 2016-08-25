@@ -35,7 +35,7 @@ docker run -d -p 6379:6379 redis
 # This dockerfile utilizes components licensed by their respective owners/authors.
 # Prior to utilizing this file or resulting images please review the respective licenses at: https://libraries.io/licenses/BSD-3-Clause
 
-FROM windowsservercore
+FROM microsoft/windowsservercore
 
 LABEL Description="Redis" Vendor="MSOpenTech" Version="2.8"
 

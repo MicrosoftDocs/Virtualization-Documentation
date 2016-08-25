@@ -26,7 +26,7 @@ docker run -d -p 80:80 apache-http-php
 # This dockerfile utilizes components licensed by their respective owners/authors.
 # Prior to utilizing this file or resulting images please review the respective licenses at: http://www.apache.org/licenses/, https://secure.php.net/license/
 
-FROM windowsservercore
+FROM microsoft/windowsservercore
 
 LABEL Description="Apache-PHP" Vendor1="Apache Software Foundation" Version1="2.4.18" Vendor2="The PGP Group" Version2="5.5.33"
 

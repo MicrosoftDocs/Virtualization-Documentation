@@ -29,7 +29,7 @@ docker run -it ruby
 # This dockerfile utilizes components licensed by their respective owners/authors.
 # Prior to utilizing this file or resulting images please review the respective licenses at: https://www.ruby-lang.org/en/about/license.txt
 
-FROM windowsservercore
+FROM microsoft/windowsservercore
 
 LABEL Description="Ruby Programming Language for Windows" Vendor="Ruby" Version="2.2.4-x64"
 
