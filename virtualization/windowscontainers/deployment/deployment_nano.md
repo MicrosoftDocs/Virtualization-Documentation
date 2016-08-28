@@ -101,10 +101,10 @@ Add the Docker directory to the system path on the Nano Server.
 > Make sure to switch back to the remote Nano Server session.
 
 ```none
-# for quick use, does not require shell to be restarted
+# For quick use, does not require shell to be restarted.
 $env:path += “;C:\program files\docker”
 
-# for persistent use, will apply even after a reboot 
+# For persistent use, will apply even after a reboot.
 setx PATH $env:path /M
 ```
 
