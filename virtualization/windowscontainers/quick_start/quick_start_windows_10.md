@@ -71,10 +71,10 @@ Expand-Archive -Path "$env:TEMP\docker-1.13.0-dev.zip" -DestinationPath $env:Pro
 Add the Docker directory to the system path.
 
 ```none
-# for quick use, does not require shell to be restarted
+# For quick use, does not require shell to be restarted.
 $env:path += ";c:\program files\docker"
 
-# for persistent use, will apply even after a reboot 
+# For persistent use, will apply even after a reboot. 
 [Environment]::SetEnvironmentVariable("Path", $env:Path + ";C:\Program Files\Docker", [EnvironmentVariableTarget]::Machine)
 ```
 
