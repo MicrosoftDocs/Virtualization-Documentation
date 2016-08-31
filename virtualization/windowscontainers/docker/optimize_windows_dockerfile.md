@@ -293,22 +293,6 @@ RUN powershell -Command \
 	New-Item c:\config.ini
 ```
 
-### Escape Characters
-
-The backslash `\` character for line wrapping can be confusing in a Dockerfile for a Windows image, where it is used as the path separator. You can specify an alternatve escape character with the `escape` parser directive at the top of the Dockerfile. Replacing the backslash `\` character with the backtick `` ` `` permits line wrapping in standard Powershell format.
-
-```none
-# escape=`
-
-FROM windowsservercore
-
-RUN powershell -Command `
-	$ErrorActionPreference = 'Stop'; `
-	start-Process c:\vcredist_x86.exe -ArgumentList '/quiet' -Wait ; `
-	Remove-Item c:\vcredist_x86.exe -Force ; `
-	New-Item c:\config.ini
-```
-
 ## Further Reading & References
 
 [Dockerfile on Windows] (./manage_windows_dockerfile.md)
