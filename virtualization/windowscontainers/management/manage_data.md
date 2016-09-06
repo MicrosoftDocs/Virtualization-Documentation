@@ -46,29 +46,17 @@ For more information on mounting host directories, see [Manage data in container
 
 ### Mount single files
 
-A single file can be mounted into a container by explicitly specifying the file name. In this example, the directory being shared includes many files, however only the 'config.ini' file is available inside of the container. 
+A single file cannot be mounted into a Windows container. Running the following command will not fail, however the resulting container will not contain the file. 
 
 ```none
-docker run -it -v c:\container-share\config.ini windowsservercore cmd
+docker run -it -v c:\config\config.ini microsoft/windowsservercore cmd
 ```
 
-Inside the running container, only the config.ini file is visible.
+As a workaround, any files to me mounted into a container will need to be mounted from a directory.
 
 ```none
-c:\container-share>dir
- Volume in drive C has no label.
- Volume Serial Number is 7CD5-AC14
-
- Directory of c:\container-share
-
-04/04/2016  12:53 PM    <DIR>          .
-04/04/2016  12:53 PM    <DIR>          ..
-04/04/2016  12:53 PM    <SYMLINKD>     config.ini
-               0 File(s)              0 bytes
-               3 Dir(s)  21,184,208,896 bytes free
+docker run -it -v c:\config:c:\config microsoft/windowsservercore cmd
 ```
-
-For more information on mounting single files, see [Manage data in containers on docker.com](https://docs.docker.com/engine/userguide/containers/dockervolumes/#mount-a-host-directory-as-a-data-volume).
 
 ### Mount full drive
 
