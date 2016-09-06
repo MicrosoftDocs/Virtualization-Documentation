@@ -15,7 +15,7 @@ ms.assetid: d8163185-9860-4ee4-9e96-17b40fb508bc
 
 **This is preliminary content and subject to change.** 
 
->Windows Containers are managed with Docker. The Windows Container documentation is supplemental to documentation found on [docker.com](https://www.docker.com/).
+>Windows Containers are managed with Docker. The Windows Container documentation is supplemental to documentation found on [docs.docker.com](https://docs.docker.com/).
 
 Container images are used to deploy containers. These images can include applications and all application dependencies. For instance, you may develop a container image that has been pre-configured with Nano Server, IIS, and an application running in IIS. This container image can then be stored in a container registry for later use, deployed on any Windows container host (on-prem, cloud, or even to a container service), and also used as the base for a new container image.
 

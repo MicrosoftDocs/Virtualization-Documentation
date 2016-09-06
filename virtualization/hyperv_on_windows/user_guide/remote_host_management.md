@@ -113,6 +113,6 @@ On the managing PC, run the following as an administrator:
 2. [Enable-WSManCredSSP](https://technet.microsoft.com/en-us/library/hh849872.aspx) -Role client -DelegateComputer "fqdn-of-hyper-v-host"
   * Alternately, you can allow all hosts to be trusted to manage via:
   * [Enable-WSManCredSSP](https://technet.microsoft.com/en-us/library/hh849872.aspx) -Role client -DelegateComputer *
-3. Additionally you may need to configure the following group policy: ** Computer Configuration | Administrative Templates | System | Credentials Delegation | Allow Fresh Credentials with NTLM-only Server Authentication **
+3. Additionally you may need to configure the following group policy: ** Computer Configuration | Administrative Templates | System | Credentials Delegation | Allow delegating fresh credentials with NTLM-only server authentication **
     * Click **Enable** and add *wsman/fqdn-of-hyper-v-host*
     * Alternatively, you can allow all hosts to be trusted to manage by adding _wsman/*_
