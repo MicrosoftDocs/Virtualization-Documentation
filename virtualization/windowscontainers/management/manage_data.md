@@ -60,7 +60,7 @@ docker run -it -v c:\config:c:\config microsoft/windowsservercore cmd
 
 ### Mount full drive
 
-A complete drive can be mounted using a command similar to this. Note, do not include a backslash.
+A complete drive can be mounted using a command similar to this.
 
 ```none
 docker run -it -v d:\:d: windowsservercore cmd
