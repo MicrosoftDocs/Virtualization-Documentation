@@ -63,7 +63,7 @@ docker run -it -v c:\config:c:\config microsoft/windowsservercore cmd
 A complete drive can be mounted using a command similar to this. Note, do not include a backslash.
 
 ```none
-docker run -it -v d: windowsservercore cmd
+docker run -it -v d:\:d: windowsservercore cmd
 ```
 
 At this time, mounting a portion of the second drive does not work. For instance, the following is not possible.
