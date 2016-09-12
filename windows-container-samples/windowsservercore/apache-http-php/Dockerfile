@@ -3,7 +3,7 @@
 
 FROM microsoft/windowsservercore
 
-LABEL Description="Apache-PHP" Vendor1="Apache Software Foundation" Version1="2.4.20" Vendor2="The PGP Group" Version2="5.5.36"
+LABEL Description="Apache-PHP" Vendor1="Apache Software Foundation" Version1="2.4.20" Vendor2="The PHP Group" Version2="5.5.36"
 
 RUN powershell -Command \
 	$ErrorActionPreference = 'Stop'; \
