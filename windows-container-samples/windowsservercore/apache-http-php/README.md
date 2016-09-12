@@ -28,7 +28,7 @@ docker run -d -p 80:80 apache-http-php
 
 FROM microsoft/windowsservercore
 
-LABEL Description="Apache-PHP" Vendor1="Apache Software Foundation" Version1="2.4.18" Vendor2="The PGP Group" Version2="5.5.33"
+LABEL Description="Apache-PHP" Vendor1="Apache Software Foundation" Version1="2.4.18" Vendor2="The PHP Group" Version2="5.5.33"
 
 RUN powershell -Command \
 	$ErrorActionPreference = 'Stop'; \
