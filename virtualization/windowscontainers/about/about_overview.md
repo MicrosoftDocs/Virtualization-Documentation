@@ -19,7 +19,7 @@ Applications fuel innovation in the cloud and mobile era. Containers, and the ec
 
 Watch a short overview: [Windows-based containers: Modern app development with enterprise-grade control](https://youtu.be/Ryx3o0rD5lY).
 
-## What are Containers
+## What are Containers?
 
 They are an isolated, resource controlled, and portable operating environment.
 
