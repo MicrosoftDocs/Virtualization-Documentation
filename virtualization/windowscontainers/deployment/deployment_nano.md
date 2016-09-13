@@ -191,7 +191,7 @@ $env:path += ";c:\program files\docker"
 Once completed the remote Docker host can be accessed with the `docker -H` parameter.
 
 ```none
-docker -H tcp://<IPADDRESS>:2375 run -it nanoserver cmd
+docker -H tcp://<IPADDRESS>:2375 run -it microsoft/nanoserver cmd
 ```
 
 An environmental variable `DOCKER_HOST` can be created which will remove the `-H` parameter requirement. The following PowerShell command can be used for this.
@@ -203,7 +203,7 @@ $env:DOCKER_HOST = "tcp://<ipaddress of server>:2375"
 With this variable set, the command would now look like this.
 
 ```none
-docker run -it nanoserver cmd
+docker run -it microsoft/nanoserver cmd
 ```
 
 ## Hyper-V Container Host
