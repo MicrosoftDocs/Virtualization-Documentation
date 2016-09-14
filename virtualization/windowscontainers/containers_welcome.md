@@ -36,24 +36,25 @@ Learn how to deploy Windows Containers on Windows Server 2016 and Nano Server..<
 <li>[System Requirements](deployment/system_requirements.md)<br /><br /></li>
 <li>[Deploy Container Host - Windows Server](deployment/deployment.md)<br /><br /></li>
 <li>[Deploy Container Host - Nano Server](deployment/deployment_nano.md)<br /><br /></li>
-
+<li>[Anti-Virus Optimization](https://msdn.microsoft.com/en-us/windows/hardware/drivers/ifs/anti-virus-optimization-for-windows-containers)<br /><br /></li>
 </ul>
 </td>
 </tr>
 
 <tr>
 <td ><center>![](media/explore.png)</center></td>
-<td>**Management**<br /><br />
-Learn about managing Windows Container in Windows Server 2016 and Nano Server.<br /><br />
+<td>**Docker on Windows**<br /><br />
+Learn about managing Docker on Windows.<br /><br />
 <ul>
-<li>[Manage Images](management/manage_images.md)<br /><br /></li>
-<li>[Manage Networking](management/container_networking.md)<br /><br /></li>
+<li>[Docker Engine on Windows](docker/configure_docker_daemon.md)<br /><br /></li>
+<li>[Dockerfiles on Windows](docker/manage_windows_dockerfile.md)<br /><br /></li>
 <li>[Manage Container Data](management/manage_data.md)<br /><br /></li>
-<li>[Manage Hyper-V Containers](management/hyperv_container.md)<br /><br /></li>
-<li>[Manage Container Resources](management/manage_resources.md)<br /><br /></li>
+<li>[Optimize Dockerfiles](docker/optimize_windows_dockerfile.md)<br /><br /></li>
+<li>[Container Networking](management/container_networking.md)<br /><br /></li>
 </ul>
 </td>
 </tr>
+
 <tr>
 <td ><center>![](media/video.png)</center></td>
 <td>**Watch**<br /><br />
@@ -64,6 +65,7 @@ Interested in demos and interviews from the Windows Container team?<br /><br />
 <br />
 </td>
 </tr>
+
 <tr>
 <td ><center>![](media/question.png)</center></td>
 <td>**Community**<br /><br />
