@@ -472,10 +472,16 @@ If ($Script:stage -eq 3 -and $Script:stage -lt $StopBeforeStage)
             Param(
                 [hashtable]$param
             )
-            Write-Host "`t`tPreparing Host Guardian Service"
             
+            $signingCert = New-SelfSignedCertificate -DnsName "signing.hgs.relecloud.com"
+            Export-PfxCertificate -Cert $signingCert -Password $param["adminpassword"] -FilePath C:\signing.pfx
+            $encryptionCert = New-SelfSignedCertificate -DnsName "encryption.hgs.relecloud.com"
+            Export-PfxCertificate -Cert $encryptionCert -Password $param["adminpassword"] -FilePath C:\encryption.pfx
+
+            Write-Host "`t`tConfiguring Host Guardian Service"
+            Initialize-HgsServer -HgsServiceName service -SigningCertificatePath C:\signing.pfx -SigningCertificatePassword $param["adminpassword"] -EncryptionCertificatePath C:\encryption.pfx -EncryptionCertificatePassword $certificatePassword -TrustActiveDirectory
+
         } -ArgumentList @{
-            hgsdomainname="hgs.relecloud.com";
             adminpassword=$localAdministratorPassword
         }
 
@@ -483,10 +489,30 @@ If ($Script:stage -eq 3 -and $Script:stage -lt $StopBeforeStage)
             Param(
                 [hashtable]$param
             )
-            Write-Host "`t`tCreating fabric domain"
+            Write-Host "`t`tCreating DHCP security groups"
+            netsh dhcp add securitygroups
+            Restart-Service DHCPServer
+
+            Write-Host "`t`tCreating DHCP scope"
             
+            Add-DhcpServerv4Scope -Name default -StartRange 192.168.42.1 -EndRange 192.168.42.200 -SubnetMask 255.255.255.0 -State Active
+            Add-DhcpServerv4ExclusionRange -Name default -StartRange 192.168.42.1 -EndRange 192.168.42.99
+            Set-DhcpServerv4OptionValue -DnsDomain $param["domainname"] -DnsServer 192.168.42.1
+            Add-DhcpServerInDC -DnsName "dc01.$($param["domainname"])"
+            Restart-Service DHCPServer
+
+            Write-Host "`t`tCreating AD Users and Groups"
+            New-ADUser -Name "Lars" -SAMAccountName "lars" -GivenName "Lars" -DisplayName "Lars" -AccountPassword $param["adminpassword"] -CannotChangePassword $true -Enabled $true
+            New-ADUser -Name "vmmserviceaccount" -SAMAccountName "vmmserviceaccount" -GivenName "VMM" -DisplayName "vmmserviceaccount" -AccountPassword $param["adminpassword"] -CannotChangePassword $true -Enabled $true
+            New-ADGroup -Name "ComputeHosts" -DisplayName "Hyper-V Compute Hosts" -GroupCategory Security -GroupScope Universal
+
+            Write-Host "`t`tCreating offline domain join blobs"
+            mkdir C:\djoin
+            djoin /Provision /Domain $param["domainname"] /Machine Compute01 /SaveFile C:\djoin\Compute01.djoin
+            djoin /Provision /Domain $param["domainname"] /Machine Compute02 /SaveFile C:\djoin\Compute02.djoin
+            djoin /Provision /Domain $param["domainname"] /Machine VMM01 /SaveFile C:\djoin\VMM.djoin        
         } -ArgumentList @{
-            hgsdomainname="relecloud.com";
+            domainname="relecloud.com";
             adminpassword=$localAdministratorPassword
         }
 
@@ -513,26 +539,12 @@ if ($Script:stage -eq 99)
 
     # Customizing HGS
 
-    # don't use PsDirect for the below
-    $rundirectlyonhost = {
-            $certificatePassword = ConvertTo-SecureString -AsPlainText "P@ssw0rd." -Force
-            $signingCert = New-SelfSignedCertificate -DnsName "signing.hgs.relecloud.com"
-            Export-PfxCertificate -Cert $signingCert -Password $certificatePassword -FilePath C:\signing.pfx
-            $encryptionCert = New-SelfSignedCertificate -DnsName "encryption.hgs.relecloud.com"
-            Export-PfxCertificate -Cert $encryptionCert -Password $certificatePassword -FilePath C:\encryption.pfx
-            Initialize-HgsServer -HgsServiceName service -SigningCertificatePath C:\signing.pfx -SigningCertificatePassword $certificatePassword -EncryptionCertificatePath C:\encryption.pfx -EncryptionCertificatePassword $certificatePassword -TrustActiveDirectory
-        }
+
 
     # Customizing DC
 
     #Steps to run inside of the DC: 
 
-    #Configuring DHCP
-    Invoke-Command -VMId $dc01.VMId -Credential $Script:localAdministratorCredential -ArgumentList ($domainName, $localAdministratorPassword) -ScriptBlock {
-            Param($domainName, $localAdministratorPassword)
-
-            Install-ADDSForest -DomainName "$domainName" -SafeModeAdministratorPassword $localAdministratorPassword -Force
-    }
 
     # Wait for restart!!
 
@@ -541,27 +553,6 @@ if ($Script:stage -eq 99)
     # Create Group for compute nodes
     # Add compute1, compute2 to compute nodes
     # Grant Permissions to Share for Compute nodes
-
-    Invoke-Command -VMId $dc01.VMId -Credential $Script:relecloudAdministratorCredential -ArgumentList ($domainName, $localAdministratorPassword) -ScriptBlock {
-            Param($domainName, $localAdministratorPassword)
-            
-            #Creating offline domain join blobs
-            Add-DhcpServerv4Scope -EndRange 192.168.42.200 -Name default -StartRange 192.168.42.100 -SubnetMask 255.255.255.0 -State Active
-            Set-DhcpServerv4OptionValue -DnsDomain $domainName -DnsServer 192.168.42.1
-            Add-DhcpServerInDC -DnsName "dc01.$domainname"
-            Restart-Service DhcpServer
-
-            #Creating AD Users and Groups
-            New-ADUser -Name "Lars" -SAMAccountName "lars" -GivenName "Lars" -DisplayName "Lars" -AccountPassword $localAdministratorPassword -CannotChangePassword $true -Enabled $true
-            New-ADUser -Name "vmmserviceaccount" -SAMAccountName "vmmserviceaccount" -GivenName "VMM" -DisplayName "vmmserviceaccount" -AccountPassword $localAdministratorPassword -CannotChangePassword $true -Enabled $true
-            New-ADGroup -Name "ComputeHosts" -DisplayName "Hyper-V Compute Hosts" -GroupCategory Security -GroupScope Universal
-
-            #Creating offline domain join blobs
-            mkdir C:\djoin
-            djoin /Provision /Domain $domainName /Machine Compute01 /SaveFile C:\djoin\Compute01.djoin
-            djoin /Provision /Domain $domainName /Machine Compute02 /SaveFile C:\djoin\Compute02.djoin
-            djoin /Provision /Domain $domainName /Machine VMM01 /SaveFile C:\djoin\VMM.djoin
-        }
 
     #Copying offline domain join blobs to host
     $s = New-PSSession -VMId $dc01.VMId -Credential $Script:relecloudAdministratorCredential
