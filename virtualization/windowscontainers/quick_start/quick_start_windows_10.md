@@ -13,9 +13,9 @@ ms.assetid: bb9bfbe0-5bdc-4984-912f-9c93ea67105f
 
 # Windows Containers on Windows 10
 
-**This is preliminary content and subject to change.** 
+**This is preliminary content and subject to change.**
 
-The exercise will walk through basic deployment and use of the Windows container feature on Windows 10 Professional or Enterprise (Anniversary Edition). After completion, you will have installed the container role, and deployed a simple Hyper-V container. Before starting this quick start, familiarize yourself with basic container concepts and terminology. This information can be found on the [Quick Start Introduction](./quick_start.md). 
+The exercise will walk through basic deployment and use of the Windows container feature on Windows 10 Professional or Enterprise (Anniversary Edition). After completion, you will have installed the container role, and deployed a simple Hyper-V container. Before starting this quick start, familiarize yourself with basic container concepts and terminology. This information can be found on the [Quick Start Introduction](./quick_start.md).
 
 This quick start is specific to Hyper-V containers on Windows 10. Additional quick start documentation can be found in the table of contents on the left hand side of this page.
 
@@ -26,7 +26,7 @@ This quick start is specific to Hyper-V containers on Windows 10. Additional qui
 
 ## 1. Install Container Feature
 
-The container feature needs to be enabled before working with Windows containers. To do so run the following command in an elevated PowerShell session. 
+The container feature needs to be enabled before working with Windows containers. To do so run the following command in an elevated PowerShell session.
 
 ```none
 Enable-WindowsOptionalFeature -Online -FeatureName containers -All
@@ -44,7 +44,7 @@ When the installation has completed, reboot the computer.
 Restart-Computer -Force
 ```
 
-Once back up, run the following command to fix a known issue with the Windows Containers technical preview.  
+Once back up, run the following command to fix a known issue with the Windows Containers in Windows 10.  
 
  ```none
 Set-ItemProperty -Path 'HKLM:SOFTWARE\Microsoft\Windows NT\CurrentVersion\Virtualization\Containers' -Name VSmbDisableOplocks -Type DWord -Value 1 -Force
@@ -54,7 +54,7 @@ Set-ItemProperty -Path 'HKLM:SOFTWARE\Microsoft\Windows NT\CurrentVersion\Virtua
 
 ## 2. Install Docker
 
-Docker is required in order to work with Windows containers. Docker consists of the Docker Engine, and the Docker client. For this exercise, both will be installed. Run the following commands to do so. 
+Docker is required in order to work with Windows containers. Docker consists of the Docker Engine, and the Docker client. For this exercise, both will be installed. Run the following commands to do so.
 
 Download the Docker engine and client as a zip archive.
 
@@ -74,7 +74,7 @@ Add the Docker directory to the system path.
 # For quick use, does not require shell to be restarted.
 $env:path += ";c:\program files\docker"
 
-# For persistent use, will apply even after a reboot. 
+# For persistent use, will apply even after a reboot.
 [Environment]::SetEnvironmentVariable("Path", $env:Path + ";C:\Program Files\Docker", [EnvironmentVariableTarget]::Machine)
 ```
 
@@ -96,7 +96,7 @@ Start-Service Docker
 
 Windows containers are deployed from templates or images. Before a container can be deployed, a container base OS image needs to be downloaded. The following commands will download the Nano Server base image.
 
-Pull the Nano Server base image. 
+Pull the Nano Server base image.
 
 ```none
 docker pull microsoft/nanoserver
@@ -159,11 +159,9 @@ Finally, to run the container, use the `docker run` command.
 docker run --rm helloworld powershell c:\helloworld.ps1
 ```
 
-The outcome of the `docker run` command is that a Hyper-V container was created from the 'HelloWorld' image, a sample 'Hello World' script was then executed (output echoed to the shell), and then the container stopped and removed. 
+The outcome of the `docker run` command is that a Hyper-V container was created from the 'HelloWorld' image, a sample 'Hello World' script was then executed (output echoed to the shell), and then the container stopped and removed.
 Subsequent Windows 10 and container quick starts will dig into creating and deploying applications in containers on Windows 10.
 
 ## Next Steps
 
 [Windows Containers on Windows Server](./quick_start_windows_server.md)
-
-
