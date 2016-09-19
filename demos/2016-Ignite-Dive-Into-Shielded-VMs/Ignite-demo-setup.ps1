@@ -14,6 +14,7 @@ $Script:sourcePath = "C:\IgniteSource"
 $Script:baseMediaPath = Join-Path $Script:sourcePath -ChildPath "\WindowsServer2016\server_en-us_vl\" -Resolve
 
 $domainName = "relecloud.com"
+$hgsDomainName = "hgs.$domainName"
 $localAdministratorPassword = ConvertTo-SecureString -AsPlainText "P@ssw0rd." -Force
 
 $Script:internalSwitchName = "FabricInternal"
@@ -64,7 +65,7 @@ If (($Cleanup -eq "VM") -or ($Cleanup -eq "Everything"))
     Write-Host "[Cleanup] Removing existing VMs"
     Get-VM | Stop-VM -TurnOff -Force -WarningAction SilentlyContinue | Out-Null
     Get-VM | Remove-VM -Force -WarningAction SilentlyContinue | Out-Null
-    Get-ChildItem -Path C:\Ignite\fabric -Recurse | Remove-Item -Force -Recurse -WarningAction SilentlyContinue | Out-Null
+    Get-ChildItem -Path (Join-Path $Script:basePath -ChildPath fabric) -Recurse | Remove-Item -Force -Recurse -WarningAction SilentlyContinue | Out-Null
 }
 If (($Cleanup -eq "Baseimages") -or ($Cleanup -eq "Everything"))
 {
@@ -197,7 +198,7 @@ function Prepare-VM
     if ($startvm)
     {
         Write-Host "`t[$vmname] Starting VM"
-        Start-VM $vm | Out-Null
+        Start-VM $vm -ErrorAction Stop | Out-Null
     }
 
     # return vm
@@ -275,7 +276,7 @@ function Invoke-CommandWithPSDirect
     If ($VirtualMachine.State -eq "Off")
     {
         Write-Host "`tStarting VM $($VirtualMachine.VMName)"
-        Start-VM $VirtualMachine
+        Start-VM $VirtualMachine -ErrorAction Stop | Out-Null
     }
     
     $startTime = Get-Date
@@ -370,7 +371,7 @@ If ($Script:stage -eq 1 -and $Script:stage -lt $StopBeforeStage)
     Write-Host "Begin $($Script:stagenames[$Script:stage])"
 
     Write-Host "`tStarting all VMs to parallelize specialization"
-    Start-VM -VM $Script:EnvironmentVMs | Out-Null
+    Start-VM -VM $Script:EnvironmentVMs -ErrorAction Stop | Out-Null
 
     $scriptBlock = {
             Param(
@@ -437,7 +438,7 @@ If ($Script:stage -eq 2 -and $Script:stage -lt $StopBeforeStage)
             Write-Host "`t`tPreparing Host Guardian Service"
             Install-HgsServer -HgsDomainName $param["hgsdomainname"] -SafeModeAdministratorPassword $param["adminpassword"]
         } -ArgumentList @{
-            hgsdomainname="hgs.relecloud.com";
+            hgsdomainname=$hgsDomainName;
             adminpassword=$localAdministratorPassword
         }
 
@@ -448,7 +449,7 @@ If ($Script:stage -eq 2 -and $Script:stage -lt $StopBeforeStage)
             Write-Host "`t`tCreating fabric domain"
             Install-ADDSForest -DomainName  $param["domainName"] -SafeModeAdministratorPassword $param["adminpassword"] -Force
         } -ArgumentList @{
-            hgsdomainname="relecloud.com";
+            hgsdomainname=$domainName;
             adminpassword=$localAdministratorPassword
         }
 
@@ -472,16 +473,17 @@ If ($Script:stage -eq 3 -and $Script:stage -lt $StopBeforeStage)
             Param(
                 [hashtable]$param
             )
-            
-            $signingCert = New-SelfSignedCertificate -DnsName "signing.hgs.relecloud.com"
+            Write-Host "`t`tCreating self-signed certificates for HGS configuration"
+            $signingCert = New-SelfSignedCertificate -DnsName "signing.$($param["hgsdomainname"])"
             Export-PfxCertificate -Cert $signingCert -Password $param["adminpassword"] -FilePath C:\signing.pfx
-            $encryptionCert = New-SelfSignedCertificate -DnsName "encryption.hgs.relecloud.com"
+            $encryptionCert = New-SelfSignedCertificate -DnsName "encryption.$($param["hgsdomainname"])"
             Export-PfxCertificate -Cert $encryptionCert -Password $param["adminpassword"] -FilePath C:\encryption.pfx
 
             Write-Host "`t`tConfiguring Host Guardian Service"
             Initialize-HgsServer -HgsServiceName service -SigningCertificatePath C:\signing.pfx -SigningCertificatePassword $param["adminpassword"] -EncryptionCertificatePath C:\encryption.pfx -EncryptionCertificatePassword $certificatePassword -TrustActiveDirectory
 
         } -ArgumentList @{
+            hgsdomainname=$hgsDomainName
             adminpassword=$localAdministratorPassword
         }
 
@@ -501,20 +503,30 @@ If ($Script:stage -eq 3 -and $Script:stage -lt $StopBeforeStage)
             Add-DhcpServerInDC -DnsName "dc01.$($param["domainname"])"
             Restart-Service DHCPServer
 
+            Write-Host "`t`tSuppressing Server Manager configuration warning for DHCP configuration"
+            Set-ItemProperty –Path HKLM:\SOFTWARE\Microsoft\ServerManager\Roles\12 –Name ConfigurationState –Value 2
+
             Write-Host "`t`tCreating AD Users and Groups"
             New-ADUser -Name "Lars" -SAMAccountName "lars" -GivenName "Lars" -DisplayName "Lars" -AccountPassword $param["adminpassword"] -CannotChangePassword $true -Enabled $true
             New-ADUser -Name "vmmserviceaccount" -SAMAccountName "vmmserviceaccount" -GivenName "VMM" -DisplayName "vmmserviceaccount" -AccountPassword $param["adminpassword"] -CannotChangePassword $true -Enabled $true
             New-ADGroup -Name "ComputeHosts" -DisplayName "Hyper-V Compute Hosts" -GroupCategory Security -GroupScope Universal
 
-            Write-Host "`t`tCreating offline domain join blobs"
+            Write-Host "`t`tCreating offline domain join blobs in domain $($param["domainname"])"
             mkdir C:\djoin
-            djoin /Provision /Domain $param["domainname"] /Machine Compute01 /SaveFile C:\djoin\Compute01.djoin
-            djoin /Provision /Domain $param["domainname"] /Machine Compute02 /SaveFile C:\djoin\Compute02.djoin
-            djoin /Provision /Domain $param["domainname"] /Machine VMM01 /SaveFile C:\djoin\VMM.djoin        
+            djoin /Provision /Domain $($param["domainname"]) /Machine Compute01 /SaveFile C:\djoin\Compute01.djoin
+            djoin /Provision /Domain $($param["domainname"]) /Machine Compute02 /SaveFile C:\djoin\Compute02.djoin
+            djoin /Provision /Domain $($param["domainname"]) /Machine VMM01 /SaveFile C:\djoin\VMM.djoin        
         } -ArgumentList @{
-            domainname="relecloud.com";
+            domainname=$domainName;
             adminpassword=$localAdministratorPassword
         }
+
+    Write-Host "`tCopying offline domain-join blobs to host"
+    $s = New-PSSession -VMId $dc01.VMId -Credential $Script:relecloudAdministratorCredential
+    Copy-Item -FromSession $s -Path C:\djoin\Compute01.djoin -Destination (Join-Path $Script:basePath -ChildPath fabric) | Out-Null
+    Copy-Item -FromSession $s -Path C:\djoin\Compute02.djoin -Destination (Join-Path $Script:basePath -ChildPath fabric) | Out-Null
+    Copy-Item -FromSession $s -Path C:\djoin\VMM.djoin -Destination (Join-Path $Script:basePath -ChildPath fabric) | Out-Null
+    Remove-PSSession $s | Out-Null
 
     Write-Host "End of $($Script:stagenames[$Script:stage])"
 
@@ -537,14 +549,7 @@ if ($Script:stage -eq 99)
     New-VHD -Dynamic -SizeBytes 30GB -Path $VMMDataVHDXPath | Out-Null
     Add-VMHardDiskDrive -VM $vmm01 -Path $VMMDataVHDXPath | Out-Null
 
-    # Customizing HGS
-
-
-
-    # Customizing DC
-
     #Steps to run inside of the DC: 
-
 
     # Wait for restart!!
 
@@ -555,14 +560,9 @@ if ($Script:stage -eq 99)
     # Grant Permissions to Share for Compute nodes
 
     #Copying offline domain join blobs to host
-    $s = New-PSSession -VMId $dc01.VMId -Credential $Script:relecloudAdministratorCredential
-    Copy-Item -FromSession $s -Path C:\djoin\Compute01.djoin -Destination C:\Ignite\fabric | Out-Null
-    Copy-Item -FromSession $s -Path C:\djoin\Compute02.djoin -Destination C:\Ignite\fabric | Out-Null
-    Copy-Item -FromSession $s -Path C:\djoin\VMM.djoin -Destination C:\Ignite\fabric | Out-Null
-    Remove-PSSession $s | Out-Null
 
     # Customizing VMM
-    Copy-VMFile -VM $vmm01 -SourcePath C:\Ignite\fabric\VMM.djoin -DestinationPath C:\VMM.djoin -Credential $Script:localAdministratorCredential
+    Copy-VMFile -VM $vmm01 -SourcePath (Join-Path $Script:basePath -ChildPath "fabric\VMM.djoin") -DestinationPath C:\VMM.djoin -Credential $Script:localAdministratorCredential
 
     Invoke-Command -VMId $vmm01.VMId -Credential $Script:localAdministratorCredential -ScriptBlock {
             djoin /requestodj /loadfile C:\vmm.djoin /LOCALOS /WINDOWSPATH C:\Windows
