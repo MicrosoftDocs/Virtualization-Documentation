@@ -473,14 +473,22 @@ If ($Script:stage -eq 3 -and $Script:stage -lt $StopBeforeStage)
             Param(
                 [hashtable]$param
             )
+            New-Item -Path 'C:\HgsCertificates' -ItemType Directory | Out-Null
+
             Write-Host "`t`tCreating self-signed certificates for HGS configuration"
             $signingCert = New-SelfSignedCertificate -DnsName "signing.$($param["hgsdomainname"])"
-            Export-PfxCertificate -Cert $signingCert -Password $param["adminpassword"] -FilePath C:\signing.pfx
+            Export-PfxCertificate -Cert $signingCert -Password $param["adminpassword"] -FilePath C:\HgsCertificates\signing.pfx
             $encryptionCert = New-SelfSignedCertificate -DnsName "encryption.$($param["hgsdomainname"])"
-            Export-PfxCertificate -Cert $encryptionCert -Password $param["adminpassword"] -FilePath C:\encryption.pfx
+            Export-PfxCertificate -Cert $encryptionCert -Password $param["adminpassword"] -FilePath C:\HgsCertificates\encryption.pfx
 
-            Write-Host "`t`tConfiguring Host Guardian Service"
-            Initialize-HgsServer -HgsServiceName service -SigningCertificatePath C:\signing.pfx -SigningCertificatePassword $param["adminpassword"] -EncryptionCertificatePath C:\encryption.pfx -EncryptionCertificatePassword $certificatePassword -TrustActiveDirectory
+            # Removing certificates after exporting
+            Remove-Item $EncryptionCert.PSPath, $SigningCert.PSPath -DeleteKey -ErrorAction Continue
+
+            Write-Host "`t`tConfiguring Host Guardian Service - AD-based trust"
+            Initialize-HgsServer -HgsServiceName service -SigningCertificatePath C:\HgsCertificates\signing.pfx -SigningCertificatePassword $param["adminpassword"] -EncryptionCertificatePath C:\HgsCertificates\encryption.pfx -EncryptionCertificatePassword $certificatePassword -TrustActiveDirectory
+
+            Write-HOst "`t`tFixing up the cluster network"
+            (Get-ClusterNetwork).Role = 3
 
         } -ArgumentList @{
             hgsdomainname=$hgsDomainName
