@@ -8,7 +8,7 @@ This file lists the things we'd like to get done.  Some of it is stuff we're wor
   * Add exact error messages for more searchable resolution to issues.
 
 ## Articles to edit/revise
-* Hyper-V on Windows [remote host management article](./doc-site/virtualization/hyperv_on_windows/user_guide/remote_host_management.md)
+* Hyper-V on Windows [remote host management article](./virtualization/hyperv_on_windows/user_guide/remote_host_management.md)
 
 ## Articles to add
 * README for all Container samples and tools
