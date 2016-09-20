@@ -1,23 +1,23 @@
 # Sample to create a Windows Server Container Image with IIS 10.0 using Windows PowerShell DSC
 
 This sample was created for Windows Server 2016 Technical Preview 4 with Containers. They assume that the 
-WindowsServerCore Container base image is present.
+WindowsServerCore container base image is present.
 
 
 ## Building the Image using Docker
 
-In order to create an IIS Container image when you are running Docker-managed Windows Server Containers, please 
+In order to create an IIS container image when you are running Docker-managed Windows Server containers, please 
 copy both files (dockerfile, RunDSC.ps1) to a directory on the host.
 
-On the Container host, enter the directory with the file, then build it:
+On the container host, enter the directory with the file, then build it:
 ```
-docker build -t iis-dsc
+docker build -t iis-dsc .
 ```
 
 The following steps will be run when building the dockerfile:
 
-1. Copying RunDSC.ps1 script to the TEMP directory in the Container
-2. Running RunDSC.ps1 inside of the Container
+1. Copying RunDSC.ps1 script to the TEMP directory in the container
+2. Running RunDSC.ps1 inside of the container
   1. The pushed policy will add the Web-Server role.
   
   
