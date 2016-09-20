@@ -17,7 +17,7 @@ Hyper-V Manager is an in-box tool for diagnosing and managing your local Hyper-V
 
 > Hyper-V Manager is available through **Programs and Features** as **Hyper-V Management Tools** on [any Windows OS with Hyper-V included](../quick_start/walkthrough_compatibility.md#OperatingSystemRequirements).  Hyper-V Platform does not need to be enabled in order to manage remote hosts.
 
-To connect to a Hyper-V host in Hyper-V Manager, make sure **Hyper-V Manager** is selected in the left hand pane and then select **Connect to Server...** in the right-hand pane.
+To connect to a Hyper-V host in Hyper-V Manager, make sure **Hyper-V Manager** is selected in the left-hand pane and then select **Connect to Server...** in the right-hand pane.
 
 ![](media/HyperVManager-ConnectToHost.png)
 
@@ -56,7 +56,7 @@ To add local host to Hyper-V Manager as a Hyper-V host, select **Local computer*
 If a connection can't be established:
 *  Make sure the Hyper-V Platform role is enabled.  
   See the [walkthrough section for checking compatibility](../quick_start/walkthrough_compatibility.md) to see if Hyper-V is supported.
-*  Confirm that your user account is part of the Hyper-V Administrator group.
+*  Confirm that your user account is part of the Hyper-V Administrators group.
 
 
 ## Manage another Hyper-V host in the same domain ##
@@ -95,15 +95,15 @@ To specify credentials for the remote Hyper-V host, select **Connect as another 
 ### Connect to the remote host using IP address
 > This is only available when connecting to a Windows 10 or Windows Server 2016 Technical Preview 3 or later remote host
 
-Sometimes it's easier to connect using IP address rather than host name.Windows 10 allows you to do just that.
+Sometimes it's easier to connect using IP address rather than host name. Windows 10 allows you to do just that.
 
 To connect using IP address, enter the IP address into the **Another Computer** text field.
 
 
 ## Manage a Hyper-V host outside your domain (or with no domain) ##
-> This is only available when connecting to a Windows 10 or WindowsServer 2016 Technical Preview 3 or later remote host
+> This is only available when connecting to a Windows 10 or Windows Server 2016 Technical Preview 3 or later remote host
 
-On the Hyper-V Host to be managed, run the following as an administrator:
+On the Hyper-V host to be managed, run the following as an administrator:
 
 1.	[Enable-PSRemoting](https://technet.microsoft.com/en-us/library/hh849694.aspx)
   * [Enable-PSRemoting](https://technet.microsoft.com/en-us/library/hh849694.aspx) will create the necessary firewall rules for *private* network zones. To allow this access on public zones you will need to enable the rules for CredSSP and WinRM.
@@ -111,12 +111,7 @@ On the Hyper-V Host to be managed, run the following as an administrator:
 
 On the managing PC, run the following as an administrator:
 
-1. Set-Item WSMan:\localhost\Client\TrustedHosts -value "fqdn-of-hyper-v-host"
-  * Alternately, you can allow all hosts to be trusted to manage via:
-  * Set-Item WSMan:\localhost\Client\TrustedHosts -value * -force
+1. Set-Item WSMan:\localhost\Client\TrustedHosts -Value "fqdn-of-hyper-v-host"
 2. [Enable-WSManCredSSP](https://technet.microsoft.com/en-us/library/hh849872.aspx) -Role client -DelegateComputer "fqdn-of-hyper-v-host"
-  * Alternately, you can allow all hosts to be trusted to manage via:
-  * [Enable-WSManCredSSP](https://technet.microsoft.com/en-us/library/hh849872.aspx) -Role client -DelegateComputer *
 3. Additionally you may need to configure the following group policy: ** Computer Configuration | Administrative Templates | System | Credentials Delegation | Allow delegating fresh credentials with NTLM-only server authentication **
     * Click **Enable** and add *wsman/fqdn-of-hyper-v-host*
-    * Alternatively, you can allow all hosts to be trusted to manage by adding _wsman/*_
