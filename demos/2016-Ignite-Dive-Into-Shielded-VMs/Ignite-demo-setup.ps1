@@ -79,11 +79,22 @@ function Log-Message
     }
 }
 
+function Reboot-VM {
+    Param(
+        [Microsoft.HyperV.PowerShell.VirtualMachine]$VM
+    )
+    If ($VM.State -eq "Running")
+    {
+        Stop-VM -VM $VM -ErrorAction SilentlyContinue | Out-Null
+    }
+    Start-VM -VM $VM
+}
+
 function Prepare-VM 
 {
     Param(
         [Parameter(Mandatory=$True)]
-        [string]$vmname,
+        [string]$VMname,
         [Parameter(Mandatory=$True)]
         [string]$basediskpath,
 
@@ -97,16 +108,16 @@ function Prepare-VM
     )
 
     $FabricPath = Join-Path $Script:basePath -ChildPath "\fabric\"
-    $VmPath = $VHDXPath = Join-Path $FabricPath -ChildPath "$vmname"
-    $VHDXPath = Join-Path $VmPath -ChildPath "Virtual Hard Disks\OSDisk.vhdx"
+    $VMPath = $VHDXPath = Join-Path $FabricPath -ChildPath "$VMname"
+    $VHDXPath = Join-Path $VMPath -ChildPath "Virtual Hard Disks\OSDisk.vhdx"
 
-    $vm = Get-VM -VMName $vmname -ErrorAction SilentlyContinue
-    If ($vm)
+    $VM = Get-VM -VMName $VMname -ErrorAction SilentlyContinue
+    If ($VM)
     {
-        Log-Message -Level 1 -Message "[$vmname] Removing existing Virtual Machine"
-        Stop-VM -VM $vm -TurnOff -Force -WarningAction SilentlyContinue | Out-Null
-        Get-VMSnapshot -VM $vm | Remove-VMSnapshot -Confirm:$false | Out-Null
-        Remove-VM -VM $vm -Force -WarningAction SilentlyContinue | Out-Null
+        Log-Message -Level 1 -Message "[$VMname] Removing existing Virtual Machine"
+        Stop-VM -VM $VM -TurnOff -Force -WarningAction SilentlyContinue | Out-Null
+        Get-VMSnapshot -VM $VM | Remove-VMSnapshot -Confirm:$false | Out-Null
+        Remove-VM -VM $VM -Force -WarningAction SilentlyContinue | Out-Null
         If (Test-Path $VHDXPath)
         {
             Remove-Item -Path $VHDXPath -Force -ErrorAction Stop | Out-Null
@@ -115,11 +126,11 @@ function Prepare-VM
 
     If (Test-Path $VHDXPath)
     {
-        Log-Message -Level 1 -Message "[$vmname] Removing existing VHDX"
+        Log-Message -Level 1 -Message "[$VMname] Removing existing VHDX"
         Remove-Item -Path $VHDXPath -Force -ErrorAction Stop | Out-Null
     }
 
-    Log-Message -Level 1 -Message "[$vmname] Creating new differencing disk" 
+    Log-Message -Level 1 -Message "[$VMname] Creating new differencing disk" 
     New-VHD -Differencing -Path $VHDXPath -ParentPath $basediskpath -ErrorAction Stop | Out-Null
     
     If ($Script:MemoryScaleFactor -ne 1) 
@@ -128,42 +139,42 @@ function Prepare-VM
         $startupmemory = $startupmemory * $Script:MemoryScaleFactor
     }
 
-    Log-Message -Level 1 -Message "[$vmname] Creating Virtual Machine"
-    $vm = New-VM -Name $vmname -MemoryStartupBytes $startupmemory -Path $FabricPath -VHDPath $VHDXPath -Generation 2 -SwitchName $switchname -ErrorAction Stop
+    Log-Message -Level 1 -Message "[$VMname] Creating Virtual Machine"
+    $VM = New-VM -Name $VMname -MemoryStartupBytes $startupmemory -Path $FabricPath -VHDPath $VHDXPath -Generation 2 -SwitchName $switchname -ErrorAction Stop
 
     If ($processorcount -gt 1)
     {
-        Log-Message -Level 1 -Message "[$vmname] Setting processor count to $processorcount"
-        Set-VMProcessor -VM $vm -Count $processorcount  | Out-Null
+        Log-Message -Level 1 -Message "[$VMname] Setting processor count to $processorcount"
+        Set-VMProcessor -VM $VM -Count $processorcount  | Out-Null
     }
     If (-not $dynamicmemory)
     {
-        Log-Message -Level 1 -Message "[$vmname] Disabling Dynamic Memory"
-        Set-VMMemory -VM $vm -DynamicMemoryEnabled $false | Out-Null
+        Log-Message -Level 1 -Message "[$VMname] Disabling Dynamic Memory"
+        Set-VMMemory -VM $VM -DynamicMemoryEnabled $false | Out-Null
     }
     If ($enablevirtualizationextensions)
     {
-        Log-Message -Level 1 -Message "[$vmname] Enabling Virtualization Extensions"
-        Set-VMProcessor -VM $vm -ExposeVirtualizationExtensions $true | Out-Null
-        Log-Message -Level 1 -Message "[$vmname] Enabling Virtualization Extensions"
-        Get-VMNetworkAdapter -VM $vm | Set-VMNetworkAdapter -MacAddressSpoofing on
+        Log-Message -Level 1 -Message "[$VMname] Enabling Virtualization Extensions"
+        Set-VMProcessor -VM $VM -ExposeVirtualizationExtensions $true | Out-Null
+        Log-Message -Level 1 -Message "[$VMname] Enabling Virtualization Extensions"
+        Get-VMNetworkAdapter -VM $VM | Set-VMNetworkAdapter -MacAddressSpoofing on
     }
     If ($enablevtpm)
     {
-        Log-Message -Level 1 -Message "[$vmname] Enabling vTPM"
+        Log-Message -Level 1 -Message "[$VMname] Enabling vTPM"
         $keyprotector = New-HgsKeyProtector -Owner $Script:HgsGuardian -AllowUntrustedRoot
-        Set-VMKeyProtector -VM $vm -KeyProtector $keyprotector.RawData -ErrorAction Stop | Out-Null
-        Enable-VMTPM -VM $vm -ErrorAction Stop | Out-Null
+        Set-VMKeyProtector -VM $VM -KeyProtector $keyprotector.RawData -ErrorAction Stop | Out-Null
+        Enable-VMTPM -VM $VM -ErrorAction Stop | Out-Null
     }
 
     if ($startvm)
     {
-        Log-Message -Level 1 -Message "[$vmname] Starting VM"
-        Start-VM $vm -ErrorAction Stop | Out-Null
+        Log-Message -Level 1 -Message "[$VMname] Starting VM"
+        Start-VM $VM -ErrorAction Stop | Out-Null
     }
 
     # return vm
-    $vm
+    $VM
 }
 
 function Create-EnvironmentStageCheckpoint
@@ -371,14 +382,14 @@ if (-not (Get-VMSwitch -Name $Script:fabricSwitch -ErrorAction SilentlyContinue)
 
 $hgs01 = Get-VM -VMName $Script:VmNameHgs #-ErrorAction SilentlyContinue
 $dc01 = Get-VM -VMName $Script:VmNameDc #-ErrorAction SilentlyContinue
-$vmm01 = Get-VM -VMName $Script:VmNameVmm #-ErrorAction SilentlyContinue
+$VMm01 = Get-VM -VMName $Script:VmNameVmm #-ErrorAction SilentlyContinue
 $compute01 = Get-VM -VMName "$Script:VmNameCompute 01" #-ErrorAction SilentlyContinue
 $compute02 = Get-VM -VMName "$Script:VmNameCompute 02" #-ErrorAction SilentlyContinue
 
-if ($hgs01 -and $dc01 -and $vmm01 -and $compute01 -and $compute02)
+if ($hgs01 -and $dc01 -and $VMm01 -and $compute01 -and $compute02)
 {
     Log-Message -Message "Initializing variable storing environment VMs"
-    $Script:EnvironmentVMs = $hgs01, $dc01, $vmm01, $compute01, $compute02    
+    $Script:EnvironmentVMs = $hgs01, $dc01, $VMm01, $compute01, $compute02    
 }
 else 
 {
@@ -404,11 +415,11 @@ If ($Script:stage -eq 0 -and $Script:stage -lt $StopBeforeStage)
     Begin-Stage
     $hgs01 = Prepare-VM -vmname $Script:VmNameHgs -basediskpath $Script:baseServerCorePath -dynamicmemory $true
     $dc01 = Prepare-VM -vmname $Script:VmNameDc -basediskpath $Script:baseServerCorePath -dynamicmemory $true
-    $vmm01 = Prepare-VM -vmname $Script:VmNameVmm -basediskpath $Script:baseServerStandardPath
+    $VMm01 = Prepare-VM -vmname $Script:VmNameVmm -basediskpath $Script:baseServerStandardPath
     $compute01 = Prepare-VM -vmname "$Script:VmNameCompute 01" -processorcount 4 -startupmemory 2GB -enablevirtualizationextensions $true -enablevtpm $true -basediskpath $Script:baseNanoServerPath
     $compute02 = Prepare-VM -vmname "$Script:VmNameCompute 02" -processorcount 4 -startupmemory 2GB -enablevirtualizationextensions $true -enablevtpm $true -basediskpath $Script:baseNanoServerPath
     
-    $Script:EnvironmentVMs = ($hgs01, $dc01, $vmm01, $compute01, $compute02)
+    $Script:EnvironmentVMs = ($hgs01, $dc01, $VMm01, $compute01, $compute02)
     End-Stage
 } 
 
@@ -432,17 +443,17 @@ If ($Script:stage -eq 1 -and $Script:stage -lt $StopBeforeStage)
             )
             If ($param["features"])
             {
-                Write-Host "`t`tCalling Install-WindowsFeature $($param["features"])"
+                Write-Host "Calling Install-WindowsFeature $($param["features"])"
                 Install-WindowsFeature $param["features"] -IncludeManagementTools #-ErrorAction Stop #| Out-Null
             }
             If ($param["ipaddress"])
             {
-                Write-Host "`t`tSetting Network configuration: IP $($param["ipaddress"])"
+                Write-Host "Setting Network configuration: IP $($param["ipaddress"])"
                 Get-NetAdapter | New-NetIPAddress -AddressFamily IPv4 -IPAddress $param["ipaddress"] -PrefixLength 24 | Out-Null
             }
             If ($param["computername"])
             {
-                Write-Host "`t`tRenaming computer to $($param["computername"])"
+                Write-Host "Renaming computer to $($param["computername"])"
                 Rename-Computer $param["computername"] -WarningAction SilentlyContinue | Out-Null
             }
         }
@@ -459,7 +470,7 @@ If ($Script:stage -eq 1 -and $Script:stage -lt $StopBeforeStage)
             computername="DC01"
         }
 
-    Invoke-CommandWithPSDirect -VirtualMachine $vmm01 -Credential $Script:localAdministratorCredential -ScriptBlock $scriptBlock -ArgumentList @{
+    Invoke-CommandWithPSDirect -VirtualMachine $VMm01 -Credential $Script:localAdministratorCredential -ScriptBlock $scriptBlock -ArgumentList @{
             features=("NET-Framework-Features", "NET-Framework-Core", "Web-Server", "ManagementOData", "Web-Dyn-Compression", "Web-Basic-Auth", "Web-Windows-Auth", "Web-Scripting-Tools", "WAS", "WAS-Process-Model", "WAS-NET-Environment", "WAS-Config-APIs");
             computername="VMM01"
         }
@@ -490,7 +501,7 @@ If ($Script:stage -eq 2 -and $Script:stage -lt $StopBeforeStage)
             Param(
                 [hashtable]$param
             )
-            Write-Host "`t`tPreparing Host Guardian Service"
+            Write-Host "Preparing Host Guardian Service"
             Install-HgsServer -HgsDomainName $param["hgsdomainname"] -SafeModeAdministratorPassword $param["adminpassword"] -WarningAction SilentlyContinue | Out-Null
         } -ArgumentList @{
             hgsdomainname=$hgsDomainName;
@@ -504,19 +515,69 @@ If ($Script:stage -eq 2 -and $Script:stage -lt $StopBeforeStage)
             Write-Host "`tSetting PowerShell as default shell"
             Set-ItemProperty -Path "HKLM:SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" -Name Shell -Value "PowerShell.exe" | Out-Null
 
-            Write-Host "`t`tCreating DHCP scope"
+            Write-Host "Configuring DHCP Server"
             Set-DhcpServerv4Binding -BindingState $true -InterfaceAlias Ethernet
-            Add-DhcpServerv4Scope -Name default -StartRange 192.168.42.1 -EndRange 192.168.42.200 -SubnetMask 255.255.255.0 -State Active #| Out-Null
-            Add-DhcpServerv4ExclusionRange -Name default -StartRange 192.168.42.1 -EndRange 192.168.42.99 #| Out-Null
+            Add-DhcpServerv4Scope -Name default -StartRange 192.168.42.100 -EndRange 192.168.42.200 -SubnetMask 255.255.255.0 #| Out-Null
             Set-DhcpServerv4OptionValue -DnsDomain $param["domainname"] -DnsServer 192.168.42.1 #| Out-Null
 
-            Write-Host "`t`tCreating fabric domain $($param["domainName"])"
+            Write-Host "Creating fabric domain $($param["domainName"])"
             Install-ADDSForest -DomainName $param["domainName"] -SafeModeAdministratorPassword $param["adminpassword"] -Force -WarningAction SilentlyContinue | Out-Null
         } -ArgumentList @{
             domainname=$domainName;
             adminpassword=$localAdministratorPassword
         }
 
+    Reboot-VM -vm $dc01
+
+    Invoke-CommandWithPSDirect -VirtualMachine $dc01 -Credential $Script:relecloudAdministratorCredential -ScriptBlock {
+            Param(
+                [hashtable]$param
+            )
+            #Add-DhcpServerInDC -DnsName "dc01.$($param["domainname"])"
+            #Restart-Service DHCPServer -WarningAction SilentlyContinue | Out-Null
+
+            Write-Host "Creating AD Users and Groups"
+            Write-Host "Creating User Lars" -NoNewline
+            do {
+                Start-Sleep -Seconds 3
+                Write-Host "." -NoNewline
+                New-ADUser -Name "Lars" -SAMAccountName "lars" -GivenName "Lars" -DisplayName "Lars" -AccountPassword $param["adminpassword"] -CannotChangePassword $true -Enabled $true  -ErrorAction SilentlyContinue | Out-Null
+            } until ($?)
+            Write-Host ""
+
+            Write-Host "Creating VMM service account user" -NoNewline
+            do {
+                Start-Sleep -Seconds 3
+                Write-Host "." -NoNewline
+                New-ADUser -Name "vmmserviceaccount" -SAMAccountName "vmmserviceaccount" -GivenName "VMM" -DisplayName "vmmserviceaccount" -AccountPassword $param["adminpassword"] -CannotChangePassword $true -Enabled $true -ErrorAction SilentlyContinue | Out-Null
+            } until ($?)
+            Write-Host ""
+
+            Write-Host "Creating ComputeHosts group" -NoNewline
+            do {
+                Start-Sleep -Seconds 3
+                Write-Host "." -NoNewline
+                New-ADGroup -Name "ComputeHosts" -DisplayName "Hyper-V Compute Hosts" -GroupCategory Security -GroupScope Universal  -ErrorAction SilentlyContinue | Out-Null
+            } until ($?)
+            Write-Host ""
+
+            Write-Host "Registering DHCP server with DC" -NoNewline
+            do {
+                Start-Sleep -Seconds 3
+                Write-Host "." -NoNewline
+                Add-DhcpServerInDC -ErrorAction Continue
+            } until ($?) 
+            Write-Host ""
+            
+            #Write-Host "Creating offline domain join blobs in domain $($param["domainname"])"
+            #mkdir C:\djoin
+            #djoin /Provision /Domain $($param["domainname"]) /Machine Compute01 /SaveFile C:\djoin\Compute01.djoin
+            #djoin /Provision /Domain $($param["domainname"]) /Machine Compute02 /SaveFile C:\djoin\Compute02.djoin
+            #djoin /Provision /Domain $($param["domainname"]) /Machine VMM01 /SaveFile C:\djoin\VMM.djoin        
+        } -ArgumentList @{
+            domainname=$domainName;
+            adminpassword=$localAdministratorPassword
+        }
     End-Stage
 } 
 #######################################################################################
@@ -536,19 +597,19 @@ If ($Script:stage -eq 3 -and $Script:stage -lt $StopBeforeStage)
             )
             New-Item -Path 'C:\HgsCertificates' -ItemType Directory | Out-Null
 
-            Write-Host "`t`tCreating self-signed certificates for HGS configuration"
+            Write-Host "Creating self-signed certificates for HGS configuration"
             $signingCert = New-SelfSignedCertificate -DnsName "signing.$($param["hgsdomainname"])"
             Export-PfxCertificate -Cert $signingCert -Password $param["adminpassword"] -FilePath C:\HgsCertificates\signing.pfx | Out-Null
             $encryptionCert = New-SelfSignedCertificate -DnsName "encryption.$($param["hgsdomainname"])"
             Export-PfxCertificate -Cert $encryptionCert -Password $param["adminpassword"] -FilePath C:\HgsCertificates\encryption.pfx | Out-Null
 
-            Write-Host "`t`tRemoving certificates from local store after exporting"
+            Write-Host "Removing certificates from local store after exporting"
             Remove-Item $EncryptionCert.PSPath, $SigningCert.PSPath -DeleteKey -ErrorAction Continue | Out-Null
 
-            Write-Host "`t`tConfiguring Host Guardian Service - AD-based trust"
+            Write-Host "Configuring Host Guardian Service - AD-based trust"
             Initialize-HgsServer -HgsServiceName service -SigningCertificatePath C:\HgsCertificates\signing.pfx -SigningCertificatePassword $param["adminpassword"] -EncryptionCertificatePath C:\HgsCertificates\encryption.pfx -EncryptionCertificatePassword $certificatePassword -TrustActiveDirectory -WarningAction SilentlyContinue | Out-Null
 
-            Write-Host "`t`tFixing up the cluster network"
+            Write-Host "Fixing up the cluster network"
             (Get-ClusterNetwork).Role = 3
 
         } -ArgumentList @{
@@ -556,55 +617,40 @@ If ($Script:stage -eq 3 -and $Script:stage -lt $StopBeforeStage)
             adminpassword=$localAdministratorPassword
         }
 
-    Invoke-CommandWithPSDirect -VirtualMachine $dc01 -Credential $Script:relecloudAdministratorCredential -ScriptBlock {
-            Param(
-                [hashtable]$param
-            )
-            #Add-DhcpServerInDC -DnsName "dc01.$($param["domainname"])"
-            #Restart-Service DHCPServer -WarningAction SilentlyContinue | Out-Null
-
-            Write-Host "`t`tCreating AD Users and Groups"
-            Write-Host "`t`tCreating User Lars"
-            New-ADUser -Name "Lars" -SAMAccountName "lars" -GivenName "Lars" -DisplayName "Lars" -AccountPassword $param["adminpassword"] -CannotChangePassword $true -Enabled $true #| Out-Null
-            Write-Host "`t`tCreating VMM service account user"
-            New-ADUser -Name "vmmserviceaccount" -SAMAccountName "vmmserviceaccount" -GivenName "VMM" -DisplayName "vmmserviceaccount" -AccountPassword $param["adminpassword"] -CannotChangePassword $true -Enabled $true #| Out-Null
-            Write-Host "`t`tCreating ComputeHosts group"
-            New-ADGroup -Name "ComputeHosts" -DisplayName "Hyper-V Compute Hosts" -GroupCategory Security -GroupScope Universal #| Out-Null
-
-            #Write-Host "`t`tCreating offline domain join blobs in domain $($param["domainname"])"
-            #mkdir C:\djoin
-            #djoin /Provision /Domain $($param["domainname"]) /Machine Compute01 /SaveFile C:\djoin\Compute01.djoin
-            #djoin /Provision /Domain $($param["domainname"]) /Machine Compute02 /SaveFile C:\djoin\Compute02.djoin
-            #djoin /Provision /Domain $($param["domainname"]) /Machine VMM01 /SaveFile C:\djoin\VMM.djoin        
-        } -ArgumentList @{
-            domainname=$domainName;
-            adminpassword=$localAdministratorPassword
-        }
+    Start-VM $dc01
 
     $ScriptBlock_DomainJoin = {
             Param(
                 [hashtable]$param
             )
-            Write-Host "`t`tWaiting for domain controller $($param["domainname"])"
+            Write-Host "Waiting for domain controller $($param["domainname"])"
             while (!(Test-Connection -Computername "$(($using:EnvironmentVMs | ?{$_.VMName -contains "Domain Controller"}).IPAddress)" -BufferSize 16 -Count 1 )) #-Quiet -ea SilentlyContinue 
             {
                 Start-Sleep -Seconds 1
             }
-            Write-Host "`t`tJoining system to domain $($param["domainname"])"
-            Add-Computer -DomainName $param["domainname"] -Credential $param["domaincred"] #-ErrorAction Stop #| Out-Null       
+            Write-Host "Joining system to domain $($param["domainname"])" -NoNewline
+            $cred = New-Object System.Management.Automation.PSCredential ($param["domainuser"], $param["domainpwd"])
+            do {
+                Write-Host "." -NoNewline
+                Add-Computer -DomainName $param["domainname"] -Credential $cred -ErrorAction SilentlyContinue | Out-Null    
+            } until ($?)
+            Write-Host ""
         }
 
     Invoke-CommandWithPSDirect -VirtualMachine $compute01 -Credential $Script:localAdministratorCredential -ScriptBlock $ScriptBlock_DomainJoin -ArgumentList @{
             domainname=$domainName;
-            domaincred=$Script:relecloudAdministratorCredential
+            domainuser="relecloud\administrator";
+            domainpwd=$Script:relecloudAdministratorCredential
         }
     Invoke-CommandWithPSDirect -VirtualMachine $compute02 -Credential $Script:localAdministratorCredential -ScriptBlock $ScriptBlock_DomainJoin -ArgumentList @{
             domainname=$domainName;
-            domaincred=$Script:relecloudAdministratorCredential
+            domainuser="relecloud\administrator";
+            domainpwd=$Script:relecloudAdministratorCredential
         }
-    Invoke-CommandWithPSDirect -VirtualMachine $vmm01 -Credential $Script:localAdministratorCredential -ScriptBlock $ScriptBlock_DomainJoin -ArgumentList @{
+    Invoke-CommandWithPSDirect -VirtualMachine $VMm01 -Credential $Script:localAdministratorCredential -ScriptBlock $ScriptBlock_DomainJoin -ArgumentList @{
             domainname=$domainName;
-            domaincred=$Script:relecloudAdministratorCredential
+            domainuser="relecloud\administrator";
+            domainpwd=$Script:relecloudAdministratorCredential
         }
     #Write-Host "`tCopying offline domain-join blobs to host"
     #$s = New-PSSession -VMId $dc01.VMId -Credential $Script:relecloudAdministratorCredential
@@ -629,7 +675,7 @@ if ($Script:stage -eq 99)
     # Add VMM additional disk
     $VMMDataVHDXPath = Join-Path $Script:basePath -ChildPath "\fabric\VMM01Data.vhdx"
     New-VHD -Dynamic -SizeBytes 30GB -Path $VMMDataVHDXPath #| Out-Null
-    Add-VMHardDiskDrive -VM $vmm01 -Path $VMMDataVHDXPath #| Out-Null
+    Add-VMHardDiskDrive -VM $VMm01 -Path $VMMDataVHDXPath #| Out-Null
 
     #Steps to run inside of the DC: 
 
@@ -644,13 +690,13 @@ if ($Script:stage -eq 99)
     #Copying offline domain join blobs to host
 
     # Customizing VMM
-    Copy-VMFile -VM $vmm01 -SourcePath (Join-Path $Script:basePath -ChildPath "fabric\VMM.djoin") -DestinationPath C:\VMM.djoin -Credential $Script:localAdministratorCredential
+    Copy-VMFile -VM $VMm01 -SourcePath (Join-Path $Script:basePath -ChildPath "fabric\VMM.djoin") -DestinationPath C:\VMM.djoin -Credential $Script:localAdministratorCredential
 
-    Invoke-Command -VMId $vmm01.VMId -Credential $Script:localAdministratorCredential -ScriptBlock {
+    Invoke-Command -VMId $VMm01.VMId -Credential $Script:localAdministratorCredential -ScriptBlock {
             djoin /requestodj /loadfile C:\vmm.djoin /LOCALOS /WINDOWSPATH C:\Windows
         }
 
-    Invoke-Command -VMId $vmm01.VMId -Credential $Script:localAdministratorCredential -ScriptBlock {
+    Invoke-Command -VMId $VMm01.VMId -Credential $Script:localAdministratorCredential -ScriptBlock {
             ([ADSI]"WinNT://vmm01/Administrators,group").psbase.Invoke("Add",([ADSI]"WinNT://Relecloud/vmmserviceaccount").path)
         }
         
