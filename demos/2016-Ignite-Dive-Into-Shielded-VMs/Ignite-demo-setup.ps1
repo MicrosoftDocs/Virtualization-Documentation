@@ -451,6 +451,7 @@ If ($Script:stage -eq 1 -and $Script:stage -lt $StopBeforeStage)
                 Write-Host "Setting Network configuration: IP $($param["ipaddress"])"
                 Get-NetAdapter | New-NetIPAddress -AddressFamily IPv4 -IPAddress $param["ipaddress"] -PrefixLength 24 | Out-Null
             }
+            Get-DnsClientServerAddress | %{Set-DnsClientServerAddress -InterfaceIndex $_.InterfaceIndex -ServerAddresses 192.168.42.1}
             If ($param["computername"])
             {
                 Write-Host "Renaming computer to $($param["computername"])"
@@ -519,6 +520,7 @@ If ($Script:stage -eq 2 -and $Script:stage -lt $StopBeforeStage)
             Set-DhcpServerv4Binding -BindingState $true -InterfaceAlias Ethernet
             Add-DhcpServerv4Scope -Name default -StartRange 192.168.42.100 -EndRange 192.168.42.200 -SubnetMask 255.255.255.0 #| Out-Null
             Set-DhcpServerv4OptionValue -DnsDomain $param["domainname"] -DnsServer 192.168.42.1 #| Out-Null
+            Set-DhcpServerv4OptionValue -OptionId 6 -value "192.168.42.1"
 
             Write-Host "Creating fabric domain $($param["domainName"])"
             Install-ADDSForest -DomainName $param["domainName"] -SafeModeAdministratorPassword $param["adminpassword"] -Force -WarningAction SilentlyContinue | Out-Null
@@ -569,10 +571,11 @@ If ($Script:stage -eq 2 -and $Script:stage -lt $StopBeforeStage)
             } until ($?) 
             Write-Host ""
             
-            #Write-Host "Creating offline domain join blobs in domain $($param["domainname"])"
-            #mkdir C:\djoin
-            #djoin /Provision /Domain $($param["domainname"]) /Machine Compute01 /SaveFile C:\djoin\Compute01.djoin
-            #djoin /Provision /Domain $($param["domainname"]) /Machine Compute02 /SaveFile C:\djoin\Compute02.djoin
+            Write-Host "Creating offline domain join blobs for compute hosts in domain $($param["domainname"])"
+            mkdir C:\djoin
+            djoin /Provision /Domain $($param["domainname"]) /Machine Compute01 /SaveFile C:\djoin\Compute01.djoin
+            djoin /Provision /Domain $($param["domainname"]) /Machine Compute02 /SaveFile C:\djoin\Compute02.djoin
+            New-SmbShare -Path C:\djoin -Name djoin -ContinuouslyAvailable $true -ReadAccess Everyone
             #djoin /Provision /Domain $($param["domainname"]) /Machine VMM01 /SaveFile C:\djoin\VMM.djoin        
         } -ArgumentList @{
             domainname=$domainName;
@@ -626,32 +629,34 @@ If ($Script:stage -eq 3 -and $Script:stage -lt $StopBeforeStage)
             Write-Host "Waiting for domain controller $($param["domainname"])"
             while (!(Test-Connection -Computername "$(($using:EnvironmentVMs | ?{$_.VMName -contains "Domain Controller"}).IPAddress)" -BufferSize 16 -Count 1 )) #-Quiet -ea SilentlyContinue 
             {
-                Start-Sleep -Seconds 1
+                Start-Sleep -Seconds 2
             }
             Write-Host "Joining system to domain $($param["domainname"])" -NoNewline
             $cred = New-Object System.Management.Automation.PSCredential ($param["domainuser"], $param["domainpwd"])
             do {
                 Write-Host "." -NoNewline
+                Start-Sleep -Seconds 1
                 Add-Computer -DomainName $param["domainname"] -Credential $cred -ErrorAction SilentlyContinue | Out-Null    
             } until ($?)
             Write-Host ""
         }
 
-    Invoke-CommandWithPSDirect -VirtualMachine $compute01 -Credential $Script:localAdministratorCredential -ScriptBlock $ScriptBlock_DomainJoin -ArgumentList @{
-            domainname=$domainName;
-            domainuser="relecloud\administrator";
-            domainpwd=$Script:relecloudAdministratorCredential
-        }
-    Invoke-CommandWithPSDirect -VirtualMachine $compute02 -Credential $Script:localAdministratorCredential -ScriptBlock $ScriptBlock_DomainJoin -ArgumentList @{
-            domainname=$domainName;
-            domainuser="relecloud\administrator";
-            domainpwd=$Script:relecloudAdministratorCredential
-        }
     Invoke-CommandWithPSDirect -VirtualMachine $VMm01 -Credential $Script:localAdministratorCredential -ScriptBlock $ScriptBlock_DomainJoin -ArgumentList @{
             domainname=$domainName;
             domainuser="relecloud\administrator";
-            domainpwd=$Script:relecloudAdministratorCredential
+            domainpwd=$localAdministratorPassword
         }
+
+#    Invoke-CommandWithPSDirect -VirtualMachine $compute01 -Credential $Script:localAdministratorCredential -ScriptBlock $ScriptBlock_DomainJoin -ArgumentList @{
+#            domainname=$domainName;
+#            domainuser="relecloud\administrator";
+#            domainpwd=$localAdministratorPassword
+#        }
+#    Invoke-CommandWithPSDirect -VirtualMachine $compute02 -Credential $Script:localAdministratorCredential -ScriptBlock $ScriptBlock_DomainJoin -ArgumentList @{
+#            domainname=$domainName;
+#            domainuser="relecloud\administrator";
+#            domainpwd=$localAdministratorPassword
+#        }
     #Write-Host "`tCopying offline domain-join blobs to host"
     #$s = New-PSSession -VMId $dc01.VMId -Credential $Script:relecloudAdministratorCredential
     #Copy-Item -FromSession $s -Path C:\djoin\Compute01.djoin -Destination (Join-Path $Script:basePath -ChildPath fabric) | Out-Null
