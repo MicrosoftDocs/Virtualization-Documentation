@@ -14,17 +14,18 @@ $Script:sourcePath = "C:\IgniteSource"
 
 $Script:baseMediaPath = Join-Path $Script:sourcePath -ChildPath "\WindowsServer2016\server_en-us_vl\" -Resolve
 
-$domainName = "relecloud.com"
-$hgsDomainName = "hgs.$domainName"
-$localAdministratorPassword = ConvertTo-SecureString -AsPlainText "P@ssw0rd." -Force
+$Script:domainName = "relecloud.com"
+$Script:hgsDomainName = "hgs.$($Script:domainName)"
+$Script:clearTextPassword = "P@ssw0rd."
+$Script:passwordSecureString = ConvertTo-SecureString -AsPlainText $Script:clearTextPassword -Force
 
 $Script:internalSwitchName = "FabricInternal"
 $Script:externalSwitchName = "FabricExternal"
 $Script:fabricSwitch = $Script:externalSwitchName
 
-$Script:localAdministratorCredential = New-Object System.Management.Automation.PSCredential (“administrator”, $localAdministratorPassword)
-$Script:relecloudAdministratorCredential = New-Object System.Management.Automation.PSCredential (“relecloud\administrator”, $localAdministratorPassword)
-$Script:hgsAdministratorCredential = New-Object System.Management.Automation.PSCredential (“hgs\administrator”, $localAdministratorPassword)
+$Script:localAdminCred = New-Object System.Management.Automation.PSCredential (“administrator”, $Script:passwordSecureString)
+$Script:relecloudAdminCred = New-Object System.Management.Automation.PSCredential (“relecloud\administrator”, $Script:passwordSecureString)
+$Script:hgsAdminCred = New-Object System.Management.Automation.PSCredential (“hgs\administrator”, $Script:passwordSecureString)
 
 $Script:baseServerCorePath = Join-Path $Script:basePath -ChildPath "\WindowsServer2016_ServerDataCenterCore.vhdx"
 $Script:baseServerStandardPath = Join-Path $Script:basePath -ChildPath "\WindowsServer2016_ServerStandard.vhdx"
@@ -44,7 +45,7 @@ $Script:stagenames = (
     "Stage 0 Create VMs", 
     "Stage 1 Roles, Computernames, Static IPs",
     "Stage 2 Prepare HGS, configure DHCP, create fabric domain",
-    "Stage 3 Configure HGS, join compute nodes to domain"
+    "Stage 3 Configure HGS in AD mode, join compute nodes to domain"
     )
 
 $Script:stage = $StartFromStage
@@ -276,7 +277,7 @@ function Invoke-CommandWithPSDirect
     until ((Get-VMIntegrationService -VM $VirtualMachine |? Id -match "84EAAE65-2F2E-45F5-9BB5-0E857DC8EB47").PrimaryStatusDescription -eq "OK")
     Log-Message -Level 1 -Message "Heartbeat IC connected."
 
-    Log-Message -Level 1 -Message "Waiting for PSDirect connection to $($VirtualMachine.VMName) to be available"
+    Log-Message -Level 1 -Message "Waiting for PSDirect connection to $($VirtualMachine.VMName) for $($Credential.UserName)"
     $startTime = Get-Date
     do 
     {
@@ -440,7 +441,7 @@ if (-Not (Test-Path $Script:baseNanoServerPath))
     # Importing Nano Server Image Generator PowerShell Module
     Import-Module (Join-Path $Script:baseMediaPath -ChildPath "\NanoServer\NanoServerImageGenerator\NanoServerImageGenerator.psm1") | Out-Null
 
-    New-NanoServerImage -DeploymentType Guest -Edition Datacenter -MediaPath $Script:baseMediaPath -Package Microsoft-NanoServer-SecureStartup-Package,Microsoft-NanoServer-Guest-Package,Microsoft-NanoServer-SCVMM-Package,Microsoft-NanoServer-SCVMM-Compute-Package  -TargetPath $Script:baseNanoServerPath -EnableRemoteManagementPort -AdministratorPassword $localAdministratorPassword | Out-Null
+    New-NanoServerImage -DeploymentType Guest -Edition Datacenter -MediaPath $Script:baseMediaPath -Package Microsoft-NanoServer-SecureStartup-Package,Microsoft-NanoServer-Guest-Package,Microsoft-NanoServer-SCVMM-Package,Microsoft-NanoServer-SCVMM-Compute-Package  -TargetPath $Script:baseNanoServerPath -EnableRemoteManagementPort -AdministratorPassword $Script:passwordSecureString | Out-Null
 }
 
 #######################################################################################
@@ -515,7 +516,7 @@ If ($Script:stage -eq 1 -and $Script:stage -lt $StopBeforeStage)
     Log-Message -Level 1 -Message "Starting all VMs to parallelize specialization"
     Start-VM -VM $Script:EnvironmentVMs -ErrorAction Stop | Out-Null
 
-    $scriptBlock = {
+    $ScriptBlock_FeaturesComputerName = {
             Param(
                 [hashtable]$param
             )
@@ -524,10 +525,10 @@ If ($Script:stage -eq 1 -and $Script:stage -lt $StopBeforeStage)
                 If ($param["featuresource"])
                 {
                     Write-Host "Calling Install-WindowsFeature $($param["features"]) using source path $($param["featuresource"])"
-                    Install-WindowsFeature $param["features"] -IncludeManagementTools -Source $param["featuresource"] -ErrorAction Stop | Out-Null
+                    Install-WindowsFeature $param["features"] -IncludeManagementTools -Source $param["featuresource"] -ErrorAction Stop -WarningAction SilentlyContinue | Out-Null
                 } else {
                     Write-Host "Calling Install-WindowsFeature $($param["features"])"
-                    Install-WindowsFeature $param["features"] -IncludeManagementTools -ErrorAction Stop | Out-Null                    
+                    Install-WindowsFeature $param["features"] -IncludeManagementTools -ErrorAction Stop -WarningAction SilentlyContinue | Out-Null                    
                 }
             }
             If ($param["ipaddress"])
@@ -543,31 +544,31 @@ If ($Script:stage -eq 1 -and $Script:stage -lt $StopBeforeStage)
             }
         }
 
-    Invoke-CommandWithPSDirect -VirtualMachine $hgs01 -Credential $Script:localAdministratorCredential -ScriptBlock $scriptBlock -ArgumentList @{
+    Invoke-CommandWithPSDirect -VirtualMachine $hgs01 -Credential $Script:localAdminCred -ScriptBlock $ScriptBlock_FeaturesComputerName -ArgumentList @{
             features="HostGuardianServiceRole";
             ipaddress="192.168.42.99";
             computername="HGS01"
         }
 
-    Invoke-CommandWithPSDirect -VirtualMachine $dc01 -Credential $Script:localAdministratorCredential -ScriptBlock $scriptBlock -ArgumentList @{
+    Invoke-CommandWithPSDirect -VirtualMachine $dc01 -Credential $Script:localAdminCred -ScriptBlock $ScriptBlock_FeaturesComputerName -ArgumentList @{
             features=("AD-Domain-Services","DHCP");
             ipaddress="192.168.42.1";
             computername="DC01"
         }
 
-    Copy-ItemToVm -VirtualMachine $vmm01 -SourcePath (Join-Path $Script:baseMediaPath -ChildPath "sources\sxs\microsoft-windows-netfx3-ondemand-package.cab") -DestinationPath C:\sxs\microsoft-windows-netfx3-ondemand-package.cab -Credential $Script:localAdministratorCredential
+    Copy-ItemToVm -VirtualMachine $vmm01 -SourcePath (Join-Path $Script:baseMediaPath -ChildPath "sources\sxs\microsoft-windows-netfx3-ondemand-package.cab") -DestinationPath C:\sxs\microsoft-windows-netfx3-ondemand-package.cab -Credential $Script:localAdminCred
 
-    Invoke-CommandWithPSDirect -VirtualMachine $vmm01 -Credential $Script:localAdministratorCredential -ScriptBlock $scriptBlock -ArgumentList @{
+    Invoke-CommandWithPSDirect -VirtualMachine $vmm01 -Credential $Script:localAdminCred -ScriptBlock $ScriptBlock_FeaturesComputerName -ArgumentList @{
             features=("NET-Framework-Features", "NET-Framework-Core", "Web-Server", "ManagementOData", "Web-Dyn-Compression", "Web-Basic-Auth", "Web-Windows-Auth", "Web-Scripting-Tools", "WAS", "WAS-Process-Model", "WAS-NET-Environment", "WAS-Config-APIs");
             featuresource="C:\sxs";
             computername="VMM01"
         }
     
-    Invoke-CommandWithPSDirect -VirtualMachine $compute01 -Credential $Script:localAdministratorCredential -ScriptBlock $scriptBlock -ArgumentList @{
+    Invoke-CommandWithPSDirect -VirtualMachine $compute01 -Credential $Script:localAdminCred -ScriptBlock $ScriptBlock_FeaturesComputerName -ArgumentList @{
             computername="Compute01"
         }
 
-    Invoke-CommandWithPSDirect -VirtualMachine $compute02 -Credential $Script:localAdministratorCredential -ScriptBlock $scriptBlock -ArgumentList @{
+    Invoke-CommandWithPSDirect -VirtualMachine $compute02 -Credential $Script:localAdminCred -ScriptBlock $ScriptBlock_FeaturesComputerName -ArgumentList @{
             computername="Compute02"
         }
 
@@ -585,18 +586,18 @@ If ($Script:stage -eq 2 -and $Script:stage -lt $StopBeforeStage)
 {
     Begin-Stage
 
-    Invoke-CommandWithPSDirect -VirtualMachine $hgs01 -Credential $Script:localAdministratorCredential -ScriptBlock {
+    Invoke-CommandWithPSDirect -VirtualMachine $hgs01 -Credential $Script:localAdminCred -ScriptBlock {
             Param(
                 [hashtable]$param
             )
             Write-Host "Preparing Host Guardian Service"
             Install-HgsServer -HgsDomainName $param["hgsdomainname"] -SafeModeAdministratorPassword $param["adminpassword"] -WarningAction SilentlyContinue | Out-Null
         } -ArgumentList @{
-            hgsdomainname=$hgsDomainName;
-            adminpassword=$localAdministratorPassword
+            hgsdomainname=$Script:hgsDomainName;
+            adminpassword=$Script:passwordSecureString
         }
 
-    Invoke-CommandWithPSDirect -VirtualMachine $dc01 -Credential $Script:localAdministratorCredential -ScriptBlock {
+    Invoke-CommandWithPSDirect -VirtualMachine $dc01 -Credential $Script:localAdminCred -ScriptBlock {
             Param(
                 [hashtable]$param
             )
@@ -612,13 +613,13 @@ If ($Script:stage -eq 2 -and $Script:stage -lt $StopBeforeStage)
             Write-Host "Creating fabric domain $($param["domainName"])"
             Install-ADDSForest -DomainName $param["domainName"] -SafeModeAdministratorPassword $param["adminpassword"] -Force -WarningAction SilentlyContinue | Out-Null
         } -ArgumentList @{
-            domainname=$domainName;
-            adminpassword=$localAdministratorPassword
+            domainname=$Script:domainName;
+            adminpassword=$Script:passwordSecureString
         }
 
     Reboot-VM -vm $dc01
 
-    Invoke-CommandWithPSDirect -VirtualMachine $dc01 -Credential $Script:relecloudAdministratorCredential -ScriptBlock {
+    Invoke-CommandWithPSDirect -VirtualMachine $dc01 -Credential $Script:relecloudAdminCred -ScriptBlock {
             Param(
                 [hashtable]$param
             )
@@ -661,8 +662,8 @@ If ($Script:stage -eq 2 -and $Script:stage -lt $StopBeforeStage)
             Start-Process "djoin.exe" -Verb RunAs -ArgumentList "/Provision", "/Domain $($param["domainname"])", "/Machine Compute02", "/SaveFile C:\djoin\Compute02.djoin"
             New-SmbShare -Path C:\djoin -Name djoin -ContinuouslyAvailable $true -ReadAccess Everyone
         } -ArgumentList @{
-            domainname=$domainName;
-            adminpassword=$localAdministratorPassword
+            domainname=$Script:domainName;
+            adminpassword=$Script:passwordSecureString
         }
     End-Stage
 } 
@@ -671,40 +672,47 @@ If ($Script:stage -eq 2 -and $Script:stage -lt $StopBeforeStage)
 #######################################################################################
 
 #######################################################################################
-# Beginning of Stage 3 Configure HGS, join compute nodes to domain
+# Beginning of Stage 3 Configure HGS in AD mode, join compute nodes to domain
 #######################################################################################
 If ($Script:stage -eq 3 -and $Script:stage -lt $StopBeforeStage)
 {
     Begin-Stage
 
-    Invoke-CommandWithPSDirect -VirtualMachine $hgs01 -Credential $Script:hgsAdministratorCredential -ScriptBlock {
+    Invoke-CommandWithPSDirect -VirtualMachine $hgs01 -Credential $Script:hgsAdminCred -ScriptBlock {
             Param(
                 [hashtable]$param
             )
             New-Item -Path 'C:\HgsCertificates' -ItemType Directory | Out-Null
 
-            Write-Host "Creating self-signed certificates for HGS configuration"
+            Write-Host "Creating self-signed certificates for HGS configuration" 
             $signingCert = New-SelfSignedCertificate -DnsName "signing.$($param["hgsdomainname"])"
             Export-PfxCertificate -Cert $signingCert -Password $param["adminpassword"] -FilePath C:\HgsCertificates\signing.pfx | Out-Null
             $encryptionCert = New-SelfSignedCertificate -DnsName "encryption.$($param["hgsdomainname"])"
             Export-PfxCertificate -Cert $encryptionCert -Password $param["adminpassword"] -FilePath C:\HgsCertificates\encryption.pfx | Out-Null
 
-            Write-Host "Removing certificates from local store after exporting"
+            Write-Host "Removing certificates from local store after exporting" 
             Remove-Item $EncryptionCert.PSPath, $SigningCert.PSPath -DeleteKey -ErrorAction Continue | Out-Null
 
-            Write-Host "Configuring Host Guardian Service - AD-based trust"
-            Initialize-HgsServer -HgsServiceName service -SigningCertificatePath C:\HgsCertificates\signing.pfx -SigningCertificatePassword $param["adminpassword"] -EncryptionCertificatePath C:\HgsCertificates\encryption.pfx -EncryptionCertificatePassword $certificatePassword -TrustActiveDirectory -WarningAction SilentlyContinue | Out-Null
+            Write-Host "Configuring Host Guardian Service - AD-based trust" 
+            Initialize-HgsServer -HgsServiceName service -SigningCertificatePath C:\HgsCertificates\signing.pfx `
+                -SigningCertificatePassword $param["adminpassword"] -EncryptionCertificatePath C:\HgsCertificates\encryption.pfx `
+                -EncryptionCertificatePassword $certificatePassword -TrustActiveDirectory -WarningAction SilentlyContinue | Out-Null
 
             Write-Host "Fixing up the cluster network"
             (Get-ClusterNetwork).Role = 3
 
         } -ArgumentList @{
-            hgsdomainname=$hgsDomainName
-            adminpassword=$localAdministratorPassword
+            hgsdomainname=$Script:hgsDomainName
+            adminpassword=$Script:passwordSecureString
         }
 
     Start-VM $dc01
 
+    $ComputeHostsSID = Invoke-CommandWithPSDirect -VirtualMachine $dc01 -Credential $Script:relecloudAdminCred -ScriptBlock {
+            $sid = Get-ADGroup ComputeHosts | select -ExpandProperty SID | select -ExpandProperty Value
+            Write-Host "ComputeHosts SID: $sid"
+            $sid
+        }
     $ScriptBlock_DomainJoin = {
             Param(
                 [hashtable]$param
@@ -735,46 +743,65 @@ If ($Script:stage -eq 3 -and $Script:stage -lt $StopBeforeStage)
             }
         }
     
-    Invoke-CommandWithPSDirect -VirtualMachine $vmm01 -Credential $Script:localAdministratorCredential -ScriptBlock $ScriptBlock_DomainJoin -ArgumentList @{
-            domainname=$domainName;
+    $Arg_DomainJoin = @{
+            domainname=$Script:domainName;
             domainuser="relecloud\administrator";
-            domainpwd=$localAdministratorPassword
+            domainpwd=$Script:passwordSecureString
         }
 
-    Invoke-CommandWithPSDirect -VirtualMachine $compute01 -Credential $Script:localAdministratorCredential -ScriptBlock $ScriptBlock_DomainJoin -ArgumentList @{
-            domainname=$domainName;
+    Invoke-CommandWithPSDirect -VirtualMachine $vmm01 -Credential $Script:localAdminCred -ScriptBlock $ScriptBlock_DomainJoin -ArgumentList $Arg_DomainJoin 
+    Invoke-CommandWithPSDirect -VirtualMachine $compute01 -Credential $Script:localAdminCred -ScriptBlock $ScriptBlock_DomainJoin -ArgumentList $Arg_DomainJoin
+    Invoke-CommandWithPSDirect -VirtualMachine $compute02 -Credential $Script:localAdminCred -ScriptBlock $ScriptBlock_DomainJoin -ArgumentList $Arg_DomainJoin
+    
+    Restart-Computer $compute01
+    Restart-Computer $compute02
+
+    Invoke-CommandWithPSDirect -VirtualMachine $hgs01 -Credential $Script:hgsAdminCred -ScriptBlock {
+            Write-Host "Creating a DNS forwarder to the fabric AD"
+            Add-DnsServerConditionalForwarderZone -Name "relecloud.com" -MasterServers 192.168.42.1
+
+            Write-Host "Adding a one-way trust with the fabric AD"
+            Start-Process "netdom.exe" -Verb RunAs -ArgumentList "trust", "hgs.relecloud.com", "/domain:$($param["domainname"])", "/userD:$($param["domainuser"])", "/passwordD:$($param["domainpwd"])" /add
+
+            Write-Host "Adding ComputeHosts host group to HGS attestation"
+            Add-HgsAttestationHostGroup -Name "ComputeHosts" -Identifier $param["computehostssid"]
+        } -ArgumentList @{
+            domainname=$Script:domainName;
             domainuser="relecloud\administrator";
-            domainpwd=$localAdministratorPassword
+            domainpwd=$Script:clearTextPassword;
+            computehostssid = $ComputeHostsSID
         }
-    Invoke-CommandWithPSDirect -VirtualMachine $compute02 -Credential $Script:localAdministratorCredential -ScriptBlock $ScriptBlock_DomainJoin -ArgumentList @{
-            domainname=$domainName;
-            domainuser="relecloud\administrator";
-            domainpwd=$localAdministratorPassword
+    
+    Invoke-CommandWithPSDirect -VirtualMachine $dc01 -Credential $Script:relecloudAdminCred -ScriptBlock {
+            Write-Host "Creating a DNS forwarder to the hgs AD"
+            Add-DnsServerConditionalForwarderZone -Name "hgs.relecloud.com" -MasterServers 192.168.42.99
+        } -ArgumentList @{
+            domainname=$Script:domainName
         }
-#    Invoke-CommandWithPSDirect -VirtualMachine $compute01 -Credential $Script:localAdministratorCredential -ScriptBlock $ScriptBlock_DomainJoin -ArgumentList @{
-#            domainname=$domainName;
-#            domainuser="relecloud\administrator";
-#            domainpwd=$localAdministratorPassword
-#        }
-#    Invoke-CommandWithPSDirect -VirtualMachine $compute02 -Credential $Script:localAdministratorCredential -ScriptBlock $ScriptBlock_DomainJoin -ArgumentList @{
-#            domainname=$domainName;
-#            domainuser="relecloud\administrator";
-#            domainpwd=$localAdministratorPassword
-#        }
-    #Write-Host "`tCopying offline domain-join blobs to host"
-    #$s = New-PSSession -VMId $dc01.VMId -Credential $Script:relecloudAdministratorCredential
-    #Copy-Item -FromSession $s -Path C:\djoin\Compute01.djoin -Destination (Join-Path $Script:basePath -ChildPath fabric) | Out-Null
-    #Copy-Item -FromSession $s -Path C:\djoin\Compute02.djoin -Destination (Join-Path $Script:basePath -ChildPath fabric) | Out-Null
-    #Copy-Item -FromSession $s -Path C:\djoin\VMM.djoin -Destination (Join-Path $Script:basePath -ChildPath fabric) | Out-Null
-    #Remove-PSSession $s | Out-Null
+
+    $ScriptBlock_HgsClientConfiguration = {
+        Param(
+                [hashtable]$param
+        )
+        Write-Host "Configuring HGS Client"
+        Set-HgsClientConfiguration -KeyProtectionServerUrl $param["keyprotectionserverurl"] -AttestationServerUrl $param["attestationserverurl"]
+    }
+
+    $Arg_HgsClientConfiguration = @{
+            keyprotectionserverurl="http://service.hgs.relecloud.com/KeyProtection";
+            attestationserverurl="http://service.hgs.relecloud.coml/Attestation"
+        }
+
+    Invoke-CommandWithPSDirect -VirtualMachine $compute01 -Credential $Script:localAdminCred -ScriptBlock $ScriptBlock_HgsClientConfiguration -ArgumentList $Arg_HgsClientConfiguration 
+    Invoke-CommandWithPSDirect -VirtualMachine $compute02 -Credential $Script:localAdminCred -ScriptBlock $ScriptBlock_HgsClientConfiguration -ArgumentList $Arg_HgsClientConfiguration
 
     End-Stage
 } 
 #######################################################################################
-# End of Stage 3 Configure HGS, join compute nodes to domain
+# End of Stage 3 Configure HGS in AD mode, join compute nodes to domain
 #######################################################################################
 
-#New-NanoServerImage -ComputerName "NanoVM" -Compute -DeploymentType Guest -Edition Datacenter -MediaPath $Script:baseMediaPath -Package Microsoft-NanoServer-SecureStartup-Package,Microsoft-NanoServer-Guest-Package,Microsoft-NanoServer-ShieldedVM-Package -TargetPath $compute2VHDXPath -EnableRemoteManagementPort -AdministratorPassword $localAdministratorPassword -InterfaceNameOrIndex Ethernet -Ipv4Address 192.168.42.202 -Ipv4SubnetMask 255.255.255.0 -Ipv4Dns 192.168.42.1 -Ipv4Gateway 192.168.42.1 | Out-Null
+#New-NanoServerImage -ComputerName "NanoVM" -Compute -DeploymentType Guest -Edition Datacenter -MediaPath $Script:baseMediaPath -Package Microsoft-NanoServer-SecureStartup-Package,Microsoft-NanoServer-Guest-Package,Microsoft-NanoServer-ShieldedVM-Package -TargetPath $compute2VHDXPath -EnableRemoteManagementPort -AdministratorPassword $Script:passwordSecureString -InterfaceNameOrIndex Ethernet -Ipv4Address 192.168.42.202 -Ipv4SubnetMask 255.255.255.0 -Ipv4Dns 192.168.42.1 -Ipv4Gateway 192.168.42.1 | Out-Null
 if ($Script:stage -eq 99)
     {
     #######################################################################################
@@ -799,13 +826,13 @@ if ($Script:stage -eq 99)
     #Copying offline domain join blobs to host
 
     # Customizing VMM
-    Copy-VMFile -VM $vmm01 -SourcePath (Join-Path $Script:basePath -ChildPath "fabric\VMM.djoin") -DestinationPath C:\VMM.djoin -Credential $Script:localAdministratorCredential
+    Copy-VMFile -VM $vmm01 -SourcePath (Join-Path $Script:basePath -ChildPath "fabric\VMM.djoin") -DestinationPath C:\VMM.djoin -Credential $Script:localAdminCred
 
-    Invoke-Command -VMId $vmm01.VMId -Credential $Script:localAdministratorCredential -ScriptBlock {
+    Invoke-Command -VMId $vmm01.VMId -Credential $Script:localAdminCred -ScriptBlock {
             djoin /requestodj /loadfile C:\vmm.djoin /LOCALOS /WINDOWSPATH C:\Windows
         }
 
-    Invoke-Command -VMId $vmm01.VMId -Credential $Script:localAdministratorCredential -ScriptBlock {
+    Invoke-Command -VMId $vmm01.VMId -Credential $Script:localAdminCred -ScriptBlock {
             ([ADSI]"WinNT://vmm01/Administrators,group").psbase.Invoke("Add",([ADSI]"WinNT://Relecloud/vmmserviceaccount").path)
         }
         
@@ -820,7 +847,7 @@ if ($Script:stage -eq 99)
     #
     # VMM Setup
 
-    Invoke-Command -VMId $dc01.VMId -Credential $Script:relecloudAdministratorCredential -ArgumentList ($domainName, $Script:relecloudAdministratorCredential) -ScriptBlock {
+    Invoke-Command -VMId $dc01.VMId -Credential $Script:relecloudAdminCred -ArgumentList ($Script:domainName, $Script:relecloudAdminCred) -ScriptBlock {
             Param($domainName, $credential)
 
             ipmo 'C:\Program Files\Microsoft System Center 2016\Virtual Machine Manager\bin\psModules\virtualmachinemanager\virtualmachinemanager.psd1'
@@ -842,14 +869,14 @@ if ($Script:stage -eq 99)
 
     # Customization based on compute nodes
 
-    Invoke-Command -VMId $dc01.VMId -Credential $Script:relecloudAdministratorCredential -ArgumentList ($domainName, $localAdministratorPassword) -ScriptBlock {
-            Param($domainName, $localAdministratorPassword)
+    Invoke-Command -VMId $dc01.VMId -Credential $Script:relecloudAdminCred -ArgumentList ($Script:DomainName, $Script:passwordSecureString) -ScriptBlock {
+            Param($domainName, $passwordSecureString)
             # Add Compute Hosts to group
             Add-ADGroupMember "ComputeHosts" -Members "Compute01$"
             Add-ADGroupMember "ComputeHosts" -Members "Compute02$"
         }
 
-    Invoke-Command -VMId $compute2.VMId -Credential $Script:relecloudAdministratorCredential -ScriptBlock {
+    Invoke-Command -VMId $compute2.VMId -Credential $Script:relecloudAdminCred -ScriptBlock {
             (Get-PlatformIdentifier –Name 'Compute02').InnerXml | Out-file C:\Compute02.xml
             New-CIPolicy –Level FilePublisher –Fallback Hash –FilePath 'C:\HW1CodeIntegrity.xml'
             ConvertFrom-CIPolicy –XmlFilePath 'C:\HW1CodeIntegrity.xml' –BinaryFilePath 'C:\HW1CodeIntegrity.p7b'
