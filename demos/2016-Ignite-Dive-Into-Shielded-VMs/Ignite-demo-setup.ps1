@@ -226,6 +226,16 @@ function Reset-EnvironmentToStageCheckpoint
         Log-Message -Level 1 -Message "Locating checkpoints not successful. Resetting current stage to 0"
         $Script:stage = 0
     }
+    
+    For ($i=$Stage+1; $i -lt ($Script:stagenames).Count; $i++)
+    {
+        $Snapshots = Get-VMSnapshot -VM $VirtualMachines -Name $Script:stagenames[$i] -ErrorAction SilentlyContinue 
+        If ($Snapshots)
+        {
+            Log-Message -Level 1 -Message "Removing checkpoints for stage $($Script:stagenames[$i])"
+            Remove-VMCheckpoint -Force
+        }
+    }
 }
 
 function Invoke-CommandWithPSDirect
@@ -290,7 +300,77 @@ function Invoke-CommandWithPSDirect
     {
         Invoke-Command -VMId $VirtualMachine.VMId -Credential $Credential -ScriptBlock $ScriptBlock -ErrorAction SilentlyContinue    
     }
+}
+
+function Copy-ItemToVm
+{
+    Param(
+        [Parameter(Mandatory=$true)]
+        [Microsoft.HyperV.PowerShell.VirtualMachine]
+        $VirtualMachine,
+
+        [Parameter(Mandatory=$true)]
+        [System.Management.Automation.PSCredential]
+        $Credential,
+        
+        [Parameter(Mandatory=$true)]
+        [String]
+        $SourcePath,
+
+        [Parameter(Mandatory=$true)]
+        [String]
+        $DestinationPath
+    )
+    If ($VirtualMachine.State -eq "Off")
+    {
+        Log-Message -Level 1 -Message "Starting VM $($VirtualMachine.VMName)"
+        Start-VM $VirtualMachine -ErrorAction Stop | Out-Null
+    }
     
+    $startTime = Get-Date
+    do 
+    {
+        $timeElapsed = $(Get-Date) - $startTime
+        if ($($timeElapsed).TotalMinutes -ge 10)
+        {
+            Log-Message -Level 1 -Message "Integration components did not come up after 10 minutes" -MessageType Error
+            throw
+        } 
+        Start-Sleep -sec 1
+    } 
+    until ((Get-VMIntegrationService -VM $VirtualMachine |? Id -match "84EAAE65-2F2E-45F5-9BB5-0E857DC8EB47").PrimaryStatusDescription -eq "OK")
+    Log-Message -Level 1 -Message "Heartbeat IC connected."
+
+    Log-Message -Level 1 -Message "Waiting for PSDirect connection to $($VirtualMachine.VMName) to be available"
+    $startTime = Get-Date
+    do 
+    {
+        $timeElapsed = $(Get-Date) - $startTime
+        if ($($timeElapsed).TotalMinutes -ge 10)
+        {
+            Log-Message -Level 1 -Message "Could not connect to PS Direct after 10 minutes" -MessageType Error
+            throw
+        } 
+        Start-Sleep -sec 1
+        $psReady = Invoke-Command -VMId $VirtualMachine.VMId -Credential $Credential -ScriptBlock { $True } -ErrorAction SilentlyContinue
+    } 
+    until ($psReady)
+
+    Write-Host "Opening PowerShell session to VM $($VirtualMachine.Name)"
+    $s = New-PSSession -VMId $VirtualMachine.VMId -Credential $Credential
+    Invoke-Command -Session $s -ScriptBlock {
+        $path = Split-Path -Path $using:DestinationPath -Parent
+        If (-not (Test-Path $path))
+        {
+            New-Item -ItemType Directory -Path $path | Out-Null
+        } 
+    }
+    Write-Host "Copying file to VM $($VirtualMachine.Name)"
+    Copy-Item -ToSession $s -Path $SourcePath -Destination $DestinationPath  | Out-Null
+    Write-Host "Closing PowerShell session"
+    Remove-PSSession $s | Out-Null
+
+    #Copy-VMFile -VM $VirtualMachine -SourcePath $SourcePath -DestinationPath $DestinationPath -FileSource Host -CreateFullPath
 }
 
 Function Begin-Stage {
@@ -310,14 +390,14 @@ Function End-Stage {
 
 If (($Cleanup -eq "VM") -or ($Cleanup -eq "Everything"))
 {
-    Write-Host "[Cleanup] Removing existing VMs"
+    Log-Message -Message "[Cleanup] Removing existing VMs"
     Get-VM | Stop-VM -TurnOff -Force -WarningAction SilentlyContinue | Out-Null
     Get-VM | Remove-VM -Force -WarningAction SilentlyContinue | Out-Null
     Get-ChildItem -Path (Join-Path $Script:basePath -ChildPath fabric) -Recurse | Remove-Item -Force -Recurse -WarningAction SilentlyContinue | Out-Null
 }
 If (($Cleanup -eq "Baseimages") -or ($Cleanup -eq "Everything"))
 {
-    Write-Host "[Cleanup] Removing existing base VHDXs"
+    Log-Message -Message "[Cleanup] Removing existing base VHDXs"
     if (Test-Path $Script:baseServerCorePath)
     {
         Remove-Item -Path $Script:baseServerCorePath -Force | Out-Null
@@ -338,27 +418,25 @@ If (($Cleanup -eq "Baseimages") -or ($Cleanup -eq "Everything"))
 
 if (Test-Path $Script:ImageConverterPath)
 {
-    # Running Image converter script to get Convert-WindowsImage function
+    Log-Message -Message "[Prepare] Running Image converter script to get Convert-WindowsImage function"
     . $Script:ImageConverterPath
 }
 
 if (-Not (Test-Path $Script:baseServerCorePath))
 {
-    Write-Host "[Prepare] Creating Server Datacenter Core base VHDX"
-    # Creating Server Datacenter Core vhdx based on media
+    Log-Message -Message "[Prepare] Creating Server Datacenter Core base VHDX"
     Convert-WindowsImage -SourcePath (Join-Path $Script:baseMediaPath -ChildPath "sources\Install.wim") -VHDPath $Script:baseServerCorePath -DiskLayout UEFI -Edition SERVERDATACENTERCORE -UnattendPath $Script:UnattendPath -SizeBytes 40GB | Out-Null
 }
 
 if (-Not (Test-Path $Script:baseServerStandardPath))
 {
-    Write-Host "[Prepare] Creating Server Standard Full UI base VHDX"
-    # Creating Server Standard vhdx based on media
+    Log-Message -Message "[Prepare] Creating Server Standard Full UI base VHDX"
     Convert-WindowsImage -SourcePath (Join-Path $Script:baseMediaPath -ChildPath "sources\Install.wim") -VHDPath $Script:baseServerStandardPath -DiskLayout UEFI -Edition SERVERSTANDARD -UnattendPath $Script:UnattendPath -SizeBytes 40GB | Out-Null
 }
 
 if (-Not (Test-Path $Script:baseNanoServerPath))
 {
-    Write-Host "[Prepare] Creating Nano Server Datacenter base VHDX"
+    Log-Message -Message "[Prepare] Creating Nano Server Datacenter base VHDX"
     # Importing Nano Server Image Generator PowerShell Module
     Import-Module (Join-Path $Script:baseMediaPath -ChildPath "\NanoServer\NanoServerImageGenerator\NanoServerImageGenerator.psm1") | Out-Null
 
@@ -377,19 +455,19 @@ if (!$Script:HgsGuardian) {
 
 if (-not (Get-VMSwitch -Name $Script:fabricSwitch -ErrorAction SilentlyContinue)) {
     Log-Message -Message "Fabric Switch not found - creating internal switch"
-    New-VMSwitch -Name $Script:fabricSwitch -SwitchType Internal -ErrorAction Stop #| Out-Null
+    New-VMSwitch -Name $Script:fabricSwitch -SwitchType Internal -ErrorAction Stop | Out-Null
 }
 
-$hgs01 = Get-VM -VMName $Script:VmNameHgs #-ErrorAction SilentlyContinue
-$dc01 = Get-VM -VMName $Script:VmNameDc #-ErrorAction SilentlyContinue
-$VMm01 = Get-VM -VMName $Script:VmNameVmm #-ErrorAction SilentlyContinue
-$compute01 = Get-VM -VMName "$Script:VmNameCompute 01" #-ErrorAction SilentlyContinue
-$compute02 = Get-VM -VMName "$Script:VmNameCompute 02" #-ErrorAction SilentlyContinue
+$hgs01 = Get-VM -VMName $Script:VmNameHgs -ErrorAction SilentlyContinue
+$dc01 = Get-VM -VMName $Script:VmNameDc -ErrorAction SilentlyContinue
+$vmm01 = Get-VM -VMName $Script:VmNameVmm -ErrorAction SilentlyContinue
+$compute01 = Get-VM -VMName "$Script:VmNameCompute 01" -ErrorAction SilentlyContinue
+$compute02 = Get-VM -VMName "$Script:VmNameCompute 02" -ErrorAction SilentlyContinue
 
-if ($hgs01 -and $dc01 -and $VMm01 -and $compute01 -and $compute02)
+if ($hgs01 -and $dc01 -and $vmm01 -and $compute01 -and $compute02)
 {
     Log-Message -Message "Initializing variable storing environment VMs"
-    $Script:EnvironmentVMs = $hgs01, $dc01, $VMm01, $compute01, $compute02    
+    $Script:EnvironmentVMs = $hgs01, $dc01, $vmm01, $compute01, $compute02    
 }
 else 
 {
@@ -415,11 +493,11 @@ If ($Script:stage -eq 0 -and $Script:stage -lt $StopBeforeStage)
     Begin-Stage
     $hgs01 = Prepare-VM -vmname $Script:VmNameHgs -basediskpath $Script:baseServerCorePath -dynamicmemory $true
     $dc01 = Prepare-VM -vmname $Script:VmNameDc -basediskpath $Script:baseServerCorePath -dynamicmemory $true
-    $VMm01 = Prepare-VM -vmname $Script:VmNameVmm -basediskpath $Script:baseServerStandardPath
+    $vmm01 = Prepare-VM -vmname $Script:VmNameVmm -basediskpath $Script:baseServerStandardPath
     $compute01 = Prepare-VM -vmname "$Script:VmNameCompute 01" -processorcount 4 -startupmemory 2GB -enablevirtualizationextensions $true -enablevtpm $true -basediskpath $Script:baseNanoServerPath
     $compute02 = Prepare-VM -vmname "$Script:VmNameCompute 02" -processorcount 4 -startupmemory 2GB -enablevirtualizationextensions $true -enablevtpm $true -basediskpath $Script:baseNanoServerPath
     
-    $Script:EnvironmentVMs = ($hgs01, $dc01, $VMm01, $compute01, $compute02)
+    $Script:EnvironmentVMs = ($hgs01, $dc01, $vmm01, $compute01, $compute02)
     End-Stage
 } 
 
@@ -443,8 +521,14 @@ If ($Script:stage -eq 1 -and $Script:stage -lt $StopBeforeStage)
             )
             If ($param["features"])
             {
-                Write-Host "Calling Install-WindowsFeature $($param["features"])"
-                Install-WindowsFeature $param["features"] -IncludeManagementTools #-ErrorAction Stop #| Out-Null
+                If ($param["featuresource"])
+                {
+                    Write-Host "Calling Install-WindowsFeature $($param["features"]) using source path $($param["featuresource"])"
+                    Install-WindowsFeature $param["features"] -IncludeManagementTools -Source $param["featuresource"] -ErrorAction Stop | Out-Null
+                } else {
+                    Write-Host "Calling Install-WindowsFeature $($param["features"])"
+                    Install-WindowsFeature $param["features"] -IncludeManagementTools -ErrorAction Stop | Out-Null                    
+                }
             }
             If ($param["ipaddress"])
             {
@@ -471,8 +555,11 @@ If ($Script:stage -eq 1 -and $Script:stage -lt $StopBeforeStage)
             computername="DC01"
         }
 
-    Invoke-CommandWithPSDirect -VirtualMachine $VMm01 -Credential $Script:localAdministratorCredential -ScriptBlock $scriptBlock -ArgumentList @{
+    Copy-ItemToVm -VirtualMachine $vmm01 -SourcePath (Join-Path $Script:baseMediaPath -ChildPath "sources\sxs\microsoft-windows-netfx3-ondemand-package.cab") -DestinationPath C:\sxs\microsoft-windows-netfx3-ondemand-package.cab -Credential $Script:localAdministratorCredential
+
+    Invoke-CommandWithPSDirect -VirtualMachine $vmm01 -Credential $Script:localAdministratorCredential -ScriptBlock $scriptBlock -ArgumentList @{
             features=("NET-Framework-Features", "NET-Framework-Core", "Web-Server", "ManagementOData", "Web-Dyn-Compression", "Web-Basic-Auth", "Web-Windows-Auth", "Web-Scripting-Tools", "WAS", "WAS-Process-Model", "WAS-NET-Environment", "WAS-Config-APIs");
+            featuresource="C:\sxs";
             computername="VMM01"
         }
     
@@ -513,7 +600,7 @@ If ($Script:stage -eq 2 -and $Script:stage -lt $StopBeforeStage)
             Param(
                 [hashtable]$param
             )
-            Write-Host "`tSetting PowerShell as default shell"
+            Write-Host "Setting PowerShell as default shell"
             Set-ItemProperty -Path "HKLM:SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" -Name Shell -Value "PowerShell.exe" | Out-Null
 
             Write-Host "Configuring DHCP Server"
@@ -535,9 +622,6 @@ If ($Script:stage -eq 2 -and $Script:stage -lt $StopBeforeStage)
             Param(
                 [hashtable]$param
             )
-            #Add-DhcpServerInDC -DnsName "dc01.$($param["domainname"])"
-            #Restart-Service DHCPServer -WarningAction SilentlyContinue | Out-Null
-
             Write-Host "Creating AD Users and Groups"
             Write-Host "Creating User Lars" -NoNewline
             do {
@@ -545,7 +629,7 @@ If ($Script:stage -eq 2 -and $Script:stage -lt $StopBeforeStage)
                 Write-Host "." -NoNewline
                 New-ADUser -Name "Lars" -SAMAccountName "lars" -GivenName "Lars" -DisplayName "Lars" -AccountPassword $param["adminpassword"] -CannotChangePassword $true -Enabled $true  -ErrorAction SilentlyContinue | Out-Null
             } until ($?)
-            Write-Host ""
+            Write-Host "done."
 
             Write-Host "Creating VMM service account user" -NoNewline
             do {
@@ -553,7 +637,7 @@ If ($Script:stage -eq 2 -and $Script:stage -lt $StopBeforeStage)
                 Write-Host "." -NoNewline
                 New-ADUser -Name "vmmserviceaccount" -SAMAccountName "vmmserviceaccount" -GivenName "VMM" -DisplayName "vmmserviceaccount" -AccountPassword $param["adminpassword"] -CannotChangePassword $true -Enabled $true -ErrorAction SilentlyContinue | Out-Null
             } until ($?)
-            Write-Host ""
+            Write-Host "done."
 
             Write-Host "Creating ComputeHosts group" -NoNewline
             do {
@@ -561,7 +645,7 @@ If ($Script:stage -eq 2 -and $Script:stage -lt $StopBeforeStage)
                 Write-Host "." -NoNewline
                 New-ADGroup -Name "ComputeHosts" -DisplayName "Hyper-V Compute Hosts" -GroupCategory Security -GroupScope Universal  -ErrorAction SilentlyContinue | Out-Null
             } until ($?)
-            Write-Host ""
+            Write-Host "done."
 
             Write-Host "Registering DHCP server with DC" -NoNewline
             do {
@@ -569,14 +653,13 @@ If ($Script:stage -eq 2 -and $Script:stage -lt $StopBeforeStage)
                 Write-Host "." -NoNewline
                 Add-DhcpServerInDC -ErrorAction Continue
             } until ($?) 
-            Write-Host ""
+            Write-Host "done."
             
             Write-Host "Creating offline domain join blobs for compute hosts in domain $($param["domainname"])"
-            mkdir C:\djoin
-            djoin /Provision /Domain $($param["domainname"]) /Machine Compute01 /SaveFile C:\djoin\Compute01.djoin
-            djoin /Provision /Domain $($param["domainname"]) /Machine Compute02 /SaveFile C:\djoin\Compute02.djoin
+            New-Item -Path 'C:\djoin' -ItemType Directory | Out-Null
+            Start-Process "djoin.exe" -Verb RunAs -ArgumentList "/Provision", "/Domain $($param["domainname"])", "/Machine Compute01", "/SaveFile C:\djoin\Compute01.djoin"
+            Start-Process "djoin.exe" -Verb RunAs -ArgumentList "/Provision", "/Domain $($param["domainname"])", "/Machine Compute02", "/SaveFile C:\djoin\Compute02.djoin"
             New-SmbShare -Path C:\djoin -Name djoin -ContinuouslyAvailable $true -ReadAccess Everyone
-            #djoin /Provision /Domain $($param["domainname"]) /Machine VMM01 /SaveFile C:\djoin\VMM.djoin        
         } -ArgumentList @{
             domainname=$domainName;
             adminpassword=$localAdministratorPassword
@@ -631,22 +714,43 @@ If ($Script:stage -eq 3 -and $Script:stage -lt $StopBeforeStage)
             {
                 Start-Sleep -Seconds 2
             }
-            Write-Host "Joining system to domain $($param["domainname"])" -NoNewline
-            $cred = New-Object System.Management.Automation.PSCredential ($param["domainuser"], $param["domainpwd"])
-            do {
-                Write-Host "." -NoNewline
-                Start-Sleep -Seconds 1
-                Add-Computer -DomainName $param["domainname"] -Credential $cred -ErrorAction SilentlyContinue | Out-Null    
-            } until ($?)
-            Write-Host ""
+            $edition = (Get-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion')| Select -expandproperty EditionID
+            Write-Host "Joining system to domain $($param["domainname"]). Edition: $edition" -NoNewline
+            switch ($edition)
+            {
+                "ServerDataCenterNano" {
+                    $djoinpath = "\\$($param["domainname"])\c$\djoin\$($env:COMPUTERNAME).djoin"
+                    Write-Host "Using $djoinpath"
+                    Start-Process "djoin.exe" -Verb RunAs -ArgumentList "/requestodj", '/loadfile $djoinpath', "/windowspath c:\windows", "/localos"
+                }
+                default {
+                    $cred = New-Object System.Management.Automation.PSCredential ($param["domainuser"], $param["domainpwd"])
+                    do {
+                        Write-Host "." -NoNewline
+                        Start-Sleep -Seconds 2
+                        Add-Computer -DomainName $param["domainname"] -Credential $cred -ErrorAction SilentlyContinue -WarningAction SilentlyContinue| Out-Null    
+                    } until ($?)
+                    Write-Host "done."
+                }
+            }
         }
-
-    Invoke-CommandWithPSDirect -VirtualMachine $VMm01 -Credential $Script:localAdministratorCredential -ScriptBlock $ScriptBlock_DomainJoin -ArgumentList @{
+    
+    Invoke-CommandWithPSDirect -VirtualMachine $vmm01 -Credential $Script:localAdministratorCredential -ScriptBlock $ScriptBlock_DomainJoin -ArgumentList @{
             domainname=$domainName;
             domainuser="relecloud\administrator";
             domainpwd=$localAdministratorPassword
         }
 
+    Invoke-CommandWithPSDirect -VirtualMachine $compute01 -Credential $Script:localAdministratorCredential -ScriptBlock $ScriptBlock_DomainJoin -ArgumentList @{
+            domainname=$domainName;
+            domainuser="relecloud\administrator";
+            domainpwd=$localAdministratorPassword
+        }
+    Invoke-CommandWithPSDirect -VirtualMachine $compute02 -Credential $Script:localAdministratorCredential -ScriptBlock $ScriptBlock_DomainJoin -ArgumentList @{
+            domainname=$domainName;
+            domainuser="relecloud\administrator";
+            domainpwd=$localAdministratorPassword
+        }
 #    Invoke-CommandWithPSDirect -VirtualMachine $compute01 -Credential $Script:localAdministratorCredential -ScriptBlock $ScriptBlock_DomainJoin -ArgumentList @{
 #            domainname=$domainName;
 #            domainuser="relecloud\administrator";
@@ -680,7 +784,7 @@ if ($Script:stage -eq 99)
     # Add VMM additional disk
     $VMMDataVHDXPath = Join-Path $Script:basePath -ChildPath "\fabric\VMM01Data.vhdx"
     New-VHD -Dynamic -SizeBytes 30GB -Path $VMMDataVHDXPath #| Out-Null
-    Add-VMHardDiskDrive -VM $VMm01 -Path $VMMDataVHDXPath #| Out-Null
+    Add-VMHardDiskDrive -VM $vmm01 -Path $VMMDataVHDXPath #| Out-Null
 
     #Steps to run inside of the DC: 
 
@@ -695,13 +799,13 @@ if ($Script:stage -eq 99)
     #Copying offline domain join blobs to host
 
     # Customizing VMM
-    Copy-VMFile -VM $VMm01 -SourcePath (Join-Path $Script:basePath -ChildPath "fabric\VMM.djoin") -DestinationPath C:\VMM.djoin -Credential $Script:localAdministratorCredential
+    Copy-VMFile -VM $vmm01 -SourcePath (Join-Path $Script:basePath -ChildPath "fabric\VMM.djoin") -DestinationPath C:\VMM.djoin -Credential $Script:localAdministratorCredential
 
-    Invoke-Command -VMId $VMm01.VMId -Credential $Script:localAdministratorCredential -ScriptBlock {
+    Invoke-Command -VMId $vmm01.VMId -Credential $Script:localAdministratorCredential -ScriptBlock {
             djoin /requestodj /loadfile C:\vmm.djoin /LOCALOS /WINDOWSPATH C:\Windows
         }
 
-    Invoke-Command -VMId $VMm01.VMId -Credential $Script:localAdministratorCredential -ScriptBlock {
+    Invoke-Command -VMId $vmm01.VMId -Credential $Script:localAdministratorCredential -ScriptBlock {
             ([ADSI]"WinNT://vmm01/Administrators,group").psbase.Invoke("Add",([ADSI]"WinNT://Relecloud/vmmserviceaccount").path)
         }
         
