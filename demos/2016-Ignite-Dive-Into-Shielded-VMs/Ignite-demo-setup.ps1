@@ -234,7 +234,7 @@ function Reset-EnvironmentToStageCheckpoint
         If ($Snapshots)
         {
             Log-Message -Level 1 -Message "Removing checkpoints for stage $($Script:stagenames[$i])"
-            Remove-VMCheckpoint -Force
+            $Snapshots | Remove-VMSnapshot -Confirm:$false 
         }
     }
 }
@@ -384,6 +384,12 @@ Function End-Stage {
     Create-EnvironmentStageCheckpoint
     $Script:stage++
 }
+
+#######################################################################################
+# Start of script 
+#######################################################################################
+$Script:ScriptStartTime = Get-Date
+Log-Message -Message "Starting script"
 
 #######################################################################################
 # Explicit cleanup
@@ -753,8 +759,8 @@ If ($Script:stage -eq 3 -and $Script:stage -lt $StopBeforeStage)
     Invoke-CommandWithPSDirect -VirtualMachine $compute01 -Credential $Script:localAdminCred -ScriptBlock $ScriptBlock_DomainJoin -ArgumentList $Arg_DomainJoin
     Invoke-CommandWithPSDirect -VirtualMachine $compute02 -Credential $Script:localAdminCred -ScriptBlock $ScriptBlock_DomainJoin -ArgumentList $Arg_DomainJoin
     
-    Restart-Computer $compute01
-    Restart-Computer $compute02
+    Reboot-VM $compute01
+    Reboot-VM $compute02
 
     Invoke-CommandWithPSDirect -VirtualMachine $hgs01 -Credential $Script:hgsAdminCred -ScriptBlock {
             Write-Host "Creating a DNS forwarder to the fabric AD"
@@ -789,7 +795,7 @@ If ($Script:stage -eq 3 -and $Script:stage -lt $StopBeforeStage)
 
     $Arg_HgsClientConfiguration = @{
             keyprotectionserverurl="http://service.hgs.relecloud.com/KeyProtection";
-            attestationserverurl="http://service.hgs.relecloud.coml/Attestation"
+            attestationserverurl="http://service.hgs.relecloud.com/Attestation"
         }
 
     Invoke-CommandWithPSDirect -VirtualMachine $compute01 -Credential $Script:localAdminCred -ScriptBlock $ScriptBlock_HgsClientConfiguration -ArgumentList $Arg_HgsClientConfiguration 
@@ -883,3 +889,4 @@ if ($Script:stage -eq 99)
             Get-HgsAttestationBaselinePolicy -Path 'C:\HWConfig1.tcglog'
         }
 }
+Log-Message -Message "Script finished - Total Duration: $(((Get-Date) - $Script:ScriptStartTime))"
