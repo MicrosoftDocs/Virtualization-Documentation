@@ -296,7 +296,7 @@ function Invoke-CommandWithPSDirect
     } 
     until ($psReady)
     
-    Log-Message -Level 1 -Message "Executing Script Block"
+    Log-Message -Level 1 -Message "Running Script Block"
     If ($ArgumentList)
     {
         Invoke-Command -VMId $VirtualMachine.VMId -Credential $Credential -ScriptBlock $ScriptBlock -ArgumentList $ArgumentList -ErrorAction SilentlyContinue    
@@ -732,9 +732,10 @@ If ($Script:stage -eq 2 -and $Script:stage -lt $StopBeforeStage)
         Remove-Item $EncryptionCert.PSPath, $SigningCert.PSPath -DeleteKey -ErrorAction Continue | Out-Null
 
         Write-Host "Configuring Host Guardian Service - AD-based trust" -ForegroundColor Gray
-        Initialize-HgsServer -HgsServiceName service -SigningCertificatePath C:\HgsCertificates\signing.pfx `
-            -SigningCertificatePassword $param["adminpassword"] -EncryptionCertificatePath C:\HgsCertificates\encryption.pfx `
-            -EncryptionCertificatePassword $param["adminpassword"] -TrustActiveDirectory -WarningAction SilentlyContinue | Out-Null
+        Initialize-HgsServer -HgsServiceName service -TrustActiveDirectory `
+            -SigningCertificatePath C:\HgsCertificates\signing.pfx -SigningCertificatePassword $param["adminpassword"] `
+            -EncryptionCertificatePath C:\HgsCertificates\encryption.pfx -EncryptionCertificatePassword $param["adminpassword"] `
+            -WarningAction SilentlyContinue | Out-Null
 
         Write-Host "Fixing up the cluster network" -ForegroundColor Gray
         (Get-ClusterNetwork).Role = 3
@@ -766,10 +767,10 @@ If ($Script:stage -eq 3 -and $Script:stage -lt $StopBeforeStage)
         do {
             Write-Host "." -NoNewline -ForegroundColor Gray
             Start-Sleep -Seconds 2
-            $sid = Get-ADGroup ComputeHosts -ErrorAction SilentlyContinue 
+            $sid = Get-ADGroup ComputeHosts -ErrorAction SilentlyContinue | select -ExpandProperty SID | select -ExpandProperty Value 
         } until ($?)
         Write-Host " SID: $sid" -ForegroundColor Gray
-        $sid | select -ExpandProperty SID | select -ExpandProperty Value
+        $sid 
     } # This also ensures that AD functionality is up and running before continuing.
 
     Start-VM $hgs01 | Out-Null
@@ -778,7 +779,7 @@ If ($Script:stage -eq 3 -and $Script:stage -lt $StopBeforeStage)
             Param(
                 [hashtable]$param
             )
-            $dcip = $(($using:EnvironmentVMs | ?{$_.VMName -contains "Domain Controller"}).IPAddress)
+            $dcip = $param["dcip"]
             Write-Host "Waiting for domain controller $($param["domainname"]) at $dcip" -ForegroundColor Gray
             while (!(Test-Connection -Computername "$dcip" -BufferSize 16 -Count 1 )) #-Quiet -ea SilentlyContinue 
             {
@@ -789,7 +790,7 @@ If ($Script:stage -eq 3 -and $Script:stage -lt $StopBeforeStage)
             switch ($edition)
             {
                 "ServerDataCenterNano" {
-                    $djoinpath = "\\$(($using:EnvironmentVMs | ?{$_.VMName -contains "Domain Controller"}).IPAddress)\c$\djoin\$($env:COMPUTERNAME).djoin"
+                    $djoinpath = "\\$dcip\c$\djoin\$($env:COMPUTERNAME).djoin"
                     Write-Host " Using $djoinpath" -ForegroundColor Gray
                     Start-Process "djoin.exe" -Verb RunAs -ArgumentList "/requestodj", '/loadfile $djoinpath', "/windowspath c:\windows", "/localos"
                 }
@@ -808,7 +809,8 @@ If ($Script:stage -eq 3 -and $Script:stage -lt $StopBeforeStage)
     $Arg_DomainJoin = @{
             domainname=$Script:domainName;
             domainuser="relecloud\administrator";
-            domainpwd=$Script:passwordSecureString
+            domainpwd=$Script:passwordSecureString;
+            dcip="$($Script:internalSubnet)1"
         }
 
     Invoke-CommandWithPSDirect -VirtualMachine $vmm01 -Credential $Script:localAdminCred -ScriptBlock $ScriptBlock_DomainJoin -ArgumentList $Arg_DomainJoin 
