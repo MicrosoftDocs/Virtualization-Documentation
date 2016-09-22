@@ -20,12 +20,14 @@ $Script:clearTextPassword = "P@ssw0rd."
 $Script:passwordSecureString = ConvertTo-SecureString -AsPlainText $Script:clearTextPassword -Force
 
 $Script:internalSwitchName = "FabricInternal"
+$Script:internalSubnet = "10.10.42."
 $Script:externalSwitchName = "FabricExternal"
-$Script:fabricSwitch = $Script:externalSwitchName
+$Script:fabricSwitch = $Script:internalSwitchName
 
-$Script:localAdminCred = New-Object System.Management.Automation.PSCredential (“administrator”, $Script:passwordSecureString)
-$Script:relecloudAdminCred = New-Object System.Management.Automation.PSCredential (“relecloud\administrator”, $Script:passwordSecureString)
-$Script:hgsAdminCred = New-Object System.Management.Automation.PSCredential (“hgs\administrator”, $Script:passwordSecureString)
+
+$Script:localAdminCred = New-Object System.Management.Automation.PSCredential ("administrator", $Script:passwordSecureString)
+$Script:relecloudAdminCred = New-Object System.Management.Automation.PSCredential ("relecloud\administrator", $Script:passwordSecureString)
+$Script:hgsAdminCred = New-Object System.Management.Automation.PSCredential ("hgs\administrator", $Script:passwordSecureString)
 
 $Script:baseServerCorePath = Join-Path $Script:basePath -ChildPath "\WindowsServer2016_ServerDataCenterCore.vhdx"
 $Script:baseServerStandardPath = Join-Path $Script:basePath -ChildPath "\WindowsServer2016_ServerStandard.vhdx"
@@ -86,8 +88,10 @@ function Reboot-VM {
     )
     If ($VM.State -eq "Running")
     {
+        Log-Message -Level 1 -Message "Shutting down $($VM.VMName)"
         Stop-VM -VM $VM -ErrorAction SilentlyContinue | Out-Null
     }
+    Log-Message -Level 1 -Message "Starting $($VM.VMName)"
     Start-VM -VM $VM
 }
 
@@ -136,7 +140,7 @@ function Prepare-VM
     
     If ($Script:MemoryScaleFactor -ne 1) 
     {
-        Log-Message -Level 1 -Message "Multiplying memory assignment with factor $Script:MemoryScaleFactor"
+        Log-Message -Level 1 -Message "[$VMname] Multiplying memory assignment with factor $Script:MemoryScaleFactor"
         $startupmemory = $startupmemory * $Script:MemoryScaleFactor
     }
 
@@ -357,7 +361,7 @@ function Copy-ItemToVm
     } 
     until ($psReady)
 
-    Write-Host "Opening PowerShell session to VM $($VirtualMachine.Name)"
+    Log-Message -Level 1 -Message "Opening PowerShell session to VM $($VirtualMachine.Name)"
     $s = New-PSSession -VMId $VirtualMachine.VMId -Credential $Credential
     Invoke-Command -Session $s -ScriptBlock {
         $path = Split-Path -Path $using:DestinationPath -Parent
@@ -366,12 +370,33 @@ function Copy-ItemToVm
             New-Item -ItemType Directory -Path $path | Out-Null
         } 
     }
-    Write-Host "Copying file to VM $($VirtualMachine.Name)"
+    Log-Message -Level 1 -Message "Copying file to VM $($VirtualMachine.Name)"
     Copy-Item -ToSession $s -Path $SourcePath -Destination $DestinationPath  | Out-Null
-    Write-Host "Closing PowerShell session"
+    Log-Message -Level 1 -Message "Closing PowerShell session"
     Remove-PSSession $s | Out-Null
 
     #Copy-VMFile -VM $VirtualMachine -SourcePath $SourcePath -DestinationPath $DestinationPath -FileSource Host -CreateFullPath
+}
+
+Function WaitFor-ActiveDirectory {
+    Param(
+        [Parameter(Mandatory=$true)]
+        [Microsoft.HyperV.PowerShell.VirtualMachine]
+        $VirtualMachine,
+
+        [Parameter(Mandatory=$true)]
+        [System.Management.Automation.PSCredential]
+        $Credential
+    )
+    Log-Message -Level 1 -Message "Waiting for AD to be available"
+    Invoke-CommandWithPSDirect -VirtualMachine $VirtualMachine -Credential $Credential -ScriptBlock {
+        do {
+            Write-Host "." -NoNewline -ForegroundColor Gray
+            Start-Sleep -Seconds 2
+            Get-ADComputer $env:COMPUTERNAME 
+        } until ($?)
+    }
+    Log-Message -Level 1 -Message "succeeded."
 }
 
 Function Begin-Stage {
@@ -456,12 +481,12 @@ if (-Not (Test-Path $Script:baseNanoServerPath))
 
 $Script:HgsGuardian = Get-HgsGuardian UntrustedGuardian -ErrorAction SilentlyContinue
 if (!$Script:HgsGuardian) {
-    Log-Message -Message "Local Guardian not found - creating UntrustedGuardian"
+    Log-Message -Message "[Prepare] Local Guardian not found - creating UntrustedGuardian"
     $Script:HgsGuardian = New-HgsGuardian -Name UntrustedGuardian –GenerateCertificates -ErrorAction Stop
 }
 
 if (-not (Get-VMSwitch -Name $Script:fabricSwitch -ErrorAction SilentlyContinue)) {
-    Log-Message -Message "Fabric Switch not found - creating internal switch"
+    Log-Message -Message "[Prepare] Fabric Switch not found - creating internal switch"
     New-VMSwitch -Name $Script:fabricSwitch -SwitchType Internal -ErrorAction Stop | Out-Null
 }
 
@@ -473,12 +498,12 @@ $compute02 = Get-VM -VMName "$Script:VmNameCompute 02" -ErrorAction SilentlyCont
 
 if ($hgs01 -and $dc01 -and $vmm01 -and $compute01 -and $compute02)
 {
-    Log-Message -Message "Initializing variable storing environment VMs"
+    Log-Message -Message "[Prepare] Initializing variable storing environment VMs"
     $Script:EnvironmentVMs = $hgs01, $dc01, $vmm01, $compute01, $compute02    
 }
 else 
 {
-    Log-Message -Message "Starting from Stage 0 since not all VMs could be found"
+    Log-Message -Message "[Prepare] Starting from Stage 0 since not all VMs could be found"
     $StartFromStage = 0
     $Script:stage = 0
 }
@@ -530,36 +555,38 @@ If ($Script:stage -eq 1 -and $Script:stage -lt $StopBeforeStage)
             {
                 If ($param["featuresource"])
                 {
-                    Write-Host "Calling Install-WindowsFeature $($param["features"]) using source path $($param["featuresource"])"
+                    Write-Host "Calling Install-WindowsFeature $($param["features"]) using source path $($param["featuresource"])" -ForegroundColor Gray
                     Install-WindowsFeature $param["features"] -IncludeManagementTools -Source $param["featuresource"] -ErrorAction Stop -WarningAction SilentlyContinue | Out-Null
                 } else {
-                    Write-Host "Calling Install-WindowsFeature $($param["features"])"
+                    Write-Host "Calling Install-WindowsFeature $($param["features"])" -ForegroundColor Gray
                     Install-WindowsFeature $param["features"] -IncludeManagementTools -ErrorAction Stop -WarningAction SilentlyContinue | Out-Null                    
                 }
             }
             If ($param["ipaddress"])
             {
-                Write-Host "Setting Network configuration: IP $($param["ipaddress"])"
+                Write-Host "Setting Network configuration: IP $($param["ipaddress"])" -ForegroundColor Gray
                 Get-NetAdapter | New-NetIPAddress -AddressFamily IPv4 -IPAddress $param["ipaddress"] -PrefixLength 24 | Out-Null
             }
-            Get-DnsClientServerAddress | %{Set-DnsClientServerAddress -InterfaceIndex $_.InterfaceIndex -ServerAddresses 192.168.42.1}
+            Get-DnsClientServerAddress | %{Set-DnsClientServerAddress -InterfaceIndex $_.InterfaceIndex -ServerAddresses "$($param["subnet"])1"}
             If ($param["computername"])
             {
-                Write-Host "Renaming computer to $($param["computername"])"
+                Write-Host "Renaming computer to $($param["computername"])" -ForegroundColor Gray
                 Rename-Computer $param["computername"] -WarningAction SilentlyContinue | Out-Null
             }
         }
 
-    Invoke-CommandWithPSDirect -VirtualMachine $hgs01 -Credential $Script:localAdminCred -ScriptBlock $ScriptBlock_FeaturesComputerName -ArgumentList @{
-            features="HostGuardianServiceRole";
-            ipaddress="192.168.42.99";
-            computername="HGS01"
-        }
-
     Invoke-CommandWithPSDirect -VirtualMachine $dc01 -Credential $Script:localAdminCred -ScriptBlock $ScriptBlock_FeaturesComputerName -ArgumentList @{
             features=("AD-Domain-Services","DHCP");
-            ipaddress="192.168.42.1";
-            computername="DC01"
+            ipaddress="$($Script:internalSubnet)1";
+            computername="DC01";
+            subnet=$Script:internalSubnet
+        }
+
+    Invoke-CommandWithPSDirect -VirtualMachine $hgs01 -Credential $Script:localAdminCred -ScriptBlock $ScriptBlock_FeaturesComputerName -ArgumentList @{
+            features="HostGuardianServiceRole";
+            ipaddress="$($Script:internalSubnet)99";
+            computername="HGS01";
+            subnet=$Script:internalSubnet
         }
 
     Copy-ItemToVm -VirtualMachine $vmm01 -SourcePath (Join-Path $Script:baseMediaPath -ChildPath "sources\sxs\microsoft-windows-netfx3-ondemand-package.cab") -DestinationPath C:\sxs\microsoft-windows-netfx3-ondemand-package.cab -Credential $Script:localAdminCred
@@ -567,15 +594,18 @@ If ($Script:stage -eq 1 -and $Script:stage -lt $StopBeforeStage)
     Invoke-CommandWithPSDirect -VirtualMachine $vmm01 -Credential $Script:localAdminCred -ScriptBlock $ScriptBlock_FeaturesComputerName -ArgumentList @{
             features=("NET-Framework-Features", "NET-Framework-Core", "Web-Server", "ManagementOData", "Web-Dyn-Compression", "Web-Basic-Auth", "Web-Windows-Auth", "Web-Scripting-Tools", "WAS", "WAS-Process-Model", "WAS-NET-Environment", "WAS-Config-APIs");
             featuresource="C:\sxs";
-            computername="VMM01"
+            computername="VMM01";
+            subnet=$Script:internalSubnet
         }
     
     Invoke-CommandWithPSDirect -VirtualMachine $compute01 -Credential $Script:localAdminCred -ScriptBlock $ScriptBlock_FeaturesComputerName -ArgumentList @{
-            computername="Compute01"
+            computername="Compute01";
+            subnet=$Script:internalSubnet
         }
 
     Invoke-CommandWithPSDirect -VirtualMachine $compute02 -Credential $Script:localAdminCred -ScriptBlock $ScriptBlock_FeaturesComputerName -ArgumentList @{
-            computername="Compute02"
+            computername="Compute02";
+            subnet=$Script:internalSubnet
         }
 
     End-Stage
@@ -592,85 +622,131 @@ If ($Script:stage -eq 2 -and $Script:stage -lt $StopBeforeStage)
 {
     Begin-Stage
 
+    Invoke-CommandWithPSDirect -VirtualMachine $dc01 -Credential $Script:localAdminCred -ScriptBlock {
+            Param(
+                [hashtable]$param
+            )
+            Write-Host "Setting PowerShell as default shell" -ForegroundColor Gray
+            Set-ItemProperty -Path "HKLM:SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" -Name Shell -Value "PowerShell.exe" | Out-Null
+
+            Write-Host "Configuring DHCP Server" -ForegroundColor Gray
+            Set-DhcpServerv4Binding -BindingState $true -InterfaceAlias Ethernet
+            Add-DhcpServerv4Scope -Name "IPv4 network" -StartRange "$($param["subnet"])100" -EndRange "$($param["subnet"])200" -SubnetMask 255.255.255.0 | Out-Null
+            Write-Host "Creating fabric domain $($param["domainName"])" -ForegroundColor Gray
+            Install-ADDSForest -DomainName $param["domainName"] -SafeModeAdministratorPassword $param["adminpassword"] `
+                               -InstallDNS -NoDNSonNetwork -NoRebootOnCompletion -Force -WarningAction SilentlyContinue | Out-Null
+        } -ArgumentList @{
+            domainname=$Script:domainName;
+            adminpassword=$Script:passwordSecureString;
+            subnet=$Script:internalSubnet
+        }
+
+    Reboot-VM -vm $dc01 | Out-Null
+    WaitFor-ActiveDirectory -VirtualMachine $dc01 -Credential $Script:relecloudAdminCred
+
+    Invoke-CommandWithPSDirect -VirtualMachine $dc01 -Credential $Script:relecloudAdminCred -ScriptBlock {
+            Param(
+                [hashtable]$param
+            )
+            Write-Host "Creating AD Users and Groups" -ForegroundColor Gray
+            Write-Host "Creating User Lars" -NoNewline -ForegroundColor Gray
+            do {
+                Start-Sleep -Seconds 3
+                Write-Host "." -NoNewline -ForegroundColor Gray
+                New-ADUser -Name "Lars" -SAMAccountName "lars" -GivenName "Lars" -DisplayName "Lars" -AccountPassword $param["adminpassword"] -CannotChangePassword $true -Enabled $true  -ErrorAction SilentlyContinue | Out-Null
+            } until ($?)
+            Write-Host "done." -ForegroundColor Gray
+            Add-ADGroupMember "Domain Admins" "Lars"
+
+            Write-Host "Creating VMM service account user" -NoNewline -ForegroundColor Gray
+            do {
+                Start-Sleep -Seconds 3
+                Write-Host "." -NoNewline -ForegroundColor Gray
+                New-ADUser -Name "vmmserviceaccount" -SAMAccountName "vmmserviceaccount" -GivenName "VMM" -DisplayName "vmmserviceaccount" -AccountPassword $param["adminpassword"] -CannotChangePassword $true -Enabled $true -ErrorAction SilentlyContinue | Out-Null
+            } until ($?)
+            Write-Host "done." -ForegroundColor Gray
+
+            Write-Host "Creating ComputeHosts group" -NoNewline -ForegroundColor Gray
+            do {
+                Start-Sleep -Seconds 3
+                Write-Host "." -NoNewline -ForegroundColor Gray
+                New-ADGroup -Name "ComputeHosts" -DisplayName "Hyper-V Compute Hosts" -GroupCategory Security -GroupScope Universal  -ErrorAction SilentlyContinue | Out-Null
+            } until ($?)
+            Write-Host "done." -ForegroundColor Gray
+
+            Set-DhcpServerv4OptionValue -DnsDomain $param["domainname"] -DnsServer "$($param["subnet"]).1" | Out-Null
+            Set-DhcpServerv4OptionValue -OptionId 6 -value "$($param["subnet"]).1"
+
+            Write-Host "Registering DHCP server with DC" -NoNewline -ForegroundColor Gray
+            do {
+                Start-Sleep -Seconds 3
+                Write-Host "." -NoNewline -ForegroundColor Gray
+                Add-DhcpServerInDC -ErrorAction Continue
+            } until ($?) 
+            Write-Host "done." -ForegroundColor Gray
+            
+            Write-Host "Creating offline domain join blobs for compute hosts in domain $($param["domainname"])" -ForegroundColor Gray
+            New-Item -Path 'C:\djoin' -ItemType Directory | Out-Null
+            Start-Process "djoin.exe" -Verb RunAs -ArgumentList "/Provision", "/Domain $($param["domainname"])", "/Machine Compute01", "/SaveFile C:\djoin\Compute01.djoin"
+            Start-Process "djoin.exe" -Verb RunAs -ArgumentList "/Provision", "/Domain $($param["domainname"])", "/Machine Compute02", "/SaveFile C:\djoin\Compute02.djoin"
+
+            Write-Host "Adding offline provisioned systems to ComputeHosts group" -ForegroundColor Gray
+            Add-ADGroupMember "ComputeHosts" -Members "Compute01$"
+            Add-ADGroupMember "ComputeHosts" -Members "Compute02$"
+
+        } -ArgumentList @{
+            domainname=$Script:domainName;
+            adminpassword=$Script:passwordSecureString;
+            subnet=$Script:internalSubnet
+        }
+
     Invoke-CommandWithPSDirect -VirtualMachine $hgs01 -Credential $Script:localAdminCred -ScriptBlock {
             Param(
                 [hashtable]$param
             )
-            Write-Host "Preparing Host Guardian Service"
+            Write-Host "Preparing Host Guardian Service" -ForegroundColor Gray
             Install-HgsServer -HgsDomainName $param["hgsdomainname"] -SafeModeAdministratorPassword $param["adminpassword"] -WarningAction SilentlyContinue | Out-Null
         } -ArgumentList @{
             hgsdomainname=$Script:hgsDomainName;
             adminpassword=$Script:passwordSecureString
         }
 
-    Invoke-CommandWithPSDirect -VirtualMachine $dc01 -Credential $Script:localAdminCred -ScriptBlock {
-            Param(
-                [hashtable]$param
-            )
-            Write-Host "Setting PowerShell as default shell"
-            Set-ItemProperty -Path "HKLM:SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" -Name Shell -Value "PowerShell.exe" | Out-Null
+    Reboot-VM $hgs01 | Out-Null
+    WaitFor-ActiveDirectory -VirtualMachine $hgs01 -Credential $Script:hgsAdminCred | Out-Null
 
-            Write-Host "Configuring DHCP Server"
-            Set-DhcpServerv4Binding -BindingState $true -InterfaceAlias Ethernet
-            Add-DhcpServerv4Scope -Name default -StartRange 192.168.42.100 -EndRange 192.168.42.200 -SubnetMask 255.255.255.0 #| Out-Null
-            Set-DhcpServerv4OptionValue -DnsDomain $param["domainname"] -DnsServer 192.168.42.1 #| Out-Null
-            Set-DhcpServerv4OptionValue -OptionId 6 -value "192.168.42.1"
+    Invoke-CommandWithPSDirect -VirtualMachine $hgs01 -Credential $Script:hgsAdminCred -ScriptBlock {
+        Param(
+            [hashtable]$param
+        )
 
-            Write-Host "Creating fabric domain $($param["domainName"])"
-            Install-ADDSForest -DomainName $param["domainName"] -SafeModeAdministratorPassword $param["adminpassword"] -Force -WarningAction SilentlyContinue | Out-Null
-        } -ArgumentList @{
-            domainname=$Script:domainName;
-            adminpassword=$Script:passwordSecureString
-        }
+        New-Item -Path 'C:\HgsCertificates' -ItemType Directory | Out-Null
 
-    Reboot-VM -vm $dc01
+        Write-Host "Creating self-signed certificates for HGS configuration" -ForegroundColor Gray
+        $signingCert = New-SelfSignedCertificate -DnsName "signing.$($param["hgsdomainname"])"
+        Export-PfxCertificate -Cert $signingCert -Password $param["adminpassword"] -FilePath C:\HgsCertificates\signing.pfx | Out-Null
+        $encryptionCert = New-SelfSignedCertificate -DnsName "encryption.$($param["hgsdomainname"])"
+        Export-PfxCertificate -Cert $encryptionCert -Password $param["adminpassword"] -FilePath C:\HgsCertificates\encryption.pfx | Out-Null
 
-    Invoke-CommandWithPSDirect -VirtualMachine $dc01 -Credential $Script:relecloudAdminCred -ScriptBlock {
-            Param(
-                [hashtable]$param
-            )
-            Write-Host "Creating AD Users and Groups"
-            Write-Host "Creating User Lars" -NoNewline
-            do {
-                Start-Sleep -Seconds 3
-                Write-Host "." -NoNewline
-                New-ADUser -Name "Lars" -SAMAccountName "lars" -GivenName "Lars" -DisplayName "Lars" -AccountPassword $param["adminpassword"] -CannotChangePassword $true -Enabled $true  -ErrorAction SilentlyContinue | Out-Null
-            } until ($?)
-            Write-Host "done."
+        Write-Host "Removing certificates from local store after exporting" -ForegroundColor Gray 
+        Remove-Item $EncryptionCert.PSPath, $SigningCert.PSPath -DeleteKey -ErrorAction Continue | Out-Null
 
-            Write-Host "Creating VMM service account user" -NoNewline
-            do {
-                Start-Sleep -Seconds 3
-                Write-Host "." -NoNewline
-                New-ADUser -Name "vmmserviceaccount" -SAMAccountName "vmmserviceaccount" -GivenName "VMM" -DisplayName "vmmserviceaccount" -AccountPassword $param["adminpassword"] -CannotChangePassword $true -Enabled $true -ErrorAction SilentlyContinue | Out-Null
-            } until ($?)
-            Write-Host "done."
+        Write-Host "Configuring Host Guardian Service - AD-based trust" -ForegroundColor Gray
+        Initialize-HgsServer -HgsServiceName service -SigningCertificatePath C:\HgsCertificates\signing.pfx `
+            -SigningCertificatePassword $param["adminpassword"] -EncryptionCertificatePath C:\HgsCertificates\encryption.pfx `
+            -EncryptionCertificatePassword $certificatePassword -TrustActiveDirectory -WarningAction SilentlyContinue | Out-Null
 
-            Write-Host "Creating ComputeHosts group" -NoNewline
-            do {
-                Start-Sleep -Seconds 3
-                Write-Host "." -NoNewline
-                New-ADGroup -Name "ComputeHosts" -DisplayName "Hyper-V Compute Hosts" -GroupCategory Security -GroupScope Universal  -ErrorAction SilentlyContinue | Out-Null
-            } until ($?)
-            Write-Host "done."
+        Write-Host "Fixing up the cluster network" -ForegroundColor Gray
+        (Get-ClusterNetwork).Role = 3
 
-            Write-Host "Registering DHCP server with DC" -NoNewline
-            do {
-                Start-Sleep -Seconds 3
-                Write-Host "." -NoNewline
-                Add-DhcpServerInDC -ErrorAction Continue
-            } until ($?) 
-            Write-Host "done."
-            
-            Write-Host "Creating offline domain join blobs for compute hosts in domain $($param["domainname"])"
-            New-Item -Path 'C:\djoin' -ItemType Directory | Out-Null
-            Start-Process "djoin.exe" -Verb RunAs -ArgumentList "/Provision", "/Domain $($param["domainname"])", "/Machine Compute01", "/SaveFile C:\djoin\Compute01.djoin"
-            Start-Process "djoin.exe" -Verb RunAs -ArgumentList "/Provision", "/Domain $($param["domainname"])", "/Machine Compute02", "/SaveFile C:\djoin\Compute02.djoin"
-            New-SmbShare -Path C:\djoin -Name djoin -ContinuouslyAvailable $true -ReadAccess Everyone
-        } -ArgumentList @{
-            domainname=$Script:domainName;
-            adminpassword=$Script:passwordSecureString
-        }
+        Write-Host "Speeding up DNS registration of cluster network name" -ForegroundColor Gray
+        Get-ClusterResource -Name HgsClusterResource | Update-ClusterNetworkNameResource | Out-Null
+
+    } -ArgumentList @{
+        hgsdomainname=$Script:hgsDomainName
+        adminpassword=$Script:passwordSecureString
+    }
+
+
     End-Stage
 } 
 #######################################################################################
@@ -684,67 +760,46 @@ If ($Script:stage -eq 3 -and $Script:stage -lt $StopBeforeStage)
 {
     Begin-Stage
 
-    Invoke-CommandWithPSDirect -VirtualMachine $hgs01 -Credential $Script:hgsAdminCred -ScriptBlock {
-            Param(
-                [hashtable]$param
-            )
-            New-Item -Path 'C:\HgsCertificates' -ItemType Directory | Out-Null
-
-            Write-Host "Creating self-signed certificates for HGS configuration" 
-            $signingCert = New-SelfSignedCertificate -DnsName "signing.$($param["hgsdomainname"])"
-            Export-PfxCertificate -Cert $signingCert -Password $param["adminpassword"] -FilePath C:\HgsCertificates\signing.pfx | Out-Null
-            $encryptionCert = New-SelfSignedCertificate -DnsName "encryption.$($param["hgsdomainname"])"
-            Export-PfxCertificate -Cert $encryptionCert -Password $param["adminpassword"] -FilePath C:\HgsCertificates\encryption.pfx | Out-Null
-
-            Write-Host "Removing certificates from local store after exporting" 
-            Remove-Item $EncryptionCert.PSPath, $SigningCert.PSPath -DeleteKey -ErrorAction Continue | Out-Null
-
-            Write-Host "Configuring Host Guardian Service - AD-based trust" 
-            Initialize-HgsServer -HgsServiceName service -SigningCertificatePath C:\HgsCertificates\signing.pfx `
-                -SigningCertificatePassword $param["adminpassword"] -EncryptionCertificatePath C:\HgsCertificates\encryption.pfx `
-                -EncryptionCertificatePassword $certificatePassword -TrustActiveDirectory -WarningAction SilentlyContinue | Out-Null
-
-            Write-Host "Fixing up the cluster network"
-            (Get-ClusterNetwork).Role = 3
-
-        } -ArgumentList @{
-            hgsdomainname=$Script:hgsDomainName
-            adminpassword=$Script:passwordSecureString
-        }
-
-    Start-VM $dc01
-
     $ComputeHostsSID = Invoke-CommandWithPSDirect -VirtualMachine $dc01 -Credential $Script:relecloudAdminCred -ScriptBlock {
-            $sid = Get-ADGroup ComputeHosts | select -ExpandProperty SID | select -ExpandProperty Value
-            Write-Host "ComputeHosts SID: $sid"
-            $sid
-        }
+        Write-Host "Retrieving SID for group ComputeHosts" -NoNewline -ForegroundColor Gray
+        do {
+            Write-Host "." -NoNewline -ForegroundColor Gray
+            Start-Sleep -Seconds 2
+            $sid = Get-ADGroup ComputeHosts -ErrorAction SilentlyContinue | select -ExpandProperty SID | select -ExpandProperty Value
+        } until ($?)
+        Write-Host " SID: $sid" -ForegroundColor Gray
+        $sid
+    } # This also ensures that AD functionality is up and running before continuing.
+
+    Start-VM $hgs01 | Out-Null
+
     $ScriptBlock_DomainJoin = {
             Param(
                 [hashtable]$param
             )
-            Write-Host "Waiting for domain controller $($param["domainname"])"
-            while (!(Test-Connection -Computername "$(($using:EnvironmentVMs | ?{$_.VMName -contains "Domain Controller"}).IPAddress)" -BufferSize 16 -Count 1 )) #-Quiet -ea SilentlyContinue 
+            $dcip = $(($using:EnvironmentVMs | ?{$_.VMName -contains "Domain Controller"}).IPAddress)
+            Write-Host "Waiting for domain controller $($param["domainname"]) at $dcip" -ForegroundColor Gray
+            while (!(Test-Connection -Computername "$dcip" -BufferSize 16 -Count 1 )) #-Quiet -ea SilentlyContinue 
             {
                 Start-Sleep -Seconds 2
             }
             $edition = (Get-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion')| Select -expandproperty EditionID
-            Write-Host "Joining system to domain $($param["domainname"]). Edition: $edition" -NoNewline
+            Write-Host "Joining system $($env:COMPUTERNAME) ($($edition)) to domain $($param["domainname"])." -NoNewline -ForegroundColor Gray
             switch ($edition)
             {
                 "ServerDataCenterNano" {
-                    $djoinpath = "\\$($param["domainname"])\c$\djoin\$($env:COMPUTERNAME).djoin"
-                    Write-Host "Using $djoinpath"
+                    $djoinpath = "\\$(($using:EnvironmentVMs | ?{$_.VMName -contains "Domain Controller"}).IPAddress)\c$\djoin\$($env:COMPUTERNAME).djoin"
+                    Write-Host " Using $djoinpath" -ForegroundColor Gray
                     Start-Process "djoin.exe" -Verb RunAs -ArgumentList "/requestodj", '/loadfile $djoinpath', "/windowspath c:\windows", "/localos"
                 }
                 default {
                     $cred = New-Object System.Management.Automation.PSCredential ($param["domainuser"], $param["domainpwd"])
                     do {
-                        Write-Host "." -NoNewline
+                        Write-Host "." -NoNewline -ForegroundColor Gray
                         Start-Sleep -Seconds 2
                         Add-Computer -DomainName $param["domainname"] -Credential $cred -ErrorAction SilentlyContinue -WarningAction SilentlyContinue| Out-Null    
                     } until ($?)
-                    Write-Host "done."
+                    Write-Host "done." -ForegroundColor Gray
                 }
             }
         }
@@ -763,39 +818,50 @@ If ($Script:stage -eq 3 -and $Script:stage -lt $StopBeforeStage)
     Reboot-VM $compute02
 
     Invoke-CommandWithPSDirect -VirtualMachine $hgs01 -Credential $Script:hgsAdminCred -ScriptBlock {
-            Write-Host "Creating a DNS forwarder to the fabric AD"
-            Add-DnsServerConditionalForwarderZone -Name "relecloud.com" -MasterServers 192.168.42.1
+            Param(
+                [hashtable]$param
+            )
+            Write-Host "Creating a DNS forwarder to the fabric AD $($param["domainname"])" -ForegroundColor Gray
+            Add-DnsServerConditionalForwarderZone -Name $($param["domainname"]) -MasterServers "$($param["subnet"])1"
 
-            Write-Host "Adding a one-way trust with the fabric AD"
-            Start-Process "netdom.exe" -Verb RunAs -ArgumentList "trust", "hgs.relecloud.com", "/domain:$($param["domainname"])", "/userD:$($param["domainuser"])", "/passwordD:$($param["domainpwd"])" /add
+            Write-Host "Adding a one-way trust to the fabric AD $($param["domainname"])" -ForegroundColor Gray
+            Start-Process "netdom.exe" -Verb RunAs -ArgumentList "trust", "$($param["hgsdomainname"])", "/domain:$($param["domainname"])", "/userD:$($param["domainuser"])", "/passwordD:$($param["domainpwd"])" /add
 
-            Write-Host "Adding ComputeHosts host group to HGS attestation"
+            Write-Host "Adding SID $($param["computehostssid"]) to HGS attestation" -ForegroundColor Gray
             Add-HgsAttestationHostGroup -Name "ComputeHosts" -Identifier $param["computehostssid"]
         } -ArgumentList @{
             domainname=$Script:domainName;
             domainuser="relecloud\administrator";
             domainpwd=$Script:clearTextPassword;
-            computehostssid = $ComputeHostsSID
+            hgsdomainname=$Script:hgsDomainName;
+            computehostssid = $ComputeHostsSID;
+            subnet=$Script:internalSubnet
         }
     
     Invoke-CommandWithPSDirect -VirtualMachine $dc01 -Credential $Script:relecloudAdminCred -ScriptBlock {
-            Write-Host "Creating a DNS forwarder to the hgs AD"
-            Add-DnsServerConditionalForwarderZone -Name "hgs.relecloud.com" -MasterServers 192.168.42.99
+            Param(
+                [hashtable]$param
+            )
+            Write-Host "Creating DNS Zone delegation to HGS for $($param["domainname"])" -ForegroundColor Gray
+            Add-DnsServerZoneDelegation -Name $($param["domainname"]) -ChildZone "hgs" -NameServer "hgs01.$($param["domainname"])" -IPAddress "$($param["subnet"])99"
+            #Add-DnsServerConditionalForwarderZone -Name "hgs.relecloud.com" -MasterServers "$($param["subnet"])99"
         } -ArgumentList @{
-            domainname=$Script:domainName
+            domainname=$Script:domainName;
+            hgsdomainname=$Script:hgsDomainName
+            subnet=$Script:internalSubnet
         }
 
     $ScriptBlock_HgsClientConfiguration = {
         Param(
                 [hashtable]$param
         )
-        Write-Host "Configuring HGS Client"
+        Write-Host "Configuring HGS Client" -ForegroundColor Gray
         Set-HgsClientConfiguration -KeyProtectionServerUrl $param["keyprotectionserverurl"] -AttestationServerUrl $param["attestationserverurl"]
     }
 
     $Arg_HgsClientConfiguration = @{
-            keyprotectionserverurl="http://service.hgs.relecloud.com/KeyProtection";
-            attestationserverurl="http://service.hgs.relecloud.com/Attestation"
+            keyprotectionserverurl="http://service.$($Script:hgsDomainName)/KeyProtection";
+            attestationserverurl="http://service.$($Script:hgsDomainName)/Attestation"
         }
 
     Invoke-CommandWithPSDirect -VirtualMachine $compute01 -Credential $Script:localAdminCred -ScriptBlock $ScriptBlock_HgsClientConfiguration -ArgumentList $Arg_HgsClientConfiguration 
