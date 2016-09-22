@@ -392,9 +392,10 @@ Function WaitFor-ActiveDirectory {
     Invoke-CommandWithPSDirect -VirtualMachine $VirtualMachine -Credential $Credential -ScriptBlock {
         do {
             Write-Host "." -NoNewline -ForegroundColor Gray
-            Start-Sleep -Seconds 2
-            Get-ADComputer $env:COMPUTERNAME 
+            Start-Sleep -Seconds 5
+            Get-ADComputer $env:COMPUTERNAME | Out-Null
         } until ($?)
+        Write-Host ""
     }
     Log-Message -Level 1 -Message "succeeded."
 }
@@ -733,7 +734,7 @@ If ($Script:stage -eq 2 -and $Script:stage -lt $StopBeforeStage)
         Write-Host "Configuring Host Guardian Service - AD-based trust" -ForegroundColor Gray
         Initialize-HgsServer -HgsServiceName service -SigningCertificatePath C:\HgsCertificates\signing.pfx `
             -SigningCertificatePassword $param["adminpassword"] -EncryptionCertificatePath C:\HgsCertificates\encryption.pfx `
-            -EncryptionCertificatePassword $certificatePassword -TrustActiveDirectory -WarningAction SilentlyContinue | Out-Null
+            -EncryptionCertificatePassword $param["adminpassword"] -TrustActiveDirectory -WarningAction SilentlyContinue | Out-Null
 
         Write-Host "Fixing up the cluster network" -ForegroundColor Gray
         (Get-ClusterNetwork).Role = 3
@@ -765,10 +766,10 @@ If ($Script:stage -eq 3 -and $Script:stage -lt $StopBeforeStage)
         do {
             Write-Host "." -NoNewline -ForegroundColor Gray
             Start-Sleep -Seconds 2
-            $sid = Get-ADGroup ComputeHosts -ErrorAction SilentlyContinue | select -ExpandProperty SID | select -ExpandProperty Value
+            $sid = Get-ADGroup ComputeHosts -ErrorAction SilentlyContinue 
         } until ($?)
         Write-Host " SID: $sid" -ForegroundColor Gray
-        $sid
+        $sid | select -ExpandProperty SID | select -ExpandProperty Value
     } # This also ensures that AD functionality is up and running before continuing.
 
     Start-VM $hgs01 | Out-Null
@@ -817,6 +818,7 @@ If ($Script:stage -eq 3 -and $Script:stage -lt $StopBeforeStage)
     Reboot-VM $compute01
     Reboot-VM $compute02
 
+    WaitFor-ActiveDirectory -VirtualMachine $hgs01 -Credential $Script:hgsAdminCred
     Invoke-CommandWithPSDirect -VirtualMachine $hgs01 -Credential $Script:hgsAdminCred -ScriptBlock {
             Param(
                 [hashtable]$param
@@ -825,7 +827,7 @@ If ($Script:stage -eq 3 -and $Script:stage -lt $StopBeforeStage)
             Add-DnsServerConditionalForwarderZone -Name $($param["domainname"]) -MasterServers "$($param["subnet"])1"
 
             Write-Host "Adding a one-way trust to the fabric AD $($param["domainname"])" -ForegroundColor Gray
-            Start-Process "netdom.exe" -Verb RunAs -ArgumentList "trust", "$($param["hgsdomainname"])", "/domain:$($param["domainname"])", "/userD:$($param["domainuser"])", "/passwordD:$($param["domainpwd"])" /add
+            Start-Process "netdom.exe" -Verb RunAs -ArgumentList "trust", "$($param["hgsdomainname"])", "/domain:$($param["domainname"])", "/userD:$($param["domainuser"])", "/passwordD:$($param["domainpwd"])", "/add"
 
             Write-Host "Adding SID $($param["computehostssid"]) to HGS attestation" -ForegroundColor Gray
             Add-HgsAttestationHostGroup -Name "ComputeHosts" -Identifier $param["computehostssid"]
