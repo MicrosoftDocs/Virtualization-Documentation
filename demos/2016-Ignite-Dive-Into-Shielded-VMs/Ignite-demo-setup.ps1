@@ -9,6 +9,8 @@
 # Initialization of variables
 #######################################################################################
 
+$VerbosePreference = "Continue"
+
 $Script:basePath = "C:\Ignite"
 $Script:sourcePath = "C:\IgniteSource"
 
@@ -59,26 +61,39 @@ $Script:MemoryScaleFactor = $MemoryScaleFactor
 # Helper Functions
 #######################################################################################
 
+function Write-TimeStamp {
+    Param(
+        [switch]$Dark
+    )
+    If ($Dark) {
+        Write-Host (Get-Date -Format "yyyy-MM-dd HH:mm:ss") -ForegroundColor DarkCyan -NoNewline
+    }
+    else {
+        Write-Host (Get-Date -Format "yyyy-MM-dd HH:mm:ss") -ForegroundColor Cyan -NoNewline
+    }
+    
+    Write-Host " $("`t"*$Level)" -NoNewline
+}
+
 function Log-Message
 {
     Param(
-        [int]
-        $Level = 0,
-
         [Parameter(Mandatory=$True)]
         [string] 
         $Message,
 
-        [ValidateSet("Informational","Warning","Error")]
+        [int]
+        $Level = 0,
+
+        [ValidateSet("Informational","Warning","Error","Verbose")]
         $MessageType = "Informational"
     )
-    Write-Host (Get-Date -Format "yyyy-MM-dd HH:mm:ss") -ForegroundColor Cyan -NoNewline
-    Write-Host " $("`t"*$Level)" -ForegroundColor White -NoNewline
     
     switch ($MessageType) {
-        "Informational" { Write-Host $Message }
-        "Warning" { Write-Host $Message -ForegroundColor Yellow }
-        "Error" { Write-Host $Message -ForegroundColor Red }
+        "Informational" { Write-TimeStamp; Write-Host $Message }
+        "Warning" { Write-TimeStamp; Write-Host $Message -ForegroundColor Yellow }
+        "Error" { Write-TimeStamp; Write-Host $Message -ForegroundColor Red }
+        "Verbose" { If ($VerbosePreference -eq "Continue") { Write-TimeStamp -Dark; Write-Host $Message -ForegroundColor Gray } }
     }
 }
 
@@ -140,7 +155,7 @@ function Prepare-VM
     
     If ($Script:MemoryScaleFactor -ne 1) 
     {
-        Log-Message -Level 1 -Message "[$VMname] Multiplying memory assignment with factor $Script:MemoryScaleFactor"
+        Log-Message -Message "[$VMname] Multiplying memory assignment with factor $Script:MemoryScaleFactor" -Level 1 -MessageType Verbose
         $startupmemory = $startupmemory * $Script:MemoryScaleFactor
     }
 
@@ -149,24 +164,24 @@ function Prepare-VM
 
     If ($processorcount -gt 1)
     {
-        Log-Message -Level 1 -Message "[$VMname] Setting processor count to $processorcount"
+        Log-Message -Message "[$VMname] Setting processor count to $processorcount" -Level 1 -MessageType Verbose
         Set-VMProcessor -VM $VM -Count $processorcount  | Out-Null
     }
     If (-not $dynamicmemory)
     {
-        Log-Message -Level 1 -Message "[$VMname] Disabling Dynamic Memory"
+        Log-Message -Message "[$VMname] Disabling Dynamic Memory" -Level 1 -MessageType Verbose
         Set-VMMemory -VM $VM -DynamicMemoryEnabled $false | Out-Null
     }
     If ($enablevirtualizationextensions)
     {
-        Log-Message -Level 1 -Message "[$VMname] Enabling Virtualization Extensions"
+        Log-Message -Message "[$VMname] Enabling Virtualization Extensions" -Level 1 -MessageType Verbose
         Set-VMProcessor -VM $VM -ExposeVirtualizationExtensions $true | Out-Null
-        Log-Message -Level 1 -Message "[$VMname] Enabling Virtualization Extensions"
+        Log-Message -Message "[$VMname] Enabling Mac Address Spoofing" -Level 1 -MessageType Verbose
         Get-VMNetworkAdapter -VM $VM | Set-VMNetworkAdapter -MacAddressSpoofing on
     }
     If ($enablevtpm)
     {
-        Log-Message -Level 1 -Message "[$VMname] Enabling vTPM"
+        Log-Message -Message "[$VMname] Enabling vTPM" -Level 1 -MessageType Verbose
         $keyprotector = New-HgsKeyProtector -Owner $Script:HgsGuardian -AllowUntrustedRoot
         Set-VMKeyProtector -VM $VM -KeyProtector $keyprotector.RawData -ErrorAction Stop | Out-Null
         Enable-VMTPM -VM $VM -ErrorAction Stop | Out-Null
@@ -174,7 +189,7 @@ function Prepare-VM
 
     if ($startvm)
     {
-        Log-Message -Level 1 -Message "[$VMname] Starting VM"
+        Log-Message -Message "[$VMname] Starting VM" -Level 1
         Start-VM $VM -ErrorAction Stop | Out-Null
     }
 
@@ -191,7 +206,7 @@ function Create-EnvironmentStageCheckpoint
     )
     If ($shutdown)
     {
-        Log-Message -Message "Shutting down VMs for environment checkpoint for $($Script:stagenames[$Stage])"
+        Log-Message -Message "Shutting down VMs for environment checkpoint for $($Script:stagenames[$Stage])" -MessageType Verbose
         Stop-VM -VM $VirtualMachines -Force -ErrorAction SilentlyContinue -WarningAction SilentlyContinue
     }
     Log-Message -Message "Creating environment checkpoint for $($Script:stagenames[$Stage])"
@@ -208,21 +223,19 @@ function Reset-EnvironmentToStageCheckpoint
     $success = $false
     Do  
     {
-        Log-Message -Level 1 -Message "Searching checkpoints for $($Script:stagenames[$Stage])"
+        Log-Message -Level 1 -Message "Searching checkpoints for $($Script:stagenames[$Stage])" 
         $Snapshots = Get-VMSnapshot -VM $VirtualMachines -Name $Script:stagenames[$Stage] -ErrorAction SilentlyContinue
         If ($Snapshots)
         {
             Stop-VM -VM $VirtualMachines -TurnOff -Force -WarningAction SilentlyContinue
-            # todo: check if count is right
             Log-Message -Level 1 -Message "Checkpoints found. Restoring."
             $Snapshots | Restore-VMSnapshot -Confirm:$false
-            # todo: delete later checkpoints
             $success = $True
             $Script:stage = $Stage + 1
         }
         If ($Stage -gt 0 -and -not $success)
         {
-            Log-Message -Level 1 -Message "Checkpoints not found."
+            Log-Message -Level 1 -Message "Checkpoints not found." 
             $Stage--
         }
     } While (-not $success -and $Stage -ge -1)
@@ -267,28 +280,32 @@ function Invoke-CommandWithPSDirect
         Start-VM $VirtualMachine -ErrorAction Stop | Out-Null
     }
     
-    $startTime = Get-Date
-    do 
+    $heartbeatic = (Get-VMIntegrationService -VM $VirtualMachine |? Id -match "84EAAE65-2F2E-45F5-9BB5-0E857DC8EB47")
+    If ($heartbeatic -and ($heartbeatic.Enabled -eq $true)) 
     {
-        $timeElapsed = $(Get-Date) - $startTime
-        if ($($timeElapsed).TotalMinutes -ge 10)
+        $startTime = Get-Date
+        do 
         {
-            Log-Message -Level 1 -Message "Integration components did not come up after 10 minutes" -MessageType Error
-            throw
+            $timeElapsed = $(Get-Date) - $startTime
+            if ($($timeElapsed).TotalMinutes -ge 10)
+            {
+                Log-Message -Level 1 -Message "Integration components did not come up after 10 minutes" -MessageType Error
+                throw
+            } 
+            Start-Sleep -sec 1
         } 
-        Start-Sleep -sec 1
-    } 
-    until ((Get-VMIntegrationService -VM $VirtualMachine |? Id -match "84EAAE65-2F2E-45F5-9BB5-0E857DC8EB47").PrimaryStatusDescription -eq "OK")
-    Log-Message -Level 1 -Message "Heartbeat IC connected."
+        until ($heartbeatic.PrimaryStatusDescription -eq "OK")
+        Log-Message -Message "Heartbeat IC connected." -Level 1 -MessageType Verbose
+    }
 
-    Log-Message -Level 1 -Message "Waiting for PSDirect connection to $($VirtualMachine.VMName) for $($Credential.UserName)"
+    Log-Message -Message "Waiting for PSDirect connection to $($VirtualMachine.VMName) for $($Credential.UserName)" -Level 1 -MessageType Verbose 
     $startTime = Get-Date
     do 
     {
         $timeElapsed = $(Get-Date) - $startTime
         if ($($timeElapsed).TotalMinutes -ge 10)
         {
-            Log-Message -Level 1 -Message "Could not connect to PS Direct after 10 minutes" -MessageType Error
+            Log-Message -Message "Could not connect to PS Direct after 10 minutes" -MessageType Error -Level 1
             throw
         } 
         Start-Sleep -sec 1
@@ -296,7 +313,7 @@ function Invoke-CommandWithPSDirect
     } 
     until ($psReady)
     
-    Log-Message -Level 1 -Message "Running Script Block"
+    Log-Message -Message "Running Script Block" -Level 1
     If ($ArgumentList)
     {
         Invoke-Command -VMId $VirtualMachine.VMId -Credential $Credential -ScriptBlock $ScriptBlock -ArgumentList $ArgumentList -ErrorAction SilentlyContinue    
@@ -344,9 +361,9 @@ function Copy-ItemToVm
         Start-Sleep -sec 1
     } 
     until ((Get-VMIntegrationService -VM $VirtualMachine |? Id -match "84EAAE65-2F2E-45F5-9BB5-0E857DC8EB47").PrimaryStatusDescription -eq "OK")
-    Log-Message -Level 1 -Message "Heartbeat IC connected."
+    Log-Message -Message "Heartbeat IC connected." -Level 1 -MessageType Verbose
 
-    Log-Message -Level 1 -Message "Waiting for PSDirect connection to $($VirtualMachine.VMName) to be available"
+    Log-Message -Message "Waiting for PSDirect connection to $($VirtualMachine.VMName) to be available" -Level 1 -MessageType Verbose
     $startTime = Get-Date
     do 
     {
@@ -361,7 +378,7 @@ function Copy-ItemToVm
     } 
     until ($psReady)
 
-    Log-Message -Level 1 -Message "Opening PowerShell session to VM $($VirtualMachine.Name)"
+    Log-Message -Message "Opening PowerShell session to VM $($VirtualMachine.Name)" -Level 1 -MessageType Verbose
     $s = New-PSSession -VMId $VirtualMachine.VMId -Credential $Credential
     Invoke-Command -Session $s -ScriptBlock {
         $path = Split-Path -Path $using:DestinationPath -Parent
@@ -372,7 +389,7 @@ function Copy-ItemToVm
     }
     Log-Message -Level 1 -Message "Copying file to VM $($VirtualMachine.Name)"
     Copy-Item -ToSession $s -Path $SourcePath -Destination $DestinationPath  | Out-Null
-    Log-Message -Level 1 -Message "Closing PowerShell session"
+    Log-Message -Message "Closing PowerShell session" -Level 1 -MessageType Verbose
     Remove-PSSession $s | Out-Null
 
     #Copy-VMFile -VM $VirtualMachine -SourcePath $SourcePath -DestinationPath $DestinationPath -FileSource Host -CreateFullPath
@@ -388,7 +405,7 @@ Function WaitFor-ActiveDirectory {
         [System.Management.Automation.PSCredential]
         $Credential
     )
-    Log-Message -Level 1 -Message "Waiting for AD to be available"
+    Log-Message -Level 1 -Message "Waiting for AD to be up and running"
     Invoke-CommandWithPSDirect -VirtualMachine $VirtualMachine -Credential $Credential -ScriptBlock {
         do {
             Write-Host "." -NoNewline -ForegroundColor Gray
@@ -401,8 +418,15 @@ Function WaitFor-ActiveDirectory {
 }
 
 Function Begin-Stage {
+    Param(
+        $StartVMs = $true
+    )
     Log-Message -Message "Begin $($Script:stagenames[$Script:stage])"
     $Script:StageStartTime = Get-Date
+    If ($StartVMs) {
+        Log-Message -Message "Starting all VMs" -Level 0 -MessageType Verbose 
+        Start-VM -VM $Script:EnvironmentVMs -ErrorAction Stop | Out-Null
+    }
 }
 
 Function End-Stage {
@@ -509,6 +533,8 @@ else
     $Script:stage = 0
 }
 
+$FunctionDefs = "function Write-TimeStamp { ${Function:Write-TimeStamp} }; Function Log-Message { ${Function:Log-Message} }"
+
 #######################################################################################
 # Beginning of Environment Build
 #######################################################################################
@@ -523,7 +549,7 @@ If ($StartFromStage -gt 1)
 #######################################################################################
 If ($Script:stage -eq 0 -and $Script:stage -lt $StopBeforeStage)
 {
-    Begin-Stage
+    Begin-Stage -StartVMs $false
     $hgs01 = Prepare-VM -vmname $Script:VmNameHgs -basediskpath $Script:baseServerCorePath -dynamicmemory $true
     $dc01 = Prepare-VM -vmname $Script:VmNameDc -basediskpath $Script:baseServerCorePath -dynamicmemory $true
     $vmm01 = Prepare-VM -vmname $Script:VmNameVmm -basediskpath $Script:baseServerStandardPath
@@ -545,33 +571,32 @@ If ($Script:stage -eq 1 -and $Script:stage -lt $StopBeforeStage)
 {
     Begin-Stage
 
-    Log-Message -Level 1 -Message "Starting all VMs to parallelize specialization"
-    Start-VM -VM $Script:EnvironmentVMs -ErrorAction Stop | Out-Null
-
     $ScriptBlock_FeaturesComputerName = {
             Param(
                 [hashtable]$param
             )
+            . ([ScriptBlock]::Create($Using:FunctionDefs))
+
             If ($param["features"])
             {
                 If ($param["featuresource"])
                 {
-                    Write-Host "Calling Install-WindowsFeature $($param["features"]) using source path $($param["featuresource"])" -ForegroundColor Gray
+                    Log-Message -Message "Installing Windows Features $($param["features"]) using source path $($param["featuresource"])" -Level 2
                     Install-WindowsFeature $param["features"] -IncludeManagementTools -Source $param["featuresource"] -ErrorAction Stop -WarningAction SilentlyContinue | Out-Null
                 } else {
-                    Write-Host "Calling Install-WindowsFeature $($param["features"])" -ForegroundColor Gray
+                    Log-Message -Message  "Intalling Windows Features $($param["features"])"  -Level 2
                     Install-WindowsFeature $param["features"] -IncludeManagementTools -ErrorAction Stop -WarningAction SilentlyContinue | Out-Null                    
                 }
             }
             If ($param["ipaddress"])
             {
-                Write-Host "Setting Network configuration: IP $($param["ipaddress"])" -ForegroundColor Gray
+                Log-Message -Message "Setting Network configuration: IP $($param["ipaddress"])" -Level 2
                 Get-NetAdapter | New-NetIPAddress -AddressFamily IPv4 -IPAddress $param["ipaddress"] -PrefixLength 24 | Out-Null
             }
             Get-DnsClientServerAddress | %{Set-DnsClientServerAddress -InterfaceIndex $_.InterfaceIndex -ServerAddresses "$($param["subnet"])1"}
             If ($param["computername"])
             {
-                Write-Host "Renaming computer to $($param["computername"])" -ForegroundColor Gray
+                Log-Message -Message "Renaming computer to $($param["computername"])" -Level 2
                 Rename-Computer $param["computername"] -WarningAction SilentlyContinue | Out-Null
             }
         }
@@ -627,13 +652,15 @@ If ($Script:stage -eq 2 -and $Script:stage -lt $StopBeforeStage)
             Param(
                 [hashtable]$param
             )
-            Write-Host "Setting PowerShell as default shell" -ForegroundColor Gray
+            . ([ScriptBlock]::Create($Using:FunctionDefs))
+
+            Log-Message -Message "Setting PowerShell as default shell" -Level 2
             Set-ItemProperty -Path "HKLM:SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" -Name Shell -Value "PowerShell.exe" | Out-Null
 
-            Write-Host "Configuring DHCP Server" -ForegroundColor Gray
+            Log-Message -Message "Configuring DHCP Server" -Level 2
             Set-DhcpServerv4Binding -BindingState $true -InterfaceAlias Ethernet
             Add-DhcpServerv4Scope -Name "IPv4 network" -StartRange "$($param["subnet"])100" -EndRange "$($param["subnet"])200" -SubnetMask 255.255.255.0 | Out-Null
-            Write-Host "Creating fabric domain $($param["domainName"])" -ForegroundColor Gray
+            Log-Message -Message "Creating fabric domain $($param["domainName"])" -Level 2
             Install-ADDSForest -DomainName $param["domainName"] -SafeModeAdministratorPassword $param["adminpassword"] `
                                -InstallDNS -NoDNSonNetwork -NoRebootOnCompletion -Force -WarningAction SilentlyContinue | Out-Null
         } -ArgumentList @{
@@ -649,52 +676,60 @@ If ($Script:stage -eq 2 -and $Script:stage -lt $StopBeforeStage)
             Param(
                 [hashtable]$param
             )
-            Write-Host "Creating AD Users and Groups" -ForegroundColor Gray
-            Write-Host "Creating User Lars" -NoNewline -ForegroundColor Gray
+            . ([ScriptBlock]::Create($Using:FunctionDefs))
+
+            Log-Message -Message "Creating AD Users and Groups" -Level 2
+            Log-Message -Message "Creating User Lars" -Level 2
             do {
                 Start-Sleep -Seconds 3
                 Write-Host "." -NoNewline -ForegroundColor Gray
                 New-ADUser -Name "Lars" -SAMAccountName "lars" -GivenName "Lars" -DisplayName "Lars" -AccountPassword $param["adminpassword"] -CannotChangePassword $true -Enabled $true  -ErrorAction SilentlyContinue | Out-Null
             } until ($?)
-            Write-Host "done." -ForegroundColor Gray
+            Write-Host "done." -Level 2
             Add-ADGroupMember "Domain Admins" "Lars"
 
-            Write-Host "Creating VMM service account user" -NoNewline -ForegroundColor Gray
+            Log-Message -Message "Creating VMM service account user" -Level 2
             do {
                 Start-Sleep -Seconds 3
                 Write-Host "." -NoNewline -ForegroundColor Gray
                 New-ADUser -Name "vmmserviceaccount" -SAMAccountName "vmmserviceaccount" -GivenName "VMM" -DisplayName "vmmserviceaccount" -AccountPassword $param["adminpassword"] -CannotChangePassword $true -Enabled $true -ErrorAction SilentlyContinue | Out-Null
             } until ($?)
-            Write-Host "done." -ForegroundColor Gray
+            Write-Host "done." -Level 2
 
-            Write-Host "Creating ComputeHosts group" -NoNewline -ForegroundColor Gray
+            Log-Message -Message "Creating ComputeHosts group" -Level 2
             do {
                 Start-Sleep -Seconds 3
                 Write-Host "." -NoNewline -ForegroundColor Gray
                 New-ADGroup -Name "ComputeHosts" -DisplayName "Hyper-V Compute Hosts" -GroupCategory Security -GroupScope Universal  -ErrorAction SilentlyContinue | Out-Null
             } until ($?)
-            Write-Host "done." -ForegroundColor Gray
+            Write-Host "done." -Level 2
 
             Set-DhcpServerv4OptionValue -DnsDomain $param["domainname"] -DnsServer "$($param["subnet"]).1" | Out-Null
             Set-DhcpServerv4OptionValue -OptionId 6 -value "$($param["subnet"]).1"
 
-            Write-Host "Registering DHCP server with DC" -NoNewline -ForegroundColor Gray
+            Log-Message -Message "Registering DHCP server with DC" -Level 2
             do {
                 Start-Sleep -Seconds 3
                 Write-Host "." -NoNewline -ForegroundColor Gray
                 Add-DhcpServerInDC -ErrorAction Continue
             } until ($?) 
-            Write-Host "done." -ForegroundColor Gray
+            Write-Host "done." -Level 2
             
-            Write-Host "Creating offline domain join blobs for compute hosts in domain $($param["domainname"])" -ForegroundColor Gray
+            Log-Message -Message "Creating offline domain join blobs for compute hosts in domain $($param["domainname"])" -Level 2
             New-Item -Path 'C:\djoin' -ItemType Directory | Out-Null
-            Start-Process "djoin.exe" -Verb RunAs -ArgumentList "/Provision", "/Domain $($param["domainname"])", "/Machine Compute01", "/SaveFile C:\djoin\Compute01.djoin"
-            Start-Process "djoin.exe" -Verb RunAs -ArgumentList "/Provision", "/Domain $($param["domainname"])", "/Machine Compute02", "/SaveFile C:\djoin\Compute02.djoin"
+            djoin /Provision /Domain "$($param["domainname"])" /Machine "Compute01" /SaveFile "C:\djoin\Compute01.djoin"
+            djoin /Provision /Domain "$($param["domainname"])" /Machine "Compute02" /SaveFile "C:\djoin\Compute02.djoin"
+            #Start-Process "djoin.exe" -Verb RunAs -Wait -NoNewWindow -ArgumentList "/Provision", "/Domain $($param["domainname"])", "/Machine Compute01", "/SaveFile C:\djoin\Compute01.djoin"
+            #Start-Process "djoin.exe" -Verb RunAs -Wait -NoNewWindow -ArgumentList "/Provision", "/Domain $($param["domainname"])", "/Machine Compute02", "/SaveFile C:\djoin\Compute02.djoin"
 
-            Write-Host "Adding offline provisioned systems to ComputeHosts group" -ForegroundColor Gray
+            Log-Message -Message "Adding offline provisioned systems to ComputeHosts group" -Level 2
             Add-ADGroupMember "ComputeHosts" -Members "Compute01$"
             Add-ADGroupMember "ComputeHosts" -Members "Compute02$"
 
+            Log-Message -Message "Creating new VHDX SMB share" -Level 2
+            New-Item -Path 'C:\vhdx' -ItemType Directory | Out-Null
+            New-SmbShare -Name VHDX -Path C:\vhdx -FullAccess "$($param["domainname"])\administrator", "$($param["domainname"])\lars", "$($param["domainname"])\ComputeHosts" -ReadAccess "Everyone" | Out-Null
+            Set-SmbPathAcl –ShareName VHDX | Out-Null
         } -ArgumentList @{
             domainname=$Script:domainName;
             adminpassword=$Script:passwordSecureString;
@@ -705,7 +740,12 @@ If ($Script:stage -eq 2 -and $Script:stage -lt $StopBeforeStage)
             Param(
                 [hashtable]$param
             )
-            Write-Host "Preparing Host Guardian Service" -ForegroundColor Gray
+            . ([ScriptBlock]::Create($Using:FunctionDefs))
+
+            Log-Message -Message "Setting PowerShell as default shell" -Level 2
+            Set-ItemProperty -Path "HKLM:SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" -Name Shell -Value "PowerShell.exe" | Out-Null
+
+            Log-Message -Message "Preparing Host Guardian Service" -Level 2
             Install-HgsServer -HgsDomainName $param["hgsdomainname"] -SafeModeAdministratorPassword $param["adminpassword"] -WarningAction SilentlyContinue | Out-Null
         } -ArgumentList @{
             hgsdomainname=$Script:hgsDomainName;
@@ -719,28 +759,29 @@ If ($Script:stage -eq 2 -and $Script:stage -lt $StopBeforeStage)
         Param(
             [hashtable]$param
         )
+        . ([ScriptBlock]::Create($Using:FunctionDefs))
 
         New-Item -Path 'C:\HgsCertificates' -ItemType Directory | Out-Null
 
-        Write-Host "Creating self-signed certificates for HGS configuration" -ForegroundColor Gray
+        Log-Message -Message "Creating self-signed certificates for HGS configuration" -Level 2
         $signingCert = New-SelfSignedCertificate -DnsName "signing.$($param["hgsdomainname"])"
         Export-PfxCertificate -Cert $signingCert -Password $param["adminpassword"] -FilePath C:\HgsCertificates\signing.pfx | Out-Null
         $encryptionCert = New-SelfSignedCertificate -DnsName "encryption.$($param["hgsdomainname"])"
         Export-PfxCertificate -Cert $encryptionCert -Password $param["adminpassword"] -FilePath C:\HgsCertificates\encryption.pfx | Out-Null
 
-        Write-Host "Removing certificates from local store after exporting" -ForegroundColor Gray 
+        Log-Message -Message "Removing certificates from local store after exporting" -Level 2 
         Remove-Item $EncryptionCert.PSPath, $SigningCert.PSPath -DeleteKey -ErrorAction Continue | Out-Null
 
-        Write-Host "Configuring Host Guardian Service - AD-based trust" -ForegroundColor Gray
+        Log-Message -Message "Configuring Host Guardian Service - AD-based trust" -Level 2
         Initialize-HgsServer -HgsServiceName service -TrustActiveDirectory `
             -SigningCertificatePath C:\HgsCertificates\signing.pfx -SigningCertificatePassword $param["adminpassword"] `
             -EncryptionCertificatePath C:\HgsCertificates\encryption.pfx -EncryptionCertificatePassword $param["adminpassword"] `
             -WarningAction SilentlyContinue | Out-Null
 
-        Write-Host "Fixing up the cluster network" -ForegroundColor Gray
+        Log-Message -Message "Fixing up the cluster network" -Level 2
         (Get-ClusterNetwork).Role = 3
 
-        Write-Host "Speeding up DNS registration of cluster network name" -ForegroundColor Gray
+        Log-Message -Message "Speeding up DNS registration of cluster network name" -Level 2
         Get-ClusterResource -Name HgsClusterResource | Update-ClusterNetworkNameResource | Out-Null
 
     } -ArgumentList @{
@@ -763,36 +804,40 @@ If ($Script:stage -eq 3 -and $Script:stage -lt $StopBeforeStage)
     Begin-Stage
 
     $ComputeHostsSID = Invoke-CommandWithPSDirect -VirtualMachine $dc01 -Credential $Script:relecloudAdminCred -ScriptBlock {
-        Write-Host "Retrieving SID for group ComputeHosts" -NoNewline -ForegroundColor Gray
+        . ([ScriptBlock]::Create($Using:FunctionDefs))
+
+        Log-Message -Message "Retrieving SID for group ComputeHosts" -Level 2
         do {
             Write-Host "." -NoNewline -ForegroundColor Gray
             Start-Sleep -Seconds 2
             $sid = Get-ADGroup ComputeHosts -ErrorAction SilentlyContinue | select -ExpandProperty SID | select -ExpandProperty Value 
         } until ($?)
-        Write-Host " SID: $sid" -ForegroundColor Gray
+        Write-Host ""
+        Log-Message -Message "SID: $sid" -Level 2
         $sid 
     } # This also ensures that AD functionality is up and running before continuing.
-
-    Start-VM $hgs01 | Out-Null
 
     $ScriptBlock_DomainJoin = {
             Param(
                 [hashtable]$param
             )
+            . ([ScriptBlock]::Create($Using:FunctionDefs))
+
             $dcip = $param["dcip"]
-            Write-Host "Waiting for domain controller $($param["domainname"]) at $dcip" -ForegroundColor Gray
+            Log-Message -Message "Waiting for domain controller $($param["domainname"]) at $dcip" -Level 2
             while (!(Test-Connection -Computername "$dcip" -BufferSize 16 -Count 1 )) #-Quiet -ea SilentlyContinue 
             {
                 Start-Sleep -Seconds 2
             }
             $edition = (Get-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion')| Select -expandproperty EditionID
-            Write-Host "Joining system $($env:COMPUTERNAME) ($($edition)) to domain $($param["domainname"])." -NoNewline -ForegroundColor Gray
+            Log-Message -Message "Joining system $($env:COMPUTERNAME) ($($edition)) to domain $($param["domainname"])." -Level 2
             switch ($edition)
             {
                 "ServerDataCenterNano" {
                     $djoinpath = "\\$dcip\c$\djoin\$($env:COMPUTERNAME).djoin"
-                    Write-Host " Using $djoinpath" -ForegroundColor Gray
-                    Start-Process "djoin.exe" -Verb RunAs -ArgumentList "/requestodj", '/loadfile $djoinpath', "/windowspath c:\windows", "/localos"
+                    Log-Message -Message "Using $djoinpath" -Level 2
+                    djoin /requestodj /loadfile "$djoinpath" /windowspath C:\Windows /localos
+                    #Start-Process "djoin.exe" -Verb RunAs -Wait -NoNewWindow -ArgumentList "/requestodj", "/loadfile", $djoinpath, "/windowspath", "c:\windows", "/localos"
                 }
                 default {
                     $cred = New-Object System.Management.Automation.PSCredential ($param["domainuser"], $param["domainpwd"])
@@ -825,13 +870,15 @@ If ($Script:stage -eq 3 -and $Script:stage -lt $StopBeforeStage)
             Param(
                 [hashtable]$param
             )
-            Write-Host "Creating a DNS forwarder to the fabric AD $($param["domainname"])" -ForegroundColor Gray
+            . ([ScriptBlock]::Create($Using:FunctionDefs))
+
+            Log-Message -Message "Creating a DNS forwarder to the fabric AD $($param["domainname"])" -Level 2
             Add-DnsServerConditionalForwarderZone -Name $($param["domainname"]) -MasterServers "$($param["subnet"])1"
 
-            Write-Host "Adding a one-way trust to the fabric AD $($param["domainname"])" -ForegroundColor Gray
-            Start-Process "netdom.exe" -Verb RunAs -ArgumentList "trust", "$($param["hgsdomainname"])", "/domain:$($param["domainname"])", "/userD:$($param["domainuser"])", "/passwordD:$($param["domainpwd"])", "/add"
+            Log-Message -Message "Adding a one-way trust to the fabric AD $($param["domainname"])" -Level 2
+            Start-Process "netdom.exe" -Verb RunAs -Wait -NoNewWindow -ArgumentList "trust", "$($param["hgsdomainname"])", "/domain:$($param["domainname"])", "/userD:$($param["domainuser"])", "/passwordD:$($param["domainpwd"])", "/add"
 
-            Write-Host "Adding SID $($param["computehostssid"]) to HGS attestation" -ForegroundColor Gray
+            Log-Message -Message "Adding SID $($param["computehostssid"]) to HGS attestation" -Level 2
             Add-HgsAttestationHostGroup -Name "ComputeHosts" -Identifier $param["computehostssid"]
         } -ArgumentList @{
             domainname=$Script:domainName;
@@ -846,7 +893,9 @@ If ($Script:stage -eq 3 -and $Script:stage -lt $StopBeforeStage)
             Param(
                 [hashtable]$param
             )
-            Write-Host "Creating DNS Zone delegation to HGS for $($param["domainname"])" -ForegroundColor Gray
+            . ([ScriptBlock]::Create($Using:FunctionDefs))
+
+            Log-Message -Message "Creating DNS Zone delegation to HGS for $($param["domainname"])" -Level 2
             Add-DnsServerZoneDelegation -Name $($param["domainname"]) -ChildZone "hgs" -NameServer "hgs01.$($param["domainname"])" -IPAddress "$($param["subnet"])99"
             #Add-DnsServerConditionalForwarderZone -Name "hgs.relecloud.com" -MasterServers "$($param["subnet"])99"
         } -ArgumentList @{
@@ -859,7 +908,9 @@ If ($Script:stage -eq 3 -and $Script:stage -lt $StopBeforeStage)
         Param(
                 [hashtable]$param
         )
-        Write-Host "Configuring HGS Client" -ForegroundColor Gray
+        . ([ScriptBlock]::Create($Using:FunctionDefs))
+        
+        Log-Message -Message "Configuring HGS Client" -Level 2
         Set-HgsClientConfiguration -KeyProtectionServerUrl $param["keyprotectionserverurl"] -AttestationServerUrl $param["attestationserverurl"]
     }
 
@@ -868,8 +919,8 @@ If ($Script:stage -eq 3 -and $Script:stage -lt $StopBeforeStage)
             attestationserverurl="http://service.$($Script:hgsDomainName)/Attestation"
         }
 
-    Invoke-CommandWithPSDirect -VirtualMachine $compute01 -Credential $Script:localAdminCred -ScriptBlock $ScriptBlock_HgsClientConfiguration -ArgumentList $Arg_HgsClientConfiguration 
-    Invoke-CommandWithPSDirect -VirtualMachine $compute02 -Credential $Script:localAdminCred -ScriptBlock $ScriptBlock_HgsClientConfiguration -ArgumentList $Arg_HgsClientConfiguration
+    Invoke-CommandWithPSDirect -VirtualMachine $compute01 -Credential $Script:relecloudAdminCred -ScriptBlock $ScriptBlock_HgsClientConfiguration -ArgumentList $Arg_HgsClientConfiguration 
+    Invoke-CommandWithPSDirect -VirtualMachine $compute02 -Credential $Script:relecloudAdminCred -ScriptBlock $ScriptBlock_HgsClientConfiguration -ArgumentList $Arg_HgsClientConfiguration
 
     End-Stage
 } 
