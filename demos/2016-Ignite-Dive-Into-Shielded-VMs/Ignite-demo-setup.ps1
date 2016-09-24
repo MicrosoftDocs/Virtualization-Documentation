@@ -14,7 +14,8 @@ $VerbosePreference = "Continue"
 $Script:basePath = "C:\Ignite"
 $Script:sourcePath = "C:\IgniteSource"
 
-$Script:baseMediaPath = Join-Path $Script:sourcePath -ChildPath "\WindowsServer2016\server_en-us_vl\" -Resolve
+$Script:baseMediaPath = Join-Path $Script:sourcePath -ChildPath "\WindowsServer2016\" -Resolve
+$Script:baseUpdatePath = Join-Path $Script:sourcePath -ChildPath "\Updates\"
 
 $Script:domainName = "relecloud.com"
 $Script:hgsDomainName = "hgs.$($Script:domainName)"
@@ -412,9 +413,8 @@ Function WaitFor-ActiveDirectory {
             Start-Sleep -Seconds 5
             Get-ADComputer $env:COMPUTERNAME | Out-Null
         } until ($?)
-        Write-Host ""
+        Write-Host "done."
     }
-    Log-Message -Level 1 -Message "succeeded."
 }
 
 Function Begin-Stage {
@@ -473,6 +473,18 @@ If (($Cleanup -eq "Baseimages") -or ($Cleanup -eq "Everything"))
 # Preparation of base VHDXs
 #######################################################################################
 
+$Script:installWimPath = Join-Path $Script:baseMediaPath -ChildPath "sources\Install.wim"
+
+If (Test-Path $Script:baseUpdatePath) {
+    $Updates = @()
+    Log-Message -Message "[Prepare] Found updates path"   
+    foreach ($Update in (Get-ChildItem $Script:baseUpdatePath -Recurse -include "*.cab" -Exclude WSUSSCAN.CAB))
+    {
+        Log-Message -Message "[Prepare] Found $($Update.Name)" -MessageType Verbose
+        $Updates += $Update.FullName
+    }
+}
+
 if (Test-Path $Script:ImageConverterPath)
 {
     Log-Message -Message "[Prepare] Running Image converter script to get Convert-WindowsImage function"
@@ -482,13 +494,21 @@ if (Test-Path $Script:ImageConverterPath)
 if (-Not (Test-Path $Script:baseServerCorePath))
 {
     Log-Message -Message "[Prepare] Creating Server Datacenter Core base VHDX"
-    Convert-WindowsImage -SourcePath (Join-Path $Script:baseMediaPath -ChildPath "sources\Install.wim") -VHDPath $Script:baseServerCorePath -DiskLayout UEFI -Edition SERVERDATACENTERCORE -UnattendPath $Script:UnattendPath -SizeBytes 40GB | Out-Null
+    If ($Updates) {
+        Convert-WindowsImage -SourcePath ($Script:installWimPath) -VHDPath $Script:baseServerCorePath -DiskLayout UEFI -Edition SERVERDATACENTERCORE -UnattendPath $Script:UnattendPath -SizeBytes 40GB -Package $Updates | Out-Null
+    } else {
+        Convert-WindowsImage -SourcePath ($Script:installWimPath) -VHDPath $Script:baseServerCorePath -DiskLayout UEFI -Edition SERVERDATACENTERCORE -UnattendPath $Script:UnattendPath -SizeBytes 40GB | Out-Null
+    }
 }
 
 if (-Not (Test-Path $Script:baseServerStandardPath))
 {
     Log-Message -Message "[Prepare] Creating Server Standard Full UI base VHDX"
-    Convert-WindowsImage -SourcePath (Join-Path $Script:baseMediaPath -ChildPath "sources\Install.wim") -VHDPath $Script:baseServerStandardPath -DiskLayout UEFI -Edition SERVERSTANDARD -UnattendPath $Script:UnattendPath -SizeBytes 40GB | Out-Null
+    If ($Updates) {
+        Convert-WindowsImage -SourcePath ($Script:installWimPath) -VHDPath $Script:baseServerStandardPath -DiskLayout UEFI -Edition SERVERSTANDARD -UnattendPath $Script:UnattendPath -SizeBytes 40GB -Package $Updates | Out-Null
+    } else {
+        Convert-WindowsImage -SourcePath ($Script:installWimPath) -VHDPath $Script:baseServerStandardPath -DiskLayout UEFI -Edition SERVERSTANDARD -UnattendPath $Script:UnattendPath -SizeBytes 40GB | Out-Null    
+    }
 }
 
 if (-Not (Test-Path $Script:baseNanoServerPath))
@@ -497,7 +517,12 @@ if (-Not (Test-Path $Script:baseNanoServerPath))
     # Importing Nano Server Image Generator PowerShell Module
     Import-Module (Join-Path $Script:baseMediaPath -ChildPath "\NanoServer\NanoServerImageGenerator\NanoServerImageGenerator.psm1") | Out-Null
 
-    New-NanoServerImage -DeploymentType Guest -Edition Datacenter -MediaPath $Script:baseMediaPath -Package Microsoft-NanoServer-SecureStartup-Package,Microsoft-NanoServer-Guest-Package,Microsoft-NanoServer-SCVMM-Package,Microsoft-NanoServer-SCVMM-Compute-Package  -TargetPath $Script:baseNanoServerPath -EnableRemoteManagementPort -AdministratorPassword $Script:passwordSecureString | Out-Null
+    If ($Updates) {
+        New-NanoServerImage -DeploymentType Guest -Edition Datacenter -MediaPath $Script:baseMediaPath -Package Microsoft-NanoServer-SecureStartup-Package,Microsoft-NanoServer-Guest-Package,Microsoft-NanoServer-SCVMM-Package,Microsoft-NanoServer-SCVMM-Compute-Package  -TargetPath $Script:baseNanoServerPath -EnableRemoteManagementPort -AdministratorPassword $Script:passwordSecureString -ServicingPackages $Updates | Out-Null
+    } else {
+        New-NanoServerImage -DeploymentType Guest -Edition Datacenter -MediaPath $Script:baseMediaPath -Package Microsoft-NanoServer-SecureStartup-Package,Microsoft-NanoServer-Guest-Package,Microsoft-NanoServer-SCVMM-Package,Microsoft-NanoServer-SCVMM-Compute-Package  -TargetPath $Script:baseNanoServerPath -EnableRemoteManagementPort -AdministratorPassword $Script:passwordSecureString | Out-Null    
+    }
+    
 }
 
 #######################################################################################
@@ -685,7 +710,9 @@ If ($Script:stage -eq 2 -and $Script:stage -lt $StopBeforeStage)
                 Write-Host "." -NoNewline -ForegroundColor Gray
                 New-ADUser -Name "Lars" -SAMAccountName "lars" -GivenName "Lars" -DisplayName "Lars" -AccountPassword $param["adminpassword"] -CannotChangePassword $true -Enabled $true  -ErrorAction SilentlyContinue | Out-Null
             } until ($?)
-            Write-Host "done." -Level 2
+            Write-Host "done." 
+
+            Log-Message -Message "Configuring Lars as Domain Admin" -Level 2
             Add-ADGroupMember "Domain Admins" "Lars"
 
             Log-Message -Message "Creating VMM service account user" -Level 2
@@ -694,7 +721,7 @@ If ($Script:stage -eq 2 -and $Script:stage -lt $StopBeforeStage)
                 Write-Host "." -NoNewline -ForegroundColor Gray
                 New-ADUser -Name "vmmserviceaccount" -SAMAccountName "vmmserviceaccount" -GivenName "VMM" -DisplayName "vmmserviceaccount" -AccountPassword $param["adminpassword"] -CannotChangePassword $true -Enabled $true -ErrorAction SilentlyContinue | Out-Null
             } until ($?)
-            Write-Host "done." -Level 2
+            Write-Host "done." 
 
             Log-Message -Message "Creating ComputeHosts group" -Level 2
             do {
@@ -702,7 +729,7 @@ If ($Script:stage -eq 2 -and $Script:stage -lt $StopBeforeStage)
                 Write-Host "." -NoNewline -ForegroundColor Gray
                 New-ADGroup -Name "ComputeHosts" -DisplayName "Hyper-V Compute Hosts" -GroupCategory Security -GroupScope Universal  -ErrorAction SilentlyContinue | Out-Null
             } until ($?)
-            Write-Host "done." -Level 2
+            Write-Host "done." 
 
             Set-DhcpServerv4OptionValue -DnsDomain $param["domainname"] -DnsServer "$($param["subnet"]).1" | Out-Null
             Set-DhcpServerv4OptionValue -OptionId 6 -value "$($param["subnet"]).1"
@@ -713,7 +740,7 @@ If ($Script:stage -eq 2 -and $Script:stage -lt $StopBeforeStage)
                 Write-Host "." -NoNewline -ForegroundColor Gray
                 Add-DhcpServerInDC -ErrorAction Continue
             } until ($?) 
-            Write-Host "done." -Level 2
+            Write-Host "done."
             
             Log-Message -Message "Creating offline domain join blobs for compute hosts in domain $($param["domainname"])" -Level 2
             New-Item -Path 'C:\djoin' -ItemType Directory | Out-Null
@@ -812,7 +839,7 @@ If ($Script:stage -eq 3 -and $Script:stage -lt $StopBeforeStage)
             Start-Sleep -Seconds 2
             $sid = Get-ADGroup ComputeHosts -ErrorAction SilentlyContinue | select -ExpandProperty SID | select -ExpandProperty Value 
         } until ($?)
-        Write-Host ""
+        Write-Host "done."
         Log-Message -Message "SID: $sid" -Level 2
         $sid 
     } # This also ensures that AD functionality is up and running before continuing.
@@ -876,10 +903,11 @@ If ($Script:stage -eq 3 -and $Script:stage -lt $StopBeforeStage)
             Add-DnsServerConditionalForwarderZone -Name $($param["domainname"]) -MasterServers "$($param["subnet"])1"
 
             Log-Message -Message "Adding a one-way trust to the fabric AD $($param["domainname"])" -Level 2
-            Start-Process "netdom.exe" -Verb RunAs -Wait -NoNewWindow -ArgumentList "trust", "$($param["hgsdomainname"])", "/domain:$($param["domainname"])", "/userD:$($param["domainuser"])", "/passwordD:$($param["domainpwd"])", "/add"
+            netdom.exe trust $($param["hgsdomainname"]) /domain:$($param["domainname"]) /userD:$($param["domainuser"]) /passwordD:$($param["domainpwd"]) /add
+            #Start-Process "netdom.exe" -Verb RunAs -Wait -NoNewWindow -ArgumentList "trust", "$($param["hgsdomainname"])", "/domain:$($param["domainname"])", "/userD:$($param["domainuser"])", "/passwordD:$($param["domainpwd"])", "/add"
 
             Log-Message -Message "Adding SID $($param["computehostssid"]) to HGS attestation" -Level 2
-            Add-HgsAttestationHostGroup -Name "ComputeHosts" -Identifier $param["computehostssid"]
+            Add-HgsAttestationHostGroup -Name "ComputeHosts" -Identifier $param["computehostssid"] | Out-Null
         } -ArgumentList @{
             domainname=$Script:domainName;
             domainuser="relecloud\administrator";
@@ -909,7 +937,7 @@ If ($Script:stage -eq 3 -and $Script:stage -lt $StopBeforeStage)
                 [hashtable]$param
         )
         . ([ScriptBlock]::Create($Using:FunctionDefs))
-        
+
         Log-Message -Message "Configuring HGS Client" -Level 2
         Set-HgsClientConfiguration -KeyProtectionServerUrl $param["keyprotectionserverurl"] -AttestationServerUrl $param["attestationserverurl"]
     }
