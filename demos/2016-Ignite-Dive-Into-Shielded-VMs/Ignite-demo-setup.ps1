@@ -518,7 +518,7 @@ if (-Not (Test-Path $Script:baseNanoServerPath))
     Import-Module (Join-Path $Script:baseMediaPath -ChildPath "\NanoServer\NanoServerImageGenerator\NanoServerImageGenerator.psm1") | Out-Null
 
     If ($Updates) {
-        New-NanoServerImage -DeploymentType Guest -Edition Datacenter -MediaPath $Script:baseMediaPath -Package Microsoft-NanoServer-SecureStartup-Package,Microsoft-NanoServer-Guest-Package,Microsoft-NanoServer-SCVMM-Package,Microsoft-NanoServer-SCVMM-Compute-Package  -TargetPath $Script:baseNanoServerPath -EnableRemoteManagementPort -AdministratorPassword $Script:passwordSecureString -ServicingPackages $Updates | Out-Null
+        New-NanoServerImage -DeploymentType Guest -Edition Datacenter -MediaPath $Script:baseMediaPath -Package Microsoft-NanoServer-SecureStartup-Package,Microsoft-NanoServer-Guest-Package,Microsoft-NanoServer-SCVMM-Package,Microsoft-NanoServer-SCVMM-Compute-Package  -TargetPath $Script:baseNanoServerPath -EnableRemoteManagementPort -AdministratorPassword $Script:passwordSecureString -ServicingPackagePath $Updates | Out-Null
     } else {
         New-NanoServerImage -DeploymentType Guest -Edition Datacenter -MediaPath $Script:baseMediaPath -Package Microsoft-NanoServer-SecureStartup-Package,Microsoft-NanoServer-Guest-Package,Microsoft-NanoServer-SCVMM-Package,Microsoft-NanoServer-SCVMM-Compute-Package  -TargetPath $Script:baseNanoServerPath -EnableRemoteManagementPort -AdministratorPassword $Script:passwordSecureString | Out-Null    
     }
@@ -643,7 +643,8 @@ If ($Script:stage -eq 1 -and $Script:stage -lt $StopBeforeStage)
     Copy-ItemToVm -VirtualMachine $vmm01 -SourcePath (Join-Path $Script:baseMediaPath -ChildPath "sources\sxs\microsoft-windows-netfx3-ondemand-package.cab") -DestinationPath C:\sxs\microsoft-windows-netfx3-ondemand-package.cab -Credential $Script:localAdminCred
 
     Invoke-CommandWithPSDirect -VirtualMachine $vmm01 -Credential $Script:localAdminCred -ScriptBlock $ScriptBlock_FeaturesComputerName -ArgumentList @{
-            features=("NET-Framework-Features", "NET-Framework-Core", "Web-Server", "ManagementOData", "Web-Dyn-Compression", "Web-Basic-Auth", "Web-Windows-Auth", "Web-Scripting-Tools", "WAS", "WAS-Process-Model", "WAS-NET-Environment", "WAS-Config-APIs");
+            features=("NET-Framework-Features", "NET-Framework-Core", "Web-Server", "ManagementOData", "Web-Dyn-Compression", "Web-Basic-Auth", "Web-Windows-Auth", `
+                      "Web-Scripting-Tools", "WAS", "WAS-Process-Model", "WAS-NET-Environment", "WAS-Config-APIs", "Hyper-V-Tools", "Hyper-V-PowerShell");
             featuresource="C:\sxs";
             computername="VMM01";
             subnet=$Script:internalSubnet
@@ -968,24 +969,7 @@ if ($Script:stage -eq 99)
     New-VHD -Dynamic -SizeBytes 30GB -Path $VMMDataVHDXPath #| Out-Null
     Add-VMHardDiskDrive -VM $vmm01 -Path $VMMDataVHDXPath #| Out-Null
 
-    #Steps to run inside of the DC: 
-
-    # Wait for restart!!
-
-    #create share \\dc01\VMs
-
-    # Create Group for compute nodes
-    # Add compute1, compute2 to compute nodes
-    # Grant Permissions to Share for Compute nodes
-
-    #Copying offline domain join blobs to host
-
     # Customizing VMM
-    Copy-VMFile -VM $vmm01 -SourcePath (Join-Path $Script:basePath -ChildPath "fabric\VMM.djoin") -DestinationPath C:\VMM.djoin -Credential $Script:localAdminCred
-
-    Invoke-Command -VMId $vmm01.VMId -Credential $Script:localAdminCred -ScriptBlock {
-            djoin /requestodj /loadfile C:\vmm.djoin /LOCALOS /WINDOWSPATH C:\Windows
-        }
 
     Invoke-Command -VMId $vmm01.VMId -Credential $Script:localAdminCred -ScriptBlock {
             ([ADSI]"WinNT://vmm01/Administrators,group").psbase.Invoke("Add",([ADSI]"WinNT://Relecloud/vmmserviceaccount").path)
@@ -1023,13 +1007,6 @@ if ($Script:stage -eq 99)
     }
 
     # Customization based on compute nodes
-
-    Invoke-Command -VMId $dc01.VMId -Credential $Script:relecloudAdminCred -ArgumentList ($Script:DomainName, $Script:passwordSecureString) -ScriptBlock {
-            Param($domainName, $passwordSecureString)
-            # Add Compute Hosts to group
-            Add-ADGroupMember "ComputeHosts" -Members "Compute01$"
-            Add-ADGroupMember "ComputeHosts" -Members "Compute02$"
-        }
 
     Invoke-Command -VMId $compute2.VMId -Credential $Script:relecloudAdminCred -ScriptBlock {
             (Get-PlatformIdentifier –Name 'Compute02').InnerXml | Out-file C:\Compute02.xml
