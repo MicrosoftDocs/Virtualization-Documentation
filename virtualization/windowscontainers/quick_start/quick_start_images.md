@@ -35,6 +35,8 @@ The first step in manually creating a container image is to deploy a container. 
 docker run -it -p 80:80 microsoft/iis cmd
 ```
 
+After the download, the container will start, and a shell session will be started.
+
 Next, a modification will be made to container. Run the following command to remove the IIS splash screen.
 
 ```none
@@ -113,10 +115,10 @@ FROM microsoft/iis
 RUN echo "Hello World - Dockerfile" > c:\inetpub\wwwroot\index.html
 ```
 
-The `docker build` command will start the image build process. The `-t` parameter instructs the build process to name the new image `iis-dockerfile`. Replace 'user' with the user name of your Docker account. If you do not have an account with Docker, sign up for one at [Docker Cloud]( https://cloud.docker.com/).
+The `docker build` command will start the image build process. The `-t` parameter instructs the build process to name the new image `iis-dockerfile`. **Replace 'user' with the user name of your Docker account**. If you do not have an account with Docker, sign up for one at [Docker Cloud]( https://cloud.docker.com/).
 
 ```none
-docker build -t user/iis-dockerfile c:\Build
+docker build -t <user>/iis-dockerfile c:\Build
 ```
 
 When completed, you can verify that the image has been created using the `docker images` command.
@@ -131,10 +133,10 @@ windowsservercore   10.0.14300.1000     dbfee88ee9fd        8 weeks ago         
 windowsservercore   latest              dbfee88ee9fd        8 weeks ago         9.344 GB
 ```
 
-Now, deploy a container with the following command. 
+Now, deploy a container with the following command, again replacing user with your Docker ID.
 
 ```none
-docker run -d -p 80:80 iis-dockerfile ping -t localhost
+docker run -d -p 80:80 <user>/iis-dockerfile ping -t localhost
 ```
 
 Once the container has been created, browse to the IP address of the container host. You should see the hello world application.
@@ -155,7 +157,7 @@ c1dc6c1387b9   iis-dockerfile   "ping -t localhost"   About a minute ago   Up Ab
 Remove container.
 
 ```none
-docker rm -f cranky_brown
+docker rm -f <container name>
 ```
 
 ## 3. Docker Push
@@ -177,29 +179,32 @@ Password: Password
 Login Succeeded
 ```
 
-Once logged in, the container image can be pushed to Docker Hub. To do so, use the `docker push` command. Replace 'user' with the user name of your Docker account. 
+Once logged in, the container image can be pushed to Docker Hub. To do so, use the `docker push` command. **Replace 'user' with your Docker ID**. 
 
 ```none
-docker push user/iis-dockerfile
+docker push <user>/iis-dockerfile
 ```
 
 The container image can now be downloaded from Docker Hub onto any Windows container host using `docker pull`. For this tutorial, we will delete the existing image, and then pull it down from Docker Hub. 
 
 ```none
-docker rmi iis-dockerfile
+docker rmi <user>/iis-dockerfile
 ```
 
 Running `docker images` will show that the image has been removed.
 
 ```none
 docker images
-<insert output>
+
+REPOSITORY                TAG                 IMAGE ID            CREATED             SIZE
+modified-iis              latest              51f1fe8470b3        5 minutes ago       7.69 GB
+microsoft/iis             latest              e4525dda8206        3 hours ago         7.61 GB
 ```
 
 Finally, docker pull can be used to pull the image back onto the container host. Replace user with the user name of your Docker account. 
 
 ```none
-docker pull user/iis-dockerfile
+docker pull <user>/iis-dockerfile
 ```
 
 ## Next Steps

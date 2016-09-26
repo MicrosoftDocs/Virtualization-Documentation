@@ -64,7 +64,7 @@ $env:path += ";c:\program files\docker"
 To install Docker as a Windows service, run the following.
 
 ```none
-& 'C:\Program Files\docker\dockerd.exe' --register-service
+dockerd.exe --register-service
 ```
 
 Once installed, the service can be started.
