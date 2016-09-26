@@ -130,7 +130,9 @@ To download and install the Nano Server base image, run the following:
 docker pull microsoft/nanoserver
 ```
 
-> At this time, only the Nano Server base image is compatible with a Nano Server container host.
+At this time, only the Nano Server base image is compatible with a Nano Server container host.
+
+> Please read the Windows Containers OS Image EULA which can be found here – [EULA](../Images_EULA.md).
 
 ## Manage Docker on Nano Server
 

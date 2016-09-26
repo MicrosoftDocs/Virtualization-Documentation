@@ -102,6 +102,8 @@ microsoft/windowsservercore   latest              02cb7f65d61b        8 weeks ag
 
 For in depth information on Windows container images see, [Managing Container Images](../management/manage_images.md).
 
+> Please read the Windows Containers OS Image EULA which can be found here – [EULA](../Images_EULA.md).
+
 ## 4. Deploy Your First Container
 
 For this exercise, you will download a pre-created IIS image from the Docker Hub registry and deploy a simple container running IIS.  

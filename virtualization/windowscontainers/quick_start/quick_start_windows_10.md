@@ -113,6 +113,8 @@ microsoft/nanoserver   latest              3a703c6e97a2        7 weeks ago      
 
 For in depth information on Windows container images see, [Managing Container Images](../management/manage_images.md).
 
+> Please read the Windows Containers OS Image EULA which can be found here – [EULA](../Images_EULA.md).
+
 ## 4. Deploy Your First Container
 
 For this simple example a ‘Hello World’ container image will be created and deployed. For the best experience run these commands in an elevated Windows CMD shell.
