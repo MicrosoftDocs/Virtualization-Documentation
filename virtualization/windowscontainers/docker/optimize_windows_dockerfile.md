@@ -12,8 +12,6 @@ ms.assetid: bb2848ca-683e-4361-a750-0d1d14ec8031
 ---
 # Optimize Windows Dockerfiles
 
-**This is preliminary content and subject to change.** 
-
 Several methods can be used to optimize both the Docker build process, and the resulting Docker images. This document details how the Docker build process operates, and demonstrates several tactics that can be used for optimal image create with Windows Containers.
 
 ## Docker Build

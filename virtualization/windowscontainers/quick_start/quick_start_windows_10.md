@@ -4,7 +4,7 @@ description: Container deployment quick start
 keywords: docker, containers
 author: neilpeterson
 manager: timlt
-ms.date: 08/17/2016
+ms.date: 09/26/2016
 ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
@@ -12,8 +12,6 @@ ms.assetid: bb9bfbe0-5bdc-4984-912f-9c93ea67105f
 ---
 
 # Windows Containers on Windows 10
-
-**This is preliminary content and subject to change.**
 
 The exercise will walk through basic deployment and use of the Windows container feature on Windows 10 Professional or Enterprise (Anniversary Edition). After completion, you will have installed the container role, and deployed a simple Hyper-V container. Before starting this quick start, familiarize yourself with basic container concepts and terminology. This information can be found on the [Quick Start Introduction](./quick_start.md).
 
@@ -44,13 +42,7 @@ When the installation has completed, reboot the computer.
 Restart-Computer -Force
 ```
 
-Once back up, run the following command to fix a known issue with the Windows Containers in Windows 10.  
-
- ```none
-Set-ItemProperty -Path 'HKLM:SOFTWARE\Microsoft\Windows NT\CurrentVersion\Virtualization\Containers' -Name VSmbDisableOplocks -Type DWord -Value 1 -Force
-```
-
-> In current releases you need to disable OpLocks in order to reliably use Hyper-V Containers. To re-enable OpLocks, use the following  command:  `Set-ItemProperty -Path 'HKLM:SOFTWARE\Microsoft\Windows NT\CurrentVersion\Virtualization\Containers' -Name VSmbDisableOplocks -Type DWord -Value 0 -Force`
+> If you were previously using Hyper-V Containers on Windows 10 with the Technical Preview 5 container base images, be sure to re-enable OpLocks. Please run the following  command:  `Set-ItemProperty -Path 'HKLM:SOFTWARE\Microsoft\Windows NT\CurrentVersion\Virtualization\Containers' -Name VSmbDisableOplocks -Type DWord -Value 0 -Force`
 
 ## 2. Install Docker
 
@@ -77,8 +69,6 @@ $env:path += ";c:\program files\docker"
 # For persistent use, will apply even after a reboot.
 [Environment]::SetEnvironmentVariable("Path", $env:Path + ";C:\Program Files\Docker", [EnvironmentVariableTarget]::Machine)
 ```
-
-Restart the PowerShell session so that the modified path is recognized.
 
 To install Docker as a Windows service, run the following.
 
@@ -112,6 +102,8 @@ microsoft/nanoserver   latest              3a703c6e97a2        7 weeks ago      
 ```
 
 For in depth information on Windows container images see, [Managing Container Images](../management/manage_images.md).
+
+> Please read the Windows Containers OS Image EULA which can be found here – [EULA](../Images_EULA.md).
 
 ## 4. Deploy Your First Container
 

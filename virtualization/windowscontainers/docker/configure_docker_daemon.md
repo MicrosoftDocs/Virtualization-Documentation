@@ -22,13 +22,13 @@ Docker is required in order to work with Windows containers. Docker consists of 
 Download the Docker Engine.
 
 ```none
-Invoke-WebRequest "https://get.docker.com/builds/Windows/x86_64/docker-1.12.0.zip" -OutFile "$env:TEMP\docker-1.12.0.zip" -UseBasicParsing
+Invoke-WebRequest "https://download.docker.com/components/engine/windows-server/cs-1.12/docker.zip" -OutFile "$env:TEMP\docker.zip" -UseBasicParsing
 ```
 
 Expand the zip archive into Program Files.
 
 ```
-Expand-Archive -Path "$env:TEMP\docker-1.12.0.zip" -DestinationPath $env:ProgramFiles
+Expand-Archive -Path "$env:TEMP\docker.zip" -DestinationPath $env:ProgramFiles
 ```
 
 Add the Docker directory to the system path. When complete, restart the PowerShell session so that the modified path is recognized.
@@ -51,7 +51,7 @@ Start-Service Docker
 
 Before Docker can be used container images will need to be installed. For more information see, [Manage Container Images](../management/manage_images.md).
 
-## Docker Configuration File
+## Configure Docker with Configuration File
 
 The preferred method for configuring the Docker Engine on Windows is using a configuration file. The configuration file can be found at 'c:\ProgramData\docker\config\daemon.json'. If this file does not already exist, it can be created.
 
@@ -111,7 +111,7 @@ Likewise, this sample configures the Docker daemon to only accept secured connec
 }
 ```
 
-## Service Control Manager
+## Configure Docker on the Docker Service
 
 The Docker Engine can also be configured by modifying the Docker service using `sc config`. Using this method, Docker Engine flags are set directly on the Docker service.
 
@@ -161,13 +161,16 @@ restart-service docker
 For more information see, [Daemon Socket Options on Docker.com](https://docs.docker.com/v1.10/engine/reference/commandline/daemon/#daemon-socket-option).
 
 ## Collecting Logs
+
 The Docker Engine logs to the Windows 'Application' event log, rather than to a file. These logs can easily be read, sorted, and filtered using Windows PowerShell
 
 For example, this will show the Docker Engine logs from the last 5 minutes starting with the oldest.
+
 ```
 Get-EventLog -LogName Application -Source Docker -After (Get-Date).AddMinutes(-5) | Sort-Object Time 
 ```
 
 This could also easily be piped into a CSV file to be read by another tool or spreadsheet.
+
 ```
 Get-EventLog -LogName Application -Source Docker -After (Get-Date).AddMinutes(-30)  | Sort-Object Time | Export-CSV ~/last30minutes.csv ```

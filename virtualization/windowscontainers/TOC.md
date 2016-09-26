@@ -1,12 +1,14 @@
 ﻿# About Windows Containers
 ## [Windows Containers Overview](about/about_overview.md)
-## [FAQ](about/faq.md)
 
-# Container Quick Start
-## [1 – Concepts and Terminology](quick_start/quick_start.md)
-## [2 - Windows Server Quick Start](quick_start/quick_start_windows_server.md)
-## [3 – Windows Server Images](quick_start/quick_start_images.md)
-## [4 – Windows 10 Quick Start](quick_start/quick_start_windows_10.md)
+# Windows Server Quick Start
+## [Step 1 – Concepts](quick_start/quick_start.md)
+## [Step 2 – First Container](quick_start/quick_start_windows_server.md)
+## [Step 3 – Container Images](quick_start/quick_start_images.md)
+
+# Windows 10 Quick Start
+## [Step 1 – Concepts](quick_start/quick_start.md)
+## [Step 2 – First Container](quick_start/quick_start_windows_10.md)
 
 # Deploy Windows Containers
 ## [System Requirements](deployment/system_requirements.md)
@@ -27,6 +29,5 @@
 # Community and Support
 ## [Container Forum](https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers)
 
-# [Windows Server EULA](EULA.md)
-# [Nano Server EULA](Nano_EULA.md)
+# [Container OS Image EULA](Images_EULA.md)
 
