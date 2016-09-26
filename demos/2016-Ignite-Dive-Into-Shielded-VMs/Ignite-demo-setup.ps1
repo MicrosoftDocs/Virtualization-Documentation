@@ -14,8 +14,9 @@ $VerbosePreference = "Continue"
 $Script:basePath = "C:\Ignite"
 $Script:sourcePath = "C:\IgniteSource"
 
-$Script:baseMediaPath = Join-Path $Script:sourcePath -ChildPath "\WindowsServer2016\" -Resolve
-$Script:baseUpdatePath = Join-Path $Script:sourcePath -ChildPath "\Updates\"
+$Script:baseMediaPath = Join-Path $Script:sourcePath -ChildPath "\WindowsServer2016\"
+$Script:baseUpdatePath = Join-Path $Script:sourcePath -ChildPath "\WindowsServer2016Updates\"
+$Script:baseVMMWAPDependenciesPath = Join-Path $Script:sourcePath -ChildPath "\VMMWAPDependencies\" 
 
 $Script:domainName = "relecloud.com"
 $Script:hgsDomainName = "hgs.$($Script:domainName)"
@@ -35,6 +36,7 @@ $Script:hgsAdminCred = New-Object System.Management.Automation.PSCredential ("hg
 $Script:baseServerCorePath = Join-Path $Script:basePath -ChildPath "\WindowsServer2016_ServerDataCenterCore.vhdx"
 $Script:baseServerStandardPath = Join-Path $Script:basePath -ChildPath "\WindowsServer2016_ServerStandard.vhdx"
 $Script:baseNanoServerPath = Join-Path $Script:basePath -ChildPath "\WindowsServer2016_ServerDataCenterNano.vhdx"
+$Script:VMMWAPDependenciesPath = Join-Path $Script:basePath -ChildPath "\VMMWAPDependencies.vhdx"
 $Script:ImageConverterPath = Join-Path -Path $Script:baseMediaPath -ChildPath "NanoServer\NanoServerImageGenerator\Convert-WindowsImage.ps1"
 
 $Script:UnattendPath = Join-Path $Script:sourcePath -ChildPath "IgniteUnattend.xml"
@@ -50,7 +52,8 @@ $Script:stagenames = (
     "Stage 0 Create VMs", 
     "Stage 1 Roles, Computernames, Static IPs",
     "Stage 2 Prepare HGS, configure DHCP, create fabric domain",
-    "Stage 3 Configure HGS in AD mode, join compute nodes to domain"
+    "Stage 3 Configure HGS in AD mode, join compute nodes to domain",
+    "Stage 4 Configure VMM"
     )
 
 $Script:stage = $StartFromStage
@@ -139,17 +142,9 @@ function Prepare-VM
         Stop-VM -VM $VM -TurnOff -Force -WarningAction SilentlyContinue | Out-Null
         Get-VMSnapshot -VM $VM | Remove-VMSnapshot -Confirm:$false | Out-Null
         Remove-VM -VM $VM -Force -WarningAction SilentlyContinue | Out-Null
-        If (Test-Path $VHDXPath)
-        {
-            Remove-Item -Path $VHDXPath -Force -ErrorAction Stop | Out-Null
-        }
     }
 
-    If (Test-Path $VHDXPath)
-    {
-        Log-Message -Level 1 -Message "[$VMname] Removing existing VHDX"
-        Remove-Item -Path $VHDXPath -Force -ErrorAction Stop | Out-Null
-    }
+    Cleanup-File -Path $VHDXPath
 
     Log-Message -Level 1 -Message "[$VMname] Creating new differencing disk" 
     New-VHD -Differencing -Path $VHDXPath -ParentPath $basediskpath -ErrorAction Stop | Out-Null
@@ -417,6 +412,51 @@ Function WaitFor-ActiveDirectory {
     }
 }
 
+Function MountAndInitialize-VHDX {
+    Param(
+        [string]$VHDXPath
+    )
+    Log-Message -Message "Mounting VHDX" -Level 2
+    $mountedvhdx = Mount-VHD -Path $VHDXPath -Passthru -ErrorAction Stop
+    $mounteddisk = $mountedvhdx | Get-Disk
+    if ($mounteddisk.PartitionStyle -eq "RAW")
+    {
+        Log-Message -Message "Raw disk - initializing, creating partition and formatting" -Level 2
+        Log-Message -Message "Initializing disk" -MessageType Verbose -Level 2
+        Initialize-Disk -Number $mounteddisk.Number -PartitionStyle MBR
+    }
+
+    $partition = Get-Partition -DiskNumber $mounteddisk.Number -ErrorAction SilentlyContinue
+    If (-not ($partition)) {
+        Log-Message -Message "Creating new partition" -MessageType Verbose -Level 2
+        $partition = New-Partition -DiskNumber $mounteddisk.Number -Size $mounteddisk.LargestFreeExtent -MbrType IFS -IsActive
+    }
+
+    $volume = Get-Volume -Partition $partition -ErrorAction SilentlyContinue
+    If (-not ($volume)) {
+        Log-Message -Message "Formatting" -MessageType Verbose -Level 2
+        $volume = Format-Volume -Partition $partition -FileSystem NTFS -Force -Confirm:$false 
+
+        Log-Message -Message "Assigning drive letter" -MessageType Verbose -Level 2
+        $partition | Add-PartitionAccessPath -AssignDriveLetter | Out-Null
+    }
+
+    $driveLetter = (Get-Volume |? UniqueId -eq $volume.UniqueId).DriveLetter
+    Log-Message -Message "Drive letter: $driveletter" -MessageType Verbose -Level 2
+
+    $driveletter
+}
+
+Function Cleanup-File {
+    Param(
+        [string]$path
+    )
+    If (Test-Path $path) {
+        Log-Message -Message "Removing  $path"
+        Remove-Item -Path $path -Force -ErrorAction Stop | Out-Null
+    }
+}
+
 Function Begin-Stage {
     Param(
         $StartVMs = $true
@@ -455,18 +495,9 @@ If (($Cleanup -eq "VM") -or ($Cleanup -eq "Everything"))
 If (($Cleanup -eq "Baseimages") -or ($Cleanup -eq "Everything"))
 {
     Log-Message -Message "[Cleanup] Removing existing base VHDXs"
-    if (Test-Path $Script:baseServerCorePath)
-    {
-        Remove-Item -Path $Script:baseServerCorePath -Force | Out-Null
-    }
-    if (Test-Path $Script:baseServerStandardPath)
-    {
-        Remove-Item -Path $Script:baseServerStandardPath -Force | Out-Null
-    }
-    if (Test-Path $Script:baseNanoServerPath)
-    {
-        Remove-Item -Path $Script:baseNanoServerPath -Force | Out-Null
-    }
+    Cleanup-File -path $Script:baseServerCorePath
+    Cleanup-File -path $Script:baseServerStandardPath
+    Cleanup-File -path $Script:baseNanoServerPath
 }
 
 #######################################################################################
@@ -494,6 +525,10 @@ if (Test-Path $Script:ImageConverterPath)
 if (-Not (Test-Path $Script:baseServerCorePath))
 {
     Log-Message -Message "[Prepare] Creating Server Datacenter Core base VHDX"
+    If (-Not (Test-Path $Script:baseMediaPath))
+    {
+        throw "Base media path not found"
+    }
     If ($Updates) {
         Convert-WindowsImage -SourcePath ($Script:installWimPath) -VHDPath $Script:baseServerCorePath -DiskLayout UEFI -Edition SERVERDATACENTERCORE -UnattendPath $Script:UnattendPath -SizeBytes 40GB -Package $Updates | Out-Null
     } else {
@@ -504,6 +539,10 @@ if (-Not (Test-Path $Script:baseServerCorePath))
 if (-Not (Test-Path $Script:baseServerStandardPath))
 {
     Log-Message -Message "[Prepare] Creating Server Standard Full UI base VHDX"
+    If (-Not (Test-Path $Script:baseMediaPath))
+    {
+        throw "Base media path not found"
+    }
     If ($Updates) {
         Convert-WindowsImage -SourcePath ($Script:installWimPath) -VHDPath $Script:baseServerStandardPath -DiskLayout UEFI -Edition SERVERSTANDARD -UnattendPath $Script:UnattendPath -SizeBytes 40GB -Package $Updates | Out-Null
     } else {
@@ -514,7 +553,12 @@ if (-Not (Test-Path $Script:baseServerStandardPath))
 if (-Not (Test-Path $Script:baseNanoServerPath))
 {
     Log-Message -Message "[Prepare] Creating Nano Server Datacenter base VHDX"
-    # Importing Nano Server Image Generator PowerShell Module
+    If (-Not (Test-Path $Script:baseMediaPath))
+    {
+        throw "Base media path not found"
+    }
+
+    Log-Message -Message "Importing Nano Server Image Generator PowerShell Module" -MessageType Verbose
     Import-Module (Join-Path $Script:baseMediaPath -ChildPath "\NanoServer\NanoServerImageGenerator\NanoServerImageGenerator.psm1") | Out-Null
 
     If ($Updates) {
@@ -522,7 +566,26 @@ if (-Not (Test-Path $Script:baseNanoServerPath))
     } else {
         New-NanoServerImage -DeploymentType Guest -Edition Datacenter -MediaPath $Script:baseMediaPath -Package Microsoft-NanoServer-SecureStartup-Package,Microsoft-NanoServer-Guest-Package,Microsoft-NanoServer-SCVMM-Package,Microsoft-NanoServer-SCVMM-Compute-Package  -TargetPath $Script:baseNanoServerPath -EnableRemoteManagementPort -AdministratorPassword $Script:passwordSecureString | Out-Null    
     }
+}
+
+if (-Not (Test-Path $Script:VMMWAPDependenciesPath)) 
+{
+    Log-Message -Message "[Prepare] Creating VMM/WAP installation Dependencies VHDX"
+    If (-Not (Test-Path $Script:baseVMMWAPDependenciesPath))
+    {
+        throw "Base VMM/WAP installation dependencies path not found"
+    }
+
+    Log-Message -Message "[Prepare] Creating new VHDX" -MessageType Verbose
+    $dependenciesvhdx = New-VHD -Path $Script:VMMWAPDependenciesPath -SizeBytes 40GB -Dynamic
+
+    $driveletter = MountAndInitialize-VHDX $dependenciesvhdx
     
+    Log-Message -Message "[Prepare] Copying files - this might take some time." -MessageType Verbose
+    Copy-Item -Path $Script:baseVMMWAPDependenciesPath -Destination "$($driveLetter):" -Recurse | Out-Null
+
+    Log-Message -Message "[Prepare] Dismounting VHDX" -MessageType Verbose
+    Dismount-VHD -Path $dependenciesvhdx.Path
 }
 
 #######################################################################################
@@ -577,7 +640,7 @@ If ($Script:stage -eq 0 -and $Script:stage -lt $StopBeforeStage)
     Begin-Stage -StartVMs $false
     $hgs01 = Prepare-VM -vmname $Script:VmNameHgs -basediskpath $Script:baseServerCorePath -dynamicmemory $true
     $dc01 = Prepare-VM -vmname $Script:VmNameDc -basediskpath $Script:baseServerCorePath -dynamicmemory $true
-    $vmm01 = Prepare-VM -vmname $Script:VmNameVmm -basediskpath $Script:baseServerStandardPath
+    $vmm01 = Prepare-VM -vmname $Script:VmNameVmm -basediskpath $Script:baseServerStandardPath -startupmemory 2GB
     $compute01 = Prepare-VM -vmname "$Script:VmNameCompute 01" -processorcount 4 -startupmemory 2GB -enablevirtualizationextensions $true -enablevtpm $true -basediskpath $Script:baseNanoServerPath
     $compute02 = Prepare-VM -vmname "$Script:VmNameCompute 02" -processorcount 4 -startupmemory 2GB -enablevirtualizationextensions $true -enablevtpm $true -basediskpath $Script:baseNanoServerPath
     
@@ -720,7 +783,15 @@ If ($Script:stage -eq 2 -and $Script:stage -lt $StopBeforeStage)
             do {
                 Start-Sleep -Seconds 3
                 Write-Host "." -NoNewline -ForegroundColor Gray
-                New-ADUser -Name "vmmserviceaccount" -SAMAccountName "vmmserviceaccount" -GivenName "VMM" -DisplayName "vmmserviceaccount" -AccountPassword $param["adminpassword"] -CannotChangePassword $true -Enabled $true -ErrorAction SilentlyContinue | Out-Null
+                New-ADUser -Name "vmmserviceaccount" -SAMAccountName "vmmserviceaccount" -GivenName "System Center Virtual Machine Manager" -DisplayName "System Center Virtual Machine Manager" -AccountPassword $param["adminpassword"] -Enabled $true -ErrorAction SilentlyContinue | Out-Null
+            } until ($?)
+            Write-Host "done." 
+
+            Log-Message -Message "Creating SQL admin user" -Level 2
+            do {
+                Start-Sleep -Seconds 3
+                Write-Host "." -NoNewline -ForegroundColor Gray
+                New-ADUser -Name "sqladmin" -SAMAccountName "sqladmin" -GivenName "SQL Server Administrator" -DisplayName "SQL Server Administrator" -AccountPassword $param["adminpassword"] -Enabled $true -ErrorAction SilentlyContinue | Out-Null
             } until ($?)
             Write-Host "done." 
 
@@ -747,8 +818,6 @@ If ($Script:stage -eq 2 -and $Script:stage -lt $StopBeforeStage)
             New-Item -Path 'C:\djoin' -ItemType Directory | Out-Null
             djoin /Provision /Domain "$($param["domainname"])" /Machine "Compute01" /SaveFile "C:\djoin\Compute01.djoin"
             djoin /Provision /Domain "$($param["domainname"])" /Machine "Compute02" /SaveFile "C:\djoin\Compute02.djoin"
-            #Start-Process "djoin.exe" -Verb RunAs -Wait -NoNewWindow -ArgumentList "/Provision", "/Domain $($param["domainname"])", "/Machine Compute01", "/SaveFile C:\djoin\Compute01.djoin"
-            #Start-Process "djoin.exe" -Verb RunAs -Wait -NoNewWindow -ArgumentList "/Provision", "/Domain $($param["domainname"])", "/Machine Compute02", "/SaveFile C:\djoin\Compute02.djoin"
 
             Log-Message -Message "Adding offline provisioned systems to ComputeHosts group" -Level 2
             Add-ADGroupMember "ComputeHosts" -Members "Compute01$"
@@ -865,7 +934,6 @@ If ($Script:stage -eq 3 -and $Script:stage -lt $StopBeforeStage)
                     $djoinpath = "\\$dcip\c$\djoin\$($env:COMPUTERNAME).djoin"
                     Log-Message -Message "Using $djoinpath" -Level 2
                     djoin /requestodj /loadfile "$djoinpath" /windowspath C:\Windows /localos
-                    #Start-Process "djoin.exe" -Verb RunAs -Wait -NoNewWindow -ArgumentList "/requestodj", "/loadfile", $djoinpath, "/windowspath", "c:\windows", "/localos"
                 }
                 default {
                     $cred = New-Object System.Management.Automation.PSCredential ($param["domainuser"], $param["domainpwd"])
@@ -890,6 +958,7 @@ If ($Script:stage -eq 3 -and $Script:stage -lt $StopBeforeStage)
     Invoke-CommandWithPSDirect -VirtualMachine $compute01 -Credential $Script:localAdminCred -ScriptBlock $ScriptBlock_DomainJoin -ArgumentList $Arg_DomainJoin
     Invoke-CommandWithPSDirect -VirtualMachine $compute02 -Credential $Script:localAdminCred -ScriptBlock $ScriptBlock_DomainJoin -ArgumentList $Arg_DomainJoin
     
+    Reboot-VM $vmm01
     Reboot-VM $compute01
     Reboot-VM $compute02
 
@@ -905,7 +974,6 @@ If ($Script:stage -eq 3 -and $Script:stage -lt $StopBeforeStage)
 
             Log-Message -Message "Adding a one-way trust to the fabric AD $($param["domainname"])" -Level 2
             netdom.exe trust $($param["hgsdomainname"]) /domain:$($param["domainname"]) /userD:$($param["domainuser"]) /passwordD:$($param["domainpwd"]) /add
-            #Start-Process "netdom.exe" -Verb RunAs -Wait -NoNewWindow -ArgumentList "trust", "$($param["hgsdomainname"])", "/domain:$($param["domainname"])", "/userD:$($param["domainuser"])", "/passwordD:$($param["domainpwd"])", "/add"
 
             Log-Message -Message "Adding SID $($param["computehostssid"]) to HGS attestation" -Level 2
             Add-HgsAttestationHostGroup -Name "ComputeHosts" -Identifier $param["computehostssid"] | Out-Null
@@ -926,7 +994,6 @@ If ($Script:stage -eq 3 -and $Script:stage -lt $StopBeforeStage)
 
             Log-Message -Message "Creating DNS Zone delegation to HGS for $($param["domainname"])" -Level 2
             Add-DnsServerZoneDelegation -Name $($param["domainname"]) -ChildZone "hgs" -NameServer "hgs01.$($param["domainname"])" -IPAddress "$($param["subnet"])99"
-            #Add-DnsServerConditionalForwarderZone -Name "hgs.relecloud.com" -MasterServers "$($param["subnet"])99"
         } -ArgumentList @{
             domainname=$Script:domainName;
             hgsdomainname=$Script:hgsDomainName
@@ -957,6 +1024,82 @@ If ($Script:stage -eq 3 -and $Script:stage -lt $StopBeforeStage)
 # End of Stage 3 Configure HGS in AD mode, join compute nodes to domain
 #######################################################################################
 
+#######################################################################################
+# Beginning of Stage 4: Create VMs
+#######################################################################################
+If ($Script:stage -eq 4 -and $Script:stage -lt $StopBeforeStage)
+{
+    Begin-Stage
+
+    WaitFor-ActiveDirectory -VirtualMachine $dc01 -Credential $Script:relecloudAdminCred
+
+    $VMMDataVHDXPath = Join-Path $Script:basePath -ChildPath "\fabric\$($Script:VmNameVmm)\Virtual Hard Disks\Data.vhdx"
+    Cleanup-File -path $VMMDataVHDXPath
+    $vmmlibraryvhdx = New-VHD -Dynamic -SizeBytes 50GB -Path $VMMDataVHDXPath | Out-Null
+
+    $driveletter = MountAndInitialize-VHDX $vmmlibraryvhdx
+    
+    Log-Message -Message "Dismounting VHDX" -MessageType Verbose -Level 1
+    Dismount-VHD -Path $vmmlibraryvhdx.Path
+
+    Add-VMHardDiskDrive -VM $vmm01 -Path $vmmlibraryvhdx.Path | Out-Null
+
+    $ScriptBlock_AddLocalAdmin = {
+            Param(
+                [hashtable]$param
+            )
+            . ([ScriptBlock]::Create($Using:FunctionDefs))
+            Log-Message -Message "Adding $($param["domain"])/$($param["domainaccount"]) to local admin group on $($env:COMPUTERNAME)" -Level 2
+            ([ADSI]"WinNT://$($env:COMPUTERNAME)/Administrators,group").psbase.Invoke("Add",([ADSI]"WinNT://$($param["domain"])/$($param["domainaccount"])").path)
+        }
+    
+    $Arg_LocalAdmin = @{
+            domain="relecloud";
+            domainaccount="vmmserviceaccount"
+        }
+
+    Invoke-CommandWithPSDirect -VirtualMachine $vmm01 -Credential $Script:relecloudAdminCred -ScriptBlock $ScriptBlock_AddLocalAdmin -ArgumentList $Arg_LocalAdmin
+    Invoke-CommandWithPSDirect -VirtualMachine $compute01 -Credential $Script:relecloudAdminCred -ScriptBlock $ScriptBlock_AddLocalAdmin -ArgumentList $Arg_LocalAdmin
+    Invoke-CommandWithPSDirect -VirtualMachine $compute02 -Credential $Script:relecloudAdminCred -ScriptBlock $ScriptBlock_AddLocalAdmin -ArgumentList $Arg_LocalAdmin
+
+    Log-Message -Message "Installing VMM Dependencies"
+    Invoke-CommandWithPSDirect -VirtualMachine $vmm01 -Credential $Script:relecloudAdminCred -ScriptBlock {
+            Param(
+                [hashtable]$param
+            )
+            . ([ScriptBlock]::Create($Using:FunctionDefs))
+            Log-Message -Message "Bringing offline disks online" -Level 2 -Verbose
+            Get-Disk | ? IsOffline | Set-Disk -IsOffline:$false
+
+            Log-Message -Message "Installing ADK" -Level 2
+            Start-Process -Name "adksetup.exe" -ArgumentList "/q /features OptionId.DeploymentTools OptionId.WindowsPreinstallationEnvironment".Split(" ") -WorkingDirectory E:\VMMWAPDependencies\ADK -NoNewWindow -Wait
+            Log-Message -Message "Installing SQL Server" -Level 2
+            Start-Process -Name "setup.exe" -ArgumentList "/CONFIGURATIONFILE=E:\ConfigurationFile.ini /IACCEPTSQLSERVERLICENSETERMS".Split(" ") -WorkingDirectory E:\VMMWAPDependencies\SQL -NoNewWindow -Wait
+        }
+    # ADK Setup
+    # adksetup /q /features OptionId.DeploymentTools OptionId.WindowsPreinstallationEnvironment 
+    #
+    # SQL Setup:
+    # setup.exe /CONFIGURATIONFILE=E:\ConfigurationFile.ini /IACCEPTSQLSERVERLICENSETERMS 
+
+
+    End-Stage
+} 
+
+#######################################################################################
+# End of Stage 4: Create VMs
+#######################################################################################
+
+Log-Message -Message "Script finished - Total Duration: $(((Get-Date) - $Script:ScriptStartTime))"
+
+
+
+
+
+
+
+
+
 #New-NanoServerImage -ComputerName "NanoVM" -Compute -DeploymentType Guest -Edition Datacenter -MediaPath $Script:baseMediaPath -Package Microsoft-NanoServer-SecureStartup-Package,Microsoft-NanoServer-Guest-Package,Microsoft-NanoServer-ShieldedVM-Package -TargetPath $compute2VHDXPath -EnableRemoteManagementPort -AdministratorPassword $Script:passwordSecureString -InterfaceNameOrIndex Ethernet -Ipv4Address 192.168.42.202 -Ipv4SubnetMask 255.255.255.0 -Ipv4Dns 192.168.42.1 -Ipv4Gateway 192.168.42.1 | Out-Null
 if ($Script:stage -eq 99)
     {
@@ -965,26 +1108,16 @@ if ($Script:stage -eq 99)
     #######################################################################################
 
     # Add VMM additional disk
-    $VMMDataVHDXPath = Join-Path $Script:basePath -ChildPath "\fabric\VMM01Data.vhdx"
-    New-VHD -Dynamic -SizeBytes 30GB -Path $VMMDataVHDXPath #| Out-Null
-    Add-VMHardDiskDrive -VM $vmm01 -Path $VMMDataVHDXPath #| Out-Null
 
     # Customizing VMM
-
-    Invoke-Command -VMId $vmm01.VMId -Credential $Script:localAdminCred -ScriptBlock {
-            ([ADSI]"WinNT://vmm01/Administrators,group").psbase.Invoke("Add",([ADSI]"WinNT://Relecloud/vmmserviceaccount").path)
-        }
-        
-    # Steps torun inside of VM
+    # Steps to run inside of VM
     #
-    # ADK Setup
-    #
-    # SQL Setup:
-    # setup.exe /CONFIGURATIONFILE=D:\SQLConfigurationFile.ini /IAcceptSQLServerLicenseTerms
-    #
-    # Install-WindowsFeature Hyper-V-Tools,Hyper-V-PowerShell
-    #
-    # VMM Setup
+    # VMM Setup:
+    # VMM management server
+    # .\setup.exe /server /i /iacceptsceula /f 'E:\VMServer.ini' /VmmServiceDomain=RELECLOUD /VmmServiceUserName=vmmserviceaccount /VmmServiceUserPassword="P@ssw0rd."
+    # VMM Client
+    # setup.exe /cient /i /iacceptsceula /f 'E:\VMClient.ini'
+    
 
     Invoke-Command -VMId $dc01.VMId -Credential $Script:relecloudAdminCred -ArgumentList ($Script:domainName, $Script:relecloudAdminCred) -ScriptBlock {
             Param($domainName, $credential)
@@ -1015,4 +1148,3 @@ if ($Script:stage -eq 99)
             Get-HgsAttestationBaselinePolicy -Path 'C:\HWConfig1.tcglog'
         }
 }
-Log-Message -Message "Script finished - Total Duration: $(((Get-Date) - $Script:ScriptStartTime))"
