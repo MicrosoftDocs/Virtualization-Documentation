@@ -13,8 +13,6 @@ ms.assetid: 75fed138-9239-4da9-bce4-4f2e2ad469a1
 
 # Dockerfile on Windows
 
-**This is preliminary content and subject to change.** 
-
 The Docker engine includes tools for automating the creation of container images. While container images can be created manually using the `docker commit` command, adopting an automated image creation process provides many benefits including:
 
 - Storing container images as code.

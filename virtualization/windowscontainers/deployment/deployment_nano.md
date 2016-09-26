@@ -4,7 +4,7 @@ description: Deploy Windows Containers on Nano Server
 keywords: docker, containers
 author: neilpeterson
 manager: timlt
-ms.date: 08/23/2016
+ms.date: 09/26/2016
 ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
@@ -87,13 +87,13 @@ Download the Docker Engine and client and copy these into 'C:\Program Files\dock
 > Nano Server does not currently support `Invoke-WebRequest`. the download will need to be completed on a remote system, and the files copied to the Nano Server host.
 
 ```none
-Invoke-WebRequest "https://get.docker.com/builds/Windows/x86_64/docker-1.12.0.zip" -OutFile .\docker-1.12.0.zip -UseBasicParsing
+Invoke-WebRequest "https://download.docker.com/components/engine/windows-server/cs-1.12/docker.zip" -OutFile .\docker-1.12.0.zip -UseBasicParsing
 ```
 
 Extract the downloaded package. Once completed you will have a directory containing both **dockerd.exe** and **docker.exe**. Copy both of these to the **C:\Program Files\docker\** folder in the Nano Server container host. 
 
 ```none
-Expand-Archive .\docker-1.12.0.zip
+Expand-Archive .\docker.zip
 ```
 
 Add the Docker directory to the system path on the Nano Server.
@@ -122,15 +122,17 @@ Start-Service Docker
 
 ## Install Base Container Images
 
-Base OS images are used as the base to any Windows Server or Hyper-V container. Base OS images are available with both Windows Server Core and Nano Server as the underlying operating system and can be installed using `docker pull`. For detailed information on Windows container images, see [Managing Container Images](../management/manage_images.md).
+Base OS images are used as the base to any Windows Server or Hyper-V container. Base OS images are available with both Windows Server Core and Nano Server as the underlying operating system and can be installed using `docker pull`. For detailed information on Docker container images, see [Build your own images on docker.com](https://docs.docker.com/engine/tutorials/dockerimages/).
 
-To download and install the Nano Server base image, run the following:
+To download and install the Windows Server and Nano Server base image, run the following commands.
 
 ```none
 docker pull microsoft/nanoserver
 ```
 
-At this time, only the Nano Server base image is compatible with a Nano Server container host.
+```none
+docker pull microsoft/windowsservercore
+```
 
 > Please read the Windows Containers OS Image EULA which can be found here – [EULA](../Images_EULA.md).
 
@@ -171,13 +173,13 @@ Restart-Service docker
 On the remote system where you will be working, download the Docker client.
 
 ```none
-Invoke-WebRequest "https://get.docker.com/builds/Windows/x86_64/docker-1.12.0.zip" -OutFile "$env:TEMP\docker-1.12.0.zip" -UseBasicParsing
+Invoke-WebRequest "https://download.docker.com/components/engine/windows-server/cs-1.12/docker.zip" -OutFile "$env:TEMP\docker.zip" -UseBasicParsing
 ```
 
 Extract the compressed package.
 
 ```none
-Expand-Archive -Path "$env:TEMP\docker-1.12.0.zip" -DestinationPath $env:ProgramFiles
+Expand-Archive -Path "$env:TEMP\docker.zip" -DestinationPath $env:ProgramFiles
 ```
 
 Run the following two commands to add the Docker directory to the system path.

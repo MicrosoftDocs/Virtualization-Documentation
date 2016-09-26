@@ -1,7 +1,7 @@
 
-License:  By requesting and using this Container OS Image for Windows containers, you acknowledge, understand, and consent to the following Supplemental License Terms:
-
 # MICROSOFT SOFTWARE SUPPLEMENTAL LICENSE TERMS
+
+License:  By requesting and using this Container OS Image for Windows containers, you acknowledge, understand, and consent to the following Supplemental License Terms:
 
 ## CONTAINER OS IMAGE 
 
@@ -22,4 +22,3 @@ We reserve all other rights not expressly granted herein.
 By using this Supplement, you accept these terms. If you do not accept them, do not use this Supplement.
 
 As part of the Supplemental License Terms for this Container OS Image for Windows containers, you are also subject to the underlying Windows Server host software license terms, which are located at: https://www.microsoft.com/en-us/useterms.  
-
