@@ -11,13 +11,19 @@
 
 $VerbosePreference = "Continue"
 
-$Script:basePath = "C:\Ignite"
+# The following value needs to be set to /IACCEPTSQLSERVERLICENSETERMS
+$IAcceptSqlLicenseTerms = "/IACCEPTSQLSERVERLICENSETERMS"
+
+# The following value needs to be set to /iacceptsceula
+$IAcceptSCEULA = "/iacceptsceula" 
+
+# Source paths
 $Script:sourcePath = "C:\IgniteSource"
+$Script:sourceMediaPath = Join-Path $Script:sourcePath -ChildPath "\WindowsServer2016\"
+$Script:sourceUpdatePath = Join-Path $Script:sourcePath -ChildPath "\WindowsServer2016Updates\"
+$Script:sourceVMMWAPDependenciesPath = Join-Path $Script:sourcePath -ChildPath "\VMMWAPDependencies\" 
 
-$Script:baseMediaPath = Join-Path $Script:sourcePath -ChildPath "\WindowsServer2016\"
-$Script:baseUpdatePath = Join-Path $Script:sourcePath -ChildPath "\WindowsServer2016Updates\"
-$Script:baseVMMWAPDependenciesPath = Join-Path $Script:sourcePath -ChildPath "\VMMWAPDependencies\" 
-
+# Environment configuration
 $Script:domainName = "relecloud.com"
 $Script:hgsDomainName = "hgs.$($Script:domainName)"
 $Script:clearTextPassword = "P@ssw0rd."
@@ -28,18 +34,18 @@ $Script:internalSubnet = "10.10.42."
 $Script:externalSwitchName = "FabricExternal"
 $Script:fabricSwitch = $Script:internalSwitchName
 
-
 $Script:localAdminCred = New-Object System.Management.Automation.PSCredential ("administrator", $Script:passwordSecureString)
 $Script:relecloudAdminCred = New-Object System.Management.Automation.PSCredential ("relecloud\administrator", $Script:passwordSecureString)
 $Script:hgsAdminCred = New-Object System.Management.Automation.PSCredential ("hgs\administrator", $Script:passwordSecureString)
 
-$Script:baseServerCorePath = Join-Path $Script:basePath -ChildPath "\WindowsServer2016_ServerDataCenterCore.vhdx"
-$Script:baseServerStandardPath = Join-Path $Script:basePath -ChildPath "\WindowsServer2016_ServerStandard.vhdx"
-$Script:baseNanoServerPath = Join-Path $Script:basePath -ChildPath "\WindowsServer2016_ServerDataCenterNano.vhdx"
-$Script:VMMWAPDependenciesPath = Join-Path $Script:basePath -ChildPath "\VMMWAPDependencies.vhdx"
-$Script:ImageConverterPath = Join-Path -Path $Script:baseMediaPath -ChildPath "NanoServer\NanoServerImageGenerator\Convert-WindowsImage.ps1"
+$Script:basePath = "C:\Ignite"
+$Script:vhdxServerCorePath = Join-Path $Script:basePath -ChildPath "\WindowsServer2016_ServerDataCenterCore.vhdx"
+$Script:vhdxServerStandardPath = Join-Path $Script:basePath -ChildPath "\WindowsServer2016_ServerStandard.vhdx"
+$Script:vhdxNanoServerPath = Join-Path $Script:basePath -ChildPath "\WindowsServer2016_ServerDataCenterNano.vhdx"
+$Script:vhdxVMMWAPDependenciesPath = Join-Path $Script:basePath -ChildPath "\VMMWAPDependencies.vhdx"
 
-$Script:UnattendPath = Join-Path $Script:sourcePath -ChildPath "IgniteUnattend.xml"
+$Script:ImageConverterPath = Join-Path -Path $Script:sourceMediaPath -ChildPath "NanoServer\NanoServerImageGenerator\Convert-WindowsImage.ps1"
+$Script:UnattendPath = Join-Path $Script:basePath -ChildPath "IgniteUnattend.xml"
 
 $Script:VmNameDc = "Fabric - Domain Controller"
 $Script:VmNameVmm = "Fabric - Virtual Machine Manager"
@@ -59,6 +65,189 @@ $Script:stagenames = (
 $Script:stage = $StartFromStage
 $Script:MemoryScaleFactor = $MemoryScaleFactor
 
+$SCVMMSetupConfig =@"
+[OPTIONS]
+# ProductKey=xxxxx-xxxxx-xxxxx-xxxxx-xxxxx
+ProgramFiles=C:\Program Files\Microsoft System Center 2016\Virtual Machine Manager
+CreateNewSqlDatabase=1
+SqlInstanceName=MSSQLServer
+SqlDatabaseName=VirtualManagerDB
+# RemoteDatabaseImpersonation=0
+# SqlMachineName=<sqlmachinename>
+# IndigoTcpPort=8100
+# IndigoHTTPSPort=8101
+# IndigoNETTCPPort=8102
+# IndigoHTTPPort=8103
+# WSManTcpPort=5985
+# BitsTcpPort=443
+CreateNewLibraryShare=1
+LibraryShareName=MSSCVMMLibrary
+LibrarySharePath=D:\Library\Virtual Machine Manager Library Files
+# LibraryShareDescription=Virtual Machine Manager Library Files
+# SQMOptIn = 1
+# MUOptIn = 0
+"@
+
+# SQL Server configuration ini
+$SQLServerSetupConfig = @"
+;SQL Server 2014 Configuration File
+[OPTIONS]
+; Use the /ENU parameter to install the English version of SQL Server on your localized Windows operating system. 
+ENU="True"
+
+; Specify whether SQL Server Setup should discover and include product updates. The valid values are True and False or 1 and 0. By default SQL Server Setup will include updates that are found. 
+UpdateEnabled="False"
+
+; Specify if errors can be reported to Microsoft to improve future SQL Server releases. Specify 1 or True to enable and 0 or False to disable this feature. 
+ERRORREPORTING="True"
+
+; If this parameter is provided, then this computer will use Microsoft Update to check for updates. 
+USEMICROSOFTUPDATE="False"
+
+; Specifies features to install, uninstall, or upgrade. The list of top-level features include SQL, AS, RS, IS, MDS, and Tools. The SQL feature will install the Database Engine, Replication, Full-Text, and Data Quality Services (DQS) server. The Tools feature will install Management Tools, Books online components, SQL Server Data Tools, and other shared components. 
+FEATURES=SQLENGINE,SSMS,ADV_SSMS
+
+; Specify the location where SQL Server Setup will obtain product updates. The valid values are "MU" to search Microsoft Update, a valid folder path, a relative path such as .\MyUpdates or a UNC share. By default SQL Server Setup will search Microsoft Update or a Windows Update service through the Window Server Update Services. 
+UpdateSource="MU"
+
+; Displays the command line parameters usage 
+HELP="False"
+
+; Specifies that the detailed Setup log should be piped to the console. 
+INDICATEPROGRESS="False"
+
+; Specifies that Setup should install into WOW64. This command line argument is not supported on an IA64 or a 32-bit system. 
+X86="False"
+
+; Specify the root installation directory for shared components.  This directory remains unchanged after shared components are already installed. 
+INSTALLSHAREDDIR="C:\Program Files\Microsoft SQL Server"
+
+; Specify the root installation directory for the WOW64 shared components.  This directory remains unchanged after WOW64 shared components are already installed. 
+INSTALLSHAREDWOWDIR="C:\Program Files (x86)\Microsoft SQL Server"
+
+; Specify a default or named instance. MSSQLSERVER is the default instance for non-Express editions and SQLExpress for Express editions. This parameter is required when installing the SQL Server Database Engine (SQL), Analysis Services (AS), or Reporting Services (RS). 
+INSTANCENAME="MSSQLSERVER"
+
+; Specify that SQL Server feature usage data can be collected and sent to Microsoft. Specify 1 or True to enable and 0 or False to disable this feature. 
+SQMREPORTING="True"
+
+; Specify the Instance ID for the SQL Server features you have specified. SQL Server directory structure, registry structure, and service names will incorporate the instance ID of the SQL Server instance. 
+INSTANCEID="MSSQLSERVER"
+
+; Specify the installation directory. 
+INSTANCEDIR="C:\Program Files\Microsoft SQL Server"
+
+; Agent account name 
+AGTSVCACCOUNT="NT Service\SQLSERVERAGENT"
+
+; Auto-start service after installation.  
+AGTSVCSTARTUPTYPE="Manual"
+
+; CM brick TCP communication port 
+COMMFABRICPORT="0"
+
+; How matrix will use private networks 
+COMMFABRICNETWORKLEVEL="0"
+
+; How inter brick communication will be protected 
+COMMFABRICENCRYPTION="0"
+
+; TCP port used by the CM brick 
+MATRIXCMBRICKCOMMPORT="0"
+
+; Startup type for the SQL Server service. 
+SQLSVCSTARTUPTYPE="Automatic"
+
+; Level to enable FILESTREAM feature at (0, 1, 2 or 3). 
+FILESTREAMLEVEL="0"
+
+; Set to "1" to enable RANU for SQL Server Express. 
+ENABLERANU="False"
+
+; Specifies a Windows collation or an SQL collation to use for the Database Engine. 
+SQLCOLLATION="SQL_Latin1_General_CP1_CI_AS"
+
+; Account for SQL Server service: Domain\User or system account. 
+SQLSVCACCOUNT="NT Service\MSSQLSERVER"
+
+; Provision current user as a Database Engine system administrator for %SQL_PRODUCT_SHORT_NAME% Express. 
+ADDCURRENTUSERASSQLADMIN="False"
+
+; Specify 0 to disable or 1 to enable the TCP/IP protocol. 
+TCPENABLED="1"
+
+; Specify 0 to disable or 1 to enable the Named Pipes protocol. 
+NPENABLED="0"
+
+; Startup type for Browser Service. 
+BROWSERSVCSTARTUPTYPE="Disabled"
+"@
+
+$UnattendFile = @"
+<?xml version="1.0" encoding="utf-8"?>
+<unattend xmlns="urn:schemas-microsoft-com:unattend">
+    <servicing></servicing>
+
+    <settings pass="specialize">
+        <component name="Microsoft-Windows-Shell-Setup" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+            <ComputerName>*</ComputerName>
+            <RegisteredOrganization>The Power Elite</RegisteredOrganization>
+            <RegisteredOwner>Lars Iwer</RegisteredOwner>
+            <TimeZone>Pacific Standard Time</TimeZone>
+        </component>
+        <component name="Microsoft-Windows-TerminalServices-LocalSessionManager" processorArchitecture="x86" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS">
+          <fDenyTSConnections>false</fDenyTSConnections>
+        </component>
+        <component name="Microsoft-Windows-TerminalServices-RDP-WinStationExtensions" processorArchitecture="x86" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS"> 
+          <UserAuthentication>0</UserAuthentication>
+        </component>
+        <component name="Networking-MPSSVC-Svc" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+            <FirewallGroups>
+                <FirewallGroup wcm:action="add" wcm:keyValue="RemoteDesktop">
+                    <Active>true</Active>
+                    <Profile>all</Profile>
+                    <Group>@FirewallAPI.dll,-28752</Group>
+                </FirewallGroup>
+            </FirewallGroups>
+        </component>
+    </settings>
+    <settings pass="oobeSystem">
+        <component name="Microsoft-Windows-Shell-Setup" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+            <OOBE>
+                <HideEULAPage>true</HideEULAPage>
+                <HideLocalAccountScreen>true</HideLocalAccountScreen>
+                <HideWirelessSetupInOOBE>true</HideWirelessSetupInOOBE>
+                <NetworkLocation>Work</NetworkLocation>
+                <ProtectYourPC>1</ProtectYourPC>
+            </OOBE>
+            <UserAccounts>
+                <AdministratorPassword>
+                    <Value>P@ssw0rd.</Value>
+                    <PlainText>True</PlainText>
+                </AdministratorPassword>
+                <LocalAccounts>
+                    <LocalAccount wcm:action="add">
+                        <Password>
+                            <Value>P@ssw0rd</Value>
+                            <PlainText>True</PlainText>
+                        </Password>
+                        <DisplayName>Demo</DisplayName>
+                        <Group>Administrators</Group>
+                        <Name>demo</Name>
+                    </LocalAccount>
+                </LocalAccounts>
+            </UserAccounts>
+        </component>
+        <component name="Microsoft-Windows-International-Core" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+            <InputLocale>en-us</InputLocale>
+            <SystemLocale>en-us</SystemLocale>
+            <UILanguage>en-us</UILanguage>
+            <UILanguageFallback>en-us</UILanguageFallback>
+            <UserLocale>en-us</UserLocale>
+        </component>
+    </settings>
+</unattend>
+"@
 # (Get-WmiObject -q "SELECT * FROM Msvm_ComputerSystem WHERE ElementName = 'ImportantVM'" -n root\virtualization\v2).ProcessID
 
 #######################################################################################
@@ -414,35 +603,36 @@ Function WaitFor-ActiveDirectory {
 
 Function MountAndInitialize-VHDX {
     Param(
+        [Parameter(Mandatory=$true)]
         [string]$VHDXPath
     )
-    Log-Message -Message "Mounting VHDX" -Level 2
+    Log-Message -Message "Mounting VHDX" -Level 1
     $mountedvhdx = Mount-VHD -Path $VHDXPath -Passthru -ErrorAction Stop
     $mounteddisk = $mountedvhdx | Get-Disk
-    if ($mounteddisk.PartitionStyle -eq "RAW")
+    if ((Get-Disk -Number $mounteddisk.Number).PartitionStyle -eq "RAW")
     {
-        Log-Message -Message "Raw disk - initializing, creating partition and formatting" -Level 2
-        Log-Message -Message "Initializing disk" -MessageType Verbose -Level 2
+        Log-Message -Message "Raw disk - initializing, creating partition and formatting" -Level 1
+        Log-Message -Message "Initializing disk" -MessageType Verbose -Level 1
         Initialize-Disk -Number $mounteddisk.Number -PartitionStyle MBR
     }
 
     $partition = Get-Partition -DiskNumber $mounteddisk.Number -ErrorAction SilentlyContinue
     If (-not ($partition)) {
-        Log-Message -Message "Creating new partition" -MessageType Verbose -Level 2
+        Log-Message -Message "Creating new partition" -MessageType Verbose -Level 1
         $partition = New-Partition -DiskNumber $mounteddisk.Number -Size $mounteddisk.LargestFreeExtent -MbrType IFS -IsActive
     }
 
     $volume = Get-Volume -Partition $partition -ErrorAction SilentlyContinue
-    If (-not ($volume)) {
-        Log-Message -Message "Formatting" -MessageType Verbose -Level 2
+    If (-not ($volume.FileSystem)) {
+        Log-Message -Message "Formatting" -MessageType Verbose -Level 1
         $volume = Format-Volume -Partition $partition -FileSystem NTFS -Force -Confirm:$false 
 
-        Log-Message -Message "Assigning drive letter" -MessageType Verbose -Level 2
+        Log-Message -Message "Assigning drive letter" -MessageType Verbose -Level 1
         $partition | Add-PartitionAccessPath -AssignDriveLetter | Out-Null
     }
 
     $driveLetter = (Get-Volume |? UniqueId -eq $volume.UniqueId).DriveLetter
-    Log-Message -Message "Drive letter: $driveletter" -MessageType Verbose -Level 2
+    Log-Message -Message "Drive letter: $driveletter" -MessageType Verbose -Level 1
 
     $driveletter
 }
@@ -495,21 +685,21 @@ If (($Cleanup -eq "VM") -or ($Cleanup -eq "Everything"))
 If (($Cleanup -eq "Baseimages") -or ($Cleanup -eq "Everything"))
 {
     Log-Message -Message "[Cleanup] Removing existing base VHDXs"
-    Cleanup-File -path $Script:baseServerCorePath
-    Cleanup-File -path $Script:baseServerStandardPath
-    Cleanup-File -path $Script:baseNanoServerPath
+    Cleanup-File -path $Script:vhdxServerCorePath
+    Cleanup-File -path $Script:vhdxServerStandardPath
+    Cleanup-File -path $Script:vhdxNanoServerPath
 }
 
 #######################################################################################
 # Preparation of base VHDXs
 #######################################################################################
 
-$Script:installWimPath = Join-Path $Script:baseMediaPath -ChildPath "sources\Install.wim"
+$Script:installWimPath = Join-Path $Script:sourceMediaPath -ChildPath "sources\Install.wim"
 
-If (Test-Path $Script:baseUpdatePath) {
+If (Test-Path $Script:sourceUpdatePath) {
     $Updates = @()
     Log-Message -Message "[Prepare] Found updates path"   
-    foreach ($Update in (Get-ChildItem $Script:baseUpdatePath -Recurse -include "*.cab" -Exclude WSUSSCAN.CAB))
+    foreach ($Update in (Get-ChildItem $Script:sourceUpdatePath -Recurse -include "*.cab" -Exclude WSUSSCAN.CAB))
     {
         Log-Message -Message "[Prepare] Found $($Update.Name)" -MessageType Verbose
         $Updates += $Update.FullName
@@ -522,70 +712,70 @@ if (Test-Path $Script:ImageConverterPath)
     . $Script:ImageConverterPath
 }
 
-if (-Not (Test-Path $Script:baseServerCorePath))
+if (-Not (Test-Path $Script:vhdxServerCorePath))
 {
     Log-Message -Message "[Prepare] Creating Server Datacenter Core base VHDX"
-    If (-Not (Test-Path $Script:baseMediaPath))
+    If (-Not (Test-Path $Script:sourceMediaPath))
     {
         throw "Base media path not found"
     }
     If ($Updates) {
-        Convert-WindowsImage -SourcePath ($Script:installWimPath) -VHDPath $Script:baseServerCorePath -DiskLayout UEFI -Edition SERVERDATACENTERCORE -UnattendPath $Script:UnattendPath -SizeBytes 40GB -Package $Updates | Out-Null
+        Convert-WindowsImage -SourcePath ($Script:installWimPath) -VHDPath $Script:vhdxServerCorePath -DiskLayout UEFI -Edition SERVERDATACENTERCORE -UnattendPath $Script:UnattendPath -SizeBytes 40GB -Package $Updates | Out-Null
     } else {
-        Convert-WindowsImage -SourcePath ($Script:installWimPath) -VHDPath $Script:baseServerCorePath -DiskLayout UEFI -Edition SERVERDATACENTERCORE -UnattendPath $Script:UnattendPath -SizeBytes 40GB | Out-Null
+        Convert-WindowsImage -SourcePath ($Script:installWimPath) -VHDPath $Script:vhdxServerCorePath -DiskLayout UEFI -Edition SERVERDATACENTERCORE -UnattendPath $Script:UnattendPath -SizeBytes 40GB | Out-Null
     }
 }
 
-if (-Not (Test-Path $Script:baseServerStandardPath))
+if (-Not (Test-Path $Script:vhdxServerStandardPath))
 {
     Log-Message -Message "[Prepare] Creating Server Standard Full UI base VHDX"
-    If (-Not (Test-Path $Script:baseMediaPath))
+    If (-Not (Test-Path $Script:sourceMediaPath))
     {
         throw "Base media path not found"
     }
     If ($Updates) {
-        Convert-WindowsImage -SourcePath ($Script:installWimPath) -VHDPath $Script:baseServerStandardPath -DiskLayout UEFI -Edition SERVERSTANDARD -UnattendPath $Script:UnattendPath -SizeBytes 40GB -Package $Updates | Out-Null
+        Convert-WindowsImage -SourcePath ($Script:installWimPath) -VHDPath $Script:vhdxServerStandardPath -DiskLayout UEFI -Edition SERVERSTANDARD -UnattendPath $Script:UnattendPath -SizeBytes 40GB -Package $Updates | Out-Null
     } else {
-        Convert-WindowsImage -SourcePath ($Script:installWimPath) -VHDPath $Script:baseServerStandardPath -DiskLayout UEFI -Edition SERVERSTANDARD -UnattendPath $Script:UnattendPath -SizeBytes 40GB | Out-Null    
+        Convert-WindowsImage -SourcePath ($Script:installWimPath) -VHDPath $Script:vhdxServerStandardPath -DiskLayout UEFI -Edition SERVERSTANDARD -UnattendPath $Script:UnattendPath -SizeBytes 40GB | Out-Null    
     }
 }
 
-if (-Not (Test-Path $Script:baseNanoServerPath))
+if (-Not (Test-Path $Script:vhdxNanoServerPath))
 {
     Log-Message -Message "[Prepare] Creating Nano Server Datacenter base VHDX"
-    If (-Not (Test-Path $Script:baseMediaPath))
+    If (-Not (Test-Path $Script:sourceMediaPath))
     {
         throw "Base media path not found"
     }
 
     Log-Message -Message "Importing Nano Server Image Generator PowerShell Module" -MessageType Verbose
-    Import-Module (Join-Path $Script:baseMediaPath -ChildPath "\NanoServer\NanoServerImageGenerator\NanoServerImageGenerator.psm1") | Out-Null
+    Import-Module (Join-Path $Script:sourceMediaPath -ChildPath "\NanoServer\NanoServerImageGenerator\NanoServerImageGenerator.psm1") | Out-Null
 
     If ($Updates) {
-        New-NanoServerImage -DeploymentType Guest -Edition Datacenter -MediaPath $Script:baseMediaPath -Package Microsoft-NanoServer-SecureStartup-Package,Microsoft-NanoServer-Guest-Package,Microsoft-NanoServer-SCVMM-Package,Microsoft-NanoServer-SCVMM-Compute-Package  -TargetPath $Script:baseNanoServerPath -EnableRemoteManagementPort -AdministratorPassword $Script:passwordSecureString -ServicingPackagePath $Updates | Out-Null
+        New-NanoServerImage -DeploymentType Guest -Edition Datacenter -MediaPath $Script:sourceMediaPath -Package Microsoft-NanoServer-SecureStartup-Package,Microsoft-NanoServer-Guest-Package,Microsoft-NanoServer-SCVMM-Package,Microsoft-NanoServer-SCVMM-Compute-Package  -TargetPath $Script:vhdxNanoServerPath -EnableRemoteManagementPort -AdministratorPassword $Script:passwordSecureString -ServicingPackagePath $Updates | Out-Null
     } else {
-        New-NanoServerImage -DeploymentType Guest -Edition Datacenter -MediaPath $Script:baseMediaPath -Package Microsoft-NanoServer-SecureStartup-Package,Microsoft-NanoServer-Guest-Package,Microsoft-NanoServer-SCVMM-Package,Microsoft-NanoServer-SCVMM-Compute-Package  -TargetPath $Script:baseNanoServerPath -EnableRemoteManagementPort -AdministratorPassword $Script:passwordSecureString | Out-Null    
+        New-NanoServerImage -DeploymentType Guest -Edition Datacenter -MediaPath $Script:sourceMediaPath -Package Microsoft-NanoServer-SecureStartup-Package,Microsoft-NanoServer-Guest-Package,Microsoft-NanoServer-SCVMM-Package,Microsoft-NanoServer-SCVMM-Compute-Package  -TargetPath $Script:vhdxNanoServerPath -EnableRemoteManagementPort -AdministratorPassword $Script:passwordSecureString | Out-Null    
     }
 }
 
-if (-Not (Test-Path $Script:VMMWAPDependenciesPath)) 
+if (-Not (Test-Path $Script:vhdxVMMWAPDependenciesPath)) 
 {
     Log-Message -Message "[Prepare] Creating VMM/WAP installation Dependencies VHDX"
-    If (-Not (Test-Path $Script:baseVMMWAPDependenciesPath))
+    If (-Not (Test-Path $Script:sourceVMMWAPDependenciesPath))
     {
         throw "Base VMM/WAP installation dependencies path not found"
     }
 
     Log-Message -Message "[Prepare] Creating new VHDX" -MessageType Verbose
-    $dependenciesvhdx = New-VHD -Path $Script:VMMWAPDependenciesPath -SizeBytes 40GB -Dynamic
+    $dependenciesvhdx = New-VHD -Path $Script:vhdxVMMWAPDependenciesPath -SizeBytes 40GB -Dynamic
 
-    $driveletter = MountAndInitialize-VHDX $dependenciesvhdx
+    $driveletter = MountAndInitialize-VHDX $Script:vhdxVMMWAPDependenciesPath -ErrorAction Stop
     
     Log-Message -Message "[Prepare] Copying files - this might take some time." -MessageType Verbose
-    Copy-Item -Path $Script:baseVMMWAPDependenciesPath -Destination "$($driveLetter):" -Recurse | Out-Null
+    Copy-Item -Path $Script:sourceVMMWAPDependenciesPath -Destination "$($driveLetter):" -Recurse | Out-Null
 
     Log-Message -Message "[Prepare] Dismounting VHDX" -MessageType Verbose
-    Dismount-VHD -Path $dependenciesvhdx.Path
+    Dismount-VHD -Path $Script:vhdxVMMWAPDependenciesPath
 }
 
 #######################################################################################
@@ -638,11 +828,15 @@ If ($StartFromStage -gt 1)
 If ($Script:stage -eq 0 -and $Script:stage -lt $StopBeforeStage)
 {
     Begin-Stage -StartVMs $false
-    $hgs01 = Prepare-VM -vmname $Script:VmNameHgs -basediskpath $Script:baseServerCorePath -dynamicmemory $true
-    $dc01 = Prepare-VM -vmname $Script:VmNameDc -basediskpath $Script:baseServerCorePath -dynamicmemory $true
-    $vmm01 = Prepare-VM -vmname $Script:VmNameVmm -basediskpath $Script:baseServerStandardPath -startupmemory 2GB
-    $compute01 = Prepare-VM -vmname "$Script:VmNameCompute 01" -processorcount 4 -startupmemory 2GB -enablevirtualizationextensions $true -enablevtpm $true -basediskpath $Script:baseNanoServerPath
-    $compute02 = Prepare-VM -vmname "$Script:VmNameCompute 02" -processorcount 4 -startupmemory 2GB -enablevirtualizationextensions $true -enablevtpm $true -basediskpath $Script:baseNanoServerPath
+    Cleanup-File -path $Script:UnattendPath
+    Log-Message -Message "Creating unattend file" 
+    $UnattendFile | Out-File -FilePath $Script:UnattendPath
+
+    $hgs01 = Prepare-VM -vmname $Script:VmNameHgs -basediskpath $Script:vhdxServerCorePath -dynamicmemory $true
+    $dc01 = Prepare-VM -vmname $Script:VmNameDc -basediskpath $Script:vhdxServerCorePath -dynamicmemory $true
+    $vmm01 = Prepare-VM -vmname $Script:VmNameVmm -processorcount 4 -basediskpath $Script:vhdxServerStandardPath -startupmemory 8GB
+    $compute01 = Prepare-VM -vmname "$Script:VmNameCompute 01" -processorcount 4 -startupmemory 6GB -enablevirtualizationextensions $true -enablevtpm $true -basediskpath $Script:vhdxNanoServerPath
+    $compute02 = Prepare-VM -vmname "$Script:VmNameCompute 02" -processorcount 4 -startupmemory 6GB -enablevirtualizationextensions $true -enablevtpm $true -basediskpath $Script:vhdxNanoServerPath
     
     $Script:EnvironmentVMs = ($hgs01, $dc01, $vmm01, $compute01, $compute02)
     End-Stage
@@ -703,7 +897,7 @@ If ($Script:stage -eq 1 -and $Script:stage -lt $StopBeforeStage)
             subnet=$Script:internalSubnet
         }
 
-    Copy-ItemToVm -VirtualMachine $vmm01 -SourcePath (Join-Path $Script:baseMediaPath -ChildPath "sources\sxs\microsoft-windows-netfx3-ondemand-package.cab") -DestinationPath C:\sxs\microsoft-windows-netfx3-ondemand-package.cab -Credential $Script:localAdminCred
+    Copy-ItemToVm -VirtualMachine $vmm01 -SourcePath (Join-Path $Script:sourceMediaPath -ChildPath "sources\sxs\microsoft-windows-netfx3-ondemand-package.cab") -DestinationPath C:\sxs\microsoft-windows-netfx3-ondemand-package.cab -Credential $Script:localAdminCred
 
     Invoke-CommandWithPSDirect -VirtualMachine $vmm01 -Credential $Script:localAdminCred -ScriptBlock $ScriptBlock_FeaturesComputerName -ArgumentList @{
             features=("NET-Framework-Features", "NET-Framework-Core", "Web-Server", "ManagementOData", "Web-Dyn-Compression", "Web-Basic-Auth", "Web-Windows-Auth", `
@@ -1018,31 +1212,19 @@ If ($Script:stage -eq 3 -and $Script:stage -lt $StopBeforeStage)
     Invoke-CommandWithPSDirect -VirtualMachine $compute01 -Credential $Script:relecloudAdminCred -ScriptBlock $ScriptBlock_HgsClientConfiguration -ArgumentList $Arg_HgsClientConfiguration 
     Invoke-CommandWithPSDirect -VirtualMachine $compute02 -Credential $Script:relecloudAdminCred -ScriptBlock $ScriptBlock_HgsClientConfiguration -ArgumentList $Arg_HgsClientConfiguration
 
-    End-Stage
-} 
-#######################################################################################
-# End of Stage 3 Configure HGS in AD mode, join compute nodes to domain
-#######################################################################################
-
-#######################################################################################
-# Beginning of Stage 4: Create VMs
-#######################################################################################
-If ($Script:stage -eq 4 -and $Script:stage -lt $StopBeforeStage)
-{
-    Begin-Stage
-
-    WaitFor-ActiveDirectory -VirtualMachine $dc01 -Credential $Script:relecloudAdminCred
-
     $VMMDataVHDXPath = Join-Path $Script:basePath -ChildPath "\fabric\$($Script:VmNameVmm)\Virtual Hard Disks\Data.vhdx"
     Cleanup-File -path $VMMDataVHDXPath
     $vmmlibraryvhdx = New-VHD -Dynamic -SizeBytes 50GB -Path $VMMDataVHDXPath | Out-Null
 
-    $driveletter = MountAndInitialize-VHDX $vmmlibraryvhdx
+    $driveletter = MountAndInitialize-VHDX $VMMDataVHDXPath -ErrorAction Stop
     
     Log-Message -Message "Dismounting VHDX" -MessageType Verbose -Level 1
-    Dismount-VHD -Path $vmmlibraryvhdx.Path
+    Dismount-VHD -Path $VMMDataVHDXPath
 
-    Add-VMHardDiskDrive -VM $vmm01 -Path $vmmlibraryvhdx.Path | Out-Null
+    Log-Message -Message "Attaching VMM Library disk" -MessageType Verbose -Level 1
+    Add-VMHardDiskDrive -VM $vmm01 -Path $VMMDataVHDXPath | Out-Null
+    Log-Message -Message "Attaching VMM/WAP dependencies source disk" -MessageType Verbose -Level 1
+    Add-VMHardDiskDrive -VM $vmm01 -Path $Script:vhdxVMMWAPDependenciesPath | Out-Null
 
     $ScriptBlock_AddLocalAdmin = {
             Param(
@@ -1069,19 +1251,70 @@ If ($Script:stage -eq 4 -and $Script:stage -lt $StopBeforeStage)
             )
             . ([ScriptBlock]::Create($Using:FunctionDefs))
             Log-Message -Message "Bringing offline disks online" -Level 2 -Verbose
-            Get-Disk | ? IsOffline | Set-Disk -IsOffline:$false
+            Get-Disk | ? IsOffline | Set-Disk -IsOffline:$false -IsReadOnly:$false
 
             Log-Message -Message "Installing ADK" -Level 2
-            Start-Process -Name "adksetup.exe" -ArgumentList "/q /features OptionId.DeploymentTools OptionId.WindowsPreinstallationEnvironment".Split(" ") -WorkingDirectory E:\VMMWAPDependencies\ADK -NoNewWindow -Wait
-            Log-Message -Message "Installing SQL Server" -Level 2
-            Start-Process -Name "setup.exe" -ArgumentList "/CONFIGURATIONFILE=E:\ConfigurationFile.ini /IACCEPTSQLSERVERLICENSETERMS".Split(" ") -WorkingDirectory E:\VMMWAPDependencies\SQL -NoNewWindow -Wait
-        }
-    # ADK Setup
-    # adksetup /q /features OptionId.DeploymentTools OptionId.WindowsPreinstallationEnvironment 
-    #
-    # SQL Setup:
-    # setup.exe /CONFIGURATIONFILE=E:\ConfigurationFile.ini /IACCEPTSQLSERVERLICENSETERMS 
+            $arguments = "/q /features OptionId.DeploymentTools OptionId.WindowsPreinstallationEnvironment"
+            Log-Message -Message "Arguments: $arguments" -Level 2
+            Start-Process "E:\VMMWAPDependencies\ADK\adksetup.exe" -ArgumentList $arguments.Split(" ") -WorkingDirectory E:\VMMWAPDependencies\ADK -NoNewWindow -Wait
+            
+            Log-Message -Message "Writing SqlConfigurationFile.ini" -Level 2
+            $using:SQLServerSetupConfig | Out-File C:\SqlConfigurationFile.ini
 
+            Log-Message -Message "Installing SQL Server" -Level 2
+            $arguments = "/QUIET /CONFIGURATIONFILE=C:\SqlConfigurationFile.ini /ACTION=Install /SQLSYSADMINACCOUNTS=RELECLOUD\lars $($using:IAcceptSqlLicenseTerms)"
+            Log-Message -Message "Arguments: $arguments" -Level 2
+            Start-Process "E:\VMMWAPDependencies\SQL\setup.exe" -ArgumentList $arguments.Split(" ") -WorkingDirectory E:\VMMWAPDependencies\SQL -NoNewWindow -Wait
+        }
+    Reboot-VM $vmm01 
+
+    Get-VMHardDiskDrive -VM $vmm01 -ControllerLocation 2 | Remove-VMHardDiskDrive | Out-Null 
+    End-Stage
+} 
+#######################################################################################
+# End of Stage 3 Configure HGS in AD mode, join compute nodes to domain
+#######################################################################################
+
+#######################################################################################
+# Beginning of Stage 4: Create VMs
+#######################################################################################
+If ($Script:stage -eq 4 -and $Script:stage -lt $StopBeforeStage)
+{
+    Begin-Stage
+
+    WaitFor-ActiveDirectory -VirtualMachine $dc01 -Credential $Script:relecloudAdminCred
+    Add-VMHardDiskDrive -VM $vmm01 -Path $Script:vhdxVMMWAPDependenciesPath | Out-Null
+
+    Invoke-CommandWithPSDirect -VirtualMachine $vmm01 -Credential $Script:relecloudAdminCred -ScriptBlock {
+            Param(
+                [hashtable]$param
+            )
+            . ([ScriptBlock]::Create($Using:FunctionDefs))
+            Log-Message -Message "Bringing offline disks online" -Level 2 -Verbose
+            Get-Disk | ? IsOffline | Set-Disk -IsOffline:$false -IsReadOnly:$false
+
+            Log-Message -Message "Writing VMServer.ini" -Level 2
+            $using:SQLServerSetupConfig | Out-File C:\VMServer.ini
+
+            Log-Message -Message "Installing Virtual Machine Manager" -Level 2
+            $arguments = "/server /i $($using:iacceptsceula) /f 'C:\VMServer.ini' /VmmServiceDomain=$($param["VmmServiceDomain"]) /VmmServiceUserName=$($param["VmmServiceUserName"]) /VmmServiceUserPassword=$($param["VmmServiceUserPassword"])"
+            Log-Message -Message "Arguments: $arguments" -Level 2
+            Start-Process "E:\VMMWAPDependencies\VMM\setup.exe" -ArgumentList $arguments.Split(" ") -WorkingDirectory E:\VMMWAPDependencies\VMM -NoNewWindow -Wait
+
+            While (Get-Process SetupVMM -ErrorAction SilentlyContinue)
+            {
+                Write-Host "." -NoNewline
+                Start-Sleep -Seconds 5
+            }
+            Write-Host "done."
+            
+        } -ArgumentList @{
+            VmmServiceDomain=$Script:domainName;
+            VmmServiceUserName="vmmserviceaccount";
+            VmmServiceUserPassword=$Script:clearTextPassword
+        }
+
+    Get-VMHardDiskDrive -VM $vmm01 -ControllerLocation 2 | Remove-VMHardDiskDrive | Out-Null
 
     End-Stage
 } 
@@ -1100,7 +1333,7 @@ Log-Message -Message "Script finished - Total Duration: $(((Get-Date) - $Script:
 
 
 
-#New-NanoServerImage -ComputerName "NanoVM" -Compute -DeploymentType Guest -Edition Datacenter -MediaPath $Script:baseMediaPath -Package Microsoft-NanoServer-SecureStartup-Package,Microsoft-NanoServer-Guest-Package,Microsoft-NanoServer-ShieldedVM-Package -TargetPath $compute2VHDXPath -EnableRemoteManagementPort -AdministratorPassword $Script:passwordSecureString -InterfaceNameOrIndex Ethernet -Ipv4Address 192.168.42.202 -Ipv4SubnetMask 255.255.255.0 -Ipv4Dns 192.168.42.1 -Ipv4Gateway 192.168.42.1 | Out-Null
+#New-NanoServerImage -ComputerName "NanoVM" -Compute -DeploymentType Guest -Edition Datacenter -MediaPath $Script:sourceMediaPath -Package Microsoft-NanoServer-SecureStartup-Package,Microsoft-NanoServer-Guest-Package,Microsoft-NanoServer-ShieldedVM-Package -TargetPath $compute2VHDXPath -EnableRemoteManagementPort -AdministratorPassword $Script:passwordSecureString -InterfaceNameOrIndex Ethernet -Ipv4Address 192.168.42.202 -Ipv4SubnetMask 255.255.255.0 -Ipv4Dns 192.168.42.1 -Ipv4Gateway 192.168.42.1 | Out-Null
 if ($Script:stage -eq 99)
     {
     #######################################################################################
@@ -1114,8 +1347,10 @@ if ($Script:stage -eq 99)
     #
     # VMM Setup:
     # VMM management server
-    # .\setup.exe /server /i /iacceptsceula /f 'E:\VMServer.ini' /VmmServiceDomain=RELECLOUD /VmmServiceUserName=vmmserviceaccount /VmmServiceUserPassword="P@ssw0rd."
-    # VMM Client
+    # .\setup.exe /server /i $($using:iacceptsceula) /f 'E:\VMServer.ini' /VmmServiceDomain=RELECLOUD /VmmServiceUserName=vmmserviceaccount /VmmServiceUserPassword="P@ssw0rd."
+    # UserName=Lars  -   CompanyName=The Power Elite
+
+    # VMM Client 
     # setup.exe /cient /i /iacceptsceula /f 'E:\VMClient.ini'
     
 
