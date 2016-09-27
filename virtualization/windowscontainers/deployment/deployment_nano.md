@@ -87,7 +87,7 @@ Download the Docker Engine and client and copy these into 'C:\Program Files\dock
 > Nano Server does not currently support `Invoke-WebRequest`. the download will need to be completed on a remote system, and the files copied to the Nano Server host.
 
 ```none
-Invoke-WebRequest "https://download.docker.com/components/engine/windows-server/cs-1.12/docker.zip" -OutFile .\docker-1.12.0.zip -UseBasicParsing
+Invoke-WebRequest "https://download.docker.com/components/engine/windows-server/cs-1.12/docker.zip" -OutFile .\docker.zip -UseBasicParsing
 ```
 
 Extract the downloaded package. Once completed you will have a directory containing both **dockerd.exe** and **docker.exe**. Copy both of these to the **C:\Program Files\docker\** folder in the Nano Server container host. 
