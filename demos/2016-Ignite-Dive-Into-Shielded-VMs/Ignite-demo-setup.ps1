@@ -72,7 +72,7 @@ ProgramFiles=C:\Program Files\Microsoft System Center 2016\Virtual Machine Manag
 CreateNewSqlDatabase=1
 SqlInstanceName=MSSQLServer
 SqlDatabaseName=VirtualManagerDB
-# RemoteDatabaseImpersonation=0
+RemoteDatabaseImpersonation=1
 # SqlMachineName=<sqlmachinename>
 # IndigoTcpPort=8100
 # IndigoHTTPSPort=8101
@@ -86,6 +86,11 @@ LibrarySharePath=D:\Library\Virtual Machine Manager Library Files
 # LibraryShareDescription=Virtual Machine Manager Library Files
 # SQMOptIn = 1
 # MUOptIn = 0
+# VmmServiceLocalAccount = 0
+# TopContainerName = VMMServer
+# HighlyAvailable = 0
+# VmmServerName = <VMMServerName>
+# VMMStaticIPAddress = <comma-separated-ip-for-HAVMM>
 "@
 
 # SQL Server configuration ini
@@ -1251,7 +1256,7 @@ If ($Script:stage -eq 3 -and $Script:stage -lt $StopBeforeStage)
             )
             . ([ScriptBlock]::Create($Using:FunctionDefs))
             Log-Message -Message "Bringing offline disks online" -Level 2 -Verbose
-            Get-Disk | ? IsOffline | Set-Disk -IsOffline:$false -IsReadOnly:$false
+            Get-Disk | ? IsOffline | Set-Disk -IsOffline:$false | Set-Disk -IsReadOnly:$false | Out-Null
 
             Log-Message -Message "Installing ADK" -Level 2
             $arguments = "/q /features OptionId.DeploymentTools OptionId.WindowsPreinstallationEnvironment"
@@ -1291,13 +1296,15 @@ If ($Script:stage -eq 4 -and $Script:stage -lt $StopBeforeStage)
             )
             . ([ScriptBlock]::Create($Using:FunctionDefs))
             Log-Message -Message "Bringing offline disks online" -Level 2 -Verbose
-            Get-Disk | ? IsOffline | Set-Disk -IsOffline:$false -IsReadOnly:$false
+            Get-Disk | ? IsOffline | Set-Disk -IsOffline:$false | Set-Disk -IsReadOnly:$false | Out-Null
 
             Log-Message -Message "Writing VMServer.ini" -Level 2
             $using:SQLServerSetupConfig | Out-File C:\VMServer.ini
 
+            New-Item -Path D:\Library -ItemType Directory | Out-Null
+
             Log-Message -Message "Installing Virtual Machine Manager" -Level 2
-            $arguments = "/server /i $($using:iacceptsceula) /f 'C:\VMServer.ini' /VmmServiceDomain=$($param["VmmServiceDomain"]) /VmmServiceUserName=$($param["VmmServiceUserName"]) /VmmServiceUserPassword=$($param["VmmServiceUserPassword"])"
+            $arguments = "/server /i $($using:iacceptsceula) /f C:\config\VMServer.ini /VmmServiceDomain=$($param["domain"]) /VmmServiceUserName=$($param["VmmServiceUserName"]) /VmmServiceUserPassword=$($param["VmmServiceUserPassword"]) /SqlDBAdminDomain=$($param["domain"]) /SqlDBAdminName=$($param["SqlDBAdminName"]) /SqlDBAdminPassword=$($param["SqlDBAdminPassword"])"
             Log-Message -Message "Arguments: $arguments" -Level 2
             Start-Process "E:\VMMWAPDependencies\VMM\setup.exe" -ArgumentList $arguments.Split(" ") -WorkingDirectory E:\VMMWAPDependencies\VMM -NoNewWindow -Wait
 
@@ -1309,14 +1316,16 @@ If ($Script:stage -eq 4 -and $Script:stage -lt $StopBeforeStage)
             Write-Host "done."
             
         } -ArgumentList @{
-            VmmServiceDomain=$Script:domainName;
+            domain=$Script:domainName;
             VmmServiceUserName="vmmserviceaccount";
-            VmmServiceUserPassword=$Script:clearTextPassword
+            VmmServiceUserPassword=$Script:clearTextPassword;
+            SqlDBAdminName="lars"
+            SqlDBAdminPassword=$Script:clearTextPassword
         }
 
-    Get-VMHardDiskDrive -VM $vmm01 -ControllerLocation 2 | Remove-VMHardDiskDrive | Out-Null
+    #Get-VMHardDiskDrive -VM $vmm01 -ControllerLocation 2 | Remove-VMHardDiskDrive | Out-Null
 
-    End-Stage
+    #End-Stage
 } 
 
 #######################################################################################
