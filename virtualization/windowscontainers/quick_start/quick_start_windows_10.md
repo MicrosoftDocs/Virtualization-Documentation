@@ -98,7 +98,7 @@ Once the image is pulled, running `docker images` will return a list of installe
 docker images
 
 REPOSITORY             TAG                 IMAGE ID            CREATED             SIZE
-microsoft/nanoserver   latest              3a703c6e97a2        7 weeks ago         969.8 MB
+microsoft/nanoserver   latest              105d76d0f40e        4 days ago          652 MB
 ```
 
 For in depth information on Windows container images see, [Managing Container Images](../management/manage_images.md).
