@@ -73,7 +73,35 @@ Once installed, the service can be started.
 Start-Service docker
 ```
 
-## 3. Deploy Your First Container
+## 3. Install Windows Updates
+
+To ensure your Windows Server system is up-to-date, you should install Windows Updates by running:
+
+```none
+sconfig
+```
+
+You'll see a text-based configuration menu, where you can choose option 6 to Download and Install Updates:
+
+```none
+===============================================================================
+                         Server Configuration
+===============================================================================
+
+1) Domain/Workgroup:                    Workgroup:  WORKGROUP
+2) Computer Name:                       WIN-HEFDK4V68M5
+3) Add Local Administrator
+4) Configure Remote Management          Enabled
+
+5) Windows Update Settings:             DownloadOnly
+6) Download and Install Updates
+7) Remote Desktop:                      Disabled
+...
+```
+
+When prompted, choose option A to download all updates.
+
+## 4. Deploy Your First Container
 
 For this exercise, you will download a pre-created .NET sample image from the Docker Hub registry and deploy a simple container running a .Net Hello World application..  
 
