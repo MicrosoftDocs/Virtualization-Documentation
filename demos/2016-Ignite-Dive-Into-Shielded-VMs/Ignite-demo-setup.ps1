@@ -38,6 +38,7 @@ $Script:fabricSwitch = $Script:internalSwitchName
 
 $Script:localAdminCred = New-Object System.Management.Automation.PSCredential ("administrator", $Script:passwordSecureString)
 $Script:relecloudAdminCred = New-Object System.Management.Automation.PSCredential ("relecloud\administrator", $Script:passwordSecureString)
+$Script:relecloudLarsCred = New-Object System.Management.Automation.PSCredential ("relecloud\lars", $Script:passwordSecureString)
 $Script:hgsAdminCred = New-Object System.Management.Automation.PSCredential ("hgs\administrator", $Script:passwordSecureString)
 
 $Script:basePath = "C:\Ignite"
@@ -431,7 +432,7 @@ function Reset-EnvironmentToStageCheckpoint
         {
             Stop-VM -VM $VirtualMachines -TurnOff -Force -WarningAction SilentlyContinue
             Log-Message -Level 1 -Message "Checkpoints found. Restoring."
-            $Snapshots | Restore-VMSnapshot -Confirm:$false
+            $Snapshots | Restore-VMSnapshot -Confirm:$false -ErrorAction Stop
             $success = $True
             $Script:stage = $Stage + 1
         }
@@ -590,7 +591,7 @@ function Copy-ItemToVm
         } 
     }
     Log-Message -Level 1 -Message "Copying file to VM $($VirtualMachine.Name)"
-    Copy-Item -ToSession $s -Path $SourcePath -Destination $DestinationPath  | Out-Null
+    Copy-Item -ToSession $s -Path $SourcePath -Destination $DestinationPath  -Force | Out-Null
     Log-Message -Message "Closing PowerShell session" -Level 1 -MessageType Verbose
     Remove-PSSession $s | Out-Null
 
@@ -1048,9 +1049,6 @@ If ($Script:stage -eq 2 -and $Script:stage -lt $StopBeforeStage)
             Log-Message -Message "Setting PowerShell as default shell" -Level 2
             Set-ItemProperty -Path "HKLM:SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" -Name Shell -Value "PowerShell.exe" | Out-Null
 
-            Log-Message -Message "Disabling automatic launch of server manager" -Level 2
-            Set-ItemProperty -Path "HKLM:Software\Microsoft\ServerManager\" -Name DoNotOpenServerManagerAtLogon -Value 1
-
             Log-Message -Message "Preparing Host Guardian Service" -Level 2
             Install-HgsServer -HgsDomainName $param["hgsdomainname"] -SafeModeAdministratorPassword $param["adminpassword"] -WarningAction SilentlyContinue | Out-Null
         } -ArgumentList @{
@@ -1093,14 +1091,6 @@ If ($Script:stage -eq 2 -and $Script:stage -lt $StopBeforeStage)
         adminpassword=$Script:passwordSecureString
     }
 
-    $ScriptBlock_ConfigureComputeHosts = {
-            Log-Message -Message "Changing required platform security features for host $($env:COMPUTERNAME)" -Level 2
-            Set-ItemProperty -Path HKLM:\SYSTEM\CurrentControlSet\DeviceGuard\ -Name RequirePlatformSecurityFeatures -Type DWord -Value 1
-        }
-    Invoke-CommandWithPSDirect -VirtualMachine $compute01 -Credential $Script:localAdminCred -ScriptBlock $ScriptBlock_ConfigureComputeHosts 
-    Invoke-CommandWithPSDirect -VirtualMachine $compute02 -Credential $Script:localAdminCred -ScriptBlock $ScriptBlock_ConfigureComputeHosts
-
-
     End-Stage
 } 
 #######################################################################################
@@ -1133,6 +1123,14 @@ If ($Script:stage -eq 3 -and $Script:stage -lt $StopBeforeStage)
 
         $sid 
     } # This also ensures that AD functionality is up and running before continuing.
+
+    $ScriptBlock_ConfigureComputeHosts = {
+            Log-Message -Message "Changing required platform security features for host $($env:COMPUTERNAME)" -Level 2
+            Set-ItemProperty -Path HKLM:\SYSTEM\CurrentControlSet\Control\DeviceGuard\ -Name RequirePlatformSecurityFeatures -Type DWord -Value 1
+        }
+    Invoke-CommandWithPSDirect -VirtualMachine $compute01 -Credential $Script:localAdminCred -ScriptBlock $ScriptBlock_ConfigureComputeHosts 
+    Invoke-CommandWithPSDirect -VirtualMachine $compute02 -Credential $Script:localAdminCred -ScriptBlock $ScriptBlock_ConfigureComputeHosts
+
 
     $ScriptBlock_DomainJoin = {
             Param(
@@ -1205,9 +1203,9 @@ If ($Script:stage -eq 3 -and $Script:stage -lt $StopBeforeStage)
             Add-HgsAttestationHostGroup -Name "ComputeHosts" -Identifier $param["computehostssid"] | Out-Null
 
             # Setting policies for nested environment - POC use only!!
-            Disable-HgsAttestationPolicy -Name Hgs_IommuEnabled
-            Disable-HgsAttestationPolicy -Name Hgs_HypervisorEnforcedCiPolicy
-            Disable-HgsAttestationPolicy -Name Hgs_PagefileEncryptionEnabled
+            Disable-HgsAttestationPolicy -Name Hgs_IommuEnabled -WarningAction SilentlyContinue
+            Disable-HgsAttestationPolicy -Name Hgs_HypervisorEnforcedCiPolicy -WarningAction SilentlyContinue
+            Disable-HgsAttestationPolicy -Name Hgs_PagefileEncryptionEnabled -WarningAction SilentlyContinue
         } -ArgumentList @{
             domainname=$Script:domainName;
             domainuser="relecloud\administrator";
@@ -1286,10 +1284,22 @@ If ($Script:stage -eq 3 -and $Script:stage -lt $StopBeforeStage)
     Invoke-CommandWithPSDirect -VirtualMachine $compute01 -Credential $Script:relecloudAdminCred -ScriptBlock $ScriptBlock_AddLocalAdmin -ArgumentList $Arg_LocalAdmin
     Invoke-CommandWithPSDirect -VirtualMachine $compute02 -Credential $Script:relecloudAdminCred -ScriptBlock $ScriptBlock_AddLocalAdmin -ArgumentList $Arg_LocalAdmin
 
-    If (Test-Path (Join-Path $Script:sourcePath -ChildPath "Wallpaper\vmm01.jpg"))
+    If (Test-Path (Join-Path $Script:sourcePath -ChildPath "Wallpaper\vmm01_wallpaper.jpg"))
     {
-        Log-Message -Message "Overwriting default wallpaper for VMM"
-        Copy-ItemToVm -VirtualMachine $vmm01 -Credential $Script:relecloudAdminCred -SourcePath (Join-Path $Script:basePath -ChildPath "Wallpaper\vmm01.jpg") -DestinationPath C:\Windows\Web\Screen\img100.jpg -Force
+        Log-Message -Message "Overwriting default wallpaper image for VMM"
+        Invoke-CommandWithPSDirect -VirtualMachine $vmm01 -Credential $Script:relecloudAdminCred -ScriptBlock {
+            Rename-Item -Path C:\Windows\Web\Screen -NewName Screen_old -Force | Out-Null
+            New-Item -Path C:\Windows\Web\Screen -ItemType Directory | Out-Null
+
+            Rename-Item -Path C:\Windows\Web\Wallpaper\Windows -NewName Windows_old -Force | Out-Null
+            New-Item -Path C:\Windows\Web\Wallpaper\Windows -ItemType Directory | Out-Null 
+        }
+        Copy-ItemToVm -VirtualMachine $vmm01 -Credential $Script:relecloudAdminCred -SourcePath (Join-Path $Script:sourcePath -ChildPath "Wallpaper\vmm01_wallpaper.jpg") -DestinationPath C:\Windows\Web\Wallpaper\Windows\img0.jpg
+        Copy-ItemToVm -VirtualMachine $vmm01 -Credential $Script:relecloudAdminCred -SourcePath (Join-Path $Script:sourcePath -ChildPath "Wallpaper\vmm01_lockscreen.jpg") -DestinationPath C:\Windows\Web\Screen\img100.jpg
+    }
+
+    Invoke-CommandWithPSDirect -VirtualMachine $vmm01 -Credential $Script:relecloudLarsCred -ScriptBlock {
+        Set-ItemProperty -Path 'HKCU:\Control Panel\Desktop' -Name 'Wallpaper' -Value 'C:\Windows\Web\Wallpaper\Windows\img0.jpg'
     }
 
     Log-Message -Message "Installing VMM Dependencies"
@@ -1300,6 +1310,9 @@ If ($Script:stage -eq 3 -and $Script:stage -lt $StopBeforeStage)
             . ([ScriptBlock]::Create($Using:FunctionDefs))
             Log-Message -Message "Bringing offline disks online" -Level 2 -Verbose
             Get-Disk | ? IsOffline | Set-Disk -IsOffline:$false | Set-Disk -IsReadOnly:$false | Out-Null
+
+            Log-Message -Message "Disabling automatic launch of server manager" -Level 2
+            Get-ScheduledTask "ServerManager" | Disable-ScheduledTask | Out-Null
 
             Log-Message -Message "Installing ADK" -Level 2
             $arguments = "/q /features OptionId.DeploymentTools OptionId.WindowsPreinstallationEnvironment"
