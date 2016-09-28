@@ -120,6 +120,8 @@ The Docker Engine can also be configured by modifying the Docker service using `
 sc config docker binpath= "\"C:\Program Files\docker\dockerd.exe\" --run-service -H tcp://0.0.0.0:2375"
 ```
 
+Note: You do not need to run this command if your daemon.json file already contains the `"hosts": ["tcp://0.0.0.0:2375"]` entry.
+
 ## Common Configuration
 
 The following configuration file examples show common Docker configurations. These can be combined into a single configuration file.
