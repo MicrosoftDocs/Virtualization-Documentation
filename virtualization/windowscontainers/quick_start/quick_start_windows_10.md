@@ -22,6 +22,8 @@ This quick start is specific to Hyper-V containers on Windows 10. Additional qui
 - One physical computer system running Windows 10 Anniversary Edition (Professional or Enterprise).   
 - This quick start can be run on a Windows 10 virtual machine however nested virtualization will need to be enabled. More information can be found in the [Nested Virtualization Guide](https://msdn.microsoft.com/en-us/virtualization/hyperv_on_windows/user_guide/nesting).
 
+> Critical updates are needed in order for the Windows Container feature to function. Please install all updates before working through this tutorial.
+
 ## 1. Install Container Feature
 
 The container feature needs to be enabled before working with Windows containers. To do so run the following command in an elevated PowerShell session.
