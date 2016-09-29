@@ -21,6 +21,8 @@ This quick start is specific to Windows Server containers on Windows Server 2016
 
 One computer system (physical or virtual) running Windows Server 2016. If you are using Windows Server 2016 TP5, please update to [Window Server 2016 Evaluation](https://www.microsoft.com/en-us/evalcenter/evaluate-windows-server-2016 ). 
 
+> Critical updates are needed in order for the Windows Container feature to function. Please install all updates before working through this tutorial.
+
 ## 1. Install Container Feature
 
 The container feature needs to be enabled before working with Windows containers. To do so run the following command in an elevated PowerShell session.
