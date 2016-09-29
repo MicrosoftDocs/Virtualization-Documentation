@@ -28,7 +28,7 @@ docker run -d -p 80:80 iis
 
 FROM microsoft/windowsservercore
 
-LABEL Description="IIS" Vendor=Microsoft" Version="10"
+LABEL Description="IIS" Vendor="Microsoft" Version="10"
 
 RUN powershell -Command Add-WindowsFeature Web-Server
 
