@@ -9,14 +9,10 @@ Describe "The right container base images are installed" {
             ImageId=$split[2]}
         }
     }
-    It "microsoft/windowsservercore is installed" {
-        # docker images --format '' |
-        $serverCoreImages = $images | Where-Object { $_.Repository -eq "microsoft/windowsservercore"}
-        $serverCoreImages | Should Not BeNullOrEmpty
-    }
-    It "microsoft/nanoserver is installed" {
-        # docker images --format '' |
-        $serverCoreImages = $images | Where-Object { $_.Repository -eq "microsoft/nanoserver"}
-        $serverCoreImages | Should Not BeNullOrEmpty
+
+    It "At least one of 'microsoft/windowsservercore' or 'microsoft/nanoserver' should be installed" {
+        $baseImages = $images | Where-Object { ($_.Repository -eq "microsoft/windowsservercore") `
+                                                -or ($_.Repository -eq "microsoft/nanoserver")}
+        (Measure-Object $baseImages).Count | Should Not BeNullOrEmpty
     }
 }
