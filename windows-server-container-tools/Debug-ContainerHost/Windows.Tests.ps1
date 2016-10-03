@@ -10,8 +10,8 @@ Describe "Windows Version and Prerequisites" {
         }
     }
     It "Is not a build with blocking issues" {
-        $buildNumber | Should Not Be 14391
-        $buildNumber | Should Not Be 14396
+        $buildNumber | Should Not Be 14931
+        $buildNumber | Should Not Be 14936
     }
     # TODO Check on SKU support - Home, Pro, Education, ...
 }
