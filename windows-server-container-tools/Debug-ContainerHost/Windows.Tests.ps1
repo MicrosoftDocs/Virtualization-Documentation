@@ -10,10 +10,10 @@ Describe "Windows Version and Prerequisites" {
         }
     }
     It "Is not a build with blocking issues" {
-        $buildNumber | Should Not Be 1 # TODO: Placeholder, not a bad build
-        $buildNumber | Should Not Be 2 # TODO: Placeholder, not a bad build
+        $buildNumber | Should Not Be 14391
+        $buildNumber | Should Not Be 14396
     }
-    # TODO Add test for supported host SKUs
+    # TODO Check on SKU support - Home, Pro, Education, ...
 }
 
 Describe "Windows container settings are correct" {
