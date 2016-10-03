@@ -1,5 +1,5 @@
 ﻿Param(
-    [int]$StartFromStage = 4, # Always trying to start with the latest existing environment snapshop
+    [int]$StartFromStage = 5, # Always trying to start with the latest existing environment snapshop
     [int]$StopBeforeStage = 255,
     [int]$MemoryScaleFactor = 1,
 
@@ -45,7 +45,9 @@ $Script:basePath = "C:\Ignite"
 $Script:vhdxServerCorePath = Join-Path $Script:basePath -ChildPath "\WindowsServer2016_ServerDataCenterCore.vhdx"
 $Script:vhdxServerStandardPath = Join-Path $Script:basePath -ChildPath "\WindowsServer2016_ServerStandard.vhdx"
 $Script:vhdxNanoServerPath = Join-Path $Script:basePath -ChildPath "\WindowsServer2016_ServerDataCenterNano.vhdx"
+$Script:vhdxNanoServerGuardedHostPath = Join-Path $Script:basePath -ChildPath "\WindowsServer2016_ServerDataCenterNano_GuardedHost.vhdx"
 $Script:vhdxVMMWAPDependenciesPath = Join-Path $Script:basePath -ChildPath "\VMMWAPDependencies.vhdx"
+$Script:vhdxVMMShieldingHelperDiskPath = Join-Path $Script:basePath -ChildPath "\VMMShieldingHelperDisk.vhdx"
 
 $Script:ImageConverterPath = Join-Path -Path $Script:sourceMediaPath -ChildPath "NanoServer\NanoServerImageGenerator\Convert-WindowsImage.ps1"
 $Script:UnattendPath = Join-Path $Script:basePath -ChildPath "IgniteUnattend.xml"
@@ -62,7 +64,8 @@ $Script:stagenames = (
     "Stage 1 Roles, Computernames, Static IPs",
     "Stage 2 Prepare HGS, configure DHCP, create fabric domain",
     "Stage 3 Configure HGS in AD mode, join compute nodes to domain",
-    "Stage 4 Configure VMM"
+    "Stage 4 Configure VMM",
+    "Demo"
     )
 
 $Script:stage = $StartFromStage
@@ -727,13 +730,26 @@ if (-Not (Test-Path $Script:UnattendPath))
     $UnattendFile.InnerXml | Set-Content -Path $Script:UnattendPath -Encoding UTF8
 }
 
-if (-Not (Test-Path $Script:vhdxServerCorePath))
+$buildServerCore = -Not (Test-Path $Script:vhdxServerCorePath)
+$buildServerStandard = -Not (Test-Path $Script:vhdxServerStandardPath)
+$buildNanoServer = -Not (Test-Path $Script:vhdxNanoServerPath)
+$buildNanoServerGuardedHost = -Not (Test-Path $Script:vhdxNanoServerGuardedHostPath)
+$buildShieldingHelperVhdx = -Not (Test-Path $Script:vhdxVMMShieldingHelperDiskPath)
+
+If (($buildServerCore -or $buildServerStandard -or $buildNanoServer -or $buildNanoServerGuardedHost -or $buildShieldingHelperVhdx) -and (-not(Test-Path $Script:sourceMediaPath)))
+{
+    throw "Base media path not found"
+}
+
+If ($buildNanoServer -or $buildNanoServerGuardedHost) 
+{
+    Log-Message -Message "Importing Nano Server Image Generator PowerShell Module" -MessageType Verbose
+    Import-Module (Join-Path $Script:sourceMediaPath -ChildPath "\NanoServer\NanoServerImageGenerator\NanoServerImageGenerator.psm1") | Out-Null
+}
+
+if ($buildServerCore)
 {
     Log-Message -Message "[Prepare] Creating Server Datacenter Core base VHDX"
-    If (-Not (Test-Path $Script:sourceMediaPath))
-    {
-        throw "Base media path not found"
-    }
     If ($Updates) {
         Convert-WindowsImage -SourcePath ($Script:installWimPath) -VHDPath $Script:vhdxServerCorePath -DiskLayout UEFI -Edition SERVERDATACENTERCORE -UnattendPath $Script:UnattendPath -SizeBytes 40GB -Package $Updates | Out-Null
     } else {
@@ -741,13 +757,9 @@ if (-Not (Test-Path $Script:vhdxServerCorePath))
     }
 }
 
-if (-Not (Test-Path $Script:vhdxServerStandardPath))
+if ($buildServerStandard)
 {
     Log-Message -Message "[Prepare] Creating Server Standard Full UI base VHDX"
-    If (-Not (Test-Path $Script:sourceMediaPath))
-    {
-        throw "Base media path not found"
-    }
     If ($Updates) {
         Convert-WindowsImage -SourcePath ($Script:installWimPath) -VHDPath $Script:vhdxServerStandardPath -DiskLayout UEFI -Edition SERVERSTANDARD -UnattendPath $Script:UnattendPath -SizeBytes 40GB -Package $Updates | Out-Null
     } else {
@@ -755,22 +767,53 @@ if (-Not (Test-Path $Script:vhdxServerStandardPath))
     }
 }
 
-if (-Not (Test-Path $Script:vhdxNanoServerPath))
+if ($buildNanoServer)
 {
     Log-Message -Message "[Prepare] Creating Nano Server Datacenter base VHDX"
-    If (-Not (Test-Path $Script:sourceMediaPath))
-    {
-        throw "Base media path not found"
-    }
-
-    Log-Message -Message "Importing Nano Server Image Generator PowerShell Module" -MessageType Verbose
-    Import-Module (Join-Path $Script:sourceMediaPath -ChildPath "\NanoServer\NanoServerImageGenerator\NanoServerImageGenerator.psm1") | Out-Null
-
+    
     If ($Updates) {
         New-NanoServerImage -DeploymentType Guest -Edition Datacenter -MediaPath $Script:sourceMediaPath -Package Microsoft-NanoServer-SecureStartup-Package,Microsoft-NanoServer-Guest-Package,Microsoft-NanoServer-SCVMM-Package,Microsoft-NanoServer-SCVMM-Compute-Package,Microsoft-NanoServer-ShieldedVM-Package -TargetPath $Script:vhdxNanoServerPath -EnableRemoteManagementPort -AdministratorPassword $Script:passwordSecureString -ServicingPackagePath $Updates | Out-Null
     } else {
         New-NanoServerImage -DeploymentType Guest -Edition Datacenter -MediaPath $Script:sourceMediaPath -Package Microsoft-NanoServer-SecureStartup-Package,Microsoft-NanoServer-Guest-Package,Microsoft-NanoServer-SCVMM-Package,Microsoft-NanoServer-SCVMM-Compute-Package,Microsoft-NanoServer-ShieldedVM-Package -TargetPath $Script:vhdxNanoServerPath -EnableRemoteManagementPort -AdministratorPassword $Script:passwordSecureString | Out-Null    
     }
+}
+
+if ($buildNanoServerGuardedHost)
+{
+    Log-Message -Message "[Prepare] Creating Nano Server Datacenter guarded host VHDX"
+
+    If ($Updates) {
+        New-NanoServerImage -DeploymentType Guest -Edition Datacenter -MediaPath $Script:sourceMediaPath -Package Microsoft-NanoServer-SecureStartup-Package,Microsoft-NanoServer-Guest-Package -TargetPath $Script:vhdxNanoServerGuardedHostPath -EnableRemoteManagementPort -AdministratorPassword $Script:passwordSecureString -ServicingPackagePath $Updates | Out-Null
+    } else {
+        New-NanoServerImage -DeploymentType Guest -Edition Datacenter -MediaPath $Script:sourceMediaPath -Package Microsoft-NanoServer-SecureStartup-Package,Microsoft-NanoServer-Guest-Package -TargetPath $Script:vhdxNanoServerGuardedHostPath -EnableRemoteManagementPort -AdministratorPassword $Script:passwordSecureString | Out-Null    
+    }
+}
+
+If ($buildShieldingHelperVhdx)
+{
+    Log-Message -Message "Creating shielding helper disk"
+    If (-Not (Test-Path $Script:sourceMediaPath))
+    {
+        throw "Base media path not found"
+    }
+    If ($Updates) {
+        Convert-WindowsImage -SourcePath ($Script:installWimPath) -VHDPath $Script:vhdxVMMShieldingHelperDiskPath -DiskLayout UEFI -Edition SERVERDATACENTERCORE -UnattendPath $Script:UnattendPath -SizeBytes 40GB -Package $Updates | Out-Null
+    } else {
+        Convert-WindowsImage -SourcePath ($Script:installWimPath) -VHDPath $Script:vhdxVMMShieldingHelperDiskPath -DiskLayout UEFI -Edition SERVERDATACENTERCORE -UnattendPath $Script:UnattendPath -SizeBytes 40GB | Out-Null
+    }
+
+    $shieldingHelperDiskSpecializationVm = Prepare-VM -VMname ShieldingHelperDisk -processorcount 4 -startupmemory 6GB -basediskpath $Script:vhdxServerCorePath
+
+    Log-Message -Message "[Prepare] Starting VM to prepare shielding helper disk"
+    Start-VM -VM $shieldingHelperDiskSpecializationVm | Out-Null
+
+    Invoke-CommandWithPSDirect -VirtualMachine $shieldingHelperDiskSpecializationVm -Credential $Script:localAdminCred -ScriptBlock { $true }
+
+    Log-Message -Message "[Prepare] Shutting down shielding helper disk VM"
+    Stop-VM -VM $shieldingHelperDiskSpecializationVm
+
+    Log-Message -Message "[Prepare] Removing shielding helper disk VM"
+    Remove-VM -VM $shieldingHelperDiskSpecializationVm -Force
 }
 
 if (-Not (Test-Path $Script:vhdxVMMWAPDependenciesPath)) 
@@ -1125,8 +1168,12 @@ If ($Script:stage -eq 3 -and $Script:stage -lt $StopBeforeStage)
     } # This also ensures that AD functionality is up and running before continuing.
 
     $ScriptBlock_ConfigureComputeHosts = {
+            . ([ScriptBlock]::Create($Using:FunctionDefs))
             Log-Message -Message "Changing required platform security features for host $($env:COMPUTERNAME)" -Level 2
             Set-ItemProperty -Path HKLM:\SYSTEM\CurrentControlSet\Control\DeviceGuard\ -Name RequirePlatformSecurityFeatures -Type DWord -Value 1
+
+            Log-Message -Message "Enabling File & Printer Sharing Firewall Rule"
+            Enable-NetFirewallRule –Group "@FirewallAPI.dll,-28502"
         }
     Invoke-CommandWithPSDirect -VirtualMachine $compute01 -Credential $Script:localAdminCred -ScriptBlock $ScriptBlock_ConfigureComputeHosts 
     Invoke-CommandWithPSDirect -VirtualMachine $compute02 -Credential $Script:localAdminCred -ScriptBlock $ScriptBlock_ConfigureComputeHosts
@@ -1257,7 +1304,16 @@ If ($Script:stage -eq 3 -and $Script:stage -lt $StopBeforeStage)
     $vmmlibraryvhdx = New-VHD -Dynamic -SizeBytes 50GB -Path $VMMDataVHDXPath | Out-Null
 
     $driveletter = MountAndInitialize-VHDX $VMMDataVHDXPath -ErrorAction Stop
-    
+
+    Log-Message -Message "Creating library path" -Level 1
+    New-Item -Path "$($driveletter):\Library\Virtual Machine Manager Library Files\VHDs" -ItemType Directory
+
+    Log-Message -Message "Copying VMM Shielding Helper Disk to library" -Level 1
+    Copy-Item $Script:vhdxVMMShieldingHelperDiskPath -Destination "$($driveletter):\Library\Virtual Machine Manager Library Files\VHDs\VMMShieldingHelperDisk.vhdx"
+
+    Log-Message -Message "Copying Nano Server Disk to library" -Level 1
+    Copy-Item $Script:vhdxNanoServerPath -Destination "$($driveletter):\Library\Virtual Machine Manager Library Files\VHDs\WindowsServer2016_ServerDataCenterNano.vhdx"
+
     Log-Message -Message "Dismounting VHDX" -MessageType Verbose -Level 1
     Dismount-VHD -Path $VMMDataVHDXPath
 
@@ -1385,68 +1441,156 @@ If ($Script:stage -eq 4 -and $Script:stage -lt $StopBeforeStage)
 
     WaitFor-ActiveDirectory -VirtualMachine $dc01 -Credential $Script:relecloudAdminCred
 
-    #Get-VMHardDiskDrive -VM $vmm01 -ControllerLocation 2 | Remove-VMHardDiskDrive | Out-Null
+    Invoke-CommandWithPSDirect -VirtualMachine $vmm01 -Credential $Script:relecloudAdminCred -ScriptBlock {
+            Param(
+                [hashtable]$param
+            )
+            . ([ScriptBlock]::Create($Using:FunctionDefs))
+            Log-Message -Message "Starting Virtual Machine Manager Service" -Level 1         
+            Start-Service SCVMMService | Out-Null
 
-    #End-Stage
+            $cert = New-SelfSignedCertificate -DnsName publisher.relecloud.com -FriendlyName "Relecloud.com Publisher"
+            Copy-Item "D:\Library\Virtual Machine Manager Library Files\VHDs\WindowsServer2016_ServerDatacenterNano.vhdx" -Destination "D:\Library\Virtual Machine Manager Library Files\VHDs\WindowsServer2016_ServerDatacenterNano_Shielded.vhdx"
+            Protect-TemplateDisk -Path "D:\Library\Virtual Machine Manager Library Files\VHDs\WindowsServer2016_ServerDatacenterNano_Shielded.vhdx" -TemplateName "WindowsServer2016_Nano_Datacenter" -Version 1.0.0.0 -Certificate $cert
+
+            Log-Message -Message "Importing VMM PowerShell Module" -Level 1
+            ipmo 'virtualmachinemanager\virtualmachinemanager.psd1' | Out-Null 
+            
+            $password = (ConvertTo-SecureString -AsPlainText "P@ssw0rd." -Force)
+            $credential = New-Object System.Management.Automation.PSCredential ("relecloud\administrator", $password)
+
+            Get-VMMServer -ComputerName vmm01
+            Log-Message -Message "Creating new SCVMM RunAs account" -Level 1
+            do {
+                Write-Host "." -NoNewline
+                Start-Sleep -Seconds 2
+                $runAsAccount = New-SCRunAsAccount -Credential $credential -Name "RelecloudDomainAdmin" -Description "Relecloud.com Domain Administrator" -JobGroup "4034e803-3871-460e-be99-968f45db861a" -ErrorAction Continue
+            } until ($?)
+            
+            Log-Message -Message "Refreshing Library Share" -Level 1
+            Get-LibraryShare | Refresh-LibraryShare | Out-Null 
+
+            Log-Message -Message "Preparing shielding helper vhdx" -Level 1
+            $ShieldingHelperVhd = Get-SCVirtualHardDisk -Name "VMMShieldingHelperDisk.vhdx"
+            Initialize-VMShieldingHelperVHD -Path $ShieldingHelperVhd.Location | Out-Null
+            
+            Log-Message -Message "Setting vhdx properties" -Level 1
+            # Get Operating System 'Windows Server 2016 Datacenter'
+            $os = Get-SCOperatingSystem -ID "0a393d1e-9050-4142-8e55-a86e4a555013"
+            Set-SCVirtualHardDisk -VirtualHardDisk $ShieldingHelperVhd -OperatingSystem $os -VirtualizationPlatform "HyperV"
+
+            $NanoShielded = Get-SCVirtualHardDisk -Name "WindowsServer2016_ServerDatacenterNano_Shielded.vhdx"
+            Set-SCVirtualHardDisk -VirtualHardDisk $NanoShielded -OperatingSystem $os -VirtualizationPlatform "HyperV"
+            $vsc = Get-SCVolumeSignatureCatalog -VirtualHardDisk $NanoShielded
+            $vsc.WriteToFile("C:\templateDisk.vsc")
+
+            $Nano = Get-SCVirtualHardDisk -Name "WindowsServer2016_ServerDatacenterNano.vhdx"
+            Set-SCVirtualHardDisk -VirtualHardDisk $Nano -OperatingSystem $os -VirtualizationPlatform "HyperV"
+
+            Log-Message -Message "Configuring Host Guardian Service in VMM" -Level 1
+            Set-SCVMMServer -AttestationServerUrl "http://service.hgs.relecloud.com/Attestation" -KeyProtectionServerUrl "http://service.hgs.relecloud.com/KeyProtection" -ShieldingHelperVhd $ShieldingHelperVhd | Out-Null 
+            # -Name "WS2016-CIPolicy" -Path "\\dc01\Attestation\SIPolicy.p7b" -RunAsynchronously
+
+            # Get Host Group 'All Hosts'
+            Log-Message -Message "Adding Compute hosts to All Hosts group" -Level 1
+            $hostGroup = Get-SCVMHostGroup -ID "0e3ba228-a059-46be-aa41-2f5cf0f4b96e"
+            Add-SCVMHost -ComputerName "compute01.relecloud.com" -VMHostGroup $hostGroup -Credential $runAsAccount | Out-Null # -RunAsynchronously
+            Add-SCVMHost -ComputerName "compute02.relecloud.com"  -VMHostGroup $hostGroup -Credential $runAsAccount | Out-Null  # -RunAsynchronously
+
+            Log-Message -Message "Configuring Cloud Capacity" -Level 1
+            Set-SCCloudCapacity -JobGroup "6990267b-995f-4328-8833-f09200a9308b" -UseCustomQuotaCountMaximum $true -UseMemoryMBMaximum $true -UseCPUCountMaximum $true -UseStorageGBMaximum $true -UseVMCountMaximum $true
+
+            Log-Message -Message "Configuring Cloud Capability Profile" -Level 1
+            $addCapabilityProfiles = @()
+            $addCapabilityProfiles += Get-SCCapabilityProfile -Name "Hyper-V"
+
+            Set-SCCloud -JobGroup "6990267b-995f-4328-8833-f09200a9308b" -RunAsynchronously -ReadWriteLibraryPath "\\VMM01.relecloud.com\MSSCVMMLibrary\VHDs" -AddCapabilityProfile $addCapabilityProfiles
+
+            Log-Message -Message "Adding All Hosts to new Cloud" -Level 1
+            $hostGroups = @()
+            $hostGroups += $hostGroup
+            New-SCCloud -JobGroup "6990267b-995f-4328-8833-f09200a9308b" -VMHostGroup $hostGroups -Name "Guarded Fabric" -Description "" -ShieldedVMSupportPolicy "ShieldedVMSupported" # -RunAsynchronously
+
+            Log-Message -Message "Creating new VM template" -Level 1
+
+            New-SCVirtualScsiAdapter -VMMServer localhost -JobGroup c511e949-2bf1-4c58-a990-252324afa8ec -AdapterID 7 -ShareVirtualScsiAdapter $false -ScsiControllerType DefaultTypeNoType 
+            New-SCVirtualDVDDrive -VMMServer localhost -JobGroup c511e949-2bf1-4c58-a990-252324afa8ec -Bus 0 -LUN 1 
+            New-SCVirtualNetworkAdapter -VMMServer localhost -JobGroup c511e949-2bf1-4c58-a990-252324afa8ec -MACAddressType Dynamic -Synthetic -IPv4AddressType Dynamic -IPv6AddressType Dynamic 
+            $CPUType = Get-SCCPUType -VMMServer localhost | where {$_.Name -eq "3.60 GHz Xeon (2 MB L2 cache)"}
+            $CapabilityProfile = Get-SCCapabilityProfile -VMMServer localhost | where {$_.Name -eq "Hyper-V"}
+            New-SCHardwareProfile -VMMServer localhost -CPUType $CPUType -Name "Profileff689b1e-a025-4ff4-a778-31252d1f9aeb" -Description "Profile used to create a VM/Template" -CPUCount 1 -MemoryMB 1024 -DynamicMemoryEnabled $false -MemoryWeight 5000 -CPUExpectedUtilizationPercent 20 -DiskIops 0 -CPUMaximumPercent 100 -CPUReserve 0 -NumaIsolationRequired $false -NetworkUtilizationMbps 0 -CPURelativeWeight 100 -HighlyAvailable $false -DRProtectionRequired $false -SecureBootEnabled $true -SecureBootTemplate "MicrosoftWindows" -CPULimitFunctionality $false -CPULimitForMigration $false -CheckpointType Production -CapabilityProfile $CapabilityProfile -Generation 2 -JobGroup c511e949-2bf1-4c58-a990-252324afa8ec 
+
+            $VirtualHardDisk = Get-SCVirtualHardDisk -VMMServer localhost | where {$_.Location -eq "\\VMM01.relecloud.com\MSSCVMMLibrary\VHDs\WindowsServer2016_ServerDataCenterNano.vhdx"} | where {$_.HostName -eq "VMM01.relecloud.com"}
+            New-SCVirtualDiskDrive -VMMServer localhost -SCSI -Bus 0 -LUN 0 -JobGroup be58f46f-a495-42ef-8841-afc8586da01e -CreateDiffDisk $false -VirtualHardDisk $VirtualHardDisk -VolumeType BootAndSystem 
+            $HardwareProfile = Get-SCHardwareProfile -VMMServer localhost | where {$_.Name -eq "Profileff689b1e-a025-4ff4-a778-31252d1f9aeb"}
+            $template = New-SCVMTemplate -Name "Windows Server 2016 Nano Server" -Generation 2 -HardwareProfile $HardwareProfile -JobGroup be58f46f-a495-42ef-8841-afc8586da01e -NoCustomization # -RunAsynchronously
+
+        } -ArgumentList @{
+            domainuser="relecloud\administrator"
+            adminpassword=$Script:passwordSecureString
+        }
+
+    Invoke-CommandWithPSDirect -VirtualMachine $compute02 -Credential $Script:relecloudAdminCred -ScriptBlock {
+        
+        New-Item -Path C:\attestation -ItemType Directory
+
+        Log-Message -Message "Getting baseline" -Level 1
+        Get-HgsAttestationBaselinePolicy -Path C:\attestation\baseline.tcglog -SkipValidation
+
+        Log-Message -Message "Getting system identifiere" -Level 1
+        (Get-PlatformIdentifier -Name $env:COMPUTERNAME).InnerXml | Out-File "C:\attestation\$($env:COMPUTERNAME)-TPM.xml"
+
+        Log-Message -Message "Creating new CI Policy" -Level 1
+        New-CIPolicy -FilePath C:\attestation\CIPolicy.xml -Level FilePublisher -Fallback Hash -UserPEs
+
+        Log-Message -Message "Converting to binary CI policy" -Level 1
+        ConvertFrom-CIPolicy -XmlFilePath C:\attestation\CIPolicy.xml -BinaryFilePath C:\attestation\SIPolicy.p7b
+
+        Log-Message -Message "Copying files" -Level 1
+        copy C:\attestation\SIPolicy.p7b C:\Windows\System32\CodeIntegrity\SIPolicy.p7b
+        copy C:\attestation\baseline.tcglog \\dc01\Attestation
+        copy C:\attestation\*-TPM.xml \\dc01\Attestation
+        copy C:\attestation\SIPolicy.p7b \\dc01\attestation
+    }
+
+    Invoke-CommandWithPSDirect -VirtualMachine $compute01 -Credential $Script:relecloudAdminCred -ScriptBlock {
+        
+        New-Item -Path C:\attestationprep -ItemType Directory
+        New-Item -Path C:\attestation -ItemType Directory
+
+        Log-Message -Message "Getting system identifiere" -Level 1
+        (Get-PlatformIdentifier -Name $env:COMPUTERNAME).InnerXml | Out-File "C:\attestationprep\$($env:COMPUTERNAME)-TPM.xml"
+
+        Log-Message -Message "Copying files" -Level 1
+        copy C:\attestationprep\*-TPM.xml \\dc01\Attestation        
+    }
+
+    End-Stage
 } 
 
 #######################################################################################
 # End of Stage 4: Create VMs
 #######################################################################################
 
+#######################################################################################
+# Beginning of Stage 5: Demo
+#######################################################################################
+If ($Script:stage -eq 5 -and $Script:stage -lt $StopBeforeStage)
+{
+    Begin-Stage
+    WaitFor-ActiveDirectory -VirtualMachine $dc01 -Credential $Script:relecloudAdminCred
+
+   Invoke-CommandWithPSDirect -VirtualMachine $vmm01 -Credential $Script:relecloudAdminCred -ScriptBlock {
+            . ([ScriptBlock]::Create($Using:FunctionDefs))
+            Log-Message -Message "Starting Virtual Machine Manager Service" -Level 1         
+            Start-Service SCVMMService | Out-Null
+        }
+}
+
 Log-Message -Message "Script finished - Total Duration: $(((Get-Date) - $Script:ScriptStartTime))"
 
-
-
-
-
-
-
-
-
-#New-NanoServerImage -ComputerName "NanoVM" -Compute -DeploymentType Guest -Edition Datacenter -MediaPath $Script:sourceMediaPath -Package Microsoft-NanoServer-SecureStartup-Package,Microsoft-NanoServer-Guest-Package,Microsoft-NanoServer-ShieldedVM-Package -TargetPath $compute2VHDXPath -EnableRemoteManagementPort -AdministratorPassword $Script:passwordSecureString -InterfaceNameOrIndex Ethernet -Ipv4Address 192.168.42.202 -Ipv4SubnetMask 255.255.255.0 -Ipv4Dns 192.168.42.1 -Ipv4Gateway 192.168.42.1 | Out-Null
 if ($Script:stage -eq 99)
     {
-    #######################################################################################
-    # Customizing VMs
-    #######################################################################################
-
-    # Add VMM additional disk
-
-    # Customizing VMM
-    # Steps to run inside of VM
-    #
-    # VMM Setup:
-    # VMM management server
-    # .\setup.exe /server /i $($using:iacceptsceula) /f 'E:\VMServer.ini' /VmmServiceDomain=RELECLOUD /VmmServiceUserName=vmmserviceaccount /VmmServiceUserPassword="P@ssw0rd."
-    # UserName=Lars  -   CompanyName=The Power Elite
-
-    # VMM Client 
-    # setup.exe /cient /i /iacceptsceula /f 'E:\VMClient.ini'
-    
-
-    Invoke-Command -VMId $dc01.VMId -Credential $Script:relecloudAdminCred -ArgumentList ($Script:domainName, $Script:relecloudAdminCred) -ScriptBlock {
-            Param($domainName, $credential)
-
-            ipmo 'C:\Program Files\Microsoft System Center 2016\Virtual Machine Manager\bin\psModules\virtualmachinemanager\virtualmachinemanager.psd1'
-            
-            #New-SCRunAsAccount -Credential $credential -Name "DomainAdministrator" -Description "" -JobGroup "dd4fa4fa-a60f-40c3-a00e-0f23f13efd59"
-
-            Set-SCCloudCapacity -JobGroup "6990267b-995f-4328-8833-f09200a9308b" -UseCustomQuotaCountMaximum $true -UseMemoryMBMaximum $true -UseCPUCountMaximum $true -UseStorageGBMaximum $true -UseVMCountMaximum $true
-
-            $addCapabilityProfiles = @()
-            $addCapabilityProfiles += Get-SCCapabilityProfile -Name "Hyper-V"
-
-            Set-SCCloud -JobGroup "6990267b-995f-4328-8833-f09200a9308b" -RunAsynchronously -ReadWriteLibraryPath "\\VMM01.relecloud.com\MSSCVMMLibrary\VHDs" -AddCapabilityProfile $addCapabilityProfiles
-
-            $hostGroups = @()
-            $hostGroups += Get-SCVMHostGroup -ID "0e3ba228-a059-46be-aa41-2f5cf0f4b96e"
-            New-SCCloud -JobGroup "6990267b-995f-4328-8833-f09200a9308b" -VMHostGroup $hostGroups -Name "Guarded Fabric" -Description "" -RunAsynchronously -ShieldedVMSupportPolicy "ShieldedVMSupported"
-
-    }
-
-    # Customization based on compute nodes
-
     Invoke-Command -VMId $compute2.VMId -Credential $Script:relecloudAdminCred -ScriptBlock {
             (Get-PlatformIdentifier –Name 'Compute02').InnerXml | Out-file C:\Compute02.xml
             New-CIPolicy –Level FilePublisher –Fallback Hash –FilePath 'C:\HW1CodeIntegrity.xml'
