@@ -22,13 +22,16 @@ This quick start is specific to Hyper-V containers on Windows 10. Additional qui
 - One physical computer system running Windows 10 Anniversary Edition (Professional or Enterprise).
 - This quick start can be run on a Windows 10 virtual machine however nested virtualization will need to be enabled. More information can be found in the [Nested Virtualization Guide](https://msdn.microsoft.com/en-us/virtualization/hyperv_on_windows/user_guide/nesting).
 
-    > Do not attempt this on a Windows 10 environment where you have Bitlocker enabled!
-    >
-    > At best you will need to use your Recovery Key to get back up and running again
-    >
-    > If you have installed Hyper-V on an environment with Bitlocker enabled you will need to access the command prompt and use the following bcdedit command to disable HyperVisor boot behavior
-    >
-    >`bcdedit /set {identifier_of_current_boot_record} hypervisorlaunchtype off`
+> Critical updates are needed in order for the Windows Container feature to function. Please install all updates before working through this tutorial.
+
+> Do not attempt this on a Windows 10 environment where you have Bitlocker enabled!
+>
+> At best you will need to use your Recovery Key to get back up and running again
+>
+> If you have installed Hyper-V on an environment with Bitlocker enabled you will need to access the command prompt and use the following bcdedit command to disable HyperVisor boot behavior
+>
+>`bcdedit /set {identifier_of_current_boot_record} hypervisorlaunchtype off`
+
 
 ## 1. Install Container Feature
 
