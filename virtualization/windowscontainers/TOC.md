@@ -21,6 +21,7 @@
 ## [Dockerfiles on Windows](docker/manage_windows_dockerfile.md)
 ## [Optimize Dockerfiles](docker/optimize_windows_dockerfile.md)
 ## [Container Networking](management/container_networking.md)
+## [Manage Docker with PowerShell](https://github.com/Microsoft/Docker-PowerShell)
 
 # Container Samples
 ## [Dockerfiles – Windows Server Core](https://github.com/Microsoft/Virtualization-Documentation/tree/master/windows-container-samples/windowsservercore)
