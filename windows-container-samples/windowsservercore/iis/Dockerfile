@@ -6,4 +6,4 @@ LABEL Description="IIS" Vendor="Microsoft" Version="10"
 
 RUN powershell -Command Add-WindowsFeature Web-Server
 
-CMD [ "ping", "localhost", "-t" ]
+CMD powershell while (1 -eq 1) { Start-Sleep -Seconds 600 }
