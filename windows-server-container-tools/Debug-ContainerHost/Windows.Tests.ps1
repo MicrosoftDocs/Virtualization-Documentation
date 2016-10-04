@@ -3,10 +3,10 @@ Describe "Windows Version and Prerequisites" {
     It "Is Windows 10 Anniversary Update or Windows Server 2016" {
         $buildNumber -ge 14393 | Should Be $true
     }
-    It "Has KB3192366 installed if running Windows build 14393" {
+    It "Has KB3192366 and/or KB3194496 installed if running Windows build 14393" {
         if ($buildNumber -eq 14393)
         {
-            Get-CimInstance -n root\cimv2 -Query "SELECT * FROM Win32_QuickFixEngineering WHERE HotFixID = 'KB3192366'" | Should Not Be $null
+            Get-CimInstance -n root\cimv2 -Query "SELECT * FROM Win32_QuickFixEngineering WHERE HotFixID = 'KB3192366' OR HotFixId = 'KB3194496'" | Should Not Be $null
         }
     }
     It "Is not a build with blocking issues" {
