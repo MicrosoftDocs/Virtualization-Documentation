@@ -24,12 +24,12 @@
 ## [Manage Docker with PowerShell](https://github.com/Microsoft/Docker-PowerShell)
 
 # Container Samples
-## [Application Frameworks](samples#Application-Frameworks)
-## [Programing Languages](samples#Programing-Languages)
-## [Databases](samples#Databases)
-## [Infrastructure and CI Tools](samples#Infrastructure-and-CI-Tools)
-## [Just for Fun](samples#Just-for-Fun)
-## [Other](samples#Other)
+## [Application Frameworks](samples.md#Application-Frameworks)
+## [Programing Languages](samples.md#Programing-Languages)
+## [Databases](samples.md#Databases)
+## [Infrastructure and CI Tools](samples.md#Infrastructure-and-CI-Tools)
+## [Just for Fun](samples.md#Just-for-Fun)
+## [Other](samples.md#Other)
 
 
 # Community and Support
