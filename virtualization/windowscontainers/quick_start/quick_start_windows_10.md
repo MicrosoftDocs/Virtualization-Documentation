@@ -24,7 +24,7 @@ This quick start is specific to Hyper-V containers on Windows 10. Additional qui
 
 > You must install critical updates for Windows Containers to work. 
 > To check your OS version, run `winver.exe`, and compare the version shown to [Windows 10 update history](https://support.microsoft.com/en-us/help/12387/windows-10-update-history). 
-> Make sure you have 14393.222 or a later version. If you don't upgrade to the latest version, your computer may not boot because of an issue between Hyper-V and Bitlocker.  
+> Make sure you have 14393.222 or later before continuing.
 
 ## 1. Install Container Feature
 
