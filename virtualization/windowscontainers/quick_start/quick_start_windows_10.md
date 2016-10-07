@@ -22,8 +22,9 @@ This quick start is specific to Hyper-V containers on Windows 10. Additional qui
 - One physical computer system running Windows 10 Anniversary Edition (Professional or Enterprise).   
 - This quick start can be run on a Windows 10 virtual machine however nested virtualization will need to be enabled. More information can be found in the [Nested Virtualization Guide](https://msdn.microsoft.com/en-us/virtualization/hyperv_on_windows/user_guide/nesting).
 
-> Critical updates are needed in order for the Windows Container feature to function. Please install all updates before proceeding.
-> To check your OS version, run winver.exe, and compare the version shown to [Windows 10 update history](https://support.microsoft.com/en-us/help/12387/windows-10-update-history). Make sure you have 14393.222 or later. This will also avoid a issue between Hyper-V and Bitlocker that will make a system unbootable.
+> You must install critical updates for the Windows Containers to work. 
+> To check your OS version, run `winver.exe`, and compare the version shown to [Windows 10 update history](https://support.microsoft.com/en-us/help/12387/windows-10-update-history). 
+> Make sure you have 14393.222 or a later version. If you don't upgrade to the latest version, your computer may not boot because of an issue between Hyper-V and Bitlocker.  
 
 ## 1. Install Container Feature
 
