@@ -17,14 +17,14 @@ One of the great benefits to virtualization is the ability to easily save the st
 
 Windows 10 Hyper-V includes two types of checkpoints:
 
-* **Standard Checkpoints** -- takes a snapshot of the virtual machine and virtual machine memory state at the time the checkpoint is initiated. A snapshot is not a full backup and can cause data consistancy issues with systems that replicate data between different nodes such as Active Directory.  Hyper-V only offered standard checkpoints (formerly called snapshots) prior to Windows 10.
+* **Standard Checkpoints** -- takes a snapshot of the virtual machine and virtual machine memory state at the time the checkpoint is initiated. A snapshot is not a full backup and can cause data consistency issues with systems that replicate data between different nodes such as Active Directory.  Hyper-V only offered standard checkpoints (formerly called snapshots) prior to Windows 10.
 
-* **Production Checkpoints** -- uses Volume Shadow Copy Service or File System Freeze on a Linux virtual machine to create a data conistenant back of the virtual machine. No snapshot of the virtual machine memory state is taken.
+* **Production Checkpoints** -- uses Volume Shadow Copy Service or File System Freeze on a Linux virtual machine to create a data-consistent backup of the virtual machine. No snapshot of the virtual machine memory state is taken.
 
 Production checkpoints are selected by default however this can be changed using either Hyper-V manager or PowerShell.
 
 > **Note:** The Hyper-V PowerShell module has several aliases so that checkpoint and snapshot can be used interchangeably.  
-  This document uses checkpoint, however be aware that you may see similar command using the term snapshot.
+  This document uses checkpoint, however be aware that you may see similar commands using the term snapshot.
 
 ## Changing the Checkpoint Type
 
