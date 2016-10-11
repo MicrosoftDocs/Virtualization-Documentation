@@ -14,10 +14,10 @@
 $VerbosePreference = "Continue"
 
 # The following value needs to be set to /IACCEPTSQLSERVERLICENSETERMS
-$IAcceptSqlLicenseTerms = "/IACCEPTSQLSERVERLICENSETERMS"
+$IAcceptSqlLicenseTerms = ""
 
 # The following value needs to be set to /iacceptsceula
-$IAcceptSCEULA = "/iacceptsceula" 
+$IAcceptSCEULA = "" 
 
 # Source paths
 $Script:sourcePath = "C:\IgniteSource"
@@ -259,7 +259,6 @@ $UnattendFile = [xml]@"
     </settings>
 </unattend>
 "@
-# (Get-WmiObject -q "SELECT * FROM Msvm_ComputerSystem WHERE ElementName = 'ImportantVM'" -n root\virtualization\v2).ProcessID
 
 #######################################################################################
 # Helper Functions
@@ -890,8 +889,6 @@ If ($Script:stage -eq 0 -and $Script:stage -lt $StopBeforeStage)
     $hgs01 = Prepare-VM -vmname $Script:VmNameHgs -basediskpath $Script:vhdxServerCorePath -dynamicmemory $true
     $dc01 = Prepare-VM -vmname $Script:VmNameDc -basediskpath $Script:vhdxServerCorePath -dynamicmemory $true
     $vmm01 = Prepare-VM -vmname $Script:VmNameVmm -processorcount 4 -basediskpath $Script:vhdxServerStandardPath -startupmemory 8GB
-    #$compute01 = Prepare-VM -vmname "$Script:VmNameCompute 01" -processorcount 4 -startupmemory 6GB -enablevirtualizationextensions $true -enablevtpm $true -basediskpath $Script:vhdxNanoServerPath
-    #$compute02 = Prepare-VM -vmname "$Script:VmNameCompute 02" -processorcount 4 -startupmemory 6GB -enablevirtualizationextensions $true -enablevtpm $true -basediskpath $Script:vhdxNanoServerPath
     $compute01 = Prepare-VM -vmname "$Script:VmNameCompute 01" -processorcount 4 -startupmemory 6GB -enablevirtualizationextensions $true -enablevtpm $true -basediskpath $Script:vhdxServerCorePath
     $compute02 = Prepare-VM -vmname "$Script:VmNameCompute 02" -processorcount 4 -startupmemory 6GB -enablevirtualizationextensions $true -enablevtpm $true -basediskpath $Script:vhdxServerCorePath
     
@@ -1159,11 +1156,6 @@ If ($Script:stage -eq 3 -and $Script:stage -lt $StopBeforeStage)
         Write-Host "done."
         Log-Message -Message "SID: $sid" -Level 2
         
-        #Log-Message -Message "Creating offline domain join blobs for compute hosts in domain $($param["domainname"])" -Level 2
-        #New-Item -Path 'C:\djoin' -ItemType Directory | Out-Null
-        #djoin /Provision /Domain "$($param["domainname"])" /Machine "Compute01" /SaveFile "C:\djoin\Compute01.djoin"
-        #djoin /Provision /Domain "$($param["domainname"])" /Machine "Compute02" /SaveFile "C:\djoin\Compute02.djoin"
-
         $sid 
     } # This also ensures that AD functionality is up and running before continuing.
 
@@ -1489,13 +1481,12 @@ If ($Script:stage -eq 4 -and $Script:stage -lt $StopBeforeStage)
 
             Log-Message -Message "Configuring Host Guardian Service in VMM" -Level 1
             Set-SCVMMServer -AttestationServerUrl "http://service.hgs.relecloud.com/Attestation" -KeyProtectionServerUrl "http://service.hgs.relecloud.com/KeyProtection" -ShieldingHelperVhd $ShieldingHelperVhd | Out-Null 
-            # -Name "WS2016-CIPolicy" -Path "\\dc01\Attestation\SIPolicy.p7b" -RunAsynchronously
 
             # Get Host Group 'All Hosts'
             Log-Message -Message "Adding Compute hosts to All Hosts group" -Level 1
             $hostGroup = Get-SCVMHostGroup -ID "0e3ba228-a059-46be-aa41-2f5cf0f4b96e"
-            Add-SCVMHost -ComputerName "compute01.relecloud.com" -VMHostGroup $hostGroup -Credential $runAsAccount | Out-Null # -RunAsynchronously
-            Add-SCVMHost -ComputerName "compute02.relecloud.com"  -VMHostGroup $hostGroup -Credential $runAsAccount | Out-Null  # -RunAsynchronously
+            Add-SCVMHost -ComputerName "compute01.relecloud.com" -VMHostGroup $hostGroup -Credential $runAsAccount | Out-Null 
+            Add-SCVMHost -ComputerName "compute02.relecloud.com"  -VMHostGroup $hostGroup -Credential $runAsAccount | Out-Null
 
             Log-Message -Message "Configuring Cloud Capacity" -Level 1
             Set-SCCloudCapacity -JobGroup "6990267b-995f-4328-8833-f09200a9308b" -UseCustomQuotaCountMaximum $true -UseMemoryMBMaximum $true -UseCPUCountMaximum $true -UseStorageGBMaximum $true -UseVMCountMaximum $true
@@ -1588,13 +1579,3 @@ If ($Script:stage -eq 5 -and $Script:stage -lt $StopBeforeStage)
 }
 
 Log-Message -Message "Script finished - Total Duration: $(((Get-Date) - $Script:ScriptStartTime))"
-
-if ($Script:stage -eq 99)
-    {
-    Invoke-Command -VMId $compute2.VMId -Credential $Script:relecloudAdminCred -ScriptBlock {
-            (Get-PlatformIdentifier –Name 'Compute02').InnerXml | Out-file C:\Compute02.xml
-            New-CIPolicy –Level FilePublisher –Fallback Hash –FilePath 'C:\HW1CodeIntegrity.xml'
-            ConvertFrom-CIPolicy –XmlFilePath 'C:\HW1CodeIntegrity.xml' –BinaryFilePath 'C:\HW1CodeIntegrity.p7b'
-            Get-HgsAttestationBaselinePolicy -Path 'C:\HWConfig1.tcglog'
-        }
-}
