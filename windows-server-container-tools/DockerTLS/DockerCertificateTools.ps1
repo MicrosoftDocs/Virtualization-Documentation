@@ -100,7 +100,7 @@ Param(
 #>
 function Install-OpenSSL {
 Param(
-  [String] $OpenSSLDownloadPath = "https://slproweb.com/download/Win64OpenSSL_Light-1_0_2h.exe",
+  [String] $OpenSSLDownloadPath = "https://slproweb.com/download/Win64OpenSSL_Light-1_0_2j.exe",
   [String] $DownloadLocation = $env:TEMP,
   [String] $InstallLocation = $Global:PathToOpenSSL.Replace("bin\openssl.exe", "")
   )
