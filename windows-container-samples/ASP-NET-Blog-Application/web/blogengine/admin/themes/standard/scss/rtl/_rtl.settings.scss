@@ -1,0 +1,21 @@
+﻿.settings-view {
+    h4 {
+        &:before {
+            content: "\f104";
+            margin-right: 0;
+            margin-left: 10px;
+        }
+    }
+
+    .avatar-sample {
+        img {
+            margin-right: 0;
+            margin-left: 10px;
+        }
+
+        input {
+            margin-right: 0;
+            margin-left: 10px;
+        }
+    }
+}

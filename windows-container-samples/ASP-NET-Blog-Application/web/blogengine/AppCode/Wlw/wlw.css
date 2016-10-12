@@ -1,0 +1,45 @@
+﻿body {
+	background-color: #F1F1F1;
+	color: #444444;
+	font-family: Arial,"Lucida Sans Unicode",sans-serif;
+	font-size: 11px;
+	margin: 0 10px;
+}
+
+h1 {
+	font-size: 15px;
+}
+
+#tagcloud {
+	margin-bottom: 10px;
+	white-space: normal;
+}
+
+#tagcloud li {
+	display: inline;
+}
+
+#tagcloud a {
+	margin-right: 3px;
+	display: inline;
+}
+
+#tagcloud a.biggest {
+	font-size: 20px;
+}
+
+#tagcloud a.big {
+	font-size: 17px;
+}
+
+#tagcloud a.medium {
+	font-size: 13px;
+}
+
+#tagcloud a.small {
+	font-size: 12px;
+}
+
+#tagcloud a.smallest {
+	font-size: 10px;
+}

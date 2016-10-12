@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<post>
+  <author>[Author]</author>
+  <title>[Title]</title>
+  <description>The description is used as the meta description as well as shown in the related posts. It is recommended that you write a description, but not mandatory</description>
+  <content>[Post]</content>
+  <ispublished>True</ispublished>
+  <isdeleted>False</isdeleted>
+  <iscommentsenabled>True</iscommentsenabled>
+  <pubDate>[PubDate]</pubDate>
+  <lastModified>[PubDate]</lastModified>
+  <raters>5</raters>
+  <rating>4.24</rating>
+  <slug>[Slug]</slug>
+  <tags>
+    <tag>blog</tag>
+    <tag>welcome</tag>
+  </tags>
+  <comments />
+  <categories>
+    <category>[CategoryId]</category>
+  </categories>
+  <notifications />
+</post>

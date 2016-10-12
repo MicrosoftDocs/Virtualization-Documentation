@@ -1,0 +1,961 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="add" xml:space="preserve">
+    <value>追加</value>
+  </data>
+  <data name="add_Entry" xml:space="preserve">
+    <value>ブログ</value>
+  </data>
+  <data name="addComment" xml:space="preserve">
+    <value>コメントを書く</value>
+  </data>
+  <data name="addCustomCodeToHeader" xml:space="preserve">
+    <value>HTMLヘッダーセクションの編集</value>
+  </data>
+  <data name="administrationPanel" xml:space="preserve">
+    <value>コントロールパネル</value>
+  </data>
+  <data name="advanced" xml:space="preserve">
+    <value>高度</value>
+  </data>
+  <data name="advancedSettings" xml:space="preserve">
+    <value>高度な設定</value>
+  </data>
+  <data name="alternateFeedUrl" xml:space="preserve">
+    <value>フィードURLの代わり</value>
+  </data>
+  <data name="approve" xml:space="preserve">
+    <value>承認</value>
+  </data>
+  <data name="approveallcomments" xml:space="preserve">
+    <value>コメント全承認</value>
+  </data>
+  <data name="archive" xml:space="preserve">
+    <value>アーカイブ</value>
+  </data>
+  <data name="areYouSure" xml:space="preserve">
+    <value>{1}を{0}してよろしいですか</value>
+  </data>
+  <data name="attachFile" xml:space="preserve">
+    <value>添付ファイル</value>
+  </data>
+  <data name="author" xml:space="preserve">
+    <value>投稿者</value>
+  </data>
+  <data name="avatars" xml:space="preserve">
+    <value>アバター</value>
+  </data>
+  <data name="basic" xml:space="preserve">
+    <value>基本</value>
+  </data>
+  <data name="beTheFirstToRate" xml:space="preserve">
+    <value>最初のレートをつける</value>
+  </data>
+  <data name="blogMLDescription" xml:space="preserve">
+    <value>BlogEngine.NETは、エクスポート形式としてBlogMLフォーマットに対応しています。インポート形式としてBlogMLとRSSに対応しています。</value>
+  </data>
+  <data name="blogroll" xml:space="preserve">
+    <value>ブログロール</value>
+  </data>
+  <data name="buttonText" xml:space="preserve">
+    <value>ボタンの文字</value>
+  </data>
+  <data name="categories" xml:space="preserve">
+    <value>カテゴリー</value>
+  </data>
+  <data name="category" xml:space="preserve">
+    <value>カテゴリー</value>
+  </data>
+  <data name="changePassword" xml:space="preserve">
+    <value>パスワードの変更</value>
+  </data>
+  <data name="chooseOtherName" xml:space="preserve">
+    <value>別名の選択</value>
+  </data>
+  <data name="closeCommetsAfter" xml:space="preserve">
+    <value>コメント可能な期間</value>
+  </data>
+  <data name="comment" xml:space="preserve">
+    <value>コメント</value>
+  </data>
+  <data name="commentLabelText" xml:space="preserve">
+    <value>コメント検索を表す文字</value>
+  </data>
+  <data name="comments" xml:space="preserve">
+    <value>コメント</value>
+  </data>
+  <data name="commentsAreClosed" xml:space="preserve">
+    <value>コメント可能な期間を過ぎました</value>
+  </data>
+  <data name="commentWasSaved" xml:space="preserve">
+    <value>保存されました。コメントありがとうございます。</value>
+  </data>
+  <data name="contact" xml:space="preserve">
+    <value>コンタクト</value>
+  </data>
+  <data name="contactForm" xml:space="preserve">
+    <value>コンタクトフォーム</value>
+  </data>
+  <data name="controls" xml:space="preserve">
+    <value>管理</value>
+  </data>
+  <data name="country" xml:space="preserve">
+    <value>国</value>
+  </data>
+  <data name="createNewUser" xml:space="preserve">
+    <value>新しいユーザーを作成する</value>
+  </data>
+  <data name="currentlyRated" xml:space="preserve">
+    <value>現在のレート {0} （{1}人)</value>
+  </data>
+  <data name="date" xml:space="preserve">
+    <value>日付</value>
+  </data>
+  <data name="defaultFeedOutput" xml:space="preserve">
+    <value>標準の出力フィード</value>
+  </data>
+  <data name="defaultTextShownInSearchField" xml:space="preserve">
+    <value>検索ボックスに初期表示する文字</value>
+  </data>
+  <data name="delete" xml:space="preserve">
+    <value>削除</value>
+  </data>
+  <data name="description" xml:space="preserve">
+    <value>概要</value>
+  </data>
+  <data name="displayCommentsOnRecentPosts" xml:space="preserve">
+    <value>コメントを表示</value>
+  </data>
+  <data name="displayRatingsOnRecentPosts" xml:space="preserve">
+    <value>レートを表示</value>
+  </data>
+  <data name="edit" xml:space="preserve">
+    <value>編集</value>
+  </data>
+  <data name="email" xml:space="preserve">
+    <value>E-mail</value>
+  </data>
+  <data name="emailAddress" xml:space="preserve">
+    <value>E-mailアドレス</value>
+  </data>
+  <data name="emailSubjectPrefix" xml:space="preserve">
+    <value>件名につける文字</value>
+  </data>
+  <data name="enableAttachments" xml:space="preserve">
+    <value>添付ファイルを許可</value>
+  </data>
+  <data name="enableComments" xml:space="preserve">
+    <value>コメントを許可する</value>
+  </data>
+  <data name="enableCommentsDescription" xml:space="preserve">
+    <value>チェックを入れない場合、全ブログでコメントが許可されません</value>
+  </data>
+  <data name="enableCommentSearch" xml:space="preserve">
+    <value>コメントも検索対象</value>
+  </data>
+  <data name="enableCommentsModeration" xml:space="preserve">
+    <value>コメント確認後に公開</value>
+  </data>
+  <data name="enableGravatars" xml:space="preserve">
+    <value>Gravatarの許可</value>
+  </data>
+  <data name="enableHttpCompression" xml:space="preserve">
+    <value>HTTP圧縮の使用</value>
+  </data>
+  <data name="enableHttpCompressionDescription" xml:space="preserve">
+    <value>ページの表示を早くします (推奨)</value>
+  </data>
+  <data name="enableOpenSearch" xml:space="preserve">
+    <value>オープンサーチの許可</value>
+  </data>
+  <data name="enableOpenSearchDescription" xml:space="preserve">
+    <value>ブラウザにオープンサーチ機能を提供します (推奨)</value>
+  </data>
+  <data name="enablePingbacks" xml:space="preserve">
+    <value>ピングバックの許可</value>
+  </data>
+  <data name="enableRating" xml:space="preserve">
+    <value>ブログのレーティング</value>
+  </data>
+  <data name="enableReferrerTracking" xml:space="preserve">
+    <value>リファラーを取得</value>
+  </data>
+  <data name="enableSearchHighlight" xml:space="preserve">
+    <value>検索結果のハイライトの可否</value>
+  </data>
+  <data name="enableSearchHighlightDescription" xml:space="preserve">
+    <value>ページの検索用語をハイライト</value>
+  </data>
+  <data name="enableSsl" xml:space="preserve">
+    <value>SSLの使用</value>
+  </data>
+  <data name="enableTrackbacks" xml:space="preserve">
+    <value>トラックバックの許可</value>
+  </data>
+  <data name="endorsment" xml:space="preserve">
+    <value>署名(bLink)</value>
+  </data>
+  <data name="enforce" xml:space="preserve">
+    <value>強制</value>
+  </data>
+  <data name="enterValidEmail" xml:space="preserve">
+    <value>正しいE-Mailを入力してください</value>
+  </data>
+  <data name="enterValidUrl" xml:space="preserve">
+    <value>正しいURLを入力してください</value>
+  </data>
+  <data name="export" xml:space="preserve">
+    <value>エクスポート</value>
+  </data>
+  <data name="formMessage" xml:space="preserve">
+    <value>送信フォームのメッセージ</value>
+  </data>
+  <data name="goToFrontPage" xml:space="preserve">
+    <value>公開ページへ</value>
+  </data>
+  <data name="handleWwwSubdomain" xml:space="preserve">
+    <value>サブドメインポリシー</value>
+  </data>
+  <data name="home" xml:space="preserve">
+    <value>ホーム</value>
+    <comment>As used for linking to the front-page</comment>
+  </data>
+  <data name="htmlHeadSection" xml:space="preserve">
+    <value>HTMLヘッダーセクション</value>
+  </data>
+  <data name="ignore" xml:space="preserve">
+    <value>無視</value>
+  </data>
+  <data name="import" xml:space="preserve">
+    <value>インポート</value>
+  </data>
+  <data name="isFrontPage" xml:space="preserve">
+    <value>トップページとする</value>
+  </data>
+  <data name="keywords" xml:space="preserve">
+    <value>キーワード</value>
+  </data>
+  <data name="language" xml:space="preserve">
+    <value>言語の選択</value>
+  </data>
+  <data name="languageCode" xml:space="preserve">
+    <value>言語コード</value>
+  </data>
+  <data name="latitude" xml:space="preserve">
+    <value>緯度</value>
+  </data>
+  <data name="livePreview" xml:space="preserve">
+    <value>プレビュー</value>
+  </data>
+  <data name="longtitude" xml:space="preserve">
+    <value>経度</value>
+  </data>
+  <data name="maxLengthOfItems" xml:space="preserve">
+    <value>エントリー毎の最大文字数</value>
+  </data>
+  <data name="message" xml:space="preserve">
+    <value>メッセージ</value>
+  </data>
+  <data name="more" xml:space="preserve">
+    <value>もっと読む</value>
+  </data>
+  <data name="name" xml:space="preserve">
+    <value>名前</value>
+  </data>
+  <data name="nextPost" xml:space="preserve">
+    <value>次のブログ</value>
+  </data>
+  <data name="nextPosts" xml:space="preserve">
+    <value>次のブログ</value>
+  </data>
+  <data name="none" xml:space="preserve">
+    <value>なし</value>
+  </data>
+  <data name="noParent" xml:space="preserve">
+    <value>親ページなし</value>
+  </data>
+  <data name="notifyOnNewComments" xml:space="preserve">
+    <value>コメントが追加された時に通知する</value>
+  </data>
+  <data name="notRatedYet" xml:space="preserve">
+    <value>まだレートはありません</value>
+  </data>
+  <data name="numberOfComments" xml:space="preserve">
+    <value>コメント表示数</value>
+  </data>
+  <data name="numberOfDisplayedItems" xml:space="preserve">
+    <value>表示するエントリー数</value>
+  </data>
+  <data name="numberOfPosts" xml:space="preserve">
+    <value>ブログ表示数</value>
+  </data>
+  <data name="page" xml:space="preserve">
+    <value>ページ</value>
+  </data>
+  <data name="pages" xml:space="preserve">
+    <value>ページ</value>
+  </data>
+  <data name="password" xml:space="preserve">
+    <value>パスワード</value>
+  </data>
+  <data name="portNumber" xml:space="preserve">
+    <value>ポート番号</value>
+  </data>
+  <data name="portNumberDescription" xml:space="preserve">
+    <value>ポート25が標準です</value>
+  </data>
+  <data name="possibleSpam" xml:space="preserve">
+    <value>スパムの可能性</value>
+  </data>
+  <data name="post" xml:space="preserve">
+    <value>ブログ</value>
+  </data>
+  <data name="postPerPage" xml:space="preserve">
+    <value>１ページに表示するブログ数</value>
+  </data>
+  <data name="posts" xml:space="preserve">
+    <value>投稿数</value>
+  </data>
+  <data name="postsPerFeed" xml:space="preserve">
+    <value>フィードに表示するアイテム数</value>
+  </data>
+  <data name="previousPost" xml:space="preserve">
+    <value>前のブログ</value>
+  </data>
+  <data name="previousPosts" xml:space="preserve">
+    <value>前のブログ</value>
+  </data>
+  <data name="publish" xml:space="preserve">
+    <value>公開する</value>
+  </data>
+  <data name="raters" xml:space="preserve">
+    <value>レート数</value>
+  </data>
+  <data name="rating" xml:space="preserve">
+    <value>レート</value>
+  </data>
+  <data name="receive" xml:space="preserve">
+    <value>受信</value>
+  </data>
+  <data name="recentComments" xml:space="preserve">
+    <value>最近のコメント</value>
+  </data>
+  <data name="recentPosts" xml:space="preserve">
+    <value>最近のブログ</value>
+  </data>
+  <data name="referrer" xml:space="preserve">
+    <value>リファラー</value>
+  </data>
+  <data name="referrers" xml:space="preserve">
+    <value>リファラー</value>
+  </data>
+  <data name="relatedPosts" xml:space="preserve">
+    <value>関連するブログ</value>
+  </data>
+  <data name="remove" xml:space="preserve">
+    <value>削除</value>
+  </data>
+  <data name="required" xml:space="preserve">
+    <value>必須</value>
+  </data>
+  <data name="save" xml:space="preserve">
+    <value>保存</value>
+  </data>
+  <data name="saveComment" xml:space="preserve">
+    <value>コメントを保存</value>
+  </data>
+  <data name="savePage" xml:space="preserve">
+    <value>ページを保存</value>
+  </data>
+  <data name="savePost" xml:space="preserve">
+    <value>ブログを保存</value>
+  </data>
+  <data name="saveSettings" xml:space="preserve">
+    <value>設定を保存</value>
+  </data>
+  <data name="savingTheComment" xml:space="preserve">
+    <value>コメントを保存しています...</value>
+  </data>
+  <data name="search" xml:space="preserve">
+    <value>検索</value>
+  </data>
+  <data name="searchField" xml:space="preserve">
+    <value>検索フィールド</value>
+  </data>
+  <data name="searchFieldText" xml:space="preserve">
+    <value>検索ボックスの文字</value>
+  </data>
+  <data name="searchResultsFor" xml:space="preserve">
+    <value>の検索結果</value>
+  </data>
+  <data name="selectDay" xml:space="preserve">
+    <value>選択日</value>
+  </data>
+  <data name="selectParent" xml:space="preserve">
+    <value>親ページを選択</value>
+  </data>
+  <data name="send" xml:space="preserve">
+    <value>送信</value>
+  </data>
+  <data name="sendCommentEmail" xml:space="preserve">
+    <value>コメントをE-mailで送る</value>
+  </data>
+  <data name="separateTagsWitComma" xml:space="preserve">
+    <value>各タグはコンマ区切り</value>
+  </data>
+  <data name="settings" xml:space="preserve">
+    <value>設定</value>
+  </data>
+  <data name="showCountryChooser" xml:space="preserve">
+    <value>国の選択を許可</value>
+  </data>
+  <data name="showCountryChooserDescription" xml:space="preserve">
+    <value>チェックを入れない場合、コメント欄に国旗アイコンを表示しません</value>
+  </data>
+  <data name="showEnableWebsiteInComments" xml:space="preserve">
+    <value>Need Translation:Enable Website in Comments</value>
+  </data>
+  <data name="showEnableWebsiteInCommentsDescription" xml:space="preserve">
+    <value>Need Translation:Choose whether to allow Website to be published in Comments</value>
+  </data>
+  <data name="showDescriptionInPostList" xml:space="preserve">
+    <value>ブログの概要のみ表示</value>
+  </data>
+  <data name="showDescriptionInPostListForPostsByTagOrCategory" xml:space="preserve">
+    <value>タグ/カテゴリー検索でリスト表示する時は、ブログの概要のみ表示</value>
+  </data>
+  <data name="showInList" xml:space="preserve">
+    <value>一覧に表示する</value>
+  </data>
+  <data name="showLivePreview" xml:space="preserve">
+    <value>ライブプレビューの表示</value>
+  </data>
+  <data name="showPostNavigation" xml:space="preserve">
+    <value>ナビゲーションリンク(前後の投稿)を表示</value>
+  </data>
+  <data name="showRelatedPosts" xml:space="preserve">
+    <value>関連するブログを表示</value>
+  </data>
+  <data name="subject" xml:space="preserve">
+    <value>タイトル</value>
+  </data>
+  <data name="subscribe" xml:space="preserve">
+    <value>フィード</value>
+  </data>
+  <data name="thankYouMessage" xml:space="preserve">
+    <value>送信後の感謝メッセージ</value>
+  </data>
+  <data name="theComment" xml:space="preserve">
+    <value>コメント</value>
+  </data>
+  <data name="theme" xml:space="preserve">
+    <value>テーマ</value>
+  </data>
+  <data name="thePost" xml:space="preserve">
+    <value>ブログ</value>
+  </data>
+  <data name="thereAreXDrafts" xml:space="preserve">
+    <value>公開されてないブログが {0} 件あります</value>
+  </data>
+  <data name="timeStampPostLinks" xml:space="preserve">
+    <value>ブログリンクに日付を追加</value>
+  </data>
+  <data name="timezone" xml:space="preserve">
+    <value>サーバーとの時差</value>
+  </data>
+  <data name="title" xml:space="preserve">
+    <value>タイトル</value>
+  </data>
+  <data name="trimStylesheet" xml:space="preserve">
+    <value>スタイルシートの空白除去</value>
+  </data>
+  <data name="trimStylesheetDescription" xml:space="preserve">
+    <value>実行時に空白を削除してスタイルシートを小さくします</value>
+  </data>
+  <data name="unapprovedcomments" xml:space="preserve">
+    <value>未承認コメント</value>
+  </data>
+  <data name="updateFrequenzy" xml:space="preserve">
+    <value>更新頻度 (分)</value>
+  </data>
+  <data name="uploadFile" xml:space="preserve">
+    <value>ファイルアップロード</value>
+  </data>
+  <data name="uploadImage" xml:space="preserve">
+    <value>画像アップロード</value>
+  </data>
+  <data name="userName" xml:space="preserve">
+    <value>ユーザ名</value>
+  </data>
+  <data name="users" xml:space="preserve">
+    <value>ユーザ</value>
+  </data>
+  <data name="website" xml:space="preserve">
+    <value>ウェブサイト</value>
+  </data>
+  <data name="willShowGravatar" xml:space="preserve">
+    <value>アイコンを表示しますか {0} </value>
+  </data>
+  <data name="wrote" xml:space="preserve">
+    <value>書いた</value>
+  </data>
+  <data name="youAlreadyRated" xml:space="preserve">
+    <value>既にレーティング済みです</value>
+  </data>
+  <data name="userProfiles" xml:space="preserve">
+    <value>ユーザプロフィール</value>
+  </data>
+  <data name="view" xml:space="preserve">
+    <value>ビュー</value>
+  </data>
+  <data name="firstName" xml:space="preserve">
+    <value>名</value>
+  </data>
+  <data name="aboutMe" xml:space="preserve">
+    <value>プロフィール</value>
+  </data>
+  <data name="birthday" xml:space="preserve">
+    <value>誕生日</value>
+  </data>
+  <data name="cityTown" xml:space="preserve">
+    <value>市町村</value>
+  </data>
+  <data name="displayName" xml:space="preserve">
+    <value>表示名</value>
+  </data>
+  <data name="fullName" xml:space="preserve">
+    <value>フルネーム</value>
+  </data>
+  <data name="gender" xml:space="preserve">
+    <value>性別</value>
+  </data>
+  <data name="industry" xml:space="preserve">
+    <value>業界</value>
+  </data>
+  <data name="interests" xml:space="preserve">
+    <value>趣味</value>
+  </data>
+  <data name="isPrivate" xml:space="preserve">
+    <value>公開しない</value>
+  </data>
+  <data name="lastName" xml:space="preserve">
+    <value>姓</value>
+  </data>
+  <data name="occupation" xml:space="preserve">
+    <value>所有者</value>
+  </data>
+  <data name="photoURL" xml:space="preserve">
+    <value>画像のURL</value>
+  </data>
+  <data name="regionState" xml:space="preserve">
+    <value>地域</value>
+  </data>
+  <data name="saveProfile" xml:space="preserve">
+    <value>プロフィールを保存</value>
+  </data>
+  <data name="switchUserProfile" xml:space="preserve">
+    <value>ユーザープロフィールの切り替え</value>
+  </data>
+  <data name="company" xml:space="preserve">
+    <value>会社</value>
+  </data>
+  <data name="middleName" xml:space="preserve">
+    <value>ミドルネーム</value>
+  </data>
+  <data name="phoneFax" xml:space="preserve">
+    <value>電話 FAX</value>
+  </data>
+  <data name="phoneMain" xml:space="preserve">
+    <value>主要電話</value>
+  </data>
+  <data name="phoneMobile" xml:space="preserve">
+    <value>携帯電話</value>
+  </data>
+  <data name="profile" xml:space="preserve">
+    <value>プロフィール</value>
+  </data>
+  <data name="calendar" xml:space="preserve">
+    <value>カレンダー</value>
+  </data>
+  <data name="commentWaitingModeration" xml:space="preserve">
+    <value>登録ありがとうございます。このコメントは確認後に公開されます。</value>
+  </data>
+  <data name="requireSslForMetaWeblogApi" xml:space="preserve">
+    <value>メタウェブログAPIでSSLを使用</value>
+  </data>
+  <data name="requireSslForMetaWeblogApiDescription" xml:space="preserve">
+    <value>メタウェブログAPIで通信をするときにSSLを使うことを強制します</value>
+  </data>
+  <data name="compressWebResource" xml:space="preserve">
+    <value>WebResource.axdを圧縮</value>
+  </data>
+  <data name="compressWebResourceDescription" xml:space="preserve">
+    <value>サードバーティの機能に影響を与える可能性があります</value>
+  </data>
+  <data name="useBlogNameInPageTitles" xml:space="preserve">
+    <value>ページタイトルにブログ名を使用</value>
+  </data>
+  <data name="useBlogNameInPageTitlesDescription" xml:space="preserve">
+    <value>ページタイトルの最初にブログの名前を追加します</value>
+  </data>
+  <data name="uncategorized" xml:space="preserve">
+    <value>カテゴリ未設定</value>
+  </data>
+  <data name="cancel" xml:space="preserve">
+    <value>キャンセル</value>
+  </data>
+  <data name="filter" xml:space="preserve">
+    <value>フィルター</value>
+  </data>
+  <data name="filterByApml" xml:space="preserve">
+    <value>APMLフィルター</value>
+  </data>
+  <data name="filterByApmlDescription" xml:space="preserve">
+    <value>APMLのURLか文言を入力してください</value>
+  </data>
+  <data name="login" xml:space="preserve">
+    <value>ログイン</value>
+  </data>
+  <data name="logoff" xml:space="preserve">
+    <value>ログアウト</value>
+  </data>
+  <data name="useRawHtmlEditor" xml:space="preserve">
+    <value>HTML記述</value>
+  </data>
+  <data name="enableCommentNesting" xml:space="preserve">
+    <value>階層化されたコメントを許可</value>
+  </data>
+  <data name="enableCommentNestingDescription" xml:space="preserve">
+    <value>テーマが表示をサポートしていれば動作します</value>
+  </data>
+  <data name="replyTo" xml:space="preserve">
+    <value>返信</value>
+  </data>
+  <data name="replyToBase" xml:space="preserve">
+    <value>ブログ本体に返信</value>
+  </data>
+  <data name="replyToThis" xml:space="preserve">
+    <value>返信</value>
+  </data>
+  <data name="deleteKeepReplies" xml:space="preserve">
+    <value>削除（返信を残す）</value>
+  </data>
+  <data name="deletePlusReplies" xml:space="preserve">
+    <value>削除（返信も削除）</value>
+  </data>
+  <data name="cancelReply" xml:space="preserve">
+    <value>コメント返信をやめる</value>
+  </data>
+  <data name="numberOfCharacters" xml:space="preserve">
+    <value>文字数</value>
+  </data>
+  <data name="ratingHasBeenRegistered" xml:space="preserve">
+    <value>レーティング登録されました。ありがとうございます。</value>
+  </data>
+  <data name="rateThisXStars" xml:space="preserve">
+    <value>5つ星中 {0}つ星でレーティング</value>
+  </data>
+  <data name="move" xml:space="preserve">
+    <value>移動</value>
+  </data>
+  <data name="moveWidgetTo" xml:space="preserve">
+    <value>ウィジェットを移動</value>
+  </data>
+  <data name="link" xml:space="preserve">
+    <value>リンク</value>
+  </data>
+  <data name="numberOfDaysToKeep" xml:space="preserve">
+    <value>保存日数</value>
+  </data>
+  <data name="profiles" xml:space="preserve">
+    <value>プロフィール</value>
+  </data>
+  <data name="commentNotificationUnsubscriptionHeader" xml:space="preserve">
+    <value>コメント通知を購読</value>
+  </data>
+  <data name="commentNotificationUnsubscriptionText" xml:space="preserve">
+    <value>この投稿に対するコメント通知をメール購読しない</value>
+  </data>
+  <data name="commentNotificationUnsubscribe" xml:space="preserve">
+    <value>この投稿に対するコメント通知をメール購読しない</value>
+  </data>
+  <data name="accuracy" xml:space="preserve">
+    <value>精度</value>
+  </data>
+  <data name="addFilter" xml:space="preserve">
+    <value>フィルターを追加</value>
+  </data>
+  <data name="addToWhiteList" xml:space="preserve">
+    <value>ホワイトリストに入れるまでの回数</value>
+  </data>
+  <data name="allow" xml:space="preserve">
+    <value>許可(Allow)</value>
+  </data>
+  <data name="alwaysTrust" xml:space="preserve">
+    <value>認証されたユーザーは常に信頼されます</value>
+  </data>
+  <data name="approved" xml:space="preserve">
+    <value>承認済</value>
+  </data>
+  <data name="authorApproved" xml:space="preserve">
+    <value>コメントを許可した投稿者をホワイトリストに入れる</value>
+  </data>
+  <data name="authorBlocked" xml:space="preserve">
+    <value>コメントを削除した場合、常に投稿をブロックします</value>
+  </data>
+  <data name="authorRejected" xml:space="preserve">
+    <value>コメントを拒否した投稿者をブラックリストに入れる</value>
+  </data>
+  <data name="block" xml:space="preserve">
+    <value>ブロック(Block)</value>
+  </data>
+  <data name="cheked" xml:space="preserve">
+    <value>チェック</value>
+  </data>
+  <data name="commentsApprovedByAdmin" xml:space="preserve">
+    <value>手動モデレート - 手動で管理します</value>
+  </data>
+  <data name="commentsAuto" xml:space="preserve">
+    <value>自動モデレート - コメントがスパムだった場合、ルールとフィルターを自動で設定します</value>
+  </data>
+  <data name="commentsBlacklist" xml:space="preserve">
+    <value>ブラックリストに入れるまでの回数</value>
+  </data>
+  <data name="commentsBlockOnDelete" xml:space="preserve">
+    <value>削除によるブロック</value>
+  </data>
+  <data name="commentsPerPage" xml:space="preserve">
+    <value>1ページに表示するコメント数</value>
+  </data>
+  <data name="commentsUnmodApproved" xml:space="preserve">
+    <value>確認しない場合は、全てのコメントはデフォルトで承認されます</value>
+  </data>
+  <data name="confirmResetCounters" xml:space="preserve">
+    <value>カウンターを0にリセットしますか？</value>
+  </data>
+  <data name="contains" xml:space="preserve">
+    <value>含む</value>
+  </data>
+  <data name="days" xml:space="preserve">
+    <value>日</value>
+  </data>
+  <data name="down" xml:space="preserve">
+    <value>下</value>
+  </data>
+  <data name="enabled" xml:space="preserve">
+    <value>有効</value>
+  </data>
+  <data name="eqls" xml:space="preserve">
+    <value>等しい</value>
+  </data>
+  <data name="filterName" xml:space="preserve">
+    <value>フィルター名</value>
+  </data>
+  <data name="filters" xml:space="preserve">
+    <value>フィルター</value>
+  </data>
+  <data name="ip" xml:space="preserve">
+    <value>IP</value>
+  </data>
+  <data name="mistakes" xml:space="preserve">
+    <value>誤り</value>
+  </data>
+  <data name="moderation" xml:space="preserve">
+    <value>コメント確認</value>
+  </data>
+  <data name="priority" xml:space="preserve">
+    <value>優先度</value>
+  </data>
+  <data name="reportMistakesToService" xml:space="preserve">
+    <value>スパム判定の誤りをサービスにレポート</value>
+  </data>
+  <data name="resetCounters" xml:space="preserve">
+    <value>カウンターをリセット</value>
+  </data>
+  <data name="rules" xml:space="preserve">
+    <value>ルール</value>
+  </data>
+  <data name="spam" xml:space="preserve">
+    <value>スパム登録</value>
+  </data>
+  <data name="trustAuthenticated" xml:space="preserve">
+    <value>認証された著者を信頼する</value>
+  </data>
+  <data name="up" xml:space="preserve">
+    <value>上</value>
+  </data>
+  <data name="all" xml:space="preserve">
+    <value>全て</value>
+  </data>
+  <data name="clear" xml:space="preserve">
+    <value>解除</value>
+  </data>
+  <data name="moderator" xml:space="preserve">
+    <value>モデレーター</value>
+  </data>
+  <data name="select" xml:space="preserve">
+    <value>選択</value>
+  </data>
+  <data name="reject" xml:space="preserve">
+    <value>却下</value>
+  </data>
+  <data name="restore" xml:space="preserve">
+    <value>スパム解除</value>
+  </data>
+  <data name="selectedComments" xml:space="preserve">
+    <value>選択されたコメント</value>
+  </data>
+  <data name="editor" xml:space="preserve">
+    <value>エディター</value>
+  </data>
+  <data name="total" xml:space="preserve">
+    <value>総数</value>
+  </data>
+  <data name="update" xml:space="preserve">
+    <value>更新</value>
+  </data>
+  <data name="widget" xml:space="preserve">
+    <value>ウィジェット</value>
+  </data>
+  <data name="configuration" xml:space="preserve">
+    <value>設定</value>
+  </data>
+  <data name="inbox" xml:space="preserve">
+    <value>受信ボックス</value>
+  </data>
+  <data name="manual" xml:space="preserve">
+    <value>マニュアル</value>
+  </data>
+  <data name="unmoderated" xml:space="preserve">
+    <value>未承認</value>
+  </data>
+  <data name="action" xml:space="preserve">
+    <value>アクション</value>
+  </data>
+  <data name="automoderation" xml:space="preserve">
+    <value>自動モデレーション</value>
+  </data>
+  <data name="custom" xml:space="preserve">
+    <value>カスタム</value>
+  </data>
+  <data name="extensions" xml:space="preserve">
+    <value>拡張機能</value>
+  </data>
+</root>

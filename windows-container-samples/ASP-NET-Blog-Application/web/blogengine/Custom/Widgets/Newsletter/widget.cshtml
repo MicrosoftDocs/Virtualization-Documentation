@@ -1,0 +1,52 @@
+﻿@using BlogEngine.NET.Custom.Widgets
+@{
+    var showThanks = false;
+    var showForm = false;
+    var showMsg = false;
+    var email = Request.Form["txtEmail"];
+
+    if (IsPost)
+    {
+        try
+        {
+            var addr = new System.Net.Mail.MailAddress(email);
+            Newsletter.AddEmail(email);
+            showThanks = true;
+        }
+        catch
+        {
+            showForm = true;
+            showMsg = true;
+        }
+    }
+    else
+    {
+        showForm = true;
+    }
+}
+<div class="widget newsletter">
+    <h4 class="widget-header">@Model.Title</h4>
+    <div class="widget-content" style="padding: 20px">
+        @if (showThanks)
+        {
+        <div style="padding: 20px 40px" id="newsletterthanks">
+            <h2 id="newsletteraction">@Resources.labels.thankYou</h2>
+        </div>
+        }
+        @if (showForm)
+        {
+        <div id="newsletterform">
+            <p>@Resources.labels.notifiedPublished</p>
+            <label style="font-weight:bold" for="txtEmail">@Resources.labels.enterEmail</label>
+            <input type="text" style="width:98%;" class="form-control" id="txtEmail" name="txtEmail" />
+            @if (showMsg)
+            {
+                <span>@Resources.labels.enterEmailAddress</span>
+            }
+            <div style="text-align:center; margin-top: 10px">
+                <input type="submit" class="btn btn-primary" id="btnSave" name="btnSave" value="@Resources.labels.notifyMe" />
+            </div>
+        </div>
+        }
+    </div>
+</div>

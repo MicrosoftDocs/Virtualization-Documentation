@@ -1,0 +1,69 @@
+﻿// main-loading
+.main-loading {
+    @include user-select(none);
+    @include border-radius(3px);
+    background: none;
+    text-transform: uppercase;
+    z-index: 2;
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+
+    .loader {
+        display: inline-block;
+        width: 30px;
+        height: 30px;
+        border: solid 5px #aaa;
+        border-left-color: #1cac7b;
+        @include box-sizing(border-box);
+        @include border-radius(50%);
+        -webkit-animation: loader 400ms linear infinite;
+        animation: loader 400ms linear infinite;
+    }
+
+    @-webkit-keyframes loader {
+        0% {
+            -webkit-transform: rotate(0deg);
+        }
+
+        100% {
+            -webkit-transform: rotate(360deg);
+        }
+    }
+
+    @keyframes loader {
+        0% {
+            transform: rotate(0deg);
+        }
+
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+}
+
+// loading
+.loading {
+    display: inline-block;
+}
+
+.loaded {
+    display: none;
+}
+
+// ellipsis
+.text-ellipsis {
+    @include text-overflow(ellipsis);
+
+    &.text-ellipsis-sm {
+        max-width: 100px !important;
+        text-align: center !important;
+        margin: 0 auto;
+    }
+}
+
+// well
+.well {
+    background-color: #fff;
+    @include border-radius(0);
+}

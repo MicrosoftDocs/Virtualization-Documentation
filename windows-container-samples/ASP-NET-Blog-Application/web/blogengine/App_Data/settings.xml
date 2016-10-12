@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<settings>
+  <showpostnavigation>True</showpostnavigation>
+  <enablehttpcompression>False</enablehttpcompression>
+  <customfrontpage />
+  <htmlheader />
+  <theme>Standard</theme>
+  <emailsubjectprefix>Weblog</emailsubjectprefix>
+  <trackingscript />
+  <showdescriptioninpostlist>False</showdescriptioninpostlist>
+  <commentsperpage>10</commentsperpage>
+  <feedauthor />
+  <description>Short description of the blog</description>
+  <enablepingbacksend>True</enablepingbacksend>
+  <enabletagexport>True</enabletagexport>
+  <iscocommentenabled>False</iscocommentenabled>
+  <compresswebresource>False</compresswebresource>
+  <endorsement>http://www.dotnetblogengine.net/syndication.axd</endorsement>
+  <themecookiename>theme</themecookiename>
+  <remotefiledownloadtimeout>30000</remotefiledownloadtimeout>
+  <trustauthenticatedusers>True</trustauthenticatedusers>
+  <enablecountryincomments>False</enablecountryincomments>
+  <contactformmessage>&lt;p&gt;I'll answer the mail as soon as I can.&lt;/p&gt;</contactformmessage>
+  <searchbuttontext>Search</searchbuttontext>
+  <showincludecommentsoption>False</showincludecommentsoption>
+  <createblogonselfregistration>False</createblogonselfregistration>
+  <enablewebsiteincomments>False</enablewebsiteincomments>
+  <enablecontactattachments>True</enablecontactattachments>
+  <blogrollmaxlength>23</blogrollmaxlength>
+  <language>en-US</language>
+  <smtpserver>mail.example.com</smtpserver>
+  <disqusdevmode>False</disqusdevmode>
+  <postsperpage>10</postsperpage>
+  <enabletrackbackreceive>True</enabletrackbackreceive>
+  <enableopensearch>True</enableopensearch>
+  <dayscommentsareenabled>0</dayscommentsareenabled>
+  <useblognameinpagetitles>True</useblognameinpagetitles>
+  <removeextensionsfromurls>True</removeextensionsfromurls>
+  <smtpusername>username</smtpusername>
+  <enablepasswordreset>True</enablepasswordreset>
+  <disqusaddcommentstopages>False</disqusaddcommentstopages>
+  <alternatefeedurl />
+  <errortitle>Ooops! An unexpected error has occurred.</errortitle>
+  <email>name@example.com</email>
+  <enabletrackbacksend>True</enabletrackbacksend>
+  <showdescriptioninpostlistforpostsbytagorcategory>False</showdescriptioninpostlistforpostsbytagorcategory>
+  <contacterrormessage>&lt;p&gt;This form does not work at the moment. Sorry for the inconvenience.&lt;/p&gt;</contacterrormessage>
+  <enablecommentsmoderation>True</enablecommentsmoderation>
+  <allowservertodownloadremotefiles>True</allowservertodownloadremotefiles>
+  <enablereferrertracking>False</enablereferrertracking>
+  <disquswebsitename />
+  <handlewwwsubdomain />
+  <commentprovider>BlogEngine</commentprovider>
+  <postsperfeed>3</postsperfeed>
+  <sendmailoncomment>True</sendmailoncomment>
+  <culture>Auto</culture>
+  <remotemaxfilesize>524288</remotemaxfilesize>
+  <syndicationformat>Rss</syndicationformat>
+  <blogrollvisibleposts>3</blogrollvisibleposts>
+  <geocodinglatitude>0</geocodinglatitude>
+  <numberofreferrerdays>1</numberofreferrerdays>
+  <israzortheme>False</israzortheme>
+  <iscommentsenabled>True</iscommentsenabled>
+  <redirecttoremovefileextension>False</redirecttoremovefileextension>
+  <searchdefaulttext>Enter search term or APML url</searchdefaulttext>
+  <smtpserverport>25</smtpserverport>
+  <smtppassword>password</smtppassword>
+  <iscommentnestingenabled>True</iscommentnestingenabled>
+  <timestamppostlinks>False</timestamppostlinks>
+  <avatar>identicon</avatar>
+  <timezoneid>UTC</timezoneid>
+  <enablerecaptchaoncontactform>False</enablerecaptchaoncontactform>
+  <enableoptimization>False</enableoptimization>
+  <name>Name of the blog</name>
+  <enablepingbackreceive>True</enablepingbackreceive>
+  <showlivepreview>True</showlivepreview>
+  <facebookappid />
+  <searchcommentlabeltext>Include comments in search</searchcommentlabeltext>
+  <enablerelatedposts>True</enablerelatedposts>
+  <enableenclosures>False</enableenclosures>
+  <authorname>My name</authorname>
+  <descriptioncharacters>300</descriptioncharacters>
+  <enablessl>False</enablessl>
+  <errortext>This one's down to me! Please accept my apologies for this - I'll see to it that the developer responsible for this happening is given 20 lashes (but only after he or she has fixed this problem).</errortext>
+  <contactthankmessage>&lt;h1&gt;Thank you&lt;/h1&gt;&lt;p&gt;The message was sent.&lt;/p&gt;</contactthankmessage>
+  <descriptioncharactersforpostsbytagorcategory>0</descriptioncharactersforpostsbytagorcategory>
+  <commentreportmistakes>False</commentreportmistakes>
+  <geocodinglongitude>0</geocodinglongitude>
+  <selfregistrationinitialrole>Editors</selfregistrationinitialrole>
+  <enableselfregistration>False</enableselfregistration>
+  <blogrollupdateminutes>60</blogrollupdateminutes>
+  <securityvalidationkey>ede308e723ae42aab289b04350133355accaa0f0da9743e7a8529a0cbbf5bceee5bcafc4eac741f68d2d63d80e21bf8e</securityvalidationkey>
+  <requiresslmetaweblogapi>False</requiresslmetaweblogapi>
+  <enablerating>True</enablerating>
+  <enablecommentsearch>True</enablecommentsearch>
+</settings>

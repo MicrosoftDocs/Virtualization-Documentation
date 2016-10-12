@@ -1,0 +1,1548 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+	<!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+	<xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+		<xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+		<xsd:element name="root" msdata:IsDataSet="true">
+			<xsd:complexType>
+				<xsd:choice maxOccurs="unbounded">
+					<xsd:element name="metadata">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="value" type="xsd:string" minOccurs="0" />
+							</xsd:sequence>
+							<xsd:attribute name="name" use="required" type="xsd:string" />
+							<xsd:attribute name="type" type="xsd:string" />
+							<xsd:attribute name="mimetype" type="xsd:string" />
+							<xsd:attribute ref="xml:space" />
+						</xsd:complexType>
+					</xsd:element>
+					<xsd:element name="assembly">
+						<xsd:complexType>
+							<xsd:attribute name="alias" type="xsd:string" />
+							<xsd:attribute name="name" type="xsd:string" />
+						</xsd:complexType>
+					</xsd:element>
+					<xsd:element name="data">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+								<xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+							</xsd:sequence>
+							<xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+							<xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+							<xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+							<xsd:attribute ref="xml:space" />
+						</xsd:complexType>
+					</xsd:element>
+					<xsd:element name="resheader">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+							</xsd:sequence>
+							<xsd:attribute name="name" type="xsd:string" use="required" />
+						</xsd:complexType>
+					</xsd:element>
+				</xsd:choice>
+			</xsd:complexType>
+		</xsd:element>
+	</xsd:schema>
+	<resheader name="resmimetype">
+		<value>text/microsoft-resx</value>
+	</resheader>
+	<resheader name="version">
+		<value>2.0</value>
+	</resheader>
+	<resheader name="reader">
+		<value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+	</resheader>
+	<resheader name="writer">
+		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+	</resheader>
+	<data name="add" xml:space="preserve">
+    <value>Προσθήκη</value>
+  </data>
+	<data name="add_Entry" xml:space="preserve">
+    <value>Νέα εγγραφή</value>
+  </data>
+	<data name="addComment" xml:space="preserve">
+    <value>Νέο σχόλιο</value>
+  </data>
+	<data name="addCustomCodeToHeader" xml:space="preserve">
+    <value>Προσθήκη κώδικα στη κεφαλίδα (Head Section) του HTML</value>
+  </data>
+	<data name="administrationPanel" xml:space="preserve">
+    <value>Πίνακας Ελέγχου</value>
+  </data>
+	<data name="advanced" xml:space="preserve">
+    <value>Προηγμένες</value>
+  </data>
+	<data name="archive" xml:space="preserve">
+    <value>Αρχείο</value>
+  </data>
+	<data name="areYouSure" xml:space="preserve">
+    <value>Είστε σίγουροι όιτ θέλετε να {0} {1};</value>
+  </data>
+	<data name="author" xml:space="preserve">
+    <value>Συντάκτης</value>
+  </data>
+	<data name="basic" xml:space="preserve">
+    <value>Βασικό</value>
+  </data>
+	<data name="blogroll" xml:space="preserve">
+    <value>Blogroll</value>
+  </data>
+	<data name="buttonText" xml:space="preserve">
+    <value>Κείμενο κουμπιού</value>
+  </data>
+	<data name="categories" xml:space="preserve">
+    <value>Κατηγορίες</value>
+  </data>
+	<data name="category" xml:space="preserve">
+    <value>Κατηγορία</value>
+  </data>
+	<data name="closeCommetsAfter" xml:space="preserve">
+    <value>Απενεργοποίηση σχολίων μετά από</value>
+  </data>
+	<data name="comment" xml:space="preserve">
+    <value>Σχόλιο</value>
+  </data>
+	<data name="commentLabelText" xml:space="preserve">
+    <value>Κείμενο ετικέτας σχόλιων</value>
+  </data>
+	<data name="comments" xml:space="preserve">
+    <value>Σχόλια</value>
+  </data>
+	<data name="contact" xml:space="preserve">
+    <value>Επικοινωνία</value>
+  </data>
+	<data name="contactForm" xml:space="preserve">
+    <value>Φόρμα επικοινωνίας</value>
+  </data>
+	<data name="controls" xml:space="preserve">
+    <value>Controls</value>
+  </data>
+	<data name="country" xml:space="preserve">
+    <value>Χώρα</value>
+  </data>
+	<data name="createNewUser" xml:space="preserve">
+    <value>Δημιουργία νέου χρήστη</value>
+  </data>
+	<data name="currentlyRated" xml:space="preserve">
+    <value>Έχει βαθμολογηθεί με {0} από {1} ανθρώπους</value>
+  </data>
+	<data name="date" xml:space="preserve">
+    <value>Ημερομηνία</value>
+  </data>
+	<data name="defaultFeedOutput" xml:space="preserve">
+    <value>Προεπιλεγμένο feed output</value>
+  </data>
+	<data name="defaultTextShownInSearchField" xml:space="preserve">
+    <value>Το προεπιλεγμένο κείμενο που θα φαίνεται στο πεδίο αναζήτησης R</value>
+  </data>
+	<data name="delete" xml:space="preserve">
+    <value>Διαγραφή</value>
+  </data>
+	<data name="description" xml:space="preserve">
+    <value>Περιγραφή</value>
+  </data>
+	<data name="displayCommentsOnRecentPosts" xml:space="preserve">
+    <value>Εμφάνιση σχόλιων</value>
+  </data>
+	<data name="displayRatingsOnRecentPosts" xml:space="preserve">
+    <value>Εμφάνιση βαθμολογίας</value>
+  </data>
+	<data name="edit" xml:space="preserve">
+    <value>Επεξεργασία</value>
+  </data>
+	<data name="email" xml:space="preserve">
+    <value>E-mail</value>
+  </data>
+	<data name="emailAddress" xml:space="preserve">
+    <value>Διεύθυνση E-mail</value>
+  </data>
+	<data name="enableComments" xml:space="preserve">
+    <value>Ενεργοποίηση σχολίων</value>
+  </data>
+	<data name="enableCommentsDescription" xml:space="preserve">
+    <value>Εάν τα σχόλια είναι απενεργοποιημένα, τότε κανείς δεν μπορεί να γράψει σχόλια σε οποιοδήποτε δημοσίευση.</value>
+  </data>
+	<data name="enableCommentSearch" xml:space="preserve">
+    <value>Ενεργοποίηση αναζήτησης στα σχόλια</value>
+  </data>
+	<data name="enableHttpCompression" xml:space="preserve">
+    <value>Ενεργοποίηση συμπίεσης HTTP</value>
+  </data>
+	<data name="enableHttpCompressionDescription" xml:space="preserve">
+    <value>Κάνει τις σελίδες να φορτώνουν ταχύτερα (Συνίστατε)</value>
+  </data>
+	<data name="enableOpenSearch" xml:space="preserve">
+    <value>Ενεργοποίηση OpenSearch</value>
+  </data>
+	<data name="enableOpenSearchDescription" xml:space="preserve">
+    <value>Προσθέτει τη δυνατότητα αναζήτησης σε όλους του νέους browsers (Συνίσταται)</value>
+  </data>
+	<data name="enableReferrerTracking" xml:space="preserve">
+    <value>Ενεργοποίηση αναφοράς πηγής</value>
+  </data>
+	<data name="enableSearchHighlight" xml:space="preserve">
+    <value>Ενεργοποίηση υπογράμμισης αναζήτησης</value>
+  </data>
+	<data name="enableSearchHighlightDescription" xml:space="preserve">
+    <value>Χρωματίζει τις λέξεις αναζήτησης στη σελίδα.</value>
+  </data>
+	<data name="endorsment" xml:space="preserve">
+    <value>Endorsement (bLink)</value>
+  </data>
+	<data name="formMessage" xml:space="preserve">
+    <value>Μορφή μηνύματος</value>
+  </data>
+	<data name="goToFrontPage" xml:space="preserve">
+    <value>Επιστροφή στην αρχική σελίδα</value>
+  </data>
+	<data name="htmlHeadSection" xml:space="preserve">
+    <value>Τμήμα κεφαλίδας (head) στο HTML</value>
+  </data>
+	<data name="keywords" xml:space="preserve">
+    <value>Λέξεις κλειδιά</value>
+  </data>
+	<data name="language" xml:space="preserve">
+    <value>Επιλογή γλώσσας</value>
+  </data>
+	<data name="languageCode" xml:space="preserve">
+    <value>Κωδικός γλώσσας</value>
+  </data>
+	<data name="latitude" xml:space="preserve">
+    <value>Γεωγραφικό πλάτος</value>
+  </data>
+	<data name="livePreview" xml:space="preserve">
+    <value>Προεπισκόπηση</value>
+  </data>
+	<data name="longtitude" xml:space="preserve">
+    <value>Γεωγραφικό μήκος</value>
+  </data>
+	<data name="maxLengthOfItems" xml:space="preserve">
+    <value>Μέγιστο μήκος των αντικειμένων</value>
+  </data>
+	<data name="message" xml:space="preserve">
+    <value>Μήνυμα</value>
+  </data>
+	<data name="more" xml:space="preserve">
+    <value>Περισσότερα</value>
+  </data>
+	<data name="name" xml:space="preserve">
+    <value>Όνομα</value>
+  </data>
+	<data name="notRatedYet" xml:space="preserve">
+    <value>Δεν έχει ακόμα βαθμολογηθεί</value>
+  </data>
+	<data name="numberOfDisplayedItems" xml:space="preserve">
+    <value># των εγγραφών που εμφανίζονται</value>
+  </data>
+	<data name="numberOfPosts" xml:space="preserve">
+    <value>Αριθμός δημοσιεύσεων</value>
+  </data>
+	<data name="pages" xml:space="preserve">
+    <value>Σελίδες</value>
+  </data>
+	<data name="password" xml:space="preserve">
+    <value>Κωδικός</value>
+  </data>
+	<data name="portNumber" xml:space="preserve">
+    <value>Αριθμός πόρτας</value>
+  </data>
+	<data name="portNumberDescription" xml:space="preserve">
+    <value>Η πόρτα 25 είναι η standard</value>
+  </data>
+	<data name="possibleSpam" xml:space="preserve">
+    <value>Πιθανό spam</value>
+  </data>
+	<data name="postPerPage" xml:space="preserve">
+    <value>Δημοσιεύσεις ανά σελίδα</value>
+  </data>
+	<data name="postsPerFeed" xml:space="preserve">
+    <value>Εγγραφές που φαίνονται στο feed</value>
+  </data>
+	<data name="publish" xml:space="preserve">
+    <value>Δημοσίευση</value>
+  </data>
+	<data name="rating" xml:space="preserve">
+    <value>Βαθμολόγηση</value>
+  </data>
+	<data name="recentPosts" xml:space="preserve">
+    <value>Πρόσφατες δημοσιεύσεις</value>
+  </data>
+	<data name="referrer" xml:space="preserve">
+    <value>Πηγή (Referrer)</value>
+  </data>
+	<data name="referrers" xml:space="preserve">
+    <value>Πηγές (Referrers)</value>
+  </data>
+	<data name="save" xml:space="preserve">
+    <value>Αποθήκευση</value>
+  </data>
+	<data name="saveComment" xml:space="preserve">
+    <value>Αποθήκευση σχόλιου</value>
+  </data>
+	<data name="savePage" xml:space="preserve">
+    <value>Αποθήκευση σελίδας</value>
+  </data>
+	<data name="savePost" xml:space="preserve">
+    <value>Αποθήκευση δημοσίευσης</value>
+  </data>
+	<data name="saveSettings" xml:space="preserve">
+    <value>Αποθήκευση ρυθμίσεων</value>
+  </data>
+	<data name="searchField" xml:space="preserve">
+    <value>Πεδίο αναζήτησης</value>
+  </data>
+	<data name="searchFieldText" xml:space="preserve">
+    <value>Κείμενο πεδίου αναζήτησης</value>
+  </data>
+	<data name="selectDay" xml:space="preserve">
+    <value>Επιλέξτε ημέρα</value>
+  </data>
+	<data name="sendCommentEmail" xml:space="preserve">
+    <value>Αποστολή σχόλιων με e-mail</value>
+  </data>
+	<data name="separateTagsWitComma" xml:space="preserve">
+    <value>Χωρίστε κάθε ετικέτα με ένα κόμμα</value>
+  </data>
+	<data name="settings" xml:space="preserve">
+    <value>Ρυθμίσεις</value>
+  </data>
+	<data name="showCountryChooser" xml:space="preserve">
+    <value>Εμφάνιση επιλογέα χώρας</value>
+  </data>
+	<data name="showCountryChooserDescription" xml:space="preserve">
+    <value>Αν η επιλογή χώρας δεν φαίνεται, τότε οι σημαίες δεν μπορούν να εμφανιστούν σε κάθε σχόλιο</value>
+  </data>
+	<data name="showEnableWebsiteInComments" xml:space="preserve">
+    <value>Need Translation:Enable Website in Comments</value>
+  </data>
+	<data name="showEnableWebsiteInCommentsDescription" xml:space="preserve">
+    <value>Need Translation:Choose whether to allow Website to be published in Comments</value>
+  </data>
+	<data name="showLivePreview" xml:space="preserve">
+    <value>Εμφάνιση προεπισκόπισης</value>
+  </data>
+	<data name="showRelatedPosts" xml:space="preserve">
+    <value>Εμφάνιση σχετικών δημοσιεύσεων</value>
+  </data>
+	<data name="subject" xml:space="preserve">
+    <value>Θέμα</value>
+  </data>
+	<data name="thankYouMessage" xml:space="preserve">
+    <value>Ευχαριστήριο μήνυμα</value>
+  </data>
+	<data name="theComment" xml:space="preserve">
+    <value>το σχόλιο</value>
+  </data>
+	<data name="theme" xml:space="preserve">
+    <value>Θέμα</value>
+  </data>
+	<data name="thePost" xml:space="preserve">
+    <value>η δημοσίευση</value>
+  </data>
+	<data name="thereAreXDrafts" xml:space="preserve">
+    <value>Υπάρχουν ακόμα {0} μη δημοσιευμένες δημοσιεύσεις</value>
+  </data>
+	<data name="timezone" xml:space="preserve">
+    <value>Ζώνη ώρας</value>
+  </data>
+	<data name="title" xml:space="preserve">
+    <value>Τίτλος</value>
+  </data>
+	<data name="trimStylesheet" xml:space="preserve">
+    <value>Κόψιμο των stylesheets</value>
+  </data>
+	<data name="trimStylesheetDescription" xml:space="preserve">
+    <value>Κάνει όλα τα stylesheets, από οποιοδήποτε θέμα, μικρότερα αφαιρώντας όλους τους κενούς χαρακτήρες κατά την εκτέλεση.</value>
+  </data>
+	<data name="updateFrequenzy" xml:space="preserve">
+    <value>Συχνότητα ανανέωσης (λεπτά)</value>
+  </data>
+	<data name="uploadFile" xml:space="preserve">
+    <value>Ανέβασμα αρχείου</value>
+  </data>
+	<data name="uploadImage" xml:space="preserve">
+    <value>Ανέβασμα εικόνας</value>
+  </data>
+	<data name="userName" xml:space="preserve">
+    <value>Όνομα χρήστη</value>
+  </data>
+	<data name="users" xml:space="preserve">
+    <value>Χρήστες</value>
+  </data>
+	<data name="website" xml:space="preserve">
+    <value>Ιστοσελίδα</value>
+  </data>
+	<data name="willShowGravatar" xml:space="preserve">
+    <value>Θα φαίνεται το {0} εικονίδιο σας</value>
+  </data>
+	<data name="wrote" xml:space="preserve">
+    <value>έγραψε</value>
+  </data>
+	<data name="youAlreadyRated" xml:space="preserve">
+    <value>Έχεται ήδη βαθμολογίσει τη δημοσίευση αυτή</value>
+  </data>
+	<data name="advancedSettings" xml:space="preserve">
+		<value>Προηγμένες ρυθμίσεις</value>
+	</data>
+	<data name="alternateFeedUrl" xml:space="preserve">
+		<value>Εναλλακτική διεύθυνση feed</value>
+	</data>
+	<data name="approve" xml:space="preserve">
+		<value>Έγκριση</value>
+	</data>
+	<data name="approveallcomments" xml:space="preserve">
+		<value>Έγκριση όλων των σχολίων</value>
+	</data>
+	<data name="attachFile" xml:space="preserve">
+		<value>Επισύναψη αρχείου</value>
+	</data>
+	<data name="avatars" xml:space="preserve">
+		<value>Avatars</value>
+	</data>
+	<data name="beTheFirstToRate" xml:space="preserve">
+		<value>Γίνετε ο πρώτος που θα βαθμολογήσει αυτή τη δημοσίευση</value>
+	</data>
+	<data name="blogMLDescription" xml:space="preserve">
+		<value>Το BlogEngine.NET χρησιμοποιεί το BlogML ως format εξαγωγής. Για την εισαγωγή χρησιμοποιούνται το BlogML καθώς και RSS.</value>
+	</data>
+	<data name="combine" xml:space="preserve">
+		<value>Συνδυασμός</value>
+	</data>
+	<data name="commentsAreClosed" xml:space="preserve">
+		<value>Τα σχόλια έχουν κλείσει</value>
+	</data>
+	<data name="commentWasSaved" xml:space="preserve">
+		<value>Το σχόλιο σας αποθηκεύτηκε. Σας ευχαριστούμε για τη συμμετοχή</value>
+	</data>
+	<data name="enableAttachments" xml:space="preserve">
+		<value>Ενεργοποίηση συνημμένων</value>
+	</data>
+	<data name="enableCommentsModeration" xml:space="preserve">
+		<value>Διαχείριση σχολίων</value>
+	</data>
+	<data name="enableGravatars" xml:space="preserve">
+		<value>Ενεργοποίηση Gravatars</value>
+	</data>
+	<data name="enableRating" xml:space="preserve">
+		<value>Ενεργοποίηση βαθμολόγησης δημοσιεύσεων</value>
+	</data>
+	<data name="enableSsl" xml:space="preserve">
+		<value>Ενεργοποίηση SSL</value>
+	</data>
+	<data name="enforce" xml:space="preserve">
+		<value>Επιβολή</value>
+	</data>
+	<data name="export" xml:space="preserve">
+		<value>Εξαγωγή</value>
+	</data>
+	<data name="handleWwwSubdomain" xml:space="preserve">
+		<value>Πολιτική www subdomain</value>
+	</data>
+	<data name="home" xml:space="preserve">
+		<value>Αρχική Σελίδα</value>
+	</data>
+	<data name="ignore" xml:space="preserve">
+		<value>Παράβλεψη</value>
+	</data>
+	<data name="import" xml:space="preserve">
+		<value>Εισαγωγή</value>
+	</data>
+	<data name="isFrontPage" xml:space="preserve">
+		<value>Είναι αρχική σελίδα</value>
+	</data>
+	<data name="monster" xml:space="preserve">
+		<value>Τέρας (Monster)</value>
+	</data>
+	<data name="none" xml:space="preserve">
+		<value>Μην εμφανίζει</value>
+	</data>
+	<data name="noParent" xml:space="preserve">
+		<value>Χωρίς γονικό</value>
+	</data>
+	<data name="notifyOnNewComments" xml:space="preserve">
+		<value>Ειδοποίησε με όταν προστίθενται νέα σχόλια</value>
+	</data>
+	<data name="numberOfComments" xml:space="preserve">
+		<value>Αριθμός σχολίων</value>
+	</data>
+	<data name="page" xml:space="preserve">
+		<value>Σελίδα</value>
+	</data>
+	<data name="post" xml:space="preserve">
+		<value>Δημοσίευση</value>
+	</data>
+	<data name="posts" xml:space="preserve">
+		<value>Δημοσιεύσεις</value>
+	</data>
+	<data name="raters" xml:space="preserve">
+		<value>Βαθμολογητές</value>
+	</data>
+	<data name="recentComments" xml:space="preserve">
+		<value>Πρόσφατα σχόλια</value>
+	</data>
+	<data name="relatedPosts" xml:space="preserve">
+		<value>Σχετικές δημοσιεύσεις</value>
+	</data>
+	<data name="remove" xml:space="preserve">
+		<value>Αφαίρεση</value>
+	</data>
+	<data name="search" xml:space="preserve">
+		<value>Αναζήτηση</value>
+	</data>
+	<data name="searchResultsFor" xml:space="preserve">
+		<value>Αποτελέσματα αναζήτησης για</value>
+	</data>
+	<data name="selectParent" xml:space="preserve">
+		<value>Επιλογή γονικού</value>
+	</data>
+	<data name="showDescriptionInPostList" xml:space="preserve">
+		<value>Εμφάνιση μόνο της περιγραφής των δημοσιεύσεων</value>
+	</data>
+	<data name="showInList" xml:space="preserve">
+		<value>Εμφάνιση σε λίστα</value>
+	</data>
+	<data name="subscribe" xml:space="preserve">
+		<value>Συνδρομή</value>
+	</data>
+	<data name="timeStampPostLinks" xml:space="preserve">
+		<value>Προσθήκη ημερομηνίας στις συνδέσεις των δημοσιεύσεων</value>
+	</data>
+	<data name="unapprovedcomments" xml:space="preserve">
+		<value>Μη εγκεκριμένα σχόλια</value>
+	</data>
+	<data name="changePassword" xml:space="preserve">
+		<value>Αλλαγή κωδικού</value>
+	</data>
+	<data name="chooseOtherName" xml:space="preserve">
+		<value>Παρακαλώ επιλέγξτε ένα άλλο όνομα</value>
+	</data>
+	<data name="emailSubjectPrefix" xml:space="preserve">
+		<value>Πρόθεμα θέματος</value>
+	</data>
+	<data name="enablePingbacks" xml:space="preserve">
+		<value>Ενεργοποίηση pingbacks</value>
+	</data>
+	<data name="enableTrackbacks" xml:space="preserve">
+		<value>Ενεργοποίηση trackbacks</value>
+	</data>
+	<data name="enterValidEmail" xml:space="preserve">
+		<value>Παρακαλώ δώστε ένα έγκυρο e-mail</value>
+	</data>
+	<data name="enterValidUrl" xml:space="preserve">
+		<value>Παρακαλώ δώστε ένα έγκυρο URL</value>
+	</data>
+	<data name="nextPost" xml:space="preserve">
+		<value>Επόμενη δημοσίευση</value>
+	</data>
+	<data name="nextPosts" xml:space="preserve">
+		<value>Επόμενες δημοσιεύσεις</value>
+	</data>
+	<data name="previousPost" xml:space="preserve">
+		<value>Προηγούμενη δημοσίευση</value>
+	</data>
+	<data name="previousPosts" xml:space="preserve">
+		<value>Προηγούμενες δημοσιεύσεις</value>
+	</data>
+	<data name="receive" xml:space="preserve">
+		<value>Λήψη</value>
+	</data>
+	<data name="required" xml:space="preserve">
+		<value>Απαιτείται</value>
+	</data>
+	<data name="savingTheComment" xml:space="preserve">
+		<value>Αποθήκευση σχολίου...</value>
+	</data>
+	<data name="send" xml:space="preserve">
+		<value>Αποστολή</value>
+	</data>
+	<data name="view" xml:space="preserve">
+		<value>Εμφάνιση</value>
+	</data>
+	<data name="firstName" xml:space="preserve">
+		<value>Όνομα</value>
+	</data>
+	<data name="aboutMe" xml:space="preserve">
+		<value>Για Εμένα</value>
+	</data>
+	<data name="birthday" xml:space="preserve">
+		<value>Γενέθλια</value>
+	</data>
+	<data name="cityTown" xml:space="preserve">
+		<value>Πόλη</value>
+	</data>
+	<data name="fullName" xml:space="preserve">
+		<value>Πλήρες Όνομα</value>
+	</data>
+	<data name="gender" xml:space="preserve">
+		<value>Φύλο</value>
+	</data>
+	<data name="industry" xml:space="preserve">
+		<value>Βιομηχανία</value>
+	</data>
+	<data name="interests" xml:space="preserve">
+		<value>Ενδιαφέροντα</value>
+	</data>
+	<data name="isPrivate" xml:space="preserve">
+		<value>Είναι Ιδιωτικό</value>
+	</data>
+	<data name="lastName" xml:space="preserve">
+		<value>Επώνυμο</value>
+	</data>
+	<data name="occupation" xml:space="preserve">
+		<value>Επάγγελμα</value>
+	</data>
+	<data name="regionState" xml:space="preserve">
+		<value>Περιοχή/Περιφέρεια</value>
+	</data>
+	<data name="saveProfile" xml:space="preserve">
+		<value>Αποθήκευση Προφίλ</value>
+	</data>
+	<data name="company" xml:space="preserve">
+		<value>Εταιρεία</value>
+	</data>
+	<data name="middleName" xml:space="preserve">
+		<value>Μεσσαίο Όνομα</value>
+	</data>
+	<data name="phoneFax" xml:space="preserve">
+		<value>Τηλέφωνο Φαξ</value>
+	</data>
+	<data name="phoneMain" xml:space="preserve">
+		<value>Βασικό Τηλέφωνο</value>
+	</data>
+	<data name="phoneMobile" xml:space="preserve">
+		<value>Κινητό Τηλέφωνο</value>
+	</data>
+	<data name="profile" xml:space="preserve">
+		<value>Προφίλ</value>
+	</data>
+	<data name="calendar" xml:space="preserve">
+		<value>Ημερολόγιο</value>
+	</data>
+	<data name="cancel" xml:space="preserve">
+		<value>Ακύρωση</value>
+	</data>
+	<data name="login" xml:space="preserve">
+		<value>Σύνδεση</value>
+	</data>
+	<data name="logoff" xml:space="preserve">
+		<value>Αποσύνδεση</value>
+	</data>
+	<data name="replyTo" xml:space="preserve">
+		<value>Σε απάντηση του</value>
+	</data>
+	<data name="replyToThis" xml:space="preserve">
+		<value>Απάντηση</value>
+	</data>
+	<data name="filter" xml:space="preserve">
+		<value>Φιλτράρισμα</value>
+	</data>
+	<data name="filterByApml" xml:space="preserve">
+		<value>Φιλτράρισμα ανά APML</value>
+	</data>
+	<data name="enableCommentNesting" xml:space="preserve">
+		<value>Ενεργοποίηση ένθετων σχολίων</value>
+	</data>
+	<data name="deleteKeepReplies" xml:space="preserve">
+		<value>Διαγράψτε αυτό, αλλά κρατήστε τις απαντήσεις</value>
+	</data>
+	<data name="deletePlusReplies" xml:space="preserve">
+		<value>Διαγράψτε αυτό και τις απαντήσεις</value>
+	</data>
+	<data name="published" xml:space="preserve">
+		<value>Δημοσιευμένο</value>
+	</data>
+	<data name="editPage" xml:space="preserve">
+		<value>Επεξεργασία σελίδας</value>
+	</data>
+	<data name="goToPage" xml:space="preserve">
+		<value>Μετάβαση στη σελίδα</value>
+	</data>
+	<data name="goToPost" xml:space="preserve">
+		<value>Μετάβαση στη δημοσίευση</value>
+	</data>
+	<data name="options" xml:space="preserve">
+		<value>Επιλογές</value>
+	</data>
+	<data name="editExistingBlog" xml:space="preserve">
+		<value>Επεξεργασία ιστολόγιου</value>
+	</data>
+	<data name="active" xml:space="preserve">
+		<value>Ενεργό</value>
+	</data>
+	<data name="numberOfCharacters" xml:space="preserve">
+		<value>Αριθμός χαρακτήρων</value>
+	</data>
+	<data name="move" xml:space="preserve">
+		<value>Μετακίνηση</value>
+	</data>
+	<data name="moveWidgetTo" xml:space="preserve">
+		<value>Μετακίνηση του Widget Σε</value>
+	</data>
+	<data name="allow" xml:space="preserve">
+		<value>Επιτρέψτε</value>
+	</data>
+	<data name="approved" xml:space="preserve">
+		<value>Εγκεκριμένο</value>
+	</data>
+	<data name="block" xml:space="preserve">
+		<value>Αποκλεισμός</value>
+	</data>
+	<data name="commentsBlockOnDelete" xml:space="preserve">
+		<value>Αποκλεισμός κατά τη διαγραφή</value>
+	</data>
+	<data name="commentsPerPage" xml:space="preserve">
+		<value>Σχόλια ανά σελίδα</value>
+	</data>
+	<data name="contains" xml:space="preserve">
+		<value>Περιέχει</value>
+	</data>
+	<data name="days" xml:space="preserve">
+		<value>ημέρες</value>
+	</data>
+	<data name="enabled" xml:space="preserve">
+		<value>Ενεργοποιημένο</value>
+	</data>
+	<data name="rules" xml:space="preserve">
+		<value>Κανόνες</value>
+	</data>
+	<data name="inbox" xml:space="preserve">
+		<value>Εισερχόμενα</value>
+	</data>
+	<data name="confirmNewPassword" xml:space="preserve">
+		<value>Επιβεβαίωση Νέου Κωδικού Πρόσβασης</value>
+	</data>
+	<data name="confirmPassword" xml:space="preserve">
+		<value>Επιβεβαίωση Κωδικού Πρόσβασης</value>
+	</data>
+	<data name="createAccount" xml:space="preserve">
+		<value>Δημιουργία Λογαριασμού</value>
+	</data>
+	<data name="createUser" xml:space="preserve">
+		<value>Δημιουργία Χρήστη</value>
+	</data>
+	<data name="createNow" xml:space="preserve">
+		<value>Δημιουργήστε τώρα!</value>
+	</data>
+	<data name="deleteConfirm" xml:space="preserve">
+		<value>Είστε σίγουροι ότι θέλετε να διαγράψετε αυτό το σχόλιο;</value>
+	</data>
+	<data name="disabled" xml:space="preserve">
+		<value>Απενεργοποιημένο</value>
+	</data>
+	<data name="dontHaveAccount" xml:space="preserve">
+		<value>Δεν έχετε ακόμα λογαριασμό;</value>
+	</data>
+	<data name="forgotPassword" xml:space="preserve">
+		<value>Ξεχάσατε τον Κωδικό Πρόσβασης;</value>
+	</data>
+	<data name="isAlreadyExists" xml:space="preserve">
+		<value>υπάρχει ήδη</value>
+	</data>
+	<data name="isRequiredField" xml:space="preserve">
+		<value>είναι απαιτούμενο πεδίο</value>
+	</data>
+	<data name="loginNow" xml:space="preserve">
+		<value>Σύνδεση τώρα!</value>
+	</data>
+	<data name="makeDonation" xml:space="preserve">
+		<value>Κάντε μια δωρεά</value>
+	</data>
+	<data name="myProfile" xml:space="preserve">
+		<value>Το Προφίλ μου</value>
+	</data>
+	<data name="never" xml:space="preserve">
+		<value>Ποτέ</value>
+	</data>
+	<data name="newPassword" xml:space="preserve">
+		<value>Νέος Κωδικός Πρόσβασης</value>
+	</data>
+	<data name="oldPassword" xml:space="preserve">
+		<value>Παλαιός Κωδικός Πρόσβασης</value>
+	</data>
+	<data name="or" xml:space="preserve">
+		<value>ή</value>
+	</data>
+	<data name="passwordRetrieval" xml:space="preserve">
+		<value>Ανάκτηση Κωδικού Πρόσβασης</value>
+	</data>
+	<data name="rememberMe" xml:space="preserve">
+		<value>Κρατήσε με συνδεδεμένο</value>
+	</data>
+	<data name="returnToBlog" xml:space="preserve">
+		<value>Επιστροφή στο ιστολόγιο</value>
+	</data>
+	<data name="theValuesSaved" xml:space="preserve">
+		<value>Οι τιμές αποθηκεύτηκαν</value>
+	</data>
+	<data name="addNewRole" xml:space="preserve">
+		<value>Προσθήκη νέου ρόλου</value>
+	</data>
+	<data name="areYouSureDeleteRow" xml:space="preserve">
+		<value>Είστε σίγουροι ότι θέλετε να διαγράψετε αυτή τη σειρά;</value>
+	</data>
+	<data name="categoryAlreadyExists" xml:space="preserve">
+		<value>Η κατηγορία υπάρχει ήδη</value>
+	</data>
+	<data name="createRole" xml:space="preserve">
+		<value>Δημιουργία Ρόλου</value>
+	</data>
+	<data name="extractFromTitle" xml:space="preserve">
+		<value>Εξαγωγή από τον τίτλο</value>
+	</data>
+	<data name="invalid" xml:space="preserve">
+		<value>Άκυρο</value>
+	</data>
+	<data name="download" xml:space="preserve">
+		<value>Λήψη</value>
+	</data>
+	<data name="enterDate" xml:space="preserve">
+		<value>Παρακαλώ εισάγετε μια ημερομηνία (yyyy-mm-dd hh:mm)</value>
+	</data>
+	<data name="enterTitle" xml:space="preserve">
+		<value>Παρακαλώ εισάγετε ένα τίτλο</value>
+	</data>
+	<data name="enterValidDate" xml:space="preserve">
+		<value>Παρακαλώ εισάγετε μια έγκυρη ημερομηνία (yyyy-mm-dd hh:mm)</value>
+	</data>
+	<data name="enterValidName" xml:space="preserve">
+		<value>Παρακαλώ εισάγετε ένα έγκυρο όνομα</value>
+	</data>
+	<data name="enterValidNumber" xml:space="preserve">
+		<value>Παρακαλώ εισάγετε έναν έγκυρο αριθμό</value>
+	</data>
+	<data name="enterValidNumberPositiveNegative" xml:space="preserve">
+		<value>Προσδιορίστε έναν έγκυρο αριθμό (θετικό ή αρνητικό)</value>
+	</data>
+	<data name="importFromBlogML" xml:space="preserve">
+		<value>Εισαγωγή από BlogML</value>
+	</data>
+	<data name="noValidNumber" xml:space="preserve">
+		<value>Ο αριθμός δεν είναι έγκυρος</value>
+	</data>
+	<data name="preview" xml:space="preserve">
+		<value>Προεπισκόπηση</value>
+	</data>
+	<data name="roles" xml:space="preserve">
+		<value>Ρόλοι</value>
+	</data>
+	<data name="testEmailSettings" xml:space="preserve">
+		<value>Έλεγχος των ρυθμίσεων e-mail</value>
+	</data>
+	<data name="upload" xml:space="preserve">
+		<value>Ανέβασμα</value>
+	</data>
+	<data name="usernameAlreadyTaken" xml:space="preserve">
+		<value>Το Ψευδώνυμο χρησιμοποιείται ήδη</value>
+	</data>
+	<data name="Referrers_BindTable_Total" xml:space="preserve">
+		<value>Σύνολο</value>
+	</data>
+	<data name="Configuration_BtnTestSmtpClick_Test_successfull" xml:space="preserve">
+		<value>Επιτυχημένο τεστ</value>
+	</data>
+	<data name="cancelReply" xml:space="preserve">
+		<value>Ακύρωση απάντησης στο σχόλιο</value>
+	</data>
+	<data name="alwaysTrust" xml:space="preserve">
+		<value>Να εμπιστεύεστε πάντα, όταν ο χρήστης είναι πιστοποιημένος</value>
+	</data>
+	<data name="authorApproved" xml:space="preserve">
+		<value>σχόλια αυτού του συγγραφέα έχουν εγκριθεί</value>
+	</data>
+	<data name="mistakes" xml:space="preserve">
+		<value>Λάθη</value>
+	</data>
+	<data name="priority" xml:space="preserve">
+		<value>Προτεραιότητα</value>
+	</data>
+	<data name="resetCounters" xml:space="preserve">
+		<value>Επαναφορά Μετρητών</value>
+	</data>
+	<data name="addEditPost" xml:space="preserve">
+		<value>Προσθήκη/επεξεργασίας δημοσίευσης</value>
+	</data>
+	<data name="addNewCategory" xml:space="preserve">
+		<value>Προσθήκη νέας κατηγορίας</value>
+	</data>
+	<data name="insertImage" xml:space="preserve">
+		<value>Εισαγωγή εικόνας</value>
+	</data>
+	<data name="insertVideo" xml:space="preserve">
+		<value>Εισαγωγή video</value>
+	</data>
+	<data name="show" xml:space="preserve">
+		<value>Εμφάνιση</value>
+	</data>
+	<data name="manually" xml:space="preserve">
+		<value>Χειροκίνητα</value>
+	</data>
+	<data name="enable" xml:space="preserve">
+		<value>Ενεργοποίηση</value>
+	</data>
+	<data name="otherSettings" xml:space="preserve">
+		<value>Άλλες ρυθμίσεις</value>
+	</data>
+	<data name="available" xml:space="preserve">
+		<value>Διαθέσιμα</value>
+	</data>
+	<data name="downloads" xml:space="preserve">
+		<value>Λήψεις</value>
+	</data>
+	<data name="newest" xml:space="preserve">
+		<value>Νεότερα</value>
+	</data>
+	<data name="orderBy" xml:space="preserve">
+		<value>Ταξινόμηση κατά</value>
+	</data>
+	<data name="selectedCommentDeleted" xml:space="preserve">
+		<value>Τα επιλεγμένα σχόλια διαγράφηκαν</value>
+	</data>
+	<data name="selectedCommentRejected" xml:space="preserve">
+		<value>Τα επιλεγμένα σχόλια απορρίφθηκαν</value>
+	</data>
+	<data name="selectedCommentRestored" xml:space="preserve">
+		<value>Τα επιλεγμένα σχόλια αποκαταστάθηκαν</value>
+	</data>
+	<data name="tagIsRequired" xml:space="preserve">
+		<value>Το Tag είναι υποχρεωτικό πεδίο.</value>
+	</data>
+	<data name="userWithEmailExists" xml:space="preserve">
+		<value>Ο Χρήστης με αυτό το email υπάρχει ήδη</value>
+	</data>
+	<data name="excerpt" xml:space="preserve">
+		<value>Περίληψη (προαιρετικά)</value>
+	</data>
+	<data name="quickAddNewCategory" xml:space="preserve">
+		<value>Γρήγορη προσθήκη νέας κατηγορίας</value>
+	</data>
+	<data name="setPublishDate" xml:space="preserve">
+		<value>Δώστε Ημερομηνία δημοσίευσης</value>
+	</data>
+	<data name="uploadVideo" xml:space="preserve">
+		<value>Επιλέξτε το αρχείο βίντεο (MP4, WMV, FLV, OGG, WebM) ή ήχου (MP3) που θέλετε να ανεβάσετε</value>
+	</data>
+	<data name="enablePasswordReset" xml:space="preserve">
+		<value>Ενεργοποίηση Επαναφοράς Μυστικού Κωδικού</value>
+	</data>
+	<data name="addNewBlog" xml:space="preserve">
+		<value>Προσθήκη νέου ιστολογίου</value>
+	</data>
+	<data name="approvedComments" xml:space="preserve">
+		<value>Εγκεκριμένα Σχόλια</value>
+	</data>
+	<data name="disable" xml:space="preserve">
+		<value>Απενεργοποίηση</value>
+	</data>
+	<data name="drafts" xml:space="preserve">
+		<value>Πρόχειρα</value>
+	</data>
+	<data name="pending" xml:space="preserve">
+		<value>Εν αναμονή</value>
+	</data>
+	<data name="viewSource" xml:space="preserve">
+		<value>Εμφάνιση κώδικα</value>
+	</data>
+	<data name="addNewUser" xml:space="preserve">
+		<value>Προσθήκη νέου χρήστη</value>
+	</data>
+	<data name="appearance" xml:space="preserve">
+		<value>Εμφάνιση</value>
+	</data>
+	<data name="newUserRoles" xml:space="preserve">
+		<value>Ρόλοι Νέου χρήστη</value>
+	</data>
+	<data name="toDisableSetTo0" xml:space="preserve">
+		<value>Για απενεργοποίηση, δώστε "0"</value>
+	</data>
+	<data name="passwordAndConfirmPasswordMismatch" xml:space="preserve">
+		<value>Ο Κωδικός Πρόσβασης και ο Κωδικός Επιβεβαίωσης δεν ταιριάζουν</value>
+	</data>
+	<data name="passwordIsRequried" xml:space="preserve">
+		<value>Ο Κωδικός Πρόσβασης είναι υποχρεωτικός</value>
+	</data>
+	<data name="passwordAndConfirmPasswordIsMatch" xml:space="preserve">
+		<value>Ο Νέος Κωδικός Πρόσβασης και ο Κωδικός Επιβεβαίωσης δεν ταιριάζουν</value>
+	</data>
+	<data name="userNameIsRequired" xml:space="preserve">
+		<value>Το Όνομα Χρήστη είναι υποχρεωτικό</value>
+	</data>
+	<data name="addNewPage" xml:space="preserve">
+		<value>Προσθήκη νέας σελίδας</value>
+	</data>
+	<data name="unapproved" xml:space="preserve">
+		<value>Μη εγκεκριμένο</value>
+	</data>
+	<data name="viewAll" xml:space="preserve">
+		<value>Εμφάνιση όλων</value>
+	</data>
+	<data name="writeNewPost" xml:space="preserve">
+		<value>Γράψτε νέα δημοσίευση</value>
+	</data>
+	<data name="commentsDeleted" xml:space="preserve">
+		<value>Τα Σχόλια διαγράφηκαν</value>
+	</data>
+	<data name="pageDeleted" xml:space="preserve">
+		<value>Η Σελίδα διαγράφηκε</value>
+	</data>
+	<data name="postDeleted" xml:space="preserve">
+		<value>Η δημοσίευση διαγράφηκε</value>
+	</data>
+	<data name="profileUpdated" xml:space="preserve">
+		<value>Το Προφίλ {0} ενημερώθηκε</value>
+	</data>
+	<data name="commentWaitingModeration" xml:space="preserve">
+		<value>Σας ευχαριστούμε για το σχόλιο. Το σχόλιο σας τώρα περιμένει έγκριση</value>
+	</data>
+	<data name="requireSslForMetaWeblogApi" xml:space="preserve">
+		<value>Απαιτείται SSL για MetaWeblog API</value>
+	</data>
+	<data name="requireSslForMetaWeblogApiDescription" xml:space="preserve">
+		<value>Επιβολή της χρήσης SSL όταν γίνεται επικοινωνία με το MetaWeblog API</value>
+	</data>
+	<data name="compressWebResource" xml:space="preserve">
+		<value>Συμπίεση του WebResource.axd</value>
+	</data>
+	<data name="useBlogNameInPageTitles" xml:space="preserve">
+		<value>Χρησιμοποιήση του ονόματος του blog στους τίτλους των σελίδων</value>
+	</data>
+	<data name="uncategorized" xml:space="preserve">
+		<value>Χωρίς κατηγορία</value>
+	</data>
+	<data name="enableCommentNestingDescription" xml:space="preserve">
+		<value>Αυτό λειτουργεί μόνο αν το υποστηρίζει το θέμα.</value>
+	</data>
+	<data name="replyToBase" xml:space="preserve">
+		<value>η αρχική δημοσίευση</value>
+	</data>
+	<data name="ratingHasBeenRegistered" xml:space="preserve">
+		<value>Η βαθμολογία σας έχει καταχωρηθεί. Σας ευχαριστούμε!</value>
+	</data>
+	<data name="numberOfDaysToKeep" xml:space="preserve">
+		<value>Αριθμός ημερών που θα διατηρηθεί</value>
+	</data>
+	<data name="accuracy" xml:space="preserve">
+		<value>Ακρίβεια</value>
+	</data>
+	<data name="addFilter" xml:space="preserve">
+		<value>Προσθήκη Φίλτρου</value>
+	</data>
+	<data name="addToWhiteList" xml:space="preserve">
+		<value>Προσθήκη στη λευκή λίστα, αν τουλάχιστον</value>
+	</data>
+	<data name="authorBlocked" xml:space="preserve">
+		<value>Αποκλεισμός συγγραφέα, αν το σχόλιο διεγραφεί</value>
+	</data>
+	<data name="authorRejected" xml:space="preserve">
+		<value>τα σχόλια αυτού του συγγραφέα έχουν αποριφθεί</value>
+	</data>
+	<data name="eqls" xml:space="preserve">
+		<value>Ίσο με</value>
+	</data>
+	<data name="up" xml:space="preserve">
+		<value>Πάνω</value>
+	</data>
+	<data name="all" xml:space="preserve">
+		<value>Όλα</value>
+	</data>
+	<data name="emailIsInvalid" xml:space="preserve">
+		<value>Το Email δεν είναι έγκυρο</value>
+	</data>
+	<data name="emailIsRequired" xml:space="preserve">
+		<value>Το Email είναι υποχρεωτικό</value>
+	</data>
+	<data name="newPasswordIsRequired" xml:space="preserve">
+		<value>Ο νεός κωδικός πρόσβασης είναι υποχρεωτικός</value>
+	</data>
+	<data name="oldPasswordIsRequired" xml:space="preserve">
+		<value>Ο παλαιός κωδικός πρόσβασης είναι υποχρεωτικός</value>
+	</data>
+	<data name="filters" xml:space="preserve">
+		<value>Φίλτρα</value>
+	</data>
+	<data name="down" xml:space="preserve">
+		<value>Κάτω</value>
+	</data>
+	<data name="select" xml:space="preserve">
+		<value>Επιλέξτε</value>
+	</data>
+	<data name="reject" xml:space="preserve">
+		<value>Απόρριψη</value>
+	</data>
+	<data name="restore" xml:space="preserve">
+		<value>Επαναφορά</value>
+	</data>
+	<data name="selectedComments" xml:space="preserve">
+		<value>επιλεγμένα σχόλια</value>
+	</data>
+	<data name="total" xml:space="preserve">
+		<value>Σύνολο</value>
+	</data>
+	<data name="update" xml:space="preserve">
+		<value>Ενημέρωση</value>
+	</data>
+	<data name="register" xml:space="preserve">
+		<value>Εγγραφή</value>
+	</data>
+	<data name="addCommentsToPages" xml:space="preserve">
+		<value>Προσθήκη Σχόλιων σε Σελίδες</value>
+	</data>
+	<data name="alreadyHaveAccount" xml:space="preserve">
+		<value>Έχετε ήδη λογαριασμό;</value>
+	</data>
+	<data name="applyChanges" xml:space="preserve">
+		<value>Εφαρμογή αλλαγών</value>
+	</data>
+	<data name="clickToDisable" xml:space="preserve">
+		<value>Κάντε κλικ για να απενεργοποιήσετε</value>
+	</data>
+	<data name="clickToEnable" xml:space="preserve">
+		<value>Κάντε κλικ για να ενεργοποιήσετε</value>
+	</data>
+	<data name="commentsWhere" xml:space="preserve">
+		<value>σχόλια όπου</value>
+	</data>
+	<data name="passwordChangeSuccess" xml:space="preserve">
+		<value>Ο κωδικός πρόσβασής σας έχει αλλάξει με επιτυχία.</value>
+	</data>
+	<data name="status" xml:space="preserve">
+		<value>Κατάσταση</value>
+	</data>
+	<data name="version" xml:space="preserve">
+		<value>Έκδοση</value>
+	</data>
+	<data name="close" xml:space="preserve">
+		<value>Κλείσιμο</value>
+	</data>
+	<data name="specifyPingService" xml:space="preserve">
+		<value>Παρακαλώ προσδιορίστε μία υπηρεσία Ping</value>
+	</data>
+	<data name="maximumRemoteFileSizeDescription" xml:space="preserve">
+		<value>Το μέγιστο μέγεθος σε bytes των απομακρυσμένων αρχείων που ο server μπορεί να κατεβάσει. Δώστε 0 για απεριόριστα.</value>
+	</data>
+	<data name="groupByYear" xml:space="preserve">
+		<value>Ομαδοποίηση ανά χρονιά</value>
+	</data>
+	<data name="newAndConfirmPasswordMismatch" xml:space="preserve">
+		<value>Ο Νεός και ο Κωδικός Επιβεβαίωσης δεν ταιριάζουν</value>
+	</data>
+	<data name="welcome" xml:space="preserve">
+		<value>Καλώς ήλθατε</value>
+	</data>
+	<data name="notifiedPublished" xml:space="preserve">
+		<value>Ειδοποιηθείτε όταν μία νέα δημοσίευση, δημοσιευθεί.</value>
+	</data>
+	<data name="currentTheme" xml:space="preserve">
+		<value>Τρέχον Θέμα</value>
+	</data>
+	<data name="installed" xml:space="preserve">
+		<value>Εγκατεστημένο</value>
+	</data>
+	<data name="setAsCurrentTheme" xml:space="preserve">
+		<value>Ορισμός ως τρέχον θέμα</value>
+	</data>
+	<data name="themes" xml:space="preserve">
+		<value>Θέματα</value>
+	</data>
+	<data name="alphaNumeric" xml:space="preserve">
+		<value>Αλφαριθμητικό</value>
+	</data>
+	<data name="activeThemes" xml:space="preserve">
+		<value>Ενεργα Θέματα</value>
+	</data>
+	<data name="findPosition" xml:space="preserve">
+		<value>Εύρεση Θέσης</value>
+	</data>
+	<data name="Configuration_OnInit_Please_specify_a_number" xml:space="preserve">
+		<value>Παρακαλούμε να προσδιορίσετε έναν αριθμό</value>
+	</data>
+	<data name="securitySettings" xml:space="preserve">
+		<value>Ρυθμίσεις Ασφαλείας</value>
+	</data>
+	<data name="enableRecaptcha" xml:space="preserve">
+		<value>Ενεργοποίηση Recaptcha</value>
+	</data>
+	<data name="recentDatesAtTop" xml:space="preserve">
+		<value>Οι πρόσφατες ημερομηνίες στην κορυφή</value>
+	</data>
+	<data name="confirmPasswordIsRequired" xml:space="preserve">
+		<value>Επιβεβαίωση κωδικού απαιτείται</value>
+	</data>
+	<data name="emptyTrash" xml:space="preserve">
+		<value>Άδειασμα Κάδου</value>
+	</data>
+	<data name="stats" xml:space="preserve">
+		<value>Στατιστικά</value>
+	</data>
+	<data name="trash" xml:space="preserve">
+		<value>Κάδος Απορριμμάτων</value>
+	</data>
+	<data name="notAuthorized" xml:space="preserve">
+		<value>Μη εξουσιοδοτημένος.</value>
+	</data>
+	<data name="rateThisXStars" xml:space="preserve">
+		<value>Βαθμολογήστε αυτό με {0} αστέρια {1} από 5</value>
+	</data>
+	<data name="reportMistakesToService" xml:space="preserve">
+		<value>Αναφορά λαθών πίσω στην υπηρεσία</value>
+	</data>
+	<data name="developmentModeCheckboxMessage" xml:space="preserve">
+		<value>Επιλέγξτε αυτό όταν δοκιμάζετε το disqus σε τοπικό επίπεδο</value>
+	</data>
+	<data name="disqusSettings" xml:space="preserve">
+		<value>Ρυθμίσεις του Disqus</value>
+	</data>
+	<data name="passwordMinimumCharacters" xml:space="preserve">
+		<value>Κωδικός Πρόσβασης (τουλάχιστον {0} χαρακτήρες)</value>
+	</data>
+	<data name="passwordRetrievalInstructionMessage" xml:space="preserve">
+		<value>Πληκτρολογήστε τη διεύθυνση email σας στο παραπάνω πεδίο και ο κωδικός πρόσβασής θα σας αποσταλεί με email σύντομα.</value>
+	</data>
+	<data name="siteUnavailableConfirm" xml:space="preserve">
+		<value>Η Ιστοσελίδα θα είμαι ΜΗ διαθέσιμη για λίγα δευτερόλεπτα.\nΕίστε σίγουροι ότι θέλετε να συνεχίσετε;</value>
+	</data>
+	<data name="clear" xml:space="preserve">
+		<value>Καθαρισμός</value>
+	</data>
+	<data name="pingService" xml:space="preserve">
+		<value>Υπηρεσίες Ping</value>
+	</data>
+	<data name="pendingApproval" xml:space="preserve">
+		<value>Τα σχόλια θα εκκρεμούν μέχρι την έγκριση απο ένα διαχειριστή</value>
+	</data>
+	<data name="recentPendingComments" xml:space="preserve">
+		<value>Πρόσφατα σχόλια που εκκρεμούν</value>
+	</data>
+	<data name="userAlreadyExists" xml:space="preserve">
+		<value>Ο Χρήστης "{0}" υπάρχει ήδη.</value>
+	</data>
+	<data name="couldNotCreateRole" xml:space="preserve">
+		<value>Ο ρόλος δεν μπορεί να δημιουργηθεί: {0}</value>
+	</data>
+	<data name="couldNotCreateUser" xml:space="preserve">
+		<value>Ο Χρήστης δεν μπορεί να δημιουργηθεί: {0} : {1}</value>
+	</data>
+	<data name="couldNotDeleteComment" xml:space="preserve">
+		<value>Το σχόλιο δεν μπορεί να διαγραφεί: {0}</value>
+	</data>
+	<data name="couldNotDeleteComments" xml:space="preserve">
+		<value>Όλα τα σχόλια δεν μπόρεσαν να διαγραφούν: {0}</value>
+	</data>
+	<data name="couldNotDeletePage" xml:space="preserve">
+		<value>Η Σελίδα δεν μπορεί να διαγραφεί: {0}</value>
+	</data>
+	<data name="couldNotDeletePost" xml:space="preserve">
+		<value>Η δημοσίευση δεν μπορεί να διαγραφεί: {0}</value>
+	</data>
+	<data name="couldNotDeleteRole" xml:space="preserve">
+		<value>Ο ρόλος δεν μπορεί να διαγραφεί: {0}</value>
+	</data>
+	<data name="couldNotDeleteTag" xml:space="preserve">
+		<value>Το tag δεν μπορεί να διαγραφεί: {0}</value>
+	</data>
+	<data name="couldNotDeleteUser" xml:space="preserve">
+		<value>Ο χρήστης δεν μπορεί να διαγραφεί: {0}</value>
+	</data>
+	<data name="couldNotUpdateProfile" xml:space="preserve">
+		<value>Το προφίλ δεν μπορεί να ενημερωθεί: {0}</value>
+	</data>
+	<data name="couldNotUpdateRole" xml:space="preserve">
+		<value>Ο ρόλος δεν μπορεί να ενημερωθεί: {0}</value>
+	</data>
+	<data name="couldNotUpdateTag" xml:space="preserve">
+		<value>Το tag δεν μπορεί να ενημερωθεί: {0}</value>
+	</data>
+	<data name="couldNotUpdateUser" xml:space="preserve">
+		<value>Ο χρήστης δεν μπορεί να ενημερωθεί: {0}</value>
+	</data>
+	<data name="rightsUpdatedForRole" xml:space="preserve">
+		<value>Τα δικαιώματα για το ρόλο "{0}" ενημερώθηκαν</value>
+	</data>
+	<data name="roleAlreadyExists" xml:space="preserve">
+		<value>Ο ρόλος "{0}" υπάρχει ήδη</value>
+	</data>
+	<data name="roleHasBeenCreated" xml:space="preserve">
+		<value>Ο ρόλος "{0}" δημιουργήθηκε</value>
+	</data>
+	<data name="roleHasBeenDeleted" xml:space="preserve">
+		<value>Ο ρόλος "{0}" διαγράφηκε</value>
+	</data>
+	<data name="roleUpdatedFromTo" xml:space="preserve">
+		<value>Ο ρόλος ενημερώθηκε από "{0}" σε "{1}"</value>
+	</data>
+	<data name="tagChangedFromTo" xml:space="preserve">
+		<value>Το Tag ενημερώθηκε από "{0}" σε "{1}"</value>
+	</data>
+	<data name="tagHasBeenDeleted" xml:space="preserve">
+		<value>Το Tag "{0}" διαγράφηκε</value>
+	</data>
+	<data name="userHasBeenCreated" xml:space="preserve">
+		<value>Ο χρήστης "{0}" δημιουργήθηκε</value>
+	</data>
+	<data name="userHasBeenDeleted" xml:space="preserve">
+		<value>Ο χρήστης "{0}" διαγράφηκε</value>
+	</data>
+	<data name="userUpdated" xml:space="preserve">
+		<value>Ο χρήστης "{0}" ενημερώθηκε</value>
+	</data>
+	<data name="automatically" xml:space="preserve">
+		<value>Αυτόματα</value>
+	</data>
+	<data name="commentSettings" xml:space="preserve">
+		<value>Ρυθμίσεις σχόλιου</value>
+	</data>
+	<data name="turnDisqusOnOff" xml:space="preserve">
+		<value>Ενεργοποίηση ή απενεργοποίηση Disqus</value>
+	</data>
+	<data name="exportIntoBlogML" xml:space="preserve">
+		<value>Εξαγωγή περιεχομένου του blog σας σε αρχεία XML (BlogML)</value>
+	</data>
+	<data name="importFromFile" xml:space="preserve">
+		<value>Εισαγωγή απο αρχείο</value>
+	</data>
+	<data name="blogs" xml:space="preserve">
+		<value>Ιστολόγια</value>
+	</data>
+	<data name="hostName" xml:space="preserve">
+		<value>Όνομα κεντρικού υπολογιστή (προαιρετικό)</value>
+	</data>
+	<data name="acceptAnyTextBeforeHostname" xml:space="preserve">
+		<value>Αποδοχή Οποιοδήποτε κείμενου πριν από το Όνομα κεντρικού υπολογιστή</value>
+	</data>
+	<data name="pageIdRequired" xml:space="preserve">
+		<value>Το id για τη σελίδα είναι απαιτούμενο</value>
+	</data>
+	<data name="showPostNavigation" xml:space="preserve">
+		<value>Εμφάνιση συνδέσμων πλοήγησης δημοσιεύσεων</value>
+	</data>
+	<data name="commentsBlacklist" xml:space="preserve">
+		<value>Προσθήκη στη μαύρη λίστα, αν τουλάχιστον</value>
+	</data>
+	<data name="commentsUnmodApproved" xml:space="preserve">
+		<value>Εάν δεν ελέγχονται, όλα τα σχόλια θα εγκρίνονται από προεπιλογή</value>
+	</data>
+	<data name="moderation" xml:space="preserve">
+		<value>Συντονισμός</value>
+	</data>
+	<data name="moderator" xml:space="preserve">
+		<value>Συντονιστής</value>
+	</data>
+	<data name="editor" xml:space="preserve">
+		<value>Συντάκτης</value>
+	</data>
+	<data name="chooseFromExistingTags" xml:space="preserve">
+		<value>Επιλέξτε από τα υπάρχον tags</value>
+	</data>
+	<data name="clickTag" xml:space="preserve">
+		<value>Κάντε κλικ σε ένα tag:</value>
+	</data>
+	<data name="itemsPerPage" xml:space="preserve">
+		<value>Αντικείμενα/Σελίδα</value>
+	</data>
+	<data name="recaptchaConfigureReminder" xml:space="preserve">
+		<value>Βεβαιωθείτε ότι η επέκταση reCAPTCHA είναι ενεργοποιημένη και σωστά ρυθμισμένη.</value>
+	</data>
+	<data name="whitelistIpOnCommentApproval" xml:space="preserve">
+		<value>Αυτόματη προσθήκη διεύθυνση IP, στη Λευκή Λίστα, των σχολίων που εγκρίνετε.</value>
+	</data>
+	<data name="blacklistIpOnCommentRejection" xml:space="preserve">
+		<value>Αυτόματη προσθήκη διεύθυνση IP, στη Μαύρη Λίστα, των σχολίων που απορρίπτετε.</value>
+	</data>
+	<data name="userProfiles" xml:space="preserve">
+		<value>Προφίλ Χρήστη(ων)</value>
+	</data>
+	<data name="displayName" xml:space="preserve">
+		<value>Όνομα Εμφάνισης</value>
+	</data>
+	<data name="link" xml:space="preserve">
+		<value>Σύνδεσμος</value>
+	</data>
+	<data name="trustAuthenticated" xml:space="preserve">
+		<value>Εμπιστευθείτε πιστοποιημένους Συγγραφείς</value>
+	</data>
+	<data name="unmoderated" xml:space="preserve">
+		<value>Μη συντονισμένα</value>
+	</data>
+	<data name="automoderation" xml:space="preserve">
+		<value>Αυτόματος Συντονισμός</value>
+	</data>
+	<data name="moderatedByDisqus" xml:space="preserve">
+		<value>Συντονιστής: Disqus.</value>
+	</data>
+	<data name="source" xml:space="preserve">
+		<value>Πηγή</value>
+	</data>
+	<data name="showSelector" xml:space="preserve">
+		<value>Εμφάνιση επιλογέα</value>
+	</data>
+	<data name="displayNameIsRequired" xml:space="preserve">
+		<value>Το Όνομα Εμφάνισης είναι απαιτούμενο πεδίο</value>
+	</data>
+	<data name="errorApprovingComment" xml:space="preserve">
+		<value>Σφάλμα κατά την έγκριση του σχόλιου: {0}</value>
+	</data>
+	<data name="errorRejectingComment" xml:space="preserve">
+		<value>Σφάλμα κατά την απόρριψη του σχόλιου</value>
+	</data>
+	<data name="tags" xml:space="preserve">
+		<value>Ετικέτες</value>
+	</data>
+	<data name="allowRemoteFileDownloads" xml:space="preserve">
+		<value>Να επιτρέπεται η λήψη απομακρυνσμένων αρχείων</value>
+	</data>
+	<data name="remoteTimeout" xml:space="preserve">
+		<value>Ανώτατος χρόνος για την λήψη απομακρυσμένων αρχείων</value>
+	</data>
+	<data name="remoteTimeoutDescription" xml:space="preserve">
+		<value>Το μέγιστο χρονικό διάστημα (σε χιλιοστά του δευτερολέπτου), που ο διακομιστής μπορεί να ξοδέψει για το κατέβασμα απομακρυσμένων πόρων. Δώστε 0 για απεριόριστο. Η προεπιλογή είναι 30000.</value>
+	</data>
+	<data name="maximumRemoteFileSize" xml:space="preserve">
+		<value>Μέγιστο μέγεθος Απομακρυνσμένου Αρχείου</value>
+	</data>
+	<data name="minPassLengthInChars" xml:space="preserve">
+		<value>Το ελάχιστο μήκος του κωδικού πρόσβασης είναι {0} χαρακτήρες</value>
+	</data>
+	<data name="emailArgumentInvalid" xml:space="preserve">
+		<value>Το όρισμα Email είναι μη έγκυρο.</value>
+	</data>
+	<data name="idArgumentNull" xml:space="preserve">
+		<value>το όρισμα id είναι null.</value>
+	</data>
+	<data name="invalidPageId" xml:space="preserve">
+		<value>Μη έγκυρο id της σελίδας</value>
+	</data>
+	<data name="invalidPostId" xml:space="preserve">
+		<value>Μη έγκυρο id δημοσίευσης</value>
+	</data>
+	<data name="invalidRoleName" xml:space="preserve">
+		<value>Μη έγκυρο όνομα ρόλου</value>
+	</data>
+	<data name="passwordArgumentInvalid" xml:space="preserve">
+		<value>Το όρισμα του κωδικού δεν είναι έγκυρο.</value>
+	</data>
+	<data name="roleNameArgumentNull" xml:space="preserve">
+		<value>Το όρισμα roleName είναι null</value>
+	</data>
+	<data name="roleNameIsRequired" xml:space="preserve">
+		<value>Όνομα ρόλου είναι υποχρεωτικό πεδίο.</value>
+	</data>
+	<data name="userArgumentInvalid" xml:space="preserve">
+		<value>Το όρισμα του Χρήστη δεν είναι έγκυρο.</value>
+	</data>
+	<data name="valsArgumentNull" xml:space="preserve">
+		<value>Το όρισμα vals είναι null</value>
+	</data>
+	<data name="requiredPasswordLength" xml:space="preserve">
+		<value>Οι νέοι κωδικοί πρόσβασης πρέπει να είναι τουλάχιστον {0} χαρακτήρες.</value>
+	</data>
+	<data name="couldNotDeleteBlog" xml:space="preserve">
+		<value>Το Ιστολόγιο δεν μπορεί να διαγραφεί: {0}</value>
+	</data>
+	<data name="blogDeleted" xml:space="preserve">
+		<value>Το Ιστολόγιο "{0}" διαγράφηκε</value>
+	</data>
+	<data name="blogAdded" xml:space="preserve">
+		<value>Το Ιστολόγιο "{0}" προστέθηκε</value>
+	</data>
+	<data name="savedByAtTime" xml:space="preserve">
+		<value>Αποθηκεύτηκε από {0} στις {1}</value>
+	</data>
+	<data name="antiSpamServices" xml:space="preserve">
+		<value>Anti-spam Υπηρεσίες</value>
+	</data>
+	<data name="importWithClickOnce" xml:space="preserve">
+		<value>Εισαγωγή με click-once</value>
+	</data>
+	<data name="noRightExists" xml:space="preserve">
+		<value>Δεν υπάρχει τέτοιο Δικαίωμα: {0}</value>
+	</data>
+	<data name="useDisqusAsCommentProvider" xml:space="preserve">
+		<value>Χρησιμοποιήστε το Disqus ως πάροχο σχολίων</value>
+	</data>
+	<data name="selectSavedBlogMlFle" xml:space="preserve">
+		<value>Επιλέξτε ένα αρχείο τύπου BlogML και εισάγετε το στο ιστολόγιο σας. Οποιοδήποτε πρόγραμμα περιήγησης, BlogML μόνο.</value>
+	</data>
+	<data name="commentsApprovedByAdmin" xml:space="preserve">
+		<value>Χειροκίνητο - μόνο αφού το σχόλιο εγκριθεί απο ένα διαχειριστή θα εμφανιστεί στο ιστολόγιο</value>
+	</data>
+	<data name="commentsAuto" xml:space="preserve">
+		<value>Αυτόματοι κανόνες και φίλτρα που θα αποφασίζουν αν ένα σχόλιο είναι spam</value>
+	</data>
+	<data name="confirmResetCounters" xml:space="preserve">
+		<value>Είστε σίγουροι ότι θέλετε να μηδενίσετε όλους τους μετρητές σε `0`;</value>
+	</data>
+	<data name="showDescriptionInPostListForPostsByTagOrCategory" xml:space="preserve">
+		<value>Εμφάνιση μόνο περιγραφής των δημοσιεύσεων όταν εμφανίζονται σε λίστα ανά Ετικέτα ή Κατηγορία</value>
+	</data>
+	<data name="onlyLoggedInCanView" xml:space="preserve">
+		<value>Μόνο οι συνδεδεμένοι χρήστες μπορούν να βλέπουν τις δημοσιεύσεις (ιδιωτικά ιστολόγια)</value>
+	</data>
+	<data name="selfRegistrationInitialRole" xml:space="preserve">
+		<value>Αρχικός Ρόλος για την εγγραφή</value>
+	</data>
+	<data name="useBlogNameInPageTitlesDescription" xml:space="preserve">
+		<value>Θέτει ως προθέμα το όνομα του Ιστολογίου στους τίτλους των σελίδων</value>
+	</data>
+</root>

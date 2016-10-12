@@ -1,0 +1,40 @@
+﻿html, body {
+    height: 100%;
+}
+
+a:hover, a:focus {
+    text-decoration: none;
+}
+
+img {
+    max-width: 100%;
+}
+
+label {
+    font-weight: $font-weight-normal;
+    white-space: nowrap;
+}
+
+hr {
+    border-color: #ddd;
+}
+
+form {
+    margin: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 500;
+    margin: 0;
+}
+
+iframe {
+    width: 100%;
+    border: none;
+}
+
+button {
+    &:focus {
+        outline: none !important;
+    }
+}

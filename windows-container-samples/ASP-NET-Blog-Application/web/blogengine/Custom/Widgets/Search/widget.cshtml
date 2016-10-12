@@ -1,0 +1,15 @@
+﻿@using BlogEngine.Core
+@{
+    var text = Context.Request.QueryString["q"] != null
+        ? HttpUtility.HtmlEncode(Context.Request.QueryString["q"])
+        : BlogSettings.Instance.SearchDefaultText;
+    var widgetId = Model.Id;
+}
+<div class="widget search">
+    <div class="widget-content">
+        <div id="searchbox">
+            <input type="text" style="width: 72% !important" onblur="BlogEngine.searchClear('@text','txt-@widgetId')" onfocus="BlogEngine.searchClear('@text','txt-@widgetId')" onkeypress="if(event.keyCode==13) return BlogEngine.search('@Utils.RelativeWebRoot','txt-@widgetId')" id="txt-@widgetId" value="@text" />
+            <input type="button" onkeypress="BlogEngine.search('@Utils.RelativeWebRoot', 'txt-@widgetId');" onclick="BlogEngine.search('@Utils.RelativeWebRoot', 'txt-@widgetId');" id="searchbutton" value="Search" />
+        </div>
+    </div>
+</div>

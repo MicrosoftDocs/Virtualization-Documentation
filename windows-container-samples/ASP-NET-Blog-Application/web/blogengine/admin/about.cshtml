@@ -1,0 +1,97 @@
+﻿@using System.Web.Optimization
+@using BlogEngine.Core
+@using BlogEngine.Core.Providers
+@using System.Web.Configuration
+@{
+    Layout = "~/admin/themes/standard/layout.cshtml";
+    if (!Security.IsAuthorizedTo(Rights.AccessAdminPages))
+    {
+        Security.RedirectForUnauthorizedRequest();
+    }
+    var usage = "Single blog";
+    if (BlogConfig.UsageScenario == "multiusers") { usage = "Multiple users"; }
+    if (BlogConfig.UsageScenario == "multiblogs") { usage = "Multiple blogs"; }
+
+    var blogProviderSection = (BlogProviderSection)WebConfigurationManager.GetSection("BlogEngine/blogProvider");
+    var membershipSection = (MembershipSection)WebConfigurationManager.GetSection("system.web/membership");
+    var roleSection = (RoleManagerSection)WebConfigurationManager.GetSection("system.web/roleManager");
+
+    var trust = AspNetHostingPermissionLevel.None;
+    foreach (AspNetHostingPermissionLevel trustLevel in new AspNetHostingPermissionLevel[]
+    {
+        AspNetHostingPermissionLevel.Unrestricted,
+        AspNetHostingPermissionLevel.High,
+        AspNetHostingPermissionLevel.Medium,
+        AspNetHostingPermissionLevel.Low,
+        AspNetHostingPermissionLevel.Minimal
+    })
+    {
+        try
+        {
+            new AspNetHostingPermission(trustLevel).Demand();
+            trust = trustLevel;
+            break;
+        }
+        catch (System.Security.SecurityException)
+        {
+            continue;
+        }
+    };
+}
+<div class="about-view content">
+    <button tabindex="-1" class="sidebar-toggle"><span></span><span></span><span></span></button>
+    <div class="main-header clearfix">
+        <h2 class="page-title pull-left">@Resources.labels.about</h2>
+    </div>
+    <div class="content-inner">
+        <div class="about-section">
+            <div class="about-logo"><a href="http://dotnetblogengine.net/"><img src="~/Content/images/blog/logo.png" /></a></div>
+            <p class="text-justify">
+                BlogEngine.NET is an open source ASP.NET project that was born out of desire for a better blogging platform. We focused on simplicity, ease of use, extendibility and innovative design while taking advantage of the latest .NET features.
+            </p>
+            <p class="text-justify">
+                BlogEngine.NET is easily customizable. We have many downloadable themes, widgets, and extensions or you can make your own with some basic .NET skills. With BlogEngine.NET, it is easy to make your blog look and function exactly how you’d like.
+            </p>
+            <div class="about-external-link">
+                <ul class="list-unstyled list-inline">
+                    <li><a class="btn btn-default btn-hasicon btn-sm" target="_blank" href="http://dotnetblogengine.net/"><i class="fa fa-globe"></i> Website</a></li>
+                    <li><a class="btn btn-default btn-hasicon btn-sm" target="_blank" href="http://dnbe.net/docs"><i class="fa fa-question-circle"></i> Docs</a></li>
+                    <li><a class="btn btn-default btn-hasicon btn-sm" target="_blank" href="http://dnbe.net/v01"><i class="fa fa-cube"></i> Gallery</a></li>
+                    <li><a class="btn btn-default btn-hasicon btn-sm" target="_blank" href="https://github.com/rxtur/BlogEngine.NET/"><i class="fa fa-github"></i> Source</a></li>
+                    <li><a class="btn btn-default btn-hasicon btn-sm" target="_blank" href="https://www.facebook.com/BlogEngine.NET"><i class="fa fa-facebook"></i> Facebook</a></li>
+                    <li><a class="btn btn-default btn-hasicon btn-sm" target="_blank" href="https://twitter.com/blogenginenet"><i class="fa fa-twitter"></i> Twitter</a></li>
+                    <li><a class="btn btn-default btn-hasicon btn-sm" target="_blank" href="https://www.youtube.com/user/blogenginenet"><i class="fa fa-youtube"></i> Youtube</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="panel-title">Your BlogEngine.NET Specification</div>
+            </div>
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <span> Version:</span> @BlogSettings.Instance.Version()
+                </li>
+                <li class="list-group-item">
+                    <span>Configuration:</span> @usage
+                </li>
+                <li class="list-group-item">
+                    <span>Trust level:</span> @trust
+                </li>
+                <li class="list-group-item">
+                    <span>Identity:</span> @System.Security.Principal.WindowsIdentity.GetCurrent().Name
+                </li>
+                <li class="list-group-item">
+                    <span>Blog provider:</span> @blogProviderSection.DefaultProvider
+                </li>
+                <li class="list-group-item">
+                    <span>Membership provider:</span> @membershipSection.DefaultProvider
+                </li>
+                <li class="list-group-item">
+                    <span>Role provider:</span> @roleSection.DefaultProvider
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+@Scripts.Render("~/scripts/blogadmin")

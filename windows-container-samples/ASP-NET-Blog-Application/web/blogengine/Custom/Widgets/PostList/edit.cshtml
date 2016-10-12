@@ -1,0 +1,113 @@
+﻿@using BlogEngine.NET.Custom.Widgets
+@using BlogEngine.Core
+@{
+    var numberOfPosts = 10;
+    var selCategory = "All";
+    var selAuthor = "All";
+    var selOrder = "Published";
+    var showImg = false;
+    var showDesc = false;
+    var showDate = false;
+
+    var widgetId = Request.QueryString["id"];
+    var settings = Common.GetSettings(widgetId);
+    Validation.Add("txtNumberOfPosts",
+        Validator.Required("Field is required"),
+        Validator.Integer("Field is numeric")
+    );
+    if (IsPost)
+    {
+        if (Validation.IsValid())
+        {
+            settings["numberofposts"] = Request.Form["txtNumberOfPosts"];
+            settings["cutegory"] = Request.Form["ddlCategories"];
+            settings["author"] = Request.Form["ddlAuthors"];
+            settings["sortorder"] = Request.Form["ddlSortBy"];
+            settings["showimg"] = Request.Form["cbShowImg"] == "on" ? "true" : "false";
+            settings["showdesc"] = Request.Form["cbShowDesc"] == "on" ? "true" : "false";
+            settings["showdate"] = Request.Form["cbShowDate"] == "on" ? "true" : "false";
+            Common.SaveSettings(settings, widgetId);
+            @:
+            <script type="text/javascript">window.parent.toastr.success("Completed");</script>
+        }
+    }
+    if (settings != null && settings.Count > 0)
+    {
+        numberOfPosts = int.Parse(settings["numberofposts"]);
+        selCategory = settings["cutegory"];
+        selAuthor = settings["author"];
+        selOrder = settings["sortorder"];
+        showImg = settings["showimg"] == "true" ? true : false;
+        showDesc = settings["showdesc"] == "true" ? true : false;
+        showDate = settings["showdate"] == "true" ? true : false;
+    }
+
+    var catList = new List<SelectListItem>();
+    catList.Add(new SelectListItem { Text = "All", Selected = selCategory == "All" });
+    foreach (var cat in Category.Categories)
+    {
+        catList.Add(new SelectListItem { Text = cat.Title, Selected = cat.Title == selCategory });
+    }
+    var authorList = new List<SelectListItem>();
+    authorList.Add(new SelectListItem { Text = "All", Selected = selAuthor == "All" });
+    var authors = Membership.GetAllUsers();
+    foreach (var author in authors)
+    {
+        authorList.Add(new SelectListItem { Text = author.ToString(), Selected = author.ToString() == selAuthor });
+    }
+    var orderList = new List<SelectListItem>
+    {
+      new SelectListItem{ Text = "Latest", Value="Published", Selected = selOrder == "Published" },
+      new SelectListItem{ Text = "Most commented", Value="Comments", Selected = selOrder == "Comments" },
+      new SelectListItem{ Text = "Alphabetical", Value="Alphabetical", Selected = selOrder == "Alphabetical" }
+    };
+
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="~/Content/bootstrap.min.css">
+    <link rel="stylesheet" href="~/admin/themes/standard/css/styles.css">
+</head>
+<body class="widget-edit">
+    <form method="post">
+        <div class="form-group">
+            <label for="txtNumberOfPosts">@Resources.labels.numberOfPosts</label>
+            @Html.TextBox("txtNumberOfPosts", numberOfPosts, new { @class = "form-control" })
+            @Html.ValidationMessage("txtNumberOfPosts")
+        </div>
+        <div class="form-group">
+            <label for="ddlCategories">@Resources.labels.category</label>
+            @Html.DropDownList("ddlCategories", catList, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            <label for="ddlAuthors">@Resources.labels.author</label>
+            @Html.DropDownList("ddlAuthors", authorList, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            <label for="ddlSortBy">@Resources.labels.sortOrder</label>
+            @Html.DropDownList("ddlSortBy", orderList, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            <label>
+                @Html.CheckBox("cbShowImg", showImg) Display first image as thumbnail
+            </label>
+        </div>
+        <div class="form-group">
+            <label>
+                @Html.CheckBox("cbShowDesc", showDesc) Display post description
+            </label>
+        </div>
+        <div class="form-group">
+            <label>
+                @Html.CheckBox("cbShowDate", showDate) Display date published
+            </label>
+        </div>
+        <div>
+            <button type="submit" class="btn btn-success">
+                @Resources.labels.save
+            </button>
+        </div>
+    </form>
+</body>
+</html>

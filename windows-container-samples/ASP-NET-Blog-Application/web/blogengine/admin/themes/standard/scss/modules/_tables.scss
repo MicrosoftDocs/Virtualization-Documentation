@@ -1,0 +1,153 @@
+﻿.table {
+    font-size: 13px;
+    font-weight: normal;
+    background: #fff;
+    border: 1px solid #e9e9e9;
+    @include box-shadow(0 1px 0 #f1f1f1);
+    //
+    thead tr th,
+    tbody tr td {
+        padding: 0;
+        height: 44px;
+        border: none;
+        border-bottom: 1px solid #eee;
+        vertical-align: middle;
+        text-align: center;
+    }
+    //
+    thead {
+        background: #fff;
+        color: #666;
+        text-transform: uppercase;
+
+        tr {
+            th {
+                font-weight: 500;
+                line-height: 45px;
+
+                a {
+                    font-weight: 500;
+                    color: #666;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+    //
+    tbody {
+        tr {
+            background-color: #fff;
+            @include transition(background ease 0.5s);
+
+            td {
+                border-right: 1px solid #f5f5f5;
+                color: #b3b9c7;
+
+                &:last-child {
+                    border-right: 0px solid #e9e9e9;
+                }
+
+                a {
+                }
+            }
+
+            &:hover {
+                background-color: #fafafa;
+            }
+
+            &:last-child {
+                td {
+                    border-bottom-color: #e9e9e9 !important;
+                }
+            }
+        }
+    }
+
+    input {
+        top: 0;
+    }
+}
+
+.table-item-empty {
+    background: #fafafa;
+    margin-top: -20px;
+    border: 1px solid #e9e9e9;
+    border-top: none;
+    line-height: 40px;
+    text-align: center;
+    color: #aaa;
+    @include box-shadow(0 1px 0 #f1f1f1);
+
+    i {
+        line-height: 44px;
+    }
+}
+
+// .table
+.table {
+    .item-checkbox {
+        width: 44px;
+        min-width: 44px;
+        padding: 0;
+    }
+
+    .item-title {
+        position: relative;
+        text-align: left;
+    }
+
+    th.item-title {
+        padding-left: 15px;
+    }
+
+    td.item-title {
+        padding: 0;
+        max-width: 100px;
+
+        a:first-child {
+            color: #6581ad;
+            height: 100%;
+            line-height: 44px;
+            padding: 0 50px 0 15px;
+            display: block;
+            overflow: hidden;
+            -webkit-text-overflow: ellipsis;
+            -moz-text-overflow: ellipsis;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+
+            @media screen and (max-width:639px) {
+                padding-right: 30px;
+            }
+        }
+
+        .external-link {
+            padding-left: 0;
+        }
+    }
+
+    .external-link {
+        position: absolute;
+        top: 0;
+        right: 0;
+        display: block;
+        width: 44px;
+        height: 100%;
+        text-align: center;
+
+        i {
+            width: 100%;
+            height: 100%;
+            line-height: 48px;
+            color: #b3b9c7;
+        }
+
+        @media screen and (max-width:639px) {
+            width: 30px;
+        }
+    }
+
+    @media screen and (max-width:639px) {
+        border: none;
+    }
+}

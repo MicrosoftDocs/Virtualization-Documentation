@@ -1,0 +1,29 @@
+﻿.modal {
+    .modal-buttons {
+        .btn {
+            float: right;
+            margin-right: 0;
+            margin-left: 10px;
+        }
+    }
+
+    .modal-header {
+        .close {
+            float: left;
+        }
+    }
+
+    .modal-footer {
+        text-align: right;
+    }
+
+    ul {
+        padding: 0;
+    }
+}
+
+&.modal-open {
+    .main-sidebar {
+        right: 17px;
+    }
+}

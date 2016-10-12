@@ -1,0 +1,157 @@
+﻿<div class="dashboard-view" data-ng-controller="DashboardController">
+    <div id="modal-log-file" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="fa fa-times"></i></button>
+                    <h4 class="modal-title">{{lbl.logFile}}</h4>
+                </div>
+                <div class="modal-body logs-list">
+                    <div class="form-group">
+                        <textarea ng-bind="vm.Logs" readonly="readonly" rows="12" maxlength="450" class="form-control" id="txtLogs"></textarea>
+                    </div>
+                    <div class="modal-buttons text-right">
+                        <button type="button" data-ng-if="vm.Logs.length > 0" data-ng-click="purgeLog()" class="btn btn-danger">{{lbl.purge}}</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">{{lbl.close}}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="modal-trash" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="fa fa-times"></i></button>
+                    <h4 class="modal-title">{{lbl.trash}}</h4>
+                </div>
+                <div class="modal-body trash-list">
+                    <ul class="list-group">
+                        <li class="list-group-item clearfix" data-ng-repeat="t in vm.Trash">
+                            <span class="text-ellipsis">{{t.Title}}</span>
+                            <button tooltip="lbl.restore" angular-tooltip data-ng-click="restore(t.Id)" class="restorethis"><i class="fa fa-refresh"></i></button>
+                            <button tooltip="lbl.purge" angular-tooltip data-ng-click="purge(t.Id)" class="purgethis"><i class="fa fa-trash"></i></button>
+                        </li>
+                    </ul>
+                    <div class="modal-buttons text-right">
+                        <button type="button" ng-if="vm.Trash.length > 0" data-ng-click="purgeAll()" class="btn btn-danger">{{lbl.purgeAll}}</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">{{lbl.close}}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="main-header clearfix">
+        <div class="page-title pull-left">{{lbl.dashboard}}</div>
+        <a ng-click="openTrash()" ng-if="vm.Trash.length > 0" class="icon-header-dashboard icon-header-trash pull-right" angular-tooltip tooltip="lbl.trash"><i class="fa fa-trash-o"></i> <span>{{vm.Trash.length}}</span></a>
+        <a ng-click="openLogFile()" ng-if="vm.Logs.length > 0" class="icon-header-dashboard icon-header-logs pull-right" angular-tooltip tooltip="lbl.logs"><i class="fa fa-warning"></i></a>
+    </div>
+    <div class="content-inner content-dashboard">
+        <div class="version-alert" id="versionMsg">
+            <div class="alert alert-info clearfix">
+                <p class="pull-left"><i class="fa fa-info-circle"></i> New BlogEngine.NET version <span id="vNumber"></span> available for upgrade.</p>
+                <button id="btnRun" class="btn btn-primary btn-hasicon pull-right" onclick="window.location.assign(SiteVars.RelativeWebRoot + 'setup/upgrade')" type="button"><i class="fa fa-refresh"></i> Upgrade</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 col-md-4">
+                <div class="panel panel-default dashboard-stats dashboard-list">
+                    <div class="panel-heading">
+                        <div class="panel-title">{{lbl.stats}}</div>
+                    </div>
+                    <ul class="list-group">
+                        <li class="list-group-item"><a href="{{SiteVars.RelativeWebRoot}}admin/#/content/posts?fltr=pub">{{lbl.publishedPosts}} <span class="item-stats-info item-stats-info-green">{{vm.PostPublishedCnt}}</span></a></li>
+                        <li class="list-group-item"><a href="{{SiteVars.RelativeWebRoot}}admin/#/content/pages?fltr=pub">{{lbl.publishedPages}} <span class="item-stats-info item-stats-info-green">{{vm.PagePublishedCnt}}</span></a></li>
+                        <li class="list-group-item"><a href="{{SiteVars.RelativeWebRoot}}admin/#/content/posts?fltr=dft">{{lbl.draftPosts}} <span class="item-stats-info item-stats-info-yellow">{{vm.PostDraftCnt}}</span></a></li>
+                        <li class="list-group-item"><a href="{{SiteVars.RelativeWebRoot}}admin/#/content/pages?fltr=dft">{{lbl.draftPages}} <span class="item-stats-info item-stats-info-yellow">{{vm.PageDraftCnt}}</span></a></li>
+                        <li class="list-group-item"><a href="{{SiteVars.RelativeWebRoot}}admin/#/content/comments?fltr=apr">{{lbl.approvedComments}} <span class="item-stats-info item-stats-info-green">{{vm.ApprovedCommentsCnt}}</span></a></li>
+                        <li class="list-group-item"><a href="{{SiteVars.RelativeWebRoot}}admin/#/content/comments?fltr=pnd">{{lbl.unapprovedcomments}} <span class="item-stats-info item-stats-info-yellow">{{vm.PendingCommentsCnt}}</span></a></li>
+                        <li class="list-group-item"><a href="{{SiteVars.RelativeWebRoot}}admin/#/content/comments?fltr=spm">{{lbl.spamComments}}<span class="item-stats-info item-stats-info-red">{{vm.SpamCommentsCnt}}</span></a></li>
+                    </ul>
+                </div>
+                <div class="panel panel-default dashboard-list">
+                    <div class="panel-heading">
+                        <div class="panel-title">{{lbl.latestComments}}</div>
+                    </div>
+                    <ul class="list-group">
+                        <li class="list-group-item" data-ng-repeat="comment in vm.Comments">
+                            <span><a href="{{comment.RelativeLink}}" target="_new" class="text-ellipsis">{{comment.Title}}</a></span>
+                        </li>
+                        <li ng-if="vm.Comments.length == 0" class="list-group-item item-empty">{{lbl.empty}}</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-xs-6 col-sm-6 col-md-4">
+                <div ng-if="qd.show" class="panel panel-default dashboard-quickdraft">
+                    <div class="panel-heading">
+                        <div class="panel-title">{{lbl.quickDraft}}</div>
+                    </div>
+                    <div class="panel-body">
+                        <input ng-model="qd.title" type="text" placeholder="{{lbl.title}}" class="form-control" id="txtDraftTitle" name="txtDraftTitle" />
+                        <textarea ng-model="qd.text" placeholder="{{lbl.typeHere}}" style="margin-top: 5px" class="form-control ltr-dir" rows="2" id="txtDraftText" name="txtDraftText"></textarea>
+                        <button type="button" ng-click="postDraft()" ng-disabled="qd.title.length == 0 || qd.text.length == 0" class="btn btn-block btn-default" title="{{lbl.publish}}">{{lbl.save}}</button>
+                    </div>
+                </div>
+                <div class="panel panel-default dashboard-list">
+                    <div class="panel-heading">
+                        <div class="panel-title">{{lbl.draftPosts}}</div>
+                    </div>
+                    <ul class="list-group list-group">
+                        <li class="list-group-item clearfix" data-ng-repeat="post in vm.DraftPosts">
+                            <a href="{{SiteVars.RelativeWebRoot}}admin/app/editor/editpost.cshtml?id={{post.Id}}&returnUrl={{SiteVars.RelativeWebRoot}}admin/#/">{{post.Title}}</a>
+                            <a title="{{post.Title}}" class="external-link" target="_new" href="{{post.RelativeLink}}"><i class="fa fa-external-link"></i></a>
+                        </li>
+                        <li ng-if="vm.DraftPosts.length == 0" class="list-group-item item-empty">{{lbl.empty}}</li>
+                    </ul>
+                </div>
+                <div class="panel panel-default dashboard-list">
+                    <div class="panel-heading">
+                        <div class="panel-title">{{lbl.draftPages}}</div>
+                    </div>
+                    <ul class="list-group list-group">
+                        <li class="list-group-item clearfix" data-ng-repeat="page in vm.DraftPages">
+                            <a href="{{SiteVars.RelativeWebRoot}}admin/app/editor/editpage.cshtml?id={{page.Id}}&returnUrl={{SiteVars.RelativeWebRoot}}admin/#/">{{page.Title}}</a>
+                            <a title="{{page.Title}}" class="external-link" target="_new" href="{{SiteVars.RelativeWebRoot}}page/{{page.Slug}}"><i class="fa fa-external-link"></i></a>
+                        </li>
+                        <li ng-if="vm.DraftPages.length == 0" class="list-group-item item-empty">{{lbl.empty}}</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-xs-6 col-sm-6 col-md-4">
+                <div class="panel panel-default dashboard-gallery" data-ng-if="security.showTabCustom">
+                    <div class="panel-heading">
+                        <div class="panel-title clearfix">
+                            <span class="pull-left">{{lbl.latestFromTheGallery}}</span>
+                        </div>
+                    </div>
+                    <ul class="list-group">
+                        <li class="list-group-item clearfix" data-ng-repeat="pkg in packages">
+                            <a href="" ng-click="getGalleryLink(pkg.PackageType, pkg.Id)" class="item-link">
+                                <img ng-if="pkg.IconUrl.length > 0" class="item-img" width="50" height="50" ng-src="{{pkg.IconUrl}}" />
+                                <img ng-if="pkg.IconUrl.length == 0" class="item-img" width="50" height="50" src="../Content/Images/blog/pkg.png" />
+                                <span class="item-title">{{pkg.Title}}</span>
+                                <span class="item-desc text-ellipsis">{{pkg.Description}}</span>
+                            </a>
+                        </li>
+                        <li id="gal-spinner" class="list-group-item item-spinner">
+                            <i class="fa fa-spinner fa-spin"></i>
+                        </li>
+                    </ul>
+                </div>
+                <div class="panel panel-default dashboard-news dashboard-list">
+                    <div class="panel-heading">
+                        <div class="panel-title">{{lbl.latestNews}}</div>
+                    </div>
+                    <ul class="list-group list-group">
+                        <li class="list-group-item" data-ng-repeat="n in news">
+                            <a href="{{n.OptionValue}}.aspx" target="_blank">{{n.OptionName}}</a>
+                        </li>
+                        <li id="news-spinner" class="list-group-item item-spinner">
+                            <i class="fa fa-spinner fa-spin"></i>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 

@@ -1,0 +1,160 @@
+﻿<div data-ng-controller="BlogListController">
+    <div id="modal-edit" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="fa fa-times"></i></button>
+                    <h4 class="modal-title">{{modalTitle}}</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-horizontal clearfix">
+                        <div class="form-group">
+                            <label class="control-label col-md-4" for="txtName">{{lbl.blogName}}</label>
+                            <div class="col col-md-8">
+                                <input type="text" class="form-control" id="txtName" data-ng-model="editItem.Name" ng-disabled="true" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-4" for="txtVirtualPath">{{lbl.virtualPath}}</label>
+                            <div class="col col-md-8">
+                                <input type="text" class="form-control" id="txtVirtualPath" data-ng-model="editItem.VirtualPath" ng-disabled="true" />
+                            </div>
+                        </div>
+                        <div class="col-md-offset-4 col-md-8">
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" id="cbTextEccepted" data-ng-model="editItem.IsAnyTextBeforeHostnameAccepted" />
+                                    {{lbl.acceptAnyTextBeforeHostname}}
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" id="cbActive" data-ng-model="editItem.IsActive" />
+                                    {{lbl.active}}
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" id="cbAggregation" data-ng-model="editItem.IsSiteAggregation" />
+                                    {{lbl.isForSiteAggregation}}
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer ">
+                    <button data-ng-click="save()" class="btn btn-success btn-tabkey pull-right"><i class="fa fa-save"></i>{{lbl.save}}</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-ban"></i>{{lbl.cancel}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="modal-add" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="focusInput=false"><i class="fa fa-times"></i></button>
+                    <h4 class="modal-title">{{modalTitle}}</h4>
+                </div>
+                <form id="form" action="">
+                    <div class="modal-body">
+                        <div class="form-horizontal clearfix">
+                            <div class="form-group">
+                                <label class="control-label  col-md-4" for="txtBlogName">&nbsp;</label>
+                                <div class="col-md-8 ltr-dir">
+                                    {{blogPath}}<span data-ng-bind="newItem.Name"></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-4" for="txtBlogName">{{lbl.blogName}}</label>
+                                <div class="col col-md-8">
+                                    <input type="text" class="form-control ltr-dir" id="txtBlogName" name="txtBlogName" data-ng-model="newItem.Name" focus-me="focusInput" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="txtUserName" class="control-label  col-md-4">{{lbl.admin}}</label>
+                                <div class="col col-md-8">
+                                    <input type="text" id="txtUserName" name="txtUserName" class="form-control ltr-dir" data-ng-model="newItem.UserName" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-4" for="txtEmail">{{lbl.email}}</label>
+                                <div class="col col-md-8">
+                                    <input type="text" id="txtEmail" name="txtEmail" class="form-control ltr-dir" data-ng-model="newItem.Email" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-4" for="txtPassword">{{lbl.password}}</label>
+                                <div class="col col-md-8">
+                                    <input type="password" class="form-control ltr-dir" id="txtPassword" name="txtPassword" data-ng-model="newItem.Password" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-4" for="txtConfirmPassword">{{lbl.confirmPassword}}</label>
+                                <div class="col col-md-8">
+                                    <input type="password" class="form-control ltr-dir" id="txtConfirmPassword" name="txtConfirmPassword" data-ng-model="newItem.ConfirmPassword" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <div class="modal-footer">
+                    <button data-ng-click="saveNew()" class="btn btn-success btn-tabkey pull-right"><i class="fa fa-save"></i>{{lbl.save}}</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="focusInput=false"><i class="fa fa-ban"></i>{{lbl.cancel}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="main-header clearfix">
+        <h2 class="page-title pull-left"> 
+            {{lbl.blogs}}
+        </h2>
+        <div>
+            <button ng-click="modalNew()" class="btn btn-success btn-sm btn-hasicon pull-left"><i class="fa fa-plus"></i>{{lbl.theNew}}</button>
+            <button ng-click="processChecked('delete')" ng-disabled="itemsChecked() === false" class="btn btn-danger btn-sm btn-hasicon pull-left"><i class="fa fa-trash"></i>{{lbl.doDelete}}</button>
+        </div>
+        <div class="search pull-right">
+            <i class="fa fa-search"></i>
+            <input type="text" ng-model="query" ng-change="search()" placeholder="{{lbl.search}}..." />
+        </div>
+    </div>
+    <div class="content-inner">
+        <table class="table table-item-post">
+            <thead>
+                <tr>
+                    <th class="item-checkbox"><input type="checkbox" id="chkAll" ng-click="checkAll($event)" /></th>
+                    <th class="item-title"><a data-ng-click="sort_by('Title',$event)">{{lbl.title}}</a></th>
+                    <th class="item-author">{{lbl.virtualPath}}</th>
+                    <th class="item-state">{{lbl.primary}}</th>
+                    <th class="item-state">{{lbl.active}}</th>
+                    <th class="item-state">{{lbl.isForSiteAggregation}}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr data-ng-repeat="item in pagedItems[currentPage] | orderBy:sortingOrder:reverse">
+                    <td><input type="checkbox" id="{{item.Slug}}" ng-model="item.IsChecked" data-ng-disabled="item.IsPrimary" /></td>
+                    <td class="item-title">
+                        <a title="{{item.Name}}" href="" ng-click="modalEdit(item.Id)">{{item.Name}}</a>
+                        <a title="{{item.Name}}" class="external-link pull-right" target="_blank" href="{{item.RelativeWebRoot}}"><i class="fa fa-external-link"></i></a>
+                    </td>
+                    <td class="item-author">{{item.VirtualPath}}</td>
+                    <td class="item-state"><input type="checkbox" ng-model="item.IsPrimary" data-ng-disabled="true" /></td>
+                    <td class="item-state"><input type="checkbox" ng-model="item.IsActive" data-ng-disabled="true" /></td>
+                    <td class="item-state"><input type="checkbox" data-ng-model="item.IsSiteAggregation" data-ng-disabled="true"></td>
+                </tr>
+                <tr id="tr-spinner"><td colspan="6"><div id="div-spinner"><i class="fa fa-spinner fa-spin"></i></div></td></tr>
+            </tbody>
+        </table>
+        <ul class="pagination" ng-if="items.length > itemsPerPage">
+            <li data-ng-class="{disabled: currentPage == 0}">
+                <a data-ng-click="prevPage()" title="{{lbl.prev}}"><i class="fa fa-angle-left"></i></a>
+            </li>
+            <li data-ng-repeat="n in range(pagedItems.length)" data-ng-class="{active: n == currentPage}" data-ng-click="setPage()">
+                <a data-ng-bind="n + 1">1</a>
+            </li>
+            <li data-ng-class="{disabled: currentPage == pagedItems.length - 1}">
+                <a data-ng-click="nextPage()" title="{{lbl.next}}"><i class="fa fa-angle-right"></i></a>
+            </li>
+        </ul>
+    </div>
+</div>

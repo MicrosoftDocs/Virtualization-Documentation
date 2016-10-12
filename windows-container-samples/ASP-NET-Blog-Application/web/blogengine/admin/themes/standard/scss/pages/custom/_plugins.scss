@@ -1,0 +1,219 @@
+﻿.custom-plugins-view {
+    //
+    .iframe-package {
+        .modal-body {
+        }
+
+        iframe {
+            height: 100%;
+        }
+    }
+
+    .modal-package {
+        padding: 0 !important;
+
+        .modal-plugin-info {
+            border-bottom: 1px solid #eee;
+            padding: 40px;
+
+            .item-image {
+                text-align: center;
+            }
+
+            .item-desc {
+                margin-bottom: 8px;
+            }
+
+            .form-group {
+                margin-bottom: 4px;
+                line-height: 30px;
+
+                .btn {
+                    i {
+                        margin: 0;
+                    }
+                }
+            }
+        }
+
+        .item-alert {
+            padding: 40px;
+            border-bottom: 1px solid #eee;
+
+            .alert {
+                margin: 0;
+
+                .btn {
+                    position: relative;
+                    top: -4px;
+                }
+            }
+        }
+
+        .modal-plugin-review {
+            padding: 40px;
+            background: #eee;
+
+            .panel:last-child {
+                margin-bottom: 0;
+            }
+
+            .star-rating {
+                margin-top: 6px;
+                width: 75px;
+            }
+        }
+    }
+    //
+    .table-item-plugins .item-title .notify-icon {
+        position: absolute;
+        right: 10px;
+        top: 15px;
+
+        .notify {
+            color: #ffa400;
+            position: relative;
+            animation: notify .1s 10;
+            font-size: 14px;
+        }
+
+        @keyframes notify {
+            0% {
+                left: 0;
+            }
+
+            25% {
+                left: 2px;
+            }
+
+            75% {
+                left: -2px;
+            }
+
+
+            100% {
+                left: 0;
+            }
+        }
+    }
+    // table
+    .table-item-plugins {
+        .item-title {
+            width: 250px;
+        }
+
+        th.item-desc {
+            padding-left: 20px;
+        }
+
+        .item-desc {
+            max-width: 100px;
+            text-align: left;
+
+            span {
+                width: 450px;
+                max-width: 100%;
+                text-align: left;
+                padding: 0 20px;
+            }
+        }
+
+        .item-priority {
+            width: 100px;
+        }
+
+        .item-version {
+            width: 100px;
+        }
+
+        .item-status {
+            width: 100px;
+        }
+
+        .item-edit {
+            width: 120px;
+            padding: 0 10px;
+        }
+
+        @media screen and (max-width:1199px) {
+            .item-desc {
+                display: none;
+            }
+        }
+
+        @media screen and (max-width:767px) {
+            .item-priority {
+                display: none;
+            }
+        }
+
+        @media screen and (max-width:640px) {
+            .item-checkbox {
+                border-right: none;
+                width: 15px;
+                min-width: 15px;
+                padding-left: 15px;
+            }
+        }
+
+        @media screen and (max-width:639px) {
+            .item-status {
+                display: none;
+            }
+        }
+
+        @media screen and (max-width:480px) {
+            .item-version {
+                display: none;
+            }
+             th.item-edit{
+                 font-size:0 !important;
+               
+             }
+            .item-edit {
+                width: 50px;
+                padding: 0 5px;
+                
+                .btn-hasicon {
+                    width: 100%;
+                    padding: 0 5px !important;
+                    font-size:0;
+                    i {
+                        width:100%;
+                        border:none;
+                    }
+                }
+            }
+        }
+    }
+
+    @media screen and (max-width:639px) {
+        .content-inner {
+            padding: 0;
+        }
+
+        .main-header {
+               @include box-shadow(none);
+            border-bottom-width:1px;
+            border-color:#eee;
+            .right-side {
+                .search {
+                    margin-bottom: 0;
+                }
+            }
+        }
+    }
+
+    @media screen and (max-width:359px) {
+        .main-header {
+            .btn-success.btn-hasicon {
+                padding: 0;
+                width: 45px;
+
+                .fa {
+                    display: none;
+                }
+            }
+        }
+    }
+}

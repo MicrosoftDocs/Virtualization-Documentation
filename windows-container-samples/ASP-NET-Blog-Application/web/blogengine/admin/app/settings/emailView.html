@@ -1,0 +1,46 @@
+﻿<div class="settings-view" data-ng-controller="SettingsController">
+    <form id="form" action="">
+        <div class="main-header clearfix">
+            <h2 class="page-title pull-left">{{lbl.email}}</h2>
+            <button data-ng-click="save()" class="btn btn-success btn-hasicon btn-sm pull-left" type="button"><i class="fa fa-check"></i>{{lbl.save}}</button>
+            <button type="button" class="right-side-toggle pull-right"><span></span><span></span><span></span></button>
+            <div class="right-side pull-left">
+                <button data-ng-click="testEmail()" class="btn btn-primary btn-hasicon btn-sm pull-left" type="button"><i class="fa fa-envelope-o"></i>{{lbl.testEmailSettings}}</button>
+            </div>
+        </div>
+        <div class="content-inner">
+            <div class="form-content">
+                <div class="form-group">
+                    <label for="txtEmail">{{lbl.emailAddress}}</label>
+                    <input type="text" class="form-control ltr-dir" id="txtEmail" name="txtEmail" data-ng-model="settings.Email" />
+                </div>
+                <div class="form-group">
+                    <label for="txtSmtpUserName">{{lbl.userName}}</label>
+                    <input type="text" autocomplete="off" class="form-control ltr-dir" id="txtSmtpUserName" data-ng-model="settings.SmtpUserName" />
+                </div>
+                <div class="form-group">
+                    <label for="txtSmtpPassword">{{lbl.password}}</label>
+                    <input type="password" autocomplete="off" class="form-control ltr-dir" id="txtSmtpPassword" data-ng-model="settings.SmtpPassword" />
+                </div>
+                <div class="form-group">
+                    <label for="txtSmtpServer">{{lbl.smtpServer}}</label>
+                    <input type="text" class="form-control ltr-dir" id="txtSmtpServer" data-ng-model="settings.SmtpServer" />
+                </div>
+                <div class="form-group">
+                    <label for="txtSmtpServerPort">{{lbl.portNumber}}</label>
+                    <input type="text" class="form-control ltr-dir" id="txtSmtpServerPort" name="txtSmtpServerPort" data-ng-model="settings.SmtpServerPort" />
+                </div>
+                <div class="form-group">
+                    <label for="txtEmailSubjectPrefix">{{lbl.emailSubjectPrefix}}</label>
+                    <input type="text" class="form-control ltr-dir" id="txtEmailSubjectPrefix" data-ng-model="settings.EmailSubjectPrefix" />
+                </div>
+                <div class="form-group">
+                    <label><input type="checkbox" name="ckEnableSsl" data-ng-model="settings.EnableSsl" /> {{lbl.enableSsl}}</label>
+                </div>
+                <div class="form-group">
+                    <label><input type="checkbox" name="ckSendMailOnComment" data-ng-model="settings.SendMailOnComment" /> {{lbl.sendCommentEmail}} </label>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

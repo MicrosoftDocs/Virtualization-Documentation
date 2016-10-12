@@ -1,0 +1,577 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="add" xml:space="preserve">
+    <value>Új bejegyzés</value>
+  </data>
+  <data name="add_Entry" xml:space="preserve">
+    <value>Új hozzászólás</value>
+  </data>
+  <data name="addComment" xml:space="preserve">
+    <value>Megjegyzés Hozzáfűzése</value>
+  </data>
+  <data name="addCustomCodeToHeader" xml:space="preserve">
+    <value>Adj saját kódot az HTML fejléchez</value>
+  </data>
+  <data name="administrationPanel" xml:space="preserve">
+    <value>Adminisztrációs Felület</value>
+  </data>
+  <data name="advanced" xml:space="preserve">
+    <value>Beállítások</value>
+  </data>
+  <data name="advancedSettings" xml:space="preserve">
+    <value>Haladó Beállítások</value>
+  </data>
+  <data name="alternateFeedUrl" xml:space="preserve">
+    <value>Alternatív feed URL</value>
+  </data>
+  <data name="approve" xml:space="preserve">
+    <value>Jóváhagy</value>
+  </data>
+  <data name="approveallcomments" xml:space="preserve">
+    <value>A bejgyezés minden megjegyzésének jóváhagyása</value>
+  </data>
+  <data name="archive" xml:space="preserve">
+    <value>Archívum</value>
+  </data>
+  <data name="areYouSure" xml:space="preserve">
+    <value>Biztosan akarod hogy {0} {1}?</value>
+  </data>
+  <data name="attachFile" xml:space="preserve">
+    <value>Csatolj egy fájlt</value>
+  </data>
+  <data name="author" xml:space="preserve">
+    <value>Szerzők</value>
+  </data>
+  <data name="avatars" xml:space="preserve">
+    <value>Avatarok</value>
+  </data>
+  <data name="basic" xml:space="preserve">
+    <value>Alapvető</value>
+  </data>
+  <data name="beTheFirstToRate" xml:space="preserve">
+    <value>Legyél a bejegyzés első értékelője</value>
+  </data>
+  <data name="blogMLDescription" xml:space="preserve">
+    <value>A BlogEngine.NET BlogML exportálási formátumot használ. Az importálás BlogML-t és RSS-t támogat.</value>
+  </data>
+  <data name="blogroll" xml:space="preserve">
+    <value>Blogroll</value>
+  </data>
+  <data name="buttonText" xml:space="preserve">
+    <value>Nyomógomb szövege</value>
+  </data>
+  <data name="categories" xml:space="preserve">
+    <value>Kategóriák</value>
+  </data>
+  <data name="category" xml:space="preserve">
+    <value>Kategória</value>
+  </data>
+  <data name="closeCommetsAfter" xml:space="preserve">
+    <value>Zárd le a hozzászólásokat</value>
+  </data>
+  <data name="combine" xml:space="preserve">
+    <value>Kombináció</value>
+  </data>
+  <data name="comment" xml:space="preserve">
+    <value>Megjegyzés</value>
+  </data>
+  <data name="commentLabelText" xml:space="preserve">
+    <value>Megjegyzés cimke szövege</value>
+  </data>
+  <data name="comments" xml:space="preserve">
+    <value>Megjegyzések</value>
+  </data>
+  <data name="commentsAreClosed" xml:space="preserve">
+    <value>Megjegyzések lezárva</value>
+  </data>
+  <data name="commentWasSaved" xml:space="preserve">
+    <value>Megjegyzés mentve. Kösz a választ.</value>
+  </data>
+  <data name="contact" xml:space="preserve">
+    <value>Kapcsolat</value>
+  </data>
+  <data name="contactForm" xml:space="preserve">
+    <value>Üzenet</value>
+  </data>
+  <data name="controls" xml:space="preserve">
+    <value>Vezérlők</value>
+  </data>
+  <data name="country" xml:space="preserve">
+    <value>Ország</value>
+  </data>
+  <data name="createNewUser" xml:space="preserve">
+    <value>Új felhasználó létrehozása</value>
+  </data>
+  <data name="currentlyRated" xml:space="preserve">
+    <value>Jelenlegi értékelés {0} {1} felhasználótol</value>
+  </data>
+  <data name="date" xml:space="preserve">
+    <value>Dátum</value>
+  </data>
+  <data name="defaultFeedOutput" xml:space="preserve">
+    <value>Default feed output</value>
+  </data>
+  <data name="defaultTextShownInSearchField" xml:space="preserve">
+    <value>Default szöveg a kereső dobozban</value>
+  </data>
+  <data name="delete" xml:space="preserve">
+    <value>Töröl</value>
+  </data>
+  <data name="description" xml:space="preserve">
+    <value>Leírás</value>
+  </data>
+  <data name="displayCommentsOnRecentPosts" xml:space="preserve">
+    <value>Mutasd a megjegyzéseket</value>
+  </data>
+  <data name="displayRatingsOnRecentPosts" xml:space="preserve">
+    <value>Értékelés mutatása</value>
+  </data>
+  <data name="edit" xml:space="preserve">
+    <value>Szerkesztés</value>
+  </data>
+  <data name="email" xml:space="preserve">
+    <value>E-mail</value>
+  </data>
+  <data name="emailAddress" xml:space="preserve">
+    <value>E-mail cím</value>
+  </data>
+  <data name="enableAttachments" xml:space="preserve">
+    <value>Engedélyezz csatolakat</value>
+  </data>
+  <data name="enableComments" xml:space="preserve">
+    <value>Engedélyezz megjegyzéseket</value>
+  </data>
+  <data name="enableCommentsDescription" xml:space="preserve">
+    <value>Ha a megjegyzés küldése le van tiltva, senki sem adhat megjegyzést egyik bejegyzéshez sem</value>
+  </data>
+  <data name="enableCommentSearch" xml:space="preserve">
+    <value>Engedélyezz keresést a megjegyzésekben</value>
+  </data>
+  <data name="enableCommentsModeration" xml:space="preserve">
+    <value>Megjegyzések elnöklése</value>
+  </data>
+  <data name="enableGravatars" xml:space="preserve">
+    <value>Engedélyezz Gravatar-ok használatát</value>
+  </data>
+  <data name="enableHttpCompression" xml:space="preserve">
+    <value>Használj HTTP tömörítést</value>
+  </data>
+  <data name="enableHttpCompressionDescription" xml:space="preserve">
+    <value>A lapok gyorsabban töltödnek (ajánlott).</value>
+  </data>
+  <data name="enableOpenSearch" xml:space="preserve">
+    <value>Használj OpenSearch-t</value>
+  </data>
+  <data name="enableOpenSearchDescription" xml:space="preserve">
+    <value>Keresőt ad minden új böngészőhöz (ajánlott).</value>
+  </data>
+  <data name="enableRating" xml:space="preserve">
+    <value>Bejegyzés értékelése</value>
+  </data>
+  <data name="enableReferrerTracking" xml:space="preserve">
+    <value>Engedélyezz hívatkozó követést</value>
+  </data>
+  <data name="enableSearchHighlight" xml:space="preserve">
+    <value>Keresés kihangsúlyozása</value>
+  </data>
+  <data name="enableSearchHighlightDescription" xml:space="preserve">
+    <value>Színesen jelöli az oldalon a keresett szavakat</value>
+  </data>
+  <data name="enableSsl" xml:space="preserve">
+    <value>SSL Engedélyezése</value>
+  </data>
+  <data name="endorsment" xml:space="preserve">
+    <value>Jóváhagyás (bLink)</value>
+  </data>
+  <data name="enforce" xml:space="preserve">
+    <value>Kényszerít</value>
+  </data>
+  <data name="export" xml:space="preserve">
+    <value>Export</value>
+  </data>
+  <data name="formMessage" xml:space="preserve">
+    <value>Form message</value>
+  </data>
+  <data name="goToFrontPage" xml:space="preserve">
+    <value>Ugorj a kezdőlapra</value>
+  </data>
+  <data name="handleWwwSubdomain" xml:space="preserve">
+    <value>www subdomain vezérelv</value>
+  </data>
+  <data name="home" xml:space="preserve">
+    <value>Kezdőlap</value>
+    <comment>Kapcsolat a kezdőlaphoz</comment>
+  </data>
+  <data name="htmlHeadSection" xml:space="preserve">
+    <value>HTML fejléc</value>
+  </data>
+  <data name="ignore" xml:space="preserve">
+    <value>Mellőz</value>
+  </data>
+  <data name="import" xml:space="preserve">
+    <value>Import</value>
+  </data>
+  <data name="isFrontPage" xml:space="preserve">
+    <value>Kezdőlap-e</value>
+  </data>
+  <data name="keywords" xml:space="preserve">
+    <value>Kulcsszavak</value>
+  </data>
+  <data name="language" xml:space="preserve">
+    <value>Válassz nyelvet</value>
+  </data>
+  <data name="languageCode" xml:space="preserve">
+    <value>Nyelv kód</value>
+  </data>
+  <data name="latitude" xml:space="preserve">
+    <value>Szélesség</value>
+  </data>
+  <data name="livePreview" xml:space="preserve">
+    <value>Előnézet</value>
+  </data>
+  <data name="longtitude" xml:space="preserve">
+    <value>Hosszúság</value>
+  </data>
+  <data name="maxLengthOfItems" xml:space="preserve">
+    <value>Cikkek maximum hosszúsága</value>
+  </data>
+  <data name="message" xml:space="preserve">
+    <value>Üzenet</value>
+  </data>
+  <data name="monster" xml:space="preserve">
+    <value>Szörnyeteg</value>
+  </data>
+  <data name="more" xml:space="preserve">
+    <value>Több</value>
+  </data>
+  <data name="name" xml:space="preserve">
+    <value>Név</value>
+  </data>
+  <data name="none" xml:space="preserve">
+    <value>Ne mutasd</value>
+  </data>
+  <data name="noParent" xml:space="preserve">
+    <value>Nincs szülő</value>
+  </data>
+  <data name="notifyOnNewComments" xml:space="preserve">
+    <value>Értesits új hozzászólások kuldésekor.</value>
+  </data>
+  <data name="notRatedYet" xml:space="preserve">
+    <value>Még nincs értékelve</value>
+  </data>
+  <data name="numberOfComments" xml:space="preserve">
+    <value>Megjegyzések száma</value>
+  </data>
+  <data name="numberOfDisplayedItems" xml:space="preserve">
+    <value>A mutatott cikkek #</value>
+  </data>
+  <data name="numberOfPosts" xml:space="preserve">
+    <value>összes bejegyzés</value>
+  </data>
+  <data name="page" xml:space="preserve">
+    <value>Lap</value>
+  </data>
+  <data name="pages" xml:space="preserve">
+    <value>Lapok</value>
+  </data>
+  <data name="password" xml:space="preserve">
+    <value>Jelszó</value>
+  </data>
+  <data name="portNumber" xml:space="preserve">
+    <value>Port szám</value>
+  </data>
+  <data name="portNumberDescription" xml:space="preserve">
+    <value>Port 25 a standard</value>
+  </data>
+  <data name="possibleSpam" xml:space="preserve">
+    <value>Lehetséges spam</value>
+  </data>
+  <data name="post" xml:space="preserve">
+    <value>Bejegyzés</value>
+  </data>
+  <data name="postPerPage" xml:space="preserve">
+    <value>Bejegyzések oldalanként</value>
+  </data>
+  <data name="posts" xml:space="preserve">
+    <value>Bejegyzések</value>
+  </data>
+  <data name="postsPerFeed" xml:space="preserve">
+    <value>Cikkek száma a feed-ben</value>
+  </data>
+  <data name="publish" xml:space="preserve">
+    <value>Publikál</value>
+  </data>
+  <data name="raters" xml:space="preserve">
+    <value>Értékelők</value>
+  </data>
+  <data name="rating" xml:space="preserve">
+    <value>Értékelés</value>
+  </data>
+  <data name="recentComments" xml:space="preserve">
+    <value>Legújabb hozzászólások</value>
+  </data>
+  <data name="recentPosts" xml:space="preserve">
+    <value>Legújabb bejegyzések</value>
+  </data>
+  <data name="referrer" xml:space="preserve">
+    <value>Hivatkozó</value>
+  </data>
+  <data name="referrers" xml:space="preserve">
+    <value>Hivatkozók</value>
+  </data>
+  <data name="relatedPosts" xml:space="preserve">
+    <value>Hasonló bejegyzések</value>
+  </data>
+  <data name="remove" xml:space="preserve">
+    <value>Eltávolít</value>
+  </data>
+  <data name="save" xml:space="preserve">
+    <value>Mentés</value>
+  </data>
+  <data name="saveComment" xml:space="preserve">
+    <value>Hozzászólás mentése</value>
+  </data>
+  <data name="savePage" xml:space="preserve">
+    <value>Oldal mentése</value>
+  </data>
+  <data name="savePost" xml:space="preserve">
+    <value>Bejegyzés mentése</value>
+  </data>
+  <data name="saveSettings" xml:space="preserve">
+    <value>Beállítások mentése</value>
+  </data>
+  <data name="search" xml:space="preserve">
+    <value>Keresés</value>
+  </data>
+  <data name="searchField" xml:space="preserve">
+    <value>Keresési mező</value>
+  </data>
+  <data name="searchFieldText" xml:space="preserve">
+    <value>Keresési mező szövege</value>
+  </data>
+  <data name="searchResultsFor" xml:space="preserve">
+    <value>Keresési találatok</value>
+  </data>
+  <data name="selectDay" xml:space="preserve">
+    <value>Válassz napot</value>
+  </data>
+  <data name="selectParent" xml:space="preserve">
+    <value>Válassz szülőt</value>
+  </data>
+  <data name="sendCommentEmail" xml:space="preserve">
+    <value>Hozzászólás email-ben</value>
+  </data>
+  <data name="separateTagsWitComma" xml:space="preserve">
+    <value>Vesszővel válaszd el a tag-eket</value>
+  </data>
+  <data name="settings" xml:space="preserve">
+    <value>Beállítások</value>
+  </data>
+  <data name="showCountryChooser" xml:space="preserve">
+    <value>Mutasd az ország választót</value>
+  </data>
+  <data name="showCountryChooserDescription" xml:space="preserve">
+    <value>Ha az ország választó nem látszik, akkor a zászló nem jelenik meg a hozzászólások mellett.</value>
+  </data>
+  <data name="showDescriptionInPostList" xml:space="preserve">
+    <value>Csak a bejegyzés leírását mutasd</value>
+  </data>
+  <data name="showEnableWebsiteInComments" xml:space="preserve">
+    <value>Need Translation:Enable Website in Comments</value>
+  </data>
+  <data name="showEnableWebsiteInCommentsDescription" xml:space="preserve">
+    <value>Need Translation:Choose whether to allow Website to be published in Comments</value>
+  </data>
+  <data name="showInList" xml:space="preserve">
+    <value>Mutasd listában</value>
+  </data>
+  <data name="showLivePreview" xml:space="preserve">
+    <value>Előnézet</value>
+  </data>
+  <data name="showRelatedPosts" xml:space="preserve">
+    <value>Mutass hasonló bejegyzéseket</value>
+  </data>
+  <data name="subject" xml:space="preserve">
+    <value>Téma</value>
+  </data>
+  <data name="subscribe" xml:space="preserve">
+    <value>Iratkozz fel</value>
+  </data>
+  <data name="thankYouMessage" xml:space="preserve">
+    <value>Köszönet üzenet</value>
+  </data>
+  <data name="theComment" xml:space="preserve">
+    <value>a megjegyzés</value>
+  </data>
+  <data name="theme" xml:space="preserve">
+    <value>Stílus</value>
+  </data>
+  <data name="thePost" xml:space="preserve">
+    <value>a bejegyzés</value>
+  </data>
+  <data name="thereAreXDrafts" xml:space="preserve">
+    <value>{0} vázlatod van</value>
+  </data>
+  <data name="timeStampPostLinks" xml:space="preserve">
+    <value>Fűzz dátumot a bejegyzés kapcsolataihoz</value>
+  </data>
+  <data name="timezone" xml:space="preserve">
+    <value>Szerver idő különbség</value>
+  </data>
+  <data name="title" xml:space="preserve">
+    <value>Cím</value>
+  </data>
+  <data name="trimStylesheet" xml:space="preserve">
+    <value>Trim stylesheets</value>
+  </data>
+  <data name="trimStylesheetDescription" xml:space="preserve">
+    <value>Makes all stylesheets of any theme smaller by removing all whitespace at runtime.</value>
+  </data>
+  <data name="unapprovedcomments" xml:space="preserve">
+    <value>Unapproved Comments</value>
+  </data>
+  <data name="updateFrequenzy" xml:space="preserve">
+    <value>Update frequency (minutes)</value>
+  </data>
+  <data name="uploadFile" xml:space="preserve">
+    <value>Fájl feltöltés</value>
+  </data>
+  <data name="uploadImage" xml:space="preserve">
+    <value>Kép feltöltés</value>
+  </data>
+  <data name="userName" xml:space="preserve">
+    <value>Felhasználónév</value>
+  </data>
+  <data name="users" xml:space="preserve">
+    <value>Felhasználók</value>
+  </data>
+  <data name="website" xml:space="preserve">
+    <value>Honlap</value>
+  </data>
+  <data name="willShowGravatar" xml:space="preserve">
+    <value>A(z) {0} ikon-odat fogja mutatni</value>
+  </data>
+  <data name="wrote" xml:space="preserve">
+    <value>írta</value>
+  </data>
+  <data name="youAlreadyRated" xml:space="preserve">
+    <value>Már értékelted ezt a bejegyzést</value>
+  </data>
+</root>

@@ -1,0 +1,22 @@
+
+# SQL Express Base Image 
+# NOTE: You may need to prepend 'microsoft/' to base image name--use 'docker images' to see what your image is called.
+FROM microsoft/mssql-server-2014-express-windows
+
+# SQL environmental variables (replace "Password123" with your sa password)
+ENV sa_password "Password123"
+ENV attach_dbs "[]"
+
+# Copy SQL scripts for setting up blog database and tables
+COPY ./Setup-blogdatabase.sql /
+COPY ./Setup-blogtables.sql /
+
+# Set working directory
+WORKDIR /
+
+# Run SQL scripts in container
+RUN powershell sqlcmd -S localhost,1433 -i Setup-blogdatabase.sql
+RUN powershell sqlcmd -S localhost,1433 -i Setup-blogtables.sql
+
+# Add CMD line to allow image to be run without additional 'docker' run command line arguments.
+CMD powershell ./start -sa_password %sa_password% -attach_dbs \"%attach_dbs%\" -Verbose

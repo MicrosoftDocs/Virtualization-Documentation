@@ -1,0 +1,52 @@
+﻿// alert
+.alert {
+    text-shadow: none;
+
+    strong {
+        font-weight: 500;
+    }
+
+    &.alert-success {
+        background-color: lighten($color-success, 30%);
+        border-color: lighten($color-success, 25%);
+    }
+
+    &.alert-danger {
+        background-color: lighten($color-danger, 20%);
+        border-color: lighten($color-danger, 15%);
+    }
+
+    &.alert-info {
+        background-color: lighten($color-info, 20%);
+        border-color: lighten($color-info, 15%);
+    }
+
+    &.alert-warning {
+        background-color: lighten($color-warning, 20%);
+        border-color: lighten($color-warning, 15%);
+    }
+}
+
+// toast
+#toast-container > div {
+    opacity: 1;
+}
+.toast {
+    opacity: 1;
+
+    &.toast-success {
+        background-color: $color-success;
+    }
+
+    &.toast-error {
+        background-color: $color-danger;
+    }
+
+    &.toast-info {
+        background-color: $color-info;
+    }
+
+    &.toast-warning {
+        background-color: $color-warning;
+    }
+}

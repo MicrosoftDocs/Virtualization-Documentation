@@ -1,0 +1,10 @@
+ALTER TABLE [be_Categories]
+ADD [ParentID] VARCHAR(36)  NULL
+
+UPDATE be_DataStoreSettings
+SET Settings =
+'<?xml version="1.0" encoding="utf-16"?>
+<WidgetData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Settings>&lt;widgets&gt;&lt;widget id="b5310024-0259-46dc-ae5e-8514c4d0428c" title="Administration" showTitle="True"&gt;Administration&lt;/widget&gt;&lt;widget id="bc71fece-380e-4937-93cf-14b01d53d03a" title="Search" showTitle="True"&gt;Search&lt;/widget&gt;&lt;widget id="fb84735a-bff6-4670-a249-427720a58c70" title="Tag cloud" showTitle="True"&gt;Tag cloud&lt;/widget&gt;&lt;widget id="2b92a42c-90d4-4752-9eba-932b0c0bd387" title="RecentPosts" showTitle="True"&gt;RecentPosts&lt;/widget&gt;&lt;/widgets&gt;</Settings>
+</WidgetData>'
+WHERE ExtensionID = 'be_WIDGET_ZONE'

@@ -1,0 +1,2230 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="add" xml:space="preserve">
+    <value>Добавить</value>
+  </data>
+  <data name="add_Entry" xml:space="preserve">
+    <value>Новая запись</value>
+  </data>
+  <data name="addComment" xml:space="preserve">
+    <value>Добавить комментарий</value>
+  </data>
+  <data name="addCustomCodeToHeader" xml:space="preserve">
+    <value>Добавить код в HTML заголовок</value>
+  </data>
+  <data name="administrationPanel" xml:space="preserve">
+    <value>Панель управления</value>
+  </data>
+  <data name="advanced" xml:space="preserve">
+    <value>Продвинутые</value>
+  </data>
+  <data name="advancedSettings" xml:space="preserve">
+    <value>Расширенные настройки</value>
+  </data>
+  <data name="alternateFeedUrl" xml:space="preserve">
+    <value>Альтернативный URL ленты</value>
+  </data>
+  <data name="approve" xml:space="preserve">
+    <value>Подтвердить</value>
+  </data>
+  <data name="approveallcomments" xml:space="preserve">
+    <value>Подтвердить все комментарии</value>
+  </data>
+  <data name="archive" xml:space="preserve">
+    <value>Архив</value>
+  </data>
+  <data name="areYouSure" xml:space="preserve">
+    <value>Вы уверены в том, что хотите {0} {1}?</value>
+  </data>
+  <data name="attachFile" xml:space="preserve">
+    <value>Прикрепить файл</value>
+  </data>
+  <data name="author" xml:space="preserve">
+    <value>Автор</value>
+  </data>
+  <data name="avatars" xml:space="preserve">
+    <value>Аватары</value>
+  </data>
+  <data name="basic" xml:space="preserve">
+    <value>Стандартные</value>
+  </data>
+  <data name="beTheFirstToRate" xml:space="preserve">
+    <value>Оценок нет</value>
+  </data>
+  <data name="blogMLDescription" xml:space="preserve">
+    <value>BlogEngine.NET экспортирует данные в формате BlogML, импортирует в BlogML и RSS.</value>
+  </data>
+  <data name="blogroll" xml:space="preserve">
+    <value>Блоги</value>
+  </data>
+  <data name="buttonText" xml:space="preserve">
+    <value>Текст кнопки</value>
+  </data>
+  <data name="categories" xml:space="preserve">
+    <value>Категории</value>
+  </data>
+  <data name="category" xml:space="preserve">
+    <value>Категория</value>
+  </data>
+  <data name="closeCommetsAfter" xml:space="preserve">
+    <value>Закрывать комментарии после</value>
+  </data>
+  <data name="combine" xml:space="preserve">
+    <value>Комбинация</value>
+  </data>
+  <data name="comment" xml:space="preserve">
+    <value>Комментарий</value>
+  </data>
+  <data name="commentLabelText" xml:space="preserve">
+    <value>Текст комментария</value>
+  </data>
+  <data name="comments" xml:space="preserve">
+    <value>Комментарии</value>
+  </data>
+  <data name="commentsAreClosed" xml:space="preserve">
+    <value>Комментарии закрыты</value>
+  </data>
+  <data name="commentWasSaved" xml:space="preserve">
+    <value>Комментарий сохранён</value>
+  </data>
+  <data name="contact" xml:space="preserve">
+    <value>Контакт</value>
+  </data>
+  <data name="contactForm" xml:space="preserve">
+    <value>Форма обратной связи</value>
+  </data>
+  <data name="controls" xml:space="preserve">
+    <value>Элементы управления</value>
+  </data>
+  <data name="country" xml:space="preserve">
+    <value>Страна</value>
+  </data>
+  <data name="createNewUser" xml:space="preserve">
+    <value>Создать пользователя</value>
+  </data>
+  <data name="currentlyRated" xml:space="preserve">
+    <value>Текущий рейтинг: {0} ({1} голосов)</value>
+  </data>
+  <data name="date" xml:space="preserve">
+    <value>Дата</value>
+  </data>
+  <data name="defaultFeedOutput" xml:space="preserve">
+    <value>Формат ленты по умолчанию</value>
+  </data>
+  <data name="defaultTextShownInSearchField" xml:space="preserve">
+    <value>Текст по умолчанию в строке поиска</value>
+  </data>
+  <data name="delete" xml:space="preserve">
+    <value>Удалить</value>
+  </data>
+  <data name="description" xml:space="preserve">
+    <value>Описание</value>
+  </data>
+  <data name="displayCommentsOnRecentPosts" xml:space="preserve">
+    <value>Отображать комментарии</value>
+  </data>
+  <data name="displayRatingsOnRecentPosts" xml:space="preserve">
+    <value>Отображать рейтинг</value>
+  </data>
+  <data name="edit" xml:space="preserve">
+    <value>Редактировать</value>
+  </data>
+  <data name="email" xml:space="preserve">
+    <value>E-mail</value>
+  </data>
+  <data name="emailAddress" xml:space="preserve">
+    <value>E-mail адрес</value>
+  </data>
+  <data name="enableAttachments" xml:space="preserve">
+    <value>Разрешить аттачменты</value>
+  </data>
+  <data name="enableComments" xml:space="preserve">
+    <value>Включить комментарии</value>
+  </data>
+  <data name="enableCommentsDescription" xml:space="preserve">
+    <value>Эта опция включает/выключает комментарии ко всем записям</value>
+  </data>
+  <data name="enableCommentSearch" xml:space="preserve">
+    <value>Поиск по комментариям</value>
+  </data>
+  <data name="enableCommentsModeration" xml:space="preserve">
+    <value>Модерирование комментариев</value>
+  </data>
+  <data name="enableGravatars" xml:space="preserve">
+    <value>Использовать Gravatar</value>
+  </data>
+  <data name="enableHttpCompression" xml:space="preserve">
+    <value>HTTP сжатие</value>
+  </data>
+  <data name="enableHttpCompressionDescription" xml:space="preserve">
+    <value>Ускоряет загрузку страниц (рекомендуется)</value>
+  </data>
+  <data name="enableOpenSearch" xml:space="preserve">
+    <value>OpenSearch</value>
+  </data>
+  <data name="enableOpenSearchDescription" xml:space="preserve">
+    <value>Добавляет функцию поиска во все современные браузеры (рекомендуется)</value>
+  </data>
+  <data name="enableRating" xml:space="preserve">
+    <value>Включить рейтинги</value>
+  </data>
+  <data name="enableReferrerTracking" xml:space="preserve">
+    <value>Включить рефереры (ссылки)</value>
+  </data>
+  <data name="enableSearchHighlight" xml:space="preserve">
+    <value>Выделение запросов</value>
+  </data>
+  <data name="enableSearchHighlightDescription" xml:space="preserve">
+    <value>Выделяет цветом поисковые запросы в результатах поиска</value>
+  </data>
+  <data name="enableSsl" xml:space="preserve">
+    <value>Включить SSL</value>
+  </data>
+  <data name="endorsment" xml:space="preserve">
+    <value>Ссылка (bLink)</value>
+  </data>
+  <data name="enforce" xml:space="preserve">
+    <value>Обязательно</value>
+  </data>
+  <data name="export" xml:space="preserve">
+    <value>Экспорт</value>
+  </data>
+  <data name="formMessage" xml:space="preserve">
+    <value>Комментарий к форме</value>
+  </data>
+  <data name="goToFrontPage" xml:space="preserve">
+    <value>На первую страницу</value>
+  </data>
+  <data name="handleWwwSubdomain" xml:space="preserve">
+    <value>Подставлять www в адрес</value>
+  </data>
+  <data name="home" xml:space="preserve">
+    <value>Главная</value>
+    <comment>As used for linking to the front-page</comment>
+  </data>
+  <data name="htmlHeadSection" xml:space="preserve">
+    <value>HTML заголовок</value>
+  </data>
+  <data name="ignore" xml:space="preserve">
+    <value>Игнорировать</value>
+  </data>
+  <data name="import" xml:space="preserve">
+    <value>Импорт</value>
+  </data>
+  <data name="isFrontPage" xml:space="preserve">
+    <value>Первая страница</value>
+  </data>
+  <data name="keywords" xml:space="preserve">
+    <value>Ключевые слова</value>
+  </data>
+  <data name="language" xml:space="preserve">
+    <value>Выберите язык</value>
+  </data>
+  <data name="languageCode" xml:space="preserve">
+    <value>Код языка</value>
+  </data>
+  <data name="latitude" xml:space="preserve">
+    <value>Широта</value>
+  </data>
+  <data name="livePreview" xml:space="preserve">
+    <value>Предпросмотр</value>
+  </data>
+  <data name="longtitude" xml:space="preserve">
+    <value>Долгота</value>
+  </data>
+  <data name="maxLengthOfItems" xml:space="preserve">
+    <value>Максимальная длина записей</value>
+  </data>
+  <data name="message" xml:space="preserve">
+    <value>Сообщение</value>
+  </data>
+  <data name="monster" xml:space="preserve">
+    <value>Monster</value>
+  </data>
+  <data name="more" xml:space="preserve">
+    <value>Ещё</value>
+  </data>
+  <data name="name" xml:space="preserve">
+    <value>Имя</value>
+  </data>
+  <data name="none" xml:space="preserve">
+    <value>Не отображать</value>
+  </data>
+  <data name="noParent" xml:space="preserve">
+    <value>Нет</value>
+  </data>
+  <data name="notifyOnNewComments" xml:space="preserve">
+    <value>Уведомлять о новых комментариях</value>
+  </data>
+  <data name="notRatedYet" xml:space="preserve">
+    <value>Нет оценок</value>
+  </data>
+  <data name="numberOfComments" xml:space="preserve">
+    <value>Количество комментариев</value>
+  </data>
+  <data name="numberOfDisplayedItems" xml:space="preserve">
+    <value>Количество отображаемых записей</value>
+  </data>
+  <data name="numberOfPosts" xml:space="preserve">
+    <value>Количество записей</value>
+  </data>
+  <data name="page" xml:space="preserve">
+    <value>Страница</value>
+  </data>
+  <data name="pages" xml:space="preserve">
+    <value>Страницы</value>
+  </data>
+  <data name="password" xml:space="preserve">
+    <value>Пароль</value>
+  </data>
+  <data name="portNumber" xml:space="preserve">
+    <value>Порт</value>
+  </data>
+  <data name="portNumberDescription" xml:space="preserve">
+    <value>25 - стандартный порт</value>
+  </data>
+  <data name="possibleSpam" xml:space="preserve">
+    <value>Возможно спам</value>
+  </data>
+  <data name="post" xml:space="preserve">
+    <value>Запись</value>
+  </data>
+  <data name="postPerPage" xml:space="preserve">
+    <value>Количество записей на странице</value>
+  </data>
+  <data name="posts" xml:space="preserve">
+    <value>Записи</value>
+  </data>
+  <data name="postsPerFeed" xml:space="preserve">
+    <value>Количество записей в ленте</value>
+  </data>
+  <data name="publish" xml:space="preserve">
+    <value>Опубликовать</value>
+  </data>
+  <data name="raters" xml:space="preserve">
+    <value>Raters</value>
+  </data>
+  <data name="rating" xml:space="preserve">
+    <value>Рейтинг</value>
+  </data>
+  <data name="recentComments" xml:space="preserve">
+    <value>Последние комментарии</value>
+  </data>
+  <data name="recentPosts" xml:space="preserve">
+    <value>Последние записи</value>
+  </data>
+  <data name="referrer" xml:space="preserve">
+    <value>Реферер</value>
+  </data>
+  <data name="referrers" xml:space="preserve">
+    <value>Рефереры</value>
+  </data>
+  <data name="relatedPosts" xml:space="preserve">
+    <value>Похожие записи</value>
+  </data>
+  <data name="remove" xml:space="preserve">
+    <value>Удалять</value>
+  </data>
+  <data name="save" xml:space="preserve">
+    <value>Сохранить</value>
+  </data>
+  <data name="saveComment" xml:space="preserve">
+    <value>Сохранить комментарий</value>
+  </data>
+  <data name="savePage" xml:space="preserve">
+    <value>Сохранить страницу</value>
+  </data>
+  <data name="savePost" xml:space="preserve">
+    <value>Сохранить запись</value>
+  </data>
+  <data name="saveSettings" xml:space="preserve">
+    <value>Сохранить настройки</value>
+  </data>
+  <data name="search" xml:space="preserve">
+    <value>Поиск</value>
+  </data>
+  <data name="searchField" xml:space="preserve">
+    <value>Поиск</value>
+  </data>
+  <data name="searchFieldText" xml:space="preserve">
+    <value>Текст в поисковой строке</value>
+  </data>
+  <data name="searchResultsFor" xml:space="preserve">
+    <value>Искать в результатах</value>
+  </data>
+  <data name="selectDay" xml:space="preserve">
+    <value>Выбрать день</value>
+  </data>
+  <data name="selectParent" xml:space="preserve">
+    <value>Выбрать страницу верхнего уровня</value>
+  </data>
+  <data name="sendCommentEmail" xml:space="preserve">
+    <value>Отправлять комментарии на e-mail</value>
+  </data>
+  <data name="separateTagsWitComma" xml:space="preserve">
+    <value>Метки разделяются запятой</value>
+  </data>
+  <data name="settings" xml:space="preserve">
+    <value>Настройки</value>
+  </data>
+  <data name="showCountryChooser" xml:space="preserve">
+    <value>Выбор страны</value>
+  </data>
+  <data name="showCountryChooserDescription" xml:space="preserve">
+    <value>Без выбора страны около комментариев не будут отображаться флаги</value>
+  </data>
+  <data name="showEnableWebsiteInComments" xml:space="preserve">
+    <value>Need Translation:Enable Website in Comments</value>
+  </data>
+  <data name="showEnableWebsiteInCommentsDescription" xml:space="preserve">
+    <value>Need Translation:Choose whether to allow Website to be published in Comments</value>
+  </data>
+  <data name="showDescriptionInPostList" xml:space="preserve">
+    <value>Краткие описания в списке записей</value>
+  </data>
+  <data name="showInList" xml:space="preserve">
+    <value>Отображать в списке</value>
+  </data>
+  <data name="showLivePreview" xml:space="preserve">
+    <value>Показывать предпросмотр</value>
+  </data>
+  <data name="showRelatedPosts" xml:space="preserve">
+    <value>Показывать похожие записи</value>
+  </data>
+  <data name="subject" xml:space="preserve">
+    <value>Тема</value>
+  </data>
+  <data name="subscribe" xml:space="preserve">
+    <value>Подписаться</value>
+  </data>
+  <data name="thankYouMessage" xml:space="preserve">
+    <value>Сообщение после отправки формы</value>
+  </data>
+  <data name="theComment" xml:space="preserve">
+    <value>комментарий</value>
+  </data>
+  <data name="theme" xml:space="preserve">
+    <value>Тема</value>
+  </data>
+  <data name="thePost" xml:space="preserve">
+    <value>запись</value>
+  </data>
+  <data name="thereAreXDrafts" xml:space="preserve">
+    <value>Неопубликованных записей: {0}</value>
+  </data>
+  <data name="timeStampPostLinks" xml:space="preserve">
+    <value>Даты в ссылках</value>
+  </data>
+  <data name="timezone" xml:space="preserve">
+    <value>Часовой пояс на сервере</value>
+  </data>
+  <data name="title" xml:space="preserve">
+    <value>Заголовок</value>
+  </data>
+  <data name="trimStylesheet" xml:space="preserve">
+    <value>Сжимать стили</value>
+  </data>
+  <data name="trimStylesheetDescription" xml:space="preserve">
+    <value>Уменьшает стили, убирая лишние пробелы.</value>
+  </data>
+  <data name="unapprovedcomments" xml:space="preserve">
+    <value>Неутверждённые комментарии</value>
+  </data>
+  <data name="updateFrequenzy" xml:space="preserve">
+    <value>Периодичность обновления (мин)</value>
+  </data>
+  <data name="uploadFile" xml:space="preserve">
+    <value>Загрузить файл</value>
+  </data>
+  <data name="uploadImage" xml:space="preserve">
+    <value>Загрузить изображение</value>
+  </data>
+  <data name="userName" xml:space="preserve">
+    <value>Имя пользователя</value>
+  </data>
+  <data name="users" xml:space="preserve">
+    <value>Пользователи</value>
+  </data>
+  <data name="website" xml:space="preserve">
+    <value>Сайт</value>
+  </data>
+  <data name="willShowGravatar" xml:space="preserve">
+    <value>Отображает {0}</value>
+  </data>
+  <data name="wrote" xml:space="preserve">
+    <value>написал(а)</value>
+  </data>
+  <data name="youAlreadyRated" xml:space="preserve">
+    <value>Вы уже оценивали эту запись</value>
+  </data>
+  <data name="dashboard" xml:space="preserve">
+    <value>Панель Наблюдения</value>
+  </data>
+  <data name="extensions" xml:space="preserve">
+    <value>Расширения</value>
+  </data>
+  <data name="login" xml:space="preserve">
+    <value>Войти</value>
+  </data>
+  <data name="logoff" xml:space="preserve">
+    <value>Выйти</value>
+  </data>
+  <data name="myProfile" xml:space="preserve">
+    <value>Мой Профиль</value>
+  </data>
+  <data name="tracking" xml:space="preserve">
+    <value>Трекинг</value>
+  </data>
+  <data name="welcome" xml:space="preserve">
+    <value>Привет</value>
+  </data>
+  <data name="addNewPage" xml:space="preserve">
+    <value>Новая страница</value>
+  </data>
+  <data name="admin" xml:space="preserve">
+    <value>Администрация</value>
+  </data>
+  <data name="changePassword" xml:space="preserve">
+    <value>Изменить Пароль</value>
+  </data>
+  <data name="draftPages" xml:space="preserve">
+    <value>Черновики страниц</value>
+  </data>
+  <data name="draftPosts" xml:space="preserve">
+    <value>Черновики записей</value>
+  </data>
+  <data name="emptyTrash" xml:space="preserve">
+    <value>Выбросить весь мусор</value>
+  </data>
+  <data name="makeDonation" xml:space="preserve">
+    <value>Поддержать Проект</value>
+  </data>
+  <data name="recentPendingComments" xml:space="preserve">
+    <value>Последние неутверждённые комментарии</value>
+  </data>
+  <data name="spam" xml:space="preserve">
+    <value>Спам</value>
+  </data>
+  <data name="stats" xml:space="preserve">
+    <value>Статистика</value>
+  </data>
+  <data name="tags" xml:space="preserve">
+    <value>Метки</value>
+  </data>
+  <data name="trash" xml:space="preserve">
+    <value>Мусор</value>
+  </data>
+  <data name="unapproved" xml:space="preserve">
+    <value>Неутверждённые</value>
+  </data>
+  <data name="viewAll" xml:space="preserve">
+    <value>Подробнее</value>
+  </data>
+  <data name="writeNewPost" xml:space="preserve">
+    <value>Новая запись</value>
+  </data>
+  <data name="youDontHaveAnyDraftPages" xml:space="preserve">
+    <value>Черновых страниц нет.</value>
+  </data>
+  <data name="youDontHaveAnyDraftPosts" xml:space="preserve">
+    <value>Черновых записей нет.</value>
+  </data>
+  <data name="addEditPost" xml:space="preserve">
+    <value>Создать/редактировать запись</value>
+  </data>
+  <data name="addNewCategory" xml:space="preserve">
+    <value>Создать Категорию</value>
+  </data>
+  <data name="all" xml:space="preserve">
+    <value>Всё</value>
+  </data>
+  <data name="cancel" xml:space="preserve">
+    <value>отменить</value>
+  </data>
+  <data name="insertImage" xml:space="preserve">
+    <value>Вложить картинку</value>
+  </data>
+  <data name="insertVideo" xml:space="preserve">
+    <value>Вложить видео</value>
+  </data>
+  <data name="or" xml:space="preserve">
+    <value>или</value>
+  </data>
+  <data name="parent" xml:space="preserve">
+    <value>Родитель</value>
+  </data>
+  <data name="published" xml:space="preserve">
+    <value>Опубликованное</value>
+  </data>
+  <data name="show" xml:space="preserve">
+    <value>Показать</value>
+  </data>
+  <data name="useRawHtmlEditor" xml:space="preserve">
+    <value>Использовать упрощённый HTML редактор</value>
+  </data>
+  <data name="automatically" xml:space="preserve">
+    <value>Автоматически</value>
+  </data>
+  <data name="chooseFromExistingTags" xml:space="preserve">
+    <value>Выбери из существующих меток</value>
+  </data>
+  <data name="clickTag" xml:space="preserve">
+    <value>Выбери метку:</value>
+  </data>
+  <data name="editPage" xml:space="preserve">
+    <value>Редактировать страницу</value>
+  </data>
+  <data name="excerpt" xml:space="preserve">
+    <value>Отрывок (необязательно)</value>
+  </data>
+  <data name="extractFromTitle" xml:space="preserve">
+    <value>Извлечь из заголовка</value>
+  </data>
+  <data name="goToPage" xml:space="preserve">
+    <value>Перейти к странице</value>
+  </data>
+  <data name="goToPost" xml:space="preserve">
+    <value>Перейти к записи</value>
+  </data>
+  <data name="manually" xml:space="preserve">
+    <value>Вручную</value>
+  </data>
+  <data name="options" xml:space="preserve">
+    <value>Варианты</value>
+  </data>
+  <data name="quickAddNewCategory" xml:space="preserve">
+    <value>Добавить новую категорию</value>
+  </data>
+  <data name="setPublishDate" xml:space="preserve">
+    <value>Установить дату публикации</value>
+  </data>
+  <data name="slug" xml:space="preserve">
+    <value>Слаг (отрывок для URL, необязательно)</value>
+  </data>
+  <data name="upload" xml:space="preserve">
+    <value>Отправить</value>
+  </data>
+  <data name="uploadVideo" xml:space="preserve">
+    <value>Выбери видео (MP4, WMV, FLV, OGG, WebM) или аудио (MP3) файл</value>
+  </data>
+  <data name="addNewBlog" xml:space="preserve">
+    <value>Добавить новый блог</value>
+  </data>
+  <data name="approved" xml:space="preserve">
+    <value>Утверждённые</value>
+  </data>
+  <data name="approvedComments" xml:space="preserve">
+    <value>Утверждённые комментарии</value>
+  </data>
+  <data name="commonControls" xml:space="preserve">
+    <value>Общие елементы</value>
+  </data>
+  <data name="disable" xml:space="preserve">
+    <value>Выключить</value>
+  </data>
+  <data name="drafts" xml:space="preserve">
+    <value>Черновики</value>
+  </data>
+  <data name="enable" xml:space="preserve">
+    <value>Включить</value>
+  </data>
+  <data name="enableRecaptcha" xml:space="preserve">
+    <value>Включить Recaptcha (анти-спам)</value>
+  </data>
+  <data name="numberOfDaysToKeep" xml:space="preserve">
+    <value>Сколько дней хранить</value>
+  </data>
+  <data name="pending" xml:space="preserve">
+    <value>Нерешённые</value>
+  </data>
+  <data name="pendingApproval" xml:space="preserve">
+    <value>Ожидающие решения</value>
+  </data>
+  <data name="pingbacksAndTrackbacks" xml:space="preserve">
+    <value>Пинги и трэкбэки</value>
+  </data>
+  <data name="priority" xml:space="preserve">
+    <value>Приоритет</value>
+  </data>
+  <data name="recaptchaConfigureReminder" xml:space="preserve">
+    <value>Необходимо также включить и настроить расширение</value>
+  </data>
+  <data name="status" xml:space="preserve">
+    <value>Статус</value>
+  </data>
+  <data name="version" xml:space="preserve">
+    <value>Версия</value>
+  </data>
+  <data name="viewSource" xml:space="preserve">
+    <value>Исходник</value>
+  </data>
+  <data name="addCommentsToPages" xml:space="preserve">
+    <value>Разрешать комментарии на страницах</value>
+  </data>
+  <data name="addNewRole" xml:space="preserve">
+    <value>Создать роль</value>
+  </data>
+  <data name="addNewUser" xml:space="preserve">
+    <value>Создать пользователя</value>
+  </data>
+  <data name="addToPages" xml:space="preserve">
+    <value>В дополнение к записям, разрешить комментарии на страницах</value>
+  </data>
+  <data name="allowRemoteFileDownloads" xml:space="preserve">
+    <value>Разрешить загрузку удалённых файлов</value>
+  </data>
+  <data name="allowRemoteFileDownloadsDescription" xml:space="preserve">
+    <value>Разрешить серверу загружать/обрабатывать/кэшировть ресурсы с других сайтов</value>
+  </data>
+  <data name="appearance" xml:space="preserve">
+    <value>Внешний вид</value>
+  </data>
+  <data name="commentSettings" xml:space="preserve">
+    <value>Настройки комментариев</value>
+  </data>
+  <data name="commentsPerPage" xml:space="preserve">
+    <value>Комментариев на странице</value>
+  </data>
+  <data name="compressWebResource" xml:space="preserve">
+    <value>Сжать WebResource.axd</value>
+  </data>
+  <data name="compressWebResourceDescription" xml:space="preserve">
+    <value>Может нарушить работу нестандартных приложений</value>
+  </data>
+  <data name="confirmPassword" xml:space="preserve">
+    <value>Подтвердить пароль</value>
+  </data>
+  <data name="copyRightsFrom" xml:space="preserve">
+    <value>Скопировать права у...</value>
+  </data>
+  <data name="customCode" xml:space="preserve">
+    <value>Дополнительный код</value>
+  </data>
+  <data name="defaultAnonymousRole" xml:space="preserve">
+    <value>Стандартная роль Аноним</value>
+  </data>
+  <data name="defaultEditorsRole" xml:space="preserve">
+    <value>Стандартная роль Редактор</value>
+  </data>
+  <data name="developmentMode" xml:space="preserve">
+    <value>Режим разработки</value>
+  </data>
+  <data name="developmentModeCheckboxMessage" xml:space="preserve">
+    <value>Используется для локального тестирования</value>
+  </data>
+  <data name="disqusSettings" xml:space="preserve">
+    <value>Настройки Disqus</value>
+  </data>
+  <data name="disqusShortName" xml:space="preserve">
+    <value>Сокращённое название вашего сайта в Disqus</value>
+  </data>
+  <data name="disqusSignupMessage" xml:space="preserve">
+    <value>Для того чтобы использовать Disqus вместо встроенной системы комментариев, нужно сначала зарегистрироваться на &lt;a href="http://www.disqus.com"&gt;disqus.com&lt;/a&gt;</value>
+  </data>
+  <data name="editingRightsForRole" xml:space="preserve">
+    <value>Редактирование прав для роли</value>
+  </data>
+  <data name="emailSubjectPrefix" xml:space="preserve">
+    <value>Заголовок</value>
+  </data>
+  <data name="enableCommentNesting" xml:space="preserve">
+    <value>Разрешить вложенные комментарии</value>
+  </data>
+  <data name="enableCommentNestingDescription" xml:space="preserve">
+    <value>Тема должна поддерживать вкладыши</value>
+  </data>
+  <data name="enableEnclosures" xml:space="preserve">
+    <value>Включить Enclosure (поддержка подкастинка)</value>
+  </data>
+  <data name="enablePasswordReset" xml:space="preserve">
+    <value>Включить возможность восстановления пароля</value>
+  </data>
+  <data name="enablePingbacks" xml:space="preserve">
+    <value>Включить пингбэки</value>
+  </data>
+  <data name="enableSelfRegistration" xml:space="preserve">
+    <value>Включить возможность самостоятельной регистрации</value>
+  </data>
+  <data name="enableTrackbacks" xml:space="preserve">
+    <value>Включить трэкбэки</value>
+  </data>
+  <data name="feed" xml:space="preserve">
+    <value>Синдикация</value>
+  </data>
+  <data name="filters" xml:space="preserve">
+    <value>Фильтры</value>
+  </data>
+  <data name="findPosition" xml:space="preserve">
+    <value>Определить координаты</value>
+  </data>
+  <data name="maximumRemoteFileSize" xml:space="preserve">
+    <value>Максимальный размер загружаемого файла</value>
+  </data>
+  <data name="maximumRemoteFileSizeDescription" xml:space="preserve">
+    <value>Максимальный размер файла в байтах для загрузки. 0 значит без ограничений.</value>
+  </data>
+  <data name="newUserRoles" xml:space="preserve">
+    <value>Роли нового пользователя</value>
+  </data>
+  <data name="numberOfCharacters" xml:space="preserve">
+    <value>Количество букв</value>
+  </data>
+  <data name="otherSettings" xml:space="preserve">
+    <value>Дополнительные настройки</value>
+  </data>
+  <data name="passwordAndConfirmPasswordMismatch" xml:space="preserve">
+    <value>Пароли не совпадают</value>
+  </data>
+  <data name="pingService" xml:space="preserve">
+    <value>Ping-сервисы</value>
+  </data>
+  <data name="profile" xml:space="preserve">
+    <value>Профиль</value>
+  </data>
+  <data name="receive" xml:space="preserve">
+    <value>Получать</value>
+  </data>
+  <data name="remoteTimeout" xml:space="preserve">
+    <value>Максимальное время на удалённый вызов</value>
+  </data>
+  <data name="remoteTimeoutDescription" xml:space="preserve">
+    <value>Время в миллисекундах на ожидание загрузки удалённого ресурса (изображения, скрипта и т.д.)</value>
+  </data>
+  <data name="requireSslForMetaWeblogApi" xml:space="preserve">
+    <value>Требовать SSL для MetaWeblog API</value>
+  </data>
+  <data name="requireSslForMetaWeblogApiDescription" xml:space="preserve">
+    <value>Работать с MetaWeblog API только через безопасный SSL протокол</value>
+  </data>
+  <data name="roles" xml:space="preserve">
+    <value>Роли</value>
+  </data>
+  <data name="rules" xml:space="preserve">
+    <value>Правила</value>
+  </data>
+  <data name="securitySettings" xml:space="preserve">
+    <value>Настройки безопасности</value>
+  </data>
+  <data name="selfRegistrationInitialRole" xml:space="preserve">
+    <value>Роль используемая для самостоятельной регистрации</value>
+  </data>
+  <data name="send" xml:space="preserve">
+    <value>Отправить</value>
+  </data>
+  <data name="showDescriptionInPostListForPostsByTagOrCategory" xml:space="preserve">
+    <value>Краткое описание только для списков по категориям и меткам</value>
+  </data>
+  <data name="showPingBacks" xml:space="preserve">
+    <value>Показывать пингбэки и трэкбэки</value>
+  </data>
+  <data name="showPostNavigation" xml:space="preserve">
+    <value>Показывать линки к предыдущей/следующей записи в списке</value>
+  </data>
+  <data name="smtpServer" xml:space="preserve">
+    <value>SMTP сервер</value>
+  </data>
+  <data name="testEmailSettings" xml:space="preserve">
+    <value>Проверить настройки</value>
+  </data>
+  <data name="themeCookieName" xml:space="preserve">
+    <value>Имя переменной для темы</value>
+  </data>
+  <data name="trackingScript" xml:space="preserve">
+    <value>Добавить код в конец HTML страницы</value>
+  </data>
+  <data name="turnDisqusOnOff" xml:space="preserve">
+    <value> Включить или выключить Disqus</value>
+  </data>
+  <data name="useBlogNameInPageTitles" xml:space="preserve">
+    <value>Использовать имя блога в титулах страниц</value>
+  </data>
+  <data name="useBlogNameInPageTitlesDescription" xml:space="preserve">
+    <value>Добавлять имя блога в начало титула страницы</value>
+  </data>
+  <data name="useDisqusAsCommentProvider" xml:space="preserve">
+    <value>Использовать Disqus как систему для комментариев</value>
+  </data>
+  <data name="addFilter" xml:space="preserve">
+    <value>Добавить фильтер</value>
+  </data>
+  <data name="addToWhiteList" xml:space="preserve">
+    <value>Добавить в рекомендательный список если по крайне мере</value>
+  </data>
+  <data name="alwaysTrust" xml:space="preserve">
+    <value>Если пользователь авторизирован, автоматически утвержадать комментарии</value>
+  </data>
+  <data name="antiSpamServices" xml:space="preserve">
+    <value>Анти-спам сервисы</value>
+  </data>
+  <data name="authorApproved" xml:space="preserve">
+    <value>коментариев автора были утверждены</value>
+  </data>
+  <data name="authorBlocked" xml:space="preserve">
+    <value>Авторы удалённых комментариев автоматически попадают в чёрный список</value>
+  </data>
+  <data name="authorRejected" xml:space="preserve">
+    <value>оментариев автора были отвергнуты</value>
+  </data>
+  <data name="blacklistIpOnCommentRejection" xml:space="preserve">
+    <value>Автоматически заносить IP адреса отклонённых комментариев в чёрный список</value>
+  </data>
+  <data name="commentsBlacklist" xml:space="preserve">
+    <value>Записать в чёрный список если по крайне мере</value>
+  </data>
+  <data name="commentsBlockOnDelete" xml:space="preserve">
+    <value>Блокировать авторов удалённых комментариев</value>
+  </data>
+  <data name="exportIntoBlogML" xml:space="preserve">
+    <value>Экспортировать содержание блога в XML (BlogML) файл.</value>
+  </data>
+  <data name="importFromFile" xml:space="preserve">
+    <value>Импортировать файл</value>
+  </data>
+  <data name="importWithClickOnce" xml:space="preserve">
+    <value>Использовать click-once</value>
+  </data>
+  <data name="pingServiceUrl" xml:space="preserve">
+    <value>URL адрес пинг-сервиса</value>
+  </data>
+  <data name="reportMistakesToService" xml:space="preserve">
+    <value>Сообщать об ошибках</value>
+  </data>
+  <data name="runClickOnceApplicationToImport" xml:space="preserve">
+    <value>Загрузить и использовать специальную программу (click-once) для импорта. Работает только с Internet Explorer.</value>
+  </data>
+  <data name="selectSavedBlogMlFle" xml:space="preserve">
+    <value>Выбрать сохранённый BlogML файл и импортировать его содержание в блог.</value>
+  </data>
+  <data name="toDisableSetTo0" xml:space="preserve">
+    <value>Чтобы отключить, установить на ноль</value>
+  </data>
+  <data name="trustAuthenticated" xml:space="preserve">
+    <value>Доверять авторизированным пользователям</value>
+  </data>
+  <data name="whitelistIpOnCommentApproval" xml:space="preserve">
+    <value>Автоматически добавлять IP авторов утверждённых комментариев в рекомендательный список</value>
+  </data>
+  <data name="alreadyHaveAccount" xml:space="preserve">
+    <value>Уже зарегистрировались?</value>
+  </data>
+  <data name="confirmNewPassword" xml:space="preserve">
+    <value>Подтвердить новый пароль</value>
+  </data>
+  <data name="createAccount" xml:space="preserve">
+    <value>Регистрация</value>
+  </data>
+  <data name="createNow" xml:space="preserve">
+    <value>Зарегистрироваться!</value>
+  </data>
+  <data name="createUser" xml:space="preserve">
+    <value>Создать пользователя</value>
+  </data>
+  <data name="dontHaveAccount" xml:space="preserve">
+    <value>Ещё не зарегистрировались?</value>
+  </data>
+  <data name="forgotPassword" xml:space="preserve">
+    <value>Забыли пароль?</value>
+  </data>
+  <data name="loginNow" xml:space="preserve">
+    <value>Войти!</value>
+  </data>
+  <data name="newPassword" xml:space="preserve">
+    <value>Новый пароль</value>
+  </data>
+  <data name="oldPassword" xml:space="preserve">
+    <value>Текущий пароль</value>
+  </data>
+  <data name="passwordChangeSuccess" xml:space="preserve">
+    <value>Ваш пароль был успешно изменён.</value>
+  </data>
+  <data name="passwordMinimumCharacters" xml:space="preserve">
+    <value>Пароль (минимум {0} букв)</value>
+  </data>
+  <data name="passwordRetrieval" xml:space="preserve">
+    <value>Восстановление пароля</value>
+  </data>
+  <data name="passwordRetrievalInstructionMessage" xml:space="preserve">
+    <value>Введите адрес электронной почты с которым вы зарегистрировались и новый пароль будет выслан по этому адресу</value>
+  </data>
+  <data name="rememberMe" xml:space="preserve">
+    <value>Запомнить</value>
+  </data>
+  <data name="requiredPasswordLength" xml:space="preserve">
+    <value>Пароль должен иметь как минимум {0} букв</value>
+  </data>
+  <data name="returnToBlog" xml:space="preserve">
+    <value>Вернуться в начало</value>
+  </data>
+  <data name="latestFromTheGallery" xml:space="preserve">
+    <value>Новинки галереи</value>
+  </data>
+  <data name="savedByAtTime" xml:space="preserve">
+    <value>Автор: {0} дата: {1}</value>
+  </data>
+  <data name="active" xml:space="preserve">
+    <value>Активный</value>
+  </data>
+  <data name="available" xml:space="preserve">
+    <value>Имеющиеся</value>
+  </data>
+  <data name="currentTheme" xml:space="preserve">
+    <value>Основная тема</value>
+  </data>
+  <data name="gallery" xml:space="preserve">
+    <value>Галерея</value>
+  </data>
+  <data name="installed" xml:space="preserve">
+    <value>Установленные</value>
+  </data>
+  <data name="preview" xml:space="preserve">
+    <value>Предосмотр</value>
+  </data>
+  <data name="setAsCurrentTheme" xml:space="preserve">
+    <value>Выбрать основной темой</value>
+  </data>
+  <data name="themes" xml:space="preserve">
+    <value>Темы</value>
+  </data>
+  <data name="alphaNumeric" xml:space="preserve">
+    <value>Алфавиту</value>
+  </data>
+  <data name="downloads" xml:space="preserve">
+    <value>Загрузки</value>
+  </data>
+  <data name="newest" xml:space="preserve">
+    <value>Новинки</value>
+  </data>
+  <data name="orderBy" xml:space="preserve">
+    <value>Сортировать по</value>
+  </data>
+  <data name="acceptAnyTextBeforeHostname" xml:space="preserve">
+    <value>Разрешать техт перед хостом</value>
+  </data>
+  <data name="activeThemes" xml:space="preserve">
+    <value>Активные темы</value>
+  </data>
+  <data name="blogs" xml:space="preserve">
+    <value>Блоги</value>
+  </data>
+  <data name="existingBlogToCreateNewBlogFrom" xml:space="preserve">
+    <value>Прототип нового блога</value>
+  </data>
+  <data name="hostName" xml:space="preserve">
+    <value>Имя хоста (необязательно)</value>
+  </data>
+  <data name="storageContainerName" xml:space="preserve">
+    <value>Название папки для данных</value>
+  </data>
+  <data name="virtualPath" xml:space="preserve">
+    <value>Виртуальный адрес</value>
+  </data>
+  <data name="enterEmail" xml:space="preserve">
+    <value>Введите ваш e-mail адрес</value>
+  </data>
+  <data name="enterEmailAddress" xml:space="preserve">
+    <value>Пожалуйста введите адрес электронной почты</value>
+  </data>
+  <data name="notifyMe" xml:space="preserve">
+    <value>Сообщать об изменениях</value>
+  </data>
+  <data name="thankYou" xml:space="preserve">
+    <value>Спасибо</value>
+  </data>
+  <data name="nowUnsubscribed" xml:space="preserve">
+    <value>Подписка отменена</value>
+  </data>
+  <data name="viewLargeCalendar" xml:space="preserve">
+    <value>Большой календарь</value>
+  </data>
+  <data name="followTwitter" xml:space="preserve">
+    <value>Дружить на Твитере!</value>
+  </data>
+  <data name="visitorHi" xml:space="preserve">
+    <value>Привет</value>
+  </data>
+  <data name="welcomeBack" xml:space="preserve">
+    <value>Добро пожаловать!</value>
+  </data>
+  <data name="commentsAddedSince" xml:space="preserve">
+    <value>Новые комментарии были добавлены к {0}. </value>
+  </data>
+  <data name="writtenCommentsTotal" xml:space="preserve">
+    <value>Вы написали {0} комментариев.</value>
+  </data>
+  <data name="contactAuthorInformation" xml:space="preserve">
+    <value>Информация об авторе</value>
+  </data>
+  <data name="countryCode" xml:space="preserve">
+    <value>Код стараны</value>
+  </data>
+  <data name="contactIPAddress" xml:space="preserve">
+    <value>IP адрес</value>
+  </data>
+  <data name="contactUserAgent" xml:space="preserve">
+    <value>Параметр User-agent</value>
+  </data>
+  <data name="filestorage" xml:space="preserve">
+    <value>Управление файлами</value>
+  </data>
+  <data name="galleryFeedUrl" xml:space="preserve">
+    <value>URL адрес галереи</value>
+  </data>
+  <data name="galleryFeedUrlDescription" xml:space="preserve">
+    <value>Адрес галереи содержащей пакеты для загрузки</value>
+  </data>
+  <data name="tools" xml:space="preserve">
+    <value>Инструменты</value>
+  </data>
+  <data name="youHaveNotAddedAnyUserSoFar" xml:space="preserve">
+    <value>Вы пока не создали ни одного пользователя. Используйте линк в правом верхнем углу чтобы добавить пользователя.</value>
+  </data>
+  <data name="rights" xml:space="preserve">
+    <value>Права</value>
+  </data>
+  <data name="youHaveNotDefinedAnyRolesSoFar" xml:space="preserve">
+    <value>Вы пока не создали ни одной роли. Используйте линк в верхнем правом углу чтобы добавить роль.</value>
+  </data>
+  <data name="primary" xml:space="preserve">
+    <value>Основной</value>
+  </data>
+  <data name="textBeforeHostName" xml:space="preserve">
+    <value>Техт перед именем хоста</value>
+  </data>
+  <data name="noBlogsWereFound" xml:space="preserve">
+    <value>Не найдено ни одного блога.</value>
+  </data>
+  <data name="unapprove" xml:space="preserve">
+    <value>Отменить</value>
+  </data>
+  <data name="type" xml:space="preserve">
+    <value>Тип</value>
+  </data>
+  <data name="restore" xml:space="preserve">
+    <value>Восстановить</value>
+  </data>
+  <data name="purge" xml:space="preserve">
+    <value>Очистить</value>
+  </data>
+  <data name="createdOn" xml:space="preserve">
+    <value>Создано</value>
+  </data>
+  <data name="trashIsEmpty" xml:space="preserve">
+    <value>Мусор убран.</value>
+  </data>
+  <data name="restoreSelected" xml:space="preserve">
+    <value>Восстановить выбранное</value>
+  </data>
+  <data name="purgeSelected" xml:space="preserve">
+    <value>Очистить выбранное</value>
+  </data>
+  <data name="purgeAll" xml:space="preserve">
+    <value>Очистить всё</value>
+  </data>
+  <data name="count" xml:space="preserve">
+    <value>Счёт</value>
+  </data>
+  <data name="view" xml:space="preserve">
+    <value>Посмотреть</value>
+  </data>
+  <data name="youHaveNoTaggedPosts" xml:space="preserve">
+    <value>Помеченных постов не найдено.</value>
+  </data>
+  <data name="youHaveNotWrittenAnyPosts" xml:space="preserve">
+    <value>У вас пока нет ни одной записи. Для создания новой записи используйте линк в правом верхнем углу страницы.</value>
+  </data>
+  <data name="youHaveNoWrittenAnyPages" xml:space="preserve">
+    <value>У вас пока не создано ни одной страницы. Для создания новой страницы используйте линк в правом верхнем углу.</value>
+  </data>
+  <data name="size" xml:space="preserve">
+    <value>Размер</value>
+  </data>
+  <data name="noFilesFound" xml:space="preserve">
+    <value>Файлов не найдено.</value>
+  </data>
+  <data name="reset" xml:space="preserve">
+    <value>Перезагрузка</value>
+  </data>
+  <data name="enabled" xml:space="preserve">
+    <value>Активизирован</value>
+  </data>
+  <data name="cheked" xml:space="preserve">
+    <value>Проверено</value>
+  </data>
+  <data name="mistakes" xml:space="preserve">
+    <value>Ошибки</value>
+  </data>
+  <data name="accuracy" xml:space="preserve">
+    <value>Точность</value>
+  </data>
+  <data name="noPackagesToDisplay" xml:space="preserve">
+    <value>Результат не найден.</value>
+  </data>
+  <data name="install" xml:space="preserve">
+    <value>Установить</value>
+  </data>
+  <data name="update" xml:space="preserve">
+    <value>Обновить</value>
+  </data>
+  <data name="firstName" xml:space="preserve">
+    <value>Имя</value>
+  </data>
+  <data name="lastName" xml:space="preserve">
+    <value>Фамилия</value>
+  </data>
+  <data name="birthday" xml:space="preserve">
+    <value>Дата рождения</value>
+  </data>
+  <data name="middleName" xml:space="preserve">
+    <value>Отчество</value>
+  </data>
+  <data name="photoURL" xml:space="preserve">
+    <value>Фото URL</value>
+  </data>
+  <data name="displayName" xml:space="preserve">
+    <value>Отображаемое имя</value>
+  </data>
+  <data name="isPrivate" xml:space="preserve">
+    <value>Закрытый</value>
+  </data>
+  <data name="personalDetails" xml:space="preserve">
+    <value>Личные данные</value>
+  </data>
+  <data name="contactDetails" xml:space="preserve">
+    <value>Контактные данные и адрес</value>
+  </data>
+  <data name="shortBiography" xml:space="preserve">
+    <value>Краткая биография</value>
+  </data>
+  <data name="phoneFax" xml:space="preserve">
+    <value>Факс</value>
+  </data>
+  <data name="phoneMain" xml:space="preserve">
+    <value>Основной телефон</value>
+  </data>
+  <data name="phoneMobile" xml:space="preserve">
+    <value>Мобильный телефон</value>
+  </data>
+  <data name="cityTown" xml:space="preserve">
+    <value>Город/деревня</value>
+  </data>
+  <data name="regionState" xml:space="preserve">
+    <value>Область/регион</value>
+  </data>
+  <data name="saveProfile" xml:space="preserve">
+    <value>Сохранить профиль</value>
+  </data>
+  <data name="deleteSelected" xml:space="preserve">
+    <value>Удалить выбранное</value>
+  </data>
+  <data name="approveSelected" xml:space="preserve">
+    <value>Утвердить выбранное</value>
+  </data>
+  <data name="rejectSelected" xml:space="preserve">
+    <value>Отвергнуть выбранное</value>
+  </data>
+  <data name="deleteAll" xml:space="preserve">
+    <value>Удалить всё</value>
+  </data>
+  <data name="noSpamHere" xml:space="preserve">
+    <value>Ура, спама нет!</value>
+  </data>
+  <data name="noPendingComments" xml:space="preserve">
+    <value>Нерешённых комментариев нет.</value>
+  </data>
+  <data name="noApprovedComments" xml:space="preserve">
+    <value>Утверждённых комментариев нет.</value>
+  </data>
+  <data name="noPingbacksTrackbacks" xml:space="preserve">
+    <value>Пингов и трэкбэков нет. Убедитесь что вы включили получение пингбэков и трэкбэков в продвинутых настройках.</value>
+  </data>
+  <data name="custom" xml:space="preserve">
+    <value>Расширения</value>
+  </data>
+  <data name="widgets" xml:space="preserve">
+    <value>Виджеты</value>
+  </data>
+  <data name="hasRated" xml:space="preserve">
+    <value>Вы уже оценили этот пост.</value>
+  </data>
+  <data name="isForSiteAggregation" xml:space="preserve">
+    <value>Сайт агрегатор</value>
+  </data>
+  <data name="categoryDeleted" xml:space="preserve">
+    <value>Категория удалена</value>
+  </data>
+  <data name="enterValidUrl" xml:space="preserve">
+    <value>Пожалуйста введите правилльный URL</value>
+  </data>
+  <data name="enterValidString" xml:space="preserve">
+    <value>Пожалуйста введите подходящее слово</value>
+  </data>
+  <data name="enterValidNumberPositiveNegative" xml:space="preserve">
+    <value>Пожалуйста введите правильное (положительное или отрицательное) число</value>
+  </data>
+  <data name="enterValidNumber" xml:space="preserve">
+    <value>Пожалуйста введите правильное число</value>
+  </data>
+  <data name="enterValidName" xml:space="preserve">
+    <value>Пожалуйста введите правильное название</value>
+  </data>
+  <data name="enterValidEmail" xml:space="preserve">
+    <value>Пожалуйста введите правильный email адрес</value>
+  </data>
+  <data name="enterValidDate" xml:space="preserve">
+    <value>Пожалуйста введите правильную дату (yyyy-mm-dd)</value>
+  </data>
+  <data name="enterTitle" xml:space="preserve">
+    <value>Пожалуйста введите правильное название</value>
+  </data>
+  <data name="enterDate" xml:space="preserve">
+    <value>Пожалуйста введите дату (yyyy-mm-dd hh:mm)</value>
+  </data>
+  <data name="alignLeft" xml:space="preserve">
+    <value>Выровнять по левому краю</value>
+  </data>
+  <data name="aboutMe" xml:space="preserve">
+    <value>Обо мне</value>
+  </data>
+  <data name="passwordAndConfirmPasswordIsMatch" xml:space="preserve">
+    <value>Новый и старый пароли не совпадают</value>
+  </data>
+  <data name="passwordArgumentInvalid" xml:space="preserve">
+    <value>Пароль неверный</value>
+  </data>
+  <data name="passwordIsRequried" xml:space="preserve">
+    <value>Пароль обязателен</value>
+  </data>
+  <data name="passwordNotChanged" xml:space="preserve">
+    <value>Пароль не изменён</value>
+  </data>
+  <data name="pingbacks" xml:space="preserve">
+    <value>Пингбэки</value>
+  </data>
+  <data name="passwordSent" xml:space="preserve">
+    <value>Пароль отправлен</value>
+  </data>
+  <data name="pageUpdated" xml:space="preserve">
+    <value>Страница обновлена</value>
+  </data>
+  <data name="PageNotFound" xml:space="preserve">
+    <value>Страница не найдена</value>
+  </data>
+  <data name="numberList" xml:space="preserve">
+    <value>Пронумерованный список</value>
+  </data>
+  <data name="numberOfCommenters" xml:space="preserve">
+    <value>Количество комментариев</value>
+  </data>
+  <data name="occupation" xml:space="preserve">
+    <value>Профессия</value>
+  </data>
+  <data name="oldPasswordIsRequired" xml:space="preserve">
+    <value>Старый пароль необходим</value>
+  </data>
+  <data name="pageSource" xml:space="preserve">
+    <value>Исходный код</value>
+  </data>
+  <data name="onlyLoggedInCanView" xml:space="preserve">
+    <value>Только авторизованные пользователи могут видеть блог</value>
+  </data>
+  <data name="pageAdded" xml:space="preserve">
+    <value>Страница добавлена</value>
+  </data>
+  <data name="pageDeleted" xml:space="preserve">
+    <value>Страница удалена</value>
+  </data>
+  <data name="pageIdRequired" xml:space="preserve">
+    <value>Страница необходима</value>
+  </data>
+  <data name="pageMeta" xml:space="preserve">
+    <value>Метаданные о странице</value>
+  </data>
+  <data name="openLinkInNewWindow" xml:space="preserve">
+    <value>Открыть в новом окне</value>
+  </data>
+  <data name="noValidNumber" xml:space="preserve">
+    <value>Неверный номер</value>
+  </data>
+  <data name="purged" xml:space="preserve">
+    <value>Удаленное</value>
+  </data>
+  <data name="latestComments" xml:space="preserve">
+    <value>Последние комментарии</value>
+  </data>
+  <data name="lastUpdated" xml:space="preserve">
+    <value>Последнее обновление</value>
+  </data>
+  <data name="lastUpdate" xml:space="preserve">
+    <value>Последнее обновление</value>
+  </data>
+  <data name="logs" xml:space="preserve">
+    <value>Журнал</value>
+  </data>
+  <data name="loggedMessages" xml:space="preserve">
+    <value>Зарегистрированные сообщения</value>
+  </data>
+  <data name="loginFailed" xml:space="preserve">
+    <value>Ошибка входа</value>
+  </data>
+  <data name="manual" xml:space="preserve">
+    <value>Справочник</value>
+  </data>
+  <data name="maxAgeInDays" xml:space="preserve">
+    <value>Максимум дней</value>
+  </data>
+  <data name="logFile" xml:space="preserve">
+    <value>Папка регистрации</value>
+  </data>
+  <data name="ListIsEmpty" xml:space="preserve">
+    <value>Пустой список</value>
+  </data>
+  <data name="link" xml:space="preserve">
+    <value>Ссылка</value>
+  </data>
+  <data name="content" xml:space="preserve">
+    <value>Содержимое</value>
+  </data>
+  <data name="contains" xml:space="preserve">
+    <value>Содержит</value>
+  </data>
+  <data name="couldNotCreateRole" xml:space="preserve">
+    <value>Ошибка при создании роли {0}</value>
+  </data>
+  <data name="couldNotCreateUser" xml:space="preserve">
+    <value>Ошибка при создании пользователя {0} : {1}</value>
+  </data>
+  <data name="couldNotDeleteBlog" xml:space="preserve">
+    <value>Ошибка при удалении блога {0}</value>
+  </data>
+  <data name="couldNotDeleteComment" xml:space="preserve">
+    <value>Ошибка при удалении комментария: {0}</value>
+  </data>
+  <data name="couldNotDeleteComments" xml:space="preserve">
+    <value>Ошибка при удалении всех комментариев: {0}</value>
+  </data>
+  <data name="couldNotDeleteItem" xml:space="preserve">
+    <value>Ошибка при удалении данных: {0}</value>
+  </data>
+  <data name="couldNotDeletePage" xml:space="preserve">
+    <value>Ошибка при удалении страницы: {0}</value>
+  </data>
+  <data name="couldNotDeletePost" xml:space="preserve">
+    <value>Ошибка при удалении сообщения: {0}</value>
+  </data>
+  <data name="couldNotDeleteRole" xml:space="preserve">
+    <value>Ошибка при удалении роли: {0}</value>
+  </data>
+  <data name="couldNotDeleteTag" xml:space="preserve">
+    <value>Ошибка при удалении метки: {0}</value>
+  </data>
+  <data name="couldNotDeleteUser" xml:space="preserve">
+    <value>Ошибка при удалении пользователя: {0}</value>
+  </data>
+  <data name="couldNotUpdateProfile" xml:space="preserve">
+    <value>Ошибка при обновлении профиля: {0}</value>
+  </data>
+  <data name="couldNotUpdateRole" xml:space="preserve">
+    <value>Ошибка при обновлении роли: {0}</value>
+  </data>
+  <data name="couldNotUpdateTag" xml:space="preserve">
+    <value>Ошибка при обновлении метки: {0}</value>
+  </data>
+  <data name="couldNotUpdateUser" xml:space="preserve">
+    <value>Ошибка при обновлении пользователя : {0}</value>
+  </data>
+  <data name="createBlog" xml:space="preserve">
+    <value>Создать новый блог</value>
+  </data>
+  <data name="createBlogOnSelfRegistration" xml:space="preserve">
+    <value>Создать новый блог для само-регистрации</value>
+  </data>
+  <data name="createRole" xml:space="preserve">
+    <value>Создать роль</value>
+  </data>
+  <data name="customFieldsUpdated" xml:space="preserve">
+    <value>Настраиваемое поле</value>
+  </data>
+  <data name="datePublished" xml:space="preserve">
+    <value>Дата публикации</value>
+  </data>
+  <data name="days" xml:space="preserve">
+    <value>дней</value>
+  </data>
+  <data name="default" xml:space="preserve">
+    <value>По умолчанию</value>
+  </data>
+  <data name="deleteKeepReplies" xml:space="preserve">
+    <value>Удалить, но сохранить отзывы</value>
+  </data>
+  <data name="deletePlusReplies" xml:space="preserve">
+    <value>Удалить всё включая отзывы</value>
+  </data>
+  <data name="disabled" xml:space="preserve">
+    <value>Выключенный</value>
+  </data>
+  <data name="displayNameIsRequired" xml:space="preserve">
+    <value>Название необходимо</value>
+  </data>
+  <data name="viewMyBlog" xml:space="preserve">
+    <value>Перейти в блог</value>
+  </data>
+  <data name="widget" xml:space="preserve">
+    <value>Виджет</value>
+  </data>
+  <data name="visitorInfoApplyFilter" xml:space="preserve">
+    <value>Применить фильтер</value>
+  </data>
+  <data name="action" xml:space="preserve">
+    <value>Действие</value>
+  </data>
+  <data name="addLink" xml:space="preserve">
+    <value>Добавить ссылку</value>
+  </data>
+  <data name="addNewLink" xml:space="preserve">
+    <value>Добавить ссылку</value>
+  </data>
+  <data name="alignRight" xml:space="preserve">
+    <value>Выровнять по правому краю</value>
+  </data>
+  <data name="allow" xml:space="preserve">
+    <value>Разрешить</value>
+  </data>
+  <data name="AllPostsBy" xml:space="preserve">
+    <value>Все записи</value>
+  </data>
+  <data name="AllPostsTagged" xml:space="preserve">
+    <value>Все записи отмеченные как</value>
+  </data>
+  <data name="anotherEmail" xml:space="preserve">
+    <value>Пожалуйста выберите другой email адрес</value>
+  </data>
+  <data name="anotherUserName" xml:space="preserve">
+    <value>Пожалуйста выберите другое имя пользователя</value>
+  </data>
+  <data name="applyChanges" xml:space="preserve">
+    <value>Изменить</value>
+  </data>
+  <data name="areYouSureDeleteComment" xml:space="preserve">
+    <value>Подтвердите удаление комментария</value>
+  </data>
+  <data name="areYouSureDeleteEmail" xml:space="preserve">
+    <value>Подтвердите удаление email</value>
+  </data>
+  <data name="areYouSureDeletePage" xml:space="preserve">
+    <value>Подтвердите удаление страницы</value>
+  </data>
+  <data name="areYouSureDeleteRow" xml:space="preserve">
+    <value>Подтвердите удаление записи</value>
+  </data>
+  <data name="authorDispalyCount" xml:space="preserve">
+    <value>Макимальное количество авторов в списке</value>
+  </data>
+  <data name="authorDisplayPattern" xml:space="preserve">
+    <value>Шаблон показа (автор, пост, количество)</value>
+  </data>
+  <data name="authorDisplayPatternAggregated" xml:space="preserve">
+    <value>Шаблон показа в обьединённом блоге (автор, блог, пост, количество)</value>
+  </data>
+  <data name="automoderation" xml:space="preserve">
+    <value>Авто модерация</value>
+  </data>
+  <data name="avatarSize" xml:space="preserve">
+    <value>Размер аватара (в пикселях)</value>
+  </data>
+  <data name="backcolor" xml:space="preserve">
+    <value>Цвет фона</value>
+  </data>
+  <data name="block" xml:space="preserve">
+    <value>Блок</value>
+  </data>
+  <data name="blogAdded" xml:space="preserve">
+    <value>Блог "{0}" добавлен</value>
+  </data>
+  <data name="blogAddedShort" xml:space="preserve">
+    <value>Блог добавлен</value>
+  </data>
+  <data name="blogDeleted" xml:space="preserve">
+    <value>Блог "{0}" удалён</value>
+  </data>
+  <data name="blogName" xml:space="preserve">
+    <value>Название блога</value>
+  </data>
+  <data name="blogSaved" xml:space="preserve">
+    <value>Блог сохранён</value>
+  </data>
+  <data name="bold" xml:space="preserve">
+    <value>Выделенный</value>
+  </data>
+  <data name="bulletList" xml:space="preserve">
+    <value>Список</value>
+  </data>
+  <data name="calendar" xml:space="preserve">
+    <value>Календарь</value>
+  </data>
+  <data name="cancelReply" xml:space="preserve">
+    <value>Отменить ответ на комментарий</value>
+  </data>
+  <data name="cannotDeleteLastAdmin" xml:space="preserve">
+    <value>Нельзя удалить последнего пользователя который может создавать других пользователей.</value>
+  </data>
+  <data name="categoryAdded" xml:space="preserve">
+    <value>Категория добавлена</value>
+  </data>
+  <data name="categoryAlreadyExists" xml:space="preserve">
+    <value>Категория уже существует</value>
+  </data>
+  <data name="categoryUpdated" xml:space="preserve">
+    <value>Категория обновлена</value>
+  </data>
+  <data name="center" xml:space="preserve">
+    <value>Центр</value>
+  </data>
+  <data name="chooseOtherName" xml:space="preserve">
+    <value>Пожалуйста выберете другое имя</value>
+  </data>
+  <data name="clear" xml:space="preserve">
+    <value>Очистить</value>
+  </data>
+  <data name="clickToDisable" xml:space="preserve">
+    <value>Нажать чтобы отлючить</value>
+  </data>
+  <data name="clickToEnable" xml:space="preserve">
+    <value>Нажать чтобы включить</value>
+  </data>
+  <data name="close" xml:space="preserve">
+    <value>Закрыть</value>
+  </data>
+  <data name="colors" xml:space="preserve">
+    <value>Цвета</value>
+  </data>
+  <data name="commentNotificationUnsubscribe" xml:space="preserve">
+    <value>Отменить email подписку на этот пост</value>
+  </data>
+  <data name="commentNotificationUnsubscriptionHeader" xml:space="preserve">
+    <value>Email подписка</value>
+  </data>
+  <data name="commentNotificationUnsubscriptionText" xml:space="preserve">
+    <value>Email подписка отменена</value>
+  </data>
+  <data name="commentRSS" xml:space="preserve">
+    <value>RSS комментарии</value>
+  </data>
+  <data name="commentsApprovedByAdmin" xml:space="preserve">
+    <value>Модерация - только утверждённы комментарии будут опубликованы</value>
+  </data>
+  <data name="commentsAuto" xml:space="preserve">
+    <value>Отфильтрованные комментарии будут опубликованы</value>
+  </data>
+  <data name="commentsDeleted" xml:space="preserve">
+    <value>Комментарии удалены</value>
+  </data>
+  <data name="commentsUnmodApproved" xml:space="preserve">
+    <value>Если модерация выключена, публикковать комментарии по умолчанию</value>
+  </data>
+  <data name="commentsWhere" xml:space="preserve">
+    <value>комментарии где</value>
+  </data>
+  <data name="commentUpdated" xml:space="preserve">
+    <value>Комментарий обновлён</value>
+  </data>
+  <data name="commentWaitingModeration" xml:space="preserve">
+    <value>Спасибо, комментарий будет опубликован после утверждения модератором</value>
+  </data>
+  <data name="company" xml:space="preserve">
+    <value>Компания</value>
+  </data>
+  <data name="completed" xml:space="preserve">
+    <value>Завершено</value>
+  </data>
+  <data name="configuration" xml:space="preserve">
+    <value>Конфигурация</value>
+  </data>
+  <data name="Configuration_BtnTestSmtpClick_Test_successfull" xml:space="preserve">
+    <value>Протестировано успешно</value>
+  </data>
+  <data name="Configuration_OnInit_Please_specify_a_number" xml:space="preserve">
+    <value>Пожалуйста выберите номер</value>
+  </data>
+  <data name="confirmPasswordIsRequired" xml:space="preserve">
+    <value>Необходимо подтверждение пароля</value>
+  </data>
+  <data name="confirmResetCounters" xml:space="preserve">
+    <value>Подтвердите сброс счётчика комментариве на ноль</value>
+  </data>
+  <data name="defaultMinTag" xml:space="preserve">
+    <value>1 (по умолчанию)</value>
+  </data>
+  <data name="disqusWebsiteName" xml:space="preserve">
+    <value>Название сайта в Disqus</value>
+  </data>
+  <data name="doNotPassRightsWithFalseValue" xml:space="preserve">
+    <value>Не отсылать права с отрицательными значениями</value>
+  </data>
+  <data name="down" xml:space="preserve">
+    <value>Вниз</value>
+  </data>
+  <data name="download" xml:space="preserve">
+    <value>Загрузка</value>
+  </data>
+  <data name="downloadOPML" xml:space="preserve">
+    <value>Загрузить OPML файл</value>
+  </data>
+  <data name="editExistingBlog" xml:space="preserve">
+    <value>Редактировать блог</value>
+  </data>
+  <data name="editor" xml:space="preserve">
+    <value>Редактор</value>
+  </data>
+  <data name="emailArgumentInvalid" xml:space="preserve">
+    <value>Неправильные аргументы в email</value>
+  </data>
+  <data name="emailIsInvalid" xml:space="preserve">
+    <value>Неправильный email адрес</value>
+  </data>
+  <data name="emailIsRequired" xml:space="preserve">
+    <value>email адрес обязателен</value>
+  </data>
+  <data name="emailNotExist" xml:space="preserve">
+    <value>Такой email адрес уже существует</value>
+  </data>
+  <data name="empty" xml:space="preserve">
+    <value>Пусто</value>
+  </data>
+  <data name="emptyLog" xml:space="preserve">
+    <value>Журнал сообщений пуст</value>
+  </data>
+  <data name="enableOptimizationDesc" xml:space="preserve">
+    <value>Обьединить и минифицировать срипты и стили</value>
+  </data>
+  <data name="enableOptimization" xml:space="preserve">
+    <value>Включить оптимизацию</value>
+  </data>
+  <data name="eqls" xml:space="preserve">
+    <value>Равно</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Ошибка</value>
+  </data>
+  <data name="errorAddingNewUser" xml:space="preserve">
+    <value>Ошибка при добавлении пользователя</value>
+  </data>
+  <data name="errorApprovingComment" xml:space="preserve">
+    <value>Ошибка при одобрении комментатия: {0}</value>
+  </data>
+  <data name="errorGettingLogFile" xml:space="preserve">
+    <value>Ошибка при получении журнала сообщений</value>
+  </data>
+  <data name="errorGettingStats" xml:space="preserve">
+    <value>Ошибка при получении статистики</value>
+  </data>
+  <data name="errorGettingTags" xml:space="preserve">
+    <value>Ошибка при получении меток</value>
+  </data>
+  <data name="errorLoadingBlog" xml:space="preserve">
+    <value>Ошибка при загрузке блога</value>
+  </data>
+  <data name="errorLoadingBlogs" xml:space="preserve">
+    <value>Ошибка при загрузке блогов</value>
+  </data>
+  <data name="errorLoadingCategories" xml:space="preserve">
+    <value>Ошибка при загрузке категорий</value>
+  </data>
+  <data name="errorLoadingCategory" xml:space="preserve">
+    <value>Ошибка при загрузке категории</value>
+  </data>
+  <data name="errorLoadingCustomFields" xml:space="preserve">
+    <value>Ошибка при загрузке custom fields</value>
+  </data>
+  <data name="errorLoadingDraftPages" xml:space="preserve">
+    <value>Ошибка при загрузке черновиков страниц</value>
+  </data>
+  <data name="errorLoadingDraftPosts" xml:space="preserve">
+    <value>Ошибка при загрузке черновиков постов</value>
+  </data>
+  <data name="errorLoadingPackage" xml:space="preserve">
+    <value>Ошибка при загрузке пакетa</value>
+  </data>
+  <data name="errorLoadingPackages" xml:space="preserve">
+    <value>Ошибка при загрузке пакетов</value>
+  </data>
+  <data name="errorLoadingPage" xml:space="preserve">
+    <value>Ошибка при загрузке страницы</value>
+  </data>
+  <data name="errorLoadingPages" xml:space="preserve">
+    <value>Ошибка при загрузке страниц</value>
+  </data>
+  <data name="errorLoadingPosts" xml:space="preserve">
+    <value>Ошибка при загрузке постов</value>
+  </data>
+  <data name="errorLoadingRecentComments" xml:space="preserve">
+    <value>Ошибка при загрузке последних комментариев</value>
+  </data>
+  <data name="errorLoadingRights" xml:space="preserve">
+    <value>Ошибка при загрузке прав</value>
+  </data>
+  <data name="errorLoadingRole" xml:space="preserve">
+    <value>Ошибка при загрузке роли</value>
+  </data>
+  <data name="errorLoadingRoles" xml:space="preserve">
+    <value>Ошибка при загрузке ролей</value>
+  </data>
+  <data name="errorLoadingSettings" xml:space="preserve">
+    <value>Ошибка при загрузке настроек</value>
+  </data>
+  <data name="errorLoadingTrash" xml:space="preserve">
+    <value>Ошибка при загрузке удалённых сообщений</value>
+  </data>
+  <data name="errorLoadingUser" xml:space="preserve">
+    <value>Ошибка при загрузке пользователя</value>
+  </data>
+  <data name="errorLoadingUsers" xml:space="preserve">
+    <value>Ошибка при загрузке пользователей</value>
+  </data>
+  <data name="errorPurging" xml:space="preserve">
+    <value>Ошибка при окончательном удалении</value>
+  </data>
+  <data name="errorRejectingComment" xml:space="preserve">
+    <value>Ошибка при отклонении комментария</value>
+  </data>
+  <data name="errorRestoring" xml:space="preserve">
+    <value>Ошибка при восстановлении комментария</value>
+  </data>
+  <data name="failed" xml:space="preserve">
+    <value>Произошла ошибка</value>
+  </data>
+  <data name="failedAddingNewCategory" xml:space="preserve">
+    <value>Ошибка при добавлении новой категории</value>
+  </data>
+  <data name="failedAddingNewPage" xml:space="preserve">
+    <value>Ошибка при добавлении новой страницы</value>
+  </data>
+  <data name="failedAddingNewPost" xml:space="preserve">
+    <value>Ошибка при добавлении нового поста</value>
+  </data>
+  <data name="failedAddingNewRole" xml:space="preserve">
+    <value>Ошибка при добавлении новой роли</value>
+  </data>
+  <data name="failedToSaveRights" xml:space="preserve">
+    <value>Ошибка при добавлении новых прав</value>
+  </data>
+  <data name="fileManager" xml:space="preserve">
+    <value>Управление файлами</value>
+  </data>
+  <data name="filter" xml:space="preserve">
+    <value>Фильтр</value>
+  </data>
+  <data name="filterByApml" xml:space="preserve">
+    <value>APML Фильтр</value>
+  </data>
+  <data name="filterByApmlDescription" xml:space="preserve">
+    <value>Введите адрес вашего сайта или APML документа</value>
+  </data>
+  <data name="filterName" xml:space="preserve">
+    <value>Название фильтра</value>
+  </data>
+  <data name="font" xml:space="preserve">
+    <value>Шрифт</value>
+  </data>
+  <data name="fontSize" xml:space="preserve">
+    <value>Размер шрифта</value>
+  </data>
+  <data name="forceMainTheme" xml:space="preserve">
+    <value />
+  </data>
+  <data name="forecolor" xml:space="preserve">
+    <value>Цвет шрифта</value>
+  </data>
+  <data name="fullName" xml:space="preserve">
+    <value>Полное имя</value>
+  </data>
+  <data name="fullScreen" xml:space="preserve">
+    <value>Полный экран</value>
+  </data>
+  <data name="gender" xml:space="preserve">
+    <value>Пол</value>
+  </data>
+  <data name="groupByYear" xml:space="preserve">
+    <value>Группировать по годам</value>
+  </data>
+  <data name="heading" xml:space="preserve">
+    <value>Оглавление</value>
+  </data>
+  <data name="hyperlink" xml:space="preserve">
+    <value>Гиперлинк</value>
+  </data>
+  <data name="idArgumentNull" xml:space="preserve">
+    <value>ID аргумент нуль</value>
+  </data>
+  <data name="importedFromBlogML" xml:space="preserve">
+    <value>Импортировано из BlogML</value>
+  </data>
+  <data name="importExport" xml:space="preserve">
+    <value>Импорт экспорт</value>
+  </data>
+  <data name="importFailed" xml:space="preserve">
+    <value>Ошибка при импорте</value>
+  </data>
+  <data name="importFromBlogML" xml:space="preserve">
+    <value>Импорт из BlogML</value>
+  </data>
+  <data name="inbox" xml:space="preserve">
+    <value>Почтовый ящик</value>
+  </data>
+  <data name="incorrectSimpleCaptcha" xml:space="preserve">
+    <value>Captcha разрешена неверно</value>
+  </data>
+  <data name="indent" xml:space="preserve">
+    <value>Отступ</value>
+  </data>
+  <data name="industry" xml:space="preserve">
+    <value>Индустрия</value>
+  </data>
+  <data name="interests" xml:space="preserve">
+    <value>Интересы</value>
+  </data>
+  <data name="invalid" xml:space="preserve">
+    <value>Неверно</value>
+  </data>
+  <data name="invalidBlogId" xml:space="preserve">
+    <value>Неправильный блог ID</value>
+  </data>
+  <data name="invalidPageId" xml:space="preserve">
+    <value>Неправильный ID страницы</value>
+  </data>
+  <data name="invalidPostId" xml:space="preserve">
+    <value>Неправильный пост ID</value>
+  </data>
+  <data name="invalidRoleName" xml:space="preserve">
+    <value>Неправильное название роли</value>
+  </data>
+  <data name="ip" xml:space="preserve">
+    <value>Ай-Пи</value>
+  </data>
+  <data name="isAlreadyExists" xml:space="preserve">
+    <value>уже существует</value>
+  </data>
+  <data name="isRequiredField" xml:space="preserve">
+    <value>Необходимое данное</value>
+  </data>
+  <data name="italic" xml:space="preserve">
+    <value>Курсив</value>
+  </data>
+  <data name="itemsPerPage" xml:space="preserve">
+    <value>Записей в странице</value>
+  </data>
+  <data name="minPassLengthInChars" xml:space="preserve">
+    <value>Минимальное количество букв в пароле: {0}</value>
+  </data>
+  <data name="moderatedByDisqus" xml:space="preserve">
+    <value>Модерация осуществляется Disqus</value>
+  </data>
+  <data name="moderation" xml:space="preserve">
+    <value>Модерация</value>
+  </data>
+  <data name="moderator" xml:space="preserve">
+    <value>Модератор</value>
+  </data>
+  <data name="move" xml:space="preserve">
+    <value>Передвинуть</value>
+  </data>
+  <data name="moveWidgetTo" xml:space="preserve">
+    <value>Перенести виджет к</value>
+  </data>
+  <data name="never" xml:space="preserve">
+    <value>Никогда</value>
+  </data>
+  <data name="newAndConfirmPasswordMismatch" xml:space="preserve">
+    <value>Пароли не совпадают</value>
+  </data>
+  <data name="newCategory" xml:space="preserve">
+    <value>Новая категория</value>
+  </data>
+  <data name="newPasswordIsRequired" xml:space="preserve">
+    <value>Новый пароль обязателен</value>
+  </data>
+  <data name="newWindow" xml:space="preserve">
+    <value>Новое окно</value>
+  </data>
+  <data name="next" xml:space="preserve">
+    <value>Следующий</value>
+  </data>
+  <data name="nextPost" xml:space="preserve">
+    <value>Следующий пост</value>
+  </data>
+  <data name="nextPosts" xml:space="preserve">
+    <value>Новее</value>
+  </data>
+  <data name="noPostsMatchedYourCriteria" xml:space="preserve">
+    <value>Нет записий соответстующих вашему запросу</value>
+  </data>
+  <data name="noRightExists" xml:space="preserve">
+    <value>Подобных прав не существует: {0}</value>
+  </data>
+  <data name="notAuthorized" xml:space="preserve">
+    <value>Запрещено</value>
+  </data>
+  <data name="publishedPosts" xml:space="preserve">
+    <value>Опубликованные записи</value>
+  </data>
+  <data name="publishedPages" xml:space="preserve">
+    <value>Опубликованные страницы</value>
+  </data>
+  <data name="publishedOn" xml:space="preserve">
+    <value>Опубликовано</value>
+  </data>
+  <data name="addFolder" xml:space="preserve">
+    <value>Добавить папку</value>
+  </data>
+  <data name="addToPost" xml:space="preserve">
+    <value>Добавить в запись</value>
+  </data>
+  <data name="filePicker" xml:space="preserve">
+    <value>Выбрать файл</value>
+  </data>
+  <data name="postAdded" xml:space="preserve">
+    <value>Запись добавлена</value>
+  </data>
+  <data name="postDeleted" xml:space="preserve">
+    <value>Запись удалена</value>
+  </data>
+  <data name="postSaved" xml:space="preserve">
+    <value>Запись сохранена</value>
+  </data>
+  <data name="postUpdated" xml:space="preserve">
+    <value>Запись обновлена</value>
+  </data>
+  <data name="postMeta" xml:space="preserve">
+    <value>Мета запись</value>
+  </data>
+  <data name="previewComment" xml:space="preserve">
+    <value>Предосмотр</value>
+  </data>
+  <data name="previousPost" xml:space="preserve">
+    <value>Предыдущая запись</value>
+  </data>
+  <data name="profileUpdated" xml:space="preserve">
+    <value>Профиль {0} обновлён</value>
+  </data>
+  <data name="profiles" xml:space="preserve">
+    <value>Профили</value>
+  </data>
+  <data name="unpublish" xml:space="preserve">
+    <value>Отменить публикацию</value>
+  </data>
+  <data name="unlimited" xml:space="preserve">
+    <value>Безлимитный</value>
+  </data>
+  <data name="unlink" xml:space="preserve">
+    <value>Убрать линк</value>
+  </data>
+  <data name="unmoderated" xml:space="preserve">
+    <value>Немодерируемый</value>
+  </data>
+  <data name="unpublished" xml:space="preserve">
+    <value>Неопубликованный</value>
+  </data>
+  <data name="unpublishedPost" xml:space="preserve">
+    <value>Неопубликованная запись</value>
+  </data>
+  <data name="unpublishedPage" xml:space="preserve">
+    <value>Неопубликованная страница</value>
+  </data>
+  <data name="updateFailed" xml:space="preserve">
+    <value>Ошибка при обновлении</value>
+  </data>
+  <data name="up" xml:space="preserve">
+    <value>Вверх</value>
+  </data>
+  <data name="uploaded" xml:space="preserve">
+    <value>Загруженный</value>
+  </data>
+  <data name="undo" xml:space="preserve">
+    <value>Отменить</value>
+  </data>
+  <data name="underline" xml:space="preserve">
+    <value>Подчеркнуть</value>
+  </data>
+  <data name="uncategorized" xml:space="preserve">
+    <value>Без категории</value>
+  </data>
+  <data name="userAlreadyExists" xml:space="preserve">
+    <value>Пользователь {0} уже существует</value>
+  </data>
+  <data name="userHasBeenCreated" xml:space="preserve">
+    <value>Пользователь {0} создан</value>
+  </data>
+  <data name="userHasBeenDeleted" xml:space="preserve">
+    <value>Пользователь {0} удалён</value>
+  </data>
+  <data name="userUpdated" xml:space="preserve">
+    <value>Пользователь {0} обновлён</value>
+  </data>
+  <data name="userAdded" xml:space="preserve">
+    <value>Пользователь добавлен</value>
+  </data>
+  <data name="userUpdatedShort" xml:space="preserve">
+    <value>Пользователь обновлён</value>
+  </data>
+  <data name="userWithEmailExists" xml:space="preserve">
+    <value>Пользователь с этим почтовым адресом уже существует</value>
+  </data>
+  <data name="usernameAlreadyTaken" xml:space="preserve">
+    <value>Пользователь с таким именем уже существует</value>
+  </data>
+  <data name="userNameIsRequired" xml:space="preserve">
+    <value>Имя обязательно</value>
+  </data>
+  <data name="userProfiles" xml:space="preserve">
+    <value>Профиль</value>
+  </data>
+  <data name="userArgumentInvalid" xml:space="preserve">
+    <value>Неверный аргумент</value>
+  </data>
+  <data name="reviews" xml:space="preserve">
+    <value>Рецензии</value>
+  </data>
+  <data name="writeReview" xml:space="preserve">
+    <value>Написать рецензию</value>
+  </data>
+  <data name="customFields" xml:space="preserve">
+    <value>Дополнительные настройки</value>
+  </data>
+  <data name="back" xml:space="preserve">
+    <value>Назад</value>
+  </data>
+  <data name="latestNews" xml:space="preserve">
+    <value>Последние Новости</value>
+  </data>
+  <data name="quickDraft" xml:space="preserve">
+    <value>Черновая Запись</value>
+  </data>
+  <data name="sortOrder" xml:space="preserve">
+    <value>Порядок</value>
+  </data>
+  <data name="theNew" xml:space="preserve">
+    <value>Новая</value>
+  </data>
+  <data name="theOperator" xml:space="preserve">
+    <value>Оператор</value>
+  </data>
+  <data name="typeHere" xml:space="preserve">
+    <value>Текст...</value>
+  </data>
+</root>

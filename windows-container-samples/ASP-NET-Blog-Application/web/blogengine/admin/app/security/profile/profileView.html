@@ -1,0 +1,78 @@
+﻿<div class="security-profile-view" data-ng-controller="ProfileController">
+    <div id="modal-custom" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="focusInput=false"><i class="fa fa-times"></i></button>
+                    <h4 class="modal-title">{{lbl.add}}</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label class="control-label" for="txtKey">Key</label>
+                        <input type="text" id="txtKey" name="txtKey" class="form-control" data-ng-model="editItem.Key" focus-me="focusInput" />
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="txtValue">Value</label>
+                        <input type="text" id="txtValue" name="txtValue" class="form-control" data-ng-model="editItem.Value" />
+                    </div>
+                    <div class="modal-buttons">
+                        <button data-ng-click="saveCustom()" class="btn btn-success">{{lbl.save}}</button>
+                        <button type="button" class="btn btn-default" tabindex="-1" data-dismiss="modal" ng-click="focusInput=false">{{lbl.cancel}}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="main-header clearfix">
+        <h2 class="page-title pull-left">{{lbl.myProfile}}</h2>
+        <button data-ng-click="save()" class="btn btn-success btn-hasicon btn-sm btn-header pull-left" type="button"><i class="fa fa-check"></i>{{lbl.save}}</button>
+        <a href="{{SiteVars.RelativeWebRoot}}Account/change-password.aspx" class="btn btn-default btn-sm btn-hasicon pull-right"><i class="fa fa-key"></i>{{lbl.changePassword}}</a>
+    </div>
+    <div class="content-inner">
+        <div id="frm-user-edit" class="form-content">
+            <div class="form-group">
+                <div class="profile-info clearfix">
+                    <img ng-src="{{photo}}" width="100" class="pull-left profile-info-img" title="Profile Picture" />
+                    <div class="profile-info-title">{{user.Profile.DisplayName}}</div>
+                    <div class="profile-info-role">{{lbl.roles}}: <span data-ng-repeat="role in user.Roles">{{role.RoleName}}</span></div>
+                    <input type="file" class="input-file-hidden" onchange="angular.element(this).scope().changePicture(this.files)" />
+                    <a class="btn-link-picture btn-link-picture-change btn-input-file prev"><i class="fa fa-picture-o"></i> Change Picture</a>
+                    <a class="btn-link-picture btn-link-picture-remove" data-ng-click="removePicture()" title="Remove Picture"><i class="fa fa-times-circle"></i> Remove Picture</a>
+                </div>
+            </div>
+            <hr />
+            <div class="form-group">
+                <label>{{lbl.displayName}}</label>
+                <input type="text" class="form-control" data-ng-model="user.Profile.DisplayName" />
+            </div>
+            <div class="form-group">
+                <label for="txtFirstName">{{lbl.firstName}}</label>
+                <input type="text" id="txtFirstName" name="txtFirstName" class="form-control" data-ng-model="user.Profile.FirstName" />
+            </div>
+            <div class="form-group">
+                <label for="txtLastName">{{lbl.lastName}}</label>
+                <input type="text" id="txtLastName" name="txtLastName" class="form-control" data-ng-model="user.Profile.LastName" />
+            </div>
+            <hr />
+            <div id="frm-custom-edit ">
+                <div class="panel panel-default panel-custom-fields">
+                    <div class="panel-heading clearfix">
+                        <div class="pull-left panel-title">Custom field</div>
+                        <div class="pull-right">
+                            <button data-ng-click="showCustom()" class="btn btn-hasicon btn-sm btn-default" type="button">
+                                <i class="fa fa-plus"></i> {{lbl.add}}
+                            </button>
+                        </div>
+                    </div>
+                    <ul class="list-group">
+                        <li class="list-group-item" data-ng-repeat="item in customFields ">
+                                <div class="field-name text-ellipsis">{{item.Key}}</div>
+                                <input type="text" class="input-sm form-control" data-ng-model="item.Value" />
+                                <button class="field-remove" ng-click="deleteCustom(item.Key, item.ObjectId)" title="{{lbl.doDelete}}"><i class="fa fa-trash"></i></button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<page>
+  <title>Example page</title>
+  <description />
+  <content>&lt;p&gt;
+This is an example page. 
+&lt;/p&gt;
+&lt;p&gt;
+&amp;nbsp;For more information about pages and how to use them,&amp;nbsp;visit the &lt;a href="http://blogengine.codeplex.com/documentation"&gt;BlogEngine.NET wiki&lt;/a&gt;. 
+&lt;/p&gt;</content>
+  <keywords />
+  <slug>example-page</slug>
+  <parent>00000000-0000-0000-0000-000000000000</parent>
+  <isfrontpage>False</isfrontpage>
+  <showinlist>True</showinlist>
+  <ispublished>True</ispublished>
+  <isdeleted>False</isdeleted>
+  <datecreated>2013-12-27 22:12:00</datecreated>
+  <datemodified>2013-12-27 22:03:47</datemodified>
+</page>

@@ -1,0 +1,72 @@
+﻿p { }
+/* DO NOT START CSS WITH A COMMENT! */
+
+/*[ Star rater ]*/
+.rating { margin-bottom: 10px; }
+.rating p { display: inline; position: relative; top: 14px; left: 55px; }
+.star-rating { position: relative; width: 125px; height: 25px; overflow: hidden; list-style: none; margin: 0; padding: 0; background-position: left top; }
+.star-rating li { display: inline; }
+.star-rating a, .star-rating .current-rating { position: absolute; top: 0; left: 0; text-indent: -1000em; height: 25px; line-height: 25px; outline: none; overflow: hidden; border: none; }
+.star-rating a:hover, .star-rating a:active, .star-rating a:focus { background-position: left bottom; }
+.star-rating a.one-star		{ width: 20%; z-index: 6; }
+.star-rating a.two-stars	{ width: 40%; z-index: 5; }
+.star-rating a.three-stars	{ width: 60%; z-index: 4; }
+.star-rating a.four-stars	{ width: 80%; z-index: 3; }
+.star-rating a.five-stars	{ width: 100%;z-index: 2; }
+.star-rating .current-rating{ z-index: 1; background-position: left center; }
+/* smaller star */
+.small-star { width: 50px; height: 10px; }
+.small-star, .small-star a:hover, .small-star a:active, .small-star a:focus, .small-star .current-rating { background-image: url(../../Content/images/blog/star_small.gif); line-height: 10px; height: 10px; }
+
+/*[ Syntax highlighter ]*/
+.code { font-size: 12px; color: #000; font-family: Consolas, "Courier New", Courier, Monospace; background-color: #F1F1F1; line-height: normal; }
+.code p		{ padding: 5px; }
+.code .rem	{ color: #008000; }
+.code .kwrd	{ color: #0000ff; }
+.code .str	{ color: #006080; }
+.code .op	{ color: #0000c0; }
+.code .preproc { color: #0000ff; }
+.code .asp	{ background-color: #ffff00; }
+.code .html { color: #800000; }
+.code .attr { color: #ff0000; }
+.code .alt	{ background-color: #f4f4f4; }
+.code .lnum	{ color: #606060; }
+
+/*[ XFN tags ]*/
+div.post .text a[rel] { background-repeat: no-repeat; background-position: right center; }
+div.post .text a[rel="me"] { background-image:url('../../Content/images/blog/xfn/me.gif'); }
+/*-------- [ These should cascade to pick the correct icon for the contact ]--*/
+/*-------- [ Normal contacts ]--*/
+div.post .text a[rel~="contact"], div.post .text a[rel~="acquaintance"], div.post .text a[rel~="friend"] { background-image:url('../../Content/images/blog/xfn/contact.gif'); padding-right:11px; }
+/*-------- [ Normal contacts youve met ]--*/
+div.post .text a[rel~="contact"][rel~="met"], div.post .text a[rel~="acquaintance"][rel~="met"], div.post .text a[rel~="friend"][rel~="met"] { background-image:url('../../Content/images/blog/xfn/contactMet.gif'); padding-right:11px; }
+/*-------- [ Colleague and co worker icon more important than contact ]--*/
+div.post .text a[rel~="colleague"], div.post .text a[rel~="co-worker"] { background-image:url('../../Content/images/blog/xfn/colleague.gif'); padding-right:11px; }
+/*-------- [ Colleague and co worker icon when met ]--*/
+div.post .text a[rel~="colleague"][rel~="met"], div.post .text a[rel~="co-worker"][rel~="met"] { background-image:url('../../Content/images/blog/xfn/colleagueMet.gif'); padding-right:11px; }
+/*-------- [ Sweethearts are more important than work!!! ]--*/
+div.post .text a[rel~="muse"], div.post .text a[rel~="crush"], div.post .text a[rel~="date"], a[rel~="sweetheart"] { background-image:url('../../Content/images/blog/xfn/sweet.gif'); padding-right:11px; }
+/*-------- [ ...and if youve met them thats even better ]--*/
+div.post .text a[rel~="muse"][rel~="met"], div.post .text a[rel~="crush"][rel~="met"], div.post .text a[rel~="date"][rel~="met"], div.post .text a[rel~="sweetheart"][rel~="met"] { background-image:url('../../Content/images/blog/xfn/sweetMet.gif'); padding-right:11px; }
+
+/*[ Post Pager ]*/
+#PostPager		{ display: block; text-align: center; }
+#PostPager li	{ display:inline; border: 1px solid #ccc; margin: 1px; padding: 2px; }
+#PostPager li a	{ padding: 2px; text-decoration:none; font-weight: bold; }
+#PostPager .PagerLinkCurrent	{ background-color: #5C80B1; color: #fff; padding: 2px 5px; border: 1px solid #ccc; }
+#PostPager .PagerLinkCurrent li { padding: 2px }
+#PostPager .PagerLinkDisabled	{ color: #ccc; padding: 2px; }
+#PostPager .PagerEllipses		{ border:0; padding: 2px; }
+#commentPreview	{ display:none; clear:both; min-height: 150px; }
+.LoginRequired	{ margin: 10px 0 10px 0; }
+
+/*[ Widget action buttons ]*/
+.imgDelete      { background-image:url('../../Content/images/blog/actions/action-delete-small-lt.png'); }
+.imgDelete:hover{ background-image:url('../../Content/images/blog/actions/action-delete-small.png'); }
+.imgMove        { background-image:url('../../Content/images/blog/actions/action-tools-small-lt.png'); }
+.imgMove:hover  { background-image:url('../../Content/images/blog/actions/action-tools-small.png'); }
+.imgEdit        { background-image:url('../../Content/images/blog/actions/action-edit-small-lt.png'); }
+.imgEdit:hover  { background-image:url('../../Content/images/blog/actions/action-edit-small.png'); }
+.widgetImg		{ width: 16px; height: 16px; display:inline-block; }
+.widget a:hover	{ text-decoration: none; }
+#comment-form p	{ margin: 1px; display: inline-table; width: 100%; }

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<widgets>
+  <widget id="e53c0e19-c61b-4f6e-aa90-09da817488bc" title="Administration" showTitle="True">Administration</widget>
+  <widget id="a305a372-ba9f-49b3-ac49-1453faa3efc0" title="Search" showTitle="True">Search</widget>
+  <widget id="deb9fd7c-e0f4-4f24-964d-d5f67332bab0" title="TextBox" showTitle="True">TextBox</widget>
+  <widget id="21108331-e283-4807-a4f6-f1db31163608" title="Category List" showTitle="True">CategoryList</widget>
+  <widget id="5bf32012-4aa3-4031-8346-4d36f0fda6d9" title="Post List" showTitle="True">PostList</widget>
+  <widget id="abde36cb-9ba6-4645-afc3-c0e4292ce72e" title="Newsletter" showTitle="True">Newsletter</widget>
+  <widget id="4b7cb5e1-b090-4779-b7bc-24898a269477" title="Comment List" showTitle="True">CommentList</widget>
+  <widget id="4cb23700-ca29-4c88-a46c-9a262a9f4240" title="Month List" showTitle="True">MonthList</widget>
+</widgets>

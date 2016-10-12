@@ -1,0 +1,577 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="add" xml:space="preserve">
+    <value>Voeg by</value>
+  </data>
+  <data name="add_Entry" xml:space="preserve">
+    <value>Voeg inskrywing  by</value>
+  </data>
+  <data name="addComment" xml:space="preserve">
+    <value>Voeg kommentaar By</value>
+  </data>
+  <data name="addCustomCodeToHeader" xml:space="preserve">
+    <value>Voeg gebruiklike kode tot die HTML hoof seksie</value>
+  </data>
+  <data name="administrationPanel" xml:space="preserve">
+    <value>Beheer paneel</value>
+  </data>
+  <data name="advanced" xml:space="preserve">
+    <value>Gevorderd</value>
+  </data>
+  <data name="advancedSettings" xml:space="preserve">
+    <value>gevorderde stellings</value>
+  </data>
+  <data name="alternateFeedUrl" xml:space="preserve">
+    <value>Alternatiewe voedings URL</value>
+  </data>
+  <data name="approve" xml:space="preserve">
+    <value>Bevestig(Keur goed)</value>
+  </data>
+  <data name="approveallcomments" xml:space="preserve">
+    <value>Bevestig alle pos kommentare</value>
+  </data>
+  <data name="archive" xml:space="preserve">
+    <value>Argief</value>
+  </data>
+  <data name="areYouSure" xml:space="preserve">
+    <value>Is u seker u wil {0} {1}?</value>
+  </data>
+  <data name="attachFile" xml:space="preserve">
+    <value>Heg 'n lêer aan</value>
+  </data>
+  <data name="author" xml:space="preserve">
+    <value>Outeur</value>
+  </data>
+  <data name="avatars" xml:space="preserve">
+    <value>Avatars</value>
+  </data>
+  <data name="basic" xml:space="preserve">
+    <value>Basies</value>
+  </data>
+  <data name="beTheFirstToRate" xml:space="preserve">
+    <value>Wees die eerste om hierdie pos te gradeer</value>
+  </data>
+  <data name="blogMLDescription" xml:space="preserve">
+    <value>BlogEngine.NET gebruik BlogML as die uitvoer formaat. die invoer ondersteun beide BlogML en RSS.</value>
+  </data>
+  <data name="blogroll" xml:space="preserve">
+    <value>Blogroll</value>
+  </data>
+  <data name="buttonText" xml:space="preserve">
+    <value>Knop teks</value>
+  </data>
+  <data name="categories" xml:space="preserve">
+    <value>Kategorieë</value>
+  </data>
+  <data name="category" xml:space="preserve">
+    <value>kategorie</value>
+  </data>
+  <data name="closeCommetsAfter" xml:space="preserve">
+    <value>Maak kommentare toe na</value>
+  </data>
+  <data name="combine" xml:space="preserve">
+    <value>Kombineer</value>
+  </data>
+  <data name="comment" xml:space="preserve">
+    <value>Opmerkings</value>
+  </data>
+  <data name="commentLabelText" xml:space="preserve">
+    <value>kommentaar etiket teks</value>
+  </data>
+  <data name="comments" xml:space="preserve">
+    <value>Kommentare</value>
+  </data>
+  <data name="commentsAreClosed" xml:space="preserve">
+    <value>Kommentare is gesluit</value>
+  </data>
+  <data name="commentWasSaved" xml:space="preserve">
+    <value>Hierdie kommentaar was gwstoor. Dankie vir die terugvoering terugvoering</value>
+  </data>
+  <data name="contact" xml:space="preserve">
+    <value>Kontak</value>
+  </data>
+  <data name="contactForm" xml:space="preserve">
+    <value>Kontak form</value>
+  </data>
+  <data name="controls" xml:space="preserve">
+    <value>Kontrole</value>
+  </data>
+  <data name="country" xml:space="preserve">
+    <value>Land</value>
+  </data>
+  <data name="createNewUser" xml:space="preserve">
+    <value>Maak nuwe gebruiker</value>
+  </data>
+  <data name="currentlyRated" xml:space="preserve">
+    <value>Tans gradeer {0} deur {1} mense</value>
+  </data>
+  <data name="date" xml:space="preserve">
+    <value>Datum</value>
+  </data>
+  <data name="defaultFeedOutput" xml:space="preserve">
+    <value>Standaard terugvoerings afvoer</value>
+  </data>
+  <data name="defaultTextShownInSearchField" xml:space="preserve">
+    <value>Die standaard teks gewys in die soek teksboks</value>
+  </data>
+  <data name="delete" xml:space="preserve">
+    <value>Verwyder</value>
+  </data>
+  <data name="description" xml:space="preserve">
+    <value>Beskrywing</value>
+  </data>
+  <data name="displayCommentsOnRecentPosts" xml:space="preserve">
+    <value>Vertoon kommentare</value>
+  </data>
+  <data name="displayRatingsOnRecentPosts" xml:space="preserve">
+    <value>vertoon gradering</value>
+  </data>
+  <data name="edit" xml:space="preserve">
+    <value>Redigeer</value>
+  </data>
+  <data name="email" xml:space="preserve">
+    <value>E-pos</value>
+  </data>
+  <data name="emailAddress" xml:space="preserve">
+    <value>E-posl adres</value>
+  </data>
+  <data name="enableAttachments" xml:space="preserve">
+    <value>Aanvaar aanheggings</value>
+  </data>
+  <data name="enableComments" xml:space="preserve">
+    <value>Aanvaar Kommentare</value>
+  </data>
+  <data name="enableCommentsDescription" xml:space="preserve">
+    <value>Indien kommentare nie aanvaar word nie, kan niemand  kommentare  tot enige pos Lewer nie</value>
+  </data>
+  <data name="enableCommentSearch" xml:space="preserve">
+    <value>Aanvaar Kommentaar Soek</value>
+  </data>
+  <data name="enableCommentsModeration" xml:space="preserve">
+    <value>Modureer Kommentare</value>
+  </data>
+  <data name="enableGravatars" xml:space="preserve">
+    <value>Aanvaar Gravatars</value>
+  </data>
+  <data name="enableHttpCompression" xml:space="preserve">
+    <value>AanvaarHTTP Kompressie</value>
+  </data>
+  <data name="enableHttpCompressionDescription" xml:space="preserve">
+    <value>Laat die bladsye vinniger laai (Voorgestel).</value>
+  </data>
+  <data name="enableOpenSearch" xml:space="preserve">
+    <value>Aanvaar OpenSearch</value>
+  </data>
+  <data name="enableOpenSearchDescription" xml:space="preserve">
+    <value>Voeg die soek kenmerk tot alle nuwe blaaiers(Browser) (aanbeveel).</value>
+  </data>
+  <data name="enableRating" xml:space="preserve">
+    <value>Aanvaar pos gradeering</value>
+  </data>
+  <data name="enableReferrerTracking" xml:space="preserve">
+    <value>Aanvaar verwyser speuring</value>
+  </data>
+  <data name="enableSearchHighlight" xml:space="preserve">
+    <value>Aaanvaar soek "uitstaan"</value>
+  </data>
+  <data name="enableSearchHighlightDescription" xml:space="preserve">
+    <value>Kleur die gesoekte woorde op die bladsy in.</value>
+  </data>
+  <data name="enableSsl" xml:space="preserve">
+    <value>Enable SSL</value>
+  </data>
+  <data name="endorsment" xml:space="preserve">
+    <value>Endorsement (bLink)</value>
+  </data>
+  <data name="enforce" xml:space="preserve">
+    <value>Dwing</value>
+  </data>
+  <data name="export" xml:space="preserve">
+    <value>Uitvoer</value>
+  </data>
+  <data name="formMessage" xml:space="preserve">
+    <value>Form Boodskap</value>
+  </data>
+  <data name="goToFrontPage" xml:space="preserve">
+    <value>Gaan na die eerste bladsy</value>
+  </data>
+  <data name="handleWwwSubdomain" xml:space="preserve">
+    <value>www subdomain policy</value>
+  </data>
+  <data name="home" xml:space="preserve">
+    <value>Tuisblad</value>
+    <comment>As used for linking to the front-page</comment>
+  </data>
+  <data name="htmlHeadSection" xml:space="preserve">
+    <value>HTML head section</value>
+  </data>
+  <data name="ignore" xml:space="preserve">
+    <value>Ignoreer</value>
+  </data>
+  <data name="import" xml:space="preserve">
+    <value>Invoer</value>
+  </data>
+  <data name="isFrontPage" xml:space="preserve">
+    <value>Iseerste bladsy</value>
+  </data>
+  <data name="keywords" xml:space="preserve">
+    <value>Sleutelwoorde</value>
+  </data>
+  <data name="language" xml:space="preserve">
+    <value>Kies taaal</value>
+  </data>
+  <data name="languageCode" xml:space="preserve">
+    <value>Taal kode</value>
+  </data>
+  <data name="latitude" xml:space="preserve">
+    <value>Breedte graad</value>
+  </data>
+  <data name="livePreview" xml:space="preserve">
+    <value>Voorskou</value>
+  </data>
+  <data name="longtitude" xml:space="preserve">
+    <value>Lengte graad</value>
+  </data>
+  <data name="maxLengthOfItems" xml:space="preserve">
+    <value>Maksimum lengte van ietems</value>
+  </data>
+  <data name="message" xml:space="preserve">
+    <value>boodskap</value>
+  </data>
+  <data name="monster" xml:space="preserve">
+    <value>Monster</value>
+  </data>
+  <data name="more" xml:space="preserve">
+    <value>Meer</value>
+  </data>
+  <data name="name" xml:space="preserve">
+    <value>Naam</value>
+  </data>
+  <data name="none" xml:space="preserve">
+    <value>Moet nie wys nie</value>
+  </data>
+  <data name="noParent" xml:space="preserve">
+    <value>Geen ouer</value>
+  </data>
+  <data name="notifyOnNewComments" xml:space="preserve">
+    <value>Stel my in kennis wanneer nuwe kommentaar gelewer is</value>
+  </data>
+  <data name="notRatedYet" xml:space="preserve">
+    <value>Nog nie gegradeer nie</value>
+  </data>
+  <data name="numberOfComments" xml:space="preserve">
+    <value>Hoeveelheid komentare</value>
+  </data>
+  <data name="numberOfDisplayedItems" xml:space="preserve">
+    <value># vertoon ietems</value>
+  </data>
+  <data name="numberOfPosts" xml:space="preserve">
+    <value>Hoeveelheid posse</value>
+  </data>
+  <data name="page" xml:space="preserve">
+    <value>Bladsy</value>
+  </data>
+  <data name="pages" xml:space="preserve">
+    <value>Bladsye</value>
+  </data>
+  <data name="password" xml:space="preserve">
+    <value>Wagwoord</value>
+  </data>
+  <data name="portNumber" xml:space="preserve">
+    <value>Port number</value>
+  </data>
+  <data name="portNumberDescription" xml:space="preserve">
+    <value>Port 25 is die norm</value>
+  </data>
+  <data name="possibleSpam" xml:space="preserve">
+    <value>Moontlike gemors pos</value>
+  </data>
+  <data name="post" xml:space="preserve">
+    <value>pos</value>
+  </data>
+  <data name="postPerPage" xml:space="preserve">
+    <value>Posse per bladsy</value>
+  </data>
+  <data name="posts" xml:space="preserve">
+    <value>Posse</value>
+  </data>
+  <data name="postsPerFeed" xml:space="preserve">
+    <value>Ietems vertoon in voed</value>
+  </data>
+  <data name="publish" xml:space="preserve">
+    <value>Publiseer</value>
+  </data>
+  <data name="raters" xml:space="preserve">
+    <value>Gradeerders</value>
+  </data>
+  <data name="rating" xml:space="preserve">
+    <value>Gradering</value>
+  </data>
+  <data name="recentComments" xml:space="preserve">
+    <value>Onlangse opmerkings</value>
+  </data>
+  <data name="recentPosts" xml:space="preserve">
+    <value>Onlangse posse</value>
+  </data>
+  <data name="referrer" xml:space="preserve">
+    <value>Verwyser</value>
+  </data>
+  <data name="referrers" xml:space="preserve">
+    <value>Verwysers</value>
+  </data>
+  <data name="relatedPosts" xml:space="preserve">
+    <value>Soortgelyke posse</value>
+  </data>
+  <data name="remove" xml:space="preserve">
+    <value>Verwyder</value>
+  </data>
+  <data name="save" xml:space="preserve">
+    <value>Stoor</value>
+  </data>
+  <data name="saveComment" xml:space="preserve">
+    <value>Stoor opmerking</value>
+  </data>
+  <data name="savePage" xml:space="preserve">
+    <value>Stoor bladsy</value>
+  </data>
+  <data name="savePost" xml:space="preserve">
+    <value>Stoor pos</value>
+  </data>
+  <data name="saveSettings" xml:space="preserve">
+    <value>Stoor stellings</value>
+  </data>
+  <data name="search" xml:space="preserve">
+    <value>Soek</value>
+  </data>
+  <data name="searchField" xml:space="preserve">
+    <value>Soek veld</value>
+  </data>
+  <data name="searchFieldText" xml:space="preserve">
+    <value>Soek veld Teks</value>
+  </data>
+  <data name="searchResultsFor" xml:space="preserve">
+    <value>Soek in resultate vir</value>
+  </data>
+  <data name="selectDay" xml:space="preserve">
+    <value>Kies dag</value>
+  </data>
+  <data name="selectParent" xml:space="preserve">
+    <value>Kies ouer</value>
+  </data>
+  <data name="sendCommentEmail" xml:space="preserve">
+    <value>Stuur opmerkings E-pos</value>
+  </data>
+  <data name="separateTagsWitComma" xml:space="preserve">
+    <value>Sky elke etiket met 'n komma</value>
+  </data>
+  <data name="settings" xml:space="preserve">
+    <value>Stellings</value>
+  </data>
+  <data name="showCountryChooser" xml:space="preserve">
+    <value>Wys land kieser</value>
+  </data>
+  <data name="showCountryChooserDescription" xml:space="preserve">
+    <value>Indien die land kieser nie vertoon word nie kan daar nie 'n vlag vertoon word vir elke kommentaar nie</value>
+  </data>
+  <data name="showEnableWebsiteInComments" xml:space="preserve">
+    <value>Need Translation:Enable Website in Comments</value>
+  </data>
+  <data name="showEnableWebsiteInCommentsDescription" xml:space="preserve">
+    <value>Need Translation:Choose whether to allow Website to be published in Comments</value>
+  </data>
+  <data name="showDescriptionInPostList" xml:space="preserve">
+    <value>Wys net die pos beskrywing</value>
+  </data>
+  <data name="showInList" xml:space="preserve">
+    <value>Wys in lys</value>
+  </data>
+  <data name="showLivePreview" xml:space="preserve">
+    <value>Wys voorskou</value>
+  </data>
+  <data name="showRelatedPosts" xml:space="preserve">
+    <value>Wys soortgelyke posse</value>
+  </data>
+  <data name="subject" xml:space="preserve">
+    <value>Onderwerp</value>
+  </data>
+  <data name="subscribe" xml:space="preserve">
+    <value>Tekin in</value>
+  </data>
+  <data name="thankYouMessage" xml:space="preserve">
+    <value>Dankie boodskap</value>
+  </data>
+  <data name="theComment" xml:space="preserve">
+    <value>Die Kommentaar</value>
+  </data>
+  <data name="theme" xml:space="preserve">
+    <value>Tema</value>
+  </data>
+  <data name="thePost" xml:space="preserve">
+    <value>die pos</value>
+  </data>
+  <data name="thereAreXDrafts" xml:space="preserve">
+    <value>Daar is  {0} ongepubliseerde pos(se)</value>
+  </data>
+  <data name="timeStampPostLinks" xml:space="preserve">
+    <value>Voeg datum by pos skakel in</value>
+  </data>
+  <data name="timezone" xml:space="preserve">
+    <value>Timezone</value>
+  </data>
+  <data name="title" xml:space="preserve">
+    <value>Tietel</value>
+  </data>
+  <data name="trimStylesheet" xml:space="preserve">
+    <value>Trim stylesheets</value>
+  </data>
+  <data name="trimStylesheetDescription" xml:space="preserve">
+    <value>Makes all stylesheets of any theme smaller by removing all whitespace at runtime.</value>
+  </data>
+  <data name="unapprovedcomments" xml:space="preserve">
+    <value>Nie goedgekeurde kommentare </value>
+  </data>
+  <data name="updateFrequenzy" xml:space="preserve">
+    <value>Vervris frekwensie (minute) ...</value>
+  </data>
+  <data name="uploadFile" xml:space="preserve">
+    <value>Laai leêr op</value>
+  </data>
+  <data name="uploadImage" xml:space="preserve">
+    <value>Laai beeld op</value>
+  </data>
+  <data name="userName" xml:space="preserve">
+    <value>Gebruikernaam</value>
+  </data>
+  <data name="users" xml:space="preserve">
+    <value>Gebruikers</value>
+  </data>
+  <data name="website" xml:space="preserve">
+    <value>Webwerf</value>
+  </data>
+  <data name="willShowGravatar" xml:space="preserve">
+    <value>Sal you  {0} ikone vertoon</value>
+  </data>
+  <data name="wrote" xml:space="preserve">
+    <value>geskryf</value>
+  </data>
+  <data name="youAlreadyRated" xml:space="preserve">
+    <value>Jy het reed die pos gegradeer</value>
+  </data>
+</root>

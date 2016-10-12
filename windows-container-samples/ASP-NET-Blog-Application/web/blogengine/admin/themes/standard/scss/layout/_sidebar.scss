@@ -1,0 +1,202 @@
+﻿.main-sidebar {
+    color: $sidebar-text-color;
+
+    a {
+        color: $sidebar-text-color;
+        outline: none !important;
+    }
+    // nav-user
+    .nav-user {
+        //
+        .nav-user-info {
+            height: $sidebar-global-height;
+            padding-left: $sidebar-global-height;
+            border-bottom: 1px solid $color-base-dark;
+
+            .nav-user-img {
+                position: absolute;
+                left: 0;
+                top: 0;
+                text-align: center;
+                width: $sidebar-global-height;
+
+                img {
+                    @include border-radius(100%);
+                    width: 30px;
+                    height: 30px;
+                    vertical-align: middle;
+                    display: block;
+                    margin: 15px auto;
+                }
+            }
+
+            .nav-user-name {
+                line-height: $sidebar-global-height;
+                font-weight: $font-weight-bold;
+            }
+        }
+        //
+        .nav-user-actions {
+            border-bottom: 1px solid $color-base-dark;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+
+            li {
+                height: $sidebar-global-height;
+                float: left;
+                width: 25%;
+                text-align: center;
+
+                a {
+                    display: block;
+                    height: 100%;
+
+                    &:hover {
+                        color: #fff;
+                    }
+                }
+
+                i {
+                    display: block;
+                    line-height: $sidebar-global-height;
+                    font-size: 14px;
+
+                    &.fa-globe {
+                        font-size: 15px;
+                    }
+                }
+            }
+        }
+    }
+    // nav-sidebar
+    .nav-sidebar {
+        ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        > ul {
+            > li {
+                > a {
+                    height: $sidebar-global-height;
+                    line-height: $sidebar-global-height;
+                    padding-left: $sidebar-global-height;
+                    display: block;
+                    position: relative;
+                    text-transform: uppercase;
+                    font-weight: $font-weight-bold;
+
+                    i {
+                        width: $sidebar-global-height;
+                        height: $sidebar-global-height;
+                        line-height: $sidebar-global-height;
+                        text-align: center;
+                        display: block;
+                        position: absolute;
+                        left: 0;
+                        top: 0;
+                        font-size: 14px;
+                    }
+                }
+
+                > .sub-nav-sidebar {
+                    display: none;
+                    padding-left: $sidebar-global-height - 10px;
+                    padding-bottom: $sidebar-global-height / 4;
+                    position: relative;
+                    overflow: hidden;
+
+                    &:after {
+                        content: "";
+                        width: 1px;
+                        height: 100%;
+                        background: $color-base;
+                        position: absolute;
+                        bottom: ($sidebar-global-height / 2);
+                        left: ($sidebar-global-height / 2) - 1px;
+                    }
+
+                    li {
+
+                        a {
+                            padding-left: 10px;
+                            line-height: $sidebar-global-height / 2;
+                            display: block;
+                            position: relative;
+
+                            &:before {
+                                content: "";
+                                width: $sidebar-global-height / 3;
+                                height: 1px;
+                                background: $color-base;
+                                position: absolute;
+                                top: ($sidebar-global-height / 4) - 1px;
+                                left: -$sidebar-global-height / 3;
+                            }
+
+                            &:after {
+                                content: "";
+                                width: 5px;
+                                height: 5px;
+                                background: $color-base;
+                                position: absolute;
+                                top: ($sidebar-global-height / 4) - 3px;
+                                left: -5px;
+                                @include border-radius(100%);
+                            }
+                        }
+
+                        &.active {
+                            a {
+                                color: $sidebar-text-color-light;
+
+                                &:after {
+                                    background: $color-base-light;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                &.active {
+                    background-color: $color-base-dark;
+
+                    > a {
+                        color: $sidebar-text-color-light;
+                    }
+
+                    .sub-nav-sidebar {
+                        display: block;
+                    }
+                }
+            }
+        }
+    }
+    // logo-sidebar
+    .logo-sidebar {
+        height: 41px;
+        position: absolute;
+        bottom: 30px;
+        left: 0;
+        width: 100%;
+        text-align: center;
+        overflow: hidden;
+
+        a {
+            display: inline-block;
+            height: 100%;
+            outline: none !important;
+            position: relative;
+        }
+    }
+}
+
+@media screen and (max-height:700px) {
+    .main-sidebar {
+        .logo-sidebar {
+            display: none;
+        }
+    }
+}

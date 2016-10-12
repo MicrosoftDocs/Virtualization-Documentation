@@ -1,0 +1,5 @@
+﻿@using BlogEngine.Core
+@{ 
+    Layout = string.Format("{0}Custom/Themes/{1}/site.cshtml", Utils.ApplicationRelativeWebRoot, BlogSettings.Instance.Theme);
+}
+@Html.PageBody()

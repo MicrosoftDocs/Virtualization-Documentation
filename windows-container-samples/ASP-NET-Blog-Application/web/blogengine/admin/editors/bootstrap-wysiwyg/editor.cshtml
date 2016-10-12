@@ -1,0 +1,260 @@
+﻿<div id="modal-source" class="modal fade">
+    <div class="modal-dialog" style="width: 80%">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="fa fa-times"></i></button>
+                <h4 class="modal-title">{{lbl.pageSource}}</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-horizontal clearfix">
+                    <textarea class="wysiwyg-editor" id="editor-source"></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal"> <i class="fa fa-ban"></i> {{lbl.cancel}}</button>
+                <button onclick="sourceHide()" class="btn btn-success" type="submit"><i class="fa fa-save"></i> {{lbl.save}}</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="alerts"></div>
+<div class="editor-toolbar btn-toolbar" data-role="editor-toolbar" data-target="#editor" role="toolbar">
+    <div class="btn-group">
+        <div class="btn-group">
+            <button class="btn btn-default" tabindex="-1" data-toggle="dropdown" title="{{lbl.font}}"><i class="fa fa-font"></i><span class="caret"></span></button>
+            <ul class="dropdown-menu"></ul>
+        </div>
+        <div class="btn-group">
+            <button type="button" tabindex="-1" class="btn btn-default dropdown-toggle" data-toggle="dropdown" title="{{lbl.fontSize}}"><i class="fa fa-text-height"></i><span class="caret"></span></button>
+            <ul class="dropdown-menu">
+                <li><a data-edit="fontSize 1"><font size="2">{{lbl.fontSize}} (1)</font></a></li>
+                <li><a data-edit="fontSize 2"><font size="3">{{lbl.fontSize}} (2)</font></a></li>
+                <li><a data-edit="fontSize 3"><font size="4">{{lbl.fontSize}} (3)</font></a></li>
+                <li><a data-edit="fontSize 4"><font size="5">{{lbl.fontSize}} (4)</font></a></li>
+                <li><a data-edit="fontSize 5"><font size="6">{{lbl.fontSize}} (5)</font></a></li>
+            </ul>
+        </div>
+        <div class="btn-group">
+            <button type="button" tabindex="-1" class="btn btn-default dropdown-toggle" data-toggle="dropdown" title="{{lbl.heading}}"><i class="fa fa-heading"><b>H</b></i><span class="caret"></span></button>
+            <ul class="dropdown-menu heading-item">
+                <li><a data-edit="formatBlock <h2>"><h2 style="font-size: 22px; margin: 5px;">{{lbl.heading}} 2</h2></a></li>
+                <li><a data-edit="formatBlock <h3>"><h3 style="font-size: 20px; margin: 5px;">{{lbl.heading}} 3</h3></a></li>
+                <li><a data-edit="formatBlock <h4>"><h4 style="font-size: 18px; margin: 5px;">{{lbl.heading}} 4</h4></a></li>
+                <li><a data-edit="formatBlock <h5>"><h5 style="font-size: 16px; margin: 5px;">{{lbl.heading}} 5</h5></a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="btn-group">
+        <button type="button" tabindex="-1" class="btn btn-default" data-edit="bold" title="{{lbl.bold}} (Ctrl/Cmd+B)"><i class="fa fa-bold"></i></button>
+        <button type="button" tabindex="-1" class="btn btn-default" data-edit="italic" title="{{lbl.italic}} (Ctrl/Cmd+I)"><i class="fa fa-italic"></i></button>
+        <button type="button" tabindex="-1" class="btn btn-default" data-edit="strikethrough" title="{{lbl.strikethrough}}"><i class="fa fa-strikethrough"></i></button>
+        <button type="button" tabindex="-1" class="btn btn-default" data-edit="underline" title="{{lbl.underline}} (Ctrl/Cmd+U)"><i class="fa fa-underline"></i></button>
+    </div>
+    <div class="btn-group">
+        <button type="button" tabindex="-1" class="btn btn-default dropdown-toggle" data-toggle="dropdown" title="{{lbl.colors}}"><i class="fa fa-tint"></i><span class="caret"></span></button>
+        <ul class="dropdown-menu">
+            <li>
+                <div class="clearfix color-list-wrapper">
+                    <div class="color-list-item color-list-item-1">
+                        <div class="title-color-list">{{lbl.forecolor}}</div>
+                        <div class="colorlist clearfix">
+                            <div style="background-color: #ffffff;"><a data-edit="forecolor #fffff"></a></div>
+                            <div style="background-color: #ffcccc;"><a data-edit="forecolor #ffcccc"></a></div>
+                            <div style="background-color: #ffcc99;"><a data-edit="forecolor #ffcc99"></a></div>
+                            <div style="background-color: #ffff99;"><a data-edit="forecolor #ffff99"></a></div>
+                            <div style="background-color: #ffffcc;"><a data-edit="forecolor #ffffcc"></a></div>
+                            <div style="background-color: #99ff99;"><a data-edit="forecolor #99ff99"></a></div>
+                            <div style="background-color: #99ffff;"><a data-edit="forecolor #99ffff"></a></div>
+                            <div style="background-color: #ccffff;"><a data-edit="forecolor #ccffff"></a></div>
+                            <div style="background-color: #ccccff;"><a data-edit="forecolor #ccccff"></a></div>
+                            <div style="background-color: #ffccff;"><a data-edit="forecolor #ffccff"></a></div>
+                            <div style="background-color: #cccccc;"><a data-edit="forecolor #cccccc"></a></div>
+                            <div style="background-color: #ff6666;"><a data-edit="forecolor #ff6666"></a></div>
+                            <div style="background-color: #ff9966;"><a data-edit="forecolor #ff9966"></a></div>
+                            <div style="background-color: #ffff66;"><a data-edit="forecolor #ffff66"></a></div>
+                            <div style="background-color: #ffff33;"><a data-edit="forecolor #ffff33"></a></div>
+                            <div style="background-color: #66ff99;"><a data-edit="forecolor #66ff99"></a></div>
+                            <div style="background-color: #33ffff;"><a data-edit="forecolor #33ffff"></a></div>
+                            <div style="background-color: #66ffff;"><a data-edit="forecolor #66ffff"></a></div>
+                            <div style="background-color: #9999ff;"><a data-edit="forecolor #9999ff"></a></div>
+                            <div style="background-color: #ff99ff;"><a data-edit="forecolor #ff99ff"></a></div>
+                            <div style="background-color: #bbbbbb;"><a data-edit="forecolor #bbbbbb"></a></div>
+                            <div style="background-color: #ff0000;"><a data-edit="forecolor #ff0000"></a></div>
+                            <div style="background-color: #ff9900;"><a data-edit="forecolor #ff9900"></a></div>
+                            <div style="background-color: #ffcc66;"><a data-edit="forecolor #ffcc66"></a></div>
+                            <div style="background-color: #ffff00;"><a data-edit="forecolor #ffff00"></a></div>
+                            <div style="background-color: #33ff33;"><a data-edit="forecolor #33ff33"></a></div>
+                            <div style="background-color: #66cccc;"><a data-edit="forecolor #66cccc"></a></div>
+                            <div style="background-color: #33ccff;"><a data-edit="forecolor #33ccff"></a></div>
+                            <div style="background-color: #6666cc;"><a data-edit="forecolor #6666cc"></a></div>
+                            <div style="background-color: #cc66cc;"><a data-edit="forecolor #cc66cc"></a></div>
+                            <div style="background-color: #999999;"><a data-edit="forecolor #999999"></a></div>
+                            <div style="background-color: #cc0000;"><a data-edit="forecolor #cc0000"></a></div>
+                            <div style="background-color: #ff6600;"><a data-edit="forecolor #ff6600"></a></div>
+                            <div style="background-color: #ffcc33;"><a data-edit="forecolor #ffcc33"></a></div>
+                            <div style="background-color: #ffcc00;"><a data-edit="forecolor #ffcc00"></a></div>
+                            <div style="background-color: #33cc00;"><a data-edit="forecolor #33cc00"></a></div>
+                            <div style="background-color: #00cccc;"><a data-edit="forecolor #00cccc"></a></div>
+                            <div style="background-color: #3366ff;"><a data-edit="forecolor #3366ff"></a></div>
+                            <div style="background-color: #6633ff;"><a data-edit="forecolor #6633ff"></a></div>
+                            <div style="background-color: #cc33cc;"><a data-edit="forecolor #cc33cc"></a></div>
+                            <div style="background-color: #666666;"><a data-edit="forecolor #666666"></a></div>
+                            <div style="background-color: #990000;"><a data-edit="forecolor #990000"></a></div>
+                            <div style="background-color: #cc6600;"><a data-edit="forecolor #cc6600"></a></div>
+                            <div style="background-color: #cc9933;"><a data-edit="forecolor #cc9933"></a></div>
+                            <div style="background-color: #999900;"><a data-edit="forecolor #999900"></a></div>
+                            <div style="background-color: #009900;"><a data-edit="forecolor #009900"></a></div>
+                            <div style="background-color: #339999;"><a data-edit="forecolor #339999"></a></div>
+                            <div style="background-color: #3333ff;"><a data-edit="forecolor #3333ff"></a></div>
+                            <div style="background-color: #6600cc;"><a data-edit="forecolor #6600cc"></a></div>
+                            <div style="background-color: #993399;"><a data-edit="forecolor #993399"></a></div>
+                            <div style="background-color: #333333;"><a data-edit="forecolor #333333"></a></div>
+                            <div style="background-color: #660000;"><a data-edit="forecolor #660000"></a></div>
+                            <div style="background-color: #993300;"><a data-edit="forecolor #993300"></a></div>
+                            <div style="background-color: #996633;"><a data-edit="forecolor #996633"></a></div>
+                            <div style="background-color: #666600;"><a data-edit="forecolor #666600"></a></div>
+                            <div style="background-color: #006600;"><a data-edit="forecolor #006600"></a></div>
+                            <div style="background-color: #336666;"><a data-edit="forecolor #336666"></a></div>
+                            <div style="background-color: #000099;"><a data-edit="forecolor #000099"></a></div>
+                            <div style="background-color: #333399;"><a data-edit="forecolor #333399"></a></div>
+                            <div style="background-color: #663366;"><a data-edit="forecolor #663366"></a></div>
+                            <div style="background-color: #000000;"><a data-edit="forecolor #000000"></a></div>
+                            <div style="background-color: #330000;"><a data-edit="forecolor #330000"></a></div>
+                            <div style="background-color: #663300;"><a data-edit="forecolor #663300"></a></div>
+                            <div style="background-color: #663333;"><a data-edit="forecolor #663333"></a></div>
+                            <div style="background-color: #333300;"><a data-edit="forecolor #333300"></a></div>
+                            <div style="background-color: #003300;"><a data-edit="forecolor #003300"></a></div>
+                            <div style="background-color: #003333;"><a data-edit="forecolor #003333"></a></div>
+                            <div style="background-color: #000066;"><a data-edit="forecolor #000066"></a></div>
+                            <div style="background-color: #330099;"><a data-edit="forecolor #330099"></a></div>
+                            <div style="background-color: #330033;"><a data-edit="forecolor #330033"></a></div>
+                        </div>
+                    </div>
+                    <div class="color-list-item color-list-item">
+                        <div class="title-color-list">{{lbl.backcolor}}</div>
+                        <div class="colorlist clearfix">
+                            <div style="background-color: #ffffff;"><a data-edit="backcolor #fffff"></a></div>
+                            <div style="background-color: #ffcccc;"><a data-edit="backcolor #ffcccc"></a></div>
+                            <div style="background-color: #ffcc99;"><a data-edit="backcolor #ffcc99"></a></div>
+                            <div style="background-color: #ffff99;"><a data-edit="backcolor #ffff99"></a></div>
+                            <div style="background-color: #ffffcc;"><a data-edit="backcolor #ffffcc"></a></div>
+                            <div style="background-color: #99ff99;"><a data-edit="backcolor #99ff99"></a></div>
+                            <div style="background-color: #99ffff;"><a data-edit="backcolor #99ffff"></a></div>
+                            <div style="background-color: #ccffff;"><a data-edit="backcolor #ccffff"></a></div>
+                            <div style="background-color: #ccccff;"><a data-edit="backcolor #ccccff"></a></div>
+                            <div style="background-color: #ffccff;"><a data-edit="backcolor #ffccff"></a></div>
+                            <div style="background-color: #cccccc;"><a data-edit="backcolor #cccccc"></a></div>
+                            <div style="background-color: #ff6666;"><a data-edit="backcolor #ff6666"></a></div>
+                            <div style="background-color: #ff9966;"><a data-edit="backcolor #ff9966"></a></div>
+                            <div style="background-color: #ffff66;"><a data-edit="backcolor #ffff66"></a></div>
+                            <div style="background-color: #ffff33;"><a data-edit="backcolor #ffff33"></a></div>
+                            <div style="background-color: #66ff99;"><a data-edit="backcolor #66ff99"></a></div>
+                            <div style="background-color: #33ffff;"><a data-edit="backcolor #33ffff"></a></div>
+                            <div style="background-color: #66ffff;"><a data-edit="backcolor #66ffff"></a></div>
+                            <div style="background-color: #9999ff;"><a data-edit="backcolor #9999ff"></a></div>
+                            <div style="background-color: #ff99ff;"><a data-edit="backcolor #ff99ff"></a></div>
+                            <div style="background-color: #bbbbbb;"><a data-edit="backcolor #bbbbbb"></a></div>
+                            <div style="background-color: #ff0000;"><a data-edit="backcolor #ff0000"></a></div>
+                            <div style="background-color: #ff9900;"><a data-edit="backcolor #ff9900"></a></div>
+                            <div style="background-color: #ffcc66;"><a data-edit="backcolor #ffcc66"></a></div>
+                            <div style="background-color: #ffff00;"><a data-edit="backcolor #ffff00"></a></div>
+                            <div style="background-color: #33ff33;"><a data-edit="backcolor #33ff33"></a></div>
+                            <div style="background-color: #66cccc;"><a data-edit="backcolor #66cccc"></a></div>
+                            <div style="background-color: #33ccff;"><a data-edit="backcolor #33ccff"></a></div>
+                            <div style="background-color: #6666cc;"><a data-edit="backcolor #6666cc"></a></div>
+                            <div style="background-color: #cc66cc;"><a data-edit="backcolor #cc66cc"></a></div>
+                            <div style="background-color: #999999;"><a data-edit="backcolor #999999"></a></div>
+                            <div style="background-color: #cc0000;"><a data-edit="backcolor #cc0000"></a></div>
+                            <div style="background-color: #ff6600;"><a data-edit="backcolor #ff6600"></a></div>
+                            <div style="background-color: #ffcc33;"><a data-edit="backcolor #ffcc33"></a></div>
+                            <div style="background-color: #ffcc00;"><a data-edit="backcolor #ffcc00"></a></div>
+                            <div style="background-color: #33cc00;"><a data-edit="backcolor #33cc00"></a></div>
+                            <div style="background-color: #00cccc;"><a data-edit="backcolor #00cccc"></a></div>
+                            <div style="background-color: #3366ff;"><a data-edit="backcolor #3366ff"></a></div>
+                            <div style="background-color: #6633ff;"><a data-edit="backcolor #6633ff"></a></div>
+                            <div style="background-color: #cc33cc;"><a data-edit="backcolor #cc33cc"></a></div>
+                            <div style="background-color: #666666;"><a data-edit="backcolor #666666"></a></div>
+                            <div style="background-color: #990000;"><a data-edit="backcolor #990000"></a></div>
+                            <div style="background-color: #cc6600;"><a data-edit="backcolor #cc6600"></a></div>
+                            <div style="background-color: #cc9933;"><a data-edit="backcolor #cc9933"></a></div>
+                            <div style="background-color: #999900;"><a data-edit="backcolor #999900"></a></div>
+                            <div style="background-color: #009900;"><a data-edit="backcolor #009900"></a></div>
+                            <div style="background-color: #339999;"><a data-edit="backcolor #339999"></a></div>
+                            <div style="background-color: #3333ff;"><a data-edit="backcolor #3333ff"></a></div>
+                            <div style="background-color: #6600cc;"><a data-edit="backcolor #6600cc"></a></div>
+                            <div style="background-color: #993399;"><a data-edit="backcolor #993399"></a></div>
+                            <div style="background-color: #333333;"><a data-edit="backcolor #333333"></a></div>
+                            <div style="background-color: #660000;"><a data-edit="backcolor #660000"></a></div>
+                            <div style="background-color: #993300;"><a data-edit="backcolor #993300"></a></div>
+                            <div style="background-color: #996633;"><a data-edit="backcolor #996633"></a></div>
+                            <div style="background-color: #666600;"><a data-edit="backcolor #666600"></a></div>
+                            <div style="background-color: #006600;"><a data-edit="backcolor #006600"></a></div>
+                            <div style="background-color: #336666;"><a data-edit="backcolor #336666"></a></div>
+                            <div style="background-color: #000099;"><a data-edit="backcolor #000099"></a></div>
+                            <div style="background-color: #333399;"><a data-edit="backcolor #333399"></a></div>
+                            <div style="background-color: #663366;"><a data-edit="backcolor #663366"></a></div>
+                            <div style="background-color: #000000;"><a data-edit="backcolor #000000"></a></div>
+                            <div style="background-color: #330000;"><a data-edit="backcolor #330000"></a></div>
+                            <div style="background-color: #663300;"><a data-edit="backcolor #663300"></a></div>
+                            <div style="background-color: #663333;"><a data-edit="backcolor #663333"></a></div>
+                            <div style="background-color: #333300;"><a data-edit="backcolor #333300"></a></div>
+                            <div style="background-color: #003300;"><a data-edit="backcolor #003300"></a></div>
+                            <div style="background-color: #003333;"><a data-edit="backcolor #003333"></a></div>
+                            <div style="background-color: #000066;"><a data-edit="backcolor #000066"></a></div>
+                            <div style="background-color: #330099;"><a data-edit="backcolor #330099"></a></div>
+                            <div style="background-color: #330033;"><a data-edit="backcolor #330033"></a></div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="btn-group">
+        <button type="button" tabindex="-1" class="btn btn-default" data-edit="insertunorderedlist" title="{{lbl.bulletList}}"><i class="fa fa-list-ul"></i></button>
+        <button type="button" tabindex="-1" class="btn btn-default" data-edit="insertorderedlist" title="{{lbl.numberList}}"><i class="fa fa-list-ol"></i></button>
+        <button type="button" tabindex="-1" class="btn btn-default" data-edit="outdent" title="{{lbl.reduceIndent}} (Shift+Tab)"><i class="fa fa-outdent"></i></button>
+        <button type="button" tabindex="-1" class="btn btn-default" data-edit="indent" title="{{lbl.indent}} (Tab)"><i class="fa fa-indent"></i></button>
+    </div>
+    <div class="btn-group">
+        <button type="button" tabindex="-1" class="btn btn-default" data-edit="justifyleft" title="{{lbl.alignLeft}} (Ctrl/Cmd+L)"><i class="fa fa-align-left"></i></button>
+        <button type="button" tabindex="-1" class="btn btn-default" data-edit="justifycenter" title="{{lbl.center}} (Ctrl/Cmd+E)"><i class="fa fa-align-center"></i></button>
+        <button type="button" tabindex="-1" class="btn btn-default" data-edit="justifyright" title="{{lbl.alignRight}} (Ctrl/Cmd+R)"><i class="fa fa-align-right"></i></button>
+        <button type="button" tabindex="-1" class="btn btn-default" data-edit="justifyfull" title="{{lbl.justify}} (Ctrl/Cmd+J)"><i class="fa fa-align-justify"></i></button>
+    </div>
+    <div class="btn-group">
+        <button type="button" tabindex="-1" class="btn btn-default" data-edit="unlink" title="{{lbl.unlink}}"><i class="fa fa-unlink"></i></button>
+        <button type="button" tabindex="-1" class="btn btn-default  dropdown-toggle" data-toggle="dropdown" title="{{lbl.hyperlink}}"><i class="fa fa-link"></i></button>
+        <div class="dropdown-menu input-append add-url-btn clearfix">
+            <div class="pull-left">
+                <input class="form-control input-sm" tabindex="-1" placeholder="{{lbl.url}}" type="text" data-edit="createLink" />
+            </div>
+            <div class="pull-right">
+                <button class="btn btn-primary btn-sm btn-add-link" tabindex="-1" type="button"><i class="fa fa-plus"></i>{{lbl.add}}</button>
+            </div>
+        </div>
+    </div>
+    <div class="btn-group uploadfiles-btn">
+        <div class="btn-group last-border">
+            <button type="button" tabindex="-1" class="btn btn-default last-border" id="fileBtn"><i class="fa fa-upload"></i></button>
+            <input type="file" data-role="magic-overlay" tabindex="-1" data-target="#fileBtn" title="{{lbl.attachFile}}" onchange="angular.element(this).scope().uploadFile('file', this.files)" />
+        </div>
+        <div class="btn-group">
+            <button type="button" tabindex="-1" class="btn  btn-default" id="pictureBtn" data-target="#modal-file-manager" data-toggle="modal" title="{{lbl.fileManager}}"><i class="fa fa-folder-open"></i></button>
+        </div>
+        <div class="btn-group">
+            <button type="button" tabindex="-1" class="btn btn-default" id="videoBtn"><i class="fa fa-video-camera"></i></button>
+            <input type="file" data-role="magic-overlay" tabindex="-1" data-target="#videoBtn" title="{{lbl.insertVideo}}" onchange="angular.element(this).scope().uploadFile('video', this.files)" />
+        </div>
+    </div>
+    <div class="btn-group">
+        <button type="button" tabindex="-1" class="btn btn-default" data-edit="undo" title="{{lbl.undo}} (Ctrl/Cmd+Z)"><i class="fa fa-undo"></i></button>
+        <button type="button" tabindex="-1" class="btn btn-default" data-edit="redo" title="{{lbl.redo}} (Ctrl/Cmd+Y)"><i class="fa fa-repeat"></i></button>
+    </div>
+    <div class="btn-group">
+        <button type="button" tabindex="-1" class="btn btn-default" onclick="toggleFullScreen()" title="{{lbl.fullScreen}}"><i class="fa fa-desktop"></i></button>
+        <button id="btn-source" type="button" tabindex="-1" class="btn btn-default" onclick="sourceShow()" title="{{lbl.source}}"><i class="fa fa-code"></i></button>
+    </div>
+</div>
+<div class="editro-switch">
+    <div id="editor"></div>
+</div>

@@ -1,0 +1,577 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="add" xml:space="preserve">
+    <value>Shto</value>
+  </data>
+  <data name="add_Entry" xml:space="preserve">
+    <value>Shto Prolog</value>
+  </data>
+  <data name="addComment" xml:space="preserve">
+    <value>Shto Koment</value>
+  </data>
+  <data name="addCustomCodeToHeader" xml:space="preserve">
+    <value>Shto kod të përshtatur në HTML seksionin në krye (head)</value>
+  </data>
+  <data name="administrationPanel" xml:space="preserve">
+    <value>Paneli i Kontollit</value>
+  </data>
+  <data name="advanced" xml:space="preserve">
+    <value>Avancuar</value>
+  </data>
+  <data name="advancedSettings" xml:space="preserve">
+    <value>Mjedis i Avancuar</value>
+  </data>
+  <data name="alternateFeedUrl" xml:space="preserve">
+    <value>URL Shteg alternativ</value>
+  </data>
+  <data name="approve" xml:space="preserve">
+    <value>Mirato</value>
+  </data>
+  <data name="approveallcomments" xml:space="preserve">
+    <value>Mirato Të Gjitha Komentet e Publikuara</value>
+  </data>
+  <data name="archive" xml:space="preserve">
+    <value>Arkivo</value>
+  </data>
+  <data name="areYouSure" xml:space="preserve">
+    <value>A jeni të sigurt {0} {1}?</value>
+  </data>
+  <data name="attachFile" xml:space="preserve">
+    <value>Ngjit Fajll</value>
+  </data>
+  <data name="author" xml:space="preserve">
+    <value>Autor</value>
+  </data>
+  <data name="avatars" xml:space="preserve">
+    <value>Avataret</value>
+  </data>
+  <data name="basic" xml:space="preserve">
+    <value>Elementar</value>
+  </data>
+  <data name="beTheFirstToRate" xml:space="preserve">
+    <value>Bëhuni i pari që vlerësoni këtë Publikim</value>
+  </data>
+  <data name="blogMLDescription" xml:space="preserve">
+    <value>BlogEngine.NET shfrytëzon BlogML si format për eksportim. Për importim përkrah të dyja BlogML dhe RSS.</value>
+  </data>
+  <data name="blogroll" xml:space="preserve">
+    <value>BlogApel</value>
+  </data>
+  <data name="buttonText" xml:space="preserve">
+    <value>Teksti i Butonit</value>
+  </data>
+  <data name="categories" xml:space="preserve">
+    <value>Kategoritë</value>
+  </data>
+  <data name="category" xml:space="preserve">
+    <value>Kategorija</value>
+  </data>
+  <data name="closeCommetsAfter" xml:space="preserve">
+    <value>Mbyll komentet pas</value>
+  </data>
+  <data name="combine" xml:space="preserve">
+    <value>Kombinim</value>
+  </data>
+  <data name="comment" xml:space="preserve">
+    <value>Koment</value>
+  </data>
+  <data name="commentLabelText" xml:space="preserve">
+    <value>Koment i tekstit të etiketës</value>
+  </data>
+  <data name="comments" xml:space="preserve">
+    <value>Komentet</value>
+  </data>
+  <data name="commentsAreClosed" xml:space="preserve">
+    <value>Komentimet janë të mbyllura</value>
+  </data>
+  <data name="commentWasSaved" xml:space="preserve">
+    <value>Komenti juaj u rujt. Ju falemnderit për vlerësimin tuaj</value>
+  </data>
+  <data name="contact" xml:space="preserve">
+    <value>Kontakt</value>
+  </data>
+  <data name="contactForm" xml:space="preserve">
+    <value>Kontakt Forma</value>
+  </data>
+  <data name="controls" xml:space="preserve">
+    <value>Kontrollet</value>
+  </data>
+  <data name="country" xml:space="preserve">
+    <value>Shteti</value>
+  </data>
+  <data name="createNewUser" xml:space="preserve">
+    <value>Krijo Shfrytëzues të ri</value>
+  </data>
+  <data name="currentlyRated" xml:space="preserve">
+    <value>Momentalisht u vlerësua prej {0} nga {1} njerëz</value>
+  </data>
+  <data name="date" xml:space="preserve">
+    <value>Data</value>
+  </data>
+  <data name="defaultFeedOutput" xml:space="preserve">
+    <value>Shtegu i parazgjedhur për prodhim</value>
+  </data>
+  <data name="defaultTextShownInSearchField" xml:space="preserve">
+    <value>Teksti i parazgjedhur në tekstboksin për kërkim</value>
+  </data>
+  <data name="delete" xml:space="preserve">
+    <value>Fshije</value>
+  </data>
+  <data name="description" xml:space="preserve">
+    <value>Përshkrimi</value>
+  </data>
+  <data name="displayCommentsOnRecentPosts" xml:space="preserve">
+    <value>Paraqit Komentet</value>
+  </data>
+  <data name="displayRatingsOnRecentPosts" xml:space="preserve">
+    <value>Paraqit Vlerësimet</value>
+  </data>
+  <data name="edit" xml:space="preserve">
+    <value>Edito</value>
+  </data>
+  <data name="email" xml:space="preserve">
+    <value>E-mail</value>
+  </data>
+  <data name="emailAddress" xml:space="preserve">
+    <value>E-mail adresa</value>
+  </data>
+  <data name="enableAttachments" xml:space="preserve">
+    <value>Lejo ngjitjet</value>
+  </data>
+  <data name="enableComments" xml:space="preserve">
+    <value>Lejo Komentet</value>
+  </data>
+  <data name="enableCommentsDescription" xml:space="preserve">
+    <value>Nëse komentet nuk janë të lejuara, askush nuk mund të shkruaj asnjë koment në asnjërin nga publikimet. </value>
+  </data>
+  <data name="enableCommentSearch" xml:space="preserve">
+    <value>Lejo kërkimin e komenteve</value>
+  </data>
+  <data name="enableCommentsModeration" xml:space="preserve">
+    <value>Komentet modeste</value>
+  </data>
+  <data name="enableGravatars" xml:space="preserve">
+    <value>Lejo Gravatarët</value>
+  </data>
+  <data name="enableHttpCompression" xml:space="preserve">
+    <value>Lejo HTTP kompresimin</value>
+  </data>
+  <data name="enableHttpCompressionDescription" xml:space="preserve">
+    <value>Mundëson hapjen e faqes më shpejt. (e rekomanduar)</value>
+  </data>
+  <data name="enableOpenSearch" xml:space="preserve">
+    <value>Lejo Kerkimin e Hapur</value>
+  </data>
+  <data name="enableOpenSearchDescription" xml:space="preserve">
+    <value>Vendos tiparin e kërkimit tek të gjith shfletuesit. (e rekomanduar)</value>
+  </data>
+  <data name="enableRating" xml:space="preserve">
+    <value>Lejo vlerësimin e publikimeve</value>
+  </data>
+  <data name="enableReferrerTracking" xml:space="preserve">
+    <value>Lejo ridrejtimin e gjurmuesve</value>
+  </data>
+  <data name="enableSearchHighlight" xml:space="preserve">
+    <value>Lejo kërkimin e theksimeve</value>
+  </data>
+  <data name="enableSearchHighlightDescription" xml:space="preserve">
+    <value>Ngjyros fjalët e kërkuara në faqe.</value>
+  </data>
+  <data name="enableSsl" xml:space="preserve">
+    <value>Lejo SSL</value>
+  </data>
+  <data name="endorsment" xml:space="preserve">
+    <value>Endorsementet (bLink)</value>
+  </data>
+  <data name="enforce" xml:space="preserve">
+    <value>Përforco</value>
+  </data>
+  <data name="export" xml:space="preserve">
+    <value>Eksporto</value>
+  </data>
+  <data name="formMessage" xml:space="preserve">
+    <value>Nga mesazhi</value>
+  </data>
+  <data name="goToFrontPage" xml:space="preserve">
+    <value>Shko në faqen e parë</value>
+  </data>
+  <data name="handleWwwSubdomain" xml:space="preserve">
+    <value>www politika e nën domejnit</value>
+  </data>
+  <data name="home" xml:space="preserve">
+    <value>Fillim</value>
+    <comment>As used for linking to the front-page</comment>
+  </data>
+  <data name="htmlHeadSection" xml:space="preserve">
+    <value>HTML krye seksioni</value>
+  </data>
+  <data name="ignore" xml:space="preserve">
+    <value>Injoro</value>
+  </data>
+  <data name="import" xml:space="preserve">
+    <value>Importo</value>
+  </data>
+  <data name="isFrontPage" xml:space="preserve">
+    <value>Është faqja e parë</value>
+  </data>
+  <data name="keywords" xml:space="preserve">
+    <value>Fjalët kyq</value>
+  </data>
+  <data name="language" xml:space="preserve">
+    <value>Zgjidh Gjuhën</value>
+  </data>
+  <data name="languageCode" xml:space="preserve">
+    <value>Kodi i Gjuhës</value>
+  </data>
+  <data name="latitude" xml:space="preserve">
+    <value>Gjërësi</value>
+  </data>
+  <data name="livePreview" xml:space="preserve">
+    <value>Shikim i parakohshëm Live</value>
+  </data>
+  <data name="longtitude" xml:space="preserve">
+    <value>Gjatësi</value>
+  </data>
+  <data name="maxLengthOfItems" xml:space="preserve">
+    <value>Max gjatësia e sendeve</value>
+  </data>
+  <data name="message" xml:space="preserve">
+    <value>Mesazh</value>
+  </data>
+  <data name="monster" xml:space="preserve">
+    <value>Përbindësh</value>
+  </data>
+  <data name="more" xml:space="preserve">
+    <value>Më shum</value>
+  </data>
+  <data name="name" xml:space="preserve">
+    <value>Emri</value>
+  </data>
+  <data name="none" xml:space="preserve">
+    <value>Mos e trego</value>
+  </data>
+  <data name="noParent" xml:space="preserve">
+    <value>Pa prind</value>
+  </data>
+  <data name="notifyOnNewComments" xml:space="preserve">
+    <value>Me lajmëro kur të shtohen komentet e reja.</value>
+  </data>
+  <data name="notRatedYet" xml:space="preserve">
+    <value>E pa vlerësuar ende</value>
+  </data>
+  <data name="numberOfComments" xml:space="preserve">
+    <value>Numri i Komenteve</value>
+  </data>
+  <data name="numberOfDisplayedItems" xml:space="preserve">
+    <value># e sendeve të paraqituara</value>
+  </data>
+  <data name="numberOfPosts" xml:space="preserve">
+    <value>Numri i publikimeve</value>
+  </data>
+  <data name="page" xml:space="preserve">
+    <value>Faqja</value>
+  </data>
+  <data name="pages" xml:space="preserve">
+    <value>Faqe</value>
+  </data>
+  <data name="password" xml:space="preserve">
+    <value>Fjalëkalimi</value>
+  </data>
+  <data name="portNumber" xml:space="preserve">
+    <value>Numri i portit</value>
+  </data>
+  <data name="portNumberDescription" xml:space="preserve">
+    <value>Porti 25 është standard</value>
+  </data>
+  <data name="possibleSpam" xml:space="preserve">
+    <value>E mundshme të jet i padëshiruar</value>
+  </data>
+  <data name="post" xml:space="preserve">
+    <value>Publikim</value>
+  </data>
+  <data name="postPerPage" xml:space="preserve">
+    <value>Publikime në faqe</value>
+  </data>
+  <data name="posts" xml:space="preserve">
+    <value>Publikimet</value>
+  </data>
+  <data name="postsPerFeed" xml:space="preserve">
+    <value>Sendet e paraqituara në shteg</value>
+  </data>
+  <data name="publish" xml:space="preserve">
+    <value>Botoj</value>
+  </data>
+  <data name="raters" xml:space="preserve">
+    <value>Vlerësuesit</value>
+  </data>
+  <data name="rating" xml:space="preserve">
+    <value>Vlerësimi</value>
+  </data>
+  <data name="recentComments" xml:space="preserve">
+    <value>Komentet e fundit</value>
+  </data>
+  <data name="recentPosts" xml:space="preserve">
+    <value>Publikimet e fundit</value>
+  </data>
+  <data name="referrer" xml:space="preserve">
+    <value>Ridrejtuesi</value>
+  </data>
+  <data name="referrers" xml:space="preserve">
+    <value>Ridrejtuesit</value>
+  </data>
+  <data name="relatedPosts" xml:space="preserve">
+    <value>Publikimet e ngjajshme</value>
+  </data>
+  <data name="remove" xml:space="preserve">
+    <value>Fshije</value>
+  </data>
+  <data name="save" xml:space="preserve">
+    <value>Ruaje</value>
+  </data>
+  <data name="saveComment" xml:space="preserve">
+    <value>Ruaje Komentin</value>
+  </data>
+  <data name="savePage" xml:space="preserve">
+    <value>Ruaje Faqen</value>
+  </data>
+  <data name="savePost" xml:space="preserve">
+    <value>Ruaje Publikimin</value>
+  </data>
+  <data name="saveSettings" xml:space="preserve">
+    <value>Ruaje Mjedisin</value>
+  </data>
+  <data name="search" xml:space="preserve">
+    <value>Kërko</value>
+  </data>
+  <data name="searchField" xml:space="preserve">
+    <value>Kërko fushën</value>
+  </data>
+  <data name="searchFieldText" xml:space="preserve">
+    <value>Kërko teksin në fushë</value>
+  </data>
+  <data name="searchResultsFor" xml:space="preserve">
+    <value>Kërko rezultatet për</value>
+  </data>
+  <data name="selectDay" xml:space="preserve">
+    <value>Zgjidh Ditën</value>
+  </data>
+  <data name="selectParent" xml:space="preserve">
+    <value>Zgjidh prindin</value>
+  </data>
+  <data name="sendCommentEmail" xml:space="preserve">
+    <value>Dërgo e-mail koment</value>
+  </data>
+  <data name="separateTagsWitComma" xml:space="preserve">
+    <value>Ndaj secilen shenjë me presje</value>
+  </data>
+  <data name="settings" xml:space="preserve">
+    <value>Mjedisi</value>
+  </data>
+  <data name="showCountryChooser" xml:space="preserve">
+    <value>Paraqit kërkuesin e shtetit</value>
+  </data>
+  <data name="showCountryChooserDescription" xml:space="preserve">
+    <value>Nëse kërkuesi i shtetit nuk është i paraqitur, asnjë flamur nuk mund të paraqitet në secilin koment.</value>
+  </data>
+  <data name="showEnableWebsiteInComments" xml:space="preserve">
+    <value>Need Translation:Enable Website in Comments</value>
+  </data>
+  <data name="showEnableWebsiteInCommentsDescription" xml:space="preserve">
+    <value>Need Translation:Choose whether to allow Website to be published in Comments</value>
+  </data>
+  <data name="showDescriptionInPostList" xml:space="preserve">
+    <value>Vetëm paraqit përshkrimin e publikimeve</value>
+  </data>
+  <data name="showInList" xml:space="preserve">
+    <value>Paraqit në listë</value>
+  </data>
+  <data name="showLivePreview" xml:space="preserve">
+    <value>Paraqit shikimin e parakohshëm LIVE</value>
+  </data>
+  <data name="showRelatedPosts" xml:space="preserve">
+    <value>Paraqit publikimet e ngjajshme</value>
+  </data>
+  <data name="subject" xml:space="preserve">
+    <value>Titulli</value>
+  </data>
+  <data name="subscribe" xml:space="preserve">
+    <value>Abonohu</value>
+  </data>
+  <data name="thankYouMessage" xml:space="preserve">
+    <value>Mesazh falenderimi</value>
+  </data>
+  <data name="theComment" xml:space="preserve">
+    <value>Komenti</value>
+  </data>
+  <data name="theme" xml:space="preserve">
+    <value>Tema</value>
+  </data>
+  <data name="thePost" xml:space="preserve">
+    <value>Publikimi</value>
+  </data>
+  <data name="thereAreXDrafts" xml:space="preserve">
+    <value>Janë {0} publikime të pa botuara.</value>
+  </data>
+  <data name="timeStampPostLinks" xml:space="preserve">
+    <value>Shto datën ne linqet e publikimit</value>
+  </data>
+  <data name="timezone" xml:space="preserve">
+    <value>Koha kompenzuese e Serverit</value>
+  </data>
+  <data name="title" xml:space="preserve">
+    <value>Titulli</value>
+  </data>
+  <data name="trimStylesheet" xml:space="preserve">
+    <value>Shkurto fletëstilin</value>
+  </data>
+  <data name="trimStylesheetDescription" xml:space="preserve">
+    <value>I bën të gjitha fletëstilet e të gjitha Temave më të vogla duke larguar të gjitha hapsirat e zbrazëta në prodhim.</value>
+  </data>
+  <data name="unapprovedcomments" xml:space="preserve">
+    <value>Komentet e pa miratuara.</value>
+  </data>
+  <data name="updateFrequenzy" xml:space="preserve">
+    <value>Shpeshtësia e freskimit (minuta)</value>
+  </data>
+  <data name="uploadFile" xml:space="preserve">
+    <value>Ngarko fajll</value>
+  </data>
+  <data name="uploadImage" xml:space="preserve">
+    <value>Ngarko pamje</value>
+  </data>
+  <data name="userName" xml:space="preserve">
+    <value>Shfrytëzuesi</value>
+  </data>
+  <data name="users" xml:space="preserve">
+    <value>Shfrytëzuesit</value>
+  </data>
+  <data name="website" xml:space="preserve">
+    <value>Ueb Faqja</value>
+  </data>
+  <data name="willShowGravatar" xml:space="preserve">
+    <value>Do të paraqes {0} ikonin</value>
+  </data>
+  <data name="wrote" xml:space="preserve">
+    <value>shkruajti</value>
+  </data>
+  <data name="youAlreadyRated" xml:space="preserve">
+    <value>Ju tanimë keni vlerësuar këtë publikim</value>
+  </data>
+</root>

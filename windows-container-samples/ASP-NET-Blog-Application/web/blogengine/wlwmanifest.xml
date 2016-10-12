@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?> 
+<manifest xmlns="http://schemas.microsoft.com/wlw/manifest/weblog">
+  <options>
+    <clientType>Metaweblog</clientType>
+    <supportsEmbeds>Yes</supportsEmbeds>
+	  <supportsKeywords>Yes</supportsKeywords>
+	  <supportsNewCategories>Yes</supportsNewCategories>
+	  <supportsNewCategoriesInline>Yes</supportsNewCategoriesInline>
+	  <supportsCommentPolicy>Yes</supportsCommentPolicy>
+	  <supportsSlug>Yes</supportsSlug>
+	  <supportsExcerpt>Yes</supportsExcerpt>
+	  <supportsPages>Yes</supportsPages>
+	  <supportsPageParent>Yes</supportsPageParent>
+    <supportsAuthor>Yes</supportsAuthor>
+    <supportsGetTags>Yes</supportsGetTags>
+    <requiresHtmlTitles>No</requiresHtmlTitles>
+    <fileUploadNameFormat>{FileName}</fileUploadNameFormat>
+</options>
+  <weblog>
+    <ServiceName>BlogEngine.NET</ServiceName>
+    <imageUrl>Content/images/blog/wrenchicon16.png</imageUrl>
+    <watermarkImageUrl>Content/images/blog/wrench84watermark.png</watermarkImageUrl>
+    <homepageLinkText>View your blog</homepageLinkText>
+    <adminLinkText>Manage your blog</adminLinkText>  
+    <adminUrl><![CDATA[{blog-homepage-url}Account/login.aspx]]></adminUrl>
+  </weblog>
+  <buttons>
+    <button>
+      <id>2</id>
+      <text>Tags</text>
+      <imageUrl>Content/images/blog/benTag24.png</imageUrl>
+      <contentUrl><![CDATA[ 
+         {blog-homepage-url}AppCode/Wlw/TagMiniView.cshtml
+      ]]></contentUrl>
+      <contentDisplaySize>250,250</contentDisplaySize>
+    </button>     
+  </buttons>
+</manifest>

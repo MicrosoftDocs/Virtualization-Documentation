@@ -1,0 +1,52 @@
+﻿.settings-view {
+    h4 {
+        margin-top: 40px;
+        margin-bottom: 20px;
+        background: #e9e9e9;
+        padding: 0 15px;
+        @include border-radius(2px);
+        font-size: 16px;
+        line-height: 35px;
+        font-weight: $font-weight-normal;
+
+        &:first-child {
+            margin-top: 0;
+        }
+
+        &:before {
+            content: "\f105";
+            font-family: 'FontAwesome';
+            margin-right: 10px;
+        }
+    }
+
+    .avatar-sample {
+        border: 1px solid #ddd;
+        padding: 5px;
+        display: block;
+        background-color: #fff;
+        @include border-radius(2px);
+        height: 43px;
+        cursor: pointer;
+
+        img {
+            margin-right: 10px;
+            @include border-radius(2px);
+            background: #eee;
+        }
+
+        input {
+            position: relative;
+            top: 2px;
+            margin-right: 10px;
+        }
+    }
+
+
+    @media screen and (max-width:400px) {
+        .col-xs-6 {
+            float: none !important;
+            width: 100%;
+        }
+    }
+}

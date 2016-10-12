@@ -1,0 +1,66 @@
+﻿<div data-ng-controller="PingSericesController">
+    <form id="form" action="">
+        <div id="modal-add" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" ng-click="focusInput=false" aria-hidden="true"><i class="fa fa-times"></i></button>
+                        <h4 class="modal-title">{{lbl.add_Entry}}</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-horizontal clearfix">
+                            <div>
+                                <label class="control-label" for="txtNewUrl">{{lbl.pingService}}</label>
+                                <input type="text" class="form-control" id="txtNewUrl" name="txtNewUrl" data-ng-model="newItem.ServiceUrl" focus-me="focusInput" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button data-ng-click="save()" class="btn btn-success pull-right btn-tabkey"><i class="fa fa-save"></i>{{lbl.save}}</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="focusInput=false"><i class="fa fa-ban"></i>{{lbl.cancel}}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="main-header clearfix">
+            <h2 class="page-title pull-left">{{lbl.pingService}}</h2>
+            <button ng-click="modalNew()" class="btn btn-success btn-sm btn-hasicon pull-left" type="button"><i class="fa fa-plus"></i>{{lbl.add}}</button>
+            <div class="btn-group befdv pull-left">
+                <button ng-disabled="itemsChecked() === false" ng-click="processChecked('delete')" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i>{{lbl.doDelete}}</button>
+            </div>
+        </div>
+        <div class="content-inner">
+            <table class="table table-bordered table-striped table-hover table-responsive">
+                <thead>
+                    <tr>
+                        <th class="table-item-w30">
+                            <input type="checkbox" id="chkAll" data-ng-click="checkAll($event)" />
+                        </th>
+                        <th class="table-item-title">{{lbl.url}}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr data-ng-repeat="item in pagedItems[currentPage]">
+                        <td> <input type="checkbox" data-ng-model="item.IsChecked" /> </td>
+                        <td class="table-item-title">
+                            <a title="{{item.OptionName}}" target="_blank" href="{{item.ServiceUrl}}" class="text-ellipsis pull-left">{{item.ServiceUrl}}</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <ul class="pagination" ng-if="items.length > itemsPerPage">
+                <li data-ng-class="{disabled: currentPage == 0}">
+                    <a data-ng-click="prevPage()" title="{{lbl.prev}}"><i class="fa fa-angle-left"></i></a>
+                </li>
+                <li data-ng-repeat="n in range(pagedItems.length)" data-ng-class="{active: n == currentPage}" data-ng-click="setPage()">
+                    <a data-ng-bind="n + 1">1</a>
+                </li>
+                <li data-ng-class="{disabled: currentPage == pagedItems.length - 1}">
+                    <a data-ng-click="nextPage()" title="{{lbl.next}}"><i class="fa fa-angle-right"></i></a>
+                </li>
+            </ul>
+        </div>
+    </form>
+</div>
+
+

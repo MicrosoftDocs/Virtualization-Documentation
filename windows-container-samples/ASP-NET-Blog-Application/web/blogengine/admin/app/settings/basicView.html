@@ -1,0 +1,54 @@
+﻿<div class="settings-view" data-ng-controller="SettingsController">
+    <form id="form" action="">
+        <div class="main-header clearfix">
+            <h2 class="page-title pull-left">{{lbl.basic}}</h2>
+            <button data-ng-click="save()" class="btn btn-success btn-sm btn-hasicon pull-left" type="button"><i class="fa fa-check"></i>{{lbl.save}}</button>
+        </div>
+        <div class="content-inner">
+            <div class="form-content">
+                <div class="form-group">
+                    <label for="txtName">{{lbl.blogTitle}}</label>
+                    <input type="text" class="form-control" id="txtName" name="txtName" data-ng-model="settings.Name" />
+                </div>
+                <div class="form-group">
+                    <label for="txtDescription">{{lbl.description}}</label>
+                    <input type="text" class="form-control" id="txtDescription" name="txtDescription" data-ng-model="settings.Description" />
+                </div>
+                <div class="form-group">
+                    <label for="txtPostsPerPage">{{lbl.postPerPage}}</label>
+                    <input type="text" class="form-control" id="txtPostsPerPage" name="txtPostsPerPage" data-ng-model="settings.PostsPerPage" />
+                </div>
+                <div class="form-group">
+                    <label><input type="checkbox" name="ckTimeStampPostLinks" data-ng-model="settings.TimeStampPostLinks" /> {{lbl.timeStampPostLinks}}</label>
+                </div>
+                <div class="form-group">
+                    <label><input type="checkbox" name="ckDescInPostList" data-ng-model="settings.ShowDescriptionInPostList" /> {{lbl.showDescriptionInPostList}} </label>
+                </div>
+                <div ng-if="settings.ShowDescriptionInPostList" class="form-group">
+                    <label for="txtDescriptionCharacters">{{lbl.numberOfCharacters}}</label>
+                    <input type="text" class="form-control" id="txtDescriptionCharacters" name="txtDescriptionCharacters" data-ng-model="settings.DescriptionCharacters" />
+                </div>
+                <div class="form-group">
+                    <label for="selCultures">{{lbl.blogLanguage}}</label>
+                    <select id="selCultures" class="form-control" data-ng-options="o.OptionName for o in lookups.Cultures" data-ng-model="selectedLanguage"></select>
+                </div>
+                <div class="form-group">
+                    <label for="selZone">{{lbl.timezone}}</label>
+                    <select id="selZone" class="form-control ltr-form-control" data-ng-options="o.OptionName for o in timeZoneOptions" data-ng-model="selTimeZone"></select>
+                </div>
+                <div ng-if="usageScenario == 'multiblogs'">
+                    <div class="form-group">
+                        <label><input type="checkbox" name="ckEnableSelfRegistration" data-ng-model="settings.EnableSelfRegistration" /> {{lbl.enableSelfRegistration}}</label>
+                    </div>
+                    <div class="form-group">
+                        <label for="selCultures">{{lbl.selfRegistrationInitialRole}}</label>
+                        <select id="selCultures" class="form-control" data-ng-options="o.OptionName for o in lookups.SelfRegisterRoles" data-ng-model="selfRegistrationInitialRole" data-ng-disabled="settings.EnableSelfRegistration == false"></select>
+                    </div>
+                    <div ng-if="SiteVars.IsPrimary">
+                        <label><input type="checkbox" name="ckCreateBlogOnSelfRegistration" data-ng-model="settings.CreateBlogOnSelfRegistration" data-ng-disabled="settings.EnableSelfRegistration == false" /> {{lbl.createBlogOnSelfRegistration}}</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,21 @@
+﻿
+--
+-- dbo.be_CustomFields
+--
+CREATE TABLE be_CustomFields(
+	[CustomType] [varchar](100) NOT NULL,
+	[ObjectId] [varchar](250) NOT NULL,
+	[BlogId] VARCHAR(36) NOT NULL,
+	[Key] [varchar](250) NOT NULL,
+	[Value] TEXT NOT NULL,
+	[Attribute] [varchar](250) NULL
+);
+
+
+
+
+
+
+
+
+

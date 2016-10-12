@@ -1,0 +1,19 @@
+# Windows Server Core Base Image 
+# NOTE: You may need to prepend 'microsoft/' to base image name--use 'docker images' to see what your image is called.
+FROM microsoft/windowsservercore
+
+# App dependencies
+RUN dism.exe /online /enable-feature /all /featurename:iis-webserver /NoRestart
+RUN powershell add-windowsfeature web-asp-net45 
+
+# Copy web app files and all needed resources
+COPY . C:/inetpub/wwwroot
+
+# Configure Web App
+RUN powershell.exe C:\inetpub\wwwroot\buildapp.ps1
+
+# Opens powershell in container and stops container from exiting.
+#ENTRYPOINT powershell 
+
+
+

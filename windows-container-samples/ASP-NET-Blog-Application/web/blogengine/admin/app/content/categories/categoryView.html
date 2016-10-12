@@ -1,0 +1,79 @@
+﻿<div class="content-categories-view" data-ng-controller="CategoriesController">
+    <form id="form" action="" style="margin:0;">
+        <div id="modal-add-cat" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="focusInput=false"><i class="fa fa-times"></i></button>
+                        <h4 class="modal-title">{{lbl.addNewCategory}}</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="txtSlug">{{lbl.title}}</label>
+                            <input type="text" class="form-control" id="txtSlug" name="txtSlug" data-ng-model="category.Title" focus-me="focusInput" />
+                        </div>
+                        <div class="form-group">
+                            <label for="txtExcerpt">{{lbl.description}}</label>
+                            <textarea class="form-control" id="txtExcerpt" rows="4" name="txtExcerpt" data-ng-model="category.Description"> </textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="selAuthors">{{lbl.parent}}</label>
+                            <select id="selAuthors" class="form-control" data-ng-options="o.OptionValue as o.OptionName for o in lookups.CategoryList" data-ng-model="category.Parent.OptionValue">
+                                <option value="">-- {{lbl.select.toLowerCase()}} --</option>
+                            </select>
+                        </div>
+                        <div class="modal-buttons">
+                            <button type="button" ng-click="save()" class="btn btn-success">{{lbl.save}}</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="focusInput=false">{{lbl.cancel}}</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <div class="main-header clearfix">
+        <h2 class="page-title pull-left">{{lbl.categories}}</h2>
+        <a data-ng-click="addNew()" class="btn btn-success btn-hasicon btn-sm pull-left"><i class="fa fa-plus"></i>{{lbl.theNew}}</a>
+        <div class="btn-group befdv pull-left">
+            <a ng-click="processChecked('delete')" ng-disabled="itemsChecked() === false" angular-tooltip tooltip="lbl.doDelete" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>
+        </div>
+        <button class="right-side-toggle pull-right"><span></span><span></span><span></span></button>
+        <div class="right-side pull-right">
+            <div class="search pull-right">
+                <i class="fa fa-search"></i>
+                <input type="text" ng-model="query" ng-change="search()" placeholder="{{lbl.search}}..." />
+            </div>
+        </div>
+    </div>
+    <div class="content-inner">
+        <table class="table table-item-categories">
+            <thead>
+                <tr>
+                    <th class="item-checkbox"><input type="checkbox" id="chkAll" ng-click="checkAll($event)" /></th>
+                    <th class="item-title"><a data-ng-click="sort_by('Title',$event)">{{lbl.title}}</a></th>
+                    <th class="item-desc">{{lbl.description}}</th>
+                    <th class="item-count">{{lbl.count}}</th>
+                    <th class="item-parent">{{lbl.parent}}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr data-ng-repeat="item in pagedItems[currentPage] | orderBy:sortingOrder:reverse">
+                    <td class="item-checkbox"><input type="checkbox" id="{{item.Slug}}" ng-model="item.IsChecked" /></td>
+                    <td class="item-title">
+                        <a title="click to edit" href="{{SiteVars.RelativeWebRoot}}admin/#/content/categories/?id={{item.Id}}">{{item.Title}}</a>
+                        <a title="click to view" class="external-link" target="_blank" href="{{SiteVars.RelativeWebRoot}}category/{{item.Title.replace('.', '')}}"><i class="fa fa-external-link"></i></a>
+                    </td>
+                    <td class="item-desc" title="{{item.Description}}"><span class="text-ellipsis-sm text-ellipsis">{{item.Description}}</span></td>
+                    <td class="item-count">{{item.Count}}</td>
+                    <td class="item-parent">{{item.Parent.OptionName}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="table-item-empty" id="tr-spinner"><div id="div-spinner"><i class="fa fa-spinner fa-spin"></i></div></div>
+        <ul class="pagination" ng-if="items.length > itemsPerPage">
+            <li data-ng-class="{disabled: currentPage == 0}"><a data-ng-click="prevPage()" title="{{lbl.prev}}"><i class="fa fa-angle-left"></i></a></li>
+            <li data-ng-repeat="n in range(pagedItems.length)" data-ng-class="{active: n == currentPage}" data-ng-click="setPage()"><a data-ng-bind="n + 1">1</a></li>
+            <li data-ng-class="{disabled: currentPage == pagedItems.length - 1}"><a data-ng-click="nextPage()" title="{{lbl.next}}"><i class="fa fa-angle-right"></i></a></li>
+        </ul>
+    </div>
+</div>

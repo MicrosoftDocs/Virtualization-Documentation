@@ -1,0 +1,188 @@
+﻿@using System.Web.Optimization
+@using BlogEngine.Core
+@{
+    Layout = "~/admin/themes/standard/layout.cshtml";
+    if (!Security.IsAuthorizedTo(Rights.EditOwnPosts))
+    {
+        Security.RedirectForUnauthorizedRequest();
+    }
+}
+<div class="content" ng-controller="PostEditorController">
+    <button tabindex="-1" class="sidebar-toggle"><span></span><span></span><span></span></button>
+    <div class="content-posts-new-view">
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="fa fa-times"></i></button>
+                        <h4 class="modal-title">Other Features</h4>
+                    </div>
+                    <div class="modal-body modal-roles">
+                        <div class="form-group">
+                            <label><input type="checkbox" data-ng-model="lookups.PostOptions.ShowAuthors" ng-true-value="true" ng-false-value="false" /> Authors List </label>
+                        </div>
+                        <div class="form-group">
+                            <label><input type="checkbox" data-ng-model="lookups.PostOptions.ShowSlug" ng-true-value="true" ng-false-value="false" /> Slug Field </label>
+                        </div>
+                        <div class="form-group">
+                            <label><input type="checkbox" data-ng-model="lookups.PostOptions.ShowDescription" ng-true-value="true" ng-false-value="false" /> Description Field </label>
+                        </div>
+                        <div class="form-group">
+                            <label><input type="checkbox" data-ng-model="lookups.PostOptions.ShowCustomFields" ng-true-value="true" ng-false-value="false" /> Custom Field <a href="http://www.dnbe.net/docs/post/custom-fields" target="_blank">(Learn more)</a> </label>
+                        </div>
+                        <div class="modal-buttons">
+                            <button type="button" data-ng-click="saveEditOptions()" class="btn btn-success">{{lbl.save}}</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="focusInput=false">{{lbl.cancel}}</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <form id="cat-form">
+            <div id="modal-add-cat" class="modal fade">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="focusInput=false"><i class="fa fa-times"></i></button>
+                            <h4 class="modal-title">{{lbl.addNewCategory}}</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="txtCatTitle">{{lbl.title}}</label>
+                                <input type="text" class="form-control" id="txtCatTitle" name="txtCatTitle" data-ng-model="category.Title" focus-me="focusInput" />
+                            </div>
+                            <div class="form-group">
+                                <label for="txtExcerpt">{{lbl.description}}</label>
+                                <textarea class="form-control" id="txtExcerpt" rows="4" name="txtExcerpt" data-ng-model="category.Description"> </textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="selAuthors">{{lbl.parent}}</label>
+                                <select id="selAuthors" class="form-control" data-ng-options="o.OptionValue as o.OptionName for o in lookups.CategoryList" data-ng-model="category.Parent.OptionValue">
+                                    <option value="">-- {{lbl.select.toLowerCase()}} --</option>
+                                </select>
+                            </div>
+                            <div class="modal-buttons">
+                                <button type="button" ng-click="saveCategory()" class="btn btn-success">{{lbl.add}}</button>
+                                <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="focusInput=false">{{lbl.cancel}}</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <div id="modal-custom-fields" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="focusInput=false"><i class="fa fa-times"></i></button>
+                        <h4 class="modal-title">{{lbl.add}} {{lbl.customFields}}</h4>
+                    </div>
+                    <div class="modal-body modal-roles">
+                        <div class="form-group">
+                            <label class="control-label" for="txtKey">Key</label>
+                            <input type="text" id="txtKey" name="txtKey" class="form-control" data-ng-model="editItem.Key" focus-me="focusInput" />
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="txtValue">Value</label>
+                            <input type="text" id="txtValue" name="txtValue" class="form-control" data-ng-model="editItem.Value" />
+                        </div>
+                        <div class="modal-buttons">
+                            <button type="button" data-ng-click="addCustom()" class="btn btn-success">{{lbl.add}}</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="focusInput=false">{{lbl.cancel}}</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @* please do not remove this main-header we used it in mobile size. *@
+        <div class="main-header clearfix">
+            <span ng-if="post.Id"><a href="{{post.RelativeLink}}" class="btn btn-sm btn-hasicon btn-success pull-left" target="_blank"><i class="fa fa-eye"></i> {{lbl.goToPost}}</a></span>
+            <span ng-if="post.Id && post.IsPublished"><a href="#" class="btn btn-sm btn-hasicon btn-warning pull-left" ng-click="publish(false)"><i class="fa fa-undo"></i> {{lbl.unpublish}}</a></span>
+            <a ng-if="status() < 2" href="#" data-ng-click="publish(true)" class="btn btn-sm btn-hasicon btn-success pull-left"><i class="fa fa-check"></i>{{lbl.publish}}</a>
+            <a ng-if="status() == 2" href="#" data-ng-click="save()" class="btn btn-sm btn-hasicon btn-primary pull-left"><i class="fa fa-save"></i>{{lbl.save}}</a>
+            <span ng-if="status() < 2"><a href="#" ng-click="save()" class="btn btn-sm btn-hasicon btn-primary pull-left"><i class="fa fa-save"></i> {{lbl.save}}</a></span>
+            <a href="" onclick="window.history.back()" class="btn btn-sm btn-hasicon btn-default pull-left"><i class="fa fa-ban"></i>{{lbl.cancel}}</a>
+            <span id="spinner" class="loaded pull-right"><i class='fa fa-spinner fa-spin fa-large'></i></span>
+        </div>
+        <div class="content-inner">
+            <form id="form" action="">
+                <div class="newpost-wrapper">
+                    <div class="newpost-content">
+                        <div class="newpost-title"><input type="text" id="txtTitle" name="txtTitle" autocomplete="off" placeholder="{{lbl.titleOfPost}}..." class="form-control" data-ng-model="post.Title" /></div>
+                        <div class="editor-wrapper">@RenderPage(BlogConfig.DefaultEditor)</div>
+                        <div class="newpost-widget" data-ng-show="lookups.PostOptions.ShowSlug">
+                            <label class="newpost-widget-title">{{lbl.slug}}</label>
+                            <input type="text" class="form-control form-control-sm" id="txtSlug" data-ng-model="post.Slug" />
+                        </div>
+                        <div class="newpost-widget" data-ng-show="lookups.PostOptions.ShowDescription">
+                            <label class="newpost-widget-title">{{lbl.description}}</label>
+                            <textarea class="form-control form-control-sm" rows="4" id="txtExcerpt" data-ng-model="post.Description"> </textarea>
+                        </div>
+                    </div>
+                    <div class="newpost-sidebar">
+                        <div class="newpost-sidebar-content">
+                            <div class="newpost-sidebar-buttons">
+                                <span ng-if="post.Id"><a href="{{post.RelativeLink}}" class="btn btn-sm btn-block btn-success" target="_blank">{{lbl.goToPost}}</a></span>
+                                <span ng-if="post.Id && post.IsPublished"><a href="#" class="btn btn-sm btn-block btn-warning" ng-click="publish(false)">{{lbl.unpublish}}</a></span>
+                                <a ng-if="status() < 2" href="#" data-ng-click="publish(true)" class="btn btn-sm btn-block btn-success">{{lbl.publish}}</a>
+                                <a ng-if="status() == 2" href="#" data-ng-click="save()" class="btn btn-sm btn-block btn-primary">{{lbl.save}}</a>
+                                <span ng-if="status() < 2"><a href="#" ng-click="save()" class="btn btn-sm btn-block btn-primary">{{lbl.save}}</a></span>
+                                <a href="" onclick="window.history.back()" class="btn btn-block btn-sm btn-default">{{lbl.cancel}}</a>
+                                <span id="spinner" class="loaded"><i class='fa fa-spinner fa-spin fa-large'></i></span>
+                                <hr />
+                            </div>
+                            <div class="newpost-widget newpost-widget-categories">
+                                <label class="newpost-widget-title">{{lbl.categories}}</label>
+                                <a angular-tooltip tooltip="lbl.add" class="pull-right add-cat" ng-click="addCagegory()"><i class="fa fa-plus fa-sm"></i></a>
+                                <ul class="categories-list">
+                                    <li ng-repeat="cat in lookups.CategoryList"><label><input type="checkbox" id="cat-{{cat.OptionValue}}" data-ng-model="cat.IsSelected" /> {{cat.OptionName}}</label></li>
+                                    <li ng-if="lookups.CategoryList.length == 0" class="item-empty">{{lbl.empty}}</li>
+                                </ul>
+                            </div>
+                            <div class="newpost-widget">
+                                <label class="newpost-widget-title">{{lbl.tags}}</label>
+                                <div class="post-tags-selector">
+                                    <textarea id="postTags" class="form-control" style="width:100%;" placeholder="{{lbl.typeAndEnter}}..." rows="1"></textarea>
+                                </div>
+                            </div>
+                            <div class="newpost-widget">
+                                <label class="newpost-widget-title">{{lbl.date}}</label>
+                                <input type="text" class="form-control form-control-sm dateFormatted" id="txtDate" name="txtDate" data-ng-model="post.DateCreated" />
+                            </div>
+                            <div class="newpost-widget" data-ng-show="lookups.PostOptions.ShowAuthors">
+                                <label class="newpost-widget-title">{{lbl.author}}</label>
+                                <select id="selAuthors" ng-disabled="usageScenario != 'multiusers'" class="form-control  form-control-sm" data-ng-options="o.OptionName for o in lookups.AuthorList" data-ng-model="selectedAuthor"></select>
+                            </div>
+                            <div class="newpost-widget" data-ng-show="lookups.PostOptions.ShowCustomFields">
+                                <label class="newpost-widget-title">
+                                    {{lbl.customFields}}
+                                </label>
+                                <button type="button" class="btn btn-default btn-sm btn-block" id="btnCustomFields" ng-click="showCustom()" data-toggle="modal">{{lbl.add}}</button>
+                                <div id="frm-custom-edit" ng-if="customFields && customFields.length > 0">
+                                    <div class="newpost-custom-fields" data-ng-repeat="item in customFields">
+                                        <div class="field-name text-ellipsis">{{item.Key}}</div>
+                                        <input type="text" class="form-control" data-ng-model="item.Value" />
+                                        <button class="field-remove" ng-click="deleteCustom(item.Key, item.ObjectId)" title="{{lbl.doDelete}}"><i class="fa fa-times"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="newpost-widget newpost-comments">
+                                <label class="enable-comment"><input type="checkbox" name="ckEnableComments" data-ng-model="post.HasCommentsEnabled" />{{lbl.enableComments}}</label>
+                            </div>
+                            <hr />
+                            <a class="btn btn-sm btn-hasicon btn-block btn-default" data-toggle="modal" data-target="#myModal"><i class="fa fa-sliders"></i> Customize</a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+@Scripts.Render("~/scripts/wysiwyg")
+@{
+    if (BlogConfig.DefaultEditor == "~/admin/editors/tinymce/editor.cshtml")
+    {
+        <script src="~/admin/editors/tinymce/tinymce.min.js"></script>
+        <script src="~/admin/editors/tinymce/editor.js"></script>
+    }
+}

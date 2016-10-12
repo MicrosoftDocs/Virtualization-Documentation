@@ -1,0 +1,75 @@
+﻿.filemanager {
+    .main-header {
+        padding-right: 15px;
+    }
+
+    .filemanager-list {
+        .item-file {
+            float: right !important;
+            margin-right: 0;
+            margin-left: 20px;
+        }
+
+        .item-file-name {
+            label {
+                padding: 0 35px 0 10px;
+            }
+
+            input {
+                left: auto;
+                right: 13px;
+            }
+        }
+    }
+
+    @media screen and (max-width:1023px) {
+
+        .filemanager-list {
+            .item-file {
+                padding-left: 0;
+                padding-right: 40px;
+                margin-right: 0;
+                margin-left: 2%;
+
+                &:nth-child(3n) {
+                    margin-left: 0;
+                }
+
+                .item-file-image {
+                    left: auto;
+                    right: 0;
+                }
+
+                .item-file-name {
+                    label {
+                        padding: 0 35px 0 10px;
+                    }
+                }
+            }
+        }
+    }
+
+    @media screen and (max-width:768px) {
+        .filemanager-list {
+            .item-file {
+                &:nth-child(3n) {
+                    margin-right:0;
+                    margin-left: 2%;
+                }
+                &:nth-child(2n) {
+                    margin-left: 0;
+                }
+            }
+        }
+    }
+
+    @media screen and (max-width:480px) {
+        .filemanager-list {
+
+            .item-file {
+                margin-right: 0 !important;
+                margin-left: 0 !important;
+            }
+        }
+    }
+}

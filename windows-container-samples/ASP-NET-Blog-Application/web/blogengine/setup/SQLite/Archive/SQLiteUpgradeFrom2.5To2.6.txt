@@ -1,0 +1,92 @@
+﻿
+--
+-- dbo.be_Packages
+--
+CREATE TABLE be_Packages (
+[PackageId] VARCHAR(128) NOT NULL PRIMARY KEY,
+[Version] VARCHAR(128) NOT NULL);
+
+--
+-- be_PackageFiles
+--
+CREATE TABLE be_PackageFiles (
+[PackageId] VARCHAR(128) NOT NULL,
+[FileOrder] INTEGER NOT NULL,
+[FilePath] VARCHAR(255) NOT NULL,
+[IsDirectory] BOOLEAN NOT NULL,
+PRIMARY KEY ([PackageId], [FileOrder]));
+
+--
+-- be_QuickNotes
+--
+CREATE TABLE be_QuickNotes (
+[QuickNoteID] INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+[NoteID] VARCHAR(36) NOT NULL,
+[BlogID] VARCHAR(36) NOT NULL,
+[UserName] VARCHAR(100) NOT NULL,
+[Note] TEXT NOT NULL,
+[Updated] DATETIME NULL);
+
+CREATE INDEX idx_be_NoteId_BlogId_UserName
+ON be_QuickNotes (NoteID, BlogID, UserName);
+
+--
+-- be_QuickSettings
+--
+CREATE TABLE be_QuickSettings (
+[QuickSettingID] INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+[BlogID] VARCHAR(36) NOT NULL,
+[UserName] VARCHAR(100) NOT NULL,
+[SettingName] VARCHAR(255) NOT NULL,
+[SettingValue] VARCHAR(255) NULL);
+
+--
+-- be_FileStoreDirectory
+--
+CREATE TABLE be_FileStoreDirectory (
+[Id] VARCHAR(36) NOT NULL PRIMARY KEY,
+[ParentID] VARCHAR(36) NOT NULL,
+[BlogID] VARCHAR(36) NOT NULL,
+[Name] VARCHAR(255) NOT NULL,
+[FullPath] VARCHAR(1000) NOT NULL,
+[CreateDate] DATETIME NOT NULL,
+[LastAccess] DATETIME NOT NULL,
+[LastModify] DATETIME NOT NULL);
+
+--
+-- be_FileStoreFiles (No Casade delete)
+--
+CREATE TABLE be_FileStoreFiles (
+[FileID] VARCHAR(36) NOT NULL PRIMARY KEY,
+[ParentDirectoryID] VARCHAR(36) NOT NULL,
+[Name] VARCHAR(255) NOT NULL,
+[FullPath] VARCHAR(1000) NOT NULL,
+[Contents] BLOB NOT NULL,
+[Size] INTEGER NOT NULL,
+[CreateDate] DATETIME NOT NULL,
+[LastAccess] DATETIME NOT NULL,
+[LastModify] DATETIME NOT NULL);
+
+--
+-- be_FileStoreFileThumbs (No Casade delete)
+--
+CREATE TABLE be_FileStoreFileThumbs (
+[thumbnailId] VARCHAR(36) NOT NULL PRIMARY KEY,
+[FileId] VARCHAR(36) NOT NULL,
+[Contents] BLOB NOT NULL,
+[Size] INTEGER NOT NULL);
+
+--
+-- be_Blogs
+--
+ALTER TABLE be_Blogs
+ADD IsSiteAggregation BOOLEAN NOT NULL DEFAULT 0;
+
+
+
+
+
+
+
+
+

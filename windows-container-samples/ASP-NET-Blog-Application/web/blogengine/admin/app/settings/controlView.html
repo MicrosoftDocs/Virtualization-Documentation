@@ -1,0 +1,53 @@
+﻿<div class="settings-view" data-ng-controller="SettingsController">
+    <form id="form" action="">
+        <div class="main-header clearfix">
+            <h2 class="page-title pull-left">{{lbl.controls}}</h2>
+            <button data-ng-click="save()" class="btn btn-success btn-sm btn-hasicon pull-left" type="button"><i class="fa fa-check"></i>{{lbl.save}}</button>
+        </div>
+        <div class="content-inner">
+            <div class="form-content">
+                <h4>{{lbl.contactForm}}</h4>
+                <div class="form-group">
+                    <label for="txtContactFormMessage">{{lbl.formMessage}}</label>
+                    <textarea class="form-control ltr-dir" rows="3" id="txtContactFormMessage" data-ng-model="settings.ContactFormMessage"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="txtContactErrorMessage">{{lbl.errorMessage}}</label>
+                    <textarea class="form-control ltr-dir" rows="3" id="txtContactErrorMessage" data-ng-model="settings.ContactErrorMessage"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="txtContactThankMessage">{{lbl.thankYouMessage}}</label>
+                    <textarea class="form-control ltr-dir" rows="3" id="txtContactThankMessage" data-ng-model="settings.ContactThankMessage"></textarea>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label><input type="checkbox" name="ckEnableContactAttachments" data-ng-model="settings.EnableContactAttachments" /> {{lbl.enableAttachments}}</label>
+                        </div>
+                        <div class="col-md-6">
+                            <label><input type="checkbox" name="ckEnableRecaptchaOnContactForm" data-ng-model="settings.EnableRecaptchaOnContactForm" /> {{lbl.enableRecaptcha}}</label>
+                        </div>
+                    </div>
+                </div>
+                <h4>{{lbl.errorPage}}</h4>
+                <div class="form-group">
+                    <label for="txtErrorTitle">{{lbl.txtErrorTitle}}</label>
+                    <input type="text" class="form-control" id="txtErrorTitle" name="txtErrorTitle" data-ng-model="settings.ErrorTitle" />
+                </div>
+                <div class="form-group">
+                    <label for="txtErrorText">{{lbl.txtErrorText}}</label>
+                    <textarea class="form-control ltr-dir" rows="3" id="txtErrorText" data-ng-model="settings.ErrorText"></textarea>
+                </div>
+                <h4>{{lbl.customCode}}</h4>
+                <div class="form-group">
+                    <label for="txtHtmlHeader">{{lbl.addCustomCodeToHeader}}</label>
+                    <textarea class="form-control ltr-dir" rows="3" id="txtHtmlHeader" data-ng-model="settings.HtmlHeader"> </textarea>
+                </div>
+                <div class="form-group">
+                    <label for="txtTrackingScript">{{lbl.trackingScript}}</label>
+                    <textarea class="form-control ltr-dir" rows="3" id="txtTrackingScript" data-ng-model="settings.TrackingScript"> </textarea>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

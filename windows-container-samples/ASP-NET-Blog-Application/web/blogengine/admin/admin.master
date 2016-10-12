@@ -1,0 +1,34 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" Inherits="Admin.ExtensionsMasterPage" CodeBehind="admin.master.cs" %>
+
+<%@ Import Namespace="BlogEngine.Core" %>
+<%@ Import Namespace="System.Web.Optimization" %>
+<%-- 
+    This is used as master page for extension settings
+    for BE generated and custom gallery settings - keep it!
+--%>
+<html>
+<head id="Head1" runat="server">
+    <title>BlogEngine.NET Admin</title>
+    <link href="~/Content/bootstrap.css" rel="stylesheet"/>
+    <style>
+        .alert-info { margin-right: 10px; }
+        input[type="checkbox"]{ margin-right: 6px !important; }
+    </style>
+</head>
+<body>
+    <script type="text/javascript">
+        var SiteVars = {
+            ApplicationRelativeWebRoot: '<%= Utils.ApplicationRelativeWebRoot %>',
+            RelativeWebRoot: '<%= Utils.RelativeWebRoot %>',
+            BlogInstanceId: '<%= Blog.CurrentInstance.Id %>'
+        };
+    </script>
+    <script type="text/javascript" src="admin.res.axd"></script>
+    <form id="form1" runat="server">
+        <div id="StatusBox">
+            <div id="AdminStatus" runat="server"></div>
+        </div>
+        <asp:ContentPlaceHolder ID="cphAdmin" runat="server" />     
+    </form>
+</body>
+</html>

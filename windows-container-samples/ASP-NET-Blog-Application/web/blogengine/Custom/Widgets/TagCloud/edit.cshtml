@@ -1,0 +1,73 @@
+﻿@using BlogEngine.NET.Custom.Widgets
+@{
+    var minPosts = 1;
+    var maxSize = -1;
+
+    var widgetId = Request.QueryString["id"];
+    var settings = Common.GetSettings(widgetId);
+
+    if (IsPost)
+    {
+        settings["minimumposts"] = Request.Form["ddMinPosts"];
+        settings["tagcloudsize"] = Request.Form["ddCloudSize"];
+        Common.SaveSettings(settings, widgetId);
+        @:
+        <script type="text/javascript">window.parent.toastr.success("Completed");</script>
+    }
+    if (settings != null && settings.Count > 0)
+    {
+        minPosts = int.Parse(settings["minimumposts"]);
+        maxSize = int.Parse(settings["tagcloudsize"]);
+    }
+
+    var minPostsOptions = new List<SelectListItem>
+    {
+      new SelectListItem{ Text = "1 (default)", Value = "1", Selected = minPosts == 1 },
+      new SelectListItem{ Text = "2", Value = "2", Selected = minPosts == 2 },
+      new SelectListItem{ Text = "3", Value = "3", Selected = minPosts == 3 },
+      new SelectListItem{ Text = "4", Value = "4", Selected = minPosts == 4 },
+      new SelectListItem{ Text = "5", Value = "5", Selected = minPosts == 5 },
+      new SelectListItem{ Text = "6", Value = "6", Selected = minPosts == 6 },
+      new SelectListItem{ Text = "7", Value = "7", Selected = minPosts == 7 },
+      new SelectListItem{ Text = "8", Value = "8", Selected = minPosts == 8 },
+      new SelectListItem{ Text = "9", Value = "9", Selected = minPosts == 9 },
+      new SelectListItem{ Text = "10", Value = "10", Selected = minPosts == 10 }
+    };
+
+    var cloudSizeOptions = new List<SelectListItem>
+    {
+      new SelectListItem{ Text = "Unlimited", Value = "-1", Selected = maxSize == -1 },
+      new SelectListItem{ Text = "10", Value = "10", Selected = maxSize == 10 },
+      new SelectListItem{ Text = "25", Value = "25", Selected = maxSize == 25 },
+      new SelectListItem{ Text = "50", Value = "50", Selected = maxSize == 50 },
+      new SelectListItem{ Text = "75", Value = "75", Selected = maxSize == 75 },
+      new SelectListItem{ Text = "100", Value = "100", Selected = maxSize == 100 },
+      new SelectListItem{ Text = "125", Value = "125", Selected = maxSize == 125 },
+      new SelectListItem{ Text = "150", Value = "150", Selected = maxSize == 150 }
+    };
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="~/Content/bootstrap.min.css">
+    <link rel="stylesheet" href="~/admin/themes/standard/css/styles.css">
+</head>
+<body class="widget-edit">
+    <form method="post">
+        <div class="form-group">
+            <label>@Resources.labels.tagMinimumPosts</label>
+            @Html.DropDownList("ddMinPosts", minPostsOptions, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            <label>@Resources.labels.tagCloudMaxSize</label>
+            @Html.DropDownList("ddCloudSize", cloudSizeOptions, new { @class = "form-control" })
+        </div>
+        <div>
+            <button type="submit" class="btn btn-success">
+                @Resources.labels.save
+            </button>
+        </div>
+    </form>
+</body>
+</html>

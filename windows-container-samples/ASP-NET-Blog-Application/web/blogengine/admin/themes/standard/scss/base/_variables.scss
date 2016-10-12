@@ -1,0 +1,58 @@
+﻿// direction
+$dir-ltr: ltr;
+$dir-rtl: rtl;
+
+// colors
+$color-base: #282c37;
+$color-base-dark: darken($color-base, 3%);
+$color-base-light: lighten($color-base, 5%);
+
+$color-success: #24b685;
+$color-danger: #ea5a5a;
+$color-warning: #f6bb42;
+$color-primary: #23b1f7;
+$color-info: #5bc0de;
+
+// sidebar
+$sidebar-text-color: #74808f;
+$sidebar-text-color-light: lighten($sidebar-text-color, 30%);
+$sidebar-global-height: 60px;
+
+// fonts
+$font-family-roboto: "Roboto";
+$font-family-base: $font-family-roboto, "Helvetica Neue", Helvetica, Arial, sans-serif;
+$font-size-base: 14px;
+$line-height-base: 1.8;
+
+$font-weight-light: 300;
+$font-weight-normal: 400;
+$font-weight-bold: 500;
+
+// buttons
+$btn-size-sm: 30px;
+$btn-size-default: 35px;
+$btn-size-lg: 40px;
+
+$btn-default-color: #666;
+$btn-default-bg: #fff;
+$btn-default-border: #ddd;
+
+$btn-primary-color: #fff;
+$btn-primary-bg: $color-primary;
+$btn-primary-border: $color-primary;
+
+$btn-success-color: #fff;
+$btn-success-bg: $color-success;
+$btn-success-border: $color-success;
+
+$btn-info-color: #fff;
+$btn-info-bg: $color-info;
+$btn-info-border: $color-info;
+
+$btn-warning-color: #fff;
+$btn-warning-bg: $color-warning;
+$btn-warning-border: $color-warning;
+
+$btn-danger-color: #fff;
+$btn-danger-bg: $color-danger;
+$btn-danger-border: $color-danger;

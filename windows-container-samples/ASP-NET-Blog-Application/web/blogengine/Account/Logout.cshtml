@@ -1,0 +1,11 @@
+﻿@{
+    BlogEngine.Core.Security.SignOut();
+
+    // Redirect back to the homepage or return URL
+    var returnUrl = Request.QueryString["ReturnUrl"];
+    if (returnUrl.IsEmpty()) {
+        Response.Redirect(BlogEngine.Core.Utils.RelativeWebRoot);
+    } else {
+        Context.RedirectLocal(returnUrl);
+    }
+}

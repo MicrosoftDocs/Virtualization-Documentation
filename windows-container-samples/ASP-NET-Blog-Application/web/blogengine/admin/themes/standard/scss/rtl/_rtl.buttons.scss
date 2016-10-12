@@ -1,0 +1,30 @@
+﻿// btn-hasicon
+.btn-hasicon {
+    padding-left: $btn-size-default / 2;
+    padding-right: $btn-size-default + ($btn-size-default / 2) - 2.5px;
+
+    &.btn-sm {
+        padding-left: $btn-size-sm / 2;
+        padding-right: $btn-size-sm + ($btn-size-sm / 2) - 2px;
+    }
+
+    &.btn-lg {
+        padding-left: $btn-size-lg / 2;
+        padding-right: $btn-size-lg + ($btn-size-lg / 2) - 4px;
+    }
+
+    i {
+        border-right: none;
+        border-left: 1px solid rgba(0, 0, 0, 0.08);
+        left: auto;
+        right: -1px;
+    }
+}
+
+// btn-group
+.btn-group {
+    .btn {
+        margin-right: 0;
+        margin-left: 1px;
+    }
+}

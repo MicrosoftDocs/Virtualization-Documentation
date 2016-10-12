@@ -1,0 +1,27 @@
+﻿CREATE TABLE [be_BlogRollItems] (
+[BlogRollId] VARCHAR(36)  UNIQUE NOT NULL PRIMARY KEY,
+[Title] VARCHAR(255)  UNIQUE NULL,
+[Description] TEXT  NULL,
+[BlogUrl] VARCHAR(255)  NOT NULL,
+[FeedUrl] VARCHAR(255)  NULL,
+[Xfn] VARCHAR(255)  NULL,
+[SortIndex] INTEGER  NOT NULL
+);
+
+CREATE TABLE [be_Referrers] (
+[ReferrerId] VARCHAR(36)  UNIQUE NOT NULL,
+[ReferralDay] DATE DEFAULT CURRENT_DATE NOT NULL,
+[ReferrerUrl] VARCHAR(255)  NOT NULL,
+[ReferralCount] INTEGER  NOT NULL,
+[Url] VARCHAR(255)  NULL,
+[IsSpam] BOOLEAN  NULL
+);
+
+ALTER TABLE be_Pages
+ADD Slug VARCHAR(255) NULL;
+
+ALTER TABLE be_PostComment 
+ADD ModeratedBy VARCHAR(100) NULL;
+
+ALTER TABLE be_PostComment
+ADD Avatar VARCHAR(255) NULL;

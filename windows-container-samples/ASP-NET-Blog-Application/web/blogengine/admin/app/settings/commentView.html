@@ -1,0 +1,80 @@
+﻿<div class="settings-view" data-ng-controller="SettingsController">
+    <form id="form" action="">
+        <div class="main-header clearfix">
+            <h2 class="page-title pull-left">{{lbl.comments}}</h2>
+            <button data-ng-click="save()" class="btn btn-success btn-hasicon btn-sm pull-left" type="button"><i class="fa fa-check"></i>{{lbl.save}}</button>
+        </div>
+        <div class="content-inner">
+            <div class="form-content">
+                <div class="form-group">
+                    <h4>{{lbl.commentsProvider}}</h4>
+                    <div class="row">
+                        <div class="col-md-4"><div class="radio"><label><input type="radio" value="0" data-ng-model="settings.CommentProvider" ng-change="selectProvider('be')" /> {{lbl.blogEngineComment}}</label></div></div>
+                        <div class="col-md-4"><div class="radio"><label><input type="radio" value="1" data-ng-model="settings.CommentProvider" ng-change="selectProvider('dq')" /> {{lbl.disqusComment}}</label></div></div>
+                        <div class="col-md-4"><div class="radio"><label><input type="radio" value="2" data-ng-model="settings.CommentProvider" ng-change="selectProvider('fb')" /> {{lbl.facebookComment}}</label></div></div>
+                    </div>
+                </div>
+                <div id="be-provider">
+                    <h4>{{lbl.blogEngineComment}}</h4>
+                    <div class="checkbox"><label><input type="checkbox" name="ckIsCommentsEnabled" ng-model="settings.IsCommentsEnabled" ng-disabled="settings.CommentProvider > 0" /> {{lbl.enableComments}}</label></div>
+                    <div class="checkbox"><label><input type="checkbox" name="ckEnableCommentsModeration" ng-model="settings.EnableCommentsModeration" ng-disabled="settings.IsCommentsEnabled == false || settings.CommentProvider > 0" /> {{lbl.enableCommentsModeration}}</label></div>
+                    <div class="checkbox"><label><input type="checkbox" ng-model="settings.TrustAuthenticatedUsers" ng-disabled="settings.IsCommentsEnabled == false || settings.CommentProvider > 0" /> {{lbl.trustAuthenticated}}</label></div>
+                    <div class="checkbox"><label><input type="checkbox" name="ckIsCommentNestingEnabled" data-ng-model="settings.IsCommentNestingEnabled" data-ng-disabled="settings.IsCommentsEnabled == false || settings.CommentProvider > 0" /> {{lbl.enableCommentNesting}}</label></div>
+                    <div class="checkbox"><label><input type="checkbox" name="ckShowLivePreview" data-ng-model="settings.ShowLivePreview" data-ng-disabled="settings.IsCommentsEnabled == false || settings.CommentProvider > 0" /> {{lbl.showLivePreview}}</label></div>
+                    <div class="checkbox"><label><input type="checkbox" name="ckEnableWebsiteInComments" data-ng-model="settings.EnableWebsiteInComments" data-ng-disabled="settings.IsCommentsEnabled == false || settings.CommentProvider > 0" /> {{lbl.showEnableWebsiteInComments}}</label></div>
+                    <div class="form-group">
+                        <label for="closeDaysOptions">{{lbl.closeCommetsAfter}}</label>
+                        <select class="form-control" id="closeDaysOptions" ng-options="o.OptionName for o in vm.CloseDaysOptions" ng-model="selCloseDays" ng-disabled="settings.IsCommentsEnabled == false || settings.CommentProvider > 0"></select>
+                    </div>
+                </div>
+                <div id="dq-provider">
+                    <h4>{{lbl.disqusComment}}</h4>
+                    <div class="form-group">
+                        <div class="alert alert-info" data-ng-bind-html="lbl.disqusSignupMessage"></div>
+                        <div class="form-group">
+                            <label class="control-label" style="line-height: 32px" for="txtDisqusWebsiteName">{{lbl.disqusWebsiteName}}</label>
+                            <input type="text" class="form-control ltr-dir" id="txtDisqusWebsiteName" data-ng-model="settings.DisqusWebsiteName" data-ng-disabled="settings.CommentProvider != 1" />
+                        </div>
+                        <div class="checkbox"><label><input type="checkbox" name="ckDisqusDevMode" ng-model="settings.DisqusDevMode" ng-disabled="settings.CommentProvider != 1" /> {{lbl.developmentMode}}</label></div>
+                        <div class="checkbox"><label><input type="checkbox" name="cbDisqusAddToPages" ng-model="settings.DisqusAddCommentsToPages" ng-disabled="settings.CommentProvider != 1" /> {{lbl.addCommentsToPages}}</label></div>
+                    </div>
+                </div>
+                <div id="fb-provider">
+                    <h4>{{lbl.facebookComment}}</h4>
+                    <div class="form-group">
+                        <label>Facebook App Id</label>
+                        <input type="text" class="form-control ltr-dir" id="txtFacebookAppId" data-ng-model="settings.FacebookAppId" />
+                    </div>
+                    <div class="form-group">
+                        <label for="selFacebookLang">{{lbl.language}}</label>
+                        <select id="selFacebookLang" class="form-control ltr-form-control" data-ng-options="o.OptionName for o in vm.FacebookLanguages" data-ng-model="selFacebookLanguage"></select>
+                    </div>
+                </div>
+                <h4>{{lbl.avatars}}</h4>
+                <div class="row">
+                    <div class="col-xs-6 col-md-6">
+                        <label class="avatar-sample"><img ng-src="{{SiteVars.RelativeWebRoot}}Content/images/blog/avatars/monsterid.png" alt="MonsterID" /> <input type="radio" value="monsterid" data-ng-model="settings.Avatar" /> MonsterID</label>
+                    </div>
+                    <div class="col-xs-6 col-md-6">
+                        <label class="avatar-sample"><img ng-src="{{SiteVars.RelativeWebRoot}}Content/images/blog/avatars/wavatar.png" alt="Wavatar" /><input type="radio" value="wavatar" data-ng-model="settings.Avatar" /> Wavatar</label>
+                    </div>
+                    <div class="col-xs-6 col-md-6">
+                        <label class="avatar-sample"><img ng-src="{{SiteVars.RelativeWebRoot}}Content/images/blog/avatars/identicon.png" alt="Identicon" /><input type="radio" value="identicon" data-ng-model="settings.Avatar" /> Identicon</label>
+                    </div>
+                    <div class="col-xs-6 col-md-6">
+                        <label class="avatar-sample"><img ng-src="{{SiteVars.RelativeWebRoot}}Content/images/blog/avatars/retro.png" alt="Retro" /><input type="radio" value="retro" data-ng-model="settings.Avatar" /> Retro</label>
+                    </div>
+                    <div class="col-xs-6 col-md-6">
+                        <label class="avatar-sample"><img ng-src="{{SiteVars.RelativeWebRoot}}Content/images/blog/avatars/mm.png" alt="MysteryMan" /><input type="radio" value="mm" data-ng-model="settings.Avatar" /> MysteryMan </label>
+                    </div>
+                    <div class="col-xs-6 col-md-6">
+                        <label class="avatar-sample"><img ng-src="{{SiteVars.RelativeWebRoot}}Content/images/blog/avatars/noavatar.png" alt="None" /> <input type="radio" value="none" data-ng-model="settings.Avatar" /> {{lbl.none}} </label>
+                    </div>
+                    <div class="col-xs-6 col-md-6">
+                        <label class="avatar-sample"><img ng-src="{{SiteVars.RelativeWebRoot}}Content/images/blog/avatars/blank.png" alt="Blank" /> <input type="radio" value="blank" data-ng-model="settings.Avatar" /> Blank </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

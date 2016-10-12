@@ -1,0 +1,111 @@
+﻿.content-post-view {
+    //
+    .item-comments {
+        > div {
+            height: 18px;
+        }
+
+        span {
+            display: inline-block;
+            border-radius: 100px;
+            overflow: hidden;
+
+            a {
+                display: block;
+                height: 100%;
+                text-align: center;
+                padding: 0 10px;
+                font-size: 10px;
+                color: #fff !important;
+                height: 18px;
+                line-height: 18px;
+                outline: none;
+            }
+        }
+
+        .item-comment-approved {
+            background-color: #24b685;
+        }
+
+        .item-comment-pending {
+            background-color: #f6bb42;
+        }
+
+        .item-comment-spam {
+            background-color: #ea5a5a;
+        }
+    }
+    // table
+    .table-item-post {
+        .item-author {
+            width: 80px;
+        }
+
+        .item-comments {
+            width: 120px;
+            padding: 0;
+        }
+
+        .item-date {
+            width: 100px;
+        }
+
+        .item-status {
+            width: 100px;
+        }
+
+        @media screen and (max-width:1023px) {
+            .item-comments {
+                display: none;
+            }
+        }
+
+        @media screen and (max-width:767px) {
+            .item-author {
+                display: none;
+            }
+        }
+
+        @media screen and (max-width:640px) {
+            .item-status {
+                display: none;
+            }
+
+            .item-checkbox {
+                border-right: none;
+                width: 15px;
+                min-width: 15px;
+                padding-left: 15px;
+            }
+
+            .item-date {
+                width: 80px;
+            }
+        }
+    }
+
+
+    @media screen and (max-width:639px) {
+        .content-inner {
+            padding: 0;
+        }
+        .main-header{
+            @include box-shadow(none);
+            border-bottom-width:1px;
+            border-color:#eee;
+        }
+    }
+
+    @media screen and (max-width:359px) {
+        .main-header {
+            .btn-success.btn-hasicon {
+                padding: 0;
+                width: 60px;
+
+                .fa {
+                    display: none;
+                }
+            }
+        }
+    }
+}

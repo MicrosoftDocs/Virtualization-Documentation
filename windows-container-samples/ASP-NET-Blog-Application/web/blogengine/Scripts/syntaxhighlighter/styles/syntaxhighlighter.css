@@ -1,0 +1,37 @@
+.container
+{
+    padding: 5px 0 0 5px;
+    width: 500px;
+    height: 500px;
+	font-family: Arial,Tahoma;	
+}
+
+.codearea
+{
+    width: 500px;
+    height: 200px;
+}
+
+#insert {
+	width: 60px;
+	color: #333333;  
+    font-size: 11px;
+	font-weight: normal !important;
+	background-color: auto !important;
+	background-image: auto !important;
+	border: auto !important;
+}
+
+#cancel {
+	width: 60px;
+	color: #333333;  
+    font-size: 11px;
+	font-weight: normal !important;
+	background-color: auto !important;
+	background-image: auto !important;
+	border: auto !important;
+}
+
+.options th {
+	text-align: left;
+}

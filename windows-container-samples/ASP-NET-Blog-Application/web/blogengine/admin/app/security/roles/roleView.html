@@ -1,0 +1,70 @@
+﻿<div class="security-roles-view" data-ng-controller="RolesController">
+    <form id="form" action="">
+        <div id="modal-edit" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="focusInput=false"><i class="fa fa-times"></i></button>
+                        <h4 class="modal-title">{{editItem.RoleName ? editItem.RoleName : lbl.addNewRole}}</h4>
+                    </div>
+                    <div class="modal-body modal-roles">
+                        <div class="form-group" data-ng-if="newItem">
+                            <label class="control-label" for="txtRoleName">{{lbl.name}}</label>
+                            <input type="text" id="txtRoleName" autofocus="" name="txtRoleName" class="form-control" data-ng-model="editItem.RoleName" focus-me="focusInput" />
+                        </div>
+                        <div data-ng-repeat="item in rights | orderBy:Title">
+                            <div class="section-role">
+                                <div class="section-role-title"><span>{{item.Title}}</span></div>
+                                <div class="section-role-body clearfix">
+                                        <div class="col-sm-6" data-ng-repeat="p in item.Permissions"><label><input type="checkbox" data-ng-model="p.IsChecked" /> {{p.Title}}</label></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" data-ng-click="save()" class="btn btn-success">{{lbl.save}}</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="focusInput=false">{{lbl.cancel}}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="main-header clearfix">
+            <h2 class="page-title pull-left">{{lbl.roles}}</h2>
+            <button data-ng-click="loadRightsForm()" class="btn btn-success btn-sm btn-hasicon pull-left" type="button"><i class="fa fa-plus"></i>{{lbl.theNew}}</button>
+            <div class="btn-group pull-left">
+                <button data-ng-click="processChecked('delete')" ng-disabled="itemsChecked() === false" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button>
+            </div>
+            <button class="right-side-toggle pull-right"><span></span><span></span><span></span></button>
+            <div class="right-side pull-right">
+                <div class="search pull-right">
+                    <i class="fa fa-search"></i>
+                    <input type="text" ng-model="query" ng-change="search()" placeholder="{{lbl.search}}..." />
+                </div>
+            </div>
+        </div>
+        <div class="content-inner">
+            <table class="table table-item-roles">
+                <thead>
+                    <tr>
+                        <th class="item-checkbox"><input type="checkbox" id="chkAll" data-ng-click="checkAll($event)" /> </th>
+                        <th class="item-title"><a data-ng-click="sort_by('RoleName',$event)">{{lbl.title}}</a></th>
+                        <th class="item-sysrole">{{lbl.systemRole}}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr data-ng-repeat="item in pagedItems[currentPage] | orderBy:sortingOrder:reverse">
+                        <td class="item-checkbox"> <input type="checkbox" id="{{item.UserName}}" data-ng-model="item.IsChecked" /> </td>
+                        <td class="item-title"> <a title="click to edit" href="" ng-click="loadRightsForm(item.RoleName)">{{item.RoleName}}</a> </td>
+                        <td class="item-sysrole"><input type="checkbox" data-ng-model="item.IsSystemRole" data-ng-disabled="true"></td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="table-item-empty" id="tr-spinner"><div id="div-spinner"><i class="fa fa-spinner fa-spin"></i></div></div>
+            <ul class="pagination" ng-if="items.length > itemsPerPage">
+                <li data-ng-class="{disabled: currentPage == 0}"><a data-ng-click="prevPage()" title="{{lbl.prev}}"><i class="fa fa-angle-left"></i></a></li>
+                <li data-ng-repeat="n in range(pagedItems.length)" data-ng-class="{active: n == currentPage}" data-ng-click="setPage()"><a data-ng-bind="n + 1">1</a></li>
+                <li data-ng-class="{disabled: currentPage == pagedItems.length - 1}"><a data-ng-click="nextPage()" title="{{lbl.next}}"><i class="fa fa-angle-right"></i></a></li>
+            </ul>
+        </div>
+    </form>
+</div>

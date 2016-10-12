@@ -1,0 +1,66 @@
+﻿@using BlogEngine.Core
+@using BlogEngine.NET.Custom.Widgets
+@using System.Text.RegularExpressions
+@{
+    var numberOfComments = 10;
+    var settings = Common.GetSettings(Model.Id);
+    if (settings != null && settings.Count > 0)
+    {
+        numberOfComments = int.Parse(settings["numberofcomments"]);
+    }
+    var comments = new List<Comment>();
+    foreach (var post in Post.ApplicablePosts.Where(post => post.IsVisible))
+    {
+        comments.AddRange(post.Comments.FindAll(c => c.IsApproved && c.Email.Contains("@")));
+    }
+    comments.Sort();
+    comments.Reverse();
+    var max = Math.Min(comments.Count, numberOfComments);
+    var list = comments.GetRange(0, max);
+}
+<style>
+    .recentcomments li a:last-child {
+        display: inline !important;
+    }
+</style>
+<div class="widget recentcomments">
+    <h4 class="widget-header">@Model.Title</h4>
+    <div class="widget-content">
+        <ul id="recentComments" class="recentcomments">
+            @if (list.Count > 0)
+            {
+                foreach (var item in list)
+                {
+                    if (item.IsApproved)
+                    {
+                        var cnt = ((Post)item.Parent).ApprovedComments.Count;
+                        var commentBody = Regex.Replace(item.Content, @"\[(.*?)\]", string.Empty);
+                        var bodyLength = Math.Min(commentBody.Length, 50);
+                        commentBody = commentBody.Substring(0, bodyLength);
+                        if (commentBody.Length > 0)
+                        {
+                            if (commentBody[commentBody.Length - 1] == '&')
+                            {
+                                commentBody = commentBody.Substring(0, commentBody.Length - 1);
+                            }
+                        }
+                        commentBody += item.Content.Length <= 50 ? " " : "... ";
+                        <li>
+                            <a href="@item.Parent.RelativeLink#comment">@item.Parent.Title</a> (@cnt)
+                            <br />@Html.Raw(item.Author + " " + Resources.labels.wrote + ": " + commentBody)
+                        </li>
+                    }
+                }
+                <li>
+                    <a href="~/syndication.axd?comments=true">
+                        Comment RSS <img alt="" src="~/Content/images/blog/rssButton.png">
+                    </a>
+                </li>
+            }
+            else
+            {
+                <li>@Resources.labels.none</li>
+            }
+        </ul>
+    </div>
+</div>

@@ -1,0 +1,577 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+    <data name="add" xml:space="preserve">
+    <value>Dodaj</value>
+  </data>
+  <data name="add_Entry" xml:space="preserve">
+    <value>Dodaj vnos</value>
+  </data>
+  <data name="addComment" xml:space="preserve">
+    <value>Dodaj komentar</value>
+  </data>
+  <data name="addCustomCodeToHeader" xml:space="preserve">
+    <value>Dodaj dodatno kodo v glavo HTML-ja</value>
+  </data>
+  <data name="administrationPanel" xml:space="preserve">
+    <value>Nadzorna plošča</value>
+  </data>
+  <data name="advanced" xml:space="preserve">
+    <value>Napredne</value>
+  </data>
+  <data name="advancedSettings" xml:space="preserve">
+    <value>Napredne nastavitve</value>
+  </data>
+  <data name="alternateFeedUrl" xml:space="preserve">
+    <value>URL nadomestnega feed-a</value>
+  </data>
+  <data name="approve" xml:space="preserve">
+    <value>Odobri</value>
+  </data>
+  <data name="approveallcomments" xml:space="preserve">
+    <value>Odobri vse objavljene komentarje</value>
+  </data>
+  <data name="archive" xml:space="preserve">
+    <value>Arhiv</value>
+  </data>
+  <data name="areYouSure" xml:space="preserve">
+    <value>Ste prepričani, da želite {0} {1}?</value>
+  </data>
+  <data name="attachFile" xml:space="preserve">
+    <value>Priloži datoteko</value>
+  </data>
+  <data name="author" xml:space="preserve">
+    <value>Avtor</value>
+  </data>
+  <data name="avatars" xml:space="preserve">
+    <value>Avatarji</value>
+  </data>
+  <data name="basic" xml:space="preserve">
+    <value>Osnovne</value>
+  </data>
+  <data name="beTheFirstToRate" xml:space="preserve">
+    <value>Be the first to rate this post</value>
+  </data>
+  <data name="blogMLDescription" xml:space="preserve">
+    <value>BlogEngine.NET uporablja BlogML kot format za izvoz. Uvažati je mogoče tako BlogML kot RSS.</value>
+  </data>
+  <data name="blogroll" xml:space="preserve">
+    <value>Blogroll</value>
+  </data>
+  <data name="buttonText" xml:space="preserve">
+    <value>Besedilo gumba</value>
+  </data>
+  <data name="categories" xml:space="preserve">
+    <value>Kategorije</value>
+  </data>
+  <data name="category" xml:space="preserve">
+    <value>Kategorija</value>
+  </data>
+  <data name="closeCommetsAfter" xml:space="preserve">
+    <value>Zapri komentarje po</value>
+  </data>
+  <data name="combine" xml:space="preserve">
+    <value>Kombinacija</value>
+  </data>
+  <data name="comment" xml:space="preserve">
+    <value>Komentar</value>
+  </data>
+  <data name="commentLabelText" xml:space="preserve">
+    <value>Tekst oznake komentarja</value>
+  </data>
+  <data name="comments" xml:space="preserve">
+    <value>Komentarji</value>
+  </data>
+  <data name="commentsAreClosed" xml:space="preserve">
+    <value>Komentiranje zaprto</value>
+  </data>
+  <data name="commentWasSaved" xml:space="preserve">
+    <value>Komentar je bil shranjen. Hvala za vaš odziv.</value>
+  </data>
+  <data name="contact" xml:space="preserve">
+    <value>Kontakt</value>
+  </data>
+  <data name="contactForm" xml:space="preserve">
+    <value>Kontaktni obrazec</value>
+  </data>
+  <data name="controls" xml:space="preserve">
+    <value>Kontrole</value>
+  </data>
+  <data name="country" xml:space="preserve">
+    <value>Država</value>
+  </data>
+  <data name="createNewUser" xml:space="preserve">
+    <value>Ustvari novega uporabnika</value>
+  </data>
+  <data name="currentlyRated" xml:space="preserve">
+    <value>Trenutna ocena {0} od {1} ljudi</value>
+  </data>
+  <data name="date" xml:space="preserve">
+    <value>Datum</value>
+  </data>
+  <data name="defaultFeedOutput" xml:space="preserve">
+    <value>Privzet izpis feed-a</value>
+  </data>
+  <data name="defaultTextShownInSearchField" xml:space="preserve">
+    <value>Privzet tekst prikazan v iskalnem polju</value>
+  </data>
+  <data name="delete" xml:space="preserve">
+    <value>Izbris</value>
+  </data>
+  <data name="description" xml:space="preserve">
+    <value>Opis</value>
+  </data>
+  <data name="displayCommentsOnRecentPosts" xml:space="preserve">
+    <value>Prikaži komentarje</value>
+  </data>
+  <data name="displayRatingsOnRecentPosts" xml:space="preserve">
+    <value>Prikaži ocene</value>
+  </data>
+  <data name="edit" xml:space="preserve">
+    <value>Uredi</value>
+  </data>
+  <data name="email" xml:space="preserve">
+    <value>E-mail</value>
+  </data>
+  <data name="emailAddress" xml:space="preserve">
+    <value>E-mail naslov</value>
+  </data>
+  <data name="enableAttachments" xml:space="preserve">
+    <value>Omogoči priloge</value>
+  </data>
+  <data name="enableComments" xml:space="preserve">
+    <value>Omogoči komentarje</value>
+  </data>
+  <data name="enableCommentsDescription" xml:space="preserve">
+    <value>Če so komentarji onemogočeni, ni mogoče komentirati nobene objave!</value>
+  </data>
+  <data name="enableCommentSearch" xml:space="preserve">
+    <value>Omogoči iskanje komentarjev</value>
+  </data>
+  <data name="enableCommentsModeration" xml:space="preserve">
+    <value>Upravljaj komentarje</value>
+  </data>
+  <data name="enableGravatars" xml:space="preserve">
+    <value>Omogoči Gravatar-je</value>
+  </data>
+  <data name="enableHttpCompression" xml:space="preserve">
+    <value>Omogoči HTTP stiskanje</value>
+  </data>
+  <data name="enableHttpCompressionDescription" xml:space="preserve">
+    <value>Povzroči hitrejše prikazovanje strani (priporočljivo).</value>
+  </data>
+  <data name="enableOpenSearch" xml:space="preserve">
+    <value>Omogoči OpenSearch</value>
+  </data>
+  <data name="enableOpenSearchDescription" xml:space="preserve">
+    <value>Omogoči iskanje v vseh novejših brskalnikih (priporočljivo)</value>
+  </data>
+  <data name="enableRating" xml:space="preserve">
+    <value>Omogoči ocenjevanje objav.</value>
+  </data>
+  <data name="enableReferrerTracking" xml:space="preserve">
+    <value>Omogoči sledenje</value>
+  </data>
+  <data name="enableSearchHighlight" xml:space="preserve">
+    <value>Omogoči označevanje iskanega</value>
+  </data>
+  <data name="enableSearchHighlightDescription" xml:space="preserve">
+    <value>Obarva iskane besede na prikazani strani.</value>
+  </data>
+  <data name="enableSsl" xml:space="preserve">
+    <value>Omogoči SSL</value>
+  </data>
+  <data name="endorsment" xml:space="preserve">
+    <value>Endorsement (bLink)</value>
+  </data>
+  <data name="enforce" xml:space="preserve">
+    <value>Uveljavi</value>
+  </data>
+  <data name="export" xml:space="preserve">
+    <value>Izvozi</value>
+  </data>
+  <data name="formMessage" xml:space="preserve">
+    <value>Sporočilo</value>
+  </data>
+  <data name="goToFrontPage" xml:space="preserve">
+    <value>Pojdi na prvo stran</value>
+  </data>
+  <data name="handleWwwSubdomain" xml:space="preserve">
+    <value>www polica subdomene</value>
+  </data>
+  <data name="home" xml:space="preserve">
+    <value>Domov</value>
+    <comment>As used for linking to the front-page</comment>
+  </data>
+  <data name="htmlHeadSection" xml:space="preserve">
+    <value>Glava HTML kode</value>
+  </data>
+  <data name="ignore" xml:space="preserve">
+    <value>Prezri</value>
+  </data>
+  <data name="import" xml:space="preserve">
+    <value>Uvozi</value>
+  </data>
+  <data name="isFrontPage" xml:space="preserve">
+    <value>Je prva stran</value>
+  </data>
+  <data name="keywords" xml:space="preserve">
+    <value>Ključne besede</value>
+  </data>
+  <data name="language" xml:space="preserve">
+    <value>Izberi jezik</value>
+  </data>
+  <data name="languageCode" xml:space="preserve">
+    <value>Jezikovna koda</value>
+  </data>
+  <data name="latitude" xml:space="preserve">
+    <value>Širina</value>
+  </data>
+  <data name="livePreview" xml:space="preserve">
+    <value>Predogled</value>
+  </data>
+  <data name="longtitude" xml:space="preserve">
+    <value>Dolžina</value>
+  </data>
+  <data name="maxLengthOfItems" xml:space="preserve">
+    <value>Maksimalna dolžina članka</value>
+  </data>
+  <data name="message" xml:space="preserve">
+    <value>Sporočilo</value>
+  </data>
+  <data name="monster" xml:space="preserve">
+    <value>Monster</value>
+  </data>
+  <data name="more" xml:space="preserve">
+    <value>Več</value>
+  </data>
+  <data name="name" xml:space="preserve">
+    <value>Ime</value>
+  </data>
+  <data name="none" xml:space="preserve">
+    <value>Ne prikaži</value>
+  </data>
+  <data name="noParent" xml:space="preserve">
+    <value>Ni nadrejenega</value>
+  </data>
+  <data name="notifyOnNewComments" xml:space="preserve">
+    <value>Obvesti, ko bo dodan komentar</value>
+  </data>
+  <data name="notRatedYet" xml:space="preserve">
+    <value>Ni ocenjeno</value>
+  </data>
+  <data name="numberOfComments" xml:space="preserve">
+    <value>Število komentarjev</value>
+  </data>
+  <data name="numberOfDisplayedItems" xml:space="preserve">
+    <value># prikazanih predmetov</value>
+  </data>
+  <data name="numberOfPosts" xml:space="preserve">
+    <value>Število objav</value>
+  </data>
+  <data name="page" xml:space="preserve">
+    <value>Stran</value>
+  </data>
+  <data name="pages" xml:space="preserve">
+    <value>Strani</value>
+  </data>
+  <data name="password" xml:space="preserve">
+    <value>Geslo</value>
+  </data>
+  <data name="portNumber" xml:space="preserve">
+    <value>Številka porta</value>
+  </data>
+  <data name="portNumberDescription" xml:space="preserve">
+    <value>Port 25 je standarden</value>
+  </data>
+  <data name="possibleSpam" xml:space="preserve">
+    <value>Možen spam</value>
+  </data>
+  <data name="post" xml:space="preserve">
+    <value>Objava</value>
+  </data>
+  <data name="postPerPage" xml:space="preserve">
+    <value>Objav na stran</value>
+  </data>
+  <data name="posts" xml:space="preserve">
+    <value>Objave</value>
+  </data>
+  <data name="postsPerFeed" xml:space="preserve">
+    <value>Število prikazanih člankov v feed-u</value>
+  </data>
+  <data name="publish" xml:space="preserve">
+    <value>Objavi</value>
+  </data>
+  <data name="raters" xml:space="preserve">
+    <value>Ocenjevalci</value>
+  </data>
+  <data name="rating" xml:space="preserve">
+    <value>Ocena</value>
+  </data>
+  <data name="recentComments" xml:space="preserve">
+    <value>Zadnji komentarji</value>
+  </data>
+  <data name="recentPosts" xml:space="preserve">
+    <value>Zadnje objave</value>
+  </data>
+  <data name="referrer" xml:space="preserve">
+    <value>Referenca</value>
+  </data>
+  <data name="referrers" xml:space="preserve">
+    <value>Reference</value>
+  </data>
+  <data name="relatedPosts" xml:space="preserve">
+    <value>Podobne objave</value>
+  </data>
+  <data name="remove" xml:space="preserve">
+    <value>Odstrani</value>
+  </data>
+  <data name="save" xml:space="preserve">
+    <value>Shrani</value>
+  </data>
+  <data name="saveComment" xml:space="preserve">
+    <value>Shrani komentar</value>
+  </data>
+  <data name="savePage" xml:space="preserve">
+    <value>Shrani stran</value>
+  </data>
+  <data name="savePost" xml:space="preserve">
+    <value>Shrani objavo</value>
+  </data>
+  <data name="saveSettings" xml:space="preserve">
+    <value>Shrani nastavitve</value>
+  </data>
+  <data name="search" xml:space="preserve">
+    <value>Išči</value>
+  </data>
+  <data name="searchField" xml:space="preserve">
+    <value>Iskalno polje</value>
+  </data>
+  <data name="searchFieldText" xml:space="preserve">
+    <value>Besedilo iskalnega polja</value>
+  </data>
+  <data name="searchResultsFor" xml:space="preserve">
+    <value>Rezultat iskanja za</value>
+  </data>
+  <data name="selectDay" xml:space="preserve">
+    <value>Izberi dan</value>
+  </data>
+  <data name="selectParent" xml:space="preserve">
+    <value>Izberi nadrejeno</value>
+  </data>
+  <data name="sendCommentEmail" xml:space="preserve">
+    <value>Pošlji e-mail na komentar</value>
+  </data>
+  <data name="separateTagsWitComma" xml:space="preserve">
+    <value>Loči vsako besedno zvezo z vejico</value>
+  </data>
+  <data name="settings" xml:space="preserve">
+    <value>Nastavitve</value>
+  </data>
+  <data name="showCountryChooser" xml:space="preserve">
+    <value>Prikaži kontrolnik za izbiro države</value>
+  </data>
+  <data name="showCountryChooserDescription" xml:space="preserve">
+    <value>Če izbira držav ni prikazana, ne bo prikaza zastav držav.</value>
+  </data>
+  <data name="showEnableWebsiteInComments" xml:space="preserve">
+    <value>Need Translation:Enable Website in Comments</value>
+  </data>
+  <data name="showEnableWebsiteInCommentsDescription" xml:space="preserve">
+    <value>Need Translation:Choose whether to allow Website to be published in Comments</value>
+  </data>
+  <data name="showDescriptionInPostList" xml:space="preserve">
+    <value>Prikaži samo delni opis objave.</value>
+  </data>
+  <data name="showInList" xml:space="preserve">
+    <value>Prikaži na seznamu</value>
+  </data>
+  <data name="showLivePreview" xml:space="preserve">
+    <value>Pokaži predogled</value>
+  </data>
+  <data name="showRelatedPosts" xml:space="preserve">
+    <value>Pokaži podobne objave</value>
+  </data>
+  <data name="subject" xml:space="preserve">
+    <value>Zadeva</value>
+  </data>
+  <data name="subscribe" xml:space="preserve">
+    <value>Vpiši se</value>
+  </data>
+  <data name="thankYouMessage" xml:space="preserve">
+    <value>Zahvalno sporoćilo</value>
+  </data>
+  <data name="theComment" xml:space="preserve">
+    <value>komentar</value>
+  </data>
+  <data name="theme" xml:space="preserve">
+    <value>Tema</value>
+  </data>
+  <data name="thePost" xml:space="preserve">
+    <value>the post</value>
+  </data>
+  <data name="thereAreXDrafts" xml:space="preserve">
+    <value>Trenutno je {0} neobjavljenih objav</value>
+  </data>
+  <data name="timeStampPostLinks" xml:space="preserve">
+    <value>Dodaj datum k povezavam na objave</value>
+  </data>
+  <data name="timezone" xml:space="preserve">
+    <value>Zamik časa na serverju</value>
+  </data>
+  <data name="title" xml:space="preserve">
+    <value>Naslov</value>
+  </data>
+  <data name="trimStylesheet" xml:space="preserve">
+    <value>Skrči oblikovno predlogo</value>
+  </data>
+  <data name="trimStylesheetDescription" xml:space="preserve">
+    <value>Omogoči da so vse oblikovne predloge manjše, ker odstrani vse nepotrebne presledke.</value>
+  </data>
+  <data name="unapprovedcomments" xml:space="preserve">
+    <value>Neodobreni komentarji</value>
+  </data>
+  <data name="updateFrequenzy" xml:space="preserve">
+    <value>Frekvenca posodabljanja (v minutah)</value>
+  </data>
+  <data name="uploadFile" xml:space="preserve">
+    <value>Naloži datoteko</value>
+  </data>
+  <data name="uploadImage" xml:space="preserve">
+    <value>Naloži sliko</value>
+  </data>
+  <data name="userName" xml:space="preserve">
+    <value>Uporabniško ime</value>
+  </data>
+  <data name="users" xml:space="preserve">
+    <value>Uporabniki</value>
+  </data>
+  <data name="website" xml:space="preserve">
+    <value>Spletna stran</value>
+  </data>
+  <data name="willShowGravatar" xml:space="preserve">
+    <value>Bo prikazalo tvojo {0} ikono</value>
+  </data>
+  <data name="wrote" xml:space="preserve">
+    <value>je napisal</value>
+  </data>
+  <data name="youAlreadyRated" xml:space="preserve">
+    <value>Si že ocenil to objavo</value>
+  </data>
+</root>

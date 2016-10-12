@@ -1,0 +1,12 @@
+﻿@using BlogEngine.NET.Custom.Widgets
+@{
+    var settings = Common.GetSettings(Model.Id);
+    var txt = "";
+    if (settings != null && settings.Count > 0)
+    {
+        txt = HttpUtility.HtmlDecode(settings["content"]);
+    }
+}
+<div class="widget textbox">
+    @Html.Raw(txt)
+</div>

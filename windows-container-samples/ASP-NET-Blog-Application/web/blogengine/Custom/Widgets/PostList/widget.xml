@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<metadata>
+    <id>PostList</id>
+    <description>List of blog posts</description>
+    <authors>BlogEngine.NET</authors>
+    <website>http://dotnetblogengine.net/</website>
+    <version>3.3.0.0</version>
+    <iconurl></iconurl>
+</metadata>

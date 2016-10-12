@@ -1,0 +1,28 @@
+// UK lang variables
+tinyMCE.addI18n('en.syntaxhighlighter', {
+	syntaxhighlighter_desc : "Syntax Highlighter",
+	syntaxhighlighter_title : "Syntax Highlighter",
+	syntaxhighlighter_languagepicker : "Choose the language",
+	syntaxhighlighter_pagecode : "Paste your code here",
+	syntaxhighlighter_button_desc: "Insert code",
+	syntaxhighlighter_autolinks : "Autodetect Links",
+	syntaxhighlighter_autolinks_description : "Toggle detection of links in the highlighted element. If the option is turned off, URLs won't be clickable.",
+	syntaxhighlighter_classname : "Custom Class",
+	syntaxhighlighter_classname_description : "Add a custom class (or multiple classes) to every highlighter element that will be created on the page.",
+	syntaxhighlighter_collapse : "Collapse",
+	syntaxhighlighter_collapse_description : "Collapse highlighted elements on the page by default.",
+	syntaxhighlighter_firstline : "First Line",
+	syntaxhighlighter_firstline_description : "The first (starting) line number.",
+	syntaxhighlighter_gutter : "Gutter",
+	syntaxhighlighter_gutter_description : "Turn gutter with line numbers on and off. ",
+	syntaxhighlighter_highlight : "Highlight Lines",
+	syntaxhighlighter_highlight_description : "Highlight one or more lines. Specify as an array like [1, 2, 3] or just an number for a single line.",
+	syntaxhighlighter_htmlscript : "HTML Script",
+	syntaxhighlighter_htmlscript_description : "Highlight a mixture of HTML/XML code and the chosen script.",
+	syntaxhighlighter_smarttabs : "Smart Tabs",
+	syntaxhighlighter_smarttabs_description : "Toggle smart tabs feature on and off.",
+	syntaxhighlighter_tabsize : "Tab Size",
+	syntaxhighlighter_tabsize_description : "Tab size. ",
+	syntaxhighlighter_toolbar : "Show Toolbar",
+	syntaxhighlighter_toolbar_description : "Toggle toolbar on/off."
+});

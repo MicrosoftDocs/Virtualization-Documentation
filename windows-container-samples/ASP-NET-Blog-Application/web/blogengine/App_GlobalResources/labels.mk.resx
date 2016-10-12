@@ -1,0 +1,577 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<root>
+	<!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+	<xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+		<xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+		<xsd:element name="root" msdata:IsDataSet="true">
+			<xsd:complexType>
+				<xsd:choice maxOccurs="unbounded">
+					<xsd:element name="metadata">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="value" type="xsd:string" minOccurs="0" />
+							</xsd:sequence>
+							<xsd:attribute name="name" use="required" type="xsd:string" />
+							<xsd:attribute name="type" type="xsd:string" />
+							<xsd:attribute name="mimetype" type="xsd:string" />
+							<xsd:attribute ref="xml:space" />
+						</xsd:complexType>
+					</xsd:element>
+					<xsd:element name="assembly">
+						<xsd:complexType>
+							<xsd:attribute name="alias" type="xsd:string" />
+							<xsd:attribute name="name" type="xsd:string" />
+						</xsd:complexType>
+					</xsd:element>
+					<xsd:element name="data">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+								<xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+							</xsd:sequence>
+							<xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+							<xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+							<xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+							<xsd:attribute ref="xml:space" />
+						</xsd:complexType>
+					</xsd:element>
+					<xsd:element name="resheader">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+							</xsd:sequence>
+							<xsd:attribute name="name" type="xsd:string" use="required" />
+						</xsd:complexType>
+					</xsd:element>
+				</xsd:choice>
+			</xsd:complexType>
+		</xsd:element>
+	</xsd:schema>
+	<resheader name="resmimetype">
+		<value>text/microsoft-resx</value>
+	</resheader>
+	<resheader name="version">
+		<value>2.0</value>
+	</resheader>
+	<resheader name="reader">
+		<value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+	</resheader>
+	<resheader name="writer">
+		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+	</resheader>
+	<data name="add" xml:space="preserve">
+		<value>Додади</value>
+	</data>
+	<data name="add_Entry" xml:space="preserve">
+		<value>Додади податок</value>
+	</data>
+	<data name="addComment" xml:space="preserve">
+		<value>Додади коментар</value>
+	</data>
+	<data name="addCustomCodeToHeader" xml:space="preserve">
+		<value>Додади сопствен код во HTML header секцијата</value>
+	</data>
+	<data name="administrationPanel" xml:space="preserve">
+		<value>Control panel</value>
+	</data>
+	<data name="advanced" xml:space="preserve">
+		<value>Напредно</value>
+	</data>
+	<data name="advancedSettings" xml:space="preserve">
+		<value>Напредни поставки</value>
+	</data>
+	<data name="alternateFeedUrl" xml:space="preserve">
+		<value>Различен извор за URL</value>
+	</data>
+	<data name="approve" xml:space="preserve">
+		<value>Одобри</value>
+	</data>
+	<data name="approveallcomments" xml:space="preserve">
+		<value>Одобри ги сите Post коментари</value>
+	</data>
+	<data name="archive" xml:space="preserve">
+		<value>Архива</value>
+	</data>
+	<data name="areYouSure" xml:space="preserve">
+		<value>Дали сте сигурни дека сакате да {0} {1}?</value>
+	</data>
+	<data name="attachFile" xml:space="preserve">
+		<value>Прикачете фајл</value>
+	</data>
+	<data name="author" xml:space="preserve">
+		<value>Автор</value>
+	</data>
+	<data name="avatars" xml:space="preserve">
+		<value>Аватари</value>
+	</data>
+	<data name="basic" xml:space="preserve">
+		<value>Основа</value>
+	</data>
+	<data name="beTheFirstToRate" xml:space="preserve">
+		<value>Бидете првиот што ќе го оцени овој пост</value>
+	</data>
+	<data name="blogMLDescription" xml:space="preserve">
+		<value>BlogEngine.NET користи BlogML како формат за експортирање. Импортирањето поддржува BlogML и RSS.</value>
+	</data>
+	<data name="blogroll" xml:space="preserve">
+		<value>Blogroll</value>
+	</data>
+	<data name="buttonText" xml:space="preserve">
+		<value>Копче текст</value>
+	</data>
+	<data name="categories" xml:space="preserve">
+		<value>Категории</value>
+	</data>
+	<data name="category" xml:space="preserve">
+		<value>Категорија</value>
+	</data>
+	<data name="closeCommetsAfter" xml:space="preserve">
+		<value>Затворете ги коментарите после</value>
+	</data>
+	<data name="combine" xml:space="preserve">
+		<value>Комбинација</value>
+	</data>
+	<data name="comment" xml:space="preserve">
+		<value>Коментар</value>
+	</data>
+	<data name="commentLabelText" xml:space="preserve">
+		<value>Коментар на текст на лабелата</value>
+	</data>
+	<data name="comments" xml:space="preserve">
+		<value>Коментари</value>
+	</data>
+	<data name="commentsAreClosed" xml:space="preserve">
+		<value>Коментарите се затворени</value>
+	</data>
+	<data name="commentWasSaved" xml:space="preserve">
+		<value>Коментарите се зачувани. Ви благодариме на вашиот внес.</value>
+	</data>
+	<data name="contact" xml:space="preserve">
+		<value>Контакт</value>
+	</data>
+	<data name="contactForm" xml:space="preserve">
+		<value>Контакт форма</value>
+	</data>
+	<data name="controls" xml:space="preserve">
+		<value>Контроли</value>
+	</data>
+	<data name="country" xml:space="preserve">
+		<value>Земја</value>
+	</data>
+	<data name="createNewUser" xml:space="preserve">
+		<value>Креирање на нов корисник</value>
+	</data>
+	<data name="currentlyRated" xml:space="preserve">
+		<value>Моментално оценето од {0} до {1} луѓе</value>
+	</data>
+	<data name="date" xml:space="preserve">
+		<value>Датум</value>
+	</data>
+	<data name="defaultFeedOutput" xml:space="preserve">
+		<value>Default feed output</value>
+	</data>
+	<data name="defaultTextShownInSearchField" xml:space="preserve">
+		<value>Default-ниот текст прикажан во делот за претражување</value>
+	</data>
+	<data name="delete" xml:space="preserve">
+		<value>Избриши</value>
+	</data>
+	<data name="description" xml:space="preserve">
+		<value>Опис</value>
+	</data>
+	<data name="displayCommentsOnRecentPosts" xml:space="preserve">
+		<value>Прикажи коментари</value>
+	</data>
+	<data name="displayRatingsOnRecentPosts" xml:space="preserve">
+		<value>Прикажи рејтинг</value>
+	</data>
+	<data name="edit" xml:space="preserve">
+		<value>Промени</value>
+	</data>
+	<data name="email" xml:space="preserve">
+		<value>E-mail</value>
+	</data>
+	<data name="emailAddress" xml:space="preserve">
+		<value>E-mail адреса</value>
+	</data>
+	<data name="enableAttachments" xml:space="preserve">
+		<value>Овозможи атачмент</value>
+	</data>
+	<data name="enableComments" xml:space="preserve">
+		<value>Овозможи коментари</value>
+	</data>
+	<data name="enableCommentsDescription" xml:space="preserve">
+		<value>Ако коментарите не се овозможени, не може да се запишуваат коментари за постовите</value>
+	</data>
+	<data name="enableCommentSearch" xml:space="preserve">
+		<value>Овозможи претражување на коментари</value>
+	</data>
+	<data name="enableCommentsModeration" xml:space="preserve">
+		<value>Модерирање на коментари</value>
+	</data>
+	<data name="enableGravatars" xml:space="preserve">
+		<value>Овозможи Gravatars</value>
+	</data>
+	<data name="enableHttpCompression" xml:space="preserve">
+		<value>Овозможи HTTP компресија</value>
+	</data>
+	<data name="enableHttpCompressionDescription" xml:space="preserve">
+		<value>Страницата побрзо се вчитува (препорачано).</value>
+	</data>
+	<data name="enableOpenSearch" xml:space="preserve">
+		<value>Овозможи OpenSearch</value>
+	</data>
+	<data name="enableOpenSearchDescription" xml:space="preserve">
+		<value>Додади го овој начин на претражување кон сите browser-и (препорачано).</value>
+	</data>
+	<data name="enableRating" xml:space="preserve">
+		<value>Овозможи рејтинг за постовите</value>
+	</data>
+	<data name="enableReferrerTracking" xml:space="preserve">
+		<value>Овозможи referrer tracking</value>
+	</data>
+	<data name="enableSearchHighlight" xml:space="preserve">
+		<value>Овозможи search highlight</value>
+	</data>
+	<data name="enableSearchHighlightDescription" xml:space="preserve">
+		<value>Ги обојува на страната зборовите кои се пребаруваат</value>
+	</data>
+	<data name="enableSsl" xml:space="preserve">
+		<value>Овозможи SSL</value>
+	</data>
+	<data name="endorsment" xml:space="preserve">
+		<value>Endorsement (bLink)</value>
+	</data>
+	<data name="enforce" xml:space="preserve">
+		<value>Enforce</value>
+	</data>
+	<data name="export" xml:space="preserve">
+		<value>Export</value>
+	</data>
+	<data name="formMessage" xml:space="preserve">
+		<value>Креирај порака</value>
+	</data>
+	<data name="goToFrontPage" xml:space="preserve">
+		<value>Оди на предната страна</value>
+	</data>
+	<data name="handleWwwSubdomain" xml:space="preserve">
+		<value>www subdomain policy</value>
+	</data>
+	<data name="home" xml:space="preserve">
+		<value>Дома</value>
+		<comment>As used for linking to the front-page</comment>
+	</data>
+	<data name="htmlHeadSection" xml:space="preserve">
+		<value>HTML head section</value>
+	</data>
+	<data name="ignore" xml:space="preserve">
+		<value>Игнорирај</value>
+	</data>
+	<data name="import" xml:space="preserve">
+		<value>Импортирај</value>
+	</data>
+	<data name="isFrontPage" xml:space="preserve">
+		<value>Е предна страна</value>
+	</data>
+	<data name="keywords" xml:space="preserve">
+		<value>Клучни зборови</value>
+	</data>
+	<data name="language" xml:space="preserve">
+		<value>Избери јазик</value>
+	</data>
+	<data name="languageCode" xml:space="preserve">
+		<value>Код на јазикот</value>
+	</data>
+	<data name="latitude" xml:space="preserve">
+		<value>Географска ширина</value>
+	</data>
+	<data name="livePreview" xml:space="preserve">
+		<value>Preview во живо</value>
+	</data>
+	<data name="longtitude" xml:space="preserve">
+		<value>Географска должина</value>
+	</data>
+	<data name="maxLengthOfItems" xml:space="preserve">
+		<value>Максимална должина на елементите</value>
+	</data>
+	<data name="message" xml:space="preserve">
+		<value>Порака</value>
+	</data>
+	<data name="monster" xml:space="preserve">
+		<value>Чудовиште</value>
+	</data>
+	<data name="more" xml:space="preserve">
+		<value>Повеќе</value>
+	</data>
+	<data name="name" xml:space="preserve">
+		<value>Име</value>
+	</data>
+	<data name="none" xml:space="preserve">
+		<value>Не прикажувак</value>
+	</data>
+	<data name="noParent" xml:space="preserve">
+		<value>Без татко</value>
+	</data>
+	<data name="notifyOnNewComments" xml:space="preserve">
+		<value>Извести ме при додавање на нови коментари</value>
+	</data>
+	<data name="notRatedYet" xml:space="preserve">
+		<value>Сеуште без рејтинг</value>
+	</data>
+	<data name="numberOfComments" xml:space="preserve">
+		<value>Број на коментари</value>
+	</data>
+	<data name="numberOfDisplayedItems" xml:space="preserve">
+		<value># на прикажани елементи</value>
+	</data>
+	<data name="numberOfPosts" xml:space="preserve">
+		<value>Број на постови</value>
+	</data>
+	<data name="page" xml:space="preserve">
+		<value>Страна</value>
+	</data>
+	<data name="pages" xml:space="preserve">
+		<value>Страни</value>
+	</data>
+	<data name="password" xml:space="preserve">
+		<value>Лозинка</value>
+	</data>
+	<data name="portNumber" xml:space="preserve">
+		<value>Број на porta-та</value>
+	</data>
+	<data name="portNumberDescription" xml:space="preserve">
+		<value>Стандард: port 25</value>
+	</data>
+	<data name="possibleSpam" xml:space="preserve">
+		<value>Можен спам</value>
+	</data>
+	<data name="post" xml:space="preserve">
+		<value>Пост</value>
+	</data>
+	<data name="postPerPage" xml:space="preserve">
+		<value>Постови по страна</value>
+	</data>
+	<data name="posts" xml:space="preserve">
+		<value>Постови</value>
+	</data>
+	<data name="postsPerFeed" xml:space="preserve">
+		<value>Прикажани елементи</value>
+	</data>
+	<data name="publish" xml:space="preserve">
+		<value>Publish</value>
+	</data>
+	<data name="raters" xml:space="preserve">
+		<value>Raters</value>
+	</data>
+	<data name="rating" xml:space="preserve">
+		<value>Рејтинг</value>
+	</data>
+	<data name="recentComments" xml:space="preserve">
+		<value>Скорашни коментари</value>
+	</data>
+	<data name="recentPosts" xml:space="preserve">
+		<value>Скорашни постови</value>
+	</data>
+	<data name="referrer" xml:space="preserve">
+		<value>Препорачател</value>
+	</data>
+	<data name="referrers" xml:space="preserve">
+		<value>Препорачатели</value>
+	</data>
+	<data name="relatedPosts" xml:space="preserve">
+		<value>Поврзани постови</value>
+	</data>
+	<data name="remove" xml:space="preserve">
+		<value>Извади</value>
+	</data>
+	<data name="save" xml:space="preserve">
+		<value>Зачувај</value>
+	</data>
+	<data name="saveComment" xml:space="preserve">
+		<value>Зачувај коментар</value>
+	</data>
+	<data name="savePage" xml:space="preserve">
+		<value>Зачувај страна</value>
+	</data>
+	<data name="savePost" xml:space="preserve">
+		<value>Зачувај пост</value>
+	</data>
+	<data name="saveSettings" xml:space="preserve">
+		<value>Зачувај поставки</value>
+	</data>
+	<data name="search" xml:space="preserve">
+		<value>Барај</value>
+	</data>
+	<data name="searchField" xml:space="preserve">
+		<value>Барај поле</value>
+	</data>
+	<data name="searchFieldText" xml:space="preserve">
+		<value>Барај текст во полето</value>
+	</data>
+	<data name="searchResultsFor" xml:space="preserve">
+		<value>Барај во резултатите</value>
+	</data>
+	<data name="selectDay" xml:space="preserve">
+		<value>Избери ден</value>
+	</data>
+	<data name="selectParent" xml:space="preserve">
+		<value>Избери татко</value>
+	</data>
+	<data name="sendCommentEmail" xml:space="preserve">
+		<value>Прати e-mail со коментар</value>
+	</data>
+	<data name="separateTagsWitComma" xml:space="preserve">
+		<value>Оддели го секој tag со запирка</value>
+	</data>
+	<data name="settings" xml:space="preserve">
+		<value>Поставки</value>
+	</data>
+	<data name="showCountryChooser" xml:space="preserve">
+		<value>Избери земја</value>
+	</data>
+	<data name="showCountryChooserDescription" xml:space="preserve">
+		<value>Ако не се избере земја, нема да се прикаже знаме на коментарите</value>
+	</data>
+  <data name="showEnableWebsiteInComments" xml:space="preserve">
+    <value>Need Translation:Enable Website in Comments</value>
+  </data>
+  <data name="showEnableWebsiteInCommentsDescription" xml:space="preserve">
+    <value>Need Translation:Choose whether to allow Website to be published in Comments</value>
+  </data>
+	<data name="showDescriptionInPostList" xml:space="preserve">
+		<value>Прикажи само опис на постовите</value>
+	</data>
+	<data name="showInList" xml:space="preserve">
+		<value>Прикажи во листа</value>
+	</data>
+	<data name="showLivePreview" xml:space="preserve">
+		<value>Прикажи live preview</value>
+	</data>
+	<data name="showRelatedPosts" xml:space="preserve">
+		<value>Прикажи поврзани постови</value>
+	</data>
+	<data name="subject" xml:space="preserve">
+		<value>Предмет</value>
+	</data>
+	<data name="subscribe" xml:space="preserve">
+		<value>Претплати се</value>
+	</data>
+	<data name="thankYouMessage" xml:space="preserve">
+		<value>Ви благодарам на пораката</value>
+	</data>
+	<data name="theComment" xml:space="preserve">
+		<value>Коментарот</value>
+	</data>
+	<data name="theme" xml:space="preserve">
+		<value>Тема</value>
+	</data>
+	<data name="thePost" xml:space="preserve">
+		<value>Постот</value>
+	</data>
+	<data name="thereAreXDrafts" xml:space="preserve">
+		<value>Има {0} необјавени постови</value>
+	</data>
+	<data name="timeStampPostLinks" xml:space="preserve">
+		<value>Додаде дада на линковите за пост</value>
+	</data>
+	<data name="timezone" xml:space="preserve">
+		<value>Timezone</value>
+	</data>
+	<data name="title" xml:space="preserve">
+		<value>Наслов</value>
+	</data>
+	<data name="trimStylesheet" xml:space="preserve">
+		<value>Trim stylesheets</value>
+	</data>
+	<data name="trimStylesheetDescription" xml:space="preserve">
+		<value>Makes all stylesheets of any theme smaller by removing all whitespace at runtime.</value>
+	</data>
+	<data name="unapprovedcomments" xml:space="preserve">
+		<value>Непотврден коментар</value>
+	</data>
+	<data name="updateFrequenzy" xml:space="preserve">
+		<value>Фреквенција на ажурирање</value>
+	</data>
+	<data name="uploadFile" xml:space="preserve">
+		<value>Закачи фајл</value>
+	</data>
+	<data name="uploadImage" xml:space="preserve">
+		<value>Закачи слика</value>
+	</data>
+	<data name="userName" xml:space="preserve">
+		<value>Корисничко име</value>
+	</data>
+	<data name="users" xml:space="preserve">
+		<value>Корисници </value>
+	</data>
+	<data name="website" xml:space="preserve">
+		<value>Веб сајт</value>
+	</data>
+	<data name="willShowGravatar" xml:space="preserve">
+		<value>Ќе се прикаже вашата {0} икона</value>
+	</data>
+	<data name="wrote" xml:space="preserve">
+		<value>Напишал</value>
+	</data>
+	<data name="youAlreadyRated" xml:space="preserve">
+		<value>Веќе ја оценивте пораката</value>
+	</data>
+</root>

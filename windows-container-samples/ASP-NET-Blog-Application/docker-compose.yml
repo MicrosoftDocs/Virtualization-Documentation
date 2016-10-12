@@ -1,0 +1,22 @@
+﻿version: '2'
+
+services:
+ web:
+  image: blogengine
+  ports:
+   - "80:80"
+  depends_on:
+   - db
+  tty:
+    true
+ db:
+  image: blogdb
+  expose:
+   - "1433"
+  tty:
+    true
+
+networks:
+ default:
+  external:
+   name: "nat"

@@ -1,0 +1,274 @@
+﻿.main-header {
+    margin: 0;
+    background: #fff;
+    border-bottom: 1px solid #e9e9e9;
+    @include box-shadow(0 1px 0 #f1f1f1);
+    height: 61px;
+    padding: 15px 30px;
+    position: relative;
+    //
+    .page-title {
+        font-size: 16px;
+        color: #666;
+        line-height: 30px;
+        height: 30px;
+        margin: 0 20px 0 0;
+        text-transform: uppercase;
+        font-weight: $font-weight-bold;
+    }
+    //
+    .btn {
+        @include border-radius(2px);
+    }
+
+    .btn.pull-left {
+        margin-right: 10px;
+    }
+
+    .btn.pull-right {
+        margin-left: 10px;
+    }
+
+    .dropdown {
+        margin-left: 10px;
+    }
+    //
+    .search {
+        border: 1px solid #ddd;
+        position: relative;
+        margin-left: 10px;
+        width: 30px;
+        height: 30px;
+        @include border-radius(3px);
+        @include transition(width ease 0.5s);
+
+        i {
+            cursor: pointer;
+            position: absolute;
+            color: #aaa;
+            z-index: 0;
+            left: 0;
+            top: 0;
+            width: 28px;
+            height: 28px;
+            line-height: 28px;
+            text-align: center;
+        }
+
+        input {
+            cursor: pointer;
+            font-size: 12px;
+            outline: none !important;
+            position: relative;
+            background: none;
+            left: 0;
+            top: 0;
+            padding-left: 30px;
+            z-index: 1;
+            width: 100%;
+            height: 100%;
+            border: none;
+            @include border-radius(3px);
+
+            &:focus {
+                cursor: text;
+            }
+        }
+
+        &.active {
+            width: 120px;
+
+            input {
+                cursor: text;
+            }
+
+            .tooltip {
+                display: none !important;
+            }
+        }
+    }
+    //
+    .icon-header-dashboard {
+        margin-left: 10px;
+        cursor: pointer;
+        width: 30px;
+        height: 30px;
+        display: block;
+        text-align: center;
+        position: relative;
+
+        i {
+            width: 100%;
+            height: 100%;
+            display: block;
+            line-height: 30px;
+            font-size: 23px;
+            color: #707f95;
+        }
+
+        &.icon-header-trash {
+            &:hover {
+                i {
+                    color: #ea5a5a;
+                }
+            }
+        }
+
+        &.page-header .icon-header-logs {
+            &:hover {
+                i {
+                    color: #f8ac0e;
+                }
+            }
+        }
+
+        span {
+            display: block;
+            position: absolute;
+            top: -1px;
+            right: -1px;
+            width: 16px;
+            height: 16px;
+            line-height: 16px;
+            background: #ea5a5a;
+            color: #fff;
+            font-size: 10px;
+            border-radius: 100%;
+        }
+    }
+    //
+    .right-side-toggle {
+        display: none;
+        height: $sidebar-global-height - 10px;
+        width: 30px;
+        text-align: left;
+        padding: 0 8px 0 0;
+        margin: 0;
+        cursor: pointer;
+        position: absolute;
+        right: 0;
+        top: 0;
+        background: none;
+        border: none;
+
+        span {
+            display: block;
+            margin: 0 auto;
+            height: 5px;
+            width: 5px;
+            margin-bottom: 4px;
+            background-color: #666;
+            @include border-radius(8px);
+
+            &:last-child {
+                margin-bottom: 0px;
+            }
+        }
+    }
+    // [RESPONSIVE]
+    @media screen and (max-width:1024px) {
+        padding-left: $sidebar-global-height;
+        padding-right: 15px;
+    }
+
+    @media screen and (max-width:640px) {
+        height: 51px;
+        padding: 10px 10px 10px 48px;
+
+        .page-title {
+            margin-right: 12px;
+        }
+
+        .btn-group {
+            .btn.btn-sm {
+                width: 35px;
+            }
+        }
+
+        .btn.pull-left {
+            margin-right: 5px;
+        }
+
+        .btn.pull-right {
+            margin-left: 5px;
+        }
+
+        .dropdown {
+            margin-left: 5px;
+        }
+    }
+
+    @media screen and (max-width:639px) {
+        .right-side-toggle {
+            display: block;
+        }
+
+        .right-side {
+            display: none;
+            background: #fff;
+            position: absolute;
+            right: 7px;
+            top: $sidebar-global-height - 1px;
+            border: 1px solid #ddd;
+            @include box-shadow(0 1px 3px rgba(0,0,0,0.1));
+            @include border-radius(3px);
+            padding: 10px;
+            width: 200px;
+            z-index: 2;
+
+            &:after {
+                content: "";
+                position: absolute;
+                top: -6px;
+                right: 5px;
+                @include triangle(up, 6px, #fff);
+            }
+
+            &:before {
+                content: "";
+                position: absolute;
+                top: -7px;
+                right: 4px;
+                @include triangle(up, 7px, #ccc);
+            }
+
+            .pull-right, .pull-left {
+                float: none !important;
+            }
+
+            .search {
+                margin: 0 0 10px;
+                width: 100%;
+            }
+
+            .dropdown {
+                margin: 0;
+                display: block;
+
+                .dropdown-toggle {
+                    width: 100%;
+                    text-align: left;
+                    position: relative;
+                    z-index: 2;
+                }
+
+                .dropdown-menu {
+                    position: relative;
+                    @include box-shadow(none);
+                    top: -3px;
+                    z-index: 1;
+
+                    li {
+                        a {
+                            padding: 7px 10px;
+                        }
+                    }
+                }
+            }
+            //
+            &.active {
+                display: block;
+            }
+        }
+    }
+}

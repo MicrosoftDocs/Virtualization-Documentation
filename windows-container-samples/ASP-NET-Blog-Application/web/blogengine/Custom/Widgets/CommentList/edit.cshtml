@@ -1,0 +1,44 @@
+﻿@using BlogEngine.NET.Custom.Widgets
+@{
+    var NumberOfComments = 10;
+    var widgetId = Request.QueryString["id"];
+    var settings = Common.GetSettings(widgetId);
+    Validation.Add("txtNumberOfComments",
+        Validator.Required("Field is required"),
+        Validator.Integer("Field is numeric")
+    );
+    if (IsPost)
+    {
+        if (Validation.IsValid() && settings["numberofcomments"] != Request.Form["txtNumberOfComments"])
+        {
+            settings["numberofcomments"] = Request.Form["txtNumberOfComments"];
+            Common.SaveSettings(settings, widgetId);
+            @:
+            <script type="text/javascript">window.parent.toastr.success("Completed");</script>
+        }
+    }
+    if (settings != null && settings.Count > 0)
+    {
+        NumberOfComments = int.Parse(settings["numberofcomments"]);
+    }
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="~/Content/bootstrap.min.css">
+    <link rel="stylesheet" href="~/Content/font-awesome.min.css">
+    <link rel="stylesheet" href="~/admin/themes/standard/css/styles.css">
+</head>
+<body class="widget-edit">
+    <div class="widget-edit-commentlist">
+        <form method="post">
+            <div class="form-group">
+                <label>@Resources.labels.numberOfComments</label>
+                <input type="text" class="form-control" id="txtNumberOfComments" name="txtNumberOfComments" value="@NumberOfComments" />
+                @Html.ValidationMessage("txtNumberOfComments")
+            </div>
+            <button type="submit" class="btn btn-success">@Resources.labels.save</button>
+        </form>
+    </div>
+</body>
+</html>

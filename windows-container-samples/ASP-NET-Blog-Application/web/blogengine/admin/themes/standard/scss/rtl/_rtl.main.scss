@@ -1,0 +1,15 @@
+﻿.main-wrapper {
+    padding-left: 0;
+    padding-right: 240px;
+}
+
+.main-sidebar {
+    left: auto;
+    right: 0;
+}
+
+@media screen and (max-width:1024px) {
+    .main-wrapper {
+        padding-right: 0;
+    }
+}

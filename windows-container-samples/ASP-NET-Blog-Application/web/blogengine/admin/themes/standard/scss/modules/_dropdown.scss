@@ -1,0 +1,75 @@
+﻿.dropdown {
+    display: inline-block;
+
+    .dropdown-toggle {
+        display: inline-block;
+        position: relative;
+        padding-right: $btn-size-default + ($btn-size-default / 2) - 2.5px;
+
+        &.btn-sm {
+            padding-right: $btn-size-sm + ($btn-size-sm / 2) - 2px;
+        }
+
+        &.btn-lg {
+            padding-right: $btn-size-lg + ($btn-size-lg / 2) - 4px;
+        }
+
+        i {
+            font-size: 14px;
+            border-left: 1px solid rgba(0, 0, 0, 0.10);
+            height: 100%;
+            margin: 0;
+            text-align: center;
+            position: absolute;
+            top: -1px;
+            right: -1px;
+            display: block;
+            vertical-align: middle;
+            width: $btn-size-default;
+            height: $btn-size-default;
+            line-height: $btn-size-default;
+        }
+
+        &.btn-sm {
+            i {
+                width: $btn-size-sm;
+                height: $btn-size-sm;
+                line-height: $btn-size-sm;
+            }
+        }
+
+        &.btn-lg {
+            i {
+                width: $btn-size-lg;
+                height: $btn-size-lg;
+                line-height: $btn-size-lg;
+            }
+        }
+    }
+
+    .dropdown-menu {
+        max-width: 100%;
+        min-width: 170px;
+        width: 100%;
+        font-size: 13px;
+        overflow: hidden;
+        padding: 0;
+        border-color: #ddd;
+        @include box-shadow(0 1px 3px rgba(0, 0, 0, 0.1));
+        @include border-radius(3px);
+
+        li {
+            border-bottom: 1px solid #eee;
+
+            &:last-child {
+                border: none;
+            }
+
+            a {
+                cursor: pointer;
+                padding: 10px 20px;
+                color: #888;
+            }
+        }
+    }
+}

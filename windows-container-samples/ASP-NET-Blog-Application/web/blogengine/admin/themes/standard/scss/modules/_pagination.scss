@@ -1,0 +1,32 @@
+﻿.pagination {
+    li {
+        @include user-select(none);
+
+        a {
+            color: #888;
+
+            i {
+                line-height: 20px;
+            }
+
+            cursor: pointer;
+        }
+    }
+
+    &.disabled {
+        a {
+            &:hover {
+                background-color: #fff !important;
+            }
+        }
+    }
+
+    .active {
+        a {
+            z-index: 4;
+            border-color: lighten($color-base, 25%) !important;
+            background-color: lighten($color-base, 25%) !important;
+            color: #fff !important;
+        }
+    }
+}

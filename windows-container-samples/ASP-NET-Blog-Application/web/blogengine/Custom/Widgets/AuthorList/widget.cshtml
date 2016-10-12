@@ -1,0 +1,35 @@
+﻿@using BlogEngine.Core
+@using BlogEngine.Core.Data.Services
+@{
+    var title = Model.Title;
+    var authorUrl = Utils.RelativeWebRoot + "author";
+    var authorRss = Utils.RelativeWebRoot + "syndication.axd";
+
+    IEnumerable<MembershipUser> users = Membership.GetAllUsers()
+        .Cast<MembershipUser>().ToList().OrderBy(a => a.UserName);
+}
+<div class="widget authorlist">
+    <h4 class="widget-header">
+        @title
+    </h4>
+    <div class="widget-content">
+        <ul id="authorlist" class="authorlist">
+            @foreach (var user in users)
+            {
+                var postCount = Post.GetPostsByAuthor(user.UserName).Count;
+                if (postCount == 0)
+                {
+                    continue;
+                }
+            <li>
+                <a rel="nofollow" href="@authorRss?author=@user.UserName">
+                    <img width="32" height="32" class="author-avatar" alt="author avatar" src="@Avatar.GetSrc(user.Email)">
+                </a>
+                <a class="authorlink" title="Author: @user.UserName" href="@authorUrl/@user.UserName">
+                    @user.UserName (@postCount)
+                </a>
+            </li>
+            }
+        </ul>
+    </div>
+</div>

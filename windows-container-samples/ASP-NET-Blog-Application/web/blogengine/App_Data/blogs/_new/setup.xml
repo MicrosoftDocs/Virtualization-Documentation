@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<NewBlog>
+  <Settings>
+    <Description>Short description of the blog</Description>
+  </Settings>
+  <Posts>
+    <FileName>c3b491e5-59ac-4f6a-81e5-27e971b903ed.xml</FileName>
+    <Title>Welcome to {0}'s blog</Title>
+    <Post>Dear {0}, welcome to you new blog! &amp;lt;br/&amp;gt;&amp;lt;br/&amp;gt;Log in &amp;lt;a href="{1}"&amp;gt;here&amp;lt;/a&amp;gt; to start using it. &amp;lt;br/&amp;gt;&amp;lt;br/&amp;gt;Happy blogging!</Post>
+  </Posts>
+</NewBlog>

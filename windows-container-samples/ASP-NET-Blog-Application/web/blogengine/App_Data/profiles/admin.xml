@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<profileData>
+  <DisplayName>Administrator</DisplayName>
+  <FirstName>Admin</FirstName>
+  <MiddleName />
+  <LastName />
+  <CityTown />
+  <RegionState />
+  <Country>dk</Country>
+  <Birthday>1900-01-01</Birthday>
+  <AboutMe>I love BlogEngine.NET
+</AboutMe>
+  <PhotoURL />
+  <Company />
+  <EmailAddress>post@example.com</EmailAddress>
+  <PhoneMain />
+  <PhoneMobile />
+  <PhoneFax />
+  <IsPrivate>False</IsPrivate>
+</profileData>

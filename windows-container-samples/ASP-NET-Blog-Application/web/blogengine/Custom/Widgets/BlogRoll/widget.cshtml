@@ -1,0 +1,43 @@
+﻿@using BlogEngine.Core
+@{
+    var title = Model.Title;
+    var vm = new BlogEngine.Core.Data.ViewModels.BlogRollVM();
+
+    var rolls = vm.BlogRolls;
+    var imgPath = Utils.ApplicationRelativeWebRoot + "Content/images/blog";
+    var opmlPath = Utils.ApplicationRelativeWebRoot + "opml.axd";
+}
+<div class="widget blogroll">
+    <h4 class="widget-header">@title</h4>
+    <div class="widget-content">
+        @if (rolls != null)
+        {
+        <ul class="xoxo">
+            @foreach (var roll in rolls)
+            {
+            <li>
+                <a href="@roll.FeedUrl">
+                    <img width="12" height="12" alt="@roll.Description" src="@imgPath/rssButton.png">
+                </a>
+                <a rel="contact" href="@roll.BlogUrl">@roll.Title</a>
+                @if (vm.GetFeeds(roll.FeedUrl.ToString()).Count > 0)
+                {
+                <ul>
+                    @foreach (var feed in vm.GetFeeds(roll.FeedUrl.ToString()))
+                    {
+                    <li>
+                        <a title="@feed.Title.Text" href="@feed.Links[0].Uri">@vm.Shorten(feed.Title.Text)</a>
+                    </li>
+                    }
+                </ul>
+                }
+            </li>
+            }
+        </ul>
+        }
+        <a href="@opmlPath" style="display: block; text-align: right" title="@Resources.labels.downloadOPML">
+            @Resources.labels.downloadOPML
+            <img src="@imgPath/opml.png" width="12" height="12" alt="OPML" />
+        </a>
+    </div>
+</div>

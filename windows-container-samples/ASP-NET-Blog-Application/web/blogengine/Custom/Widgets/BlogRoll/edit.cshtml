@@ -1,0 +1,199 @@
+﻿@using BlogEngine.Core
+@{
+    // check if edit exists, no need to process
+    if (Request.HttpMethod == "HEAD") { return; }
+    var vm = new BlogEngine.Core.Data.ViewModels.BlogRollVM();
+
+    var id = Request.Form["hdnId"];
+    var action = Request.Form["hdnAction"];
+    var br = new BlogRollItem();
+
+    if (IsPost)
+    {
+        if (action == "add")
+        {
+            vm.Add(Request.Form);
+            @:<script type="text/javascript">window.parent.toastr.success("Completed");</script>
+        }
+        else if (action == "update")
+        {
+            vm.Update(Request.Form, id);
+            @:<script type="text/javascript">window.parent.toastr.success("Completed");</script>
+        }
+        else if (action == "delete")
+        {
+            vm.Delete(id);
+            @:<script type="text/javascript">window.parent.toastr.success("Completed");</script>
+        }
+        else
+        {
+            // load form for update
+            if (!string.IsNullOrEmpty(id))
+            {
+                br = vm.BlogRolls.Find(r => r.Id == Guid.Parse(id));
+            }
+        }
+    }
+    var rolls = vm.BlogRolls;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="~/Content/bootstrap.min.css">
+    <link rel="stylesheet" href="~/Content/font-awesome.min.css">
+    <link rel="stylesheet" href="~/admin/themes/standard/css/styles.css">
+</head>
+<body class="widget-edit">
+    <script src="~/Scripts/jquery-2.1.4.min.js"></script>
+    <div class="widget-edit-blogroll">
+        <form method="post" id="frm" name="frm">
+            <div class="form-group">
+                <label>@Resources.labels.title</label>
+                <input type="text" class="form-control" id="txtTitle" name="txtTitle" value="@br.Title" />
+                <span id="lblTitle" name="lblTitle" class="field-validation-error">Field is required</span>
+            </div>
+            <div class="form-group">
+                <label>@Resources.labels.website</label>
+                <input type="text" class="form-control" id="txtWebsite" name="txtWebsite" value="@br.BlogUrl" />
+                <span id="lblWebsite" name="lblWebsite" class="field-validation-error">Field is required and must be URL</span>
+            </div>
+            <div class="form-group">
+                <label>@Resources.labels.description</label>
+                <input type="text" class="form-control" id="txtDesc" name="txtDesc" value="@br.Description" />
+                <span id="lblDesc" name="lblDesc" class="field-validation-error">Field is required</span>
+            </div>
+            <div class="form-group">
+                <label>@Resources.labels.url</label>
+                <input type="text" class="form-control" id="txtUrl" name="txtUrl" value="@br.FeedUrl" />
+                <span id="lblUrl" name="lblUrl" class="field-validation-error">Field is required and must be URL</span>
+            </div>
+            <label class="control-label">XFN tag</label>
+            <table id="cblXfn" cellspacing="0" cellpadding="0" border="0">
+                <tbody>
+                    <tr>
+                        <td>@Html.CheckBox("cblXfn_0", br.Xfn.Contains("contact"))<label for="cblXfn_0">contact</label></td>
+                        <td>@Html.CheckBox("cblXfn_1", br.Xfn.Contains("acquaintance"))<label for="cblXfn_1">acquaintance </label></td>
+                        <td>@Html.CheckBox("cblXfn_2", br.Xfn.Contains("friend"))<label for="cblXfn_2">friend </label></td>
+                        <td>@Html.CheckBox("cblXfn_3", br.Xfn.Contains("met"))<label for="cblXfn_3">met</label></td>
+                        <td>@Html.CheckBox("cblXfn_4", br.Xfn.Contains("coworker"))<label for="cblXfn_4">co-worker</label></td>
+                    </tr>
+                    <tr>
+                        <td>@Html.CheckBox("cblXfn_5", br.Xfn.Contains("colleague"))<label for="cblXfn_5">colleague </label></td>
+                        <td>@Html.CheckBox("cblXfn_6", br.Xfn.Contains("coresident"))<label for="cblXfn_6">co-resident</label></td>
+                        <td>@Html.CheckBox("cblXfn_7", br.Xfn.Contains("neighbor"))<label for="cblXfn_7">neighbor </label></td>
+                        <td>@Html.CheckBox("cblXfn_8", br.Xfn.Contains("child"))<label for="cblXfn_8">child</label></td>
+                        <td>@Html.CheckBox("cblXfn_9", br.Xfn.Contains("parent"))<label for="cblXfn_9">parent</label></td>
+                    </tr>
+                    <tr>
+                        <td>@Html.CheckBox("cblXfn_10", br.Xfn.Contains("sibling"))<label for="cblXfn_10">sibling</label></td>
+                        <td>@Html.CheckBox("cblXfn_11", br.Xfn.Contains("spouse"))<label for="cblXfn_11">spouse</label></td>
+                        <td>@Html.CheckBox("cblXfn_12", br.Xfn.Contains("kin"))<label for="cblXfn_12">kin</label></td>
+                        <td>@Html.CheckBox("cblXfn_13", br.Xfn.Contains("muse"))<label for="cblXfn_13">muse</label></td>
+                        <td>@Html.CheckBox("cblXfn_14", br.Xfn.Contains("crush"))<label for="cblXfn_14">crush</label></td>
+                    </tr>
+                    <tr>
+                        <td>@Html.CheckBox("cblXfn_15", br.Xfn.Contains("date"))<label for="cblXfn_15">date</label></td>
+                        <td>@Html.CheckBox("cblXfn_16", br.Xfn.Contains("sweetheart"))<label for="cblXfn_16">sweetheart</label></td>
+                        <td colspan="3">@Html.CheckBox("cblXfn_17", br.Xfn.Contains("me"))<label for="cblXfn_17">me</label></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="form-group">
+                @if (!string.IsNullOrEmpty(Request.Form["hdnId"]))
+                {
+                    <button type="button" id="btnUpdate" onclick="submitForm('@id', 'update')" name="btnUpdate" class="btn btn-success">
+                        <i class="fa fa-check"></i>
+                    </button>
+                    <button type="submit" id="btnDelete" onclick="submitForm('@id', 'delete')" name="btnDelete" class="btn btn-danger">
+                        <i class="fa fa-trash"></i>
+                    </button>
+                    <button type="submit" id="btnCancel" name="btnCancel" class="btn btn-default">
+                        <i class="fa fa-close"></i>
+                    </button>
+                }
+                else
+                {
+                    <button type="button" id="btnAdd" onclick="submitForm('','add')" name="btnAdd" class="btn btn-success">
+                        @Resources.labels.add
+                    </button>
+                }
+            </div>
+            <hr />
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th width="30%">@Resources.labels.title</th>
+                        <th width="50%">@Resources.labels.description</th>
+                        <th width="20%">XFN <a href="http://gmpg.org/xfn/intro" title="XFN" target="_blank"><i class="fa fa-info-circle"></i></a></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (rolls == null || rolls.Count == 0)
+                    {
+                        <tr><td colspan="3">@Resources.labels.empty</td></tr>
+                    }
+                    else
+                    {
+                        foreach (var roll in rolls)
+                        {
+                            <tr>
+                                <td class="item-title">
+                                    <a title="@roll.Title" href="#" onclick="submitForm('@roll.Id', 'load')" class="text-ellipsis pull-left">@roll.Title</a>
+                                    <a title="@roll.FeedUrl" class="external-link pull-right" target="_blank" href="@roll.FeedUrl"><i class="fa fa-external-link"></i></a>
+                                </td>
+                                <td>@roll.Description</td>
+                                <td>@roll.Xfn</td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+            <input type="hidden" id="hdnId" name="hdnId" value="" />
+            <input type="hidden" id="hdnAction" name="hdnAction" value="" />
+        </form>
+    </div>
+    <script>
+        var submitForm = function (id, action) {
+            $("#hdnId").val(id);
+            $("#hdnAction").val(action);
+
+            if (action == 'add' || action == 'update') {
+                clearValidation();
+                if (checkValidation() == true) {
+                    $("#frm").submit();
+                }
+            }
+            else {
+                $("#frm").submit();
+            }
+        }
+        var checkValidation = function () {
+            if ($("#txtTitle").val().length < 1) {
+                $("#lblTitle").show();
+                return false;
+            }
+            if ($("#txtWebsite").val().length < 1 || validateURL($("#txtWebsite").val()) == false) {
+                $("#lblWebsite").show();
+                return false;
+            }
+            if ($("#txtDesc").val().length < 1) {
+                $("#lblDesc").show();
+                return false;
+            }
+            if ($("#txtUrl").val().length < 1 || validateURL($("#txtUrl").val()) == false) {
+                $("#lblUrl").show();
+                return false;
+            }
+            return true;
+        }
+        var clearValidation = function () {
+            $('.field-validation-error').hide();
+        }
+        function validateURL(value) {
+            return /^(https?|ftp):\/\/(((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:)*@@)?(((\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5]))|((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.?)(:\d*)?)(\/((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@@)+(\/(([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@@)*)*)?)?(\?((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@@)|[\uE000-\uF8FF]|\/|\?)*)?(\#((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@@)|\/|\?)*)?$/i.test(value);
+        }
+        clearValidation();
+    </script>
+</body>
+</html>

@@ -1,0 +1,577 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="add" xml:space="preserve">
+    <value>Bæta við</value>
+  </data>
+  <data name="add_Entry" xml:space="preserve">
+    <value>Bæta við færslu</value>
+  </data>
+  <data name="addComment" xml:space="preserve">
+    <value>Bæta við athugasemd</value>
+  </data>
+  <data name="addCustomCodeToHeader" xml:space="preserve">
+    <value>Bæta sérsniðnum kóða í "head" hlutan í HTML-i</value>
+  </data>
+  <data name="administrationPanel" xml:space="preserve">
+    <value>Stjórnborð</value>
+  </data>
+  <data name="advanced" xml:space="preserve">
+    <value>Aukin hamur</value>
+  </data>
+  <data name="advancedSettings" xml:space="preserve">
+    <value>Fínstillingar</value>
+  </data>
+  <data name="alternateFeedUrl" xml:space="preserve">
+    <value>Víxla vefsíðuslóð gagnaveitu straums</value>
+  </data>
+  <data name="approve" xml:space="preserve">
+    <value>Samþykkja</value>
+  </data>
+  <data name="approveallcomments" xml:space="preserve">
+    <value>Samþykkja allar athugasemdir við færslu</value>
+  </data>
+  <data name="archive" xml:space="preserve">
+    <value>Skjala safn</value>
+  </data>
+  <data name="areYouSure" xml:space="preserve">
+    <value>Ertu viss um að þú viljir {0} {1}?</value>
+  </data>
+  <data name="attachFile" xml:space="preserve">
+    <value>Hengja skrá</value>
+  </data>
+  <data name="author" xml:space="preserve">
+    <value>Höfundur</value>
+  </data>
+  <data name="avatars" xml:space="preserve">
+    <value>Avatars</value>
+  </data>
+  <data name="basic" xml:space="preserve">
+    <value>Grunnstilling</value>
+  </data>
+  <data name="beTheFirstToRate" xml:space="preserve">
+    <value>Vertu fyrst/ur til að gefa þessari færslu stjörnu</value>
+  </data>
+  <data name="blogMLDescription" xml:space="preserve">
+    <value>BlogEngine.NET notar BlogML sem snið fyrir útflutning. Innflutningur  styður bæði BlogML og RSS.</value>
+  </data>
+  <data name="blogroll" xml:space="preserve">
+    <value>Blogroll</value>
+  </data>
+  <data name="buttonText" xml:space="preserve">
+    <value>Texti á hnapp</value>
+  </data>
+  <data name="categories" xml:space="preserve">
+    <value>Flokkar</value>
+  </data>
+  <data name="category" xml:space="preserve">
+    <value>Flokkur</value>
+  </data>
+  <data name="closeCommetsAfter" xml:space="preserve">
+    <value>Loka athugasemdum á eftir</value>
+  </data>
+  <data name="combine" xml:space="preserve">
+    <value>sameina</value>
+  </data>
+  <data name="comment" xml:space="preserve">
+    <value>Athugasemd</value>
+  </data>
+  <data name="commentLabelText" xml:space="preserve">
+    <value>Texti á athugasemdar label</value>
+  </data>
+  <data name="comments" xml:space="preserve">
+    <value>Athugasemdir</value>
+  </data>
+  <data name="commentsAreClosed" xml:space="preserve">
+    <value>Lokað er fyrir athugasemdir</value>
+  </data>
+  <data name="commentWasSaved" xml:space="preserve">
+    <value>Athugasemdin var vistuð. Þakka þér fyrir endurgjöfina</value>
+  </data>
+  <data name="contact" xml:space="preserve">
+    <value>Tengiliður</value>
+  </data>
+  <data name="contactForm" xml:space="preserve">
+    <value>Frá tengilið</value>
+  </data>
+  <data name="controls" xml:space="preserve">
+    <value>Stýringar</value>
+  </data>
+  <data name="country" xml:space="preserve">
+    <value>Land</value>
+  </data>
+  <data name="createNewUser" xml:space="preserve">
+    <value>Búa til nýjan notanda</value>
+  </data>
+  <data name="currentlyRated" xml:space="preserve">
+    <value>Eins og sakir standa metið {0} af {1} aðilum</value>
+  </data>
+  <data name="date" xml:space="preserve">
+    <value>Dagsetning</value>
+  </data>
+  <data name="defaultFeedOutput" xml:space="preserve">
+    <value>Sjálfkrafa útsetning gagnaveitu straums</value>
+  </data>
+  <data name="defaultTextShownInSearchField" xml:space="preserve">
+    <value>Sjálfgefni textinn sýndur í leitartextaboxi</value>
+  </data>
+  <data name="delete" xml:space="preserve">
+    <value>Eyða</value>
+  </data>
+  <data name="description" xml:space="preserve">
+    <value>Lýsing</value>
+  </data>
+  <data name="displayCommentsOnRecentPosts" xml:space="preserve">
+    <value>Sýna athugasemdir á nýlegum pósti</value>
+  </data>
+  <data name="displayRatingsOnRecentPosts" xml:space="preserve">
+    <value>Sýna mat á nýlegum pósti</value>
+  </data>
+  <data name="edit" xml:space="preserve">
+    <value>Ritstýra</value>
+  </data>
+  <data name="email" xml:space="preserve">
+    <value>E-mail</value>
+  </data>
+  <data name="emailAddress" xml:space="preserve">
+    <value>E-mail heimilisfang</value>
+  </data>
+  <data name="enableAttachments" xml:space="preserve">
+    <value>Virkja viðhengi</value>
+  </data>
+  <data name="enableComments" xml:space="preserve">
+    <value>Virkja athugasemdir</value>
+  </data>
+  <data name="enableCommentsDescription" xml:space="preserve">
+    <value>Ef athugasemdir eru ekki virkar, er ekki hægt að skrifa athugasemd við neina færslu.</value>
+  </data>
+  <data name="enableCommentSearch" xml:space="preserve">
+    <value>Virkja leit í athugasemdum</value>
+  </data>
+  <data name="enableCommentsModeration" xml:space="preserve">
+    <value>Ritstýra athugasemdum</value>
+  </data>
+  <data name="enableGravatars" xml:space="preserve">
+    <value>Virkja Gravatars</value>
+  </data>
+  <data name="enableHttpCompression" xml:space="preserve">
+    <value>Virkja HTTP þjöppun</value>
+  </data>
+  <data name="enableHttpCompressionDescription" xml:space="preserve">
+    <value>Láta síður hlaðast hraðar (ráðlagt)</value>
+  </data>
+  <data name="enableOpenSearch" xml:space="preserve">
+    <value>Virkja OpenSearch</value>
+  </data>
+  <data name="enableOpenSearchDescription" xml:space="preserve">
+    <value>Bæta við leitarmöguleika við alla nýja vafra (ráðlagt).</value>
+  </data>
+  <data name="enableRating" xml:space="preserve">
+    <value>Virkja mat á færslu</value>
+  </data>
+  <data name="enableReferrerTracking" xml:space="preserve">
+    <value>Virkja eftirlit á tilvísunum í færslu</value>
+  </data>
+  <data name="enableSearchHighlight" xml:space="preserve">
+    <value>Virkja leit á auðkennum</value>
+  </data>
+  <data name="enableSearchHighlightDescription" xml:space="preserve">
+    <value>Virkja það að upplýsa leitarorð</value>
+  </data>
+  <data name="enableSsl" xml:space="preserve">
+    <value>Virkja SSL</value>
+  </data>
+  <data name="endorsment" xml:space="preserve">
+    <value>Stuðningur (bLink)</value>
+  </data>
+  <data name="enforce" xml:space="preserve">
+    <value>Framfylgja</value>
+  </data>
+  <data name="export" xml:space="preserve">
+    <value>Flytja út</value>
+  </data>
+  <data name="formMessage" xml:space="preserve">
+    <value>Móta skilaboð</value>
+  </data>
+  <data name="goToFrontPage" xml:space="preserve">
+    <value>Fara á forsíðu</value>
+  </data>
+  <data name="handleWwwSubdomain" xml:space="preserve">
+    <value>www subdomain policy</value>
+  </data>
+  <data name="home" xml:space="preserve">
+    <value>Forsíða</value>
+    <comment>Þegar hlekkur er settur í forsíðuna þá er það þessi síða.</comment>
+  </data>
+  <data name="htmlHeadSection" xml:space="preserve">
+    <value>HTML haus</value>
+  </data>
+  <data name="ignore" xml:space="preserve">
+    <value>Hunsa</value>
+  </data>
+  <data name="import" xml:space="preserve">
+    <value>Flytja inn</value>
+  </data>
+  <data name="isFrontPage" xml:space="preserve">
+    <value>Er forsíða</value>
+  </data>
+  <data name="keywords" xml:space="preserve">
+    <value>Lykilorð</value>
+  </data>
+  <data name="language" xml:space="preserve">
+    <value>tungumál</value>
+  </data>
+  <data name="languageCode" xml:space="preserve">
+    <value>Kóði tungumáls</value>
+  </data>
+  <data name="latitude" xml:space="preserve">
+    <value>Breiddargráða</value>
+  </data>
+  <data name="livePreview" xml:space="preserve">
+    <value>Lifandi sýnishorn</value>
+  </data>
+  <data name="longtitude" xml:space="preserve">
+    <value>Lengdargráða</value>
+  </data>
+  <data name="maxLengthOfItems" xml:space="preserve">
+    <value>Hámarkslend af hlutum</value>
+  </data>
+  <data name="message" xml:space="preserve">
+    <value>Skilaboð</value>
+  </data>
+  <data name="monster" xml:space="preserve">
+    <value>Skrímsli</value>
+  </data>
+  <data name="more" xml:space="preserve">
+    <value>Meira</value>
+  </data>
+  <data name="name" xml:space="preserve">
+    <value>Nafn</value>
+  </data>
+  <data name="none" xml:space="preserve">
+    <value>ekkert</value>
+  </data>
+  <data name="noParent" xml:space="preserve">
+    <value>Engin yfir færsla</value>
+  </data>
+  <data name="notifyOnNewComments" xml:space="preserve">
+    <value>Látið mig vita þegar nýjum athugasemdum er bætt við</value>
+  </data>
+  <data name="notRatedYet" xml:space="preserve">
+    <value>Ekki metið ennþá</value>
+  </data>
+  <data name="numberOfComments" xml:space="preserve">
+    <value>Fjöldi athugasemda</value>
+  </data>
+  <data name="numberOfDisplayedItems" xml:space="preserve">
+    <value># sýndum hlutum</value>
+  </data>
+  <data name="numberOfPosts" xml:space="preserve">
+    <value>Fjöldi færsla</value>
+  </data>
+  <data name="page" xml:space="preserve">
+    <value>Síða</value>
+  </data>
+  <data name="pages" xml:space="preserve">
+    <value>Síður</value>
+  </data>
+  <data name="password" xml:space="preserve">
+    <value>Lykilorð</value>
+  </data>
+  <data name="portNumber" xml:space="preserve">
+    <value>Port númer</value>
+  </data>
+  <data name="portNumberDescription" xml:space="preserve">
+    <value>Port 25 er venjulega notað</value>
+  </data>
+  <data name="possibleSpam" xml:space="preserve">
+    <value>Mögulegur ruslpóstur</value>
+  </data>
+  <data name="post" xml:space="preserve">
+    <value>Færsla</value>
+  </data>
+  <data name="postPerPage" xml:space="preserve">
+    <value>Færsla á hverri síðu</value>
+  </data>
+  <data name="posts" xml:space="preserve">
+    <value>Færslur</value>
+  </data>
+  <data name="postsPerFeed" xml:space="preserve">
+    <value>Fjöldi færsla sýndar í efnisveitu</value>
+  </data>
+  <data name="publish" xml:space="preserve">
+    <value>Birta</value>
+  </data>
+  <data name="raters" xml:space="preserve">
+    <value>Matsaðilar</value>
+  </data>
+  <data name="rating" xml:space="preserve">
+    <value>Mat</value>
+  </data>
+  <data name="recentComments" xml:space="preserve">
+    <value>Nýlegar athugasemdir</value>
+  </data>
+  <data name="recentPosts" xml:space="preserve">
+    <value>Nýjar færslur</value>
+  </data>
+  <data name="referrer" xml:space="preserve">
+    <value>Referrer</value>
+  </data>
+  <data name="referrers" xml:space="preserve">
+    <value>Referrers</value>
+  </data>
+  <data name="relatedPosts" xml:space="preserve">
+    <value>Tengdar færslur</value>
+  </data>
+  <data name="remove" xml:space="preserve">
+    <value>Fjarlægja</value>
+  </data>
+  <data name="save" xml:space="preserve">
+    <value>Vista</value>
+  </data>
+  <data name="saveComment" xml:space="preserve">
+    <value>Vista athugasemd</value>
+  </data>
+  <data name="savePage" xml:space="preserve">
+    <value>Vista síðu</value>
+  </data>
+  <data name="savePost" xml:space="preserve">
+    <value>Vista færslu</value>
+  </data>
+  <data name="saveSettings" xml:space="preserve">
+    <value>Vista stillingar</value>
+  </data>
+  <data name="search" xml:space="preserve">
+    <value>Leita</value>
+  </data>
+  <data name="searchField" xml:space="preserve">
+    <value>Leitarsvæði</value>
+  </data>
+  <data name="searchFieldText" xml:space="preserve">
+    <value>Leitarsvæði texta</value>
+  </data>
+  <data name="searchResultsFor" xml:space="preserve">
+    <value>Leitarniðurstöður fyrir</value>
+  </data>
+  <data name="selectDay" xml:space="preserve">
+    <value>Veldu dagsetningu</value>
+  </data>
+  <data name="selectParent" xml:space="preserve">
+    <value>Veldu foreldri</value>
+  </data>
+  <data name="sendCommentEmail" xml:space="preserve">
+    <value>Senda athugasemda póst</value>
+  </data>
+  <data name="separateTagsWitComma" xml:space="preserve">
+    <value>Aðskilja hvert "tag" með kommu</value>
+  </data>
+  <data name="settings" xml:space="preserve">
+    <value>Stillingar</value>
+  </data>
+  <data name="showCountryChooser" xml:space="preserve">
+    <value>Sýna valmynd yfir lönd</value>
+  </data>
+  <data name="showCountryChooserDescription" xml:space="preserve">
+    <value>Ef valmynd yfir lönd er ekki sýndur er ekki hægt að sýna fána lands við athugasemdir</value>
+  </data>
+  <data name="showEnableWebsiteInComments" xml:space="preserve">
+    <value>Need Translation:Enable Website in Comments</value>
+  </data>
+  <data name="showEnableWebsiteInCommentsDescription" xml:space="preserve">
+    <value>Need Translation:Choose whether to allow Website to be published in Comments</value>
+  </data>
+  <data name="showDescriptionInPostList" xml:space="preserve">
+    <value>Aðeins sýna lýsingu á færslu</value>
+  </data>
+  <data name="showInList" xml:space="preserve">
+    <value>Birta í lista</value>
+  </data>
+  <data name="showLivePreview" xml:space="preserve">
+    <value>Birta lifandi sýnishorn</value>
+  </data>
+  <data name="showRelatedPosts" xml:space="preserve">
+    <value>Sýna tengdar færslur</value>
+  </data>
+  <data name="subject" xml:space="preserve">
+    <value>Viðfangsefni</value>
+  </data>
+  <data name="subscribe" xml:space="preserve">
+    <value>Gerast áskrifandi</value>
+  </data>
+  <data name="thankYouMessage" xml:space="preserve">
+    <value>Þakkar skilaboð</value>
+  </data>
+  <data name="theComment" xml:space="preserve">
+    <value>Athugasemdin</value>
+  </data>
+  <data name="theme" xml:space="preserve">
+    <value>Þema</value>
+  </data>
+  <data name="thePost" xml:space="preserve">
+    <value>Færslan</value>
+  </data>
+  <data name="thereAreXDrafts" xml:space="preserve">
+    <value>Það eru {0} óbirtar færslur.</value>
+  </data>
+  <data name="timeStampPostLinks" xml:space="preserve">
+    <value>Bæta dagsetningu við færslur</value>
+  </data>
+  <data name="timezone" xml:space="preserve">
+    <value>Tilfærsla tímasetningar á vefþjóni</value>
+  </data>
+  <data name="title" xml:space="preserve">
+    <value>Fyrirsögn</value>
+  </data>
+  <data name="trimStylesheet" xml:space="preserve">
+    <value>Snyrta stílsíður</value>
+  </data>
+  <data name="trimStylesheetDescription" xml:space="preserve">
+    <value>Minka allar stílsíðu þemur með því að fjarlægja öll bil á keyrslutíma</value>
+  </data>
+  <data name="unapprovedcomments" xml:space="preserve">
+    <value>Ósamþykktar athugasemdir</value>
+  </data>
+  <data name="updateFrequenzy" xml:space="preserve">
+    <value>Uppfærsluhraði (mínútur)</value>
+  </data>
+  <data name="uploadFile" xml:space="preserve">
+    <value>Hlaða upp skrá</value>
+  </data>
+  <data name="uploadImage" xml:space="preserve">
+    <value>Hlaða upp mynd</value>
+  </data>
+  <data name="userName" xml:space="preserve">
+    <value>Notandanafn</value>
+  </data>
+  <data name="users" xml:space="preserve">
+    <value>Notendur</value>
+  </data>
+  <data name="website" xml:space="preserve">
+    <value>Vefsíða</value>
+  </data>
+  <data name="willShowGravatar" xml:space="preserve">
+    <value>Mun sýna mynd af {0} </value>
+  </data>
+  <data name="wrote" xml:space="preserve">
+    <value>skrifaði</value>
+  </data>
+  <data name="youAlreadyRated" xml:space="preserve">
+    <value>Þú hefur áður metið þessa færslu</value>
+  </data>
+</root>

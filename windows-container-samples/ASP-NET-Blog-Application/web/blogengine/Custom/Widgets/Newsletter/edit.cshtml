@@ -1,0 +1,44 @@
+﻿@using BlogEngine.NET.Custom.Widgets
+@{
+    if (IsPost)
+    {
+        var emailToDelete = Request.Form["hdnEmail"].Trim();
+        if (emailToDelete.Length > 0)
+        {
+            Newsletter.RemoveEmail(emailToDelete);
+        }
+    }
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="~/Content/bootstrap.min.css">
+    <link rel="stylesheet" href="~/admin/themes/standard/css/styles.css">
+
+    <script>
+        var deleteEmail = function (email) {
+            document.getElementById("hdnEmail").value = email;
+            document.getElementById("frmNewsletter").submit();
+        }
+    </script>
+</head>
+<body class="widget-edit">
+    <div class="widget-edit-newsletter">
+        <form id="frmNewsletter" name="frmNewsletter" method="post">
+            <div class="form-group">
+                <h4>Subscriptions</h4>
+                <ul class="list-group">
+                    @foreach (var email in Newsletter.LoadEmails())
+                    {
+                        <li class="list-group-item"><span>@email</span> <button onclick="deleteEmail('@email')" class=" btn btn-danger btn-sm pull-right email-delete">@Resources.labels.delete</button></li>
+                    }
+                </ul>
+            </div>
+            <button type="submit" class="btn btn-success">
+                @Resources.labels.save
+            </button>
+            <input type="hidden" id="hdnEmail" name="hdnEmail" />
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<post>
+  <author>Admin</author>
+  <title>Welcome to BlogEngine.NET</title>
+  <description>If you see this post it means that BlogEngine.NET is running and the hard part of creating your own </description>
+  <content>&lt;p&gt;If you see this post it means that BlogEngine.NET is running and the hard part of creating your own blog is done. There is only a few things left to do.&lt;/p&gt;
+&lt;h2&gt;Write Permissions&lt;/h2&gt;
+&lt;p&gt;To be able to log in, write posts and customize blog, you need to enable write permissions on the App_Data and Custom folders. If your blog is hosted at a hosting provider, you can either log into your account&amp;rsquo;s admin page or call the support.&lt;/p&gt;
+&lt;p&gt;If you wish to use a database to store your blog data, we still encourage you to enable this write access for an images you may wish to store for your blog posts.&amp;nbsp; If you are interested in using Microsoft SQL Server, MySQL, SQL CE, or other databases, please see the &lt;a href="http://dnbe.net/docs" target="_blank"&gt;BlogEngine docs&lt;/a&gt; to get started.&lt;/p&gt;
+&lt;h2&gt;Security&lt;/h2&gt;
+&lt;p&gt;When you`ve got write permissions set, you need to change the username and password. Find the sign-in link located either at the bottom or top of the page depending on your current theme and click it. Now enter "admin" in both the username and password fields and click the button. You will now see an admin menu appear. It has a link to the "Users" admin page. From there you can change password, create new users and set roles and permissions. Passwords are hashed by default so you better configure email in settings for password recovery to work or &lt;a href="http://dnbe.net/docs/post/frequently-asked-questions#HowdoIresetlostadminpassword" target="_blank"&gt;learn how to do it manually&lt;/a&gt;.&lt;/p&gt;
+&lt;h2&gt;Configuration and Profile&lt;/h2&gt;
+&lt;p&gt;Now that you have your blog secured, take a look through the settings and give your new blog a title.&amp;nbsp; BlogEngine.NET is set up to take full advantage of many semantic formats and technologies such as FOAF, SIOC and APML. It means that the content stored in your BlogEngine.NET installation will be fully portable and auto-discoverable.&amp;nbsp; Be sure to fill in your author profile to take better advantage of this.&lt;/p&gt;
+&lt;h2&gt;Themes and Plugins&lt;/h2&gt;
+&lt;p&gt;One last thing to consider is customizing the look and behavior of your blog. We have themes and plugins available right out of the box. You can install more right from admin panel under Custom.&lt;/p&gt;
+&lt;h2&gt;On the web&lt;/h2&gt;
+&lt;p&gt;You can find news about BlogEngine.NET on the &lt;a href="http://www.dotnetblogengine.net" target="_blank"&gt;official website&lt;/a&gt;. For tutorials, documentation, tips and tricks visit our &lt;a href="http://dnbe.net/docs" target="_blank"&gt;docs site&lt;/a&gt;. The ongoing development of BlogEngine.NET can be followed at &lt;a href="https://github.com/rxtur/BlogEngine.NET" target="_blank"&gt;Github&lt;/a&gt;. You can also subscribe to our &lt;a href="https://www.youtube.com/channel/UC8ahQ2C-V_YEE5es1IJCHgQ" target="_blank"&gt;Youtube channel&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Good luck and happy writing.&lt;/p&gt;
+&lt;p&gt;The BlogEngine.NET team&lt;/p&gt;</content>
+  <ispublished>True</ispublished>
+  <isdeleted>False</isdeleted>
+  <iscommentsenabled>True</iscommentsenabled>
+  <pubDate>2015-09-23 20:04:00</pubDate>
+  <lastModified>2015-09-23 21:07:50</lastModified>
+  <raters>0</raters>
+  <rating>0</rating>
+  <slug>welcome-to-blogengine-net</slug>
+  <tags>
+    <tag>welcome</tag>
+    <tag>blog</tag>
+  </tags>
+  <comments>
+    <comment id="61c640cb-7782-4a1d-ab79-25bd4613fc4e" parentid="00000000-0000-0000-0000-000000000000" approved="True" spam="False" deleted="False">
+      <date>2015-09-23 21:01:16</date>
+      <author>Visitor1</author>
+      <email>v1@us.com</email>
+      <country />
+      <ip>::1</ip>
+      <moderatedby>Rule:authenticated</moderatedby>
+      <avatar />
+      <content>Comment left by visitor1.</content>
+    </comment>
+    <comment id="7a5eac3e-0964-45dd-9b47-6914544450e0" parentid="61c640cb-7782-4a1d-ab79-25bd4613fc4e" approved="False" spam="False" deleted="False">
+      <date>2015-09-23 21:05:26</date>
+      <author>Visitor2</author>
+      <email>v2@us.com</email>
+      <country />
+      <ip>::1</ip>
+      <moderatedby>Rule:authenticated</moderatedby>
+      <avatar />
+      <content>Reply from visitor2 on comment by visitor1.</content>
+    </comment>
+  </comments>
+  <categories>
+    <category>19770e74-9ec9-4cde-b2ab-e5051aaaf348</category>
+  </categories>
+  <notifications />
+</post>

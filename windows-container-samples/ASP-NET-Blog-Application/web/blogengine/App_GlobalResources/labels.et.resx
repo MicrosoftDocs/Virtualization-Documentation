@@ -1,0 +1,1645 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="add" xml:space="preserve">
+    <value>Lisa</value>
+  </data>
+  <data name="add_Entry" xml:space="preserve">
+    <value>Lisa üksus</value>
+  </data>
+  <data name="addComment" xml:space="preserve">
+    <value>Lisa kommentaar</value>
+  </data>
+  <data name="addCustomCodeToHeader" xml:space="preserve">
+    <value>Lisa oma kood HTML päisesse</value>
+  </data>
+  <data name="administrationPanel" xml:space="preserve">
+    <value>Seadistused</value>
+  </data>
+  <data name="advanced" xml:space="preserve">
+    <value>Täpsemalt</value>
+  </data>
+  <data name="advancedSettings" xml:space="preserve">
+    <value>Täpsemad muudatused</value>
+  </data>
+  <data name="alternateFeedUrl" xml:space="preserve">
+    <value>Alternatiivne uudisvoo URL</value>
+  </data>
+  <data name="approve" xml:space="preserve">
+    <value>Kinnita</value>
+  </data>
+  <data name="approveallcomments" xml:space="preserve">
+    <value>Kinnita kõik kommentaarid</value>
+  </data>
+  <data name="archive" xml:space="preserve">
+    <value>Arhiiv</value>
+  </data>
+  <data name="areYouSure" xml:space="preserve">
+    <value>Kas Sa kindlasti soovid {0} {1}?</value>
+  </data>
+  <data name="attachFile" xml:space="preserve">
+    <value>Lisa fail</value>
+  </data>
+  <data name="author" xml:space="preserve">
+    <value>Autor</value>
+  </data>
+  <data name="avatars" xml:space="preserve">
+    <value>Avatarid</value>
+  </data>
+  <data name="basic" xml:space="preserve">
+    <value>Peamine</value>
+  </data>
+  <data name="beTheFirstToRate" xml:space="preserve">
+    <value>Hinda seda postitust esimesena</value>
+  </data>
+  <data name="blogMLDescription" xml:space="preserve">
+    <value>BlogEngine.NET kasutab &lt;a href="http://blogml.codeplex.com/" target="_blank"&gt;BlogML&lt;/a&gt; vormingut eksportimiseks. Importimisel on toetatud nii BlogML kui ka RSS.</value>
+  </data>
+  <data name="blogroll" xml:space="preserve">
+    <value>Blogirull</value>
+  </data>
+  <data name="buttonText" xml:space="preserve">
+    <value>Nupu tekst</value>
+  </data>
+  <data name="categories" xml:space="preserve">
+    <value>Kategooriad</value>
+  </data>
+  <data name="category" xml:space="preserve">
+    <value>Kategooria</value>
+  </data>
+  <data name="changePassword" xml:space="preserve">
+    <value>Muuda parooli</value>
+  </data>
+  <data name="chooseOtherName" xml:space="preserve">
+    <value>Vali mõni teine nimi</value>
+  </data>
+  <data name="closeCommetsAfter" xml:space="preserve">
+    <value>Sulge kommentaarid peale</value>
+  </data>
+  <data name="comment" xml:space="preserve">
+    <value>Kommentaar</value>
+  </data>
+  <data name="commentLabelText" xml:space="preserve">
+    <value>Kommentaari pealkirja tekst</value>
+  </data>
+  <data name="comments" xml:space="preserve">
+    <value>Kommentaarid</value>
+  </data>
+  <data name="commentsAreClosed" xml:space="preserve">
+    <value>Kommenteerimine on suletud</value>
+  </data>
+  <data name="commentWasSaved" xml:space="preserve">
+    <value>Kommentaar on salvestatud. Täname tagasiside eest.</value>
+  </data>
+  <data name="contact" xml:space="preserve">
+    <value>Kontakt</value>
+  </data>
+  <data name="contactForm" xml:space="preserve">
+    <value>Kontakt</value>
+  </data>
+  <data name="controls" xml:space="preserve">
+    <value>Seaded</value>
+  </data>
+  <data name="country" xml:space="preserve">
+    <value>Riik</value>
+  </data>
+  <data name="createNewUser" xml:space="preserve">
+    <value>Loo uus kasutaja</value>
+  </data>
+  <data name="currentlyRated" xml:space="preserve">
+    <value>Hinnatud {0}  {1} kasutaja poolt</value>
+  </data>
+  <data name="date" xml:space="preserve">
+    <value>Kuupäev</value>
+  </data>
+  <data name="defaultFeedOutput" xml:space="preserve">
+    <value>vaikimisi feed väljund</value>
+  </data>
+  <data name="defaultTextShownInSearchField" xml:space="preserve">
+    <value>Otsingukastis kuvatav tekst</value>
+  </data>
+  <data name="delete" xml:space="preserve">
+    <value>Kustuta</value>
+  </data>
+  <data name="description" xml:space="preserve">
+    <value>Kirjeldus</value>
+  </data>
+  <data name="displayCommentsOnRecentPosts" xml:space="preserve">
+    <value>Kuva kommentaarid</value>
+  </data>
+  <data name="displayRatingsOnRecentPosts" xml:space="preserve">
+    <value>Hinnang</value>
+  </data>
+  <data name="edit" xml:space="preserve">
+    <value>Muuda</value>
+  </data>
+  <data name="email" xml:space="preserve">
+    <value>E-mail</value>
+  </data>
+  <data name="emailAddress" xml:space="preserve">
+    <value>E-mail aadress</value>
+  </data>
+  <data name="emailSubjectPrefix" xml:space="preserve">
+    <value>Meili teema algus</value>
+  </data>
+  <data name="enableAttachments" xml:space="preserve">
+    <value>Luba manused</value>
+  </data>
+  <data name="enableComments" xml:space="preserve">
+    <value>Luba kommenteerimine</value>
+  </data>
+  <data name="enableCommentsDescription" xml:space="preserve">
+    <value>Kui kommentaarid pole lubatud, ei saa keegi lisada kommentaare</value>
+  </data>
+  <data name="enableCommentSearch" xml:space="preserve">
+    <value>Luba otsing kommentaaridest</value>
+  </data>
+  <data name="enableCommentsModeration" xml:space="preserve">
+    <value>Modereeri kommentaare</value>
+  </data>
+  <data name="enableGravatars" xml:space="preserve">
+    <value>Luba Gravatarid</value>
+  </data>
+  <data name="enableHttpCompression" xml:space="preserve">
+    <value>Luba HTTP kompressioon</value>
+  </data>
+  <data name="enableHttpCompressionDescription" xml:space="preserve">
+    <value>Teeb lehe laadimise kiiremaks (soovituslik). Selle muutmine teeb veebile taaskäivituse.</value>
+  </data>
+  <data name="enableOpenSearch" xml:space="preserve">
+    <value>Luba OpenSearch</value>
+  </data>
+  <data name="enableOpenSearchDescription" xml:space="preserve">
+    <value>Lisab otsingufunktsionaalsuse kõikidele uuematele brauseritele (soovituslik).</value>
+  </data>
+  <data name="enablePingbacks" xml:space="preserve">
+    <value>Luba tagasisdestamine (pingbacks)</value>
+  </data>
+  <data name="enableRating" xml:space="preserve">
+    <value>Luba hinnangute andmine postitustele</value>
+  </data>
+  <data name="enableReferrerTracking" xml:space="preserve">
+    <value>Luba tagasiside kogumine</value>
+  </data>
+  <data name="enableSearchHighlight" xml:space="preserve">
+    <value>Luba otsingu esiletõstmine</value>
+  </data>
+  <data name="enableSearchHighlightDescription" xml:space="preserve">
+    <value>Värvi otsisõnad lehel vastavalt tulemusele.</value>
+  </data>
+  <data name="enableSsl" xml:space="preserve">
+    <value>Luba SSL</value>
+  </data>
+  <data name="enableTrackbacks" xml:space="preserve">
+    <value>Luba trackbacks</value>
+  </data>
+  <data name="endorsment" xml:space="preserve">
+    <value>Endorsement (bLink)</value>
+  </data>
+  <data name="enforce" xml:space="preserve">
+    <value>Kohustuslik</value>
+  </data>
+  <data name="enterValidEmail" xml:space="preserve">
+    <value>Sisesta palun korrektne e-mail</value>
+  </data>
+  <data name="enterValidUrl" xml:space="preserve">
+    <value>Sisesta palun korrektne URL</value>
+  </data>
+  <data name="export" xml:space="preserve">
+    <value>Export</value>
+  </data>
+  <data name="formMessage" xml:space="preserve">
+    <value>Tagasiside sõnum</value>
+  </data>
+  <data name="goToFrontPage" xml:space="preserve">
+    <value>Mine esilehele</value>
+  </data>
+  <data name="handleWwwSubdomain" xml:space="preserve">
+    <value>www subdomain policy</value>
+  </data>
+  <data name="home" xml:space="preserve">
+    <value>Kodu</value>
+    <comment>As used for linking to the front-page</comment>
+  </data>
+  <data name="htmlHeadSection" xml:space="preserve">
+    <value>HTML päis</value>
+  </data>
+  <data name="ignore" xml:space="preserve">
+    <value>Ignoreeri</value>
+  </data>
+  <data name="import" xml:space="preserve">
+    <value>Import</value>
+  </data>
+  <data name="isFrontPage" xml:space="preserve">
+    <value>Kuvatakse esilehel</value>
+  </data>
+  <data name="keywords" xml:space="preserve">
+    <value>Märksõnad</value>
+  </data>
+  <data name="language" xml:space="preserve">
+    <value>Vali keel</value>
+  </data>
+  <data name="languageCode" xml:space="preserve">
+    <value>Keele kood</value>
+  </data>
+  <data name="latitude" xml:space="preserve">
+    <value>Latitude</value>
+  </data>
+  <data name="livePreview" xml:space="preserve">
+    <value>Eelvaade</value>
+  </data>
+  <data name="longtitude" xml:space="preserve">
+    <value>Longtitude</value>
+  </data>
+  <data name="maxLengthOfItems" xml:space="preserve">
+    <value>Suurim pikkus elemtidel</value>
+  </data>
+  <data name="message" xml:space="preserve">
+    <value>Sõnum</value>
+  </data>
+  <data name="themeCookieName" xml:space="preserve">
+    <value>Teema küpsise nimi</value>
+  </data>
+  <data name="more" xml:space="preserve">
+    <value>Veel</value>
+  </data>
+  <data name="name" xml:space="preserve">
+    <value>Nimi</value>
+  </data>
+  <data name="nextPost" xml:space="preserve">
+    <value>Järgmine postitus</value>
+  </data>
+  <data name="nextPosts" xml:space="preserve">
+    <value>Uuemad postitused</value>
+  </data>
+  <data name="none" xml:space="preserve">
+    <value>Puudub</value>
+  </data>
+  <data name="noParent" xml:space="preserve">
+    <value>Pole vanemat</value>
+  </data>
+  <data name="notifyOnNewComments" xml:space="preserve">
+    <value>Teavita mind kommentaaride lisandumisest</value>
+  </data>
+  <data name="notRatedYet" xml:space="preserve">
+    <value>Pole veel hinnatud</value>
+  </data>
+  <data name="numberOfComments" xml:space="preserve">
+    <value>Kommentaare</value>
+  </data>
+  <data name="numberOfDisplayedItems" xml:space="preserve">
+    <value># niimitu elementi</value>
+  </data>
+  <data name="numberOfPosts" xml:space="preserve">
+    <value>Postituste arv</value>
+  </data>
+  <data name="page" xml:space="preserve">
+    <value>Leht</value>
+  </data>
+  <data name="pages" xml:space="preserve">
+    <value>Lehed</value>
+  </data>
+  <data name="password" xml:space="preserve">
+    <value>Parool</value>
+  </data>
+  <data name="portNumber" xml:space="preserve">
+    <value>Pordi number</value>
+  </data>
+  <data name="portNumberDescription" xml:space="preserve">
+    <value>Port 25 on tavapärane</value>
+  </data>
+  <data name="possibleSpam" xml:space="preserve">
+    <value>Võimalik spämm</value>
+  </data>
+  <data name="post" xml:space="preserve">
+    <value>Post</value>
+  </data>
+  <data name="postPerPage" xml:space="preserve">
+    <value>Postitusi lehel</value>
+  </data>
+  <data name="posts" xml:space="preserve">
+    <value>Postitused</value>
+  </data>
+  <data name="postsPerFeed" xml:space="preserve">
+    <value>Mitu üksust uudisvoos kuvatakse</value>
+  </data>
+  <data name="previousPost" xml:space="preserve">
+    <value>Eelmine postitus</value>
+  </data>
+  <data name="previousPosts" xml:space="preserve">
+    <value>Vanemad postitused</value>
+  </data>
+  <data name="publish" xml:space="preserve">
+    <value>Avalda</value>
+  </data>
+  <data name="raters" xml:space="preserve">
+    <value>Hindajad</value>
+  </data>
+  <data name="rating" xml:space="preserve">
+    <value>Hindamine</value>
+  </data>
+  <data name="receive" xml:space="preserve">
+    <value>Võta vastu</value>
+  </data>
+  <data name="recentComments" xml:space="preserve">
+    <value>Hiljutised kommentaarid</value>
+  </data>
+  <data name="recentPosts" xml:space="preserve">
+    <value>Hiljutised postitused</value>
+  </data>
+  <data name="referrer" xml:space="preserve">
+    <value>Tagasilinkija</value>
+  </data>
+  <data name="referrers" xml:space="preserve">
+    <value>Tagasilinkijad</value>
+  </data>
+  <data name="relatedPosts" xml:space="preserve">
+    <value>Seotud postitused</value>
+  </data>
+  <data name="remove" xml:space="preserve">
+    <value>Eemalda</value>
+  </data>
+  <data name="required" xml:space="preserve">
+    <value>Nõutud</value>
+  </data>
+  <data name="save" xml:space="preserve">
+    <value>Salvesta</value>
+  </data>
+  <data name="saveComment" xml:space="preserve">
+    <value>Salvesta kommentaar</value>
+  </data>
+  <data name="savePage" xml:space="preserve">
+    <value>Salvesta leht</value>
+  </data>
+  <data name="savePost" xml:space="preserve">
+    <value>Salvesta postitus</value>
+  </data>
+  <data name="saveSettings" xml:space="preserve">
+    <value>Salvesta häälestused</value>
+  </data>
+  <data name="savingTheComment" xml:space="preserve">
+    <value>Kommentaari salvestamine...</value>
+  </data>
+  <data name="search" xml:space="preserve">
+    <value>Otsi</value>
+  </data>
+  <data name="searchField" xml:space="preserve">
+    <value>Otsinguväli</value>
+  </data>
+  <data name="searchFieldText" xml:space="preserve">
+    <value>Sõna otsingukastis</value>
+  </data>
+  <data name="searchResultsFor" xml:space="preserve">
+    <value>Otsi tulemusi</value>
+  </data>
+  <data name="selectDay" xml:space="preserve">
+    <value>Vali päev</value>
+  </data>
+  <data name="selectParent" xml:space="preserve">
+    <value>Vali vanem</value>
+  </data>
+  <data name="send" xml:space="preserve">
+    <value>Saada</value>
+  </data>
+  <data name="sendCommentEmail" xml:space="preserve">
+    <value>Saada kommentaari e-mail</value>
+  </data>
+  <data name="separateTagsWitComma" xml:space="preserve">
+    <value>Eralda sildid omavahel komaga</value>
+  </data>
+  <data name="settings" xml:space="preserve">
+    <value>Häälestused</value>
+  </data>
+  <data name="showCountryChooser" xml:space="preserve">
+    <value>Näita riigi valija</value>
+  </data>
+  <data name="showCountryChooserDescription" xml:space="preserve">
+    <value>Kui riigi valimine pole lubatud, ei näidata ka riigilippe kommenteerijate juures</value>
+  </data>
+  <data name="showDescriptionInPostList" xml:space="preserve">
+    <value>Näita ainult osa postitusest</value>
+  </data>
+  <data name="showDescriptionInPostListForPostsByTagOrCategory" xml:space="preserve">
+    <value>Näita ainult osa postitusest kui on kasutusel Siltide või Kategooriate järgi kuvamine</value>
+  </data>
+  <data name="showInList" xml:space="preserve">
+    <value>Kuva nimekirjas</value>
+  </data>
+  <data name="showLivePreview" xml:space="preserve">
+    <value>Näita eelvaadet</value>
+  </data>
+  <data name="showPostNavigation" xml:space="preserve">
+    <value>Kuva postituse navigeerimise lingid</value>
+  </data>
+  <data name="showRelatedPosts" xml:space="preserve">
+    <value>Kuva seotud postitused</value>
+  </data>
+  <data name="subject" xml:space="preserve">
+    <value>Teema</value>
+  </data>
+  <data name="subscribe" xml:space="preserve">
+    <value>Liitu</value>
+  </data>
+  <data name="thankYouMessage" xml:space="preserve">
+    <value>Tänan sõnumi eest.</value>
+  </data>
+  <data name="theComment" xml:space="preserve">
+    <value>kommentaar</value>
+  </data>
+  <data name="theme" xml:space="preserve">
+    <value>Teema</value>
+  </data>
+  <data name="thePost" xml:space="preserve">
+    <value>postitus</value>
+  </data>
+  <data name="thereAreXDrafts" xml:space="preserve">
+    <value>Siin on {0} avaldamata postitust</value>
+  </data>
+  <data name="timeStampPostLinks" xml:space="preserve">
+    <value>Lisa kuupäev postituse linkidele</value>
+  </data>
+  <data name="timezone" xml:space="preserve">
+    <value>Serveri ajatsooni vahe</value>
+  </data>
+  <data name="title" xml:space="preserve">
+    <value>Pealkiri</value>
+  </data>
+  <data name="trimStylesheet" xml:space="preserve">
+    <value>Vähenda stiilifaili mahtu</value>
+  </data>
+  <data name="trimStylesheetDescription" xml:space="preserve">
+    <value>Kõikidest stiilifailidest eemaldatakse tühikud.</value>
+  </data>
+  <data name="unapprovedcomments" xml:space="preserve">
+    <value>Kinnitamata kommentaarid</value>
+  </data>
+  <data name="updateFrequenzy" xml:space="preserve">
+    <value>Uuendamise sagedus (minutites)</value>
+  </data>
+  <data name="uploadFile" xml:space="preserve">
+    <value>La fail üles</value>
+  </data>
+  <data name="uploadImage" xml:space="preserve">
+    <value>Lae pilt üles</value>
+  </data>
+  <data name="userName" xml:space="preserve">
+    <value>Kasutajanimi</value>
+  </data>
+  <data name="users" xml:space="preserve">
+    <value>Kasutajad</value>
+  </data>
+  <data name="website" xml:space="preserve">
+    <value>Veebileht</value>
+  </data>
+  <data name="willShowGravatar" xml:space="preserve">
+    <value>Kuvab sinu {0} pildi</value>
+  </data>
+  <data name="wrote" xml:space="preserve">
+    <value>vastab</value>
+  </data>
+  <data name="youAlreadyRated" xml:space="preserve">
+    <value>Sa oled seda juba hinnanud</value>
+  </data>
+  <data name="userProfiles" xml:space="preserve">
+    <value>Kasutaja profiil(id)</value>
+  </data>
+  <data name="view" xml:space="preserve">
+    <value>Vaata</value>
+  </data>
+  <data name="firstName" xml:space="preserve">
+    <value>Eesnimi</value>
+  </data>
+  <data name="aboutMe" xml:space="preserve">
+    <value>Minust</value>
+  </data>
+  <data name="birthday" xml:space="preserve">
+    <value>Sünnipäev</value>
+  </data>
+  <data name="cityTown" xml:space="preserve">
+    <value>Linn</value>
+  </data>
+  <data name="displayName" xml:space="preserve">
+    <value>Nimi</value>
+  </data>
+  <data name="fullName" xml:space="preserve">
+    <value>Täisnimi</value>
+  </data>
+  <data name="gender" xml:space="preserve">
+    <value>Sugu</value>
+  </data>
+  <data name="industry" xml:space="preserve">
+    <value>Tegevusala</value>
+  </data>
+  <data name="interests" xml:space="preserve">
+    <value>Huvialad</value>
+  </data>
+  <data name="isPrivate" xml:space="preserve">
+    <value>Isiklik</value>
+  </data>
+  <data name="lastName" xml:space="preserve">
+    <value>Perenimi</value>
+  </data>
+  <data name="occupation" xml:space="preserve">
+    <value>Hõivamine</value>
+  </data>
+  <data name="photoURL" xml:space="preserve">
+    <value>Foto URL</value>
+  </data>
+  <data name="regionState" xml:space="preserve">
+    <value>Osariik/Regioon</value>
+  </data>
+  <data name="saveProfile" xml:space="preserve">
+    <value>Salvesta profiil</value>
+  </data>
+  <data name="switchUserProfile" xml:space="preserve">
+    <value>Mine kasutaja profiililehele</value>
+  </data>
+  <data name="company" xml:space="preserve">
+    <value>Ettevõte</value>
+  </data>
+  <data name="middleName" xml:space="preserve">
+    <value>Keskmine nimi</value>
+  </data>
+  <data name="phoneFax" xml:space="preserve">
+    <value>Fax</value>
+  </data>
+  <data name="phoneMain" xml:space="preserve">
+    <value>Telefon</value>
+  </data>
+  <data name="phoneMobile" xml:space="preserve">
+    <value>Mobiil</value>
+  </data>
+  <data name="profile" xml:space="preserve">
+    <value>Profiil</value>
+  </data>
+  <data name="calendar" xml:space="preserve">
+    <value>Kalender</value>
+  </data>
+  <data name="commentWaitingModeration" xml:space="preserve">
+    <value>Täname tagasiside eest. Kommentaar ootab modereerimist</value>
+  </data>
+  <data name="requireSslForMetaWeblogApi" xml:space="preserve">
+    <value>Nõutud on SSL MetaWeblog API jaoks</value>
+  </data>
+  <data name="requireSslForMetaWeblogApiDescription" xml:space="preserve">
+    <value>Luba MetaWeblog API kasutamist ainult üle SSL ühenduse</value>
+  </data>
+  <data name="compressWebResource" xml:space="preserve">
+    <value>Kompresseeri WebResource.axd</value>
+  </data>
+  <data name="compressWebResourceDescription" xml:space="preserve">
+    <value>See võib kahjustada kolmanda osapoole komponentide tööd</value>
+  </data>
+  <data name="useBlogNameInPageTitles" xml:space="preserve">
+    <value>Kasuta blogi nime lehtede päises</value>
+  </data>
+  <data name="useBlogNameInPageTitlesDescription" xml:space="preserve">
+    <value>Blogi nimi pannakse lehe päisesse</value>
+  </data>
+  <data name="uncategorized" xml:space="preserve">
+    <value>Katgooriata</value>
+  </data>
+  <data name="cancel" xml:space="preserve">
+    <value>Tühista</value>
+  </data>
+  <data name="filter" xml:space="preserve">
+    <value>Filter</value>
+  </data>
+  <data name="filterByApml" xml:space="preserve">
+    <value>Filter by APML</value>
+  </data>
+  <data name="filterByApmlDescription" xml:space="preserve">
+    <value>Sisesta oma veebilehe URL või APML aadress</value>
+  </data>
+  <data name="login" xml:space="preserve">
+    <value>Logi sisse</value>
+  </data>
+  <data name="logoff" xml:space="preserve">
+    <value>Logi välja</value>
+  </data>
+  <data name="useRawHtmlEditor" xml:space="preserve">
+    <value>Kasuta puhast HTML redigeerijat</value>
+  </data>
+  <data name="enableCommentNesting" xml:space="preserve">
+    <value>Luba seotud kommentaarid</value>
+  </data>
+  <data name="enableCommentNestingDescription" xml:space="preserve">
+    <value>See töötab vaid juhul teemapakett seda toetab</value>
+  </data>
+  <data name="replyTo" xml:space="preserve">
+    <value>Vastates</value>
+  </data>
+  <data name="replyToBase" xml:space="preserve">
+    <value>algupärane postitus</value>
+  </data>
+  <data name="replyToThis" xml:space="preserve">
+    <value>Vasta</value>
+  </data>
+  <data name="deleteKeepReplies" xml:space="preserve">
+    <value>Kustuta see kuid jäta vastused alles</value>
+  </data>
+  <data name="deletePlusReplies" xml:space="preserve">
+    <value>Kustuta koos vastustega</value>
+  </data>
+  <data name="cancelReply" xml:space="preserve">
+    <value>Tühista kommentaarile vastamine</value>
+  </data>
+  <data name="numberOfCharacters" xml:space="preserve">
+    <value>Tähemärke</value>
+  </data>
+  <data name="ratingHasBeenRegistered" xml:space="preserve">
+    <value>Sinu hinnang on salvestatud. Täname!</value>
+  </data>
+  <data name="rateThisXStars" xml:space="preserve">
+    <value>Hinda seda {0} tärniga{1} 5-st</value>
+  </data>
+  <data name="move" xml:space="preserve">
+    <value>Liiguta</value>
+  </data>
+  <data name="moveWidgetTo" xml:space="preserve">
+    <value>Liiguta Widget ...</value>
+  </data>
+  <data name="link" xml:space="preserve">
+    <value>Link</value>
+  </data>
+  <data name="numberOfDaysToKeep" xml:space="preserve">
+    <value>Hoida niimitu päeva</value>
+  </data>
+  <data name="profiles" xml:space="preserve">
+    <value>Profiilid</value>
+  </data>
+  <data name="commentNotificationUnsubscriptionHeader" xml:space="preserve">
+    <value>Kommentaaride teavituste tellimine</value>
+  </data>
+  <data name="commentNotificationUnsubscriptionText" xml:space="preserve">
+    <value>Sulle ei saabu enam teavitusd kommentaaride lisandumisest selle postituse juures.</value>
+  </data>
+  <data name="commentNotificationUnsubscribe" xml:space="preserve">
+    <value>Eemalda ennast edasisest kommentaaride teavitusest</value>
+  </data>
+  <data name="accuracy" xml:space="preserve">
+    <value>Täpsus</value>
+  </data>
+  <data name="addFilter" xml:space="preserve">
+    <value>Lisa filter</value>
+  </data>
+  <data name="addToWhiteList" xml:space="preserve">
+    <value>Lisa valgesse listi kui vähemalt</value>
+  </data>
+  <data name="allow" xml:space="preserve">
+    <value>Luba</value>
+  </data>
+  <data name="alwaysTrust" xml:space="preserve">
+    <value>Usalda alati autenditud kasutajaid</value>
+  </data>
+  <data name="approved" xml:space="preserve">
+    <value>Kinnitatud</value>
+  </data>
+  <data name="authorApproved" xml:space="preserve">
+    <value>selle autori kommentaari on kinnitatud</value>
+  </data>
+  <data name="authorBlocked" xml:space="preserve">
+    <value>Peale kommentaari kustutamist blokeeri ka autor</value>
+  </data>
+  <data name="authorRejected" xml:space="preserve">
+    <value>selle autori kommentaari on tagasi lükatud</value>
+  </data>
+  <data name="block" xml:space="preserve">
+    <value>Blokeeri</value>
+  </data>
+  <data name="cheked" xml:space="preserve">
+    <value>Valitud</value>
+  </data>
+  <data name="commentsApprovedByAdmin" xml:space="preserve">
+    <value>Manuaalne - kommentaar muutub nähtavaks peale kinnitamist</value>
+  </data>
+  <data name="commentsAuto" xml:space="preserve">
+    <value>Automaatne - reeglid ja filtrid otsustavad kas kommentaar kuulub spami alla</value>
+  </data>
+  <data name="commentsBlacklist" xml:space="preserve">
+    <value>Lisa musta listi kui vähemalt</value>
+  </data>
+  <data name="commentsBlockOnDelete" xml:space="preserve">
+    <value>Kustutamisel blokeeri</value>
+  </data>
+  <data name="commentsPerPage" xml:space="preserve">
+    <value>Kommentaare lehel</value>
+  </data>
+  <data name="commentsUnmodApproved" xml:space="preserve">
+    <value>Kõik kommentaarid on automaatselt avalikud kui ei modereerita</value>
+  </data>
+  <data name="confirmResetCounters" xml:space="preserve">
+    <value>Kas tõesti soovid loendureid alustada `0-st?</value>
+  </data>
+  <data name="contains" xml:space="preserve">
+    <value>Sisaldab</value>
+  </data>
+  <data name="days" xml:space="preserve">
+    <value>päeva</value>
+  </data>
+  <data name="down" xml:space="preserve">
+    <value>Alla</value>
+  </data>
+  <data name="enabled" xml:space="preserve">
+    <value>Lubatud</value>
+  </data>
+  <data name="eqls" xml:space="preserve">
+    <value>Võrdub</value>
+  </data>
+  <data name="filterName" xml:space="preserve">
+    <value>Filtri nimi</value>
+  </data>
+  <data name="filters" xml:space="preserve">
+    <value>Filtrid</value>
+  </data>
+  <data name="ip" xml:space="preserve">
+    <value>IP</value>
+  </data>
+  <data name="mistakes" xml:space="preserve">
+    <value>Vead</value>
+  </data>
+  <data name="moderation" xml:space="preserve">
+    <value>Modereerimine</value>
+  </data>
+  <data name="priority" xml:space="preserve">
+    <value>Prioriteet</value>
+  </data>
+  <data name="reportMistakesToService" xml:space="preserve">
+    <value>Raporteeri teenusele vigadest</value>
+  </data>
+  <data name="resetCounters" xml:space="preserve">
+    <value>Nulli loendurid</value>
+  </data>
+  <data name="rules" xml:space="preserve">
+    <value>Reeglid</value>
+  </data>
+  <data name="spam" xml:space="preserve">
+    <value>Spämm</value>
+  </data>
+  <data name="trustAuthenticated" xml:space="preserve">
+    <value>Usalda autenditud kasutajaid</value>
+  </data>
+  <data name="up" xml:space="preserve">
+    <value>Üles</value>
+  </data>
+  <data name="all" xml:space="preserve">
+    <value>Kõik</value>
+  </data>
+  <data name="clear" xml:space="preserve">
+    <value>Kustuta</value>
+  </data>
+  <data name="moderator" xml:space="preserve">
+    <value>Moderaator</value>
+  </data>
+  <data name="select" xml:space="preserve">
+    <value>Vali</value>
+  </data>
+  <data name="reject" xml:space="preserve">
+    <value>Lükka tagasi</value>
+  </data>
+  <data name="restore" xml:space="preserve">
+    <value>Taasta</value>
+  </data>
+  <data name="selectedComments" xml:space="preserve">
+    <value>valitud kommentaarid</value>
+  </data>
+  <data name="editor" xml:space="preserve">
+    <value>Muutja</value>
+  </data>
+  <data name="total" xml:space="preserve">
+    <value>Kokku</value>
+  </data>
+  <data name="update" xml:space="preserve">
+    <value>Uuenda</value>
+  </data>
+  <data name="widget" xml:space="preserve">
+    <value>Widget</value>
+  </data>
+  <data name="configuration" xml:space="preserve">
+    <value>Konfiguratsioon</value>
+  </data>
+  <data name="inbox" xml:space="preserve">
+    <value>Sisendkast</value>
+  </data>
+  <data name="manual" xml:space="preserve">
+    <value>Manuaalne</value>
+  </data>
+  <data name="unmoderated" xml:space="preserve">
+    <value>Modereerimata</value>
+  </data>
+  <data name="action" xml:space="preserve">
+    <value>Tegevus</value>
+  </data>
+  <data name="automoderation" xml:space="preserve">
+    <value>Automaatne modereerimine</value>
+  </data>
+  <data name="custom" xml:space="preserve">
+    <value>Kohandatud</value>
+  </data>
+  <data name="extensions" xml:space="preserve">
+    <value>Laiendused</value>
+  </data>
+  <data name="showPingBacks" xml:space="preserve">
+    <value>Kuva pingbacks ja trackbacks</value>
+  </data>
+  <data name="register" xml:space="preserve">
+    <value>Registreeri</value>
+  </data>
+  <data name="addCommentsToPages" xml:space="preserve">
+    <value>Lisa kommentaarid lehtedele</value>
+  </data>
+  <data name="addToPages" xml:space="preserve">
+    <value>Lisa lehtedele (in addition to posts)</value>
+  </data>
+  <data name="alreadyHaveAccount" xml:space="preserve">
+    <value>Omad juba kasutajatunnust?</value>
+  </data>
+  <data name="applyChanges" xml:space="preserve">
+    <value>Salvesta muudatused</value>
+  </data>
+  <data name="clickToDisable" xml:space="preserve">
+    <value>Keelamiseks vajuta</value>
+  </data>
+  <data name="clickToEnable" xml:space="preserve">
+    <value>Lubamiseks vajuta</value>
+  </data>
+  <data name="commentsWhere" xml:space="preserve">
+    <value>kommentaarid kus</value>
+  </data>
+  <data name="confirmNewPassword" xml:space="preserve">
+    <value>Kinnita uus parool</value>
+  </data>
+  <data name="confirmPassword" xml:space="preserve">
+    <value>Kinnita parool</value>
+  </data>
+  <data name="createAccount" xml:space="preserve">
+    <value>Loo kasutaja</value>
+  </data>
+  <data name="createNow" xml:space="preserve">
+    <value>Loo nüüd!</value>
+  </data>
+  <data name="createUser" xml:space="preserve">
+    <value>Loo kasutaja</value>
+  </data>
+  <data name="deleteConfirm" xml:space="preserve">
+    <value>Kas soovid seda kommentaari kustutada?</value>
+  </data>
+  <data name="developmentMode" xml:space="preserve">
+    <value>Arenduse vaade</value>
+  </data>
+  <data name="developmentModeCheckboxMessage" xml:space="preserve">
+    <value>Määra see kui soovid discus teenust lokaalselt testida.</value>
+  </data>
+  <data name="disabled" xml:space="preserve">
+    <value>Keelatud</value>
+  </data>
+  <data name="disqusSettings" xml:space="preserve">
+    <value>Diskussiooni häälestus</value>
+  </data>
+  <data name="disqusShortName" xml:space="preserve">
+    <value>Disqus Veebilehe Lühike Nimi</value>
+  </data>
+  <data name="disqusSignupMessage" xml:space="preserve">
+    <value>Et kasutada Disqus-teenust kommenteerimise juures, on kõigepealt vaja kasutajatunnus luua &lt;a href="http://disqus.com" target="_blank"&gt;disqus.com&lt;/a&gt;&lt;br /&gt;
+            Lühike nimi on kasutusel sinu veebilehe identifitseerimisel Disqus-teenuses (Veebilehe nimi põhilises seadistuses).</value>
+  </data>
+  <data name="dontHaveAccount" xml:space="preserve">
+    <value>Sul pole veel kasutajatunnust?</value>
+  </data>
+  <data name="forgotPassword" xml:space="preserve">
+    <value>Unustasid oma parooli?</value>
+  </data>
+  <data name="isAlreadyExists" xml:space="preserve">
+    <value>juba eksisteerib</value>
+  </data>
+  <data name="isRequiredField" xml:space="preserve">
+    <value>on nõutud väli</value>
+  </data>
+  <data name="loginNow" xml:space="preserve">
+    <value>Login praegu!</value>
+  </data>
+  <data name="makeDonation" xml:space="preserve">
+    <value>Toeta</value>
+  </data>
+  <data name="moderatedByDisqus" xml:space="preserve">
+    <value>Modereeritud Disqus-teenuse poolt.</value>
+  </data>
+  <data name="myProfile" xml:space="preserve">
+    <value>Minu profiil</value>
+  </data>
+  <data name="never" xml:space="preserve">
+    <value>Mitte kunagi</value>
+  </data>
+  <data name="newPassword" xml:space="preserve">
+    <value>Uus parool</value>
+  </data>
+  <data name="oldPassword" xml:space="preserve">
+    <value>Eelmine parool</value>
+  </data>
+  <data name="or" xml:space="preserve">
+    <value>või</value>
+  </data>
+  <data name="passwordChangeSuccess" xml:space="preserve">
+    <value>Sinu parool on edukatl vahetatud.</value>
+  </data>
+  <data name="passwordMinimumCharacters" xml:space="preserve">
+    <value>Parool (min {0} tähemärki)</value>
+  </data>
+  <data name="passwordRetrieval" xml:space="preserve">
+    <value>Password Retrieval</value>
+  </data>
+  <data name="passwordRetrievalInstructionMessage" xml:space="preserve">
+    <value>Sisesta oma e-maili aadress kuhu saadetakse sulle parool.</value>
+  </data>
+  <data name="rememberMe" xml:space="preserve">
+    <value>Hoia mind sisselogituna</value>
+  </data>
+  <data name="requiredPasswordLength" xml:space="preserve">
+    <value>Uus parool peab olema vähemalt {0} tähemärgi pikkune.</value>
+  </data>
+  <data name="returnToBlog" xml:space="preserve">
+    <value>Tagasi blogisse</value>
+  </data>
+  <data name="siteUnavailableConfirm" xml:space="preserve">
+    <value>Veebileht pole minuti jooksul kättesaadav.\nKas tõesti soovid jätkata?</value>
+  </data>
+  <data name="source" xml:space="preserve">
+    <value>Algne kood</value>
+  </data>
+  <data name="sourceViewer" xml:space="preserve">
+    <value>Algse koodi vaatamine</value>
+  </data>
+  <data name="status" xml:space="preserve">
+    <value>Staatus</value>
+  </data>
+  <data name="theValuesSaved" xml:space="preserve">
+    <value>Väärtused on salvestatud</value>
+  </data>
+  <data name="version" xml:space="preserve">
+    <value>Versioon</value>
+  </data>
+  <data name="addNewRole" xml:space="preserve">
+    <value>Lisa uus roll</value>
+  </data>
+  <data name="areYouSureDeleteRow" xml:space="preserve">
+    <value>Kas soovid seda praegu kustutada?</value>
+  </data>
+  <data name="categoryAlreadyExists" xml:space="preserve">
+    <value>Kategooria juba eksisteerib</value>
+  </data>
+  <data name="close" xml:space="preserve">
+    <value>Sulge</value>
+  </data>
+  <data name="createRole" xml:space="preserve">
+    <value>Loo roll</value>
+  </data>
+  <data name="download" xml:space="preserve">
+    <value>Lae alla</value>
+  </data>
+  <data name="enableEnclosures" xml:space="preserve">
+    <value>Luba lisad (Enclosures)</value>
+  </data>
+  <data name="enableSelfRegistration" xml:space="preserve">
+    <value>Luba kasutajaks registreerumine</value>
+  </data>
+  <data name="enterDate" xml:space="preserve">
+    <value>Sisesta palun kuupäev (yyyy-mm-dd hh:mm)</value>
+  </data>
+  <data name="enterTitle" xml:space="preserve">
+    <value>Sisesta palun pealkiri</value>
+  </data>
+  <data name="enterValidDate" xml:space="preserve">
+    <value>Sisesta palun korrektne kuupäev (yyyy-mm-dd hh:mm)</value>
+  </data>
+  <data name="enterValidName" xml:space="preserve">
+    <value>Sisesta palun korrektne nimi</value>
+  </data>
+  <data name="enterValidNumber" xml:space="preserve">
+    <value>Sissesta palun korrektne number</value>
+  </data>
+  <data name="enterValidNumberPositiveNegative" xml:space="preserve">
+    <value>Sisesta palun korrektne number (positiivne või negatiivne)</value>
+  </data>
+  <data name="extractFromTitle" xml:space="preserve">
+    <value>Kasuta pealkirja</value>
+  </data>
+  <data name="findPosition" xml:space="preserve">
+    <value>Leia positsioon</value>
+  </data>
+  <data name="importFromBlogML" xml:space="preserve">
+    <value>Import BlogML-st</value>
+  </data>
+  <data name="invalid" xml:space="preserve">
+    <value>Kehtetu</value>
+  </data>
+  <data name="noValidNumber" xml:space="preserve">
+    <value>Pole korrektne number</value>
+  </data>
+  <data name="onlyLoggedInCanView" xml:space="preserve">
+    <value>Ainult sisseloginud kasutajad näevad postitusi (personaalne blogi).</value>
+  </data>
+  <data name="parent" xml:space="preserve">
+    <value>Vanem</value>
+  </data>
+  <data name="pingService" xml:space="preserve">
+    <value>Ping Services</value>
+  </data>
+  <data name="preview" xml:space="preserve">
+    <value>Eelvaade</value>
+  </data>
+  <data name="roles" xml:space="preserve">
+    <value>Rollid</value>
+  </data>
+  <data name="showSelector" xml:space="preserve">
+    <value>Kuva valija</value>
+  </data>
+  <data name="slug" xml:space="preserve">
+    <value>Aadress (valikuline)</value>
+  </data>
+  <data name="specifyPingService" xml:space="preserve">
+    <value>Pane ping-teenuse osutaja nimi</value>
+  </data>
+  <data name="tags" xml:space="preserve">
+    <value>Sildid</value>
+  </data>
+  <data name="testEmailSettings" xml:space="preserve">
+    <value>Testi e-maili häälestust</value>
+  </data>
+  <data name="trackingScript" xml:space="preserve">
+    <value>Analüüsi Script jalusesse</value>
+  </data>
+  <data name="trackingScriptDescription" xml:space="preserve">
+    <value>Külastaja tracking script&lt;br /&gt;&lt;br /&gt;JavaScript kood Google Analytics või mõnest teisest kohast.&lt;br /&gt;&lt;br /&gt;
+          Lisatakse iga lehe jalusesse kui teemapakett seda toetab.&lt;br /&gt;&lt;br /&gt;(pea meeles et lisada ka &amp;lt;script&amp;gt; märgid)</value>
+  </data>
+  <data name="upload" xml:space="preserve">
+    <value>Lae üles</value>
+  </data>
+  <data name="usernameAlreadyTaken" xml:space="preserve">
+    <value>Kasutajanimi on juba võetud</value>
+  </data>
+  <data name="notifiedPublished" xml:space="preserve">
+    <value>Teavita mind postituste lisandumisest.</value>
+  </data>
+  <data name="pendingApproval" xml:space="preserve">
+    <value>Kommentaarid ootavad moderaatori läbivaatust</value>
+  </data>
+  <data name="Referrers_BindTable_Total" xml:space="preserve">
+    <value>Kokku</value>
+    <comment>
+			Footer row text of first cell
+		</comment>
+  </data>
+  <data name="Configuration_OnInit_Please_specify_a_number" xml:space="preserve">
+    <value>Palun pane number</value>
+    <comment>
+			valDescChar Error Message
+		</comment>
+  </data>
+  <data name="Configuration_BtnTestSmtpClick_Test_successfull" xml:space="preserve">
+    <value>Test õnnestunud</value>
+    <comment>Smtp status text</comment>
+  </data>
+  <data name="allowRemoteFileDownloads" xml:space="preserve">
+    <value>Luba eemalt failide allalaadimist</value>
+  </data>
+  <data name="allowRemoteFileDownloadsDescription" xml:space="preserve">
+    <value>Luba serveril alla laadida/hoida/protsessida andmeid teistelt veebilehtedelt.</value>
+  </data>
+  <data name="remoteTimeout" xml:space="preserve">
+    <value>Maksimaalne eemalt laadimise aeg</value>
+  </data>
+  <data name="remoteTimeoutDescription" xml:space="preserve">
+    <value>Maksimaalne aeg(millisekundid) mida server võib kasutada allalaadimiseks. Piiramatuks määramiseks pane0. Vaikimisi on 30000.</value>
+  </data>
+  <data name="securitySettings" xml:space="preserve">
+    <value>Turvalisuse häälestused</value>
+  </data>
+  <data name="maximumRemoteFileSize" xml:space="preserve">
+    <value>Maksimaalne kaugelt laetava faili suurus</value>
+  </data>
+  <data name="maximumRemoteFileSizeDescription" xml:space="preserve">
+    <value>Maksimaalne faili suurus mis on lubatud serveril alla laadida. Piiramatuks väärtuseks pane 0.</value>
+  </data>
+  <data name="selfRegistrationInitialRole" xml:space="preserve">
+    <value>Vaikimisi roll registreerumisel</value>
+  </data>
+  <data name="enableRecaptcha" xml:space="preserve">
+    <value>Luba Recaptcha</value>
+  </data>
+  <data name="recaptchaConfigureReminder" xml:space="preserve">
+    <value>Ole kindel et ReCaptcha on lubatud ja häälestatud.</value>
+  </data>
+  <data name="whitelistIpOnCommentApproval" xml:space="preserve">
+    <value>Lisab kinnitatud kommentaaride IP-aadressid automaatselt valgesse listi.</value>
+  </data>
+  <data name="blacklistIpOnCommentRejection" xml:space="preserve">
+    <value>Lisa tagasilükatud kommentaari IP aadress musta listi</value>
+  </data>
+  <data name="dashboard" xml:space="preserve">
+    <value>Esipaneel</value>
+  </data>
+  <data name="groupByYear" xml:space="preserve">
+    <value>Grupeeri aastate järgi</value>
+  </data>
+  <data name="recentDatesAtTop" xml:space="preserve">
+    <value>Hilisemad kuupäevad on üleval</value>
+  </data>
+  <data name="confirmPasswordIsRequired" xml:space="preserve">
+    <value>Parooli kinnitamine on nõutud</value>
+  </data>
+  <data name="emailIsInvalid" xml:space="preserve">
+    <value>Email pole korrektne</value>
+  </data>
+  <data name="emailIsRequired" xml:space="preserve">
+    <value>Email on nõutud</value>
+  </data>
+  <data name="minPassLengthInChars" xml:space="preserve">
+    <value>Lühim parooli pikkus on {0} tähemärki</value>
+  </data>
+  <data name="newAndConfirmPasswordMismatch" xml:space="preserve">
+    <value>Sisestatud paroolid ei ole sarnased</value>
+  </data>
+  <data name="newPasswordIsRequired" xml:space="preserve">
+    <value>Uus parool on nõutud</value>
+  </data>
+  <data name="oldPasswordIsRequired" xml:space="preserve">
+    <value>Eelmine parool on nõutud</value>
+  </data>
+  <data name="passwordAndConfirmPasswordMismatch" xml:space="preserve">
+    <value>Sisestatud paroolid ei ole sarnased</value>
+  </data>
+  <data name="passwordIsRequried" xml:space="preserve">
+    <value>Parool on vajalik</value>
+  </data>
+  <data name="passwordAndConfirmPasswordIsMatch" xml:space="preserve">
+    <value>Sisestatud paroolid ei ole sarnased</value>
+  </data>
+  <data name="userNameIsRequired" xml:space="preserve">
+    <value>Kasutajanimi on nõutud</value>
+  </data>
+  <data name="tracking" xml:space="preserve">
+    <value>Analüüs</value>
+  </data>
+  <data name="welcome" xml:space="preserve">
+    <value>Tere tulemast</value>
+  </data>
+  <data name="addNewPage" xml:space="preserve">
+    <value>Lisa uus leht</value>
+  </data>
+  <data name="admin" xml:space="preserve">
+    <value>Admin</value>
+  </data>
+  <data name="draftPages" xml:space="preserve">
+    <value>Avaldamata lehed</value>
+  </data>
+  <data name="draftPosts" xml:space="preserve">
+    <value>Avaldamata postitused</value>
+  </data>
+  <data name="emptyTrash" xml:space="preserve">
+    <value>Tühjenda prügikast</value>
+  </data>
+  <data name="recentPendingComments" xml:space="preserve">
+    <value>Hiljuti sisestatud nin ootle olevad kommentaarid</value>
+  </data>
+  <data name="stats" xml:space="preserve">
+    <value>Statistika</value>
+  </data>
+  <data name="trash" xml:space="preserve">
+    <value>Prügikast</value>
+  </data>
+  <data name="unapproved" xml:space="preserve">
+    <value>Kinnitamata</value>
+  </data>
+  <data name="viewAll" xml:space="preserve">
+    <value>Vaata kõiki</value>
+  </data>
+  <data name="writeNewPost" xml:space="preserve">
+    <value>Lisa uus postitus</value>
+  </data>
+  <data name="youDontHaveAnyDraftPages" xml:space="preserve">
+    <value>Sul pole ühtegi avaldamata lehte.</value>
+  </data>
+  <data name="youDontHaveAnyDraftPosts" xml:space="preserve">
+    <value>Sul pole ühtegi avaldamata postitust.</value>
+  </data>
+  <data name="notAuthorized" xml:space="preserve">
+    <value>Pole autoriseeritud</value>
+  </data>
+  <data name="userAlreadyExists" xml:space="preserve">
+    <value>Kasutaja "{0}" juba eksisteerib.</value>
+  </data>
+  <data name="commentsDeleted" xml:space="preserve">
+    <value>Kommentaarid kustutatud</value>
+  </data>
+  <data name="couldNotCreateRole" xml:space="preserve">
+    <value>Ei saa teha rolli: {0}</value>
+  </data>
+  <data name="couldNotCreateUser" xml:space="preserve">
+    <value>Ei saa teha kasutajat: {0} : {1}</value>
+  </data>
+  <data name="couldNotDeleteComment" xml:space="preserve">
+    <value>Ei saa kustutada kommentaari: {0}</value>
+  </data>
+  <data name="couldNotDeleteComments" xml:space="preserve">
+    <value>Ei saa kustutada kõiki kommentaare: {0}</value>
+  </data>
+  <data name="couldNotDeletePage" xml:space="preserve">
+    <value>Ei saa kustutada lehte: {0}</value>
+  </data>
+  <data name="couldNotDeletePost" xml:space="preserve">
+    <value>Ei saa kustutada postitust: {0}</value>
+  </data>
+  <data name="couldNotDeleteRole" xml:space="preserve">
+    <value>Ei saa kustutada rolli {0}</value>
+  </data>
+  <data name="couldNotDeleteTag" xml:space="preserve">
+    <value>Ei saa kustutada silti: {0}</value>
+  </data>
+  <data name="couldNotDeleteUser" xml:space="preserve">
+    <value>Ei saa kustutada kasutajat: {0}</value>
+  </data>
+  <data name="couldNotUpdateProfile" xml:space="preserve">
+    <value>Ei saa uuendada profiili: {0}</value>
+  </data>
+  <data name="couldNotUpdateRole" xml:space="preserve">
+    <value>Ei saa uuendada rolli {0}</value>
+  </data>
+  <data name="couldNotUpdateTag" xml:space="preserve">
+    <value>Ei saa uuendada silti: {0}</value>
+  </data>
+  <data name="couldNotUpdateUser" xml:space="preserve">
+    <value>Ei saa uuendada kasutajat: {0}</value>
+  </data>
+  <data name="displayNameIsRequired" xml:space="preserve">
+    <value>Nimi on nõutud väli</value>
+  </data>
+  <data name="doNotPassRightsWithFalseValue" xml:space="preserve">
+    <value>Do not pass back rights that have false values.</value>
+  </data>
+  <data name="emailArgumentInvalid" xml:space="preserve">
+    <value>Email pole korrektne.</value>
+  </data>
+  <data name="errorApprovingComment" xml:space="preserve">
+    <value>Viga kommentari kinnitamisel: {0}</value>
+  </data>
+  <data name="errorRejectingComment" xml:space="preserve">
+    <value>Viga kommentaari tagasilükkamisel</value>
+  </data>
+  <data name="idArgumentNull" xml:space="preserve">
+    <value>id argument on null.</value>
+  </data>
+  <data name="invalidPageId" xml:space="preserve">
+    <value>Kehtetu lehe id</value>
+  </data>
+  <data name="invalidPostId" xml:space="preserve">
+    <value>Kehtetu postituse id</value>
+  </data>
+  <data name="invalidRoleName" xml:space="preserve">
+    <value>Kehtetu rolli nimi</value>
+  </data>
+  <data name="noRightExists" xml:space="preserve">
+    <value>Sellist õigust ei eksisteeri: {0}</value>
+  </data>
+  <data name="pageDeleted" xml:space="preserve">
+    <value>Leht kustutatud</value>
+  </data>
+  <data name="pageIdRequired" xml:space="preserve">
+    <value>Lehe id on vajalik</value>
+  </data>
+  <data name="passwordArgumentInvalid" xml:space="preserve">
+    <value>Password argument is invalid.</value>
+  </data>
+  <data name="postDeleted" xml:space="preserve">
+    <value>Postitus kustutatud</value>
+  </data>
+  <data name="profileUpdated" xml:space="preserve">
+    <value>Profiil {0} uuendatud</value>
+  </data>
+  <data name="rightsCanNotBeNull" xml:space="preserve">
+    <value>Õiguste kollektsiooni parameeter ei saa olla null.</value>
+  </data>
+  <data name="rightsUpdatedForRole" xml:space="preserve">
+    <value>Üigus muudetud rollil "{0}"</value>
+  </data>
+  <data name="roleAlreadyExists" xml:space="preserve">
+    <value>Roll "{0}" juba eksisteerib</value>
+  </data>
+  <data name="roleHasBeenCreated" xml:space="preserve">
+    <value>Roll "{0}" loodud</value>
+  </data>
+  <data name="roleHasBeenDeleted" xml:space="preserve">
+    <value>Roll "{0}" on kustutatud</value>
+  </data>
+  <data name="roleNameArgumentNull" xml:space="preserve">
+    <value>rollinime parameeter on null.</value>
+  </data>
+  <data name="roleNameIsRequired" xml:space="preserve">
+    <value>Rolli nimi on nõutud väli</value>
+  </data>
+  <data name="roleUpdatedFromTo" xml:space="preserve">
+    <value>Roll on uuendatud "{0}" - "{1}"</value>
+  </data>
+  <data name="selectedCommentDeleted" xml:space="preserve">
+    <value>Valitud kommentaarid on kustutatud</value>
+  </data>
+  <data name="selectedCommentRejected" xml:space="preserve">
+    <value>Valitud kommentaarid on tagasi lükatud</value>
+  </data>
+  <data name="selectedCommentRestored" xml:space="preserve">
+    <value>Valitud kommentaarid on ennistatud</value>
+  </data>
+  <data name="tagChangedFromTo" xml:space="preserve">
+    <value>Silt on muudetud "{0}" - "{1}"</value>
+  </data>
+  <data name="tagHasBeenDeleted" xml:space="preserve">
+    <value>Silt "{0}" on kustutatud</value>
+  </data>
+  <data name="tagIsRequired" xml:space="preserve">
+    <value>Silt on nõutud väli.</value>
+  </data>
+  <data name="userArgumentInvalid" xml:space="preserve">
+    <value>Kasutaja sisestatud väärtus on vigane.</value>
+  </data>
+  <data name="userHasBeenCreated" xml:space="preserve">
+    <value>Kasutaja "{0}" on loodud</value>
+  </data>
+  <data name="userHasBeenDeleted" xml:space="preserve">
+    <value>Kasutaja "{0}" on kustutatud</value>
+  </data>
+  <data name="userUpdated" xml:space="preserve">
+    <value>Kasutaja "{0}" uuendatud</value>
+  </data>
+  <data name="userWithEmailExists" xml:space="preserve">
+    <value>Selle e-maili aadressiga kasutaja juba eksisteerib</value>
+  </data>
+  <data name="valsArgumentNull" xml:space="preserve">
+    <value>vals argument is null.</value>
+  </data>
+  <data name="addEditPost" xml:space="preserve">
+    <value>Lisa/muuda postitust</value>
+  </data>
+  <data name="addNewCategory" xml:space="preserve">
+    <value>Lisa uus kategooria</value>
+  </data>
+  <data name="insertImage" xml:space="preserve">
+    <value>Lisa pilt</value>
+  </data>
+  <data name="insertVideo" xml:space="preserve">
+    <value>Lisa video</value>
+  </data>
+  <data name="published" xml:space="preserve">
+    <value>Avaldatud</value>
+  </data>
+  <data name="show" xml:space="preserve">
+    <value>Näita</value>
+  </data>
+  <data name="automatically" xml:space="preserve">
+    <value>Automaatselt</value>
+  </data>
+  <data name="chooseFromExistingTags" xml:space="preserve">
+    <value>Vali olamsolevate siltide hulgast</value>
+  </data>
+  <data name="clickTag" xml:space="preserve">
+    <value>Vali silt:</value>
+  </data>
+  <data name="editPage" xml:space="preserve">
+    <value>Muuda lehte</value>
+  </data>
+  <data name="excerpt" xml:space="preserve">
+    <value>Lühikirjeldus (valikuline)</value>
+  </data>
+  <data name="goToPage" xml:space="preserve">
+    <value>Mine lehele</value>
+  </data>
+  <data name="goToPost" xml:space="preserve">
+    <value>Mine postitusele</value>
+  </data>
+  <data name="manually" xml:space="preserve">
+    <value>Manuaalselt</value>
+  </data>
+  <data name="options" xml:space="preserve">
+    <value>Valikud</value>
+  </data>
+  <data name="quickAddNewCategory" xml:space="preserve">
+    <value>Lisa uus kategooria</value>
+  </data>
+  <data name="setPublishDate" xml:space="preserve">
+    <value>Määra avaldamise kuupäev</value>
+  </data>
+  <data name="uploadVideo" xml:space="preserve">
+    <value>Vali video (MP4, WMV, FLV, OGG, WebM) või heli (MP3) mida soovid üles laadida</value>
+  </data>
+  <data name="enablePasswordReset" xml:space="preserve">
+    <value>Luba parooli lähtestamine</value>
+  </data>
+  <data name="addNewBlog" xml:space="preserve">
+    <value>Lisa uus blogi</value>
+  </data>
+  <data name="approvedComments" xml:space="preserve">
+    <value>Kinnitatud kommentaarid</value>
+  </data>
+  <data name="commonControls" xml:space="preserve">
+    <value>Muu häälestus</value>
+  </data>
+  <data name="disable" xml:space="preserve">
+    <value>Keela</value>
+  </data>
+  <data name="drafts" xml:space="preserve">
+    <value>Avaldamata</value>
+  </data>
+  <data name="enable" xml:space="preserve">
+    <value>Luba</value>
+  </data>
+  <data name="pending" xml:space="preserve">
+    <value>Ootel</value>
+  </data>
+  <data name="pingbacksAndTrackbacks" xml:space="preserve">
+    <value>Pingbacks &amp;amp; Trackbacks</value>
+  </data>
+  <data name="viewSource" xml:space="preserve">
+    <value>Vaata sisu</value>
+  </data>
+  <data name="addNewUser" xml:space="preserve">
+    <value>Lisa uus kasutaja</value>
+  </data>
+  <data name="appearance" xml:space="preserve">
+    <value>Väljanägemine</value>
+  </data>
+  <data name="commentSettings" xml:space="preserve">
+    <value>Kommentaaride häälestus</value>
+  </data>
+  <data name="copyRightsFrom" xml:space="preserve">
+    <value>Kopeeri õigused</value>
+  </data>
+  <data name="customCode" xml:space="preserve">
+    <value>Oma kood</value>
+  </data>
+  <data name="defaultAnonymousRole" xml:space="preserve">
+    <value>vaikimisi Anonüümne roll</value>
+  </data>
+  <data name="defaultEditorsRole" xml:space="preserve">
+    <value>vaikimisi Muutja roll</value>
+  </data>
+  <data name="editingRightsForRole" xml:space="preserve">
+    <value>Muutmise õigused rollile</value>
+  </data>
+  <data name="feed" xml:space="preserve">
+    <value>Feed</value>
+  </data>
+  <data name="newUserRoles" xml:space="preserve">
+    <value>Uue kasutaja rollid</value>
+  </data>
+  <data name="otherSettings" xml:space="preserve">
+    <value>Muu häälestus</value>
+  </data>
+  <data name="smtpServer" xml:space="preserve">
+    <value>SMTP server</value>
+  </data>
+  <data name="turnDisqusOnOff" xml:space="preserve">
+    <value>Disqus-teenuse sisse või välja lülitamine</value>
+  </data>
+  <data name="useDisqusAsCommentProvider" xml:space="preserve">
+    <value>Kasuta Disqus teenust kommentaaride haldamiseks</value>
+  </data>
+  <data name="antiSpamServices" xml:space="preserve">
+    <value>Spämmivastased teenused</value>
+  </data>
+  <data name="exportIntoBlogML" xml:space="preserve">
+    <value>Expordib Sinu blogi sisu XML vormingusse (BlogML)</value>
+  </data>
+  <data name="importFromFile" xml:space="preserve">
+    <value>Import failist</value>
+  </data>
+  <data name="importWithClickOnce" xml:space="preserve">
+    <value>Import click-once meetodil</value>
+  </data>
+  <data name="pingServiceUrl" xml:space="preserve">
+    <value>Ping teenuse URL</value>
+  </data>
+  <data name="runClickOnceApplicationToImport" xml:space="preserve">
+    <value>Käivita click-once rakendus, et importida sisu BlogML või RSS 2.0 vormingus sinu blogisse. &lt;i&gt;Töötab ainult Internet Exploreriga.&lt;/i&gt;</value>
+  </data>
+  <data name="selectSavedBlogMlFle" xml:space="preserve">
+    <value>Vali salvestatud BlogML fail ja impordi see oma blogisse. Kõik brauserid, BlogML vorming ainult.</value>
+  </data>
+  <data name="toDisableSetTo0" xml:space="preserve">
+    <value>Keelamiseks vali "0"</value>
+  </data>
+</root>

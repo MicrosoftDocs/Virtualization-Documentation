@@ -1,0 +1,675 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="add" xml:space="preserve">
+    <value>Tilføj</value>
+  </data>
+  <data name="add_Entry" xml:space="preserve">
+    <value>Tilføj indlæg</value>
+  </data>
+  <data name="addComment" xml:space="preserve">
+    <value>Tilføj kommentar</value>
+  </data>
+  <data name="addCustomCodeToHeader" xml:space="preserve">
+    <value>Tilføj kode til HTML head sektionen</value>
+  </data>
+  <data name="administrationPanel" xml:space="preserve">
+    <value>Kontrolpanel</value>
+  </data>
+  <data name="advanced" xml:space="preserve">
+    <value>Avancerede</value>
+  </data>
+  <data name="advancedSettings" xml:space="preserve">
+    <value>Avancerede indstillinger</value>
+  </data>
+  <data name="alternateFeedUrl" xml:space="preserve">
+    <value>Alternativ feed adresse</value>
+  </data>
+  <data name="archive" xml:space="preserve">
+    <value>Arkiv</value>
+  </data>
+  <data name="areYouSure" xml:space="preserve">
+    <value>Er du sikker på du vil {0} {1}?</value>
+  </data>
+  <data name="attachFile" xml:space="preserve">
+    <value>Vedhæft en fil</value>
+  </data>
+  <data name="author" xml:space="preserve">
+    <value>Forfatter</value>
+  </data>
+  <data name="avatars" xml:space="preserve">
+    <value>Avatarer</value>
+  </data>
+  <data name="basic" xml:space="preserve">
+    <value>Basis</value>
+  </data>
+  <data name="beTheFirstToRate" xml:space="preserve">
+    <value>Vær den første til at give point</value>
+  </data>
+  <data name="blogMLDescription" xml:space="preserve">
+    <value>BlogEngine.NET benytter BlogML som eksporteringsformat. Importen kan både bruge BlogML og RSS.</value>
+  </data>
+  <data name="blogroll" xml:space="preserve">
+    <value>Blogroll</value>
+  </data>
+  <data name="buttonText" xml:space="preserve">
+    <value>Knaptekst</value>
+  </data>
+  <data name="calendar" xml:space="preserve">
+    <value>Kalender</value>
+  </data>
+  <data name="cancel" xml:space="preserve">
+    <value>Annullér</value>
+  </data>
+  <data name="categories" xml:space="preserve">
+    <value>Kategorier</value>
+  </data>
+  <data name="category" xml:space="preserve">
+    <value>Kategori</value>
+  </data>
+  <data name="changePassword" xml:space="preserve">
+    <value>Ændr kodeord</value>
+  </data>
+  <data name="chooseOtherName" xml:space="preserve">
+    <value>Vælg venligst et andet navn</value>
+  </data>
+  <data name="closeCommetsAfter" xml:space="preserve">
+    <value>Luk kommentarer efter</value>
+  </data>
+  <data name="combine" xml:space="preserve">
+    <value>Kombination</value>
+  </data>
+  <data name="comment" xml:space="preserve">
+    <value>Kommentar</value>
+  </data>
+  <data name="commentLabelText" xml:space="preserve">
+    <value>Kommentar tekst</value>
+  </data>
+  <data name="comments" xml:space="preserve">
+    <value>Kommentarer</value>
+  </data>
+  <data name="commentsAreClosed" xml:space="preserve">
+    <value>Kommentarerne er lukkede</value>
+  </data>
+  <data name="commentWaitingModeration" xml:space="preserve">
+    <value>Tak for din feedback. Kommentaren venter nu på godkendelse.</value>
+  </data>
+  <data name="commentWasSaved" xml:space="preserve">
+    <value>Kommentaren er gemt. Tak for din feedback</value>
+  </data>
+  <data name="compressWebResource" xml:space="preserve">
+    <value>Komprimér WebResource.axd</value>
+  </data>
+  <data name="compressWebResourceDescription" xml:space="preserve">
+    <value>Kan forårsage fejl i tredjepartsfunktionalitet</value>
+  </data>
+  <data name="contact" xml:space="preserve">
+    <value>Kontakt</value>
+  </data>
+  <data name="contactForm" xml:space="preserve">
+    <value>Kontakt formular</value>
+  </data>
+  <data name="controls" xml:space="preserve">
+    <value>Kontroller</value>
+  </data>
+  <data name="country" xml:space="preserve">
+    <value>Land</value>
+  </data>
+  <data name="createNewUser" xml:space="preserve">
+    <value>Opret ny bruger</value>
+  </data>
+  <data name="currentlyRated" xml:space="preserve">
+    <value>Har i øjeblikket {0} point givet af {1} læsere</value>
+  </data>
+  <data name="date" xml:space="preserve">
+    <value>Dato</value>
+  </data>
+  <data name="defaultFeedOutput" xml:space="preserve">
+    <value>Standard feed output</value>
+  </data>
+  <data name="defaultTextShownInSearchField" xml:space="preserve">
+    <value>Teksten der vises i søgefeltet</value>
+  </data>
+  <data name="delete" xml:space="preserve">
+    <value>Slet</value>
+  </data>
+  <data name="description" xml:space="preserve">
+    <value>Beskrivelse</value>
+  </data>
+  <data name="displayCommentsOnRecentPosts" xml:space="preserve">
+    <value>Vis kommentarer</value>
+  </data>
+  <data name="displayRatingsOnRecentPosts" xml:space="preserve">
+    <value>Vis point</value>
+  </data>
+  <data name="edit" xml:space="preserve">
+    <value>Rediger</value>
+  </data>
+  <data name="email" xml:space="preserve">
+    <value>E-mail</value>
+  </data>
+  <data name="emailAddress" xml:space="preserve">
+    <value>E-mail adresse</value>
+  </data>
+  <data name="emailSubjectPrefix" xml:space="preserve">
+    <value>Emne prefiks</value>
+  </data>
+  <data name="enableAttachments" xml:space="preserve">
+    <value>Tillad vedhæftninger</value>
+  </data>
+  <data name="enableComments" xml:space="preserve">
+    <value>Slå kommentarer til</value>
+  </data>
+  <data name="enableCommentsDescription" xml:space="preserve">
+    <value>Hvis kommentarer er slået fra, så kan ingen skrive kommentarer til indlæggene</value>
+  </data>
+  <data name="enableCommentSearch" xml:space="preserve">
+    <value>Tillad kommentar søgning</value>
+  </data>
+  <data name="enableCommentsModeration" xml:space="preserve">
+    <value>Godkend kommentarer</value>
+  </data>
+  <data name="enableGravatars" xml:space="preserve">
+    <value>Vis Gravatar ikoner</value>
+  </data>
+  <data name="enableHttpCompression" xml:space="preserve">
+    <value>Slå HTTP kompression til</value>
+  </data>
+  <data name="enableHttpCompressionDescription" xml:space="preserve">
+    <value>Får siderne til at loade hurtigere (anbefalet).</value>
+  </data>
+  <data name="enableOpenSearch" xml:space="preserve">
+    <value>Slå OpenSearch til</value>
+  </data>
+  <data name="enableOpenSearchDescription" xml:space="preserve">
+    <value>Tilføjer bloggen til listen over søgemaskiner i alle nye browsere (anbefalet).</value>
+  </data>
+  <data name="enablePingbacks" xml:space="preserve">
+    <value>Aktivér pingbacks</value>
+  </data>
+  <data name="enableRating" xml:space="preserve">
+    <value>Tillad at stemme på indlæg</value>
+  </data>
+  <data name="enableReferrerTracking" xml:space="preserve">
+    <value>Slå hentning af henvisninger til</value>
+  </data>
+  <data name="enableSearchHighlight" xml:space="preserve">
+    <value>Fremhæv søgeord</value>
+  </data>
+  <data name="enableSearchHighlightDescription" xml:space="preserve">
+    <value>Fremhæver søgeordene på siden</value>
+  </data>
+  <data name="enableSsl" xml:space="preserve">
+    <value>Benyt SSL</value>
+  </data>
+  <data name="enableTrackbacks" xml:space="preserve">
+    <value>Aktivér trackbacks</value>
+  </data>
+  <data name="endorsment" xml:space="preserve">
+    <value>Endorsement (bLink)</value>
+  </data>
+  <data name="enforce" xml:space="preserve">
+    <value>Benyt</value>
+  </data>
+  <data name="enterValidEmail" xml:space="preserve">
+    <value>Indtast venligst en korrekt e-mail</value>
+  </data>
+  <data name="enterValidUrl" xml:space="preserve">
+    <value>Indtast venligst en korrekt URL</value>
+  </data>
+  <data name="export" xml:space="preserve">
+    <value>Eksport</value>
+  </data>
+  <data name="filter" xml:space="preserve">
+    <value>Filtrér</value>
+  </data>
+  <data name="filterByApml" xml:space="preserve">
+    <value>Filtrér med APML</value>
+  </data>
+  <data name="filterByApmlDescription" xml:space="preserve">
+    <value>Indtast adressen til din hjemmeside eller APML dokument</value>
+  </data>
+  <data name="formMessage" xml:space="preserve">
+    <value>Formular tekst</value>
+  </data>
+  <data name="goToFrontPage" xml:space="preserve">
+    <value>Til forsiden</value>
+  </data>
+  <data name="handleWwwSubdomain" xml:space="preserve">
+    <value>www subdomæne regel</value>
+  </data>
+  <data name="home" xml:space="preserve">
+    <value>Forside</value>
+  </data>
+  <data name="htmlHeadSection" xml:space="preserve">
+    <value>HTML head sektion</value>
+  </data>
+  <data name="ignore" xml:space="preserve">
+    <value>Ignorér</value>
+  </data>
+  <data name="import" xml:space="preserve">
+    <value>Import</value>
+  </data>
+  <data name="isFrontPage" xml:space="preserve">
+    <value>Er forsiden</value>
+  </data>
+  <data name="keywords" xml:space="preserve">
+    <value>Nøgleord</value>
+  </data>
+  <data name="language" xml:space="preserve">
+    <value>Vælg sprog</value>
+  </data>
+  <data name="languageCode" xml:space="preserve">
+    <value>Landekode</value>
+  </data>
+  <data name="latitude" xml:space="preserve">
+    <value>Længdegrad</value>
+  </data>
+  <data name="livePreview" xml:space="preserve">
+    <value>Eksempel</value>
+  </data>
+  <data name="login" xml:space="preserve">
+    <value>Log ind</value>
+  </data>
+  <data name="logoff" xml:space="preserve">
+    <value>Log af</value>
+  </data>
+  <data name="longtitude" xml:space="preserve">
+    <value>Breddegrad</value>
+  </data>
+  <data name="maxLengthOfItems" xml:space="preserve">
+    <value>Maks længde for indlæg</value>
+  </data>
+  <data name="message" xml:space="preserve">
+    <value>Besked</value>
+  </data>
+  <data name="monster" xml:space="preserve">
+    <value>Monster</value>
+  </data>
+  <data name="more" xml:space="preserve">
+    <value>Mere</value>
+  </data>
+  <data name="name" xml:space="preserve">
+    <value>Navn</value>
+  </data>
+  <data name="nextPost" xml:space="preserve">
+    <value>Næste indlæg</value>
+  </data>
+  <data name="nextPosts" xml:space="preserve">
+    <value>Næste indlæg</value>
+  </data>
+  <data name="none" xml:space="preserve">
+    <value>Vis ikke</value>
+  </data>
+  <data name="noParent" xml:space="preserve">
+    <value>Ingen parent</value>
+  </data>
+  <data name="notifyOnNewComments" xml:space="preserve">
+    <value>Send en e-mail når nye kommentarer er tilføjet</value>
+  </data>
+  <data name="notRatedYet" xml:space="preserve">
+    <value>Ingen point endnu</value>
+  </data>
+  <data name="numberOfComments" xml:space="preserve">
+    <value>Vist antal kommentarer</value>
+  </data>
+  <data name="numberOfDisplayedItems" xml:space="preserve">
+    <value>Antal viste indlæg</value>
+  </data>
+  <data name="numberOfPosts" xml:space="preserve">
+    <value>Vist antal indlæg</value>
+  </data>
+  <data name="page" xml:space="preserve">
+    <value>Artikel</value>
+  </data>
+  <data name="pages" xml:space="preserve">
+    <value>Sider</value>
+  </data>
+  <data name="password" xml:space="preserve">
+    <value>Kodeord</value>
+  </data>
+  <data name="portNumber" xml:space="preserve">
+    <value>Port nummer</value>
+  </data>
+  <data name="portNumberDescription" xml:space="preserve">
+    <value>Port 25 er standard</value>
+  </data>
+  <data name="possibleSpam" xml:space="preserve">
+    <value>Mulig spam</value>
+  </data>
+  <data name="post" xml:space="preserve">
+    <value>Indlæg</value>
+  </data>
+  <data name="postPerPage" xml:space="preserve">
+    <value>Indlæg pr. side</value>
+  </data>
+  <data name="posts" xml:space="preserve">
+    <value>Indlæg</value>
+  </data>
+  <data name="postsPerFeed" xml:space="preserve">
+    <value>Antal indlæg i feed</value>
+  </data>
+  <data name="previousPost" xml:space="preserve">
+    <value>Forrige indlæg</value>
+  </data>
+  <data name="previousPosts" xml:space="preserve">
+    <value>Forrige indlæg</value>
+  </data>
+  <data name="publish" xml:space="preserve">
+    <value>Publicér</value>
+  </data>
+  <data name="raters" xml:space="preserve">
+    <value>Pointgivere</value>
+  </data>
+  <data name="rating" xml:space="preserve">
+    <value>Point</value>
+  </data>
+  <data name="receive" xml:space="preserve">
+    <value>Modtag</value>
+  </data>
+  <data name="recentComments" xml:space="preserve">
+    <value>Seneste kommentarer</value>
+  </data>
+  <data name="recentPosts" xml:space="preserve">
+    <value>Seneste indlæg</value>
+  </data>
+  <data name="referrer" xml:space="preserve">
+    <value>Henviser</value>
+  </data>
+  <data name="referrers" xml:space="preserve">
+    <value>Henvisninger</value>
+  </data>
+  <data name="relatedPosts" xml:space="preserve">
+    <value>Relaterede indlæg</value>
+  </data>
+  <data name="remove" xml:space="preserve">
+    <value>Fjern</value>
+  </data>
+  <data name="required" xml:space="preserve">
+    <value>Obligatorisk</value>
+  </data>
+  <data name="requireSslForMetaWeblogApi" xml:space="preserve">
+    <value>Brug SSL for MetaWeblog API</value>
+  </data>
+  <data name="requireSslForMetaWeblogApiDescription" xml:space="preserve">
+    <value>Kommuniker med MetaWeblog API'et med SSL fra f.eks. Windows Live Writer</value>
+  </data>
+  <data name="save" xml:space="preserve">
+    <value>Gem</value>
+  </data>
+  <data name="saveComment" xml:space="preserve">
+    <value>Gem kommentar</value>
+  </data>
+  <data name="savePage" xml:space="preserve">
+    <value>Gem siden</value>
+  </data>
+  <data name="savePost" xml:space="preserve">
+    <value>Gem indlæg</value>
+  </data>
+  <data name="saveSettings" xml:space="preserve">
+    <value>Gem indstillingerne</value>
+  </data>
+  <data name="savingTheComment" xml:space="preserve">
+    <value>Gemmer kommentaren...</value>
+  </data>
+  <data name="search" xml:space="preserve">
+    <value>Søg</value>
+  </data>
+  <data name="searchField" xml:space="preserve">
+    <value>Søgefelt</value>
+  </data>
+  <data name="searchFieldText" xml:space="preserve">
+    <value>Tekst i søgefelt</value>
+  </data>
+  <data name="searchResultsFor" xml:space="preserve">
+    <value>Søgeresultater for</value>
+  </data>
+  <data name="selectDay" xml:space="preserve">
+    <value>Vælg dag</value>
+  </data>
+  <data name="selectParent" xml:space="preserve">
+    <value>Vælg parent</value>
+  </data>
+  <data name="send" xml:space="preserve">
+    <value>Send</value>
+  </data>
+  <data name="sendCommentEmail" xml:space="preserve">
+    <value>Send kommentar e-mail</value>
+  </data>
+  <data name="separateTagsWitComma" xml:space="preserve">
+    <value>Separér hvert tag med et komma</value>
+  </data>
+  <data name="settings" xml:space="preserve">
+    <value>Indstillinger</value>
+  </data>
+  <data name="showCountryChooser" xml:space="preserve">
+    <value>Vis landevælger</value>
+  </data>
+  <data name="showCountryChooserDescription" xml:space="preserve">
+    <value>Hvis landevælgeren er slået fra, så kan der ikke vises et flag på hver kommentar</value>
+  </data>
+  <data name="showEnableWebsiteInComments" xml:space="preserve">
+    <value>Need Translation:Enable Website in Comments</value>
+  </data>
+  <data name="showEnableWebsiteInCommentsDescription" xml:space="preserve">
+    <value>Need Translation:Choose whether to allow Website to be published in Comments</value>
+  </data>
+  <data name="showDescriptionInPostList" xml:space="preserve">
+    <value>Vis kun indlægsbeskrivelsen</value>
+  </data>
+  <data name="showInList" xml:space="preserve">
+    <value>Vis i listen</value>
+  </data>
+  <data name="showLivePreview" xml:space="preserve">
+    <value>Vis live preview</value>
+  </data>
+  <data name="showPostNavigation" xml:space="preserve">
+    <value>Vis navigationslinks over indlæg</value>
+  </data>
+  <data name="showRelatedPosts" xml:space="preserve">
+    <value>Vis relaterede indlæg</value>
+  </data>
+  <data name="subject" xml:space="preserve">
+    <value>Emne</value>
+  </data>
+  <data name="subscribe" xml:space="preserve">
+    <value>Abonnér</value>
+  </data>
+  <data name="thankYouMessage" xml:space="preserve">
+    <value>Tak meddelelse</value>
+  </data>
+  <data name="theComment" xml:space="preserve">
+    <value>kommentaren</value>
+  </data>
+  <data name="theme" xml:space="preserve">
+    <value>Tema</value>
+  </data>
+  <data name="thePost" xml:space="preserve">
+    <value>indlægget</value>
+  </data>
+  <data name="thereAreXDrafts" xml:space="preserve">
+    <value>Der er {0} upubliceret indlæg</value>
+  </data>
+  <data name="timeStampPostLinks" xml:space="preserve">
+    <value>Tilføj dato til links</value>
+  </data>
+  <data name="timezone" xml:space="preserve">
+    <value>Server tidsforskel</value>
+  </data>
+  <data name="title" xml:space="preserve">
+    <value>Titel</value>
+  </data>
+  <data name="trimStylesheet" xml:space="preserve">
+    <value>Trim stylesheets</value>
+  </data>
+  <data name="trimStylesheetDescription" xml:space="preserve">
+    <value>Gør alle stylesheets i alle temaer mindre ved at fjerne mellemrum.</value>
+  </data>
+  <data name="uncategorized" xml:space="preserve">
+    <value>Ikke kategoriseret</value>
+  </data>
+  <data name="updateFrequenzy" xml:space="preserve">
+    <value>Opdateringsfrekvens (minutter)</value>
+  </data>
+  <data name="uploadFile" xml:space="preserve">
+    <value>Upload fil</value>
+  </data>
+  <data name="uploadImage" xml:space="preserve">
+    <value>Upload billede</value>
+  </data>
+  <data name="useBlogNameInPageTitles" xml:space="preserve">
+    <value>Benyt blog navn i sidetitler</value>
+  </data>
+  <data name="useBlogNameInPageTitlesDescription" xml:space="preserve">
+    <value>Tilføjer bloggens navn før titlen på de enkelte sider</value>
+  </data>
+  <data name="useRawHtmlEditor" xml:space="preserve">
+    <value>Brug kun ren HTML</value>
+  </data>
+  <data name="userName" xml:space="preserve">
+    <value>Brugernavn</value>
+  </data>
+  <data name="users" xml:space="preserve">
+    <value>Brugere</value>
+  </data>
+  <data name="website" xml:space="preserve">
+    <value>Website</value>
+  </data>
+  <data name="willShowGravatar" xml:space="preserve">
+    <value>Viser dit {0} icon</value>
+  </data>
+  <data name="wrote" xml:space="preserve">
+    <value>skrev</value>
+  </data>
+  <data name="youAlreadyRated" xml:space="preserve">
+    <value>Du har allerede givet point til denne post</value>
+  </data>
+  <data name="cancelReply" xml:space="preserve">
+    <value>Fortryd svar til kommentaren</value>
+  </data>
+  <data name="enableCommentNestingDescription" xml:space="preserve">
+    <value>Virker kun hvis det valgte tema understøtter det</value>
+  </data>
+  <data name="numberOfCharacters" xml:space="preserve">
+    <value>Antal bogstaver</value>
+  </data>
+  <data name="replyToThis" xml:space="preserve">
+    <value>Besvar</value>
+  </data>
+</root>

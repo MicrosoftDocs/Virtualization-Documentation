@@ -1,0 +1,88 @@
+﻿<div class="content-comments-filters-view" data-ng-controller="CommentFilterController">
+    <div class="modal fade" id="AddFilter" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" ng-click="focusInput=false" aria-hidden="true"><i class="fa fa-times"></i></button>
+                    <h4 class="modal-title">{{lbl.add_Entry}}</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>{{lbl.action}}</label>
+                        <select class="form-control" id="ddAction" name="ddAction">
+                            <option value="Block" selected="selected">Block</option>
+                            <option value="Allow">Allow</option>
+                            <option value="Delete">Delete</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>{{lbl.subject}}</label>
+                        <select class="form-control" id="ddSubject" name="ddSubject">
+                            <option value="IP" selected="selected">IP</option>
+                            <option value="Author">Author</option>
+                            <option value="Website">Website</option>
+                            <option value="Email">E-mail</option>
+                            <option value="Comment">Comment</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>{{lbl.theOperator}}</label>
+                        <select class="form-control" id="ddOperator" name="ddOperator">
+                            <option value="Equals" selected="selected">Equals</option>
+                            <option value="Contains">Contains</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>{{lbl.filter}}</label>
+                        <input type="text" class="form-control" id="txtFilter" maxlength="250" name="txtFilter">
+                    </div>
+                    <div class="modal-buttons">
+                        <button type="button" class="btn btn-success" data-ng-click="addFilter()">{{lbl.add}}</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="focusInput=false">{{lbl.cancel}}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="main-header clearfix">
+        <h2 class="page-title pull-left">{{lbl.filters}}</h2>
+        <button type="button" class="btn btn-default btn-sm btn-hasicon pull-left" onclick="window.history.back()"><i class="fa fa-angle-left"></i>{{lbl.back}}</button>
+        <button data-toggle="modal" data-target="#AddFilter" class="btn btn-hasicon btn-sm btn-success pull-left"><i class="fa fa-plus"></i>{{lbl.add}}</button>
+        <div class="btn-group pull-left">
+            <a ng-click="processChecked('delete')" ng-disabled="itemsChecked() === false" class="btn btn-sm btn-danger" angular-tooltip tooltip="lbl.doDelete"><i class="fa fa-trash"></i></a>
+            <a data-ng-click="deleteAll()" ng-disabled="itemsChecked() === false" class="btn btn-sm btn-danger" angular-tooltip tooltip="lbl.deleteAll"><i class="fa fa-times"></i></a>
+        </div>
+        <div class="search pull-right">
+            <i class="fa fa-search"></i>
+            <input type="text" ng-model="query" ng-change="search()" placeholder="{{lbl.search}}..." />
+        </div>
+    </div>
+    <div class="content-inner">
+        <table class="table table-item-filters">
+            <thead>
+                <tr>
+                    <th class="item-checkbox"><input type="checkbox" id="chkAll" data-ng-click="checkAll($event)" /></th>
+                    <th class="item-action">{{lbl.action}}</th>
+                    <th class="item-subject">{{lbl.subject}}</th>
+                    <th class="item-operator">{{lbl.theOperator}}</th>
+                    <th class="item-filter">{{lbl.filter}}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr data-ng-repeat="item in pagedItems[currentPage]">
+                    <td class="item-checkbox"><input type="checkbox" data-ng-model="item.IsChecked" /> </td>
+                    <td class="item-action"><span>{{item.Action}}</span></td>
+                    <td class="item-subject"><span>{{item.Subject}}</span></td>
+                    <td class="item-operator"><span>{{item.Operation}}</span></td>
+                    <td class="item-filter">{{item.Filter}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="table-item-empty" id="tr-spinner"><div id="div-spinner"><i class="fa fa-spinner fa-spin"></i></div></div>
+        <ul class="pagination" ng-if="items.length > itemsPerPage">
+            <li data-ng-class="{disabled: currentPage == 0}"><a data-ng-click="prevPage()" title="{{lbl.prev}}"><i class="fa fa-angle-left"></i></a></li>
+            <li data-ng-repeat="n in range(pagedItems.length)" data-ng-class="{active: n == currentPage}" data-ng-click="setPage()"><a data-ng-bind="n + 1">1</a></li>
+            <li data-ng-class="{disabled: currentPage == pagedItems.length - 1}"><a data-ng-click="nextPage()" title="{{lbl.next}}"><i class="fa fa-angle-right"></i></a></li>
+        </ul>
+    </div>
+</div>

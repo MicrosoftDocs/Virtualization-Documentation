@@ -1,0 +1,18 @@
+﻿<div data-ng-controller="ToolsController">
+    <div class="main-header clearfix">
+        <h2 class="page-title pull-left">Permissions</h2>
+    </div>
+    <div class="content-inner">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="well">
+                    <div class="alert alert-dismissable alert-info">
+                        <span>{{userIdentity}}</span>
+                        <button id="btnRun" class="btn btn-primary btn-small pull-right" style="margin-top: -7px" ng-click="check()" type="button">Check permissions</button>
+                    </div>
+                    <div id="msgList"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

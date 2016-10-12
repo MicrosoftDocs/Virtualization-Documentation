@@ -1,0 +1,576 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="add" xml:space="preserve">
+    <value>Pridať</value>
+  </data>
+  <data name="add_Entry" xml:space="preserve">
+    <value>Pridať záznam</value>
+  </data>
+  <data name="addComment" xml:space="preserve">
+    <value>Pridať komentár</value>
+  </data>
+  <data name="addCustomCodeToHeader" xml:space="preserve">
+    <value>Pridať vlastný kód do HTML hlavičky</value>
+  </data>
+  <data name="administrationPanel" xml:space="preserve">
+    <value>Ovládací panel</value>
+  </data>
+  <data name="advanced" xml:space="preserve">
+    <value>Pokročilé</value>
+  </data>
+  <data name="advancedSettings" xml:space="preserve">
+    <value>Pokročilé nastavenia</value>
+  </data>
+  <data name="alternateFeedUrl" xml:space="preserve">
+    <value>Alternatívny URL feed</value>
+  </data>
+  <data name="approve" xml:space="preserve">
+    <value>Schváliť</value>
+  </data>
+  <data name="approveallcomments" xml:space="preserve">
+    <value>Schváliť všetky poslané komentáre</value>
+  </data>
+  <data name="archive" xml:space="preserve">
+    <value>Archivovať</value>
+  </data>
+  <data name="areYouSure" xml:space="preserve">
+    <value>Ste si istý, že chcete {0} {1}?</value>
+  </data>
+  <data name="attachFile" xml:space="preserve">
+    <value>Pripojiť súbor</value>
+  </data>
+  <data name="author" xml:space="preserve">
+    <value>Autor</value>
+  </data>
+  <data name="avatars" xml:space="preserve">
+    <value>Avatary</value>
+  </data>
+  <data name="basic" xml:space="preserve">
+    <value>Základné</value>
+  </data>
+  <data name="beTheFirstToRate" xml:space="preserve">
+    <value>Ohodnoť post ako prvý</value>
+  </data>
+  <data name="blogMLDescription" xml:space="preserve">
+    <value>BlogEngine.NET používa BlogML formát exportu. Pre import je podporovaný BlogML a RSS.</value>
+  </data>
+  <data name="blogroll" xml:space="preserve">
+    <value>Blogroll</value>
+  </data>
+  <data name="buttonText" xml:space="preserve">
+    <value>Text tlačidla</value>
+  </data>
+  <data name="categories" xml:space="preserve">
+    <value>Kategórie</value>
+  </data>
+  <data name="category" xml:space="preserve">
+    <value>Kategória</value>
+  </data>
+  <data name="closeCommetsAfter" xml:space="preserve">
+    <value>Uzavrieť komentáre po</value>
+  </data>
+  <data name="combine" xml:space="preserve">
+    <value>Kombinácia</value>
+  </data>
+  <data name="comment" xml:space="preserve">
+    <value>Komentár</value>
+  </data>
+  <data name="commentLabelText" xml:space="preserve">
+    <value>Text popisu komentára</value>
+  </data>
+  <data name="comments" xml:space="preserve">
+    <value>Komentáre</value>
+  </data>
+  <data name="commentsAreClosed" xml:space="preserve">
+    <value>Komentáre sú uzavreté</value>
+  </data>
+  <data name="commentWasSaved" xml:space="preserve">
+    <value>Komentár bol uložený. Ďakujeme za príspevok.</value>
+  </data>
+  <data name="contact" xml:space="preserve">
+    <value>Kontakt</value>
+  </data>
+  <data name="contactForm" xml:space="preserve">
+    <value>Formulár kontaktu</value>
+  </data>
+  <data name="controls" xml:space="preserve">
+    <value>Prvky</value>
+  </data>
+  <data name="country" xml:space="preserve">
+    <value>Krajina</value>
+  </data>
+  <data name="createNewUser" xml:space="preserve">
+    <value>Vytvoriť nového uživateľa</value>
+  </data>
+  <data name="currentlyRated" xml:space="preserve">
+    <value>Aktuálne hodnotenie {0} od {1} užívateľov</value>
+  </data>
+  <data name="date" xml:space="preserve">
+    <value>Dátum</value>
+  </data>
+  <data name="defaultFeedOutput" xml:space="preserve">
+    <value>Základný feed vystup</value>
+  </data>
+  <data name="defaultTextShownInSearchField" xml:space="preserve">
+    <value>Text zobrazený vo vyhľadávacom poli</value>
+  </data>
+  <data name="delete" xml:space="preserve">
+    <value>Zmazať</value>
+  </data>
+  <data name="description" xml:space="preserve">
+    <value>Popis</value>
+  </data>
+  <data name="displayCommentsOnRecentPosts" xml:space="preserve">
+    <value>Zobraziť komentáre</value>
+  </data>
+  <data name="displayRatingsOnRecentPosts" xml:space="preserve">
+    <value>Zobraziť hodnotenie</value>
+  </data>
+  <data name="edit" xml:space="preserve">
+    <value>Editovať</value>
+  </data>
+  <data name="email" xml:space="preserve">
+    <value>E-mail</value>
+  </data>
+  <data name="emailAddress" xml:space="preserve">
+    <value>E-mailová adresa</value>
+  </data>
+  <data name="enableAttachments" xml:space="preserve">
+    <value>Povoliť prílohy</value>
+  </data>
+  <data name="enableComments" xml:space="preserve">
+    <value>Povoliť komentáre</value>
+  </data>
+  <data name="enableCommentsDescription" xml:space="preserve">
+    <value>Ak sú komentáre vypnuté, nikto nemôže pridať komentár k žiadnemu príspevku.</value>
+  </data>
+  <data name="enableCommentSearch" xml:space="preserve">
+    <value>Povoliť vyhľadávanie v komentároch</value>
+  </data>
+  <data name="enableCommentsModeration" xml:space="preserve">
+    <value>Moderovať komentáre</value>
+  </data>
+  <data name="enableGravatars" xml:space="preserve">
+    <value>Povoliť gravatary</value>
+  </data>
+  <data name="enableHttpCompression" xml:space="preserve">
+    <value>Povoliť HTTP kompresiu</value>
+  </data>
+  <data name="enableHttpCompressionDescription" xml:space="preserve">
+    <value>Zrýchlené nahrávanie stránok (odporučené)</value>
+  </data>
+  <data name="enableOpenSearch" xml:space="preserve">
+    <value>Povoliť OpenSearch</value>
+  </data>
+  <data name="enableOpenSearchDescription" xml:space="preserve">
+    <value>Vyhľadávanie vo všetkých nových prehliadačoch (odporučené)</value>
+  </data>
+  <data name="enableRating" xml:space="preserve">
+    <value>Povoliť hodnotenie príspevkov</value>
+  </data>
+  <data name="enableReferrerTracking" xml:space="preserve">
+    <value>Povoliť sledovanie referrerov</value>
+  </data>
+  <data name="enableSearchHighlight" xml:space="preserve">
+    <value>Povoliť zvýraznenie vyhladávania</value>
+  </data>
+  <data name="enableSearchHighlightDescription" xml:space="preserve">
+    <value>Zvýrazniť vyhľadané slová na stránke</value>
+  </data>
+  <data name="enableSsl" xml:space="preserve">
+    <value>Povoliť SSL</value>
+  </data>
+  <data name="endorsment" xml:space="preserve">
+    <value>Dodatok (bLink)</value>
+  </data>
+  <data name="enforce" xml:space="preserve">
+    <value>Vynútiť</value>
+  </data>
+  <data name="export" xml:space="preserve">
+    <value>Export</value>
+  </data>
+  <data name="formMessage" xml:space="preserve">
+    <value>Formulár správy</value>
+  </data>
+  <data name="goToFrontPage" xml:space="preserve">
+    <value>Úvodná stránka</value>
+  </data>
+  <data name="handleWwwSubdomain" xml:space="preserve">
+    <value>www subdomain policy</value>
+  </data>
+  <data name="home" xml:space="preserve">
+    <value>As used for linking to the front-page</value>
+  </data>
+  <data name="htmlHeadSection" xml:space="preserve">
+    <value>HTML hlavička</value>
+  </data>
+  <data name="ignore" xml:space="preserve">
+    <value>Ignorovať</value>
+  </data>
+  <data name="import" xml:space="preserve">
+    <value>Import</value>
+  </data>
+  <data name="isFrontPage" xml:space="preserve">
+    <value>Je úvodná stránka</value>
+  </data>
+  <data name="keywords" xml:space="preserve">
+    <value>Kľúčové slová</value>
+  </data>
+  <data name="language" xml:space="preserve">
+    <value>Jazyk</value>
+  </data>
+  <data name="languageCode" xml:space="preserve">
+    <value>Jazykový kód</value>
+  </data>
+  <data name="latitude" xml:space="preserve">
+    <value>Zemepisná šírka</value>
+  </data>
+  <data name="livePreview" xml:space="preserve">
+    <value>Live náhľad</value>
+  </data>
+  <data name="longtitude" xml:space="preserve">
+    <value>Zemepisná dĺžka</value>
+  </data>
+  <data name="maxLengthOfItems" xml:space="preserve">
+    <value>Max. dĺžka položiek</value>
+  </data>
+  <data name="message" xml:space="preserve">
+    <value>Správa</value>
+  </data>
+  <data name="monster" xml:space="preserve">
+    <value>Strašidlo</value>
+  </data>
+  <data name="more" xml:space="preserve">
+    <value>Viac</value>
+  </data>
+  <data name="name" xml:space="preserve">
+    <value>Meno</value>
+  </data>
+  <data name="none" xml:space="preserve">
+    <value>Nezobraziť</value>
+  </data>
+  <data name="noParent" xml:space="preserve">
+    <value>Bez rodiča</value>
+  </data>
+  <data name="notifyOnNewComments" xml:space="preserve">
+    <value>Upozorniť ma na nové komentáre</value>
+  </data>
+  <data name="notRatedYet" xml:space="preserve">
+    <value>Zatiaľ nehodnotené</value>
+  </data>
+  <data name="numberOfComments" xml:space="preserve">
+    <value>Počet komentárov</value>
+  </data>
+  <data name="numberOfDisplayedItems" xml:space="preserve">
+    <value># zobrazených položiek</value>
+  </data>
+  <data name="numberOfPosts" xml:space="preserve">
+    <value>Počet príspevkov</value>
+  </data>
+  <data name="page" xml:space="preserve">
+    <value>Strana</value>
+  </data>
+  <data name="pages" xml:space="preserve">
+    <value>Strany</value>
+  </data>
+  <data name="password" xml:space="preserve">
+    <value>Heslo</value>
+  </data>
+  <data name="portNumber" xml:space="preserve">
+    <value>Port</value>
+  </data>
+  <data name="portNumberDescription" xml:space="preserve">
+    <value>Port 25 je predvolený</value>
+  </data>
+  <data name="possibleSpam" xml:space="preserve">
+    <value>Možný spam</value>
+  </data>
+  <data name="post" xml:space="preserve">
+    <value>Príspevok</value>
+  </data>
+  <data name="postPerPage" xml:space="preserve">
+    <value>Príspevkov na stranu</value>
+  </data>
+  <data name="posts" xml:space="preserve">
+    <value>Príspevky</value>
+  </data>
+  <data name="postsPerFeed" xml:space="preserve">
+    <value>Príspevky vo feed-e</value>
+  </data>
+  <data name="publish" xml:space="preserve">
+    <value>Publikovať</value>
+  </data>
+  <data name="raters" xml:space="preserve">
+    <value>Hodnotitelia</value>
+  </data>
+  <data name="rating" xml:space="preserve">
+    <value>Hodnotenie</value>
+  </data>
+  <data name="recentComments" xml:space="preserve">
+    <value>Posledné komentáre</value>
+  </data>
+  <data name="recentPosts" xml:space="preserve">
+    <value>Posledné príspevky</value>
+  </data>
+  <data name="referrer" xml:space="preserve">
+    <value>Referrer</value>
+  </data>
+  <data name="referrers" xml:space="preserve">
+    <value>Referrer-ovia</value>
+  </data>
+  <data name="relatedPosts" xml:space="preserve">
+    <value>Podobné príspevky</value>
+  </data>
+  <data name="remove" xml:space="preserve">
+    <value>Odstrániť</value>
+  </data>
+  <data name="save" xml:space="preserve">
+    <value>Uložiť</value>
+  </data>
+  <data name="saveComment" xml:space="preserve">
+    <value>Uložiť komentár</value>
+  </data>
+  <data name="savePage" xml:space="preserve">
+    <value>Uložiť stránku</value>
+  </data>
+  <data name="savePost" xml:space="preserve">
+    <value>Uložiť príspevok</value>
+  </data>
+  <data name="saveSettings" xml:space="preserve">
+    <value>Uložiť nastavenia</value>
+  </data>
+  <data name="search" xml:space="preserve">
+    <value>Hľadať</value>
+  </data>
+  <data name="searchField" xml:space="preserve">
+    <value>Hľadať pole</value>
+  </data>
+  <data name="searchFieldText" xml:space="preserve">
+    <value>Hľadať text pola</value>
+  </data>
+  <data name="searchResultsFor" xml:space="preserve">
+    <value>Vysledka hľadania</value>
+  </data>
+  <data name="selectDay" xml:space="preserve">
+    <value>Vybrať deň</value>
+  </data>
+  <data name="selectParent" xml:space="preserve">
+    <value>Vybrať rodiča</value>
+  </data>
+  <data name="sendCommentEmail" xml:space="preserve">
+    <value>Poslať komentár e-mailom</value>
+  </data>
+  <data name="separateTagsWitComma" xml:space="preserve">
+    <value>Oddeliť každý tag čiarkou</value>
+  </data>
+  <data name="settings" xml:space="preserve">
+    <value>Nastavenia</value>
+  </data>
+  <data name="showCountryChooser" xml:space="preserve">
+    <value>Zobraz výber krajiny</value>
+  </data>
+  <data name="showCountryChooserDescription" xml:space="preserve">
+    <value>Ak nieje zobrazený výber krajiny, pri príspevkoch sa nebude zobrazovať vlajka.</value>
+  </data>
+  <data name="showEnableWebsiteInComments" xml:space="preserve">
+    <value>Need Translation:Enable Website in Comments</value>
+  </data>
+  <data name="showEnableWebsiteInCommentsDescription" xml:space="preserve">
+    <value>Need Translation:Choose whether to allow Website to be published in Comments</value>
+  </data>
+  <data name="showDescriptionInPostList" xml:space="preserve">
+    <value>Zobraziť len popis príspevkov</value>
+  </data>
+  <data name="showInList" xml:space="preserve">
+    <value>Zobraziť v zozname</value>
+  </data>
+  <data name="showLivePreview" xml:space="preserve">
+    <value>Zobraziť Live náhľad</value>
+  </data>
+  <data name="showRelatedPosts" xml:space="preserve">
+    <value>Zobraziť podobné príspevky</value>
+  </data>
+  <data name="subject" xml:space="preserve">
+    <value>Subjekt</value>
+  </data>
+  <data name="subscribe" xml:space="preserve">
+    <value>Odoberať</value>
+  </data>
+  <data name="thankYouMessage" xml:space="preserve">
+    <value>Ďakovná správa</value>
+  </data>
+  <data name="theComment" xml:space="preserve">
+    <value>Komentár</value>
+  </data>
+  <data name="theme" xml:space="preserve">
+    <value>Téma</value>
+  </data>
+  <data name="thePost" xml:space="preserve">
+    <value>Príspevok</value>
+  </data>
+  <data name="thereAreXDrafts" xml:space="preserve">
+    <value>Máte {0} nezverejnených príspevkov</value>
+  </data>
+  <data name="timeStampPostLinks" xml:space="preserve">
+    <value>Pridať dátum do odkazov k príspevku</value>
+  </data>
+  <data name="timezone" xml:space="preserve">
+    <value>Serverový čas</value>
+  </data>
+  <data name="title" xml:space="preserve">
+    <value>Titulok</value>
+  </data>
+  <data name="trimStylesheet" xml:space="preserve">
+    <value>Orezať štýly</value>
+  </data>
+  <data name="trimStylesheetDescription" xml:space="preserve">
+    <value>Zmenší štýly odstránením medzier za behu.</value>
+  </data>
+  <data name="unapprovedcomments" xml:space="preserve">
+    <value>Neschválený komentár</value>
+  </data>
+  <data name="updateFrequenzy" xml:space="preserve">
+    <value>Aktualizácia komentárov (v minutách)</value>
+  </data>
+  <data name="uploadFile" xml:space="preserve">
+    <value>Nahrať súbor</value>
+  </data>
+  <data name="uploadImage" xml:space="preserve">
+    <value>Nahrať obrázok</value>
+  </data>
+  <data name="userName" xml:space="preserve">
+    <value>Užívateľské meno</value>
+  </data>
+  <data name="users" xml:space="preserve">
+    <value>Užívatelia</value>
+  </data>
+  <data name="website" xml:space="preserve">
+    <value>Webstránka</value>
+  </data>
+  <data name="willShowGravatar" xml:space="preserve">
+    <value>Zobrazíme vašu {0} ikonu</value>
+  </data>
+  <data name="wrote" xml:space="preserve">
+    <value>Napísal</value>
+  </data>
+  <data name="youAlreadyRated" xml:space="preserve">
+    <value>Príspevok ste už hodnotili</value>
+  </data>
+</root>

@@ -1,0 +1,96 @@
+﻿<div class="custom-themes-gallery-view" data-ng-controller="CustomThemesController">
+    <div id="modal-info" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="focusInput=false"><i class="fa fa-times"></i></button>
+                    <h4 class="modal-title">{{package.Title}}</h4>
+                </div>
+                <div class="modal-body modal-package">
+                    <div class="modal-themes-info">
+                        <p class="item-desc" ng-bind-html="package.Description"></p>
+                        <div class="form-horizontal">
+                            <div class="form-group"><span class="col-sm-3 col-md-3">{{lbl.author}}</span><div class="col-sm-9 col-md-9"><span ng-bind-html="package.Authors"></span></div></div>
+                            <div class="form-group" ng-if="package.Website"><span class="col-sm-3 col-md-3">{{lbl.website}}</span> <div class="col-sm-9 col-md-9"><a href="{{package.Website}}" class="text-ellipsis" title="Author website" target="_blank">{{package.Website}}</a></div></div>
+                            <div class="form-group" ng-if="package.Tags"><span class="col-sm-3 col-md-3">{{lbl.tags}}</span> <div class="col-sm-9 col-md-9"><span ng-bind-html="package.Tags"></span></div></div>
+                            <div class="form-group" ng-if="package.LastUpdated"><span class="col-sm-3 col-md-3">{{lbl.date}}</span> <div class="col-sm-9 col-md-9"><span ng-bind-html="package.LastUpdated"></span></div></div>
+                            <div class="form-group" ng-if="package.DownloadCount"><span class="col-sm-3 col-md-3">{{lbl.downloads}}</span> <div class="col-sm-9 col-md-9">{{package.DownloadCount}}</div> </div>
+                        </div>
+                    </div>
+                    <div class="modal-package-image">
+                        <img ng-if="!package.PackageUrl" ng-src="{{package.IconUrl}}" alt="Package image" />
+                        <a ng-if="package.PackageUrl" href="{{package.PackageUrl}}" target="_blank"> <img class="pkg-img" ng-src="{{package.IconUrl}}" alt="Package image" /> </a>
+                    </div>
+                    <div class="modal-package-review" ng-if="package.Extra.Reviews != null && package.Extra.Reviews.length > 0">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <div class="panel-title">{{lbl.reviews}}</div>
+                            </div>
+                            <ul class="list-group">
+                                <li ng-repeat="review in package.Extra.Reviews" class="list-group-item">
+                                    <span class="badge">{{review.Rating}}</span>
+                                    <b>{{review.Name}}:</b> {{review.Body}}
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="main-header clearfix">
+        <h2 class="page-title pull-left">{{lbl.gallery}}</h2>
+        <button type="button" class="btn btn-default btn-sm btn-hasicon pull-left" onclick="window.history.back()"><i class="fa fa-angle-left"></i>{{lbl.back}}</button>
+        <button class="right-side-toggle pull-right"><span></span><span></span><span></span></button>
+        <div class="right-side pull-right">
+            <div class="search pull-right">
+                <i class="fa fa-search"></i>
+                <input type="text" ng-model="query" ng-change="search()" placeholder="{{lbl.search}}..." />
+            </div>
+            <div class="dropdown pull-right">
+                <button class="btn btn-default btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">{{lbl.mostDownloaded}}<i class="fa fa-angle-down"></i></button>
+                <ul class="dropdown-menu dropdown-menu-filter">
+                    <li><a id="fltr-new" data-value="New" ng-click="sortBy('LastUpdated')">{{lbl.latest}}</a></li>
+                    <li><a id="fltr-dwn" data-value="Downloads" ng-click="sortBy('DownloadCount')">{{lbl.mostDownloaded}}</a></li>
+                    <li><a id="fltr-pop" data-value="Popular" ng-click="sortBy('Rating')">{{lbl.highestRated}}</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="content-inner">
+        <div class="row">
+            <div data-ng-repeat="item in pagedItems[currentPage] | orderBy:sortingOrder:reverse" class="col-xs-6 col-md-6 col-lg-4">
+                <div class="gallery-item">
+                    <div class="item-details-left">
+                        <div class="item-img-box"><span><img ng-if="item.IconUrl === ''" src="../Content/images/blog/pkg.png" /> <img ng-if="item.IconUrl != ''" ng-src="{{item.IconUrl}}" /></span></div>
+                        <div class="item-buttons">
+                            <a ng-click="installPackage(item.Id)" class="btn btn-sm btn-default btn-left" angular-tooltip tooltip="lbl.download"><i class="fa fa-download"></i></a>
+                            <a href="" ng-click="showInfo(item.Id)" class="btn btn-sm btn-default btn-right" angular-tooltip tooltip="lbl.view"><i class="fa fa-info-circle"></i></a>
+                        </div>
+                    </div>
+                    <div class="item-details-right">
+                        <ul>
+                            <li>{{item.Title}}</li>
+                            <li>{{item.Authors}}</li>
+                            <li>{{item.DownloadCount}} {{lbl.download}}</li>
+                            <li>
+                                <span class="star-rating">
+                                    <input disabled="disabled" type="radio" name="{{item.Id}}" value="1" ng-checked="checkStar(1, item.Rating)"><i></i>
+                                    <input disabled="disabled" type="radio" name="{{item.Id}}" value="2" ng-checked="checkStar(2, item.Rating)"><i></i>
+                                    <input disabled="disabled" type="radio" name="{{item.Id}}" value="3" ng-checked="checkStar(3, item.Rating)"><i></i>
+                                    <input disabled="disabled" type="radio" name="{{item.Id}}" value="4" ng-checked="checkStar(4, item.Rating)"><i></i>
+                                    <input disabled="disabled" type="radio" name="{{item.Id}}" value="5" ng-checked="checkStar(5, item.Rating)"><i></i>
+                                </span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <ul class="pagination" ng-if="items.length > itemsPerPage">
+            <li data-ng-class="{disabled: currentPage == 0}"><a data-ng-click="prevPage()" title="{{lbl.prev}}"><i class="fa fa-angle-left"></i></a></li>
+            <li data-ng-repeat="n in range(pagedItems.length)" data-ng-class="{active: n == currentPage}" data-ng-click="setPage()"><a data-ng-bind="n + 1">1</a></li>
+            <li data-ng-class="{disabled: currentPage == pagedItems.length - 1}"><a data-ng-click="nextPage()" title="{{lbl.next}}"><i class="fa fa-angle-right"></i></a></li>
+        </ul>
+    </div>
+</div>

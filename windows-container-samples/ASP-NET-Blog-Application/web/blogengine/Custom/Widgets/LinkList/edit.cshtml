@@ -1,0 +1,157 @@
+﻿@using BlogEngine.NET.Custom.Widgets
+@{
+    // check if edit exists, no need to process
+    if (Request.HttpMethod == "HEAD") { return; }
+
+    var NumberOfLinks = 10;
+    var TitleAdd = "";
+    var LinkAdd = "";
+    var targetNew = false;
+    var hdnId = "";
+
+    var widgetId = Request.QueryString["id"];
+    var updateLink = BlogEngine.Core.Utils.RelativeWebRoot +
+        "Custom/Widgets/LinkList/edit.cshtml?id=" + widgetId;
+    var settings = Common.GetSettings(widgetId);
+    var linkList = new LinkList(widgetId);
+
+    Validation.Add("txtNumberOfLinks",
+        Validator.Required("Field is required"),
+        Validator.Integer("Field is numeric")
+    );
+
+    if (Request.Form["btnAdd"] != null || Request.Form["btnUpdate"] != null)
+    {
+        Validation.Add("txtTitle", Validator.Required("Field is required"));
+        Validation.Add("txtUrl", Validator.Required("Field is required"));
+    }
+
+    var delId = Request.QueryString["delid"];
+    if (!string.IsNullOrEmpty(delId))
+    {
+        linkList.RemoveLink(delId);
+    }
+    var editId = Request.QueryString["editid"];
+    if (!string.IsNullOrEmpty(editId))
+    {
+        var item = linkList.GetLinkById(editId);
+        TitleAdd = item.Title;
+        LinkAdd = item.Url;
+        targetNew = item.Target == "on" ? true : false;
+        hdnId = item.Id;
+    }
+
+    if (IsPost)
+    {
+        if (Validation.IsValid())
+        {
+            if (settings["numberoflinks"] != Request.Form["txtNumberOfLinks"])
+            {
+                settings["numberoflinks"] = Request.Form["txtNumberOfLinks"];
+                Common.SaveSettings(settings, widgetId);
+            }
+            if (Request.Form["btnAdd"] != null)
+            {
+                linkList.SaveLink("", Request.Form["txtTitle"], Request.Form["txtUrl"], Request.Form["cbTarget"]);
+            }
+            if (!string.IsNullOrEmpty(Request.Form["hdnId"]))
+            {
+                linkList.SaveLink(Request.Form["hdnId"], Request.Form["txtTitle"], Request.Form["txtUrl"], Request.Form["cbTarget"]);
+            }
+            @:
+            <script type="text/javascript">window.parent.toastr.success("Completed");</script>
+        }
+    }
+    if (settings != null && settings.Count > 0)
+    {
+        NumberOfLinks = int.Parse(settings["numberoflinks"]);
+    }
+    var links = linkList.GetLinks();
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="~/Content/bootstrap.min.css">
+    <link rel="stylesheet" href="~/Content/font-awesome.min.css">
+    <link rel="stylesheet" href="~/admin/themes/standard/css/styles.css">
+</head>
+<body class="widget-edit">
+    <div class="widget-edit-linklist">
+        <form method="post">
+            <div class="form-group">
+                <label>@Resources.labels.numberOfDisplayedItems</label>
+                <div class="input-group">
+                    <input type="text" class="form-control" id="txtNumberOfLinks" name="txtNumberOfLinks" value="@NumberOfLinks" />
+                    <div class="input-group-btn">
+                        <button type="submit" id="btnSave" name="btnSave" class="btn btn-success">@Resources.labels.save</button>
+                    </div>
+                </div>
+            </div>
+            @Html.ValidationMessage("txtNumberOfLinks")
+            <hr />
+            <div class="form-group">
+                <input placeholder="@Resources.labels.title" type="text" class="form-control" id="txtTitle" name="txtTitle" value="@TitleAdd" />
+                @Html.ValidationMessage("txtTitle")
+            </div>
+            <div class="form-group">
+                <input placeholder="@Resources.labels.websiteUrl" type="text" class="form-control" id="txtUrl" name="txtUrl" value="@LinkAdd" />
+                @Html.ValidationMessage("txtUrl")
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        @Html.CheckBox("cbTarget", targetNew) Open in new window
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        @if (!string.IsNullOrEmpty(editId))
+            {
+                            <button type="submit" id="btnUpdate" name="btnUpdate" formaction="@updateLink" class="btn btn-success">@Resources.labels.update</button>
+                        }
+                        else
+                        {
+                            <button type="submit" id="btnAdd" name="btnAdd" class="btn btn-success">@Resources.labels.addLink</button>
+                        }
+                    </div>
+                </div>
+            </div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th width="10%">&nbsp;</th>
+                        <th width="35%">@Resources.labels.title</th>
+                        <th width="35%">@Resources.labels.url</th>
+                        <th width="20%">@Resources.labels.newWindow</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var link in links)
+            {
+                        <tr>
+                            <td>
+                                <a href="?id=@widgetId&editid=@link.Id" title="@Resources.labels.edit"><i class="fa fa-pencil"></i></a> &nbsp;
+                                <a href="?id=@widgetId&delid=@link.Id" title="@Resources.labels.delete"><i class="fa fa-times"></i></a>
+                            </td>
+                            <td>@link.Title</td>
+                            <td>@link.Url</td>
+                            <td>
+                                @if (link.Target == "on")
+                                {
+                                    <i class="fa fa-check"></i>
+                                }
+                            </td>
+                        </tr>
+                    }
+                    @if (links.Count == 0)
+                    {
+                        <tr><td colspan="4">@Resources.labels.empty</td></tr>
+                    }
+                </tbody>
+            </table>
+            <input type="hidden" id="hdnId" name="hdnId" value="@hdnId" />
+        </form>
+  
+    </div>
+</body>
+</html>

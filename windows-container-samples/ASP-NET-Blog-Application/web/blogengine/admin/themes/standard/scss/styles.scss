@@ -1,0 +1,64 @@
+﻿/*
+
+    Author:     Farzin Seyfolahi - http://seyfolahi.net/
+    Version:    3.1
+     
+*/
+
+// Base
+@import "base/variables";
+@import "base/mixins";
+@import "base/reset";
+@import "base/base";
+@import "base/utilites";
+
+// Layout
+@import "layout/main"; 
+@import "layout/sidebar";
+@import "layout/header";
+
+// Modules
+@import "modules/buttons"; 
+@import "modules/forms";
+@import "modules/alerts";
+@import "modules/pagination";
+@import "modules/dropdown";
+@import "modules/tables";
+@import "modules/panels";
+@import "modules/modals";
+@import "modules/editors";
+@import "modules/filemanager";
+
+// Dashboard section
+@import "pages/dashboard/dashboard";
+
+// Content section
+@import "pages/content/posts"; 
+@import "pages/content/posts.new";
+@import "pages/content/comments";
+@import "pages/content/comments.filters";
+@import "pages/content/pages";
+@import "pages/content/pages.new";
+@import "pages/content/categories";
+@import "pages/content/tags";
+
+// Custom section
+@import "pages/custom/themes";
+@import "pages/custom/themes.gallery";
+@import "pages/custom/plugins";
+@import "pages/custom/plugins.gallery";
+@import "pages/custom/widgets";
+
+// Security Section
+@import "pages/security/profile";
+@import "pages/security/roles";
+@import "pages/security/users";
+
+// Settings Section
+@import "pages/settings/settings";
+
+// About Section
+@import "pages/about/about";
+
+// RTL direction
+@import "rtl/rtl";

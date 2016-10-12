@@ -1,0 +1,16 @@
+﻿@{
+    var cloud = new BlogEngine.Core.Data.Services.TagCloud();
+    var tags = cloud.Links();
+}
+<link href="wlw.css" rel="stylesheet" type="text/css" />
+<div>
+    <h1>Tags</h1>
+    <div class="widget-content">
+        <ul id="tagcloud" class="tagcloud">
+            @foreach (var tag in tags)
+            {
+                <li>@Html.Raw(tag)</li>
+            }
+        </ul>
+    </div>
+</div>

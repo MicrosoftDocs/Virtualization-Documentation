@@ -1,0 +1,29 @@
+﻿.dropdown {
+    .dropdown-toggle {
+        padding-right: $btn-size-default / 2;
+        padding-left: $btn-size-default + ($btn-size-default / 2) - 2.5px;
+
+        &.btn-sm {
+            padding-right: $btn-size-sm / 2;
+            padding-left: $btn-size-sm + ($btn-size-sm / 2) - 2px;
+        }
+
+        &.btn-lg {
+            padding-right: $btn-size-lg / 2;
+            padding-left: $btn-size-lg + ($btn-size-lg / 2) - 4px;
+        }
+
+        i {
+            border-left: none;
+            border-right: 1px solid rgba(0, 0, 0, 0.10);
+            right: auto;
+            left: -1px;
+        }
+    }
+
+    .dropdown-menu {
+        left: 0 !important;
+        right: auto;
+        text-align:right;
+    }
+}

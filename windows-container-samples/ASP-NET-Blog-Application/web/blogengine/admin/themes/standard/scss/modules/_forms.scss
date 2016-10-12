@@ -1,0 +1,83 @@
+﻿// form-group
+.form-group {
+    margin-bottom: 20px;
+
+    > label.error {
+        color: $color-danger !important;
+        font-weight: bold;
+        font-size: 12px;
+    }
+}
+
+// form-controls
+.form-control {
+    border-color: #ddd;
+    @include box-shadow(0 1px 0 #eee !important);
+    @include border-radius(3px);
+    font-weight: $font-weight-normal;
+    font-size: 14px;
+    height: 40px;
+    padding-left: 10px;
+    color: #444;
+
+    &:focus {
+        border-color: #c5c5c5;
+        outline: none;
+    }
+}
+.ltr-form-control{
+    direction:ltr;
+}
+
+input[type=text],
+input[type=password],
+input[type=email],
+textarea {
+    -webkit-appearance: none;
+}
+
+
+// checkbox
+input[type=checkbox],
+input[type=radio] {
+    margin: 0;
+    padding: 0;
+    position: relative;
+    top: 2px;
+}
+
+.checkbox input[type=checkbox],
+.radio input[type=radio] {
+    top: 3px;
+}
+
+// input file
+.input-file-hidden {
+    width: 1px;
+    height: 1px;
+    display: none;
+    visibility: hidden;
+    opacity: 0;
+    overflow: hidden;
+}
+
+//
+.form-content {
+    width: 520px;
+    max-width: 100%;
+}
+
+// tooltip
+.tooltip-inner {
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 10px;
+    @include border-radius(2px);
+    padding-top: 4px;
+}
+
+@media screen and (max-width:1024px) {
+    .form-content {
+        padding:0px;
+    }
+}

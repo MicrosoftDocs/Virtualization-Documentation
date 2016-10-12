@@ -1,0 +1,86 @@
+﻿<div class="security-users-view" data-ng-controller="UsersController">
+    <form id="form" action="">
+        <div id="modal-user-edit" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="focusInput=false"><i class="fa fa-times"></i></button>
+                        <h4 class="modal-title">{{editItem.UserName ? editItem.UserName : lbl.addNewUser}}</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div id="frm-user-edit">
+                            <div class="form-group">
+                                <label for="txtUserName">{{lbl.name}}</label>
+                                <input type="text" id="txtUserName" name="txtUserName" class="form-control" data-ng-model="editItem.UserName" focus-me="focusInput" ng-disabled="!isNewItem" />
+                            </div>
+                            <div class="form-group">
+                                <label for="txtEmail">{{lbl.email}}</label>
+                                <input type="text" id="txtEmail" name="txtEmail" class="form-control ltr-dir" data-ng-model="editItem.Email" />
+                            </div>
+                            <div class="form-group" data-ng-if="isNewItem">
+                                <label for="txtPassword">{{lbl.password}}</label>
+                                <input type="password" class="form-control ltr-dir" id="txtPassword" name="txtPassword" data-ng-model="editItem.Password" />
+                            </div>
+                            <div class="form-group" data-ng-if="isNewItem">
+                                <label for="txtConfirmPassword">{{lbl.confirmPassword}}</label>
+                                <input type="password" class="form-control ltr-dir" id="txtConfirmPassword" name="txtConfirmPassword" />
+                            </div>
+                            <div class="form-group" data-ng-if="isNewItem">
+                                <label>{{lbl.roles}}</label>
+                                <div class="checkbox" data-ng-repeat="role in roles">
+                                    <label>
+                                        <input type="checkbox" data-ng-model="role.IsChecked" /> {{role.RoleName}}
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-buttons">
+                            <button type="button" data-ng-click="saveUser()" class="btn btn-success">{{lbl.save}}</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="focusInput=false">{{lbl.cancel}}</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="main-header clearfix">
+            <h2 class="page-title pull-left">{{lbl.users}}</h2>
+            <button data-ng-click="loadEditForm()" class="btn btn-success btn-sm btn-hasicon pull-left" type="button"><i class="fa fa-plus"></i>{{lbl.theNew}}</button>
+            <div class="btn-group pull-left">
+                <button data-ng-click="processChecked('delete')" ng-disabled="itemsChecked() === false" class="btn btn-sm btn-danger" title="{{lbl.doDelete}}"><i class="fa fa-trash"></i></button>
+            </div>
+            <button class="right-side-toggle pull-right"><span></span><span></span><span></span></button>
+            <div class="right-side pull-right">
+                <div class="search pull-right">
+                    <i class="fa fa-search"></i>
+                    <input type="text" ng-model="query" ng-change="search()" placeholder="{{lbl.search}}..." />
+                </div>
+            </div>
+        </div>
+        <div class="content-inner">
+            <table class="table table-item-users">
+                <thead>
+                    <tr>
+                        <th class="item-checkbox"><input type="checkbox" id="chkAll" data-ng-click="checkAll($event)" /></th>
+                        <th class="item-title"><a data-ng-click="sort_by('UserName',$event)">{{lbl.title}}</a></th>
+                        <th class="item-roles">{{lbl.roles}}</th>
+                        <th class="item-email">{{lbl.email}}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr data-ng-repeat="item in pagedItems[currentPage] | orderBy:sortingOrder:reverse">
+                        <td class="item-checkbox"><input type="checkbox" id="cb-{{item.UserName}}" data-ng-model="item.IsChecked" /> </td>
+                        <td class="item-title"><a title="click to edit" href="" ng-click="loadEditForm(item.UserName)">{{item.UserName}}</a></td>
+                        <td class="item-roles"><span ng-repeat="r in item.Roles"> <a href="{{SiteVars.RelativeWebRoot}}admin/#/users/roles?id={{r.RoleName}}">{{r.RoleName}}</a> </span> </td>
+                        <td class="item-email"><span class="text-ellipsis"><a href="mailto:{{item.Email}}">{{item.Email}}</a></span></td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="table-item-empty" id="tr-spinner"><div id="div-spinner"><i class="fa fa-spinner fa-spin"></i></div></div>
+            <ul class="pagination" ng-if="items.length > itemsPerPage">
+                <li data-ng-class="{disabled: currentPage == 0}"><a data-ng-click="prevPage()" title="{{lbl.prev}}"><i class="fa fa-angle-left"></i></a></li>
+                <li data-ng-repeat="n in range(pagedItems.length)" data-ng-class="{active: n == currentPage}" data-ng-click="setPage()"><a data-ng-bind="n + 1">1</a></li>
+                <li data-ng-class="{disabled: currentPage == pagedItems.length - 1}"><a data-ng-click="nextPage()" title="{{lbl.next}}"><i class="fa fa-angle-right"></i></a></li>
+            </ul>
+        </div>
+    </form>
+</div>

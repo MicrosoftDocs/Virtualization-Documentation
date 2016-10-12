@@ -1,0 +1,142 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rights>
+  <right name="None" />
+  <right name="ViewDetailedErrorMessages">
+    <role name="Administrators" />
+  </right>
+  <right name="ViewDashboard">
+    <role name="Administrators" />
+  </right>
+  <right name="AccessAdminPages">
+    <role name="Administrators" />
+    <role name="Editors" />
+  </right>
+  <right name="AccessAdminSettingsPages">
+    <role name="Administrators" />
+  </right>
+  <right name="ViewPublicComments">
+    <role name="Administrators" />
+    <role name="Anonymous" />
+    <role name="Editors" />
+  </right>
+  <right name="ViewUnmoderatedComments">
+    <role name="Administrators" />
+    <role name="Editors" />
+  </right>
+  <right name="CreateComments">
+    <role name="Administrators" />
+    <role name="Anonymous" />
+    <role name="Editors" />
+  </right>
+  <right name="ModerateComments">
+    <role name="Administrators" />
+    <role name="Editors" />
+  </right>
+  <right name="ViewPublicPosts">
+    <role name="Administrators" />
+    <role name="Anonymous" />
+    <role name="Editors" />
+  </right>
+  <right name="ViewUnpublishedPosts">
+    <role name="Administrators" />
+    <role name="Editors" />
+  </right>
+  <right name="CreateNewPosts">
+    <role name="Administrators" />
+    <role name="Editors" />
+  </right>
+  <right name="EditOwnPosts">
+    <role name="Administrators" />
+    <role name="Editors" />
+  </right>
+  <right name="EditOtherUsersPosts">
+    <role name="Administrators" />
+  </right>
+  <right name="DeleteOwnPosts">
+    <role name="Administrators" />
+    <role name="Editors" />
+  </right>
+  <right name="DeleteOtherUsersPosts">
+    <role name="Administrators" />
+  </right>
+  <right name="PublishOwnPosts">
+    <role name="Administrators" />
+    <role name="Editors" />
+  </right>
+  <right name="PublishOtherUsersPosts">
+    <role name="Administrators" />
+  </right>
+  <right name="ViewPublicPages">
+    <role name="Administrators" />
+    <role name="Anonymous" />
+    <role name="Editors" />
+  </right>
+  <right name="ViewUnpublishedPages">
+    <role name="Administrators" />
+    <role name="Editors" />
+  </right>
+  <right name="CreateNewPages">
+    <role name="Administrators" />
+    <role name="Editors" />
+  </right>
+  <right name="EditOwnPages">
+    <role name="Administrators" />
+    <role name="Editors" />
+  </right>
+  <right name="ViewRatingsOnPosts">
+    <role name="Administrators" />
+    <role name="Anonymous" />
+    <role name="Editors" />
+  </right>
+  <right name="SubmitRatingsOnPosts">
+    <role name="Administrators" />
+    <role name="Anonymous" />
+    <role name="Editors" />
+  </right>
+  <right name="ViewRoles">
+    <role name="Administrators" />
+  </right>
+  <right name="CreateNewRoles">
+    <role name="Administrators" />
+  </right>
+  <right name="EditRoles">
+    <role name="Administrators" />
+  </right>
+  <right name="DeleteRoles">
+    <role name="Administrators" />
+  </right>
+  <right name="EditOwnRoles">
+    <role name="Administrators" />
+  </right>
+  <right name="EditOtherUsersRoles">
+    <role name="Administrators" />
+  </right>
+  <right name="CreateNewUsers">
+    <role name="Administrators" />
+  </right>
+  <right name="DeleteUserSelf">
+    <role name="Administrators" />
+  </right>
+  <right name="DeleteUsersOtherThanSelf">
+    <role name="Administrators" />
+  </right>
+  <right name="EditOwnUser">
+    <role name="Administrators" />
+    <role name="Editors" />
+  </right>
+  <right name="EditOtherUsers">
+    <role name="Administrators" />
+  </right>
+  <right name="ManageExtensions">
+    <role name="Administrators" />
+  </right>
+  <right name="ManageWidgets">
+    <role name="Administrators" />
+  </right>
+  <right name="ManageThemes">
+    <role name="Administrators" />
+  </right>
+  <right name="ManagePackages">
+    <role name="Administrators" />
+  </right>
+</rights>

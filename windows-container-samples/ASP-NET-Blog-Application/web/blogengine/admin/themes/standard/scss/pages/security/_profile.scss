@@ -1,0 +1,117 @@
+﻿.security-profile-view {
+    .profile-info {
+        margin-bottom: 10px;
+
+        .profile-info-img {
+            border-radius: 100%;
+            margin-right: 20px;
+            max-width: 100px;
+        }
+
+        .profile-info-title {
+            padding-top: 14px;
+            font-size: 18px;
+            margin-bottom: 3px;
+            color: #000;
+        }
+
+        .profile-info-role {
+            color: #888;
+            margin-bottom: 3px;
+        }
+
+        .btn-link-picture {
+            display: inline-block;
+            font-size: 10px;
+            cursor: pointer;
+            margin-right: 5px;
+            text-transform: uppercase;
+            color: #888;
+        }
+
+        .btn-link-picture-change:hover {
+            color: $color-success;
+        }
+
+        .btn-link-picture-remove:hover {
+            color: $color-danger;
+        }
+    }
+
+    .panel-custom-fields {
+
+        .panel-heading {
+            .panel-title {
+                font-weight: $font-weight-normal;
+            }
+
+            .btn {
+                margin-top: 8px;
+            }
+        }
+
+        .list-group {
+            .list-group-item {
+                position: relative;
+                padding-left: 140px;
+                padding-right: 50px;
+
+                .form-control {
+                    height: 30px;
+                }
+
+                .field-name {
+                    position: absolute;
+                    top: 10px;
+                    left: 0;
+                    padding: 0 10px;
+                    line-height: 30px;
+                    height: 30px;
+                    width: 120px;
+                    overflow: hidden;
+                }
+
+                .field-remove {
+                    position: absolute;
+                    top: 10px;
+                    right: 5px;
+                    border: none;
+                    background: none;
+                    color: $color-danger;
+                    font-size: 16px;
+                    width: 30px;
+                    height: 30px;
+                    outline: none;
+                }
+            }
+        }
+    }
+
+
+    @media screen and (max-width:639px) {
+        .main-header {
+            .btn-default{
+                display:none;
+            } 
+        }
+
+        .profile-info {
+            text-align:center;
+            .profile-info-img {
+                float:none !important;
+                text-align:center;
+                width:100%;
+                display:block;
+                margin:0 auto;
+            }
+           .profile-info-role{
+               margin-bottom:20px;
+           }
+           .btn-link-picture{
+               border:1px solid #ccc;
+               background:#fff;
+               padding:5px 5px 4px;
+           }
+        }
+    }
+}

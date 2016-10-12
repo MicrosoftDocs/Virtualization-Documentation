@@ -1,0 +1,30 @@
+﻿@using BlogEngine.NET.Custom.Widgets
+@{
+    var title = Model.Title;
+    var mList = new MonthList();
+    var years = mList.GetList();
+    var cnt = 0;
+    var cls = "open";
+}
+<div class="widget monthlist">
+    <h4 class="widget-header">@title</h4>
+    <div class="widget-content">
+        <ul id="monthList">
+            @foreach (KeyValuePair<int, List<MonthItem>> y in years)
+            {
+            var yId = "year" + @y.Key;
+            var tgl = "BlogEngine.toggleMonth('" + yId + "')";
+            cnt = cnt + 1;
+            cls = cnt > 1 ? "close" : "open";
+            <li onclick="@tgl" class="year">@y.Key
+                <ul id="@yId" class="@cls">
+                    @foreach (var item in y.Value)
+                    {
+                    <li><a href="@item.Url/default">@item.Title</a> (@item.Count)</li>
+                    }
+                </ul>
+            </li>
+            }
+        </ul>
+    </div>
+</div>

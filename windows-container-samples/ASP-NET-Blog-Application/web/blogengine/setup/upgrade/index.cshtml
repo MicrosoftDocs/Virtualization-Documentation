@@ -1,0 +1,103 @@
+﻿@using BlogEngine.Core
+@{
+    if (!Security.IsAuthorizedTo(Rights.AccessAdminPages))
+    {
+        Security.RedirectForUnauthorizedRequest();
+    }
+    var curVersion = BlogSettings.Instance.Version();
+    var iCurVersion = int.Parse(curVersion.Replace(".", ""));
+}
+<html>
+<head>
+    <title>@BlogSettings.Instance.Name (@Security.CurrentMembershipUser.UserName)</title>
+    <link rel="shortcut icon" href="@Href(Utils.ApplicationRelativeWebRoot + "Content/images/blog/blogengine.ico")" type="image/x-icon" />
+    <meta charset="utf-8" />
+    <link href="~/setup/upgrade/bootstrap.min.css" rel="stylesheet" />
+    <script src="~/setup/upgrade/jquery-2.0.3.min.js"></script>
+    <script src="~/setup/upgrade/bootstrap.min.js"></script>
+    <script src="~/setup/upgrade/Updater.js"></script>
+    <script type="text/javascript">
+        var AppRoot = '@Utils.ApplicationRelativeWebRoot'
+        var CurrentVersion = '@curVersion'
+    </script>
+    <style>
+        .container {
+            max-width: 768px;
+        }
+        .upgrade {
+            margin-bottom:30px;
+        }
+        .nu-up {
+            border:1px solid #0077b4;
+            background-color:#fff;
+            width:24px;
+            line-height:22px;
+            text-align:center;
+            height:24px;
+            display:inline-block;
+            border-radius:100px;
+            margin-right:10px;
+        }
+
+        .alert-success .nu-up {
+            border-color: transparent;
+            background-color: #008232;
+            color:#fff;
+        }
+    </style>
+</head>
+<body>
+    <script type="text/javascript" src="admin.res.axd"></script>
+    <div class="container upgrade">
+        <div class="page-header clearfix">
+            <h2 class="page-title text-center">BlogEngine.NET : upgrade from @curVersion to <span id="spnNewVersion"></span></h2>
+        </div>
+        <div id="msg-warning" class="alert alert-dismissable alert-danger">
+            <h4 style="margin-left: 26px">Before you begin</h4>
+            <ul>
+                <li>Make sure you backup your site before upgrade</li>
+                <li>It is recommended to run upgrade on secondary IIS and then move upgraded site to production</li>
+            </ul>
+        </div>
+        <div class="alert alert-dismissable alert-info">
+            <span>Identity: @System.Security.Principal.WindowsIdentity.GetCurrent().Name</span>
+            <button id="btnCheck" class="btn btn-primary btn-small pull-right" style="margin-top: -7px" onclick="CheckPermissions()" type="button">Check permissions</button>
+        </div>
+        <div id="msgList"></div>
+        <div id="frm">
+            <div id="step1" class="alert alert-dismissable alert-info">
+                <strong><span class="nu-up">1</span>  Download latest version (depending on your connection, might take a while)</strong>
+                <img id="spin1" src="~/setup/upgrade/spinner.gif" class="pull-right" />
+            </div>
+            <div id="step2" class="alert alert-dismissable alert-info">
+                <strong><span class="nu-up">2</span> Extract downloaded files</strong>
+                <img id="spin2" src="~/setup/upgrade/spinner.gif" class="pull-right" />
+            </div>
+            <div id="step3" class="alert alert-dismissable alert-info">
+                <strong><span class="nu-up">3</span> Backup current version</strong>
+                <img id="spin3" src="~/setup/upgrade/spinner.gif" class="pull-right" />
+            </div>
+            <div id="step4" class="alert alert-dismissable alert-info">
+                <strong><span class="nu-up">4</span> Replace old files with new version</strong>
+                <img id="spin4" src="~/setup/upgrade/spinner.gif" class="pull-right" />
+            </div>
+            <div id="step5" class="alert alert-dismissable alert-info">
+                <strong><span class="nu-up">5</span> Configuration and cleanup</strong>
+                <img id="spin5" src="~/setup/upgrade/spinner.gif" class="pull-right" />
+            </div>
+            <div id="step9" class="alert alert-dismissable alert-danger">
+                <strong>There was error during upgrade. Rolling back.</strong>
+                <img id="spin9" src="~/setup/upgrade/spinner.gif" style="float: right" />
+            </div>
+            <div id="msg-success" class="alert alert-dismissable alert-success text-center">
+                <h4>Congratulations, your blog has been upgraded!</h4>
+                <p>You might need to refresh browser cache for changes to show up (Ctrl+F5)</p>
+            </div>
+        </div>
+        <div class="text-center">
+            <button id="btnBack" class="btn btn-default" onclick="window.location.assign(AppRoot + 'admin/index.cshtml')" type="button">Return to dashboard</button>
+            <button id="btnRun" class="btn btn-success" onclick="upgrade()" type="button">Upgrade</button>
+        </div>
+    </div>
+</body>
+</html>

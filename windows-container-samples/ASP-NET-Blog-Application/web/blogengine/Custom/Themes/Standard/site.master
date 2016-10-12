@@ -1,0 +1,110 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" %>
+
+<%@ Import Namespace="BlogEngine.Core" %>
+<%
+    Page.Header.DataBind();
+
+    //TO fix the bug related TO Perisan Culture
+    if (System.Threading.Thread.CurrentThread.CurrentCulture.LCID == 1065)
+        System.Threading.Thread.CurrentThread.CurrentCulture = new PersianCulture();
+    // for supported of RTL languages
+    if (Resources.labels.LangDirection.Equals("rtl", StringComparison.OrdinalIgnoreCase))
+    {
+        var lc = new LiteralControl("<link href=\"" + Utils.RelativeWebRoot + "Custom/Themes/Standard/css/rtl.css\" rel=\"stylesheet\" />");
+        HeadContent.Controls.Add(lc);
+    }
+
+    if (Security.IsAuthenticated)
+    {
+        aLogin.InnerText = Resources.labels.admin;
+        aLogin.HRef = Utils.RelativeWebRoot + "admin/";
+    }
+    else
+    {
+        aLogin.HRef = Utils.RelativeWebRoot + "Account/login.aspx";
+        aLogin.InnerText = Resources.labels.login;
+    }
+%>
+<!DOCTYPE html>
+<html lang="en">
+<head runat="server">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700' rel='stylesheet' type='text/css'>
+    <link href="css/styles.css" rel="stylesheet" />
+    <link rel="shortcut icon" href="~/Content/images/blog/blogengine.ico" type="image/x-icon" />
+    <link href="~/scripts/syntaxhighlighter/styles/shCore.css" rel="stylesheet" type="text/css" />
+    <link href="~/scripts/syntaxhighlighter/styles/shThemeDefault.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="<%# Utils.ApplicationRelativeWebRoot %>scripts/syntaxhighlighter/scripts/XRegExp.js"></script>
+    <script type="text/javascript" src="<%# Utils.ApplicationRelativeWebRoot %>scripts/syntaxhighlighter/scripts/shCore.js"></script>
+    <script type="text/javascript" src="<%# Utils.ApplicationRelativeWebRoot %>scripts/syntaxhighlighter/scripts/shAutoloader.js"></script>
+    <script type="text/javascript" src="<%# Utils.ApplicationRelativeWebRoot %>scripts/syntaxhighlighter/shActivator.js"></script>
+    <asp:ContentPlaceHolder ID="HeadContent" runat="server"></asp:ContentPlaceHolder>
+</head>
+<body class="<%=Resources.labels.LangDirection %>">
+    <form runat="Server">
+        <div class="wrapper">
+            <header class="header text-uppercase">
+                <div class="container">
+                    <div class="header-title float-left">
+                        <h1><a href="<%=Utils.AbsoluteWebRoot %>"><%=BlogSettings.Instance.Name %></a></h1>
+                        <p><%=BlogSettings.Instance.Description %></p>
+                    </div>
+                    <nav class="header-nav float-right">
+                        <ul>
+                            <li><a href="<%=Utils.AbsoluteWebRoot %>"><%=Resources.labels.home %></a></li>
+                            <li><a href="<%=Utils.AbsoluteWebRoot %>archive<%= BlogConfig.FileExtension %>"><%=Resources.labels.archive %></a></li>
+                            <li><a href="<%=Utils.AbsoluteWebRoot %>contact<%= BlogConfig.FileExtension %>"><%=Resources.labels.contact %></a></li>
+                            <li class="login-link"><a runat="server" id="aLogin"></a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </header>
+            <div class="container">
+                <div class="content-wrapper float-left">
+                    <blog:SearchOnSearch ID="SearchOnSearch1" runat="server" MaxResults="3" Headline="You searched for" Text="Here are some results for the search term on this website" />
+                    <asp:ContentPlaceHolder ID="cphBody" runat="server" />
+                </div>
+                <aside class="sidebar-wrapper float-right">
+                    <blog:WidgetZone ID="WidgetZone1" runat="server" ZoneName="be_WIDGET_ZONE" />
+                </aside>
+            </div>
+        </div>
+        <footer class="footer">
+            <div class="container">
+                <p class="copyright float-left">
+                    <span>Copyright &copy; <%=DateTime.Now.Year %> - <a href="<%=Utils.AbsoluteWebRoot %>"><%=BlogSettings.Instance.Name %></a></span>
+                    <span>Powered by <a href="http://dotnetblogengine.net" target="_blank" title="BlogEgine.NET <%=BlogSettings.Instance.Version() %>">BlogEngine.NET</a> </span>
+                </p>
+                <ul class="float-right list-unstyled social-network">
+                    <li><a href="[CUSTOMFIELD|THEME|Standard|Facebook Account|/]" rel="external nofollow"><i class="icon-facebook"></i></a></li>
+                    <li><a href="[CUSTOMFIELD|THEME|Standard|Twitter Account|/]" rel="external nofollow"><i class="icon-twitter"></i></a></li>
+                    <li><a href="[CUSTOMFIELD|THEME|Standard|Google Plus Account|/]" rel="external nofollow"><i class="icon-gplus"></i></a></li>
+                    <li><a href="[CUSTOMFIELD|THEME|Standard|Linkedin Account|/]" rel="external nofollow"><i class="icon-linkedin"></i></a></li>
+                    <li><a href="[CUSTOMFIELD|THEME|Standard|RSS Link|/syndication.axd/]" rel="external nofollow"><i class="icon-rss"></i></a></li>
+                    <li><a href="[CUSTOMFIELD|THEME|Standard|Instagramm Account|/]" rel="external nofollow"><i class="icon-instagramm"></i></a></li>
+                    <li><a href="[CUSTOMFIELD|THEME|Standard|Pinterest Account|/]" rel="external nofollow"><i class="icon-pinterest-circled"></i></a></li>
+                    <li><a href="[CUSTOMFIELD|THEME|Standard|Soundcloud Account|/]" rel="external nofollow"><i class="icon-soundcloud"></i></a></li>
+                    <li><a href="[CUSTOMFIELD|THEME|Standard|Youtube Account|/]" rel="external nofollow"><i class="icon-youtube"></i></a></li>
+                    <li><a href="[CUSTOMFIELD|THEME|Standard|Github Account|/]" rel="external nofollow"><i class="icon-git"></i></a></li>
+                </ul>
+            </div>
+        </footer>
+    </form>
+    <script>
+        // Social networks
+        var socialNetwork = $(".social-network li a");
+        for (i = 0; i < socialNetwork.length; ++i) {
+            link = socialNetwork[i];
+            if (link.href == "" || link.href == window.location) {
+                link.parentNode.style.display = "none";
+            }
+        }
+
+        // Admin menu
+        var loginLink = $(".login-link a").attr("href");
+        if (loginLink == "/admin/") {
+            $(".header-nav ul").append('<li><a href="<%=Utils.AbsoluteWebRoot %>Account/login.aspx?logoff">Logoff</a></li>');
+        }
+    </script>
+</body>
+</html>

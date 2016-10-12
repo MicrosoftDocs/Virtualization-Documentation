@@ -1,0 +1,58 @@
+﻿@using BlogEngine.NET.Custom.Widgets
+@{
+    var widgetId = Request.QueryString["id"];
+    var settings = Common.GetSettings(widgetId);
+    var txt = "<p>Type here...</p>";
+
+    if (IsPost)
+    {
+        settings["content"] = Request.Form["txtContent"];
+        Common.SaveSettings(settings, widgetId);
+    }
+    if (settings != null && settings.Count > 0)
+    {
+        txt = HttpUtility.HtmlDecode(settings["content"]);
+    }
+}
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="~/Content/bootstrap.min.css">
+    <link rel="stylesheet" href="~/admin/themes/standard/css/styles.css">
+    <style>
+        .mce-floatpanel { left: 0 !important; top: 0 !important; }
+        .mce-textbox { width: 85% !important; }
+        .mce-widget.mce-btn.mce-primary { left: 20px !important; }
+        .mce-widget.mce-btn.mce-abs-layout-item.mce-last { left: 80px !important; }
+    </style>
+    <script src="~/admin/editors/tinymce/tinymce.min.js"></script>
+    <script>
+        tinymce.init({
+            selector: '#txtContent',
+            plugins: [
+                "advlist autolink lists link image charmap print preview anchor",
+                "searchreplace visualblocks code fullscreen textcolor imagetools",
+                "insertdatetime media table contextmenu paste"
+            ],
+            toolbar: "styleselect | bold underline italic | bullist numlist | forecolor backcolor | link code",
+            autosave_ask_before_unload: false,
+            max_height: 400,
+            min_height: 100,
+            height: 195,
+            menubar: false,
+            relative_urls: false,
+            browser_spellcheck: true,
+            paste_data_images: true,
+            encoding: 'xml'
+        });
+    </script>
+</head>
+<body class="widget-edit">
+    <form method="post">
+        <textarea style="opacity:0; height:400px; width:100%;" id="txtContent" name="txtContent" class="post">@txt</textarea>
+        <button type="submit" class="btn btn-success" style="margin-top:20px">Save</button>
+    </form>
+</body>
+</html>

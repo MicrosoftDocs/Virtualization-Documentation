@@ -1,0 +1,70 @@
+﻿/*
+    RTL Language Support.
+*/
+
+.rtl { font-family: Tahoma,arial,sans-serif; direction: rtl; }
+.rtl .pull-right { float: left !important; }
+.rtl .pull-left { float: right !important; }
+.rtl .text-right { text-align: left !important; }
+.rtl .text-left { text-align: left !important; }
+.rtl .btn i, .rtl a i { margin-right: 0; margin-left: 4px; }
+.rtl .col-md-1, .rtl .col-md-2, .rtl .col-md-3, .rtl .col-md-4, .rtl .col-md-5, .rtl .col-md-6, .rtl .col-md-7, .rtl .col-md-8, .rtl .col-md-9, .rtl .col-md-10, .rtl .col-md-11 { float: right !important; }
+.rtl .col-md-offset-12 { margin-left: 0 !important; margin-right: 100%; }
+.rtl .col-md-offset-11 { margin-left: 0 !important; margin-right: 91.66666666666666% !important; }
+.rtl .col-md-offset-10 { margin-left: 0 !important; margin-right: 83.33333333333334% !important; }
+.rtl .col-md-offset-9 { margin-left: 0 !important; margin-right: 75% !important; }
+.rtl .col-md-offset-8 { margin-left: 0 !important; margin-right: 66.66666666666666% !important; }
+.rtl .col-md-offset-7 { margin-left: 0 !important; margin-right: 58.333333333333336% !important; }
+.rtl .col-md-offset-6 { margin-left: 0 !important; margin-right: 50% !important; }
+.rtl .col-md-offset-5 { margin-left: 0 !important; margin-right: 41.66666666666667% !important; }
+.rtl .col-md-offset-4 { margin-left: 0 !important; margin-right: 33.33333333333333% !important; }
+.rtl .col-md-offset-3 { margin-left: 0 !important; margin-right: 25% !important; }
+.rtl .col-md-offset-2 { margin-left: 0 !important; margin-right: 16.666666666666664% !important; }
+.rtl .col-md-offset-1 { margin-left: 0 !important; margin-right: 8.333333333333332% !important; }
+.rtl .radio input[type="radio"],
+.rtl .radio-inline input[type="radio"],
+.rtl .checkbox input[type="checkbox"],
+.rtl .checkbox-inline input[type="checkbox"] { float: right; margin-left: 5px; }
+.rtl table,
+.rtl .table .table-item-title { text-align: right; font-family: Tahoma; }
+.rtl .page-header h2.page-title { font-family: 'B Mitra',arial; }
+.rtl .nav { padding-right: 0; }
+.rtl .navbar-nav { float: right; }
+.rtl .navbar-nav > li,
+.rtl .nav-pills > li { float: right; }
+.rtl .navbar-right { float: left !important; }
+.rtl .navbar-right .dropdown-menu { right: auto !important; left: 0 !important; }
+.rtl .list-group { padding-right: 0; }
+.rtl .pagination { padding-right: 0; }
+.rtl .search-grid { margin-left: 0; margin-right: 5px; }
+.rtl .btn-group > .btn,
+.rtl .btn-group-vertical > .btn { float: right; }
+.rtl .btn-group > .btn:first-child:not(:last-child):not(.dropdown-toggle) { border-top-left-radius: 0px; border-bottom-left-radius: 0px; border-top-right-radius: 3px; border-bottom-right-radius: 3px; }
+.rtl .btn-group > .btn:last-child:not(:first-child),
+.rtl .btn-group > .dropdown-toggle:not(:first-child) { border-top-left-radius: 3px; border-bottom-left-radius: 3px; border-top-right-radius: 0px; border-bottom-right-radius: 0px; }
+.rtl .btn-group .btn + .btn,
+.rtl .btn-group .btn + .btn-group,
+.rtl .btn-group .btn-group + .btn,
+.rtl .btn-group .btn-group + .btn-group { margin-left: 0 !important; margin-right: -1px; }
+.rtl .page-header .btn-header { font-size: 13px; font-weight: bold; }
+.rtl .close { float: left !important; }
+.rtl .modal-footer { text-align: left; }
+.rtl .btn-toolbar .btn-group { float: right; }
+.rtl .btn-toolbar > .btn + .btn,
+.rtl .btn-toolbar > .btn-group + .btn,
+.rtl .btn-toolbar > .btn + .btn-group,
+.rtl .btn-toolbar > .btn-group + .btn-group { margin-left: 0; margin-right: 4px !important; }
+.rtl .header .logo { margin-right: 0; margin-left: 10px; }
+.rtl .header .title-wrapper hgroup h1 { margin: 0 0 10px; line-height: 35px; }
+.rtl .header .title-wrapper hgroup h1 A { font-size: 30px; }
+.rtl .post .post-info span { margin-right: 0px; margin-left: 7px; }
+.rtl .media > .pull-left { margin-right: 0px; margin-left: 10px; }
+.rtl .media-list { padding-right: 0px; }
+.rtl #commenttoggle { float: left !important; }
+.rtl .comment-form .control-label { font-size: 12px; }
+.rtl .rating p { right: 55px; left: auto; }
+.rtl .search-page .search-page-searchbox input[type="button"] { float: left; }
+.rtl .glyphicon { margin-right: 0px; margin-left: 3px; }
+.rtl .footer .end-line { direction: ltr; }
+.rtl .widgets-footer .widget { float: right; margin-left: 3%; margin-right: 0; }
+.rtl .widgets-footer .widget:last-child { margin: 0; }

@@ -1,0 +1,93 @@
+﻿<div class="content-comments-view" data-ng-controller="CommentListController">
+    <form id="cat-form" action="">
+        <div id="modal-comment-edit" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="focusInput=false"><i class="fa fa-times"></i></button>
+                        <h4 class="modal-title">{{vm.Detail.Title}}</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-horizontal">
+                            <div class="form-group"><span class="col-xs-3">{{lbl.author}}</span><div class="col-xs-9"><span>{{vm.SelectedItem.Author}}</span></div></div>
+                            <div class="form-group"><span class="col-xs-3">{{lbl.email}}</span> <div class="col-xs-9"><span>{{vm.SelectedItem.Email}}</span></div></div>
+                            <div class="form-group"><span class="col-xs-3">{{lbl.date}}</span> <div class="col-xs-9"><span>{{vm.SelectedItem.DateCreated}}</span></div></div>
+                        </div>
+                        <div class="comment-view-reply">
+                            <pre class="comment-view-box">{{vm.Detail.Content}}</pre>
+                            <textarea ng-model="commentReply.text" placeholder="Reply..." class="form-control ltr-dir" rows="4" id="txtDraftText" name="txtDraftText" focus-me="focusInput"></textarea>
+                            <div class="modal-buttons">
+                                <button type="button" ng-click="reply(vm.Detail.Id, vm.Detail.PostId)" ng-disabled="commentReply.text.length < 1" class="btn btn-success">{{lbl.send}}</button>
+                                <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="focusInput=false">{{lbl.cancel}}</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <div class="main-header clearfix">
+        <h2 class="page-title pull-left">{{lbl.comments}}</h2>
+        <div class="btn-group pull-left">
+            <a ng-click="processChecked('delete')" ng-disabled="itemsChecked() === false" class="btn btn-sm btn-danger" angular-tooltip tooltip="lbl.doDelete"><i class="fa fa-trash"></i></a>
+            <a ng-show="filter === 'pnd' || filter === 'spm'" ng-click="deleteAll()" class="btn btn-danger btn-sm" angular-tooltip tooltip="lbl.deleteAll"><i class="fa fa-times"></i></a>
+            <a ng-show="filter != 'spm' && filter != 'png'" ng-click="processChecked('unapprove')" ng-disabled="itemsChecked() === false" class="btn btn-warning btn-sm" angular-tooltip tooltip="lbl.unapprove"><i class="fa fa-archive"></i></a>
+            <a ng-show="filter != 'apr' && filter != 'png'" ng-click="processChecked('approve')" ng-disabled="itemsChecked() === false" class="btn btn-success btn-sm" angular-tooltip tooltip="lbl.approve"><i class="fa fa-check"></i></a>
+        </div>
+        <button class="right-side-toggle pull-right"><span></span><span></span><span></span></button>
+        <div class="right-side pull-right">
+            <div class="search pull-right">
+                <i class="fa fa-search"></i>
+                <input type="text" ng-model="query" ng-change="search()" placeholder="{{lbl.search}}..." />
+            </div>
+            <div class="dropdown pull-right">
+                <button class="btn btn-default btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">{{lbl.all}}<i class="fa fa-angle-down"></i></button>
+                <ul class="dropdown-menu dropdown-menu-filter">
+                    <li><a id="fltr-all" data-value="{{lbl.all}}" ng-click="gridFilter('IsApproved','all','all')">      {{lbl.all}}</a></li>
+                    <li><a id="fltr-pnd" data-value="{{lbl.pending}}" ng-click="gridFilter('IsPending',true,'pnd')">    {{lbl.pending}}</a></li>
+                    <li><a id="fltr-apr" data-value="{{lbl.approved}}" ng-click="gridFilter('IsApproved',true,'apr')">  {{lbl.approved}} </a></li>
+                    <li><a id="fltr-spm" data-value="{{lbl.spam}}" ng-click="gridFilter('IsSpam',true,'spm')">          {{lbl.spam}}</a></li>
+                    <li><a id="fltr-png" data-value="{{lbl.pingbacks}}" ng-click="gridFilter('Email','pingback','png')">{{lbl.pingbacks}}</a></li>
+                </ul>
+            </div>
+            <a href="#/content/comments/filters" class="btn btn-success btn-sm btn-hasicon pull-right"><i class="fa fa-filter"></i>{{lbl.filters}}</a>
+        </div>
+    </div>
+    <div class="content-inner">
+        <table class="table table-item-comments">
+            <thead>
+                <tr>
+                    <th class="item-checkbox"><input type="checkbox" id="chkAll" data-ng-click="checkAll($event)" /></th>
+                    <th class="item-avatar">&nbsp;</th>
+                    <th class="item-title"><a data-ng-click="sort_by('Title',$event)">{{lbl.title}}</a></th>
+                    <th class="item-date"><a data-ng-click="sort_by('DateCreated',$event)">{{lbl.date}}</a></th>
+                    <th class="item-author"><a data-ng-click="sort_by('Author',$event)">{{lbl.author}}</a></th>
+                    <th class="item-status">{{lbl.approved}}</th>
+                    <th class="item-status">{{lbl.spam}}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr data-ng-repeat="item in pagedItems[currentPage] | orderBy:sortingOrder:reverse">
+                    <td class="item-checkbox">
+                        <input type="checkbox" id="{{item.Id}}" data-ng-model="item.IsChecked" data-ng-disabled="item.HasChildren || item.Email === 'pingback'" />
+                    </td>
+                    <td class="item-avatar"><img ng-src="{{item.Avatar}}" alt="{{item.Author}}" title="{{item.Author}}" /></td>
+                    <td class="item-title">
+                        <a title="click to reply" ng-click="showEditForm(item.Id)" href=""> {{item.Title}}</a>
+                        <a title="click to view" class="external-link" target="_blank" href="{{item.RelativeLink}}"> <i class="fa fa-external-link"></i> </a>
+                    </td>
+                    <td class="item-date" title="{{item.DateCreated}}">{{item.DateCreated.substring(0,10)}}</td>
+                    <td class="item-author"><span>{{item.Author}}</span></td>
+                    <td class="item-status"><input type="checkbox" data-ng-model="item.IsApproved" data-ng-disabled="true"></td>
+                    <td class="item-status"><input type="checkbox" data-ng-model="item.IsSpam" data-ng-disabled="true"></td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="table-item-empty" id="tr-spinner"><div id="div-spinner"><i class="fa fa-spinner fa-spin"></i></div></div>
+        <ul class="pagination" ng-if="items.length > itemsPerPage">
+            <li data-ng-class="{disabled: currentPage == 0}"><a data-ng-click="prevPage()" title="{{lbl.prev}}"><i class="fa fa-angle-left"></i></a></li>
+            <li data-ng-repeat="n in range(pagedItems.length)" data-ng-class="{active: n == currentPage}" data-ng-click="setPage()"><a data-ng-bind="n + 1">1</a></li>
+            <li data-ng-class="{disabled: currentPage == pagedItems.length - 1}"><a data-ng-click="nextPage()" title="{{lbl.next}}"><i class="fa fa-angle-right"></i></a></li>
+        </ul>
+    </div>
+</div>

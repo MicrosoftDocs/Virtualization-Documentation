@@ -1,0 +1,27 @@
+﻿@using BlogEngine.NET.Custom.Widgets
+@{
+    var linkList = new LinkList(Model.Id);
+    var links = linkList.GetLinks();
+}
+<div class="widget linklist">
+    <h4 class="widget-header">@Model.Title</h4>
+    <div class="widget-content">
+        <ul id="linkList" class="linklist">
+        @foreach (var link in links)
+        {
+            if (link.Target == "on")
+            {
+            <li><a href="@link.Url" title="@link.Title" target="_blank">@link.Title</a></li>
+            }
+            else
+            {
+            <li><a href="@link.Url" title="@link.Title">@link.Title</a></li>
+            }
+        }
+        @if(links.Count == 0)
+        {
+            <li>@Resources.labels.empty</li>
+        }
+        </ul>
+    </div>
+</div>

@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<services>
+    <service>http://rpc.technorati.com/rpc/ping</service>
+    <service>http://rpc.pingomatic.com/rpc2</service>
+    <service>http://ping.feedburner.com</service>
+    <service>http://www.bloglines.com/ping</service>
+    <service>http://services.newsgator.com/ngws/xmlrpcping.aspx</service>
+    <service>http://api.my.yahoo.com/rpc2 </service>
+    <service>http://blogsearch.google.com/ping/RPC2</service>
+    <service>http://rpc.pingthesemanticweb.com/ </service>
+</services>

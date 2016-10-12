@@ -1,0 +1,438 @@
+﻿--
+-- Add be_Blogs
+--
+CREATE TABLE be_Blogs (
+[BlogRowId] INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+[BlogId] VARCHAR(36) NOT NULL,
+[BlogName] VARCHAR(255) NOT NULL,
+[Hostname] VARCHAR(255) NOT NULL,
+[IsAnyTextBeforeHostnameAccepted] BOOLEAN NOT NULL,
+[StorageContainerName] VARCHAR(255) NOT NULL,
+[VirtualPath] VARCHAR(255) NOT NULL,
+[IsPrimary] BOOLEAN NOT NULL DEFAULT 0,
+[IsActive] BOOLEAN NOT NULL DEFAULT 1);
+
+INSERT INTO be_Blogs (BlogId, BlogName, Hostname, IsAnyTextBeforeHostnameAccepted, StorageContainerName, VirtualPath, IsPrimary, IsActive)
+VALUES ('27604f05-86ad-47ef-9e05-950bb762570c', 'Primary', '', 0, '', '~/', 1, 1);
+
+--
+-- Update be_Users
+--
+ALTER TABLE be_Users
+ADD BlogID VARCHAR(36) NULL;
+
+UPDATE be_Users SET BlogID = '27604f05-86ad-47ef-9e05-950bb762570c';
+
+CREATE INDEX idx_be_Users_BlogId_UserName
+ON be_Users (BlogID, UserName);
+
+--
+-- Update be_UserRoles
+--
+CREATE TABLE be_UserRolesNew (
+[UserRoleID] INTEGER  NOT NULL PRIMARY KEY AUTOINCREMENT,
+[BlogID] VARCHAR(36) NOT NULL,
+[UserName] VARCHAR(100) NOT NULL,
+[Role] VARCHAR(100) NOT NULL);
+
+INSERT INTO be_UserRolesNew
+SELECT ur.UserRoleID, '27604f05-86ad-47ef-9e05-950bb762570c', u.UserName, r.Role
+FROM be_UserRoles ur
+INNER JOIN be_Users u ON ur.UserID = u.UserID
+INNER JOIN be_Roles r ON ur.RoleID = r.RoleID;
+
+DROP TABLE be_UserRoles;
+ALTER TABLE be_UserRolesNew RENAME TO be_UserRoles;
+
+CREATE INDEX idx_be_UserRoles_BlogId
+ON be_UserRoles (BlogID);
+
+--
+-- Update be_StopWords
+--
+CREATE TABLE be_StopWordsNew (
+[StopWordsRowId] INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+[BlogId] VARCHAR(36) NOT NULL,
+[StopWord] VARCHAR(50) NOT NULL);
+
+INSERT INTO be_StopWordsNew (BlogId, StopWord)
+SELECT '27604f05-86ad-47ef-9e05-950bb762570c', o.StopWord
+FROM be_StopWords o;
+
+DROP TABLE be_StopWords;
+ALTER TABLE be_StopWordsNew RENAME TO be_StopWords;
+
+CREATE INDEX idx_be_StopWords_BlogId
+ON be_StopWords (BlogId);
+
+--
+-- Update be_Settings
+--
+CREATE TABLE be_SettingsNew (
+[SettingsRowId] INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+[BlogId] VARCHAR(36) NOT NULL,
+[SettingName] VARCHAR(50),
+[SettingValue] TEXT NULL);
+
+INSERT INTO be_SettingsNew (BlogId, SettingName, SettingValue)
+SELECT '27604f05-86ad-47ef-9e05-950bb762570c', s.SettingName, s.SettingValue
+FROM be_Settings s;
+
+DROP TABLE be_Settings;
+ALTER TABLE be_SettingsNew RENAME TO be_Settings;
+
+CREATE INDEX idx_be_Settings_BlogId
+ON be_Settings (BlogId);
+
+--
+-- Update be_Roles
+--
+ALTER TABLE be_Roles
+ADD BlogID VARCHAR(36) NULL;
+
+UPDATE be_Roles SET BlogID = '27604f05-86ad-47ef-9e05-950bb762570c';
+
+CREATE INDEX idx_be_Roles_BlogId_Role
+ON be_Roles (BlogID, Role);
+
+--
+-- Update be_Rights
+--
+CREATE TABLE be_RightsNew (
+[RightRowId] INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+[BlogId] VARCHAR(36) NOT NULL,
+[RightName] VARCHAR(100));
+
+INSERT INTO be_RightsNew (BlogId, RightName)
+SELECT '27604f05-86ad-47ef-9e05-950bb762570c', r.RightName
+FROM be_Rights r;
+
+DROP TABLE be_Rights;
+ALTER TABLE be_RightsNew RENAME TO be_Rights;
+
+CREATE INDEX idx_be_Rights_BlogId
+ON be_Rights (BlogId);
+
+--
+-- Update be_RightRoles
+--
+CREATE TABLE be_RightRolesNew (
+[RightRoleRowId] INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+[BlogId] VARCHAR(36) NOT NULL,
+[RightName] VARCHAR(100),
+[Role] VARCHAR(100));
+
+INSERT INTO be_RightRolesNew (BlogId, RightName, Role)
+SELECT '27604f05-86ad-47ef-9e05-950bb762570c', r.RightName, r.Role
+FROM be_RightRoles r;
+
+DROP TABLE be_RightRoles;
+ALTER TABLE be_RightRolesNew RENAME TO be_RightRoles;
+
+CREATE INDEX idx_be_RightRoles_BlogId
+ON be_RightRoles (BlogId);
+
+--
+-- Update be_BlogRollItems
+--
+CREATE TABLE be_BlogRollItemsNew (
+[BlogRollRowId] INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+[BlogId] VARCHAR(36) NOT NULL,
+[BlogRollId] VARCHAR(36) NOT NULL,
+[Title] VARCHAR(255) NULL,
+[Description] TEXT NULL,
+[BlogUrl] VARCHAR(255) NOT NULL,
+[FeedUrl] VARCHAR(255) NULL,
+[Xfn] VARCHAR(255) NULL,
+[SortIndex] INTEGER NOT NULL
+);
+
+INSERT INTO be_BlogRollItemsNew (BlogId, BlogRollId, Title, Description, BlogUrl, FeedUrl, Xfn, SortIndex)
+SELECT '27604f05-86ad-47ef-9e05-950bb762570c', b.BlogRollId, b.Title, b.Description, b.BlogUrl, b.FeedUrl, b.Xfn, b.SortIndex
+FROM be_BlogRollItems b;
+
+DROP TABLE be_BlogRollItems;
+ALTER TABLE be_BlogRollItemsNew RENAME TO be_BlogRollItems;
+
+CREATE INDEX idx_be_BlogRollItems_BlogId
+ON be_BlogRollItems (BlogId);
+
+--
+-- Update be_DataStoreSettings
+--
+CREATE TABLE be_DataStoreSettingsNew (
+[DataStoreSettingRowId] INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+[BlogId] VARCHAR(36) NOT NULL,
+[ExtensionType] VARCHAR(50) NOT NULL,
+[ExtensionId] VARCHAR(100) NULL,
+[Settings] TEXT NULL
+);
+
+INSERT INTO be_DataStoreSettingsNew (BlogId, ExtensionType, ExtensionId, Settings)
+SELECT '27604f05-86ad-47ef-9e05-950bb762570c', b.ExtensionType, b.ExtensionId, b.Settings
+FROM be_DataStoreSettings b;
+
+DROP TABLE be_DataStoreSettings;
+ALTER TABLE be_DataStoreSettingsNew RENAME TO be_DataStoreSettings;
+
+CREATE INDEX idx_be_DataStoreSettings_BlogId
+ON be_DataStoreSettings (BlogId);
+
+--
+-- Update be_PingService
+--
+CREATE TABLE be_PingServiceNew (
+[PingServiceID] INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+[BlogID] VARCHAR(36) NOT NULL,
+[Link] VARCHAR(255) NOT NULL
+);
+
+INSERT INTO be_PingServiceNew (BlogID, Link)
+SELECT '27604f05-86ad-47ef-9e05-950bb762570c', p.Link
+FROM be_PingService p;
+
+DROP TABLE be_PingService;
+ALTER TABLE be_PingServiceNew RENAME TO be_PingService;
+
+CREATE INDEX idx_be_PingService_BlogID
+ON be_PingService (BlogID);
+
+--
+-- Update be_Referrers
+--
+CREATE TABLE be_ReferrersNew (
+[ReferrerRowId] INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+[BlogId] VARCHAR(36) NOT NULL,
+[ReferrerId] VARCHAR(36) NOT NULL,
+[ReferralDay] DATE DEFAULT CURRENT_DATE NOT NULL,
+[ReferrerUrl] VARCHAR(255) NOT NULL,
+[ReferralCount] INTEGER NOT NULL,
+[Url] VARCHAR(255) NULL,
+[IsSpam] BOOLEAN NULL
+);
+
+INSERT INTO be_ReferrersNew (BlogId, ReferrerId, ReferralDay, ReferrerUrl, ReferralCount, Url, IsSpam)
+SELECT '27604f05-86ad-47ef-9e05-950bb762570c', r.ReferrerId, r.ReferralDay, r.ReferrerUrl, r.ReferralCount, r.Url, r.IsSpam
+FROM be_Referrers r;
+
+DROP TABLE be_Referrers;
+ALTER TABLE be_ReferrersNew RENAME TO be_Referrers;
+
+CREATE INDEX idx_be_Referrers_BlogId
+ON be_Referrers (BlogId);
+
+--
+-- Update be_Profiles
+--
+CREATE TABLE be_ProfilesNew (
+[ProfileID] INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+[BlogID] VARCHAR(36) NOT NULL,
+[UserName] VARCHAR(100) NOT NULL,
+[SettingName] VARCHAR(200) NOT NULL,
+[SettingValue] TEXT NOT NULL
+);
+
+INSERT INTO be_ProfilesNew (BlogID, UserName, SettingName, SettingValue)
+SELECT '27604f05-86ad-47ef-9e05-950bb762570c', p.UserName, p.SettingName, p.SettingValue
+FROM be_Profiles p;
+
+DROP TABLE be_Profiles;
+ALTER TABLE be_ProfilesNew RENAME TO be_Profiles;
+
+CREATE INDEX idx_be_Profiles_BlogID
+ON be_Profiles (BlogID);
+
+--
+-- Update be_Pages
+--
+CREATE TABLE be_PagesNew (
+[PageRowID] INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+[BlogID] VARCHAR(36) NOT NULL,
+[PageID] VARCHAR(36) NOT NULL,
+[Title] VARCHAR(255) NOT NULL,
+[Description] TEXT NOT NULL,
+[PageContent] TEXT NOT NULL,
+[Keywords] TEXT NOT NULL,
+[DateCreated] DATETIME NOT NULL,
+[DateModified] DATETIME NOT NULL,
+[IsPublished] BOOLEAN NOT NULL,
+[IsFrontPage] BOOLEAN NOT NULL,
+[Parent] VARCHAR(36) NOT NULL,
+[ShowInList] BOOLEAN NOT NULL,
+[Slug] VARCHAR(255) NOT NULL,
+[IsDeleted] BOOLEAN NOT NULL
+);
+
+INSERT INTO be_PagesNew
+	(BlogID, PageID, Title, Description, PageContent, Keywords,
+	 DateCreated, DateModified, IsPublished, IsFrontPage, Parent,
+	 ShowInList, Slug, IsDeleted)
+SELECT
+	'27604f05-86ad-47ef-9e05-950bb762570c', p.PageID, p.Title, p.Description, p.PageContent, p.Keywords,
+	 p.DateCreated, p.DateModified, p.IsPublished, p.IsFrontPage, p.Parent,
+	 p.ShowInList, coalesce(p.Slug, ''), p.IsDeleted
+FROM be_Pages p;
+
+DROP TABLE be_Pages;
+ALTER TABLE be_PagesNew RENAME TO be_Pages;
+
+CREATE INDEX idx_be_Pages_BlogID
+ON be_Pages (BlogID);
+
+--
+-- Update be_Categories
+--
+CREATE TABLE be_CategoriesNew (
+[CategoryRowID] INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+[BlogID] VARCHAR(36) NOT NULL,
+[CategoryID] VARCHAR(36) NOT NULL,
+[CategoryName] VARCHAR(50) NOT NULL,
+[Description] VARCHAR(200) NOT NULL,
+[ParentID] VARCHAR(36) NULL
+);
+
+INSERT INTO be_CategoriesNew (BlogID, CategoryID, CategoryName, Description, ParentID)
+SELECT '27604f05-86ad-47ef-9e05-950bb762570c', c.CategoryID, c.CategoryName, coalesce(c.Description, ''), c.ParentID
+FROM be_Categories c;
+
+DROP TABLE be_Categories;
+ALTER TABLE be_CategoriesNew RENAME TO be_Categories;
+
+CREATE INDEX idx_be_Categories_BlogID
+ON be_Categories (BlogID);
+
+--
+-- Update be_PostCategory
+--
+CREATE TABLE be_PostCategoryNew (
+[PostCategoryID] INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+[BlogID] VARCHAR(36) NOT NULL,
+[PostID] VARCHAR(36) NOT NULL,
+[CategoryID] VARCHAR(36) NOT NULL
+);
+
+INSERT INTO be_PostCategoryNew (BlogID, PostID, CategoryID)
+SELECT '27604f05-86ad-47ef-9e05-950bb762570c', p.PostID, p.CategoryID
+FROM be_PostCategory p;
+
+DROP TABLE be_PostCategory;
+ALTER TABLE be_PostCategoryNew RENAME TO be_PostCategory;
+
+CREATE INDEX idx_be_PostCategory_BlogID_PostID
+ON be_PostCategory (BlogID, PostID);
+
+--
+-- Update be_PostNotify
+--
+CREATE TABLE be_PostNotifyNew (
+[PostNotifyID] INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+[BlogID] VARCHAR(36) NOT NULL,
+[PostID] VARCHAR(36) NOT NULL,
+[NotifyAddress] VARCHAR(255) NOT NULL
+);
+
+INSERT INTO be_PostNotifyNew (BlogID, PostID, NotifyAddress)
+SELECT '27604f05-86ad-47ef-9e05-950bb762570c', p.PostID, p.NotifyAddress
+FROM be_PostNotify p;
+
+DROP TABLE be_PostNotify;
+ALTER TABLE be_PostNotifyNew RENAME TO be_PostNotify;
+
+CREATE INDEX idx_be_PostNotify_BlogID_PostID
+ON be_PostNotify (BlogID, PostID);
+
+--
+-- Update be_PostTag
+--
+CREATE TABLE be_PostTagNew (
+[PostTagID] INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+[BlogID] VARCHAR(36) NOT NULL,
+[PostID] VARCHAR(36) NOT NULL,
+[Tag] VARCHAR(50) NOT NULL
+);
+
+INSERT INTO be_PostTagNew (BlogID, PostID, Tag)
+SELECT '27604f05-86ad-47ef-9e05-950bb762570c', p.PostID, p.Tag
+FROM be_PostTag p;
+
+DROP TABLE be_PostTag;
+ALTER TABLE be_PostTagNew RENAME TO be_PostTag;
+
+CREATE INDEX idx_be_PostTag_BlogID_PostID
+ON be_PostTag (BlogID, PostID);
+
+--
+-- Update be_PostComment
+--
+CREATE TABLE be_PostCommentNew (
+[PostCommentRowID] INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+[BlogID] VARCHAR(36) NOT NULL,
+[PostCommentID] VARCHAR(36) NOT NULL,
+[PostID] VARCHAR(36) NOT NULL,
+[ParentCommentID] VARCHAR(36) NOT NULL,
+[CommentDate] DATETIME NOT NULL,
+[Author] VARCHAR(255) NOT NULL,
+[Email] VARCHAR(255) NOT NULL,
+[Website] VARCHAR(255) NOT NULL,
+[Comment] TEXT NOT NULL,
+[Country] VARCHAR(255) NOT NULL,
+[Ip] VARCHAR(50) NOT NULL,
+[IsApproved] BOOLEAN NOT NULL,
+[ModeratedBy] VARCHAR(100) NOT NULL,
+[Avatar] VARCHAR(255) NOT NULL,
+[IsSpam] BOOLEAN NOT NULL,
+[IsDeleted] BOOLEAN NOT NULL
+);
+
+INSERT INTO be_PostCommentNew
+	(BlogID, PostCommentID, PostID, ParentCommentID, CommentDate, Author,
+	 Email, Website, Comment, Country, Ip, IsApproved, ModeratedBy, Avatar,
+	 IsSpam, IsDeleted)
+SELECT '27604f05-86ad-47ef-9e05-950bb762570c', p.PostCommentID, p.PostID, p.ParentCommentID, p.CommentDate, p.Author,
+	 p.Email, p.Website, p.Comment, p.Country, p.Ip, p.IsApproved, coalesce(p.ModeratedBy,''),coalesce(p.Avatar, ''), p.IsSpam, p.IsDeleted
+FROM be_PostComment p;
+
+DROP TABLE be_PostComment;
+ALTER TABLE be_PostCommentNew RENAME TO be_PostComment;
+
+CREATE INDEX idx_be_PostComment_BlogID_PostID
+ON be_PostComment (BlogID, PostID);
+
+--
+-- Update be_Posts
+--
+CREATE TABLE be_PostsNew (
+[PostRowID] INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+[BlogID] VARCHAR(36) NOT NULL,
+[PostID] VARCHAR(36) NOT NULL,
+[Title] VARCHAR(255) NOT NULL,
+[Description] TEXT NOT NULL,
+[PostContent] TEXT NOT NULL,
+[DateCreated] DATETIME NOT NULL,
+[DateModified] DATETIME NOT NULL,
+[Author] VARCHAR(50) NOT NULL,
+[IsPublished] BOOLEAN NOT NULL,
+[IsCommentEnabled] BOOLEAN NOT NULL,
+[Raters] INTEGER NOT NULL,
+[Rating] REAL NOT NULL,
+[Slug] VARCHAR(255) NOT NULL,
+[IsDeleted] BOOLEAN NOT NULL
+);
+
+INSERT INTO be_PostsNew
+	(BlogID, PostID, Title, Description, PostContent, DateCreated,
+	 DateModified, Author, IsPublished, IsCommentEnabled, Raters,
+	 Rating, Slug, IsDeleted)
+SELECT '27604f05-86ad-47ef-9e05-950bb762570c', p.PostID, p.Title, p.Description, p.PostContent, p.DateCreated,
+	 p.DateModified, p.Author, p.IsPublished, p.IsCommentEnabled, p.Raters,
+	 p.Rating, p.Slug, p.IsDeleted
+FROM be_Posts p;
+
+DROP TABLE be_Posts;
+ALTER TABLE be_PostsNew RENAME TO be_Posts;
+
+CREATE INDEX idx_be_Posts_BlogID_PostID
+ON be_Posts (BlogID, PostID);
+
+
+

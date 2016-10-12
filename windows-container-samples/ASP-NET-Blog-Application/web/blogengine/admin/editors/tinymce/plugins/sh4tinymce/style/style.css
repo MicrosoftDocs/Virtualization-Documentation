@@ -1,0 +1,14 @@
+@font-face {
+	font-family: 'sh4tinymce';
+	src:url('../fonts/sh4tinymce.eot');
+	src:url('../fonts/sh4tinymce.eot?#iefix') format('embedded-opentype'),
+		url('../fonts/sh4tinymce.woff') format('woff'),
+		url('../fonts/sh4tinymce.ttf') format('truetype'),
+		url('../fonts/sh4tinymce.svg#sh4tinymce') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+.mce-i-sh4tinymce:before {
+	font-family: 'sh4tinymce';
+	content: "\f121";
+}

@@ -1,0 +1,33 @@
+﻿ALTER TABLE be_PostComment
+ADD IsSpam BOOLEAN NOT NULL DEFAULT 0;
+
+ALTER TABLE be_PostComment
+ADD IsDeleted BOOLEAN NOT NULL DEFAULT 0;
+
+ALTER TABLE be_Posts
+ADD IsDeleted BOOLEAN NOT NULL DEFAULT 0;
+
+ALTER TABLE be_Pages
+ADD IsDeleted BOOLEAN NOT NULL DEFAULT 0;
+
+CREATE TABLE [be_Rights] (
+[RightName] VARCHAR(100)  UNIQUE NOT NULL
+);
+
+CREATE TABLE [be_RightRoles] (
+[RightName] VARCHAR(100) NOT NULL,
+[Role] VARCHAR(100) NOT NULL
+);
+
+UPDATE be_PostComment
+SET IsSpam = 0;
+
+UPDATE be_PostComment
+SET IsDeleted = 0;
+
+UPDATE be_Posts
+SET IsDeleted = 0;
+
+UPDATE be_Pages
+SET IsDeleted = 0;
+

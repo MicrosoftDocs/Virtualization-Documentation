@@ -1,0 +1,43 @@
+﻿--
+-- be_Pages SortOrder
+--
+ALTER TABLE be_Pages
+ADD SortOrder INTEGER NOT NULL DEFAULT 0;
+
+--
+-- add new rights to administrators
+--
+INSERT INTO be_RightRoles (BlogId, RightName, Role)
+VALUES ('27604f05-86ad-47ef-9e05-950bb762570c', 'ViewDashboard', 'Administrators');
+
+INSERT INTO be_RightRoles (BlogId, RightName, Role)
+VALUES ('27604f05-86ad-47ef-9e05-950bb762570c', 'ManageExtensions', 'Administrators');
+
+INSERT INTO be_RightRoles (BlogId, RightName, Role)
+VALUES ('27604f05-86ad-47ef-9e05-950bb762570c', 'ManageThemes', 'Administrators');
+
+INSERT INTO be_RightRoles (BlogId, RightName, Role)
+VALUES ('27604f05-86ad-47ef-9e05-950bb762570c', 'ManagePackages', 'Administrators');
+
+
+INSERT INTO be_Rights (BlogId, RightName)
+VALUES ('27604f05-86ad-47ef-9e05-950bb762570c', 'ViewDashboard');
+
+INSERT INTO be_Rights (BlogId, RightName)
+VALUES ('27604f05-86ad-47ef-9e05-950bb762570c', 'ManageExtensions');
+
+INSERT INTO be_Rights (BlogId, RightName)
+VALUES ('27604f05-86ad-47ef-9e05-950bb762570c', 'ManageThemes');
+
+INSERT INTO be_Rights (BlogId, RightName)
+VALUES ('27604f05-86ad-47ef-9e05-950bb762570c', 'ManagePackages');
+
+
+
+
+
+
+
+
+
+

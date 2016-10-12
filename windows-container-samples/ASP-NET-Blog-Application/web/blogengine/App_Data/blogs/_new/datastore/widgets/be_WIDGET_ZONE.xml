@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<widgets>
+  <widget id="42fcbe7c-2c9c-440a-bad9-65a94472fccc" title="Administration" showTitle="True">Administration</widget>
+  <widget id="fb38ecdd-5813-4d10-8c5f-8d901c7c731e" title="Search" showTitle="True">Search</widget>
+  <widget id="32ac4ff1-212f-4825-8f30-39eb222719f6" title="Blog List" showTitle="True">BlogList</widget>
+  <widget id="1e250f90-ba6b-4b51-a756-126d28ce456e" title="Category list" showTitle="True">CategoryList</widget>
+  <widget id="a3df64a2-47d7-42d3-9f30-acdd179682df" title="Tag cloud" showTitle="True">TagCloud</widget>
+</widgets>

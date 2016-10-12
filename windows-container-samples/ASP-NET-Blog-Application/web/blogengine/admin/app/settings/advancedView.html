@@ -1,0 +1,77 @@
+﻿<div class="settings-view" data-ng-controller="SettingsController">
+    <form id="form" action="">
+        <div class="main-header clearfix">
+            <h2 class="page-title pull-left">{{lbl.advanced}}</h2>
+            <button data-ng-click="save()" class="btn btn-success btn-sm btn-hasicon pull-left" type="button"><i class="fa fa-check"></i>{{lbl.save}}</button>
+        </div>
+        <div class="content-inner">
+
+            <div class="form-content">
+                <h4>General</h4>
+                <div class="form-group">
+                    <label>{{lbl.handleWwwSubdomain}}</label>
+                    <div class="row">
+                        <div class="col-md-4"><div class="radio"><label><input type="radio" value="remove" data-ng-model="settings.HandleWwwSubdomain" />{{lbl.remove}}</label></div></div>
+                        <div class="col-md-4"><div class="radio"><label><input type="radio" value="add" data-ng-model="settings.HandleWwwSubdomain" />{{lbl.enforce}}</label></div></div>
+                        <div class="col-md-4"><div class="radio"><label><input type="radio" value="" data-ng-model="settings.HandleWwwSubdomain" />{{lbl.ignore}}</label></div></div>
+                    </div>
+                </div>
+                <hr />
+                <div class="form-group">
+                    <div class="checkbox"><label><input type="checkbox" name="ckEnableHttpCompression" data-ng-model="settings.EnableHttpCompression" /> {{lbl.enableHttpCompression}}</label></div>
+                    <div class="checkbox"><label><input type="checkbox" name="ckCompressWebResource" data-ng-model="settings.CompressWebResource" /> {{lbl.compressWebResource}}</label></div>
+                    <div class="checkbox"><label><input type="checkbox" name="ckEnableOpenSearch" data-ng-model="settings.EnableOpenSearch" /> {{lbl.enableOpenSearch}}</label></div>
+                    <div class="checkbox"><label><input type="checkbox" name="ckShowPostNavigation" data-ng-model="settings.ShowPostNavigation" /> {{lbl.showPostNavigation}}</label></div>
+                    <div class="checkbox"><label><input type="checkbox" name="ckEnablePasswordReset" data-ng-model="settings.EnablePasswordReset" /> {{lbl.enablePasswordReset}}</label></div>
+                </div>
+                <h4>{{lbl.comments}}</h4>
+                <div class="form-group">
+                    <label>{{lbl.enableTrackbacks}}</label>
+                    <div class="row">
+                        <div class="col-md-6"><div class="checkbox"><label><input type="checkbox" name="ckEnablePingBackSend" data-ng-model="settings.EnablePingBackSend" /> {{lbl.send}}</label></div></div>
+                        <div class="col-md-6"><div class="checkbox"><label><input type="checkbox" name="ckEnablePingBackReceive" data-ng-model="settings.EnablePingBackReceive" /> {{lbl.receive}}</label></div></div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>{{lbl.enablePingbacks}}</label>
+                    <div class="row">
+                        <div class="col-md-6"><div class="checkbox"><label><input type="checkbox" name="ckEnableTrackBackSend" data-ng-model="settings.EnableTrackBackSend" /> {{lbl.send}}</label></div></div>
+                        <div class="col-md-6"><div class="checkbox"><label><input type="checkbox" name="ckEnableTrackBackReceive" data-ng-model="settings.EnableTrackBackReceive" /> {{lbl.receive}}</label></div></div>
+                    </div>
+                </div>
+                <h4>  {{lbl.securitySettings}}</h4>
+                <div class="form-group">
+                    <div class="checkbox"><label><input type="checkbox" name="ckAllowRemoteFileDownloads" data-ng-model="settings.AllowServerToDownloadRemoteFiles" /> {{lbl.allowRemoteFileDownloads}}</label></div>
+                </div>
+                <div ng-if="settings.AllowServerToDownloadRemoteFiles" class="form-group">
+                    <div class="form-group">
+                        <label class="control-label" for="txtRemoteFileDownloadTimeout">{{lbl.remoteTimeout}}</label>
+                        <input type="text" class="form-control" id="txtRemoteFileDownloadTimeout" name="txtRemoteFileDownloadTimeout" data-ng-model="settings.RemoteFileDownloadTimeout" />
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="txtRemoteMaxFileSize">{{lbl.maximumRemoteFileSize}}</label>
+                        <input type="text" class="form-control" id="txtRemoteMaxFileSize" name="txtRemoteMaxFileSize" data-ng-model="settings.RemoteMaxFileSize" />
+                    </div>
+                </div>
+                <h4>{{lbl.tools}}</h4>
+                <div class="form-group">
+                    <p>{{lbl.selectSavedBlogMlFle}}</p>
+                    <button type="button" class="btn btn-default btn-input-file next">{{lbl.import}}</button>
+                    <input type="file" class="input-file-hidden" onchange="angular.element(this).scope().uploadFile(this.files)" />
+                </div>
+                <div class="form-group">
+                    <p><div ng-bind-html="lbl.runClickOnceApplicationToImport"></div></p>
+                    <button class="btn btn-default" ng-click="importClickOnce()" type="button">{{lbl.importWithClickOnce}}</button>
+                </div>
+                <div class="form-group">
+                    <p>{{lbl.exportIntoBlogML}}</p>
+                    <button class="btn btn-default" data-ng-click="exportToXml()" type="button">{{lbl.export}}</button>
+                </div>
+                <div class="form-group">
+                    <p>Clear blog cache</p>
+                    <button class="btn btn-default" data-ng-click="clearCache()" type="button">Clear</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

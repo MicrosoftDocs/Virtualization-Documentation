@@ -1,0 +1,21 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" Inherits="RazorHostSite" Codebehind="site.master.cs" %>
+<%@ Import Namespace="BlogEngine.Core" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head runat="server">
+    <title></title>
+    <asp:PlaceHolder ID="phRazorHead" runat="server" EnableViewState="false"></asp:PlaceHolder>
+</head>
+<body<%= BodyAttributes %>>
+
+  <form runat="Server" class="body">
+    
+      <asp:PlaceHolder ID="phBeforePageBody" runat="server" EnableViewState="false"></asp:PlaceHolder>
+      <asp:ContentPlaceHolder ID="cphBody" runat="server" />
+      <asp:PlaceHolder ID="phAfterPageBody" runat="server" EnableViewState="false"></asp:PlaceHolder>
+    
+  </form>
+  
+</body>
+</html>

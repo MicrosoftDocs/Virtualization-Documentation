@@ -1,0 +1,33 @@
+﻿@using BlogEngine.Core
+@using BlogEngine.NET.Custom.Widgets
+@{
+    var title = Model.Title;
+    var dic = CategoryList.SortCategories();
+}
+<div class="widget categorylist">
+    <h4 class="widget-header">@title</h4>
+    <div class="widget-content">
+        <ul id="categorylist">
+            @foreach (var cat in dic.Values)
+            {
+                int i = cat.CompleteTitle().Count(c => c == '-');
+                string spaces = string.Empty;
+                for (int j = 0; j < i; j++)
+                {
+                    spaces += "&nbsp;&nbsp;&nbsp;";
+                }
+                var posts = Post.GetPostsByCategory(cat).FindAll(p => p.IsVisible).Count;
+                <li>
+                    @if (i > 0)
+                    {
+                        <a>@Html.Raw(spaces)</a>
+                    }
+                    <a rel="nofollow" href="~/category/feed/@Utils.RemoveIllegalCharacters(cat.Title)">
+                        <img class="rssButton" alt="RSS feed for SubBlog" src="~/Content/images/blog/rssButton.png">
+                    </a>
+                    <a title="Category: @cat.Title" href="~/category/@Utils.RemoveIllegalCharacters(cat.Title)">@cat.Title (@posts.ToString())</a>
+                </li>
+            }
+        </ul>
+    </div>
+</div>

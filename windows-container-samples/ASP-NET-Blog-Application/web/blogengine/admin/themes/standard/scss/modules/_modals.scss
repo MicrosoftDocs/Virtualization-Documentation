@@ -1,0 +1,109 @@
+﻿.modal {
+    .modal-buttons {
+        margin-top: 15px;
+
+        .btn {
+            float: left;
+            margin-right: 10px;
+        }
+
+        .btn-success {
+            min-width: 100px;
+        }
+
+        &:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+    }
+
+    .modal-header {
+        padding: 0 15px;
+        min-height: 50px;
+        height: 50px;
+        line-height: 50px;
+
+        .modal-title {
+            line-height: 52px;
+            font-size: 18px;
+            @include text-overflow(ellipsis);
+        }
+
+        .close {
+            position: relative;
+            margin: 0;
+            width: 30px;
+            height: 50px;
+            line-height: 50px;
+            outline: none !important;
+
+            i {
+                color: #000;
+            }
+        }
+    }
+
+    .modal-content {
+        @include border-radius(3px);
+        border: none;
+    }
+
+    .modal-body {
+        margin: 0;
+        padding: 15px;
+        height: auto;
+        max-height: 76%;
+        overflow: hidden;
+        overflow-y: auto;
+    }
+
+    .modal-footer {
+        text-align: left;
+        padding: 15px 40px;
+
+        .btn-success {
+            min-width: 100px;
+        }
+    }
+
+    .form-control {
+        max-width: 100%;
+        @include box-shadow(none !important);
+    }
+
+    @media screen and (max-width:640px) {
+        .modal-header {
+            padding: 0 15px;
+            min-height: 50px;
+            height: 50px;
+            line-height: 50px;
+
+            .modal-title {
+                line-height: 52px;
+            }
+
+            .close {
+                min-height: 50px;
+                height: 50px;
+                line-height: 50px;
+            }
+        }
+
+        .modal-footer {
+            padding: 15px;
+        }
+
+        .modal-body {
+            padding: 15px;
+
+            .form-group {
+                margin-bottom: 10px;
+            }
+        }
+
+        .modal-buttons {
+            margin-top: 15px;
+        }
+    }
+}

@@ -1,0 +1,17 @@
+﻿.about-view {
+    .content-inner {
+        width: 100%;
+    }
+ 
+    @media screen and (max-width:480px) {
+        .about-section {
+            .about-external-link {
+                li {
+                    .btn {
+                        text-align: right;
+                    }
+                }
+            }
+        }
+    }
+}

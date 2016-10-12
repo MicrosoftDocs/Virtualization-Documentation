@@ -1,0 +1,184 @@
+﻿// border-radius
+@mixin border-radius($border-radius) {
+    -moz-border-radius: $border-radius;
+    -webkit-border-radius: $border-radius;
+    border-radius: $border-radius;
+}
+
+// box-shadow
+@mixin box-shadow($box-shadow) {
+    -moz-box-shadow: $box-shadow;
+    -webkit-box-shadow: $box-shadow;
+    box-shadow: $box-shadow;
+}
+
+// user-select
+@mixin user-select($user-select) {
+    -moz-user-select: $user-select;
+    -ms-user-select: $user-select;
+    -webkit-user-select: $user-select;
+    user-select: $user-select;
+}
+
+// text-overflow
+@mixin text-overflow($text-overflow) {
+    display: block;
+    overflow: hidden;
+    white-space: nowrap;
+    -ms-text-overflow: $text-overflow;
+    -o-text-overflow: $text-overflow;
+    text-overflow: $text-overflow;
+}
+
+// transition
+@mixin transition($transition...) {
+    -moz-transition: $transition;
+    -o-transition: $transition;
+    -webkit-transition: $transition;
+    transition: $transition;
+}
+
+// transform
+@mixin transform($transform...) {
+    -moz-transform: $transform;
+    -ms-transform: $transform;
+    -o-transform: $transform;
+    -webkit-transform: $transform;
+    transform: $transform;
+}
+
+// box-sizing
+@mixin box-sizing($box-sizing) {
+    -moz-box-sizing: $box-sizing;
+    -webkit-box-sizing: $box-sizing;
+    box-sizing: $box-sizing;
+}
+
+// buttons
+@mixin button-size($btn-size) {
+    line-height: $btn-size;
+    height: $btn-size;
+    padding: 0 ($btn-size / 2);
+
+    i {
+        line-height: $btn-size;
+        display: inline-block;
+        vertical-align: top;
+        font-size: 14px;
+    }
+}
+
+@mixin button-variant($color, $background, $border) {
+    color: $color;
+    background-color: $background;
+    border-color: $border;
+
+    &:focus,
+    &.focus {
+        color: $color;
+        background-color: darken($background, 10%);
+        border-color: darken($border, 20%);
+    }
+
+    &:hover {
+        color: $color;
+        background-color: darken($background, 10%);
+        border-color: darken($border, 12%);
+    }
+
+    &:active,
+    &.active,
+    .open > &.dropdown-toggle {
+        color: $color;
+        background-color: darken($background, 10%);
+        border-color: darken($border, 12%);
+
+        &:hover,
+        &:focus,
+        &.focus {
+            color: $color;
+            background-color: darken($background, 17%);
+            border-color: darken($border, 20%);
+        }
+    }
+
+    &:active,
+    &.active,
+    .open > &.dropdown-toggle {
+        background-image: none;
+    }
+
+    &.disabled,
+    &[disabled],
+    fieldset[disabled] & {
+        background-color: $background;
+        border-color: $border;
+        &:hover,
+        &:focus,
+        &.focus {
+            background-color: $background;
+            border-color: $border;
+        }
+    }
+
+    .badge {
+        color: $background;
+        background-color: $color;
+    }
+}
+
+// triangle
+@mixin triangle($direction, $size, $color) {
+    width: 0;
+    height: 0;
+
+    @if $direction == 'up' {
+        border-right: $size solid transparent;
+        border-bottom: $size solid $color;
+        border-left: $size solid transparent;
+    }
+    @else if $direction == 'down' {
+        border-top: $size solid $color;
+        border-right: $size solid transparent;
+        border-left: $size solid transparent;
+    }
+    @else if $direction == 'left' {
+        border-top: $size solid transparent;
+        border-right: $size solid $color;
+        border-bottom: $size solid transparent;
+    }
+    @else if $direction == 'right' {
+        border-top: $size solid transparent;
+        border-bottom: $size solid transparent;
+        border-left: $size solid $color;
+    }
+}
+
+@mixin corner-triangle($corner, $size, $color) {
+    width: 0;
+    height: 0;
+
+    @if $corner == 'top-left' {
+        border-top: $size solid $color;
+        border-right: $size solid transparent;
+    }
+    @else if $corner == 'top-right' {
+        border-top: $size solid $color;
+        border-left: $size solid transparent;
+    }
+    @else if $corner == 'bottom-left' {
+        border-right: $size solid transparent;
+        border-bottom: $size solid $color;
+    }
+    @else if $corner == 'bottom-right' {
+        border-bottom: $size solid $color;
+        border-left: $size solid transparent;
+    }
+}
+
+// list-unstyled
+@mixin list-unstyled() {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}

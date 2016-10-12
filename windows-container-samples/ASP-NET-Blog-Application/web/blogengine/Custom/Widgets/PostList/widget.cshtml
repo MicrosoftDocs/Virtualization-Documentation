@@ -1,0 +1,106 @@
+﻿@using BlogEngine.Core
+@using BlogEngine.NET.Custom.Widgets
+@{
+    var title = Model.Title;
+    var id = Model.Id;
+    var settings = Common.GetSettings(id);
+
+    var visiblePosts = Post.ApplicablePosts.FindAll(p => p.IsVisibleToPublic);
+    var numberOfPosts = 10;
+    var category = "All";
+    var author = "All";
+    var sortOrder = "Published";
+
+    if (settings.ContainsKey("numberofposts"))
+    {
+        numberOfPosts = int.Parse(settings["numberofposts"]);
+    }
+    // filtering
+    if (settings.ContainsKey("cutegory"))
+    {
+        category = settings["cutegory"];
+    }
+    if (category != "All")
+    {
+        var cat = Category.Categories.Where(c => c.Title == category).FirstOrDefault();
+        visiblePosts = visiblePosts.Where(p => p.Categories.Contains(cat)).ToList();
+    }
+    if (settings.ContainsKey("author"))
+    {
+        author = settings["author"];
+    }
+    if (author != "All")
+    {
+        visiblePosts = visiblePosts.Where(p => p.Author == author).ToList();
+    }
+    // sorting
+    if (settings.ContainsKey("sortorder"))
+    {
+        sortOrder = settings["sortorder"];
+    }
+    if (sortOrder == "Published")
+    {
+        visiblePosts = visiblePosts.OrderByDescending(p => p.DateCreated).ToList();
+    }
+    if (sortOrder == "Alphabetical")
+    {
+        visiblePosts = visiblePosts.OrderBy(p => p.Title).ToList();
+    }
+    if (sortOrder == "Comments")
+    {
+        visiblePosts = visiblePosts.OrderByDescending(p => p.Comments.Count).ToList();
+    }
+    // take
+    var max = Math.Min(visiblePosts.Count, numberOfPosts);
+    var list = visiblePosts.GetRange(0, max);
+
+    var showImg = false;
+    if (settings.ContainsKey("showimg"))
+    {
+        bool.TryParse(settings["showimg"], out showImg);
+    }
+    var showDesc = false;
+    if (settings.ContainsKey("showdesc"))
+    {
+        bool.TryParse(settings["showdesc"], out showDesc);
+    }
+    var showDate = false;
+    if (settings.ContainsKey("showdate"))
+    {
+        bool.TryParse(settings["showdate"], out showDate);
+    }
+}
+<div class="widget postlist">
+    <h4 class="widget-header">@title</h4>
+    <div class="widget-content">
+        <ul>
+            @if (list.Count == 0)
+            {
+                <li class="post-item-list">@Resources.labels.none</li>
+            }
+            else
+            {
+                foreach (var item in list)
+                {
+                <li class="post-item-list">
+                    <a href="@item.RelativeOrAbsoluteLink">
+                        @if (showImg && item.FirstImgSrc.Length > 0)
+                        {
+                        <img src="@item.FirstImgSrc" class="post-item-img" alt="Post image" />
+                        }
+                        <h3 class="post-item-title">@item.Title</h3>
+                        @if (showDesc)
+                        {
+                            <p class="post-item-desc">@HttpUtility.HtmlEncode(item.Description)</p>
+                        }
+                        @if (showDate)
+                        {
+                            <span class="post-item-date">@item.DateCreated.ToString("MMMM d, yyyy")</span>
+                        }
+                    </a>
+                </li>
+                }
+            }
+        </ul>
+    </div>
+</div>
