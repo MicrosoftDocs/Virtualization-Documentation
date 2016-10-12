@@ -44,7 +44,7 @@ Docker is required in order to work with Windows containers. Docker consists of 
 Download the release candidate of the Commercially Supported Docker Engine and client as a zip archive.
 
 ```none
-Invoke-WebRequest "https://download.docker.com/components/engine/windows-server/cs-1.12/docker.zip" -OutFile "$env:TEMP\docker.zip" -UseBasicParsing
+Invoke-WebRequest "https://download.docker.com/components/engine/windows-server/cs-1.12/docker-1.12.2.zip" -OutFile "$env:TEMP\docker.zip" -UseBasicParsing
 ```
 
 Expand the zip archive into Program Files.

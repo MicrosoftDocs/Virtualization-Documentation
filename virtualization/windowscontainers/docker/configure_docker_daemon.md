@@ -15,11 +15,22 @@ ms.assetid: 6885400c-5623-4cde-8012-f6a00019fafa
 
 The Docker Engine and client are not included with Windows and will need to be installed and configured individually. Furthermore, the Docker Engine can accept many custom configurations. Some examples include configuring how the daemon accepts incoming requests, default networking options, and debug / log settings. On Windows, these configurations can be specified in a configuration file or by using Windows Service control manager. This document will detail how to install and configure the Docker Engine, and will also provide some examples of commonly used configurations.
 
+
 ## Install Docker
+Docker is required in order to work with Windows Containers. Docker consists of the Docker Engine (dockerd.exe), and the Docker client (docker.exe). The easiest way to get everything installed is in the quick start guides. They will help you get everything set up and run your first container. 
 
-Docker is required in order to work with Windows containers. Docker consists of the Docker Engine, and the Docker client. For this exercise, both will be installed.
+* [Windows Containers on Windows Server 2016](quick_start/quick_start_windows_server.md)
+* [Windows Containers on Windows 10](quick_start/quick_start_windows_10.md)
 
-Download the Docker Engine.
+
+### Manual Installation
+If you would like to use an in-development version of the Docker Engine and client instead, you can use the steps that follow. This will install both the Docker Engine and client. Otherwise, skip to the next section.
+
+> If you have installed Docker for Windows, be sure to remove it before you follow these manual installation steps. 
+
+Download the Docker Engine
+
+The latest version may always be found at https://master.dockerproject.org . This sample uses the latest from the v1.13-development branch. 
 
 ```none
 Invoke-WebRequest "https://download.docker.com/components/engine/windows-server/cs-1.12/docker.zip" -OutFile "$env:TEMP\docker.zip" -UseBasicParsing
