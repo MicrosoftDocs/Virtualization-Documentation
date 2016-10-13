@@ -41,12 +41,6 @@ When the installation is complete, reboot the computer.
 Restart-Computer -Force
 ```
 
-Once your machine is back on, you can start the Docker service.
-
-```none
-Start-Service docker
-```
-
 ## Install Base Container Images
 
 Before working with Windows Containers, a base image needs to be installed. Base images are available with either Windows Server Core or Nano Server as the underlying operating system. For detailed information on Docker container images, see [Build your own images on docker.com](https://docs.docker.com/engine/tutorials/dockerimages/).
