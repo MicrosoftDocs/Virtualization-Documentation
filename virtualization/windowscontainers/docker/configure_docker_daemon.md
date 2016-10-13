@@ -19,8 +19,8 @@ The Docker Engine and client are not included with Windows and will need to be i
 ## Install Docker
 Docker is required in order to work with Windows Containers. Docker consists of the Docker Engine (dockerd.exe), and the Docker client (docker.exe). The easiest way to get everything installed is in the quick start guides. They will help you get everything set up and run your first container. 
 
-* [Windows Containers on Windows Server 2016](quick_start/quick_start_windows_server.md)
-* [Windows Containers on Windows 10](quick_start/quick_start_windows_10.md)
+* [Windows Containers on Windows Server 2016](https://msdn.microsoft.com/en-us/virtualization/windowscontainers/quick_start/quick_start_windows_server)
+* [Windows Containers on Windows 10](https://msdn.microsoft.com/en-us/virtualization/windowscontainers/quick_start/quick_start_windows_10)
 
 
 ### Manual Installation
