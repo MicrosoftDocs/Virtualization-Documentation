@@ -5,9 +5,6 @@ This collection of scripts is designed to make it easier to troubleshoot common 
 ## How to run it
 First, run `Debug-ContainerHost.ps1` with no options. It will run several tests on the system automatically.
 
-<table>
-<tr>
-<td>
 Example Pass:
 
 ```none
@@ -31,8 +28,6 @@ Tests completed in 2.91s
 Passed: 11 Failed: 0 Skipped: 0 Pending: 0 Inconclusive: 0
 ```
 
-</td>
-<td>
 Example Fail:
 
 ```none
@@ -66,13 +61,10 @@ Tests completed in 2.95s
 Passed: 8 Failed: 3 Skipped: 0 Pending: 0 Inconclusive: 0
 ```
 
-</td>
-</tr>
-</table>
-
 
 ## Contributing
 Contributions are welcome! Here are a few suggested areas needing improvement:
-- Add options to start & stop log collections to Debug-ContainerHost.ps1
+- Include `docker info` and `docker version` output
+- Add options to start & stop log collections to Debug-ContainerHost.ps1, create CSV file
 - Add a commitId and date to script output so it's easier to troubleshoot the troubleshooting script
 - Search for TODO in *.ps1 for incomplete tests
