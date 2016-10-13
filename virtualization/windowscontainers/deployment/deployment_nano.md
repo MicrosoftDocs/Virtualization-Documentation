@@ -82,12 +82,6 @@ When the installation is complete, reboot the computer.
 Restart-Computer -Force
 ```
 
-Once the server reboot is complete, you can re-establish the remote connection and start the Docker service.
-
-```none
-Start-Service docker
-```
-
 ## Install Base Container Images
 
 Base OS images are used as the base to any Windows Server or Hyper-V container. Base OS images are available with both Windows Server Core and Nano Server as the underlying operating system and can be installed using `docker pull`. For detailed information on Docker container images, see [Build your own images on docker.com](https://docs.docker.com/engine/tutorials/dockerimages/).
