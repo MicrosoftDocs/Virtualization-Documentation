@@ -89,6 +89,4 @@ $logNames = "Microsoft-Windows-Containers-Wcifs/Operational",
 $levels = 3,2,1,0
 $providers = "Docker", "Microsoft-Windows-Hyper-V-Compute"
 
-# Get-EventLog -LogName Application -Source Docker -After $logStartTime -EntryType Warning, Error | Format-List TimeGenerated, Message
-
 Get-WinEvent -FilterHashtable @{Logname=$logNames; StartTime=$logStartTime; Level=$levels; ProviderName=$providers} -ErrorAction Ignore
