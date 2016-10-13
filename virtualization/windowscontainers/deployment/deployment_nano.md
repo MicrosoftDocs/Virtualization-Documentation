@@ -58,64 +58,34 @@ Restart-Computer
 
 Once it is back up, re-establish the remote PowerShell connection.
 
-## Install Container Feature
-
-The Nano Server package management provider allows roles and features to be installed on Nano Server. Install the provider using this command.
-
-```none
-Install-PackageProvider NanoServerPackage
-```
-
-After the package provide has been installed, install the container feature.
-
-```none
-Install-NanoServerPackage -Name Microsoft-NanoServer-Containers-Package
-```
-
-The Nano Server host will need to be re-booted after the container features has been installed. 
-
-```none
-Restart-Computer
-```
-
-Once it is back up, re-establish the remote PowerShell connection.
-
 ## Install Docker
 
-The Docker Engine is required in order to work with Windows containers. Install the Docker Engine using these steps.
+Docker is required in order to work with Windows containers. To install Docker we'll use the [OneGet provider PowerShell module](https://github.com/oneget/oneget). The provider will enable the containers feature on your machine and install Docker - this will require a reboot. 
 
-Download the Docker engine and client as a zip archive.
+Run the following commands in your remote PowerShell session.
+
+First we'll install the OneGet PowerShell module.
 
 ```none
-Invoke-WebRequest "https://download.docker.com/components/engine/windows-server/cs-1.12/docker.zip" -OutFile "$env:TEMP\docker.zip" -UseBasicParsing
+Install-Module -Name DockerMsftProvider -Repository PSGallery -Force
 ```
 
-Expand the zip archive into Program Files, the archive contents is already in docker directory.
+Next we'll use OneGet to install the latest version of Docker.
 
 ```none
-Expand-Archive -Path "$env:TEMP\docker.zip" -DestinationPath $env:ProgramFiles
+Install-Package -Name docker -ProviderName DockerMsftProvider
 ```
 
-Add the Docker directory to the system path on the Nano Server.
+When the installation is complete, reboot the computer.
 
 ```none
-# For quick use, does not require shell to be restarted.
-$env:path += “;C:\program files\docker”
-
-# For persistent use, will apply even after a reboot.
-setx PATH $env:path /M
+Restart-Computer -Force
 ```
 
-Install Docker as a Windows service.
+Once the server reboot is complete, you can re-establish the remote connection and start the Docker service.
 
 ```none
-dockerd --register-service
-```
-
-Start the Docker service.
-
-```none
-Start-Service Docker
+Start-Service docker
 ```
 
 ## Install Base Container Images
