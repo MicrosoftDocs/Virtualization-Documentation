@@ -96,5 +96,9 @@ Get-WinEvent -FilterHashtable @{Logname=$logNames; StartTime=$logStartTime; Leve
 # TODO: Dump full logs to text file
 =======
 # Get-EventLog -LogName Application -Source Docker -After $logStartTime -EntryType Warning, Error | Format-List TimeGenerated, Message
+<<<<<<< HEAD
+Get-WinEvent -FilterHashtable @{Logname=$logNames; StartTime=$logStartTime; Level=$levels; ProviderName=$providers} -ErrorAction Ignore
+>>>>>>> origin/live
+=======
 Get-WinEvent -FilterHashtable @{Logname=$logNames; StartTime=$logStartTime; Level=$levels; ProviderName=$providers} -ErrorAction Ignore
 >>>>>>> origin/live
