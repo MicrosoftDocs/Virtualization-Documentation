@@ -34,5 +34,6 @@
 
 # Community and Support
 ## [Container Forum](https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers)
+## [Troubleshooting](troubleshooting.md)
 
 # [Container OS Image EULA](Images_EULA.md)
