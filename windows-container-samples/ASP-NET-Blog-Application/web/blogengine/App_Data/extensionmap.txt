@@ -1,2 +1,0 @@
-﻿Wikipedia=WikiPediaLink
-PasswordProtected=PasswordProtect

@@ -2,7 +2,7 @@
 
 services:
  web:
-  image: blogengine
+  build: ./web
   ports:
    - "80:80"
   depends_on:
@@ -10,7 +10,7 @@ services:
   tty:
     true
  db:
-  image: blogdb
+  build: ./db
   expose:
    - "1433"
   tty:

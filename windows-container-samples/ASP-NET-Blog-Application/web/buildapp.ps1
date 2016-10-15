@@ -1,3 +1,7 @@
+# Download and extract BlogEngine.NET project files
+Invoke-WebRequest "https://blogengine.codeplex.com/downloads/get/1566660" -OutFile "C:/BlogEngineNETSrc.zip"
+Expand-Archive -Path C:/BlogEngineNETSrc.zip -DestinationPath C:/inetpub/wwwroot/blogengine
+
 # Remove existing default web site files
 remove-item C:\inetpub\wwwroot\iisstart.*
 

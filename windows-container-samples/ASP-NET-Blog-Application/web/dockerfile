@@ -1,19 +1,15 @@
-# Windows Server Core Base Image 
-# NOTE: You may need to prepend 'microsoft/' to base image name--use 'docker images' to see what your image is called.
 FROM microsoft/windowsservercore
 
-# App dependencies
+# BlogEngine.NET dependencies
 RUN dism.exe /online /enable-feature /all /featurename:iis-webserver /NoRestart
 RUN powershell add-windowsfeature web-asp-net45 
 
-# Copy web app files and all needed resources
-COPY . C:/inetpub/wwwroot
+# Get/Copy web app files and all needed resources
+COPY buildapp.ps1 C:/
 
 # Configure Web App
-RUN powershell.exe C:\inetpub\wwwroot\buildapp.ps1
+RUN powershell.exe C:\buildapp.ps1
 
-# Opens powershell in container and stops container from exiting.
-#ENTRYPOINT powershell 
-
-
+# Overwrite Web.config file so that web service points to db service
+COPY Web.config C:/inetpub/wwwroot/blogengine
 

@@ -1,28 +1,17 @@
 
-# Run blog application with Docker Compose:
+# Build and run blog application with Docker Compose:
 # ----------------------------------------------------
 
-# Obtain prerequisite container images:
-microsoft/windowsservercore
-microsoft/mssql-server-2014-express-windows
-
-# Build blog database image; run the following from .\db
-docker build -t blogdb .
-
-# Build blogengine image; run the following from .\web
-docker build -t blogengine .
-
-# Run application using docker Compose
+docker-compose build
 docker-compose up
-
 
 
 # Notes/resources:
 # ----------------------------------------------------
 
 # Run application 'manually' 
-	docker run -it --name "db" -p 1433:1433 --env sa_password=Password123 blogdb
-	docker run -it -p 80:80 blogengine
+	docker run -it --name "db" -p 1433:1433 <db container image>
+	docker run -it -p 80:80 <web container image>
 
 # Get the Windows Server Core Docker image:
 	docker pull microsoft/windowsservercore
@@ -31,12 +20,6 @@ docker-compose up
 # Get the SQL Server 2016 Express Docker image:
 	docker pull microsoft/mssql-server-2014-express-windows
 - https://hub.docker.com/r/microsoft/mssql-server-2014-express-windows/
-
-# Use Compose to run multiple instances of db service: 
-- Note: The docker-compose.yml file provided does not allow for scaling multiple instances of the 'web' service. 
-To scale the web service, replace the 'ports' option for the web service with the 'expose' option. To access service 
-fromhost, use port that is automatically designated by Docker. 
-	docker-compose scale web=1 db=3 
 
 # Create a custom NAT network
 networks:
