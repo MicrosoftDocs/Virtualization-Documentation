@@ -705,6 +705,12 @@ If (($Cleanup -eq "Baseimages") -or ($Cleanup -eq "Everything"))
 # Preparation of base VHDXs
 #######################################################################################
 
+If (-Not (Test-Path $Script:basePath))
+{
+    Log-Message -Message "[Prepare] Creating base path"
+    New-Item -Path $Script:basePath -ItemType Directory -Force
+}
+
 $Script:installWimPath = Join-Path $Script:sourceMediaPath -ChildPath "sources\Install.wim"
 
 If (Test-Path $Script:sourceUpdatePath) {
