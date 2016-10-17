@@ -66,7 +66,7 @@ Before Docker can be used container images will need to be installed. For more i
 
 The preferred method for configuring the Docker Engine on Windows is using a configuration file. The configuration file can be found at 'c:\ProgramData\docker\config\daemon.json'. If this file does not already exist, it can be created.
 
-Note – not every available Docker configuration option is applicable to Docker on Windows. The below example shows those that are. For complete documentation on Docker Engine configuration, including for Linux, see [Docker Daemon]( https://docs.docker.com/v1.10/engine/reference/commandline/daemon/).
+Note – not every available Docker configuration option is applicable to Docker on Windows. The below example shows those that are. For complete documentation on Docker Engine configuration, see [Docker daemon configuration file](https://docs.docker.com/engine/reference/commandline/dockerd/#/windows-configuration-file).
 
 ```none
 {
@@ -172,18 +172,3 @@ restart-service docker
 ```
 
 For more information see, [Daemon Socket Options on Docker.com](https://docs.docker.com/v1.10/engine/reference/commandline/daemon/#daemon-socket-option).
-
-## Collecting Logs
-
-The Docker Engine logs to the Windows 'Application' event log, rather than to a file. These logs can easily be read, sorted, and filtered using Windows PowerShell
-
-For example, this will show the Docker Engine logs from the last 5 minutes starting with the oldest.
-
-```
-Get-EventLog -LogName Application -Source Docker -After (Get-Date).AddMinutes(-5) | Sort-Object Time 
-```
-
-This could also easily be piped into a CSV file to be read by another tool or spreadsheet.
-
-```
-Get-EventLog -LogName Application -Source Docker -After (Get-Date).AddMinutes(-30)  | Sort-Object Time | Export-CSV ~/last30minutes.csv ```
