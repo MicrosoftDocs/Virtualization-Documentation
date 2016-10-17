@@ -48,9 +48,11 @@ if (Test-Path err.txt) { Remove-Item err.txt}
 if (Test-Path out.txt) { Remove-Item out.txt}
 
 Describe "Windows container settings are correct" {
-     It "Do not have DisableVSmbOplock set" {
-         $regvalues = Get-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Virtualization\Containers"
-         ($regvalues | Get-Member VSmbDisableOplocks | Measure-Object).Count | Should Be 0
+     It "Do not have DisableVSmbOplock set to 1" {
+         $regvalue = Get-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Virtualization\Containers" -Name VSmbDisableOplocks -ErrorAction Ignore
+         if ($regvalue) {
+             $regvalue.VSmbDisableOplocks | Should Be 0
+         } 
      }
      It "Do not have zz values set" {
          $regvalues = Get-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Virtualization\Containers"
