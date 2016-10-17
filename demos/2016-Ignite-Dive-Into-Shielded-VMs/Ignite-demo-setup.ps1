@@ -682,6 +682,12 @@ Function End-Stage {
 $Script:ScriptStartTime = Get-Date
 Log-Message -Message "Starting script"
 
+If (-Not (Get-WindowsOptionalFeature -FeatureName Microsoft-Hyper-V -Online))
+{
+    Log-Message -Message "Hyper-V has to be enabled" -MessageType Error
+    throw "Hyper-V not found"
+}
+
 #######################################################################################
 # Explicit cleanup
 #######################################################################################
