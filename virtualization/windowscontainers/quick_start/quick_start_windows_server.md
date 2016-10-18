@@ -23,59 +23,30 @@ One computer system (physical or virtual) running Windows Server 2016. If you ar
 
 > Critical updates are needed in order for the Windows Container feature to function. Please install all updates before working through this tutorial.
 
-## 1. Install Container Feature
+## 1. Install Docker
 
-The container feature needs to be enabled before working with Windows containers. To do so run the following command in an elevated PowerShell session.
+To install Docker we'll use the [OneGet provider PowerShell module](https://github.com/oneget/oneget). The provider will enable the containers feature on your machine and install Docker - this will require a reboot. Docker is required in order to work with Windows containers. It consists of the Docker Engine and the Docker client.
+
+Open an elevated PowerShell session and run the following commands.
+
+First we'll install the OneGet PowerShell module.
 
 ```none
-Install-WindowsFeature containers
+Install-Module -Name DockerMsftProvider -Repository PSGallery -Force
 ```
 
-When the feature installation has completed, reboot the computer.
+Next we'll use OneGet to install the latest version of Docker.
+```none
+Install-Package -Name docker -ProviderName DockerMsftProvider
+```
+
+When PowerShell asks you whether to trust the package source 'DockerDefault', type A to continue the installation. When the installation is complete, reboot the computer.
 
 ```none
 Restart-Computer -Force
 ```
 
-## 2. Install Docker
-
-Docker is required in order to work with Windows containers. Docker consists of the Docker Engine, and the Docker client. For this exercise, both will be installed.
-
-Download the release candidate of the Commercially Supported Docker Engine and client as a zip archive.
-
-```none
-Invoke-WebRequest "https://download.docker.com/components/engine/windows-server/cs-1.12/docker.zip" -OutFile "$env:TEMP\docker.zip" -UseBasicParsing
-```
-
-Expand the zip archive into Program Files.
-
-```none
-Expand-Archive -Path "$env:TEMP\docker.zip" -DestinationPath $env:ProgramFiles
-```
-
-Add the Docker directory to the system path.
-
-```none
-# For quick use, does not require shell to be restarted.
-$env:path += ";c:\program files\docker"
-
-# For persistent use, will apply even after a reboot. 
-[Environment]::SetEnvironmentVariable("Path", $env:Path + ";C:\Program Files\Docker", [EnvironmentVariableTarget]::Machine)
-```
-
-To install Docker as a Windows service, run the following.
-
-```none
-dockerd.exe --register-service
-```
-
-Once installed, the service can be started.
-
-```none
-Start-Service docker
-```
-
-## 3. Deploy Your First Container
+## 2. Deploy Your First Container
 
 For this exercise, you will download a pre-created .NET sample image from the Docker Hub registry and deploy a simple container running a .Net Hello World application..  
 

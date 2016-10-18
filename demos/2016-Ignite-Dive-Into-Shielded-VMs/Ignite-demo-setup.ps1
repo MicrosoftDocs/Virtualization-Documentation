@@ -682,12 +682,15 @@ Function End-Stage {
 $Script:ScriptStartTime = Get-Date
 Log-Message -Message "Starting script"
 
+<<<<<<< HEAD
 If (-Not (Get-WindowsOptionalFeature -FeatureName Microsoft-Hyper-V -Online))
 {
     Log-Message -Message "Hyper-V has to be enabled" -MessageType Error
     throw "Hyper-V not found"
 }
 
+=======
+>>>>>>> upstream/master
 #######################################################################################
 # Explicit cleanup
 #######################################################################################
@@ -711,12 +714,15 @@ If (($Cleanup -eq "Baseimages") -or ($Cleanup -eq "Everything"))
 # Preparation of base VHDXs
 #######################################################################################
 
+<<<<<<< HEAD
 If (-Not (Test-Path $Script:basePath))
 {
     Log-Message -Message "[Prepare] Creating base path"
     New-Item -Path $Script:basePath -ItemType Directory -Force
 }
 
+=======
+>>>>>>> upstream/master
 $Script:installWimPath = Join-Path $Script:sourceMediaPath -ChildPath "sources\Install.wim"
 
 If (Test-Path $Script:sourceUpdatePath) {
