@@ -1,10 +1,10 @@
----
+﻿---
 title: Deploy Windows Containers on Windows Server
 description: Deploy Windows Containers on Windows Server
 keywords: docker, containers
 author: neilpeterson
 manager: timlt
-ms.date: 05/26/2016
+ms.date: 09/26/2016
 ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
@@ -13,101 +13,51 @@ ms.assetid: ba4eb594-0cdb-4148-81ac-a83b4bc337bc
 
 # Container Host Deployment - Windows Server
 
-**This is preliminary content and subject to change.**
-
 Deploying a Windows container host has different steps depending on the operating system and the host system type (physical or virtual). This document details deploying a Windows container host to either Windows Server 2016 or Windows Server Core 2016 on a physical or virtual system.
 
-## Azure Image 
+## Install Docker
 
-A fully configured Windows Server image is available in Azure. To use this image, deploy a virtual machine by clicking on the button below. If deploying a Windows container system to Azure using this temple, the remainder of this document can be skipped.
+Docker is required in order to work with Windows containers. Docker consists of the Docker Engine, and the Docker client. 
 
-<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FMicrosoft%2FVirtualization-Documentation%2Fmaster%2Fwindows-server-container-tools%2Fcontainers-azure-template%2Fazuredeploy.json" target="_blank">
-    <img src="http://azuredeploy.net/deploybutton.png"/>
-</a>
+To install Docker we'll use the [OneGet provider PowerShell module](https://github.com/oneget/oneget). The provider will enable the containers feature on your machine and install Docker - this will require a reboot. 
 
-## Install Container Feature
+Open an elevated PowerShell session and run the following commands.
 
-The container feature needs to be enabled before working with Windows containers. To do so run the following command in an elevated PowerShell session.
+First we'll install the OneGet PowerShell module.
 
 ```none
-Install-WindowsFeature containers
+Install-Module -Name DockerMsftProvider -Repository PSGallery -Force
 ```
 
-When the feature installation has completed, reboot the computer.
+Next we'll use OneGet to install the latest version of Docker.
+
+```none
+Install-Package -Name docker -ProviderName DockerMsftProvider
+```
+
+When the installation is complete, reboot the computer.
 
 ```none
 Restart-Computer -Force
 ```
 
-## Install Docker
-
-Docker is required in order to work with Windows containers. Docker consists of the Docker Engine, and the Docker client. For this exercise, both will be installed.
-
-Create a folder for the Docker executables.
-
-```none
-New-Item -Type Directory -Path 'C:\Program Files\docker\'
-```
-
-Download the Docker daemon.
-
-```none
-Invoke-WebRequest https://aka.ms/tp5/b/dockerd -OutFile $env:ProgramFiles\docker\dockerd.exe
-```
-
-Download the Docker client.
-
-```none
-Invoke-WebRequest https://aka.ms/tp5/b/docker -OutFile $env:ProgramFiles\docker\docker.exe
-```
-
-Add the Docker directory to the system path.
-
-```none
-[Environment]::SetEnvironmentVariable("Path", $env:Path + ";C:\Program Files\Docker", [EnvironmentVariableTarget]::Machine)
-```
-
-Restart the PowerShell session so that the modified path is recognized.
-
-To install Docker as a Windows service, run the following.
-
-```none
-dockerd --register-service
-```
-
-Once installed, the service can be started.
-
-```none
-Start-Service Docker
-```
-
 ## Install Base Container Images
 
-Before a container can be deployed, a container base OS image needs to be downloaded. The following example will download the Windows Server Core base OS image. This same procedure can be completed to install the Nano Server base image. For detailed information on Windows container images, see [Managing Container Images](../management/manage_images.md).
+Before working with Windows Containers, a base image needs to be installed. Base images are available with either Windows Server Core or Nano Server as the underlying operating system. For detailed information on Docker container images, see [Build your own images on docker.com](https://docs.docker.com/engine/tutorials/dockerimages/).
 
-First, install the container image package provider.
-
-```none
-Install-PackageProvider ContainerImage -Force
-```
-
-Next, install the Windows Server Core image. This process can take some time, so take a break and pick back up once the download has completed.
+To install the Windows Server Core base image run the following:
 
 ```none
-Install-ContainerImage -Name WindowsServerCore    
+docker pull microsoft/windowsservercore
 ```
 
-After the base image has been installed, the Docker service needs to be restarted.
+To install the Nano Server base image run the following:
 
 ```none
-Restart-Service docker
+docker pull microsoft/nanoserver
 ```
 
-Finally, the image needs to be tagged with a version of ‘latest’. To do so, run the following command.
-
-```none
-docker tag windowsservercore:10.0.14300.1000 windowsservercore:latest
-```
+> Please read the Windows Containers OS Image EULA which can be found here – [EULA](../Images_EULA.md).
 
 ## Hyper-V Container Host
 

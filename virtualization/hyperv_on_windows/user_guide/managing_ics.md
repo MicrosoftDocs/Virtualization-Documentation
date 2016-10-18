@@ -28,7 +28,9 @@ For more information on each individual integration service, see [Integration Se
   
   ![](./media/HyperVManager-IntegrationServices.png)
   
-  Here you can see all integration services available on this Hyper-V host.  It's worth noting that the guest operating system may or may not support all of the integration services listed.
+  Here you can see all integration services available on this Hyper-V host.  It's worth noting that the guest operating system may or may not support all of the integration services listed. To determine the version information for a guest operating system, log on to the guest operating system and run the following command from command prompt.
+
+REG QUERY "HKLM\Software\Microsoft\Virtual Machine\Auto" /v IntegrationServicesVersion
 
 ## Enable or Disable Integration Services Using PowerShell
 

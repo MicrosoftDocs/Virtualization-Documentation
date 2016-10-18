@@ -4,7 +4,7 @@ description: Container deployment quick start
 keywords: docker, containers
 author: neilpeterson
 manager: timlt
-ms.date: 07/13/2016
+ms.date: 09/26/2016
 ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
@@ -13,20 +13,22 @@ ms.assetid: bb9bfbe0-5bdc-4984-912f-9c93ea67105f
 
 # Windows Containers on Windows 10
 
-**This is preliminary content and subject to change.** 
-
-The exercise will walk through basic deployment and use of the Windows container feature on Windows 10 (insiders build 14372 and up). After completion, you will have installed the container role, and deployed a simple Hyper-V container. Before starting this quick start, familiarize yourself with basic container concepts and terminology. This information can be found on the [Quick Start Introduction](./quick_start.md). 
+The exercise will walk through basic deployment and use of the Windows container feature on Windows 10 Professional or Enterprise (Anniversary Edition). After completion, you will have installed the container role, and deployed a simple Hyper-V container. Before starting this quick start, familiarize yourself with basic container concepts and terminology. This information can be found on the [Quick Start Introduction](./quick_start.md).
 
 This quick start is specific to Hyper-V containers on Windows 10. Additional quick start documentation can be found in the table of contents on the left hand side of this page.
 
 **Prerequisites:**
 
-- One physical computer system running a [Windows 10 Insiders release](https://insider.windows.com/).   
+- One physical computer system running Windows 10 Anniversary Edition (Professional or Enterprise).   
 - This quick start can be run on a Windows 10 virtual machine however nested virtualization will need to be enabled. More information can be found in the [Nested Virtualization Guide](https://msdn.microsoft.com/en-us/virtualization/hyperv_on_windows/user_guide/nesting).
+
+> You must install critical updates for Windows Containers to work. 
+> To check your OS version, run `winver.exe`, and compare the version shown to [Windows 10 update history](https://support.microsoft.com/en-us/help/12387/windows-10-update-history). 
+> Make sure you have 14393.222 or later before continuing.
 
 ## 1. Install Container Feature
 
-The container feature needs to be enabled before working with Windows containers. To do so run the following command in an elevated PowerShell session. 
+The container feature needs to be enabled before working with Windows containers. To do so run the following command in an elevated PowerShell session.
 
 ```none
 Enable-WindowsOptionalFeature -Online -FeatureName containers -All
@@ -44,41 +46,33 @@ When the installation has completed, reboot the computer.
 Restart-Computer -Force
 ```
 
-Once back up, run the following command to fix a known issue with the Windows Containers technical preview.  
-
- ```none
-Set-ItemProperty -Path 'HKLM:SOFTWARE\Microsoft\Windows NT\CurrentVersion\Virtualization\Containers' -Name VSmbDisableOplocks -Type DWord -Value 1 -Force
-```
+> If you were previously using Hyper-V Containers on Windows 10 with the Technical Preview 5 container base images, be sure to re-enable OpLocks. Please run the following  command:  `Set-ItemProperty -Path 'HKLM:SOFTWARE\Microsoft\Windows NT\CurrentVersion\Virtualization\Containers' -Name VSmbDisableOplocks -Type DWord -Value 0 -Force`
 
 ## 2. Install Docker
 
-Docker is required in order to work with Windows containers. Docker consists of the Docker Engine, and the Docker client. For this exercise, both will be installed. Run the following commands to do so. 
+Docker is required in order to work with Windows containers. Docker consists of the Docker Engine, and the Docker client. For this exercise, both will be installed. Run the following commands to do so.
 
-Create a folder for the Docker executables.
+Download the Docker engine and client as a zip archive.
 
 ```none
-New-Item -Type Directory -Path $env:ProgramFiles\docker\
+Invoke-WebRequest "https://master.dockerproject.org/windows/amd64/docker-1.13.0-dev.zip" -OutFile "$env:TEMP\docker-1.13.0-dev.zip" -UseBasicParsing
 ```
 
-Download the Docker daemon.
+Expand the zip archive into Program Files, the archive contents is already in docker directory.
 
 ```none
-Invoke-WebRequest https://master.dockerproject.org/windows/amd64/dockerd.exe -OutFile $env:ProgramFiles\docker\dockerd.exe
-```
-
-Download the Docker client.
-
-```none
-Invoke-WebRequest https://master.dockerproject.org/windows/amd64/docker.exe -OutFile $env:ProgramFiles\docker\docker.exe
+Expand-Archive -Path "$env:TEMP\docker-1.13.0-dev.zip" -DestinationPath $env:ProgramFiles
 ```
 
 Add the Docker directory to the system path.
 
 ```none
-[Environment]::SetEnvironmentVariable("Path", $env:Path + ";$env:ProgramFiles\docker\", [EnvironmentVariableTarget]::Machine)
-```
+# For quick use, does not require shell to be restarted.
+$env:path += ";c:\program files\docker"
 
-Restart the PowerShell session so that the modified path is recognized.
+# For persistent use, will apply even after a reboot.
+[Environment]::SetEnvironmentVariable("Path", $env:Path + ";C:\Program Files\Docker", [EnvironmentVariableTarget]::Machine)
+```
 
 To install Docker as a Windows service, run the following.
 
@@ -95,37 +89,25 @@ Start-Service Docker
 ## 3. Install Base Container Images
 
 Windows containers are deployed from templates or images. Before a container can be deployed, a container base OS image needs to be downloaded. The following commands will download the Nano Server base image.
-    
-> This procedure applies to Windows Insiders builds greater than 14372 and is temporary until ‘docker pull’ is functional.
 
-Download the Nano Server base image. 
+Pull the Nano Server base image.
 
 ```none
-Start-BitsTransfer https://aka.ms/tp5/6b/docker/nanoserver -Destination nanoserver.tar.gz
+docker pull microsoft/nanoserver
 ```
 
-Install the base image.
-
-```none  
-docker load -i nanoserver.tar.gz
-```
-
-At this stage, running `docker images` will return a list of installed images, in this case the Nano Server image.
+Once the image is pulled, running `docker images` will return a list of installed images, in this case the Nano Server image.
 
 ```none
 docker images
 
-REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
-nanoserver          10.0.14300.1030     3f5112ddd185        3 weeks ago         810.2 MB
-```
-
-Before proceeding, this image needs to be tagged with a version of ‘latest’. To do so, run the following command.
-
-```none
-docker tag microsoft/nanoserver:10.0.14300.1030 nanoserver:latest
+REPOSITORY             TAG                 IMAGE ID            CREATED             SIZE
+microsoft/nanoserver   latest              105d76d0f40e        4 days ago          652 MB
 ```
 
 For in depth information on Windows container images see, [Managing Container Images](../management/manage_images.md).
+
+> Please read the Windows Containers OS Image EULA which can be found here – [EULA](../Images_EULA.md).
 
 ## 4. Deploy Your First Container
 
@@ -134,7 +116,7 @@ For this simple example a ‘Hello World’ container image will be created and 
 First, start a container with an interactive session from the `nanoserver` image. Once the container has started, you will be presented with a command shell from within the container.  
 
 ```none
-docker run -it nanoserver cmd
+docker run -it microsoft/nanoserver cmd
 ```
 
 Inside the container we will create a simple ‘Hello World’ script.
@@ -173,11 +155,9 @@ Finally, to run the container, use the `docker run` command.
 docker run --rm helloworld powershell c:\helloworld.ps1
 ```
 
-The outcome of the `docker run` command is that a Hyper-V container was created from the 'HelloWorld' image, a sample 'Hello World' script was then executed (output echoed to the shell), and then the container stopped and removed. 
+The outcome of the `docker run` command is that a Hyper-V container was created from the 'HelloWorld' image, a sample 'Hello World' script was then executed (output echoed to the shell), and then the container stopped and removed.
 Subsequent Windows 10 and container quick starts will dig into creating and deploying applications in containers on Windows 10.
 
 ## Next Steps
 
 [Windows Containers on Windows Server](./quick_start_windows_server.md)
-
-

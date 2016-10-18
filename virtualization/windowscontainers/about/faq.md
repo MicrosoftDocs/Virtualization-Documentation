@@ -59,10 +59,6 @@ Yes – Hyper-V Containers will provide the same level of integration and manage
 The Docker platform will also greatly simplify and enhance the experience of working across our container options. An application developed using Windows Server Containers can be deployed as a Hyper-V Container without change.
 
 
-**Can I run Windows Containers on ESXi or another non Hyper-V hypervisor?**
-
-Yes, Windows Container run on any TP3 Server Core installation.  Follow the instructions for [enabling the containers feature in-place](../quick_start/inplace_setup.md).
-
 ## Microsoft's open ecosystem
 
 **Is Microsoft participating in the Open Container Initiative (OCI)?**

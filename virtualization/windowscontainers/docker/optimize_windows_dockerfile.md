@@ -12,8 +12,6 @@ ms.assetid: bb2848ca-683e-4361-a750-0d1d14ec8031
 ---
 # Optimize Windows Dockerfiles
 
-**This is preliminary content and subject to change.** 
-
 Several methods can be used to optimize both the Docker build process, and the resulting Docker images. This document details how the Docker build process operates, and demonstrates several tactics that can be used for optimal image create with Windows Containers.
 
 ## Docker Build
@@ -61,7 +59,7 @@ Because each `RUN` instruction creates a new layer in the container image, group
 
 The following two examples demonstrate the same operation, which results in container images of identical capability, however the two Dockerfiles constructed differently. The resulting images are also compared.  
 
-This first example downloads, extracts, and cleans up the Visual Studio redistributable package. Each of these actions are run in their own `RUN` instruction.
+This first example downloads Python for Windows, installs it and cleans up by removing the downloaded setup file. Each of these actions are run in their own `RUN` instruction.
 
 ```none
 FROM windowsservercore
