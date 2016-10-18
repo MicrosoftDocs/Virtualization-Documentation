@@ -21,12 +21,19 @@
 ## [Dockerfiles on Windows](docker/manage_windows_dockerfile.md)
 ## [Optimize Dockerfiles](docker/optimize_windows_dockerfile.md)
 ## [Container Networking](management/container_networking.md)
+## [Manage Docker with PowerShell](https://github.com/Microsoft/Docker-PowerShell)
 
 # Container Samples
-## [Dockerfiles – Windows Server Core](https://github.com/Microsoft/Virtualization-Documentation/tree/master/windows-container-samples/windowsservercore)
-## [Dockerfiles – Nano Server](https://github.com/Microsoft/Virtualization-Documentation/tree/master/windows-container-samples/nanoserver)
+## [Application Frameworks](samples.md#Application-Frameworks)
+## [Programing Languages](samples.md#Programing-Languages)
+## [Databases](samples.md#Databases)
+## [Infrastructure and CI Tools](samples.md#Infrastructure-and-CI-Tools)
+## [Just for Fun](samples.md#Just-for-Fun)
+## [Other](samples.md#Other)
+
 
 # Community and Support
 ## [Container Forum](https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers)
+## [Troubleshooting](troubleshooting.md)
 
 # [Container OS Image EULA](Images_EULA.md)

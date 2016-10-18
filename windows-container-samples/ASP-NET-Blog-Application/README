@@ -1,0 +1,48 @@
+
+# Build and run blog application with Docker Compose:
+# ----------------------------------------------------
+
+docker-compose build
+docker-compose up
+
+
+# Notes/resources:
+# ----------------------------------------------------
+
+# Run application 'manually' 
+	docker run -it --name "db" -p 1433:1433 <db container image>
+	docker run -it -p 80:80 <web container image>
+
+# Get the Windows Server Core Docker image:
+	docker pull microsoft/windowsservercore
+- https://hub.docker.com/r/microsoft/windowsservercore/
+
+# Get the SQL Server 2016 Express Docker image:
+	docker pull microsoft/mssql-server-2014-express-windows
+- https://hub.docker.com/r/microsoft/mssql-server-2014-express-windows/
+
+# Create a custom NAT network
+networks:
+ default:
+  driver: nat
+  ipam:
+   driver: default
+   config:
+   - subnet: <Your chosen subnet prefix>
+   
+#Useful Docker commands:
+- View running containers:
+	docker ps
+- View all containers:
+	docker ps -a
+- View services running under docker-compose
+	docker-compose ps
+- View container images:
+	docker images
+- View container network info:
+	docker inspect <CONTAINER ID>
+- Remove container image:
+	docker rmi <IMAGE ID> 
+- Remove container: 
+	docker rm <CONTAINER ID>
+

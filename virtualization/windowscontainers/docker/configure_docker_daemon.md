@@ -15,11 +15,22 @@ ms.assetid: 6885400c-5623-4cde-8012-f6a00019fafa
 
 The Docker Engine and client are not included with Windows and will need to be installed and configured individually. Furthermore, the Docker Engine can accept many custom configurations. Some examples include configuring how the daemon accepts incoming requests, default networking options, and debug / log settings. On Windows, these configurations can be specified in a configuration file or by using Windows Service control manager. This document will detail how to install and configure the Docker Engine, and will also provide some examples of commonly used configurations.
 
+
 ## Install Docker
+Docker is required in order to work with Windows Containers. Docker consists of the Docker Engine (dockerd.exe), and the Docker client (docker.exe). The easiest way to get everything installed is in the quick start guides. They will help you get everything set up and run your first container. 
 
-Docker is required in order to work with Windows containers. Docker consists of the Docker Engine, and the Docker client. For this exercise, both will be installed.
+* [Windows Containers on Windows Server 2016](https://msdn.microsoft.com/en-us/virtualization/windowscontainers/quick_start/quick_start_windows_server)
+* [Windows Containers on Windows 10](https://msdn.microsoft.com/en-us/virtualization/windowscontainers/quick_start/quick_start_windows_10)
 
-Download the Docker Engine.
+
+### Manual Installation
+If you would like to use an in-development version of the Docker Engine and client instead, you can use the steps that follow. This will install both the Docker Engine and client. Otherwise, skip to the next section.
+
+> If you have installed Docker for Windows, be sure to remove it before you follow these manual installation steps. 
+
+Download the Docker Engine
+
+The latest version may always be found at https://master.dockerproject.org . This sample uses the latest from the v1.13-development branch. 
 
 ```none
 Invoke-WebRequest "https://download.docker.com/components/engine/windows-server/cs-1.12/docker.zip" -OutFile "$env:TEMP\docker.zip" -UseBasicParsing
@@ -55,7 +66,7 @@ Before Docker can be used container images will need to be installed. For more i
 
 The preferred method for configuring the Docker Engine on Windows is using a configuration file. The configuration file can be found at 'c:\ProgramData\docker\config\daemon.json'. If this file does not already exist, it can be created.
 
-Note – not every available Docker configuration option is applicable to Docker on Windows. The below example shows those that are. For complete documentation on Docker Engine configuration, including for Linux, see [Docker Daemon]( https://docs.docker.com/v1.10/engine/reference/commandline/daemon/).
+Note – not every available Docker configuration option is applicable to Docker on Windows. The below example shows those that are. For complete documentation on Docker Engine configuration, see [Docker daemon configuration file](https://docs.docker.com/engine/reference/commandline/dockerd/#/windows-configuration-file).
 
 ```none
 {
@@ -113,12 +124,14 @@ Likewise, this sample configures the Docker daemon to only accept secured connec
 
 ## Configure Docker on the Docker Service
 
-The Docker Engine can also be configured by modifying the Docker service using `sc config`. Using this method, Docker Engine flags are set directly on the Docker service.
+The Docker Engine can also be configured by modifying the Docker service using `sc config`. Using this method, Docker Engine flags are set directly on the Docker service. Run the following command in a command prompt (cmd.exe not Powershell):
 
 
 ```none
 sc config docker binpath= "\"C:\Program Files\docker\dockerd.exe\" --run-service -H tcp://0.0.0.0:2375"
 ```
+
+Note: You do not need to run this command if your daemon.json file already contains the `"hosts": ["tcp://0.0.0.0:2375"]` entry.
 
 ## Common Configuration
 
@@ -159,18 +172,3 @@ restart-service docker
 ```
 
 For more information see, [Daemon Socket Options on Docker.com](https://docs.docker.com/v1.10/engine/reference/commandline/daemon/#daemon-socket-option).
-
-## Collecting Logs
-
-The Docker Engine logs to the Windows 'Application' event log, rather than to a file. These logs can easily be read, sorted, and filtered using Windows PowerShell
-
-For example, this will show the Docker Engine logs from the last 5 minutes starting with the oldest.
-
-```
-Get-EventLog -LogName Application -Source Docker -After (Get-Date).AddMinutes(-5) | Sort-Object Time 
-```
-
-This could also easily be piped into a CSV file to be read by another tool or spreadsheet.
-
-```
-Get-EventLog -LogName Application -Source Docker -After (Get-Date).AddMinutes(-30)  | Sort-Object Time | Export-CSV ~/last30minutes.csv ```

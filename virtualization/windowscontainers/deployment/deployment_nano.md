@@ -4,7 +4,7 @@ description: Deploy Windows Containers on Nano Server
 keywords: docker, containers
 author: neilpeterson
 manager: timlt
-ms.date: 09/26/2016
+ms.date: 09/28/2016
 ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
@@ -12,8 +12,6 @@ ms.assetid: b82acdf9-042d-4b5c-8b67-1a8013fa1435
 ---
 
 # Container host deployment - Nano Server
-
-**This is preliminary content and subject to change.** 
 
 This document will step through a very basic Nano Server deployment with the Windows container feature. This is an advanced topic and assumes a general understanding of Windows and Windows containers. For an introduction to Windows containers, see [Windows Containers Quick Start](../quick_start/quick_start.md).
 
@@ -23,7 +21,7 @@ The following section will detail the deployment of a very basic Nano Server con
 
 ### Create Nano Server VM
 
-First download the Nano Server evaluation VHD from [this location](https://msdn.microsoft.com/en-us/virtualization/windowscontainers/nano_eula). Create a virtual machine from this VHD, start the virtual machine, and connect to it using the Hyper-V connect option, or equivalent based on the virtualization platform being used.
+First download the Nano Server evaluation VHD from [this location](https://www.microsoft.com/en-us/evalcenter/evaluate-windows-server-2016). Create a virtual machine from this VHD, start the virtual machine, and connect to it using the Hyper-V connect option, or equivalent based on the virtualization platform being used.
 
 ### Create Remote PowerShell Session
 
@@ -43,22 +41,16 @@ Enter-PSSession -ComputerName 192.168.1.50 -Credential ~\Administrator
 
 When these steps have been completed, you will be in remote PowerShell session with the Nano Server system. The remainder of this document, unless noted otherwise, will take place from the remote session.
 
+### Install Windows Updates
 
-## Install Container Feature
-
-The Nano Server package management provider allows roles and features to be installed on Nano Server. Install the provider using this command.
-
-```none
-Install-PackageProvider NanoServerPackage
-```
-
-After the package provide has been installed, install the container feature.
+Critical updates are required in order for the Windows Container feature to function. These updates can be installed by running the following commands.
 
 ```none
-Install-NanoServerPackage -Name Microsoft-NanoServer-Containers-Package
+$sess = New-CimInstance -Namespace root/Microsoft/Windows/WindowsUpdate -ClassName MSFT_WUOperationsSession
+Invoke-CimMethod -InputObject $sess -MethodName ApplyApplicableUpdates
 ```
 
-The Nano Server host will need to be re-booted after the container features has been installed. 
+Reboot the system once the updates have been applied.
 
 ```none
 Restart-Computer
@@ -68,56 +60,26 @@ Once it is back up, re-establish the remote PowerShell connection.
 
 ## Install Docker
 
-The Docker Engine is required in order to work with Windows containers. Install the Docker Engine using these steps.
+Docker is required in order to work with Windows containers. To install Docker we'll use the [OneGet provider PowerShell module](https://github.com/oneget/oneget). The provider will enable the containers feature on your machine and install Docker - this will require a reboot. 
 
-First, ensure that the Nano Server firewall has been configured for SMB. This can be completed by running this command on the Nano Server host.
+Run the following commands in your remote PowerShell session.
+
+First we'll install the OneGet PowerShell module.
 
 ```none
-Set-NetFirewallRule -Name FPS-SMB-In-TCP -Enabled True
+Install-Module -Name DockerMsftProvider -Repository PSGallery -Force
 ```
 
-Create a folder on the Nano Server host for the Docker executables.
+Next we'll use OneGet to install the latest version of Docker.
 
 ```none
-New-Item -Type Directory -Path $env:ProgramFiles'\docker\'
+Install-Package -Name docker -ProviderName DockerMsftProvider
 ```
 
-Download the Docker Engine and client and copy these into 'C:\Program Files\docker\' of the container host. 
-
-> Nano Server does not currently support `Invoke-WebRequest`. the download will need to be completed on a remote system, and the files copied to the Nano Server host.
+When the installation is complete, reboot the computer.
 
 ```none
-Invoke-WebRequest "https://download.docker.com/components/engine/windows-server/cs-1.12/docker.zip" -OutFile .\docker.zip -UseBasicParsing
-```
-
-Extract the downloaded package. Once completed you will have a directory containing both **dockerd.exe** and **docker.exe**. Copy both of these to the **C:\Program Files\docker\** folder in the Nano Server container host. 
-
-```none
-Expand-Archive .\docker.zip
-```
-
-Add the Docker directory to the system path on the Nano Server.
-
-> Make sure to switch back to the remote Nano Server session.
-
-```none
-# For quick use, does not require shell to be restarted.
-$env:path += “;C:\program files\docker”
-
-# For persistent use, will apply even after a reboot.
-setx PATH $env:path /M
-```
-
-Install Docker as a Windows service.
-
-```none
-dockerd --register-service
-```
-
-Start the Docker service.
-
-```none
-Start-Service Docker
+Restart-Computer -Force
 ```
 
 ## Install Base Container Images
