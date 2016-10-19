@@ -122,7 +122,6 @@ These registry values should not be needed, and can be removed. Some past test b
 
 ## Contributing to Debug-ContainerHost.ps1
 Contributions are welcome! Here are a few suggested areas needing improvement:
-- Include `docker info` and `docker version` output
 - Add options to start & stop log collections to Debug-ContainerHost.ps1, create CSV file
 - Add a commitId and date to script output so it's easier to troubleshoot the troubleshooting script
 - Search for TODO in *.ps1 for incomplete tests

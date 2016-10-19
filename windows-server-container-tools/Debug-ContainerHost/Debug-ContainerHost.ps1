@@ -1,5 +1,7 @@
 Write-Output "Checking for common problems"
 
+$filesToDump = @{}
+
 Describe "Windows Version and Prerequisites" {
     $buildNumber = (Get-CimInstance -Namespace root\cimv2 Win32_OperatingSystem).BuildNumber
     It "Is Windows 10 Anniversary Update or Windows Server 2016" {
@@ -28,12 +30,22 @@ Describe "Docker is installed" {
         $service.Status | Should Be Running
     }
     It "Docker.exe is in path" {
-        { Start-Process -NoNewWindow `
+        # This also captures 'docker info' and 'docker version' output to be shown later
+        { 
+            Start-Process -NoNewWindow `
                         -Wait `
                         -FilePath docker.exe `
                         -ArgumentList "info" `
                         -RedirectStandardError err.txt `
-                        -RedirectStandardOutput out.txt 
+                        -RedirectStandardOutput dockerinfo.txt
+            $filesToDump["docker info"] = "dockerinfo.txt"
+            Start-Process -NoNewWindow `
+                        -Wait `
+                        -FilePath docker.exe `
+                        -ArgumentList "version" `
+                        -RedirectStandardError err.txt `
+                        -RedirectStandardOutput dockerversion.txt
+            $filesToDump["docker version"] = "dockerversion.txt"
         } | Should Not Throw
     }
 }
@@ -43,9 +55,6 @@ Describe "User has permissions to use Docker daemon" {
         "err.txt" | Should Not Contain "access is denied"
     }
 }
-
-if (Test-Path err.txt) { Remove-Item err.txt}
-if (Test-Path out.txt) { Remove-Item out.txt}
 
 Describe "Windows container settings are correct" {
      It "Do not have DisableVSmbOplock set to 1" {
@@ -79,6 +88,17 @@ Describe "The right container base images are installed" {
     }
 }
 
+# Dump & Cleanup temporary files used during Pester tests
+$filesToDump.Keys | ForEach-Object {
+     if (Test-Path $filesToDump[$_]) {
+         Write-Output "Showing output from: $($_)"
+         Get-Content $filesToDump[$_] | Write-Output
+         Remove-Item $filesToDump[$_]
+         Write-Output ""
+     }
+}
+
+if (Test-Path err.txt) { Remove-Item err.txt}
 
 Write-Output "Warnings & errors from the last 24 hours"
 $logStartTime = (Get-Date).AddHours(-24)
@@ -91,4 +111,9 @@ $logNames = "Microsoft-Windows-Containers-Wcifs/Operational",
 $levels = 3,2,1,0
 $providers = "Docker", "Microsoft-Windows-Hyper-V-Compute"
 
-Get-WinEvent -FilterHashtable @{Logname=$logNames; StartTime=$logStartTime; Level=$levels; ProviderName=$providers} -ErrorAction Ignore
+$events = Get-WinEvent -FilterHashtable @{Logname=$logNames; StartTime=$logStartTime; Level=$levels; ProviderName=$providers} -ErrorAction Ignore
+
+$eventCsv = "logs_$((get-date).ToString("yyyyMMdd'-'HHmmss")).csv"
+$events | Format-Table
+$events | Export-CSV $eventCsv
+Write-Host "Logs saved to $($PWD)\$($eventCsv)"
