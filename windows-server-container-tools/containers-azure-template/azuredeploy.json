@@ -42,10 +42,10 @@
 
   "variables": {
     "storageAccountName": "[concat(uniquestring(resourceGroup().id),'storage')]",
-    "windowsOSVersion": "2016-Technical-Preview-with-Containers",
+    "imageSku": "2016-Datacenter-with-Containers",
     "imagePublisher": "MicrosoftWindowsServer",
     "imageOffer": "WindowsServer",
-    "imageVersion": "5.0.20160803",
+    "imageVersion": "2016.0.20161012",
     "OSDiskName": "[concat(parameters('VMName'),'_osdisk')]",
     "nicName": "[concat(parameters('VMName'),'_nic')]",
     "addressPrefix": "10.0.0.0/16",
@@ -234,7 +234,7 @@
           "imageReference": {
             "publisher": "[variables('imagePublisher')]",
             "offer": "[variables('imageOffer')]",
-            "sku": "[variables('windowsOSVersion')]",
+            "sku": "[variables('imageSku')]",
             "version": "[variables('imageVersion')]"
           },
           "osDisk": {
