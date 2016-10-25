@@ -68,6 +68,7 @@ To add a remote Hyper-V host to Hyper-V Manager, select **Another computer** in 
 In order to manage remote Hyper-V hosts, remote management must be enabled on both the local computer and remote host.
 
 You can do this through `System Properties -> Remote Management Settings` or by running the following PowerShell command as Administrator:  
+You can do this through `Server Manager -> Remote management` or by running the following PowerShell command as Administrator: 
 
 ``` PowerShell
 Enable-PSRemoting
