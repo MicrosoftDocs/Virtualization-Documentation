@@ -86,11 +86,13 @@ Restart-Computer -Force
 
 Base OS images are used as the base to any Windows Server or Hyper-V container. Base OS images are available with both Windows Server Core and Nano Server as the underlying operating system and can be installed using `docker pull`. For detailed information on Docker container images, see [Build your own images on docker.com](https://docs.docker.com/engine/tutorials/dockerimages/).
 
-To download and install the Windows Server and Nano Server base image, run the following commands.
+To download and install the Windows Nano Server base image, run the following command.
 
 ```none
 docker pull microsoft/nanoserver
 ```
+
+If you are planning to use Hyper-V container and have Hyper-V hypervisor installed on your Nano Server host, you can also pull the Server Core image. If you are running the Azure Gallery Server 2016 Nano be prepared that Hyper-V is not installed.
 
 ```none
 docker pull microsoft/windowsservercore
