@@ -51,6 +51,9 @@
     .PARAMETER WimPath
         Path to .wim file that contains the base package image
 
+    .PARAMETER NatNet
+        Alternative network/mask to use for Docker NAT (fixed-cidr) instead of default 172.16.0.0/12
+
     .EXAMPLE
         .\Install-ContainerHost.ps1
 
@@ -99,7 +102,10 @@ param(
 
     [string]
     [ValidateNotNullOrEmpty()]
-    $WimPath
+    $WimPath,
+
+    [string]
+    $NatNet = ""
 )
 
 $global:RebootRequired = $false
@@ -820,6 +826,11 @@ Install-Docker()
     {
         # Default local host
         $daemonSettings | Add-Member NoteProperty hosts @("npipe://")
+    }
+    
+    if ($NatNet -ne "")
+    {
+        $daemonSettings | Add-Member NoteProperty fixed-cidr $NatNet
     }
 
     & dockerd --register-service --service-name $global:DockerServiceName
