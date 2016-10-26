@@ -129,6 +129,8 @@ To use the Transparent networking mode, create a container network with driver n
 ```none
 C:\> docker network create -d transparent MyTransparentNetwork
 ```
+> If you encounter an error in creating the transparent network, it is possible that there is an external vSwitch on your system which is undiscoverable to Docker, and which is preventing the transparent network from being bound to your host's external network adapter. Reference the below section, 'Existing vSwitch Blocking Transparent Network Creation,' under 'Caveats and Gotchas' for more information.
+
 
 If the container host is virtualized, and you wish to use DHCP for IP assignment, you must enable MACAddressSpoofing on the virtual machines network adapter. Otherwise, the Hyper-V host will block network traffic from the containers in the VM with multiple MAC addresses.
 
@@ -214,8 +216,37 @@ C:\> docker network inspect <network name>
 ### Multiple Container Networks
 
 Multiple container networks can be created on a single container host with the following caveats:
-* Only one NAT network can be created per container host.
+
 * Multiple networks which use an external vSwitch for connectivity (e.g. Transparent, L2 Bridge, L2 Transparent) must each use its own network adapter.
+* Currently, our solution for creating multiple NAT networks on a single container host is to subnet the NAT network IP address block. Reference the below section, 'Multiple NAT Networks' for further guidance on this.
+
+### Multiple NAT Networks
+It is possible to define multiple NAT networks on a single container host by subnetting the host's NAT network address block. 
+
+The IP address block prefix for the container host's NAT network can be found using the below command.
+
+```none
+PS C:\> get-netnat
+```
+> Note: The container host's NAT network prefix can be changed by removing and recreating the network with the desired prefix.
+```none
+PS C:\> remove-netnat
+PS C:\> new-netnat -name nat  -InternalIPInterfaceAddressPrefix <NAT IP Prefix>
+```
+For example, the NAT network prefix might be the default that was created by the Windows Docker engine, 172.16.0.0/12. In this case, Docker can be used to create additional NAT networks as long as they fall under the 172.16.0.0/12 prefix.
+
+For example, two NAT networks could be created with the IP prefixes 172.16.0.0/16 (gateway, 172.16.0.1) and 172.17.0.0/16 (gateway, 172.17.0.1). 
+
+```none
+C:\> docker network create -d nat --subnet=172.16.0.0/16 --gateway=172.16.0.1 CustomNat1
+C:\> docker network create -d nat --subnet=172.17.0.0/16 --gateway=172.17.0.1 CustomNat2
+```
+
+The newly created networks can be listed using:
+```none
+C:\> docker network ls
+```
+
 
 ### Network Selection
 
@@ -235,12 +266,57 @@ C:\> docker run -it --network=MyTransparentNet --ip=10.80.123.32 windowsserverco
 
 Static IP assignment is performed directly on the container's network adapter and must only be performed when the container is in a STOPPED state. "Hot-add" of container network adapters or changes to the network stack is not supported while the container is running.
 
+## Docker Compose and Service Discovery
+
+> For a practical example of how Docker Compose and Service Discovery can be used to define multi-service, scaled-out applications, visit [this post](https://blogs.technet.microsoft.com/virtualization/2016/10/18/use-docker-compose-and-service-discovery-on-windows-to-scale-out-your-multi-service-container-application/) on our [Virtualization Blog](https://blogs.technet.microsoft.com/virtualization/).
+
+### Docker Compose
+
+[Docker Compose](https://docs.docker.com/compose/overview/) can be used to define and configure container networks alongside the containers/services that will be using those networks. The Compose 'networks' key is used as the top-level key in defining the networks to which containers will be connected. For example, the syntax below defines the default NAT network created by Docker to be the 'default' network for all containers/services defined in a given Compose file.
+
+```none
+networks:
+ default:
+  external:
+   name: "nat"
+```
+For further information on defining/configuring container networks using Docker Compose, refer to the [Compose File reference](https://docs.docker.com/compose/compose-file/).
+
+### Service Discovery
+Built in to Docker is Service Discovery, which handles service registration and name to IP (DNS) mapping for containers and services; with service discovery, it is possible for all container endpoints to discover each other by name (either container name, or service name). This is particularly valuable in scaled-out scenarios, where multiple container endpoints are being used to define a single service. In such cases, service discovery makes it possible for a service to be considered a single entity regardless of how many containers it has running behind the scenes. For multi-container services, incoming network traffic is managed using a round-robin approach, by which DNS load balancing is used to uniformly distribute traffic across all container instances implementing a given service.
 
 ## Caveats and Gotchas
 
 ### Firewall
 
 The container host requires specific Firewall rules to be created to enable ICMP (Ping) and DHCP. ICMP and DHCP are required by Windows Server Containers to ping between two containers on the same host, and to receive dynamically assigned IP addresses through DHCP. In TP5, these rules will be created through the Install-ContainerHost.ps1 script. Post-TP5, these rules will be created automatically. All Firewall rules corresponding to NAT port forwarding rules will be created automatically and cleaned up when the container stops.
+
+### Existing vSwitch Blocking Transparent Network Creation
+
+When a transparent network is created, it is bound to the external network by a vSwitch which is in turn connected to an external network adapter on the container host. The vSwitch for the transparent network is either created or discovered (if pre-existing) by Docker. The vSwitch is then connected to the external network when the Windows Host Network Service (HNS) identifies the network adapter on the host with which to bind. With this in mind, *it is possible to run into problems with connecting the vSwitch to the host's external network adapter if you already have an external vSwitch created that is not visible to Docker.* 
+
+For example, this issue would arise if you were to first create a new vSwitch on your host while the Docker service was running, then try to create a transparent network. In this case, Docker would not recognize the switch that you already created, so it would create a new vSwitch for the transparent network. The HNS service would then be unable to bind the new switch (created by Docker) to the host's external network adapter, because the adapter would already be connected to the first vSwitch that you created (the switch created 'out-of-band').
+
+There are two possible solutions for this issue. 
+
+First, you can of course delete the vSwitch that was created out-of-band, which will allow docker to create a new vSwitch and connect it to the host network adapter without issue. Before choosing this approach, ensure that your out-of-band vSwitch is not being used by other services (e.g. Hyper-V).
+
+Alternatively, if you decide to use an external vSwitch that was created out-of-band, restart the Docker and HNS services to *make the switch visible to Docker* (this cause Docker to connect to the existing switch rather than creating a new one).
+
+```none
+PS C:\> restart-service hns
+PS C:\> restart-service docker
+```
+After running the above commands, run the command to create a transparent network.
+
+```none
+PS C:\> docker network create -d transparent MyTransparentNetwork
+```
+If the network was successfully created, you should see it listed with the rest of your existing Docker networks.
+
+```none
+PS C:\> docker network ls
+```
 
 ### Unsupported features
 
