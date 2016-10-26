@@ -110,6 +110,15 @@ Only the desired configuration changes need to be added to the configuration fil
 }
 ```
 
+Likewise this sample configures the Docker daemon to keep images and containers in an alternate path. If not specified, the
+default is c:\programdata\docker.
+
+```none
+{    
+    "graph": "d:\\docker"
+}
+```
+
 Likewise, this sample configures the Docker daemon to only accept secured connections over port 2376.
 
 ```none
