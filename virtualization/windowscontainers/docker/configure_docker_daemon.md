@@ -110,6 +110,14 @@ Only the desired configuration changes need to be added to the configuration fil
 }
 ```
 
+Likewise below example can configure docker engine to keep images and containers to different path other than c:\programdata\docker.
+
+```none
+{    
+    "graph": "d:\\docker"
+}
+```
+
 Likewise, this sample configures the Docker daemon to only accept secured connections over port 2376.
 
 ```none
