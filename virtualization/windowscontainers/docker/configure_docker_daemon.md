@@ -110,7 +110,8 @@ Only the desired configuration changes need to be added to the configuration fil
 }
 ```
 
-Likewise below example can configure docker engine to keep images and containers to different path other than c:\programdata\docker.
+Likewise this sample configures the Docker daemon to keep images and containers in an alternate path. If not specified, the
+default is c:\programdata\docker.
 
 ```none
 {    
