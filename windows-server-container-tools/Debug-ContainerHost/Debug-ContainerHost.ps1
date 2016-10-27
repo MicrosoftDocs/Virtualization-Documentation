@@ -24,7 +24,7 @@ Describe "Docker is installed" {
     
     $service = Get-Service | Where-Object {($_.Name -eq "Docker") -or ($_.Name -eq "com.Docker.Service")}
     It "A Docker service is installed - 'Docker' or 'com.Docker.Service' " {
-        $service | Should Not Be Null
+        $service | Should Not BeNullorEmpty
     }
     It "Service is running" {
         $service.Status | Should Be Running
