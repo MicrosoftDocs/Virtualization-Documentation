@@ -127,7 +127,7 @@ To use the Transparent networking mode, create a container network with driver n
 ```none
 C:\> docker network create -d transparent MyTransparentNetwork
 ```
-> Note: If you encounter an error in creating the transparent network, it is possible that there is an external vSwitch on your system which is not automatically discoverable and is therefore preventing the transparent network from being bound to your container host's external network adapter. Reference the below section, 'Existing vSwitch Blocking Transparent Network Creation,' under 'Caveats and Gotchas' for more information.
+> Note: If you encounter an error in creating the transparent network, it is possible that there is an external vSwitch on your system which was not automatically discovered by Docker and is therefore preventing the transparent network from being bound to your container host's external network adapter. Reference the below section, 'Existing vSwitch Blocking Transparent Network Creation,' under 'Caveats and Gotchas' for more information.
 
 If the container host is virtualized, and you wish to use DHCP for IP assignment, you must enable MACAddressSpoofing on the virtual machines network adapter. Otherwise, the Hyper-V host will block network traffic from the containers in the VM with multiple MAC addresses.
 
@@ -330,28 +330,3 @@ The following network options are not supported on Windows Docker at this time:
  * --aux-address
  * --internal
  * --ip-range
-
- > There is a known bug in Windows Server 2016 Technical Preview 5 and recent Windows Insider Preview (WIP) "flighted" builds where, upon upgrade to a new build results in a duplicate (i.e. "leaked") container network and vSwitch. In order to work-around this issue, please run the following script.
-```none
-$KeyPath = "HKLM:\SYSTEM\CurrentControlSet\Services\vmsmp\parameters\SwitchList"
-$keys = get-childitem $KeyPath
-foreach($key in $keys)
-{
-   if ($key.GetValue("FriendlyName") -eq 'nat')
-   {
-      $newKeyPath = $KeyPath+"\"+$key.PSChildName
-      Remove-Item -Path $newKeyPath -Recurse
-   }
-}
-remove-netnat -Confirm:$false
-Get-ContainerNetwork | Remove-ContainerNetwork
-Get-VmSwitch -Name nat | Remove-VmSwitch # Note: failure is expected
-Stop-Service docker
-Set-Service docker -StartupType Disabled
-```
-> Reboot the host, then run the remaining steps:
-```none
-Get-NetNat | Remove-NetNat -Confirm $false
-Set-Service docker -StartupType automatic
-Start-Service docker 
-```
