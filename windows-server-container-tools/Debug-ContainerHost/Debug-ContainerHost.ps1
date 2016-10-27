@@ -22,12 +22,15 @@ Describe "Windows Version and Prerequisites" {
 
 Describe "Docker is installed" {
     
-    $service = Get-Service | Where-Object {($_.Name -eq "Docker") -or ($_.Name -eq "com.Docker.Service")}
+    $services = Get-Service | Where-Object {($_.Name -eq "Docker") -or ($_.Name -eq "com.Docker.Service")}
     It "A Docker service is installed - 'Docker' or 'com.Docker.Service' " {
-        $service | Should Not Be Null
+        $services | Should Not Be Null
     }
     It "Service is running" {
-        $service.Status | Should Be Running
+        foreach ($service in $services)
+        {
+           $service.Status | Should Be Running
+        }        
     }
     It "Docker.exe is in path" {
         # This also captures 'docker info' and 'docker version' output to be shown later
@@ -46,6 +49,13 @@ Describe "Docker is installed" {
                         -RedirectStandardError err.txt `
                         -RedirectStandardOutput dockerversion.txt
             $filesToDump["docker version"] = "dockerversion.txt"
+            Start-Process -NoNewWindow `
+                        -Wait `
+                        -FilePath docker.exe `
+                        -ArgumentList "network ls" `
+                        -RedirectStandardError err.txt `
+                        -RedirectStandardOutput dockernetworks.txt
+            $filesToDump["docker network"] = "dockernetworks.txt"
         } | Should Not Throw
     }
 }
@@ -86,6 +96,57 @@ Describe "The right container base images are installed" {
                                                 -or ($_.Repository -eq "microsoft/nanoserver")}
         (Measure-Object $baseImages).Count | Should Not BeNullOrEmpty
     }
+}
+
+Describe "Container network is created" {
+   $networksListOutput = docker.exe network ls
+   $networks = $networksListOutput | Foreach-object {
+       if (($_ -match "^NETWORK") -eq $false) {
+           $trimmed = [regex]::Replace($_, "\s{2,}", " ")
+           $split = $trimmed.Split(" ")
+           New-Object -Typename PSObject -Property @{Driver=$split[2];
+           NetName=$split[1];
+           Scope=$split[3]}
+       }       
+   }
+   
+   # Get all NAT networks 
+   $natNetworks = $networks | Where-Object { ($_.Driver -eq "nat")}
+
+   # TODO - Add checks for the case where there are no (default) nat networks, everything will need to be user-defined 
+   $natInternalPrefix = docker.exe network inspect --format="{{range .IPAM.Config }}{{.Subnet}}{{end}}" $natNetworks[0].NetName
+   if ($natInternalPrefix.Contains("/"))
+   {
+        $Temp = $natInternalPrefix.Split("/") 
+        $Prefix = $Temp[0]
+        $Length = $Temp[1]
+   }
+   $IPSubnet = [Net.IPAddress]::Parse($Prefix)
+   $BinaryIPSubnet = [String]::Join('', $( $IPSubnet.GetAddressBytes() | %{ 
+         [Convert]::ToString($_, 2).PadLeft(8, '0') } ))   
+
+   # Get all Host IP Addresses from Container Host 
+   #$hostips = @()
+   $hostips = Get-NetIPAddress -AddressFamily IPv4 | where { $_.InterfaceAlias -notmatch "Loopback"  -And $_.InterfaceAlias -notmatch "HNS" -And $_.InterfaceAlias -notmatch "NAT" } | Select IPAddress
+
+   It "At least one local container network is available" {
+      $localNetworks = $networks | Where-Object { ($_.Scope -eq "local")}
+      (Measure-Object $localNetworks).Count | Should Not BeNullOrEmpty
+   }
+
+   It "No more than one NAT network" {   
+      (Measure-Object $natNetworks).Count | Should BeLessThan 2
+   }
+
+   It "NAT Network's internal prefix does not overlap with external IP'" {      
+      $hostips | Foreach-object {
+          $testip = [Net.IPAddress]::Parse( ($_.IPAddress) ) 
+          $BinaryIP = [String]::Join('', $( $testip.GetAddressBytes() | %{ 
+             [Convert]::ToString($_, 2).PadLeft(8, '0') } ))       
+
+          $BinaryIP.Substring(0, $Length) | Should Not Be $BinaryIPSubnet.Substring(0, $Length)                     
+      }
+   }           
 }
 
 # Dump & Cleanup temporary files used during Pester tests
