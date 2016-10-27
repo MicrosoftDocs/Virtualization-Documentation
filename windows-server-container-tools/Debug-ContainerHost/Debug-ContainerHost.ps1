@@ -24,7 +24,7 @@ Describe "Docker is installed" {
     
     $services = Get-Service | Where-Object {($_.Name -eq "Docker") -or ($_.Name -eq "com.Docker.Service")}
     It "A Docker service is installed - 'Docker' or 'com.Docker.Service' " {
-        $services | Should Not Be Null
+        $services | Should Not BeNullOrEmpty
     }
     It "Service is running" {
         foreach ($service in $services)
@@ -48,14 +48,7 @@ Describe "Docker is installed" {
                         -ArgumentList "version" `
                         -RedirectStandardError err.txt `
                         -RedirectStandardOutput dockerversion.txt
-            $filesToDump["docker version"] = "dockerversion.txt"
-            Start-Process -NoNewWindow `
-                        -Wait `
-                        -FilePath docker.exe `
-                        -ArgumentList "network ls" `
-                        -RedirectStandardError err.txt `
-                        -RedirectStandardOutput dockernetworks.txt
-            $filesToDump["docker network"] = "dockernetworks.txt"
+            $filesToDump["docker version"] = "dockerversion.txt"            
         } | Should Not Throw
     }
 }
@@ -98,8 +91,17 @@ Describe "The right container base images are installed" {
     }
 }
 
-Describe "Container network is created" {
-   $networksListOutput = docker.exe network ls
+Describe "Container network is created" {   
+   Start-Process -NoNewWindow `
+                 -Wait `
+                 -FilePath docker.exe `
+                 -ArgumentList "network ls" `
+                 -RedirectStandardError err.txt `
+                 -RedirectStandardOutput dockernetworkls.txt
+   $filesToDump["docker network ls"] = "dockernetworkls.txt"
+
+   $networksListOutput = Get-Content .\dockernetworkls.txt
+
    $networks = $networksListOutput | Foreach-object {
        if (($_ -match "^NETWORK") -eq $false) {
            $trimmed = [regex]::Replace($_, "\s{2,}", " ")
