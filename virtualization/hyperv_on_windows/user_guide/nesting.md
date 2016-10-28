@@ -3,7 +3,6 @@ title: Nested Virtualization
 description: Nested Virtualization
 keywords: windows 10, hyper-v
 author: theodthompson
-manager: timlt
 ms.date: 06/20/2016
 ms.topic: article
 ms.prod: windows-10-hyperv

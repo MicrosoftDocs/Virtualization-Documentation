@@ -2,8 +2,7 @@
 title: About Windows Containers
 description: Learn about Windows containers.
 keywords: docker, containers
-author: neilpeterson
-manager: timlt
+author: taylorb-microsoft
 ms.date: 05/02/2016
 ms.topic: article
 ms.prod: windows-containers

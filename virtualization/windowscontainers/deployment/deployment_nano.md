@@ -2,8 +2,7 @@
 title: Deploy Windows Containers on Nano Server
 description: Deploy Windows Containers on Nano Server
 keywords: docker, containers
-author: neilpeterson
-manager: timlt
+author: enderb-ms
 ms.date: 09/28/2016
 ms.topic: article
 ms.prod: windows-containers

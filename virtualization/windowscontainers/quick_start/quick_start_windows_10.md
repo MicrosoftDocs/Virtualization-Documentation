@@ -2,8 +2,7 @@
 title: Windows Container on Windows 10
 description: Container deployment quick start
 keywords: docker, containers
-author: neilpeterson
-manager: timlt
+author: enderb-ms
 ms.date: 09/26/2016
 ms.topic: article
 ms.prod: windows-containers

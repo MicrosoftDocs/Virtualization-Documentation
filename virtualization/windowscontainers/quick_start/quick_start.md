@@ -2,8 +2,7 @@
 title: Windows Containers Quick Start
 description: Windows containers quick start.
 keywords: docker, containers
-author: neilpeterson
-manager: timlt
+author: enderb-ms
 ms.date: 05/26/2016
 ms.topic: article
 ms.prod: windows-contianers

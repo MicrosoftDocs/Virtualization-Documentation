@@ -3,7 +3,6 @@ title: Using checkpoints
 description: Using checkpoints
 keywords: windows 10, hyper-v
 author: scooley
-manager: timlt
 ms.date: 05/02/2016
 ms.topic: article
 ms.prod: windows-10-hyperv

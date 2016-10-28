@@ -3,7 +3,6 @@ title: Community Resources
 description: Community Resources 
 keywords: windows 10, hyper-v, container, docker
 author: scooley
-manager: timlt
 ms.date: 05/02/2016
 ms.topic: article
 ms.prod: virtualization

@@ -2,8 +2,7 @@
 title: Hyper-V on Windows 10 
 description: Hyper-V on Windows 10 
 keywords: windows 10, hyper-v
-author: neilpeterson
-manager: timlt
+author: scooley
 ms.date: 05/02/2016
 ms.topic: article
 ms.prod: windows-10-hyperv

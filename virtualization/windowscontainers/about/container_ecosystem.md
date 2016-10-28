@@ -2,8 +2,7 @@
 title: Container Ecosystem
 description: Building a Container Ecosystem.
 keywords: metadata, containers
-author: scooley
-manager: timlt
+author: PatrickLang
 ms.date: 04/20/2016
 ms.topic: about-article
 ms.prod: windows-containers

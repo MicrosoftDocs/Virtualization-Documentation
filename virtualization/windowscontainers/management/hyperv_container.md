@@ -2,8 +2,7 @@
 title: Hyper-V Containers
 description: Deploy Hyper-V containers.
 keywords: docker, containers
-author: neilpeterson
-manager: timlt
+author: enderb-ms
 ms.date: 09/13/2016
 ms.topic: article
 ms.prod: windows-containers

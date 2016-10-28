@@ -2,8 +2,7 @@
 title: Container Data Volumes
 description: Create and manage data volumes with Windows containers.
 keywords: docker, containers
-author: neilpeterson
-manager: timlt
+author: scooley
 ms.date: 05/02/2016
 ms.topic: article
 ms.prod: windows-containers

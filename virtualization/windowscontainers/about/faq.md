@@ -2,8 +2,7 @@
 title: Windows Containers FAQ
 description: Windows Containers FAQ
 keywords: docker, containers
-author: scooley
-manager: timlt
+author: PatrickLang
 ms.date: 05/02/2016
 ms.topic: article
 ms.prod: windows-containers

@@ -3,7 +3,6 @@ title: Hyper-V Integration Services
 description: Reference for Hyper-V Integration Services
 keywords: windows 10, hyper-v, integration services, integration components
 author: scooley
-manager: timlt
 ms.date: 05/25/2016
 ms.topic: article
 ms.prod: windows-10-hyperv

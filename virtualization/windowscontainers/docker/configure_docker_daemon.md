@@ -2,8 +2,7 @@
 title: Configure Docker in Windows
 description: Configure Docker in Windows
 keywords: docker, containers
-author: neilpeterson
-manager: timlt
+author: PatrickLang
 ms.date: 08/23/2016
 ms.topic: article
 ms.prod: windows-containers
