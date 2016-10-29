@@ -34,7 +34,7 @@ The first step in manually creating a container image is to deploy a container. 
 docker run -it -p 80:80 microsoft/iis cmd
 ```
 
-After the download, the container will start, and a shell session will be started.
+After the download, the container will start, and a shell session will be started. If the shell session did not start, make sure that the command is entered in CMD prompt and not PowerShell prompt.
 
 Next, a modification will be made to container. Run the following command to remove the IIS splash screen.
 
