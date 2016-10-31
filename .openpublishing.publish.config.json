@@ -1,38 +1,65 @@
 {
-    "build_entry_point": "",
-    "git_repository_url_open_to_public_contributors": "https://github.com/Microsoft/Virtualization-Documentation",
-    "docsets_to_publish": [
-        {
-            "docset_name": "Microsoft_Windows-Container-Documentation-Private_community",
-            "build_output_subfolder": "virtualization/community",
-            "locale": "en-us",
-            "version": 0,
-            "open_to_public_contributors": "true",
-            "type_mapping": {
-                "Conceptual": "Content"
-            }
-        },
-        {
-            "docset_name": "Microsoft_Windows-Container-Documentation-Private_hyperv_on_windows",
-            "build_output_subfolder": "virtualization/hyperv_on_windows",
-            "locale": "en-us",
-            "version": 0,
-            "open_to_public_contributors": "true",
-            "type_mapping": {
-                "Conceptual": "Content"
-            }
-        },
-        {
-            "docset_name": "Microsoft_Windows-Container-Documentation-Private_windowscontainers",
-            "build_output_subfolder": "virtualization/windowscontainers",
-            "locale": "en-us",
-            "version": 0,
-            "open_to_public_contributors": "true",
-            "type_mapping": {
-                "Conceptual": "Content"
-            }
-        }
-    ],
-    "notification_subscribers": ["nepeters@microsoft.com","scooley@microsoft.com"],
-    "branches_to_filter": [ "live-sync-work", "master-sync-work" ]
+  "build_entry_point": "",
+  "need_generate_pdf": false,
+  "need_generate_intellisense": false,
+  "docsets_to_publish": [
+    {
+      "docset_name": "Microsoft_Windows-Container-Documentation-Private_community",
+      "build_source_folder": "virtualization/community",
+      "build_output_subfolder": "virtualization/community",
+      "locale": "en-us",
+      "version": 0,
+      "open_to_public_contributors": true,
+      "type_mapping": {
+        "Conceptual": "Content"
+      }
+    },
+    {
+      "docset_name": "Microsoft_Windows-Container-Documentation-Private_hyperv_on_windows",
+      "build_source_folder": "virtualization/hyperv_on_windows",
+      "build_output_subfolder": "virtualization/hyperv_on_windows",
+      "locale": "en-us",
+      "version": 0,
+      "open_to_public_contributors": true,
+      "type_mapping": {
+        "Conceptual": "Content"
+      }
+    },
+    {
+      "docset_name": "Microsoft_Windows-Container-Documentation-Private_windowscontainers",
+      "build_source_folder": "virtualization/windowscontainers",
+      "build_output_subfolder": "virtualization/windowscontainers",
+      "locale": "en-us",
+      "version": 0,
+      "open_to_public_contributors": true,
+      "type_mapping": {
+        "Conceptual": "Content"
+      }
+    },
+    {
+      "docset_name": "Microsoft_Windows-Container-Documentation-Private_api",
+      "build_source_folder": "virtualization/api",
+      "build_output_subfolder": "virtualization/api",
+      "locale": "en-us",
+      "version": 0,
+      "open_to_public_contributors": true,
+      "type_mapping": {
+        "Conceptual": "Content",
+        "ManagedReference": "Content",
+        "RestApi": "Content"
+      },
+      "build_entry_point": "op"
+    }
+  ],
+  "notification_subscribers": [
+    "nepeters@microsoft.com",
+    "scooley@microsoft.com"
+  ],
+  "branches_to_filter": [
+    "live-sync-work",
+    "master-sync-work"
+  ],
+  "git_repository_url_open_to_public_contributors": "https://github.com/Microsoft/Virtualization-Documentation",
+  "skip_source_output_uploading": false,
+  "dependent_repositories": []
 }
