@@ -31,8 +31,11 @@ The first step in manually creating a container image is to deploy a container. 
 > This step may take some time due to the size of the Windows Server Core base image.
 
 ```none
-docker run -it -p 80:80 microsoft/iis cmd
+docker run -d --name myIIS -p 80:80 microsoft/iis
+docker exec -i myIIS cmd
 ```
+this let the IIS container run in the background with non-interactive entrypoint SERVICEMONITOR.exe, then connect to the container with an interactive command shell.
+> (the microsoft/iis images is build with a Dockerfile that uses ENTRYPOINT ["C:\ServiceMonitor.exe", "w3svc"] at the end. This is not overridable with the docker run, as it would be with dockerfile created with CMD instead of ENTRYPOINT.)
 
 After the download, the container will start, and a shell session will be started.
 
