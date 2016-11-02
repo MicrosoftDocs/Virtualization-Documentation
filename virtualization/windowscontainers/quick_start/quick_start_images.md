@@ -34,8 +34,15 @@ The first step in manually creating a container image is to deploy a container. 
 docker run -d --name myIIS -p 80:80 microsoft/iis
 docker exec -i myIIS cmd
 ```
-this let the IIS container run in the background with non-interactive entrypoint SERVICEMONITOR.exe, then connect to the container with an interactive command shell.
-> (the microsoft/iis images is build with a Dockerfile that uses ENTRYPOINT ["C:\ServiceMonitor.exe", "w3svc"] at the end. This is not overridable with the docker run, as it would be with dockerfile created with CMD instead of ENTRYPOINT.)
+this let the IIS container run in the background with IIS running and non-interactive entrypoint SERVICEMONITOR.exe, then connect to the container with an interactive command shell.
+
+> the microsoft/iis images is build with a Dockerfile that uses ENTRYPOINT ["C:\ServiceMonitor.exe", "w3svc"] at the end. This is not overridable with plain docker run, as it would be with dockerfile created with CMD instead of ENTRYPOINT. But there is and option of the `docker run` command entyrpoint that can do it, called ` --entrypoint`.  
+
+The alternate way to attach to the running container the would be:
+`docker run -it --entrypoint cmd microsoft/iis`
+Note that you can omit the port binding as nothing is running for listening that port.
+
+
 
 After the download, the container will start, and a shell session will be started.
 
