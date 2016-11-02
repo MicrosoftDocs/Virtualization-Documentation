@@ -75,6 +75,7 @@ Interested in demos and interviews from the Windows Container team?<br /><br />
 Interact with the community, try samples, and find additional resources.<br /><br />
 <ul>
 <li>[Container Forum](https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers)<br /><br /></li>
+<li>[Community Videos and Blogs](communitylinks.md)<br /><br /></li>
 <li>[Container Resources](https://msdn.microsoft.com/virtualization/community/community_overview)<br /><br /></li>
 </ul>
 </td>
