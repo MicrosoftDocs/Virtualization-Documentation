@@ -10,7 +10,7 @@ Describe "Windows Version and Prerequisites" {
     It "Has KB3192366, KB3194496, or later installed if running Windows build 14393" {
         if ($buildNumber -eq 14393)
         {
-            (Get-ItemProperty -Path 'HKLM:\software\Microsoft\Windows NT\CurrentVersion' -Name UBR).UBR | Should Not BeLessThan 206
+            (Get-ItemProperty -Path 'HKLM:\software\Microsoft\Windows NT\CurrentVersion' -Name UBR).UBR | Should Not BeLessThan 351
         }
     }
     It "Is not a build with blocking issues" {
