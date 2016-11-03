@@ -58,7 +58,7 @@ Set-VM -Name <vmname> -CheckpointType ProductionOnly
 
 ## Creating checkpoints
 
-Creates a checkpoint of the type configured for the virtual machine. See the [Configuring Checkpoint Type](checkpoints.md#changing-the-checkpoint-type-for-a-VM) section earlier in this document for instructions on how to change this type.
+Creates a checkpoint of the type configured for the virtual machine. See the [Configuring Checkpoint Type](checkpoints.md#changing-the-checkpoint-type) section earlier in this document for instructions on how to change this type.
 
 **Using Hyper-V Manager**
 
