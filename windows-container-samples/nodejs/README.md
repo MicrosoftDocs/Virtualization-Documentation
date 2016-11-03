@@ -8,7 +8,7 @@ In order to create a node.js Container image when you are running PowerShell-man
 
 To do this with PowerShell run:
 ``` PowerShell
-wget https://raw.githubusercontent.com/Microsoft/Virtualization-Documentation/master/windows-server-container-samples/nodejs/HybridInstaller.ps1 -OutFile HybridInstaller.ps1 
+wget https://raw.githubusercontent.com/Microsoft/Virtualization-Documentation/master/windows-container-samples/nodejs/HybridInstaller.ps1 -OutFile HybridInstaller.ps1 
 ```
 
 In the same directory as the script on the Container host, run:
