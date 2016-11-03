@@ -197,7 +197,7 @@ This exercise walks through creating and applying a standard checkpoint versus a
 
 1. Log into your virtual machine and create a text file on the desktop.
 2. Open the file with Notepad and enter the text ‘This is a Standard Checkpoint.’ **Do not save the file or close Notepad**.  
-3. Change the checkpoint to standard -- instructions [here](checkpoints.md#changing-the-checkpoint-type-using-hyper-V-manager).
+3. Change the checkpoint to standard -- instructions [here](checkpoints.md#changing-the-checkpoint-type).
 4. Create a new checkpoint.
 
 <br />

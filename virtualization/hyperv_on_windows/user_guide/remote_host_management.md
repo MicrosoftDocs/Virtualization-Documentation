@@ -14,7 +14,7 @@ ms.assetid: 2d34e98c-6134-479b-8000-3eb360b8b8a3
 
 Hyper-V Manager is an in-box tool for diagnosing and managing your local Hyper-V host and a small number of remote hosts.  This article documents the configuration steps for connecting to Hyper-V hosts using Hyper-V Manager in all supported configurations.
 
-> Hyper-V Manager is available through **Programs and Features** as **Hyper-V Management Tools** on [any Windows OS with Hyper-V included](../quick_start/walkthrough_compatibility.md#OperatingSystemRequirements).  Hyper-V Platform does not need to be enabled in order to manage remote hosts.
+> Hyper-V Manager is available through **Programs and Features** as **Hyper-V Management Tools** on [any Windows OS with Hyper-V included](../quick_start/walkthrough_compatibility.md#operating-system-requirements).  Hyper-V Platform does not need to be enabled in order to manage remote hosts.
 
 To connect to a Hyper-V host in Hyper-V Manager, make sure **Hyper-V Manager** is selected in the left-hand pane and then select **Connect to Server...** in the right-hand pane.
 
