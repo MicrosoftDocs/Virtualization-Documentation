@@ -24,6 +24,8 @@ This page contains links to video’s and blogs created by members or the contai
 
 [Use Docker Compose and Service Discovery on Windows to scale-out your multi-service container application](https://blogs.technet.microsoft.com/virtualization/2016/10/18/use-docker-compose-and-service-discovery-on-windows-to-scale-out-your-multi-service-container-application/) - Kallie Bracken and Jason Messer
 
+[PowerShell Desired State Configuration in Windows Containers using Docker](http://dille.name/blog/2016/06/17/powershell-desired-state-configuration-psdsc-in-windows-containers-using-docker/)
+
 
 ## Configuration and Managment
 [How to protect a Windows 2016 Docker engine with TLS](https://stefanscherer.github.io/protecting-a-windows-2016-docker-engine-with-tls/) - Stefan Scherer
