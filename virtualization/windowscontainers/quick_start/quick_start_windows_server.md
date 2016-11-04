@@ -77,7 +77,7 @@ When prompted, choose option A to download all updates.
 
 For this exercise, you will download a pre-created .NET sample image from the Docker Hub registry and deploy a simple container running a .Net Hello World application..  
 
-User `docker run` to deploy the .Net container. This will also download the container image which may take a few minutes.
+Use `docker run` to deploy the .Net container. This will also download the container image which may take a few minutes.
 
 ```none
 docker run microsoft/sample-dotnet
