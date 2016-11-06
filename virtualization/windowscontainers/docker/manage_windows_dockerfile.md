@@ -20,7 +20,7 @@ The Docker engine includes tools for automating the creation of container images
 
 The Docker components that drive this automation are the Dockerfile, and the `docker build` command.
 
-- **Dockerfile** – a text file containing the instruction needed to create a new container image. These instructions include identification of an existing image to be used as a base, commands to be run during the image creation process, and a command that will run when new instances of the container image are deployed.
+- **Dockerfile** – a text file containing the instructions needed to create a new container image. These instructions include identification of an existing image to be used as a base, commands to be run during the image creation process, and a command that will run when new instances of the container image are deployed.
 - **Docker build** - the Docker engine command that consumes a Dockerfile, and triggers the image creation process.
 
 This document will introduce using a Dockerfile with Windows containers, discuss syntax, and detail commonly used Dockerfile instructions. 
@@ -47,7 +47,7 @@ MAINTAINER jshelton@contoso.com
 # Uses dism.exe to install the IIS role.
 RUN dism.exe /online /enable-feature /all /featurename:iis-webserver /NoRestart
 
-# Creates an html file and adds content to this file.
+# Creates an HTML file and adds content to this file.
 RUN echo "Hello World - Dockerfile" > c:\inetpub\wwwroot\index.html
 
 # Sets a command or process that will run each time a container is run from the new image.
@@ -62,7 +62,7 @@ Dockerfile instructions provide the Docker Engine with the steps needed to creat
 
 ### FROM
 
-The `FROM` instruction, sets the container image that will be used during the new image creation process. For instance, when using the instruction `FROM windowsservercore`, the resulting image is derived from, and has a dependency on, the Windows Server Core base OS image. If the specified image is not present on the system where the Docker build process is being run, the Docker engine will attempt to download the image from a public or private image registry.
+The `FROM` instruction sets the container image that will be used during the new image creation process. For instance, when using the instruction `FROM windowsservercore`, the resulting image is derived from, and has a dependency on, the Windows Server Core base OS image. If the specified image is not present on the system where the Docker build process is being run, the Docker engine will attempt to download the image from a public or private image registry.
 
 **Format**
 
@@ -108,7 +108,7 @@ FROM windowsservercore
 RUN ["powershell", "New-Item", "c:/test"]
 ```
 
-Examining the resulting image, the command that was run is `powershell new-item c:/test`.
+Examining the resulting image, the command that was run is `powershell New-Item c:/test`.
 
 ```none
 docker history doc-exe-method
@@ -122,16 +122,16 @@ To contrast, the following example runs the same operation, however using the sh
 ```none
 FROM windowsservercore
 
-RUN powershell new-item c:\test
+RUN powershell New-Item c:\test
 ```
 
-Which results in a run instruction of `cmd /S /C powershell new-item c:\test`. 
+Which results in a run instruction of `cmd /S /C powershell New-Item c:\test`. 
 
 ```none
 docker history doc-shell-method
 
 IMAGE               CREATED             CREATED BY                              SIZE                COMMENT
-062a543374fc        19 seconds ago      cmd /S /C powershell new-item c:\test   30.76 MB
+062a543374fc        19 seconds ago      cmd /S /C powershell New-Item c:\test   30.76 MB
 ```
 
 **Windows Considerations**
@@ -151,10 +151,10 @@ This example uses DISM to install IIS in the container image.
 RUN dism.exe /online /enable-feature /all /featurename:iis-webserver /NoRestart
 ```
 
-This example installs the Visual Studio redistributable package. Note here that `start-process` and the `-wait` parameter are used to run the installer. This will ensure that the installation completed before moving onto the next step in the Dockerfile.
+This example installs the Visual Studio redistributable package. Note here that `Start-Process` and the `-Wait` parameter are used to run the installer. This will ensure that the installation completed before moving onto the next step in the Dockerfile.
 
 ```none
-RUN start-Process c:\vcredist_x86.exe -ArgumentList '/quiet' -Wait
+RUN Start-Process c:\vcredist_x86.exe -ArgumentList '/quiet' -Wait
 ``` 
 
 For detailed information on the RUN instruction, see the [RUN Reference on Docker.com]( https://docs.docker.com/engine/reference/builder/#run). 
@@ -262,7 +262,7 @@ For detailed information on the `ADD` instruction, see the [ADD Reference on Doc
 
 ### WORKDIR
 
-The `WORKDIR` instruction, sets a working directory for other Dockerfile instructions, such as `RUN`, `CMD`, and also the working directory for running instances of the container image.
+The `WORKDIR` instruction sets a working directory for other Dockerfile instructions, such as `RUN`, `CMD`, and also the working directory for running instances of the container image.
 
 **Format**
 
@@ -290,7 +290,7 @@ For detailed information on the `WORKDIR` instruction, see the [WORKDIR Referenc
 
 ### CMD
 
-The `CMD` instruction, sets the default command to be run when deploying an instance of the container image. For instance, if the container will be hosting an NGINX web server, the `CMD` might include instructions to start the web server, such as `nginx.exe`. If multiple `CMD` instructions are specified in a Dockerfile, only the last is evaluated.
+The `CMD` instruction sets the default command to be run when deploying an instance of the container image. For instance, if the container will be hosting an NGINX web server, the `CMD` might include instructions to start the web server, such as `nginx.exe`. If multiple `CMD` instructions are specified in a Dockerfile, only the last is evaluated.
 
 **Format**
 
@@ -365,7 +365,7 @@ For more information on the escape parser directive, see [Escape Parser Directiv
 
 ### PowerShell Commands
 
-Powershell commands can be run in a Dockerfile using the `RUN` operation. 
+PowerShell commands can be run in a Dockerfile using the `RUN` operation. 
 
 ```none
 FROM windowsservercore
@@ -389,7 +389,7 @@ RUN powershell.exe -Command \
 
 > Invoke-WebRequest is not currently supported in Nano Server
 
-Another option for using PowerShell to download files during the image creation process is to use the .Net WebClient library. This can increase download performance. The following example downloads the Python software, using the WebClient library.
+Another option for using PowerShell to download files during the image creation process is to use the .NET WebClient library. This can increase download performance. The following example downloads the Python software, using the WebClient library.
 
 ```none
 FROM windowsservercore
