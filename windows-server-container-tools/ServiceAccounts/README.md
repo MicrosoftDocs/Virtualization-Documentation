@@ -20,8 +20,10 @@ These steps could be done using "Active Directory Users and Computers", or autom
 
 For a more details on using Group Managed Service Accounts, see https://technet.microsoft.com/en-us/library/jj128431(v=ws.11).aspx
 
-1. Before you can create the first gMSA, the domain needs a master root key. Run `Get-KdsRootKey` as a domain administrator to check if one has already been created. If a key has not already been created, the following will create one and make it effective immediately
-```
+1. Before you can create the first gMSA, the domain needs a master root key. Run `Get-KdsRootKey` as a domain administrator to check if one has already been created. If there isn't a master root key created for your domain, see [Create the Key Distribution Service KDS Root Key](https://technet.microsoft.com/en-us/library/jj128430(v=ws.11).aspx) for steps to create one.
+
+In a test environment with only one DC, this will create a root key and make it effective immediately. Do not use this for production environments.
+```powershell
 Add-KdsRootKey –EffectiveTime ((get-date).addhours(-10))
 ```
 
