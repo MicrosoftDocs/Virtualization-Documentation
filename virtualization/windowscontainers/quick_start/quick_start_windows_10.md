@@ -27,7 +27,9 @@ This quick start is specific to Hyper-V containers on Windows 10. Additional qui
 
 ## 1. Install Container Feature
 
-The container feature needs to be enabled before working with Windows containers. To do so run the following command in an elevated PowerShell session.
+The container feature needs to be enabled before working with Windows containers. To do so run the following command in an **elevated** PowerShell session.
+
+If you recieve an error saying `Enable-WindowsOptionalFeature` does not exist, double check that you are running PowerShell as Administrator.
 
 ```none
 Enable-WindowsOptionalFeature -Online -FeatureName containers -All
