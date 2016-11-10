@@ -112,7 +112,9 @@ For in depth information on Windows container images see, [Managing Container Im
 
 ## 4. Deploy Your First Container
 
-For this simple example a ‘Hello World’ container image will be created and deployed. For the best experience run these commands in an elevated Windows CMD shell.
+For this simple example a ‘Hello World’ container image will be created and deployed. For the best experience run these commands in an elevated Windows CMD shell or PowerShell.
+
+> Windows PowerShell ISE does not work for interactive sessions with containers. Even though the container is running, it will appear to hang.
 
 First, start a container with an interactive session from the `nanoserver` image. Once the container has started, you will be presented with a command shell from within the container.  
 

@@ -101,9 +101,9 @@ docker pull microsoft/windowsservercore
 
 ## Manage Docker on Nano Server
 
-For the best experience, and as a best practice, manage Docker on Nano Server from a remote system. This is because Powershell Remoting currently cannot redirect the TTY terminal output of an interactive container shell to the initial client's prompt. It would be fine to start detached containers, running in the background, but you won't be able to work like expected with `docker run -it microsoft/nanoserver cmd`.
+For the best experience, and as a best practice, manage Docker on Nano Server from a remote system. This is because PowerShell Remoting currently cannot redirect the TTY terminal output of an interactive container shell to the initial client's prompt. Detached containers can be started and will run in the background using `docker run -dt`, but interactive containers using `docker run -it` won't work as expected. The PowerShell ISE also has issues with interactive output for similar reasons.
 
-In order to do so, the following items need to be completed.
+To manage a remote Docker server, the following items need to be completed.
 
 ### Prepare Container Host
 
