@@ -24,13 +24,19 @@ Describe "Docker is installed" {
     
     $services = Get-Service | Where-Object {($_.Name -eq "Docker") -or ($_.Name -eq "com.Docker.Service")}
     It "A Docker service is installed - 'Docker' or 'com.Docker.Service' " {
-        $services | Should Not BeNullOrEmpty
+        $services| Should Not BeNullOrEmpty
     }
     It "Service is running" {
+        $AtLeastOneRunning = $false;
         foreach ($service in $services)
         {
-           $service.Status | Should Be Running
+           #if there is more than 1 only one can be running
+           if ($service.Status -eq "Running")
+           {
+                $AtLeastOneRunning = $true
+           }
         }        
+        $AtLeastOneRunning | Should Be $true
     }
     It "Docker.exe is in path" {
         # This also captures 'docker info' and 'docker version' output to be shown later
