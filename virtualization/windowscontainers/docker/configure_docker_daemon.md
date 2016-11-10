@@ -12,7 +12,7 @@ ms.assetid: 6885400c-5623-4cde-8012-f6a00019fafa
 
 # Docker Engine on Windows
 
-The Docker Engine and client are not included with Windows and will need to be installed and configured individually. Furthermore, the Docker Engine can accept many custom configurations. Some examples include configuring how the daemon accepts incoming requests, default networking options, and debug / log settings. On Windows, these configurations can be specified in a configuration file or by using Windows Service control manager. This document will detail how to install and configure the Docker Engine, and will also provide some examples of commonly used configurations.
+The Docker Engine and client are not included with Windows and will need to be installed and configured individually. Furthermore, the Docker Engine can accept many custom configurations. Some examples include configuring how the daemon accepts incoming requests, default networking options, and debug/log settings. On Windows, these configurations can be specified in a configuration file or by using Windows Service control manager. This document will detail how to install and configure the Docker Engine, and will also provide some examples of commonly used configurations.
 
 
 ## Install Docker
@@ -31,19 +31,19 @@ Download the Docker Engine
 
 The latest version may always be found at https://master.dockerproject.org . This sample uses the latest from the v1.13-development branch. 
 
-```none
+```powershell
 Invoke-WebRequest "https://download.docker.com/components/engine/windows-server/cs-1.12/docker.zip" -OutFile "$env:TEMP\docker.zip" -UseBasicParsing
 ```
 
 Expand the zip archive into Program Files.
 
-```
+```powershell
 Expand-Archive -Path "$env:TEMP\docker.zip" -DestinationPath $env:ProgramFiles
 ```
 
 Add the Docker directory to the system path. When complete, restart the PowerShell session so that the modified path is recognized.
 
-```none
+```powershell
 [Environment]::SetEnvironmentVariable("Path", $env:Path + ";C:\Program Files\Docker", [EnvironmentVariableTarget]::Machine)
 ```
 
@@ -55,7 +55,7 @@ dockerd --register-service
 
 Once installed, the service can be started.
 
-```none
+```powershell
 Start-Service Docker
 ```
 
@@ -132,7 +132,7 @@ Likewise, this sample configures the Docker daemon to only accept secured connec
 
 ## Configure Docker on the Docker Service
 
-The Docker Engine can also be configured by modifying the Docker service using `sc config`. Using this method, Docker Engine flags are set directly on the Docker service. Run the following command in a command prompt (cmd.exe not Powershell):
+The Docker Engine can also be configured by modifying the Docker service using `sc config`. Using this method, Docker Engine flags are set directly on the Docker service. Run the following command in a command prompt (cmd.exe not PowerShell):
 
 
 ```none
@@ -169,14 +169,14 @@ When logged into the Docker host and running Docker commands locally, these comm
 
 To set proxy information for `docker search` and `docker pull`, create a Windows environment variable with the name `HTTP_PROXY` or `HTTPS_PROXY`, and a value of the proxy information. This can be completed with PowerShell using a command similar to this:
 
-```none
+```powershell
 [Environment]::SetEnvironmentVariable("HTTP_PROXY", "http://username:password@proxy:port/", [EnvironmentVariableTarget]::Machine)
 ```
 
 Once the variable has been set, restart the Docker service.
 
-```none
-restart-service docker
+```powershell
+Restart-Service docker
 ```
 
 For more information see, [Windows Configuration File on Docker.com](https://docs.docker.com/engine/reference/commandline/dockerd/#/windows-configuration-file).
