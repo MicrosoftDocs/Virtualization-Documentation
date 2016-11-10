@@ -12,9 +12,9 @@ ms.assetid: e3b2a4dc-9082-4de3-9c95-5d516c03482b
 
 # Windows Containers on Windows Server
 
-This exercise will walk through basic deployment and use of the Windows container feature on Windows Server. After completion, you will have installed the container role and have deployed a simple Windows Server container. Before starting this quick start, familiarize yourself with basic container concepts and terminology. This information can be found in the [Quick Start Introduction](./quick_start.md).
+This exercise walks through basic deployment and use of the Windows container feature on Windows Server 2016. During this exercise, you install the container role and deploy a simple Windows Server container. Before starting this quick start, familiarize yourself with basic container concepts and terminology. You can find this information in the [Quick Start Introduction](./quick_start.md).
 
-This quick start is specific to Windows Server containers on Windows Server 2016. Additional quick start documentation can be found in the table of contents on the left hand side of this page.
+This quick start is specific to Windows Server containers on Windows Server 2016. Additional quick start documentation, including containers in Windows 10, are found in the table of contents on the left hand side of this page.
 
 **Prerequisites:**
 
@@ -30,17 +30,17 @@ If you would like to deploy on Azure, this [template](https://github.com/Microso
 
 ## 1. Install Docker
 
-To install Docker we'll use the [OneGet provider PowerShell module](https://github.com/oneget/oneget). The provider will enable the containers feature on your machine and install Docker - this will require a reboot. Docker is required in order to work with Windows containers. It consists of the Docker Engine and the Docker client.
+To install Docker we'll use the [OneGet provider PowerShell module](https://github.com/oneget/oneget). The provider enables the containers feature on your machine. You also install Docker which requires a reboot. Docker is required in order to work with Windows containers. It consists of the Docker Engine and the Docker client.
 
 Open an elevated PowerShell session and run the following commands.
 
-First we'll install the OneGet PowerShell module.
+First install the OneGet PowerShell module.
 
 ```none
 Install-Module -Name DockerMsftProvider -Repository PSGallery -Force
 ```
 
-Next we'll use OneGet to install the latest version of Docker.
+Next you use OneGet to install the latest version of Docker.
 ```none
 Install-Package -Name docker -ProviderName DockerMsftProvider
 ```
@@ -53,13 +53,13 @@ Restart-Computer -Force
 
 ## 2. Install Windows Updates
 
-To ensure your Windows Server system is up-to-date, you should install Windows Updates by running:
+Ensure your Windows Server system is up-to-date by running:
 
 ```none
 sconfig
 ```
 
-You'll see a text-based configuration menu, where you can choose option 6 to Download and Install Updates:
+This shows a text-based configuration menu, where you can choose option 6 to Download and Install Updates:
 
 ```none
 ===============================================================================
@@ -81,7 +81,7 @@ When prompted, choose option A to download all updates.
 
 ## 3. Deploy Your First Container
 
-For this exercise, you will download a pre-created .NET sample image from the Docker Hub registry and deploy a simple container running a .Net Hello World application..  
+For this exercise, you download a pre-created .NET sample image from the Docker Hub registry and deploy a simple container running a .Net Hello World application.  
 
 Use `docker run` to deploy the .Net container. This will also download the container image which may take a few minutes.
 
@@ -89,7 +89,7 @@ Use `docker run` to deploy the .Net container. This will also download the conta
 docker run microsoft/sample-dotnet
 ```
 
-The container will start, print the hello world message, and then exit.
+The container starts, prints the hello world message, and then exits.
 
 ```none
        Welcome to .NET Core!
