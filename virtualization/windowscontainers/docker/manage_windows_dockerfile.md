@@ -35,6 +35,8 @@ For a complete look at Dockerfiles, see the [Dockerfile reference at docker.com]
 
 In its most basic form, a Dockerfile can be very simple. The following example creates a new image, which includes IIS, and a ‘hello world’ site. This example includes comments (indicated with a `#`), that explain each step. Subsequent sections of this article will go into more detail on Dockerfile syntax rules, and Dockerfile instructions.
 
+> Please note that Dockerfile must be created with no extension. In Windows to do so simply create the file with your editor of choice than save it using the notation "Dockerfile" including the quotes. 
+
 ```none
 # Sample Dockerfile
 
