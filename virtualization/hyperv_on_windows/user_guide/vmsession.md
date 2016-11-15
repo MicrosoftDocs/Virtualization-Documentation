@@ -186,7 +186,7 @@ If you are running a supported build, it is also possible your version of PowerS
 You can check your PowerShell version build by running the following command:
 
 ``` PowerShell
-$PSVersionTable.PSVersionTable
+$PSVersionTable.PSVersion
 ```
 
 
