@@ -85,14 +85,14 @@ For this exercise, you download a pre-created .NET sample image from the Docker 
 
 Use `docker run` to deploy the .Net container. This will also download the container image which may take a few minutes.
 
-```none
-docker run microsoft/sample-dotnet
+```console
+docker run microsoft/dotnet-samples:dotnetapp-nanoserver
 ```
 
 The container starts, prints the hello world message, and then exits.
 
-```none
-       Welcome to .NET Core!
+```console
+         Dotnet-bot: Welcome to using .NET Core!
     __________________
                       \
                        \
@@ -130,6 +130,11 @@ The container starts, prints the hello world message, and then exits.
       ...............                 .'..............
        .........                        ..............
         .....
+
+
+**Environment**
+Platform: .NET Core 1.0
+OS: Microsoft Windows 10.0.14393
 ```
 
 For in depth information on the Docker Run command, see [Docker Run Reference on Docker.com]( https://docs.docker.com/engine/reference/run/).
