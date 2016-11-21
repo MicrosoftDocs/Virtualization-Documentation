@@ -1,5 +1,4 @@
-﻿# About Windows Containers
-## [Windows Containers Overview](about/about_overview.md)
+﻿# [About Windows Containers](about/index.md)
 
 # Windows Server Quick Start
 ## [Step 1 – Concepts](quick_start/quick_start.md)
@@ -10,7 +9,7 @@
 ## [Step 1 – Concepts](quick_start/quick_start.md)
 ## [Step 2 – First Container](quick_start/quick_start_windows_10.md)
 
-# Deploy Windows Containers
+# Deploy Windows Container
 ## [System Requirements](deployment/system_requirements.md)
 ## [Container Host - Windows Server](deployment/deployment.md)
 ## [Container Host - Nano Server](deployment/deployment_nano.md)
