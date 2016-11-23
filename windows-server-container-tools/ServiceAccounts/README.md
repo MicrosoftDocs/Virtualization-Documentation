@@ -124,7 +124,7 @@ In addition to the default account that will be mapped to 'Local System' and 'Ne
 Here's an example where two additional accounts - 'LogApp' and 'AuditApp' are added:
 
 ```powershell
-New-CredentialSpec –Name "App2" –Domain (Get-Domain) –AccountName "ProductionApp" –AdditionalAccounts @{DomainName="domain.contoso.com";AccountName="LogApp"}, @{DomainName="domain.contoso.com";AccountName="AuditApp"}
+New-CredentialSpec –Name "App2" –Domain (Get-ADDomain) –AccountName "ProductionApp" –AdditionalAccounts @{DomainName="domain.contoso.com";AccountName="LogApp"}, @{DomainName="domain.contoso.com";AccountName="AuditApp"}
 ```
 
 A scheduled task or service can now be configured to use these accounts.
