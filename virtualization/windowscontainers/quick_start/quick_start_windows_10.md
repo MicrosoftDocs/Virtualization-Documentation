@@ -18,12 +18,21 @@ This quick start is specific to Hyper-V containers on Windows 10. Additional qui
 
 **Prerequisites:**
 
-- One physical computer system running Windows 10 Anniversary Edition (Professional or Enterprise).   
+- One physical computer system running Windows 10 Anniversary Edition (Professional or Enterprise).
 - This quick start can be run on a Windows 10 virtual machine however nested virtualization will need to be enabled. More information can be found in the [Nested Virtualization Guide](https://msdn.microsoft.com/en-us/virtualization/hyperv_on_windows/user_guide/nesting).
 
 > You must install critical updates for Windows Containers to work. 
 > To check your OS version, run `winver.exe`, and compare the version shown to [Windows 10 update history](https://support.microsoft.com/en-us/help/12387/windows-10-update-history). 
 > Make sure you have 14393.222 or later before continuing.
+
+> Do not attempt this on a Windows 10 environment where you have Bitlocker enabled!
+>
+> At best you will need to use your Recovery Key to get back up and running again
+>
+> If you have installed Hyper-V on an environment with Bitlocker enabled you will need to access the command prompt and use the following bcdedit command to disable HyperVisor boot behavior
+>
+>`bcdedit /set {identifier_of_current_boot_record} hypervisorlaunchtype off`
+
 
 ## 1. Install Container Feature
 
@@ -116,7 +125,7 @@ For this simple example a ‘Hello World’ container image will be created and 
 
 > Windows PowerShell ISE does not work for interactive sessions with containers. Even though the container is running, it will appear to hang.
 
-First, start a container with an interactive session from the `nanoserver` image. Once the container has started, you will be presented with a command shell from within the container.  
+First, start a container with an interactive session from the `nanoserver` image. Once the container has started, you will be presented with a command shell from within the container.
 
 ```none
 docker run -it microsoft/nanoserver cmd
@@ -126,7 +135,7 @@ Inside the container we will create a simple ‘Hello World’ script.
 
 ```none
 powershell.exe Add-Content C:\helloworld.ps1 'Write-Host "Hello World"'
-```   
+```
 
 When completed, exit the container.
 
