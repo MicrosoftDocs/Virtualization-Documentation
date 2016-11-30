@@ -57,6 +57,9 @@ Describe "Docker is installed" {
             $filesToDump["docker version"] = "dockerversion.txt"            
         } | Should Not Throw
     }
+    It "Docker is registered in the EventLog service" {
+        (Test-Path "HKLM:\SYSTEM\CurrentControlSet\Services\EventLog\Application\docker") -or (Test-Path "HKLM:\SYSTEM\CurrentControlSet\Services\EventLog\Application\com.Docker.Service") | Should Be $true 
+    }
 }
 
 Describe "User has permissions to use Docker daemon" {
