@@ -19,6 +19,7 @@ Describing Docker is installed
  [+] A Docker service is installed - 'Docker' or 'com.Docker.Service'  159ms
  [+] Service is running 40ms
  [+] Docker.exe is in path 1.13s
+ [+] Docker is registered in the EventLog service 92ms
 Describing User has permissions to use Docker daemon
  [+] docker.exe should not return access denied 166ms
 Describing Windows Version and Prerequisites
@@ -97,6 +98,18 @@ If this fails, then the Docker Engine is not installed. Check [here](http://aka.
 
 - Try logging out and back in
 - If it still fails, try reinstalling based on the Quick Start guide [here](http://aka.ms/windowscontainers) 
+
+**[+] Docker is registered in the EventLog service**
+
+- Create and run this registry file: 
+```
+Windows Registry Editor Version 5.00
+
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\EventLog\Application\docker]
+"CustomSource"=dword:00000001
+"EventMessageFile"="C:\\Program Files\\docker\\dockerd.exe"
+"TypesSupported"=dword:00000007
+```
 
 ### Describing User has permissions to use Docker daemon
 **[+] docker.exe should not return access denied**
