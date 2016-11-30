@@ -58,7 +58,7 @@ Describe "Docker is installed" {
         } | Should Not Throw
     }
     It "Docker is registered in the EventLog service" {
-        (Test-Path "HKLM:\SYSTEM\CurrentControlSet\Services\EventLog\Application\docker") -or (Test-Path "HKLM:\SYSTEM\CurrentControlSet\Services\EventLog\Application\com.Docker.Service") | Should Be $true 
+        (Test-Path "HKLM:\SYSTEM\CurrentControlSet\Services\EventLog\Application\docker") -or (Test-Path "HKLM:\SYSTEM\CurrentControlSet\Services\EventLog\Application\DockerService") | Should Be $true 
     }
 }
 
