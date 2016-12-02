@@ -29,10 +29,11 @@ If you would like to use an in-development version of the Docker Engine and clie
 
 Download the Docker Engine
 
-The latest version may always be found at https://master.dockerproject.org . This sample uses the latest from the v1.14-development branch. 
+The latest version may always be found at https://master.dockerproject.org . This sample uses the latest from the master branch. 
 
 ```powershell
-Invoke-WebRequest "https://master.dockerproject.org/windows/amd64/docker-1.14.0-dev.zip" -OutFile "$env:TEMP\docker.zip" -UseBasicParsing
+$version = (Invoke-WebRequest -UseBasicParsing https://raw.githubusercontent.com/docker/docker/master/VERSION).Content.Trim()
+Invoke-WebRequest "https://master.dockerproject.org/windows/amd64/docker-$($version).zip" -OutFile "$env:TEMP\docker.zip" -UseBasicParsing
 ```
 
 Expand the zip archive into Program Files.
