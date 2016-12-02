@@ -23,16 +23,17 @@ Docker is required in order to work with Windows Containers. Docker consists of 
 
 
 ### Manual Installation
-If you would like to use an in-development version of the Docker Engine and client instead, you can use the steps that follow. This will install both the Docker Engine and client. Otherwise, skip to the next section.
+If you would like to use an in-development version of the Docker Engine and client instead, you can use the steps that follow. This will install both the Docker Engine and client. If you are a developer testing new features or using a Windows Insider build, you may need to use an in-development version of Docker. Otherwise, follow the steps in the Install Docker section above to get the latest released versions.
 
 > If you have installed Docker for Windows, be sure to remove it before you follow these manual installation steps. 
 
 Download the Docker Engine
 
-The latest version may always be found at https://master.dockerproject.org . This sample uses the latest from the v1.13-development branch. 
+The latest version may always be found at https://master.dockerproject.org . This sample uses the latest from the master branch. 
 
 ```powershell
-Invoke-WebRequest "https://download.docker.com/components/engine/windows-server/cs-1.12/docker.zip" -OutFile "$env:TEMP\docker.zip" -UseBasicParsing
+$version = (Invoke-WebRequest -UseBasicParsing https://raw.githubusercontent.com/docker/docker/master/VERSION).Content.Trim()
+Invoke-WebRequest "https://master.dockerproject.org/windows/amd64/docker-$($version).zip" -OutFile "$env:TEMP\docker.zip" -UseBasicParsing
 ```
 
 Expand the zip archive into Program Files.
