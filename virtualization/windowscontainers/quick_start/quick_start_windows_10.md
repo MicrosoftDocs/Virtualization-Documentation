@@ -53,16 +53,14 @@ Restart-Computer -Force
 
 Docker is required in order to work with Windows containers. Docker consists of the Docker Engine, and the Docker client. For this exercise, both will be installed. Run the following commands to do so.
 
-Download the Docker engine and client as a zip archive.
+Download the latest Docker engine and client
 
 ```none
-Invoke-WebRequest "https://test.docker.com/builds/Windows/x86_64/docker-1.13.0-rc2.zip" -OutFile "$env:TEMP\docker-1.13.0-rc2.zip" -UseBasicParsing
+Invoke-WebRequest https://master.dockerproject.org/windows/amd64/dockerd.exe -OutFile $env:ProgramFiles\docker\dockerd.exe
 ```
 
-Expand the zip archive into Program Files, the archive contents is already in docker directory.
-
 ```none
-Expand-Archive -Path "$env:TEMP\docker-1.13.0-rc2.zip" -DestinationPath $env:ProgramFiles
+Invoke-WebRequest https://master.dockerproject.org/windows/amd64/docker.exe -OutFile $env:ProgramFiles\docker\docker.exe
 ```
 
 Add the Docker directory to the system path.
