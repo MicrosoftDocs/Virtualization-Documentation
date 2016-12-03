@@ -32,7 +32,7 @@ The container feature needs to be enabled before working with Windows containers
 If you recieve an error saying `Enable-WindowsOptionalFeature` does not exist, double check that you are running PowerShell as Administrator.
 
 ```none
-Enable-WindowsOptionalFeature -Online -FeatureName containers -All
+dism /online /Enable-Feature /FeatureName:Containers
 ```
 
 Because Windows 10 only supports Hyper-V containers, the Hyper-V feature must also be enabled. To enable the Hyper-V feature using PowerShell, run the following command in an elevated PowerShell session.
