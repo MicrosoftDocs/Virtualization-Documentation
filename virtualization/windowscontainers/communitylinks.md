@@ -24,6 +24,7 @@ This page contains links to video’s and blogs created by members or the contai
 
 [Use Docker Compose and Service Discovery on Windows to scale-out your multi-service container application](https://blogs.technet.microsoft.com/virtualization/2016/10/18/use-docker-compose-and-service-discovery-on-windows-to-scale-out-your-multi-service-container-application/) - Kallie Bracken and Jason Messer
 
+[Running Neo4j in Windows Containers](http://glennsarti.github.io/blog/neo4j-nano-containers) - Glenn Sarti
 
 ## Configuration and Managment
 [How to protect a Windows 2016 Docker engine with TLS](https://stefanscherer.github.io/protecting-a-windows-2016-docker-engine-with-tls/) - Stefan Scherer
