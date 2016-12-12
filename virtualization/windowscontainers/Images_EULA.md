@@ -1,3 +1,13 @@
+﻿---
+title: Container Ecosystem
+description: Building a Container Ecosystem.
+keywords: EULA
+author: scooley
+ms.date: 04/20/2016
+ms.topic: about-article
+ms.prod: windows-containers
+ms.service: windows-containers
+---
 
 # MICROSOFT SOFTWARE SUPPLEMENTAL LICENSE TERMS
 
