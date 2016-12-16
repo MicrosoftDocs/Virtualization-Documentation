@@ -37,7 +37,7 @@ New-ADServiceAccount -name WebApplication1 -DnsHostName wa1-production.contoso.c
 ## Container Host Setup Steps
 1. First, Container hosts should be set up using the existing [deployment guide](https://msdn.microsoft.com/virtualization/windowscontainers/deployment/deployment)
 2. Join the container host to the Active Directory domain
-3. Verify the container host can access the gMSA 
+3. Verify the container host can access the gMSA
 ```powershell
 Install-AdServiceAccount WebApplication1
 Test-AdServiceAccount WebApplication1
@@ -48,9 +48,9 @@ This should return "True"
 1. Install and load the ActiveDirectory PowerShell module
 ```
 Add-WindowsFeature RSAT-AD-PowerShell
-Install-Module ActiveDirectory
+Import-Module ActiveDirectory
 ```
-2. Load the CredentialSpec module. It should be provided along with this document. 
+2. Load the CredentialSpec module. It should be provided along with this document.
 ```
 Import-Module ./CredentialSpec.psm1
 ```
@@ -78,7 +78,7 @@ This is the information needed to identify the group Managed Service Account.
 ## Running Containers
 The same `docker run` command is used to start containers, with an additional parameter `--security-opt "credentialspec=..."`. The host will use the details in the given credentialspec and start the container with the account automatically mapped.
 ```
-docker run -it --security-opt "credentialspec=file://WebApplication1.json" windowsservercore cmd
+docker run -it --security-opt "credentialspec=file://WebApplication1.json" microsoft/windowsservercore cmd
 ```
 
 You can run `nltest.exe /parentdomain` in a container to confirm that it can reach the Active Directory domain.
@@ -100,7 +100,7 @@ Getting parent domain failed: Status = 1722 0x6ba RPC_S_SERVER_UNAVAILABLE
 ## Configuring other services to accept connections from containers
 Services and other processes running as 'Local System' or 'Network Service' in the container will now use the gMSA as they authenticate to other resources.
 
-For example, an Asp.net app running as the default 'Local System' account could be reconfigured from using SQL authentication: 
+For example, an Asp.net app running as the default 'Local System' account could be reconfigured from using SQL authentication:
 ```
 "ConnectionString": "Server=192.168.5.18;Database=MusicStore;Integrated Security=False;User Id=sa;Password=Password1;MultipleActiveResultSets=True;Connect Timeout=30"
 ```
@@ -112,7 +112,7 @@ To using Windows Integrated Authentication:
 Then run inside a container started with a credential spec:
 
 ```powershell
-docker run -p 80:80 --security-opt "credentialspec=file://WebApplication1.json" -it musicstore-iis cmd 
+docker run -p 80:80 --security-opt "credentialspec=file://WebApplication1.json" -it musicstore-iis cmd
 ```
 
 At this point, SQL would see a login from the gMSA included in that credentialspec. Following the examples above - this would be "contoso\WebApplication1"
