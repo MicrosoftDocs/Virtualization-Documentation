@@ -22,16 +22,16 @@ Windows Server Containers are a lightweight operating system virtualization meth
 
 You can think of a Hyper-V Container as a Windows Server Container running inside of a Hyper-V partition.
 
-Hyper-V Containers offer an additional deployment option between the highly efficient, high-density Windows Server Container and the highly isolated hardware-virtualized Hyper-V virtual machine. For environments where applications from different trust boundaries on the same host, additional isolation may be required. Hyper-V Containers will provide higher isolation using an optimized virtualization and Windows Server operating system that separates containers from each other and from the host operating system. Both container deployment options utilize the same management APIs, tools and image formats, at deployment time, customers can simply choose which deployment mode best meets their requirements.
+Hyper-V Containers offer an additional deployment option between the highly efficient, high-density Windows Server Container and the highly isolated hardware-virtualized Hyper-V virtual machine. For environments where applications from different trust boundaries run on the same host, additional isolation may be required. Hyper-V Containers will provide higher isolation using an optimized virtualization and Windows Server operating system that separates containers from each other and from the host operating system. Both container deployment options use the same management APIs, tools and image formats. At deployment time, customers can simply choose which deployment mode best meets their requirements.
 
 **What is the difference between Linux and Windows Server Containers?**
 
 Linux and Windows Server Containers are similar -- both implement similar technologies within their kernel and core operating system. The difference comes from the platform and workloads that run within the containers.  
-When a customer is using Windows Server Containers, they can integrate with existing Windows technologies such as .NET, ASP.NET, PowerShell and more.
+When a customer is using Windows Server Containers, they can integrate with existing Windows technologies such as .NET, ASP.NET, PowerShell, and more.
 
 **As a developer, do I have to re-write my app for each type of container?**
 
-No, Windows container images are common across both Windows Server Containers and Hyper-V Containers. The choice of container type is made when you start the container. From a developer standpoint, Windows Server Containers and Hyper-V Containers are two flavors of the same thing.  They offer the same development, programming and management experience, are open and extensible and will include the same level of integration and support via Docker.
+No, Windows container images are common across both Windows Server Containers and Hyper-V Containers. The choice of container type is made when you start the container. From a developer standpoint, Windows Server Containers and Hyper-V Containers are two flavors of the same thing. They offer the same development, programming and management experience, are open and extensible and will include the same level of integration and support via Docker.
 
 A developer can create a container image using a Windows Server Container and deploy it as a Hyper-V Container or vice-versa without any changes other than specifying the appropriate runtime flag.
 
@@ -39,7 +39,7 @@ Windows Server Containers will offer greater density and performance (e.g. lower
 
 **Are Hyper-V/Windows Server Containers an add-on, or will they integrated within Windows Server?**
 
-The container capabilities will be integrated into Windows Server 2016. Stay tuned for more information closer to the general availability.  
+The container capabilities are integrated into Windows Server 2016.  
 
 **What is the relationship between Windows Server Containers and Drawbridge?**
 

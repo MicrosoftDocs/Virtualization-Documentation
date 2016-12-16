@@ -26,6 +26,7 @@ This page contains links to video’s and blogs created by members or the contai
 
 [PowerShell Desired State Configuration in Windows Containers using Docker](http://dille.name/blog/2016/06/17/powershell-desired-state-configuration-psdsc-in-windows-containers-using-docker/)
 
+[Running Neo4j in Windows Containers](http://glennsarti.github.io/blog/neo4j-nano-containers) - Glenn Sarti
 
 ## Configuration and Managment
 [How to protect a Windows 2016 Docker engine with TLS](https://stefanscherer.github.io/protecting-a-windows-2016-docker-engine-with-tls/) - Stefan Scherer

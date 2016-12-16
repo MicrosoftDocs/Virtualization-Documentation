@@ -23,7 +23,7 @@ Download the sources and add them to the following directories:
 | Windows Server 2016 media | C:\IgniteSource\WindowsServer2016 | [evaluation media](https://www.microsoft.com/en-us/evalcenter/evaluate-windows-server-2016) |
 | System Center Virtual Machine Manager 2016 media | C:\IgniteSource\VMMWAPDependencies\VMM | [evaluation version](https://www.microsoft.com/en-us/evalcenter/evaluate-system-center-2016) |
 | SQL Server 2014 SP2 media | C:\IgniteSource\VMMWAPDependencies\SQL | [evaluation version](https://www.microsoft.com/en-us/evalcenter/evaluate-sql-server-2014-sp2/) |
-| Windows ADK for Windows 10, version 1607 | | [download](https://developer.microsoft.com/en-us/windows/hardware/windows-assessment-deployment-kit) |
+| Windows ADK for Windows 10, version 1607 | C:\IgniteSource\VMMWAPDependencies\ADK | [download](https://developer.microsoft.com/en-us/windows/hardware/windows-assessment-deployment-kit) |
 
 On the host, Hyper-V and the Hyper-V PowerShell management module have to be installed.
 

@@ -27,7 +27,9 @@ This quick start is specific to Hyper-V containers on Windows 10. Additional qui
 
 ## 1. Install Container Feature
 
-The container feature needs to be enabled before working with Windows containers. To do so run the following command in an elevated PowerShell session.
+The container feature needs to be enabled before working with Windows containers. To do so run the following command in an **elevated** PowerShell session.
+
+If you recieve an error saying `Enable-WindowsOptionalFeature` does not exist, double check that you are running PowerShell as Administrator.
 
 ```none
 Enable-WindowsOptionalFeature -Online -FeatureName containers -All
@@ -54,13 +56,13 @@ Docker is required in order to work with Windows containers. Docker consists of 
 Download the Docker engine and client as a zip archive.
 
 ```none
-Invoke-WebRequest "https://master.dockerproject.org/windows/amd64/docker-1.13.0-dev.zip" -OutFile "$env:TEMP\docker-1.13.0-dev.zip" -UseBasicParsing
+Invoke-WebRequest "https://test.docker.com/builds/Windows/x86_64/docker-1.13.0-rc3.zip" -OutFile "$env:TEMP\docker-1.13.0-rc3.zip" -UseBasicParsing
 ```
 
 Expand the zip archive into Program Files, the archive contents is already in docker directory.
 
 ```none
-Expand-Archive -Path "$env:TEMP\docker-1.13.0-dev.zip" -DestinationPath $env:ProgramFiles
+Expand-Archive -Path "$env:TEMP\docker-1.13.0-rc3.zip" -DestinationPath $env:ProgramFiles
 ```
 
 Add the Docker directory to the system path.
@@ -110,7 +112,9 @@ For in depth information on Windows container images see, [Managing Container Im
 
 ## 4. Deploy Your First Container
 
-For this simple example a ‘Hello World’ container image will be created and deployed. For the best experience run these commands in an elevated Windows CMD shell.
+For this simple example a ‘Hello World’ container image will be created and deployed. For the best experience run these commands in an elevated Windows CMD shell or PowerShell.
+
+> Windows PowerShell ISE does not work for interactive sessions with containers. Even though the container is running, it will appear to hang.
 
 First, start a container with an interactive session from the `nanoserver` image. Once the container has started, you will be presented with a command shell from within the container.  
 
