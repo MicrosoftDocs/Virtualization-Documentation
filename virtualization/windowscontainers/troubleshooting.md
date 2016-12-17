@@ -1,3 +1,17 @@
+
+---
+title: Troubleshooting Guide for Windows Containers 
+description: This guide helps troubleshoot common problems with Windows containers.
+keywords: docker, containers
+author: enderb-ms
+ms.date: 10/10/2016
+ms.topic: article
+ms.prod: windows-containers
+ms.service: windows-containers
+ms.assetid: e152f9bc-43bb-43ec-86d9-5d86de278c78
+
+---
+
 # Troubleshooting
 
 Having trouble setting up your machine or running a container? We created a PowerShell script to check for common problems. Please give it a try first to see what it finds and share your results.
