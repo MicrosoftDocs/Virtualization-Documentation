@@ -1,4 +1,3 @@
-
 ---
 title: Troubleshooting Guide for Windows Containers 
 description: This guide helps troubleshoot common problems with Windows containers.
@@ -9,7 +8,6 @@ ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: e152f9bc-43bb-43ec-86d9-5d86de278c78
-
 ---
 
 # Troubleshooting
