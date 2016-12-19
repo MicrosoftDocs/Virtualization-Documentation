@@ -65,6 +65,12 @@ Expand the zip archive into Program Files, the archive contents is already in do
 Expand-Archive -Path "$env:TEMP\docker-1.13.0-rc3.zip" -DestinationPath $env:ProgramFiles
 ```
 
+Create data directory for Docker.
+
+```none
+New-Item -ItemType Directory -Force -Path "$env:ProgramData\docker"
+```
+
 Add the Docker directory to the system path.
 
 ```none
