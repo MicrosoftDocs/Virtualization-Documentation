@@ -12,7 +12,7 @@ ms.assetid: 05269ce0-a54f-4ad8-af75-2ecf5142b866
 
 # Virtualization using Hyper-V on Windows 10
 
-Windows 10 Enterprise, Professional, and Education all include Microsoft's virtualization platform, Hyper-V. Enabling the Hyper-V feature lets you create virtual machines for those times when you need to run a different operating system but don't want to use a seperate physical computer.  Virtual machines minic real computers; they run their own applications, operating system, and virtual hardware.
+Windows 10 Enterprise, Professional, and Education all include Microsoft's virtualization platform, Hyper-V. Enabling the Hyper-V feature lets you create virtual machines for those times when you need to run a different operating system but don't want to use a seperate physical computer.  Virtual machines mimic real computers; they run their own applications, operating system, and virtual hardware.
 
 The following documents provide more information about virtualization, detail the Hyper-V feature in Windows 10, provide a guided quick start, and also contain links to further resources and community forums.
 
