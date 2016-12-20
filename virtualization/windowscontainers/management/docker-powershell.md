@@ -1,3 +1,15 @@
+---
+title: PowerShell for Docker
+description: How to manage Docker containers using PowerShell
+keywords: docker, containers, powershell
+author: PatrickLang
+ms.date: 12/19/2016
+ms.topic: article
+ms.prod: windows-containers
+ms.service: windows-containers
+ms.assetid: 4a0e907d-0d07-42f8-8203-2593391071da
+---
+
 ### PowerShell For Docker
 
 Through our conversations with you, our users though forums, over Twitter, in GitHub, and even in person one question has come up more than any other – why can’t I see Docker containers from PowerShell? 
