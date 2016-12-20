@@ -68,11 +68,12 @@ Expand-Archive -Path "$env:TEMP\docker-1.13.0-rc4.zip" -DestinationPath $env:Pro
 Add the Docker directory to the system path.
 
 ```none
-# For quick use, does not require shell to be restarted.
-$env:path += ";c:\program files\docker"
+# Add path to this PowerShell session immediately
+$env:path += ";$env:ProgramFiles\Docker"
 
-# For persistent use, will apply even after a reboot.
-[Environment]::SetEnvironmentVariable("Path", $env:Path + ";C:\Program Files\Docker", [EnvironmentVariableTarget]::Machine)
+# For persistent use after a reboot
+$existingMachinePath = [Environment]::GetEnvironmentVariable("Path",[System.EnvironmentVariableTarget]::Machine)
+[Environment]::SetEnvironmentVariable("Path", $existingMachinePath + ";$env:ProgramFiles\Docker", [EnvironmentVariableTarget]::Machine)
 ```
 
 To install Docker as a Windows service, run the following.
