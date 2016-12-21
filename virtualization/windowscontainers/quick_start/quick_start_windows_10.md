@@ -56,23 +56,24 @@ Docker is required in order to work with Windows containers. Docker consists of 
 Download the Docker engine and client as a zip archive.
 
 ```none
-Invoke-WebRequest "https://test.docker.com/builds/Windows/x86_64/docker-1.13.0-rc3.zip" -OutFile "$env:TEMP\docker-1.13.0-rc3.zip" -UseBasicParsing
+Invoke-WebRequest "https://test.docker.com/builds/Windows/x86_64/docker-1.13.0-rc4.zip" -OutFile "$env:TEMP\docker-1.13.0-rc4.zip" -UseBasicParsing
 ```
 
 Expand the zip archive into Program Files, the archive contents is already in docker directory.
 
 ```none
-Expand-Archive -Path "$env:TEMP\docker-1.13.0-rc3.zip" -DestinationPath $env:ProgramFiles
+Expand-Archive -Path "$env:TEMP\docker-1.13.0-rc4.zip" -DestinationPath $env:ProgramFiles
 ```
 
 Add the Docker directory to the system path.
 
 ```none
-# For quick use, does not require shell to be restarted.
-$env:path += ";c:\program files\docker"
+# Add path to this PowerShell session immediately
+$env:path += ";$env:ProgramFiles\Docker"
 
-# For persistent use, will apply even after a reboot.
-[Environment]::SetEnvironmentVariable("Path", $env:Path + ";C:\Program Files\Docker", [EnvironmentVariableTarget]::Machine)
+# For persistent use after a reboot
+$existingMachinePath = [Environment]::GetEnvironmentVariable("Path",[System.EnvironmentVariableTarget]::Machine)
+[Environment]::SetEnvironmentVariable("Path", $existingMachinePath + ";$env:ProgramFiles\Docker", [EnvironmentVariableTarget]::Machine)
 ```
 
 To install Docker as a Windows service, run the following.

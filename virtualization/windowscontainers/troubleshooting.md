@@ -1,13 +1,13 @@
 ---
-title: Troubleshooting Guide for Windows Containers 
-description: This guide helps troubleshoot common problems with Windows containers.
-keywords: docker, containers
-author: enderb-ms
-ms.date: 10/10/2016
+title: Troubleshooting Windows Containers
+description: Troubleshooting tips, automated scripts, and log information for Windows containers and Docker
+keywords: docker, containers, troubleshooting, logs
+author: PatrickLang
+ms.date: 12/19/2016
 ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
-ms.assetid: e152f9bc-43bb-43ec-86d9-5d86de278c78
+ms.assetid: ebd79cd3-5fdd-458d-8dc8-fc96408958b5
 ---
 
 # Troubleshooting
