@@ -8,9 +8,7 @@
 ## [Create a Virtual Machine](quick-start/create-virtual-machine.md)
 ## [Hyper-V and PowerShell](quick-start/try-hyper-v-powershell.md)
 # Manage Virtual Machines with Hyper-V
-## [Manage Integration Services](user-guide/managing-integration-services.md)
 ## [Work with Checkpoints](user-guide/checkpoints.md)
-## [Export and Import Virtual Machines](user-guide/export-import.md)
 ## [Connect with PowerShell Direct](user-guide/powershell-direct.md)
 ## [Create pre-release VMs](user-guide/create-pre-release-vm.md) 
 # Manage the Hyper-V Hosts
