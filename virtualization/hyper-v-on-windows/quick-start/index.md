@@ -1,5 +1,3 @@
 ---
-redirect_url: create-virtual-machine
+redirect_url: enable-hyperv
 ---
-
-# Redirected – No Title

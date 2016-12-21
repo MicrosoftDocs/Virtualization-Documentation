@@ -12,9 +12,36 @@ ms.assetid: 752dc760-a33c-41bb-902c-3bb2ecd9ac86
 
 # Install Hyper-V on Windows 10
 
-You must enable the Hyper-V role before you can create virtual machines on Windows 10. This can be done using the Windows 10 control panel, PowerShell or the Deployment Imaging Servicing and Management tool (DISM). This documents walks through each of these.
+Enable Hyper-V to create virtual machines on Windows 10.  
+Hyper-V can be enabed in many ways including using the Windows 10 control panel, PowerShell (my favorite) or using the Deployment Imaging Servicing and Management tool (DISM). This documents walks through each option.
 
-> Before enabling Hyper-V, make sure your system is compatible. For more information, see [Windows 10 Hyper-V System Requirements](../reference/hyper-v-requirements.md).
+> **Note:**  Hyper-V is built into Windows as an optional feature -- there is no Hyper-V download or installable component. 
+
+## Check Requirements
+
+* Windows 10 Enterprise, Professional, or Education
+* 64-bit Processor with Second Level Address Translation (SLAT).
+* CPU support for VM Monitor Mode Extension (VT-c on Intel CPU's).
+* Minimum of 4 GB memory.
+
+The Hyper-V role **cannot** be installed on Windows 10 Home.  
+Upgrade from Windows 10 Home edition to Windows 10 Professional by opening up **Settings** > **Update and Security** > **Activation**.
+
+For more information and troubleshooting, see [Windows 10 Hyper-V System Requirements](../reference/hyper-v-requirements.md).
+
+
+## Install Hyper-V with PowerShell
+
+1. Open a PowerShell console as Administrator.
+
+2. Run the following command:
+
+```powershell
+Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V -All
+```
+When the installation has completed you need to reboot the computer.  If the command couldn't be found, make sure you're running PowerShell as Administrator.
+
+
 
 ## Manually Install the Hyper-V role
 
@@ -30,23 +57,12 @@ When the installation has completed you are prompted to restart your computer.
 
 ![](media/restart_upd.png)
 
-## Install Hyper-V with PowerShell
-
-1. Open a PowerShell console as Administrator.
-
-2. Run the following command:
-
-```powershell
-Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V -All
-```
-When the installation has completed you need to reboot the computer.
 
 ## Install Hyper-V with DISM
 
-The Deployment Image Servicing and Management tool or DISM is used to service Windows images and prepare Windows Pre installation environments. DISM can also be used to enable Windows features while the operating system is running. For more information, see [DISM Technical Reference](https://technet.microsoft.com/en-us/library/hh824821.aspx).
+The Deployment Image Servicing and Management tool (DISM) helps configure Windows and Windows images.  Amoung its many applications, DISM can enable Windows features while the operating system is running.  
 
 To enable the Hyper-V role using DISM:
-
 1. Open up a PowerShell or CMD session as Administrator.
 
 2. Type the following command:
@@ -56,6 +72,7 @@ DISM /Online /Enable-Feature /All /FeatureName:Microsoft-Hyper-V
 ```
 ![](media/dism_upd.png)
 
+For more information about DISM, see the [DISM Technical Reference](https://technet.microsoft.com/en-us/library/hh824821.aspx).
 
 ## Next Step - Create a Virtual Switch
 [Connect to the internet](connect-to-network.md)
