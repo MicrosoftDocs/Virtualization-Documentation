@@ -33,7 +33,7 @@
     },
     {
       "docset_name": "Microsoft_Windows-Container-Documentation-Private_hyperv_on_windows",
-      "build_source_folder": "virtualization/hyperv_on_windows",
+      "build_source_folder": "virtualization/hyper-v-on-windows",
       "build_output_subfolder": "virtualization/hyperv_on_windows",
       "locale": "en-us",
       "version": 0,
@@ -59,7 +59,6 @@
     }
   ],
   "notification_subscribers": [
-    "nepeters@microsoft.com",
     "scooley@microsoft.com"
   ],
   "branches_to_filter": [

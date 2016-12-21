@@ -20,14 +20,14 @@ Windows Containers provide operating system level virtualization that allows mul
 <td>**Quick Start**<br /><br />
 Windows Server Quick Start<br /><br />
 <ul>
-<li>[Step 1 – Concepts and Terminology](quick_start/quick_start.md)<br /><br /></li>
-<li>[Step 2 – Configure Windows Server and First Container](quick_start/quick_start_windows_server.md)<br /><br /></li>
-<li>[Step 3 – Create and Push Container Images](quick_start/quick_start_images.md)<br /><br /></li>
+<li>[Step 1 – Concepts and Terminology](quick-start/index.md)<br /><br /></li>
+<li>[Step 2 – Configure Windows Server and First Container](quick-start/quick-start-windows-server.md)<br /><br /></li>
+<li>[Step 3 – Create and Push Container Images](quick-start/quick-start-images.md)<br /><br /></li>
 </ul>
 Windows 10 Quick Start<br /><br />
 <ul>
-<li>[Step 1 – Concepts and Terminology](quick_start/quick_start.md)<br /><br /></li>
-<li>[Step 2 – Configure Windows 10 and First Container](quick_start/quick_start_windows_10.md)<br /><br /></li>
+<li>[Step 1 – Concepts and Terminology](quick-start/index.md)<br /><br /></li>
+<li>[Step 2 – Configure Windows 10 and First Container](quick-start/quick-start-windows-10.md)<br /><br /></li>
 </ul>
 </td>
 </tr>
@@ -36,9 +36,9 @@ Windows 10 Quick Start<br /><br />
 <td>**Deployment**<br /><br />
 Learn how to deploy Windows Containers on Windows Server 2016 and Nano Server..<br /><br />
 <ul>
-<li>[System Requirements](deployment/system_requirements.md)<br /><br /></li>
-<li>[Deploy Container Host - Windows Server](deployment/deployment.md)<br /><br /></li>
-<li>[Deploy Container Host - Nano Server](deployment/deployment_nano.md)<br /><br /></li>
+<li>[System Requirements](deploy-containers/system-requirements.md)<br /><br /></li>
+<li>[Deploy Container Host - Windows Server](deploy-containers/deploy-containers-on-server.md)<br /><br /></li>
+<li>[Deploy Container Host - Nano Server](deploy-containers/deploy-containers-on-nano.md)<br /><br /></li>
 <li>[Anti-Virus Optimization](https://msdn.microsoft.com/en-us/windows/hardware/drivers/ifs/anti-virus-optimization-for-windows-containers)<br /><br /></li>
 </ul>
 </td>
@@ -49,11 +49,10 @@ Learn how to deploy Windows Containers on Windows Server 2016 and Nano Server..<
 <td>**Docker on Windows**<br /><br />
 Learn about managing Docker on Windows.<br /><br />
 <ul>
-<li>[Docker Engine on Windows](docker/configure_docker_daemon.md)<br /><br /></li>
-<li>[Dockerfiles on Windows](docker/manage_windows_dockerfile.md)<br /><br /></li>
-<li>[Manage Container Data](management/manage_data.md)<br /><br /></li>
-<li>[Optimize Dockerfiles](docker/optimize_windows_dockerfile.md)<br /><br /></li>
-<li>[Container Networking](management/container_networking.md)<br /><br /></li>
+<li>[Docker Engine on Windows](manage-docker/configure-docker-daemon.md)<br /><br /></li>
+<li>[Dockerfiles on Windows](manage-docker/manage-windows-dockerfile.md)<br /><br /></li>
+<li>[Optimize Dockerfiles](manage-docker/optimize-windows-dockerfile.md)<br /><br /></li>
+<li>[Container Networking](manage-containers/container-networking.md)<br /><br /></li>
 </ul>
 </td>
 </tr>
