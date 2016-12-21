@@ -1,11 +1,11 @@
 {
   "locales": [ "ja-jp", "de-de", "fr-fr", "zh-cn", "zh-tw", "ko-kr", "es-es", "it-it", "ru-ru", "pt-br" ],
   "files": [
-            "virtualization/community/contribute_to_docs.md", 
-            "virtualization/hyperv_on_windows/*.md", 
-	    "virtualization/hyperv_on_windows/**/*.md",  "virtualization/hyperv_on_windows/**/**/*.md", 
-	    "virtualization/windowscontainers/*.md", 
-	    "virtualization/windowscontainers/**/*.md",  "virtualization/windowscontainers/**/**/*.md",
+            "virtualization/community/contribute-to-docs.md", 
+            "virtualization/hyperv-on-windows/*.md", 
+	    "virtualization/hyperv-on-windows/**/*.md",  "virtualization/hyperv-on-windows/**/**/*.md", 
+	    "virtualization/windows-containers/*.md", 
+	    "virtualization/windows-containers/**/*.md",  "virtualization/windows-containers/**/**/*.md",
   ],
   "includeDependencies": true,
   "autoPush": true,
