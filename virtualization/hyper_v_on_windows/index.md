@@ -1,1 +1,0 @@
-# Welcome to Microsoft_Windows-Container-Documentation-Private_hyperv_on_windows!

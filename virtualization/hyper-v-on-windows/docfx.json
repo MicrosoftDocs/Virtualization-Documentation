@@ -16,6 +16,6 @@
     "externalReference": [
     ],
     "template": "op.html",
-    "dest": "virtualization/hyper-v_on_windows"
+    "dest": "virtualization/hyper-v-on-windows"
   }
 }
