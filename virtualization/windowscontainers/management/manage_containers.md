@@ -1,6 +1,3 @@
 ---
-author: neilpeterson
-redirect_url: ../quick_start/manage_docker
+redirect_url: ../quick-start
 ---
-
-# Document has been deprecated.

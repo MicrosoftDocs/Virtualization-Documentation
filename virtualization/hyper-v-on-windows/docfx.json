@@ -1,0 +1,21 @@
+﻿{
+  "build": {
+    "content":
+      [
+        {
+          "files": ["**/**.md"],
+          "exclude": ["**/obj/**"]
+        }
+      ],
+    "resource": [
+        {
+          "files": ["**/media/**"],
+          "exclude": ["**/obj/**"]
+        }
+    ],
+    "externalReference": [
+    ],
+    "template": "op.html",
+    "dest": "virtualization/hyper-v_on_windows"
+  }
+}
