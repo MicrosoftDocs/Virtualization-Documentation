@@ -269,7 +269,7 @@ You can use the [Get-VM](http://technet.microsoft.com/library/hh848479.aspx) cmd
 
 ## Samples and User Guides
 
-PowerShell Direct supports JEA (Just Enough Administration).  Check out this user guide to try it.
+PowerShell Direct supports JEA (Just Enough Administration).  Check out this user guide to try it. 
 
 Check out samples on [GitHub](https://github.com/Microsoft/Virtualization-Documentation/search?l=powershell&q=-VMName+OR+-VMGuid&type=Code&utf8=%E2%9C%93).
 
