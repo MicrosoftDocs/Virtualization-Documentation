@@ -26,17 +26,23 @@ This quick start is specific to Windows Server containers on Windows Server 2016
 
 For the best experience, walk through this exercise from a Windows command shell (cmd.exe).
 
-The first step in manually creating a container image is to deploy a container. For this example, deploy an IIS container from the pre-created IIS image. Once the container has been deployed, you will be working in a shell session from within the container. The interactive session is initiated with the `-it` flag. For in depth details on Docker Run commands, see [Docker Run Reference on Docker.com]( https://docs.docker.com/engine/reference/run/). 
+The first step in manually creating a container image is to deploy a container. For this example, deploy an IIS container from the pre-created IIS image. Once the container has been deployed, you will be working in a shell session from within the container. The interactive session is initiated with the `-it` flag. For in depth details on Docker Run commands, see [Docker Run Reference on Docker.com](https://docs.docker.com/engine/reference/run/). 
 
 > This step may take some time due to the size of the Windows Server Core base image.
 
 ```none
-docker run -it -p 80:80 microsoft/iis cmd
+docker run -d --name myIIS -p 80:80 microsoft/iis
 ```
 
-After the download, the container will start, and a shell session will be started.
+Now, the container will be running in the background. The default command included in the container, `ServiceMonitor.exe`, which monitor IIS progress and automatically stop the container if IIS stops. To learn more on how this image was created, see [Microsoft/docker-iis](https://github.com/Microsoft/iis-docker) on GitHub.
 
-Next, a modification will be made to container. Run the following command to remove the IIS splash screen.
+Next, start an interactive cmd in the container. This will allow you to run commands in running container without stopping IIS or ServiceMonitor.
+
+```none
+docker exec -i myIIS cmd 
+```
+
+Next, you can make a change to the running container. Run the following command to remove the IIS splash screen.
 
 ```none
 del C:\inetpub\wwwroot\iisstart.htm
