@@ -15,7 +15,7 @@ ms.assetid: ebd79cd3-5fdd-458d-8dc8-fc96408958b5
 Having trouble setting up your machine or running a container? We created a PowerShell script to check for common problems. Please give it a try first to see what it finds and share your results.
 
 ```PowerShell
-Invoke-WebRequest http://aka.ms/Debug-ContainerHost.ps1 -UseBasicParsing | Invoke-Expression
+Invoke-WebRequest https://aka.ms/Debug-ContainerHost.ps1 -UseBasicParsing | Invoke-Expression
 ```
 A list of all of the tests it runs along with common solutions is in the [Readme file](https://github.com/Microsoft/Virtualization-Documentation/blob/live/windows-server-container-tools/Debug-ContainerHost/README.md) for the script.
 
