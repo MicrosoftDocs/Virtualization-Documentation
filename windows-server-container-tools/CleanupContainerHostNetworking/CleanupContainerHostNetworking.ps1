@@ -1,7 +1,9 @@
 ﻿param
 (
-    [parameter(Mandatory=$false)] [switch] $ForceCleanup,
-    [parameter(Mandatory=$false)] [string] $LogPath = "."
+    [switch] $Cleanup,
+    [switch] $ForceDeleteAllSwitches,
+    [string] $LogPath = ".",
+    [switch] $CaptureTraces
 ) 
 
 function StartTracing
@@ -114,6 +116,8 @@ function CopyAllLogs
     Get-NetNatStaticMapping | FL *> $LogsPath"\GetNetNatStaticMapping.txt"
     Get-Service winnat | FL * > $LogsPath"\WinNat.txt"
     Get-Service mpssvc | FL * > $LogsPath"\mpssvc.txt"
+    Get-NetAdapter -IncludeHidden | FL * > $LogsPath"\GetNetAdapters.txt"
+    Get-NetAdapterBinding -IncludeHidden | FL * > $LogsPath"\GetNetAdapterBinding.txt"
 
     Get-ChildItem HKLM:\SYSTEM\CurrentControlSet\Services\hns -Recurse > $LogsPath"\HNSRegistry.txt"
     Get-ChildItem HKLM:\SYSTEM\CurrentControlSet\Services\vmsmp -Recurse > $LogsPath"\vmsmpRegistry.txt"
@@ -121,47 +125,82 @@ function CopyAllLogs
 
 function ForceCleanupSystem
 {
+    Param(
+      [switch] $ForceDeleteAllSwitches 
+    )
+
     $rebootRequired =$false
     
-    $dockerConatiners = Invoke-Expression -Command "docker ps -aq" -ErrorAction SilentlyContinue
+    $dockerContainers = Invoke-Expression -Command "docker ps -aq" -ErrorAction SilentlyContinue
 
-    foreach ($container in $dockerConatiners)
+    foreach ($container in $dockerContainers)
     {
         docker rm -f $container
     }
 
-    Get-ContainerNetwork | Remove-ContainerNetwork -Force -ErrorAction SilentlyContinue
+    $dockerNetworks = Invoke-Expression -Command "docker network ls -q" -ErrorAction SilentlyContinue
+
+    foreach ($network in $dockerNetworks)
+    {
+        docker network rm $network
+    }
+
+    $cmdlet = @()
+    $cmdlet = (Get-Command *ContainerNetworking*)
+
+    if ($cmdlet.Count -ne 0)
+    {
+        Get-ContainerNetwork | Remove-ContainerNetwork -Force -ErrorAction SilentlyContinue
+    }
+
+    if ($ForceDeleteAllSwitches.IsPresent)
+    {
     
-    if (Test-Path "HKLM:\SYSTEM\CurrentControlSet\Services\vmsmp\parameters\SwitchList")
-    {
-        $switchList = Get-ChildItem HKLM:\SYSTEM\CurrentControlSet\Services\vmsmp\parameters\SwitchList\ | %{$_.PSPath }
-
-        if ($switchList.count -ne 0)
+        if (Test-Path "HKLM:\SYSTEM\CurrentControlSet\Services\vmsmp\parameters\SwitchList")
         {
-            Remove-Item -Path HKLM:\SYSTEM\CurrentControlSet\Services\vmsmp\parameters\SwitchList -Recurse -Force
-            $rebootRequired = $true
+            $switchList = Get-ChildItem HKLM:\SYSTEM\CurrentControlSet\Services\vmsmp\parameters\SwitchList\ | %{$_.PSPath }
+
+            if ($switchList.count -ne 0)
+            {
+                Remove-Item -Path HKLM:\SYSTEM\CurrentControlSet\Services\vmsmp\parameters\SwitchList -Recurse -Force
+                $rebootRequired = $true
+            }
         }
-    }
 
-    if (Test-Path "HKLM:\SYSTEM\CurrentControlSet\Services\vmsmp\parameters\NicList")
-    {
-        $nicList = Get-ChildItem HKLM:\SYSTEM\CurrentControlSet\Services\vmsmp\parameters\NicList\ | %{$_.PSPath }
-
-        if ($nicList.count -ne 0)
+        if (Test-Path "HKLM:\SYSTEM\CurrentControlSet\Services\vmsmp\parameters\NicList")
         {
-            Remove-Item -Path HKLM:\SYSTEM\CurrentControlSet\Services\vmsmp\parameters\NicList -Recurse -Force
-            $rebootRequired = $true
+            $nicList = Get-ChildItem HKLM:\SYSTEM\CurrentControlSet\Services\vmsmp\parameters\NicList\ | %{$_.PSPath }
+
+            if ($nicList.count -ne 0)
+            {
+                Remove-Item -Path HKLM:\SYSTEM\CurrentControlSet\Services\vmsmp\parameters\NicList -Recurse -Force
+                $rebootRequired = $true
+            }
         }
-    }
 
-    Get-NetNatStaticMapping | Remove-NetNatStaticMapping -Confirm:$false
-    Get-NetNat | Remove-NetNat -Confirm:$false
+        $adapters = Get-NetAdapter 
 
-    Stop-Service hns -Force
+        foreach ($adapter in $adapters)
+        {
+            if ($adapters.HardwareInterface -eq $true)
+            {
+                Disable-NetAdapterBinding -Name $adapters.Name -ComponentID vms_pp
+            }
+        }
 
-    if (Test-Path "C:\ProgramData\Microsoft\Windows\HNS\HNS.data")
-    {
-        del C:\ProgramData\Microsoft\Windows\HNS\HNS.data
+        Get-NetNatStaticMapping | Remove-NetNatStaticMapping -Confirm:$false
+        Get-NetNat | Remove-NetNat -Confirm:$false
+
+        if ($rebootRequired)
+        {
+            Stop-Service hns -Force
+
+            if (Test-Path "C:\ProgramData\Microsoft\Windows\HNS\HNS.data")
+            {
+                del C:\ProgramData\Microsoft\Windows\HNS\HNS.data
+            }
+        }
+
     }
 
     if(!$rebootRequired)
@@ -196,7 +235,23 @@ try
     # Collect logs before force cleanup
     CopyAllLogs -LogsPath "$LogPath\PreCleanupState" | Out-Null
 
-    if ($ForceCleanup.IsPresent)
+    if ($CaptureTraces.IsPresent)
+    {
+        try{
+
+            StartTracing -LogsPath "$LogPath\PreCleanupState" | Out-Null
+            Write-Host "Please Repro the issue and post repro, press any key to continue ..."
+            $x = $host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
+            StopTracing | Out-Null
+        }
+        catch
+        {
+            Write-Host "Failed to collect tracing $_" -ForegroundColor Red 
+            $tracingEnabled = $false
+        }
+    }
+    
+    if ($Cleanup.IsPresent)
     {
         $tracingEnabled = $true
         try{
@@ -209,7 +264,7 @@ try
             $tracingEnabled = $false
         }
 
-        $rebootRequired = ForceCleanupSystem
+        $rebootRequired = ForceCleanupSystem -ForceDeleteAllSwitches:$($ForceDeleteAllSwitches.IsPresent)
 
         if ($tracingEnabled)
         {
@@ -225,6 +280,7 @@ try
         }
 
     }
+    
 
     Write-Host "Complete!!!" -ForegroundColor Green 
     
