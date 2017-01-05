@@ -21,7 +21,7 @@ This guide will walk you through:
 
 Requirements:
 * Windows build 14295 or later
-* The Hyper-V role is enabled (instructions [here](../quick-start/connect-to-network.md))
+* The Hyper-V role is enabled (instructions [here](../quick-start/enable-hyper-v.md))
 
 > **Note:**  Currently, Hyper-V only allows you to create one NAT network. For additional details on the Windows NAT (WinNAT) implementation, capabilities, and limitations, please reference the [WinNAT capabilities and limitations blog](https://blogs.technet.microsoft.com/virtualization/2016/05/25/windows-nat-winnat-capabilities-and-limitations/)
 

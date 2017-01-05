@@ -30,20 +30,38 @@ Upgrade from Windows 10 Home edition to Windows 10 Professional by opening up **
 For more information and troubleshooting, see [Windows 10 Hyper-V System Requirements](../reference/hyper-v-requirements.md).
 
 
-## Install Hyper-V with PowerShell
+## Install Hyper-V 
+Hyper-V is built into Windows as an optional feature -- there is no Hyper-V download or installable component.  There are several ways to enable the built-in Hyper-V role.
+
+### Enable Hyper-V using PowerShell
 
 1. Open a PowerShell console as Administrator.
 
 2. Run the following command:
+  ```powershell
+  Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V -All
+  ```  
 
-```powershell
-Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V -All
-```
-When the installation has completed you need to reboot the computer.  If the command couldn't be found, make sure you're running PowerShell as Administrator.
+  If the command couldn't be found, make sure you're running PowerShell as Administrator.  
 
+When the installation has completed you need to reboot the computer.  
 
+### Enable Hyper-V with CMD and DISM
 
-## Manually Install the Hyper-V role
+The Deployment Image Servicing and Management tool (DISM) helps configure Windows and Windows images.  Amoung its many applications, DISM can enable Windows features while the operating system is running.  
+
+To enable the Hyper-V role using DISM:
+1. Open up a PowerShell or CMD session as Administrator.
+
+2. Type the following command:  
+  ```powershell
+  DISM /Online /Enable-Feature /All /FeatureName:Microsoft-Hyper-V
+  ```  
+  ![](media/dism_upd.png)
+
+For more information about DISM, see the [DISM Technical Reference](https://technet.microsoft.com/en-us/library/hh824821.aspx).
+
+### Manually enable the Hyper-V role
 
 1. Right click on the Windows button and select ‘Programs and Features’.
 
@@ -58,21 +76,5 @@ When the installation has completed you are prompted to restart your computer.
 ![](media/restart_upd.png)
 
 
-## Install Hyper-V with DISM
-
-The Deployment Image Servicing and Management tool (DISM) helps configure Windows and Windows images.  Amoung its many applications, DISM can enable Windows features while the operating system is running.  
-
-To enable the Hyper-V role using DISM:
-1. Open up a PowerShell or CMD session as Administrator.
-
-2. Type the following command:
-
-```powershell
-DISM /Online /Enable-Feature /All /FeatureName:Microsoft-Hyper-V
-```
-![](media/dism_upd.png)
-
-For more information about DISM, see the [DISM Technical Reference](https://technet.microsoft.com/en-us/library/hh824821.aspx).
-
-## Next Step - Create a Virtual Switch
+## Next Step - Set up a network
 [Connect to the internet](connect-to-network.md)
