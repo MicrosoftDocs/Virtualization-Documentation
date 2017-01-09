@@ -2,8 +2,8 @@
   "locales": [ "ja-jp", "de-de", "fr-fr", "zh-cn", "zh-tw", "ko-kr", "es-es", "it-it", "ru-ru", "pt-br" ],
   "files": [
             "virtualization/community/contribute-to-docs.md", 
-            "virtualization/hyperv-on-windows/*.md", 
-	    "virtualization/hyperv-on-windows/**/*.md",  "virtualization/hyperv-on-windows/**/**/*.md", 
+            "virtualization/hyper-v-on-windows/*.md", 
+	    "virtualization/hyper-v-on-windows/**/*.md",  "virtualization/hyper-v-on-windows/**/**/*.md", 
 	    "virtualization/windows-containers/*.md", 
 	    "virtualization/windows-containers/**/*.md",  "virtualization/windows-containers/**/**/*.md",
   ],
