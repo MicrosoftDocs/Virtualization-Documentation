@@ -14,7 +14,7 @@ ms.assetid: 538871ba-d02e-47d3-a3bf-25cda4a40965
 
 Windows containers function similarly to virtual machines in regards to networking. Each container has a virtual network adapter (vNIC) which is connected to a virtual switch (vSwitch), over which inbound and outbound traffic is forwarded. In order to enforce isolation between containers on the same host, a network compartment is created for each Windows Server and Hyper-V Container into which the network adapter for the container is installed. Windows Server containers use a Host vNIC to attach to the virtual switch. Hyper-V Containers use a Synthetic VM NIC (not exposed to the Utility VM) to attach to the virtual switch.
 
-Windows containers support four different networking drivers or modes: *nat*, *transparent*, *l2bridge*, and *l2tunnel*. Depending on your physical network infrastructure and single- vs multi-host networking requirements, you should chose the network mode which best suits your needs. 
+Windows containers support four different networking drivers or modes: *nat*, *transparent*, *l2bridge*, and *l2tunnel*. Depending on your physical network infrastructure and single- vs multi-host networking requirements, you should chose the network mode which best suits your needs.
 
 The docker engine creates a NAT network by default when the dockerd service first runs. The default internal IP prefix created is 172.16.0.0/12. Container endpoints will be automatically attached to this default network and assigned an IP address from its internal prefix.
 
@@ -36,8 +36,8 @@ Additional networks using a different driver (e.g. transparent, l2bridge) can be
 
 |  | Container-Container | Container-External |
 | :---: | :---------------     |  :---                |
-| nat | Bridged connection through Hyper-V Virtual Switch | routed through WinNAT with address translations applied | 
-| transparent | Bridged connection through Hyper-V Virtual Switch | direct access to physical network | 
+| nat | Bridged connection through Hyper-V Virtual Switch | routed through WinNAT with address translations applied |
+| transparent | Bridged connection through Hyper-V Virtual Switch | direct access to physical network |
 | l2bridge | Bridged connection through Hyper-V Virtual Switch|  access to physical network with MAC address translation|  
 
 
@@ -46,12 +46,12 @@ Additional networks using a different driver (e.g. transparent, l2bridge) can be
 
 |  | Container-Container | Container-External |
 | :---: | :----       | :---------- |
-| nat | must reference external container host IP and port; routed through WinNAT with address translations applied | must reference external host; routed through WinNAT with address translations applied | 
-| transparent | must reference container IP endpoint directly | direct access to physical network | 
-| l2bridge | must reference container IP endpoint directly| access to physical network with MAC address translation| 
+| nat | must reference external container host IP and port; routed through WinNAT with address translations applied | must reference external host; routed through WinNAT with address translations applied |
+| transparent | must reference container IP endpoint directly | direct access to physical network |
+| l2bridge | must reference container IP endpoint directly| access to physical network with MAC address translation|
 
 
-## Network Creation 
+## Network Creation
 
 ### (Default) NAT Network
 
@@ -107,21 +107,21 @@ CONTAINER ID        IMAGE               COMMAND             CREATED             
 bbf72109b1fc        windowsservercore   "cmd"               6 seconds ago       Up 2 seconds        *0.0.0.0:14824->80/tcp*   drunk_stonebraker
 
 # Container image specified EXPOSE 80 in Dockerfile - publish this port mapping
-C:\> docker network 
+C:\> docker network
 ```
 > Beginning in WS2016 TP5 and Windows Insider Builds greater than 14300, a firewall rule will be automatically created for all NAT port mappings. This firewall rule will be global to the container host and not localized to a specific container endpoint or network adapter.
 
-The Windows NAT (WinNAT) implementation has a few capability gaps which are discussed in this blog post [WinNAT capabilities and limitations](https://blogs.technet.microsoft.com/virtualization/2016/05/25/windows-nat-winnat-capabilities-and-limitations/) 
+The Windows NAT (WinNAT) implementation has a few capability gaps which are discussed in this blog post [WinNAT capabilities and limitations](https://blogs.technet.microsoft.com/virtualization/2016/05/25/windows-nat-winnat-capabilities-and-limitations/)
  1. Only one NAT internal IP prefix is supported per container host, so 'multiple' NAT networks must be defined by partitioning the prefix (see the "Multiple NAT Networks" section of this document).
  2. Container endpoints are only reachable from the container host using container internal IPs and ports (find this info using 'docker network inspect <CONTAINER ID>').
 
-Additional networks can be created using different drivers. 
+Additional networks can be created using different drivers.
 
 > Docker network drivers are all lower-case.
 
 ### Transparent Network
 
-To use the Transparent networking mode, create a container network with driver name 'transparent'. 
+To use the Transparent networking mode, create a container network with driver name 'transparent'.
 
 ```none
 C:\> docker network create -d transparent MyTransparentNetwork
@@ -143,7 +143,7 @@ To bind a network (attached through the Hyper-V virtual switch) to a specific ne
 C:\> docker network create -d transparent -o com.docker.network.windowsshim.interface="Ethernet 2" TransparentNet2
 ```
 
-Value for *com.docker.network.windowsshim.interface* is the adapter's *Name* from: 
+Value for *com.docker.network.windowsshim.interface* is the adapter's *Name* from:
 ```none
 Get-NetAdapter
 ```
@@ -166,7 +166,7 @@ C:\> docker run -it --network=TransparentNet3 --ip 10.123.174.105 <image> <cmd>
 
 Since the container endpoints have direct access to the physical network, there is no need to specify port mappings
 
-### L2 Bridge 
+### L2 Bridge
 
 To use the L2 Bridge Networking mode, create a Container Network with driver name 'l2bridge'. A subnet and gateway - again, corresponding to the physical network - must be specified.
 
@@ -174,11 +174,13 @@ To use the L2 Bridge Networking mode, create a Container Network with driver nam
 C:\> docker network create -d l2bridge --subnet=192.168.1.0/24 --gateway=192.168.1.1 MyBridgeNetwork
 ```
 
-Only static IP assignment is supported with l2bridge networks. 
+Only static IP assignment is supported with l2bridge networks.
 
 > When using an l2bridge network on an SDN fabric, only dynamic IP assignment is supported. Reference the [Attaching Containers to a Virtual Network](https://technet.microsoft.com/en-us/windows-server-docs/networking/sdn/manage/connect-container-endpoints-to-a-tenant-virtual-network) topic for more information.
 
 ## Other Operations and Configurations
+
+> We are constantly working on improving Docker on Windows. To make sure you have access to all of the latest functionality, confirm that you are using the latest version of the Docker Engine. You can check your docker version using `docker -v`. Reference the [Docker Engine on Windows](https://docs.microsoft.com/en-us/virtualization/windowscontainers/manage-docker/configure-docker-daemon) topic for guidance on configuring Docker.
 
 ### List Available Networks
 
@@ -201,7 +203,7 @@ C:\> docker network rm "<network name>"
 
 This will clean up any Hyper-V Virtual switches which the container network used, and also any network address translation (WinNAT - NetNat instances) created.
 
-### Network Inspection 
+### Network Inspection
 
 In order to see which containers are connected to a specific network and the IPs associated with these container endpoints you can run the following.
 
@@ -216,7 +218,7 @@ Multiple container networks can be created on a single container host with the f
 * Currently, our solution for creating multiple NAT networks on a single container host is to partition the existing NAT network's internal prefix. Reference the below section, 'Multiple NAT Networks' for further guidance on this.
 
 ### Multiple NAT Networks
-It is possible to define multiple NAT networks on a single container host by partitioning the host's NAT network internal prefix. 
+It is possible to define multiple NAT networks on a single container host by partitioning the host's NAT network internal prefix.
 
 The partitions for any new NAT networks must be created under the larger internal NAT networking prefix. The prefix can be found by running the following command from PowerShell and referencing the "InternalIPInterfaceAddressPrefix" field.
 
@@ -224,7 +226,7 @@ The partitions for any new NAT networks must be created under the larger interna
 PS C:\> get-netnat
 ```
 
-For example, the host's NAT network internal prefix might be, 172.16.0.0/12. In this case, Docker can be used to create additional NAT networks *as long as they fall under the 172.16.0.0/12 prefix.* For example, two NAT networks could be created with the IP prefixes 172.16.0.0/16 (gateway, 172.16.0.1) and 172.17.0.0/16 (gateway, 172.17.0.1). 
+For example, the host's NAT network internal prefix might be, 172.16.0.0/12. In this case, Docker can be used to create additional NAT networks *as long as they fall under the 172.16.0.0/12 prefix.* For example, two NAT networks could be created with the IP prefixes 172.16.0.0/16 (gateway, 172.16.0.1) and 172.17.0.0/16 (gateway, 172.17.0.1).
 
 ```none
 C:\> docker network create -d nat --subnet=172.16.0.0/16 --gateway=172.16.0.1 CustomNat1
@@ -291,10 +293,6 @@ Built in to Docker is Service Discovery, which handles service registration and 
 
 ## Caveats and Gotchas
 
-### Firewall
-
-The container host requires specific Firewall rules to be created to enable ICMP (Ping) and DHCP. ICMP and DHCP are required by Windows Server Containers to ping between two containers on the same host, and to receive dynamically assigned IP addresses through DHCP. In TP5, these rules will be created through the Install-ContainerHost.ps1 script. Post-TP5, these rules will be created automatically. All Firewall rules corresponding to NAT port forwarding rules will be created automatically and cleaned up when the container stops.
-
 ### Existing vSwitch Blocking Transparent Network Creation
 
 When creating a transparent network, Docker creates an external vSwitch for the network then tries to bind the switch to an (external) network adapter - the adapter could be a VM Network Adapter or the physical network adapter. If a vSwitch has already been created on the container host, *and it is visible to Docker,* the Windows Docker engine will use that switch instead of creating a new one. However, if the vSwitch which was created out-of-band (i.e. created on the container host using HYper-V Manager or PowerShell) and is not yet visible to Docker, the Windows Docker engine will try create a new vSwitch and then be unable to connect the new switch to the container host external network adapter (because the network adapter will already be connected to the switch that was created out-of-band).
@@ -319,11 +317,8 @@ The following networking features are not supported today through Docker CLI
 
 The following network options are not supported on Windows Docker at this time:
  * --add-host
- * --dns
  * --dns-opt
  * --dns-search
- * -h, --hostname
- * --net-alias
  * --aux-address
  * --internal
  * --ip-range
