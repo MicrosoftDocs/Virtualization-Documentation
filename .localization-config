@@ -5,9 +5,10 @@
             "virtualization/hyper-v-on-windows/*.md", 
 	    "virtualization/hyper-v-on-windows/**/*.md",  "virtualization/hyper-v-on-windows/**/**/*.md", 
 	    "virtualization/windows-containers/*.md", 
-	    "virtualization/windows-containers/**/*.md",  "virtualization/windows-containers/**/**/*.md",
+	    "virtualization/windows-containers/**/*.md",  "virtualization/windows-containers/**/**/*.md"
   ],
-  "includeDependencies": true,
+  "includeDependencies": false,
   "autoPush": true,
-  "useJavascriptMarkdownTransformer": true
+  "useJavascriptMarkdownTransformer": true,
+  "xliffVersion": "2.0"
 }
