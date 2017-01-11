@@ -17,6 +17,16 @@ Describe "Windows Version and Prerequisites" {
         $buildNumber | Should Not Be 14931
         $buildNumber | Should Not Be 14936
     }
+
+    It "Has 'Containers' feature installed" {
+        if (((Get-ComputerInfo).OsProductType) -eq "Workstation") {
+            (Get-WindowsOptionalFeature -Online -FeatureName Containers).State | Should Be "Enabled"
+        }
+        else {
+            (Get-WindowsFeature -Name Containers).InstallState | Should Be "Installed"
+        }
+    }
+
     # TODO Check on SKU support - Home, Pro, Education, ...
 }
 

@@ -84,6 +84,13 @@ Make sure you have 14393.206 or later. If not, run Windows Update and install th
 
 Some Windows Insider builds could have issues running containers. This test fails if it finds a build with known problems. Watch for an updated Windows Insider build to resolve this later or check the [Container Forum](https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers) for more help.
 
+**[+] Has 'Containers' feature installed**
+
+The `Containers` feature should be installed before the Docker Engine will work. Use one of these PowerShell commands to enable it:
+
+- Windows 10 - `Enable-WindowsOptionalFeature -Online -FeatureName containers -All`
+- Windows Server 2016 - `Add-WindowsFeature containers`
+
 
 ### Describing Docker is installed
 **[+] A Docker service is installed - 'Docker' or 'com.Docker.Service'**
