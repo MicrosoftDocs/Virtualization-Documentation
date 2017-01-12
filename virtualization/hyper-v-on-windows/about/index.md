@@ -10,13 +10,15 @@ ms.service: windows-10-hyperv
 ms.assetid: eb2b827c-4a6c-4327-9354-50d14fee7ed8
 ---
 
-# Introduction to Hyper-V and Virtualization
+# Introduction to Hyper-V on Windows 10
 
-At it's most basic level, virtualization is creating a virtual (rather than actual) version of something.  In this case, Hyper-V virtualizes hardware in order to build complete virtual machines that behave like actual, phyical, machines.  
+Whether you are a software developer, an IT professional, or a technology enthusiast, many of you need to run multiple operating systems.  Instead of dedicating physical hardware to each of your machines, Hyper-V lets you run multiple operating systems on your Windows computer as virtual machines (VMs).
 
-Hardware virtualization allows multiple operating systems to run at the same time on their own virtual machine.  That virtual hardware lets you run Linux on Windows, keep insecure software isolated, test hardware configurations on one physical machine, and much more.  Instead of dedicating physical hardware to a computer, try Hyper-V.
+> Microsoft Virtual PC will be reaching end of life in April 2017. Hyper-V on Windows 10 Enterprise and Windows 10 Professional will be the supported replacement.  
 
 ## Reasons to use virtualization
+Virtualization enables anyone to run multiple operating systems, software configurations, and hardware configurations on the same physical machine.  Hyper-V provides both virtualization and the tools to manage your virtual machines.
+
 Hyper-V can be used in many ways. For example:
 
 * Run software that requires an older versions of Windows or non-Windows operating systems. 
@@ -29,8 +31,6 @@ Hyper-V can be used in many ways. For example:
 
 * Using virtual networking, you can create a multi-machine environment for test/development/demonstration while ensuring that it won't affect the production network.
 
-<<<<<<< HEAD:virtualization/hyperv_on_windows/about/hyperv_on_windows.md
-=======
 ## System requirements
 Hyper-V is only available in Windows Professional, Enterprise, and Education editions of Windows 8 and greater.
 
@@ -42,7 +42,6 @@ You can run 3 or 4 basic virtual machines on a host that has 4GB of RAM, though 
 For more information about Hyper-V's system requirements and how to verify that Hyper-V runs on your machine, see [Walkthrough: Windows 10 Hyper-V System Requirements](..\quick-start\enable-hyper-v.md).
 
 
->>>>>>> live:virtualization/hyper-v-on-windows/about/index.md
 ## Operating systems you can run in a virtual machine
 The term "guest" refers to a virtual machine and "host" refers to the computer running the virtual machine. Hyper-V on Windows supports many different guest operating systems including various releases of Linux, FreeBSD, and Windows. 
 
