@@ -139,8 +139,7 @@ Disabled by default.  See [PowerShell Direct using Copy-Item](../user-guide/powe
 
 **Notes:**  
 The service name was originally was Hyper-V VM Session Service.  
-PowerShell Direct is under active development and only available on Windows 10/Windows Server Technical Preview 3 or later hosts/guests.  
-
+PowerShell Direct is under active development and only available on Windows 10/Windows Server Technical Preview 3 or later hosts/guests.
 
 PowerShell Direct allows PowerShell management inside a virtual machine from the Hyper-V host regardless of any network configuration or remote management settings on either the Hyper-V host or the virtual machine. This makes it easier for Hyper-V Administrators to automate and script management and configuration tasks.
 
