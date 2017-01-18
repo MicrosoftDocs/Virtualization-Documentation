@@ -4,8 +4,8 @@
             "virtualization/community/contribute-to-docs.md", 
             "virtualization/hyper-v-on-windows/*.md", 
 	    "virtualization/hyper-v-on-windows/**/*.md",  "virtualization/hyper-v-on-windows/**/**/*.md", 
-	    "virtualization/windows-containers/*.md", 
-	    "virtualization/windows-containers/**/*.md",  "virtualization/windows-containers/**/**/*.md"
+	    "virtualization/windowscontainers/*.md", 
+	    "virtualization/windowscontainers/**/*.md",  "virtualization/windowscontainers/**/**/*.md"
   ],
   "includeDependencies": false,
   "autoPush": true,
