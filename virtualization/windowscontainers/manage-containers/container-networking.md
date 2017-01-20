@@ -217,9 +217,11 @@ C:\> docker network create -d transparent -o com.docker.network.windowsshim.inte
 ```
 
 > Note: The value for *com.docker.network.windowsshim.interface* is the network adapter's *Name*, which can be found with:
+
 ```none
 PS C:\> Get-NetAdapter
 ```
+
 ### Set the VLAN ID for a Network
 
 To set a VLAN ID for a network, use the option, `-o com.docker.network.windowsshim.vlanid=<VLAN ID>` to the `docker network create` command. For instance, you might use the following command to create a transparent network with a VLAN ID of 11:
@@ -227,12 +229,13 @@ To set a VLAN ID for a network, use the option, `-o com.docker.network.windowssh
 ```none
 C:\> docker network create -d transparent -o com.docker.network.windowsshim.vlanid=11 MyTransparentNetwork
 ```
+
 ### Specify the DNS Suffix and/or the DNS Servers of a Network
 
 Use the option, `-o com.docker.network.windowsshim.dnssuffix=<DNS SUFFIX>` to specify the DNS suffix of a network, and the option, `-o com.docker.network.windowsshim.dnsservers=<DNS SERVER/S>` to specify the DNS servers of a network. For example, you might use the following command to set the DNS suffix of a network to "example.com" and the DNS servers of a network to 4.4.4.4 and 8.8.8.8:
 
 ```none
-docker network create -d transparent -o com.docker.network.windowsshim.dnssuffix=abc.com -o com.docker.network.windowsshim.dnsservers=4.4.4.4,8.8.8.8 MyTransparentNetwork
+C:\> docker network create -d transparent -o com.docker.network.windowsshim.dnssuffix=abc.com -o com.docker.network.windowsshim.dnsservers=4.4.4.4,8.8.8.8 MyTransparentNetwork
 ```
 
 ### Multiple Container Networks
