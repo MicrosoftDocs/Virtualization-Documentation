@@ -211,6 +211,11 @@ In order to see which containers are connected to a specific network and the IPs
 C:\> docker network inspect <network name>
 ```
 
+### Specify the Name of a Network
+If you are creating a network, you can specify the name that it is given by the HNS service using the ` com.docker.network.windowsshim.networkname=<network name>` option. 
+
+Ordinarily, when you create a container network using `docker network create`, the network name that you provide is used by the Docker service but not by the HNS service. As a result, you will see the name of your network when you view your network using for the The container networks on your host can be listed using `docker network ls`, as noted above, 
+
 ### Multiple Container Networks
 Multiple container networks can be created on a single container host with the following caveats:
 
