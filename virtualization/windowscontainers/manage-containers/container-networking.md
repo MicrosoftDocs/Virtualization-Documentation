@@ -144,7 +144,7 @@ When using static IP assignment, you must first ensure that the *--subnet* and *
 # Create a transparent network corresponding to the physical network with IP prefix 10.123.174.0/23
 C:\> docker network create -d transparent --subnet=10.123.174.0/23 --gateway=10.123.174.1 TransparentNet3
 ```
-Specify an IP address using the *--ip* option to docker run command
+Specify an IP address using the *--ip* option to the `docker run` command:
 
 ```none
 C:\> docker run -it --network=TransparentNet3 --ip 10.123.174.105 <image> <cmd>
@@ -152,7 +152,7 @@ C:\> docker run -it --network=TransparentNet3 --ip 10.123.174.105 <image> <cmd>
 
 > Make sure that this IP address is not assigned to any other network device on the physical network
 
-Since the container endpoints have direct access to the physical network, there is no need to specify port mappings
+Since the container endpoints have direct access to the physical network, there is no need to specify port mappings.
 
 ### L2 Bridge
 
@@ -220,6 +220,9 @@ C:\> docker network create -d transparent -o com.docker.network.windowsshim.inte
 ```none
 PS C:\> Get-NetAdapter
 ```
+### Set the VLAN for a Network
+
+To set a VLAN for ID for a network to use, use the option, `-o com.docker.network.windowsshim.vlanid=<VLAN ID>` to the `docker network create` command.
 
 ### Multiple Container Networks
 Multiple container networks can be created on a single container host with the following caveats:
