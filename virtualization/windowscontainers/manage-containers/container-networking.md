@@ -186,7 +186,7 @@ d42516aa0250        none                null                local
 Use `docker network rm` to delete a container network.
 
 ```none
-C:\> docker network rm "<network name>"
+C:\> docker network rm <network name>
 ```
 
 This will clean up any Hyper-V Virtual switches which the container network used, and also any network address translation (WinNAT - NetNat instances) created.
@@ -199,7 +199,7 @@ In order to see which containers are connected to a specific network and the IPs
 C:\> docker network inspect <network name>
 ```
 
-### Specify the Name of a Network
+### Specify the Name of a Network to the HNS Service
 
 If you are creating a network, you can specify the name that it is given by the HNS service using the option, `-o com.docker.network.windowsshim.networkname=<network name>` to the `docker network create` command. For instance, you might use the following command to create a transparent network with a name that is specified to the HNS service:
 
