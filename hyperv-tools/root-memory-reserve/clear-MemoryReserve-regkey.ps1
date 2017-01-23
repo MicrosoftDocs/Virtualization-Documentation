@@ -33,4 +33,12 @@
     exit
     }
 
-Write-Host "Checking for HKLM\Software\Microsoft\Windows NT\CurrentVersion\Virtualization\MemoryReserve"
+$rootReserveKey = "HKLM\Software\Microsoft\Windows NT\CurrentVersion\Virtualization\MemoryReserve"
+
+Write-Host "Checking for $rootReserveKey"
+
+if (Get-ItemProperty -Path $rootReserveKey)
+{
+    Remove-ItemProperty -Path "HKLM:Software\Microsoft\Windows NT\CurrentVersion\Virtualization" -Name MemoryReserve -PropertyType DWord -Value 2048
+}
+
