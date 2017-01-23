@@ -31,14 +31,18 @@
     
     # Exit from the current, unelevated, process
     exit
-    }
-
-$rootReserveKey = "HKLM\Software\Microsoft\Windows NT\CurrentVersion\Virtualization\MemoryReserve"
-
-Write-Host "Checking for $rootReserveKey"
-
-if (Get-ItemProperty -Path $rootReserveKey)
-{
-    Remove-ItemProperty -Path "HKLM:Software\Microsoft\Windows NT\CurrentVersion\Virtualization" -Name MemoryReserve -PropertyType DWord -Value 2048
 }
 
+$rootReserveKey = "MemoryReserve"
+$rootReserveKeyPath = "HKLM:Software\Microsoft\Windows NT\CurrentVersion\Virtualization"
+
+Write-Host "Checking for $rootReserveKey reg key"
+
+if ($s = Get-ItemProperty $rootReserveKeyPath | Select-Object -ExpandProperty $rootReserveKey)
+{
+   Write-Host "$rootReserveKey reg key set.  Value: $s MB"
+   Remove-ItemProperty -Path $rootReserveKeyPath -Name $rootReserveKey
+}
+
+Write-Host "Press any key to exit"
+Read-Host
