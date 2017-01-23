@@ -36,13 +36,14 @@
 $rootReserveKey = "MemoryReserve"
 $rootReserveKeyPath = "HKLM:Software\Microsoft\Windows NT\CurrentVersion\Virtualization"
 
-Write-Host "Checking for $rootReserveKey reg key"
+Write-Host ""
+Write-Host "Checking $rootReserveKeyPath for $rootReserveKey"
 
-if ($s = Get-ItemProperty $rootReserveKeyPath | Select-Object -ExpandProperty $rootReserveKey)
+while ($s = Get-ItemProperty $rootReserveKeyPath | Select-Object -ExpandProperty $rootReserveKey -ErrorAction 'silentlycontinue')
 {
-   Write-Host "$rootReserveKey reg key set.  Value: $s MB"
-   Remove-ItemProperty -Path $rootReserveKeyPath -Name $rootReserveKey
+    Write-Host "$rootReserveKey reg key set.  Value: $s MB"
+    Remove-ItemProperty -Path $rootReserveKeyPath -Name $rootReserveKey
 }
 
-Write-Host "Press any key to exit"
+Write-Host "Reg key nor present.  Press any key to exit"
 Read-Host
