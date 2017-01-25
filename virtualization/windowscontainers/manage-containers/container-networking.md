@@ -249,9 +249,9 @@ To set a VLAN ID for a network, use the option, `-o com.docker.network.windowssh
 ```none
 C:\> docker network create -d transparent -o com.docker.network.windowsshim.vlanid=11 MyTransparentNetwork
 ```
-**Note:** Ensure that your host network adapter (physical) is in trunk mode to enable the flow of tagged traffic between container host endpoints and endpoints that are external to your host.
+When you set the VLAN ID for a network, you are setting VLAN isolation for any container endpoints that will be attached to that network.
 
->When you set the VLAN ID for a network, you are setting VLAN isolation for any container endpoints that will be attached to that network; you are configuring the container host's virtual network adapter and switch to associate your container network with the specified VLAN, *and to drop/ignore the traffic of any other VLAN* (regardless of whether or not it is addressed to an endpoint on your container network). 
+**Note:** Ensure that your host network adapter (physical) is in trunk mode to enable all tagged traffic to be processed by the vSwitch with the vNIC (container endpoint) port in access mode on the correct VLAN.
 
 
 ### Specify the DNS Suffix and/or the DNS Servers of a Network
