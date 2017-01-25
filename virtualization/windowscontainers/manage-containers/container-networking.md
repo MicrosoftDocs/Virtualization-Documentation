@@ -238,7 +238,7 @@ C:\> docker network create -d transparent -o com.docker.network.windowsshim.inte
 
 > Note: The value for *com.docker.network.windowsshim.interface* is the network adapter's *Name*, which can be found with:
 
-```none
+>```none
 PS C:\> Get-NetAdapter
 ```
 
