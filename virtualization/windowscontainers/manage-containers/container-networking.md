@@ -215,16 +215,16 @@ To put the behavior of this naming option into context, the screen capture below
 
 ><figure>
   <img src="media/SpecifyName_Capture.PNG">
-  <figcaption>The name of a network is *not* specified to the HNS service using the `-o com.docker.network.windowsshim.networkname=<network name>` option (i.e. HNS default naming behavior). </figcaption>
+  <figcaption>Example: The name of a network is <i>not</i> specified to the HNS service. </figcaption>
 </figure>
 
-#### Example: Specifying the Name of a Network to the HNS Service 
+#### Example: Specifying the Name of a Network to the HNS Service
 
 When the `-o com.docker.network.windowsshim.networkname=<network name>` *is* used, on the other hand, the HNS service uses the specified name instead of a generated name. This behavior is demonstrated in the screen capture below.
 
 ><figure>
   <img src="media/SpecifyName_Capture_2.PNG">
-  <figcaption>The name of a network is specified to the HNS service using the `-o com.docker.network.windowsshim.networkname=<network name>` option.</figcaption>
+  <figcaption>Example: The name of a network is specified to the HNS service using the `-o com.docker.network.windowsshim.networkname=<network name>` option.</figcaption>
 </figure>
 
 
@@ -249,6 +249,10 @@ To set a VLAN ID for a network, use the option, `-o com.docker.network.windowssh
 ```none
 C:\> docker network create -d transparent -o com.docker.network.windowsshim.vlanid=11 MyTransparentNetwork
 ```
+**Note: Ensure that your host network adapter (physical) is in trunk mode to enable the flow of tagged traffic between container host endpoints and endpoints that are external to your host.**
+
+>When you set the VLAN ID for a network, you are setting VLAN isolation for any container endpoints that will be attached to that network; you are configuring the container host's virtual network adapter and switch to associate your container network with the specified VLAN, *and to drop/ignore the traffic of any other VLAN* (regardless of whether or not it is addressed to an endpoint on your container network). 
+
 
 ### Specify the DNS Suffix and/or the DNS Servers of a Network
 
