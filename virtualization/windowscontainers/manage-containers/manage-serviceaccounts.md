@@ -35,7 +35,6 @@ Today, group Managed Service Accounts are often used to secure connections betwe
 
 When the service is launched, the domain-joined host automatically gets the gMSA secrets from Active Directory, and runs the service using that account. Since that service is running as the gMSA, it can access any resources the gMSA is allowed to.
 
-
 Windows Containers follow a similar process:
 
 1. Create a gMSA. By default, a domain administrator or account operator must do this. Otherwise they can delegate the privileges to create & manage gMSAs to admins who manage services which use them. See [gMSA Getting started](https://technet.microsoft.com/en-us/library/jj128431(v=ws.11).aspx)
@@ -80,3 +79,5 @@ GO
 EXEC sp_addrolemember 'db_datareader', 'WebApplication1'
 EXEC sp_addrolemember 'db_datawriter', 'WebApplication1'
 ```
+
+To see it in action, check out the [recorded demo](https://youtu.be/cZHPz80I-3s?t=2672) available from Microsoft Ignite 2016 in the session "Walk the Path to Containerization - transforming workloads into containers".
