@@ -14,11 +14,9 @@ ms.assetid: 8e273856-3620-4e58-9d1a-d1e06550448
 
 **This is preliminary content and subject to change.** 
 
-Applications fuel innovation in the cloud and mobile era. Containers, and the ecosystem that is developing around them, will empower software developers to create the next generation of applications experiences.
+## What are Containers
 
 Watch a short overview: [Windows-based containers: Modern app development with enterprise-grade control](https://youtu.be/Ryx3o0rD5lY).
-
-## What are Containers
 
 They are an isolated, resource controlled, and portable operating environment.
 
