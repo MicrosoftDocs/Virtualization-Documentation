@@ -36,6 +36,8 @@ This page contains links to videos and blogs created by members or the container
 
 [Use Docker Compose and Service Discovery on Windows to scale-out your multi-service container application](https://blogs.technet.microsoft.com/virtualization/2016/10/18/use-docker-compose-and-service-discovery-on-windows-to-scale-out-your-multi-service-container-application/) - Kallie Bracken and Jason Messer
 
+[PowerShell Desired State Configuration in Windows Containers using Docker](http://dille.name/blog/2016/06/17/powershell-desired-state-configuration-psdsc-in-windows-containers-using-docker/)
+
 [Running Neo4j in Windows Containers](http://glennsarti.github.io/blog/neo4j-nano-containers) - Glenn Sarti
 
 ## Configuration and Managment
