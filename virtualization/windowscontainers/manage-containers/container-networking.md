@@ -22,9 +22,11 @@ The docker engine creates a NAT network by default when the dockerd service firs
 
 Additional networks using a different driver (e.g. transparent, l2bridge) can be created on the same container host. The table below shows how network connectivity is provided for internal (container-to-container) and external connections for each mode.
 
-- **Network Address Translation** – each container will receive an IP address from an internal, private IP prefix (e.g. 172.16.0.0/12). Port forwarding / mapping from the container host to container endpoints is supported
+- **Network Address Translation (NAT)** – each container will receive an IP address from an internal, private IP prefix (e.g. 172.16.0.0/12). Port forwarding / mapping from the container host to container endpoints is supported
 
 - **Transparent** – each container endpoint is directly connected to the physical network. IPs from the physical network can be assigned statically or dynamically using an external DHCP server
+
+- [New!] **Overlay** - when the docker engine is running in Swarm mode[TODO: Link], overlay networks can be used to connect container endpoints across multiple container hosts. Each overlay network that is created on a Swarm cluster is created with its own IP subnet, defined by a private IP prefix.
 
 - **L2 Bridge** - each container endpoint will be in the same IP subnet as the container host. The IP addresses must be assigned statically from the same prefix as the container host. All container endpoints on the host will have the same MAC address due to Layer-2 address translation.
 
