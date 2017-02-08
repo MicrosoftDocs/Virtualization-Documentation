@@ -1,4 +1,4 @@
-﻿---
+---
 title: Deploy Windows Containers on Windows Server
 description: Deploy Windows Containers on Windows Server
 keywords: docker, containers
@@ -18,17 +18,17 @@ Deploying a Windows container host has different steps depending on the operatin
 
 Docker is required in order to work with Windows containers. Docker consists of the Docker Engine, and the Docker client. 
 
-To install Docker we'll use the [OneGet provider PowerShell module](https://github.com/oneget/oneget). The provider will enable the containers feature on your machine and install Docker - this will require a reboot. 
+To install Docker we'll use the [OneGet provider PowerShell module](https://github.com/OneGet/MicrosoftDockerProvider). The provider will enable the containers feature on your machine and install Docker - this will require a reboot. 
 
 Open an elevated PowerShell session and run the following commands.
 
-First we'll install the OneGet PowerShell module.
+Install the OneGet PowerShell module.
 
 ```none
 Install-Module -Name DockerMsftProvider -Repository PSGallery -Force
 ```
 
-Next we'll use OneGet to install the latest version of Docker.
+Use OneGet to install the latest version of Docker.
 
 ```none
 Install-Package -Name docker -ProviderName DockerMsftProvider
@@ -42,7 +42,7 @@ Restart-Computer -Force
 
 ## Install Base Container Images
 
-Before working with Windows Containers, a base image needs to be installed. Base images are available with either Windows Server Core or Nano Server as the underlying operating system. For detailed information on Docker container images, see [Build your own images on docker.com](https://docs.docker.com/engine/tutorials/dockerimages/).
+Before working with Windows Containers, a base image needs to be installed. Base images are available with either Windows Server Core or Nano Server as the container operating system. For detailed information on Docker container images, see [Build your own images on docker.com](https://docs.docker.com/engine/tutorials/dockerimages/).
 
 To install the Windows Server Core base image run the following:
 
