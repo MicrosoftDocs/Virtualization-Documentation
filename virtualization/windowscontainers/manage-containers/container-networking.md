@@ -26,7 +26,7 @@ Additional networks using a different driver (e.g. transparent, l2bridge) can be
 
 - **Transparent** – each container endpoint is directly connected to the physical network. IPs from the physical network can be assigned statically or dynamically using an external DHCP server
 
-- [New!] **Overlay** - when the docker engine is running in Swarm mode[TODO: Link], overlay networks can be used to connect container endpoints across multiple container hosts. Each overlay network that is created on a Swarm cluster is created with its own IP subnet, defined by a private IP prefix.
+- **[New!] Overlay** - when the docker engine is running in Swarm mode[TODO: Link], overlay networks can be used to connect container endpoints across multiple container hosts. Each overlay network that is created on a Swarm cluster is created with its own IP subnet, defined by a private IP prefix.
 
 - **L2 Bridge** - each container endpoint will be in the same IP subnet as the container host. The IP addresses must be assigned statically from the same prefix as the container host. All container endpoints on the host will have the same MAC address due to Layer-2 address translation.
 
