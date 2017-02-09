@@ -40,7 +40,7 @@ Additional networks using a different driver (e.g. transparent, l2bridge) can be
 | :---: | :---------------     |  :---                |
 | nat | Bridged connection through Hyper-V Virtual Switch | routed through WinNAT with address translations applied |
 | transparent | Bridged connection through Hyper-V Virtual Switch | direct access to physical network |
-| overlay | VXLAN encapsulation occurs in VFP forwarding extension in the Hyper-V Virtual Switch; *intra-host* communication occurs via bridged connection through Hyper-V Virtual Switch | routed through WinNAT with address translations applied (*VFP-based solution coming soon*)
+| overlay | VXLAN encapsulation occurs in VFP forwarding extension in the Hyper-V Virtual Switch; *intra-host* communication occurs via bridged connection through Hyper-V Virtual Switch | routed through WinNAT with address translations applied
 | l2bridge | Bridged connection through Hyper-V Virtual Switch|  access to physical network with MAC address translation|  
 
 
@@ -51,7 +51,7 @@ Additional networks using a different driver (e.g. transparent, l2bridge) can be
 | :---: | :----       | :---------- |
 | nat | must reference external container host IP and port; routed through WinNAT with address translations applied | must reference external host; routed through WinNAT with address translations applied |
 | transparent | must reference container IP endpoint directly | direct access to physical network |
-| overlay | VXLAN encapsulation occurs in VFP forwarding extension in the Hyper-V Virtual Switch; *inter-host* communications reference IP endpoints directly | routed through WinNAT with address translations applied (*VFP-based solution coming soon*) | 
+| overlay | VXLAN encapsulation occurs in VFP forwarding extension in the Hyper-V Virtual Switch; *inter-host* communications reference IP endpoints directly | routed through WinNAT with address translations applied| 
 | l2bridge | must reference container IP endpoint directly| access to physical network with MAC address translation|
 
 
