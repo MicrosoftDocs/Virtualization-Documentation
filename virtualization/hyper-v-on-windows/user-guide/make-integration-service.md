@@ -106,7 +106,7 @@ HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Virtualization\G
 	    ElementName	REG_SZ	Your Service Friendly Name
 ```
 
-> ** Tip: **  To generate a GUID in PowerShell and copy it to the clipboard, run:  
+> **Tip:**  To generate a GUID in PowerShell and copy it to the clipboard, run:  
 ``` PowerShell
 (New-Guid).Guid | clip.exe
 ```
