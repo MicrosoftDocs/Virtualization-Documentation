@@ -74,13 +74,30 @@ C:\> docker swarm join-token manager
 C:\> docker swarm join-token manager -q
 ```
 
+## Creating an overlay network
 
-Creating an overlay network
-Once a swarm cluster has been configured, services can be deployed and attached to overlay networks that stretch across the cluster. An overlay network can be created by running the following command from any manager node running in swarm mode:
-C:\> docker network create --driver=overlay <NETWORK NAME>
-Deploying services to a swarm
-Once a network has been created, services can be created and attached to the network. A network is created with the following syntax:
-C:\> docker service create --name=<SERVICE NAME> --endpoint-mode dnsrr --network=<NETWORK NAME> <CONTAINER IMAGE> [COMMAND] [ARGS…]
+Once a swarm cluster has been configured, overlay networks can be created on the swarm. An overlay network can be created by running the following command from a swarm manager node:
+
+```none
+# Create an overlay network 
+C:\> docker network create --driver=overlay <NETWORKNAME>
+```
+
+Here, <NETWORKNAME> is the name you'd like to give to your network.
+
+## Deploying services to a swarm
+Once an overlay network has been created, services can be created and attached to the network. A network is created with the following syntax:
+
+```none
+# Deploy a service to the swarm
+C:\> docker service create --name=<SERVICENAME> --endpoint-mode dnsrr --network=<NETWORKNAME> <CONTAINERIMAGE> [COMMAND] [ARGS…]
+```
+
+Here, <SERVICENAME> is the name you'd like to give to the service--this is the name you will use to reference the service via service discovery (which uses Docker's native DNS server). <NETWORKNAME> is the name of the network that you would like to connect this service to (for example, "myOverlayNet"). <CONTAINERIMAGE> is the name of the container image that will defined the service.
+
+> **Note:** The second argument to this command, `--endpoint-mode dnsrr`, is required to specify to the Docker engine that the DNS Round Robin policy will be used to balance network traffic across service container endpoints. Currently, DNS Round-Robin is the only load balancing strategy supported on Windows. The routing mesh for Windows docker hosts is not yet supported, but will be coming soon. Users seeking an alternative load balancing strategy today can setup an external load balancer (e.g. NGINX) and use Swarm’s publish-port mode to expose container host ports over which to load balance.  
+
+
 Once a service is deployed to a swarm cluster, the container instances composing that service are deployed across the cluster. By default, the number of container instances backing a service—the number of “replicas,” or “tasks” for a service—is one. However, a service can be created with multiple tasks using the “--replicas" option to the `docker service create` command, or by scaling the service after it has been created.
 Scaling a service
 Service scalability is a key benefit offered by Docker Swarm, and it, too, can be leveraged with a single Docker command:
