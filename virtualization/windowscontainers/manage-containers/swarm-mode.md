@@ -12,7 +12,7 @@ ms.assetid: 5ceb9626-7c48-4d42-81f8-9c936595ad85
 
 # Getting Started with Swarm Mode 
 
-**Important Note:** *Currently, swarm mode and overlay networking support are available **only** to [Windows Insiders](https://insider.windows.com/) as part of the upcoming Windows 10, Creators Update. Support for further Windows platforms coming soon.*
+**Important Note:** *Currently, swarm mode and overlay networking support are available only to [Windows Insiders](https://insider.windows.com/) as part of the upcoming Windows 10, Creators Update. Support for further Windows platforms coming soon.*
 
 ## What is “swarm mode”?
 Swarm mode is a Docker feature that provides built in container orchestration capabilities, including native clustering of Docker hosts and scheduling of container workloads. A group of Docker hosts form a “swarm” cluster when their Docker engines are running together in “swarm mode.” For additional context on swarm mode, refer to [Docker's main documentation site](https://docs.docker.com/engine/swarm/).
@@ -152,7 +152,7 @@ C:\ docker service ps <SERVICENAME>
 
 ## Limitations
 Currently, swarm mode on Windows has the following limitations:
-- Data-plan encryption (i.e. container-container traffic using the `--opt encrypted` option)
+- Data-plan encryption not supported (i.e. container-container traffic using the `--opt encrypted` option)
 - [Routing mesh](https://docs.docker.com/engine/swarm/ingress/) for Windows docker hosts is not yet supported, but will be coming soon. Users seeking an alternative load balancing strategy today can setup an external load balancer (e.g. NGINX) and use Swarm’s [publish-port mode](https://docs.docker.com/engine/reference/commandline/service_create/#/publish-service-ports-externally-to-the-swarm--p---publish) to expose container host ports over which to load balance.  
 
 
