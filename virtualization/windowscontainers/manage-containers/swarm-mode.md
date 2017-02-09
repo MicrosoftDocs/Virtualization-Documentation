@@ -28,7 +28,7 @@ Worker nodes are orchestrated by Docker swarm via manager nodes. To join a swarm
 
 One computer system (physical or virtual) running **Windows 10 Creators Update** (available for members of the [Windows Insiders](https://insider.windows.com/) program), setup as a container host (see the topic, [Windows Containers on Windows 10](https://docs.microsoft.com/en-us/virtualization/windowscontainers/quick-start/quick-start-windows-10) for more details on how to get started with Docker containers on Windows 10)
 
-**Docker Engine v1.12.0 or later**
+**Docker Engine v1.13.0 or later**
 
 Open ports: The following ports must be available on each host. On some systems, these ports are open by default.
 - TCP port 2377 for cluster management communications
