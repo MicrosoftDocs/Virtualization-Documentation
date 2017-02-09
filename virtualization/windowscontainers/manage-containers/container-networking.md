@@ -26,7 +26,7 @@ Additional networks using a different driver (e.g. transparent, l2bridge) can be
 
 - **Transparent** – each container endpoint is directly connected to the physical network. IPs from the physical network can be assigned statically or dynamically using an external DHCP server
 
-- **[New!] Overlay** - when the docker engine is running in Swarm mode[TODO: Link], overlay networks can be used to connect container endpoints across multiple container hosts. Each overlay network that is created on a Swarm cluster is created with its own IP subnet, defined by a private IP prefix.
+- **[New!] Overlay** - when the docker engine is running in Swarm mode[TODO: Link], overlay networks, which are based on VXLAN technology, can be used to connect container endpoints across multiple container hosts. Each overlay network that is created on a Swarm cluster is created with its own IP subnet, defined by a private IP prefix.
 
 - **L2 Bridge** - each container endpoint will be in the same IP subnet as the container host. The IP addresses must be assigned statically from the same prefix as the container host. All container endpoints on the host will have the same MAC address due to Layer-2 address translation.
 
@@ -40,6 +40,7 @@ Additional networks using a different driver (e.g. transparent, l2bridge) can be
 | :---: | :---------------     |  :---                |
 | nat | Bridged connection through Hyper-V Virtual Switch | routed through WinNAT with address translations applied |
 | transparent | Bridged connection through Hyper-V Virtual Switch | direct access to physical network |
+| overlay | VXLAN encapsulation occurs in VFP forwarding extension in the Hyper-V Virtual Switch; *intra-host* communication occurs via bridged connection through Hyper-V Virtual Switch | routed through WinNAT with address translations applied (*VFP-based solution coming soon*)
 | l2bridge | Bridged connection through Hyper-V Virtual Switch|  access to physical network with MAC address translation|  
 
 
@@ -50,6 +51,7 @@ Additional networks using a different driver (e.g. transparent, l2bridge) can be
 | :---: | :----       | :---------- |
 | nat | must reference external container host IP and port; routed through WinNAT with address translations applied | must reference external host; routed through WinNAT with address translations applied |
 | transparent | must reference container IP endpoint directly | direct access to physical network |
+| overlay | VXLAN encapsulation occurs in VFP forwarding extension in the Hyper-V Virtual Switch; *inter-host* communications reference IP endpoints directly | routed through WinNAT with address translations applied (*VFP-based solution coming soon*) | 
 | l2bridge | must reference container IP endpoint directly| access to physical network with MAC address translation|
 
 
