@@ -36,7 +36,11 @@ C:\> docker swarm init --advertise-addr=<HOSTIPADDRESS> --listen-addr <HOSTIPADD
 ```
 When this command is run from a given container host, the Docker engine on that host begins running in swarm mode as a manager node.
 
-## Adding workers to a swarm
+## Adding nodes to a swarm
+
+> **Note:** Multiple nodes are *not* required to leverage swarm mode and overlay networking mode features. All swarm/overlay features can be used with a single host running in swarm mode (i.e. a manager node, put into swarm mode with the `docker swarm init` command).
+
+### Adding workers to a swarm
 Once a swarm has been initialized from a manager node, other hosts can be added to the swarm as workers with another simple command:
 
 ```none
@@ -53,9 +57,24 @@ C:\> docker swarm join-token worker
 C:\> docker swarm join-token worker -q
 ```
 
-> **Note:** Multiple nodes are *not* required to leverage swarm mode and overlay networking mode features. All swarm/overlay features can be used with a single host running in swarm mode (i.e. a manager node, put into swarm mode with the `docker swarm init` command).
+### Adding managers to a swarm
+Additional manager nodes can be added to a swarm cluster with the following command:
 
-T Additional manager nodes can be added to a swarm cluster using a manager join token.
+```none
+C:\> docker swarm join --token <MANAGERJOINTOKEN> <MANAGERIPADDRESS>
+```
+
+Again, <MANAGERIPADDRESS> is the local IP address of a swarm manager node. The join token, <MANAGERJOINTOKEN>, is a *manager* join-token for the swarm, which can be obtained by running one of the following commands from an existing manager node:
+
+```none
+# Get the full command required to join a **manager** node to the swarm
+C:\> docker swarm join-token manager
+
+# Get only the join-token needed to join a =**manager** node to the swarm
+C:\> docker swarm join-token manager -q
+```
+
+
 Creating an overlay network
 Once a swarm cluster has been configured, services can be deployed and attached to overlay networks that stretch across the cluster. An overlay network can be created by running the following command from any manager node running in swarm mode:
 C:\> docker network create --driver=overlay <NETWORK NAME>
