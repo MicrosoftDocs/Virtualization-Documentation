@@ -26,7 +26,7 @@ Additional networks using a different driver (e.g. transparent, l2bridge) can be
 
 - **Transparent** – each container endpoint is directly connected to the physical network. IPs from the physical network can be assigned statically or dynamically using an external DHCP server
 
-- **[New!] Overlay** - when the docker engine is running in Swarm mode[TODO: Link], overlay networks, which are based on VXLAN technology, can be used to connect container endpoints across multiple container hosts. Each overlay network that is created on a Swarm cluster is created with its own IP subnet, defined by a private IP prefix.
+- **[New!] Overlay** - when the docker engine is running in Swarm mode (-----TODO: Link-----), overlay networks, which are based on VXLAN technology, can be used to connect container endpoints across multiple container hosts. Each overlay network that is created on a Swarm cluster is created with its own IP subnet, defined by a private IP prefix.
 
 - **L2 Bridge** - each container endpoint will be in the same IP subnet as the container host. The IP addresses must be assigned statically from the same prefix as the container host. All container endpoints on the host will have the same MAC address due to Layer-2 address translation.
 
@@ -157,6 +157,17 @@ C:\> docker run -it --network=TransparentNet3 --ip 10.123.174.105 <image> <cmd>
 > Make sure that this IP address is not assigned to any other network device on the physical network
 
 Since the container endpoints have direct access to the physical network, there is no need to specify port mappings.
+
+### Overlay Network
+
+To use overlay networking mode, you must be using a Docker host running in Swarm mode as a manager node. To learn more about Swarm mode, and how to initialize a swarm manager, see the topic, Getting started with Swarm mode (-----TODO: Link-----).
+
+To create an overlay network, run the following command from a swarm **manager** node:
+
+```none
+# Create an overlay network from a swarm manager node, called "myOverlayNet"
+C:\> docker network create --driver=overlay myOverlayNet
+```
 
 ### L2 Bridge
 
@@ -346,6 +357,9 @@ For further information on defining/configuring container networks using Docker 
 ### Service Discovery
 Built in to Docker is Service Discovery, which handles service registration and name to IP (DNS) mapping for containers and services; with service discovery, it is possible for all container endpoints to discover each other by name (either container name, or service name). This is particularly valuable in scaled-out scenarios, where multiple container endpoints are being used to define a single service. In such cases, service discovery makes it possible for a service to be considered a single entity regardless of how many containers it has running behind the scenes. For multi-container services, incoming network traffic is managed using a round-robin approach, by which DNS load balancing is used to uniformly distribute traffic across all container instances implementing a given service.
 
+## Overlay Networking and Docker Swarm Mode (Multi-Node Container Networking)
+The native overlay network driver and Docker Swarm mode combine to provide support for multi-node (clustering) scenarios on Windows. To learn more about overlay and swarm mode, visit our blog post which accompanied the release of overlay/swarm to Windows Insiders on Windows 10 (-----TODO: Link-----), or refer to the topic, Getting started with Swarm mode (-----TODO: Link-----).
+
 ## Caveats and Gotchas
 
 ### Existing vSwitch Blocking Transparent Network Creation
@@ -367,7 +381,6 @@ PS C:\> restart-service docker
 ### Unsupported features
 
 The following networking features are not supported today through Docker CLI
- * default overlay network driver
  * container linking (e.g. --link)
 
 The following network options are not supported on Windows Docker at this time:
