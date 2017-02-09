@@ -12,7 +12,7 @@ ms.assetid: 5ceb9626-7c48-4d42-81f8-9c936595ad85
 
 # Getting Started with Swarm Mode 
 
-**Note:** *Currently, swarm mode and overlay networking support are available only to [Windows Insiders](https://insider.windows.com/) as part of the upcoming Windows 10, Creators Update. Support for further Windows platforms coming soon.*
+**Important Note:** *Currently, swarm mode and overlay networking support are available **only** to [Windows Insiders](https://insider.windows.com/) as part of the upcoming Windows 10, Creators Update. Support for further Windows platforms coming soon.*
 
 ## What is “swarm mode”?
 Swarm mode is a Docker feature that provides built in container orchestration capabilities, including native clustering of Docker hosts and scheduling of container workloads. A group of Docker hosts form a “swarm” cluster when their Docker engines are running together in “swarm mode.” For additional context on swarm mode, refer to [Docker's main documentation site](https://docs.docker.com/engine/swarm/).
@@ -28,20 +28,34 @@ Worker nodes are orchestrated by Docker swarm via manager nodes. To join a swarm
 One computer system (physical or virtual) running **Windows 10 Creators Update** (available for members of the [Windows Insiders](https://insider.windows.com/) program), setup as a container host (see the topic, [Windows Containers on Windows 10](https://docs.microsoft.com/en-us/virtualization/windowscontainers/quick-start/quick-start-windows-10) for more details on how to get started with Docker containers on Windows 10), running **Docker Engine v1.12.0 or later**.
 
 ## Initializing a Swarm cluster
-To initialize a swarm, simply run the following command from one of your container hosts:
+To initialize a swarm, simply run the following command from one of your container hosts (replacing <HOSTIPADDRESS> with the local IPv4 address of your host machine):
+
 ```none
 # Initialize a swarm 
-C:\> docker swarm init --advertise-addr=<localIPv4Address> --listen-addr <localIPv4Address>:2377
+C:\> docker swarm init --advertise-addr=<HOSTIPADDRESS> --listen-addr <HOSTIPADDRESS>:2377
 ```
 When this command is run from a given container host, the Docker engine on that host begins running in swarm mode as a manager node.
 
 ## Adding workers to a swarm
-Once a swarm has been initialized from a manager node, other hosts can be added to the swarm as workers, with another simple command:
-C:\> docker swarm join --token <WORKER JOIN TOKEN> <MANAGER IP ADDRESS>
+Once a swarm has been initialized from a manager node, other hosts can be added to the swarm as workers with another simple command:
+
+```none
+C:\> docker swarm join --token <WORKERJOINTOKEN> <MANAGERIPADDRESS>
+```
+
+Here, <MANAGERIPADDRESS> is the local IP address of a swarm manager node, and <WORKERJOINTOKEN> is the worker join-token provided as output by the `docker swarm init` command that was run from the manager node. The join-token can also be obtained by running one of the following commands from the manager node after the swarm has been initialized:
+
+```none
+# Get the full command required to join a worker node to the swarm
+C:\> docker swarm join-token worker
+
+# Get only the join-token needed to join a worker node to the swarm
+C:\> docker swarm join-token worker -q
+```
 
 > **Note:** Multiple nodes are *not* required to leverage swarm mode and overlay networking mode features. All swarm/overlay features can be used with a single host running in swarm mode (i.e. a manager node, put into swarm mode with the `docker swarm init` command).
 
-The worker join-token is provided as output by the `docker swarm init` command that was run from the manager node. Additional manager nodes can be added to a swarm cluster using a manager join token.
+T Additional manager nodes can be added to a swarm cluster using a manager join token.
 Creating an overlay network
 Once a swarm cluster has been configured, services can be deployed and attached to overlay networks that stretch across the cluster. An overlay network can be created by running the following command from any manager node running in swarm mode:
 C:\> docker network create --driver=overlay <NETWORK NAME>
