@@ -160,9 +160,9 @@ Since the container endpoints have direct access to the physical network, there 
 
 ### Overlay Network
 
-To use overlay networking mode, you must be using a Docker host running in Swarm mode as a manager node. To learn more about Swarm mode, and how to initialize a swarm manager, see the topic, Getting started with Swarm mode (-----TODO: Link-----).
+*To use overlay networking mode, you must be using a Docker host running in Swarm mode as a manager node.* To learn more about Swarm mode, and how to initialize a swarm manager, see the topic, Getting started with Swarm mode (-----TODO: Link-----).
 
-To create an overlay network, run the following command from a swarm **manager** node:
+To create an overlay network, run the following command from a **swarm manager node**:
 
 ```none
 # Create an overlay network from a swarm manager node, called "myOverlayNet"
