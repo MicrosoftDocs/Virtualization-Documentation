@@ -152,6 +152,7 @@ C:\ docker service ps <SERVICENAME>
 
 ## Limitations
 Currently, swarm mode on Windows has the following limitations:
+- Overlay and swarm mode are currently supported on ethernet-connected container hosts only; **they will not work with WiFi connected hosts**
 - Data-plan encryption not supported (i.e. container-container traffic using the `--opt encrypted` option)
 - [Routing mesh](https://docs.docker.com/engine/swarm/ingress/) for Windows docker hosts is not yet supported, but will be coming soon. Users seeking an alternative load balancing strategy today can setup an external load balancer (e.g. NGINX) and use Swarm’s [publish-port mode](https://docs.docker.com/engine/reference/commandline/service_create/#/publish-service-ports-externally-to-the-swarm--p---publish) to expose container host ports over which to load balance.  
 
