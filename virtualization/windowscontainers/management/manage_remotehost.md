@@ -1,4 +1,15 @@
-# Creating a Docker Host for Windows Containers on Windows Server 2016
+---
+title: Remote Management of a Windows Docker Host
+description: How to securly manage a remote Docker host running Windows Server.
+keywords: docker, containers
+author: taylorb-microsoft
+ms.date: 02/14/2017
+ms.topic: article
+ms.prod: windows-containers
+ms.service: windows-containers
+ms.assetid: 0cc1b621-1a92-4512-8716-956d7a8fe495
+---
+# Remote Management of a Windows Docker Host
 
 Even in the absence of `docker-machine` one can still create a remotely accessible Docker Host on a Windows Server 2016 VM.
 
