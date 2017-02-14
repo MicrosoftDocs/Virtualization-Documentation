@@ -30,7 +30,7 @@ Nested virtualization is a feature that allows you to run Hyper-V inside of a Hy
 Set-VMProcessor -VMName <VMName> -ExposeVirtualizationExtensions $true
 ```
 3. Start the virtual machine.
-4. Install Hyper-V within the virtual machine, just like you would for a physical server. For more information on installing Hyper-V see, [Install Hyper-V]( https://msdn.microsoft.com/en-us/virtualization/hyperv_on_windows/quick_start/walkthrough_install).
+4. Install Hyper-V within the virtual machine, just like you would for a physical server. For more information on installing Hyper-V see, [Install Hyper-V](../quick-start/enable-hyper-v.md).
 
 ## Disable Nested Virtualization
 You can disable nested virtualization for a stopped virtual machine using the following PowerShell command:
