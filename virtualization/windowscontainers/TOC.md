@@ -23,6 +23,7 @@
 ## [Container Networking](management/container_networking.md)
 ## [Getting Started with Swarm Mode](manage-containers/swarm-mode.md)
 ## [Manage Docker with PowerShell](https://github.com/Microsoft/Docker-PowerShell)
+## [Remote Management of a Windows Docker Host](management/manage_remotehost.md)
 
 # Container Samples
 ## [Application Frameworks](samples.md#Application-Frameworks)
