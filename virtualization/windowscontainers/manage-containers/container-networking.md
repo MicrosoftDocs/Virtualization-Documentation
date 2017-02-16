@@ -22,9 +22,11 @@ The docker engine creates a NAT network by default when the dockerd service firs
 
 Additional networks using a different driver (e.g. transparent, l2bridge) can be created on the same container host. The table below shows how network connectivity is provided for internal (container-to-container) and external connections for each mode.
 
-- **Network Address Translation** – each container will receive an IP address from an internal, private IP prefix (e.g. 172.16.0.0/12). Port forwarding / mapping from the container host to container endpoints is supported
+- **Network Address Translation (NAT)** – each container will receive an IP address from an internal, private IP prefix (e.g. 172.16.0.0/12). Port forwarding / mapping from the container host to container endpoints is supported
 
 - **Transparent** – each container endpoint is directly connected to the physical network. IPs from the physical network can be assigned statically or dynamically using an external DHCP server
+
+- **[New!] Overlay** - when the docker engine is running in [swarm mode](./swarm-mode.md), overlay networks, which are based on VXLAN technology, can be used to connect container endpoints across multiple container hosts. Each overlay network that is created on a Swarm cluster is created with its own IP subnet, defined by a private IP prefix.
 
 - **L2 Bridge** - each container endpoint will be in the same IP subnet as the container host. The IP addresses must be assigned statically from the same prefix as the container host. All container endpoints on the host will have the same MAC address due to Layer-2 address translation.
 
@@ -38,6 +40,7 @@ Additional networks using a different driver (e.g. transparent, l2bridge) can be
 | :---: | :---------------     |  :---                |
 | nat | Bridged connection through Hyper-V Virtual Switch | routed through WinNAT with address translations applied |
 | transparent | Bridged connection through Hyper-V Virtual Switch | direct access to physical network |
+| overlay | VXLAN encapsulation occurs in VFP forwarding extension in the Hyper-V Virtual Switch; *intra-host* communication occurs via bridged connection through Hyper-V Virtual Switch | routed through WinNAT with address translations applied
 | l2bridge | Bridged connection through Hyper-V Virtual Switch|  access to physical network with MAC address translation|  
 
 
@@ -48,6 +51,7 @@ Additional networks using a different driver (e.g. transparent, l2bridge) can be
 | :---: | :----       | :---------- |
 | nat | must reference external container host IP and port; routed through WinNAT with address translations applied | must reference external host; routed through WinNAT with address translations applied |
 | transparent | must reference container IP endpoint directly | direct access to physical network |
+| overlay | VXLAN encapsulation occurs in VFP forwarding extension in the Hyper-V Virtual Switch; *inter-host* communications reference IP endpoints directly | routed through WinNAT with address translations applied| 
 | l2bridge | must reference container IP endpoint directly| access to physical network with MAC address translation|
 
 
@@ -154,6 +158,17 @@ C:\> docker run -it --network=TransparentNet3 --ip 10.123.174.105 <image> <cmd>
 
 Since the container endpoints have direct access to the physical network, there is no need to specify port mappings.
 
+### Overlay Network
+
+*To use overlay networking mode, you must be using a Docker host running in swarm mode as a manager node.* To learn more about swarm mode, and how to initialize a swarm manager, see the topic, [Getting Started with Swarm Mode](./swarm-mode.md).
+
+To create an overlay network, run the following command from a **swarm manager node**:
+
+```none
+# Create an overlay network from a swarm manager node, called "myOverlayNet"
+C:\> docker network create --driver=overlay myOverlayNet
+```
+
 ### L2 Bridge
 
 To use the L2 Bridge Networking mode, create a Container Network with driver name 'l2bridge'. A subnet and gateway - again, corresponding to the physical network - must be specified.
@@ -201,12 +216,32 @@ C:\> docker network inspect <network name>
 
 ### Specify the Name of a Network to the HNS Service
 
+**Ordinarily, when you create a container network using `docker network create`, the network name that you provide is used by the Docker service but not by the HNS service.**
+
 If you are creating a network, you can specify the name that it is given by the HNS service using the option, `-o com.docker.network.windowsshim.networkname=<network name>` to the `docker network create` command. For instance, you might use the following command to create a transparent network with a name that is specified to the HNS service:
 
 ```none
 C:\> docker network create -d transparent -o com.docker.network.windowsshim.networkname=MyTransparentNetwork MyTransparentNetwork
 ```
-Ordinarily, when you create a container network using `docker network create`, the network name that you provide is used by the Docker service but not by the HNS service. As a result, you will see the name of your network when you view your network using the `docker network ls` command (as documented above), but you will not see your chosen name if you view your network or network switch using the `Get-VMSwitch` or `Get-ContainerNetwork` Windows PowerShell commands (instead you will see a name that was automatically generated by the HNS service).
+
+#### Example: Default HNS Naming Behavior
+
+To put the behavior of this naming option into context, the screen capture below demonstrates how a network is named by the HNS service when this naming option is *not* used. In this example, the name of the network, "MyTransparentNetwork" is visible to Docker, as shown via the `docker network ls` command. The name of the network is not visible, however, to the HNS service, as shown via the `Get-ContainerNetwork` Windows PowerShell command; instead, a large alphanumeric name for the network has been automatically generated by HNS.
+
+><figure>
+  <img src="media/SpecifyName_Capture.PNG">
+  <figcaption>Example: The name of a network is <i>not</i> specified to the HNS service. </figcaption>
+</figure>
+
+#### Example: Specifying the Name of a Network to the HNS Service
+
+When the `-o com.docker.network.windowsshim.networkname=<network name>` *is* used, on the other hand, the HNS service uses the specified name instead of a generated name. This behavior is demonstrated in the screen capture below.
+
+><figure>
+  <img src="media/SpecifyName_Capture_2.PNG">
+  <figcaption>Example: The name of a network is specified to the HNS service using the `-o com.docker.network.windowsshim.networkname=<network name>` option.</figcaption>
+</figure>
+
 
 ### Bind a Network to a Specific Network Interface
 
@@ -218,7 +253,7 @@ C:\> docker network create -d transparent -o com.docker.network.windowsshim.inte
 
 > Note: The value for *com.docker.network.windowsshim.interface* is the network adapter's *Name*, which can be found with:
 
-```none
+>```none
 PS C:\> Get-NetAdapter
 ```
 
@@ -229,6 +264,10 @@ To set a VLAN ID for a network, use the option, `-o com.docker.network.windowssh
 ```none
 C:\> docker network create -d transparent -o com.docker.network.windowsshim.vlanid=11 MyTransparentNetwork
 ```
+When you set the VLAN ID for a network, you are setting VLAN isolation for any container endpoints that will be attached to that network.
+
+**Note:** Ensure that your host network adapter (physical) is in trunk mode to enable all tagged traffic to be processed by the vSwitch with the vNIC (container endpoint) port in access mode on the correct VLAN.
+
 
 ### Specify the DNS Suffix and/or the DNS Servers of a Network
 
@@ -318,6 +357,9 @@ For further information on defining/configuring container networks using Docker 
 ### Service Discovery
 Built in to Docker is Service Discovery, which handles service registration and name to IP (DNS) mapping for containers and services; with service discovery, it is possible for all container endpoints to discover each other by name (either container name, or service name). This is particularly valuable in scaled-out scenarios, where multiple container endpoints are being used to define a single service. In such cases, service discovery makes it possible for a service to be considered a single entity regardless of how many containers it has running behind the scenes. For multi-container services, incoming network traffic is managed using a round-robin approach, by which DNS load balancing is used to uniformly distribute traffic across all container instances implementing a given service.
 
+## Overlay Networking and Docker Swarm Mode (Multi-Node Container Networking)
+The native overlay network driver and Docker swarm mode combine to provide support for multi-node (clustering) scenarios on Windows. To learn more about overlay and swarm mode, visit our [blog post](https://blogs.technet.microsoft.com/virtualization/2017/02/09/overlay-network-driver-with-support-for-docker-swarm-mode-now-available-to-windows-insiders-on-windows-10/) which accompanied the release of overlay/swarm to Windows Insiders on Windows 10, or refer to the topic, [Getting Started with Swarm Mode](./swarm-mode.md).
+
 ## Caveats and Gotchas
 
 ### Existing vSwitch Blocking Transparent Network Creation
@@ -339,7 +381,6 @@ PS C:\> restart-service docker
 ### Unsupported features
 
 The following networking features are not supported today through Docker CLI
- * default overlay network driver
  * container linking (e.g. --link)
 
 The following network options are not supported on Windows Docker at this time:
