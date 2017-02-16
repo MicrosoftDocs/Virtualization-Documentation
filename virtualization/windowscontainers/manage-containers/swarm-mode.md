@@ -36,7 +36,7 @@ Open ports: The following ports must be available on each host. On some systems,
 - TCP and UDP port 4789 for overlay network traffic
 
 ## Initializing a Swarm cluster
-To initialize a swarm, simply run the following command from one of your container hosts (replacing <HOSTIPADDRESS> with the local IPv4 address of your host machine):
+To initialize a swarm, simply run the following command from one of your container hosts (replacing \<HOSTIPADDRESS\> with the local IPv4 address of your host machine):
 
 ```none
 # Initialize a swarm 
@@ -55,7 +55,7 @@ Once a swarm has been initialized from a manager node, other hosts can be added 
 C:\> docker swarm join --token <WORKERJOINTOKEN> <MANAGERIPADDRESS>
 ```
 
-Here, <MANAGERIPADDRESS> is the local IP address of a swarm manager node, and <WORKERJOINTOKEN> is the worker join-token provided as output by the `docker swarm init` command that was run from the manager node. The join-token can also be obtained by running one of the following commands from the manager node after the swarm has been initialized:
+Here, \<MANAGERIPADDRESS\> is the local IP address of a swarm manager node, and \<WORKERJOINTOKEN\> is the worker join-token provided as output by the `docker swarm init` command that was run from the manager node. The join-token can also be obtained by running one of the following commands from the manager node after the swarm has been initialized:
 
 ```none
 # Get the full command required to join a worker node to the swarm
@@ -72,7 +72,7 @@ Additional manager nodes can be added to a swarm cluster with the following comm
 C:\> docker swarm join --token <MANAGERJOINTOKEN> <MANAGERIPADDRESS>
 ```
 
-Again, <MANAGERIPADDRESS> is the local IP address of a swarm manager node. The join token, <MANAGERJOINTOKEN>, is a *manager* join-token for the swarm, which can be obtained by running one of the following commands from an existing manager node:
+Again, \<MANAGERIPADDRESS\> is the local IP address of a swarm manager node. The join token, \<MANAGERJOINTOKEN\>, is a *manager* join-token for the swarm, which can be obtained by running one of the following commands from an existing manager node:
 
 ```none
 # Get the full command required to join a **manager** node to the swarm
@@ -91,7 +91,7 @@ Once a swarm cluster has been configured, overlay networks can be created on the
 C:\> docker network create --driver=overlay <NETWORKNAME>
 ```
 
-Here, <NETWORKNAME> is the name you'd like to give to your network.
+Here, \<NETWORKNAME\> is the name you'd like to give to your network.
 
 ## Deploying services to a swarm
 Once an overlay network has been created, services can be created and attached to the network. A network is created with the following syntax:
@@ -101,7 +101,7 @@ Once an overlay network has been created, services can be created and attached t
 C:\> docker service create --name=<SERVICENAME> --endpoint-mode dnsrr --network=<NETWORKNAME> <CONTAINERIMAGE> [COMMAND] [ARGS…]
 ```
 
-Here, <SERVICENAME> is the name you'd like to give to the service--this is the name you will use to reference the service via service discovery (which uses Docker's native DNS server). <NETWORKNAME> is the name of the network that you would like to connect this service to (for example, "myOverlayNet"). <CONTAINERIMAGE> is the name of the container image that will defined the service.
+Here, \<SERVICENAME\> is the name you'd like to give to the service--this is the name you will use to reference the service via service discovery (which uses Docker's native DNS server). \<NETWORKNAME\> is the name of the network that you would like to connect this service to (for example, "myOverlayNet"). \<CONTAINERIMAGE\> is the name of the container image that will defined the service.
 
 > **Note:** The second argument to this command, `--endpoint-mode dnsrr`, is required to specify to the Docker engine that the DNS Round Robin policy will be used to balance network traffic across service container endpoints. Currently, DNS Round-Robin is the only load balancing strategy supported on Windows.[Routing mesh](https://docs.docker.com/engine/swarm/ingress/) for Windows docker hosts is not yet supported, but will be coming soon. Users seeking an alternative load balancing strategy today can setup an external load balancer (e.g. NGINX) and use Swarm’s [publish-port mode](https://docs.docker.com/engine/reference/commandline/service_create/#/publish-service-ports-externally-to-the-swarm--p---publish) to expose container host ports over which to load balanc
 
@@ -114,7 +114,7 @@ Service scalability is a key benefit offered by Docker Swarm, and it, too, can b
 C:\> docker service scale <SERVICENAME>=<REPLICAS>
 ```
 
-Here, <SERVICENAME> is the name of the service being scaled, and <REPLICAS> is the number of tasks, or container instances, to which the service is being scaled.
+Here, \<SERVICENAME\> is the name of the service being scaled, and \<REPLICAS\> is the number of tasks, or container instances, to which the service is being scaled.
 
 ## Viewing the swarm state
 
