@@ -1,7 +1,7 @@
 ---
 title: Make your own integration services
 description: Windows 10 integration services.
-keywords: windows 10, hyper-v
+keywords: windows 10, hyper-v, HVSocket, AF_HYPERV
 author: scooley
 ms.date: 05/02/2016
 ms.topic: article
@@ -12,15 +12,13 @@ ms.assetid: 1ef8f18c-3d76-4c06-87e4-11d8d4e31aea
 
 # Make your own integration services
 
-Starting in Windows 10, anyone can make a service very similar to the in-box Hyper-V integration services using a new socket-based communication channel between the Hyper-V host and the virtual machines running on it.  Using these Hyper-V sockets, services can run independently of the networking stack and all data stays on the same physical memory.
+Starting in Windows 10 Anniversary Update, anyone can make applications that communicate between the Hyper-V host and its virtual machines using Hyper-V sockets -- a Windows Socket with a new address family and specialized endpoint for targeting virtual machines.  All communication over Hyper-V sockets runs without using networking and all data stays on the same physical memory.   Applications using Hyper-V sockets are similar to Hyper-V's integration services.
 
-This document walks through creating a simple application built on Hyper-V sockets and how to get started using them.
-
-[PowerShell Direct](../user-guide/powershell-direct.md) is an example of an application (in this case an in-box Windows service) which uses Hyper-V sockets to communicate.
+This document walks through creating a simple program built on Hyper-V sockets.
 
 **Supported Host OS**
-* Windows 10 build 14290 and beyond
-* Windows Server Technical Preview 4 and later
+* Supported on Windows 10
+* Windows Server 2016
 * Future releases (Server 2016 +)
 
 **Supported Guest OS**
@@ -32,33 +30,18 @@ This document walks through creating a simple application built on Hyper-V socke
 **Capabilities and Limitations**  
 * Supports kernel mode or user mode actions  
 * Data stream only  	
-* No block memory (not the best for backup/video)   
+* No block memory (not the best for backup/video) 
 
 --------------
 
 ## Getting started
-Right now, Hyper-V sockets are available in native code (C/C++).  
 
-To write a simple application, you'll need:
-* C compiler.  If you don't have one, checkout [Visual Studio Community](https://aka.ms/vs)
-* A computer running Hyper-V and a virtual machine.  
-  * Host and guest (VM) OS must be Windows 10, Windows Server Technical Preview 3, or later.
-* [Windows 10 SDK](http://aka.ms/flightingSDK) installed on the Hyper-V host
+Requirements:
+* C/C++ compiler.  If you don't have one, checkout [Visual Studio Community](https://aka.ms/vs)
+* [Windows 10 SDK](https://developer.microsoft.com/windows/downloads/windows-10-sdk) -- pre-installed in Visual Studio 2015 with Update 3 and later.
+* A computer running one of the host operating systems above with at least one vitual machine. -- this is for testing your application.
 
-**Windows SDK Details**
-
-Links to the Windows SDK:
-* [Windows 10 SDK for insiders preview](http://aka.ms/flightingSDK)
-* [Windows 10 SDK](https://dev.windows.com/en-us/downloads/windows-10-sdk)
-
-The API for Hyper-V sockets became available in Windows 10 build 14290 -- the flighting download matches the latest insider fast track flighting build.  
-If you experience strange bahavior, let us know in the [TechNet forum](https://social.technet.microsoft.com/Forums/windowsserver/en-US/home "TechNet Forums").  In your post, please include:
-* The unexpected behavior 
-* The OS and build numbers for the host, guest, and SDK.  
-  
-  The SDK build number is visible in the title of the SDK installer:  
-  ![](./media/flightingSDK.png)
-
+> **Note:** The API for Hyper-V sockets became publically available in Windows 10 slightly after .  Applications that use HVSocket will run on any Widnows 10 host and guest but can only be developed with a Windows SDK later than build 14290.  
 
 ## Register a new application
 In order to use Hyper-V sockets, the application must be registered with the Hyper-V Host's registry.
@@ -72,18 +55,18 @@ The following PowerShell will register a new application named "HV Socket Demo".
 ``` PowerShell
 $friendlyName = "HV Socket Demo"
 
-# Create a new random GUID and add it to the services list then add the name as a value
-
+# Create a new random GUID.  Add it to the services list
 $service = New-Item -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Virtualization\GuestCommunicationServices" -Name ((New-Guid).Guid)
 
+# Set a friendly name 
 $service.SetValue("ElementName", $friendlyName)
 
 # Copy GUID to clipboard for later use
 $service.PSChildName | clip.exe
 ```
 
-** Registry location and information **  
 
+**Registry location and information:**  
 ``` 
 HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Virtualization\GuestCommunicationServices\
 ```  
@@ -106,12 +89,12 @@ HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Virtualization\G
 	    ElementName	REG_SZ	Your Service Friendly Name
 ```
 
-> ** Tip: **  To generate a GUID in PowerShell and copy it to the clipboard, run:  
+> **Tip:**  To generate a GUID in PowerShell and copy it to the clipboard, run:  
 ``` PowerShell
 (New-Guid).Guid | clip.exe
 ```
 
-## Creating a Hyper-V socket
+## Create a Hyper-V socket
 
 In the most basic case, defining a socket requires an address family, connection type, and protocol.
 
@@ -139,7 +122,7 @@ SOCKET sock = socket(AF_HYPERV, SOCK_STREAM, HV_PROTOCOL_RAW);
 ```
 
 
-## Binding to a Hyper-V socket
+## Bind to a Hyper-V socket
 
 Bind associates a socket with connection information.
 
@@ -190,7 +173,7 @@ There is also a set of VMID wildcards available when a connection isn't to a spe
 | HV_GUID_PARENT | a42e7cda-d03f-480c-9cc2-a4de20abb878 | Parent address. Using this VmId connects to the parent partition of the connector.* |
 
 
-***HV_GUID_PARENT**  
+\* `HV_GUID_PARENT`  
 The parent of a virtual machine is its host.  The parent of a container is the container's host.  
 Connecting from a container running in a virtual machine will connect to the VM hosting the container.  
 Listening on this VmId accepts connection from:  
@@ -207,4 +190,7 @@ Send()
 Listen()  
 Accept()  
 
+## Useful links
 [Complete WinSock API](https://msdn.microsoft.com/en-us/library/windows/desktop/ms741394.aspx)
+
+[Hyper-V Integration Services reference](../reference/integration-services.md)
