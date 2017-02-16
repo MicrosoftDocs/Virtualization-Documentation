@@ -34,18 +34,18 @@ To install Docker we'll use the [OneGet provider PowerShell module](https://gith
 
 Open an elevated PowerShell session and run the following commands.
 
-First install the OneGet PowerShell module.
+First, install the Docker-Microsoft PackageManagement Provider from the PowerShell Gallery.
 
 ```none
 Install-Module -Name DockerMsftProvider -Repository PSGallery -Force
 ```
 
-Next you use OneGet to install the latest version of Docker.
+Next, you use the PackageManagement PowerShell module to install the latest version of Docker.
 ```none
 Install-Package -Name docker -ProviderName DockerMsftProvider
 ```
 
-When PowerShell asks you whether to trust the package source 'DockerDefault', type A to continue the installation. When the installation is complete, reboot the computer.
+When PowerShell asks you whether to trust the package source 'DockerDefault', type `A` to continue the installation. When the installation is complete, reboot the computer.
 
 ```none
 Restart-Computer -Force
