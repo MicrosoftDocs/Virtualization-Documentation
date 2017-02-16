@@ -20,10 +20,10 @@ This guide will walk you through:
 * confirming that the virtual machine is connected correctly
 
 Requirements:
-* Windows build 14295 or later
-* The Hyper-V role is enabled (instructions [here](../quick-start/enable-hyper-v.md))
+* Windows 10 Anniversary Update or later
+* Hyper-V is enabled (instructions [here](../quick-start/enable-hyper-v.md))
 
-> **Note:**  Currently, Hyper-V only allows you to create one NAT network. For additional details on the Windows NAT (WinNAT) implementation, capabilities, and limitations, please reference the [WinNAT capabilities and limitations blog](https://blogs.technet.microsoft.com/virtualization/2016/05/25/windows-nat-winnat-capabilities-and-limitations/)
+> **Note:**  Currently, you to create one NAT network per host. For additional details on the Windows NAT (WinNAT) implementation, capabilities, and limitations, please reference the [WinNAT capabilities and limitations blog](https://blogs.technet.microsoft.com/virtualization/2016/05/25/windows-nat-winnat-capabilities-and-limitations/)
 
 ## NAT Overview
 NAT gives a virtual machine access to network resources using the host computer's IP address and a port through an internal Hyper-V Virtual Switch.
