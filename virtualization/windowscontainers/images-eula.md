@@ -9,9 +9,7 @@ Microsoft Corporation (or based on where you live, one of its affiliates) (refer
 
 ## ADDITIONAL LICENSING REQUIREMENTS AND/OR USE RIGHTS 
 
-Your use of the Supplement as specified in the preceding paragraph may result in the creation or modification of a container image (“Container Image”) that includes certain Supplement components. For clarity, a Container Image is separate and distinct from a virtual machine or virtual appliance image.  Pursuant to these license terms, we grant you a restricted right to redistribute such 
-
-Supplement components under the following conditions:
+Your use of the Supplement as specified in the preceding paragraph may result in the creation or modification of a container image (“Container Image”) that includes certain Supplement components. For clarity, a Container Image is separate and distinct from a virtual machine or virtual appliance image.  Pursuant to these license terms, we grant you a restricted right to redistribute such Supplement components under the following conditions:
 
   - (i) you may use the Supplement components only as used in, and as a part of your Container Image,
   - (ii) you may use such Supplement components in your Container Image as long as you have significant primary functionality in your Container Image that is materially separate and distinct from the Supplement; and 
