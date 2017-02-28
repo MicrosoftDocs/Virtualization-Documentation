@@ -86,6 +86,21 @@
           },
 
           {
+            "name": "HTTPS",
+            "properties": {
+              "description": "HTTPS",
+              "protocol": "Tcp",
+              "sourcePortRange": "*",
+              "destinationPortRange": "443",
+              "sourceAddressPrefix": "*",
+              "destinationAddressPrefix": "*",
+              "access": "Allow",
+              "priority": 110,
+              "direction": "Inbound"
+            }
+          },
+
+          {
             "name": "RDP",
             "properties": {
               "description": "RDP",
