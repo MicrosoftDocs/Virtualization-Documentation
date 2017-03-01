@@ -48,7 +48,7 @@ When the installation has completed you need to reboot the computer.
 
 ### Enable Hyper-V with CMD and DISM
 
-The Deployment Image Servicing and Management tool (DISM) helps configure Windows and Windows images.  Amoung its many applications, DISM can enable Windows features while the operating system is running.  
+The Deployment Image Servicing and Management tool (DISM) helps configure Windows and Windows images.  Among its many applications, DISM can enable Windows features while the operating system is running.  
 
 To enable the Hyper-V role using DISM:
 1. Open up a PowerShell or CMD session as Administrator.
