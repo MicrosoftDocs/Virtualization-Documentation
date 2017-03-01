@@ -26,27 +26,29 @@ This exercise walks through creating an external virtual switch. Once completed,
 1. Open Hyper-V Manager.  A quick way to do this is by hitting the Windows button or key then type "Hyper-V Manager".  
 If search doesn't find Hyper-V Manager, Hyper-V or the Hyper-V management tools are not enabled.  See the instructions to [enable Hyper-V](enable-hyper-v.md).
 
-2. In Hyper-V Manager, select **Virtual Switch Manager...** from the 'Actions' menu on the right.
+2. Select the server in the left pain, or click "Connect to Server..." in the right pane.
 
-3. Under the 'Virtual Switches' section, select **New virtual network switch**.
+3. In Hyper-V Manager, select **Virtual Switch Manager...** from the 'Actions' menu on the right. 
 
-4. Under 'What type of virtual switch do you want to create?', select **External**.
+4. Under the 'Virtual Switches' section, select **New virtual network switch**.
 
-5. Select the **Create Virtual Switch** button.
+5. Under 'What type of virtual switch do you want to create?', select **External**.
 
-6. Under ‘Virtual Switch Properties’, give the new switch a name such as **External VM Switch**.
+6. Select the **Create Virtual Switch** button.
 
-7. Under ‘Connection Type’, ensure that **External Network** has been selected.
+7. Under ‘Virtual Switch Properties’, give the new switch a name such as **External VM Switch**.
 
-8. Select the physical network card to be paired with the new virtual switch. This is the network card that is physically connected to the network.  
+8. Under ‘Connection Type’, ensure that **External Network** has been selected.
+
+9. Select the physical network card to be paired with the new virtual switch. This is the network card that is physically connected to the network.  
 
 	![](media/newSwitch_upd.png)
 
-9. Select **Apply** to create the virtual switch. At this point you will most likely see the following message. Click **Yes** to continue.
+10. Select **Apply** to create the virtual switch. At this point you will most likely see the following message. Click **Yes** to continue.
 
 	![](media/pen_changes_upd.png)  
 
-10. Select **OK** to close the Virtual Switch Manager Window.
+11. Select **OK** to close the Virtual Switch Manager Window.
 
 
 ### Create a Virtual Switch with PowerShell
