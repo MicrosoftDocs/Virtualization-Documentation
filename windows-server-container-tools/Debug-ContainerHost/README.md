@@ -12,28 +12,34 @@ The first line of each test starts with _Describe_ and explains what a group of 
 Example Pass:
 
 ```none
-Describing The right container base images are installed
- [+] microsoft/windowsservercore is installed 206ms
- [+] microsoft/nanoserver is installed 63ms
-Describing Docker is installed
- [+] A Docker service is installed - 'Docker' or 'com.Docker.Service'  159ms
- [+] Service is running 40ms
- [+] Docker.exe is in path 1.13s
- [+] Docker is registered in the EventLog service 92ms
-Describing User has permissions to use Docker daemon
- [+] docker.exe should not return access denied 166ms
+Checking for common problems
 Describing Windows Version and Prerequisites
- [+] Is Windows 10 Anniversary Update or Windows Server 2016 161ms
- [+] Has KB3192366 installed if running Windows build 14393 820ms
- [+] Is not a build with blocking issues 44ms
+ [+] Is Windows 10 Anniversary Update or Windows Server 2016 79ms
+ [+] Has KB3192366, KB3194496, or later installed if running Windows build 14393 21ms
+ [+] Is not a build with blocking issues 30ms
+ [+] Has 'Containers' feature installed 1.75s
+Describing Docker is installed
+ [+] A Docker service is installed - 'Docker' or 'com.Docker.Service'  32ms
+ [+] Service is running 22ms
+ [+] Docker.exe is in path 2.05s
+ [+] Docker is registered in the EventLog service 20ms
+Describing User has permissions to use Docker daemon
+ [+] docker.exe should not return access denied 32ms
 Describing Windows container settings are correct
- [+] Do not have DisableVSmbOplock set 87ms
- [+] Do not have zz values set 33ms
-Tests completed in 2.91s
-Passed: 11 Failed: 0 Skipped: 0 Pending: 0 Inconclusive: 0
+ [+] Do not have DisableVSmbOplock set to 1 32ms
+ [+] Do not have zz values set 22ms
+ [+] Do not have FDVDenyWriteAccess set to 1 30ms
+Describing The right container base images are installed
+ [+] At least one of 'microsoft/windowsservercore' or 'microsoft/nanoserver' should be installed 136ms
+Describing Container network is created
+ [+] At least one local container network is available 3.23s
+ [+] At least one NAT, Transparent, or L2Bridge Network exists 58ms
+ [+] NAT Network's vSwitch is internal 74ms
+ [+] Specified Network Gateway IP for NAT network is assigned to Host vNIC 150ms
+ [+] NAT Network's internal prefix does not overlap with external IP' 66ms
 ```
 
-Example Fail:
+Example Failure:
 
 ```none
 Describing The right container base images are installed
@@ -65,6 +71,10 @@ Describing Windows container settings are correct
 Tests completed in 2.95s
 Passed: 8 Failed: 3 Skipped: 0 Pending: 0 Inconclusive: 0
 ```
+
+In this case, the tests "Describing User has permissions to use Docker daemon" and "Describing The right container base images are installed" failed. The rest of this page describes the tests and how to fix the problems.
+
+
 
 ## List of tests
 Here's a list of the test cases, organized by _Describe_ and _Should_, along with suggestions on how to fix the failure.
@@ -136,6 +146,15 @@ Remove-ItemProperty -Path 'HKLM:SOFTWARE\Microsoft\Windows NT\CurrentVersion\Vir
 **[+] Do not have zz values set**
 
 These registry values should not be needed, and can be removed. Some past test builds needed these for workarounds in the past but they should not be necessary in Windows 10 Anniversary Update or Windows Server 2016.
+
+
+**[+] Do not have FDVDenyWriteAccess set to 1**
+
+This is a registry key set by a Group Policy setting "Deny write access to fixed drives not protected by bitlocker." For more details on it, see [technet](https://technet.microsoft.com/en-us/library/ee706521(v=ws.10).aspx#BKMK_driveaccess1). If your machines are Active Directory domain joined, then this policy needs to be modified otherwise the registry key will be overwritten the next time Group Policy is synced.
+
+It can cause problems with Windows containers because VHD files are used for container temporary storage. This may cause failures in `docker load` or `docker pull`. This was described in issues [#355](https://github.com/Microsoft/Virtualization-Documentation/issues/355) and [#530](https://github.com/Microsoft/Virtualization-Documentation/issues/530) . 
+
+Anti-virus products that have not been updated and validated based on the [Anti-virus optimization for Windows Containers](https://msdn.microsoft.com/en-us/windows/hardware/drivers/ifs/anti-virus-optimization-for-windows-containers) can also cause similar failures without this registry value set. If this test passes but you still have problems with `docker pull` and `docker load`, try updating or disabling anti-virus as the next troubleshooting step.
 
 ### Describing The right container base images are installed
 **[+] At least one of 'microsoft/windowsservercore' or 'microsoft/nanoserver' should be installed**
