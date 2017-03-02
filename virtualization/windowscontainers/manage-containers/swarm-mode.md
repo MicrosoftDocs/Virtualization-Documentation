@@ -78,7 +78,7 @@ Again, \<MANAGERIPADDRESS\> is the local IP address of a swarm manager node. The
 # Get the full command required to join a **manager** node to the swarm
 C:\> docker swarm join-token manager
 
-# Get only the join-token needed to join a =**manager** node to the swarm
+# Get only the join-token needed to join a **manager** node to the swarm
 C:\> docker swarm join-token manager -q
 ```
 
