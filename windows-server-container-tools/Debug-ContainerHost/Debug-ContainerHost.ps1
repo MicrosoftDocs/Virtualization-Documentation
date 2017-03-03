@@ -19,7 +19,7 @@ Describe "Windows Version and Prerequisites" {
     }
 
     It "Has 'Containers' feature installed" {
-        if ((Get-Command Get-WindowsFeature -ErrorAction Ignore) -eq $null) {
+        if (((Get-ComputerInfo).OsProductType) -eq "Workstation") {
             (Get-WindowsOptionalFeature -Online -FeatureName Containers).State | Should Be "Enabled"
         }
         else {
