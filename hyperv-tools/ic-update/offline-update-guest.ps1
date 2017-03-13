@@ -3,7 +3,5 @@ Param(
   [string]$cabPath
 )
 
-
-
 #Install the patch
 Add-WindowsPackage -Online -PackagePath $cabPath

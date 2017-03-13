@@ -45,7 +45,7 @@
     "imageSku": "2016-Datacenter-with-Containers",
     "imagePublisher": "MicrosoftWindowsServer",
     "imageOffer": "WindowsServer",
-    "imageVersion": "2016.0.20161012",
+    "imageVersion": "2016.0.20170127",
     "OSDiskName": "[concat(parameters('VMName'),'_osdisk')]",
     "nicName": "[concat(parameters('VMName'),'_nic')]",
     "addressPrefix": "10.0.0.0/16",
@@ -81,6 +81,21 @@
               "destinationAddressPrefix": "*",
               "access": "Allow",
               "priority": 100,
+              "direction": "Inbound"
+            }
+          },
+
+          {
+            "name": "HTTPS",
+            "properties": {
+              "description": "HTTPS",
+              "protocol": "Tcp",
+              "sourcePortRange": "*",
+              "destinationPortRange": "443",
+              "sourceAddressPrefix": "*",
+              "destinationAddressPrefix": "*",
+              "access": "Allow",
+              "priority": 110,
               "direction": "Inbound"
             }
           },
@@ -255,7 +270,7 @@
         }
       },
       "resources": [
-        
+
       ]
     }
   ]

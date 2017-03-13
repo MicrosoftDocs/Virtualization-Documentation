@@ -1,11 +1,23 @@
+---
+title: Troubleshooting Windows Containers
+description: Troubleshooting tips, automated scripts, and log information for Windows containers and Docker
+keywords: docker, containers, troubleshooting, logs
+author: PatrickLang
+ms.date: 12/19/2016
+ms.topic: article
+ms.prod: windows-containers
+ms.service: windows-containers
+ms.assetid: ebd79cd3-5fdd-458d-8dc8-fc96408958b5
+---
+
 # Troubleshooting
 
 Having trouble setting up your machine or running a container? We created a PowerShell script to check for common problems. Please give it a try first to see what it finds and share your results.
 
 ```PowerShell
-Invoke-WebRequest https://raw.githubusercontent.com/Microsoft/Virtualization-Documentation/master/windows-server-container-tools/Debug-ContainerHost/Debug-ContainerHost.ps1 -UseBasicParsing | Invoke-Expression
+Invoke-WebRequest https://aka.ms/Debug-ContainerHost.ps1 -UseBasicParsing | Invoke-Expression
 ```
-A list of all of the tests it runs along with common solutions is in the [Readme file](https://github.com/Microsoft/Virtualization-Documentation/blob/master/windows-server-container-tools/Debug-ContainerHost/README.md) for the script.
+A list of all of the tests it runs along with common solutions is in the [Readme file](https://github.com/Microsoft/Virtualization-Documentation/blob/live/windows-server-container-tools/Debug-ContainerHost/README.md) for the script.
 
 If that doesn't help find the source of the problem, please go ahead and post the output from your script on the [Container Forum](https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers). This is the best place to get help from the community including Windows Insiders and developers.
 

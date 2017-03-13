@@ -1,3 +1,15 @@
+---
+title: Windows Container Samples
+description: Find links to popular projects and code samples using Windows Containers.
+keywords: docker, containers, windows, samples 
+author: enderb-ms
+ms.date: 12/19/2016
+ms.topic: article
+ms.prod: windows-containers
+ms.service: windows-containers
+ms.assetid: 5c6f6350-f8d6-4426-b53d-9fb09c2bf267
+---
+
 # Windows Container Samples
 
 This is a collection of samples and examples submitted by the Windows team and members of the community.  These samples are provided as is and with no warranties or guarantees made.  Please feel free to contribute additional samples or improve the current set.
