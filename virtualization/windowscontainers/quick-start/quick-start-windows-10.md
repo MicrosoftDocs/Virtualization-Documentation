@@ -56,13 +56,13 @@ Docker is required in order to work with Windows containers. Docker consists of 
 Download the Docker engine and client as a zip archive.
 
 ```none
-Invoke-WebRequest "https://get.docker.com/builds/Windows/x86_64/docker-1.13.1.zip" -OutFile "$env:TEMP\docker-1.13.1.zip" -UseBasicParsing
+Invoke-WebRequest "https://get.docker.com/builds/Windows/x86_64/docker-17.03.0-ce.zip" -OutFile "$env:TEMP\docker.zip" -UseBasicParsing
 ```
 
 Expand the zip archive into Program Files, the archive contents is already in docker directory.
 
 ```none
-Expand-Archive -Path "$env:TEMP\docker-1.13.1.zip" -DestinationPath $env:ProgramFiles
+Expand-Archive -Path "$env:TEMP\docker.zip" -DestinationPath $env:ProgramFiles
 ```
 
 Add the Docker directory to the system path.
