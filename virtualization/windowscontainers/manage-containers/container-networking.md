@@ -14,6 +14,10 @@ ms.assetid: 538871ba-d02e-47d3-a3bf-25cda4a40965
 
 Windows containers function similarly to virtual machines in regards to networking. Each container has a virtual network adapter (vNIC) which is connected to a virtual switch (vSwitch), over which inbound and outbound traffic is forwarded. In order to enforce isolation between containers on the same host, a network compartment is created for each Windows Server and Hyper-V Container into which the network adapter for the container is installed. Windows Server containers use a Host vNIC to attach to the virtual switch. Hyper-V Containers use a Synthetic VM NIC (not exposed to the Utility VM) to attach to the virtual switch.
 
+<figure>
+  <img src="media/windowsnetworkstack.png">
+</figure>  
+
 Windows containers support four different networking drivers or modes: *nat*, *transparent*, *l2bridge*, and *l2tunnel*. Depending on your physical network infrastructure and single- vs multi-host networking requirements, you should chose the network mode which best suits your needs.
 
 The docker engine creates a NAT network by default when the dockerd service first runs. The default internal IP prefix created is 172.16.0.0/12. Container endpoints will be automatically attached to this default network and assigned an IP address from its internal prefix.
@@ -160,7 +164,9 @@ Since the container endpoints have direct access to the physical network, there 
 
 ### Overlay Network
 
-*To use overlay networking mode, you must be using a Docker host running in swarm mode as a manager node.* To learn more about swarm mode, and how to initialize a swarm manager, see the topic, [Getting Started with Swarm Mode](./swarm-mode.md).
+*To use overlay networking mode, you must be using a Docker engine running in swarm mode on the host.* To learn more about swarm mode, and how to initialize a swarm manager, see the topic, [Getting Started with Swarm Mode](./swarm-mode.md). 
+
+*The overlay network driver is currently only available to [Windows  Insiders](https://insider.windows.com/) as part of the upcoming on Windows 10, "Creators Update".
 
 To create an overlay network, run the following command from a **swarm manager node**:
 
@@ -172,6 +178,14 @@ C:\> docker network create --driver=overlay myOverlayNet
 ### L2 Bridge
 
 To use the L2 Bridge Networking mode, create a Container Network with driver name 'l2bridge'. A subnet and gateway - again, corresponding to the physical network - must be specified.
+
+> Both the overlay and l2bridge networking drivers require the Azure Virtual Filtering Platform (VFP) Hyper-V forwarding extension to be installed and running. The VFP component is currently brought into Windows through the Hyper-V feature which must be installed prior to using overlay or l2bridge networking modes. You can verify that VFP is installed and running by the PowerShell cmdlet. 
+
+> Note: VFP is not available on Windows 10 Anniversary Edition (Version 1607). 
+
+```none
+Get-Service vfpext
+```
 
 ```none
 C:\> docker network create -d l2bridge --subnet=192.168.1.0/24 --gateway=192.168.1.1 MyBridgeNetwork
@@ -255,6 +269,13 @@ C:\> docker network create -d transparent -o com.docker.network.windowsshim.inte
 
 >```none
 PS C:\> Get-NetAdapter
+```
+#### Switch Embedded Teaming with Docker Networks
+
+You can take advantage of [Switch Embedded Teaming](https://technet.microsoft.com/en-us/windows-server-docs/networking/technologies/hyper-v-virtual-switch/rdma-and-switch-embedded-teaming#a-namebkmksswitchembeddedaswitch-embedded-teaming-set) when creating container host networks for use by Docker   by specifying multiple network adapters (separated by commas) with the `-o com.docker.network.windowsshim.interface` option. 
+
+```none
+C:\> docker network create -d transparent -o com.docker.network.windowsshim.interface="Ethernet 2", "Ethernet 3" TeamedNet
 ```
 
 ### Set the VLAN ID for a Network
