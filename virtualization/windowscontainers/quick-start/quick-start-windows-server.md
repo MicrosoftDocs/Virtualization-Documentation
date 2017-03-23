@@ -51,10 +51,10 @@ When PowerShell asks you whether to trust the package source 'DockerDefault', ty
 Restart-Computer -Force
 ```
 
-> Tip: If you want to update Docker later, you can:
->   Check the installed version with `Get-Package -Name Docker -ProviderName DockerMsftProvider`
->   Find the current version with `Find-Package -Name Docker -ProviderName DockerMsftProvider`
->   Install it with `Install-Package -Name Docker -ProviderName DockerMsftProvider -force`, followed by `Start-Service Docker`
+> Tip: If you want to update Docker later:
+>  - Check the installed version with `Get-Package -Name Docker -ProviderName DockerMsftProvider`
+>  - Find the current version with `Find-Package -Name Docker -ProviderName DockerMsftProvider`
+>  - Install it with `Install-Package -Name Docker -ProviderName DockerMsftProvider -force`, followed by `Start-Service Docker`
 
 ## 2. Install Windows Updates
 
