@@ -10,9 +10,16 @@ ms.service: virtualization
 ms.assetid: 9ee0be0c-fc79-4099-b6db-52873589f09e
 ---
 
-# Community Resources 
+# Virtualization Documentation Locations
+Welcome to the virtualization documentation!  There are several sets of documentation available discussing Windows virtualization:
+* [Windows Containers](https://docs.microsoft.com/virtualization/windowscontainers/)
+* [Hyper-V on Winodows 10](https://docs.microsoft.com/virtualization/hyper-v-on-windows/)
+* Hyper-V on Windows Server
+ * [Widows Server 2016](https://technet.microsoft.com/windows-server-docs/compute/hyper-v/)
+ * [Windows Server 2012R2 and 2012](https://technet.microsoft.com/library/mt169373(v=ws.11).aspx)
+ * [Windows Server 2008R2](https://technet.microsoft.com/en-us/library/cc753637(v=ws.10).aspx)
 
-Check out resources available to the user community. There is also a lot to see on the [Docker community](https://www.docker.com/community/participate/) pages.
+Also check out resources available to the user community. There is also a lot to see on the [Docker community](https://www.docker.com/community/participate/) pages.
 
 ## Contribute
 * [Docker for Windows](https://github.com/Microsoft/docker) on GitHub
@@ -33,12 +40,10 @@ Check out resources available to the user community. There is also a lot to see 
 * [Containers 101 Video](https://channel9.msdn.com/Blogs/containers/Containers-101-with-Microsoft-and-Docker)
 * [Containers: Docker, Windows and Trends](http://azure.microsoft.com/blog/2015/08/17/containers-docker-windows-and-trends/)
 
-
 ## Blogs 
 * [Channel 9 - The Containers Channel](https://channel9.msdn.com/Blogs/containers)
 * [Server & Cloud blog](http://blogs.technet.com/b/server-cloud/)
 * [Azure blog](http://azure.microsoft.com/blog/)
-
 
 ## Presentations
 * [Build 2015 - Day One Keynote Presentation](http://channel9.msdn.com/Events/Build/2015/KEY01)
