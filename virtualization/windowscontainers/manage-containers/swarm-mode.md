@@ -103,7 +103,7 @@ C:\> docker service create --name=<SERVICENAME> --endpoint-mode dnsrr --network=
 
 Here, \<SERVICENAME\> is the name you'd like to give to the service--this is the name you will use to reference the service via service discovery (which uses Docker's native DNS server). \<NETWORKNAME\> is the name of the network that you would like to connect this service to (for example, "myOverlayNet"). \<CONTAINERIMAGE\> is the name of the container image that will defined the service.
 
-> **Note:** The second argument to this command, `--endpoint-mode dnsrr`, is required to specify to the Docker engine that the DNS Round Robin policy will be used to balance network traffic across service container endpoints. Currently, DNS Round-Robin is the only load balancing strategy supported on Windows.[Routing mesh](https://docs.docker.com/engine/swarm/ingress/) for Windows docker hosts is not yet supported, but will be coming soon. Users seeking an alternative load balancing strategy today can setup an external load balancer (e.g. NGINX) and use Swarm’s [publish-port mode](https://docs.docker.com/engine/reference/commandline/service_create/#/publish-service-ports-externally-to-the-swarm--p---publish) to expose container host ports over which to load balanc
+> **Note:** The second argument to this command, `--endpoint-mode dnsrr`, is required to specify to the Docker engine that the DNS Round Robin policy will be used to balance network traffic across service container endpoints. Currently, DNS Round-Robin is the only load balancing strategy supported on Windows.[Routing mesh](https://docs.docker.com/engine/swarm/ingress/) for Windows docker hosts is not yet supported, but will be coming soon. Users seeking an alternative load balancing strategy today can setup an external load balancer (e.g. NGINX) and use Swarm’s [publish-port mode](https://docs.docker.com/engine/reference/commandline/service_create/#/publish-service-ports-externally-to-the-swarm--p---publish) to expose container host ports over which to load balance.
 
 ## Scaling a service
 Once a service is deployed to a swarm cluster, the container instances composing that service are deployed across the cluster. By default, the number of container instances backing a service—the number of “replicas,” or “tasks” for a service—is one. However, a service can be created with multiple tasks using the `--replicas` option to the `docker service create` command, or by scaling the service after it has been created.
@@ -154,6 +154,33 @@ C:\ docker service ps <SERVICENAME>
 Currently, swarm mode on Windows has the following limitations:
 - KNOWN BUG: Overlay and swarm mode are currently supported on ethernet-connected container hosts only; **they will not work with WiFi connected hosts.** We are working on fixing this.
 - Data-plane encryption not supported (i.e. container-container traffic using the `--opt encrypted` option)
-- [Routing mesh](https://docs.docker.com/engine/swarm/ingress/) for Windows docker hosts is not yet supported, but will be coming soon. Users seeking an alternative load balancing strategy today can setup an external load balancer (e.g. NGINX) and use Swarm’s [publish-port mode](https://docs.docker.com/engine/reference/commandline/service_create/#/publish-service-ports-externally-to-the-swarm--p---publish) to expose container host ports over which to load balance.  
+- [Routing mesh](https://docs.docker.com/engine/swarm/ingress/) for Windows docker hosts is not yet supported, but will be coming soon. Users seeking an alternative load balancing strategy today can setup an external load balancer (e.g. NGINX) and use Swarm’s [publish-port mode](https://docs.docker.com/engine/reference/commandline/service_create/#/publish-service-ports-externally-to-the-swarm--p---publish) to expose container host ports over which to load balance. More detail on this below.
+
+## Publish ports for service endpoints
+Docker Swarm's [routing mesh](https://docs.docker.com/engine/swarm/ingress/) feature is not yet supported on Windows, but users seeking to publish ports for their service endpoints can do so today using publish-port mode. 
+
+To cause host ports to be published for each of the tasks/container endpoints that define a service, use the `--publish mode=host,target=<CONTAINERPORT>` argument to the `docker service create` command:
+
+```none
+# Create a service for which tasks are exposed via host port
+C:\ > docker service create --name=<SERVICENAME> --publish mode=host,target=<CONTAINERPORT> --endpoint-mode dnsrr --network=<NETWORKNAME> <CONTAINERIMAGE> [COMMAND] [ARGS…]
+```
+
+For example, the following command would create a service, 's1', for which each task will be exposed via container port 80 and a randomly selected host port.
+
+```none
+C:\ > docker service create --name=s1 --publish mode=host,target=80 --endpoint-mode dnsrr web_1 powershell -command {echo sleep; sleep 360000;}
+```
+
+After creating a service using publish-port mode, the service can be quieried to view the port mapping for each service task:
+
+```none
+C:\ > docker service ps <SERVICENAME>
+```
+The above command will return details on every container instance running for your service (across all of your swarm hosts). One column of the output, the “ports” column, will include port information for each host of the form \<HOSTPORT\>->\<CONTAINERPORT\>/tcp. The values of \<HOSTPORT\> will be different for each container instance, as each container is published on its own host port.
+
+
+
+
 
 
