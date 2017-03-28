@@ -54,7 +54,7 @@ Restart-Computer -Force
 > Tip: If you want to update Docker later:
 >  - Check the installed version with `Get-Package -Name Docker -ProviderName DockerMsftProvider`
 >  - Find the current version with `Find-Package -Name Docker -ProviderName DockerMsftProvider`
->  - Install it with `Install-Package -Name Docker -ProviderName DockerMsftProvider -force`, followed by `Start-Service Docker`
+>  - When you're ready, upgrade with `Install-Package -Name Docker -ProviderName DockerMsftProvider -Update -Force`, followed by `Start-Service Docker`
 
 ## 2. Install Windows Updates
 
