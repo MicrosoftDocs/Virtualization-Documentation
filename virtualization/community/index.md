@@ -13,9 +13,9 @@ ms.assetid: 9ee0be0c-fc79-4099-b6db-52873589f09e
 # Virtualization Documentation Locations
 Welcome to the virtualization documentation!  There are several sets of documentation available discussing Windows virtualization:
 * [Windows Containers](https://docs.microsoft.com/virtualization/windowscontainers/)
-* [Hyper-V on Winodows 10](https://docs.microsoft.com/virtualization/hyper-v-on-windows/)
+* [Hyper-V on Windows 10](https://docs.microsoft.com/virtualization/hyper-v-on-windows/)
 * Hyper-V on Windows Server
-  * [Widows Server 2016](https://technet.microsoft.com/windows-server-docs/compute/hyper-v/)
+  * [Windows Server 2016](https://technet.microsoft.com/windows-server-docs/compute/hyper-v/)
   * [Windows Server 2012R2 and 2012](https://technet.microsoft.com/library/mt169373(v=ws.11).aspx)
   * [Windows Server 2008R2](https://technet.microsoft.com/en-us/library/cc753637(v=ws.10).aspx)
 
