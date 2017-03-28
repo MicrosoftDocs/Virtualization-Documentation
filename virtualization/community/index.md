@@ -15,9 +15,9 @@ Welcome to the virtualization documentation!  There are several sets of document
 * [Windows Containers](https://docs.microsoft.com/virtualization/windowscontainers/)
 * [Hyper-V on Winodows 10](https://docs.microsoft.com/virtualization/hyper-v-on-windows/)
 * Hyper-V on Windows Server
- * [Widows Server 2016](https://technet.microsoft.com/windows-server-docs/compute/hyper-v/)
- * [Windows Server 2012R2 and 2012](https://technet.microsoft.com/library/mt169373(v=ws.11).aspx)
- * [Windows Server 2008R2](https://technet.microsoft.com/en-us/library/cc753637(v=ws.10).aspx)
+  * [Widows Server 2016](https://technet.microsoft.com/windows-server-docs/compute/hyper-v/)
+  * [Windows Server 2012R2 and 2012](https://technet.microsoft.com/library/mt169373(v=ws.11).aspx)
+  * [Windows Server 2008R2](https://technet.microsoft.com/en-us/library/cc753637(v=ws.10).aspx)
 
 Also check out resources available to the user community. There is also a lot to see on the [Docker community](https://www.docker.com/community/participate/) pages.
 
