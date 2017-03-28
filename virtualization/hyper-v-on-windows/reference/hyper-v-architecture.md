@@ -1,8 +1,8 @@
 # Hyper-V Architecture
 
-Hyper-V is a hypervisor-based virtualization technology for certain x64 versions of Windows. The hypervisor is the processor-specific virtualization platform that allows multiple isolated operating systems to share a single hardware platform.  
+Hyper-V is a hypervisor-based virtualization technology for certain x64 versions of Windows.  The hypervisor is core to virtualization.  It is the processor-specific virtualization platform that allows multiple isolated operating systems to share a single hardware platform.  
 
-Hyper-V supports isolation in terms of a partition. A partition is a logical unit of isolation, supported by the hypervisor, in which operating systems execute. The Microsoft hypervisor must have at least one parent, or root, partition, running Windows Server 2008 64-bit Edition. The virtualization stack runs in the parent partition and has direct access to the hardware devices. The root partition then creates the child partitions which host the guest operating systems. A root partition creates child partitions using the hypercall application programming interface (API).  
+Hyper-V supports isolation in terms of a partition. A partition is a logical unit of isolation, supported by the hypervisor, in which operating systems execute. The Microsoft hypervisor must have at least one parent, or root, partition, running Windows. The virtualization management stack runs in the parent partition and has direct access to hardware devices. The root partition then creates the child partitions which host the guest operating systems. A root partition creates child partitions using the hypercall application programming interface (API).  
 
 Partitions do not have access to the physical processor, nor do they handle the processor interrupts. Instead, they have a virtual view of the processor and run in a virtual memory address region that is private to each guest partition. The hypervisor handles the interrupts to the processor, and redirects them to the respective partition. Hyper-V can also hardware accelerate the address translation between various guest virtual address spaces by using an Input Output Memory Management Unit (IOMMU) which operates independent of the memory management hardware used by the CPU. An IOMMU is used to remap physical memory addresses to the addresses that are used by the child partitions.  
 
@@ -10,7 +10,7 @@ Child partitions also do not have direct access to other hardware resources and 
 
 Virtual Devices can also take advantage of a Windows Server Virtualization feature, named Enlightened I/O, for storage, networking, graphics, and input subsystems. Enlightened I/O is a specialized virtualization-aware implementation of high level communication protocols (such as SCSI) that utilize the VMBus directly, bypassing any device emulation layer. This makes the communication more efficient but requires an enlightened guest that is hypervisor and VMBus aware. Hyper-V enlightened I/O and a hypervisor aware kernel is provided via installation of Hyper-V integration services. Integration components, which include virtual server client (VSC) drivers, are also available for other client operating systems. Hyper-V requires a processor that includes hardware assisted virtualization, such as is provided with Intel VT or AMD Virtualization (AMD-V) technology.
 
-The following diagram provides a high-level overview of the architecture of a Hyper-V environment running on Windows Server 2008.
+The following diagram provides a high-level overview of the architecture of a Hyper-V environment.
 
 ![](./media/hv_architecture.png)
 
