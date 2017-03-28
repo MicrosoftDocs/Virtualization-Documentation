@@ -172,7 +172,7 @@ For example, the following command would create a service, 's1', for which each 
 C:\ > docker service create --name=s1 --publish mode=host,target=80 --endpoint-mode dnsrr web_1 powershell -command {echo sleep; sleep 360000;}
 ```
 
-After creating a service using publish-port mode, the service can be quieried to view the port mapping for each service task:
+After creating a service using publish-port mode, the service can be queried to view the port mapping for each service task:
 
 ```none
 C:\ > docker service ps <SERVICENAME>
