@@ -178,7 +178,9 @@ Anti-virus products that have not been updated and validated based on the [Anti-
 
 ** A Windows NAT is configured if a Docker NAT network exists **
 
-If something deletes the Window NAT configuration then you may need to recreate it. First, find what the NAT's internal prefix should be with `docker network inspect nat`
+If something deletes the Window NAT configuration then you may need to recreate it. Otherwise, containers won't be able to access the internet or other networks.
+
+First, find what the NAT's internal prefix should be with `docker network inspect nat`
 
 ```
 PS> docker network inspect nat
