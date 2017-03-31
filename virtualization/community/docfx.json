@@ -3,7 +3,7 @@
     "content":
       [
         {
-          "files": ["**/**.md"],
+          "files": ["**/**.md", "**/**.yml"],
           "exclude": ["**/obj/**"]
         }
       ],
@@ -16,6 +16,10 @@
     "externalReference": [
     ],
     "template": "op.html",
-    "dest": "virtualization/community"
+    "dest": "virtualization/community",
+    "globalMetadata": {
+      "layout": "Conceptual",
+      "breadcrumb_path": "/virtualization/community/toc.json"
+    }
   }
 }
