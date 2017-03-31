@@ -164,19 +164,20 @@ Anti-virus products that have not been updated and validated based on the [Anti-
 
 
 ### Describing Container network is created ###
-** At least one local container network is available **
+
+**At least one local container network is available**
 
 > TODO - description & help needed
 
-** At least one NAT, Transparent, or L2Bridge Network exists **
+**At least one NAT, Transparent, or L2Bridge Network exists**
 
 > TODO - description & help needed
 
-** NAT Network's vSwitch is internal **
+**NAT Network's vSwitch is internal**
 
 > TODO - description & help needed
 
-** A Windows NAT is configured if a Docker NAT network exists **
+**A Windows NAT is configured if a Docker NAT network exists**
 
 If something deletes the Window NAT configuration then you may need to recreate it. Otherwise, containers won't be able to access the internet or other networks.
 
@@ -220,11 +221,11 @@ In this case it was 172.25.112.0/20. Next, create the Windows NAT using that sub
 New-NetNat -Name nat -InternalIPInterfaceAddressPrefix 172.25.112.0/20 
 ```
 
-** Specified Network Gateway IP for NAT network is assigned to Host vNIC **
+**Specified Network Gateway IP for NAT network is assigned to Host vNIC**
 
 > TODO - description & help needed
 
-** NAT Network's internal prefix does not overlap with external IP' **
+**NAT Network's internal prefix does not overlap with external IP'**
 
 When using network address translation (nat) with containers, the internal IP address range must be separate from the external range.
 If they overlap, then you need to delete the network with `docker network remove` and create a new one with `docker network create`.
