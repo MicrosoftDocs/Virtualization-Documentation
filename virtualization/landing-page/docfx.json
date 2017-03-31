@@ -2,9 +2,7 @@
   "build": {
     "content": [
       {
-        "files": [
-          "**/*.md"
-        ],
+        "files": ["**/**.md", "**/**.yml"],
         "exclude": [
           "**/obj/**",
           "**/includes/**",
@@ -29,7 +27,10 @@
     ],
     "overwrite": [],
     "externalReference": [],
-    "globalMetadata": {},
+    "globalMetadata": {
+      "layout": "Conceptual",
+      "breadcrumb_path": "/virtualization/landing-page/toc.json"
+    },
     "fileMetadata": {},
     "template": [],
     "dest": "virtualization"
