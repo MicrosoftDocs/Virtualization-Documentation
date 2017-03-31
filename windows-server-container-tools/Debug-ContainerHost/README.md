@@ -161,6 +161,72 @@ Anti-virus products that have not been updated and validated based on the [Anti-
 
 - Try `docker pull microsoft/nanoserver` or `docker pull microsoft/windowsservercore` to pull a Windows container image
 
+
+
+### Describing Container network is created ###
+** At least one local container network is available **
+
+> TODO - description & help needed
+
+** At least one NAT, Transparent, or L2Bridge Network exists **
+
+> TODO - description & help needed
+
+** NAT Network's vSwitch is internal **
+
+> TODO - description & help needed
+
+** A Windows NAT is configured if a Docker NAT network exists **
+
+If something deletes the Window NAT configuration then you may need to recreate it. First, find what the NAT's internal prefix should be with `docker network inspect nat`
+
+```
+PS> docker network inspect nat
+[
+    {
+        "Name": "nat",
+        "Id": "9d35e3b6619d919f554b2c419aee515133238070121ca999d3514196541a7cfd",
+        "Created": "2017-03-31T14:21:02.2013811-07:00",
+        "Scope": "local",
+        "Driver": "nat",
+        "EnableIPv6": false,
+        "IPAM": {
+            "Driver": "windows",
+            "Options": null,
+            "Config": [
+                {
+                    "Subnet": "172.25.112.0/20",
+                    "Gateway": "172.25.112.1"
+                }
+            ]
+        },
+        "Internal": false,
+        "Attachable": false,
+        "Containers": {},
+        "Options": {
+            "com.docker.network.windowsshim.hnsid": "bcbf2335-aa54-4561-a665-2b05caa7f5b4",
+            "com.docker.network.windowsshim.networkname": "nat"
+        },
+        "Labels": {}
+    }
+]
+```
+
+In this case it was 172.25.112.0/20. Next, create the Windows NAT using that subnet.
+
+```powershell
+New-NetNat -Name nat -InternalIPInterfaceAddressPrefix 172.25.112.0/20 
+```
+
+** Specified Network Gateway IP for NAT network is assigned to Host vNIC **
+
+> TODO - description & help needed
+
+** NAT Network's internal prefix does not overlap with external IP' **
+
+When using network address translation (nat) with containers, the internal IP address range must be separate from the external range.
+If they overlap, then you need to delete the network with `docker network remove` and create a new one with `docker network create`.
+
 ## Contributing to Debug-ContainerHost.ps1
 Contributions are welcome! Here are a few suggested areas needing improvement:
 - Add options to start & stop log collections to Debug-ContainerHost.ps1, create CSV file
