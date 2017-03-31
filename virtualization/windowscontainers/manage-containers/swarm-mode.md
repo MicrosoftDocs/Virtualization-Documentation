@@ -94,7 +94,7 @@ C:\> docker network create --driver=overlay <NETWORKNAME>
 Here, \<NETWORKNAME\> is the name you'd like to give to your network.
 
 ## Deploying services to a swarm
-Once an overlay network has been created, services can be created and attached to the network. A network is created with the following syntax:
+Once an overlay network has been created, services can be created and attached to the network. A service is created with the following syntax:
 
 ```none
 # Deploy a service to the swarm
