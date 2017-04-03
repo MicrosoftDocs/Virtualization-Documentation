@@ -156,7 +156,7 @@ RUN dism.exe /online /enable-feature /all /featurename:iis-webserver /NoRestart
 This example installs the Visual Studio redistributable package. Note here that `Start-Process` and the `-Wait` parameter are used to run the installer. This will ensure that the installation completed before moving onto the next step in the Dockerfile.
 
 ```none
-RUN Start-Process c:\vcredist_x86.exe -ArgumentList '/quiet' -Wait
+RUN powershell.exe -Command Start-Process c:\vcredist_x86.exe -ArgumentList '/quiet' -Wait
 ```
 
 For detailed information on the RUN instruction, see the [RUN Reference on Docker.com]( https://docs.docker.com/engine/reference/builder/#run).
