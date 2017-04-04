@@ -221,6 +221,21 @@ function ForceCleanupSystem
 
 try
 {
+    # Currently, this script is not compatible with overlay networking. 
+    # To avoid system configuration issues, all overlay networks should be removed before this script is run.
+    Restart-Service docker -ErrorAction SilentlyContinue
+    $docker = Get-Service docker
+    if ($docker.Status -eq "Running")
+    {
+        $dockerNetworks = Invoke-Expression -Command "docker network ls -f driver=overlay -q" -ErrorAction SilentlyContinue
+        foreach ($network in $dockerNetworks)
+        {
+            Write-Host "Overlay network detected. Id:" $network
+        }
+    }
+    Write-Host "WARNING: This script is not compatible with overlay networking. Before continuing, ensure all overlay networks are removed from your system." -ForegroundColor Yellow
+    Read-Host -Prompt "Press Enter to continue (or Ctrl+C to stop script) ..."
+    
     # Generate Random names for prefix
     $rand = New-Object System.Random
     $prefixLen = 8
@@ -274,7 +289,14 @@ try
       
         if ($rebootRequired)
         {
-            Write-Host "PLEASE RESTART THE SYSTEM TO COMPLETE CLEANUP" -ForegroundColor Green 
+            Write-Host "Script complete! Reboot required. Restart now? Enter (Y)es or (N)o ..." -ForegroundColor Green 
+            Write-Host "*Warning: Do not run any Docker commands before rebooting your machine!*" -ForegroundColor Yellow
+            $rebootNow = Read-Host
+            if ($rebootNow.toLower() -eq "y" -or $rebootNow.toLower() -eq "yes")
+            {
+                Restart-Computer -Force
+            }
+            else { return }
         }
 
     }
