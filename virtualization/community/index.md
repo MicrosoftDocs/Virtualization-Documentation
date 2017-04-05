@@ -10,7 +10,8 @@ ms.service: virtualization
 ms.assetid: 9ee0be0c-fc79-4099-b6db-52873589f09e
 ---
 
-# Virtualization Documentation Locations
+# Virtualization Community
+
 Welcome to the virtualization documentation!  There are several sets of documentation available discussing Windows virtualization:
 * [Windows Containers](https://docs.microsoft.com/virtualization/windowscontainers/)
 * [Hyper-V on Windows 10](https://docs.microsoft.com/virtualization/hyper-v-on-windows/)

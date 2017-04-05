@@ -1,12 +1,18 @@
 ﻿{
   "build": {
-    "content":
-      [
-        {
-          "files": ["**/**.md"],
-          "exclude": ["**/obj/**"]
-        }
-      ],
+    "content": [
+      {
+        "files": ["**/**.md", "**/**.yml"],
+        "exclude": [
+          "**/obj/**",
+          "**/includes/**",
+          "README.md",
+          "LICENSE",
+          "LICENSE-CODE",
+          "ThirdPartyNotices"
+        ]
+      }
+    ],
     "resource": [
         {
           "files": ["**/media/**"],
@@ -16,6 +22,9 @@
     "externalReference": [
     ],
     "template": "op.html",
+    "globalMetadata": {
+      "breadcrumb_path": "/virtualization/landing-page/toc.json"
+    },
     "dest": "virtualization/windowscontainers"
   }
 }

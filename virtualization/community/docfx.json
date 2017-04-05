@@ -1,12 +1,18 @@
 ﻿{
   "build": {
-    "content":
-      [
-        {
-          "files": ["**/**.md", "**/**.yml"],
-          "exclude": ["**/obj/**"]
-        }
-      ],
+    "content": [
+      {
+        "files": ["**/**.md", "**/**.yml"],
+        "exclude": [
+          "**/obj/**",
+          "**/includes/**",
+          "README.md",
+          "LICENSE",
+          "LICENSE-CODE",
+          "ThirdPartyNotices"
+        ]
+      }
+    ],
     "resource": [
         {
           "files": ["**/media/**"],
@@ -18,7 +24,6 @@
     "template": "op.html",
     "dest": "virtualization/community",
     "globalMetadata": {
-      "layout": "Conceptual",
       "breadcrumb_path": "/virtualization/landing-page/toc.json"
     }
   }

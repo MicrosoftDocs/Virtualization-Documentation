@@ -2,13 +2,14 @@
   "build": {
     "content": [
       {
-        "files": [
-          "**/*.md"
-        ],
+        "files": ["**/**.md", "**/**.yml"],
         "exclude": [
           "**/obj/**",
-          "virtualization/api/**",
-          "**/includes/**"
+          "**/includes/**",
+          "README.md",
+          "LICENSE",
+          "LICENSE-CODE",
+          "ThirdPartyNotices"
         ]
       }
     ],
@@ -27,7 +28,9 @@
     ],
     "overwrite": [],
     "externalReference": [],
-    "globalMetadata": {},
+    "globalMetadata": {
+      "breadcrumb_path": "/virtualization/landing-page/toc.json"
+    },
     "fileMetadata": {},
     "template": [],
     "dest": "virtualization/api"
