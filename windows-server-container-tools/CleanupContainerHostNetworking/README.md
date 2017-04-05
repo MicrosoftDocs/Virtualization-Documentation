@@ -8,6 +8,10 @@ WARNING: *Currently, this script is not compatible with overlay networking. To a
 
 ## Option 1: Run `CleanupContainerHostNetworking.ps1` with no options
 
+```none
+PS C:\> .\CleanupContainerHostNetworking.ps1
+```
+
 This will copy:
  * Microsoft-Windows-Host-Network-Service-Admin.evtx
  * System.evtx
@@ -21,6 +25,10 @@ This will copy:
 to a temporary log directory. The default location of this log directory is under the current working directory from which the command was run. Alternatively, you can use the **-LogPath** parameter to specify where these log files are saved
 
 ## Option 2: Run `CleanupContainerHostNetworking.ps1` with Force Networking Cleanup option
+
+```none
+PS C:\> .\CleanupContainerHostNetworking.ps1 -ForceCleanup
+```
 
 If you run `CleanupContainerHostNetworking.ps1` with the **-ForceCleanup** parameter, the log collection described above will take place, along with the following cleanup steps:
  * start HNS event tracing
