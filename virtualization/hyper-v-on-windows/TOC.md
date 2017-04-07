@@ -4,8 +4,7 @@
 ## [Linux and FreeBSD on Hyper-V](https://technet.microsoft.com/library/dn531030.aspx)
 # Hyper-V Quick Start
 ## [Install Hyper-V](quick-start/enable-hyper-v.md)
-## [Create a Virtual Switch](quick-start/connect-to-network.md)
-## [Create a Virtual Machine](quick-start/create-virtual-machine.md)
+## [Make a Virtual Machine](quick-start/quick-create-virtual-machine.md)
 ## [Hyper-V and PowerShell](quick-start/try-hyper-v-powershell.md)
 # Manage Virtual Machines with Hyper-V
 ## [Work with Checkpoints](user-guide/checkpoints.md)
