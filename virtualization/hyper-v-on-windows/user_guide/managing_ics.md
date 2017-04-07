@@ -79,7 +79,7 @@ Integration services were designed such that they need to be enabled in both the
 
 Integration services appear as services in Windows. To enable or disable an integration services from inside the virtual machine, open the Windows Services manager.
 
-![](../user-guide/HVServices.png) 
+![](../user-guide/media/HVServices.png) 
 
 Find the services containing Hyper-V in the name. Right click on the service you'd like to enable or disable and start or stop the service.
 
