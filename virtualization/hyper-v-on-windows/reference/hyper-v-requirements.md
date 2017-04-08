@@ -12,7 +12,9 @@ ms.assetid: 6e5e6b01-7a9d-4123-8cc7-f986e10cd372
 
 # Windows 10 Hyper-V System Requirements
 
-Hyper-V on Windows 10 only works under a specific set of operating system and hardware configurations. This document shows the Hyper-V requirements, and how you can check your system for compatibility.
+Hyper-V is available in 64-bit version of Windows Professional, Enterprise, and Education editions of Windows 8 and greater.  Hyper-V requires Second Level Address Translation (SLAT) -- present in the current generation of 64-bit processors by Intel and AMD.
+
+You can run 3 or 4 basic virtual machines on a host that has 4GB of RAM, though you'll need more resources for more virtual machines. On the other end of the spectrum, you can also create large virtual machines with 32 processors and 512GB RAM, depending on your physical hardware.
 
 ## Operating System Requirements
 

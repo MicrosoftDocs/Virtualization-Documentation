@@ -1,7 +1,5 @@
-# About Hyper-V
-## [Introduction to Hyper-V](./about/index.md)
-## [Supported Guest OS's](about/supported-guest-os.md)
-## [Linux and FreeBSD on Hyper-V](https://technet.microsoft.com/library/dn531030.aspx)
+
+# [Introduction to Hyper-V](./about/index.md)
 # Hyper-V Quick Start
 ## [Install Hyper-V](quick-start/enable-hyper-v.md)
 ## [Create a Virtual Switch](quick-start/connect-to-network.md)
@@ -15,12 +13,13 @@
 ## [Enable Nested Virtualization](user-guide/nested-virtualization.md)
 ## [Set up a NAT network](user-guide/setup-nat-network.md)
 ## [Build an integration Service](user-guide/make-integration-service.md)
-# Community and Support
-## [Hyper-V forums](https://social.technet.microsoft.com/Forums/windowsserver/en-US/home?forum=winserverhyperv)
 # Reference
 ## [Hyper-V Requirements](reference/hyper-v-requirements.md)
+## [Supported Guest Operating Systems](about/supported-guest-os.md)
 ## [Hyper-V PowerShell](https://technet.microsoft.com/library/hh848559.aspx)
 ## [Hyper-V WMI Provider (V2)](https://msdn.microsoft.com/library/hh850319.aspx)
 ## [Hyper-V Integration Services](reference/integration-services.md)
 ## [Hyper-V Architecture](reference/hyper-v-architecture.md)
 ## [Hypervisor Specifications](reference/tlfs.md)
+# Community and Support
+## [Hyper-V forums](https://social.technet.microsoft.com/Forums/windowsserver/en-US/home?forum=winserverhyperv)
