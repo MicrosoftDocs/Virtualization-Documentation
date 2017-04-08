@@ -3,10 +3,9 @@ title: Make your own integration services
 description: Windows 10 integration services.
 keywords: windows 10, hyper-v, HVSocket, AF_HYPERV
 author: scooley
-ms.date: 05/02/2016
+ms.date: 04/07/2017
 ms.topic: article
 ms.prod: windows-10-hyperv
-ms.service: windows-10-hyperv
 ms.assetid: 1ef8f18c-3d76-4c06-87e4-11d8d4e31aea
 ---
 
@@ -17,15 +16,13 @@ Starting in Windows 10 Anniversary Update, anyone can make applications that com
 This document walks through creating a simple program built on Hyper-V sockets.
 
 **Supported Host OS**
-* Supported on Windows 10
-* Windows Server 2016
-* Future releases (Server 2016 +)
+* Windows 10 and later
+* Windows Server 2016 and later
 
 **Supported Guest OS**
-* Windows 10
-* Windows Server Technical Preview 4 and later
-* Future releases (Server 2016 +)
-* Linux guests with Linux Integration Services (see [Supported Linux and FreeBSD virtual machines for Hyper-V on Windows](https://technet.microsoft.com/library/dn531030(ws.12).aspx))
+* Windows 10 and later
+* Windows Server 2016 and later
+* Linux guests with Linux Integration Services (see [Supported Linux and FreeBSD virtual machines for Hyper-V on Windows](https://technet.microsoft.com/library/dn531030.aspx))
 
 **Capabilities and Limitations**  
 * Supports kernel mode or user mode actions  
