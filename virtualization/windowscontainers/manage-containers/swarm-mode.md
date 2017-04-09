@@ -169,13 +169,34 @@ C:\> docker node update --label-add <LABELNAME>=<LABELVALUE> <NODENAME>
 
 Here, `<LABELNAME>` is the name of the label you are creating--for example, in this case we are distinguishing nodes by their OS, so a logical name for the label could be, "os". `<LABELVALUE>` is the value of the label--in this case, you might choose to use the values "windows" and "linux". (Of course, you may make any naming choices for your label and label values, as long as you remain consistent). `<NODENAME>` is the name of the node that you are labeling; you can remind yourself of the names of your nodes by running `docker node ls`. 
 
-For example, if you have four swarm nodes in your cluster, including two Windows nodes and two Linux nodes, your label update commands may look like this:
+**For example**, if you have four swarm nodes in your cluster, including two Windows nodes and two Linux nodes, your label update commands may look like this:
 
 ```none
+# Example -- labeling 2 Windows nodes and 2 Linux nodes in a cluster...
 C:\> docker node update --label-add os=windows Windows-SwarmMaster
 C:\> docker node update --label-add os=windows Windows-SwarmWorker1
 C:\> docker node update --label-add os=linux Linux-SwarmNode1
 C:\> docker node update --label-add os=linux Linux-SwarmNode2
+```
+
+### Deploying services to a Mixed-OS swarm
+With labels for your swarm nodes, deploying services to your cluster is easy; simply use the `--constraint` option to the `docker service create` [command](https://docs.docker.com/engine/reference/commandline/service_create/):
+
+```none
+# Deploy a service with swarm node constraint
+C:\> docker service create --name=<SERVICENAME> --endpoint-mode dnsrr --network=<NETWORKNAME> --constraint node.labels.<LABELNAME>=<LABELVALUE> <CONTAINERIMAGE> [COMMAND] [ARGS…]
+```
+
+For example, using the label and label value nomenclature from the example above, a set of service creation commands--one for a Windows-based service and one for a Linux-based service--might look like this:
+
+```none
+# Example -- using the 'os' label and 'windows'/'linux' label values, service creation commands might look like these...
+
+# A Windows service
+C:\> docker service create --name=win_s1 --endpoint-mode dnsrr --network testoverlay --constraint 'node.labels.os==windows' microsoft/nanoserver:latest powershell -command { sleep 3600 }
+
+# A Linux service
+C:\> docker service create --name=linux_s1 --endpoint-mode dnsrr --network testoverlay --constraint 'node.labels.os==linux' redis
 ```
 
 ## Limitations
