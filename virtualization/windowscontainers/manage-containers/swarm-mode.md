@@ -116,6 +116,7 @@ C:\> docker service scale <SERVICENAME>=<REPLICAS>
 
 Here, \<SERVICENAME\> is the name of the service being scaled, and \<REPLICAS\> is the number of tasks, or container instances, to which the service is being scaled.
 
+
 ## Viewing the swarm state
 
 There are several useful commands for viewing the state of a swarm and the services running on the swarm.
@@ -149,6 +150,18 @@ Use the following command to see details on the container instances running for 
 ```none
 C:\ docker service ps <SERVICENAME>
 ```
+## Use labels to deploy services on Linux+Windows mixed-OS clusters
+
+### Initializing a Linux+Windows mixed-OS Cluster
+TODO: Can either OS be a manager/worker? Same process as adding any node?
+TODO: How to add labels with join command? Instead of having to use update...
+
+### Adding labels to swarm nodes
+In order to launch a Docker Service to a mixed-OS swarm cluster, there must be a way to distinguish which swarm nodes are capable of running tasks for the service, and which are not. [Docker object labels](https://docs.docker.com/engine/userguide/labels-custom-metadata/) provide a useful way to label nodes, so that services can be created and configured with constraints based on those labels. 
+
+> While labels can be used to apply metadata to a variety of Docker objects (including container images, containers, volumes and networks), and for a variety of purposes (e.g. labels could be used to separate 'front-end' and 'back-end' components of an application, by allowing front-end microservices to be secheduled only on 'front-end' labeled nodes and back-end mircoservices to be scheduled only on 'back-end' labeled nodes). In this case, however, we use labels on nodes, to distinguish Windows OS nodes and Linux OS nodes.
+
+A service may be configured to run only on Windows hosts,
 
 ## Limitations
 Currently, swarm mode on Windows has the following limitations:
