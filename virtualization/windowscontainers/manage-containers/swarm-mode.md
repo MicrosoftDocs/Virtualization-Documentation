@@ -180,7 +180,7 @@ C:\> docker node update --label-add os=linux Linux-SwarmNode2
 ```
 
 ### Deploying services to a Mixed-OS swarm
-With labels for your swarm nodes, deploying services to your cluster is easy; simply use the `--constraint` option to the `docker service create` [command](https://docs.docker.com/engine/reference/commandline/service_create/):
+With labels for your swarm nodes, deploying services to your cluster is easy; simply use the `--constraint` option to the [`docker service create`](https://docs.docker.com/engine/reference/commandline/service_create/) command:
 
 ```none
 # Deploy a service with swarm node constraint
