@@ -12,8 +12,6 @@ ms.assetid: 5ceb9626-7c48-4d42-81f8-9c936595ad85
 
 # Getting Started with Swarm Mode 
 
-**Important Note:** *Currently, swarm mode and overlay networking support are available only to [Windows Insiders](https://insider.windows.com/) as part of the upcoming Windows 10, Creators Update. Support for further Windows platforms coming soon.*
-
 ## What is “swarm mode”?
 Swarm mode is a Docker feature that provides built in container orchestration capabilities, including native clustering of Docker hosts and scheduling of container workloads. A group of Docker hosts form a “swarm” cluster when their Docker engines are running together in “swarm mode.” For additional context on swarm mode, refer to [Docker's main documentation site](https://docs.docker.com/engine/swarm/).
 
