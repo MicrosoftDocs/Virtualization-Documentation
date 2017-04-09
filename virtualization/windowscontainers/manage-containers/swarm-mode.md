@@ -150,7 +150,7 @@ Use the following command to see details on the container instances running for 
 ```none
 C:\> docker service ps <SERVICENAME>
 ```
-## Use labels to deploy services on Linux+Windows mixed-OS clusters
+## Linux+Windows mixed-OS clusters
 
 ### Initializing a Linux+Windows mixed-OS Cluster
 TODO: Can either OS be a manager/worker? Same process as adding any node?
