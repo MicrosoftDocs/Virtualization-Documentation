@@ -125,7 +125,7 @@ There are several useful commands for viewing the state of a swarm and the servi
 Use the following command to see a list of the nodes currently joined to a swarm, including informaiton on the state of each node. This command must be run from a **manager node**.
 
 ```none
-C:\ docker node ls
+C:\> docker node ls
 ```
 
 In the output of this command, you will notice one of the nodes marked with an asterisk (*); the asterisk simply indicates the current node--the node from which the `docker node ls` command was run.
@@ -134,21 +134,21 @@ In the output of this command, you will notice one of the nodes marked with an a
 Use the following command to see a list of the networks that exist on a given node. To see overlay networks, this command must be run from a **manager node** running in swarm mode.
 
 ```none
-C:\ docker network ls
+C:\> docker network ls
 ```
 
 ### List services
 Use the following command to see a list of the services currently running on a swarm, including information on their state.
 
 ```none
-C:\ docker service ls
+C:\> docker service ls
 ```
 
 ### List the container instances that define a service
 Use the following command to see details on the container instances running for a given service. The output for this command includes the IDs and nodes upon which each container is running, as well as infromation on the state of the containers.  
 
 ```none
-C:\ docker service ps <SERVICENAME>
+C:\> docker service ps <SERVICENAME>
 ```
 ## Use labels to deploy services on Linux+Windows mixed-OS clusters
 
@@ -157,11 +157,26 @@ TODO: Can either OS be a manager/worker? Same process as adding any node?
 TODO: How to add labels with join command? Instead of having to use update...
 
 ### Adding labels to swarm nodes
-In order to launch a Docker Service to a mixed-OS swarm cluster, there must be a way to distinguish which swarm nodes are capable of running tasks for the service, and which are not. [Docker object labels](https://docs.docker.com/engine/userguide/labels-custom-metadata/) provide a useful way to label nodes, so that services can be created and configured with constraints based on those labels. 
+In order to launch a Docker Service to a mixed-OS swarm cluster, there must be a way to distinguish which swarm nodes are running the OS for which that service is designed, and which are not. [Docker object labels](https://docs.docker.com/engine/userguide/labels-custom-metadata/) provide a useful way to label nodes, so that services can be created and configured to run only on the nodes that match their OS. 
 
-> While labels can be used to apply metadata to a variety of Docker objects (including container images, containers, volumes and networks), and for a variety of purposes (e.g. labels could be used to separate 'front-end' and 'back-end' components of an application, by allowing front-end microservices to be secheduled only on 'front-end' labeled nodes and back-end mircoservices to be scheduled only on 'back-end' labeled nodes). In this case, however, we use labels on nodes, to distinguish Windows OS nodes and Linux OS nodes.
+> Note: [Docker object labels](https://docs.docker.com/engine/userguide/labels-custom-metadata/) can be used to apply metadata to a variety of Docker objects (including container images, containers, volumes and networks), and for a variety of purposes (e.g. labels could be used to separate 'front-end' and 'back-end' components of an application, by allowing front-end microservices to be secheduled only on 'front-end' labeled nodes and back-end mircoservices to be scheduled only on 'back-end' labeled nodes). In this case, we use labels on nodes, to distinguish Windows OS nodes and Linux OS nodes.
 
-A service may be configured to run only on Windows hosts,
+To label your existing swarm nodes, use the following syntax:
+
+```none
+C:\> docker node update --label-add <LABELNAME>=<LABELVALUE> <NODENAME>
+```
+
+Here, `<LABELNAME>` is the name of the label you are creating--for example, in this case we are distinguishing nodes by their OS, so a logical name for the label could be, "os". `<LABELVALUE>` is the value of the label--in this case, you might choose to use the values "windows" and "linux". (Of course, you may make any naming choices for your label and label values, as long as you remain consistent). `<NODENAME>` is the name of the node that you are labeling; you can remind yourself of the names of your nodes by running `docker node ls`. 
+
+For example, if you have four swarm nodes in your cluster, including two Windows nodes and two Linux nodes, your label update commands may look like this:
+
+```none
+C:\> docker node update --label-add os=windows Windows-SwarmMaster
+C:\> docker node update --label-add os=windows Windows-SwarmWorker1
+C:\> docker node update --label-add os=linux Linux-SwarmNode1
+C:\> docker node update --label-add os=linux Linux-SwarmNode2
+```
 
 ## Limitations
 Currently, swarm mode on Windows has the following limitations:
