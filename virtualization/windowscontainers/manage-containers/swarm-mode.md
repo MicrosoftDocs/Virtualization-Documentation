@@ -151,8 +151,15 @@ C:\> docker service ps <SERVICENAME>
 ## Linux+Windows mixed-OS clusters
 
 ### Initializing a Linux+Windows mixed-OS Cluster
-TODO: Can either OS be a manager/worker? Same process as adding any node?
-TODO: How to add labels with join command? Instead of having to use update...
+Initializing a mixed-OS swarm cluster is easy--as long as your firewall rules are properly configured and your hosts have access to one another, all you need to add a Linux host to a swarm is the standard `docker swarm join` command:
+```none
+C:\> docker swarm join --token <JOINTOKEN> <MANAGERIPADDRESS>
+```
+You can also initialize a swarm from a Linux host using the same command that you would run if initializing the swarm from a Windows host:
+```none
+# Initialize a swarm 
+C:\> docker swarm init --advertise-addr=<HOSTIPADDRESS> --listen-addr <HOSTIPADDRESS>:2377
+```
 
 ### Adding labels to swarm nodes
 In order to launch a Docker Service to a mixed-OS swarm cluster, there must be a way to distinguish which swarm nodes are running the OS for which that service is designed, and which are not. [Docker object labels](https://docs.docker.com/engine/userguide/labels-custom-metadata/) provide a useful way to label nodes, so that services can be created and configured to run only on the nodes that match their OS. 
