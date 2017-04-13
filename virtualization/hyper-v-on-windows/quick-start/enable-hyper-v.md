@@ -1,5 +1,5 @@
 ---
-title: Install Hyper-V on Windows 10
+title: Enable Hyper-V on Windows 10
 description: Install Hyper-V on Windows 10
 keywords: windows 10, hyper-v
 author: scooley
@@ -75,5 +75,5 @@ When the installation has completed you are prompted to restart your computer.
 ![](media/restart_upd.png)
 
 
-## Next - Create your virtual machine
+## Make virtual machines
 [Create your first virtual machine](quick-create-virtual-machine.md)

@@ -48,6 +48,3 @@ Congratulations, you have a new virtual machine.  Now you're ready to instal the
 ![](media/OSDeploy_upd.png) 
 
 > **Note:** Unless you're running a volume-licensed version of Windows, you need a separate license for Windows running inside a virtual machine. The virtual machine's operating system is independent of the host operating system.
-
-## Next Step - Work with PowerShell and Hyper-V
-[Hyper-V and Windows PowerShell](try-hyper-v-powershell.md)
