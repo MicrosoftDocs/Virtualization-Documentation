@@ -75,5 +75,5 @@ When the installation has completed you are prompted to restart your computer.
 ![](media/restart_upd.png)
 
 
-## Next Step - Set up a network
-[Connect to the internet](connect-to-network.md)
+## Next - Create your virtual machine
+[Create your first virtual machine](quick-create-virtual-machine.md)
