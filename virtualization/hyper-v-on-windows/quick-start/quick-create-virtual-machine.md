@@ -41,12 +41,12 @@ Let's get started.
     If you have an existing virtual switch, you can select in the network dropdown. If you have no existing switch, you will see a button to set up an automatic network, which will automatically configure an external switch.
 
 4. **Connect to the virtual machine**  
-  Congratulations, you have a new virtual machine.  Selecting **Connect** will launch Virtual Machine Connection and start your virtual machine.     
-  Don't worry about editing the settings, you can go back and change them any time.
-
+  Selecting **Connect** will launch Virtual Machine Connection and start your virtual machine.     
+  Don't worry about editing the settings, you can go back and change them any time.  
+  
     You may be prompted to ‘Press any key to boot from CD or DVD’. Go ahead and do so.  As far as it knows, you're installing from a CD.
- 
-Now you're ready to instal the operating system.  Your virtual machine should look something like this:  
+
+Congratulations, you have a new virtual machine.  Now you're ready to instal the operating system.  Your virtual machine should look something like this: 
 ![](media/OSDeploy_upd.png) 
 
 > **Note:** Unless you're running a volume-licensed version of Windows, you need a separate license for Windows running inside a virtual machine. The virtual machine's operating system is independent of the host operating system.
