@@ -31,12 +31,10 @@ Let's get started.
   In Hyper-V Manager, Find **Quick Create** in the right hand **Actions** menu.
 
 3. **Customize your virtual machine**
-  * (optional) Give the virtual machine a name.
-    > **Note:** This is the name Hyper-V uses for the virtual machine, not the computer name given to the guest operating system that will be deployed inside the virtual machine.
-
-   * Select the installation media for the virtual machine. You can install from a .iso or .vhdx file.  
-     If you are installing Windows in the virtual machine, you can enable Windows Secure Boot. Otherwise leave it unselected.
-  
+  * (optional) Give the virtual machine a name.  
+    This is the name Hyper-V uses for the virtual machine, not the computer name given to the guest operating system that will be deployed inside the virtual machine.
+  * Select the installation media for the virtual machine. You can install from a .iso or .vhdx file.  
+    If you are installing Windows in the virtual machine, you can enable Windows Secure Boot. Otherwise leave it unselected.
   * Set up network.  
     If you have an existing virtual switch, you can select in the network dropdown. If you have no existing switch, you will see a button to set up an automatic network, which will automatically configure an external switch.
 
