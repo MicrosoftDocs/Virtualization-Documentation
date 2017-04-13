@@ -13,6 +13,12 @@ ms.assetid: f1e75efa-8745-4389-b8dc-91ca931fe5ae
 
 Create a virtual machine and install it's operating system.  
 
+> Windows 10 Creators Update introduced a new **Quick Create** tool to streamline building new virtual machines.  
+  If you aren't running Windows 10 Creators Update, follow these instructions instead:  
+  * [Create a new virtual machine](create-virtual-machine.md)
+  * [Create a virtual network](connect-to-network.md)
+
+
 You will need an .iso file for the operating system that you would like to run. If you don't have one on hand, grab an evaluation copy of Windows 10 from the [TechNet Evaluation Center](http://www.microsoft.com/en-us/evalcenter/).
 
 Let's get started.
