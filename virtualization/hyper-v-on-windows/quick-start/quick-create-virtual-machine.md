@@ -2,7 +2,7 @@
 title: Create a Virtual Machine with Hyper-V
 description: Create a new virtual machine with Hyper-V on Windows 10 Creators Update
 keywords: windows 10, hyper-v
-author: scooley
+author: andyat
 ms.date: 04/07/2017
 ms.topic: article
 ms.prod: windows-10-hyperv
@@ -11,13 +11,19 @@ ms.assetid: f1e75efa-8745-4389-b8dc-91ca931fe5ae
 
 # Create a Virtual Machine with Hyper-V
 
-Learn how to create a virtual machine and install an operating system in your new virtual machine. You will need an .iso file for the operating system that you would like to run. If needed, grab an evaluation copy of Windows 10 from the [TechNet Evaluation Center](http://www.microsoft.com/en-us/evalcenter/).
+Create a virtual machine and install it's operating system.  
 
-## Create a Virtual Machine with Hyper-V Manager
+You will need an .iso file for the operating system that you would like to run. If you don't have one on hand, grab an evaluation copy of Windows 10 from the [TechNet Evaluation Center](http://www.microsoft.com/en-us/evalcenter/).
 
-1. Open Hyper-V Manager by either pressing the Window's key and typing "Hyper-V Manager" or by finding **Hyper-V Manager** in your applications.
+Let's get started.
 
-2. In Hyper-V Manager, click **Action** > **Quick Create** to bring up the Quick Create dialogue.
+![](media/quickcreatesteps_inked.jpg)
+
+1. **Open Hyper-V Manager**  
+  Either press the Window's key and type "Hyper-V Manager" to search applications for Hyper-V Manager or scroll through the applications in your start menu until you find **Hyper-V Manager**.
+
+2. **Open Quick Create**  
+  In Hyper-V Manager, click **Action** > **Quick Create** to bring up the Quick Create dialogue.
 
 3. Give the virtual machine a name.
   > **Note:** This is the name Hyper-V uses for the virtual machine, not the computer name given to the guest operating system that will be deployed inside the virtual machine.
