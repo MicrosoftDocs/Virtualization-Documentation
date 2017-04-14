@@ -34,8 +34,6 @@ The first time the docker engine runs, it will create a default NAT network whic
   <img src="media/get-vmswitch.png">
 </figure>
 
-> Docker for Windows (running Docker CE engine) on Windows 10 will use a separate Internal vSwitch named 'DockerNAT' to connect the Moby Linux VM to the container host for developing Linux containers. 
-
 Containers will be attached to the default 'nat' network automatically and assigned an IP address from an internal prefix IP range. The default internal IP prefix used is 172.16.0.0/16. 
 
 
@@ -180,6 +178,9 @@ Get-VMSwitchExtension  -VMSwitchName <vSwitch Name> -Name "Microsoft Azure VFP S
 -- KALLIE TODO --
 
 ## Handy Tips & Insights
+
+> Docker for Windows (running Docker CE engine) on Windows 10 will use a separate Internal vSwitch named 'DockerNAT' to connect the Moby Linux VM to the container host for developing Linux containers. 
+
 
 Here's a list of handy tips and insights, inspired by common questions that we hear from the community...
 
