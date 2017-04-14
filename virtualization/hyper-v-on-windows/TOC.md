@@ -1,11 +1,8 @@
-
 # [Introduction to Hyper-V](./about/index.md)
-# Hyper-V Quick Start
-## [Install Hyper-V](quick-start/enable-hyper-v.md)
-## [Create a Virtual Switch](quick-start/connect-to-network.md)
-## [Create a Virtual Machine](quick-start/create-virtual-machine.md)
-## [Hyper-V and PowerShell](quick-start/try-hyper-v-powershell.md)
+# [Install Hyper-V](quick-start/enable-hyper-v.md)
+# [Make a Virtual Machine](quick-start/quick-create-virtual-machine.md)
 # Manage Virtual Machines with Hyper-V
+## [Hyper-V and PowerShell](quick-start/try-hyper-v-powershell.md)
 ## [Work with Checkpoints](user-guide/checkpoints.md)
 ## [Connect with PowerShell Direct](user-guide/powershell-direct.md)
 ## [Create pre-release VMs](user-guide/create-pre-release-vm.md) 
