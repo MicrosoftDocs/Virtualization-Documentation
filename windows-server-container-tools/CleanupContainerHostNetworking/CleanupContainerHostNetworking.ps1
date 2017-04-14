@@ -144,16 +144,23 @@ function ForceCleanupSystem
     }
 
     $cmdlet = @()
-    $cmdlet = (Get-Command *ContainerNetworking*)
+    $cmdlet = (Get-Command *ContainerNetwork*)
 
     if ($cmdlet.Count -ne 0)
     {
         Get-ContainerNetwork | Remove-ContainerNetwork -Force -ErrorAction SilentlyContinue
     }
+    else
+    {
+        # Delete vm switches
+        # TODO - Make sure all vm switches associated with Docker have been removed        
+
+        # Delete NAT (if exists)
+        # TODO - Make sure all NetNats associated with Docker 'nat' networks have been removed
+    }
 
     if ($ForceDeleteAllSwitches.IsPresent)
-    {
-    
+    {    
         if (Test-Path "HKLM:\SYSTEM\CurrentControlSet\Services\vmsmp\parameters\SwitchList")
         {
             $switchList = Get-ChildItem HKLM:\SYSTEM\CurrentControlSet\Services\vmsmp\parameters\SwitchList\ | %{$_.PSPath }
@@ -223,18 +230,37 @@ try
 {
     # Currently, this script is not compatible with overlay networking. 
     # To avoid system configuration issues, all overlay networks should be removed before this script is run.
-    Restart-Service docker -ErrorAction SilentlyContinue
-    $docker = Get-Service docker
+
+    # Check if we're running Docker for Windows (Windows 10)
+    $docker = Get-Service com.docker.service -ErrorAction SilentlyContinue
+    if ($docker -eq $null)
+    {
+        $docker = Get-Service docker 
+    }
+
+    if ($docker -eq $null)
+    {
+        Write-Host "ERROR: docker service not found on host"
+        return
+    }
+
+    Restart-Service $docker -ErrorAction SilentlyContinue    
     if ($docker.Status -eq "Running")
     {
         $dockerNetworks = Invoke-Expression -Command "docker network ls -f driver=overlay -q" -ErrorAction SilentlyContinue
-        foreach ($network in $dockerNetworks)
-        {
-            Write-Host "Overlay network detected. Id:" $network
+        if (@($dockerNetworks).Length -gt 0)
+        {        
+            Write-Host "WARNING: This script is not compatible with overlay networking." -ForegroundColor Yellow
+            foreach ($network in $dockerNetworks)
+            {
+                Write-Host "Overlay network detected. Id:" $network
+            }
+
+            Write-Host "Would you like to remove these networks?"
+            # TODO - Add prompt...            
         }
     }
-    Write-Host "WARNING: This script is not compatible with overlay networking. Before continuing, ensure all overlay networks are removed from your system." -ForegroundColor Yellow
-    Read-Host -Prompt "Press Enter to continue (or Ctrl+C to stop script) ..."
+    
     
     # Generate Random names for prefix
     $rand = New-Object System.Random
@@ -277,7 +303,12 @@ try
             $tracingEnabled = $false
         }
 
-        $rebootRequired = ForceCleanupSystem -ForceDeleteAllSwitches:$($ForceDeleteAllSwitches.IsPresent)
+        Write-Host "WARNING: This will delete all Docker networks on the host"
+        $value = Read-Host -Prompt "Do you want to continue? [Y]es or [N]o"
+        if ($value -neq 'n' -and $value -neq 'N')
+        {
+            $rebootRequired = ForceCleanupSystem -ForceDeleteAllSwitches:$($ForceDeleteAllSwitches.IsPresent)
+        }
 
         if ($tracingEnabled)
         {
