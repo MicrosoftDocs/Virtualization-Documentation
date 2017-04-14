@@ -10,9 +10,11 @@ ms.service: windows-containers
 ms.assetid: 538871ba-d02e-47d3-a3bf-25cda4a40965
 ---
 
-# Basic Container Networking
+# Windows Container Networking
+> ***Please reference [Docker Container Networking](https://docs.docker.com/engine/userguide/networking/) for general docker networking commands, options, and syntax.*** With the exception of any cases described in this document all Docker networking commands are supported on Windows with the same syntax as on Linux. Please note, however, that the Windows and Linux network stacks are different, and as such you will find that some Linux network commands (e.g. ifconfig) are not supported on Windows.
 
-This topic provides an overview of how Docker creates and manages networks on Windows. Windows containers function similarly to virtual machines in regards to networking. Each container has a virtual network adapter (vNIC) which is connected to a Hyper-V virtual switch (vSwitch). Windows support five different networking drivers or modes which can be created through Docker: *nat*, *overlay*, *transparent*, *l2bridge*, and *l2tunnel*. Depending on your physical network infrastructure and single- vs multi-host networking requirements, you should chose the network driver which best suits your needs.
+# Basic networking architecture
+This topic provides an overview of how Docker creates and manages networks on Windows. Windows containers function similarly to virtual machines in regards to networking. Each container has a virtual network adapter (vNIC) which is connected to a Hyper-V virtual switch (vSwitch). Windows support five different networking drivers or modes which can be created through Docker: *nat*, *overlay*, *transparent*, *l2bridge*, and *l2tunnel*. Depending on your physical network infrastructure and single- vs multi-host networking requirements, you should choose the network driver which best suits your needs.
 
 <figure>
   <img src="media/windowsnetworkstack-simple.png">
@@ -24,8 +26,9 @@ The first time the docker engine runs, it will create a default NAT network whic
   <img src="media/docker-network-ls.png">
 </figure>
 
-> An **internal** vSwitch is one which is not directly connected to a network adapter on the container host 
-> An **external** vSwitch is one which _is_ directly connected to a network adapter on the container host  
+> - An ***internal*** vSwitch is one which is not directly connected to a network adapter on the container host 
+
+> - An ***external*** vSwitch is one which _is_ directly connected to a network adapter on the container host  
 
 <figure>
   <img src="media/get-vmswitch.png">
@@ -35,7 +38,7 @@ The first time the docker engine runs, it will create a default NAT network whic
 
 Containers will be attached to the default 'nat' network automatically and assigned an IP address from an internal prefix IP range. The default internal IP prefix used is 172.16.0.0/16. 
 
-> Note: Please reference [Docker Container Networking](https://docs.docker.com/engine/userguide/networking/) for general docker networking commands, options, and syntax. Please note, however, that Linux network commands (e.g. ifconfig) are not supported on Windows. The Windows network stack is different than the Linux network stack.     
+
 
 ## Windows Container Network Drivers  
 
@@ -174,26 +177,27 @@ Get-Service vfpext
 # This should indicate the extension is Running: True 
 Get-VMSwitchExtension  -VMSwitchName <vSwitch Name> -Name "Microsoft Azure VFP Switch Extension"
 ```
-
-# General FAQ 
-
 -- KALLIE TODO --
 
-If you encounter an error in creating the transparent network, it is possible that there is an external vSwitch on your system which was not automatically discovered by Docker and is therefore preventing the transparent network from being bound to your container host's external network adapter. Reference the below section, 'Existing vSwitch Blocking Transparent Network Creation,' under 'Caveats and Gotchas' for more information.
+## Handy Tips & Insights
 
+Here's a list of handy tips and insights, inspired by common questions that we hear from the community...
+
+### Enable MACAddressSpoofing to use DHCP for IP assignment on a virtual container host
 If the container host is virtualized, and you wish to use DHCP for IP assignment, you must enable MACAddressSpoofing on the virtual machines network adapter. Otherwise, the Hyper-V host will block network traffic from the containers in the VM with multiple MAC addresses.
-
 ```none
 PS C:\> Get-VMNetworkAdapter -VMName ContainerHostVM | Set-VMNetworkAdapter -MacAddressSpoofing On
 ```
+### Existing vSwitch (not visible to Docker) blocking transparent network creation
+If you encounter an error in creating the transparent network, it is possible that there is an external vSwitch on your system which was not automatically discovered by Docker and is therefore preventing the transparent network from being bound to your container host's external network adapter. Reference the below section, 'Existing vSwitch Blocking Transparent Network Creation,' under 'Caveats and Gotchas' for more information.
+
+### Creating multiple transparent networks on a single container host
 If you wish to create more than one transparent network you must specify to which (virtual) network adapter the external Hyper-V Virtual Switch (created automatically) should bind.
 
+### Static IP assignment (i.e. *When do I need to specify subnet and gateway?*)
 When using static IP assignment, you must first ensure that the *--subnet* and *--gateway* parameters are specified when the network is created. The subnet and gateway IP address should be the same as the network settings for the container host - i.e. the physical network.
 
-```none
-
-When do I need to specify subnet and gateway  
-
+### DHCP IP assignment not supported with L2Bridge networks
 Why does DHCP not work with l2bridge ? Only static IP assignment is supported with l2bridge networks.
 
 > When using an l2bridge network on an SDN fabric, only dynamic IP assignment is supported. Reference the [Attaching Containers to a Virtual Network](https://technet.microsoft.com/en-us/windows-server-docs/networking/sdn/manage/connect-container-endpoints-to-a-tenant-virtual-network) topic for more information.
@@ -204,6 +208,7 @@ Multiple networks which use an external vSwitch for connectivity (e.g. Transpare
 C:\> docker run -it --network=MyTransparentNet --ip=10.80.123.32 windowsservercore cmd
 ```
 
+### IP assignment on stopped vs. running containers
 Static IP assignment is performed directly on the container's network adapter and must only be performed when the container is in a STOPPED state. "Hot-add" of container network adapters or changes to the network stack is not supported while the container is running.
 
  -- END KALLIE TODO --
