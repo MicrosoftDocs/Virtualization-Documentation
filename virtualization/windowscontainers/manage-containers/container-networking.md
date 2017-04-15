@@ -179,16 +179,30 @@ Get-VMSwitchExtension  -VMSwitchName <vSwitch Name> -Name "Microsoft Azure VFP S
 ## Tips & Insights
 Here's a list of handy tips and insights, inspired by common questions on Windows container networking that we hear from the community...
 
-### Moby Linux VMs use DockerNAT switch with Docker for Windows (a product of [Docker CE](https://www.docker.com/community-edition))
+### Moby Linux VMs use DockerNAT switch with Docker for Windows (a product of [Docker CE](https://www.docker.com/community-edition)) instead of HNS internal vSwitch 
 Docker for Windows (the Windows driver for the Docker CE engine) on Windows 10 will use an Internal vSwitch named 'DockerNAT' to connect Moby Linux VMs to the container host. Developers using Moby Linux VMs on Windows should be aware that their hosts are using the DockerNAT vSwitch rather than the vSwitch that is created by the HNS service (which is the default switch used for Windows containers). 
 
-### Enable MACAddressSpoofing to use DHCP for IP assignment on a virtual container host
-If the container host is virtualized, and you wish to use DHCP for IP assignment, you must enable MACAddressSpoofing on the virtual machines network adapter. Otherwise, the Hyper-V host will block network traffic from the containers in the VM with multiple MAC addresses.
+### To use DHCP for IP assignment on a virtual container host enable MACAddressSpoofing 
+If the container host is virtualized, and you wish to use DHCP for IP assignment, you must enable MACAddressSpoofing on the virtual machine's network adapter. Otherwise, the Hyper-V host will block network traffic from the containers in the VM with multiple MAC addresses. You can enable MACAddressSpoofing with this PowerShell command:
 ```none
 PS C:\> Get-VMNetworkAdapter -VMName ContainerHostVM | Set-VMNetworkAdapter -MacAddressSpoofing On
 ```
-### Existing vSwitch (not visible to Docker) blocking transparent network creation
-If you encounter an error in creating the transparent network, it is possible that there is an external vSwitch on your system which was not automatically discovered by Docker and is therefore preventing the transparent network from being bound to your container host's external network adapter. Reference the below section, 'Existing vSwitch Blocking Transparent Network Creation,' under 'Caveats and Gotchas' for more information.
+### Existing vSwitch (not visible to Docker) can block transparent network creation
+If you encounter an error in creating a transparent network, it is possible that there is an external vSwitch on your system which was not automatically discovered by Docker and is therefore preventing the transparent network from being bound to your container host's external network adapter. 
+
+When creating a transparent network, Docker creates an external vSwitch for the network then tries to bind the switch to an (external) network adapter - the adapter could be a VM Network Adapter or the physical network adapter. If a vSwitch has already been created on the container host, *and it is visible to Docker,* the Windows Docker engine will use that switch instead of creating a new one. However, if the vSwitch which was created out-of-band (i.e. created on the container host using HYper-V Manager or PowerShell) and is not yet visible to Docker, the Windows Docker engine will try create a new vSwitch and then be unable to connect the new switch to the container host external network adapter (because the network adapter will already be connected to the switch that was created out-of-band).
+
+For example, this issue would arise if you were to first create a new vSwitch on your host while the Docker service was running, then try to create a transparent network. In this case, Docker would not recognize the switch that you created and it would create a new vSwitch for the transparent network.
+
+There are three approaches for solving this issue:
+
+* You can of course delete the vSwitch that was created out-of-band, which will allow docker to create a new vSwitch and connect it to the host network adapter without issue. Before choosing this approach, ensure that your out-of-band vSwitch is not being used by other services (e.g. Hyper-V).
+* Alternatively, if you decide to use an external vSwitch that was created out-of-band, restart the Docker and HNS services to *make the switch visible to Docker.*
+```none
+PS C:\> restart-service hns
+PS C:\> restart-service docker
+```
+* Another option is to use the '-o com.docker.network.windowsshim.interface' option to bind the transparent network's external vSwitch to a specific network adapter which is not already in use on the container host (i.e. a network adapter other than the one being used by the vSwitch that was created out-of-band). The '-o' option is described further above, in the [Transparent Network](https://msdn.microsoft.com/virtualization/windowscontainers/management/container_networking#transparent-network) section of this document.
 
 ### Creating multiple transparent networks on a single container host
 If you wish to create more than one transparent network you must specify to which (virtual) network adapter the external Hyper-V Virtual Switch (created automatically) should bind.
@@ -293,20 +307,4 @@ Service Discovery is only supported for certain Windows network drivers.
 | transparent | NO | NO |
 | l2bridge | NO | NO |
 
-
-### Existing vSwitch Blocking Transparent Network Creation
-
-When creating a transparent network, Docker creates an external vSwitch for the network then tries to bind the switch to an (external) network adapter - the adapter could be a VM Network Adapter or the physical network adapter. If a vSwitch has already been created on the container host, *and it is visible to Docker,* the Windows Docker engine will use that switch instead of creating a new one. However, if the vSwitch which was created out-of-band (i.e. created on the container host using HYper-V Manager or PowerShell) and is not yet visible to Docker, the Windows Docker engine will try create a new vSwitch and then be unable to connect the new switch to the container host external network adapter (because the network adapter will already be connected to the switch that was created out-of-band).
-
-For example, this issue would arise if you were to first create a new vSwitch on your host while the Docker service was running, then try to create a transparent network. In this case, Docker would not recognize the switch that you created and it would create a new vSwitch for the transparent network.
-
-There are three approaches for solving this issue:
-
-* You can of course delete the vSwitch that was created out-of-band, which will allow docker to create a new vSwitch and connect it to the host network adapter without issue. Before choosing this approach, ensure that your out-of-band vSwitch is not being used by other services (e.g. Hyper-V).
-* Alternatively, if you decide to use an external vSwitch that was created out-of-band, restart the Docker and HNS services to *make the switch visible to Docker.*
-```none
-PS C:\> restart-service hns
-PS C:\> restart-service docker
-```
-* Another option is to use the '-o com.docker.network.windowsshim.interface' option to bind the transparent network's external vSwitch to a specific network adapter which is not already in use on the container host (i.e. a network adapter other than the one being used by the vSwitch that was created out-of-band). The '-o' option is described further above, in the [Transparent Network](https://msdn.microsoft.com/virtualization/windowscontainers/management/container_networking#transparent-network) section of this document.
 
