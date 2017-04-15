@@ -176,12 +176,11 @@ Get-VMSwitchExtension  -VMSwitchName <vSwitch Name> -Name "Microsoft Azure VFP S
 ```
 -- KALLIE TODO --
 
-## Handy Tips & Insights
+## Tips & Insights
+Here's a list of handy tips and insights, inspired by common questions on Windows container networking that we hear from the community...
 
-> Docker for Windows (running Docker CE engine) on Windows 10 will use a separate Internal vSwitch named 'DockerNAT' to connect the Moby Linux VM to the container host for developing Linux containers. 
-
-
-Here's a list of handy tips and insights, inspired by common questions that we hear from the community...
+### Moby Linux VMs use DockerNAT switch with Docker for Windows (a product of [Docker CE](https://www.docker.com/community-edition))
+Docker for Windows (the Windows driver for the Docker CE engine) on Windows 10 will use an Internal vSwitch named 'DockerNAT' to connect Moby Linux VMs to the container host. Developers using Moby Linux VMs on Windows should be aware that their hosts are using the DockerNAT vSwitch rather than the vSwitch that is created by the HNS service (which is the default switch used for Windows containers). 
 
 ### Enable MACAddressSpoofing to use DHCP for IP assignment on a virtual container host
 If the container host is virtualized, and you wish to use DHCP for IP assignment, you must enable MACAddressSpoofing on the virtual machines network adapter. Otherwise, the Hyper-V host will block network traffic from the containers in the VM with multiple MAC addresses.
