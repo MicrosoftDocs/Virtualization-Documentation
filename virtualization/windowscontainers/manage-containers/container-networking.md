@@ -190,6 +190,7 @@ PS C:\> Get-VMNetworkAdapter -VMName ContainerHostVM | Set-VMNetworkAdapter -Mac
 ### Creating multiple transparent networks on a single container host
 If you wish to create more than one transparent network you must specify to which (virtual) network adapter the external Hyper-V Virtual Switch should bind. To specify the interface for a network, use the following syntax:
 
+--- @Jason: Is this syntax right?
 ```
 # General syntax:
 C:\> docker network create -d transparent -o com.docker.network.windowsshim.interface=<INTERFACE NAME> <NETWORK NAME> 
@@ -201,13 +202,19 @@ C:\> docker network create -d transparent -o com.docker.network.windowsshim.inte
 ### Remember to specify *--subnet* and *--gateway* when using static IP assignment
 When using static IP assignment, you must first ensure that the *--subnet* and *--gateway* parameters are specified when the network is created. The subnet and gateway IP address should be the same as the network settings for the container host - i.e. the physical network.
 
+
 ### DHCP IP assignment not supported with L2Bridge networks
+--- @Jason: This first says only static is supported then only says dynamic is supported. What's the take-home I need to try to capture on this one?
+
 Only static IP assignment is supported with networks created using the l2bridge driver.
 
 > When using an l2bridge network on an SDN fabric, only dynamic IP assignment is supported. Reference the [Attaching Containers to a Virtual Network](https://technet.microsoft.com/en-us/windows-server-docs/networking/sdn/manage/connect-container-endpoints-to-a-tenant-virtual-network) topic for more information.
 
+--- @Jason: So this means people need to create the networks on different interfaces, right? using the `-o com.docker.network.windowsshim.interface=<INTERFACE NAME>` that I mention above.
+
 Multiple networks which use an external vSwitch for connectivity (e.g. Transparent, L2 Bridge, L2 Transparent) must each use its own network adapter.
 
+--- @Jason: I lost where this piece of code goes?
 ```none
 C:\> docker run -it --network=MyTransparentNet --ip=10.80.123.32 windowsservercore cmd
 ```
