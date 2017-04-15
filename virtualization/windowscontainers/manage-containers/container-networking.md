@@ -13,14 +13,14 @@ ms.assetid: 538871ba-d02e-47d3-a3bf-25cda4a40965
 # Windows Container Networking
 > ***Please reference [Docker Container Networking](https://docs.docker.com/engine/userguide/networking/) for general docker networking commands, options, and syntax.*** With the exception of any cases described in this document all Docker networking commands are supported on Windows with the same syntax as on Linux. Please note, however, that the Windows and Linux network stacks are different, and as such you will find that some Linux network commands (e.g. ifconfig) are not supported on Windows.
 
-# Basic networking architecture
+## Basic networking architecture
 This topic provides an overview of how Docker creates and manages networks on Windows. Windows containers function similarly to virtual machines in regards to networking. Each container has a virtual network adapter (vNIC) which is connected to a Hyper-V virtual switch (vSwitch). Windows support five different networking drivers or modes which can be created through Docker: *nat*, *overlay*, *transparent*, *l2bridge*, and *l2tunnel*. Depending on your physical network infrastructure and single- vs multi-host networking requirements, you should choose the network driver which best suits your needs.
 
 <figure>
   <img src="media/windowsnetworkstack-simple.png">
 </figure>  
 
-The first time the docker engine runs, it will create a default NAT network which uses an internal vSwitch and a Windows component named `WinNAT`. If there are any pre-existing external vSwitches on the host which were created through PowerShell or Hyper-V Manager, they will also be available to Docker using the *transparent* network driver and can be seen when you run the ``docker network ls`` command  
+The first time the docker engine runs, it will create a default NAT network, 'nat', which uses an internal vSwitch and a Windows component named `WinNAT`. If there are any pre-existing external vSwitches on the host which were created through PowerShell or Hyper-V Manager, they will also be available to Docker using the *transparent* network driver and can be seen when you run the ``docker network ls`` command  
 
 <figure>
   <img src="media/docker-network-ls.png">
@@ -34,13 +34,12 @@ The first time the docker engine runs, it will create a default NAT network whic
   <img src="media/get-vmswitch.png">
 </figure>
 
-Containers will be attached to the default 'nat' network automatically and assigned an IP address from an internal prefix IP range. The default internal IP prefix used is 172.16.0.0/16. 
-
+The 'nat' network is the default network for containers running on Windows. Any containers that are run on Windows without any flags or arguments to implement specific network configurations will be attached to the default 'nat' network, and automatically assigned an IP address from the 'nat' network's internal prefix IP range. The default internal IP prefix used for 'nat' is 172.16.0.0/16. 
 
 
 ## Windows Container Network Drivers  
 
-User-defined networks can be created using using the ``docker network create -d <driver name>`` command from the list of available drivers given below. 
+In addition to leveraging the default 'nat' network created by Docker on Windows, users can define custom container networks. User-defined networks can be created using using the Docker CLI, [`docker network create -d <NETWORK DRIVER TYPE> <NAME>`](https://docs.docker.com/engine/reference/commandline/network_create/), command. On Windows, the following network driver types are available:
 
 - **nat** – containers attached to a network created with the 'nat' driver will receive an IP address from the user-specified (``--subnet``) IP prefix. Port forwarding / mapping from the container host to container endpoints is supported.
 > Note: Multiple NAT networks are now supported with Windows 10 Creators Update! 
