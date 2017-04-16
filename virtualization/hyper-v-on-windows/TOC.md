@@ -10,6 +10,7 @@
 ## [Enable Nested Virtualization](user-guide/nested-virtualization.md)
 ## [Set up a NAT network](user-guide/setup-nat-network.md)
 ## [Build an integration Service](user-guide/make-integration-service.md)
+## [Port Hyper-V WMI](user-guide/refactor-wmiv1-to-wmiv2.md)
 # Reference
 ## [Hyper-V Requirements](reference/hyper-v-requirements.md)
 ## [Supported Guest Operating Systems](about/supported-guest-os.md)
