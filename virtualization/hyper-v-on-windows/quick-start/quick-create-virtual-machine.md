@@ -11,13 +11,13 @@ ms.assetid: f1e75efa-8745-4389-b8dc-91ca931fe5ae
 
 # Create a Virtual Machine with Hyper-V
 
-Create a virtual machine and install it's operating system.  
+Create a virtual machine and install its operating system.  
 
 You will need an .iso file for the operating system that you would like to run. If you don't have one on hand, grab an evaluation copy of Windows from the [TechNet Evaluation Center](http://www.microsoft.com/en-us/evalcenter/).
 
 
 > Windows 10 Creators Update introduced a new **Quick Create** tool to streamline building new virtual machines.  
-  If you aren't running Windows 10 Creators Update or later, follow these instructions using New-VM Wizard instead:  
+  If you aren't running Windows 10 Creators Update or later, follow these instructions using New Virtual Machine Wizard instead:  
   [Create a new virtual machine](create-virtual-machine.md)  
   [Create a virtual network](connect-to-network.md)
 
@@ -26,7 +26,7 @@ Let's get started.
 ![](media/quickcreatesteps_inked.jpg)
 
 1. **Open Hyper-V Manager**  
-  Either press the Window's key and type "Hyper-V Manager" to search applications for Hyper-V Manager or scroll through the applications in your start menu until you find Hyper-V Manager.
+  Either press the Windows key and type "Hyper-V Manager" to search applications for Hyper-V Manager or scroll through the applications in your start menu until you find Hyper-V Manager.
 
 2. **Open Quick Create**  
   In Hyper-V Manager, Find **Quick Create** in the right hand **Actions** menu.
