@@ -17,8 +17,9 @@ You will need an .iso file for the operating system that you would like to run. 
 
 
 > Windows 10 Creators Update introduced a new **Quick Create** tool to streamline building new virtual machines.  
-  If you aren't running Windows 10 Creators Update or later, follow these instructions using New-VM Wizard instead:
-  [Create a new virtual machine](create-virtual-machine.md), [Create a virtual network](connect-to-network.md)
+  If you aren't running Windows 10 Creators Update or later, follow these instructions using New-VM Wizard instead:  
+  [Create a new virtual machine](create-virtual-machine.md)  
+  [Create a virtual network](connect-to-network.md)
 
 Let's get started.
 
