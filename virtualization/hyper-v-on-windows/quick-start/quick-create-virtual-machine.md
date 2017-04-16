@@ -44,7 +44,9 @@ Let's get started.
   
     You may be prompted to ‘Press any key to boot from CD or DVD’. Go ahead and do so.  As far as it knows, you're installing from a CD.
 
-Congratulations, you have a new virtual machine.  Now you're ready to instal the operating system.  Your virtual machine should look something like this:   
+Congratulations, you have a new virtual machine.  Now you're ready to install the operating system.  
+
+Your virtual machine should look something like this:  
 ![](media/OSDeploy_upd.png) 
 
 > **Note:** Unless you're running a volume-licensed version of Windows, you need a separate license for Windows running inside a virtual machine. The virtual machine's operating system is independent of the host operating system.
