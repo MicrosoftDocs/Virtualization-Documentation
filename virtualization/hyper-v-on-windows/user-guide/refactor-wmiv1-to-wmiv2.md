@@ -13,9 +13,9 @@ ms.assetid: b13a3594-d168-448b-b0a1-7d77153759a8
 
 Windows Management Instrumentation (WMI) is the management interface underlying Hyper-V Manager and Hyper-V's PowerShell cmdlets.  While most people use our PowerShell cmdlets or Hyper-V manager,  sometimes developers needed WMI directly.  
 
-There have been two WMI versions since WMI was first introduced:
-* [WMI v1](http://msdn.microsoft.com/en-us/library/cc136992(v=vs.85).aspx) was introduced in Windows 2000.  
-* [WMI v2](http://msdn.microsoft.com/library/hh850319.aspx) was introduced in Windows Server 2012.  
+There have been two Hyper-V WMI namespaces (or versions of the Hyper-V WMI API).
+* The WMI v1 namespace (root\virtualization) which was introduced in Windows Server 2008 and last available in Windows Server 2012
+* The WMI v2 namespace (root\virtualization\v2) which was introduced in Windows Server 2012
 
 This document contains references to resources for converting code that talks to our old WMI namespace to the new one.  Initially, this is article will serves as a repository for API information and sample code / scripts that can be used to help port any programs or scripts that use Hyper-V WMI APIs from the v1 namespace to the v2 namespace.
 
