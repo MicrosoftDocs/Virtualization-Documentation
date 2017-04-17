@@ -18,7 +18,7 @@ ms.assetid: 8e273856-3620-4e58-9d1a-d1e06550448
 
 Watch a short overview: [Windows-based containers: Modern app development with enterprise-grade control](https://youtu.be/Ryx3o0rD5lY).
 
-They are an isolated, resource controlled, and portable operating environment.
+Containers are an isolated, resource controlled, and portable operating environment.
 
 Basically, a container is an isolated place where an application can run without touching the resources (memory, disk, network, etc) of other containers or the host.
 
