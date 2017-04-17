@@ -12,13 +12,7 @@ ms.assetid: 9ee0be0c-fc79-4099-b6db-52873589f09e
 
 # Virtualization Community
 
-Welcome to the virtualization documentation!  There are several sets of documentation available discussing Windows virtualization:
-* [Windows Containers](https://docs.microsoft.com/virtualization/windowscontainers/)
-* [Hyper-V on Windows 10](https://docs.microsoft.com/virtualization/hyper-v-on-windows/)
-* Hyper-V on Windows Server
-  * [Windows Server 2016](https://technet.microsoft.com/windows-server-docs/compute/hyper-v/)
-  * [Windows Server 2012R2 and 2012](https://technet.microsoft.com/library/mt169373(v=ws.11).aspx)
-  * [Windows Server 2008R2](https://technet.microsoft.com/en-us/library/cc753637(v=ws.10).aspx)
+Welcome to the virtualization documentation!  
 
 Also check out resources available to the user community. There is also a lot to see on the [Docker community](https://www.docker.com/community/participate/) pages.
 
