@@ -174,23 +174,21 @@ Get-Service vfpext
 # This should indicate the extension is Running: True 
 Get-VMSwitchExtension  -VMSwitchName <vSwitch Name> -Name "Microsoft Azure VFP Switch Extension"
 ```
--- KALLIE TODO --
 
-## Tips & Insights
+# Tips & Insights
 Here's a list of handy tips and insights, inspired by common questions on Windows container networking that we hear from the community...
 
-### Moby Linux VMs use DockerNAT switch with Docker for Windows (a product of [Docker CE](https://www.docker.com/community-edition)) instead of HNS internal vSwitch 
+## Moby Linux VMs use DockerNAT switch with Docker for Windows (a product of [Docker CE](https://www.docker.com/community-edition)) instead of HNS internal vSwitch 
 Docker for Windows (the Windows driver for the Docker CE engine) on Windows 10 will use an Internal vSwitch named 'DockerNAT' to connect Moby Linux VMs to the container host. Developers using Moby Linux VMs on Windows should be aware that their hosts are using the DockerNAT vSwitch rather than the vSwitch that is created by the HNS service (which is the default switch used for Windows containers). 
 
-### To use DHCP for IP assignment on a virtual container host enable MACAddressSpoofing 
+## To use DHCP for IP assignment on a virtual container host enable MACAddressSpoofing 
 If the container host is virtualized, and you wish to use DHCP for IP assignment, you must enable MACAddressSpoofing on the virtual machine's network adapter. Otherwise, the Hyper-V host will block network traffic from the containers in the VM with multiple MAC addresses. You can enable MACAddressSpoofing with this PowerShell command:
 ```none
 PS C:\> Get-VMNetworkAdapter -VMName ContainerHostVM | Set-VMNetworkAdapter -MacAddressSpoofing On
 ```
-### Creating multiple transparent networks on a single container host
+## Creating multiple transparent networks on a single container host
 If you wish to create more than one transparent network you must specify to which (virtual) network adapter the external Hyper-V Virtual Switch should bind. To specify the interface for a network, use the following syntax:
 
---- @Jason: Is this syntax right?
 ```
 # General syntax:
 C:\> docker network create -d transparent -o com.docker.network.windowsshim.interface=<INTERFACE NAME> <NETWORK NAME> 
@@ -199,11 +197,10 @@ C:\> docker network create -d transparent -o com.docker.network.windowsshim.inte
 C:\> docker network create -d transparent -o com.docker.network.windowsshim.interface="Ethernet 2" myTransparent2
 ```
 
-### Remember to specify *--subnet* and *--gateway* when using static IP assignment
+## Remember to specify *--subnet* and *--gateway* when using static IP assignment
 When using static IP assignment, you must first ensure that the *--subnet* and *--gateway* parameters are specified when the network is created. The subnet and gateway IP address should be the same as the network settings for the container host - i.e. the physical network.
 
-
-### DHCP IP assignment not supported with L2Bridge networks
+## DHCP IP assignment not supported with L2Bridge networks
 --- @Jason: This first says only static is supported then only says dynamic is supported. What's the take-home I need to try to capture on this one?
 
 Only static IP assignment is supported with networks created using the l2bridge driver.
@@ -219,10 +216,11 @@ Multiple networks which use an external vSwitch for connectivity (e.g. Transpare
 C:\> docker run -it --network=MyTransparentNet --ip=10.80.123.32 windowsservercore cmd
 ```
 
-### IP assignment on stopped vs. running containers
-Static IP assignment is performed directly on the container's network adapter and must only be performed when the container is in a STOPPED state. "Hot-add" of container network adapters or changes to the network stack is not supported while the container is running.
+## IP assignment on stopped vs. running containers
+Static IP assignment is performed directly on the container's network adapter and must only be performed when the container is in a STOPPED state. "Hot-add" of container network adapters or changes to the network stack is not supported (in Windows Server 2016) while the container is running.
+> Note: This behavior is changing on Windows 10, Creators Update as the platform now supports "hot-add". This capability will light-up E2E after this [outstanding Docker pull request](https://github.com/docker/libnetwork/pull/1661) is merged
 
-### Existing vSwitch (not visible to Docker) can block transparent network creation
+## Existing vSwitch (not visible to Docker) can block transparent network creation
 If you encounter an error in creating a transparent network, it is possible that there is an external vSwitch on your system which was not automatically discovered by Docker and is therefore preventing the transparent network from being bound to your container host's external network adapter. 
 
 When creating a transparent network, Docker creates an external vSwitch for the network then tries to bind the switch to an (external) network adapter - the adapter could be a VM Network Adapter or the physical network adapter. If a vSwitch has already been created on the container host, *and it is visible to Docker,* the Windows Docker engine will use that switch instead of creating a new one. However, if the vSwitch which was created out-of-band (i.e. created on the container host using HYper-V Manager or PowerShell) and is not yet visible to Docker, the Windows Docker engine will try create a new vSwitch and then be unable to connect the new switch to the container host external network adapter (because the network adapter will already be connected to the switch that was created out-of-band).
@@ -239,8 +237,6 @@ PS C:\> restart-service docker
 ```
 * Another option is to use the '-o com.docker.network.windowsshim.interface' option to bind the transparent network's external vSwitch to a specific network adapter which is not already in use on the container host (i.e. a network adapter other than the one being used by the vSwitch that was created out-of-band). The '-o' option is described further above, in the [Transparent Network](https://msdn.microsoft.com/virtualization/windowscontainers/management/container_networking#transparent-network) section of this document.
 
-
- -- END KALLIE TODO --
 
 ## Unsupported features and network options 
 
