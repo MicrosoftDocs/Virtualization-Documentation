@@ -186,6 +186,8 @@ function ForceCleanupSystem
 
     foreach ($network in $dockerNetworks)
     {
+        # NOTE: This will not delete the default "NAT" network 
+        # NOTE: This will remve networks for any vSwitches created OOB (e.g. through New-VMSwitch) but it will not remove the vSwitch itself 
         docker network rm $network
     }
 
@@ -241,7 +243,7 @@ function ForceCleanupSystem
             if ($adapters.HardwareInterface -eq $true)
             {
                 # TODO - We only want to do this on HNS-created switches which we've deleted 
-                Disable-NetAdapterBinding -Name $adapters.Name -ComponentID vms_pp
+                #Disable-NetAdapterBinding -Name $adapters.Name -ComponentID vms_pp
             }
         }
 
@@ -264,7 +266,7 @@ function ForceCleanupSystem
     if(!$rebootRequired)
     {
         Restart-Service hns -ErrorAction SilentlyContinue
-        Restart-Service docker -ErrorAction SilentlyContinue
+        #Restart-Service docker -ErrorAction SilentlyContinue
 
         $hns = Get-Service hns
 
@@ -302,7 +304,12 @@ try
         return
     }
 
-    Restart-Service $docker -ErrorAction SilentlyContinue    
+    #Restart-Service $docker -ErrorAction SilentlyContinue
+    #while ($docker.Status -not -eq "Running")
+    #{
+    #    sleep(2)
+    #}    
+
     if ($docker.Status -eq "Running")
     {
         $dockerNetworks = Invoke-Expression -Command "docker network ls -f driver=overlay -q" -ErrorAction SilentlyContinue
@@ -361,9 +368,11 @@ try
             $tracingEnabled = $false
         }
 
+        $rebootRequired = $false 
+
         Write-Host "WARNING: This will delete all Docker networks on the host"
         $value = Read-Host -Prompt "Do you want to continue? [Y]es or [N]o"
-        if ($value -neq 'n' -and $value -neq 'N') # Matches any input except 'N' and 'n'
+        if ($value.tolower() -eq 'y' -or $value.tolower() -eq 'yes')
         {
             $rebootRequired = ForceCleanupSystem -ForceDeleteAllSwitches:$($ForceDeleteAllSwitches.IsPresent)
         }
