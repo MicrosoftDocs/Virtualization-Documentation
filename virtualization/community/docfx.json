@@ -19,12 +19,11 @@
           "exclude": ["**/obj/**"]
         }
     ],
-    "externalReference": [
-    ],
+    "externalReference": [],
     "template": "op.html",
     "dest": "virtualization/community",
     "globalMetadata": {
-      "breadcrumb_path": "/virtualization/landing-page/toc.json"
+      "breadcrumb_path": "/virtualization/toc.json"
     }
   }
 }

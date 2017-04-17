@@ -14,17 +14,24 @@
       }
     ],
     "resource": [
-        {
-          "files": ["**/media/**"],
-          "exclude": ["**/obj/**"]
-        }
+      {
+        "files": [
+          "**/*.png",
+          "**/*.jpg"
+        ],
+        "exclude": [
+          "**/obj/**",
+          "**/includes/**"
+        ]
+      }
     ],
-    "externalReference": [
-    ],
-    "template": "op.html",
+    "overwrite": [],
+    "externalReference": [],
     "globalMetadata": {
-      "breadcrumb_path": "/virtualization/landing-page/toc.json"
+      "breadcrumb_path": "/virtualization/toc.json"
     },
+    "fileMetadata": {},
+    "template": [],
     "dest": "virtualization/windowscontainers"
   }
 }

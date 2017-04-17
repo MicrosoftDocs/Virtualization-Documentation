@@ -21,7 +21,6 @@
         ],
         "exclude": [
           "**/obj/**",
-          "virtualization/api/**",
           "**/includes/**"
         ]
       }
@@ -29,7 +28,7 @@
     "overwrite": [],
     "externalReference": [],
     "globalMetadata": {
-      "breadcrumb_path": "/virtualization/landing-page/toc.json"
+      "breadcrumb_path": "/virtualization/toc.json"
     },
     "fileMetadata": {},
     "template": [],
