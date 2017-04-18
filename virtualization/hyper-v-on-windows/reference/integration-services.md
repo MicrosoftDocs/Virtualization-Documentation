@@ -17,11 +17,7 @@ Integration services (often called integration components), are services that al
 This article is a reference for each integration service available in Windows.  It will also act as a starting point for any information related to specific integration services or their history.
 
 **User Guides:**  
-* [Enable/disable integration services from the Hyper-V host](../user-guide/managing-integration-services.md#enable-or-disable-integration-services-using-powershell)
-* Enable/disable integration services from inside the virtual machine.
-  * [Windows](../user-guide/managing-integration-services.md#manage-integration-services-from-guest-os-windows)
-  * [Linux](../user-guide/managing-integration-services.md#manage-integration-services-from-guest-os-linux)
-* [Integration service update and maintenance](../user-guide/managing-integration-services.md#integration-service-maintenance)
+* [Managing integration services](https://technet.microsoft.com/windows-server-docs/compute/hyper-v/manage/manage-Hyper-V-integration-services)
 
 
 ## Quick Reference

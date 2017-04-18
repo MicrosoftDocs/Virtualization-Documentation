@@ -32,6 +32,6 @@
     },
     "fileMetadata": {},
     "template": [],
-    "dest": "virtualization/api"
+    "dest": "virtualization"
   }
 }

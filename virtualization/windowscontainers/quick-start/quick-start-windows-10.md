@@ -12,87 +12,32 @@ ms.assetid: bb9bfbe0-5bdc-4984-912f-9c93ea67105f
 
 # Windows Containers on Windows 10
 
-The exercise will walk through basic deployment and use of the Windows container feature on Windows 10 Professional or Enterprise (Anniversary Edition). After completion, you will have installed the container role, and deployed a simple Hyper-V container. Before starting this quick start, familiarize yourself with basic container concepts and terminology. This information can be found on the [Quick Start Introduction](./index.md).
+The exercise will walk through basic deployment and use of the Windows container feature on Windows 10 Professional or Enterprise (Anniversary Edition). After completion, you will have installed Docker for Windows and run a simple container. Before starting this quick start, familiarize yourself with basic container concepts and terminology. This information can be found on the [Quick Start Introduction](./index.md).
 
-This quick start is specific to Hyper-V containers on Windows 10. Additional quick start documentation can be found in the table of contents on the left hand side of this page.
+This quick start is specific to Windows 10. Additional quick start documentation can be found in the table of contents on the left hand side of this page.
 
 **Prerequisites:**
 
-- One physical computer system running Windows 10 Anniversary Edition (Professional or Enterprise).   
-- This quick start can be run on a Windows 10 virtual machine however nested virtualization will need to be enabled. More information can be found in the [Nested Virtualization Guide](https://msdn.microsoft.com/en-us/virtualization/hyperv_on_windows/user_guide/nesting).
+- One physical computer system running Windows 10 Anniversary Edition or Creators Update (Professional or Enterprise).   
+- This quick start can be run on a Windows 10 virtual machine but nested virtualization will need to be enabled. More information can be found in the [Nested Virtualization Guide](https://msdn.microsoft.com/en-us/virtualization/hyperv_on_windows/user_guide/nesting).
 
-> You must install critical updates for Windows Containers to work. 
-> To check your OS version, run `winver.exe`, and compare the version shown to [Windows 10 update history](https://support.microsoft.com/en-us/help/12387/windows-10-update-history). 
+> You must install critical updates for Windows Containers to work.
+> To check your OS version, run `winver.exe`, and compare the version shown to [Windows 10 update history](https://support.microsoft.com/en-us/help/12387/windows-10-update-history).
 > Make sure you have 14393.222 or later before continuing.
 
-## 1. Install Container Feature
+## 1. Install Docker for Windows
 
-The container feature needs to be enabled before working with Windows containers. To do so run the following command in an **elevated** PowerShell session.
+[Download Docker for Windows](https://download.docker.com/win/stable/InstallDocker.msi) and run the installer. [Detailed installation instructions](https://docs.docker.com/docker-for-windows/install) are available in the Docker documentation.
 
-If you recieve an error saying `Enable-WindowsOptionalFeature` does not exist, double check that you are running PowerShell as Administrator.
+## 2. Switch to Windows containers
 
-```none
-Enable-WindowsOptionalFeature -Online -FeatureName containers -All
-```
+After installation Docker for Windows defaults to running Linux containers. Switch to Windows containers using either the Docker tray-menu or by running the following command in a PowerShell prompt `& $Env:ProgramFiles\Docker\Docker\DockerCli.exe -SwitchDaemon`.
 
-Because Windows 10 only supports Hyper-V containers, the Hyper-V feature must also be enabled. To enable the Hyper-V feature using PowerShell, run the following command in an elevated PowerShell session.
-
-```none
-Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V -All
-```
-
-When the installation has completed, reboot the computer.
-
-```none
-Restart-Computer -Force
-```
-
-> If you were previously using Hyper-V Containers on Windows 10 with the Technical Preview 5 container base images, be sure to re-enable OpLocks. Please run the following  command:  `Set-ItemProperty -Path 'HKLM:SOFTWARE\Microsoft\Windows NT\CurrentVersion\Virtualization\Containers' -Name VSmbDisableOplocks -Type DWord -Value 0 -Force`
-
-## 2. Install Docker
-
-Docker is required in order to work with Windows containers. Docker consists of the Docker Engine, and the Docker client. For this exercise, both will be installed. Run the following commands to do so.
-
-Download the Docker engine and client as a zip archive.
-
-```none
-Invoke-WebRequest "https://get.docker.com/builds/Windows/x86_64/docker-1.13.1.zip" -OutFile "$env:TEMP\docker-1.13.1.zip" -UseBasicParsing
-```
-
-Expand the zip archive into Program Files, the archive contents is already in docker directory.
-
-```none
-Expand-Archive -Path "$env:TEMP\docker-1.13.1.zip" -DestinationPath $env:ProgramFiles
-```
-
-Add the Docker directory to the system path.
-
-```none
-# Add path to this PowerShell session immediately
-$env:path += ";$env:ProgramFiles\Docker"
-
-# For persistent use after a reboot
-$existingMachinePath = [Environment]::GetEnvironmentVariable("Path",[System.EnvironmentVariableTarget]::Machine)
-[Environment]::SetEnvironmentVariable("Path", $existingMachinePath + ";$env:ProgramFiles\Docker", [EnvironmentVariableTarget]::Machine)
-```
-
-To install Docker as a Windows service, run the following.
-
-```none
-dockerd --register-service
-```
-
-Once installed, the service can be started.
-
-```none
-Start-Service Docker
-```
+![](./media/docker-for-win-switch.png)
 
 ## 3. Install Base Container Images
 
-Windows containers are deployed from templates or images. Before a container can be deployed, a container base OS image needs to be downloaded. The following commands will download the Nano Server base image.
-
-Pull the Nano Server base image.
+Windows containers are built from base images. The following command will pull the Nano Server base image.
 
 ```none
 docker pull microsoft/nanoserver
@@ -109,7 +54,7 @@ microsoft/nanoserver   latest              105d76d0f40e        4 days ago       
 
 > Please read the Windows Containers OS Image EULA which can be found here – [EULA](../images-eula.md).
 
-## 4. Deploy Your First Container
+## 4. Run Your First Container
 
 For this simple example a ‘Hello World’ container image will be created and deployed. For the best experience run these commands in an elevated Windows CMD shell or PowerShell.
 

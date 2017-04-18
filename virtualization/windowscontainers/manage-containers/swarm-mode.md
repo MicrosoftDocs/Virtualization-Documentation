@@ -12,8 +12,6 @@ ms.assetid: 5ceb9626-7c48-4d42-81f8-9c936595ad85
 
 # Getting Started with Swarm Mode 
 
-**Important Note:** *Currently, swarm mode and overlay networking support are available only to [Windows Insiders](https://insider.windows.com/) as part of the upcoming Windows 10, Creators Update. Support for further Windows platforms coming soon.*
-
 ## What is “swarm mode”?
 Swarm mode is a Docker feature that provides built in container orchestration capabilities, including native clustering of Docker hosts and scheduling of container workloads. A group of Docker hosts form a “swarm” cluster when their Docker engines are running together in “swarm mode.” For additional context on swarm mode, refer to [Docker's main documentation site](https://docs.docker.com/engine/swarm/).
 
@@ -26,7 +24,9 @@ Worker nodes are orchestrated by Docker swarm via manager nodes. To join a swarm
 
 ## Swarm mode system requirements
 
-At least one physical or virtual computer system (to use the full functionality of swarm at least two nodes is recommended) running **Windows 10 Creators Update** (available for members of the [Windows Insiders](https://insider.windows.com/) program), setup as a container host (see the topic, [Windows Containers on Windows 10](https://docs.microsoft.com/en-us/virtualization/windowscontainers/quick-start/quick-start-windows-10) for more details on how to get started with Docker containers on Windows 10)
+At least one physical or virtual computer system (to use the full functionality of swarm at least two nodes is recommended) running either **Windows 10 Creators Update** or **Windows Server 2016** *with all of the latest updates\**, setup as a container host (see the topic, [Windows Containers on Windows 10](https://docs.microsoft.com/en-us/virtualization/windowscontainers/quick-start/quick-start-windows-10) or [Windows Containers on Windows Server](https://docs.microsoft.com/en-us/virtualization/windowscontainers/quick-start/quick-start-windows-server) for more details on how to get started with Docker containers on Windows 10).
+
+\***Note**: Docker Swarm on Windows Server 2016 requires [KB4015217](https://support.microsoft.com/en-us/help/4015217/windows-10-update-kb4015217)
 
 **Docker Engine v1.13.0 or later**
 
@@ -94,7 +94,7 @@ C:\> docker network create --driver=overlay <NETWORKNAME>
 Here, \<NETWORKNAME\> is the name you'd like to give to your network.
 
 ## Deploying services to a swarm
-Once an overlay network has been created, services can be created and attached to the network. A network is created with the following syntax:
+Once an overlay network has been created, services can be created and attached to the network. A service is created with the following syntax:
 
 ```none
 # Deploy a service to the swarm
@@ -103,7 +103,7 @@ C:\> docker service create --name=<SERVICENAME> --endpoint-mode dnsrr --network=
 
 Here, \<SERVICENAME\> is the name you'd like to give to the service--this is the name you will use to reference the service via service discovery (which uses Docker's native DNS server). \<NETWORKNAME\> is the name of the network that you would like to connect this service to (for example, "myOverlayNet"). \<CONTAINERIMAGE\> is the name of the container image that will defined the service.
 
-> **Note:** The second argument to this command, `--endpoint-mode dnsrr`, is required to specify to the Docker engine that the DNS Round Robin policy will be used to balance network traffic across service container endpoints. Currently, DNS Round-Robin is the only load balancing strategy supported on Windows.[Routing mesh](https://docs.docker.com/engine/swarm/ingress/) for Windows docker hosts is not yet supported, but will be coming soon. Users seeking an alternative load balancing strategy today can setup an external load balancer (e.g. NGINX) and use Swarm’s [publish-port mode](https://docs.docker.com/engine/reference/commandline/service_create/#/publish-service-ports-externally-to-the-swarm--p---publish) to expose container host ports over which to load balanc
+> **Note:** The second argument to this command, `--endpoint-mode dnsrr`, is required to specify to the Docker engine that the DNS Round Robin policy will be used to balance network traffic across service container endpoints. Currently, DNS Round-Robin is the only load balancing strategy supported on Windows.[Routing mesh](https://docs.docker.com/engine/swarm/ingress/) for Windows docker hosts is not yet supported, but will be coming soon. Users seeking an alternative load balancing strategy today can setup an external load balancer (e.g. NGINX) and use Swarm’s [publish-port mode](https://docs.docker.com/engine/reference/commandline/service_create/#/publish-service-ports-externally-to-the-swarm--p---publish) to expose container host ports over which to load balance.
 
 ## Scaling a service
 Once a service is deployed to a swarm cluster, the container instances composing that service are deployed across the cluster. By default, the number of container instances backing a service—the number of “replicas,” or “tasks” for a service—is one. However, a service can be created with multiple tasks using the `--replicas` option to the `docker service create` command, or by scaling the service after it has been created.
@@ -116,6 +116,7 @@ C:\> docker service scale <SERVICENAME>=<REPLICAS>
 
 Here, \<SERVICENAME\> is the name of the service being scaled, and \<REPLICAS\> is the number of tasks, or container instances, to which the service is being scaled.
 
+
 ## Viewing the swarm state
 
 There are several useful commands for viewing the state of a swarm and the services running on the swarm.
@@ -124,7 +125,7 @@ There are several useful commands for viewing the state of a swarm and the servi
 Use the following command to see a list of the nodes currently joined to a swarm, including informaiton on the state of each node. This command must be run from a **manager node**.
 
 ```none
-C:\ docker node ls
+C:\> docker node ls
 ```
 
 In the output of this command, you will notice one of the nodes marked with an asterisk (*); the asterisk simply indicates the current node--the node from which the `docker node ls` command was run.
@@ -133,27 +134,108 @@ In the output of this command, you will notice one of the nodes marked with an a
 Use the following command to see a list of the networks that exist on a given node. To see overlay networks, this command must be run from a **manager node** running in swarm mode.
 
 ```none
-C:\ docker network ls
+C:\> docker network ls
 ```
 
 ### List services
 Use the following command to see a list of the services currently running on a swarm, including information on their state.
 
 ```none
-C:\ docker service ls
+C:\> docker service ls
 ```
 
 ### List the container instances that define a service
 Use the following command to see details on the container instances running for a given service. The output for this command includes the IDs and nodes upon which each container is running, as well as infromation on the state of the containers.  
 
 ```none
-C:\ docker service ps <SERVICENAME>
+C:\> docker service ps <SERVICENAME>
+```
+## Linux+Windows mixed-OS clusters
+
+### Initializing a Linux+Windows mixed-OS Cluster
+Initializing a mixed-OS swarm cluster is easy--as long as your firewall rules are properly configured and your hosts have access to one another, all you need to add a Linux host to a swarm is the standard `docker swarm join` command:
+```none
+C:\> docker swarm join --token <JOINTOKEN> <MANAGERIPADDRESS>
+```
+You can also initialize a swarm from a Linux host using the same command that you would run if initializing the swarm from a Windows host:
+```none
+# Initialize a swarm 
+C:\> docker swarm init --advertise-addr=<HOSTIPADDRESS> --listen-addr <HOSTIPADDRESS>:2377
+```
+
+### Adding labels to swarm nodes
+In order to launch a Docker Service to a mixed-OS swarm cluster, there must be a way to distinguish which swarm nodes are running the OS for which that service is designed, and which are not. [Docker object labels](https://docs.docker.com/engine/userguide/labels-custom-metadata/) provide a useful way to label nodes, so that services can be created and configured to run only on the nodes that match their OS. 
+
+> Note: [Docker object labels](https://docs.docker.com/engine/userguide/labels-custom-metadata/) can be used to apply metadata to a variety of Docker objects (including container images, containers, volumes and networks), and for a variety of purposes (e.g. labels could be used to separate 'front-end' and 'back-end' components of an application, by allowing front-end microservices to be secheduled only on 'front-end' labeled nodes and back-end mircoservices to be scheduled only on 'back-end' labeled nodes). In this case, we use labels on nodes, to distinguish Windows OS nodes and Linux OS nodes.
+
+To label your existing swarm nodes, use the following syntax:
+
+```none
+C:\> docker node update --label-add <LABELNAME>=<LABELVALUE> <NODENAME>
+```
+
+Here, `<LABELNAME>` is the name of the label you are creating--for example, in this case we are distinguishing nodes by their OS, so a logical name for the label could be, "os". `<LABELVALUE>` is the value of the label--in this case, you might choose to use the values "windows" and "linux". (Of course, you may make any naming choices for your label and label values, as long as you remain consistent). `<NODENAME>` is the name of the node that you are labeling; you can remind yourself of the names of your nodes by running `docker node ls`. 
+
+**For example**, if you have four swarm nodes in your cluster, including two Windows nodes and two Linux nodes, your label update commands may look like this:
+
+```none
+# Example -- labeling 2 Windows nodes and 2 Linux nodes in a cluster...
+C:\> docker node update --label-add os=windows Windows-SwarmMaster
+C:\> docker node update --label-add os=windows Windows-SwarmWorker1
+C:\> docker node update --label-add os=linux Linux-SwarmNode1
+C:\> docker node update --label-add os=linux Linux-SwarmNode2
+```
+
+### Deploying services to a Mixed-OS swarm
+With labels for your swarm nodes, deploying services to your cluster is easy; simply use the `--constraint` option to the [`docker service create`](https://docs.docker.com/engine/reference/commandline/service_create/) command:
+
+```none
+# Deploy a service with swarm node constraint
+C:\> docker service create --name=<SERVICENAME> --endpoint-mode dnsrr --network=<NETWORKNAME> --constraint node.labels.<LABELNAME>=<LABELVALUE> <CONTAINERIMAGE> [COMMAND] [ARGS…]
+```
+
+For example, using the label and label value nomenclature from the example above, a set of service creation commands--one for a Windows-based service and one for a Linux-based service--might look like this:
+
+```none
+# Example -- using the 'os' label and 'windows'/'linux' label values, service creation commands might look like these...
+
+# A Windows service
+C:\> docker service create --name=win_s1 --endpoint-mode dnsrr --network testoverlay --constraint 'node.labels.os==windows' microsoft/nanoserver:latest powershell -command { sleep 3600 }
+
+# A Linux service
+C:\> docker service create --name=linux_s1 --endpoint-mode dnsrr --network testoverlay --constraint 'node.labels.os==linux' redis
 ```
 
 ## Limitations
 Currently, swarm mode on Windows has the following limitations:
-- KNOWN BUG: Overlay and swarm mode are currently supported on ethernet-connected container hosts only; **they will not work with WiFi connected hosts.** We are working on fixing this.
 - Data-plane encryption not supported (i.e. container-container traffic using the `--opt encrypted` option)
-- [Routing mesh](https://docs.docker.com/engine/swarm/ingress/) for Windows docker hosts is not yet supported, but will be coming soon. Users seeking an alternative load balancing strategy today can setup an external load balancer (e.g. NGINX) and use Swarm’s [publish-port mode](https://docs.docker.com/engine/reference/commandline/service_create/#/publish-service-ports-externally-to-the-swarm--p---publish) to expose container host ports over which to load balance.  
+- [Routing mesh](https://docs.docker.com/engine/swarm/ingress/) for Windows docker hosts is not yet supported, but will be coming soon. Users seeking an alternative load balancing strategy today can setup an external load balancer (e.g. NGINX) and use Swarm’s [publish-port mode](https://docs.docker.com/engine/reference/commandline/service_create/#/publish-service-ports-externally-to-the-swarm--p---publish) to expose container host ports over which to load balance. More detail on this below.
+
+## Publish ports for service endpoints
+Docker Swarm's [routing mesh](https://docs.docker.com/engine/swarm/ingress/) feature is not yet supported on Windows, but users seeking to publish ports for their service endpoints can do so today using publish-port mode. 
+
+To cause host ports to be published for each of the tasks/container endpoints that define a service, use the `--publish mode=host,target=<CONTAINERPORT>` argument to the `docker service create` command:
+
+```none
+# Create a service for which tasks are exposed via host port
+C:\ > docker service create --name=<SERVICENAME> --publish mode=host,target=<CONTAINERPORT> --endpoint-mode dnsrr --network=<NETWORKNAME> <CONTAINERIMAGE> [COMMAND] [ARGS…]
+```
+
+For example, the following command would create a service, 's1', for which each task will be exposed via container port 80 and a randomly selected host port.
+
+```none
+C:\ > docker service create --name=s1 --publish mode=host,target=80 --endpoint-mode dnsrr web_1 powershell -command {echo sleep; sleep 360000;}
+```
+
+After creating a service using publish-port mode, the service can be queried to view the port mapping for each service task:
+
+```none
+C:\ > docker service ps <SERVICENAME>
+```
+The above command will return details on every container instance running for your service (across all of your swarm hosts). One column of the output, the “ports” column, will include port information for each host of the form \<HOSTPORT\>->\<CONTAINERPORT\>/tcp. The values of \<HOSTPORT\> will be different for each container instance, as each container is published on its own host port.
+
+
+
+
 
 

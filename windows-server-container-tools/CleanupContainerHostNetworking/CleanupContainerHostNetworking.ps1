@@ -22,7 +22,6 @@ function StartTracing
     $logFile = "$LogsPath\HNSTrace.etl"
 
     cmd /c "netsh trace start globallevel=6 provider={0c885e0d-6eb6-476c-a048-2457eed3a5c1} provider={80CE50DE-D264-4581-950D-ABADEEE0D340} provider={D0E4BC17-34C7-43fc-9A72-D89A59D6979A} provider={93f693dc-9163-4dee-af64-d855218af242} scenario=Virtualization provider=Microsoft-Windows-Hyper-V-VfpExt capture=no report=disabled traceFile=$logFile" 
-
  }
 
 function StopTracing
@@ -116,8 +115,6 @@ function CopyAllLogs
     Get-NetNatStaticMapping | FL *> $LogsPath"\GetNetNatStaticMapping.txt"
     Get-Service winnat | FL * > $LogsPath"\WinNat.txt"
     Get-Service mpssvc | FL * > $LogsPath"\mpssvc.txt"
-    Get-NetAdapter -IncludeHidden | FL * > $LogsPath"\GetNetAdapters.txt"
-    Get-NetAdapterBinding -IncludeHidden | FL * > $LogsPath"\GetNetAdapterBinding.txt"
 
     Get-ChildItem HKLM:\SYSTEM\CurrentControlSet\Services\hns -Recurse > $LogsPath"\HNSRegistry.txt"
     Get-ChildItem HKLM:\SYSTEM\CurrentControlSet\Services\vmsmp -Recurse > $LogsPath"\vmsmpRegistry.txt"
@@ -137,6 +134,7 @@ function ForceCleanupSystem
     {
         docker rm -f $container
     }
+
 
     $dockerNetworks = Invoke-Expression -Command "docker network ls -q" -ErrorAction SilentlyContinue
 
@@ -223,6 +221,21 @@ function ForceCleanupSystem
 
 try
 {
+    # Currently, this script is not compatible with overlay networking. 
+    # To avoid system configuration issues, all overlay networks should be removed before this script is run.
+    Restart-Service docker -ErrorAction SilentlyContinue
+    $docker = Get-Service docker
+    if ($docker.Status -eq "Running")
+    {
+        $dockerNetworks = Invoke-Expression -Command "docker network ls -f driver=overlay -q" -ErrorAction SilentlyContinue
+        foreach ($network in $dockerNetworks)
+        {
+            Write-Host "Overlay network detected. Id:" $network
+        }
+    }
+    Write-Host "WARNING: This script is not compatible with overlay networking. Before continuing, ensure all overlay networks are removed from your system." -ForegroundColor Yellow
+    Read-Host -Prompt "Press Enter to continue (or Ctrl+C to stop script) ..."
+    
     # Generate Random names for prefix
     $rand = New-Object System.Random
     $prefixLen = 8
@@ -276,11 +289,17 @@ try
       
         if ($rebootRequired)
         {
-            Write-Host "PLEASE RESTART THE SYSTEM TO COMPLETE CLEANUP" -ForegroundColor Green 
+            Write-Host "Script complete! Reboot required. Restart now? Enter (Y)es or (N)o ..." -ForegroundColor Green 
+            Write-Host "*Warning: Do not run any Docker commands before rebooting your machine!*" -ForegroundColor Yellow
+            $rebootNow = Read-Host
+            if ($rebootNow.toLower() -eq "y" -or $rebootNow.toLower() -eq "yes")
+            {
+                Restart-Computer -Force
+            }
+            else { return }
         }
 
     }
-    
 
     Write-Host "Complete!!!" -ForegroundColor Green 
     

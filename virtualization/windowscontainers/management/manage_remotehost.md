@@ -19,9 +19,10 @@ The steps are very straight forward:
 If you're creating the certs with an IP address, you may want to consider a static IP to avoid having to recreate certs when the IP address changes.
 
 * Restart the docker service `Restart-Service Docker`
-* Make port docker's TLS ports 2375 and 2376 available by creating an NSG rule allowing inbound traffic. Note that for secure connections you only need to allow 2376. 
-The portal should show an NSG configuration like this:
-![NGSs](images/nsg.png)
+* Make port docker's TLS ports 2375 and 2376 available by creating an NSG rule allowing inbound traffic. Note that for secure connections you only need to allow 2376.  
+  The portal should show an NSG configuration like this:  
+  ![NGSs](media/nsg.png)  
+  
 * Allow inbound connections through the Windows Firewall. 
 ```
 New-NetFirewallRule -DisplayName 'Docker SSL Inbound' -Profile @('Domain', 'Public', 'Private') -Direction Inbound -Action Allow -Protocol TCP -LocalPort 2376

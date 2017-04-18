@@ -1,21 +1,37 @@
 ﻿{
   "build": {
-    "content":
-      [
-        {
-          "files": ["**/**.md"],
-          "exclude": ["**/obj/**"]
-        }
-      ],
+    "content": [
+      {
+        "files": ["**/**.md", "**/**.yml"],
+        "exclude": [
+          "**/obj/**",
+          "**/includes/**",
+          "README.md",
+          "LICENSE",
+          "LICENSE-CODE",
+          "ThirdPartyNotices"
+        ]
+      }
+    ],
     "resource": [
-        {
-          "files": ["**/media/**"],
-          "exclude": ["**/obj/**"]
-        }
+      {
+        "files": [
+          "**/*.png",
+          "**/*.jpg"
+        ],
+        "exclude": [
+          "**/obj/**",
+          "**/includes/**"
+        ]
+      }
     ],
-    "externalReference": [
-    ],
-    "template": "op.html",
-    "dest": "virtualization/hyper-v-on-windows"
+    "overwrite": [],
+    "externalReference": [],
+    "globalMetadata": {
+      "breadcrumb_path": "/virtualization/toc.json"
+    },
+    "fileMetadata": {},
+    "template": [],
+     "dest": "virtualization/hyper-v-on-windows"
   }
 }

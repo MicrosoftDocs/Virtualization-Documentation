@@ -1,25 +1,23 @@
 ---
-title: Deploy a Windows Virtual Machine in Hyper-V on Windows 10
-description: Deploy a Windows Virtual Machine in Hyper-V on Windows 10
+title: Create a Virtual Machine with Hyper-V
+description: Create a Virtual Machine with Hyper-V on Windows 10
 keywords: windows 10, hyper-v
 author: scooley
 ms.date: 05/02/2016
 ms.topic: article
 ms.prod: windows-10-hyperv
-ms.service: windows-10-hyperv
 ms.assetid: 66723f33-b12c-49d1-82cf-71ba9d6087e9
 ---
 
-# Deploy a Windows Virtual Machine in Hyper-V on Windows 10
+# Create Virtual Machine with Hyper-V on Windows 10
 
-You can create a virtual machine and deploy an operating system to it in many different ways, such as using Windows Deployment Services, attaching a prepared virtual hard drive, or manually using the installation media. This article walks through how to create a virtual machine and deploy an operating system to the virtual machine using the operating system installation media.
-
-Before starting this exercise, you need an .iso file for the operating system that you would like to deploy. If needed, grab an evaluation copy of Windows 8.1 or Windows 10 from the [TechNet Evaluation Center](http://www.microsoft.com/en-us/evalcenter/).
+Learn how to create a virtual machine and install an operating system in your new virtual machine.  You will need an .iso file for the operating system that you would like to run. If needed, grab an evaluation copy of Windows 10 from the [TechNet Evaluation Center](http://www.microsoft.com/en-us/evalcenter/).
 
 ## Create a Virtual Machine with Hyper-V Manager
-These steps walk through how to manually create a virtual machine and deploy an operating system to this virtual machine.
 
-1. In Hyper-V Manager, click **Action** > **New** > **Virtual Machine** to bring up the New Virtual Machine Wizard.
+1. Open Hyper-V Manager by either pressing the Window's key and typing "Hyper-V Manager" or by finding **Hyper-V Manager** in your applications.
+
+2. In Hyper-V Manager, click **Action** > **New** > **Virtual Machine** to bring up the New Virtual Machine Wizard.
 
 2. Review the ‘Before You Begin’ content and click **Next**. 
 
@@ -100,6 +98,3 @@ In order to finish building your virtual machine, you need to start the virtual 
   ![](media/OSDeploy_upd.png) 
 
 > **Note:** Unless you're running a volume-licensed version of Windows, you need a separate license for Windows running inside a virtual machine. The virtual machine's operating system is independent of the host operating system.
-
-## Next Step - Work with PowerShell and Hyper-V
-[Hyper-V and Windows PowerShell](try-hyper-v-powershell.md)

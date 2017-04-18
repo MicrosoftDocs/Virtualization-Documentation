@@ -10,9 +10,11 @@ ms.service: virtualization
 ms.assetid: 9ee0be0c-fc79-4099-b6db-52873589f09e
 ---
 
-# Community Resources 
+# Virtualization Community
 
-Check out resources available to the user community. There is also a lot to see on the [Docker community](https://www.docker.com/community/participate/) pages.
+Welcome to the virtualization documentation!  
+
+Also check out resources available to the user community. There is also a lot to see on the [Docker community](https://www.docker.com/community/participate/) pages.
 
 ## Contribute
 * [Docker for Windows](https://github.com/Microsoft/docker) on GitHub
@@ -33,12 +35,10 @@ Check out resources available to the user community. There is also a lot to see 
 * [Containers 101 Video](https://channel9.msdn.com/Blogs/containers/Containers-101-with-Microsoft-and-Docker)
 * [Containers: Docker, Windows and Trends](http://azure.microsoft.com/blog/2015/08/17/containers-docker-windows-and-trends/)
 
-
 ## Blogs 
 * [Channel 9 - The Containers Channel](https://channel9.msdn.com/Blogs/containers)
 * [Server & Cloud blog](http://blogs.technet.com/b/server-cloud/)
 * [Azure blog](http://azure.microsoft.com/blog/)
-
 
 ## Presentations
 * [Build 2015 - Day One Keynote Presentation](http://channel9.msdn.com/Events/Build/2015/KEY01)

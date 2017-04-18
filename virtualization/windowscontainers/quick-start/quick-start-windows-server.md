@@ -30,11 +30,11 @@ If you would like to deploy on Azure, this [template](https://github.com/Microso
 
 ## 1. Install Docker
 
-To install Docker we'll use the [OneGet provider PowerShell module](https://github.com/oneget/oneget). The provider enables the containers feature on your machine. You also install Docker which requires a reboot. Docker is required in order to work with Windows containers. It consists of the Docker Engine and the Docker client.
+To install Docker we'll use the [OneGet provider PowerShell module](https://github.com/oneget/oneget) which works with providers to perform the installation, in this case the [MicrosoftDockerProvider](https://github.com/OneGet/MicrosoftDockerProvider). The provider enables the containers feature on your machine. You also install Docker which requires a reboot. Docker is required in order to work with Windows containers. It consists of the Docker Engine and the Docker client.
 
 Open an elevated PowerShell session and run the following commands.
 
-First, install the Docker-Microsoft PackageManagement Provider from the PowerShell Gallery.
+First, install the Docker-Microsoft PackageManagement Provider from the [PowerShell Gallery](https://www.powershellgallery.com/packages/DockerMsftProvider).
 
 ```none
 Install-Module -Name DockerMsftProvider -Repository PSGallery -Force
@@ -50,6 +50,11 @@ When PowerShell asks you whether to trust the package source 'DockerDefault', ty
 ```none
 Restart-Computer -Force
 ```
+
+> Tip: If you want to update Docker later:
+>  - Check the installed version with `Get-Package -Name Docker -ProviderName DockerMsftProvider`
+>  - Find the current version with `Find-Package -Name Docker -ProviderName DockerMsftProvider`
+>  - When you're ready, upgrade with `Install-Package -Name Docker -ProviderName DockerMsftProvider -Update -Force`, followed by `Start-Service Docker`
 
 ## 2. Install Windows Updates
 

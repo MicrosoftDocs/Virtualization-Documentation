@@ -211,6 +211,16 @@ Describe "Container network is created" {
       $switchType | Should Be "Internal"
    }
 
+   It "A Windows NAT is configured if a Docker NAT network exists" {
+       $winnatCount = (Get-NetNat | Measure-Object).Count
+       $natCount = 0
+       if ($natNetworks -ne $null)
+       {
+           $natCount += ($natNetworks | Measure-Object).Count
+       }
+       $winnatCount | Should Not BeLessThan $natCount
+   }
+
    It "Specified Network Gateway IP for NAT network is assigned to Host vNIC" {
       $natGatewayIP | Should Not BeNullOrEmpty
 
@@ -258,7 +268,7 @@ $filesToDump.Keys | ForEach-Object {
 
 if (Test-Path err.txt) { Remove-Item err.txt}
 
-Write-Output "Warnings & errors from the last 24 hours"
+Write-Output "Getting Warnings & errors in the Windows event logs from the last 24 hours"
 $logStartTime = (Get-Date).AddHours(-24)
 
 $logNames = "Microsoft-Windows-Containers-Wcifs/Operational",
@@ -274,4 +284,8 @@ $events = Get-WinEvent -FilterHashtable @{Logname=$logNames; StartTime=$logStart
 $eventCsv = "logs_$((get-date).ToString("yyyyMMdd'-'HHmmss")).csv"
 $events | Format-Table
 $events | Export-CSV $eventCsv
-Write-Host "Logs saved to $($PWD)\$($eventCsv)"
+Write-Host "Logs saved to $($PWD)\$($eventCsv)`n`n"
+
+Write-Output "Getting Docker for Windows daemon logs from the last execution"
+Write-Output "    Note: More logs are available at $($ENV:LOCALAPPDATA)\Docker. Only showing the latest."
+Get-Content "$($ENV:LOCALAPPDATA)\Docker\log.txt" | Select-String "WindowsDockerDaemon"

@@ -1,19 +1,18 @@
 ---
-title: Install Hyper-V on Windows 10
+title: Enable Hyper-V on Windows 10
 description: Install Hyper-V on Windows 10
 keywords: windows 10, hyper-v
 author: scooley
 ms.date: 05/02/2016
 ms.topic: article
 ms.prod: windows-10-hyperv
-ms.service: windows-10-hyperv
 ms.assetid: 752dc760-a33c-41bb-902c-3bb2ecd9ac86
 ---
 
 # Install Hyper-V on Windows 10
 
 Enable Hyper-V to create virtual machines on Windows 10.  
-Hyper-V can be enabed in many ways including using the Windows 10 control panel, PowerShell (my favorite) or using the Deployment Imaging Servicing and Management tool (DISM). This documents walks through each option.
+Hyper-V can be enabled in many ways including using the Windows 10 control panel, PowerShell (my favorite) or using the Deployment Imaging Servicing and Management tool (DISM). This documents walks through each option.
 
 > **Note:**  Hyper-V is built into Windows as an optional feature -- there is no Hyper-V download or installable component. 
 
@@ -39,7 +38,7 @@ Hyper-V is built into Windows as an optional feature -- there is no Hyper-V down
 
 2. Run the following command:
   ```powershell
-  Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V -All
+  Enable-WindowsOptionalFeature -Online -FeatureName:Microsoft-Hyper-V -All
   ```  
 
   If the command couldn't be found, make sure you're running PowerShell as Administrator.  
@@ -76,5 +75,5 @@ When the installation has completed you are prompted to restart your computer.
 ![](media/restart_upd.png)
 
 
-## Next Step - Set up a network
-[Connect to the internet](connect-to-network.md)
+## Make virtual machines
+[Create your first virtual machine](quick-create-virtual-machine.md)
