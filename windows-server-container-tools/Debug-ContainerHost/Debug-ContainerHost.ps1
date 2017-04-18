@@ -211,6 +211,16 @@ Describe "Container network is created" {
       $switchType | Should Be "Internal"
    }
 
+   It "A Windows NAT is configured if a Docker NAT network exists" {
+       $winnatCount = (Get-NetNat | Measure-Object).Count
+       $natCount = 0
+       if ($natNetworks -ne $null)
+       {
+           $natCount += ($natNetworks | Measure-Object).Count
+       }
+       $winnatCount | Should Not BeLessThan $natCount
+   }
+
    It "Specified Network Gateway IP for NAT network is assigned to Host vNIC" {
       $natGatewayIP | Should Not BeNullOrEmpty
 
