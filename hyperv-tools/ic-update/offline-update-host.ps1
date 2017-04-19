@@ -20,4 +20,4 @@ if ((Get-Disk $diskNo).OperationalStatus -ne 'Online')
 Add-WindowsPackage -PackagePath $cabPath -Path ($driveLetter + ":\")
 
 #Dismount the VHD
-Dismount-VHD-Path $vhdPath
+Dismount-VHD -Path $vhdPath
