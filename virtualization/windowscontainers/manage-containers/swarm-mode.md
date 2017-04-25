@@ -238,10 +238,10 @@ The above command will return details on every container instance running for yo
 
 ## Tips & Insights 
 
-#### Tip: *Existing transparent network can block overlay network creation.* 
+#### *Existing transparent network can block swarm initialization/overlay network creation* 
 Before initializing a swarm, ensure there is not an existing transparent network on your container host. An existing transparent network will block overlay network creation and prevent your swarm from initializing correctly. When an overlay network is created, a new switch is created then attached to an open host vNIC. If no vNIC is open (for example, because a transparent network is already attached to the host vNIC), network creation will fail. 
 
-*Alternatively,* if you need a transparent network on your host, instead of removing your transparent network you can create an additional external vNIC on your host to be used for overlay. To do this, simply create an additional external vNIC; the Host Network Service (HNS) will automatically recognize the free NIC on your host and use it for overlay network creation.
+*Alternatively,* if you need a transparent network on your host, instead of removing your transparent network you can create an additional external vNIC on your host to be used for overlay. To do this, simply create a new external vNIC; then, when your swarm is initialized, the Host Network Service (HNS) will automatically recognize the free NIC on your host and use it for overlay network creation.
 
 
 
