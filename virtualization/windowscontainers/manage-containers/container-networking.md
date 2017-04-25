@@ -175,7 +175,7 @@ Get-Service vfpext
 Get-VMSwitchExtension  -VMSwitchName <vSwitch Name> -Name "Microsoft Azure VFP Switch Extension"
 ```
 
-# Tips & Insights
+## Tips & Insights
 Here's a list of handy tips and insights, inspired by common questions on Windows container networking that we hear from the community...
 
 ### Moby Linux VMs use DockerNAT switch with Docker for Windows (a product of [Docker CE](https://www.docker.com/community-edition)) instead of HNS internal vSwitch 
