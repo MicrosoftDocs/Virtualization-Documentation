@@ -1,13 +1,26 @@
+
+
+
+# Creating a test Active Directory domain on Azure
+
+These steps will cover setting up a basic test environment in Azure. It will include:
+
+- One VM serving as a domain controller
+- Two VMs serving as Docker container hosts
+- A non-admin user that will be used to test access to the website
+
+If you have already have an Active Directory domain deployed you may skip running these steps. Be sure to read them so you can understand the domain and account names used in later steps and replace them with your own.
+
+
 ## Create a resource group
 Create a resource group in Azure to hold all of the resources you'll be creating:
 
 - Virtual Network
 - Virtual Machines
-- 
 
 ## Create a VNet
 
-- Don't use 172.* IPs. I used 10.3.0.0/24
+- Don't use 172.* IPs. These will be used for internal IPs of containers. I used 10.3.0.0/24
 
 ## Deploy Azure VMs
 
@@ -27,9 +40,9 @@ Deploy 3x VMs using the "Windows Server 2016 Datacenter - with Containers" image
 > Security Badness: Don't give your domain controller RDP access with a public IP
 
 
-## Start a domain
+## Create a domain
 
-Connect to dc
+Connect to the domain controller VM to run these steps
 
 1. ~~Assign a static IP address~~ - Azure already does this for you. Take note of it eg: `10.3.0.4`
 2. Install role & create domain
@@ -37,18 +50,34 @@ Connect to dc
 install-windowsfeature AD-Domain-Services
 Import-Module ADDSDeployment
 Install-ADDSForest -DomainName contoso.local -DomainNetbiosName contoso -CreateDnsDelegation:$false -DatabasePath "C:\Windows\NTDS" -DomainMode "Win2012R2" -ForestMode "Win2012R2" -InstallDns:$true -LogPath "C:\Windows\NTDS" -NoRebootOnCompletion:$false -SysvolPath "C:\Windows\SYSVOL" -Force:$true
-# ^^ will prompt for safeadminpassword
-# This next step is bad. Don't do it in production. I'm not a Kerveros expert so I won't try to explain why
-Add-KdsRootKey –EffectiveTime ((get-date).addhours(-10))
 ```
-> Skipped step - normally you should enable DNS delegation or set up an authoritive DNS server for the domain
-> Skipped step - enable DHCP in production environment
-> Security badness - That's not the right way to create a root key but it works
-
 3. Reboot the DC when prompted
 4. Reconnect with your domain admin account. This will be your original username prefixed with `contoso\`
+5. Create a KDS master root key. Run `Get-KdsRootKey` as a domain administrator to check if one has already been created. If there isn't a master root key created for your domain, see [Create the Key Distribution Service KDS Root Key](https://technet.microsoft.com/en-us/library/jj128430(v=ws.11).aspx) for steps to create one. This is not the right thing to do in production but it will get a test environment up in the fewest steps.
 
-## Join the other hosts to domain
+In a test environment with only one DC, this will create a root key and make it effective immediately. __Do not use this for production environments.__
+```powershell
+Add-KdsRootKey –EffectiveTime ((get-date).addhours(-10))
+```
+
+> Note: this sample uses Azure's predefined static IPs for all machines instead of DHCP. In most environments, you would also need to configure DNS delegation or set up an authoritive DNS server for the domain. 
+
+
+## Create a normal user account & security group for users to access the website
+
+These steps are easiest done on the domain controller. This will create an account "User1" and a security group "WebUsers" which will be used to authenticate and authorize access to the website later.
+
+
+```powershell
+New-ADUser -Name User1 -PasswordNeverExpires $true -AccountPassword ("Password123!" | ConvertTo-SecureString -AsPlainText -Force) -Enabled $true
+$user1 = Get-ADUser User1
+$usergroup = New-ADGroup -GroupCategory Security -DisplayName "Web Authorized Users" -Name WebUsers -GroupScope Universal
+$usergroup | Add-ADGroupMember -Members (Get-ADComputer -Identity host1)
+```
+
+
+
+## Join the compute hosts to domain
 
 1. Fix up DNS servers so it can find the Windows domain
 ```powershell
@@ -61,7 +90,9 @@ Set-DnsClientServerAddress -InterfaceIndex $ifIndex -ServerAddresses 10.3.0.4, $
 4. Reboot
 5. Log back in using the domain admin credentials
 
-## Update to latest Docker version
+
+
+## Update each Docker container host to latest Docker version
 
 Do this on each host
 
@@ -73,19 +104,20 @@ docker.exe version
 
 
 
+# Configuring and Creating Containers
+
+Now that you have a test environment set up with a working Active Directory domain and machines ready to run containers, the next steps are:
+- Create the Group Managed Service Account. This is the identity the container will run as
+- 
+
 ## Create Group Managed Service account
 These steps could be done using "Active Directory Users and Computers", or automated through Windows PowerShell. This guide focuses on Windows PowerShell.
 
 For a more details on using Group Managed Service Accounts, see https://technet.microsoft.com/en-us/library/jj128431(v=ws.11).aspx
 
-1. Before you can create the first gMSA, the domain needs a master root key. Run `Get-KdsRootKey` as a domain administrator to check if one has already been created. If there isn't a master root key created for your domain, see [Create the Key Distribution Service KDS Root Key](https://technet.microsoft.com/en-us/library/jj128430(v=ws.11).aspx) for steps to create one.
 
-In a test environment with only one DC, this will create a root key and make it effective immediately. Do not use this for production environments.
-```powershell
-Add-KdsRootKey –EffectiveTime ((get-date).addhours(-10))
-```
 
-2. Create an Active Directory security group to hold the hosts. Add all of container hosts that should be able to run a container using the account.
+1. Create an Active Directory security group to hold the hosts. Add all of container hosts that should be able to run a container using the account.
 ```powershell
 $group = New-ADGroup -GroupCategory Security -DisplayName "Container Hosts" -Name containerhosts -GroupScope Universal
 $group | Add-ADGroupMember -Members (Get-ADComputer -Identity host1)
@@ -105,27 +137,13 @@ SamAccountName    : HOST1$
 SID               : S-1-5-21-3262161174-1473910130-963080779-1103
 ```
 
-4. Now, an Active Directory Domain Administrator can use `New-ADServiceAccount` to create a group Managed Service Account. `AccountName`, `DnsHostName`, and `ServicePrincipalName` must be passed in to uniquely identify the new account. You also need to specify what accounts can access the account after `PrincipalsAllowedToRetrieveManagedPassword`, such as a list of the container hosts or a security group containing all of container hosts that should be able to run a container using the account. In the example below "Server14362" is a container host that has already been joined to the domain. Security groups are easier to maintain if you have multiple hosts.
+2. Now, an Active Directory Domain Administrator can use `New-ADServiceAccount` to create a group Managed Service Account. `AccountName`, `DnsHostName`, and `ServicePrincipalName` must be passed in to uniquely identify the new account. You also need to specify what accounts can access the account after `PrincipalsAllowedToRetrieveManagedPassword`, such as a list of the container hosts or a security group containing all of container hosts that should be able to run a container using the account. In the example below "Server14362" is a container host that has already been joined to the domain. Security groups are easier to maintain if you have multiple hosts.
 ```
 New-ADServiceAccount -name www -DnsHostName www.contoso.local  -ServicePrincipalNames http/www.contoso.local -PrincipalsAllowedToRetrieveManagedPassword containerhosts
 ```
 
 > Tip: Create additional accounts for dev or preproduction use if needed – eg: "ProductionA" "PreprodA" "DevA"
 
-
-## Create a normal user account & security group for users to access the website
-
-These steps are easiest done on the domain controller. 
-
-This will create an account "User1" and a security group "WebUsers" which will be used to authenticate and authorize access to the website later.
-
-
-```powershell
-New-ADUser -Name User1 -PasswordNeverExpires $true -AccountPassword ("Password123!" | ConvertTo-SecureString -AsPlainText -Force) -Enabled $true
-$user1 = Get-ADUser User1
-$usergroup = New-ADGroup -GroupCategory Security -DisplayName "Web Authorized Users" -Name WebUsers -GroupScope Universal
-$usergroup | Add-ADGroupMember -Members (Get-ADComputer -Identity host1)
-```
 
 
 
@@ -162,14 +180,16 @@ At line:1 char:1
 >
 
 
-### Creating CredentialSpecs
+## Creating CredentialSpecs
+
+These steps need to be run on each container host.
 
 1. Download the CredentialSpec module
 ```
-Start-BitsTransfer https://raw.githubusercontent.com/Microsoft/Virtualization-Documentation/live/windows-server-container-tools/ServiceAccounts/CredentialSpec.psm1
+Invoke-WebRequest -UseBasicParsing https://raw.githubusercontent.com/Microsoft/Virtualization-Documentation/live/windows-server-container-tools/ServiceAccounts/CredentialSpec.psm1 -OutFile CredentialSpec.psm1 
 ```
 
-2. Load the CredentialSpec module. It should be provided along with this document.
+2. Load the CredentialSpec module.
 ```
 Import-Module ./CredentialSpec.psm1
 ```
@@ -180,11 +200,12 @@ Import-Module .\CredentialSpec.psm1
 New-CredentialSpec -Name www -AccountName www
 ```
 
-### Test a container using the service account
+## Test a container using the service account
 
-The same `docker run` command is used to start containers, with an additional parameter `--security-opt "credentialspec=..."`. The host will use the details in the given credentialspec and start the container with the account automatically mapped.
+The same `docker run` command is used to start containers, with an additional parameter `--security-opt "credentialspec=..."`. The host will use the details in the given credentialspec and start the container with the account automatically mapped. `-h <hostname>` is also needed so that the container's hostname will match that of the Group Managed Service Account. 
+
 ```
-docker run -it --security-opt "credentialspec=file://www.json" microsoft/windowsservercore cmd
+docker run -it -h www --security-opt "credentialspec=file://www.json" microsoft/windowsservercore cmd
 ```
 
 You can run `nltest.exe /parentdomain` in a container to confirm that it is configured with a Group-Managed Service Account.
@@ -323,12 +344,6 @@ Cached Tickets: (3)
 ```
 
 
-> TODO Checking user IIS running as
-> ```
-$proc = Get-CimInstance Win32_Process -Filter "name = ‘w3wp.exe'"
-Invoke-CimMethod -InputObject $proc -MethodName GetOwner 
-```
-
 
 ## Build a container with IIS authentication & authorization Enabled
 
@@ -368,3 +383,12 @@ docker inspect  --format='{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end
 ```
 
 Connect to it in a web browser. It should prompt for username & password. Use the "contoso\User1" account that you set up earlier
+
+
+
+
+### TODO Checking user IIS running as
+> ```
+$proc = Get-CimInstance Win32_Process -Filter "name = ‘w3wp.exe'"
+Invoke-CimMethod -InputObject $proc -MethodName GetOwner 
+```
