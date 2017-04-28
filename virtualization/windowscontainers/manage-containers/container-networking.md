@@ -179,7 +179,7 @@ Get-VMSwitchExtension  -VMSwitchName <vSwitch Name> -Name "Microsoft Azure VFP S
 Here's a list of handy tips and insights, inspired by common questions on Windows container networking that we hear from the community...
 
 #### HNS requires that IPv6 is enabled on container host machines 
-As part of KB4015217 HNS requires that IPv6 is enabled on Windows container hosts. If you're running into an error such as the one below, there's a chance that IPv6 is disabled on your host machine.
+As part of [KB4015217](https://support.microsoft.com/en-us/help/4015217/windows-10-update-kb4015217) HNS requires that IPv6 is enabled on Windows container hosts. If you're running into an error such as the one below, there's a chance that IPv6 is disabled on your host machine.
 ```
 docker: Error response from daemon: container e15d99c06e312302f4d23747f2dfda4b11b92d488e8c5b53ab5e4331fd80636d encountered an error during CreateContainer: failure in a Windows system call: Element not found.
 ```
