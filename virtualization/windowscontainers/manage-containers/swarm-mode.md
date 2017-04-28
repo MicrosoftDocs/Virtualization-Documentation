@@ -239,7 +239,7 @@ The above command will return details on every container instance running for yo
 ## Tips & Insights 
 
 #### *Existing transparent network can block swarm initialization/overlay network creation* 
-On Windows, both the overlay and transparent network drivers require an external vSwitch to be bound to a (virtual) host network adapter. When an overlay network is created, a new switch is created then attached to an open network adapter. On Windows, the transparent networking mode also uses a host network adapter. At the same time, any given network adapter can only be bound to one switch at a time--if a host has only one network adapter it can attach to only one external vSwitch at a time, whether that vSwitch be for an overlay network or for a transparent network. 
+On Windows, both the overlay and transparent network drivers require an external vSwitch to be bound to a (virtual) host network adapter. When an overlay network is created, a new switch is created then attached to an open network adapter. The transparent networking mode also uses a host network adapter. At the same time, any given network adapter can only be bound to one switch at a time--if a host has only one network adapter it can attach to only one external vSwitch at a time, whether that vSwitch be for an overlay network or for a transparent network. 
 
 Hence, if a container host has only one network adapter it is possible to run into the issue of a transparent network blocking creation of an overlay network (or vice-versa), because the transparent network is currently occupying the host's only virtual network interface.
 
