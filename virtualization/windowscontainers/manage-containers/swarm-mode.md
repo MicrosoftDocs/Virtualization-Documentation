@@ -36,6 +36,7 @@ Open ports: The following ports must be available on each host. On some systems,
 - TCP and UDP port 4789 for overlay network traffic
 
 ## Initializing a Swarm cluster
+
 To initialize a swarm, simply run the following command from one of your container hosts (replacing \<HOSTIPADDRESS\> with the local IPv4 address of your host machine):
 
 ```none
@@ -235,7 +236,16 @@ C:\ > docker service ps <SERVICENAME>
 The above command will return details on every container instance running for your service (across all of your swarm hosts). One column of the output, the “ports” column, will include port information for each host of the form \<HOSTPORT\>->\<CONTAINERPORT\>/tcp. The values of \<HOSTPORT\> will be different for each container instance, as each container is published on its own host port.
 
 
+## Tips & Insights 
 
+#### *Existing transparent network can block swarm initialization/overlay network creation* 
+On Windows, both the overlay and transparent network drivers require an external vSwitch to be bound to a (virtual) host network adapter. When an overlay network is created, a new switch is created then attached to an open network adapter. The transparent networking mode also uses a host network adapter. At the same time, any given network adapter can only be bound to one switch at a time--if a host has only one network adapter it can attach to only one external vSwitch at a time, whether that vSwitch be for an overlay network or for a transparent network. 
+
+Hence, if a container host has only one network adapter it is possible to run into the issue of a transparent network blocking creation of an overlay network (or vice-versa), because the transparent network is currently occupying the host's only virtual network interface.
+
+There are two ways to get around this issue:
+- *Option 1 - delete existing transparent network:* Before initializing a swarm, ensure there is not an existing transparent network on your container host. Delete transparent networks to ensure there is a free virtual network adapter on your host to be used for overlay network creation.
+- *Option 2 - create an additional (virtual) network adapter on your host:* Instead of removing any transparent network that's on your host you can create an additional network adapter on your host to be used for overlay network creation. To do this, simply create a new external network adapter (using PowerShell or Hyper-V Manager); with the new interface in place, when your swarm is initialized the Host Network Service (HNS) will automatically recognize it on your host and use it to bind the external vSwitch for overlay network creation.
 
 
 

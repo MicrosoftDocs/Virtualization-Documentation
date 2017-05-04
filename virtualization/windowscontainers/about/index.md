@@ -28,9 +28,9 @@ A container looks and acts like a newly installed physical computer or a virtual
 
 Windows Containers include two different container types, or runtimes.
 
-**Windows Server Containers** – provide application isolation through process and namespace isolation technology. A Windows Server container shares a kernel with the container host and all containers running on the host.
+**Windows Server Containers** – provide application isolation through process and namespace isolation technology. A Windows Server Container shares a kernel with the container host and all containers running on the host.  These containers do not provide a hostile security boundary and should not be used to isolate untrusted code.
 
-**Hyper-V Containers** – expand on the isolation provided by Windows Server Containers by running each container in a highly optimized virtual machine. In this configuration the kernel of the container host is not shared with the Hyper-V Containers.
+**Hyper-V Isolation** – expands on the isolation provided by Windows Server Containers by running each container in a highly optimized virtual machine. In this configuration the kernel of the container host is not shared with other containers on the same host.  These containers are designed for hostile multitenant hosting with the same security assurances of a virtual machine.
 
 
 ## Container Fundamentals
