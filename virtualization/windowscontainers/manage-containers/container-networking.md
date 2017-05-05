@@ -46,7 +46,7 @@ In addition to leveraging the default 'nat' network created by Docker on Windows
 
 - **transparent** – containers attached to a network created with the 'transparent' driver will be directly connected to the physical network. IPs from the physical network can be assigned statically (requires user-specified ``--subnet`` option) or dynamically using an external DHCP server. 
 
-- **overlay** - __New!__  when the docker engine is running in [swarm mode](./swarm-mode.md), contaiers attached to an overlay network can communicate with other containers attached to the same network across multiple container hosts. Each overlay network that is created on a Swarm cluster is created with its own IP subnet, defined by a private IP prefix. The overlay network driver uses VXLAN encapsulation.
+- **overlay** - __New!__  when the docker engine is running in [swarm mode](./swarm-mode.md), containers attached to an overlay network can communicate with other containers attached to the same network across multiple container hosts. Each overlay network that is created on a Swarm cluster is created with its own IP subnet, defined by a private IP prefix. The overlay network driver uses VXLAN encapsulation.
 > Requires Windows Server 2016 with [KB4015217](https://support.microsoft.com/en-us/help/4015217/windows-10-update-kb4015217) or Windows 10 Creators Update 
 
 - **l2bridge** - containers attached to a network created with the 'l2bridge' driver will be will be in the same IP subnet as the container host. The IP addresses must be assigned statically from the same prefix as the container host. All container endpoints on the host will have the same MAC address due to Layer-2 address translation (MAC re-write) operation on ingress and egress.
