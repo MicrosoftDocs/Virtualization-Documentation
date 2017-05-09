@@ -99,7 +99,7 @@ Get-Process dockerd
 docker-signal -pid=<id>
 ```
 
-The output files will be located in the root directory docker is running in. The default directory is `C:\Program Files\Docker`. The actual directory can be confirmed by running `docker info -f "{{.DockerRootDir}}"`.
+The output files will be located in the data-root directory docker is running in. The default directory is `C:\ProgramData\Docker`. The actual directory can be confirmed by running `docker info -f "{{.DockerRootDir}}"`.
 
 The files will be `goroutine-stacks-<timestamp>.log` and `daemon-data-<timestamp>.log`.
 
