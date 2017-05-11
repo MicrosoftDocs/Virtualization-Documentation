@@ -120,6 +120,52 @@ function CopyAllLogs
     Get-ChildItem HKLM:\SYSTEM\CurrentControlSet\Services\vmsmp -Recurse > $LogsPath"\vmsmpRegistry.txt"
 }
 
+# Need to refactor ConfirmDelete* and possibly Get Friendly name
+#function ConfirmDelete
+#{
+#}
+
+function ConfirmDeleteSwitch
+{
+    Param(
+        [string] $switch
+    )
+
+    $switchfriendlyname = (Get-ItemProperty $switch).Friendlyname 
+    if ($switchfriendlyname -eq "DockerNAT")
+    {
+        # Don't delete the Docker NAT switch - used by Docker for Windows (Docker CE) Moby LinuxVM 
+        continue 
+    }
+    else
+    {
+        $response = Read-Host -Prompt "Are you sure you want to delete switch: $($switchfriendlyname)[Y] or [N]"
+        if ($response -eq "Y" -or $response -eq "y")
+        {
+            Write-Host "Deleting switch: $($switchfriendlyname)"
+            Remove-Item -Path $switch -Recurse -Force
+        }
+    }       
+}
+
+function ConfirmDeleteNic
+{
+    Param(
+        [string] $nic
+    )
+
+    $nicfriendlyname = (Get-ItemProperty $nic).Friendlyname 
+    if ( ($nicfriendlyname -eq "HNS Internal NIC") -or ($nicfriendlyname -eq "HNS Transparent NIC") )
+    {
+        $response = Read-Host -Prompt "Are you sure you want to delete: $($nicfriendlyname)? [Y] or [N]"
+        if ($response -eq "Y" -or $response -eq "y")
+        {
+            Write-Host "Deletingh: $($nicfriendlyname)"
+            Remove-Item -Path $nic -Recurse -Force
+        }
+    }    
+}
+
 function ForceCleanupSystem
 {
     Param(
@@ -140,27 +186,39 @@ function ForceCleanupSystem
 
     foreach ($network in $dockerNetworks)
     {
+        # NOTE: This will not delete the default "NAT" network 
+        # NOTE: This will remve networks for any vSwitches created OOB (e.g. through New-VMSwitch) but it will not remove the vSwitch itself 
         docker network rm $network
     }
 
     $cmdlet = @()
-    $cmdlet = (Get-Command *ContainerNetworking*)
+    $cmdlet = (Get-Command *ContainerNetwork*)
 
     if ($cmdlet.Count -ne 0)
     {
+        # These cmdlets are only valid in RS1 (Windows Server 2016 and Windows 10 Anniversary Edition - 1607) 
         Get-ContainerNetwork | Remove-ContainerNetwork -Force -ErrorAction SilentlyContinue
+    }
+    else
+    {
+        # Delete vm switches
+        # TODO - Make sure all vm switches associated with Docker have been removed        
+
+        # Delete NAT (if exists)
+        # TODO - Make sure all NetNats associated with Docker 'nat' networks have been removed
     }
 
     if ($ForceDeleteAllSwitches.IsPresent)
-    {
-    
+    {  
+        # Only delete "nat" internal switch or HNS-created nat switch   
         if (Test-Path "HKLM:\SYSTEM\CurrentControlSet\Services\vmsmp\parameters\SwitchList")
         {
             $switchList = Get-ChildItem HKLM:\SYSTEM\CurrentControlSet\Services\vmsmp\parameters\SwitchList\ | %{$_.PSPath }
-
-            if ($switchList.count -ne 0)
+            foreach ($switch in $switchList)
             {
-                Remove-Item -Path HKLM:\SYSTEM\CurrentControlSet\Services\vmsmp\parameters\SwitchList -Recurse -Force
+                ConfirmDeleteSwitch($switch)                                                  
+                
+                #TODO - Only do this if we actually have deleted at least one switch
                 $rebootRequired = $true
             }
         }
@@ -169,11 +227,13 @@ function ForceCleanupSystem
         {
             $nicList = Get-ChildItem HKLM:\SYSTEM\CurrentControlSet\Services\vmsmp\parameters\NicList\ | %{$_.PSPath }
 
-            if ($nicList.count -ne 0)
+            foreach ($nic in $niclist)
             {
-                Remove-Item -Path HKLM:\SYSTEM\CurrentControlSet\Services\vmsmp\parameters\NicList -Recurse -Force
+                ConfirmDeleteNic($nic)
+
+                # TODO - Only require reboot if we actually have deleted at least one NIC
                 $rebootRequired = $true
-            }
+            }                                                        
         }
 
         $adapters = Get-NetAdapter 
@@ -182,10 +242,12 @@ function ForceCleanupSystem
         {
             if ($adapters.HardwareInterface -eq $true)
             {
-                Disable-NetAdapterBinding -Name $adapters.Name -ComponentID vms_pp
+                # TODO - We only want to do this on HNS-created switches which we've deleted 
+                #Disable-NetAdapterBinding -Name $adapters.Name -ComponentID vms_pp
             }
         }
 
+        # Only remove NATs created by HNS on request from Docker 
         Get-NetNatStaticMapping | Remove-NetNatStaticMapping -Confirm:$false
         Get-NetNat | Remove-NetNat -Confirm:$false
 
@@ -204,11 +266,16 @@ function ForceCleanupSystem
     if(!$rebootRequired)
     {
         Restart-Service hns -ErrorAction SilentlyContinue
-        Restart-Service docker -ErrorAction SilentlyContinue
+        #Restart-Service docker -ErrorAction SilentlyContinue
 
         $hns = Get-Service hns
-        $docker = Get-Service docker
 
+        # TODO - Need to refactor this section since we're checking for different Docker engines in multiple locations
+        $docker = Get-Service com.docker.service -ErrorAction SilentlyContinue
+        if ($docker -eq $null)
+        {
+            $docker = Get-Service docker 
+        }        
 
         if ($hns.Status -ne "Running" -or $docker.Status -ne "Running")
         {
@@ -223,18 +290,42 @@ try
 {
     # Currently, this script is not compatible with overlay networking. 
     # To avoid system configuration issues, all overlay networks should be removed before this script is run.
-    Restart-Service docker -ErrorAction SilentlyContinue
-    $docker = Get-Service docker
+
+    # Check if we're running Docker for Windows (Windows 10)
+    $docker = Get-Service com.docker.service -ErrorAction SilentlyContinue
+    if ($docker -eq $null)
+    {
+        $docker = Get-Service docker 
+    }
+
+    if ($docker -eq $null)
+    {
+        Write-Host "ERROR: docker service not found on host"
+        return
+    }
+
+    #Restart-Service $docker -ErrorAction SilentlyContinue
+    #while ($docker.Status -not -eq "Running")
+    #{
+    #    sleep(2)
+    #}    
+
     if ($docker.Status -eq "Running")
     {
         $dockerNetworks = Invoke-Expression -Command "docker network ls -f driver=overlay -q" -ErrorAction SilentlyContinue
-        foreach ($network in $dockerNetworks)
-        {
-            Write-Host "Overlay network detected. Id:" $network
+        if (@($dockerNetworks).Length -gt 0)
+        {        
+            Write-Host "WARNING: This script is not compatible with overlay networking." -ForegroundColor Yellow
+            foreach ($network in $dockerNetworks)
+            {
+                Write-Host "Overlay network detected. Id:" $network
+            }
+
+            # TODO - Add prompt...
+            Write-Host "Would you like to remove these networks?"                        
         }
     }
-    Write-Host "WARNING: This script is not compatible with overlay networking. Before continuing, ensure all overlay networks are removed from your system." -ForegroundColor Yellow
-    Read-Host -Prompt "Press Enter to continue (or Ctrl+C to stop script) ..."
+    
     
     # Generate Random names for prefix
     $rand = New-Object System.Random
@@ -277,7 +368,14 @@ try
             $tracingEnabled = $false
         }
 
-        $rebootRequired = ForceCleanupSystem -ForceDeleteAllSwitches:$($ForceDeleteAllSwitches.IsPresent)
+        $rebootRequired = $false 
+
+        Write-Host "WARNING: This will delete all Docker networks on the host"
+        $value = Read-Host -Prompt "Do you want to continue? [Y]es or [N]o"
+        if ($value.tolower() -eq 'y' -or $value.tolower() -eq 'yes')
+        {
+            $rebootRequired = ForceCleanupSystem -ForceDeleteAllSwitches:$($ForceDeleteAllSwitches.IsPresent)
+        }
 
         if ($tracingEnabled)
         {
