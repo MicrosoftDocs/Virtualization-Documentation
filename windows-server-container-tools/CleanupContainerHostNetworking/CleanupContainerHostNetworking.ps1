@@ -1,10 +1,10 @@
-﻿param
+param
 (
     [switch] $Cleanup,
     [switch] $ForceDeleteAllSwitches,
     [string] $LogPath = ".",
     [switch] $CaptureTraces
-) 
+)
 
 function StartTracing
 {
@@ -21,7 +21,7 @@ function StartTracing
 
     $logFile = "$LogsPath\HNSTrace.etl"
 
-    cmd /c "netsh trace start globallevel=6 provider={0c885e0d-6eb6-476c-a048-2457eed3a5c1} provider={80CE50DE-D264-4581-950D-ABADEEE0D340} provider={D0E4BC17-34C7-43fc-9A72-D89A59D6979A} provider={93f693dc-9163-4dee-af64-d855218af242} scenario=Virtualization provider=Microsoft-Windows-Hyper-V-VfpExt capture=no report=disabled traceFile=$logFile" 
+    cmd /c "netsh trace start globallevel=6 provider={0c885e0d-6eb6-476c-a048-2457eed3a5c1} provider={80CE50DE-D264-4581-950D-ABADEEE0D340} provider={D0E4BC17-34C7-43fc-9A72-D89A59D6979A} provider={93f693dc-9163-4dee-af64-d855218af242} scenario=Virtualization provider=Microsoft-Windows-Hyper-V-VfpExt capture=no report=disabled traceFile=$logFile"
  }
 
 function StopTracing
@@ -63,11 +63,11 @@ function GetAllPolicies
 function CopyAllLogs
 {
     Param(
-      [string] $LogsPath 
+      [string] $LogsPath
     )
 
     $LogsPath += "_$($script:namingPrefix)"
-    
+
     if (!(Test-Path $LogsPath))
     {
         mkdir $LogsPath
@@ -101,7 +101,7 @@ function CopyAllLogs
 
     if (Test-Path "C:\Windows\System32\vfpctrl.exe")
     {
-        $allSwitches = Get-VMSwitch    
+        $allSwitches = Get-VMSwitch
         foreach ($switch in $allSwitches)
         {
             GetAllPolicies -switchName $switch.Name > $LogsPath"\SwitchPolicies_$($switch.Name).txt"
@@ -123,11 +123,11 @@ function CopyAllLogs
 function ForceCleanupSystem
 {
     Param(
-      [switch] $ForceDeleteAllSwitches 
+      [switch] $ForceDeleteAllSwitches
     )
 
     $rebootRequired =$false
-    
+
     $dockerContainers = Invoke-Expression -Command "docker ps -aq" -ErrorAction SilentlyContinue
 
     foreach ($container in $dockerContainers)
@@ -153,7 +153,7 @@ function ForceCleanupSystem
 
     if ($ForceDeleteAllSwitches.IsPresent)
     {
-    
+
         if (Test-Path "HKLM:\SYSTEM\CurrentControlSet\Services\vmsmp\parameters\SwitchList")
         {
             $switchList = Get-ChildItem HKLM:\SYSTEM\CurrentControlSet\Services\vmsmp\parameters\SwitchList\ | %{$_.PSPath }
@@ -176,7 +176,7 @@ function ForceCleanupSystem
             }
         }
 
-        $adapters = Get-NetAdapter 
+        $adapters = Get-NetAdapter
 
         foreach ($adapter in $adapters)
         {
@@ -221,7 +221,7 @@ function ForceCleanupSystem
 
 try
 {
-    # Currently, this script is not compatible with overlay networking. 
+    # Currently, this script is not compatible with overlay networking.
     # To avoid system configuration issues, all overlay networks should be removed before this script is run.
     Restart-Service docker -ErrorAction SilentlyContinue
     $docker = Get-Service docker
@@ -235,7 +235,7 @@ try
     }
     Write-Host "WARNING: This script is not compatible with overlay networking. Before continuing, ensure all overlay networks are removed from your system." -ForegroundColor Yellow
     Read-Host -Prompt "Press Enter to continue (or Ctrl+C to stop script) ..."
-    
+
     # Generate Random names for prefix
     $rand = New-Object System.Random
     $prefixLen = 8
@@ -259,11 +259,11 @@ try
         }
         catch
         {
-            Write-Host "Failed to collect tracing $_" -ForegroundColor Red 
+            Write-Host "Failed to collect tracing $_" -ForegroundColor Red
             $tracingEnabled = $false
         }
     }
-    
+
     if ($Cleanup.IsPresent)
     {
         $tracingEnabled = $true
@@ -273,7 +273,7 @@ try
         }
         catch
         {
-            Write-Host "Failed to collect tracing $_" -ForegroundColor Red 
+            Write-Host "Failed to collect tracing $_" -ForegroundColor Red
             $tracingEnabled = $false
         }
 
@@ -283,13 +283,13 @@ try
         {
             StopTracing | Out-Null
         }
-    
+
         # Collect logs before force cleanup
         CopyAllLogs -LogsPath "$LogPath\PostCleanupState" | Out-Null
-      
+
         if ($rebootRequired)
         {
-            Write-Host "Script complete! Reboot required. Restart now? Enter (Y)es or (N)o ..." -ForegroundColor Green 
+            Write-Host "Script complete! Reboot required. Restart now? Enter (Y)es or (N)o ..." -ForegroundColor Green
             Write-Host "*Warning: Do not run any Docker commands before rebooting your machine!*" -ForegroundColor Yellow
             $rebootNow = Read-Host
             if ($rebootNow.toLower() -eq "y" -or $rebootNow.toLower() -eq "yes")
@@ -301,10 +301,10 @@ try
 
     }
 
-    Write-Host "Complete!!!" -ForegroundColor Green 
-    
+    Write-Host "Complete!!!" -ForegroundColor Green
+
 }
 catch
 {
-    Write-Host "Script Failed:$_" -ForegroundColor Red 
+    Write-Host "Script Failed:$_" -ForegroundColor Red
 }
