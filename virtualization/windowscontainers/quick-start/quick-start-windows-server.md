@@ -42,7 +42,7 @@ Install-Module -Name DockerMsftProvider -Repository PSGallery -Force
 
 Next, you use the PackageManagement PowerShell module to install the latest version of Docker.
 ```none
-Install-Package -Name docker -ProviderName DockerMsftProvider
+Install-Package -Name docker -ProviderName DockerMsftProvider -Force
 ```
 
 When PowerShell asks you whether to trust the package source 'DockerDefault', type `A` to continue the installation. When the installation is complete, reboot the computer.
