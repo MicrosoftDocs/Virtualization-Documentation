@@ -1,5 +1,21 @@
 # CleanupContainerHostNetworking.ps1 - README
 
+## Basic Logs: Capture container host state for troubleshooting
+To capture basic logs to assist with container network troubleshooting, run this script without any arguments. 
+```
+PS C:\> WindowsContainerNetworking-LoggingAndCleanupAide.ps1
+```
+
+## Tracing: Capture logs for reproducible behavior
+To capture logs for a specific, reproducible behavior/issue, run this script with the CaptureTraces argument:
+```
+PS C:\> WindowsContainerNetworking-LoggingAndCleanupAide.ps1 -CaptureTraces
+```
+When the script is run with this option, it will first capture the container host state (by collecting "Basic Logging" info described above), then it will give you the following prompt: `Please reproduce issues for troubleshooting now. After completing repro steps, press any key to continue...`. **When this prompt appears, reproduce the behavior/issue that you would like to capture**. After reproducing the issue, press any key to continue/end the script.
+
+## 
+
+
 This script can be run with no options or with the -ForceCleanup option:
 * Run script with **no options** to collect HNS evt files for debugging
 * Run script with the **-ForceCleanup** option to collect HNS evt files for debugging *and force a host networking cleanup*
