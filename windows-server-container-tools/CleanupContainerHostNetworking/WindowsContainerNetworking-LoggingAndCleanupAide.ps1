@@ -281,28 +281,23 @@ function CopyAllLogs
         Get-Service vfpext | FL * > $LogsPath"\vfpext.txt"
     }
 
-    # Check if Docker (any version) is running...
-    $ErrorActionPreference = "silentlycontinue"
-    if ((Get-Process docker*).Length -gt 0)
+
+    # Get docker version
+    docker -v > $LogsPath"\docker_v.txt"
+
+    # Get docker info
+    docker info > $LogsPath"\docker_info.txt"
+
+    # Get list containing IDs of current container networks on host
+    $networks=docker network ls -q
+    # Initialize file for recording network info
+    "Number of container networks currently on this host: "+$networks.Length+"`\n" > $LogsPath"\docker_network_inspect.txt"
+    # Inspect each network
+    foreach($network in $networks)
     {
-        # Get docker version
-        docker -v > $LogsPath"\docker_v.txt"
-
-        # Get docker info
-        docker info > $LogsPath"\docker_info.txt"
-
-        # Get list containing IDs of current container networks on host
-        $networks=docker network ls -q
-        # Initialize file for recording network info
-        "Number of container networks currently on this host: "+$networks.Length+"`\n" > $LogsPath"\docker_network_inspect.txt"
-        # Inspect each network
-        foreach($network in $networks)
-        {
-          $addMe = docker network inspect $network
-          Add-Content $LogsPath"\docker_network_inspect.txt" $addMe
-        }
+      $addMe = docker network inspect $network
+      Add-Content $LogsPath"\docker_network_inspect.txt" $addMe
     }
-    $ErrorActionPreference = "continue"
 
     Get-VMSwitch | FL * > $LogsPath"\GetVMSwitch.txt"
     Get-NetNat | FL * > $LogsPath"\GetNetNat.txt"
@@ -339,31 +334,56 @@ function GenerateRandomSuffix
 # SCRIPT STARTS HERE
 # -----------------------------------------------------------------------
 try
-{
-    # Currently, this script is not compatible with overlay networking.
-    # To avoid system configuration issues, all overlay networks should be removed before this script is run.
+{   
+    # FIRST, WHICH VERSION OF DOCKER IS RUNNING ON THIS HOST?
+    # *******************************************************
 
-    # Check if Docker (any version) is running...
-    $dockerIsRunning = ((Get-Process docker*).Length -gt 0)
-    if ($dockerIsRunning)
-    {
-        $dockerNetworks = Invoke-Expression -Command "docker network ls -f driver=overlay -q" -ErrorAction SilentlyContinue
-        foreach ($network in $dockerNetworks)
-        {
-            Write-Host "Overlay network detected. Id:" $network
-        }
-    }
+	Try
+	{
+		# Docker EE
+	    Get-Service docker -ErrorAction stop
+	}
+	Catch [Microsoft.PowerShell.Commands.ServiceCommandException]
+	{
+		# Docker CE
+	    Get-Service com.docker.service -ErrorAction stop
+	}
+	Catch
+	{
+		write-host "ERROR: Docker is not running on this host. Please start Docker and try again." -ForegroundColor Red
+		exit
+	}
 
-    Write-Host "WARNING: This script is not compatible with overlay networking. Before continuing, ensure all overlay networks are removed from your system." -ForegroundColor Yellow
-    Read-Host -Prompt "Press Enter to continue (or Ctrl+C to stop script) ..."
+	# MAKE SURE HOST IS NOT IN SWARM MODE
+	# ***********************************
 
+	# This script requires that the docker engine on the host not be running in swarm mode. Making sure this host is not in swarm mode...
+	$dockerInfo = docker info --format '{{json .}}' | ConvertFrom-Json
+	if ($dockerInfo.Swarm.LocalNodeState -eq 'active')
+	{
+ 		Write-Host "WARNING: This script cannot be used on hosts that are running in swarm mode, and this machine is currently in an active swarm state." -ForegroundColor Yellow
+ 		Write-Host "Would you like to exit swarm mode now to continue running this script?"  
+	    	$Readhost = Read-Host " ( y / n ) " 
+    		Switch ($ReadHost) 
+     		{ 
+       			Y {Write-host "Exiting swarm mode now..."; docker swarm leave --force; sleep 10;} 
+      			N {Write-Host "Cannot run script when host is in active swarm state. Exiting."; exit;} 
+       			Default {Write-Host "Cannot run script when host is in active swarm state. Exiting."; exit;}
+     		} 
+	}
+
+	# CAPTURE HOST STATE
+	# ******************
     # Generate naming suffix for logs that will be generated
     $namingSuffix = GenerateRandomSuffix
 
     # Collect info on the machine state
     CopyAllLogs -LogsPath "$LogPath\PreCleanupState" | Out-Null
 
-    # Capture Traces...
+
+    # IF -CAPTURETRACES OPTION IS PRESENT...
+    # **************************************
+
     if ($CaptureTraces.IsPresent)
     {
         try{
@@ -380,7 +400,9 @@ try
         }
     }
 
-    # Cleanup host...
+    # IF -CLEANUP OPTION IS PRESENT...
+    # ********************************
+
     if ($Cleanup.IsPresent)
     {
         $tracingEnabled = $true
