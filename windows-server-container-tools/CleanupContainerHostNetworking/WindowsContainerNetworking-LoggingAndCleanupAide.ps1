@@ -341,7 +341,7 @@ try
 	Try
 	{
 		# Docker EE
-	    Get-Service docker -ErrorAction stop
+	    Get-Service docker -ErrorAction silentlycontinue
 	}
 	Catch [Microsoft.PowerShell.Commands.ServiceCommandException]
 	{
