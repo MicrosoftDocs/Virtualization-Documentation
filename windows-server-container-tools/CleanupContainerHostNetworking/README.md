@@ -1,6 +1,6 @@
 # CleanupContainerHostNetworking.ps1 - README
 
-> <span style="color:orange"> WARNING: Currently, this script is not compatible with overlay networking. Before running this script, ensure all overlay networks are removed from your host.</span>
+WARNING: Currently, this script is not compatible with overlay networking. Before running this script, ensure all overlay networks are removed from your host.
 
 ## Basic Logs: Capture container host state for troubleshooting
 To capture basic logs\* to assist with container network troubleshooting, run this script *without any arguments*: 
@@ -13,7 +13,7 @@ To capture logs for a specific, reproducible behavior/issue, run this script wit
 ```
 PS C:\> WindowsContainerNetworking-LoggingAndCleanupAide.ps1 -CaptureTraces
 ```
-> When the script is run with this option, it will give you the following prompt: `Please reproduce issues for troubleshooting now. After completing repro steps, press any key to continue...`. **When this prompt appears, reproduce the behavior/issue that you would like to capture**. Then, after reproducing the issue, **press any key to continue/end the script.**
+When the script is run with this option, it will give you the following prompt: `Please reproduce issues for troubleshooting now. After completing repro steps, press any key to continue...`. **When this prompt appears, reproduce the behavior/issue that you would like to capture**. Then, after reproducing the issue, **press any key to continue/end the script.**
 
 ## Host Cleanup: Remove/reset container networking components on your host
 This script can be used to refresh the container-related network components on your host. To perform a host network cleanup, run this script with the `-Cleanup` option:
