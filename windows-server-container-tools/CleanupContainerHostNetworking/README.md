@@ -5,20 +5,20 @@ WARNING: Currently, this script is not compatible with overlay networking. Befor
 ## Basic Logs: Capture container host state for troubleshooting
 To capture basic logs\* to assist with container network troubleshooting, run this script *without any arguments*: 
 ```
-PS C:\> WindowsContainerNetworking-LoggingAndCleanupAide.ps1
+PS C:\> .\WindowsContainerNetworking-LoggingAndCleanupAide.ps1
 ```
 
 ## Tracing: Capture logs for reproducible behavior
 To capture logs for a specific, reproducible behavior/issue, run this script with the `-CaptureTraces` argument:
 ```
-PS C:\> WindowsContainerNetworking-LoggingAndCleanupAide.ps1 -CaptureTraces
+PS C:\> .\WindowsContainerNetworking-LoggingAndCleanupAide.ps1 -CaptureTraces
 ```
 When the script is run with this option, it will give you the following prompt: `Please reproduce issues for troubleshooting now. After completing repro steps, press any key to continue...`. **When this prompt appears, reproduce the behavior/issue that you would like to capture**. Then, after reproducing the issue, **press any key to continue/end the script.**
 
 ## Host Cleanup: Remove/reset container networking components on your host
 This script can be used to refresh the container-related network components on your host. To perform a host network cleanup, run this script with the `-Cleanup` option:
 ```
-PS C:\> WindowsContainerNetworking-LoggingAndCleanupAide.ps1 -Cleanup
+PS C:\> .\WindowsContainerNetworking-LoggingAndCleanupAide.ps1 -Cleanup
 ```
 *When run with this option, the script will:*
 - Stop/Remove all containers on the host, regardless of their state 
@@ -26,7 +26,7 @@ PS C:\> WindowsContainerNetworking-LoggingAndCleanupAide.ps1 -Cleanup
 
 In addition to the basic `-Cleanup` option, there is also the `-ForceDeleteAllSwitches` option. *Use these options together to force an extended host cleanup*, in which Switch/NIC registry keys are removed from your host, network adapters are unbound and the host default NAT network is removed, and the HNS.data file is deleted to remove all current HNS configurations.
 ```
-PS C:\> WindowsContainerNetworking-LoggingAndCleanupAide.ps1 -Cleanup -ForceDeleteAllSwitches
+PS C:\> .\WindowsContainerNetworking-LoggingAndCleanupAide.ps1 -Cleanup -ForceDeleteAllSwitches
 ```
 
 ### \*Info/logs collected for capturing container host state
