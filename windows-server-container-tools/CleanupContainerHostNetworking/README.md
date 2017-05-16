@@ -5,25 +5,24 @@ To capture basic logs\* to assist with container network troubleshooting, run th
 ```
 PS C:\> WindowsContainerNetworking-LoggingAndCleanupAide.ps1
 ```
-\* More info below on exactly which logs are captured.
 
 ## Tracing: Capture logs for reproducible behavior
 To capture logs for a specific, reproducible behavior/issue, run this script with the `-CaptureTraces` argument:
 ```
 PS C:\> WindowsContainerNetworking-LoggingAndCleanupAide.ps1 -CaptureTraces
 ```
-When the script is run with this option, it will first capture the container host state (by collecting "Basic Logging" info described above), then it will give you the following prompt: `Please reproduce issues for troubleshooting now. After completing repro steps, press any key to continue...`. **When this prompt appears, reproduce the behavior/issue that you would like to capture**. Then, after reproducing the issue, **press any key to continue/end the script.**
+> When the script is run with this option, it will give you the following prompt: `Please reproduce issues for troubleshooting now. After completing repro steps, press any key to continue...`. **When this prompt appears, reproduce the behavior/issue that you would like to capture**. Then, after reproducing the issue, **press any key to continue/end the script.**
 
 ## Host Cleanup: Remove/reset container networking components on your host
 This script can be used to refresh the container-related network components on your host. To perform a host network cleanup, run this script with the `Cleanup` option:
 ```
 PS C:\> WindowsContainerNetworking-LoggingAndCleanupAide.ps1 -Cleanup
 ```
-*When run with this option, the script will:*
-- Stop/Remove all containers on the host, regardless of their state (you can view all containers on your host using `docker ps -a`)
-- Remove all container networks on the host
+> *When run with this option, the script will:*
+> - Stop/Remove all containers on the host, regardless of their state (you can view all containers on your host using `docker ps -a`)
+> - Remove all container networks on the host
 
-## Specific logs captured
+## \*Specific logs for capturing container host state
 *Whether it is run without arguments, or with any of the arguments above, as part of its basic logging functionality this script captures:*
 - The Host Network Service (HNS) event log (`c:\Windows\System32\winevt\Logs\Microsoft-Windows-Host-Network-Service-Admin.evtx`)
 - The System event log (`c:\Windows\System32\winevt\Logs\System.evtx`)
