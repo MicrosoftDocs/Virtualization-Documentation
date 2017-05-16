@@ -33,7 +33,7 @@ This script assumes the following about your system. Ensure these requirements a
 - Microsoft Hyper-V role is enabled 
 - The Windows Containers feature is installed
 
-### \*Info/logs collected for capturing container host state
+## \*Info/logs collected for capturing container host state
 *Whether it is run without arguments, or with any of the arguments above, as part of its basic logging functionality this script captures:*
 - The Host Network Service (HNS) event log (`c:\Windows\System32\winevt\Logs\Microsoft-Windows-Host-Network-Service-Admin.evtx`)
 - The System event log (`c:\Windows\System32\winevt\Logs\System.evtx`)
