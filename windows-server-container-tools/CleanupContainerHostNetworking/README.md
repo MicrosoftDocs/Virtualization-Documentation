@@ -25,6 +25,13 @@ In addition to the basic `-Cleanup` option, there is also the `-ForceDeleteAllSw
 ```
 PS C:\> .\WindowsContainerNetworking-LoggingAndCleanupAide.ps1 -Cleanup -ForceDeleteAllSwitches
 ```
+## Assumptions/System Requirements - *READ BEFORE RUNNING SCRIPT*
+
+**WARNING:** Currently, this script is not compatible with overlay networking. Before running this script, ensure all overlay networks are removed from your host.
+
+This script assumes the following about your system. Ensure these requirements are met before running this script on your system:
+- Microsoft Hyper-V role is enabled 
+- The Windows Containers feature is installed
 
 ### \*Info/logs collected for capturing container host state
 *Whether it is run without arguments, or with any of the arguments above, as part of its basic logging functionality this script captures:*
@@ -46,11 +53,5 @@ PS C:\> .\WindowsContainerNetworking-LoggingAndCleanupAide.ps1 -Cleanup -ForceDe
 - The HNS registry settings (`PS C:\> Get-ChildItem HKLM:\SYSTEM\CurrentControlSet\Services\hns`)
 - The Hyper-V registry settings (`PS C:\> Get-ChildItem HKLM:\SYSTEM\CurrentControlSet\Services\vmsmp`)
 
-### Assumptions/System Requirements - READ BEFORE RUNNING SCRIPT
 
-WARNING: Currently, this script is not compatible with overlay networking. Before running this script, ensure all overlay networks are removed from your host.
-
-This script assumes the following about your system. Ensure these requirements are met before running this script on your system:
-- Microsoft Hyper-V role is enabled 
-- The Windows Containers feature is installed
 
