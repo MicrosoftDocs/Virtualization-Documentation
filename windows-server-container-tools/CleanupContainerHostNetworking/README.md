@@ -21,7 +21,7 @@ This script can be used to refresh the container-related network components on y
 PS C:\> WindowsContainerNetworking-LoggingAndCleanupAide.ps1 -Cleanup
 ```
 *When run with this option, the script will:*
-- Stop/Remove all containers on the host, regardless of their state (you can view all containers on your host using `docker ps -a`)
+- Stop/Remove all containers on the host, regardless of their state 
 - Remove all container networks on the host
 
 In addition to the basic `-Cleanup` option, there is also the `-ForceDeleteAllSwitches` option. *Use these options together to force an extended host cleanup*, in which Switch/NIC registry keys are removed from your host, network adapters are unbound and the host default NAT network is removed, and the HNS.data file is deleted to remove all current HNS configurations.
