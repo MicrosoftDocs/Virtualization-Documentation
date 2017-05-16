@@ -1,7 +1,9 @@
 # CleanupContainerHostNetworking.ps1 - README
 
+> <span style="color:orange"> WARNING: Currently, this script is not compatible with overlay networking. Before running this script, ensure all overlay networks are removed from your host.</span>
+
 ## Basic Logs: Capture container host state for troubleshooting
-To capture basic logs\* to assist with container network troubleshooting, run this script without any arguments. 
+To capture basic logs\* to assist with container network troubleshooting, run this script *without any arguments*: 
 ```
 PS C:\> WindowsContainerNetworking-LoggingAndCleanupAide.ps1
 ```
@@ -14,7 +16,7 @@ PS C:\> WindowsContainerNetworking-LoggingAndCleanupAide.ps1 -CaptureTraces
 > When the script is run with this option, it will give you the following prompt: `Please reproduce issues for troubleshooting now. After completing repro steps, press any key to continue...`. **When this prompt appears, reproduce the behavior/issue that you would like to capture**. Then, after reproducing the issue, **press any key to continue/end the script.**
 
 ## Host Cleanup: Remove/reset container networking components on your host
-This script can be used to refresh the container-related network components on your host. To perform a host network cleanup, run this script with the `Cleanup` option:
+This script can be used to refresh the container-related network components on your host. To perform a host network cleanup, run this script with the `-Cleanup` option:
 ```
 PS C:\> WindowsContainerNetworking-LoggingAndCleanupAide.ps1 -Cleanup
 ```
@@ -22,7 +24,10 @@ PS C:\> WindowsContainerNetworking-LoggingAndCleanupAide.ps1 -Cleanup
 > - Stop/Remove all containers on the host, regardless of their state (you can view all containers on your host using `docker ps -a`)
 > - Remove all container networks on the host
 
-TODO In addition to the basic `-Cleanup` option, there is also the `-ForceDeleteAllSwitches` option. This option can be used to unbind...
+In addition to the basic `-Cleanup` option, there is also the `-ForceDeleteAllSwitches` option. *Use these options together to force an extended host cleanup*, in which Switch/NIC registry keys are removed from your host, network adapters are unbound and the host default NAT network is removed, and the HNS.data file is deleted to remove all current HNS configurations.
+```
+PS C:\> WindowsContainerNetworking-LoggingAndCleanupAide.ps1 -Cleanup -ForceDeleteAllSwitches
+```
 
 ### \*Info/logs collected for capturing container host state
 *Whether it is run without arguments, or with any of the arguments above, as part of its basic logging functionality this script captures:*
@@ -45,5 +50,4 @@ TODO In addition to the basic `-Cleanup` option, there is also the `-ForceDelete
 - The Hyper-V registry settings (`PS C:\> Get-ChildItem HKLM:\SYSTEM\CurrentControlSet\Services\vmsmp`)
 
 
-TODO WARNING: *Currently, this script is not compatible with overlay networking. To avoid system configuration issues, all overlay networks should be removed before `CleanupContainerHostNetworking.ps1` is run.*
 
