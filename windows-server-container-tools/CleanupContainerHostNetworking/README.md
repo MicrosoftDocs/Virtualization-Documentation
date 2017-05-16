@@ -27,9 +27,10 @@ PS C:\> .\WindowsContainerNetworking-LoggingAndCleanupAide.ps1 -Cleanup -ForceDe
 ```
 ## Assumptions/System Requirements - *READ BEFORE RUNNING SCRIPT*
 
-**WARNING:** Currently, this script is not compatible with overlay networking. Before running this script, ensure all overlay networks are removed from your host.
+**WARNING:** This script requires that the host machine is not running in swarm mode. The script will make sure the host is in an inactive swarm state. If the host is in swarm mode, the script will provide an option to leave swarm mode.
 
 This script assumes the following about your system. Ensure these requirements are met before running this script on your system:
+- Docker (Docker CE, Docker EE, or Docker for Windows) is installed *and running* 
 - Microsoft Hyper-V role is enabled 
 - The Windows Containers feature is installed
 
