@@ -9,20 +9,20 @@ PS C:\> WindowsContainerNetworking-LoggingAndCleanupAide.ps1
 - The Host Network Service (HNS) event log (`c:\Windows\System32\winevt\Logs\Microsoft-Windows-Host-Network-Service-Admin.evtx`)
 - The System event log (`c:\Windows\System32\winevt\Logs\System.evtx`)
 - The HNS.data file (`c:\ProgramData\Microsoft\Windows\HNS\HNS.data`)
-- Policy information for all virtual switches 
 - Information on the [Virtual Filtering Platform (VFP)](https://www.microsoft.com/en-us/research/project/azure-virtual-filtering-platform/), virtual switch extension which is running as a service on the host (`PS C:\> Get-Service vfpext`)
-- Docker version (`docker -v`
-- Docker info: `docker info`
+- VFP policy information for all virtual switches 
+- Docker version (`C:\> docker -v`)
+- Docker info (`C:\> docker info`)
 - Information on current TCP/IP, DHCP and DNS network configuration values on the host (`C:\> ipconfig /allcompartments /all`)
-- A list of virtual switches on this host (`PS C:\> Get-VMSwitch`)
-- `Get-NetNat`
-- `Get-NetNatStaticMapping`
-- `Get-Service winnat`
-- `Get-Service mpssvc`
-- `Get-NetAdapter -IncludeHidden`
-- `Get-NetAdapterBinding -IncludeHidden`
-- `Get-ChildItem HKLM:\SYSTEM\CurrentControlSet\Services\hns`
-- `Get-ChildItem HKLM:\SYSTEM\CurrentControlSet\Services\vmsmp`
+- The virtual switches on this host (`PS C:\> Get-VMSwitch`)
+- The NAT objects on this host (`PS C:\> Get-NetNat`)
+- The static mappings configured on the host's NAT instances (`PS C:\> Get-NetNatStaticMapping`)
+- The network adapters on this host (`PS C:\> Get-NetAdapter -IncludeHidden`)
+- The bindings for the network adapters on this host (`PS C:\> Get-NetAdapterBinding -IncludeHidden`)
+- The status of the Windows NAT driver (`PS C:\> Get-Service winnat`)
+- The status of the Windows Firewall Service (`PS C:\> Get-Service mpssvc`)
+- The HNS registry settings (`PS C:\> Get-ChildItem HKLM:\SYSTEM\CurrentControlSet\Services\hns`)
+- The Hyper-V registry settings (`PS C:\> Get-ChildItem HKLM:\SYSTEM\CurrentControlSet\Services\vmsmp`)
 
 ## Tracing: Capture logs for reproducible behavior
 To capture logs for a specific, reproducible behavior/issue, run this script with the `-CaptureTraces` argument:
