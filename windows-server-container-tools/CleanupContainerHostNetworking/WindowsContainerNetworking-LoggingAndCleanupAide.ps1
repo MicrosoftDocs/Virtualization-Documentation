@@ -21,14 +21,16 @@ param
 # -----------------------------------------------------------------------
 function RemoveAllNetworks
 {
-    $ErrorActionPreference = "silentlycontinue"
     $dockerNetworks = Invoke-Expression -Command "docker network ls -q" -ErrorAction SilentlyContinue
 
     foreach ($network in $dockerNetworks)
     {
-        docker network rm $network
+	$net = docker network inspect $network --format '{{json .}}' | ConvertFrom-Json
+        if ($net.Name -ne 'nat'-And $net.Name -ne 'none')
+	{
+	    docker network rm $network
+	}
     }
-    $ErrorActionPreference = "continue"
 }
 
 # -----------------------------------------------------------------------
