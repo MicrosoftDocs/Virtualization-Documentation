@@ -33,7 +33,7 @@ At least one physical or virtual computer system (to use the full functionality 
 Open ports: The following ports must be available on each host. On some systems, these ports are open by default.
 - TCP port 2377 for cluster management communications
 - TCP and UDP port 7946 for communication among nodes
-- TCP and UDP port 4789 for overlay network traffic
+- UDP port 4789 for overlay network traffic
 
 ## Initializing a Swarm cluster
 
