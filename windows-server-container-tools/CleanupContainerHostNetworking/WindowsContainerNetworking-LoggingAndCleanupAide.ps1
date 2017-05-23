@@ -21,7 +21,8 @@ param
 # -----------------------------------------------------------------------
 function RemoveAllNetworks
 {
-    $dockerNetworks = Invoke-Expression -Command "docker network ls -q" -ErrorAction SilentlyContinue
+    $ErrorActionPreference = "silentlycontinue"
+    $dockerNetworks = Invoke-Expression -Command "docker network ls -q" 
 
     foreach ($network in $dockerNetworks)
     {
@@ -31,6 +32,7 @@ function RemoveAllNetworks
 	    docker network rm $network
 	}
     }
+    $ErrorActionPreference = "continue"
 }
 
 # -----------------------------------------------------------------------
@@ -39,7 +41,7 @@ function RemoveAllNetworks
 function RemoveAllContainers
 {
     $ErrorActionPreference = "silentlycontinue"
-    $dockerContainers = Invoke-Expression -Command "docker ps -aq" -ErrorAction SilentlyContinue
+    $dockerContainers = Invoke-Expression -Command "docker ps -aq" 
 
     foreach ($container in $dockerContainers)
     {
@@ -56,7 +58,7 @@ function RemoveAllContainers
 #           - Switch/NIC registry keys are removed
 #                   HKLM:\SYSTEM\CurrentControlSet\Services\vmsmp\parameters\SwitchList
 #                   HKLM:\SYSTEM\CurrentControlSet\Services\vmsmp\parameters\NicList
-#           - All physical network adapters (`Get-NetAdapter`) are unbound from any Hyper-V Virtual Switch components (`Disable-NetAdapterBinding`)
+#           - All physical network adapters (`Get-NetAdapter`) are unbound from any Hyper-V Virtual Switch components (`Disable-NetAdapterBinding -Name <ADAPTER NAME> -ComponentID vms_pp`)
 #           - NAT network is removed:
 #                   `Get-NetNatStaticMapping | Remove-NetNatStaticMapping`
 #                   `Get-NetNat | Remove-NetNat`
@@ -337,45 +339,44 @@ function GenerateRandomSuffix
 # -----------------------------------------------------------------------
 try
 {   
-    # FIRST, WHICH VERSION OF DOCKER IS RUNNING ON THIS HOST?
-    # *******************************************************
+    # FIRST, WHICH VERSION OF THE DOCKER SERVICE IS RUNNING ON THIS HOST?
+    # *******************************************************************
+    Try
+    {
+        # Simple "Docker" service is installed
+        Get-Service docker -ErrorAction silentlycontinue
+    }
+    Catch [Microsoft.PowerShell.Commands.ServiceCommandException]
+    {
+        # "Docker for Windows" is installed
+        Get-Service com.docker.service -ErrorAction stop
+    }
+    Catch
+    {
+        write-host "ERROR: Docker is not running on this host. Please start Docker and try again." -ForegroundColor Red
+	exit
+    }
 
-	Try
-	{
-		# Docker EE
-	    Get-Service docker -ErrorAction silentlycontinue
-	}
-	Catch [Microsoft.PowerShell.Commands.ServiceCommandException]
-	{
-		# Docker CE
-	    Get-Service com.docker.service -ErrorAction stop
-	}
-	Catch
-	{
-		write-host "ERROR: Docker is not running on this host. Please start Docker and try again." -ForegroundColor Red
-		exit
-	}
+    # MAKE SURE HOST IS NOT IN SWARM MODE
+    # ***********************************
 
-	# MAKE SURE HOST IS NOT IN SWARM MODE
-	# ***********************************
+    # This script requires that the docker engine on the host not be running in swarm mode. Making sure this host is not in swarm mode...
+    $dockerInfo = docker info --format '{{json .}}' | ConvertFrom-Json
+    if ($dockerInfo.Swarm.LocalNodeState -eq 'active')
+    {
+        Write-Host "WARNING: This script cannot be used on hosts that are running in swarm mode, and this machine is currently in an active swarm state." -ForegroundColor Yellow
+        Write-Host "Would you like to exit swarm mode now to continue running this script?"  
+        $Readhost = Read-Host " ( y / n ) " 
+        Switch ($ReadHost) 
+        { 
+            Y {Write-host "Exiting swarm mode now..."; docker swarm leave --force; sleep 10;} 
+            N {Write-Host "Cannot run script when host is in active swarm state. Exiting."; exit;} 
+            Default {Write-Host "Cannot run script when host is in active swarm state. Exiting."; exit;}
+        } 
+    }
 
-	# This script requires that the docker engine on the host not be running in swarm mode. Making sure this host is not in swarm mode...
-	$dockerInfo = docker info --format '{{json .}}' | ConvertFrom-Json
-	if ($dockerInfo.Swarm.LocalNodeState -eq 'active')
-	{
- 		Write-Host "WARNING: This script cannot be used on hosts that are running in swarm mode, and this machine is currently in an active swarm state." -ForegroundColor Yellow
- 		Write-Host "Would you like to exit swarm mode now to continue running this script?"  
-	    	$Readhost = Read-Host " ( y / n ) " 
-    		Switch ($ReadHost) 
-     		{ 
-       			Y {Write-host "Exiting swarm mode now..."; docker swarm leave --force; sleep 10;} 
-      			N {Write-Host "Cannot run script when host is in active swarm state. Exiting."; exit;} 
-       			Default {Write-Host "Cannot run script when host is in active swarm state. Exiting."; exit;}
-     		} 
-	}
-
-	# CAPTURE HOST STATE
-	# ******************
+    # CAPTURE HOST STATE
+    # ******************
     # Generate naming suffix for logs that will be generated
     $namingSuffix = GenerateRandomSuffix
 
