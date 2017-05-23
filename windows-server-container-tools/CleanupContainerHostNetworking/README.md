@@ -12,7 +12,7 @@ PS C:\> .\WindowsContainerNetworking-LoggingAndCleanupAide.ps1 -CaptureTraces
 ```
 When the script is run with this option, it will prompt you to reproduce the behavior/issue that you would like to capture. After capturing the behavior, press any key to continue/end the script.
 
-## Host Cleanup: Remove/reset container networking components on your host
+## Host Cleanup: Stop/remove all Docker containers & user-defined container networks on your host
 This script can be used to refresh the container-related network components on your host. To perform a host network cleanup, run this script with the `-Cleanup` option:
 ```
 PS C:\> .\WindowsContainerNetworking-LoggingAndCleanupAide.ps1 -Cleanup
@@ -21,6 +21,7 @@ PS C:\> .\WindowsContainerNetworking-LoggingAndCleanupAide.ps1 -Cleanup
 - Stop/remove all containers on the host, regardless of their state (i.e. runs `docker rm -f <CONTAINER ID>` for all containers)
 - Remove all container networks on the host (i.e. runs `docker network rm -f <NETWORK ID>` for all user-defined networks)
 
+## *Extended* Host Cleanup: Remove/reset container networking components on your host
 In addition to the basic `-Cleanup` option, there is also the `-ForceDeleteAllSwitches` option. *Use these options together to force an extended host cleanup.* 
 
 > **WARNING:** This option sparks a system cleanup that could negatively impact the configuration of virtual machines, and other components on your system that were created/configured outside of the context of Docker. *Before using this option, read the details provided below to ensure you understand how it could impact your system.*
