@@ -30,7 +30,7 @@ PS C:\> .\WindowsContainerNetworking-LoggingAndCleanupAide.ps1 -Cleanup -ForceDe
 **WARNING:** This script requires that the host machine is not running in swarm mode. The script will make sure the host is in an inactive swarm state. If the host is in swarm mode, the script will provide an option to leave swarm mode.
 
 This script assumes the following about your system. Ensure these requirements are met before running this script on your system:
-- Docker (Docker CE, Docker EE, or Docker for Windows) is installed *and running* 
+- Docker Engine is installed *and running* 
 - Microsoft Hyper-V role is enabled 
 - The Windows Containers feature is installed
 
@@ -39,20 +39,20 @@ This script assumes the following about your system. Ensure these requirements a
 - The Host Network Service (HNS) event log (`c:\Windows\System32\winevt\Logs\Microsoft-Windows-Host-Network-Service-Admin.evtx`)
 - The System event log (`c:\Windows\System32\winevt\Logs\System.evtx`)
 - The HNS.data file (`c:\ProgramData\Microsoft\Windows\HNS\HNS.data`)
-- Information on the [Virtual Filtering Platform (VFP)](https://www.microsoft.com/en-us/research/project/azure-virtual-filtering-platform/), virtual switch extension which is running as a service on the host (`PS C:\> Get-Service vfpext`)
+- Information on the [Virtual Filtering Platform (VFP)](https://www.microsoft.com/en-us/research/project/azure-virtual-filtering-platform/), virtual switch extension which is running as a service on the host (`Get-Service vfpext`)
 - VFP policy information for all virtual switches 
-- Docker version (`C:\> docker -v`)
-- Docker info (`C:\> docker info`)
-- Information on current TCP/IP, DHCP and DNS network configuration values on the host (`C:\> ipconfig /allcompartments /all`)
-- The virtual switches on this host (`PS C:\> Get-VMSwitch`)
-- The NAT objects on this host (`PS C:\> Get-NetNat`)
-- The static mappings configured on the host's NAT instances (`PS C:\> Get-NetNatStaticMapping`)
-- The network adapters on this host (`PS C:\> Get-NetAdapter -IncludeHidden`)
-- The bindings for the network adapters on this host (`PS C:\> Get-NetAdapterBinding -IncludeHidden`)
-- The status of the Windows NAT driver (`PS C:\> Get-Service winnat`)
-- The status of the Windows Firewall Service (`PS C:\> Get-Service mpssvc`)
-- The HNS registry settings (`PS C:\> Get-ChildItem HKLM:\SYSTEM\CurrentControlSet\Services\hns`)
-- The Hyper-V registry settings (`PS C:\> Get-ChildItem HKLM:\SYSTEM\CurrentControlSet\Services\vmsmp`)
+- Docker version (`docker -v`)
+- Docker info (`docker info`)
+- Information on current TCP/IP, DHCP and DNS network configuration values on the host (`ipconfig /allcompartments /all`)
+- The virtual switches on this host (`Get-VMSwitch`)
+- The NAT objects on this host (`Get-NetNat`)
+- The static mappings configured on the host's NAT instances (`Get-NetNatStaticMapping`)
+- The network adapters on this host (`Get-NetAdapter -IncludeHidden`)
+- The bindings for the network adapters on this host (`Get-NetAdapterBinding -IncludeHidden`)
+- The status of the Windows NAT driver (`Get-Service winnat`)
+- The status of the Windows Firewall Service (`Get-Service mpssvc`)
+- The HNS registry settings (`Get-ChildItem HKLM:\SYSTEM\CurrentControlSet\Services\hns`)
+- The Hyper-V registry settings (`Get-ChildItem HKLM:\SYSTEM\CurrentControlSet\Services\vmsmp`)
 
 
 
