@@ -1,4 +1,4 @@
-# CleanupContainerHostNetworking.ps1 - README
+# WindowsContainerNetworking-LoggingAndCleanupAide.ps1 - README
 ## Basic Logs: Capture container host state for troubleshooting
 To capture basic logs\* to assist with container network troubleshooting, run this script *without any arguments*: 
 ```
@@ -10,7 +10,7 @@ To capture logs for a specific, reproducible behavior/issue, run this script wit
 ```
 PS C:\> .\WindowsContainerNetworking-LoggingAndCleanupAide.ps1 -CaptureTraces
 ```
-When the script is run with this option, it will give you the following prompt: `Please reproduce issues for troubleshooting now. After completing repro steps, press any key to continue...`. **When this prompt appears, reproduce the behavior/issue that you would like to capture**. Then, after reproducing the issue, **press any key to continue/end the script.**
+When the script is run with this option, it will prompt you to reproduce the behavior/issue that you would like to capture. After capturing the behavior, press any key to continue/end the script.
 
 ## Host Cleanup: Remove/reset container networking components on your host
 This script can be used to refresh the container-related network components on your host. To perform a host network cleanup, run this script with the `-Cleanup` option:
@@ -18,8 +18,8 @@ This script can be used to refresh the container-related network components on y
 PS C:\> .\WindowsContainerNetworking-LoggingAndCleanupAide.ps1 -Cleanup
 ```
 *When run with this option, the script will:*
-- Stop/Remove all containers on the host, regardless of their state 
-- Remove all container networks on the host
+- Stop/remove all containers on the host, regardless of their state (i.e. runs `docker rm -f <CONTAINER ID>` for all containers)
+- Remove all container networks on the host (i.e. runs `docker network rm -f <NETWORK ID>` for all user-defined networks)
 
 In addition to the basic `-Cleanup` option, there is also the `-ForceDeleteAllSwitches` option. *Use these options together to force an extended host cleanup*, in which Switch/NIC registry keys are removed from your host, network adapters are unbound and the host default NAT network is removed, and the HNS.data file is deleted to remove all current HNS configurations.
 ```
