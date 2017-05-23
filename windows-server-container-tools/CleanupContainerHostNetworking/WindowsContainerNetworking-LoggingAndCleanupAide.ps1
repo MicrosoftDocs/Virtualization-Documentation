@@ -56,7 +56,7 @@ function RemoveAllContainers
 #           - Switch/NIC registry keys are removed
 #                   HKLM:\SYSTEM\CurrentControlSet\Services\vmsmp\parameters\SwitchList
 #                   HKLM:\SYSTEM\CurrentControlSet\Services\vmsmp\parameters\NicList
-#           - Network adapters (`Get-NetAdapter`) are unbound (`Disable-NetAdapterBinding`)
+#           - All physical network adapters (`Get-NetAdapter`) are unbound from any Hyper-V Virtual Switch components (`Disable-NetAdapterBinding`)
 #           - NAT network is removed:
 #                   `Get-NetNatStaticMapping | Remove-NetNatStaticMapping`
 #                   `Get-NetNat | Remove-NetNat`
