@@ -21,11 +21,22 @@ PS C:\> .\WindowsContainerNetworking-LoggingAndCleanupAide.ps1 -Cleanup
 - Stop/remove all containers on the host, regardless of their state (i.e. runs `docker rm -f <CONTAINER ID>` for all containers)
 - Remove all container networks on the host (i.e. runs `docker network rm -f <NETWORK ID>` for all user-defined networks)
 
-In addition to the basic `-Cleanup` option, there is also the `-ForceDeleteAllSwitches` option. *Use these options together to force an extended host cleanup*, in which Switch/NIC registry keys are removed from your host, network adapters are unbound and the host default NAT network is removed, and the HNS.data file is deleted to remove all current HNS configurations.
+In addition to the basic `-Cleanup` option, there is also the `-ForceDeleteAllSwitches` option. *Use these options together to force an extended host cleanup.* 
+
+> **WARNING:** This option sparks a system cleanup that could negatively impact the configuration of virtual machines, and other components on your system that were created/configured outside of the context of Docker. *Before using this option, read the details provided below to ensure you understand how it could impact your system.*
 ```
 PS C:\> .\WindowsContainerNetworking-LoggingAndCleanupAide.ps1 -Cleanup -ForceDeleteAllSwitches
 ```
-## Assumptions/System Requirements - *READ BEFORE RUNNING SCRIPT*
+*When run with the `-Cleanup` and `-ForceDeleteAllSwitches` option, the script will:*
+- Remove Switch registry keys on the host (HKLM:\SYSTEM\CurrentControlSet\Services\vmsmp\parameters\SwitchList)
+- Remove NIC registry keys on the host (HKLM:\SYSTEM\CurrentControlSet\Services\vmsmp\parameters\NicList)
+- Unbind **ALL** *physical* network adapters (`Get-NetAdapter`) from **ANY** Hyper-V Virtual Switch components to which they are attached (`Disable-NetAdapterBinding -Name <ADAPTER NAME> -ComponentID vms_pp`)
+- Remove the default 'nat' container network
+- If reboot is required, remove the HNS.data file (C:\ProgramData\Microsoft\Windows\HNS\HNS.data)
+- Stop/remove all containers on the host, regardless of their state (i.e. runs `docker rm -f <CONTAINER ID>` for all containers)
+- Remove all container networks on the host (i.e. runs `docker network rm -f <NETWORK ID>` for all user-defined networks)
+
+## System Assumptions/Requirements - *READ BEFORE RUNNING SCRIPT*
 
 **WARNING:** This script requires that the host machine is not running in swarm mode. The script will make sure the host is in an inactive swarm state. If the host is in swarm mode, the script will provide an option to leave swarm mode.
 
