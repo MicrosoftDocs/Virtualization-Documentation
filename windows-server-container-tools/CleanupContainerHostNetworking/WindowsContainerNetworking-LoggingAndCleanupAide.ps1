@@ -362,7 +362,7 @@ try
 
     # This script requires that the docker engine on the host not be running in swarm mode. Making sure this host is not in swarm mode...
     $dockerInfo = docker info --format '{{json .}}' | ConvertFrom-Json
-    if ($dockerInfo.Swarm.LocalNodeState -eq 'active')
+    While ($dockerInfo.Swarm.LocalNodeState -eq 'active')
     {
         Write-Host "WARNING: This script cannot be used on hosts that are running in swarm mode, and this machine is currently in an active swarm state." -ForegroundColor Yellow
         Write-Host "Would you like to exit swarm mode now to continue running this script?"  
@@ -373,6 +373,7 @@ try
             N {Write-Host "Cannot run script when host is in active swarm state. Exiting."; exit;} 
             Default {Write-Host "Cannot run script when host is in active swarm state. Exiting."; exit;}
         } 
+	$dockerInfo = docker info --format '{{json .}}' | ConvertFrom-Json
     }
 
     # CAPTURE HOST STATE
