@@ -42,12 +42,7 @@ Windows Containers are offered with two container base images, Windows Server Co
 </thead>
 <tbody>
 <tr valign="top">
-<td><center>Windows Server 2016 with Desktop</center></td>
-<td><center>Server Core / Nano Server</center></td>
-<td><center>Server Core / Nano Server</center></td>
-</tr>
-<tr valign="top">
-<td><center>Windows Server 2016 Core</center></td>
+<td><center>Windows Server 2016 (Standard or Datacenter)</center></td>
 <td><center>Server Core / Nano Server</center></td>
 <td><center>Server Core / Nano Server</center></td>
 </tr>
