@@ -28,9 +28,9 @@ A container looks and acts like a newly installed physical computer or a virtual
 
 Windows Containers include two different container types, or runtimes.
 
-**Windows Server Containers** – provide application isolation through process and namespace isolation technology. A Windows Server Container shares a kernel with the container host and all containers running on the host.  These containers do not provide a hostile security boundary and should not be used to isolate untrusted code.
+**Windows Server Containers** – provide application isolation through process and namespace isolation technology. A Windows Server Container shares a kernel with the container host and all containers running on the host.  These containers do not provide a hostile security boundary and should not be used to isolate untrusted code.  These containers share the kernel space with the host and the other containers on the same host thus kernel needs to be consistent meaning the same version and configuration.
 
-**Hyper-V Isolation** – expands on the isolation provided by Windows Server Containers by running each container in a highly optimized virtual machine. In this configuration the kernel of the container host is not shared with other containers on the same host.  These containers are designed for hostile multitenant hosting with the same security assurances of a virtual machine.
+**Hyper-V Isolation** – expands on the isolation provided by Windows Server Containers by running each container in a highly optimized virtual machine. In this configuration, the kernel of the container host is not shared with other containers on the same host.  These containers are designed for hostile multitenant hosting with the same security assurances of a virtual machine. Since these containers do not share the kernel with the host or other containers on the host, they can run kernels with different versions and configurations (with in supported versions) - for example all Windows containers on Windows 10 use Hyper-V isolation in order to utilize the Windows Server kernel version and configuration.
 
 
 ## Container Fundamentals
