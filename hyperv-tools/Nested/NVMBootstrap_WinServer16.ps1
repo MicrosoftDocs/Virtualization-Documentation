@@ -262,7 +262,7 @@ if($HostNested.HostNestedSupport) {
 
     Write-Host "Spinning up new instance of VM. If VM of the specified name already exists, then we will Skip Creating VM Step."
     #Spins up VM
-    try {New-VM -Name $VMName -MemoryStartupBytes 3GB -Generation 2 -NewVHDPath "C:\Virtual Machines\$VMName\$VMName.vhdx" -NewVHDSizeBytes 53687091200 -BootDevice "VHD" -Path "C:\Virtual Machines\$VMName" -ErrorAction SilentlyContinue}
+    try {New-VM -Name $VMName -MemoryStartupBytes 3GB -Generation 1 -NewVHDPath "C:\Virtual Machines\$VMName\$VMName.vhdx" -NewVHDSizeBytes 53687091200 -BootDevice "VHD" -Path "C:\Virtual Machines\$VMName" -ErrorAction SilentlyContinue}
     catch {}
     
     
