@@ -16,6 +16,8 @@ $VMName = "NestedVMGuest-Depth-1"
 # Need to run elevated.  Do that here.
 #
 
+Enable-PSRemoting -force
+
 # Get the ID and security principal of the current user account
 $myWindowsID = [System.Security.Principal.WindowsIdentity]::GetCurrent();
 $myWindowsPrincipal = New-Object System.Security.Principal.WindowsPrincipal($myWindowsID);
@@ -253,6 +255,7 @@ if($HostNested.HostNestedSupport) {
     if($hyperv.State -eq "Disabled"){
         Write-Host "Hyper-V is not Enabled. Installing and Enabling Hyper-V..."
         Install-WindowsFeature -Name Hyper-V -IncludeManagementTools -Restart
+        Restart-Computer
         } else {
         Write-Host "Hyper-V is already Installed and Enabled. (Skipping Hyper-V installation and Restart)`n"
         }
