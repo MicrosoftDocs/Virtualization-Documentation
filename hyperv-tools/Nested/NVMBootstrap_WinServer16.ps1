@@ -10,7 +10,7 @@
 
 
 #TODO - EDIT ME! Change the Name you want for your Guest VM.
-$VMName = "NestedVMGuest-Depth-1"
+$VMName = "NestedVMGuestSample-Level2"
 
 #
 # Need to run elevated.  Do that here.
@@ -196,7 +196,7 @@ if(Get-WindowsOptionalFeature -Online | where FeatureName -eq IsolatedUserMode |
 $dg = Get-CimInstance -classname Win32_DeviceGuard -namespace root\Microsoft\Windows\DeviceGuard -ea SilentlyContinue
 if ($dg.VirtualizationBasedSecurityStatus) {
     $HostNested.VbsRunning = $true
-    $HostNested.HostNestedSupport = $false
+    $HostNested.HostNestedSupport = $true
     $HostCfgErrors += ($HostCfgErrorMsgs["VbsRunning"])
     }
 
@@ -360,15 +360,6 @@ if ($vmInfo.DynamicMemoryEnabled -eq $true) {
     Write-Host "    Dynamic memory will be disabled"
     $prompt = $true
 }
-if($vmInfo.MacAddressSpoofing -eq 'Off'){
-    Write-Host "    Optionally enable mac address spoofing"
-    $prompt = $true
-}
-if($vmInfo.MemorySize -lt $4GB) {
-    Write-Host "    Optionally set vm memory to 4GB"
-    $prompt = $true
-}
-
 if(-not $prompt) {
     Write-Host "    None, vm is already setup for nesting"
     Exit;
