@@ -16,6 +16,9 @@ The exercise will walk through basic deployment and use of the Windows container
 
 This quick start is specific to Windows 10. Additional quick start documentation can be found in the table of contents on the left hand side of this page.
 
+***Hyper-V isolation:***
+Windows Server Containers require Hyper-V isolation on Windows 10 in order to provide developers with the same kernel version and configuration that will be used in production, more about this can be found on the [About Windows container](../about/index.md) page.
+
 **Prerequisites:**
 
 - One physical computer system running Windows 10 Anniversary Edition or Creators Update (Professional or Enterprise).   
