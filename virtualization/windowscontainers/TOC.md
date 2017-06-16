@@ -11,6 +11,7 @@
 
 # Deploy Windows Container
 ## [System Requirements](deployment/system_requirements.md)
+## [Hyper-V Isolation](https://docs.microsoft.com/en-us/virtualization/windowscontainers/manage-containers/hyperv-container)
 ## [Container Host - Windows Server](deployment/deployment.md)
 ## [Container Host - Nano Server](deployment/deployment_nano.md)
 ## [Anti-Virus Optimization](https://msdn.microsoft.com/en-us/windows/hardware/drivers/ifs/anti-virus-optimization-for-windows-containers)
