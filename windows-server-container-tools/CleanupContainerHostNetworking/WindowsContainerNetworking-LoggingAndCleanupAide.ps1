@@ -372,7 +372,7 @@ try
             Y {Write-host "Exiting swarm mode now..."; docker swarm leave --force; sleep 10;} 
             N {Write-Host "Cannot run script when host is in active swarm state. Exiting."; exit;} 
             Default {Write-Host "Cannot run script when host is in active swarm state. Exiting."; exit;}
-        } 
+	} 
 	$dockerInfo = docker info --format '{{json .}}' | ConvertFrom-Json
     }
 
