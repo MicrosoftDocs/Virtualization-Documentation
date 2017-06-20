@@ -1,4 +1,4 @@
-﻿# [About Windows Containers](about/index.md)
+# [About Windows Containers](about/index.md)
 
 # Windows Server Quick Start
 ## [Step 1 – Concepts](quick_start/quick_start.md)
@@ -8,6 +8,10 @@
 # Windows 10 Quick Start
 ## [Step 1 – Concepts](quick_start/quick_start.md)
 ## [Step 2 – First Container](quick_start/quick_start_windows_10.md)
+
+# Windows Insider Quick Start
+## [Step 1 - Using the new Nano Server image]()
+## [Step 2 - Making apps]()
 
 # Deploy Windows Container
 ## [System Requirements](deployment/system_requirements.md)
