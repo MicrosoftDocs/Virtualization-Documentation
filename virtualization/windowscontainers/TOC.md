@@ -11,7 +11,7 @@
 
 # Windows Insider Quick Start
 ## [Step 1 - Using the new Nano Server image]()
-## [Step 2 - Making apps]()
+## [Step 2 - Build and Run an Application]()
 
 # Deploy Windows Container
 ## [System Requirements](deployment/system_requirements.md)
