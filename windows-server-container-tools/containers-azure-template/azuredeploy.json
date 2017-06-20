@@ -39,7 +39,7 @@
     "imageSku": "2016-Datacenter-with-Containers",
     "imagePublisher": "MicrosoftWindowsServer",
     "imageOffer": "WindowsServer",
-    "imageVersion": "2016.0.20170127",
+    "imageVersion": "latest",
     "OSDiskName": "[concat(parameters('VMName'),'_osdisk')]",
     "nicName": "[concat(parameters('VMName'),'_nic')]",
     "addressPrefix": "10.0.0.0/16",
