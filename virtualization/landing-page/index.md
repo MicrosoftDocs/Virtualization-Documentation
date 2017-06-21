@@ -26,7 +26,7 @@ ms.assetid: addcfda8-1522-4137-bc02-14cbb1ff838f
                                   </div>
                               </div>
                               <div class="cardText">
-                                  <h3>Join the Insider Program</h3>
+                                  <h3>Join the Windows Insider Program</h3>
                               </div>
                           </div>
                       </div>
@@ -44,7 +44,7 @@ ms.assetid: addcfda8-1522-4137-bc02-14cbb1ff838f
                                   </div>
                               </div>
                               <div class="cardText">
-                                  <h3>Have an idea?  Did we miss something?  Let us know!</h3>
+                                  <h3>Did we miss something?  Let us know.</h3>
                               </div>
                           </div>
                       </div>
@@ -62,7 +62,7 @@ ms.assetid: addcfda8-1522-4137-bc02-14cbb1ff838f
                                   </div>
                               </div>
                               <div class="cardText">
-                                  <h3>Read announcements on the virtualization blog</h3>
+                                  <h3>Read the Virtualization blog.</h3>
                               </div>
                           </div>
                       </div>
@@ -346,7 +346,7 @@ ms.assetid: addcfda8-1522-4137-bc02-14cbb1ff838f
                                             </div>
                                             <div class="cardText">
                                                 <h3 style="margin: 8px 0 2px 0;">Hyper-V Server</h3>
-                                                <p>Hyper-V Sever is a free version of Windows Server with only the Hyper-V role available</p>
+                                                <p>Hyper-V Server is a free version of Windows Server with only the Hyper-V role available</p>
                                                 <ul>
                                                     <li><a href="https://www.microsoft.com/evalcenter/evaluate-hyper-v-server-2016">Download Hyper-V Server 2016</a></li>
                                                 </ul>
