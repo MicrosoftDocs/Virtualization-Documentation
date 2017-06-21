@@ -193,7 +193,7 @@ ms.assetid: addcfda8-1522-4137-bc02-14cbb1ff838f
                         </ul>
                     </li>
                     <li>
-                        <a href="#windows">Hyper-V on Windows</a>
+                        <a href="#windows">Hyper-V on Windows 10</a>
                         <ul id="windows" class="cardsW">
                             <li class="fullSpan">
                                 <div class="container intro">
@@ -284,7 +284,7 @@ ms.assetid: addcfda8-1522-4137-bc02-14cbb1ff838f
                         </ul>
                     </li>
                     <li>
-                        <a href="#server">Hyper-V on Server</a>
+                        <a href="#server">Hyper-V on Windows Server</a>
                         <ul id="server" class="cardsW">
                             <li class="fullSpan">
                                 <div class="container intro">
