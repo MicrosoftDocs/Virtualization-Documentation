@@ -361,13 +361,13 @@ try
     {
         Write-Host "WARNING: This script cannot be used on hosts that are running in swarm mode, and this machine is currently in an active swarm state." -ForegroundColor Yellow
         Write-Host "Would you like to exit swarm mode now to continue running this script?"
-        $Readhost = Read-Host " ( y / n ) " 
-        Switch ($ReadHost) 
+        $Readhost = Read-Host " ( y / n ) "
+        Switch ($ReadHost)
         {
             Y {Write-host "Exiting swarm mode now..."; docker swarm leave --force; sleep 10;}
             N {Write-Host "Cannot run script when host is in active swarm state. Exiting."; exit;}
             Default {Write-Host "Cannot run script when host is in active swarm state. Exiting."; exit;}
-        } 
+        }
         $dockerInfo = docker info --format '{{json .}}' | ConvertFrom-Json
     }
 
