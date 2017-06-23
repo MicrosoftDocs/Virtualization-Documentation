@@ -13,6 +13,7 @@
 ## [System Requirements](deployment/system_requirements.md)
 ## [Container Host - Windows Server](deployment/deployment.md)
 ## [Container Host - Nano Server](deployment/deployment_nano.md)
+## [Hyper-V Isolation] (manage-containers/hyperv-container.md)
 ## [Anti-Virus Optimization](https://msdn.microsoft.com/en-us/windows/hardware/drivers/ifs/anti-virus-optimization-for-windows-containers)
 ## [Active Directory Service Accounts](management/manage_serviceaccounts.md)
 
