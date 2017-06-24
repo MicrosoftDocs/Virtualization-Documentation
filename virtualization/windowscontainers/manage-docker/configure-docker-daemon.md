@@ -33,7 +33,7 @@ The latest version may always be found at https://master.dockerproject.org . Thi
 
 ```powershell
 $version = (Invoke-WebRequest -UseBasicParsing https://raw.githubusercontent.com/docker/docker/master/VERSION).Content.Trim()
-Invoke-WebRequest "https://master.dockerproject.org/windows/amd64/docker-$($version).zip" -OutFile "$env:TEMP\docker.zip" -UseBasicParsing
+Invoke-WebRequest "https://master.dockerproject.org/windows/x86_64/docker-$($version).zip" -OutFile "$env:TEMP\docker.zip" -UseBasicParsing
 ```
 
 Expand the zip archive into Program Files.
@@ -69,7 +69,7 @@ Before Docker can be used container images will need to be installed. For more i
 
 ## Configure Docker with Configuration File
 
-The preferred method for configuring the Docker Engine on Windows is using a configuration file. The configuration file can be found at 'c:\ProgramData\docker\config\daemon.json'. If this file does not already exist, it can be created.
+The preferred method for configuring the Docker Engine on Windows is using a configuration file. The configuration file can be found at 'C:\ProgramData\Docker\config\daemon.json'. If this file does not already exist, it can be created.
 
 Note – not every available Docker configuration option is applicable to Docker on Windows. The below example shows those that are. For complete documentation on Docker Engine configuration, see [Docker daemon configuration file](https://docs.docker.com/engine/reference/commandline/dockerd/#/windows-configuration-file).
 
