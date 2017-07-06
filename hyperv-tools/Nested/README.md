@@ -1,3 +1,5 @@
+README.MD
+======
 Author     : Cheng (Charles) Ding
 Date: 6/12/2017
 
@@ -9,9 +11,8 @@ Bootstrap Powershell Script for Setting up NestedVMs. Checks Pre-Reqs, then inst
 4) (Optional if you need internet) Setup NAT Network and DCHP Server. If the recommended DCHP Server is unavailable to you for some reason, you can also manually configure the network using Static IP. More details regarding this available in the "Setting Up Internet Section Below":
 5) Enjoy your new Nested Virtualization environment!
 
-====================================================================
-
 **Setting Up Internet for the Nested Environment**
+======
 
 A) First step to get internet up and running is to go on the VirtualHost and create a NAT virtual network switch as follows:
 Let's walk through setting up a new NAT network.
