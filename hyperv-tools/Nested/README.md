@@ -15,11 +15,11 @@ Bootstrap Powershell Script for Setting up NestedVMs. Checks Pre-Reqs, then inst
 		i. Open a PowerShell console as Administrator.
 		ii. Create an internal switch
 
-New-VMSwitch -SwitchName "SwitchName" -SwitchType Internal
+```New-VMSwitch -SwitchName "SwitchName" -SwitchType Internal```
 		iii. Configure the NAT gateway using New-NetIPAddress.
 Here is the generic command:
 
-New-NetIPAddress -IPAddress <NAT Gateway IP> -PrefixLength <NAT Subnet Prefix Length> -InterfaceIndex <ifIndex>
+```New-NetIPAddress -IPAddress <NAT Gateway IP> -PrefixLength <NAT Subnet Prefix Length> -InterfaceIndex <ifIndex>```
 
 In order to configure the gateway, you'll need a bit of information about your network:
 			○ IPAddress -- NAT Gateway IP specifies the IPv4 or IPv6 address to use as the NAT gateway IP.
@@ -32,22 +32,22 @@ A common PrefixLength is 24 -- this is a subnet mask of 255.255.255.0
 You can find the interface index by running Get-NetAdapter
 Your output should look something like this:
 
-PS C:\> Get-NetAdapter
+```PS C:\> Get-NetAdapter
 
 Name                  InterfaceDescription               ifIndex Status       MacAddress           LinkSpeed
 ----                  --------------------               ------- ------       ----------           ---------
 vEthernet (intSwitch) Hyper-V Virtual Ethernet Adapter        24 Up           00-15-5D-00-6A-01      10 Gbps
 Wi-Fi                 Marvell AVASTAR Wireless-AC Net...      18 Up           98-5F-D3-34-0C-D3     300 Mbps
-Bluetooth Network ... Bluetooth Device (Personal Area...      21 Disconnected 98-5F-D3-34-0C-D4       3 Mbps
+Bluetooth Network ... Bluetooth Device (Personal Area...      21 Disconnected 98-5F-D3-34-0C-D4       3 Mbps```
 
 The internal switch will have a name like vEthernet (SwitchName) and an Interface Description of Hyper-V Virtual Ethernet Adapter.
 Run the following to create the NAT Gateway:
 
-New-NetIPAddress -IPAddress 192.168.0.1 -PrefixLength 24 -InterfaceIndex 24
+```New-NetIPAddress -IPAddress 192.168.0.1 -PrefixLength 24 -InterfaceIndex 24```
 		iv. Configure the NAT network using New-NetNat.
 Here is the generic command:
 
-New-NetNat -Name <NATOutsideName> -InternalIPInterfaceAddressPrefix <NAT subnet prefix>
+```New-NetNat -Name <NATOutsideName> -InternalIPInterfaceAddressPrefix <NAT subnet prefix>```
 
 In order to configure the gateway, you'll need to provide information about the network and NAT Gateway:
 			○ Name -- NATOutsideName describes the name of the NAT network. You'll use this to remove the NAT network.
@@ -56,7 +56,7 @@ The generic form will be a.b.c.0/NAT Subnet Prefix Length
 From the above, for this example, we'll use 192.168.0.0/24
 For our example, run the following to setup the NAT network:
 
-New-NetNat -Name MyNATnetwork -InternalIPInterfaceAddressPrefix 192.168.0.0/24
+```New-NetNat -Name MyNATnetwork -InternalIPInterfaceAddressPrefix 192.168.0.0/24```
 	
 	2. Next you want to now setup your DCHP Server on VirtualHost
 		i. Install DCHP on your server if it does not exist (Install via Add Roles/Features)
