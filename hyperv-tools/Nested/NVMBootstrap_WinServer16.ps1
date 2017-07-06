@@ -479,6 +479,7 @@ foreach ($vmInfo in $vmInfoList) {
 
 Write-Host "========================================================="
 Write-Host "The Bootstrap Powershell Script has Executed Successfully." -ForegroundColor White -BackgroundColor Green
-Write-Host "Thank you for using this custom-made bootstrap script for Windows Server 2016."
-Write-Host "If you have any questions, feel free to reach out to chdin@microsoft.com."
+Write-Host "Next Steps: (1) Go to Hyper-V-Manager install OS onto the existing VHD or point to your custom VHD"
+Write-Host "(2 - Optional if you need internet) Setup NAT Network and DCHP Server"
+Write-Host "Thank you for using this forked custom-made bootstrap script for Windows Server 2016."
 Write-Host "Team: AZURE COMPUTER SRE   AUTHOR: CHARLES DING"
