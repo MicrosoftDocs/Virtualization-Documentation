@@ -67,4 +67,5 @@ New-NetNat -Name MyNATnetwork -InternalIPInterfaceAddressPrefix 192.168.0.0/24
 	3. On VirtualGuest, IP and DNS should be automatic which should be fine.
 Congrats - you should see similar screens to below. (Bottom screen is manual IP config (Don't worry about this unless you know what you are doing), and other is DCHP auto IP config)
 
-![alt text](https://github.com/charlieding/Virtualization-Documentation/blob/live/hyperv-tools/Nested/Screenshot%20Examples/StaticIPAssignments.PNG)
+![Manual - Static IP Assignment](https://github.com/charlieding/Virtualization-Documentation/blob/live/hyperv-tools/Nested/Screenshot%20Examples/StaticIPAssignments.PNG)
+![DCHP - Dynamically Assigned IP](https://github.com/charlieding/Virtualization-Documentation/blob/live/hyperv-tools/Nested/Screenshot%20Examples/DCHPAssignedIPNAT.PNG)
