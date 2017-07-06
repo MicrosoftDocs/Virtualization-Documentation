@@ -6,11 +6,13 @@ Bootstrap Powershell Script for Setting up NestedVMs. Checks Pre-Reqs, then inst
 1) Make sure you change the name of your VM in this file to what you desire before executing script. (Tip: Copy the NVMBootstrap_WinServer16.ps1 script onto your VM then drag drop that file into a Administrative PowerShell window, then press Enter to start)
 2) Wait for script to complete. (Note: Restarts may take place and RDP connection may be dropped, if this occurs, just RDP back in the VM after restart is complete - Please also note that if restart is "In Progress", you will be unable to RDP into your VM) If script fails, please fall back to use the older scripts located here: https://github.com/Microsoft/Virtualization-Documentation/tree/master/hyperv-tools/Nested
 3) After Script completes, go to Hyper-V-Manager install OS onto the existing VHD or point to your custom VHD 
-4) (Optional if you need internet) Setup NAT Network and DCHP Server. If the recommended DCHP Server is unavailable to you for some reason, you can also manually configure the network using Static IP. More details regarding this available below:
+4) (Optional if you need internet) Setup NAT Network and DCHP Server. If the recommended DCHP Server is unavailable to you for some reason, you can also manually configure the network using Static IP. More details regarding this available in the "Setting Up Internet Section Below":
 5) Enjoy your new Nested Virtualization environment!
 
 ====================================================================
+
 **Setting Up Internet for the Nested Environment**
+
 A) First step to get internet up and running is to go on the VirtualHost and create a NAT virtual network switch as follows:
 Let's walk through setting up a new NAT network.
 
