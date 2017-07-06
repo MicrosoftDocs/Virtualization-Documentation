@@ -62,8 +62,8 @@ B) Next you want to now setup your DCHP Server on VirtualHost
 C) On VirtualGuest, IP and DNS should be automatic which should be fine.
 Congrats - you should see similar screens to below. (Bottom screen is manual IP config (Don't worry about this unless you know what you are doing), and other is DCHP auto IP config)
 
-**Second Option: DCHP - Dynamically Assigned IP (Preferred Method)**
+**First Option: DCHP - Dynamically Assigned IP (Preferred Method)**
 ![DCHP - Dynamically Assigned IP](https://github.com/charlieding/Virtualization-Documentation/blob/live/hyperv-tools/Nested/Screenshot%20Examples/DCHPAssignedIPNAT.PNG)
 
-**First Option: Manual - Static IP Assignment**
+**Second Option: Manual - Static IP Assignment**
 ![Manual - Static IP Assignment](https://github.com/charlieding/Virtualization-Documentation/blob/live/hyperv-tools/Nested/Screenshot%20Examples/StaticIPAssignments.PNG)
