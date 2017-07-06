@@ -40,8 +40,8 @@ Run the following to create the NAT Gateway:
 
 ```New-NetIPAddress -IPAddress 192.168.0.1 -PrefixLength 24 -InterfaceIndex 24```
 
-  4. Configure the NAT network using New-NetNat.
-```New-NetNat -Name <NATOutsideName> -InternalIPInterfaceAddressPrefix <NAT subnet prefix>```
+  4. Configure the NAT network using New-NetNat.  
+  ```New-NetNat -Name <NATOutsideName> -InternalIPInterfaceAddressPrefix <NAT subnet prefix>```
 
 In order to configure the gateway, you'll need to provide information about the network and NAT Gateway:
   * Name: NATOutsideName describes the name of the NAT network. You'll use this to remove the NAT network.
@@ -54,11 +54,11 @@ For our example, run the following to setup the NAT network:
 ```New-NetNat -Name MyNATnetwork -InternalIPInterfaceAddressPrefix 192.168.0.0/24```
 	
 B) Next you want to now setup your DCHP Server on VirtualHost
-  i. Install DCHP on your server if it does not exist (Install via Add Roles/Features)
-  ii. Go to IPv4 and right click it to create a "New Scope"
-  iii. Define an IP Range for your DCHP Server (Eg: 192.168.0.10 to 192.168.0.253)
-  iv. Leave everything else default and click Next until you get to Default Gateway page. Use the same IP Address you used earlier 192.168.0.1 as the Default Gateway.
-  v. Now go to your VM in Hyper-V Manager and hook up the Virtual Network.
+  1. Install DCHP on your server if it does not exist (Install via Add Roles/Features)
+  2. Go to IPv4 and right click it to create a "New Scope"
+  3. Define an IP Range for your DCHP Server (Eg: 192.168.0.10 to 192.168.0.253)
+  4. Leave everything else default and click Next until you get to Default Gateway page. Use the same IP Address you used earlier 192.168.0.1 as the Default Gateway.
+  5. Now go to your VM in Hyper-V Manager and hook up the Virtual Network.
 C) On VirtualGuest, IP and DNS should be automatic which should be fine.
 Congrats - you should see similar screens to below. (Bottom screen is manual IP config (Don't worry about this unless you know what you are doing), and other is DCHP auto IP config)
 
