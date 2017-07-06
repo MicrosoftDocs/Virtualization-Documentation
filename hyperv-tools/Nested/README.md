@@ -8,9 +8,7 @@ Bootstrap Powershell Script for Setting up NestedVMs. Checks Pre-Reqs, then inst
 3) After Script completes, go to Hyper-V-Manager install OS onto the existing VHD or point to your custom VHD 
 4) (Optional if you need internet) Setup NAT Network and DCHP Server. If the recommended DCHP Server is unavailable to you for some reason, you can also manually configure the network using Static IP. More details regarding this available below:
 
-
-**(4 - In Detail) Setting up Internet On Your Nested Environment:**
-1) First step is to go on the VirtualHost and create a NAT virtual network switch as follows:
+A) First step is to go on the VirtualHost and create a NAT virtual network switch as follows:
 Let's walk through setting up a new NAT network.
 
    1. Open a PowerShell console as Administrator. 
@@ -39,27 +37,27 @@ The internal switch will have a name like vEthernet (SwitchName) and an Interf
 Run the following to create the NAT Gateway:
 
 ```New-NetIPAddress -IPAddress 192.168.0.1 -PrefixLength 24 -InterfaceIndex 24```
-		iv. Configure the NAT network using New-NetNat.
-Here is the generic command:
 
+  4. Configure the NAT network using New-NetNat.
 ```New-NetNat -Name <NATOutsideName> -InternalIPInterfaceAddressPrefix <NAT subnet prefix>```
 
 In order to configure the gateway, you'll need to provide information about the network and NAT Gateway:
-			○ Name: NATOutsideName describes the name of the NAT network. You'll use this to remove the NAT network.
-			○ InternalIPInterfaceAddressPrefix: NAT subnet prefix describes both the NAT Gateway IP prefix from above as well as the NAT Subnet Prefix Length from above.
+  * Name: NATOutsideName describes the name of the NAT network. You'll use this to remove the NAT network.
+  * InternalIPInterfaceAddressPrefix: NAT subnet prefix describes both the NAT Gateway IP prefix from above as well as the NAT Subnet Prefix Length from above.
+  
 The generic form will be a.b.c.0/NAT Subnet Prefix Length
 From the above, for this example, we'll use 192.168.0.0/24
 For our example, run the following to setup the NAT network:
 
 ```New-NetNat -Name MyNATnetwork -InternalIPInterfaceAddressPrefix 192.168.0.0/24```
 	
-2) Next you want to now setup your DCHP Server on VirtualHost
+B) Next you want to now setup your DCHP Server on VirtualHost
   i. Install DCHP on your server if it does not exist (Install via Add Roles/Features)
   ii. Go to IPv4 and right click it to create a "New Scope"
   iii. Define an IP Range for your DCHP Server (Eg: 192.168.0.10 to 192.168.0.253)
   iv. Leave everything else default and click Next until you get to Default Gateway page. Use the same IP Address you used earlier 192.168.0.1 as the Default Gateway.
   v. Now go to your VM in Hyper-V Manager and hook up the Virtual Network.
-3) On VirtualGuest, IP and DNS should be automatic which should be fine.
+C) On VirtualGuest, IP and DNS should be automatic which should be fine.
 Congrats - you should see similar screens to below. (Bottom screen is manual IP config (Don't worry about this unless you know what you are doing), and other is DCHP auto IP config)
 
 **Manual - Static IP Assignment**
