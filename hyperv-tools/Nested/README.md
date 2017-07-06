@@ -8,7 +8,7 @@ Bootstrap Powershell Script for Setting up NestedVMs. Checks Pre-Reqs, then inst
 3) After Script completes, go to Hyper-V-Manager install OS onto the existing VHD or point to your custom VHD 
 4) (Optional if you need internet) Setup NAT Network and DCHP Server. If the recommended DCHP Server is unavailable to you for some reason, you can also manually configure the network using Static IP. More details regarding this available below:
 
-=========================================================================================================
+====================================================================
 
 A) First step to get internet up and running is to go on the VirtualHost and create a NAT virtual network switch as follows:
 Let's walk through setting up a new NAT network.
