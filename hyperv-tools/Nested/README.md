@@ -10,19 +10,21 @@ Bootstrap Powershell Script for Setting up NestedVMs. Checks Pre-Reqs, then inst
 
 
 **(4 - In Detail) Setting up Internet On Your Nested Environment:**
-	1. First step is to go on the VirtualHost and create a NAT virtual network switch as follows:
-	Let's walk through setting up a new NAT network.
-		i. Open a PowerShell console as Administrator.
-		ii. Create an internal switch
+1) First step is to go on the VirtualHost and create a NAT virtual network switch as follows:
+Let's walk through setting up a new NAT network.
 
-```New-VMSwitch -SwitchName "SwitchName" -SwitchType Internal```
-		iii. Configure the NAT gateway using New-NetIPAddress.
-Here is the generic command:
+   1. Open a PowerShell console as Administrator. 
+   
+   2. Create an internal switch  
+   ```New-VMSwitch -SwitchName "SwitchName" -SwitchType Internal```
 
-```New-NetIPAddress -IPAddress <NAT Gateway IP> -PrefixLength <NAT Subnet Prefix Length> -InterfaceIndex <ifIndex>```
+   3. Configure the NAT gateway using New-NetIPAddress.
+   ```New-NetIPAddress -IPAddress <NAT Gateway IP> -PrefixLength <NAT Subnet Prefix Length> -InterfaceIndex <ifIndex>```
 
-In order to configure the gateway, you'll need a bit of information about your network:
-			○ IPAddress -- NAT Gateway IP specifies the IPv4 or IPv6 address to use as the NAT gateway IP.
+   In order to configure the gateway, you'll need a bit of information about your network:
+   
+   2. IPAddress -- NAT Gateway IP specifies the IPv4 or IPv6 address to use as the NAT gateway IP.
+   
 The generic form will be a.b.c.1 (e.g. 172.16.0.1). While the final position doesn’t have to be .1, it usually is (based on prefix length)
 A common gateway IP is 192.168.0.1
 			○ PrefixLength -- NAT Subnet Prefix Length defines the NAT local subnet size (subnet mask). The subnet prefix length will be an integer value between 0 and 32.
