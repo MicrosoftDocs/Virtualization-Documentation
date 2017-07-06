@@ -9,7 +9,7 @@ Bootstrap Powershell Script for Setting up NestedVMs. Checks Pre-Reqs, then inst
 4) (Optional if you need internet) Setup NAT Network and DCHP Server. If the recommended DCHP Server is unavailable to you for some reason, you can also manually configure the network using Static IP. More details regarding this available below:
 
 
-(4 - In Detail) Setting up Internet On Your Nested Environment:
+**(4 - In Detail) Setting up Internet On Your Nested Environment:**
 	1. First step is to go on the VirtualHost and create a NAT virtual network switch as follows:
 	Let's walk through setting up a new NAT network.
 		i. Open a PowerShell console as Administrator.
@@ -67,8 +67,8 @@ New-NetNat -Name MyNATnetwork -InternalIPInterfaceAddressPrefix 192.168.0.0/24
 	3. On VirtualGuest, IP and DNS should be automatic which should be fine.
 Congrats - you should see similar screens to below. (Bottom screen is manual IP config (Don't worry about this unless you know what you are doing), and other is DCHP auto IP config)
 
-######Manual - Static IP Assignment
+**Manual - Static IP Assignment**
 ![Manual - Static IP Assignment](https://github.com/charlieding/Virtualization-Documentation/blob/live/hyperv-tools/Nested/Screenshot%20Examples/StaticIPAssignments.PNG)
 
-######DCHP - Dynamically Assigned IP
+**DCHP - Dynamically Assigned IP**
 ![DCHP - Dynamically Assigned IP](https://github.com/charlieding/Virtualization-Documentation/blob/live/hyperv-tools/Nested/Screenshot%20Examples/DCHPAssignedIPNAT.PNG)
