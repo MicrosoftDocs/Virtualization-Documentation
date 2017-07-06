@@ -208,22 +208,22 @@ if ($key -eq 1) {
     $HostCfgErrors += ($HostCfgErrorMsgs["VbsRegKey"])
     }
 
-# Check for residual Device Guard EFI variables
-Write-Host "`n`nSilent Error Expected Here which verifies that computer does not support Secure Boot or is a BIOS (non-UEFI) computer:"
-if((Get-Command Confirm-SecureBootUEFI -ErrorAction SilentlyContinue) -and (Confirm-SecureBootUEFI -ErrorAction SilentlyContinue)){
-    $VbsEventErrors = Get-WinEvent -LogName System -FilterXPath "*[System[EventID=124]]" -ErrorAction SilentlyContinue
-    if(($VbsEventErrors.Count -gt 0)) {
-        # Check if event was generated from latest boot
-        $BootEvents = get-winevent -LogName System -FilterXPath "*[System/Provider[@Name='Microsoft-Windows-Kernel-General'] and System/EventID=12] "
-        $LastBoot = $BootEvents[0].TimeCreated # returns newest by default 
-        $EfiBoot = $VbsEventErrors[0].TimeCreated 
-        if($LastBoot -lt $EfiBoot){
-            $HostNested.VbsPresent = $true
-            $HostNested.HostNestedSupport = $false
-            $HostCfgErrors += ($HostCfgErrorMsgs["VbsPresent"])
-        }
-    } 
-}
+# Check for residual Device Guard EFI variables - New VM Types on Azure doesn't need this anymore, so commenting out.
+# Write-Host "`n`nSilent Error Expected Here which verifies that computer does not support Secure Boot or is a BIOS (non-UEFI) computer:"
+#if((Get-Command Confirm-SecureBootUEFI -ErrorAction SilentlyContinue) -and (Confirm-SecureBootUEFI -ErrorAction SilentlyContinue)){
+#    $VbsEventErrors = Get-WinEvent -LogName System -FilterXPath "*[System[EventID=124]]" -ErrorAction SilentlyContinue
+#    if(($VbsEventErrors.Count -gt 0)) {
+#        # Check if event was generated from latest boot
+#        $BootEvents = get-winevent -LogName System -FilterXPath "*[System/Provider[@Name='Microsoft-Windows-Kernel-General'] and System/EventID=12] "
+#        $LastBoot = $BootEvents[0].TimeCreated # returns newest by default 
+#        $EfiBoot = $VbsEventErrors[0].TimeCreated 
+#        if($LastBoot -lt $EfiBoot){
+#            $HostNested.VbsPresent = $true
+#            $HostNested.HostNestedSupport = $false
+#            $HostCfgErrors += ($HostCfgErrorMsgs["VbsPresent"])
+#        }
+#    } 
+#}
 #
 # show results
 #
