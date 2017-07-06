@@ -1,16 +1,21 @@
-#
-# Windows Server 2016 Flavor Only.
-#
-# Bootstrap Powershell Script for Setting up NestedVMs. Checks Pre-Reqs, then installs/configures NestedVM. Will restart computer as necessary.
-#
-# Forked Version from https://github.com/Microsoft/Virtualization-Documentation/tree/master/hyperv-tools/Nested
-#
-# Author: Cheng (Charles) Ding
-# Date: 6/12/2017
-
+<# .SYNOPSIS
+     Nested Virtualization Setup Script for Windows Server 2016.
+.DESCRIPTION
+     Bootstrap Powershell Script for Setting up NestedVMs. Checks Pre-Reqs, then installs/configures NestedVM. Will restart computer as necessary.
+.NOTES
+     Change the name of your VM in this file to what you desire before executing script.
+     Windows Server 2016 Flavor Only.
+     Forked Version from https://github.com/Microsoft/Virtualization-Documentation/tree/master/hyperv-tools/Nested
+     Author     : Cheng (Charles) Ding
+     Date: 6/12/2017
+.LINK
+     https://github.com/charlieding/Virtualization-Documentation/edit/live/hyperv-tools/Nested/NVMBootstrap_WinServer16.ps1
+#>
 
 #TODO - EDIT ME! Change the Name you want for your Guest VM.
 $VMName = "NestedVMGuestSample-Level2"
+
+
 
 #
 # Need to run elevated.  Do that here.
