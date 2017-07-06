@@ -1,7 +1,6 @@
 README.MD
 ======
 Author     : Cheng (Charles) Ding
-Date: 6/12/2017
 
 Bootstrap Powershell Script for Setting up NestedVMs. Checks Pre-Reqs, then installs/configures NestedVM. Will restart computer as necessary. This script was designed to be used by the new Windows Server 2016 VMTypes on Azure which suport Nested Virtualization. This script may work in other environments but is not guaranteed. This is forked from an older script found [here](https://github.com/Microsoft/Virtualization-Documentation/tree/master/hyperv-tools/Nested). Please check out our blog that has a live video demo on Nested Virtualization running on Azure: https://aka.ms/AzureNVblog
 
