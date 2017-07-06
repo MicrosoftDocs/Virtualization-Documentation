@@ -33,8 +33,8 @@ Name                  InterfaceDescription               ifIndex Status       Ma
 ----                  --------------------               ------- ------       ----------           ---------
 vEthernet (intSwitch) Hyper-V Virtual Ethernet Adapter        24 Up           00-15-5D-00-6A-01      10 Gbps
 Wi-Fi                 Marvell AVASTAR Wireless-AC Net...      18 Up           98-5F-D3-34-0C-D3     300 Mbps
-Bluetooth Network ... Bluetooth Device (Personal Area...      21 Disconnected 98-5F-D3-34-0C-D4       3 Mbps```
-
+Bluetooth Network ... Bluetooth Device (Personal Area...      21 Disconnected 98-5F-D3-34-0C-D4       3 Mbps
+```
 The internal switch will have a name like vEthernet (SwitchName) and an Interface Description of Hyper-V Virtual Ethernet Adapter.
 Run the following to create the NAT Gateway:
 
