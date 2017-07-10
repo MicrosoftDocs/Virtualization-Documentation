@@ -29,7 +29,9 @@ Use OneGet to install the latest version of Docker.
 Install-Package -Name docker -ProviderName DockerMsftProviderInsider -RequiredVersion 17.05.0-ce
 ```
 When the installation is complete, reboot the computer.
+```none
 Restart-Computer -Force
+```
 
 ## Install Base Container Image
 
