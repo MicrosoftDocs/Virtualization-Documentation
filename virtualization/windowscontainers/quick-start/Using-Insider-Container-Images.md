@@ -58,4 +58,4 @@ Please read the Windows Containers OS Image EULA which can be found here – [EU
 
 ## Next Steps
 
-[Build and run an application with or without .NET Core 2.0 or PowerShell Core 6](./Nano_RS3-.NET_Core_and_PS.docx.md)
+[Build and run an application with or without .NET Core 2.0 or PowerShell Core 6](./Nano-RS3-.NET-Core-and-PS.docx.md)
