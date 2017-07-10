@@ -12,6 +12,7 @@
 # Windows Insider Quick Start
 ## [Step 1 - Using the Insider images](quick-start/Using_Insider_Container_Images.md)
 ## [Step 2 - Build and Run an Application](quick-start/Nano_RS3-.NET_Core_and_PS.md)
+## [Step 3 - Known Issues](quick-start/Insider_Known_Issues.md)
 
 # Deploy Windows Container
 ## [System Requirements](deployment/system_requirements.md)
