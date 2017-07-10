@@ -30,6 +30,7 @@ Below are some examples of how we used multi-stage builds to create these contai
 
 ## Deploy apps based on .NET Core 2.0
 You can leverage the .NET Core 2.0 container image in the Insider release to run your .NET Core apps, where your .NET Core application is built elsewhere and you want to run it in the container.  You can find more information on how to run a .NET Core application with the .NET Core container images at [.NET Core GitHub](https://github.com/dotnet/dotnet-docker-nightly).  If you are developing an application inside the container, the .NET Core SDK should be used instead.  For advanced users, you can build your own .NET Core 2.0 container with the .NET Core 2.0 version, Dockerfile, and URL specified in the [dotnet-docker-nightly](https://github.com/dotnet/dotnet-docker-nightly/tree/master/2.0). To do that, a Windows Server Core container can be used to accomplish the download and unzip function.  The Dockerfile sample is as below.
+ [.NET Core Dockerfile](https://github.com/dotnet/dotnet-docker-nightly/tree/nanoserver-insider/2.0/runtime/nanoserver-insider).
 
 ```dockerfile
 # escape=`
