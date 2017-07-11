@@ -2,6 +2,30 @@
 Import-Module ActiveDirectory
 $Script:CredentialSpecPath="$($env:ProgramData)\Docker\CredentialSpecs"
 
+try
+{
+  $Script:CredentialSpecPath= "$($(docker info --format '{{json .DockerRootDir}}').Replace('"',''))\CredentialSpecs"
+}
+catch
+{
+  $Script:CredentialSpecPath="$($env:ProgramData)\Docker\CredentialSpecs"
+  $next=$true
+}
+
+if ($next){
+  try
+  {
+    if (Test-Path "$env:ProgramData\docker\config\daemon.json")
+    {
+      $Script:CredentialSpecPath="$($(get-content "$($env:ProgramData)\docker\config\daemon.json" | out-string | convertfrom-json).graph)\CredentialSpecs"
+    }
+  }
+  catch
+  {  
+    $Script:CredentialSpecPath="$($env:ProgramData)\Docker\CredentialSpecs"
+  }
+}
+
 <#
  .Synopsis
   Creates and stores a credential specification file
