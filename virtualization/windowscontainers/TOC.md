@@ -1,4 +1,4 @@
-﻿# [About Windows Containers](about/index.md)
+# [About Windows Containers](about/index.md)
 
 # Windows Server Quick Start
 ## [Step 1 – Concepts](quick_start/quick_start.md)
@@ -9,10 +9,17 @@
 ## [Step 1 – Concepts](quick_start/quick_start.md)
 ## [Step 2 – First Container](quick_start/quick_start_windows_10.md)
 
+# Windows Insider Quick Start
+## [Step 1 - Using the Insider images](quick-start/Using-Insider-Container-Images.md)
+## [Step 2 - Build and Run an Application](quick-start/Nano-RS3-.NET-Core-and-PS.md)
+## [Step 3 - Known Issues](quick-start/Insider_Known_Issues.md)
+
 # Deploy Windows Container
 ## [System Requirements](deployment/system_requirements.md)
+## [Hyper-V Isolation](https://docs.microsoft.com/en-us/virtualization/windowscontainers/manage-containers/hyperv-container)
 ## [Container Host - Windows Server](deployment/deployment.md)
 ## [Container Host - Nano Server](deployment/deployment_nano.md)
+## [Hyper-V Isolation](manage-containers/hyperv-container.md)
 ## [Anti-Virus Optimization](https://msdn.microsoft.com/en-us/windows/hardware/drivers/ifs/anti-virus-optimization-for-windows-containers)
 ## [Active Directory Service Accounts](management/manage_serviceaccounts.md)
 

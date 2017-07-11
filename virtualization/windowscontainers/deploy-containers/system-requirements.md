@@ -74,5 +74,12 @@ PS C:\Users\Administrator> (Get-ItemProperty 'HKLM:\SOFTWARE\Microsoft\Windows N
 14393.321.amd64fre.rs1_release_inmarket.161004-2338
 ```
 
-### Hyper-V Containers
-Unlike Windows Server Containers which share the kernel between containers and the host, each Hyper-V Container utilizes its own instance of the Windows kernel.  Because of this you can miss-match the container host and container image versions.  At this time builds with a build number equal to or greater than Windows Server 2016 GA (10.0.14393.206) can run the Windows Server 2016 GA images of both Windows Server Core or Nano Server in a supported configuration regardless of the revision number.  In the future and based on customer feedback we will be providing specific guidance on how far apart build numbers can be.  It is important to understand that in order to have the full functionality, reliability and security assurances provided with Windows updates you should maintain the latest versions on all systems.  
+### Hyper-V Isolation for Containers
+Windows Containers can be run with or without Hyper-V isolation.  Hyper-V isolation creates a secure boundary around the container with an optimized VM.  Unlike standard Windows Containers, which share the kernel between containers and the host, each Hyper-V isolated container has its own instance of the Windows kernel.  Because of this you can have different OS versions in the container host and image (see compatibility matrix below).  
+
+To run a container with Hyper-V isolation, simply add the tag "--isolation=hyper-v" to your docker run command.
+
+### Compatibility Matrix
+Windows Server builds after 2016 GA (10.0.14393.206) can run the Windows Server 2016 GA images of both Windows Server Core or Nano Server in a supported configuration regardless of the revision number.    
+
+It is important to understand that in order to have the full functionality, reliability and security assurances provided with Windows updates you should maintain the latest versions on all systems.  
