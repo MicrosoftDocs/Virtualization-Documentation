@@ -1,10 +1,13 @@
-FROM microsoft/iis
+FROM microsoft/windowsservercore
 
-MAINTAINER Max Knor
+MAINTAINER SHI HAO WANG
 
 WORKDIR /
 
 ENV serverfarms "[]"
+
+#Install IIS Web-Server
+RUN powershell -Command Add-WindowsFeature Web-Server
 
 RUN @powershell Install-WindowsFeature Web-Mgmt-Service
 RUN @powershell Install-WindowsFeature WAS-Config-APIs
@@ -33,5 +36,4 @@ ADD ./start.ps1 /
 
 CMD powershell ./start.ps1 -serverfarms \"%serverfarms%\" -Verbose
 
-# docker run -d -v C:/temp/:C:/temp/ -e serverfarms="[{'name':'Maxtest123','servers':[{'address':'172.21.116.32'}]}]" --link web1:w
-eb1 -p 80:80 knom/iis-arr
+# docker run -d -v C:/temp/:C:/temp/ -e serverfarms="[{'name':'Maxtest123','servers':[{'address':'172.21.116.32'}]}]" --link web1:web1 -p 80:80 knom/iis-arr
