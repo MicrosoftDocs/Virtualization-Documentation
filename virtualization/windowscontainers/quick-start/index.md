@@ -18,7 +18,7 @@ The Windows container quick start introduces the product and container terminolo
 
 They are an isolated, resource controlled, and portable operating environment.
 
-Basically, a container is an isolated place where an application can run without affecting the rest of the system, and without the system affecting the application. Containers are the next evolution in virtualization.
+A container is an isolated place where an application can run without affecting the rest of the system, and without the system affecting the application. Containers are the next evolution in virtualization.
 
 If you were inside a container, it would look very much like you were inside a freshly installed physical computer or a virtual machine. And, to [Docker](https://www.docker.com/), a Windows container can be managed in the same way as any other container.
 
@@ -32,15 +32,15 @@ Windows Containers include two different container types, or runtimes.
 
 ## 3. Container Fundamentals
 
-When you begin working with containers you will notice many similarities between a container and a virtual machine. A container runs an operating system, has a file system and can be accessed over a network just as if it was a physical or virtual computer system. That said, the technology and concepts behind containers are very different from that of virtual machines. The following key concepts will be helpful as you begin creating and working with Windows Containers. 
+When you begin working with containers you will notice many similarities between a container and a virtual machine. A container runs an operating system, has a file system and can be accessed over a network just as if it was a physical or virtual computer system. That said, the technology and concepts behind containers are very different from that of virtual machines. The following key concepts will be helpful as you begin creating and working with Windows Containers.
 
 **Container Host:** - Physical or Virtual computer system configured with the Windows Container feature.
 
 **Container OS Image:** - Containers are deployed from images. The container OS image is the first layer in potentially many image layers that make up a container. This image provides the operating system environment.
 
-**Container Image:** - A container image contains the base operating system, application, and all application dependencies needed to quickly deploy a container. 
+**Container Image:** - A container image contains the base operating system, application, and all application dependencies needed to quickly deploy a container.
 
-**Container Registry:** - Container images are stored in a container registry, and can be downloaded on demand. 
+**Container Registry:** - Container images are stored in a container registry, and can be downloaded on demand.
 
 **Dockerfile:** - Dockerfiles are used to automate the creation of container images.
 
@@ -49,4 +49,3 @@ When you begin working with containers you will notice many similarities between
 [Windows Server Container Quick Start](quick-start-windows-server.md)  
 
 [Windows 10 Container Quick Start](quick-start-windows-10.md)
-
