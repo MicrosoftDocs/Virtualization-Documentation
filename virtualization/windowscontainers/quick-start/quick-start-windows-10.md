@@ -12,7 +12,7 @@ ms.assetid: bb9bfbe0-5bdc-4984-912f-9c93ea67105f
 
 # Windows Containers on Windows 10
 
-The exercise will walk through basic deployment and use of the Windows container feature on Windows 10 Professional or Enterprise (Anniversary Edition). After completion, you will have installed Docker for Windows and run a simple container. Before starting this quick start, familiarize yourself with basic container concepts and terminology. This information can be found on the [Quick Start Introduction](./index.md).
+The exercise will walk through basic deployment and use of the Windows container feature on Windows 10 Professional or Enterprise (Anniversary Edition). After completion, you will have installed Docker for Windows and run a simple container. If you need to familiarize yourself with containers, you can find this information in [About Containers](../about/index.md).
 
 This quick start is specific to Windows 10. Additional quick start documentation can be found in the table of contents on the left hand side of this page.
 
