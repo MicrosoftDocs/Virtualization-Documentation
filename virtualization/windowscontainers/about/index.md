@@ -66,7 +66,7 @@ Running a container on Windows with or without Hyper-V Isolation is a runtime de
 
 ## What is Docker?
 
-As you read about containers, you’ll inevitably hear about Docker. Docker is the vessel by which container images are packaged and delivered. This automated process produces images which may then be run anywhere—on premises, in the cloud, or on a personal machine.
+As you read about containers, you’ll inevitably hear about Docker. Docker is the vessel by which container images are packaged and delivered. This automated process produces images (effectively templates) which may then be run anywhere—on premises, in the cloud, or on a personal machine—as a container.
 
 <center>![](media/docker.png)</center>
 
@@ -92,10 +92,10 @@ Containers help admins create an infrastructure that is simpler to update and ma
 
 ## Video Overview
 
-<iframe
-src="https://channel9.msdn.com/Blogs/containers/Containers-101-with-Microsoft-and-Docker/player" width="800" height="450" allowFullScreen="true" frameBorder="0" scrolling="no"></iframe>
-
+<iframe src="https://channel9.msdn.com/Blogs/containers/Containers-101-with-Microsoft-and-Docker/player" width="800" height="450" allowFullScreen="true" frameBorder="0" scrolling="no"></iframe>
 
 ## Try Windows Server Containers
 
-[Container Quick Start Introduction](../quick_start/quick_start.md)
+Ready to begin leveraging the awesome power of containers? Hit the jumps below to get a hands-on with deploying your very first container:
+For users on Windows Server, go here - [Windows Server Quick Start Introduction](../quick-start/quick-start-windows-server.md)
+For users on Windows 10, go here - [Windows 10 Quick Start Introduction](../quick-start/quick-start-windows-10.md)
