@@ -2,7 +2,7 @@
 layout: HubPage
 hide_bc: true
 title: Virtualization on Windows | Microsoft Docs
-description: Landing page for documentation related to virtualization on Windows 
+description: Landing page for documentation related to virtualization on Windows
 keywords: windows 10, hyper-v, container, docker
 author: scooley
 ms.date: 03/31/2017
@@ -96,7 +96,6 @@ ms.assetid: addcfda8-1522-4137-bc02-14cbb1ff838f
                                                 <h3 style="margin: 8px 0 2px 0;">About Containers</h3>
                                                 <ul>
                                                     <li><a href="/virtualization/windowscontainers/about/">About containers</a></li>
-                                                    <li><a href="/virtualization/windowscontainers/quick-start/index">Container concepts and terms</a></li>
                                                     <li><a href="/virtualization/windowscontainers/troubleshooting">Troubleshooting</a></li>
                                                     <li><a href="/windows-server/administration/performance-tuning/role/windows-server-container/">Performance tuning</a></li>
                                                 </ul>

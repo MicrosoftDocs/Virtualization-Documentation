@@ -20,14 +20,12 @@ Windows Containers provide operating system level virtualization that allows mul
 <td>**Quick Start**<br /><br />
 Windows Server Quick Start<br /><br />
 <ul>
-<li>[Step 1 – Concepts and Terminology](quick-start/index.md)<br /><br /></li>
-<li>[Step 2 – Configure Windows Server and First Container](quick-start/quick-start-windows-server.md)<br /><br /></li>
-<li>[Step 3 – Create and Push Container Images](quick-start/quick-start-images.md)<br /><br /></li>
+<li>[Step 1 – Configure Windows Server and First Container](quick-start/quick-start-windows-server.md)<br /><br /></li>
+<li>[Step 2 – Create and Push Container Images](quick-start/quick-start-images.md)<br /><br /></li>
 </ul>
 Windows 10 Quick Start<br /><br />
 <ul>
-<li>[Step 1 – Concepts and Terminology](quick-start/index.md)<br /><br /></li>
-<li>[Step 2 – Configure Windows 10 and First Container](quick-start/quick-start-windows-10.md)<br /><br /></li>
+<li>[Step 1 – Configure Windows 10 and First Container](quick-start/quick-start-windows-10.md)<br /><br /></li>
 </ul>
 </td>
 </tr>
