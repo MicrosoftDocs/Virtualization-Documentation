@@ -147,5 +147,3 @@ For in depth information on the Docker Run command, see [Docker Run Reference on
 ## Next Steps
 
 [Container Images on Windows Server](./quick-start-images.md)
-
-[Windows Containers on Windows 10](./quick-start-windows-10.md)

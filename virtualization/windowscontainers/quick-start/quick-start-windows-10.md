@@ -110,4 +110,4 @@ Subsequent Windows 10 and container quick starts will dig into creating and depl
 
 ## Next Steps
 
-[Windows Containers on Windows Server](./quick-start-windows-server.md)
+Continue to the next tutorial to see an example of [building a sample app](./building-sample-app.md)
