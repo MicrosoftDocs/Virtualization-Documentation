@@ -7,7 +7,7 @@
 	docker run -d --name web3 -h web3 microsoft/iis ping -t localhost
 ```
 
-2. Run IIS AAR container image...
+2. Run IIS ARR container image...
 	 
 	 Note that the IIS ARR config is passed in as JSON via the parameter serverfarms.
 	 Also the container is linked to all the three webservers created before via --link.
