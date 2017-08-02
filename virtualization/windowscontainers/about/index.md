@@ -12,8 +12,6 @@ ms.assetid: 8e273856-3620-4e58-9d1a-d1e06550448
 
 # Windows Containers
 
-**This is preliminary content and subject to change.**
-
 ## What are Containers
 
 Containers are a way to wrap up an application into its own isolated box. For the application in its container, it has no knowledge of any other applications or processes that exist outside of its box. Everything the application depends on to run successfully also lives inside this container.  Wherever the box may move, the application will always be satisfied because it is bundled up with everything it needs to run.
