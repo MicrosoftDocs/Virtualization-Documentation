@@ -106,8 +106,8 @@ The files will be `goroutine-stacks-<timestamp>.log` and `daemon-data-<timestamp
 Note that `daemon-data*.log` may contain personal information and should generally only be shared with trusted support people. `goroutine-stacks*.log` does not contain personal information.
 
 
-### Host Container Service
-The Docker Engine depends on a Windows-specific Host Container Service. It has separate logs: 
+### Host Compute Service
+The Docker Engine depends on a Windows-specific Host Compute Service. It has separate logs: 
 - Microsoft-Windows-Hyper-V-Compute-Admin
 - Microsoft-Windows-Hyper-V-Compute-Operational
 
