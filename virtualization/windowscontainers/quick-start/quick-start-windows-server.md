@@ -146,4 +146,4 @@ For in depth information on the Docker Run command, see [Docker Run Reference on
 
 ## Next Steps
 
-[Container Images on Windows Server](./quick-start-images.md)
+[Automating Builds and Saving Images](./quick-start-images.md)
