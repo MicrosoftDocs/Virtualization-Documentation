@@ -214,4 +214,6 @@ docker pull <user>/iis-dockerfile
 
 ## Next Steps
 
+If you would like to see how to package a sample ASP.NET application, visit the Windows 10 tutorials linked below.
+
 [Windows Containers on Windows 10](./quick-start-windows-10.md)

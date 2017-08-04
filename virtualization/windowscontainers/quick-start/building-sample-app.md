@@ -15,15 +15,17 @@ The exercise will walk you through taking a sample ASP.net app and converting it
 
 This quick start is specific to Windows 10. Additional quick start documentation can be found in the table of contents on the left hand side of this page. Since the focus of this tutorial concerns containers, we will forego writing code and focus solely on containers. If you want to build the tutorial from the ground up, then you can find it in [ASP.NET Core Documentation](https://docs.microsoft.com/en-us/aspnet/core/tutorials/first-mvc-app-xplat/)
 
+If you don't have Git source control installed on your computer, you can grab it here: [Git](https://git-scm.com/download)
+
 ## Getting Started
 
 This sample project was set up with [VSCode](https://code.visualstudio.com/). We will also be using Powershell. Let's grab the demo code from github. You can clone the repo with git or download the project directly from [SampleASPContainerApp](https://github.com/cwilhit/SampleASPContainerApp).
 
-```Bash
+```Powershell
 git clone https://github.com/cwilhit/SampleASPContainerApp.git
 ```
 
-Now, let's navigate to the project directory and create the Dockerfile.
+Now, let's navigate to the project directory and create the Dockerfile. A [Dockerfile](https://docs.docker.com/engine/reference/builder/) is like a makefile--a list of instructions that describe how a container image must be built.
 
 ```Powershell
 #Create the dockerfile for our proj
@@ -85,6 +87,8 @@ WORKDIR /app
 COPY --from=build-env /app/out .
 ENTRYPOINT ["dotnet", "MvcMovie.dll"]
 ```
+
+We have now successfully performed what is called a _multi-stage build_. We used the temporary container to build our image and then moved over the published dll into another container so that we minimized the footprint of the end result. We want this container to have the absolute minimum required dependencies to run; if we had kept with using our first image, then it would have come packaged with other layers (for building ASP.NET apps) which were not vital and therefore would increase our image size.
 
 ## Running the App
 
