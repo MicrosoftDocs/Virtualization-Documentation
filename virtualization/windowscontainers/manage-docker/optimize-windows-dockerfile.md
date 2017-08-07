@@ -139,12 +139,13 @@ RUN powershell -Command \
     
   Expand-Archive -Path c:\php.zip -DestinationPath c:\php ; \
   Expand-Archive -Path c:\apache.zip -DestinationPath c:\ ; \
-  start-Process c:\vcredistexe -ArgumentList '/quiet' -Wait ; \
+  start-Process c:\vcredist.exe -ArgumentList '/quiet' -Wait ; \
     
   # Remove unneeded files ; \
      
   Remove-Item c:\apache.zip -Force; \
-  Remove-Item c:\vcredist.exe -Force
+  Remove-Item c:\vcredist.exe -Force; \
+  Remove-Item c:\php.zip
 ```
 
 The resulting image consists of two layers, one for the base OS image, and the second that contains all operations from the single `RUN` instruction.
