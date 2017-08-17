@@ -12,19 +12,17 @@ ms.assetid: 8e273856-3620-4e58-9d1a-d1e06550448
 
 # Windows Containers
 
-**This is preliminary content and subject to change.**
-
 ## What are Containers
 
 Containers are a way to wrap up an application into its own isolated box. For the application in its container, it has no knowledge of any other applications or processes that exist outside of its box. Everything the application depends on to run successfully also lives inside this container.  Wherever the box may move, the application will always be satisfied because it is bundled up with everything it needs to run.
 
 Imagine a kitchen. We package up all the appliances and furniture, the pots and pans, the dish soap and hand towels. This is our container
 
-<center>![](media/box1.png)</center>
+<center style="margin: 25px">![](media/box1.png)</center>
 
 We can now take this container and drop it into whatever host apartment we want, and it will be the same kitchen. All we must do is connect electricity and water to it, and then we’re clear to start cooking (because we have all the appliances we need!)
 
-<center>![](media/apartment.png)</center>
+<center style="margin: 25px">![](media/apartment.png)</center>
 
 In much the same way, containers are like this kitchen. There can be different kinds of rooms as well as many of the same kinds of rooms. What matters is that the containers come packaged up with everything they need.
 
@@ -96,6 +94,7 @@ Containers help admins create an infrastructure that is simpler to update and ma
 
 ## Try Windows Server Containers
 
-Ready to begin leveraging the awesome power of containers? Hit the jumps below to get a hands-on with deploying your very first container:
-For users on Windows Server, go here - [Windows Server Quick Start Introduction](../quick-start/quick-start-windows-server.md)
+Ready to begin leveraging the awesome power of containers? Hit the jumps below to get a hands-on with deploying your very first container: <br/>
+For users on Windows Server, go here - [Windows Server Quick Start Introduction](../quick-start/quick-start-windows-server.md) <br/>
 For users on Windows 10, go here - [Windows 10 Quick Start Introduction](../quick-start/quick-start-windows-10.md)
+

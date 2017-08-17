@@ -59,6 +59,17 @@ Windows Containers are offered with two container base images, Windows Server Co
 </tbody>
 </table>
 
+### Nano Server vs. Windows Server Core
+
+How does one choose between Windows Server Core and Nano Server? While you are free to build with whatever you wish, if you find that your application needs full compatibility with the .NET Framework, then you should use [Windows Server Core](https://hub.docker.com/r/microsoft/windowsservercore/). On the other side of the coin, if your application is built for the cloud and uses .NET Core, then you should use [Nano Server](https://hub.docker.com/r/microsoft/nanoserver/). This is because Nano Server was built with the intention of having as small a footprint as possible therefore several nonessential libraries were removed. This is good to keep in mind as you think about building on top of Nano Server:
+
+- The servicing stack was removed
+- .NET Core is not included (though you can use the [.NET Core Nano Server image](https://hub.docker.com/r/microsoft/dotnet/))
+- PowerShell was removed
+- WMI was removed
+
+These are the biggest differences and not an exhaustive list. There are other components not called out which are absent as well. Keep in mind that you can always add layers on top of Nano Server as you see fit. For an example of this check out the [.NET Core Nano Server Dockerfile](https://github.com/dotnet/dotnet-docker/blob/master/2.0/sdk/nanoserver/amd64/Dockerfile).
+
 ## Matching Container Host Version With Container Image Versions
 ### Windows Server Containers
 Because Windows Server Containers and the underlying host share a single kernel, the container’s base image must match that of the host.  If the versions are different the container may start, but full functionally cannot be guaranteed. Therefore mismatched versions are not supported.  The Windows operating system has 4 levels of versioning, Major, Minor, Build and Revision – for example 10.0.14393.0. The build number only changes when new versions of the OS are published. The revision number is updated as Windows updates are applied. Windows Server Containers are blocked from starting when the build number is different - for example 10.0.14300.1030 (Technical Preview 5) and 10.0.14393 (Windows Server 2016 RTM). If the build number matches but the revision number is different, it is not blocked from starting - for example 10.0.14393 (Windows Server 2016 RTM) and 10.0.14393.206 (Windows Server 2016 GA). Even though they are not technically blocked, this is a configuration that may not function properly under all circumstances and thus cannot be supported for production environments. 

@@ -10,7 +10,7 @@ ms.service: windows-containers
 ms.assetid: 479e05b1-2642-47c7-9db4-d2a23592d29f
 ---
 
-# Container Images on Windows Server
+# Automating Builds and Saving Images
 
 In the previous Windows Server quick start, a Windows container was created from a pre-created .Net Core sample. This exercise will detail creating custom container images manually, automating container image creation using a Dockerfile, and storing container images in the Docker Hub public registry.
 
@@ -213,5 +213,7 @@ docker pull <user>/iis-dockerfile
 ```
 
 ## Next Steps
+
+If you would like to see how to package a sample ASP.NET application, visit the Windows 10 tutorials linked below.
 
 [Windows Containers on Windows 10](./quick-start-windows-10.md)
