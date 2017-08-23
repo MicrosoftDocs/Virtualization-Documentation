@@ -88,7 +88,7 @@ PS C:\Users\Administrator> (Get-ItemProperty 'HKLM:\SOFTWARE\Microsoft\Windows N
 ### Hyper-V Isolation for Containers
 Windows Containers can be run with or without Hyper-V isolation.  Hyper-V isolation creates a secure boundary around the container with an optimized VM.  Unlike standard Windows Containers, which share the kernel between containers and the host, each Hyper-V isolated container has its own instance of the Windows kernel.  Because of this you can have different OS versions in the container host and image (see compatibility matrix below).  
 
-To run a container with Hyper-V isolation, simply add the tag "--isolation=hyper-v" to your docker run command.
+To run a container with Hyper-V isolation, simply add the tag "--isolation=hyperv" to your docker run command.
 
 ### Compatibility Matrix
 Windows Server builds after 2016 GA (10.0.14393.206) can run the Windows Server 2016 GA images of both Windows Server Core or Nano Server in a supported configuration regardless of the revision number.    
