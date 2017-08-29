@@ -40,13 +40,32 @@ Let's walk through setting up a new NAT network.
 
 1.  Open a PowerShell console as Administrator.  
 
-2. Create an internal switch  
+2. Create an internal switch.
 
   ``` PowerShell
   New-VMSwitch -SwitchName "SwitchName" -SwitchType Internal
   ```
 
-3. Configure the NAT gateway using [New-NetIPAddress](https://technet.microsoft.com/en-us/library/hh826150.aspx).  
+3. Find the interface index of the virtual switch you just created.
+
+    You can find the interface index by running `Get-NetAdapter`
+
+    Your output should look something like this:
+
+    ```
+    PS C:\> Get-NetAdapter
+
+    Name                  InterfaceDescription               ifIndex Status       MacAddress           LinkSpeed
+    ----                  --------------------               ------- ------       ----------           ---------
+    vEthernet (intSwitch) Hyper-V Virtual Ethernet Adapter        24 Up           00-15-5D-00-6A-01      10 Gbps
+    Wi-Fi                 Marvell AVASTAR Wireless-AC Net...      18 Up           98-5F-D3-34-0C-D3     300 Mbps
+    Bluetooth Network ... Bluetooth Device (Personal Area...      21 Disconnected 98-5F-D3-34-0C-D4       3 Mbps
+
+    ```
+
+    The internal switch will have a name like `vEthernet (SwitchName)` and an Interface Description of `Hyper-V Virtual Ethernet Adapter`. Take note of its `ifIndex` to use in the next step.
+
+4. Configure the NAT gateway using [New-NetIPAddress](https://technet.microsoft.com/en-us/library/hh826150.aspx).  
 
   Here is the generic command:
   ``` PowerShell
@@ -66,24 +85,7 @@ Let's walk through setting up a new NAT network.
 
     A common PrefixLength is 24 -- this is a subnet mask of 255.255.255.0
 
-  * **InterfaceIndex** -- ifIndex is the interface index of the virtual switch created above.
-
-    You can find the interface index by running `Get-NetAdapter`
-
-    Your output should look something like this:
-
-    ```
-    PS C:\> Get-NetAdapter
-
-    Name                  InterfaceDescription               ifIndex Status       MacAddress           LinkSpeed
-    ----                  --------------------               ------- ------       ----------           ---------
-    vEthernet (intSwitch) Hyper-V Virtual Ethernet Adapter        24 Up           00-15-5D-00-6A-01      10 Gbps
-    Wi-Fi                 Marvell AVASTAR Wireless-AC Net...      18 Up           98-5F-D3-34-0C-D3     300 Mbps
-    Bluetooth Network ... Bluetooth Device (Personal Area...      21 Disconnected 98-5F-D3-34-0C-D4       3 Mbps
-
-    ```
-
-    The internal switch will have a name like `vEthernet (SwitchName)` and an Interface Description of `Hyper-V Virtual Ethernet Adapter`.
+  * **InterfaceIndex** -- ifIndex is the interface index of the virtual switch, which you determined in the previous step.
 
   Run the following to create the NAT Gateway:
 
@@ -91,7 +93,7 @@ Let's walk through setting up a new NAT network.
   New-NetIPAddress -IPAddress 192.168.0.1 -PrefixLength 24 -InterfaceIndex 24
   ```
 
-4. Configure the NAT network using [New-NetNat](https://technet.microsoft.com/en-us/library/dn283361(v=wps.630).aspx).  
+5. Configure the NAT network using [New-NetNat](https://technet.microsoft.com/en-us/library/dn283361(v=wps.630).aspx).  
 
   Here is the generic command:
 
@@ -214,12 +216,12 @@ Get-VMSwitch
 
 Check to see if there are private IP addresses (e.g. NAT default Gateway IP Address – usually *.1) from the old NAT still assigned to an adapter
 ``` PowerShell
-Get-NetIPAddress -InterfaceAlias "vEthernet(<name of vSwitch>)"
+Get-NetIPAddress -InterfaceAlias "vEthernet (<name of vSwitch>)"
 ```
 
 If an old private IP address is in use, please delete it
 ``` PowerShell
-Remove-NetIPAddress -InterfaceAlias "vEthernet(<name of vSwitch>)" -IPAddress <IPAddress>
+Remove-NetIPAddress -InterfaceAlias "vEthernet (<name of vSwitch>)" -IPAddress <IPAddress>
 ```
 
 **Removing Multiple NATs**  
