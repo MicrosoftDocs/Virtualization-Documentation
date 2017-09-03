@@ -99,10 +99,10 @@ docker build -t myasp .
 docker run -d -p 5000:80 --name myapp myasp
 ```
 
-To see our app running, we ned to go visit the address which it is running on. Let's get the IP address by running this command.
+To see our app running, we need to go visit the address which it is running on. Let's get the IP address by running this command.
 
 ```Powershell
- docker inspect -f "{{ .NetworkSettings.Networks.nat.IPAddress }}" myapp
+ docker inspect -f "{{ .NetworkSettings.Networks.nat.IPAddress }}" myasp
 ```
 
 Running this command will yield the IP address of your running container. Below is an example of what the output should look like.
