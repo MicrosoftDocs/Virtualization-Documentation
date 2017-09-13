@@ -5,7 +5,7 @@ $currentVersion = Get-Item 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion'
 $OSProductName = $currentVersion.GetValue('ProductName')
 $OSBuildLabel = $currentVersion.GetValue('BuildLabEx')
 Write-Output "Container Host OS Product Name: $OSProductName"
-Write-Output "Container Host Build Label: $OSBuildLabel"
+Write-Output "Container Host OS Build Label: $OSBuildLabel"
 
 Describe "Windows Version and Prerequisites" {
     $buildNumber = (Get-CimInstance -Namespace root\cimv2 Win32_OperatingSystem).BuildNumber
