@@ -1,6 +1,9 @@
 Write-Output "Checking for common problems"
 
 $filesToDump = @{}
+$currentVersion = Get-Item 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion'
+$OSBuildLabel = $currentVersion.GetValue('BuildLabEx')
+Write-Output "Windows Build Label: $OSBuildLabel"
 
 Describe "Windows Version and Prerequisites" {
     $buildNumber = (Get-CimInstance -Namespace root\cimv2 Win32_OperatingSystem).BuildNumber
