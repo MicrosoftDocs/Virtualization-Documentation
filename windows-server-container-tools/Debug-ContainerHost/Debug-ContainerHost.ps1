@@ -290,10 +290,10 @@ $events | Export-CSV $eventCsv
 Write-Host "Logs saved to $($PWD)\$($eventCsv)`n`n"
 
 Write-Output "Getting Docker for Windows daemon logs from the last execution"
-Write-Output "    Note: More logs may be available at $($ENV:LOCALAPPDATA)\Docker. Only showing the latest."
+Write-Output "    Note: More logs may be available at $($ENV:LOCALAPPDATA)\Docker. Only showing the latest 100 lines."
 if (Test-Path "$($ENV:LOCALAPPDATA)\Docker\log.txt")
 {
-	Get-Content "$($ENV:LOCALAPPDATA)\Docker\log.txt" | Select-String "WindowsDockerDaemon"
+	Get-Content -Tail 100 "$($ENV:LOCALAPPDATA)\Docker\log.txt" | Select-String "WindowsDockerDaemon"
 }
 else {
 	Write-Output "   $($ENV:LOCALAPPDATA)\Docker\log.txt does not exist."
