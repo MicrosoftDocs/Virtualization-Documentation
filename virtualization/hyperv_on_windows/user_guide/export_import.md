@@ -14,7 +14,7 @@ ms.assetid: 7fd996f5-1ea9-4b16-9776-85fb39a3aa34
 
 You can use Hyper-V's export and import functionality to quickly duplicate virtual machines.  Exported virtual machines can be used for backup or as a way to move a virtual machine between Hyper-V hosts.  
 
-Import allows you to restore virtual machines.  You don't need to export a virtual machine to be able to import it. Import will try to recreate the virtual machine from whatever is available.  Use the **Import Virtual Machine** wizard to specify the location of the files. This registers the virtual machine with Hyper-V and makes it available to be used.
+Import allows you to restore virtual machines.  You don't need to export a virtual machine to be able to import it. Import tries to recreate the virtual machine from whatever is available.  Use the **Import Virtual Machine** wizard to specify the location of the files. This registers the virtual machine with Hyper-V and makes it available to be used.
  
 This document walks through exporting and importing a virtual machine and some of the choices you can make when performing these tasks.
 
@@ -44,11 +44,11 @@ For information about using Windows PowerShell to export virtual machines, see [
 
 ## Import a Virtual Machine 
 
-Importing a virtual machine registers the virtual machine with the Hyper-V host. A virtual machine export can be imported back into the host from which it was derived or new host. 
+Importing a virtual machine registers the virtual machine with the Hyper-V host. A virtual machine export can be imported back into the host from which it was derived or imported to a new Hyper-V host. 
 
 Hyper-V includes three import types:
 
-- **Register in-place** – Export files have been placed in the location where the virtual machine should be run from. When imported, the virtual machine has the same ID as it did at the time of export. Because of this, If the virtual machine is already registered with Hyper-V it needs to be deleted before the import will work. When the import has completed, the export files become the running state files and cannot be removed.
+- **Register in-place** – Export files have been placed in the location where the virtual machine should be run from. When imported, the virtual machine has the same ID as it did at the time of export. Because of this, If the virtual machine is already registered with Hyper-V it needs to be deleted before the import works. When the import has completed, the export files become the running state files and cannot be removed.
 
 - **Restore the virtual machine** – You are given an option to store the VM files in a specific location or use the locations default to Hyper-V. This import type creates a copy of the exported file and moves them to the selected location. When imported, the virtual machine has the same ID as it did at the time of export. Because of this, if the virtual machine is already running in Hyper-V it needs to be deleted before the import can be completed. When the import has completed the exported files remain untouched and can be removed and / or imported again.
 
@@ -65,7 +65,7 @@ To import a virtual machine into a Hyper-V host:
 
 3. Select the folder that contains the exported files and click **Next**.
 
-4. Select the Virtual Machine to import, there will most likely only be one option.
+4. Select the Virtual Machine to import, there is most likely only one option.
 
 5. Choose an import type from one of the three options and click next. 
 
