@@ -18,15 +18,13 @@ To install Docker, we'll use the OneGet provider PowerShell module. The provider
 
 Open an elevated PowerShell session and run the following commands.
 
->Note: Installing Docker in the insider builds requires a different provider than the one normally used as of today. Please note the difference below.
-
 Install the OneGet PowerShell module.
 ```powershell
-Install-Module -Name DockerMsftProviderInsider -Repository PSGallery -Force
+Install-Module -Name DockerProvider -Repository PSGallery -Force
 ```
 Use OneGet to install the latest version of Docker.
 ```powershell
-Install-Package -Name docker -ProviderName DockerMsftProviderInsider -RequiredVersion 17.06.0-ce
+Install-Package -Name Docker -ProviderName DockerProvider -RequiredVersion preview
 ```
 When the installation is complete, reboot the computer.
 ```none
