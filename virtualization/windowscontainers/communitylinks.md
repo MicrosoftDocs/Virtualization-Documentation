@@ -40,6 +40,8 @@ This page contains links to videos and blogs created by members or the container
 
 [Running Neo4j in Windows Containers](http://glennsarti.github.io/blog/neo4j-nano-containers) - Glenn Sarti
 
+[Docker Recipe: Media Foundation on Windows Server Core](https://withinrafael.com/2017/09/03/docker-recipe-media-foundation/) - Rafael Rivera
+
 ## Configuration and Managment
 [How to protect a Windows 2016 Docker engine with TLS](https://stefanscherer.github.io/protecting-a-windows-2016-docker-engine-with-tls/) - Stefan Scherer
 
