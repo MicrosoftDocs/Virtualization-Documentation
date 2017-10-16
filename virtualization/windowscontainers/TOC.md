@@ -22,9 +22,9 @@
 
 # Manage Docker on Windows
 ## [Docker Engine on Windows](docker/configure_docker_daemon.md)
-## [Dockerfiles on Windows](docker/manage_windows_dockerfile.md)
-## [Optimize Dockerfiles](docker/optimize_windows_dockerfile.md)
-## [Container Networking](management/container_networking.md)
+## [Dockerfiles on Windows](manage-docker/manage-windows-dockerfile.md)
+## [Optimize Dockerfiles](manage-docker/optimize-windows-dockerfile.md)
+## [Container Networking](manage-containers/container-networking.md)
 ## [Getting Started with Swarm Mode](manage-containers/swarm-mode.md)
 ## [Manage Docker with PowerShell](https://github.com/Microsoft/Docker-PowerShell)
 ## [Remote Management of a Windows Docker Host](management/manage_remotehost.md)
