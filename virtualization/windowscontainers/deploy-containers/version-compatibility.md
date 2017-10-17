@@ -64,7 +64,7 @@ FROM microsoft/windowsservercore:1709
 However, if you would like a specific patch of Windows Server version 1709, you can specify the KB number in the tag. For example, if you would like the the Nano Server base OS container image from Windows Server version 1709, with the KB4043961 applied to it, you would specified it like so:
 
 ``` Dockerfile
-FROM microsoft/nanoserver:1709
+FROM microsoft/nanoserver:1709_KB4043961
 ...
 ```
 
