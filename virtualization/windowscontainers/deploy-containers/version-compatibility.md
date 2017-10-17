@@ -52,14 +52,34 @@ To resolve this, you could:
 
 ## Choosing Container OS versions
 
-> TODO RS3: Ender - can you add the tagging scheme here?
+> Note: The "latest" tag will be updated along with Windows Server 2016, the current [LTSC product](https://docs.microsoft.com/en-us/windows-server/get-started/semi-annual-channel-overview). If you would like the container images that match the Windows Server version 1709 release, read below.
 
+It is important to ensure you know what Container OS version you will need for your purposes. If you are using Windows Server version 1709, and want to have the latest patches for it, you should use the tag "1709" when specifying which version of the base OS container images you want, like so:
 
 ``` Dockerfile
 FROM microsoft/windowsservercore:1709
 ...
 ```
 
+However, if you would like a specific patch of Windows Server version 1709, you can specify the KB number in the tag. For example, if you would like the the Nano Server base OS container image from Windows Server version 1709, with the KB4043961 applied to it, you would specified it like so:
+
+``` Dockerfile
+FROM microsoft/nanoserver:1709
+...
+```
+
+And if you need the Nano Server base OS container image from Windows Server 2016, you can still get the latest version of those base OS container images by using the "latest" tag:
+
+``` Dockerfile
+FROM microsoft/nanoserver
+...
+```
+You can also continue specifying the exact patches you need with the schema we have used previously, by specifying the OS version in the tag:
+
+``` Dockerfile
+FROM microsoft/nanoserver:10.0.14393.1770
+...
+```
 
 ## Matching versions using Docker Swarm
 
