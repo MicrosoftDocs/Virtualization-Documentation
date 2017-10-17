@@ -27,11 +27,19 @@ For example, `docker inspect microsoft/windowsservercore:10.0.14393.447` would s
     ]
 }
 ```
-Which are the two layers in the image provided by Microsoft.
+
+Which are the two layers in the image provided by Microsoft. The top one is constant and represents the original Windows Server release, and the second one changes based on the latest cumulative update included.
 
 If you want to find out what changed in each version, look up the knowledge base for that version at 
 [Windows 10 and Windows Server 2016 update history](https://support.microsoft.com/en-us/help/12387/windows-10-update-history)
 
+
+## Tools to simplify this process
+
+Stefan Scherer has created a tool that can read the image manifest and determine the version without downloading the full container. Check his [blog](https://stefanscherer.github.io/winspector/) and [GitHub](https://github.com/StefanScherer/winspector) repo for more info.
+
+
+## Image Versions
 
 <table>
     <tr>

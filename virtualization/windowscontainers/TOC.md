@@ -12,9 +12,11 @@
 ## [Step 1 - Using the Insider images](quick-start/Using-Insider-Container-Images.md)
 ## [Step 2 - Build and Run an Application](quick-start/Nano-RS3-.NET-Core-and-PS.md)
 ## [Step 3 - Known Issues](quick-start/Insider-Known-Issues.md)
+## [Linux container preview](deploy-containers/linux-containers.md)
 
 # Deploy Windows Container
 ## [System Requirements](deploy-containers/system-requirements.md)
+## [Version Compatibility](deploy-containers/version-compatibility.md)
 ## [Deploying](deploy-containers/deploy-containers-on-server.md)
 ## [Hyper-V Isolation](manage-containers/hyperv-container.md)
 ## [Active Directory Service Accounts](manage-containers/manage-serviceaccounts.md)
