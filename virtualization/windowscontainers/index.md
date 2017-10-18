@@ -29,11 +29,10 @@ Learn about Containers and then jump into using them.<br /><br />
 <tr>
 <td ><center>![](media/1.png)</center></td>
 <td>**Deployment**<br /><br />
-Learn how to deploy Windows Containers on Windows Server 2016 and Nano Server..<br /><br />
+Learn how to deploy Windows Containers on Windows Server 2016<br /><br />
 <ul>
 <li>[System Requirements](deploy-containers/system-requirements.md)<br /><br /></li>
-<li>[Deploy Container Host - Windows Server](deploy-containers/deploy-containers-on-server.md)<br /><br /></li>
-<li>[Deploy Container Host - Nano Server](deploy-containers/deploy-containers-on-nano.md)<br /><br /></li>
+<li>[Deploy Container Host](deploy-containers/deploy-containers-on-server.md)<br /><br /></li>
 <li>[Anti-Virus Optimization](https://msdn.microsoft.com/en-us/windows/hardware/drivers/ifs/anti-virus-optimization-for-windows-containers)<br /><br /></li>
 </ul>
 </td>
