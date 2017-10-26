@@ -3,6 +3,7 @@
 # [Make a Virtual Machine](quick-start/quick-create-virtual-machine.md)
 # Manage Virtual Machines with Hyper-V
 ## [Hyper-V and PowerShell](quick-start/try-hyper-v-powershell.md)
+## [Share devices with VMs](user-guide/enhanced-session-mode.md)
 ## [Work with Checkpoints](user-guide/checkpoints.md)
 ## [Connect with PowerShell Direct](user-guide/powershell-direct.md)
 ## [Create pre-release VMs](user-guide/create-pre-release-vm.md) 
