@@ -64,15 +64,21 @@ By default, virtual machines using enhanced session mode pass audio through so y
 
 To change those settings or to add microphone passthrough (so you can record audio in a virtual machine):
 
-Select the "Settings..." menu for configuring remote audio settings
+Select the "Settings..." menu for configuring remote audio settings  
 ![](media/esm-audio.png)
 
-Now configure audio and microphone settings
+Now configure audio and microphone settings  
 ![](media/esm-audio-settings.png)
 
 Since your virtual machine is probably running locally, the "play on this computer" and "play on remote computer" options will yield the same results.
 
 ## Re-launching the connection settings
+
+If you aren't getting the resolution and device sharing dialogue box, try launching VMConnect independently from either the Windows menu or from the command line as Administrator.  
+
+``` Powershell
+vmconnect.exe
+```
 
 ## Check session type
 
