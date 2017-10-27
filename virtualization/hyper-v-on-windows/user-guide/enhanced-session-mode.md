@@ -12,11 +12,11 @@ ms.assetid: d1aeb9cb-b18f-43cb-a568-46b33346a188
 
 # Share devices with your virtual machine
 
-Enhanced Session Mode lets Hyper-V share devices with your virtual machines and improves the general virtual machine viewing experience.  Since it's on by default in Windows 10, you've probably been using it without knowing.
+> Only available for Windows virtual machines.
 
-> Enhanced Session Mode is only available for Windows virtual machines.
+Enhanced Session Mode lets Hyper-V connect to virtual machines using RDP (remote desktop protocol).  Not only does this improve your general virtual machine viewing experience, connecting with RDP also allows the virtual machine to share devices with your computer.  Since it's on by default in Windows 10, you're probably already using RDP to connect to your Windows virtual machines.  This article highlights some of the benefits and hidden options in the connection settings dialogue.
 
-Advantages of enhanced session mode:
+RDP/Enhanced Session mode:
 
 * Makes virtual machines resizeable and high DPI aware.
 * Improves virtual machine integration
@@ -82,5 +82,12 @@ vmconnect.exe
 
 ## Check session type
 
+You can check to see what type of connection you have using the Enhanced Session mode icon in the top of the Virtual Machine Connect tool (VMConnect).  This button also lets you toggle between basic session and enhanced session mode.
+
 ![](media/esm-button-location.png)
 
+| icon | connection state |
+|:-----|:---------|
+|![](media/esm-basic.png)| You are currently running in enhanced session mode.  Clicking this icon will reconnect to your virtual machine in basic mode. |
+|![](media/esm-connect.png)| You are currently running in basic session mode but enhanced session mode is available.  Clicking this icon will reconnect to your virtual machine in enhanced session mode.  |
+|![](media/esm-stop.png)| You are currently running in basic mode.  Enhanced session mode isn't available for this virtual machine. |
