@@ -18,21 +18,21 @@ Enhanced Session Mode lets Hyper-V connect to virtual machines using RDP (remote
 
 RDP/Enhanced Session mode:
 
-* Makes virtual machines resizeable and high DPI aware.
+* Makes virtual machines resizable and high DPI aware.
 * Improves virtual machine integration
-  * shared clipboard
-  * file sharing via drag drop and copy paste
+  * Shared clipboard
+  * File sharing via drag drop and copy paste
 * Allows device sharing
   * Microphone/Speakers
-  * most USB devices
+  * USB devices
   * Data disks (including C:)
-  * Printersr
+  * Printers
 
 This article shows you how to see your session type, enter enhanced session mode, and configure your session settings.
 
 ## Share drives and devices
 
-All of Enhanced Session Mode's device sharing capabilities are hidden inside this inconspicuous connection window that pops up when you connect to a virtual machine:
+Enhanced Session Mode's device sharing capabilities are hidden inside this inconspicuous connection window that pops up when you connect to a virtual machine:
 
 ![](media/esm-default-view.png)
 
@@ -50,7 +50,7 @@ To share devices with your virtual machine or to change those default settings:
 
 ### Share storage and USB devices
 
-By default, virtual machines using enhanced session mode share printers, the clipboard,  pass smartcard and other security devices through to the virtual machine so you can use more secure login tools from your virtual machine.
+By default, virtual machines using enhanced session mode share printers, the clipboard, pass smartcard and other security devices through to the virtual machine so you can use more secure login tools from your virtual machine.
 
 To share other devices, such as USB devices or your C: drive, select the "More..." menu:  
 ![](media/esm-more-devices.png)
@@ -60,7 +60,7 @@ From there you can select the devices you'd like to share with the virtual machi
 
 ### Share audio devices (speakers and microphones)
 
-By default, virtual machines using enhanced session mode pass audio through so you can hear  audio from the virtual machine.  The virtual machine will use the audio device currently selected on the host machine.
+By default, virtual machines using enhanced session mode pass audio through so you can hear audio from the virtual machine.  The virtual machine will use the audio device currently selected on the host machine.
 
 To change those settings or to add microphone passthrough (so you can record audio in a virtual machine):
 
