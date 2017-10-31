@@ -92,7 +92,9 @@ We have now successfully performed what is called a _multi-stage build_. We used
 
 ## Running the App
 
-Now that the dockerfile is written, all that is left to do is tell docker to build our app and then run the container. We specify the port to publish to and then give our container a tag "myapp". In powershell, execute these commands:
+Now that the dockerfile is written, all that is left to do is tell docker to build our app and then run the container. We specify the port to publish to and then give our container a tag "myapp". In powershell, execute the commands below.
+
+_NOTE_: Your PowerShell console's current working directory needs to be the directory where the dockerfile created above resides.
 
 ```Powershell
 docker build -t myasp .
@@ -102,7 +104,7 @@ docker run -d -p 5000:80 --name myapp myasp
 To see our app running, we need to go visit the address which it is running on. Let's get the IP address by running this command.
 
 ```Powershell
- docker inspect -f "{{ .NetworkSettings.Networks.nat.IPAddress }}" myasp
+ docker inspect -f "{{ .NetworkSettings.Networks.nat.IPAddress }}" myapp
 ```
 
 Running this command will yield the IP address of your running container. Below is an example of what the output should look like.
