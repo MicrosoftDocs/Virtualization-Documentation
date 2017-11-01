@@ -44,7 +44,60 @@ $HYPERV_EVENT_CHANNELS = @{
     "FailoverClustering" = @("Microsoft-Windows-FailoverClustering/Diagnostic",
                              "Microsoft-Windows-FailoverClustering/DiagnosticVerbose",
                              "Microsoft-Windows-FailoverClustering/Operational",
-                             "Microsoft-Windows-VHDMP-Operational")
+                             "Microsoft-Windows-VHDMP-Operational");
+
+    "HostGuardian" = @("Microsoft-Windows-HostGuardianService-Client/Admin",
+                       "Microsoft-Windows-HostGuardianService-Client/Analytic",
+                       "Microsoft-Windows-HostGuardianService-Client/Debug",
+                       "Microsoft-Windows-HostGuardianService-Client/Operational",
+                       "Microsoft-Windows-HostGuardianClient-Service/Admin",
+                       "Microsoft-Windows-HostGuardianClient-Service/Debug",
+                       "Microsoft-Windows-HostGuardianClient-Service/Operational",
+                       "Microsoft-Windows-HostGuardianService-CA/Admin",
+                       "Microsoft-Windows-HostGuardianService-CA/Debug",
+                       "Microsoft-Windows-HostGuardianService-CA/Operational")
+}
+
+#--------------------------------------------
+# Helper Functions
+#--------------------------------------------
+
+<#
+.SYNOPSIS
+    Runs the specified script block in the specified PSSession or locally if no session is specified.
+
+.DESCRIPTION
+    Runs the specified script block in the specified PSSession or locally if no session is specified.
+
+.PARAMETER ScriptBlock
+    The script block that should be run
+
+.PARAMETER ArgumentList
+    Optional list of arguments that are passed into the script block
+
+.PARAMETER PSSession
+    Supplies an optional PSSession to run the cmdlet on. This is useful if you need to collect
+    events logged on a remote session. If no PSSession is specified, the script block is run 
+    locally
+
+.EXAMPLE
+    Get-EventChannelList -HyperVChannels VMMS,Worker,Compute
+#>
+function Invoke-CommandLocalOrRemotely
+{
+    param(
+        [ScriptBlock]$ScriptBlock,
+        [Object[]]$ArgumentList,
+        [System.Management.Automation.Runspaces.PSSession]$PSSession
+    )
+    if (!$PSSession)
+    {
+        Invoke-Command -ScriptBlock $ScriptBlock -ArgumentList $ArgumentList
+    }
+    else
+    {
+        Invoke-Command -ScriptBlock $ScriptBlock -ArgumentList $ArgumentList -Session $PSSession
+    }
 }
 
 <#
@@ -60,6 +113,10 @@ $HYPERV_EVENT_CHANNELS = @{
 .PARAMETER HyperVChannels
     Array with friendly names for common Hyper-V Channels.
 
+.PARAMETER PSSession
+    Supplies an optional PSSession to run the cmdlet on. This is useful if you need to collect
+    events logged on a remote session.
+
 .EXAMPLE
     Get-EventChannelList -HyperVChannels VMMS,Worker,Compute
 #>
@@ -70,13 +127,15 @@ function Get-EventChannelList
         [string[]]$EventChannel,
 
         [ValidateSet('None', 'All', 'Compute', 'Config', 'High-Availability', 'Hypervisor', `
-            'StorageVSP', 'VID', 'VMMS', 'VmSwitch', 'Worker', 'SMB', 'FailoverClustering')]
+            'StorageVSP', 'VID', 'VMMS', 'VmSwitch', 'Worker', 'SMB', 'FailoverClustering', `
+            'HostGuardian')]
         [string[]]$HyperVChannels,
 
-        [Boolean]$StripAdminChannels = $false
+        [System.Management.Automation.Runspaces.PSSession]$PSSession
     )
 
-    $eventChannels = @()
+    # First, compile full list of event channels based on supplied arguments
+    $initialEventChannels = @()
 
     if ($HyperVChannels -notcontains "None")
     {
@@ -84,25 +143,69 @@ function Get-EventChannelList
         {
             foreach ($channel in $HYPERV_EVENT_CHANNELS.Keys)
             {
-                $eventChannels += $HYPERV_EVENT_CHANNELS[$channel]
+                $initialEventChannels += $HYPERV_EVENT_CHANNELS[$channel]
             }
         }
         else
         {
             foreach ($channel in $HyperVChannels)
             {
-                $eventChannels += $HYPERV_EVENT_CHANNELS[$channel]
+                $initialEventChannels += $HYPERV_EVENT_CHANNELS[$channel]
             }
         }
     }
 
     if ($EventChannel)
     {
-        $eventChannels += $EventChannel
+        $initialEventChannels += $EventChannel
     }
     
+    # Obtain list of items that exists on the target host
+    $testEventChannelScriptBlock = { 
+        param(
+            [string] $LogName
+        )
+        
+        $eventlog = Get-WinEvent -ListLog $LogName -ErrorAction SilentlyContinue
+
+        if ($eventlog)
+        {
+            $true
+        }
+        else 
+        {
+            $false    
+        }
+    }
+
+    # Cleanup event channel list to remove any channels that don't exist on the target host
+    $eventChannels = @()
+
+    foreach ($channel in $initialEventChannels) {
+        $channelExists = Invoke-CommandLocalOrRemotely -ScriptBlock $testEventChannelScriptBlock -ArgumentList $channel -PSSession $PSSession
+        if ($channelExists)
+        {
+            $eventChannels += $channel
+        } 
+        else {
+            if (!$PSSession)
+            {
+                Write-Warning "Event channel $channel not found on local system - skipping"
+            }
+            else 
+            {
+                Write-Warning "Event channel $channel not found on target system $($PSSession.ComputerName) - skipping"
+            }
+            
+        }
+    }
+
     return $eventChannels
 }
+
+#--------------------------------------------
+# Exported Functions
+#--------------------------------------------
 
 <#
 .SYNOPSIS
@@ -139,7 +242,8 @@ function Enable-EventChannels
         [int64]$MaxSize=67108864,
 
         [ValidateSet('None', 'All', 'Compute', 'Config', 'High-Availability', 'Hypervisor', `
-            'StorageVSP', 'VID', 'VMMS', 'VmSwitch', 'Worker', 'SMB', 'FailoverClustering')]
+            'StorageVSP', 'VID', 'VMMS', 'VmSwitch', 'Worker', 'SMB', 'FailoverClustering', `
+            'HostGuardian')]
         [string[]]$HyperVChannels="All",
 
         [System.Management.Automation.Runspaces.PSSession]$PSSession
@@ -148,7 +252,7 @@ function Enable-EventChannels
     #-----------------------------------
     # Setup
     #-----------------------------------
-    $eventChannels = Get-EventChannelList -EventChannel $EventChannel -HyperVChannels $HyperVChannels
+    $eventChannels = Get-EventChannelList -EventChannel $EventChannel -HyperVChannels $HyperVChannels -PSSession $PSSession
 
     #------------------------------------------
     # ScriptBlock that enables event channels
@@ -193,14 +297,7 @@ function Enable-EventChannels
     #------------------------------------------
     # Enable event channels on target machine
     #------------------------------------------
-    if (!$PSSession)
-    {
-        Invoke-Command -ScriptBlock $enableEventsScriptBlock -ArgumentList $eventChannels, $MaxSize
-    }
-    else
-    {
-        Invoke-Command -Session $PSSession -ScriptBlock $enableEventsScriptBlock -ArgumentList $eventChannels, $MaxSize
-    }
+    Invoke-CommandLocalOrRemotely -ScriptBlock $enableEventsScriptBlock -ArgumentList ($eventChannels, $MaxSize) -PSSession $PSSession
 }
 
 <#
@@ -234,7 +331,8 @@ function Disable-EventChannels
         [string[]]$EventChannel,
 
         [ValidateSet('None', 'All', 'Compute', 'Config', 'High-Availability', 'Hypervisor', `
-            'StorageVSP', 'VID', 'VMMS', 'VmSwitch', 'Worker', 'SMB', 'FailoverClustering')]
+            'StorageVSP', 'VID', 'VMMS', 'VmSwitch', 'Worker', 'SMB', 'FailoverClustering', `
+            'HostGuardian')]
         [string[]]$HyperVChannels="All",
 
         [Boolean]$SkipAdminEventChannels = $true,
@@ -245,7 +343,7 @@ function Disable-EventChannels
     #-----------------------------------
     # Setup
     #-----------------------------------
-    $eventChannels = Get-EventChannelList -EventChannel $EventChannel -HyperVChannels $HyperVChannels
+    $eventChannels = Get-EventChannelList -EventChannel $EventChannel -HyperVChannels $HyperVChannels -PSSession $PSSession
 
     #-------------------------------------------
     # ScriptBlock that disables event channels
@@ -261,7 +359,7 @@ function Disable-EventChannels
         {
             try
             {
-                if ((-not $SkipAdminEventChannels) -or ($event -notmatch '.+?-admin$')) {
+                if ((-not $SkipAdminEventChannels) -or ($event -notmatch '.+?Admin$')) {
                     wevtutil set-log $event /enabled:false /quiet
                     if ($LastExitCode -ne 0)
                     {
@@ -279,14 +377,7 @@ function Disable-EventChannels
     #-------------------------------------------
     # Disable event channels on target machine
     #-------------------------------------------
-    if (!$PSSession)
-    {
-        Invoke-Command -ScriptBlock $disableEventsScriptBlock -ArgumentList $eventChannels, $MaxSize, $SkipAdminEventChannels
-    }
-    else
-    {
-        Invoke-Command -Session $PSSession -ScriptBlock $disableEventsScriptBlock -ArgumentList $eventChannels, $MaxSize, $SkipAdminEventChannels
-    }
+    Invoke-CommandLocalOrRemotely -ScriptBlock $disableEventsScriptBlock -ArgumentList ($eventChannels, $MaxSize, $SkipAdminEventChannels) -PSSession $PSSession
 }
 
 <#
@@ -353,7 +444,8 @@ function Save-EventChannels
         [string[]]$LogLevel="All",
 
         [ValidateSet('None', 'All', 'Compute', 'Config', 'High-Availability', 'Hypervisor', `
-            'StorageVSP', 'VID', 'VMMS', 'VmSwitch', 'Worker', 'SMB', 'FailoverClustering')]
+            'StorageVSP', 'VID', 'VMMS', 'VmSwitch', 'Worker', 'SMB', 'FailoverClustering', `
+            'HostGuardian')]
         [string[]]$HyperVChannels="All",
 
         [System.Management.Automation.Runspaces.PSSession]$PSSession,
@@ -365,30 +457,7 @@ function Save-EventChannels
     #-----------------------------------
     # Setup
     #-----------------------------------
-    $eventChannels = @()
-
-    if ($HyperVChannels -notcontains "None")
-    {
-        if ($HyperVChannels -contains "All")
-        {
-            foreach ($channel in $HYPERV_EVENT_CHANNELS.Keys)
-            {
-                $eventChannels += $HYPERV_EVENT_CHANNELS[$channel]
-            }
-        }
-        else
-        {
-            foreach ($channel in $HyperVChannels)
-            {
-                $eventChannels += $HYPERV_EVENT_CHANNELS[$channel]
-            }
-        }
-    }
-
-    if ($EventChannel)
-    {
-        $eventChannels += $EventChannel
-    }
+    $eventChannels = Get-EventChannelList -EventChannel $EventChannel -HyperVChannels $HyperVChannels -PSSession $PSSession
 
     $levels = "("
     if ($LogLevel -contains "All")
@@ -508,3 +577,7 @@ function Save-EventChannels
         Write-Warning $_.ToString()
     }
 }
+
+Export-ModuleMember -function Enable-EventChannels
+Export-ModuleMember -function Disable-EventChannels
+Export-ModuleMember -function Save-EventChannels
