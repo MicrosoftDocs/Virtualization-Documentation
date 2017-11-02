@@ -39,12 +39,15 @@ $HYPERV_EVENT_CHANNELS = @{
     "SMB" = @("Microsoft-Windows-SMBClient/Connectivity",
               "Microsoft-Windows-SMBClient/Security",
               "Microsoft-Windows-SMBServer/Connectivity",
-              "Microsoft-Windows-SMBServer/Security");
+              "Microsoft-Windows-SMBServer/Security",
+              "Microsoft-Windows-SMBServer/Analytic");
 
     "FailoverClustering" = @("Microsoft-Windows-FailoverClustering/Diagnostic",
                              "Microsoft-Windows-FailoverClustering/DiagnosticVerbose",
                              "Microsoft-Windows-FailoverClustering/Operational",
-                             "Microsoft-Windows-VHDMP-Operational");
+                             "Microsoft-Windows-VHDMP-Operational",
+                             "Microsoft-Windows-ClusterAwareUpdating-Management/Admin",
+                             "Microsoft-Windows-ClusterAwareUpdating/Admin");
 
     "HostGuardian" = @("Microsoft-Windows-HostGuardianService-Client/Admin",
                        "Microsoft-Windows-HostGuardianService-Client/Analytic",
@@ -55,7 +58,20 @@ $HYPERV_EVENT_CHANNELS = @{
                        "Microsoft-Windows-HostGuardianClient-Service/Operational",
                        "Microsoft-Windows-HostGuardianService-CA/Admin",
                        "Microsoft-Windows-HostGuardianService-CA/Debug",
-                       "Microsoft-Windows-HostGuardianService-CA/Operational")
+                       "Microsoft-Windows-HostGuardianService-CA/Operational");
+
+    "GuestDrivers" = @("Microsoft-Windows-Hyper-V-Guest-Drivers/Analytic",
+                       "Microsoft-Windows-Hyper-V-Guest-Drivers/Debug",  
+                       "Microsoft-Windows-Hyper-V-Guest-Drivers/Diagnose",
+                       "Microsoft-Windows-Hyper-V-Guest-Drivers/Operational");
+    
+    "StorageSpaces" = @("Microsoft-Windows-StorageSpaces-Driver/Performance");
+
+    "SharedVHDX" = @("Microsoft-Windows-Hyper-V-Shared-VHDX/Diagnostic");
+
+    "VMSP" = @("Microsoft-Windows-Hyper-V-VMSP-Debug");
+
+    "VfpExt" = @("Microsoft-Windows-Hyper-V-VfpExt-Analytic");                        
 }
 
 #--------------------------------------------
@@ -128,7 +144,7 @@ function Get-EventChannelList
 
         [ValidateSet('None', 'All', 'Compute', 'Config', 'High-Availability', 'Hypervisor', `
             'StorageVSP', 'VID', 'VMMS', 'VmSwitch', 'Worker', 'SMB', 'FailoverClustering', `
-            'HostGuardian')]
+            'HostGuardian', 'GuestDrivers', 'StorageSpaces', 'SharedVHDX', 'VMSP', 'VfpExt')]
         [string[]]$HyperVChannels,
 
         [System.Management.Automation.Runspaces.PSSession]$PSSession
@@ -243,7 +259,7 @@ function Enable-EventChannels
 
         [ValidateSet('None', 'All', 'Compute', 'Config', 'High-Availability', 'Hypervisor', `
             'StorageVSP', 'VID', 'VMMS', 'VmSwitch', 'Worker', 'SMB', 'FailoverClustering', `
-            'HostGuardian')]
+            'HostGuardian', 'GuestDrivers', 'StorageSpaces', 'SharedVHDX', 'VMSP', 'VfpExt')]
         [string[]]$HyperVChannels="All",
 
         [System.Management.Automation.Runspaces.PSSession]$PSSession
@@ -332,7 +348,7 @@ function Disable-EventChannels
 
         [ValidateSet('None', 'All', 'Compute', 'Config', 'High-Availability', 'Hypervisor', `
             'StorageVSP', 'VID', 'VMMS', 'VmSwitch', 'Worker', 'SMB', 'FailoverClustering', `
-            'HostGuardian')]
+            'HostGuardian', 'GuestDrivers', 'StorageSpaces', 'SharedVHDX', 'VMSP', 'VfpExt')]
         [string[]]$HyperVChannels="All",
 
         [Boolean]$SkipAdminEventChannels = $true,
@@ -445,7 +461,7 @@ function Save-EventChannels
 
         [ValidateSet('None', 'All', 'Compute', 'Config', 'High-Availability', 'Hypervisor', `
             'StorageVSP', 'VID', 'VMMS', 'VmSwitch', 'Worker', 'SMB', 'FailoverClustering', `
-            'HostGuardian')]
+            'HostGuardian', 'GuestDrivers', 'StorageSpaces', 'SharedVHDX', 'VMSP', 'VfpExt')]
         [string[]]$HyperVChannels="All",
 
         [System.Management.Automation.Runspaces.PSSession]$PSSession,
