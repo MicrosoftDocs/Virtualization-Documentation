@@ -45,7 +45,7 @@ You can also enable debug-level logging on the Docker Engine. This may be helpfu
 
 First, open an elevated Command Prompt, then run `sc.exe qc docker` get the current command line for the Docker service.
 Example:
-```none
+```
 C:\> sc.exe qc docker
 [SC] QueryServiceConfig SUCCESS
 
@@ -67,13 +67,13 @@ Take the current `BINARY_PATH_NAME`, and modify it:
 - Enclose the whole command in "
 
 Then run `sc.exe config docker binpath= ` followed by the new string. For example: 
-```none
+```
 sc.exe config docker binpath= "\"C:\Program Files\Docker\dockerd.exe\" --run-service -D"
 ```
 
 
 Now, restart the Docker service
-```none
+```
 sc.exe stop docker
 sc.exe start docker
 ```

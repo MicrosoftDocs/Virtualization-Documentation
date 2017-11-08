@@ -40,7 +40,7 @@ As we've been improving the Windows container features, we've had to make some c
 
 If you try to run an unsupported combination - you'll get an error:
 
-```none
+```
 docker: Error response from daemon: container b81ed896222eb87906ccab1c3dd2fc49324eafa798438f7979b87b210906f839 encountered an error during CreateContainer: failure in a Windows system call: The operating system of the container does not match the operating system of the host. (0xc0370101) extra info: {"SystemType":"Container","Name":"b81ed896222eb87906ccab1c3dd2fc49324eafa798438f7979b87b210906f839","Owner":"docker","IsDummy":false,"VolumePath":"\\\\?\\Volume{2443d38a-1379-4bcf-a4b7-fc6ad4cd7b65}","IgnoreFlushesDuringBoot":true,"LayerFolderPath":"C:\\ProgramData\\docker\\windowsfilter\\b81ed896222eb87906ccab1c3dd2fc49324eafa798438f7979b87b210906f839","Layers":[{"ID":"1532b584-8431-5b5a-8735-5e1b4fe9c2a9","Path":"C:\\ProgramData\\docker\\windowsfilter\\b2b88bc2a47abcc682e422507abbba9c9b6d826d34e67b9e4e3144cc125a1f80"},{"ID":"a64b8da5-cd6e-5540-bc73-d81acae6da54","Path":"C:\\ProgramData\\docker\\windowsfilter\\5caaedbced1f546bccd01c9d31ea6eea4d30701ebba7b95ee8faa8c098a6845a"}],"HostName":"b81ed896222e","MappedDirectories":[],"HvPartition":false,"EndpointList":["002a0d9e-13b7-42c0-89b2-c1e80d9af243"],"Servicing":false,"AllowUnqualifiedDNSQuery":true}.
 ```
 
@@ -93,14 +93,14 @@ If a service won't start - you'll see that the `MODE` is `replicated` but `REPLI
 
  `docker service ls` - find the service name
 
-```none
+```
 ID                  NAME                MODE                REPLICAS            IMAGE                                             PORTS
 xh6mwbdq2uil        angry_liskov        replicated          0/1                 microsoft/iis:windowsservercore-10.0.14393.1715
 ```
 
 `docker service ps <name>` - get the status and latest attempts.
 
-```none
+```
 C:\Program Files\Docker>docker service ps angry_liskov
 ID                  NAME                 IMAGE                                             NODE                DESIRED STATE       CURRENT STATE               ERROR                              PORTS
 klkbhn742lv0        angry_liskov.1       microsoft/iis:windowsservercore-10.0.14393.1715   WIN-BSTMQDRQC2E     Ready               Ready 3 seconds ago
@@ -114,7 +114,7 @@ xeqkxbsao57w         \_ angry_liskov.1   microsoft/iis:windowsservercore-10.0.14
 If you see "starting container failed: ...", you can see the full error with `docker service ps --no-trunc <container name>`
 
 
-```none
+```
 C:\Program Files\Docker>docker service ps --no-trunc angry_liskov
 ID                          NAME                 IMAGE                                                                                                                     NODE                DESIRED STATE       CURRENT STATE                     ERROR                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          PORTS
 dwsd6sjlwsgic5vrglhtxu178   angry_liskov.1       microsoft/iis:windowsservercore-10.0.14393.1715@sha256:868bca7e89e1743792e15f78edb5a73070ef44eae6807dc3f05f9b94c23943d5   WIN-BSTMQDRQC2E     Running             Starting less than a second ago                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
@@ -192,7 +192,7 @@ docker node update --label-add OsVersion="$((Get-ComputerInfo).OsVersion)" $ENV:
 
 Afterwards, you can check those with `docker node inspect` which will show the new labels added
 
-```none
+```
         "Spec": {
             "Labels": {
                 "OS": "windows",
@@ -207,7 +207,7 @@ Afterwards, you can check those with `docker node inspect` which will show the n
 
 Once each node has been labeled, we can update constraints which determine placement of services. In the example below, substitude "contoso_service" with the name of your actual service:
 
-```none
+```
 docker service update \
     --constraint-add "node.labels.OS == windows" \
     --constraint-add "node.labels.OsVersion == $((Get-ComputerInfo).OsVersion)" \
@@ -233,7 +233,7 @@ The same issue can happen when pods are scheduled in Kubernetes. This can be avo
 In this case - a deployment included a pod that was scheduled on a node with a mismatched OS version, and without Hyper-V isolation enabled. 
 The same error is shown in the events listed with `kubectl describe pod <podname>`. After several attempts, the pod status will probably be `CrashLoopBackOff`
 
-```none
+```
 $ kubectl -n plang describe po fabrikamfiber.web-789699744-rqv6p
 
 Name:           fabrikamfiber.web-789699744-rqv6p
@@ -300,7 +300,7 @@ Events:
 
 In this case, there are two Windows nodes running different versions:
 
-```none
+```
 $ kubectl get node
 
 NAME                        STATUS    AGE       VERSION
@@ -378,7 +378,7 @@ Name         | Version
 
 From the sample above:
 
-```none
+```
 $ kubectl label node 38519acs9010 beta.kubernetes.io/osbuild=14393.1715
 
 
@@ -391,7 +391,7 @@ node "38519acs9011" labeled
 
 3. Check the labels are there with `kubectl get nodes --show-labels`
 
-```none
+```
 $ kubectl get nodes --show-labels
 
 NAME                        STATUS                     AGE       VERSION                    LABELS
@@ -442,7 +442,7 @@ status: {}
 
 The pod can now start with the updated deployment. The node selectors are also shown in `kubectl describe pod <podname>` so you can verify they were added.
 
-```none
+```
 $ kubectl -n plang describe po fa
 
 Name:           fabrikamfiber.web-1780117715-5c8vw

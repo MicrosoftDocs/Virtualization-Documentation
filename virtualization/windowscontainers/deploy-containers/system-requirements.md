@@ -77,7 +77,7 @@ Because Windows Server Containers and the underlying host share a single kernel,
 To check what version a Windows host has installed you can query HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion.  To check what version your base image is using you can review the tags on the Docker hub or the image hash table provided in the image description.  The [Windows 10 Update History](https://support.microsoft.com/en-us/help/12387/windows-10-update-history) page lists when each build and revision was released.
 
 In this example 14393 is the major build number and 321 is the revision.
-```none
+```
 Windows PowerShell
 Copyright (C) 2016 Microsoft Corporation. All rights reserved.
 

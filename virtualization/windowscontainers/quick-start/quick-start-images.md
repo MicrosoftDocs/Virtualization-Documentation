@@ -30,7 +30,7 @@ The first step in manually creating a container image is to deploy a container. 
 
 > This step may take some time due to the size of the Windows Server Core base image.
 
-```none
+```
 docker run -d --name myIIS -p 80:80 microsoft/iis
 ```
 
@@ -38,19 +38,19 @@ Now, the container will be running in the background. The default command includ
 
 Next, start an interactive cmd in the container. This will allow you to run commands in running container without stopping IIS or ServiceMonitor.
 
-```none
+```
 docker exec -i myIIS cmd 
 ```
 
 Next, you can make a change to the running container. Run the following command to remove the IIS splash screen.
 
-```none
+```
 del C:\inetpub\wwwroot\iisstart.htm
 ```
 
 And the following to replace the default IIS site with a new static site.
 
-```none
+```
 echo "Hello World From a Windows Server Container" > C:\inetpub\wwwroot\index.html
 ```
 
@@ -62,13 +62,13 @@ From a different system, browse to the IP address of the container host. You sho
 
 Back in the container, exit the interactive container session.
 
-```none
+```
 exit
 ```
 
 The modified container can now be captured into a new container image. To do so, you will need the container name. This can be found using the `docker ps -a` command.
 
-```none
+```
 docker ps -a
 
 CONTAINER ID     IMAGE                             COMMAND   CREATED             STATUS   PORTS   NAMES
@@ -77,13 +77,13 @@ CONTAINER ID     IMAGE                             COMMAND   CREATED            
 
 To create a the new container image, use the `docker commit` command. Docker commit takes a form of “docker commit container-name new-image-name”. Note – replace the name of the container in this example with the actual container name.
 
-```none
+```
 docker commit pedantic_lichterman modified-iis
 ```
 
 To verify that new image has been created, use the `docker images` command.  
 
-```none
+```
 docker images
 
 REPOSITORY          TAG                 IMAGE ID            CREATED              SIZE
@@ -101,13 +101,13 @@ Through the last exercise, a container was manually created, modified, and then 
 
 On the container host, create a directory `c:\build`, and in this directory create a file named `Dockerfile`. Note – the file should not have a file extension.
 
-```none
+```
 powershell new-item c:\build\Dockerfile -Force
 ```
 
 Open the Dockerfile in notepad.
 
-```none
+```
 notepad c:\build\Dockerfile
 ```
 
@@ -115,20 +115,20 @@ Copy the following text into the Dockerfile, and save the file. These commands i
 
 For more information on Dockerfiles, see the [Dockerfiles on Windows](../manage-docker/manage-windows-dockerfile.md).
 
-```none
+```
 FROM microsoft/iis
 RUN echo "Hello World - Dockerfile" > c:\inetpub\wwwroot\index.html
 ```
 
 The `docker build` command will start the image build process. The `-t` parameter instructs the build process to name the new image `iis-dockerfile`. **Replace 'user' with the user name of your Docker account**. If you do not have an account with Docker, sign up for one at [Docker Cloud](https://cloud.docker.com/).
 
-```none
+```
 docker build -t <user>/iis-dockerfile c:\Build
 ```
 
 When completed, you can verify that the image has been created using the `docker images` command.
 
-```none
+```
 docker images
 
 REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
@@ -140,7 +140,7 @@ windowsservercore   latest              dbfee88ee9fd        8 weeks ago         
 
 Now, deploy a container with the following command, again replacing user with your Docker ID.
 
-```none
+```
 docker run -d -p 80:80 <user>/iis-dockerfile ping -t localhost
 ```
 
@@ -152,7 +152,7 @@ Back on the container host, use `docker ps` to get the name of the container, an
 
 Get container name.
 
-```none
+```
 docker ps
 
 CONTAINER ID   IMAGE            COMMAND               CREATED              STATUS              PORTS                NAMES
@@ -161,7 +161,7 @@ c1dc6c1387b9   iis-dockerfile   "ping -t localhost"   About a minute ago   Up Ab
 
 Remove container.
 
-```none
+```
 docker rm -f <container name>
 ```
 
@@ -173,7 +173,7 @@ For this exercise, the custom hello world image will be pushed to your own accou
 
 First, login to your docker account using the `docker login command`.
 
-```none
+```
 docker login
 
 Login with your Docker ID to push and pull images from Docker Hub. If you don't have a Docker ID, head over to https://hub.docker.com to create one.
@@ -186,19 +186,19 @@ Login Succeeded
 
 Once logged in, the container image can be pushed to Docker Hub. To do so, use the `docker push` command. **Replace 'user' with your Docker ID**. 
 
-```none
+```
 docker push <user>/iis-dockerfile
 ```
 
 The container image can now be downloaded from Docker Hub onto any Windows container host using `docker pull`. For this tutorial, we will delete the existing image, and then pull it down from Docker Hub. 
 
-```none
+```
 docker rmi <user>/iis-dockerfile
 ```
 
 Running `docker images` will show that the image has been removed.
 
-```none
+```
 docker images
 
 REPOSITORY                TAG                 IMAGE ID            CREATED             SIZE
@@ -208,7 +208,7 @@ microsoft/iis             latest              e4525dda8206        3 hours ago   
 
 Finally, docker pull can be used to pull the image back onto the container host. Replace user with the user name of your Docker account. 
 
-```none
+```
 docker pull <user>/iis-dockerfile
 ```
 

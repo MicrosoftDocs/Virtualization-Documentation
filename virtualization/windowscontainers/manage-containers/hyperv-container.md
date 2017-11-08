@@ -26,7 +26,7 @@ The Windows container technology includes two distinct types of containers, Wind
 
 Managing Hyper-V containers with Docker is almost identical to managing Windows Server containers. When creating a Hyper-V container with Docker, the `--isolation=hyperv` parameter is used.
 
-```none
+```
 docker run -it --isolation=hyperv microsoft/nanoserver cmd
 ```
 
@@ -36,13 +36,13 @@ This example will differentiate the isolation capabilities between Windows Serve
 
 Here, a Windows Server containers is being deployed, and will be hosting a long running ping process.
 
-```none
+```
 docker run -d microsoft/windowsservercore ping localhost -t
 ```
 
 Using the `docker top` command, the ping process is returned as seen inside the container. The process in this example has an ID of 3964.
 
-```none
+```
 docker top 1f8bf89026c8f66921a55e773bac1c60174bb6bab52ef427c6c8dbc8698f9d7a
 
 3964 ping
@@ -50,7 +50,7 @@ docker top 1f8bf89026c8f66921a55e773bac1c60174bb6bab52ef427c6c8dbc8698f9d7a
 
 On the container host, the `get-process` command can be used to return any running ping processes from the host. In this example there is one, and the process id matches that from the container. It is the same process visible from both container and host.
 
-```none
+```
 get-process -Name ping
 
 Handles  NPM(K)    PM(K)      WS(K) VM(M)   CPU(s)     Id  SI ProcessName
@@ -60,13 +60,13 @@ Handles  NPM(K)    PM(K)      WS(K) VM(M)   CPU(s)     Id  SI ProcessName
 
 To contrast, this example starts a Hyper-V container with a ping process as well. 
 
-```none
+```
 docker run -d --isolation=hyperv microsoft/nanoserver ping -t localhost
 ```
 
 Likewise, `docker top` can be used to return the running processes from the container.
 
-```none
+```
 docker top 5d5611e38b31a41879d37a94468a1e11dc1086dcd009e2640d36023aa1663e62
 
 1732 ping
@@ -74,7 +74,7 @@ docker top 5d5611e38b31a41879d37a94468a1e11dc1086dcd009e2640d36023aa1663e62
 
 However, when searching for the process on the container host, a ping process is not found, and an error is thrown.
 
-```none
+```
 get-process -Name ping
 
 get-process : Cannot find a process with the name "ping". Verify the process name and call the cmdlet again.
@@ -87,7 +87,7 @@ At line:1 char:1
 
 Finally, on the host, the `vmwp` process is visible, which is the running virtual machine that is encapsulating the running container and protecting the running processes from the host operating system.
 
-```none
+```
 get-process -Name vmwp
 
 Handles  NPM(K)    PM(K)      WS(K) VM(M)   CPU(s)     Id  SI ProcessName

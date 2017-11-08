@@ -133,7 +133,7 @@ _If you need to attach multiple VMs and containers to a single NAT, you will nee
 The solution below will allow both Docker for Windows (Linux VM running Linux containers) and Windows Containers to share the same WinNAT instance using separate internal vSwitches. Connectivity between both Linux and Windows containers will work.
 
 User has connected VMs to a NAT network through an internal vSwitch named “VMNAT” and now wants to install Windows Container feature with docker engine
-```none
+```
 PS C:\> Get-NetNat “VMNAT”| Remove-NetNat (this will remove the NAT but keep the internal vSwitch).
 Install Windows Container Feature
 DO NOT START Docker Service (daemon)
@@ -147,7 +147,7 @@ Docker/HNS will assign IPs to Windows containers from the <container prefix>
 Admin will assign IPs to VMs from the difference set of the <shared prefix> and <container prefix>
 
 User has installed Windows Container feature with docker engine running and now wants to connect VMs to the NAT network
-```none
+```
 PS C:\> Stop-Service docker
 PS C:\> Get-ContainerNetwork | Remove-ContainerNetwork -force
 PS C:\> Get-NetNat | Remove-NetNat (this will remove the NAT but keep the internal vSwitch)
@@ -227,7 +227,7 @@ Remove-NetIPAddress -InterfaceAlias "vEthernet (<name of vSwitch>)" -IPAddress <
 **Removing Multiple NATs**  
 We have seen reports of multiple NAT networks created inadvertently. This is due to a bug in recent builds (including Windows Server 2016 Technical Preview 5 and Windows 10 Insider Preview builds). If you see multiple NAT networks, after running docker network ls or Get-ContainerNetwork, please perform the following from an elevated PowerShell:
 
-```none
+```
 PS> $KeyPath = "HKLM:\SYSTEM\CurrentControlSet\Services\vmsmp\parameters\SwitchList"
 PS> $keys = get-childitem $KeyPath
 PS> foreach($key in $keys)
