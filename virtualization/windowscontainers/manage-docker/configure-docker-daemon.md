@@ -55,7 +55,7 @@ $existingMachinePath = [Environment]::GetEnvironmentVariable("Path",[System.Envi
 
 To install Docker as a Windows service, run the following.
 
-```none
+```
 dockerd --register-service
 ```
 
@@ -73,7 +73,7 @@ The preferred method for configuring the Docker Engine on Windows is using a con
 
 Note – not every available Docker configuration option is applicable to Docker on Windows. The below example shows those that are. For complete documentation on Docker Engine configuration, see [Docker daemon configuration file](https://docs.docker.com/engine/reference/commandline/dockerd/#/windows-configuration-file).
 
-```none
+```
 {
     "authorization-plugins": [],
     "dns": [],
@@ -109,7 +109,7 @@ Note – not every available Docker configuration option is applicable to Docker
 
 Only the desired configuration changes need to be added to the configuration file. For example, this sample configures the Docker Engine to accept incoming connections on port 2375. All other configuration options will use default values.
 
-```none
+```
 {
     "hosts": ["tcp://0.0.0.0:2375"]
 }
@@ -118,7 +118,7 @@ Only the desired configuration changes need to be added to the configuration fil
 Likewise this sample configures the Docker daemon to keep images and containers in an alternate path. If not specified, the
 default is c:\programdata\docker.
 
-```none
+```
 {    
     "graph": "d:\\docker"
 }
@@ -126,7 +126,7 @@ default is c:\programdata\docker.
 
 Likewise, this sample configures the Docker daemon to only accept secured connections over port 2376.
 
-```none
+```
 {
     "hosts": ["tcp://0.0.0.0:2376", "npipe://"],
     "tlsverify": true,
@@ -141,7 +141,7 @@ Likewise, this sample configures the Docker daemon to only accept secured connec
 The Docker Engine can also be configured by modifying the Docker service using `sc config`. Using this method, Docker Engine flags are set directly on the Docker service. Run the following command in a command prompt (cmd.exe not PowerShell):
 
 
-```none
+```
 sc config docker binpath= "\"C:\Program Files\docker\dockerd.exe\" --run-service -H tcp://0.0.0.0:2375"
 ```
 
@@ -155,7 +155,7 @@ The following configuration file examples show common Docker configurations. The
 
 To configure the Docker Engine so that a default NAT network is not created, use the following. For more information, see [Manage Docker Networks](../manage-containers/container-networking.md).
 
-```none
+```
 {
     "bridge" : "none"
 }
@@ -165,7 +165,7 @@ To configure the Docker Engine so that a default NAT network is not created, use
 
 When logged into the Docker host and running Docker commands locally, these commands are run through a named pipe. By default, only members of the Administrators group can access the Docker Engine through the named pipe. To specify a security group that has this access, use the `group` flag.
 
-```none
+```
 {
     "group" : "docker"
 }

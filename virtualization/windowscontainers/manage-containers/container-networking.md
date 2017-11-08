@@ -112,7 +112,7 @@ Several network driver options are supported to take advantage of Windows-specif
 
 You can take advantage of [Switch Embedded Teaming](https://technet.microsoft.com/en-us/windows-server-docs/networking/technologies/hyper-v-virtual-switch/rdma-and-switch-embedded-teaming#a-namebkmksswitchembeddedaswitch-embedded-teaming-set) when creating container host networks for use by Docker   by specifying multiple network adapters (separated by commas) with the `-o com.docker.network.windowsshim.interface` option. 
 
-```none
+```
 C:\> docker network create -d transparent -o com.docker.network.windowsshim.interface="Ethernet 2", "Ethernet 3" TeamedNet
 ```
 
@@ -122,7 +122,7 @@ C:\> docker network create -d transparent -o com.docker.network.windowsshim.inte
 
 To set a VLAN ID for a network, use the option, `-o com.docker.network.windowsshim.vlanid=<VLAN ID>` to the `docker network create` command. For instance, you might use the following command to create a transparent network with a VLAN ID of 11:
 
-```none
+```
 C:\> docker network create -d transparent -o com.docker.network.windowsshim.vlanid=11 MyTransparentNetwork
 ```
 When you set the VLAN ID for a network, you are setting VLAN isolation for any container endpoints that will be attached to that network.
@@ -135,7 +135,7 @@ When you set the VLAN ID for a network, you are setting VLAN isolation for any c
 
 Ordinarily, when you create a container network using `docker network create`, the network name that you provide is used by the Docker service but not by the HNS service. If you are creating a network, you can specify the name that it is given by the HNS service using the option, `-o com.docker.network.windowsshim.networkname=<network name>` to the `docker network create` command. For instance, you might use the following command to create a transparent network with a name that is specified to the HNS service:
 
-```none
+```
 C:\> docker network create -d transparent -o com.docker.network.windowsshim.networkname=MyTransparentNetwork MyTransparentNetwork
 ```
 
@@ -145,13 +145,13 @@ C:\> docker network create -d transparent -o com.docker.network.windowsshim.netw
 
 To bind a network (attached through the Hyper-V virtual switch) to a specific network interface, use the option, `-o com.docker.network.windowsshim.interface=<Interface>` to the `docker network create` command. For instance, you might use the following command to create a transparent network which is attached to the "Ethernet 2" network interface:
 
-```none
+```
 C:\> docker network create -d transparent -o com.docker.network.windowsshim.interface="Ethernet 2" TransparentNet2
 ```
 
 > Note: The value for *com.docker.network.windowsshim.interface* is the network adapter's *Name*, which can be found with:
 
->```none
+>```
 PS C:\> Get-NetAdapter
 ```
 ## Specify the DNS Suffix and/or the DNS Servers of a Network
@@ -160,7 +160,7 @@ PS C:\> Get-NetAdapter
 
 Use the option, `-o com.docker.network.windowsshim.dnssuffix=<DNS SUFFIX>` to specify the DNS suffix of a network, and the option, `-o com.docker.network.windowsshim.dnsservers=<DNS SERVER/S>` to specify the DNS servers of a network. For example, you might use the following command to set the DNS suffix of a network to "example.com" and the DNS servers of a network to 4.4.4.4 and 8.8.8.8:
 
-```none
+```
 C:\> docker network create -d transparent -o com.docker.network.windowsshim.dnssuffix=abc.com -o com.docker.network.windowsshim.dnsservers=4.4.4.4,8.8.8.8 MyTransparentNetwork
 ```
 
@@ -194,7 +194,7 @@ Docker for Windows (the Windows driver for the Docker CE engine) on Windows 10 w
 
 #### To use DHCP for IP assignment on a virtual container host enable MACAddressSpoofing 
 If the container host is virtualized, and you wish to use DHCP for IP assignment, you must enable MACAddressSpoofing on the virtual machine's network adapter. Otherwise, the Hyper-V host will block network traffic from the containers in the VM with multiple MAC addresses. You can enable MACAddressSpoofing with this PowerShell command:
-```none
+```
 PS C:\> Get-VMNetworkAdapter -VMName ContainerHostVM | Set-VMNetworkAdapter -MacAddressSpoofing On
 ```
 #### Creating multiple transparent networks on a single container host
@@ -239,7 +239,7 @@ There are three approaches for solving this issue:
 
 * You can of course delete the vSwitch that was created out-of-band, which will allow docker to create a new vSwitch and connect it to the host network adapter without issue. Before choosing this approach, ensure that your out-of-band vSwitch is not being used by other services (e.g. Hyper-V).
 * Alternatively, if you decide to use an external vSwitch that was created out-of-band, restart the Docker and HNS services to *make the switch visible to Docker.*
-```none
+```
 PS C:\> restart-service hns
 PS C:\> restart-service docker
 ```
@@ -274,19 +274,19 @@ Although we continue to add new features and drive development, some of these fe
 
 The partitions for any new NAT networks must be created under the larger internal NAT networking prefix. The prefix can be found by running the following command from PowerShell and referencing the "InternalIPInterfaceAddressPrefix" field.
 
-```none
+```
 PS C:\> Get-NetNAT
 ```
 
 For example, the host's NAT network internal prefix might be, 172.16.0.0/16. In this case, Docker can be used to create additional NAT networks *as long as they are a subset of the 172.16.0.0/16 prefix.* For example, two NAT networks could be created with the IP prefixes 172.16.1.0/24 (gateway, 172.16.1.1) and 172.16.2.0/24 (gateway, 172.16.2.1).
 
-```none
+```
 C:\> docker network create -d nat --subnet=172.16.1.0/24 --gateway=172.16.1.1 CustomNat1
 C:\> docker network create -d nat --subnet=172.16.2.0/24 --gateway=172.16.1.1 CustomNat2
 ```
 
 The newly created networks can be listed using:
-```none
+```
 C:\> docker network ls
 ```
 
@@ -294,7 +294,7 @@ C:\> docker network ls
 
 [Docker Compose](https://docs.docker.com/compose/overview/) can be used to define and configure container networks alongside the containers/services that will be using those networks. The Compose 'networks' key is used as the top-level key in defining the networks to which containers will be connected. For example, the syntax below defines the preexisting NAT network created by Docker to be the 'default' network for all containers/services defined in a given Compose file.
 
-```none
+```
 networks:
  default:
   external:
@@ -305,7 +305,7 @@ Similarly, the following syntax can be used to define a custom NAT network.
 
 > Note: The 'custom NAT network' defined in the below example is defined as a partition of the container host's pre-existing NAT internal prefix. See the above section, 'Multiple NAT Networks,' for more context.
 
-```none
+```
 networks:
   default:
     driver: nat

@@ -10,13 +10,13 @@ Windows Server Core Base OS Image
 
 **Docker Build**
 
-```none
+```
 docker build -t apache-http-php:latest .
 ```
 
 **Docker Run** 
 
-```none
+```
 docker run -d -p 80:80 apache-http-php
 ```
 

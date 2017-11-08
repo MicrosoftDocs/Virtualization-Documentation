@@ -17,7 +17,7 @@ you can run `docker inspect <tag>`, and match the top 1 or two rows to the chart
 
 For example, `docker inspect microsoft/windowsservercore:10.0.14393.447` would show
 
-```none
+```
 ...
 "RootFS": {
     "Type": "layers",

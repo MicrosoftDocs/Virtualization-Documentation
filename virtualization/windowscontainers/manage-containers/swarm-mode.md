@@ -39,7 +39,7 @@ Open ports: The following ports must be available on each host. On some systems,
 
 To initialize a swarm, simply run the following command from one of your container hosts (replacing \<HOSTIPADDRESS\> with the local IPv4 address of your host machine):
 
-```none
+```
 # Initialize a swarm 
 C:\> docker swarm init --advertise-addr=<HOSTIPADDRESS> --listen-addr <HOSTIPADDRESS>:2377
 ```
@@ -52,13 +52,13 @@ When this command is run from a given container host, the Docker engine on that 
 ### Adding workers to a swarm
 Once a swarm has been initialized from a manager node, other hosts can be added to the swarm as workers with another simple command:
 
-```none
+```
 C:\> docker swarm join --token <WORKERJOINTOKEN> <MANAGERIPADDRESS>
 ```
 
 Here, \<MANAGERIPADDRESS\> is the local IP address of a swarm manager node, and \<WORKERJOINTOKEN\> is the worker join-token provided as output by the `docker swarm init` command that was run from the manager node. The join-token can also be obtained by running one of the following commands from the manager node after the swarm has been initialized:
 
-```none
+```
 # Get the full command required to join a worker node to the swarm
 C:\> docker swarm join-token worker
 
@@ -69,13 +69,13 @@ C:\> docker swarm join-token worker -q
 ### Adding managers to a swarm
 Additional manager nodes can be added to a swarm cluster with the following command:
 
-```none
+```
 C:\> docker swarm join --token <MANAGERJOINTOKEN> <MANAGERIPADDRESS>
 ```
 
 Again, \<MANAGERIPADDRESS\> is the local IP address of a swarm manager node. The join token, \<MANAGERJOINTOKEN\>, is a *manager* join-token for the swarm, which can be obtained by running one of the following commands from an existing manager node:
 
-```none
+```
 # Get the full command required to join a **manager** node to the swarm
 C:\> docker swarm join-token manager
 
@@ -87,7 +87,7 @@ C:\> docker swarm join-token manager -q
 
 Once a swarm cluster has been configured, overlay networks can be created on the swarm. An overlay network can be created by running the following command from a swarm manager node:
 
-```none
+```
 # Create an overlay network 
 C:\> docker network create --driver=overlay <NETWORKNAME>
 ```
@@ -97,7 +97,7 @@ Here, \<NETWORKNAME\> is the name you'd like to give to your network.
 ## Deploying services to a swarm
 Once an overlay network has been created, services can be created and attached to the network. A service is created with the following syntax:
 
-```none
+```
 # Deploy a service to the swarm
 C:\> docker service create --name=<SERVICENAME> --endpoint-mode dnsrr --network=<NETWORKNAME> <CONTAINERIMAGE> [COMMAND] [ARGS…]
 ```
@@ -111,7 +111,7 @@ Once a service is deployed to a swarm cluster, the container instances composing
 
 Service scalability is a key benefit offered by Docker Swarm, and it, too, can be leveraged with a single Docker command:
 
-```none
+```
 C:\> docker service scale <SERVICENAME>=<REPLICAS>
 ```
 
@@ -125,7 +125,7 @@ There are several useful commands for viewing the state of a swarm and the servi
 ### List swarm nodes
 Use the following command to see a list of the nodes currently joined to a swarm, including informaiton on the state of each node. This command must be run from a **manager node**.
 
-```none
+```
 C:\> docker node ls
 ```
 
@@ -134,21 +134,21 @@ In the output of this command, you will notice one of the nodes marked with an a
 ### List networks
 Use the following command to see a list of the networks that exist on a given node. To see overlay networks, this command must be run from a **manager node** running in swarm mode.
 
-```none
+```
 C:\> docker network ls
 ```
 
 ### List services
 Use the following command to see a list of the services currently running on a swarm, including information on their state.
 
-```none
+```
 C:\> docker service ls
 ```
 
 ### List the container instances that define a service
 Use the following command to see details on the container instances running for a given service. The output for this command includes the IDs and nodes upon which each container is running, as well as infromation on the state of the containers.  
 
-```none
+```
 C:\> docker service ps <SERVICENAME>
 ```
 ## Linux+Windows mixed-OS clusters
@@ -160,11 +160,11 @@ Recently, a member of our team posted a short, three-part demo on how to set up 
 
 ### Initializing a Linux+Windows mixed-OS Cluster
 Initializing a mixed-OS swarm cluster is easy--as long as your firewall rules are properly configured and your hosts have access to one another, all you need to add a Linux host to a swarm is the standard `docker swarm join` command:
-```none
+```
 C:\> docker swarm join --token <JOINTOKEN> <MANAGERIPADDRESS>
 ```
 You can also initialize a swarm from a Linux host using the same command that you would run if initializing the swarm from a Windows host:
-```none
+```
 # Initialize a swarm 
 C:\> docker swarm init --advertise-addr=<HOSTIPADDRESS> --listen-addr <HOSTIPADDRESS>:2377
 ```
@@ -176,7 +176,7 @@ In order to launch a Docker Service to a mixed-OS swarm cluster, there must be a
 
 To label your existing swarm nodes, use the following syntax:
 
-```none
+```
 C:\> docker node update --label-add <LABELNAME>=<LABELVALUE> <NODENAME>
 ```
 
@@ -184,7 +184,7 @@ Here, `<LABELNAME>` is the name of the label you are creating--for example, in t
 
 **For example**, if you have four swarm nodes in your cluster, including two Windows nodes and two Linux nodes, your label update commands may look like this:
 
-```none
+```
 # Example -- labeling 2 Windows nodes and 2 Linux nodes in a cluster...
 C:\> docker node update --label-add os=windows Windows-SwarmMaster
 C:\> docker node update --label-add os=windows Windows-SwarmWorker1
@@ -195,14 +195,14 @@ C:\> docker node update --label-add os=linux Linux-SwarmNode2
 ### Deploying services to a Mixed-OS swarm
 With labels for your swarm nodes, deploying services to your cluster is easy; simply use the `--constraint` option to the [`docker service create`](https://docs.docker.com/engine/reference/commandline/service_create/) command:
 
-```none
+```
 # Deploy a service with swarm node constraint
 C:\> docker service create --name=<SERVICENAME> --endpoint-mode dnsrr --network=<NETWORKNAME> --constraint node.labels.<LABELNAME>=<LABELVALUE> <CONTAINERIMAGE> [COMMAND] [ARGS…]
 ```
 
 For example, using the label and label value nomenclature from the example above, a set of service creation commands--one for a Windows-based service and one for a Linux-based service--might look like this:
 
-```none
+```
 # Example -- using the 'os' label and 'windows'/'linux' label values, service creation commands might look like these...
 
 # A Windows service
@@ -222,20 +222,20 @@ Docker Swarm's [routing mesh](https://docs.docker.com/engine/swarm/ingress/) fea
 
 To cause host ports to be published for each of the tasks/container endpoints that define a service, use the `--publish mode=host,target=<CONTAINERPORT>` argument to the `docker service create` command:
 
-```none
+```
 # Create a service for which tasks are exposed via host port
 C:\ > docker service create --name=<SERVICENAME> --publish mode=host,target=<CONTAINERPORT> --endpoint-mode dnsrr --network=<NETWORKNAME> <CONTAINERIMAGE> [COMMAND] [ARGS…]
 ```
 
 For example, the following command would create a service, 's1', for which each task will be exposed via container port 80 and a randomly selected host port.
 
-```none
+```
 C:\ > docker service create --name=s1 --publish mode=host,target=80 --endpoint-mode dnsrr web_1 powershell -command {echo sleep; sleep 360000;}
 ```
 
 After creating a service using publish-port mode, the service can be queried to view the port mapping for each service task:
 
-```none
+```
 C:\ > docker service ps <SERVICENAME>
 ```
 The above command will return details on every container instance running for your service (across all of your swarm hosts). One column of the output, the “ports” column, will include port information for each host of the form \<HOSTPORT\>->\<CONTAINERPORT\>/tcp. The values of \<HOSTPORT\> will be different for each container instance, as each container is published on its own host port.
