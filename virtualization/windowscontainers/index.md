@@ -69,7 +69,8 @@ Interact with the community, try samples, and find additional resources.<br /><b
 <ul>
 <li>[Container Forum](https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers)<br /><br /></li>
 <li>[Community Videos and Blogs](communitylinks.md)<br /><br /></li>
-<li>[Container Resources](https://msdn.microsoft.com/virtualization/community/community_overview)<br /><br /></li>
+<li>[Container Samples](https://docs.microsoft.com/en-us/virtualization/windowscontainers/samples)<br /><br /></li>
+<li>[Container Samples](https://windowsserver.uservoice.com/forums/304624-containers)<br /><br /></li>
 </ul>
 </td>
 </tr>
