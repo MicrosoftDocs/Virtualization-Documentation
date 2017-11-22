@@ -47,7 +47,7 @@ Windows Containers are offered with two container base images, Windows Server Co
 <td><center>Server Core / Nano Server</center></td>
 </tr>
 <tr valign="top">
-<td><center>Nano Server</center></td>
+<td><center>Nano Server*</center></td>
 <td><center> Nano Server</center></td>
 <td><center>Server Core / Nano Server</center></td>
 </tr>
@@ -58,6 +58,23 @@ Windows Containers are offered with two container base images, Windows Server Co
 </tr>
 </tbody>
 </table>
+* Starting with Windows Server version 1709 Nano Server is no long avilable as a container host.
+
+### Memory requirments
+Restrictions on available memory to containers can be configured though [resource controls](https://docs.microsoft.com/en-us/virtualization/windowscontainers/manage-containers/resource-controls) or by overloading a container host.  The minimum amount of memory required to launch a container and run basic commands (ipconfig, dir, etc...) are listed below.  Please note that these values do not take into account resource sharing between containers or requirments from the application running in the container.
+
+#### Windows Server 2016
+| Base Image  | Windows Server Container | Hyper-V Isolation    |
+| ----------- | ------------------------ | -------------------- |
+| Nano Server | 40MB                     | 130MB + 1GB Pagefile |
+| Server Core | 50MB                     | 325MB + 1GB Pagefile |
+
+#### Windows Server version 1709
+| Base Image  | Windows Server Container | Hyper-V Isolation    |
+| ----------- | ------------------------ | -------------------- |
+| Nano Server | 30MB                     | 110MB + 1GB Pagefile |
+| Server Core | 45MB                     | 360MB + 1GB Pagefile |
+
 
 ### Nano Server vs. Windows Server Core
 
