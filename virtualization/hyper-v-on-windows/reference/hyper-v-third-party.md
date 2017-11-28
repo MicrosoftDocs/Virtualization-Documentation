@@ -140,3 +140,163 @@ WHvDeletePartition(
     _In_ WHV_PARTITION_HANDLE Partition
     );
 ```
+
+## Partition Properties
+
+#### Data Types
+
+```C
+// TODO
+```
+
+#### WHvGetPartitionProperty
+
+```C
+// TODO
+```
+
+#### WHvSetPartitionProperty
+
+```C
+// TODO
+```
+
+## VM Memory Management
+
+### Mapping GPA Ranges
+
+#### WHvMapGpaRange
+
+```C
+// TODO
+```
+
+### Unmapping GPA Ranges
+
+#### WHvUnmapGpaRange
+
+```C
+// TODO
+```
+
+### Translating Guest Virtual Addresses
+
+#### WHvTranslateVirtualAddress
+
+```C
+// TODO
+```
+
+## Virtual Processor Execution
+
+### Virtual Processor Creation
+
+#### WHvCreateVirtualProcessor
+
+```C
+// TODO
+```
+
+### Virtual Processor Deletion
+
+#### WHvDeleteVirtualProcessor
+
+```C
+// TODO
+```
+
+### Running a Virtual Processor
+
+#### Exit Contexts
+
+```C
+// TODO
+```
+
+##### Memory Access
+
+```C
+// TODO
+```
+
+##### I/O Port Access
+
+```C
+// TODO
+```
+
+##### MSR Access
+
+```C
+// TODO
+```
+
+##### CPUID Access
+
+```C
+// TODO
+```
+
+##### Virtual Processor Exception
+
+```C
+// TODO
+```
+
+##### Unrecoverable Exception
+
+```C
+// TODO
+```
+
+##### Unsupported Feature
+
+```C
+// TODO
+```
+
+##### Execution Cancelled
+
+```C
+// TODO
+```
+
+#### WHvRunVirtualProcessor
+
+```C
+// TODO
+```
+
+#### WHvGetRunContextBufferSize
+
+```C
+// TODO
+```
+
+### Canceling the Execution of a Virtual Processor
+
+#### WHvCancelRunVirtualProcessor
+
+```C
+// TODO
+```
+
+### Virtual Processor Registers
+
+#### Data Types
+
+```C
+// TODO
+```
+
+#### WHvGetVirtualProcessorRegisters
+
+```C
+// TODO
+```
+
+#### WHvSetVirtualProcessorRegisters
+
+```C
+// TODO
+```
