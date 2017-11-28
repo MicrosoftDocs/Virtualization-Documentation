@@ -6,7 +6,7 @@
 ## [Share devices with VMs](user-guide/enhanced-session-mode.md)
 ## [Work with Checkpoints](user-guide/checkpoints.md)
 ## [Connect with PowerShell Direct](user-guide/powershell-direct.md)
-## [Create pre-release VMs](user-guide/create-pre-release-vm.md) 
+## [Create pre-release VMs](user-guide/create-pre-release-vm.md)
 # Manage the Hyper-V Hosts
 ## [Enable Nested Virtualization](user-guide/nested-virtualization.md)
 ## [Set up a NAT network](user-guide/setup-nat-network.md)
@@ -19,6 +19,7 @@
 ## [Hyper-V WMI Provider (V2)](https://msdn.microsoft.com/library/hh850319.aspx)
 ## [Hyper-V Integration Services](reference/integration-services.md)
 ## [Hyper-V Architecture](reference/hyper-v-architecture.md)
+## [Hyper-V Third-Party Platform API](reference/hyper-v-third-party.md)
 ## [Hypervisor Specifications](reference/tlfs.md)
 # Community and Support
 ## [Hyper-V forums](https://social.technet.microsoft.com/Forums/windowsserver/en-US/home?forum=winserverhyperv)
