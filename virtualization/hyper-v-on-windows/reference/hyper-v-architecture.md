@@ -23,6 +23,7 @@ Hyper-V additionally has an extended user-mode API for third-party virtualizatio
 The following diagram provides a high-level overview of the third-party architecture.
 
 ![](./media/hv_third_party_architecture.png)
+> For more information see: [Third-Party Platform API](./hyper-v-third-party.md)
 
 ## Glossary
 * **APIC** – Advanced Programmable Interrupt Controller – A device which allows priority levels to be assigned to its interrupt outputs.
