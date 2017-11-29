@@ -152,7 +152,19 @@ WHvDeletePartition(
 #### WHvGetPartitionProperty
 
 ```C
-// TODO
+/*!
+    \param Partition – Handle to the partition object. 
+    \param Property – Specifies the property that is queried.
+    \param PropertyBuffer – Specifies the output buffer that receives the value of the requested property. 
+    \param PropertyBufferSizeInBytes – Specifies the size of the output buffer, in bytes. For the currently available set of properties, the buffer should be large enough to hold a 64-bit value. 
+*/
+HRESULT 
+WHvGetPartitionProperty( 
+    _In_  WHV_PARTITION_HANDLE Partition, 
+    _In_  WHV_PARTITION_PROPERTY_CODE Property, 
+    _Out_ VOID* PropertyBuffer, 
+    _In_  UINT32 PropertyBufferSizeInBytes 
+    ); 
 ```
 
 #### WHvSetPartitionProperty
