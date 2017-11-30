@@ -144,9 +144,32 @@ WHvDeletePartition(
 ## Partition Properties
 
 #### Data Types
+The `WHvPartitionExtendedVmExits` property controls the set of additional operations by a virtual processor that should cause the execution of the processor to exit and to return to the caller of the `WHvRunVirtualProcessor` function.
+
+The `WHvPartitionProcessorXXX` properties control the processor features that are made available to the virtual processor of the partition. These properties can only be configured during the initial creation of the partition, prior to calling `WHvInitializePartition`. 
 
 ```C
-// TODO
+typedef enum { 
+    WHvPartitionPropertyCodeExtendedVmExits        = 0x00000001, 
+     
+    WHvPartitionPropertyCodeProcessorVendor        = 0x00001000, 
+    WHvPartitionPropertyCodeProcessorFeatures      = 0x00001001, 
+    WHVPartitionPropertyCodeProcessorClFlushSize   = 0x00001002, 
+     
+    WHvPartitionPropertyCodeProcessorCount         = 0x00001fff 
+} WHV_PARTITION_PROPERTY_CODE; 
+ 
+typedef struct { 
+    WHV_PARTITION_PROPERTY_CODE PropertyCode; 
+     
+    union { 
+        WHV_EXTENDED_VM_EXITS ExtendedVmExits; // See VID_WHV_IOCTL_GET_CAPABILITY 
+        WHV_PROCESSOR_VENDOR ProcessorVendor; // HV_PROCESSOR_VENDOR 
+        WHV_PROCESSOR_FEATURES ProcessorFeatures; // HV_PARTITION_PROCESSOR_FEATURES 
+        UINT8 ProcessorClFlushSize; 
+    }; 
+} WHV_GET_PARTITION_PROPERTY_OUTPUT; 
+ 
 ```
 
 #### WHvGetPartitionProperty
@@ -158,7 +181,8 @@ WHvDeletePartition(
     \param PropertyBuffer – Specifies the output buffer that 
         receives the value of the requested property. 
     \param PropertyBufferSizeInBytes – Specifies the size of 
-        the output buffer, in bytes. For the currently available set of properties, the buffer should be large enough to hold a 64-bit value. 
+        the output buffer, in bytes. For the currently available set of properties, 
+        the buffer should be large enough to hold a 64-bit value. 
 */
 HRESULT 
 WHvGetPartitionProperty( 
@@ -179,9 +203,13 @@ WHvGetPartitionProperty( 
     \Return
         If the operation completed successfully, the return value is S_OK. 
 
-        The function returns E_WHV_UNKNOWN_PROPERTY for attempts to configure a property that is not available on the current system. 
+        The function returns E_WHV_UNKNOWN_PROPERTY for attempts to configure a property 
+        that is not available on the current system. 
 
-        The function returns E_WHV_INVALID_PARTITION_STATE if the property cannot be modified in the current state of the partition, particularly for attempts to set a property that can only be modified prior to executing the partition but a virtual processor in the partition already started executing. 
+        The function returns E_WHV_INVALID_PARTITION_STATE if the property cannot be 
+        modified in the current state of the partition, particularly for attempts to set 
+        a property that can only be modified prior to executing the partition but a virtual 
+        processor in the partition already started executing. 
 */
 HRESULT 
 WHvSetPartitionProperty( 
@@ -210,7 +238,8 @@ typedef enum { 
  
 /*!
     \param Partition – Handle to the partition object. 
-    \param VirtualAddress – Specifies the page-aligned address of the memory region in the caller’s process that is the source of the mapping. 
+    \param VirtualAddress – Specifies the page-aligned address of the memory region in the caller’s 
+        process that is the source of the mapping. 
     \param GpaPageAddress – Specifies the destination address in the VM’s physical address space. 
     \param PageCount – Specifies the number of pages that are mapped. 
     \param Flags – Specifies the access flags for the mapping. 
@@ -234,8 +263,8 @@ Unmapping a previously mapped GPA range (or parts of it) makes the memory range 
 ```C
 /*! 
     \param Partition – Handle to the partition object. 
-    \param GpaPageAddress – Specifies the start address of the region 
-        in the VM’s physical address space that is unmapped. 
+    \param GpaPageAddress – Specifies the start address of the region in the VM’s physical 
+        address space that is unmapped. 
     \param PageCount – Specifies the number of pages that are unmapped. 
 */
 
@@ -296,7 +325,9 @@ typedef struct { 
     \param GpaPageAddress – Receives the physical address if the translation was successful. 
 
     \Return 
-        If the operation completed successfully, the return value is S_OK. Note that a successful completion of the call just indicates that the TranslationResult output parameter is valid, the result of the translation is return in the ResultCode member of this struct. 
+        If the operation completed successfully, the return value is S_OK. Note that a successful completion of
+             the call just indicates that the TranslationResult output parameter is valid, the result of the
+             translation is return in the ResultCode member of this struct. 
 */
  
 HRESULT 
@@ -578,8 +609,11 @@ typedef struct { 
  /*!
     \param Partition – Handle to the partition object. 
     \param VpIndex – Specifies the index of the virtual processor that is executed. 
-    \param ExitContext – Specifies the output buffer that receives the context structure providing the information about the reason that caused the WHvRunVirtualProcessor function to return. 
-    \param ExitContextSizeInBytes – Specifies the size of the buffer that receives the exit context, in bytes. The minimum buffer size required to hold the exit context can be queried with the WHvGetRunContextBufferSize function. 
+    \param ExitContext – Specifies the output buffer that receives the context structure providing the
+         information about the reason that caused the WHvRunVirtualProcessor function to return. 
+    \param ExitContextSizeInBytes – Specifies the size of the buffer that receives the exit context, 
+        in bytes. The minimum buffer size required to hold the exit context can be queried with the
+        WHvGetRunContextBufferSize function. 
 */
  
 HRESULT 
@@ -596,7 +630,8 @@ WHvRunVirtualProcessor( 
 ```C
 /*! 
     \Return
-        Returns the minimum size required for the buffer that receives the exit context of the WHvRunVirtualProcessor function call. The value returned by this function is constant for a respective version of the DLL implementation. 
+        Returns the minimum size required for the buffer that receives the exit context of the WHvRunVirtualProcessor function call. The value returned by this function is constant 
+        for a respective version of the DLL implementation. 
 */
 
 UINT32 
