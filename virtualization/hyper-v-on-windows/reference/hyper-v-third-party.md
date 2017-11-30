@@ -630,7 +630,8 @@ WHvRunVirtualProcessor( 
 ```C
 /*! 
     \Return
-        Returns the minimum size required for the buffer that receives the exit context of the WHvRunVirtualProcessor function call. The value returned by this function is constant 
+        Returns the minimum size required for the buffer that receives the exit context of the
+        WHvRunVirtualProcessor function call. The value returned by this function is constant 
         for a respective version of the DLL implementation. 
 */
 
