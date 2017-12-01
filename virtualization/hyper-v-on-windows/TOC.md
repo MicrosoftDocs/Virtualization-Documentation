@@ -20,6 +20,7 @@
 ## [Hyper-V Integration Services](reference/integration-services.md)
 ## [Hyper-V Architecture](reference/hyper-v-architecture.md)
 ## [Hyper-V Third-Party Platform API](reference/hyper-v-third-party.md)
+### [WHvSetPartitionProperty](reference/WHvSetPartitionProperty.md)
 ## [Hypervisor Specifications](reference/tlfs.md)
 # Community and Support
 ## [Hyper-V forums](https://social.technet.microsoft.com/Forums/windowsserver/en-US/home?forum=winserverhyperv)
