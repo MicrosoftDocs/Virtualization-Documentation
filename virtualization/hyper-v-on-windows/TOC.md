@@ -19,9 +19,9 @@
 ## [Hyper-V WMI Provider (V2)](https://msdn.microsoft.com/library/hh850319.aspx)
 ## [Hyper-V Integration Services](reference/integration-services.md)
 ## [Hyper-V Architecture](reference/hyper-v-architecture.md)
-## [Hyper-V Third-Party Platform API] (reference/hyper-v-third-party.md)
+## [Hyper-V Third-Party Platform API](reference/hyper-v-third-party.md)
 ### [WHvSetPartitionProperty](reference/hyper-v-third-party-funcs/WHvSetPartitionProperty.md)
-###[WHvMapGpaRange](reference/hyper-v-third-party-funcs/WHvMapGpaRang.md)
+### [WHvMapGpaRange](reference/hyper-v-third-party-funcs/WHvMapGpaRange.md)
 ## [Hypervisor Specifications](reference/tlfs.md)
 # Community and Support
 ## [Hyper-V forums](https://social.technet.microsoft.com/Forums/windowsserver/en-US/home?forum=winserverhyperv)
