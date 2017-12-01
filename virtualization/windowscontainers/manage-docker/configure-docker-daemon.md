@@ -85,7 +85,7 @@ Note – not every available Docker configuration option is applicable to Docker
     "log-driver": "", 
     "mtu": 0,
     "pidfile": "",
-    "graph": "",
+    "data-root": "",
     "cluster-store": "",
     "cluster-advertise": "",
     "debug": true,
@@ -119,7 +119,7 @@ default is c:\programdata\docker.
 
 ```
 {    
-    "graph": "d:\\docker"
+    "data-root": "d:\\docker"
 }
 ```
 
