@@ -20,5 +20,5 @@ Handle to the partition object that is set up.
 
 Setting up the partition causes the actual partition to be created in the hypervisor.
 
-A partition needs to be set up prior to performing any other operation on the partition after it was created by `WHvCreatePartition`, with exception of calling [`WHvSetPartitionProperty`](reference/hyper-v-third-party-funcs/WHvSetPartitionProperty.md) to configure the initial properties of the partition.
+A partition needs to be set up prior to performing any other operation on the partition after it was created by `WHvCreatePartition`, with exception of calling [`WHvSetPartitionProperty`](WHvSetPartitionProperty.md) to configure the initial properties of the partition.
 
