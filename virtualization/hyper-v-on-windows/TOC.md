@@ -20,7 +20,7 @@
 ## [Hyper-V Integration Services](reference/integration-services.md)
 ## [Hyper-V Architecture](reference/hyper-v-architecture.md)
 ## [Hyper-V Third-Party Platform API](reference/hyper-v-third-party.md)
-### [WHvSetupPartition](reference/hyper-v-third-party-funcs/WHvGetCapability.md)
+### [WHvGetCapability](reference/hyper-v-third-party-funcs/WHvGetCapability.md)
 ### [WHvSetupPartition](reference/hyper-v-third-party-funcs/WHvSetupPartition.md)
 ### [WHvDeletePartition](reference/hyper-v-third-party-funcs/WHvDeletePartition.md)
 ### [WHvSetPartitionProperty](reference/hyper-v-third-party-funcs/WHvSetPartitionProperty.md)
