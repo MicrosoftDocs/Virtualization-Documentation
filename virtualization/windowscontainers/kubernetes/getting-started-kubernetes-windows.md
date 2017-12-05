@@ -20,7 +20,7 @@ With the latest release of Kubernetes 1.9 and Windows Server [version 1709](http
   - **data-path optimization**: improvements to the Virtual Filtering Platform and the Host Networking Service allow kernel-based load-balancing
 
 
-This page serves as a guide for getting started joining a brand new Windows node to an existing Linux-based cluster. To start completely from scratch, refer to [this page](./creating-a-linux-master.md) -- which is one of many resources available for deploying a Kubernetes cluster -- to set a master up from scratch the same way we did.
+This page serves as a guide for getting started joining a brand new Windows node to an existing Linux-based cluster. To start completely from scratch, refer to [this page](./creating-a-linux-master.md) &mdash; one of many resources available for deploying a Kubernetes cluster &mdash; to set a master up from scratch the same way we did.
 
 
 <a name="definitions"></a>
@@ -35,11 +35,11 @@ These are definitions for some terms that are referenced throughout this guide:
 By the end of this guide, we will have:
 
 > [!div class="checklist"]  
-> Prepared our [network topology](#network-topology).  
-> Configured a [Linux master](#preparing-the-linux-master) node.  
-> Joined a [Windows worker node](#preparing-a-windows-node) to it.  
-> Deployed a [sample Windows service](#running-a-sample-service).  
-> Covered [common problems and mistakes](./common-problems.md).  
+> * Prepared our [network topology](#network-topology).  
+> * Configured a [Linux master](#preparing-the-linux-master) node.  
+> * Joined a [Windows worker node](#preparing-a-windows-node) to it.  
+> * Deployed a [sample Windows service](#running-a-sample-service).  
+> * Covered [common problems and mistakes](./common-problems.md).  
 
 
 ## Network Topology ##
@@ -103,7 +103,7 @@ In the meantime while the `pull` occurs, download the following client-side bina
 You can download these from the links in the `CHANGELOG.md` file of the latest 1.9 release. As of this writing, that is [1.9.0-beta.1](https://github.com/kubernetes/kubernetes/releases/tag/v1.9.0-beta.1), and the Windows binaries are [here](https://dl.k8s.io/v1.9.0-beta.1/kubernetes-node-windows-amd64.tar.gz). Use a tool like [7-Zip](http://www.7-zip.org/) to extract the archive and place the binaries in `C:\k\`.
 
 > [!Warning]  
-> As of this writing, `kube-proxy.exe` requires a pending Kubernetes [pull request](https://github.com/kubernetes/kubernetes/pull/56529) to work properly. You may need to build the binaries [manually](./compiling-kubernetes-binaries.md) to work around this.
+> As of this writing, `kube-proxy.exe` requires a pending Kubernetes [pull request](https://github.com/kubernetes/kubernetes/pull/56529) to work properly. You may need to [build the binaries manually](./compiling-kubernetes-binaries.md) to work around this.
 
 
 ### Joining the Cluster ###

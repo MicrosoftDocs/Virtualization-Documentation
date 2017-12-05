@@ -32,6 +32,13 @@
 ## [Remote Management of a Windows Docker Host](management/manage_remotehost.md)
 ## [Resource Controls](manage-containers/resource-controls.md)
 
+# Kubernetes on Windows 
+## [Getting Started](kubernetes/getting-started-kubernetes-windows.md)
+## [Creating a Linux Master Node](kubernetes/creating-a-linux-master.md)
+## [Configuring the Network Topology](kubernetes/configuring-host-gateway-mode.md)
+## [Compiling Kubernetes Binaries](kubernetes/compiling-kubernetes-binaries.md)
+## [Troubleshooting](kubernetes/common-problems.md)
+
 # Container Samples
 ## [Application Frameworks](samples.md#Application-Frameworks)
 ## [Programing Languages](samples.md#Programing-Languages)

@@ -13,6 +13,9 @@ keywords: kubernetes, 1.9, linux, compile
 # Troubleshooting Kubernetes #
 This page walks through several common issues with Kubernetes setup, networking, and deployments.
 
+> [!tip]
+> Suggest an FAQ item by raising a PR to [our documentation repository](https://github.com/MicrosoftDocs/Virtualization-Documentation/).
+
 
 ## Common Deployment Errors ##
 Debugging the Kubernetes master falls into three main categories (in order of likelihood):
@@ -28,7 +31,9 @@ Run `kubectl get pods -n kube-system` to see the pods being created by Kubernete
 ### _"Permission Denied"_ Errors ###
 Ensure that scripts have executable permissions:
 
-    chmod +x [script name]
+```bash
+chmod +x [script name]
+```
 
 Additionally, certain scripts must be run with administrator privileges (like `kubelet`), and should be prefixed with `sudo`.
 
@@ -50,6 +55,11 @@ There may be additional restrictions in place on your network or on hosts preven
 <!-- ### My Linux node cannot ping my Windows pods ### -->
 
 ## Common Windows Errors ##
+
+
+### My Windows pods cannot access the Linux master, or vice-versa. ###
+If you are using a Hyper-V virtual machine, ensure that MAC spoofing is enabled on the network adapter(s).
+
 
 ### My Windows node cannot access my services using the service IP. ###
 This is a known limitation of the current networking stack on Windows.
