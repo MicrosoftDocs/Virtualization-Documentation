@@ -9,7 +9,7 @@ WHvSetPartitionProperty( 
     _In_ UINT32 PropertyBufferSizeInBytes 
 ); 
 ```
-#### Parameters
+### Parameters
 
 `Partition`
 

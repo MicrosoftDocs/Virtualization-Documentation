@@ -20,7 +20,7 @@ WHvMapGpaRange( 
     _In_ HV_MAP_GPA_RAGE_FLAGS Flags 
 ); 
 ```
-#### Parameters
+### Parameters
 
 `Partition`
 
