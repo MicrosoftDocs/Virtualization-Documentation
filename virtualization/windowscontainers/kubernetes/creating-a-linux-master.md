@@ -23,18 +23,22 @@ A recently-updated, Ubuntu-like Linux machine is required to follow along. Windo
 ## Preparing the Master ##
 First, install all of the pre-requisites:
 
-    $ sudo apt-get install curl git build-essential docker.io conntrack
+```bash
+sudo apt-get install curl git build-essential docker.io conntrack
+```
 
 
 There is a collection of scripts in [this repository](https://github.com/Microsoft/SDN/tree/master/Kubernetes/linux), which help with the setup process. Check them out to `~/kube/`; this entire directory will be getting mounted for a lot of the Docker containers in future steps, so keep its structure the same as outlined in the guide.
 
-    mkdir ~/kube
-    mkdir ~/kube/bin
-    git clone https://github.com/Microsoft/SDN /tmp/k8s 
-    cd /tmp/k8s/Kubernetes/linux
-    chmod -R +x *.sh
-    chmod +x manifest/generate.py
-    mv * ~/kube/
+```bash
+mkdir ~/kube
+mkdir ~/kube/bin
+git clone https://github.com/Microsoft/SDN /tmp/k8s 
+cd /tmp/k8s/Kubernetes/linux
+chmod -R +x *.sh
+chmod +x manifest/generate.py
+mv * ~/kube/
+```
 
 
 ### Installing the Linux Binaries ###
@@ -58,8 +62,9 @@ cp hyperkube kubectl ~/kube/bin/
 
 Add the binaries to the `$PATH`, so that we can run them from everywhere. Note that this only sets the path for the session; add this line to `~/.profile` for a permanent setting.
 
-    $ PATH="$HOME/kube/bin:$PATH"
-
+```bash
+$ PATH="$HOME/kube/bin:$PATH"
+```
 
 ### Install CNI Plugins ###
 The basic CNI plugins are required for Kubernetes networking. They can be downloaded from [here](https://github.com/containernetworking/plugins/releases) and should be extracted to `/opt/cni/bin/`:
@@ -80,26 +85,32 @@ ls ${CNI_BIN}
 ### Certificates ###
 First, acquire the local IP address, either via `ifconfig` or:
 
-    $ ip addr show dev eth0
+```bash
+$ ip addr show dev eth0
+```
 
 if the interface name is known. It will be referenced a lot throughout this process; setting it to an environmental variable makes things easier. The following snippet sets it temporarily; if the session ends or shell closes, it needs to be set again.
 
-    $ MASTER_IP=10.123.45.67   # example! replace
-
+```bash
+$ MASTER_IP=10.123.45.67   # example! replace
+```
 
 Prepare the certificates that will be used for nodes to communicate in the cluster:
 
-    $ cd ~/kube/certs
-    $ ./generate-certs.sh $MASTER_IP
-
+```bash
+cd ~/kube/certs
+./generate-certs.sh $MASTER_IP
+```
 
 ### Prepare Manifests & Addons ###
 Generate a set of YAML files that specify Kubernetes system pods by passing the master IP address and *full* cluster CIDR to the Python script in the `manifest` folder:
 
-    $ cd ~/kube/manifest
-    $ ./generate.py $MASTER_IP --cluster-cidr 192.168.0.0/16
+```bash
+cd ~/kube/manifest
+./generate.py $MASTER_IP --cluster-cidr 192.168.0.0/16
+```
 
-[Re]move the Python script so that Kubernetes doesn't mistake it for a manifest; this will cause problems later if not done.
+(Re)move the Python script so that Kubernetes doesn't mistake it for a manifest; this will cause problems later if not done.
 
 > [!Important]  
 > If the Kubernetes version has diverged from this guide, use the various versioning flags on the script (such as `--api-version`) to [customize the image](https://console.cloud.google.com/gcr/images/google-containers/GLOBAL/hyperkube-amd64) that the pods deploy. Not all of the manifests use the same image and have different versioning schemas (notably, `etcd` and the addon manager).
@@ -108,7 +119,9 @@ Generate a set of YAML files that specify Kubernetes system pods by passing the 
 #### Manifest Customization ####
 At this point, setup-specific changes may be desirable. For example, there may be a need to manually assign subnets to nodes, rather than letting them be managed by Kubernetes automatically. This specific configuration has an option in the script (see `--help` for an explanation of the `--im-sure` parameter):
 
-    $ ./generate.py $MASTER_IP --im-sure
+```bash
+./generate.py $MASTER_IP --im-sure
+```
 
 Any other custom configuration options will require manual modification of the generated manifests.
 
@@ -116,23 +129,30 @@ Any other custom configuration options will require manual modification of the g
 ### Configure & Run Kubernetes ###
 Configure Kubernetes to use the generated certificates. This will create a configuration at `~/.kube/config`:
 
-    $ ./configure-kubectl.sh $MASTER_IP
+```bash
+./configure-kubectl.sh $MASTER_IP
+```
 
 Now, copy the file to where the pods will later expect it to be:
 
-    mkdir ~/kube/kubelet
-    sudo cp ~/.kube/config ~/kube/kubelet/
-
+```bash
+mkdir ~/kube/kubelet
+sudo cp ~/.kube/config ~/kube/kubelet/
+```
 
 The Kubernetes "client", `kubelet`, is ready to be started. The following scripts both run indefinitely; open another terminal session after each one to keep working:
 
-    $ cd ~/kube
-    $ sudo ./start-kubelet.sh
+```bash
+cd ~/kube
+sudo ./start-kubelet.sh
+```
 
 Run the Kubeproxy script, passing the partial cluster CIDR:
 
-    $ cd ~/kube
-    $ sudo ./start-kubeproxy.sh 192.168
+```bash
+cd ~/kube
+sudo ./start-kubeproxy.sh 192.168
+```
 
 
 > [!Important]  

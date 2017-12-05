@@ -39,10 +39,10 @@ To copy Windows binaries to their respective nodes, use a visual tool like [WinS
 
 
 ## Building Locally ##
-> [!Warning]  
-> If you run into "permission denied" errors, these can be avoided by building the Linux `kubelet` first, per the note in [acs-engine](https://github.com/Azure/acs-engine/blob/master/scripts/build-windows-k8s.sh#L176):
-> 
-> Due to what appears to be a bug in the Kubernetes Windows build system, one has to first build a Linux binary to generate `_output/bin/deepcopy-gen`. Building to Windows w/o doing this will generate an empty `deepcopy-gen`.
+> [!Tip]  
+> If you run into "permission denied" errors, these can be avoided by building the Linux `kubelet` first, per the note in [`acs-engine`](https://github.com/Azure/acs-engine/blob/master/scripts/build-windows-k8s.sh#L176):
+>  
+> _Due to what appears to be a bug in the Kubernetes Windows build system, one has to first build a Linux binary to generate `_output/bin/deepcopy-gen`. Building to Windows w/o doing this will generate an empty `deepcopy-gen`._
 
 First, retrieve the Kubernetes repository:
 
@@ -56,7 +56,7 @@ cd $GOPATH/src/$KUBEREPO
 
 Now, checkout the branch to build from and build the Linux `kubelet` binary. This is necessary to avoid the Windows build errors noted above. Here, we will use `v1.9.0-beta.1`. After the `checkout` is the place to apply pending PRs, patches, or make other modifications for the custom binaries.
 
-```
+```bash
 git checkout tags/v1.9.0-beta.1
 make clean && make WHAT=cmd/kubelet
 ```
