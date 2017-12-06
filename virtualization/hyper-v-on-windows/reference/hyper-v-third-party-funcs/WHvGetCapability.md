@@ -57,13 +57,13 @@ Specifies the capability that is queried.
 
 Specifies the output buffer that receives the value of the capability:
 
-    The `WHvCapabilityCodeHypervisorPresent` capability can be used to determine whether the Hyper-V Hypervisor is running on a host and the functions of the platform APIs can be used to create VM partitions.
+The `WHvCapabilityCodeHypervisorPresent` capability can be used to determine whether the Hyper-V Hypervisor is running on a host and the functions of the platform APIs can be used to create VM partitions.
 
-    The `WHvFeatures` capability is reserved for future use, it returns 0.
+The `WHvFeatures` capability is reserved for future use, it returns 0.
 
-    For the `WHvCapabilityCodeExtendedVmExits` capability, the buffer contains a bit field that specifies which additional exit reasons are available that can be configured to cause the execution of a virtual processor to be halted (see Running a Virtual Processor).
+For the `WHvCapabilityCodeExtendedVmExits` capability, the buffer contains a bit field that specifies which additional exit reasons are available that can be configured to cause the execution of a virtual processor to be halted (see Running a Virtual Processor).
 
-    The values returned for the processor properties are based on the capabilities of the physical processor on the system (i.e., they are retrieved by querying the corresponding properties of the root partition.
+The values returned for the processor properties are based on the capabilities of the physical processor on the system (i.e., they are retrieved by querying the corresponding properties of the root partition.
 
 `CapabilityBufferSize` 
 
