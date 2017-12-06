@@ -57,15 +57,15 @@ Handle to the partition object
 
 `VpIndex`
 
- Specifies the index of the virtual processor that is executed
+Specifies the index of the virtual processor that is executed
 
- `ExitContext` 
+`ExitContext` 
  
- Specifies the output buffer that receives the context structure providing the information about the reason that caused the WHvRunVirtualProcessor function to return. 
+Specifies the output buffer that receives the context structure providing the information about the reason that caused the WHvRunVirtualProcessor function to return. 
 
 `ExitContextSizeInBytes` 
 
-Specifies the size of the buffer that receives the exit context, in bytes. The minimum buffer size required to hold the exit context can be queried with the `WHvGetRunContextBufferSize` function. 
+Specifies the size of the buffer that receives the exit context, in bytes. The minimum buffer size required to hold the exit context can be queried with the [`WHvGetRunContextBufferSize`](WHvGetRunContextBufferSize.md) function. 
   
 
 ## Remarks

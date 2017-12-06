@@ -32,6 +32,8 @@
 ### [WHvCreateVirtualProcessor](reference/hyper-v-third-party-funcs/WHvCreateVirtualProcessor.md)
 ### [WHvDeleteVirtualProcessor](reference/hyper-v-third-party-funcs/WHvDeleteVirtualProcessor.md)
 ### [WHvRunVirtualProcessor](reference/hyper-v-third-party-funcs/WHvRunVirtualProcessor.md)
+### [WHvGetRunContextBufferSize](reference/hyper-v-third-party-funcs/WHvGetRunContextBufferSize.md)
+### [WHvCancelRunVirtualProcessor](reference/hyper-v-third-party-funcs/WHvCancelRunVirtualProcessor.md)
 ## [Hypervisor Specifications](reference/tlfs.md)
 # Community and Support
 ## [Hyper-V forums](https://social.technet.microsoft.com/Forums/windowsserver/en-US/home?forum=winserverhyperv)
