@@ -36,12 +36,12 @@ typedef struct { 
 
 HRESULT 
 WHvTranslateVirtualAddress( 
-_In_  WHV_PARTITION_HANDLE Partition, 
-_In_  UINT32 VpIndex, 
-_In_  WHV_GUEST_VIRTUAL_ADDRESS Gva, 
-_In_  WHV_TRANSLATE_GVA_FLAGS TranslateFlags, 
-  _Out_ WHV_TRANSLATE_GVA_RESULT* TranslationResult, 
-_Out_ WHV_GUEST_PHYSICAL_ADDRESS* Gpa 
+    _In_  WHV_PARTITION_HANDLE Partition, 
+    _In_  UINT32 VpIndex, 
+    _In_  WHV_GUEST_VIRTUAL_ADDRESS Gva, 
+    _In_  WHV_TRANSLATE_GVA_FLAGS TranslateFlags, 
+      _Out_ WHV_TRANSLATE_GVA_RESULT* TranslationResult, 
+    _Out_ WHV_GUEST_PHYSICAL_ADDRESS* Gpa 
 );  
 ```
 ### Parameters
@@ -72,7 +72,7 @@ Receives the physical address if the translation was successful. 
 
 ## Return Value
 
-If the operation completed successfully, the return value is S_OK. Note that a successful completion of the call just indicates that the TranslationResult output parameter is valid, the result of the translation is return in the ResultCode member of this struct. 
+If the operation completed successfully, the return value is `S_OK`. Note that a successful completion of the call just indicates that the TranslationResult output parameter is valid, the result of the translation is return in the ResultCode member of this struct. 
 
 ## Remarks
 

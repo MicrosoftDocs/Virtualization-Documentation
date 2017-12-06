@@ -29,6 +29,9 @@
 ### [WHvMapGpaRange](reference/hyper-v-third-party-funcs/WHvMapGpaRange.md)
 ### [WHvUnmapGpaRange](reference/hyper-v-third-party-funcs/WHvUnmapGpaRange.md)
 ### [WHvTranslateVirtualAddress](reference/hyper-v-third-party-funcs/WHvTranslateVirtualAddress.md)
+### [WHvCreateVirtualProcessor](reference/hyper-v-third-party-funcs/WHvCreateVirtualProcessor.md)
+### [WHvDeleteVirtualProcessor](reference/hyper-v-third-party-funcs/WHvDeleteVirtualProcessor.md)
+### [WHvRunVirtualProcessor](reference/hyper-v-third-party-funcs/WHvRunVirtualProcessor.md)
 ## [Hypervisor Specifications](reference/tlfs.md)
 # Community and Support
 ## [Hyper-V forums](https://social.technet.microsoft.com/Forums/windowsserver/en-US/home?forum=winserverhyperv)
