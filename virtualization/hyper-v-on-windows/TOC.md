@@ -27,6 +27,8 @@
 ### [WHvGetPartitionProperty](reference/hyper-v-third-party-funcs/WHvGetPartitionProperty.md)
 ### [WHvSetPartitionProperty](reference/hyper-v-third-party-funcs/WHvSetPartitionProperty.md)
 ### [WHvMapGpaRange](reference/hyper-v-third-party-funcs/WHvMapGpaRange.md)
+### [WHvUnmapGpaRange](reference/hyper-v-third-party-funcs/WHvUnmapGpaRange.md)
+### [WHvTranslateVirtualAddress](reference/hyper-v-third-party-funcs/WHvTranslateVirtualAddress.md)
 ## [Hypervisor Specifications](reference/tlfs.md)
 # Community and Support
 ## [Hyper-V forums](https://social.technet.microsoft.com/Forums/windowsserver/en-US/home?forum=winserverhyperv)
