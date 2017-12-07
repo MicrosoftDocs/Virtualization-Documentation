@@ -2,61 +2,63 @@
 
 The following section contains the definitions of the core platform APIs that are exposed through the platform API DLL. The DLL exports a set of C-style Windows API functions, the functions return HRESULT error codes indicating the result of the function call.
 
-## Functions
-
-### Platform Capabilities
+## Platform Capabilities
 
 |Function   |Description|
 |---|---|
-|[WHvGetCapability](reference/hyper-v-third-party-funcs/WHvGetCapability.md)|Platform capabilities are a generic way for callers to query properties and capabilities of the hypervisor, of the API implementation, and of the hardware platform that the application is running on.The platform API uses these capabilities to publish the availability of extended functionality of the API as well as the set of features that the processor on the current system supports.|
+|[WHvGetCapability](hyper-v-third-party-funcs/WHvGetCapability.md)|Platform capabilities are a generic way for callers to query properties and capabilities of the hypervisor, of the API implementation, and of the hardware platform that the application is running on.The platform API uses these capabilities to publish the availability of extended functionality of the API as well as the set of features that the processor on the current system supports.|
 |   |   |
 
-### Partition Creation, Setup, and Deletion
+## Partition Creation, Setup, and Deletion
 
 |Function   |Description|
 |---|---|---|---|---|---|---|---|
-|[WHvCreatePartition](reference/hyper-v-third-party-funcs/WHvCreatePartition.md)|creates a new partition|
-|[WHvDeletePartition](reference/hyper-v-third-party-funcs/WHvDeletePartition.md)|Deleting a partition tears down the partition object and releases all resource that the partition was using.|
+|[WHvCreatePartition](hyper-v-third-party-funcs/WHvCreatePartition.md)|Creating a partition creates a new partition object. Additional properties of the partition are stored in the partition object in the VID and are applied when creating the partition in the hypervisor.|
+|[WHvSetupPartition](hyper-v-third-party-funcs/WHvSetupPartition.md)|Setting up the partition causes the actual partition to be created in the hypervisor. A partition needs to be set up prior to performing any other operation on the partition after it was created, with exception of configuring the initial properties of the partition.|
+|[WHvDeletePartition](hyper-v-third-party-funcs/WHvDeletePartition.md)|Deleting a partition tears down the partition object and releases all resource that the partition was using.|
 |   |   |
-#### WHvCreatePartition
 
-The `WHvCreatePartition` function creates a new partition object.
+## Partition Properties
 
-Creating the file object does not yet create the actual partition in the hypervisor. To create the hypervisor partition, the `WHvSetupPartition` function needs to be called. Additional properties of the partition can be configured prior to this call; these properties are stored in the partition object in the VID and are applied when creating the partition in the hypervisor.
+|Function   |Description|
+|---|---|
+|[WHvGetPartitionProperty](hyper-v-third-party-funcs/WHvGetPartitionProperty.md)|   |
+|[WHvSetPartitionProperty](hyper-v-third-party-funcs/WHvSetPartitionProperty.md)|   |
+|   |   |
 
-## Partition Setup
+## VM Memory Managment
+The physical address space of the VM partition (the GPA space) is populated using memory allocated in the user-mode process of the virtualization stack. I.e., the virtualization stack allocates the required memory using standard memory management functions in Windows (such as VirtualAlloc) or maps a file into its process, and uses the addresses to these areas to map this memory into the partition’s GPA space.
 
-#### WHvSetupPartition
+|Function   |Description|
+|---|---|
+|[WHvMapGpaRange](hyper-v-third-party-funcs/WHvMapGpaRange.md)|Creating a mapping for a range in the GPA space of a partition sets a region in the caller’s process as the backing memory for that range. The operation replaces any previous mappings for the specified GPA pages.    |
+|[WHvUnmapGpaRange](hyper-v-third-party-funcs/WHvUnmapGpaRange.md)|Unmapping a previously mapped GPA range (or parts of it) makes the memory range unavailable to the partition. Any further access by a virtual processor to the range will result in a memory access exit.|
+|[WHvTranslateVirtualAddress](hyper-v-third-party-funcs/WHvTranslateVirtualAddress.md)|Translating a virtual address used by a virtual processor in a partition allows the virtualization stack to emulate a processor instruction for an I/O operation, using the results of the translation to read and write the memory operands of the instruction in the GPA space of the partition.|
+|   |   |
 
-Setting up the partition causes the actual partition to be created in the hypervisor.
+## Virtual Processor Execution
 
-A partition needs to be set up prior to performing any other operation on the partition after it was created by `WHvCreatePartition`, with exception of calling `WHvSetPartitionProperty` to configure the initial properties of the partition.
+The virtual processors of a VM are executed using the new integrated scheduler of the hypervisor. To run a virtual processor, a thread in the process of the virtualization stack issues a blocking call to execute the virtual processor in the hypervisor, the call returns because of an operation of the virtual processor that requires handling in the virtualization stack or because of a request by the virtualization stack.  
 
-```C
-/*!
-    \param Partition - Handle to the partition object that is set up.
-*/
-HRESULT
-WHvSetupPartition(
-    _In_ WHV_PARTITION_HANDLE Partition
-    );
-```
+A thread that handles a virtual processor executes the following basic operations: 
+1. Create the virtual processor in the partition. 
+2. Setup the state of the virtual processor, which includes injecting pending interrupts and events into the processor. 
+3. Run the virtual processor. 
+4. Upon return from running the virtual processor, query the state of the processor and handle the operation that caused the processor to stop running. 
+5. If the virtual processor is still active, go back to Step 2 to continue to run the processor. 
+6. Delete the virtual processor in the partition.  
 
-## Partition Deletion
+The state of the virtual processor includes the hardware registers and any interrupts the virtualization stack wants to inject into the virtual processor.
 
-#### WHvDeletePartition
+|Function   |Description|
+|---|---|
+|[WHvCreateVirtualProcessor](hyper-v-third-party-funcs/WHvCreateVirtualProcessor.md)|This function creates a new virtual processor in a partition. The index of the virtual processor is used to set the APIC ID of the processor.|
+|[WHvDeleteVirtualProcessor](hyper-v-third-party-funcs/WHvDeleteVirtualProcessor.md)|This function deletes a virtual processor in a partition.|
+|[WHvRunVirtualProcessor](hyper-v-third-party-funcs/WHvDeleteVirtualProcessor.md)||
+|[WHvGetRunContextBufferSize](hyper-v-third-party-funcs/WHvGetRunContextBufferSize.md)|This function returns the minimum size required for the buffer that receives the exit context. The value returned by the `WHvRunVirtualProcessor` function is constant for a respective version of the DLL implementation.|
+|[WHvCancelRunVirtualProcessor](hyper-v-third-party-funcs/WHvCancelRunVirtualProcessor.md)|Canceling the execution of a virtual processor allows an application to abort the call to run the virtual processor (`WHvRunVirtualProcessor`) by another thread, and to return the control to that thread. The virtualization stack can use this function to return the control of a virtual processor back to the virtualization stack in case it needs to change the state of a VM or to inject an event into the processor. |
+|   |   |
 
-Deleting a partition tears down the partition object and releases all resource that the partition was using.
-
-```C
-/*!
-    \param Partition - Handle to the partition object that is deleted.
-*/
-HRESULT
-WHvDeletePartition(
-    _In_ WHV_PARTITION_HANDLE Partition
-    );
-```
 
 ## Partition Properties
 
@@ -101,13 +103,7 @@ typedef struct { 
         the output buffer, in bytes. For the currently available set of properties, 
         the buffer should be large enough to hold a 64-bit value. 
 */
-HRESULT 
-WHvGetPartitionProperty( 
-    _In_  WHV_PARTITION_HANDLE Partition, 
-    _In_  WHV_PARTITION_PROPERTY_CODE Property, 
-    _Out_ VOID* PropertyBuffer, 
-    _In_  UINT32 PropertyBufferSizeInBytes 
-    ); 
+
 ```
 
 #### WHvSetPartitionProperty
@@ -128,183 +124,12 @@ WHvGetPartitionProperty( 
         a property that can only be modified prior to executing the partition but a virtual 
         processor in the partition already started executing. 
 */
-HRESULT 
-WHvSetPartitionProperty( 
-    _In_ WHV_PARTITION_HANDLE Partition, 
-    _In_ VOID* PropertyBuffer, 
-    _In_ UINT32 PropertyBufferSizeInBytes 
-); 
 ```
 
-## VM Memory Management
-The physical address space of the VM partition (the GPA space) is populated using memory allocated in the user-mode process of the virtualization stack. I.e., the virtualization stack allocates the required memory using standard memory management functions in Windows (such as VirtualAlloc) or maps a file into its process, and uses the addresses to these areas in the call to WHvMapGpaRange to map this memory into the partition’s GPA space
-### Mapping GPA Ranges
 
-#### WHvMapGpaRange
-Creating a mapping for a range in the GPA space of a partition sets a region in the caller’s process as the backing memory for that range. The operation replaces any previous mappings for the specified GPA pages. 
-
-```C
-typedef UINT64 WHV_GUEST_PHYSICAL_ADDRESS; 
- 
-typedef enum { 
-    WHvMapGpaRangeFlagNone    = 0x00000000, 
-    WHvMapGpaRangeFlagRead    = 0x00000001, 
-    WHvMapGpaRangeFlagWrite   = 0x00000002, 
-    WHvMapGpaRangeFlagExecute = 0x00000004 
-} WHV_MAP_GPA_RANGE_FLAGS; 
- 
-/*!
-    \param Partition – Handle to the partition object. 
-    \param VirtualAddress – Specifies the page-aligned address of the memory region in the caller’s 
-        process that is the source of the mapping. 
-    \param GpaPageAddress – Specifies the destination address in the VM’s physical address space. 
-    \param PageCount – Specifies the number of pages that are mapped. 
-    \param Flags – Specifies the access flags for the mapping. 
-*/
-
-HRESULT 
-WHvMapGpaRange( 
-    _In_ WHV_PARTITION_HANDLE Partition, 
-    _In_ VOID* VirtualAddress, 
-    _In_ WHV_GUEST_PHYSICAL_ADDRESS FirstGpa, 
-    _In_ UINT64 PageCount, 
-    _In_ HV_MAP_GPA_RAGE_FLAGS Flags 
-); 
-```
-
-### Unmapping GPA Ranges
-
-#### WHvUnmapGpaRange
-Unmapping a previously mapped GPA range (or parts of it) makes the memory range unavailable to the partition. Any further access by a virtual processor to the range will result in a memory access exit. 
-
-```C
-/*! 
-    \param Partition – Handle to the partition object. 
-    \param GpaPageAddress – Specifies the start address of the region in the VM’s physical 
-        address space that is unmapped. 
-    \param PageCount – Specifies the number of pages that are unmapped. 
-*/
-
-HRESULT 
-WHvUnmapGpaRange( 
-    _In_ WHV_PARTITION_HANDLE Partition, 
-    _In_ WHV_GUEST_PHYSICAL_ADDRESS FirstGpa, 
-    _In_ UINT64 PageCount 
-); 
-```
-
-### Translating Guest Virtual Addresses
-
-Translating a virtual address used by a virtual processor in a partition allows the virtualization stack to emulate a processor instruction for an I/O operation, using the results of the translation to read and write the memory operands of the instruction in the GPA space of the partition. 
-
-The hypervisor performs the translating by walking the page table that is currently active for the virtual processor. The translation can fail if the page table is not accessible, in which case an appropriate page fault needs to be injected into the virtual processor by the virtualization stack. 
-#### WHvTranslateVirtualAddress
-
-```C
-typedef UINT64 WHV_GUEST_VIRTUAL_ADDRESS; 
- 
-typedef enum { 
-    WHvTranslateGvaFlagNone             = 0x00000000, 
-    WHvTranslateGvaFlagValidateRead     = 0x00000001, 
-    WHvTranslateGvaFlagValidateWrite    = 0x00000002, 
-    WHvTranslateGvaFlagValidateExecute  = 0x00000004, 
-    WHvTranslateGvaFlagPrivilegeExempt  = 0x00000008, 
-    WHvTranslateGvaFlagSetPageTableBits = 0x00000010 
-} WHV_TRANSLATE_GVA_FLAGS; 
- 
-typedef enum { 
-    WhvTranslateGvaSuccess                 = 0; 
- 
-    // Translation failures 
-    WHvTranslateGvaPageNotPresent          = 1, 
-    WHvTranslateGvaPrivilegeViolation      = 2, 
-    WHvTranslateGvaInvalidPageTableFlags   = 3, 
- 
-    // GPA access failures 
-    WHvTranslateGvaGpaUnmapped             = 4, 
-    WHvTranslateGvaGpaNoReadAccess         = 5, 
-    WHvTranslateGvaGpaNoWriteAccess        = 6, 
-    WHvTranslateGvaGpaIllegalOverlayAccess = 7, 
-    WHvTranslateGvaIntercept               = 8 
-} WHV_TRANSLATE_GVA_RESULT_CODE; 
- 
-typedef struct { 
-    WHV_TRANSLATE_GVA_RESULT_CODE ResultCode; 
-    UINT32 Reserved: 32; 
-} WHV_TRANSLATE_GVA_RESULT; 
-
-/*!
-    \param Partition – Handle to the partition object in the VID. 
-    \param VpIndex – Specifies the index of the virtual processor for which the virtual address is translated. 
-    \param TranslateFlags – Specifies flags for the translation. 
-    \param GvaPageAddress – Specifies the virtual address that is translated. 
-    \param TranslationResult – Receives the result of the translation. 
-    \param GpaPageAddress – Receives the physical address if the translation was successful. 
-
-    \Return 
-        If the operation completed successfully, the return value is S_OK. Note that a successful completion of
-             the call just indicates that the TranslationResult output parameter is valid, the result of the
-             translation is return in the ResultCode member of this struct. 
-*/
- 
-HRESULT 
-WHvTranslateVirtualAddress( 
-_In_  WHV_PARTITION_HANDLE Partition, 
-_In_  UINT32 VpIndex, 
-_In_  WHV_GUEST_VIRTUAL_ADDRESS Gva, 
-_In_  WHV_TRANSLATE_GVA_FLAGS TranslateFlags, 
-  _Out_ WHV_TRANSLATE_GVA_RESULT* TranslationResult, 
-_Out_ WHV_GUEST_PHYSICAL_ADDRESS* Gpa 
-); 
-```
 
 ## Virtual Processor Execution
-The virtual processors of a VM are executed using the new integrated scheduler of the hypervisor. To run a virtual processor, a thread in the process of the virtualization stack issues a blocking call to execute the virtual processor in the hypervisor, the call returns because of an operation of the virtual processor that requires handling in the virtualization stack or because of a request by the virtualization stack.  
 
-A thread that handles a virtual processor executes the following basic operations: 
-1. Create the virtual processor in the partition. 
-2. Setup the state of the virtual processor, which includes injecting pending interrupts and events into the processor. 
-3. Run the virtual processor. 
-4. Upon return from running the virtual processor, query the state of the processor and handle the operation that caused the processor to stop running. 
-5. If the virtual processor is still active, go back to Step 2 to continue to run the processor. 
-6. Delete the virtual processor in the partition.  
-
-The state of the virtual processor includes the hardware registers and any interrupts the virtualization stack wants to inject into the virtual processor.
-### Virtual Processor Creation
-
-#### WHvCreateVirtualProcessor
-The `WHvCreateVirtualProcessor` function creates a new virtual processor in a partition. The index of the virtual processor is used to set the APIC ID of the processor. 
-
-```C
-/*!
-    \param Partition – Handle to the partition object. 
-    \param VpIndex – Specifies the index of the new virtual processor. 
-    \param Flags – Unused, must be zero. 
-*/
-HRESULT 
-WHvCreateVirtualProcessor( 
-    _In_ WHV_PARTITION_HANDLE Partition, 
-    _In_ UINT32 VpIndex, 
-    _In_ UINT32 Flags 
-); 
-```
-
-### Virtual Processor Deletion
-
-#### WHvDeleteVirtualProcessor
-The `WHvDeleteVirtualProcessor` function deletes a virtual processor in a partition. 
-```C
-/*!
-    \param Partition – Handle to the partition object. 
-    \param VpIndex – Specifies the index of the virtual processor that is deleted. 
-*/
-
-HRESULT 
-WHvDeleteVirtualProcessor( 
-    _In_ WHV_PARTITION_HANDLE Partition, 
-    _In_ UINT32 VpIndex 
-); 
-```
 
 ### Running a Virtual Processor
 A virtual processor is executed (i.e., is enabled to run guest code) by making a call to the `WHvRunVirtualProcessor` function. A call to this function blocks synchronously until either the virtual processor executed an operation that needs to be handled by the virtualization stack (e.g., accessed memory in the GPA space that is not mapped or not accessible) or the virtualization stack explicitly request an exit of the function (e.g., to inject an interrupt for the virtual processor or to change the state of the VM).  
@@ -486,43 +311,6 @@ typedef struct { 
 #### WHvRunVirtualProcessor
 
 ```C
-// Exit reason for the return of the VID_WHV_IOCTL_RUN_VP IOCTL 
-typedef enum { 
- 
-    // Standard exits caused by operations of the virtual processor 
-    RunVpExitReasonMemoryAccess           = 0x00000001, 
-    RunVpExitReasonX64IOPortAccess        = 0x00000002, 
-    RunVpExitReasonX64LegacyFpError       = 0x00000003, 
-    RunVpExitReasonUnrecoverableException = 0x00000004, 
-    RunVpExitReasonInvalidVpRegisterValue = 0x00000005, 
-    RunVpExitReasonUnsupportedFeature     = 0x00000006, 
-     
-    // Additional exits that can be configured through partition properties 
-    RunvpExitReasonX64MSRAccess           = 0x00001000, 
-    RunVpExitReasonX64CPUID               = 0x00001001, 
-    RunVpExitReasonException              = 0x00001002, 
-     
-    // Exits caused by the host 
-    RunVpExitReasonCanceled               = 0x00002001 
- 
-} WHV_RUN_VP_EXIT_REASON; 
- 
-// VP run context buffer 
-typedef struct { 
-    WHV_RUN_VP_EXIT_REASON ExitReason; 
-     
-    union { 
-        WHV_MEMORY_ACCESS_CONTEXT MemoryAccess; 
-        WHV_X64_IO_PORT_ACCESS_CONTEXT IoPortAccess; 
-        WHV_X64_MSR_ACCESS_CONTEXT MsrAccess; 
-        WHV_X64_CPUID_ACCESS_CONTEXT CpuidAccess; 
-        WHV_VP_EXCEPTION_CONTEXT VpException; 
-        WHV_UNRECOVERABLE_EXCEPTION_CONTEXT UnrecoverableError; 
-        WHV_X64_UNSUPPORTED_FEATURE_CONTEXT UnsupportedFeature; 
-        WHV_RUN_VP_CANCELLED_CONTEXT CancelReason; 
-    }; 
-} WHV_RUN_VP_EXIT_CONTEXT; 
- 
  /*!
     \param Partition – Handle to the partition object. 
     \param VpIndex – Specifies the index of the virtual processor that is executed. 
@@ -532,50 +320,10 @@ typedef struct { 
         in bytes. The minimum buffer size required to hold the exit context can be queried with the
         WHvGetRunContextBufferSize function. 
 */
- 
-HRESULT 
-WHvRunVirtualProcessor( 
-    _In_  WHV_PARTITION_HANDLE Partition, 
-    _In_  UINT32 VpIndex, 
-    _Out_ VOID* ExitContext, 
-    _In_  SIZE_T ExitContextSizeInBytes 
-); 
+
 ```
 
-#### WHvGetRunContextBufferSize
 
-```C
-/*! 
-    \Return
-        Returns the minimum size required for the buffer that receives the exit context of the
-        WHvRunVirtualProcessor function call. The value returned by this function is constant 
-        for a respective version of the DLL implementation. 
-*/
-
-UINT32 
-WHvGetRunContextBufferSize(); 
-```
-
-### Canceling the Execution of a Virtual Processor
-
-#### WHvCancelRunVirtualProcessor
-
-Canceling the execution of a virtual processor allows an application to abort the call to run the virtual processor (WHvRunVirtualProcessor) by another thread, and to return the control to that thread. The virtualization stack can use this function to return the control of a virtual processor back to the virtualization stack in case it needs to change the state of a VM or to inject an event into the processor. 
-
-```C
-/*!
-    \param Partition – Handle to the partition object. 
-    \param VpIndex – Specifies the index of the virtual processor for that the execution should be stopped. 
-    \param Flags – Unused, must be zero. 
-*/
-
-HRESULT 
-WHvCancelRunVirtualProcessor( 
-    _In_ WHV_PARTITION_HANDLE Partition, 
-    _In_ UINT32 VpIndex, 
-    _In_ UINT32 Flags 
-); 
-```
 
 ### Virtual Processor Registers
 The state of a virtual processor, which includes both the state defined by the underlying architecture (such as general-purpose registers) and additional state defined by the hypervisor, can be access through the `WHvGetVirtualProcessorRegisters` and `WHvSetVirtualProcessorRegisters` functions. The functions allow for querying and setting a set of individual registers by the virtualization stack. 
