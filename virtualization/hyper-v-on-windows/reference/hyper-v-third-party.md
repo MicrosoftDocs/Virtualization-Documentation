@@ -29,6 +29,7 @@ The following section contains the definitions of the core platform APIs that ar
 ## VM Memory Managment
 The physical address space of the VM partition (the GPA space) is populated using memory allocated in the user-mode process of the virtualization stack. I.e., the virtualization stack allocates the required memory using standard memory management functions in Windows (such as VirtualAlloc) or maps a file into its process, and uses the addresses to these areas to map this memory into the partition’s GPA space.
 
+
 |Function   |Description|
 |---|---|
 |[WHvMapGpaRange](hyper-v-third-party-funcs/WHvMapGpaRange.md)|Creating a mapping for a range in the GPA space of a partition sets a region in the caller’s process as the backing memory for that range. The operation replaces any previous mappings for the specified GPA pages.    |
@@ -54,7 +55,7 @@ The state of the virtual processor includes the hardware registers and any inter
 |---|---|
 |[WHvCreateVirtualProcessor](hyper-v-third-party-funcs/WHvCreateVirtualProcessor.md)|This function creates a new virtual processor in a partition. The index of the virtual processor is used to set the APIC ID of the processor.|
 |[WHvDeleteVirtualProcessor](hyper-v-third-party-funcs/WHvDeleteVirtualProcessor.md)|This function deletes a virtual processor in a partition.|
-|[WHvRunVirtualProcessor](hyper-v-third-party-funcs/WHvDeleteVirtualProcessor.md)||
+|[WHvRunVirtualProcessor](hyper-v-third-party-funcs/WHvDeleteVirtualProcessor.md)|This function executes the virtual processor (i.e., enables to run guest code). A call to this function blocks synchronously until either the virtual processor executed an operation that needs to be handled by the virtualization stack (e.g., accessed memory in the GPA space that is not mapped or not accessible) or the virtualization stack explicitly request an exit of the function (e.g., to inject an interrupt for the virtual processor or to change the state of the VM). |
 |[WHvGetRunContextBufferSize](hyper-v-third-party-funcs/WHvGetRunContextBufferSize.md)|This function returns the minimum size required for the buffer that receives the exit context. The value returned by the `WHvRunVirtualProcessor` function is constant for a respective version of the DLL implementation.|
 |[WHvCancelRunVirtualProcessor](hyper-v-third-party-funcs/WHvCancelRunVirtualProcessor.md)|Canceling the execution of a virtual processor allows an application to abort the call to run the virtual processor (`WHvRunVirtualProcessor`) by another thread, and to return the control to that thread. The virtualization stack can use this function to return the control of a virtual processor back to the virtualization stack in case it needs to change the state of a VM or to inject an event into the processor. |
 |   |   |
@@ -132,7 +133,7 @@ typedef struct { 
 
 
 ### Running a Virtual Processor
-A virtual processor is executed (i.e., is enabled to run guest code) by making a call to the `WHvRunVirtualProcessor` function. A call to this function blocks synchronously until either the virtual processor executed an operation that needs to be handled by the virtualization stack (e.g., accessed memory in the GPA space that is not mapped or not accessible) or the virtualization stack explicitly request an exit of the function (e.g., to inject an interrupt for the virtual processor or to change the state of the VM).  
+
 #### Exit Contexts
 The detailed reason and additional information for the exit of the 'WHvRunVirtualProcessor' function is return in an output buffer of the function that receives a context structure for the exit. The data provided in this context buffer is specific to the individual exit reason, and for simple exit reasons the buffer might be unused (`RunVpExitLegacyFpError` and `RunVpExitInvalidVpRegisterValue`). 
 
