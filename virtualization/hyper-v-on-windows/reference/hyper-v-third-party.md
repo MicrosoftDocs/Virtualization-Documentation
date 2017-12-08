@@ -60,6 +60,29 @@ The state of the virtual processor includes the hardware registers and any inter
 |[WHvCancelRunVirtualProcessor](hyper-v-third-party-funcs/WHvCancelRunVirtualProcessor.md)|Canceling the execution of a virtual processor allows an application to abort the call to run the virtual processor ([`WHvRunVirtualProcessor`](hyper-v-third-party-funcs/WHvDeleteVirtualProcessor.md)) by another thread, and to return the control to that thread. The virtualization stack can use this function to return the control of a virtual processor back to the virtualization stack in case it needs to change the state of a VM or to inject an event into the processor. |
 |   |   |
 
+### Exit Content
+The detailed reason and additional information for the exit of the [`WHvRunVirtualProcessor`](hyper-v-third-party-funcs/WHvDeleteVirtualProcessor.md) function is return in an output buffer of the function that receives a context structure for the exit. The data provided in this context buffer is specific to the individual exit reason, and for simple exit reasons the buffer might be unused (`RunVpExitLegacyFpError` and `RunVpExitInvalidVpRegisterValue`). 
+
+The context structures for several exit reasons share common definitions for the data that provides information about the processor instruction that caused the exit and the state of the virtual processor at the time of the exit. 
+
+|Structures   |Description|
+|---|---|
+|[Memory Access](hyper-v-third-party-funcs/Memory_Access.md)| Information about exits caused by the virtual processor accessing a memory location that is not mapped or not accessible is provided by the `WHV_MEMORY_ACCESS_CONTEXT` structure.  |
+|[I/O Port Access](hyper-v-third-party-funcs/IOPortAccess.md)|Information about exits caused by the virtual processor executing an I/O port instruction (IN, OUT, INS, and OUTS) is provided in the `WHV_X64_IO_PORT_ACCESS_CONTEXT` structure.|
+|[MSR Access](hyper-v-third-party-funcs/WHvTranslateVirtualAddress.md)|Translating a virtual address used by a virtual processor in a partition allows the virtualization stack to emulate a processor instruction for an I/O operation, using the results of the translation to read and write the memory operands of the instruction in the GPA space of the partition.|
+|[CUID Access](hyper-v-third-party-funcs/WHvUnmapGpaRange.md)|Unmapping a previously mapped GPA range (or parts of it) makes the memory range unavailable to the partition. Any further access by a virtual processor to the range will result in a memory access exit.|
+|[Virtual Processor Exception](hyper-v-third-party-funcs/WHvUnmapGpaRange.md)|Unmapping a previously mapped GPA range (or parts of it) makes the memory range unavailable to the partition. Any further access by a virtual processor to the range will result in a memory access exit.|
+|[Unrecoverable Exception](hyper-v-third-party-funcs/WHvUnmapGpaRange.md)|Unmapping a previously mapped GPA range (or parts of it) makes the memory range unavailable to the partition. Any further access by a virtual processor to the range will result in a memory access exit.|
+|[Unsupoorted Feature](hyper-v-third-party-funcs/WHvUnmapGpaRange.md)|Unmapping a previously mapped GPA range (or parts of it) makes the memory range unavailable to the partition. Any further access by a virtual processor to the range will result in a memory access exit.|
+|[Execution Cancelled](hyper-v-third-party-funcs/WHvUnmapGpaRange.md)|Unmapping a previously mapped GPA range (or parts of it) makes the memory range unavailable to the partition. Any further access by a virtual processor to the range will result in a memory access exit.|
+|   |   |
+
+
+
+
+
+
+
 
 ## Partition Properties
 
