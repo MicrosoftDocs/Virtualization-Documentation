@@ -29,7 +29,7 @@ Array specifying the names of the registers that are queried
 
 `RegisterCount` 
 
-Specifies the number of elements in the RegisterNames array
+Specifies the number of elements in the `RegisterNames` array
 
 `RegisterValues` 
 
