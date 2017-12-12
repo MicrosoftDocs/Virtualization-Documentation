@@ -1,49 +1,43 @@
-# Hyper-V Instruction Emulation API Reference and Support DLL for QEMU
+# Hyper-V Instruction Emulator API Reference and Support DLL for QEMU
 QEMU expects several higher-level abstractions at the interface between the accelerators and the device emulation that are not provided directly by the platform APIs. This functionality is provided by a separate DLL that builds these abstractions on top of the platform APIs.
  
 ## Instruction Emulation
 For its device emulation, QEMU expects the platform to provide the details of an I/O access by a virtual processor. For an MMIO and string I/O port access this requires decoding and completing the instruction that issued the I/O access. 
-## Structures
 
-# Hyper-V Instruction Emulator API Reference
+|Structure   |Description|
+|---|---|---|---|---|---|---|---|
+|[MMIO Access](hyper-v-third-party-funcs/MMIOAccessQEMU.md)|QEMU expects this data for MMIO access|
+|[I/O Port Access](hyper-v-third-party-funcs/IOPortAccessQEMU.md)|QEMU expects this data for port access|
+|   |   |
+ 
+## Virtual Porcessor Register State
+QEMU uses a fixed set of registers that are queried and set together if necessary. For X64, this set of registers include:
+ 
+* RAX...R15, RIP, RFLAGS 
+* CS, SS, DS, ES, FS, GS, LDT, TR, GDT, IDT 
+* CR0, CR2, CR3, CR4 
+* FPU: 
+    * XMM0...15, FPMMX0...7 
+    * FCW, FSW, FTW, FOP, FIP, FDP, MXCSR 
+* MSRs: 
+    * SYSENTER_CS, SYSENTER_ESP, SYSENTER_EIP, TSC 
+    * EFER, STAR, LSTAR, CSTAR, FMASK, KERNELGSBASE 
 
-## Struct Definitions
+This set of registers is provided using the [`WHvGetVirtualProcessorRegisters`](hyper-v-third-party-funcs/WHvGetVirtualProcessorRegisters.md) and [`WHvSetVirtualProcessorRegisters`](hyper-v-third-party-funcs/WHvSetVirtualProcessorRegisters.md) platform functions, keeping it in sync with the register state used by the instruction emulation.  
 
-### `WHV_EMULATOR_CALLBACKS`
-```c
-typedef struct _WHV_EMULATOR_CALLBACKS {
-    WHV_EMULATOR_IO_PORT_CALLBACK WHvEmulatorIoPortCallback;
-    WHV_EMULATOR_MEMORY_CALLBACK WHvEmulatorMemoryCallback;
-    WHV_EMULATOR_GET_VIRTUAL_PROCESSOR_REGISTERS_CALLBACK WHvEmulatorGetVirtualProcessorRegisters;
-    WHV_EMULATOR_SET_VIRTUAL_PROCESSOR_REGISTERS_CALLBACK WHvEmulatorSetVirtualProcessorRegisters;
-    WHV_EMULATOR_TRANSLATE_GVA_PAGE_CALLBACK WHvEmulatorTranslateGvaPage;
-} WHV_EMULATOR_CALLBACKS;
-```
-Used in `WHvEmulatorCreateEmulator` to specify callback methods needed by the emulator.
+## Hyper-V Instruction Emulator API Reference
 
-### `WHV_EMULATOR_STATUS`
-```c
-typedef union _WHV_EMULATOR_STATUS
-{
-    struct
-    {
-        UINT32 EmulationSuccessful : 1;
-        UINT32 InternalEmulationFailure : 1;
-        UINT32 IoPortCallbackFailed : 1;
-        UINT32 MemoryCallbackFailed : 1;
-        UINT32 TranslateGvaPageCallbackFailed : 1;
-        UINT32 TranslateGvaPageCallbackGpaPageIsNotAligned : 1;
-        UINT32 GetVirtualProcessorRegistersCallbackFailed : 1;
-        UINT32 SetVirtualProcessorRegistersCallbackFailed : 1;
-        UINT32 InterruptCausedIntercept : 1;
-        UINT32 GuestCannotBeFaulted : 1;
-        UINT32 Reserved : 21;
-    };
+### Emulator Structures
+|Structure   |Description|
+|---|---|---|---|---|---|---|---|
+|[`WHV_EMULATOR_CALLBACKS`](hyper-v-third-party-funcs/WhvEmulatorCallbacks.md)|Used in `WHvEmulatorCreateEmulator` to specify callback methods needed by the emulator.|
+|[`WHV_EMULATOR_STATUS`](hyper-v-third-party-funcs/WhvEmulatorStatus.md)|Describes extended return status information from a given emulation call.|
+|[`WHV_EMULATOR_MEMORY_ACCESS_INFO`](hyper-v-third-party-funcs/WhvEmulatorStatus.md)|Describes extended return status information from a given emulation call.|
+|[`WHV_EMULATOR_IO_ACCESS_INFO`](hyper-v-third-party-funcs/WhvEmulatorStatus.md)|Describes extended return status information from a given emulation call.|
+|   |   |
 
-    UINT32 AsUINT32;
-} WHV_EMULATOR_STATUS;
-```
-Describes extended return status information from a given emulation call.
+
+
 
 ### `WHV_EMULATOR_MEMORY_ACCESS_INFO`
 ```c
