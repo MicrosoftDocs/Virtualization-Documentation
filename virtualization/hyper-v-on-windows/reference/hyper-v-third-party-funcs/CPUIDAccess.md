@@ -1,4 +1,4 @@
-# CUID Access
+# CPUID Access
 ## Syntax
 ```C
 // Context data for an exit caused by a CPUID call 

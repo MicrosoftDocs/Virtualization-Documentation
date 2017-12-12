@@ -28,7 +28,7 @@ Several properties (e.g., the properties that configure the processor features t
 |Function   |Description|
 |---|---|
 |[WHvGetPartitionProperty](hyper-v-third-party-funcs/WHvGetPartitionProperty.md)|Querying a property returns the current value of that property, which provides the default value determined by the hypervisor and API implementations in case the property hasn’t been previously modified by the caller.|
-|[WHvSetPartitionProperty](hyper-v-third-party-funcs/WHvSetPartitionProperty.md)|   |
+|[WHvSetPartitionProperty](hyper-v-third-party-funcs/WHvSetPartitionProperty.md)|This functions sets the configurations of partition properties. |
 |   |   |
 
 ## VM Memory Managment
@@ -61,21 +61,21 @@ The state of the virtual processor includes the hardware registers and any inter
 |[WHvCreateVirtualProcessor](hyper-v-third-party-funcs/WHvCreateVirtualProcessor.md)|This function creates a new virtual processor in a partition. The index of the virtual processor is used to set the APIC ID of the processor.|
 |[WHvDeleteVirtualProcessor](hyper-v-third-party-funcs/WHvDeleteVirtualProcessor.md)|This function deletes a virtual processor in a partition.|
 |[WHvRunVirtualProcessor](hyper-v-third-party-funcs/WHvDeleteVirtualProcessor.md)|This function executes the virtual processor (i.e., enables to run guest code). A call to this function blocks synchronously until either the virtual processor executed an operation that needs to be handled by the virtualization stack (e.g., accessed memory in the GPA space that is not mapped or not accessible) or the virtualization stack explicitly request an exit of the function (e.g., to inject an interrupt for the virtual processor or to change the state of the VM). |
-|[WHvGetRunContextBufferSize](hyper-v-third-party-funcs/WHvGetRunContextBufferSize.md)|This function returns the minimum size required for the buffer that receives the exit context. The value returned by the [`WHvRunVirtualProcessor`](hyper-v-third-party-funcs/WHvDeleteVirtualProcessor.md) function is constant for a respective version of the DLL implementation.|
-|[WHvCancelRunVirtualProcessor](hyper-v-third-party-funcs/WHvCancelRunVirtualProcessor.md)|Canceling the execution of a virtual processor allows an application to abort the call to run the virtual processor ([`WHvRunVirtualProcessor`](hyper-v-third-party-funcs/WHvDeleteVirtualProcessor.md)) by another thread, and to return the control to that thread. The virtualization stack can use this function to return the control of a virtual processor back to the virtualization stack in case it needs to change the state of a VM or to inject an event into the processor. |
+|[WHvGetRunContextBufferSize](hyper-v-third-party-funcs/WHvGetRunContextBufferSize.md)|This function returns the minimum size required for the buffer that receives the exit context.|
+|[WHvCancelRunVirtualProcessor](hyper-v-third-party-funcs/WHvCancelRunVirtualProcessor.md)|Canceling the execution of a virtual processor allows an application to abort the call to run the virtual processor by another thread, and to return the control to that thread. The virtualization stack can use this function to return the control of a virtual processor back to the virtualization stack in case it needs to change the state of a VM or to inject an event into the processor. |
 |   |   |
 
-### Exit Content
+### Exit Context
 The detailed reason and additional information for the exit of the [`WHvRunVirtualProcessor`](hyper-v-third-party-funcs/WHvDeleteVirtualProcessor.md) function is return in an output buffer of the function that receives a context structure for the exit. The data provided in this context buffer is specific to the individual exit reason, and for simple exit reasons the buffer might be unused (`RunVpExitLegacyFpError` and `RunVpExitInvalidVpRegisterValue`). 
 
 The context structures for several exit reasons share common definitions for the data that provides information about the processor instruction that caused the exit and the state of the virtual processor at the time of the exit. 
 
 |Structures   |Description|
 |---|---|
-|[Memory Access](hyper-v-third-party-funcs/Memory_Access.md)| Information about exits caused by the virtual processor accessing a memory location that is not mapped or not accessible is provided by the `WHV_MEMORY_ACCESS_CONTEXT` structure.  |
+|[Memory Access](hyper-v-third-party-funcs/MemoryAccess.md)| Information about exits caused by the virtual processor accessing a memory location that is not mapped or not accessible is provided by the `WHV_MEMORY_ACCESS_CONTEXT` structure.  |
 |[I/O Port Access](hyper-v-third-party-funcs/IOPortAccess.md)|Information about exits caused by the virtual processor executing an I/O port instruction (IN, OUT, INS, and OUTS) is provided in the `WHV_X64_IO_PORT_ACCESS_CONTEXT` structure.|
 |[MSR Access](hyper-v-third-party-funcs/MSRAccess.md)|Information about exits caused by the virtual processor accessing a model specific register (MSR) using the RDMSR or WRMSR instructions is provided in the `WHV_X64_MSR_ACCESS_CONTEXT` structure. |
-|[CUID Access](hyper-v-third-party-funcs/CUIDAccess.md)|Information about exits caused by the virtual processor executing the CPUID instruction is provided in the `WHV_X64_CPUID_ACCESS_CONTEXT` structure.|
+|[CPUID Access](hyper-v-third-party-funcs/CPUIDAccess.md)|Information about exits caused by the virtual processor executing the CPUID instruction is provided in the `WHV_X64_CPUID_ACCESS_CONTEXT` structure.|
 |[Virtual Processor Exception](hyper-v-third-party-funcs/VirtualProcessorException.md)|Information about an exception generated by the virtual processor is provided in the `WHV_VP_EXCEPTION_CONTEXT` structure.|
 |[Unrecoverable Exception](hyper-v-third-party-funcs/UnrecoverableException.md)|An exit for an unrecoverable error is caused by the virtual processor generating an exception that cannot be delivered (triple fault). |
 |[Unsupoorted Feature](hyper-v-third-party-funcs/UnsupportableFeature.md)|An exit for an unsupported feature is caused by the virtual processor accesses a feature of the architecture that is not properly virtualized by the hypervisor. |
@@ -85,13 +85,16 @@ The context structures for several exit reasons share common definitions for the
 
 ### Virtual Process Registers
 
-The state of a virtual processor, which includes both the state defined by the underlying architecture (such as general-purpose registers) and additional state defined by the hypervisor, can be access through the [`WHvGetVirtualProcessorRegisters`](hyper-v-third-party-funcs/WHvGetVirtualProcessorRegisters.md) and [`WHvSetVirtualProcessorRegisters`](hyper-v-third-party-funcs/WHvSetVirtualProcessorRegisters.md) functions.
+The state of a virtual processor, which includes both the state defined by the underlying architecture (such as general-purpose registers) and additional state defined by the hypervisor, can be access through these functions.
 
 |Function   |Description|
 |---|---|
 |[WHvGetVirtualProcessorRegisters](hyper-v-third-party-funcs/WHvGetVirtualProcessorRegisters.md)|This function allows for querying a set of individual registers by the virtualization stack.|
 |[WHvSetVirtualProcessorRegisters](hyper-v-third-party-funcs/WHvSetVirtualProcessorRegisters.md)|This function allows for setting a set of individual registers by the virtualization stack|
 |   |   |
+
+
+
 
 ## Partition Properties
 
@@ -125,37 +128,12 @@ typedef struct { 
 ```
 
 
-#### WHvSetPartitionProperty
-
-```C
-/*!
-    \param Partition – Handle to the partition object. 
-    \param PropertyBuffer – Specifies the input buffer that provides the property value. 
-    \param PropertyBufferSizeInBytes – Specifies the size of the input buffer, in bytes. 
-    \Return
-        If the operation completed successfully, the return value is S_OK. 
-
-        The function returns E_WHV_UNKNOWN_PROPERTY for attempts to configure a property 
-        that is not available on the current system. 
-
-        The function returns E_WHV_INVALID_PARTITION_STATE if the property cannot be 
-        modified in the current state of the partition, particularly for attempts to set 
-        a property that can only be modified prior to executing the partition but a virtual 
-        processor in the partition already started executing. 
-*/
-```
-
-
-
 ## Virtual Processor Execution
 
 
 ### Running a Virtual Processor
 
 #### Exit Contexts
-The detailed reason and additional information for the exit of the 'WHvRunVirtualProcessor' function is return in an output buffer of the function that receives a context structure for the exit. The data provided in this context buffer is specific to the individual exit reason, and for simple exit reasons the buffer might be unused (`RunVpExitLegacyFpError` and `RunVpExitInvalidVpRegisterValue`). 
-
-The context structures for several exit reasons share common definitions for the data that provides information about the processor instruction that caused the exit and the state of the virtual processor at the time of the exit
 ```C
 // Execution state of the virtual processor (HV_X64_VP_EXECUTION_STATE) 
 typedef struct { 
@@ -181,8 +159,6 @@ typedef struct { 
 
 
 ### Virtual Processor Registers
-
-
 #### Data Types
 
 ```C
