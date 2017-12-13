@@ -30,7 +30,7 @@ This set of registers is provided using the [`WHvGetVirtualProcessorRegisters`](
 ### Emulator Structures
 |Structure   |Description|
 |---|---|---|---|---|---|---|---|
-|[`WHV_EMULATOR_CALLBACKS`](hyper-v-third-party-funcs/WhvEmulatorCallbacks.md)|Used in `WHvEmulatorCreateEmulator` to specify callback methods needed by the emulator.|
+|[`WHV_EMULATOR_CALLBACKS`](hyper-v-third-party-funcs/WhvEmulatorCallbacks.md)|Used in [`WHvEmulatorCreateEmulator`](hyper-v-third-party-funcs/WHvEmulatorCreateEmulator.md) to specify callback methods needed by the emulator.|
 |[`WHV_EMULATOR_STATUS`](hyper-v-third-party-funcs/WhvEmulatorStatus.md)|Describes extended return status information from a given emulation call.|
 |[`WHV_EMULATOR_MEMORY_ACCESS_INFO`](hyper-v-third-party-funcs/WhvEmulatorMemoryAccessInfo.md)|Information about the requested memory access by the emulator |
 |[`WHV_EMULATOR_IO_ACCESS_INFO`](hyper-v-third-party-funcs/WhvEmulatorIOAccessInfo.md)|Information about the requested Io Port access by the emulator|
