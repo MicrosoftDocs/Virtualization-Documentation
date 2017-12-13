@@ -11,4 +11,4 @@ WHvEmulatorDestoryEmulator(
 ```
 
 ## Remarks
-Destroy an instance of the instruction emulator created by [`WHvEmulatorCreateEmulator`](hyper-v-third-party-funcs/WHvEmulatorCreateEmulator.md)
+Destroy an instance of the instruction emulator created by [`WHvEmulatorCreateEmulator`](WHvEmulatorCreateEmulator.md)

@@ -42,78 +42,20 @@ This set of registers is provided using the [`WHvGetVirtualProcessorRegisters`](
 |---|---|---|---|---|---|---|---|
 |[WHvEmulatorCreateEmulator](hyper-v-third-party-funcs/WHvEmulatorCreateEmulator.md)|Create an instance of the instruction emulator with the specified callback methods|
 |[WHvEmulatorDestoryEmulator](hyper-v-third-party-funcs/WHvEmulatorDestoryEmulator.md)|Destroy an instance of the instruction emulator created by [`WHvEmulatorCreateEmulator`](hyper-v-third-party-funcs/WHvEmulatorCreateEmulator.md)|
-|[`WHvEmulatorTryIoEmulation` and `WHvEmulatorTryMmioEmulation`](hyper-v-third-party-funcs/WHvEmulatorTryEmulation.md)|Attempt to emulate a given type of instruction with the given instruction context returned by the WinHv APIs from a `RunVirtualProcessor` call. |
+|[WHvEmulatorTryIoEmulation and WHvEmulatorTryMmioEmulation](hyper-v-third-party-funcs/WHvEmulatorTryEmulation.md)|Attempt to emulate a given type of instruction with the given instruction context returned by the WinHv APIs from a `RunVirtualProcessor` call. |
 |   |   |
 
 
 
 
 ## Callback Functions
+|Functions   |Description|
+|---|---|---|---|---|---|---|---|
+|[`WHV_EMULATOR_IO_PORT_CALLBACK`](hyper-v-third-party-funcs/WHvEmulatorIOPortCallback.md)|Callback notifying the virtualization stack that the current instruction has modified the IO Port specified in the IoAccess structure|
+|[`WHV_EMULATOR_MEMORY_CALLBACK`](hyper-v-third-party-funcs/WHvEmulatorMemoryCallback.md)|Callback notifying the virtualization stack that the current instruction is attempting to accessing memory as specified in the MemoryAccess structure.|
+|[`WHV_EMULATOR_GET_VIRTUAL_PROCESSOR_REGISTERS_CALLBACK`](hyper-v-third-party-funcs/WHvEmulatorGetVirtualProcessorRegistersCallback.md)|Callback requesting VP register state, similar to the WinHv API|
+|[`WHV_EMULATOR_SET_VIRTUAL_PROCESSOR_REGISTERS_CALLBACK`](hyper-v-third-party-funcs/WHvEmulatorSetVirtualProcessorRegistersCallback.md)|Callback setting VP register state, similar to the WinHv API|
+|[`WHV_EMULATOR_TRANSLATE_GVA_PAGE_CALLBACK`](hyper-v-third-party-funcs/WHvEmulatorTranslateGVAPageCallback.md)|Callback requesting the virtualization stack to translate the Guest Virtual Address GvaPage that points to the start of a 4K page, with the specified TranslateFlags|
+|   |   |
 
-### Io Port Callback
-```c
-typedef HRESULT (CALLBACK *WHV_EMULATOR_IO_PORT_CALLBACK)(
-    _In_ VOID* Context,
-    _Inout_ WHV_EMULATOR_IO_ACCESS_INFO* IoAccess
-    );
-```
-Callback notifying the virtualization stack that the current instruction has
-modified the IO Port specified in the IoAccess structure. Context is the value
-specified in the emulation call which identifies this current instance of the emulation.
-The callback should return S_OK on success, and some error value on failure. Any error value returned here will terminate emulation and return from the corresponding emulation call.
 
-### Memory Callback
-```c
-typedef HRESULT (CALLBACK *WHV_EMULATOR_MEMORY_CALLBACK)(
-    _In_ VOID* Context,
-    _Inout_ WHV_EMULATOR_MEMORY_ACCESS_INFO* MemoryAccess
-    );
-```
-Callback notifying the virtualization stack that the current instruction is attempting
-to accessing memory as specified in the MemoryAccess structure.
-
-**NOTE:** As mentioned above, since in x86/AMD64 it is legal to do unaligned memory accesses, a memory access spanning a page boundary ie:
-
-`movq [0xffe], rax `
-
-This would cause two different memory callbacks to be invoked, one for two bytes, and one for 6 bytes.
-
-### Get Virtual Processor Registers Callback
-```c
-typedef HRESULT (CALLBACK *WHV_EMULATOR_GET_VIRTUAL_PROCESSOR_REGISTERS_CALLBACK)(
-    _In_ VOID* Context,
-    _In_reads_(RegisterCount) const WHV_REGISTER_NAME* RegisterNames,
-    _In_ UINT32 RegisterCount,
-    _Out_writes_(RegisterCount) WHV_REGISTER_VALUE* RegisterValues
-    );
-```
-Callback requesting VP register state, similar to the WinHv API.
-
-### Set Virtual Processor Registers Callback
-```c
-typedef HRESULT (CALLBACK *WHV_EMULATOR_SET_VIRTUAL_PROCESSOR_REGISTERS_CALLBACK)(
-    _In_ VOID* Context,
-    _In_reads_(RegisterCount) const WHV_REGISTER_NAME* RegisterNames,
-    _In_ UINT32 RegisterCount,
-    _In_reads_(RegisterCount) const WHV_REGISTER_VALUE* RegisterValues
-    );
-```
-Callback setting VP register state, similar to the WinHv API. This will only
-be called right before a successful emulation call is about to return.
-
-### Translate Guest Virtual Address Page Callback
-```c
-typedef HRESULT (CALLBACK *WHV_EMULATOR_TRANSLATE_GVA_PAGE_CALLBACK)(
-    _In_ VOID* Context,
-    _In_ WHV_GUEST_VIRTUAL_ADDRESS GvaPage,
-    _In_ WHV_TRANSLATE_GVA_FLAGS TranslateFlags,
-    _Out_ WHV_TRANSLATE_GVA_RESULT_CODE* TranslationResult,
-    _Out_ WHV_GUEST_PHYSICAL_ADDRESS* GpaPage // NOTE: This pointer _must_ be 4K page aligned
-    );
-```
-Callback requesting the virtualization stack to translate the Guest Virtual Address GvaPage that points to the start of a 4K page, with the specified TranslateFlags. The virtstack should
-return in TranslationResult exactly what `WHvTranslateGva` returned, along with the resulting
-address in GpaPage.
-
-**NOTE:** GpaPage must be 4K aligned or the current emulation call will fail, with extended status
-TranslateGvaPageCallbackGpaPageIsNotAligned bit set.

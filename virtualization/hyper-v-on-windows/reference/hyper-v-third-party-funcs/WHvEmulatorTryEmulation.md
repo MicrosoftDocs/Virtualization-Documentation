@@ -28,7 +28,7 @@ returned by the WinHv APIs from a  `RunVirtualProcessor` call. This function ret
 additional information. If Emulator, or the instruction context are malformed, this
 function may return `E_INVALIDARG`. Any other return value indicates catastrophic failure, and the extended status should not be checked.
 
-Emulator is a valid emulator handle returned from [WHvEmulatorCreateEmulator](hyper-v-third-party-funcs/WHvEmulatorCreateEmulator.md).
+Emulator is a valid emulator handle returned from [WHvEmulatorCreateEmulator](WHvEmulatorCreateEmulator.md).
 
 Context is a `void*` which is passed into each callback method, used as a way
 for the virtualization stack to identify this emulation call.
