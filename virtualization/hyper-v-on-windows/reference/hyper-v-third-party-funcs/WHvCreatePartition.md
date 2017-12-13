@@ -6,9 +6,10 @@
 typedef VOID* WHV_PARTITION_HANDLE;
 
 HRESULT
+WINAPI
 WHvCreatePartition(
     _Out_ WHV_PARTITION_HANDLE* Partition
-);
+    );
 ```
 
 ### Parameters

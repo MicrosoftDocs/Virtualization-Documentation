@@ -39,7 +39,7 @@ The physical address space of the VM partition (the GPA space) is populated usin
 |---|---|
 |[WHvMapGpaRange](hyper-v-third-party-funcs/WHvMapGpaRange.md)|Creating a mapping for a range in the GPA space of a partition sets a region in the caller’s process as the backing memory for that range. The operation replaces any previous mappings for the specified GPA pages.    |
 |[WHvUnmapGpaRange](hyper-v-third-party-funcs/WHvUnmapGpaRange.md)|Unmapping a previously mapped GPA range (or parts of it) makes the memory range unavailable to the partition. Any further access by a virtual processor to the range will result in a memory access exit.|
-|[WHvTranslateVirtualAddress](hyper-v-third-party-funcs/WHvTranslateVirtualAddress.md)|Translating a virtual address used by a virtual processor in a partition allows the virtualization stack to emulate a processor instruction for an I/O operation, using the results of the translation to read and write the memory operands of the instruction in the GPA space of the partition.|
+|[WHvTranslateGva](hyper-v-third-party-funcs/WHvTranslateVirtualAddress.md)|Translating a virtual address used by a virtual processor in a partition allows the virtualization stack to emulate a processor instruction for an I/O operation, using the results of the translation to read and write the memory operands of the instruction in the GPA space of the partition.|
 |   |   |
 
 ## Virtual Processor Execution
@@ -60,8 +60,8 @@ The state of the virtual processor includes the hardware registers and any inter
 |---|---|
 |[WHvCreateVirtualProcessor](hyper-v-third-party-funcs/WHvCreateVirtualProcessor.md)|This function creates a new virtual processor in a partition. The index of the virtual processor is used to set the APIC ID of the processor.|
 |[WHvDeleteVirtualProcessor](hyper-v-third-party-funcs/WHvDeleteVirtualProcessor.md)|This function deletes a virtual processor in a partition.|
-|[WHvRunVirtualProcessor](hyper-v-third-party-funcs/WHvDeleteVirtualProcessor.md)|This function executes the virtual processor (i.e., enables to run guest code). A call to this function blocks synchronously until either the virtual processor executed an operation that needs to be handled by the virtualization stack (e.g., accessed memory in the GPA space that is not mapped or not accessible) or the virtualization stack explicitly request an exit of the function (e.g., to inject an interrupt for the virtual processor or to change the state of the VM). |
-|[WHvGetRunContextBufferSize](hyper-v-third-party-funcs/WHvGetRunContextBufferSize.md)|This function returns the minimum size required for the buffer that receives the exit context.|
+|[WHvRunVirtualProcessor](hyper-v-third-party-funcs/WHvRunVirtualProcessor.md)|This function executes the virtual processor (i.e., enables to run guest code). A call to this function blocks synchronously until either the virtual processor executed an operation that needs to be handled by the virtualization stack (e.g., accessed memory in the GPA space that is not mapped or not accessible) or the virtualization stack explicitly request an exit of the function (e.g., to inject an interrupt for the virtual processor or to change the state of the VM). |
+|[WHvGetRunExitContextSize](hyper-v-third-party-funcs/WHvGetRunContextBufferSize.md)|This function returns the minimum size required for the buffer that receives the exit context.|
 |[WHvCancelRunVirtualProcessor](hyper-v-third-party-funcs/WHvCancelRunVirtualProcessor.md)|Canceling the execution of a virtual processor allows an application to abort the call to run the virtual processor by another thread, and to return the control to that thread. The virtualization stack can use this function to return the control of a virtual processor back to the virtualization stack in case it needs to change the state of a VM or to inject an event into the processor. |
 |   |   |
 

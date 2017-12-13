@@ -1,48 +1,58 @@
-# WHvTranslateVirtualAddress
+# WHvTranslateGva
 
 ## Syntax
 ```C
-typedef UINT64 WHV_GUEST_VIRTUAL_ADDRESS; 
- 
-typedef enum { 
-    WHvTranslateGvaFlagNone             = 0x00000000, 
-    WHvTranslateGvaFlagValidateRead     = 0x00000001, 
-    WHvTranslateGvaFlagValidateWrite    = 0x00000002, 
-    WHvTranslateGvaFlagValidateExecute  = 0x00000004, 
-    WHvTranslateGvaFlagPrivilegeExempt  = 0x00000008, 
-    WHvTranslateGvaFlagSetPageTableBits = 0x00000010 
-} WHV_TRANSLATE_GVA_FLAGS; 
- 
-typedef enum { 
-    WhvTranslateGvaSuccess                 = 0; 
- 
-    // Translation failures 
-    WHvTranslateGvaPageNotPresent          = 1, 
-    WHvTranslateGvaPrivilegeViolation      = 2, 
-    WHvTranslateGvaInvalidPageTableFlags   = 3, 
- 
-    // GPA access failures 
-    WHvTranslateGvaGpaUnmapped             = 4, 
-    WHvTranslateGvaGpaNoReadAccess         = 5, 
-    WHvTranslateGvaGpaNoWriteAccess        = 6, 
-    WHvTranslateGvaGpaIllegalOverlayAccess = 7, 
-    WHvTranslateGvaIntercept               = 8 
-} WHV_TRANSLATE_GVA_RESULT_CODE; 
- 
-typedef struct { 
-    WHV_TRANSLATE_GVA_RESULT_CODE ResultCode; 
-    UINT32 Reserved: 32; 
-} WHV_TRANSLATE_GVA_RESULT; 
+// Guest virtual address
+typedef UINT64 WHV_GUEST_VIRTUAL_ADDRESS;
 
-HRESULT 
-WHvTranslateVirtualAddress( 
-    _In_  WHV_PARTITION_HANDLE Partition, 
-    _In_  UINT32 VpIndex, 
-    _In_  WHV_GUEST_VIRTUAL_ADDRESS Gva, 
-    _In_  WHV_TRANSLATE_GVA_FLAGS TranslateFlags, 
-      _Out_ WHV_TRANSLATE_GVA_RESULT* TranslationResult, 
-    _Out_ WHV_GUEST_PHYSICAL_ADDRESS* Gpa 
-);  
+// Flags used by WHvTranslateGva
+typedef enum WHV_TRANSLATE_GVA_FLAGS
+{
+    WHvTranslateGvaFlagNone             = 0x00000000,
+    WHvTranslateGvaFlagValidateRead     = 0x00000001,
+    WHvTranslateGvaFlagValidateWrite    = 0x00000002,
+    WHvTranslateGvaFlagValidateExecute  = 0x00000004,
+    WHvTranslateGvaFlagPrivilegeExempt  = 0x00000008,
+    WHvTranslateGvaFlagSetPageTableBits = 0x00000010
+} WHV_TRANSLATE_GVA_FLAGS;
+
+DEFINE_ENUM_FLAG_OPERATORS(WHV_TRANSLATE_GVA_FLAGS);
+
+// Result of an attempt to translate a guest virtual address
+typedef enum WHV_TRANSLATE_GVA_RESULT_CODE
+{
+    WHvTranslateGvaResultSuccess                 = 0,
+
+    // Translation failures
+    WHvTranslateGvaResultPageNotPresent          = 1,
+    WHvTranslateGvaResultPrivilegeViolation      = 2,
+    WHvTranslateGvaResultInvalidPageTableFlags   = 3,
+
+    // GPA access failures
+    WHvTranslateGvaResultGpaUnmapped             = 4,
+    WHvTranslateGvaResultGpaNoReadAccess         = 5,
+    WHvTranslateGvaResultGpaNoWriteAccess        = 6,
+    WHvTranslateGvaResultGpaIllegalOverlayAccess = 7,
+    WHvTranslateGvaResultIntercept               = 8
+} WHV_TRANSLATE_GVA_RESULT_CODE;
+
+// Output buffer of WHvTranslateGva
+typedef struct WHV_TRANSLATE_GVA_RESULT
+{
+    WHV_TRANSLATE_GVA_RESULT_CODE ResultCode;
+    UINT32 Reserved;
+} WHV_TRANSLATE_GVA_RESULT;
+
+HRESULT
+WINAPI
+WHvTranslateGva(
+    _In_ WHV_PARTITION_HANDLE Partition,
+    _In_ UINT32 VpIndex,
+    _In_ WHV_GUEST_VIRTUAL_ADDRESS Gva,
+    _In_ WHV_TRANSLATE_GVA_FLAGS TranslateFlags,
+    _Out_ WHV_TRANSLATE_GVA_RESULT* TranslationResult,
+    _Out_ WHV_GUEST_PHYSICAL_ADDRESS* Gpa
+    );
 ```
 ### Parameters
 

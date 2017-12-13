@@ -1,19 +1,24 @@
 # CPUID Access
 ## Syntax
 ```C
-// Context data for an exit caused by a CPUID call 
-typedef struct { 
-    WHV_VP_INSTRUCTION_CONTEXT Instruction; 
-    WHV_VP_EXECUTION_STATE VpState; 
-    UINT64 Rax; 
-    UINT64 Rcx; 
-    UINT64 Rdx; 
-    UINT64 Rbx; 
-    UINT64 DefaultResultRax; 
-    UINT64 DefaultResultRcx; 
-    UINT64 DefaultResultRdx; 
-    UINT64 DefaultResultRbx; 
-} WHV_X64_CPUID_ACCESS_CONTEXT; 
+//
+// Context data for an exit caused by a CPUID call (WHvRunVpExitReasonX64CPUID)
+//
+typedef struct WHV_X64_CPUID_ACCESS_CONTEXT
+{
+    // Context of the virtual processor
+    WHV_VP_EXIT_CONTEXT VpContext;
+
+    // CPUID access info
+    UINT64 Rax;
+    UINT64 Rcx;
+    UINT64 Rdx;
+    UINT64 Rbx;
+    UINT64 DefaultResultRax;
+    UINT64 DefaultResultRcx;
+    UINT64 DefaultResultRdx;
+    UINT64 DefaultResultRbx;
+} WHV_X64_CPUID_ACCESS_CONTEXT;
 ```
 
 ## Return Value

@@ -3,11 +3,12 @@
 ## Syntax
 
 ```C
-HRESULT 
-WHvDeleteVirtualProcessor( 
-    _In_ WHV_PARTITION_HANDLE Partition, 
-    _In_ UINT32 VpIndex 
-);
+HRESULT
+WINAPI
+WHvDeleteVirtualProcessor(
+    _In_ WHV_PARTITION_HANDLE Partition,
+    _In_ UINT32 VpIndex
+    );
 ```
 
 ### Parameters

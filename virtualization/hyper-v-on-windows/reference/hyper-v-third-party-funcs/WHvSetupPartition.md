@@ -4,9 +4,10 @@
 
 ```C
 HRESULT
+WINAPI
 WHvSetupPartition(
     _In_ WHV_PARTITION_HANDLE Partition
-);
+    );
 ```
 
 ### Parameters

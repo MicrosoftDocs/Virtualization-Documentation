@@ -1,20 +1,31 @@
 # MSR Access
 ## Syntax
 ```C
-// Context data for an exit caused by an MSR access 
-typedef struct { 
-    UINT32 IsWrite : 1; 
-    UINT32 Reserved : 31; 
-} WHV_X64_MSR_ACCESS_INFO; 
- 
-typedef struct { 
-    WHV_VP_INSTRUCTION_CONTEXT Instruction; 
-    WHV_VP_EXECUTION_STATE VpState; 
-    WHV_X64_MSR_ACCESS_INFO AccessInfo; 
-    UINT32 MsrNumber; 
-    UINT64 Rax; 
-    UINT64 RdX; 
-} WHV_X64_MSR_ACCESS_CONTEXT; 
+//
+// Context data for an exit caused by an MSR access (WHvRunVpExitReasonX64MSRAccess)
+//
+typedef union WHV_X64_MSR_ACCESS_INFO
+{
+    struct
+    {
+        UINT32 IsWrite : 1;
+        UINT32 Reserved : 31;
+    };
+
+    UINT32 AsUNIT32;
+} WHV_X64_MSR_ACCESS_INFO;
+
+typedef struct WHV_X64_MSR_ACCESS_CONTEXT
+{
+    // Context of the virtual processor
+    WHV_VP_EXIT_CONTEXT VpContext;
+
+    // MSR access info
+    WHV_X64_MSR_ACCESS_INFO AccessInfo;
+    UINT32 MsrNumber;
+    UINT64 Rax;
+    UINT64 RdX;
+} WHV_X64_MSR_ACCESS_CONTEXT;
 ```
 
 ## Return Value

@@ -40,13 +40,14 @@ typedef struct { 
     }; 
 } WHV_RUN_VP_EXIT_CONTEXT; 
  
-HRESULT 
-WHvRunVirtualProcessor( 
-    _In_  WHV_PARTITION_HANDLE Partition, 
-    _In_  UINT32 VpIndex, 
-    _Out_ VOID* ExitContext, 
-    _In_  SIZE_T ExitContextSizeInBytes 
-); 
+HRESULT
+WINAPI
+WHvRunVirtualProcessor(
+    _In_ WHV_PARTITION_HANDLE Partition,
+    _In_ UINT32 VpIndex,
+    _Out_writes_bytes_(ExitContextSizeInBytes) VOID* ExitContext,
+    _In_ UINT32 ExitContextSizeInBytes
+    );
 ```
 
 ### Parameters

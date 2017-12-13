@@ -3,12 +3,13 @@
 ## Syntax
 
 ```C
-HRESULT 
-WHvCancelRunVirtualProcessor( 
-    _In_ WHV_PARTITION_HANDLE Partition, 
-    _In_ UINT32 VpIndex, 
-    _In_ UINT32 Flags 
-); 
+HRESULT
+WINAPI
+WHvCancelRunVirtualProcessor(
+    _In_ WHV_PARTITION_HANDLE Partition,
+    _In_ UINT32 VpIndex,
+    _In_ UINT32 Flags
+    );
 ```
 
 ### Parameters

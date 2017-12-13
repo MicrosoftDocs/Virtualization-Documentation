@@ -1,10 +1,13 @@
-# WHvGetRunContextBufferSize
+# WHvGetRunExitContextSize
 
 ## Syntax
 
 ```C
-UINT32 
-WHvGetRunContextBufferSize(); 
+UINT32
+WINAPI
+WHvGetRunExitContextSize(
+    VOID
+    );
 ```
 
 ## Return Value

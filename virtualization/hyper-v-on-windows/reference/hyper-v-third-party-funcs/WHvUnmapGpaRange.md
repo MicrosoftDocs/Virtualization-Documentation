@@ -2,12 +2,13 @@
 
 ## Syntax
 ```C
-HRESULT 
-WHvUnmapGpaRange( 
-    _In_ WHV_PARTITION_HANDLE Partition, 
-    _In_ WHV_GUEST_PHYSICAL_ADDRESS FirstGpa, 
-    _In_ UINT64 PageCount 
-); 
+HRESULT
+WINAPI
+WHvUnmapGpaRange(
+    _In_ WHV_PARTITION_HANDLE Partition,
+    _In_ WHV_GUEST_PHYSICAL_ADDRESS GuestAddress,
+    _In_ UINT64 SizeInBytes
+    );
 ```
 ### Parameters
 

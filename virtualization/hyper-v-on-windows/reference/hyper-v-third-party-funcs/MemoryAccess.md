@@ -2,21 +2,40 @@
 
 ## Syntax
 ```C
-// Context data for an exit caused by a memory access 
-typedef struct { 
-    UINT32 AccessType : 2; // HV_INTERCEPT_ACCESS_TYPE 
-    UINT32 GpaUnmapped : 1; // Unmapped GPA or GPA access violation 
-    UINT32 GvaValid : 1; 
-    UINT32 Reserved : 28; 
-} WHV_MEMORY_ACCESS_INFO; 
- 
-typedef struct { 
-    WHV_VP_INSTRUCTION_CONTEXT Instruction; 
-    WHV_VP_EXECUTION_STATE VpState; 
-    WHV_MEMORY_ACCESS_INFO AccessInfo; 
-    WHV_GUEST_ADDRESS Gpa; 
-    WHV_GUEST_ADDRESS Gva; 
-} WHV_MEMORY_ACCESS_CONTEXT;  
+//
+// Context data for a VM exit caused by a memory access (WHvRunVpExitReasonMemoryAccess)
+//
+typedef enum WHV_MEMORY_ACCESS_TYPE
+{
+    WHvMemoryAccessRead    = 0,
+    WHvMemoryAccessWrite   = 1,
+    WHvMemoryAccessExecute = 2
+} WHV_MEMORY_ACCESS_TYPE;
+
+typedef union WHV_MEMORY_ACCESS_INFO
+{
+    struct {
+        UINT32 AccessType  : 2;  // WHV_MEMORY_ACCESS_TYPE
+        UINT32 GpaUnmapped : 1;
+        UINT32 GvaValid    : 1;
+        UINT32 Reserved    : 28;
+    };
+
+    UINT32 AsUINT32;
+} WHV_MEMORY_ACCESS_INFO;
+
+typedef struct WHV_MEMORY_ACCESS_CONTEXT
+{
+    // Context of the virtual processor
+    WHV_VP_EXIT_CONTEXT VpContext;
+    UINT8 InstructionByteCount;
+    UINT8 InstructionBytes[16];
+
+    // Memory access info
+    WHV_MEMORY_ACCESS_INFO AccessInfo;
+    WHV_GUEST_PHYSICAL_ADDRESS Gpa;
+    WHV_GUEST_VIRTUAL_ADDRESS Gva;
+} WHV_MEMORY_ACCESS_CONTEXT;
 ```
 
 ## Return Value

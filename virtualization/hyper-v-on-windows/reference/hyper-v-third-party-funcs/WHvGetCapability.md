@@ -40,11 +40,12 @@ typedef struct{
 } WHV_CAPABILITY;
 
 HRESULT
+WINAPI
 WHvGetCapability(
-    _In_  WHV_CAPABILITY_CODE Capability,
-    _Out_ VOID* CapabilityBuffer,
-    _In_  SIZE_T CapabilityBufferSize
-);
+    _In_ WHV_CAPABILITY_CODE CapabilityCode,
+    _Out_writes_bytes_(CapabilityBufferSizeInBytes) VOID* CapabilityBuffer,
+    _In_ UINT32 CapabilityBufferSizeInBytes
+    );
 ```
 
 ### Parameters

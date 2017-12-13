@@ -1,14 +1,19 @@
 # Execution Canceled
 ## Syntax
 ```C
-// Context data for an exit caused by a cancellation from the host 
-typedef enum { 
-    WhvRunVpCancelReasonUser = 0 // Execution canceled by HvCancelRunVirtualProcessor 
-} WHV_RUN_VP_CANCEL_REASON; 
- 
-typedef struct { 
-    WHV_RUN_VP_CANCEL_REASON CancelReason; 
-} WHV_RUN_VP_CANCELED_CONTEXT; 
+//
+// Context data for an exit caused by a cancellation from the host (WHvRunVpExitReasonCanceled)
+//
+typedef enum WHV_RUN_VP_CANCEL_REASON
+{
+    WhvRunVpCancelReasonUser = 0 // Execution canceled by HvCancelRunVirtualProcessor
+} WHV_RUN_VP_CANCEL_REASON;
+
+typedef struct WHV_RUN_VP_CANCELED_CONTEXT
+{
+    WHV_RUN_VP_CANCEL_REASON CancelReason;
+} WHV_RUN_VP_CANCELED_CONTEXT;
+
 ```
 
 ## Return Value

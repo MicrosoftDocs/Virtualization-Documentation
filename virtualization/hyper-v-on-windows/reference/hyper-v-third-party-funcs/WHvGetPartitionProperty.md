@@ -2,13 +2,14 @@
 
 ## Syntax
 ```C
-HRESULT 
-WHvGetPartitionProperty( 
-    _In_  WHV_PARTITION_HANDLE Partition, 
-    _In_  WHV_PARTITION_PROPERTY_CODE Property, 
-    _Out_ VOID* PropertyBuffer, 
-    _In_  UINT32 PropertyBufferSizeInBytes 
-); 
+HRESULT
+WINAPI
+WHvGetPartitionProperty(
+    _In_ WHV_PARTITION_HANDLE Partition,
+    _In_ WHV_PARTITION_PROPERTY_CODE PropertyCode,
+    _Out_writes_bytes_(PropertyBufferSizeInBytes) VOID* PropertyBuffer,
+    _In_ UINT32 PropertyBufferSizeInBytes
+    );
 ```
 ### Parameters
 

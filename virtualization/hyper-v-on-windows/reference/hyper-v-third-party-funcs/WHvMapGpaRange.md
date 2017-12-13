@@ -2,23 +2,30 @@
 
 ## Syntax
 ```C
-typedef UINT64 WHV_GUEST_PHYSICAL_ADDRESS; 
- 
-typedef enum { 
-    WHvMapGpaRangeFlagNone    = 0x00000000, 
-    WHvMapGpaRangeFlagRead    = 0x00000001, 
-    WHvMapGpaRangeFlagWrite   = 0x00000002, 
-    WHvMapGpaRangeFlagExecute = 0x00000004 
-} WHV_MAP_GPA_RANGE_FLAGS; 
+// Guest physical
+typedef UINT64 WHV_GUEST_PHYSICAL_ADDRESS;
+typedef UINT64 WHV_GUEST_VIRTUAL_ADDRESS;
 
-HRESULT 
-WHvMapGpaRange( 
-    _In_ WHV_PARTITION_HANDLE Partition, 
-    _In_ VOID* VirtualAddress, 
-    _In_ WHV_GUEST_PHYSICAL_ADDRESS FirstGpa, 
-    _In_ UINT64 PageCount, 
-    _In_ HV_MAP_GPA_RAGE_FLAGS Flags 
-); 
+// Flags used by WHvMapGpaRange
+typedef enum WHV_MAP_GPA_RANGE_FLAGS
+{
+    WHvMapGpaRangeFlagNone    = 0x00000000,
+    WHvMapGpaRangeFlagRead    = 0x00000001,
+    WHvMapGpaRangeFlagWrite   = 0x00000002,
+    WHvMapGpaRangeFlagExecute = 0x00000004,
+} WHV_MAP_GPA_RANGE_FLAGS;
+
+DEFINE_ENUM_FLAG_OPERATORS(WHV_MAP_GPA_RANGE_FLAGS);
+
+HRESULT
+WINAPI
+WHvMapGpaRange(
+    _In_ WHV_PARTITION_HANDLE Partition,
+    _In_ VOID* SourceAddress,
+    _In_ WHV_GUEST_PHYSICAL_ADDRESS GuestAddress,
+    _In_ UINT64 SizeInBytes,
+    _In_ WHV_MAP_GPA_RANGE_FLAGS Flags
+    );
 ```
 ### Parameters
 
