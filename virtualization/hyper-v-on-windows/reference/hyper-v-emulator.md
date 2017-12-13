@@ -6,8 +6,8 @@ For its device emulation, QEMU expects the platform to provide the details of an
 
 |Structure   |Description|
 |---|---|---|---|---|---|---|---|
-|[MMIO Access](hyper-v-third-party-funcs/MMIOAccessQEMU.md)|QEMU expects this data for MMIO access|
-|[I/O Port Access](hyper-v-third-party-funcs/IOPortAccessQEMU.md)|QEMU expects this data for port access|
+|[MMIO Access](hypervisor-platform-funcs/MMIOAccessQEMU.md)|QEMU expects this data for MMIO access|
+|[I/O Port Access](hypervisor-platform-funcs/IOPortAccessQEMU.md)|QEMU expects this data for port access|
 |   |   |
  
 ## Virtual Processor Register State
@@ -23,26 +23,26 @@ QEMU uses a fixed set of registers that are queried and set together if necessar
     * SYSENTER_CS, SYSENTER_ESP, SYSENTER_EIP, TSC 
     * EFER, STAR, LSTAR, CSTAR, FMASK, KERNELGSBASE 
 
-This set of registers is provided using the [`WHvGetVirtualProcessorRegisters`](hyper-v-third-party-funcs/WHvGetVirtualProcessorRegisters.md) and [`WHvSetVirtualProcessorRegisters`](hyper-v-third-party-funcs/WHvSetVirtualProcessorRegisters.md) platform functions, keeping it in sync with the register state used by the instruction emulation.  
+This set of registers is provided using the [`WHvGetVirtualProcessorRegisters`](hypervisor-platform-funcs/WHvGetVirtualProcessorRegisters.md) and [`WHvSetVirtualProcessorRegisters`](hypervisor-platform-funcs/WHvSetVirtualProcessorRegisters.md) platform functions, keeping it in sync with the register state used by the instruction emulation.  
 
 ## Hyper-V Instruction Emulator API Reference
 
 ### Emulator Structures
 |Structure   |Description|
 |---|---|---|---|---|---|---|---|
-|[`WHV_EMULATOR_CALLBACKS`](hyper-v-third-party-funcs/WhvEmulatorCallbacks.md)|Used in [`WHvEmulatorCreateEmulator`](hyper-v-third-party-funcs/WHvEmulatorCreateEmulator.md) to specify callback methods needed by the emulator.|
-|[`WHV_EMULATOR_STATUS`](hyper-v-third-party-funcs/WhvEmulatorStatus.md)|Describes extended return status information from a given emulation call.|
-|[`WHV_EMULATOR_MEMORY_ACCESS_INFO`](hyper-v-third-party-funcs/WhvEmulatorMemoryAccessInfo.md)|Information about the requested memory access by the emulator |
-|[`WHV_EMULATOR_IO_ACCESS_INFO`](hyper-v-third-party-funcs/WhvEmulatorIOAccessInfo.md)|Information about the requested Io Port access by the emulator|
+|[`WHV_EMULATOR_CALLBACKS`](hypervisor-platform-funcs/WhvEmulatorCallbacks.md)|Used in [`WHvEmulatorCreateEmulator`](hypervisor-platform-funcs/WHvEmulatorCreateEmulator.md) to specify callback methods needed by the emulator.|
+|[`WHV_EMULATOR_STATUS`](hypervisor-platform-funcs/WhvEmulatorStatus.md)|Describes extended return status information from a given emulation call.|
+|[`WHV_EMULATOR_MEMORY_ACCESS_INFO`](hypervisor-platform-funcs/WhvEmulatorMemoryAccessInfo.md)|Information about the requested memory access by the emulator |
+|[`WHV_EMULATOR_IO_ACCESS_INFO`](hypervisor-platform-funcs/WhvEmulatorIOAccessInfo.md)|Information about the requested Io Port access by the emulator|
 |   |   |
 
 
 ## API Methods
 |Methods   |Description|
 |---|---|---|---|---|---|---|---|
-|[WHvEmulatorCreateEmulator](hyper-v-third-party-funcs/WHvEmulatorCreateEmulator.md)|Create an instance of the instruction emulator with the specified callback methods|
-|[WHvEmulatorDestoryEmulator](hyper-v-third-party-funcs/WHvEmulatorDestoryEmulator.md)|Destroy an instance of the instruction emulator created by [`WHvEmulatorCreateEmulator`](hyper-v-third-party-funcs/WHvEmulatorCreateEmulator.md)|
-|[WHvEmulatorTryIoEmulation and WHvEmulatorTryMmioEmulation](hyper-v-third-party-funcs/WHvEmulatorTryEmulation.md)|Attempt to emulate a given type of instruction with the given instruction context returned by the WinHv APIs from a `RunVirtualProcessor` call. |
+|[WHvEmulatorCreateEmulator](hypervisor-platform-funcs/WHvEmulatorCreateEmulator.md)|Create an instance of the instruction emulator with the specified callback methods|
+|[WHvEmulatorDestoryEmulator](hypervisor-platform-funcs/WHvEmulatorDestoryEmulator.md)|Destroy an instance of the instruction emulator created by [`WHvEmulatorCreateEmulator`](hypervisor-platform-funcs/WHvEmulatorCreateEmulator.md)|
+|[WHvEmulatorTryIoEmulation and WHvEmulatorTryMmioEmulation](hypervisor-platform-funcs/WHvEmulatorTryEmulation.md)|Attempt to emulate a given type of instruction with the given instruction context returned by the WinHv APIs from a `RunVirtualProcessor` call. |
 |   |   |
 
 
@@ -51,11 +51,11 @@ This set of registers is provided using the [`WHvGetVirtualProcessorRegisters`](
 ## Callback Functions
 |Functions   |Description|
 |---|---|---|---|---|---|---|---|
-|[`WHV_EMULATOR_IO_PORT_CALLBACK`](hyper-v-third-party-funcs/WHvEmulatorIOPortCallback.md)|Callback notifying the virtualization stack that the current instruction has modified the IO Port specified in the IoAccess structure|
-|[`WHV_EMULATOR_MEMORY_CALLBACK`](hyper-v-third-party-funcs/WHvEmulatorMemoryCallback.md)|Callback notifying the virtualization stack that the current instruction is attempting to accessing memory as specified in the MemoryAccess structure.|
-|[`WHV_EMULATOR_GET_VIRTUAL_PROCESSOR_REGISTERS_CALLBACK`](hyper-v-third-party-funcs/WHvEmulatorGetVirtualProcessorRegistersCallback.md)|Callback requesting VP register state, similar to the WinHv API|
-|[`WHV_EMULATOR_SET_VIRTUAL_PROCESSOR_REGISTERS_CALLBACK`](hyper-v-third-party-funcs/WHvEmulatorSetVirtualProcessorRegistersCallback.md)|Callback setting VP register state, similar to the WinHv API|
-|[`WHV_EMULATOR_TRANSLATE_GVA_PAGE_CALLBACK`](hyper-v-third-party-funcs/WHvEmulatorTranslateGVAPageCallback.md)|Callback requesting the virtualization stack to translate the Guest Virtual Address GvaPage that points to the start of a 4K page, with the specified TranslateFlags|
+|[`WHV_EMULATOR_IO_PORT_CALLBACK`](hypervisor-platform-funcs/WHvEmulatorIOPortCallback.md)|Callback notifying the virtualization stack that the current instruction has modified the IO Port specified in the IoAccess structure|
+|[`WHV_EMULATOR_MEMORY_CALLBACK`](hypervisor-platform-funcs/WHvEmulatorMemoryCallback.md)|Callback notifying the virtualization stack that the current instruction is attempting to accessing memory as specified in the MemoryAccess structure.|
+|[`WHV_EMULATOR_GET_VIRTUAL_PROCESSOR_REGISTERS_CALLBACK`](hypervisor-platform-funcs/WHvEmulatorGetVirtualProcessorRegistersCallback.md)|Callback requesting VP register state, similar to the WinHv API|
+|[`WHV_EMULATOR_SET_VIRTUAL_PROCESSOR_REGISTERS_CALLBACK`](hypervisor-platform-funcs/WHvEmulatorSetVirtualProcessorRegistersCallback.md)|Callback setting VP register state, similar to the WinHv API|
+|[`WHV_EMULATOR_TRANSLATE_GVA_PAGE_CALLBACK`](hypervisor-platform-funcs/WHvEmulatorTranslateGVAPageCallback.md)|Callback requesting the virtualization stack to translate the Guest Virtual Address GvaPage that points to the start of a 4K page, with the specified TranslateFlags|
 |   |   |
 
 
