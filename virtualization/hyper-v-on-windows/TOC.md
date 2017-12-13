@@ -19,7 +19,7 @@
 ## [Hyper-V WMI Provider (V2)](https://msdn.microsoft.com/library/hh850319.aspx)
 ## [Hyper-V Integration Services](reference/integration-services.md)
 ## [Hyper-V Architecture](reference/hyper-v-architecture.md)
-## [Windows Hypervisor Platform API](reference/hypervisor-plaform.md)
+## [Windows Hypervisor Platform API](reference/hypervisor-platform.md)
 ### [WHvCancelRunVirtualProcessor](reference/hypervisor-platform-funcs/WHvCancelRunVirtualProcessor.md)
 ### [WHvCreatePartition](reference/hypervisor-platform-funcs/WHvCreatePartition.md)
 ### [WHvCreateVirtualProcessor](reference/hypervisor-platform-funcs/WHvCreateVirtualProcessor.md)
