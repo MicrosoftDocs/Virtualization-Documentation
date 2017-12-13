@@ -71,32 +71,12 @@ The state of the virtual processor includes the hardware registers and any inter
 ### Exit Context
 The detailed reason and additional information for the exit of the [`WHvRunVirtualProcessor`](hypervisor-platform-funcs/WHvDeleteVirtualProcessor.md) function is return in an output buffer of the function that receives a context structure for the exit. The data provided in this context buffer is specific to the individual exit reason, and for simple exit reasons the buffer might be unused (`RunVpExitLegacyFpError` and `RunVpExitInvalidVpRegisterValue`). 
 
-The context structures for several exit reasons share common definitions for the data that provides information about the processor instruction that caused the exit and the state of the virtual processor at the time of the exit. 
 
-```C
-// Execution state of the virtual processor (HV_X64_VP_EXECUTION_STATE) 
-typedef struct { 
-    UINT16 Cpl : 2; 
-    UINT16 Cr0Pe : 1; 
-    UINT16 Cr0Am : 1; 
-    UINT16 EferLma : 1; 
-    UINT16 DebugActive : 1; 
-    UINT16 InterruptionPending : 1; 
-    UINT16 Reserved : 9; 
-} WHV_VP_EXECUTION_STATE; 
- 
-// Instruction that caused an exit 
-typedef struct { 
-    UINT64 Rip; 
-    UINT64 Rflags; 
-    WHV_X64_SEGMENT_REGISTER Cs; // HV_X64_SEGMENT_REGISTER 
-    UINT8 InstructionByteCount; 
-    UINT8 InstructionBytes[16]; 
-} WHV_VP_INSTRUCTION_CONTEXT; 
-```
+
 
 |Structures   |Description|
 |---|---|
+|[Data Types](hypervisor-platform-funcs/WHvExitContextDataTypes.md)| The context structures for several exit reasons share common definitions for the data that provides information about the processor instruction that caused the exit and the state of the virtual processor at the time of the exit. |
 |[Memory Access](hypervisor-platform-funcs/MemoryAccess.md)| Information about exits caused by the virtual processor accessing a memory location that is not mapped or not accessible is provided by the `WHV_MEMORY_ACCESS_CONTEXT` structure.  |
 |[I/O Port Access](hypervisor-platform-funcs/IOPortAccess.md)|Information about exits caused by the virtual processor executing an I/O port instruction (IN, OUT, INS, and OUTS) is provided in the `WHV_X64_IO_PORT_ACCESS_CONTEXT` structure.|
 |[MSR Access](hypervisor-platform-funcs/MSRAccess.md)|Information about exits caused by the virtual processor accessing a model specific register (MSR) using the RDMSR or WRMSR instructions is provided in the `WHV_X64_MSR_ACCESS_CONTEXT` structure. |
