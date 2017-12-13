@@ -27,17 +27,17 @@ As we've been improving the Windows container features, we've had to make some c
     </tr>
     <tr>
         <td style="background-color:#E3F2FD"><b>Windows Server 2016</b><br/>Builds: 14393.*</td>
-        <td>Supported<br/> `process` or `hyperv` isolation</td>
-        <td>Supported<br/> Only `hyperv` isolation</td>
-        <td>Supported<br/> `process` or `hyperv` isolation</td>
-        <td>Supported<br/> Only `hyperv` isolation</td>
+        <td>Supports<br/> `process` or `hyperv` isolation</td>
+        <td>Supports<br/> Only `hyperv` isolation</td>
+        <td>Supports<br/> `process` or `hyperv` isolation</td>
+        <td>Supports<br/> Only `hyperv` isolation</td>
     </tr>
     <tr>
         <td style="background-color:#E3F2FD"><b>Windows Server version 1709</b><br/>Builds 16299.*</td>
         <td>Not supported</td>
         <td>Not supported</td>
-        <td>Supported<br/> `process` or `hyperv` isolation</td>
-        <td>Supported<br/> Only `hyperv` isolation</td>
+        <td>Supports<br/> `process` or `hyperv` isolation</td>
+        <td>Supports<br/> Only `hyperv` isolation</td>
     </tr>
 </table>               
 
