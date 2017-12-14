@@ -1,5 +1,7 @@
 # Windows Hypervisor Platform API Definitions
 
+**Note: These APIs are not yet publically available and will be included in a future Windows release.  Subject to change.**
+
 The following section contains the definitions of the core platform APIs that are exposed through the platform API DLL. The DLL exports a set of C-style Windows API functions, the functions return HRESULT error codes indicating the result of the function call.
 
 ## Platform Capabilities

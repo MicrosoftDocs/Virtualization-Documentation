@@ -1,4 +1,6 @@
 # Hyper-V Instruction Emulator API Definitions and Support DLL for QEMU
+**Note: These APIs are not yet publically available and will be included in a future Windows release.  Subject to change.**
+
 QEMU expects several higher-level abstractions at the interface between the accelerators and the device emulation that are not provided directly by the platform APIs. This functionality is provided by a separate DLL that builds these abstractions on top of the platform APIs.
  
 ## Instruction Emulation

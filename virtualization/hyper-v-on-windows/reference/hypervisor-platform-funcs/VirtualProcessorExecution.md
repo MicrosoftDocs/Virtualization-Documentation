@@ -1,4 +1,5 @@
 # Virtual Processor Execution
+**Note: These APIs are not yet publically available and will be included in a future Windows release.  Subject to change.**
 
 The virtual processors of a VM are executed using the new integrated scheduler of the hypervisor. To run a virtual processor, a thread in the process of the virtualization stack issues a blocking call to execute the virtual processor in the hypervisor, the call returns because of an operation of the virtual processor that requires handling in the virtualization stack or because of a request by the virtualization stack.  
 
