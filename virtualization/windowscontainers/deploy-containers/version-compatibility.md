@@ -29,7 +29,7 @@ As we've been improving the Windows container features, we've had to make some c
         <td style="background-color:#E3F2FD"><b>Windows Server 2016</b><br/>Builds: 14393.*</td>
         <td>Supports<br/> `process` or `hyperv` isolation</td>
         <td>Supports<br/> Only `hyperv` isolation</td>
-        <td>Supports<br/> `process` or `hyperv` isolation</td>
+        <td>Supports<br/> Only `hyperv` isolation</td>
         <td>Supports<br/> Only `hyperv` isolation</td>
     </tr>
     <tr>
