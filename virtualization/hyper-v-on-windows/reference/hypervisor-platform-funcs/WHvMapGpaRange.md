@@ -2,9 +2,9 @@
 
 ## Syntax
 ```C
-// Guest physical
+// Guest physical Address
 typedef UINT64 WHV_GUEST_PHYSICAL_ADDRESS;
-typedef UINT64 WHV_GUEST_VIRTUAL_ADDRESS;
+
 
 // Flags used by WHvMapGpaRange
 typedef enum WHV_MAP_GPA_RANGE_FLAGS

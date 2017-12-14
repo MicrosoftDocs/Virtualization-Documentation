@@ -2,6 +2,36 @@
 
 ## Syntax
 ```C
+typedef VOID* WHV_PARTITION_HANDLE;
+
+typedef enum WHV_PARTITION_PROPERTY_CODE
+{
+    WHvPartitionPropertyCodeExtendedVmExits         = 0x00000001,
+
+    WHvPartitionPropertyCodeProcessorVendor         = 0x00001000,
+    WHvPartitionPropertyCodeProcessorFeatures       = 0x00001001,
+    WHvPartitionPropertyCodeProcessorClFlushSize    = 0x00001002,
+
+    WHvPartitionPropertyCodeProcessorCount          = 0x00001fff
+} WHV_PARTITION_PROPERTY_CODE;
+
+//
+// WHvGetPartitionProperty output buffer / WHvSetPartitionProperty input buffer
+//
+typedef struct WHV_PARTITION_PROPERTY
+{
+    WHV_PARTITION_PROPERTY_CODE PropertyCode;
+
+    union
+    {
+         WHV_EXTENDED_VM_EXITS ExtendedVmExits;
+         WHV_PROCESSOR_VENDOR ProcessorVendor;
+         WHV_PROCESSOR_FEATURES ProcessorFeatures;
+         UINT8 ProcessorClFlushSize;
+         UINT32 ProcessorCount;
+    };
+} WHV_PARTITION_PROPERTY;
+
 HRESULT
 WINAPI
 WHvGetPartitionProperty(
