@@ -47,8 +47,8 @@
 ### [WHvUnmapGpaRange](reference/hypervisor-platform-funcs/WHvUnmapGpaRange.md)
 ## [Hyper-V Instruction Emulator API](reference/hyper-v-emulator.md)
 ### Instruction Emulation
-#### [I/O Port Access](reference/hypervisor-platform-funcs/IOPortAccessQEMU.md)
-#### [MMIO Access](reference/hypervisor-platform-funcs/MMIOAccessQEMU.md)
+#### [I/O Port Access](reference/hypervisor-platform-funcs/IOPortAccessIE.md)
+#### [MMIO Access](reference/hypervisor-platform-funcs/MMIOAccessIE.md)
 ### Emulator Structures
 #### [WHV_EMULATOR_CALLBACKS](reference/hypervisor-platform-funcs/WhvEmulatorCallbacks.md)
 #### [WHV_EMULATOR_IO_ACCESS_INFO](reference/hypervisor-platform-funcs/WhvEmulatorIOAccessInfo.md)
