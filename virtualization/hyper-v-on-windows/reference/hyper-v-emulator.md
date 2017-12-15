@@ -1,19 +1,20 @@
-# Hyper-V Instruction Emulator API Definitions and Support DLL for QEMU
+# Hyper-V Instruction Emulator API Definitions and Support DLLs
+
 **Note: These APIs are not yet publically available and will be included in a future Windows release.**
 
-QEMU expects several higher-level abstractions at the interface between the accelerators and the device emulation that are not provided directly by the platform APIs. This functionality is provided by a separate DLL that builds these abstractions on top of the platform APIs.
+Instruction emulation expects several higher-level abstractions at the interface between the accelerators and the device emulation that are not provided directly by the platform APIs. This functionality is provided by a separate DLL that builds these abstractions on top of the platform APIs.
  
 ## Instruction Emulation
-For its device emulation, QEMU expects the platform to provide the details of an I/O access by a virtual processor. For an MMIO and string I/O port access this requires decoding and completing the instruction that issued the I/O access. 
+Device emulation expects the platform to provide the details of an I/O access by a virtual processor. For an MMIO and string I/O port access this requires decoding and completing the instruction that issued the I/O access. 
 
 |Structure   |Description|
 |---|---|---|---|---|---|---|---|
-|[MMIO Access](hypervisor-platform-funcs/MMIOAccessQEMU.md)|QEMU expects this data for MMIO access|
-|[I/O Port Access](hypervisor-platform-funcs/IOPortAccessQEMU.md)|QEMU expects this data for port access|
+|[MMIO Access](hypervisor-platform-funcs/MMIOAccessIE.md)|Instruction emulation expects this data for MMIO access|
+|[I/O Port Access](hypervisor-platform-funcs/IOPortAccessIE.md)|Instruction emulation expects this data for port access|
 |   |   |
  
 ## Virtual Processor Register State
-QEMU uses a fixed set of registers that are queried and set together if necessary. For X64, this set of registers include:
+Instruction emulation uses a fixed set of registers that are queried and set together if necessary. For X64, this set of registers include:
  
 * RAX...R15, RIP, RFLAGS 
 * CS, SS, DS, ES, FS, GS, LDT, TR, GDT, IDT 
