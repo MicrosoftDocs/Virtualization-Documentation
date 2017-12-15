@@ -13,4 +13,4 @@ typedef struct _WHV_EMULATOR_CALLBACKS {
 } WHV_EMULATOR_CALLBACKS;
 ```
 ## Remarks
-Used in [`WHvEmulatorCreateEmulator`](hypervisor-platform-funcs/WHvEmulatorCreateEmulator.md) to specify callback methods needed by the emulator.
+Used in [`WHvEmulatorCreateEmulator`](WHvEmulatorCreateEmulator.md) to specify callback methods needed by the emulator.
