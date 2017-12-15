@@ -5,25 +5,28 @@
 
 ```C
 // Exit reason for the return of the VID_WHV_IOCTL_RUN_VP IOCTL 
-typedef enum { 
- 
-    // Standard exits caused by operations of the virtual processor 
-    RunVpExitReasonMemoryAccess           = 0x00000001, 
-    RunVpExitReasonX64IOPortAccess        = 0x00000002, 
-    RunVpExitReasonX64LegacyFpError       = 0x00000003, 
-    RunVpExitReasonUnrecoverableException = 0x00000004, 
-    RunVpExitReasonInvalidVpRegisterValue = 0x00000005, 
-    RunVpExitReasonUnsupportedFeature     = 0x00000006, 
-     
-    // Additional exits that can be configured through partition properties 
-    RunvpExitReasonX64MSRAccess           = 0x00001000, 
-    RunVpExitReasonX64CPUID               = 0x00001001, 
-    RunVpExitReasonException              = 0x00001002, 
-     
-    // Exits caused by the host 
-    RunVpExitReasonCanceled               = 0x00002001 
- 
-} WHV_RUN_VP_EXIT_REASON; 
+typedef enum WHV_RUN_VP_EXIT_REASON
+{
+    WHvRunVpExitReasonNone                   = 0x00000000,
+
+    // Standard exits caused by operations of the virtual processor
+    WHvRunVpExitReasonMemoryAccess           = 0x00000001,
+    WHvRunVpExitReasonX64IoPortAccess        = 0x00000002,
+    WHvRunVpExitReasonUnrecoverableException = 0x00000004,
+    WHvRunVpExitReasonInvalidVpRegisterValue = 0x00000005,
+    WHvRunVpExitReasonUnsupportedFeature     = 0x00000006,
+    WHvRunVpExitReasonX64InterruptWindow     = 0x00000007,
+    WHvRunVpExitReasonX64Halt                = 0x00000008,
+
+    // Additional exits that can be configured through partition properties
+    WHvRunVpExitReasonX64MsrAccess           = 0x00001000,
+    WHvRunVpExitReasonX64Cpuid               = 0x00001001,
+    WHvRunVpExitReasonException              = 0x00001002,
+
+    // Exits caused by the host
+    WHvRunVpExitReasonCanceled               = 0x00002001,
+    WHvRunVpExitReasonAlerted                = 0x00002002
+} WHV_RUN_VP_EXIT_REASON;
  
 // VP run context buffer 
 typedef struct { 
@@ -53,7 +56,7 @@ WHvRunVirtualProcessor(
 
 ### Parameters
 
-`Partition` 
+`Partition`
 
 Handle to the partition object
 
@@ -61,11 +64,11 @@ Handle to the partition object
 
 Specifies the index of the virtual processor that is executed
 
-`ExitContext` 
- 
+`ExitContext`
+
 Specifies the output buffer that receives the context structure providing the information about the reason that caused the WHvRunVirtualProcessor function to return. 
 
-`ExitContextSizeInBytes` 
+`ExitContextSizeInBytes`
 
 Specifies the size of the buffer that receives the exit context, in bytes. The minimum buffer size required to hold the exit context can be queried with the [`WHvGetRunExitContextSize`](WHvGetRunExitContextSize.md) function. 
   
