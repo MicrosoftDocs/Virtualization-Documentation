@@ -1,5 +1,5 @@
 # WHvUnmapGpaRange
-**Note: These APIs are not yet publically available and will be included in a future Windows release.  Subject to change.**
+**Note: These APIs are not yet publically available and will be included in a future Windows release.**
 
 ## Syntax
 ```C
@@ -17,11 +17,11 @@ WHvUnmapGpaRange(
 
 Handle to the partition object
 
-`GpaPageAddress` 
+`GuestAddress` 
 
 GpaPageAddress – Specifies the start address of the region in the VM’s physical address space that is unmapped
 
-`PageCount` 
+`SizeInBytes` 
 
 Specifies the number of pages that are unmapped
   

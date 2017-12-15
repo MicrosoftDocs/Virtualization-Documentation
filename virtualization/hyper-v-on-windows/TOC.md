@@ -27,7 +27,7 @@
 ### [WHvDeleteVirtualProcessor](reference/hypervisor-platform-funcs/WHvDeleteVirtualProcessor.md)
 ### [WHvGetCapability](reference/hypervisor-platform-funcs/WHvGetCapability.md)
 ### [WHvGetPartitionProperty](reference/hypervisor-platform-funcs/WHvGetPartitionProperty.md)
-### [WHvGetRunContextBufferSize](reference/hypervisor-platform-funcs/WHvGetRunContextBufferSize.md)
+### [WHvGetRunExitContextSize](reference/hypervisor-platform-funcs/WHvGetRunExitContextSize.md)
 ### [WHvGetVirtualProcessorRegisters](reference/hypervisor-platform-funcs/WHvGetVirtualProcessorRegisters.md)
 ### [WHvMapGpaRange](reference/hypervisor-platform-funcs/WHvMapGpaRange.md)
 ### [WHvRunVirtualProcessor](reference/hypervisor-platform-funcs/WHvRunVirtualProcessor.md)
@@ -44,7 +44,7 @@
 ### [WHvSetPartitionProperty](reference/hypervisor-platform-funcs/WHvSetPartitionProperty.md)
 ### [WHvSetupPartition](reference/hypervisor-platform-funcs/WHvSetupPartition.md)
 ### [WHvSetVirtualProcessorRegisters](reference/hypervisor-platform-funcs/WHvSetVirtualProcessorRegisters.md)
-### [WHvTranslateVirtualAddress](reference/hypervisor-platform-funcs/WHvTranslateVirtualAddress.md)
+### [WHvTranslateGva](reference/hypervisor-platform-funcs/WHvTranslateGva.md)
 ### [WHvUnmapGpaRange](reference/hypervisor-platform-funcs/WHvUnmapGpaRange.md)
 ## [Hyper-V Instruction Emulator API](reference/hyper-v-emulator.md)
 ### Instruction Emulation

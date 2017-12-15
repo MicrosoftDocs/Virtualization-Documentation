@@ -1,5 +1,5 @@
 # WHvGetPartitionProperty
-**Note: These APIs are not yet publically available and will be included in a future Windows release.  Subject to change.**
+**Note: These APIs are not yet publically available and will be included in a future Windows release.**
 
 ## Syntax
 ```C
@@ -48,7 +48,7 @@ WHvGetPartitionProperty(
 
 Handle to the partition object
 
-`Property`
+`PropertyCode`
 
 Specifies the property that is queried
 
@@ -59,3 +59,9 @@ Specifies the output buffer that receives the value of the requested property. 
 `PropertyBufferSizeInBytes` 
 
 Specifies the size of the output buffer, in bytes. For the currently available set of properties, the buffer should be large enough to hold a 64-bit value.  
+
+## Remarks
+
+The `WHvPartitionCodeExtendedVmExits` property controls the set of additional operations by a virtual processor that should cause the execution of the processor to exit and to return to the caller of the [`WHvRunVirtualProcessor`](WHvRunVirtualProcessor.md) function.
+
+The `WHvPartitionPropertyCodeProcessorXXX` properties control the processor features that are made available to the virtual processor of the partition. These properties can only be configured during the initial creation of the partition, prior to calling `WHvSetupPartition`.

@@ -1,5 +1,5 @@
 # WHV_EMULATOR_CALLBACKS
-**Note: These APIs are not yet publically available and will be included in a future Windows release.  Subject to change.**
+**Note: These APIs are not yet publically available and will be included in a future Windows release.**
 
 ## Syntax
 
@@ -13,4 +13,4 @@ typedef struct _WHV_EMULATOR_CALLBACKS {
 } WHV_EMULATOR_CALLBACKS;
 ```
 ## Remarks
-Used in `WHvEmulatorCreateEmulator` to specify callback methods needed by the emulator.
+Used in [`WHvEmulatorCreateEmulator`](hypervisor-platform-funcs/WHvEmulatorCreateEmulator.md) to specify callback methods needed by the emulator.

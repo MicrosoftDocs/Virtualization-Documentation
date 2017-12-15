@@ -1,5 +1,5 @@
 # WHvTranslateGva
-**Note: These APIs are not yet publically available and will be included in a future Windows release.  Subject to change.**
+**Note: These APIs are not yet publically available and will be included in a future Windows release.**
 
 ## Syntax
 ```C
@@ -65,19 +65,20 @@ Handle to the partition object in the VID
 
 Specifies the index of the virtual processor for which the virtual address is translated
 
+`Gva` 
+
+Specifies the virtual address that is translated
+
 `TranslateFlages` 
 
 Specifies flags for the translation 
 
-`GvaPageAddress` 
-
-Specifies the virtual address that is translated
 
 `TranslationResult` 
 
 Receives the result of the translation
 
-`GpaPageAddress` 
+`Gpa` 
 
 Receives the physical address if the translation was successful. 
 

@@ -1,8 +1,8 @@
 # Windows Hypervisor Platform API Definitions
 
-**Note: These APIs are not yet publically available and will be included in a future Windows release.  Subject to change.**
+**Note: These APIs are not yet publically available and will be included in a future Windows release.**
 
-The following section contains the definitions of the core platform APIs that are exposed through the platform API DLL. The DLL exports a set of C-style Windows API functions, the functions return HRESULT error codes indicating the result of the function call.
+The following section contains the definitions of the Windows Hypervisor Platform APIs that are exposed through WinHvAPi.dll.  The DLL exports a set of C-style Windows API functions, the functions return HRESULT error codes indicating the result of the function call.
 
 ## Platform Capabilities
 
@@ -26,9 +26,7 @@ Partition properties provide the mechanism for callers to query and configure th
 The availability of features that can be configured through the partition properties depends on the capabilities of the hypervisor, API implementation and the physical processor on the system. An application should check the corresponding capability before attempting to configure a property. 
 
 Several properties (e.g., the properties that configure the processor features that are made available to the partition) can only be modified during the creation of the partition and prior to executing a virtual processor in the partition. An attempt to modify these properties after a partition started executing results in a failure of the operation. 
- 
 
-For more information about  Data Types see: [Partition Property Data Types]
 
 |Function   |Description|
 |---|---|
@@ -44,7 +42,7 @@ The physical address space of the VM partition (the GPA space) is populated usin
 |---|---|
 |[WHvMapGpaRange](hypervisor-platform-funcs/WHvMapGpaRange.md)|Creating a mapping for a range in the GPA space of a partition sets a region in the caller’s process as the backing memory for that range. The operation replaces any previous mappings for the specified GPA pages.    |
 |[WHvUnmapGpaRange](hypervisor-platform-funcs/WHvUnmapGpaRange.md)|Unmapping a previously mapped GPA range (or parts of it) makes the memory range unavailable to the partition. Any further access by a virtual processor to the range will result in a memory access exit.|
-|[WHvTranslateGva](hypervisor-platform-funcs/WHvTranslateVirtualAddress.md)|Translating a virtual address used by a virtual processor in a partition allows the virtualization stack to emulate a processor instruction for an I/O operation, using the results of the translation to read and write the memory operands of the instruction in the GPA space of the partition.|
+|[WHvTranslateGva](hypervisor-platform-funcs/WHvTranslateGva.md)|Translating a virtual address used by a virtual processor in a partition allows the virtualization stack to emulate a processor instruction for an I/O operation, using the results of the translation to read and write the memory operands of the instruction in the GPA space of the partition.|
 |   |   |
 
 ## Virtual Processor Execution
@@ -66,7 +64,7 @@ The state of the virtual processor includes the hardware registers and any inter
 |[WHvCreateVirtualProcessor](hypervisor-platform-funcs/WHvCreateVirtualProcessor.md)|This function creates a new virtual processor in a partition. The index of the virtual processor is used to set the APIC ID of the processor.|
 |[WHvDeleteVirtualProcessor](hypervisor-platform-funcs/WHvDeleteVirtualProcessor.md)|This function deletes a virtual processor in a partition.|
 |[WHvRunVirtualProcessor](hypervisor-platform-funcs/WHvRunVirtualProcessor.md)|This function executes the virtual processor (i.e., enables to run guest code). A call to this function blocks synchronously until either the virtual processor executed an operation that needs to be handled by the virtualization stack (e.g., accessed memory in the GPA space that is not mapped or not accessible) or the virtualization stack explicitly request an exit of the function (e.g., to inject an interrupt for the virtual processor or to change the state of the VM). |
-|[WHvGetRunExitContextSize](hypervisor-platform-funcs/WHvGetRunContextBufferSize.md)|This function returns the minimum size required for the buffer that receives the exit context.|
+|[WHvGetRunExitContextSize](hypervisor-platform-funcs/WHvGetRunExitContextSize.md)|This function returns the minimum size required for the buffer that receives the exit context.|
 |[WHvCancelRunVirtualProcessor](hypervisor-platform-funcs/WHvCancelRunVirtualProcessor.md)|Canceling the execution of a virtual processor allows an application to abort the call to run the virtual processor by another thread, and to return the control to that thread. The virtualization stack can use this function to return the control of a virtual processor back to the virtualization stack in case it needs to change the state of a VM or to inject an event into the processor. |
 |   |   |
 

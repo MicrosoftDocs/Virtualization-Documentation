@@ -1,5 +1,5 @@
 # WHvGetCapability
-**Note: These APIs are not yet publically available and will be included in a future Windows release.  Subject to change.**
+**Note: These APIs are not yet publically available and will be included in a future Windows release.**
 
 
 ## Syntax
@@ -140,7 +140,7 @@ WHvGetCapability(
 
 ### Parameters
 
-`Capability` 
+`CapabilityCode` 
 
 Specifies the capability that is queried.
 
@@ -150,13 +150,13 @@ Specifies the output buffer that receives the value of the capability:
 
 The `WHvCapabilityCodeHypervisorPresent` capability can be used to determine whether the Hyper-V Hypervisor is running on a host and the functions of the platform APIs can be used to create VM partitions.
 
-The `WHvFeatures` capability is reserved for future use, it returns 0.
+The `WHvCapabilityCodeFeatures` capability is reserved for future use, it returns 0.
 
 For the `WHvCapabilityCodeExtendedVmExits` capability, the buffer contains a bit field that specifies which additional exit reasons are available that can be configured to cause the execution of a virtual processor to be halted (see Running a Virtual Processor).
 
 The values returned for the processor properties are based on the capabilities of the physical processor on the system (i.e., they are retrieved by querying the corresponding properties of the root partition.
 
-`CapabilityBufferSize` 
+`CapabilityBufferSizeInBytes` 
 
 Specifies the size of the output buffer, in bytes. For the currently defined set capabilities, the output buffer should be large enough to hold a 64-bit value. 
 

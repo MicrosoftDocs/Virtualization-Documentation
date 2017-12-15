@@ -1,5 +1,5 @@
 # MMIO Access for QEMU
-**Note: These APIs are not yet publically available and will be included in a future Windows release.  Subject to change.**
+**Note: These APIs are not yet publically available and will be included in a future Windows release.**
 
 ## Syntax
 ```C
