@@ -65,7 +65,7 @@ Let's walk through setting up a new NAT network.
 
     The internal switch will have a name like `vEthernet (SwitchName)` and an Interface Description of `Hyper-V Virtual Ethernet Adapter`. Take note of its `ifIndex` to use in the next step.
 
-4. Configure the NAT gateway using [New-NetIPAddress](https://technet.microsoft.com/en-us/library/hh826150.aspx).  
+4. Configure the NAT gateway using [New-NetIPAddress](https://docs.microsoft.com/powershell/module/nettcpip/New-NetIPAddress).  
 
   Here is the generic command:
   ``` PowerShell
@@ -93,7 +93,7 @@ Let's walk through setting up a new NAT network.
   New-NetIPAddress -IPAddress 192.168.0.1 -PrefixLength 24 -InterfaceIndex 24
   ```
 
-5. Configure the NAT network using [New-NetNat](https://technet.microsoft.com/en-us/library/dn283361(v=wps.630).aspx).  
+5. Configure the NAT network using [New-NetNat](https://docs.microsoft.com/powershell/module/netnat/New-NetNat).  
 
   Here is the generic command:
 

@@ -15,23 +15,29 @@ As we've been improving the Windows container features, we've had to make some c
 
 <table>
     <tr>
-    <th>Container OS version</th>
-    <th span='2'>Host OS version</th>
+    <th style="background-color:#BBDEFB">Container OS version</th>
+    <th span='4' style="background-color:#DCEDC8">Host OS version</th>
     </tr>
     <tr>
         <td/>
-        <td><b>Windows Server 2016 / Windows 10 1609, 1703</b><br/>Builds: 14393.*</td>
-        <td><b>Windows Server version 1709 / Windows 10 Fall Creators Update</b><br/>Builds 16299.*</td>
+        <td style="background-color:#F1F8E9"><b>Windows Server 2016</b><br/>Builds: 14393.*</td>
+        <td style="background-color:#F1F8E9"><b>Windows 10 1609, 1703</b><br/>Builds: 14393.*, 15063.*</td>
+        <td style="background-color:#F1F8E9"><b>Windows Server version 1709</b><br/>Builds 16299.*</td>
+        <td style="background-color:#F1F8E9"><b>Windows 10 Fall Creators Update</b><br/>Builds 16299.*</td>
     </tr>
     <tr>
-        <td><b>Windows Server 2016 / Windows 10 1609, 1703</b><br/>Builds: 14393.*</td>
-        <td>Supported. `process` or `hyperv` isolation</td>
-        <td>Supported. `hyperv` isolation</td>
+        <td style="background-color:#E3F2FD"><b>Windows Server 2016</b><br/>Builds: 14393.*</td>
+        <td>Supports<br/> `process` or `hyperv` isolation</td>
+        <td>Supports<br/> Only `hyperv` isolation</td>
+        <td>Supports<br/> Only `hyperv` isolation</td>
+        <td>Supports<br/> Only `hyperv` isolation</td>
     </tr>
     <tr>
-        <td><b>Windows Server version 1709 / Windows 10 Fall Creators Update</b><br/>Builds 16299.*</td>
+        <td style="background-color:#E3F2FD"><b>Windows Server version 1709</b><br/>Builds 16299.*</td>
         <td>Not supported</td>
-        <td>Supported. `process` or `hyperv` isolation</td>
+        <td>Not supported</td>
+        <td>Supports<br/> `process` or `hyperv` isolation</td>
+        <td>Supports<br/> Only `hyperv` isolation</td>
     </tr>
 </table>               
 
@@ -61,7 +67,7 @@ FROM microsoft/windowsservercore:1709
 ...
 ```
 
-However, if you would like a specific patch of Windows Server version 1709, you can specify the KB number in the tag. For example, if you would like the the Nano Server base OS container image from Windows Server version 1709, with the KB4043961 applied to it, you would specified it like so:
+However, if you would like a specific patch of Windows Server version 1709, you can specify the KB number in the tag. For example, if you would like the Nano Server base OS container image from Windows Server version 1709, with the KB4043961 applied to it, you would specified it like so:
 
 ``` Dockerfile
 FROM microsoft/nanoserver:1709_KB4043961
@@ -85,7 +91,7 @@ FROM microsoft/nanoserver:10.0.14393.1770
 
 Today, Docker Swarm does not have a built-in way to match the version of Windows that a container uses to a host matching the same version. If the service is updated to use a newer container, it will run successfully.
 
-If you want need to run multiple versions of Windows for some time, then there are two approaches that can be used.  Configure the Windows hosts to always use Hyper-V isolation, or use label constraints.
+If you need to run multiple versions of Windows for some time, then there are two approaches that can be used.  Configure the Windows hosts to always use Hyper-V isolation, or use label constraints.
 
 ### Finding a service that won't start
 
