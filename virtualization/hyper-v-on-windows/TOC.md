@@ -31,7 +31,6 @@
 ### [WHvGetVirtualProcessorRegisters](reference/hypervisor-platform-funcs/WHvGetVirtualProcessorRegisters.md)
 ### [WHvMapGpaRange](reference/hypervisor-platform-funcs/WHvMapGpaRange.md)
 ### [WHvRunVirtualProcessor](reference/hypervisor-platform-funcs/WHvRunVirtualProcessor.md)
-#### Exit Context
 #### [Data Types](reference/hypervisor-platform-funcs/WHvExitContextDataTypes.md)
 ##### [Memory Access](reference/hypervisor-platform-funcs/MemoryAccess.md)
 ##### [I/O Port Access](reference/hypervisor-platform-funcs/IOPortAccess.md)
