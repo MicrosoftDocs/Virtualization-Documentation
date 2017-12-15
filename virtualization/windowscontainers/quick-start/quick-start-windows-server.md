@@ -36,18 +36,18 @@ Open an elevated PowerShell session and run the following commands.
 
 First, install the Docker-Microsoft PackageManagement Provider from the [PowerShell Gallery](https://www.powershellgallery.com/packages/DockerMsftProvider).
 
-```none
+```
 Install-Module -Name DockerMsftProvider -Repository PSGallery -Force
 ```
 
 Next, you use the PackageManagement PowerShell module to install the latest version of Docker.
-```none
+```
 Install-Package -Name docker -ProviderName DockerMsftProvider
 ```
 
 When PowerShell asks you whether to trust the package source 'DockerDefault', type `A` to continue the installation. When the installation is complete, reboot the computer.
 
-```none
+```
 Restart-Computer -Force
 ```
 
@@ -60,13 +60,13 @@ Restart-Computer -Force
 
 Ensure your Windows Server system is up-to-date by running:
 
-```none
+```
 sconfig
 ```
 
 This shows a text-based configuration menu, where you can choose option 6 to Download and Install Updates:
 
-```none
+```
 ===============================================================================
                          Server Configuration
 ===============================================================================
@@ -146,6 +146,4 @@ For in depth information on the Docker Run command, see [Docker Run Reference on
 
 ## Next Steps
 
-[Container Images on Windows Server](./quick-start-images.md)
-
-[Windows Containers on Windows 10](./quick-start-windows-10.md)
+[Automating Builds and Saving Images](./quick-start-images.md)

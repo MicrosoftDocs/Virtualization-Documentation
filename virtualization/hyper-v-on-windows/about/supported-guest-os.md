@@ -36,6 +36,7 @@ In order to receive support, both the Windows guest operating systems and the ho
 | Windows 7 | 4 | Ultimate, Enterprise, and Professional editions (32-bit and 64-bit). |
 | Windows Vista with Service Pack 2 (SP2) | 2 | Business, Enterprise, and Ultimate, including N and KN editions. | 
 | - | | |
+| Windows Server 2016 | 64 | |
 | Windows Server 2012 R2 | 64 | |
 | Windows Server 2012 | 64 | |
 | Windows Server 2008 R2 with Service Pack 1 (SP 1) | 64 | Datacenter, Enterprise, Standard and Web editions. |

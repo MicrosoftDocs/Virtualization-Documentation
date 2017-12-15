@@ -11,7 +11,7 @@ The first line of each test starts with _Describe_ and explains what a group of 
 
 Example Pass:
 
-```none
+```
 Checking for common problems
 Describing Windows Version and Prerequisites
  [+] Is Windows 10 Anniversary Update or Windows Server 2016 79ms
@@ -41,7 +41,7 @@ Describing Container network is created
 
 Example Failure:
 
-```none
+```
 Describing The right container base images are installed
 error during connect: Get http://%2F%2F.%2Fpipe%2Fdocker_engine/v1.25/images/json: open //./pipe/docker_engine: Access is denied.
  [-] microsoft/windowsservercore is installed 196ms

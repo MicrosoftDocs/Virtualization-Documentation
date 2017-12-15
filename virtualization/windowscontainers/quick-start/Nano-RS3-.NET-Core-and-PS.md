@@ -6,7 +6,7 @@ If your container is to run native code or open frameworks such as Node.js, Pyth
 
 To build your container from a Dockerfile, use  docker build and to run it, docker run.  The following command will download the Nano Server Container base OS image, which may take a few minutes, and print a “Hello World!” message at the host console.
 
-```none
+```
 docker run microsoft/nanoserver-insider cmd /c echo Hello World!
 ```
 
@@ -16,25 +16,25 @@ As a result of both .NET Core and PowerShell not being available in the base Nan
 
 You can pull the PowerShell container image by using this command:
 
-```none
+```
 docker pull microsoft/nanoserver-insider-powershell
 ```
 
 You can pull the .NET Core container image by using this command:
 
-```none
+```
 docker pull microsoft/nanoserver-insider-dotnet
 ```
 
 Below are some examples of how we used multi-stage builds to create these container images.
 
 ## Deploy apps based on .NET Core 2.0
-You can leverage the .NET Core 2.0 container image in the Insider release to run your .NET Core apps, where your .NET Core application is built elsewhere and you want to run it in the container.  You can find more information on how to run a .NET Core application with the .NET Core container images at [.NET Core GitHub](https://github.com/dotnet/dotnet-docker-nightly).  If you are developing an application inside the container, the .NET Core SDK should be used instead.  For advanced users, you can build your own .NET Core 2.0 container with the .NET Core 2.0 version, Dockerfile, and URL specified in the [dotnet-docker-nightly](https://github.com/dotnet/dotnet-docker-nightly/tree/master/2.0). To do that, a Windows Server Core container can be used to accomplish the download and unzip function.  The Dockerfile sample is as the [.NET Core Runtime Dockerfile](https://github.com/dotnet/dotnet-docker-nightly/blob/master/2.0/runtime/nanoserver-insider/Dockerfile).
+You can leverage the .NET Core 2.0 container image in the Insider release to run your .NET Core apps, where your .NET Core application is built elsewhere and you want to run it in the container.  You can find more information on how to run a .NET Core application with the .NET Core container images at [.NET Core GitHub](https://github.com/dotnet/dotnet-docker-nightly).  If you are developing an application inside the container, the .NET Core SDK should be used instead.  For advanced users, you can build your own .NET Core 2.0 container with the .NET Core 2.0 version, Dockerfile, and URL specified in the [dotnet-docker-nightly](https://github.com/dotnet/dotnet-docker-nightly/tree/master/2.0). To do that, a Windows Server Core container can be used to accomplish the download and unzip function.  The Dockerfile sample is as the [.NET Core Runtime Dockerfile](https://github.com/dotnet/dotnet-docker-nightly/blob/master/2.0/runtime/nanoserver-insider/amd64/Dockerfile).
 
 
 With this Dockerfile, a .NET Core 2.0 container can be built using the following command.
 
-```none
+```
 docker build -t nanoserverdnc -f Dockerfile-dotnetRuntime .
 ```
 
@@ -44,7 +44,7 @@ Using the same [multi-stage build](https://docs.docker.com/engine/userguide/eng-
 
 Then issue docker build to create the PowerShell container image.
 
-```none 
+``` 
 docker build -t nanoserverPowerShell6 -f Dockerfile-PowerShell6 .
 ```
 

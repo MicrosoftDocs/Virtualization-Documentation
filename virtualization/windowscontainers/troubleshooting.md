@@ -45,7 +45,7 @@ You can also enable debug-level logging on the Docker Engine. This may be helpfu
 
 First, open an elevated Command Prompt, then run `sc.exe qc docker` get the current command line for the Docker service.
 Example:
-```none
+```
 C:\> sc.exe qc docker
 [SC] QueryServiceConfig SUCCESS
 
@@ -67,13 +67,13 @@ Take the current `BINARY_PATH_NAME`, and modify it:
 - Enclose the whole command in "
 
 Then run `sc.exe config docker binpath= ` followed by the new string. For example: 
-```none
+```
 sc.exe config docker binpath= "\"C:\Program Files\Docker\dockerd.exe\" --run-service -D"
 ```
 
 
 Now, restart the Docker service
-```none
+```
 sc.exe stop docker
 sc.exe start docker
 ```
@@ -106,8 +106,8 @@ The files will be `goroutine-stacks-<timestamp>.log` and `daemon-data-<timestamp
 Note that `daemon-data*.log` may contain personal information and should generally only be shared with trusted support people. `goroutine-stacks*.log` does not contain personal information.
 
 
-### Host Container Service
-The Docker Engine depends on a Windows-specific Host Container Service. It has separate logs: 
+### Host Compute Service
+The Docker Engine depends on a Windows-specific Host Compute Service. It has separate logs: 
 - Microsoft-Windows-Hyper-V-Compute-Admin
 - Microsoft-Windows-Hyper-V-Compute-Operational
 

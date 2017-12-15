@@ -62,7 +62,7 @@ For more information about DISM, see the [DISM Technical Reference](https://tech
 
 ### Manually enable the Hyper-V role
 
-1. Right click on the Windows button and select ‘Programs and Features’.
+1. Right click on the Windows button and select ‘Apps and Features’.
 
 2. Select **Turn Windows Features on or off**.
 

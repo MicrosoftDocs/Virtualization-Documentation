@@ -26,10 +26,10 @@ Install-Module -Name DockerMsftProviderInsider -Repository PSGallery -Force
 ```
 Use OneGet to install the latest version of Docker.
 ```powershell
-Install-Package -Name docker -ProviderName DockerMsftProviderInsider -RequiredVersion 17.06.0-ce
+Install-Package -Name docker -ProviderName DockerMsftProviderInsider
 ```
 When the installation is complete, reboot the computer.
-```none
+```
 Restart-Computer -Force
 ```
 
@@ -46,13 +46,13 @@ Before working with Windows containers, a base image needs to be installed. By b
 
 To pull the Nano Server Insider base image run the following:
 
-```none
+```
 docker pull microsoft/nanoserver-insider
 ```
 
 To pull the Windows Server Core insider base image run the following:
 
-```none
+```
 docker pull microsoft/windowsservercore-insider
 ```
 

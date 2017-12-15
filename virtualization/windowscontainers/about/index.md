@@ -8,11 +8,10 @@ ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: 8e273856-3620-4e58-9d1a-d1e06550448
+
 ---
 
 # Windows Containers
-
-**This is preliminary content and subject to change.**
 
 ## What are Containers
 
@@ -20,11 +19,11 @@ Containers are a way to wrap up an application into its own isolated box. For th
 
 Imagine a kitchen. We package up all the appliances and furniture, the pots and pans, the dish soap and hand towels. This is our container
 
-<center>![](media/box1.png)</center>
+<center style="margin: 25px">![](media/box1.png)</center>
 
 We can now take this container and drop it into whatever host apartment we want, and it will be the same kitchen. All we must do is connect electricity and water to it, and then we’re clear to start cooking (because we have all the appliances we need!)
 
-<center>![](media/apartment.png)</center>
+<center style="margin: 25px">![](media/apartment.png)</center>
 
 In much the same way, containers are like this kitchen. There can be different kinds of rooms as well as many of the same kinds of rooms. What matters is that the containers come packaged up with everything they need.
 
@@ -40,7 +39,7 @@ The following key concepts will be helpful as you begin creating and working wit
 
 **Container Host:** Physical or Virtual computer system configured with the Windows Container feature. The container host will run one or more Windows Containers.
 
-**Container Image:** As modifications are made to a containers file system or registry—such as with software installation—they are captured in a sandbox. In many cases you may want to capture this state such that new containers can be created that inherit these changes. That’s what an image is – once the container has stopped you can either discard that sandbox or you can convert it into a new container image. For example, let’s imagine that you have deployed a container from the Windows Server Core OS image. You then install MySQL into this container. Creating a new image from this container would act as a deployable version of the container. This image would only contain the changes made (MySQL), however would work as a layer on top of the Container OS Image.
+**Container Image:** As modifications are made to a containers file system or registry—such as with software installation—they are captured in a sandbox. In many cases you may want to capture this state such that new containers can be created that inherit these changes. That’s what an image is – once the container has stopped you can either discard that sandbox or you can convert it into a new container image. For example, let’s imagine that you have deployed a container from the Windows Server Core OS image. You then install MySQL into this container. Creating a new image from this container would act as a deployable version of the container. This image would only contain the changes made (MySQL), however it would work as a layer on top of the Container OS Image.
 
 **Sandbox:** Once a container has been started, all write actions such as file system modifications, registry modifications or software installations are captured in this ‘sandbox’ layer.
 
@@ -96,6 +95,7 @@ Containers help admins create an infrastructure that is simpler to update and ma
 
 ## Try Windows Server Containers
 
-Ready to begin leveraging the awesome power of containers? Hit the jumps below to get a hands-on with deploying your very first container:
-For users on Windows Server, go here - [Windows Server Quick Start Introduction](../quick-start/quick-start-windows-server.md)
+Ready to begin leveraging the awesome power of containers? Hit the jumps below to get a hands-on with deploying your very first container: <br/>
+For users on Windows Server, go here - [Windows Server Quick Start Introduction](../quick-start/quick-start-windows-server.md) <br/>
 For users on Windows 10, go here - [Windows 10 Quick Start Introduction](../quick-start/quick-start-windows-10.md)
+

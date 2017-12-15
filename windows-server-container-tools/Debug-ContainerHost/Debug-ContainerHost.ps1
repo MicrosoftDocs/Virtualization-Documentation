@@ -1,6 +1,11 @@
 Write-Output "Checking for common problems"
 
 $filesToDump = @{}
+$currentVersion = Get-Item 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion'
+$OSProductName = $currentVersion.GetValue('ProductName')
+$OSBuildLabel = $currentVersion.GetValue('BuildLabEx')
+Write-Output "Container Host OS Product Name: $OSProductName"
+Write-Output "Container Host OS Build Label: $OSBuildLabel"
 
 Describe "Windows Version and Prerequisites" {
     $buildNumber = (Get-CimInstance -Namespace root\cimv2 Win32_OperatingSystem).BuildNumber
@@ -287,5 +292,11 @@ $events | Export-CSV $eventCsv
 Write-Host "Logs saved to $($PWD)\$($eventCsv)`n`n"
 
 Write-Output "Getting Docker for Windows daemon logs from the last execution"
-Write-Output "    Note: More logs are available at $($ENV:LOCALAPPDATA)\Docker. Only showing the latest."
-Get-Content "$($ENV:LOCALAPPDATA)\Docker\log.txt" | Select-String "WindowsDockerDaemon"
+Write-Output "    Note: More logs may be available at $($ENV:LOCALAPPDATA)\Docker. Only showing the latest 100 lines."
+if (Test-Path "$($ENV:LOCALAPPDATA)\Docker\log.txt")
+{
+	Get-Content -Tail 100 "$($ENV:LOCALAPPDATA)\Docker\log.txt" | Select-String "WindowsDockerDaemon"
+}
+else {
+	Write-Output "   $($ENV:LOCALAPPDATA)\Docker\log.txt does not exist."
+}

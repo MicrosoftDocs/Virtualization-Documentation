@@ -26,7 +26,7 @@ Nested virtualization is a feature that allows you to run Hyper-V inside of a Hy
 1. Create a virtual machine. See the prerequisites above for the required OS and VM versions.
 2. While the virtual machine is in the OFF state, run the following command on the physical Hyper-V host. This enables nested virtualization for the virtual machine.
 
-```none
+```
 Set-VMProcessor -VMName <VMName> -ExposeVirtualizationExtensions $true
 ```
 3. Start the virtual machine.
@@ -34,7 +34,7 @@ Set-VMProcessor -VMName <VMName> -ExposeVirtualizationExtensions $true
 
 ## Disable Nested Virtualization
 You can disable nested virtualization for a stopped virtual machine using the following PowerShell command:
-```none
+```
 Set-VMProcessor -VMName <VMName> -ExposeVirtualizationExtensions $false
 ```
 
@@ -49,24 +49,24 @@ There are two options for networking with nested virtual machines: MAC address s
 ### MAC Address Spoofing
 In order for network packets to be routed through two virtual switches, MAC address spoofing must be enabled on the first level of virtual switch. This is completed with the following PowerShell command.
 
-```none
+```
 Get-VMNetworkAdapter -VMName <VMName> | Set-VMNetworkAdapter -MacAddressSpoofing On
 ```
 ### Network Address Translation
 The second option relies on network address translation (NAT). This approach is best suited for cases where MAC address spoofing is not possible, like in a public cloud environment.
 
 First, a virtual NAT switch must be created in the host virtual machine (the "middle" VM). Note that the IP addresses are just an example, and will vary across environments:
-```none
-new-vmswitch -name VmNAT -SwitchType Internal
+```
+New-VMSwitch -Name VmNAT -SwitchType Internal
 New-NetNat –Name LocalNAT –InternalIPInterfaceAddressPrefix “192.168.100.0/24”
 ```
 Next, assign an IP address to the net adapter:
-```none
-get-netadapter "vEthernet (VmNat)" | New-NetIPAddress -IPAddress 192.168.100.1 -AddressFamily IPv4 -PrefixLength 24
+```
+Get-NetAdapter "vEthernet (VmNat)" | New-NetIPAddress -IPAddress 192.168.100.1 -AddressFamily IPv4 -PrefixLength 24
 ```
 Each nested virtual machine must have an IP address and gateway assigned to it. Note that the gateway IP must point to the NAT adapter from the previous step. You may also want to assign a DNS server:
-```none
-get-netadapter "Ethernet" | New-NetIPAddress -IPAddress 192.168.100.2 -DefaultGateway 192.168.100.1 -AddressFamily IPv4 -PrefixLength 24
+```
+Get-NetAdapter "Ethernet" | New-NetIPAddress -IPAddress 192.168.100.2 -DefaultGateway 192.168.100.1 -AddressFamily IPv4 -PrefixLength 24
 Netsh interface ip add dnsserver “Ethernet” address=<my DNS server>
 ```
 

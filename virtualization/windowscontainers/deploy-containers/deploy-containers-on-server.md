@@ -24,19 +24,19 @@ Open an elevated PowerShell session and run the following commands.
 
 Install the OneGet PowerShell module.
 
-```none
+```
 Install-Module -Name DockerMsftProvider -Repository PSGallery -Force
 ```
 
 Use OneGet to install the latest version of Docker.
 
-```none
+```
 Install-Package -Name docker -ProviderName DockerMsftProvider
 ```
 
 When the installation is complete, reboot the computer.
 
-```none
+```
 Restart-Computer -Force
 ```
 
@@ -46,13 +46,13 @@ Before working with Windows Containers, a base image needs to be installed. Base
 
 To install the Windows Server Core base image run the following:
 
-```none
+```
 docker pull microsoft/windowsservercore
 ```
 
 To install the Nano Server base image run the following:
 
-```none
+```
 docker pull microsoft/nanoserver
 ```
 
@@ -66,7 +66,7 @@ In order to run Hyper-V containers, the Hyper-V role is required. If the Windows
 
 The following script will configure nested virtualization for the container host. This script is run on the parent Hyper-V machine. Ensure that the container host virtual machine is turned off when running this script.
 
-```none
+```
 #replace with the virtual machine name
 $vm = "<virtual-machine>"
 
@@ -84,6 +84,6 @@ Get-VMNetworkAdapter -VMName $vm | Set-VMNetworkAdapter -MacAddressSpoofing On
 
 To enable the Hyper-V feature using PowerShell, run the following command in an elevated PowerShell session.
 
-```none
+```
 Install-WindowsFeature hyper-v
 ```
