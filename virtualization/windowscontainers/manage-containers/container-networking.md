@@ -197,6 +197,7 @@ If the container host is virtualized, and you wish to use DHCP for IP assignment
 ```
 PS C:\> Get-VMNetworkAdapter -VMName ContainerHostVM | Set-VMNetworkAdapter -MacAddressSpoofing On
 ```
+If you are running VMware as your hypervisor, you will need to enable promiscuous mode for this to work. Details can be found [here](https://kb.vmware.com/s/article/1004099)
 #### Creating multiple transparent networks on a single container host
 If you wish to create more than one transparent network you must specify to which (virtual) network adapter the external Hyper-V Virtual Switch should bind. To specify the interface for a network, use the following syntax:
 ```
