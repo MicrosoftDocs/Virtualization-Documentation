@@ -23,9 +23,9 @@ Docker is required in order to work with Windows Containers. Docker consists of 
 
 ## Uninstall Docker
 
-### Windows 10 Docker Uninstall/Cleanup Steps
+### Windows 10
 
-### Windows Server 2016 Docker Uninstall/Cleanup Steps
+### Windows Server 2016 
 Use the following steps to uninstall Docker and clean all of its remnants from your Windows Server 2016 system.
 
 **Open an elevated PowerShell session and run the following commands.**
