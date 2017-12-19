@@ -21,6 +21,29 @@ Docker is required in order to work with Windows Containers. Docker consists of 
 * [Windows Containers on Windows Server 2016](../quick-start/quick-start-windows-server.md)
 * [Windows Containers on Windows 10](../quick-start/quick-start-windows-10.md)
 
+## Uninstall Docker
+To uninstall Docker, and clean all of its remnants from your Windows 10 or Windows Server 2016 system, follow the following steps:
+
+Open an elevated PowerShell session and run the following commands.
+
+If you haven't already, it's good practice to make sure no containers are running on your system before removing Docker. Here are some useful commands for doing that:
+```
+# Leave swarm mode (this will automatically stop and remove services and overlay networks)
+PS C:\> docker swarm leave --force
+
+# Stop all running containers
+PS C:\> docker ps --quiet | ForEach-Object {docker stop $_}
+```
+It's also good practice to remove all containers, container images, networks and volumes from your system before removing Docker:
+```
+PS C:\> docker system prune --volumes --all
+```
+
+Next, remove Docker's default networks, so that their configuration won't stick around on your system once Docker is gone:
+```
+PS C:\> 
+```
+
 
 ### Manual Installation
 If you would like to use an in-development version of the Docker Engine and client instead, you can use the steps that follow. This will install both the Docker Engine and client. If you are a developer testing new features or using a Windows Insider build, you may need to use an in-development version of Docker. Otherwise, follow the steps in the Install Docker section above to get the latest released versions.
