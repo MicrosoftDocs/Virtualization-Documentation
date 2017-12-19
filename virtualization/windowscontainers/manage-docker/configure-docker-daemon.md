@@ -188,6 +188,8 @@ For more information see, [Windows Configuration File on Docker.com](https://doc
 ## Uninstall Docker
 *Use the steps in this section to uninstall Docker and perform a full cleanup of Docker system components from your Windows 10 or Windows Server 2016 system.*
 
+> Note: All commands in the steps below must be run from an **elevated** PowerShell session.
+
 ### STEP 1: Prepare your system for Docker's removal 
 If you haven't already, it's good practice to make sure no containers are running on your system before removing Docker. Here are some useful commands for doing that:
 ```
@@ -204,12 +206,12 @@ docker system prune --volumes --all
 
 ### STEP 2: Uninstall Docker 
 
-#### ***Steps on Windows 10:***
+#### ***Steps to uninstall Docker on Windows 10:***
 - Go to **"Settings" > "Apps"** on your Windows 10 machine
 - Under **"Apps & Features"**, find **"Docker for Windows"**
 - Click **"Docker for Windows" > "Uninstall"**
 
-#### ***Steps on Windows Server 2016:***
+#### ***Steps to uninstall Docker on Windows Server 2016:***
 From an elevated PowerShell session, use the `Uninstall-Package` and `Uninstall-Module` cmdlets to remove the Docker module and its corresponding Package Management Provider from your system. 
 > Tip: You can find the Package Provider that you used to install Docker with `PS C:\> Get-PackageProvider -Name *Docker*`
 
@@ -219,16 +221,25 @@ Uninstall-Package -Name docker -ProviderName DockerMsftProvider
 Uninstall-Module -Name DockerMsftProvider
 ```
 
-### STEP 3: Cleanup Docker data and default network components from your system
-Next, remove Docker's default networks, so that their configuration won't stick around on your system once Docker is gone:
+### STEP 3: Cleanup Docker data and system components
+Remove Docker's default networks, so that their configuration won't stick around on your system once Docker is gone:
 ```
 Get-HNSNetwork | Remove-HNSNetwork
 ```
-
-Also, open an elevated PowerShell session and run the following command to remove Docker's program data from your system:
+Remove Docker's program data from your system:
 ```
 Remove-Item "C:\ProgramData\Docker" -Recurse
 ```
+You may also want to remove the Windows optional features associated with Docker/containers on Windows. At a minimum, this includes the "Containers" feature, which is automatically enabled on any Windows 10 or Windows Server 2016 when Docker is installed. It may also include the Hyper-V feature, which is automatically enabled on Windows 10 when Docker is installed, but must be explicitly enabled on Windows Server 2016.
+> **Important note:** [The Hyper-V feature](https://docs.microsoft.com/en-us/virtualization/hyper-v-on-windows/about/) is a general virtualization feature that enables much more than just containers! Before disabling the Hyper-V feature, make sure there are no other virtualized components on your system that require it! For example, you probably don't want to disable the Hyper-V feature if you have any virtual machines on your system that are running using Hyper-V.
+
+#### ***Steps to remove Windows features on Windows 10:***
+- Go to **"Control Panel" > "Programs" > "Programs and Features" > "Turn Windows features on or off"** on your Windows 10 machine
+- Find the name of the feature/s you would like to disable--in this case, **"Containers"** and (optionally) **"Hyper-V"**
+- Uncheck the box next to the name of the feature you would like to disable
+- Click **"OK"**
+
+#### ***Steps to remove Windows features on Windows Server 2016:***
 
 ### STEP 4: Reboot your system
 From an elevated PowerShell session, run:
