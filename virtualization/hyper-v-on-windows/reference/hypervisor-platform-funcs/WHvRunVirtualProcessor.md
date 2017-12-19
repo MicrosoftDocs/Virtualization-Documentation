@@ -1,5 +1,5 @@
 # WHvRunVirtualProcessor
-**Note: These APIs are not yet publically available and will be included in a future Windows release.**
+**Note: These APIs are not yet publicly available and will be included in a future Windows release.**
 
 ## Syntax
 
@@ -66,7 +66,7 @@ Specifies the index of the virtual processor that is executed
 
 `ExitContext`
 
-Specifies the output buffer that receives the context structure providing the information about the reason that caused the WHvRunVirtualProcessor function to return. 
+Specifies the output buffer that receives the context structure providing the information about the reason that caused the `WHvRunVirtualProcessor` function to return. 
 
 `ExitContextSizeInBytes`
 

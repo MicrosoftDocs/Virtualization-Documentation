@@ -1,5 +1,5 @@
 # WHV_EMULATOR_MEMORY_ACCESS_INFO
-**Note: These APIs are not yet publically available and will be included in a future Windows release.**
+**Note: These APIs are not yet publicly available and will be included in a future Windows release.**
 
 
 ## Syntax
@@ -13,5 +13,5 @@ typedef struct _WHV_EMULATOR_MEMORY_ACCESS_INFO {
 } WHV_EMULATOR_MEMORY_ACCESS_INFO;
 ```
 ## Remarks
-Information about the requested memory access by the emulator. GpaAddress is the
-guest physical address attempting to be accessed. Direction is 0 for a memory read access, 1 for a write access. `AccessSize` is how big this memory access is in bytes, with a valid size of 1 to 8. Data is a byte array with little endian encoding, to either be filled out by the virtualization stack for a read, or containing the data to write to memory for a write.
+Information about the requested memory access by the emulator. `GpaAddress` is the
+guest physical address attempting to be accessed. `Direction` is 0 for a memory read access, 1 for a write access. `AccessSize` is how big this memory access is in bytes, with a valid size of 1 to 8. `Data` is a byte array with little endian encoding, to either be filled out by the virtualization stack for a read, or containing the data to write to memory for a write.

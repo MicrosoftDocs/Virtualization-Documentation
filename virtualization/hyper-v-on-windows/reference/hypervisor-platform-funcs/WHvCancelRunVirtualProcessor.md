@@ -1,5 +1,5 @@
 # WHvCancelRunVirtualProcessor
-**Note: These APIs are not yet publically available and will be included in a future Windows release.**
+**Note: These APIs are not yet publicly available and will be included in a future Windows release.**
 
 ## Syntax
 
@@ -15,7 +15,7 @@ WHvCancelRunVirtualProcessor(
 
 ### Parameters
 
-`Partition` 
+`Partition`
 
 Handle to the partition object
 
@@ -23,8 +23,8 @@ Handle to the partition object
 
 Specifies the index of the virtual processor for that the execution should be stopped
 
-`Flags` 
- 
+`Flags`
+
 Unused, must be zero 
 
 ## Remarks

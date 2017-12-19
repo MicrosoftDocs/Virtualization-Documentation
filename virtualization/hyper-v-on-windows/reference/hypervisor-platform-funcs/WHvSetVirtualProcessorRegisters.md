@@ -1,5 +1,5 @@
 # WHvSetVirtualProcessorRegisters
-**Note: These APIs are not yet publically available and will be included in a future Windows release.**
+**Note: These APIs are not yet publicly available and will be included in a future Windows release.**
 
 ## Syntax
 
@@ -17,7 +17,7 @@ WHvSetVirtualProcessorRegisters(
 
 ### Parameters
 
-`Partition` 
+`Partition`
 
 Handle to the partition object
 
@@ -25,15 +25,15 @@ Handle to the partition object
 
 Specifies the index of the virtual processor whose registers are set
 
-`RegisterNames` 
+`RegisterNames`
 
-Array specifying the names of the registers that are set 
+Array specifying the names of the registers that are set
 
-`RegisterCount` 
+`RegisterCount`
 
-Specifies the number of elements in the RegisterNames array 
+Specifies the number of elements in the `RegisterNames` array
 
-`RegisterValues` 
+`RegisterValues`
 
 Array specifying the values of the registers that are set
 

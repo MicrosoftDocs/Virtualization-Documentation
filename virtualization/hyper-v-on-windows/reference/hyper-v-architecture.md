@@ -24,7 +24,7 @@ The following diagram provides a high-level overview of the third-party architec
 
 ![](./media/hv_platform_architecture_simplified.png)
 > For more information see: [Windows Hypervisor Platform API](./hypervisor-platform.md)
-**Note: These APIs are not yet publically available and will be included in a future Windows release.  Subject to change.** 
+**Note: These APIs are not yet publicly available and will be included in a future Windows release.**
 
 ## Glossary
 * **APIC** – Advanced Programmable Interrupt Controller – A device which allows priority levels to be assigned to its interrupt outputs.

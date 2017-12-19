@@ -1,5 +1,5 @@
 # WHvGetVirtualProcessorRegisters
-**Note: These APIs are not yet publically available and will be included in a future Windows release.**
+**Note: These APIs are not yet publicly available and will be included in a future Windows release.**
 
 ## Syntax
 
@@ -17,7 +17,7 @@ WHvGetVirtualProcessorRegisters(
 
 ### Parameters
 
-`Partition` 
+`Partition`
 
 Handle to the partition object
 
@@ -25,15 +25,15 @@ Handle to the partition object
 
 Specifies the index of the virtual processor whose registers are queried
 
-`RegisterNames` 
+`RegisterNames`
 
 Array specifying the names of the registers that are queried
 
-`RegisterCount` 
+`RegisterCount`
 
 Specifies the number of elements in the `RegisterNames` array
 
-`RegisterValues` 
+`RegisterValues`
 
 Specifies the output buffer that receives the values of the request registers
 
