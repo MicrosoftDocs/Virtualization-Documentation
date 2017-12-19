@@ -204,20 +204,20 @@ docker system prune --volumes --all
 
 ### STEP 2: Uninstall Docker 
 
-#### ***Steps on Windows 10***
+#### ***Steps on Windows 10:***
 - Go to **"Settings" > "Apps"** on your Windows 10 machine
 - Under **"Apps & Features"**, find **"Docker for Windows"**
 - Click **"Docker for Windows" > "Uninstall"**
 
-#### ***Steps on Windows Server 2016***
+#### ***Steps on Windows Server 2016:***
 From an elevated PowerShell session, use the `Uninstall-Package` and `Uninstall-Module` cmdlets to remove the Docker module and its corresponding Package Management Provider from your system. 
+> Tip: You can find the Package Provider that you used to install Docker with `PS C:\> Get-PackageProvider -Name *Docker*`
 
 *For example*:
 ```
 Uninstall-Package -Name docker -ProviderName DockerMsftProvider
 Uninstall-Module -Name DockerMsftProvider
 ```
-> Tip: You can find the Package Provider that you used to install Docker with `PS C:\> Get-PackageProvider -Name *Docker*`
 
 ### STEP 3: Cleanup Docker data and default network components from your system
 Next, remove Docker's default networks, so that their configuration won't stick around on your system once Docker is gone:
