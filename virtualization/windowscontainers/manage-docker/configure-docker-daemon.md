@@ -22,31 +22,9 @@ Docker is required in order to work with Windows Containers. Docker consists of 
 * [Windows Containers on Windows 10](../quick-start/quick-start-windows-10.md)
 
 ## Uninstall Docker
+*Use the steps in this section to uninstall and cleanup after Docker on your Windows 10 or Windows Server 2016 system.*
 
-### Windows 10 
-*Use the following steps to uninstall and clean up after Docker for Windows, on Windows 10.*
-
-- Click the **Start** menu and start typing **"Add or remove programs"**, to get to your Windows 10 machine's **"Apps & features"** settings
-- In the list of **"Apps & Features"** find **"Docker for Windows"**
-- Click **"Docker for Windows" > "Uninstall"**
-
-Now, to clean up after Docker for Windows:
-- Open an elevated PowerShell session and run the following commands:
-```
-Get-HNSNetwork | Remove-HNSNetwork
-Remove-Item "C:\ProgramData\Docker" -Recurse
-```
-
-Finally, reboot your system:
-```
-Restart-Computer -Force
-```
-
-### Windows Server 2016 
-*Use the following steps to uninstall Docker and clean all of its remnants from your Windows Server 2016 system.*
-
-**Open an elevated PowerShell session and run the following commands.**
-
+### Pre-uninstall steps (applicable to both Windows 10 & Windows Server 2016)
 If you haven't already, it's good practice to make sure no containers are running on your system before removing Docker. Here are some useful commands for doing that:
 ```
 # Leave swarm mode (this will automatically stop and remove services and overlay networks)
@@ -65,12 +43,32 @@ Next, remove Docker's default networks, so that their configuration won't stick 
 Get-HNSNetwork | Remove-HNSNetwork
 ```
 
-Now, remove the Docker module and its corresponding Package Management Provider from your system. **For example**:
-> Tip: You can find the Package Provider that you used to install Docker with `PS C:\> Get-PackageProvider -Name *Docker*`
+### Uninstall Docker for Windows (Windows 10)
+
+- Go to **"Settings" > "Apps"** on your Windows 10 machine
+- Under **"Apps & Features"**, find **"Docker for Windows"**
+- Click **"Docker for Windows" > "Uninstall"**
+
+Also, open an elevated PowerShell session and run the following command to remove Docker's program data from your system:
+```
+Remove-Item "C:\ProgramData\Docker" -Recurse
+```
+
+Finally, reboot your system:
+```
+Restart-Computer -Force
+```
+
+### Windows Server 2016 
+
+From an elevated PowerShell session, use the `Uninstall-Package` and `Uninstall-Module` cmdlets to remove the Docker module and its corresponding Package Management Provider from your system. 
+
+**For example**:
 ```
 Uninstall-Package -Name docker -ProviderName DockerMsftProvider
 Uninstall-Module -Name DockerMsftProvider
 ```
+> Tip: You can find the Package Provider that you used to install Docker with `PS C:\> Get-PackageProvider -Name *Docker*`
 
 Also, remove Docker's program data from your system:
 ```
