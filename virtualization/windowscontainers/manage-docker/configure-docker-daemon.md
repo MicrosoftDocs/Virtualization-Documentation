@@ -22,9 +22,13 @@ Docker is required in order to work with Windows Containers. Docker consists of 
 * [Windows Containers on Windows 10](../quick-start/quick-start-windows-10.md)
 
 ## Uninstall Docker
-To uninstall Docker, and clean all of its remnants from your Windows 10 or Windows Server 2016 system, follow the following steps:
 
-Open an elevated PowerShell session and run the following commands.
+### Windows 10 Docker Uninstall/Cleanup Steps
+
+### Windows Server 2016 Docker Uninstall/Cleanup Steps
+Use the following steps to uninstall Docker and clean all of its remnants from your Windows Server 2016 system.
+
+**Open an elevated PowerShell session and run the following commands.**
 
 If you haven't already, it's good practice to make sure no containers are running on your system before removing Docker. Here are some useful commands for doing that:
 ```
@@ -41,9 +45,25 @@ PS C:\> docker system prune --volumes --all
 
 Next, remove Docker's default networks, so that their configuration won't stick around on your system once Docker is gone:
 ```
-PS C:\> 
+PS C:\> Get-HNSNetwork | Remove-HNSNetwork
 ```
 
+Now, remove the Docker module and its corresponding Package Management Provider from your system. For example:
+> Tip: You can find the Package Provider that you used to install Docker with `PS C:\> Get-PackageProvider -Name *Docker*`
+```
+PS C:\> Uninstall-Package -Name docker -ProviderName DockerMsftProvider
+PS C:\> Uninstall-Module -Name DockerMsftProvider
+```
+
+Also, remove Docker's program data from your system:
+```
+PS C:\> Remove-Item "C:\ProgramData\docker" -Recurse
+```
+
+Finally, reboot your system:
+```
+PS C:\> Restart-Computer -Force
+```
 
 ### Manual Installation
 If you would like to use an in-development version of the Docker Engine and client instead, you can use the steps that follow. This will install both the Docker Engine and client. If you are a developer testing new features or using a Windows Insider build, you may need to use an in-development version of Docker. Otherwise, follow the steps in the Install Docker section above to get the latest released versions.
