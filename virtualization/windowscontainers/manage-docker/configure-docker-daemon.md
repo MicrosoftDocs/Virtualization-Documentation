@@ -33,36 +33,36 @@ Use the following steps to uninstall Docker and clean all of its remnants from y
 If you haven't already, it's good practice to make sure no containers are running on your system before removing Docker. Here are some useful commands for doing that:
 ```
 # Leave swarm mode (this will automatically stop and remove services and overlay networks)
-PS C:\> docker swarm leave --force
+docker swarm leave --force
 
 # Stop all running containers
-PS C:\> docker ps --quiet | ForEach-Object {docker stop $_}
+docker ps --quiet | ForEach-Object {docker stop $_}
 ```
 It's also good practice to remove all containers, container images, networks and volumes from your system before removing Docker:
 ```
-PS C:\> docker system prune --volumes --all
+docker system prune --volumes --all
 ```
 
 Next, remove Docker's default networks, so that their configuration won't stick around on your system once Docker is gone:
 ```
-PS C:\> Get-HNSNetwork | Remove-HNSNetwork
+Get-HNSNetwork | Remove-HNSNetwork
 ```
 
 Now, remove the Docker module and its corresponding Package Management Provider from your system. For example:
 > Tip: You can find the Package Provider that you used to install Docker with `PS C:\> Get-PackageProvider -Name *Docker*`
 ```
-PS C:\> Uninstall-Package -Name docker -ProviderName DockerMsftProvider
-PS C:\> Uninstall-Module -Name DockerMsftProvider
+Uninstall-Package -Name docker -ProviderName DockerMsftProvider
+Uninstall-Module -Name DockerMsftProvider
 ```
 
 Also, remove Docker's program data from your system:
 ```
-PS C:\> Remove-Item "C:\ProgramData\docker" -Recurse
+Remove-Item "C:\ProgramData\docker" -Recurse
 ```
 
 Finally, reboot your system:
 ```
-PS C:\> Restart-Computer -Force
+Restart-Computer -Force
 ```
 
 ### Manual Installation
