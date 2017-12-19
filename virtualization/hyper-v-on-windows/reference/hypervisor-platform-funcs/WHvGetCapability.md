@@ -140,15 +140,15 @@ WHvGetCapability(
 
 ### Parameters
 
-`CapabilityCode` 
+`CapabilityCode`
 
 Specifies the capability that is queried.
 
-`CababilityBuffer` 
+`CababilityBuffer`
 
 Specifies the output buffer that receives the value of the capability:
 
-The `WHvCapabilityCodeHypervisorPresent` capability can be used to determine whether the Hyper-V Hypervisor is running on a host and the functions of the platform APIs can be used to create VM partitions.
+The `WHvCapabilityCodeHypervisorPresent` capability can be used to determine whether the Windows Hypervisor is running on a host and the functions of the platform APIs can be used to create VM partitions.
 
 The `WHvCapabilityCodeFeatures` capability is reserved for future use, it returns 0.
 
@@ -156,7 +156,7 @@ For the `WHvCapabilityCodeExtendedVmExits` capability, the buffer contains a bit
 
 The values returned for the processor properties are based on the capabilities of the physical processor on the system (i.e., they are retrieved by querying the corresponding properties of the root partition.
 
-`CapabilityBufferSizeInBytes` 
+`CapabilityBufferSizeInBytes`
 
 Specifies the size of the output buffer, in bytes. For the currently defined set capabilities, the output buffer should be large enough to hold a 64-bit value. 
 

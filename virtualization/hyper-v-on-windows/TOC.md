@@ -45,7 +45,7 @@
 ### [WHvSetVirtualProcessorRegisters](reference/hypervisor-platform-funcs/WHvSetVirtualProcessorRegisters.md)
 ### [WHvTranslateGva](reference/hypervisor-platform-funcs/WHvTranslateGva.md)
 ### [WHvUnmapGpaRange](reference/hypervisor-platform-funcs/WHvUnmapGpaRange.md)
-## [Hyper-V Instruction Emulator API](reference/hyper-v-emulator.md)
+## [Windows Hypervisor Platform Instruction Emulator API](reference/hypervisor-instruction-emulator.md)
 ### Instruction Emulation
 #### [I/O Port Access](reference/hypervisor-platform-funcs/IOPortAccessIE.md)
 #### [MMIO Access](reference/hypervisor-platform-funcs/MMIOAccessIE.md)
