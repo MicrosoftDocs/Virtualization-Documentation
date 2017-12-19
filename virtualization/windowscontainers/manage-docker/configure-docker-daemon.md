@@ -22,7 +22,7 @@ Docker is required in order to work with Windows Containers. Docker consists of 
 * [Windows Containers on Windows 10](../quick-start/quick-start-windows-10.md)
 
 ## Uninstall Docker
-*Use the steps in this section to uninstall and cleanup after Docker on your Windows 10 or Windows Server 2016 system.*
+*Use the steps in this section to uninstall Docker and perform a full cleanup of Docker system components from your Windows 10 or Windows Server 2016 system.*
 
 ### Pre-uninstall steps (applicable to both Windows 10 & Windows Server 2016)
 If you haven't already, it's good practice to make sure no containers are running on your system before removing Docker. Here are some useful commands for doing that:
