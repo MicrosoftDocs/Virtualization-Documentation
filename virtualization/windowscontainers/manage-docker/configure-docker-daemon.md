@@ -234,7 +234,7 @@ You may also want to remove the *Windows optional features* associated with Dock
 
 At a minimum, this includes the "Containers" feature, which is automatically enabled on any Windows 10 or Windows Server 2016 when Docker is installed. It may also include the "Hyper-V" feature, which is automatically enabled on Windows 10 when Docker is installed, but must be explicitly enabled on Windows Server 2016.
 
-> **IMPORTANT NOTE ON DISABLING HYPER-V:** [The Hyper-V feature](https://docs.microsoft.com/en-us/virtualization/hyper-v-on-windows/about/) is a general virtualization feature that enables much more than just containers! Before disabling the Hyper-V feature, make sure there are no other virtualized components on your system that require it! For example, you probably don't want to disable the Hyper-V feature if you have any virtual machines on your system that are running using Hyper-V.
+> **IMPORTANT NOTE ON DISABLING HYPER-V:** [The Hyper-V feature](https://docs.microsoft.com/en-us/virtualization/hyper-v-on-windows/about/) is a general virtualization feature that enables much more than just containers! Before disabling the Hyper-V feature, make sure there are no other virtualized components on your system that require it.
 
 #### ***Steps to remove Windows features on Windows 10:***
 - Go to **"Control Panel" > "Programs" > "Programs and Features" > "Turn Windows features on or off"** on your Windows 10 machine
