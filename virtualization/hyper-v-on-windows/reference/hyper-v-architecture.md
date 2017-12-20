@@ -14,18 +14,6 @@ The following diagram provides a high-level overview of the architecture of a Hy
 
 ![](./media/hv_architecture.png)
 
-## Support for Third-Party Virtualization Stacks
-
-Hyper-V additionally has an extended user-mode API for third-party virtualization stacks and applications to create and manage partitions at the hypervisor level, configure memory mappings for the partition, and create and control execution of virtual processors.
-
-> Ex: A client such as QEMU can run on the hypervisor while maintaining its management, configuration, guest/host protocols and guest supported drivers. All while running alongside a Hyper-V managed partition with no overlap.
-
-The following diagram provides a high-level overview of the third-party architecture.
-
-![](./media/hv_platform_architecture_simplified.png)
-> For more information see: [Windows Hypervisor Platform API](./hypervisor-platform.md)
-**Note: These APIs are not yet publicly available and will be included in a future Windows release.**
-
 ## Glossary
 * **APIC** – Advanced Programmable Interrupt Controller – A device which allows priority levels to be assigned to its interrupt outputs.
 * **Child Partition** – Partition that hosts a guest operating system - All access to physical memory and devices by a child partition is provided via the Virtual Machine Bus (VMBus) or the hypervisor.
