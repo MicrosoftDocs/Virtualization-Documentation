@@ -1,4 +1,4 @@
-# Hyper-V Instruction Emulator API Definitions and Support DLLs
+# Windows Hypervisor Platform Instruction Emulator API Definitions and Support DLLs
 
 **Note: These APIs are not yet publically available and will be included in a future Windows release.**
 
@@ -28,7 +28,7 @@ Instruction emulation uses a fixed set of registers that are queried and set tog
 
 This set of registers is provided using the [`WHvGetVirtualProcessorRegisters`](hypervisor-platform-funcs/WHvGetVirtualProcessorRegisters.md) and [`WHvSetVirtualProcessorRegisters`](hypervisor-platform-funcs/WHvSetVirtualProcessorRegisters.md) platform functions, keeping it in sync with the register state used by the instruction emulation.  
 
-## Hyper-V Instruction Emulator API Reference
+## Windows Hypervisor Platform Instruction Emulator API Reference
 
 ### Emulator Structures
 |Structure   |Description|
