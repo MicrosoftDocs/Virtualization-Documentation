@@ -1,6 +1,6 @@
 # CPUID Access
 
-**Note: These APIs are not yet publically available and will be included in a future Windows release.**
+**Note: These APIs are not yet publicly available and will be included in a future Windows release.**
 
 ## Syntax
 ```C
@@ -25,6 +25,6 @@ typedef struct WHV_X64_CPUID_ACCESS_CONTEXT
 ```
 
 ## Return Value
-Information about exits caused by the virtual processor executing the CPUID instruction is provided in the `WHV_X64_CPUID_ACCESS_CONTEXT` structure. The `DefaultResultRax-Rbx` members of the structure provide the values of the requested CPUID values that the hypervisor would return based on the partition properties and the capabilities of the host.  
+Information about exits caused by the virtual processor executing the `CPUID` instruction is provided in the `WHV_X64_CPUID_ACCESS_CONTEXT` structure. The `DefaultResultRax-Rbx` members of the structure provide the values of the requested `CPUID` values that the hypervisor would return based on the partition properties and the capabilities of the host.  
 
-Exits for `CPUID` accesses are only generated if they are enabled by setting the `WHV_EXTENDED_VM_EXITS`.CpuidExit property for the partition. 
+Exits for `CPUID` accesses are only generated if they are enabled by setting the `WHV_EXTENDED_VM_EXITS.CpuidExit` property for the partition. 

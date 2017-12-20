@@ -1,5 +1,5 @@
 # WHV_EMULATOR_MEMORY_CALLBACK
-**Note: These APIs are not yet publically available and will be included in a future Windows release.**
+**Note: These APIs are not yet publicly available and will be included in a future Windows release.**
 
 ## Syntax
 
@@ -11,7 +11,7 @@ typedef HRESULT (CALLBACK *WHV_EMULATOR_MEMORY_CALLBACK)(
 ```
 
 ## Remarks
-Callback notifying the virtualization stack that the current instruction is attempting to accessing memory as specified in the MemoryAccess structure.
+Callback notifying the virtualization stack that the current instruction is attempting to accessing memory as specified in the `MemoryAccess` structure.
 
 **NOTE:** As mentioned above, since in x86/AMD64 it is legal to do unaligned memory accesses, a memory access spanning a page boundary ie:
 

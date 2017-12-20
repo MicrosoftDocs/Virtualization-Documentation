@@ -1,5 +1,5 @@
 # WHvGetCapability
-**Note: These APIs are not yet publically available and will be included in a future Windows release.**
+**Note: These APIs are not yet publicly available and will be included in a future Windows release.**
 
 
 ## Syntax
@@ -152,7 +152,7 @@ The `WHvCapabilityCodeHypervisorPresent` capability can be used to determine whe
 
 The `WHvCapabilityCodeFeatures` capability is reserved for future use, it returns 0.
 
-For the `WHvCapabilityCodeExtendedVmExits` capability, the buffer contains a bit field that specifies which additional exit reasons are available that can be configured to cause the execution of a virtual processor to be halted (see Running a Virtual Processor).
+For the `WHvCapabilityCodeExtendedVmExits` capability, the buffer contains a bit field that specifies which additional exit reasons are available that can be configured to cause the execution of a virtual processor to be halted (see [`WHvRunVirtualProcessor`](WHvRunVirtualProcessor.md)).
 
 The values returned for the processor properties are based on the capabilities of the physical processor on the system (i.e., they are retrieved by querying the corresponding properties of the root partition.
 

@@ -1,5 +1,5 @@
 # WHvMapGpaRange
-**Note: These APIs are not yet publically available and will be included in a future Windows release.**
+**Note: These APIs are not yet publicly available and will be included in a future Windows release.**
 
 ## Syntax
 ```C
@@ -34,19 +34,19 @@ WHvMapGpaRange(
 
 Handle to the partition object
 
-`SourceAddress` 
+`SourceAddress`
 
 Specifies the page-aligned address of the memory region in the caller’s process that is the source of the mapping
 
-`GuestAddress` 
+`GuestAddress`
 
 Specifies the destination address in the VM’s physical address space
 
-`SizeInBytes` 
+`SizeInBytes`
 
 Specifies the number of pages that are mapped
 
-`Flags`  
+`Flags`
 
 Specifies the access flags for the mapping
   

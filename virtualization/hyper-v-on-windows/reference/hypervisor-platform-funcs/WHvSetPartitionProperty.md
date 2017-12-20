@@ -1,5 +1,5 @@
 # WHvSetPartitionProperty
-**Note: These APIs are not yet publically available and will be included in a future Windows release.**
+**Note: These APIs are not yet publicly available and will be included in a future Windows release.**
 
 ## Syntax
 ```C
@@ -17,11 +17,11 @@ WHvSetPartitionProperty(
 
 Handle to the partition object. 
 
-`PropertyBuffer` 
+`PropertyBuffer`
 
 Specifies the input buffer that provides the property value. 
 
-`PropertyBufferSizeInBytes` 
+`PropertyBufferSizeInBytes`
 
 Specifies the size of the input buffer, in bytes. 
 

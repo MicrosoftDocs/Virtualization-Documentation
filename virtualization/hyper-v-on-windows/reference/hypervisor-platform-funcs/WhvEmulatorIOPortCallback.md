@@ -1,5 +1,5 @@
 # WHV_EMULATOR_IO_PORT_CALLBACK
-**Note: These APIs are not yet publically available and will be included in a future Windows release..**
+**Note: These APIs are not yet publicly available and will be included in a future Windows release.**
 
 ## Syntax
 

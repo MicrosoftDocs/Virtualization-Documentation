@@ -1,5 +1,5 @@
 # WHvTranslateGva
-**Note: These APIs are not yet publically available and will be included in a future Windows release.**
+**Note: These APIs are not yet publicly available and will be included in a future Windows release.**
 
 ## Syntax
 ```C
@@ -61,30 +61,30 @@ WHvTranslateGva(
 
 Handle to the partition object in the VID
 
-`VpIndex` 
+`VpIndex`
 
 Specifies the index of the virtual processor for which the virtual address is translated
 
-`Gva` 
+`Gva`
 
 Specifies the virtual address that is translated
 
-`TranslateFlages` 
+`TranslateFlages`
 
 Specifies flags for the translation 
 
 
-`TranslationResult` 
+`TranslationResult`
 
 Receives the result of the translation
 
-`Gpa` 
+`Gpa`
 
 Receives the physical address if the translation was successful. 
 
 ## Return Value
 
-If the operation completed successfully, the return value is `S_OK`. Note that a successful completion of the call just indicates that the TranslationResult output parameter is valid, the result of the translation is return in the ResultCode member of this struct. 
+If the operation completed successfully, the return value is `S_OK`. Note that a successful completion of the call just indicates that the `TranslationResult` output parameter is valid, the result of the translation is return in the `ResultCode` member of this struct. 
 
 ## Remarks
 

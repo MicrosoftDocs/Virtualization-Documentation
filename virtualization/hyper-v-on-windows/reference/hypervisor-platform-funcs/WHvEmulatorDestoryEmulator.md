@@ -1,5 +1,5 @@
 # WHvEmulatorDestoryEmulator
-**Note: These APIs are not yet publically available and will be included in a future Windows release.**
+**Note: These APIs are not yet publicly available and will be included in a future Windows release.**
 
 ## Syntax
 
@@ -14,7 +14,7 @@ WHvEmulatorDestoryEmulator(
 
 `Partition`
 
-Handle to the emulator instance that is destroyed .
+Handle to the emulator instance that is destroyed.
 
 ## Remarks
 Destroy an instance of the instruction emulator created by [`WHvEmulatorCreateEmulator`](WHvEmulatorCreateEmulator.md)
