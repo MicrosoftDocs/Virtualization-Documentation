@@ -14,7 +14,7 @@ The amount of time in seconds to wait for the service to start after initating t
 ####AllowServiceRestart
 Automtically restart the wait process when the service exits looping for the StartupTimeout again.
 ##Example
-```none
+```
 FROM microsoft/iis
 ADD Wait-Service.ps1 /Wait-Service.ps1
 
@@ -22,7 +22,7 @@ SHELL ["powershell", "-File"]
 CMD c:\Wait-Service.ps1 -ServiceName W3SVC -AllowServiceRestart
 ```
 or
-```none
+```
 FROM microsoft/iis
 ADD Wait-Service.ps1 /Wait-Service.ps1
 

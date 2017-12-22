@@ -1,0 +1,104 @@
+{ 
+    "redirections": [ 
+      {
+        "source_path": "virtualization/hyper-v-on-windows/windows_welcome.md",
+        "redirect_url": "/virtualization/hyper-v-on-windows/index",
+        "redirect_document_id": true
+      },
+      {
+        "source_path": "virtualization/hyper-v-on-windows/quick_start/index.md",
+        "redirect_url": "/virtualization/hyper-v-on-windows/user-guide/index",
+        "redirect_document_id": true
+      },
+      {
+        "source_path": "virtualization/hyper-v-on-windows/quick_start/walkthrough_checkpoints.md",
+        "redirect_url": "/virtualization/hyper-v-on-windows/user-guide/checkpoints",
+        "redirect_document_id": true
+      },
+      {
+        "source_path": "virtualization/hyper-v-on-windows/quick_start/walkthrough_compatibility.md",
+        "redirect_url": "/virtualization/hyper-v-on-windows/reference/hyper-v-requirements",
+        "redirect_document_id": true
+      },
+      {
+        "source_path": "virtualization/hyper-v-on-windows/quick_start/walkthrough_create_vm.md",
+        "redirect_url": "/virtualization/hyper-v-on-windows/quick-start/create-virtual-machine",
+        "redirect_document_id": true
+      },
+      {
+        "source_path": "virtualization/hyper-v-on-windows/quick_start/walkthrough_export_import.md",
+        "redirect_url": "https://docs.microsoft.com/windows-server/virtualization/hyper-v/deploy/export-and-import-virtual-machines",
+        "redirect_document_id": true
+      },
+      {
+        "source_path": "virtualization/hyper-v-on-windows/quick_start/walkthrough_install.md",
+        "redirect_url": "/virtualization/hyper-v-on-windows/quick-start/enable-hyper-v",
+        "redirect_document_id": true
+      },
+      {
+        "source_path": "virtualization/hyper-v-on-windows/quick_start/walkthrough_powershell.md",
+        "redirect_url": "/virtualization/hyper-v-on-windows/quick-start/try-hyper-v-powershell",
+        "redirect_document_id": true
+      },
+      {
+        "source_path": "virtualization/hyper-v-on-windows/quick_start/walkthrough_virtual_switch.md",
+        "redirect_url": "/virtualization/hyper-v-on-windows/quick-start/connect-to-network",
+        "redirect_document_id": true
+      },
+      {
+        "source_path": "virtualization/hyper-v-on-windows/quick_start/walkthrough.md",
+        "redirect_url": "/virtualization/hyper-v-on-windows/user-guide/index",
+        "redirect_document_id": true
+      },
+      {
+        "source_path": "virtualization/hyper-v-on-windows/user_guide/checkpoints.md",
+        "redirect_url": "/virtualization/hyper-v-on-windows/user-guide/checkpoints",
+        "redirect_document_id": true
+      },
+      {
+        "source_path": "virtualization/hyper-v-on-windows/user_guide/create_pre-release_vm.md",
+        "redirect_url": "/virtualization/hyper-v-on-windows/user-guide/create-pre-release-vm",
+        "redirect_document_id": true
+      },
+      {
+        "source_path": "virtualization/hyper-v-on-windows/user_guide/export_import.md",
+        "redirect_url": "https://docs.microsoft.com/windows-server/virtualization/hyper-v/deploy/export-and-import-virtual-machines",
+        "redirect_document_id": true
+      },
+      {
+        "source_path": "virtualization/hyper-v-on-windows/user_guide/managing_ics.md",
+        "redirect_url": "https://docs.microsoft.com/windows-server/virtualization/hyper-v/manage/Manage-Hyper-V-integration-services",
+        "redirect_document_id": true
+      },
+      {
+        "source_path": "virtualization/hyper-v-on-windows/user_guide/migrating_vms.md",
+        "redirect_url": "https://docs.microsoft.com/windows-server/virtualization/hyper-v/deploy/Upgrade-virtual-machine-version-in-Hyper-V-on-Windows-or-Windows-Server",
+        "redirect_document_id": true
+      },
+      {
+        "source_path": "virtualization/hyper-v-on-windows/user_guide/nesting.md",
+        "redirect_url": "/virtualization/hyper-v-on-windows/user-guide/nested-virtualization",
+        "redirect_document_id": true
+      },
+      {
+        "source_path": "virtualization/hyper-v-on-windows/user_guide/remote_host_management.md",
+        "redirect_url": "https://docs.microsoft.com/windows-server/virtualization/hyper-v/manage/Remotely-manage-Hyper-V-hosts",
+        "redirect_document_id": true
+      },
+      {
+        "source_path": "virtualization/hyper-v-on-windows/user_guide/setup_nat_networking.md",
+        "redirect_url": "/virtualization/hyper-v-on-windows/user-guide/setup-nat-network",
+        "redirect_document_id": true
+      },
+      {
+        "source_path": "virtualization/hyper-v-on-windows/user_guide/troubleshooting.md",
+        "redirect_url": "/virtualization/hyper-v-on-windows/user-guide/troubleshooting",
+        "redirect_document_id": true
+      },
+      {
+        "source_path": "virtualization/hyper-v-on-windows/user_guide/vmsession.md",
+        "redirect_url": "/virtualization/hyper-v-on-windows/user-guide/powershell-direct",
+        "redirect_document_id": true
+      }
+    ] 
+}

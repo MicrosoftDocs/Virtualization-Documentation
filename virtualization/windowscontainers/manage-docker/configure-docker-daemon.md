@@ -21,7 +21,6 @@ Docker is required in order to work with Windows Containers. Docker consists of 
 * [Windows Containers on Windows Server 2016](../quick-start/quick-start-windows-server.md)
 * [Windows Containers on Windows 10](../quick-start/quick-start-windows-10.md)
 
-
 ### Manual Installation
 If you would like to use an in-development version of the Docker Engine and client instead, you can use the steps that follow. This will install both the Docker Engine and client. If you are a developer testing new features or using a Windows Insider build, you may need to use an in-development version of Docker. Otherwise, follow the steps in the Install Docker section above to get the latest released versions.
 
@@ -32,8 +31,7 @@ Download the Docker Engine
 The latest version may always be found at https://master.dockerproject.org . This sample uses the latest from the master branch. 
 
 ```powershell
-$version = (Invoke-WebRequest -UseBasicParsing https://raw.githubusercontent.com/docker/docker/master/VERSION).Content.Trim()
-Invoke-WebRequest "https://master.dockerproject.org/windows/x86_64/docker-$($version).zip" -OutFile "$env:TEMP\docker.zip" -UseBasicParsing
+Invoke-WebRequest "https://master.dockerproject.org/windows/x86_64/docker.zip" -OutFile "$env:TEMP\docker.zip" -UseBasicParsing
 ```
 
 Expand the zip archive into Program Files.
@@ -55,7 +53,7 @@ $existingMachinePath = [Environment]::GetEnvironmentVariable("Path",[System.Envi
 
 To install Docker as a Windows service, run the following.
 
-```none
+```
 dockerd --register-service
 ```
 
@@ -73,7 +71,7 @@ The preferred method for configuring the Docker Engine on Windows is using a con
 
 Note – not every available Docker configuration option is applicable to Docker on Windows. The below example shows those that are. For complete documentation on Docker Engine configuration, see [Docker daemon configuration file](https://docs.docker.com/engine/reference/commandline/dockerd/#/windows-configuration-file).
 
-```none
+```
 {
     "authorization-plugins": [],
     "dns": [],
@@ -86,7 +84,7 @@ Note – not every available Docker configuration option is applicable to Docker
     "log-driver": "", 
     "mtu": 0,
     "pidfile": "",
-    "graph": "",
+    "data-root": "",
     "cluster-store": "",
     "cluster-advertise": "",
     "debug": true,
@@ -109,7 +107,7 @@ Note – not every available Docker configuration option is applicable to Docker
 
 Only the desired configuration changes need to be added to the configuration file. For example, this sample configures the Docker Engine to accept incoming connections on port 2375. All other configuration options will use default values.
 
-```none
+```
 {
     "hosts": ["tcp://0.0.0.0:2375"]
 }
@@ -118,15 +116,15 @@ Only the desired configuration changes need to be added to the configuration fil
 Likewise this sample configures the Docker daemon to keep images and containers in an alternate path. If not specified, the
 default is c:\programdata\docker.
 
-```none
+```
 {    
-    "graph": "d:\\docker"
+    "data-root": "d:\\docker"
 }
 ```
 
 Likewise, this sample configures the Docker daemon to only accept secured connections over port 2376.
 
-```none
+```
 {
     "hosts": ["tcp://0.0.0.0:2376", "npipe://"],
     "tlsverify": true,
@@ -141,7 +139,7 @@ Likewise, this sample configures the Docker daemon to only accept secured connec
 The Docker Engine can also be configured by modifying the Docker service using `sc config`. Using this method, Docker Engine flags are set directly on the Docker service. Run the following command in a command prompt (cmd.exe not PowerShell):
 
 
-```none
+```
 sc config docker binpath= "\"C:\Program Files\docker\dockerd.exe\" --run-service -H tcp://0.0.0.0:2375"
 ```
 
@@ -155,7 +153,7 @@ The following configuration file examples show common Docker configurations. The
 
 To configure the Docker Engine so that a default NAT network is not created, use the following. For more information, see [Manage Docker Networks](../manage-containers/container-networking.md).
 
-```none
+```
 {
     "bridge" : "none"
 }
@@ -165,7 +163,7 @@ To configure the Docker Engine so that a default NAT network is not created, use
 
 When logged into the Docker host and running Docker commands locally, these commands are run through a named pipe. By default, only members of the Administrators group can access the Docker Engine through the named pipe. To specify a security group that has this access, use the `group` flag.
 
-```none
+```
 {
     "group" : "docker"
 }
@@ -187,3 +185,72 @@ Restart-Service docker
 
 For more information see, [Windows Configuration File on Docker.com](https://docs.docker.com/engine/reference/commandline/dockerd/#/windows-configuration-file).
 
+## Uninstall Docker
+*Use the steps in this section to uninstall Docker and perform a full cleanup of Docker system components from your Windows 10 or Windows Server 2016 system.*
+
+> Note: All commands in the steps below must be run from an **elevated** PowerShell session.
+
+### STEP 1: Prepare your system for Docker's removal 
+If you haven't already, it's good practice to make sure no containers are running on your system before removing Docker. Here are some useful commands for doing that:
+```
+# Leave swarm mode (this will automatically stop and remove services and overlay networks)
+docker swarm leave --force
+
+# Stop all running containers
+docker ps --quiet | ForEach-Object {docker stop $_}
+```
+It's also good practice to remove all containers, container images, networks and volumes from your system before removing Docker:
+```
+docker system prune --volumes --all
+```
+
+### STEP 2: Uninstall Docker 
+
+#### ***Steps to uninstall Docker on Windows 10:***
+- Go to **"Settings" > "Apps"** on your Windows 10 machine
+- Under **"Apps & Features"**, find **"Docker for Windows"**
+- Click **"Docker for Windows" > "Uninstall"**
+
+#### ***Steps to uninstall Docker on Windows Server 2016:***
+From an elevated PowerShell session, use the `Uninstall-Package` and `Uninstall-Module` cmdlets to remove the Docker module and its corresponding Package Management Provider from your system. 
+> Tip: You can find the Package Provider that you used to install Docker with `PS C:\> Get-PackageProvider -Name *Docker*`
+
+*For example*:
+```
+Uninstall-Package -Name docker -ProviderName DockerMsftProvider
+Uninstall-Module -Name DockerMsftProvider
+```
+
+### STEP 3: Cleanup Docker data and system components
+Remove Docker's *default networks,* so that their configuration won't stick around on your system once Docker is gone:
+```
+Get-HNSNetwork | Remove-HNSNetwork
+```
+Remove Docker's *program data* from your system:
+```
+Remove-Item "C:\ProgramData\Docker" -Recurse
+```
+You may also want to remove the *Windows optional features* associated with Docker/containers on Windows. 
+
+At a minimum, this includes the "Containers" feature, which is automatically enabled on any Windows 10 or Windows Server 2016 when Docker is installed. It may also include the "Hyper-V" feature, which is automatically enabled on Windows 10 when Docker is installed, but must be explicitly enabled on Windows Server 2016.
+
+> **IMPORTANT NOTE ON DISABLING HYPER-V:** [The Hyper-V feature](https://docs.microsoft.com/en-us/virtualization/hyper-v-on-windows/about/) is a general virtualization feature that enables much more than just containers! Before disabling the Hyper-V feature, make sure there are no other virtualized components on your system that require it.
+
+#### ***Steps to remove Windows features on Windows 10:***
+- Go to **"Control Panel" > "Programs" > "Programs and Features" > "Turn Windows features on or off"** on your Windows 10 machine
+- Find the name of the feature/s you would like to disable--in this case, **"Containers"** and (optionally) **"Hyper-V"**
+- **Uncheck** the box next to the name of the feature you would like to disable
+- Click **"OK"**
+
+#### ***Steps to remove Windows features on Windows Server 2016:***
+From an elevated PowerShell session, use the following commands to disable the **"Containers"** and (optionally) **"Hyper-V"** features from your system:
+```
+Remove-WindowsFeature Containers
+Remove-WindowsFeature Hyper-V 
+```
+
+### STEP 4: Reboot your system
+To complete these uninstall/cleanup steps, from an elevated PowerShell session, run:
+```
+Restart-Computer -Force
+```

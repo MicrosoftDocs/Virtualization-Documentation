@@ -84,14 +84,14 @@ docker run -it --security-opt "credentialspec=file://WebApplication1.json" micro
 You can run `nltest.exe /parentdomain` in a container to confirm that it can reach the Active Directory domain.
 
 If it succeeds, it will return the full domain name:
-```none
+```
 c:\>nltest.exe /parentdomain
 contoso.com (1)
 ```
 
 If it fails, then a connection couldn't be made. Be sure that it was launched with the right options, and make sure the host can access the gMSA.
 
-```none
+```
 C:\>nltest.exe /parentdomain
 Getting parent domain failed: Status = 1722 0x6ba RPC_S_SERVER_UNAVAILABLE
 ```

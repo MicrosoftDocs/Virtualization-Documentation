@@ -24,10 +24,10 @@ This document walks through creating a simple program built on Hyper-V sockets.
 * Windows Server 2016 and later
 * Linux guests with Linux Integration Services (see [Supported Linux and FreeBSD virtual machines for Hyper-V on Windows](https://technet.microsoft.com/library/dn531030.aspx))
 
-**Capabilities and Limitations**  
-* Supports kernel mode or user mode actions  
-* Data stream only  	
-* No block memory (not the best for backup/video) 
+**Capabilities and Limitations**
+* Supports kernel mode or user mode actions
+* Data stream only
+* No block memory (not the best for backup/video)
 
 --------------
 
@@ -38,7 +38,7 @@ Requirements:
 * [Windows 10 SDK](https://developer.microsoft.com/windows/downloads/windows-10-sdk) -- pre-installed in Visual Studio 2015 with Update 3 and later.
 * A computer running one of the host operating systems above with at least one vitual machine. -- this is for testing your application.
 
-> **Note:** The API for Hyper-V sockets became publically available in Windows 10 slightly after .  Applications that use HVSocket will run on any Widnows 10 host and guest but can only be developed with a Windows SDK later than build 14290.  
+> **Note:** The API for Hyper-V sockets became publicly available in Windows 10 slightly after .  Applications that use HVSocket will run on any Widnows 10 host and guest but can only be developed with a Windows SDK later than build 14290.
 
 ## Register a new application
 In order to use Hyper-V sockets, the application must be registered with the Hyper-V Host's registry.
@@ -55,7 +55,7 @@ $friendlyName = "HV Socket Demo"
 # Create a new random GUID.  Add it to the services list
 $service = New-Item -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Virtualization\GuestCommunicationServices" -Name ((New-Guid).Guid)
 
-# Set a friendly name 
+# Set a friendly name
 $service.SetValue("ElementName", $friendlyName)
 
 # Copy GUID to clipboard for later use
@@ -63,14 +63,14 @@ $service.PSChildName | clip.exe
 ```
 
 
-**Registry location and information:**  
-``` 
+**Registry location and information:**
+```
 HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Virtualization\GuestCommunicationServices\
-```  
+```
 In this registry location, you'll see several GUIDs.  Those are our in-box services.
 
 Information in the registry per service:
-* `Service GUID`   
+* `Service GUID`
     * `ElementName (REG_SZ)` -- this is the service's friendly name
 
 To register your own service, create a new registry key using your own GUID and friendly name.
@@ -86,7 +86,7 @@ HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Virtualization\G
 	    ElementName	REG_SZ	Your Service Friendly Name
 ```
 
-> **Tip:**  To generate a GUID in PowerShell and copy it to the clipboard, run:  
+> **Tip:**  To generate a GUID in PowerShell and copy it to the clipboard, run:
 ``` PowerShell
 (New-Guid).Guid | clip.exe
 ```
@@ -105,7 +105,7 @@ SOCKET WSAAPI socket(
   _In_ int type,
   _In_ int protocol
 );
-``` 
+```
 
 For a Hyper-V socket:
 * Address family - `AF_HYPERV`
@@ -113,7 +113,7 @@ For a Hyper-V socket:
 * protocol - `HV_PROTOCOL_RAW`
 
 
-Here is an example declaration/instantiation:  
+Here is an example declaration/instantiation:
 ``` C
 SOCKET sock = socket(AF_HYPERV, SOCK_STREAM, HV_PROTOCOL_RAW);
 ```
@@ -133,7 +133,7 @@ int bind(
 );
 ```
 
-In contrast to the socket address (sockaddr) for a standard Internet Protocol address family (`AF_INET`) which consists of the host machine's IP address and a port number on that host, the socket address for `AF_HYPERV` uses the virtual machine's ID and the application ID defined above to establish a connection. 
+In contrast to the socket address (sockaddr) for a standard Internet Protocol address family (`AF_INET`) which consists of the host machine's IP address and a port number on that host, the socket address for `AF_HYPERV` uses the virtual machine's ID and the application ID defined above to establish a connection.
 
 Since Hyper-V sockets do not depend on a networking stack, TCP/IP, DNS, etc. the socket endpoint needed a non-IP, not hostname, format that still unambiguously describes the connection.
 
@@ -149,43 +149,43 @@ struct SOCKADDR_HV
 };
 ```
 
-In lieu of an IP or hostname, AF_HYPERV endpoints rely heavily on two GUIDs:  
-* VM ID – this is the unique ID assigned per VM.  A VM’s ID can be found using the following PowerShell snippet.  
+In lieu of an IP or hostname, AF_HYPERV endpoints rely heavily on two GUIDs:
+* VM ID – this is the unique ID assigned per VM.  A VM’s ID can be found using the following PowerShell snippet.
   ```PowerShell
   (Get-VM -Name $VMName).Id
   ```
 * Service ID – GUID, [described above](#RegisterANewApplication), with which the application is registered in the Hyper-V host registry.
 
 There is also a set of VMID wildcards available when a connection isn't to a specific virtual machine.
- 
+
 ### VMID Wildcards
 
 | Name | GUID | Description |
 |:-----|:-----|:-----|
 | HV_GUID_ZERO | 00000000-0000-0000-0000-000000000000 | Listeners should bind to this VmId to accept connection from all partitions. |
 | HV_GUID_WILDCARD | 00000000-0000-0000-0000-000000000000 | Listeners should bind to this VmId to accept connection from all partitions. |
-| HV_GUID_BROADCAST | FFFFFFFF-FFFF-FFFF-FFFF-FFFFFFFFFFFF | |  
+| HV_GUID_BROADCAST | FFFFFFFF-FFFF-FFFF-FFFF-FFFFFFFFFFFF | |
 | HV_GUID_CHILDREN | 90db8b89-0d35-4f79-8ce9-49ea0ac8b7cd | Wildcard address for children. Listeners should bind to this VmId to accept connection from its children. |
 | HV_GUID_LOOPBACK | e0e16197-dd56-4a10-9195-5ee7a155a838 | Loopback address. Using this VmId connects to the same partition as the connector. |
 | HV_GUID_PARENT | a42e7cda-d03f-480c-9cc2-a4de20abb878 | Parent address. Using this VmId connects to the parent partition of the connector.* |
 
 
-\* `HV_GUID_PARENT`  
-The parent of a virtual machine is its host.  The parent of a container is the container's host.  
-Connecting from a container running in a virtual machine will connect to the VM hosting the container.  
-Listening on this VmId accepts connection from:  
-(Inside containers): Container host.  
-(Inside VM: Container host/ no container): VM host.  
+\* `HV_GUID_PARENT`
+The parent of a virtual machine is its host.  The parent of a container is the container's host.
+Connecting from a container running in a virtual machine will connect to the VM hosting the container.
+Listening on this VmId accepts connection from:
+(Inside containers): Container host.
+(Inside VM: Container host/ no container): VM host.
 (Not inside VM: Container host/ no container): Not supported.
 
 ## Supported socket commands
 
-Socket()  
-Bind()  
-Connect()  
-Send()  
-Listen()  
-Accept()  
+Socket()
+Bind()
+Connect()
+Send()
+Listen()
+Accept()
 
 ## Useful links
 [Complete WinSock API](https://msdn.microsoft.com/en-us/library/windows/desktop/ms741394.aspx)

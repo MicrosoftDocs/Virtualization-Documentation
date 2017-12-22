@@ -6,7 +6,7 @@ If your container is to run native code or open frameworks such as Node.js, Pyth
 
 To build your container from a Dockerfile, use  docker build and to run it, docker run.  The following command will download the Nano Server Container base OS image, which may take a few minutes, and print a “Hello World!” message at the host console.
 
-```none
+```
 docker run microsoft/nanoserver-insider cmd /c echo Hello World!
 ```
 
@@ -16,13 +16,13 @@ As a result of both .NET Core and PowerShell not being available in the base Nan
 
 You can pull the PowerShell container image by using this command:
 
-```none
+```
 docker pull microsoft/nanoserver-insider-powershell
 ```
 
 You can pull the .NET Core container image by using this command:
 
-```none
+```
 docker pull microsoft/nanoserver-insider-dotnet
 ```
 
@@ -34,7 +34,7 @@ You can leverage the .NET Core 2.0 container image in the Insider release to run
 
 With this Dockerfile, a .NET Core 2.0 container can be built using the following command.
 
-```none
+```
 docker build -t nanoserverdnc -f Dockerfile-dotnetRuntime .
 ```
 
@@ -44,7 +44,7 @@ Using the same [multi-stage build](https://docs.docker.com/engine/userguide/eng-
 
 Then issue docker build to create the PowerShell container image.
 
-```none 
+``` 
 docker build -t nanoserverPowerShell6 -f Dockerfile-PowerShell6 .
 ```
 

@@ -57,7 +57,7 @@ When a service is running as Local System or Network Service in a container, it 
 
 Example:
 
-```none
+```
 Server=sql.contoso.com;Database=MusicStore;Integrated Security=True;MultipleActiveResultSets=True;Connect Timeout=30
 ```
 
