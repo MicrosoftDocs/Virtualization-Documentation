@@ -37,6 +37,22 @@ You should not modify any files in the layer directories - they're carefully man
 Running containers can use most NTFS operations with the exception of transactions. This includes setting ACLs, and all ACLs are checked inside the container. If you want to run processes as multiple users inside a container, you can create users in your `Dockerfile` with `RUN net user /create ...`, set file ACLs, then configure processes to run with that user using the [Dockerfile USER directive](https://docs.docker.com/engine/reference/builder/#user).
 
 
+##  Image size
+A common pattern for Windows applications is to query the amount of free disk space before installing or creating new files or as a trigger for cleaning up temporary files.  With the goal of maximizing application compatibility the C: drive in a Windows container represents a virtual free size of 20GB.  Some users may want to override this default and configure the free space to a smaller or larger value, this can be accomplished though the “size” option within the “storage-opt” configuration.
+
+### Examples
+Command line: `docker run --storage-opt "size=50GB" microsoft/windowsservercore:1709 cmd`
+
+Docker Configuration File
+```
+"storage-opts": [
+    "size=50GB"
+  ]
+```
+> Note that this method works for docker build.
+See the [configure docker](https://docs.microsoft.com/en-us/virtualization/windowscontainers/manage-docker/configure-docker-daemon#configure-docker-with-configuration-file) document for more details on modifying the docker configuration file.
+
+
 ## Persistent Volumes
 
 Persistent storage can be given to containers in a few ways:
