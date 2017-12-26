@@ -14,9 +14,15 @@
 ### [Linux container preview](deploy-containers/linux-containers.md)
 
 # Configure Containers on Windows
+## [System Requirements](deploy-containers/system-requirements.md)
+## [Version Compatibility](deploy-containers/version-compatibility.md)
 ## [Docker Engine on Windows](docker/configure_docker_daemon.md)
 ## [Manage Docker with PowerShell](https://github.com/Microsoft/Docker-PowerShell)
 ## [Remote Management of a Windows Docker Host](management/manage_remotehost.md)
+## [Deploying](deploy-containers/deploy-containers-on-server.md)
+## [Hyper-V Isolation](manage-containers/hyperv-container.md)
+## [Active Directory Service Accounts](manage-containers/manage-serviceaccounts.md)
+## [Anti-Virus Optimization](https://msdn.microsoft.com/en-us/windows/hardware/drivers/ifs/anti-virus-optimization-for-windows-containers)
 
 # Develop with Containers on Windows
 ## [Dockerfiles on Windows](manage-docker/manage-windows-dockerfile.md)
@@ -35,15 +41,6 @@
 ## Docker Swarm Mode 
 ### [Getting Started with Swarm Mode](manage-containers/swarm-mode.md)
 
-# Deploy Windows Container
-## [System Requirements](deploy-containers/system-requirements.md)
-## [Version Compatibility](deploy-containers/version-compatibility.md)
-## [Deploying](deploy-containers/deploy-containers-on-server.md)
-## [Hyper-V Isolation](manage-containers/hyperv-container.md)
-## [Active Directory Service Accounts](manage-containers/manage-serviceaccounts.md)
-## [Anti-Virus Optimization](https://msdn.microsoft.com/en-us/windows/hardware/drivers/ifs/anti-virus-optimization-for-windows-containers)
-
-
 # Container Samples
 ## [Application Frameworks](samples.md#Application-Frameworks)
 ## [Programing Languages](samples.md#Programing-Languages)
@@ -52,11 +49,9 @@
 ## [Just for Fun](samples.md#Just-for-Fun)
 ## [Other](samples.md#Other)
 
-
 # Community and Support
 ## [Container Forum](https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers)
 ## [Community Videos and Blogs](communitylinks.md)
 ## [Troubleshooting](troubleshooting.md)
-
 
 # [Container OS Image EULA](Images_EULA.md)
