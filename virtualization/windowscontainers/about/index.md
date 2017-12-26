@@ -11,9 +11,21 @@ ms.assetid: 8e273856-3620-4e58-9d1a-d1e06550448
 
 ---
 
-# Windows Containers
+# Container Fundamentals 
 
-## What are Containers
+## Let's start with an analogy 
+
+Before diving into the strictly technical explanation of what containers are, and why they're valuable, let's start with a simple analogy. This analogy compares your application to an apartment building, components of your application to the various room types that compose the apartment building, and containers to the generic template that defines each room type. 
+
+Containers are a way to wrap up an application into one or more logical, completely autonomous units. To "containerize" an application, you simply take all of the source code, libraries and other dependencies that define it, and put them together inside a container. 
+
+If you take one application and you place the whole thing inside one container, you've containerized an application using a "monolithic" approach. This is an awesome way to start, especially as a first step in the process of moving an existing legacy application into containers. Alternatively, you can break up an application into logical parts and put each part into its own container. This is containerization using a more modern approach by which applications are designed as a set of modular component parts, each designed with a specific focus in mind, often referred to as "microservices." For example, you may componentize a website application into two microservices--a "web" frontend microservice, and a "database" backend microservice--and put each microservice into its own container. You would then use simple networking and familiar protocols to configure communication between each container/microservice, so that they can work together
+
+If microservices and service-oriented architecture are new to you, this is a lot to take in. But the real point of this philosophy, is to rethink application architecture to optimize applications to meet modern demands of scalability, efficiency, availability and reliability. Whether you're setting out to containerize an existing app, or starting from scratch, all you need to know for now is that containers are a key technology that can en
+
+(i.e. kitchen is a room type, bedroom is another--there are many instances of each within a single apartment building)
+(e.g. there is a specification that defines a kitchen, and this specification is used to define multiple kitchen instances in the apartment building)
+The idea, here, is to capture the basic intuition for containers as a primitive abstraction for application infrastructure, optimized for scalability...
 
 Containers are a way to wrap up an application into its own isolated box. For the application in its container, it has no knowledge of any other applications or processes that exist outside of its box. Everything the application depends on to run successfully also lives inside this container.  Wherever the box may move, the application will always be satisfied because it is bundled up with everything it needs to run.
 
