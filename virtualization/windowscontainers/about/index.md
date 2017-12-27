@@ -13,15 +13,13 @@ ms.assetid: 8e273856-3620-4e58-9d1a-d1e06550448
 
 # Container Fundamentals 
 
-## Let's start with an analogy 
+## Let's start with a friendly analogy 
 
-Before diving into the strictly technical explanation of what containers are, and why they're valuable, let's start with a simple analogy. This analogy compares your application to an apartment building, components of your application to the various room types that compose the apartment building, and containers to the generic template that defines each room type. 
+Before diving into the strictly technical explanation of what containers are, and why they're valuable, let's start with a simple analogy, comparing an application to an apartment building. 
 
-Containers are a way to wrap up an application into one or more logical, completely autonomous units. To "containerize" an application, you simply take all of the source code, libraries and other dependencies that define it, and put them together inside a container. 
+Just like an application, an apartment building is an entity with component parts that provides a function and consumes resources. An apartment building provides accomodation and amenities for tenants, and an application provides capabilities for users. An apartment building is composed of different rooms, which provide different functions for tenants--for example, a bedroom provides a place to sleep and a kitchen provides a place to cook and eat. Similarly, an application is composed of parts that allow it to do its job--for example, a website likely has UI components that allow the user to interact with it, and a database for storing user data and application state. And of course an apartment building must consume resources to do its job--it has dependencies like electricity, water and gas. Similarly, at a minimum an application has hardware requirements such as processing power and memory to run, as well as software dependencies such as libraries and operating system
 
-If you take one application and you place the whole thing inside one container, you've containerized an application using a "monolithic" approach. This is an awesome way to start, especially as a first step in the process of moving an existing legacy application into containers. Alternatively, you can break up an application into logical parts and put each part into its own container. This is containerization using a more modern approach by which applications are designed as a set of modular component parts, each designed with a specific focus in mind, often referred to as "microservices." For example, you may componentize a website application into two microservices--a "web" frontend microservice, and a "database" backend microservice--and put each microservice into its own container. You would then use simple networking and familiar protocols to configure communication between each container/microservice, so that they can work together
-
-If microservices and service-oriented architecture are new to you, this is a lot to take in. But the real point of this philosophy, is to rethink application architecture to optimize applications to meet modern demands of scalability, efficiency, availability and reliability. Whether you're setting out to containerize an existing app, or starting from scratch, all you need to know for now is that containers are a key technology that can en
+This analogy compares your application to an apartment building, components of your application to the various room types that compose the apartment building, and containers to the generic template that defines each room type. 
 
 (i.e. kitchen is a room type, bedroom is another--there are many instances of each within a single apartment building)
 (e.g. there is a specification that defines a kitchen, and this specification is used to define multiple kitchen instances in the apartment building)
@@ -41,7 +39,16 @@ In much the same way, containers are like this kitchen. There can be different k
 
 Watch a short overview here: [Windows-based containers: Modern app development with enterprise-grade control](https://youtu.be/Ryx3o0rD5lY).
 
-## Container Fundamentals
+## Think of containers as a primitive for modernizing your (new or existing) application
+Containers are a way to wrap up an application into one or more logical, completely autonomous units. To "containerize" an application, you simply take all of the source code, libraries and other dependencies that define it, and put them together inside a container. 
+
+If you take one application and you place the whole thing inside one container, you've containerized an application using a "monolithic" approach. This is an awesome way to start, especially as a first step in the process of moving an existing legacy application into containers. Alternatively, you can break up an application into logical parts and put each part into its own container. This is containerization using a more modern approach by which applications are designed as a set of modular component parts, each designed with a specific focus in mind, often referred to as "microservices." 
+
+For example, you may componentize a "website" application into two microservices--a "web" frontend microservice, and a "database" backend microservice--and put each microservice into its own container. You would then use simple networking and familiar protocols to configure communication between each container/microservice, so that they can work together as one "website."
+
+If microservices and service-oriented architecture are new to you, this is a lot to take in. But the real point of this philosophy, is to rethink application architecture to optimize applications to meet modern demands of scalability, efficiency, availability and reliability. Whether you're setting out to containerize an existing app, or starting from scratch, all you need to know for now is that containers are a step toward modernizing your application infrastructure, so that your app and your team can scale with the demand of you
+
+## Now for the technical lingo!
 
 Containers are an isolated, resource controlled, and portable runtime environment which runs on a host machine or virtual machine. An application or process which runs in a container is packaged with all the required dependencies and configuration files; It’s given the illusion that there are no other processes running outside of its container.
 
