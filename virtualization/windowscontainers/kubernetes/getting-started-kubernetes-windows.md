@@ -66,6 +66,12 @@ Install-Package -Name Docker -ProviderName DockerMsftProvider
 Restart-Computer -Force
 ```
 
+If you are behind a proxy, the following PowerShell environment variables must be defined:
+```powershell
+[Environment]::SetEnvironmentVariable("HTTP_PROXY", "http://proxy.example.com:80/", [EnvironmentVariableTarget]::Machine)
+[Environment]::SetEnvironmentVariable("HTTPS_PROXY", "http://proxy.example.com:443/", [EnvironmentVariableTarget]::Machine)
+```
+
 There is a collection of scripts on [this Microsoft repository](https://github.com/Microsoft/SDN) that will help us join this node to the cluster. You can download the ZIP file directly [here](https://github.com/Microsoft/SDN/archive/master.zip). The only thing we need is the `Kubernetes/windows` folder, the contents of which should be moved to `C:\k\`:
 
 ```powershell
