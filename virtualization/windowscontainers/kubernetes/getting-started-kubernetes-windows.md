@@ -139,7 +139,7 @@ In order to change location where kubectl is looking for configuration file, mod
 ```powershell
 $env:KUBECONFIG="C:\k\config"
 ```
-In order to make this setting permanent for current user's scope:
+To make this setting permanent for current user's scope:
 ```powershell
 [Environment]::SetEnvironmentVariable("KUBECONFIG", "C:\k\config", [EnvironmentVariableTarget]::User)
 ```
