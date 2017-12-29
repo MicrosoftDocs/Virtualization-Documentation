@@ -15,7 +15,9 @@ ms.assetid: 8e273856-3620-4e58-9d1a-d1e06550448
 
 Containers are modern virtualization solution for building highly scalable, efficient and reliable applications. In recent years, containers have grown in popularity and a vast ecosystem of DevOps solutions has begun to emerge around them, driven by a community of businesses and open-source projects across the world. Microsoft is one organization that provides solutions within this ecosystem, from support for containerization of the Windows operating system (i.e. so that Windows-based apps can run natively inside containers) to support for leading orchestration tools for containers that can be used to deploy applications across Microsft Azure as well as other on-premise and public cloud environments. 
 
-To understand "containerization" and how it could empower your organization, the natural place to start is to understand the very basics of containers. What are they? And what role do they play in an unfolding paradigm shift concerning the meaning of application development in the modern world?
+To understand "containerization" and how it could empower your organization, the natural place to start is to understand the very basics of containers. What are they? How are they used? And, perhaps most importantly, where do they fit in an unfolding paradigm shift concerning the meaning of application development in the modern world?
+
+This article seeks to provide some basic answers to these questions--the intuition that you need to get started with containers and to consider how they might be valuable to your organization.
 
 To understand the "big picture" of what containers are and why they matter, really means understanding them in context with concepts like virtualization and service-oriented software 
 
