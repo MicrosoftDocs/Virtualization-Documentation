@@ -122,6 +122,28 @@ If you would like to make this change permanent, modify the variable in machine 
 
 
 ### Joining the Cluster ###
+Verify that cluster configuration using:
+```powershell
+kubectl version
+```
+
+If you are receiving a connection error
+```
+Unable to connect to the server: dial tcp [::1]:8080: connectex: No connection could be made because the target machine actively refused it.
+```
+you should check if configuration has been discovered properly:
+```powershell
+kubectl config view
+```
+In order to change location where kubectl is looking for configuration file, modify KUBECONFIG environment variable. For example, assuming that config is located in `C:\k\config`:
+```powershell
+$env:KUBECONFIG="C:\k\config"
+```
+In order to make this setting permanent for current user's scope:
+```powershell
+[Environment]::SetEnvironmentVariable("KUBECONFIG", "C:\k\config", [EnvironmentVariableTarget]::User)
+```
+
 The node is now ready to join the cluster. In two separate, *elevated* PowerShell windows, run these scripts (in this order). The `-ClusterCidr` parameter in the first script is the configured [cluster subnet](#cluster-subnet-def); here, it's `192.168.0.0/16`.
 
 ```powershell
