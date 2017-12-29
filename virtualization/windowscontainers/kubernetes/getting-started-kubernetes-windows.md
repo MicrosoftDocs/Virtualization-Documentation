@@ -108,6 +108,15 @@ In the meantime while the `pull` occurs, download the following client-side bina
 
 You can download these from the links in the `CHANGELOG.md` file of the latest 1.9 release. As of this writing, that is [1.9.0-beta.1](https://github.com/kubernetes/kubernetes/releases/tag/v1.9.0-beta.1), and the Windows binaries are [here](https://dl.k8s.io/v1.9.0-beta.1/kubernetes-node-windows-amd64.tar.gz). Use a tool like [7-Zip](http://www.7-zip.org/) to extract the archive and place the binaries in `C:\k\`.
 
+In order to make kubectl command available outside of `C:\k\` directory, modify PATH environment variable:
+```powershell
+$env:Path = $env:Path + ";C:\k"
+```
+If you would like to make this change permanent, modify the variable in machine target:
+```powershell
+[Environment]::SetEnvironmentVariable("Path", $env:Path + ";C:\k", [EnvironmentVariableTarget]::Machine)
+```
+
 > [!Warning]  
 > As of this writing, `kube-proxy.exe` requires a pending Kubernetes [pull request](https://github.com/kubernetes/kubernetes/pull/56529) to work properly. You may need to [build the binaries manually](./compiling-kubernetes-binaries.md) to work around this.
 
