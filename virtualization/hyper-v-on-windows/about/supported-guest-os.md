@@ -36,6 +36,7 @@ In order to receive support, both the Windows guest operating systems and the ho
 | Windows 7 | 4 | Ultimate, Enterprise, and Professional editions (32-bit and 64-bit). |
 | Windows Vista with Service Pack 2 (SP2) | 2 | Business, Enterprise, and Ultimate, including N and KN editions. | 
 | - | | |
+| [Windows Server Semi-Annual Channel](https://docs.microsoft.com/en-us/windows-server/get-started/semi-annual-channel-overview) | 64 | |
 | Windows Server 2016 | 64 | |
 | Windows Server 2012 R2 | 64 | |
 | Windows Server 2012 | 64 | |
