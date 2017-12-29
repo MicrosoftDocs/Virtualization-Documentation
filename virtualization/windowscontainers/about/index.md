@@ -13,9 +13,20 @@ ms.assetid: 8e273856-3620-4e58-9d1a-d1e06550448
 
 # Container Fundamentals 
 
-## Let's start with a friendly analogy 
+Containers are modern virtualization solution for building highly scalable, efficient and reliable applications. In recent years, containers have grown in popularity and a vast ecosystem of DevOps solutions has begun to emerge around them. Microsoft is one organization that provides solutions within this ecosystem, from support for containerization of the Windows operating system (i.e. so that Windows-based apps can run natively inside containers) to support for leading orchestration tools for containers that can be used to deploy applications across Microsft Azure as well as other on-premise and public cloud environments. To understand these solutions, and how they could empower your organization, the natural place to start is to understand the very basics of containers, and why they have helped to unlock a paradigm shift for application development in the modern world.
 
-Before diving into the strictly technical explanation of what containers are, and why they're valuable, let's start with a simple analogy, comparing an application to an apartment building. 
+To understand the "big picture" of what containers are and why they matter, really means understanding them in context with concepts like virtualization and service-oriented software 
+
+In the simplest sense, they're just a new way of thinking about compute virtualization--how the software for an application should run in relation to the physical hardware that's "hosting" that machine, as well as the other things that machine is running. 
+
+Unt
+a container as a compute process--a bundle of stuff that a machine needs to accomplish as part of running an application, or a component of an application. 
+
+Containers provide a way to wrap up your apps and their dependencies so that they're self contained and eatily portable across your development, test and production environments. Containers support modern, service-oriented abstractions for componentizing applications to promote streamlined DevOps as well as flexibility to scale with customer demand in production. 
+
+## Containers 
+
+Before diving into the strictly technical explanation of what containers are, and why they're valuable, let's start with a simple analogy, comparing an application componentized using containers to an apartment building componentized by a set of room types. 
 
 Just like an application, an apartment building is an entity with component parts that provides a function and consumes resources. An apartment building provides accomodation and amenities for tenants, and an application provides capabilities for users. An apartment building is composed of different rooms, which provide different functions for tenants--for example, a bedroom provides a place to sleep and a kitchen provides a place to cook and eat. Similarly, an application is composed of parts that allow it to do its job--for example, a website likely has UI components that allow the user to interact with it, and a database for storing user data and application state. And of course an apartment building must consume resources to do its job--it has dependencies like electricity, water and gas. Similarly, at a minimum an application has hardware requirements such as processing power and memory to run, as well as software dependencies such as libraries and operating system
 
