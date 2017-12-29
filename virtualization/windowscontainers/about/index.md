@@ -13,7 +13,9 @@ ms.assetid: 8e273856-3620-4e58-9d1a-d1e06550448
 
 # Container Fundamentals 
 
-Containers are modern virtualization solution for building highly scalable, efficient and reliable applications. In recent years, containers have grown in popularity and a vast ecosystem of DevOps solutions has begun to emerge around them. Microsoft is one organization that provides solutions within this ecosystem, from support for containerization of the Windows operating system (i.e. so that Windows-based apps can run natively inside containers) to support for leading orchestration tools for containers that can be used to deploy applications across Microsft Azure as well as other on-premise and public cloud environments. To understand these solutions, and how they could empower your organization, the natural place to start is to understand the very basics of containers, and why they have helped to unlock a paradigm shift for application development in the modern world.
+Containers are modern virtualization solution for building highly scalable, efficient and reliable applications. In recent years, containers have grown in popularity and a vast ecosystem of DevOps solutions has begun to emerge around them, driven by a community of businesses and open-source projects across the world. Microsoft is one organization that provides solutions within this ecosystem, from support for containerization of the Windows operating system (i.e. so that Windows-based apps can run natively inside containers) to support for leading orchestration tools for containers that can be used to deploy applications across Microsft Azure as well as other on-premise and public cloud environments. 
+
+To understand "containerization" and how it could empower your organization, the natural place to start is to understand the very basics of containers. What are they? And what role do they play in an unfolding paradigm shift concerning the meaning of application development in the modern world?
 
 To understand the "big picture" of what containers are and why they matter, really means understanding them in context with concepts like virtualization and service-oriented software 
 
