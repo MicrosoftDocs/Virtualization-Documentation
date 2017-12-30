@@ -13,11 +13,17 @@ ms.assetid: 8e273856-3620-4e58-9d1a-d1e06550448
 
 # Container Fundamentals 
 
-Containers are modern virtualization solution for building highly scalable, efficient and reliable applications. In recent years, containers have grown in popularity and a vast ecosystem of DevOps solutions has begun to emerge around them, driven by a community of businesses and open-source projects across the world. Microsoft is one organization that provides solutions within this ecosystem, from support for containerization of the Windows operating system (i.e. so that Windows-based apps can run natively inside containers) to support for leading orchestration tools for containers that can be used to deploy applications across Microsft Azure as well as other on-premise and public cloud environments. 
+Containers are modern [virtualization](https://docs.microsoft.com/en-us/windows-server/virtualization/virtualization) solution for the development and deployment of highly scalable, efficient and reliable applications. They are one piece of a broader paradigm shift that is currently unfolding and reshaping foundational approaches to application DevOps.
 
-To understand "containerization" and how it could empower your organization, the natural place to start is to understand the very basics of containers. What are they? How are they used? And, perhaps most importantly, where do they fit in an unfolding paradigm shift concerning the meaning of application development in the modern world?
+In recent years, containers have grown in popularity and a vast ecosystem of DevOps solutions has begun to emerge around them, driven by a community of businesses and open-source projects across the world. Microsoft is one organization that provides solutions within this ecosystem, from support for "[containerization](https://en.wikipedia.org/wiki/Operating-system-level_virtualization)" of the Windows operating system (i.e. so that Windows-based apps can run natively inside containers) to support for tools that enable deployment of containerized workloads at-scale, across Microsft Azure as well as other on-premise and public cloud environments. 
 
-This article seeks to provide some basic answers to these questions--the intuition that you need to get started with containers and to consider how they might be valuable to your organization.
+To understand how containers could empower your apps and DevOps processes, it's good to start with the fundamental concepts behind containers. *What are they? How are they used? Why do they light up scalable software practices and operations unlike similar solutions before them?* 
+
+This article seeks to provide* some basic answers to these questions--intuition that should help you get started with considering how containers might be valuable to your organization.
+
+> Of course, in reading this content bear in mind that containers represent just one piece of an unfolding paradigm shift concerning the meaning of application development in the modern world. By no means is this shift complete, but to understand 
+
+In context with technology shifts around cloud computing and unfolding in the world of information technology--Ideally, the information here will set you on a path toward understanding the core concepts behind containers and how they fit into an unfolding paradigm shift
 
 To understand the "big picture" of what containers are and why they matter, really means understanding them in context with concepts like virtualization and service-oriented software 
 
