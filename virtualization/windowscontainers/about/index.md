@@ -13,7 +13,7 @@ ms.assetid: 8e273856-3620-4e58-9d1a-d1e06550448
 
 # Container Fundamentals 
 
-Containers are modern [virtualization](https://docs.microsoft.com/en-us/windows-server/virtualization/virtualization) solution for the development and deployment of highly scalable, efficient and reliable applications. They are one piece of a broader paradigm shift that is currently unfolding and reshaping foundational approaches to application DevOps.
+Containers are modern [virtualization](https://docs.microsoft.com/en-us/windows-server/virtualization/virtualization) solution for the development and deployment of highly scalable, efficient and reliable applications. They are one piece of a broader paradigm shift that is currently unfolding and reshaping foundational approaches to DevOps--application development and lifecycle management.
 
 In recent years, containers have grown in popularity and a vast ecosystem of DevOps solutions has begun to emerge around them, driven by a community of businesses and open-source projects across the world. Microsoft is one organization that provides solutions within this ecosystem, from support for "[containerization](https://en.wikipedia.org/wiki/Operating-system-level_virtualization)" of the Windows operating system (i.e. so that Windows-based apps can run natively inside containers) to support for tools that enable deployment of containerized workloads at-scale, across Microsft Azure as well as other on-premise and public cloud environments. 
 
