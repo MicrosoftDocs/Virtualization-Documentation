@@ -32,7 +32,7 @@ If you are behind a proxy, define environment variables for the current session:
 HTTP_PROXY=http://proxy.example.com:80/
 HTTPS_PROXY=http://proxy.example.com:443/
 http_proxy=http://proxy.example.com:80/
-https_proxy=http://proxy.example.com:442/
+https_proxy=http://proxy.example.com:443/
 ```
 Or if you would like to make this setting permanent, add the variables to /etc/environment (logging out and back in is required in order to apply changes).
 
