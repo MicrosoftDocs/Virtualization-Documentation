@@ -9,10 +9,10 @@ Get-VM * | Format-Table Name, Version
 To give virtual machines with a VM version below 8.0 access to the updated firmware capabilities, either:
 
 1. Update the VM version by following the steps on [this page](https://docs.microsoft.com/en-us/windows-server/virtualization/hyper-v/deploy/upgrade-virtual-machine-version-in-hyper-v-on-windows-or-windows-server).
-2. Modify the following registry key to the minimum VM version (format "Major.Minor") that needs access to the updated firmware capabilities: 
+2. Modify the `HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Virtualization` registry key to the minimum VM version (format "Major.Minor") that needs access to the updated firmware capabilities.  For example, to expose the firmware capabilities to version 5.0 virtual machines, run the following command: 
 
   ```
-  HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Virtualization\MinVmVersionForCpuBasedMitigations
+  reg add "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Virtualization" /v MinVmVersionForCpuBasedMitigations /t REG_SZ /d "5.0" /f
   ```
 
 To take advantage of the updated firmware capabilities within the guest virtual machine, you must still update the guest operating system.
