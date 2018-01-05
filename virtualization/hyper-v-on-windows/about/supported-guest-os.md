@@ -29,7 +29,7 @@ In order to receive support, both the Windows guest operating systems and the ho
 
 | Guest operating system |  Maximum number of virtual processors | Notes | 
 |:-----|:-----|:-----|
-| Windows 10 | 32 | |
+| Windows 10 | 32 |Enhanced Session Mode does not work on Windows 10 Home edition |
 | Windows 8.1 | 32 | |
 | Windows 8 | 32 |	|
 | Windows 7 with Service Pack 1 (SP 1) | 4 | Ultimate, Enterprise, and Professional editions (32-bit and 64-bit). |
