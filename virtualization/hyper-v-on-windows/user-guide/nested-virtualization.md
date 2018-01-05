@@ -95,6 +95,8 @@ The diagram below shows Hyper-V without nesting.  The Hyper-V hypervisor takes f
 
 In contrast, the diagram below shows Hyper-V with nested virtualization enabled. In this case, Hyper-V exposes the hardware virtualization extensions to its virtual machines. With nesting enabled, a guest virtual machine can install its own hypervisor and run its own guest VMs.
 
+![](./media/HVNesting.png)
+
 ## 3rd Party Virtualization Apps
 
 Virtualization applications other than Hyper-V are not supported in Hyper-V virtual machines, and are likely to fail. This includes any software that requires hardware virtualization extensions.
