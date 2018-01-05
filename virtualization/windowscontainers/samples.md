@@ -62,7 +62,7 @@ This is a collection of samples and examples submitted by the Windows team and m
 
 [sqlite](https://github.com/Microsoft/Virtualization-Documentation/tree/master/windows-container-samples/sqlite)
 
-[sqlserver-express](https://github.com/Microsoft/Virtualization-Documentation/tree/master/windows-container-samples/sqlserver-express)
+sqlserver-express - [Docker Hub Image](https://hub.docker.com/r/microsoft/mssql-server-windows-express/) or [dockerfile](https://github.com/Microsoft/mssql-docker/blob/master/windows/mssql-server-windows-express/dockerfile)
 
 
 ## Infrastructure and CI Tools

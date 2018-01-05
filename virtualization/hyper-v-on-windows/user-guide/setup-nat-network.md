@@ -40,13 +40,32 @@ Let's walk through setting up a new NAT network.
 
 1.  Open a PowerShell console as Administrator.  
 
-2. Create an internal switch  
+2. Create an internal switch.
 
   ``` PowerShell
   New-VMSwitch -SwitchName "SwitchName" -SwitchType Internal
   ```
 
-3. Configure the NAT gateway using [New-NetIPAddress](https://technet.microsoft.com/en-us/library/hh826150.aspx).  
+3. Find the interface index of the virtual switch you just created.
+
+    You can find the interface index by running `Get-NetAdapter`
+
+    Your output should look something like this:
+
+    ```
+    PS C:\> Get-NetAdapter
+
+    Name                  InterfaceDescription               ifIndex Status       MacAddress           LinkSpeed
+    ----                  --------------------               ------- ------       ----------           ---------
+    vEthernet (intSwitch) Hyper-V Virtual Ethernet Adapter        24 Up           00-15-5D-00-6A-01      10 Gbps
+    Wi-Fi                 Marvell AVASTAR Wireless-AC Net...      18 Up           98-5F-D3-34-0C-D3     300 Mbps
+    Bluetooth Network ... Bluetooth Device (Personal Area...      21 Disconnected 98-5F-D3-34-0C-D4       3 Mbps
+
+    ```
+
+    The internal switch will have a name like `vEthernet (SwitchName)` and an Interface Description of `Hyper-V Virtual Ethernet Adapter`. Take note of its `ifIndex` to use in the next step.
+
+4. Configure the NAT gateway using [New-NetIPAddress](https://docs.microsoft.com/powershell/module/nettcpip/New-NetIPAddress).  
 
   Here is the generic command:
   ``` PowerShell
@@ -66,24 +85,7 @@ Let's walk through setting up a new NAT network.
 
     A common PrefixLength is 24 -- this is a subnet mask of 255.255.255.0
 
-  * **InterfaceIndex** -- ifIndex is the interface index of the virtual switch created above.
-
-    You can find the interface index by running `Get-NetAdapter`
-
-    Your output should look something like this:
-
-    ```
-    PS C:\> Get-NetAdapter
-
-    Name                  InterfaceDescription               ifIndex Status       MacAddress           LinkSpeed
-    ----                  --------------------               ------- ------       ----------           ---------
-    vEthernet (intSwitch) Hyper-V Virtual Ethernet Adapter        24 Up           00-15-5D-00-6A-01      10 Gbps
-    Wi-Fi                 Marvell AVASTAR Wireless-AC Net...      18 Up           98-5F-D3-34-0C-D3     300 Mbps
-    Bluetooth Network ... Bluetooth Device (Personal Area...      21 Disconnected 98-5F-D3-34-0C-D4       3 Mbps
-
-    ```
-
-    The internal switch will have a name like `vEthernet (SwitchName)` and an Interface Description of `Hyper-V Virtual Ethernet Adapter`.
+  * **InterfaceIndex** -- ifIndex is the interface index of the virtual switch, which you determined in the previous step.
 
   Run the following to create the NAT Gateway:
 
@@ -91,7 +93,7 @@ Let's walk through setting up a new NAT network.
   New-NetIPAddress -IPAddress 192.168.0.1 -PrefixLength 24 -InterfaceIndex 24
   ```
 
-4. Configure the NAT network using [New-NetNat](https://technet.microsoft.com/en-us/library/dn283361(v=wps.630).aspx).  
+5. Configure the NAT network using [New-NetNat](https://docs.microsoft.com/powershell/module/netnat/New-NetNat).  
 
   Here is the generic command:
 
@@ -131,7 +133,7 @@ _If you need to attach multiple VMs and containers to a single NAT, you will nee
 The solution below will allow both Docker for Windows (Linux VM running Linux containers) and Windows Containers to share the same WinNAT instance using separate internal vSwitches. Connectivity between both Linux and Windows containers will work.
 
 User has connected VMs to a NAT network through an internal vSwitch named “VMNAT” and now wants to install Windows Container feature with docker engine
-```none
+```
 PS C:\> Get-NetNat “VMNAT”| Remove-NetNat (this will remove the NAT but keep the internal vSwitch).
 Install Windows Container Feature
 DO NOT START Docker Service (daemon)
@@ -145,7 +147,7 @@ Docker/HNS will assign IPs to Windows containers from the <container prefix>
 Admin will assign IPs to VMs from the difference set of the <shared prefix> and <container prefix>
 
 User has installed Windows Container feature with docker engine running and now wants to connect VMs to the NAT network
-```none
+```
 PS C:\> Stop-Service docker
 PS C:\> Get-ContainerNetwork | Remove-ContainerNetwork -force
 PS C:\> Get-NetNat | Remove-NetNat (this will remove the NAT but keep the internal vSwitch)
@@ -214,18 +216,18 @@ Get-VMSwitch
 
 Check to see if there are private IP addresses (e.g. NAT default Gateway IP Address – usually *.1) from the old NAT still assigned to an adapter
 ``` PowerShell
-Get-NetIPAddress -InterfaceAlias "vEthernet(<name of vSwitch>)"
+Get-NetIPAddress -InterfaceAlias "vEthernet (<name of vSwitch>)"
 ```
 
 If an old private IP address is in use, please delete it
 ``` PowerShell
-Remove-NetIPAddress -InterfaceAlias "vEthernet(<name of vSwitch>)" -IPAddress <IPAddress>
+Remove-NetIPAddress -InterfaceAlias "vEthernet (<name of vSwitch>)" -IPAddress <IPAddress>
 ```
 
 **Removing Multiple NATs**  
 We have seen reports of multiple NAT networks created inadvertently. This is due to a bug in recent builds (including Windows Server 2016 Technical Preview 5 and Windows 10 Insider Preview builds). If you see multiple NAT networks, after running docker network ls or Get-ContainerNetwork, please perform the following from an elevated PowerShell:
 
-```none
+```
 PS> $KeyPath = "HKLM:\SYSTEM\CurrentControlSet\Services\vmsmp\parameters\SwitchList"
 PS> $keys = get-childitem $KeyPath
 PS> foreach($key in $keys)

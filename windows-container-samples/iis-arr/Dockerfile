@@ -37,3 +37,4 @@ ADD ./start.ps1 /
 CMD powershell ./start.ps1 -serverfarms \"%serverfarms%\" -Verbose
 
 # docker run -d -v C:/temp/:C:/temp/ -e serverfarms="[{'name':'Maxtest123','servers':[{'address':'172.21.116.32'}]}]" --link web1:web1 -p 80:80 knom/iis-arr
+

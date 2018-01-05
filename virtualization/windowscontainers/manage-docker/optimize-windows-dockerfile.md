@@ -21,7 +21,7 @@ Before examining Docker build optimization, it is important to understand how Do
 
 Take a look at the following Dockerfile. In this example, the `windowsservercore` base OS image is being used, IIS installed, and then a simple website created.
 
-```none
+```
 # Sample Dockerfile
 
 FROM windowsservercore
@@ -32,7 +32,7 @@ CMD [ "cmd" ]
 
 From this Dockerfile, one might expect the resulting image to consist of two layers, one for the container OS image, and a second that includes IIS and the website, this however is not the case. The new image is constructed of many layers, each one dependent on the previous. To visualize this, the `docker history` command can be run against the new image. Doing so shows that the image consists of four layers, the base, and then three additional layers, one for each instruction in the Dockerfile.
 
-```none
+```
 docker history iis
 
 IMAGE               CREATED              CREATED BY                                      SIZE                COMMENT
@@ -60,7 +60,7 @@ The following two examples demonstrate the same operation, which results in cont
 
 This first example downloads Python for Windows, installs it and cleans up by removing the downloaded setup file. Each of these actions are run in their own `RUN` instruction.
 
-```none
+```
 FROM windowsservercore
 
 RUN powershell.exe -Command Invoke-WebRequest "https://www.python.org/ftp/python/3.5.1/python-3.5.1.exe" -OutFile c:\python-3.5.1.exe
@@ -70,7 +70,7 @@ RUN powershell.exe -Command Remove-Item c:\python-3.5.1.exe -Force
 
 The resulting image consists of three additional layers, one for each `RUN` instruction.
 
-```none
+```
 docker history doc-example-1
 
 IMAGE               CREATED             CREATED BY                                      SIZE                COMMENT
@@ -79,9 +79,9 @@ a395ca26777f        15 seconds ago      cmd /S /C powershell.exe -Command Remove
 957147160e8d        3 minutes ago       cmd /S /C powershell.exe -Command Invoke-WebR   125.7 MB
 ```
 
-To compare, here is the same operation, however all steps run with the same `RUN` instruction. Note that each step in the `RUN` instruction is on a new line of the Dockerfile, the '\' character is being used to line wrap. 
+To compare, here is the same operation, however all steps run with the same `RUN` instruction. Note that each step in the `RUN` instruction is on a new line of the Dockerfile, the '\\' character is being used to line wrap. 
 
-```none
+```
 FROM windowsservercore
 
 RUN powershell.exe -Command \
@@ -93,7 +93,7 @@ RUN powershell.exe -Command \
 
 The resulting image here consists of one additional layer for the `RUN` instruction.
 
-```none
+```
 docker history doc-example-2
 
 IMAGE               CREATED             CREATED BY                                      SIZE                COMMENT
@@ -106,7 +106,7 @@ If a file, such as an installer, is not required after it has been used, remove 
 
 In this example, the Python package is downloaded, executed, and then the executable removed. This is all completed in one `RUN` operation and results in a single image layer.
 
-```none
+```
 FROM windowsservercore
 
 RUN powershell.exe -Command \
@@ -124,7 +124,7 @@ When optimizing for Docker build speed, it may be advantageous to separate opera
 
 In the following example, both Apache and the Visual Studio Redistribute packages are downloaded, installed, and then the un-needed files cleaned up. This is all done with one `RUN` instruction. If any of these actions are updated, all actions will re-run.
 
-```none
+```
 FROM windowsservercore
 
 RUN powershell -Command \
@@ -139,17 +139,18 @@ RUN powershell -Command \
     
   Expand-Archive -Path c:\php.zip -DestinationPath c:\php ; \
   Expand-Archive -Path c:\apache.zip -DestinationPath c:\ ; \
-  start-Process c:\vcredistexe -ArgumentList '/quiet' -Wait ; \
+  start-Process c:\vcredist.exe -ArgumentList '/quiet' -Wait ; \
     
   # Remove unneeded files ; \
      
   Remove-Item c:\apache.zip -Force; \
-  Remove-Item c:\vcredist.exe -Force
+  Remove-Item c:\vcredist.exe -Force; \
+  Remove-Item c:\php.zip
 ```
 
 The resulting image consists of two layers, one for the base OS image, and the second that contains all operations from the single `RUN` instruction.
 
-```none
+```
 docker history doc-sample-1
 
 IMAGE               CREATED             CREATED BY                                      SIZE                COMMENT
@@ -159,7 +160,7 @@ IMAGE               CREATED             CREATED BY                              
 
 To contrast, here are the same actions broken down into three `RUN` instructions. In this case, each `RUN` instruction is cached in a container image layer, and only those that have changed, need to be re-run on subsequent Dockerfile builds.
 
-```none
+```
 FROM windowsservercore
 
 RUN powershell -Command \
@@ -183,7 +184,7 @@ RUN powershell -Command \
 
 The resulting image consists of four layers, one for the base OS image, and then one for each `RUN` instruction. Because each `RUN` instruction has been run in its own layer, any subsequent runs of this Dockerfile or identical set of instructions in a different Dockerfile, will use cached image layer, thus reducing build time. Instruction ordering is important when working with image cache, for more details, see the next section of this document.
 
-```none
+```
 docker history doc-sample-2
 
 IMAGE               CREATED             CREATED BY                                      SIZE                COMMENT
@@ -199,7 +200,7 @@ A Dockerfile is processed from top to the bottom, each Instruction compared agai
 
 The intention of this example is to demonstrated how Dockerfile instruction ordering can effect caching effectiveness. In this simple Dockerfile, four numbered folders are created.  
 
-```none
+```
 FROM windowsservercore
 
 RUN mkdir test-1
@@ -209,7 +210,7 @@ RUN mkdir test-4
 ```
 The resulting image has five layers, one for the base OS image, and one for each of the `RUN` instructions.
 
-```none
+```
 docker history doc-sample-1
 
 IMAGE               CREATED              CREATED BY               SIZE                COMMENT
@@ -222,7 +223,7 @@ afba1a3def0a        38 seconds ago       cmd /S /C mkdir test-4   42.46 MB
 
 The docker file has now been slightly modified. Notice that the third `RUN` instruction has changed. When Docker build is run against this Dockerfile, the first three instructions, which are identical to those in the last example, use the cached image layers. However, because the changed `RUN` instruction has not been cached, a new layer is created for itself and all subsequent instructions.
 
-```none
+```
 FROM windowsservercore
 
 RUN mkdir test-1
@@ -233,7 +234,7 @@ RUN mkdir test-4
 
 Comparing Image ID’s of the new image, to that in the last example, you will see that the first three layers (bottom to the top) are shared, however the fourth and fifth are unique.
 
-```none
+```
 docker history doc-sample-2
 
 IMAGE               CREATED             CREATED BY               SIZE                COMMENT
@@ -251,7 +252,7 @@ c92cc95632fb        28 seconds ago      cmd /S /C mkdir test-4   5.644 MB
 Dockerfile instructions are not case sensitive, however convention is to use upper case. This improves readability by differentiating between Instruction call, and instruction operation. The below two examples demonstrate this concept. 
 
 Lower case:
-```none
+```
 # Sample Dockerfile
 
 from windowsservercore
@@ -260,7 +261,7 @@ run echo "Hello World - Dockerfile" > c:\inetpub\wwwroot\index.html
 cmd [ "cmd" ]
 ```
 Upper case: 
-```none
+```
 # Sample Dockerfile
 
 FROM windowsservercore
@@ -273,14 +274,14 @@ CMD [ "cmd" ]
 
 Long and complex operations can be separated onto multiple line using the backslash `\` character. The following Dockerfile installs the Visual Studio Redistributable package, removes the installer files, and then creates a configuration file. These three operations are all specified on one line.
 
-```none
+```
 FROM windowsservercore
 
 RUN powershell -Command c:\vcredist_x86.exe /quiet ; Remove-Item c:\vcredist_x86.exe -Force ; New-Item c:\config.ini
 ```
 The command can be re-written so that each operation from the one `RUN` instruction is specified on its own line. 
 
-```none
+```
 FROM windowsservercore
 
 RUN powershell -Command \

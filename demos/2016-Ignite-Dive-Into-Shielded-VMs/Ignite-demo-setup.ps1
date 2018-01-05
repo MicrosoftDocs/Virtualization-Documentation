@@ -800,6 +800,11 @@ if ($buildNanoServerGuardedHost)
     }
 }
 
+if (-not (Get-VMSwitch -Name $Script:fabricSwitch -ErrorAction SilentlyContinue)) {
+    Log-Message -Message "[Prepare] Fabric Switch not found - creating internal switch"
+    New-VMSwitch -Name $Script:fabricSwitch -SwitchType Internal -ErrorAction Stop | Out-Null
+}
+
 If ($buildShieldingHelperVhdx)
 {
     Log-Message -Message "Creating shielding helper disk"
@@ -855,11 +860,6 @@ $Script:HgsGuardian = Get-HgsGuardian UntrustedGuardian -ErrorAction SilentlyCon
 if (!$Script:HgsGuardian) {
     Log-Message -Message "[Prepare] Local Guardian not found - creating UntrustedGuardian"
     $Script:HgsGuardian = New-HgsGuardian -Name UntrustedGuardian –GenerateCertificates -ErrorAction Stop
-}
-
-if (-not (Get-VMSwitch -Name $Script:fabricSwitch -ErrorAction SilentlyContinue)) {
-    Log-Message -Message "[Prepare] Fabric Switch not found - creating internal switch"
-    New-VMSwitch -Name $Script:fabricSwitch -SwitchType Internal -ErrorAction Stop | Out-Null
 }
 
 $hgs01 = Get-VM -VMName $Script:VmNameHgs -ErrorAction SilentlyContinue

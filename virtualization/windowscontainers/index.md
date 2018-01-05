@@ -12,33 +12,27 @@ ms.assetid: 74c9d604-0915-4d89-bc69-0263b76bc66b
 
 # Windows Containers Documentation
 
-Windows Containers provide operating system level virtualization that allows multiple isolated applications to be run on a single system. Two different types of container runtime are included with the feature, each with a different degree of application isolation. Windows Server Containers achieve isolation through namespace and process isolation. Hyper-V Containers encapsulates each container in a light weight virtual machine. This documentation set provides quick start guides, deployment guides, and technical details on management operations.
+Windows Containers provide operating system level virtualization that allows multiple isolated applications to be run on a single system. This documentation set provides quick start guides, deployment guides, and technical details on management operations.
 
-<table border="1" style="background-color:FFFFCC;border-collapse:collapse;border:1px solid FFCC00;color:000000;width:90%" cellpadding="25" cellspacing="5">
+<table border="1" style="background-color:FFFFCC;border-collapse:collapse;border:1px solid FFCC00;color:000000;width:90%; margin-top: 20px" cellpadding="25" cellspacing="5">
 <tr>
 <td ><center>![](media/try.png)</center></td>
-<td>**Quick Start**<br /><br />
-Windows Server Quick Start<br /><br />
+<td>**Getting Started**<br /><br />
+Learn about Containers and then jump into using them.<br /><br />
 <ul>
-<li>[Step 1 – Concepts and Terminology](quick-start/index.md)<br /><br /></li>
-<li>[Step 2 – Configure Windows Server and First Container](quick-start/quick-start-windows-server.md)<br /><br /></li>
-<li>[Step 3 – Create and Push Container Images](quick-start/quick-start-images.md)<br /><br /></li>
-</ul>
-Windows 10 Quick Start<br /><br />
-<ul>
-<li>[Step 1 – Concepts and Terminology](quick-start/index.md)<br /><br /></li>
-<li>[Step 2 – Configure Windows 10 and First Container](quick-start/quick-start-windows-10.md)<br /><br /></li>
+<li>[About Windows Containers](about/index.md)<br /><br /></li>
+<li>[Using Containers in Windows Server](quick-start/quick-start-windows-server.md)<br /><br /></li>
+<li>[Using Containers in Windows 10](quick-start/quick-start-windows-10.md)<br /><br /></li>
 </ul>
 </td>
 </tr>
 <tr>
 <td ><center>![](media/1.png)</center></td>
 <td>**Deployment**<br /><br />
-Learn how to deploy Windows Containers on Windows Server 2016 and Nano Server..<br /><br />
+Learn how to deploy Windows Containers on Windows Server 2016<br /><br />
 <ul>
 <li>[System Requirements](deploy-containers/system-requirements.md)<br /><br /></li>
-<li>[Deploy Container Host - Windows Server](deploy-containers/deploy-containers-on-server.md)<br /><br /></li>
-<li>[Deploy Container Host - Nano Server](deploy-containers/deploy-containers-on-nano.md)<br /><br /></li>
+<li>[Deploy Container Host](deploy-containers/deploy-containers-on-server.md)<br /><br /></li>
 <li>[Anti-Virus Optimization](https://msdn.microsoft.com/en-us/windows/hardware/drivers/ifs/anti-virus-optimization-for-windows-containers)<br /><br /></li>
 </ul>
 </td>
@@ -75,7 +69,8 @@ Interact with the community, try samples, and find additional resources.<br /><b
 <ul>
 <li>[Container Forum](https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers)<br /><br /></li>
 <li>[Community Videos and Blogs](communitylinks.md)<br /><br /></li>
-<li>[Container Resources](https://msdn.microsoft.com/virtualization/community/community_overview)<br /><br /></li>
+<li>[Container Samples](https://docs.microsoft.com/en-us/virtualization/windowscontainers/samples)<br /><br /></li>
+<li>[UserVoice](https://windowsserver.uservoice.com/forums/304624-containers)<br /><br /></li>
 </ul>
 </td>
 </tr>

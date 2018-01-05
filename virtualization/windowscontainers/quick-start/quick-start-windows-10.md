@@ -12,7 +12,7 @@ ms.assetid: bb9bfbe0-5bdc-4984-912f-9c93ea67105f
 
 # Windows Containers on Windows 10
 
-The exercise will walk through basic deployment and use of the Windows container feature on Windows 10 Professional or Enterprise (Anniversary Edition). After completion, you will have installed Docker for Windows and run a simple container. Before starting this quick start, familiarize yourself with basic container concepts and terminology. This information can be found on the [Quick Start Introduction](./index.md).
+The exercise will walk through basic deployment and use of the Windows container feature on Windows 10 Professional or Enterprise (Anniversary Edition). After completion, you will have installed Docker for Windows and run a simple container. If you need to familiarize yourself with containers, you can find this information in [About Containers](../about/index.md).
 
 This quick start is specific to Windows 10. Additional quick start documentation can be found in the table of contents on the left hand side of this page.
 
@@ -42,13 +42,13 @@ After installation Docker for Windows defaults to running Linux containers. Swit
 
 Windows containers are built from base images. The following command will pull the Nano Server base image.
 
-```none
+```
 docker pull microsoft/nanoserver
 ```
 
 Once the image is pulled, running `docker images` will return a list of installed images, in this case the Nano Server image.
 
-```none
+```
 docker images
 
 REPOSITORY             TAG                 IMAGE ID            CREATED             SIZE
@@ -65,43 +65,43 @@ For this simple example a ‘Hello World’ container image will be created and 
 
 First, start a container with an interactive session from the `nanoserver` image. Once the container has started, you will be presented with a command shell from within the container.  
 
-```none
+```
 docker run -it microsoft/nanoserver cmd
 ```
 
 Inside the container we will create a simple ‘Hello World’ script.
 
-```none
+```
 powershell.exe Add-Content C:\helloworld.ps1 'Write-Host "Hello World"'
 ```   
 
 When completed, exit the container.
 
-```none
+```
 exit
 ```
 
 You will now create a new container image from the modified container. To see a list of containers run the following and take note of the container id.
 
-```none
+```
 docker ps -a
 ```
 
 Run the following command to create the new ‘HelloWorld’ image. Replace <containerid> with the id of your container.
 
-```none
+```
 docker commit <containerid> helloworld
 ```
 
 When completed, you now have a custom image that contains the hello world script. This can be seen with the following command.
 
-```none
+```
 docker images
 ```
 
 Finally, to run the container, use the `docker run` command.
 
-```none
+```
 docker run --rm helloworld powershell c:\helloworld.ps1
 ```
 
@@ -110,4 +110,4 @@ Subsequent Windows 10 and container quick starts will dig into creating and depl
 
 ## Next Steps
 
-[Windows Containers on Windows Server](./quick-start-windows-server.md)
+Continue to the next tutorial to see an example of [building a sample app](./building-sample-app.md)
