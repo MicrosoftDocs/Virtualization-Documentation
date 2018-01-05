@@ -6,7 +6,7 @@
     {
       "docset_name": "Microsoft_Windows-Container-Documentation-Private_api",
       "build_source_folder": "virtualization/api",
-      "build_output_subfolder": "virtualization/api",
+      "build_output_subfolder": "virtualization-api",
       "locale": "en-us",
       "monikers": [],
       "open_to_public_contributors": true,
@@ -22,7 +22,7 @@
     {
       "docset_name": "Microsoft_Windows-Container-Documentation-Private_community",
       "build_source_folder": "virtualization/community",
-      "build_output_subfolder": "virtualization/community",
+      "build_output_subfolder": "virtualization-community",
       "locale": "en-us",
       "monikers": [],
       "open_to_public_contributors": true,
@@ -50,7 +50,7 @@
     {
       "docset_name": "Microsoft_Windows-Container-Documentation-Private_windowscontainers",
       "build_source_folder": "virtualization/windowscontainers",
-      "build_output_subfolder": "virtualization/windowscontainers",
+      "build_output_subfolder": "virtualization-windowscontainers",
       "locale": "en-us",
       "monikers": [],
       "open_to_public_contributors": true,
