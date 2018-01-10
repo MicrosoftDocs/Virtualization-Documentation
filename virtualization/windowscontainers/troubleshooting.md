@@ -25,7 +25,7 @@ If that doesn't help find the source of the problem, please go ahead and post th
 ## Finding Logs
 There are multiple services that are used to manage Windows Containers. The next sections shows where to get logs for each service.
 
-### Docker Engine
+# Docker Engine
 The Docker Engine logs to the Windows 'Application' event log, rather than to a file. These logs can easily be read, sorted, and filtered using Windows PowerShell
 
 For example, this will show the Docker Engine logs from the last 5 minutes starting with the oldest.
@@ -40,7 +40,7 @@ This could also easily be piped into a CSV file to be read by another tool or sp
 Get-EventLog -LogName Application -Source Docker -After (Get-Date).AddMinutes(-30)  | Sort-Object Time | Export-CSV ~/last30minutes.CSV
 ```
 
-#### Enabling Debug logging
+## Enabling Debug logging
 You can also enable debug-level logging on the Docker Engine. This may be helpful for troubleshooting if the regular logs don't have enough detail.
 
 First, open an elevated Command Prompt, then run `sc.exe qc docker` get the current command line for the Docker service.
@@ -86,7 +86,7 @@ sc.exe stop docker
 <path\to\>dockerd.exe -D > daemon.log 2>&1
 ```
 
-#### Obtaining stack dump and daemon data.
+## Obtaining stack dump and daemon data.
 
 Generally, these are only useful if explicitly requested by Microsoft support, or docker developers. They can be used to assist diagnosing a situation where docker appears to have hung. 
 
@@ -106,7 +106,7 @@ The files will be `goroutine-stacks-<timestamp>.log` and `daemon-data-<timestamp
 Note that `daemon-data*.log` may contain personal information and should generally only be shared with trusted support people. `goroutine-stacks*.log` does not contain personal information.
 
 
-### Host Compute Service
+# Host Compute Service
 The Docker Engine depends on a Windows-specific Host Compute Service. It has separate logs: 
 - Microsoft-Windows-Hyper-V-Compute-Admin
 - Microsoft-Windows-Hyper-V-Compute-Operational
@@ -119,7 +119,7 @@ Get-WinEvent -LogName Microsoft-Windows-Hyper-V-Compute-Admin
 Get-WinEvent -LogName Microsoft-Windows-Hyper-V-Compute-Operational 
 ```
 
-#### Capturing HCS analytic/debug logs
+## Capturing HCS analytic/debug logs
 
 To enable analytic/debug logs for Hyper-V Compute and save them to `hcslog.evtx`.
 
@@ -136,7 +136,7 @@ wevtutil.exe epl Microsoft-Windows-Hyper-V-Compute-Analytic <hcslog.evtx>
 wevtutil.exe sl Microsoft-Windows-Hyper-V-Compute-Analytic /e:false /q:true
 ```
 
-#### Capturing HCS verbose tracing
+## Capturing HCS verbose tracing
 
 Generally, these are only useful if requested by Microsoft support. 
 
