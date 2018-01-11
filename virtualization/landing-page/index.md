@@ -456,8 +456,8 @@ ms.assetid: addcfda8-1522-4137-bc02-14cbb1ff838f
                                                 <h3 style="margin: 8px 0 2px 0;">APIs</h3>
                                                 <ul>
                                                     <li><a href="https://msdn.microsoft.com/library/hh850319.aspx">Hyper-V WMI</a></li>
-                                                    <li><a href="/virtualization/windows-hypervisor-platform/index">Windows Hypervisor Platform</a></li>
-                                                    <li><a href="/virtualization/windows-hypervisor-platform/reference/hyper-v-emulator">Hyper-V Instruction Emulator</a></li>
+                                                    <li><a href="/virtualization/windows-hypervisor-platform/index.md">Windows Hypervisor Platform</a></li>
+                                                    <li><a href="/virtualization/windows-hypervisor-platform/reference/hyper-v-emulator.md">Hyper-V Instruction Emulator</a></li>
                                                 </ul>
                                             </div>
                                         </div>
