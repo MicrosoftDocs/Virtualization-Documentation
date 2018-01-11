@@ -47,7 +47,7 @@ Windows Containers are offered with two container base images, Windows Server Co
 <td><center>Server Core / Nano Server</center></td>
 </tr>
 <tr valign="top">
-<td><center>Nano Server*</center></td>
+<td><center>Nano Server<a href="#warn-1">*</a></center></td>
 <td><center> Nano Server</center></td>
 <td><center>Server Core / Nano Server</center></td>
 </tr>
@@ -58,7 +58,10 @@ Windows Containers are offered with two container base images, Windows Server Co
 </tr>
 </tbody>
 </table>
-* Starting with Windows Server version 1709 Nano Server is no long avilable as a container host.
+
+> [!Warning]  
+> <span id="warn-1">Starting with Windows Server version 1709 Nano Server is no long available as a container host.</span>
+
 
 ### Memory requirments
 Restrictions on available memory to containers can be configured though [resource controls](https://docs.microsoft.com/en-us/virtualization/windowscontainers/manage-containers/resource-controls) or by overloading a container host.  The minimum amount of memory required to launch a container and run basic commands (ipconfig, dir, etc...) are listed below.  __Please note that these values do not take into account resource sharing between containers or requirments from the application running in the container.  For example a host with 512MB of free memory can run multiple Server Core containers under Hyper-V isolation because those containers share resources.__
@@ -100,7 +103,7 @@ Example 1:  Container host is running Windows Server 2016 with KB4041691 applied
 Example 2:  Container host is running Windows Server version 1709 with KB4043961 applied.  Any Windows Server container deployed to this host must be based on a Windows Server version 1709 (10.0.16299) container base image but need not match the host KB.  If KB4054517 is applied to the host the container images do not need to be updated, though should be in order to fully address any security issues.
 #### Querying version
 Method 1:
-Introduced in version 1709 the cmd prompt and ver command now return the revision details.
+Introduced in version 1709 the cmd prompt and `ver` command now return the revision details.
 ```
 Microsoft Windows [Version 10.0.16299.125]
 (c) 2017 Microsoft Corporation. All rights reserved.
@@ -129,10 +132,11 @@ To check what version your base image is using you can review the tags on the Do
 ### Hyper-V Isolation for Containers
 Windows containers can be run with or without Hyper-V isolation.  Hyper-V isolation creates a secure boundary around the container with an optimized VM.  Unlike standard Windows containers, which share the kernel between containers and the host, each Hyper-V isolated container has its own instance of the Windows kernel.  Because of this you can have different OS versions in the container host and image (see compatibility matrix below).  
 
-To run a container with Hyper-V isolation, simply add the tag "--isolation=hyperv" to your docker run command.
+To run a container with Hyper-V isolation, simply add the tag `--isolation=hyperv` to your docker run command.
 
 ### Compatibility Matrix
 Windows Server builds after 2016 GA (10.0.14393.206) can run the Windows Server 2016 GA images of both Windows Server Core or Nano Server in a supported configuration regardless of the revision number.
 A Windows Server version 1709 host can also run Windows Server 2016 based containers, however the inverse is not supported.
 
 It is important to understand that in order to have the full functionality, reliability and security assurances provided with Windows updates you should maintain the latest versions on all systems.  
+
