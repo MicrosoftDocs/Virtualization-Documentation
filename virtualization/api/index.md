@@ -29,8 +29,8 @@ The following diagram provides a high-level overview of the third-party architec
 			<p><strong>About Hyper-V on Windows</strong></p>
 			<p>The following articles provide an introduction to and information about Hyper-V on Windows.</p>
 			<ul>
-				<li class="unordered">[Introduction to Hyper-V](../hyper-v-on-windows/about/index.md)<br /><br /></li>
-				<li class="unordered">[Supported Guest Operating Systems](../hyper-v-on-windows/about/supported-guest-os.md)<br /><br /></li>
+				<li class="unordered">[Introduction to Hyper-V](../hyper-v-on-windows/about/index<br /><br /></li>
+				<li class="unordered">[Supported Guest Operating Systems](../hyper-v-on-windows/about/supported-guest-os)<br /><br /></li>
 			</ul>
 		</td>
 	</tr>
