@@ -1,6 +1,6 @@
 # [Overview](./index.md)
 # [Windows Hypervisor Platform API](./hypervisor-platform/hypervisor-platform.md)
-## [WHvCancelRunVirtualProcessor](reference/funcs/WHvCancelRunVirtualProcessor.md)
+## [WHvCancelRunVirtualProcessor](./hypervisor-platform/funcs/WHvCancelRunVirtualProcessor.md)
 ## [WHvCreatePartition](reference/funcs/WHvCreatePartition.md)
 ## [WHvCreateVirtualProcessor](reference/funcs/WHvCreateVirtualProcessor.md)
 ## [WHvDeletePartition](reference/funcs/WHvDeletePartition.md)
