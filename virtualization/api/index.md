@@ -42,7 +42,7 @@ The following diagram provides a high-level overview of the third-party architec
 			<ul>
 			    <li class="unordered">[Install Hyper-V](../hyper-v-on-windows/quick-start/enable-hyper-v)<br /><br /></li>
                 <li class="unordered">[Create a Virtual Machine](../hyper-v-on-windows/quick-start/create-virtual-machine)<br /><br /></li>
-				<li class="unordered">[Create a Virtual Switch](../hyper-v-on-window/quick-start/connect-to-network)<br /><br /></li>
+				<li class="unordered">[Create a Virtual Switch](../hyper-v-on-windows/quick-start/connect-to-network)<br /><br /></li>
 				<li class="unordered">[Hyper-V and PowerShell](../hyper-v-on-windows/quick-start/try-hyper-v-powershell)<br /><br /></li>
 			</ul>
 		</td>
