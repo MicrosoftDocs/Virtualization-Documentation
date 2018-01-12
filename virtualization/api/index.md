@@ -24,31 +24,31 @@ The following diagram provides a high-level overview of the third-party architec
 
 <table border="1" style="background-color:FFFFCC;border-collapse:collapse;border:1px solid FFCC00;color:000000;width:100%" cellpadding="15" cellspacing="3">
 	<tr valign="top">
-		<td><center>![](./media/MeetsRequirements_65.png)</center></td>
+		<td><center>![](../hyper-v-on-windows/media/MeetsRequirements_65.png)</center></td>
 		<td valign="top">
 			<p><strong>About Hyper-V on Windows</strong></p>
 			<p>The following articles provide an introduction to and information about Hyper-V on Windows.</p>
 			<ul>
-				<li class="unordered">[Introduction to Hyper-V](./about/index.md)<br /><br /></li>
-				<li class="unordered">[Supported Guest Operating Systems](about\supported-guest-os.md)<br /><br /></li>
+				<li class="unordered">[Introduction to Hyper-V](../hyper-v-on-windows/about/index.md)<br /><br /></li>
+				<li class="unordered">[Supported Guest Operating Systems](../hyper-v-on-windows/about/supported-guest-os.md)<br /><br /></li>
 			</ul>
 		</td>
 	</tr>
 	<tr valign="top">
-		<td><center>![](./media/All_ContentTypeIcons_VisualWalkthrough_65.png)</center></td>
+		<td><center>![](../hyper-v-on-windows/media/All_ContentTypeIcons_VisualWalkthrough_65.png)</center></td>
 		<td valign="top">
 			<p><strong>Get started with Hyper-V</strong></p>
 			<p>The following documents provide a quick and guided introduction to Hyper-V on Windows 10.</p>
 			<ul>
-			    <li class="unordered">[Install Hyper-V](quick-start\enable-hyper-v.md)<br /><br /></li>
-                <li class="unordered">[Create a Virtual Machine](quick-start\create-virtual-machine.md)<br /><br /></li>
-				<li class="unordered">[Create a Virtual Switch](quick-start\connect-to-network.md)<br /><br /></li>
-				<li class="unordered">[Hyper-V and PowerShell](quick-start\try-hyper-v-powershell.md)<br /><br /></li>
+			    <li class="unordered">[Install Hyper-V](../hyper-v-on-windows/quick-start/enable-hyper-v.md)<br /><br /></li>
+                <li class="unordered">[Create a Virtual Machine](../hyper-v-on-windows/quick-start/create-virtual-machine.md)<br /><br /></li>
+				<li class="unordered">[Create a Virtual Switch](../hyper-v-on-window/quick-start/connect-to-network.md)<br /><br /></li>
+				<li class="unordered">[Hyper-V and PowerShell](../hyper-v-on-windows/quick-start/try-hyper-v-powershell.md)<br /><br /></li>
 			</ul>
 		</td>
 	</tr>
 	<tr valign="top">
-		<td><center>![](./media/Chat_65.png)</center></td>
+		<td><center>![](../hyper-v-on-windows/media/Chat_65.png)</center></td>
 		<td valign="top">
 			<p><strong>Connect with Community and Support</strong></p>
 			<p>Additional technical support and community resources.</p>
