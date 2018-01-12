@@ -15,7 +15,7 @@
 ## [WHvRunVirtualProcessor](./hypervisor-platform/funcs/WHvRunVirtualProcessor.md)
 ### [Exit Contexts](./hypervisor-platform/funcs/WHvExitContextDataTypes.md)
 ### [Memory Access](./hypervisor-platform/funcs/MemoryAccess.md)
-### [I/O Port Access]./hypervisor-platform/funcs/IOPortAccess.md)
+### [I/O Port Access](./hypervisor-platform/funcs/IOPortAccess.md)
 ### [MSR Access](./hypervisor-platform/funcs/MSRAccess.md)
 ### [CPUID Access](./hypervisor-platform/funcs/CPUIDAccess.md)
 ### [Virtual Processor Exception](./hypervisor-platform/funcs/VirtualProcessorException.md)

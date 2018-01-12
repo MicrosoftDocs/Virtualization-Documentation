@@ -25,7 +25,7 @@ WHvEmulatorTryMmioEmulation(
 
 ## Return Value
 Attempt to emulate a given type of instruction with the given instruction context
-returned by the WinHv APIs from a [`WHvRunVirtualProcessor`](WHvRunVirtualProcessor.md) call. This function returns
+returned by the WinHv APIs from a [`WHvRunVirtualProcessor`](/virtualization/api/hypervisor-platform/funcs/WHvRunVirtualProcessor.md) call. This function returns
 `S_OK` in most methods of operation, and `EmulatorReturnStatus` will be returned with
 additional information. If Emulator, or the instruction context are malformed, this
 function may return `E_INVALIDARG`. Any other return value indicates catastrophic failure, and the extended status should not be checked.
@@ -37,15 +37,15 @@ for the virtualization stack to identify this emulation call.
 
 `EmulatorReturnStatus` is extended status information about the emulation call. This return value
 is only valid if the function's return value was `S_OK`:
-* `EmulationSuccessful`: This emulation call was successful, the [`SetVirtualProcessorRegisters`](WHvSetVirtualProcessorRegisters.md) callback was called and the virtualization stack should continue running the processor.
+* `EmulationSuccessful`: This emulation call was successful, the [`SetVirtualProcessorRegisters`](/virtualization/api/hypervisor-platform/funcs/WHvSetVirtualProcessorRegisters.md) callback was called and the virtualization stack should continue running the processor.
 * `InternalEmulationFailure`: Some internal emulation failure occurred.
 * `IoPortCallbackFailed`: The registered Io Port callback did not return `S_OK`.
 * `MemoryCallbackFailed`: The registered Memory callback did not return `S_OK`.
 * `TranslateGvaPageCallbackFailed`: The registered `TranslateGvaPage` callback did not return `S_OK`.
 * `TranslateGvaPageCallbackGpaPageIsNotAligned`: The `GpaPage` address returned in the `TranslateGvaPage`
 callback was not 4K aligned.
-* `GetVirtualProcessorRegistersCallbackFailed`: The registered [`GetVirtualProcessorRegisters`](WhvGetVirtualProcessorRegisters.md) callback did not return `S_OK`.
-* `SetVirtualProcessorRegistersCallbackFailed`: The registered [`SetVirtualProcessorRegisters`](WHvSetVirtualProcessorRegisters.md) callback did not return `S_OK`.
+* `GetVirtualProcessorRegistersCallbackFailed`: The registered [`GetVirtualProcessorRegisters`](/virtualization/api/hypervisor-platform/funcs/WhvGetVirtualProcessorRegisters.md) callback did not return `S_OK`.
+* `SetVirtualProcessorRegistersCallbackFailed`: The registered [`SetVirtualProcessorRegisters`](/virtualization/api/hypervisor-platform/funcs/WHvSetVirtualProcessorRegisters.md) callback did not return `S_OK`.
 * `InterruptCausedIntercept`: A pending interrupt or fault caused this intercept, which the emulator cannot handle.
 * `GuestCannotBeFaulted`: The guest is currently in a state where injecting a fault would do nothing, and instead must be terminated in other ways.
 
