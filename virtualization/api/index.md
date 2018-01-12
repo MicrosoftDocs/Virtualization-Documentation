@@ -19,7 +19,7 @@ The Windows Hypervisor Platform adds an extended user-mode API for third-party v
 The following diagram provides a high-level overview of the third-party architecture.
 
 ![](./media/hypervisor-platform-architecture.png)
-> For more information see: [Windows Hypervisor Platform API](./hypervisor-platform.md)
+> For more information see: [Windows Hypervisor Platform API](./hypervisor-platform/hypervisor-platform.md)
 **Note: These APIs are not yet publicly available and will be included in a future Windows release.**
 
 <table border="1" style="background-color:FFFFCC;border-collapse:collapse;border:1px solid FFCC00;color:000000;width:100%" cellpadding="15" cellspacing="3">
