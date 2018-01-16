@@ -26,7 +26,7 @@ Instruction emulation uses a fixed set of registers that are queried and set tog
     * SYSENTER_CS, SYSENTER_ESP, SYSENTER_EIP, TSC 
     * EFER, STAR, LSTAR, CSTAR, FMASK, KERNELGSBASE 
 
-This set of registers is provided using the [`WHvGetVirtualProcessorRegisters`](funcs/WHvGetVirtualProcessorRegisters.md) and [`WHvSetVirtualProcessorRegisters`](funcs/WHvSetVirtualProcessorRegisters.md) platform functions, keeping it in sync with the register state used by the instruction emulation.  
+This set of registers is provided using the [`WHvGetVirtualProcessorRegisters`](/virtualization/api/hypervisor-platform/funcs/WHvGetVirtualProcessorRegisters.md) and [`WHvSetVirtualProcessorRegisters`](/virtualization/api/hypervisor-platform/funcs/WHvSetVirtualProcessorRegisters.md) platform functions, keeping it in sync with the register state used by the instruction emulation.  
 
 ## Windows Hypervisor Platform Instruction Emulator API Reference
 
