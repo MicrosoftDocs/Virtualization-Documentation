@@ -46,10 +46,10 @@ mv * ~/kube/
 > [!Note]  
 > To include patches or use bleeding-edge Kubernetes code instead of downloading pre-built binaries, see [this page](./compiling-kubernetes-binaries.md).
 
-Download and install the official Linux binaries from the [Kubernetes mainline](https://github.com/kubernetes/kubernetes/releases/tag/v1.9.0-beta.1) and install them like so:
+Download and install the official Linux binaries from the [Kubernetes mainline](https://github.com/kubernetes/kubernetes/releases/tag/v1.9.1) and install them like so:
 
 ```bash
-wget -O kubernetes.tar.gz https://github.com/kubernetes/kubernetes/releases/download/v1.9.0-beta.1/kubernetes.tar.gz
+wget -O kubernetes.tar.gz https://github.com/kubernetes/kubernetes/releases/download/v1.9.1/kubernetes.tar.gz
 tar -vxzf kubernetes.tar.gz 
 cd kubernetes/cluster 
 # follow the prompts from this command, the defaults are generally fine:

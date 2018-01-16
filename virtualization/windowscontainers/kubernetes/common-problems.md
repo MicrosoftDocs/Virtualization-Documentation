@@ -35,7 +35,7 @@ Ensure that scripts have executable permissions:
 chmod +x [script name]
 ```
 
-Additionally, certain scripts must be run with administrator privileges (like `kubelet`), and should be prefixed with `sudo`.
+Additionally, certain scripts must be run with super-user privileges (like `kubelet`), and should be prefixed with `sudo`.
 
 
 ### Cannot connect to the API server at `https://[address]:[port]` ###
@@ -56,10 +56,33 @@ There may be additional restrictions in place on your network or on hosts preven
 
 ## Common Windows Errors ##
 
+### Pods stop resolving DNS queries successfully after some time alive ###
+This is a known issue in the networking stack that affects some setups; it is being fast-tracked through Windows servicing.
 
-### My Windows pods cannot access the Linux master, or vice-versa. ###
+
+### My Kubernetes pods are stuck at "ContainerCreating" ###
+This issue can have many causes, but one of the most common is that the pause image was misconfigured. This is a high-level symptom of the next issue.
+
+
+### When deploying, Docker containers keep restarting ###
+Check that your pause image is compatible with your OS version. The [instructions](./getting-started-kubernetes-windows.md) assume that both the OS and the containers are version 1709. If you have a later version of Windows, such as an Insider build, you will need to adjust the images accordingly. Please refer to the Microsoft's [Docker repository](https://hub.docker.com/u/microsoft/) for images. Regardless, both the pause image Dockerfile and the sample service will expect the image to be tagged as `microsoft/windowsservercore:latest`.
+
+
+### My Windows pods cannot access the Linux master, or vice-versa ###
 If you are using a Hyper-V virtual machine, ensure that MAC spoofing is enabled on the network adapter(s).
 
 
-### My Windows node cannot access my services using the service IP. ###
-This is a known limitation of the current networking stack on Windows.
+### My Windows node cannot access my services using the service IP ###
+This is a known limitation of the current networking stack on Windows. Only pods can refer to the service IP.
+
+
+### No network adapter is found when starting Kubelet ###
+The Windows networking stack needs a virtual adapter for Kubernetes networking to work. If the following commands return no results (in an admin shell), virtual network creation &mdash; a necessary prerequisite for Kubelet to work &mdash; has failed:
+
+```powershell
+Get-HnsNetwork | ? Name -Like "l2bridge"
+Get-NetAdapter | ? Name -Like "vEthernet (Ethernet*"
+```
+
+Consult the output of the `start-kubelet.ps1` script to see if there are errors during virtual network creation.
+
