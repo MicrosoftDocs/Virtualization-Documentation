@@ -56,7 +56,7 @@ Regardless of whether you followed [our instructions](./creating-a-linux-master.
 
 ## Preparing a Windows Node ##
 > [!Note]  
-> All code snippets in Windows sections are to be run in elevated PowerShell.
+> All code snippets in Windows sections are to be run in _elevated_ PowerShell.
 
 Kubernetes uses [Docker](https://www.docker.com/) as its container orchestrator, so we need to install it. You can follow the [official MSDN instructions](virtualization/windowscontainers/manage-docker/configure-docker-daemon.md#install-docker), the [Docker instructions](https://store.docker.com/editions/enterprise/docker-ee-server-windows), or try these steps:
 
@@ -84,13 +84,13 @@ Now that `docker` is installed, we need to prepare a "pause" image that's used b
 
 ```powershell
 docker pull microsoft/windowsservercore:1709
-docker tag $(docker images -q) microsoft/windowsservercore:latest
+docker tag microsoft/windowsservercore:1709 microsoft/windowsservercore:latest
 cd C:/k/
 docker build -t kubeletwin/pause .
 ```
 
 > [!Note]  
-> We tag it as the `:latest` because that's what is expected by the sample service we will be deploying later.
+> We tag it as the `:latest` because the sample service we will be deploying later depends on it, though this may not actually _be_ the latest Windows Server Core image available. It's important to be careful of conflicting container images; not having the expected tag can cause a `docker pull` of an incompatible container image, causing [deployment problems](./common-problems.md#when-deploying-docker-containers-keep-restarting). 
 
 
 ### Downloading Binaries ###
@@ -100,10 +100,7 @@ In the meantime while the `pull` occurs, download the following client-side bina
   - `kubelet.exe`
   - `kube-proxy.exe`
 
-You can download these from the links in the `CHANGELOG.md` file of the latest 1.9 release. As of this writing, that is [1.9.0-beta.1](https://github.com/kubernetes/kubernetes/releases/tag/v1.9.0-beta.1), and the Windows binaries are [here](https://dl.k8s.io/v1.9.0-beta.1/kubernetes-node-windows-amd64.tar.gz). Use a tool like [7-Zip](http://www.7-zip.org/) to extract the archive and place the binaries in `C:\k\`.
-
-> [!Warning]  
-> As of this writing, `kube-proxy.exe` requires a pending Kubernetes [pull request](https://github.com/kubernetes/kubernetes/pull/56529) to work properly. You may need to [build the binaries manually](./compiling-kubernetes-binaries.md) to work around this.
+You can download these from the links in the `CHANGELOG.md` file of the latest 1.9 release. As of this writing, that is [1.9.1](https://github.com/kubernetes/kubernetes/releases/tag/v1.9.1), and the Windows binaries are [here](https://storage.googleapis.com/kubernetes-release/release/v1.9.1/kubernetes-node-windows-amd64.tar.gz). Use a tool like [7-Zip](http://www.7-zip.org/) to extract the archive and place the binaries in `C:\k\`.
 
 
 ### Joining the Cluster ###
@@ -152,4 +149,4 @@ If all went well, you will be able to validate that it's possible to:
   - `curl` the *service name* with the Kubernetes [default DNS suffix](https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/#services), demonstrating DNS functionality.
 
 > [!Warning]  
-> Windows nodes will not be able to access the service IP. This is a [known limitation](./common-problems.md#common-windows-errors).
+> Windows nodes will not be able to access the service IP. This is a [known limitation](./common-problems.md#my-windows-node-cannot-access-my-services-using-the-service-ip).
