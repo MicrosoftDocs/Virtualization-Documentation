@@ -44,6 +44,9 @@ Windows Containers follow a similar process:
 [windows-server-container-tools](https://github.com/Microsoft/Virtualization-Documentation/tree/live/windows-server-container-tools) to store settings needed to use the gMSA
 5. Start the container with an extra option `--security-opt "credentialspec=..."`
 
+[!NOTE]
+You might need to allow anonymous SID/Name translation on the container host as described [here](https://docs.microsoft.com/en-us/windows/device-security/security-policy-settings/network-access-allow-anonymous-sidname-translation) as you might otherwise get errors that accounts can't be translated to SIDs.
+
 When the container is launched, the installed services running as Local System or Network Service will appear to run as the gMSA. This is similar to how those accounts work on a domain-joined hosts, except a gMSA is used instead of a computer account. 
 
 ![Diagram - Service Accounts](media/serviceaccount_diagram.png)
