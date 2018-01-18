@@ -10,21 +10,20 @@ description: Creating a Kubernetes cluster master from scratch.
 keywords: kubernetes, 1.9, master, linux
 ---
 
-# Kubernetes Master  From Scratch #
+# Kubernetes Master From Scratch #
 This page will walk through a manual deployment of a Kubernetes master from start to finish.
 
 A recently-updated, Ubuntu-like Linux machine is required to follow along. Windows does not come into the picture at all; binaries are cross-compiled from Linux.
 
-
 > [!Warning]  
-> Because of the volatility of Kubernetes from version to version, this guide may make assumptions that are not true in the future.
+> Because of the volatility of Kubernetes from version to version, this guide may make assumptions that are not true in the future. [`kubeadm`](https://kubernetes.io/docs/setup/independent/create-cluster-kubeadm/) is the "official" way to set a master up quickly, although neither method is recommended blindly for production environments.
 
 
 ## Preparing the Master ##
 First, install all of the pre-requisites:
 
 ```bash
-sudo apt-get install curl git build-essential docker.io conntrack
+sudo apt-get install curl git python2.7 build-essential docker.io conntrack
 ```
 
 
