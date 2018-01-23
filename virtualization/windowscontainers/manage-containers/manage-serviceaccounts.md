@@ -47,6 +47,15 @@ Windows Containers follow a similar process:
 [!NOTE]
 You might need to allow anonymous SID/Name translation on the container host as described [here](https://docs.microsoft.com/en-us/windows/device-security/security-policy-settings/network-access-allow-anonymous-sidname-translation) as you might otherwise get errors that accounts can't be translated to SIDs.
 
+However, before exploring the need to allow anonymous SID/Name translation, ensure that the following actions are taken:
+
+1. The name of the gMSA account should match the name of the service (ex. "myapp").
+2. Include the -h argument to specify the hostname the container should use when launched. 
+```
+docker run --security-opt "credentialspec=file://myapp.json" -d -p 80:80 -h myapp.mydomain.local <imagename>
+```
+3. The Service Principal Name (SPN) used when creating the gMSA account should match the -h argument used when the container is run. If you did not add SPNs to the gMSA during creation, they can be added to properties of the account afterwards.
+
 When the container is launched, the installed services running as Local System or Network Service will appear to run as the gMSA. This is similar to how those accounts work on a domain-joined hosts, except a gMSA is used instead of a computer account. 
 
 ![Diagram - Service Accounts](media/serviceaccount_diagram.png)
