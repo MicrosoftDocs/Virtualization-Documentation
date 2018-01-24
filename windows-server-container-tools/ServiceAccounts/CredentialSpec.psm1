@@ -97,9 +97,9 @@ param(
 
     # Create DomainJoinConfig Object
     $output.DomainJoinConfig = @{}
-    $output.DomainJoinConfig.DnsName = $Domain.Forest
+    $output.DomainJoinConfig.DnsName = $Domain.DNSRoot
     $output.DomainJoinConfig.Guid = $Domain.ObjectGUID
-    $output.DomainJoinConfig.DnsTreeName = $Domain.DNSRoot
+    $output.DomainJoinConfig.DnsTreeName = $Domain.Forest
     $output.DomainJoinConfig.NetBiosName = $Domain.NetBIOSName
     $output.DomainJoinConfig.Sid = $Domain.DomainSID.Value
     $output.DomainJoinConfig.MachineAccountName = $AccountName
