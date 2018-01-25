@@ -54,10 +54,10 @@ go get -d $KUBEREPO
 cd $GOPATH/src/$KUBEREPO
 ```
 
-Now, checkout the branch to build from and build the Linux `kubelet` binary. This is necessary to avoid the Windows build errors noted above. Here, we will use `v1.9.0-beta.1`. After the `checkout` is the place to apply pending PRs, patches, or make other modifications for the custom binaries.
+Now, checkout the branch to build from and build the Linux `kubelet` binary. This is necessary to avoid the Windows build errors noted above. Here, we will use `v1.9.1`. After the `git checkout`, you can apply pending PRs, patches, or make other modifications for the custom binaries.
 
 ```bash
-git checkout tags/v1.9.0-beta.1
+git checkout tags/v1.9.1
 make clean && make WHAT=cmd/kubelet
 ```
 
@@ -85,7 +85,7 @@ mkdir -p "${SRC_DIR}"
 git clone https://github.com/kubernetes/kubernetes.git ${SRC_DIR}
 
 cd ${SRC_DIR}
-git checkout tags/v1.9.0-beta.1
+git checkout tags/v1.9.1
 KUBE_BUILD_PLATFORMS=linux/amd64   build/run.sh make WHAT=cmd/kubelet
 KUBE_BUILD_PLATFORMS=windows/amd64 build/run.sh make WHAT=cmd/kubelet 
 KUBE_BUILD_PLATFORMS=windows/amd64 build/run.sh make WHAT=cmd/kube-proxy 

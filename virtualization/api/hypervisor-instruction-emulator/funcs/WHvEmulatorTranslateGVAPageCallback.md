@@ -14,6 +14,6 @@ typedef HRESULT (CALLBACK *WHV_EMULATOR_TRANSLATE_GVA_PAGE_CALLBACK)(
 ```
 
 ## Remarks
-Callback requesting the virtualization stack to translate the Guest Virtual Address `GvaPage` that points to the start of a 4K page, with the specified `TranslateFlags`. The virtstack should return in `TranslationResult` exactly what [`WHvTranslateGva`](WHvTranslateGva.md) returned, along with the resulting address in GpaPage.
+Callback requesting the virtualization stack to translate the Guest Virtual Address `GvaPage` that points to the start of a 4K page, with the specified `TranslateFlags`. The virtstack should return in `TranslationResult` exactly what [`WHvTranslateGva`](/virtualization/api/hypervisor-platform/funcs/WHvTranslateGva.md) returned, along with the resulting address in GpaPage.
 
 **NOTE:** `GpaPage` must be 4K aligned or the current emulation call will fail, with extended status `TranslateGvaPageCallbackGpaPageIsNotAligned` bit set.

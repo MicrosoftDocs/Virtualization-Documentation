@@ -43,4 +43,6 @@ This page contains links to videos and blogs created by members or the container
 ## Configuration and Managment
 [How to protect a Windows 2016 Docker engine with TLS](https://stefanscherer.github.io/protecting-a-windows-2016-docker-engine-with-tls/) - Stefan Scherer
 
+[Using a Microsoft CA to secure Docker](http://dille.name/blog/2016/11/08/using-a-microsoft-ca-to-secure-docker/) - Nicholas Dille 
+
 [Windows #Container Performance of Layers](http://dille.name/blog/2017/01/13/windows-container-performance-of-layers/) - Nicholas Dille
