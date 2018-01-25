@@ -23,6 +23,7 @@ For each resource this section provides a mapping between the Docker command lin
 | HCS interface | [MemoryMaximumInMB]( https://github.com/Microsoft/hcsshim/blob/b144c605002d4086146ca1c15c79e56bfaadc2a7/interface.go#L67) |
 | Shared Kernel | [JOB_OBJECT_LIMIT_JOB_MEMORY](https://msdn.microsoft.com/en-us/library/windows/desktop/ms684147(v=vs.85).aspx) |
 | Hyper-V isolation | Virtual machine memory |
+| _Note Regarding Hyper-V isolation in Windows Server 2016:  when using a memory cap you will see the container allocate the cap amount of memory initially and then start to return it back to the container host.  In later versions (1709 or beyond) this has been optimized._ |
 | ||
 | *CPU (count)* ||
 | Docker interface | [--cpus](https://docs.docker.com/engine/admin/resource_constraints/#cpu) |
