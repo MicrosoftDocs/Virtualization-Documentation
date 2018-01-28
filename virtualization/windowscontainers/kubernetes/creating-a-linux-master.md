@@ -24,9 +24,17 @@ A recently-updated, Ubuntu-like Linux machine is required to follow along. Windo
 First, install all of the pre-requisites:
 
 ```bash
-sudo apt-get install curl git build-essential docker.io conntrack
+sudo apt-get install curl git build-essential docker.io conntrack python2.7
 ```
 
+If you are behind a proxy, define environment variables for the current session:
+```bash
+HTTP_PROXY=http://proxy.example.com:80/
+HTTPS_PROXY=http://proxy.example.com:443/
+http_proxy=http://proxy.example.com:80/
+https_proxy=http://proxy.example.com:443/
+```
+Or if you would like to make this setting permanent, add the variables to /etc/environment (logging out and back in is required in order to apply changes).
 
 There is a collection of scripts in [this repository](https://github.com/Microsoft/SDN/tree/master/Kubernetes/linux), which help with the setup process. Check them out to `~/kube/`; this entire directory will be getting mounted for a lot of the Docker containers in future steps, so keep its structure the same as outlined in the guide.
 
@@ -99,6 +107,7 @@ Prepare the certificates that will be used for nodes to communicate in the clust
 
 ```bash
 cd ~/kube/certs
+chmod u+x generate-certs.sh
 ./generate-certs.sh $MASTER_IP
 ```
 
@@ -130,6 +139,7 @@ Any other custom configuration options will require manual modification of the g
 Configure Kubernetes to use the generated certificates. This will create a configuration at `~/.kube/config`:
 
 ```bash
+cd ~/kube
 ./configure-kubectl.sh $MASTER_IP
 ```
 

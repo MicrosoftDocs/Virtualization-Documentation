@@ -66,6 +66,12 @@ Install-Package -Name Docker -ProviderName DockerMsftProvider
 Restart-Computer -Force
 ```
 
+If you are behind a proxy, the following PowerShell environment variables must be defined:
+```powershell
+[Environment]::SetEnvironmentVariable("HTTP_PROXY", "http://proxy.example.com:80/", [EnvironmentVariableTarget]::Machine)
+[Environment]::SetEnvironmentVariable("HTTPS_PROXY", "http://proxy.example.com:443/", [EnvironmentVariableTarget]::Machine)
+```
+
 There is a collection of scripts on [this Microsoft repository](https://github.com/Microsoft/SDN) that will help us join this node to the cluster. You can download the ZIP file directly [here](https://github.com/Microsoft/SDN/archive/master.zip). The only thing we need is the `Kubernetes/windows` folder, the contents of which should be moved to `C:\k\`:
 
 ```powershell
@@ -102,8 +108,38 @@ In the meantime while the `pull` occurs, download the following client-side bina
 
 You can download these from the links in the `CHANGELOG.md` file of the latest 1.9 release. As of this writing, that is [1.9.1](https://github.com/kubernetes/kubernetes/releases/tag/v1.9.1), and the Windows binaries are [here](https://storage.googleapis.com/kubernetes-release/release/v1.9.1/kubernetes-node-windows-amd64.tar.gz). Use a tool like [7-Zip](http://www.7-zip.org/) to extract the archive and place the binaries in `C:\k\`.
 
+In order to make the kubectl command available outside of `C:\k\` directory, modify PATH environment variable:
+```powershell
+$env:Path += ";C:\k"
+```
+If you would like to make this change permanent, modify the variable in machine target:
+```powershell
+[Environment]::SetEnvironmentVariable("Path", $env:Path + ";C:\k", [EnvironmentVariableTarget]::Machine)
+```
 
 ### Joining the Cluster ###
+Verify that cluster configuration using:
+```powershell
+kubectl version
+```
+
+If you are receiving a connection error
+```
+Unable to connect to the server: dial tcp [::1]:8080: connectex: No connection could be made because the target machine actively refused it.
+```
+you should check if configuration has been discovered properly:
+```powershell
+kubectl config view
+```
+In order to change location where kubectl is looking for configuration file, modify KUBECONFIG environment variable. For example, assuming that config is located in `C:\k\config`:
+```powershell
+$env:KUBECONFIG="C:\k\config"
+```
+To make this setting permanent for current user's scope:
+```powershell
+[Environment]::SetEnvironmentVariable("KUBECONFIG", "C:\k\config", [EnvironmentVariableTarget]::User)
+```
+
 The node is now ready to join the cluster. In two separate, *elevated* PowerShell windows, run these scripts (in this order). The `-ClusterCidr` parameter in the first script is the configured [cluster subnet](#cluster-subnet-def); here, it's `192.168.0.0/16`.
 
 ```powershell
