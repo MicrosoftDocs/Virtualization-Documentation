@@ -44,7 +44,7 @@ f0e017e5b088        21 seconds ago       cmd /S /C echo "Hello World - Dockerfil
 
 Each of these layers can be mapped to an instruction from the Dockerfile. The bottom layer (`6801d964fda5` in this example) represents the base OS image. One layer up, the IIS installation can be seen. The next layer includes the new website, and so on.
 
-Dockerfiles can be written to minimize image layers, optimize build performance, and also optimize cosmetic things such as readability. Ultimately, there are many ways to complete the same image build task. Understanding how the format of a Dockerfile effects build time, and the resulting image, improves the automation experience. 
+Dockerfiles can be written to minimize image layers, optimize build performance, and also optimize cosmetic things such as readability. Ultimately, there are many ways to complete the same image build task. Understanding how the format of a Dockerfile affects build time, and the resulting image, improves the automation experience. 
 
 ## Optimize Image Size
 
@@ -54,7 +54,7 @@ For additional information on Dockerfile best practices, see [Best practices for
 
 ### Group related actions
 
-Because each `RUN` instruction creates a new layer in the container image, grouping actions into one `RUN` instruction can reduce the number of layers. While minimizing layers may not effect image size much, grouping related actions can, which will be seen in subsequent examples.
+Because each `RUN` instruction creates a new layer in the container image, grouping actions into one `RUN` instruction can reduce the number of layers. While minimizing layers may not affect image size much, grouping related actions can, which will be seen in subsequent examples.
 
 The following two examples demonstrate the same operation, which results in container images of identical capability, however the two Dockerfiles constructed differently. The resulting images are also compared.  
 
@@ -198,7 +198,7 @@ d43abb81204a        7 days ago          cmd /S /C powershell -Command  Sleep 2 ;
 
 A Dockerfile is processed from top to the bottom, each Instruction compared against cached layers. When an instruction is found without a cached layer, this instruction and all subsequent instructions are processed in new container image layers. Because of this, the order in which instructions are placed is important. Place instructions that will remain constant towards the top of the Dockerfile. Place instructions that may change towards the bottom of the Dockerfile. Doing so reduces the likelihood of negating existing cache.
 
-The intention of this example is to demonstrated how Dockerfile instruction ordering can effect caching effectiveness. In this simple Dockerfile, four numbered folders are created.  
+The intention of this example is to demonstrated how Dockerfile instruction ordering can affect caching effectiveness. In this simple Dockerfile, four numbered folders are created.  
 
 ```
 FROM windowsservercore
