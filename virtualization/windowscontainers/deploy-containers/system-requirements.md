@@ -63,8 +63,8 @@ Windows Containers are offered with two container base images, Windows Server Co
 > <span id="warn-1">Starting with Windows Server version 1709 Nano Server is no long available as a container host.</span>
 
 
-### Memory requirments
-Restrictions on available memory to containers can be configured though [resource controls](https://docs.microsoft.com/en-us/virtualization/windowscontainers/manage-containers/resource-controls) or by overloading a container host.  The minimum amount of memory required to launch a container and run basic commands (ipconfig, dir, etc...) are listed below.  __Please note that these values do not take into account resource sharing between containers or requirments from the application running in the container.  For example a host with 512MB of free memory can run multiple Server Core containers under Hyper-V isolation because those containers share resources.__
+### Memory requirements
+Restrictions on available memory to containers can be configured though [resource controls](https://docs.microsoft.com/en-us/virtualization/windowscontainers/manage-containers/resource-controls) or by overloading a container host.  The minimum amount of memory required to launch a container and run basic commands (ipconfig, dir, etc...) are listed below.  __Please note that these values do not take into account resource sharing between containers or requirements from the application running in the container.  For example a host with 512MB of free memory can run multiple Server Core containers under Hyper-V isolation because those containers share resources.__
 
 #### Windows Server 2016
 | Base Image  | Windows Server Container | Hyper-V Isolation    |
