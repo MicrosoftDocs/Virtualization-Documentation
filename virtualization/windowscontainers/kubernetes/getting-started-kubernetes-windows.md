@@ -58,7 +58,7 @@ Regardless of whether you followed [our instructions](./creating-a-linux-master.
 > [!Note]  
 > All code snippets in Windows sections are to be run in _elevated_ PowerShell.
 
-Kubernetes uses [Docker](https://www.docker.com/) as its container orchestrator, so we need to install it. You can follow the [official MSDN instructions](virtualization/windowscontainers/manage-docker/configure-docker-daemon.md#install-docker), the [Docker instructions](https://store.docker.com/editions/enterprise/docker-ee-server-windows), or try these steps:
+Kubernetes uses [Docker](https://www.docker.com/) as its container orchestrator, so we need to install it. You can follow the [official MSDN instructions](../manage-docker/configure-docker-daemon.md#install-docker), the [Docker instructions](https://store.docker.com/editions/enterprise/docker-ee-server-windows), or try these steps:
 
 ```powershell
 Install-Module -Name DockerMsftProvider -Repository PSGallery -Force
@@ -157,7 +157,7 @@ There are a few basic tests that will validate a proper network configuration:
 
   - **Pod subnet to node connectivity**: pings between the virtual pod interface and the nodes. Find the gateway address under `route -n` and `ipconfig` on Linux and Windows, respectively, looking for the `cbr0` interface.
 
-If any of these basic tests don't work, try the [troubleshooting page](./common-problems.md#network-connectivity) to solve common issues.
+If any of these basic tests don't work, try the [troubleshooting page](./common-problems.md#common-networking-errors) to solve common issues.
 
 
 ## Running a Sample Service ##
