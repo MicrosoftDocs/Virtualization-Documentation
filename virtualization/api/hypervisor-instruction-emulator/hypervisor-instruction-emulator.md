@@ -30,8 +30,6 @@ Instruction emulation uses a fixed set of registers that are queried and set tog
 
 This set of registers is provided using the [`WHvGetVirtualProcessorRegisters`](/virtualization/api/hypervisor-platform/funcs/WHvGetVirtualProcessorRegisters.md) and [`WHvSetVirtualProcessorRegisters`](/virtualization/api/hypervisor-platform/funcs/WHvSetVirtualProcessorRegisters.md) platform functions, keeping it in sync with the register state used by the instruction emulation.  
 
-**Note:** One emulator is necessary per virtual processor thread.
-
 ## Windows Hypervisor Platform Instruction Emulator API Reference
 
 ### Emulator Structures
