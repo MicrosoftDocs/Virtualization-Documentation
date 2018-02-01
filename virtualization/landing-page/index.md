@@ -466,6 +466,37 @@ ms.assetid: addcfda8-1522-4137-bc02-14cbb1ff838f
                             </li>
                         </ul>
                     </li>
+                                        <li>
+                        <a href="#core">Windows Hypervisor Platform</a>
+                        <ul id="core" class="cardsW">
+                            <li class="fullSpan">
+                                <div class="container intro">
+                                    <p></p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="cardSize">
+                                    <div class="cardPadding">
+                                        <div class="card">
+                                            <div class="cardImageOuter">
+                                                <div class="cardImage bgdAccent1">
+                                                    <img src="/media/hubs/virtualization/virtualization-hyperv-api.svg" alt="" />
+                                                </div>
+                                            </div>
+                                            <div class="cardText">
+                                                <h3 style="margin: 8px 0 2px 0;">APIs</h3>
+                                                <ul>
+                                                    <li><a href="https://msdn.microsoft.com/library/hh850319.aspx">Hyper-V WMI</a></li>
+                                                    <li><a href="/virtualization/api/index">Windows Hypervisor Platform</a></li>
+                                                    <li><a href="/virtualization/api/hypervisor-instruction-emulator/hypervisor-instruction-emulator">Hyper-V Instruction Emulator</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
                 </ul>
             </li>
         </ul>
