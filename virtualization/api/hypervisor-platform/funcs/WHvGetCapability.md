@@ -114,10 +114,8 @@ typedef union WHV_PROCESSOR_FEATURES
 //
 // WHvGetCapability output buffer
 //
-typedef struct WHV_CAPABILITY
+typedef union WHV_CAPABILITY
 {
-    WHV_CAPABILITY_CODE CapabilityCode;
-
     union
     {
         BOOL HypervisorPresent;
@@ -133,8 +131,9 @@ HRESULT
 WINAPI
 WHvGetCapability(
     _In_ WHV_CAPABILITY_CODE CapabilityCode,
-    _Out_writes_bytes_(CapabilityBufferSizeInBytes) VOID* CapabilityBuffer,
-    _In_ UINT32 CapabilityBufferSizeInBytes
+    _Out_writes_bytes_to_(CapabilityBufferSizeInBytes, *WrittenSizeInBytes) VOID* CapabilityBuffer,
+    _In_ UINT32 CapabilityBufferSizeInBytes,
+    _Out_opt_ UINT32 *WrittenSizeInBytes
     );
 ```
 
@@ -144,7 +143,7 @@ WHvGetCapability(
 
 Specifies the capability that is queried.
 
-`CababilityBuffer`
+`CapabilityBuffer`
 
 Specifies the output buffer that receives the value of the capability:
 
@@ -158,7 +157,11 @@ The values returned for the processor properties are based on the capabilities o
 
 `CapabilityBufferSizeInBytes`
 
-Specifies the size of the output buffer, in bytes. For the currently defined set capabilities, the output buffer should be large enough to hold a 64-bit value. 
+Specifies the size of the output buffer, in bytes. For the currently defined set capabilities, the output buffer should be large enough to hold a 64-bit value.
+
+`WrittenSizeInBytes`
+
+Receives the written size in bytes of the `CapabilityBuffer`.
 
 ## Return Value
 If the operation completed successfully, the return value is `S_OK`.

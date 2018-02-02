@@ -3,27 +3,39 @@
 
 ## Syntax
 ```C
-// Context data for an exit caused by an I/O port access 
-typedef struct { 
-    UINT32 IsWrite : 1; 
-    UINT32 AccessSize: 3; 
-    UINT32 StringOp : 1; 
-    UINT32 RepPrefix : 1; 
-    UINT32 Reserved : 26; 
-} WHV_X64_IO_PORT_ACCESS_INFO; 
- 
-typedef struct { 
-    WHV_VP_INSTRUCTION_CONTEXT Instruction; 
-    WHV_VP_EXECUTION_STATE VpState; 
-    WHV_X64_IO_PORT_ACCESS_INFO AccessInfo; 
-    UINT16 PortNumber; 
-    UINT64 Rax; 
-    UINT64 Rcx; 
-    UINT64 Rsi; 
-    UINT64 Rdi; 
-    WHV_X64_SEGMENT_REGISTER Ds; 
-    WHV_X64_SEGMENT_REGISTER Es; 
-} WHV_X64_IO_PORT_ACCESS_CONTEXT; 
+//
+// Context data for an exit caused by an I/O port access (WHvRunVpExitReasonX64IOPortAccess)
+//
+typedef union WHV_X64_IO_PORT_ACCESS_INFO
+{
+    struct
+    {
+        UINT32 IsWrite : 1;
+        UINT32 AccessSize: 3;
+        UINT32 StringOp : 1;
+        UINT32 RepPrefix : 1;
+        UINT32 Reserved : 26;
+    };
+
+    UINT32 AsUINT32;
+} WHV_X64_IO_PORT_ACCESS_INFO;
+
+typedef struct WHV_X64_IO_PORT_ACCESS_CONTEXT
+{
+    // Context of the virtual processor
+    UINT8 InstructionByteCount;
+    UINT8 InstructionBytes[16];
+
+    // I/O port access info
+    WHV_X64_IO_PORT_ACCESS_INFO AccessInfo;
+    UINT16 PortNumber;
+    UINT64 Rax;
+    UINT64 Rcx;
+    UINT64 Rsi;
+    UINT64 Rdi;
+    WHV_X64_SEGMENT_REGISTER Ds;
+    WHV_X64_SEGMENT_REGISTER Es;
+} WHV_X64_IO_PORT_ACCESS_CONTEXT;
 ```
 
 ## Remarks

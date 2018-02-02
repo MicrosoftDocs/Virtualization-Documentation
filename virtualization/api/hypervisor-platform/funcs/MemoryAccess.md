@@ -28,7 +28,6 @@ typedef union WHV_MEMORY_ACCESS_INFO
 typedef struct WHV_MEMORY_ACCESS_CONTEXT
 {
     // Context of the virtual processor
-    WHV_VP_EXIT_CONTEXT VpContext;
     UINT8 InstructionByteCount;
     UINT8 InstructionBytes[16];
 

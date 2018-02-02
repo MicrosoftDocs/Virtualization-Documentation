@@ -5,6 +5,8 @@
 
 ```c
 typedef struct _WHV_EMULATOR_CALLBACKS {
+    UINT32 Size;
+    UINT32 Reserved;
     WHV_EMULATOR_IO_PORT_CALLBACK WHvEmulatorIoPortCallback;
     WHV_EMULATOR_MEMORY_CALLBACK WHvEmulatorMemoryCallback;
     WHV_EMULATOR_GET_VIRTUAL_PROCESSOR_REGISTERS_CALLBACK       WHvEmulatorGetVirtualProcessorRegisters;

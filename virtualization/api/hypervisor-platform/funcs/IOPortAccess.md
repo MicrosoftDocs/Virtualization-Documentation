@@ -23,7 +23,6 @@ typedef union WHV_X64_IO_PORT_ACCESS_INFO
 typedef struct WHV_X64_IO_PORT_ACCESS_CONTEXT
 {
     // Context of the virtual processor
-    WHV_VP_EXIT_CONTEXT VpContext;
     UINT8 InstructionByteCount;
     UINT8 InstructionBytes[16];
 

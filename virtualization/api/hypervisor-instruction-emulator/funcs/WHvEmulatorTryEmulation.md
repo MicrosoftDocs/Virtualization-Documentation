@@ -9,8 +9,9 @@ WINAPI
 WHvEmulatorTryIoEmulation(
     _In_ WHV_EMULATOR_HANDLE Emulator,
     _In_ VOID* Context,
-    _In_ WHV_X64_IO_PORT_ACCESS_CONTEXT* IoInstructionContext,
-    _Out_ WHV_EMULATOR_STATUS* const EmulatorReturnStatus
+    _In_ const WHV_VP_EXIT_CONTEXT* VpContext,
+    _In_ const WHV_X64_IO_PORT_ACCESS_CONTEXT* IoInstructionContext,
+    _Out_ WHV_EMULATOR_STATUS* EmulatorReturnStatus
     );
 
 HRESULT
@@ -18,8 +19,9 @@ WINAPI
 WHvEmulatorTryMmioEmulation(
     _In_ WHV_EMULATOR_HANDLE Emulator,
     _In_ VOID* Context,
-    _In_ WHV_MEMORY_ACCESS_CONTEXT* MmioInstructionContext,
-    _Out_ WHV_EMULATOR_STATUS* const EmulatorReturnStatus
+    _In_ const WHV_VP_EXIT_CONTEXT* VpContext,
+    _In_ const WHV_MEMORY_ACCESS_CONTEXT* MmioInstructionContext,
+    _Out_ WHV_EMULATOR_STATUS* EmulatorReturnStatus
     );
 ```
 

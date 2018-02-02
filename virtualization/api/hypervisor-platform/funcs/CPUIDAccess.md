@@ -9,9 +9,6 @@
 //
 typedef struct WHV_X64_CPUID_ACCESS_CONTEXT
 {
-    // Context of the virtual processor
-    WHV_VP_EXIT_CONTEXT VpContext;
-
     // CPUID access info
     UINT64 Rax;
     UINT64 Rcx;

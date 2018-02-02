@@ -7,6 +7,7 @@ HRESULT
 WINAPI
 WHvSetPartitionProperty(
     _In_ WHV_PARTITION_HANDLE Partition,
+    _In_ WHV_PARTITION_PROPERTY_CODE PropertyCode,
     _In_reads_bytes_(PropertyBufferSizeInBytes) const VOID* PropertyBuffer,
     _In_ UINT32 PropertyBufferSizeInBytes
     );
@@ -16,6 +17,10 @@ WHvSetPartitionProperty(
 `Partition`
 
 Handle to the partition object. 
+
+`PropertyCode`
+
+Specifies the property that is being set.
 
 `PropertyBuffer`
 
