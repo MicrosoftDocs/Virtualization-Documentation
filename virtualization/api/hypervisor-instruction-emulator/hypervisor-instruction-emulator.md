@@ -7,11 +7,13 @@ Instruction emulation expects several higher-level abstractions at the interface
 ## Instruction Emulation
 Device emulation expects the platform to provide the details of an I/O access by a virtual processor. For an MMIO and string I/O port access this requires decoding and completing the instruction that issued the I/O access. 
 
+
 |Structure   |Description|
 |---|---|---|---|---|---|---|---|
 |[MMIO Access](funcs/MMIOAccessIE.md)|Instruction emulation expects this data for MMIO access|
 |[I/O Port Access](funcs/IOPortAccessIE.md)|Instruction emulation expects this data for port access|
 |   |   |
+ 
  
 ## Virtual Processor Register State
 Instruction emulation uses a fixed set of registers that are queried and set together if necessary. For X64, this set of registers include:

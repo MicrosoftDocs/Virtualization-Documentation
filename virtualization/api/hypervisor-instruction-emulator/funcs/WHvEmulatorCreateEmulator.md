@@ -23,3 +23,4 @@ Receives the handle to the newly created emulator instance
 
 ## Remarks
 Create an instance of the instruction emulator with the specified callback methods
+
