@@ -1,4 +1,4 @@
-﻿#undef UNICODE
+#undef UNICODE
 
 #include <windows.h>
 #include <winsock2.h>
@@ -21,7 +21,7 @@ int __cdecl main(void)
     WSADATA WsaData;
 
     // Initialize Winsock
-    Result = WSAStartup(MAKEWORD(2,2), &wsaData);
+    Result = WSAStartup(MAKEWORD(2,2), &WsaData);
     if (Result != 0) {
         printf("WSAStartup failed with error: %d\n", Result);
         goto Exit;
