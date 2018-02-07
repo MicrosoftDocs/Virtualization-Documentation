@@ -25,12 +25,12 @@ Ongoing progress in the Moby project can be tracked on [GitHub](https://github.c
 
 These applications all require volume mapping, which has some limitations covered under [Bind mounts](#Bind-mounts). They will not start or run correctly.
 
-- Mysql
-- Postgress
-- Wordpress
+- MySQL
+- PostgreSQL
+- WordPress
 - Jenkins
-- Mariadb
-- Rabbitmq
+- MariaDB
+- RabbitMQ
 
 
 ### Bind mounts
