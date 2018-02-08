@@ -1,4 +1,4 @@
-# GetGuestPhyysicalMemoryChunks
+# GetGuestPhysicalMemoryChunks
 **Note: These APIs are not yet publicly available and will be available in the latest release of the Windows SDK.**
 
 ## Syntax
