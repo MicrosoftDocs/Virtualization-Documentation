@@ -6,11 +6,8 @@
 HRESULT 
 WINAPI 
 GetGuestRawSavedMemorySize( 
-    _In_        VM_SAVED_STATE_DUMP_HANDLE  VmSavedStateDumpHandle, 
-    _In_        UINT64                      RawSavedMemoryOffset, 
-    _Out_writes_bytes_(BufferSize) LPVOID   Buffer, 
-    _In_        UINT32                      BufferSize, 
-    _Out_opt_   UINT32*                     BytesRead 
+    _In_    VM_SAVED_STATE_DUMP_HANDLE      VmSavedStateDumpHandle, 
+    _Out_   UINT64*                         GuestRawSavedMemorySize 
     ); 
 ```
 ### Parameters
