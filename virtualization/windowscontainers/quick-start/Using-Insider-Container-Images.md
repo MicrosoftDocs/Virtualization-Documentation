@@ -11,22 +11,24 @@ This quick start is specific to Windows Server containers on the Windows Server 
 
 >It is required that you use a build of Windows Server from the Windows Server Insider Preview program, or a build of Windows 10 from the Windows Insider Preview program, to use the base image described below. If you are not using one of these builds, the use of these base images will result in failure to start a container.
 
-## Install Docker
-Docker is required in order to work with Windows containers. Docker consists of the Docker Engine, and the Docker client. You will also need a version of Docker that supports multi-stage builds for the best experience using the Container-optimized Nano Server image.
+## Install Docker Enterprise Edition (EE)
+Docker EE is required in order to work with Windows containers. Docker EE consists of the Docker engine and the Docker client. 
 
-To install Docker, we'll use the OneGet provider PowerShell module. The provider will enable the containers feature on your machine and install Docker - this will require a reboot. Note that there are multiple channels with different version of docker to use in different cases. For this exercise, we will be using the latest Community Edition version of Docker from the Stable channel. There is also an Edge channel available if you would like to test the latest developments in Docker.
+To install Docker EE, we'll use the OneGet provider PowerShell module. The provider will enable the containers feature on your machine and install Docker EE - this will require a reboot. Open an elevated PowerShell session and run the following commands.
 
-Open an elevated PowerShell session and run the following commands.
-
->Note: Installing Docker in the insider builds requires a different provider than the one normally used as of today. Please note the difference below.
-
-Install the OneGet PowerShell module.
-```powershell
-Install-Module -Name DockerMsftProviderInsider -Repository PSGallery -Force
+>Note: Installing Docker EE with Windows Server Insider builds requires a different OneGet provider than the one used for non-Insider builds. If Docker EE and the DockerMsftProvider OneGet provider are already installed remove them before continuing.
+```powershell stop-service docker
+uninstall-package docker
+uninstall-module DockerMsftProvider
 ```
-Use OneGet to install the latest version of Docker.
+
+Install the OneGet PowerShell module for use with Windows Insider builds.
 ```powershell
-Install-Package -Name docker -ProviderName DockerMsftProviderInsider
+Install-Module -Name DockerProvider -Repository PSGallery -Force
+```
+Use OneGet to install the latest version of Docker EE Preview.
+```powershell
+Install-Package -Name docker -ProviderName DockerProvider -RequiredVersion Preview
 ```
 When the installation is complete, reboot the computer.
 ```
