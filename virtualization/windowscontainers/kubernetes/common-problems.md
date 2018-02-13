@@ -47,6 +47,7 @@ If following [our instructions](./creating-a-linux-master), this will be in `~/k
 ## Common Networking Errors ##
 There may be additional restrictions in place on your network or on hosts preventing certain types of communication between nodes. Ensure that:
 
+  - you have properly configured your network topology
   - traffic that looks like it's coming from pods is allowed
   - HTTP traffic is allowed, if you are deploying web services
   - ICMP packets are not being dropped
@@ -80,7 +81,7 @@ This is a known limitation of the current networking stack on Windows. Only pods
 The Windows networking stack needs a virtual adapter for Kubernetes networking to work. If the following commands return no results (in an admin shell), virtual network creation &mdash; a necessary prerequisite for Kubelet to work &mdash; has failed:
 
 ```powershell
-Get-HnsNetwork | ? Name -Like "l2bridge"
+Get-HnsNetwork | ? Name -ieq "l2bridge"
 Get-NetAdapter | ? Name -Like "vEthernet (Ethernet*"
 ```
 
