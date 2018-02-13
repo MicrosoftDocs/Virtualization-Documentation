@@ -5,7 +5,7 @@ Param(
 
 $galleryRegPath = "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Virtualization"
 $galleryRegKey = "GalleryLocations"
-[string[]]$regContents = (Get-ItemProperty -Path $galleryRegPath -Name $galleryRegKey).$galleryRegKey)
+[string[]]$regContents = (Get-ItemProperty -Path $galleryRegPath -Name $galleryRegKey).GalleryLocations
 
 [string[]]$gallerylocations = (
     # existing contents
