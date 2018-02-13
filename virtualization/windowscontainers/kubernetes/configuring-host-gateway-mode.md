@@ -6,7 +6,7 @@ One of the available options for Kubernetes networking is *host-gateway mode*, w
 For this, we use `iptables`. Replace (or set) the `$CLUSTER_PREFIX` variable with the short-hand subnet that all pods will use:
 
 ```bash
-$CLUSTER_PREFIX="192.168"
+CLUSTER_PREFIX="192.168"
 sudo iptables -t nat -F
 sudo iptables -t nat -A POSTROUTING ! -d $CLUSTER_PREFIX.0.0/16 \
               -m addrtype ! --dst-type LOCAL -j MASQUERADE
@@ -22,7 +22,7 @@ sudo route add -net $CLUSTER_PREFIX.0.0 netmask 255.255.0.0 dev eth0
 Finally, we need to add the next-hop gateway on a **per-node** basis. For example, if the first node is a Windows node on `192.168.1.0/16`, then:
 
 ```bash
-sudo route add -net $CLUSTER.1.0 netmask 255.255.255.0 gw $CLUSTER.1.2 dev eth0
+sudo route add -net $CLUSTER_PREFIX.1.0 netmask 255.255.255.0 gw $CLUSTER_PREFIX.1.2 dev eth0
 ```
 
 A similar route must be added *for* every node in the cluster, *on* every node in the cluster.
@@ -35,7 +35,6 @@ A similar route must be added *for* every node in the cluster, *on* every node i
 
 ## Configuring Static Routes | Windows ##
 For this, we use `New-NetRoute`. There is an automated script available, `AddRoutes.ps1`, in [this repository](https://github.com/Microsoft/SDN/blob/master/Kubernetes/windows/AddRoutes.ps1). You will need to know the IP address of the *Linux master*, and the default gateway of the Windows node's *external* adapter (not the pod gateway). Then:
-
 
 ```powershell
 $url = "https://raw.githubusercontent.com/Microsoft/SDN/master/Kubernetes/windows/AddRoutes.ps1"

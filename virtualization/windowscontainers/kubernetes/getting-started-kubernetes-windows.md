@@ -35,19 +35,11 @@ These are definitions for some terms that are referenced throughout this guide:
 By the end of this guide, we will have:
 
 > [!div class="checklist"]  
-> * Prepared our [network topology](#network-topology).  
 > * Configured a [Linux master](#preparing-the-linux-master) node.  
 > * Joined a [Windows worker node](#preparing-a-windows-node) to it.  
+> * Prepared our [network topology](#network-topology).  
 > * Deployed a [sample Windows service](#running-a-sample-service).  
 > * Covered [common problems and mistakes](./common-problems.md).  
-
-
-## Network Topology ##
-There are multiple ways to make the virtual [cluster subnet](#cluster-subnet-def) routable. You can:
-
-  - Configure [host-gateway mode](./configuring-host-gateway-mode.md), setting static next-hop routes between nodes to enable pod-to-pod communication.
-  - Configure a smart top-of-rack (ToR) switch to route the subnet.
-  - Use a 3rd-party overlay plugin such as [Flannel](https://coreos.com/flannel/docs/latest/kubernetes.html) (Windows support for Flannel is in beta).
 
 
 ## Preparing the Linux Master ##
@@ -85,6 +77,14 @@ rm -recurse -force master,master.zip
 Copy the certificate file [identified earlier](#preparing-the-linux-master) to this new `C:\k` directory.
 
 
+## Network Topology ##
+There are multiple ways to make the virtual [cluster subnet](#cluster-subnet-def) routable. You can:
+
+  - Configure [host-gateway mode](./configuring-host-gateway-mode.md), setting static next-hop routes between nodes to enable pod-to-pod communication.
+  - Configure a smart top-of-rack (ToR) switch to route the subnet.
+  - Use a 3rd-party overlay plugin such as [Flannel](https://coreos.com/flannel/docs/latest/kubernetes.html) (Windows support for Flannel is in beta).
+
+
 ### Creating the "Pause" Image ###
 Now that `docker` is installed, we need to prepare a "pause" image that's used by Kubernetes to prepare the infrastructure pods.
 
@@ -108,34 +108,45 @@ In the meantime while the `pull` occurs, download the following client-side bina
 
 You can download these from the links in the `CHANGELOG.md` file of the latest 1.9 release. As of this writing, that is [1.9.1](https://github.com/kubernetes/kubernetes/releases/tag/v1.9.1), and the Windows binaries are [here](https://storage.googleapis.com/kubernetes-release/release/v1.9.1/kubernetes-node-windows-amd64.tar.gz). Use a tool like [7-Zip](http://www.7-zip.org/) to extract the archive and place the binaries in `C:\k\`.
 
-In order to make the kubectl command available outside of `C:\k\` directory, modify PATH environment variable:
+In order to make the `kubectl` command available outside of the `C:\k\` directory, modify the `PATH` environment variable:
+
 ```powershell
 $env:Path += ";C:\k"
 ```
+
 If you would like to make this change permanent, modify the variable in machine target:
+
 ```powershell
 [Environment]::SetEnvironmentVariable("Path", $env:Path + ";C:\k", [EnvironmentVariableTarget]::Machine)
 ```
 
 ### Joining the Cluster ###
-Verify that cluster configuration using:
+Verify that cluster configuration is valid using:
+
 ```powershell
 kubectl version
 ```
 
-If you are receiving a connection error
+If you are receiving a connection error,
+
 ```
 Unable to connect to the server: dial tcp [::1]:8080: connectex: No connection could be made because the target machine actively refused it.
 ```
-you should check if configuration has been discovered properly:
+
+check if the configuration has been discovered properly:
+
 ```powershell
 kubectl config view
 ```
-In order to change location where kubectl is looking for configuration file, modify KUBECONFIG environment variable. For example, assuming that config is located in `C:\k\config`:
+
+In order to change location where `kubectl` looks for the configuration file, you may pass the `--kubeconfig` parameter or modify `KUBECONFIG` environment variable. For example, if the configuration is located at `C:\k\config`:
+
 ```powershell
 $env:KUBECONFIG="C:\k\config"
 ```
+
 To make this setting permanent for current user's scope:
+
 ```powershell
 [Environment]::SetEnvironmentVariable("KUBECONFIG", "C:\k\config", [EnvironmentVariableTarget]::User)
 ```
@@ -175,7 +186,7 @@ watch kubectl get pods -o wide
 This will create a deployment and a service, then watch the pods indefinitely to track their status; simply press `Ctrl+C` to exit the `watch` command when done observing.
 
 
-If all went well, you will be able to validate that it's possible to:
+If all went well, it will be possible to:
 
   - see 4 containers under a `docker ps` command on the Windows side
   - `curl` on the *pod* IPs on port 80 from the Linux master gets a web server response; this demonstrates proper node to pod communication across the network.
@@ -185,4 +196,4 @@ If all went well, you will be able to validate that it's possible to:
   - `curl` the *service name* with the Kubernetes [default DNS suffix](https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/#services), demonstrating DNS functionality.
 
 > [!Warning]  
-> Windows nodes will not be able to access the service IP. This is a [known limitation](./common-problems.md#my-windows-node-cannot-access-my-services-using-the-service-ip).
+> Windows nodes will not be able to access the service IP. This is a [known platform limitation](./common-problems.md#my-windows-node-cannot-access-my-services-using-the-service-ip) that will be serviced.
