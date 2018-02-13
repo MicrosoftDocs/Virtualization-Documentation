@@ -1,3 +1,4 @@
+
 # Using Insider Container Images
 
 This exercise will walk you through the deployment and use of the Windows container feature on the latest insider build of Windows Server from the Windows Insider Preview program. During this exercise, you will install the container role and deploy a preview edition of the base OS images. If you need to familiarize yourself with containers, you can find this information in [About Containers](../about/index.md).
@@ -17,9 +18,10 @@ Docker EE is required in order to work with Windows containers. Docker EE consis
 To install Docker EE, we'll use the OneGet provider PowerShell module. The provider will enable the containers feature on your machine and install Docker EE - this will require a reboot. Open an elevated PowerShell session and run the following commands.
 
 >Note: Installing Docker EE with Windows Server Insider builds requires a different OneGet provider than the one used for non-Insider builds. If Docker EE and the DockerMsftProvider OneGet provider are already installed remove them before continuing.
-```powershell stop-service docker
-uninstall-package docker
-uninstall-module DockerMsftProvider
+```powershell 
+Stop-Service docker
+Uninstall-Package docker
+Uninstall-Module DockerMsftProvider
 ```
 
 Install the OneGet PowerShell module for use with Windows Insider builds.
