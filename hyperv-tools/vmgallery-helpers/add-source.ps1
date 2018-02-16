@@ -5,17 +5,12 @@ Param(
 
 $galleryRegPath = "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Virtualization"
 $galleryRegKey = "GalleryLocations"
-[string[]]$regContents = (Get-ItemProperty -Path $galleryRegPath -Name $galleryRegKey).GalleryLocations
 
-[string[]]$gallerylocations = (
-    # existing contents
-    $regContents,
-    
-    # Custom image json
-    $newURI 
-)
+$key = get-item $galleryRegPath
+$values = $key.GetValue($galleryRegKey)
+$values += $newURI
 
-Set-ItemProperty -Path $galleryregpath -Name $galleryRegKey -Value $gallerylocations
+Set-ItemProperty $galleryRegPath $galleryRegKey $values
 
 Write-Host ""
 Write-Host "Successfully added $newURI to $galleryRegKey"
