@@ -1,0 +1,7 @@
+Ubuntu Circle of Friends set for web
+
+Copyright 2017 Canonical Ltd.
+
+This work is licensed under the Creative Commons Attribution-Share Alike 3.0 Unported License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/3.0/ or send a letter to Creative Commons, 171 Second Street, Suite 300, San Francisco, California, 94105, USA.
+
+Use of Canonical Trade Marks is subject to Canonical's IP Rights Policy. Canonical's IP Right Policy can be found at https://www.ubuntu.com/legal/terms-and-policies/intellectual-property-policy
