@@ -12,7 +12,7 @@ ms.assetid: fb228e06-e284-45c0-b6e6-e7b0217c3a49
 
 # Virtual Machine automation and management using PowerShell
  
-You can use PowerShell Direct to run arbitrary PowerShell in a Windows 10 or Windows Server Technical Preview virtual machine from your Hyper-V host regardless of network configuration or remote management settings.
+You can use PowerShell Direct to run arbitrary PowerShell in a Windows 10 or Windows Server 2016 virtual machine from your Hyper-V host regardless of network configuration or remote management settings.
 
 **Ways to run PowerShell Direct:**  
 * As an interactive session -- [click here](#create-and-exit-an-interactive-powershell-session) to create and exit an interactive PowerShell session using Enter-PSSession.
@@ -22,8 +22,8 @@ Continue by coping a file to and from the virtual machine using Copy-Item then d
 
 ## Requirements
 **Operating system requirements:**
-* Host: Windows 10, Windows Server Technical Preview 2, or later running Hyper-V.
-* Guest/Virtual Machine: Windows 10, Windows Server Technical Preview 2, or later.
+* Host: Windows 10, Windows Server 2016, or later running Hyper-V.
+* Guest/Virtual Machine: Windows 10, Windows Server 2016, or later.
 
 If you're managing older virtual machines, use Virtual Machine Connection (VMConnect) or [configure a virtual network for the virtual machine](http://technet.microsoft.com/library/cc816585.aspx). 
 
@@ -60,10 +60,10 @@ When the session starts, the commands that you type run on the virtual machine, 
   You should see the VMName as the prefix for your PowerShell prompt as shown:
   
   ``` 
-  [VMName]: PS C:\ >
+  [VMName]: PS C:\>
   ```
   
-  Any command run will be running on your virtual machine.  To test, you can run `ipconfig` or `hostname` to make sure that these commands are running in the virtual machine.
+  Any command run will be running on your virtual machine. To test, you can run `ipconfig` or `hostname` to make sure that these commands are running in the virtual machine.
   
 4. When you're done, run the following command to close the session:  
   
@@ -88,8 +88,8 @@ PowerShell Direct with Invoke-Command is perfect for situations where you need t
 2. Run one of the following commands to create a session using the virtual machine name or GUID:  
    
    ``` PowerShell
-   Invoke-Command -VMName <VMName> -ScriptBlock { cmdlet } 
-   Invoke-Command -VMId <VMId> -ScriptBlock { cmdlet }
+   Invoke-Command -VMName <VMName> -ScriptBlock { command } 
+   Invoke-Command -VMId <VMId> -ScriptBlock { command }
    ```
    
    Provide credentials for the virtual machine when prompted.
@@ -138,7 +138,7 @@ By the same token, sessions hold state.  Since persistent sessions persist, any 
   Provide credentials for the virtual machine when prompted.
   
   > **Warning:**  
-   There is a bug in builds before 14500.  If credentials aren't explicitly specified with `-Credential` flag, the service in the guest will crash and will need to be restarted.  If you hit this issue, work-around instructions are available [here](#error-a-remote-session-might-have-ended).
+   There is a bug in builds before 14500.  If credentials aren't explicitly specified with `-Credential` flag, the service in the guest will crash and will need to be restarted.  If you hit this issue, workaround instructions are available [here](#error-a-remote-session-might-have-ended).
   
 3. Copy a file into the virtual machine.
   
