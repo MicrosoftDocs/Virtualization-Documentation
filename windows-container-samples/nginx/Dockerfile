@@ -3,7 +3,7 @@
 
 FROM microsoft/windowsservercore
 
-LABEL Description="Nginx" Vendor=Nginx" Version="1.0.13"
+LABEL Description="Nginx" Vendor="Nginx" Version="1.0.13"
 
 RUN powershell -Command \
 	$ErrorActionPreference = 'Stop'; \

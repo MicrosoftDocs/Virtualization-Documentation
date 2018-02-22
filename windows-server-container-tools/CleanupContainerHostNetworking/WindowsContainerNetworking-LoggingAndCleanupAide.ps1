@@ -106,7 +106,11 @@ function ForceCleanupSystem
         {
             if ($adapters.HardwareInterface -eq $true)
             {
-                Disable-NetAdapterBinding -Name $adapters.Name -ComponentID vms_pp
+                if ($adapter.Name) {
+                    Disable-NetAdapterBinding -Name $adapters.Name -ComponentID vms_pp
+                } elseif ($adapter.InterfaceDescription) {
+                    Disable-NetAdapterBinding -InterfaceDescription $adapters.InterfaceDescription -ComponentID vms_pp
+                }
             }
         }
 
