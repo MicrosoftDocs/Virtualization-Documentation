@@ -7,9 +7,9 @@
                        "publisher":  "Canonical via sarah script",
                        "lastUpdated":  "2018-02-16T23:52:06",
                        "description":  [
-                                           "This Ubuntu VM was built by Sarah Cooley to make it easier to test out Enhanced Session Mode on Linux VMs.",
-                                           "It was published by Canonical on Fri, 16 Feb 2018 07:55:08 +0000",
-                                           "Resources found here are available online at http://cdimage.ubuntu.com/daily-live/current/"
+                                           "This Ubuntu VM was built by Sarah Cooley to make it easier to test out Enhanced Session Mode on Linux VMs.\r\n\r\n",
+                                           "It was published by Canonical on Fri, 16 Feb 2018 07:55:08 +0000\r\n",
+                                           "Resources found here are available online at http://cdimage.ubuntu.com/daily-live/current/\r\n"
                                        ],
                        "disk":  {
                                     "uri":  "http://cdimage.ubuntu.com/daily-live/current/bionic-desktop-amd64.iso",
