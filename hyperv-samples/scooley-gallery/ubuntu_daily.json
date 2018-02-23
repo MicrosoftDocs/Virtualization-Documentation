@@ -13,7 +13,7 @@
                                        ],
                        "disk":  {
                                     "uri":  "http://cdimage.ubuntu.com/daily-live/current/bionic-desktop-amd64.iso",
-                                    "hash":  "sha256:8acc0acf886259d96f799b88a0e7db1c68c7c5833d6204291419217edfcebc35"                                },
+                                    "hash":  "sha256:3e14eb0c46070bb56cce4f3fa76bf9114e5d8b507d34b6cdfec9914c0f0979d9"                                },
                        "logo":  {
                                     "uri":  "https://raw.githubusercontent.com/MicrosoftDocs/Virtualization-Documentation/live/hyperv-samples/scooley-gallery/ubuntu-logo/ubuntu_black-orange_hex.png",
                                     "hash":  "sha256:6D5614230B15A4CEAA43EDA24134365ECF20F39FE4DD8A9E0CD1DD14EB3C5B9D"
