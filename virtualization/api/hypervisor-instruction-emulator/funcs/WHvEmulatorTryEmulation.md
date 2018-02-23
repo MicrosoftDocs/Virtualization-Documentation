@@ -29,12 +29,12 @@ WHvEmulatorTryMmioEmulation(
 Attempt to emulate a given type of instruction with the given instruction context
 returned by the WinHv APIs from a [`WHvRunVirtualProcessor`](/virtualization/api/hypervisor-platform/funcs/WHvRunVirtualProcessor.md) call. This function returns
 `S_OK` in most methods of operation, and `EmulatorReturnStatus` will be returned with
-additional information. If Emulator, or the instruction context are malformed, this
+additional information. If `Emulator`, or the instruction context are malformed, this
 function may return `E_INVALIDARG`. Any other return value indicates catastrophic failure, and the extended status should not be checked.
 
-Emulator is a valid emulator handle returned from [`WHvEmulatorCreateEmulator`](WHvEmulatorCreateEmulator.md).
+`Emulator` is a valid emulator handle returned from [`WHvEmulatorCreateEmulator`](WHvEmulatorCreateEmulator.md).
 
-Context is a `void*` which is passed into each callback method, used as a way
+`Context` is a `void*` which is passed into each callback method, used as a way
 for the virtualization stack to identify this emulation call.
 
 `EmulatorReturnStatus` is extended status information about the emulation call. This return value

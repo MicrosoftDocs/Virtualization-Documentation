@@ -23,4 +23,4 @@ typedef struct WHV_X64_INTERRUPTION_DELIVERABLE_CONTEXT
 
 ## Return Value
 
-TODO:
+Information about exits caused by the virtual processor when the interruptibility state of the processor would allow delivery of a given interrupt.
