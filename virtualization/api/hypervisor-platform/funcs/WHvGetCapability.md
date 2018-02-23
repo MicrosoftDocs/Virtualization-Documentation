@@ -18,7 +18,7 @@ typedef enum WHV_CAPABILITY_CODE
 } WHV_CAPABILITY_CODE;
 
 //
-// Return values for WhvCapabilityCodeFeatures
+// Return values for WHvCapabilityCodeFeatures
 //
 typedef union WHV_CAPABILITY_FEATURES
 {
@@ -31,7 +31,7 @@ typedef union WHV_CAPABILITY_FEATURES
 } WHV_CAPABILITY_FEATURES;
 
 //
-// Return values for WhvCapabilityCodeExtendedVmExits
+// Return values for WHvCapabilityCodeExtendedVmExits
 //
 typedef union WHV_EXTENDED_VM_EXITS
 {
@@ -47,7 +47,7 @@ typedef union WHV_EXTENDED_VM_EXITS
 } WHV_EXTENDED_VM_EXITS;
 
 //
-// Return values for WhvCapabilityCodeProcessorVendor
+// Return values for WHvCapabilityCodeProcessorVendor
 //
 typedef enum WHV_PROCESSOR_VENDOR
 {
@@ -57,7 +57,7 @@ typedef enum WHV_PROCESSOR_VENDOR
 } WHV_PROCESSOR_VENDOR;
 
 //
-// Return values for WhvCapabilityCodeProcessorFeatures
+// Return values for WHvCapabilityCodeProcessorFeatures
 //
 typedef union WHV_PROCESSOR_FEATURES
 {

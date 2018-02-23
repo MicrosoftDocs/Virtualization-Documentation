@@ -23,4 +23,4 @@ typedef struct WHV_X64_INTERRUPTION_DELIVERABLE_CONTEXT
 
 ## Return Value
 
-Information about exits caused by the virtual processor accessing a memory location that is not mapped or not accessible is provided by the `WHV_MEMORY_ACCESS_CONTEXT` structure.  
+Information about exits caused by the virtual processor when the interruptibility state of the processor would allow delivery of a given interrupt.
