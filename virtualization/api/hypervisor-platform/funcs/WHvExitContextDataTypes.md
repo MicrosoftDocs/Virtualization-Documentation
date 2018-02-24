@@ -1,5 +1,5 @@
 # Exit Context Data Types
-**Note: These APIs are not yet publicly available and will be included in a future Windows release.**
+**Note: A prerelease of this API is available starting in the Windows Insiders Preview Build 17083**
 
 ## Syntax
 
@@ -26,8 +26,7 @@ typedef enum WHV_RUN_VP_EXIT_REASON
     WHvRunVpExitReasonException              = 0x00001002,
 
     // Exits caused by the host
-    WHvRunVpExitReasonCanceled               = 0x00002001,
-    WHvRunVpExitReasonAlerted                = 0x00002002
+    WHvRunVpExitReasonCanceled               = 0x00002001
 } WHV_RUN_VP_EXIT_REASON;
 
 //
@@ -56,7 +55,10 @@ typedef union WHV_X64_VP_EXECUTION_STATE
 typedef struct WHV_VP_EXIT_CONTEXT
 {
     WHV_X64_VP_EXECUTION_STATE ExecutionState;
-    UINT8 InstructionLength;
+    UINT8 InstructionLength : 4;
+    UINT8 Cr8 : 4;
+    UINT8 Reserved;
+    UINT32 Reserved2;
     WHV_X64_SEGMENT_REGISTER Cs;
     UINT64 Rip;
     UINT64 Rflags;

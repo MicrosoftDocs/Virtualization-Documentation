@@ -1,5 +1,5 @@
 # Virtual Processor Exception
-**Note: These APIs are not yet publicly available and will be included in a future Windows release.**
+**Note: A prerelease of this API is available starting in the Windows Insiders Preview Build 17083**
 
 ## Syntax
 ```C
@@ -21,8 +21,6 @@ typedef union WHV_VP_EXCEPTION_INFO
 
 typedef struct WHV_VP_EXCEPTION_CONTEXT
 {
-    // Context of the virtual processor
-    WHV_VP_EXIT_CONTEXT VpContext;
     UINT8 InstructionByteCount;
     UINT8 InstructionBytes[16];
 

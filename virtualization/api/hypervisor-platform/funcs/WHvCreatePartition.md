@@ -1,5 +1,5 @@
 # WHvCreatePartition
-**Note: These APIs are not yet publicly available and will be included in a future Windows release.**
+**Note: A prerelease of this API is available starting in the Windows Insiders Preview Build 17083**
 
 ## Syntax
 

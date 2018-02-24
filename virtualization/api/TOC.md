@@ -19,7 +19,7 @@
 ### [MSR Access](./hypervisor-platform/funcs/MSRAccess.md)
 ### [CPUID Access](./hypervisor-platform/funcs/CPUIDAccess.md)
 ### [Virtual Processor Exception](./hypervisor-platform/funcs/VirtualProcessorException.md)
-### [Unrecoverable Exception](./hypervisor-platform/funcs/UnrecoverableException.md)
+### [Interrupt Window](./hypervisor-platform/funcs/InterruptWindow.md)
 ### [Unsupported Feature](./hypervisor-platform/funcs/UnsupportableFeature.md)
 ### [Execution Cancelled](./hypervisor-platform/funcs/ExecutionCancelled.md)
 ## [WHvSetPartitionProperty](./hypervisor-platform/funcs/WHvSetPartitionProperty.md)

@@ -1,5 +1,5 @@
 # WHvRunVirtualProcessor
-**Note: These APIs are not yet publicly available and will be included in a future Windows release.**
+**Note: A prerelease of this API is available starting in the Windows Insiders Preview Build 17083**
 
 ## Syntax
 
@@ -24,25 +24,28 @@ typedef enum WHV_RUN_VP_EXIT_REASON
     WHvRunVpExitReasonException              = 0x00001002,
 
     // Exits caused by the host
-    WHvRunVpExitReasonCanceled               = 0x00002001,
-    WHvRunVpExitReasonAlerted                = 0x00002002
+    WHvRunVpExitReasonCanceled               = 0x00002001
 } WHV_RUN_VP_EXIT_REASON;
  
-// VP run context buffer 
-typedef struct { 
-    WHV_RUN_VP_EXIT_REASON ExitReason; 
-     
-    union { 
-        WHV_MEMORY_ACCESS_CONTEXT MemoryAccess; 
-        WHV_X64_IO_PORT_ACCESS_CONTEXT IoPortAccess; 
-        WHV_X64_MSR_ACCESS_CONTEXT MsrAccess; 
-        WHV_X64_CPUID_ACCESS_CONTEXT CpuidAccess; 
-        WHV_VP_EXCEPTION_CONTEXT VpException; 
-        WHV_UNRECOVERABLE_EXCEPTION_CONTEXT UnrecoverableError; 
-        WHV_X64_UNSUPPORTED_FEATURE_CONTEXT UnsupportedFeature; 
-        WHV_RUN_VP_CANCELLED_CONTEXT CancelReason; 
-    }; 
-} WHV_RUN_VP_EXIT_CONTEXT; 
+// WHvRunVirtualProcessor output buffer
+typedef struct WHV_RUN_VP_EXIT_CONTEXT
+{
+    WHV_RUN_VP_EXIT_REASON ExitReason;
+    UINT32 Reserved;
+    WHV_VP_EXIT_CONTEXT VpContext;
+
+    union
+    {
+        WHV_MEMORY_ACCESS_CONTEXT MemoryAccess;
+        WHV_X64_IO_PORT_ACCESS_CONTEXT IoPortAccess;
+        WHV_X64_MSR_ACCESS_CONTEXT MsrAccess;
+        WHV_X64_CPUID_ACCESS_CONTEXT CpuidAccess;
+        WHV_VP_EXCEPTION_CONTEXT VpException;
+        WHV_X64_INTERRUPTION_DELIVERABLE_CONTEXT InterruptWindow;
+        WHV_X64_UNSUPPORTED_FEATURE_CONTEXT UnsupportedFeature;
+        WHV_RUN_VP_CANCELED_CONTEXT CancelReason;
+    };
+} WHV_RUN_VP_EXIT_CONTEXT;
  
 HRESULT
 WINAPI

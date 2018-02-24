@@ -1,6 +1,6 @@
 # CPUID Access
 
-**Note: These APIs are not yet publicly available and will be included in a future Windows release.**
+**Note: A prerelease of this API is available starting in the Windows Insiders Preview Build 17083**
 
 ## Syntax
 ```C
@@ -9,9 +9,6 @@
 //
 typedef struct WHV_X64_CPUID_ACCESS_CONTEXT
 {
-    // Context of the virtual processor
-    WHV_VP_EXIT_CONTEXT VpContext;
-
     // CPUID access info
     UINT64 Rax;
     UINT64 Rcx;

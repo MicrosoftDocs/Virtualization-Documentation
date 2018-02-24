@@ -1,10 +1,12 @@
 # WHV_EMULATOR_CALLBACKS
-**Note: These APIs are not yet publicly available and will be included in a future Windows release.**
+**Note: A prerelease of this API is available starting in the Windows Insiders Preview Build 17083**
 
 ## Syntax
 
 ```c
 typedef struct _WHV_EMULATOR_CALLBACKS {
+    UINT32 Size;
+    UINT32 Reserved;
     WHV_EMULATOR_IO_PORT_CALLBACK WHvEmulatorIoPortCallback;
     WHV_EMULATOR_MEMORY_CALLBACK WHvEmulatorMemoryCallback;
     WHV_EMULATOR_GET_VIRTUAL_PROCESSOR_REGISTERS_CALLBACK       WHvEmulatorGetVirtualProcessorRegisters;

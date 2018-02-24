@@ -1,5 +1,5 @@
 # WHvEmulatorCreateEmulator
-**Note: These APIs are not yet publicly available and will be included in a future Windows release.**
+**Note: A prerelease of this API is available starting in the Windows Insiders Preview Build 17083**
 
 ## Syntax
 
@@ -7,13 +7,13 @@
 HRESULT
 WINAPI
 WHvEmulatorCreateEmulator(
-    _In_ WHV_EMULATOR_CALLBACKS Callbacks,
+    _In_ const WHV_EMULATOR_CALLBACKS* Callbacks,
     _Out_ WHV_EMULATOR_HANDLE* Emulator
     );
 ```
 ### Parameters
 
-`Callback`
+`Callbacks`
 
 The specified callback method
 

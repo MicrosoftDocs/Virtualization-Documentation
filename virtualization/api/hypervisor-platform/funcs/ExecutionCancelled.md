@@ -1,5 +1,5 @@
 # Execution Canceled
-**Note: These APIs are not yet publicly available and will be included in a future Windows release.**
+**Note: A prerelease of this API is available starting in the Windows Insiders Preview Build 17083**
 
 ## Syntax
 ```C
@@ -8,7 +8,7 @@
 //
 typedef enum WHV_RUN_VP_CANCEL_REASON
 {
-    WhvRunVpCancelReasonUser = 0 // Execution canceled by HvCancelRunVirtualProcessor
+    WHvRunVpCancelReasonUser = 0 // Execution canceled by WHvCancelRunVirtualProcessor
 } WHV_RUN_VP_CANCEL_REASON;
 
 typedef struct WHV_RUN_VP_CANCELED_CONTEXT

@@ -1,5 +1,5 @@
 # MSR Access
-**Note: These APIs are not yet publicly available and will be included in a future Windows release.**
+**Note: A prerelease of this API is available starting in the Windows Insiders Preview Build 17083**
 
 ## Syntax
 ```C
@@ -14,19 +14,16 @@ typedef union WHV_X64_MSR_ACCESS_INFO
         UINT32 Reserved : 31;
     };
 
-    UINT32 AsUNIT32;
+    UINT32 AsUINT32;
 } WHV_X64_MSR_ACCESS_INFO;
 
 typedef struct WHV_X64_MSR_ACCESS_CONTEXT
 {
-    // Context of the virtual processor
-    WHV_VP_EXIT_CONTEXT VpContext;
-
     // MSR access info
     WHV_X64_MSR_ACCESS_INFO AccessInfo;
     UINT32 MsrNumber;
     UINT64 Rax;
-    UINT64 RdX;
+    UINT64 Rdx;
 } WHV_X64_MSR_ACCESS_CONTEXT;
 ```
 

@@ -1,33 +1,41 @@
 # Partition Property Data Types
-**Note: These APIs are not yet publicly available and will be included in a future Windows release.**
+**Note: A prerelease of this API is available starting in the Windows Insiders Preview Build 17083**
 
 ## Syntax
 ```C
 typedef enum { 
     WHvPartitionPropertyCodeExtendedVmExits        = 0x00000001, 
-     
-    WHvPartitionPropertyCodeProcessorVendor        = 0x00001000, 
+
     WHvPartitionPropertyCodeProcessorFeatures      = 0x00001001, 
     WHVPartitionPropertyCodeProcessorClFlushSize   = 0x00001002, 
      
     WHvPartitionPropertyCodeProcessorCount         = 0x00001fff 
 } WHV_PARTITION_PROPERTY_CODE; 
+
+//
+// WHvPartitionPropertyCodeCpuidResultList input buffer list element.
+//
+typedef struct WHV_X64_CPUID_RESULT
+{
+    UINT32 Function;
+    UINT32 Reserved[3];
+    UINT32 Eax;
+    UINT32 Ebx;
+    UINT32 Ecx;
+    UINT32 Edx;
+} WHV_X64_CPUID_RESULT;
  
 //
 // WHvGetPartitionProperty output buffer / WHvSetPartitionProperty input buffer
 //
-typedef struct WHV_PARTITION_PROPERTY
+typedef union WHV_PARTITION_PROPERTY
 {
-    WHV_PARTITION_PROPERTY_CODE PropertyCode;
-
-    union
-    {
-         WHV_EXTENDED_VM_EXITS ExtendedVmExits;
-         WHV_PROCESSOR_VENDOR ProcessorVendor;
-         WHV_PROCESSOR_FEATURES ProcessorFeatures;
-         UINT8 ProcessorClFlushSize;
-         UINT32 ProcessorCount;
-    };
+    WHV_EXTENDED_VM_EXITS ExtendedVmExits;
+    WHV_PROCESSOR_FEATURES ProcessorFeatures;
+    UINT8 ProcessorClFlushSize;
+    UINT32 ProcessorCount;
+    UINT32 CpuidExitList[1];
+    WHV_X64_CPUID_RESULT CpuidResultList[1];
 } WHV_PARTITION_PROPERTY;
 ```
 
