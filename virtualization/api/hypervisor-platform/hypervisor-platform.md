@@ -1,6 +1,6 @@
 # Windows Hypervisor Platform API Definitions
 
-**Note: A prerelease of this API is available starting in the Insiders Preview Build 17083**
+**Note: A prerelease of this API is available starting in the Windows Insiders Preview Build 17083**
 
 The following section contains the definitions of the Windows Hypervisor Platform APIs that are exposed through WinHvAPi.dll.  The DLL exports a set of C-style Windows API functions, the functions return HRESULT error codes indicating the result of the function call.
 
