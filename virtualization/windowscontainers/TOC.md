@@ -23,7 +23,7 @@
 ## [Anti-Virus Optimization](https://msdn.microsoft.com/en-us/windows/hardware/drivers/ifs/anti-virus-optimization-for-windows-containers)
 
 # Manage Docker on Windows
-## [Docker Engine on Windows](docker/configure_docker_daemon.md)
+## [Docker Engine on Windows](manage-docker/configure-docker-daemon.md)
 ## [Dockerfiles on Windows](manage-docker/manage-windows-dockerfile.md)
 ## [Optimize Dockerfiles](manage-docker/optimize-windows-dockerfile.md)
 ## [Container Networking](manage-containers/container-networking.md)
