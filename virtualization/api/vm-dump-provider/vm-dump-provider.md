@@ -1,4 +1,4 @@
-# Windows Hypervisor Platform VM Saved State Dump Provider API
+# VM Saved State Dump Provider API
 
 **Note: These APIs are not yet publicly available and will be available in the latest release of the Windows SDK.**
 
