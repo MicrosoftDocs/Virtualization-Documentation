@@ -15,7 +15,7 @@ ms.assetid: 538871ba-d02e-47d3-a3bf-25cda4a40965
 > ## Unsupported features and network options 
 > The following networking options are currently **NOT** supported in Windows:
 > | Command        | Unsupported Option   |
-> | ------------- |:-------------:|
+> | ---------------|:--------------------:|
 > | ``docker run``|   ``--ip6``, ``--dns-option`` |
 > | ``docker network create``| ``--aux-address``, ``--internal``, ``--ip-range``, ``--ipam-driver``, ``--ipam-opt``, ``--ipv6``, ``--opt encrypted``      |
 
@@ -71,7 +71,7 @@ The table below shows how network connectivity is provided for internal (contain
 ### Networking Modes / Docker Drivers
 
   | Docker Windows Network Driver | Typical Uses | Container-to-Container (Single Node) | Container-to-External (Single Node + Multi Node) | Container-to-Container (Multi Node) |
-  | ----------------------------- |:------------------------------------:|:------------------------------------:|:-----------------------------------------------:|:----------------------------------:|
+  |-------------------------------|:------------:|:------------------------------------:|:------------------------------------------------:|:-----------------------------------:|
   | **NAT (Default)** | Good for Developers | <ul><li>Same Subnet: Bridged connection through Hyper-V virtual switch</li><li> Cross subnet: Not supported in WS2016 (only one NAT internal prefix)</li></ul> | Routed through Management vNIC (bound to WinNAT) | Not directly supported: requires exposing ports through host |
   | **Transparent** | Good for Developers or small deployments | <ul><li>Same Subnet: Bridged connection through Hyper-V virtual switch</li><li>Cross Subnet: Routed through container host</li></ul> | Routed through container host with direct access to (physical) network adapter | Routed through container host with direct access to (physical) network adapter |
   | **Overlay** | Required for Docker Swarm, multi-node | <ul><li>Same Subnet: Bridged connection through Hyper-V virtual switch</li><li>Cross Subnet: Network traffic is encapsulated and routed through Mgmt vNIC</li></ul> | Not directly supported - requires second container endpoint attached to NAT network | Same/Cross Subnet: Network traffic is encapsulated using VXLAN and routed through Mgmt vNIC |
@@ -88,7 +88,7 @@ The table below shows how network connectivity is provided for internal (contain
 IP Addresses are allocated and assigned differently for each networking driver. Windows uses the Host Networking Service (HNS) to provide IPAM for the nat driver and works with Docker Swarm Mode (internal KVS) to provide IPAM for overlay. All other network drivers use an external IPAM.
 
 | Networking Mode / Driver | IPAM |
-  | ----------------------------- |:------------------------------------:|
+| -------------------------|:----:|
 | NAT | Dynamic IP allocation and assignmeny by Host Networking Service (HNS) from internal NAT subnet prefix |
 | Transparent | Static or dynamic (using external DHCP server) IP allocation and assignment from IP addresses within container host's network prefix |
 | Overlay | Dynamic IP allocation from Docker Engine Swarm Mode managed prefixes and assignment through HNS |
@@ -118,7 +118,7 @@ Get-NetCompartment
 
 The Windows Firewall is used to enforce network security through port ACLs.
 
-> NOTE: See these *required* [prerequisites](https://docs.docker.com/network/overlay/) for creating overlay networks.
+> NOTE: Make sure your environment satisfies these *required* [prerequisites](https://docs.docker.com/network/overlay/#operations-for-all-overlay-networks) for creating overlay networks.
 
 
 ### Windows Server containers
