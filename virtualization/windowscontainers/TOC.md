@@ -40,6 +40,10 @@
 ## [Compiling Kubernetes Binaries](kubernetes/compiling-kubernetes-binaries.md)
 ## [Troubleshooting](kubernetes/common-problems.md)
 
+# Service Fabric Quick Start
+## [Deploy your first container](/azure/service-fabric/service-fabric-quickstart-containers)
+## [Deploy a .NET application in a Windows container](/azure/service-fabric/service-fabric-host-app-in-a-container) 
+
 # Container Samples
 ## [Application Frameworks](samples.md#Application-Frameworks)
 ## [Programing Languages](samples.md#Programing-Languages)
