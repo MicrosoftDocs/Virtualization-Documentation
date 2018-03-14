@@ -23,9 +23,8 @@ Specifies the start address of the region in the VM’s physical address space t
 
 `SizeInBytes`
 
-Specifies the number of pages that are unmapped
-  
+Specifies the number of bytes that are to be unmapped
 
 ## Remarks
 
-Unmapping a previously mapped GPA range (or parts of it) makes the memory range unavailable to the partition. Any further access by a virtual processor to the range will result in a memory access exit. 
+Unmapping a previously mapped GPA range makes the memory range unavailable to the partition. Any further access by a virtual processor to the range will result in a memory access exit.
