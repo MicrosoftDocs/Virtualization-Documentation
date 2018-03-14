@@ -44,13 +44,12 @@ Specifies the destination address in the VM’s physical address space
 
 `SizeInBytes`
 
-Specifies the number of pages that are mapped
+Specifies the number of bytes that are to be mapped
 
 `Flags`
 
 Specifies the access flags for the mapping
-  
 
 ## Remarks
 
-Creating a mapping for a range in the GPA space of a partition sets a region in the caller’s process as the backing memory for that range. The operation replaces any previous mappings for the specified GPA pages. 
+Creating a mapping for a range in the GPA space of a partition sets a region in the caller’s process as the backing memory for that range. The operation replaces any previous mappings for the specified GPA pages.
