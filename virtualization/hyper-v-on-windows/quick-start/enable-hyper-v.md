@@ -38,7 +38,7 @@ Hyper-V is built into Windows as an optional feature -- there is no Hyper-V down
 
 2. Run the following command:
   ```powershell
-  Enable-WindowsOptionalFeature -Online -FeatureName:Microsoft-Hyper-V -All
+  Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V -All
   ```  
 
   If the command couldn't be found, make sure you're running PowerShell as Administrator.  
