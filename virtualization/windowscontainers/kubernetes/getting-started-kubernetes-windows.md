@@ -10,9 +10,8 @@ description: Joining a Windows node to a Kubernetes cluster with v1.9 beta.
 keywords: kubernetes, 1.9, windows, getting started
 ms.assetid: 3b05d2c2-4b9b-42b4-a61b-702df35f5b17
 ---
-
-
 # Kubernetes on Windows #
+
 With the latest release of Kubernetes 1.9 and Windows Server [version 1709](https://docs.microsoft.com/en-us/windows-server/get-started/whats-new-in-windows-server-1709#networking), users can take advantage of the latest features in Windows networking:
 
   - **shared pod compartments**: infrastructure and worker pods now share a network compartment (analagous to a Linux namespace)
@@ -22,7 +21,6 @@ With the latest release of Kubernetes 1.9 and Windows Server [version 1709](http
 
 This page serves as a guide for getting started joining a brand new Windows node to an existing Linux-based cluster. To start completely from scratch, refer to [this page](./creating-a-linux-master.md) &mdash; one of many resources available for deploying a Kubernetes cluster &mdash; to set a master up from scratch the same way we did.
 
-
 <a name="definitions"></a>
 These are definitions for some terms that are referenced throughout this guide:
 
@@ -30,9 +28,9 @@ These are definitions for some terms that are referenced throughout this guide:
   - <a name="cluster-subnet-def"></a>The **cluster subnet** is a routable virtual network; nodes are assigned smaller subnets from this for their pods to use.
   - The **service subnet** is a non-routable, purely virtual subnet on 11.0/16 that is used by pods to uniformally access services without caring about the network topology. It is translated to/from routable address space by `kube-proxy` running on the nodes.
 
+## What you will accomplish ##
 
-## What We Will Accomplish ##
-By the end of this guide, we will have:
+By the end of this guide, you will have:
 
 > [!div class="checklist"]  
 > * Configured a [Linux master](#preparing-the-linux-master) node.  
@@ -41,16 +39,16 @@ By the end of this guide, we will have:
 > * Deployed a [sample Windows service](#running-a-sample-service).  
 > * Covered [common problems and mistakes](./common-problems.md).  
 
-
 ## Preparing the Linux Master ##
-Regardless of whether you followed [our instructions](./creating-a-linux-master.md) or already have an existing cluster, only one thing is needed from the Linux master is Kubernetes' certificate configuration. This could be in `/etc/kubernetes/admin.conf`, `~/.kube/config`, or elsewhere depending on your setup.
 
+Regardless of whether you followed [the instructions](./creating-a-linux-master.md) or already have an existing cluster, only one thing is needed from the Linux master is Kubernetes' certificate configuration. This could be in `/etc/kubernetes/admin.conf`, `~/.kube/config`, or elsewhere depending on your setup.
 
-## Preparing a Windows Node ##
-> [!Note]  
+## Preparing a Windows node ##
+
+> [!NOTE]  
 > All code snippets in Windows sections are to be run in _elevated_ PowerShell.
 
-Kubernetes uses [Docker](https://www.docker.com/) as its container orchestrator, so we need to install it. You can follow the [official MSDN instructions](../manage-docker/configure-docker-daemon.md#install-docker), the [Docker instructions](https://store.docker.com/editions/enterprise/docker-ee-server-windows), or try these steps:
+Kubernetes uses [Docker](https://www.docker.com/) as its container orchestrator, so we need to install it. You can follow the [official Docs instructions](../manage-docker/configure-docker-daemon.md#install-docker), the [Docker instructions](https://store.docker.com/editions/enterprise/docker-ee-server-windows), or try these steps:
 
 ```powershell
 Install-Module -Name DockerMsftProvider -Repository PSGallery -Force
@@ -64,7 +62,7 @@ If you are behind a proxy, the following PowerShell environment variables must b
 [Environment]::SetEnvironmentVariable("HTTPS_PROXY", "http://proxy.example.com:443/", [EnvironmentVariableTarget]::Machine)
 ```
 
-There is a collection of scripts on [this Microsoft repository](https://github.com/Microsoft/SDN) that will help us join this node to the cluster. You can download the ZIP file directly [here](https://github.com/Microsoft/SDN/archive/master.zip). The only thing we need is the `Kubernetes/windows` folder, the contents of which should be moved to `C:\k\`:
+There is a collection of scripts on [this Microsoft repository](https://github.com/Microsoft/SDN) that helps you join this node to the cluster. You can download the ZIP file directly [here](https://github.com/Microsoft/SDN/archive/master.zip). The only thing you need is the `Kubernetes/windows` folder, the contents of which should be moved to `C:\k\`:
 
 ```powershell
 wget https://github.com/Microsoft/SDN/archive/master.zip -o master.zip
@@ -76,17 +74,17 @@ rm -recurse -force master,master.zip
 
 Copy the certificate file [identified earlier](#preparing-the-linux-master) to this new `C:\k` directory.
 
+## Network topology ##
 
-## Network Topology ##
 There are multiple ways to make the virtual [cluster subnet](#cluster-subnet-def) routable. You can:
 
   - Configure [host-gateway mode](./configuring-host-gateway-mode.md), setting static next-hop routes between nodes to enable pod-to-pod communication.
   - Configure a smart top-of-rack (ToR) switch to route the subnet.
-  - Use a 3rd-party overlay plugin such as [Flannel](https://coreos.com/flannel/docs/latest/kubernetes.html) (Windows support for Flannel is in beta).
+  - Use a third-party overlay plugin such as [Flannel](https://coreos.com/flannel/docs/latest/kubernetes.html) (Windows support for Flannel is in beta).
 
+### Creating the "pause" image ###
 
-### Creating the "Pause" Image ###
-Now that `docker` is installed, we need to prepare a "pause" image that's used by Kubernetes to prepare the infrastructure pods.
+Now that `docker` is installed, you need to prepare a "pause" image that's used by Kubernetes to prepare the infrastructure pods.
 
 ```powershell
 docker pull microsoft/windowsservercore:1709
@@ -95,11 +93,11 @@ cd C:/k/
 docker build -t kubeletwin/pause .
 ```
 
-> [!Note]  
-> We tag it as the `:latest` because the sample service we will be deploying later depends on it, though this may not actually _be_ the latest Windows Server Core image available. It's important to be careful of conflicting container images; not having the expected tag can cause a `docker pull` of an incompatible container image, causing [deployment problems](./common-problems.md#when-deploying-docker-containers-keep-restarting). 
+> [!NOTE]
+> We tag it as the `:latest` because the sample service you will be deploying later depends on it, though this may not actually _be_ the latest Windows Server Core image available. It's important to be careful of conflicting container images; not having the expected tag can cause a `docker pull` of an incompatible container image, causing [deployment problems](./common-problems.md#when-deploying-docker-containers-keep-restarting). 
 
 
-### Downloading Binaries ###
+### Downloading binaries ###
 In the meantime while the `pull` occurs, download the following client-side binaries from Kubernetes:
 
   - `kubectl.exe`
@@ -120,7 +118,7 @@ If you would like to make this change permanent, modify the variable in machine 
 [Environment]::SetEnvironmentVariable("Path", $env:Path + ";C:\k", [EnvironmentVariableTarget]::Machine)
 ```
 
-### Joining the Cluster ###
+### Joining the cluster ###
 Verify that cluster configuration is valid using:
 
 ```powershell
@@ -161,8 +159,9 @@ The node is now ready to join the cluster. In two separate, *elevated* PowerShel
 The Windows node will be visible from the Linux master under `kubectl get nodes` within a minute!
 
 
-### Validating Your Network Topology ###
-There are a few basic tests that will validate a proper network configuration:
+### Validating your network topology ###
+
+There are a few basic tests that validate a proper network configuration:
 
   - **Node to node connectivity**: pings between master and Windows worker nodes should succeed in both directions.
 
@@ -172,8 +171,8 @@ If any of these basic tests don't work, try the [troubleshooting page](./common-
 
 
 ## Running a Sample Service ##
-We'll be deploying a very simple [PowerShell-based web service](https://github.com/Microsoft/SDN/blob/master/Kubernetes/WebServer.yaml) to ensure we joined the cluster successfully and our network is properly configured.
 
+You'll be deploying a very simple [PowerShell-based web service](https://github.com/Microsoft/SDN/blob/master/Kubernetes/WebServer.yaml) to ensure you joined the cluster successfully and our network is properly configured.
 
 On the Linux master, download and run the service:
 
@@ -183,10 +182,9 @@ kubectl apply -f win-webserver.yaml
 watch kubectl get pods -o wide
 ```
 
-This will create a deployment and a service, then watch the pods indefinitely to track their status; simply press `Ctrl+C` to exit the `watch` command when done observing.
+This creates a deployment and a service, then watch the pods indefinitely to track their status; simply press `Ctrl+C` to exit the `watch` command when done observing.
 
-
-If all went well, it will be possible to:
+If all went well, it is possible to:
 
   - see 4 containers under a `docker ps` command on the Windows node
   - see 2 pods under a `kubectl get pods` command from the Linux master
@@ -201,7 +199,6 @@ If all went well, it will be possible to:
 
 ### Port Mapping ### 
 It is also possible to access services hosted in pods through their respective nodes by mapping a port on the node. There is [another sample YAML available](https://github.com/Microsoft/SDN/blob/master/Kubernetes/PortMapping.yaml) with a mapping of port 4444 on the node to port 80 on the pod to demonstrate this feature. To deploy it, follow the same steps as before:
-
 
 ```bash
 wget https://raw.githubusercontent.com/Microsoft/SDN/master/Kubernetes/PortMapping.yaml -O win-webserver-port-mapped.yaml
