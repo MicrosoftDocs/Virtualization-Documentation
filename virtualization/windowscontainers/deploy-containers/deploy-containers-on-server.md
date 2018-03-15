@@ -74,7 +74,7 @@ $vm = "<virtual-machine>"
 Set-VMProcessor -VMName $vm -ExposeVirtualizationExtensions $true -Count 2
 
 #disable dynamic memory
-Set-VMMemory $vm -DynamicMemoryEnabled $false
+Set-VMMemory -VMName $vm -DynamicMemoryEnabled $false
 
 #enable mac spoofing
 Get-VMNetworkAdapter -VMName $vm | Set-VMNetworkAdapter -MacAddressSpoofing On
