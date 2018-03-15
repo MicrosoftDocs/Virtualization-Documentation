@@ -194,4 +194,4 @@ If all went well, it is possible to:
   - `curl` the *service name* with the Kubernetes [default DNS suffix](https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/#services), demonstrating DNS functionality.
 
 > [!WARNING]  
-> Windows nodes are not be able to access the service IP. This is a [known platform limitation](./common-problems.md#my-windows-node-cannot-access-my-services-using-the-service-ip) that will be serviced.
+> Windows nodes are not able to access the service IP. This is a [known platform limitation](./common-problems.md#my-windows-node-cannot-access-my-services-using-the-service-ip) that will be serviced.
