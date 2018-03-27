@@ -14,32 +14,33 @@ ms.assetid: 538871ba-d02e-47d3-a3bf-25cda4a40965
 > ***DISCLAIMER: Please reference [Docker Container Networking](https://docs.docker.com/engine/userguide/networking/) for general docker networking commands, options, and syntax.*** With the exception of any cases described below, all Docker networking commands are supported on Windows with the same syntax as on Linux. Please note, however, that the Windows and Linux network stacks are different, and as such you will find that some Linux network commands (e.g. ifconfig) are not supported on Windows.
 > ## Unsupported features and network options 
 > The following networking options are currently **NOT** supported in Windows:
+>
 > | Command        | Unsupported Option   |
 > | ---------------|:--------------------:|
 > | ``docker run``|   ``--ip6``, ``--dns-option`` |
-> | ``docker network create``| ``--aux-address``, ``--internal``, ``--ip-range``, ``--ipam-driver``, ``--ipam-opt``, ``--ipv6``, ``--opt encrypted``      |
+> | ``docker network create``| ``--aux-address``, ``--internal``, ``--ip-range``, ``--ipam-driver``, ``--ipam-opt``, ``--ipv6``, ``--opt encrypted`` |
 
 
 ## Basic networking architecture
 This topic provides an overview of how Docker creates and manages networks on Windows. Windows containers function similarly to virtual machines in regards to networking. Each container has a virtual network adapter (vNIC) which is connected to a Hyper-V virtual switch (vSwitch). Windows supports five different networking drivers or modes which can be created through Docker: *nat*, *overlay*, *transparent*, *l2bridge*, and *l2tunnel*. Depending on your physical network infrastructure and single- vs multi-host networking requirements, you should choose the network driver which best suits your needs.
 
-<figure>
-  <img src="media/windowsnetworkstack-simple.png">
-</figure>  
+
+![text](media/windowsnetworkstack-simple.png)
+
 
 The first time the docker engine runs, it will create a default NAT network, 'nat', which uses an internal vSwitch and a Windows component named `WinNAT`. If there are any pre-existing external vSwitches on the host which were created through PowerShell or Hyper-V Manager, they will also be available to Docker using the *transparent* network driver and can be seen when you run the ``docker network ls`` command.  
 
-<figure>
-  <img src="media/docker-network-ls.png">
-</figure>
+
+![text](media/docker-network-ls.png)
+
 
 > - An ***internal*** vSwitch is one which is not directly connected to a network adapter on the container host 
 
 > - An ***external*** vSwitch is one which _is_ directly connected to a network adapter on the container host  
 
-<figure>
-  <img src="media/get-vmswitch.png">
-</figure>
+
+![text](media/get-vmswitch.png)
+
 
 The 'nat' network is the default network for containers running on Windows. Any containers that are run on Windows without any flags or arguments to implement specific network configurations will be attached to the default 'nat' network, and automatically assigned an IP address from the 'nat' network's internal prefix IP range. The default internal IP prefix used for 'nat' is 172.16.0.0/16. 
 
@@ -65,6 +66,7 @@ In addition to leveraging the default 'nat' network created by Docker on Windows
 
 > Windows 10 Creators Update introduced platform support to add a new container endpoint to a running container (i.e. 'hot-add'). This will light-up end-to-end pending an [outstanding Docker pull request](https://github.com/docker/libnetwork/pull/1661)
 
+
 ## Network Topologies and IPAM
 The table below shows how network connectivity is provided for internal (container-to-container) and external connections for each network driver.
 
@@ -78,12 +80,6 @@ The table below shows how network connectivity is provided for internal (contain
   | **L2Bridge** | Used for Kubernetes and Microsoft SDN | <ul><li>Same Subnet: Bridged connection through Hyper-V virtual switch</li><li> Cross Subnet: Container MAC address re-written on ingress and egress and routed</li></ul> | Container MAC address re-written on ingress and egress | <ul><li>Same Subnet: Bridged connection</li><li>Cross Subnet: Not supported in WS2016.</li></ul> |
   | **L2Tunnel**| Azure only | Same/Cross Subnet: Hair-pinned to physical host's Hyper-V virtual switch to where policy is applied | Traffic must go through Azure virtual network gateway | Same/Cross Subnet: Hair-pinned to physical host's Hyper-V virtual switch to where policy is applied |
 
-<!--
-<figure>
-  <img src="media/network-modes-table.png">
-</figure>
---->
-
 ### IPAM 
 IP Addresses are allocated and assigned differently for each networking driver. Windows uses the Host Networking Service (HNS) to provide IPAM for the nat driver and works with Docker Swarm Mode (internal KVS) to provide IPAM for overlay. All other network drivers use an external IPAM.
 
@@ -95,20 +91,15 @@ IP Addresses are allocated and assigned differently for each networking driver. 
 | L2Bridge | Static IP allocation and assignment from IP addresses within container host's network prefix (could also be assigned through HNS plugin) |
 | L2Tunnel | Azure only - Dynamic IP allocation and assignment from plugin |
 
-<!--
-<figure>
-  <img src="media/ipam.png">
-</figure>
---->
 
 # Details on Windows Container Networking
 
 ## Isolation (Namespace) with Network Compartments
 Each container endpoint is placed in its own __network compartment__ which is analogous to a network namespace in Linux. The management host vNIC and host network stack are located in the default network compartment. In order to enforce network isolation between containers on the same host, a network compartment is created for each Windows Server and Hyper-V Container into which the network adapter for the container is installed. Windows Server containers use a Host vNIC to attach to the virtual switch. Hyper-V Containers use a Synthetic VM NIC (not exposed to the Utility VM) to attach to the virtual switch. 
 
-<figure>
-  <img src="media/network-compartment-visual.png">
-</figure>
+
+![text](media/network-compartment-visual.png)
+
 
 ```powershell 
 Get-NetCompartment
@@ -132,12 +123,12 @@ These use the Windows hosts' firewall (enlightened with network compartments.)
 Hyper-V containers have their own isolated kernel and hence run their own instance of Windows Firewall with the following configuration:
   * Default ALLOW ALL in Windows Firewall
 
-Otherwise, by default all container endpoints attached to an overlay network have an:
+Note that in general, all container endpoints attached to an overlay network have an:
   *  ALLOW ALL rule created.  
 
-<figure>
-  <img src="media/windows-firewall-containers.png">
-</figure>
+
+![text](media/windows-firewall-containers.png)
+
 
 ## Container Network Management with Host Network Service
 
@@ -156,9 +147,9 @@ The Host Networking Service (HNS) and the Host Compute Service (HCS) work togeth
 ### Policy Creation
   - HNS creates WinNAT port forwarding rules / mappings with corresponding Windows Firewall ALLOW rules
 
-<figure>
-  <img src="media/HNS-Management-Stack.png">
-</figure>
+
+![text](media/HNS-Management-Stack.png)
+
 
 # Advanced Network Options in Windows
 Several network driver options are supported to take advantage of Windows-specific capabilities and features. 
