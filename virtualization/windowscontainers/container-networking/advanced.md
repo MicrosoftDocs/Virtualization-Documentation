@@ -1,155 +1,14 @@
-﻿---
+---
 title: Windows Container Networking
-description: Configure networking for Windows containers.
+description: Advanced networking for Windows containers.
 keywords: docker, containers
 author: jmesser81
-ms.date: 08/22/2016
+ms.date: 03/27/2018
 ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: 538871ba-d02e-47d3-a3bf-25cda4a40965
 ---
-
-# Windows Container Networking
-> ***DISCLAIMER: Please reference [Docker Container Networking](https://docs.docker.com/engine/userguide/networking/) for general docker networking commands, options, and syntax.*** With the exception of any cases described below, all Docker networking commands are supported on Windows with the same syntax as on Linux. Please note, however, that the Windows and Linux network stacks are different, and as such you will find that some Linux network commands (e.g. ifconfig) are not supported on Windows.
-> ## Unsupported features and network options 
-> The following networking options are currently **NOT** supported in Windows:
->
-> | Command        | Unsupported Option   |
-> | ---------------|:--------------------:|
-> | ``docker run``|   ``--ip6``, ``--dns-option`` |
-> | ``docker network create``| ``--aux-address``, ``--internal``, ``--ip-range``, ``--ipam-driver``, ``--ipam-opt``, ``--ipv6``, ``--opt encrypted`` |
-
-
-## Basic networking architecture
-This topic provides an overview of how Docker creates and manages networks on Windows. Windows containers function similarly to virtual machines in regards to networking. Each container has a virtual network adapter (vNIC) which is connected to a Hyper-V virtual switch (vSwitch). Windows supports five different networking drivers or modes which can be created through Docker: *nat*, *overlay*, *transparent*, *l2bridge*, and *l2tunnel*. Depending on your physical network infrastructure and single- vs multi-host networking requirements, you should choose the network driver which best suits your needs.
-
-
-![text](media/windowsnetworkstack-simple.png)
-
-
-The first time the docker engine runs, it will create a default NAT network, 'nat', which uses an internal vSwitch and a Windows component named `WinNAT`. If there are any pre-existing external vSwitches on the host which were created through PowerShell or Hyper-V Manager, they will also be available to Docker using the *transparent* network driver and can be seen when you run the ``docker network ls`` command.  
-
-
-![text](media/docker-network-ls.png)
-
-
-> - An ***internal*** vSwitch is one which is not directly connected to a network adapter on the container host 
-
-> - An ***external*** vSwitch is one which _is_ directly connected to a network adapter on the container host  
-
-
-![text](media/get-vmswitch.png)
-
-
-The 'nat' network is the default network for containers running on Windows. Any containers that are run on Windows without any flags or arguments to implement specific network configurations will be attached to the default 'nat' network, and automatically assigned an IP address from the 'nat' network's internal prefix IP range. The default internal IP prefix used for 'nat' is 172.16.0.0/16. 
-
-
-## Windows Container Network Drivers  
-
-In addition to leveraging the default 'nat' network created by Docker on Windows, users can define custom container networks. User-defined networks can be created using using the Docker CLI, [`docker network create -d <NETWORK DRIVER TYPE> <NAME>`](https://docs.docker.com/engine/reference/commandline/network_create/), command. On Windows, the following network driver types are available:
-
-- **nat** – containers attached to a network created with the 'nat' driver will receive an IP address from the user-specified (``--subnet``) IP prefix. Port forwarding / mapping from the container host to container endpoints is supported.
-> Note: Multiple NAT networks are supported if you have the Windows 10 Creators Update installed!
-
-- **transparent** – containers attached to a network created with the 'transparent' driver will be directly connected to the physical network. IPs from the physical network can be assigned statically (requires user-specified ``--subnet`` option) or dynamically using an external DHCP server. 
-
-- **overlay** - when the docker engine is running in [swarm mode](./swarm-mode.md), containers attached to an overlay network can communicate with other containers attached to the same network across multiple container hosts. Each overlay network that is created on a Swarm cluster is created with its own IP subnet, defined by a private IP prefix. The overlay network driver uses VXLAN encapsulation.
-> Requires Windows Server 2016 with [KB4015217](https://support.microsoft.com/en-us/help/4015217/windows-10-update-kb4015217) or Windows 10 Creators Update 
-
-- **l2bridge** - containers attached to a network created with the 'l2bridge' driver will be in the same IP subnet as the container host. The IP addresses must be assigned statically from the same prefix as the container host. All container endpoints on the host will have the same MAC address as the host due to Layer-2 address translation (MAC re-write) operation on ingress and egress.
-> Requires Windows Server 2016 or Windows 10 Creators Update
-
-- **l2tunnel** - Similar to l2bridge, however _this driver should only be used in a Microsoft Cloud Stack_. Packets coming from a container are sent to an external Azure fabric host, then sent back.
-
-> To learn how to connect container endpoints to an overlay virtual network with the Microsoft SDN stack, reference the [Attaching Containers to a Virtual Network](https://technet.microsoft.com/en-us/windows-server-docs/networking/sdn/manage/connect-container-endpoints-to-a-tenant-virtual-network) topic.
-
-> Windows 10 Creators Update introduced platform support to add a new container endpoint to a running container (i.e. 'hot-add'). This will light-up end-to-end pending an [outstanding Docker pull request](https://github.com/docker/libnetwork/pull/1661)
-
-
-## Network Topologies and IPAM
-The table below shows how network connectivity is provided for internal (container-to-container) and external connections for each network driver.
-
-### Networking Modes / Docker Drivers
-
-  | Docker Windows Network Driver | Typical Uses | Container-to-Container (Single Node) | Container-to-External (Single Node + Multi Node) | Container-to-Container (Multi Node) |
-  |-------------------------------|:------------:|:------------------------------------:|:------------------------------------------------:|:-----------------------------------:|
-  | **NAT (Default)** | Good for Developers | <ul><li>Same Subnet: Bridged connection through Hyper-V virtual switch</li><li> Cross subnet: Not supported in WS2016 (only one NAT internal prefix)</li></ul> | Routed through Management vNIC (bound to WinNAT) | Not directly supported: requires exposing ports through host |
-  | **Transparent** | Good for Developers or small deployments | <ul><li>Same Subnet: Bridged connection through Hyper-V virtual switch</li><li>Cross Subnet: Routed through container host</li></ul> | Routed through container host with direct access to (physical) network adapter | Routed through container host with direct access to (physical) network adapter |
-  | **Overlay** | Required for Docker Swarm, multi-node | <ul><li>Same Subnet: Bridged connection through Hyper-V virtual switch</li><li>Cross Subnet: Network traffic is encapsulated and routed through Mgmt vNIC</li></ul> | Not directly supported - requires second container endpoint attached to NAT network | Same/Cross Subnet: Network traffic is encapsulated using VXLAN and routed through Mgmt vNIC |
-  | **L2Bridge** | Used for Kubernetes and Microsoft SDN | <ul><li>Same Subnet: Bridged connection through Hyper-V virtual switch</li><li> Cross Subnet: Container MAC address re-written on ingress and egress and routed</li></ul> | Container MAC address re-written on ingress and egress | <ul><li>Same Subnet: Bridged connection</li><li>Cross Subnet: Not supported in WS2016.</li></ul> |
-  | **L2Tunnel**| Azure only | Same/Cross Subnet: Hair-pinned to physical host's Hyper-V virtual switch to where policy is applied | Traffic must go through Azure virtual network gateway | Same/Cross Subnet: Hair-pinned to physical host's Hyper-V virtual switch to where policy is applied |
-
-### IPAM 
-IP Addresses are allocated and assigned differently for each networking driver. Windows uses the Host Networking Service (HNS) to provide IPAM for the nat driver and works with Docker Swarm Mode (internal KVS) to provide IPAM for overlay. All other network drivers use an external IPAM.
-
-| Networking Mode / Driver | IPAM |
-| -------------------------|:----:|
-| NAT | Dynamic IP allocation and assignmeny by Host Networking Service (HNS) from internal NAT subnet prefix |
-| Transparent | Static or dynamic (using external DHCP server) IP allocation and assignment from IP addresses within container host's network prefix |
-| Overlay | Dynamic IP allocation from Docker Engine Swarm Mode managed prefixes and assignment through HNS |
-| L2Bridge | Static IP allocation and assignment from IP addresses within container host's network prefix (could also be assigned through HNS plugin) |
-| L2Tunnel | Azure only - Dynamic IP allocation and assignment from plugin |
-
-
-# Details on Windows Container Networking
-
-## Isolation (Namespace) with Network Compartments
-Each container endpoint is placed in its own __network compartment__ which is analogous to a network namespace in Linux. The management host vNIC and host network stack are located in the default network compartment. In order to enforce network isolation between containers on the same host, a network compartment is created for each Windows Server and Hyper-V Container into which the network adapter for the container is installed. Windows Server containers use a Host vNIC to attach to the virtual switch. Hyper-V Containers use a Synthetic VM NIC (not exposed to the Utility VM) to attach to the virtual switch. 
-
-
-![text](media/network-compartment-visual.png)
-
-
-```powershell 
-Get-NetCompartment
-```
-
-## Windows Firewall Security
-
-The Windows Firewall is used to enforce network security through port ACLs.
-
-> NOTE: Make sure your environment satisfies these *required* [prerequisites](https://docs.docker.com/network/overlay/#operations-for-all-overlay-networks) for creating overlay networks.
-
-
-### Windows Server containers
-These use the Windows hosts' firewall (enlightened with network compartments.) 
-  * Default Outbound: ALLOW ALL
-  * Default Inbound: DENY ALL unsolicited
-    * Except "common" (e.g. DHCP, DNS, ICMP, etc.) network traffic
-    * Create inbound ALLOW rule in response to ``docker run -p`` (port forwarding)
-
-### Hyper-V containers
-Hyper-V containers have their own isolated kernel and hence run their own instance of Windows Firewall with the following configuration:
-  * Default ALLOW ALL in Windows Firewall
-
-Note that in general, all container endpoints attached to an overlay network have an:
-  *  ALLOW ALL rule created.  
-
-
-![text](media/windows-firewall-containers.png)
-
-
-## Container Network Management with Host Network Service
-
-The Host Networking Service (HNS) and the Host Compute Service (HCS) work together to create containers and attach endpoints to a network.
-
-### Network Creation
-  - HNS creates a Hyper-V virtual switch for each network
-  - HNS creates NAT and IP pools as required
-
-### Endpoint Creation
-  - HCS creates network compartment per container endpoint
-  - HNS/HCS places v(m)NIC inside network compartment
-  - HNS creates (vSwitch) ports
-  - HNS assigns IP address, DNS information, routes, etc. (subject to networking mode) endpoint
-
-### Policy Creation
-  - HNS creates WinNAT port forwarding rules / mappings with corresponding Windows Firewall ALLOW rules
-
-
-![text](media/HNS-Management-Stack.png)
-
 
 # Advanced Network Options in Windows
 Several network driver options are supported to take advantage of Windows-specific capabilities and features. 
@@ -214,7 +73,7 @@ C:\> docker network create -d transparent -o com.docker.network.windowsshim.dnss
 
 ## VFP
 
-The Virtual Filtering Platform (VFP) extension is a Hyper-V virtual switch, forwarding extension used to enforce network policy and manipulate packets. For instance, VFP is used by the 'overlay' network driver to perform VXLAN encapsulation and by the 'l2bridge' driver to perform MAC re-write on ingresss and egress. The VFP extension is only present on Windows Server 2016 and Windows 10 Creators Update. To check and see if this is running correctly a user run two commands:
+The Virtual Filtering Platform (VFP) extension is a Hyper-V virtual switch, forwarding extension used to enforce network policy and manipulate packets. For instance, VFP is used by the 'overlay' network driver to perform VXLAN encapsulation and by the 'l2bridge' driver to perform MAC re-write on ingresss and egress. The VFP extension is only present on Windows Server 2016 and Windows 10 Creators Update. To check and see if this is running correctly a user can run two commands:
 
 ```powershell
 Get-Service vfpext
@@ -345,15 +204,3 @@ networks:
 ```
 
 For further information on defining/configuring container networks using Docker Compose, refer to the [Compose File reference](https://docs.docker.com/compose/compose-file/).
-
-### Service Discovery
-Service Discovery is only supported for certain Windows network drivers.
-
-|  | Local Service Discovery  | Global Service Discovery |
-| :---: | :---------------     |  :---                |
-| nat | YES | NA |  
-| overlay | YES | YES |
-| transparent | NO | NO |
-| l2bridge | NO | NO |
-
-
