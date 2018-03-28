@@ -112,8 +112,11 @@ To using Windows Integrated Authentication:
 Then run inside a container started with a credential spec:
 
 ```powershell
-docker run -p 80:80 --security-opt "credentialspec=file://WebApplication1.json" -it musicstore-iis cmd
+docker run -p 80:80 -h WebApplication1 --security-opt "credentialspec=file://WebApplication1.json" -it musicstore-iis cmd
 ```
+
+> [!IMPORTANT]
+> The container hostname (-h parameter) must match the name of the gMSA account in order for the container to be able to communicate with the domain controller.
 
 At this point, SQL would see a login from the gMSA included in that credentialspec. Following the examples above - this would be "contoso\WebApplication1"
 
