@@ -87,6 +87,7 @@ How does one choose between Windows Server Core and Nano Server? While you are f
 - .NET Core is not included (though you can use the [.NET Core Nano Server image](https://hub.docker.com/r/microsoft/dotnet/))
 - PowerShell was removed
 - WMI was removed
+- Starting with Windows Server version 1709 applications run under a user context, so commands that require administrator privileges will fail. You can specify the container administrator account via the --user flag (i.e. docker run --user ContainerAdministrator) however in the future we intend to fully remove administrator accounts from NanoServer.
 
 These are the biggest differences and not an exhaustive list. There are other components not called out which are absent as well. Keep in mind that you can always add layers on top of Nano Server as you see fit. For an example of this check out the [.NET Core Nano Server Dockerfile](https://github.com/dotnet/dotnet-docker/blob/master/2.0/sdk/nanoserver/amd64/Dockerfile).
 

@@ -107,7 +107,7 @@ The following example shows how to create a new virtual machine in the PowerShel
      SwitchName = (Get-VMSwitch).Name[0]
  }
 
- New-VM @VM
+ New-VM $VM
   ```
 
 ## Wrap up and References

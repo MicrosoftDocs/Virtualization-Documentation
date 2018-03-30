@@ -1,31 +1,60 @@
 ﻿{
     "images":  [
-                   {
-                       "name":  "Ubuntu (bionic)",
-                       "version":  "3.0",
-                       "locale":  "en-US",
-                       "publisher":  "Canonical via sarah script",
-                       "lastUpdated":  "2018-02-16T23:52:06",
-                       "description":  [
-                                           "This Ubuntu VM was built by Sarah Cooley to make it easier to test out Enhanced Session Mode on Linux VMs.\r\n\r\n",
-                                           "It was published by Canonical on Fri, 16 Feb 2018 07:55:08 +0000\r\n",
-                                           "Resources found here are available online at http://cdimage.ubuntu.com/daily-live/current/\r\n"
-                                       ],
-                       "disk":  {
-                                    "uri":  "http://cdimage.ubuntu.com/daily-live/current/bionic-desktop-amd64.iso",
-                                    "hash":  "sha256:3e14eb0c46070bb56cce4f3fa76bf9114e5d8b507d34b6cdfec9914c0f0979d9"                                },
-                       "logo":  {
-                                    "uri":  "https://raw.githubusercontent.com/MicrosoftDocs/Virtualization-Documentation/live/hyperv-samples/scooley-gallery/ubuntu-logo/ubuntu_black-orange_hex.png",
-                                    "hash":  "sha256:6D5614230B15A4CEAA43EDA24134365ECF20F39FE4DD8A9E0CD1DD14EB3C5B9D"
-                                },
-                       "symbol":  {
-                                      "uri":  "https://raw.githubusercontent.com/MicrosoftDocs/Virtualization-Documentation/live/hyperv-samples/scooley-gallery/ubuntu-circle/cof_orange_hex.png",
-                                      "hash":  "sha256:B1F8003F8F9AE56B928D7CC424F144F126EEEA6FD09FCD316E26D529394C9890"
-                                  },
-                       "thumbnail":  {
-                                         "uri":  "https://raw.githubusercontent.com/MicrosoftDocs/Virtualization-Documentation/live/hyperv-samples/scooley-gallery/ubuntu-circle/cof_orange_hex.png",
-                                         "hash":  "sha256:B1F8003F8F9AE56B928D7CC424F144F126EEEA6FD09FCD316E26D529394C9890"
-                                     }
-                   }
-               ]
+        {
+            "name":  "Ubuntu (bionic)",
+            "version":  "3.0",
+            "locale":  "en-US",
+            "publisher":  "Canonical via sarah script",
+            "lastUpdated":  "2018-02-16T23:52:06",
+            "description":  [
+                "This Ubuntu VM was built by Sarah Cooley to make it easier to test out Enhanced Session Mode on Linux VMs.\r\n\r\n",
+                "It was published by Canonical on Fri, 16 Feb 2018 07:55:08 +0000\r\n",
+                "Resources found here are available online at http://cdimage.ubuntu.com/daily-live/current/\r\n"
+            ],
+            "disk":  {
+                "uri":  "http://cdimage.ubuntu.com/daily-live/current/bionic-desktop-amd64.iso",
+                "hash":  "sha256:cb9b10585ad5bd348e7b8284e96f4875afa4fcc7b119a3c306e53d9ff2077947"
+            },
+            "logo":  {
+                "uri":  "https://raw.githubusercontent.com/MicrosoftDocs/Virtualization-Documentation/live/hyperv-samples/scooley-gallery/ubuntu-logo/ubuntu_black-orange_hex.png",
+                "hash":  "sha256:6D5614230B15A4CEAA43EDA24134365ECF20F39FE4DD8A9E0CD1DD14EB3C5B9D"
+            },
+            "symbol":  {
+                "uri":  "https://raw.githubusercontent.com/MicrosoftDocs/Virtualization-Documentation/live/hyperv-samples/scooley-gallery/ubuntu-circle/cof_orange_hex.png",
+                "hash":  "sha256:B1F8003F8F9AE56B928D7CC424F144F126EEEA6FD09FCD316E26D529394C9890"
+            },
+            "thumbnail":  {
+                "uri":  "https://raw.githubusercontent.com/MicrosoftDocs/Virtualization-Documentation/live/hyperv-samples/scooley-gallery/ubuntu-circle/cof_orange_hex.png",
+                "hash":  "sha256:B1F8003F8F9AE56B928D7CC424F144F126EEEA6FD09FCD316E26D529394C9890"
+            }
+        },
+        {
+            "name":  "Ubuntu (xenial)",
+            "version":  "3.0",
+            "locale":  "en-US",
+            "publisher":  "Canonical via sarah script",
+            "lastUpdated":  "2018-02-16T23:52:06",
+            "description":  [
+                "This Ubuntu VM was built by Sarah Cooley to make it easier to test out Enhanced Session Mode on Linux VMs.\r\n\r\n",
+                "It was published by Canonical on Fri, 16 Feb 2018 07:55:08 +0000\r\n",
+                "Resources found here are available online at http://releases.ubuntu.com/16.04/\r\n"
+            ],
+            "disk":  {
+                "uri":  "http://releases.ubuntu.com/16.04/ubuntu-16.04.4-desktop-amd64.iso",
+                "hash":  "sha256:3380883b70108793ae589a249cccec88c9ac3106981f995962469744c3cbd46d"
+            },
+            "logo":  {
+                "uri":  "https://raw.githubusercontent.com/MicrosoftDocs/Virtualization-Documentation/live/hyperv-samples/scooley-gallery/ubuntu-logo/ubuntu_black-orange_hex.png",
+                "hash":  "sha256:6D5614230B15A4CEAA43EDA24134365ECF20F39FE4DD8A9E0CD1DD14EB3C5B9D"
+            },
+            "symbol":  {
+                "uri":  "https://raw.githubusercontent.com/MicrosoftDocs/Virtualization-Documentation/live/hyperv-samples/scooley-gallery/ubuntu-circle/cof_orange_hex.png",
+                "hash":  "sha256:B1F8003F8F9AE56B928D7CC424F144F126EEEA6FD09FCD316E26D529394C9890"
+            },
+            "thumbnail":  {
+                "uri":  "https://raw.githubusercontent.com/MicrosoftDocs/Virtualization-Documentation/live/hyperv-samples/scooley-gallery/ubuntu-circle/cof_orange_hex.png",
+                "hash":  "sha256:B1F8003F8F9AE56B928D7CC424F144F126EEEA6FD09FCD316E26D529394C9890"
+            }
+        }
+    ]
 }
