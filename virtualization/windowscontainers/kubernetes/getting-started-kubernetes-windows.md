@@ -21,6 +21,8 @@ With the latest release of Kubernetes 1.9 and Windows Server [version 1709](http
 
 This page serves as a guide for getting started joining a brand new Windows node to an existing Linux-based cluster. To start completely from scratch, refer to [this page](./creating-a-linux-master.md) &mdash; one of many resources available for deploying a Kubernetes cluster &mdash; to set a master up from scratch the same way we did.
 
+> If you would like to deploy a cluster on Azure, the open source ACS-Engine tool makes this easy. A step by step [walkthrough](https://github.com/Azure/acs-engine/blob/master/docs/kubernetes/windows.md) is available.
+
 <a name="definitions"></a>
 These are definitions for some terms that are referenced throughout this guide:
 
