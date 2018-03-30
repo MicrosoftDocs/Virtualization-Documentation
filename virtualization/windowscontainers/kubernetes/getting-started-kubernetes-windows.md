@@ -186,12 +186,24 @@ This creates a deployment and a service, then watch the pods indefinitely to tra
 
 If all went well, it is possible to:
 
-  - see four containers under a `docker ps` command on the Windows side.
+  - see 4 containers under a `docker ps` command on the Windows node
+  - see 2 pods under a `kubectl get pods` command from the Linux master
   - `curl` on the *pod* IPs on port 80 from the Linux master gets a web server response; this demonstrates proper node to pod communication across the network.
-  - `curl` on the *node* IP on port 4444 gets a web server response; this demonstrates proper host-to-container port mapping.
   - ping *between pods* (including across hosts, if you have more than one Windows node) via `docker exec`; this demonstrates proper pod-to-pod communication
   - `curl` the virtual *service IP* (seen under `kubectl get services`) from the Linux master and from individual pods.
   - `curl` the *service name* with the Kubernetes [default DNS suffix](https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/#services), demonstrating DNS functionality.
 
-> [!WARNING]  
-> Windows nodes are not able to access the service IP. This is a [known platform limitation](./common-problems.md#my-windows-node-cannot-access-my-services-using-the-service-ip) that will be serviced.
+> [!Warning]  
+> Windows nodes will not be able to access the service IP. This is a [known platform limitation](./common-problems.md#my-windows-node-cannot-access-my-services-using-the-service-ip) that will be improved in the next update to Windows Server.
+
+
+### Port Mapping ### 
+It is also possible to access services hosted in pods through their respective nodes by mapping a port on the node. There is [another sample YAML available](https://github.com/Microsoft/SDN/blob/master/Kubernetes/PortMapping.yaml) with a mapping of port 4444 on the node to port 80 on the pod to demonstrate this feature. To deploy it, follow the same steps as before:
+
+```bash
+wget https://raw.githubusercontent.com/Microsoft/SDN/master/Kubernetes/PortMapping.yaml -O win-webserver-port-mapped.yaml
+kubectl apply -f win-webserver-port-mapped.yaml
+watch kubectl get pods -o wide
+```
+
+It should now be possible to `curl` on the *node* IP on port 4444 and receive a web server response. Keep in mind that this limits scaling to a single pod per node since it must enforce a one-to-one mapping.

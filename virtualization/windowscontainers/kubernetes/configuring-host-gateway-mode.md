@@ -34,10 +34,10 @@ A similar route must be added *for* every node in the cluster, *on* every node i
 
 
 ## Configuring Static Routes | Windows ##
-For this, we use `New-NetRoute`. There is an automated script available, `AddRoutes.ps1`, in [this repository](https://github.com/Microsoft/SDN/blob/master/Kubernetes/windows/AddRoutes.ps1). You will need to know the IP address of the *Linux master*, and the default gateway of the Windows node's *external* adapter (not the pod gateway). Then:
+For this, we use `New-NetRoute`. There is an automated script available, `AddRoutes.ps1`, in [this repository](https://github.com/Microsoft/SDN/blob/master/Kubernetes/windows/AddRoutes.ps1). You will need to know the IP address of the *Linux master*:
 
 ```powershell
 $url = "https://raw.githubusercontent.com/Microsoft/SDN/master/Kubernetes/windows/AddRoutes.ps1"
-wget $url -o AddRoutes.ps1
-./AddRoutes.ps1 -MasterIp 10.1.2.3 -Gateway 10.1.3.1
+Invoke-WebRequest $url -o AddRoutes.ps1
+./AddRoutes.ps1 -MasterIp 10.1.2.3
 ```
