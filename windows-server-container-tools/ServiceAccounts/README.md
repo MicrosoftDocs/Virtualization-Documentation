@@ -54,10 +54,10 @@ Import-Module ActiveDirectory
 ```
 Import-Module ./CredentialSpec.psm1
 ```
-3. Create a credential spec for each account using `New-CredentialSpec`. This will retrieve the needed gMSA details, and automatically format them in the needed JSON credential spec format. The `Name` will be used when starting the container later, and does not need to match the name of the container, or that of the gMSA.
+3. Create a credential spec for each account using `New-CredentialSpec`. This will retrieve the needed gMSA details, and automatically format them in the needed JSON credential spec format. The `Name` will be used when starting the container later, and does not need to match the name of the container, or that of the gMSA. The `Domain` argument assumes the local computer is joined to the domain and provides support in case the joined domain is a subdomain. 
 ```
 Import-Module .\CredentialSpec.psm1
-New-CredentialSpec -Name WebApplication1 -AccountName WebApplication1
+New-CredentialSpec -Name WebApplication1 -AccountName WebApplication1 -Domain $(Get-ADDomain -Current LocalComputer)
 ```
 
 ### Viewing CredentialSpecs
@@ -96,6 +96,21 @@ C:\>nltest.exe /parentdomain
 Getting parent domain failed: Status = 1722 0x6ba RPC_S_SERVER_UNAVAILABLE
 ```
 
+Additionaly, to verify the container can actually query the domain, run `nltest /query`. This should result in the following:
+
+```
+PS c:\>nltest /query
+Flags: 0
+Connection Status = 0 0x0 NERR_Success
+The command completed successfully
+```
+
+If it fails with the error `ERROR_NO_TRUST_SAM_ACCOUNT` it is possible that the `-Domain`-argument in the Get-CredentialSpec command was not properly set or the specified domain is not the domain the gMSA resides in. Check the generated credentialSpec JSON-file for correctness. It can be found in the subdirectory `credentialspecs` in the Docker base directory.
+
+```
+C:\>nltest.exe /query
+Connection Status = 1787 0x6fb ERROR_NO_TRUST_SAM_ACCOUNT
+```
 
 ## Configuring other services to accept connections from containers
 Services and other processes running as 'Local System' or 'Network Service' in the container will now use the gMSA as they authenticate to other resources.
