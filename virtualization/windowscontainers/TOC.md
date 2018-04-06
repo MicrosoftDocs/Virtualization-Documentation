@@ -23,15 +23,21 @@
 ## [Anti-Virus Optimization](https://msdn.microsoft.com/en-us/windows/hardware/drivers/ifs/anti-virus-optimization-for-windows-containers)
 
 # Manage Docker on Windows
-## [Docker Engine on Windows](docker/configure_docker_daemon.md)
+## [Docker Engine on Windows](manage-docker/configure-docker-daemon.md)
 ## [Dockerfiles on Windows](manage-docker/manage-windows-dockerfile.md)
 ## [Optimize Dockerfiles](manage-docker/optimize-windows-dockerfile.md)
-## [Container Networking](manage-containers/container-networking.md)
 ## [Container Storage](manage-containers/container-storage.md)
 ## [Getting Started with Swarm Mode](manage-containers/swarm-mode.md)
 ## [Manage Docker with PowerShell](https://github.com/Microsoft/Docker-PowerShell)
 ## [Remote Management of a Windows Docker Host](management/manage_remotehost.md)
 ## [Resource Controls](manage-containers/resource-controls.md)
+
+# Container Networking on Windows
+## [Container Networking Overview](container-networking/architecture.md)
+## [Network Topologies and Drivers](container-networking/network-drivers-topologies.md)
+## [Network Isolation and Security](container-networking/network-isolation-security.md)
+## [Advanced Networking Options](container-networking/advanced.md)
+## [Troubleshooting](container-networking/troubleshooting.md)
 
 # Kubernetes on Windows 
 ## [Getting Started](kubernetes/getting-started-kubernetes-windows.md)
@@ -39,6 +45,10 @@
 ## [Configuring the Network Topology](kubernetes/configuring-host-gateway-mode.md)
 ## [Compiling Kubernetes Binaries](kubernetes/compiling-kubernetes-binaries.md)
 ## [Troubleshooting](kubernetes/common-problems.md)
+
+# Service Fabric Quick Start
+## [Deploy your first container](/azure/service-fabric/service-fabric-quickstart-containers)
+## [Deploy a .NET application in a Windows container](/azure/service-fabric/service-fabric-host-app-in-a-container) 
 
 # Container Samples
 ## [Application Frameworks](samples.md#Application-Frameworks)
