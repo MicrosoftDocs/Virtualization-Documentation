@@ -23,6 +23,11 @@ This document walks through creating a simple program built on Hyper-V sockets.
 * Windows 10 and later
 * Windows Server 2016 and later
 * Linux guests with Linux Integration Services (see [Supported Linux and FreeBSD virtual machines for Hyper-V on Windows](https://technet.microsoft.com/library/dn531030.aspx))
+> **Note:** A supported Linux guest must have kernel support for:
+> ```bash
+> CONFIG_VSOCKET=y
+> CONFIG_HYPERV_VSOCKETS=y
+> ```
 
 **Capabilities and Limitations**
 * Supports kernel mode or user mode actions
@@ -86,10 +91,22 @@ HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Virtualization\G
 	    ElementName	REG_SZ	Your Service Friendly Name
 ```
 
+> **Note:** The Service GUID for a Linux guest uses the VSOCK protocol which addresses via a `svm_cid` and `svm_port` rather than a guids. To bridge this inconsistency with Windows the well-known GUID is used as the service template on the host which translates to a port in the guest. To customize your Service GUID simply change the first "00000000" to the port number desired. Ex: "00000ac9" is port 2761.
+> ```C++
+> // Hyper-V Socket Linux guest VSOCK template GUID
+> struct __declspec(uuid("00000000-facb-11e6-bd58-64006a7986d3")) VSockTemplate{};
+>
+>  /*
+>   * GUID example = __uuidof(VSockTemplate);
+>   * example.Data1 = 2761; // 0x00000AC9
+>   */
+> ```
+>
+
 > **Tip:**  To generate a GUID in PowerShell and copy it to the clipboard, run:
-``` PowerShell
-(New-Guid).Guid | clip.exe
-```
+>``` PowerShell
+>(New-Guid).Guid | clip.exe
+>```
 
 ## Create a Hyper-V socket
 
@@ -100,24 +117,31 @@ https://msdn.microsoft.com/en-us/library/windows/desktop/ms740506(v=vs.85).aspx
 )
 
 ``` C
+// Windows
 SOCKET WSAAPI socket(
   _In_ int af,
   _In_ int type,
   _In_ int protocol
 );
+
+// Linux guest
+int socket(int domain, int type, int protocol);
 ```
 
 For a Hyper-V socket:
-* Address family - `AF_HYPERV`
+* Address family - `AF_HYPERV` (Windows) or `AF_VSOCK` (Linux guest)
 * type - `SOCK_STREAM`
-* protocol - `HV_PROTOCOL_RAW`
+* protocol - `HV_PROTOCOL_RAW` (Windows) or `0` (Linux guest)
 
 
 Here is an example declaration/instantiation:
 ``` C
+// Windows
 SOCKET sock = socket(AF_HYPERV, SOCK_STREAM, HV_PROTOCOL_RAW);
-```
 
+// Linux guest
+int sock = socket(AF_VSOCK, SOCK_STREAM, 0);
+```
 
 ## Bind to a Hyper-V socket
 
@@ -126,26 +150,45 @@ Bind associates a socket with connection information.
 The function definition is copied below for convinience, read more about bind [here](https://msdn.microsoft.com/en-us/library/windows/desktop/ms737550.aspx).
 
 ``` C
+// Windows
 int bind(
   _In_ SOCKET                s,
   _In_ const struct sockaddr *name,
   _In_ int                   namelen
 );
+
+// Linux guest
+int bind(int sockfd, const struct sockaddr *addr,
+         socklen_t addrlen);
 ```
 
-In contrast to the socket address (sockaddr) for a standard Internet Protocol address family (`AF_INET`) which consists of the host machine's IP address and a port number on that host, the socket address for `AF_HYPERV` uses the virtual machine's ID and the application ID defined above to establish a connection.
+In contrast to the socket address (sockaddr) for a standard Internet Protocol address family (`AF_INET`) which consists of the host machine's IP address and a port number on that host, the socket address for `AF_HYPERV` uses the virtual machine's ID and the application ID defined above to establish a connection. If binding from a Linux guest `AF_VSOCK` uses the `svm_cid` and the `svm_port`.
 
 Since Hyper-V sockets do not depend on a networking stack, TCP/IP, DNS, etc. the socket endpoint needed a non-IP, not hostname, format that still unambiguously describes the connection.
 
 Here is the definition for a Hyper-V socket's socket address:
 
 ``` C
+// Windows
 struct SOCKADDR_HV
 {
      ADDRESS_FAMILY Family;
      USHORT Reserved;
      GUID VmId;
      GUID ServiceId;
+};
+
+// Linux guest
+// See include/uapi/linux/vm_sockets.h for more information.
+struct sockaddr_vm {
+	__kernel_sa_family_t svm_family;
+	unsigned short svm_reserved1;
+	unsigned int svm_port;
+	unsigned int svm_cid;
+	unsigned char svm_zero[sizeof(struct sockaddr) -
+			       sizeof(sa_family_t) -
+			       sizeof(unsigned short) -
+			       sizeof(unsigned int) - sizeof(unsigned int)];
 };
 ```
 
