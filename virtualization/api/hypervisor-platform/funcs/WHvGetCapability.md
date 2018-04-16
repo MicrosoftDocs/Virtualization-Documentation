@@ -63,47 +63,87 @@ typedef union WHV_PROCESSOR_FEATURES
 {
     struct
     {
+        /* CPUID.01H:ECX.SSE3[bit 0] = 1 */
         UINT64 Sse3Support : 1;
+        /* CPUID.80000001H:ECX.LAHF-SAHF[bit 0] = 1 */
         UINT64 LahfSahfSupport : 1;
+        /* CPUID.01H:ECX.SSSE3[bit 9] = 1 */
         UINT64 Ssse3Support : 1;
+        /* CPUID.01H:ECX.SSE4_1[bit 19] = 1 */
         UINT64 Sse4_1Support : 1;
+        /* CPUID.01H:ECX.SSE4_2[bit 20] = 1 */
         UINT64 Sse4_2Support : 1;
+        /* CPUID.80000001H:ECX.SSE4A[bit 6] */
         UINT64 Sse4aSupport : 1;
+        /* CPUID.80000001H:ECX.XOP[bit 11] */
         UINT64 XopSupport : 1;
+        /* CPUID.01H:ECX.POPCNT[bit 23] = 1 */
         UINT64 PopCntSupport : 1;
+        /* CPUID.01H:ECX.CMPXCHG16B[bit 13] = 1 */
         UINT64 Cmpxchg16bSupport : 1;
+        /* CPUID.80000001H:ECX.AltMovCr8[bit 4] */
         UINT64 Altmovcr8Support : 1;
+        /* CPUID.80000001H:ECX.LZCNT[bit 5] = 1 */
         UINT64 LzcntSupport : 1;
+        /* CPUID.80000001H:ECX.MisAlignSse[bit 7] */
         UINT64 MisAlignSseSupport : 1;
+        /* CPUID.80000001H:EDX.MmxExt[bit 22] */
         UINT64 MmxExtSupport : 1;
+        /* CPUID.80000001H:EDX.3DNow[bit 31] */
         UINT64 Amd3DNowSupport : 1;
+        /* CPUID.80000001H:EDX.3DNowExt[bit 30] */
         UINT64 ExtendedAmd3DNowSupport : 1;
+        /* CPUID.80000001H:EDX.Page1GB[bit 26] = 1 */
         UINT64 Page1GbSupport : 1;
+        /* CPUID.01H:ECX.AES[bit 25] */
         UINT64 AesSupport : 1;
+        /* CPUID.01H:ECX.PCLMULQDQ[bit 1] = 1 */
         UINT64 PclmulqdqSupport : 1;
+        /* CPUID.01H:ECX.PCID[bit 17] */
         UINT64 PcidSupport : 1;
+        /* CPUID.80000001H:ECX.FMA4[bit 16] = 1 */
         UINT64 Fma4Support : 1;
+        /* CPUID.01H:ECX.F16C[bit 29] = 1 */
         UINT64 F16CSupport : 1;
+        /* CPUID.01H:ECX.RDRAND[bit 30] = 1 */
         UINT64 RdRandSupport : 1;
+        /* CPUID.(EAX=07H, ECX=0H):EBX.FSGSBASE[bit 0] */
         UINT64 RdWrFsGsSupport : 1;
+        /* CPUID.(EAX=07H, ECX=0H):EBX.SMEP[bit 7] */
         UINT64 SmepSupport : 1;
+        /* IA32_MISC_ENABLE.FastStringsEnable[bit 0] = 1 */
         UINT64 EnhancedFastStringSupport : 1;
+        /* CPUID.(EAX=07H, ECX=0H):EBX.BMI1[bit 3] = 1 */
         UINT64 Bmi1Support : 1;
+        /* CPUID.(EAX=07H, ECX=0H):EBX.BMI2[bit 8] = 1 */
         UINT64 Bmi2Support : 1;
         UINT64 Reserved1 : 2;
+        /* CPUID.01H:ECX.MOVBE[bit 22] = 1 */
         UINT64 MovbeSupport : 1;
-        UINT64 Npiep1Support : 1;
+        UINT64 Reserved : 1;
+        /* CPUID.(EAX=07H, ECX=0H):EBX[bit 13] = 1 */
         UINT64 DepX87FPUSaveSupport : 1;
+        /* CPUID.(EAX=07H, ECX=0H):EBX.RDSEED[bit 18] = 1 */
         UINT64 RdSeedSupport : 1;
+        /* CPUID.(EAX=07H, ECX=0H):EBX.ADX[bit 19] */
         UINT64 AdxSupport : 1;
+        /* CPUID.80000001H:ECX.PREFETCHW[bit 8] = 1 */
         UINT64 IntelPrefetchSupport : 1;
+        /* CPUID.(EAX=07H, ECX=0H):EBX.SMAP[bit 20] = 1 */
         UINT64 SmapSupport : 1;
+        /* CPUID.(EAX=07H, ECX=0H):EBX.HLE[bit 4] = 1 */
         UINT64 HleSupport : 1;
+        /* CPUID.(EAX=07H, ECX=0H):EBX.RTM[bit 11] = 1 */
         UINT64 RtmSupport : 1;
+        /* CPUID.80000001H:EDX.RDTSCP[bit 27] = 1 */
         UINT64 RdtscpSupport : 1;
+        /* CPUID.(EAX=07H, ECX=0H):EBX.CLFLUSHOPT[bit 23] */
         UINT64 ClflushoptSupport : 1;
+        /* CPUID.(EAX=07H, ECX=0H):EBX.CLWB[bit 24] = 1 */
         UINT64 ClwbSupport : 1;
+        /* CPUID.(EAX=07H, ECX=0H):EBX.SHA[bit 29] */
         UINT64 ShaSupport : 1;
+        /* CPUID.80000008H:EBX[bit 2] = 1 (AMD only) */
         UINT64 X87PointersSavedSupport : 1;
         UINT64 Reserved2 : 21;
     };
