@@ -68,6 +68,7 @@ If you are behind a proxy, the following PowerShell environment variables must b
 There is a collection of scripts on [this Microsoft repository](https://github.com/Microsoft/SDN) that helps you join this node to the cluster. You can download the ZIP file directly [here](https://github.com/Microsoft/SDN/archive/master.zip). The only thing you need is the `Kubernetes/windows` folder, the contents of which should be moved to `C:\k\`:
 
 ```powershell
+[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 wget https://github.com/Microsoft/SDN/archive/master.zip -o master.zip
 Expand-Archive master.zip -DestinationPath master
 mkdir C:/k/
