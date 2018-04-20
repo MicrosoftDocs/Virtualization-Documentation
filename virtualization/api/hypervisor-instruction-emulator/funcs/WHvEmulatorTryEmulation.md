@@ -51,8 +51,7 @@ callback was not 4K aligned.
 * `InterruptCausedIntercept`: A pending interrupt or fault caused this intercept, which the emulator cannot handle.
 * `GuestCannotBeFaulted`: The guest is currently in a state where injecting a fault would do nothing, and instead must be terminated in other ways.
 
-**NOTE:** The hypervisor is not guaranteed to always return `InstructionBytes` in the exit context.
-For simple IO instructions, this is fine. However, for IO string and MMIO instructions, the virtualization stack must fetch the `InstructionBytes` to pass into the emulator. In this case, it is okay for the virtualization stack to fetch more than the next instruction, because the emulator will only emulate a single instruction regardless of the number of bytes present in `InstructionBytes`.
+**NOTE:** The hypervisor is not guaranteed to always return `InstructionBytes` in the exit context. If required, the emulator will fetch additional instruction bytes via the registered memory callback. 
 
 **NOTE:** Instructions that contain the x86 REP prefix will be internally resolved within the emulator by emulating that instruction multiple times, until the REP prefix condition is satisfied.
 This may result in multiple callbacks of the registered callback functions.
