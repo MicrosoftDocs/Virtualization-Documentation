@@ -3,7 +3,7 @@ title: Introduction to Hyper-V on Windows 10
 description: Introduction to Hyper-V, virtualization, and related technologies.
 keywords: windows 10, hyper-v
 author: scooley
-ms.date: 04/07/2017
+ms.date: 04/07/2018
 ms.topic: article
 ms.prod: windows-10-hyperv
 ms.assetid: eb2b827c-4a6c-4327-9354-50d14fee7ed8
@@ -13,9 +13,9 @@ ms.assetid: eb2b827c-4a6c-4327-9354-50d14fee7ed8
 
 > Hyper-V replaces Microsoft Virtual PC. 
 
-Whether you are a software developer, an IT professional, or a technology enthusiast, many of you need to run multiple operating systems. Hyper-V lets you run multiple operating systems as virtual machines on Windows.  
+Whether you are a software developer, an IT professional, or a technology enthusiast, many of you need to run multiple operating systems. Hyper-V lets you run multiple operating systems as virtual machines on Windows.
 
-![](media/HyperVNesting.png)
+![Virtual machine running Windows](media/HyperVNesting.png)
 
 Hyper-V specifically provides hardware virtualization.  That means each virtual machine runs on virtual hardware.  Hyper-V lets you create virtual hard drives, virtual switches, and a number of other virtual devices all of which can be added to virtual machines.
 
