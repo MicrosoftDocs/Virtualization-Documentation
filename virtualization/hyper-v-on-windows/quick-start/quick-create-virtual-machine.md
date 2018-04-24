@@ -17,11 +17,9 @@ We've been building new tools for creating virtual machines so the instructions 
 
 Pick your operating system for the right set of instructions:
 
-* [Windows 10 Fall Creators Update and later](quick-create-virtual-machine.md#Windows-10-Fall-Creators-Update)
-* Windows 10 Creators Update
-* Windows 10 Aniversary Update and earlier:
-  * [Create a new virtual machine](create-virtual-machine.md)
-  * [Create a virtual network](connect-to-network.md)
+* [Windows 10 Fall Creators Update and later](quick-create-virtual-machine.md#windows-10-fall-creators-update)
+* [Windows 10 Creators Update](quick-create-virtual-machine.md#windows-10-creators-update)
+* [Windows 10 Aniversary Update and earlier](quick-create-virtual-machine.md#before-windows-10-creators-update)
 
 Let's get started.
 
@@ -39,7 +37,7 @@ That's it!  Quick Create will take care of the rest.
 
 ## Windows 10 Creators Update
 
-![](media/quickcreatesteps_inked.jpg)
+![Screen shot of the quick create UI](media/quickcreatesteps_inked.jpg)
 
 1. Open Hyper-V Manager from the start menu.
 
