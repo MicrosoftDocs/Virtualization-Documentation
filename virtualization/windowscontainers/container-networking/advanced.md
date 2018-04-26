@@ -58,9 +58,10 @@ C:\> docker network create -d transparent -o com.docker.network.windowsshim.inte
 
 > Note: The value for *com.docker.network.windowsshim.interface* is the network adapter's *Name*, which can be found with:
 
->```
+```
 PS C:\> Get-NetAdapter
 ```
+
 ## Specify the DNS Suffix and/or the DNS Servers of a Network
 
 > Applies to all network drivers 
@@ -73,14 +74,7 @@ C:\> docker network create -d transparent -o com.docker.network.windowsshim.dnss
 
 ## VFP
 
-The Virtual Filtering Platform (VFP) extension is a Hyper-V virtual switch, forwarding extension used to enforce network policy and manipulate packets. For instance, VFP is used by the 'overlay' network driver to perform VXLAN encapsulation and by the 'l2bridge' driver to perform MAC re-write on ingresss and egress. The VFP extension is only present on Windows Server 2016 and Windows 10 Creators Update. To check and see if this is running correctly a user can run two commands:
-
-```powershell
-Get-Service vfpext
-
-# This should indicate the extension is Running: True 
-Get-VMSwitchExtension  -VMSwitchName <vSwitch Name> -Name "Microsoft Azure VFP Switch Extension"
-```
+See [this article](https://www.microsoft.com/en-us/research/project/azure-virtual-filtering-platform/) for more information.
 
 ## Tips & Insights
 Here's a list of handy tips and insights, inspired by common questions on Windows container networking that we hear from the community...
@@ -96,15 +90,26 @@ We're working on platform changes to automatically detect/prevent this issue. Cu
 C:\> reg delete HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Tcpip6\Parameters  /v DisabledComponents  /f
 ```
 
+
+#### Linux Containers on Windows
+
+**NEW:** We are working to make it possible to run Linux and Windows containers side-by-side _without the Moby Linux VM_. See this [blog post about Linux Containers on Windows (LCOW)](https://blog.docker.com/2017/11/docker-for-windows-17-11/) for details.
+
 #### Moby Linux VMs use DockerNAT switch with Docker for Windows (a product of [Docker CE](https://www.docker.com/community-edition)) instead of HNS internal vSwitch 
+
 Docker for Windows (the Windows driver for the Docker CE engine) on Windows 10 will use an Internal vSwitch named 'DockerNAT' to connect Moby Linux VMs to the container host. Developers using Moby Linux VMs on Windows should be aware that their hosts are using the DockerNAT vSwitch rather than the vSwitch that is created by the HNS service (which is the default switch used for Windows containers).
 
-#### To use DHCP for IP assignment on a virtual container host enable MACAddressSpoofing 
+
+#### To use DHCP for IP assignment on a virtual container host enable MACAddressSpoofing
+>  _MAC address spoofing is required for l2bridge and transparent network drivers **as well as Kubernetes**_
+
 If the container host is virtualized, and you wish to use DHCP for IP assignment, you must enable MACAddressSpoofing on the virtual machine's network adapter. Otherwise, the Hyper-V host will block network traffic from the containers in the VM with multiple MAC addresses. You can enable MACAddressSpoofing with this PowerShell command:
 ```
 PS C:\> Get-VMNetworkAdapter -VMName ContainerHostVM | Set-VMNetworkAdapter -MacAddressSpoofing On
 ```
 If you are running VMware as your hypervisor, you will need to enable promiscuous mode for this to work. Details can be found [here](https://kb.vmware.com/s/article/1004099)
+
+
 #### Creating multiple transparent networks on a single container host
 If you wish to create more than one transparent network you must specify to which (virtual) network adapter the external Hyper-V Virtual Switch should bind. To specify the interface for a network, use the following syntax:
 ```

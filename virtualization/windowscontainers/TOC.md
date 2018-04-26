@@ -37,7 +37,6 @@
 ## [Network Topologies and Drivers](container-networking/network-drivers-topologies.md)
 ## [Network Isolation and Security](container-networking/network-isolation-security.md)
 ## [Advanced Networking Options](container-networking/advanced.md)
-## [Troubleshooting](container-networking/troubleshooting.md)
 
 # Kubernetes on Windows 
 ## [Getting Started](kubernetes/getting-started-kubernetes-windows.md)
