@@ -25,25 +25,20 @@ Get-NetCompartment
 ```
 
 ## Network Security
-Depending on which container and network driver is used, Windows Firewall or VFP is used to enforce network security through port ACLs.
-
-> NOTE: Make sure your environment satisfies these *required* [prerequisites](https://docs.docker.com/network/overlay/#operations-for-all-overlay-networks) for creating overlay networks.
-
+Depending on which container and network driver is used, port ACLs are enforced by a combination of the Windows Firewall and [VFP](https://www.microsoft.com/en-us/research/project/azure-virtual-filtering-platform/).
 
 ### Windows Server containers
-These use the Windows hosts' firewall (enlightened with network namespaces)
+These use the Windows hosts' firewall (enlightened with network namespaces) as well as VFP
   * Default Outbound: ALLOW ALL
-  * Default Inbound: ALLOW ALL "common" (e.g. TCP,DHCP, DNS, ICMP, etc.) unsolicited network traffic
-    * DENY ALL "uncommon" network traffic
-    * Create inbound ALLOW rule in response to ``docker run -p`` (port forwarding)
+  * Default Inbound: ALLOW ALL (TCP, UDP, ICMP, IGMP) unsolicited network traffic
+    * DENY ALL other network traffic not from these protocols
+
+  > Note: Prior to Windows Server, version 1709 and Windows 10 Fall Creators Update, the default *inbound* rule was DENY all. Users running these older releases can create inbound ALLOW rules using ``docker run -p`` (port forwarding)
 
 
 ### Hyper-V containers
 Hyper-V containers have their own isolated kernel and hence run their own instance of Windows Firewall with the following configuration:
-  * Default ALLOW ALL in Windows Firewall
-
-Note that in general, all container endpoints attached to an overlay network have an:
-  *  ALLOW ALL rule created.
+  * Default ALLOW ALL in both Windows Firewall (running in the utility VM) and VFP
 
 
 ![text](media/windows-firewall-containers.png)
@@ -57,7 +52,7 @@ In [Kubernetes pods](https://kubernetes.io/docs/concepts/workloads/pods/pod/), a
 
 
 ### Customizing default port ACLs
-If you wish to modify the default port ACLs, please reference our HNS documentation (link to be added very soon). You will need to update policies inside the following components:
+If you wish to modify the default port ACLs, please reference our HNS documentation (link to be added soon). You will need to update policies inside the following components:
 
 > NOTE: For Hyper-V Containers in Transparent and NAT mode, you cannot reprogram the default port ACLs currently. This is reflected by an "X" in the table.
 

@@ -16,7 +16,7 @@ ms.assetid: 538871ba-d02e-47d3-a3bf-25cda4a40965
 
 
 ## Basic networking architecture
-This topic provides an overview of how Docker creates and manages host networks on Windows. Windows containers function similarly to virtual machines in regards to networking. Each container has a virtual network adapter (vNIC) which is connected to a Hyper-V virtual switch (vSwitch). Windows supports five different networking drivers or modes which can be created through Docker: *nat*, *overlay*, *transparent*, *l2bridge*, and *l2tunnel*. Depending on your physical network infrastructure and single- vs multi-host networking requirements, you should choose the network driver which best suits your needs.
+This topic provides an overview of how Docker creates and manages host networks on Windows. Windows containers function similarly to virtual machines in regards to networking. Each container has a virtual network adapter (vNIC) which is connected to a Hyper-V virtual switch (vSwitch). Windows supports five different [networking drivers or modes](./network-drivers-topologies.md) which can be created through Docker: *nat*, *overlay*, *transparent*, *l2bridge*, and *l2tunnel*. Depending on your physical network infrastructure and single- vs multi-host networking requirements, you should choose the network driver which best suits your needs.
 
 
 ![text](media/windowsnetworkstack-simple.png)
@@ -51,12 +51,13 @@ The Host Networking Service (HNS) and the Host Compute Service (HCS) work togeth
   - HNS creates network namespace per container endpoint
   - HNS/HCS places v(m)NIC inside network namespace
   - HNS creates (vSwitch) ports
-  - HNS assigns IP address, DNS information, routes, etc. (subject to networking mode) endpoint
+  - HNS assigns IP address, DNS information, routes, etc. (subject to networking mode) to the endpoint
 
 ### Policy Creation
   - Default NAT network: HNS creates WinNAT port forwarding rules / mappings with corresponding Windows Firewall ALLOW rules
   - All other networks: HNS utilizes the Virtual Filtering Platform (VFP) for policy creation
     - This includes: load balancing, ACLs, encapsulation, etc.
+    - Look for our HNS APIs and schema **to be published soon**.
 
 
 ![text](media/HNS-Management-Stack.png)
