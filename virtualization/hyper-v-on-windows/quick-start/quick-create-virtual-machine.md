@@ -30,7 +30,20 @@ In Fall Creators Update, Quick Create expanded to include a virtual machine gall
 To create a new virtual machine in Fall Creators Update:
 
 1. Open Hyper-V Quick Create from the start menu.
+
+    ![Quick Create Gallery in the Windows Start menu](media/quick-create-start-menu.png)
+
 1. Select an operating system or choose your own by using a local installation source.
+
+    ![Gallery view](media/vmgallery.png)
+
+    1. If you want to use your own image to create the virtual machine, select **Local Installation Source**.
+    1. Select **Change Installation Source**.
+      ![Button to use a local installation source](media/change-source.png)
+    1. Pick the .iso or .vhdx that you want to turn into a new virtual machine.
+    1. If the image is a Linux image, deselect the Secure Boot option.
+      ![Button to use a local installation source](media/toggle-secure-boot.png)
+
 1. Select "Create Virtual Machine"
 
 That's it!  Quick Create will take care of the rest.
