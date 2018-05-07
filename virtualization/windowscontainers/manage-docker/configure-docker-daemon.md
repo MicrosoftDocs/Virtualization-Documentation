@@ -21,47 +21,7 @@ Docker is required in order to work with Windows Containers. Docker consists of 
 * [Windows Containers on Windows Server 2016](../quick-start/quick-start-windows-server.md)
 * [Windows Containers on Windows 10](../quick-start/quick-start-windows-10.md)
 
-### Manual Installation
-If you would like to use an in-development version of the Docker Engine and client instead, you can use the steps that follow. This will install both the Docker Engine and client. If you are a developer testing new features or using a Windows Insider build, you may need to use an in-development version of Docker. Otherwise, follow the steps in the Install Docker section above to get the latest released versions.
-
-> If you have installed Docker for Windows, be sure to remove it before you follow these manual installation steps. 
-
-Download the Docker Engine
-
-The latest version may always be found at https://master.dockerproject.org . This sample uses the latest from the master branch. 
-
-```powershell
-Invoke-WebRequest "https://master.dockerproject.org/windows/x86_64/docker.zip" -OutFile "$env:TEMP\docker.zip" -UseBasicParsing
-```
-
-Expand the zip archive into Program Files.
-
-```powershell
-Expand-Archive -Path "$env:TEMP\docker.zip" -DestinationPath $env:ProgramFiles
-```
-
-Add the Docker directory to the system path. When complete, restart the PowerShell session so that the modified path is recognized.
-
-```powershell
-# Add path to this PowerShell session immediately
-$env:path += ";$env:ProgramFiles\Docker"
-
-# For persistent use after a reboot
-$existingMachinePath = [Environment]::GetEnvironmentVariable("Path",[System.EnvironmentVariableTarget]::Machine)
-[Environment]::SetEnvironmentVariable("Path", $existingMachinePath + ";$env:ProgramFiles\Docker", [EnvironmentVariableTarget]::Machine)
-```
-
-To install Docker as a Windows service, run the following.
-
-```
-dockerd --register-service
-```
-
-Once installed, the service can be started.
-
-```powershell
-Start-Service Docker
-```
+For scripted installations see [Use a script to install Docker EE](https://docs.docker.com/install/windows/docker-ee/#use-a-script-to-install-docker-ee).
 
 Before Docker can be used container images will need to be installed. For more information see, [the quick start guide for using images](../quick-start/quick-start-images.md).
 
