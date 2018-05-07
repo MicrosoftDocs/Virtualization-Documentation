@@ -60,7 +60,7 @@ Windows Containers are offered with two container base images, Windows Server Co
 </table>
 
 > [!Warning]  
-> <span id="warn-1">Starting with Windows Server version 1709 Nano Server is no long available as a container host.</span>
+> <span id="warn-1">Starting with Windows Server version 1709 Nano Server is no longer available as a container host.</span>
 
 
 ### Memory requirements
