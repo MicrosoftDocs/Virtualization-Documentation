@@ -1,5 +1,5 @@
 {
-    "$schema": "https://github.com/MicrosoftDocs/Virtualization-Documentation/blob/live/hyperv-tools/vmgallery/vm-gallery-schema.json",
+    "$schema": "https://raw.githubusercontent.com/MicrosoftDocs/Virtualization-Documentation/live/hyperv-tools/vmgallery/vm-gallery-schema.json",
 
     "images": [
         {
