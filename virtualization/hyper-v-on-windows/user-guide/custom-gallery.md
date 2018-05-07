@@ -129,6 +129,6 @@ The virtual machine gallery does provide error reporting in the Windows Event Vi
 
 ## Resources
 
-There are a handfull of gallery scripts and helpers in github [link]().
+There are a handfull of gallery scripts and helpers in github [link](https://github.com/MicrosoftDocs/Virtualization-Documentation/tree/live/hyperv-tools/vmgallery).
 
-See a sample gallery entry [here]().  This is the JSON file that defines the in-box gallery.
+See a sample gallery entry [here](https://go.microsoft.com/fwlink/?linkid=851584).  This is the JSON file that defines the in-box gallery.
