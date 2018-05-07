@@ -1,0 +1,32 @@
+{
+    "$schema": "",
+
+    "images": [
+        {
+            "name":  "",
+            "version":  "",
+            "locale":  "",
+            "publisher":  "",
+            "lastUpdated":  "",
+            "description":  [
+                ""
+            ],
+            "disk":  {
+                "uri":  "",
+                "hash":  ""
+            },
+            "logo":  {
+                "uri":  "",
+                "hash":  ""
+            },
+            "symbol":  {
+                "uri":  "",
+                "hash":  ""
+            },
+            "thumbnail":  {
+                "uri":  "",
+                "hash":  ""
+            }
+        }
+    ]
+}
