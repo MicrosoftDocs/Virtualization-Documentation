@@ -11,6 +11,7 @@
 
 # Manage the Hyper-V Hosts
 ## [Enable Nested Virtualization](user-guide/nested-virtualization.md)
+## [Build a custom VM Gallery](user-guide/custom-gallery.md)
 ## [Set up a NAT network](user-guide/setup-nat-network.md)
 ## [Create a virtual switch](quick-start/connect-to-network.md)
 ## [Build an integration Service](user-guide/make-integration-service.md)

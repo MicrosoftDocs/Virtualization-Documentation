@@ -43,12 +43,12 @@ That's it!  Quick Create will take care of the rest.
 
 1. In Hyper-V Manager, Find **Quick Create** in the right hand **Actions** menu.
 
-1. **Customize your virtual machine**
+1. Customize your virtual machine.
 
-    * (optional) Give the virtual machine a name.  
-    * Select the installation media for the virtual machine. You can install from a .iso or .vhdx file.  
+    * (optional) Give the virtual machine a name.
+    * Select the installation media for the virtual machine. You can install from a .iso or .vhdx file.
     If you are installing Windows in the virtual machine, you can enable Windows Secure Boot. Otherwise leave it unselected.
-    * Set up network.  
+    * Set up network.
     If you have an existing virtual switch, you can select in the network dropdown. If you have no existing switch, you will see a button to set up an automatic network, which will automatically configure a virtual network.
 
 1. Click **Connect** to start your virtual machine. Don't worry about editing the settings, you can go back and change them any time.
