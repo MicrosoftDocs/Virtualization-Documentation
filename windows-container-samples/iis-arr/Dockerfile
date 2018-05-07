@@ -29,9 +29,6 @@ RUN msiexec /i "requestRouter_x64.msi" /q /log foo.log
 
 RUN reg add HKLM\SOFTWARE\Microsoft\InetStp /v MajorVersion /t REG_DWORD /d 0xa /f
 
-RUN @powershell restart-service was -force
-RUN @powershell restart-service wmsvc -force
-
 ADD ./start.ps1 /
 
 CMD powershell ./start.ps1 -serverfarms \"%serverfarms%\" -Verbose
