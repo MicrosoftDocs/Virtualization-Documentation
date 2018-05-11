@@ -67,7 +67,7 @@ To validate a virtual machine image will boot and run:
 
 The next step is to create a new gallery source.  This is the JSON file that lists your virtual machines and adds all of the extra information you see in the gallery.
 
-Text infomation:
+Text information:
 
 ![Labeled gallery text locations](media/gallery-text.png)
 
@@ -129,6 +129,6 @@ The virtual machine gallery does provide error reporting in the Windows Event Vi
 
 ## Resources
 
-There are a handfull of gallery scripts and helpers in github [link](https://github.com/MicrosoftDocs/Virtualization-Documentation/tree/live/hyperv-tools/vmgallery).
+There are a handful of gallery scripts and helpers in github [link](https://github.com/MicrosoftDocs/Virtualization-Documentation/tree/live/hyperv-tools/vmgallery).
 
 See a sample gallery entry [here](https://go.microsoft.com/fwlink/?linkid=851584).  This is the JSON file that defines the in-box gallery.
