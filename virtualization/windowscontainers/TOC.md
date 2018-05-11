@@ -26,12 +26,17 @@
 ## [Docker Engine on Windows](manage-docker/configure-docker-daemon.md)
 ## [Dockerfiles on Windows](manage-docker/manage-windows-dockerfile.md)
 ## [Optimize Dockerfiles](manage-docker/optimize-windows-dockerfile.md)
-## [Container Networking](manage-containers/container-networking.md)
 ## [Container Storage](manage-containers/container-storage.md)
 ## [Getting Started with Swarm Mode](manage-containers/swarm-mode.md)
 ## [Manage Docker with PowerShell](https://github.com/Microsoft/Docker-PowerShell)
 ## [Remote Management of a Windows Docker Host](management/manage_remotehost.md)
 ## [Resource Controls](manage-containers/resource-controls.md)
+
+# Container Networking on Windows
+## [Container Networking Overview](container-networking/architecture.md)
+## [Network Topologies and Drivers](container-networking/network-drivers-topologies.md)
+## [Network Isolation and Security](container-networking/network-isolation-security.md)
+## [Advanced Networking Options](container-networking/advanced.md)
 
 # Kubernetes on Windows 
 ## [Getting Started](kubernetes/getting-started-kubernetes-windows.md)

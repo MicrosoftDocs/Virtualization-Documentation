@@ -46,7 +46,7 @@ Learn about managing Docker on Windows.<br /><br />
 <li>[Docker Engine on Windows](manage-docker/configure-docker-daemon.md)<br /><br /></li>
 <li>[Dockerfiles on Windows](manage-docker/manage-windows-dockerfile.md)<br /><br /></li>
 <li>[Optimize Dockerfiles](manage-docker/optimize-windows-dockerfile.md)<br /><br /></li>
-<li>[Container Networking](manage-containers/container-networking.md)<br /><br /></li>
+<li>[Container Networking](container-networking/architecture.md)<br /><br /></li>
 </ul>
 </td>
 </tr>
