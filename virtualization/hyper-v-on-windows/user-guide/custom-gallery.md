@@ -67,7 +67,7 @@ To validate a virtual machine image will boot and run:
 
 The next step is to create a new gallery source.  This is the JSON file that lists your virtual machines and adds all of the extra information you see in the gallery.
 
-Text infomation:
+Text information:
 
 ![Labeled gallery text locations](media/gallery-text.png)
 
