@@ -1,5 +1,5 @@
 # GetPagingMode
-**Note: These APIs are not yet publicly available and will be available in the latest release of the Windows SDK.**
+**Note: These APIs are publicly available as of Windows 1803 (10.0.17134.48). You can build your project against these APIs, but the DLL for linking is missing from the SDK. You should use the latest SDK and associated DLL released with Windows Insider to run your application**
 
 ## Syntax
 ```C

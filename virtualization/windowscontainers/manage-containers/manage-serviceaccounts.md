@@ -14,7 +14,7 @@ ms.assetid: 9e06ad3a-0783-476b-b85c-faff7234809c
 
 Users and other services may need to make authenticated connections to your applications and services so you can keep data secure and prevent unauthorized usage. Windows Active Directory (AD) domains natively support both password and certificate authentication. When you build your application or service on a Windows domain-joined host, it uses the identity of the host by default if run as Local System or Network Service. Otherwise, you may configure another AD account for authentication instead.
 
-Although Windows Containers cannot be domain-joined, they can also take advantage of Active Directory domain identities similar to when a device is realm-joined. With Windows Server 2012 R2 domain controllers, we introduced a new domain account called a group Managed Service Account (gMSA) which was designed to be shared by services. By using group Managed Service Accounts (gMSA), Windows Containers themselves and the services they host can be configured to use a specific gMSA as their domain identity. Any service running as Local System or Network Service will use the Windows Container's identity just like they use the domain-joined host's identity today. There is no password or certificate private key stored in the container image that could be inadvertently exposed, and the container can be redeployed to development, test, and production environments without being rebuilt to change stored passwords or certificates. 
+Although Windows Containers cannot be domain-joined, they can also take advantage of Active Directory domain identities similar to when a device is realm-joined. With Windows Server 2012 domain controllers, we introduced a new account called a Group Managed Service Account (gMSA) which was designed to be shared by services. By using Group Managed Service Accounts (gMSA), Windows Containers themselves and the services they host can be configured to use a specific gMSA as their domain identity. Any service running as Local System or Network Service will use the Windows Container's identity just like they use the domain-joined host's identity today. There is no password or certificate private key stored in the container image that could be inadvertently exposed, and the container can be redeployed to development, test, and production environments without being rebuilt to change stored passwords or certificates. 
 
 
 # Glossary & References
@@ -37,7 +37,7 @@ When the service is launched, the domain-joined host automatically gets the gMSA
 
 Windows Containers follow a similar process:
 
-1. Create a gMSA. By default, a domain administrator or account operator must do this. Otherwise they can delegate the privileges to create & manage gMSAs to admins who manage services which use them. See [gMSA Getting started](https://technet.microsoft.com/en-us/library/jj128431(v=ws.11).aspx)
+1. Create a gMSA. By default, a domain administrator or account operator must do this. Otherwise they can delegate the privileges to create & manage gMSAs to admins who manage services which use them. You will need at least one Windows Server 2012 or later domain controller in your domain, but there is no requirement to use a specific domain functional level. See [gMSA Getting started](https://technet.microsoft.com/en-us/library/jj128431(v=ws.11).aspx)
 2. Give the domain-joined container host access to the gMSA
 3. Allow access to gMSA on the other service such as a database or file Shares
 4. Use the CredentialSpec PowerShell module from 

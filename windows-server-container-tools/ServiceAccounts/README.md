@@ -4,8 +4,8 @@
 Deploying containers with an emulated domain identity is simple, and based around existing workflows using Windows Server and Active Directory.
 
 Deploying this feature requires:
-- An existing Active Directory domain, running at Windows Server 2012 or later functional level
-- Windows Server 2016 with the Container role and Docker installed. This will be referred to as a **Container host**. These hosts need to be joined to the domain.
+- An existing Active Directory domain, with at least one domain controller running Windows Server 2012. There is no specific domain or forest functional level requirement.
+- Windows Server 2016 or later with the Container role and Docker installed. This will be referred to as a **Container host**. These hosts need to be joined to the domain.
 
 This guide will cover the following steps to deploy a container in detail:
 
