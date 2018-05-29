@@ -17,7 +17,7 @@ In Fall Creators Update, Quick Create expanded to include a virtual machine gall
 
 ![Quick Create VM Gallery with custom images](media/vmgallery.png)
 
-While there are a set of images provided by Microsoft and Microsoft partners, the gallery can also list your own images.
+While there is a set of images provided by Microsoft and Microsoft partners, the gallery can also list your own images.
 
 This article details:
 
@@ -97,7 +97,7 @@ Pictures:
 
 And, of course, your virtual machine (.iso or .vhdx).
 
-The below JSON template has starter items and the gallery's schema.  If you edit it in VSCode, it will automatically provide intellisense.
+The below JSON template has starter items and the gallery's schema.  If you edit it in VSCode, it will automatically provide IntelliSense.
 
 [!code-json[main](../../../hyperv-tools/vmgallery/vm-gallery-template.json)]
 
@@ -129,6 +129,6 @@ The virtual machine gallery does provide error reporting in the Windows Event Vi
 
 ## Resources
 
-There are a handfull of gallery scripts and helpers in github [link](https://github.com/MicrosoftDocs/Virtualization-Documentation/tree/live/hyperv-tools/vmgallery).
+There are a handfull of gallery scripts and helpers in GitHub [link](https://github.com/MicrosoftDocs/Virtualization-Documentation/tree/live/hyperv-tools/vmgallery).
 
 See a sample gallery entry [here](https://go.microsoft.com/fwlink/?linkid=851584).  This is the JSON file that defines the in-box gallery.
