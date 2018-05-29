@@ -119,7 +119,7 @@ foreach ($pcidev in $pcidevs) {
     {
         $baseAdd =$mem.Antecedent.SubString($mem.Antecedent.IndexOf("""")+1)
         $baseAdd=$baseAdd.SubString(0,$baseAdd.IndexOf(""""))
-        $mmioRange = gwmi -query "select * from Win32_DeviceMemoryAddress" | Where-Object{$_.StartingAddress –like $baseAdd}
+        $mmioRange = gwmi -query "select * from Win32_DeviceMemoryAddress" | Where-Object{$_.StartingAddress -like $baseAdd}
         $mmioTotal = $mmioTotal + $mmioRange.EndingAddress - $mmioRange.StartingAddress
     }
     if ($mmioTotal -eq 0)
