@@ -115,7 +115,7 @@ Connection Status = 1787 0x6fb ERROR_NO_TRUST_SAM_ACCOUNT
 ## Configuring other services to accept connections from containers
 Services and other processes running as 'Local System' or 'Network Service' in the container will now use the gMSA as they authenticate to other resources.
 
-For example, an Asp.net app running as the default 'Local System' account could be reconfigured from using SQL authentication:
+For example, an ASP.NET app running as the 'Local System' account could be reconfigured from using SQL authentication:
 ```
 "ConnectionString": "Server=192.168.5.18;Database=MusicStore;Integrated Security=False;User Id=sa;Password=Password1;MultipleActiveResultSets=True;Connect Timeout=30"
 ```
@@ -124,7 +124,7 @@ To using Windows Integrated Authentication:
 "ConnectionString": "Server=192.168.5.18;Database=MusicStore;Integrated Security=True;MultipleActiveResultSets=True;Connect Timeout=30"
 ```
 
-Then run inside a container started with a credential spec:
+After rebuilding the container image with the new connection string in place, a container instance can be run using a credential spec file which allows the web app to authenticate with the SQL server as if it were the gMSA account.
 
 ```powershell
 docker run -p 80:80 -h WebApplication1 --security-opt "credentialspec=file://WebApplication1.json" -it musicstore-iis cmd
