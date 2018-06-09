@@ -157,7 +157,7 @@ The node is now ready to join the cluster. In two separate, *elevated* PowerShel
 
 ```powershell
 ./start-kubelet.ps1 -ClusterCidr 192.168.0.0/16
-./start-kubeproxy.ps1
+./start-kubeproxy.ps1 -NetworkName l2bridge
 ```
 
 The Windows node will be visible from the Linux master under `kubectl get nodes` within a minute!
