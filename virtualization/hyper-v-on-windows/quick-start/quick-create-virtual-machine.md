@@ -19,7 +19,7 @@ Pick your operating system for the right set of instructions:
 
 * [Windows 10 Fall Creators Update and later](quick-create-virtual-machine.md#windows-10-fall-creators-update)
 * [Windows 10 Creators Update](quick-create-virtual-machine.md#windows-10-creators-update)
-* [Windows 10 Aniversary Update and earlier](quick-create-virtual-machine.md#before-windows-10-creators-update)
+* [Windows 10 Anniversary Update and earlier](quick-create-virtual-machine.md#before-windows-10-creators-update)
 
 Let's get started.
 
