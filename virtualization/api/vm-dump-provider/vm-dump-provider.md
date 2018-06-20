@@ -15,7 +15,7 @@ The VM Saved State Dump Provider DLL offers APIs that fall into two categories:
 |[ApplyPendingSavedStateFileReplay](funcs/ApplyPendingSavedStateFileReplay.md)|Opens the saved state file in read-write exclusive mode so that it applies any pending replay logs to the contents|
 |[GetArchitecture](funcs/GetArchitecture.md)|Queries the saved state for the current achitecture the virtual processor was running|
 |[GetGuestPhysicalMemoryChunks](funcs/GetGuestPhysicalMemoryChunks.md)|Returns the layout of the physical memory of the guest|
-|[GetGuestRawSavedMemorySize](funcs/WHvEmulatoGetGuestRawSavedMemorySizerCreateEmulator.md)|Queries for the current paging mode in use by the virtual processor|
+|[GetGuestRawSavedMemorySize](funcs/GetGuestRawSavedMemorySize.md)|Queries for the current paging mode in use by the virtual processor|
 |[GetPagingMode](funcs/GetPagingMode.md)|Queries for the current paging mode in use by the virtual processor|
 |[GetRegisterValue](funcs/GetRegisterValue.md)|Queries for a specific vergister value for a given virtual processor|
 |[GetVpCount](funcs/GetVpCount.md)|Queries for the virtual processor count from the dump file|
