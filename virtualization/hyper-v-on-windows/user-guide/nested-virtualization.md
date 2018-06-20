@@ -54,7 +54,7 @@ There are two options for networking with nested virtual machines:
 2. NAT networking
 
 ### MAC Address Spoofing
-In order for network packets to be routed through two virtual switches, MAC address spoofing must be enabled on the first level of virtual switch. This is completed with the following PowerShell command.
+In order for network packets to be routed through two virtual switches, MAC address spoofing must be enabled on the first (L1) level of virtual switch. This is completed with the following PowerShell command.
 
 ``` PowerShell
 Get-VMNetworkAdapter -VMName <VMName> | Set-VMNetworkAdapter -MacAddressSpoofing On
