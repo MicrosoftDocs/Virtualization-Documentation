@@ -25,12 +25,8 @@ The following diagram provides a high-level overview of the third-party architec
 ![](./media/windows-hypervisor-platform-architecture.png)
 > For more information see: [Windows Hypervisor Platform API](./hypervisor-platform/hypervisor-platform.md)
 
-<<<<<<< HEAD
-=======
 ## Host Compute System
  
->>>>>>> 3ed38707... Add HCS page
-
 ## VM Saved State Dump Provider
 
 The Windows SDK includes an API for accessing raw dumps of a VM saved state. For more information see: [VM Saved State Dump Provider API](./vm-dump-provider/vm-dump-provider.md)
