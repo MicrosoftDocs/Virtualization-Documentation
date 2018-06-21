@@ -397,7 +397,7 @@ ms.assetid: addcfda8-1522-4137-bc02-14cbb1ff838f
                         </ul>
                     </li>
                     <li>
-                        <a href="#core">Hyper-V Core</a>
+                        <a href="#core">Virtualization Platforms</a>
                         <ul id="core" class="cardsW">
                             <li class="fullSpan">
                                 <div class="container intro">
@@ -456,7 +456,10 @@ ms.assetid: addcfda8-1522-4137-bc02-14cbb1ff838f
                                                 <h3 style="margin: 8px 0 2px 0;">APIs</h3>
                                                 <ul>
                                                     <li><a href="https://msdn.microsoft.com/library/hh850319.aspx">Hyper-V WMI</a></li>
-                                                    <li><a href="/virtualization/api/index">Windows Hypervisor Platform</a></li>
+                                                    <li><a
+                                                    href="/virtualization/api/hcs/hcs">Host Compute System</a></li>
+                                                    <li><a
+                                                     href="/virtualization/api/index">Windows Hypervisor Platform</a></li>
                                                     <li><a href="/virtualization/api/hypervisor-instruction-emulator/hypervisor-instruction-emulator">Hyper-V Instruction Emulator</a></li>
                                                     <li><a href="/virtualization/api/vm-dump-provider/vm-dump-provider">VM Saved State Dump Provider</a></li>
                                                 </ul>

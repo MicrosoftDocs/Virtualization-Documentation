@@ -51,6 +51,7 @@
 ### [WHV_EMULATOR_SET_VIRTUAL_PROCESSOR_REGISTERS_CALLBACK](./hypervisor-instruction-emulator/funcs/WHvEmulatorSetVirtualProcessorRegistersCallback.md)
 ### [WHV_EMULATOR_TRANSLATE_GVA_PAGE_CALLBACK](./hypervisor-instruction-emulator/funcs/WHvEmulatorTranslateGVAPageCallback.md)
 
+
 # [Host Compute System API](./hcs/hcs.md)
 
 # [VM Saved State Dump Provider API](./vm-dump-provider/vm-dump-provider.md)
