@@ -9,6 +9,8 @@ ms.prod: virtualization
 ms.service: virtualization
 ms.assetid: 05269ce0-a54f-4ad8-af75-2ecf5142b866
 ---
+# Virtualization Platforms
+Virtualization platforms give the user the freedom to build and manage their VMs or contiainers at various levels in the virtualization stack.
 
 # Windows Hypervisor Platform
  
@@ -23,6 +25,11 @@ The following diagram provides a high-level overview of the third-party architec
 ![](./media/windows-hypervisor-platform-architecture.png)
 > For more information see: [Windows Hypervisor Platform API](./hypervisor-platform/hypervisor-platform.md)
 
+<<<<<<< HEAD
+=======
+## Host Compute System
+ 
+>>>>>>> 3ed38707... Add HCS page
 
 ## VM Saved State Dump Provider
 
