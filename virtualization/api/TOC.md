@@ -30,7 +30,7 @@
 ## [WHvTranslateGva](./hypervisor-platform/funcs/WHvTranslateGva.md)
 ## [WHvUnmapGpaRange](./hypervisor-platform/funcs/WHvUnmapGpaRange.md)
 
-# [Hypervisor Instruction Emulator](./hypervisor-instruction-emulator/hypervisor-instruction-emulator.md)
+# [Hypervisor Instruction Emulator API](./hypervisor-instruction-emulator/hypervisor-instruction-emulator.md)
 ## Instruction Emulation
 ### [I/O Port Access](./hypervisor-instruction-emulator/funcs/IOPortAccessIE.md)
 ### [MMIO Access](./hypervisor-instruction-emulator/funcs/MMIOAccessIE.md)
@@ -50,6 +50,8 @@
 ### [WHV_EMULATOR_MEMORY_CALLBACK](./hypervisor-instruction-emulator/funcs/WHvEmulatorMemoryCallback.md)
 ### [WHV_EMULATOR_SET_VIRTUAL_PROCESSOR_REGISTERS_CALLBACK](./hypervisor-instruction-emulator/funcs/WHvEmulatorSetVirtualProcessorRegistersCallback.md)
 ### [WHV_EMULATOR_TRANSLATE_GVA_PAGE_CALLBACK](./hypervisor-instruction-emulator/funcs/WHvEmulatorTranslateGVAPageCallback.md)
+
+# [Host Compute System API](./hcs/hcs.md)
 
 # [VM Saved State Dump Provider API](./vm-dump-provider/vm-dump-provider.md)
 ## [ApplyPendingSavedStateFileReplay](./vm-dump-provider/funcs/ApplyPendingSavedStateFileReplayLog.md)

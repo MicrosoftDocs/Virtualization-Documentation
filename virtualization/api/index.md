@@ -9,8 +9,10 @@ ms.prod: virtualization
 ms.service: virtualization
 ms.assetid: 05269ce0-a54f-4ad8-af75-2ecf5142b866
 ---
+# Virtualization Platforms
+Virtualization platforms give the user the freedom to build and manage their VMs or contiainers at various levels in the virtualization stack.
 
-# Windows Hypervisor Platform
+## Windows Hypervisor Platform
 
 The Windows Hypervisor Platform adds an extended user-mode API for third-party virtualization stacks and applications to create and manage partitions at the hypervisor level, configure memory mappings for the partition, and create and control execution of virtual processors.
 
@@ -20,9 +22,11 @@ The following diagram provides a high-level overview of the third-party architec
 
 ![](./media/windows-hypervisor-platform-architecture.png)
 > For more information see: [Windows Hypervisor Platform API](./hypervisor-platform/hypervisor-platform.md)
-**Note: A prerelease of this API is available starting in the Windows Insiders Preview Build 17083**
 
-##VM Saved State Dump Provider
+## Host Compute System
+ 
+
+## VM Saved State Dump Provider
 
 The Windows SDK includes an API for accessing raw dumps of a VM saved state. For more information see: [VM Saved State Dump Provider API](./vm-dump-provider/vm-dump-provider.md)
 
