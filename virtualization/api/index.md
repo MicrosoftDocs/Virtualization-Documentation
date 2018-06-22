@@ -11,6 +11,8 @@ ms.assetid: 05269ce0-a54f-4ad8-af75-2ecf5142b866
 ---
 
 # Windows Hypervisor Platform
+ 
+>**This API is available starting in the Windows April 2018 Update.**
 
 The Windows Hypervisor Platform adds an extended user-mode API for third-party virtualization stacks and applications to create and manage partitions at the hypervisor level, configure memory mappings for the partition, and create and control execution of virtual processors.
 
