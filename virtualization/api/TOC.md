@@ -8,7 +8,6 @@
 ## [WHvGetCapability](./hypervisor-platform/funcs/WHvGetCapability.md)
 ## [WHvGetPartitionProperty](./hypervisor-platform/funcs/WHvGetPartitionProperty.md)
 ### [Data Types](./hypervisor-platform/funcs/WHvPartitionPropertyDataTypes.md)
-## [WHvGetRunExitContextSize](./hypervisor-platform/funcs/WHvGetRunExitContextSize.md)
 ## [WHvGetVirtualProcessorRegisters](./hypervisor-platform/funcs/WHvGetVirtualProcessorRegisters.md)
 ### [Data Types](./hypervisor-platform/funcs/WHvVirtualProcessorDataTypes.md)
 ## [WHvMapGpaRange](./hypervisor-platform/funcs/WHvMapGpaRange.md)

@@ -20,7 +20,7 @@ The following diagram provides a high-level overview of the third-party architec
 
 ![](./media/windows-hypervisor-platform-architecture.png)
 > For more information see: [Windows Hypervisor Platform API](./hypervisor-platform/hypervisor-platform.md)
-**Note: A prerelease of this API is available starting in the Windows Insiders Preview Build 17083**
+
 
 ##VM Saved State Dump Provider
 

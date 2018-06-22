@@ -1,5 +1,4 @@
 # WHV_EMULATOR_MEMORY_ACCESS_INFO
-**Note: A prerelease of this API is available starting in the Windows Insiders Preview Build 17083**
 
 
 ## Syntax
