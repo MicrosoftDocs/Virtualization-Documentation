@@ -10,7 +10,7 @@ ms.service: virtualization
 ms.assetid: 05269ce0-a54f-4ad8-af75-2ecf5142b866
 ---
 # Virtualization Platforms
-Virtualization platforms give the user the freedom to build and manage their VMs or contiainers at various levels in the virtualization stack.
+Virtualization platforms give users the freedom to build and manage virtual machines or contiainers at various levels in the virtualization stack.
 
 # Windows Hypervisor Platform
  
@@ -26,8 +26,14 @@ The following diagram provides a high-level overview of the third-party architec
 > For more information see: [Windows Hypervisor Platform API](./hypervisor-platform/hypervisor-platform.md)
 
 ## Host Compute System
+The main purpose of the Host Compute System API is to provide platform-level access to VMs and containers on Windows.
+
+The HCS APIs are aimed at developers who want to build applications or management services for VMs or containers. End users are not expected to directly interact with the HCS APIs, the end-user experience (graphical or command line interfaces, higher-level APIs, …) is expected to be provided by the applications or management service that are built on top of the platform APIs.
  
+> For more information see: [Host Compute System API](./hcs/hcs.md)
+
 ## VM Saved State Dump Provider
 
-The Windows SDK includes an API for accessing raw dumps of a VM saved state. For more information see: [VM Saved State Dump Provider API](./vm-dump-provider/vm-dump-provider.md)
+The Windows SDK includes an API for accessing raw dumps of a VM saved state.
+ >For more information see: [VM Saved State Dump Provider API](./vm-dump-provider/vm-dump-provider.md)
 
