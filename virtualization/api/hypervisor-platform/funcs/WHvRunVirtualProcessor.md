@@ -73,7 +73,7 @@ Specifies the output buffer that receives the context structure providing the in
 
 `ExitContextSizeInBytes`
 
-Specifies the size of the buffer that receives the exit context, in bytes. The minimum buffer size required to hold the exit context can be queried with the [`WHvGetRunExitContextSize`](WHvGetRunExitContextSize.md) function. 
+Specifies the size of the buffer that receives the exit context, in bytes. 
   
 
 ## Remarks
