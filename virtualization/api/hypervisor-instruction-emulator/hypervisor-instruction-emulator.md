@@ -1,6 +1,5 @@
 # Windows Hypervisor Platform Instruction Emulator API Definitions and Support DLLs
-
-**Note: A prerelease of this API is available starting in the Windows Insiders Preview Build 17083**
+>**This API is available starting in the Windows April 2018 Update.**
 
 Instruction emulation expects several higher-level abstractions at the interface between the accelerators and the device emulation that are not provided directly by the platform APIs. This functionality is provided by a separate DLL that builds these abstractions on top of the platform APIs.
  

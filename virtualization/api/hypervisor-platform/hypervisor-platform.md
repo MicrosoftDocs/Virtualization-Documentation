@@ -1,6 +1,5 @@
 # Windows Hypervisor Platform API Definitions
-
-**Note: A prerelease of this API is available starting in the Windows Insiders Preview Build 17083**
+>**This API is available starting in the Windows April 2018 Update.**
 
 The following section contains the definitions of the Windows Hypervisor Platform APIs that are exposed through WinHvAPi.dll.  The DLL exports a set of C-style Windows API functions, the functions return HRESULT error codes indicating the result of the function call.
 
@@ -65,7 +64,6 @@ The state of the virtual processor includes the hardware registers and any inter
 |[WHvCreateVirtualProcessor](funcs/WHvCreateVirtualProcessor.md)|This function creates a new virtual processor in a partition. The index of the virtual processor is used to set the APIC ID of the processor.|
 |[WHvDeleteVirtualProcessor](funcs/WHvDeleteVirtualProcessor.md)|This function deletes a virtual processor in a partition.|
 |[WHvRunVirtualProcessor](funcs/WHvRunVirtualProcessor.md)|This function executes the virtual processor (i.e., enables to run guest code). A call to this function blocks synchronously until either the virtual processor executed an operation that needs to be handled by the virtualization stack (e.g., accessed memory in the GPA space that is not mapped or not accessible) or the virtualization stack explicitly request an exit of the function (e.g., to inject an interrupt for the virtual processor or to change the state of the VM). |
-|[WHvGetRunExitContextSize](funcs/WHvGetRunExitContextSize.md)|This function returns the minimum size required for the buffer that receives the exit context.|
 |[WHvCancelRunVirtualProcessor](funcs/WHvCancelRunVirtualProcessor.md)|Canceling the execution of a virtual processor allows an application to abort the call to run the virtual processor by another thread, and to return the control to that thread. The virtualization stack can use this function to return the control of a virtual processor back to the virtualization stack in case it needs to change the state of a VM or to inject an event into the processor. |
 |   |   |
 
