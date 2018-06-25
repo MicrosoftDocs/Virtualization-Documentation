@@ -3,7 +3,7 @@ title: Introduction to Hyper-V on Windows 10
 description: Introduction to Hyper-V, virtualization, and related technologies.
 keywords: windows 10, hyper-v
 author: scooley
-ms.date: 04/07/2018
+ms.date: 06/25/2018
 ms.topic: article
 ms.prod: windows-10-hyperv
 ms.assetid: eb2b827c-4a6c-4327-9354-50d14fee7ed8
@@ -53,7 +53,6 @@ There are some features that work differently in Hyper-V on Windows than they do
 
 Hyper-V features only available on Windows Server:
 
-* Virtualizing GPUs using RemoteFX
 * Live migration of virtual machines from one host to another
 * Hyper-V Replica
 * Virtual Fiber Channel
