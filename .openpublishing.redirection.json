@@ -382,11 +382,6 @@
         "redirect_document_id": false
       },
       {
-        "source_path": "virtualization/hyper-v-on-windows/reference/hypervisor-platform-funcs/whvgetrunexitcontextsize.md",
-        "redirect_url": "/virtualization/api/hypervisor-platform/funcs/whvgetrunexitcontextsize",
-        "redirect_document_id": false
-      },
-      {
         "source_path": "virtualization/hyper-v-on-windows/reference/hypervisor-platform-funcs/whvgetvirtualprocessorregisters.md",
         "redirect_url": "/virtualization/api/hypervisor-platform/funcs/whvgetvirtualprocessorregisters",
         "redirect_document_id": false
