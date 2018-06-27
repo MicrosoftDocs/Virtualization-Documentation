@@ -2,8 +2,8 @@
 title: Hypervisor Specifications
 description: Hypervisor Specifications
 keywords: windows 10, hyper-v
-author: theodthompson
-ms.date: 05/02/2016
+author: allenma
+ms.date: 06/26/2018
 ms.topic: article
 ms.prod: windows-10-hyperv
 ms.service: windows-10-hyperv
@@ -21,14 +21,14 @@ The Hyper-V Hypervisor Top-Level Functional Specification (TLFS) describes the h
 #### Download
 Release | Document
 --- | ---
-Windows Server 2016 (Revision B) | [Hypervisor Top Level Functional Specification v5.0b.pdf](https://github.com/Microsoft/Virtualization-Documentation/raw/master/tlfs/Hypervisor%20Top%20Level%20Functional%20Specification%20v5.0b.pdf)
+Windows Server 2016 (Revision C) | [Hypervisor Top Level Functional Specification v5.0c.pdf](https://github.com/Microsoft/Virtualization-Documentation/raw/master/tlfs/Hypervisor%20Top%20Level%20Functional%20Specification%20v5.0c.pdf)
 Windows Server 2012 R2 (Revision B) | [Hypervisor Top Level Functional Specification v4.0b.pdf](https://github.com/Microsoft/Virtualization-Documentation/raw/master/tlfs/Hypervisor%20Top%20Level%20Functional%20Specification%20v4.0b.pdf)
 Windows Server 2012 | [Hypervisor Top Level Functional Specification v3.0.pdf](https://github.com/Microsoft/Virtualization-Documentation/raw/master/tlfs/Hypervisor%20Top%20Level%20Functional%20Specification%20v3.0.pdf)
 Windows Server 2008 R2 | [Hypervisor Top Level Functional Specification v2.0.pdf](https://github.com/Microsoft/Virtualization-Documentation/raw/master/tlfs/Hypervisor%20Top%20Level%20Functional%20Specification%20v2.0.pdf)
 
 ## Requirements for Implementing the Microsoft Hypervisor Interface
 
-Windows operating systems require a limited set of hypervisor interfaces to run in a guest virtual machine (also known as the "HV#1" interface). In addition, several optional features can be implemented by a Microsoft-compatible hypervisor. These options will change the behavior of Windows in a virtual machine. "Requirements for Implementing the Microsoft Hypervisor Interface" describes both the required and optional features that are implemented by a Microsoft-compatible hypervisor.
+The TLFS fully describes all aspects of the Microsoft-specific hypervisor architecture, which is declared to guest virtual machines as the "HV#1" interface.  However, not all interfaces described in the TLFS are required to be implemented by third-party hypervisor wishing to declare conformance with the Microsoft HV#1 hypervisor specification. The document "Requirements for Implementing the Microsoft Hypervisor Interface" describes the minimal set of hypervisor interfaces which must be implemented by any hypervisor which claims compatibility with the Microsoft HV#1 interface.
 
 #### Download
 
