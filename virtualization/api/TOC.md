@@ -53,6 +53,9 @@
 
 
 # [Host Compute System API](./hcs/hcs.md)
+## Reference
+### [HcsStartComputeSystem](./hcs/Reference/HcsStartComputeSystem.md)
+### [HcsShutDownComputeSystem](./hcs/Reference/HcsShutDownComputeSystem.md)
 
 # [VM Saved State Dump Provider API](./vm-dump-provider/vm-dump-provider.md)
 ## [ApplyPendingSavedStateFileReplay](./vm-dump-provider/funcs/ApplyPendingSavedStateFileReplayLog.md)
