@@ -62,7 +62,7 @@
 
 
 # [Host Compute System API](./hcs/hcs.md)
-## Reference
+## [Reference](./hcs/references.md)
 ### [HcsStartComputeSystem](./hcs/Reference/HcsStartComputeSystem.md)
 ### [HcsShutDownComputeSystem](./hcs/Reference/HcsShutDownComputeSystem.md)
 
