@@ -138,7 +138,7 @@ The container starts, prints the hello world message, and then exits.
 
 
 **Environment**
-Platform: .NET Core 1.0
+Platform: .NET Core 2.0
 OS: Microsoft Windows 10.0.14393
 ```
 
