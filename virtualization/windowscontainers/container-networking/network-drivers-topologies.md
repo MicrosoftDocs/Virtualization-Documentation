@@ -37,8 +37,6 @@ In addition to leveraging the default 'nat' network created by Docker on Windows
 
 > To learn how to connect container endpoints to an existing tenant virtual network with the Microsoft SDN stack, reference the [Attaching Containers to a Virtual Network](https://technet.microsoft.com/en-us/windows-server-docs/networking/sdn/manage/connect-container-endpoints-to-a-tenant-virtual-network) topic.
 
-> Windows 10 Creators Update (or later) introduced platform support to add a new container endpoint to a running container (i.e. 'hot-add')!
-
 
 ## Network Topologies and IPAM
 The table below shows how network connectivity is provided for internal (container-to-container) and external connections for each network driver.
