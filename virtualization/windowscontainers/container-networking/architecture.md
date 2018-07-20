@@ -64,7 +64,11 @@ The Host Networking Service (HNS) and the Host Compute Service (HCS) work togeth
 
 
  ## Unsupported features and network options
- The following networking options are currently **NOT** supported in Windows:
+ The following networking options are currently **NOT** supported on Windows:
+   * Encrypted container communication via IPsec.
+   * HTTP proxy support for containers.  A preliminary PR for this can be tracked [here](https://github.com/Microsoft/hcsshim/pull/163).
+   * Attaching endpoints to running Hyper-V containers (hot-add).
+   * Networking on virtualized Azure infrastructure via the transparent network driver.
 
  | Command        | Unsupported Option   |
  | ---------------|:--------------------:|
