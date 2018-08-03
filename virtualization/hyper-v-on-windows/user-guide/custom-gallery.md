@@ -97,6 +97,12 @@ Pictures:
 
 And, of course, your virtual machine (.iso or .vhdx).
 
+To generate the hashes, you can use the following powershell command:
+
+  ``` PowerShell
+  Get-FileHash -Path .\TMLogo.jpg -Algorithm SHA256
+  ```
+
 The below JSON template has starter items and the gallery's schema.  If you edit it in VSCode, it will automatically provide IntelliSense.
 
 [!code-json[main](../../../hyperv-tools/vmgallery/vm-gallery-template.json)]
