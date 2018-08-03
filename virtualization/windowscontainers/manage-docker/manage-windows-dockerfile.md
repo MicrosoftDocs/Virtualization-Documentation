@@ -93,7 +93,7 @@ The RUN instruction takes a format of:
 ```
 # exec form
 
-RUN ["<executable", "<param 1>", "<param 2>"]
+RUN ["<executable>", "<param 1>", "<param 2>"]
 
 # shell form
 
