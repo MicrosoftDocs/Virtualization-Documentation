@@ -40,6 +40,25 @@ When the installation is complete, reboot the computer.
 Restart-Computer -Force
 ```
 
+## Install a Specific Version of Docker
+
+There are currently two channels available for Docker EE for Windows Server:
+
+* `17.06` - Use this version if you're using Docker Enterprise Edition (Docker Engine, UCP, DTR). `17.06` is the default.
+* `18.03` - Use this version if you're running Docker EE Engine alone.
+
+To install a specific version, use the `RequiredVersion` flag:
+
+```PowerShell
+Install-Package -Name docker -ProviderName DockerMsftProvider -Force -RequiredVersion 18.03
+```
+
+Additionally, if you need to update Docker EE Engine from an earlier channel to a later channel, use both the `-Update` and `-RequiredVersion` flags:
+
+```PowerShell
+Install-Package -Name docker -ProviderName DockerMsftProvider -Update -Force -RequiredVersion 18.03
+```
+
 ## Install Base Container Images
 
 Before working with Windows Containers, a base image needs to be installed. Base images are available with either Windows Server Core or Nano Server as the container operating system. For detailed information on Docker container images, see [Build your own images on docker.com](https://docs.docker.com/engine/tutorials/dockerimages/).
