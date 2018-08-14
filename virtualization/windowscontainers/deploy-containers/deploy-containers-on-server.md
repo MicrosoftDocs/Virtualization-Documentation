@@ -24,19 +24,19 @@ Open an elevated PowerShell session and run the following commands.
 
 Install the OneGet PowerShell module.
 
-```
+```PowerShell
 Install-Module -Name DockerMsftProvider -Repository PSGallery -Force
 ```
 
 Use OneGet to install the latest version of Docker.
 
-```
+```PowerShell
 Install-Package -Name docker -ProviderName DockerMsftProvider
 ```
 
 When the installation is complete, reboot the computer.
 
-```
+```PowerShell
 Restart-Computer -Force
 ```
 
@@ -53,7 +53,15 @@ To install a specific version, use the `RequiredVersion` flag:
 Install-Package -Name docker -ProviderName DockerMsftProvider -Force -RequiredVersion 18.03
 ```
 
-Additionally, if you need to update Docker EE Engine from an earlier channel to a later channel, use both the `-Update` and `-RequiredVersion` flags:
+Installing specific Docker EE versions may require an update to previously installed DockerMsftProvider modules. To Update:
+
+```PowerShell
+Update-Module DockerMsftProvider
+```
+
+## Update Docker
+
+If you need to update Docker EE Engine from an earlier channel to a later channel, use both the `-Update` and `-RequiredVersion` flags:
 
 ```PowerShell
 Install-Package -Name docker -ProviderName DockerMsftProvider -Update -Force -RequiredVersion 18.03
@@ -65,13 +73,13 @@ Before working with Windows Containers, a base image needs to be installed. Base
 
 To install the Windows Server Core base image run the following:
 
-```
+```PowerShell
 docker pull microsoft/windowsservercore
 ```
 
 To install the Nano Server base image run the following:
 
-```
+```PowerShell
 docker pull microsoft/nanoserver
 ```
 
@@ -85,7 +93,7 @@ In order to run Hyper-V containers, the Hyper-V role is required. If the Windows
 
 The following script will configure nested virtualization for the container host. This script is run on the parent Hyper-V machine. Ensure that the container host virtual machine is turned off when running this script.
 
-```
+```PowerShell
 #replace with the virtual machine name
 $vm = "<virtual-machine>"
 
@@ -103,6 +111,6 @@ Get-VMNetworkAdapter -VMName $vm | Set-VMNetworkAdapter -MacAddressSpoofing On
 
 To enable the Hyper-V feature using PowerShell, run the following command in an elevated PowerShell session.
 
-```
+```PowerShell
 Install-WindowsFeature hyper-v
 ```
