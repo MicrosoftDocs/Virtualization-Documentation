@@ -48,7 +48,7 @@ Then issue docker build to create the PowerShell container image.
 docker build -t nanoserverPowerShell6 -f Dockerfile-PowerShell6 .
 ```
 
-You can find more information at [PowerShell GitHub](https://github.com/PowerShell/PowerShell/tree/master/docker/release).  It is worth mentioning that the PowerShell zip contains a subset of .NET Core 2.0 that is required to build PowerShell Core 6.  If your PowerShell modules depend on .NET Core 2.0, it is safe to build the PowerShell container on top of the Nano .NET Core container, instead of base Nano container, i.e. using FROM microsoft/nanoserver-insider-dotnet in the Dockerfile. 
+You can find more information at [PowerShell GitHub](https://github.com/PowerShell/PowerShell-Docker.release).  It is worth mentioning that the PowerShell zip contains a subset of .NET Core 2.0 that is required to build PowerShell Core 6.  If your PowerShell modules depend on .NET Core 2.0, it is safe to build the PowerShell container on top of the Nano .NET Core container, instead of base Nano container, i.e. using FROM microsoft/nanoserver-insider-dotnet in the Dockerfile. 
 
 ## Next steps
 - Use one of the new container images based on Nano Server, available in Docker Hub, i.e. base Nano Server image, Nano with .NET Core 2.0, and Nano with PowerShell Core 6
