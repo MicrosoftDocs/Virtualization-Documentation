@@ -86,9 +86,9 @@ git clone https://github.com/kubernetes/kubernetes.git ${SRC_DIR}
 
 cd ${SRC_DIR}
 git checkout tags/v1.9.1
-KUBE_BUILD_PLATFORMS=linux/amd64   build/run.sh make WHAT=cmd/kubelet
-KUBE_BUILD_PLATFORMS=windows/amd64 build/run.sh make WHAT=cmd/kubelet 
-KUBE_BUILD_PLATFORMS=windows/amd64 build/run.sh make WHAT=cmd/kube-proxy 
+build/run.sh make kubectl KUBE_BUILD_PLATFORMS=windows/amd64
+build/run.sh make kubelet KUBE_BUILD_PLATFORMS=windows/amd64
+build/run.sh make kube-proxy KUBE_BUILD_PLATFORMS=windows/amd64
 cp _output/dockerized/bin/windows/amd64/kube*.exe ${DIST_DIR}
 
 ls ${DIST_DIR}
