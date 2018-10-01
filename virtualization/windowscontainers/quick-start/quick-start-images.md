@@ -85,6 +85,11 @@ docker ps
 CONTAINER ID   IMAGE            COMMAND               CREATED              STATUS              PORTS                NAMES
 c1dc6c1387b9   iis-dockerfile   "ping -t localhost"   About a minute ago   Up About a minute   0.0.0.0:80->80/tcp   cranky_brown
 ```
+Stop container.
+
+```
+docker stop <container name>
+```
 
 Remove container.
 
