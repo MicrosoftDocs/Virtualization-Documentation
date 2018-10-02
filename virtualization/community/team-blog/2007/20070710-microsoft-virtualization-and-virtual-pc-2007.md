@@ -2,7 +2,7 @@
 title: Microsoft Virtualization and Virtual PC 2007
 description: post id 3963
 keywords: virtualization, blog
-author: wsv_guy
+author: scooley
 ms.date: 7/10/2007
 ms.topic: article
 ms.prod: virtualization
