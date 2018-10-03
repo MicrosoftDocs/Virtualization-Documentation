@@ -1,7 +1,5 @@
 # HcsCreateComputeSystem
 
->**Note: This API will be released in a future Windows build.**
-
 ## Syntax
 
 ### Parameters
