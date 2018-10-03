@@ -65,6 +65,10 @@
 ## [Reference](./hcs/references.md)
 ### [HcsStartComputeSystem](./hcs/Reference/HcsStartComputeSystem.md)
 ### [HcsShutDownComputeSystem](./hcs/Reference/HcsShutDownComputeSystem.md)
+## [Samples](./hcs/Samples.md)
+## [JSON Schema](./hcs/JSONschema.md)
+## [Tutorial](./hcs/Tutorial.md)
+### [Asynchronous Model](./hcs/AsyncModel.md)
 
 # [VM Saved State Dump Provider API](./vm-dump-provider/vm-dump-provider.md)
 ## [ApplyPendingSavedStateFileReplay](./vm-dump-provider/funcs/ApplyPendingSavedStateFileReplayLog.md)
