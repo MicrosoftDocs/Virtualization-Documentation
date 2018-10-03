@@ -26,10 +26,14 @@ As we've been improving the Windows container features, we've had to make some c
         <td style="background-color:#F1F8E9"><b>Windows 10 Fall Creators Update</b><br/>Builds 16299.*</td>
         <td style="background-color:#F1F8E9"><b>Windows Server version 1803</b><br/>Builds 17134.*</td>
         <td style="background-color:#F1F8E9"><b>Windows 10 version 1803</b><br/>Builds 17134.*</td>
+        <td style="background-color:#F1F8E9"><b>Windows Server 2019</b><br/>Builds 17763.*</td>
+        <td style="background-color:#F1F8E9"><b>Windows 10 version 1809</b><br/>Builds 17763.*</td>
     </tr>
     <tr>
         <td style="background-color:#E3F2FD"><b>Windows Server 2016</b><br/>Builds: 14393.*</td>
         <td>Supports<br/> `process` or `hyperv` isolation</td>
+        <td>Supports<br/> Only `hyperv` isolation</td>
+        <td>Supports<br/> Only `hyperv` isolation</td>
         <td>Supports<br/> Only `hyperv` isolation</td>
         <td>Supports<br/> Only `hyperv` isolation</td>
         <td>Supports<br/> Only `hyperv` isolation</td>
@@ -44,9 +48,24 @@ As we've been improving the Windows container features, we've had to make some c
         <td>Supports<br/> Only `hyperv` isolation</td>
         <td>Supports<br/> Only `hyperv` isolation</td>
         <td>Supports<br/> Only `hyperv` isolation</td>
+        <td>Supports<br/> Only `hyperv` isolation</td>
+        <td>Supports<br/> Only `hyperv` isolation</td>
     </tr>
     <tr>
         <td style="background-color:#E3F2FD"><b>Windows Server version 1803</b><br/>Builds 17134.*</td>
+        <td>Not supported</td>
+        <td>Not supported</td>
+        <td>Not supported</td>
+        <td>Not supported</td>
+        <td>Supports<br/> `process` or `hyperv` isolation</td>
+        <td>Supports<br/> Only `hyperv` isolation</td>
+        <td>Supports<br/> Only `hyperv` isolation</td>
+        <td>Supports<br/> Only `hyperv` isolation</td>
+    </tr>
+    <tr>
+        <td style="background-color:#E3F2FD"><b>Windows Server 2019</b><br/>Builds 17763.*</td>
+        <td>Not supported</td>
+        <td>Not supported</td>
         <td>Not supported</td>
         <td>Not supported</td>
         <td>Not supported</td>

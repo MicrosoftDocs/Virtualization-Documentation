@@ -71,6 +71,24 @@ Install-Package -Name docker -ProviderName DockerMsftProvider -Update -Force -Re
 
 Before working with Windows Containers, a base image needs to be installed. Base images are available with either Windows Server Core or Nano Server as the container operating system. For detailed information on Docker container images, see [Build your own images on docker.com](https://docs.docker.com/engine/tutorials/dockerimages/).
 
+With the release of Windows Server 2019, Microsoft-sourced container images are moving to a new registry called the Microsoft Container Registry. Container images published by Microsoft should continue to be discovered via Docker Hub. For new container images published with Windows Server 2019 and beyond, you should look to pull them from the MCR. For older container images published before Windows Server 2019, you should continue to pull them from Docker's registry.
+
+### Windows Server 2019 and newer
+
+To install the 'Windows Server Core' base image run the following:
+
+```PowerShell
+docker pull mcr.microsoft.com/windows/servercore:ltsc2019
+```
+
+To install the 'Nano Server' base image run the following:
+
+```PowerShell
+docker pull mcr.microsoft.com/windows/nanoserver:1809
+```
+
+### Windows Server 2016 (versions 1607-1803)
+
 To install the Windows Server Core base image run the following:
 
 ```PowerShell
