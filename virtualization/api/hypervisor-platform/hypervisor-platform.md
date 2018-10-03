@@ -68,7 +68,7 @@ The state of the virtual processor includes the hardware registers and any inter
 |   |   |
 
 ### Exit Context
-The detailed reason and additional information for the exit of the [`WHvRunVirtualProcessor`](funcs/WHvDeleteVirtualProcessor.md) function is return in an output buffer of the function that receives a context structure for the exit. The data provided in this context buffer is specific to the individual exit reason, and for simple exit reasons the buffer might be unused (`RunVpExitLegacyFpError` and `RunVpExitInvalidVpRegisterValue`). 
+The detailed reason and additional information for the exit of the [`WHvRunVirtualProcessor`](funcs/WHvRunVirtualProcessor.md) function is return in an output buffer of the function that receives a context structure for the exit. The data provided in this context buffer is specific to the individual exit reason, and for simple exit reasons the buffer might be unused (`RunVpExitLegacyFpError` and `RunVpExitInvalidVpRegisterValue`). 
 
 
 

@@ -4,11 +4,17 @@
 ## Syntax
 ```C
 typedef enum { 
-    WHvPartitionPropertyCodeExtendedVmExits        = 0x00000001, 
+    WHvPartitionPropertyCodeExtendedVmExits        = 0x00000001,
+    WHvPartitionPropertyCodeExceptionExitBitmap     = 0x00000002, 
+    WHvPartitionPropertyCodeSeparateSecurityDomain  = 0x00000003,
 
     WHvPartitionPropertyCodeProcessorFeatures      = 0x00001001, 
     WHVPartitionPropertyCodeProcessorClFlushSize   = 0x00001002, 
-     
+    WHvPartitionPropertyCodeCpuidExitList           = 0x00001003,
+    WHvPartitionPropertyCodeCpuidResultList         = 0x00001004,
+    WHvPartitionPropertyCodeLocalApicEmulationMode  = 0x00001005,
+    WHvPartitionPropertyCodeProcessorXsaveFeatures  = 0x00001006,
+
     WHvPartitionPropertyCodeProcessorCount         = 0x00001fff 
 } WHV_PARTITION_PROPERTY_CODE; 
 
@@ -26,16 +32,50 @@ typedef struct WHV_X64_CPUID_RESULT
 } WHV_X64_CPUID_RESULT;
  
 //
+// WHvPartitionPropertyCodeExceptionBitmap enumeration values.
+//
+typedef enum WHV_EXCEPTION_TYPE
+{
+    WHvX64ExceptionTypeDivideErrorFault = 0x0,
+    WHvX64ExceptionTypeDebugTrapOrFault = 0x1,
+    WHvX64ExceptionTypeBreakpointTrap = 0x3,
+    WHvX64ExceptionTypeOverflowTrap = 0x4,
+    WHvX64ExceptionTypeBoundRangeFault = 0x5,
+    WHvX64ExceptionTypeInvalidOpcodeFault = 0x6,
+    WHvX64ExceptionTypeDeviceNotAvailableFault = 0x7,
+    WHvX64ExceptionTypeDoubleFaultAbort = 0x8,
+    WHvX64ExceptionTypeInvalidTaskStateSegmentFault = 0x0A,
+    WHvX64ExceptionTypeSegmentNotPresentFault = 0x0B,
+    WHvX64ExceptionTypeStackFault = 0x0C,
+    WHvX64ExceptionTypeGeneralProtectionFault = 0x0D,
+    WHvX64ExceptionTypePageFault = 0x0E,
+    WHvX64ExceptionTypeFloatingPointErrorFault = 0x10,
+    WHvX64ExceptionTypeAlignmentCheckFault = 0x11,
+    WHvX64ExceptionTypeMachineCheckAbort = 0x12,
+    WHvX64ExceptionTypeSimdFloatingPointFault = 0x13,
+} WHV_EXCEPTION_TYPE;
+
+typedef enum WHV_X64_LOCAL_APIC_EMULATION_MODE
+{
+    WHvX64LocalApicEmulationModeNone,
+    WHvX64LocalApicEmulationModeXApic,
+} WHV_X64_LOCAL_APIC_EMULATION_MODE;
+
+//
 // WHvGetPartitionProperty output buffer / WHvSetPartitionProperty input buffer
 //
 typedef union WHV_PARTITION_PROPERTY
 {
     WHV_EXTENDED_VM_EXITS ExtendedVmExits;
     WHV_PROCESSOR_FEATURES ProcessorFeatures;
+    WHV_PROCESSOR_XSAVE_FEATURES ProcessorXsaveFeatures;
     UINT8 ProcessorClFlushSize;
     UINT32 ProcessorCount;
     UINT32 CpuidExitList[1];
     WHV_X64_CPUID_RESULT CpuidResultList[1];
+    UINT64 ExceptionExitBitmap;
+    WHV_X64_LOCAL_APIC_EMULATION_MODE LocalApicEmulationMode;
+    BOOL SeparateSecurityDomain;
 } WHV_PARTITION_PROPERTY;
 ```
 
