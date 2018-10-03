@@ -31,9 +31,9 @@ Virtualization allows you to:
 
 ## System requirements
 
-Hyper-V is available on 64-bit versions of Windows Professional, Enterprise, and Education in Windows 8 and later.  It is not available on Windows Home edition.
+Hyper-V is available on 64-bit versions of Windows 10 Pro, Enterprise, and Education. It is not available on the Home edition.
 
-> Upgrade from Windows 10 Home edition to Windows 10 Professional by opening **Settings** > **Update and Security** > **Activation**. Here you can visit the store and purchase an upgrade.
+> Upgrade from Windows 10 Home edition to Windows 10 Pro by opening **Settings** > **Update and Security** > **Activation**. Here you can visit the store and purchase an upgrade.
 
 Most computers will run Hyper-V however each virtual machine is a completely seperate operating system.  You can generally run one or more virtual machines on a computer with 4GB of RAM, though you'll need more resources for additional virtual machines or to install and run resource intense software like games, video editing, or engineering design software.
 
