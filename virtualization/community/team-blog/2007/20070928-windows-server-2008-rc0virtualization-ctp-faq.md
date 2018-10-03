@@ -7,7 +7,7 @@ ms.date: 9/28/2007
 ms.topic: article
 ms.prod: virtualization
 ms.service: virtualization
-ms.assetid: 
+ms.assetid: dbee1926-1204-4513-9961-9918d12edea0
 ---
 
 # Windows Server 2008 RC0/Virtualization CTP FAQ

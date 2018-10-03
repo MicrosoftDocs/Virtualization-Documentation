@@ -7,7 +7,7 @@ ms.date: 4/28/2006
 ms.topic: article
 ms.prod: virtualization
 ms.service: virtualization
-ms.assetid: 
+ms.assetid: aff2511e-76f4-48f3-976b-ff0a36b6e3ad
 ---
 
 # Disclaimer

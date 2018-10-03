@@ -1,13 +1,13 @@
 ---
 title: Big Opportunities
 description: post id 3893
-keywords: virtualization, blog
+keywords: virtualization, virtual server, system center, scvmm, blog
 author: scooley
 ms.date: 8/14/2007
 ms.topic: article
 ms.prod: virtualization
 ms.service: virtualization
-ms.assetid: 
+ms.assetid: 0509eadd-897e-4475-8ea3-a0cc74d9790d
 ---
 
 # Virtualization: Big Opportunities

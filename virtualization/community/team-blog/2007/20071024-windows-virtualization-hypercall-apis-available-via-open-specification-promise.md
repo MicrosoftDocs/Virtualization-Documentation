@@ -7,10 +7,10 @@ ms.date: 10/24/2007
 ms.topic: article
 ms.prod: virtualization
 ms.service: virtualization
-ms.assetid: 
+ms.assetid: 2d506026-a86b-4ff8-a16a-b7347f02c912
 ---
 
-# Windows Virtualization Hypercall APIs available via open specification promise!
+# Windows Virtualization Hypercall APIs available via open specification promise
 
 Greetings! Jeff Woolsey here from the virtualization team and I've got some big news. Here's the official announcement:
 

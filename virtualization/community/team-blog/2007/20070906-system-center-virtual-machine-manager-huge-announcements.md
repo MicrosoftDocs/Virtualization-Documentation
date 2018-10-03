@@ -1,13 +1,13 @@
 ---
 title: System Center Virtual Machine Manager - Huge Announcements!
 description: post id 3883
-keywords: virtualization, blog
+keywords: virtualization, scvmm, system center, virtual server, blog
 author: scooley
 ms.date: 9/6/2007
 ms.topic: article
 ms.prod: virtualization
 ms.service: virtualization
-ms.assetid: 
+ms.assetid: a6df27f5-cacb-4321-96f7-d6222c583815
 ---
 
 # System Center Virtual Machine Manager Announcements

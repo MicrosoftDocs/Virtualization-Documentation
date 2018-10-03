@@ -1,13 +1,13 @@
 ---
 title: Virtual Server Maximums
 description: post id 3903
-keywords: virtualization, blog
+keywords: virtualization, virtual server, blog
 author: scooley
 ms.date: 8/14/2007
 ms.topic: article
 ms.prod: virtualization
 ms.service: virtualization
-ms.assetid: 
+ms.assetid: f6dca287-3422-4445-a8b3-4d8b722f6f68
 ---
 
 # Virtual Server Maximums

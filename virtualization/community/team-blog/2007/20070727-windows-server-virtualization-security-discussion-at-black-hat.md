@@ -1,13 +1,13 @@
 ---
 title: Windows Server Virtualization Security Discussion at Black Hat
 description: post id 3933
-keywords: virtualization, blog
+keywords: virtualization, virtual server, blog
 author: scooley
 ms.date: 7/27/2007
 ms.topic: article
 ms.prod: virtualization
 ms.service: virtualization
-ms.assetid: 
+ms.assetid: a4998f08-b4f0-475c-a074-989665716bc0
 ---
 
 # Windows Server Virtualization Security Discussion at Black Hat

@@ -1,13 +1,13 @@
 ---
 title: Microsoft Virtualization and Virtual PC 2007
 description: post id 3963
-keywords: virtualization, blog
+keywords: virtualization, virtual server, virtual pc, blog
 author: scooley
 ms.date: 7/10/2007
 ms.topic: article
 ms.prod: virtualization
 ms.service: virtualization
-ms.assetid: 
+ms.assetid: 0c36290a-0790-4f64-ae63-0c5e90be116f
 ---
 
 # Microsoft Virtualization and Virtual PC 2007

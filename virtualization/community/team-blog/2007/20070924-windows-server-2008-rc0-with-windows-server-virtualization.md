@@ -1,13 +1,13 @@
 ---
 title: Windows server 2008 rc0 with windows server virtualization
 description: post id 3873
-keywords: virtualization, blog
+keywords: virtualization, virtual server, blog
 author: scooley
 ms.date: 9/24/2007
 ms.topic: article
 ms.prod: virtualization
 ms.service: virtualization
-ms.assetid: 
+ms.assetid: a7aa4cca-133e-4159-8b63-9a56dcd388bb
 ---
 
 # Windows server 2008 rc0 with windows server virtualization

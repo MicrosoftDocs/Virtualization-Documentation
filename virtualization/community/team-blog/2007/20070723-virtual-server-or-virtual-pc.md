@@ -1,13 +1,13 @@
 ---
 title: Virtual Server or Virtual PC?
 description: post id 3943
-keywords: virtualization, blog
+keywords: virtualization, virtual server, virtual pc, blog
 author: scooley
 ms.date: 7/23/2007
 ms.topic: article
 ms.prod: virtualization
 ms.service: virtualization
-ms.assetid: 
+ms.assetid: 25f3dc96-4913-41bb-9d29-69835e2ded52
 ---
 
 # Virtual Server or Virtual PC

@@ -1,13 +1,13 @@
 ---
 title: Windows Server virtualization at WinHEC
 description: post id 3983
-keywords: virtualization, blog
+keywords: virtualization, virtual server, blog
 author: scooley
 ms.date: 5/23/2006
 ms.topic: article
 ms.prod: virtualization
 ms.service: virtualization
-ms.assetid: 
+ms.assetid: 61b4a90a-6c30-4591-9400-452935fb6a4e
 ---
 
 # Windows Server virtualization at WinHEC

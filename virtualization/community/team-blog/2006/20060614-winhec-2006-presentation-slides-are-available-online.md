@@ -1,13 +1,13 @@
 ---
 title: WinHEC 2006 Presentation slides are available online
 description: post id 3973
-keywords: virtualization, blog
+keywords: virtualization, virtual server, blog
 author: scooley
 ms.date: 6/14/2006
 ms.topic: article
 ms.prod: virtualization
 ms.service: virtualization
-ms.assetid: 
+ms.assetid: 165262c0-7981-4e1c-b1b5-9a51f88543d1
 ---
 
 # WinHEC 2006 Presentation slides are available online
