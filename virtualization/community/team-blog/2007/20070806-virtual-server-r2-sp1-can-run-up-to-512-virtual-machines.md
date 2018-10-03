@@ -1,5 +1,5 @@
 ---
-title: Virtual Server R2 SP1 can run up to 512 virtual machines...
+title: Virtual Server R2 SP1 can run up to 512 virtual machines
 description: post id 3913
 keywords: virtualization, blog
 author: scooley
