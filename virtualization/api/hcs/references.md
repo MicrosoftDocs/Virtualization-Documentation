@@ -6,7 +6,7 @@ The following section contains the definitions of the host Compute System APIs. 
 ## Compute System Opterations
 |Function   |Description|
 |---|---|---|---|---|---|---|---|
-|[HcsCreateComputeSystem](reference/HcsCreateComputeSystem.md)|Creating a compute system|
+|[HcsCreateComputeSystem](reference/HcsCreateComputeSystem.md)|Create a compute system|
 |[HcsGetComputeSystemProperties](reference/HcsGetComputeSystemProperties.md)| Query a compute system's properties|
 |[HcsModifyComputeSystem](reference/HcsModifyComputeSystem.md)|Modify a compute system|
 |[HcsOpenComputeSystem](reference/HcsOpenComputeSystem.md)|Open a compute system|
@@ -15,5 +15,24 @@ The following section contains the definitions of the host Compute System APIs. 
 |[HcsSaveComputeSystem](reference/HcsSaveComputeSystem.md)|Save a compute system|
 |[HcsStartComputeSystem](reference/HcsStartComputeSystem.md)|Start a compute system|
 |[HcsShutDownComputeSystem](reference/HcsShutDownComputeSystem.md)|Shut down a compute system|
-|[HcsTerminateComputeSystem](reference/HcsTerminateComputeSystem.md)|Terminatea compute system|
+|[HcsTerminateComputeSystem](reference/HcsTerminateComputeSystem.md)|Terminate a compute system|
+|   |   |
+
+## Process Execution
+The following functions enable applications to execute a process in a compute system. For containers, these functions are the main way for an application to start and interact wit hte workload running in the container. Unlike the compute system operations, these process execution functions are executed synchronously. 
+
+|Function   |Description|
+|---|---|---|---|---|---|---|---|
+|[HcsCreateProcess](reference/HcsCreateProcess.md)|Start a process in a compute system |
+|   |   |
+
+## Utility Functions for Virtual Machines
+The following set of functions allow applications to set up the environment to run virtual machines.
+
+|Function   |Description|
+|---|---|---|---|---|---|---|---|
+|[HcsCreateEmptyGuestStateFile](reference/HcsCreateEmptyGuestStateFile.md)|Create a guest-state file for VMs that are expected to persist or restart multiple times |
+|[HcsCreateEmptyRuntimeStateFile](reference/HcsCreateEmptyRuntimeStateFile.md)|Create a funtime-state file which is used to save running VMs|
+|[HcsGrantVmAccess](reference/HcsGrantVmAccess.md)|Grant access to a user account to run a VM|
+|[HcsRevokeVmAccess](reference/HcsrevokeVmAccess.md)|Revoke access to a user account to run a VM|
 |   |   |

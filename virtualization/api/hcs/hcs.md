@@ -18,7 +18,6 @@ A client must configure the necessary resources in the host environment prior to
 
 The three main components include creating the virtual hard disk file (VHD) to act as the VM's disk, configuring the networking, and creating any Hyper-V sockets.  The application configurations and properties will be stored in a JSON file which will then be passed through the HCS APIs to create the compute system. The following sections describes the necessary components and workflow. 
 
-
 ## API References
 
 For a list of the HCS functions, please see [References](references.md)
