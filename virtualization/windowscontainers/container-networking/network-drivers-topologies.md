@@ -56,7 +56,7 @@ IP Addresses are allocated and assigned differently for each networking driver. 
 
 | Networking Mode / Driver | IPAM |
 | -------------------------|:----:|
-| NAT | Dynamic IP allocation and assignmeny by Host Networking Service (HNS) from internal NAT subnet prefix |
+| NAT | Dynamic IP allocation and assignment by Host Networking Service (HNS) from internal NAT subnet prefix |
 | Transparent | Static or dynamic (using external DHCP server) IP allocation and assignment from IP addresses within container host's network prefix |
 | Overlay | Dynamic IP allocation from Docker Engine Swarm Mode managed prefixes and assignment through HNS |
 | L2Bridge | Static IP allocation and assignment from IP addresses within container host's network prefix (could also be assigned through HNS plugin) |
