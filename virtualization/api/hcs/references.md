@@ -23,7 +23,16 @@ The following functions enable applications to execute a process in a compute sy
 
 |Function   |Description|
 |---|---|---|---|---|---|---|---|
+|[HcsCloseProcess](reference/HcsCloseProcess.md)|Close a process in a compute system |
 |[HcsCreateProcess](reference/HcsCreateProcess.md)|Start a process in a compute system |
+|[HcsGetProcessInfo](reference/HcsGetProcessInfo.md)|Return the initial startup info of a process in a compute system |
+|[HcsGetProcessProperties](reference/HcsGetProcessProperties.md)|Return properties a process in a compute system |
+|[HcsModifyProcess](reference/HcsModifyProcess.md)|Modify a process in a compute system |
+|[HcsOpenProcess](reference/HcsOpenProcess.md)|Open a process in a compute system |
+|[HcsRegisterProcessCallback](reference/HcsRegisterProcessCallback.md)|Register a callback function to process in a compute system |
+|[HcsSignalProcess](reference/HcsSignalProcess.md)|Send a signal to a process in a compute system |
+|[HcsTerminateProcess](reference/HcsTerminateProcess.md)|Terminate a process in a compute system |
+|[HcsUnregisterProcessCallback](reference/HcsUnregisterProcessCallback.md)|Unregister a callback function to process in a compute system |
 |   |   |
 
 ## Utility Functions for Virtual Machines

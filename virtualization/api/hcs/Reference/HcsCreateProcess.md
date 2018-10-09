@@ -20,7 +20,7 @@
 |`result`| Optional, receives an error document on failures sto start the process. It is the caller's responsibility to release the return buffer using `LocalFree`|
 |    |    | 
 
-The function returns `S_OK` on success. `HRESULT` error code for failures to create the file.
+The function returns `S_OK` on success. `HRESULT` error code for failures to create the process.
 
 ## Remarks
 This function starts a process in a compute system.
