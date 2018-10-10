@@ -61,3 +61,13 @@ The following functions allow applications to create and manage the file system 
 |[HcsInitializeWritableLayer](reference/HcsInitializeWritableLayer.md)|Initializes the writable layer for a container (i.e. the layer that captures the filesystem)|
 |[HcsSetupBaseOSLayer](reference/HcsSetupBaseOSLayer.md)|Sets up a base OS layer on the host|
 |   |   |
+
+## Host Operations
+The following functions provide functionality that is not specified to a compute system.
+
+|Function   |Description|
+|---|---|---|---|---|---|---|---|
+|[HcsGetServiceProperties](reference/HcsGetServiceProperties.md)|Returns the properties of the Host Compute System|
+|[HcsModifyServiceSettings](reference/HcsModifyServiceSettings.md)|Modifies the settings of the Host Compute System|
+|[HcsSubmitWerReport](reference/HcsSubmitWerReport.md)|Submits a WER report for a bugcheck of a VM|
+|   |   |
