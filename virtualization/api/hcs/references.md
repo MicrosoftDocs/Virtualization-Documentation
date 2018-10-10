@@ -45,3 +45,19 @@ The following set of functions allow applications to set up the environment to r
 |[HcsGrantVmAccess](reference/HcsGrantVmAccess.md)|Grant access to a user account to run a VM|
 |[HcsRevokeVmAccess](reference/HcsrevokeVmAccess.md)|Revoke access to a user account to run a VM|
 |   |   |
+
+## Storage Utility Functions for Containers
+The following functions allow applications to create and manage the file system and storage environment that is required to run containers.
+
+|Function   |Description|
+|---|---|---|---|---|---|---|---|
+|[HcsAttachLayerStorageFilter](reference/HcsAttachLayerStorageFilter.md)|Sets up the container storage filter on a layer directory|
+|[HcsDestroyLayer](reference/HcsDestoryLayer.md)|Deletes layer from the host|
+|[HcsDetachLayerStorageFilter](reference/HcsDetachLayerStorageFilter.md)|Detaches the container storage filter from the root directory of a layer|
+|[HcsExportLayer](reference/HcsExportLayer.md)|Exports a container layer that can be copied to another host or uploaded to a container registry|
+|[HcsFormatWritableLayerVhd](reference/HcsFormatWritableLayerVhd.md)|Creates and formats a partition that is to be used as a writable layer for a container|
+|[HcsGetLayerVhdMountPath](reference/HcsGetLayerVhdMountPath.md)| Returns the volume path for a layer VHD mounted on the host|
+|[HcsImportLayer](reference/HcsImportLayer.md)|Imports a container layer and sets it up on the host|
+|[HcsInitializeWritableLayer](reference/HcsInitializeWritableLayer.md)|Initializes the writable layer for a container (i.e. the layer that captures the filesystem)|
+|[HcsSetupBaseOSLayer](reference/HcsSetupBaseOSLayer.md)|Sets up a base OS layer on the host|
+|   |   |
