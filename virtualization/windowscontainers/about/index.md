@@ -33,7 +33,7 @@ Watch a short overview here: [Windows-based containers: Modern app development w
 
 Containers are an isolated, resource controlled, and portable runtime environment which runs on a host machine or virtual machine. An application or process which runs in a container is packaged with all the required dependencies and configuration files; It’s given the illusion that there are no other processes running outside of its container.
 
-The container’s host provisions a set of resources for the container and the container will use only these resources. As far as the container knows, no other resources exist outside of what it has been given and therefore cannot touch resources which may have been provisioned for a neighboring container.
+The container’s host provisions a set of resources for the container and the container will use only these resources. As far as the container knows, no other resources exist outside of what it has been given and therefore the container cannot touch resources which may have been provisioned for a neighboring container.
 
 The following key concepts will be helpful as you begin creating and working with Windows Containers.
 
