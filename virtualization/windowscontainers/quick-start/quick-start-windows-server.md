@@ -27,6 +27,7 @@ If you would like to deploy on Azure, this [template](https://github.com/Microso
     <img src="https://azuredeploy.net/deploybutton.png"/>
 </a>
 
+## Example
 
 ## 1. Install Docker
 
