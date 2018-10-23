@@ -24,10 +24,10 @@ The Windows container technology includes two distinct types of containers, Wind
 
 ### Create container
 
-Managing Hyper-V containers with Docker is almost identical to managing Windows Server containers. When creating a Hyper-V container with Docker, the `--isolation=hyperv` parameter is used.
+Managing Hyper-V containers with Docker is almost identical to managing Windows Server containers. When creating a Hyper-V container with Docker, the `--isolation hyperv` parameter is used.
 
 ```
-docker run -it --isolation=hyperv microsoft/nanoserver cmd
+docker run -it --isolation hyperv microsoft/nanoserver cmd
 ```
 
 ### Isolation explanation
@@ -61,7 +61,7 @@ Handles  NPM(K)    PM(K)      WS(K) VM(M)   CPU(s)     Id  SI ProcessName
 To contrast, this example starts a Hyper-V container with a ping process as well. 
 
 ```
-docker run -d --isolation=hyperv microsoft/nanoserver ping -t localhost
+docker run -d --isolation hyperv microsoft/nanoserver ping -t localhost
 ```
 
 Likewise, `docker top` can be used to return the running processes from the container.
