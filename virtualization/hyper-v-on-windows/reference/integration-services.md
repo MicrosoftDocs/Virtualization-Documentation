@@ -69,7 +69,7 @@ The `Status` field is determined by the heartbeat service.
 **Linux Daemon Name:** hv_utils  
 **Description:** Allows the Hyper-V host to request that the virtual machine shutdown.  The host can always force the virtual machine to turn off, but that is like flipping the power switch as opposed to selecting shutdown.  
 **Added In:** Windows Server 2012, Windows 8  
-**Impact:** **High Impact**  When disabled, the host can't trigger a friendly shutdown inside the virtual machine.  All shutdowns will be a hard power-off wich could cause data loss or data corruption.  
+**Impact:** **High Impact**  When disabled, the host can't trigger a friendly shutdown inside the virtual machine.  All shutdowns will be a hard power-off, which could cause data loss or data corruption.  
 
 
 ## Hyper-V Time Synchronization Service
