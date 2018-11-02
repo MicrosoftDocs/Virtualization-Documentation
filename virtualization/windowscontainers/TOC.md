@@ -39,11 +39,14 @@
 ## [Advanced Networking Options](container-networking/advanced.md)
 
 # Kubernetes on Windows 
-## [Getting Started](kubernetes/getting-started-kubernetes-windows.md)
-## [Creating a Linux Master Node](kubernetes/creating-a-linux-master.md)
-## [Configuring the Network Topology](kubernetes/configuring-host-gateway-mode.md)
-## [Compiling Kubernetes Binaries](kubernetes/compiling-kubernetes-binaries.md)
+## [1- Overview](kubernetes/getting-started-kubernetes-windows.md)
+## [2- Creating a Kubernetes Master](kubernetes/creating-a-linux-master.md)
+## [3- Choosing a Network Solution](kubernetes/network-topologies.md)
+## [4- Joining Windows Workers](kubernetes/joining-windows-workers.md)
+## [5- Joining Linux Workers](kubernetes/joining-linux-workers.md)
+## [6- Deploying Kubernetes Resources](kubernetes/deploying-resources.md)
 ## [Troubleshooting](kubernetes/common-problems.md)
+## [Compiling Kubernetes Binaries](kubernetes/compiling-kubernetes-binaries.md)
 
 # Service Fabric Quick Start
 ## [Deploy your first container](/azure/service-fabric/service-fabric-quickstart-containers)
