@@ -2,7 +2,7 @@
 title: Joining Windows nodes
 author: daschott
 ms.author: daschott
-ms.date: 08/24/2018
+ms.date: 11/02/2018
 ms.topic: get-started-article
 ms.prod: containers
 

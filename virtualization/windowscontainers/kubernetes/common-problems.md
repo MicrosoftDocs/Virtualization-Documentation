@@ -2,7 +2,7 @@
 title: Troubleshooting Kubernetes
 author: gkudra-msft
 ms.author: gekudray
-ms.date: 08/24/2018
+ms.date: 11/02/2018
 ms.topic: troubleshooting
 ms.prod: containers
 

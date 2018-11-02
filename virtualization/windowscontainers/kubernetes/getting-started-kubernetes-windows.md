@@ -2,7 +2,7 @@
 title: Kubernetes on Windows 
 author: gkudra-msft
 ms.author: gekudray
-ms.date: 11/16/2017
+ms.date: 11/02/2018
 ms.topic: get-started-article
 ms.prod: containers
 
