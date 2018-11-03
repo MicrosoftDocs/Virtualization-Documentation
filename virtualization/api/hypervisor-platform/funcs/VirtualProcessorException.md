@@ -16,7 +16,7 @@ typedef union WHV_VP_EXCEPTION_INFO
         UINT32 Reserved : 30;
     };
 
-    UINT32 AsUNIT32;
+    UINT32 AsUINT32;
 } WHV_VP_EXCEPTION_INFO;
 
 typedef struct WHV_VP_EXCEPTION_CONTEXT
