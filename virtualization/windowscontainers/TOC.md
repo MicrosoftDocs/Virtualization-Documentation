@@ -14,10 +14,9 @@
 ## [Step 3 - Known Issues](quick-start/Insider-Known-Issues.md)
 ## [Linux container preview](deploy-containers/linux-containers.md)
 
-# Deploy Windows Container
+# Reference
 ## [System Requirements](deploy-containers/system-requirements.md)
 ## [Version Compatibility](deploy-containers/version-compatibility.md)
-## [Deploying](deploy-containers/deploy-containers-on-server.md)
 ## [Hyper-V Isolation](manage-containers/hyperv-container.md)
 ## [Active Directory Service Accounts](manage-containers/manage-serviceaccounts.md)
 ## [Anti-Virus Optimization](https://msdn.microsoft.com/en-us/windows/hardware/drivers/ifs/anti-virus-optimization-for-windows-containers)
