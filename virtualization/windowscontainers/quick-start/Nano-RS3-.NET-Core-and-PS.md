@@ -39,7 +39,7 @@ docker build -t nanoserverdnc -f Dockerfile-dotnetRuntime .
 ```
 
 ## Run PowerShell Core 6 in a container
-Using the same [multi-stage build](https://docs.docker.com/engine/userguide/eng-image/multistage-build/) method, a PowerShell Core 6 container can be built with [this PowerShell Dockerfile](https://github.com/PowerShell/PowerShell/blob/master/docker/release/nanoserver-insider/Dockerfile).
+Using the same [multi-stage build](https://docs.docker.com/engine/userguide/eng-image/multistage-build/) method, a PowerShell Core 6 container can be built with [this PowerShell Dockerfile](https://github.com/PowerShell/PowerShell-Docker/blob/master/release/stable/nanoserver/docker/Dockerfile).
 
 
 Then issue docker build to create the PowerShell container image.
@@ -48,7 +48,7 @@ Then issue docker build to create the PowerShell container image.
 docker build -t nanoserverPowerShell6 -f Dockerfile-PowerShell6 .
 ```
 
-You can find more information at [PowerShell GitHub](https://github.com/PowerShell/PowerShell/tree/master/docker/release).  It is worth mentioning that the PowerShell zip contains a subset of .NET Core 2.0 that is required to build PowerShell Core 6.  If your PowerShell modules depend on .NET Core 2.0, it is safe to build the PowerShell container on top of the Nano .NET Core container, instead of base Nano container, i.e. using FROM microsoft/nanoserver-insider-dotnet in the Dockerfile. 
+You can find more information at [PowerShell GitHub](https://github.com/PowerShell/PowerShell-Docker/tree/master/release).  It is worth mentioning that the PowerShell zip contains a subset of .NET Core 2.0 that is required to build PowerShell Core 6.  If your PowerShell modules depend on .NET Core 2.0, it is safe to build the PowerShell container on top of the Nano .NET Core container, instead of base Nano container, i.e. using FROM microsoft/nanoserver-insider-dotnet in the Dockerfile. 
 
 ## Next steps
 - Use one of the new container images based on Nano Server, available in Docker Hub, i.e. base Nano Server image, Nano with .NET Core 2.0, and Nano with PowerShell Core 6
