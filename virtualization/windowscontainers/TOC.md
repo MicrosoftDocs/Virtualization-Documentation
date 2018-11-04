@@ -18,6 +18,7 @@
 ## [System Requirements](deploy-containers/system-requirements.md)
 ## [Version Compatibility](deploy-containers/version-compatibility.md)
 ## [Hyper-V Isolation](manage-containers/hyperv-container.md)
+## [Linux containers on Windows](about/lcow.md)
 ## [Active Directory Service Accounts](manage-containers/manage-serviceaccounts.md)
 ## [Anti-Virus Optimization](https://msdn.microsoft.com/en-us/windows/hardware/drivers/ifs/anti-virus-optimization-for-windows-containers)
 
