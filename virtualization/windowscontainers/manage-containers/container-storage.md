@@ -99,16 +99,18 @@ On Windows Server version 1709, a new feature called "SMB Global Mapping" makes 
 ##### Configuration Steps
 
 1. On the container host, globally map the remote SMB share:
+    ```
     $creds = Get-Credential
     New-SmbGlobalMapping -RemotePath \\contosofileserver\share1 -Credential $creds -LocalPath G:
-This command will use the credentials to authenticate with the remote SMB server. Then, map the remote share path to G: drive letter (can be any other available drive letter). Containers created on this container host can now have their data volumes mapped to a path on the G: drive.
+    ```
+    This command will use the credentials to authenticate with the remote SMB server. Then, map the remote share path to G: drive letter (can be any other available drive letter). Containers created on this container host can now have their data volumes mapped to a path on the G: drive.
 
-> Note: When using SMB global mapping for containers, all users on the container host can access the remote share. Any application running on the container host will also have access to the mapped remote share.
+    > Note: When using SMB global mapping for containers, all users on the container host can access the remote share. Any application running on the container host will also have access to the mapped remote share.
 
 2. Create containers with data volumes mapped to globally mounted SMB share
     docker run -it --name demo -v g:\ContainerData:G:\AppData1 microsoft/windowsservercore:1709 cmd.exe
 
-Inside the container, G:\AppData1 will then be mapped to the remote share’s "ContainerData" directory. Any data stored on globally mapped remote share will be available to applications inside the container. Multiple containers can get read/write access to this shared data with the same command.
+    Inside the container, G:\AppData1 will then be mapped to the remote share’s "ContainerData" directory. Any data stored on globally mapped remote share will be available to applications inside the container. Multiple containers can get read/write access to this shared data with the same command.
 
 This SMB global mapping support is SMB client-side feature which can work on top of any compatible SMB server including:
 

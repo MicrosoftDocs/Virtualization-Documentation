@@ -2,7 +2,7 @@
 title: Windows Container on Windows 10
 description: Container deployment quick start
 keywords: docker, containers
-author: enderb-ms
+author: taylorb-microsoft
 ms.date: 09/26/2016
 ms.topic: article
 ms.prod: windows-containers
@@ -26,7 +26,8 @@ Windows Server Containers require Hyper-V isolation on Windows 10 in order to pr
 
 > You must install critical updates for Windows Containers to work.
 > To check your OS version, run `winver.exe`, and compare the version shown to [Windows 10 update history](https://support.microsoft.com/en-us/help/12387/windows-10-update-history).
-> Make sure you have 14393.222 or later before continuing.
+
+> Make sure you have 14393.222 or later before continuing.  This version corresponds with Windows 10 version 1607, so any version above 1607 should be fully supported.
 
 ## 1. Install Docker for Windows
 

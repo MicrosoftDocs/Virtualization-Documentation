@@ -91,11 +91,11 @@ This has a few useful properties:
 To set up a NAT network and connect it to a virtual machine, follow the [NAT networking user guide](../user-guide/setup-nat-network.md).
 
 ### The two switch approach
+
 If you’re running Windows 10 Hyper-V on a laptop and frequently switch between wireless networking and a wired network, you may want to create a virtual switch for both the ethernet and wireless network cards.  Depending on how the laptop connects to the network, you can change your virtual machines between these switches. Virtual machines do not switch between wired and wireless automatically. 
 
 >[!IMPORTANT]
->The two switch approach does not support External vSwitch over wireless card.
-
+>The two switch approach does not support External vSwitch over wireless card and should be used for testing purposes only.
 
 ## Next Step - Create a Virtual Machine
 [Create a Windows Virtual Machine](create-virtual-machine.md)

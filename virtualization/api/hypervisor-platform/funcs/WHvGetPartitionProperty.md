@@ -21,7 +21,7 @@ Handle to the partition object.
 
 `PropertyCode`
 
-Specifies the property that is queried.
+Specifies the property that is queried. `WHvPartitionPropertyCodeCpuidExitList` and `WHvPartitionPropertyCodeCpuidResultList` are not supported.
 
 `PropertyBuffer`
 
@@ -38,4 +38,4 @@ Receives the written size in bytes of the `PropertyBuffer`.
 ## Return Value
 If the operation completed successfully, the return value is `S_OK`.
 
-The function returns `WHV_E_UNKNOWN_PROPERTY` if an unknown `PropertyCode` is requested.
+The function returns `WHV_E_UNKNOWN_PROPERTY` if an unknown `PropertyCode` is requested or `ERROR_NOT_SUPPORTED` when called with an unsupported property code.

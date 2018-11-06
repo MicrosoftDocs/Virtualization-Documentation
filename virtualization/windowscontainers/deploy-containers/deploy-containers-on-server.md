@@ -24,35 +24,80 @@ Open an elevated PowerShell session and run the following commands.
 
 Install the OneGet PowerShell module.
 
-```
+```PowerShell
 Install-Module -Name DockerMsftProvider -Repository PSGallery -Force
 ```
 
 Use OneGet to install the latest version of Docker.
 
-```
+```PowerShell
 Install-Package -Name docker -ProviderName DockerMsftProvider
 ```
 
 When the installation is complete, reboot the computer.
 
-```
+```PowerShell
 Restart-Computer -Force
+```
+
+## Install a Specific Version of Docker
+
+There are currently two channels available for Docker EE for Windows Server:
+
+* `17.06` - Use this version if you're using Docker Enterprise Edition (Docker Engine, UCP, DTR). `17.06` is the default.
+* `18.03` - Use this version if you're running Docker EE Engine alone.
+
+To install a specific version, use the `RequiredVersion` flag:
+
+```PowerShell
+Install-Package -Name docker -ProviderName DockerMsftProvider -Force -RequiredVersion 18.03
+```
+
+Installing specific Docker EE versions may require an update to previously installed DockerMsftProvider modules. To Update:
+
+```PowerShell
+Update-Module DockerMsftProvider
+```
+
+## Update Docker
+
+If you need to update Docker EE Engine from an earlier channel to a later channel, use both the `-Update` and `-RequiredVersion` flags:
+
+```PowerShell
+Install-Package -Name docker -ProviderName DockerMsftProvider -Update -Force -RequiredVersion 18.03
 ```
 
 ## Install Base Container Images
 
 Before working with Windows Containers, a base image needs to be installed. Base images are available with either Windows Server Core or Nano Server as the container operating system. For detailed information on Docker container images, see [Build your own images on docker.com](https://docs.docker.com/engine/tutorials/dockerimages/).
 
+With the release of Windows Server 2019, Microsoft-sourced container images are moving to a new registry called the Microsoft Container Registry. Container images published by Microsoft should continue to be discovered via Docker Hub. For new container images published with Windows Server 2019 and beyond, you should look to pull them from the MCR. For older container images published before Windows Server 2019, you should continue to pull them from Docker's registry.
+
+### Windows Server 2019 and newer
+
+To install the 'Windows Server Core' base image run the following:
+
+```PowerShell
+docker pull mcr.microsoft.com/windows/servercore:ltsc2019
+```
+
+To install the 'Nano Server' base image run the following:
+
+```PowerShell
+docker pull mcr.microsoft.com/windows/nanoserver:1809
+```
+
+### Windows Server 2016 (versions 1607-1803)
+
 To install the Windows Server Core base image run the following:
 
-```
+```PowerShell
 docker pull microsoft/windowsservercore
 ```
 
 To install the Nano Server base image run the following:
 
-```
+```PowerShell
 docker pull microsoft/nanoserver
 ```
 
@@ -66,7 +111,7 @@ In order to run Hyper-V containers, the Hyper-V role is required. If the Windows
 
 The following script will configure nested virtualization for the container host. This script is run on the parent Hyper-V machine. Ensure that the container host virtual machine is turned off when running this script.
 
-```
+```PowerShell
 #replace with the virtual machine name
 $vm = "<virtual-machine>"
 
@@ -84,6 +129,6 @@ Get-VMNetworkAdapter -VMName $vm | Set-VMNetworkAdapter -MacAddressSpoofing On
 
 To enable the Hyper-V feature using PowerShell, run the following command in an elevated PowerShell session.
 
-```
+```PowerShell
 Install-WindowsFeature hyper-v
 ```
