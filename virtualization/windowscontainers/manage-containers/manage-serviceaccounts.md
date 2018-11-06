@@ -44,8 +44,8 @@ Windows Containers follow a similar process:
 [windows-server-container-tools](https://github.com/Microsoft/Virtualization-Documentation/tree/live/windows-server-container-tools) to store settings needed to use the gMSA
 5. Start the container with an extra option `--security-opt "credentialspec=..."`
 
-[!NOTE]
-You might need to allow anonymous SID/Name translation on the container host as described [here](https://docs.microsoft.com/en-us/windows/device-security/security-policy-settings/network-access-allow-anonymous-sidname-translation) as you might otherwise get errors that accounts can't be translated to SIDs.
+> [!NOTE]
+> You might need to allow anonymous SID/Name translation on the container host as described [here](https://docs.microsoft.com/en-us/windows/device-security/security-policy-settings/network-access-allow-anonymous-sidname-translation) as you might otherwise get errors that accounts can't be translated to SIDs.
 
 However, before exploring the need to allow anonymous SID/Name translation, ensure that the following actions are taken:
 
