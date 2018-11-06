@@ -31,7 +31,7 @@ Windows Server Containers require Hyper-V isolation on Windows 10 in order to pr
 
 ## 1. Install Docker for Windows
 
-[Download Docker for Windows](https://download.docker.com/win/stable/InstallDocker.msi) and run the installer. [Detailed installation instructions](https://docs.docker.com/docker-for-windows/install) are available in the Docker documentation.
+[Download Docker for Windows](https://store.docker.com/editions/community/docker-ce-desktop-windows) and run the installer (You will be required to login. Create an account if you don't have one already). [Detailed installation instructions](https://docs.docker.com/docker-for-windows/install) are available in the Docker documentation.
 
 ## 2. Switch to Windows containers
 
