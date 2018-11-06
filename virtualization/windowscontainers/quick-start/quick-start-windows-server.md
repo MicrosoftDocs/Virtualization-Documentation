@@ -12,13 +12,13 @@ ms.assetid: e3b2a4dc-9082-4de3-9c95-5d516c03482b
 
 # Windows Containers on Windows Server
 
-This exercise walks through basic deployment and use of the Windows container feature on Windows Server 2016. During this exercise, you install the container role and deploy a simple Windows Server container. If you need to familiarize yourself with containers, you can find this information in [About Containers](../about/index.md).
+This exercise walks through basic deployment and use of the Windows container feature on Windows Server 2019. During this exercise, you install the container role and deploy a simple Windows Server container. If you need to familiarize yourself with containers, you can find this information in [About Containers](../about/index.md).
 
-This quick start is specific to Windows Server containers on Windows Server 2016. Additional quick start documentation, including containers in Windows 10, are found in the table of contents on the left hand side of this page.
+This quick start is specific to Windows Server containers on Windows Server 2019. Additional quick start documentation, including containers in Windows 10, are found in the table of contents on the left hand side of this page.
 
 **Prerequisites:**
 
-One computer system (physical or virtual) running Windows Server 2016. If you are using Windows Server 2016 TP5, please update to [Window Server 2016 Evaluation](https://www.microsoft.com/en-us/evalcenter/evaluate-windows-server-2016 ).
+One computer system (physical or virtual) running Windows Server 2019. If you are using Windows Server 2019 Insider Preview, please update to [Window Server 2019 Evaluation](https://www.microsoft.com/en-us/evalcenter/evaluate-windows-server-2019 ).
 
 > Critical updates are needed in order for the Windows Container feature to function. Please install all updates before working through this tutorial.
 
@@ -91,13 +91,13 @@ For this exercise, you download a pre-created .NET sample image from the Docker 
 Use `docker run` to deploy the .Net container. This will also download the container image which may take a few minutes.
 
 ```console
-docker run microsoft/dotnet-samples:dotnetapp-nanoserver
+docker run microsoft/dotnet-samples:dotnetapp-nanoserver-1809
 ```
 
 The container starts, prints the hello world message, and then exits.
 
 ```console
-         Dotnet-bot: Welcome to using .NET Core!
+         Hello from .NET Core!
     __________________
                       \
                        \
@@ -138,8 +138,8 @@ The container starts, prints the hello world message, and then exits.
 
 
 **Environment**
-Platform: .NET Core 2.0
-OS: Microsoft Windows 10.0.14393
+Platform: .NET Core
+OS: Microsoft Windows 10.0.17763
 ```
 
 For in depth information on the Docker Run command, see [Docker Run Reference on Docker.com]( https://docs.docker.com/engine/reference/run/).
