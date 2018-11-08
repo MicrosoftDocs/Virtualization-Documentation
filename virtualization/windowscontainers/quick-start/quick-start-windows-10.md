@@ -1,7 +1,7 @@
 ---
-title: Windows Container on Windows 10
+title: Windows and Linux Containers on Windows 10
 description: Container deployment quick start
-keywords: docker, containers
+keywords: docker, containers, LCOW
 author: taylorb-microsoft
 ms.date: 09/26/2016
 ms.topic: article
@@ -10,34 +10,39 @@ ms.service: windows-containers
 ms.assetid: bb9bfbe0-5bdc-4984-912f-9c93ea67105f
 ---
 
-# Windows Containers on Windows 10
+# Windows and Linux Containers on Windows 10
 
-The exercise will walk through basic deployment and use of the Windows container feature on Windows 10 Professional or Enterprise (Anniversary Edition). After completion, you will have installed Docker for Windows and run a simple container. If you need to familiarize yourself with containers, you can find this information in [About Containers](../about/index.md).
+The exercise will walk through creating and running both Windows and Linux containers on Windows 10. After completion, you will have:
 
-This quick start is specific to Windows 10. Additional quick start documentation can be found in the table of contents on the left hand side of this page.
+1. Installed Docker for Windows
+2. Run a simple Windows container
+3. Run a simple Linux container using Linux Containers on Windows (LCOW)
+
+This quick start is specific to Windows 10. Additional quick start documentation can be found in the table of contents on the left-hand side of this page.
 
 ***Hyper-V isolation:***
-Windows Server Containers require Hyper-V isolation on Windows 10 in order to provide developers with the same kernel version and configuration that will be used in production, more about this can be found on the [About Windows container](../about/index.md) page.
+Windows Server Containers require Hyper-V isolation on Windows 10 in order to provide developers with the same kernel version and configuration that will be used in production, more about Hyper-V isolation can be found on the [About Windows container](../about/index.md) page.
 
 **Prerequisites:**
 
-- One physical computer system running Windows 10 Anniversary Edition or Creators Update (Professional or Enterprise).   
-- This quick start can be run on a Windows 10 virtual machine but nested virtualization will need to be enabled. More information can be found in the [Nested Virtualization Guide](https://msdn.microsoft.com/en-us/virtualization/hyperv_on_windows/user_guide/nesting).
+- One physical computer system running Windows 10 Fall Creators Update (version 1709) or later (Professional or Enterprise) that [can run Hyper-V](https://docs.microsoft.com/en-us/virtualization/hyper-v-on-windows/reference/hyper-v-requirements)
 
-> You must install critical updates for Windows Containers to work.
-> To check your OS version, run `winver.exe`, and compare the version shown to [Windows 10 update history](https://support.microsoft.com/en-us/help/12387/windows-10-update-history).
-
-> Make sure you have 14393.222 or later before continuing.  This version corresponds with Windows 10 version 1607, so any version above 1607 should be fully supported.
+> If you're not looking to run LCOW in this tutorial, Windows containers will be able to run on Windows 10 Anniversary Update (version 1607) or later.
 
 ## 1. Install Docker for Windows
 
 [Download Docker for Windows](https://store.docker.com/editions/community/docker-ce-desktop-windows) and run the installer (You will be required to login. Create an account if you don't have one already). [Detailed installation instructions](https://docs.docker.com/docker-for-windows/install) are available in the Docker documentation.
+
+> If you already have Docker installed, make sure you have version 18.02 or later to support LCOW. Check by running `docker -v` or checking *About Docker*.
+
+> The 'experimental features' option in *Docker Settings > Daemon* must be activated to run LCOW containers.
 
 ## 2. Switch to Windows containers
 
 After installation Docker for Windows defaults to running Linux containers. Switch to Windows containers using either the Docker tray-menu or by running the following command in a PowerShell prompt `& $Env:ProgramFiles\Docker\Docker\DockerCli.exe -SwitchDaemon`.
 
 ![](./media/docker-for-win-switch.png)
+> Note that Windows containers mode allows for LCOW containers in addition to Windows containers.
 
 ## 3. Install Base Container Images
 
@@ -58,10 +63,9 @@ microsoft/nanoserver   latest              105d76d0f40e        4 days ago       
 
 > Please read the Windows Containers OS Image EULA which can be found here – [EULA](../images-eula.md).
 
-## 4. Run Your First Container
+## 4. Run Your First Windows Container
 
 For this simple example a ‘Hello World’ container image will be created and deployed. For the best experience run these commands in an elevated Windows CMD shell or PowerShell.
-
 > Windows PowerShell ISE does not work for interactive sessions with containers. Even though the container is running, it will appear to hang.
 
 First, start a container with an interactive session from the `nanoserver` image. Once the container has started, you will be presented with a command shell from within the container.  
@@ -109,6 +113,38 @@ docker run --rm helloworld powershell c:\helloworld.ps1
 The outcome of the `docker run` command is that a Hyper-V container was created from the 'HelloWorld' image, a sample 'Hello World' script was then executed (output echoed to the shell), and then the container stopped and removed.
 Subsequent Windows 10 and container quick starts will dig into creating and deploying applications in containers on Windows 10.
 
+## Run Your First LCOW Container
+
+For this example, a BusyBox container will be deployed. First, attempt to run a 'Hello World' BusyBox image.
+
+```
+docker run --rm busybox echo hello_world
+```
+
+Note that this returns an error when Docker attempts to pull the image. This occurs because Dockers requires a directive via the `--platform` flag to confirm that the image and host operating system are matched appropriately. Since the default platform in Windows container mode is Windows, add a `--platform linux` flag to pull and run the container.
+
+```
+docker run --rm --platform linux busybox echo hello_world
+```
+
+Once the image has been pulled with the platform indicated, the `--platform` flag is no longer necessary. Run the command without it to test this.
+
+```
+docker run --rm busybox echo hello_world
+```
+
+Run `docker images` to return a list of installed images. In this case, both the Windows and Linux images.
+
+```
+docker images
+
+REPOSITORY             TAG                 IMAGE ID            CREATED             SIZE
+microsoft/nanoserver   latest              105d76d0f40e        4 days ago          652 MB
+busybox                latest              59788edf1f3e        4 weeks ago         3.41MB
+```
+
 ## Next Steps
+
+Bonus: See Docker's corresponding [blog post](https://blog.docker.com/2018/02/docker-for-windows-18-02-with-windows-10-fall-creators-update/) on running LCOW
 
 Continue to the next tutorial to see an example of [building a sample app](./building-sample-app.md)
