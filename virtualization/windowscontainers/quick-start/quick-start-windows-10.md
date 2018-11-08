@@ -3,7 +3,7 @@ title: Windows and Linux Containers on Windows 10
 description: Container deployment quick start
 keywords: docker, containers, LCOW
 author: taylorb-microsoft
-ms.date: 09/26/2016
+ms.date: 11/8/2018
 ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
