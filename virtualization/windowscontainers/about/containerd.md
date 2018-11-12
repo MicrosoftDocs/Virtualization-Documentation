@@ -16,4 +16,6 @@ We're building container primitives that match Linux container primitives in acc
 
 This makes it easier for orchestrators like Kubernetes to choose between docker and containerd.
 
+Some set up required :)
+
 ![LCOW Process map](media/containerd-process-map.png)
