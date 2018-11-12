@@ -1,7 +1,7 @@
 ---
 title: Linux Containers on Windows
-description: Learn about Windows containers.
-keywords: docker, containers
+description: Learn about different ways you can use Hyper-V to run Linux containers on WIndows as if they're native.
+keywords: LCOW, linux containers, docker, containers
 author: scooley
 ms.date: 11/02/2018
 ms.topic: article
@@ -12,22 +12,34 @@ ms.assetid: edfd11c8-ee99-42d8-9878-efc126fe1826
 
 # Linux Containers on Windows
 
-Right now there are two ways to run Linux containers on a Windows container host:
+Running Linux container is essential for most developers using containers.
 
-1. (traditional) Run Linux containers in a full Linux VM.  This is the way Docker has traditionally run Linux containers on Windows machines.
-1. (new) Run Linux containers directly on Windows with [Hyper-V Isolation](../manage-containers/hyperv-container.md), referred to as LCOW (Linux Containers on Windows).
+Right now there are two ways to run Linux containers on a Windows machine:
 
-This article will explanation in detail how these approaches differ.
+1. Run Linux containers in a full Linux VM.
+1. Run Linux containers directly on Windows with [Hyper-V Isolation](../manage-containers/hyperv-container.md)
+
+This article explores some of the challenges around running Linux containers on Windows and describe in detail the two main approaches .
+
+## Where's my kernel
+
+Before diving into the details around LCOW versus Linux containers on Moby VM, let's start with a 
 
 ## Linux Containers in a Moby VM
 
-The way 
+Docker has been able to run Linux containers on Windows desktop before Microsoft partnered with Docker and began building containers.  This is because Docker used virtualization to create a Linux virtual machine to run Linux containers.
+
+In this model, Docker Client would run on Windows desktop but call into Docker Daemon on the Linux VM.
+
+
 
 ## Linux Containers with Hyper-V isolation
 
 Linux kernel with just enough OS to support containers.  The changes to Windows and Hyper-V to build this started in the _Windows 10 Fall Creators Update_ and _Windows Server, version 1709_, but bringing this together also required work with the open source [Moby project](https://www.github.com/moby/moby) on which Docker technology is built, as well as the Linux kernel.
 
 Other projects are beginning to build similar highly-tuned Linux kernels for projects like Kata.
+
+![LCOW Process map](media/containerd-process-map.png)
 
 ## Run a Hyper-V isolated Linux Container
 
