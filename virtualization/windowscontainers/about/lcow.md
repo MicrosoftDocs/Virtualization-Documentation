@@ -12,7 +12,7 @@ ms.assetid: edfd11c8-ee99-42d8-9878-efc126fe1826
 
 # Linux Containers on Windows
 
-Linux containers make up a huge percent of the overall container ecosystem and are fundamental to many developer experiences and production environments.  Since containers share a kernel with the container host, however, running Linux containers directly on Windows isn't an option[*](#why-not-WSL).  This is where virtualization comes to the rescue.
+Linux containers make up a huge percent of the overall container ecosystem and are fundamental to many developer experiences and production environments.  Since containers share a kernel with the container host, however, running Linux containers directly on Windows isn't an option[*](lcow.md#why-not-WSL).  This is where virtualization comes to the rescue.
 
 Right now there are two ways to run Linux containers on a Windows machine with Docker:
 
@@ -72,8 +72,16 @@ These applications all require volume mapping, which has some limitations covere
 - MariaDB
 - RabbitMQ
 
-## Extra information
+### Extra information
 
 [Linux Container Video](https://sec.ch9.ms/ch9/1e5a/08ff93f2-987e-4f8d-8036-2570dcac1e5a/LinuxContainer.mp4)
 
 [LinuxKit LCOW-kernel plus build instructions](https://github.com/linuxkit/lcow)
+
+## Other options we considered
+
+This section is a behind the scenes glance at some of the engineering conversations we had when working on LCOW.
+
+### Run Linux containers on WSL
+
+When we were looking at ways to run Linux containers on Windows, we considered WSL.  Ultimately, we chose a virtualization based approach so that Linux containers on Windows have the same app compat as Linux containers on Linux.  There are some places where networking or storage mounting vary, but containers do run consistently.
