@@ -12,22 +12,29 @@ ms.assetid: edfd11c8-ee99-42d8-9878-efc126fe1826
 
 # Linux Containers on Windows
 
-Linux containers make up a huge percent of the overall container ecosystem and are fundamental to many developer experiences and production environments.  Since containers share a kernel with the container host, however, running Linux containers directly on Windows isn't an option[*](lcow.md#why-not-WSL).  This is where virtualization comes to the rescue.
+Linux containers make up a huge percent of the overall container ecosystem and are fundamental to both developer experiences and production environments.  Since containers share a kernel with the container host, however, running Linux containers directly on Windows isn't an option[*](lcow.md#other-options-we-considered).  This is where virtualization comes to the rescue.
 
 Right now there are two ways to run Linux containers on a Windows machine with Docker:
 
 1. Run Linux containers in a full Linux VM - this is what Docker typically does today.
 1. Run Linux containers with [Hyper-V Isolation](../manage-containers/hyperv-container.md) (LCOW) - new option in Docker for Windows.
 
-This article explores each of these ways of running Linux containers on Windows and how you can.
+This article explores each of these ways of running Linux containers on Windows.
 
 ## Linux Containers in a Moby VM
 
-Docker has been able to run Linux containers on Windows desktop before Microsoft partnered with Docker and began building containers.  This is because Docker used virtualization to create a Linux virtual machine to run Linux containers.
+Docker has been able to run Linux containers on Windows desktop since 2016 -  before Hyper-V isolation or LCOW became available - using a Linux virtual machine running on Hyper-V.
 
-In this model, Docker Client would run on Windows desktop but call into Docker Daemon on the Linux VM.
+In this model, Docker Client runs on Windows desktop but calls into Docker Daemon on the Linux VM.
+
+All Linux containers run on the same virtual machine.
 
 ### Signs that Moby VM is currently enabled
+
+There are a few ways to see of containers are running with the Moby VM approach:
+
+1. Docker version
+1. Hyper-V Manager shows Moby VM
 
 ## Linux Containers with Hyper-V isolation
 
