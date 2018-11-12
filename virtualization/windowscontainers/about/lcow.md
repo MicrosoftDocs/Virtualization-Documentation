@@ -14,10 +14,10 @@ ms.assetid: edfd11c8-ee99-42d8-9878-efc126fe1826
 
 Linux containers make up a huge percent of the overall container ecosystem and are fundamental to both developer experiences and production environments.  Since containers share a kernel with the container host, however, running Linux containers directly on Windows isn't an option[*](lcow.md#other-options-we-considered).  This is where virtualization comes to the rescue.
 
-Right now there are two ways to run Linux containers on a Windows machine with Docker:
+Right now there are two ways to run Linux containers with Docker for Windows:
 
 1. Run Linux containers in a full Linux VM - this is what Docker typically does today.
-1. Run Linux containers with [Hyper-V Isolation](../manage-containers/hyperv-container.md) (LCOW) - new option in Docker for Windows.
+1. Run Linux containers with [Hyper-V Isolation](../manage-containers/hyperv-container.md) (LCOW) - this is a new option in Docker for Windows.
 
 This article explores each of these ways of running Linux containers on Windows.
 
