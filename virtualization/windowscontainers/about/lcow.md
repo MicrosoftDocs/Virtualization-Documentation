@@ -29,6 +29,13 @@ In this model, Docker Client runs on Windows desktop but calls into Docker Daemo
 
 All Linux containers run on the same [LinuxKit](https://github.com/linuxkit/linuxkit) based virtual machine.
 
+That means all Linux containers:
+
+* Share a kernel with each other, but not with the Windows host
+* Have the same networking properties as Linux containers on Linux (since they're running on a Linux VM)
+* Have many of the same storage properties as Linux containers on Linux
+* May have difficulty sharing data with the Windows container host
+
 ### Signs that Moby VM is currently enabled
 
 There are a few ways to see of containers are running with the Moby VM approach:
@@ -48,7 +55,7 @@ Other projects are beginning to build similar highly-tuned Linux kernels for pro
 
 Follow these [instructions](https://blog.docker.com/2018/02/docker-for-windows-18-02-with-windows-10-fall-creators-update/) from Docker.
 
-## Current development: Bind mounts
+### Current development: Bind mounts
 
 Bind mounting volumes with `docker run -v ...` stores the files on the Windows NTFS filesystem, so some translation is needed for POSIX operations. Some filesystem operations are currently partially or not implemented, which may cause incompatibilities for some apps.
 
