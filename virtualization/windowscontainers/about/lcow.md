@@ -50,7 +50,7 @@ Here's a closer look at each LCOW:
 
 ![LCOW architecture](media/lcow.png)
 
-To see if you're running LCOW, navigate to `C:\Program Files\Linux Containers`.  LCOW will show the minimal Linux distro running in each Hyper-V container.  Notice the optimized VM components are less than 100 MB, much smaller than the LinuxKit image in Moby VM.
+To see if you're running LCOW, navigate to `C:\Program Files\Linux Containers`.  If Docker is configured to use LCOW, there will be a few files here containing the minimal LinuxKit distro that runs in each Hyper-V container.  Notice the optimized VM components are less than 100 MB, much smaller than the LinuxKit image in Moby VM.
 
 ### Extra information
 
