@@ -12,9 +12,9 @@ ms.assetid: edfd11c8-ee99-42d8-9878-efc126fe1826
 
 # Linux Containers on Windows
 
-Linux containers make up a huge percent of the overall container ecosystem and are fundamental to both developer experiences and production environments.  Since containers share a kernel with the container host, however, running Linux containers directly on Windows isn't an option[*](lcow.md#other-options-we-considered).  This is where virtualization comes to the rescue.
+Linux containers make up a huge percent of the overall container ecosystem and are fundamental to both developer experiences and production environments.  Since containers share a kernel with the container host, however, running Linux containers directly on Windows isn't an option[*](lcow.md#other-options-we-considered).  This is where virtualization comes into the picture.
 
-Right now there are two ways to run Linux containers with Docker for Windows:
+Right now there are two ways to run Linux containers with Docker for Windows and Hyper-V:
 
 1. Run Linux containers in a full Linux VM - this is what Docker typically does today.
 1. Run Linux containers with [Hyper-V Isolation](../manage-containers/hyperv-container.md) (LCOW) - this is a new option in Docker for Windows.
@@ -31,70 +31,28 @@ All Linux containers run on the same [LinuxKit](https://github.com/linuxkit/linu
 
 ![Moby VM as the container host](media/MobyVM.png)
 
-In this model, all Linux containers:
+In this model, all Linux containers share a Linux container host and all Linux containers:
 
 * Share a kernel with each other and the Moby VM, but not with the Windows host.
 * Have consistent storage and networking properties with Linux containers running on Linux (since they are running on a Linux VM).
-* May have difficulty sharing data with the Windows container host
 
-### Signs that Moby VM is currently enabled
+It also means the Linux container host (Moby VM) needs to be running Docker Daemon and all of Docker Daemon's dependencies.
 
-There are a few ways to see of containers are running with the Moby VM approach:
-
-1. Docker version
-1. Hyper-V Manager shows Moby VM
-1. `C:\Program Files\Linux Containers` isn't present (more on this in the LCOW section)
+To see if you're running with Moby VM, check Hyper-V Manager for Moby VM using either the Hyper-V Manager UI or by running `Get-VM` in a elevated PowerShell window.
 
 ## Linux Containers with Hyper-V isolation
 
-Linux kernel with just enough OS to support containers.  The changes to Windows and Hyper-V to build this started in the _Windows 10 Fall Creators Update_ and _Windows Server, version 1709_, but bringing this together also required work with the open source [Moby project](https://www.github.com/moby/moby) on which Docker technology is built, as well as the Linux kernel.
-
-Other projects are beginning to build similar highly-tuned Linux kernels for projects like Kata.
+Linux Containers with Hyper-V isolation run each Linux container (LCOW) in a highly optimized Linux VM with just enough OS to run containers.  In contrast to the Moby VM approach, each LCOW has it's own kernel and it's own VM sandbox.  They're also managed by Docker on Windows directly.
 
 ![Linux containers with Hyper-V isolation (LCOW)](media/lcow-approach.png)
 
-### System requirements
+Taking a closer look at how container management differs between the Moby VM approach and LCOW, in the LCOW model container management stays on Windows and each LCOW management happens via GRPC and containerd.  This means the Linux distro containers run in for LCOW can have a much smaller inventory.  Right now, we're using LinuxKit for the optimized distro containers use but other projects like Kata are build similar highly-tuned Linux distros (Clear Linux) as well.
 
-* Windows Server 1709 or Windows 10 Fall Creators Update or later
-* Docker EE preview or Docker for Windows CE
+Here's a closer look at each LCOW:
 
+![LCOW architecture](media/lcow.png)
 
-### Signs that LCOW is currently enabled
-
-### Run a Hyper-V isolated Linux Container
-
-Follow these [instructions](https://blog.docker.com/2018/02/docker-for-windows-18-02-with-windows-10-fall-creators-update/) from Docker.
-
-### Current development: Bind mounts
-
-Bind mounting volumes with `docker run -v ...` stores the files on the Windows NTFS filesystem, so some translation is needed for POSIX operations. Some filesystem operations are currently partially or not implemented, which may cause incompatibilities for some apps.
-
-These operations are not currently working for bind-mounted volumes:
-
-- MkNod
-- XAttrWalk
-- XAttrCreate
-- Lock
-- Getlock
-- Auth
-- Flush
-- INotify
-
-There are also a few that are not fully implemented:
-
-- GetAttr – The Nlink count is always reported as 2
-- Open – Only ReadWrite, WriteOnly, and ReadOnly flags are implemented
-
-### Known app issues
-
-These applications all require volume mapping, which has some limitations covered under [Bind mounts](#Bind-mounts). They will not start or run correctly.
-
-- MySQL
-- PostgreSQL
-- WordPress
-- Jenkins
-- MariaDB
-- RabbitMQ
+To see if you're running LCOW, navigate to `C:\Program Files\Linux Containers`.  LCOW will show the minimal Linux distro running in each Hyper-V container.  Notice the optimized VM components are less than 100 MB, much smaller than the LinuxKit image in Moby VM.
 
 ### Extra information
 
@@ -106,6 +64,6 @@ These applications all require volume mapping, which has some limitations covere
 
 This section is a behind the scenes glance at some of the engineering conversations we had when working on LCOW.
 
-### Run Linux containers on WSL
+When we were looking at ways to run Linux containers on Windows, we considered WSL.  Ultimately, we chose a virtualization based approach so that Linux containers on Windows have the same app compatibility as Linux containers on Linux.  There is also a gap around storage.  Many linux containers rely on mounted storage and WSL doesn't include an ext4 driver.
 
-When we were looking at ways to run Linux containers on Windows, we considered WSL.  Ultimately, we chose a virtualization based approach so that Linux containers on Windows have the same app compat as Linux containers on Linux.  There are some places where networking or storage mounting vary, but containers do run consistently.
+We may re-evaluate in the future but, for now, LCOW will continue to use Hyper-V.  If you have thoughts, please send feedback through github or UserVoice.
