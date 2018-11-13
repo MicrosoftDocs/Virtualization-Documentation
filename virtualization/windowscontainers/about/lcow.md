@@ -29,11 +29,12 @@ In this model, Docker Client runs on Windows desktop but calls into Docker Daemo
 
 All Linux containers run on the same [LinuxKit](https://github.com/linuxkit/linuxkit) based virtual machine.
 
-That means all Linux containers:
+![Moby VM as the container host](media/MobyVM.png)
 
-* Share a kernel with each other, but not with the Windows host
-* Have the same networking properties as Linux containers on Linux (since they're running on a Linux VM)
-* Have many of the same storage properties as Linux containers on Linux
+In this model, all Linux containers:
+
+* Share a kernel with each other and the Moby VM, but not with the Windows host.
+* Have consistent storage and networking properties with Linux containers running on Linux (since they are running on a Linux VM).
 * May have difficulty sharing data with the Windows container host
 
 ### Signs that Moby VM is currently enabled
@@ -42,12 +43,21 @@ There are a few ways to see of containers are running with the Moby VM approach:
 
 1. Docker version
 1. Hyper-V Manager shows Moby VM
+1. `C:\Program Files\Linux Containers` isn't present (more on this in the LCOW section)
 
 ## Linux Containers with Hyper-V isolation
 
 Linux kernel with just enough OS to support containers.  The changes to Windows and Hyper-V to build this started in the _Windows 10 Fall Creators Update_ and _Windows Server, version 1709_, but bringing this together also required work with the open source [Moby project](https://www.github.com/moby/moby) on which Docker technology is built, as well as the Linux kernel.
 
 Other projects are beginning to build similar highly-tuned Linux kernels for projects like Kata.
+
+![Linux containers with Hyper-V isolation (LCOW)](media/lcow-approach.png)
+
+### System requirements
+
+* Windows Server 1709 or Windows 10 Fall Creators Update or later
+* Docker EE preview or Docker for Windows CE
+
 
 ### Signs that LCOW is currently enabled
 
