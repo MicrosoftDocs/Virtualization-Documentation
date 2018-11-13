@@ -62,8 +62,6 @@ To see if you're running LCOW, navigate to `C:\Program Files\Linux Containers`. 
 
 ## Other options we considered
 
-This section is a behind the scenes glance at some of the engineering conversations we had when working on LCOW.
-
 When we were looking at ways to run Linux containers on Windows, we considered WSL.  Ultimately, we chose a virtualization based approach so that Linux containers on Windows have the same app compatibility as Linux containers on Linux.  There is also a gap around storage.  Many linux containers rely on mounted storage and WSL doesn't include an ext4 driver.
 
 We may re-evaluate in the future but, for now, LCOW will continue to use Hyper-V.  If you have thoughts, please send feedback through github or UserVoice.
