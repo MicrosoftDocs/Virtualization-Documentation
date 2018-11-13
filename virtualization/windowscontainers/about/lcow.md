@@ -23,11 +23,9 @@ This article explores each of these ways of running Linux containers on Windows.
 
 ## Linux Containers in a Moby VM
 
-Docker has been able to run Linux containers on Windows desktop since it was first released in 2016 (before Hyper-V isolation or LCOW were available) using a Linux virtual machine running on Hyper-V.
+Docker has been able to run Linux containers on Windows desktop since it was first released in 2016 (before Hyper-V isolation or LCOW were available) using a [LinuxKit](https://github.com/linuxkit/linuxkit) based virtual machine running on Hyper-V.
 
 In this model, Docker Client runs on Windows desktop but calls into Docker Daemon on the Linux VM.
-
-All Linux containers run on the same [LinuxKit](https://github.com/linuxkit/linuxkit) based virtual machine.
 
 ![Moby VM as the container host](media/MobyVM.png)
 
