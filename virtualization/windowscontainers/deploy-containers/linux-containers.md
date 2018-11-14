@@ -10,7 +10,7 @@ ms.service: windows-containers
 ms.assetid: edfd11c8-ee99-42d8-9878-efc126fe1826
 ---
 
-# Linux Containers on Windows - LCOW and Moby VM
+# Linux Containers on Windows
 
 Linux containers make up a huge percent of the overall container ecosystem and are fundamental to both developer experiences and production environments.  Since containers share a kernel with the container host, however, running Linux containers directly on Windows isn't an option[*](linux-containers.md#other-options-we-considered).  This is where virtualization comes into the picture.
 
