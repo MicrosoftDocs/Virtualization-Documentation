@@ -1,6 +1,6 @@
 ---
 title: Linux Containers on Windows
-description: Learn about different ways you can use Hyper-V to run Linux containers on WIndows as if they're native.
+description: Learn about different ways you can use Hyper-V to run Linux containers on Windows as if they're native.
 keywords: LCOW, linux containers, docker, containers
 author: scooley
 ms.date: 11/02/2018
