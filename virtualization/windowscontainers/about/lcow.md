@@ -34,7 +34,7 @@ In this model, all Linux containers share a Linux container host and all Linux c
 * Share a kernel with each other and the Moby VM, but not with the Windows host.
 * Have consistent storage and networking properties with Linux containers running on Linux (since they are running on a Linux VM).
 
-It also means the Linux container host (Moby VM) needs to be running Docker Daemon and all of Docker Daemon's dependencies.
+It also means that the Linux container host (Moby VM) needs to be running Docker Daemon and all of Docker Daemon's dependencies.
 
 To see if you're running with Moby VM, check Hyper-V Manager for Moby VM using either the Hyper-V Manager UI or by running `Get-VM` in a elevated PowerShell window.
 
@@ -44,7 +44,7 @@ Linux Containers with Hyper-V isolation run each Linux container (LCOW) in a hig
 
 ![Linux containers with Hyper-V isolation (LCOW)](media/lcow-approach.png)
 
-Taking a closer look at how container management differs between the Moby VM approach and LCOW, in the LCOW model container management stays on Windows and each LCOW management happens via GRPC and containerd.  This means the Linux distro containers run in for LCOW can have a much smaller inventory.  Right now, we're using LinuxKit for the optimized distro containers use but other projects like Kata are build similar highly-tuned Linux distros (Clear Linux) as well.
+Taking a closer look at how container management differs between the Moby VM approach and LCOW, in the LCOW model container management stays on Windows and each LCOW management happens via GRPC and containerd.  This means that the Linux distro containers that run in for LCOW can have a much smaller inventory.  Right now, we're using LinuxKit for the optimized distro containers use, but other projects like Kata are building similar highly-tuned Linux distros (Clear Linux) as well.
 
 Here's a closer look at each LCOW:
 
@@ -64,4 +64,4 @@ When we were looking at ways to run Linux containers on Windows, we considered W
 
 With that said, there are also gap in functionality when running containers on WSL.  Storage gets complicated since many linux containers rely on mounted storage and WSL doesn't include an ext4 driver.
 
-We may re-evaluate in the future but, for now, LCOW will continue to use Hyper-V.  If you have thoughts, please send feedback through github or UserVoice.
+We may re-evaluate in the future, but for now, LCOW will continue to use Hyper-V.  If you have thoughts, please send feedback through github or UserVoice.
