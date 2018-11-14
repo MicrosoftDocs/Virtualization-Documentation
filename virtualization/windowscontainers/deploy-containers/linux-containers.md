@@ -116,8 +116,6 @@ Right now, we recommend LCOW to people who:
 
 ## Other options we considered
 
-When we were looking at ways to run Linux containers on Windows, we considered WSL.  Ultimately, we chose a virtualization based approach so that Linux containers on Windows have the same app compatibility as Linux containers on Linux.  Using Hyper-V also makes LCOW more secure and more flexible.
+When we were looking at ways to run Linux containers on Windows, we considered WSL.  Ultimately, we chose a virtualization based approach so that Linux containers on Windows are consistent with Linux containers on Linux.  Using Hyper-V also makes LCOW more secure.  We may re-evaluate in the future, but for now, LCOW will continue to use Hyper-V.
 
-With that said, there are also gap in functionality when running containers on WSL.  Storage gets complicated since many linux containers rely on mounted storage and WSL doesn't include an ext4 driver.
-
-We may re-evaluate in the future, but for now, LCOW will continue to use Hyper-V.  If you have thoughts, please send feedback through github or UserVoice.
+If you have thoughts, please send feedback through github or UserVoice.  We especially appreciate feedback about the specific experience you'd like to see.
