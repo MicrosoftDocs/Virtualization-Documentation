@@ -1,10 +1,6 @@
 ---
 title: Linux Containers on Windows
-<<<<<<< HEAD
 description: Learn about different ways you can use Hyper-V to run Linux containers on Windows as if they're native.
-=======
-description: Learn about different ways you can use Hyper-V to run Linux containers on WIndows as if they're native.
->>>>>>> origin/live
 keywords: LCOW, linux containers, docker, containers
 author: scooley
 ms.date: 11/02/2018
@@ -61,11 +57,7 @@ Linux Containers with Hyper-V isolation run each Linux container (LCOW) in an op
 
 ![Linux containers with Hyper-V isolation (LCOW)](media/lcow-approach.png)
 
-<<<<<<< HEAD
 Taking a closer look at how container management differs between the Moby VM approach and LCOW, in the LCOW model container management stays on Windows and each LCOW management happens via GRPC and containerd.  This means the Linux distro containers use for LCOW can have a much smaller inventory.  Right now, we're using LinuxKit for the optimized distro containers use but other projects like Kata are building similar highly-tuned Linux distros (Clear Linux) as well.
-=======
-Taking a closer look at how container management differs between the Moby VM approach and LCOW, in the LCOW model container management stays on Windows and each LCOW management happens via GRPC and containerd.  This means the Linux distro containers run in for LCOW can have a much smaller inventory.  Right now, we're using LinuxKit for the optimized distro containers use but other projects like Kata are build similar highly-tuned Linux distros (Clear Linux) as well.
->>>>>>> origin/live
 
 Here's a closer look at each LCOW:
 
