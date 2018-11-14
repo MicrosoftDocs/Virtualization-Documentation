@@ -40,15 +40,6 @@ It also means the Linux container host (Moby VM) needs to be running Docker Daem
 
 To see if you're running with Moby VM, check Hyper-V Manager for Moby VM using either the Hyper-V Manager UI or by running `Get-VM` in a elevated PowerShell window.
 
-### When to use Moby VM
-
-Right now, we recommend the Moby VM method of running Linux containers to people who:
-
-1. Want a stable container environment.  This is the Docker for Windows default.
-1. Run Windows or Linux containers, but rarely both at the same time.
-1. Have complicated or custom networking requirements between Linux containers.
-1. Don't need kernel isolation (Hyper-V isolation) between Linux containers.
-
 ## Linux Containers with Hyper-V isolation
 
 To try LCOW, follow the Linux container instructions in [this get-started guide](../quick-start/quick-start-windows-10.md)
@@ -98,14 +89,6 @@ These applications all require volume mapping and will not start or run correctl
 * MariaDB
 * RabbitMQ
 
-### When to use LCOW
-
-Right now, we recommend LCOW to people who:
-
-1. Want to test our newest technology.
-1. Run Windows and Linux containers at the same time.
-1. Need kernel isolation (Hyper-V isolation) between Linux containers.
-
 ### Extra information
 
 [Docker blog describing LCOW](https://blog.docker.com/2017/11/docker-for-windows-17-11/)
@@ -113,6 +96,25 @@ Right now, we recommend LCOW to people who:
 [Linux Container Video](https://sec.ch9.ms/ch9/1e5a/08ff93f2-987e-4f8d-8036-2570dcac1e5a/LinuxContainer.mp4)
 
 [LinuxKit LCOW-kernel plus build instructions](https://github.com/linuxkit/lcow)
+
+## When to use Moby VM vs LCOW
+
+### When to use Moby VM
+
+Right now, we recommend the Moby VM method of running Linux containers to people who:
+
+1. Want a stable container environment.  This is the Docker for Windows default.
+1. Run Windows or Linux containers, but rarely both at the same time.
+1. Have complicated or custom networking requirements between Linux containers.
+1. Don't need kernel isolation (Hyper-V isolation) between Linux containers.
+
+### When to use LCOW
+
+Right now, we recommend LCOW to people who:
+
+1. Want to test our newest technology.
+1. Run Windows and Linux containers at the same time.
+1. Need kernel isolation (Hyper-V isolation) between Linux containers.
 
 ## Other options we considered
 
