@@ -2,7 +2,7 @@
 title: Windows Containers Documentation
 description: Windows containers documentation
 keywords: docker, containers
-author: enderb-ms
+author: cwilhit
 ms.date: 05/02/2016
 ms.topic: article
 ms.prod: windows-containers

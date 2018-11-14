@@ -2,7 +2,7 @@
 title: Windows Container Samples
 description: Find links to popular projects and code samples using Windows Containers.
 keywords: docker, containers, windows, samples 
-author: enderb-ms
+author: cwilhit
 ms.date: 12/19/2016
 ms.topic: article
 ms.prod: windows-containers

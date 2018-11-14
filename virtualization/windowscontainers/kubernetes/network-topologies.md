@@ -13,18 +13,21 @@ ms.assetid: 3b05d2c2-4b9b-42b4-a61b-702df35f5b17
 # Network Solutions #
 
 Once you have [setup a Kubernetes master node](./creating-a-linux-master.md) you are ready to pick a networking solution. There are multiple ways to make the virtual [cluster subnet](./getting-started-kubernetes-windows.md#cluster-subnet-def) routable across nodes. Pick one of the following options for Kubernetes on Windows today:
-  1. Use a third-party CNI plugin such as [Flannel](#flannel-in-host-gateway-mode) to setup routes for you.
-  2. Configure a smart [top-of-rack (ToR) switch](#configuring-a-tor-switch) to route the subnet.
+
+1. Use a third-party CNI plugin such as [Flannel](network-topologies.md#flannel-in-host-gateway-mode) to setup routes for you.
+1. Configure a smart [top-of-rack (ToR) switch](network-topologies.md#configuring-a-tor-switch) to route the subnet.
 
 > [!tip]  
 > There is a third networking solution on Windows which leverages Open vSwitch (OvS) and Open Virtual Network (OVN). Documenting this is out of scope for this document, but you can read [these instructions](https://kubernetes.io/docs/getting-started-guides/windows/#for-3-open-vswitch-ovs-open-virtual-network-ovn-with-overlay) to set it up.
 
-## Flannel in host-gateway mode ##
+## Flannel in host-gateway mode
+
 One of the available options for Flannel networking is *host-gateway mode* (host-gw), which entails the configuration of static routes between pod subnets on all nodes.
 > [!NOTE]  
 > This is different to *overlay* networking mode in Flannel, which uses VXLAN encapsulation and is in development right now. Watch this space...
 
-### Prepare Kubernetes master for Flannel ### 
+### Prepare Kubernetes master for Flannel
+
 Some minor preparation is recommended on the [Kubernetes master](./creating-a-linux-master.md) in our cluster. It is recommended to enable bridged IPv4 traffic to iptables chains when using Flannel. This can be done using the following command:
 
 ```bash

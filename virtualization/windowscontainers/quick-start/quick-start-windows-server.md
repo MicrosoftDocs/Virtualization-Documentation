@@ -2,7 +2,7 @@
 title: Windows Containers on Windows Server
 description: Container deployment quick start
 keywords: docker, containers
-author: enderb-ms
+author: cwilhit
 ms.date: 09/26/2016
 ms.topic: article
 ms.prod: windows-containers

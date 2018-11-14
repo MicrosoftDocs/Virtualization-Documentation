@@ -26,7 +26,6 @@ Docker provides a great foundation for development.
 
 Now let's talk about that ecosystem of applications and how you can build on Docker concepts to create a development and deployment workflow suited to your needs.
 
-
 ## Components in a container ecosystem
 
 Windows Containers are a key component of a large container ecosystem. We’re working across the industry to deliver developer choice at each layer of the solution stack.
