@@ -12,13 +12,12 @@
 ## [Step 1 - Using the Insider images](quick-start/Using-Insider-Container-Images.md)
 ## [Step 2 - Build and Run an Application](quick-start/Nano-RS3-.NET-Core-and-PS.md)
 ## [Step 3 - Known Issues](quick-start/Insider-Known-Issues.md)
-## [Linux container preview](deploy-containers/linux-containers.md)
 
 # Reference
 ## [System Requirements](deploy-containers/system-requirements.md)
 ## [Version Compatibility](deploy-containers/version-compatibility.md)
 ## [Hyper-V Isolation](manage-containers/hyperv-container.md)
-## [Linux containers on Windows](about/lcow.md)
+## [Linux containers on Windows](deploy-containers/linux-containers.md)
 ## [Active Directory Service Accounts](manage-containers/manage-serviceaccounts.md)
 ## [Anti-Virus Optimization](https://msdn.microsoft.com/en-us/windows/hardware/drivers/ifs/anti-virus-optimization-for-windows-containers)
 
