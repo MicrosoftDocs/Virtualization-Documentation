@@ -91,7 +91,7 @@ Nested virtualization makes this hardware support available to guest virtual mac
 
 The diagram below shows Hyper-V without nesting.  The Hyper-V hypervisor takes full control of the hardware virtualization capabilities (orange arrow), and does not expose them to the guest operating system.
 
-![](./media/HVNoNesting.png)
+![](./media/HVNoNesting.PNG)
 
 In contrast, the diagram below shows Hyper-V with nested virtualization enabled. In this case, Hyper-V exposes the hardware virtualization extensions to its virtual machines. With nesting enabled, a guest virtual machine can install its own hypervisor and run its own guest VMs.
 
