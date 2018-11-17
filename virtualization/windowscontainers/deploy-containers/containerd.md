@@ -12,7 +12,7 @@ ms.assetid: a0e62b32-0c4c-4dd4-9956-8056e9abd9e5
 
 # Container platform tools in Windows
 
-
+## Windows and Linux container platform
 
 In Linux environments, container management tools like Docker are built on another, more fundamental, set of container tools - [runc](https://github.com/opencontainers/runc) and [containerd](https://containerd.io/) ([GitHub project](https://github.com/containerd/containerd)).
 
@@ -22,7 +22,9 @@ Runc is a Linux command line tool for creating and running containers according 
 
 Containerd is a daemon that manages the container life cycle from image transfer and storage to container execution and supervision.
 
-To make it easier to extend container tools to run on a Windows container host in addition to the existing Linux container hosts, we've introduced a Windows counterpart to runc - [runhcs](https://github.com/Microsoft/hcsshim/tree/master/cmd/runhcs).
+To make it easier to extend container tools to run on a Windows container host in addition to the existing Linux container hosts, we've introduced a Windows counterpart to runc - [runhcs](https://github.com/Microsoft/hcsshim/tree/master/cmd/runhcs).  Further, we've worked closely with the containerd project to integrate runhcs into containerd for Windows.
+
+## runhcs
 
 Just like runc, runhcs runs containers defined by an OCI spec.  RunHCS can run process containers or Hyper-V containers
 
