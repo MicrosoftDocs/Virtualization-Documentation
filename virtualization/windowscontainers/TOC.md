@@ -61,6 +61,7 @@
 ## [Version Compatibility](deploy-containers/version-compatibility.md)
 ## [Hyper-V Isolation](manage-containers/hyperv-container.md)
 ## [Linux containers on Windows](deploy-containers/linux-containers.md)
+## [RunHCS and Containerd](deploy-containers/containerd.md)
 ## [Active Directory Service Accounts](manage-containers/manage-serviceaccounts.md)
 ## [Anti-Virus Optimization](https://msdn.microsoft.com/en-us/windows/hardware/drivers/ifs/anti-virus-optimization-for-windows-containers)
 
