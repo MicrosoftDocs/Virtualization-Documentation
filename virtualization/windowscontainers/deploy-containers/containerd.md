@@ -12,13 +12,23 @@ ms.assetid: a0e62b32-0c4c-4dd4-9956-8056e9abd9e5
 
 # Container platform tools in Windows
 
-In Linux environments, tools like Docker and Kubernetes are built on another, more fundamental, container runtime called [runc](https://github.com/opencontainers/runc).  Runc is a Linux command line tool for creating and running containers according to the [OCI container runtime specification](https://github.com/opencontainers/runtime-spec).
 
-To make it easier to extend container tools to run Windows containers and run on a Windows container host, we've introduced a Windows counterpart to runc, [runhcs](https://github.com/Microsoft/hcsshim/tree/master/cmd/runhcs).  Just like runc, runhcs runs containers defined by an OCI spec.  
+
+In Linux environments, container management tools like Docker are built on another, more fundamental, set of container tools - [runc](https://github.com/opencontainers/runc) and [containerd](https://containerd.io/) ([GitHub project](https://github.com/containerd/containerd)).
+
+![Docker architecture on Linux](media/docker-on-linux.png)
+
+Runc is a Linux command line tool for creating and running containers according to the [OCI container runtime specification](https://github.com/opencontainers/runtime-spec).
+
+Containerd is a daemon that manages the container life cycle from image transfer and storage to container execution and supervision.
+
+To make it easier to extend container tools to run on a Windows container host in addition to the existing Linux container hosts, we've introduced a Windows counterpart to runc - [runhcs](https://github.com/Microsoft/hcsshim/tree/master/cmd/runhcs).
+
+Just like runc, runhcs runs containers defined by an OCI spec.  RunHCS can run process containers or Hyper-V containers
 
 We're also contributing to containerd/containerd and containerd/cri to use runhcs on Windows so the windows container ecosystem use containerd for both Windows and Linux containers.
 
-To this point, Windows hasn't had a command line tool for creating and running containers - Docker is built directly on a Windows C API called the Host Compute Service (HCS).  Now runhcs is the layer that calls into the HCS directly, other container tools are built on it rather than the HCS directly.
+To this point, Windows hasn't had a command line tool for creating and running containers - Docker is built directly on a Windows C API called the [Host Compute Service (HCS)](https://blogs.technet.microsoft.com/virtualization/2017/01/27/introducing-the-host-compute-service-hcs/) via [hcsshim](https://github.com/Microsoft/hcsshim).  Now runhcs is the layer that calls into the HCS.
 
 ![Containerd based container environments](media/containerd-platform.png)
 Some set up required :)
