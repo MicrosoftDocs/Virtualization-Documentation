@@ -74,14 +74,11 @@ Container commands available in runhcs include:
 
 The only command that could be considered multi-container is **list**.  It lists running (or paused) containers started by runhcs with the given root.
 
-## containerd and containerd/cri
+## containerd/cri
 
-We're also contributing to containerd/containerd and containerd/cri to use runhcs on Windows so the windows container ecosystem use containerd for both Windows and Linux containers.
+While OCI specs define a single container, CRI (container runtime interface) spec defines a multi-container environment for container orchestrators like Kubernetes and Service Fabric Mesh.
 
 ![Containerd based container environments](media/containerd-platform.png)
-Some set up required :)
-
-![LCOW Process map](media/containerd-process-map.png)
 
 ## HCS
 
@@ -103,3 +100,7 @@ Check it out on [GitHub](https://github.com/microsoft/dotnet-computevirtualizati
 If you want to use the HCS (either directly or via a wrapper), or you want to make a Rust/Haskell/InsertYourLanguage wrapper around the HCS, please leave a comment.
 
 For a deeper look at the HCS, watch [John Stark’s DockerCon presentation](https://www.youtube.com/watch?v=85nCF5S8Qok).
+
+### call stack reference
+
+![LCOW Process map](media/containerd-process-map.png)
