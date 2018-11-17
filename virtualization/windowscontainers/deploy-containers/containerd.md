@@ -76,9 +76,13 @@ The only command that could be considered multi-container is **list**.  It lists
 
 ## containerd/cri
 
+> !NOTE CRI support is only available in Server 2019/Windows 10 1809 and later.
+
 While OCI specs define a single container, CRI (container runtime interface) spec defines a multi-container environment for container orchestrators like Kubernetes and Service Fabric Mesh.
 
 ![Containerd based container environments](media/containerd-platform.png)
+
+While runHCS and containerd both can manage on any Windows system Server 2016 or later, supporting Pods (groups of containers) required breaking changes to container tools in Windows.  CRI support is available on Windows Server 2019/Windows 10 1809 and later.
 
 ## HCS
 
