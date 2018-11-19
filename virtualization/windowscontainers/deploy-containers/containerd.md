@@ -18,7 +18,7 @@ This article will talk about the Windows and Linux container platform, `runhcs`,
 
 ## Windows and Linux container platform
 
-In Linux environments, container management tools like Docker are built on another, more granular, set of container tools - [runc](https://github.com/opencontainers/runc) and [containerd](https://containerd.io/).
+In Linux environments, container management tools like Docker are built on a more granular, set of container tools - [runc](https://github.com/opencontainers/runc) and [containerd](https://containerd.io/).
 
 ![Docker architecture on Linux](media/docker-on-linux.png)
 
@@ -59,10 +59,10 @@ Container commands available in runhcs include:
 * Tools to create and run a container
   * **run** creates and runs a container
   * **create** create a container
+  * **exec** runs a new process inside the container
 
 * Tools to manage processes running in a container:
   * **start** executes the user defined process in a created container
-  * **exec** runs a new process inside the container
   * **pause** pause suspends all processes inside the container
   * **resume** resumes all processes that have been previously paused
   * **ps** ps displays the processes running inside a container
@@ -108,7 +108,3 @@ Check it out on [GitHub](https://github.com/microsoft/dotnet-computevirtualizati
 If you want to use the HCS (either directly or via a wrapper), or you want to make a Rust/Haskell/InsertYourLanguage wrapper around the HCS, please leave a comment.
 
 For a deeper look at the HCS, watch [John Stark’s DockerCon presentation](https://www.youtube.com/watch?v=85nCF5S8Qok).
-
-### call stack reference
-
-![LCOW Process map](media/containerd-process-map.png)
