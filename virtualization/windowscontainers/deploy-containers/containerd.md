@@ -59,10 +59,10 @@ Container commands available in runhcs include:
 * Tools to create and run a container
   * **run** creates and runs a container
   * **create** create a container
-  * **exec** runs a new process inside the container
 
 * Tools to manage processes running in a container:
   * **start** executes the user defined process in a created container
+  * **exec** runs a new process inside the container
   * **pause** pause suspends all processes inside the container
   * **resume** resumes all processes that have been previously paused
   * **ps** ps displays the processes running inside a container
@@ -78,7 +78,11 @@ The only command that could be considered multi-container is **list**.  It lists
 
 > !NOTE CRI support is only available in Server 2019/Windows 10 1809 and later.
 
-While OCI specs define a single container, CRI (container runtime interface) spec defines a multi-container environment for container orchestrators like Kubernetes and Service Fabric Mesh.
+While OCI specs defines a single container, CRI (container runtime interface) describes containers as workload(s) in a shared sandbox environment called a pod.  Pods can containe one or more container workloads.  Pods let container orchestrators like Kubernetes and Service Fabric Mesh handle grouped worloads that should be on the same host with some shared resources such as memory and vNETs.
+
+Links to the CRI spec:
+* [RunPodSandbox](https://github.com/kubernetes/kubernetes/blob/master/pkg/kubelet/apis/cri/runtime/v1alpha2/api.proto#L24) - Pod Spec
+* [CreateContainer](https://github.com/kubernetes/kubernetes/blob/master/pkg/kubelet/apis/cri/runtime/v1alpha2/api.proto#L47) - Workload Spec
 
 ![Containerd based container environments](media/containerd-platform.png)
 
