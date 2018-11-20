@@ -41,12 +41,15 @@ At this point, Docker still calls directly into the HCS. Going forward, however,
 
 ## runhcs
 
-RunHCS is a fork of runc.  Like runc, runhcs is a command line client for running applications packaged according to the Open Container Initiative (OCI) format and is a compliant implementation of the Open Container Initiative specification.  
+`runhcs` is a fork of `runc`.  Like `runc`, `runhcs` is a command line client for running applications packaged according to the Open Container Initiative (OCI) format and is a compliant implementation of the Open Container Initiative specification.
 
 Functional differences between runc and runhcs include:
 
-* runhcs runs on Windows
-* runhcs can run both Windows and Linux [Hyper-V containers](../manage-containers/hyperv-container.md) in addition to Windows process containers.
+* `runhcs` runs on Windows.  It communicates with the [HCS](containerd.md#hcs) to create and manage containers.
+* `runhcs` can run a variety of different container types.
+
+  * Windows and Linux [Hyper-V containers](../manage-containers/hyperv-container.md)
+  * Windows process containers (container image must match the container host)
 
 **Usage:**
 
@@ -84,6 +87,18 @@ Container commands available in runhcs include:
 
 The only command that could be considered multi-container is **list**.  It lists running (or paused) containers started by runhcs with the given root.
 
+### HCS
+
+We have two wrappers available on GitHub to interface with the HCS. Since the HCS is a C API, wrappers make it easy to call the HCS from higher level languages.  
+
+* [hcsshim](https://github.com/microsoft/hcsshim) - HCSShim is written in Go and it's the basis for runhcs.
+Grab the latest from AppVeyor or build it yourself.
+* [dotnet-computevirtualization](https://github.com/microsoft/dotnet-computevirtualization) - dotnet-computevirtualization is a C# wrapper for the HCS.
+
+If you want to use the HCS (either directly or via a wrapper), or you want to make a Rust/Haskell/InsertYourLanguage wrapper around the HCS, please leave a comment.
+
+For a deeper look at the HCS, watch [John Stark’s DockerCon presentation](https://www.youtube.com/watch?v=85nCF5S8Qok).
+
 ## containerd/cri
 
 > !NOTE CRI support is only available in Server 2019/Windows 10 1809 and later.
@@ -98,26 +113,3 @@ Links to the CRI spec:
 ![Containerd based container environments](media/containerd-platform.png)
 
 While runHCS and containerd both can manage on any Windows system Server 2016 or later, supporting Pods (groups of containers) required breaking changes to container tools in Windows.  CRI support is available on Windows Server 2019/Windows 10 1809 and later.
-
-## HCS
-
-We have two wrappers available on GitHub to interface with the HCS. Since the HCS is a C API, wrappers make it easy to call the HCS from higher level languages.  
-
-### HCSShim
-
-HCSShim is written in Go and it's the basis for runhcs.
-Grab the latest from AppVeyor or build it yourself.
-
-Check it out in [GitHub](https://github.com/microsoft/hcsshim).
-
-### dotnet-computevirtualization
-
-> !NOTE this is a reference implementation - use it for dev/test only.
-
-dotnet-computevirtualization is a C# wrapper for the HCS.
-
-Check it out on [GitHub](https://github.com/microsoft/dotnet-computevirtualization).
-
-If you want to use the HCS (either directly or via a wrapper), or you want to make a Rust/Haskell/InsertYourLanguage wrapper around the HCS, please leave a comment.
-
-For a deeper look at the HCS, watch [John Stark’s DockerCon presentation](https://www.youtube.com/watch?v=85nCF5S8Qok).
