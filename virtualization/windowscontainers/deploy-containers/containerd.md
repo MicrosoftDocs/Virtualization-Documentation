@@ -112,6 +112,8 @@ Check it out in [GitHub](https://github.com/microsoft/hcsshim).
 
 ### dotnet-computevirtualization
 
+> !NOTE this is a reference implementation - use it for dev/test only.
+
 dotnet-computevirtualization is a C# wrapper for the HCS.
 
 Check it out on [GitHub](https://github.com/microsoft/dotnet-computevirtualization).
