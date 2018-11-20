@@ -14,7 +14,7 @@ ms.assetid: a0e62b32-0c4c-4dd4-9956-8056e9abd9e5
 
 The Windows container platform is expanding!  Docker was the first piece of the container journey, now we are building other container platform tools.
 
-1. [containerd/cri](https://github.com/containerd/cri)
+1. [containerd/cri](https://github.com/containerd/cri) - new in Windows Server 2019/Windows 10 1809.
 1. [runhcs](https://github.com/Microsoft/hcsshim/tree/master/cmd/runhcs) - a Windows container host counterpart to runc.
 1. [hcs](https://docs.microsoft.com/virtualization/api/) - the Host Compute Service + handy shims to make it easier to use.
 
