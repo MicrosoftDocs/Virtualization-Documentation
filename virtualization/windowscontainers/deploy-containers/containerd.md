@@ -3,7 +3,7 @@ title: Building the container stack
 description: Learn more about new container building blocks available in Windows.
 keywords: LCOW, linux containers, docker, containers, containerd, cri, runhcs, runc
 author: scooley
-ms.date: 11/17/2018
+ms.date: 11/19/2018
 ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
@@ -41,9 +41,14 @@ At this point, Docker still calls directly into the HCS. Going forward, however,
 
 ## runhcs
 
-RunHCS is a fork of runc.  Like runc, runhcs is a command line client for running applications packaged according to the Open Container Initiative (OCI) format and is a compliant implementation of the Open Container Initiative specification.  The biggest difference between the two, besides running on Windows, is that runhcs can run both Windows and Linux [Hyper-V containers](../manage-containers/hyperv-container.md) in addition to Windows process containers.
+RunHCS is a fork of runc.  Like runc, runhcs is a command line client for running applications packaged according to the Open Container Initiative (OCI) format and is a compliant implementation of the Open Container Initiative specification.  
 
-Usage:
+Functional differences between runc and runhcs include:
+
+* runhcs runs on Windows
+* runhcs can run both Windows and Linux [Hyper-V containers](../manage-containers/hyperv-container.md) in addition to Windows process containers.
+
+**Usage:**
 
 ``` cmd
 runhcs run [ -b bundle ] <container-id>
@@ -83,7 +88,7 @@ The only command that could be considered multi-container is **list**.  It lists
 
 > !NOTE CRI support is only available in Server 2019/Windows 10 1809 and later.
 
-While OCI specs defines a single container, CRI (container runtime interface) describes containers as workload(s) in a shared sandbox environment called a pod.  Pods can contain one or more container workloads.  Pods let container orchestrators like Kubernetes and Service Fabric Mesh handle grouped workloads that should be on the same host with some shared resources such as memory and vNETs.
+While OCI specs defines a single container, [CRI](https://github.com/kubernetes/kubernetes/blob/master/pkg/kubelet/apis/cri/runtime/v1alpha2/api.proto) (container runtime interface) describes containers as workload(s) in a shared sandbox environment called a pod.  Pods can contain one or more container workloads.  Pods let container orchestrators like Kubernetes and Service Fabric Mesh handle grouped workloads that should be on the same host with some shared resources such as memory and vNETs.
 
 Links to the CRI spec:
 
