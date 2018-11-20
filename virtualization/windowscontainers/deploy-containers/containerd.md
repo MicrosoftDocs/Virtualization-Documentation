@@ -12,13 +12,20 @@ ms.assetid: a0e62b32-0c4c-4dd4-9956-8056e9abd9e5
 
 # Container platform tools on Windows
 
-To make container management tools consistent across Windows and Linux with as little operating system specific integration work as possible, we're introducing a Windows counterpart to runc - [runhcs](https://github.com/Microsoft/hcsshim/tree/master/cmd/runhcs).  We have also worked closely with the containerd project to integrate runhcs into [containerd/containerd](https://github.com/containerd/containerd) and [containerd/cri](https://github.com/containerd/cri).
+The Windows container platform is expanding!  Docker was the first piece of the container journey, now we are building other container platform tools.
 
-This article will talk about the Windows and Linux container platform, `runhcs`, HCS (Host Compute Service), and `containerd` on Windows.
+1. [containerd/cri](https://github.com/containerd/cri)
+1. [runhcs](https://github.com/Microsoft/hcsshim/tree/master/cmd/runhcs) - a Windows container host counterpart to runc.
+1. [hcs](https://docs.microsoft.com/virtualization/api/) - the Host Compute Service + handy shims to make it easier to use.
+
+    * [hcsshim](https://github.com/microsoft/hcsshim)
+    * [dotnet-computevirtualization](https://github.com/microsoft/dotnet-computevirtualization)
+
+This article will talk about the Windows and Linux container platform as well as each container platform tool.
 
 ## Windows and Linux container platform
 
-In Linux environments, container management tools like Docker are built on a more granular, set of container tools - [runc](https://github.com/opencontainers/runc) and [containerd](https://containerd.io/).
+In Linux environments, container management tools like Docker are built on a more granular set of container tools - [runc](https://github.com/opencontainers/runc) and [containerd](https://containerd.io/).
 
 ![Docker architecture on Linux](media/docker-on-linux.png)
 
@@ -26,13 +33,11 @@ In Linux environments, container management tools like Docker are built on a mor
 
 `containerd` is a daemon that manages container life cycle from downloading and unpacking the container image through container execution and supervision.
 
-On Windows, we initially took a different approach.  When we started working with Docker to support Windows containers, we built directly on the HCS (Host Compute Service).  [This blog post](https://blogs.technet.microsoft.com/virtualization/2017/01/27/introducing-the-host-compute-service-hcs/) is full of information about why we built the HCS and why we took this approach to containers initially.
+On Windows, we took a different approach.  When we started working with Docker to support Windows containers, we built directly on the HCS (Host Compute Service).  [This blog post](https://blogs.technet.microsoft.com/virtualization/2017/01/27/introducing-the-host-compute-service-hcs/) is full of information about why we built the HCS and why we took this approach to containers initially.
 
 ![Initial Docker Engine architecture on Windows](media/hcs.png)
 
-At this point, Docker still calls directly into the HCS. Going forward, however, container management tools could call into containerd and runhcs the way they call on containerd and runc on Linux.
-
-![Future Docker Engine architecture on Windows](media/hcs-with-runhcs.png)
+At this point, Docker still calls directly into the HCS. Going forward, however, container management tools expanding to include Windows containers and the Windows container host could call into containerd and runhcs the way they call on containerd and runc on Linux.
 
 ## runhcs
 
@@ -59,10 +64,10 @@ Container commands available in runhcs include:
 * Tools to create and run a container
   * **run** creates and runs a container
   * **create** create a container
-  * **exec** runs a new process inside the container
 
 * Tools to manage processes running in a container:
   * **start** executes the user defined process in a created container
+  * **exec** runs a new process inside the container
   * **pause** pause suspends all processes inside the container
   * **resume** resumes all processes that have been previously paused
   * **ps** ps displays the processes running inside a container
@@ -78,9 +83,10 @@ The only command that could be considered multi-container is **list**.  It lists
 
 > !NOTE CRI support is only available in Server 2019/Windows 10 1809 and later.
 
-While OCI specs defines a single container, CRI (container runtime interface) describes containers as workload(s) in a shared sandbox environment called a pod.  Pods can containe one or more container workloads.  Pods let container orchestrators like Kubernetes and Service Fabric Mesh handle grouped worloads that should be on the same host with some shared resources such as memory and vNETs.
+While OCI specs defines a single container, CRI (container runtime interface) describes containers as workload(s) in a shared sandbox environment called a pod.  Pods can contain one or more container workloads.  Pods let container orchestrators like Kubernetes and Service Fabric Mesh handle grouped workloads that should be on the same host with some shared resources such as memory and vNETs.
 
 Links to the CRI spec:
+
 * [RunPodSandbox](https://github.com/kubernetes/kubernetes/blob/master/pkg/kubelet/apis/cri/runtime/v1alpha2/api.proto#L24) - Pod Spec
 * [CreateContainer](https://github.com/kubernetes/kubernetes/blob/master/pkg/kubelet/apis/cri/runtime/v1alpha2/api.proto#L47) - Workload Spec
 
