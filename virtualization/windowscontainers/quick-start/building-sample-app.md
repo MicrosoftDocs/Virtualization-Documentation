@@ -61,7 +61,7 @@ FROM microsoft/aspnetcore-build:1.1 AS build-env
 WORKDIR /app
 ```
 
-Next, we copy over the .csproj files into our temporary container's '/app' directory. We do this because .csproj files contain contain a list of package references our project needs.
+Next, we copy over the .csproj files into our temporary container's '/app' directory. We do this because .csproj files contain a list of package references our project needs.
 
 After copying this file, dotnet will read from it and then to go out and fetch all of the dependencies and tools which our project needs.
 
