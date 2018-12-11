@@ -2,7 +2,7 @@
 title: Configuring Nested VMs to Communicate Directly with Resources in an Azure Virtual Network
 description: Nested Virtualization
 keywords: windows 10, hyper-v, Azure
-author: johncslack
+author: mrajess
 ms.date: 12/10/2018
 ms.topic: article
 ms.prod: windows-10-hyperv
@@ -10,7 +10,7 @@ ms.service: windows-10-hyperv
 ms.assetid: 1ecb85a6-d938-4c30-a29b-d18bd007ba08
 ---
 
-# Configuring Nested VMs to Communicate Directly with Resources in an Azure Virtual Network
+# Configure Nested VMs to Communicate with Resources in an Azure Virtual Network
 
 The original guidance on deploying and configuring nested virtual machines within Azure necessitates that you access these VMs through a NAT Switch. This presents several limitations:
 
@@ -40,7 +40,7 @@ This guide makes the following assumptions about the target environment:
 
 * Background: Nested VMs WILL NOT receive DHCP from the VNet that their host is connected to even if you configure an Internal or External switch. 
   * This means that the Hyper-V host must provide DHCP.
-* We will allocate a block of IPs for use JUST by the Hyper-V host.  The Hyper-V host is not aware of the currently assigned leases on the VNet, so in order to avoid a situation in which the host assigns an IP already in existence we must allocate a block of IPs for use just by the Hyper-V host. This will allow us to avoid a duplicate IP scenario. 
+* We will allocate a block of IPs for use JUST by the Hyper-V host.  The Hyper-V host is not aware of the currently assigned leases on the VNet, so in order to avoid a situation in which the host assigns an IP already in existence we must allocate a block of IPs for use just by the Hyper-V host. This will allow us to avoid a duplicate IP scenario.
   * The block of IPs we choose will correspond to a Subnet within the VNet that your Hyper-V host resides on.
   * The reason we want this to correspond to an existing Subnet is to handle BGP advertisements back over the ExpressRoute. If we just made up an IP range for the Hyper-V host to use then we'd have to create a series of static routes to allow clients on-prem to communicate with the nested VMs. This does mean that this isn't a hard requirement as you COULD make up an IP range for the nested VMs and then create all the routes needed to direct clients to the Hyper-V host for that range.
 * We will create an Internal Switch within Hyper-V and then we will assign the newly created interface an IP address within a range we set aside for DHCP. This IP address will become the default gateway for our nested VMs and be used to route between the Internal Switch and the NIC of the host that's connected to our VNet.
