@@ -43,6 +43,7 @@ The physical address space of the VM partition (the GPA space) is populated usin
 |[WHvMapGpaRange](funcs/WHvMapGpaRange.md)|Creating a mapping for a range in the GPA space of a partition sets a region in the caller’s process as the backing memory for that range. The operation replaces any previous mappings for the specified GPA pages.|
 |[WHvUnmapGpaRange](funcs/WHvUnmapGpaRange.md)|Unmapping a previously mapped GPA range makes the memory range unavailable to the partition. Any further access by a virtual processor to the range will result in a memory access exit.|
 |[WHvTranslateGva](funcs/WHvTranslateGva.md)|Translating a virtual address used by a virtual processor in a partition allows the virtualization stack to emulate a processor instruction for an I/O operation, using the results of the translation to read and write the memory operands of the instruction in the GPA space of the partition.|
+|[WHvQueryGpaRangeDirtyBitmap](funcs/WHvQueryGpaRangeDirtyBitmap.md)|Querying a range of GPA space to determine which pages have been modified by the guest since the last query of the range.|
 |   |   |
 
 ## Virtual Processor Execution
@@ -96,12 +97,31 @@ For more information about the registers see: [Virtual Processor Register Names 
 |Function   |Description|
 |---|---|
 |[WHvGetVirtualProcessorRegisters](funcs/WHvGetVirtualProcessorRegisters.md)|This function allows for querying a set of individual registers by the virtualization stack.|
-|[WHvSetVirtualProcessorRegisters](funcs/WHvSetVirtualProcessorRegisters.md)|This function allows for setting a set of individual registers by the virtualization stack|
+|[WHvGetVirtualProcessorXsaveState](funcs/WHvGetVirtualProcessorXsaveState.md)|This function allows for querying a virtual processor's XSAVE state.|
+|[WHvSetVirtualProcessorRegisters](funcs/WHvSetVirtualProcessorRegisters.md)|This function allows for setting a set of individual registers by the virtualization stack.|
+|[WHvSetVirtualProcessorXsaveState](funcs/WHvSetVirtualProcessorXsaveState.md)|This function allows for setting a virtual processor's XSAVE state.|
 |   |   |
 
+### Interrupt controller virtualization
 
+Optionally, the hypervisor platform can emulate a local APIC
+interrupt controller. For virtual machines where an APIC is required, using the platform's built-in emulation will yield the best performance.
 
+When this functionality is enabled, these functions can be used to query and set APIC state and to request virtual interrupts.
 
+|Function|Description|
+|---|---|
+|[WHvGetVirtualProcessorInterruptControllerState](funcs/WHvGetVirtualProcessorInterruptControllerState.md)|Queries a virtual processor's interrupt controller state.|
+|[WHvRequestInterrupt](funcs/WHvRequestInterrupt.md)|Requests a interrupt.|
+|[WHvSetVirtualProcessorInterruptControllerState](funcs/WHvGetVirtualProcessorInterruptControllerState.md)|Sets a virtual processor's interrupt controller state.|
+|||
 
+### Counters
 
+These functions can be used to query various hypervisor platform counters.
 
+|Function|Description|
+|---|---|
+|[WHvGetPartitionCounters](funcs/WHvGetPartitionCounters.md)|This function allows querying counters for a partition.|
+|[WHvGetVirtualProcessorCounters](funcs/WHvGetVirtualProcessorCounters.md)|This function allows querying counters for a virtual processor.|
+|||
