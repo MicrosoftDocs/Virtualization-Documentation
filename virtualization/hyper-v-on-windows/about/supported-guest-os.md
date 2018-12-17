@@ -37,6 +37,7 @@ In order to be supported, all operating systems (guest and host) must be up to d
 | Windows Vista with Service Pack 2 (SP2) | 2 | Business, Enterprise, and Ultimate, including N and KN editions. |
 | - | | |
 | [Windows Server Semi-Annual Channel](https://docs.microsoft.com/en-us/windows-server/get-started/semi-annual-channel-overview) | 64 | |
+| Windows Server 2019 | 64 | |
 | Windows Server 2016 | 64 | |
 | Windows Server 2012 R2 | 64 | |
 | Windows Server 2012 | 64 | |
