@@ -16,46 +16,48 @@ In the previous Windows Server quick start, a Windows container was created from
 
 This quick start is specific to Windows Server containers on Windows Server 2016 and will use the Windows Server Core container base image. Additional quick start documentation can be found in the table of contents on the left hand side of this page.
 
-**Prerequisites:**
+## Prerequisites
+
+Please make sure you meet the following requirements:
 
 - One computer system (physical or virtual) running Windows Server 2016.
 - Configure this system with the Windows Container feature and Docker. For a walkthrough on these steps, see [Windows Containers on Windows Server](./quick-start-windows-server.md).
 - A Docker ID, this will be used to push a container image to Docker Hub. If you do not have a Docker ID, sign up for one at [Docker Cloud](https://cloud.docker.com/).
 
-## 1. Container Image - Dockerfile
+## Container Image - Dockerfile
 
 Although a container can be manually created, modified, and then captured into a new container image, Docker includes a method for automating this process using a Dockerfile. For this exercise, a Docker ID is required. If you do not have a Docker ID, sign up for one at [Docker Cloud]( https://cloud.docker.com/).
 
 On the container host, create a directory `c:\build`, and in this directory create a file named `Dockerfile`. Note – the file should not have a file extension.
 
-```
+```console
 powershell new-item c:\build\Dockerfile -Force
 ```
 
 Open the Dockerfile in notepad.
 
-```
+```console
 notepad c:\build\Dockerfile
 ```
 
-Copy the following text into the Dockerfile, and save the file. These commands instruct Docker to create a new image, using `microsoft/iis` as the base. The dockerfile then runs the commands specified in the `RUN` instruction, in this case the index.html file is updated with new content. 
+Copy the following text into the Dockerfile, and save the file. These commands instruct Docker to create a new image, using `microsoft/iis` as the base. The dockerfile then runs the commands specified in the `RUN` instruction, in this case the index.html file is updated with new content.
 
 For more information on Dockerfiles, see the [Dockerfiles on Windows](../manage-docker/manage-windows-dockerfile.md).
 
-```
+```dockerfile
 FROM microsoft/iis
 RUN echo "Hello World - Dockerfile" > c:\inetpub\wwwroot\index.html
 ```
 
 The `docker build` command will start the image build process. The `-t` parameter instructs the build process to name the new image `iis-dockerfile`. **Replace 'user' with the user name of your Docker account**. If you do not have an account with Docker, sign up for one at [Docker Cloud](https://cloud.docker.com/).
 
-```
+```console
 docker build -t <user>/iis-dockerfile c:\Build
 ```
 
 When completed, you can verify that the image has been created using the `docker images` command.
 
-```
+```console
 docker images
 
 REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
@@ -67,7 +69,7 @@ windowsservercore   latest              dbfee88ee9fd        8 weeks ago         
 
 Now, deploy a container with the following command, again replacing user with your Docker ID.
 
-```
+```console
 docker run -d -p 80:80 <user>/iis-dockerfile ping -t localhost
 ```
 
@@ -79,25 +81,26 @@ Back on the container host, use `docker ps` to get the name of the container, an
 
 Get container name.
 
-```
+```console
 docker ps
 
 CONTAINER ID   IMAGE            COMMAND               CREATED              STATUS              PORTS                NAMES
 c1dc6c1387b9   iis-dockerfile   "ping -t localhost"   About a minute ago   Up About a minute   0.0.0.0:80->80/tcp   cranky_brown
 ```
+
 Stop container.
 
-```
+```console
 docker stop <container name>
 ```
 
 Remove container.
 
-```
+```console
 docker rm -f <container name>
 ```
 
-## 2. Docker Push
+## Docker Push
 
 Docker container images can be stored in a container registry. Once an image is stored in a registry, it can be retrieved for later use across many different container hosts. Docker provides a public registry for storing container images at [Docker Hub](https://hub.docker.com/).
 
@@ -105,7 +108,7 @@ For this exercise, the custom hello world image will be pushed to your own accou
 
 First, login to your docker account using the `docker login command`.
 
-```
+```console
 docker login
 
 Login with your Docker ID to push and pull images from Docker Hub. If you don't have a Docker ID, head over to https://hub.docker.com to create one.
@@ -118,19 +121,19 @@ Login Succeeded
 
 Once logged in, the container image can be pushed to Docker Hub. To do so, use the `docker push` command. **Replace 'user' with your Docker ID**. 
 
-```
+```console
 docker push <user>/iis-dockerfile
 ```
 
 The container image can now be downloaded from Docker Hub onto any Windows container host using `docker pull`. For this tutorial, we will delete the existing image, and then pull it down from Docker Hub. 
 
-```
+```console
 docker rmi <user>/iis-dockerfile
 ```
 
 Running `docker images` will show that the image has been removed.
 
-```
+```console
 docker images
 
 REPOSITORY                TAG                 IMAGE ID            CREATED             SIZE
@@ -148,4 +151,5 @@ docker pull <user>/iis-dockerfile
 
 If you would like to see how to package a sample ASP.NET application, visit the Windows 10 tutorials linked below.
 
-[Windows Containers on Windows 10](./quick-start-windows-10.md)
+> [!div class="nextstepaction"]
+> [Containers on Windows 10](./quick-start-windows-10.md)
