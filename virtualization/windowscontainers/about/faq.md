@@ -64,4 +64,4 @@ This can present an issue when you have an air-gapped machine that can _only_ pu
 To guarantee the packaging format remains universal, Docker recently organized the Open Container Initiative (OCI), aiming to ensure container packaging remains an open and foundation-led format with Microsoft as one of the founding members.
 
 > ![TIP]
-Have a recommendation for an addition to the FAQ? We encourage you to a new feedback issue below or open a PR against these docs with your recommendations!
+> Have a recommendation for an addition to the FAQ? We encourage you to a new feedback issue below or open a PR against these docs with your recommendations!
