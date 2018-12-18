@@ -14,11 +14,11 @@ ms.assetid: 29fbe13a-228a-4eaa-9d4d-90ae60da5965
 
 To understand why building a container ecosystem is so important, let's first talk about Docker.
 
-## Docker’s Appeal
+## Docker
 
-The concept of containers (namespace isolation and resource governance) has been around for a long time, going back to BSD Jails, Solaris Zones and the basic UNIX chroot (change root) mechanism.   What Docker has done is provide a common toolset, packaging model, and deployment mechanism.  By doing so, Docker greatly simplified the containerization and distribution of applications.  Those applications can then run anywhere on any Linux host, a capability we're providing on Windows as well.
+The concept of containers (namespace isolation and resource governance) has been around for a long time, going back to BSD Jails, Solaris Zones and the basic UNIX chroot (change root) mechanism.   What Docker has done is provide a common toolset, packaging model, and deployment mechanism.  By doing so, Docker simplified the containerization and distribution of applications.  Those applications can then run anywhere on any Linux host, a capability we're providing on Windows as well.
 
-This ubiquitous technology not only simplifies management by offering the same management commands against any host, it also creates a unique opportunity for seamless DevOps.
+Ubiquitous packaging model and deployment technology simplifies management by offering the same management commands against any host and creates a unique opportunity for seamless DevOps.
 
 From a developer’s desktop to a testing machine to a set of production machines, a Docker image can be created that will deploy identically across any environment in seconds. This story has created a massive and growing ecosystem of applications packaged in Docker containers, with DockerHub, the public containerized-application registry that Docker maintains.
 
