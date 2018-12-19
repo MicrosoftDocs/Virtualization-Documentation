@@ -16,6 +16,7 @@
 ## [Create a virtual switch](quick-start/connect-to-network.md)
 ## [Build an integration Service](user-guide/make-integration-service.md)
 ## [Port Hyper-V WMI](user-guide/refactor-wmiv1-to-wmiv2.md)
+## [Nested VMs in Azure Virtual Networks](user-guide/nested-virtualization-azure-virtual-network.md) 
 
 # Reference
 ## [Hyper-V Requirements](reference/hyper-v-requirements.md)

@@ -143,8 +143,7 @@ PS C:\> Get-NetNat | Remove-NetNAT (again, this will remove the NAT but keep the
 PS C:\> New-NetNat -Name SharedNAT -InternalIPInterfaceAddressPrefix <shared prefix>
 PS C:\> Start-Service docker
 ```
-Docker/HNS will assign IPs to Windows containers from the <container prefix>
-Admin will assign IPs to VMs from the difference set of the <shared prefix> and <container prefix>
+Docker/HNS will assign IPs to Windows containers and Admin will assign IPs to VMs from the difference set of the two.
 
 User has installed Windows Container feature with docker engine running and now wants to connect VMs to the NAT network
 ```
@@ -158,8 +157,7 @@ PS C:\> New-NetNat -Name SharedNAT -InternalIPInterfaceAddressPrefix <shared pre
 PS C:\> New-VirtualSwitch -Type internal (attach VMs to this new vSwitch)
 PS C:\> Start-Service docker
 ```
-Docker/HNS will assign IPs to Windows containers from the <container prefix>
-Admin will assign IPs to VMs from the difference set of the <shared prefix> and <container prefix>
+Docker/HNS will assign IPs to Windows containers and Admin will assign IPs to VMs from the difference set of the two.
 
 In the end, you should have two internal VM switches and one NetNat shared between them.
 

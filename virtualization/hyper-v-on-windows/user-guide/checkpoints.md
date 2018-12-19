@@ -16,9 +16,9 @@ One of the great benefits to virtualization is the ability to easily save the st
 
 Windows 10 Hyper-V includes two types of checkpoints:
 
-* **Standard Checkpoints** -- takes a snapshot of the virtual machine and virtual machine memory state at the time the checkpoint is initiated. A snapshot is not a full backup and can cause data consistency issues with systems that replicate data between different nodes such as Active Directory.  Hyper-V only offered standard checkpoints (formerly called snapshots) prior to Windows 10.
+* **Standard Checkpoints**: takes a snapshot of the virtual machine and virtual machine memory state at the time the checkpoint is initiated. A snapshot is not a full backup and can cause data consistency issues with systems that replicate data between different nodes such as Active Directory.  Hyper-V only offered standard checkpoints (formerly called snapshots) prior to Windows 10.
 
-* **Production Checkpoints** -- uses Volume Shadow Copy Service or File System Freeze on a Linux virtual machine to create a data-consistent backup of the virtual machine. No snapshot of the virtual machine memory state is taken.
+* **Production Checkpoints**: uses Volume Shadow Copy Service or File System Freeze on a Linux virtual machine to create a data-consistent backup of the virtual machine. No snapshot of the virtual machine memory state is taken.
 
 Production checkpoints are selected by default however this can be changed using either Hyper-V manager or PowerShell.
 
@@ -111,7 +111,7 @@ If you want to revert your virtual machine to a previous point-in-time, you can 
 
 ## Renaming checkpoints
 
-Many checkpoints are created at a specific point.  Giving them an identifyable name makes it easier to remember details about the system state when the checkpoint was created.
+Many checkpoints are created at a specific point.  Giving them an identifiable name makes it easier to remember details about the system state when the checkpoint was created.
 
 By default, the name of a checkpoint is the name of the virtual machine combined with the date and time the checkpoint was taken. This is the standard format: 
 
@@ -147,7 +147,7 @@ You should not delete the .avhdx files directly.
 To cleanly delete a checkpoint: 
 
 1.	In **Hyper-V Manager**, select the virtual machine.
-2.	In the **Checkpoints** section, right-click the checkpoint that you want to delete, and click Delete. You can also delete a checkpoint and all subsequent checkpoints. To do so, right-click the earliest checkpoint that you want to delete, and then click ****Delete Checkpoint** Subtree**.
+2.	In the **Checkpoints** section, right-click the checkpoint that you want to delete and click Delete. You can also delete a checkpoint and all subsequent checkpoints. To do so, right-click the earliest checkpoint that you want to delete, and then click ****Delete Checkpoint** Subtree**.
 3.	You might be asked to verify that you want to delete the checkpoint. Confirm that it is the correct checkpoint, and then click **Delete**. 
  
 **Using PowerShell**
@@ -157,7 +157,7 @@ Remove-VMCheckpoint -VMName <virtual machine name> -Name <checkpoint name>
 
 ## Exporting checkpoints
 
-Export bundles the checkpoint as a virtual machine so the checkpoint can be moved to a new location. Once imported, the checkpoint is restored as a virtual machine.  Exported checkpoints can be used for backup.
+Export bundles the checkpoint as a virtual machine so the checkpoint can be moved to a new location. Once imported, the checkpoint is restored as a virtual machine. Exported checkpoints can be used for backup.
 
 **Using PowerShell**
 ``` powershell
@@ -207,7 +207,7 @@ This exercise walks through creating and applying a standard checkpoint versus a
 
 Now that a checkpoint exists, make a modification to the virtual machine and then apply the checkpoint to revert the virtual machine back to the saved state. 
 
-1. Close the text file if it is still open and delete it from the virtual machines desktop.
+1. Close the text file if it is still open and delete it from the virtual machine's desktop.
 2. Open Hyper-V Manager, right click on the standard checkpoint, and select Apply.
 3. Select Apply on the Apply Checkpoint notification window.
 
@@ -222,9 +222,9 @@ Let’s now examine production checkpoints. This process is almost identical to 
 
 **Modify the virtual machine and Create a Production Checkpoint**
 
-1. Log into the virtual machine and create a new text file. If you have been following along in this exercises you can use the existing text file.
+1. Log into the virtual machine and create a new text file. If you followed the previous exercise, you can use the existing text file.
 2. Enter ‘This is a Production Checkpoint.’ into the text file, save the file but **do not close Notepad**.
-3. Open up Hyper-V Manager > right click on the virtual machine > select **Checkpoint**.
+3. Open Hyper-V Manager, right click on the virtual machine, and select **Checkpoint**.
 4. Click **OK** on the Production Checkpoint Created Window.
 
 <br />
@@ -234,8 +234,8 @@ Let’s now examine production checkpoints. This process is almost identical to 
 
 Now that a checkpoint exists make a modification to the system and then apply the checkpoint to revert the virtual machine back to the saved state. 
 
-1. Close the text file if it is still open and delete it from the virtual machines desktop.
-2. Open up Hyper-V Manager, right click on the production checkpoint, and select **Apply**.
+1. Close the text file if it is still open and delete it from the virtual machine's desktop.
+2. Open Hyper-V Manager, right click on the production checkpoint, and select **Apply**.
 3. Select **Apply** on the Apply Checkpoint notification window.
 
 Once the production checkpoint has been applied, noticed that the virtual machine is in an off state.

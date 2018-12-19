@@ -1,9 +1,9 @@
 ---
-title: Windows Container on Windows 10
+title: Windows and Linux Containers on Windows 10
 description: Container deployment quick start
-keywords: docker, containers
+keywords: docker, containers, LCOW
 author: taylorb-microsoft
-ms.date: 09/26/2016
+ms.date: 11/8/2018
 ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
@@ -12,103 +12,115 @@ ms.assetid: bb9bfbe0-5bdc-4984-912f-9c93ea67105f
 
 # Windows Containers on Windows 10
 
-The exercise will walk through basic deployment and use of the Windows container feature on Windows 10 Professional or Enterprise (Anniversary Edition). After completion, you will have installed Docker for Windows and run a simple container. If you need to familiarize yourself with containers, you can find this information in [About Containers](../about/index.md).
+> [!div class="op_single_selector"]
+> - [Linux Containers on Windows](quick-start-windows-10-linux.md)
+> - [Windows Containers on Windows](quick-start-windows-10.md)
 
-This quick start is specific to Windows 10. Additional quick start documentation can be found in the table of contents on the left hand side of this page.
+The exercise will walk through creating and running Windows containers on Windows 10.
+
+In this quick start you will accomplish:
+
+1. Installing Docker for Windows
+2. Running a simple Windows container
+
+This quick start is specific to Windows 10. Additional quick start documentation can be found in the table of contents on the left-hand side of this page.
+
+## Prerequisites
+Please make sure you meet the following requirements:
+- One physical computer system running Windows 10 Professional or Enterprise with Anniversary Update (version 1607) or later. 
+- Make sure [Hyper-V](https://docs.microsoft.com/en-us/virtualization/hyper-v-on-windows/reference/hyper-v-requirements) is enabled.
 
 ***Hyper-V isolation:***
-Windows Server Containers require Hyper-V isolation on Windows 10 in order to provide developers with the same kernel version and configuration that will be used in production, more about this can be found on the [About Windows container](../about/index.md) page.
+Windows Server Containers require Hyper-V isolation on Windows 10 in order to provide developers with the same kernel version and configuration that will be used in production, more about Hyper-V isolation can be found on the [About Windows container](../about/index.md) page.
 
-**Prerequisites:**
+> [!NOTE]
+> In the release of Windows October Update 2018, we no longer disallow users from running a Windows container in process-isolation mode on Windows 10 Enterprise or Professional for dev/test purposes. See the [FAQ](../about/faq.md) to learn more.
 
-- One physical computer system running Windows 10 Anniversary Edition or Creators Update (Professional or Enterprise).   
-- This quick start can be run on a Windows 10 virtual machine but nested virtualization will need to be enabled. More information can be found in the [Nested Virtualization Guide](https://msdn.microsoft.com/en-us/virtualization/hyperv_on_windows/user_guide/nesting).
+## Install Docker for Windows
 
-> You must install critical updates for Windows Containers to work.
-> To check your OS version, run `winver.exe`, and compare the version shown to [Windows 10 update history](https://support.microsoft.com/en-us/help/12387/windows-10-update-history).
+Download [Docker for Windows](https://store.docker.com/editions/community/docker-ce-desktop-windows) and run the installer (You will be required to login. Create an account if you don't have one already). [Detailed installation instructions](https://docs.docker.com/docker-for-windows/install) are available in the Docker documentation.
 
-> Make sure you have 14393.222 or later before continuing.  This version corresponds with Windows 10 version 1607, so any version above 1607 should be fully supported.
+## Switch to Windows containers
 
-## 1. Install Docker for Windows
+After installation Docker for Windows defaults to running Linux containers. Switch to Windows containers using either the Docker tray-menu or by running the following command in a PowerShell prompt:
 
-[Download Docker for Windows](https://download.docker.com/win/stable/InstallDocker.msi) and run the installer. [Detailed installation instructions](https://docs.docker.com/docker-for-windows/install) are available in the Docker documentation.
-
-## 2. Switch to Windows containers
-
-After installation Docker for Windows defaults to running Linux containers. Switch to Windows containers using either the Docker tray-menu or by running the following command in a PowerShell prompt `& $Env:ProgramFiles\Docker\Docker\DockerCli.exe -SwitchDaemon`.
+```console
+& $Env:ProgramFiles\Docker\Docker\DockerCli.exe -SwitchDaemon .
+```
 
 ![](./media/docker-for-win-switch.png)
 
-## 3. Install Base Container Images
+## Install Base Container Images
 
 Windows containers are built from base images. The following command will pull the Nano Server base image.
 
-```
-docker pull microsoft/nanoserver
+```console
+docker pull mcr.microsoft.com/windows/nanoserver:1809
 ```
 
 Once the image is pulled, running `docker images` will return a list of installed images, in this case the Nano Server image.
 
-```
+```console
 docker images
 
 REPOSITORY             TAG                 IMAGE ID            CREATED             SIZE
 microsoft/nanoserver   latest              105d76d0f40e        4 days ago          652 MB
 ```
 
-> Please read the Windows Containers OS Image EULA which can be found here – [EULA](../images-eula.md).
+> [!IMPORTANT]
+> Please read the Windows Containers OS Image [EULA](../images-eula.md).
 
-## 4. Run Your First Container
+## Run Your First Windows Container
 
-For this simple example a ‘Hello World’ container image will be created and deployed. For the best experience run these commands in an elevated Windows CMD shell or PowerShell.
+For this simple example, a ‘Hello World’ container image will be created and deployed. For the best experience run these commands in an elevated Windows CMD shell or PowerShell.
 
 > Windows PowerShell ISE does not work for interactive sessions with containers. Even though the container is running, it will appear to hang.
 
 First, start a container with an interactive session from the `nanoserver` image. Once the container has started, you will be presented with a command shell from within the container.  
 
-```
-docker run -it microsoft/nanoserver cmd
+```console
+docker run -it mcr.microsoft.com/windows/nanoserver:1809 cmd.exe
 ```
 
-Inside the container we will create a simple ‘Hello World’ script.
+Inside the container we will create a simple ‘Hello World’ text file.
 
-```
-powershell.exe Add-Content C:\helloworld.ps1 'Write-Host "Hello World"'
+```cmd
+echo "Hello World!" > Hello.txt
 ```   
 
 When completed, exit the container.
 
-```
+```cmd
 exit
 ```
 
 You will now create a new container image from the modified container. To see a list of containers run the following and take note of the container id.
 
-```
+```console
 docker ps -a
 ```
 
 Run the following command to create the new ‘HelloWorld’ image. Replace <containerid> with the id of your container.
 
-```
+```console
 docker commit <containerid> helloworld
 ```
 
 When completed, you now have a custom image that contains the hello world script. This can be seen with the following command.
 
-```
+```console
 docker images
 ```
 
 Finally, to run the container, use the `docker run` command.
 
-```
-docker run --rm helloworld powershell c:\helloworld.ps1
+```console
+docker run --rm helloworld cmd.exe /s /c type Hello.txt
 ```
 
-The outcome of the `docker run` command is that a Hyper-V container was created from the 'HelloWorld' image, a sample 'Hello World' script was then executed (output echoed to the shell), and then the container stopped and removed.
-Subsequent Windows 10 and container quick starts will dig into creating and deploying applications in containers on Windows 10.
+The outcome of the `docker run` command is that a Hyper-V container was created from the 'HelloWorld' image, an instance of cmd was started in the container and executed a reading of our file (output echoed to the shell), and then the container stopped and removed.
 
 ## Next Steps
 
-Continue to the next tutorial to see an example of [building a sample app](./building-sample-app.md)
+> [!div class="nextstepaction"]
+> [Learn how to build a sample app](./building-sample-app.md)

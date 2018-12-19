@@ -20,7 +20,7 @@ Hyper-V can be enabled in many ways including using the Windows 10 control panel
 
 * Windows 10 Enterprise, Pro, or Education
 * 64-bit Processor with Second Level Address Translation (SLAT).
-* CPU support for VM Monitor Mode Extension (VT-c on Intel CPU's).
+* CPU support for VM Monitor Mode Extension (VT-c on Intel CPUs).
 * Minimum of 4 GB memory.
 
 The Hyper-V role **cannot** be installed on Windows 10 Home.
@@ -65,9 +65,11 @@ For more information about DISM, see the [DISM Technical Reference](https://tech
 
 1. Right click on the Windows button and select ‘Apps and Features’.
 
-2. Select **Turn Windows Features on or off**.
+2. Select **Programs and Features** on the right under related settings. 
 
-3. Select **Hyper-V** and click **OK**.
+3. Select **Turn Windows Features on or off**.
+
+4. Select **Hyper-V** and click **OK**.
 
 ![Windows programs and features dialogue box](media/enable_role_upd.png)
 
