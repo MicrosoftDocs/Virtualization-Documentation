@@ -1,9 +1,14 @@
 ---
-layout:     post
-title:      "Beta of standalone hypervisor&#58; Hyper-V Server 2008 R2"
-date:       2009-01-15 19:29:00
-categories: community
+title: Beta of Hyper-V Server 2008 R2
+keywords: virtualization, virtual server, blog
+author: scooley
+ms.date: 1/15/2009
+ms.topic: article
+ms.prod: virtualization
+ms.service: virtualization
+ms.assetid: 
 ---
+
 Hello fellow virtualization fans,
 
 Bryon here [again](http://blogs.technet.com/virtualization/archive/2009/01/16/winserver-2k8-hyper-v-is-alive.aspx). With all the excitement around the [beta release of Windows Server 2008 R2](http://blogs.technet.com/windowsserver/archive/2009/01/07/announcing-windows-server-2008-r2-beta.aspx), it’s important to call attention to another important beta release: Microsoft Hyper-V Server 2008 R2! 
