@@ -1,9 +1,15 @@
 ---
-layout:     post
-title:      "A smaller Windows Server Core Container with better Application Compatibility"
-date:       2018-01-22 19:04:55
-categories: containers
+title: A smaller Windows Server Core Container with better Application Compatibility
+description: Learn more about new container building blocks available in Windows.
+keywords: windows server, azure, virtualization, blog
+author: scooley
+ms.date: 1/22/2018
+ms.topic: article
+ms.prod: virtualization
+ms.prod: windows-containers
+ms.service: virtualization
 ---
+
 In [Windows Server Insider Preview Build 17074](https://blogs.windows.com/windowsexperience/2018/01/16/announcing-windows-server-insider-preview-build-17074/#9HZu5dBRKoVzcYoe.97) released on Tuesday Jan 16, 2018, there are some exciting improvements to Windows Server containers that we’d like to share with you. We’d love for you to test out the build, especially the [Windows Server Core container image](https://hub.docker.com/r/microsoft/windowsservercore-insider/), and give us feedback! **Windows Server Core Container Base Image Size Reduced to 1.58GB!** You told us that the size of the Server Core container image affects your deployment times, takes too long to pull down and takes up too much space on your laptops and servers alike. In our first Semi-Annual Channel release, Windows Server, version 1709, we made some great progress reducing the size by 60% and your excitement was noted. We’ve continued to actively look for additional space savings while balancing application compatibility. It’s not easy but we are committed. There are two main directions we looked at: **1)** **Architecture optimization to reduce duplicate payloads** **** We are always looking for way to optimize our architecture. In Windows Server, version 1709 along with the substantial reduction in Server Core container image, we also made some substantial reductions in the Nano Server container image (dropping it below 100MB). In doing that work we identified that some of the same architecture could be leveraged with Server Core container. In partnership with other teams in Windows, we were able to implement changes in our build process to take advantage of those improvements. The great part about this work is that you should not notice any differences in application compatibility or experiences other than a nice reduction in size and some performance improvements. **2)** **Removing unused optional components** We looked at all the various roles, features and optional components available in Server Core and broke them down into a few buckets in terms of usage: frequently in containers, rarely in containers, those that we don’t believe are being used and those that are not supported in containers. We leveraged several data sources to help categorize this list. First, those of you that have telemetry enabled, thank you! That anonymized data is invaluable to these exercises. Second was publicly available dockerfiles/images and of course feedback from GitHub issues and forums. Third, the roles or features that are not even supported in containers were easy to make a call and remove. Lastly, we also removed roles and features we do not see evidence of customers using. We could do more in this space in the future but really need your feedback (telemetry is also very much appreciated) to help guide what can be removed or separated. So, here are the numbers on Windows Server Core container size if you are curious: 
 
   * 1.58GB, download size, 30% reduction from Windows Server, version 1709
