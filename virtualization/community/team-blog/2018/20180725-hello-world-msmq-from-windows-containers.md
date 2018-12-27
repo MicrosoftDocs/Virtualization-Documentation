@@ -43,7 +43,9 @@ And Voila… we can send and receive messages in a Windows container!
 
 [![](https://msdnshared.blob.core.windows.net/media/2018/07/MSMQ-Hackathon-Scenario-1-screenshot-232x300.png)](https://msdnshared.blob.core.windows.net/media/2018/07/MSMQ-Hackathon-Scenario-1-screenshot.png)
 
-Is it too basic? Yes it is. We know. As mentioned early on, we have worked on this on and off, and have tested a few other scenarios. Here is a quick glimpse of what we have tested or are still testing on. We will share more details in future blogs. **Scope** | **Transactional** | **Container OS** | **Container Host OS** | **Queue Location** | **Send Works** | **Receive Works**  
+Is it too basic? Yes it is. We know. As mentioned early on, we have worked on this on and off, and have tested a few other scenarios. Here is a quick glimpse of what we have tested or are still testing on. We will share more details in future blogs.
+
+**Scope** | **Transactional** | **Container OS** | **Container Host OS** | **Queue Location** | **Send Works** | **Receive Works**  
 ---|---|---|---|---|---|---  
 Private | Yes | Windows Server version 1803 | Windows Server version 1803 | On the container | Yes. | Yes.  
 Public | Yes | Windows Server version 1803 | Windows Server version 1803 | On the Domain Controller (DC) | Yes. There are some security caveats we'd like to address. | Haven't tested  
