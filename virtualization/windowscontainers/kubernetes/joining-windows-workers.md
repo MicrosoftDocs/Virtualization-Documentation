@@ -171,6 +171,7 @@ To simplify the process of joining a Windows node, you only need to run a single
 
 ```powershell
 cd c:\k
+chcp 65001
 .\start.ps1 -ManagementIP <Windows Node IP> -ClusterCIDR <Cluster CIDR> -ServiceCIDR <Service CIDR> -KubeDnsServiceIP <Kube-dns Service IP> 
 ```
 
