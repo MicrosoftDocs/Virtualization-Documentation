@@ -104,10 +104,10 @@ The following example shows how to create a new virtual machine in the PowerShel
      NewVHDSizeBytes = 53687091200
      BootDevice = "VHD"
      Path = "C:\Virtual Machines\$VMName"
-     SwitchName = (Get-VMSwitch).Name[0]
+     SwitchName = (Get-VMSwitch).Name
  }
 
- New-VM $VM
+ New-VM @VM
   ```
 
 ## Wrap up and References
