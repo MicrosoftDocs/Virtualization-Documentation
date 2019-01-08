@@ -30,7 +30,7 @@ If a Windows container host will be run from a Hyper-V virtual machine, and will
 
 ## Supported Base Images
 
-Windows Containers are offered with two container base images, Windows Server Core and Nano Server. Not all configurations support both OS images. This table details the supported configurations.
+Windows Containers are offered with four container base images: Windows Server Core, Nano Server, Windows, and IoT Core. Not all configurations support both OS images. This table details the supported configurations.
 
 <table border="1" style="background-color:FFFFCC;border-collapse:collapse;border:1px solid FFCC00;color:000000;width:75%" cellpadding="5" cellspacing="5">
 <thead>
@@ -43,18 +43,23 @@ Windows Containers are offered with two container base images, Windows Server Co
 <tbody>
 <tr valign="top">
 <td><center>Windows Server 2016 / 2019 (Standard or Datacenter)</center></td>
-<td><center>Server Core / Nano Server</center></td>
-<td><center>Server Core / Nano Server</center></td>
+<td><center>Server Core, Nano Server, Windows</center></td>
+<td><center>Server Core, Nano Server, Windows</center></td>
 </tr>
 <tr valign="top">
 <td><center>Nano Server<a href="#warn-1">*</a></center></td>
 <td><center> Nano Server</center></td>
-<td><center>Server Core / Nano Server</center></td>
+<td><center>Server Core, Nano Server, Windows</center></td>
 </tr>
 <tr valign="top">
 <td><center>Windows 10 Pro / Enterprise</center></td>
 <td><center>Not Available</center></td>
-<td><center>Server Core / Nano Server</center></td>
+<td><center>Server Core, Nano Server, Windows</center></td>
+</tr>
+<tr valign="top">
+<td><center>IoT Core</center></td>
+<td><center>IoT Core</center></td>
+<td><center>Not Available</center></td>
 </tr>
 </tbody>
 </table>
@@ -79,9 +84,16 @@ Restrictions on available memory to containers can be configured though [resourc
 | Server Core | 45MB                     | 360MB + 1GB Pagefile |
 
 
-### Nano Server vs. Windows Server Core
+### Base Image Differences
 
-How does one choose between Windows Server Core and Nano Server? While you are free to build with whatever you wish, if you find that your application needs full compatibility with the .NET Framework, then you should use [Windows Server Core](https://hub.docker.com/r/microsoft/windowsservercore/). On the other side of the coin, if your application is built for the cloud and uses .NET Core, then you should use [Nano Server](https://hub.docker.com/r/microsoft/nanoserver/). This is because Nano Server was built with the intention of having as small a footprint as possible therefore several nonessential libraries were removed. This is good to keep in mind as you think about building on top of Nano Server:
+How does one choose the right base image to build upon? While you are free to build with whatever you wish, these are the general guidelines for each image:
+
+- [Windows Server Core](https://hub.docker.com/_/microsoft-windows-servercore): If your application needs the full .NET framework, this is the best image to use.
+- [Nano Server](https://hub.docker.com/_/microsoft-windows-nanoserver): For applications that only require .NET Core, Nano Server will provide a much slimmer image.
+- [Windows](https://hub.docker.com/_/microsoft-windowsfamily-windows): You may find your application depends on a component or .dll that is missing in Server Core or Nano Server images, such as GDI libraries. This image carries the full dependency set of Windows.
+- [IoT Core](https://hub.docker.com/_/microsoft-windows-iotcore): This image is purpose-built for [IoT applications](https://developer.microsoft.com/en-us/windows/iot). You should use this container image when targeting an IoT Core host.
+
+For most users, Windows Server Core or Nano Server will be the most appropriate image to use. Below are a few things to keep in mind as you think about building on top of Nano Server:
 
 - The servicing stack was removed
 - .NET Core is not included (though you can use the [.NET Core Nano Server image](https://hub.docker.com/r/microsoft/dotnet/))

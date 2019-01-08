@@ -24,6 +24,10 @@ This page contains links to videos and blogs created by members or the container
 ## Building and Examples
 [An Overview of .NET and Containers](http://blog.alexellis.io/docker-dotnet-containers/) - Alex Ellis
 
+[How to Dockerize Windows Applications: The 5 Steps](https://blog.sixeyed.com/how-to-dockerize-windows-applications/) - Elton Stoneman
+
+[Modernizing .NET Framework Apps with Docker](https://www.pluralsight.com/courses/modernizing-dotnet-framework-apps-docker?clickid=UVL20JTFpzK6UDSX5n1b5zmyUkgWUPWOz3Pjwg0&irgwc=1&mpid=1197078&utm_source=impactradius&utm_medium=digital_affiliate&utm_campaign=1197078&aid=7010a000001xAKZAA2) - Elton Stoneman
+
 [Docker with Microsoft SQL 2016 + ASP.NET](http://blog.alexellis.io/docker-does-sql2016-aspnet/) - Alex Ellis
 
 [First look: Jenkins CI with Windows Containers and Docker](http://blog.alexellis.io/continuous-integration-docker-windows-containers/)  - Alex Ellis
