@@ -54,6 +54,7 @@
 ## [System Requirements](deploy-containers/system-requirements.md)
 ## [Version Compatibility](deploy-containers/version-compatibility.md)
 ## [Hyper-V Isolation](manage-containers/hyperv-container.md)
+## [Hardware Devices in Containers](deploy-containers/hardware-devices-in-containers.md)
 ## [Container platform tools](deploy-containers/containerd.md)
 ## [Active Directory Service Accounts](manage-containers/manage-serviceaccounts.md)
 ## [Anti-Virus Optimization](https://msdn.microsoft.com/en-us/windows/hardware/drivers/ifs/anti-virus-optimization-for-windows-containers)
