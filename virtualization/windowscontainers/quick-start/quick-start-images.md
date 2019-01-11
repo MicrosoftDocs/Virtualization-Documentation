@@ -125,6 +125,8 @@ Once logged in, the container image can be pushed to Docker Hub. To do so, use t
 docker push <user>/iis-dockerfile
 ```
 
+As Docker pushes each layer up to Docker Hub, docker will skip layers that already exist in the Docker Hub, or in other registries (foreign layers).  For example, recent versions of Windows Server Core that are hosted in the Microsoft Container Registry, or layers from a private corporate registry, would be skipped, and not pushed onto Docker Hub.
+
 The container image can now be downloaded from Docker Hub onto any Windows container host using `docker pull`. For this tutorial, we will delete the existing image, and then pull it down from Docker Hub. 
 
 ```console
