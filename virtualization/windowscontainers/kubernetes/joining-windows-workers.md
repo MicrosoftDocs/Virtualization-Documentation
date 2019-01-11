@@ -56,14 +56,14 @@ Now that `docker` is installed, you need to prepare a "pause" image that's used 
  Pull the image for your specific Windows release. For example, if you are running Windows Server 2019:
 
  ```powershell
-docker pull microsoft/nanoserver:1803
+docker pull mcr.microsoft.com/windows/nanoserver:1809
  ```
 
 #### Tag the image ####
 The Dockerfiles you will use later in this guide look for the `:latest` image tag. Tag the nanoserver image you just pulled as follows:
 
 ```powershell
-docker tag microsoft/nanoserver:1803 microsoft/nanoserver:latest
+docker tag mcr.microsoft.com/windows/nanoserver:1809 microsoft/nanoserver:latest
 ```
 
 #### Run the container ####
