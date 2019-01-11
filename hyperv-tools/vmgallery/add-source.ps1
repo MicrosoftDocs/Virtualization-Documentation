@@ -13,7 +13,7 @@ $key = get-item $galleryRegPath
 $values = $key.GetValue($galleryRegKey)
 $values += $newURI
 
-Set-ItemProperty $galleryRegPath $galleryRegKey $values
+Set-ItemProperty -Path $galleryRegPath -Name $galleryRegKey -Value $values -Type MultiString 
 
 Write-Host ""
 Write-Host "Successfully added $newURI to $galleryRegKey"

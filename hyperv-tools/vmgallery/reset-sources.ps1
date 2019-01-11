@@ -2,7 +2,7 @@ $galleryRegPath = "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Virtualiza
 $galleryRegKey = "GalleryLocations"
 $defaultLocations = "https://go.microsoft.com/fwlink/?linkid=851584"
 
-Set-ItemProperty -Path $galleryregpath -Name $galleryRegKey -Value $defaultLocations
+Set-ItemProperty -Path $galleryregpath -Name $galleryRegKey -Value $defaultLocations -Type MultiString 
 
 Write-Host "Successfully reset $galleryRegKey"
 Write-Host ""
