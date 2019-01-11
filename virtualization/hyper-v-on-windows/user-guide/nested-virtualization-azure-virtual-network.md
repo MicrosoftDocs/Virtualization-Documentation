@@ -45,7 +45,7 @@ This guide makes the following assumptions about the target environment:
   * The reason we want this to correspond to an existing Subnet is to handle BGP advertisements back over the ExpressRoute. If we just made up an IP range for the Hyper-V host to use then we'd have to create a series of static routes to allow clients on-prem to communicate with the nested VMs. This does mean that this isn't a hard requirement as you COULD make up an IP range for the nested VMs and then create all the routes needed to direct clients to the Hyper-V host for that range.
 * We will create an Internal Switch within Hyper-V and then we will assign the newly created interface an IP address within a range we set aside for DHCP. This IP address will become the default gateway for our nested VMs and be used to route between the Internal Switch and the NIC of the host that's connected to our VNet.
 * We will install the Routing and Remote Access role on the host, which will turn our host into a router.  This is necessary to allow communication between resources external to the host and our nested VMs.
-* We will to tell other resources how to access these nested VMs. This necessitates that we create a User Defined Route table which contains a static route for the IP Range that the nested VMs reside in. This static route will point to the IP address for the Hyper-V.
+* We will tell other resources how to access these nested VMs. This necessitates that we create a User Defined Route table which contains a static route for the IP Range that the nested VMs reside in. This static route will point to the IP address for the Hyper-V.
 * You will then place this UDR on the Gateway Subnet so that clients coming from on-premises know how to reach our nested VMs.
 * You will also place this UDR on any other Subnet within Azure that requires connectivity to the nested VMs.
 * For multiple Hyper-V hosts you'd create additional "floating" subnets and add an additional static route to the UDR.
@@ -77,8 +77,11 @@ This guide makes the following assumptions about the target environment:
 
 * Open Server Manager and select "Tools" and then select "Routing and Remote Access".
 * On the right hand side of the Routing and Remote Access management panel you will see an icon with your servers name next to it, right click this and select "Configure and Enable Routing and Remote Access".
-* At the wizard select "Next", check the radial button for "Secure connection between two private networks", and then select "Next".
-* Select the radial button for "No" when asked if you want to use demand-dial connections, and then select "Next", and then select "Finish".
+* At the wizard select "Next", check the radial button for "Custom Configuration", and then select "Next".
+* Check “NAT” and “LAN routing” and then select “Next” and then “Finish”. If it asks you to start the service then do so.
+* Now navigate to the “IPv4” node and expand it so that the “NAT” node is made available.
+* Right click “NAT”, select “New Interface...” and you should be presented with three options. 
+* Two of these options are for the Hyper-V Virtual Switch, you should see an option for “Ethernet”, select this. In short, select the interface that’s directly connected to your Azure VNet.
 
 ## Creating a Route Table Within Azure
 
@@ -107,4 +110,4 @@ Refer to [this article](https://docs.microsoft.com/en-us/azure/virtual-network/t
 
 ## Conclusion
 
-You should now be able to deploy a virtual machine (possibly even a 32-bit VM!) to your Hyper-V host and have it be accessible from on-premises and within Azure.
+You should now be able to deploy a virtual machine (even a 32-bit VM!) to your Hyper-V host and have it be accessible from on-premises and within Azure.
