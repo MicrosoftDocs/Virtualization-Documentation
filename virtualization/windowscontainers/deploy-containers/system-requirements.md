@@ -16,12 +16,12 @@ This guides list the requirements for a Windows container Host.
 ## OS Requirements
 
 - The Windows container feature is only available on Windows Server 2016 (Core and with Desktop Experience), Windows 10 Professional and Enterprise (Anniversary Edition) and later.
-- The Hyper-V role must be installed before running Hyper-V Containers
-- Windows Server Container hosts must have Windows installed to c:\. This restriction does not apply if only Hyper-V Containers will be deployed.
+- The Hyper-V role must be installed before running Hyper-V isolated containers
+- Windows Server container hosts must have Windows installed to c:\. This restriction does not apply if only Hyper-V isolated containers will be deployed.
 
 ## Virtualized Container Hosts
 
-If a Windows container host will be run from a Hyper-V virtual machine, and will also be hosting Hyper-V Containers, nested virtualization will need to be enabled. Nested virtualization has the following requirements:
+If a Windows container host will be run from a Hyper-V virtual machine, and will also be hosting Hyper-V isolated containers, nested virtualization will need to be enabled. Nested virtualization has the following requirements:
 
 - At least 4 GB RAM available for the virtualized Hyper-V host.
 - Windows Server 2019, Windows Server version 1803, Windows Server version 1709, Windows Server 2016, or Windows 10 on the host system, and Windows Server (Full, Core) in the virtual machine.
@@ -36,8 +36,12 @@ Windows Containers are offered with four container base images: Windows Server C
 <thead>
 <tr valign="top">
 <th><center>Host Operating System</center></th>
-<th><center>Windows Server Container</center></th>
-<th><center>Hyper-V Container</center></th>
+<th colspan="2"><center>Windows Server containers</center></th>
+</tr>
+<tr valign="top">
+<th></th>
+<th><center>Process isolated</center></th>
+<th><center>Hyper-V isolated</center></th>
 </tr>
 </thead>
 <tbody>

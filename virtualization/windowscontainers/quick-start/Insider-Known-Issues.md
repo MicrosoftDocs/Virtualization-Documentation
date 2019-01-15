@@ -2,7 +2,7 @@
 
 ## Build 16237
 
-- Hyper-V Containers are not working properly. This workaround is needed to use Hyper-V Containers in build 16237. Run these commands in PowerShell:
+- Hyper-V isolated containers are not working properly. This workaround is needed to use Hyper-V isolated containers in build 16237. Run these commands in PowerShell:
 
 ```PowerShell
 Get-ComputeProcess | ? IsTemplate -eq $true | Stop-ComputeProcess -Force

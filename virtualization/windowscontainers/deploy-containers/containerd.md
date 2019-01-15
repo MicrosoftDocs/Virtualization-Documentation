@@ -48,7 +48,7 @@ Functional differences between runc and runhcs include:
 * `runhcs` runs on Windows.  It communicates with the [HCS](containerd.md#hcs) to create and manage containers.
 * `runhcs` can run a variety of different container types.
 
-  * Windows and Linux [Hyper-V containers](../manage-containers/hyperv-container.md)
+  * Windows and Linux [Hyper-V isolated containers](../manage-containers/hyperv-container.md)
   * Windows process containers (container image must match the container host)
 
 **Usage:**

@@ -25,11 +25,16 @@ When a customer is using Windows Server Containers, they can integrate with exis
 
 ### As a developer, do I have to re-write my app for each type of container?
 
-No, Windows container images are common across both Windows Server Containers and Hyper-V Containers. The choice of container type is made when you start the container. From a developer standpoint, Windows Server Containers and Hyper-V Containers are two flavors of the same thing. They offer the same development, programming and management experience, are open and extensible and will include the same level of integration and support via Docker.
+No, Windows container images can be run under process isolation or Hyper-V isolation. The choice of container type is made when you start the container. From a developer standpoint, the isolation is largely irrelevant in fact the default on Windows 10 is Hyper-V isolation and the default on Windows Server is process isolation. They offer the same development, programming and management experience, are open and extensible and will include the same level of integration and support via Docker.
 
-A developer can create a container image using a Windows Server Container and deploy it as a Hyper-V Container or vice-versa without any changes other than specifying the appropriate runtime flag.
+A developer can create a container image using process isolation and deploy it with Hyper-V isolation or vice-versa without any changes other than specifying the appropriate runtime flag.
 
-Windows Server Containers will offer greater density and performance (e.g. lower spin up time, faster runtime performance compared to nested configurations) for when speed is key. Hyper-V Containers offer greater isolation, ensuring that code running in one container can't compromise or impact the host operating system or other containers running on the same host. This is useful for multitenant scenarios (with requirements for hosting untrusted code) including SaaS applications and compute hosting.
+Windows Server Containers run under process isolation will offer greater density and performance (e.g. lower spin up time, faster runtime performance compared to nested configurations) for when speed is key. Hyper-V isolation provides a higher degree of isolation, ensuring that code running in one container can't compromise or impact the host operating system or other containers running on the same host. This is useful for multitenant scenarios (with requirements for hosting untrusted code) including SaaS applications and compute hosting.
+
+### What is a Hyper-V Container?
+
+Before we started working on LCOW (Linux containers on Windows) we talked about Windows Server Containers and Hyper-V Containers where Windows Server Containers where process isolated and Hyper-V Containers where Hyper-V isolation - both where executively Windows based.  With LCOW that changed, as we could run Windows containers with process or Hyper-V isolation as well as Linux containers but only under Hyper-V isolation.  So, we changed documentation to be more specific, you may still see lingering references to "Hyper-V Containers" but going forward you should see "Windows Server containers", "Linux containers", process isolation and Hyper-V isolation.
+
 
 ### What are the prerequisites for running containers on Windows?
 

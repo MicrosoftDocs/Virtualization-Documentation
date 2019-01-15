@@ -103,9 +103,9 @@ docker pull microsoft/nanoserver
 
 > Please read the Windows Containers OS Image EULA which can be found here – [EULA](../images-eula.md).
 
-## Hyper-V Container Host
+## Hyper-V isolated container Host
 
-In order to run Hyper-V containers, the Hyper-V role is required. If the Windows container host is itself a Hyper-V virtual machine, nested virtualization will need to be enabled before installing the Hyper-V role. For more information on nested virtualization, see [Nested Virtualization]( https://msdn.microsoft.com/en-us/virtualization/hyperv_on_windows/user_guide/nesting).
+In order to run Hyper-V isolated containers, the Hyper-V role is required. If the Windows container host is itself a Hyper-V virtual machine, nested virtualization will need to be enabled before installing the Hyper-V role. For more information on nested virtualization, see [Nested Virtualization]( https://msdn.microsoft.com/en-us/virtualization/hyperv_on_windows/user_guide/nesting).
 
 ### Nested Virtualization
 

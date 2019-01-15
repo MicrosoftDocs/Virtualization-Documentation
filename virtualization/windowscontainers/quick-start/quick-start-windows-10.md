@@ -118,7 +118,7 @@ Finally, to run the container, use the `docker run` command.
 docker run --rm helloworld cmd.exe /s /c type Hello.txt
 ```
 
-The outcome of the `docker run` command is that a Hyper-V container was created from the 'HelloWorld' image, an instance of cmd was started in the container and executed a reading of our file (output echoed to the shell), and then the container stopped and removed.
+The outcome of the `docker run` command is that a Hyper-V isolated container was created from the 'HelloWorld' image, an instance of cmd was started in the container and executed a reading of our file (output echoed to the shell), and then the container stopped and removed.
 
 ## Next Steps
 

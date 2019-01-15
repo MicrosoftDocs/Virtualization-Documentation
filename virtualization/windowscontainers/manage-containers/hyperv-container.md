@@ -10,21 +10,21 @@ ms.service: windows-containers
 ms.assetid: 42154683-163b-47a1-add4-c7e7317f1c04
 ---
 
-# Hyper-V Containers
+# Hyper-V Isolated Containers
 
 **This is preliminary content and subject to change.** 
 
-The Windows container technology includes two distinct types of containers, Windows Server containers (process containers) and Hyper-V containers. Both types of containers are created, managed, and function identically. They also produce and consume the same container images. What differs between them is the level of isolation created between the container, the host operating system, and all of the other containers running on that host.
+The Windows container technology includes two distinct types of containers, Windows Server containers (process containers) and Hyper-V isolated containers. Both types of containers are created, managed, and function identically. They also produce and consume the same container images. What differs between them is the level of isolation created between the container, the host operating system, and all of the other containers running on that host.
 
 **Windows Server containers** – multiple container instances can run concurrently on a host, with isolation provided through namespace, resource control, and process isolation technologies.  Windows Server containers share the same kernel with the host, as well as each other.  This is approximately the same as how containers run on Linux.
 
-**Hyper-V containers** – multiple container instances can run concurrently on a host, however, each container runs inside of a special virtual machine. This provides kernel level isolation between each Hyper-V container and the container host.
+**Hyper-V isolated containers** – multiple container instances can run concurrently on a host, however, each container runs inside of a special virtual machine. This provides kernel level isolation between each Hyper-V isolated container and the container host.
 
-## Hyper-V container examples
+## Hyper-V isolated container examples
 
 ### Create container
 
-Managing Hyper-V containers with Docker is nearly identical to managing Windows Server containers. To create a Hyper-V container with Docker, use the `--isolation` parameter to set `--isolation=hyperv`.
+Managing Hyper-V isolated containers with Docker is nearly identical to managing Windows Server containers. To create a Hyper-V isolated container with Docker, use the `--isolation` parameter to set `--isolation=hyperv`.
 
 ``` cmd
 docker run -it --isolation=hyperv mcr.microsoft.com/windows/nanoserver:1809 cmd
@@ -32,7 +32,7 @@ docker run -it --isolation=hyperv mcr.microsoft.com/windows/nanoserver:1809 cmd
 
 ### Isolation explanation
 
-This example demonstrates the differences in isolation capabilities between Windows Server and Hyper-V containers. 
+This example demonstrates the differences in isolation capabilities between Windows Server and Hyper-V isolated containers. 
 
 Here, a Windows Server containers is being deployed, and will be hosting a long running ping process.
 
@@ -58,7 +58,7 @@ Handles  NPM(K)    PM(K)      WS(K) VM(M)   CPU(s)     Id  SI ProcessName
      67       5      820       3836 ...71     0.03   3964   3 PING
 ```
 
-To contrast, this example starts a Hyper-V container with a ping process as well. 
+To contrast, this example starts a Hyper-V isolated container with a ping process as well. 
 
 ```
 docker run -d --isolation=hyperv mcr.microsoft.com/windows/nanoserver:1809 ping -t localhost

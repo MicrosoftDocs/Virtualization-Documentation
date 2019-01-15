@@ -70,7 +70,7 @@ The following devices (and their device interface class GUIDs) are supported tod
 > [!TIP]
 > The devices listed above are the _only_ devices supported in Windows containers today. Attempting to pass any other class GUIDs will result in the container failing to start.
 
-## Hyper-V Container Device Support
+## Hyper-V Isolated Container Device Support
 
 Device assignment and device sharing are not supported in Hyper-V isolated containers today.
 

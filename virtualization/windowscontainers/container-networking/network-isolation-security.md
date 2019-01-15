@@ -14,7 +14,7 @@ ms.assetid: 538871ba-d02e-47d3-a3bf-25cda4a40965
 # Network Isolation and Security
 
 ## Isolation with Network namespaces
-Each container endpoint is placed in its own __network namespace__. The management host vNIC and host network stack are located in the default network namespace. In order to enforce network isolation between containers on the same host, a network namespace is created for each Windows Server and Hyper-V Container into which the network adapter for the container is installed. Windows Server containers use a Host vNIC to attach to the virtual switch. Hyper-V Containers use a Synthetic VM NIC (not exposed to the Utility VM) to attach to the virtual switch.
+Each container endpoint is placed in its own __network namespace__. The management host vNIC and host network stack are located in the default network namespace. In order to enforce network isolation between containers on the same host, a network namespace is created for each Windows Server container into which the network adapter for the container is installed. Windows Server containers use a Host vNIC to attach to the virtual switch. Hyper-V isolated containers use a Synthetic VM NIC (not exposed to the Utility VM) to attach to the virtual switch.
 
 
 ![text](media/network-compartment-visual.png)
@@ -36,8 +36,8 @@ These use the Windows hosts' firewall (enlightened with network namespaces) as w
   > Note: Prior to Windows Server, version 1709 and Windows 10 Fall Creators Update, the default *inbound* rule was DENY all. Users running these older releases can create inbound ALLOW rules using ``docker run -p`` (port forwarding)
 
 
-### Hyper-V containers
-Hyper-V containers have their own isolated kernel and hence run their own instance of Windows Firewall with the following configuration:
+### Hyper-V isolated containers
+Hyper-V isolated containers have their own isolated kernel and hence run their own instance of Windows Firewall with the following configuration:
   * Default ALLOW ALL in both Windows Firewall (running in the utility VM) and VFP
 
 
@@ -54,9 +54,9 @@ In [Kubernetes pods](https://kubernetes.io/docs/concepts/workloads/pods/pod/), a
 ### Customizing default port ACLs
 If you wish to modify the default port ACLs, please reference our HNS documentation (link to be added soon). You will need to update policies inside the following components:
 
-> NOTE: For Hyper-V Containers in Transparent and NAT mode, you cannot reprogram the default port ACLs currently. This is reflected by an "X" in the table.
+> NOTE: For Hyper-V isolated containers in Transparent and NAT mode, you cannot reprogram the default port ACLs currently. This is reflected by an "X" in the table.
 
-| Network Driver | Windows Server Containers | Hyper-V Containers  |
+| Network Driver | Windows Server Containers (process isolated) | Hyper-V Isolated Containers  |
 | -------------- |-------------------------- | ------------------- |
 | Transparent | Windows Firewall | X |
 | NAT | Windows Firewall | X |
