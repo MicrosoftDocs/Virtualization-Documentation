@@ -12,9 +12,9 @@ By default, Windows containers are given minimal access to host devices--just li
 ## Requirements
 
 - You must be running Windows Server 2019 or later or Windows 10 Pro/Enterprise with the October 2018 Update
-- You must be running Docker version 18.09 or later.
 - Your container image version must be 1809 or later.
 - Your containers must be Windows containers running in process-isolated mode.
+- While the Windows devices functionality exists in the Docker daemon, it does not yet exist in the Docker client (see this [pull request](https://github.com/docker/cli/pull/1606) to track). In the interrim, you must [build your own docker executables](https://github.com/moby/moby/blob/master/docs/contributing/software-req-win.md) from the moby source as a work-around. If you are not comfortable doing this, we recommend you wait to try out this functionality until the PR linked above is merged.
 
 ## Run a Container with a Device
 
