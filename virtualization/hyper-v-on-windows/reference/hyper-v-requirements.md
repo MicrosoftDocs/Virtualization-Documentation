@@ -53,5 +53,5 @@ To verify compatibility, open up PowerShell or a command prompt (cmd.exe) and ty
 If you run **systeminfo** on an existing Hyper-V host, the Hyper-V Requirements section reads:
 
 ```
-Hyper-V Requirements: A hypervisor has been detected. Features required for Hyper-V are not be displayed.
+Hyper-V Requirements: A hypervisor has been detected. Features required for Hyper-V will not be displayed.
 ```
