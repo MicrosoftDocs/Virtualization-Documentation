@@ -2,9 +2,6 @@
 
 ## Syntax
 ```C
-// Guest virtual address
-typedef UINT64 WHV_GUEST_VIRTUAL_ADDRESS;
-
 // Flags used by WHvTranslateGva
 typedef enum WHV_TRANSLATE_GVA_FLAGS
 {

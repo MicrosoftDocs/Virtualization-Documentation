@@ -23,13 +23,12 @@
     "template": "op.html",
     "dest": "virtualization/community",
     "globalMetadata": {
-      "breadcrumb_path": "/virtualization/toc.json"
-    },
-        
-    "extendBreadcrumb": true, 
-    "feedback_system": "GitHub", 
-    "feedback_github_repo": "MicrosoftDocs/Virtualization-Documentation", 
-    "feedback_product_url": "https://github.com/MicrosoftDocs/Virtualization-Documentation/issues"
-
+      "breadcrumb_path": "/virtualization/toc.json",
+      "extendBreadcrumb": true, 
+      "feedback_system": "GitHub", 
+      "feedback_github_repo": "MicrosoftDocs/Virtualization-Documentation", 
+      "feedback_product_url": "https://github.com/MicrosoftDocs/Virtualization-Documentation/issues"
+    },  
+    "extendBreadcrumb": true
   }
 }

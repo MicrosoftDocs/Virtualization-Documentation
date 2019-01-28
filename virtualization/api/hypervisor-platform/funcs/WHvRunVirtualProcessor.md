@@ -17,6 +17,7 @@ typedef enum WHV_RUN_VP_EXIT_REASON
     WHvRunVpExitReasonUnsupportedFeature     = 0x00000006,
     WHvRunVpExitReasonX64InterruptWindow     = 0x00000007,
     WHvRunVpExitReasonX64Halt                = 0x00000008,
+    WHvRunVpExitReasonX64ApicEoi             = 0x00000009,
 
     // Additional exits that can be configured through partition properties
     WHvRunVpExitReasonX64MsrAccess           = 0x00001000,
