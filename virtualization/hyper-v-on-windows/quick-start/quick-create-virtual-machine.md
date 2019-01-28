@@ -13,7 +13,7 @@ ms.assetid: f1e75efa-8745-4389-b8dc-91ca931fe5ae
 
 Create a virtual machine and install its operating system.
 
-We've been building new tools for creating virtual machines so the instructions have changed signifigantly over the past three releases.
+We've been building new tools for creating virtual machines so the instructions have changed significantly over the past three releases.
 
 Pick your operating system for the right set of instructions:
 
