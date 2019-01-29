@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Microsoft’s new VDI licensing&#58; VDI Suites"
 date:       2009-07-13 17:48:00
 categories: application-virtualization

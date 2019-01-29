@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Resynchronization of virtual machines in Hyper-V Replica"
 date:       2013-05-10 07:27:00
 categories: hvr

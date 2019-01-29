@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "HP whitepapers on NIC Teaming for Hyper-V"
 date:       2009-03-02 16:30:00
 categories: high-availability

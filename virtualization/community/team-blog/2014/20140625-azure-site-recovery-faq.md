@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Azure Site Recovery - FAQ"
 date:       2014-06-25 18:48:00
 categories: asr

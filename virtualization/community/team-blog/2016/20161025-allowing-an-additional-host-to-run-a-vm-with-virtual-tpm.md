@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Allowing an additional host to run a VM with virtual TPM"
 date:       2016-10-25 18:36:53
 categories: guarded-fabric

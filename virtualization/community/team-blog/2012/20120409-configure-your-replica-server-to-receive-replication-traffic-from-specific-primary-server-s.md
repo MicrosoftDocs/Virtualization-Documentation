@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Configure your Replica server to receive replication traffic from specific primary server(s)"
 date:       2012-04-09 06:57:00
 categories: hvr

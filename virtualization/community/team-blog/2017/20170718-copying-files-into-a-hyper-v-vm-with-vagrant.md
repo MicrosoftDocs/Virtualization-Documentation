@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Copying Files into a Hyper-V VM with Vagrant"
 date:       2017-07-18 21:50:09
 categories: hyper-v

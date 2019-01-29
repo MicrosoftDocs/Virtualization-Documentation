@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Hyper-V Replica Authorization entries–Windows Server 2012"
 date:       2012-07-08 04:36:00
 categories: hvr

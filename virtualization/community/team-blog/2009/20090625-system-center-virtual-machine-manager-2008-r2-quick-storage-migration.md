@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "System Center Virtual Machine Manager 2008 R2 - Quick Storage Migration"
 date:       2009-06-25 09:30:00
 categories: hyper-v

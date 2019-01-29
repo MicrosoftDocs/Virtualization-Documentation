@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Visual Studio Lab Management 2010 beta 2"
 date:       2009-11-05 22:20:00
 categories: net

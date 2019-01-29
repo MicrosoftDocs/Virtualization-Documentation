@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Dress up your office wall with the Hyper-V component architecture poster"
 date:       2010-05-28 11:32:18
 categories: hyper-v

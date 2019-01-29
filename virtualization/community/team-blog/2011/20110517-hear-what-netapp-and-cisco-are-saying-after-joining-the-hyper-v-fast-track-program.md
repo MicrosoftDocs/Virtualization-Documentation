@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Hear what NetApp and Cisco are Saying After Joining the Hyper-V Fast Track Program"
 date:       2011-05-17 05:49:06
 categories: uncategorized

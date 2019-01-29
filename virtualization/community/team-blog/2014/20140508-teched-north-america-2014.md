@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "TechEd North America 2014"
 date:       2014-05-08 22:02:00
 categories: disaster-recovery

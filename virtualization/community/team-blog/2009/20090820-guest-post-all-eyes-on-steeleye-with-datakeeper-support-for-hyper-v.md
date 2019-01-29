@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Guest Post&#58; All Eyes on SteelEye with DataKeeper Support for Hyper-V"
 date:       2009-08-20 00:10:00
 categories: disaster-recovery

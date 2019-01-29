@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Microsoft and Dell – Management and Virtualization Solutions Partnership"
 date:       2011-04-06 23:00:00
 categories: hyper-v

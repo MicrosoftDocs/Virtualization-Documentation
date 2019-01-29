@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Types of failover operations in Hyper-V Replica–Part II - Planned Failover"
 date:       2012-07-31 04:13:33
 categories: disaster-recovery

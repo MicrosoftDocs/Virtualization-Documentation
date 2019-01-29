@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Interpreting Replication Health – Part 1"
 date:       2012-06-15 03:33:00
 categories: hvr

@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Microsoft Hyper-V Server 2008 R2 Release Candidate! (Free Live Migration/HA Anyone?)"
 date:       2009-05-06 03:07:00
 categories: uncategorized

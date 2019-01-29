@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Update&#58; Capacity Planner for Hyper-V Replica"
 date:       2014-01-21 08:54:00
 categories: hvr

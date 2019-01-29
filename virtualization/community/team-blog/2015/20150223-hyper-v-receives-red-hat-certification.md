@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Hyper-V receives Red Hat certification"
 date:       2015-02-23 09:25:00
 categories: hyper-v

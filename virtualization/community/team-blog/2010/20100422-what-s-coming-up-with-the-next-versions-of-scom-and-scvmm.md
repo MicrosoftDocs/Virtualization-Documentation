@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "What's coming up with the next versions of SCOM and SCVMM"
 date:       2010-04-22 12:29:00
 categories: management

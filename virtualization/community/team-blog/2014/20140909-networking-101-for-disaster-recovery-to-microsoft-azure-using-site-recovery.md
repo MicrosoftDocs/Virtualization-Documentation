@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Networking 101 for Disaster Recovery to Microsoft Azure using Site Recovery"
 date:       2014-09-09 03:29:00
 categories: azure

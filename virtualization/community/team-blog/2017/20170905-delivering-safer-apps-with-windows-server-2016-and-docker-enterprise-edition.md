@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Delivering Safer Apps with Windows Server 2016 and Docker Enterprise Edition"
 date:       2017-09-05 09:00:47
 categories: containers

@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Microsoft Acquires Opalis Software"
 date:       2009-12-11 07:29:00
 categories: cloud-computing

@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Hyper-V Replica - Prerequisites for certificate based deployments"
 date:       2012-03-13 03:06:00
 categories: hvr

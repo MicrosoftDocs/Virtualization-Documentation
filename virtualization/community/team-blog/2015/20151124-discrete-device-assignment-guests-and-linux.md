@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Discrete Device Assignment -- Guests and Linux"
 date:       2015-11-24 14:46:02
 categories: dda

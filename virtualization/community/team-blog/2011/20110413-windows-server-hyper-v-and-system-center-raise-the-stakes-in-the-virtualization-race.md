@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Windows Server Hyper-V and System Center Raise the Stakes in the Virtualization Race"
 date:       2011-04-13 09:30:00
 categories: hyper-v

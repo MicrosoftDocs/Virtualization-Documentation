@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Microsoft RemoteFX&#58; Closing the User Experience Gap"
 date:       2010-04-24 17:24:00
 categories: calista-technologies

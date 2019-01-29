@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Error 0x80090303 when enabling replication"
 date:       2014-02-06 16:00:00
 categories: hvr

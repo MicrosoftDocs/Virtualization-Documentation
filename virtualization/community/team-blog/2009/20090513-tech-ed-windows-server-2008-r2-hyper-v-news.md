@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Tech Ed&#58; Windows Server 2008 R2 Hyper-V News!"
 date:       2009-05-13 01:34:00
 categories: uncategorized

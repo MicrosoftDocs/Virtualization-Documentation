@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Introduction to Resource Metering"
 date:       2012-08-16 10:37:00
 categories: cloud-computing

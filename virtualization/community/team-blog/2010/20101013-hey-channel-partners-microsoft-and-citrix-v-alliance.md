@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Hey channel partners&#58; Microsoft and Citrix V-Alliance"
 date:       2010-10-13 06:05:53
 categories: citrix

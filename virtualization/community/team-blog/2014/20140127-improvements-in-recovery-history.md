@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Improvements in recovery history"
 date:       2014-01-27 05:10:00
 categories: hvr

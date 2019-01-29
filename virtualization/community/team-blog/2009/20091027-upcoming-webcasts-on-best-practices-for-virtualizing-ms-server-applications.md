@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Upcoming Webcasts on Best Practices for Virtualizing MS Server Applications"
 date:       2009-10-27 15:25:00
 categories: high-availability

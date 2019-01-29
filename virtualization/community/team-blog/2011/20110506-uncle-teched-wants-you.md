@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Uncle TechEd Wants You!"
 date:       2011-05-06 16:08:00
 categories: uncategorized

@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Reducing the cost of virtualization using Microsoft Hyper-V and System Center"
 date:       2010-09-22 11:23:00
 categories: esx

@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Update&#58; What you won't see at VMworld 2009"
 date:       2009-08-26 19:30:00
 categories: community

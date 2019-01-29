@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Share your feedback!"
 date:       2014-08-25 22:08:40
 categories: uncategorized

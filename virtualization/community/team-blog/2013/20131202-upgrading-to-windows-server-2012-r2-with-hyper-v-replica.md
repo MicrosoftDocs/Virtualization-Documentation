@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Upgrading to Windows Server 2012 R2 with Hyper-V Replica"
 date:       2013-12-02 07:46:00
 categories: hvr

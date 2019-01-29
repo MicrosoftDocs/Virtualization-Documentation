@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Follow us on Twitter and get a chance to win a Zune HD"
 date:       2009-08-31 09:09:00
 categories: hyper-v

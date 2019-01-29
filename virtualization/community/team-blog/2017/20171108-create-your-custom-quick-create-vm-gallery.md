@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Create your custom Quick Create VM gallery"
 date:       2017-11-08 02:41:52
 categories: hyper-v

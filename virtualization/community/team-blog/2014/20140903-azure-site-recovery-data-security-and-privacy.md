@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Azure Site Recovery&#58; Data Security and Privacy"
 date:       2014-09-03 01:56:45
 categories: azure-site-recovery

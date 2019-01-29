@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "TechEd Europe 2010 Day 1&#58; Voices from the Community"
 date:       2010-11-09 18:56:33
 categories: blogs

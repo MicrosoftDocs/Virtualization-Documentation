@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Beware The VMware Core Tax & More"
 date:       2009-06-29 02:18:00
 categories: hp

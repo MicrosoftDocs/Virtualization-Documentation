@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Why Does Microsoft exhibit at VMworld?"
 date:       2010-08-24 10:23:34
 categories: citrix

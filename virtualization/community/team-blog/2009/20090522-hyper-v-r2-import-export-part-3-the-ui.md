@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Hyper-V R2 Import/Export – Part 3 – The UI"
 date:       2009-05-22 12:56:00
 categories: uncategorized

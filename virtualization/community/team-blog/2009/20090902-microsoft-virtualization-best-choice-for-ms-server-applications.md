@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Microsoft Virtualization&#58; Best Choice for MS Server Applications"
 date:       2009-09-02 12:21:00
 categories: hyper-v

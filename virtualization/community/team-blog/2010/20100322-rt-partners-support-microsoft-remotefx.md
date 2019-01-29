@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "RT&#58; Partners Support Microsoft RemoteFX"
 date:       2010-03-22 17:04:00
 categories: calista-technologies

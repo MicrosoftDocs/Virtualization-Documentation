@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "LiveMeeting on Microsoft’s Integrated Virtualization Strategy&#58; Thursday, Nov. 19, 8&#58;00 AM PST"
 date:       2009-11-17 14:44:48
 categories: cloud-computing

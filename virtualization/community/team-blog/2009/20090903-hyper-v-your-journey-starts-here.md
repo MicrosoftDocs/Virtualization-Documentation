@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Hyper-V, your journey starts here!"
 date:       2009-09-03 12:59:00
 categories: hyper-v

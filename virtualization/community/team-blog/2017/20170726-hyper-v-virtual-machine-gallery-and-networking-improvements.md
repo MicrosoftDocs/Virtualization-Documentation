@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Hyper-V virtual machine gallery and networking improvements"
 date:       2017-07-26 01:42:39
 categories: hyper-v

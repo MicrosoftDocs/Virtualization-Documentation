@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Re-blog&#58; Microsoft Site Recovery Solution Launch"
 date:       2009-11-03 23:27:00
 categories: disaster-recovery

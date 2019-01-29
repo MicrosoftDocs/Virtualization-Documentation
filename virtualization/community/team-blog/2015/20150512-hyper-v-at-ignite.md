@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Hyper-V at Ignite"
 date:       2015-05-12 18:11:00
 categories: hyper-v

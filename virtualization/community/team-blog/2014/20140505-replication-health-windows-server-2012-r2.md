@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Replication Health-Windows Server 2012 R2"
 date:       2014-05-05 09:00:36
 categories: uncategorized

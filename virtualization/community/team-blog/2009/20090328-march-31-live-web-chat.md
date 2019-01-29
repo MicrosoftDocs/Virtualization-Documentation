@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "March 31 live web chat"
 date:       2009-03-28 12:24:00
 categories: application-virtualization

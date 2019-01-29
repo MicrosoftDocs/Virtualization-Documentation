@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Update on the VMware FUD Fiasco."
 date:       2009-06-08 01:20:00
 categories: hyper-v

@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Guest post&#58; Storage Loves Dynamic Memory"
 date:       2010-09-14 09:32:00
 categories: dynamic-memory

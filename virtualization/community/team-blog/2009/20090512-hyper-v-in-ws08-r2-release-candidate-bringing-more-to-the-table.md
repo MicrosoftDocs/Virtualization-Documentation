@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Hyper-V in WS08 R2 Release Candidate&#58; Bringing More to the Table"
 date:       2009-05-12 01:43:00
 categories: high-availability

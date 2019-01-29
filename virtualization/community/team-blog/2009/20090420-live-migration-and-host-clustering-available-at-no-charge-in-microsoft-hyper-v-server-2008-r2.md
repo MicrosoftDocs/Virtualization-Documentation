@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Live Migration and Host Clustering available at no charge in Microsoft Hyper-V Server 2008 R2"
 date:       2009-04-20 18:13:00
 categories: disaster-recovery

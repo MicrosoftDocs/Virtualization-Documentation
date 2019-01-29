@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Hyper-V Replica Runbooks"
 date:       2013-02-20 06:21:43
 categories: hvr

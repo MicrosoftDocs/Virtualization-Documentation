@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Windows Server 8&#58; Standards-Based Storage Management"
 date:       2011-10-14 11:49:00
 categories: hyper-v

@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "A great way to collect logs for troubleshooting"
 date:       2017-10-27 23:30:39
 categories: hyper-v

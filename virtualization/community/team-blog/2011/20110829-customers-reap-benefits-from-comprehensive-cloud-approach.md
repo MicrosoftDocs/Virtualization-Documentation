@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Customers Reap Benefits from Comprehensive Cloud Approach"
 date:       2011-08-29 05:05:56
 categories: private-cloud

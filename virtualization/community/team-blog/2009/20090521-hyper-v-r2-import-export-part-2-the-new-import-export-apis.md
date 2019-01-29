@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Hyper-V R2 Import/Export – Part 2 - The New Import/Export APIs"
 date:       2009-05-21 12:51:00
 categories: hyper-v

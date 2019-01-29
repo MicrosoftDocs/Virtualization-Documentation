@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "XenDesktop 7 Supports Windows Server 2012"
 date:       2013-05-23 09:00:00
 categories: citrix

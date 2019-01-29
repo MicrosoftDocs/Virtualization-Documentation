@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Check out the Visual Studio Team System blog"
 date:       2009-06-12 13:54:00
 categories: net

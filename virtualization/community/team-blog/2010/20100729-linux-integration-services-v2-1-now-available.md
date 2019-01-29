@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Linux Integration Services v2.1 Now Available"
 date:       2010-07-29 13:30:00
 categories: uncategorized

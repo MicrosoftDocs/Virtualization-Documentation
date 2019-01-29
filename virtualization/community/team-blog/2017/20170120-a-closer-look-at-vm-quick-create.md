@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "A closer look at VM Quick Create"
 date:       2017-01-20 22:19:32
 categories: hyper-v

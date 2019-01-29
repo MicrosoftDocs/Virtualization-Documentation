@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "PSA&#58; VMs with saved state from builds 10560-10567 will not restore on 10568 and above."
 date:       2015-10-30 11:30:00
 categories: hyper-v

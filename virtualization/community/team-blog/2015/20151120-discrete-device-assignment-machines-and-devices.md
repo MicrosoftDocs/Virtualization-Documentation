@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Discrete Device Assignment -- Machines and devices"
 date:       2015-11-20 11:13:00
 categories: dda

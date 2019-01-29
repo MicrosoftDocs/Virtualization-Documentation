@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Inject IP address into the VM during failover"
 date:       2012-05-28 22:11:00
 categories: hvr

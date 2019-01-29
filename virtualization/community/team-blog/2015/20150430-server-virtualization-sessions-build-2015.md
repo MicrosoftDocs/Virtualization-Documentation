@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Server Virtualization Sessions @ Build 2015"
 date:       2015-04-30 13:39:18
 categories: uncategorized

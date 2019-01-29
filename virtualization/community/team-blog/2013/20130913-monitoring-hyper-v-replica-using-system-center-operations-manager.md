@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Monitoring Hyper-V Replica using System Center Operations Manager"
 date:       2013-09-13 10:11:00
 categories: hvr

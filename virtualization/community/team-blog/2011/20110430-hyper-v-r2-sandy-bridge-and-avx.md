@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Hyper-V R2, Sandy Bridge and AVX..."
 date:       2011-04-30 12:05:00
 categories: hyper-v

@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "SQL Server is a Great Workload to Consolidate on Microsoft Virtualization"
 date:       2010-01-26 05:51:00
 categories: hyper-v

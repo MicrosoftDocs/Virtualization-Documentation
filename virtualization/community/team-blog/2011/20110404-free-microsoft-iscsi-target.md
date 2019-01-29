@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Free Microsoft iSCSI Target"
 date:       2011-04-04 07:40:00
 categories: iscsi

@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "More on virtualizing SharePoint"
 date:       2009-04-08 17:37:00
 categories: enterprise-strategy-group

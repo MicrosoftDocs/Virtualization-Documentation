@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Network Recommendations for a Hyper-V Cluster in Windows Server 2012"
 date:       2014-01-19 06:23:00
 categories: hvr

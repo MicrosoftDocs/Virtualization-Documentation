@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Using an existing VM for initial replication in Hyper-V Replica"
 date:       2013-08-27 03:43:00
 categories: hvr

@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Discrete Device Assignment -- GPUs"
 date:       2015-11-23 11:41:54
 categories: dda

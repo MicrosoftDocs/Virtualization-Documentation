@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Hyper-V Replica Kerberos Error"
 date:       2013-02-13 22:55:00
 categories: hvr

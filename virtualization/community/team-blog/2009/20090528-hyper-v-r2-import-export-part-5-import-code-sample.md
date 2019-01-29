@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Hyper-V R2 Import/Export – Part 5 – Import code sample"
 date:       2009-05-28 12:33:00
 categories: uncategorized

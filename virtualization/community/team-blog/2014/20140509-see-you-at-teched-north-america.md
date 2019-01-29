@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "See you at TechEd North America!"
 date:       2014-05-09 14:50:50
 categories: uncategorized

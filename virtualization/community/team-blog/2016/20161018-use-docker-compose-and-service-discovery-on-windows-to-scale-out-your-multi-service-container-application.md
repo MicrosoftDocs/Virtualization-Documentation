@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Use Docker Compose and Service Discovery on Windows to scale-out your multi-service container application"
 date:       2016-10-18 20:51:05
 categories: containers

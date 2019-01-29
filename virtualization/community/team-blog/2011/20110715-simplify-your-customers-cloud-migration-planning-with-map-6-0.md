@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Simplify your customers’ cloud migration planning with MAP 6.0"
 date:       2011-07-15 12:28:02
 categories: uncategorized

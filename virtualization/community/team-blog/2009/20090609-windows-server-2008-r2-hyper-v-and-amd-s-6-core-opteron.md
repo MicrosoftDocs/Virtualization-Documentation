@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Windows Server 2008 R2 Hyper-V and AMD's 6-core Opteron"
 date:       2009-06-09 10:39:00
 categories: hyper-v

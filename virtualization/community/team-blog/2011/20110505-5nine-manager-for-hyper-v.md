@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "5Nine Manager for Hyper-V"
 date:       2011-05-05 06:56:00
 categories: hyper-v

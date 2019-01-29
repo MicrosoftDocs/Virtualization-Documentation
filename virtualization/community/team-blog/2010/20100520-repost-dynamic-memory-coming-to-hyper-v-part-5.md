@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Repost&#58; Dynamic Memory Coming to Hyper-V Part 5…"
 date:       2010-05-20 05:52:00
 categories: dynamic-memory

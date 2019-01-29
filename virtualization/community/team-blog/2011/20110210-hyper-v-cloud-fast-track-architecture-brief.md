@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Hyper-V Cloud Fast Track Architecture Brief"
 date:       2011-02-10 02:00:00
 categories: net

@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "No more &#34;out of memory&#34; errors for Windows Phone emulators in Windows 10 (unless you're really out of memory)"
 date:       2017-01-27 20:24:48
 categories: hyper-v

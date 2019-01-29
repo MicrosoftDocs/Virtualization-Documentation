@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "LG Network Monitor is desktop as a service thanks to RemoteFX"
 date:       2010-10-01 17:08:14
 categories: calista-technologies

@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Guest post&#58; Intel discusses iSCSI and 1 million IOPs"
 date:       2010-02-24 22:48:00
 categories: guest-blog-post

@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Microsoft a Leader in x86 Server Virtualization"
 date:       2011-07-05 19:27:59
 categories: hyper-v

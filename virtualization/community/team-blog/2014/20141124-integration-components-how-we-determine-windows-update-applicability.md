@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Integration components&#58; How we determine Windows Update applicability"
 date:       2014-11-24 08:48:06
 categories: hyper-v

@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Working around the pass through limitations of the Hyper-V VSS Writer"
 date:       2009-03-03 14:53:00
 categories: hyper-v

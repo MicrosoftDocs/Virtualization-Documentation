@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Microsoft at VMworld Europe 2009"
 date:       2009-02-21 01:30:00
 categories: application-virtualization

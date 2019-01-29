@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "“Windows Server 8” sneak preview"
 date:       2011-07-18 11:12:56
 categories: hyper-v

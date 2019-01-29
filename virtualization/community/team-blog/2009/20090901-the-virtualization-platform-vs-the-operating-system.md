@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "The Virtualization platform vs. the Operating System"
 date:       2009-09-01 09:01:00
 categories: hyper-v

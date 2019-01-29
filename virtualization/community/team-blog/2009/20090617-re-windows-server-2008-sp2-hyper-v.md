@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Re&#58; Windows Server 2008 SP2 Hyper-V"
 date:       2009-06-17 12:51:00
 categories: hyper-v

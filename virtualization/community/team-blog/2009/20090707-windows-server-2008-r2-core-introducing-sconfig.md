@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Windows Server 2008 R2 Core&#58; Introducing SCONFIG."
 date:       2009-07-07 09:27:00
 categories: hyper-v

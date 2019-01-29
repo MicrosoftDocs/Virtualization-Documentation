@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Repost&#58; Resellers and SIs check out our virtualization partner profitability toolkit"
 date:       2010-05-25 19:33:00
 categories: application-virtualization

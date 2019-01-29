@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Windows 7 and Windows Server 2008 R2 SP1 Add New Virtualization Innovations"
 date:       2011-02-09 02:00:00
 categories: aslr

@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Integration components available for virtual machines not connected to Windows Update"
 date:       2015-07-24 10:42:00
 categories: hyper-v

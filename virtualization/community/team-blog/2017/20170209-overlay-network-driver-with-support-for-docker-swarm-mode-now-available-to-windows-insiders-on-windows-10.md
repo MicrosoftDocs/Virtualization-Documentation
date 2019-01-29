@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Overlay Network Driver with Support for Docker Swarm Mode Now Available to Windows Insiders on Windows 10"
 date:       2017-02-09 23:13:46
 categories: container-management

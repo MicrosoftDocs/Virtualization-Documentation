@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Setting up Linux Operating System Clusters on Hyper-V (1 of 3)"
 date:       2016-02-19 23:16:50
 categories: cluster

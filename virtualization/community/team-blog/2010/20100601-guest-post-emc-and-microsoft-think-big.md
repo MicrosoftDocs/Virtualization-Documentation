@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Guest post&#58; EMC and Microsoft Think Big"
 date:       2010-06-01 15:49:00
 categories: disaster-recovery

@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Azure Site Recovery – case of the “network connection failure”"
 date:       2014-07-06 21:55:00
 categories: asr

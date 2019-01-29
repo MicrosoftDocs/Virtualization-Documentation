@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "SCVMM and VMware ESX management"
 date:       2009-03-09 22:43:00
 categories: cross-platform-management

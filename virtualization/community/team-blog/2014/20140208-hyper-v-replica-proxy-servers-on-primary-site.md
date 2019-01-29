@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Hyper-V Replica & Proxy Servers on primary site"
 date:       2014-02-08 16:00:00
 categories: hvr

@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Making it easier to revert"
 date:       2017-04-20 00:48:56
 categories: hyper-v

@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Update&#58; More than recession&#58; IDC's server virtualization tracker report"
 date:       2009-10-26 21:24:00
 categories: esx

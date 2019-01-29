@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Explaining Microsoft RemoteFX"
 date:       2010-03-17 15:38:00
 categories: application-virtualization

@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Cool new things for Hyper-V on Windows 10"
 date:       2017-01-10 02:05:14
 categories: hyper-v

@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Hyper-V Winning Daily/VMware FUD Reaching New Heights."
 date:       2009-05-09 10:08:00
 categories: uncategorized

@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Series on virtualizing SharePoint"
 date:       2009-04-06 14:20:00
 categories: disaster-recovery

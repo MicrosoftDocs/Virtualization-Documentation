@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Update to private cloud toolkit for System Center"
 date:       2010-07-14 10:43:30
 categories: cloud-computing

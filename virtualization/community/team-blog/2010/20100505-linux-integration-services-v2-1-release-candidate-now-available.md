@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Linux Integration Services v2.1 Release Candidate Now Available"
 date:       2010-05-05 11:15:00
 categories: hyper-v

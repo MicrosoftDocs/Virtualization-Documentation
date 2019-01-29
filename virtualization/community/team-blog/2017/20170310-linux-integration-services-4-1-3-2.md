@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Linux Integration Services 4.1.3-2"
 date:       2017-03-10 22:27:17
 categories: uncategorized

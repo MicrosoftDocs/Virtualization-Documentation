@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Available to Windows 10 Insiders Today&#58; Access to published container ports via “localhost”/127.0.0.1"
 date:       2017-11-06 17:47:40
 categories: uncategorized

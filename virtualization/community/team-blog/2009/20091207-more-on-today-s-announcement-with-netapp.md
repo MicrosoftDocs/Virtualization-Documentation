@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "More on today's announcement with NetApp"
 date:       2009-12-07 22:06:00
 categories: cloud-computing

@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Optimizing Hyper-V Replica HTTPS traffic using Riverbed SteelHead"
 date:       2014-05-08 10:54:59
 categories: hvr

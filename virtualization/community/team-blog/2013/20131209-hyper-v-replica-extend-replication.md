@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Hyper-V Replica&#58; Extend Replication"
 date:       2013-12-09 16:07:08
 categories: hvr

@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "HP releases Insight Control suite for Microsoft System Center"
 date:       2009-06-02 05:00:00
 categories: hp

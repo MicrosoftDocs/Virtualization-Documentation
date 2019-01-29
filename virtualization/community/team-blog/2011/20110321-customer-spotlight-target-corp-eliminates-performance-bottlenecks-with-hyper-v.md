@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Customer Spotlight&#58; Target Corp. Eliminates Performance Bottlenecks with Hyper-V"
 date:       2011-03-21 01:30:00
 categories: hyper-v

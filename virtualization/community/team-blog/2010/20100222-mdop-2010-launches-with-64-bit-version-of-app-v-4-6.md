@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "MDOP 2010 Launches, with 64-bit version of App-V 4.6"
 date:       2010-02-22 21:09:00
 categories: application-virtualization

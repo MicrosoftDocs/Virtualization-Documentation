@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Items of interest from VMworld 2010"
 date:       2010-09-01 10:34:08
 categories: net

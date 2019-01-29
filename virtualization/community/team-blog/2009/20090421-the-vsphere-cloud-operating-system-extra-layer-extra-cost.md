@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "The vSphere Cloud Operating System&#58; Extra Layer, Extra Cost?"
 date:       2009-04-21 04:30:00
 categories: cloud-computing

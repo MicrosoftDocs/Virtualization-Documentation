@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Linux Integration Services 3.5 Announcement"
 date:       2014-01-02 12:41:00
 categories: uncategorized

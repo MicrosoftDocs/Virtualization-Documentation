@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "RT &#34;Cutting through the FUD&#58; Facts you should know about Hyper-V and System Center&#34;"
 date:       2009-12-18 23:30:00
 categories: esx

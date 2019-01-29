@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "How to Use Resource Metering With PowerShell"
 date:       2012-08-20 10:30:00
 categories: cloud-computing

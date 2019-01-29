@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Vagrant and Hyper-V -- Tips and Tricks"
 date:       2017-07-06 22:22:02
 categories: hyper-v

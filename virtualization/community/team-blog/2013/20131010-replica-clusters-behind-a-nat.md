@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Replica Clusters behind a NAT"
 date:       2013-10-10 23:06:00
 categories: hvr

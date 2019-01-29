@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "MED-V 2.0 beta is available - for Windows 7 migrations"
 date:       2010-10-12 15:06:11
 categories: application-virtualization

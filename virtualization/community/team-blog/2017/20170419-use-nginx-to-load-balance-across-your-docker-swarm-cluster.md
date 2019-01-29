@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Use NGINX to load balance across your Docker Swarm cluster"
 date:       2017-04-19 13:38:56
 categories: containers

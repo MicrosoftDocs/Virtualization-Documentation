@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Mark your calendar&#58; Watch the MS Management Summit keynotes"
 date:       2010-04-16 09:15:00
 categories: application-virtualization

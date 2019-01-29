@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Storage and Continuous Availability Enhancements in Windows Server 8"
 date:       2011-09-20 10:20:00
 categories: availability

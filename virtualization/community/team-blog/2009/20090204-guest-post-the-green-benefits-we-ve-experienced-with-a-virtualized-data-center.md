@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Guest Post&#58; The Green Benefits We've Experienced with a Virtualized Data Center"
 date:       2009-02-04 12:54:00
 categories: hyper-v

@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Which Linux Integration Services should I use in my Linux VMs?"
 date:       2016-07-12 16:19:23
 categories: hyper-v

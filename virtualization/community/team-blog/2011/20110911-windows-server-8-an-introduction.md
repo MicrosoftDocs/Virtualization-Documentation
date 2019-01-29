@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Windows Server 8&#58; An Introduction"
 date:       2011-09-11 10:37:00
 categories: uncategorized

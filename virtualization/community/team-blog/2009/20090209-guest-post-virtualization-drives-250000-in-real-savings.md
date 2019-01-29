@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Guest post&#58; Virtualization drives $250,000 in real savings"
 date:       2009-02-09 01:00:00
 categories: esx

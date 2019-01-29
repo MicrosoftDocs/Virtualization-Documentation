@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "VMworld 2009 an oppurtunity to meet our customers"
 date:       2009-08-26 12:09:00
 categories: cloud-computing

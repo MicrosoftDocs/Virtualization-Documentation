@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Linux ICs for Hyper-V and GPLv2"
 date:       2009-07-20 13:06:00
 categories: hyper-v

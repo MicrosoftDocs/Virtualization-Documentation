@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Microsoft customers showcased at VMworld Europe 2009"
 date:       2009-02-23 07:09:00
 categories: dell

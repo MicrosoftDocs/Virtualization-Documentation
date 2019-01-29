@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Hyper-V Replica and Riverbed"
 date:       2013-03-11 09:51:00
 categories: hvr

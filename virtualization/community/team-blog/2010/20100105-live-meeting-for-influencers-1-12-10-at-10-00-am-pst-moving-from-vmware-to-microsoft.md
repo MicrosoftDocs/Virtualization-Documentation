@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Live Meeting for Influencers, 1.12.10 at 10&#58;00 am PST&#58; Moving from VMware to Microsoft"
 date:       2010-01-05 18:19:08
 categories: community

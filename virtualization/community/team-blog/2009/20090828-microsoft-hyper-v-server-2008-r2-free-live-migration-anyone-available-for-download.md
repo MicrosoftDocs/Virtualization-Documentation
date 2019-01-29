@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Microsoft Hyper-V Server 2008 R2 (Free live migration anyone!) available for download"
 date:       2009-08-28 18:05:00
 categories: hyper-v

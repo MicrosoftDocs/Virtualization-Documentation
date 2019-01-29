@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "//build 2016 Container Announcements&#58; Hyper-V Containers and Windows 10 and PowerShell For Docker!"
 date:       2016-04-01 12:00:44
 categories: containers

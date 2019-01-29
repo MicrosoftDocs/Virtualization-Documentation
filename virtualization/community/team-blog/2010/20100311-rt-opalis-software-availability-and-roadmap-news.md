@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "RT&#58; Opalis Software Availability and Roadmap News"
 date:       2010-03-11 17:45:00
 categories: community

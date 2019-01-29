@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "How to fix&#58; Hypervisor not running"
 date:       2009-09-28 22:04:08
 categories: uncategorized

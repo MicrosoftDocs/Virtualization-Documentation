@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Windows Insider Preview&#58; Nested Virtualization"
 date:       2015-10-13 12:55:00
 categories: hyper-v

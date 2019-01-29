@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Guest post&#58; &#34;Does my enterprise need internal cloud computing?&#34;"
 date:       2009-04-23 11:45:00
 categories: cloud-computing

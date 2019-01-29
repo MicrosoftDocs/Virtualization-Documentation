@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Delivering business value with an app-centric approach to Private Cloud"
 date:       2011-08-30 10:07:59
 categories: uncategorized

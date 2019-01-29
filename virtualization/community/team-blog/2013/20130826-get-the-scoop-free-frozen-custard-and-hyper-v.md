@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Get the Scoop - FREE Frozen Custard and Hyper-V"
 date:       2013-08-26 10:05:51
 categories: hyper-v

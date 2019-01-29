@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "New Hyper-V Survey"
 date:       2016-02-16 23:31:44
 categories: hyper-v

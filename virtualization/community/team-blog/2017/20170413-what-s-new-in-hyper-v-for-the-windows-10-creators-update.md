@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "What's new in Hyper-V for the Windows 10 Creators Update?"
 date:       2017-04-13 00:21:53
 categories: hyper-v

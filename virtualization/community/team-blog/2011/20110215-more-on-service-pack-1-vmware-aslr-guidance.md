@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "More on Service Pack 1 & VMware ASLR Guidance"
 date:       2011-02-15 09:00:00
 categories: dynamic-memory

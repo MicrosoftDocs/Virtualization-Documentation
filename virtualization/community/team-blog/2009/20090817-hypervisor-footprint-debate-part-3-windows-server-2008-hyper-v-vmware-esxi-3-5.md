@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Hypervisor Footprint Debate Part 3&#58; Windows Server 2008 Hyper-V & VMware ESXi 3.5"
 date:       2009-08-17 09:01:00
 categories: esx

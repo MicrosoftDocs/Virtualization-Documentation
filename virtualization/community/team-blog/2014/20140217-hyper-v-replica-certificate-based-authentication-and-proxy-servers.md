@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Hyper-V Replica Certificate based authentication and Proxy servers"
 date:       2014-02-17 05:45:00
 categories: hvr

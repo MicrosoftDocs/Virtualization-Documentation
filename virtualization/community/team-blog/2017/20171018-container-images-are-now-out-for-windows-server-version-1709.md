@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Container Images are now out for Windows Server version 1709!"
 date:       2017-10-18 19:30:43
 categories: baseos

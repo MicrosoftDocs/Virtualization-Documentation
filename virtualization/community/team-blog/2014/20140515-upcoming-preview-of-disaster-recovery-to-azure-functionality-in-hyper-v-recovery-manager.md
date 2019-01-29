@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Upcoming Preview of 'Disaster Recovery to Azure' Functionality in Hyper-V Recovery Manager"
 date:       2014-05-15 06:02:35
 categories: uncategorized

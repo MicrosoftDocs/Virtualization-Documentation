@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Hyper-V Replica - Name Resolution of Internationalized Server/Domain names"
 date:       2013-04-07 23:05:00
 categories: hvr
