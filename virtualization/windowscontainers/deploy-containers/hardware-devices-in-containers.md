@@ -5,6 +5,8 @@ keywords: docker, containers, devices, hardware
 author: cwilhit
 ---
 
+**This is currently preview material. See the 4th item in the 'Requirements' section below for more information.**
+
 # Devices in Containers on Windows
 
 By default, Windows containers are given minimal access to host devices--just like Linux containers. There are certain workloads where it is beneficial--or even imperative--to access and communicate with host hardware devices. This guide covers which devices are supported in containers and how to get started.
@@ -14,7 +16,7 @@ By default, Windows containers are given minimal access to host devices--just li
 - You must be running Windows Server 2019 or later or Windows 10 Pro/Enterprise with the October 2018 Update
 - Your container image version must be 1809 or later.
 - Your containers must be Windows containers running in process-isolated mode.
-- While the Windows devices functionality exists in the Docker daemon, it does not yet exist in the Docker client (see this [pull request](https://github.com/docker/cli/pull/1606) to track). In the interrim, you must [build your own docker executables](https://github.com/moby/moby/blob/master/docs/contributing/software-req-win.md) from the moby source as a work-around. If you are not comfortable doing this, we recommend you wait to try out this functionality until the PR linked above is merged.
+- While the Windows devices functionality exists in the Docker daemon, it does not yet exist in the Docker client (see this [pull request](https://github.com/docker/cli/pull/1606) to track). You must wait for a future release of Docker for Windows / Docker EE with this code to take advantage of this feature. This document will be updated when the status changes.
 
 ## Run a Container with a Device
 
