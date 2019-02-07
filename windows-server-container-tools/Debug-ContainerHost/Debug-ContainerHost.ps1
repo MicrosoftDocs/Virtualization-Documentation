@@ -114,10 +114,17 @@ Describe "The right container base images are installed" {
         }
     }
 
-    It "At least one of 'microsoft/windowsservercore' or 'microsoft/nanoserver' should be installed" {
-        $baseImages = $images | Where-Object { ($_.Repository -eq "microsoft/windowsservercore") `
+    It "At least one of 'mcr.microsoft.com/windows/servercore', 'mcr.microsoft.com/windows/nanoserver', 'mcr.microsoft.com/windows' or deprecated microsoft/windowsservercore, microsoft/nanoserver should be installed" {
+        $baseImages = $images | Where-Object { ($_.Repository -eq "mcr.microsoft.com/windows/servercore") `
+                                                -or ($_.Repository -eq "mcr.microsoft.com/windows/nanoserver") `
+                                                -or ($_.Repository -eq "mcr.microsoft.com/windows")}
+        if (($baseImages | Measure-Object).Count -eq 0)
+        {
+            Write-Warning "No mcr.microsoft.com/* base images found. Checking for deprecated images."
+            $baseImages = $images | Where-Object { ($_.Repository -eq "microsoft/windowsservercore") `
                                                 -or ($_.Repository -eq "microsoft/nanoserver")}
-        (Measure-Object $baseImages).Count | Should Not BeNullOrEmpty
+            (Measure-Object $baseImages).Count | Should Not BeNullOrEmpty
+        }
     }
 }
 
