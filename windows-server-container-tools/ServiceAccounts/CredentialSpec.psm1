@@ -56,7 +56,7 @@ function TestgMSAExistence($AccountName, $Domain) {
         return $false
     }
     elseif (-not (Test-ADServiceAccount -Identity $gMSA.DistinguishedName)) {
-        Write-Warning "The group managed service account `"$AccountName`" is not installed on this system.`nRun `"Install-ADServiceAccount $AccountName`" to allow Windows containers to use this identity on this machine."
+        Write-Warning "This computer is not authorized to use the group managed service account `"$AccountName`"`nRun `"Get-ADServiceAccount $AccountName -Properties PrincipalsAllowedToRetrieveManagedPassword`" and verify this computer object, or a security group to which it belongs, is allowed to retrieve the managed password.`nNote: if you recently added this computer account to a security group, you may need to restart the computer for the group membership to take effect."
     }
 
     return $true
