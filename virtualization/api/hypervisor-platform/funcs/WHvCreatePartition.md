@@ -16,13 +16,13 @@ WHvCreatePartition(
 
 `Partition`
 
-Receives the handle to the newly created partition object. All operations on the partition are performed through this handle.
+Receives the partition handle to the newly created partition object. All operations on the partition are performed through this handle.
 
-Closing this handle will tear down and cleanup the partition.
+To delete a partition created by `WHvCreatePartition`, use the [`WHvDeletePartition`](WhvDeletePartition.md) function.
   
 
 ## Remarks
 
 The `WHvCreatePartition` function creates a new partition object.
 
-Creating the file object does not yet create the actual partition in the hypervisor. To create the hypervisor partition, the [`WHvSetupPartition`](WhvSetupPartition.md) function needs to be called. Additional properties of the partition can be configured prior to this call; these properties are stored in the partition object in the VID and are applied when creating the partition in the hypervisor.
+`WHvCreatePartition` does not yet create the actual partition in the hypervisor. To create the hypervisor partition, the [`WHvSetupPartition`](WhvSetupPartition.md) function needs to be called. Additional properties of the partition can be configured prior to this call; these properties are stored in the partition object in the VID and are applied when creating the partition in the hypervisor.
