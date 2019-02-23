@@ -3,7 +3,7 @@ title: Enable Hyper-V on Windows 10
 description: Install Hyper-V on Windows 10
 keywords: windows 10, hyper-v
 author: scooley
-ms.date: 05/02/2016
+ms.date: 02/15/2019
 ms.topic: article
 ms.prod: windows-10-hyperv
 ms.assetid: 752dc760-a33c-41bb-902c-3bb2ecd9ac86
