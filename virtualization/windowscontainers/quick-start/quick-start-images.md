@@ -12,15 +12,15 @@ ms.assetid: 479e05b1-2642-47c7-9db4-d2a23592d29f
 
 # Automating Builds and Saving Images
 
-In the previous Windows Server quick start, a Windows container was created from a pre-created .Net Core sample. This exercise will detail automating container image creation using a Dockerfile, and storing container images in the Docker Hub public registry.
+In the previous Windows Server quick start, a Windows container was created from a pre-created .Net Core sample. This exercise shows how to build your own container image from a Dockerfile and store the container image in the Docker Hub public registry.
 
-This quick start is specific to Windows Server containers on Windows Server 2016 and will use the Windows Server Core container base image. Additional quick start documentation can be found in the table of contents on the left hand side of this page.
+This quick start is specific to Windows Server containers on Windows Server 2019 or Windows Server 2016 and will use the Windows Server Core container base image. Additional quick start documentation can be found in the table of contents on the left hand side of this page.
 
 ## Prerequisites
 
 Please make sure you meet the following requirements:
 
-- One computer system (physical or virtual) running Windows Server 2016.
+- One computer system (physical or virtual) running Windows Server 2019 or Windows Server 2016.
 - Configure this system with the Windows Container feature and Docker. For a walkthrough on these steps, see [Windows Containers on Windows Server](./quick-start-windows-server.md).
 - A Docker ID, this will be used to push a container image to Docker Hub. If you do not have a Docker ID, sign up for one at [Docker Cloud](https://cloud.docker.com/).
 
