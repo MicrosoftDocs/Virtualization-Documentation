@@ -63,7 +63,7 @@ When PowerShell asks you whether to trust the package source 'DockerDefault', ty
 Restart-Computer -Force
 ```
 
-> ![TIP]
+> [!TIP]
 > If you want to update Docker later:
 >  - Check the installed version with `Get-Package -Name Docker -ProviderName DockerMsftProvider`
 >  - Find the current version with `Find-Package -Name Docker -ProviderName DockerMsftProvider`
