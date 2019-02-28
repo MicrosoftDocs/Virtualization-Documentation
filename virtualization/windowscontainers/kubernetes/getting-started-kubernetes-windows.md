@@ -15,9 +15,9 @@ ms.assetid: 3b05d2c2-4b9b-42b4-a61b-702df35f5b17
 This page serves as an overview for getting started with Kubernetes on Windows by joining Windows nodes to a Linux-based cluster. With the release of Kubernetes 1.13 on Windows Server [version 1809](https://docs.microsoft.com/en-us/windows-server/get-started/whats-new-in-windows-server-1809#container-networking-with-kubernetes), users can take advantage of the [latest features](https://kubernetes.io/docs/getting-started-guides/windows/#supported-features) in Kubernetes on Windows beta:
 
   - **overlay networking**: use Flannel in vxlan mode to configure a virtual overlay network
-    - requires either Windows Server 2019 with KB4482887 installed or [Windows Server vNext Insider Preview](https://blogs.windows.com/windowsexperience/tag/windows-insider-program/) Build 18317 (or above)
+    - requires either Windows Server 2019 with KB4482887 installed or [Windows Server vNext Insider Preview](https://blogs.windows.com/windowsexperience/tag/windows-insider-program/) Build 18317+
     - requires Kubernetes v1.14 (or above) with `WinOverlay` feature gate enabled
-    - requires flannel v0.11.0 (or above)
+    - requires Flannel v0.11.0 (or above)
   - **simplified network management**: use Flannel in host-gateway mode for automatic route management between nodes
   - **scalability improvements**: enjoy faster and more reliable container start-up times thanks to [deviceless vNICs for Windows Server containers](https://blogs.technet.microsoft.com/networking/2018/04/27/network-start-up-and-performance-improvements-in-windows-10-spring-creators-update-and-windows-server-version-1803/)
   - **hyper-v isolation (alpha)**: orchestrate [hyper-v containers](https://kubernetes.io/docs/getting-started-guides/windows/#hyper-v-containers) with kernel-mode isolation for enhanced security ([see Windows container types](https://docs.microsoft.com/en-us/virtualization/windowscontainers/about/#windows-container-types))
@@ -41,11 +41,9 @@ As Kubernetes clusters introduce new subnets for pods and services, it is import
 > [!NOTE]
 > There is another Docker network (NAT) that gets created by default when you install Docker. It is not needed to operate Kubernetes on Windows as we assign IPs from the cluster subnet instead.
 
-### Disable anti-spoofing protection ###
-> [!Important] 
-> Please read this section carefully as it is required for anyone to successfully use VMs with host-gateway (l2bridge) networking on Kubernetes.
 
-Ensure MAC address spoofing and virtualization is enabled for the Windows container host VMs (guests). To achieve this, you should run the following as Administrator on the machine hosting the VMs (example given for Hyper-V):
+### Disable anti-spoofing protection (required for l2bridge) ###
+Should you wish to use l2bridge for networking (aka [flannel host-gateway](./network-topologies.md#flannel-in-host-gateway-mode)), you should ensure MAC address spoofing is enabled for the Windows container host VMs (guests). To achieve this, you should run the following as Administrator on the machine hosting the VMs (example given for Hyper-V):
 
 ```powershell
 Get-VMNetworkAdapter -VMName "<name>" | Set-VMNetworkAdapter -MacAddressSpoofing On
@@ -54,7 +52,7 @@ Get-VMNetworkAdapter -VMName "<name>" | Set-VMNetworkAdapter -MacAddressSpoofing
 > If you are using a VMware-based product to meet your virtualization needs, please look into enabling [promiscuous mode](https://kb.vmware.com/s/article/1004099) for the MAC spoofing requirement.
 
 >[!TIP]
-> If you are deploying Kubernetes on Azure IaaS VMs yourself, please look into VMs that support [nested virtualization](https://azure.microsoft.com/en-us/blog/nested-virtualization-in-azure/) as well as [enabling IP forwarding](https://docs.microsoft.com/en-us/azure/virtual-network/virtual-network-network-interface#enable-or-disable-ip-forwarding) for this requirement.
+> If you are deploying Kubernetes on Azure or IaaS VMs from other cloud providers yourself, we recommend [overlay networking](./network-topologies.md#flannel-in-vxlan-mode) instead.
 
 ## What you will accomplish ##
 
