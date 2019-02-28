@@ -28,8 +28,15 @@ This page is subdivided into the following categories:
 You should see kubelet, kube-proxy, and (if you chose Flannel as your networking solution) flanneld host-agent processes running on your node, with running logs being displayed in separate PoSh windows. In addition to this, your Windows node should be listed as “Ready” in your Kubernetes cluster.
 
 ### Can I configure to run all of this in the background instead of PoSh windows? ###
-Starting with Kubernetes version 1.11, kubelet & kube-proxy can be run as native [Windows Services](https://kubernetes.io/docs/getting-started-guides/windows/#kubelet-and-kube-proxy-can-now-run-as-windows-services). You can also always use alternative service managers like [nssm.exe](https://nssm.cc/) to always run these processes (flanneld, kubelet & kube-proxy) in the background for you.
+Starting with Kubernetes version 1.11, kubelet & kube-proxy can be run as native [Windows Services](https://kubernetes.io/docs/getting-started-guides/windows/#kubelet-and-kube-proxy-can-now-run-as-windows-services). You can also always use alternative service managers like [nssm.exe](https://nssm.cc/) to always run these processes (flanneld, kubelet & kube-proxy) in the background for you. See [Windows Services on Kubernetes](./kube-windows-services.md) for example steps.
 
+### I have problems running Kubernetes processes as Windows services ###
+For initial troubleshooting, you can use the following flags in [nssm.exe](https://nssm.cc/) to redirect stdout and stderr to a output file:
+```
+nssm set <Service Name> AppStdout C:\k\mysvc.log
+nssm set <Service Name> AppStderr C:\k\mysvc.log
+```
+For additional details, see official [nssm usage](https://nssm.cc/usage) docs.
 
 ## Common networking errors ##
 
@@ -50,6 +57,19 @@ One of the Kubernetes networking requirements (see [Kubernetes model](https://ku
 					"10.96.0.0/12",   # Service subnet
 					"10.127.130.0/24" # Management (host) subnet
 				]
+```
+
+### After some time, vNICs and HNS endpoints of containers are being deleted ###
+This issue can be caused when the `hostname-override` parameter is not passed to [kube-proxy](https://kubernetes.io/docs/reference/command-line-tools-reference/kube-proxy/). To resolve it, users need to pass the hostname to kube-proxy as follows:
+```
+C:\k\kube-proxy.exe --hostname-override=$(hostname)
+```
+
+### On Flannel (vxlan) mode, my pods are having connectivity issues after rejoining the node ###
+Whenever a previously deleted node is being rejoined to the cluster, flannelD will try to assign a new pod subnet to the node. Users should remove the old pod subnet configuration files in the following paths:
+```powershell
+Remove-Item C:\k\SourceVip.json
+Remove-Item C:\k\SourceVipRequest.json
 ```
 
 ### After launching start.ps1, Flanneld is stuck in "Waiting for the Network to be created" ###
@@ -94,7 +114,7 @@ Get-HnsNetwork | ? Name -ieq "cbr0"
 Get-NetAdapter | ? Name -Like "vEthernet (Ethernet*"
 ```
 
-Consult the output of the `start-kubelet.ps1` script to see if there are errors during virtual network creation.
+Often it is worthwhile to modify the [InterfaceName](https://github.com/Microsoft/SDN/blob/master/Kubernetes/flannel/l2bridge/start.ps1#L6) parameter of the start.ps1 script, in cases where the host's network adapter isn't "Ethernet". Otherwise, consult the output of the `start-kubelet.ps1` script to see if there are errors during virtual network creation. 
 
 ### Pods stop resolving DNS queries successfully after some time alive ###
 There is a known DNS caching issue in the networking stack of Windows Server, version 1803 and below that may sometimes cause DNS requests to fail. To work around this issue, you can set the max TTL cache values to zero using the following registry keys:
