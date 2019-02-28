@@ -143,6 +143,7 @@ After a few minutes, the system should be in the following state:
 
   - Under `kubectl get pods -n kube-system`, there will be pods for the [Kubernetes master components](https://kubernetes.io/docs/concepts/overview/components/#master-components) in `Running` state.
   - Calling `kubectl cluster-info` will show information about the Kubernetes master API server in addition to DNS addons.
+  
 > [!tip]
 > Since kubeadm does not setup networking, DNS pods may still be in `ContainerCreating` or `Pending` state. They will switch to `Running` state after [choosing a network solution](./network-topologies.md).
 
