@@ -55,16 +55,6 @@ For someone familiar with virtual machines, containers may appear to be incredib
 
 Mark Russinovich, Microsoft Azure guru, has [a great blog post](https://azure.microsoft.com/en-us/blog/containers-docker-windows-and-trends/) which details the differences.
 
-## Windows Container Types
-
-Windows Containers include two different container types, or runtimes.
-
-**Windows Server Containers** – provide application isolation through process and namespace isolation technology. A Windows Server Container shares a kernel with the container host and all containers running on the host. These containers do not provide a hostile security boundary and should not be used to isolate untrusted code. Because of the shared kernel space, these containers require the same kernel version and configuration.
-
-**Hyper-V Isolation** – expands on the isolation provided by Windows Server Containers by running each container in a highly optimized virtual machine. In this configuration, the kernel of the container host is not shared with other containers on the same host. These containers are designed for hostile multitenant hosting with the same security assurances of a virtual machine. Since these containers do not share the kernel with the host or other containers on the host, they can run kernels with different versions and configurations (with in supported versions) - for example all Windows containers on Windows 10 use Hyper-V isolation to utilize the Windows Server kernel version and configuration.
-
-Running a container on Windows with or without Hyper-V Isolation is a runtime decision. You may elect to create the container with Hyper-V isolation initially and later at runtime choose to run it instead as a Windows Server container.
-
 ## What is Docker?
 
 As you read about containers, you’ll inevitably hear about Docker. Docker is the vessel by which container images are packaged and delivered. This automated process produces images (effectively templates) which may then be run anywhere—on premises, in the cloud, or on a personal machine—as a container.
@@ -90,26 +80,6 @@ Containers help developers build and ship higher-quality applications, faster.
 IT Professionals can use containers to provide standardized environments for their development, QA, and production teams. They no longer have to worry about complex installation and configuration steps. By using containers, systems administrators abstract away differences in OS installations and underlying infrastructure.
 
 Containers help admins create an infrastructure that is simpler to update and maintain.
-
-## Container orchestrators
-Because of their small size and application orientation, containers are well suited for agile delivery environments and microservice-based architectures. When you use containers and microservices, however, you can easily have hundreds or thousands of components in your environment.  You may be able to manually manage a few dozen virtual machines or physical servers, but there is no way you can manage a production-scale container environment without automation.  The task of automating and managing a large number of containers and how they interact is known as orchestration. 
-
-The standard definition of orchestration includes the following tasks:
-
-- Scheduling: Given a container image and a resource request, find a suitable machine on which to run the container.
-Affinity/Anti-affinity: Specify that a set of containers should run nearby each other (for performance) or sufficiently far apart (for availability).
-- Health monitoring: Watch for container failures and automatically reschedule them.
-- Failover: Keep track of what is running on each machine and reschedule containers from failed machines to healthy nodes.
-- Scaling: Add or remove container instances to match demand, either manually or automatically.
-- Networking: Provide an overlay network for coordinating containers to communicate across multiple host machines.
-- Service discovery: Enable containers to locate each other automatically even as they move between host machines and change IP addresses.
-- Coordinated application upgrades: Manage container upgrades to avoid application down time and enable rollback if something goes wrong.
-
-Azure offers two container orchestrators: Azure Container Service (AKS) and Service Fabric.
-
-[Azure Container Service (AKS)](/azure/aks/) makes it simple to create, configure, and manage a cluster of virtual machines that are preconfigured to run containerized applications. This enables you to use your existing skills, or draw upon a large and growing body of community expertise, to deploy and manage container-based applications on Microsoft Azure. By using AKS, you can take advantage of the enterprise-grade features of Azure, while still maintaining application portability through Kubernetes and the Docker image format.
-
-[Azure Service Fabric](/azure/service-fabric/) is a distributed systems platform that makes it easy to package, deploy, and manage scalable and reliable microservices and containers. Service Fabric addresses the significant challenges in developing and managing cloud native applications. Developers and administrators can avoid complex infrastructure problems and focus on implementing mission-critical, demanding workloads that are scalable, reliable, and manageable. Service Fabric represents the next-generation platform for building and managing these enterprise-class, tier-1, cloud-scale applications running in containers.
 
 ## Video Overview
 
