@@ -2,12 +2,12 @@
 title: Joining Linux nodes
 author: daschott
 ms.author: daschott
-ms.date: 11/02/2018
+ms.date: 02/09/2018
 ms.topic: get-started-article
 ms.prod: containers
 
-description: Joining a Linux node to a Kubernetes cluster with v1.12.
-keywords: kubernetes, 1.12, windows, getting started
+description: Joining a Linux node to a Kubernetes cluster with v1.13.
+keywords: kubernetes, 1.13, windows, getting started
 ms.assetid: 3b05d2c2-4b9b-42b4-a61b-702df35f5b17
 ---
 
@@ -84,9 +84,12 @@ sudo sysctl net.bridge.bridge-nf-call-iptables=1
 mkdir -p $HOME/.kube
 ```
 
-1. Copy the Kubernetes certificate file (`$HOME/.kube/config`) [from master](./creating-a-linux-master.md#collect-cluster-information) and save as `$HOME/.kube/config` on the worker.
+2. Copy the Kubernetes certificate file (`$HOME/.kube/config`) [from master](./creating-a-linux-master.md#collect-cluster-information) and save as `$HOME/.kube/config` on the worker.
 
-1. Set file ownership of the copied config file as follows:
+> [!tip]
+> You can use scp-based tools such as [WinSCP](https://winscp.net/eng/download.php) to transfer the config file between nodes.
+
+3. Set file ownership of the copied config file as follows:
 
 ``` bash
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
