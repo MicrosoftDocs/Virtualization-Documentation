@@ -7,7 +7,7 @@ ms.topic: get-started-article
 ms.prod: containers
 
 description: Deploying Kubernetes resoureces on a mixed-OS Kubernetes cluster.
-keywords: kubernetes, 1.12, windows, getting started
+keywords: kubernetes, 1.13, windows, getting started
 ms.assetid: 3b05d2c2-4b9b-42b4-a61b-702df35f5b17
 ---
 # Deploying Kubernetes Resources #
@@ -67,3 +67,7 @@ In this section, we covered how to schedule Kubernetes resources on Windows node
 
 > [!div class="nextstepaction"]
 > [Troubleshooting](./common-problems.md)
+
+Otherwise, you may also be interested in running Kubernetes components as Windows services:
+> [!div class="nextstepaction"]
+> [Windows Services](./kube-windows-services.md)

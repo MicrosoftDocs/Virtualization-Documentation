@@ -6,8 +6,8 @@ ms.date: 11/02/2018
 ms.topic: get-started-article
 ms.prod: containers
 
-description: Joining a Windows node to a Kubernetes cluster with v1.12.
-keywords: kubernetes, 1.12, windows, getting started
+description: Joining a Windows node to a Kubernetes cluster with v1.13.
+keywords: kubernetes, 1.13, windows, getting started
 ms.assetid: 3b05d2c2-4b9b-42b4-a61b-702df35f5b17
 ---
 # Joining Windows Server Nodes to a Cluster #
@@ -91,10 +91,13 @@ mkdir c:\k
 #### Copy Kubernetes certificate #### 
 Copy the Kubernetes certificate file (`$HOME/.kube/config`) [from master](./creating-a-linux-master.md#collect-cluster-information) to this new `C:\k` directory.
 
+> [!tip]
+> You can use tools such as [xcopy](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/xcopy) or [WinSCP](https://winscp.net/eng/download.php) to transfer the config file between nodes.
+
 #### Download Kubernetes binaries ####
 To be able to run Kubernetes, you first need to download the `kubectl`, `kubelet`, and `kube-proxy` binaries. You can download these from the links in the `CHANGELOG.md` file of the [latest releases](https://github.com/kubernetes/kubernetes/releases/).
- - For example, here are the [v1.12 Node Binaries](https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG-1.12.md#node-binaries).
- - Use a tool like [7-Zip](http://www.7-zip.org/) to extract the archive and place the binaries into `C:\k\`.
+ - For example, here are the [v1.13 Node Binaries](https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG-1.13.md#node-binaries).
+ - Use a tool like [Expand-Archive](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.archive/expand-archive?view=powershell-6) to extract the archive and place the binaries into `C:\k\`.
 
 #### (Optional) Setup kubectl on Windows ####
 Should you wish to control the cluster from Windows, you can do so using the `kubectl` command. First, to make `kubectl` available outside of the `C:\k\` directory, modify the `PATH` environment variable:
@@ -139,25 +142,18 @@ If you see no errors the node is now ready to join the cluster.
 
 ## Joining the Windows node ##
 Depending on [networking solution you chose](./network-topologies.md), you can:
-1. [Join Windows Server nodes to a Flannel cluster](#joining-a-flannel-cluster)
+1. [Join Windows Server nodes to a Flannel (vxlan or host-gw) cluster](#joining-a-flannel-cluster)
 2. [Join Windows Server nodes to a cluster with a ToR switch](#joining-a-tor-cluster)
 
 ### Joining a Flannel cluster ###
-There is a collection of Flannel deployment scripts on [this Microsoft repository](https://github.com/Microsoft/SDN/tree/master/Kubernetes/flannel/l2bridge)  that helps you join this node to the cluster.
+There is a collection of Flannel deployment scripts on [this Microsoft repository](https://github.com/Microsoft/SDN/tree/master/Kubernetes/flannel/overlay) that helps you join this node to the cluster.
 
-You can download the ZIP file directly [here](https://github.com/Microsoft/SDN/archive/master.zip). The only thing you need is the `Kubernetes/flannel/l2bridge` directory, the contents of which should be extracted to `C:\k\`:
+Download the [Flannel start.ps1](https://github.com/Microsoft/SDN/blob/master/Kubernetes/flannel/start.ps1) script, the contents of which should be extracted to `C:\k`:
 
 ```powershell
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
-wget https://github.com/Microsoft/SDN/archive/master.zip -o master.zip
-Expand-Archive master.zip -DestinationPath master
-mv master/SDN-master/Kubernetes/flannel/l2bridge/* C:/k/
-rm -recurse -force master,master.zip
+wget https://raw.githubusercontent.com/Microsoft/SDN/master/Kubernetes/flannel/start.ps1 -o c:\k\start.ps1
 ```
-
-In addition to this, you should ensure that the cluster subnet (e.g. check "10.244.0.0/16") is correct in:
-- [net-conf.json](https://github.com/Microsoft/SDN/blob/master/Kubernetes/flannel/l2bridge/net-conf.json)
-
 
 Assuming you [prepared your Windows node](#preparing-a-windows-node), and your `c:\k` directory looks as below, you are ready to join the node.
 
@@ -167,13 +163,78 @@ Assuming you [prepared your Windows node](#preparing-a-windows-node), and your `
 To simplify the process of joining a Windows node, you only need to run a single Windows script to launch `kubelet`, `kube-proxy`, `flanneld`, and join the node.
 
 > [!Note]
-> [This script](https://github.com/Microsoft/SDN/blob/master/Kubernetes/flannel/l2bridge/start.ps1) will download additional files such as updated `flanneld` executable and the [Dockerfile for infrastructure pod](https://github.com/Microsoft/SDN/blob/master/Kubernetes/windows/Dockerfile) *and run those for you*. There may be multiple powershell windows being opened/closed as well as a few seconds of network outage while the new external vSwitch for the l2bridge pod network is being created the first time.
+> [start.ps1](https://github.com/Microsoft/SDN/blob/master/Kubernetes/flannel/start.ps1) references [install.ps1](https://github.com/Microsoft/SDN/blob/master/Kubernetes/windows/install.ps1), which will download additional files such as the `flanneld` executable and the [Dockerfile for infrastructure pod](https://github.com/Microsoft/SDN/blob/master/Kubernetes/windows/Dockerfile) *and install those for you*. For overlay networking mode, the [firewall](https://github.com/Microsoft/SDN/blob/master/Kubernetes/windows/helper.psm1#L111) will be opened for local UDP port 4789. There may be multiple powershell windows being opened/closed as well as a few seconds of network outage while the new external vSwitch for the pod network is being created the first time.
 
 ```powershell
 cd c:\k
-chcp 65001
-.\start.ps1 -ManagementIP <Windows Node IP> -ClusterCIDR <Cluster CIDR> -ServiceCIDR <Service CIDR> -KubeDnsServiceIP <Kube-dns Service IP> 
+.\start.ps1 -ManagementIP <Windows Node IP> -NetworkMode <network mode>  -ClusterCIDR <Cluster CIDR> -ServiceCIDR <Service CIDR> -KubeDnsServiceIP <Kube-dns Service IP> -LogDir <Log directory>
 ```
+# [ManagementIP](#tab/ManagementIP)
+The IP address assigned to the Windows node. You can use `ipconfig` to find this.
+
+|  |  | 
+|---------|---------|
+|Parameter     | `-ManagementIP`        |
+|Default Value    | n.A. **required**        |
+
+# [NetworkMode](#tab/NetworkMode)
+The network mode `l2bridge` (flannel host-gw) or `overlay` (flannel vxlan) chosen as a [network solution](./network-topologies.md).
+
+> [!Important] 
+> `overlay` networking mode (flannel vxlan) requires Kubernetes v1.14 binaries or above.
+
+|  |  | 
+|---------|---------|
+|Parameter     | `-NetworkMode`        |
+|Default Value    | `l2bridge`        |
+
+
+# [ClusterCIDR](#tab/ClusterCIDR)
+The [cluster subnet range](./getting-started-kubernetes-windows.md#cluster-subnet-def).
+
+|  |  | 
+|---------|---------|
+|Parameter     | `-ClusterCIDR`        |
+|Default Value    | `10.244.0.0/16`        |
+
+
+# [ServiceCIDR](#tab/ServiceCIDR)
+The [service subnet range](./getting-started-kubernetes-windows.md#service-subnet-def).
+
+|  |  | 
+|---------|---------|
+|Parameter     | `-ServiceCIDR`        |
+|Default Value    | `10.96.0.0/12`        |
+
+
+# [KubeDnsServiceIP](#tab/KubeDnsServiceIP)
+The [Kubernetes DNS service IP](./getting-started-kubernetes-windows.md#kube-dns-def).
+
+|  |  | 
+|---------|---------|
+|Parameter     | `-KubeDnsServiceIP`        |
+|Default Value    | `10.96.0.10`        |
+
+
+# [InterfaceName](#tab/InterfaceName)
+The name of the network interface of the Windows host. You can use `ipconfig` to find this.
+
+|  |  | 
+|---------|---------|
+|Parameter     | `-InterfaceName`        |
+|Default Value    | `Ethernet`        |
+
+
+# [LogDir](#tab/LogDir)
+The directory where kubelet and kube-proxy logs are redirected into their respective output files.
+
+|  |  | 
+|---------|---------|
+|Parameter     | `-LogDir`        |
+|Default Value    | `C:\k`        |
+
+
+---
 
 > [!tip]
 > You already noted down the cluster subnet, service subnet, and kube-DNS IP from the Linux master [earlier](./creating-a-linux-master.md#collect-cluster-information)
@@ -183,6 +244,7 @@ After running this you should be able to:
   * See 3 powershell windows open, one for `kubelet`, one for `flanneld`, and another for `kube-proxy`
   * See host-agent processes for `flanneld`, `kubelet`, and `kube-proxy` running on the node
 
+If successful, continue to the [next steps](#next-steps).
 
 ## Joining a ToR cluster ##
 > [!NOTE]

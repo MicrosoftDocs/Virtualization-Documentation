@@ -12,7 +12,7 @@ ms.assetid: e3b2a4dc-9082-4de3-9c95-5d516c03482b
 
 # Windows Containers on Windows Server
 
-This exercise walks through basic deployment and use of the Windows container feature on Windows Server 2019.
+This exercise walks through basic deployment and use of the Windows container feature on Windows Server 2019 and Windows Server 2016.
 
 In this quick start you will accomplish:
 
@@ -22,7 +22,7 @@ In this quick start you will accomplish:
 
 If you need to familiarize yourself with containers, you can find this information in [About Containers](../about/index.md).
 
-This quick start is specific to Windows Server containers on Windows Server 2019. Additional quick start documentation, including containers in Windows 10, are found in the table of contents on the left hand side of this page.
+This quick start is specific to Windows Server containers on Windows Server 2019 and Windows Server 2016. Additional quick start documentation, including containers in Windows 10, are found in the table of contents on the left hand side of this page.
 
 ## Prerequisites
 
@@ -101,10 +101,18 @@ When prompted, choose option A to download all updates.
 
 For this exercise, you download a pre-created .NET sample image from the Docker Hub registry and deploy a simple container running a .Net Hello World application.  
 
-Use `docker run` to deploy the .Net container. This will also download the container image which may take a few minutes.
+Use `docker run` to deploy the .Net container. This will also download the container image which may take a few minutes. Depending on your host version of Windows Server, run the following command below.
+
+#### Windows Server 2019
 
 ```console
 docker run microsoft/dotnet-samples:dotnetapp-nanoserver-1809
+```
+
+#### Windows Server 2016
+
+```console
+docker run microsoft/dotnet-samples:dotnetapp-nanoserver-sac2016
 ```
 
 The container starts, prints the hello world message, and then exits.

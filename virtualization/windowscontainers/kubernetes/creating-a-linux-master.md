@@ -2,17 +2,17 @@
 title: Kubernetes Master From Scratch
 author: daschott
 ms.author: daschott
-ms.date: 11/02/2018
+ms.date: 02/09/2018
 ms.topic: get-started-article
 ms.prod: containers
 
 description: Creating a Kubernetes cluster master.
-keywords: kubernetes, 1.12, master, linux
+keywords: kubernetes, 1.13, master, linux
 ---
 
 # Creating a Kubernetes Master #
 > [!NOTE]
-> This guide was validated on Kubernetes v1.12. Because of the volatility of Kubernetes from version to version, this section may make assumptions that do not hold true for all future versions. Official documentation for initializing Kubernetes masters using kubeadm can be found [here](https://kubernetes.io/docs/setup/independent/install-kubeadm/). Simply enable [mixed-OS scheduling section](#enable-mixed-os-scheduling) on top of that.
+> This guide was validated on Kubernetes v1.13. Because of the volatility of Kubernetes from version to version, this section may make assumptions that do not hold true for all future versions. Official documentation for initializing Kubernetes masters using kubeadm can be found [here](https://kubernetes.io/docs/setup/independent/install-kubeadm/). Simply enable [mixed-OS scheduling section](#enable-mixed-os-scheduling) on top of that.
 
 > [!NOTE]  
 > A recently-updated Linux machine is required to follow along; Kubernetes master resources like [kube-dns](https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/), [kube-scheduler](https://kubernetes.io/docs/reference/command-line-tools-reference/kube-scheduler/), and [kube-apiserver](https://kubernetes.io/docs/reference/command-line-tools-reference/kube-apiserver/) have not been ported to Windows yet. 
@@ -77,7 +77,7 @@ This may take a few minutes. Once completed, you should see a screen like this c
 ![text](media/kubeadm-init.png)
 
 > [!tip]
-> Take note of the kubeadm join command output in the picture above *now* before it gets lost.
+> You should take note of this kubeadm join command. Shoud the kubeadm token expire, you can use `kubeadm token create --print-join-command` to create a new token.
 
 > [!tip]
 > If you have a desired Kubernetes version you'd like to use, you can pass the `--kubernetes-version` flag to kubeadm.
@@ -96,6 +96,11 @@ By default, certain Kubernetes resources are written in such a way that they're 
 
 In this regard, we are going to patch the linux kube-proxy [DaemonSet](https://kubernetes.io/docs/concepts/workloads/controllers/daemonset/) to target Linux only.
 
+First, let's create a directory to store .yaml manifest files:
+```bash
+mkdir -p kube/yaml && cd kube/yaml
+```
+
 Confirm that the update strategy of `kube-proxy` DaemonSet is set to [RollingUpdate](https://kubernetes.io/docs/tasks/manage-daemon/update-daemon-set/):
 
 ```bash
@@ -105,6 +110,7 @@ kubectl get ds/kube-proxy -o go-template='{{.spec.updateStrategy.type}}{{"\n"}}'
 Next, patch the DaemonSet by downloading [this nodeSelector](https://github.com/Microsoft/SDN/tree/master/Kubernetes/flannel/l2bridge/manifests/node-selector-patch.yml) and apply it to only target Linux:
 
 ```bash
+wget https://raw.githubusercontent.com/Microsoft/SDN/master/Kubernetes/flannel/l2bridge/manifests/node-selector-patch.yml
 kubectl patch ds/kube-proxy --patch "$(cat node-selector-patch.yml)" -n=kube-system
 ```
 
@@ -117,7 +123,7 @@ kubectl get ds -n kube-system
 ![text](media/kube-proxy-ds.png)
 
 ### Collect cluster information ###
-To successfully join future nodes to the master, you should write down the following information:
+To successfully join future nodes to the master, you should keep track of the following information:
   1. `kubeadm join` command from output ([here](#initialize-master))
     * Example: `kubeadm join <Master_IP>:6443 --token <some_token> --discovery-token-ca-cert-hash <some_hash>`
   2. Cluster subnet defined during `kubeadm init` ([here](#initialize-master))
@@ -135,8 +141,11 @@ To successfully join future nodes to the master, you should write down the follo
 ## Verifying the master ##
 After a few minutes, the system should be in the following state:
 
-  - Under `kubectl get pods -n kube-system`, there will be pods for all the [Kubernetes master components](https://kubernetes.io/docs/concepts/overview/components/#master-components) in `Running` state.
+  - Under `kubectl get pods -n kube-system`, there will be pods for the [Kubernetes master components](https://kubernetes.io/docs/concepts/overview/components/#master-components) in `Running` state.
   - Calling `kubectl cluster-info` will show information about the Kubernetes master API server in addition to DNS addons.
+  
+> [!tip]
+> Since kubeadm does not setup networking, DNS pods may still be in `ContainerCreating` or `Pending` state. They will switch to `Running` state after [choosing a network solution](./network-topologies.md).
 
 ## Next steps ## 
 In this section we covered how to setup a Kubernetes master using kubeadm. Now you are ready for step 3:

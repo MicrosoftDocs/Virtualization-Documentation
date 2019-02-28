@@ -38,6 +38,7 @@
 ### [Joining Linux Workers](kubernetes/joining-linux-workers.md)
 ### [Deploying Kubernetes Resources](kubernetes/deploying-resources.md)
 ### [Troubleshooting](kubernetes/common-problems.md)
+### [Windows Services on Kubernetes](kubernetes/kube-windows-services.md)
 ### [Compiling Kubernetes Binaries](kubernetes/compiling-kubernetes-binaries.md)
 ## Service Fabric on Windows
 ### [Deploy your first container](/azure/service-fabric/service-fabric-quickstart-containers)
