@@ -17,12 +17,23 @@ Windows Containers provide operating system level virtualization that allows mul
 <table border="1" style="background-color:FFFFCC;border-collapse:collapse;border:1px solid FFCC00;color:000000;width:90%; margin-top: 20px" cellpadding="25" cellspacing="5">
 <tr>
 <td ><center>![](media/try.png)</center></td>
+<td>**Overview**<br /><br />
+Get Containers fundamentals and understand the buzz words.<br /><br />
+<ul>
+<li>[About Windows Containers](about/index.md)<br /><br /></li>
+<li>[Container Types and Isolation](about/container-types-and-isolation.md)<br /><br /></li>
+<li>[Container Orchestrators](quick-start/orchestrators.md)<br /><br /></li>
+</ul>
+</td>
+</tr>
+<tr>
+<td ><center>![](media/try.png)</center></td>
 <td>**Getting Started**<br /><br />
 Learn about Containers and then jump into using them.<br /><br />
 <ul>
-<li>[About Windows Containers](about/index.md)<br /><br /></li>
 <li>[Using Containers in Windows Server](quick-start/quick-start-windows-server.md)<br /><br /></li>
 <li>[Using Containers in Windows 10](quick-start/quick-start-windows-10.md)<br /><br /></li>
+<li>[Using Insiders Container Images](quick-start/Using-Insider-Container-Images.md)<br /><br /></li>
 </ul>
 </td>
 </tr>
