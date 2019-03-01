@@ -65,9 +65,12 @@ Learn about managing Docker on Windows.<br /><br />
 <tr>
 <td ><center>![](media/video.png)</center></td>
 <td>**Watch**<br /><br />
-Interested in demos and interviews from the Windows Container team?<br /><br />
+Interested in demos from the Windows Container team?<br /><br />
 <ul>
-<li>[Containers Channel](https://channel9.msdn.com/Blogs/containers)</li>
+<li>[From Ops to DevOps with Windows Server containers and Windows Server 2019](https://myignite.techcommunity.microsoft.com/sessions/65919)</li>
+<li>[Getting started with Windows Server containers in Windows Server 2019](https://myignite.techcommunity.microsoft.com/sessions/65885)</li>
+<li>[Take the next step with Windows Server container orchestration](https://myignite.techcommunity.microsoft.com/sessions/65918)</li>
+<li>[Fundamentals of Kubernetes on Microsoft Azure](https://myignite.techcommunity.microsoft.com/sessions/65005)</li>
 </ul>
 <br />
 </td>
