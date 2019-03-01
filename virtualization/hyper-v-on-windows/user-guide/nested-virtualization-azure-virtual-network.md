@@ -115,7 +115,7 @@ I will gloss over any configuration values that are up to personal preference, s
 ## Configuring Remote Access
 
 1. Open Server Manager and select "Tools" and then select "Routing and Remote Access".
-2. On the right hand side of the Routing and Remote Access management panel you will see an icon with your servers name next to it, right click this and select "Configure and Enable Routing and Remote Access".
+2. On the left hand side of the Routing and Remote Access management panel you will see an icon with your servers name next to it, right click this and select "Configure and Enable Routing and Remote Access".
 3. At the wizard select "Next", check the radial button for "Custom Configuration", and then select "Next".
 4. Check “NAT” and “LAN routing” and then select “Next” and then “Finish”. If it asks you to start the service then do so.
 5. Now navigate to the “IPv4” node and expand it so that the “NAT” node is made available.
