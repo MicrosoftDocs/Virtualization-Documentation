@@ -248,10 +248,6 @@ $VmCfgErrorMsgs = @{
     "Saved" = "This VM has been saved."
     }
 
-$VmCfgErrors = $null
-$VmCfgErrors = @()
-
-
 # Array to hold list of pertinent VM info
 $vmInfoList =  @()
 
@@ -271,7 +267,8 @@ foreach ($vm in $vms) {
     Add-Member -InputObject $vmInfo NoteProperty -Name "DynamicMemoryEnabled" -Value $vm.DynamicMemoryEnabled
     Add-Member -InputObject $vmInfo NoteProperty -Name "SnapshotEnabled" -Value $false
     Add-Member -InputObject $vmInfo NoteProperty -Name "State" -Value $vm.State
-    
+    Add-Member -InputObject $vmInfo NoteProperty -Name "VmCfgErrors" -Value @()
+
     #
     # VM eligibility validation
     #
@@ -280,25 +277,24 @@ foreach ($vm in $vms) {
     $vmInfo.ExposeVirtualizationExtensions = (Get-VMProcessor -VM $vm).ExposeVirtualizationExtensions
     if ($vmInfo.ExposeVirtualizationExtensions -eq $false) {
         $vmInfo.SupportsNesting = $false
-        $VmCfgErrors += ($VmCfgErrorMsgs["ExposeVirtualizationExtensions"])      
-        }
-     
+        $vmInfo.VmCfgErrors += ($VmCfgErrorMsgs["ExposeVirtualizationExtensions"])
+    }
 
     if ($vmInfo.DynamicMemoryEnabled -eq $true) {
         $vmInfo.SupportsNesting = $false
-        $VmCfgErrors += ($VmCfgErrorMsgs["DynMem"])
-        }
+        $vmInfo.VmCfgErrors += ($VmCfgErrorMsgs["DynMem"])
+    }
 
     if ($vm.ParentCheckpointId -ne $null) {
         $vmInfo.SupportsNesting = $false
-        $VmCfgErrors += ($VmCfgErrorMsgs["Checkpoint"])
-        }
+        $vmInfo.VmCfgErrors += ($VmCfgErrorMsgs["Checkpoint"])
+    }
 
     if ($vmInfo.State -eq 'Saved') {
         $vmInfo.SupportsNesting = $false
-        $VmCfgErrors += ($VmCfgErrorMsgs["Saved"])
-        }
-     
+        $vmInfo.VmCfgErrors += ($VmCfgErrorMsgs["Saved"])
+    }
+
     $vmInfoList += $vmInfo
     }
 Write-Host "done."
@@ -315,9 +311,9 @@ foreach ($vmInfo in $vmInfoList) {
         } else {
         Write-Host "NO" -ForegroundColor White -BackgroundColor RED
         Write-Host "The following VM configuration errors have been detected:"
-        $VmCfgErrors
+        $vmInfo.VmCfgErrors
         Write-Host
-        }
+    }
 
     Write-Host
     $vmInfo
