@@ -20,8 +20,8 @@ The exercise will walk through creating and running Linux containers on Windows 
 
 In this quick start you will accomplish:
 
-1. Installed Docker for Windows
-2. Run a simple Linux container using Linux Containers on Windows (LCOW)
+1. Installing Docker for Windows
+2. Running a simple Linux container using Linux Containers on Windows (LCOW)
 
 This quick start is specific to Windows 10. Additional quick start documentation can be found in the table of contents on the left-hand side of this page.
 
