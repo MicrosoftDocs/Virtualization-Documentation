@@ -20,7 +20,7 @@ The exercise will walk through creating and running Linux containers on Windows 
 
 In this quick start you will accomplish:
 
-1. Installing Docker for Windows
+1. Installing Docker Desktop
 2. Running a simple Linux container using Linux Containers on Windows (LCOW)
 
 This quick start is specific to Windows 10. Additional quick start documentation can be found in the table of contents on the left-hand side of this page.
@@ -34,9 +34,9 @@ Please make sure you meet the following requirements:
 ***Hyper-V isolation:***
 Linux Containers on Windows require Hyper-V isolation on Windows 10 in order to provide developers with the the appropriate Linux kernel to run the container. More about Hyper-V isolation can be found on the [About Windows container](../about/index.md) page.
 
-## Install Docker for Windows
+## Install Docker Desktop
 
-Download [Docker for Windows](https://store.docker.com/editions/community/docker-ce-desktop-windows) and run the installer (You will be required to login. Create an account if you don't have one already). [Detailed installation instructions](https://docs.docker.com/docker-for-windows/install) are available in the Docker documentation.
+Download [Docker Desktop](https://store.docker.com/editions/community/docker-ce-desktop-windows) and run the installer (You will be required to login. Create an account if you don't have one already). [Detailed installation instructions](https://docs.docker.com/docker-for-windows/install) are available in the Docker documentation.
 
 > If you already have Docker installed, make sure you have version 18.02 or later to support LCOW. Check by running `docker -v` or checking *About Docker*.
 
