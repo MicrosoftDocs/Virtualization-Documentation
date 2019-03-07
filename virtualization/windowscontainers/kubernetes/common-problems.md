@@ -59,6 +59,9 @@ One of the Kubernetes networking requirements (see [Kubernetes model](https://ku
 				]
 ```
 
+### My Windows node cannot access a NodePort service ###
+Local NodePort access from the node itself will fail. This is a known limitation. NodePort access will work from other nodes or external clients.
+
 ### After some time, vNICs and HNS endpoints of containers are being deleted ###
 This issue can be caused when the `hostname-override` parameter is not passed to [kube-proxy](https://kubernetes.io/docs/reference/command-line-tools-reference/kube-proxy/). To resolve it, users need to pass the hostname to kube-proxy as follows:
 ```

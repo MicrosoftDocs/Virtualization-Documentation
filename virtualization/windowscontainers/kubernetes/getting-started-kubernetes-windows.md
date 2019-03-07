@@ -42,17 +42,6 @@ As Kubernetes clusters introduce new subnets for pods and services, it is import
 > There is another Docker network (NAT) that gets created by default when you install Docker. It is not needed to operate Kubernetes on Windows as we assign IPs from the cluster subnet instead.
 
 
-### Disable anti-spoofing protection (required for l2bridge) ###
-Should you wish to use l2bridge for networking (aka [flannel host-gateway](./network-topologies.md#flannel-in-host-gateway-mode)), you should ensure MAC address spoofing is enabled for the Windows container host VMs (guests). To achieve this, you should run the following as Administrator on the machine hosting the VMs (example given for Hyper-V):
-
-```powershell
-Get-VMNetworkAdapter -VMName "<name>" | Set-VMNetworkAdapter -MacAddressSpoofing On
-```
-> [!TIP]
-> If you are using a VMware-based product to meet your virtualization needs, please look into enabling [promiscuous mode](https://kb.vmware.com/s/article/1004099) for the MAC spoofing requirement.
-
->[!TIP]
-> If you are deploying Kubernetes on Azure or IaaS VMs from other cloud providers yourself, we recommend [overlay networking](./network-topologies.md#flannel-in-vxlan-mode) instead.
 
 ## What you will accomplish ##
 
