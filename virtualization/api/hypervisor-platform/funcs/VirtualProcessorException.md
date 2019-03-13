@@ -22,11 +22,13 @@ typedef union WHV_VP_EXCEPTION_INFO
 typedef struct WHV_VP_EXCEPTION_CONTEXT
 {
     UINT8 InstructionByteCount;
+    UINT8 Reserved[3];
     UINT8 InstructionBytes[16];
 
     // Exception info
     WHV_VP_EXCEPTION_INFO ExceptionInfo;
-    UINT16 ExceptionVector;
+    UINT8 ExceptionType; // WHV_EXCEPTION_TYPE
+    UINT8 Reserved2[3];
     UINT32 ErrorCode;
     UINT64 ExceptionParameter;
 } WHV_VP_EXCEPTION_CONTEXT; 
