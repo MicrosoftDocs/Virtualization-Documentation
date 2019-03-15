@@ -156,7 +156,7 @@ function New-CredentialSpec {
 
     # Import the AD PS module (required dependency to create new cred specs)
     try {
-        Import-Module ActiveDirectory -Force
+        Import-Module ActiveDirectory -Force -ErrorAction Stop
     }
     catch {
         # Generate instructions on how to obtain RSAT
