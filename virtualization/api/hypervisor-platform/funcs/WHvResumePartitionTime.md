@@ -1,11 +1,11 @@
-# WHvSuspendPartitionTime
+# WHvResumePartitionTime
 
 ## Syntax
 
 ```C
 HRESULT
 WINAPI
-WHvSuspendPartitionTime(
+WHvResumePartitionTime(
     _In_ WHV_PARTITION_HANDLE Partition
     );
 ```
@@ -22,11 +22,8 @@ If the function succeeds, the return value is `S_OK`.  
 
 ## Remarks
 
-Suspends time for the partition.
-
-No virtual processor may be running when this is called.  Time will resume when when [`WHvResumePartitionTime`](WHvResumePartitionTime.md) or
-[`WHvRunVirtualProcessor`](WHvRunVirtualProcessor.md) is called.
+Resumes time for a partition suspended by [`WHvSuspendPartitionTime`](WHvSuspendPartitionTime.md).
 
 ## Requirements
 
-Minimum supported build    Insider Preview Builds (19H1)
+Minimum supported build:    Insider Preview Builds (19H1)

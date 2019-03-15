@@ -1,11 +1,11 @@
-# WHvSetupPartition
+# WHvSuspendPartitionTime
 
 ## Syntax
 
 ```C
 HRESULT
 WINAPI
-WHvSetupPartition(
+WHvSuspendPartitionTime(
     _In_ WHV_PARTITION_HANDLE Partition
     );
 ```
@@ -14,12 +14,19 @@ WHvSetupPartition(
 
 `Partition`
 
-Handle to the partition object that is set up.
-  
+Handle to the partition object.
+
+## Return Value
+
+If the function succeeds, the return value is `S_OK`.  
 
 ## Remarks
 
-Setting up the partition causes the actual partition to be created in the hypervisor.
+Suspends time for the partition.
 
-A partition needs to be set up prior to performing any other operation on the partition after it was created by [`WHvCreatePartition`](WHvCreatePartition.md), with exception of calling [`WHvSetPartitionProperty`](WHvSetPartitionProperty.md) to configure the initial properties of the partition.
+No virtual processor may be running when this is called.  Time will resume when when [`WHvResumePartitionTime`](WHvResumePartitionTime.md) or
+[`WHvRunVirtualProcessor`](WHvRunVirtualProcessor.md) is called.
 
+## Requirements
+
+Minimum supported build:    Insider Preview Builds (19H1)

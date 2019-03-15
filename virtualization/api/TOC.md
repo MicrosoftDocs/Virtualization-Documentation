@@ -17,6 +17,7 @@
 ## [WHvMapGpaRange](./hypervisor-platform/funcs/WHvMapGpaRange.md)
 ## [WHvQueryGpaRangeDirtyBitmap](./hypervisor-platform/funcs/WHvQueryGpaRangeDirtyBitmap.md)
 ## [WHvRequestInterrupt](./hypervisor-platform/funcs/WHvRequestInterrupt.md)
+## [WHvResumePartitionTime](./hypervisor-platform/funcs/WHvResumePartitionTime.md)
 ## [WHvRunVirtualProcessor](./hypervisor-platform/funcs/WHvRunVirtualProcessor.md)
 ### [Exit Contexts](./hypervisor-platform/funcs/WHvExitContextDataTypes.md)
 ### [Memory Access](./hypervisor-platform/funcs/MemoryAccess.md)
@@ -34,6 +35,7 @@
 ## [WHvSetVirtualProcessorRegisters](./hypervisor-platform/funcs/WHvSetVirtualProcessorRegisters.md)
 ### [Data Types](./hypervisor-platform/funcs/WHvVirtualProcessorDataTypes.md)
 ## [WHvSetVirtualProcessorXSaveState](./hypervisor-platform/funcs/WHvSetVirtualProcessorXSaveState.md)
+## [WHvSuspendPartitionTime](./hypervisor-platform/funcs/WHvSuspendPartitionTime.md)
 ## [WHvTranslateGva](./hypervisor-platform/funcs/WHvTranslateGva.md)
 ## [WHvUnmapGpaRange](./hypervisor-platform/funcs/WHvUnmapGpaRange.md)
 
