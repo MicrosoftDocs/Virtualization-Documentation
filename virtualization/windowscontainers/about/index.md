@@ -19,11 +19,11 @@ Containers are a way to wrap up an application into its own isolated box. For th
 
 Imagine a kitchen. We package up all the appliances and furniture, the pots and pans, the dish soap and hand towels. This is our container.
 
-<center style="margin: 25px">![](media/box1.png)</center>
+![](media/box1.png)
 
 We can now take this container and drop it into whatever host apartment we want, and it will be the same kitchen. All we must do is connect electricity and water to it, and then we’re clear to start cooking (because we have all the appliances we need!).
 
-<center style="margin: 25px">![](media/apartment.png)</center>
+![](media/apartment.png)
 
 In much the same way, containers are like this kitchen. There can be different kinds of rooms as well as many of the same kinds of rooms. What matters is that the containers come packaged up with everything they need.
 
@@ -49,7 +49,7 @@ The following key concepts will be helpful as you begin creating and working wit
 
 **Container Repository:** Each time a container image is created, the container image and its dependencies are stored in a local repository. These images can be reused many times on the container host. The container images can also be stored in a public or private registry, such as DockerHub, so that they can be used across many different container hosts.
 
-<center>![](media/containerfund.png)</center>
+![](media/containerfund.png)
 
 For someone familiar with virtual machines, containers may appear to be incredibly similar. A container runs an operating system, has a file system and can be accessed over a network just as if it was a physical or virtual computer system. However, the technology and concepts behind containers are vastly different from virtual machines.
 
@@ -69,7 +69,7 @@ Running a container on Windows with or without Hyper-V Isolation is a runtime de
 
 As you read about containers, you’ll inevitably hear about Docker. Docker is the vessel by which container images are packaged and delivered. This automated process produces images (effectively templates) which may then be run anywhere—on premises, in the cloud, or on a personal machine—as a container.
 
-<center>![](media/docker.png)</center>
+![](media/docker.png)
 
 Just like any other container, a Windows Server Container can be managed with [Docker](https://www.docker.com).
 
