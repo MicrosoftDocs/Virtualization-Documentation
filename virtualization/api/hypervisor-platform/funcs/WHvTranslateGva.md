@@ -55,7 +55,7 @@ WHvTranslateGva(
 
 `Partition`
 
-Handle to the partition object in the VID
+Handle to the partition object
 
 `VpIndex`
 

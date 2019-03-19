@@ -14,12 +14,11 @@ WHvSetupPartition(
 
 `Partition`
 
-Handle to the partition object that is set up.
+Handle to the partition object
   
 
 ## Remarks
 
-Setting up the partition causes the actual partition to be created in the hypervisor.
+The `WHvSetupPartition` function sets up the parition which causes the actual partition to be created in the hypervisor.
 
-A partition needs to be set up prior to performing any other operation on the partition after it was created by [`WHvCreatePartition`](WHvCreatePartition.md), with exception of calling [`WHvSetPartitionProperty`](WHvSetPartitionProperty.md) to configure the initial properties of the partition.
-
+Before setting up the partition with [`WHvSetupPartition`](WhvSetupPartition.md), the partition object should be created with [`WHvCreatePartition`](WHvCreatePartition.md) and the initial properties of the partition object configured with [`WHvSetPartitionProperty`](WHvSetPartitionProperty.md). After setting up the partition, the partition object can be passed to the other Windows Hypervisor Platform APIs.

@@ -25,4 +25,4 @@ To delete a partition created by `WHvCreatePartition`, use the [`WHvDeletePartit
 
 The `WHvCreatePartition` function creates a new partition object.
 
-`WHvCreatePartition` does not yet create the actual partition in the hypervisor. To create the hypervisor partition, the [`WHvSetupPartition`](WhvSetupPartition.md) function needs to be called. Additional properties of the partition can be configured prior to this call; these properties are stored in the partition object in the VID and are applied when creating the partition in the hypervisor.
+`WHvCreatePartition` only creates the partition object and does not yet create the actual partition in the hypervisor. After creation of the partition object, the partition object should be configured using [`WHvSetPartitionProperty`](WHvSetPartitionProperty.md). After the partition object is confgiured, the [`WHvSetupPartition`](WhvSetupPartition.md) function should be called to create the hypervisor partition.
