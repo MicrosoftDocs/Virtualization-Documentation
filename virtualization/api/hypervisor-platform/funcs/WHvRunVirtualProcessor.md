@@ -4,7 +4,7 @@
 ## Syntax
 
 ```C
-// Exit reason for the return of the VID_WHV_IOCTL_RUN_VP IOCTL 
+// Exit reasons
 typedef enum WHV_RUN_VP_EXIT_REASON
 {
     WHvRunVpExitReasonNone                   = 0x00000000,

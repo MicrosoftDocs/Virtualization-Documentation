@@ -1,7 +1,7 @@
 # Windows Hypervisor Platform API Definitions
 >**This API is available starting in the Windows April 2018 Update.**
 
-The following section contains the definitions of the Windows Hypervisor Platform APIs that are exposed through WinHvAPi.dll.  The DLL exports a set of C-style Windows API functions, the functions return HRESULT error codes indicating the result of the function call.
+The following section contains the definitions of the Windows Hypervisor Platform APIs that are exposed through WinHvPlatformDefs.h. WinHvAPi.dll exports a set of C-style Windows API functions, the functions return HRESULT error codes indicating the result of the function call.
 
 ## Platform Capabilities
 
@@ -14,7 +14,7 @@ The following section contains the definitions of the Windows Hypervisor Platfor
 
 |Function   |Description|
 |---|---|---|---|---|---|---|---|
-|[WHvCreatePartition](funcs/WHvCreatePartition.md)|Creating a partition creates a new partition object. Additional properties of the partition are stored in the partition object in the VID and are applied when creating the partition in the hypervisor.|
+|[WHvCreatePartition](funcs/WHvCreatePartition.md)|Creating a partition creates a new partition object. Additional properties of the partition are stored in the partition object and are applied when creating the partition in the hypervisor.|
 |[WHvSetupPartition](funcs/WHvSetupPartition.md)|Setting up the partition causes the actual partition to be created in the hypervisor. A partition needs to be set up prior to performing any other operation on the partition after it was created, with exception of configuring the initial properties of the partition.|
 |[WHvDeletePartition](funcs/WHvDeletePartition.md)|Deleting a partition tears down the partition object and releases all resource that the partition was using.|
 |   |   |
