@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Day Two of the Scott Drummonds VMware FUD Fiasco."
 date:       2009-05-10 00:17:00
 categories: uncategorized

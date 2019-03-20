@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "CentOS, OpenSUSE & More Linux Distros on Hyper-V R2!"
 date:       2009-08-10 01:53:02
 categories: hyper-v

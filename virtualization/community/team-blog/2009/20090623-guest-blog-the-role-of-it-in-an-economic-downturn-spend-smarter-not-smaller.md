@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Guest Blog&#58; The Role of IT in an Economic Downturn&#58; Spend Smarter, Not Smaller"
 date:       2009-06-23 05:30:00
 categories: guest-blog-post

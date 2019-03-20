@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Top 10 VMWare myths video"
 date:       2009-04-03 00:58:00
 categories: application-virtualization

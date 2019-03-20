@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Server & Tools Business Exec to discuss state of IT, answer your questions on June 23"
 date:       2009-06-18 00:27:00
 categories: cloud-computing

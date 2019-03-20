@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "City of Frisco (Texas) saves big with Hyper-V and NetApp"
 date:       2009-12-01 15:52:00
 categories: events

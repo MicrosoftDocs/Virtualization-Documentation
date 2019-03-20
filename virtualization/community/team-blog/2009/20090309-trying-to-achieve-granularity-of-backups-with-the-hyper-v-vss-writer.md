@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Trying to achieve granularity of backups with the Hyper-V VSS Writer"
 date:       2009-03-09 01:36:00
 categories: hyper-v

@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Virtualization&#58; desktop to datacenter"
 date:       2009-10-20 14:54:00
 categories: application-virtualization

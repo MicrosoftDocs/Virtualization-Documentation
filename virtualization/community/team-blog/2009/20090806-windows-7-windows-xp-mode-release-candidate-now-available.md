@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Windows 7&#58; Windows XP Mode Release Candidate Now Available"
 date:       2009-08-06 11:59:34
 categories: hp

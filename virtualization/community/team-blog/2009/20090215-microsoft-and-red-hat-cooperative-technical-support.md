@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Microsoft and Red Hat Cooperative Technical Support"
 date:       2009-02-15 16:00:00
 categories: application-virtualization

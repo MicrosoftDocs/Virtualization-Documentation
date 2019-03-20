@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Kroll Factual Data&#58; 85% virtualized, 30&#58;1 VM density"
 date:       2009-04-20 11:59:00
 categories: net

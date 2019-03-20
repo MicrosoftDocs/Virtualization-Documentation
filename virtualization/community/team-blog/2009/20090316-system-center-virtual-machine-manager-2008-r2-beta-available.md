@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "System Center Virtual Machine Manager 2008 R2 beta available"
 date:       2009-03-16 10:44:00
 categories: hyper-v

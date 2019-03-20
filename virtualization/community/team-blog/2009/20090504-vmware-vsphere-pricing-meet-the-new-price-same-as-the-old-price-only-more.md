@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "VMware vSphere pricing -  Meet the new price; same as the old price, only more"
 date:       2009-05-04 10:00:00
 categories: esx

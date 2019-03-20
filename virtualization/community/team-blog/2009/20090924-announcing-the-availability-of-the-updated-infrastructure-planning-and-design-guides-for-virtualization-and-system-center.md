@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Announcing the availability of the updated Infrastructure Planning and Design Guides for Virtualization and System Center"
 date:       2009-09-24 10:03:00
 categories: application-virtualization

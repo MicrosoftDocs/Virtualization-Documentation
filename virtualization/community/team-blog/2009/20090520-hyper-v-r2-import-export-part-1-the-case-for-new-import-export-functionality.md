@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Hyper-V R2 Import/Export – Part 1 – The Case for New Import/Export Functionality"
 date:       2009-05-20 00:13:00
 categories: hyper-v

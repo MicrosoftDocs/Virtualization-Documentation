@@ -11,22 +11,37 @@ Things anyone can do across all docs:
 * Add README.md for all samples and tools with the following information:
   * Name
   * What does the script/tool do
+  * Usage information
 
 ## Doc work in specific areas
 
 ### Container docs
 
+#### Small
+
 * Update all references to Hyper-V containers to be Hyper-V isolation (versus process isolation)
-* Containers Work in Progress and Known Issues pages
-  * Add exact error messages for more searchable resolution to issues.
+
+#### medium
+
+* Add exact error messages to the known issues page for more searchable issues
+
+#### large
+
 * Get started guides for:
   * cri/containerd
   * runhcs
 * build a table outlining tradeoffs between Hyper-V isolation and process isolation
+* security deep dive for Hyper-V isolation
 
 ### Hyper-V docs
 
-* Hyper-V on Windows [remote host management article](./virtualization/hyperv_on_windows/user_guide/remote_host_management.md)
+#### small
+
+#### medium
+
+#### large
+
+* Update the [remote host management article](./virtualization/hyperv_on_windows/user_guide/remote_host_management.md).  It's the most viewed and least liked doc in this section.
 
 ### Community docs
 

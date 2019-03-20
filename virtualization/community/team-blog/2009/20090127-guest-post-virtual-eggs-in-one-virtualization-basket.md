@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Guest Post&#58; Virtual Eggs in One Virtualization Basket?"
 date:       2009-01-27 01:43:00
 categories: cross-platform-management

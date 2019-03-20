@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Virtualization Review's hypervisor test"
 date:       2009-03-09 16:09:00
 categories: citrix

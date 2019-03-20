@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Too many Virtual Iron customers in the fire?"
 date:       2009-07-16 01:38:00
 categories: esx

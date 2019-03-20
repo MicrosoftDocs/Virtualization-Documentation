@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "VMware FUD Fiasco Part 3..."
 date:       2009-05-18 01:01:00
 categories: uncategorized

@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "WinServer 2K8 Hyper-V is alive"
 date:       2009-01-15 19:02:00
 categories: hyper-v

@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "System Center Ops Manager management pack for Hyper-V"
 date:       2009-03-13 14:43:00
 categories: esx

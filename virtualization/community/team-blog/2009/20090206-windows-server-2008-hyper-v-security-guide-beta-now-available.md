@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Windows Server 2008 Hyper-V Security Guide – beta now available"
 date:       2009-02-06 01:32:00
 categories: hyper-v

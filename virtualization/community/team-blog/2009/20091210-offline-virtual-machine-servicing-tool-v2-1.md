@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Offline Virtual Machine Servicing Tool v2.1"
 date:       2009-12-10 07:20:00
 categories: hyper-v

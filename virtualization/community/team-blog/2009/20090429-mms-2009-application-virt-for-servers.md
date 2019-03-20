@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "MMS 2009&#58; Application Virt for Servers"
 date:       2009-04-29 18:50:00
 categories: application-virtualization

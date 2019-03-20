@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Partner Resources&#58; Windows Error Reporting & More"
 date:       2009-08-18 10:20:00
 categories: hyper-v

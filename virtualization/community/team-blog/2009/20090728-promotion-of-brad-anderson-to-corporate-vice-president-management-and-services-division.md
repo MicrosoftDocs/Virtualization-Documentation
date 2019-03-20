@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Promotion of Brad Anderson to Corporate Vice President, Management and Services Division"
 date:       2009-07-28 16:16:00
 categories: management

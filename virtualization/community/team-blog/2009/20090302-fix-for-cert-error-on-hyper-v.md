@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Fix for Cert Error on Hyper-V"
 date:       2009-03-02 20:08:00
 categories: hyper-v

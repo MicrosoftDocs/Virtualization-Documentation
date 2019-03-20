@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "The Virtualization Essentials from Citrix"
 date:       2009-02-20 00:10:00
 categories: application-virtualization

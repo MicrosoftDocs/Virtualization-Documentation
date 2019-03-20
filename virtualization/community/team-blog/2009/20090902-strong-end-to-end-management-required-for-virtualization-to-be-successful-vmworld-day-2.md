@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Strong end to end management required for Virtualization to be successful (VMworld day 2)"
 date:       2009-09-02 09:39:00
 categories: application-virtualization

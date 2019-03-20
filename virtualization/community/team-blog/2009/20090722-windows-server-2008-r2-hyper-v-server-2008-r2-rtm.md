@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Windows Server 2008 R2 & Hyper-V Server 2008 R2 RTM!!!!"
 date:       2009-07-22 16:40:00
 categories: high-availability

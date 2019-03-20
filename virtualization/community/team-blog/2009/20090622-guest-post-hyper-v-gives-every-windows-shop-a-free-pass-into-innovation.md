@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Guest post&#58; Hyper-V gives every Windows shop a free pass into “innovation”"
 date:       2009-06-22 14:39:00
 categories: guest-blog-post

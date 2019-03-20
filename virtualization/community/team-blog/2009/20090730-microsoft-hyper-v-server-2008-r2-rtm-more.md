@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Microsoft Hyper-V Server 2008 R2 RTM & More."
 date:       2009-07-30 14:14:00
 categories: uncategorized

@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Microsoft Enterprise Desktop Virtualization now available via MDOP"
 date:       2009-04-02 00:36:00
 categories: application-virtualization

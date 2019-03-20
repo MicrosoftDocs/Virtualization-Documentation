@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Native VHD Support in Windows 7"
 date:       2009-05-14 01:00:00
 categories: hyper-v

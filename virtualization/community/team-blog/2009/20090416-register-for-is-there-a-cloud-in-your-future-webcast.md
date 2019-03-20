@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Register for 'Is There a Cloud in Your Future?' Webcast"
 date:       2009-04-16 07:30:00
 categories: cloud-computing

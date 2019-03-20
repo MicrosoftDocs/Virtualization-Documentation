@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Microsoft and EMC renew their (virtualization) vows"
 date:       2009-02-04 10:04:00
 categories: hyper-v

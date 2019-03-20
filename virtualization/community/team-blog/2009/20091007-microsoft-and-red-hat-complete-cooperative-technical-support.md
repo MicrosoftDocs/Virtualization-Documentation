@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Microsoft and Red Hat Complete Cooperative Technical Support"
 date:       2009-10-07 03:00:00
 categories: cross-platform-management

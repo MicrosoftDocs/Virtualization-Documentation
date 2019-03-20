@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "What you won't see at VMworld 2009 - a demo of SCVMM 2008 R2"
 date:       2009-08-24 20:32:00
 categories: cross-platform-management

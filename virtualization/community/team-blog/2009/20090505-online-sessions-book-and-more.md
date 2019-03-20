@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Online sessions, book and more"
 date:       2009-05-05 18:56:00
 categories: application-virtualization

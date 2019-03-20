@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Guest post&#58; Moving Virtualization into the Mainstream"
 date:       2009-03-20 16:41:00
 categories: dell
