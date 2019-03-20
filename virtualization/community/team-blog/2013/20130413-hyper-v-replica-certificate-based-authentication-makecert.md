@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Hyper-V Replica Certificate Based Authentication - makecert"
 date:       2013-04-13 03:01:38
 categories: hvr

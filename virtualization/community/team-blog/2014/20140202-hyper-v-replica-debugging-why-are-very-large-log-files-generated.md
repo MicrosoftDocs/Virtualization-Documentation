@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Hyper-V Replica debugging&#58; Why are very large log files generated?"
 date:       2014-02-02 23:00:00
 categories: hvr

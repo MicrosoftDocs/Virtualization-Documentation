@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Microsoft Management Summit&#58;  Helping IT Organizations Empower Employee Productivity"
 date:       2011-03-23 01:30:00
 categories: system-center-2012

@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Excluding virtual disks in Hyper-V Replica"
 date:       2014-05-11 04:00:00
 categories: hvr

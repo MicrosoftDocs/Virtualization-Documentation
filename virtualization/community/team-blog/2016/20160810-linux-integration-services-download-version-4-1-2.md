@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Linux Integration Services download Version 4.1.2"
 date:       2016-08-10 17:04:38
 categories: uncategorized

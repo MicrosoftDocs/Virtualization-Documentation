@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Advanced Tools and Scripting with PowerShell 3.0"
 date:       2013-07-26 08:00:00
 categories: uncategorized

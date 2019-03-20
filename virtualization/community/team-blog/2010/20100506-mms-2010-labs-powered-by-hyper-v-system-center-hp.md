@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "MMS 2010 Labs&#58; Powered by Hyper-V, System Center & HP..."
 date:       2010-05-06 08:32:24
 categories: uncategorized

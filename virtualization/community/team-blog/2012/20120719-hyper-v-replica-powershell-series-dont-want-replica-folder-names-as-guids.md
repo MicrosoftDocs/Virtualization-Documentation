@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Hyper-V Replica Powershell Series&#58; Don’t want Replica folder names as GUIDs!"
 date:       2012-07-19 23:04:00
 categories: authorization-table

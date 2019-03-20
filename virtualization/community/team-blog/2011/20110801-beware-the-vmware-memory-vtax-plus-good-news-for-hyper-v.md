@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "BEWARE THE VMWARE MEMORY VTAX; PLUS--GOOD NEWS FOR HYPER-V..."
 date:       2011-08-01 05:28:00
 categories: blogs

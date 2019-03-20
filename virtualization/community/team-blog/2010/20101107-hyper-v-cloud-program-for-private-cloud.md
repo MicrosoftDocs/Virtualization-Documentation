@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Hyper-V Cloud Program for private cloud"
 date:       2010-11-07 23:30:00
 categories: dell

@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Tar and Curl Come to Windows!"
 date:       2017-12-19 18:00:23
 categories: containers

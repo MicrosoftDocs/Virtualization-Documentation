@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Announcing GA of Disaster Recovery to Azure - Purpose-Built for Branch Offices and SMB"
 date:       2014-12-11 11:05:00
 categories: asr

@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Requesting Hyper-V Replica Certificates from an Enterprise CA"
 date:       2012-07-10 02:27:00
 categories: certificates

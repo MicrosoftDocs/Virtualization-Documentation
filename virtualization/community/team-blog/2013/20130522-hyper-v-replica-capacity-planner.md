@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Hyper-V Replica Capacity Planner"
 date:       2013-05-22 22:06:35
 categories: hvr

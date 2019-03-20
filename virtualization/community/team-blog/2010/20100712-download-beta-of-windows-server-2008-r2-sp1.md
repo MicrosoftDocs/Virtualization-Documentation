@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Download beta of Windows Server 2008 R2 sp1"
 date:       2010-07-12 08:36:00
 categories: dynamic-memory

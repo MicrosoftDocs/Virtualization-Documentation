@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "MICROSOFT HYPER-V SERVER 2008 R2 SP1 RELEASED!"
 date:       2011-04-12 15:38:00
 categories: hyper-v

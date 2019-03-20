@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Hyper-V Replica–Certificate Based Authentication in Windows Server 2012"
 date:       2012-07-18 13:18:00
 categories: hvr

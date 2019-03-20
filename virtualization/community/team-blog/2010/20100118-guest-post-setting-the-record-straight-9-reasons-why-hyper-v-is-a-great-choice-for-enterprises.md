@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Guest post&#58; &#34;Setting the Record Straight - 9 Reasons Why Hyper-V is a Great Choice for Enterprises&#34;"
 date:       2010-01-18 13:21:00
 categories: disaster-recovery

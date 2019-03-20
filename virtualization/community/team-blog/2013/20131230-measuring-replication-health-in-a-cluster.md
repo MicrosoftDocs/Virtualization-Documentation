@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Measuring Replication Health in a cluster"
 date:       2013-12-30 22:51:41
 categories: hvr

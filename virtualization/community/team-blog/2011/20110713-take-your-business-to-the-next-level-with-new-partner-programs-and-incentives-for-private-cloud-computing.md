@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Take your business to the next level with new partner programs and incentives for private cloud computing"
 date:       2011-07-13 10:36:40
 categories: microsoft-system-center-desktop-error-monitoring

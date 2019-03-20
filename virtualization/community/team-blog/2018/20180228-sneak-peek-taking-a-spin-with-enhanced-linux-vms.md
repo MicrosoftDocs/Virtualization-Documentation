@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Sneak Peek&#58; Taking a Spin with Enhanced Linux VMs"
 date:       2018-02-28 22:31:29
 categories: enhanced-session-mode

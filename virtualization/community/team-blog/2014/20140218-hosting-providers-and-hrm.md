@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Hosting Providers and HRM"
 date:       2014-02-18 19:33:43
 categories: hrm

@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Enable replication using certificate based authentication - in PowerShell"
 date:       2012-04-23 04:49:00
 categories: certificates

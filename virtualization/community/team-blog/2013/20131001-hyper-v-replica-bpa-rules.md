@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Hyper-V Replica BPA Rules"
 date:       2013-10-01 05:26:00
 categories: hvr

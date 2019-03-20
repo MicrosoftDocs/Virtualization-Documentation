@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Application consistent recovery points with Windows Server 2008/2003 guest OS"
 date:       2014-05-19 22:00:00
 categories: hvr

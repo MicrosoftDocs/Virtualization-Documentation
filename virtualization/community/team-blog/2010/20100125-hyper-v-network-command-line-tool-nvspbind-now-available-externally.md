@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Hyper-V Network Command Line Tool NVSPBIND Now Available Externally"
 date:       2010-01-25 16:51:00
 categories: community

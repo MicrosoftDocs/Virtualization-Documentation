@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Online resize of virtual disks attached to replicating virtual machines"
 date:       2013-11-14 02:30:00
 categories: hvr

@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "MMS 2011 LABS POWERED BY HYPER-V, SYSTEM CENTER & HP..."
 date:       2011-03-28 23:10:00
 categories: hyper-v

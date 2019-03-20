@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Hyper-V Replica trouble-shooting wiki"
 date:       2014-05-13 00:18:55
 categories: uncategorized

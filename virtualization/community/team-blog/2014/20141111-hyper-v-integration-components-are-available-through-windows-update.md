@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Hyper-V integration components are available through Windows Update"
 date:       2014-11-11 02:00:00
 categories: hyper-v

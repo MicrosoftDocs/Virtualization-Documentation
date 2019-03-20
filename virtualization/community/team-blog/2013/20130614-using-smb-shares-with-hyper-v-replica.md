@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Using SMB shares with Hyper-V Replica"
 date:       2013-06-14 05:48:00
 categories: hvr

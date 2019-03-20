@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Using data deduplication with Hyper-V Replica for storage savings"
 date:       2013-12-23 00:40:17
 categories: hvr

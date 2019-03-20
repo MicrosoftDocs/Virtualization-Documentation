@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Windows Server “8” Beta – Hyper-V Replica"
 date:       2012-03-09 06:12:00
 categories: hvr

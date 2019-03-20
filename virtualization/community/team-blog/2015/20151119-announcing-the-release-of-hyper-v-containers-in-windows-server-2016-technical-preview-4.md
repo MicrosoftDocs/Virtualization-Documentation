@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Announcing the release of Hyper-V Containers in Windows Server 2016 Technical Preview 4"
 date:       2015-11-19 08:04:51
 categories: uncategorized

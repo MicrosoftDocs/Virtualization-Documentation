@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "MMS 2013 Labs&#58; Powered by Microsoft/HP Private Cloud..."
 date:       2013-05-29 06:54:00
 categories: uncategorized

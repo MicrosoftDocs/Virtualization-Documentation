@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Hyper-V Replica in Windows Server 2012 R2 and System Center Operations Manager 2012 R2"
 date:       2013-12-10 05:35:36
 categories: hvr

@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Azure Site Recovery adds InMage Scout to Its Portfolio for Any Virtual and Physical Workload Disaster Recovery"
 date:       2014-07-17 01:14:44
 categories: asr

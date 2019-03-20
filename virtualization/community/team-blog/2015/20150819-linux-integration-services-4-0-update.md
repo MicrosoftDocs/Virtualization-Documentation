@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Linux Integration Services 4.0 Update"
 date:       2015-08-19 17:00:00
 categories: lis-hyperv-linux

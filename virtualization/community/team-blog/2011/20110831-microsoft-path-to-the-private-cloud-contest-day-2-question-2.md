@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Microsoft Path to the Private Cloud Contest&#58; Day 2, Question 2"
 date:       2011-08-31 10:44:23
 categories: private-cloud

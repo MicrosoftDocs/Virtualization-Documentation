@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Microsoft Delivers New Cloud Tools and Solutions at the Worldwide Partner Conference"
 date:       2011-07-12 12:10:16
 categories: microsoft-system-center-desktop-error-monitoring

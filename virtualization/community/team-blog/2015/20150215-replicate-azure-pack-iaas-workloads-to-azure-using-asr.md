@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Replicate Azure Pack IaaS Workloads to Azure using ASR"
 date:       2015-02-15 22:58:27
 categories: asr

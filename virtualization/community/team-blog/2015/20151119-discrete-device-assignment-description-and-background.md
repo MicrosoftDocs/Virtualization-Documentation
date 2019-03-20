@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Discrete Device Assignment -- Description and background"
 date:       2015-11-19 13:27:30
 categories: dda

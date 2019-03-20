@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Announcing the availability of the Beta version of Linux Integration Services for Hyper-V with SMP support"
 date:       2010-03-31 02:00:00
 categories: hyper-v-linux-novell-red-hat

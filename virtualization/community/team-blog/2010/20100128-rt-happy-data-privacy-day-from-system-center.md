@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "RT&#58; Happy Data Privacy Day from System Center"
 date:       2010-01-28 10:45:00
 categories: disaster-recovery

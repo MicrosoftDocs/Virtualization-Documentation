@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Hands-On-Labs at TechEd, Virtualization at work!!!"
 date:       2010-06-09 16:59:06
 categories: community

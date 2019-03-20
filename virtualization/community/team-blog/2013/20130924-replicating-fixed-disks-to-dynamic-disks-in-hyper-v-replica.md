@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Replicating fixed disks to dynamic disks in Hyper-V Replica"
 date:       2013-09-24 07:27:00
 categories: hvr

@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Windows Server Containers and Hyper-V Containers Debut at Ignite and Build"
 date:       2015-05-11 16:34:38
 categories: uncategorized

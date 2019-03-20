@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Windows Server “8” Beta Hyper-V Component Architecture Poster"
 date:       2012-03-15 12:49:00
 categories: hyper-v

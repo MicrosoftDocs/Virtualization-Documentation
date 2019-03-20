@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Windows Container Networking"
 date:       2016-05-05 22:26:59
 categories: containers

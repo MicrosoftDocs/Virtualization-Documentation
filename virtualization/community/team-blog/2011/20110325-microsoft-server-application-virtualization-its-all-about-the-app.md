@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Microsoft Server Application Virtualization – It’s all about the App"
 date:       2011-03-25 03:47:00
 categories: server-app-v

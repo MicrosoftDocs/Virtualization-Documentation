@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Microsoft at Citrix Synergy 2010&#58; From the Desktop to the Cloud"
 date:       2010-05-13 00:35:00
 categories: application-virtualization

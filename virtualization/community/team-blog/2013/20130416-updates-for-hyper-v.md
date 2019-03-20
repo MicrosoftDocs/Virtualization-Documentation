@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Updates for Hyper-V"
 date:       2013-04-16 00:20:00
 categories: hyper-v

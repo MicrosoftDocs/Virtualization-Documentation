@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Microsoft and Citrix share their feedback on today's keynote from VMworld Europe 2010"
 date:       2010-10-12 03:40:05
 categories: citrix

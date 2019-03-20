@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Windows Server 2016 Adds Native Overlay Network Driver, enabling mixed Linux + Windows Docker Swarm Mode Clusters"
 date:       2017-04-18 13:02:30
 categories: containers

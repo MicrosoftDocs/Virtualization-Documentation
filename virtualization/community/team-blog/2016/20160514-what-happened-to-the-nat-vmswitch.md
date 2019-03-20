@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "What Happened to the “NAT” VMSwitch?"
 date:       2016-05-14 00:00:50
 categories: hyper-v

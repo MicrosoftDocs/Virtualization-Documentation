@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Linux Integration Services Download 4.1.2-2 hotfix"
 date:       2016-10-21 20:29:47
 categories: uncategorized

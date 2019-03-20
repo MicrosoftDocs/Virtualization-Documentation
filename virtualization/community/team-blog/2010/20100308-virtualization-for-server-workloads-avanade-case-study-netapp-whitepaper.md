@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Virtualization for Server Workloads&#58; Avanade Case Study, NetApp Whitepaper"
 date:       2010-03-08 15:18:00
 categories: high-availability

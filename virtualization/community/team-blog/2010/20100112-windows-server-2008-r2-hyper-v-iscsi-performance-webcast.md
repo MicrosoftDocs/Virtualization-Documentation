@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Windows Server 2008 R2 Hyper-V iSCSI Performance Webcast"
 date:       2010-01-12 19:20:00
 categories: dell

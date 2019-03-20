@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Special Guest Blog Post&#58; CDW talks Cloud Computing"
 date:       2011-06-08 14:13:48
 categories: uncategorized

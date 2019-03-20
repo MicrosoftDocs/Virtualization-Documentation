@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Disaster Recovery to Microsoft Azure – Part 2"
 date:       2014-06-21 04:34:03
 categories: asr

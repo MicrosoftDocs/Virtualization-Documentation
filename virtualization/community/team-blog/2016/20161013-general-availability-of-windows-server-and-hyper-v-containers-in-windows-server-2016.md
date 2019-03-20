@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "General Availability of Windows Server and Hyper-V Containers in Windows Server 2016"
 date:       2016-10-13 00:54:42
 categories: uncategorized

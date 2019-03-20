@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Red Hat Enterprise Linux and Hyper-V"
 date:       2010-02-23 10:08:00
 categories: hyper-v-linux

@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "What to expect in the System Center Orchestrator Beta!"
 date:       2011-05-18 09:22:10
 categories: system-center

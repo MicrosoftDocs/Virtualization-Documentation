@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "The Microsoft Path to the Private Cloud Contest - Begins August 30th, 2011!"
 date:       2011-08-25 11:40:47
 categories: uncategorized

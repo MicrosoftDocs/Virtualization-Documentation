@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Hyper-V VM Density, VP&#58;LP Ratio, Cores and Threads..."
 date:       2011-04-25 06:18:00
 categories: dynamic-memory

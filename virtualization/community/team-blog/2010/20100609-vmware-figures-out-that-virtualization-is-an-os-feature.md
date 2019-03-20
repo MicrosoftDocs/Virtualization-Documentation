@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "VMWare figures out that virtualization is an OS feature"
 date:       2010-06-09 11:21:00
 categories: citrix

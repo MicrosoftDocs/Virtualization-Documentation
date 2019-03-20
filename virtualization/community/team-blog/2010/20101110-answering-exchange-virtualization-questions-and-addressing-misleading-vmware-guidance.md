@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Answering Exchange Virtualization Questions and Addressing Misleading VMware Guidance"
 date:       2010-11-10 00:07:32
 categories: disaster-recovery

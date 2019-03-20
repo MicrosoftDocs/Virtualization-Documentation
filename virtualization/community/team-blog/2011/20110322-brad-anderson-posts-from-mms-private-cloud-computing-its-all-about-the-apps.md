@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Brad Anderson posts from MMS - Private Cloud Computing&#58; It’s all About the Apps"
 date:       2011-03-22 01:30:00
 categories: private-cloud

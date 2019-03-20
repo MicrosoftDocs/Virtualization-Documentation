@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Windows NAT (WinNAT) -- Capabilities and limitations"
 date:       2016-05-25 21:15:59
 categories: hyper-v

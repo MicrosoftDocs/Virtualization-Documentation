@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "The Hyper-V Team at VMworld 2013 - Fun Times and Frozen Custard"
 date:       2013-08-28 11:48:47
 categories: uncategorized

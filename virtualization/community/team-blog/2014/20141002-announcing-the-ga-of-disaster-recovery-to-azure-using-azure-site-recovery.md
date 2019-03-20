@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Announcing the GA of Disaster Recovery to Azure using Azure Site Recovery"
 date:       2014-10-02 12:48:32
 categories: azure-site-recovery

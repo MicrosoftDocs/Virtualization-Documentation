@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Live Migration via Constrained Delegation with Kerberos in Windows Server 2016"
 date:       2017-02-01 01:16:48
 categories: hyper-v

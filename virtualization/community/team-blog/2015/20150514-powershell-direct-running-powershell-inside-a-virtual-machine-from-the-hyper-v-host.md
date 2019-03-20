@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "PowerShell Direct – Running PowerShell inside a virtual machine from the Hyper-V host"
 date:       2015-05-14 13:01:00
 categories: automation

@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Installing Service Pack 1 on Microsoft Hyper-V Server 2008 R2"
 date:       2010-07-16 13:09:00
 categories: calista-technologies

@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "New Hyper-V Cloud Fast Track Partners Double Down on Private Cloud Vision"
 date:       2011-05-16 06:18:22
 categories: system-center

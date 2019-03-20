@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Save network bandwidth by using Out-of-Band Initial Replication method in Hyper-V Replica"
 date:       2013-06-28 07:41:00
 categories: hvr

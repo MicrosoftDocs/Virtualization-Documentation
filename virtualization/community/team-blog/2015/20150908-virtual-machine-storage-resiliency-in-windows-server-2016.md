@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Virtual Machine Storage Resiliency in Windows Server 2016"
 date:       2015-09-08 09:28:00
 categories: hyper-v

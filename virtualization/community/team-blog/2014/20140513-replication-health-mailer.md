@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Replication Health Mailer"
 date:       2014-05-13 05:13:14
 categories: uncategorized

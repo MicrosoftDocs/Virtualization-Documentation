@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "From 2010 to 2011&#58; Walking the Cloud Talk"
 date:       2010-12-10 08:55:55
 categories: blogs

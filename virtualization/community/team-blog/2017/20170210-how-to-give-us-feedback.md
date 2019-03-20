@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "How to give us feedback"
 date:       2017-02-10 21:21:24
 categories: hyper-v

@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Introducing the Host Compute Service (HCS)"
 date:       2017-01-27 00:21:18
 categories: containers

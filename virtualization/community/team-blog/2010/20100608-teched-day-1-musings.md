@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "TechEd, Day 1 Musings"
 date:       2010-06-08 08:00:00
 categories: calista-technologies

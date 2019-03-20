@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Out-of-band Initial Replication (OOB IR) and Deduplication"
 date:       2014-07-11 09:50:00
 categories: disaster-recovery

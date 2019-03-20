@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Microsoft Workloads Best on Hyper-V"
 date:       2011-04-04 23:00:00
 categories: hyper-v

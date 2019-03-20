@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Linux Integration Services 4.0 Announcement"
 date:       2015-05-01 13:43:00
 categories: uncategorized

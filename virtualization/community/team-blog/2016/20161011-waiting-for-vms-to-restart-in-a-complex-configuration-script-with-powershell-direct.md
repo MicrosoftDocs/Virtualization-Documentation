@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Waiting for VMs to restart in a complex configuration script with PowerShell Direct"
 date:       2016-10-11 19:52:55
 categories: hyper-v

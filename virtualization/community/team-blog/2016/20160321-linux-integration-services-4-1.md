@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Linux Integration Services 4.1"
 date:       2016-03-21 18:46:30
 categories: linux

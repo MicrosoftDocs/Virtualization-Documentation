@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Enabling Linux Support on Windows Server 2012 R2 Hyper-V"
 date:       2013-07-24 08:30:00
 categories: uncategorized

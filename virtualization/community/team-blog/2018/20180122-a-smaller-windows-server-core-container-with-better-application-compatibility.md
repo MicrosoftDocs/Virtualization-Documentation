@@ -1,5 +1,4 @@
 ---
-title: A smaller Windows Server Core Container with better Application Compatibility
 description: Learn more about new container building blocks available in Windows.
 keywords: windows server, azure, virtualization, blog
 author: scooley

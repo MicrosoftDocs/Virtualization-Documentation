@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "TechEd Europe Days 2-4&#58; Blogs, Tweets, and Videos"
 date:       2010-11-12 02:54:04
 categories: blogs

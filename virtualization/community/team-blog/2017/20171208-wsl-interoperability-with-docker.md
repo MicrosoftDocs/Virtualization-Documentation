@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "WSL Interoperability with Docker"
 date:       2017-12-08 18:20:23
 categories: containers

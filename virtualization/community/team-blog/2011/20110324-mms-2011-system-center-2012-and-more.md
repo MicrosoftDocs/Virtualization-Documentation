@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "MMS 2011, SYSTEM CENTER 2012 AND MORE..."
 date:       2011-03-24 00:15:00
 categories: system-center-2012-releases

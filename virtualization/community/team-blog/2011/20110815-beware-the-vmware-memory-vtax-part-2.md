@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Beware the VMware Memory vTax Part 2…"
 date:       2011-08-15 06:46:00
 categories: uncategorized

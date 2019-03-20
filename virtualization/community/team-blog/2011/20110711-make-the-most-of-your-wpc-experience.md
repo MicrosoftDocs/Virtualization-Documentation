@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Make the Most of Your WPC Experience"
 date:       2011-07-11 12:02:58
 categories: private-cloud

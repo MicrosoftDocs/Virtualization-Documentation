@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Backup of a Replica VM"
 date:       2014-04-24 04:21:00
 categories: hvr

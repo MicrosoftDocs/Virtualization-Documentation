@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "What’s new in Hyper-V Replica in Windows Server 2012 R2"
 date:       2013-10-22 05:03:00
 categories: hvr

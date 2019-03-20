@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Check out the New Microsoft Server and Cloud Platform Website!"
 date:       2011-08-25 13:11:42
 categories: cloud-computing

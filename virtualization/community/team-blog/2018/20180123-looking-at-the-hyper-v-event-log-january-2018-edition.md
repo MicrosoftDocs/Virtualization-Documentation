@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Looking at the Hyper-V Event Log (January 2018 edition)"
 date:       2018-01-23 22:57:01
 categories: debugging

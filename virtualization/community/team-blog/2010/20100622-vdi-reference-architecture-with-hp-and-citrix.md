@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "VDI reference architecture with HP and Citrix"
 date:       2010-06-22 15:08:57
 categories: citrix

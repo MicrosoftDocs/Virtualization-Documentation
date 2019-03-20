@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Hyper-V Dynamic Memory test for VDI density"
 date:       2010-11-08 01:30:00
 categories: dell

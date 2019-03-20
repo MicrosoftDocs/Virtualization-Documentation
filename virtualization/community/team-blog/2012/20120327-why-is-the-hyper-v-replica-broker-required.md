@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Why is the &#34;Hyper-V Replica Broker&#34; required?"
 date:       2012-03-27 09:54:00
 categories: hvr

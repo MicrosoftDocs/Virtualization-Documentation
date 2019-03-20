@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Dynamic Memory Coming To Hyper-V"
 date:       2010-03-18 07:02:00
 categories: calista-technologies

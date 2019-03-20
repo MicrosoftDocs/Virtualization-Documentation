@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Types of failover operations in Hyper-V Replica – Part I – Test Failover"
 date:       2012-07-25 16:15:00
 categories: clustering

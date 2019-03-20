@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Docker's routing mesh available with Windows Server version 1709"
 date:       2017-09-26 05:04:44
 categories: containers

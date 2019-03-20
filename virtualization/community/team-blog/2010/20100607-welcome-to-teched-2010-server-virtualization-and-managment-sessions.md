@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Welcome to TechEd 2010 - Server Virtualization and Managment Sessions"
 date:       2010-06-07 07:19:00
 categories: uncategorized

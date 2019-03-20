@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Migrate Windows Server 2012R2 Virtualized Workloads to Microsoft Azure with Azure Site Recovery"
 date:       2014-08-13 22:19:30
 categories: uncategorized

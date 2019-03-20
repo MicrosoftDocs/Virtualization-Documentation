@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "ExpressRoute + ASR = Efficient DR solution"
 date:       2014-07-20 13:00:00
 categories: asr

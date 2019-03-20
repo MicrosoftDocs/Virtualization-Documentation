@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Migrating local VM owner certificates for VMs with vTPM"
 date:       2017-12-14 06:27:22
 categories: guarded-fabric

@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "TechEd North America 2012"
 date:       2012-06-12 22:52:39
 categories: hvr

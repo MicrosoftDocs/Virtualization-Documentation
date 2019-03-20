@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Headed to WPC? Don't miss this great offer!"
 date:       2011-07-08 12:21:58
 categories: uncategorized

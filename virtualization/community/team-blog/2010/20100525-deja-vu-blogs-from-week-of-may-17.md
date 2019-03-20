@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Deja vu&#58; blogs from week of May 17"
 date:       2010-05-25 19:29:44
 categories: community

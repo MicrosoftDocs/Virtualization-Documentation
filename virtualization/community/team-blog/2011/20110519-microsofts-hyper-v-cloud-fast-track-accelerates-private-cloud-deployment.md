@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Microsoft’s Hyper-V Cloud Fast Track Accelerates Private Cloud Deployment"
 date:       2011-05-19 10:21:45
 categories: uncategorized

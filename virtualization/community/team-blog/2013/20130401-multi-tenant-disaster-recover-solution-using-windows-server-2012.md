@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Multi-tenant disaster recover solution using Windows Server 2012"
 date:       2013-04-01 12:54:00
 categories: hvr

@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "How to install integration services when the virtual machine is not running"
 date:       2013-04-18 17:34:00
 categories: hyper-v

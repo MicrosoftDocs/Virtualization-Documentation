@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Guest post&#58; NetApp and Microsoft See Virtualization Success Together"
 date:       2010-05-27 12:51:27
 categories: citrix

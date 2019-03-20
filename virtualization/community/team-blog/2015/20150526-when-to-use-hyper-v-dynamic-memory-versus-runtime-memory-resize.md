@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "When to use Hyper-V Dynamic Memory versus Runtime Memory Resize"
 date:       2015-05-26 14:30:14
 categories: dynamic-memory

@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Big news&#58;  Microsoft and HP team up to move IT forward"
 date:       2010-01-13 08:11:00
 categories: application-virtualization

@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "GA of Hyper-V Recovery Manager (HRM)"
 date:       2014-01-16 20:26:22
 categories: hrm

@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Introducing VMConnect dynamic resize"
 date:       2017-01-27 20:59:02
 categories: hyper-v

@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Got Questions on Desktop Virtualization? You’re Not Alone…"
 date:       2010-06-02 12:00:00
 categories: application-virtualization

@@ -1,5 +1,4 @@
 ---
-layout:     post
 title:      "Fun fact&#58;  Quick Create handles emoji in virtual machine names and splices them into simple Unicode"
 date:       2017-02-03 02:11:37
 categories: hyper-v
