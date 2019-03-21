@@ -35,7 +35,7 @@ If you need to distribute the module to disconnected machines, follow these step
 To use the CredentialSpec PowerShell module, your computer must meet the following prerequisites:
 -   [ ] Windows 10 version 1607/Windows Server 2016 or later
 -   [ ] Computer must be joined to an Active Directory domain
--   [ ] [Docker Desktop for Windows](https://docs.docker.com/docker-for-windows/install/) or [Docker EE for Windows Server](https://docs.docker.com/install/windows/docker-ee/) must be installed
+-   [ ] [Docker Desktop for Windows 10](https://docs.docker.com/docker-for-windows/install/) or [Docker EE for Windows Server](https://docs.docker.com/install/windows/docker-ee/) must be installed
 -   [ ] At least one [group managed service account](https://docs.microsoft.com/en-us/windows-server/security/group-managed-service-accounts/group-managed-service-accounts-overview) already created in your domain
 
 In its simplest form, the cmdlet takes the name of the gMSA and creates a credential spec file based on that account.
