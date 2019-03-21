@@ -19,11 +19,11 @@ Containers are a way to wrap up an application into its own isolated box. For th
 
 Imagine a kitchen. We package up all the appliances and furniture, the pots and pans, the dish soap and hand towels. This is our container.
 
-<center style="margin: 25px">![](media/box1.png)</center>
+![Kitchen analogy](media/box1.png)
 
 We can now take this container and drop it into whatever host apartment we want, and it will be the same kitchen. All we must do is connect electricity and water to it, and then we’re clear to start cooking (because we have all the appliances we need!).
 
-<center style="margin: 25px">![](media/apartment.png)</center>
+![Apartment analogy](media/apartment.png)
 
 In much the same way, containers are like this kitchen. There can be different kinds of rooms as well as many of the same kinds of rooms. What matters is that the containers come packaged up with everything they need.
 
@@ -33,7 +33,7 @@ Watch a short overview below:
 
 ## Container Fundamentals
 
-Containers are an isolated, resource controlled, and portable runtime environment which runs on a host machine or virtual machine. An application or process which runs in a container is packaged with all the required dependencies and configuration files; It’s given the illusion that there are no other processes running outside of its container.
+Containers are an isolated, resource controlled, and portable runtime environment which runs on a host machine or virtual machine. An application or process which runs in a container is packaged with all the required dependencies and configuration files; it’s given the illusion that there are no other processes running outside of its container.
 
 The container’s host provisions a set of resources for the container and the container will use only these resources. As far as the container knows, no other resources exist outside of what it has been given and therefore the container cannot touch resources which may have been provisioned for a neighboring container.
 
@@ -49,7 +49,7 @@ The following key concepts will be helpful as you begin creating and working wit
 
 **Container Repository:** Each time a container image is created, the container image and its dependencies are stored in a local repository. These images can be reused many times on the container host. The container images can also be stored in a public or private registry, such as DockerHub, so that they can be used across many different container hosts.
 
-<center>![](media/containerfund.png)</center>
+![Container fundamentals](media/containerfund.png)
 
 For someone familiar with virtual machines, containers may appear to be incredibly similar. A container runs an operating system, has a file system and can be accessed over a network just as if it was a physical or virtual computer system. However, the technology and concepts behind containers are vastly different from virtual machines.
 
@@ -69,7 +69,7 @@ Running a container on Windows with or without Hyper-V Isolation is a runtime de
 
 As you read about containers, you’ll inevitably hear about Docker. Docker is the vessel by which container images are packaged and delivered. This automated process produces images (effectively templates) which may then be run anywhere—on premises, in the cloud, or on a personal machine—as a container.
 
-<center>![](media/docker.png)</center>
+![Containers with Docker](media/docker.png)
 
 Just like any other container, a Windows Server Container can be managed with [Docker](https://www.docker.com).
 
@@ -97,7 +97,7 @@ Because of their small size and application orientation, containers are well sui
 The standard definition of orchestration includes the following tasks:
 
 - Scheduling: Given a container image and a resource request, find a suitable machine on which to run the container.
-Affinity/Anti-affinity: Specify that a set of containers should run nearby each other (for performance) or sufficiently far apart (for availability).
+- Affinity/Anti-affinity: Specify that a set of containers should run nearby each other (for performance) or sufficiently far apart (for availability).
 - Health monitoring: Watch for container failures and automatically reschedule them.
 - Failover: Keep track of what is running on each machine and reschedule containers from failed machines to healthy nodes.
 - Scaling: Add or remove container instances to match demand, either manually or automatically.
