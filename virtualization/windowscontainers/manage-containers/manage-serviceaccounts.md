@@ -212,20 +212,24 @@ If your containerized app runs as a Windows Service, you can set the service to 
 RUN cmd /c 'sc.exe config "YourServiceName" obj= "NT AUTHORITY\NETWORK SERVICE" password= ""'
 ```
 
-## Run arbitrary console apps as Local System
+## Run arbitrary console apps as Network Service
 
-For generic console apps that are not hosted in IIS or Service Manager, it is often easiest to run the container as **Local System** so that the app automatically inherits the gMSA context.
+For generic console apps that are not hosted in IIS or Service Manager, it is often easiest to run the container as **Network Service** so that the app automatically inherits the gMSA context.
 This feature is available as of Windows Server version 1709.
 
-Add the following line to your Dockerfile to have it run as Local System by default:
+Add the following line to your Dockerfile to have it run as Network Service by default:
 
 ```dockerfile
-USER "NT AUTHORITY\SYSTEM"
+USER "NT AUTHORITY\NETWORK SERVICE"
 ```
 
-> [!WARNING]
-> Running your container as Local System means that your application will be able to change any files or code in the container.
-> It is recommended that you run as Network Service whenever possible to reduce the privileges granted to your application.
+You can also connect to a container as Network Service on a one-off basis with `docker exec`.
+This is particularly useful if you're troubleshooting connectivity issues in a running container when the container does not normally run as Network Service.
+
+```powershell
+# Opens an interactive PowerShell console in the container (id = 85d) as the Network Service account
+docker exec -it --user "NT AUTHORITY\NETWORK SERVICE" 85d powershell
+```
 
 # Run a container with a gMSA
 
