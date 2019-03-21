@@ -92,7 +92,7 @@ gMSA Property | Required Value | Example
 --------------|----------------|--------
 Name | Any valid account name. | `WebApp01`
 DnsHostName | The domain name appended to the account name. | `WebApp01.contoso.com`
-ServicePrincipalNames | Set at least the host SPN, add other protocols as necessary. | `'host/WebApp01', 'http/WebApp01'`
+ServicePrincipalNames | Set at least the host SPN, add other protocols as necessary. | `'host/WebApp01', 'host/WebApp01.contoso.com'`
 PrincipalsAllowedToRetrieveManagedPassword | The security group containing your container hosts. | `WebApp01Hosts`
 
 Once you know what you're going to call your gMSA, run the following commands in PowerShell to create the security group and gMSA.
@@ -344,7 +344,7 @@ Check the [Windows Group Managed Service Accounts for Container Identity KEP](ht
 ## SQL Connection Strings
 When a service is running as Local System or Network Service in a container, it can use Windows Integrated Authentication to connect to a Microsoft SQL Server.
 
-Example:
+Here is an example of a connection string that uses the container identity to authenticate to SQL Server:
 
 ```
 Server=sql.contoso.com;Database=MusicStore;Integrated Security=True;MultipleActiveResultSets=True;Connect Timeout=30
@@ -487,7 +487,14 @@ If you're encountering errors when running a container with a gMSA, the followin
     The trust verification should return NERR_SUCCESS if the gMSA is available and network connectivity allows the container to talk to the domain.
     If it fails, verify the network configuration of the host and container -- both will need to be able to communicate with the domain controller.
 
-4.  Lastly, check that your app is [configured to use the gMSA](#configuring-your-application-to-use-the-gmsa). The user account inside the container does not change when you use a gMSA -- rather, the SYSTEM account uses the gMSA when it talks to other network resources. As such, your app will need to run as Network Service or Local System to leverage the gMSA identity.
+4.  Ensure your app is [configured to use the gMSA](#configuring-your-application-to-use-the-gmsa). The user account inside the container does not change when you use a gMSA -- rather, the SYSTEM account uses the gMSA when it talks to other network resources. As such, your app will need to run as Network Service or Local System to leverage the gMSA identity.
+
+    > [!TIP]
+    > If you run `whoami` or use another tool to try and identify your current user context in the container, you will never see the gMSA name itself.
+    > This is because you always log into the container as a local user -- not a domain identity.
+    > The gMSA is used by the computer account whenever it talks to network resources, which is why your app needs to run as Network Service or Local System.
+
+5.  Finally, if your container seems to be configured correctly but users or other services are unable to automatically authenticate to your containerized app, check the SPNs on your gMSA account. Clients will locate the gMSA account by the name at which they reach your application. This may mean that you'll need additional `host` SPNs for your gMSA if, for example, clients connect to your app via a load balancer or other DNS name.
 
 # Additional resources
 -   [Group Managed Service Accounts Overview](https://docs.microsoft.com/en-us/windows-server/security/group-managed-service-accounts/group-managed-service-accounts-overview)
