@@ -21,7 +21,7 @@ The container will use the gMSA credentials whenever its computer account (SYSTE
 
 This article explains how to start using Active Directory group managed service accounts with Windows containers.
 
-# Prerequisites
+## Prerequisites
 
 To run a Windows container with a group managed service account, you will need the following:
 
@@ -39,7 +39,7 @@ To create a gMSA account, you'll need to be a Domain Administrator or use an acc
 **Access to the internet to download the CredentialSpec PowerShell module.**
 If you're working in a disconnected environment, you can [save the module](https://docs.microsoft.com/en-us/powershell/module/powershellget/save-module?view=powershell-5.1) on a computer with internet access and copy it to your development machine or container host.
 
-# One-time preparation of Active Directory
+## One-time preparation of Active Directory
 
 If you have not already created a gMSA in your domain, you likely need to generate the Key Distribution Service root key.
 The KDS is responsible for creating, rotating, and releasing the gMSA password to authorized hosts.
@@ -70,7 +70,7 @@ Do not use this technique in a production environment.
 Add-KdsRootKey -EffectiveTime (Get-Date).AddHours(-10)
 ```
 
-# Create a group managed service account
+## Create a group managed service account
 
 Every container that will use Integrated Windows Authentication needs at least one gMSA.
 The primary gMSA is used whenever apps running as *SYSTEM* or *NETWORK SERVICE* access resources on the network.
@@ -120,7 +120,7 @@ Add-ADGroupMember -Identity "WebApp01Hosts" -Members "ContainerHost01", "Contain
 
 It's recommended that you create separate gMSA accounts for your dev, test, and production environments.
 
-# Prepare your container host
+## Prepare your container host
 
 Each container host that will run a Windows container with a gMSA must be domain joined and have access to retrieve the gMSA password.
 
@@ -138,7 +138,7 @@ Each container host that will run a Windows container with a gMSA must be domain
     Test-ADServiceAccount WebApp01
     ```
 
-# Create a credential spec
+## Create a credential spec
 
 A credential spec file is a JSON document containing metadata about the gMSA account(s) you want a container to use.
 By keeping the identity configuration separate from the container image, you can easily change the gMSA used by the container by simply swapping the credential spec file -- no code changes necessary.
@@ -187,12 +187,12 @@ Perform the following steps to create a credential spec file on your container h
     Get-CredentialSpec
     ```
 
-# Configuring your application to use the gMSA
+## Configuring your application to use the gMSA
 
 In the typical configuration, a container is only given one gMSA account which is used whenever the container computer account tries to authenticate to network resources.
 This means your app will need to run as **Local System** or **Network Service** if it needs to use the gMSA identity.
 
-## Run an IIS App Pool as Network Service
+### Run an IIS App Pool as Network Service
 
 If you're hosting an IIS website in your container, all you need to do to leverage the gMSA is set your app pool identity to **Network Service**.
 You can do that in your Dockerfile by adding the following command:
@@ -204,7 +204,7 @@ RUN (Get-IISAppPool DefaultAppPool).ProcessModel.IdentityType = "NetworkService"
 If you previously used static user credentials for your IIS App Pool, consider the gMSA as the replacement for those credentials.
 You can change the gMSA between dev, test, and production environments and IIS will automatically pick up the current identity without having to change the container image.
 
-## Run a Windows Service as Network Service
+### Run a Windows Service as Network Service
 
 If your containerized app runs as a Windows Service, you can set the service to run as **Network Service** in your Dockerfile:
 
@@ -212,7 +212,7 @@ If your containerized app runs as a Windows Service, you can set the service to 
 RUN cmd /c 'sc.exe config "YourServiceName" obj= "NT AUTHORITY\NETWORK SERVICE" password= ""'
 ```
 
-## Run arbitrary console apps as Network Service
+### Run arbitrary console apps as Network Service
 
 For generic console apps that are not hosted in IIS or Service Manager, it is often easiest to run the container as **Network Service** so that the app automatically inherits the gMSA context.
 This feature is available as of Windows Server version 1709.
@@ -231,7 +231,7 @@ This is particularly useful if you're troubleshooting connectivity issues in a r
 docker exec -it --user "NT AUTHORITY\NETWORK SERVICE" 85d powershell
 ```
 
-# Run a container with a gMSA
+## Run a container with a gMSA
 
 To run a container with a gMSA, provide the credential spec file to the `--security-opt` parameter of [docker run](https://docs.docker.com/engine/reference/run):
 
@@ -305,7 +305,7 @@ Mode                LastWriteTime         Length Name
 d----l        2/27/2019   8:09 PM                contoso.com
 ```
 
-# Orchestrating containers with gMSA
+## Orchestrating containers with gMSA
 
 In production environments, you'll often use a container orchestrator to deploy and manage your apps and services.
 Each orchestrator has its own management paradigms and is responsible for accepting credential specs to give to the Windows container platform.
@@ -316,7 +316,7 @@ When you're orchestrating containers with gMSAs, check that:
 -   [x] The credential spec files are created and uploaded to the orchestrator or copied to every container host, depending on how the orchestrator prefers to handle them.
 -   [x] Container networks allow the containers to communicate with the Active Directory Domain Controllers to retrieve gMSA tickets
 
-## Using gMSA with Service Fabric
+### Using gMSA with Service Fabric
 
 Service Fabric supports running Windows containers with a gMSA when you specify the credential spec location in your application manifest.
 You will need to create the credential spec file and place in the **CredentialSpecs** subdirectory of the Docker data directory on each host so that Service Fabric can locate it.
@@ -324,7 +324,7 @@ The `Get-CredentialSpec` cmdlet, part of the [CredentialSpec PowerShell module](
 
 See [Quickstart: Deploy Windows containers to Service Fabric](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-quickstart-containers) and [Set up gMSA for Windows containers running on Service Fabric](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-setup-gmsa-for-windows-containers) for more information about how to configure your application.
 
-## Using gMSA with Docker Swarm
+### Using gMSA with Docker Swarm
 
 To use a gMSA with containers managed by Docker Swarm, use the [docker service create](https://docs.docker.com/engine/reference/commandline/service_create/) command with the `--credential-spec` parameter:
 
@@ -334,14 +334,14 @@ docker service create --credential-spec "file://contoso_webapp01.json" --hostnam
 
 See the [Docker Swarm example](https://docs.docker.com/engine/reference/commandline/service_create/#provide-credential-specs-for-managed-service-accounts-windows-only) for more information about using credential specs with Docker services.
 
-## Using gMSA with Kubernetes
+### Using gMSA with Kubernetes
 
 Support for scheduling Windows containers with gMSAs in Kubernetes is in alpha support as of Kubernetes 1.14.
 Check the [Windows Group Managed Service Accounts for Container Identity KEP](https://github.com/kubernetes/enhancements/blob/master/keps/sig-windows/20181221-windows-group-managed-service-accounts-for-container-identity.md) for the latest information about this feature and information on how to test it in your Kubernetes distribution.
 
-# Example Uses
+## Example Uses
 
-## SQL Connection Strings
+### SQL Connection Strings
 When a service is running as Local System or Network Service in a container, it can use Windows Integrated Authentication to connect to a Microsoft SQL Server.
 
 Here is an example of a connection string that uses the container identity to authenticate to SQL Server:
@@ -372,9 +372,9 @@ EXEC sp_addrolemember 'db_datawriter', 'WebApplication1'
 
 To see it in action, check out the [recorded demo](https://youtu.be/cZHPz80I-3s?t=2672) available from Microsoft Ignite 2016 in the session "Walk the Path to Containerization - transforming workloads into containers".
 
-# Troubleshooting
+## Troubleshooting
 
-## Known issues
+### Known issues
 
 **Container hostname must match the gMSA name for WS2016, 1709, and 1803.**
 
@@ -399,7 +399,7 @@ Container initialization will hang or fail when you try to use a gMSA with a Hyp
 
 This bug was fixed in Windows Server 2019 and Windows 10, version 1809. You can also run Hyper-V isolated containers with gMSAs on Windows Server 2016 and Windows 10, version 1607.
 
-## General troubleshooting guidance
+### General troubleshooting guidance
 
 If you're encountering errors when running a container with a gMSA, the following steps may help you identify the root cause.
 
@@ -496,5 +496,5 @@ If you're encountering errors when running a container with a gMSA, the followin
 
 5.  Finally, if your container seems to be configured correctly but users or other services are unable to automatically authenticate to your containerized app, check the SPNs on your gMSA account. Clients will locate the gMSA account by the name at which they reach your application. This may mean that you'll need additional `host` SPNs for your gMSA if, for example, clients connect to your app via a load balancer or other DNS name.
 
-# Additional resources
+## Additional resources
 -   [Group Managed Service Accounts Overview](https://docs.microsoft.com/en-us/windows-server/security/group-managed-service-accounts/group-managed-service-accounts-overview)
