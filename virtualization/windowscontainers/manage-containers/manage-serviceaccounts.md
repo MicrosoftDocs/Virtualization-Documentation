@@ -45,7 +45,7 @@ If you have not already created a gMSA in your domain, you likely need to genera
 The KDS is responsible for creating, rotating, and releasing the gMSA password to authorized hosts.
 When a container host needs to use the gMSA to run a container, it will contact the KDS to retrieve the current password.
 
-To check if your the KDS root key has already been created, run the following PowerShell command as a *Domain Administrator* on a domain controller or domain member with the AD PowerShell tools installed:
+To check if the KDS root key has already been created, run the following PowerShell command as a *Domain Administrator* on a domain controller or domain member with the AD PowerShell tools installed:
 
 ```powershell
 Get-KdsRootKey
