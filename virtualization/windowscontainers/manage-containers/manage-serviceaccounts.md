@@ -3,7 +3,7 @@ title: Group Managed Service Accounts for Windows Containers
 description: Group Managed Service Accounts for Windows Containers
 keywords: docker, containers, active directory, gmsa
 author: rpsqrd
-ms.date: 03/21/2019
+ms.date: 03/22/2019
 ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
@@ -283,14 +283,14 @@ Cached Tickets: (2)
 [...]
 ```
 
-To open PowerShell or another console app as the gMSA account, you can ask the container to run under the SYSTEM account instead of the normal ContainerAdministrator (or ContainerUser for NanoServer) account:
+To open PowerShell or another console app as the gMSA account, you can ask the container to run under the Network Service account instead of the normal ContainerAdministrator (or ContainerUser for NanoServer) account:
 
 ```powershell
 # NOTE: you can only run as SYSTEM on Windows Server 1709 and later
-docker run --security-opt "credentialspec=file://contoso_webapp01.json" --hostname webapp01 --user "NT AUTHORITY\SYSTEM" -it mcr.microsoft.com/windows/servercore:ltsc2019 powershell
+docker run --security-opt "credentialspec=file://contoso_webapp01.json" --hostname webapp01 --user "NT AUTHORITY\NETWORK SERVICE" -it mcr.microsoft.com/windows/servercore:ltsc2019 powershell
 ```
 
-When you're running as SYSTEM, you can test network authentication as the gMSA by trying to connect to SYSVOL on a domain controller:
+When you're running as Network Service, you can test network authentication as the gMSA by trying to connect to SYSVOL on a domain controller:
 
 ```
 # This command should succeed if you're successfully running as the gMSA
