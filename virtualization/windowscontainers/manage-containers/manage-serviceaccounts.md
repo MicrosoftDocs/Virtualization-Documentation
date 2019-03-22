@@ -311,10 +311,11 @@ In production environments, you'll often use a container orchestrator to deploy 
 Each orchestrator has its own management paradigms and is responsible for accepting credential specs to give to the Windows container platform.
 
 When you're orchestrating containers with gMSAs, check that:
--   [x] All container hosts that can be scheduled to run containers with gMSAs are domain joined
--   [x] The container hosts have access to retrieve the passwords for all gMSAs used by containers
--   [x] The credential spec files are created and uploaded to the orchestrator or copied to every container host, depending on how the orchestrator prefers to handle them.
--   [x] Container networks allow the containers to communicate with the Active Directory Domain Controllers to retrieve gMSA tickets
+> [!div class="checklist"]
+> * All container hosts that can be scheduled to run containers with gMSAs are domain joined
+> * The container hosts have access to retrieve the passwords for all gMSAs used by containers
+> * The credential spec files are created and uploaded to the orchestrator or copied to every container host, depending on how the orchestrator prefers to handle them.
+> * Container networks allow the containers to communicate with the Active Directory Domain Controllers to retrieve gMSA tickets
 
 ### Using gMSA with Service Fabric
 
