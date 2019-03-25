@@ -3,7 +3,7 @@ title: Group Managed Service Accounts for Windows Containers
 description: Group Managed Service Accounts for Windows Containers
 keywords: docker, containers, active directory, gmsa
 author: rpsqrd
-ms.date: 03/22/2019
+ms.date: 03/25/2019
 ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
@@ -337,8 +337,8 @@ See the [Docker Swarm example](https://docs.docker.com/engine/reference/commandl
 
 ### Using gMSA with Kubernetes
 
-Support for scheduling Windows containers with gMSAs in Kubernetes is in alpha support as of Kubernetes 1.14.
-Check the [Windows Group Managed Service Accounts for Container Identity KEP](https://github.com/kubernetes/enhancements/blob/master/keps/sig-windows/20181221-windows-group-managed-service-accounts-for-container-identity.md) for the latest information about this feature and information on how to test it in your Kubernetes distribution.
+Support for scheduling Windows containers with gMSAs in Kubernetes is available as an alpha feature in Kubernetes 1.14.
+See [Configure gMSA for Windows pods and containers](https://kubernetes.io/docs/tasks/configure-pod-container/configure-gmsa) for the latest information about this feature and information on how to test it in your Kubernetes distribution.
 
 ## Example Uses
 
