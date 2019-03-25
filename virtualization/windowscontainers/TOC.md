@@ -55,6 +55,7 @@
 ## [System Requirements](deploy-containers/system-requirements.md)
 ## [Version Compatibility](deploy-containers/version-compatibility.md)
 ## [Hyper-V Isolation](manage-containers/hyperv-container.md)
+## [Printer Services](deploy-containers/print-spooler.md)
 ## [Hardware Devices in Containers](deploy-containers/hardware-devices-in-containers.md)
 ## [Container platform tools](deploy-containers/containerd.md)
 ## [Group Managed Service Accounts](manage-containers/manage-serviceaccounts.md)
