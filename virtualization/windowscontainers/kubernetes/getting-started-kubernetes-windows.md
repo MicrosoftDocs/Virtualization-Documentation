@@ -12,10 +12,10 @@ ms.assetid: 3b05d2c2-4b9b-42b4-a61b-702df35f5b17
 ---
 
 # Kubernetes on Windows #
-This page serves as an overview for getting started with Kubernetes on Windows by joining Windows nodes to a Linux-based cluster. With the release of Kubernetes 1.13 on Windows Server [version 1809](https://docs.microsoft.com/en-us/windows-server/get-started/whats-new-in-windows-server-1809#container-networking-with-kubernetes), users can take advantage of the [latest features](https://kubernetes.io/docs/getting-started-guides/windows/#supported-features) in Kubernetes on Windows beta:
+This page serves as an overview for getting started with Kubernetes on Windows by joining Windows nodes to a Linux-based cluster. With the release of Kubernetes 1.14 on Windows Server [version 1809](https://docs.microsoft.com/en-us/windows-server/get-started/whats-new-in-windows-server-1809#container-networking-with-kubernetes), users can take advantage of the following features in Kubernetes on Windows:
 
   - **overlay networking**: use Flannel in vxlan mode to configure a virtual overlay network
-    - requires either Windows Server 2019 with KB4482887 installed or [Windows Server vNext Insider Preview](https://blogs.windows.com/windowsexperience/tag/windows-insider-program/) Build 18317+
+    - requires either Windows Server 2019 with [KB4489899](https://support.microsoft.com/en-us/help/4489899) installed or [Windows Server vNext Insider Preview](https://blogs.windows.com/windowsexperience/tag/windows-insider-program/) Build 18317+
     - requires Kubernetes v1.14 (or above) with `WinOverlay` feature gate enabled
     - requires Flannel v0.11.0 (or above)
   - **simplified network management**: use Flannel in host-gateway mode for automatic route management between nodes
