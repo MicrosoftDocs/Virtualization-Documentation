@@ -7,10 +7,10 @@ author: cwilhit
 
 # Print Spooler in Windows Containers
 
-Applications with a dependency on printing services can be containerized successfully with Windows containers. Applications that have a dependency on installing printer drivers into the host cannot be containerized; driver installation from within a container is unsupported, since it would leak container state onto the host. There are special requirements that must be met in order to successfully enable printer service functionality. This guide explains how to properly configure your deployment.
+Applications with a dependency on printing services can be containerized successfully with Windows containers. There are special requirements that must be met in order to successfully enable printer service functionality. This guide explains how to properly configure your deployment.
 
 > [!IMPORTANT]
-> While getting access to printing services successfully in containers works, functionality is limited in form; some printing-related actions may not work. Please open a feedback below if that is the case.
+> While getting access to printing services successfully in containers works, functionality is limited in form; some printing-related actions may not work. For example, apps that have a dependency on installing printer drivers into the host cannot be containerized because **driver installation from within a container is unsupported**. Please open a feedback below if you find an unsupported printing feature that you want to be supported in containers.
 
 ## Setup
 
