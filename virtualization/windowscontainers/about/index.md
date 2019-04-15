@@ -105,9 +105,9 @@ Affinity/Anti-affinity: Specify that a set of containers should run nearby each 
 - Service discovery: Enable containers to locate each other automatically even as they move between host machines and change IP addresses.
 - Coordinated application upgrades: Manage container upgrades to avoid application down time and enable rollback if something goes wrong.
 
-Azure offers two container orchestrators: Azure Container Service (AKS) and Service Fabric.
+Azure offers two container orchestrators: Azure Kubernetes Service (AKS) and Service Fabric.
 
-[Azure Container Service (AKS)](/azure/aks/) makes it simple to create, configure, and manage a cluster of virtual machines that are preconfigured to run containerized applications. This enables you to use your existing skills, or draw upon a large and growing body of community expertise, to deploy and manage container-based applications on Microsoft Azure. By using AKS, you can take advantage of the enterprise-grade features of Azure, while still maintaining application portability through Kubernetes and the Docker image format.
+[Azure Kubernetes Service (AKS)](/azure/aks/) makes it simple to create, configure, and manage a cluster of virtual machines that are preconfigured to run containerized applications. This enables you to use your existing skills, or draw upon a large and growing body of community expertise, to deploy and manage container-based applications on Microsoft Azure. By using AKS, you can take advantage of the enterprise-grade features of Azure, while still maintaining application portability through Kubernetes and the Docker image format.
 
 [Azure Service Fabric](/azure/service-fabric/) is a distributed systems platform that makes it easy to package, deploy, and manage scalable and reliable microservices and containers. Service Fabric addresses the significant challenges in developing and managing cloud native applications. Developers and administrators can avoid complex infrastructure problems and focus on implementing mission-critical, demanding workloads that are scalable, reliable, and manageable. Service Fabric represents the next-generation platform for building and managing these enterprise-class, tier-1, cloud-scale applications running in containers.
 
