@@ -21,7 +21,7 @@ This quick start is specific to Windows Server containers on Windows Server 2019
 Please make sure you meet the following requirements:
 
 - One computer system (physical or virtual) running Windows Server 2019 or Windows Server 2016.
-- Configure this system with the Windows Container feature and Docker. For a walkthrough on these steps, see [Windows Containers on Windows Server](./quick-start-windows-server.md).
+- Configure this system with the Windows container feature and Docker. For a walkthrough on these steps, see [Windows containers on Windows Server](./quick-start-windows-server.md).
 - A Docker ID, this will be used to push a container image to Docker Hub. If you do not have a Docker ID, sign up for one at [Docker Cloud](https://cloud.docker.com/).
 
 ## Container Image - Dockerfile
