@@ -28,7 +28,8 @@ This quick start is specific to Windows 10. Additional quick start documentation
 ## Prerequisites
 
 Please make sure you meet the following requirements:
-- One physical computer system running Windows 10 Professional or Enterprise with Fall Creators Update (version 1709) or later
+- One physical computer system running Windows 10 Professional, Windows 10 Enterprise, or Windows
+Server 2019 version 1809 or later
 - Make sure [Hyper-V](https://docs.microsoft.com/en-us/virtualization/hyper-v-on-windows/reference/hyper-v-requirements) is enabled.
 
 ***Hyper-V isolation:***
