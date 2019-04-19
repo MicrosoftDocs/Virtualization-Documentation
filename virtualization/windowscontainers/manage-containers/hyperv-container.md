@@ -30,9 +30,9 @@ docker run -it --isolation=hyperv mcr.microsoft.com/windows/nanoserver:1809 cmd
 
 ### Isolation explanation
 
-This example demonstrates the differences in isolation capabilities between Windows Server and Hyper-V containers. 
+This example demonstrates the differences in isolation capabilities between Windows Server and Hyper-V isolation.
 
-Here, a process isolated container is being deployed, and will be hosting a long running ping process.
+Here, a process isolated container is being deployed, and will be hosting a long-running ping process.
 
 ``` cmd
 docker run -d mcr.microsoft.com/windows/servercore:1809 ping localhost -t
@@ -56,7 +56,7 @@ Handles  NPM(K)    PM(K)      WS(K) VM(M)   CPU(s)     Id  SI ProcessName
      67       5      820       3836 ...71     0.03   3964   3 PING
 ```
 
-To contrast, this example starts a Hyper-V isolated container with a ping process as well. 
+To contrast, this example starts a Hyper-V isolated container with a ping process as well.
 
 ```
 docker run -d --isolation=hyperv mcr.microsoft.com/windows/nanoserver:1809 ping -t localhost

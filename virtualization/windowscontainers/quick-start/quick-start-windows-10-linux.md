@@ -14,7 +14,7 @@ ms.assetid: bb9bfbe0-5bdc-4984-912f-9c93ea67105f
 
 > [!div class="op_single_selector"]
 > - [Linux Containers on Windows](quick-start-windows-10-linux.md)
-> - [Windows Containers on Windows](quick-start-windows-10.md)
+> - [Windows containers on Windows](quick-start-windows-10.md)
 
 The exercise will walk through creating and running Linux containers on Windows 10.
 
@@ -32,7 +32,7 @@ Please make sure you meet the following requirements:
 - Make sure [Hyper-V](https://docs.microsoft.com/en-us/virtualization/hyper-v-on-windows/reference/hyper-v-requirements) is enabled.
 
 ***Hyper-V isolation:***
-Linux Containers on Windows require Hyper-V isolation on Windows 10 in order to provide developers with the the appropriate Linux kernel to run the container. More about Hyper-V isolation can be found on the [About Windows container](../about/index.md) page.
+Linux Containers on Windows require Hyper-V isolation on Windows 10 in order to provide developers with the the appropriate Linux kernel to run the container. More about Hyper-V isolation can be found on the [About Windows containers](../about/index.md) page.
 
 ## Install Docker for Windows
 

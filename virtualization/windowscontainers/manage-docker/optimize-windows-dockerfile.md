@@ -11,7 +11,7 @@ ms.assetid: bb2848ca-683e-4361-a750-0d1d14ec8031
 ---
 # Optimize Windows Dockerfiles
 
-Several methods can be used to optimize both the Docker build process, and the resulting Docker images. This document details how the Docker build process operates, and demonstrates several tactics that can be used for optimal image create with Windows Containers.
+Several methods can be used to optimize both the Docker build process, and the resulting Docker images. This document details how the Docker build process operates, and demonstrates several tactics that can be used for optimal image create with Windows containers.
 
 ## Docker Build
 
@@ -48,9 +48,9 @@ Dockerfiles can be written to minimize image layers, optimize build performance,
 
 ## Optimize Image Size
 
-When building Docker container images, image size may be an important factor. Container images are moved between registries and host, exported and imported, and ultimately consume space. Several tactics can be used during the Docker build process to minimize image size. This section details some of these tactics specific to Windows Containers. 
+When building Docker container images, image size may be an important factor. Container images are moved between registries and host, exported and imported, and ultimately consume space. Several tactics can be used during the Docker build process to minimize image size. This section details some of these tactics specific to Windows containers.
 
-For additional information on Dockerfile best practices, see [Best practices for writing Dockerfiles on Docker.com]( https://docs.docker.com/engine/userguide/eng-image/dockerfile_best-practices/).
+For additional information on Dockerfile best practices, see [Best practices for writing Dockerfiles on Docker.com](https://docs.docker.com/engine/userguide/eng-image/dockerfile_best-practices/).
 
 ### Group related actions
 
