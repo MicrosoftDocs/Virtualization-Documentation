@@ -135,8 +135,6 @@ To resolve this, you could:
 
 ## Choosing Container OS versions
 
-> Note: The "latest" tag will be updated along with Windows Server 2016, the current [LTSC product](https://docs.microsoft.com/en-us/windows-server/get-started/semi-annual-channel-overview). If you would like the container images that match the Windows Server version 1709 release, read below.
-
 It is important to ensure you know what Container OS version you will need for your purposes. If you are using Windows Server version 1709, and want to have the latest patches for it, you should use the tag "1709" when specifying which version of the base OS container images you want, like so:
 
 ``` Dockerfile
