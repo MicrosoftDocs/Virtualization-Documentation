@@ -27,7 +27,7 @@ This topic will show you how to use Dockerfiles with Windows containers, underst
 
 This document will discuss the concept of container images and container image layers. If you want to learn more about images and image layering, see [the quickstart guide to images](../quick-start/quick-start-images.md).
 
-For a complete look at Dockerfiles, see the [Dockerfile reference at docker.com](https://docs.docker.com/engine/reference/builder/).
+For a complete look at Dockerfiles, see the [Dockerfile reference](https://docs.docker.com/engine/reference/builder/).
 
 ## Basic Syntax
 
@@ -59,7 +59,7 @@ For additional examples of Dockerfiles for Windows, see the [Dockerfile for Wind
 
 ## Instructions
 
-Dockerfile instructions provide the Docker Engine the instructions it needs to create a container image. These instructions are performed one-by-one and in order. The following examples are the most commonly used instructions in Dockerfiles. For a complete list of Dockerfile instructions, see [Dockerfile Reference on Docker.com](https://docs.docker.com/engine/reference/builder/).
+Dockerfile instructions provide the Docker Engine the instructions it needs to create a container image. These instructions are performed one-by-one and in order. The following examples are the most commonly used instructions in Dockerfiles. For a complete list of Dockerfile instructions, see the [Dockerfile reference](https://docs.docker.com/engine/reference/builder/).
 
 ### FROM
 
@@ -77,7 +77,7 @@ Here's an example of the FROM command:
 FROM microsoft/windowsservercore
 ```
 
-For more detailed information, see the [FROM Reference on Docker.com](https://docs.docker.com/engine/reference/builder/#from).
+For more detailed information, see the [FROM reference](https://docs.docker.com/engine/reference/builder/#from).
 
 ### RUN
 
@@ -155,7 +155,7 @@ This example installs the Visual Studio redistributable package. `Start-Process`
 RUN powershell.exe -Command Start-Process c:\vcredist_x86.exe -ArgumentList '/quiet' -Wait
 ```
 
-For detailed information on the RUN instruction, see the [RUN reference on Docker.com](https://docs.docker.com/engine/reference/builder/#run).
+For detailed information on the RUN instruction, see the [RUN reference](https://docs.docker.com/engine/reference/builder/#run).
 
 ### COPY
 
@@ -202,7 +202,7 @@ The following example will add all files that begin with config to the `c:\temp`
 COPY config* c:/temp/
 ```
 
-For more detailed information about the `COPY` instruction, see the [COPY reference on Docker.com](https://docs.docker.com/engine/reference/builder/#copy).
+For more detailed information about the `COPY` instruction, see the [COPY reference](https://docs.docker.com/engine/reference/builder/#copy).
 
 ### ADD
 
@@ -257,7 +257,7 @@ The following example will download Python for Windows into the `c:\temp` direct
 ADD https://www.python.org/ftp/python/3.5.1/python-3.5.1.exe /temp/python-3.5.1.exe
 ```
 
-For more detailed information about the `ADD` instruction, see the [ADD reference on Docker.com](https://docs.docker.com/engine/reference/builder/#add).
+For more detailed information about the `ADD` instruction, see the [ADD reference](https://docs.docker.com/engine/reference/builder/#add).
 
 ### WORKDIR
 
@@ -283,7 +283,7 @@ WORKDIR c:\\windows
 WORKDIR c:\\Apache24\\bin
 ```
 
-For detailed information on the `WORKDIR` instruction, see the [WORKDIR reference on Docker.com](https://docs.docker.com/engine/reference/builder/#workdir).
+For detailed information on the `WORKDIR` instruction, see the [WORKDIR reference](https://docs.docker.com/engine/reference/builder/#workdir).
 
 ### CMD
 
@@ -321,11 +321,11 @@ However, the following format without the proper slashes will not work:
 CMD c:\Apache24\bin\httpd.exe -w
 ```
 
-For more detailed information about the `CMD` instruction, see the [CMD reference on Docker.com](https://docs.docker.com/engine/reference/builder/#cmd).
+For more detailed information about the `CMD` instruction, see the [CMD reference](https://docs.docker.com/engine/reference/builder/#cmd).
 
 ## Escape character
 
-In many cases a Dockerfile instruction will need to span multiple lines. To do this, you can use an escape character. The default Dockerfile escape character is a backslash `\`. However, because the backslash is also a file path separator in Windows, using it to span multiple lines can cause problems. To get around this, you can use a parser directive to change the default escape character. For more information about parser directives, see [Parser Directives on Docker.com](https://docs.docker.com/engine/reference/builder/#parser-directives).
+In many cases a Dockerfile instruction will need to span multiple lines. To do this, you can use an escape character. The default Dockerfile escape character is a backslash `\`. However, because the backslash is also a file path separator in Windows, using it to span multiple lines can cause problems. To get around this, you can use a parser directive to change the default escape character. For more information about parser directives, see [Parser directives](https://docs.docker.com/engine/reference/builder/#parser-directives).
 
 The following example shows a single RUN instruction that spans multiple lines using the default escape character:
 
@@ -356,13 +356,13 @@ RUN powershell.exe -Command `
     Remove-Item c:\python-3.5.1.exe -Force
 ```
 
-For more information about the escape parser directive, see [Escape Parser Directive on Docker.com](https://docs.docker.com/engine/reference/builder/#escape).
+For more information about the escape parser directive, see [Escape parser directive](https://docs.docker.com/engine/reference/builder/#escape).
 
 ## PowerShell in Dockerfile
 
-### PowerShell Commands
+### PowerShell cmdlets
 
-PowerShell commands can be run in a Dockerfile using the `RUN` operation.
+PowerShell cmdlets can be run in a Dockerfile with the `RUN` operation.
 
 ```dockerfile
 FROM microsoft/windowsservercore
@@ -370,9 +370,9 @@ FROM microsoft/windowsservercore
 RUN powershell -command Expand-Archive -Path c:\apache.zip -DestinationPath c:\
 ```
 
-### REST Calls
+### REST calls
 
-PowerShell, and the `Invoke-WebRequest` command, can be useful when gathering information or files from a web service. For instance, if building an image that includes Python, the following example could be used. Consider setting `$ProgressPreference` to `SilentlyContinue` to achieve faster downloads.
+PowerShell's `Invoke-WebRequest` cmdlet can be useful when gathering information or files from a web service. For instance, if you build an image that includes Python, you can set `$ProgressPreference` to `SilentlyContinue` to achieve faster downloads, as shown in the following example.
 
 ```dockerfile
 FROM microsoft/windowsservercore
@@ -385,7 +385,8 @@ RUN powershell.exe -Command \
   Remove-Item c:\python-3.5.1.exe -Force
 ```
 
-> Invoke-WebRequest also works in Nano Server
+>[!NOTE]
+>`Invoke-WebRequest` also works in Nano Server.
 
 Another option for using PowerShell to download files during the image creation process is to use the .NET WebClient library. This can increase download performance. The following example downloads the Python software, using the WebClient library.
 
@@ -399,11 +400,15 @@ RUN powershell.exe -Command \
   Remove-Item c:\python-3.5.1.exe -Force
 ```
 
-> WebClient is not currently supported in Nano Server
+>[!NOTE]
+>Nano Server does not currently support WebClient.
 
-### PowerShell Scripts
+### PowerShell scripts
 
-In some cases, it may be helpful to copy a script into the containers being used during the image creation process, and then run from within the container. Note - this will limit any image layer caching, and decrease readability of the Dockerfile.
+In some cases, it may be helpful to copy a script into the containers you use during the image creation process, then run the script from within the container.
+
+>[!NOTE]
+>This will limit any image layer caching, and decrease readability of the Dockerfile.
 
 This example copies a script from the build machine into the container using the `ADD` instruction. This script is then run using the RUN instruction.
 
@@ -413,21 +418,23 @@ ADD script.ps1 /windows/temp/script.ps1
 RUN powershell.exe -executionpolicy bypass c:\windows\temp\script.ps1
 ```
 
-## Docker Build
+## Docker build
 
-Once a Dockerfile has been created and saved to disk, `docker build` can be run to create the new image. The `docker build` command takes several optional parameters and a path to the Dockerfile. For complete documentation on Docker Build, including a list of all build options, see [build Reference on Docker.com](https://docs.docker.com/engine/reference/commandline/build/#build).
+Once a Dockerfile has been created and saved to disk, you can run `docker build` to create the new image. The `docker build` command takes several optional parameters and a path to the Dockerfile. For complete documentation on Docker Build, including a list of all build options, see the [build reference](https://docs.docker.com/engine/reference/commandline/build/#build).
+
+The format of the `docker build` command goes like this:
 
 ```dockerfile
-Docker build [OPTIONS] PATH
+docker build [OPTIONS] PATH
 ```
 
-For example, the following command will create an image named ‘iis’.
+For example, the following command will create an image named "iis."
 
 ```dockerfile
 docker build -t iis .
 ```
 
-When the build process has been initiated, the output will indicate status, and return any thrown errors.
+When the build process has been initiated, the output will indicate status and return any thrown errors.
 
 ```dockerfile
 C:\> docker build -t iis .
@@ -458,7 +465,7 @@ Removing intermediate container 9a26b8bcaa3a
 Successfully built e2aafdfbe392
 ```
 
-The result is a new container image, in this example named 'iis'.
+The result is a new container image, which in this example is named "iis."
 
 ```dockerfile
 docker images
@@ -468,8 +475,8 @@ iis                 latest              e2aafdfbe392        About a minute ago  
 windowsservercore   latest              6801d964fda5        4 months ago         0 B
 ```
 
-## Further Reading & References
+## Further reading and references
 
 [Optimize Dockerfiles and Docker build for Windows](optimize-windows-dockerfile.md)
 
-[Dockerfile Reference on Docker.com](https://docs.docker.com/engine/reference/builder/)
+[Dockerfile reference](https://docs.docker.com/engine/reference/builder/)
