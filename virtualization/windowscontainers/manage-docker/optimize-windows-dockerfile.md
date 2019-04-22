@@ -120,9 +120,9 @@ RUN powershell.exe -Command \
 
 ### Multiple lines
 
-You can separate operations into multiple individual instructions to optimize Docker build speed. Multiple `RUN` operations increase caching effectiveness because individual layers are created for each `RUN` instruction. If an identical instruction has already been run in a different Docker Build operation, this cached operation (image layer) is reused, resulting in decreased Docker build runtime.
+You can split operations into multiple individual instructions to optimize Docker build speed. Multiple `RUN` operations increase caching effectiveness because individual layers are created for each `RUN` instruction. If an identical instruction was already run in a different Docker Build operation, this cached operation (image layer) is reused, resulting in decreased Docker build runtime.
 
-In the following example, both Apache and the Visual Studio Redistribute packages are downloaded, installed, and then the un-needed files cleaned up. This is all done with one `RUN` instruction. If any of these actions are updated, all actions will rerun.
+In the following example, both Apache and the Visual Studio Redistribute packages are downloaded, installed, and then cleaned up by removing files that are no longer needed. This is all done with a single `RUN` instruction. If any of these actions are updated, all actions will rerun.
 
 ```dockerfile
 FROM windowsservercore
@@ -148,7 +148,7 @@ RUN powershell -Command \
   Remove-Item c:\php.zip
 ```
 
-The resulting image consists of two layers, one for the base OS image, and the second that contains all operations from the single `RUN` instruction.
+The resulting image has two layers, one for the base OS image, and one that contains all operations from the single `RUN` instruction.
 
 ```dockerfile
 docker history doc-sample-1
@@ -158,7 +158,7 @@ IMAGE               CREATED             CREATED BY                              
 6801d964fda5        5 months ago                                                        0 B
 ```
 
-To contrast, here are the same actions broken down into three `RUN` instructions. In this case, each `RUN` instruction is cached in a container image layer, and only those that have changed, need to be re-run on subsequent Dockerfile builds.
+By comparison, here are the same actions split into three `RUN` instructions. In this case, each `RUN` instruction is cached in a container image layer, and only those that have changed need to be rerun on subsequent Dockerfile builds.
 
 ```dockerfile
 FROM windowsservercore
@@ -182,7 +182,7 @@ RUN powershell -Command \
 	Remove-Item c:\php.zip -Force
 ```
 
-The resulting image consists of four layers, one for the base OS image, and then one for each `RUN` instruction. Because each `RUN` instruction has been run in its own layer, any subsequent runs of this Dockerfile or identical set of instructions in a different Dockerfile, will use cached image layer, thus reducing build time. Instruction ordering is important when working with image cache, for more details, see the next section of this document.
+The resulting image consists of four layers; one layer for the base OS image and each of the three `RUN` instructions. Because each `RUN` instruction ran in its own layer, any subsequent runs of this Dockerfile or identical set of instructions in a different Dockerfile will use cached image layers, reducing build time.
 
 ```dockerfile
 docker history doc-sample-2
@@ -194,11 +194,13 @@ d43abb81204a        7 days ago          cmd /S /C powershell -Command  Sleep 2 ;
 6801d964fda5        5 months ago
 ```
 
-### Ordering Instructions
+How you order the instructions is important when working with image caches, as you'll see in the next section.
+
+### Ordering instructions
 
 A Dockerfile is processed from top to the bottom, each Instruction compared against cached layers. When an instruction is found without a cached layer, this instruction and all subsequent instructions are processed in new container image layers. Because of this, the order in which instructions are placed is important. Place instructions that will remain constant towards the top of the Dockerfile. Place instructions that may change towards the bottom of the Dockerfile. Doing so reduces the likelihood of negating existing cache.
 
-The intention of this example is to demonstrated how Dockerfile instruction ordering can affect caching effectiveness. In this simple Dockerfile, four numbered folders are created.  
+The following examples show how Dockerfile instruction ordering can affect caching effectiveness. This simple example Dockerfile has four numbered folders.  
 
 ```dockerfile
 FROM windowsservercore
@@ -209,7 +211,7 @@ RUN mkdir test-3
 RUN mkdir test-4
 ```
 
-The resulting image has five layers, one for the base OS image, and one for each of the `RUN` instructions.
+The resulting image has five layers, one for the base OS image and each of the `RUN` instructions.
 
 ```dockerfile
 docker history doc-sample-1
@@ -222,7 +224,7 @@ afba1a3def0a        38 seconds ago       cmd /S /C mkdir test-4   42.46 MB
 6801d964fda5        5 months ago                                  0 B
 ```
 
-The docker file has now been slightly modified. Notice that the third `RUN` instruction has changed. When Docker build is run against this Dockerfile, the first three instructions, which are identical to those in the last example, use the cached image layers. However, because the changed `RUN` instruction has not been cached, a new layer is created for itself and all subsequent instructions.
+This next Dockerfile has now been slightly modified, with the third `RUN` instruction changed to a new file. When Docker build is run against this Dockerfile, the first three instructions, which are identical to those in the last example, use the cached image layers. However, because the changed `RUN` instruction isn't cached, a new layer is created for for the changed instruction and all subsequent instructions.
 
 ```dockerfile
 FROM windowsservercore
@@ -233,7 +235,7 @@ RUN mkdir test-5
 RUN mkdir test-4
 ```
 
-Comparing Image ID’s of the new image, to that in the last example, you will see that the first three layers (bottom to the top) are shared, however the fourth and fifth are unique.
+When you compare the image IDs of the new image to that in this section's first example, you'll notice that the first three layers from bottom to top are shared, but the fourth and fifth are unique.
 
 ```dockerfile
 docker history doc-sample-2
@@ -246,13 +248,13 @@ c92cc95632fb        28 seconds ago      cmd /S /C mkdir test-4   5.644 MB
 6801d964fda5        5 months ago                                 0 B
 ```
 
-## Cosmetic Optimization
+## Cosmetic optimization
 
-### Instruction Case
+### Instruction case
 
-Dockerfile instructions are not case sensitive, however convention is to use upper case. This improves readability by differentiating between Instruction call, and instruction operation. The below two examples demonstrate this concept. 
+Dockerfile instructions are not case-sensitive, but the convention is to use upper case. This improves readability by differentiating between the Instruction call and instruction operation. The following two examples compare an uncapitalized and capitalized Dockerfile.
 
-Lower case:
+The following is an uncapitalized Dockerfile:
 
 ```dockerfile
 # Sample Dockerfile
@@ -263,7 +265,7 @@ run echo "Hello World - Dockerfile" > c:\inetpub\wwwroot\index.html
 cmd [ "cmd" ]
 ```
 
-Upper case:
+The following is the same Dockerfile using upper-case:
 
 ```dockerfile
 # Sample Dockerfile
@@ -274,9 +276,9 @@ RUN echo "Hello World - Dockerfile" > c:\inetpub\wwwroot\index.html
 CMD [ "cmd" ]
 ```
 
-### Line Wrapping
+### Line wrapping
 
-Long and complex operations can be separated onto multiple line using the backslash `\` character. The following Dockerfile installs the Visual Studio Redistributable package, removes the installer files, and then creates a configuration file. These three operations are all specified on one line.
+Long and complex operations can be separated onto multiple lines by the backslash `\` character. The following Dockerfile installs the Visual Studio Redistributable package, removes the installer files, and then creates a configuration file. These three operations are all specified on one line.
 
 ```dockerfile
 FROM windowsservercore
@@ -284,7 +286,7 @@ FROM windowsservercore
 RUN powershell -Command c:\vcredist_x86.exe /quiet ; Remove-Item c:\vcredist_x86.exe -Force ; New-Item c:\config.ini
 ```
 
-The command can be re-written so that each operation from the one `RUN` instruction is specified on its own line. 
+The command can be broken up with backslashes so that each operation from the one `RUN` instruction is specified on its own line.
 
 ```dockerfile
 FROM windowsservercore
@@ -296,7 +298,7 @@ RUN powershell -Command \
 	New-Item c:\config.ini
 ```
 
-## Further Reading & References
+## Further reading and references
 
 [Dockerfile on Windows](manage-windows-dockerfile.md)
 
