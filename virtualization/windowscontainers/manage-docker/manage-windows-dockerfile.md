@@ -3,16 +3,15 @@ title: Dockerfile and Windows Containers
 description: Create Dockerfiles for Windows containers.
 keywords: docker, containers
 author: PatrickLang
-ms.date: 05/26/2016
+ms.date: 04/26/2019
 ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: 75fed138-9239-4da9-bce4-4f2e2ad469a1
 ---
-
 # Dockerfile on Windows
 
-The Docker engine includes tools for automating the creation of container images. While container images can be created manually using the `docker commit` command, adopting an automated image creation process provides many benefits including:
+The Docker engine includes tools that automate container image creation. While you can create container images manually by running the `docker commit` command, adopting an automated image creation process has many benefits, including:
 
 - Storing container images as code.
 - Rapid and precise recreation of container images for maintenance and upgrade purposes.
@@ -20,22 +19,22 @@ The Docker engine includes tools for automating the creation of container images
 
 The Docker components that drive this automation are the Dockerfile, and the `docker build` command.
 
-- **Dockerfile** – a text file containing the instructions needed to create a new container image. These instructions include identification of an existing image to be used as a base, commands to be run during the image creation process, and a command that will run when new instances of the container image are deployed.
-- **Docker build** - the Docker engine command that consumes a Dockerfile, and triggers the image creation process.
+The Dockerfile is a text file that contains the instructions needed to create a new container image. These instructions include identification of an existing image to be used as a base, commands to be run during the image creation process, and a command that will run when new instances of the container image are deployed.
 
-This document will introduce using a Dockerfile with Windows containers, discuss syntax, and detail commonly used Dockerfile instructions.
+Docker build is the Docker engine command that consumes a Dockerfile and triggers the image creation process.
 
-Throughout this document, the concept of container images and container image layers will be discussed. For more information on images and image layering see [the quick start guide to images](../quick-start/quick-start-images.md).
+This topic will show you how to use Dockerfiles with Windows containers, understand their basic syntax, and what the most common Dockerfile instructions are.
 
-For a complete look at Dockerfiles, see the [Dockerfile reference at docker.com]( https://docs.docker.com/engine/reference/builder/).
+This document will discuss the concept of container images and container image layers. If you want to learn more about images and image layering, see [the quickstart guide to images](../quick-start/quick-start-images.md).
 
-## Dockerfile Introduction
+For a complete look at Dockerfiles, see the [Dockerfile reference at docker.com](https://docs.docker.com/engine/reference/builder/).
 
-### Basic Syntax
+## Basic Syntax
 
 In its most basic form, a Dockerfile can be very simple. The following example creates a new image, which includes IIS, and a ‘hello world’ site. This example includes comments (indicated with a `#`), that explain each step. Subsequent sections of this article will go into more detail on Dockerfile syntax rules, and Dockerfile instructions.
 
-> Please note that Dockerfile must be created with no extension. In Windows to do so simply create the file with your editor of choice than save it using the notation "Dockerfile" including the quotes.
+>[!NOTE]
+>A Dockerfile must be created with no extension. To do this in Windows, create the file with your editor of choice, then save it with the notation "Dockerfile" (including the quotes).
 
 ```dockerfile
 # Sample Dockerfile
@@ -56,39 +55,35 @@ RUN echo "Hello World - Dockerfile" > c:\inetpub\wwwroot\index.html
 CMD [ "cmd" ]
 ```
 
-For additional examples of Dockerfiles for Windows, see the [Dockerfile for Windows Repository] (https://github.com/Microsoft/Virtualization-Documentation/tree/master/windows-container-samples).
+For additional examples of Dockerfiles for Windows, see the [Dockerfile for Windows repository](https://github.com/Microsoft/Virtualization-Documentation/tree/master/windows-container-samples).
 
 ## Instructions
 
-Dockerfile instructions provide the Docker Engine with the steps needed to create a container image. These instructions are performed in order, and one-by-one. Here are the details for some basic Dockerfile instructions. For a complete list of Dockerfile instructions, see [Dockerfile Reference on Docker.com] (https://docs.docker.com/engine/reference/builder/).
+Dockerfile instructions provide the Docker Engine the instructions it needs to create a container image. These instructions are performed one-by-one and in order. The following examples are the most commonly used instructions in Dockerfiles. For a complete list of Dockerfile instructions, see [Dockerfile Reference on Docker.com](https://docs.docker.com/engine/reference/builder/).
 
 ### FROM
 
 The `FROM` instruction sets the container image that will be used during the new image creation process. For instance, when using the instruction `FROM microsoft/windowsservercore`, the resulting image is derived from, and has a dependency on, the Windows Server Core base OS image. If the specified image is not present on the system where the Docker build process is being run, the Docker engine will attempt to download the image from a public or private image registry.
 
-**Format**
-
-The FROM instruction takes a format of:
+The FROM instruction's format goes like this:
 
 ```dockerfile
 FROM <image>
 ```
 
-**Example**
+Here's an example of the FROM command:
 
 ```dockerfile
 FROM microsoft/windowsservercore
 ```
 
-For detailed information on the FROM instruction, see the [FROM Reference on Docker.com]( https://docs.docker.com/engine/reference/builder/#from).
+For more detailed information, see the [FROM Reference on Docker.com](https://docs.docker.com/engine/reference/builder/#from).
 
 ### RUN
 
 The `RUN` instruction specifies commands to be run, and captured into the new container image. These commands can include items such as installing software, creating files and directories, and creating environment configuration.
 
-**Format**
-
-The RUN instruction takes a format of:
+The RUN instruction goes like this:
 
 ```dockerfile
 # exec form
@@ -100,9 +95,9 @@ RUN ["<executable>", "<param 1>", "<param 2>"]
 RUN <command>
 ```
 
-The difference between the exec and shell form, is in how the `RUN` instruction is executed. When using the exec form, the specified program is run explicitly.
+The difference between the exec and shell form is in how the `RUN` instruction is executed. When using the exec form, the specified program is run explicitly.
 
-The following example used the exec form.
+Here's an example of the exec form:
 
 ```dockerfile
 FROM microsoft/windowsservercore
@@ -110,7 +105,7 @@ FROM microsoft/windowsservercore
 RUN ["powershell", "New-Item", "c:/test"]
 ```
 
-Examining the resulting image, the command that was run is `powershell New-Item c:/test`.
+The resulting image runs the `powershell New-Item c:/test` command:
 
 ```dockerfile
 docker history doc-exe-method
@@ -119,7 +114,7 @@ IMAGE               CREATED             CREATED BY                    SIZE      
 b3452b13e472        2 minutes ago       powershell New-Item c:/test   30.76 MB
 ```
 
-To contrast, the following example runs the same operation, however using the shell form.
+To contrast, the following example runs the same operation in shell form:
 
 ```dockerfile
 FROM microsoft/windowsservercore
@@ -127,7 +122,7 @@ FROM microsoft/windowsservercore
 RUN powershell New-Item c:\test
 ```
 
-Which results in a run instruction of `cmd /S /C powershell New-Item c:\test`.
+The resulting image has a run instruction of `cmd /S /C powershell New-Item c:\test`.
 
 ```dockerfile
 docker history doc-shell-method
@@ -136,7 +131,7 @@ IMAGE               CREATED             CREATED BY                              
 062a543374fc        19 seconds ago      cmd /S /C powershell New-Item c:\test   30.76 MB
 ```
 
-**Windows Considerations**
+### Considerations for using RUN with Windows
 
 On Windows, when using the `RUN` instruction with the exec format, backslashes must be escaped.
 
@@ -144,101 +139,97 @@ On Windows, when using the `RUN` instruction with the exec format, backslashes m
 RUN ["powershell", "New-Item", "c:\\test"]
 ```
 
-When the target program is a Windows Installer, an extra step is required before launching the actual (silent) installation procedure:  extraction of the setup, via the `/x:<directory>` flag. Besides this, the command needs to be waited for exit. Otherwise, the process will end prematurely, without installing anything. For details, please consult the example below.
+When the target program is a Windows installer, you'll need to extract the setup through the `/x:<directory>` flag before you can launch the actual (silent) installation procedure. You must also wait for the command to exit before you do anything else. Otherwise, the process will end prematurely without installing anything. For details, please consult the example below.
 
-**Examples**
+#### Examples of using RUN with Windows
 
-This example uses DISM to install IIS in the container image.
+The following example Dockerfile uses DISM to install IIS in the container image:
 
 ```dockerfile
 RUN dism.exe /online /enable-feature /all /featurename:iis-webserver /NoRestart
 ```
 
-This example installs the Visual Studio redistributable package. Note here that `Start-Process` and the `-Wait` parameter are used to run the installer. This will ensure that the installation completed before moving onto the next step in the Dockerfile.
+This example installs the Visual Studio redistributable package. `Start-Process` and the `-Wait` parameter are used to run the installer. This ensures that the installation completes before moving on to the next instruction in the Dockerfile.
 
 ```dockerfile
 RUN powershell.exe -Command Start-Process c:\vcredist_x86.exe -ArgumentList '/quiet' -Wait
 ```
 
-For detailed information on the RUN instruction, see the [RUN Reference on Docker.com]( https://docs.docker.com/engine/reference/builder/#run).
+For detailed information on the RUN instruction, see the [RUN reference on Docker.com](https://docs.docker.com/engine/reference/builder/#run).
 
 ### COPY
 
-The `COPY` instruction copies files and directories to the filesystem of the container. The files and directories need to be in a path relative to the Dockerfile.
+The `COPY` instruction copies files and directories to the container's file system. The files and directories must be in a path relative to the Dockerfile.
 
-**Format**
-
-The `COPY` instruction takes a format of:
+The `COPY` instruction's format goes like this:
 
 ```dockerfile
 COPY <source> <destination>
 ```
 
-If either source or destination include whitespace, enclose the path in square brackets and double quotes.
+If either source or destination includes white space, enclose the path in square brackets and double quotes, as shown in the following example:
 
 ```dockerfile
 COPY ["<source>", "<destination>"]
 ```
 
-**Windows Considerations**
+#### Considerations for using COPY with Windows
 
-On Windows, the destination format must use forward slashes. For example, these are valid `COPY` instructions.
+On Windows, the destination format must use forward slashes. For example, these are valid `COPY` instructions:
 
 ```dockerfile
 COPY test1.txt /temp/
 COPY test1.txt c:/temp/
 ```
 
-However, the following will not work.
+Meanwhile, the following format with backslashes won't work:
 
 ```dockerfile
 COPY test1.txt c:\temp\
 ```
 
-**Examples**
+#### Examples of using COPY with Windows
 
-This example adds the contents of the source directory, to a directory named `sqllite` in the container image.
+The following example adds the contents of the source directory to a directory named `sqllite` in the container image:
 
 ```dockerfile
 COPY source /sqlite/
 ```
 
-This example will add all files that begin with config, to the `c:\temp` directory of the container image.
+The following example will add all files that begin with config to the `c:\temp` directory of the container image:
 
 ```dockerfile
 COPY config* c:/temp/
 ```
 
-For detailed information on the `COPY` instruction, see the [COPY Reference on Docker.com]( https://docs.docker.com/engine/reference/builder/#copy).
+For more detailed information about the `COPY` instruction, see the [COPY reference on Docker.com](https://docs.docker.com/engine/reference/builder/#copy).
 
 ### ADD
 
-The ADD instruction is very much like the COPY instruction; however, it includes additional capabilities. In addition to copying files from the host into the container image, the `ADD` instruction can also copy files from a remote location with a URL specification.
+The ADD instruction is like the COPY instruction, but with even more capabilities. In addition to copying files from the host into the container image, the `ADD` instruction can also copy files from a remote location with a URL specification.
 
-**Format**
-
-The `ADD` instruction takes a format of:
+The `ADD` instruction's format goes like this:
 
 ```dockerfile
 ADD <source> <destination>
 ```
 
-If either source or destination include whitespace, enclose the path in square brackets and double quotes.
+If either the source or destination include white space, enclose the path in square brackets and double quotes:
 
 ```dockerfile
 ADD ["<source>", "<destination>"]
 ```
 
-**Windows Considerations**
+#### Considerations for running ADD with Windows
 
-On Windows, the destination format must use forward slashes. For example, these are valid `ADD` instructions.
+On Windows, the destination format must use forward slashes. For example, these are valid `ADD` instructions:
 
 ```dockerfile
 ADD test1.txt /temp/
 ADD test1.txt c:/temp/
 ```
 
-However, the following will not work.
+Meanwhile, the following format with backslashes won't work:
 
 ```dockerfile
 ADD test1.txt c:\temp\
@@ -246,41 +237,39 @@ ADD test1.txt c:\temp\
 
 Additionally, on Linux the `ADD` instruction will expand compressed packages on copy. This functionality is not available in Windows.
 
-**Examples**
+#### Examples of using ADD with Windows
 
-This example adds the contents of the source directory, to a directory named `sqllite` in the container image.
+The following example adds the contents of the source directory to a directory named `sqllite` in the container image:
 
 ```dockerfile
 ADD source /sqlite/
 ```
 
-This example will add all files that begin with config, to the `c:\temp` directory of the container image.
+The following example will add all files that begin with "config" to the `c:\temp` directory of the container image.
 
 ```dockerfile
 ADD config* c:/temp/
 ```
 
-This example will download Python for Windows into the `c:\temp` directory of the container image.
+The following example will download Python for Windows into the `c:\temp` directory of the container image.
 
 ```dockerfile
 ADD https://www.python.org/ftp/python/3.5.1/python-3.5.1.exe /temp/python-3.5.1.exe
 ```
 
-For detailed information on the `ADD` instruction, see the [ADD Reference on Docker.com]( https://docs.docker.com/engine/reference/builder/#add).
+For more detailed information about the `ADD` instruction, see the [ADD reference on Docker.com](https://docs.docker.com/engine/reference/builder/#add).
 
 ### WORKDIR
 
 The `WORKDIR` instruction sets a working directory for other Dockerfile instructions, such as `RUN`, `CMD`, and also the working directory for running instances of the container image.
 
-**Format**
-
-The `WORKDIR` instruction takes a format of:
+The `WORKDIR` instruction's format goes like this:
 
 ```dockerfile
 WORKDIR <path to working directory>
 ```
 
-**Windows Considerations**
+#### Considerations for using WORKDIR with Windows
 
 On Windows, if the working directory includes a backslash, it must be escaped.
 
@@ -294,15 +283,13 @@ WORKDIR c:\\windows
 WORKDIR c:\\Apache24\\bin
 ```
 
-For detailed information on the `WORKDIR` instruction, see the [WORKDIR Reference on Docker.com]( https://docs.docker.com/engine/reference/builder/#workdir).
+For detailed information on the `WORKDIR` instruction, see the [WORKDIR reference on Docker.com](https://docs.docker.com/engine/reference/builder/#workdir).
 
 ### CMD
 
-The `CMD` instruction sets the default command to be run when deploying an instance of the container image. For instance, if the container will be hosting an NGINX web server, the `CMD` might include instructions to start the web server, such as `nginx.exe`. If multiple `CMD` instructions are specified in a Dockerfile, only the last is evaluated.
+The `CMD` instruction sets the default command to be run when deploying an instance of the container image. For instance, if the container will be hosting an NGINX web server, the `CMD` might include instructions to start the web server with a command like `nginx.exe`. If multiple `CMD` instructions are specified in a Dockerfile, only the last is evaluated.
 
-**Format**
-
-The `CMD` instruction takes a format of:
+The `CMD` instruction's format goes like this:
 
 ```dockerfile
 # exec form
@@ -314,9 +301,9 @@ CMD ["<executable", "<param>"]
 CMD <command>
 ```
 
-**Windows Considerations**
+#### Considerations for using CMD with Windows
 
-On Windows, file paths specified in the `CMD` instruction must use forward slashes or have escaped backslashes `\\`. For example, these are valid `CMD` instructions.
+On Windows, file paths specified in the `CMD` instruction must use forward slashes or have escaped backslashes `\\`. The following are valid `CMD` instructions:
 
 ```dockerfile
 # exec form
@@ -327,19 +314,20 @@ CMD ["c:\\Apache24\\bin\\httpd.exe", "-w"]
 
 CMD c:\\Apache24\\bin\\httpd.exe -w
 ```
-However, the following will not work.
+
+However, the following format without the proper slashes will not work:
 
 ```dockerfile
 CMD c:\Apache24\bin\httpd.exe -w
 ```
 
-For detailed information on the `CMD` instruction, see the [CMD Reference on Docker.com](https://docs.docker.com/engine/reference/builder/#cmd).
+For more detailed information about the `CMD` instruction, see the [CMD reference on Docker.com](https://docs.docker.com/engine/reference/builder/#cmd).
 
-## Escape Character
+## Escape character
 
-In many cases a Dockerfile instruction will need to span multiple lines; this is done with an escape character. The default Dockerfile escape character is a backslash `\`. Because the backslash is also a file path separator in Windows, it can be problematic. To change the default escape character, a parser directive can be used. For more information on Parser directives, see [Parser Directives on Docker.com](https://docs.docker.com/engine/reference/builder/#parser-directives).
+In many cases a Dockerfile instruction will need to span multiple lines. To do this, you can use an escape character. The default Dockerfile escape character is a backslash `\`. However, because the backslash is also a file path separator in Windows, using it to span multiple lines can cause problems. To get around this, you can use a parser directive to change the default escape character. For more information about parser directives, see [Parser Directives on Docker.com](https://docs.docker.com/engine/reference/builder/#parser-directives).
 
-The following example shows a single RUN instruction that spans multiple lines using the default escape character.
+The following example shows a single RUN instruction that spans multiple lines using the default escape character:
 
 ```dockerfile
 FROM microsoft/windowsservercore
@@ -351,9 +339,10 @@ RUN powershell.exe -Command \
     Remove-Item c:\python-3.5.1.exe -Force
 ```
 
-To modify the escape character, place an escape parser directive on the very first line of the Dockerfile. This can be seen in the below example.
+To modify the escape character, place an escape parser directive on the very first line of the Dockerfile. This can be seen in the following example.
 
-> Note, only two values can be used as escape characters, the `\` and the `` ` ``.
+>[!NOTE]
+>Only two values can be used as escape characters, `\` and `` ` ``.
 
 ```dockerfile
 # escape=`
@@ -367,7 +356,7 @@ RUN powershell.exe -Command `
     Remove-Item c:\python-3.5.1.exe -Force
 ```
 
-For more information on the escape parser directive, see [Escape Parser Directive on Docker.com](https://docs.docker.com/engine/reference/builder/#escape).
+For more information about the escape parser directive, see [Escape Parser Directive on Docker.com](https://docs.docker.com/engine/reference/builder/#escape).
 
 ## PowerShell in Dockerfile
 
