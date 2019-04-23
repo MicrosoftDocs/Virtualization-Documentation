@@ -4,14 +4,11 @@ description: How Windows can run build and run containers across multiple versio
 keywords: metadata, containers, version
 author: taylorb-microsoft
 ---
+# Windows container version compatibility
 
-# Windows Container Version Compatibility
+Windows Server 2016 and Windows 10 Anniversary Update (both version 14393) were the first Windows releases that could build and run Windows Server containers. Containers built using these versions can run on newer releases such as Windows Server version 1709, but there are a few things you need to know before you start.
 
-Windows Server 2016 and Windows 10 Anniversary Update (both version 14393) were the first Windows releases that could build and run Windows Server Containers. Containers built using these versions can run on newer releases such as Windows Server version 1709, but there are a few things you need to know before you start.
-
-As we've been improving the Windows container features, we've had to make some changes that can affect compatibility. Older containers will run the same on newer hosts with [Hyper-V isolation](../manage-containers/hyperv-container.md), and the same (older) kernel version will still be used. However, if you want to run a container based on a newer Windows build - it can only run on the newer host build.
-
-
+As we've been improving the Windows container features, we've had to make some changes that can affect compatibility. Older containers will run the same on newer hosts with [Hyper-V isolation](../manage-containers/hyperv-container.md), and will use the same (older) kernel version. However, if you want to run a container based on a newer Windows build, it can only run on the newer host build.
 
 <table>
     <tr>
@@ -73,22 +70,35 @@ As we've been improving the Windows container features, we've had to make some c
         <td>Supports<br/> `process` or `hyperv` isolation</td>
         <td>Supports<br/> Only `hyperv` isolation</td>
     </tr>
-</table>               
+</table>
 
-## Matching Container Host Version with Container Image Versions
-### Windows Server Containers
-Because Windows Server Containers and the underlying host share a single kernel, the container’s base image must match that of the host.  If the versions are different the container may start, but full functionally cannot be guaranteed. The Windows operating system has 4 levels of versioning, Major, Minor, Build and Revision – for example 10.0.14393.103. The build number (i.e. 14393) only changes when new versions of the OS are published, such as version 1709, 1803, fall creators update etc... The revision number (i.e. 103) is updated as Windows updates are applied.
-#### Build Number (new release of Windows)
-Windows Server Containers are blocked from starting when the build number between the container host and the container image are different - for example 10.0.14393.* (Windows Server 2016) and 10.0.16299.* (Windows Server version 1709).  
-#### Revision Number (patching)
-Windows Server Containers are _not_ blocked from starting when the revision number between the container host and the container image are different for example 10.0.14393.1914 (Windows Server 2016 with KB4051033 applied) and 10.0.14393.1944 (Windows Server 2016 with KB4053579 applied).  
-For Windows Server 2016 based hosts/images – the container image’s revision must match the host to be in a supported configuration.  Starting with Windows Server version 1709, this is no longer applicable, and the host and container image need not have matching revisions.  It is as always recommended to keep your systems up-to-date with the latest patches and updates.
-#### Practical Application
-Example 1:  Container host is running Windows Server 2016 with KB4041691 applied.  Any Windows Server container deployed to this host must be based on the 10.0.14393.1770 container base images.  If KB4053579 is applied to the host the container images must be updated at the same time to remain supported.
-Example 2:  Container host is running Windows Server version 1709 with KB4043961 applied.  Any Windows Server container deployed to this host must be based on a Windows Server version 1709 (10.0.16299) container base image but need not match the host KB.  If KB4054517 is applied to the host the container images do not need to be updated, though should be in order to fully address any security issues.
+## Matching container host version with container image versions
+
+### Windows Server containers
+
+Because Windows Server containers and the underlying host share a single kernel, the container’s base image must match that of the host. If the versions are different, the container may start, but full functionally isn't guaranteed. The Windows operating system has four levels of versioning: major, minor, build and revision. For example, version 10.0.14393.103 would have a major version of 10, a minor version of 0, a build number of 14393, and a revision number of 103. The build number only changes when new versions of the OS are published, such as version 1709, 1803, Fall Creators' Update, and so on. The revision number is updated as Windows updates are applied.
+
+#### Build number (new release of Windows)
+
+Windows Server containers are blocked from starting when the build number between the container host and the container image are different. For example, when the container host is version 10.0.14393.* (Windows Server 2016) and container image is version 10.0.16299.* (Windows Server version 1709), the container won't start.  
+
+#### Revision number (patching)
+
+Windows Server containers aren't blocked from starting when the revision numbers of the container host and the container image are different. For example, if the container host is version 10.0.14393.1914 (Windows Server 2016 with KB4051033 applied) and the container image is version 10.0.14393.1944 (Windows Server 2016 with KB4053579 applied), then the image will still start even though their revision numbers are different.
+
+For Windows Server 2016-based hosts or images, the container image’s revision must match the host to be in a supported configuration. However, for hosts or images using Windows Server version 1709 and higher, this rule doesn't apply, and the host and container image need not have matching revisions. We recommend you keep your systems up-to-date with the latest patches and updates.
+
+#### Practical application
+
+Example 1:  The container host is running Windows Server 2016 with KB4041691 applied. Any Windows Server container deployed to this host must be based on the version 10.0.14393.1770 container base images. If you apply KB4053579 to the host container, you must also update the images to make sure the host container supports them.
+
+Example 2: The container host is running Windows Server version 1709 with KB4043961 applied. Any Windows Server container deployed to this host must be based on a Windows Server version 1709 (10.0.16299) container base image but need not match the host KB. If KB4054517 is applied to the host the container images do not need to be updated, though should be in order to fully address any security issues.
+
 #### Querying version
+
 Method 1:
 Introduced in version 1709 the cmd prompt and `ver` command now return the revision details.
+
 ```
 Microsoft Windows [Version 10.0.16299.125]
 (c) 2017 Microsoft Corporation. All rights reserved.
@@ -97,13 +107,17 @@ C:\>ver
 
 Microsoft Windows [Version 10.0.16299.125] 
 ```
+
 Method 2:
 Query the following registry key: HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion
 For example:
 ```
+
 C:\>reg query "HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion" /v BuildLabEx
 ```
+
 Or
+
 ```
 Windows PowerShell
 Copyright (C) 2016 Microsoft Corporation. All rights reserved.
@@ -114,7 +128,8 @@ PS C:\Users\Administrator> (Get-ItemProperty 'HKLM:\SOFTWARE\Microsoft\Windows N
 
 To check what version your base image is using you can review the tags on the Docker hub or the image hash table provided in the image description.  The [Windows 10 Update History](https://support.microsoft.com/en-us/help/12387/windows-10-update-history) page lists when each build and revision was released.
 
-### Hyper-V Isolation for Containers
+### Hyper-V isolation for containers
+
 Windows containers can be run with or without Hyper-V isolation.  Hyper-V isolation creates a secure boundary around the container with an optimized VM.  Unlike standard Windows containers, which share the kernel between containers and the host, each Hyper-V isolated container has its own instance of the Windows kernel.  Because of this you can have different OS versions in the container host and image (see compatibility matrix below).  
 
 To run a container with Hyper-V isolation, simply add the tag `--isolation=hyperv` to your docker run command.
@@ -133,33 +148,33 @@ To resolve this, you could:
 - If the host is newer, use `docker run --isolation=hyperv ...`
 - Run on a different host with the same Windows version
 
-## Choosing Container OS versions
+## Choosing container OS versions
 
 > Note: The "latest" tag will be updated along with Windows Server 2016, the current [LTSC product](https://docs.microsoft.com/en-us/windows-server/get-started/semi-annual-channel-overview). If you would like the container images that match the Windows Server version 1709 release, read below.
 
 It is important to ensure you know what Container OS version you will need for your purposes. If you are using Windows Server version 1709, and want to have the latest patches for it, you should use the tag "1709" when specifying which version of the base OS container images you want, like so:
 
-``` Dockerfile
+``` dockerfile
 FROM microsoft/windowsservercore:1709
 ...
 ```
 
 However, if you would like a specific patch of Windows Server version 1709, you can specify the KB number in the tag. For example, if you would like the Nano Server base OS container image from Windows Server version 1709, with the KB4043961 applied to it, you would specified it like so:
 
-``` Dockerfile
+``` dockerfile
 FROM microsoft/nanoserver:1709_KB4043961
 ...
 ```
 
 And if you need the Nano Server base OS container image from Windows Server 2016, you can still get the latest version of those base OS container images by using the "latest" tag:
 
-``` Dockerfile
+``` dockerfile
 FROM microsoft/nanoserver
 ...
 ```
 You can also continue specifying the exact patches you need with the schema we have used previously, by specifying the OS version in the tag:
 
-``` Dockerfile
+``` dockerfile
 FROM microsoft/nanoserver:10.0.14393.1770
 ...
 ```
