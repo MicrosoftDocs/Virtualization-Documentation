@@ -184,11 +184,11 @@ FROM microsoft/nanoserver:10.0.14393.1770
 
 Docker Swarm doesn't currently have a built-in way to match the version of Windows that a container uses to a host with the same version. If you update the service to use a newer container, it will run successfully.
 
-If you need to run multiple versions of Windows for some time, then there are two approaches that can be used.  Configure the Windows hosts to always use Hyper-V isolation, or use label constraints.
+If you need to run multiple versions of Windows for a long period of time, there are two approaches you can take: either configure the Windows hosts to always use Hyper-V isolation or use label constraints.
 
 ### Finding a service that won't start
 
-If a service won't start - you'll see that the `MODE` is `replicated` but `REPLICAS` will get stuck at 0. To see if the OS version is the problem, then use the following commands:
+If a service won't start, you'll see that the `MODE` is `replicated` but `REPLICAS` will get stuck at 0. To see if the OS version is the problem, then use the following commands:
 
 Run `docker service ls` to find the service name:
 
@@ -212,7 +212,6 @@ xeqkxbsao57w         \_ angry_liskov.1   microsoft/iis:windowsservercore-10.0.14
 
 If you see "starting container failed: ...", you can see the full error with `docker service ps --no-trunc <container name>`:
 
-
 ```dockerfile
 C:\Program Files\Docker>docker service ps --no-trunc angry_liskov
 ID                          NAME                 IMAGE                                                                                                                     NODE                DESIRED STATE       CURRENT STATE                     ERROR                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          PORTS
@@ -220,7 +219,7 @@ dwsd6sjlwsgic5vrglhtxu178   angry_liskov.1       microsoft/iis:windowsservercore
 y5blbdum70zoh1f6uhx5nxsfv    \_ angry_liskov.1   microsoft/iis:windowsservercore-10.0.14393.1715@sha256:868bca7e89e1743792e15f78edb5a73070ef44eae6807dc3f05f9b94c23943d5   WIN-BSTMQDRQC2E     Shutdown            Failed 39 seconds ago             "starting container failed: container e7b5d3adba7e510569c18d8e55f7c689d7cb92be40a516c91b363e27f84604d0 encountered an error during CreateContainer: failure in a Windows system call: The operating system of the container does not match the operating system of the host. (0xc0370101) extra info: {"SystemType":"Container","Name":"e7b5d3adba7e510569c18d8e55f7c689d7cb92be40a516c91b363e27f84604d0","Owner":"docker","VolumePath":"\\\\?\\Volume{2443d38a-1379-4bcf-a4b7-fc6ad4cd7b65}","IgnoreFlushesDuringBoot":true,"LayerFolderPath":"C:\\ProgramData\\docker\\windowsfilter\\e7b5d3adba7e510569c18d8e55f7c689d7cb92be40a516c91b363e27f84604d0","Layers":[{"ID":"bcf2630f-ea95-529b-b33c-e5cdab0afdb4","Path":"C:\\ProgramData\\docker\\windowsfilter\\200235127f92416724ae1d53ed3fdc86d78767132d019bdda1e1192ee4cf3ae4"},{"ID":"e3ea10a8-4c2f-5b93-b2aa-720982f116f6","Path":"C:\\ProgramData\\docker\\windowsfilter\\0ccc9fa71a9f4c5f6f3bc8134fe3533e454e09f453de662cf99ab5d2106abbdc"},{"ID":"cff5391f-e481-593c-aff7-12e080c653ab","Path":"C:\\ProgramData\\docker\\windowsfilter\\a49576b24cd6ec4a26202871c36c0a2083d507394a3072186133131a72601a31"},{"ID":"499cb51e-b891-549a-b1f4-8a25a4665fbd","Path":"C:\\ProgramData\\docker\\windowsfilter\\fdf2f52c4323c62f7ff9b031c0bc3af42cf5fba91098d51089d039fb3e834c08"},{"ID":"1532b584-8431-5b5a-8735-5e1b4fe9c2a9","Path":"C:\\ProgramData\\docker\\windowsfilter\\b2b88bc2a47abcc682e422507abbba9c9b6d826d34e67b9e4e3144cc125a1f80"},{"ID":"a64b8da5-cd6e-5540-bc73-d81acae6da54","Path":"C:\\ProgramData\\docker\\windowsfilter\\5caaedbced1f546bccd01c9d31ea6eea4d30701ebba7b95ee8faa8c098a6845a"}],"HostName":"e7b5d3adba7e","HvPartition":false,"EndpointList":["298bb656-8800-4948-a41c-1b0500f3d94c"],"AllowUnqualifiedDNSQuery":true}"
 ```
 
-This is the same error as `CreateContainer: failure in a Windows system call: The operating system of the container does not match the operating system of the host. (0xc0370101)`
+This is the same error as `CreateContainer: failure in a Windows system call: The operating system of the container does not match the operating system of the host. (0xc0370101)`.
 
 ### Fix - Update the service to use a matching version
 
@@ -235,7 +234,7 @@ services:
 ...
 ```
 
-The other consideration is if the image you are pointing to is one that you've created yourself (say, contoso/myimage):
+The other consideration is if the image you are pointing to is one that you've created yourself (for example, contoso/myimage):
 
 ```yaml
 version: '3'
@@ -246,7 +245,7 @@ services:
 ...
 ```
 
-In this case, you should use the method described in the previous section to modify that dockerfile instead of the docker-compose line.
+In this case, you should use the method described in [Errors from mismatched versions](#errors-from-mismatched-versions) to modify that dockerfile instead of the docker-compose line.
 
 ### Mitigation - Use Hyper-V isolation with Docker Swarm
 
@@ -260,7 +259,7 @@ This requires changing the Docker service configuration, then restarting the Doc
 2. Add a line with `"exec-opts":["isolation=hyperv"]`
 
 >[!NOTE]
->The daemon.json file does not exist by default. If you find that this is the case when you peek into the directory, you must create the file. Then you'll want to copy in the content below:
+>The daemon.json file does not exist by default. If you find that this is the case when you peek into the directory, you must create the file. Then you'll want to copy in the following:
 
 ```JSON
 {
@@ -285,7 +284,7 @@ It will return either "process" or "hyperv". If you have modified and set your d
 
 ### Mitigation - Use labels and constraints
 
-**Step 1 - Add labels to each node**
+#### Step 1: Add labels to each node
 
 On each node, add two labels: `OS` and `OsVersion`. This assumes you're running locally but could be modified to set them on a remote host instead.
 
@@ -307,7 +306,7 @@ Afterwards, you can check those with `docker node inspect`, which should show th
         }
 ```
 
-**Step 2 - Add a service constraint**
+#### Step 2: Add a service constraint
 
 Now that you've labeled each node, you can update constraints that determine placement of services. In the following example, replace "contoso_service" with the name of your actual service:
 
@@ -324,9 +323,9 @@ For more details on how to use service constraints, check out the [service creat
 
 ## Matching versions using Kubernetes
 
-The same issue can happen when pods are scheduled in Kubernetes. This can be avoided using similar strategies:
+The same issue described in [Matching versions using Docker Swarm](#matching-versions-using-docker-swarm) can happen when pods are scheduled in Kubernetes. This issue can be avoided with similar strategies:
 
-- Rebuild the container based on the same OS version in development and production. To learn how, see [Choosing Container OS versions](version-compatibility.md#choosing-container-os-versions).
+- Rebuild the container based on the same OS version in development and production. To learn how, see [Choosing Container OS versions](#choosing-container-os-versions).
 - Use node labels and nodeSelectors to make sure pods are scheduled on compatible nodes if both Windows Server 2016 and Windows Server version 1709 nodes are in the same cluster
 - Use separate clusters based on OS version
 
@@ -334,10 +333,10 @@ The same issue can happen when pods are scheduled in Kubernetes. This can be avo
 
 In this case, a deployment included a pod that was scheduled on a node with a mismatched OS version, and without Hyper-V isolation enabled.
 
-The same error is shown in the events listed with `kubectl describe pod <podname>`. After several attempts, the pod status will probably be `CrashLoopBackOff`
+The same error is shown in the events listed with `kubectl describe pod <podname>`. After several attempts, the pod status will probably be `CrashLoopBackOff`.
 
 ```
-$ kubectl -n plang describe po fabrikamfiber.web-789699744-rqv6p
+$ kubectl -n plang describe pod fabrikamfiber.web-789699744-rqv6p
 
 Name:           fabrikamfiber.web-789699744-rqv6p
 Namespace:      plang
@@ -398,9 +397,9 @@ Events:
 
 ### Mitigation - using node labels and nodeSelector
 
-`kubectl get node` will get a list of all nodes, then you can use `kubectl describe node <nodename>` to get more details.
+Run `kubectl get node` to get a list of all nodes. After that, you can run `kubectl describe node <nodename>` to get more details.
 
-In this case, there are two Windows nodes running different versions:
+In the following example, two Windows nodes are running different versions:
 
 ```
 $ kubectl get node
@@ -466,19 +465,20 @@ System Info:
 
 ```
 
+Let's use this example to show how to match the versions:
 
-1. Take note of each node name, and the `Kernel Version` from system info:
+1. Take note of each node name and `Kernel Version` from system info.
+
+In our example, the info will look like this:
 
 Name         | Version
 -------------|--------------------------------------------------------
 38519acs9010 | 14393.1715.amd64fre.rs1_release_inmarket.170906-1810
 38519acs9011 | 16299.0.amd64fre.rs3_release.170922-1354
 
+1. Add a label to each node called `beta.kubernetes.io/osbuild`. Windows Server 2016 needs both major and minor versions (14393.1715 in this example) to be supported without Hyper-V isolation. Windows Server version 1709 only needs the major version (16299 in this example) to match.
 
-
-2. Add a label to each node called `beta.kubernetes.io/osbuild`. Windows Server 2016 needs both major & minor (14393.1715) to be supported without Hyper-V isolation. Windows Server version 1709 only needs major (16299) to match.
-
-From the sample above:
+In this example, the command to add the labels looks like this:
 
 ```
 $ kubectl label node 38519acs9010 beta.kubernetes.io/osbuild=14393.1715
@@ -491,7 +491,9 @@ node "38519acs9011" labeled
 
 ```
 
-3. Check the labels are there with `kubectl get nodes --show-labels`
+3. Check the labels are there by entering `kubectl get nodes --show-labels`.
+
+In this example, the output will look like this:
 
 ```
 $ kubectl get nodes --show-labels
@@ -503,9 +505,7 @@ k8s-linuxpool1-38519084-0   Ready                      3d        v1.7.7         
 k8s-master-38519084-0       Ready                      3d        v1.7.7                     beta.kubernetes.io/arch=amd64,beta.kubernetes.io/instance-type=Standard_D2_v2,beta.kubernetes.io/os=linux,failure-domain.beta.kubernetes.io/region=westus2,failure-domain.beta.kubernetes.io/zone=0,kubernetes.io/hostname=k8s-master-38519084-0,kubernetes.io/role=master
 ```
 
-4. Add node selectors to deployments
-
-Add a `nodeSelector` to the container spec with `beta.kubernetes.io/os` = windows and `beta.kubernetes.io/osbuild` = 14393.* or 16299 to match the base OS used by the container.
+4. Add node selectors to deployments. In this example case, we'll add a `nodeSelector` to the container spec with `beta.kubernetes.io/os` = windows and `beta.kubernetes.io/osbuild` = 14393.* or 16299 to match the base OS used by the container.
 
 Here's a full example for running a container built for Windows Server 2016:
 
@@ -542,7 +542,9 @@ spec:
 status: {}
 ```
 
-The pod can now start with the updated deployment. The node selectors are also shown in `kubectl describe pod <podname>` so you can verify they were added.
+The pod can now start with the updated deployment. The node selectors are also shown in `kubectl describe pod <podname>`, so you can run that command to verify they were added.
+
+The output for our example is as follows:
 
 ```
 $ kubectl -n plang describe po fa
