@@ -1,6 +1,6 @@
 ---
-title: Group Managed Service Accounts for Windows Containers
-description: Group Managed Service Accounts for Windows Containers
+title: Group Managed Service Accounts for Windows containers
+description: Group Managed Service Accounts for Windows containers
 keywords: docker, containers, active directory, gmsa
 author: rpsqrd
 ms.date: 03/25/2019
@@ -9,15 +9,15 @@ ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: 9e06ad3a-0783-476b-b85c-faff7234809c
 ---
+# Group Managed Service Accounts for Windows containers
 
-# Group Managed Service Accounts for Windows Containers
-
-In a Windows-based network, it is common to use Active Directory (AD) to facilitate authentication and authorization between users, computers, and other network resources. Enterprise application developers often design their apps to be AD-integrated and run on domain-joined servers to take advantage of Integrated Windows Authentication, which makes it easy for users and other services to automatically and transparently log into the application with their identities.
+Windows-based networks commonly use Active Directory (AD) to facilitate authentication and authorization between users, computers, and other network resources. Enterprise application developers often design their apps to be AD-integrated and run on domain-joined servers to take advantage of Integrated Windows Authentication, which makes it easy for users and other services to automatically and transparently sign in to the application with their identities.
 
 Although Windows containers cannot be domain joined, they can still use Active Directory domain identities to support various authentication scenarios.
-To achieve this, you can configure a Windows container to run with a [group managed service account](https://docs.microsoft.com/en-us/windows-server/security/group-managed-service-accounts/group-managed-service-accounts-overview) (gMSA) -- a special type of service account introduced in Windows Server 2012 that is designed to allow multiple computers to share an identity without needing to know its password.
-When you run a container with a gMSA, the container host retrieves the gMSA password from an Active Directory domain controller and gives it to the container instance.
-The container will use the gMSA credentials whenever its computer account (SYSTEM) needs to access network resources.
+
+To achieve this, you can configure a Windows container to run with a [group Managed Service Account](https://docs.microsoft.com/en-us/windows-server/security/group-managed-service-accounts/group-managed-service-accounts-overview) (gMSA), which is a special type of service account introduced in Windows Server 2012 designed to allow multiple computers to share an identity without needing to know its password.
+
+When you run a container with a gMSA, the container host retrieves the gMSA password from an Active Directory domain controller and gives it to the container instance. The container will use the gMSA credentials whenever its computer account (SYSTEM) needs to access network resources.
 
 This article explains how to start using Active Directory group managed service accounts with Windows containers.
 
@@ -25,70 +25,58 @@ This article explains how to start using Active Directory group managed service 
 
 To run a Windows container with a group managed service account, you will need the following:
 
-**An Active Directory domain with at least one domain controller running Windows Server 2012 or later.**
-There are no forest or domain functional level requirements to use gMSAs, but the gMSA passwords can only be distributed by domain controllers running Windows Server 2012 or later.
-For more information, see [Active Directory requirements for gMSAs](https://docs.microsoft.com/en-us/windows-server/security/group-managed-service-accounts/getting-started-with-group-managed-service-accounts#BKMK_gMSA_Req).
-
-
-
-**Permission to create a gMSA account.**
-To create a gMSA account, you'll need to be a Domain Administrator or use an account that has been delegated the *Create msDS-GroupManagedServiceAccount objects* permission.
-
-
-
-**Access to the internet to download the CredentialSpec PowerShell module.**
-If you're working in a disconnected environment, you can [save the module](https://docs.microsoft.com/en-us/powershell/module/powershellget/save-module?view=powershell-5.1) on a computer with internet access and copy it to your development machine or container host.
+- An Active Directory domain with at least one domain controller running Windows Server 2012 or later. There are no forest or domain functional level requirements to use gMSAs, but the gMSA passwords can only be distributed by domain controllers running Windows Server 2012 or later. For more information, see [Active Directory requirements for gMSAs](https://docs.microsoft.com/en-us/windows-server/security/group-managed-service-accounts/getting-started-with-group-managed-service-accounts#BKMK_gMSA_Req).
+- Permission to create a gMSA account. To create a gMSA account, you'll need to be a Domain Administrator or use an account that has been delegated the *Create msDS-GroupManagedServiceAccount objects* permission.
+- Access to the internet to download the CredentialSpec PowerShell module. If you're working in a disconnected environment, you can [save the module](https://docs.microsoft.com/en-us/powershell/module/powershellget/save-module?view=powershell-5.1) on a computer with internet access and copy it to your development machine or container host.
 
 ## One-time preparation of Active Directory
 
-If you have not already created a gMSA in your domain, you likely need to generate the Key Distribution Service root key.
-The KDS is responsible for creating, rotating, and releasing the gMSA password to authorized hosts.
-When a container host needs to use the gMSA to run a container, it will contact the KDS to retrieve the current password.
+If you have not already created a gMSA in your domain, you'll need to generate the Key Distribution Service (KDS) root key. The KDS is responsible for creating, rotating, and releasing the gMSA password to authorized hosts. When a container host needs to use the gMSA to run a container, it will contact the KDS to retrieve the current password.
 
-To check if the KDS root key has already been created, run the following PowerShell command as a *Domain Administrator* on a domain controller or domain member with the AD PowerShell tools installed:
+To check if the KDS root key has already been created, run the following PowerShell cmdlet as a domain administrator on a domain controller or domain member with the AD PowerShell tools installed:
 
 ```powershell
 Get-KdsRootKey
 ```
 
-If the command returns a key ID, you're all set and can skip ahead to the [create a group managed service account](#create-a-group-managed-service-account) section.
-Otherwise, continue on to create the KDS root key.
+If the command returns a key ID, you're all set and can skip ahead to the [create a group managed service account](#create-a-group-managed-service-account) section. Otherwise, continue on to create the KDS root key.
 
 In a production environment or test environment with multiple domain controllers, run the following command in PowerShell as a *Domain Administrator* to create the KDS root key.
-Although the command implies the key will be effective immediately, you will need to wait 10 hours before the KDS root key is replicated and available for use on all domain controllers.
 
 ```powershell
 # For production environments
 Add-KdsRootKey -EffectiveImmediately
 ```
 
+Although the command implies the key will be effective immediately, you will need to wait 10 hours before the KDS root key is replicated and available for use on all domain controllers.
+
 If you only have one domain controller in your domain, you can expedite the process by setting the key to be effective 10 hours ago.
-Do not use this technique in a production environment.
+
+>[IMPORTANT]
+>Don't use this technique in a production environment.
 
 ```powershell
 # For single-DC test environments ONLY
 Add-KdsRootKey -EffectiveTime (Get-Date).AddHours(-10)
 ```
 
-## Create a group managed service account
+## Create a group Managed Service Account
 
-Every container that will use Integrated Windows Authentication needs at least one gMSA.
-The primary gMSA is used whenever apps running as *SYSTEM* or *NETWORK SERVICE* access resources on the network.
-The name of the gMSA will become the container's name on the network, regardless of the hostname assigned to the container.
-Containers can also be configured with additional gMSAs, in case you want to run a service or application in the container as a different identity from the container computer account.
+Every container that uses Integrated Windows Authentication needs at least one gMSA. The primary gMSA is used whenever apps running as *SYSTEM* or *NETWORK SERVICE* access resources on the network. The name of the gMSA will become the container's name on the network, regardless of the hostname assigned to the container. Containers can also be configured with additional gMSAs, in case you want to run a service or application in the container as a different identity from the container computer account.
 
-When you create a gMSA, you are creating a shared identity that can be used simultaneously across many different machines.
-Access to the gMSA password is protected by an Active Directory Access Control List.
-We recommend creating a security group for each gMSA account and adding the relevant container hosts to the security group to limit access to the password.
+When you create a gMSA, you are creating a shared identity that can be used simultaneously across many different machines. Access to the gMSA password is protected by an Active Directory Access Control List. We recommend creating a security group for each gMSA account and adding the relevant container hosts to the security group to limit access to the password.
 
-Lastly, since containers do not automatically register any Service Principal Names (SPN), you will need to manually create at least a "host" SPN for your gMSA account.
+Finally, since containers do not automatically register any Service Principal Names (SPN), you will need to manually create at least a "host" SPN for your gMSA account.
+
 Typically, the host or http SPN is registered using the same name as the gMSA account, but you may need to use a different service name if clients access the containerized application from behind a load balancer or DNS name that's different from the gMSA name.
+
 For example, if the gMSA account is *WebApp01* but your users access the site at *mysite.contoso.com* you should register a `http/mysite.contoso.com` SPN on the gMSA account.
-Some applications may require additional SPNs for their unique protocols -- for instance, SQL Server requires the "MSSQLSvc/hostname" SPN.
+
+Some applications may require additional SPNs for their unique protocols. For instance, SQL Server requires the "MSSQLSvc/hostname" SPN.
 
 The following table lists the required attributes when creating a gMSA.
 
-gMSA Property | Required Value | Example
+gMSA property | Required value | Example
 --------------|----------------|--------
 Name | Any valid account name. | `WebApp01`
 DnsHostName | The domain name appended to the account name. | `WebApp01.contoso.com`
