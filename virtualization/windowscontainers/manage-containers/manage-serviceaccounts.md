@@ -357,7 +357,7 @@ To see it in action, check out the [recorded demo](https://youtu.be/cZHPz80I-3s?
 
 ### Known issues
 
-#### Container hostname must match the gMSA name for Windows Server 2016, versions 1709 and 1803
+#### Container hostname must match the gMSA name for Windows Server 2016 and Windows 10, versions 1709 and 1803
 
 If you're running Windows Server 2016, version 1709 or 1803, the hostname of your container must match your gMSA SAM Account Name.
 
@@ -365,29 +365,26 @@ When the hostname doesn't match the gMSA name, inbound NTLM authentication reque
 
 This limitation was fixed in Windows Server 2019, where the container will now always use its gMSA name on the network regardless of the assigned hostname.
 
-#### Using a gMSA with more than one container simultaneously leads to intermittent failures on Windows Server 2016, versions 1709 and 1803
+#### Using a gMSA with more than one container simultaneously leads to intermittent failures on Windows Server 2016 and Windows 10, versions 1709 and 1803
 
-As a result of the previous limitation requiring all containers to use the same hostname, a second issue affects versions of Windows prior to Windows Server 2019 and Windows 10 version 1809.
-When multiple containers are assigned the same identity and hostname, a race condition may occur when two containers talk to the same domain controller simultaneously.
-When another container talks to the same domain controller, it will cancel the communication with any prior containers using the same identity.
-This can lead to intermittent authentication failures and can sometimes be observed as a trust failure when you run `nltest /sc_verify:contoso.com` inside the container.
+Because all containers are required to use the same hostname, a second issue affects versions of Windows prior to Windows Server 2019 and Windows 10, version 1809. When multiple containers are assigned the same identity and hostname, a race condition may occur when two containers talk to the same domain controller simultaneously. When another container talks to the same domain controller, it will cancel communication with any prior containers using the same identity. This can lead to intermittent authentication failures and can sometimes be observed as a trust failure when you run `nltest /sc_verify:contoso.com` inside the container.
 
 We changed the behavior in Windows Server 2019 to separate the container identity from the machine name, allowing multiple containers to use the same gMSA simultaneously.
 
-**You cannot use gMSAs with Hyper-V isolated containers on Windows versions 1703, 1709, and 1803.**
+#### You can't use gMSAs with Hyper-V isolated containers on Windows 10 versions 1703, 1709, and 1803
 
-Container initialization will hang or fail when you try to use a gMSA with a Hyper-V isolated container on Windows 10 and Windows Server versions 1703, 1709 and 1803.
+Container initialization will hang or fail when you try to use a gMSA with a Hyper-V isolated container on Windows 10 and Windows Server versions 1703, 1709, and 1803.
 
 This bug was fixed in Windows Server 2019 and Windows 10, version 1809. You can also run Hyper-V isolated containers with gMSAs on Windows Server 2016 and Windows 10, version 1607.
 
 ### General troubleshooting guidance
 
-If you're encountering errors when running a container with a gMSA, the following steps may help you identify the root cause.
+If you're encountering errors when running a container with a gMSA, the following instructions may help you identify the root cause.
 
-**Make sure the host can use the gMSA**
+#### Make sure the host can use the gMSA
 
-1.  Verify the host is domain joined and can reach the domain controller.
-2.  Install the AD PowerShell Tools from RSAT and run [Test-ADServiceAccount](https://docs.microsoft.com/en-us/powershell/module/activedirectory/test-adserviceaccount) to see if the computer has access to retrieve the gMSA. If the cmdlet returns **False**, the computer does not have access to the gMSA password.
+1. Verify the host is domain joined and can reach the domain controller.
+2. Install the AD PowerShell Tools from RSAT and run [Test-ADServiceAccount](https://docs.microsoft.com/en-us/powershell/module/activedirectory/test-adserviceaccount) to see if the computer has access to retrieve the gMSA. If the cmdlet returns **False**, the computer does not have access to the gMSA password.
 
     ```powershell
     # To install the AD module on Windows Server, run Install-WindowsFeature RSAT-AD-PowerShell
@@ -396,7 +393,8 @@ If you're encountering errors when running a container with a gMSA, the followin
 
     Test-ADServiceAccount WebApp01
     ```
-3.  If Test-ADServiceAccount returns **False**, verify the host belongs to a security group that has access to retrieve the gMSA password.
+
+3. If **Test-ADServiceAccount** returns **False**, verify the host belongs to a security group that can access the gMSA password.
 
     ```powershell
     # Get the current computer's group membership
@@ -407,21 +405,21 @@ If you're encountering errors when running a container with a gMSA, the followin
     (Get-ADServiceAccount WebApp01 -Properties PrincipalsAllowedToRetrieveManagedPassword).PrincipalsAllowedToRetrieveManagedPassword
     ```
 
-4.  If your host belongs to a security group authorized to retrieve the gMSA password but is still failing Test-ADServiceAccount, you may need to restart your computer for it to obtain a new ticket reflecting its current group memberships.
+4. If your host belongs to a security group authorized to retrieve the gMSA password but is still failing **Test-ADServiceAccount**, you may need to restart your computer to obtain a new ticket reflecting its current group memberships.
 
-**Check the Credential Spec file**
+#### Check the Credential Spec file
 
-1.  Run `Get-CredentialSpec` from the [CredentialSpec PowerShell Module](https://aka.ms/credspec) to locate all credential specs on the machine. The credential specs must be stored in the "CredentialSpecs" directory under the Docker root directory. You can find the Docker root directory by running `docker info -f "{{.DockerRootDir}}"`.
-2.  Open the CredentialSpec file and make sure the following fields are filled out correctly:
-    -   **Sid**: the SID of your gMSA account
-    -   **MachineAccountName**: the gMSA SAM Account Name (do not include full domain name or dollar sign)
-    -   **DnsTreeName**: the FQDN of your AD forest
-    -   **DnsName**: the FQDN of the domain to which the gMSA belongs
-    -   **NetBiosName**: NETBIOS name for the domain to which the gMSA belongs
-    -   **GroupManagedServiceAccounts/Name**: the gMSA SAM Account Name (do not include full domain name or dollar sign)
-    -   **GroupManagedServiceAccounts/Scope**: one entry for the domain FQDN and one for the NETBIOS
+1. Run `Get-CredentialSpec` from the [CredentialSpec PowerShell module](https://aka.ms/credspec) to locate all credential specs on the machine. The credential specs must be stored in the "CredentialSpecs" directory under the Docker root directory. You can find the Docker root directory by running `docker info -f "{{.DockerRootDir}}"`.
+2. Open the CredentialSpec file and make sure the following fields are filled out correctly:
+    - **Sid**: the SID of your gMSA account
+    - **MachineAccountName**: the gMSA SAM Account Name (don't include full domain name or dollar sign)
+    - **DnsTreeName**: the FQDN of your Active Directory forest
+    - **DnsName**: the FQDN of the domain to which the gMSA belongs
+    - **NetBiosName**: NETBIOS name for the domain to which the gMSA belongs
+    - **GroupManagedServiceAccounts/Name**: the gMSA SAM account name (do not include full domain name or dollar sign)
+    - **GroupManagedServiceAccounts/Scope**: one entry for the domain FQDN and one for the NETBIOS
 
-    See the full example below for a complete credential spec:
+    Your input should look like the following example of a complete credential spec:
 
     ```json
     {
@@ -451,31 +449,29 @@ If you're encountering errors when running a container with a gMSA, the followin
     }
     ```
 
-3.  Verify the path to the credential spec file is correct for your orchestration solution. If you're using Docker, make sure the container run command includes `--security-opt="credentialspec=file://NAME.json"`, where "NAME.json" is replaced with the name output by **Get-CredentialSpec**. The name is a flat file name, relative to the CredentialSpecs folder under the Docker root directory.
+3. Verify the path to the credential spec file is correct for your orchestration solution. If you're using Docker, make sure the container run command includes `--security-opt="credentialspec=file://NAME.json"`, where "NAME.json" is replaced with the name output by **Get-CredentialSpec**. The name is a flat file name, relative to the CredentialSpecs folder under the Docker root directory.
 
-**Check the container**
+#### Check the container
 
-1.  If you're running a version of Windows prior to Windows Server 2019 or Windows 10, version 1809, your container hostname must match the gMSA name. Ensure the `--hostname` parameter matches the gMSA short name (no domain component, e.g. "webapp01" not "webapp01.contoso.com").
+1. If you're running a version of Windows prior to Windows Server 2019 or Windows 10, version 1809, your container hostname must match the gMSA name. Ensure the `--hostname` parameter matches the gMSA short name (no domain component; for example, "webapp01" instead of "webapp01.contoso.com").
 
-2.  Check the container networking configuration to verify the container can resolve and access a domain controller for the gMSA's domain. Misconfigured DNS servers in the container are a common culprit of identity issues.
+2. Check the container networking configuration to verify the container can resolve and access a domain controller for the gMSA's domain. Misconfigured DNS servers in the container are a common culprit of identity issues.
 
-3.  Check if the container has a valid connection to the domain by running the following command in the container (using `docker exec` or an equivalent):
+3. Check if the container has a valid connection to the domain by running the following cmdlet in the container (using `docker exec` or an equivalent):
 
     ```powershell
     nltest /sc_verify:contoso.com
     ```
 
-    The trust verification should return NERR_SUCCESS if the gMSA is available and network connectivity allows the container to talk to the domain.
-    If it fails, verify the network configuration of the host and container -- both will need to be able to communicate with the domain controller.
+    The trust verification should return NERR_SUCCESS if the gMSA is available and network connectivity allows the container to talk to the domain. If it fails, verify the network configuration of the host and container. Both need to be able to communicate with the domain controller.
 
-4.  Ensure your app is [configured to use the gMSA](#configuring-your-application-to-use-the-gmsa). The user account inside the container does not change when you use a gMSA -- rather, the SYSTEM account uses the gMSA when it talks to other network resources. As such, your app will need to run as Network Service or Local System to leverage the gMSA identity.
+4. Ensure your app is [configured to use the gMSA](#configuring-your-application-to-use-the-gmsa). The user account inside the container doesn't change when you use a gMSA. Rather, the System account uses the gMSA when it talks to other network resources. This means your app will need to run as Network Service or Local System to leverage the gMSA identity.
 
     > [!TIP]
-    > If you run `whoami` or use another tool to try and identify your current user context in the container, you will never see the gMSA name itself.
-    > This is because you always log into the container as a local user -- not a domain identity.
-    > The gMSA is used by the computer account whenever it talks to network resources, which is why your app needs to run as Network Service or Local System.
+    > If you run `whoami` or use another tool to identify your current user context in the container, you won't see the gMSA name itself. This is because you always sign in to the container as a local user instead of a domain identity. The gMSA is used by the computer account whenever it talks to network resources, which is why your app needs to run as Network Service or Local System.
 
-5.  Finally, if your container seems to be configured correctly but users or other services are unable to automatically authenticate to your containerized app, check the SPNs on your gMSA account. Clients will locate the gMSA account by the name at which they reach your application. This may mean that you'll need additional `host` SPNs for your gMSA if, for example, clients connect to your app via a load balancer or other DNS name.
+5. Finally, if your container seems to be configured correctly but users or other services are unable to automatically authenticate to your containerized app, check the SPNs on your gMSA account. Clients will locate the gMSA account by the name at which they reach your application. This may mean that you'll need additional `host` SPNs for your gMSA if, for example, clients connect to your app via a load balancer or a different DNS name.
 
 ## Additional resources
+
 -   [Group Managed Service Accounts Overview](https://docs.microsoft.com/en-us/windows-server/security/group-managed-service-accounts/group-managed-service-accounts-overview)
