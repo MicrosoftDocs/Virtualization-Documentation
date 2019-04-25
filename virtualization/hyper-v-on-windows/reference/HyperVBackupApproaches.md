@@ -11,7 +11,7 @@ To understand this architecture better – refer to this presentation:
 https://channel9.msdn.com/Events/TechEd/Europe/2014/CDP-B318 
 
 There is also an example on how to use these APIs available here:
-https://msconfiggallery.cloudapp.net/packages/xHyper-VBackup
+https://www.powershellgallery.com/packages/xHyper-VBackup
 ## Methods for reading backups from WMI Based Backup
 When creating virtual machine backups using Hyper-V WMI, there are three methods for reading the actual data from the backup.  Each has unique advantages and disadvantages.
 ### WMI Export
