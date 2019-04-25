@@ -1,52 +1,52 @@
-﻿# ProcessWMIJob is a generic function that waits for WMI job's to
+# ProcessWMIJob is a generic function that waits for WMI job's to
 #  complete and returns appropriate success/failure cases.
 #  This function was originally written and documented on
 #  Taylor Brown's blog at:
-#  http://blogs.msdn.com/b/taylorb/archive/2008/06/18/hyper-v-wmi-rich-error-messages-for-non-zero-returnvalue-no-more-32773-32768-32700.aspx 
-filter ProcessWMIJob 
-{ 
-    param 
-    ( 
+#  http://blogs.msdn.com/b/taylorb/archive/2008/06/18/hyper-v-wmi-rich-error-messages-for-non-zero-returnvalue-no-more-32773-32768-32700.aspx
+filter ProcessWMIJob
+{
+    param
+    (
         [WMI]$WmiClass = $null,
         [string]$MethodName = $null
     )
 	$errorCode = 0
     $returnObject = $_
 
-    if ($_.ReturnValue -eq 4096) 
-    { 
-        $Job = [WMI]$_.Job 
+    if ($_.ReturnValue -eq 4096)
+    {
+        $Job = [WMI]$_.Job
         $returnObject = $Job
 
-        while ($Job.JobState -eq 4) 
-        { 
+        while ($Job.JobState -eq 4)
+        {
             Write-Progress -Activity $Job.Caption -Status ($Job.JobStatus + " - " + $Job.PercentComplete + "%") -PercentComplete $Job.PercentComplete
             Start-Sleep -seconds 1
             $Job.PSBase.Get()
-        } 
-        if ($Job.JobState -ne 7) 
-        { 
+        }
+        if ($Job.JobState -ne 7)
+        {
 			if ($Job.ErrorDescription -ne "")
 			{
-            	Write-Error $Job.ErrorDescription 
-            	Throw $Job.ErrorDescription 
+            	Write-Error $Job.ErrorDescription
+            	Throw $Job.ErrorDescription
 			}
 			else
 			{
 				$errorCode = $Job.ErrorCode
 			}
-        } 
+        }
         Write-Progress -Activity $Job.Caption -Status $Job.JobStatus -PercentComplete 100 -Completed:$true
-        
+
     }
 	elseif($_.ReturnValue -ne 0)
 	{
 		$errorCode = $_.ReturnValue
 	}
-	
-	if ($errorCode -ne 0) 
-    { 
-        Write-Error "Hyper-V WMI Job Failed!" 
+
+	if ($errorCode -ne 0)
+    {
+        Write-Error "Hyper-V WMI Job Failed!"
         if ($WmiClass -and $MethodName)
         {
             $psWmiClass = [WmiClass]("\\" + $WmiClass.__SERVER + "\" + $WmiClass.__NAMESPACE + ":" + $WmiClass.__CLASS)
@@ -66,7 +66,7 @@ filter ProcessWMIJob
         {
             Throw "ReturnCode: ", $errorCode, "When calling $MethodName - for rich error messages provide classpath and method name."
         }
-    } 
+    }
 	return $returnObject
 }
 
@@ -82,12 +82,12 @@ function Convert-VmBackupCheckpoint
     $Msvm_VirtualSystemSnapshotService = Get-WmiObject -Namespace root\virtualization\v2 -Class Msvm_VirtualSystemSnapshotService
 
     # Convert the snapshot to a reference point, this function returns a job object.
-    $job = $Msvm_VirtualSystemSnapshotService.ConvertToReferencePoint($BackupSnapshot)
+    $job = $Msvm_VirtualSystemSnapshotService.ConvertToReferencePoint($BackupCheckpoint)
 
     # Wait for the job to complete.
     ($job | ProcessWMIJob -WmiClass $Msvm_VirtualSystemSnapshotService -MethodName "ConvertToReferencePoint") | Out-Null
 
-    # The new reference point object is related to the job, GetReleated 
+    # The new reference point object is related to the job, GetReleated
     #   always returns an array in this case there is only one member
     $refPoint = (([WMI]$job.Job).GetRelated("Msvm_VirtualSystemReferencePoint") | % {$_})
 
@@ -144,7 +144,7 @@ function Export-VMBackupCheckpoint
 
         #   SnapshotVirtualSystem
         #      Path to a Msvm_VirtualSystemSettingData instance that represents the snapshot to be exported with the VM.
-        $Msvm_VirtualSystemExportSettingData.SnapshotVirtualSystem = $BackupSnapshot
+        $Msvm_VirtualSystemExportSettingData.SnapshotVirtualSystem = $BackupCheckpoint
 
         #   DifferentialBase
         #      Base for differential export. This is either path to a Msvm_VirtualSystemReferencePoint instance that
