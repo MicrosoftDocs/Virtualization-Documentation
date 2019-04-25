@@ -12,18 +12,18 @@ ms.assetid: 6885400c-5623-4cde-8012-f6a00019fafa
 
 # Docker Engine on Windows
 
-The Docker Engine and client are not included with Windows and will need to be installed and configured individually. Furthermore, the Docker Engine can accept many custom configurations. Some examples include configuring how the daemon accepts incoming requests, default networking options, and debug/log settings. On Windows, these configurations can be specified in a configuration file or by using Windows Service control manager. This document will detail how to install and configure the Docker Engine, and will also provide some examples of commonly used configurations.
+The Docker Engine and client are not included with Windows and need to be installed and configured individually. Furthermore, the Docker Engine can accept many custom configurations. Some examples include configuring how the daemon accepts incoming requests, default networking options, and debug/log settings. On Windows, these configurations can be specified in a configuration file or by using Windows Service control manager. This document details how to install and configure the Docker Engine, and also provides some examples of commonly used configurations.
 
 
 ## Install Docker
-Docker is required in order to work with Windows Containers. Docker consists of the Docker Engine (dockerd.exe), and the Docker client (docker.exe). The easiest way to get everything installed is in the quick start guides. They will help you get everything set up and run your first container. 
+Docker is required in order to work with Windows Containers. Docker consists of the Docker Engine (dockerd.exe), and the Docker client (docker.exe). The easiest way to get everything installed is in the quick start guides. They help you get everything set up and run your first container. 
 
-* [Windows Containers on Windows Server 2016](../quick-start/quick-start-windows-server.md)
-* [Windows Containers on Windows 10](../quick-start/quick-start-windows-10.md)
+* [Windows containers on Windows Server 2019](../quick-start/quick-start-windows-server.md)
+* [Windows containers on Windows 10](../quick-start/quick-start-windows-10.md)
 
 For scripted installations see [Use a script to install Docker EE](https://docs.docker.com/install/windows/docker-ee/#use-a-script-to-install-docker-ee).
 
-Before Docker can be used container images will need to be installed. For more information see, [the quick start guide for using images](../quick-start/quick-start-images.md).
+Before Docker can be used container images need to be installed. For more information see, [the quick start guide for using images](../quick-start/quick-start-images.md).
 
 ## Configure Docker with Configuration File
 

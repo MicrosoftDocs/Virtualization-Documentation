@@ -1,7 +1,7 @@
 # Windows Hypervisor Platform API Definitions
 >**This API is available starting in the Windows April 2018 Update.**
 
-The following section contains the definitions of the Windows Hypervisor Platform APIs that are exposed through WinHvAPi.dll.  The DLL exports a set of C-style Windows API functions, the functions return HRESULT error codes indicating the result of the function call.
+The following section contains the definitions of the Windows Hypervisor Platform APIs that are exposed through WinHvPlatform.h. WinHvAPi.dll exports a set of C-style Windows API functions, the functions return HRESULT error codes indicating the result of the function call.
 
 ## Platform Capabilities
 
@@ -14,7 +14,7 @@ The following section contains the definitions of the Windows Hypervisor Platfor
 
 |Function   |Description|
 |---|---|---|---|---|---|---|---|
-|[WHvCreatePartition](funcs/WHvCreatePartition.md)|Creating a partition creates a new partition object. Additional properties of the partition are stored in the partition object in the VID and are applied when creating the partition in the hypervisor.|
+|[WHvCreatePartition](funcs/WHvCreatePartition.md)|Creating a partition creates a new partition object. Additional properties of the partition are stored in the partition object and are applied when creating the partition in the hypervisor.|
 |[WHvSetupPartition](funcs/WHvSetupPartition.md)|Setting up the partition causes the actual partition to be created in the hypervisor. A partition needs to be set up prior to performing any other operation on the partition after it was created, with exception of configuring the initial properties of the partition.|
 |[WHvDeletePartition](funcs/WHvDeletePartition.md)|Deleting a partition tears down the partition object and releases all resource that the partition was using.|
 |   |   |
@@ -43,6 +43,7 @@ The physical address space of the VM partition (the GPA space) is populated usin
 |[WHvMapGpaRange](funcs/WHvMapGpaRange.md)|Creating a mapping for a range in the GPA space of a partition sets a region in the caller’s process as the backing memory for that range. The operation replaces any previous mappings for the specified GPA pages.|
 |[WHvUnmapGpaRange](funcs/WHvUnmapGpaRange.md)|Unmapping a previously mapped GPA range makes the memory range unavailable to the partition. Any further access by a virtual processor to the range will result in a memory access exit.|
 |[WHvTranslateGva](funcs/WHvTranslateGva.md)|Translating a virtual address used by a virtual processor in a partition allows the virtualization stack to emulate a processor instruction for an I/O operation, using the results of the translation to read and write the memory operands of the instruction in the GPA space of the partition.|
+|[WHvQueryGpaRangeDirtyBitmap](funcs/WHvQueryGpaRangeDirtyBitmap.md)|Querying a range of GPA space to determine which pages have been modified by the guest since the last query of the range.|
 |   |   |
 
 ## Virtual Processor Execution
@@ -68,7 +69,7 @@ The state of the virtual processor includes the hardware registers and any inter
 |   |   |
 
 ### Exit Context
-The detailed reason and additional information for the exit of the [`WHvRunVirtualProcessor`](funcs/WHvDeleteVirtualProcessor.md) function is return in an output buffer of the function that receives a context structure for the exit. The data provided in this context buffer is specific to the individual exit reason, and for simple exit reasons the buffer might be unused (`RunVpExitLegacyFpError` and `RunVpExitInvalidVpRegisterValue`). 
+The detailed reason and additional information for the exit of the [`WHvRunVirtualProcessor`](funcs/WHvRunVirtualProcessor.md) function is return in an output buffer of the function that receives a context structure for the exit. The data provided in this context buffer is specific to the individual exit reason, and for simple exit reasons the buffer might be unused (`RunVpExitLegacyFpError` and `RunVpExitInvalidVpRegisterValue`). 
 
 
 
@@ -96,12 +97,31 @@ For more information about the registers see: [Virtual Processor Register Names 
 |Function   |Description|
 |---|---|
 |[WHvGetVirtualProcessorRegisters](funcs/WHvGetVirtualProcessorRegisters.md)|This function allows for querying a set of individual registers by the virtualization stack.|
-|[WHvSetVirtualProcessorRegisters](funcs/WHvSetVirtualProcessorRegisters.md)|This function allows for setting a set of individual registers by the virtualization stack|
+|[WHvGetVirtualProcessorXsaveState](funcs/WHvGetVirtualProcessorXsaveState.md)|This function allows for querying a virtual processor's XSAVE state.|
+|[WHvSetVirtualProcessorRegisters](funcs/WHvSetVirtualProcessorRegisters.md)|This function allows for setting a set of individual registers by the virtualization stack.|
+|[WHvSetVirtualProcessorXsaveState](funcs/WHvSetVirtualProcessorXsaveState.md)|This function allows for setting a virtual processor's XSAVE state.|
 |   |   |
 
+### Interrupt controller virtualization
 
+Optionally, the hypervisor platform can emulate a local APIC
+interrupt controller. For virtual machines where an APIC is required, using the platform's built-in emulation will yield the best performance.
 
+When this functionality is enabled, these functions can be used to query and set APIC state and to request virtual interrupts.
 
+|Function|Description|
+|---|---|
+|[WHvGetVirtualProcessorInterruptControllerState](funcs/WHvGetVirtualProcessorInterruptControllerState.md)|Queries a virtual processor's interrupt controller state.|
+|[WHvRequestInterrupt](funcs/WHvRequestInterrupt.md)|Requests a interrupt.|
+|[WHvSetVirtualProcessorInterruptControllerState](funcs/WHvGetVirtualProcessorInterruptControllerState.md)|Sets a virtual processor's interrupt controller state.|
+|||
 
+### Counters
 
+These functions can be used to query various hypervisor platform counters.
 
+|Function|Description|
+|---|---|
+|[WHvGetPartitionCounters](funcs/WHvGetPartitionCounters.md)|This function allows querying counters for a partition.|
+|[WHvGetVirtualProcessorCounters](funcs/WHvGetVirtualProcessorCounters.md)|This function allows querying counters for a virtual processor.|
+|||

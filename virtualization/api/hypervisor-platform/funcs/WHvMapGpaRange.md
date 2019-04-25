@@ -3,17 +3,19 @@
 
 ## Syntax
 ```C
-// Guest physical Address
+// Guest physical or virtual address
 typedef UINT64 WHV_GUEST_PHYSICAL_ADDRESS;
+typedef UINT64 WHV_GUEST_VIRTUAL_ADDRESS;
 
 
 // Flags used by WHvMapGpaRange
 typedef enum WHV_MAP_GPA_RANGE_FLAGS
 {
-    WHvMapGpaRangeFlagNone    = 0x00000000,
-    WHvMapGpaRangeFlagRead    = 0x00000001,
-    WHvMapGpaRangeFlagWrite   = 0x00000002,
-    WHvMapGpaRangeFlagExecute = 0x00000004,
+    WHvMapGpaRangeFlagNone              = 0x00000000,
+    WHvMapGpaRangeFlagRead              = 0x00000001,
+    WHvMapGpaRangeFlagWrite             = 0x00000002,
+    WHvMapGpaRangeFlagExecute           = 0x00000004,
+    WHvMapGpaRangeFlagTrackDirtyPages   = 0x00000008,
 } WHV_MAP_GPA_RANGE_FLAGS;
 
 DEFINE_ENUM_FLAG_OPERATORS(WHV_MAP_GPA_RANGE_FLAGS);

@@ -12,7 +12,7 @@ ms.assetid: 6e5e6b01-7a9d-4123-8cc7-f986e10cd372
 
 # Windows 10 Hyper-V System Requirements
 
-Hyper-V is available in 64-bit version of Windows Professional, Enterprise, and Education editions of Windows 8 and greater.  Hyper-V requires Second Level Address Translation (SLAT) -- present in the current generation of 64-bit processors by Intel and AMD.
+Hyper-V is available in 64-bit version of Windows 10 Pro, Enterprise, and Education. Hyper-V requires Second Level Address Translation (SLAT) -- present in the current generation of 64-bit processors by Intel and AMD.
 
 You can run 3 or 4 basic virtual machines on a host that has 4GB of RAM, though you'll need more resources for more virtual machines. On the other end of the spectrum, you can also create large virtual machines with 32 processors and 512GB RAM, depending on your physical hardware.
 
@@ -21,7 +21,7 @@ You can run 3 or 4 basic virtual machines on a host that has 4GB of RAM, though 
 The Hyper-V role can be enabled on these versions of Windows 10:
 
 - Windows 10 Enterprise
-- Windows 10 Professional
+- Windows 10 Pro
 - Windows 10 Education
 
 The Hyper-V role **cannot** be installed on:
@@ -30,7 +30,7 @@ The Hyper-V role **cannot** be installed on:
 - Windows 10 Mobile
 - Windows 10 Mobile Enterprise
 
->Windows 10 Home edition can be upgraded to Windows 10 Professional. To do so open up **Settings** > **Update and Security** > **Activation**. Here you can visit the store and purchase an upgrade.
+>Windows 10 Home edition can be upgraded to Windows 10 Pro. To do so open up **Settings** > **Update and Security** > **Activation**. Here you can visit the store and purchase an upgrade.
 
 ## Hardware Requirements
 
@@ -53,5 +53,5 @@ To verify compatibility, open up PowerShell or a command prompt (cmd.exe) and ty
 If you run **systeminfo** on an existing Hyper-V host, the Hyper-V Requirements section reads:
 
 ```
-Hyper-V Requirements: A hypervisor has been detected. Features required for Hyper-V are not be displayed.
+Hyper-V Requirements: A hypervisor has been detected. Features required for Hyper-V will not be displayed.
 ```

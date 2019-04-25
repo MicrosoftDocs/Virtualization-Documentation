@@ -3,7 +3,7 @@ title: Enable Hyper-V on Windows 10
 description: Install Hyper-V on Windows 10
 keywords: windows 10, hyper-v
 author: scooley
-ms.date: 05/02/2016
+ms.date: 02/15/2019
 ms.topic: article
 ms.prod: windows-10-hyperv
 ms.assetid: 752dc760-a33c-41bb-902c-3bb2ecd9ac86
@@ -18,14 +18,14 @@ Hyper-V can be enabled in many ways including using the Windows 10 control panel
 
 ## Check Requirements
 
-* Windows 10 Enterprise, Professional, or Education
+* Windows 10 Enterprise, Pro, or Education
 * 64-bit Processor with Second Level Address Translation (SLAT).
-* CPU support for VM Monitor Mode Extension (VT-c on Intel CPU's).
+* CPU support for VM Monitor Mode Extension (VT-c on Intel CPUs).
 * Minimum of 4 GB memory.
 
 The Hyper-V role **cannot** be installed on Windows 10 Home.
 
-Upgrade from Windows 10 Home edition to Windows 10 Professional by opening up **Settings** > **Update and Security** > **Activation**.
+Upgrade from Windows 10 Home edition to Windows 10 Pro by opening up **Settings** > **Update and Security** > **Activation**.
 
 For more information and troubleshooting, see [Windows 10 Hyper-V System Requirements](../reference/hyper-v-requirements.md).
 
@@ -65,9 +65,11 @@ For more information about DISM, see the [DISM Technical Reference](https://tech
 
 1. Right click on the Windows button and select ‘Apps and Features’.
 
-2. Select **Turn Windows Features on or off**.
+2. Select **Programs and Features** on the right under related settings. 
 
-3. Select **Hyper-V** and click **OK**.
+3. Select **Turn Windows Features on or off**.
+
+4. Select **Hyper-V** and click **OK**.
 
 ![Windows programs and features dialogue box](media/enable_role_upd.png)
 

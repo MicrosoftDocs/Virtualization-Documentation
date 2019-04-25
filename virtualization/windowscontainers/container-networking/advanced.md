@@ -9,15 +9,15 @@ ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: 538871ba-d02e-47d3-a3bf-25cda4a40965
 ---
-
 # Advanced Network Options in Windows
+
 Several network driver options are supported to take advantage of Windows-specific capabilities and features. 
 
 ## Switch Embedded Teaming with Docker Networks
 
-> Applies to all network drivers 
+> Applies to all network drivers
 
-You can take advantage of [Switch Embedded Teaming](https://technet.microsoft.com/en-us/windows-server-docs/networking/technologies/hyper-v-virtual-switch/rdma-and-switch-embedded-teaming#a-namebkmksswitchembeddedaswitch-embedded-teaming-set) when creating container host networks for use by Docker   by specifying multiple network adapters (separated by commas) with the `-o com.docker.network.windowsshim.interface` option. 
+You can take advantage of [Switch Embedded Teaming](https://technet.microsoft.com/en-us/windows-server-docs/networking/technologies/hyper-v-virtual-switch/rdma-and-switch-embedded-teaming#a-namebkmksswitchembeddedaswitch-embedded-teaming-set) when creating container host networks for use by Docker   by specifying multiple network adapters (separated by commas) with the `-o com.docker.network.windowsshim.interface` option.
 
 ```
 C:\> docker network create -d transparent -o com.docker.network.windowsshim.interface="Ethernet 2", "Ethernet 3" TeamedNet
@@ -25,7 +25,7 @@ C:\> docker network create -d transparent -o com.docker.network.windowsshim.inte
 
 ## Set the VLAN ID for a Network
 
-> Applies to transparent and l2bridge network drivers 
+> Applies to transparent and l2bridge network drivers
 
 To set a VLAN ID for a network, use the option, `-o com.docker.network.windowsshim.vlanid=<VLAN ID>` to the `docker network create` command. For instance, you might use the following command to create a transparent network with a VLAN ID of 11:
 
@@ -93,7 +93,7 @@ C:\> reg delete HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Tcpip6\Para
 
 #### Linux Containers on Windows
 
-**NEW:** We are working to make it possible to run Linux and Windows containers side-by-side _without the Moby Linux VM_. See this [blog post about Linux Containers on Windows (LCOW)](https://blog.docker.com/2017/11/docker-for-windows-17-11/) for details.
+**NEW:** We are working to make it possible to run Linux and Windows containers side-by-side _without the Moby Linux VM_. See this [blog post about Linux Containers on Windows (LCOW)](https://blog.docker.com/2017/11/docker-for-windows-17-11/) for details. Here is how to [get started](https://docs.microsoft.com/en-us/virtualization/windowscontainers/quick-start/quick-start-windows-10-linux).
 > NOTE: LCOW is deprecating the Moby Linux VM, and it will utilize the default HNS "nat" internal vSwitch.
 
 #### Moby Linux VMs use DockerNAT switch with Docker for Windows (a product of [Docker CE](https://www.docker.com/community-edition))

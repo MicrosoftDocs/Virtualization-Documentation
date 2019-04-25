@@ -57,6 +57,9 @@ typedef enum WHV_REGISTER_NAME
     WHvX64RegisterDr6              = 0x00000025,
     WHvX64RegisterDr7              = 0x00000026,
 
+    // X64 Extended Control Registers
+    WHvX64RegisterXCr0             = 0x00000027,
+
     // X64 Floating Point and Vector Registers
     WHvX64RegisterXmm0             = 0x00001000,
     WHvX64RegisterXmm1             = 0x00001001,
@@ -99,12 +102,69 @@ typedef enum WHV_REGISTER_NAME
     WHvX64RegisterCstar            = 0x0000200A,
     WHvX64RegisterSfmask           = 0x0000200B,
 
+    WHvX64RegisterMsrMtrrCap         = 0x0000200D,
+    WHvX64RegisterMsrMtrrDefType     = 0x0000200E,
+
+    WHvX64RegisterMsrMtrrPhysBase0   = 0x00002010,
+    WHvX64RegisterMsrMtrrPhysBase1   = 0x00002011,
+    WHvX64RegisterMsrMtrrPhysBase2   = 0x00002012,
+    WHvX64RegisterMsrMtrrPhysBase3   = 0x00002013,
+    WHvX64RegisterMsrMtrrPhysBase4   = 0x00002014,
+    WHvX64RegisterMsrMtrrPhysBase5   = 0x00002015,
+    WHvX64RegisterMsrMtrrPhysBase6   = 0x00002016,
+    WHvX64RegisterMsrMtrrPhysBase7   = 0x00002017,
+    WHvX64RegisterMsrMtrrPhysBase8   = 0x00002018,
+    WHvX64RegisterMsrMtrrPhysBase9   = 0x00002019,
+    WHvX64RegisterMsrMtrrPhysBaseA   = 0x0000201A,
+    WHvX64RegisterMsrMtrrPhysBaseB   = 0x0000201B,
+    WHvX64RegisterMsrMtrrPhysBaseC   = 0x0000201C,
+    WHvX64RegisterMsrMtrrPhysBaseD   = 0x0000201D,
+    WHvX64RegisterMsrMtrrPhysBaseE   = 0x0000201E,
+    WHvX64RegisterMsrMtrrPhysBaseF   = 0x0000201F,
+
+    WHvX64RegisterMsrMtrrPhysMask0   = 0x00002040,
+    WHvX64RegisterMsrMtrrPhysMask1   = 0x00002041,
+    WHvX64RegisterMsrMtrrPhysMask2   = 0x00002042,
+    WHvX64RegisterMsrMtrrPhysMask3   = 0x00002043,
+    WHvX64RegisterMsrMtrrPhysMask4   = 0x00002044,
+    WHvX64RegisterMsrMtrrPhysMask5   = 0x00002045,
+    WHvX64RegisterMsrMtrrPhysMask6   = 0x00002046,
+    WHvX64RegisterMsrMtrrPhysMask7   = 0x00002047,
+    WHvX64RegisterMsrMtrrPhysMask8   = 0x00002048,
+    WHvX64RegisterMsrMtrrPhysMask9   = 0x00002049,
+    WHvX64RegisterMsrMtrrPhysMaskA   = 0x0000204A,
+    WHvX64RegisterMsrMtrrPhysMaskB   = 0x0000204B,
+    WHvX64RegisterMsrMtrrPhysMaskC   = 0x0000204C,
+    WHvX64RegisterMsrMtrrPhysMaskD   = 0x0000204D,
+    WHvX64RegisterMsrMtrrPhysMaskE   = 0x0000204E,
+    WHvX64RegisterMsrMtrrPhysMaskF   = 0x0000204F,
+
+    WHvX64RegisterMsrMtrrFix64k00000 = 0x00002070,
+    WHvX64RegisterMsrMtrrFix16k80000 = 0x00002071,
+    WHvX64RegisterMsrMtrrFix16kA0000 = 0x00002072,
+    WHvX64RegisterMsrMtrrFix4kC0000  = 0x00002073,
+    WHvX64RegisterMsrMtrrFix4kC8000  = 0x00002074,
+    WHvX64RegisterMsrMtrrFix4kD0000  = 0x00002075,
+    WHvX64RegisterMsrMtrrFix4kD8000  = 0x00002076,
+    WHvX64RegisterMsrMtrrFix4kE0000  = 0x00002077,
+    WHvX64RegisterMsrMtrrFix4kE8000  = 0x00002078,
+    WHvX64RegisterMsrMtrrFix4kF0000  = 0x00002079,
+    WHvX64RegisterMsrMtrrFix4kF8000  = 0x0000207A,
+
+    WHvX64RegisterTscAux           = 0x0000207B,
+    WHvX64RegisterSpecCtrl         = 0x00002084,
+    WHvX64RegisterPredCmd          = 0x00002085,
+
+    // APIC state (also accessible via WHv(Get/Set)VirtualProcessorInterruptControllerState)
+    WHvX64RegisterApicId           = 0x00003002,
+    WHvX64RegisterApicVersion      = 0x00003003,
+
     // Interrupt / Event Registers
     WHvRegisterPendingInterruption = 0x80000000,
     WHvRegisterInterruptState      = 0x80000001,
-    WHvRegisterPendingEvent0       = 0x80000002,
-    WHvRegisterPendingEvent1       = 0x80000003,
+    WHvRegisterPendingEvent        = 0x80000002,
     WHvX64RegisterDeliverabilityNotifications = 0x80000004,
+    WHvRegisterInternalActivityState = 0x80000005,
 
 } WHV_REGISTER_NAME;
 
@@ -242,6 +302,8 @@ typedef union WHV_X64_PENDING_INTERRUPTION_REGISTER
     UINT64 AsUINT64;
 } WHV_X64_PENDING_INTERRUPTION_REGISTER;
 
+C_ASSERT(sizeof(WHV_X64_PENDING_INTERRUPTION_REGISTER) == sizeof(UINT64));
+
 typedef union WHV_X64_DELIVERABILITY_NOTIFICATIONS_REGISTER
 {
     struct
@@ -254,6 +316,53 @@ typedef union WHV_X64_DELIVERABILITY_NOTIFICATIONS_REGISTER
 
     UINT64 AsUINT64;
 } WHV_X64_DELIVERABILITY_NOTIFICATIONS_REGISTER;
+
+C_ASSERT(sizeof(WHV_X64_DELIVERABILITY_NOTIFICATIONS_REGISTER) == sizeof(UINT64));
+
+
+typedef enum WHV_X64_PENDING_EVENT_TYPE
+{
+    WHvX64PendingEventException = 0,
+    WHvX64PendingEventExtInt    = 5,
+} WHV_X64_PENDING_EVENT_TYPE;
+
+typedef union WHV_X64_PENDING_EXCEPTION_EVENT
+{
+    struct
+    {
+        UINT32 EventPending         : 1;
+        UINT32 EventType            : 3; // Must be WHvX64PendingEventException
+        UINT32 Reserved0            : 4;
+
+        UINT32 DeliverErrorCode     : 1;
+        UINT32 Reserved1            : 7;
+        UINT32 Vector               : 16;
+        UINT32 ErrorCode;
+        UINT64 ExceptionParameter;
+    };
+
+    WHV_UINT128 AsUINT128;
+} WHV_X64_PENDING_EXCEPTION_EVENT;
+
+C_ASSERT(sizeof(WHV_X64_PENDING_EXCEPTION_EVENT) == sizeof(WHV_UINT128));
+
+typedef union WHV_X64_PENDING_EXT_INT_EVENT
+{
+    struct
+    {
+        UINT64 EventPending     : 1;
+        UINT64 EventType        : 3; // Must be WHvX64PendingEventExtInt
+        UINT64 Reserved0        : 4;
+        UINT64 Vector           : 8;
+        UINT64 Reserved1        : 48;
+
+        UINT64 Reserved2;
+    };
+
+    WHV_UINT128 AsUINT128;
+} WHV_X64_PENDING_EXT_INT_EVENT;
+
+C_ASSERT(sizeof(WHV_X64_PENDING_EXT_INT_EVENT) == sizeof(WHV_UINT128));
 
 //
 // Register values
@@ -273,6 +382,8 @@ typedef union WHV_REGISTER_VALUE
     WHV_X64_INTERRUPT_STATE_REGISTER InterruptState;
     WHV_X64_PENDING_INTERRUPTION_REGISTER PendingInterruption;
     WHV_X64_DELIVERABILITY_NOTIFICATIONS_REGISTER DeliverabilityNotifications;
+    WHV_X64_PENDING_EXCEPTION_EVENT ExceptionEvent;
+    WHV_X64_PENDING_EXT_INT_EVENT ExtIntEvent;
 } WHV_REGISTER_VALUE;
 ```
 

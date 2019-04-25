@@ -14,7 +14,8 @@ typedef enum WHV_CAPABILITY_CODE
     // Capabilities of the system's processor
     WHvCapabilityCodeProcessorVendor        = 0x00001000,
     WHvCapabilityCodeProcessorFeatures      = 0x00001001,
-    WHvCapabilityCodeProcessorClFlushSize   = 0x00001002
+    WHvCapabilityCodeProcessorClFlushSize   = 0x00001002,
+    WHvCapabilityCodeProcessorXsaveFeatures = 0x00001003,
 } WHV_CAPABILITY_CODE;
 
 //
@@ -24,11 +25,18 @@ typedef union WHV_CAPABILITY_FEATURES
 {
     struct
     {
-        UINT64 Reserved : 64;
+        UINT64 PartialUnmap : 1;
+        UINT64 LocalApicEmulation : 1;
+        UINT64 Xsave : 1;
+        UINT64 DirtyPageTracking : 1;
+        UINT64 SpeculationControl : 1;
+        UINT64 Reserved : 59;
     };
 
     UINT64 AsUINT64;
 } WHV_CAPABILITY_FEATURES;
+
+C_ASSERT(sizeof(WHV_CAPABILITY_FEATURES) == sizeof(UINT64));
 
 //
 // Return values for WHvCapabilityCodeExtendedVmExits
@@ -46,13 +54,16 @@ typedef union WHV_EXTENDED_VM_EXITS
     UINT64 AsUINT64;
 } WHV_EXTENDED_VM_EXITS;
 
+C_ASSERT(sizeof(WHV_EXTENDED_VM_EXITS) == sizeof(UINT64));
+
 //
 // Return values for WHvCapabilityCodeProcessorVendor
 //
 typedef enum WHV_PROCESSOR_VENDOR
 {
     WHvProcessorVendorAmd   = 0x0000,
-    WHvProcessorVendorIntel = 0x0001
+    WHvProcessorVendorIntel = 0x0001,
+    WHvProcessorVendorHygon = 0x0002
 
 } WHV_PROCESSOR_VENDOR;
 
@@ -145,11 +156,61 @@ typedef union WHV_PROCESSOR_FEATURES
         UINT64 ShaSupport : 1;
         /* CPUID.80000008H:EBX[bit 2] = 1 (AMD only) */
         UINT64 X87PointersSavedSupport : 1;
-        UINT64 Reserved2 : 21;
+        UINT64 InvpcidSupport : 1;
+        UINT64 IbrsSupport : 1;
+        UINT64 StibpSupport : 1;
+        UINT64 IbpbSupport : 1;
+        UINT64 Reserved2 : 1;
+        UINT64 SsbdSupport : 1;
+        UINT64 FastShortRepMovSupport : 1;
+        UINT64 Reserved3 : 1;
+        UINT64 RdclNo : 1;
+        UINT64 IbrsAllSupport : 1;
+        UINT64 Reserved4 : 1;
+        UINT64 SsbNo : 1;
+        UINT64 RsbANo : 1;
+        UINT64 Reserved5 : 8;
     };
 
     UINT64 AsUINT64;
 } WHV_PROCESSOR_FEATURES;
+
+C_ASSERT(sizeof(WHV_PROCESSOR_FEATURES) == sizeof(UINT64));
+
+typedef union _WHV_PROCESSOR_XSAVE_FEATURES
+{
+    struct
+    {
+        UINT64 XsaveSupport : 1;
+        UINT64 XsaveoptSupport : 1;
+        UINT64 AvxSupport : 1;
+        UINT64 Avx2Support : 1;
+        UINT64 FmaSupport : 1;
+        UINT64 MpxSupport : 1;
+        UINT64 Avx512Support : 1;
+        UINT64 Avx512DQSupport : 1;
+        UINT64 Avx512CDSupport : 1;
+        UINT64 Avx512BWSupport : 1;
+        UINT64 Avx512VLSupport : 1;
+        UINT64 XsaveCompSupport : 1;
+        UINT64 XsaveSupervisorSupport : 1;
+        UINT64 Xcr1Support : 1;
+        UINT64 Avx512BitalgSupport : 1;
+        UINT64 Avx512IfmaSupport : 1;
+        UINT64 Avx512VBmiSupport : 1;
+        UINT64 Avx512VBmi2Support : 1;
+        UINT64 Avx512VnniSupport : 1;
+        UINT64 GfniSupport : 1;
+        UINT64 VaesSupport : 1;
+        UINT64 Avx512VPopcntdqSupport : 1;
+        UINT64 VpclmulqdqSupport : 1;
+        UINT64 Reserved : 41;
+    };
+
+    UINT64 AsUINT64;
+} WHV_PROCESSOR_XSAVE_FEATURES, *PWHV_PROCESSOR_XSAVE_FEATURES;
+
+C_ASSERT(sizeof(WHV_PROCESSOR_XSAVE_FEATURES) == sizeof(UINT64));
 
 //
 // WHvGetCapability output buffer
@@ -163,6 +224,7 @@ typedef union WHV_CAPABILITY
         WHV_EXTENDED_VM_EXITS ExtendedVmExits;
         WHV_PROCESSOR_VENDOR ProcessorVendor;
         WHV_PROCESSOR_FEATURES ProcessorFeatures;
+        WHV_PROCESSOR_XSAVE_FEATURES ProcessorXsaveFeatures;
         UINT8 ProcessorClFlushSize;
     };
 } WHV_CAPABILITY;

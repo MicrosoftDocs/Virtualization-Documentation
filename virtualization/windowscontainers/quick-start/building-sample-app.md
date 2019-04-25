@@ -61,7 +61,7 @@ FROM microsoft/aspnetcore-build:1.1 AS build-env
 WORKDIR /app
 ```
 
-Next, we copy over the .csproj files into our temporary container's '/app' directory. We do this because .csproj files contain contain a list of package references our project needs.
+Next, we copy over the .csproj files into our temporary container's '/app' directory. We do this because .csproj files contain a list of package references our project needs.
 
 After copying this file, dotnet will read from it and then to go out and fetch all of the dependencies and tools which our project needs.
 
@@ -123,6 +123,7 @@ Clicking on "MvcMovie" in the navigation bar will take you to a web page where y
 
 We have successfully taken an ASP.NET web app, configured and built it using Docker, and have succesfully deployed it into a running container. But there are further steps that you can take! You could break out the web app into further components--a container running the Web API, a container running the front end, and a container running the SQL server.
 
-Now that you've got the hang of containers, go out there and build great software with it! Below is a list of more container samples:
+Now that you've got the hang of containers, go out there and build great containerized software!
 
-[Container Samples](../samples.md)
+> [!div class="nextstepaction"]
+> [Check out more container samples](../samples.md)

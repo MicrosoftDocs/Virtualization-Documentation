@@ -76,7 +76,7 @@ ms.assetid: addcfda8-1522-4137-bc02-14cbb1ff838f
                 <a data-default="true" href="#main"></a>
                 <ul id="main">
                     <li>
-                        <a href="#containers">Windows Containers</a>
+                        <a href="#containers">Containers on Windows</a>
                         <ul id="containers" class="cardsW">
                             <li class="fullSpan">
                                 <div class="container intro">
@@ -325,9 +325,9 @@ ms.assetid: addcfda8-1522-4137-bc02-14cbb1ff838f
                                             <div class="cardText">
                                                 <h3 style="margin: 8px 0 2px 0;">Management tools</h3>
                                                 <ul>
-                                                    <li><a href="https://technet.microsoft.com/en-us/library/gg610610(v=sc.12).aspx">SCVMM</a></li>
+                                                    <li><a href="https://docs.microsoft.com/system-center/vmm/overview">System Center Virtual Machine Manager</a></li>
                                                     <li><a href="https://www.openstack.org/">Open Stack</a></li>
-                                                    <li><a href="https://technet.microsoft.com/library/hh848559.aspx">PowerShell</a></li>
+                                                    <li><a href="https://docs.microsoft.com/powershell/module/hyper-v/index">PowerShell</a></li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -347,7 +347,7 @@ ms.assetid: addcfda8-1522-4137-bc02-14cbb1ff838f
                                                 <h3 style="margin: 8px 0 2px 0;">Hyper-V Server</h3>
                                                 <p>Hyper-V Server is a free version of Windows Server with only the Hyper-V role available</p>
                                                 <ul>
-                                                    <li><a href="https://www.microsoft.com/evalcenter/evaluate-hyper-v-server-2016">Download Hyper-V Server 2016</a></li>
+                                                    <li><a href="https://www.microsoft.com/en-us/evalcenter/evaluate-hyper-v-server-2019">Download Hyper-V Server 2019</a></li>
                                                 </ul>
                                             </div>
                                         </div>

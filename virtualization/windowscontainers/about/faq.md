@@ -1,6 +1,6 @@
 ---
 title: Windows Containers FAQ
-description: Windows Containers FAQ
+description: Windows Server containers FAQ
 keywords: docker, containers
 author: PatrickLang
 ms.date: 05/02/2016
@@ -9,65 +9,59 @@ ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: 25de368c-5a10-40a4-b4aa-ac8c9a9ca022
 ---
+# Frequently asked questions
 
-# Frequently Asked Questions
+## General
 
-## About Windows containers
+### What is WCOW? What is LCOW?
 
-**What is a Windows Server Container?**
+WCOW is an abbreviation for Windows containers on Windows and LCOW is an abbreviation for Linux containers on Windows.
 
-Windows Server Containers are a lightweight operating system virtualization method used to separate applications or services from other services running on the same container host. To enable this, each container has its own view of the operating system, processes, file system, registry, and IP addresses.  
+### What is the difference between Linux and Windows Server Containers?
 
-**What is a Hyper-V Container?**
+Linux and Windows Server containers are similar in that they both implement similar technologies within their kernel and core operating system. The difference comes from the platform and workloads that run within the containers.  
 
-You can think of a Hyper-V Container as a Windows Server Container running inside of a Hyper-V partition.
+When a customer uses Windows Server containers, they can integrate with existing Windows technologies such as .NET, ASP.NET, PowerShell, and more.
 
-Hyper-V Containers offer an additional deployment option between the highly efficient, high-density Windows Server Container and the highly isolated hardware-virtualized Hyper-V virtual machine. For environments where applications from different trust boundaries run on the same host, additional isolation may be required. Hyper-V Containers will provide higher isolation using an optimized virtualization and Windows Server operating system that separates containers from each other and from the host operating system. Both container deployment options use the same management APIs, tools and image formats. At deployment time, customers can simply choose which deployment mode best meets their requirements.
+### As a developer, do I have to rewrite my app for each type of container?
 
-**What is the difference between Linux and Windows Server Containers?**
+No. Windows container images are common across both Windows Server containers and Hyper-V isolation. The choice of container type is made when you start the container. From a developer standpoint, Windows Server Containers and Hyper-V isolation are two flavors of the same thing. They offer the same development, programming and management experience, are open and extensible and include the same level of integration and support with Docker.
 
-Linux and Windows Server Containers are similar -- both implement similar technologies within their kernel and core operating system. The difference comes from the platform and workloads that run within the containers.  
-When a customer is using Windows Server Containers, they can integrate with existing Windows technologies such as .NET, ASP.NET, PowerShell, and more.
+A developer can create a container image using a Windows Server container and deploy it in Hyper-V isolation or vice-versa without any changes other than specifying the appropriate runtime flag.
 
-**As a developer, do I have to re-write my app for each type of container?**
+Windows Server containers offer greater density and performance for when speed is key, such as lower spin up time and faster runtime performance compared to nested configurations. Hyper-V isolation, true to its name,  offers greater isolation, ensuring that code running in one container can't compromise or impact the host operating system or other containers running on the same host. This is useful for multitenant scenarios with requirements for hosting untrusted code, including SaaS applications and compute hosting.
 
-No, Windows container images are common across both Windows Server Containers and Hyper-V Containers. The choice of container type is made when you start the container. From a developer standpoint, Windows Server Containers and Hyper-V Containers are two flavors of the same thing. They offer the same development, programming and management experience, are open and extensible and will include the same level of integration and support via Docker.
+### What are the prerequisites for running containers on Windows?
 
-A developer can create a container image using a Windows Server Container and deploy it as a Hyper-V Container or vice-versa without any changes other than specifying the appropriate runtime flag.
+Containers were introduced to the platform with Windows Server 2016. To use containers, you'll need either Windows Server 2016 or Windows 10 Anniversary update (version 1607) or newer.
 
-Windows Server Containers will offer greater density and performance (e.g. lower spin up time, faster runtime performance compared to nested configurations) for when speed is key. Hyper-V Containers offer greater isolation, ensuring that code running in one container can't compromise or impact the host operating system or other containers running on the same host. This is useful for multitenant scenarios (with requirements for hosting untrusted code) including SaaS applications and compute hosting.
+### Can I run Windows containers in process-isolated mode on Windows 10 Enterprise or Professional?
 
-**Are Hyper-V/Windows Server Containers an add-on, or will they integrated within Windows Server?**
+Beginning with the Windows 10 October 2018 update, we no longer disallow a user from running a Windows container with process isolation. However, you must directly request for process isolation by using the `--isolation=process` flag when running your containers via `docker run`.
 
-The container capabilities are integrated into Windows Server 2016.  
+If this is something you're interested in, you need to make sure your host is running Windows 10 build 17763+ and you have a docker version with Engine 18.09 or newer.
 
-**What is the relationship between Windows Server Containers and Drawbridge?**
-
-Drawbridge was one of many research projects that helped us gain valuable insights into containers.  Much of container technology in Windows Server 2016 was born from the experience we had with Drawbridge and we are excited to be bringing world class container technologies to our customers in Windows Server 2016.
-
-**What are the prerequisites for Windows Server Containers and Hyper-V Containers?**
-
-Both Window Server Containers and Hyper-V Containers require Windows Server 2016. These technologies will not work with previous versions of Windows.
-
+> [!WARNING]
+> This feature is only meant for development/testing. You should continue to use Windows Server as the host for production deployments.
+>
+> By using this feature, you must also ensure that your host and container version tags match, otherwise the container may fail to start or can exhibit undefined behavior.
 
 ## Windows container management
 
-**Will Hyper-V Containers also be available to the Docker ecosystem?**
+### How do I make my container images available on air-gapped machines?
 
-Yes – Hyper-V Containers will provide the same level of integration and management with Docker as Windows Server Containers.  The goal is to have an open, consistent, cross-platform experience.  
-The Docker platform will also greatly simplify and enhance the experience of working across our container options. An application developed using Windows Server Containers can be deployed as a Hyper-V Container without change.
+The Windows container base images contain artifacts whose distribution is restricted by license. When you build on these images and push them to a private or public registry, you'll notice the base layer is never pushed. Instead, we use the concept of a foreign layer which points to the real base layer residing in Azure cloud storage.
 
+This can present an issue when you have an air-gapped machine that can only pull images from the address of your private container registry. Attempts to follow the foreign layer to get the base image would fail in this case. To override the foreign layer behavior, you can use the `--allow-nondistributable-artifacts` flag in the Docker daemon.
+
+> [!IMPORTANT]
+> Usage of this flag shall not preclude your obligation to comply with the terms of the Windows container base image license; you must not post Windows content for public or third-party redistribution. Usage within your own environment is allowed.
 
 ## Microsoft's open ecosystem
 
-**Is Microsoft participating in the Open Container Initiative (OCI)?**
+### Is Microsoft participating in the Open Container Initiative (OCI)?
 
 To guarantee the packaging format remains universal, Docker recently organized the Open Container Initiative (OCI), aiming to ensure container packaging remains an open and foundation-led format with Microsoft as one of the founding members.
 
-**What are the advantages of this partnering with Docker?**
-
-Our partnership with Docker enables developers to create, manage and deploy both Windows Server and Linux containers using the same Docker tool set. Developers targeting Windows Server will no longer have to make a choice between using the vast range of Windows Server technologies and building containerized applications.  
-
-Docker is two things, the open source group of projects and Docker the company. We consider this partnership to include both. Docker is successful, in part, because of the vibrant ecosystem that has built up around the Docker container technology. Microsoft is contributing to the Docker Project, enabling support for Windows Server Containers and Hyper-V Containers.  
-
-For more information, see the [New Windows Server containers and Azure support for Docker](http://azure.microsoft.com/blog/2014/10/15/new-windows-server-containers-and-azure-support-for-docker/?WT.mc_id=Blog_ServerCloud_Announce_TTD) blog post.
+> [!TIP]
+> Have a recommendation for an addition to the FAQ? Open a new feedback issue in the comments section or use GitHub to open a pull request against these docs!

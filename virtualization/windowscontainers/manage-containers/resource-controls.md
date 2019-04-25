@@ -11,7 +11,10 @@ ms.assetid: 8ccd4192-4a58-42a5-8f74-2574d10de98e
 ---
 # Implementing resource controls for Windows containers
 There are several resource controls that can be implemented on a per-container and per-resource basis.  By default, containers run are subject to typical Windows resource management, which in general is fair-share based but though configuration of these controls a developer or administrator can limit or influence resource usage.  Resources that can be controlled include: CPU/Processor, Memory/RAM, Disk/Storage and Networking/Throughput.
-Windows containers utilize [job objects]( https://msdn.microsoft.com/en-us/library/windows/desktop/ms684161(v=vs.85).aspx) to group and track processes associated with each container.  Resource controls are implemented on the parent job object associated with the container.  In the case of [Hyper-V isolation](https://docs.microsoft.com/en-us/virtualization/windowscontainers/about/index#windows-container-types) resource controls are applied both to the virtual machine as well as to the job object of the container running inside the virtual machine automatically, this ensures that even if a process running in the container bypassed or escaped the job objects controls the virtual machine would ensure it was not able to exceed the defined resource controls.
+
+Windows containers utilize [job objects](https://msdn.microsoft.com/en-us/library/windows/desktop/ms684161(v=vs.85).aspx) to group and track processes associated with each container.  Resource controls are implemented on the parent job object associated with the container. 
+
+In the case of [Hyper-V isolation](https://docs.microsoft.com/en-us/virtualization/windowscontainers/about/index#windows-container-types) resource controls are applied both to the virtual machine as well as to the job object of the container running inside the virtual machine automatically, this ensures that even if a process running in the container bypassed or escaped the job objects controls the virtual machine would ensure it was not able to exceed the defined resource controls.
 
 ## Resources
 For each resource this section provides a mapping between the Docker command line interface as an example of how the resource control might be used (it might be configured by an orchestrator or other tooling) to the corresponding Windows host compute service (HCS) API as well as generally how the resource control has been implemented by Windows (please note that this description is high-level and that the underlying implementation is subject to change).
@@ -56,8 +59,11 @@ For each resource this section provides a mapping between the Docker command lin
 | Hyper-V isolation | [JOBOBJECT_IO_RATE_CONTROL_INFORMATION](https://msdn.microsoft.com/en-us/library/windows/desktop/mt280122(v=vs.85).aspx) |
 
 ## Additional notes or details
+
 ### Memory
+
 Windows containers run some system process in each container typically those which provide per-container functionality like user management, networking etc… and while much of the memory required by these processes is shared amongst containers the memory cap must be high enough to allow for them.  A table is provided in the [system requirements](https://docs.microsoft.com/en-us/virtualization/windowscontainers/deploy-containers/system-requirements#memory-requirments) document for each base image type and with and without Hyper-V isolation.
 
 ### CPU Shares (without Hyper-V isolation)
+
 When using CPU shares the underlying implementation (when not using Hyper-V isolation) configures the [JOBOBJECT_CPU_RATE_CONTROL_INFORMATION](https://msdn.microsoft.com/en-us/library/windows/desktop/hh448384(v=vs.85).aspx), specifically setting the control flag to JOB_OBJECT_CPU_RATE_CONTROL_WEIGHT_BASED and providing an appropriate Weight.  The valid weight ranges of the job object are 1 – 9 with a default of 5 which is lower fidelity than the host compute services values of 1 – 10000.  As examples a share weight of 7500 would result in a weight of 7 or a share weight of 2500 would result in a value of 2.

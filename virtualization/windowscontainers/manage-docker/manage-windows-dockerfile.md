@@ -44,7 +44,7 @@ In its most basic form, a Dockerfile can be very simple. The following example c
 FROM microsoft/windowsservercore
 
 # Metadata indicating an image maintainer.
-MAINTAINER jshelton@contoso.com
+LABEL maintainer="jshelton@contoso.com"
 
 # Uses dism.exe to install the IIS role.
 RUN dism.exe /online /enable-feature /all /featurename:iis-webserver /NoRestart

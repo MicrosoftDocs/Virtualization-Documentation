@@ -6,7 +6,7 @@
   - name: Hyper-V on Windows 10
     tocHref: /virtualization/hyper-v-on-windows/
     topicHref: /virtualization/hyper-v-on-windows/index
-  - name: Windows Containers
+  - name: Containers on Windows
     tocHref: /virtualization/windowscontainers/
     topicHref: /virtualization/windowscontainers/index
   - name: Community

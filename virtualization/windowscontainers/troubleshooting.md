@@ -23,7 +23,7 @@ If that doesn't help find the source of the problem, please go ahead and post th
 
 
 ## Finding Logs
-There are multiple services that are used to manage Windows Containers. The next sections shows where to get logs for each service.
+There are multiple services that are used to manage Windows containers. The next sections shows where to get logs for each service.
 
 # Docker Engine
 The Docker Engine logs to the Windows 'Application' event log, rather than to a file. These logs can easily be read, sorted, and filtered using Windows PowerShell
@@ -86,9 +86,9 @@ sc.exe stop docker
 <path\to\>dockerd.exe -D > daemon.log 2>&1
 ```
 
-## Obtaining stack dump and daemon data.
+## Obtaining stack dump.
 
-Generally, these are only useful if explicitly requested by Microsoft support, or docker developers. They can be used to assist diagnosing a situation where docker appears to have hung. 
+Generally, this is only useful if explicitly requested by Microsoft support, or docker developers. It can be used to assist diagnosing a situation where docker appears to have hung. 
 
 Download [docker-signal.exe](https://github.com/jhowardmsft/docker-signal).
 
@@ -99,11 +99,11 @@ Get-Process dockerd
 docker-signal -pid=<id>
 ```
 
-The output files will be located in the data-root directory docker is running in. The default directory is `C:\ProgramData\Docker`. The actual directory can be confirmed by running `docker info -f "{{.DockerRootDir}}"`.
+The output file will be located in the data-root directory docker is running in. The default directory is `C:\ProgramData\Docker`. The actual directory can be confirmed by running `docker info -f "{{.DockerRootDir}}"`.
 
-The files will be `goroutine-stacks-<timestamp>.log` and `daemon-data-<timestamp>.log`.
+The file will be `goroutine-stacks-<timestamp>.log`.
 
-Note that `daemon-data*.log` may contain personal information and should generally only be shared with trusted support people. `goroutine-stacks*.log` does not contain personal information.
+Note that `goroutine-stacks*.log` does not contain personal information.
 
 
 # Host Compute Service

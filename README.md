@@ -5,7 +5,7 @@ For more information see the [Code of Conduct FAQ](https://opensource.microsoft.
 
 # Virtualization-Documentation
 
-Rendered documentation website [msdn.microsoft.com/virtualization](http://msdn.microsoft.com/virtualization).
+Rendered documentation website [https://docs.microsoft.com/virtualization/](https://docs.microsoft.com/virtualization/).
 
 Place to store our documentation, code samples, etc for public consumption and contributions.
 
@@ -18,12 +18,12 @@ Digging into the repo structure a little:
 
 ### virtualization -- Contribute docs here! -- 
 
-This is a mirrored copy of the documentation available on the [msdn virtualization site](https://msdn.microsoft.com/virtualization).
+This is a mirrored copy of the documentation available on the [virtualization documentation on docs.microsoft.com](https://docs.microsoft.com/virtualization/).
 
 The folder structure matched the URL structure for the website.
 
 **For example:**  Say you want to edit the user guide article for working with checkpoints.  
-msdn location: [https://msdn.microsoft.com/virtualization/hyperv_on_windows/user_guide/checkpoints](https://msdn.microsoft.com/virtualization/hyperv_on_windows/user_guide/checkpoints)  
+docs.microsoft.com location: [https://docs.microsoft.com/virtualization/hyper-v-on-windows/user-guide/checkpoints](https://docs.microsoft.com/virtualization/hyper-v-on-windows/user-guide/checkpoints)  
 doc location:  
 `virtualization/hyperv_on_windows/user_guide/checkpoints.md`
   
