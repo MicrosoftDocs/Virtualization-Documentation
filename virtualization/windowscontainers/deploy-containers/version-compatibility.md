@@ -229,27 +229,27 @@ This requires changing the Docker service configuration, then restarting the Doc
 1. Edit `C:\ProgramData\docker\config\daemon.json`
 2. Add a line with `"exec-opts":["isolation=hyperv"]`
 
-  >[!NOTE]
-  >The daemon.json file does not exist by default. If you find that this is the case when you peek into the directory, you must create the file. Then you'll want to copy in the following:
+    >[!NOTE]
+    >The daemon.json file does not exist by default. If you find that this is the case when you peek into the directory, you must create the file. Then you'll want to copy in the following:
 
-  ```JSON
-  {
-      "exec-opts":["isolation=hyperv"]
-  }
-  ```
+    ```JSON
+    {
+        "exec-opts":["isolation=hyperv"]
+    }
+    ```
 
 3. Close and save the file, then restart the docker engine by running the following cmdlets in PowerShell:
 
-  ```powershell
-  Stop-Service docker
-  Start-Service docker
-  ```
+    ```powershell
+    Stop-Service docker
+    Start-Service docker
+    ```
 
 4. After you've restarted the service, launch your containers. Once they're running, you can verify the isolation level of a container by inspecting the container with the following cmdlet:
 
-  ```powershell
-  docker inspect --format='{{json .HostConfig.Isolation}}' $instanceNameOrId
-  ```
+    ```powershell
+    docker inspect --format='{{json .HostConfig.Isolation}}' $instanceNameOrId
+    ```
 
 It will return either "process" or "hyperv". If you have modified and set your daemon.json as described above, it should show the latter.
 
@@ -259,38 +259,38 @@ Here's how to use labels and constraints to match versions:
 
 1. Add labels to each node.
 
-  On each node, add two labels: `OS` and `OsVersion`. This assumes you're running locally but could be modified to set them on a remote host instead.
+    On each node, add two labels: `OS` and `OsVersion`. This assumes you're running locally but could be modified to set them on a remote host instead.
 
-  ```powershell
-  docker node update --label-add OS="windows" $ENV:COMPUTERNAME
-  docker node update --label-add OsVersion="$((Get-ComputerInfo).OsVersion)" $ENV:COMPUTERNAME
-  ```
+    ```powershell
+    docker node update --label-add OS="windows" $ENV:COMPUTERNAME
+    docker node update --label-add OsVersion="$((Get-ComputerInfo).OsVersion)" $ENV:COMPUTERNAME
+    ```
 
-  Afterwards, you can check those with `docker node inspect`, which should show the newly added labels:
+    Afterwards, you can check those with `docker node inspect`, which should show the newly added labels:
 
-  ```yaml
-         "Spec": {
-              "Labels": {
-                 "OS": "windows",
-                 "OsVersion": "10.0.16296"
-             },
-              "Role": "manager",
-              "Availability": "active"
-          }
-  ```
+    ```yaml
+           "Spec": {
+                "Labels": {
+                   "OS": "windows",
+                   "OsVersion": "10.0.16296"
+               },
+                "Role": "manager",
+                "Availability": "active"
+            }
+    ```
 
 2. Add a service constraint.
 
-  Now that you've labeled each node, you can update constraints that determine placement of services. In the following example, replace "contoso_service" with the name of your actual service:
+    Now that you've labeled each node, you can update constraints that determine placement of services. In the following example, replace "contoso_service" with the name of your actual service:
 
-  ```
-  docker service update \
-      --constraint-add "node.labels.OS == windows" \
-      --constraint-add "node.labels.OsVersion == $((Get-ComputerInfo).OsVersion)" \
-      contoso_service
-  ```
+    ```powershell
+    docker service update \
+        --constraint-add "node.labels.OS == windows" \
+        --constraint-add "node.labels.OsVersion == $((Get-ComputerInfo).OsVersion)" \
+        contoso_service
+    ```
 
-  This enforces and limits where a node may run.
+    This enforces and limits where a node may run.
 
 For more details on how to use service constraints, check out the [service create reference](https://docs.docker.com/engine/reference/commandline/service_create/#specify-service-constraints-constraint).
 
@@ -442,131 +442,131 @@ Let's use this example to show how to match the versions:
 
 1. Take note of each node name and `Kernel Version` from system info.
 
-  In our example, the info will look like this:
+    In our example, the info will look like this:
 
-  Name         | Version
-  -------------|--------------------------------------------------------
-  38519acs9010 | 14393.1715.amd64fre.rs1_release_inmarket.170906-1810
-  38519acs9011 | 16299.0.amd64fre.rs3_release.170922-1354
+    Name         | Version
+    -------------|--------------------------------------------------------
+    38519acs9010 | 14393.1715.amd64fre.rs1_release_inmarket.170906-1810
+    38519acs9011 | 16299.0.amd64fre.rs3_release.170922-1354
 
 2. Add a label to each node called `beta.kubernetes.io/osbuild`. Windows Server 2016 needs both major and minor versions (14393.1715 in this example) to be supported without Hyper-V isolation. Windows Server version 1709 only needs the major version (16299 in this example) to match.
 
-  In this example, the command to add the labels looks like this:
+    In this example, the command to add the labels looks like this:
 
-  ```
-  $ kubectl label node 38519acs9010 beta.kubernetes.io/osbuild=14393.1715
+    ```
+    $ kubectl label node 38519acs9010 beta.kubernetes.io/osbuild=14393.1715
 
 
-  node "38519acs9010" labeled
-  $ kubectl label node 38519acs9011 beta.kubernetes.io/osbuild=16299
+    node "38519acs9010" labeled
+    $ kubectl label node 38519acs9011 beta.kubernetes.io/osbuild=16299
 
-  node "38519acs9011" labeled
+    node "38519acs9011" labeled
 
-  ```
+    ```
 
 3. Check the labels are there by entering `kubectl get nodes --show-labels`.
 
-  In this example, the output will look like this:
+    In this example, the output will look like this:
 
-  ```
-  $ kubectl get nodes --show-labels
+    ```
+    $ kubectl get nodes --show-labels
 
-  NAME                        STATUS                     AGE       VERSION                    LABELS
-  38519acs9010                Ready,SchedulingDisabled   3d        v1.7.7-7+e79c96c8ff2d8e    beta.kubernetes.io/arch=amd64,beta.kubernetes.io/instance-type=Standard_D2_v2,beta.kubernetes.io/os=windows,beta.kubernetes.io/osbuild=14393.1715,failure-domain.beta.kubernetes.io/region=westus2,failure-domain.beta.kubernetes.io/zone=0,kubernetes.io/hostname=38519acs9010
-  38519acs9011                Ready                      3d        v1.7.7-25+bc3094f1d650a2   beta.kubernetes.io/arch=amd64,beta.kubernetes.io/instance-type=Standard_DS1_v2,beta.kubernetes.io/os=windows,beta.kubernetes.io/osbuild=16299,failure-domain.beta.kubernetes.io/region=westus2,failure-domain.beta.kubernetes.io/zone=0,kubernetes.io/hostname=38519acs9011
-  k8s-linuxpool1-38519084-0   Ready                      3d        v1.7.7                     agentpool=linuxpool1,beta.kubernetes.io/arch=amd64,beta.kubernetes.io/instance-type=Standard_D2_v2,beta.kubernetes.io/os=linux,failure-domain.beta.kubernetes.io/region=westus2,failure-domain.beta.kubernetes.io/zone=0,kubernetes.io/hostname=k8s-linuxpool1-38519084-0,kubernetes.io/role=agent
-  k8s-master-38519084-0       Ready                      3d        v1.7.7                     beta.kubernetes.io/arch=amd64,beta.kubernetes.io/instance-type=Standard_D2_v2,beta.kubernetes.io/os=linux,failure-domain.beta.kubernetes.io/region=westus2,failure-domain.beta.kubernetes.io/zone=0,kubernetes.io/hostname=k8s-master-38519084-0,kubernetes.io/role=master
-  ```
+    NAME                        STATUS                     AGE       VERSION                    LABELS
+    38519acs9010                Ready,SchedulingDisabled   3d        v1.7.7-7+e79c96c8ff2d8e    beta.kubernetes.io/arch=amd64,beta.kubernetes.io/instance-type=Standard_D2_v2,beta.kubernetes.io/os=windows,beta.kubernetes.io/osbuild=14393.1715,failure-domain.beta.kubernetes.io/region=westus2,failure-domain.beta.kubernetes.io/zone=0,kubernetes.io/hostname=38519acs9010
+    38519acs9011                Ready                      3d        v1.7.7-25+bc3094f1d650a2   beta.kubernetes.io/arch=amd64,beta.kubernetes.io/instance-type=Standard_DS1_v2,beta.kubernetes.io/os=windows,beta.kubernetes.io/osbuild=16299,failure-domain.beta.kubernetes.io/region=westus2,failure-domain.beta.kubernetes.io/zone=0,kubernetes.io/hostname=38519acs9011
+    k8s-linuxpool1-38519084-0   Ready                      3d        v1.7.7                     agentpool=linuxpool1,beta.kubernetes.io/arch=amd64,beta.kubernetes.io/instance-type=Standard_D2_v2,beta.kubernetes.io/os=linux,failure-domain.beta.kubernetes.io/region=westus2,failure-domain.beta.kubernetes.io/zone=0,kubernetes.io/hostname=k8s-linuxpool1-38519084-0,kubernetes.io/role=agent
+    k8s-master-38519084-0       Ready                      3d        v1.7.7                     beta.kubernetes.io/arch=amd64,beta.kubernetes.io/instance-type=Standard_D2_v2,beta.kubernetes.io/os=linux,failure-domain.beta.kubernetes.io/region=westus2,failure-domain.beta.kubernetes.io/zone=0,kubernetes.io/hostname=k8s-master-38519084-0,kubernetes.io/role=master
+    ```
 
 4. Add node selectors to deployments. In this example case, we'll add a `nodeSelector` to the container spec with `beta.kubernetes.io/os` = windows and `beta.kubernetes.io/osbuild` = 14393.* or 16299 to match the base OS used by the container.
 
-  Here's a full example for running a container built for Windows Server 2016:
+    Here's a full example for running a container built for Windows Server 2016:
 
-  ```yaml
-  apiVersion: extensions/v1beta1
-  kind: Deployment
-  metadata:
-    annotations:
-      kompose.cmd: kompose convert -f docker-compose-combined.yml
-      kompose.version: 1.2.0 (99f88ef)
-    creationTimestamp: null
-    labels:
-      io.kompose.service: fabrikamfiber.web
-    name: fabrikamfiber.web
-  spec:
-    replicas: 1
-    strategy: {}
-    template:
-      metadata:
-        creationTimestamp: null
-        labels:
-          io.kompose.service: fabrikamfiber.web
-      spec:
-        containers:
-        - image: patricklang/fabrikamfiber.web:latest
-          name: fabrikamfiberweb
-          ports:
-          - containerPort: 80
-          resources: {}
-        restartPolicy: Always
-        nodeSelector:
-          "beta.kubernetes.io/os": windows
-          "beta.kubernetes.io/osbuild": "14393.1715"
-  status: {}
-  ```
+    ```yaml
+    apiVersion: extensions/v1beta1
+    kind: Deployment
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert -f docker-compose-combined.yml
+        kompose.version: 1.2.0 (99f88ef)
+      creationTimestamp: null
+      labels:
+        io.kompose.service: fabrikamfiber.web
+      name: fabrikamfiber.web
+    spec:
+      replicas: 1
+      strategy: {}
+      template:
+        metadata:
+          creationTimestamp: null
+          labels:
+            io.kompose.service: fabrikamfiber.web
+        spec:
+          containers:
+          - image: patricklang/fabrikamfiber.web:latest
+            name: fabrikamfiberweb
+            ports:
+            - containerPort: 80
+            resources: {}
+          restartPolicy: Always
+          nodeSelector:
+            "beta.kubernetes.io/os": windows
+            "beta.kubernetes.io/osbuild": "14393.1715"
+    status: {}
+    ```
 
-  The pod can now start with the updated deployment. The node selectors are also shown in `kubectl describe pod <podname>`, so you can run that command to verify they were added.
+    The pod can now start with the updated deployment. The node selectors are also shown in `kubectl describe pod <podname>`, so you can run that command to verify they were added.
 
-  The output for our example is as follows:
+    The output for our example is as follows:
 
-  ```
-  $ kubectl -n plang describe po fa
+    ```
+    $ kubectl -n plang describe po fa
 
-  Name:           fabrikamfiber.web-1780117715-5c8vw
-  Namespace:      plang
-  Node:           38519acs9010/10.240.0.4
-  Start Time:     Tue, 10 Oct 2017 01:43:28 +0000
-  Labels:         io.kompose.service=fabrikamfiber.web
-                  pod-template-hash=1780117715
-  Annotations:    kubernetes.io/created-by={"kind":"SerializedReference","apiVersion":"v1","reference":{"kind":"ReplicaSet","namespace":"plang","name":"fabrikamfiber.web-1780117715","uid":"6a07aaf3-ad5c-11e7-b16e-000d3...
-  Status:         Running
-  IP:             10.244.1.84
-  Created By:     ReplicaSet/fabrikamfiber.web-1780117715
-  Controlled By:  ReplicaSet/fabrikamfiber.web-1780117715
-  Containers:
-    fabrikamfiberweb:
-      Container ID:       docker://c94594fb53161f3821cf050d9af7546991aaafbeab41d333d9f64291327fae13
-      Image:              patricklang/fabrikamfiber.web:latest
-      Image ID:           docker-pullable://patricklang/fabrikamfiber.web@sha256:562741016ce7d9a232a389449a4fd0a0a55aab178cf324144404812887250ead
-      Port:               80/TCP
-      State:              Running
-        Started:          Tue, 10 Oct 2017 01:43:42 +0000
-      Ready:              True
-      Restart Count:      0
-      Environment:        <none>
-      Mounts:
-        /var/run/secrets/kubernetes.io/serviceaccount from default-token-rw9dn (ro)
-  Conditions:
-    Type          Status
-    Initialized   True
-    Ready         True
-    PodScheduled  True
-  Volumes:
-    default-token-rw9dn:
-      Type:       Secret (a volume populated by a Secret)
-      SecretName: default-token-rw9dn
-      Optional:   false
-  QoS Class:      BestEffort
-  Node-Selectors: beta.kubernetes.io/os=windows
-                  beta.kubernetes.io/osbuild=14393.1715
-  Tolerations:    <none>
-  Events:
-    FirstSeen     LastSeen        Count   From                    SubObjectPath                           Type            Reason                  Message
-    ---------     --------        -----   ----                    -------------                           --------        ------                  -------
-    5m            5m              1       default-scheduler                                               Normal          Scheduled               Successfully assigned fabrikamfiber.web-1780117715-5c8vw to 38519acs9010
-    5m            5m              1       kubelet, 38519acs9010                                           Normal          SuccessfulMountVolume   MountVolume.SetUp succeeded for volume "default-token-rw9dn"
-    5m            5m              1       kubelet, 38519acs9010   spec.containers{fabrikamfiberweb}       Normal          Pulling                 pulling image "patricklang/fabrikamfiber.web:latest"
-    5m            5m              1       kubelet, 38519acs9010   spec.containers{fabrikamfiberweb}       Normal          Pulled                  Successfully pulled image "patricklang/fabrikamfiber.web:latest"
-    5m            5m              1       kubelet, 38519acs9010   spec.containers{fabrikamfiberweb}       Normal          Created                 Created container
-    5m            5m              1       kubelet, 38519acs9010   spec.containers{fabrikamfiberweb}       Normal          Started                 Started container
-  ```
+    Name:           fabrikamfiber.web-1780117715-5c8vw
+    Namespace:      plang
+    Node:           38519acs9010/10.240.0.4
+    Start Time:     Tue, 10 Oct 2017 01:43:28 +0000
+    Labels:         io.kompose.service=fabrikamfiber.web
+                    pod-template-hash=1780117715
+    Annotations:    kubernetes.io/created-by={"kind":"SerializedReference","apiVersion":"v1","reference":{"kind":"ReplicaSet","namespace":"plang","name":"fabrikamfiber.web-1780117715","uid":"6a07aaf3-ad5c-11e7-b16e-000d3...
+    Status:         Running
+    IP:             10.244.1.84
+    Created By:     ReplicaSet/fabrikamfiber.web-1780117715
+    Controlled By:  ReplicaSet/fabrikamfiber.web-1780117715
+    Containers:
+      fabrikamfiberweb:
+        Container ID:       docker://c94594fb53161f3821cf050d9af7546991aaafbeab41d333d9f64291327fae13
+        Image:              patricklang/fabrikamfiber.web:latest
+        Image ID:           docker-pullable://patricklang/fabrikamfiber.web@sha256:562741016ce7d9a232a389449a4fd0a0a55aab178cf324144404812887250ead
+        Port:               80/TCP
+        State:              Running
+          Started:          Tue, 10 Oct 2017 01:43:42 +0000
+        Ready:              True
+        Restart Count:      0
+        Environment:        <none>
+        Mounts:
+          /var/run/secrets/kubernetes.io/serviceaccount from default-token-rw9dn (ro)
+    Conditions:
+      Type          Status
+      Initialized   True
+      Ready         True
+      PodScheduled  True
+    Volumes:
+      default-token-rw9dn:
+        Type:       Secret (a volume populated by a Secret)
+        SecretName: default-token-rw9dn
+        Optional:   false
+    QoS Class:      BestEffort
+    Node-Selectors: beta.kubernetes.io/os=windows
+                    beta.kubernetes.io/osbuild=14393.1715
+    Tolerations:    <none>
+    Events:
+      FirstSeen     LastSeen        Count   From                    SubObjectPath                           Type            Reason                  Message
+      ---------     --------        -----   ----                    -------------                           --------        ------                  -------
+      5m            5m              1       default-scheduler                                               Normal          Scheduled               Successfully assigned fabrikamfiber.web-1780117715-5c8vw to 38519acs9010
+      5m            5m              1       kubelet, 38519acs9010                                           Normal          SuccessfulMountVolume   MountVolume.SetUp succeeded for volume "default-token-rw9dn"
+      5m            5m              1       kubelet, 38519acs9010   spec.containers{fabrikamfiberweb}       Normal          Pulling                 pulling image "patricklang/fabrikamfiber.web:latest"
+      5m            5m              1       kubelet, 38519acs9010   spec.containers{fabrikamfiberweb}       Normal          Pulled                  Successfully pulled image "patricklang/fabrikamfiber.web:latest"
+      5m            5m              1       kubelet, 38519acs9010   spec.containers{fabrikamfiberweb}       Normal          Created                 Created container
+      5m            5m              1       kubelet, 38519acs9010   spec.containers{fabrikamfiberweb}       Normal          Started                 Started container
+    ```
