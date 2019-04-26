@@ -465,7 +465,7 @@ If you're encountering errors when running a container with a gMSA, the followin
 
     The trust verification should return NERR_SUCCESS if the gMSA is available and network connectivity allows the container to talk to the domain. If it fails, verify the network configuration of the host and container. Both need to be able to communicate with the domain controller.
 
-4. Ensure your app is [configured to use the gMSA](#configuring-your-application-to-use-the-gmsa). The user account inside the container doesn't change when you use a gMSA. Rather, the System account uses the gMSA when it talks to other network resources. This means your app will need to run as Network Service or Local System to leverage the gMSA identity.
+4. Ensure your app is [configured to use the gMSA](#configure-your-application-to-use-the-gmsa). The user account inside the container doesn't change when you use a gMSA. Rather, the System account uses the gMSA when it talks to other network resources. This means your app will need to run as Network Service or Local System to leverage the gMSA identity.
 
     > [!TIP]
     > If you run `whoami` or use another tool to identify your current user context in the container, you won't see the gMSA name itself. This is because you always sign in to the container as a local user instead of a domain identity. The gMSA is used by the computer account whenever it talks to network resources, which is why your app needs to run as Network Service or Local System.
