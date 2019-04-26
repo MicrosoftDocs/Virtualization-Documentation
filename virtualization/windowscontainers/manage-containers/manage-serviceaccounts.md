@@ -191,7 +191,7 @@ If you previously used static user credentials for your IIS App Pool, consider t
 If your containerized app runs as a Windows service, you can set the service to run as **Network Service** in your Dockerfile:
 
 ```dockerfile
-RUN cmd /c 'sc.exe config "YourServiceName" obj= "NT AUTHORITY\NETWORK SERVICE" password= ""'
+RUN sc.exe config "YourServiceName" obj= "NT AUTHORITY\NETWORK SERVICE" password= ""
 ```
 
 ### Run arbitrary console apps as Network Service
@@ -229,7 +229,7 @@ On Windows Server 2019 and later, the hostname field is not required, but the co
 
 To check if the gMSA is working correctly, run the following command in the container:
 
-```dockerfile
+```powershell
 # Replace contoso.com with your own domain
 PS C:\> nltest /sc_verify:contoso.com
 
@@ -244,7 +244,7 @@ If the Trusted DC Connection Status and Trust Verification Status are not *NERR_
 
 You can verify the gMSA identity from within the container by running the following command and checking the client name:
 
-```dockerfile
+```powershell
 PS C:\> klist get krbtgt
 
 Current LogonId is 0:0xaa79ef8
@@ -269,13 +269,13 @@ Cached Tickets: (2)
 To open PowerShell or another console app as the gMSA account, you can ask the container to run under the Network Service account instead of the normal ContainerAdministrator (or ContainerUser for NanoServer) account:
 
 ```powershell
-# NOTE: you can only run as SYSTEM on Windows Server 1709 and later
+# NOTE: you can only run as Network Service or SYSTEM on Windows Server 1709 and later
 docker run --security-opt "credentialspec=file://contoso_webapp01.json" --hostname webapp01 --user "NT AUTHORITY\NETWORK SERVICE" -it mcr.microsoft.com/windows/servercore:ltsc2019 powershell
 ```
 
 When you're running as Network Service, you can test network authentication as the gMSA by trying to connect to SYSVOL on a domain controller:
 
-```dockerfile
+```powershell
 # This command should succeed if you're successfully running as the gMSA
 PS C:\> dir \\contoso.com\SYSVOL
 
