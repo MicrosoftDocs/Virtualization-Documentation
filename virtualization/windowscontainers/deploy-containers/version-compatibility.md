@@ -10,102 +10,40 @@ Windows Server 2016 and Windows 10 Anniversary Update (both version 14393) were 
 
 As we've been improving the Windows container features, we've had to make some changes that can affect compatibility. Older containers will run the same on newer hosts with [Hyper-V isolation](../manage-containers/hyperv-container.md), and will use the same (older) kernel version. However, if you want to run a container based on a newer Windows build, it can only run on the newer host build.
 
-<table>
-    <tr>
-    <th style="background-color:#BBDEFB">Container OS version</th>
-    <th span='6' style="background-color:#DCEDC8">Host OS version</th>
-    </tr>
-    <tr>
-        <td/>
-        <td style="background-color:#F1F8E9"><b>Windows Server 2016</b><br/>Builds: 14393.*</td>
-        <td style="background-color:#F1F8E9"><b>Windows 10 1609, 1703</b><br/>Builds: 14393.*, 15063.*</td>
-        <td style="background-color:#F1F8E9"><b>Windows Server version 1709</b><br/>Builds 16299.*</td>
-        <td style="background-color:#F1F8E9"><b>Windows 10 Fall Creators Update</b><br/>Builds 16299.*</td>
-        <td style="background-color:#F1F8E9"><b>Windows Server version 1803</b><br/>Builds 17134.*</td>
-        <td style="background-color:#F1F8E9"><b>Windows 10 version 1803</b><br/>Builds 17134.*</td>
-        <td style="background-color:#F1F8E9"><b>Windows Server 2019</b><br/>Builds 17763.*</td>
-        <td style="background-color:#F1F8E9"><b>Windows 10 version 1809</b><br/>Builds 17763.*</td>
-    </tr>
-    <tr>
-        <td style="background-color:#E3F2FD"><b>Windows Server 2016</b><br/>Builds: 14393.*</td>
-        <td>Supports<br/> `process` or `hyperv` isolation</td>
-        <td>Supports<br/> Only `hyperv` isolation</td>
-        <td>Supports<br/> Only `hyperv` isolation</td>
-        <td>Supports<br/> Only `hyperv` isolation</td>
-        <td>Supports<br/> Only `hyperv` isolation</td>
-        <td>Supports<br/> Only `hyperv` isolation</td>
-        <td>Supports<br/> Only `hyperv` isolation</td>
-        <td>Supports<br/> Only `hyperv` isolation</td>
-    </tr>
-    <tr>
-        <td style="background-color:#E3F2FD"><b>Windows Server version 1709</b><br/>Builds 16299.*</td>
-        <td>Not supported</td>
-        <td>Not supported</td>
-        <td>Supports<br/> `process` or `hyperv` isolation</td>
-        <td>Supports<br/> Only `hyperv` isolation</td>
-        <td>Supports<br/> Only `hyperv` isolation</td>
-        <td>Supports<br/> Only `hyperv` isolation</td>
-        <td>Supports<br/> Only `hyperv` isolation</td>
-        <td>Supports<br/> Only `hyperv` isolation</td>
-    </tr>
-    <tr>
-        <td style="background-color:#E3F2FD"><b>Windows Server version 1803</b><br/>Builds 17134.*</td>
-        <td>Not supported</td>
-        <td>Not supported</td>
-        <td>Not supported</td>
-        <td>Not supported</td>
-        <td>Supports<br/> `process` or `hyperv` isolation</td>
-        <td>Supports<br/> Only `hyperv` isolation</td>
-        <td>Supports<br/> Only `hyperv` isolation</td>
-        <td>Supports<br/> Only `hyperv` isolation</td>
-    </tr>
-    <tr>
-        <td style="background-color:#E3F2FD"><b>Windows Server 2019</b><br/>Builds 17763.*</td>
-        <td>Not supported</td>
-        <td>Not supported</td>
-        <td>Not supported</td>
-        <td>Not supported</td>
-        <td>Not supported</td>
-        <td>Not supported</td>
-        <td>Supports<br/> `process` or `hyperv` isolation</td>
-        <td>Supports<br/> Only `hyperv` isolation</td>
-    </tr>
-</table>
-
 |Container OS version|Host OS version|Compatibility|
 |---|---|---|
-|Windows Server 2016<br>Builds: 14393.* |Windows Server 2016<br>Builds: 14393.* |Supports process or Hyper-V isolation|
-|Windows Server 2016<br>Builds: 14393.* |Windows 10, version 1609, 1703<br>14393.* , 15063.* |Only supports Hyper-V isolation|
-|Windows Server 2016<br>Builds: 14393.* |Windows Server version 1709<br>Builds 16299.* |Only supports Hyper-V isolation|
-|Windows Server 2016<br>Builds: 14393.* |Windows 10 Fall Creators Update<br>Builds 16299.* |Only supports Hyper-V isolation|
-|Windows Server 2016<br>Builds: 14393.* |Windows Server version 1803<br>Builds 17134.* |Only supports Hyper-V isolation|
-|Windows Server 2016<br>Builds: 14393.* |Windows 10, version 1803<br>Builds 17134.* |Only supports Hyper-V isolation|
-|Windows Server 2016<br>Builds: 14393.* |Windows Server 2019<br>Builds 17763.* |Only supports Hyper-V isolation|
-|Windows Server 2016<br>Builds: 14393.* |Windows 10, version 1809<br>Builds 17763.* |Only supports Hyper-V isolation|
+|Windows Server 2016<br>Builds: 14393.* |Windows Server 2016<br>Builds: 14393.* |Supports `process` or `hyperv` isolation|
+|Windows Server 2016<br>Builds: 14393.* |Windows 10, version 1609, 1703<br>14393.* , 15063.* |Only supports `hyperv` isolation|
+|Windows Server 2016<br>Builds: 14393.* |Windows Server version 1709<br>Builds 16299.* |Only supports `hyperv` isolation|
+|Windows Server 2016<br>Builds: 14393.* |Windows 10 Fall Creators Update<br>Builds 16299.* |Only supports `hyperv` isolation|
+|Windows Server 2016<br>Builds: 14393.* |Windows Server version 1803<br>Builds 17134.* |Only supports `hyperv` isolation|
+|Windows Server 2016<br>Builds: 14393.* |Windows 10, version 1803<br>Builds 17134.* |Only supports `hyperv` isolation|
+|Windows Server 2016<br>Builds: 14393.* |Windows Server 2019<br>Builds 17763.* |Only supports `hyperv` isolation|
+|Windows Server 2016<br>Builds: 14393.* |Windows 10, version 1809<br>Builds 17763.* |Only supports `hyperv` isolation|
 |Windows Server, version 1709<br>Builds 16299.* |Windows Server 2016<br>Builds: 14393.* |Not supported|
 |Windows Server, version 1709<br>Builds 16299.* |Windows Server, version 1609, 1703<br>14393.* , 15063.* |Not supported|
-|Windows Server, version 1709<br>Builds 16299.* |Windows Server, version 1709<br>Builds 16299.* |Supports process or Hyper-V isolation|
-|Windows Server, version 1709<br>Builds 16299.* |Windows 10 Fall Creators Update<br>Builds 16299.* |Only supports Hyper-V isolation|
-|Windows Server, version 1709<br>Builds 16299.* |Windows Server, version 1803<br>Builds 17134.* |Only supports Hyper-V isolation|
-|Windows Server, version 1709<br>Builds 16299.* |Windows 10, version 1803<br>Builds 17134.* |Only supports Hyper-V isolation|
-|Windows Server, version 1709<br>Builds 16299.* |Windows Server 2019<br>Builds 17763.* |Only supports Hyper-V isolation|
-|Windows Server, version 1709<br>Builds 16299.* |Windows 10, version 1809<br>Builds 17763.* |Only supports Hyper-V isolation|
+|Windows Server, version 1709<br>Builds 16299.* |Windows Server, version 1709<br>Builds 16299.* |Supports `process` or `hyperv` isolation|
+|Windows Server, version 1709<br>Builds 16299.* |Windows 10 Fall Creators Update<br>Builds 16299.* |Only supports `hyperv` isolation|
+|Windows Server, version 1709<br>Builds 16299.* |Windows Server, version 1803<br>Builds 17134.* |Only supports `hyperv` isolation|
+|Windows Server, version 1709<br>Builds 16299.* |Windows 10, version 1803<br>Builds 17134.* |Only supports `hyperv` isolation|
+|Windows Server, version 1709<br>Builds 16299.* |Windows Server 2019<br>Builds 17763.* |Only supports `hyperv` isolation|
+|Windows Server, version 1709<br>Builds 16299.* |Windows 10, version 1809<br>Builds 17763.* |Only supports `hyperv` isolation|
 |Windows Server, version 1803<br>Builds 17134.* |Windows Server 2016<br>Builds: 14393.* |Not supported|
 |Windows Server, version 1803<br>Builds 17134.* |Windows Server, version 1609, 1703<br>14393.* , 15063.* |Not supported|
 |Windows Server, version 1803<br>Builds 17134.* |Windows Server, version 1709<br>Builds 16299.* |Not supported|
 |Windows Server, version 1803<br>Builds 17134.* |Windows 10 Fall Creators Update<br>Builds 16299.* |Not supported|
-|Windows Server, version 1803<br>Builds 17134.* |Windows Server, version 1803<br>Builds 17134.* |Supports process or Hyper-V isolation|
-|Windows Server, version 1803<br>Builds 17134.* |Windows 10, version 1803<br>Builds 17134.* |Only supports Hyper-V isolation|
-|Windows Server, version 1803<br>Builds 17134.* |Windows Server 2019<br>Builds 17763.* |Only supports Hyper-V isolation|
-|Windows Server, version 1803<br>Builds 17134.* |Windows 10, version 1809<br>Builds 17763.* |Only supports Hyper-V isolation|
+|Windows Server, version 1803<br>Builds 17134.* |Windows Server, version 1803<br>Builds 17134.* |Supports `process` or `hyperv` isolation|
+|Windows Server, version 1803<br>Builds 17134.* |Windows 10, version 1803<br>Builds 17134.* |Only supports `hyperv` isolation|
+|Windows Server, version 1803<br>Builds 17134.* |Windows Server 2019<br>Builds 17763.* |Only supports `hyperv` isolation|
+|Windows Server, version 1803<br>Builds 17134.* |Windows 10, version 1809<br>Builds 17763.* |Only supports `hyperv` isolation|
 |Windows Server 2019<br>Builds 17763.* |Windows Server 2016<br>Builds: 14393.* |Not supported|
 |Windows Server 2019<br>Builds 17763.* |Windows 10, version 1609, 1703<br>14393.* , 15063.* |Not supported|
 |Windows Server 2019<br>Builds 17763.* |Windows Server, version 1709<br>Builds 16299.* |Not supported
 |Windows Server 2019<br>Builds 17763.* |Windows 10 Fall Creators Update<br>Builds 16299.* |Not supported|
 |Windows Server 2019<br>Builds 17763.* |Windows Server, version 1803<br>Builds 17134.* |Not supported|
 |Windows Server 2019<br>Builds 17763.* |Windows 10, version 1803<br>Builds 17134.* |Not supported|
-|Windows Server 2019<br>Builds 17763.* |Windows Server 2019<br>Builds 17763.* |Supports process or Hyper-V isolation|
-|Windows Server 2019<br>Builds 17763.* |Windows 10, version 1809<br>Builds 17763.* |Only supports Hyper-V isolation|
+|Windows Server 2019<br>Builds 17763.* |Windows Server 2019<br>Builds 17763.* |Supports `process` or `hyperv` isolation|
+|Windows Server 2019<br>Builds 17763.* |Windows 10, version 1809<br>Builds 17763.* |Only supports `hyperv` isolation|
 
 ## Matching container host version with container image versions
 
@@ -283,8 +221,6 @@ services:
 In this case, you should use the method described in [Errors from mismatched versions](#errors-from-mismatched-versions) to modify that dockerfile instead of the docker-compose line.
 
 ### Mitigation - Use Hyper-V isolation with Docker Swarm
-
-(OUT OF DATE)
 
 There is a proposal to support using Hyper-V isolation on a per-container basis, but the code is not done yet. You can follow progress on [GitHub](https://github.com/moby/moby/issues/31616). Until that's done, the hosts would need to be configured to always run with Hyper-V isolation.
 
