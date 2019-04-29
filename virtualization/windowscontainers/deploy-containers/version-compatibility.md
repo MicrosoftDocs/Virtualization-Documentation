@@ -13,7 +13,6 @@ As we've been improving the Windows container features, we've had to make some c
 |Container OS version|Host OS version|Compatibility|
 |---|---|---|
 |Windows Server 2016<br>Builds: 14393.* |Windows Server 2016<br>Builds: 14393.* |Supports `process` or `hyperv` isolation|
-|Windows Server 2016<br>Builds: 14393.* |Windows 10, version 1609, 1703<br>14393.* , 15063.* |Only supports `hyperv` isolation|
 |Windows Server 2016<br>Builds: 14393.* |Windows Server version 1709<br>Builds 16299.* |Only supports `hyperv` isolation|
 |Windows Server 2016<br>Builds: 14393.* |Windows 10 Fall Creators Update<br>Builds 16299.* |Only supports `hyperv` isolation|
 |Windows Server 2016<br>Builds: 14393.* |Windows Server version 1803<br>Builds 17134.* |Only supports `hyperv` isolation|
@@ -21,7 +20,6 @@ As we've been improving the Windows container features, we've had to make some c
 |Windows Server 2016<br>Builds: 14393.* |Windows Server 2019<br>Builds 17763.* |Only supports `hyperv` isolation|
 |Windows Server 2016<br>Builds: 14393.* |Windows 10, version 1809<br>Builds 17763.* |Only supports `hyperv` isolation|
 |Windows Server, version 1709<br>Builds 16299.* |Windows Server 2016<br>Builds: 14393.* |Not supported|
-|Windows Server, version 1709<br>Builds 16299.* |Windows Server, version 1609, 1703<br>14393.* , 15063.* |Not supported|
 |Windows Server, version 1709<br>Builds 16299.* |Windows Server, version 1709<br>Builds 16299.* |Supports `process` or `hyperv` isolation|
 |Windows Server, version 1709<br>Builds 16299.* |Windows 10 Fall Creators Update<br>Builds 16299.* |Only supports `hyperv` isolation|
 |Windows Server, version 1709<br>Builds 16299.* |Windows Server, version 1803<br>Builds 17134.* |Only supports `hyperv` isolation|
@@ -29,7 +27,6 @@ As we've been improving the Windows container features, we've had to make some c
 |Windows Server, version 1709<br>Builds 16299.* |Windows Server 2019<br>Builds 17763.* |Only supports `hyperv` isolation|
 |Windows Server, version 1709<br>Builds 16299.* |Windows 10, version 1809<br>Builds 17763.* |Only supports `hyperv` isolation|
 |Windows Server, version 1803<br>Builds 17134.* |Windows Server 2016<br>Builds: 14393.* |Not supported|
-|Windows Server, version 1803<br>Builds 17134.* |Windows Server, version 1609, 1703<br>14393.* , 15063.* |Not supported|
 |Windows Server, version 1803<br>Builds 17134.* |Windows Server, version 1709<br>Builds 16299.* |Not supported|
 |Windows Server, version 1803<br>Builds 17134.* |Windows 10 Fall Creators Update<br>Builds 16299.* |Not supported|
 |Windows Server, version 1803<br>Builds 17134.* |Windows Server, version 1803<br>Builds 17134.* |Supports `process` or `hyperv` isolation|
@@ -37,7 +34,6 @@ As we've been improving the Windows container features, we've had to make some c
 |Windows Server, version 1803<br>Builds 17134.* |Windows Server 2019<br>Builds 17763.* |Only supports `hyperv` isolation|
 |Windows Server, version 1803<br>Builds 17134.* |Windows 10, version 1809<br>Builds 17763.* |Only supports `hyperv` isolation|
 |Windows Server 2019<br>Builds 17763.* |Windows Server 2016<br>Builds: 14393.* |Not supported|
-|Windows Server 2019<br>Builds 17763.* |Windows 10, version 1609, 1703<br>14393.* , 15063.* |Not supported|
 |Windows Server 2019<br>Builds 17763.* |Windows Server, version 1709<br>Builds 16299.* |Not supported
 |Windows Server 2019<br>Builds 17763.* |Windows 10 Fall Creators Update<br>Builds 16299.* |Not supported|
 |Windows Server 2019<br>Builds 17763.* |Windows Server, version 1803<br>Builds 17134.* |Not supported|
@@ -70,7 +66,7 @@ Example 2: The container host is running Windows Server version 1709 with KB4043
 #### Querying version
 
 Method 1:
-Introduced in version 1709, the cmd prompt and `ver` command now return the revision details.
+Introduced in version 1709, the cmd prompt and **ver** command now return the revision details.
 
 ```batch
 Microsoft Windows [Version 10.0.16299.125]
@@ -104,7 +100,7 @@ To check what version your base image uses, review the tags on the Docker hub or
 
 You can run Windows containers with or without Hyper-V isolation. Hyper-V isolation creates a secure boundary around the container with an optimized VM. Unlike standard Windows containers that share the kernel between containers and the host, each Hyper-V isolated container has its own instance of the Windows kernel. This means you can have different OS versions in the container host and image (for more information, see the following compatibility matrix).  
 
-To run a container with Hyper-V isolation, simply add the tag `--isolation=hyperv` to your docker run command.
+To run a container with Hyper-V isolation, simply add the tag **--isolation=hyperv** to your docker run command.
 
 ## Errors from mismatched versions
 
@@ -117,7 +113,7 @@ docker: Error response from daemon: container b81ed896222eb87906ccab1c3dd2fc4932
 There are three ways you can resolve this error:
 
 - Rebuild the container based on the correct version of `microsoft/nanoserver` or `microsoft/windowsservercore`
-- If the host is newer, use `docker run --isolation=hyperv ...`
+- If the host is newer, use **docker run --isolation=hyperv ...**
 - Try running the container on a different host with the same Windows version
 
 ## Choosing container OS versions
@@ -161,16 +157,16 @@ If you need to run multiple versions of Windows for a long period of time, there
 
 ### Finding a service that won't start
 
-If a service won't start, you'll see that the `MODE` is `replicated` but `REPLICAS` will get stuck at 0. To see if the OS version is the problem, then use the following commands:
+If a service won't start, you'll see that the `MODE` is `replicated` but `REPLICAS` will get stuck at 0. To see if the OS version is the problem, run the following commands:
 
-Run `docker service ls` to find the service name:
+Run **docker service ls** to find the service name:
 
 ```dockerfile
 ID                  NAME                MODE                REPLICAS            IMAGE                                             PORTS
 xh6mwbdq2uil        angry_liskov        replicated          0/1                 microsoft/iis:windowsservercore-10.0.14393.1715
 ```
 
-Run `docker service ps <name>` to get the status and latest attempts:
+Run **docker service ps (service name)** to get the status and latest attempts:
 
 ```dockerfile
 C:\Program Files\Docker>docker service ps angry_liskov
@@ -183,7 +179,7 @@ ytnnv80p03xx         \_ angry_liskov.1   microsoft/iis:windowsservercore-10.0.14
 xeqkxbsao57w         \_ angry_liskov.1   microsoft/iis:windowsservercore-10.0.14393.1715   WIN-BSTMQDRQC2E     Shutdown            Failed about a minute ago   "starting container failed: co…"
 ```
 
-If you see "starting container failed: ...", you can see the full error with `docker service ps --no-trunc <container name>`:
+If you see "starting container failed: ...", you can see the full error with **docker service ps --no-trunc (container name)**:
 
 ```dockerfile
 C:\Program Files\Docker>docker service ps --no-trunc angry_liskov
@@ -266,7 +262,7 @@ Here's how to use labels and constraints to match versions:
     docker node update --label-add OsVersion="$((Get-ComputerInfo).OsVersion)" $ENV:COMPUTERNAME
     ```
 
-    Afterwards, you can check those with `docker node inspect`, which should show the newly added labels:
+    Afterwards, you can check those by running the **docker node inspect** command, which should show the newly added labels:
 
     ```yaml
            "Spec": {
@@ -292,7 +288,7 @@ Here's how to use labels and constraints to match versions:
 
     This enforces and limits where a node may run.
 
-For more details on how to use service constraints, check out the [service create reference](https://docs.docker.com/engine/reference/commandline/service_create/#specify-service-constraints-constraint).
+To learn more about how to use service constraints, check out the [service create reference](https://docs.docker.com/engine/reference/commandline/service_create/#specify-service-constraints-constraint).
 
 ## Matching versions using Kubernetes
 
@@ -370,7 +366,7 @@ Events:
 
 ### Mitigation - using node labels and nodeSelector
 
-Run `kubectl get node` to get a list of all nodes. After that, you can run `kubectl describe node <nodename>` to get more details.
+Run **kubectl get node** to get a list of all nodes. After that, you can run **kubectl describe node (node name)** to get more details.
 
 In the following example, two Windows nodes are running different versions:
 
@@ -440,7 +436,7 @@ System Info:
 
 Let's use this example to show how to match the versions:
 
-1. Take note of each node name and `Kernel Version` from system info.
+1. Take note of each node name and `Kernel Version` from the system info.
 
     In our example, the info will look like this:
 
@@ -464,7 +460,7 @@ Let's use this example to show how to match the versions:
 
     ```
 
-3. Check the labels are there by entering `kubectl get nodes --show-labels`.
+3. Check the labels are there by running **kubectl get nodes --show-labels**.
 
     In this example, the output will look like this:
 
