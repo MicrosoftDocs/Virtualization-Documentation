@@ -17,8 +17,8 @@ The Docker Engine and client aren't included with Windows and need to be install
 
 You need Docker in order to work with Windows Containers. Docker consists of the Docker Engine (dockerd.exe), and the Docker client (docker.exe). The easiest way to get everything installed is in the quickstart guides, which will help you get everything set up and run your first container.
 
-* [Windows containers on Windows Server 2019](../quick-start/quick-start-windows-server.md)
-* [Windows containers on Windows 10](../quick-start/quick-start-windows-10.md)
+- [Windows containers on Windows Server 2019](../quick-start/quick-start-windows-server.md)
+- [Windows containers on Windows 10](../quick-start/quick-start-windows-10.md)
 
 For scripted installations, see [Use a script to install Docker EE](https://docs.docker.com/install/windows/docker-ee/#use-a-script-to-install-docker-ee).
 
