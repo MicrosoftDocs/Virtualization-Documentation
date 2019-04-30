@@ -9,7 +9,7 @@ ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: 9e06ad3a-0783-476b-b85c-faff7234809c
 ---
-# Group Managed Service Accounts for Windows containers
+# group Managed Service Accounts for Windows containers
 
 Windows-based networks commonly use Active Directory (AD) to facilitate authentication and authorization between users, computers, and other network resources. Enterprise application developers often design their apps to be AD-integrated and run on domain-joined servers to take advantage of Integrated Windows Authentication, which makes it easy for users and other services to automatically and transparently sign in to the application with their identities.
 
@@ -41,7 +41,7 @@ Get-KdsRootKey
 
 If the command returns a key ID, you're all set and can skip ahead to the [create a group managed service account](#create-a-group-managed-service-account) section. Otherwise, continue on to create the KDS root key.
 
-In a production environment or test environment with multiple domain controllers, run the following command in PowerShell as a *Domain Administrator* to create the KDS root key.
+In a production environment or test environment with multiple domain controllers, run the following cmdlet in PowerShell as a Domain Administrator to create the KDS root key.
 
 ```powershell
 # For production environments
@@ -62,7 +62,7 @@ Add-KdsRootKey -EffectiveTime (Get-Date).AddHours(-10)
 
 ## Create a group Managed Service Account
 
-Every container that uses Integrated Windows Authentication needs at least one gMSA. The primary gMSA is used whenever apps running as *SYSTEM* or *NETWORK SERVICE* access resources on the network. The name of the gMSA will become the container's name on the network, regardless of the hostname assigned to the container. Containers can also be configured with additional gMSAs, in case you want to run a service or application in the container as a different identity from the container computer account.
+Every container that uses Integrated Windows Authentication needs at least one gMSA. The primary gMSA is used whenever apps running as a System or a Network Service access resources on the network. The name of the gMSA will become the container's name on the network, regardless of the hostname assigned to the container. Containers can also be configured with additional gMSAs, in case you want to run a service or application in the container as a different identity from the container computer account.
 
 When you create a gMSA, you also create a shared identity that can be used simultaneously across many different machines. Access to the gMSA password is protected by an Active Directory Access Control List. We recommend creating a security group for each gMSA account and adding the relevant container hosts to the security group to limit access to the password.
 
@@ -72,7 +72,7 @@ Typically, the host or http SPN is registered using the same name as the gMSA ac
 
 For example, if the gMSA account is named "WebApp01" but your users access the site at `mysite.contoso.com`, you should register a `http/mysite.contoso.com` SPN on the gMSA account.
 
-Some applications may require additional SPNs for their unique protocols. For instance, SQL Server requires the "MSSQLSvc/hostname" SPN.
+Some applications may require additional SPNs for their unique protocols. For instance, SQL Server requires the `MSSQLSvc/hostname` SPN.
 
 The following table lists the required attributes for creating a gMSA.
 
@@ -83,7 +83,7 @@ The following table lists the required attributes for creating a gMSA.
 |ServicePrincipalNames | Set at least the host SPN, add other protocols as necessary. | `'host/WebApp01', 'host/WebApp01.contoso.com'` |
 |PrincipalsAllowedToRetrieveManagedPassword | The security group containing your container hosts. | `WebApp01Hosts` |
 
-Once you've decided on the name for your gMSA, run the following commands in PowerShell to create the security group and gMSA.
+Once you've decided on the name for your gMSA, run the following cmdlets in PowerShell to create the security group and gMSA.
 
 > [!TIP]
 > You'll need to use an account that belongs to the **Domain Admins** security group or has been delegated the **Create msDS-GroupManagedServiceAccount objects** permission to run the following commands.
@@ -227,7 +227,7 @@ In the previous example, the gMSA SAM Account Name is "webapp01," so the contain
 
 On Windows Server 2019 and later, the hostname field is not required, but the container will still identify itself by the gMSA name instead of the hostname, even if you explicitly provide a different one.
 
-To check if the gMSA is working correctly, run the following command in the container:
+To check if the gMSA is working correctly, run the following cmdlet in the container:
 
 ```powershell
 # Replace contoso.com with your own domain
@@ -240,7 +240,7 @@ Trust Verification Status = 0 0x0 NERR_Success
 The command completed successfully
 ```
 
-If the Trusted DC Connection Status and Trust Verification Status are not *NERR_Success*, check the [Troubleshooting](#troubleshooting) section for tips on how to debug the problem.
+If the Trusted DC Connection Status and Trust Verification Status are not `NERR_Success`, check the [Troubleshooting](#troubleshooting) section for tips on how to debug the problem.
 
 You can verify the gMSA identity from within the container by running the following command and checking the client name:
 
@@ -300,13 +300,13 @@ When you're orchestrating containers with gMSAs, make sure that:
 > * The credential spec files are created and uploaded to the orchestrator or copied to every container host, depending on how the orchestrator prefers to handle them.
 > * Container networks allow the containers to communicate with the Active Directory Domain Controllers to retrieve gMSA tickets
 
-### Using gMSA with Service Fabric
+### How to use gMSA with Service Fabric
 
 Service Fabric supports running Windows containers with a gMSA when you specify the credential spec location in your application manifest. You'll need to create the credential spec file and place in the **CredentialSpecs** subdirectory of the Docker data directory on each host so that Service Fabric can locate it. You can run the **Get-CredentialSpec** cmdlet, part of the [CredentialSpec PowerShell module](https://aka.ms/credspec), to verify if your credential spec is in the correct location.
 
 See [Quickstart: Deploy Windows containers to Service Fabric](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-quickstart-containers) and [Set up gMSA for Windows containers running on Service Fabric](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-setup-gmsa-for-windows-containers) for more information about how to configure your application.
 
-### Using gMSA with Docker Swarm
+### How to use gMSA with Docker Swarm
 
 To use a gMSA with containers managed by Docker Swarm, run the [docker service create](https://docs.docker.com/engine/reference/commandline/service_create/) command with the `--credential-spec` parameter:
 
@@ -316,7 +316,7 @@ docker service create --credential-spec "file://contoso_webapp01.json" --hostnam
 
 See the [Docker Swarm example](https://docs.docker.com/engine/reference/commandline/service_create/#provide-credential-specs-for-managed-service-accounts-windows-only) for more information about how to use credential specs with Docker services.
 
-### Using gMSA with Kubernetes
+### How to use gMSA with Kubernetes
 
 Support for scheduling Windows containers with gMSAs in Kubernetes is available as an alpha feature in Kubernetes 1.14. See [Configure gMSA for Windows pods and containers](https://kubernetes.io/docs/tasks/configure-pod-container/configure-gmsa) for the latest information about this feature and how to test it in your Kubernetes distribution.
 
@@ -409,7 +409,7 @@ If you're encountering errors when running a container with a gMSA, the followin
 
 #### Check the Credential Spec file
 
-1. Run `Get-CredentialSpec` from the [CredentialSpec PowerShell module](https://aka.ms/credspec) to locate all credential specs on the machine. The credential specs must be stored in the "CredentialSpecs" directory under the Docker root directory. You can find the Docker root directory by running `docker info -f "{{.DockerRootDir}}"`.
+1. Run **Get-CredentialSpec** from the [CredentialSpec PowerShell module](https://aka.ms/credspec) to locate all credential specs on the machine. The credential specs must be stored in the "CredentialSpecs" directory under the Docker root directory. You can find the Docker root directory by running **docker info -f "{{.DockerRootDir}}"**.
 2. Open the CredentialSpec file and make sure the following fields are filled out correctly:
     - **Sid**: the SID of your gMSA account
     - **MachineAccountName**: the gMSA SAM Account Name (don't include full domain name or dollar sign)
@@ -463,7 +463,7 @@ If you're encountering errors when running a container with a gMSA, the followin
     nltest /sc_verify:contoso.com
     ```
 
-    The trust verification should return NERR_SUCCESS if the gMSA is available and network connectivity allows the container to talk to the domain. If it fails, verify the network configuration of the host and container. Both need to be able to communicate with the domain controller.
+    The trust verification should return `NERR_SUCCESS` if the gMSA is available and network connectivity allows the container to talk to the domain. If it fails, verify the network configuration of the host and container. Both need to be able to communicate with the domain controller.
 
 4. Ensure your app is [configured to use the gMSA](#configure-your-application-to-use-the-gmsa). The user account inside the container doesn't change when you use a gMSA. Rather, the System account uses the gMSA when it talks to other network resources. This means your app will need to run as Network Service or Local System to leverage the gMSA identity.
 
@@ -474,4 +474,4 @@ If you're encountering errors when running a container with a gMSA, the followin
 
 ## Additional resources
 
-- [Group Managed Service Accounts Overview](https://docs.microsoft.com/en-us/windows-server/security/group-managed-service-accounts/group-managed-service-accounts-overview)
+- [group Managed Service Accounts overview](https://docs.microsoft.com/en-us/windows-server/security/group-managed-service-accounts/group-managed-service-accounts-overview)

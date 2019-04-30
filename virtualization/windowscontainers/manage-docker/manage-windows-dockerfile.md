@@ -342,7 +342,7 @@ RUN powershell.exe -Command \
 To modify the escape character, place an escape parser directive on the very first line of the Dockerfile. This can be seen in the following example.
 
 >[!NOTE]
->Only two values can be used as escape characters, `\` and `` ` ``.
+>Only two values can be used as escape characters: `\` and `` ` ``.
 
 ```dockerfile
 # escape=`
@@ -408,7 +408,7 @@ RUN powershell.exe -Command \
 In some cases, it may be helpful to copy a script into the containers you use during the image creation process, then run the script from within the container.
 
 >[!NOTE]
->This will limit any image layer caching, and decrease readability of the Dockerfile.
+>This will limit any image layer caching and decrease the Dockerfile's readability.
 
 This example copies a script from the build machine into the container using the `ADD` instruction. This script is then run using the RUN instruction.
 
@@ -477,6 +477,5 @@ windowsservercore   latest              6801d964fda5        4 months ago        
 
 ## Further reading and references
 
-[Optimize Dockerfiles and Docker build for Windows](optimize-windows-dockerfile.md)
-
-[Dockerfile reference](https://docs.docker.com/engine/reference/builder/)
+- [Optimize Dockerfiles and Docker build for Windows](optimize-windows-dockerfile.md)
+- [Dockerfile reference](https://docs.docker.com/engine/reference/builder/)

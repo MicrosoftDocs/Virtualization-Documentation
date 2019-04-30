@@ -100,7 +100,7 @@ To check what version your base image uses, review the tags on the Docker hub or
 
 You can run Windows containers with or without Hyper-V isolation. Hyper-V isolation creates a secure boundary around the container with an optimized VM. Unlike standard Windows containers that share the kernel between containers and the host, each Hyper-V isolated container has its own instance of the Windows kernel. This means you can have different OS versions in the container host and image (for more information, see the following compatibility matrix).  
 
-To run a container with Hyper-V isolation, simply add the tag **--isolation=hyperv** to your docker run command.
+To run a container with Hyper-V isolation, simply add the tag `--isolation=hyperv` to your docker run command.
 
 ## Errors from mismatched versions
 
@@ -113,15 +113,15 @@ docker: Error response from daemon: container b81ed896222eb87906ccab1c3dd2fc4932
 There are three ways you can resolve this error:
 
 - Rebuild the container based on the correct version of `microsoft/nanoserver` or `microsoft/windowsservercore`
-- If the host is newer, use **docker run --isolation=hyperv ...**
+- If the host is newer, run **docker run --isolation=hyperv ...**
 - Try running the container on a different host with the same Windows version
 
-## Choosing container OS versions
+## Choose which container OS version to use
 
 >[!NOTE]
->The "latest" tag will be updated along with Windows Server 2016, the current [LTSC product](https://docs.microsoft.com/en-us/windows-server/get-started/semi-annual-channel-overview). The following instructions are for container images that match the Windows Server version 1709 release.
+>The "latest" tag will be updated along with Windows Server 2016, the current [Long-Term Servicing Channel product](https://docs.microsoft.com/en-us/windows-server/get-started/semi-annual-channel-overview). The following instructions are for container images that match the Windows Server version 1709 release.
 
-You must know which version you need to use for your container. For example, if you're using Windows Server version 1709 and want to have the latest patches for it, you should use the tag "1709" when specifying which version of the base OS container images you want, like so:
+You must know which version you need to use for your container. For example, if you're using Windows Server version 1709 and want to have the latest patches for it, you should use the tag `1709` when specifying which version of the base OS container images you want, like so:
 
 ``` dockerfile
 FROM microsoft/windowsservercore:1709
@@ -179,7 +179,7 @@ ytnnv80p03xx         \_ angry_liskov.1   microsoft/iis:windowsservercore-10.0.14
 xeqkxbsao57w         \_ angry_liskov.1   microsoft/iis:windowsservercore-10.0.14393.1715   WIN-BSTMQDRQC2E     Shutdown            Failed about a minute ago   "starting container failed: co…"
 ```
 
-If you see "starting container failed: ...", you can see the full error with **docker service ps --no-trunc (container name)**:
+If you see `starting container failed: ...`, you can see the full error with **docker service ps --no-trunc (container name)**:
 
 ```dockerfile
 C:\Program Files\Docker>docker service ps --no-trunc angry_liskov

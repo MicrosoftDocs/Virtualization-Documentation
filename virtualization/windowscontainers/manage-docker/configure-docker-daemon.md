@@ -24,7 +24,7 @@ For scripted installations, see [Use a script to install Docker EE](https://docs
 
 Before you can use Docker, you'll need to install the container images. For more information, see [the quickstart guide for using images](../quick-start/quick-start-images.md).
 
-## Configure Docker with configuration file
+## Configure Docker with a configuration file
 
 The preferred method for configuring the Docker Engine on Windows is using a configuration file. The configuration file can be found at 'C:\ProgramData\Docker\config\daemon.json'. You can create this file if it doesn't already exist.
 
@@ -220,7 +220,7 @@ This includes the "Containers" feature, which is automatically enabled on any Wi
 To remove Windows features on Windows 10:
 
 - Go to **Control Panel** > **Programs** > **Programs and Features** > **Turn Windows features on or off**.
-- Find the name of the feature or features you want to disable—in this case, **"Containers"** and (optionally) **"Hyper-V"**
+- Find the name of the feature or features you want to disable—in this case, **Containers** and (optionally) **Hyper-V**.
 - Uncheck the box next to the name of the feature you want to disable.
 - Select **"OK"**
 
