@@ -17,13 +17,13 @@ We've been building new tools for creating virtual machines so the instructions 
 
 Pick your operating system for the right set of instructions:
 
-* [Windows 10 Fall Creators Update and later](quick-create-virtual-machine.md#windows-10-fall-creators-update)
-* [Windows 10 Creators Update](quick-create-virtual-machine.md#windows-10-creators-update)
-* [Windows 10 Anniversary Update and earlier](quick-create-virtual-machine.md#before-windows-10-creators-update)
+* [Windows 10 Fall Creators Update (v1709) and later](quick-create-virtual-machine.md#windows-10-fall-creators-update-windows-10-version-1709)
+* [Windows 10 Creators Update (v1703)](quick-create-virtual-machine.md#windows-10-creators-update-windows-10-version-1703)
+* [Windows 10 Anniversary Update (v1607) and earlier](quick-create-virtual-machine.md#before-windows-10-creators-update-windows-10-version-1607-and-earlier)
 
 Let's get started.
 
-## Windows 10 Fall Creators Update
+## Windows 10 Fall Creators Update (Windows 10 version 1709)
 
 In Fall Creators Update, Quick Create expanded to include a virtual machine gallery that can be launched independently from Hyper-V Manager.
 
@@ -48,7 +48,7 @@ To create a new virtual machine in Fall Creators Update:
 
 That's it!  Quick Create will take care of the rest.
 
-## Windows 10 Creators Update
+## Windows 10 Creators Update (Windows 10 version 1703)
 
 ![Screen shot of the quick create UI](media/quickcreatesteps_inked.jpg)
 
@@ -76,7 +76,7 @@ Your virtual machine should look something like this:
 
 > **Note:** Unless you're running a volume-licensed version of Windows, you need a separate license for Windows running inside a virtual machine. The virtual machine's operating system is independent of the host operating system.
 
-## Before Windows 10 Creators Update
+## Before Windows 10 Creators Update (Windows 10 version 1607 and earlier)
 
 If you aren't running Windows 10 Creators Update or later, follow these instructions using New Virtual Machine Wizard instead:
 
