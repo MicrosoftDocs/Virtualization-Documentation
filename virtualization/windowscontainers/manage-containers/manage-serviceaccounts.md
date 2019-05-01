@@ -52,7 +52,7 @@ Although the command implies the key will be effective immediately, you will nee
 
 If you only have one domain controller in your domain, you can expedite the process by setting the key to be effective 10 hours ago.
 
->[IMPORTANT]
+>[!IMPORTANT]
 >Don't use this technique in a production environment.
 
 ```powershell
