@@ -3,7 +3,7 @@ title: Optimize Windows Dockerfiles
 description: Optimize Dockerfiles for Windows containers.
 keywords: docker, containers
 author: cwilhit
-ms.date: 04/22/2019
+ms.date: 05/06/2019
 ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
