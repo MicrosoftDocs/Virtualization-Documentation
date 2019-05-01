@@ -294,7 +294,7 @@ To learn more about how to use service constraints, check out the [service creat
 
 The same issue described in [Matching versions using Docker Swarm](#matching-versions-using-docker-swarm) can happen when pods are scheduled in Kubernetes. This issue can be avoided with similar strategies:
 
-- Rebuild the container based on the same OS version in development and production. To learn how, see [Choosing Container OS versions](#choosing-container-os-versions).
+- Rebuild the container based on the same OS version in development and production. To learn how, see [Choose which container OS version to use](#choose-which-container-os-version-to-use).
 - Use node labels and nodeSelectors to make sure pods are scheduled on compatible nodes if both Windows Server 2016 and Windows Server version 1709 nodes are in the same cluster
 - Use separate clusters based on OS version
 

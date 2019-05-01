@@ -9,7 +9,7 @@ ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: 9e06ad3a-0783-476b-b85c-faff7234809c
 ---
-# group Managed Service Accounts for Windows containers
+# Group Managed Service Accounts for Windows containers
 
 Windows-based networks commonly use Active Directory (AD) to facilitate authentication and authorization between users, computers, and other network resources. Enterprise application developers often design their apps to be AD-integrated and run on domain-joined servers to take advantage of Integrated Windows Authentication, which makes it easy for users and other services to automatically and transparently sign in to the application with their identities.
 
@@ -423,29 +423,29 @@ If you're encountering errors when running a container with a gMSA, the followin
 
     ```json
     {
-    "CmsPlugins":[
-        "ActiveDirectory"
-    ],
-    "DomainJoinConfig":{
-        "Sid":"S-1-5-21-702590844-1001920913-2680819671",
-        "MachineAccountName":"webapp01",
-        "Guid":"56d9b66c-d746-4f87-bd26-26760cfdca2e",
-        "DnsTreeName":"contoso.com",
-        "DnsName":"contoso.com",
-        "NetBiosName":"CONTOSO"
-    },
-    "ActiveDirectoryConfig":{
-        "GroupManagedServiceAccounts":[
-        {
-            "Name":"webapp01",
-            "Scope":"contoso.com"
+        "CmsPlugins": [
+            "ActiveDirectory"
+        ],
+        "DomainJoinConfig": {
+            "Sid": "S-1-5-21-702590844-1001920913-2680819671",
+            "MachineAccountName": "webapp01",
+            "Guid": "56d9b66c-d746-4f87-bd26-26760cfdca2e",
+            "DnsTreeName": "contoso.com",
+            "DnsName": "contoso.com",
+            "NetBiosName": "CONTOSO"
         },
-        {
-            "Name":"webapp01",
-            "Scope":"CONTOSO"
+        "ActiveDirectoryConfig": {
+            "GroupManagedServiceAccounts": [
+                {
+                    "Name": "webapp01",
+                    "Scope": "contoso.com"
+                },
+                {
+                    "Name": "webapp01",
+                    "Scope": "CONTOSO"
+                }
+            ]
         }
-        ]
-    }
     }
     ```
 
