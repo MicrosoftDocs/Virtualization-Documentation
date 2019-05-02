@@ -10,43 +10,42 @@ ms.service: windows-containers
 ms.assetid: 8e273856-3620-4e58-9d1a-d1e06550448
 
 ---
-
 # Containers on Windows
 
-## What are containers
+## What containers are
 
-Containers are a way to wrap up an application into its own isolated box. For the application in its container, it has no knowledge of any other applications or processes that exist outside of its box. Everything the application depends on to run successfully also lives inside this container.  Wherever the box may move, the application will always be satisfied because it is bundled up with everything it needs to run.
+Containers wrap up an application into its own isolated box. The application in its container has no knowledge of any other applications or processes that exist outside of its box. Everything the application depends on to run successfully also lives inside this container. Wherever the box may move, the application will always be satisfied because it's bundled up with everything it needs to run.
 
-Imagine a kitchen. We package up all the appliances and furniture, the pots and pans, the dish soap and hand towels. This is our container.
+Imagine a kitchen. Inside this single room are all the appliances, furniture, pots and pans, the dish soap and hand towels, everything you need to have a functioning kitchen. This is our container.
 
 ![Kitchen analogy](media/box1.png)
 
-We can now take this container and drop it into whatever host apartment we want, and it will be the same kitchen. All we must do is connect electricity and water to it, and then we’re clear to start cooking (because we have all the appliances we need!).
+We can now take this room and drop it into whatever host apartment we want. All we need to start cooking is to connect the room to power and water.
+
+Why stop there? You can customize this room to be anything you want as long as it has everything it needs to function, whether it's a living room, an office, or a game room. You can put many different kinds of rooms in your host apartment, fill your building with identical rooms, or have a mix of the two.
 
 ![Apartment analogy](media/apartment.png)
 
-In much the same way, containers are like this kitchen. There can be different kinds of rooms as well as many of the same kinds of rooms. What matters is that the containers come packaged up with everything they need.
+Containers function very much like these portable rooms. The container is an isolated application that comes with everything it needs to run, and it can be dropped into any kind of host.
 
-Watch a short overview below:
+Watch this short overview to learn more:
 <iframe width="800" height="450" src="https://www.youtube.com/embed/Ryx3o0rD5lY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ## Container fundamentals
 
-Containers are an isolated, resource controlled, and portable runtime environment which runs on a host machine or virtual machine. An application or process which runs in a container is packaged with all the required dependencies and configuration files; it’s given the illusion that there are no other processes running outside of its container.
+Containers are an isolated, resource controlled, and portable runtime environment that runs on a host machine or virtual machine. An application or process that runs in a container is packaged with all the required dependencies and configuration files, giving it the illusion that nothing exists outside of its container. Because of this, the container will only use the resources its host provisions and won't touch any resources provisioned for other containers.
 
-The container’s host provisions a set of resources for the container and the container will use only these resources. As far as the container knows, no other resources exist outside of what it has been given and therefore the container cannot touch resources which may have been provisioned for a neighboring container.
+Let's get to know some terms you'll find useful as you begin to create and work with Windows containers.
 
-The following key concepts will be helpful as you begin creating and working with Windows containers.
+- **Container host:** A physical or virtual computer system configured with the Windows container feature. The container host will run one or more Windows containers.
 
-**Container Host:** Physical or Virtual computer system configured with the Windows container feature. The container host will run one or more Windows containers.
+- **Sandbox:** When you start a container, all write actions like file system modifications, registry modifications, or software installations are captured in this ‘sandbox’ layer.
 
-**Container Image:** As modifications are made to a containers file system or registry—such as with software installation—they are captured in a sandbox. In many cases you may want to capture this state such that new containers can be created that inherit these changes. That’s what an image is – once the container has stopped you can either discard that sandbox or you can convert it into a new container image. For example, let’s imagine that you have deployed a container from the Windows Server Core OS image. You then install MySQL into this container. Creating a new image from this container would act as a deployable version of the container. This image would only contain the changes made (MySQL), however it would work as a layer on top of the Container OS Image.
+- **Container OS image:** Containers are deployed from images. The container OS image is the first layer in potentially many image layers that make up a container. This image provides the operating system environment. A Container OS Image is immutable. That is, it cannot be modified.
 
-**Sandbox:** Once a container has been started, all write actions such as file system modifications, registry modifications or software installations are captured in this ‘sandbox’ layer.
+- **Container image:** As you modify a container's file system or registry, like when you install software, these modifications are captured in a sandbox. In some cases, you might want to capture a certain state of the sandbox so you can recreate it in new containers. That state is called a container image. Once the container has stopped, you can either discard the sandbox or convert the sandbox into a new container image. For example, let’s say you've deployed a container from the Windows Server Core OS image. You then install MySQL into this container. If you create a new image from this container, you can deploy that image in a new container to carry over the changes from your first container. This image would only contain the changes you made to the first container (in this case, installing MySQL), but it would work as a layer on top of the container OS image instead of replacing it.
 
-**Container OS Image:** Containers are deployed from images. The container OS image is the first layer in potentially many image layers that make up a container. This image provides the operating system environment. A Container OS Image is immutable. That is, it cannot be modified.
-
-**Container Repository:** Each time a container image is created, the container image and its dependencies are stored in a local repository. These images can be reused many times on the container host. The container images can also be stored in a public or private registry, such as Docker Hub, so that they can be used across many different container hosts.
+- **Container repository:** Each time you create a container image, the image and its dependencies are stored in a local repository. You can reuse these images many times on the container host. You can also store the container images in a public or private registry, such as Docker Hub, so they can be used across many different container hosts.
 
 ![Container fundamentals](media/containerfund.png)
 
