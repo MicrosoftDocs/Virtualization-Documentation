@@ -43,29 +43,27 @@ Let's get to know some terms you'll find useful as you begin to create and work 
 
 - **Container OS image:** Containers are deployed from images. The container OS image is the first layer in potentially many image layers that make up a container. This image provides the operating system environment. A Container OS Image is immutable. That is, it cannot be modified.
 
-- **Container image:** As you modify a container's file system or registry, like when you install software, these modifications are captured in a sandbox. In some cases, you might want to capture a certain state of the sandbox so you can recreate it in new containers. That state is called a container image. Once the container has stopped, you can either discard the sandbox or convert the sandbox into a new container image. For example, let’s say you've deployed a container from the Windows Server Core OS image. You then install MySQL into this container. If you create a new image from this container, you can deploy that image in a new container to carry over the changes from your first container. This image would only contain the changes you made to the first container (in this case, installing MySQL), but it would work as a layer on top of the container OS image instead of replacing it.
+- **Container image:** As you modify a container's file system or registry, like when you install software, these modifications are captured in a sandbox. In some cases, you might want to capture a certain state of the sandbox so you can recreate that state in new containers. This captured state is called a container image. Once the container has stopped, you can either discard the sandbox or convert the sandbox into a new container image. For example, let’s say you've deployed a container from the Windows Server Core OS image. You then install MySQL into this container. If you create a new image from this container, you can deploy that image in a new container to carry over the changes from your first container. This image would only contain the changes you made to the first container (in this case, installing MySQL), but it would work as a layer on top of the container OS image instead of replacing it.
 
 - **Container repository:** Each time you create a container image, the image and its dependencies are stored in a local repository. You can reuse these images many times on the container host. You can also store the container images in a public or private registry, such as Docker Hub, so they can be used across many different container hosts.
 
 ![Container fundamentals](media/containerfund.png)
 
-For someone familiar with virtual machines, containers may appear to be incredibly similar. A container runs an operating system, has a file system and can be accessed over a network just as if it was a physical or virtual computer system. However, the technology and concepts behind containers are vastly different from virtual machines.
-
-Mark Russinovich, Microsoft Azure guru, has [a great blog post](https://azure.microsoft.com/en-us/blog/containers-docker-windows-and-trends/) which details the differences.
+Someone familiar with virtual machines might think containers seem similar to virtual machines. A container runs an operating system, has a file system, and can be accessed over a network much like a physical or virtual computer system. However, the technology and concepts behind containers are vastly different from virtual machines. To learn more about what these concepts are, read Mark Russinovich's [blog post](https://azure.microsoft.com/blog/containers-docker-windows-and-trends/) that explains the differences in more detail.
 
 ## Windows container types
 
 Windows containers include two different container types, or runtimes.
 
-**Windows Server Containers** – provide application isolation through process and namespace isolation technology. A Windows Server Container shares a kernel with the container host and all containers running on the host. These containers do not provide a hostile security boundary and should not be used to isolate untrusted code. Because of the shared kernel space, these containers require the same kernel version and configuration.
+Windows Server containers provide application isolation through process and namespace isolation technology. A Windows Server container shares a kernel with the container host and all containers running on the host. These containers don't provide a hostile security boundary and shouldn't be used to isolate untrusted code. Because of the shared kernel space, these containers require the same kernel version and configuration.
 
-**Hyper-V Isolation** – expands on the isolation provided by Windows Server Containers by running each container in a highly optimized virtual machine. In this configuration, the kernel of the container host is not shared with other containers on the same host. These containers are designed for hostile multitenant hosting with the same security assurances of a virtual machine. Since these containers do not share the kernel with the host or other containers on the host, they can run kernels with different versions and configurations (with in supported versions) - for example all Windows containers on Windows 10 use Hyper-V isolation to utilize the Windows Server kernel version and configuration.
+Hyper-V isolation expands on the isolation provided by Windows Server Containers by running each container in a highly optimized virtual machine. In this configuration, the container host doesn't share its kernel with other containers on the same host. These containers are designed for hostile multitenant hosting with the same security assurances of a virtual machine. Since these containers don't share the kernel with the host or other containers on the host, they can run kernels with different versions and configurations (within supported versions). For example, all Windows containers on Windows 10 use Hyper-V isolation to utilize the Windows Server kernel version and configuration.
 
-Running a container on Windows with or without Hyper-V Isolation is a runtime decision. You may elect to create the container with Hyper-V isolation initially and later at runtime choose to run it instead as a Windows Server container.
+Running a container on Windows with or without Hyper-V Isolation is a runtime decision. You can initially create the container with Hyper-V isolation, and then later at runtime choose to run it as a Windows Server container instead.
 
 ## What is Docker?
 
-As you read about containers, you’ll inevitably hear about Docker. Docker is the vessel by which container images are packaged and delivered. This automated process produces images (effectively templates) which may then be run anywhere—on premises, in the cloud, or on a personal machine—as a container.
+Docker is an automated process that packages and delivers container images. Docker produces images (effectively templates) that can be run anywhere as a container, whether it's on premises, in the cloud, or on a personal machine.
 
 ![Containers with Docker](media/docker.png)
 
