@@ -63,7 +63,7 @@ Running a container on Windows with or without Hyper-V Isolation is a runtime de
 
 ## What is Docker?
 
-Docker is an automated process that packages and delivers container images. Docker produces images (effectively templates) that can be run anywhere as a container, whether it's on premises, in the cloud, or on a personal machine.
+Docker is an automated process that packages and delivers container images. Docker produces images that can be run anywhere as a container, whether it's on premises, in the cloud, or on a personal machine.
 
 ![Containers with Docker](media/docker.png)
 
@@ -71,40 +71,40 @@ Just like any other container, a Windows Server container can be managed with [D
 
 ## Containers for developers
 
-From a developer’s desktop, to a testing machine, to a set of production machines, a Docker image can be created that will deploy identically across any environment in seconds. This story has created a massive and growing ecosystem of applications packaged in Docker containers with DockerHub, the public containerized-application registry that Docker maintains, currently publishing more than 180,000 applications in the public community repository.
+Developers can create a Docker image that will deploy identically across all environments in seconds. There's a massive and growing ecosystem of applications packaged in Docker containers. DockerHub, a public containerized-application registry maintained by Docker, has published more than 180,000 applications in its public community repository, and that number is still growing.
 
-When you containerize an app, only the app and the components needed to run the app are combined into an "image". Containers are then created from this image as you need them. You can also use an image as a baseline to create another image, making image creation even faster. Multiple containers can share the same image, which means containers start very quickly and use fewer resources. For example, you can use containers to spin up light-weight and portable app components – or ‘micro-services’ – for distributed apps and quickly scale each service separately.
+When you containerize an app, only the app and the components needed to run the app are combined into an image. Containers are then created from this image as you need them. You can also use an image as a baseline to create another image, making image creation even faster. Multiple containers can share the same image, which means containers start up very quickly and use fewer resources. For example, you can use containers to spin up lightweight and portable app components, also called "microservices," for distributed apps and quickly scale each service separately.
 
-Because the container has everything it needs to run your application, they are very portable and can run on any machine that is running Windows Server 2016. You can create and test containers locally, then deploy that same container image to your company's private cloud, public cloud or service provider. The natural agility of Containers supports modern app development patterns in large scale, virtualized cloud environments.
+Containers are portable and versatile. They come with everything they need to run your application, and they're compatible with any machine running Windows Server 2016. You can create and test a container locally, then deploy that same container image to your company's private cloud, public cloud, or service provider. The natural agility of containers supports modern app development patterns in large scale, virtualized cloud environments.
 
-With containers, developers can build an app in any language. These apps are completely portable and can run anywhere - laptop, desktop, server, private cloud, public cloud or service provider - without any code changes.  
+With containers, developers can build an app in any language. These apps are completely portable and can run anywhere without code changes on a laptop, desktop, server, private cloud, public cloud, and service provider.  
 
-Containers help developers build and ship higher-quality applications, faster.
+Containers help developers build and ship higher-quality applications faster.
 
-## Containers for IT Professionals
+## Containers for IT professionals
 
-IT Professionals can use containers to provide standardized environments for their development, QA, and production teams. They no longer have to worry about complex installation and configuration steps. By using containers, systems administrators abstract away differences in OS installations and underlying infrastructure.
+IT professionals can use containers to provide standardized environments for their development, QA, and production teams. They no longer have to worry about complex installation and configuration procedures. By using containers, systems administrators abstract away differences in OS installations and underlying infrastructure.
 
-Containers help admins create an infrastructure that is simpler to update and maintain.
+Containers help admins create infrastructure that's easier to update and maintain.
 
 ## Container orchestrators
 
-Because of their small size and application orientation, containers are well suited for agile delivery environments and microservice-based architectures. When you use containers and microservices, however, you can easily have hundreds or thousands of components in your environment.  You may be able to manually manage a few dozen virtual machines or physical servers, but there is no way you can manage a production-scale container environment without automation.  The task of automating and managing a large number of containers and how they interact is known as orchestration. 
+Because of their small size and application orientation, containers are perfect for agile delivery environments and microservice-based architectures. However, an environment that uses containers and microservers can have hundreds or thousands of components to keep track of. You might be able to manually manage a few dozen virtual machines or physical servers, but there's no way to properly manage a production-scale container environment without automation. This task should fall to your orchestrator, a process that automate and manages a large number of containers and how they interact.
 
-The standard definition of orchestration includes the following tasks:
+Orchestrators perform the following tasks:
 
-- Scheduling: Given a container image and a resource request, find a suitable machine on which to run the container.
-- Affinity/Anti-affinity: Specify that a set of containers should run nearby each other (for performance) or sufficiently far apart (for availability).
+- Scheduling: When given a container image and a resource request, the orchestrator finds a suitable machine on which to run the container.
+- Affinity/Anti-affinity: Specify whether a set of containers should run near each other for performance or far apart for availability.
 - Health monitoring: Watch for container failures and automatically reschedule them.
-- Failover: Keep track of what is running on each machine and reschedule containers from failed machines to healthy nodes.
-- Scaling: Add or remove container instances to match demand, either manually or automatically.
-- Networking: Provide an overlay network for coordinating containers to communicate across multiple host machines.
+- Failover: Keep track of what's running on each machine and reschedule containers from failed machines to healthy nodes.
+- Scaling: Add or remove container instances to match demand, manually or automatically.
+- Networking: Provide an overlay network that coordinates containers to communicate across multiple host machines.
 - Service discovery: Enable containers to locate each other automatically even as they move between host machines and change IP addresses.
 - Coordinated application upgrades: Manage container upgrades to avoid application down time and enable rollback if something goes wrong.
 
 Azure offers two container orchestrators: Azure Kubernetes Service (AKS) and Service Fabric.
 
-[Azure Kubernetes Service (AKS)](/azure/aks/) makes it simple to create, configure, and manage a cluster of virtual machines that are preconfigured to run containerized applications. This enables you to use your existing skills, or draw upon a large and growing body of community expertise, to deploy and manage container-based applications on Microsoft Azure. By using AKS, you can take advantage of the enterprise-grade features of Azure, while still maintaining application portability through Kubernetes and the Docker image format.
+[Azure Kubernetes Service (AKS)](/azure/aks/) makes it simple to create, configure, and manage a cluster of virtual machines preconfigured to run containerized applications. This enables you to use your existing skills and draw upon a large and growing body of community expertise to deploy and manage container-based applications on Microsoft Azure. By using AKS, you can take advantage of the enterprise-grade features of Azure while still maintaining application portability through Kubernetes and the Docker image format.
 
 [Azure Service Fabric](/azure/service-fabric/) is a distributed systems platform that makes it easy to package, deploy, and manage scalable and reliable microservices and containers. Service Fabric addresses the significant challenges in developing and managing cloud native applications. Developers and administrators can avoid complex infrastructure problems and focus on implementing mission-critical, demanding workloads that are scalable, reliable, and manageable. Service Fabric represents the next-generation platform for building and managing these enterprise-class, tier-1, cloud-scale applications running in containers.
 
@@ -114,7 +114,9 @@ Azure offers two container orchestrators: Azure Kubernetes Service (AKS) and Ser
 
 ## Try Windows Server containers
 
-Ready to begin leveraging the awesome power of containers? Hit the jumps below to get a hands-on with deploying your very first container: <br/>
-For users on Windows Server, go here - [Windows Server Quick Start Introduction](../quick-start/quick-start-windows-server.md) <br/>
-For users on Windows 10, go here - [Windows 10 Quick Start Introduction](../quick-start/quick-start-windows-10.md)
+Ready to begin leveraging the awesome power of containers? Use these resources to get started :
+
+To set up a container on Windows Server, see the [Windows Server quickstart](../quick-start/quick-start-windows-server.md)
+
+To set up a container on Windows 10, see the [Windows 10 quickstart](../quick-start/quick-start-windows-10.md)
 
