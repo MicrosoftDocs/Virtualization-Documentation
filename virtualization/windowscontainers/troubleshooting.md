@@ -23,7 +23,7 @@ If that doesn't help find the source of the problem, please go ahead and post th
 
 
 ## Finding Logs
-There are multiple services that are used to manage Windows Containers. The next sections shows where to get logs for each service.
+There are multiple services that are used to manage Windows containers. The next sections shows where to get logs for each service.
 
 # Docker Engine
 The Docker Engine logs to the Windows 'Application' event log, rather than to a file. These logs can easily be read, sorted, and filtered using Windows PowerShell

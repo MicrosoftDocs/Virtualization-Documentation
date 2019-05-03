@@ -9,8 +9,7 @@ ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: 29fbe13a-228a-4eaa-9d4d-90ae60da5965
 ---
-
-# Building a Container Ecosystem
+# Building a container ecosystem
 
 To understand why building a container ecosystem is so important, let's first talk about Docker.
 
@@ -28,7 +27,7 @@ Now let's talk about that ecosystem of applications and how you can build on Doc
 
 ## Components in a container ecosystem
 
-Windows Containers are a key component of a large container ecosystem. We’re working across the industry to deliver developer choice at each layer of the solution stack.
+Windows containers are a key component of a large container ecosystem. We’re working across the industry to deliver developer choice at each layer of the solution stack.
 
 The container ecosystem provides ways to manage containers, share containers and develop apps that run in containers.
 

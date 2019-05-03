@@ -9,29 +9,27 @@ ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: a0e62b32-0c4c-4dd4-9956-8056e9abd9e5
 ---
-
 # Container platform tools on Windows
 
-The Windows container platform is expanding!  Docker was the first piece of the container journey, now we are building other container platform tools.
+The Windows container platform is expanding! Docker was the first piece of the container journey, now we are building other container platform tools.
 
-1. [containerd/cri](https://github.com/containerd/cri) - new in Windows Server 2019/Windows 10 1809.
-1. [runhcs](https://github.com/Microsoft/hcsshim/tree/master/cmd/runhcs) - a Windows container host counterpart to runc.
-1. [hcs](https://docs.microsoft.com/virtualization/api/) - the Host Compute Service + handy shims to make it easier to use.
-
-    * [hcsshim](https://github.com/microsoft/hcsshim)
-    * [dotnet-computevirtualization](https://github.com/microsoft/dotnet-computevirtualization)
+* [containerd/cri](https://github.com/containerd/cri) - new in Windows Server 2019/Windows 10 1809.
+* [runhcs](https://github.com/Microsoft/hcsshim/tree/master/cmd/runhcs) - a Windows container host counterpart to runc.
+* [hcs](https://docs.microsoft.com/virtualization/api/) - the Host Compute Service + handy shims to make it easier to use.
+  * [hcsshim](https://github.com/microsoft/hcsshim)
+  * [dotnet-computevirtualization](https://github.com/microsoft/dotnet-computevirtualization)
 
 This article will talk about the Windows and Linux container platform as well as each container platform tool.
 
 ## Windows and Linux container platform
 
-In Linux environments, container management tools like Docker are built on a more granular set of container tools - [runc](https://github.com/opencontainers/runc) and [containerd](https://containerd.io/).
+In Linux environments, container management tools like Docker are built on a more granular set of container tools: [runc](https://github.com/opencontainers/runc) and [containerd](https://containerd.io/).
 
 ![Docker architecture on Linux](media/docker-on-linux.png)
 
-`runc` is a Linux command line tool for creating and running containers according to the [OCI container runtime specification](https://github.com/opencontainers/runtime-spec).
+`runc` is a Linux command-line tool for creating and running containers according to the [OCI container runtime specification](https://github.com/opencontainers/runtime-spec).
 
-`containerd` is a daemon that manages container life cycle from downloading and unpacking the container image through container execution and supervision.
+`containerd` is a daemon that manages container life cycle from downloading and unpacking the container image to container execution and supervision.
 
 On Windows, we took a different approach.  When we started working with Docker to support Windows containers, we built directly on the HCS (Host Compute Service).  [This blog post](https://blogs.technet.microsoft.com/virtualization/2017/01/27/introducing-the-host-compute-service-hcs/) is full of information about why we built the HCS and why we took this approach to containers initially.
 
@@ -48,7 +46,7 @@ Functional differences between runc and runhcs include:
 * `runhcs` runs on Windows.  It communicates with the [HCS](containerd.md#hcs) to create and manage containers.
 * `runhcs` can run a variety of different container types.
 
-  * Windows and Linux [Hyper-V containers](../manage-containers/hyperv-container.md)
+  * Windows and Linux [Hyper-V isolation](../manage-containers/hyperv-container.md)
   * Windows process containers (container image must match the container host)
 
 **Usage:**
@@ -64,8 +62,8 @@ As with runc, containers are configured using bundles. A container's bundle is t
 
 The OCI spec file, "config.json", has to have two fields to run correctly:
 
-1. A path to the container's scratch space
-1. A path to the container's layer directory
+* A path to the container's scratch space
+* A path to the container's layer directory
 
 Container commands available in runhcs include:
 
@@ -85,7 +83,7 @@ Container commands available in runhcs include:
   * **kill** sends the specified signal (default: SIGTERM) to the container's init process
   * **delete** deletes any resources held by the container often used with detached container
 
-The only command that could be considered multi-container is **list**.  It lists running (or paused) containers started by runhcs with the given root.
+The only command that could be considered multi-container is **list**.  It lists running or paused containers started by runhcs with the given root.
 
 ### HCS
 
