@@ -151,7 +151,7 @@ function Export-VMBackupCheckpoint
         #         represents the reference point or path to a Msvm_VirtualSystemSettingData instance that
         #         represents the snapshot to be used as a base for differential export. If the CopySnapshotConfiguration
         #         property is not set to 3(ExportOneSnapshotUseVmId), this property is ignored."
-        $Msvm_VirtualSystemExportSettingData.DifferentialBase = $ReferenceSnapshot
+        $Msvm_VirtualSystemExportSettingData.DifferentialBase = $ReferencePoint
 
         #   StorageConfiguration
         #      Indicates what should be the VHD path in the exported configuration.
@@ -293,7 +293,7 @@ function Remove-VmReferencePoint
     $Msvm_VirtualSystemReferencePointService = Get-WmiObject -Namespace root\virtualization\v2 -Class Msvm_VirtualSystemReferencePointService
 
     # Removes the virtual machine reference, this method returns a job object.
-    $job = $Msvm_VirtualSystemReferencePointService.DestroyReferencePoint($ReferenceSnapshot)
+    $job = $Msvm_VirtualSystemReferencePointService.DestroyReferencePoint($ReferencePoint)
 
     # Waits for the job to complete and processes any errors.
     ($job | ProcessWMIJob -WmiClass $Msvm_VirtualSystemReferencePointService -MethodName "DestroyReferencePoint") | Out-Null
