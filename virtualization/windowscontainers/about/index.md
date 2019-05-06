@@ -1,5 +1,5 @@
 ---
-title: About Windows Containers
+title: About Windows containers
 description: Learn about Windows containers.
 keywords: docker, containers
 author: taylorb-microsoft
@@ -10,7 +10,7 @@ ms.service: windows-containers
 ms.assetid: 8e273856-3620-4e58-9d1a-d1e06550448
 
 ---
-# Containers on Windows
+# About Windows containers
 
 Containers wrap up an application into its own isolated box. The application in its container has no knowledge of any other applications or processes that exist outside of its box. Everything the application depends on to run successfully also lives inside this container. Wherever the box may move, the application will always be satisfied because it's bundled up with everything it needs to run.
 
@@ -33,16 +33,12 @@ Watch this short overview to learn more:
 
 Containers are an isolated, resource controlled, and portable runtime environment that runs on a host machine or virtual machine. An application or process that runs in a container is packaged with all the required dependencies and configuration files, giving it the illusion that nothing exists outside of its container. Because of this, the container will only use the resources its host provisions and won't touch any resources provisioned for other containers.
 
-Let's get to know some terms you'll find useful as you begin to create and work with Windows containers.
+Let's get to know some terms you'll find useful as you start to work with Windows containers:
 
 - Container host: A physical or virtual computer system configured with the Windows container feature. The container host will run one or more Windows containers.
-
 - Sandbox: The layer that captures all write actions (such as file system modifications, registry modifications, or software installations) when you start the container.
-
-- Container OS image: The first layer in the image layers of a container that provides the container's operating system environment. A Container OS image is immutable and can't be modified.
-
+- Container OS image: The first layer in the image layers of a container that provides the container's operating system environment. A container OS image can't be modified.
 - Container image: An image that captures a modified container's sandbox and can be used to recreate that modified image in new containers. For example, let’s say you've deployed a container from the Windows Server Core OS image, and then install MySQL on the container. If you create a new image from this modified container, you can deploy that image in a new container with the changes you made to the first container (in this case, installing MySQL). However, the container image would function as a layer on top of the container OS image instead of replacing it altogether.
-
 - Container repository: The local repository that stores your container image and its dependencies each time you create a new image. You can reuse stored images as many times as you want on the container host. You can also store the container images in a public or private registry, such as Docker Hub, so they can be used across many different container hosts.
 
 ![Container fundamentals](media/containerfund.png)
@@ -51,43 +47,35 @@ Someone familiar with virtual machines might think containers and virtual machin
 
 ## Windows container types
 
-Windows containers include two different container types, or runtimes.
+Windows containers include two different container types, also known as runtimes.
 
 Windows Server containers provide application isolation through process and namespace isolation technology. A Windows Server container shares a kernel with the container host and all containers running on the host. These containers don't provide a hostile security boundary and shouldn't be used to isolate untrusted code. Because of the shared kernel space, these containers require the same kernel version and configuration.
 
 Hyper-V isolation expands on the isolation provided by Windows Server containers by running each container in a highly optimized virtual machine. In this configuration, the container host doesn't share its kernel with other containers on the same host. These containers are designed for hostile multitenant hosting with the same security assurances of a virtual machine. Since these containers don't share the kernel with the host or other containers on the host, they can run kernels with different versions and configurations (within supported versions). For example, all Windows containers on Windows 10 use Hyper-V isolation to utilize the Windows Server kernel version and configuration.
 
-Running a container on Windows with or without Hyper-V Isolation is a runtime decision. You can initially create the container with Hyper-V isolation, and then later at runtime choose to run it as a Windows Server container instead.
+Running a container on Windows with or without Hyper-V isolation is a runtime decision. You can initially create the container with Hyper-V isolation, and then later at runtime choose to run it as a Windows Server container instead.
 
 ## What is Docker?
 
-Docker is an automated process that packages and delivers container images. Docker produces images that can be run anywhere as a container, whether it's on premises, in the cloud, or on a personal machine.
+[Docker](https://www.docker.com) is an automated process that packages and delivers container images. Docker produces images that can be run anywhere as a container, whether it's on-premises, in the cloud, or on a personal machine. You can manage a Windows Server container with Docker, just like any other container.
 
 ![Containers with Docker](media/docker.png)
 
-Just like any other container, a Windows Server container can be managed with [Docker](https://www.docker.com).
-
 ## Containers for developers
 
-Developers can create a Docker image that will deploy identically across all environments in seconds. There's a massive and growing ecosystem of applications packaged in Docker containers. DockerHub, a public containerized-application registry maintained by Docker, has published more than 180,000 applications in its public community repository, and that number is still growing.
+Containers help developers build and ship higher-quality applications faster. Developers can create a Docker image that will deploy identically across all environments in seconds. There's a massive and growing ecosystem of applications packaged in Docker containers. DockerHub, a public containerized-application registry maintained by Docker, has published more than 180,000 applications in its public community repository, and that number is still growing.
 
-When you containerize an app, only the app and the components needed to run the app are combined into an image. Containers are then created from this image as you need them. You can also use an image as a baseline to create another image, making image creation even faster. Multiple containers can share the same image, which means containers start up very quickly and use fewer resources. For example, you can use containers to spin up lightweight and portable app components, also called "microservices," for distributed apps and quickly scale each service separately.
+When a developer containerizes an app, only the app and the components it needs to run are combined into an image. Containers are then created from this image as you need them. You can also use an image as a baseline to create another image, making image creation even faster. Multiple containers can share the same image, which means containers start up very quickly and use fewer resources. For example, a developer can use containers to spin up lightweight and portable app components, also known as microservices, for distributed apps and quickly scale each service separately.
 
-Containers are portable and versatile. They come with everything they need to run your application, and they're compatible with any machine running Windows Server 2016. You can create and test a container locally, then deploy that same container image to your company's private cloud, public cloud, or service provider. The natural agility of containers supports modern app development patterns in large scale, virtualized cloud environments.
-
-With containers, developers can build an app in any language. These apps are completely portable and can run anywhere without code changes on a laptop, desktop, server, private cloud, public cloud, and service provider.  
-
-Containers help developers build and ship higher-quality applications faster.
+Containers are portable and versatile, can be written in any language, and they're compatible with any machine running Windows Server 2016. Developers can create and test a container locally on their laptop or desktop, then deploy that same container image to their company's private cloud, public cloud, or service provider. The natural agility of containers supports modern app development patterns in large-scale, virtualized cloud environments.
 
 ## Containers for IT professionals
 
-IT professionals can use containers to provide standardized environments for their development, QA, and production teams. They no longer have to worry about complex installation and configuration procedures. By using containers, systems administrators abstract away differences in OS installations and underlying infrastructure.
-
-Containers help admins create infrastructure that's easier to update and maintain.
+Containers help admins create infrastructure that's easier to update and maintain. IT professionals can use containers to provide standardized environments for their development, QA, and production teams. They no longer have to worry about complex installation and configuration procedures. By using containers, systems administrators abstract away differences in OS installations and the underlying infrastructure.
 
 ## Container orchestrators
 
-Because of their small size and application orientation, containers are perfect for agile delivery environments and microservice-based architectures. However, an environment that uses containers and microservers can have hundreds or thousands of components to keep track of. You might be able to manually manage a few dozen virtual machines or physical servers, but there's no way to properly manage a production-scale container environment without automation. This task should fall to your orchestrator, a process that automate and manages a large number of containers and how they interact.
+Because of their small size and application orientation, containers are perfect for agile delivery environments and microservice-based architectures. However, an environment that uses containers and microservers can have hundreds or thousands of components to keep track of. You might be able to manually manage a few dozen virtual machines or physical servers, but there's no way to properly manage a production-scale container environment without automation. This task should fall to your orchestrator, which is a process that automates and manages a large number of containers and how they interact.
 
 Orchestrators perform the following tasks:
 
