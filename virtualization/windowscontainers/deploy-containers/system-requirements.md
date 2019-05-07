@@ -31,37 +31,12 @@ If a Windows container host will be run from a Hyper-V virtual machine, and will
 
 Windows containers are offered with four container base images: Windows Server Core, Nano Server, Windows, and IoT Core. Not all configurations support both OS images. This table details the supported configurations.
 
-<table border="1" style="background-color:FFFFCC;border-collapse:collapse;border:1px solid FFCC00;color:000000;width:75%" cellpadding="5" cellspacing="5">
-<thead>
-<tr valign="top">
-<th><center>Host Operating System</center></th>
-<th><center>Windows Server container</center></th>
-<th><center>Hyper-V isolation</center></th>
-</tr>
-</thead>
-<tbody>
-<tr valign="top">
-<td><center>Windows Server 2016 / 2019 (Standard or Datacenter)</center></td>
-<td><center>Server Core, Nano Server, Windows</center></td>
-<td><center>Server Core, Nano Server, Windows</center></td>
-</tr>
-<tr valign="top">
-<td><center>Nano Server<a href="#warn-1">*</a></center></td>
-<td><center> Nano Server</center></td>
-<td><center>Server Core, Nano Server, Windows</center></td>
-</tr>
-<tr valign="top">
-<td><center>Windows 10 Pro / Enterprise</center></td>
-<td><center>Not Available</center></td>
-<td><center>Server Core, Nano Server, Windows</center></td>
-</tr>
-<tr valign="top">
-<td><center>IoT Core</center></td>
-<td><center>IoT Core</center></td>
-<td><center>Not Available</center></td>
-</tr>
-</tbody>
-</table>
+|Host operating system|Windows container|Hyper-V isolation|
+|---------------------|-----------------|-----------------|
+|Windows Server 2016 or Windows Server 2019 (Standard or Datacenter)|Server Core, Nano Server, Windows|Server Core, Nano Server, Windows|
+|Nano Server|Nano Server|Server Core, Nano Server, Windows|
+|Windows 10 Pro or Windows 10 Enterprise|Not available|Server Core, Nano Server, Windows|
+|IoT Core|IoT Core|Not available|
 
 > [!WARNING]  
 > Starting with Windows Server version 1709, Nano Server is no longer available as a container host.

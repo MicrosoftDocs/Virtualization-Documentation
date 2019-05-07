@@ -208,7 +208,7 @@ The [service subnet range](./getting-started-kubernetes-windows.md#service-subne
 
 
 # [KubeDnsServiceIP](#tab/KubeDnsServiceIP)
-The [Kubernetes DNS service IP](./getting-started-kubernetes-windows.md#kube-dns-def).
+The [Kubernetes DNS service IP](./getting-started-kubernetes-windows.md#plan-ip-addressing-for-your-cluster).
 
 |  |  | 
 |---------|---------|
