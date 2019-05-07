@@ -14,13 +14,13 @@ ms.assetid: 8e273856-3620-4e58-9d1a-d1e06550448
 
 Containers wrap up an application into its own isolated box. The application in its container has no knowledge of any other applications or processes that exist outside of its box. Everything the application depends on to run successfully also lives inside this container. Wherever the box may move, the application will always be satisfied because it's bundled up with everything it needs to run.
 
-Imagine a kitchen. Inside this single room are all the appliances, furniture, pots and pans, the dish soap and hand towels, everything you need to have a functioning kitchen. This is our container.
+Imagine a kitchen. Inside this single room is everything you need to have a functioning kitchen: the stove, oven, appliances, pots and pans, kitchen sink, and so on. This is our container.
 
 ![Kitchen analogy](media/box1.png)
 
-We can now take this room and drop it into whatever host apartment we want. All we need to start cooking is to connect the room to power and water.
+Now imagine that we could take this kitchen and place it inside a building as easily as sliding a book into a bookshelf. Since everything the kitchen needs to function is already there, all we need to start cooking is to connect the electricity and plumbing.
 
-Why stop there? You can customize this room to be anything you want as long as it has everything it needs to function, whether it's a living room, an office, or a game room. You can put many different kinds of rooms in your host apartment, fill your building with identical rooms, or have a mix of the two.
+Why stop there? You can customize this room to be anything you want as long as it has everything it needs to function, whether it's a living room, an office, or a game room. You can customize your building any way you like; fill it with many different kinds of rooms, fill it with identical rooms, or have a mix of the two.
 
 ![Apartment analogy](media/apartment.png)
 
@@ -31,7 +31,7 @@ Watch this short overview to learn more:
 
 ## Container fundamentals
 
-Containers are an isolated, resource controlled, and portable runtime environment that runs on a host machine or virtual machine. An application or process that runs in a container is packaged with all the required dependencies and configuration files, giving it the illusion that nothing exists outside of its container. Because of this, the container will only use the resources its host provisions and won't touch any resources provisioned for other containers.
+Containers are an isolated, resource controlled, and portable runtime environment that runs on a host machine or virtual machine. An application or process that runs in a container is packaged with all its required dependencies and configuration files, giving it the illusion that nothing exists outside of its container. Because of this, the container will only use the resources its host provisions and won't touch any resources provisioned for other containers.
 
 Let's get to know some terms you'll find useful as you start to work with Windows containers:
 
