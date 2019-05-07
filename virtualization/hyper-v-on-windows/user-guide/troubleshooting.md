@@ -15,7 +15,7 @@ ms.assetid: f0ec8eb4-ffc4-4bf1-9a19-7a8c3975b359
 ## I updated to Windows 10 and now I can't connect to my downlevel (Windows 8.1 or Server 2012 R2) host
 In Windows 10, Hyper-V manager moved to WinRM for remote management.  What that means is now Remote Management has to be enabled on the remote host in order to use Hyper-V manager to manage it.
 
-For more information see [Managing Remote Hyper-V Hosts](https://technet.microsoft.com/windows-server-docs/compute/hyper-v/manage/Remotely-manage-Hyper-V-hosts)
+For more information see [Managing Remote Hyper-V Hosts](https://docs.microsoft.com/windows-server/virtualization/hyper-v/manage/Remotely-manage-Hyper-V-hosts)
 
 ## I changed the checkpoint type, but it is still taking the wrong type of checkpoint
 If you are taking the checkpoint from VMConnect and you change the checkpoint type in Hyper-V manager the checkpoint taken be whatever checkpoint type was specified when VMConnect was opened.

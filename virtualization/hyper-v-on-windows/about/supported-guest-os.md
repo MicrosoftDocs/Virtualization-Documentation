@@ -36,7 +36,7 @@ In order to be supported, all operating systems (guest and host) must be up to d
 | Windows 7 | 4 | Ultimate, Enterprise, and Professional editions (32-bit and 64-bit). |
 | Windows Vista with Service Pack 2 (SP2) | 2 | Business, Enterprise, and Ultimate, including N and KN editions. |
 | - | | |
-| [Windows Server Semi-Annual Channel](https://docs.microsoft.com/en-us/windows-server/get-started/semi-annual-channel-overview) | 64 | |
+| [Windows Server Semi-Annual Channel](https://docs.microsoft.com/windows-server/get-started/semi-annual-channel-overview) | 64 | |
 | Windows Server 2019 | 64 | |
 | Windows Server 2016 | 64 | |
 | Windows Server 2012 R2 | 64 | |
@@ -52,11 +52,11 @@ In order to be supported, all operating systems (guest and host) must be up to d
 
 | Guest operating system |  |
 |:-----|:------|
-| [CentOS and Red Hat Enterprise Linux](https://technet.microsoft.com/library/dn531026.aspx) | |
-| [Debian virtual machines on Hyper-V](https://technet.microsoft.com/library/dn614985.aspx) | |
-| [SUSE](https://technet.microsoft.com/en-us/library/dn531027.aspx) | |
-| [Oracle Linux](https://technet.microsoft.com/en-us/library/dn609828.aspx)  | |
-| [Ubuntu](https://technet.microsoft.com/en-us/library/dn531029.aspx) | |
-| [FreeBSD](https://technet.microsoft.com/library/dn848318.aspx) | |
+| [CentOS and Red Hat Enterprise Linux](https://docs.microsoft.com/windows-server/virtualization/hyper-v/Supported-CentOS-and-Red-Hat-Enterprise-Linux-virtual-machines-on-Hyper-V) | |
+| [Debian virtual machines on Hyper-V](https://docs.microsoft.com/windows-server/virtualization/hyper-v/Supported-Debian-virtual-machines-on-Hyper-V) | |
+| [SUSE](https://docs.microsoft.com/windows-server/virtualization/hyper-v/Supported-SUSE-virtual-machines-on-Hyper-V) | |
+| [Oracle Linux](https://docs.microsoft.com/windows-server/virtualization/hyper-v/Supported-Oracle-Linux-virtual-machines-on-Hyper-V)  | |
+| [Ubuntu](https://docs.microsoft.com/windows-server/virtualization/hyper-v/Supported-Ubuntu-virtual-machines-on-Hyper-V) | |
+| [FreeBSD](https://docs.microsoft.com/windows-server/virtualization/hyper-v/Supported-FreeBSD-virtual-machines-on-Hyper-V) | |
 
-For more information, including support information on past versions of Hyper-V, see [Linux and FreeBSD Virtual Machines on Hyper-V](https://technet.microsoft.com/library/dn531030.aspx).
+For more information, including support information on past versions of Hyper-V, see [Linux and FreeBSD Virtual Machines on Hyper-V](https://docs.microsoft.com/windows-server/virtualization/hyper-v/Supported-Linux-and-FreeBSD-virtual-machines-for-Hyper-V-on-Windows).

@@ -49,7 +49,7 @@ Get-VM
 
  ![](media\get_vm.png)
 
-2. To return a list of only powered on virtual machines add a filter to the `Get-VM` command. A filter can be added by using the `Where-Object` command. For more information on filtering see the [Using the Where-Object](https://technet.microsoft.com/en-us/library/ee177028.aspx) documentation.   
+2. To return a list of only powered on virtual machines add a filter to the `Get-VM` command. A filter can be added by using the `Where-Object` command. For more information on filtering see the [Using the Where-Object](<https://docs.microsoft.com/previous-versions/windows/it-pro/windows-powershell-1.0/ee177028(v=technet.10)>) documentation.
 
  ```powershell
  Get-VM | where {$_.State -eq 'Running'}
@@ -91,26 +91,26 @@ To create a checkpoint using PowerShell, select the virtual machine using the `G
 The following example shows how to create a new virtual machine in the PowerShell Integrated Scripting Environment (ISE). This is a simple example and could be expanded on to include additional PowerShell features and more advanced VM deployments.
 
 1. To open the PowerShell ISE click on start, type **PowerShell ISE**.
-2. Run the following code to create a virtual machine. See the [New-VM](https://technet.microsoft.com/en-us/library/hh848537.aspx) documentation for detailed information on the `New-VM` command.
+2. Run the following code to create a virtual machine. See the [New-VM](https://docs.microsoft.com/powershell/module/hyper-v/new-vm?view=win10-ps) documentation for detailed information on the `New-VM` command.
 
-  ```powershell
- $VMName = "VMNAME"
+ ```powershell
+  $VMName = "VMNAME"
 
- $VM = @{
-     Name = $VMName 
-     MemoryStartupBytes = 2147483648
-     Generation = 2
-     NewVHDPath = "C:\Virtual Machines\$VMName\$VMName.vhdx"
-     NewVHDSizeBytes = 53687091200
-     BootDevice = "VHD"
-     Path = "C:\Virtual Machines\$VMName"
-     SwitchName = (Get-VMSwitch).Name
- }
+  $VM = @{
+      Name = $VMName
+      MemoryStartupBytes = 2147483648
+      Generation = 2
+      NewVHDPath = "C:\Virtual Machines\$VMName\$VMName.vhdx"
+      NewVHDSizeBytes = 53687091200
+      BootDevice = "VHD"
+      Path = "C:\Virtual Machines\$VMName"
+      SwitchName = (Get-VMSwitch).Name
+  }
 
- New-VM @VM
-  ```
+  New-VM @VM
+ ```
 
 ## Wrap up and References
 
-This document has shown some simple steps to explorer the Hyper-V PowerShell module as well as some sample scenarios. For more information on the Hyper-V PowerShell module, see the [Hyper-V Cmdlets in Windows PowerShell reference](https://technet.microsoft.com/%5Clibrary/Hh848559.aspx).  
+This document has shown some simple steps to explorer the Hyper-V PowerShell module as well as some sample scenarios. For more information on the Hyper-V PowerShell module, see the [Hyper-V Cmdlets in Windows PowerShell reference](https://docs.microsoft.com/powershell/module/hyper-v/index?view=win10-ps).  
  

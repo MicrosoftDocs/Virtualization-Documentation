@@ -23,7 +23,7 @@ Requirements:
 * Windows 10 Anniversary Update or later
 * Hyper-V is enabled (instructions [here](../quick-start/enable-hyper-v.md))
 
-> **Note:**  Currently, you are limited to one NAT network per host. For additional details on the Windows NAT (WinNAT) implementation, capabilities, and limitations, please reference the [WinNAT capabilities and limitations blog](https://blogs.technet.microsoft.com/virtualization/2016/05/25/windows-nat-winnat-capabilities-and-limitations/)
+> **Note:**  Currently, you are limited to one NAT network per host. For additional details on the Windows NAT (WinNAT) implementation, capabilities, and limitations, please reference the [WinNAT capabilities and limitations blog](https://techcommunity.microsoft.com/t5/Virtualization/Windows-NAT-WinNAT-Capabilities-and-limitations/ba-p/382303)
 
 ## NAT Overview
 NAT gives a virtual machine access to network resources using the host computer's IP address and a port through an internal Hyper-V Virtual Switch.
@@ -32,7 +32,7 @@ Network Address Translation (NAT) is a networking mode designed to conserve IP a
 
 Additionally, NAT allows multiple virtual machines to host applications that require identical (internal) communication ports by mapping these to unique external ports.
 
-For all of these reasons, NAT networking is very common for container technology (see [Container Networking](https://msdn.microsoft.com/en-us/virtualization/windowscontainers/management/container_networking)).
+For all of these reasons, NAT networking is very common for container technology (see [Container Networking](https://docs.microsoft.com/virtualization/windowscontainers/container-networking/architecture)).
 
 
 ## Create a NAT virtual network
