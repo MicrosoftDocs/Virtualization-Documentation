@@ -60,7 +60,7 @@
 ## [Hardware devices in containers](deploy-containers/hardware-devices-in-containers.md)
 ## [Container platform tools](deploy-containers/containerd.md)
 ## [Group Managed Service Accounts](manage-containers/manage-serviceaccounts.md)
-## [Anti-virus optimization](https://msdn.microsoft.com/windows/hardware/drivers/ifs/anti-virus-optimization-for-windows-containers)
+## [Anti-virus optimization](https://docs.microsoft.com/windows-hardware/drivers/ifs/anti-virus-optimization-for-windows-containers)
 ## [Linux containers on Windows](deploy-containers/linux-containers.md)
 
 # [Container samples](samples.md)

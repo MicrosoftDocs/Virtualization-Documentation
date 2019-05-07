@@ -24,5 +24,4 @@ Note that to use these APIs, Hyper-V WMI still needs to be used to create refere
 *	They return data addresses that are relative to the internal structure of the virtual hard disk
 
 ### Remote Shared Virtual Disk Protocol
-Finally, if a developer needs to efficiently access backup data information from a shared virtual hard disk file – they will need to use the Remote Shared Virtual Disk Protocol.  This protocol is documented here:
-https://msdn.microsoft.com/library/dn393384.aspx
+Finally, if a developer needs to efficiently access backup data information from a shared virtual hard disk file – they will need to use the Remote Shared Virtual Disk Protocol.  This protocol is documented [here](https://docs.microsoft.com/openspecs/windows_protocols/ms-rsvd/c865c326-47d6-4a91-a62d-0e8f26007d15).
