@@ -28,7 +28,7 @@ To start a container with a device, use the following command:
 docker run --isolation=process --device="class/{interface class GUID}" mcr.microsoft.com/windows/servercore:1809
 ```
 
-You must replace the `{interface class guid}` with an appropriate [device interface class GUID](https://docs.microsoft.com/en-us/windows-hardware/drivers/install/overview-of-device-interface-classes), which can be found in the section below.
+You must replace the `{interface class guid}` with an appropriate [device interface class GUID](https://docs.microsoft.com/windows-hardware/drivers/install/overview-of-device-interface-classes), which can be found in the section below.
 
 To start a container with multiple devices, use the following command and string together multiple `--device` arguments:
 

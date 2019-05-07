@@ -25,9 +25,9 @@ Worker nodes are orchestrated by Docker swarm via manager nodes. To join a swarm
 
 ## Swarm mode system requirements
 
-At least one physical or virtual computer system (to use the full functionality of swarm at least two nodes is recommended) running either **Windows 10 Creators Update** or **Windows Server 2016** *with all of the latest updates\**, setup as a container host (see the topic, [Windows containers on Windows 10](https://docs.microsoft.com/en-us/virtualization/windowscontainers/quick-start/quick-start-windows-10) or [Windows containers on Windows Server](https://docs.microsoft.com/en-us/virtualization/windowscontainers/quick-start/quick-start-windows-server) for more details on how to get started with Docker containers on Windows 10).
+At least one physical or virtual computer system (to use the full functionality of swarm at least two nodes is recommended) running either **Windows 10 Creators Update** or **Windows Server 2016** *with all of the latest updates\**, setup as a container host (see the topic, [Windows containers on Windows 10](https://docs.microsoft.com/virtualization/windowscontainers/quick-start/quick-start-windows-10) or [Windows containers on Windows Server](https://docs.microsoft.com/virtualization/windowscontainers/quick-start/quick-start-windows-server) for more details on how to get started with Docker containers on Windows 10).
 
-\***Note**: Docker Swarm on Windows Server 2016 requires [KB4015217](https://support.microsoft.com/en-us/help/4015217/windows-10-update-kb4015217)
+\***Note**: Docker Swarm on Windows Server 2016 requires [KB4015217](https://support.microsoft.com/help/4015217/windows-10-update-kb4015217)
 
 **Docker Engine v1.13.0 or later**
 

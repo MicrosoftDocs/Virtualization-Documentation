@@ -52,7 +52,7 @@ The following key concepts will be helpful as you begin creating and working wit
 
 For someone familiar with virtual machines, containers may appear to be incredibly similar. A container runs an operating system, has a file system and can be accessed over a network just as if it was a physical or virtual computer system. However, the technology and concepts behind containers are vastly different from virtual machines.
 
-Mark Russinovich, Microsoft Azure guru, has [a great blog post](https://azure.microsoft.com/en-us/blog/containers-docker-windows-and-trends/) which details the differences.
+Mark Russinovich, Microsoft Azure guru, has [a great blog post](https://azure.microsoft.com/blog/containers-docker-windows-and-trends/) which details the differences.
 
 ## Windows container types
 

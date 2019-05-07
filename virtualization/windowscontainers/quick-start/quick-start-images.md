@@ -26,7 +26,7 @@ Please make sure you meet the following requirements:
 
 ## Container Image - Dockerfile
 
-Although a container can be manually created, modified, and then captured into a new container image, Docker includes a method for automating this process using a Dockerfile. For this exercise, a Docker ID is required. If you do not have a Docker ID, sign up for one at [Docker Cloud]( https://cloud.docker.com/).
+Although a container can be manually created, modified, and then captured into a new container image, Docker includes a method for automating this process using a Dockerfile. For this exercise, a Docker ID is required. If you do not have a Docker ID, sign up for one at [Docker Cloud](https://cloud.docker.com/).
 
 On the container host, create a directory `c:\build`, and in this directory create a file named `Dockerfile`. Note – the file should not have a file extension.
 

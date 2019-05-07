@@ -28,7 +28,7 @@ In addition to leveraging the default 'nat' network created by Docker on Windows
 - **overlay** - when the docker engine is running in [swarm mode](../manage-containers/swarm-mode.md), containers attached to an overlay network can communicate with other containers attached to the same network across multiple container hosts. Each overlay network that is created on a Swarm cluster is created with its own IP subnet, defined by a private IP prefix. The overlay network driver uses VXLAN encapsulation. **Can be used with Kubernetes when using suitable network control planes (Flannel or OVN).**
   > Requires: Make sure your environment satisfies these required [prerequisites](https://docs.docker.com/network/overlay/#operations-for-all-overlay-networks) for creating overlay networks.
 
-  > Requires: Requires Windows Server 2016 with [KB4015217](https://support.microsoft.com/en-us/help/4015217/windows-10-update-kb4015217),  Windows 10 Creators Update, or a later release.
+  > Requires: Requires Windows Server 2016 with [KB4015217](https://support.microsoft.com/help/4015217/windows-10-update-kb4015217),  Windows 10 Creators Update, or a later release.
 
   >[!NOTE]
   >On Windows Server 2019 running Docker EE 18.03 and above, overlay networks created by Docker Swarm leverage VFP NAT rules for outbound connectivity. This means thata given container receives 1 IP address. It also means that ICMP-based tools such as `ping` or `Test-NetConnection` should be configured using their TCP/UDP options in debugging situations.

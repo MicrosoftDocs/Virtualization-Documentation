@@ -17,7 +17,7 @@ Several network driver options are supported to take advantage of Windows-specif
 
 > Applies to all network drivers
 
-You can take advantage of [Switch Embedded Teaming](https://technet.microsoft.com/en-us/windows-server-docs/networking/technologies/hyper-v-virtual-switch/rdma-and-switch-embedded-teaming#a-namebkmksswitchembeddedaswitch-embedded-teaming-set) when creating container host networks for use by Docker   by specifying multiple network adapters (separated by commas) with the `-o com.docker.network.windowsshim.interface` option.
+You can take advantage of [Switch Embedded Teaming](https://docs.microsoft.com/windows-server/virtualization/hyper-v-virtual-switch/RDMA-and-Switch-Embedded-Teaming#a-namebkmksswitchembeddedaswitch-embedded-teaming-set) when creating container host networks for use by Docker   by specifying multiple network adapters (separated by commas) with the `-o com.docker.network.windowsshim.interface` option.
 
 ```
 C:\> docker network create -d transparent -o com.docker.network.windowsshim.interface="Ethernet 2", "Ethernet 3" TeamedNet
@@ -74,13 +74,13 @@ C:\> docker network create -d transparent -o com.docker.network.windowsshim.dnss
 
 ## VFP
 
-See [this article](https://www.microsoft.com/en-us/research/project/azure-virtual-filtering-platform/) for more information.
+See [this article](https://www.microsoft.com/research/project/azure-virtual-filtering-platform/) for more information.
 
 ## Tips & Insights
 Here's a list of handy tips and insights, inspired by common questions on Windows container networking that we hear from the community...
 
 #### HNS requires that IPv6 is enabled on container host machines 
-As part of [KB4015217](https://support.microsoft.com/en-us/help/4015217/windows-10-update-kb4015217) HNS requires that IPv6 is enabled on Windows container hosts. If you're running into an error such as the one below, there's a chance that IPv6 is disabled on your host machine.
+As part of [KB4015217](https://support.microsoft.com/help/4015217/windows-10-update-kb4015217) HNS requires that IPv6 is enabled on Windows container hosts. If you're running into an error such as the one below, there's a chance that IPv6 is disabled on your host machine.
 ```
 docker: Error response from daemon: container e15d99c06e312302f4d23747f2dfda4b11b92d488e8c5b53ab5e4331fd80636d encountered an error during CreateContainer: failure in a Windows system call: Element not found.
 ```
@@ -93,7 +93,7 @@ C:\> reg delete HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Tcpip6\Para
 
 #### Linux Containers on Windows
 
-**NEW:** We are working to make it possible to run Linux and Windows containers side-by-side _without the Moby Linux VM_. See this [blog post about Linux Containers on Windows (LCOW)](https://blog.docker.com/2017/11/docker-for-windows-17-11/) for details. Here is how to [get started](https://docs.microsoft.com/en-us/virtualization/windowscontainers/quick-start/quick-start-windows-10-linux).
+**NEW:** We are working to make it possible to run Linux and Windows containers side-by-side _without the Moby Linux VM_. See this [blog post about Linux Containers on Windows (LCOW)](https://blog.docker.com/2017/11/docker-for-windows-17-11/) for details. Here is how to [get started](https://docs.microsoft.com/virtualization/windowscontainers/quick-start/quick-start-windows-10-linux).
 > NOTE: LCOW is deprecating the Moby Linux VM, and it will utilize the default HNS "nat" internal vSwitch.
 
 #### Moby Linux VMs use DockerNAT switch with Docker for Windows (a product of [Docker CE](https://www.docker.com/community-edition))

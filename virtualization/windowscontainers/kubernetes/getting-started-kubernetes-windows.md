@@ -12,15 +12,15 @@ ms.assetid: 3b05d2c2-4b9b-42b4-a61b-702df35f5b17
 ---
 # Kubernetes on Windows
 
-This page serves as an overview for getting started with Kubernetes on Windows by joining Windows nodes to a Linux-based cluster. With the release of Kubernetes 1.14 on Windows Server [version 1809](https://docs.microsoft.com/en-us/windows-server/get-started/whats-new-in-windows-server-1809#container-networking-with-kubernetes), users can take advantage of the following features in Kubernetes on Windows:
+This page serves as an overview for getting started with Kubernetes on Windows by joining Windows nodes to a Linux-based cluster. With the release of Kubernetes 1.14 on Windows Server [version 1809](https://docs.microsoft.com/windows-server/get-started/whats-new-in-windows-server-1809#container-networking-with-kubernetes), users can take advantage of the following features in Kubernetes on Windows:
 
 - **overlay networking**: use Flannel in vxlan mode to configure a virtual overlay network
-    - requires either Windows Server 2019 with [KB4489899](https://support.microsoft.com/en-us/help/4489899) installed or [Windows Server vNext Insider Preview](https://blogs.windows.com/windowsexperience/tag/windows-insider-program/) Build 18317+
+    - requires either Windows Server 2019 with [KB4489899](https://support.microsoft.com/help/4489899) installed or [Windows Server vNext Insider Preview](https://blogs.windows.com/windowsexperience/tag/windows-insider-program/) Build 18317+
     - requires Kubernetes v1.14 (or above) with `WinOverlay` feature gate enabled
     - requires Flannel v0.11.0 (or above)
 - **simplified network management**: use Flannel in host-gateway mode for automatic route management between nodes.
-- **scalability improvements**: enjoy faster and more reliable container start-up times thanks to [deviceless vNICs for Windows Server containers](https://blogs.technet.microsoft.com/networking/2018/04/27/network-start-up-and-performance-improvements-in-windows-10-spring-creators-update-and-windows-server-version-1803/).
-- **Hyper-V isolation (alpha)**: orchestrate [Hyper-V isolation](https://kubernetes.io/docs/getting-started-guides/windows/#hyper-v-containers) with kernel-mode isolation for enhanced security. For more information, [Windows container types](https://docs.microsoft.com/en-us/virtualization/windowscontainers/about/#windows-container-types).
+- **scalability improvements**: enjoy faster and more reliable container start-up times thanks to [deviceless vNICs for Windows Server containers](https://techcommunity.microsoft.com/t5/Networking-Blog/Network-start-up-and-performance-improvements-in-Windows-10/ba-p/339716).
+- **Hyper-V isolation (alpha)**: orchestrate [Hyper-V isolation](https://kubernetes.io/docs/getting-started-guides/windows/#hyper-v-containers) with kernel-mode isolation for enhanced security. For more information, [Windows container types](https://docs.microsoft.com/virtualization/windowscontainers/about/#windows-container-types).
     - requires Kubernetes v1.10 (or above) with `HyperVContainer` feature gate enabled.
 - **storage plugins**:  use the [FlexVolume storage plugin](https://github.com/Microsoft/K8s-Storage-Plugins) with SMB and iSCSI support for Windows containers.
 
