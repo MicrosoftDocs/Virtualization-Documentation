@@ -157,7 +157,7 @@ There are three approaches for solving this issue:
 PS C:\> restart-service hns
 PS C:\> restart-service docker
 ```
-* Another option is to use the '-o com.docker.network.windowsshim.interface' option to bind the transparent network's external vSwitch to a specific network adapter which is not already in use on the container host (i.e. a network adapter other than the one being used by the vSwitch that was created out-of-band). The '-o' option is described further above, in the [Transparent Network](https://msdn.microsoft.com/virtualization/windowscontainers/management/container_networking#transparent-network) section of this document.
+* Another option is to use the '-o com.docker.network.windowsshim.interface' option to bind the transparent network's external vSwitch to a specific network adapter which is not already in use on the container host (i.e. a network adapter other than the one being used by the vSwitch that was created out-of-band). The '-o' option is described further in the [Creating multiple transparent networks on a single container host](advanced.md#creating-multiple-transparent-networks-on-a-single-container-host) section of this document.
 
 
 ## Windows Server 2016 Work-arounds 

@@ -104,7 +104,7 @@ docker pull microsoft/nanoserver
 
 ## Hyper-V isolation host
 
-You must have the Hyper-V role to run Hyper-V isolation. If the Windows container host is itself a Hyper-V virtual machine, nested virtualization will need to be enabled before installing the Hyper-V role. For more information on nested virtualization, see [Nested Virtualization](https://msdn.microsoft.com/virtualization/hyperv_on_windows/user_guide/nesting).
+You must have the Hyper-V role to run Hyper-V isolation. If the Windows container host is itself a Hyper-V virtual machine, nested virtualization will need to be enabled before installing the Hyper-V role. For more information on nested virtualization, see [Nested Virtualization](https://docs.microsoft.com/virtualization/hyper-v-on-windows/user-guide/nested-virtualization).
 
 ### Nested virtualization
 
