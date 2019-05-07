@@ -12,8 +12,6 @@ ms.assetid: 8e273856-3620-4e58-9d1a-d1e06550448
 ---
 # About Windows containers
 
-Containers wrap up an application into its own isolated box. The application in its container has no knowledge of any other applications or processes that exist outside of its box. Everything the application depends on to run successfully also lives inside this container. Wherever the box may move, the application will always be satisfied because it's bundled up with everything it needs to run.
-
 Imagine a kitchen. Inside this single room is everything you need to have a functioning kitchen: the stove, oven, appliances, pots and pans, kitchen sink, and so on. This is our container.
 
 ![Kitchen analogy](media/box1.png)
@@ -24,14 +22,12 @@ Why stop there? You can customize this room to be anything you want as long as i
 
 ![Apartment analogy](media/apartment.png)
 
-Containers function very much like these portable rooms. The container is an isolated application that comes with everything it needs to run, and it can be dropped into any kind of host.
+Containers function very much like these portable rooms. Containers put an application into its own isolated box. Everything the application needs to run also lives inside this container. As a result, the isolated application in its container has no knowledge of any other applications or processes that exist outside its container. Because the container has everything the application needs to run, a container can be moved anywhere, and will only use the resources its host provisions without touching any resources provisioned for other containers.
 
-Watch this short overview to learn more:
+This short overview can tell you more:
 <iframe width="800" height="450" src="https://www.youtube.com/embed/Ryx3o0rD5lY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ## Container fundamentals
-
-Containers are an isolated, resource controlled, and portable runtime environment that runs on a host machine or virtual machine. An application or process that runs in a container is packaged with all its required dependencies and configuration files, giving it the illusion that nothing exists outside of its container. Because of this, the container will only use the resources its host provisions and won't touch any resources provisioned for other containers.
 
 Let's get to know some terms you'll find useful as you start to work with Windows containers:
 
