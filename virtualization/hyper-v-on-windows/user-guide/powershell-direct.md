@@ -210,7 +210,7 @@ Enter-PSSession : An error has occurred which Windows PowerShell cannot handle. 
 
 **Potential causes:**
 * The virtual machine exists but is not running.
-* The guest OS does not support PowerShell Direct (see [requirements](#Requirements))
+* The guest OS does not support PowerShell Direct (see [requirements](#requirements))
 * PowerShell isn't available in the guest yet
   * The operating system hasn't finished booting
   * The operating system can't boot correctly
