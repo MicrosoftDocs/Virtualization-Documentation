@@ -133,3 +133,6 @@ Example steps:
 3. Write some files to c:\data in the container, then stop the container
 4. `docker run -v unwound:c:\data microsoft/windowsservercore` - Start a new container
 5. Run `dir c:\data` in the new container - the files are still there
+
+> [!NOTE]
+> Windows Server will convert target pathnames (the path inside of the container) to lower-case; i. e. `-v unwound:c:\MyData`, or `-v unwound:/app/MyData` in Linux containers, will result in a directory inside the container of `c:\mydata`, or `/app/mydata` in Linux containers, being mapped (and created, if not existent).
