@@ -14,7 +14,7 @@ ms.assetid: fb228e06-e284-45c0-b6e6-e7b0217c3a49
 
 You can use PowerShell Direct to run arbitrary PowerShell in a Windows 10 or Windows Server 2016 virtual machine from your Hyper-V host regardless of network configuration or remote management settings.
 
-## Ways to run PowerShell Direct
+Here are some ways you can run PowerShell Direct:
 
 * [As an interactive session using the Enter-PSSession cmdlet](#create-and-exit-an-interactive-powershell-session)
 * [As a single-use section to execute a single command or script using the Invoke-Command cmdlet](#run-a-script-or-command-with-invoke-command)
