@@ -24,7 +24,7 @@ Get-Command -Module hyper-v | Out-GridView
 ```
   You get something like this:
 
-  ![](.\media\command_grid.png)
+  ![](./media/command_grid.png)
 
 3. To learn more about a particular PowerShell command use `Get-Help`. For instance running the following command returns information about the `Get-VM` Hyper-V command.
 
@@ -33,7 +33,7 @@ Get-Command -Module hyper-v | Out-GridView
   ```
  The output shows you how to structure the command, what the required and optional parameters are, and the aliases that you can use.
 
- ![](.\media\get_help.png)
+ ![](./media/get_help.png)
 
 
 ### Return a list of virtual machines
@@ -47,7 +47,7 @@ Use the `Get-VM` command to return a list of virtual machines.
  ```
  This displays something like this:
 
- ![](.\media\get_vm.png)
+ ![](./media/get_vm.png)
 
 2. To return a list of only powered on virtual machines add a filter to the `Get-VM` command. A filter can be added by using the `Where-Object` command. For more information on filtering see the [Using the Where-Object](<https://docs.microsoft.com/previous-versions/windows/it-pro/windows-powershell-1.0/ee177028(v=technet.10)>) documentation.
 

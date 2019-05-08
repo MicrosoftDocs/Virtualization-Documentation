@@ -195,7 +195,7 @@ In lieu of an IP or hostname, AF_HYPERV endpoints rely heavily on two GUIDs:
   ```PowerShell
   (Get-VM -Name $VMName).Id
   ```
-* Service ID – GUID, [described above](#RegisterANewApplication), with which the application is registered in the Hyper-V host registry.
+* Service ID – GUID, [described above](#register-a-new-application), with which the application is registered in the Hyper-V host registry.
 
 There is also a set of VMID wildcards available when a connection isn't to a specific virtual machine.
 
