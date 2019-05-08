@@ -109,9 +109,9 @@ containerd/cri enables the following compatibility matrix for pods:
 
 | Host OS | Container OS | Isolation | Pod Support? |
 |:-------------------------------------------------------------------------|:-----------------------------------------------------------------------------|:---------------------|:-----------------------------------------------------------------------------------------------------------------------------------------------------|
-| <ul><li>Windows Server 2019/1809</ul></li><ul><li>Windows 10 version 1809</ul></li> | Linux | `hyperv` | Yes—Supports true multi-container pods. |
+| <ul><li>Windows Server 2019/1809</ul></li><ul><li>Windows 10 1809</ul></li> | Linux | `hyperv` | Yes—Supports true multi-container pods. |
 |  | Windows Server 2019/1809 | `process`* or `hyperv` | Yes—Supports true multi-container pods if each workload container OS matches the utility VM OS. |
-|  | Windows Server 2016 Windows Server version 1709 Windows Server version 1803 | `hyperv` | Partial—Supports pod sandboxes that can support a single process-isolated container per utility VM if the Container OS matches the utility VM OS. |
+|  | Windows Server 2016</br>Windows Server 1709</br>Windows Server 1803 | `hyperv` | Partial—Supports pod sandboxes that can support a single process-isolated container per utility VM if the Container OS matches the utility VM OS. |
 
 \*Windows 10 hosts only support Hyper-V isolation
 
