@@ -27,7 +27,7 @@ This quick start is specific to Windows Server containers on Windows Server 2019
 ## Prerequisites
 
 Please make sure you meet the following requirements:
-- One computer system (physical or virtual) running Windows Server 2019. If you are using Windows Server 2019 Insider Preview, please update to [Window Server 2019 Evaluation](https://www.microsoft.com/en-us/evalcenter/evaluate-windows-server-2019 ).
+- One computer system (physical or virtual) running Windows Server 2019. If you are using Windows Server 2019 Insider Preview, please update to [Window Server 2019 Evaluation](https://www.microsoft.com/evalcenter/evaluate-windows-server-2019 ).
 
 > Critical updates are needed in order for the Windows container feature to function. Please install all updates before working through this tutorial.
 
@@ -163,7 +163,7 @@ Platform: .NET Core
 OS: Microsoft Windows 10.0.17763
 ```
 
-For in depth information on the Docker Run command, see [Docker Run Reference on Docker.com]( https://docs.docker.com/engine/reference/run/).
+For in depth information on the Docker Run command, see [Docker Run Reference on Docker.com](https://docs.docker.com/engine/reference/run/).
 
 ## Next Steps
 

@@ -21,11 +21,11 @@
 # Reference
 ## [Hyper-V Requirements](reference/hyper-v-requirements.md)
 ## [Supported Guest Operating Systems](about/supported-guest-os.md)
-## [Hyper-V PowerShell](https://technet.microsoft.com/library/hh848559.aspx)
+## [Hyper-V PowerShell](https://docs.microsoft.com/powershell/module/hyper-v/index?view=win10-ps)
 ## [Hyper-V Integration Services](reference/integration-services.md)
 ## [Hyper-V Architecture](reference/hyper-v-architecture.md)
 ## [Hypervisor Specifications](reference/tlfs.md)
 ## [Hyper-V Backup Approaches](reference/HyperVBackupApproaches.md)
 
 # Community and Support
-## [Hyper-V forums](https://social.technet.microsoft.com/Forums/windowsserver/en-US/home?forum=winserverhyperv)
+## [Hyper-V forums](https://social.technet.microsoft.com/Forums/windowsserver/home?forum=winserverhyperv)

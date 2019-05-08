@@ -50,7 +50,7 @@ Docker Configuration File
   ]
 ```
 > Note that this method works for docker build.
-See the [configure docker](https://docs.microsoft.com/en-us/virtualization/windowscontainers/manage-docker/configure-docker-daemon#configure-docker-with-configuration-file) document for more details on modifying the docker configuration file.
+See the [configure docker](https://docs.microsoft.com/virtualization/windowscontainers/manage-docker/configure-docker-daemon#configure-docker-with-configuration-file) document for more details on modifying the docker configuration file.
 
 
 ## Persistent Volumes

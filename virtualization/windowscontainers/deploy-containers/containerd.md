@@ -31,7 +31,7 @@ In Linux environments, container management tools like Docker are built on a mor
 
 `containerd` is a daemon that manages container life cycle from downloading and unpacking the container image to container execution and supervision.
 
-On Windows, we took a different approach.  When we started working with Docker to support Windows containers, we built directly on the HCS (Host Compute Service).  [This blog post](https://blogs.technet.microsoft.com/virtualization/2017/01/27/introducing-the-host-compute-service-hcs/) is full of information about why we built the HCS and why we took this approach to containers initially.
+On Windows, we took a different approach.  When we started working with Docker to support Windows containers, we built directly on the HCS (Host Compute Service).  [This blog post](https://techcommunity.microsoft.com/t5/Containers/Introducing-the-Host-Compute-Service-HCS/ba-p/382332) is full of information about why we built the HCS and why we took this approach to containers initially.
 
 ![Initial Docker Engine architecture on Windows](media/hcs.png)
 

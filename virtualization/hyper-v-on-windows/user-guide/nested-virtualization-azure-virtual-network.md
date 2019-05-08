@@ -21,7 +21,7 @@ This document will walk through a deployment whereby we make use of RRAS, User D
 
 Before starting this guide, please:
 
-1. Read the [guidance provided here](https://docs.microsoft.com/en-us/azure/virtual-machines/windows/nested-virtualization) on nested virtualization.
+1. Read the [guidance provided here](https://docs.microsoft.com/azure/virtual-machines/windows/nested-virtualization) on nested virtualization.
 2. Read this entire article prior to implementation.
 
 ## High level overview of what we're doing and why
@@ -103,7 +103,7 @@ I will gloss over any configuration values that are up to personal preference, s
 1. Install the DHCP Role: `Install-WindowsFeature DHCP -IncludeManagementTools`
 2. Create the DHCP Scope: `Add-DhcpServerV4Scope -Name "Nested VMs" -StartRange 10.0.2.2 -EndRange 10.0.2.254 -SubnetMask 255.255.255.0`
 3. Configure the DNS and Default Gateway options for the scope: `Set-DhcpServerV4OptionValue -DnsServer 168.63.129.16 -Router 10.0.2.1`
-    * Be sure to input a valid DNS Server if you want name resolution to work. In this case I'm using [Azure's recursive DNS](https://docs.microsoft.com/en-us/azure/virtual-network/virtual-networks-name-resolution-for-vms-and-role-instances).
+    * Be sure to input a valid DNS Server if you want name resolution to work. In this case I'm using [Azure's recursive DNS](https://docs.microsoft.com/azure/virtual-network/virtual-networks-name-resolution-for-vms-and-role-instances).
 
 ## Installing Remote Access
 
@@ -140,7 +140,7 @@ I will gloss over any configuration values that are up to personal preference, s
 
 ## Creating a route table within Azure
 
-Refer to [this article](https://docs.microsoft.com/en-us/azure/virtual-network/tutorial-create-route-table-portal) for a more in depth read on creating and managing routes within Azure.
+Refer to [this article](https://docs.microsoft.com/azure/virtual-network/tutorial-create-route-table-portal) for a more in depth read on creating and managing routes within Azure.
 
 1. Navigate to https://portal.azure.com.
 2. In the upper left hand corner select "Create a resource".

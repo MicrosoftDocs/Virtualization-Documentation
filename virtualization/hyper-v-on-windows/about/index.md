@@ -37,7 +37,7 @@ Hyper-V is available on 64-bit versions of Windows 10 Pro, Enterprise, and Educa
 
 Most computers will run Hyper-V however each virtual machine is a completely seperate operating system.  You can generally run one or more virtual machines on a computer with 4GB of RAM, though you'll need more resources for additional virtual machines or to install and run resource intense software like games, video editing, or engineering design software.
 
-For more information about Hyper-V's system requirements and how to verify that Hyper-V runs on your machine, see the [Hyper-V Requirements Reference](..\reference\hyper-v-requirements.md).
+For more information about Hyper-V's system requirements and how to verify that Hyper-V runs on your machine, see the [Hyper-V Requirements Reference](../reference/hyper-v-requirements.md).
 
 ## Operating systems you can run in a virtual machine
 
@@ -45,7 +45,7 @@ Hyper-V on Windows supports many different operating systems in a virtual machin
 
 As a reminder, you'll need to have a valid license for any operating systems you use in the VMs.
 
-For information about which operating systems are supported as guests in Hyper-V on Windows, see [Supported Windows Guest Operating Systems](supported-guest-os.md) and [Supported Linux Guest Operating Systems](https://technet.microsoft.com/library/dn531030.aspx).
+For information about which operating systems are supported as guests in Hyper-V on Windows, see [Supported Windows Guest Operating Systems](supported-guest-os.md) and [Supported Linux Guest Operating Systems](https://docs.microsoft.com/windows-server/virtualization/hyper-v/Supported-Linux-and-FreeBSD-virtual-machines-for-Hyper-V-on-Windows).
 
 ## Differences between Hyper-V on Windows and Hyper-V on Windows Server
 
@@ -74,4 +74,4 @@ In addition, if you have Hyper-V enabled, those latency-sensitive, high-precisio
 
 ## Next step
 
-[Install Hyper-V on Windows 10](..\quick-start\enable-hyper-v.md)
+[Install Hyper-V on Windows 10](../quick-start/enable-hyper-v.md)

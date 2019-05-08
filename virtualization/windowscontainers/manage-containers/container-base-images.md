@@ -31,7 +31,7 @@ For example, `docker inspect microsoft/windowsservercore:10.0.14393.447` would s
 Which are the two layers in the image provided by Microsoft. The top one is constant and represents the original Windows Server release, and the second one changes based on the latest cumulative update included.
 
 If you want to find out what changed in each version, look up the knowledge base for that version at 
-[Windows 10 and Windows Server 2016 update history](https://support.microsoft.com/en-us/help/12387/windows-10-update-history)
+[Windows 10 and Windows Server 2016 update history](https://support.microsoft.com/help/12387/windows-10-update-history)
 
 
 ## Tools to simplify this process

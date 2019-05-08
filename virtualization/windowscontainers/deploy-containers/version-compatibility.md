@@ -94,7 +94,7 @@ PS C:\Users\Administrator> (Get-ItemProperty 'HKLM:\SOFTWARE\Microsoft\Windows N
 14393.321.amd64fre.rs1_release_inmarket.161004-2338
 ```
 
-To check what version your base image uses, review the tags on the Docker hub or the image hash table provided in the image description. The [Windows 10 update history](https://support.microsoft.com/en-us/help/12387/windows-10-update-history) page lists when each build and revision was released.
+To check what version your base image uses, review the tags on the Docker hub or the image hash table provided in the image description. The [Windows 10 update history](https://support.microsoft.com/help/12387/windows-10-update-history) page lists when each build and revision was released.
 
 ### Hyper-V isolation for containers
 
@@ -119,7 +119,7 @@ There are three ways you can resolve this error:
 ## Choose which container OS version to use
 
 >[!NOTE]
->The "latest" tag will be updated along with Windows Server 2016, the current [Long-Term Servicing Channel product](https://docs.microsoft.com/en-us/windows-server/get-started/semi-annual-channel-overview). The following instructions are for container images that match the Windows Server version 1709 release.
+>The "latest" tag will be updated along with Windows Server 2016, the current [Long-Term Servicing Channel product](https://docs.microsoft.com/windows-server/get-started/semi-annual-channel-overview). The following instructions are for container images that match the Windows Server version 1709 release.
 
 You must know which version you need to use for your container. For example, if you're using Windows Server version 1709 and want to have the latest patches for it, you should use the tag `1709` when specifying which version of the base OS container images you want, like so:
 

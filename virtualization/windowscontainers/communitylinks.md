@@ -39,7 +39,7 @@ This page contains links to videos and blogs created by members or the container
 
 [Containerize Windows workloads with Image2Docker](https://blog.docker.com/2016/10/containerize-windows-workloads-image2docker/) - Mano Marks
 
-[Use Docker Compose and Service Discovery on Windows to scale-out your multi-service container application](https://blogs.technet.microsoft.com/virtualization/2016/10/18/use-docker-compose-and-service-discovery-on-windows-to-scale-out-your-multi-service-container-application/) - Kallie Bracken and Jason Messer
+[Use Docker Compose and Service Discovery on Windows to scale-out your multi-service container application](https://techcommunity.microsoft.com/t5/Containers/Use-Docker-Compose-and-Service-Discovery-on-Windows-to-scale-out/ba-p/382312) - Kallie Bracken and Jason Messer
 
 [PowerShell Desired State Configuration in Windows containers using Docker](https://dille.name/blog/2016/06/17/powershell-desired-state-configuration-psdsc-in-windows-containers-using-docker/) - Nicholas Dille
 

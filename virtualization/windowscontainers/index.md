@@ -25,7 +25,7 @@ Learn how to deploy Windows containers on Windows Server 2019
 
 * [System Requirements](deploy-containers/system-requirements.md)
 * [Deploy Container Host](deploy-containers/deploy-containers-on-server.md)
-* [Anti-Virus Optimization](https://msdn.microsoft.com/en-us/windows/hardware/drivers/ifs/anti-virus-optimization-for-windows-containers)
+* [Anti-Virus Optimization](https://docs.microsoft.com/windows-hardware/drivers/ifs/anti-virus-optimization-for-windows-containers)
 
 ## Docker on Windows
 Learn about managing Docker on Windows.
@@ -40,7 +40,7 @@ Interested in demos and interviews from the Windows container team?
 
 ## Community
 Interact with the community, try samples, and find additional resources.
-* [Container Forum](https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers)
+* [Container Forum](https://social.msdn.microsoft.com/Forums/home?forum=windowscontainers)
 * [Community Videos and Blogs](communitylinks.md)
-* [Container Samples](https://docs.microsoft.com/en-us/virtualization/windowscontainers/samples)
+* [Container Samples](https://docs.microsoft.com/virtualization/windowscontainers/samples)
 * [UserVoice](https://windowsserver.uservoice.com/forums/304624-containers)

@@ -11,21 +11,21 @@ ms.assetid: fb228e06-e284-45c0-b6e6-e7b0217c3a49
 ---
 
 # Virtual Machine automation and management using PowerShell
- 
+
 You can use PowerShell Direct to run arbitrary PowerShell in a Windows 10 or Windows Server 2016 virtual machine from your Hyper-V host regardless of network configuration or remote management settings.
 
-**Ways to run PowerShell Direct:**  
-* As an interactive session -- [click here](#create-and-exit-an-interactive-powershell-session) to create and exit an interactive PowerShell session using Enter-PSSession.
-* As a single-use session to execute a single command or script -- [click here](#run-a-script-or-command-with-invoke-command) to run a script or command using Invoke-Command.
-* As a persistant session (build 14280 and later) -- [click here](#copy-files-with-new-pssession-and-copy-item) to create a persistent session using New-PSSession.  
-Continue by coping a file to and from the virtual machine using Copy-Item then disconnect with Remove-PSSession.
+Here are some ways you can run PowerShell Direct:
+
+* [As an interactive session using the Enter-PSSession cmdlet](#create-and-exit-an-interactive-powershell-session)
+* [As a single-use section to execute a single command or script using the Invoke-Command cmdlet](#run-a-script-or-command-with-invoke-command)
+* [As a persistant session (build 14280 and later) using the New-PSSession, Copy-Item, and Remove-PSSession cmdlets](#copy-files-with-new-pssession-and-copy-item)
 
 ## Requirements
 **Operating system requirements:**
 * Host: Windows 10, Windows Server 2016, or later running Hyper-V.
 * Guest/Virtual Machine: Windows 10, Windows Server 2016, or later.
 
-If you're managing older virtual machines, use Virtual Machine Connection (VMConnect) or [configure a virtual network for the virtual machine](http://technet.microsoft.com/library/cc816585.aspx). 
+If you're managing older virtual machines, use Virtual Machine Connection (VMConnect) or [configure a virtual network for the virtual machine](https://docs.microsoft.com/previous-versions/windows/it-pro/windows-server-2008-R2-and-2008/cc816585(v=ws.10)). 
 
 **Configuration requirements:**    
 * The virtual machine must be running locally on the host.
@@ -73,7 +73,7 @@ When the session starts, the commands that you type run on the virtual machine, 
 
 > Note:  If your session won't connect, see the [troubleshooting](#troubleshooting) for potential causes. 
 
-To learn more about these cmdlets, see [Enter-PSSession](http://technet.microsoft.com/library/hh849707.aspx) and [Exit-PSSession](http://technet.microsoft.com/library/hh849743.aspx). 
+To learn more about these cmdlets, see [Enter-PSSession](https://docs.microsoft.com/powershell/module/Microsoft.PowerShell.Core/Enter-PSSession?view=powershell-5.1) and [Exit-PSSession](https://docs.microsoft.com/powershell/module/Microsoft.PowerShell.Core/Exit-PSSession?view=powershell-5.1). 
 
 -------------
 
@@ -112,7 +112,7 @@ PowerShell Direct with Invoke-Command is perfect for situations where you need t
    
    The script will execute on the virtual machine.  The connection will be closed automatically as soon as the command runs.
 
-To learn more about this cmdlet, see [Invoke-Command](http://technet.microsoft.com/library/hh849719.aspx). 
+To learn more about this cmdlet, see [Invoke-Command](https://docs.microsoft.com/powershell/module/Microsoft.PowerShell.Core/Invoke-Command?view=powershell-5.1). 
 
 -------------
 
@@ -122,7 +122,7 @@ To learn more about this cmdlet, see [Invoke-Command](http://technet.microsoft.c
 
 Persistent PowerShell sessions are incredibly useful when writing scripts that coordinate actions across one or more remote machines.  Once created, persistent sessions exist in the background until you decide to delete them.  This means you can reference the same session over and over again with `Invoke-Command` or `Enter-PSSession` without passing credentials.
 
-By the same token, sessions hold state.  Since persistent sessions persist, any variables created in a session or passed to a session will be preserved across multiple calls. There are a number of tools available for working with persistent sessions.  For this example, we will use [New-PSSession](https://technet.microsoft.com/en-us/library/hh849717.aspx) and [Copy-Item](https://technet.microsoft.com/en-us/library/hh849793.aspx) to move data from the host to a virtual machine and from a virtual machine to the host.
+By the same token, sessions hold state.  Since persistent sessions persist, any variables created in a session or passed to a session will be preserved across multiple calls. There are a number of tools available for working with persistent sessions.  For this example, we will use [New-PSSession](https://docs.microsoft.com/powershell/module/Microsoft.PowerShell.Core/New-PSSession?view=powershell-5.1) and [Copy-Item](https://docs.microsoft.com/powershell/module/Microsoft.PowerShell.Management/Copy-Item?view=powershell-5.1) to move data from the host to a virtual machine and from a virtual machine to the host.
 
 **To create a session then copy files:**  
 
@@ -201,13 +201,13 @@ Enter-PSSession : An error has occurred which Windows PowerShell cannot handle. 
 
 **Potential causes:**
 * The virtual machine exists but is not running.
-* The guest OS does not support PowerShell Direct (see [requirements](#Requirements))
+* The guest OS does not support PowerShell Direct (see [requirements](#requirements))
 * PowerShell isn't available in the guest yet
   * The operating system hasn't finished booting
   * The operating system can't boot correctly
   * Some boot time event needs user input
 
-You can use the [Get-VM](http://technet.microsoft.com/library/hh848479.aspx) cmdlet to check to see which VMs are running on the host.
+You can use the [Get-VM](https://docs.microsoft.com/powershell/module/hyper-v/get-vm?view=win10-ps) cmdlet to check to see which VMs are running on the host.
 
 **Error message:**  
 ```
@@ -249,7 +249,7 @@ Enter-PSSession : The credential is invalid.
 * The guest credentials couldn't be validated
   * The supplied credentials were incorrect.
   * There are no user accounts in the guest (the OS hasn't booted before)
-  * If connecting as Administrator:  Administrator has not been set as an active user.  Learn more [here](https://technet.microsoft.com/en-us/library/hh825104.aspx).
+  * If connecting as Administrator:  Administrator has not been set as an active user.  Learn more [here](<https://docs.microsoft.com/previous-versions/windows/it-pro/windows-8.1-and-8/hh825104(v=win.10)>).
   
 ### Error: The input VMName parameter does not resolve to any virtual machine.
 
@@ -262,7 +262,7 @@ Enter-PSSession : The input VMName parameter does not resolve to any virtual mac
 * You are not a Hyper-V Administrator.  
 * The virtual machine doesn't exist.
 
-You can use the [Get-VM](http://technet.microsoft.com/library/hh848479.aspx) cmdlet to check that the credentials you're using have the Hyper-V administrator role and to see which VMs are running locally on the host and booted.
+You can use the [Get-VM](https://docs.microsoft.com/powershell/module/hyper-v/get-vm?view=win10-ps) cmdlet to check that the credentials you're using have the Hyper-V administrator role and to see which VMs are running locally on the host and booted.
 
 
 -------------
