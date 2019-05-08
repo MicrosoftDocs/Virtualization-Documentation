@@ -23,7 +23,7 @@ Get-NetCompartment
 
 ## Network security
 
-Depending on which container and network driver is used, port ACLs are enforced by a combination of the Windows Firewall and [VFP](https://www.microsoft.com/en-us/research/project/azure-virtual-filtering-platform/).
+Depending on which container and network driver is used, port ACLs are enforced by a combination of the Windows Firewall and [VFP](https://www.microsoft.com/research/project/azure-virtual-filtering-platform/).
 
 ### Windows Server containers
 

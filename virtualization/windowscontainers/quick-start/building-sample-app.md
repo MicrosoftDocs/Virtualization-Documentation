@@ -13,7 +13,7 @@ ms.service: windows-containers
 
 The exercise will walk you through taking a sample ASP.net app and converting it to run in a container. If you need to learn how to get up and running with containers in Windows 10, visit [Windows 10 Quick Start](./quick-start-windows-10.md).
 
-This quick start is specific to Windows 10. Additional quick start documentation can be found in the table of contents on the left hand side of this page. Since the focus of this tutorial concerns containers, we will forego writing code and focus solely on containers. If you want to build the tutorial from the ground up, then you can find it in [ASP.NET Core Documentation](https://docs.microsoft.com/en-us/aspnet/core/tutorials/first-mvc-app-xplat/)
+This quick start is specific to Windows 10. Additional quick start documentation can be found in the table of contents on the left hand side of this page. Since the focus of this tutorial concerns containers, we will forego writing code and focus solely on containers. If you want to build the tutorial from the ground up, then you can find it in [ASP.NET Core Documentation](https://docs.microsoft.com/aspnet/core/tutorials/first-mvc-app-xplat/)
 
 If you don't have Git source control installed on your computer, you can grab it here: [Git](https://git-scm.com/download)
 

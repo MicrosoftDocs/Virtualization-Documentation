@@ -78,7 +78,7 @@ You should see something like this:
 ![text](./media/docker-run-sample.png)
 
 > [!tip]
-> If you cannot run the container please see: [matching container host version with container image](https://docs.microsoft.com/en-us/virtualization/windowscontainers/deploy-containers/version-compatibility#matching-container-host-version-with-container-image-versions)
+> If you cannot run the container please see: [matching container host version with container image](https://docs.microsoft.com/virtualization/windowscontainers/deploy-containers/version-compatibility#matching-container-host-version-with-container-image-versions)
 
 
 #### Prepare Kubernetes for Windows directory ####
@@ -92,12 +92,12 @@ mkdir c:\k
 Copy the Kubernetes certificate file (`$HOME/.kube/config`) [from master](./creating-a-linux-master.md#collect-cluster-information) to this new `C:\k` directory.
 
 > [!tip]
-> You can use tools such as [xcopy](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/xcopy) or [WinSCP](https://winscp.net/eng/download.php) to transfer the config file between nodes.
+> You can use tools such as [xcopy](https://docs.microsoft.com/windows-server/administration/windows-commands/xcopy) or [WinSCP](https://winscp.net/eng/download.php) to transfer the config file between nodes.
 
 #### Download Kubernetes binaries ####
 To be able to run Kubernetes, you first need to download the `kubectl`, `kubelet`, and `kube-proxy` binaries. You can download these from the links in the `CHANGELOG.md` file of the [latest releases](https://github.com/kubernetes/kubernetes/releases/).
  - For example, here are the [v1.13 Node Binaries](https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG-1.13.md#node-binaries).
- - Use a tool like [Expand-Archive](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.archive/expand-archive?view=powershell-6) to extract the archive and place the binaries into `C:\k\`.
+ - Use a tool like [Expand-Archive](https://docs.microsoft.com/powershell/module/microsoft.powershell.archive/expand-archive?view=powershell-6) to extract the archive and place the binaries into `C:\k\`.
 
 #### (Optional) Setup kubectl on Windows ####
 Should you wish to control the cluster from Windows, you can do so using the `kubectl` command. First, to make `kubectl` available outside of the `C:\k\` directory, modify the `PATH` environment variable:
@@ -208,7 +208,7 @@ The [service subnet range](./getting-started-kubernetes-windows.md#service-subne
 
 
 # [KubeDnsServiceIP](#tab/KubeDnsServiceIP)
-The [Kubernetes DNS service IP](./getting-started-kubernetes-windows.md#kube-dns-def).
+The [Kubernetes DNS service IP](./getting-started-kubernetes-windows.md#plan-ip-addressing-for-your-cluster).
 
 |  |  | 
 |---------|---------|

@@ -31,44 +31,19 @@ If a Windows container host will be run from a Hyper-V virtual machine, and will
 
 Windows containers are offered with four container base images: Windows Server Core, Nano Server, Windows, and IoT Core. Not all configurations support both OS images. This table details the supported configurations.
 
-<table border="1" style="background-color:FFFFCC;border-collapse:collapse;border:1px solid FFCC00;color:000000;width:75%" cellpadding="5" cellspacing="5">
-<thead>
-<tr valign="top">
-<th><center>Host Operating System</center></th>
-<th><center>Windows Server container</center></th>
-<th><center>Hyper-V isolation</center></th>
-</tr>
-</thead>
-<tbody>
-<tr valign="top">
-<td><center>Windows Server 2016 / 2019 (Standard or Datacenter)</center></td>
-<td><center>Server Core, Nano Server, Windows</center></td>
-<td><center>Server Core, Nano Server, Windows</center></td>
-</tr>
-<tr valign="top">
-<td><center>Nano Server<a href="#warn-1">*</a></center></td>
-<td><center> Nano Server</center></td>
-<td><center>Server Core, Nano Server, Windows</center></td>
-</tr>
-<tr valign="top">
-<td><center>Windows 10 Pro / Enterprise</center></td>
-<td><center>Not Available</center></td>
-<td><center>Server Core, Nano Server, Windows</center></td>
-</tr>
-<tr valign="top">
-<td><center>IoT Core</center></td>
-<td><center>IoT Core</center></td>
-<td><center>Not Available</center></td>
-</tr>
-</tbody>
-</table>
+|Host operating system|Windows container|Hyper-V isolation|
+|---------------------|-----------------|-----------------|
+|Windows Server 2016 or Windows Server 2019 (Standard or Datacenter)|Server Core, Nano Server, Windows|Server Core, Nano Server, Windows|
+|Nano Server|Nano Server|Server Core, Nano Server, Windows|
+|Windows 10 Pro or Windows 10 Enterprise|Not available|Server Core, Nano Server, Windows|
+|IoT Core|IoT Core|Not available|
 
 > [!WARNING]  
 > Starting with Windows Server version 1709, Nano Server is no longer available as a container host.
 
 ### Memory requirements
 
-Restrictions on available memory to containers can be configured though [resource controls](https://docs.microsoft.com/en-us/virtualization/windowscontainers/manage-containers/resource-controls) or by overloading a container host.  The minimum amount of memory required to launch a container and run basic commands (ipconfig, dir, and so on) are listed below.
+Restrictions on available memory to containers can be configured though [resource controls](https://docs.microsoft.com/virtualization/windowscontainers/manage-containers/resource-controls) or by overloading a container host.  The minimum amount of memory required to launch a container and run basic commands (ipconfig, dir, and so on) are listed below.
 
 >[!NOTE]
 >These values don't take into account resource sharing between containers or requirements from the application running in the container.  For example a host with 512MB of free memory can run multiple Server Core containers under Hyper-V isolation because those containers share resources.
@@ -94,7 +69,7 @@ How does one choose the right base image to build upon? While you are free to bu
 - [Windows Server Core](https://hub.docker.com/_/microsoft-windows-servercore): If your application needs the full .NET framework, this is the best image to use.
 - [Nano Server](https://hub.docker.com/_/microsoft-windows-nanoserver): For applications that only require .NET Core, Nano Server will provide a much slimmer image.
 - [Windows](https://hub.docker.com/_/microsoft-windowsfamily-windows): You may find your application depends on a component or .dll that is missing in Server Core or Nano Server images, such as GDI libraries. This image carries the full dependency set of Windows.
-- [IoT Core](https://hub.docker.com/_/microsoft-windows-iotcore): This image is purpose-built for [IoT applications](https://developer.microsoft.com/en-us/windows/iot). You should use this container image when targeting an IoT Core host.
+- [IoT Core](https://hub.docker.com/_/microsoft-windows-iotcore): This image is purpose-built for [IoT applications](https://developer.microsoft.com/windows/iot). You should use this container image when targeting an IoT Core host.
 
 For most users, Windows Server Core or Nano Server will be the most appropriate image to use. The following are things to keep in mind as you think about building on top of Nano Server:
 

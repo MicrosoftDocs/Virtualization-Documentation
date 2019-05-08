@@ -17,7 +17,7 @@ Integration services (often called integration components), are services that al
 This article is a reference for each integration service available in Windows.  It will also act as a starting point for any information related to specific integration services or their history.
 
 **User Guides:**  
-* [Managing integration services](https://technet.microsoft.com/windows-server-docs/compute/hyper-v/manage/manage-Hyper-V-integration-services)
+* [Managing integration services](https://docs.microsoft.com/windows-server/virtualization/hyper-v/manage/Manage-Hyper-V-integration-services)
 
 
 ## Quick Reference
@@ -47,7 +47,7 @@ When Hyper-V reports that a virtual machine state is "running" (see the example 
 
 ### Check heartbeat with PowerShell
 
-Run [Get-VM](https://technet.microsoft.com/en-us/library/hh848479.aspx) as Administrator to see a virtual machine's heartbeat:
+Run [Get-VM](https://docs.microsoft.com/powershell/module/hyper-v/get-vm?view=win10-ps) as Administrator to see a virtual machine's heartbeat:
 ``` PowerShell
 Get-VM -VMName $VMName | select Name, State, Status
 ```
@@ -97,7 +97,7 @@ The data exchange service is a great tool for preserving information about the v
 
 
 **User Guides:**  
-* [Using key-value pairs to share information between the host and guest on Hyper-V](https://technet.microsoft.com/en-us/library/dn798287.aspx).  
+* [Using key-value pairs to share information between the host and guest on Hyper-V](https://docs.microsoft.com/previous-versions/windows/it-pro/windows-server-2012-R2-and-2012/dn798287(v=ws.11)).  
 
 
 ## Hyper-V Volume Shadow Copy Requestor
@@ -108,9 +108,9 @@ The data exchange service is a great tool for preserving information about the v
 **Added In:** Windows Server 2012, Windows 8  
 **Impact:** When disabled, the virtual machine can not be backed up while running (using VSS).  
 
-The Volume Shadow Copy Requestor integration service is required for Volume Shadow Copy Service ([VSS](https://msdn.microsoft.com/en-us/library/aa384589.aspx)).  The Volume Shadow Copy Service (VSS) captures and copies images for backup on running systems, particularly servers, without unduly degrading the performance and stability of the services they provide.  This integration service makes that possible by coordinating the virtual machine's workloads with the host's backup process.
+The Volume Shadow Copy Requestor integration service is required for Volume Shadow Copy Service ([VSS](https://docs.microsoft.com/windows/desktop/VSS/overview-of-processing-a-backup-under-vss)).  The Volume Shadow Copy Service (VSS) captures and copies images for backup on running systems, particularly servers, without unduly degrading the performance and stability of the services they provide.  This integration service makes that possible by coordinating the virtual machine's workloads with the host's backup process.
 
-Read more about Volume Shadow Copy [here](https://msdn.microsoft.com/en-us/library/dd405549.aspx).
+Read more about Volume Shadow Copy [here](https://docs.microsoft.com/previous-versions/windows/desktop/virtual/backing-up-and-restoring-virtual-machines).
 
 
 ## Hyper-V Guest Service Interface
@@ -119,7 +119,7 @@ Read more about Volume Shadow Copy [here](https://msdn.microsoft.com/en-us/libra
 **Linux Daemon Name:** hv_fcopy_daemon  
 **Description:** Provides an interface for the Hyper-V host to bidirectionally copy files to or from the virtual machine.  
 **Added In:** Windows Server 2012 R2, Windows 8.1  
-**Impact:** When disabled, the host can not copy files to and from the guest using `Copy-VMFile`.  Read more about the [Copy-VMFile cmdlet](https://technet.microsoft.com/library/dn464282.aspx).  
+**Impact:** When disabled, the host can not copy files to and from the guest using `Copy-VMFile`.  Read more about the [Copy-VMFile cmdlet](https://docs.microsoft.com/powershell/module/hyper-v/copy-vmfile?view=win10-ps).  
 
 **Notes:**  
 Disabled by default.  See [PowerShell Direct using Copy-Item](../user-guide/powershell-direct.md#copy-files-with-new-pssession-and-copy-item). 

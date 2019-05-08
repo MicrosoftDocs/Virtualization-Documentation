@@ -11,7 +11,7 @@ ms.assetid: 66723f33-b12c-49d1-82cf-71ba9d6087e9
 
 # Create Virtual Machine with Hyper-V on Windows 10
 
-Learn how to create a virtual machine and install an operating system in your new virtual machine.  You will need an .iso file for the operating system that you would like to run. If needed, grab an evaluation copy of Windows 10 from the [TechNet Evaluation Center](http://www.microsoft.com/en-us/evalcenter/).
+Learn how to create a virtual machine and install an operating system in your new virtual machine.  You will need an .iso file for the operating system that you would like to run. If needed, grab an evaluation copy of Windows 10 from the [TechNet Evaluation Center](http://www.microsoft.com/evalcenter/).
 
 ## Create a Virtual Machine with Hyper-V Manager
 
@@ -30,17 +30,17 @@ Learn how to create a virtual machine and install an operating system in your ne
 
 1. Select a generation for the machine and click **Next**.  
 
-  Generation 2 virtual machines were introduced with Windows Server 2012 R2 and provide a simplified virtual hardware model and some additional functionality. You can only install a 64-bit operating system on a Generation 2 virtual machine. For more information on Generation 2 virtual machines, see the [Generation 2 Virtual Machine Overview](https://technet.microsoft.com/en-us/library/dn282285.aspx).
+  Generation 2 virtual machines were introduced with Windows Server 2012 R2 and provide a simplified virtual hardware model and some additional functionality. You can only install a 64-bit operating system on a Generation 2 virtual machine. For more information on Generation 2 virtual machines, see the [Generation 2 Virtual Machine Overview](<https://docs.microsoft.com/previous-versions/windows/it-pro/windows-server-2012-R2-and-2012/dn282285(v=ws.11)>).
   
-  > If the new virtual machine is configured as Generation 2 and will be running a Linux distribution, secure boot will need to be disabled. For more information on secure boot, see [Secure Boot](https://technet.microsoft.com/en-us/library/dn486875.aspx).
+  > If the new virtual machine is configured as Generation 2 and will be running a Linux distribution, secure boot will need to be disabled. For more information on secure boot, see [Secure Boot](<https://docs.microsoft.com/previous-versions/windows/it-pro/windows-8.1-and-8/dn486875(v=ws.11)>).
 
-1. Select **2048** MB for the **Startup Memory** value and leave **Use Dynamic Memory** selected. Click the **Next** button.
+2. Select **2048** MB for the **Startup Memory** value and leave **Use Dynamic Memory** selected. Click the **Next** button.
 
-  Memory is shared between a Hyper-V host and the virtual machine running on the host. The number of virtual machines that can run on a single host is in part dependent on available memory. A virtual machine can also be configured to use Dynamic Memory. When enabled, dynamic memory reclaims unused memory from the running virtual machine. This allows more virtual machines to run on the host. For more information on Dynamic Memory, see the [Hyper-V Dynamic Memory Overview](https://technet.microsoft.com/en-us/library/hh831766.aspx).
+  Memory is shared between a Hyper-V host and the virtual machine running on the host. The number of virtual machines that can run on a single host is in part dependent on available memory. A virtual machine can also be configured to use Dynamic Memory. When enabled, dynamic memory reclaims unused memory from the running virtual machine. This allows more virtual machines to run on the host. For more information on Dynamic Memory, see the [Hyper-V Dynamic Memory Overview](https://docs.microsoft.com/previous-versions/windows/it-pro/windows-server-2012-R2-and-2012/hh831766(v=ws.11)).
 
-1. On the Configure Networking wizard, select a virtual switch for the virtual machine and click **Next**. For more information, see [Create a Virtual Switch](connect-to-network.md).
+3. On the Configure Networking wizard, select a virtual switch for the virtual machine and click **Next**. For more information, see [Create a Virtual Switch](connect-to-network.md).
 
-1. Give the virtual hard drive a name, select a location or keep the default, and finally specify a size. Click **Next** when ready.
+4. Give the virtual hard drive a name, select a location or keep the default, and finally specify a size. Click **Next** when ready.
 
   A virtual hard drive provides storage for a virtual machine similar to a physical hard drive. A virtual hard drive is required so that you can install an operating system on the virtual machine.
   
