@@ -11,23 +11,14 @@ ms.assetid: fb228e06-e284-45c0-b6e6-e7b0217c3a49
 ---
 
 # Virtual Machine automation and management using PowerShell
- 
+
 You can use PowerShell Direct to run arbitrary PowerShell in a Windows 10 or Windows Server 2016 virtual machine from your Hyper-V host regardless of network configuration or remote management settings.
 
-**Ways to run PowerShell Direct:**  
-- [Virtual Machine automation and management using PowerShell](#virtual-machine-automation-and-management-using-powershell)
-  - [Requirements](#requirements)
-  - [Create and exit an interactive PowerShell session](#create-and-exit-an-interactive-powershell-session)
-  - [Run a script or command with Invoke-Command](#run-a-script-or-command-with-invoke-command)
-  - [Copy files with New-PSSession and Copy-Item](#copy-files-with-new-pssession-and-copy-item)
-  - [Troubleshooting](#troubleshooting)
-    - [-VMName or -VMID parameters don't exist](#vmname-or--vmid-parameters-dont-exist)
-    - [Error: A remote session might have ended](#error-a-remote-session-might-have-ended)
-    - [Error: Parameter set cannot be resolved](#error-parameter-set-cannot-be-resolved)
-    - [Error: The credential is invalid.](#error-the-credential-is-invalid)
-    - [Error: The input VMName parameter does not resolve to any virtual machine.](#error-the-input-vmname-parameter-does-not-resolve-to-any-virtual-machine)
-  - [Samples and User Guides](#samples-and-user-guides)
-Continue by coping a file to and from the virtual machine using Copy-Item then disconnect with Remove-PSSession.
+## Ways to run PowerShell Direct
+
+* [As an interactive session using the Enter-PSSession cmdlet](#create-and-exit-an-interactive-powershell-session)
+* [As a single-use section to execute a single command or script using the Invoke-Command cmdlet](#run-a-script-or-command-with-invoke-command)
+* [As a persistant session (build 14280 and later) using the New-PSSession, Copy-Item, and Remove-PSSession cmdlets](#copy-files-with-new-pssession-and-copy-item)
 
 ## Requirements
 **Operating system requirements:**
