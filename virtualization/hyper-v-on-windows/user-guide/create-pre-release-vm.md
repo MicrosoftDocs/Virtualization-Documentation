@@ -31,17 +31,17 @@ You can create a pre-release virtual machine on Hyper-V hosts that run Windows S
 
 1. On the Windows desktop, click the Start button and type any part of the name **Windows PowerShell**.
 2. Right-click **Windows PowerShell** and select **Run as Administrator**.
-3. Use the [New-VM](https://technet.microsoft.com/library/hh848537.aspx) cmdlet with the -Prerelease flag to create the pre-release virtual machine. For example, run the following command where VM Name is the name of the virtual machine that you want to create.
+3. Use the [New-VM](https://docs.microsoft.com/powershell/module/hyper-v/new-vm?view=win10-ps) cmdlet with the -Prerelease flag to create the pre-release virtual machine. For example, run the following command where VM Name is the name of the virtual machine that you want to create.
 
 ``` PowerShell
 New-VM -Name <VM Name> -Prerelease
 ```
 Other examples you can use the -Prerelease flag with:
- - To create a virtual machine that uses an existing virtual hard disk or a new hard disk, see the PowerShell examples in [Create a virtual machine in Hyper-V on Windows Server 2016 Technical Preview](https://technet.microsoft.com/library/mt126140.aspx#BKMK_PowerShell).
- - To create a new virtual hard disk that boots to an operating system image, see the PowerShell example in [Deploy a Windows Virtual Machine in Hyper-V on Windows 10](https://msdn.microsoft.com/en-us/virtualization/hyperv_on_windows/quick_start/walkthrough_create_vm).
+ - To create a virtual machine that uses an existing virtual hard disk or a new hard disk, see the PowerShell examples in [Create a virtual machine in Hyper-V on Windows Server 2016 Technical Preview](https://docs.microsoft.com/windows-server/virtualization/hyper-v/get-started/Create-a-virtual-machine-in-Hyper-V#BKMK_PowerShell).
+ - To create a new virtual hard disk that boots to an operating system image, see the PowerShell example in [Deploy a Windows Virtual Machine in Hyper-V on Windows 10](https://docs.microsoft.com/virtualization/hyper-v-on-windows/quick-start/create-virtual-machine).
 
  The examples covered in those articles work for Hyper-V hosts that run Windows 10 or Windows Server 2016 Technical Preview. But right now, you can only use the -Prerelease flag to create a pre-release virtual machine on Hyper-V hosts that run Windows Server 2016 Technical Preview.
 
 ## See also
--  [Virtualization Blog](https://blogs.technet.microsoft.com/virtualization/) - Learn about the pre-release features that are available and how to try them out.
-- [Supported virtual machine configuration versions](https://technet.microsoft.com/library/mt695898.aspx#BKMK_SupportedConfigVersions) - Learn how to check the virtual machine configuration version and which versions are supported by Microsoft.
+-  [Virtualization Blog](https://techcommunity.microsoft.com/t5/Virtualization/bg-p/Virtualization) - Learn about the pre-release features that are available and how to try them out.
+- [Supported virtual machine configuration versions](https://docs.microsoft.com/windows-server/virtualization/hyper-v/deploy/Upgrade-virtual-machine-version-in-Hyper-V-on-Windows-or-Windows-Server#BKMK_SupportedConfigVersions) - Learn how to check the virtual machine configuration version and which versions are supported by Microsoft.

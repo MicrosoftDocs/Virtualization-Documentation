@@ -52,7 +52,7 @@ ms.assetid: addcfda8-1522-4137-bc02-14cbb1ff838f
               </a>
           </li>
           <li>
-              <a href="https://blogs.technet.microsoft.com/virtualization/ ">
+              <a href="https://techcommunity.microsoft.com/t5/Virtualization/bg-p/Virtualization">
                   <div class="cardSize">
                       <div class="cardPadding">
                           <div class="card">
@@ -138,7 +138,7 @@ ms.assetid: addcfda8-1522-4137-bc02-14cbb1ff838f
                                                 <h3 style="margin: 8px 0 2px 0;">Management tools</h3>
                                                 <ul>
                                                     <li><a href="https://www.docker.com/docker-windows">Docker</a></li>
-                                                    <li><a href="https://azure.microsoft.com/en-us/services/container-service/">Azure Container Service</a></li>
+                                                    <li><a href="https://azure.microsoft.com/services/container-service/">Azure Container Service</a></li>
                                                     <li><a href="https://kubernetes.io/">Kubernetes</a></li>
                                                 </ul>
                                             </div>
@@ -181,7 +181,7 @@ ms.assetid: addcfda8-1522-4137-bc02-14cbb1ff838f
                                                 <h3 style="margin: 8px 0 2px 0;">Community</h3>
                                                 <ul>
                                                     <li><a href="https://github.com/Microsoft/Virtualization-Documentation">GitHub</a></li>
-                                                    <li><a href="https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers">Forum</a></li>
+                                                    <li><a href="https://social.msdn.microsoft.com/Forums/home?forum=windowscontainers">Forum</a></li>
                                                     <li><a href="https://insider.windows.com/">Windows Insider</a></li>
                                                 </ul>
                                             </div>
@@ -251,8 +251,8 @@ ms.assetid: addcfda8-1522-4137-bc02-14cbb1ff838f
                                             <div class="cardText">
                                                 <h3 style="margin: 8px 0 2px 0;">Management Tools</h3>
                                                 <ul>
-                                                    <li><a href="https://technet.microsoft.com/library/hh848559.aspx">PowerShell</a></li>
-                                                    <li><a href="https://msdn.microsoft.com/library/hh850319.aspx">WMI</a></li>
+                                                    <li><a href="https://docs.microsoft.com/powershell/module/hyper-v/index?view=win10-ps">PowerShell</a></li>
+                                                    <li><a href="https://docs.microsoft.com/windows/desktop/HyperV_v2/windows-virtualization-portal">WMI</a></li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -272,7 +272,7 @@ ms.assetid: addcfda8-1522-4137-bc02-14cbb1ff838f
                                                 <h3 style="margin: 8px 0 2px 0;">Community</h3>
                                                 <ul>
                                                     <li><a href="https://github.com/Microsoft/Virtualization-Documentation/">GitHub</a></li>
-                                                    <li><a href="https://social.technet.microsoft.com/Forums/windowsserver/home?forum=winserverhyperv">Forum</a></li>
+                                                    <li><a href="https://social.technet.microsoft.com/Forums/home?forum=winserverhyperv">Forum</a></li>
                                                     <li><a href="https://insider.windows.com/">Windows Insider</a></li>
                                                 </ul>
                                             </div>
@@ -347,7 +347,7 @@ ms.assetid: addcfda8-1522-4137-bc02-14cbb1ff838f
                                                 <h3 style="margin: 8px 0 2px 0;">Hyper-V Server</h3>
                                                 <p>Hyper-V Server is a free version of Windows Server with only the Hyper-V role available</p>
                                                 <ul>
-                                                    <li><a href="https://www.microsoft.com/en-us/evalcenter/evaluate-hyper-v-server-2019">Download Hyper-V Server 2019</a></li>
+                                                    <li><a href="https://www.microsoft.com/evalcenter/evaluate-hyper-v-server-2019">Download Hyper-V Server 2019</a></li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -366,7 +366,7 @@ ms.assetid: addcfda8-1522-4137-bc02-14cbb1ff838f
                                             <div class="cardText">
                                                 <h3 style="margin: 8px 0 2px 0;">Community</h3>
                                                 <ul>
-                                                    <li><a href="https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers">Forum</a></li>
+                                                    <li><a href="https://social.msdn.microsoft.com/Forums/home?forum=windowscontainers">Forum</a></li>
                                                     <li><a href="https://insider.windows.com/">Windows Insider</a></li>
                                                 </ul>
                                             </div>
@@ -386,8 +386,8 @@ ms.assetid: addcfda8-1522-4137-bc02-14cbb1ff838f
                                             <div class="cardText">
                                                 <h3 style="margin: 8px 0 2px 0;">Documentation Archive</h3>
                                                 <ul>
-                                                    <li><a href="https://technet.microsoft.com/library/mt169373.aspx">Windows Server 2012 R2 and 2012</a></li>
-                                                    <li><a href="https://technet.microsoft.com/library/cc753637.aspx">Windows Server 2008 R2</a></li>
+                                                    <li><a href="https://docs.microsoft.com/previous-versions/windows/it-pro/windows-server-2012-R2-and-2012/mt169373(v=ws.11)">Windows Server 2012 R2 and 2012</a></li>
+                                                    <li><a href="https://docs.microsoft.com/previous-versions/windows/it-pro/windows-server-2008-R2-and-2008/cc753637(v=ws.10)">Windows Server 2008 R2</a></li>
                                                 </ul>
                                             </div>
                                         </div>

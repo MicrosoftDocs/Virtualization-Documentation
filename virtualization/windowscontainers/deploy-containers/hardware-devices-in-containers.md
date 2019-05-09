@@ -5,18 +5,20 @@ keywords: docker, containers, devices, hardware
 author: cwilhit
 ---
 
-**This is currently preview material. See the 4th item in the 'Requirements' section below for more information.**
-
 # Devices in Containers on Windows
 
 By default, Windows containers are given minimal access to host devices--just like Linux containers. There are certain workloads where it is beneficial--or even imperative--to access and communicate with host hardware devices. This guide covers which devices are supported in containers and how to get started.
 
+> [!IMPORTANT]
+> This feature requires a version of Docker that supports the `--device` command-line option for Windows containers. Formal Docker support is scheduled for the upcoming Docker EE Engine 19.03 release. Until then, the [upstream source](https://master.dockerproject.org/) for Docker contains the necessary bits.
+
 ## Requirements
 
-- You must be running Windows Server 2019 or later or Windows 10 Pro/Enterprise with the October 2018 Update
-- Your container image version must be 1809 or later.
+For this feature to work, your environment must meet the following requirements:
+- The container host must be running Windows Server 2019 or Windows 10, version 1809 or newer.
+- Your container base image version must be 1809 or later.
 - Your containers must be Windows containers running in process-isolated mode.
-- While the Windows devices functionality exists in the Docker daemon, it does not yet exist in the Docker client (see this [pull request](https://github.com/docker/cli/pull/1606) to track). You must wait for a future release of Docker for Windows / Docker EE with this code to take advantage of this feature. This document will be updated when the status changes.
+- The container host must be running Docker Engine 19.03 or newer.
 
 ## Run a Container with a Device
 
@@ -26,7 +28,7 @@ To start a container with a device, use the following command:
 docker run --isolation=process --device="class/{interface class GUID}" mcr.microsoft.com/windows/servercore:1809
 ```
 
-You must replace the `{interface class guid}` with an appropriate [device interface class GUID](https://docs.microsoft.com/en-us/windows-hardware/drivers/install/overview-of-device-interface-classes), which can be found in the section below.
+You must replace the `{interface class guid}` with an appropriate [device interface class GUID](https://docs.microsoft.com/windows-hardware/drivers/install/overview-of-device-interface-classes), which can be found in the section below.
 
 To start a container with multiple devices, use the following command and string together multiple `--device` arguments:
 
@@ -66,16 +68,20 @@ The following devices (and their device interface class GUIDs) are supported tod
 <td><center>SPI Bus</center></td>
 <td><center>DCDE6AF9-6610-4285-828F-CAAF78C424CC</center></td>
 </tr>
+<tr valign="top">
+<td><center>DirectX GPU Acceleration</center></td>
+<td><center>See dedicated docs</center></td>
+</tr>
 </tbody>
 </table>
 
 > [!TIP]
 > The devices listed above are the _only_ devices supported in Windows containers today. Attempting to pass any other class GUIDs will result in the container failing to start.
 
-## Hyper-V Container Device Support
+## Hyper-V-isolated Windows Container Support
 
-Device assignment and device sharing are not supported in Hyper-V isolated containers today.
+Device assignment and device sharing for workloads in Hyper-V-isolated Windows containers is not supported today.
 
-## Linux Containers on Windows (LCOW) Device Support
+## Hyper-V-isolated Linux Container Support
 
-Device assignment and device sharing are not supported in LCOW today.
+Device assignment and device sharing for workloads in Hyper-V-isolated Linux containers is not supported today.

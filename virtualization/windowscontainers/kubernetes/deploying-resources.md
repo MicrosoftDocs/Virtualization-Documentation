@@ -26,7 +26,7 @@ kubectl get nodes
 
 If everything looks good, you can download and run the following service:
 > [!Important] 
-> Before `kubectl apply`, make sure to double-check/modify the `microsoft/windowsservercore` image in the sample file to [a container image that is runnable by your nodes](https://docs.microsoft.com/en-us/virtualization/windowscontainers/deploy-containers/version-compatibility#choosing-container-os-versions)!
+> Before `kubectl apply`, make sure to double-check/modify the `microsoft/windowsservercore` image in the sample file to [a container image that is runnable by your nodes](https://docs.microsoft.com/virtualization/windowscontainers/deploy-containers/version-compatibility#choosing-container-os-versions)!
 
 ```bash
 wget https://raw.githubusercontent.com/Microsoft/SDN/master/Kubernetes/flannel/l2bridge/manifests/simpleweb.yml -O win-webserver.yaml

@@ -1,6 +1,6 @@
 # Description:
 
-Creates an image containing Python 3.5.1 and Django 1.8.6.
+Creates an image containing Python 3.7.3 and Django 2.2.
 
 This dockerfile is for demonstration purposes and may require modification for production use. 
 
@@ -31,19 +31,18 @@ docker run -it python-django
 
 FROM microsoft/windowsservercore
 
-LABEL Description="Python" Vendor="Python Software Foundation" Version="3.5.1"
+LABEL Description="Python" Vendor="Python Software Foundation" Version="3.7.3"
 
 RUN powershell.exe -Command \
 	$ErrorActionPreference = 'Stop'; \
- 	Invoke-WebRequest https://www.python.org/ftp/python/3.5.1/python-3.5.1.exe -OutFile c:\python-3.5.1.exe ; \
-	start-Process  c:\python-3.5.1.exe -ArgumentList '/quiet InstallAllUsers=1 PrependPath=1' -Wait  ; \
+	[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; \
+	Invoke-WebRequest https://www.python.org/ftp/python/3.7.3/python-3.7.3.exe -OutFile c:\python-3.7.3.exe ; \
+	start-Process  c:\python-3.7.3.exe -ArgumentList '/quiet InstallAllUsers=1 PrependPath=1' -Wait  ; \
 	Sleep 60 ; \
-	Remove-Item c:\python-3.5.1.exe -Force
+	Remove-Item c:\python-3.7.3.exe -Force
 
-RUN ["pip", "install", "Django==1.8.6"]
+RUN ["pip", "install", "Django==2.2"]
 
 CMD ["django-admin --version"]
-		
 ```
-
 

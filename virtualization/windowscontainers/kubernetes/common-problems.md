@@ -40,8 +40,29 @@ For additional details, see official [nssm usage](https://nssm.cc/usage) docs.
 
 ## Common networking errors ##
 
-### My Windows pods do not have network connectivity ###
-If you are using any virtual machines, ensure that MAC spoofing is enabled on all the VM network adapter(s). See [anti-spoofing protection](./getting-started-kubernetes-windows.md#disable-anti-spoofing-protection) for more details.
+### I am seeing errors such as "hnsCall failed in Win32: The wrong diskette is in the drive." ###
+This error can occur when making custom modifications to HNS objects or installing new Windows Update that introduce changes to HNS without tearing down old HNS objects. It indicates that a HNS object which was previously created before an update is incompatible with the currently installed HNS version.
+
+On Windows Server 2019 (and below), users can delete HNS objects by deleting the HNS.data file 
+```
+Stop-Service HNS
+rm C:\ProgramData\Microsoft\Windows\HNS\HNS.data
+Start-Service HNS
+```
+
+Users should be able to directly delete any incompatible HNS endpoints or networks:
+```
+hnsdiag list endpoints
+hnsdiag delete endpoints <id>
+hnsdiag list networks 
+hnsdiag delete networks <id>
+Restart-Service HNS
+```
+
+Users on Windows Server, version 1903 can go to the following registry location and delete any NICs starting with the network name (e.g. `vxlan0` or `cbr0`):
+```
+\\Computer\HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\vmsmp\parameters\NicList
+```
 
 
 ### My Windows pods cannot ping external resources ###
@@ -83,6 +104,20 @@ PS C:> C:\flannel\flanneld.exe --kubeconfig-file=c:\k\config --iface=<Windows_Wo
 ```
 
 There is also a [PR](https://github.com/coreos/flannel/pull/1042) that addresses this issue under review currently.
+
+
+### On Flannel (host-gw), my Windows pods do not have network connectivity ###
+Should you wish to use l2bridge for networking (aka [flannel host-gateway](./network-topologies.md#flannel-in-host-gateway-mode)), you should ensure MAC address spoofing is enabled for the Windows container host VMs (guests). To achieve this, you should run the following as Administrator on the machine hosting the VMs (example given for Hyper-V):
+
+```powershell
+Get-VMNetworkAdapter -VMName "<name>" | Set-VMNetworkAdapter -MacAddressSpoofing On
+```
+
+> [!TIP]
+> If you are using a VMware-based product to meet your virtualization needs, please look into enabling [promiscuous mode](https://kb.vmware.com/s/article/1004099) for the MAC spoofing requirement.
+
+>[!TIP]
+> If you are deploying Kubernetes on Azure or IaaS VMs from other cloud providers yourself, you can also use [overlay networking](./network-topologies.md#flannel-in-vxlan-mode) instead.
 
 ### My Windows pods cannot launch because of missing /run/flannel/subnet.env ###
 This indicates that Flannel didn't launch correctly. You can either try to restart flanneld.exe or you can copy the files over manually from `/run/flannel/subnet.env`  on the Kubernetes master to `C:\run\flannel\subnet.env` on the Windows worker node and modify the `FLANNEL_SUBNET` row to the subnet that was assigned. For example, if node subnet 10.244.4.1/24 was assigned:

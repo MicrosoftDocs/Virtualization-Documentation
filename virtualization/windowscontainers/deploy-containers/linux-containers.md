@@ -9,19 +9,18 @@ ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: edfd11c8-ee99-42d8-9878-efc126fe1826
 ---
-
-# Linux Containers on Windows
+# Linux containers on Windows
 
 Linux containers make up a huge percent of the overall container ecosystem and are fundamental to both developer experiences and production environments.  Since containers share a kernel with the container host, however, running Linux containers directly on Windows isn't an option[*](linux-containers.md#other-options-we-considered).  This is where virtualization comes into the picture.
 
 Right now there are two ways to run Linux containers with Docker for Windows and Hyper-V:
 
 1. Run Linux containers in a full Linux VM - this is what Docker typically does today.
-1. Run Linux containers with [Hyper-V Isolation](../manage-containers/hyperv-container.md) (LCOW) - this is a new option in Docker for Windows.
+1. Run Linux containers with [Hyper-V isolation](../manage-containers/hyperv-container.md) (LCOW) - this is a new option in Docker for Windows.
 
 This article outlines how each approach works, provides guidance about when to choose which solution, and shares work in progress.
 
-## Linux Containers in a Moby VM
+## Linux containers in a Moby VM
 
 To run Linux containers in a Linux VM, follow the instructions in [Docker's get-started guide](https://docs.docker.com/docker-for-windows/).
 
@@ -54,11 +53,11 @@ Here's a closer look at each LCOW:
 
 ![LCOW architecture](media/lcow.png)
 
-To see if you're running LCOW, navigate to `C:\Program Files\Linux Containers`.  If Docker is configured to use LCOW, there will be a few files here containing the minimal LinuxKit distro that runs in each Hyper-V container.  Notice the optimized VM components are less than 100 MB, much smaller than the LinuxKit image in Moby VM.
+To see if you're running LCOW, navigate to `C:\Program Files\Linux Containers`. If Docker is configured to use LCOW, there will be a few files here containing the minimal LinuxKit distro that runs in each container running under Hyper-V isolation.  Notice the optimized VM components are less than 100 MB, much smaller than the LinuxKit image in Moby VM.
 
 ### Work in progress
 
-LCOW is under active development.  Track ongoing progress in the Moby project on [GitHub](https://github.com/moby/moby/issues/33850)
+LCOW is under active development. Track ongoing progress in the Moby project on [GitHub](https://github.com/moby/moby/issues/33850)
 
 #### Bind mounts
 
@@ -103,18 +102,18 @@ These applications all require volume mapping and will not start or run correctl
 
 Right now, we recommend the Moby VM method of running Linux containers to people who:
 
-1. Want a stable container environment.  This is the Docker for Windows default.
-1. Run Windows or Linux containers, but rarely both at the same time.
-1. Have complicated or custom networking requirements between Linux containers.
-1. Don't need kernel isolation (Hyper-V isolation) between Linux containers.
+- Want a stable container environment.  This is the Docker for Windows default.
+- Run Windows or Linux containers, but rarely both at the same time.
+- Have complicated or custom networking requirements between Linux containers.
+- Don't need kernel isolation (Hyper-V isolation) between Linux containers.
 
 ### When to use LCOW
 
 Right now, we recommend LCOW to people who:
 
-1. Want to test our newest technology.
-1. Run Windows and Linux containers at the same time.
-1. Need kernel isolation (Hyper-V isolation) between Linux containers.
+- Want to test our newest technology.
+- Run Windows and Linux containers at the same time.
+- Need kernel isolation (Hyper-V isolation) between Linux containers.
 
 ## Other options we considered
 
