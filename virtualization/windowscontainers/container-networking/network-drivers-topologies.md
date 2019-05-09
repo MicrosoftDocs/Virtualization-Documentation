@@ -29,9 +29,9 @@ In addition to leveraging the default 'nat' network created by Docker on Windows
   > Requires: Requires Windows Server 2016 with [KB4015217](https://support.microsoft.com/en-us/help/4015217/windows-10-update-kb4015217),  Windows 10 Creators Update, or a later release.
 
 - **l2bridge** - containers attached to a network created with the 'l2bridge' driver will be in the same IP subnet as the container host, and connected to the physical network through an *external* Hyper-V switch. The IP addresses must be assigned statically from the same prefix as the container host. All container endpoints on the host will have the same MAC address as the host due to Layer-2 address translation (MAC re-write) operation on ingress and egress.
-  > Requires: When this mode is used in a virtualization scenario (container host is a VM) _MAC address spoofing is required_.
-  
   > Requires: Requires Windows Server 2016, Windows 10 Creators Update, or a later release.
+
+  > Requires: [OutboundNAT policy](./advanced.md#specify-outboundnat-policy-for-a-network) for external connectivity.
 
 - **l2tunnel** - Similar to l2bridge, however _this driver should only be used in a Microsoft Cloud Stack_. Packets coming from a container are sent to the virtualization host where SDN policy is applied.
 

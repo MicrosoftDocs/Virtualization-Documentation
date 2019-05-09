@@ -7,7 +7,7 @@ ms.topic: troubleshooting
 ms.prod: containers
 
 description: Solutions for common issues when deploying Kubernetes and joining Windows nodes.
-keywords: kubernetes, 1.12, linux, compile
+keywords: kubernetes, 1.14, linux, compile
 ---
 
 # Troubleshooting Kubernetes #
@@ -85,13 +85,18 @@ PS C:> C:\flannel\flanneld.exe --kubeconfig-file=c:\k\config --iface=<Windows_Wo
 There is also a [PR](https://github.com/coreos/flannel/pull/1042) that addresses this issue under review currently.
 
 ### My Windows pods cannot launch because of missing /run/flannel/subnet.env ###
-This indicates that Flannel didn't launch correctly. You can either try to restart flanneld.exe or you can copy the files over manually from `/run/flannel/subnet.env`  on the Kubernetes master to `C:\run\flannel\subnet.env` on the Windows worker node and modify the `FLANNEL_SUBNET` row to a different number. For example, if node subnet 10.244.4.1/24 is desired:
+This indicates that Flannel didn't launch correctly. You can either try to restart flanneld.exe or you can copy the files over manually from `/run/flannel/subnet.env`  on the Kubernetes master to `C:\run\flannel\subnet.env` on the Windows worker node and modify the `FLANNEL_SUBNET` row to the subnet that was assigned. For example, if node subnet 10.244.4.1/24 was assigned:
 ```
 FLANNEL_NETWORK=10.244.0.0/16
 FLANNEL_SUBNET=10.244.4.1/24
 FLANNEL_MTU=1500
 FLANNEL_IPMASQ=true
 ```
+It is safer to let flanneld.exe generate this file for you.
+
+### Pod-to-pod connectivity between hosts is broken on my Kubernetes cluster running on vSphere 
+Since both vSphere and Flannel reserves port 4789 (default VXLAN port) for overlay networking, packets can end up being intercepted. If vSphere is used for overlay networking, it should be configured to use a different port in order to free up 4789.  
+
 
 ### My endpoints/IPs are leaking ###
 There exist 2 currently known issues that can cause endpoints to leak. 

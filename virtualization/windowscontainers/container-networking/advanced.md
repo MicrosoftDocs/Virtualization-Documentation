@@ -36,6 +36,22 @@ When you set the VLAN ID for a network, you are setting VLAN isolation for any c
 
 > Ensure that your host network adapter (physical) is in trunk mode to enable all tagged traffic to be processed by the vSwitch with the vNIC (container endpoint) port in access mode on the correct VLAN.
 
+## Specify OutboundNAT Policy for a Network
+
+> Applies to l2bridge networks
+
+Ordinarily, when you create a `l2bridge` container network using `docker network create`, container endpoints do not have an HNS OutboundNAT policy applied, resulting in containers being unable to reach the outside world. If you are creating a network, you can use the `-o com.docker.network.windowsshim.enable_outboundnat=<true|false>` option to apply the OutboundNAT HNS policy to give containers access to the outside world:
+
+```
+C:\> docker network create -d l2bridge -o com.docker.network.windowsshim.enable_outboundnat=true MyL2BridgeNetwork
+```
+
+If there is a set of destinations (e.g. container to container connectivity is needed) for where we don't want NAT'ing to occur, we also need to specify an ExceptionList:
+
+```
+C:\> docker network create -d l2bridge -o com.docker.network.windowsshim.enable_outboundnat=true -o com.docker.network.windowsshim.outboundnat_exceptions=10.244.10.0/24
+```
+
 ## Specify the Name of a Network to the HNS Service
 
 > Applies to all network drivers 
