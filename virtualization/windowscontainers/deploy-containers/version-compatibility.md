@@ -112,7 +112,7 @@ docker: Error response from daemon: container b81ed896222eb87906ccab1c3dd2fc4932
 
 There are three ways you can resolve this error:
 
-- Rebuild the container based on the correct version of `microsoft/nanoserver` or `microsoft/windowsservercore`
+- Rebuild the container based on the correct version of `mcr.microsoft.com/windows/nanoserver` or `mcr.microsoft.com/windows/servercore`
 - If the host is newer, run **docker run --isolation=hyperv ...**
 - Try running the container on a different host with the same Windows version
 
