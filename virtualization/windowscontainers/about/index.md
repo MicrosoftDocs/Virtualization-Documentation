@@ -14,13 +14,13 @@ ms.assetid: 8e273856-3620-4e58-9d1a-d1e06550448
 
 Imagine a kitchen. Inside this single room is everything you need to have a functioning kitchen: the stove, oven, appliances, pots and pans, kitchen sink, and so on. This is our container.
 
-![Kitchen analogy](media/box1.png)
+![An illustration of a fully furnished kitchen with yellow wallpaper inside of a black box.](media/box1.png)
 
 Now imagine that we could take this kitchen and place it inside a building as easily as sliding a book into a bookshelf. Since everything the kitchen needs to function is already there, all we need to start cooking is to connect the electricity and plumbing.
 
-Why stop there? You can customize this room to be anything you want as long as it has everything it needs to function, whether it's a living room, an office, or a game room. You can customize your building any way you like; fill it with many different kinds of rooms, fill it with identical rooms, or have a mix of the two.
+![An apartment building made of two stacks of black boxes. Four of these boxes are the same yellow boxes used in the kitchen example and are in random places throughout the building, while the rest are either multicolored living rooms or are empty and greyed out.](media/apartment.png)
 
-![Apartment analogy](media/apartment.png)
+Why stop there? You can customize this room to be anything you want as long as it has everything it needs to function, whether it's a living room, an office, or a game room. You can customize your building any way you like; fill it with many different kinds of rooms, fill it with identical rooms, or have a mix of the two.
 
 Containers function very much like these portable rooms. Containers put an application into its own isolated box. Everything the application needs to run also lives inside this container. As a result, the isolated application in its container has no knowledge of any other applications or processes that exist outside its container. Because the container has everything the application needs to run, a container can be moved anywhere, and will only use the resources its host provisions without touching any resources provisioned for other containers.
 
@@ -37,7 +37,7 @@ Let's get to know some terms you'll find useful as you start to work with Window
 - Container image: An image that captures a modified container's sandbox and can be used to recreate that modified image in new containers. For example, let’s say you've deployed a container from the Windows Server Core OS image, and then install MySQL on the container. If you create a new image from this modified container, you can deploy that image in a new container with the changes you made to the first container (in this case, installing MySQL). However, the container image would function as a layer on top of the container OS image instead of replacing it altogether.
 - Container repository: The local repository that stores your container image and its dependencies each time you create a new image. You can reuse stored images as many times as you want on the container host. You can also store the container images in a public or private registry, such as Docker Hub, so they can be used across many different container hosts.
 
-![Container fundamentals](media/containerfund.png)
+![A flow chart that shows how containers are created. The application and container OS images are used to create a sandbox and a new application image, which are layered on top of the container OS image to build a new container.](media/containerfund.png)
 
 Someone familiar with virtual machines might think containers and virtual machines seem similar. A container runs an operating system, has a file system, and can be accessed over a network much like a physical or virtual computer system. However, the technology and concepts behind containers are vastly different from virtual machines. To learn more about what these concepts are, read Mark Russinovich's [blog post](https://azure.microsoft.com/blog/containers-docker-windows-and-trends/) that explains the differences in more detail.
 
@@ -55,7 +55,7 @@ Running a container on Windows with or without Hyper-V isolation is a runtime de
 
 [Docker](https://www.docker.com) is an automated process that packages and delivers container images. Docker produces images that can be run anywhere as a container, whether it's on-premises, in the cloud, or on a personal machine. You can manage a Windows Server container with Docker, just like any other container.
 
-![Containers with Docker](media/docker.png)
+![A flow chart that shows a Dockerized app image being sent to the cloud. The image can be created in Docker as either a Windows container or a Linux container.](media/docker.png)
 
 ## Containers for developers
 
