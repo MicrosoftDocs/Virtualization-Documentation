@@ -7,7 +7,7 @@ ms.topic: get-started-article
 ms.prod: containers
 
 description: Deploying Kubernetes resoureces on a mixed-OS Kubernetes cluster.
-keywords: kubernetes, 1.13, windows, getting started
+keywords: kubernetes, 1.14, windows, getting started
 ms.assetid: 3b05d2c2-4b9b-42b4-a61b-702df35f5b17
 ---
 # Deploying Kubernetes Resources #

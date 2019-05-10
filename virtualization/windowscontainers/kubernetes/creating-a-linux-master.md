@@ -7,12 +7,12 @@ ms.topic: get-started-article
 ms.prod: containers
 
 description: Creating a Kubernetes cluster master.
-keywords: kubernetes, 1.13, master, linux
+keywords: kubernetes, 1.14, master, linux
 ---
 
 # Creating a Kubernetes Master #
 > [!NOTE]
-> This guide was validated on Kubernetes v1.13. Because of the volatility of Kubernetes from version to version, this section may make assumptions that do not hold true for all future versions. Official documentation for initializing Kubernetes masters using kubeadm can be found [here](https://kubernetes.io/docs/setup/independent/install-kubeadm/). Simply enable [mixed-OS scheduling section](#enable-mixed-os-scheduling) on top of that.
+> This guide was validated on Kubernetes v1.14. Because of the volatility of Kubernetes from version to version, this section may make assumptions that do not hold true for all future versions. Official documentation for initializing Kubernetes masters using kubeadm can be found [here](https://kubernetes.io/docs/setup/independent/install-kubeadm/). Simply enable [mixed-OS scheduling section](#enable-mixed-os-scheduling) on top of that.
 
 > [!NOTE]  
 > A recently-updated Linux machine is required to follow along; Kubernetes master resources like [kube-dns](https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/), [kube-scheduler](https://kubernetes.io/docs/reference/command-line-tools-reference/kube-scheduler/), and [kube-apiserver](https://kubernetes.io/docs/reference/command-line-tools-reference/kube-apiserver/) have not been ported to Windows yet. 
