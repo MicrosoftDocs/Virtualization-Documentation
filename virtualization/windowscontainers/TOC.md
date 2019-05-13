@@ -1,5 +1,6 @@
 # Overview
 ## [About Windows containers](about/index.md)
+## [Build a container ecosystem](about/container-ecosystem.md)
 ## [About Windows container orchestrators](about/overview-container-orchestrators.md)
 ## [FAQ](about/faq.md)
 
