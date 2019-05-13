@@ -112,40 +112,40 @@ docker: Error response from daemon: container b81ed896222eb87906ccab1c3dd2fc4932
 
 There are three ways you can resolve this error:
 
-- Rebuild the container based on the correct version of `microsoft/nanoserver` or `microsoft/windowsservercore`
+- Rebuild the container based on the correct version of `mcr.microsoft.com/windows/nanoserver` or `mcr.microsoft.com/windows/servercore`
 - If the host is newer, run **docker run --isolation=hyperv ...**
 - Try running the container on a different host with the same Windows version
 
 ## Choose which container OS version to use
 
 >[!NOTE]
->The "latest" tag will be updated along with Windows Server 2016, the current [Long-Term Servicing Channel product](https://docs.microsoft.com/windows-server/get-started/semi-annual-channel-overview). The following instructions are for container images that match the Windows Server version 1709 release.
+>As of April 16, 2019, the "latest" tag is no longer published or maintained for the [Windows base OS container images](https://hub.docker.com/_/microsoft-windows-base-os-images). Please declare a specific tag when pulling or referencing images from these repos.
 
-You must know which version you need to use for your container. For example, if you're using Windows Server version 1709 and want to have the latest patches for it, you should use the tag `1709` when specifying which version of the base OS container images you want, like so:
+You must know which version you need to use for your container. For example, if you want Windows Server version 1809 as your container OS and want to have the latest patches for it, you should use the tag `1809` when specifying which version of the base OS container images you want, like so:
 
 ``` dockerfile
-FROM microsoft/windowsservercore:1709
+FROM mcr.microsoft.com/windows/nanoserver:1809
 ...
 ```
 
-However, if you want a specific patch of Windows Server version 1709, you can specify the KB number in the tag. For example, to get a Nano Server base OS container image from Windows Server version 1709 with the KB4043961 applied to it, you would specify it like so:
+However, if you want a specific patch of Windows Server version 1809, you can specify the KB number in the tag. For example, to get a Nano Server base OS container image from Windows Server version 1809 with the KB4493509 applied to it, you would specify it like so:
 
 ``` dockerfile
-FROM microsoft/nanoserver:1709_KB4043961
-...
-```
-
-If you need the Nano Server base OS container image from Windows Server 2016, you can still get the latest version of those base OS container images by using the "latest" tag:
-
-``` dockerfile
-FROM microsoft/nanoserver
+FROM mcr.microsoft.com/windows/nanoserver:1809-KB4493509
 ...
 ```
 
 You can also specify the exact patches you need with the schema we have used previously, by specifying the OS version in the tag:
 
 ``` dockerfile
-FROM microsoft/nanoserver:10.0.14393.1770
+FROM mcr.microsoft.com/windows/nanoserver:10.0.17763.437
+...
+```
+
+The Server Core base images based on Windows Server 2019 and Windows Server 2016 are [Long-Term Servicing Channel (LTSC)](https://docs.microsoft.com/en-us/windows-server/get-started-19/servicing-channels-19#long-term-servicing-channel-ltsc) releases. If you for instance want Windows Server 2019 as your Server Core image's container OS and want to have the latest patches for it, you can specify LTSC releases like so:
+
+``` dockerfile
+FROM mcr.microsoft.com/windows/servercore:ltsc2019
 ...
 ```
 

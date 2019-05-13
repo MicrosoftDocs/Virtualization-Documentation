@@ -6,8 +6,8 @@ ms.date: 11/02/2018
 ms.topic: get-started-article
 ms.prod: containers
 
-description: Joining a Windows node to a Kubernetes cluster with v1.13.
-keywords: kubernetes, 1.13, windows, getting started
+description: Joining a Windows node to a Kubernetes cluster with v1.14.
+keywords: kubernetes, 1.14, windows, getting started
 ms.assetid: 3b05d2c2-4b9b-42b4-a61b-702df35f5b17
 ---
 # Joining Windows Server Nodes to a Cluster #
@@ -96,8 +96,8 @@ Copy the Kubernetes certificate file (`$HOME/.kube/config`) [from master](./crea
 
 #### Download Kubernetes binaries ####
 To be able to run Kubernetes, you first need to download the `kubectl`, `kubelet`, and `kube-proxy` binaries. You can download these from the links in the `CHANGELOG.md` file of the [latest releases](https://github.com/kubernetes/kubernetes/releases/).
- - For example, here are the [v1.13 Node Binaries](https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG-1.13.md#node-binaries).
- - Use a tool like [Expand-Archive](https://docs.microsoft.com/powershell/module/microsoft.powershell.archive/expand-archive?view=powershell-6) to extract the archive and place the binaries into `C:\k\`.
+ - For example, here are the [v1.14 Node Binaries](https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG-1.14.md#node-binaries).
+ - Use a tool like [Expand-Archive](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.archive/expand-archive?view=powershell-6) to extract the archive and place the binaries into `C:\k\`.
 
 #### (Optional) Setup kubectl on Windows ####
 Should you wish to control the cluster from Windows, you can do so using the `kubectl` command. First, to make `kubectl` available outside of the `C:\k\` directory, modify the `PATH` environment variable:
@@ -181,7 +181,7 @@ The IP address assigned to the Windows node. You can use `ipconfig` to find this
 The network mode `l2bridge` (flannel host-gw) or `overlay` (flannel vxlan) chosen as a [network solution](./network-topologies.md).
 
 > [!Important] 
-> `overlay` networking mode (flannel vxlan) requires Kubernetes v1.14 binaries or above.
+> `overlay` networking mode (flannel vxlan) requires Kubernetes v1.14 binaries (or above) and [KB4489899](https://support.microsoft.com/help/4489899).
 
 |  |  | 
 |---------|---------|

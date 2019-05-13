@@ -6,8 +6,8 @@ ms.date: 02/09/2018
 ms.topic: get-started-article
 ms.prod: containers
 
-description: Joining a Linux node to a Kubernetes cluster with v1.13.
-keywords: kubernetes, 1.13, windows, getting started
+description: Joining a Linux node to a Kubernetes cluster with v1.14.
+keywords: kubernetes, 1.14, windows, getting started
 ms.assetid: 3b05d2c2-4b9b-42b4-a61b-702df35f5b17
 ---
 
