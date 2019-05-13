@@ -12,19 +12,19 @@ ms.assetid: 8e273856-3620-4e58-9d1a-d1e06550448
 ---
 # About Windows containers
 
-Imagine a kitchen. Inside this single room is everything you need to have a functioning kitchen: the stove, oven, appliances, pots and pans, kitchen sink, and so on. This is our container.
+Imagine a kitchen. Inside this single room is everything you need to have a functioning kitchen: the oven, pans, sink, and so on. This is our container.
 
 ![An illustration of a fully furnished kitchen with yellow wallpaper inside of a black box.](media/box1.png)
 
-Now imagine that we could take this kitchen and place it inside a building as easily as sliding a book into a bookshelf. Since everything the kitchen needs to function is already there, all we need to start cooking is to connect the electricity and plumbing.
+Now imagine putting this kitchen inside a building as easily as sliding a book into a bookshelf. Since everything the kitchen needs to function is already there, all we need to start cooking is to connect the electricity and plumbing.
 
 ![An apartment building made of two stacks of black boxes. Four of these boxes are the same yellow boxes used in the kitchen example and are in random places throughout the building, while the rest are either multicolored living rooms or are empty and greyed out.](media/apartment.png)
 
-Why stop there? You can customize this room to be anything you want as long as it has everything it needs to function, whether it's a living room, an office, or a game room. You can customize your building any way you like; fill it with many different kinds of rooms, fill it with identical rooms, or have a mix of the two.
+Why stop there? You can customize your building any way you like; fill it with many kinds of rooms, fill it with identical rooms, or have a mix of the two.
 
-Containers function very much like these portable rooms. Containers put an application into its own isolated box. Everything the application needs to run also lives inside this container. As a result, the isolated application in its container has no knowledge of any other applications or processes that exist outside its container. Because the container has everything the application needs to run, a container can be moved anywhere, and will only use the resources its host provisions without touching any resources provisioned for other containers.
+Containers act like this room by putting an app and everything that app needs to run into its own isolated box. As a result, the isolated app has no knowledge of any other apps or processes that exist outside its container. Because the container has everything the app needs to run, the container can be moved anywhere, using only the resources its host provisions without touching any resources provisioned for other containers.
 
-This short overview can tell you more:
+The following video will tell you more about what Windows containers can do for you, as well as how Microsoft's partnership with Docker helps create a frictionless environment for open-source container development:
 <iframe width="800" height="450" src="https://www.youtube.com/embed/Ryx3o0rD5lY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ## Container fundamentals
@@ -91,6 +91,8 @@ Azure offers two container orchestrators: Azure Kubernetes Service (AKS) and Ser
 [Azure Service Fabric](/azure/service-fabric/) is a distributed systems platform that makes it easy to package, deploy, and manage scalable and reliable microservices and containers. Service Fabric addresses the significant challenges in developing and managing cloud native applications. Developers and administrators can avoid complex infrastructure problems and focus on implementing mission-critical, demanding workloads that are scalable, reliable, and manageable. Service Fabric represents the next-generation platform for building and managing these enterprise-class, tier-1, cloud-scale applications running in containers.
 
 ## Video overview
+
+The following video gives a more in-depth overview of Windows containers and Docker.
 
 <iframe src="https://channel9.msdn.com/Blogs/containers/Containers-101-with-Microsoft-and-Docker/player" width="800" height="450" allowFullScreen="true" frameBorder="0" scrolling="no"></iframe>
 
