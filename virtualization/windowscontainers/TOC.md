@@ -54,6 +54,7 @@
 # Reference
 ## [System requirements](deploy-containers/system-requirements.md)
 ## [Version compatibility](deploy-containers/version-compatibility.md)
+## [Windows container base image release information](deploy-containers/base-image-lifecycle.md)
 ## [Hyper-V isolation](manage-containers/hyperv-container.md)
 ## [Printer services](deploy-containers/print-spooler.md)
 ## [GPU acceleration](deploy-containers/gpu-acceleration.md)
