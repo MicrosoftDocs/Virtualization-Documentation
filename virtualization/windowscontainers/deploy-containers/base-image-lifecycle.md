@@ -29,6 +29,4 @@ The following table lists each type of base image, its servicing channel, and ho
 |Nano Server|Semi-Annual|1607|14393|10/15/2016|10/09/2018|N/A|
 
 >[!NOTE]
->Windows Server, version 1803, and Windows Server, version 1809, are governed by the [Modern Lifecycle Policy](https://support.microsoft.com/help/30881). See the [Windows Lifecycle FAQ](https://support.microsoft.com/help/18581/lifecycle-faq-windows-products) and [Windows Server Semi-Annual Channel overview](https://docs.microsoft.com/en-us/windows-server/get-started/semi-annual-channel-overview) for details regarding servicing requirements and other important information.
-
-For additional information, see [Windows base OS images](https://hub.docker.com/_/microsoft-windows-base-os-images) on Docker.
+>Because their lifecycles are based on the Windows Server lifecycles, the Windows Server, version 1803 and Windows Server, version 1809 base images are governed by the [Modern Lifecycle Policy](https://support.microsoft.com/help/30881). For servicing requirements and more information, see the [Windows Lifecycle FAQ](https://support.microsoft.com/help/18581/lifecycle-faq-windows-products), [Windows Server release information](https://docs.microsoft.com/en-us/windows-server/get-started/windows-server-release-info), and the [Windows base OS images](https://hub.docker.com/_/microsoft-windows-base-os-images) reference.
