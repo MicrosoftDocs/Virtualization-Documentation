@@ -2,13 +2,12 @@
 title: About Docker
 description: Learn about Docker.
 keywords: docker, containers
-author: helohr
+author: Heidilohr
+ms.author: helohr
 ms.date: 05/14/2019
 ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
-ms.assetid: 
-
 ---
 # About Docker
 

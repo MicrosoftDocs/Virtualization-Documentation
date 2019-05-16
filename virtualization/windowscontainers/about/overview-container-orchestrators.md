@@ -2,12 +2,12 @@
 title: About Windows container orchestrators
 description: Learn about Windows container orchestrators.
 keywords: docker, containers
-author: helohr
+author: Heidilohr
+ms.author: helohr
 ms.date: 05/13/2019
 ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
-ms.assetid: 8e273856-3620-4e58-9d1a-d1e06550448
 ---
 # About Windows container orchestrators
 
