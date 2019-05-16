@@ -36,4 +36,4 @@ Azure offers two container orchestrators: Azure Kubernetes Service (AKS) and Ser
 
 To get started deploying Azure Kubernetes service, see the [Kubernetes setup guide](../kubernetes/getting-started-kubernetes-windows.md).
 
-To get started deploying Azure Service Fabric, see the [Service Fabric quickstart](/azure/service-fabric/service-fabric-quickstart-containers).
+To get started deploying Azure Service Fabric, see the [Service Fabric quickstart](/azure/service-fabric/service-fabric-quickstart-containers.md).
