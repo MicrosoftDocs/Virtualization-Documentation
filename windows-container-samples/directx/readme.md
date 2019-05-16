@@ -9,6 +9,11 @@ For this demo, your environment must meet the following requirements:
 * The container host must be running Windows Server 2019 or Windows 10, version 1809 or newer.
 * The container host must be running Docker Engine 19.03 or newer.
 * The container host must have a GPU running display drivers version WDDM 2.5 or newer.
+* The `Containers` feature must be enabled.
+
+To enable the `Containers` feature, from the control panel launch `Turn Windows features on or off` and check the appropriate box.
+
+![container-feature](media/containerfeature.png)
 
 To check the WDDM version of your display drivers, run the DirectX Diagnostic Tool (dxdiag.exe) on your container host. In the tool’s “Display” tab, look in the “Drivers” section as indicated below.
 
