@@ -26,7 +26,15 @@ Additional container requirements to take advantage of GPU acceleration:
 
 ## Set up Docker
 
-To run this sample, you’ll need a version of Docker that supports the `--device` command-line option for Windows containers. Formal Docker support is scheduled for the upcoming Docker EE Engine 19.03 release. Until then, the upstream source for Docker contains the necessary bits, so you can download the latest build to get access to the feature.
+To run this sample, you’ll need a version of Docker that supports the `--device` command-line option for Windows containers. Follow the instructions below according to the version of Windows your host is running.
+
+#### Windows 10 Pro and Enterprise
+
+This support is currently only available in the `Docker Desktop for Windows Edge` release. You can download the edge release of Docker [here].(https://docs.docker.com/docker-for-windows/edge-release-notes/).
+
+#### Windows Server
+
+Formal Docker support is scheduled for the upcoming Docker EE Engine 19.03 release. Until then, the upstream source for Docker contains the necessary bits, so you can download the latest build to get access to the feature.
 
 From PowerShell, execute the following command:
 
@@ -57,7 +65,17 @@ docker build . -t winml-runner
 
 This builds the demo container image. Docker will acquire the WinMLRunner executable from the [Windows ML samples repository](https://github.com/Microsoft/Windows-Machine-Learning), along with a pre-trained machine learning model from the [ONNX Model Zoo](https://github.com/onnx/models).
 
-Once the container image is built, you can run the container. Open an **elevated** PowerShell prompt in the directory where you downloaded `docker.exe` earlier, and run:
+Once the container image is built, you can run the container. 
+
+#### Windows 10 Pro and Enterprise
+
+```PowerShell
+docker run --isolation process --device class/5B45201D-F2F2-4F3B-85BB-30FF1F953599 winml-runner
+```
+
+#### Windows Server
+
+Open an elevated PowerShell prompt in the directory where you downloaded docker.exe earlier, and run:
 
 ```PowerShell
 .\docker.exe run --isolation process --device class/5B45201D-F2F2-4F3B-85BB-30FF1F953599 winml-runner
