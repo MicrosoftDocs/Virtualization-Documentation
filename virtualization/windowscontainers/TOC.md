@@ -2,7 +2,7 @@
 ## [About Windows containers](about/index.md)
 ## [About Docker](about/docker-overview.md)
 ## [About Windows container orchestrators](about/overview-container-orchestrators.md)
-## [Build a container ecosystem](about/container-ecosystem.md)
+## [About building container ecosystems](about/container-ecosystem.md)
 ## [FAQ](about/faq.md)
 
 # Quickstarts

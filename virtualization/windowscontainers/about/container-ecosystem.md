@@ -1,6 +1,6 @@
 ﻿---
-title: Container Ecosystem
-description: Building a Container Ecosystem.
+title: About building container ecosystems
+description: A brief overview about building container ecosystems.
 keywords: metadata, containers
 author: PatrickLang
 ms.date: 04/20/2016
@@ -9,7 +9,7 @@ ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: 29fbe13a-228a-4eaa-9d4d-90ae60da5965
 ---
-# Build a container ecosystem
+# About building container ecosystems
 
 To understand why building a container ecosystem is so important, let's first talk about its components.
 
