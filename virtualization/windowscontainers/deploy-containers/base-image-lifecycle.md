@@ -15,7 +15,7 @@ Windows container base images are based on either Semi-Annual Channel releases o
 
 The Semi-Annual Channel is a twice-per-year feature update release with eighteen-month servicing timelines for each release. This lets customers take advantage of new operating system capabilities at a faster pace, both in applications (particularly those built on containers and microservices) and in the software-defined hybrid datacenter. For more information, see the [Windows Server Semi-Annual Channel overview](https://docs.microsoft.com/windows-server/get-started/semi-annual-channel-overview).
 
-Customers can also use Long-Term Servicing Channel releases, where a new major version of Windows Server is released every two to three years. Each Long-Term Servicing Channel release has five years of mainstream support and five years of extended support. This channel works with systems that require a longer servicing option and functional stability.
+For Server Core images, customers can also use the Long-Term Servicing Channel that releases a new major version of Windows Server every two to three years. Long-Term Servicing Channel releases receive five years of mainstream support and five years of extended support. This channel works with systems that require a longer servicing option and functional stability.
 
 The following table lists each type of base image, its servicing channel, and how long its support will last.
 
