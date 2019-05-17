@@ -16,8 +16,10 @@ In addition to leveraging the default 'nat' network created by Docker on Windows
 - **nat** – containers attached to a network created with the 'nat' driver will be connected to an *internal* Hyper-V switch and receive an IP address from the user-specified (``--subnet``) IP prefix. Port forwarding / mapping from the container host to container endpoints is supported.
   
   >[!NOTE]
-  >Multiple NAT networks are supported if you have the Windows 10 Creators Update installed.
+  > NAT networks created on Windows Server 2019 (or above) are no longer persisted after reboot.
 
+  > Multiple NAT networks are supported if you have the Windows 10 Creators Update installed (or above).
+  
 - **transparent** – containers attached to a network created with the 'transparent' driver will be directly connected to the physical network through an *external* Hyper-V switch. IPs from the physical network can be assigned statically (requires user-specified ``--subnet`` option) or dynamically using an external DHCP server.
   
   >[!NOTE]
