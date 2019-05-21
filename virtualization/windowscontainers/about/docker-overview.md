@@ -11,7 +11,7 @@ ms.service: windows-containers
 ---
 # About Docker
 
-As you read about containers, you’ll inevitably hear about Docker. Docker is the automated process that packages and delivers container images. The resulting images can be run anywhere as a container, whether it's on-premises, in the cloud, or on a personal machine.
+As you read about containers, you’ll inevitably hear about Docker. The Docker Engine is a container management toolset that packages and delivers container images. The resulting images can be run anywhere as a container, whether it's on-premises, in the cloud, or on a personal machine.
 
 ![](media/docker.png)
 
