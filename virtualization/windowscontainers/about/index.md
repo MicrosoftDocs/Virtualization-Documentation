@@ -12,7 +12,7 @@ ms.assetid: 8e273856-3620-4e58-9d1a-d1e06550448
 ---
 # About Windows containers
 
-Imagine a kitchen. Inside this single room is everything you need to have a functioning kitchen: the oven, pans, sink, and so on. This is our container.
+Imagine a kitchen. Inside this single room is everything you need to cook a meal: the oven, pans, sink, and so on. This is our container.
 
 ![An illustration of a fully furnished kitchen with yellow wallpaper inside of a black box.](media/box1.png)
 
