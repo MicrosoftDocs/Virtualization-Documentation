@@ -3,7 +3,7 @@ title: Windows Containers FAQ
 description: Windows Server containers FAQ
 keywords: docker, containers
 author: PatrickLang
-ms.date: 05/02/2016
+ms.date: 05/22/2019
 ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
