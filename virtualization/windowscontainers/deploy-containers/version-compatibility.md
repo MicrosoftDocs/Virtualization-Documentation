@@ -40,6 +40,7 @@ As we've been improving the Windows container features, we've had to make some c
 |Windows Server 2019<br>Builds 17763.* |Windows 10, version 1803<br>Builds 17134.* |Not supported|
 |Windows Server 2019<br>Builds 17763.* |Windows Server 2019<br>Builds 17763.* |Supports `process` or `hyperv` isolation|
 |Windows Server 2019<br>Builds 17763.* |Windows 10, version 1809<br>Builds 17763.* |Only supports `hyperv` isolation|
+|Windows Server 2019<br>Builds 18362.* |Windows 10, Version 1903<br>Builds 18362.* ||
 
 ## Matching container host version with container image versions
 
