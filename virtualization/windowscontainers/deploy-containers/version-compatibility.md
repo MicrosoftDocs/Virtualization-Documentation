@@ -19,6 +19,8 @@ As we've been improving the Windows container features, we've had to make some c
 |Windows Server 2016<br>Builds: 14393.* |Windows 10, version 1803<br>Builds 17134.* |Only supports `hyperv` isolation|
 |Windows Server 2016<br>Builds: 14393.* |Windows Server 2019<br>Builds 17763.* |Only supports `hyperv` isolation|
 |Windows Server 2016<br>Builds: 14393.* |Windows 10, version 1809<br>Builds 17763.* |Only supports `hyperv` isolation|
+|Windows Server 2016<br>Builds: 14393.* |Windows 10, Version 1903<br>Builds 18362.* |Only supports `hyperv` isolation|
+|Windows Server 2016<br>Builds: 14393.* |Windows Server, Version 1903<br>Builds 18362.* |Only supports `hyperv` isolation|
 |Windows Server, version 1709<br>Builds 16299.* |Windows Server 2016<br>Builds: 14393.* |Not supported|
 |Windows Server, version 1709<br>Builds 16299.* |Windows Server, version 1709<br>Builds 16299.* |Supports `process` or `hyperv` isolation|
 |Windows Server, version 1709<br>Builds 16299.* |Windows 10 Fall Creators Update<br>Builds 16299.* |Only supports `hyperv` isolation|
@@ -26,6 +28,8 @@ As we've been improving the Windows container features, we've had to make some c
 |Windows Server, version 1709<br>Builds 16299.* |Windows 10, version 1803<br>Builds 17134.* |Only supports `hyperv` isolation|
 |Windows Server, version 1709<br>Builds 16299.* |Windows Server 2019<br>Builds 17763.* |Only supports `hyperv` isolation|
 |Windows Server, version 1709<br>Builds 16299.* |Windows 10, version 1809<br>Builds 17763.* |Only supports `hyperv` isolation|
+|Windows Server, version 1709<br>Builds 16299.* |Windows 10, Version 1903<br>Builds 18362.* |Only supports `hyperv` isolation|
+|Windows Server, version 1709<br>Builds 16299.* |Windows Server, Version 1903<br>Builds 18362.* |Only supports `hyperv` isolation|
 |Windows Server, version 1803<br>Builds 17134.* |Windows Server 2016<br>Builds: 14393.* |Not supported|
 |Windows Server, version 1803<br>Builds 17134.* |Windows Server, version 1709<br>Builds 16299.* |Not supported|
 |Windows Server, version 1803<br>Builds 17134.* |Windows 10 Fall Creators Update<br>Builds 16299.* |Not supported|
@@ -33,14 +37,26 @@ As we've been improving the Windows container features, we've had to make some c
 |Windows Server, version 1803<br>Builds 17134.* |Windows 10, version 1803<br>Builds 17134.* |Only supports `hyperv` isolation|
 |Windows Server, version 1803<br>Builds 17134.* |Windows Server 2019<br>Builds 17763.* |Only supports `hyperv` isolation|
 |Windows Server, version 1803<br>Builds 17134.* |Windows 10, version 1809<br>Builds 17763.* |Only supports `hyperv` isolation|
+|Windows Server, version 1803<br>Builds 17134.* |Windows 10, Version 1903<br>Builds 18362.* |Only supports `hyperv` isolation|
+|Windows Server, version 1803<br>Builds 17134.* |Windows Server, Version 1903<br>Builds 18362.* |Only supports `hyperv` isolation|
 |Windows Server 2019<br>Builds 17763.* |Windows Server 2016<br>Builds: 14393.* |Not supported|
-|Windows Server 2019<br>Builds 17763.* |Windows Server, version 1709<br>Builds 16299.* |Not supported
+|Windows Server 2019<br>Builds 17763.* |Windows Server, version 1709<br>Builds 16299.* |Not supported|
 |Windows Server 2019<br>Builds 17763.* |Windows 10 Fall Creators Update<br>Builds 16299.* |Not supported|
 |Windows Server 2019<br>Builds 17763.* |Windows Server, version 1803<br>Builds 17134.* |Not supported|
 |Windows Server 2019<br>Builds 17763.* |Windows 10, version 1803<br>Builds 17134.* |Not supported|
 |Windows Server 2019<br>Builds 17763.* |Windows Server 2019<br>Builds 17763.* |Supports `process` or `hyperv` isolation|
 |Windows Server 2019<br>Builds 17763.* |Windows 10, version 1809<br>Builds 17763.* |Only supports `hyperv` isolation|
-|Windows Server 2019<br>Builds 18362.* |Windows 10, Version 1903<br>Builds 18362.* ||
+|Windows Server 2019<br>Builds 17763.* |Windows 10, Version 1903<br>Builds 18362.* |Only supports `hyperv` isolation|
+|Windows Server 2019<br>Builds 17763.* |Windows Server, Version 1903<br>Builds 18362.* |Only supports `hyperv` isolation|
+|Windows Server 2019<br>Builds 18362.* |Windows Server 2016<br>Builds: 14393.* |Not supported|
+|Windows Server 2019<br>Builds 18362.* |Windows Server, version 1709<br>Builds 16299.* |Not supported|
+|Windows Server 2019<br>Builds 18362.* |Windows 10 Fall Creators Update<br>Builds 16299.* |Not supported|
+|Windows Server 2019<br>Builds 18362.* |Windows Server, version 1803<br>Builds 17134.* |Not supported|
+|Windows Server 2019<br>Builds 18362.* |Windows 10, version 1803<br>Builds 17134.* |Not supported|
+|Windows Server 2019<br>Builds 18362.* |Windows Server 2019<br>Builds 17763.* |Not supported|
+|Windows Server 2019<br>Builds 18362.* |Windows 10, version 1809<br>Builds 17763.* |Not supported|
+|Windows Server 2019<br>Builds 18362.* |Windows 10, Version 1903<br>Builds 18362.* |Only supports `hyperv` isolation|
+|Windows Server 2019<br>Builds 18362.* |Windows Server, Version 1903<br>Builds 18362.* |Supports `process` or `hyperv` isolation|
 
 ## Matching container host version with container image versions
 
