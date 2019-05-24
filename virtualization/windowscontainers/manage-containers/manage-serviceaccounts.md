@@ -3,7 +3,7 @@ title: Group Managed Service Accounts for Windows containers
 description: Group Managed Service Accounts for Windows containers
 keywords: docker, containers, active directory, gmsa
 author: rpsqrd
-ms.date: 05/03/2019
+ms.date: 05/23/2019
 ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
@@ -450,6 +450,21 @@ If you're encountering errors when running a container with a gMSA, the followin
     ```
 
 3. Verify the path to the credential spec file is correct for your orchestration solution. If you're using Docker, make sure the container run command includes `--security-opt="credentialspec=file://NAME.json"`, where "NAME.json" is replaced with the name output by **Get-CredentialSpec**. The name is a flat file name, relative to the CredentialSpecs folder under the Docker root directory.
+
+#### Check the firewall configuration
+
+If you're using a strict firewall policy on the container or host network, it may block required connections to the Active Directory Domain Controller or DNS server.
+
+| Protocol and port | Purpose |
+|-------------------|---------|
+| TCP and UDP 53 | DNS |
+| TCP and UDP 88 | Kerberos |
+| TCP 139 | NetLogon |
+| TCP and UDP 389 | LDAP |
+| TCP 636 | LDAP SSL |
+
+You may need to allow access to additional ports depending on the type of traffic your container sends to a domain controller.
+See [Active Directory and Active Directory Domain Services port requirements](https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2008-R2-and-2008/dd772723(v=ws.10)#communication-to-domain-controllers) for a full list of ports used by Active Directory.
 
 #### Check the container
 
