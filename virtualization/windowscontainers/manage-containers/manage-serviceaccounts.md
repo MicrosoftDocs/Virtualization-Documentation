@@ -455,7 +455,7 @@ If you're encountering errors when running a container with a gMSA, the followin
 
 If you're using a strict firewall policy on the container or host network, it may block required connections to the Active Directory Domain Controller or DNS server.
 
-| Protocol and Port | Purpose |
+| Protocol and port | Purpose |
 |-------------------|---------|
 | TCP and UDP 53 | DNS |
 | TCP and UDP 88 | Kerberos |
@@ -464,7 +464,7 @@ If you're using a strict firewall policy on the container or host network, it ma
 | TCP 636 | LDAP SSL |
 
 You may need to allow access to additional ports depending on the type of traffic your container sends to a domain controller.
-See [Active Directory and Active Directory Domain Services Port Requirements](https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2008-R2-and-2008/dd772723(v=ws.10)#communication-to-domain-controllers) for a full list of ports used by Active Directory.
+See [Active Directory and Active Directory Domain Services port requirements](https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2008-R2-and-2008/dd772723(v=ws.10)#communication-to-domain-controllers) for a full list of ports used by Active Directory.
 
 #### Check the container
 
