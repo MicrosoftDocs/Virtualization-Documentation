@@ -24,7 +24,7 @@ Take a look at the following Dockerfile. In this example, the `windowsservercore
 ```
 # Sample Dockerfile
 
-FROM windowsservercore
+FROM mcr.microsoft.com/windows/servercore:ltsc2019
 RUN dism /online /enable-feature /all /featurename:iis-webserver /NoRestart
 RUN echo "Hello World - Dockerfile" > c:\inetpub\wwwroot\index.html
 CMD [ "cmd" ]
@@ -61,7 +61,7 @@ The following two examples demonstrate the same operation, which results in cont
 This first example downloads Python for Windows, installs it and cleans up by removing the downloaded setup file. Each of these actions are run in their own `RUN` instruction.
 
 ```
-FROM windowsservercore
+FROM mcr.microsoft.com/windows/servercore:ltsc2019
 
 RUN powershell.exe -Command Invoke-WebRequest "https://www.python.org/ftp/python/3.5.1/python-3.5.1.exe" -OutFile c:\python-3.5.1.exe
 RUN powershell.exe -Command Start-Process c:\python-3.5.1.exe -ArgumentList '/quiet InstallAllUsers=1 PrependPath=1' -Wait
@@ -82,7 +82,7 @@ a395ca26777f        15 seconds ago      cmd /S /C powershell.exe -Command Remove
 To compare, here is the same operation, however all steps run with the same `RUN` instruction. Note that each step in the `RUN` instruction is on a new line of the Dockerfile, the '\\' character is being used to line wrap. 
 
 ```
-FROM windowsservercore
+FROM mcr.microsoft.com/windows/servercore:ltsc2019
 
 RUN powershell.exe -Command \
   $ErrorActionPreference = 'Stop'; \
@@ -107,7 +107,7 @@ If a file, such as an installer, is not required after it has been used, remove 
 In this example, the Python package is downloaded, executed, and then the executable removed. This is all completed in one `RUN` operation and results in a single image layer.
 
 ```
-FROM windowsservercore
+FROM mcr.microsoft.com/windows/servercore:ltsc2019
 
 RUN powershell.exe -Command \
   $ErrorActionPreference = 'Stop'; \
@@ -224,7 +224,7 @@ afba1a3def0a        38 seconds ago       cmd /S /C mkdir test-4   42.46 MB
 The docker file has now been slightly modified. Notice that the third `RUN` instruction has changed. When Docker build is run against this Dockerfile, the first three instructions, which are identical to those in the last example, use the cached image layers. However, because the changed `RUN` instruction has not been cached, a new layer is created for itself and all subsequent instructions.
 
 ```
-FROM windowsservercore
+FROM mcr.microsoft.com/windows/servercore:ltsc
 
 RUN mkdir test-1
 RUN mkdir test-2
@@ -255,7 +255,7 @@ Lower case:
 ```
 # Sample Dockerfile
 
-from windowsservercore
+from mcr.microsoft.com/windows/servercore:ltsc2019
 run dism /online /enable-feature /all /featurename:iis-webserver /NoRestart
 run echo "Hello World - Dockerfile" > c:\inetpub\wwwroot\index.html
 cmd [ "cmd" ]
@@ -264,7 +264,7 @@ Upper case:
 ```
 # Sample Dockerfile
 
-FROM windowsservercore
+FROM mcr.microsoft.com/windows/servercore:ltsc2019
 RUN dism /online /enable-feature /all /featurename:iis-webserver /NoRestart
 RUN echo "Hello World - Dockerfile" > c:\inetpub\wwwroot\index.html
 CMD [ "cmd" ]
@@ -275,14 +275,14 @@ CMD [ "cmd" ]
 Long and complex operations can be separated onto multiple line using the backslash `\` character. The following Dockerfile installs the Visual Studio Redistributable package, removes the installer files, and then creates a configuration file. These three operations are all specified on one line.
 
 ```
-FROM windowsservercore
+FROM mcr.microsoft.com/windows/servercore:ltsc2019
 
 RUN powershell -Command c:\vcredist_x86.exe /quiet ; Remove-Item c:\vcredist_x86.exe -Force ; New-Item c:\config.ini
 ```
 The command can be re-written so that each operation from the one `RUN` instruction is specified on its own line. 
 
 ```
-FROM windowsservercore
+FROM mcr.microsoft.com/windows/servercore:ltsc2019
 
 RUN powershell -Command \
 	$ErrorActionPreference = 'Stop'; \
