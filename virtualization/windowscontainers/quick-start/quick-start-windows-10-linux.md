@@ -28,14 +28,9 @@ This quick start is specific to Windows 10. Additional quick start documentation
 ## Prerequisites
 
 Please make sure you meet the following requirements:
-<<<<<<< HEAD
-- One physical computer system running Windows 10 Professional or Enterprise with Fall Creators Update (version 1709) or later
-- Make sure [Hyper-V](https://docs.microsoft.com/virtualization/hyper-v-on-windows/reference/hyper-v-requirements) is enabled.
-=======
 - One physical computer system running Windows 10 Professional, Windows 10 Enterprise, or Windows
 Server 2019 version 1809 or later
 - Make sure [Hyper-V](https://docs.microsoft.com/en-us/virtualization/hyper-v-on-windows/reference/hyper-v-requirements) is enabled.
->>>>>>> origin/master
 
 ***Hyper-V isolation:***
 Linux Containers on Windows require Hyper-V isolation on Windows 10 in order to provide developers with the the appropriate Linux kernel to run the container. More about Hyper-V isolation can be found on the [About Windows containers](../about/index.md) page.

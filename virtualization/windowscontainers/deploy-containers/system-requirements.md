@@ -15,32 +15,16 @@ This guide lists the requirements for a Windows container Host.
 ## OS requirements
 
 - The Windows container feature is only available on Windows Server 2016 (Core and with Desktop Experience), Windows 10 Professional and Enterprise (Anniversary Edition) and later.
-<<<<<<< HEAD
-- The Hyper-V role must be installed before running Hyper-V isolation
-- Windows Server Container hosts must have Windows installed to c:\. This restriction does not apply if only Hyper-V isolated containers will be deployed.
-=======
 - The Hyper-V role must be installed before running containers with Hyper-V isolation.
 - Windows Server Container hosts must have Windows installed to c:\. This restriction does not apply if only Hyper-V Containers will be deployed.
->>>>>>> origin/master
 
 ## Virtualized container hosts
 
-<<<<<<< HEAD
-If a Windows container host will be run from a Hyper-V virtual machine, and will also be hosting Hyper-V isolation, nested virtualization will need to be enabled. Nested virtualization has the following requirements:
-=======
 If a Windows container host will be run from a Hyper-V virtual machine, and will also be hosting containers with Hyper-V isolation, nested virtualization will need to be enabled. Nested virtualization has the following requirements:
->>>>>>> origin/master
 
 - At least 4 GB RAM available for the virtualized Hyper-V host.
 - Windows Server 2019, Windows Server version 1803, Windows Server version 1709, Windows Server 2016, or Windows 10 on the host system, and Windows Server (Full, Core) in the virtual machine.
 - A processor with Intel VT-x (this feature is currently only available for Intel processors).
-<<<<<<< HEAD
-- The container host VM will also need at least two virtual processors.
-
-## Supported base images
-
-Windows containers are offered with four container base images: Windows Server Core, Nano Server, Windows, and IoT Core. Not all configurations support both OS images. This table details the supported configurations.
-=======
 - The container host VM will also need at least 2 virtual processors.
 
 ## Supported Base Images
@@ -83,7 +67,6 @@ Windows Containers are offered with four container base images: Windows Server C
 > <span id="warn-1">* Starting with Windows Server, version 1709 Nano Server is no longer available as a container host.</span>
 
 > <span id="warn-2">** Requires Windows 10 October 2018 Update and that you directly request for process isolation by using the `--isolation=process` flag when running your containers via `docker run`.</span>
->>>>>>> origin/master
 
 |Host operating system|Windows container|Hyper-V isolation|
 |---------------------|-----------------|-----------------|
