@@ -20,17 +20,49 @@ Now imagine putting this kitchen inside a building as easily as sliding a book i
 
 ![An apartment building made of two stacks of black boxes. Four of these boxes are the same yellow boxes used in the kitchen example and are in random places throughout the building, while the rest are either multicolored living rooms or are empty and greyed out.](media/apartment.png)
 
+<<<<<<< HEAD
 Why stop there? You can customize your building any way you like; fill it with many kinds of rooms, fill it with identical rooms, or have a mix of the two.
+=======
+![](media/box1.png)
+>>>>>>> origin/master
 
 Containers act like this room by running an app the way we'd cook in our kitchen. A container puts an app and everything that app needs to run into its own isolated box. As a result, the isolated app has no knowledge of any other apps or processes that exist outside its container. Because the container has everything the app needs to run, the container can be moved anywhere, using only the resources its host provisions without touching any resources provisioned for other containers.
 
+<<<<<<< HEAD
 The following video will tell you more about what Windows containers can do for you, as well as how Microsoft's partnership with Docker helps create a frictionless environment for open-source container development:
+=======
+![](media/apartment.png)
+>>>>>>> origin/master
 
 <iframe width="800" height="450" src="https://www.youtube.com/embed/Ryx3o0rD5lY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ## Container fundamentals
 
+<<<<<<< HEAD
 Let's get to know some terms you'll find useful as you start to work with Windows containers:
+=======
+## Container Fundamentals
+
+Containers are an isolated, resource controlled, and portable runtime environment which runs on a host machine or virtual machine. An application or process which runs in a container is packaged with all the required dependencies and configuration files; It’s given the illusion that there are no other processes running outside of its container.
+
+The container’s host provisions a set of resources for the container and the container will use only these resources. As far as the container knows, no other resources exist outside of what it has been given and therefore the container cannot touch resources which may have been provisioned for a neighboring container.
+
+The following key concepts will be helpful as you begin creating and working with Windows Containers.
+
+**Container Host:** Physical or Virtual computer system configured with the Windows Container feature. The container host will run one or more Windows Containers.
+
+**Container Image:** As modifications are made to a containers file system or registry—such as with software installation—they are captured in a sandbox. In many cases you may want to capture this state such that new containers can be created that inherit these changes. That’s what an image is – once the container has stopped you can either discard that sandbox or you can convert it into a new container image. For example, let’s imagine that you have deployed a container from the Windows Server Core OS image. You then install MySQL into this container. Creating a new image from this container would act as a deployable version of the container. This image would only contain the changes made (MySQL), however it would work as a layer on top of the Container OS Image.
+
+**Sandbox:** Once a container has been started, all write actions such as file system modifications, registry modifications or software installations are captured in this ‘sandbox’ layer.
+
+**Container OS Image:** Containers are deployed from images. The container OS image is the first layer in potentially many image layers that make up a container. This image provides the operating system environment. A Container OS Image is immutable. That is, it cannot be modified.
+
+**Container Repository:** Each time a container image is created, the container image and its dependencies are stored in a local repository. These images can be reused many times on the container host. The container images can also be stored in a public or private registry, such as DockerHub, so that they can be used across many different container hosts.
+
+![](media/containerfund.png)
+
+For someone familiar with virtual machines, containers may appear to be incredibly similar. A container runs an operating system, has a file system and can be accessed over a network just as if it was a physical or virtual computer system. However, the technology and concepts behind containers are vastly different from virtual machines.
+>>>>>>> origin/master
 
 - Container host: A physical or virtual computer system configured with the Windows container feature. The container host will run one or more Windows containers.
 - Sandbox: The layer that captures all changes you make to the container while it's running (such as file system modifications, registry modifications, or software installations).
@@ -54,7 +86,11 @@ Hyper-V isolation expands on the isolation provided by Windows Server containers
 
 Running a container on Windows with or without Hyper-V isolation is a runtime decision. You can initially create the container with Hyper-V isolation, and then later at runtime choose to run it as a Windows Server container instead.
 
+<<<<<<< HEAD
 ## Container users
+=======
+![](media/docker.png)
+>>>>>>> origin/master
 
 ### Containers for developers
 

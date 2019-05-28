@@ -40,7 +40,7 @@ In its most basic form, a Dockerfile can be very simple. The following example c
 # Sample Dockerfile
 
 # Indicates that the windowsservercore image will be used as the base image.
-FROM microsoft/windowsservercore
+FROM mcr.microsoft.com/windows/servercore:ltsc2019
 
 # Metadata indicating an image maintainer.
 LABEL maintainer="jshelton@contoso.com"
@@ -73,8 +73,9 @@ FROM <image>
 
 Here's an example of the FROM command:
 
-```dockerfile
-FROM microsoft/windowsservercore
+To download the ltsc2019 version windows server core from the Microsoft Container Registry (MCR):
+```
+FROM mcr.microsoft.com/windows/servercore:ltsc2019
 ```
 
 For more detailed information, see the [FROM reference](https://docs.docker.com/engine/reference/builder/#from).
@@ -99,8 +100,8 @@ The difference between the exec and shell form is in how the `RUN` instruction i
 
 Here's an example of the exec form:
 
-```dockerfile
-FROM microsoft/windowsservercore
+```
+FROM mcr.microsoft.com/windows/servercore:ltsc2019
 
 RUN ["powershell", "New-Item", "c:/test"]
 ```
@@ -116,8 +117,8 @@ b3452b13e472        2 minutes ago       powershell New-Item c:/test   30.76 MB
 
 To contrast, the following example runs the same operation in shell form:
 
-```dockerfile
-FROM microsoft/windowsservercore
+```
+FROM mcr.microsoft.com/windows/servercore:ltsc2019
 
 RUN powershell New-Item c:\test
 ```
@@ -329,8 +330,8 @@ In many cases a Dockerfile instruction will need to span multiple lines. To do t
 
 The following example shows a single RUN instruction that spans multiple lines using the default escape character:
 
-```dockerfile
-FROM microsoft/windowsservercore
+```
+FROM mcr.microsoft.com/windows/servercore:ltsc2019
 
 RUN powershell.exe -Command \
     $ErrorActionPreference = 'Stop'; \
@@ -347,7 +348,7 @@ To modify the escape character, place an escape parser directive on the very fir
 ```dockerfile
 # escape=`
 
-FROM microsoft/windowsservercore
+FROM mcr.microsoft.com/windows/servercore:ltsc2019
 
 RUN powershell.exe -Command `
     $ErrorActionPreference = 'Stop'; `
@@ -364,8 +365,8 @@ For more information about the escape parser directive, see [Escape parser direc
 
 PowerShell cmdlets can be run in a Dockerfile with the `RUN` operation.
 
-```dockerfile
-FROM microsoft/windowsservercore
+```
+FROM mcr.microsoft.com/windows/servercore:ltsc2019
 
 RUN powershell -command Expand-Archive -Path c:\apache.zip -DestinationPath c:\
 ```
@@ -374,8 +375,8 @@ RUN powershell -command Expand-Archive -Path c:\apache.zip -DestinationPath c:\
 
 PowerShell's `Invoke-WebRequest` cmdlet can be useful when gathering information or files from a web service. For instance, if you build an image that includes Python, you can set `$ProgressPreference` to `SilentlyContinue` to achieve faster downloads, as shown in the following example.
 
-```dockerfile
-FROM microsoft/windowsservercore
+```
+FROM mcr.microsoft.com/windows/servercore:ltsc2019
 
 RUN powershell.exe -Command \
   $ErrorActionPreference = 'Stop'; \
@@ -390,8 +391,8 @@ RUN powershell.exe -Command \
 
 Another option for using PowerShell to download files during the image creation process is to use the .NET WebClient library. This can increase download performance. The following example downloads the Python software, using the WebClient library.
 
-```dockerfile
-FROM microsoft/windowsservercore
+```
+FROM mcr.microsoft.com/windows/servercore:ltsc2019
 
 RUN powershell.exe -Command \
   $ErrorActionPreference = 'Stop'; \
@@ -412,8 +413,8 @@ In some cases, it may be helpful to copy a script into the containers you use du
 
 This example copies a script from the build machine into the container using the `ADD` instruction. This script is then run using the RUN instruction.
 
-```dockerfile
-FROM microsoft/windowsservercore
+```
+FROM mcr.microsoft.com/windows/servercore:ltsc2019
 ADD script.ps1 /windows/temp/script.ps1
 RUN powershell.exe -executionpolicy bypass c:\windows\temp\script.ps1
 ```
@@ -440,7 +441,7 @@ When the build process has been initiated, the output will indicate status and r
 C:\> docker build -t iis .
 
 Sending build context to Docker daemon 2.048 kB
-Step 1 : FROM micrsoft/windowsservercore
+Step 1 : FROM mcr.microsoft.com/windows/servercore:ltsc2019
  ---> 6801d964fda5
 
 Step 2 : RUN dism /online /enable-feature /all /featurename:iis-webserver /NoRestart
