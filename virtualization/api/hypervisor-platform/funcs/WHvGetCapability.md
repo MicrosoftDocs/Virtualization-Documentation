@@ -268,7 +268,7 @@ Receives the written size in bytes of the `CapabilityBuffer`.
 ## Return Value
 If the operation completed successfully, the return value is `S_OK`.
 
-The function returns `E_WHV_UNKNOWN_CAPABILITY` if an unknown capability is requested. The functionality that corresponds to the requested capability must be treated as being not available on the system.
+The function returns `WHV_E_UNKNOWN_CAPABILITY` if an unknown capability is requested. The functionality that corresponds to the requested capability must be treated as being not available on the system.
 
 ## Remarks
 Platform capabilities are a generic way for callers to query properties and capabilities of the hypervisor, of the API implementation, and of the hardware platform that the application is running on. The platform API uses these capabilities to publish the availability of extended functionality of the API as well as the set of features that the processor on the current system supports. Applications must query the availability of a feature prior to calling the corresponding APIs or allowing a VM to use a processor feature.
