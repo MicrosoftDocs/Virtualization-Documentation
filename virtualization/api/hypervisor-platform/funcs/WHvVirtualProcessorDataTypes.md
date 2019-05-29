@@ -391,3 +391,8 @@ typedef union WHV_REGISTER_VALUE
 ## Remarks
 
 The data types for the virtual processor registers
+
+## Requirements
+
+Minimum supported build:    Insider Preview Builds (19H2) Experimental:
+`WHvX64RegisterTscVirtualOffset`

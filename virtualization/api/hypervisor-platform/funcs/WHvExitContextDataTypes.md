@@ -68,3 +68,8 @@ typedef struct WHV_VP_EXIT_CONTEXT
 ## Remarks
 
 The context structures for several exit reasons share common definitions for the data that provides information about the processor instruction that caused the exit and the state of the virtual processor at the time of the exit. 
+
+## Requirements
+
+Minimum supported build:    Insider Preview Builds (19H2) Experimental:
+`WHvRunVpExitReasonX64Rdtsc`

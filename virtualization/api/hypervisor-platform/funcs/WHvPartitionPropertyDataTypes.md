@@ -106,3 +106,11 @@ typedef union WHV_PARTITION_PROPERTY
 The `WHvPartitionPropertyCodeExtendedVmExits` property controls the set of additional operations by a virtual processor that should cause the execution of the processor to exit and to return to the caller of the [`WHvRunVirtualProcessor`](WHvRunVirtualProcessor.md) function.
 
 The `WHvPartitionPropertyCodeProcessorXXX` properties control the processor features that are made available to the virtual processor of the partition. These properties can only be configured during the initial creation of the partition, prior to calling [`WHvSetupPartition`](WHvSetupPartition.md).
+
+## Requirements
+
+Minimum supported build:    Insider Preview Builds (19H2) Experimental:
+`NestedVirtualization`
+`X64MsrExitBitmap`
+`ProcessorClockFrequency`
+`InterruptClockFrequency`

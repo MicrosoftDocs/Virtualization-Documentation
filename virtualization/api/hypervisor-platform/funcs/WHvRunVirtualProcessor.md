@@ -82,3 +82,8 @@ Specifies the size of the buffer that receives the exit context, in bytes.
 ## Remarks
 
 A virtual processor is executed (i.e., is enabled to run guest code) by making a call to the `WHvRunVirtualProcessor` function. A call to this function blocks synchronously until either the virtual processor executed an operation that needs to be handled by the virtualization stack (e.g., accessed memory in the GPA space that is not mapped or not accessible) or the virtualization stack explicitly request an exit of the function (e.g., to inject an interrupt for the virtual processor or to change the state of the VM). 
+
+## Requirements
+
+Minimum supported build:    Insider Preview Builds (19H2) Experimental:
+`ReadTsc`
