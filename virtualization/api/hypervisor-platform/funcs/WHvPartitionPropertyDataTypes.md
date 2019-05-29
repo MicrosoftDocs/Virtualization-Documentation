@@ -62,6 +62,23 @@ typedef enum WHV_X64_LOCAL_APIC_EMULATION_MODE
 } WHV_X64_LOCAL_APIC_EMULATION_MODE;
 
 //
+// Return value for WHvCapabilityCodeX64MsrExits and input buffer for
+// WHvPartitionPropertyCodeX64MsrcExits
+//
+typedef union WHV_X64_MSR_EXIT_BITMAP
+{
+    UINT64 AsUINT64;
+    struct
+    {
+        UINT64 UnhandledMsrs:1;
+        UINT64 TscMsrWrite:1;
+        UINT64 TscMsrRead:1;
+        UINT64 Reserved:61;
+    };
+
+} WHV_X64_MSR_EXIT_BITMAP;
+
+//
 // WHvGetPartitionProperty output buffer / WHvSetPartitionProperty input buffer
 //
 typedef union WHV_PARTITION_PROPERTY
@@ -76,6 +93,10 @@ typedef union WHV_PARTITION_PROPERTY
     UINT64 ExceptionExitBitmap;
     WHV_X64_LOCAL_APIC_EMULATION_MODE LocalApicEmulationMode;
     BOOL SeparateSecurityDomain;
+    BOOL NestedVirtualization;
+    WHV_X64_MSR_EXIT_BITMAP X64MsrExitBitmap;
+    UINT64 ProcessorClockFrequency;
+    UINT64 InterruptClockFrequency;
 } WHV_PARTITION_PROPERTY;
 ```
 

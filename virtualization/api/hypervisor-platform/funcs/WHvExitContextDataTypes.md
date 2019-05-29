@@ -24,6 +24,7 @@ typedef enum WHV_RUN_VP_EXIT_REASON
     WHvRunVpExitReasonX64MsrAccess           = 0x00001000,
     WHvRunVpExitReasonX64Cpuid               = 0x00001001,
     WHvRunVpExitReasonException              = 0x00001002,
+    WHvRunVpExitReasonX64Rdtsc               = 0x00001003,
 
     // Exits caused by the host
     WHvRunVpExitReasonCanceled               = 0x00002001
