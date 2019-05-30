@@ -58,50 +58,6 @@ As we've been improving the Windows container features, we've had to make some c
 |Windows Server 2016<br>Builds: 14393.* |Windows Server version 1709<br>Builds 16299.* |Only supports `hyperv` isolation||X||
 |Windows Server 2016<br>Builds: 14393.* |Windows Server 2016<br>Builds: 14393.* |Supports `process` or `hyperv` isolation|X|X||
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ## Matching container host version with container image versions
 
 ### Windows Server containers
