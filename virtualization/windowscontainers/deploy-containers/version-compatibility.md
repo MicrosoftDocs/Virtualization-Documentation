@@ -10,7 +10,7 @@ Windows Server 2016 and Windows 10 Anniversary Update (both version 14393) were 
 
 As we've been improving the Windows container features, we've had to make some changes that can affect compatibility. Older containers will run the same on newer hosts with [Hyper-V isolation](../manage-containers/hyperv-container.md), and will use the same (older) kernel version. However, if you want to run a container based on a newer Windows build, it can only run on the newer host build.
 
-|Container OS version|Host OS version|Compatibility|Process|Hyper-V isolation|Not compatible|
+|Container OS version|Host OS version|Compatibility|Process|Hyper-V isolation|Not supported|
 |---|---|---|---|---|---|
 |Windows Server 2019, version 1903<br>Builds 18362.* |Windows Server, version 1903<br>Builds 18362.* |Supports `process` or `hyperv` isolation|X|X||
 |Windows Server 2019, version 1903<br>Builds 18362.* |Windows 10, version 1903<br>Builds 18362.* |Only supports `hyperv` isolation||X||
