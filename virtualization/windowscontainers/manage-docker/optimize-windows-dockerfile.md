@@ -224,7 +224,7 @@ afba1a3def0a        38 seconds ago       cmd /S /C mkdir test-4   42.46 MB
 6801d964fda5        5 months ago                                  0 B
 ```
 
-This next Dockerfile has now been slightly modified, with the third `RUN` instruction changed to a new file. When Docker build is run against this Dockerfile, the first three instructions, which are identical to those in the last example, use the cached image layers. However, because the changed `RUN` instruction isn't cached, a new layer is created for for the changed instruction and all subsequent instructions.
+This next Dockerfile has now been slightly modified, with the third `RUN` instruction changed to a new file. When Docker build is run against this Dockerfile, the first three instructions, which are identical to those in the last example, use the cached image layers. However, because the changed `RUN` instruction isn't cached, a new layer is created for the changed instruction and all subsequent instructions.
 
 ```dockerfile
 FROM windowsservercore

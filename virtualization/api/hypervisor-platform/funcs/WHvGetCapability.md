@@ -47,8 +47,8 @@ typedef union WHV_EXTENDED_VM_EXITS
     {
         UINT64 X64CpuidExit  : 1; // RunVpExitReasonX64CPUID supported
         UINT64 X64MsrExit    : 1; // RunVpExitX64ReasonMSRAccess supported
-        UINT64 ExceptionExit : 1; // RunVpExitReasonException supported
-        UINT64 Reserved      : 61;
+        UINT64 X64RdtscExit  : 1; // WHvRunVpExitReasonX64Rdtsc supported
+        UINT64 Reserved      : 60;
     };
 
     UINT64 AsUINT64;
@@ -266,10 +266,16 @@ Specifies the size of the output buffer, in bytes. For the currently defined set
 Receives the written size in bytes of the `CapabilityBuffer`.
 
 ## Return Value
+
 If the operation completed successfully, the return value is `S_OK`.
 
-The function returns `E_WHV_UNKNOWN_CAPABILITY` if an unknown capability is requested. The functionality that corresponds to the requested capability must be treated as being not available on the system.
+The function returns `WHV_E_UNKNOWN_CAPABILITY` if an unknown capability is requested. The functionality that corresponds to the requested capability must be treated as being not available on the system.
 
 ## Remarks
+
 Platform capabilities are a generic way for callers to query properties and capabilities of the hypervisor, of the API implementation, and of the hardware platform that the application is running on. The platform API uses these capabilities to publish the availability of extended functionality of the API as well as the set of features that the processor on the current system supports. Applications must query the availability of a feature prior to calling the corresponding APIs or allowing a VM to use a processor feature.
 
+## Requirements
+
+Minimum supported build:    Insider Preview Builds (19H2) Experimental:
+`X64RdtscExit`

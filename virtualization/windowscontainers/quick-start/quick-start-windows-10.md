@@ -20,7 +20,7 @@ The exercise will walk through creating and running Windows containers on Window
 
 In this quick start you will accomplish:
 
-1. Installing Docker for Windows
+1. Installing Docker Desktop
 2. Running a simple Windows container
 
 This quick start is specific to Windows 10. Additional quick start documentation can be found in the table of contents on the left-hand side of this page.
@@ -36,13 +36,13 @@ Windows Server Containers require Hyper-V isolation on Windows 10 in order to pr
 > [!NOTE]
 > In the release of Windows October Update 2018, we no longer disallow users from running a Windows container in process-isolation mode on Windows 10 Enterprise or Professional for dev/test purposes. See the [FAQ](../about/faq.md) to learn more.
 
-## Install Docker for Windows
+## Install Docker Desktop
 
-Download [Docker for Windows](https://store.docker.com/editions/community/docker-ce-desktop-windows) and run the installer (You will be required to login. Create an account if you don't have one already). [Detailed installation instructions](https://docs.docker.com/docker-for-windows/install) are available in the Docker documentation.
+Download [Docker Desktop](https://store.docker.com/editions/community/docker-ce-desktop-windows) and run the installer (You will be required to login. Create an account if you don't have one already). [Detailed installation instructions](https://docs.docker.com/docker-for-windows/install) are available in the Docker documentation.
 
 ## Switch to Windows containers
 
-After installation Docker for Windows defaults to running Linux containers. Switch to Windows containers using either the Docker tray-menu or by running the following command in a PowerShell prompt:
+After installation Docker Desktop defaults to running Linux containers. Switch to Windows containers using either the Docker tray-menu or by running the following command in a PowerShell prompt:
 
 ```console
 & $Env:ProgramFiles\Docker\Docker\DockerCli.exe -SwitchDaemon .

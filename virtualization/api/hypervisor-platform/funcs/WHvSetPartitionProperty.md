@@ -34,7 +34,11 @@ Specifies the size of the input buffer, in bytes. 
 
 If the operation completed successfully, the return value is `S_OK`. 
 
-The function returns `E_WHV_UNKNOWN_PROPERTY` for attempts to configure a property that is not available on the current system. 
+The function returns `WHV_E_UNKNOWN_PROPERTY` for attempts to configure a property that is not available on the current system. 
 
-The function returns `E_WHV_INVALID_PARTITION_STATE` if the property cannot be modified in the current state of the partition, particularly for attempts to set a property that can only be modified prior to executing the partition but a virtual processor in the partition already started executing. 
+The function returns `E_INVALIDARG` if the property cannot be modified in the current state of the partition, particularly for attempts to set a property prior to the [`WHvSetupPartition`](WhvSetupPartition.md) function. Starting in Insider Preview Builds (19H2), the following properties can be modified after the [`WHvSetupPartition`](WhvSetupPartition.md) function:
+`WHvPartitionPropertyCodeExtendedVmExits`
+`WHvPartitionPropertyCodeExceptionExitBitmap`
+`WHvPartitionPropertyCodeX64MsrExitBitmap`
+`WHvPartitionPropertyCodeCpuidExitList`
 
