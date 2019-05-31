@@ -45,6 +45,8 @@ typedef struct WHV_RUN_VP_EXIT_CONTEXT
         WHV_X64_INTERRUPTION_DELIVERABLE_CONTEXT InterruptWindow;
         WHV_X64_UNSUPPORTED_FEATURE_CONTEXT UnsupportedFeature;
         WHV_RUN_VP_CANCELED_CONTEXT CancelReason;
+        WHV_X64_APIC_EOI_CONTEXT ApicEoi;
+        WHV_X64_RDTSC_CONTEXT ReadTsc;
     };
 } WHV_RUN_VP_EXIT_CONTEXT;
  
@@ -80,3 +82,8 @@ Specifies the size of the buffer that receives the exit context, in bytes.
 ## Remarks
 
 A virtual processor is executed (i.e., is enabled to run guest code) by making a call to the `WHvRunVirtualProcessor` function. A call to this function blocks synchronously until either the virtual processor executed an operation that needs to be handled by the virtualization stack (e.g., accessed memory in the GPA space that is not mapped or not accessible) or the virtualization stack explicitly request an exit of the function (e.g., to inject an interrupt for the virtual processor or to change the state of the VM). 
+
+## Requirements
+
+Minimum supported build:    Insider Preview Builds (19H2) Experimental:
+`ReadTsc`

@@ -24,6 +24,7 @@ typedef enum WHV_RUN_VP_EXIT_REASON
     WHvRunVpExitReasonX64MsrAccess           = 0x00001000,
     WHvRunVpExitReasonX64Cpuid               = 0x00001001,
     WHvRunVpExitReasonException              = 0x00001002,
+    WHvRunVpExitReasonX64Rdtsc               = 0x00001003,
 
     // Exits caused by the host
     WHvRunVpExitReasonCanceled               = 0x00002001
@@ -67,3 +68,8 @@ typedef struct WHV_VP_EXIT_CONTEXT
 ## Remarks
 
 The context structures for several exit reasons share common definitions for the data that provides information about the processor instruction that caused the exit and the state of the virtual processor at the time of the exit. 
+
+## Requirements
+
+Minimum supported build:    Insider Preview Builds (19H2) Experimental:
+`WHvRunVpExitReasonX64Rdtsc`
