@@ -24,7 +24,7 @@ If the function succeeds, the return value is `S_OK`.  
 
 Suspends time for the partition.
 
-No virtual processor may be running when this is called.  Time will resume when when [`WHvResumePartitionTime`](WHvResumePartitionTime.md) or
+No virtual processor may be running when this is called.  Time will resume when [`WHvResumePartitionTime`](WHvResumePartitionTime.md) or
 [`WHvRunVirtualProcessor`](WHvRunVirtualProcessor.md) is called.
 
 ## Requirements
