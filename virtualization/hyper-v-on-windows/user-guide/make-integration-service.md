@@ -11,7 +11,7 @@ ms.assetid: 1ef8f18c-3d76-4c06-87e4-11d8d4e31aea
 
 # Make your own integration services
 
-Starting in Windows 10 Anniversary Update, anyone can make applications that communicate between the Hyper-V host and its virtual machines using Hyper-V sockets -- a Windows Socket with a new address family and specialized endpoint for targeting virtual machines.  All communication over Hyper-V sockets runs without using networking and all data stays on the same physical memory.   Applications using Hyper-V sockets are similar to Hyper-V's integration services.
+Starting in Windows 10 Anniversary Update, anyone can make applications that communicate between the Hyper-V host and its virtual machines using Hyper-V sockets -- a Windows Socket with a new address family and specialized endpoint for targeting virtual machines.  All communication over Hyper-V sockets runs without using networking and all data stays on the same physical memory. Applications using Hyper-V sockets are similar to Hyper-V's integration services.
 
 This document walks through creating a simple program built on Hyper-V sockets.
 
@@ -43,7 +43,7 @@ Requirements:
 * [Windows 10 SDK](https://developer.microsoft.com/windows/downloads/windows-10-sdk) -- pre-installed in Visual Studio 2015 with Update 3 and later.
 * A computer running one of the host operating systems above with at least one vitual machine. -- this is for testing your application.
 
-> **Note:** The API for Hyper-V sockets became publicly available in Windows 10 slightly after .  Applications that use HVSocket will run on any Widnows 10 host and guest but can only be developed with a Windows SDK later than build 14290.
+> **Note:** The API for Hyper-V sockets became publicly available in Windows 10 Anniversary Update. Applications that use HVSocket will run on any Windows 10 host and guest but can only be developed with a Windows SDK later than build 14290.
 
 ## Register a new application
 In order to use Hyper-V sockets, the application must be registered with the Hyper-V Host's registry.

@@ -85,6 +85,7 @@ The detailed reason and additional information for the exit of the [`WHvRunVirtu
 |[Interrupt Window](funcs/InterruptWindow.md)|Information about exits caused by the virtual processor when the interruptibility state of the processor would allow delivery of a given interrupt. |
 |[Unsupported Feature](funcs/UnsupportableFeature.md)|An exit for an unsupported feature is caused by the virtual processor accesses a feature of the architecture that is not properly virtualized by the hypervisor. |
 |[Execution Cancelled](funcs/ExecutionCancelled.md)|Information about an exit caused by host system is provided in the `WHV_RUN_VP_CANCELLED_CONTEXT` structure. |
+|[RDTSC(P)](funcs/Rdtsc.md)|Information about exits caused by the virtual processor executing the RDTSC(P) instruction is provided in the `WHV_X64_RDTSC_CONTEXT` structure.|
 |   |   |
 
 

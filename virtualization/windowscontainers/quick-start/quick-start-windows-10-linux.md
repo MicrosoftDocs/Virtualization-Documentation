@@ -20,23 +20,29 @@ The exercise will walk through creating and running Linux containers on Windows 
 
 In this quick start you will accomplish:
 
-1. Installed Docker for Windows
-2. Run a simple Linux container using Linux Containers on Windows (LCOW)
+1. Installing Docker Desktop
+2. Running a simple Linux container using Linux Containers on Windows (LCOW)
 
 This quick start is specific to Windows 10. Additional quick start documentation can be found in the table of contents on the left-hand side of this page.
 
 ## Prerequisites
 
 Please make sure you meet the following requirements:
+<<<<<<< HEAD
 - One physical computer system running Windows 10 Professional or Enterprise with Fall Creators Update (version 1709) or later
 - Make sure [Hyper-V](https://docs.microsoft.com/virtualization/hyper-v-on-windows/reference/hyper-v-requirements) is enabled.
+=======
+- One physical computer system running Windows 10 Professional, Windows 10 Enterprise, or Windows
+Server 2019 version 1809 or later
+- Make sure [Hyper-V](https://docs.microsoft.com/en-us/virtualization/hyper-v-on-windows/reference/hyper-v-requirements) is enabled.
+>>>>>>> origin/master
 
 ***Hyper-V isolation:***
 Linux Containers on Windows require Hyper-V isolation on Windows 10 in order to provide developers with the the appropriate Linux kernel to run the container. More about Hyper-V isolation can be found on the [About Windows containers](../about/index.md) page.
 
-## Install Docker for Windows
+## Install Docker Desktop
 
-Download [Docker for Windows](https://store.docker.com/editions/community/docker-ce-desktop-windows) and run the installer (You will be required to login. Create an account if you don't have one already). [Detailed installation instructions](https://docs.docker.com/docker-for-windows/install) are available in the Docker documentation.
+Download [Docker Desktop](https://store.docker.com/editions/community/docker-ce-desktop-windows) and run the installer (You will be required to login. Create an account if you don't have one already). [Detailed installation instructions](https://docs.docker.com/docker-for-windows/install) are available in the Docker documentation.
 
 > If you already have Docker installed, make sure you have version 18.02 or later to support LCOW. Check by running `docker -v` or checking *About Docker*.
 

@@ -35,7 +35,7 @@ Hyper-V is available on 64-bit versions of Windows 10 Pro, Enterprise, and Educa
 
 > Upgrade from Windows 10 Home edition to Windows 10 Pro by opening **Settings** > **Update and Security** > **Activation**. Here you can visit the store and purchase an upgrade.
 
-Most computers will run Hyper-V however each virtual machine is a completely seperate operating system.  You can generally run one or more virtual machines on a computer with 4GB of RAM, though you'll need more resources for additional virtual machines or to install and run resource intense software like games, video editing, or engineering design software.
+Most computers run Hyper-V, however each virtual machine runs a completely seperate operating system.  You can generally run one or more virtual machines on a computer with 4GB of RAM, though you'll need more resources for additional virtual machines or to install and run resource intense software like games, video editing, or engineering design software.
 
 For more information about Hyper-V's system requirements and how to verify that Hyper-V runs on your machine, see the [Hyper-V Requirements Reference](../reference/hyper-v-requirements.md).
 

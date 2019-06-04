@@ -197,7 +197,7 @@ Describe "Container network is created" {
       ($localNetworks | Measure-Object).Count | Should Not BeNullOrEmpty
    }
 
-   # Either need NAT, L2bridge, or Transparent for for external network access.
+   # Either need NAT, L2bridge, or Transparent for external network access.
    It "At least one NAT, Transparent, or L2Bridge Network exists" {
       $totalnets = 0
       if ($natNetworks -ne $null)

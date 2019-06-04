@@ -154,6 +154,7 @@ typedef enum WHV_REGISTER_NAME
     WHvX64RegisterTscAux           = 0x0000207B,
     WHvX64RegisterSpecCtrl         = 0x00002084,
     WHvX64RegisterPredCmd          = 0x00002085,
+    WHvX64RegisterTscVirtualOffset = 0x00002087,
 
     // APIC state (also accessible via WHv(Get/Set)VirtualProcessorInterruptControllerState)
     WHvX64RegisterApicId           = 0x00003002,
@@ -390,3 +391,8 @@ typedef union WHV_REGISTER_VALUE
 ## Remarks
 
 The data types for the virtual processor registers
+
+## Requirements
+
+Minimum supported build:    Insider Preview Builds (19H2) Experimental:
+`WHvX64RegisterTscVirtualOffset`

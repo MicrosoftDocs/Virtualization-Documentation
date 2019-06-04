@@ -3,7 +3,7 @@ title:      "Measuring Replication Health in a cluster"
 date:       2013-12-30 22:51:41
 categories: hvr
 ---
-As part of running a mini-scale run in my lab, I had to frequently monitor the replication health and also note down the replication statistics. The statistics is available by by right clicking on the VM (in the Hyper-V Manager or Failover Cluster Manager) and choosing the **Replication** submenu and clicking on the **View Replication Health…** option.
+As part of running a mini-scale run in my lab, I had to frequently monitor the replication health and also note down the replication statistics. The statistics is available by right clicking on the VM (in the Hyper-V Manager or Failover Cluster Manager) and choosing the **Replication** submenu and clicking on the **View Replication Health…** option.
 
  [![image](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/image_thumb_715D2FC2.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/image_5F7E0B44.png)
 
