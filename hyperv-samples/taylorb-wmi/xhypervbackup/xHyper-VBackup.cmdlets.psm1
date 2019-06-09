@@ -97,9 +97,12 @@ function Convert-VmBackupCheckpoint
 
 function Export-VMBackupCheckpoint
 {
+    [CmdletBinding(DefaultParametersetname="vmname")]
     Param(
-      [Parameter(Mandatory=$True)]
+      [Parameter(Mandatory=$True, ParameterSetName="vmname")]
       [string]$VmName = [String]::Empty,
+      [Parameter(Mandatory=$True, ParameterSetName="vmid")]
+      [string]$VmId = [String]::Empty,
 
       [Parameter(Mandatory=$True)]
       [string]$DestinationPath = [String]::Empty,
@@ -115,8 +118,13 @@ function Export-VMBackupCheckpoint
     # Retrieve an instance of the virtual machine management service
     $Msvm_VirtualSystemManagementService = Get-WmiObject -Namespace root\virtualization\v2 -Class Msvm_VirtualSystemManagementService
 
+    if ($PsCmdlet.ParameterSetName -eq "vmname"){
+        $filter = "ElementName='$vmName'"
+    } else {
+        $filter = "Name='$VmId'"
+    }
     # Retrieve an instance of the virtual machine computer system that will be snapshoted
-    $Msvm_ComputerSystem = Get-WmiObject -Namespace root\virtualization\v2 -Class Msvm_ComputerSystem -Filter "ElementName='$vmName'"
+    $Msvm_ComputerSystem = Get-WmiObject -Namespace root\virtualization\v2 -Class Msvm_ComputerSystem -Filter $filter
 
     # Retrieve an instance of the Export Setting Data Class (this is used to inform the export operation)
     #  GetReleated always returns an array in this case there is only one member
@@ -170,13 +178,22 @@ function Export-VMBackupCheckpoint
 
 function Get-VmBackupCheckpoints
 {
+    [CmdletBinding(DefaultParametersetname="vmname")]
     Param(
-      [Parameter(Mandatory=$True)]
+      [Parameter(Mandatory=$True, ParameterSetName="vmid")]
+      [string]$VmId = [String]::Empty,
+      [Parameter(Mandatory=$True, ParameterSetName="vmname")]
       [string]$VmName = [String]::Empty
     )
 
+    if ($PsCmdlet.ParameterSetName -eq "vmname"){
+        $filter = "ElementName='$vmName'"
+    } else {
+        $filter = "Name='$VmId'"
+    }
+
     # Retrieve an instance of the virtual machine computer system that contains recovery checkpoints
-    $Msvm_ComputerSystem = Get-WmiObject -Namespace root\virtualization\v2 -Class Msvm_ComputerSystem -Filter "ElementName='$VmName'"
+    $Msvm_ComputerSystem = Get-WmiObject -Namespace root\virtualization\v2 -Class Msvm_ComputerSystem -Filter $filter
 
     # Retrieve all snapshot associations for the virtual machine
     $allSnapshotAssociations = $Msvm_ComputerSystem.GetRelationships("Msvm_SnapshotOfVirtualSystem")
@@ -199,13 +216,21 @@ function Get-VmBackupCheckpoints
 
 function Get-VmReferencePoints
 {
+    [CmdletBinding(DefaultParametersetname="vmname")]
     Param(
-      [Parameter(Mandatory=$True)]
+      [Parameter(Mandatory=$True, ParameterSetName="vmid")]
+      [string]$VmId = [String]::Empty,
+      [Parameter(Mandatory=$True, ParameterSetName="vmname")]
       [string]$VmName = [String]::Empty
     )
 
+    if ($PsCmdlet.ParameterSetName -eq "vmname"){
+        $filter = "ElementName='$vmName'"
+    } else {
+        $filter = "Name='$VmId'"
+    }
     # Retrieve an instance of the virtual machine computer system that contains reference points
-    $Msvm_ComputerSystem = Get-WmiObject -Namespace root\virtualization\v2 -Class Msvm_ComputerSystem -Filter "ElementName='$VmName'"
+    $Msvm_ComputerSystem = Get-WmiObject -Namespace root\virtualization\v2 -Class Msvm_ComputerSystem -Filter $filter
 
     # Retrieve all refrence associations of the virtual machine
     $allrefPoints = $Msvm_ComputerSystem.GetRelationships("Msvm_ReferencePointOfVirtualSystem")
@@ -225,9 +250,13 @@ function Get-VmReferencePoints
 
 function New-VmBackupCheckpoint
 {
+    [CmdletBinding(DefaultParametersetname="vmname")]
     Param(
-      [Parameter(Mandatory=$True)]
+      [Parameter(Mandatory=$True, ParameterSetName="vmid")]
+      [string]$VmId = [String]::Empty,
+      [Parameter(Mandatory=$True, ParameterSetName="vmname")]
       [string]$VmName = [String]::Empty,
+
       [ValidateSet('ApplicationConsistent','CrashConsistent')]
       [string]$ConsistencyLevel = "Application Consistent"
     )
@@ -238,8 +267,13 @@ function New-VmBackupCheckpoint
     # Retrieve an instance of the virtual machine snapshot service
     $Msvm_VirtualSystemSnapshotService = Get-WmiObject -Namespace root\virtualization\v2 -Class Msvm_VirtualSystemSnapshotService
 
+    if ($PsCmdlet.ParameterSetName -eq "vmname"){
+        $filter = "ElementName='$vmName'"
+    } else {
+        $filter = "Name='$VmId'"
+    }
     # Retrieve an instance of the virtual machine computer system that will be snapshotted
-    $Msvm_ComputerSystem = Get-WmiObject -Namespace root\virtualization\v2 -Class Msvm_ComputerSystem -Filter "ElementName='$vmName'"
+    $Msvm_ComputerSystem = Get-WmiObject -Namespace root\virtualization\v2 -Class Msvm_ComputerSystem -Filter $filter
 
     # Create an instance of the Msvm_VirtualSystemSnapshotSettingData, this class provides options on how the checkpoint will be created.
     $Msvm_VirtualSystemSnapshotSettingData = ([WMIClass]"\\.\root\virtualization\v2:Msvm_VirtualSystemSnapshotSettingData").CreateInstance()
