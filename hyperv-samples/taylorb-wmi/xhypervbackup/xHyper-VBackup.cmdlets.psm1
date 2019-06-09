@@ -258,7 +258,7 @@ function New-VmBackupCheckpoint
       [string]$VmName = [String]::Empty,
 
       [ValidateSet('ApplicationConsistent','CrashConsistent')]
-      [string]$ConsistencyLevel = "Application Consistent"
+      [string]$ConsistencyLevel = "ApplicationConsistent"
     )
 
     # Retrieve an instance of the virtual machine management service
