@@ -36,6 +36,6 @@
     },
     "fileMetadata": {},
     "template": [],
-    "dest": "virtualization/api/hcs/Reference/HcsAttachLayerStorageFilter.md"
+    "dest": "virtualization/api/hcs/hcs"
   }
 }
