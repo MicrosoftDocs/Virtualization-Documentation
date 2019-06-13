@@ -53,16 +53,7 @@
 
 
 # [Host Compute System API](./hcs/hcs.md)
-## [Reference](./hcs/references.md)
-### [HcsStartComputeSystem](./hcs/Reference/HcsStartComputeSystem.md)
-### [HcsShutDownComputeSystem](./hcs/Reference/HcsShutDownComputeSystem.md)
-### [HdvCreateDeviceInstance](./hcs/Reference/hdv/HdvCreateDeviceInstance.md)
-### [HdvCreateGuestMemoryAperture](./hcs/Reference/hdv/HdvCreateGuestMemoryAperture.md)
-### [HdvDeliverGuestInterrupt](./hcs/Reference/hdv/HdvDeliverGuestInterrupt.md)
-### [HdvInitializeDeviceHost](./hcs/Reference/hdv/HdvInitializeDeviceHost.md)
-### [HdvReadGuestMemory](./hcs/Reference/hdv/HdvReadGuestMemory.md)
-### [HdvTeardownDeviceHost](./hcs/Reference/hdv/HdvTeardownDeviceHost.md)
-### [HdvWriteGuestMemory](./hcs/Reference/hdv/HdvWriteGuestMemory.md)
+## [Reference](./hcs/reference/Overview.md)
 ## [Samples](./hcs/Samples.md)
 ## [JSON Schema](./hcs/JSONschema.md)
 ## [Tutorial](./hcs/Tutorial.md)
