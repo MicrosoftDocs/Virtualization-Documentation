@@ -18,6 +18,28 @@ The following section contains the definitions of the host Compute System APIs. 
 |[HcsTerminateComputeSystem](./HcsTerminateComputeSystem.md)|Terminate a compute system|
 |   |   |
 
+## Device Virtualization
+|Function   |Description|
+|---|---|---|---|---|---|---|---|
+|[HdvCreateDeviceInstance function](./hdv/HdvCreateDeviceInstance.md)|Create a compute system|
+|[HdvCreateGuestMemoryAperture function](./hdv/HdvCreateGuestMemoryAperture.md)|Create a compute system|
+|[HdvDeliverGuestInterrupt function](./hdv/HdvDeliverGuestInterrupt.md)|Create a compute system|
+|[HdvPciDeviceGetDetails function](./hdv/HdvPciDeviceGetDetails.md)|Create a compute system|
+|[HdvPciDeviceInitialize function](./hdv/HdvPciDeviceInitialize.md)|Create a compute system|
+|[HdvPciDeviceInterface structure](./hdv/HdvPciDeviceInterface.md)|Create a compute system|
+|[HdvPciDeviceSetConfiguration function](./hdv/HdvPciDeviceSetConfiguration.md)|Create a compute system|
+|[HdvPciDeviceStart function](./hdv/HdvPciDeviceStart.md)|Create a compute system|
+|[HdvPciDeviceStop function](./hdv/HdvPciDeviceStop.md)|Create a compute system|
+|[HdvPciDeviceTeardown function](./hdv/HdvPciDeviceTeardown.md)|Create a compute system|
+|[HdvPciReadConfigSpace function](./hdv/HdvPciReadConfigSpace.md)|Create a compute system|
+|[HdvPciReadInterceptedMemory function](./hdv/HdvPciReadInterceptedMemory.md)|Create a compute system|
+|[HdvPciWriteConfigSpace function](./hdv/HdvPciWriteConfigSpace.md)|Create a compute system|
+|[HdvPciWriteInterceptedMemory function](./hdv/HdvPciWriteInterceptedMemory.md)|Create a compute system|
+|[HdvReadGuestMemory function](./hdv/HdvReadGuestMemory.md)|Create a compute system|
+|[HdvTeardownDeviceHost function](./hdv/HdvTeardownDeviceHost.md)|Create a compute system|
+|[HdvWriteGuestMemory function](./hdv/HdvWriteGuestMemory.md)|Create a compute system|
+|   |   |
+
 ## Process Execution
 The following functions enable applications to execute a process in a compute system. For containers, these functions are the main way for an application to start and interact wit hte workload running in the container. Unlike the compute system operations, these process execution functions are executed synchronously. 
 
