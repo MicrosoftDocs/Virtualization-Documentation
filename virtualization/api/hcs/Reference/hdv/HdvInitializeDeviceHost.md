@@ -1,4 +1,4 @@
-# HdvInitializeDeviceHost
+# HdvInitializeDeviceHost function
 
 Initializes a device emulator host in the caller’s process and associates it with the specified compute system.
 
@@ -28,3 +28,14 @@ Receives the handle to the device emulator host for the VM.
 If the function succeeds, the return value is `S_OK`.
 
 If the function fails, the return value is an  `HRESULT` error code.
+
+## Requirements
+
+|Parameter     |Description|
+|---|---|---|---|---|---|---|---| 
+| **Minimum supported client** | Windows 10, version 1607 |
+| **Minimum supported server** | Windows Server 2016 |
+| **Target Platform** | Windows |
+| **Library** | ComputeCore.ext |
+| **Dll** | ComputeCore.ext |
+|    |    | 
