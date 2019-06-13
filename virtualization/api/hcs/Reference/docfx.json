@@ -28,7 +28,7 @@
     "overwrite": [],
     "externalReference": [], 
     "globalMetadata": {
-      "breadcrumb_path": "/virtualization/api/hcs/Reference/TOC.md",
+      "breadcrumb_path": "/virtualization/api/toc.json",
       "extendBreadcrumb": true, 
       "feedback_system": "GitHub", 
       "feedback_github_repo": "MicrosoftDocs/Virtualization-Documentation", 
