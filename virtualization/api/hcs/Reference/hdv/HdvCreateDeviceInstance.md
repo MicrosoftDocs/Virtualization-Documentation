@@ -25,7 +25,7 @@ Handle to the device host in which to create the new device.
 
 `DeviceType`
 
-Specifies the type of the device instance to create.
+Specifies the [HDV_DEVICE_TYPE](./HdvDeviceType) type of the device instance to create.
 
 `DeviceClassId`
 
