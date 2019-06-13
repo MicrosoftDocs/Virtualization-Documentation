@@ -1,5 +1,4 @@
-# Host Compute System
-
+# Host Compute System Overview
 
 >**Note: This API will be released in a future Windows build.**
 
