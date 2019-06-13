@@ -1,0 +1,39 @@
+# HdvInitializeDeviceHost
+
+Reads guest primary memory (RAM) contents into the supplied buffer.
+
+## Syntax
+
+```C++
+HRESULT WINAPI
+HdvReadGuestMemory(
+    _In_                    HDV_DEVICE Requestor,
+    _In_                    UINT64     GuestPhysicalAddress,
+    _In_                    UINT32     ByteCount,
+    _Out_writes_(ByteCount) BYTE*      Buffer
+    );
+```
+
+## Parameters
+
+`Requestor` 
+
+Handle to the device requesting memory access.
+
+`GuestPhysicalAddress`
+
+Guest physical address at which the read operation starts.
+
+`ByteCount`
+
+Number of bytes to read.
+
+`Buffer`
+
+Target buffer for the read operation. 
+
+## Return Value
+
+If the function succeeds, the return value is `S_OK`.
+
+If the function fails, the return value is an  `HRESULT` error code.
