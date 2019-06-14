@@ -65,7 +65,9 @@
 ## [Overview](./hcs/overview.md)
 ## [Reference](./hcs/reference.md)
 ## [Samples](./hcs/Samples.md)
-## [JSON Schema](./hcs/JSONschema.md)
+## Scehmas
+### [VM Document Schema](./hcs/schema/vm-schema.md)
+### [Container Document Schema](./hcs/schema/container-schema.md)
 ## [Tutorial](./hcs/Tutorial.md)
 ### [Asynchronous Model](./hcs/AsyncModel.md)
 
