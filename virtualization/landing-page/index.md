@@ -397,7 +397,7 @@ ms.assetid: addcfda8-1522-4137-bc02-14cbb1ff838f
                         </ul>
                     </li>
                     <li>
-                        <a href="#core">Virtualization Platforms</a>
+                        <a href="#core">Hyper-V Core</a>
                         <ul id="core" class="cardsW">
                             <li class="fullSpan">
                                 <div class="container intro">
