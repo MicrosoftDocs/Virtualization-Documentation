@@ -457,7 +457,7 @@ ms.assetid: addcfda8-1522-4137-bc02-14cbb1ff838f
                                                 <ul>
                                                     <li><a href="https://msdn.microsoft.com/library/hh850319.aspx">Hyper-V WMI</a></li>
                                                     <li><a
-                                                    href="/virtualization/api/hcs/hcs">Host Compute System</a></li>
+                                                    href="/virtualization/api/hcs/Overview">Host Compute System</a></li>
                                                     <li><a
                                                      href="/virtualization/api/index">Windows Hypervisor Platform</a></li>
                                                     <li><a href="/virtualization/api/hypervisor-instruction-emulator/hypervisor-instruction-emulator">Hyper-V Instruction Emulator</a></li>
