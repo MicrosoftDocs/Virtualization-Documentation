@@ -4,7 +4,7 @@
   items:
   - name: Virtualization APIs
     tocHref: /virtualization/api/
-    topicHref: /virtualization/api/overview
+    topicHref: /virtualization/api/index
     items:
     - name: Windows Hypervisor Platform API
       tocHref: /virtualization/api/hypervisor-platform/
