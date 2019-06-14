@@ -63,7 +63,7 @@
 
 # Host Compute System API
 ## [Overview](./hcs/overview.md)
-## [Reference](./hcs/reference.md)
+## [Reference](./hcs/reference/reference.md)
 ## [Samples](./hcs/Samples.md)
 ## Schemas
 ### [VM Document Schema](./hcs/schema/vm-schema.md)
