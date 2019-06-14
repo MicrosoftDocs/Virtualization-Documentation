@@ -12,4 +12,6 @@
   - name: Community
     tocHref: /virtualization/community/
     topicHref: /virtualization/community/index
-    
+  - name: Api
+    tocHref: /virtualization/api/
+    topicHref: /virtualization/api/index    

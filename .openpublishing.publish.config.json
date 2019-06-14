@@ -79,7 +79,7 @@
     }
   ],
   "notification_subscribers": [
-    "scooley@microsoft.com", "enderb@microsoft.com"
+    "scooley@microsoft.com"
   ],
   "branches_to_filter": [
     "live-sync-work",
