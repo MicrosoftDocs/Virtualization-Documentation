@@ -1,31 +1,15 @@
 - name: Virtualization
-  tocHref: /
-  topicHref: "https://docs.microsoft.com/en-us/virtualization#pivot=main&panel=core"
+  tocHref: /landing-page/
+  topicHref: /landing-page/
   items:
   - name: Virtualization APIs
-    tocHref: /api/
-    topicHref: "https://docs.microsoft.com/en-us/virtualization/api/"
+    tocHref: /virtualization/api/TOC
+    topicHref: /virtualization/api/overview
     items:
-    - name: Overview
-      tocHref: /virtualization/api/overview/
-      topicHref: /virtualization/api/index
+    - name: Host Compute System API
+      tocHref: /virtualization/api/TOC
+      topicHref: /virtualization/api/hcs/overview
       items:
-      - name: Windows Hypervisor Platform API
-        tocHref: /virtualization/api/hypervisor-platform/
-        topicHref: /virtualization/api/hypervisor-platform/hypervisor-platform
-      - name: Hypervisor Instruction Emulator API
-        tocHref: /virtualization/api/hypervisor-instruction-emulator/
-        topicHref: /virtualization/api/hypervisor-instruction-emulator/hypervisor-instruction-emulator
-      - name: Host Compute System API
-        tocHref: /virtualization/api/hcs/
-        topicHref: /virtualization/api/hcs/overview
-        items:
-          - name: Overview
-            tocHref: /virtualization/api/hcs/overview
-            topicHref: /virtualization/api/hcs/overview
-          - name: Reference
-            tocHref: /virtualization/api/hcs/reference
-            topicHref: /virtualization/api/hcs/reference
-      - name: VM Saved State Dump Provider API
-        tocHref: /virtualization/api/vm-dump-provider/
-        topicHref: /virtualization/api/vm-dump-provider/vm-dump-provider
+        - name: Reference
+          tocHref: /virtualization/api/hcs/TOC
+          topicHref: /virtualization/api/hcs/reference
