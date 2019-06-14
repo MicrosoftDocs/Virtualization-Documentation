@@ -52,8 +52,9 @@
 ### [WHV_EMULATOR_TRANSLATE_GVA_PAGE_CALLBACK](./hypervisor-instruction-emulator/funcs/WHvEmulatorTranslateGVAPageCallback.md)
 
 
-# [Host Compute System API](./hcs/Overview.md)
-## [Reference](./hcs/reference/Overview.md)
+# Host Compute System API
+## [Overview](./hcs/Overview.md)
+## [Reference](./hcs/ApiReference.md)
 ## [Samples](./hcs/Samples.md)
 ## [JSON Schema](./hcs/JSONschema.md)
 ## [Tutorial](./hcs/Tutorial.md)
