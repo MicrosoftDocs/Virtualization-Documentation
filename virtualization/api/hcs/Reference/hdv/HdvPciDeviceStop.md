@@ -1,6 +1,6 @@
 # HDV_PCI_DEVICE_STOP function
 
-Function called to notify the emulated device that the virtual processors of the VM are about to be stopped
+Function called to notify the emulated device that the virtual processors of the VM are about to be stopped.
 
 ## Syntax
 
