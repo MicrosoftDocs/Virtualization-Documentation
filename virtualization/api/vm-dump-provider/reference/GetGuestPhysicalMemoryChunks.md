@@ -1,7 +1,9 @@
-# GetGuestPhysicalMemoryChunks
-**Note: These APIs are publicly available as of Windows 1803 (10.0.17134.48). You can build your project against these APIs, but the DLL for linking is missing from the SDK. You should use the latest SDK and associated DLL released with Windows Insider to run your application**
+# GetGuestPhysicalMemoryChunks function
+
+Returns the layout of the physical memory of the guest. This information contains the chunks of memory with consecutive pages and from where each one starts. If the supplied count is less than the amount of chunks for this guest, then this function returns the expected chunk count. 
 
 ## Syntax
+
 ```C
 HRESULT 
 WINAPI 
@@ -12,7 +14,8 @@ GetGuestPhysicalMemoryChunks(
     _Inout_ UINT64*                         MemoryChunkCount 
     ); 
 ```
-### Parameters
+
+## Parameters
 
 `VmSavedStateDumpHandle`
 
@@ -34,6 +37,13 @@ Supplies the size of the MemoryChunks buffer. If this count is lower than what t
 
 If the operation completes successfully, the return value is `S_OK`.
 
-## Remarks
+## Requirements
 
-Returns the layout of the physical memory of the guest. This information contains the chunks of memory with consecutive pages and from where each one starts. If the supplied count is less than the amount of chunks for this guest, then this function returns the expected chunk count. 
+|Parameter     |Description|
+|---|---|---|---|---|---|---|---| 
+| **Minimum supported client** | Windows 10, version 1607 |
+| **Minimum supported server** | Windows Server 2016 |
+| **Target Platform** | Windows |
+| **Library** | ComputeCore.ext |
+| **Dll** | ComputeCore.ext |
+|    |    | 

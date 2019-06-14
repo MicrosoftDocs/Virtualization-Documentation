@@ -1,7 +1,9 @@
-# GetArchitecture
-**Note: These APIs are publicly available as of Windows 1803 (10.0.17134.48). You can build your project against these APIs, but the DLL for linking is missing from the SDK. You should use the latest SDK and associated DLL released with Windows Insider to run your application**
+# GetArchitecture function
+
+Queries for the current Architecture/ISA the virtual processor was running at the time the saved state file was generated. 
 
 ## Syntax
+
 ```C
 HRESULT 
 WINAPI 
@@ -11,7 +13,7 @@ GetArchitecture(
     _Out_   VIRTUAL_PROCESSOR_ARCH*         Architecture 
     ); 
 ```
-### Parameters
+## Parameters
 
 `VmSavedStateDumpHandle`
 
@@ -29,6 +31,13 @@ Returns the architecture of the supplied vp.
 
 If the operation completes successfully, the return value is `S_OK`.
 
-## Remarks
+## Requirements
 
-Queries for the current Architecture/ISA the virtual processor was running at the time the saved state file was generated. 
+|Parameter     |Description|
+|---|---|---|---|---|---|---|---| 
+| **Minimum supported client** | Windows 10, version 1607 |
+| **Minimum supported server** | Windows Server 2016 |
+| **Target Platform** | Windows |
+| **Library** | ComputeCore.ext |
+| **Dll** | ComputeCore.ext |
+|    |    | 
