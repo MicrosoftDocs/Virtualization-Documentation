@@ -19,4 +19,4 @@ The three main components include creating the virtual hard disk file (VHD) to a
 
 ## API References
 
-For a list of the HCS functions, please see [References](./reference/Overview.md)
+For a list of the HCS functions, please see [References](./reference.md)
