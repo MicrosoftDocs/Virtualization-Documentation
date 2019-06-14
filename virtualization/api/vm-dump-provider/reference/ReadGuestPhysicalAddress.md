@@ -1,7 +1,9 @@
-# ReadGuestPhysicalAddress
-**Note: These APIs are publicly available as of Windows 1803 (10.0.17134.48). You can build your project against these APIs, but the DLL for linking is missing from the SDK. You should use the latest SDK and associated DLL released with Windows Insider to run your application**
+# ReadGuestPhysicalAddress function
+
+Reads from the saved state file the given guest physical address range and then it is written into the supplied buffer. If BytesRead returns something lower than BufferSize, then the end of memory has been reached. 
 
 ## Syntax
+
 ```C
 HRESULT 
 WINAPI 
@@ -13,7 +15,8 @@ ReadGuestPhysicalAddress(
     _Out_opt_   UINT32*                     BytesRead 
     ); 
 ```
-### Parameters
+
+## Parameters
 
 `VmSavedStateDumpHandle`
 
@@ -39,6 +42,13 @@ Optionally returns the bytes actually read
 
 If the operation completes successfully, the return value is `S_OK`.
 
-## Remarks
+## Requirements
 
-Reads from the saved state file the given guest physical address range and then it is written into the supplied buffer. If BytesRead returns something lower than BufferSize, then the end of memory has been reached. 
+|Parameter     |Description|
+|---|---|---|---|---|---|---|---| 
+| **Minimum supported client** | Windows 10, version 1607 |
+| **Minimum supported server** | Windows Server 2016 |
+| **Target Platform** | Windows |
+| **Library** | ComputeCore.ext |
+| **Dll** | ComputeCore.ext |
+|    |    | 
