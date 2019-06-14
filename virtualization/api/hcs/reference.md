@@ -21,23 +21,22 @@ The following section contains the definitions of the host Compute System APIs. 
 ## Device Virtualization
 |Function   |Description|
 |---|---|---|---|---|---|---|---|
-|[HdvCreateDeviceInstance function](./reference/hdv/HdvCreateDeviceInstance.md)|Create a compute system|
-|[HdvCreateGuestMemoryAperture function](./reference/hdv/HdvCreateGuestMemoryAperture.md)|Create a compute system|
-|[HdvDeliverGuestInterrupt function](./reference/hdv/HdvDeliverGuestInterrupt.md)|Create a compute system|
-|[HdvPciDeviceGetDetails function](./reference/hdv/HdvPciDeviceGetDetails.md)|Create a compute system|
-|[HdvPciDeviceInitialize function](./reference/hdv/HdvPciDeviceInitialize.md)|Create a compute system|
-|[HdvPciDeviceInterface structure](./reference/hdv/HdvPciDeviceInterface.md)|Create a compute system|
-|[HdvPciDeviceSetConfiguration function](./reference/hdv/HdvPciDeviceSetConfiguration.md)|Create a compute system|
-|[HdvPciDeviceStart function](./reference/hdv/HdvPciDeviceStart.md)|Create a compute system|
-|[HdvPciDeviceStop function](./reference/hdv/HdvPciDeviceStop.md)|Create a compute system|
-|[HdvPciDeviceTeardown function](./reference/hdv/HdvPciDeviceTeardown.md)|Create a compute system|
-|[HdvPciReadConfigSpace function](./reference/hdv/HdvPciReadConfigSpace.md)|Create a compute system|
-|[HdvPciReadInterceptedMemory function](./reference/hdv/HdvPciReadInterceptedMemory.md)|Create a compute system|
-|[HdvPciWriteConfigSpace function](./reference/hdv/HdvPciWriteConfigSpace.md)|Create a compute system|
-|[HdvPciWriteInterceptedMemory function](./reference/hdv/HdvPciWriteInterceptedMemory.md)|Create a compute system|
-|[HdvReadGuestMemory function](./reference/hdv/HdvReadGuestMemory.md)|Create a compute system|
-|[HdvTeardownDeviceHost function](./reference/hdv/HdvTeardownDeviceHost.md)|Create a compute system|
-|[HdvWriteGuestMemory function](./reference/hdv/HdvWriteGuestMemory.md)|Create a compute system|
+|[HdvCreateDeviceInstance function](./reference/hdv/HdvCreateDeviceInstance.md)|Creates a device instance in the current host and associates it with a device emulation interface and context.|
+|[HdvCreateGuestMemoryAperture function](./reference/hdv/HdvCreateGuestMemoryAperture.md)|Creates a guest RAM aperture into the address space of the calling process.|
+|[HdvDeliverGuestInterrupt function](./reference/hdv/HdvDeliverGuestInterrupt.md)|Delivers a message signalled interrupt (MSI) to the guest partition.|
+|[HdvPciDeviceGetDetails function](./reference/hdv/HdvPciDeviceGetDetails.md)|Function invoked to query the PCI description of the emulated device.|
+|[HdvPciDeviceInitialize function](./reference/hdv/HdvPciDeviceInitialize.md)|Function invoked to initialize the emulated device.|
+|[HdvPciDeviceSetConfiguration function](./reference/hdv/HdvPciDeviceSetConfiguration.md)|Function invoked to set the configuration of the emulated device.|
+|[HdvPciDeviceStart function](./reference/hdv/HdvPciDeviceStart.md)|Function called to notify the emulated device that the virtual processors of the VM are about to start.|
+|[HdvPciDeviceStop function](./reference/hdv/HdvPciDeviceStop.md)|Function called to notify the emulated device that the virtual processors of the VM are about to be stopped.|
+|[HdvPciDeviceTeardown function](./reference/hdv/HdvPciDeviceTeardown.md)|Function invoked to tear down the emulated device.|
+|[HdvPciReadConfigSpace function](./reference/hdv/HdvPciReadConfigSpace.md)|Function called to execute a read into the emulated device’s PCI config space.|
+|[HdvPciReadInterceptedMemory function](./reference/hdv/HdvPciReadInterceptedMemory.md)|Function called to execute an intercepted MMIO read for the emulated device.|
+|[HdvPciWriteConfigSpace function](./reference/hdv/HdvPciWriteConfigSpace.md)|Function called to execute a write to the emulated device’s PCI config space.|
+|[HdvPciWriteInterceptedMemory function](./reference/hdv/HdvPciWriteInterceptedMemory.md)|Function called to execute an intercepted MMIO write for the emulated device.|
+|[HdvReadGuestMemory function](./reference/hdv/HdvReadGuestMemory.md)|Reads guest primary memory (RAM) contents into the supplied buffer.|
+|[HdvTeardownDeviceHost function](./reference/hdv/HdvTeardownDeviceHost.md)|Tears down the device emulator host in the caller's process.|
+|[HdvWriteGuestMemory function](./reference/hdv/HdvWriteGuestMemory.md)|Writes the contents of the supplied buffer to guest primary memory (RAM).|
 |   |   |
 
 ## Process Execution
