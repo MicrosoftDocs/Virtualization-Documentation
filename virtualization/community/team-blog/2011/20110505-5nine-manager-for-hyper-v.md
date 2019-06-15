@@ -67,7 +67,7 @@ Here's a screenshot of the 5nine Hyper-V Manager:
 
  
 
- Very cool. This is a great opportunity to point out what can be accomplished using the [public Hyper-V WMI APIs](http://msdn.microsoft.com/en-us/library/cc136992\(VS.85\).aspx) which have been documented since day one.
+ Very cool. This is a great opportunity to point out what can be accomplished using the [public Hyper-V WMI APIs](https://msdn.microsoft.com/library/cc136992\(VS.85\).aspx) which have been documented since day one.
 
 ** **
 
@@ -112,7 +112,7 @@ Note: 5Nine Hyper-V Manager works with Microsoft Hyper-V Server 2008 R2 and late
 
 Q: Does Microsoft support the 5Nine Hyper-V Manager?
 
-A: The 5Nine Hyper-V Manager was developed by the folks over at 5Nine, however, the 5Nine Hyper-V Manager uses our published [Hyper-V WMI APIs](http://msdn.microsoft.com/en-us/library/cc136992\(VS.85\).aspx), which are fully supported by Microsoft.
+A: The 5Nine Hyper-V Manager was developed by the folks over at 5Nine, however, the 5Nine Hyper-V Manager uses our published [Hyper-V WMI APIs](https://msdn.microsoft.com/library/cc136992\(VS.85\).aspx), which are fully supported by Microsoft.
 
 ===========================================================================
 

@@ -3,7 +3,7 @@ title:      "Online resize of virtual disks attached to replicating virtual mach
 date:       2013-11-14 02:30:00
 categories: hvr
 ---
-In Windows Server 2012 R2, Hyper-V added the ability to [resize the virtual disks attached to a running virtual machine](http://technet.microsoft.com/en-us/library/dn282286.aspx) without having to shutdown the virtual machine. In this blog post we will talk about how this feature works with Hyper-V Replica, the benefits of this capability, and how to make the most of it.
+In Windows Server 2012 R2, Hyper-V added the ability to [resize the virtual disks attached to a running virtual machine](https://technet.microsoft.com/library/dn282286.aspx) without having to shutdown the virtual machine. In this blog post we will talk about how this feature works with Hyper-V Replica, the benefits of this capability, and how to make the most of it.
 
 ### Works better with Hyper-V Replica
 
@@ -19,7 +19,7 @@ Naturally, we made sure that it all went away in the Windows Server 2012 R2 rele
 
 The resize of the virtual disks need to be done on each site separately, and resizing the primary site virtual disks doesn’t automatically resize the replica site virtual disks. Here is the suggested workflow for making this happen:
 
-  1. On the primary site, select the virtual disk that needs to be resized and use the _Edit disk wizard_ to increase/decrease the size of the disk. You can also use the [Resize-VHD](http://technet.microsoft.com/en-us/library/hh848535.aspx) PowerShell commandlet. At this point, replication isn’t really impacted and continues uninterrupted. This is because the newly created space shows up as “Unallocated”. That is, it has not been formatted and presented to the guest workload to use, and so there are no writes to that region that need to be tracked and replicated.
+  1. On the primary site, select the virtual disk that needs to be resized and use the _Edit disk wizard_ to increase/decrease the size of the disk. You can also use the [Resize-VHD](https://technet.microsoft.com/library/hh848535.aspx) PowerShell commandlet. At this point, replication isn’t really impacted and continues uninterrupted. This is because the newly created space shows up as “Unallocated”. That is, it has not been formatted and presented to the guest workload to use, and so there are no writes to that region that need to be tracked and replicated.
 
   2. On the replica site, select the corresponding virtual disk and resize it using the _Edit disk wizard_ or the Resize-VHD PowerShell commandlet. Not resizing the replica site virtual disk can cause replication errors in the future – and we will cover that in greater detail.
 

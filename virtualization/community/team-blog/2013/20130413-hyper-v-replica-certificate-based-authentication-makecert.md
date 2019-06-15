@@ -5,7 +5,7 @@ categories: hvr
 ---
 We have had a number of queries on how to enable replication using certificates created from makecert. Though the Understanding and Troubleshooting guide for Hyper-V Replica discusses this aspect, I am posting a separate article on this. The below steps are applicable for a simple lab deployment consisting of two standalone servers – **PrimaryServer.domain.com** and **ReplicaServer.domain.com**. This can be easily extended to clustered deployments with the Hyper-V Replica Broker. 
 
-Makecert is a certificate creation tool which generates certificates for testing purpose. Information on makecert is available here - <http://msdn.microsoft.com/en-us/library/bfsktky3.aspx>. 
+Makecert is a certificate creation tool which generates certificates for testing purpose. Information on makecert is available here - <https://msdn.microsoft.com/library/bfsktky3.aspx>. 
 
 1\. Copy the **_makecert.exe_** tool to your primary server
 

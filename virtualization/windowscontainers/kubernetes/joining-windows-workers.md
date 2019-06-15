@@ -97,7 +97,7 @@ Copy the Kubernetes certificate file (`$HOME/.kube/config`) [from master](./crea
 #### Download Kubernetes binaries ####
 To be able to run Kubernetes, you first need to download the `kubectl`, `kubelet`, and `kube-proxy` binaries. You can download these from the links in the `CHANGELOG.md` file of the [latest releases](https://github.com/kubernetes/kubernetes/releases/).
  - For example, here are the [v1.14 Node Binaries](https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG-1.14.md#node-binaries).
- - Use a tool like [Expand-Archive](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.archive/expand-archive?view=powershell-6) to extract the archive and place the binaries into `C:\k\`.
+ - Use a tool like [Expand-Archive](https://docs.microsoft.com/powershell/module/microsoft.powershell.archive/expand-archive?view=powershell-6) to extract the archive and place the binaries into `C:\k\`.
 
 #### (Optional) Setup kubectl on Windows ####
 Should you wish to control the cluster from Windows, you can do so using the `kubectl` command. First, to make `kubectl` available outside of the `C:\k\` directory, modify the `PATH` environment variable:

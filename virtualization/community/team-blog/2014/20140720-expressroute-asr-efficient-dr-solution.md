@@ -7,7 +7,7 @@ Microsoft recently announced the availability of Azure **ExpressRoute** which en
 
 This opened up a new set of scenarios which otherwise was gated on the network infrastructure (or lack of it) – key among them were continuous, replication scenarios such as Azure Site Recovery. At scale, when replicating 10’s-100’s of VMs to Azure using **Azure Site Recovery (ASR)** , you can quickly send TBs of data over ExpressRoute. 
 
-You can find tons of documentation on ExpressRoute and it’s capabilities @ <https://azure.microsoft.com/en-us/services/expressroute/> and TechEd talks in Channel9 @ <https://channel9.msdn.com/Search?term=expressroute#ch9Search>. ExpressRoute truly extends your datacenter to Azure and organizations can view Azure as “yet-another-branch-office”. 
+You can find tons of documentation on ExpressRoute and it’s capabilities @ <https://azure.microsoft.com/services/expressroute/> and TechEd talks in Channel9 @ <https://channel9.msdn.com/Search?term=expressroute#ch9Search>. ExpressRoute truly extends your datacenter to Azure and organizations can view Azure as “yet-another-branch-office”. 
 
 ASR was truly excited with this announcement which couldn’t have come at a better time. Microsoft’s internal IT (MSIT) and Network Infrastructure Services (NIS), being the very first adopters of ExpressRoute has rolled out ExpressRoute as a Network Service, which enables true hybrid cloud experience for all internal customers. 
 
@@ -33,6 +33,6 @@ The “UploadThreadsPerVM” controls the number of threads which is used when r
 
 In summary, ASR combined with ExpressRoute provides a powerful, compelling, efficient disaster recovery scenario to Microsoft Azure. ExpressRoute removes traditional blockers in networking when sending massive amounts of data to Azure – disaster recovery being one such scenario. And ASR removes traditional blockers of providing an easy, cost effective DR solution to a public cloud infrastructure such as Microsoft Azure. 
 
-You can find more details on ASR @ <http://azure.microsoft.com/en-us/services/site-recovery/>. The documentation explaining the end to end workflows is available @ <http://azure.microsoft.com/en-us/documentation/articles/hyper-v-recovery-manager-azure/>. And if you have questions when using the product, post them @ <http://social.msdn.microsoft.com/Forums/windowsazure/en-US/home?forum=hypervrecovmgr> or in this blog. 
+You can find more details on ASR @ <https://azure.microsoft.com/services/site-recovery/>. The documentation explaining the end to end workflows is available @ <https://azure.microsoft.com/documentation/articles/hyper-v-recovery-manager-azure/>. And if you have questions when using the product, post them @ <http://social.msdn.microsoft.com/Forums/windowsazure/en-US/home?forum=hypervrecovmgr> or in this blog. 
 
 You can also share your feedback on your favorite features/gaps @ <http://feedback.azure.com/forums/256299-site-recovery>. As always, we love to hear from you!

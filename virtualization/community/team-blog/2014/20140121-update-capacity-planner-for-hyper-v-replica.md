@@ -21,6 +21,6 @@ We received feedback from our customers on how the tool can be made better, and 
   8. Improved guidance in documentation
   9. Improved workflow and user experience
 
-In addition, the documentation has a section on how the tool can be used for capacity planning of [Hyper-V Recovery Manager](http://www.windowsazure.com/en-us/services/recovery-manager/) based on the [‘cloud’ construct](http://technet.microsoft.com/library/gg610625.aspx) of System Center Virtual Machine Manager.   So go ahead, use the tool in your virtual infrastructure and share your feedback and questions through this blog post. We would love to hear your comments! 
+In addition, the documentation has a section on how the tool can be used for capacity planning of [Hyper-V Recovery Manager](http://www.windowsazure.com/en-us/services/recovery-manager/) based on the [‘cloud’ construct](https://technet.microsoft.com/library/gg610625.aspx) of System Center Virtual Machine Manager.   So go ahead, use the tool in your virtual infrastructure and share your feedback and questions through this blog post. We would love to hear your comments! 
 
 _**28-Feb-2014 update:**   _Keith Mayer has an excellent guided hands-on lab demo that can be found [here](http://blogs.technet.com/b/keithmayer/archive/2014/02/27/guided-hands-on-lab-capacity-planner-for-windows-server-2012-hyper-v-replica.aspx). 

@@ -9,23 +9,23 @@ _Export:_
 
 Before you run an export, you can get the export parameters associated with a VM in the form of a settings data object. They are populated with default values. You can modify the parameters you need and then call ExportVirtualSystemEx with the modified object passed in.
 
-ExportVirtualSystemEx: [http://msdn.microsoft.com/en-us/library/dd379583(VS.85).aspx](http://msdn.microsoft.com/en-us/library/dd379583\(VS.85\).aspx)
+ExportVirtualSystemEx: [https://msdn.microsoft.com/library/dd379583(VS.85).aspx](https://msdn.microsoft.com/library/dd379583\(VS.85\).aspx)
 
-Export Setting data: [http://msdn.microsoft.com/en-us/library/dd379576(VS.85).aspx](http://msdn.microsoft.com/en-us/library/dd379576\(VS.85\).aspx)
+Export Setting data: [https://msdn.microsoft.com/library/dd379576(VS.85).aspx](https://msdn.microsoft.com/library/dd379576\(VS.85\).aspx)
 
 _Import:_
 
 Before you run an import, you can get the import parameters for the directory the VM will be imported from. Here, you can tweak interesting parameters like the AzMan security scope, network connections and even paths to VHDs before calling ImportVirtualSystemEx with the modified parameters.
 
-ImportVirtualSystemEx: [http://msdn.microsoft.com/en-us/library/dd379583(VS.85).aspx](http://msdn.microsoft.com/en-us/library/dd379583\(VS.85\).aspx)
+ImportVirtualSystemEx: [https://msdn.microsoft.com/library/dd379583(VS.85).aspx](https://msdn.microsoft.com/library/dd379583\(VS.85\).aspx)
 
-Import Setting data: [http://msdn.microsoft.com/en-us/library/dd379577(VS.85).aspx](http://msdn.microsoft.com/en-us/library/dd379577\(VS.85\).aspx)
+Import Setting data: [https://msdn.microsoft.com/library/dd379577(VS.85).aspx](https://msdn.microsoft.com/library/dd379577\(VS.85\).aspx)
 
 While I will not repeat the information in the MSDN documentation, there are some salient points about the API worth calling out:
 
 **__**
 
-**_Export Settings data (_**[ **Msvm_VirtualSystemExportSettingData**](http://msdn.microsoft.com/en-us/library/dd379576\(VS.85\).aspx) ** _):_**
+**_Export Settings data (_**[ **Msvm_VirtualSystemExportSettingData**](https://msdn.microsoft.com/library/dd379576\(VS.85\).aspx) ** _):_**
 
 Here is a dump of the parameters from powershell:
     
@@ -66,7 +66,7 @@ Here is a dump of the parameters from powershell:
 
 **__**
 
-**_Import Settings data (_**[ **Msvm_VirtualSystemImportSettingData**](http://msdn.microsoft.com/en-us/library/dd379577\(VS.85\).aspx) ** _):_**
+**_Import Settings data (_**[ **Msvm_VirtualSystemImportSettingData**](https://msdn.microsoft.com/library/dd379577\(VS.85\).aspx) ** _):_**
 
 Here is the dump of the parameters from powershell: 
     

@@ -9,10 +9,10 @@ Sound interesting? Get more information on our activities at VMworld 2013 from M
 
 For those of you interested in downloading some of the products and trying them, here are some resources to help you:
 
-  * Windows Server 2012 R2 Preview [download](http://technet.microsoft.com/en-us/evalcenter/dn205286.aspx)
-  * System Center 2012 R2 Preview [download](http://technet.microsoft.com/en-us/evalcenter/dn205295)
-  * SQL Server 2014 Community Technology Preview 1 (CTP1) [download](http://technet.microsoft.com/en-us/evalcenter/dn205290.aspx)
-  * Windows 8.1 Enterprise Preview [download](http://technet.microsoft.com/windows/hh771457.aspx?ocid=wc-blog-wfyb)
+  * Windows Server 2012 R2 Preview [download](https://technet.microsoft.com/evalcenter/dn205286.aspx)
+  * System Center 2012 R2 Preview [download](https://technet.microsoft.com/evalcenter/dn205295)
+  * SQL Server 2014 Community Technology Preview 1 (CTP1) [download](https://technet.microsoft.com/evalcenter/dn205290.aspx)
+  * Windows 8.1 Enterprise Preview [download](https://technet.microsoft.com/windows/hh771457.aspx?ocid=wc-blog-wfyb)
 
 
 

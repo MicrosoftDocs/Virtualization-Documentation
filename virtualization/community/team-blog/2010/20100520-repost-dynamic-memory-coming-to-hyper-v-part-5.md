@@ -25,7 +25,7 @@ Modern operating systems employ virtual memory. Virtual memory is a way of exten
 
 **Virtual Memory In Depth**
 
-Let’s dive in deeper. For that, I’m going to reference a TechNet article that discusses the Windows Virtual Memory Manager. If you’d like to read the full article it is here: <http://technet.microsoft.com/en-us/library/cc767886.aspx>. A second article I highly recommend on virtual memory is this one from Mark Russinovich: <http://blogs.technet.com/markrussinovich/archive/2008/11/17/3155406.aspx>
+Let’s dive in deeper. For that, I’m going to reference a TechNet article that discusses the Windows Virtual Memory Manager. If you’d like to read the full article it is here: <https://technet.microsoft.com/library/cc767886.aspx>. A second article I highly recommend on virtual memory is this one from Mark Russinovich: <http://blogs.technet.com/markrussinovich/archive/2008/11/17/3155406.aspx>
 
 From the TechNet article:
 

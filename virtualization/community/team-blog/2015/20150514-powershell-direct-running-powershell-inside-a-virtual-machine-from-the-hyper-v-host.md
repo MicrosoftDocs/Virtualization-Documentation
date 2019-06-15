@@ -3,7 +3,7 @@ title:      "PowerShell Direct – Running PowerShell inside a virtual machine f
 date:       2015-05-14 13:01:00
 categories: automation
 ---
-Official PS Direct documentation is located here (<https://msdn.microsoft.com/en-us/virtualization/hyperv_on_windows/user_guide/vmsession.html>).
+Official PS Direct documentation is located here (<https://msdn.microsoft.com/virtualization/hyperv_on_windows/user_guide/vmsession.html>).
 
 At Ignite we announced PowerShell Direct, and briefly demoed it’s capabilities in the [“What’s New in Hyper-V” session](https://channel9.msdn.com/Events/Ignite/2015/BRK3461 ""What's New in Hyper-V" session").  This is a follow up so you can get started using PowerShell Direct in your own environment.
 

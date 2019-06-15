@@ -51,7 +51,7 @@ With Windows Server 2008 R2, Hyper-V now uses the new native support for VHDs in
 
 [![vhd5](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/BlogFileStorage/blogs_technet/virtualization/WindowsLiveWriter/NativeVHDSupportinWindows7_E936/vhd5_thumb.jpg)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/BlogFileStorage/blogs_technet/virtualization/WindowsLiveWriter/NativeVHDSupportinWindows7_E936/vhd5_2.jpg)
 
-Operating system support for VHD as a native format provides opportunities for management ISVs to bring added value to their customers without introducing complexity with new image formats.  There are new [Win32 APIs](http://msdn.microsoft.com/en-us/library/dd323684\(VS.85\).aspx) for VHD operations that enable image management tools to support the VHD file format in their management framework. 
+Operating system support for VHD as a native format provides opportunities for management ISVs to bring added value to their customers without introducing complexity with new image formats.  There are new [Win32 APIs](https://msdn.microsoft.com/library/dd323684\(VS.85\).aspx) for VHD operations that enable image management tools to support the VHD file format in their management framework. 
 
 **Native VHD Boot**   
   
@@ -83,7 +83,7 @@ The Install-WindowsImage Powershell script uses the wimgapi.dll in Windows 7 to 
 
 See the document _[Using Install-WindowsImage](http://code.msdn.microsoft.com/InstallWindowsImage/Release/ProjectReleases.aspx?ReleaseId=2662)_ , on the Install-WindowsImage site for step-by-step instructions on how to create a VHD and apply a WIM image for VHD boot.
 
-IT professionals will be interested in using the WAIK deployment tools to customize and capture a reference Windows image and deploy the image in VHD format to either physical or virtual machines. The [basic deployment steps](http://technet.microsoft.com/en-us/library/dd349348.aspx) for the IT Administrator to prepare a custom Windows image includes the following:
+IT professionals will be interested in using the WAIK deployment tools to customize and capture a reference Windows image and deploy the image in VHD format to either physical or virtual machines. The [basic deployment steps](https://technet.microsoft.com/library/dd349348.aspx) for the IT Administrator to prepare a custom Windows image includes the following:
 
   * Install Windows to a partition on a physical machine first as a reference.
   * Customize the reference image settings and installing the applications you want.

@@ -464,7 +464,7 @@ If you're using a strict firewall policy on the container or host network, it ma
 | TCP 636 | LDAP SSL |
 
 You may need to allow access to additional ports depending on the type of traffic your container sends to a domain controller.
-See [Active Directory and Active Directory Domain Services port requirements](https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2008-R2-and-2008/dd772723(v=ws.10)#communication-to-domain-controllers) for a full list of ports used by Active Directory.
+See [Active Directory and Active Directory Domain Services port requirements](https://docs.microsoft.com/previous-versions/windows/it-pro/windows-server-2008-R2-and-2008/dd772723(v=ws.10)#communication-to-domain-controllers) for a full list of ports used by Active Directory.
 
 #### Check the container
 

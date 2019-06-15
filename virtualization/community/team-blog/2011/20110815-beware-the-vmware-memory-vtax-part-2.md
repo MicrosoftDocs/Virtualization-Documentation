@@ -565,7 +565,7 @@ In contrast, let’s compare the previous three Microsoft Hyper-V Server 2008 re
 
 **_Notice that every change has benefited you. More scale. More VM Mobility. More VM capabilities. All at no charge._**
 
-In addition, Microsoft Hyper-V Server’s has a [publicly documented management interface](http://msdn.microsoft.com/en-us/library/cc136992\(VS.85\).aspx) and we _encourage_ , not discourage, folks to develop for our free hypervisor. Here’s just one example from [5Nine software](http://www.5nine.com/5nine-manager-for-hyper-v-free.aspx).
+In addition, Microsoft Hyper-V Server’s has a [publicly documented management interface](https://msdn.microsoft.com/library/cc136992\(VS.85\).aspx) and we _encourage_ , not discourage, folks to develop for our free hypervisor. Here’s just one example from [5Nine software](http://www.5nine.com/5nine-manager-for-hyper-v-free.aspx).
 
 Here’s a table to illustrate just a few of the improvements over the last three versions.
 

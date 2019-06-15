@@ -5,7 +5,7 @@ categories: asr
 ---
 **Luís Caldeira** is one of our early adopters who had pinged us with an interesting error. Thanks for reaching out to us Luís and sharing the details of your setup. I am sure this article will come handy to folks who hit this error at some point.
 
-Some days back, Luís sent us a mail informing that his enable-protection workflow was consistently failing with a “network connection failure” error message. He indicated that he had followed the steps listed in the tutorial (<http://azure.microsoft.com/en-us/documentation/articles/hyper-v-recovery-manager-azure/>). He had:
+Some days back, Luís sent us a mail informing that his enable-protection workflow was consistently failing with a “network connection failure” error message. He indicated that he had followed the steps listed in the tutorial (<https://azure.microsoft.com/documentation/articles/hyper-v-recovery-manager-azure/>). He had:
 
   * Setup SCVMM 2012 R2
 
@@ -54,10 +54,10 @@ After setting the proxy server, we retried the workflow… and it failed yet aga
 
 [![image](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/image_thumb_126B174B.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/image_7EBB9D05.png)
 
-Now, when we retried the replication - voila! the workflow went through and initial replication was on it’s way. The same can be done using the Set-OBMachineSetting cmdlet (<http://technet.microsoft.com/en-us/library/hh770409.aspx>)
+Now, when we retried the replication - voila! the workflow went through and initial replication was on it’s way. The same can be done using the Set-OBMachineSetting cmdlet (<https://technet.microsoft.com/library/hh770409.aspx>)
 
 Needless to say, once the issue was fixed, Luís took the product out on a full tour and he totally loved it (ok, I just made up the last part). 
 
 I encourage you to try out ASR and share your feedback. It’s extremely easy to set it up and provides a great cloud based DR solution.
 
-You can find more details about the service @ <http://azure.microsoft.com/en-us/services/site-recovery/>. The documentation explaining the end to end workflows is available @ <http://azure.microsoft.com/en-us/documentation/articles/hyper-v-recovery-manager-azure/>. And if you have questions when using the product, post them @ <http://social.msdn.microsoft.com/Forums/windowsazure/en-US/home?forum=hypervrecovmgr> or in this blog. You can also share your feedback on your favorite features/gaps @ <http://feedback.azure.com/forums/256299-site-recovery>
+You can find more details about the service @ <https://azure.microsoft.com/services/site-recovery/>. The documentation explaining the end to end workflows is available @ <https://azure.microsoft.com/documentation/articles/hyper-v-recovery-manager-azure/>. And if you have questions when using the product, post them @ <http://social.msdn.microsoft.com/Forums/windowsazure/en-US/home?forum=hypervrecovmgr> or in this blog. You can also share your feedback on your favorite features/gaps @ <http://feedback.azure.com/forums/256299-site-recovery>

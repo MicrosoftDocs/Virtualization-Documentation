@@ -27,7 +27,7 @@ Follow the latest stories, developments, and projects from the Hyper-V team, fol
 
 * [Windows Containers forum](https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowscontainers)
 * [TechNet forum](https://social.technet.microsoft.com/Forums/windowsserver/en-US/home "TechNet Forums")
-* [Azure forum](http://azure.microsoft.com/en-us/support/forums/)
+* [Azure forum](https://azure.microsoft.com/support/forums/)
 
 ## Featured content
 
@@ -37,12 +37,12 @@ Follow the latest stories, developments, and projects from the Hyper-V team, fol
 * [Announcing Windows Server 2016 Containers Preview](http://weblogs.asp.net/scottgu/announcing-windows-server-2016-containers-preview)
 * [Docker -Introducing the Technical Preview of Docker Enging for Windows Server 2016](http://blog.docker.com/2015/08/tp-docker-engine-windows-server-2016/)
 * [Containers 101 Video](https://channel9.msdn.com/Blogs/containers/Containers-101-with-Microsoft-and-Docker)
-* [Containers: Docker, Windows and Trends](http://azure.microsoft.com/blog/2015/08/17/containers-docker-windows-and-trends/)
+* [Containers: Docker, Windows and Trends](https://azure.microsoft.com/blog/2015/08/17/containers-docker-windows-and-trends/)
 
 ### Blogs 
 * [Channel 9 - The Containers Channel](https://channel9.msdn.com/Blogs/containers)
 * [Server & Cloud blog](http://blogs.technet.com/b/server-cloud/)
-* [Azure blog](http://azure.microsoft.com/blog/)
+* [Azure blog](https://azure.microsoft.com/blog/)
 
 ### Presentations
 * [Build 2015 - Day One Keynote Presentation](http://channel9.msdn.com/Events/Build/2015/KEY01)
@@ -51,6 +51,6 @@ Follow the latest stories, developments, and projects from the Hyper-V team, fol
 * [Build 2015 - Deploying Complex Open Source Workloads on Azure](http://channel9.msdn.com/Events/Build/2015/2-732)
 
 ### Articles 
-* [Virtual Machines and Containers in Azure](https://azure.microsoft.com/en-us/documentation/articles/virtual-machines-vms-containers/)
-* [New Windows Server containers and Azure support for Docker](http://azure.microsoft.com/blog/2014/10/15/new-windows-server-containers-and-azure-support-for-docker/)
+* [Virtual Machines and Containers in Azure](https://azure.microsoft.com/documentation/articles/virtual-machines-vms-containers/)
+* [New Windows Server containers and Azure support for Docker](https://azure.microsoft.com/blog/2014/10/15/new-windows-server-containers-and-azure-support-for-docker/)
 * [Microsoft Announces New Container Technologies for the Next Generation Cloud](http://blogs.technet.com/b/server-cloud/archive/2015/04/08/microsoft-announces-new-container-technologies-for-the-next-generation-cloud.aspx)

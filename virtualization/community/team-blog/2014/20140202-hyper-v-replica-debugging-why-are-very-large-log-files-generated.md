@@ -19,7 +19,7 @@ As a first step, the question that customers want answered is: **What is causing
 
 Download the script from here: <http://gallery.technet.microsoft.com/Hyper-V-Replica-Identify-f09763b6>, and copy the script into the virtual machine. The script collects information about the writes done by various processes and writes log files with this data. 
 
-I started the debugging process using the script on SQL Server virtual machine of my own. I copied the script into the VM and ran it in an elevated PowerShell window. You might run into PowerShell script execution policy restrictions, and you might need to set the execution policy to _Unrestricted_ (<http://technet.microsoft.com/en-us/library/ee176961.aspx>).
+I started the debugging process using the script on SQL Server virtual machine of my own. I copied the script into the VM and ran it in an elevated PowerShell window. You might run into PowerShell script execution policy restrictions, and you might need to set the execution policy to _Unrestricted_ (<https://technet.microsoft.com/library/ee176961.aspx>).
 
 [![script running](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/script-running_thumb_6DB81E07.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/script-running_65A0F1B2.png)
 
@@ -75,9 +75,9 @@ From the previous step you will get the details of the process causing the churn
 
 #### Alternative tools:
 
-  1. Process Monitor:   <http://technet.microsoft.com/en-us/sysinternals/bb896645.aspx>
+  1. Process Monitor:   <https://technet.microsoft.com/sysinternals/bb896645.aspx>
   2. Windows Performance Recorder and Windows Performance Analyzer: 
-    * <http://msdn.microsoft.com/en-us/library/windows/hardware/hh448205.aspx>
-    * <http://msdn.microsoft.com/en-us/library/windows/hardware/hh448170.aspx> 
+    * <https://msdn.microsoft.com/library/windows/hardware/hh448205.aspx>
+    * <https://msdn.microsoft.com/library/windows/hardware/hh448170.aspx> 
 
 

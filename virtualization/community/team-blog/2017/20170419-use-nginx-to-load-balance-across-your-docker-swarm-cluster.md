@@ -13,7 +13,7 @@ This exercise requires three container hosts--two of which will be joined to for
 
 ### System requirements
 
-**Three* or more computer systems** running either **Windows 10 Creators Update** or **Windows Server 2016** _with all of the latest updates_ *, setup as a container host (see the topic, [Windows Containers on Windows 10](https://docs.microsoft.com/en-us/virtualization/windowscontainers/quick-start/quick-start-windows-10) or [Windows Containers on Windows Server](https://docs.microsoft.com/en-us/virtualization/windowscontainers/quick-start/quick-start-windows-server) for more details on how to get started with Docker containers on Windows 10).\+ 
+**Three* or more computer systems** running either **Windows 10 Creators Update** or **Windows Server 2016** _with all of the latest updates_ *, setup as a container host (see the topic, [Windows Containers on Windows 10](https://docs.microsoft.com/virtualization/windowscontainers/quick-start/quick-start-windows-10) or [Windows Containers on Windows Server](https://docs.microsoft.com/virtualization/windowscontainers/quick-start/quick-start-windows-server) for more details on how to get started with Docker containers on Windows 10).\+ 
 
 * **Note** : Docker Swarm on Windows Server 2016 requires [KB4015217](https://support.microsoft.com/en-us/help/4015217/windows-10-update-kb4015217)
 

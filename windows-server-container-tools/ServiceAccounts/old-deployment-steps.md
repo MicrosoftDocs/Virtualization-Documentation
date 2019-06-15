@@ -21,9 +21,9 @@ This guide will cover the following steps to deploy a container in detail:
 ### Active Directory Setup Steps
 These steps could be done using "Active Directory Users and Computers", or automated through Windows PowerShell. This guide focuses on Windows PowerShell.
 
-For a more details on using Group Managed Service Accounts, see https://technet.microsoft.com/en-us/library/jj128431(v=ws.11).aspx
+For a more details on using Group Managed Service Accounts, see https://technet.microsoft.com/library/jj128431(v=ws.11).aspx
 
-1. Before you can create the first gMSA, the domain needs a master root key. Run `Get-KdsRootKey` as a domain administrator to check if one has already been created. If there isn't a master root key created for your domain, see [Create the Key Distribution Service KDS Root Key](https://technet.microsoft.com/en-us/library/jj128430(v=ws.11).aspx) for steps to create one.
+1. Before you can create the first gMSA, the domain needs a master root key. Run `Get-KdsRootKey` as a domain administrator to check if one has already been created. If there isn't a master root key created for your domain, see [Create the Key Distribution Service KDS Root Key](https://technet.microsoft.com/library/jj128430(v=ws.11).aspx) for steps to create one.
 
 In a test environment with only one DC, this will create a root key and make it effective immediately. Do not use this for production environments.
 ```powershell
