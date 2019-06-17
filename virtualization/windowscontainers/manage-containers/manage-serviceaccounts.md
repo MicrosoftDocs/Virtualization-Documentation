@@ -3,7 +3,7 @@ title: Group Managed Service Accounts for Windows containers
 description: Group Managed Service Accounts for Windows containers
 keywords: docker, containers, active directory, gmsa
 author: rpsqrd
-ms.date: 05/23/2019
+ms.date: 06/12/2019
 ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
@@ -181,7 +181,7 @@ In the typical configuration, a container is only given one gMSA account which i
 If you're hosting an IIS website in your container, all you need to do to leverage the gMSA is set your app pool identity to **Network Service**. You can do that in your Dockerfile by adding the following command:
 
 ```dockerfile
-RUN (Get-IISAppPool DefaultAppPool).ProcessModel.IdentityType = "NetworkService"
+RUN %windir%\system32\inetsrv\appcmd.exe set AppPool DefaultAppPool -processModel.identityType:NetworkService
 ```
 
 If you previously used static user credentials for your IIS App Pool, consider the gMSA as the replacement for those credentials. You can change the gMSA between dev, test, and production environments and IIS will automatically pick up the current identity without having to change the container image.
