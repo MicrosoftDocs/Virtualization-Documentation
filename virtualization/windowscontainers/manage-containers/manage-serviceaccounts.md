@@ -97,13 +97,13 @@ Once you've decided on the name for your gMSA, run the following cmdlets in Powe
 # To install the AD module on older versions of Windows 10, see https://aka.ms/rsat
 
 # Create the security group
-New-ADGroup -Name "WebApp01 Authorized Hosts" -SamAccountName "WebApp01Hosts" -Scope DomainLocal
+New-ADGroup -Name "WebApp01 Authorized Hosts" -SamAccountName "WebApp01Hosts" -GroupScope DomainLocal
 
 # Create the gMSA
 New-ADServiceAccount -Name "WebApp01" -DnsHostName "WebApp01.contoso.com" -ServicePrincipalNames "host/WebApp01", "host/WebApp01.contoso.com" -PrincipalsAllowedToRetrieveManagedPassword "WebApp01Hosts"
 
 # Add your container hosts to the security group
-Add-ADGroupMember -Identity "WebApp01Hosts" -Members "ContainerHost01", "ContainerHost02", "ContainerHost03"
+Add-ADGroupMember -Identity "WebApp01Hosts" -Members "ContainerHost01$", "ContainerHost02$", "ContainerHost03$"
 ```
 
 We recommend you create separate gMSA accounts for your dev, test, and production environments.
