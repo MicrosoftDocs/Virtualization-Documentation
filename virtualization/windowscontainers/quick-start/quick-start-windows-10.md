@@ -12,10 +12,6 @@ ms.assetid: bb9bfbe0-5bdc-4984-912f-9c93ea67105f
 
 # Windows Containers on Windows 10
 
-> [!div class="op_single_selector"]
-> - [Linux Containers on Windows](quick-start-windows-10-linux.md)
-> - [Windows containers on Windows](quick-start-windows-10.md)
-
 The exercise will walk through creating and running Windows containers on Windows 10.
 
 In this quick start you will accomplish:
@@ -57,6 +53,9 @@ Windows containers are built from base images. The following command will pull t
 ```console
 docker pull mcr.microsoft.com/windows/nanoserver:1809
 ```
+
+> [!NOTE]
+> If you see the following error message, make sure that you're not expecting to pull a Linux container.
 
 Once the image is pulled, running `docker images` will return a list of installed images, in this case the Nano Server image.
 

@@ -12,10 +12,6 @@ ms.assetid: bb9bfbe0-5bdc-4984-912f-9c93ea67105f
 
 # Linux Containers on Windows 10
 
-> [!div class="op_single_selector"]
-> - [Linux Containers on Windows](quick-start-windows-10-linux.md)
-> - [Windows containers on Windows](quick-start-windows-10.md)
-
 The exercise will walk through creating and running Linux containers on Windows 10.
 
 In this quick start you will accomplish:
