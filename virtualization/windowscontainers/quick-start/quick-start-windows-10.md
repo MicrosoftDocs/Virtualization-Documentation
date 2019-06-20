@@ -55,7 +55,7 @@ docker pull mcr.microsoft.com/windows/nanoserver:1809
 ```
 
 > [!NOTE]
-> If you see the following error message, make sure that you're not expecting to pull a Linux container.
+> If you see an error message that reads `no matching manifest for unknown in the manifest list entries`, make sure that you're not expecting to pull a Linux container.
 
 Once the image is pulled, running `docker images` will return a list of installed images, in this case the Nano Server image.
 
