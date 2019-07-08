@@ -13,7 +13,7 @@ ms.assetid: 3b05d2c2-4b9b-42b4-a61b-702df35f5b17
 # Deploying Kubernetes Resources #
 Assuming you have a Kubernetes cluster consisting of at least 1 master and 1 worker, you are ready to deploy Kubernetes resources.
 > [!TIP] 
-> Curious what Kubernetes resources are supported today on Windows? Please see [officially supported features](https://kubernetes.io/docs/getting-started-guides/windows/#supported-features) and [Kubernetes on Windows roadmap](https://trello.com/b/rjTqrwjl/windows-k8s-roadmap) for more details.
+> Curious what Kubernetes resources are supported today on Windows? Please see [officially supported features](https://kubernetes.io/docs/setup/production-environment/windows/intro-windows-in-kubernetes/#supported-functionality-and-limitations) and [Kubernetes on Windows roadmap](https://github.com/orgs/kubernetes/projects/8) for more details.
 
 
 ## Running a sample service ##
