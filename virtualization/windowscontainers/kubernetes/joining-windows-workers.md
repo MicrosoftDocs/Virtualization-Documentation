@@ -65,7 +65,18 @@ The Dockerfiles you will use later in this guide look for the `:latest` image ta
 ```powershell
 docker tag mcr.microsoft.com/windows/nanoserver:1809 microsoft/nanoserver:latest
 ```
+#### Optional: Pull Windows Servercore image ####     
+Some of our samples use Windows Servercore instead of Nanoserver. Now is a good time to pull the image for your specific Windows release. For example, if you are running Windows Server 2019:
 
+ ```powershell
+docker pull mcr.microsoft.com/windows/windowsservercore:1809
+ ```
+
+The Dockerfiles you will use later in this guide look for the `:latest` image tag. Tag the windowsservercore image you just pulled as follows:
+
+```powershell
+docker tag mcr.microsoft.com/windows/windowsservercore:1809 microsoft/windowsservercore:latest
+```
 #### Run the container ####
 Double-check that the container actually runs on your computer:
 
