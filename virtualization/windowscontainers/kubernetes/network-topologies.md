@@ -15,7 +15,7 @@ ms.assetid: 3b05d2c2-4b9b-42b4-a61b-702df35f5b17
 Once you have [setup a Kubernetes master node](./creating-a-linux-master.md) you are ready to pick a networking solution. There are multiple ways to make the virtual [cluster subnet](./getting-started-kubernetes-windows.md#cluster-subnet-def) routable across nodes. Pick one of the following options for Kubernetes on Windows today:
 
 1. Use a CNI plugin such as [Flannel](#flannel-in-vxlan-mode) to setup an overlay network for you.
-2. Use a CNI plugin such as [Flannel](#flannel-in-host-gateway-mode) to program routes for you.
+2. Use a CNI plugin such as [Flannel](#flannel-in-host-gateway-mode) to program routes for you. This will use L2Bridge networking mode.
 3. Configure a smart [top-of-rack (ToR) switch](#configuring-a-tor-switch) to route the subnet.
 
 > [!tip]  
