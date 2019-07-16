@@ -79,36 +79,31 @@
     }
   ],
   "notification_subscribers": [
-    "scooley@microsoft.com", "enderb@microsoft.com"
+    "scooley@microsoft.com"
   ],
   "branches_to_filter": [
-    "live-sync-work",
-    "master-sync-work"
+    "live-sync-work"
   ],
   "git_repository_url_open_to_public_contributors": "https://github.com/Microsoft/Virtualization-Documentation",
-  "git_repository_branch_open_to_public_contributors": "master",
+  "git_repository_branch_open_to_public_contributors": "live",
   "skip_source_output_uploading": false,
   "need_preview_pull_request": true,
   "dependent_repositories": [
     {
       "path_to_root": "_themes",
       "url": "https://github.com/Microsoft/templates.docs.msft",
-      "branch": "master",
+      "branch": "live",
       "branch_mapping": {}
     },
     {
       "path_to_root": "_themes.pdf",
       "url": "https://github.com/Microsoft/templates.docs.msft.pdf",
-      "branch": "master",
+      "branch": "live",
       "branch_mapping": {}
     }
   ],
   "branch_target_mapping": {
     "live": [
-      "Publish",
-      "PDF"
-    ],
-    "master": [
       "Publish",
       "PDF"
     ]
