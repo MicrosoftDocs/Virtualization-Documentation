@@ -128,13 +128,13 @@ In the following example, both Apache and the Visual Studio Redistribute package
 FROM windowsservercore
 
 RUN powershell -Command \
-	
+
   # Download software ; \
     
   wget https://www.apachelounge.com/download/VC11/binaries/httpd-2.4.18-win32-VC11.zip -OutFile c:\apache.zip ; \
   wget "https://download.microsoft.com/download/1/6/B/16B06F60-3B20-4FF2-B699-5E9B7962F9AE/VSU_4/vcredist_x86.exe" -OutFile c:\vcredist.exe ; \
   wget -Uri http://windows.php.net/downloads/releases/php-5.5.33-Win32-VC11-x86.zip -OutFile c:\php.zip ; \
-	
+
   # Install Software ; \
     
   Expand-Archive -Path c:\php.zip -DestinationPath c:\php ; \
@@ -164,22 +164,22 @@ By comparison, here are the same actions split into three `RUN` instructions. In
 FROM windowsservercore
 
 RUN powershell -Command \
-	$ErrorActionPreference = 'Stop'; \
-	wget https://www.apachelounge.com/download/VC11/binaries/httpd-2.4.18-win32-VC11.zip -OutFile c:\apache.zip ; \
-	Expand-Archive -Path c:\apache.zip -DestinationPath c:\ ; \
-	Remove-Item c:\apache.zip -Force
+    $ErrorActionPreference = 'Stop'; \
+    wget https://www.apachelounge.com/download/VC11/binaries/httpd-2.4.18-win32-VC11.zip -OutFile c:\apache.zip ; \
+    Expand-Archive -Path c:\apache.zip -DestinationPath c:\ ; \
+    Remove-Item c:\apache.zip -Force
 
 RUN powershell -Command \
-	$ErrorActionPreference = 'Stop'; \
-	wget "https://download.microsoft.com/download/1/6/B/16B06F60-3B20-4FF2-B699-5E9B7962F9AE/VSU_4/vcredist_x86.exe" -OutFile c:\vcredist.exe ; \
-	start-Process c:\vcredist.exe -ArgumentList '/quiet' -Wait ; \
-	Remove-Item c:\vcredist.exe -Force
+    $ErrorActionPreference = 'Stop'; \
+    wget "https://download.microsoft.com/download/1/6/B/16B06F60-3B20-4FF2-B699-5E9B7962F9AE/VSU_4/vcredist_x86.exe" -OutFile c:\vcredist.exe ; \
+    start-Process c:\vcredist.exe -ArgumentList '/quiet' -Wait ; \
+    Remove-Item c:\vcredist.exe -Force
 
 RUN powershell -Command \
-	$ErrorActionPreference = 'Stop'; \
-	wget http://windows.php.net/downloads/releases/php-5.5.33-Win32-VC11-x86.zip -OutFile c:\php.zip ; \
-	Expand-Archive -Path c:\php.zip -DestinationPath c:\php ; \
-	Remove-Item c:\php.zip -Force
+    $ErrorActionPreference = 'Stop'; \
+    wget http://windows.php.net/downloads/releases/php-5.5.33-Win32-VC11-x86.zip -OutFile c:\php.zip ; \
+    Expand-Archive -Path c:\php.zip -DestinationPath c:\php ; \
+    Remove-Item c:\php.zip -Force
 ```
 
 The resulting image consists of four layers; one layer for the base OS image and each of the three `RUN` instructions. Because each `RUN` instruction ran in its own layer, any subsequent runs of this Dockerfile or identical set of instructions in a different Dockerfile will use cached image layers, reducing build time.
@@ -292,10 +292,10 @@ The command can be broken up with backslashes so that each operation from the on
 FROM windowsservercore
 
 RUN powershell -Command \
-	$ErrorActionPreference = 'Stop'; \
-	start-Process c:\vcredist_x86.exe -ArgumentList '/quiet' -Wait ; \
-	Remove-Item c:\vcredist_x86.exe -Force ; \
-	New-Item c:\config.ini
+    $ErrorActionPreference = 'Stop'; \
+    start-Process c:\vcredist_x86.exe -ArgumentList '/quiet' -Wait ; \
+    Remove-Item c:\vcredist_x86.exe -Force ; \
+    New-Item c:\config.ini
 ```
 
 ## Further reading and references
