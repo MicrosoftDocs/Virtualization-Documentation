@@ -53,4 +53,4 @@ docker build -t nanoserverapiscan:onbuild onbuild
 
 ### Nano Server APIs
 
-* https://msdn.microsoft.com/en-us/library/mt588480(v=vs.85).aspx
+* https://msdn.microsoft.com/library/mt588480(v=vs.85).aspx

@@ -36,7 +36,7 @@ While the standard answer to fixing this error will be to setup constrained dele
     1. No domain controller access is possible. 
     2. No Remote access is possible.
     3. The Windows Server UI is not present on any node other than the management node.
-  3. Set up constrained delegation in your domain controller. This option has been explored extensively by [others](http://blogs.msdn.com/b/taylorb/archive/2012/03/20/enabling-hyper-v-remote-management-configuring-constrained-delegation-for-smb-and-highly-available-smb.aspx) and there is ample material on this available [online](http://technet.microsoft.com/en-us/library/jj134187.aspx).
+  3. Set up constrained delegation in your domain controller. This option has been explored extensively by [others](http://blogs.msdn.com/b/taylorb/archive/2012/03/20/enabling-hyper-v-remote-management-configuring-constrained-delegation-for-smb-and-highly-available-smb.aspx) and there is ample material on this available [online](https://technet.microsoft.com/library/jj134187.aspx).
 
 
 

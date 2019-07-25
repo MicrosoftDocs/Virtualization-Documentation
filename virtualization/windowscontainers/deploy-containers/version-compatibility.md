@@ -159,7 +159,7 @@ FROM mcr.microsoft.com/windows/nanoserver:10.0.17763.437
 ...
 ```
 
-The Server Core base images based on Windows Server 2019 and Windows Server 2016 are [Long-Term Servicing Channel (LTSC)](https://docs.microsoft.com/en-us/windows-server/get-started-19/servicing-channels-19#long-term-servicing-channel-ltsc) releases. If you for instance want Windows Server 2019 as your Server Core image's container OS and want to have the latest patches for it, you can specify LTSC releases like so:
+The Server Core base images based on Windows Server 2019 and Windows Server 2016 are [Long-Term Servicing Channel (LTSC)](https://docs.microsoft.com/windows-server/get-started-19/servicing-channels-19#long-term-servicing-channel-ltsc) releases. If you for instance want Windows Server 2019 as your Server Core image's container OS and want to have the latest patches for it, you can specify LTSC releases like so:
 
 ``` dockerfile
 FROM mcr.microsoft.com/windows/servercore:ltsc2019

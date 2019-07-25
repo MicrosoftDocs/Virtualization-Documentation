@@ -60,9 +60,9 @@ Top of my head, the key features in the product are:
 
 
 
-The documentation explaining the end to end workflows is available @ <http://azure.microsoft.com/en-us/documentation/articles/hyper-v-recovery-manager-azure/> to help you get started.
+The documentation explaining the end to end workflows is available @ <https://azure.microsoft.com/documentation/articles/hyper-v-recovery-manager-azure/> to help you get started.
 
-The landing page for this service is @ <http://azure.microsoft.com/en-us/services/site-recovery/>
+The landing page for this service is @ <https://azure.microsoft.com/services/site-recovery/>
 
 If you have questions when using the product, post them @ <http://social.msdn.microsoft.com/Forums/windowsazure/en-US/home?forum=hypervrecovmgr> or in this blog.
 

@@ -116,7 +116,7 @@ You will be presented with the screen to schedule the resynchronization operatio
 
 [![resync 003](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/6355.resync-003_thumb_73833C21.png)](https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/50/45/metablogapi/4426.resync-003_3905AB9C.png)
 
-To start the resync operation from PowerShell, use the [**Resume-VMReplication**](http://technet.microsoft.com/en-us/library/hh848510.aspx) commandlet:
+To start the resync operation from PowerShell, use the [**Resume-VMReplication**](https://technet.microsoft.com/library/hh848510.aspx) commandlet:
     
     
     Resume-VMReplication –VMName “RESYNC VM” -Resynchronize –ResynchronizeStartTime “04/15/2013 12:00:00”
@@ -141,7 +141,7 @@ The scheduling of the resynchronization operation can be configured for each VM:
 
 The default option is to schedule the resynchronization operation during off-peak hours. The resource intensive nature of the operation makes such scheduling useful, and aims to reduce the impact on running VMs. 
 
-The same can be configured in PowerShell using the [**Set-VMReplication**](http://technet.microsoft.com/en-us/library/hh848543.aspx) commandlet:
+The same can be configured in PowerShell using the [**Set-VMReplication**](https://technet.microsoft.com/library/hh848543.aspx) commandlet:
     
     
     # Manual resync
@@ -167,7 +167,7 @@ The same can be configured in PowerShell using the [**Set-VMReplication**](http:
     
     Set-VMReplication –VMName "RESYNC VM" -AutoResynchronizeEnabled 1 -AutoResynchronizeIntervalStart 00:00:00 -AutoResynchronizeIntervalEnd 06:00:00
 
-To see the resynchronization settings in PowerShell, use the [**Get-VMReplication**](http://technet.microsoft.com/en-us/library/hh848570.aspx) commandlet and look for the _AutoResynchronizeEnabled_ , _AutoResynchronizeIntervalStart_ , and _AutoResynchronizeIntervalEnd_ fields: 
+To see the resynchronization settings in PowerShell, use the [**Get-VMReplication**](https://technet.microsoft.com/library/hh848570.aspx) commandlet and look for the _AutoResynchronizeEnabled_ , _AutoResynchronizeIntervalStart_ , and _AutoResynchronizeIntervalEnd_ fields: 
     
     
     Get-VMReplication -VMname "RESYNC VM" | fl *

@@ -67,7 +67,7 @@ The following devices (and their device interface class GUIDs) are supported tod
 </tr>
 <tr valign="top">
 <td><center>DirectX GPU Acceleration</center></td>
-<td><center>See <a href="https://docs.microsoft.com/en-us/virtualization/windowscontainers/deploy-containers/gpu-acceleration">GPU acceleration</a> docs</center></td>
+<td><center>See <a href="https://docs.microsoft.com/virtualization/windowscontainers/deploy-containers/gpu-acceleration">GPU acceleration</a> docs</center></td>
 </tr>
 </tbody>
 </table>

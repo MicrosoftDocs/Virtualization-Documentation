@@ -12,7 +12,7 @@ Transport (4) | End-to-End Connections | TCP, UDP (Ports)
 Network (3) | Path determination and routing based on IP addresses | Routers  
 Data Link (2) | Forward frames based on MAC addresses | 802.3 Ethernet, Switches  
 Physical (1) | Send data through physical signaling | Network cables, NIC cards  
-  Creating a “NAT” VM Switch type actually combined several operations into one which can still be done today (detailed instructions can be found [here](https://msdn.microsoft.com/en-us/virtualization/hyperv_on_windows/user_guide/setup_nat_network)): 
+  Creating a “NAT” VM Switch type actually combined several operations into one which can still be done today (detailed instructions can be found [here](https://msdn.microsoft.com/virtualization/hyperv_on_windows/user_guide/setup_nat_network)): 
 
   * Create an “internal” VM Switch
   * Create a Private IP network for NAT

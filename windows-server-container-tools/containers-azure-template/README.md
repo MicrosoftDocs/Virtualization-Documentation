@@ -9,11 +9,11 @@ This template will deploy a Windows Server 2016 virtual machine with the Windows
     <img src="http://armviz.io/visualizebutton.png"/>
 </a>
 
-See the following for an introduction to Windows Containers, [Windows containers concepts and terminology](https://msdn.microsoft.com/en-us/virtualization/windowscontainers/quick_start/quick_start).
+See the following for an introduction to Windows Containers, [Windows containers concepts and terminology](https://msdn.microsoft.com/virtualization/windowscontainers/quick_start/quick_start).
 
 These exercise can be completed for a quick hands on introduction to Windows containers.
 
-Windows Container Quick Start – [Deploy your first container]( https://msdn.microsoft.com/en-us/virtualization/windowscontainers/quick_start/quick_start_windows_server#4-deploy-your-first-container).  
-Windows Container Quick Start – [Container Images](https://msdn.microsoft.com/en-us/virtualization/windowscontainers/quick_start/quick_start_images).
+Windows Container Quick Start – [Deploy your first container]( https://msdn.microsoft.com/virtualization/windowscontainers/quick_start/quick_start_windows_server#4-deploy-your-first-container).  
+Windows Container Quick Start – [Container Images](https://msdn.microsoft.com/virtualization/windowscontainers/quick_start/quick_start_images).
 
 > Microsoft Azure does not support Hyper-V containers. To complete Hyper-V Container exercises, you need an on-premises container host.    
