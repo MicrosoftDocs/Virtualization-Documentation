@@ -1,440 +1,474 @@
 {
     "redirections": [
-      {
-        "source_path": "virtualization/windowscontainers/about/about_overview.md",
-        "redirect_url": "/virtualization/windowscontainers/about/index",
-        "redirect_document_id": true
-      },
-      {
-        "source_path": "virtualization/windowscontainers/about/container_ecosystem.md",
-        "redirect_url": "/virtualization/windowscontainers/about/container-ecosystem",
-        "redirect_document_id": true
-      },
-      {
-        "source_path": "virtualization/windowscontainers/about/work_in_progress.md",
-        "redirect_url": "/virtualization/windowscontainers/about/faq",
-        "redirect_document_id": true
-      },
-      {
-        "source_path": "virtualization/windowscontainers/deployment/deployment_nano.md",
-        "redirect_url": "/virtualization/windowscontainers/deploy-containers/deploy-containers-on-server",
-        "redirect_document_id": true
-      },
-      {
-        "source_path": "virtualization/windowscontainers/deployment/deployment.md",
-        "redirect_url": "/virtualization/windowscontainers/deploy-containers/deploy-containers-on-server",
-        "redirect_document_id": true
-      },
-      {
-        "source_path": "virtualization/windowscontainers/deployment/system_requirements.md",
-        "redirect_url": "/virtualization/windowscontainers/deploy-containers/system-requirements",
-        "redirect_document_id": true
-      },
-      {
-        "source_path": "virtualization/windowscontainers/docker/configure_docker_daemon.md",
-        "redirect_url": "/virtualization/windowscontainers/manage-docker/configure-docker-daemon",
-        "redirect_document_id": true
-      },
-      {
-        "source_path": "virtualization/windowscontainers/docker/manage_windows_dockerfile.md",
-        "redirect_url": "/virtualization/windowscontainers/manage-docker/manage-windows-dockerfile",
-        "redirect_document_id": true
-      },
-      {
-        "source_path": "virtualization/windowscontainers/docker/optimize_windows_dockerfile.md",
-        "redirect_url": "/virtualization/windowscontainers/manage-docker/optimize-windows-dockerfile",
-        "redirect_document_id": true
-      },
-      {
-        "source_path": "virtualization/windowscontainers/management/container_networking.md",
-        "redirect_url": "/virtualization/windowscontainers/manage-containers/container-networking",
-        "redirect_document_id": true
-      },
-      {
-        "source_path": "virtualization/windowscontainers/management/docker-powershell.md",
-        "redirect_url": "/virtualization/windowscontainers/manage-docker/docker-powershell",
-        "redirect_document_id": true
-      },
-      {
-        "source_path": "virtualization/windowscontainers/management/hyperv_container.md",
-        "redirect_url": "/virtualization/windowscontainers/manage-docker/hyperv-container",
-        "redirect_document_id": true
-      },
-      {
-        "source_path": "virtualization/windowscontainers/management/manage_containers.md",
-        "redirect_url": "/virtualization/windowscontainers/quick-start/index",
-        "redirect_document_id": true
-      },
-      {
-        "source_path": "virtualization/windowscontainers/management/manage_data.md",
-        "redirect_url": "https://docs.docker.com/engine/tutorials/dockervolumes/",
-        "redirect_document_id": true
-      },
-      {
-        "source_path": "virtualization/windowscontainers/management/manage_images.md",
-        "redirect_url": "https://docs.docker.com/engine/tutorials/dockerimages/",
-        "redirect_document_id": true
-      },
-      {
-        "source_path": "virtualization/windowscontainers/management/manage_resources.md",
-        "redirect_url": "https://docs.docker.com/engine/reference/run/",
-        "redirect_document_id": true
-      },
-      {
-        "source_path": "virtualization/windowscontainers/management/manage_serviceaccounts.md",
-        "redirect_url": "/virtualization/windowscontainers/manage-containers/manage-serviceaccounts",
-        "redirect_document_id": true
-      },
-      {
-        "source_path": "virtualization/windowscontainers/quick_start/quick_start_images.md",
-        "redirect_url": "/virtualization/windowscontainers/quick-start/quick-start-images",
-        "redirect_document_id": true
-      },
-      {
-        "source_path": "virtualization/windowscontainers/quick_start/quick_start_windows_10.md",
-        "redirect_url": "/virtualization/windowscontainers/quick-start/quick-start-windows-10",
-        "redirect_document_id": true
-      },
-      {
-        "source_path": "virtualization/windowscontainers/quick_start/quick_start_windows_server.md",
-        "redirect_url": "/virtualization/windowscontainers/quick-start/quick-start-windows-server",
-        "redirect_document_id": true
-      },
-      {
-        "source_path": "virtualization/windowscontainers/quick_start/quick_start.md",
-        "redirect_url": "/virtualization/windowscontainers/quick-start/index",
-        "redirect_document_id": true
-      },
-      {
-        "source_path": "virtualization/windowscontainers/containers_welcome.md",
-        "redirect_url": "/virtualization/windowscontainers/index",
-        "redirect_document_id": true
-      },
-      {
-        "source_path": "virtualization/windowscontainers/Images_EULA.md",
-        "redirect_url": "/virtualization/windowscontainers/images-eula",
-        "redirect_document_id": true
-      },
-
-      {
-        "source_path": "virtualization/hyper-v-on-windows/windows_welcome.md",
-        "redirect_url": "/virtualization/hyper-v-on-windows/index",
-        "redirect_document_id": true
-      },
-      {
-        "source_path": "virtualization/hyper-v-on-windows/quick_start/index.md",
-        "redirect_url": "/virtualization/hyper-v-on-windows/user-guide/index",
-        "redirect_document_id": true
-      },
-      {
-        "source_path": "virtualization/hyper-v-on-windows/quick_start/walkthrough_checkpoints.md",
-        "redirect_url": "/virtualization/hyper-v-on-windows/user-guide/checkpoints",
-        "redirect_document_id": true
-      },
-      {
-        "source_path": "virtualization/hyper-v-on-windows/quick_start/walkthrough_compatibility.md",
-        "redirect_url": "/virtualization/hyper-v-on-windows/reference/hyper-v-requirements",
-        "redirect_document_id": true
-      },
-      {
-        "source_path": "virtualization/hyper-v-on-windows/quick_start/walkthrough_create_vm.md",
-        "redirect_url": "/virtualization/hyper-v-on-windows/quick-start/create-virtual-machine",
-        "redirect_document_id": true
-      },
-      {
-        "source_path": "virtualization/hyper-v-on-windows/quick_start/walkthrough_export_import.md",
-        "redirect_url": "https://docs.microsoft.com/windows-server/virtualization/hyper-v/deploy/export-and-import-virtual-machines",
-        "redirect_document_id": true
-      },
-      {
-        "source_path": "virtualization/hyper-v-on-windows/quick_start/walkthrough_install.md",
-        "redirect_url": "/virtualization/hyper-v-on-windows/quick-start/enable-hyper-v",
-        "redirect_document_id": true
-      },
-      {
-        "source_path": "virtualization/hyper-v-on-windows/quick_start/walkthrough_powershell.md",
-        "redirect_url": "/virtualization/hyper-v-on-windows/quick-start/try-hyper-v-powershell",
-        "redirect_document_id": true
-      },
-      {
-        "source_path": "virtualization/hyper-v-on-windows/quick_start/walkthrough_virtual_switch.md",
-        "redirect_url": "/virtualization/hyper-v-on-windows/quick-start/connect-to-network",
-        "redirect_document_id": true
-      },
-      {
-        "source_path": "virtualization/hyper-v-on-windows/quick_start/walkthrough.md",
-        "redirect_url": "/virtualization/hyper-v-on-windows/user-guide/index",
-        "redirect_document_id": true
-      },
-      {
-        "source_path": "virtualization/hyper-v-on-windows/user_guide/checkpoints.md",
-        "redirect_url": "/virtualization/hyper-v-on-windows/user-guide/checkpoints",
-        "redirect_document_id": true
-      },
-      {
-        "source_path": "virtualization/hyper-v-on-windows/user_guide/create_pre-release_vm.md",
-        "redirect_url": "/virtualization/hyper-v-on-windows/user-guide/create-pre-release-vm",
-        "redirect_document_id": true
-      },
-      {
-        "source_path": "virtualization/hyper-v-on-windows/user_guide/export_import.md",
-        "redirect_url": "https://docs.microsoft.com/windows-server/virtualization/hyper-v/deploy/export-and-import-virtual-machines",
-        "redirect_document_id": true
-      },
-      {
-        "source_path": "virtualization/hyper-v-on-windows/user_guide/managing_ics.md",
-        "redirect_url": "https://docs.microsoft.com/windows-server/virtualization/hyper-v/manage/Manage-Hyper-V-integration-services",
-        "redirect_document_id": true
-      },
-      {
-        "source_path": "virtualization/hyper-v-on-windows/user_guide/migrating_vms.md",
-        "redirect_url": "https://docs.microsoft.com/windows-server/virtualization/hyper-v/deploy/Upgrade-virtual-machine-version-in-Hyper-V-on-Windows-or-Windows-Server",
-        "redirect_document_id": true
-      },
-      {
-        "source_path": "virtualization/hyper-v-on-windows/user_guide/nesting.md",
-        "redirect_url": "/virtualization/hyper-v-on-windows/user-guide/nested-virtualization",
-        "redirect_document_id": true
-      },
-      {
-        "source_path": "virtualization/hyper-v-on-windows/user_guide/remote_host_management.md",
-        "redirect_url": "https://docs.microsoft.com/windows-server/virtualization/hyper-v/manage/Remotely-manage-Hyper-V-hosts",
-        "redirect_document_id": true
-      },
-      {
-        "source_path": "virtualization/hyper-v-on-windows/user_guide/setup_nat_networking.md",
-        "redirect_url": "/virtualization/hyper-v-on-windows/user-guide/setup-nat-network",
-        "redirect_document_id": true
-      },
-      {
-        "source_path": "virtualization/hyper-v-on-windows/user_guide/troubleshooting.md",
-        "redirect_url": "/virtualization/hyper-v-on-windows/user-guide/troubleshooting",
-        "redirect_document_id": true
-      },
-      {
-        "source_path": "virtualization/hyper-v-on-windows/user_guide/vmsession.md",
-        "redirect_url": "/virtualization/hyper-v-on-windows/user-guide/powershell-direct",
-        "redirect_document_id": true
-      },
-      {
-        "source_path": "virtualization/hyper-v-on-windows/reference/hyper-v-emulator.md",
-        "redirect_url": "/virtualization/api/hypervisor-instruction-emulator/hypervisor-instruction-emulator",
-        "redirect_document_id": false
-      },
-      {
-        "source_path": "virtualization/hyper-v-on-windows/reference/hypervisor-platform.md",
-        "redirect_url": "/virtualization/api/hypervisor-platform/hypervisor-platform",
-        "redirect_document_id": false
-      },
-      {
-        "source_path": "virtualization/hyper-v-on-windows/reference/hypervisor-platform-funcs/cpuidaccess.md",
-        "redirect_url": "/virtualization/api/hypervisor-platform/funcs/cpuidaccess",
-        "redirect_document_id": false
-      },
-      {
-        "source_path": "virtualization/hyper-v-on-windows/reference/hypervisor-platform-funcs/executioncancelled.md",
-        "redirect_url": "/virtualization/api/hypervisor-platform/funcs/executioncancelled",
-        "redirect_document_id": false
-      },
-      {
-        "source_path": "virtualization/hyper-v-on-windows/reference/hypervisor-platform-funcs/ioportaccess.md",
-        "redirect_url": "/virtualization/api/hypervisor-platform/funcs/ioportaccess",
-        "redirect_document_id": false
-      },
-      {
-        "source_path": "virtualization/hyper-v-on-windows/reference/hypervisor-platform-funcs/ioportaccessie.md",
-        "redirect_url": "/virtualization/api/hypervisor-instruction-emulator/funcs/ioportaccessie",
-        "redirect_document_id": false
-      },
-      {
-        "source_path": "virtualization/hyper-v-on-windows/reference/hypervisor-platform-funcs/memoryaccess.md",
-        "redirect_url": "/virtualization/api/hypervisor-platform/funcs/memoryaccess",
-        "redirect_document_id": false
-      },
-      {
-        "source_path": "virtualization/hyper-v-on-windows/reference/hypervisor-platform-funcs/mmioaccessie.md",
-        "redirect_url": "/virtualization/api/hypervisor-instruction-emulator/funcs/mmioaccessie",
-        "redirect_document_id": false
-      },
-      {
-        "source_path": "virtualization/hyper-v-on-windows/reference/hypervisor-platform-funcs/msraccess.md",
-        "redirect_url": "/virtualization/api/hypervisor-platform/funcs/msraccess",
-        "redirect_document_id": false
-      },
-      {
-        "source_path": "virtualization/hyper-v-on-windows/reference/hypervisor-platform-funcs/unrecoverableexception.md",
-        "redirect_url": "/virtualization/api/hypervisor-platform/funcs/unrecoverableexception",
-        "redirect_document_id": false
-      },
-      {
-        "source_path": "virtualization/hyper-v-on-windows/reference/hypervisor-platform-funcs/unsupportablefeature.md",
-        "redirect_url": "/virtualization/api/hypervisor-platform/funcs/unsupportablefeature",
-        "redirect_document_id": false
-      },
-      {
-        "source_path": "virtualization/hyper-v-on-windows/reference/hypervisor-platform-funcs/virtualprocessorexception.md",
-        "redirect_url": "/virtualization/api/hypervisor-platform/funcs/virtualprocessorexception",
-        "redirect_document_id": false
-      },
-      {
-        "source_path": "virtualization/hyper-v-on-windows/reference/hypervisor-platform-funcs/virtualprocessorexecution.md",
-        "redirect_url": "/virtualization/api/hypervisor-platform/funcs/virtualprocessorexecution",
-        "redirect_document_id": false
-      },
-      {
-        "source_path": "virtualization/hyper-v-on-windows/reference/hypervisor-platform-funcs/whvcancelrunvirtualprocessor.md",
-        "redirect_url": "/virtualization/api/hypervisor-platform/funcs/whvcancelrunvirtualprocessor",
-        "redirect_document_id": false
-      },
-      {
-        "source_path": "virtualization/hyper-v-on-windows/reference/hypervisor-platform-funcs/whvcreatepartition.md",
-        "redirect_url": "/virtualization/api/hypervisor-platform/funcs/whvcreatepartition",
-        "redirect_document_id": false
-      },
-      {
-        "source_path": "virtualization/hyper-v-on-windows/reference/hypervisor-platform-funcs/whvcreatevirtualprocessor.md",
-        "redirect_url": "/virtualization/api/hypervisor-platform/funcs/whvcreatevirtualprocessor",
-        "redirect_document_id": false
-      },
-      {
-        "source_path": "virtualization/hyper-v-on-windows/reference/hypervisor-platform-funcs/whvdeletepartition.md",
-        "redirect_url": "/virtualization/api/hypervisor-platform/funcs/whvdeletepartition",
-        "redirect_document_id": false
-      },
-      {
-        "source_path": "virtualization/hyper-v-on-windows/reference/hypervisor-platform-funcs/whvdeletevirtualprocessor.md",
-        "redirect_url": "/virtualization/api/hypervisor-platform/funcs/whvdeletevirtualprocessor",
-        "redirect_document_id": false
-      },
-      {
-        "source_path": "virtualization/hyper-v-on-windows/reference/hypervisor-platform-funcs/whvemulatorcallbacks.md",
-        "redirect_url": "/virtualization/api/hypervisor-instruction-emulator/funcs/whvemulatorcallbacks",
-        "redirect_document_id": false
-      },
-      {
-        "source_path": "virtualization/hyper-v-on-windows/reference/hypervisor-platform-funcs/whvemulatorcreateemulator.md",
-        "redirect_url": "/virtualization/api/hypervisor-instruction-emulator/funcs/whvemulatorcreateemulator",
-        "redirect_document_id": false
-      },
-      {
-        "source_path": "virtualization/hyper-v-on-windows/reference/hypervisor-platform-funcs/whvemulatordestoryemulator.md",
-        "redirect_url": "/virtualization/api/hypervisor-instruction-emulator/funcs/whvemulatordestoryemulator",
-        "redirect_document_id": false
-      },
-      {
-        "source_path": "virtualization/hyper-v-on-windows/reference/hypervisor-platform-funcs/whvemulatorgetvirtualprocessorregisterscallback.md",
-        "redirect_url": "/virtualization/api/hypervisor-instruction-emulator/funcs/whvemulatorgetvirtualprocessorregisterscallback",
-        "redirect_document_id": false
-      },
-      {
-        "source_path": "virtualization/hyper-v-on-windows/reference/hypervisor-platform-funcs/whvemulatorioaccessinfo.md",
-        "redirect_url": "/virtualization/api/hypervisor-instruction-emulator/funcs/whvemulatorioaccessinfo",
-        "redirect_document_id": false
-      },
-      {
-        "source_path": "virtualization/hyper-v-on-windows/reference/hypervisor-platform-funcs/whvemulatorioportcallback.md",
-        "redirect_url": "/virtualization/api/hypervisor-instruction-emulator/funcs/whvemulatorioportcallback",
-        "redirect_document_id": false
-      },
-      {
-        "source_path": "virtualization/hyper-v-on-windows/reference/hypervisor-platform-funcs/whvemulatormemoryaccessinfo.md",
-        "redirect_url": "/virtualization/api/hypervisor-instruction-emulator/funcs/whvemulatormemoryaccessinfo",
-        "redirect_document_id": false
-      },
-      {
-        "source_path": "virtualization/hyper-v-on-windows/reference/hypervisor-platform-funcs/whvemulatormemorycallback.md",
-        "redirect_url": "/virtualization/api/hypervisor-instruction-emulator/funcs/whvemulatormemorycallback",
-        "redirect_document_id": false
-      },
-      {
-        "source_path": "virtualization/hyper-v-on-windows/reference/hypervisor-platform-funcs/whvemulatorsetvirtualprocessorregisterscallback.md",
-        "redirect_url": "/virtualization/api/hypervisor-instruction-emulator/funcs/whvemulatorsetvirtualprocessorregisterscallback",
-        "redirect_document_id": false
-      },
-      {
-        "source_path": "virtualization/hyper-v-on-windows/reference/hypervisor-platform-funcs/whvemulatorstatus.md",
-        "redirect_url": "/virtualization/api/hypervisor-instruction-emulator/funcs/whvemulatorstatus",
-        "redirect_document_id": false
-      },
-      {
-        "source_path": "virtualization/hyper-v-on-windows/reference/hypervisor-platform-funcs/whvemulatortranslategvapagecallback.md",
-        "redirect_url": "/virtualization/api/hypervisor-instruction-emulator/funcs/whvemulatortranslategvapagecallback",
-        "redirect_document_id": false
-      },
-      {
-        "source_path": "virtualization/hyper-v-on-windows/reference/hypervisor-platform-funcs/whvemulatortryemulation.md",
-        "redirect_url": "/virtualization/api/hypervisor-instruction-emulator/funcs/whvemulatortryemulation",
-        "redirect_document_id": false
-      },
-      {
-        "source_path": "virtualization/hyper-v-on-windows/reference/hypervisor-platform-funcs/whvexitcontextdatatypes.md",
-        "redirect_url": "/virtualization/api/hypervisor-platform/funcs/whvexitcontextdatatypes",
-        "redirect_document_id": false
-      },
-      {
-        "source_path": "virtualization/hyper-v-on-windows/reference/hypervisor-platform-funcs/whvgetcapability.md",
-        "redirect_url": "/virtualization/api/hypervisor-platform/funcs/whvgetcapability",
-        "redirect_document_id": false
-      },
-      {
-        "source_path": "virtualization/hyper-v-on-windows/reference/hypervisor-platform-funcs/whvgetpartitionproperty.md",
-        "redirect_url": "/virtualization/api/hypervisor-platform/funcs/whvgetpartitionproperty",
-        "redirect_document_id": false
-      },
-      {
-        "source_path": "virtualization/hyper-v-on-windows/reference/hypervisor-platform-funcs/whvgetvirtualprocessorregisters.md",
-        "redirect_url": "/virtualization/api/hypervisor-platform/funcs/whvgetvirtualprocessorregisters",
-        "redirect_document_id": false
-      },
-      {
-        "source_path": "virtualization/hyper-v-on-windows/reference/hypervisor-platform-funcs/whvmapgparange.md",
-        "redirect_url": "/virtualization/api/hypervisor-platform/funcs/whvmapgparange",
-        "redirect_document_id": false
-      },
-      {
-        "source_path": "virtualization/hyper-v-on-windows/reference/hypervisor-platform-funcs/whvmemoryaccesscontext.md",
-        "redirect_url": "/virtualization/api/hypervisor-platform/funcs/whvmemoryaccesscontext",
-        "redirect_document_id": false
-      },
-      {
-        "source_path": "virtualization/hyper-v-on-windows/reference/hypervisor-platform-funcs/whvpartitionpropertydatatypes.md",
-        "redirect_url": "/virtualization/api/hypervisor-platform/funcs/whvpartitionpropertydatatypes",
-        "redirect_document_id": false
-      },
-      {
-        "source_path": "virtualization/hyper-v-on-windows/reference/hypervisor-platform-funcs/whvrunvirtualprocessor.md",
-        "redirect_url": "/virtualization/api/hypervisor-platform/funcs/whvrunvirtualprocessor",
-        "redirect_document_id": false
-      },
-      {
-        "source_path": "virtualization/hyper-v-on-windows/reference/hypervisor-platform-funcs/whvsetpartitionproperty.md",
-        "redirect_url": "/virtualization/api/hypervisor-platform/funcs/whvsetpartitionproperty",
-        "redirect_document_id": false
-      },
-      {
-        "source_path": "virtualization/hyper-v-on-windows/reference/hypervisor-platform-funcs/whvsetuppartition.md",
-        "redirect_url": "/virtualization/api/hypervisor-platform/funcs/whvsetuppartition",
-        "redirect_document_id": false
-      },
-      {
-        "source_path": "virtualization/hyper-v-on-windows/reference/hypervisor-platform-funcs/whvsetvirtualprocessorregisters.md",
-        "redirect_url": "/virtualization/api/hypervisor-platform/funcs/whvsetvirtualprocessorregisters",
-        "redirect_document_id": false
-      },
-      {
-        "source_path": "virtualization/hyper-v-on-windows/reference/hypervisor-platform-funcs/whvtranslategva.md",
-        "redirect_url": "/virtualization/api/hypervisor-platform/funcs/whvtranslategva",
-        "redirect_document_id": false
-      },
-      {
-        "source_path": "virtualization/hyper-v-on-windows/reference/hypervisor-platform-funcs/whvunmapgparange.md",
-        "redirect_url": "/virtualization/api/hypervisor-platform/funcs/whvunmapgparange",
-        "redirect_document_id": false
-      },
-      {
-        "source_path": "virtualization/hyper-v-on-windows/reference/hypervisor-platform-funcs/whvvirtualprocessordatatypes.md",
-        "redirect_url": "/virtualization/api/hypervisor-platform/funcs/whvvirtualprocessordatatypes",
-        "redirect_document_id": false
-      }
+        {
+            "source_path": "virtualization/windowscontainers/about/about_overview.md",
+            "redirect_url": "/virtualization/windowscontainers/about/index",
+            "redirect_document_id": true
+        },
+        {
+            "source_path": "virtualization/windowscontainers/about/container_ecosystem.md",
+            "redirect_url": "/virtualization/windowscontainers/about/container-ecosystem",
+            "redirect_document_id": true
+        },
+        {
+            "source_path": "virtualization/windowscontainers/about/work_in_progress.md",
+            "redirect_url": "/virtualization/windowscontainers/about/faq",
+            "redirect_document_id": true
+        },
+        {
+            "source_path": "virtualization/windowscontainers/deployment/deployment_nano.md",
+            "redirect_url": "/virtualization/windowscontainers/deploy-containers/deploy-containers-on-server",
+            "redirect_document_id": true
+        },
+        {
+            "source_path": "virtualization/windowscontainers/deployment/deployment.md",
+            "redirect_url": "/virtualization/windowscontainers/deploy-containers/deploy-containers-on-server",
+            "redirect_document_id": true
+        },
+        {
+            "source_path": "virtualization/windowscontainers/deployment/system_requirements.md",
+            "redirect_url": "/virtualization/windowscontainers/deploy-containers/system-requirements",
+            "redirect_document_id": true
+        },
+        {
+            "source_path": "virtualization/windowscontainers/docker/configure_docker_daemon.md",
+            "redirect_url": "/virtualization/windowscontainers/manage-docker/configure-docker-daemon",
+            "redirect_document_id": true
+        },
+        {
+            "source_path": "virtualization/windowscontainers/docker/manage_windows_dockerfile.md",
+            "redirect_url": "/virtualization/windowscontainers/manage-docker/manage-windows-dockerfile",
+            "redirect_document_id": true
+        },
+        {
+            "source_path": "virtualization/windowscontainers/docker/optimize_windows_dockerfile.md",
+            "redirect_url": "/virtualization/windowscontainers/manage-docker/optimize-windows-dockerfile",
+            "redirect_document_id": true
+        },
+        {
+            "source_path": "virtualization/windowscontainers/management/container_networking.md",
+            "redirect_url": "/virtualization/windowscontainers/manage-containers/container-networking",
+            "redirect_document_id": true
+        },
+        {
+            "source_path": "virtualization/windowscontainers/management/docker-powershell.md",
+            "redirect_url": "/virtualization/windowscontainers/manage-docker/docker-powershell",
+            "redirect_document_id": true
+        },
+        {
+            "source_path": "virtualization/windowscontainers/management/hyperv_container.md",
+            "redirect_url": "/virtualization/windowscontainers/manage-docker/hyperv-container",
+            "redirect_document_id": true
+        },
+        {
+            "source_path": "virtualization/windowscontainers/management/manage_containers.md",
+            "redirect_url": "/virtualization/windowscontainers/quick-start/index",
+            "redirect_document_id": true
+        },
+        {
+            "source_path": "virtualization/windowscontainers/management/manage_data.md",
+            "redirect_url": "https://docs.docker.com/engine/tutorials/dockervolumes/",
+            "redirect_document_id": true
+        },
+        {
+            "source_path": "virtualization/windowscontainers/management/manage_images.md",
+            "redirect_url": "https://docs.docker.com/engine/tutorials/dockerimages/",
+            "redirect_document_id": true
+        },
+        {
+            "source_path": "virtualization/windowscontainers/management/manage_resources.md",
+            "redirect_url": "https://docs.docker.com/engine/reference/run/",
+            "redirect_document_id": true
+        },
+        {
+            "source_path": "virtualization/windowscontainers/management/manage_serviceaccounts.md",
+            "redirect_url": "/virtualization/windowscontainers/manage-containers/manage-serviceaccounts",
+            "redirect_document_id": true
+        },
+        {
+            "source_path": "virtualization/windowscontainers/quick_start/quick_start_images.md",
+            "redirect_url": "/virtualization/windowscontainers/quick-start/quick-start-images",
+            "redirect_document_id": true
+        },
+        {
+            "source_path": "virtualization/windowscontainers/quick_start/quick_start_windows_10.md",
+            "redirect_url": "/virtualization/windowscontainers/quick-start/quick-start-windows-10",
+            "redirect_document_id": true
+        },
+        {
+            "source_path": "virtualization/windowscontainers/quick_start/quick_start_windows_server.md",
+            "redirect_url": "/virtualization/windowscontainers/quick-start/quick-start-windows-server",
+            "redirect_document_id": true
+        },
+        {
+            "source_path": "virtualization/windowscontainers/quick_start/quick_start.md",
+            "redirect_url": "/virtualization/windowscontainers/quick-start/index",
+            "redirect_document_id": true
+        },
+        {
+            "source_path": "virtualization/windowscontainers/containers_welcome.md",
+            "redirect_url": "/virtualization/windowscontainers/index",
+            "redirect_document_id": true
+        },
+        {
+            "source_path": "virtualization/windowscontainers/Images_EULA.md",
+            "redirect_url": "/virtualization/windowscontainers/images-eula",
+            "redirect_document_id": true
+        },
+        {
+            "source_path": "virtualization/hyper-v-on-windows/windows_welcome.md",
+            "redirect_url": "/virtualization/hyper-v-on-windows/index",
+            "redirect_document_id": true
+        },
+        {
+            "source_path": "virtualization/hyper-v-on-windows/quick_start/index.md",
+            "redirect_url": "/virtualization/hyper-v-on-windows/user-guide/index",
+            "redirect_document_id": true
+        },
+        {
+            "source_path": "virtualization/hyper-v-on-windows/quick_start/walkthrough_checkpoints.md",
+            "redirect_url": "/virtualization/hyper-v-on-windows/user-guide/checkpoints",
+            "redirect_document_id": true
+        },
+        {
+            "source_path": "virtualization/hyper-v-on-windows/quick_start/walkthrough_compatibility.md",
+            "redirect_url": "/virtualization/hyper-v-on-windows/reference/hyper-v-requirements",
+            "redirect_document_id": true
+        },
+        {
+            "source_path": "virtualization/hyper-v-on-windows/quick_start/walkthrough_create_vm.md",
+            "redirect_url": "/virtualization/hyper-v-on-windows/quick-start/create-virtual-machine",
+            "redirect_document_id": true
+        },
+        {
+            "source_path": "virtualization/hyper-v-on-windows/quick_start/walkthrough_export_import.md",
+            "redirect_url": "https://docs.microsoft.com/windows-server/virtualization/hyper-v/deploy/export-and-import-virtual-machines",
+            "redirect_document_id": true
+        },
+        {
+            "source_path": "virtualization/hyper-v-on-windows/quick_start/walkthrough_install.md",
+            "redirect_url": "/virtualization/hyper-v-on-windows/quick-start/enable-hyper-v",
+            "redirect_document_id": true
+        },
+        {
+            "source_path": "virtualization/hyper-v-on-windows/quick_start/walkthrough_powershell.md",
+            "redirect_url": "/virtualization/hyper-v-on-windows/quick-start/try-hyper-v-powershell",
+            "redirect_document_id": true
+        },
+        {
+            "source_path": "virtualization/hyper-v-on-windows/quick_start/walkthrough_virtual_switch.md",
+            "redirect_url": "/virtualization/hyper-v-on-windows/quick-start/connect-to-network",
+            "redirect_document_id": true
+        },
+        {
+            "source_path": "virtualization/hyper-v-on-windows/quick_start/walkthrough.md",
+            "redirect_url": "/virtualization/hyper-v-on-windows/user-guide/index",
+            "redirect_document_id": true
+        },
+        {
+            "source_path": "virtualization/hyper-v-on-windows/user_guide/checkpoints.md",
+            "redirect_url": "/virtualization/hyper-v-on-windows/user-guide/checkpoints",
+            "redirect_document_id": true
+        },
+        {
+            "source_path": "virtualization/hyper-v-on-windows/user_guide/create_pre-release_vm.md",
+            "redirect_url": "/virtualization/hyper-v-on-windows/user-guide/create-pre-release-vm",
+            "redirect_document_id": true
+        },
+        {
+            "source_path": "virtualization/hyper-v-on-windows/user_guide/export_import.md",
+            "redirect_url": "https://docs.microsoft.com/windows-server/virtualization/hyper-v/deploy/export-and-import-virtual-machines",
+            "redirect_document_id": true
+        },
+        {
+            "source_path": "virtualization/hyper-v-on-windows/user_guide/managing_ics.md",
+            "redirect_url": "https://docs.microsoft.com/windows-server/virtualization/hyper-v/manage/Manage-Hyper-V-integration-services",
+            "redirect_document_id": true
+        },
+        {
+            "source_path": "virtualization/hyper-v-on-windows/user_guide/migrating_vms.md",
+            "redirect_url": "https://docs.microsoft.com/windows-server/virtualization/hyper-v/deploy/Upgrade-virtual-machine-version-in-Hyper-V-on-Windows-or-Windows-Server",
+            "redirect_document_id": true
+        },
+        {
+            "source_path": "virtualization/hyper-v-on-windows/user_guide/nesting.md",
+            "redirect_url": "/virtualization/hyper-v-on-windows/user-guide/nested-virtualization",
+            "redirect_document_id": true
+        },
+        {
+            "source_path": "virtualization/hyper-v-on-windows/user_guide/remote_host_management.md",
+            "redirect_url": "https://docs.microsoft.com/windows-server/virtualization/hyper-v/manage/Remotely-manage-Hyper-V-hosts",
+            "redirect_document_id": true
+        },
+        {
+            "source_path": "virtualization/hyper-v-on-windows/user_guide/setup_nat_networking.md",
+            "redirect_url": "/virtualization/hyper-v-on-windows/user-guide/setup-nat-network",
+            "redirect_document_id": true
+        },
+        {
+            "source_path": "virtualization/hyper-v-on-windows/user_guide/troubleshooting.md",
+            "redirect_url": "/virtualization/hyper-v-on-windows/user-guide/troubleshooting",
+            "redirect_document_id": true
+        },
+        {
+            "source_path": "virtualization/hyper-v-on-windows/user_guide/vmsession.md",
+            "redirect_url": "/virtualization/hyper-v-on-windows/user-guide/powershell-direct",
+            "redirect_document_id": true
+        },
+        {
+            "source_path": "virtualization/hyper-v-on-windows/reference/hyper-v-emulator.md",
+            "redirect_url": "/virtualization/api/hypervisor-instruction-emulator/hypervisor-instruction-emulator",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "virtualization/hyper-v-on-windows/reference/hypervisor-platform.md",
+            "redirect_url": "/virtualization/api/hypervisor-platform/hypervisor-platform",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "virtualization/hyper-v-on-windows/reference/hypervisor-platform-funcs/cpuidaccess.md",
+            "redirect_url": "/virtualization/api/hypervisor-platform/funcs/cpuidaccess",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "virtualization/hyper-v-on-windows/reference/hypervisor-platform-funcs/executioncancelled.md",
+            "redirect_url": "/virtualization/api/hypervisor-platform/funcs/executioncancelled",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "virtualization/hyper-v-on-windows/reference/hypervisor-platform-funcs/ioportaccess.md",
+            "redirect_url": "/virtualization/api/hypervisor-platform/funcs/ioportaccess",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "virtualization/hyper-v-on-windows/reference/hypervisor-platform-funcs/ioportaccessie.md",
+            "redirect_url": "/virtualization/api/hypervisor-instruction-emulator/funcs/ioportaccessie",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "virtualization/hyper-v-on-windows/reference/hypervisor-platform-funcs/memoryaccess.md",
+            "redirect_url": "/virtualization/api/hypervisor-platform/funcs/memoryaccess",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "virtualization/hyper-v-on-windows/reference/hypervisor-platform-funcs/mmioaccessie.md",
+            "redirect_url": "/virtualization/api/hypervisor-instruction-emulator/funcs/mmioaccessie",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "virtualization/hyper-v-on-windows/reference/hypervisor-platform-funcs/msraccess.md",
+            "redirect_url": "/virtualization/api/hypervisor-platform/funcs/msraccess",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "virtualization/hyper-v-on-windows/reference/hypervisor-platform-funcs/unrecoverableexception.md",
+            "redirect_url": "/virtualization/api/hypervisor-platform/funcs/unrecoverableexception",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "virtualization/hyper-v-on-windows/reference/hypervisor-platform-funcs/unsupportablefeature.md",
+            "redirect_url": "/virtualization/api/hypervisor-platform/funcs/unsupportablefeature",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "virtualization/hyper-v-on-windows/reference/hypervisor-platform-funcs/virtualprocessorexception.md",
+            "redirect_url": "/virtualization/api/hypervisor-platform/funcs/virtualprocessorexception",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "virtualization/hyper-v-on-windows/reference/hypervisor-platform-funcs/virtualprocessorexecution.md",
+            "redirect_url": "/virtualization/api/hypervisor-platform/funcs/virtualprocessorexecution",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "virtualization/hyper-v-on-windows/reference/hypervisor-platform-funcs/whvcancelrunvirtualprocessor.md",
+            "redirect_url": "/virtualization/api/hypervisor-platform/funcs/whvcancelrunvirtualprocessor",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "virtualization/hyper-v-on-windows/reference/hypervisor-platform-funcs/whvcreatepartition.md",
+            "redirect_url": "/virtualization/api/hypervisor-platform/funcs/whvcreatepartition",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "virtualization/hyper-v-on-windows/reference/hypervisor-platform-funcs/whvcreatevirtualprocessor.md",
+            "redirect_url": "/virtualization/api/hypervisor-platform/funcs/whvcreatevirtualprocessor",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "virtualization/hyper-v-on-windows/reference/hypervisor-platform-funcs/whvdeletepartition.md",
+            "redirect_url": "/virtualization/api/hypervisor-platform/funcs/whvdeletepartition",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "virtualization/hyper-v-on-windows/reference/hypervisor-platform-funcs/whvdeletevirtualprocessor.md",
+            "redirect_url": "/virtualization/api/hypervisor-platform/funcs/whvdeletevirtualprocessor",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "virtualization/hyper-v-on-windows/reference/hypervisor-platform-funcs/whvemulatorcallbacks.md",
+            "redirect_url": "/virtualization/api/hypervisor-instruction-emulator/funcs/whvemulatorcallbacks",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "virtualization/hyper-v-on-windows/reference/hypervisor-platform-funcs/whvemulatorcreateemulator.md",
+            "redirect_url": "/virtualization/api/hypervisor-instruction-emulator/funcs/whvemulatorcreateemulator",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "virtualization/hyper-v-on-windows/reference/hypervisor-platform-funcs/whvemulatordestoryemulator.md",
+            "redirect_url": "/virtualization/api/hypervisor-instruction-emulator/funcs/whvemulatordestoryemulator",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "virtualization/hyper-v-on-windows/reference/hypervisor-platform-funcs/whvemulatorgetvirtualprocessorregisterscallback.md",
+            "redirect_url": "/virtualization/api/hypervisor-instruction-emulator/funcs/whvemulatorgetvirtualprocessorregisterscallback",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "virtualization/hyper-v-on-windows/reference/hypervisor-platform-funcs/whvemulatorioaccessinfo.md",
+            "redirect_url": "/virtualization/api/hypervisor-instruction-emulator/funcs/whvemulatorioaccessinfo",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "virtualization/hyper-v-on-windows/reference/hypervisor-platform-funcs/whvemulatorioportcallback.md",
+            "redirect_url": "/virtualization/api/hypervisor-instruction-emulator/funcs/whvemulatorioportcallback",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "virtualization/hyper-v-on-windows/reference/hypervisor-platform-funcs/whvemulatormemoryaccessinfo.md",
+            "redirect_url": "/virtualization/api/hypervisor-instruction-emulator/funcs/whvemulatormemoryaccessinfo",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "virtualization/hyper-v-on-windows/reference/hypervisor-platform-funcs/whvemulatormemorycallback.md",
+            "redirect_url": "/virtualization/api/hypervisor-instruction-emulator/funcs/whvemulatormemorycallback",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "virtualization/hyper-v-on-windows/reference/hypervisor-platform-funcs/whvemulatorsetvirtualprocessorregisterscallback.md",
+            "redirect_url": "/virtualization/api/hypervisor-instruction-emulator/funcs/whvemulatorsetvirtualprocessorregisterscallback",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "virtualization/hyper-v-on-windows/reference/hypervisor-platform-funcs/whvemulatorstatus.md",
+            "redirect_url": "/virtualization/api/hypervisor-instruction-emulator/funcs/whvemulatorstatus",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "virtualization/hyper-v-on-windows/reference/hypervisor-platform-funcs/whvemulatortranslategvapagecallback.md",
+            "redirect_url": "/virtualization/api/hypervisor-instruction-emulator/funcs/whvemulatortranslategvapagecallback",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "virtualization/hyper-v-on-windows/reference/hypervisor-platform-funcs/whvemulatortryemulation.md",
+            "redirect_url": "/virtualization/api/hypervisor-instruction-emulator/funcs/whvemulatortryemulation",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "virtualization/hyper-v-on-windows/reference/hypervisor-platform-funcs/whvexitcontextdatatypes.md",
+            "redirect_url": "/virtualization/api/hypervisor-platform/funcs/whvexitcontextdatatypes",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "virtualization/hyper-v-on-windows/reference/hypervisor-platform-funcs/whvgetcapability.md",
+            "redirect_url": "/virtualization/api/hypervisor-platform/funcs/whvgetcapability",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "virtualization/hyper-v-on-windows/reference/hypervisor-platform-funcs/whvgetpartitionproperty.md",
+            "redirect_url": "/virtualization/api/hypervisor-platform/funcs/whvgetpartitionproperty",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "virtualization/hyper-v-on-windows/reference/hypervisor-platform-funcs/whvgetvirtualprocessorregisters.md",
+            "redirect_url": "/virtualization/api/hypervisor-platform/funcs/whvgetvirtualprocessorregisters",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "virtualization/hyper-v-on-windows/reference/hypervisor-platform-funcs/whvmapgparange.md",
+            "redirect_url": "/virtualization/api/hypervisor-platform/funcs/whvmapgparange",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "virtualization/hyper-v-on-windows/reference/hypervisor-platform-funcs/whvmemoryaccesscontext.md",
+            "redirect_url": "/virtualization/api/hypervisor-platform/funcs/whvmemoryaccesscontext",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "virtualization/hyper-v-on-windows/reference/hypervisor-platform-funcs/whvpartitionpropertydatatypes.md",
+            "redirect_url": "/virtualization/api/hypervisor-platform/funcs/whvpartitionpropertydatatypes",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "virtualization/hyper-v-on-windows/reference/hypervisor-platform-funcs/whvrunvirtualprocessor.md",
+            "redirect_url": "/virtualization/api/hypervisor-platform/funcs/whvrunvirtualprocessor",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "virtualization/hyper-v-on-windows/reference/hypervisor-platform-funcs/whvsetpartitionproperty.md",
+            "redirect_url": "/virtualization/api/hypervisor-platform/funcs/whvsetpartitionproperty",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "virtualization/hyper-v-on-windows/reference/hypervisor-platform-funcs/whvsetuppartition.md",
+            "redirect_url": "/virtualization/api/hypervisor-platform/funcs/whvsetuppartition",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "virtualization/hyper-v-on-windows/reference/hypervisor-platform-funcs/whvsetvirtualprocessorregisters.md",
+            "redirect_url": "/virtualization/api/hypervisor-platform/funcs/whvsetvirtualprocessorregisters",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "virtualization/hyper-v-on-windows/reference/hypervisor-platform-funcs/whvtranslategva.md",
+            "redirect_url": "/virtualization/api/hypervisor-platform/funcs/whvtranslategva",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "virtualization/hyper-v-on-windows/reference/hypervisor-platform-funcs/whvunmapgparange.md",
+            "redirect_url": "/virtualization/api/hypervisor-platform/funcs/whvunmapgparange",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "virtualization/hyper-v-on-windows/reference/hypervisor-platform-funcs/whvvirtualprocessordatatypes.md",
+            "redirect_url": "/virtualization/api/hypervisor-platform/funcs/whvvirtualprocessordatatypes",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "virtualization/hyper-v-on-windows/develop/make_mgmt_service.md",
+            "redirect_url": "/virtualization/hyper-v-on-windows/user-guide/make-integration-service",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "virtualization/hyper-v-on-windows/develop/powershell_snippets.md",
+            "redirect_url": "/virtualization/hyper-v-on-windows/index",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "virtualization/hyper-v-on-windows/develop/tlfs.md",
+            "redirect_url": "/virtualization/hyper-v-on-windows/reference/tlfs",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "virtualization/hyper-v-on-windows/about/hyperv_on_windows.md",
+            "redirect_url": "/virtualization/hyper-v-on-windows/about/index",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "virtualization/hyper-v-on-windows/about/supported_guest_os.md",
+            "redirect_url": "/virtualization/hyper-v-on-windows/about/supported-guest-os",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "virtualization/hyper-v-on-windows/quick-start/index.md",
+            "redirect_url": "/virtualization/hyper-v-on-windows/quick-start/enable-hyper-v",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "virtualization/windowscontainers/quick-start/index.md",
+            "redirect_url": "/virtualization/windowscontainers/about/index",
+            "redirect_document_id": false
+        }
     ]
 }
