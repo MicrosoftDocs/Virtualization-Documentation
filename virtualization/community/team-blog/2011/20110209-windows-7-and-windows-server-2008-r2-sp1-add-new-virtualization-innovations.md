@@ -75,7 +75,7 @@ I should also point out that Hyper-V Dynamic Memory will be available in Microso
 
 In addition to SP1, we’ve been very busy with our virtualization technology updates and want to be sure you’re aware of the latest:
 
-**Higher Virtual Processor to Logical Processor Ratios** : If you’re running Windows Server 2008 R2 SP1 and running Windows 7 as the guest, we’ve upped the ratio of virtual processors to logical processor from 8:1 to 12:1. This is simply more goodness for VDI deployments. This change is documented [here](http://technet.microsoft.com/en-us/library/ee405267\(WS.10\).aspx). 
+**Higher Virtual Processor to Logical Processor Ratios** : If you’re running Windows Server 2008 R2 SP1 and running Windows 7 as the guest, we’ve upped the ratio of virtual processors to logical processor from 8:1 to 12:1. This is simply more goodness for VDI deployments. This change is documented [here](https://technet.microsoft.com/library/ee405267\(WS.10\).aspx). 
 
 **Higher Cluster Density and Limits** : Back in June 2010, the Microsoft Failover Cluster team upped the support limit to 384 virtual machines per node to match the Hyper-V maximum of up to 384 virtual machines per server. In addition, the overall number of running VMs per cluster has been bumped to 1000 VMs in a cluster. Read more [here](http://blogs.technet.com/b/puneetvig/archive/2010/07/27/hyper-v-r2-cluster-scalability.aspx). 
 

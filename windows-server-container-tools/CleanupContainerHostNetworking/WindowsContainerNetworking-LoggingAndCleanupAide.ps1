@@ -104,12 +104,12 @@ function ForceCleanupSystem
 
         foreach ($adapter in $adapters)
         {
-            if ($adapters.HardwareInterface -eq $true)
+            if ($adapter.HardwareInterface -eq $true)
             {
                 if ($adapter.Name) {
-                    Disable-NetAdapterBinding -Name $adapters.Name -ComponentID vms_pp
+                    Disable-NetAdapterBinding -Name $adapter.Name -ComponentID vms_pp
                 } elseif ($adapter.InterfaceDescription) {
-                    Disable-NetAdapterBinding -InterfaceDescription $adapters.InterfaceDescription -ComponentID vms_pp
+                    Disable-NetAdapterBinding -InterfaceDescription $adapter.InterfaceDescription -ComponentID vms_pp
                 }
             }
         }

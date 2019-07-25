@@ -19,7 +19,7 @@ All of the above distributions are supported on the following Windows Server rel
   * Microsoft Hyper-V Server 2012
   * Microsoft Hyper-V Server 2012 R2
 
-**Feature Set** The LIS 3.5 release brings much coveted features such as dynamic memory and live virtual machine backup to older RHEL releases. The check marks in the table below indicate the features that have been implemented in LIS 3.5. For comparative purposes we also provide the feature set of LIS 3.4 so that our customers can decide if they need to upgrade the current version of their LIS drivers. More details on individual features can be found at [http://technet.microsoft.com/en-us/library/dn531031.aspx](http://technet.microsoft.com/en-us/library/dn531031.aspx) . **Table Legend** **√** \- Feature available  ( _blank_ ) - Feature not available **Feature**
+**Feature Set** The LIS 3.5 release brings much coveted features such as dynamic memory and live virtual machine backup to older RHEL releases. The check marks in the table below indicate the features that have been implemented in LIS 3.5. For comparative purposes we also provide the feature set of LIS 3.4 so that our customers can decide if they need to upgrade the current version of their LIS drivers. More details on individual features can be found at [https://technet.microsoft.com/library/dn531031.aspx](https://technet.microsoft.com/library/dn531031.aspx) . **Table Legend** **√** \- Feature available  ( _blank_ ) - Feature not available **Feature**
 
 | 
 

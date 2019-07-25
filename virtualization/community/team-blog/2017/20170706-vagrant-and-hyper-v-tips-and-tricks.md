@@ -9,7 +9,7 @@ A few months ago, I went to [DockerCon](https://2017.dockercon.com/) as a Micros
 
 ## Tip 0: Install Hyper-V
 
-For those new to Hyper-V, make sure you've got Hyper-V running on your machine. Our [official docs](https://docs.microsoft.com/en-us/virtualization/hyper-v-on-windows/quick-start/enable-hyper-v) list the exact steps and requirements. 
+For those new to Hyper-V, make sure you've got Hyper-V running on your machine. Our [official docs](https://docs.microsoft.com/virtualization/hyper-v-on-windows/quick-start/enable-hyper-v) list the exact steps and requirements. 
 
 ## Tip 1: Set Up Networking Correctly
 

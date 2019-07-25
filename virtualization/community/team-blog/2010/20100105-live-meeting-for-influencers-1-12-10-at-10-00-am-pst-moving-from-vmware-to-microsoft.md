@@ -7,7 +7,7 @@ On **Tuesday, January 12, 2010 10:00 AM-11:00 AM.,** we are hosting a Live Meeti
 
 Please note: 
 
-  * This Live Meeting presentation is exclusive to members of the **System Center** **Influencers Program**.   Not a member?  Visit [the program information page on TechNet](http://technet.microsoft.com/en-us/ee532416.aspx) to learn more and apply to join. 
+  * This Live Meeting presentation is exclusive to members of the **System Center** **Influencers Program**.   Not a member?  Visit [the program information page on TechNet](https://technet.microsoft.com/ee532416.aspx) to learn more and apply to join. 
   * [Join information is available on the System Center Influencers Program portal](https://sharepoint.connect.microsoft.com/SystemCenterCommunity/Lists/Announcements/DispForm.aspx?ID=18&Source=https%3A%2F%2Fsharepoint%2Econnect%2Emicrosoft%2Ecom%2FSystemCenterCommunity%2FLists%2FAnnouncements%2FAllItems%2Easpx).  Members of the program will need to log into the Connect site to access the Live Meeting join information. 
 
 

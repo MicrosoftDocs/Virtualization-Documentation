@@ -7,7 +7,7 @@ Protection of data has always been a priority for customers, and disaster recove
 
 ### Deduplication considerations
 
-To begin with, it is important to acknowledge the workloads that are suitable for deduplication using Windows Server 2012 R2. There is an excellent [TechNet article](http://technet.microsoft.com/en-us/library/hh831700.aspx) that covers this aspect and would be applicable in the case of Hyper-V Replica as well. It is important to remember that deduplication of running virtual machines is only officially supported starting with Windows Server 2012 R2 for Virtual Desktop Infrastructure (VDI) workloads with VHDs running on a remote file server. Generic VM (non-VDI) workloads may run on a deduplication enabled volume but the performance is not guaranteed. Windows Server 2012 deduplication is only supported for cold data (files not open).
+To begin with, it is important to acknowledge the workloads that are suitable for deduplication using Windows Server 2012 R2. There is an excellent [TechNet article](https://technet.microsoft.com/library/hh831700.aspx) that covers this aspect and would be applicable in the case of Hyper-V Replica as well. It is important to remember that deduplication of running virtual machines is only officially supported starting with Windows Server 2012 R2 for Virtual Desktop Infrastructure (VDI) workloads with VHDs running on a remote file server. Generic VM (non-VDI) workloads may run on a deduplication enabled volume but the performance is not guaranteed. Windows Server 2012 deduplication is only supported for cold data (files not open).
 
 ### Why use deduplication with Hyper-V Replica?
 

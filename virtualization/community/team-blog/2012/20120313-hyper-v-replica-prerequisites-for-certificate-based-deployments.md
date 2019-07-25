@@ -132,7 +132,7 @@ _===============================================================================
 
  
 
-For a sample HVR deployment scenario using makecert certificate, see Appendix C of the UTG which is available [here](http://technet.microsoft.com/en-us/library/hh831759.aspx?ppud=4). 
+For a sample HVR deployment scenario using makecert certificate, see Appendix C of the UTG which is available [here](https://technet.microsoft.com/library/hh831759.aspx?ppud=4). 
 
 In the next few weeks , we will be posting an end to end workflow for enabling replication using certificates.
 
