@@ -88,9 +88,9 @@ If you want to revert your virtual machine to a previous point-in-time, you can 
 
 **Using Hyper-V Manager**
 
-1.	In **Hyper-V Manager**, under **Virtual Machines**, select the virtual machine.
-2.	In the Checkpoints section, right-click the checkpoint that you want to use and click **Apply**.
-3.	A dialog box appears with the following options:  
+1. In **Hyper-V Manager**, under **Virtual Machines**, select the virtual machine.
+2. In the Checkpoints section, right-click the checkpoint that you want to use and click **Apply**.
+3. A dialog box appears with the following options:  
   * **Create Checkpoint and Apply**: Creates a new checkpoint of the virtual machine before it applies the earlier checkpoint. 
   * **Apply**: Applies only the checkpoint that you have chosen. You cannot undo this action.
   * **Cancel**: Closes the dialog box without doing anything.
@@ -101,14 +101,14 @@ If you want to revert your virtual machine to a previous point-in-time, you can 
 
 5. To see a list of checkpoints for a virtual machine use the **Get-VMCheckpoint** command.
 
-	```powershell
-	Get-VMCheckpoint -VMName <VMName>
-	```
+    ```powershell
+    Get-VMCheckpoint -VMName <VMName>
+    ```
 6. To apply the checkpoint use the **Restore-VMCheckpoint** command.
 
-	```powershell
-	Restore-VMCheckpoint -Name <checkpoint name> -VMName <VMName> -Confirm:$false
-	```
+    ```powershell
+    Restore-VMCheckpoint -Name <checkpoint name> -VMName <VMName> -Confirm:$false
+    ```
 
 ## Renaming checkpoints
 
@@ -124,10 +124,10 @@ Names are limited to 100 characters, and the name cannot be blank.
 
 **Using Hyper-V Manager**
 
-1.	In **Hyper-V Manager**, select the virtual machine.
-2.	Right-click the checkpoint, and then select **Rename**.
-3.	Enter in the new name for the checkpoint. It must be less than 100 characters, and the field cannot be empty.
-4.	Click **ENTER** when you are done.
+1. In **Hyper-V Manager**, select the virtual machine.
+2. Right-click the checkpoint, and then select **Rename**.
+3. Enter in the new name for the checkpoint. It must be less than 100 characters, and the field cannot be empty.
+4. Click **ENTER** when you are done.
 
 **Using PowerShell**
 
@@ -147,9 +147,9 @@ You should not delete the .avhdx files directly.
 
 To cleanly delete a checkpoint: 
 
-1.	In **Hyper-V Manager**, select the virtual machine.
-2.	In the **Checkpoints** section, right-click the checkpoint that you want to delete and click Delete. You can also delete a checkpoint and all subsequent checkpoints. To do so, right-click the earliest checkpoint that you want to delete, and then click ****Delete Checkpoint** Subtree**.
-3.	You might be asked to verify that you want to delete the checkpoint. Confirm that it is the correct checkpoint, and then click **Delete**. 
+1. In **Hyper-V Manager**, select the virtual machine.
+2. In the **Checkpoints** section, right-click the checkpoint that you want to delete and click Delete. You can also delete a checkpoint and all subsequent checkpoints. To do so, right-click the earliest checkpoint that you want to delete, and then click ****Delete Checkpoint** Subtree**.
+3. You might be asked to verify that you want to delete the checkpoint. Confirm that it is the correct checkpoint, and then click **Delete**. 
  
 **Using PowerShell**
 ```powershell
@@ -167,20 +167,20 @@ Export-VMCheckpoint -VMName <virtual machine name> -Name <checkpoint name> -Path
 
 ## Enable or disable checkpoints
 
-1.	In **Hyper-V Manager**, right-click the name of the virtual machine, and click **Settings**.
-2.	In the **Management** section, select **Checkpoints**.
-3.	To allow checkpoints to be taken off this virtual machine, make sure Enable Checkpoints is selected -- this is the default behavior.  
+1. In **Hyper-V Manager**, right-click the name of the virtual machine, and click **Settings**.
+2. In the **Management** section, select **Checkpoints**.
+3. To allow checkpoints to be taken off this virtual machine, make sure Enable Checkpoints is selected -- this is the default behavior.  
 To disable checkpoints, deselect the **Enable Checkpoints** check box.
-4.	Click **Apply** to apply your changes. If you are done, click **OK** to close the dialog box.
+4. Click **Apply** to apply your changes. If you are done, click **OK** to close the dialog box.
 
 ## Configure checkpoint location
 
 If the virtual machine has no checkpoints, you can change where the checkpoint configuration and saved state files are stored.
 
-1.	In **Hyper-V Manager**, right-click the name of the virtual machine, and click **Settings**.	
-2.	In the **Management** section, select **Checkpoints** or **Checkpoint File Location**.	
-4.	In **Checkpoint File Location**, enter the path to the folder where you would like to store the files.	
-5.	Click **Apply** to apply your changes. If you are done, click **OK** to close the dialog box.
+1. In **Hyper-V Manager**, right-click the name of the virtual machine, and click **Settings**.
+2. In the **Management** section, select **Checkpoints** or **Checkpoint File Location**.
+4. In **Checkpoint File Location**, enter the path to the folder where you would like to store the files.
+5. Click **Apply** to apply your changes. If you are done, click **OK** to close the dialog box.
 
 The default location for storing checkpoint configuration files is: `%systemroot%\ProgramData\Microsoft\Windows\Hyper-V\Snapshots`.
 
@@ -233,7 +233,7 @@ Let’s now examine production checkpoints. This process is almost identical to 
 <br />
 
 ![](media/production_Checkpoin_upd.png) 
-	
+
 **Apply the Production Checkpoint with Hyper-V Manager**
 
 Now that a checkpoint exists make a modification to the system and then apply the checkpoint to revert the virtual machine back to the saved state. 

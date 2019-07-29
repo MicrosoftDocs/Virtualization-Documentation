@@ -105,7 +105,7 @@ The `Containers` feature should be installed before the Docker Engine will work.
 ### Describing Docker is installed
 **[+] A Docker service is installed - 'Docker' or 'com.Docker.Service'**
 
-If this fails, then the Docker Engine is not installed. Check [here](http://aka.ms/windowscontainers) for a quick start guide to help get everything installed.
+If this fails, then the Docker Engine is not installed. Check [here](https://aka.ms/windowscontainers) for a quick start guide to help get everything installed.
 
 **[+] Service is running**
 
@@ -115,7 +115,7 @@ If this fails, then the Docker Engine is not installed. Check [here](http://aka.
 **[+] Docker.exe is in path**
 
 - Try logging out and back in
-- If it still fails, try reinstalling based on the Quick Start guide [here](http://aka.ms/windowscontainers) 
+- If it still fails, try reinstalling based on the Quick Start guide [here](https://aka.ms/windowscontainers) 
 
 **[+] Docker is registered in the EventLog service**
 

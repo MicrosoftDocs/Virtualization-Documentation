@@ -25,7 +25,7 @@ Learn how to create a virtual machine and install an operating system in your ne
   > **Note:** This is the name Hyper-V uses for the virtual machine, not the computer name given to the guest operating system that will be deployed inside the virtual machine.
 
 1. Choose a location where the virtual machine files will be stored such as **c:\virtualmachine**. You can also accept the default location. Click **Next** when done.
-	
+
   ![](media/new_vm_upd.png)
 
 1. Select a generation for the machine and click **Next**.  
