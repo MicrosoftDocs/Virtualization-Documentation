@@ -66,7 +66,7 @@ Take the current `BINARY_PATH_NAME`, and modify it:
 - Escape each " with \
 - Enclose the whole command in "
 
-Then run `sc.exe config docker binpath= ` followed by the new string. For example: 
+Then run `sc.exe config docker binpath=` followed by the new string. For example: 
 ```
 sc.exe config docker binpath= "\"C:\Program Files\Docker\dockerd.exe\" --run-service -D"
 ```
