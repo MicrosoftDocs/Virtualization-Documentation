@@ -18,7 +18,7 @@ The following steps will be run when building the dockerfile:
 
 1. Copying RunDSC.ps1 script to the TEMP directory in the container
 2. Running RunDSC.ps1 inside of the container
-  1. The pushed policy will add the Web-Server role.
+3. The pushed policy will add the Web-Server role.
   
   
 Progress will be shown as the build progresses:
