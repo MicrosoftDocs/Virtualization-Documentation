@@ -95,7 +95,7 @@ Hyper-V has some useful features that improve the Vagrant experience. For exampl
     
     config.vm.provider "hyperv" do |h|
       h.enable_virtualization_extensions = true
-      h.differencing_disk = true
+      h.linked_clone = true
     end
 
 There are a many more customization options that can be added here (i.e. VMName, CPU/Memory settings, integration services). You can find the details in the [Hyper-V provider documentation](https://www.vagrantup.com/docs/hyperv/configuration.html). 
@@ -148,6 +148,6 @@ Those are my tips and tricks for getting started with Vagrant on Hyper-V. If the
       config.vm.synced_folder ".", "/vagrant", disabled: true
       config.vm.provider "hyperv" do |h|
         h.enable_virtualization_extensions = true
-        h.differencing_disk = true
+        h.linked_clone = true
       end
     end
