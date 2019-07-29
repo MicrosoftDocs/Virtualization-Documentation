@@ -42,11 +42,11 @@ If search doesn't find Hyper-V Manager, Hyper-V or the Hyper-V management tools 
 
 9. Select the physical network card to be paired with the new virtual switch. This is the network card that is physically connected to the network.  
 
-	![](media/newSwitch_upd.png)
+    ![](media/newSwitch_upd.png)
 
 10. Select **Apply** to create the virtual switch. At this point you will most likely see the following message. Click **Yes** to continue.
 
-	![](media/pen_changes_upd.png)  
+    ![](media/pen_changes_upd.png)  
 
 11. Select **OK** to close the Virtual Switch Manager Window.
 
@@ -57,26 +57,26 @@ The following steps can be used to create a virtual switch with an external conn
 
 1. Use **Get-NetAdapter** to return a list of network adapters connected to the Windows 10 system.
 
-	```powershell
-	PS C:\> Get-NetAdapter
+    ```powershell
+    PS C:\> Get-NetAdapter
 
-	Name                      InterfaceDescription                    ifIndex Status       MacAddress             LinkSpeed
-	----                      --------------------                    ------- ------       ----------             ---------
-	Ethernet 2                Broadcom NetXtreme 57xx Gigabit Cont...       5 Up           BC-30-5B-A8-C1-7F         1 Gbps
-	Ethernet                  Intel(R) PRO/100 M Desktop Adapter            3 Up           00-0E-0C-A8-DC-31        10 Mbps  
-	```
+    Name                      InterfaceDescription                    ifIndex Status       MacAddress             LinkSpeed
+    ----                      --------------------                    ------- ------       ----------             ---------
+    Ethernet 2                Broadcom NetXtreme 57xx Gigabit Cont...       5 Up           BC-30-5B-A8-C1-7F         1 Gbps
+    Ethernet                  Intel(R) PRO/100 M Desktop Adapter            3 Up           00-0E-0C-A8-DC-31        10 Mbps  
+    ```
 
 2. Select the network adapter to use with the Hyper-V switch and place an instance in a variable named **$net**.
 
-	```
-	$net = Get-NetAdapter -Name 'Ethernet'
-	```
+    ```powershell
+    $net = Get-NetAdapter -Name 'Ethernet'
+    ```
 
 3. Execute the following command to create the new Hyper-V virtual switch.
 
-	```
-	New-VMSwitch -Name "External VM Switch" -AllowManagementOS $True -NetAdapterName $net.Name
-	```
+    ```powershell
+    New-VMSwitch -Name "External VM Switch" -AllowManagementOS $True -NetAdapterName $net.Name
+    ```
 
 ## Virtual networking on a laptop
 

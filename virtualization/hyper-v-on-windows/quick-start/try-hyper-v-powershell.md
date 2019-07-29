@@ -16,8 +16,8 @@ Now that you have walked through the basics of deploying Hyper-V, creating virtu
 
 ### Return a list of Hyper-V commands
 
-1.	Click on the Windows start button, type **PowerShell**.
-2.	Run the following command to display a searchable list of PowerShell commands available with the Hyper-V PowerShell Module.
+1. Click on the Windows start button, type **PowerShell**.
+2. Run the following command to display a searchable list of PowerShell commands available with the Hyper-V PowerShell Module.
 
  ```powershell
 Get-Command -Module hyper-v | Out-GridView

@@ -72,12 +72,12 @@ If you are still facing problems, most likely your network configuration in [cni
 
 Why?
 One of the Kubernetes networking requirements (see [Kubernetes model](https://kubernetes.io/docs/concepts/cluster-administration/networking/)) is for cluster communication to occur without NAT internally. To honor this requirement, we have an [ExceptionList](https://github.com/Microsoft/SDN/blob/master/Kubernetes/flannel/l2bridge/cni/config/cni.conf#L20) for all the communication where we do not want outbound NAT to occur. However, this also means that you need to exclude the external IP you are trying to query from the ExceptionList. Only then will the traffic originating from your Windows pods be SNAT’ed correctly to receive a response from the outside world. In this regard, your ExceptionList in `cni.conf` should look as follows:
-```
-				"ExceptionList": [
-					"10.244.0.0/16",  # Cluster subnet
-					"10.96.0.0/12",   # Service subnet
-					"10.127.130.0/24" # Management (host) subnet
-				]
+```conf
+"ExceptionList": [
+  "10.244.0.0/16",  # Cluster subnet
+  "10.96.0.0/12",   # Service subnet
+  "10.127.130.0/24" # Management (host) subnet
+]
 ```
 
 ### My Windows node cannot access a NodePort service ###
