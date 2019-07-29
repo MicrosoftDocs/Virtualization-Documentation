@@ -1,7 +1,7 @@
 # The history of Hyper-V Backup
 
 Doc team metadata:
-This doc seems like it would fit well into a narravive about the history of backup in the reference section of the documentation leads up to where we are now and why.  It could be added to as backup continues to develop.
+This doc seems like it would fit well into a narrative about the history of backup in the reference section of the documentation leads up to where we are now and why.  It could be added to as backup continues to develop.
 
 
 Hyper-V is completely changed backup and restore in Windows Server 2016.
