@@ -22,11 +22,11 @@ The following steps are run in the script:
 
 1. Create a new container
 2. Running several steps inside the container
-  1. Create a temp directory
-  2. Wait for an IP address
-  3. Download node.js MSI installer
-  4. Run MSI installer quietly and wait for it to finish
-  5. Removing the temp directory
+   1. Create a temp directory
+   2. Wait for an IP address
+   3. Download node.js MSI installer
+   4. Run MSI installer quietly and wait for it to finish
+   5. Removing the temp directory
 3. Stopping the container
 4. Create a new Container Image based on this Container
 5. Remove the Container
@@ -47,8 +47,8 @@ The following steps will be run when building the dockerfile:
 
 1. Copying the HybridInstaller.ps1 script to the TEMP directory in the Container
 2. Running `HybridInstaller.ps1 -RunNative` inside of the Container
-  1. Create a temp directory
-  2. Wait for an IP address
-  3. Download node.js MSI installer
-  4. Run MSI installer quietly and wait for it to finish
-  5. Removing the temp directory
+    1. Create a temp directory
+    2. Wait for an IP address
+    3. Download node.js MSI installer
+    4. Run MSI installer quietly and wait for it to finish
+    5. Removing the temp directory
