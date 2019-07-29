@@ -247,7 +247,7 @@ When possible, option #2 is preferred over option #1 because of the resources sa
     
     }
 
-The script can also be customized for use with [Azure Hyper-V Recovery Manager](http://azure.microsoft.com/en-us/services/recovery-manager/), but we’ll save that for another post! 
+The script can also be customized for use with [Azure Hyper-V Recovery Manager](https://azure.microsoft.com/services/recovery-manager/), but we’ll save that for another post! 
 
 ## Capacity Planner and disk exclusion
 

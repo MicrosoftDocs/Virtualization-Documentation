@@ -5,7 +5,7 @@ categories: asr
 ---
 Drum roll please! 
 
-We are super excited to announce the availability of the preview bits of [**Azure Site Recovery**](http://azure.microsoft.com/en-us/services/site-recovery/) **(ASR)** which enables you to replicate Hyper-V VMs to Microsoft Azure for business continuity and disaster recovery purposes. 
+We are super excited to announce the availability of the preview bits of [**Azure Site Recovery**](https://azure.microsoft.com/services/site-recovery/) **(ASR)** which enables you to replicate Hyper-V VMs to Microsoft Azure for business continuity and disaster recovery purposes. 
 
 You can now protect, replicate, and failover VMs directly to Microsoft Azure – our guarantee remains that whether you enable Disaster Recovery across On-Premise Enterprise Private Clouds or directly to Azure, your virtualized workloads will be recovered **_accurately_ , _consistently_ , _with_ _minimal downtime and with minimal data loss._**
 

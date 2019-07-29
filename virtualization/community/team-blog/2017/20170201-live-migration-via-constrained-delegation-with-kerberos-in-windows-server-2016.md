@@ -9,7 +9,7 @@ Many Hyper-V customers have run into new challenges when trying to use constrain
 
 #### Fixing This Issue
 
-Resolving this issue is a simple configuration change in Active Directory when setting up constrained delegation. In [our documentation](https://technet.microsoft.com/en-us/windows-server-docs/compute/hyper-v/deploy/set-up-hosts-for-live-migration-without-failover-clustering), when you reach the fifth instruction in Step 1, select "use any authentication protocol" instead of "use Kerberos only." The other instructions have not changed. 
+Resolving this issue is a simple configuration change in Active Directory when setting up constrained delegation. In [our documentation](https://technet.microsoft.com/windows-server-docs/compute/hyper-v/deploy/set-up-hosts-for-live-migration-without-failover-clustering), when you reach the fifth instruction in Step 1, select "use any authentication protocol" instead of "use Kerberos only." The other instructions have not changed. 
 
 [![constrained_delegation](https://msdnshared.blob.core.windows.net/media/2017/02/constrained_delegation.png)](https://msdnshared.blob.core.windows.net/media/2017/02/constrained_delegation.png)
 

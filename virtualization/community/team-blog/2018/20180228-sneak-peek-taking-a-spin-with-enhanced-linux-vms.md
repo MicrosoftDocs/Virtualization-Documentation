@@ -26,7 +26,7 @@ We encourage you to log any issues you discover [to GitHub](https://github.com/j
 
 ## How does this work?
 
-The technology behind this mode is actually the same as how we achieve an enhanced session mode in Windows. It relies on the [RDP protocol](https://msdn.microsoft.com/en-us/library/aa383015\(v=vs.85\).aspx), implemented on Linux by the open source folks at XRDP, over Hyper-V sockets to light up all the great features that give the VM an integrated feel. Hyper-V sockets, or hv_sock, supply a byte-stream based communication mechanism between the host partition and the guest VM. Think of it as similar to TCP, except it's going over an optimized transport layer called VMBus. We contributed changes which would allow XRDP to utilize hv_sock. The scripts we executed did the following: 
+The technology behind this mode is actually the same as how we achieve an enhanced session mode in Windows. It relies on the [RDP protocol](https://msdn.microsoft.com/library/aa383015\(v=vs.85\).aspx), implemented on Linux by the open source folks at XRDP, over Hyper-V sockets to light up all the great features that give the VM an integrated feel. Hyper-V sockets, or hv_sock, supply a byte-stream based communication mechanism between the host partition and the guest VM. Think of it as similar to TCP, except it's going over an optimized transport layer called VMBus. We contributed changes which would allow XRDP to utilize hv_sock. The scripts we executed did the following: 
 
   * Installs the "Linux-azure" kernel to the VM. This carries the hv_sock bits that we need.
   * Downloads the XRDP source code and compiles it with the hv_sock feature turned on (the published XRDP package in 16.04 doesn't have this set, so we must compile from source).

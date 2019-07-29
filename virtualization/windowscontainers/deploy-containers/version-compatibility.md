@@ -12,15 +12,15 @@ As we've been improving the Windows container features, we've had to make some c
 
 |Container OS version|Host OS version|Compatibility|
 |---|---|---|
-|Windows Server 2019, version 1903<br>Builds 18362.* |Windows Server, version 1903<br>Builds 18362.* |Supports `process` or `hyperv` isolation|
-|Windows Server 2019, version 1903<br>Builds 18362.* |Windows 10, version 1903<br>Builds 18362.* |Only supports `hyperv` isolation|
-|Windows Server 2019, version 1903<br>Builds 18362.* |Windows 10, version 1809<br>Builds 17763.* |Not supported|
-|Windows Server 2019, version 1903<br>Builds 18362.* |Windows Server 2019<br>Builds 17763.* |Not supported|
-|Windows Server 2019, version 1903<br>Builds 18362.* |Windows 10, version 1803<br>Builds 17134.* |Not supported|
-|Windows Server 2019, version 1903<br>Builds 18362.* |Windows Server, version 1803<br>Builds 17134.* |Not supported|
-|Windows Server 2019, version 1903<br>Builds 18362.* |Windows 10 Fall Creators Update<br>Builds 16299.* |Not supported|
-|Windows Server 2019, version 1903<br>Builds 18362.* |Windows Server, version 1709<br>Builds 16299.* |Not supported|
-|Windows Server 2019, version 1903<br>Builds 18362.* |Windows Server 2016<br>Builds: 14393.* |Not supported|
+|Windows Server, version 1903<br>Builds 18362.* |Windows Server, version 1903<br>Builds 18362.* |Supports `process` or `hyperv` isolation|
+|Windows Server, version 1903<br>Builds 18362.* |Windows 10, version 1903<br>Builds 18362.* |Only supports `hyperv` isolation|
+|Windows Server, version 1903<br>Builds 18362.* |Windows 10, version 1809<br>Builds 17763.* |Not supported|
+|Windows Server, version 1903<br>Builds 18362.* |Windows Server 2019<br>Builds 17763.* |Not supported|
+|Windows Server, version 1903<br>Builds 18362.* |Windows 10, version 1803<br>Builds 17134.* |Not supported|
+|Windows Server, version 1903<br>Builds 18362.* |Windows Server, version 1803<br>Builds 17134.* |Not supported|
+|Windows Server, version 1903<br>Builds 18362.* |Windows 10 Fall Creators Update<br>Builds 16299.* |Not supported|
+|Windows Server, version 1903<br>Builds 18362.* |Windows Server, version 1709<br>Builds 16299.* |Not supported|
+|Windows Server, version 1903<br>Builds 18362.* |Windows Server 2016<br>Builds: 14393.* |Not supported|
 |Windows Server 2019<br>Builds 17763.* |Windows Server, version 1903<br>Builds 18362.* |Only supports `hyperv` isolation|
 |Windows Server 2019<br>Builds 17763.* |Windows 10, version 1903<br>Builds 18362.* |Only supports `hyperv` isolation|
 |Windows Server 2019<br>Builds 17763.* |Windows 10, version 1809<br>Builds 17763.* |Only supports `hyperv` isolation|
@@ -159,7 +159,7 @@ FROM mcr.microsoft.com/windows/nanoserver:10.0.17763.437
 ...
 ```
 
-The Server Core base images based on Windows Server 2019 and Windows Server 2016 are [Long-Term Servicing Channel (LTSC)](https://docs.microsoft.com/en-us/windows-server/get-started-19/servicing-channels-19#long-term-servicing-channel-ltsc) releases. If you for instance want Windows Server 2019 as your Server Core image's container OS and want to have the latest patches for it, you can specify LTSC releases like so:
+The Server Core base images based on Windows Server 2019 and Windows Server 2016 are [Long-Term Servicing Channel (LTSC)](https://docs.microsoft.com/windows-server/get-started-19/servicing-channels-19#long-term-servicing-channel-ltsc) releases. If you for instance want Windows Server 2019 as your Server Core image's container OS and want to have the latest patches for it, you can specify LTSC releases like so:
 
 ``` dockerfile
 FROM mcr.microsoft.com/windows/servercore:ltsc2019

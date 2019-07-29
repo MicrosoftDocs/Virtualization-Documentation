@@ -9,7 +9,7 @@ A few months ago, I went to [DockerCon](https://2017.dockercon.com/) as a Micros
 
 ## Tip 0: Install Hyper-V
 
-For those new to Hyper-V, make sure you've got Hyper-V running on your machine. Our [official docs](https://docs.microsoft.com/en-us/virtualization/hyper-v-on-windows/quick-start/enable-hyper-v) list the exact steps and requirements. 
+For those new to Hyper-V, make sure you've got Hyper-V running on your machine. Our [official docs](https://docs.microsoft.com/virtualization/hyper-v-on-windows/quick-start/enable-hyper-v) list the exact steps and requirements. 
 
 ## Tip 1: Set Up Networking Correctly
 
@@ -95,7 +95,7 @@ Hyper-V has some useful features that improve the Vagrant experience. For exampl
     
     config.vm.provider "hyperv" do |h|
       h.enable_virtualization_extensions = true
-      h.differencing_disk = true
+      h.linked_clone = true
     end
 
 There are a many more customization options that can be added here (i.e. VMName, CPU/Memory settings, integration services). You can find the details in the [Hyper-V provider documentation](https://www.vagrantup.com/docs/hyperv/configuration.html). 
@@ -148,6 +148,6 @@ Those are my tips and tricks for getting started with Vagrant on Hyper-V. If the
       config.vm.synced_folder ".", "/vagrant", disabled: true
       config.vm.provider "hyperv" do |h|
         h.enable_virtualization_extensions = true
-        h.differencing_disk = true
+        h.linked_clone = true
       end
     end

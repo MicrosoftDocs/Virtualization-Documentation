@@ -97,7 +97,7 @@ Once you've decided on the name for your gMSA, run the following cmdlets in Powe
 # To install the AD module on older versions of Windows 10, see https://aka.ms/rsat
 
 # Create the security group
-New-ADGroup -Name "WebApp01 Authorized Hosts" -SamAccountName "WebApp01Hosts" -Scope DomainLocal
+New-ADGroup -Name "WebApp01 Authorized Hosts" -SamAccountName "WebApp01Hosts" -GroupScope DomainLocal
 
 # Create the gMSA
 New-ADServiceAccount -Name "WebApp01" -DnsHostName "WebApp01.contoso.com" -ServicePrincipalNames "host/WebApp01", "host/WebApp01.contoso.com" -PrincipalsAllowedToRetrieveManagedPassword "WebApp01Hosts"
@@ -464,7 +464,7 @@ If you're using a strict firewall policy on the container or host network, it ma
 | TCP 636 | LDAP SSL |
 
 You may need to allow access to additional ports depending on the type of traffic your container sends to a domain controller.
-See [Active Directory and Active Directory Domain Services port requirements](https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2008-R2-and-2008/dd772723(v=ws.10)#communication-to-domain-controllers) for a full list of ports used by Active Directory.
+See [Active Directory and Active Directory Domain Services port requirements](https://docs.microsoft.com/previous-versions/windows/it-pro/windows-server-2008-R2-and-2008/dd772723(v=ws.10)#communication-to-domain-controllers) for a full list of ports used by Active Directory.
 
 #### Check the container
 

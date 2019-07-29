@@ -11,13 +11,13 @@ In this post, Contoso.com, a Washington DC based fictitious company, replicates 
 
 The technology building blocks are:
 
-  1. **[Hyper-V Replica](http://technet.microsoft.com/en-us/library/jj134172): ** Hyper-V Replica in Windows Server 2012 allows you to replicate multiple VMs from different tenants on single physical host.
+  1. **[Hyper-V Replica](https://technet.microsoft.com/library/jj134172): ** Hyper-V Replica in Windows Server 2012 allows you to replicate multiple VMs from different tenants on single physical host.
 
-  2. **[Hyper-V Network Virtualization](http://technet.microsoft.com/en-us/library/jj134230): ** Hyper-V Network Virtualization allows a multiple  tenant virtual networks with overlapping IP address space to be created on the same hoster physical network yet providing isolation between tenant network. A replicated VM of a tenant can be brought live in a dedicated virtual network  for the tenant in the hosting provider’s physical   network.
+  2. **[Hyper-V Network Virtualization](https://technet.microsoft.com/library/jj134230): ** Hyper-V Network Virtualization allows a multiple  tenant virtual networks with overlapping IP address space to be created on the same hoster physical network yet providing isolation between tenant network. A replicated VM of a tenant can be brought live in a dedicated virtual network  for the tenant in the hosting provider’s physical   network.
 
-  3. **[Site-to-Site VPN support](http://technet.microsoft.com/en-us/library/hh831614\(v=ws.11\).aspx)** : Using the S2S VPN solution which is available in Windows Server 2012 (which includes support for S2S VPN over IPsec), tenants can connect to their respective virtual network in the hoster premises.
+  3. **[Site-to-Site VPN support](https://technet.microsoft.com/library/hh831614\(v=ws.11\).aspx)** : Using the S2S VPN solution which is available in Windows Server 2012 (which includes support for S2S VPN over IPsec), tenants can connect to their respective virtual network in the hoster premises.
 
-  4. **[DirectAccess with multi-pathing](http://technet.microsoft.com/en-us/library/hh831664): ** Multi-Pathing enables employees of  each tenants to connect to the on-premises DA under normal operations. If the replicated VMs are brought up in the hosting provider premises (say, due to a disaster in the tenant’s site), employees smoothly failover to the hoster DA server and through it to the replicated VMs in their respective virtual network with the hoster. ****
+  4. **[DirectAccess with multi-pathing](https://technet.microsoft.com/library/hh831664): ** Multi-Pathing enables employees of  each tenants to connect to the on-premises DA under normal operations. If the replicated VMs are brought up in the hosting provider premises (say, due to a disaster in the tenant’s site), employees smoothly failover to the hoster DA server and through it to the replicated VMs in their respective virtual network with the hoster. ****
 
 
 

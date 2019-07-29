@@ -42,7 +42,7 @@ You can check that it's enabled by running `Get-VMIntegrationService` in PowerSh
     centos-7-1-1.x86_64 VSS                     True    OK                       The protocol version of...
     
 
-_Note_ : not all integration services work on all guest operating systems. For example, this functionality will not work on the "Precise" Ubuntu image that's used in Vagrant's "Getting Started" guide. The full compatibility list various Windows and Linux distrobutions can be found [here](https://docs.microsoft.com/en-us/windows-server/virtualization/hyper-v/supported-linux-and-freebsd-virtual-machines-for-hyper-v-on-windows). Just click on your chosen distrobution and check for "File copy from host to guest." 
+_Note_ : not all integration services work on all guest operating systems. For example, this functionality will not work on the "Precise" Ubuntu image that's used in Vagrant's "Getting Started" guide. The full compatibility list various Windows and Linux distrobutions can be found [here](https://docs.microsoft.com/windows-server/virtualization/hyper-v/supported-linux-and-freebsd-virtual-machines-for-hyper-v-on-windows). Just click on your chosen distrobution and check for "File copy from host to guest." 
 
 ## Using Copy-VMFile
 
@@ -52,11 +52,11 @@ Once you've got a VM set up correctly, copying files to and from arbitrary locat
     Copy-VMFile -Name 'centos-7-1-1.x86_64' -SourcePath '.\Foo.txt' -DestinationPath '/tmp' -FileSource Host
     
 
-Full details can found in the [official documentation](https://technet.microsoft.com/itpro/powershell/windows/hyper-v/copy-vmfile). Unfortunately, you can't yet use it to copy files from your VM to your host. If you're running a Windows Guest, you can use `Copy-Item` with PowerShell Direct to make that work; see [this document](https://docs.microsoft.com/en-us/virtualization/hyper-v-on-windows/user-guide/powershell-direct#copy-files-with-new-pssession-and-copy-item) for more details. 
+Full details can found in the [official documentation](https://technet.microsoft.com/itpro/powershell/windows/hyper-v/copy-vmfile). Unfortunately, you can't yet use it to copy files from your VM to your host. If you're running a Windows Guest, you can use `Copy-Item` with PowerShell Direct to make that work; see [this document](https://docs.microsoft.com/virtualization/hyper-v-on-windows/user-guide/powershell-direct#copy-files-with-new-pssession-and-copy-item) for more details. 
 
 ## How Does It Work?
 
-The way this works is by running Hyper-V integration services within the guest operating system. Full details can be found in the [official documentation](https://docs.microsoft.com/en-us/virtualization/hyper-v-on-windows/reference/integration-services). The short version is that integration services are Windows Services (on Windows) or Daemons (on Linux) that allow the guest operating system to communicate with the host. In this particular instance, the integration service allows us to copy files to the VM over the VM Bus (no network required!). 
+The way this works is by running Hyper-V integration services within the guest operating system. Full details can be found in the [official documentation](https://docs.microsoft.com/virtualization/hyper-v-on-windows/reference/integration-services). The short version is that integration services are Windows Services (on Windows) or Daemons (on Linux) that allow the guest operating system to communicate with the host. In this particular instance, the integration service allows us to copy files to the VM over the VM Bus (no network required!). 
 
 ## Conclusion
 

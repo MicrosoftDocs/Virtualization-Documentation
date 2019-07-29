@@ -33,7 +33,7 @@ That isn’t superhelpful by any means and the error message unfortunately isn�
 
 So how do we work around it – there are two ways (1) Bypass the proxy server (2) Use cert based authentication (another blog for some other day).
 
-The ability to by pass the proxy server is provided only in PowerShell in the _ByPassProxyServer_ parameter of the _Enable-VMReplication_ cmdlet - <http://technet.microsoft.com/en-us/library/jj136049.aspx>. When the flag is enabled, the request (for lack of better word) bypasses the proxy server. Eg:
+The ability to by pass the proxy server is provided only in PowerShell in the _ByPassProxyServer_ parameter of the _Enable-VMReplication_ cmdlet - <https://technet.microsoft.com/library/jj136049.aspx>. When the flag is enabled, the request (for lack of better word) bypasses the proxy server. Eg:
     
     
     Enable-VMReplication -vmname NewVM5 -AuthenticationType Kerberos -ReplicaServerName prb2 -ReplicaServerPort 25000 -BypassProxyServer $true

@@ -20,7 +20,7 @@ I started this experiment by attaching the removable drive to my server and atte
 
 ##### Interesting discovery #1:  Deduplication is not allowed on volumes on removable disks
 
-Whoops! This seems like a fundamental block to our scenario – how do you build deduplicated OOB IR, if the deduplication is not supported on removable media? This limitation is officially documented here: <http://technet.microsoft.com/en-us/library/hh831700.aspx>, and says _“Volumes that are candidates for deduplication must conform to the following requirements:   Must be exposed to the operating system as non-removable drives. Remotely-mapped drives are not supported.”_
+Whoops! This seems like a fundamental block to our scenario – how do you build deduplicated OOB IR, if the deduplication is not supported on removable media? This limitation is officially documented here: <https://technet.microsoft.com/library/hh831700.aspx>, and says _“Volumes that are candidates for deduplication must conform to the following requirements:   Must be exposed to the operating system as non-removable drives. Remotely-mapped drives are not supported.”_
 
 Fortunately my colleague [**Paul Despe**](http://social.technet.microsoft.com/profile/Paul%20Despe) in the Windows Server Data Deduplication team came to the rescue. There is a (slightly) convoluted way to get the data on the removable drive _and_ deduplicated. Here goes:
 
@@ -76,7 +76,7 @@ The good part is that you can trigger the job on-demand and start the deduplicat
     
     PS C:\> Start-DedupJob Y: -Type Optimization
 
-There are other parameters provided by the commandlet that allow you to control the deduplication job. You can explore the various options in the TechNet documentation: <http://technet.microsoft.com/en-us/library/hh848442.aspx>.
+There are other parameters provided by the commandlet that allow you to control the deduplication job. You can explore the various options in the TechNet documentation: <https://technet.microsoft.com/library/hh848442.aspx>.
 
 This is what I got after the deduplication job completed:
 

@@ -51,7 +51,7 @@ With all tests based on installed memory of 96GB, we wanted to ensure there was 
 
 Previously in that reference architecture, Dell achieved 85 VMs, with each Windows 7 VM configured with 1GB RAM, the recommended minimum for Windows 7.
 
-However because we are now using Dynamic Memory we can change the VM start-up to 512MB of RAM and allow dynamic memory to allocate as necessary. This change is [already documented on TechNet](http://technet.microsoft.com/en-us/library/ff817651\(WS.10\).aspx) and will be supported at release. 
+However because we are now using Dynamic Memory we can change the VM start-up to 512MB of RAM and allow dynamic memory to allocate as necessary. This change is [already documented on TechNet](https://technet.microsoft.com/library/ff817651\(WS.10\).aspx) and will be supported at release. 
 
 By allowing Dynamic Memory to take control of memory allocation, this total load on the single server test up to 120VMs with a 40% increase in density. Each VM averaged around 700MB RAM running the LoginVSI workload and these results were consistently confirmed on the Dell blade testing also. When we scaled this out on the complete Dell RA, we took a reference architecture that _previously ran on 12 blades, down to 8_ , with an easily calculable corresponding drop in cost per user/VM.
 

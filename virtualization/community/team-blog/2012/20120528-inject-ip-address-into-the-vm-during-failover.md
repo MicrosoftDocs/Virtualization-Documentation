@@ -78,7 +78,7 @@ where ‘Private Test Network’ is the name of a virtual switch which provides 
 
 A frequent question which we get is around providing the ability to inject **multiple** IP addresses on the same network adapter.
 
-Though this cannot be achieved using UI or PowerShell, the same can be achieved in WMI. This address set is represented by WMI class [Msvm_FailoverNetworkAdapterSettingData](http://msdn.microsoft.com/en-us/library/hh850154\(v=vs.85\).aspx). A WMI snippet is given below which allows you to achieve the above functionality:
+Though this cannot be achieved using UI or PowerShell, the same can be achieved in WMI. This address set is represented by WMI class [Msvm_FailoverNetworkAdapterSettingData](https://msdn.microsoft.com/library/hh850154\(v=vs.85\).aspx). A WMI snippet is given below which allows you to achieve the above functionality:
     
     
     #Get vm object 
@@ -214,4 +214,4 @@ Though this cannot be achieved using UI or PowerShell, the same can be achieved 
 
  
 
-The post demonstrates the ease with which IP addresses can be injected during failover. If you wish to inject IP address into a running VM from the root partition, [SetGuestNetworkAdapterConfiguration](http://msdn.microsoft.com/en-us/library/hh850297\(v=vs.85\).aspx) is a new API which allows you to achieve this.
+The post demonstrates the ease with which IP addresses can be injected during failover. If you wish to inject IP address into a running VM from the root partition, [SetGuestNetworkAdapterConfiguration](https://msdn.microsoft.com/library/hh850297\(v=vs.85\).aspx) is a new API which allows you to achieve this.
