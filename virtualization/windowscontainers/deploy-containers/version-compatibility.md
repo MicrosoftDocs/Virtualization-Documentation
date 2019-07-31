@@ -10,6 +10,9 @@ Windows Server 2016 and Windows 10 Anniversary Update (both version 14393) were 
 
 As we've been improving the Windows container features, we've had to make some changes that can affect compatibility. Older containers will run the same on newer hosts with [Hyper-V isolation](../manage-containers/hyperv-container.md), and will use the same (older) kernel version. However, if you want to run a container based on a newer Windows build, it can only run on the newer host build.
 
+>[!NOTE]
+>Windows Server, version 1709 is no longer supported. For more information, see [Base image servicing lifecycles](base-image-lifecycle.md).
+
 ## Windows Server, version 1903 host OS compatibility
 
 |Container OS|Supports Hyper-V isolation|Supports process isolation|
@@ -17,7 +20,7 @@ As we've been improving the Windows container features, we've had to make some c
 |Windows Server, version 1903|Yes|Yes|
 |Windows Server 2019|Yes|No|
 |Windows Server, version 1803|Yes|No|
-|Windows Server, version 1709|Yes|No|
+|Windows Server, version 1709*|Yes|No|
 |Windows Server 2016|Yes|No|
 
 ## Windows Server 2019 host OS compatibility
@@ -27,7 +30,7 @@ As we've been improving the Windows container features, we've had to make some c
 |Windows Server, version 1903|No|No|
 |Windows Server 2019|Yes|Yes|
 |Windows Server, version 1803|Yes|No|
-|Windows Server, version 1709|Yes|No|
+|Windows Server, version 1709*|Yes|No|
 |Windows Server 2016|Yes|No|
 
 ## Windows Server, version 1803 host OS compatibility
@@ -37,18 +40,28 @@ As we've been improving the Windows container features, we've had to make some c
 |Windows Server, version 1903|No|No|
 |Windows Server 2019|No|No|
 |Windows Server, version 1803|Yes|Yes|
-|Windows Server, version 1709|Yes|No|
+|Windows Server, version 1709*|Yes|No|
 |Windows Server 2016|Yes|No|
 
-## Windows Server, version 1709 host OS compatibility
+## Windows Server, version 1709 host OS compatibility*
 
 |Container OS|Supports Hyper-V isolation|Supports process isolation|
 |---|:---:|:---:|
 |Windows Server, version 1903|No|No|
 |Windows Server 2019|No|No|
 |Windows Server, version 1803|No|No|
-|Windows Server, version 1709|Yes|Yes|
+|Windows Server, version 1709*|Yes|Yes|
 |Windows Server 2016|Yes|No|
+
+## Windows Server 2016 host OS compatibility
+
+|Container OS|Supports Hyper-V isolation|Supports process isolation|
+|---|:---:|:---:|
+|Windows Server 2019, version 1903|No|No|
+|Windows Server 2019|No|No|
+|Windows Server, version 1803|No|No|
+|Windows Server, version 1709*|No|No|
+|Windows Server 2016|Yes|Yes|
 
 ## Windows 10, version 1903 host OS compatibility
 
@@ -57,7 +70,7 @@ As we've been improving the Windows container features, we've had to make some c
 |Windows Server, version 1903|No|No|
 |Windows Server 2019|No|No|
 |Windows Server, version 1803|No|No|
-|Windows Server, version 1709|No|No|
+|Windows Server, version 1709*|No|No|
 |Windows Server 2016|Yes|Yes|
 
 ## Windows 10, version 1809 host OS compatibility
@@ -67,7 +80,7 @@ As we've been improving the Windows container features, we've had to make some c
 |Windows Server, version 1903|No|No|
 |Windows Server 2019|Yes|No|
 |Windows Server, version 1803|Yes|No|
-|Windows Server, version 1709|Yes|No|
+|Windows Server, version 1709*|Yes|No|
 |Windows Server 2016|Yes|No|
 
 ## Windows 10, version 1803 host OS compatibility
@@ -77,7 +90,7 @@ As we've been improving the Windows container features, we've had to make some c
 |Windows Serve, version 1903|No|No|
 |Windows Server 2019|No|No|
 |Windows Server, version 1803|Yes|No||
-|Windows Server, version 1709|Yes|No|
+|Windows Server, version 1709*|Yes|No|
 |Windows Server 2016|Yes|No|
 
 ## Windows 10 Fall Creators Update host OS compatibility
@@ -87,7 +100,7 @@ As we've been improving the Windows container features, we've had to make some c
 |Windows Server, version 1903|No|No|
 |Windows Server 2019|No|No|
 |Windows Server, version 1803|No|No|
-|Windows Server, version 1709|Yes|No|
+|Windows Server, version 1709*|Yes|No|
 |Windows Server 2016|Yes|No|
 
 ## Matching container host version with container image versions
