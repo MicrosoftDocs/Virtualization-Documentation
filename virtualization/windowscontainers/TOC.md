@@ -5,16 +5,17 @@
 ## [About building container ecosystems](about/container-ecosystem.md)
 ## [FAQ](about/faq.md)
 
-# Quickstarts
-## Windows 10 Quickstart
-### [Running your first WCOW container](quick-start/quick-start-windows-10.md)
-### [Running your first LCOW container](quick-start/quick-start-windows-10-linux.md)
+# Get started
+## [System requirements](deploy-containers/system-requirements.md)
+## Get started with Windows 10
+### [Run your first WCOW container](quick-start/quick-start-windows-10.md)
+### [Run your first LCOW container](quick-start/quick-start-windows-10-linux.md)
 ### [Build a sample app](quick-start/building-sample-app.md)
-## Windows Server Quickstart
-### [Running your first container](quick-start/quick-start-windows-server.md)
+## Get started with Windows Server
+### [Run your first Windows Server container](quick-start/quick-start-windows-server.md)
 ### [Automating container builds](quick-start/quick-start-images.md)
-## Windows Insider Quickstart
-### [Using the Insider images](quick-start/Using-Insider-Container-Images.md)
+## Get started with Windows Insider
+### [Use the Insider images](quick-start/Using-Insider-Container-Images.md)
 ### [Build and run an application](quick-start/Nano-RS3-.NET-Core-and-PS.md)
 ### [Known issues](quick-start/Insider-Known-Issues.md)
 
@@ -26,8 +27,8 @@
 ## [Remote management of a Windows Docker host](management/manage_remotehost.md)
 ## [Resource controls](manage-containers/resource-controls.md)
 
-# Container Networking on Windows
-## [Container Networking Overview](container-networking/architecture.md)
+# Container networking on Windows
+## [Container networking overview](container-networking/architecture.md)
 ## [Network topologies and drivers](container-networking/network-drivers-topologies.md)
 ## [Network isolation and security](container-networking/network-isolation-security.md)
 ## [Advanced networking options](container-networking/advanced.md)
@@ -55,7 +56,6 @@
 ## [Troubleshooting](troubleshooting.md)
 
 # Reference
-## [System requirements](deploy-containers/system-requirements.md)
 ## [Version compatibility](deploy-containers/version-compatibility.md)
 ## [Base image servicing lifecycles](deploy-containers/base-image-lifecycle.md)
 ## [Hyper-V isolation](manage-containers/hyperv-container.md)
@@ -66,7 +66,5 @@
 ## [Group Managed Service Accounts](manage-containers/manage-serviceaccounts.md)
 ## [Anti-virus optimization](https://docs.microsoft.com/windows-hardware/drivers/ifs/anti-virus-optimization-for-windows-containers)
 ## [Linux containers on Windows](deploy-containers/linux-containers.md)
-
-# [Container samples](samples.md)
-
-# [Container OS image EULA](Images_EULA.md)
+## [Container samples](samples.md)
+## [Container OS image EULA](Images_EULA.md)
