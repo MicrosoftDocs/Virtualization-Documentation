@@ -22,7 +22,6 @@
 ### [Known issues](quick-start/Insider-Known-Issues.md)
 ## Get started with Docker on Windows
 ### [Docker Engine on Windows](manage-docker/configure-docker-daemon.md)
-### [Dockerfiles on Windows](manage-docker/manage-windows-dockerfile.md)
 ### [Optimize Dockerfiles](manage-docker/optimize-windows-dockerfile.md)
 ### [Container storage](manage-containers/container-storage.md)
 ### [Remote management of a Windows Docker host](management/manage_remotehost.md)
@@ -55,10 +54,14 @@
 ## [Container forum](https://social.msdn.microsoft.com/Forums/home?forum=windowscontainers)
 ## [Community videos and blogs](communitylinks.md)
 
+#Concepts
+## [Hyper-V isolation](manage-containers/hyperv-container.md)
+### [Dockerfiles on Windows](manage-docker/manage-windows-dockerfile.md)
+
 # Reference
 ## [Container samples](samples.md)
 ## [Container OS image EULA](Images_EULA.md)
-## [Hyper-V isolation](manage-containers/hyperv-container.md)
+
 ## [Group Managed Service Accounts](manage-containers/manage-serviceaccounts.md)
 ## [Base image servicing lifecycles](deploy-containers/base-image-lifecycle.md)
 ## [Printer services](deploy-containers/print-spooler.md)
