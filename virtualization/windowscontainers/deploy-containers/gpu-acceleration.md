@@ -12,7 +12,7 @@ For many containerized workloads, CPU compute resources provide sufficient perfo
 GPUs are already a common tool for many popular workloads, from traditional rendering and simulation to machine learning training and inference. Windows containers support GPU acceleration for DirectX and all the frameworks built on top of it.
 
 > [!TIP]
-> This feature is now available in Docker Desktop version 2.1 and Docker Engine - Enterprise version 19.03 or newer!
+> This feature is now available in Docker Desktop version 2.1 and Docker Engine - Enterprise version 19.03 or later!
 
 ## Requirements
 
