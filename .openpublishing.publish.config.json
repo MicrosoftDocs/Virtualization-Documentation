@@ -1,7 +1,5 @@
 {
   "build_entry_point": "",
-  "need_generate_pdf": false,
-  "need_generate_intellisense": false,
   "docsets_to_publish": [
     {
       "docset_name": "Microsoft_Windows-Container-Documentation-Private_api",
@@ -79,8 +77,9 @@
     }
   ],
   "notification_subscribers": [
-    "scooley@microsoft.com"
+    "benarm@microsoft.com"
   ],
+  "sync_notification_subscribers": [],
   "branches_to_filter": [
     "live-sync-work"
   ],
@@ -88,16 +87,11 @@
   "git_repository_branch_open_to_public_contributors": "live",
   "skip_source_output_uploading": false,
   "need_preview_pull_request": true,
+  "contribution_branch_mappings": {},
   "dependent_repositories": [
     {
       "path_to_root": "_themes",
       "url": "https://github.com/Microsoft/templates.docs.msft",
-      "branch": "master",
-      "branch_mapping": {}
-    },
-    {
-      "path_to_root": "_themes.pdf",
-      "url": "https://github.com/Microsoft/templates.docs.msft.pdf",
       "branch": "master",
       "branch_mapping": {}
     }
@@ -108,10 +102,12 @@
       "PDF"
     ]
   },
-  "need_generate_pdf_url_template": true,
+  "need_generate_pdf_url_template": false,
   "targets": {
     "Pdf": {
-      "template_folder": "_themes.pdf"	
+      "template_folder": "_themes.pdf"
     }
-  }
+  },
+  "need_generate_pdf": false,
+  "need_generate_intellisense": false
 }
