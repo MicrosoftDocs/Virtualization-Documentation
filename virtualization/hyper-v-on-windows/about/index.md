@@ -11,8 +11,6 @@ ms.assetid: eb2b827c-4a6c-4327-9354-50d14fee7ed8
 
 # Introduction to Hyper-V on Windows 10
 
-> Hyper-V replaces Microsoft Virtual PC.
-
 Whether you are a software developer, an IT professional, or a technology enthusiast, many of you need to run multiple operating systems. Hyper-V lets you run multiple operating systems as virtual machines on Windows.
 
 ![Virtual machine running Windows](media/HyperVNesting.png)
