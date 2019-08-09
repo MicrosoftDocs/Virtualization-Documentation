@@ -1,37 +1,113 @@
 {
-    "build_entry_point": "",
-    "git_repository_url_open_to_public_contributors": "https://github.com/Microsoft/Virtualization-Documentation",
-    "docsets_to_publish": [
-        {
-            "docset_name": "Microsoft_Windows-Container-Documentation-Private_community",
-            "build_output_subfolder": "virtualization/community",
-            "locale": "en-us",
-            "version": 0,
-            "open_to_public_contributors": "true",
-            "type_mapping": {
-                "Conceptual": "Content"
-            }
-        },
-        {
-            "docset_name": "Microsoft_Windows-Container-Documentation-Private_hyperv_on_windows",
-            "build_output_subfolder": "virtualization/hyperv_on_windows",
-            "locale": "en-us",
-            "version": 0,
-            "open_to_public_contributors": "true",
-            "type_mapping": {
-                "Conceptual": "Content"
-            }
-        },
-        {
-            "docset_name": "Microsoft_Windows-Container-Documentation-Private_windowscontainers",
-            "build_output_subfolder": "virtualization/windowscontainers",
-            "locale": "en-us",
-            "version": 0,
-            "open_to_public_contributors": "true",
-            "type_mapping": {
-                "Conceptual": "Content"
-            }
-        }
-    ],
-    "notification_subscribers": ["nepeters@microsoft.com","scooley@microsoft.com"]
+  "build_entry_point": "",
+  "docsets_to_publish": [
+    {
+      "docset_name": "Microsoft_Windows-Container-Documentation-Private_api",
+      "build_source_folder": "virtualization/api",
+      "build_output_subfolder": "virtualization-api",
+      "locale": "en-us",
+      "monikers": [],
+      "open_to_public_contributors": true,
+      "type_mapping": {
+        "Conceptual": "Content",
+        "ManagedReference": "Content",
+        "RestApi": "Content"
+      },
+      "build_entry_point": "docs",
+      "template_folder": "_themes",
+      "version": 0
+    },
+    {
+      "docset_name": "Microsoft_Windows-Container-Documentation-Private_community",
+      "build_source_folder": "virtualization/community",
+      "build_output_subfolder": "virtualization-community",
+      "locale": "en-us",
+      "monikers": [],
+      "open_to_public_contributors": true,
+      "type_mapping": {
+        "Conceptual": "Content"
+      },
+      "build_entry_point": "docs",
+      "template_folder": "_themes",
+      "version": 0
+    },
+    {
+      "docset_name": "Microsoft_Windows-Container-Documentation-Private_hyperv_on_windows",
+      "build_source_folder": "virtualization/hyper-v-on-windows",
+      "build_output_subfolder": "virtualization-hyperv_on_windows",
+      "locale": "en-us",
+      "monikers": [],
+      "open_to_public_contributors": true,
+      "type_mapping": {
+        "Conceptual": "Content"
+      },
+      "build_entry_point": "docs",
+      "template_folder": "_themes",
+      "version": 0
+    },
+    {
+      "docset_name": "Microsoft_Windows-Container-Documentation-Private_windowscontainers",
+      "build_source_folder": "virtualization/windowscontainers",
+      "build_output_subfolder": "virtualization-windowscontainers",
+      "locale": "en-us",
+      "monikers": [],
+      "open_to_public_contributors": true,
+      "type_mapping": {
+        "Conceptual": "Content"
+      },
+      "build_entry_point": "docs",
+      "template_folder": "_themes",
+      "version": 0
+    },
+    {
+      "docset_name": "virtualization",
+      "build_source_folder": "virtualization/landing-page",
+      "build_output_subfolder": "virtualization",
+      "locale": "en-us",
+      "monikers": [],
+      "open_to_public_contributors": true,
+      "type_mapping": {
+        "Conceptual": "Content",
+        "ManagedReference": "Content",
+        "RestApi": "Content"
+      },
+      "build_entry_point": "docs",
+      "template_folder": "_themes",
+      "version": 0
+    }
+  ],
+  "notification_subscribers": [
+    "benarm@microsoft.com"
+  ],
+  "sync_notification_subscribers": [],
+  "branches_to_filter": [
+    "live-sync-work"
+  ],
+  "git_repository_url_open_to_public_contributors": "https://github.com/Microsoft/Virtualization-Documentation",
+  "git_repository_branch_open_to_public_contributors": "live",
+  "skip_source_output_uploading": false,
+  "need_preview_pull_request": true,
+  "contribution_branch_mappings": {},
+  "dependent_repositories": [
+    {
+      "path_to_root": "_themes",
+      "url": "https://github.com/Microsoft/templates.docs.msft",
+      "branch": "master",
+      "branch_mapping": {}
+    }
+  ],
+  "branch_target_mapping": {
+    "live": [
+      "Publish",
+      "PDF"
+    ]
+  },
+  "need_generate_pdf_url_template": false,
+  "targets": {
+    "Pdf": {
+      "template_folder": "_themes.pdf"
+    }
+  },
+  "need_generate_pdf": false,
+  "need_generate_intellisense": false
 }

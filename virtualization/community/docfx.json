@@ -1,21 +1,34 @@
 ﻿{
   "build": {
-    "content":
-      [
-        {
-          "files": ["**/**.md"],
-          "exclude": ["**/obj/**"]
-        }
-      ],
+    "content": [
+      {
+        "files": ["**/**.md", "**/**.yml"],
+        "exclude": [
+          "**/obj/**",
+          "**/includes/**",
+          "README.md",
+          "LICENSE",
+          "LICENSE-CODE",
+          "ThirdPartyNotices"
+        ]
+      }
+    ],
     "resource": [
         {
           "files": ["**/media/**"],
           "exclude": ["**/obj/**"]
         }
     ],
-    "externalReference": [
-    ],
+    "externalReference": [],
     "template": "op.html",
-    "dest": "virtualization/community"
+    "dest": "virtualization/community",
+    "globalMetadata": {
+      "breadcrumb_path": "/virtualization/toc.json",
+      "extendBreadcrumb": true, 
+      "feedback_system": "GitHub", 
+      "feedback_github_repo": "MicrosoftDocs/Virtualization-Documentation", 
+      "feedback_product_url": "https://github.com/MicrosoftDocs/Virtualization-Documentation/issues"
+    },  
+    "extendBreadcrumb": true
   }
 }

@@ -1,0 +1,7 @@
+{
+  "itemDisplayName": "Windows Server Container Host",
+  "description": "This template will create a Windows Server 2016 with Windows Server Containers.",
+  "summary": "Provision a Docker ready Windows Server Container Host",
+  "githubUsername": "neilpeterson",
+  "dateUpdated": "2017-02-28"
+}

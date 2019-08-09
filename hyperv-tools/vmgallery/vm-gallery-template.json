@@ -1,0 +1,32 @@
+{
+    "$schema": "https://raw.githubusercontent.com/MicrosoftDocs/Virtualization-Documentation/live/hyperv-tools/vmgallery/vm-gallery-schema.json",
+
+    "images": [
+        {
+            "name":  "",
+            "version":  "",
+            "locale":  "",
+            "publisher":  "",
+            "lastUpdated":  "",
+            "description":  [
+                ""
+            ],
+            "disk":  {
+                "uri":  "",
+                "hash":  ""
+            },
+            "logo":  {
+                "uri":  "",
+                "hash":  ""
+            },
+            "symbol":  {
+                "uri":  "",
+                "hash":  ""
+            },
+            "thumbnail":  {
+                "uri":  "",
+                "hash":  ""
+            }
+        }
+    ]
+}

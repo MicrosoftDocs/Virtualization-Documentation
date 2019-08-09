@@ -1,0 +1,22 @@
+﻿version: '2.1'
+
+services:
+ web:
+  build: ./web
+  ports:
+   - "80:80"
+  depends_on:
+   - db
+  tty:
+    true
+ db:
+  build: ./db
+  expose:
+   - "1433"
+  tty:
+    true
+
+networks:
+ default:
+  external:
+   name: "nat"

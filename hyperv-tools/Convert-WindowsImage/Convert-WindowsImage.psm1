@@ -1,5 +1,5 @@
 <#
-    This is PS Module — the new long-term home for Convert-WindowsImage and sister functions.
+    This is PS Module â€” the new long-term home for Convert-WindowsImage and sister functions.
 
     Copyright (c) Microsoft Corporation.  All rights reserved.
 
@@ -1584,7 +1584,7 @@ You can use the fields below to configure the VHD or VHDX that you want to creat
                     $VhdPath      = Join-Path  -Path $VhdPath -ChildPath $vhdNameTemp
                 }
 
-                Write-Debug -Message "  Temporary $VhdFormat path is: `“$VhdPath`”"
+                Write-Debug -Message "  Temporary $VhdFormat path is: `"$VhdPath`""
 
            #endregion Prepare variables
 
@@ -1600,7 +1600,7 @@ You can use the fields below to configure the VHD or VHDX that you want to creat
                     {
                         $IsoFileName = Split-Path -Path $SourcePath -Leaf
 
-                        Write-Verbose -Message "Copying ISO `“$IsoFileName`” to temp folder..."
+                        Write-Verbose -Message "Copying ISO `"$IsoFileName`" to temp folder..."
 
                     #    Robocopy.exe $(Split-Path $SourcePath -Parent) $TempDirectory $(Split-Path $SourcePath -Leaf) | Out-Null
                         $Item = Copy-Item -Path $SourcePath -Destination $TempDirectory -PassThru
@@ -1613,7 +1613,7 @@ You can use the fields below to configure the VHD or VHDX that you want to creat
                     $IsoPath     = ( Resolve-Path $SourcePath ).Path
                     $IsoFileName = Split-Path $IsoPath -Leaf
 
-                    Write-Verbose -Message "Opening ISO `“$IsoFileName`”..."
+                    Write-Verbose -Message "Opening ISO `"$IsoFileName`"..."
                     $openIso     = Mount-DiskImage -ImagePath $IsoPath -StorageType "ISO" -PassThru
 
                   # Refresh the DiskImage object so we can get the real information about it.  I assume this is a bug.
@@ -1623,7 +1623,7 @@ You can use the fields below to configure the VHD or VHDX that you want to creat
                     $SourcePath  = "$($driveLetter):\sources\install.wim"
 
                   # Check to see if there's a WIM file we can muck about with.
-                    Write-Verbose -Message "Looking for `“$SourcePath`”..."
+                    Write-Verbose -Message "Looking for `"$SourcePath`"..."
 
                     If (-Not ( Test-Path -Path $SourcePath ))
                     {
@@ -1717,7 +1717,7 @@ You can use the fields below to configure the VHD or VHDX that you want to creat
                     $OpenImageFlags   = $openImage.ImageFlags
                     $OpenImageVersion = $openImage.ImageVersion
 
-                    Write-Verbose -Message "Image $OpenImageIndex selected: `“$OpenImageFlags`”..."
+                    Write-Verbose -Message "Image $OpenImageIndex selected: `"$OpenImageFlags`"..."
 
                   # Check to make sure that the image we're applying is Windows 7 or greater.
                     If ($OpenImageVersion -lt $lowestSupportedVersion)
@@ -1876,10 +1876,10 @@ You can use the fields below to configure the VHD or VHDX that you want to creat
                             }
 
                           # Create the Windows partition
-                            Write-Verbose -Message "Creating Boot (`“Windows`”) partition..."
+                            Write-Verbose -Message "Creating Boot (`"Windows`") partition..."
                             $windowsPartition = New-Partition -DiskNumber $disk.Number -UseMaximumSize -GptType '{ebd0a0a2-b9e5-4433-87c0-68b6b72699c7}'
 
-                            Write-Verbose -Message "  Formatting Boot (`“Windows`”) volume..."
+                            Write-Verbose -Message "  Formatting Boot (`"Windows`") volume..."
                             $windowsVolume = Format-Volume -Partition $windowsPartition -FileSystem NTFS -Force -Confirm:$false
                         }
 
@@ -1905,12 +1905,13 @@ You can use the fields below to configure the VHD or VHDX that you want to creat
                     }
 
                     If (( $DiskLayout -eq "UEFI" -and $BcdInVhd -eq "VirtualMachine" ) -or
-                          $DiskLayout -eq "WindowsToGo")
+                          $DiskLayout -eq "WindowsToGo") -or
+                          $DiskLayout -eq "BIOS")
                     {
                       # Retreive access path for System partition.
                         $systemPartition = Get-Partition -UniqueId $systemPartition.UniqueId
                         $systemDrive = $systemPartition.AccessPaths[0].trimend("\").replace("\?", "??")
-                        Write-Verbose -Message "System volume path: `“$systemDrive`”"
+                        Write-Verbose -Message "System volume path: `"$systemDrive`""
                     }
 
                   # Assign drive letter to Boot partition.  This is required for bcdboot
@@ -1944,12 +1945,12 @@ You can use the fields below to configure the VHD or VHDX that you want to creat
 
                     $windowsDrive = ( Get-Partition -Volume $windowsVolume ).AccessPaths[0].substring(0,2)
 
-                  # This is to workaround “No such drive exists” error in PowerShell
+                  # This is to workaround "No such drive exists" error in PowerShell
                     $Drive = Get-psDrive
 
                     $windowsDrive = ( Resolve-Path -Path $windowsDrive ).Path
 
-                    Write-Verbose -Message "Boot volume path: `“$windowsDrive`”. (Took $attempts attempt(s) to assign.)"
+                    Write-Verbose -Message "Boot volume path: `"$windowsDrive`". (Took $attempts attempt(s) to assign.)"
 
                #endregion Create and partition VHD
 
@@ -2310,7 +2311,7 @@ You can use the fields below to configure the VHD or VHDX that you want to creat
                       # ISSUE - do we want VL here?
 
                         $vhdFinalName = "$($buildLabEx)_$($skuFamily)_$($editionId)_$($openImage.ImageDefaultLanguage).$($VhdFormat.ToLower())"
-                        Write-Debug -Message "    $VhdFormat final name is: `“$vhdFinalName`”"
+                        Write-Debug -Message "    $VhdFormat final name is: `"$vhdFinalName`""
                     }
 
                     If ($hyperVEnabled)
@@ -2327,18 +2328,18 @@ You can use the fields below to configure the VHD or VHDX that you want to creat
                     $vhdParentPath = Split-Path -Path $VhdPath -Parent
                     $vhdFinalPath  = Join-Path  -Path $vhdParentPath -ChildPath $vhdFinalName
 
-                    Write-Debug -Message "    $VhdFormat final path is: `“$vhdFinalPath`”"
+                    Write-Debug -Message "    $VhdFormat final path is: `"$vhdFinalPath`""
 
                     If (Test-Path -Path $vhdFinalPath)
                     {
                         $VhdNameOld = Split-Path -Path $vhdFinalPath -Leaf
 
-                        Write-Verbose -Message "Deleting pre-existing $($VhdFormat): `“$VhdNameOld`”..."
+                        Write-Verbose -Message "Deleting pre-existing $($VhdFormat): `"$VhdNameOld`"..."
 
                         Remove-Item -Path $vhdFinalPath -Force
                     }
 
-                    Write-Debug -Message "    Renaming $VhdFormat at `“$VhdPath`”."
+                    Write-Debug -Message "    Renaming $VhdFormat at `"$VhdPath`"."
 
                     $VhdPathFull = ( Resolve-Path -Path $VhdPath ).Path
 
@@ -2355,7 +2356,7 @@ You can use the fields below to configure the VHD or VHDX that you want to creat
         {
             Write-Verbose -Message ( [system.string]::Empty )
             Write-Error   -Message $PSItem
-            Write-Verbose -Message "Log folder is `“$logFolder`”"
+            Write-Verbose -Message "Log folder is `"$logFolder`""
         }
         Finally
         {
@@ -4242,7 +4243,7 @@ VirtualHardDisk
     Add-Type -TypeDefinition $code -ReferencedAssemblies "System.Xml","System.Linq","System.Xml.Linq" -ErrorAction SilentlyContinue
 }
 
-# This is required for renewed “Mount-RegistryHive” and “Dismount-RegistryHive”
+# This is required for renewed "Mount-RegistryHive" and "Dismount-RegistryHive"
 # functions using Windows API. Code borrowed from
 # http://www.leeholmes.com/blog/2010/09/24/adjusting-token-privileges-in-powershell/
 
@@ -4551,7 +4552,7 @@ Start-Executable
         $SuccessfulErrorCode = 0
     )
 
-    Write-Debug -Message "    Running `“$Executable`” with parameters: `“$Arguments`”"
+    Write-Debug -Message "    Running `"$Executable`" with parameters: `"$Arguments`""
 
     $StartProcessParam = @{
 
@@ -4647,10 +4648,10 @@ Import-ModuleEx
 
       # When we have $VerbosePreference defined as "Continue" and import
       # a module (either implicitly, by firt use, or explictily, calling
-      # “Import-Module”), there's a lot of Verbose output listing every cmdlet
+      # "Import-Module"), there's a lot of Verbose output listing every cmdlet
       # and every function. This output provides no value, thus we need
-      # to suppress it. Unfortunately, even if we pass “-Verobse:$False”
-      # to “Import-Module”, it only helps to swallow the list of cmdlets.
+      # to suppress it. Unfortunately, even if we pass "-Verobse:$False"
+      # to "Import-Module", it only helps to swallow the list of cmdlets.
       # The list of functions is still thrown to output. (This is probably
       # a bug). Thus, we need to temporary change $VerbosePreference.
 

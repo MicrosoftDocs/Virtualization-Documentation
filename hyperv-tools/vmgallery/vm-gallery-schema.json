@@ -1,0 +1,154 @@
+{
+    "definitions": {
+        "galleryResource": {
+            "properties": {
+                "uri": {
+                    "type": "string"
+                },
+                "hash": {
+                    "type": "string"
+                },
+                "size": {
+                    "type": ["integer","string"],
+                    "pattern": "^\\d+$"
+                },
+                "archiveRelativePath": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "uri",
+                "hash"
+            ],
+            "additionalProperties": false
+        },
+        "namedValue": {
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "name",
+                "value"
+            ],
+            "additionalProperties": false
+        }
+    },
+    "type": "object",
+    "properties": {
+        "images": {
+            "type": "array",
+            "items": {
+                "description": "A single Gallery Image JSON object",
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "version": {
+                        "type": "string"
+                    },
+                    "maxHostVersion": {
+                        "type": "string",
+                        "pattern": "^\\d+\\.\\d+\\.\\d+\\.\\d+$"
+                    },
+                    "minHostVersion": {
+                        "type": "string",
+                        "pattern": "^\\d+\\.\\d+\\.\\d+\\.\\d+$"
+                    },
+                    "locale": {
+                        "type": "string"
+                    },
+                    "publisher": {
+                        "type": "string"
+                    },
+                    "lastUpdated": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "config": {
+                        "type": "object",
+                        "properties": {
+                            "boot": {
+                                "type": "object",
+                                "properties": {
+                                    "bootSourceType": {
+                                        "type": "string"
+                                    },
+                                    "otherLocation": {
+                                        "type": "string"
+                                    },
+                                    "firmwareDevicePath": {
+                                        "type": "string"
+                                    },
+                                    "bootSourceDescription": {
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "bootSourceType",
+                                    "bootSourceDescription"
+                                ],
+                                "additionalProperties": false
+                            },
+                            "enhancedSessionTransportType": {
+                                "type": "string",
+                                "enum": ["HvSocket", "VMBus"]
+                            },
+                            "secureBoot": {
+                                "type": ["boolean","string"],
+                                "pattern": "^(true|false)$"
+                            }
+                        },
+                        "additionalProperties": false
+                    },
+                    "requirements": {
+                        "type": "object",
+                        "properties": {
+                            "diskSpace": {
+                                "type": ["integer","string"],
+                                "pattern": "^\\d+$"
+                            }
+                        }
+                    },
+                    "disk": {
+                        "$ref": "#/definitions/galleryResource"
+                    },
+                    "logo": {
+                        "$ref": "#/definitions/galleryResource"
+                    },
+                    "symbol": {
+                        "$ref": "#/definitions/galleryResource"
+                    },
+                    "thumbnail": {
+                        "$ref": "#/definitions/galleryResource"
+                    },
+                    "details": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/definitions/namedValue"
+                        }
+                    }
+                },
+                "required": [
+                    "name",
+                    "version",
+                    "publisher",
+                    "description",
+                    "disk",
+                    "logo"
+                ],
+                "additionalProperties": false
+            }
+        }
+    }
+}
