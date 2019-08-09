@@ -2,8 +2,6 @@
 
 Whether you are a software developer, an ITPro, or a tech enthusiast, many of you need to run multiple operating systems, occasionally on many different machines. Not all of us have access to a full suite of labs to house all these machines, and so virtualization can be a space and time saver.
 
-> Microsoft Virtual PC will be reaching end of life in June 2017. Hyper-V on Windows 10 will be the supported replacement. 
-
 ## Uses for virtualization
 Virtualization enables anyone to easily maintain multiple test environments consisting of many operating systems, software configurations, and hardware configurations.  Hyper-V provides virtualization on Windows as well as a simple mechanism to quickly switch between these environments without incurring additional hardware costs.    
 
