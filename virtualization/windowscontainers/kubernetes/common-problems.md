@@ -64,6 +64,12 @@ Users on Windows Server, version 1903 can go to the following registry location 
 \\Computer\HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\vmsmp\parameters\NicList
 ```
 
+### Containers on my Flannel host-gw deployment on Azure cannot reach the internet ###
+When deploying Flannel in host-gw mode on Azure, packets have to go through the Azure physical host vSwitch. Users should program [user-defined routes](https://docs.microsoft.com/en-us/azure/virtual-network/virtual-networks-udr-overview#user-defined) of type "virtual appliance" for each subnet assigned to a node. This can be done through the Azure portal (see an example [here](https://docs.microsoft.com/en-us/azure/virtual-network/tutorial-create-route-table-portal)) or via `az` Azure CLI. Here is one example UDR with name "MyRoute" using az commands for a node with IP 10.0.0.4 and respective pod subnet 10.244.0.0/24:
+```
+az network route-table create --resource-group <my_resource_group> --name BridgeRoute 
+az network route-table route create  --resource-group <my_resource_group> --address-prefix 10.244.0.0/24 --route-table-name BridgeRoute  --name MyRoute --next-hop-type VirtualAppliance --next-hop-ip-address 10.0.0.4 
+```
 
 ### My Windows pods cannot ping external resources ###
 Windows pods do not have outbound rules programmed for the ICMP protocol today. However, TCP/UDP is supported. When trying to demonstrate connectivity to resources outside of the cluster, please substitute `ping <IP>` with corresponding `curl <IP>` commands.
