@@ -9,9 +9,6 @@ author: cwilhit
 
 By default, Windows containers are given minimal access to host devices--just like Linux containers. There are certain workloads where it is beneficial--or even imperative--to access and communicate with host hardware devices. This guide covers which devices are supported in containers and how to get started.
 
-> [!IMPORTANT]
-> This feature requires a version of Docker that supports the `--device` command-line option for Windows containers. Formal Docker support is scheduled for the upcoming Docker EE Engine 19.03 release. Until then, the [upstream source](https://master.dockerproject.org/) for Docker contains the necessary bits.
-
 ## Requirements
 
 For this feature to work, your environment must meet the following requirements:
@@ -70,7 +67,7 @@ The following devices (and their device interface class GUIDs) are supported tod
 </tr>
 <tr valign="top">
 <td><center>DirectX GPU Acceleration</center></td>
-<td><center>See <a href="https://docs.microsoft.com/en-us/virtualization/windowscontainers/deploy-containers/gpu-acceleration">GPU acceleration</a> docs</center></td>
+<td><center>See <a href="https://docs.microsoft.com/virtualization/windowscontainers/deploy-containers/gpu-acceleration">GPU acceleration</a> docs</center></td>
 </tr>
 </tbody>
 </table>

@@ -30,30 +30,17 @@ To run this sample, you’ll need a version of Docker that supports the `--devic
 
 #### Windows 10 Pro and Enterprise
 
-This support is currently only available in the `Docker Desktop for Windows Edge` release. You can download the edge release of Docker [here].(https://docs.docker.com/docker-for-windows/edge-release-notes/).
+Install the latest release of Docker by following Docker's installation instructions on their [docs](https://docs.docker.com/install/).
 
 #### Windows Server
 
-Formal Docker support is scheduled for the upcoming Docker EE Engine 19.03 release. Until then, the upstream source for Docker contains the necessary bits, so you can download the latest build to get access to the feature.
-
-From PowerShell, execute the following command:
+Use the DockerMsftProvider to install Docker EE. From PowerShell, execute the following command:
 
 ```PowerShell
-curl.exe -o dockerd.exe https://master.dockerproject.org/windows/x86_64/dockerd.exe
-curl.exe -o docker.exe https://master.dockerproject.org/windows/x86_64/docker.exe
+Install-Module -Name DockerMsftProvider -Repository PSGallery -Force
+Install-Package -Name docker -ProviderName DockerMsftProvider
+Restart-Computer -Force
 ```
-
-This retrieves the latest built versions of the `docker` and `dockerd` executables, which include the device capability needed for this demo.
-
-If you already have Docker installed and running on your system, close it. If you're running Docker Desktop, you can do this by opening the application tray, right-clicking on the Docker icon, and clicking `Quit Docker Desktop`. If you're running Docker EE, stop the service by executing `Stop-Service docker`.
-
-To start the new Docker daemon, open an **elevated** PowerShell prompt and launch the daemon: 
-
-```PowerShell
-.\dockerd.exe
-```
-
-The window will display some output as the Docker daemon spins up. Leave this window open.
 
 ## Run the demo
 
@@ -65,20 +52,10 @@ docker build . -t winml-runner
 
 This builds the demo container image. Docker will acquire the WinMLRunner executable from the [Windows ML samples repository](https://github.com/Microsoft/Windows-Machine-Learning), along with a pre-trained machine learning model from the [ONNX Model Zoo](https://github.com/onnx/models).
 
-Once the container image is built, you can run the container. 
-
-#### Windows 10 Pro and Enterprise
+Once the container image is built, you can run the container. Open a terminal and execute the following:
 
 ```PowerShell
 docker run --isolation process --device class/5B45201D-F2F2-4F3B-85BB-30FF1F953599 winml-runner
-```
-
-#### Windows Server
-
-Open an elevated PowerShell prompt in the directory where you downloaded docker.exe earlier, and run:
-
-```PowerShell
-.\docker.exe run --isolation process --device class/5B45201D-F2F2-4F3B-85BB-30FF1F953599 winml-runner
 ```
 
 This starts a new container with the demo image. The container invokes the WinMLRunner executable and instructs it to run in performance benchmarking mode, where no user input is required. The app evaluates the included machine learning model 100 times with mock input data, first using an optimized CPU implementation, then using a GPU-accelerated implementation. Meanwhile, it measures and reports some performance metrics. (See [WinMLRunner](https://github.com/Microsoft/Windows-Machine-Learning/tree/master/Tools/WinMLRunner) for details.)

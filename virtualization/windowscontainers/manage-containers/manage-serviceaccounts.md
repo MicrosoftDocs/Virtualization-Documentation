@@ -3,7 +3,7 @@ title: Group Managed Service Accounts for Windows containers
 description: Group Managed Service Accounts for Windows containers
 keywords: docker, containers, active directory, gmsa
 author: rpsqrd
-ms.date: 06/12/2019
+ms.date: 08/02/2019
 ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
@@ -93,11 +93,11 @@ Once you've decided on the name for your gMSA, run the following cmdlets in Powe
 # Replace 'WebApp01' and 'contoso.com' with your own gMSA and domain names, respectively
 
 # To install the AD module on Windows Server, run Install-WindowsFeature RSAT-AD-PowerShell
-# To install the AD module on Windows 10 version 1809 or later, run Install-WindowsCapability -Online 'Rsat.ActiveDirectory.DS-LDS.Tools~~~~0.0.1.0'
+# To install the AD module on Windows 10 version 1809 or later, run Add-WindowsCapability -Online -Name 'Rsat.ActiveDirectory.DS-LDS.Tools~~~~0.0.1.0'
 # To install the AD module on older versions of Windows 10, see https://aka.ms/rsat
 
 # Create the security group
-New-ADGroup -Name "WebApp01 Authorized Hosts" -SamAccountName "WebApp01Hosts" -Scope DomainLocal
+New-ADGroup -Name "WebApp01 Authorized Hosts" -SamAccountName "WebApp01Hosts" -GroupScope DomainLocal
 
 # Create the gMSA
 New-ADServiceAccount -Name "WebApp01" -DnsHostName "WebApp01.contoso.com" -ServicePrincipalNames "host/WebApp01", "host/WebApp01.contoso.com" -PrincipalsAllowedToRetrieveManagedPassword "WebApp01Hosts"
@@ -120,7 +120,7 @@ Each container host that will run a Windows container with a gMSA must be domain
 
     ```powershell
     # To install the AD module on Windows Server, run Install-WindowsFeature RSAT-AD-PowerShell
-    # To install the AD module on Windows 10 version 1809 or later, run Install-WindowsCapability -Online 'Rsat.ActiveDirectory.DS-LDS.Tools~~~~0.0.1.0'
+    # To install the AD module on Windows 10 version 1809 or later, run Add-WindowsCapability -Online -Name 'Rsat.ActiveDirectory.DS-LDS.Tools~~~~0.0.1.0'
     # To install the AD module on older versions of Windows 10, see https://aka.ms/rsat
 
     Test-ADServiceAccount WebApp01
@@ -140,7 +140,7 @@ To create a credential spec file on your container host:
 
 1. Install the RSAT AD PowerShell tools
     - For Windows Server, run **Install-WindowsFeature RSAT-AD-PowerShell**.
-    - For Windows 10, version 1809 or later, run **Install-WindowsCapability -Online 'Rsat.ActiveDirectory.DS-LDS.Tools~~~~0.0.1.0'**.
+    - For Windows 10, version 1809 or later, run **Add-WindowsCapability -Online -Name 'Rsat.ActiveDirectory.DS-LDS.Tools~~~~0.0.1.0'**.
     - For older versions of Windows 10, see <https://aka.ms/rsat>.
 2. Run the following cmdlet to install the latest version of the [CredentialSpec PowerShell module](https://aka.ms/credspec):
 
@@ -388,7 +388,7 @@ If you're encountering errors when running a container with a gMSA, the followin
 
     ```powershell
     # To install the AD module on Windows Server, run Install-WindowsFeature RSAT-AD-PowerShell
-    # To install the AD module on Windows 10 version 1809 or later, run Install-WindowsCapability -Online 'Rsat.ActiveDirectory.DS-LDS.Tools~~~~0.0.1.0'
+    # To install the AD module on Windows 10 version 1809 or later, run Add-WindowsCapability -Online -Name 'Rsat.ActiveDirectory.DS-LDS.Tools~~~~0.0.1.0'
     # To install the AD module on older versions of Windows 10, see https://aka.ms/rsat
 
     Test-ADServiceAccount WebApp01
@@ -464,7 +464,7 @@ If you're using a strict firewall policy on the container or host network, it ma
 | TCP 636 | LDAP SSL |
 
 You may need to allow access to additional ports depending on the type of traffic your container sends to a domain controller.
-See [Active Directory and Active Directory Domain Services port requirements](https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2008-R2-and-2008/dd772723(v=ws.10)#communication-to-domain-controllers) for a full list of ports used by Active Directory.
+See [Active Directory and Active Directory Domain Services port requirements](https://docs.microsoft.com/previous-versions/windows/it-pro/windows-server-2008-R2-and-2008/dd772723(v=ws.10)#communication-to-domain-controllers) for a full list of ports used by Active Directory.
 
 #### Check the container
 

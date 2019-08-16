@@ -48,6 +48,6 @@ Things anyone can do across all docs:
 ## Doc structure and functionality
 
 * Move Hyper-V server to virtualization docs
-  *	Consolidate and cross ref where possible to Hyper-V for Win 10.
+  * Consolidate and cross ref where possible to Hyper-V for Win 10.
 * Move blog to docs
   * Investigate making a template for a new docs in a file so when people go to add a new blog, it autopopulates the TOC + metadata and such.  Maybe a “create blog” button 😊.  I think this is the biggest barrier to blog in docs.

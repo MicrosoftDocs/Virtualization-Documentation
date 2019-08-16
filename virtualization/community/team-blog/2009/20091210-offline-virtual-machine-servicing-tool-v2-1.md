@@ -15,7 +15,7 @@ Congratulations to the Solution Accelerator team for this release! 
 
  
 
-The **[Offline Virtual Machine Servicing Tool 2.1](http://technet.microsoft.com/en-us/library/cc501231.aspx)** has free, tested guidance and automated tools to help customers keep their virtualized machines updated, without introducing vulnerabilities into their IT infrastructure.   
+The **[Offline Virtual Machine Servicing Tool 2.1](https://technet.microsoft.com/library/cc501231.aspx)** has free, tested guidance and automated tools to help customers keep their virtualized machines updated, without introducing vulnerabilities into their IT infrastructure.   
 
  
 

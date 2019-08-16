@@ -105,7 +105,7 @@ The `Containers` feature should be installed before the Docker Engine will work.
 ### Describing Docker is installed
 **[+] A Docker service is installed - 'Docker' or 'com.Docker.Service'**
 
-If this fails, then the Docker Engine is not installed. Check [here](http://aka.ms/windowscontainers) for a quick start guide to help get everything installed.
+If this fails, then the Docker Engine is not installed. Check [here](https://aka.ms/windowscontainers) for a quick start guide to help get everything installed.
 
 **[+] Service is running**
 
@@ -115,7 +115,7 @@ If this fails, then the Docker Engine is not installed. Check [here](http://aka.
 **[+] Docker.exe is in path**
 
 - Try logging out and back in
-- If it still fails, try reinstalling based on the Quick Start guide [here](http://aka.ms/windowscontainers) 
+- If it still fails, try reinstalling based on the Quick Start guide [here](https://aka.ms/windowscontainers) 
 
 **[+] Docker is registered in the EventLog service**
 
@@ -150,11 +150,11 @@ These registry values should not be needed, and can be removed. Some past test b
 
 **[+] Do not have FDVDenyWriteAccess set to 1**
 
-This is a registry key set by a Group Policy setting "Deny write access to fixed drives not protected by bitlocker." For more details on it, see [technet](https://technet.microsoft.com/en-us/library/ee706521(v=ws.10).aspx#BKMK_driveaccess1). If your machines are Active Directory domain joined, then this policy needs to be modified otherwise the registry key will be overwritten the next time Group Policy is synced.
+This is a registry key set by a Group Policy setting "Deny write access to fixed drives not protected by bitlocker." For more details on it, see [technet](https://technet.microsoft.com/library/ee706521(v=ws.10).aspx#BKMK_driveaccess1). If your machines are Active Directory domain joined, then this policy needs to be modified otherwise the registry key will be overwritten the next time Group Policy is synced.
 
 It can cause problems with Windows containers because VHD files are used for container temporary storage. This may cause failures in `docker load` or `docker pull`. This was described in issues [#355](https://github.com/Microsoft/Virtualization-Documentation/issues/355) and [#530](https://github.com/Microsoft/Virtualization-Documentation/issues/530) . 
 
-Anti-virus products that have not been updated and validated based on the [Anti-virus optimization for Windows Containers](https://msdn.microsoft.com/en-us/windows/hardware/drivers/ifs/anti-virus-optimization-for-windows-containers) can also cause similar failures without this registry value set. If this test passes but you still have problems with `docker pull` and `docker load`, try updating or disabling anti-virus as the next troubleshooting step.
+Anti-virus products that have not been updated and validated based on the [Anti-virus optimization for Windows Containers](https://msdn.microsoft.com/windows/hardware/drivers/ifs/anti-virus-optimization-for-windows-containers) can also cause similar failures without this registry value set. If this test passes but you still have problems with `docker pull` and `docker load`, try updating or disabling anti-virus as the next troubleshooting step.
 
 ### Describing The right container base images are installed
 **[+] At least one of 'microsoft/windowsservercore' or 'microsoft/nanoserver' should be installed**

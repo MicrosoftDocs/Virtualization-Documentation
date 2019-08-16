@@ -86,9 +86,9 @@ The registry entry will look like this:
 ```
 HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Virtualization\GuestCommunicationServices\
     999E53D4-3D5C-4C3E-8779-BED06EC056E1\
-	    ElementName	REG_SZ	VM Session Service
+        ElementName    REG_SZ    VM Session Service
     YourGUID\
-	    ElementName	REG_SZ	Your Service Friendly Name
+        ElementName    REG_SZ    Your Service Friendly Name
 ```
 
 > **Note:** The Service GUID for a Linux guest uses the VSOCK protocol which addresses via a `svm_cid` and `svm_port` rather than a guids. To bridge this inconsistency with Windows the well-known GUID is used as the service template on the host which translates to a port in the guest. To customize your Service GUID simply change the first "00000000" to the port number desired. Ex: "00000ac9" is port 2761.
@@ -179,14 +179,14 @@ struct SOCKADDR_HV
 // Linux guest
 // See include/uapi/linux/vm_sockets.h for more information.
 struct sockaddr_vm {
-	__kernel_sa_family_t svm_family;
-	unsigned short svm_reserved1;
-	unsigned int svm_port;
-	unsigned int svm_cid;
-	unsigned char svm_zero[sizeof(struct sockaddr) -
-			       sizeof(sa_family_t) -
-			       sizeof(unsigned short) -
-			       sizeof(unsigned int) - sizeof(unsigned int)];
+    __kernel_sa_family_t svm_family;
+    unsigned short svm_reserved1;
+    unsigned int svm_port;
+    unsigned int svm_cid;
+    unsigned char svm_zero[sizeof(struct sockaddr) -
+                   sizeof(sa_family_t) -
+                   sizeof(unsigned short) -
+                   sizeof(unsigned int) - sizeof(unsigned int)];
 };
 ```
 

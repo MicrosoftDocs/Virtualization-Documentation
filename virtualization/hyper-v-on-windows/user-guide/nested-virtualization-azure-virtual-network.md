@@ -52,19 +52,19 @@ I will gloss over any configuration values that are up to personal preference, s
 4. On the "Basics" tab be sure to select a VM Size that's capable of nested virtualization
 5. Move to the "Networking" tab
 6. Create a new Virtual Network with the following configuration
-	* VNet Address Space: 10.0.0.0/22
-	* Subnet 1
-		* Name: NAT
-		* Address Space: 10.0.0.0/24
-	* Subnet 2
-		* Name: Hyper-V-LAN
-		* Address Space: 10.0.1.0/24
-	* Subnet 3
-		* Name: Ghosted
-		* Address Space: 10.0.2.0/24
-	* Subnet 4
-		* Name: Azure-VMs
-		* Address Space: 10.0.3.0/24
+    * VNet Address Space: 10.0.0.0/22
+    * Subnet 1
+        * Name: NAT
+        * Address Space: 10.0.0.0/24
+    * Subnet 2
+        * Name: Hyper-V-LAN
+        * Address Space: 10.0.1.0/24
+    * Subnet 3
+        * Name: Ghosted
+        * Address Space: 10.0.2.0/24
+    * Subnet 4
+        * Name: Azure-VMs
+        * Address Space: 10.0.3.0/24
 7. Ensure you've selected the NAT subnet for the VM
 8. Go to "Review + create" and select "Create"
 
@@ -122,21 +122,21 @@ I will gloss over any configuration values that are up to personal preference, s
 6. Right click “NAT”, select “New Interface...” and select "Ethernet", this should be your first NIC with the IP of "10.0.0.4"
 7. Now we need to create some static routes to force LAN traffic out the second NIC. You do this by going to the "Static Routes" node under "IPv4".
 8. Once there we'll create the following routes.
-	* Route 1
-		* Interface: Ethernet
-		* Destination: 10.0.0.0
-		* Network Mask: 255.255.255.0
-		* Gateway: 10.0.0.1
-		* Metric: 256
-		* Note: We put this here to allow the primary NIC to respond to traffic destined to it out its own interface. If we didn't have this here the following route would cause traffic meant for NIC 1 to go out NIC 2. This would create an asymmetric route. 10.0.0.1 is the IP address that Azure assigns to the NAT subnet. Azure uses the first available IP in a range as the default gateway. So if you were to have used 192.168.0.0/24 for your NAT subnet, the gateway would be 192.168.0.1. In routing the more specific route wins, meaning this route will supercede the below route.
+    * Route 1
+        * Interface: Ethernet
+        * Destination: 10.0.0.0
+        * Network Mask: 255.255.255.0
+        * Gateway: 10.0.0.1
+        * Metric: 256
+        * Note: We put this here to allow the primary NIC to respond to traffic destined to it out its own interface. If we didn't have this here the following route would cause traffic meant for NIC 1 to go out NIC 2. This would create an asymmetric route. 10.0.0.1 is the IP address that Azure assigns to the NAT subnet. Azure uses the first available IP in a range as the default gateway. So if you were to have used 192.168.0.0/24 for your NAT subnet, the gateway would be 192.168.0.1. In routing the more specific route wins, meaning this route will supercede the below route.
 
-	* Route 2
-		* Interface: Ethernet 2
-		* Destination: 10.0.0.0
-		* Network Mask: 255.255.252.0
-		* Gateway: 10.0.1.1
-		* Metric: 256
-		* Note: This is a catch all route for traffic meant to our Azure VNet. It will force traffic out the second NIC. You'll need to add additional routes for other ranges you want your nested VMs to access. So if you're on-prem network is 172.16.0.0/22 then you'd want to have another route to send that traffic out the second NIC of our hypervisor.
+    * Route 2
+        * Interface: Ethernet 2
+        * Destination: 10.0.0.0
+        * Network Mask: 255.255.252.0
+        * Gateway: 10.0.1.1
+        * Metric: 256
+        * Note: This is a catch all route for traffic meant to our Azure VNet. It will force traffic out the second NIC. You'll need to add additional routes for other ranges you want your nested VMs to access. So if you're on-prem network is 172.16.0.0/22 then you'd want to have another route to send that traffic out the second NIC of our hypervisor.
 
 ## Creating a route table within Azure
 
@@ -167,56 +167,56 @@ Refer to [this article](https://docs.microsoft.com/azure/virtual-network/tutoria
 The environment in this guide has the below configurations. This section is inteded to be used as a reference.
 
 1. Azure Virtual Network Information.
-	* VNet High Level Configuration.
-		* Name: Nested-Fun
-		* Address Space: 10.0.0.0/22
-		* Note: This will be made up of four Subnets. Also, these ranges are not set in stone. Feel free to address your environment however you want. 
+    * VNet High Level Configuration.
+        * Name: Nested-Fun
+        * Address Space: 10.0.0.0/22
+        * Note: This will be made up of four Subnets. Also, these ranges are not set in stone. Feel free to address your environment however you want. 
 
-	* First Subnet High Level Configuration.
-		* Name: NAT
-		* Address Space: 10.0.0.0/24
-		* Note: This is where our Hyper-V hosts primary NIC resides. This will be used to handle outbound NAT for the nested VMs. It will be the gateway to the internet for your nested VMs.
+    * First Subnet High Level Configuration.
+        * Name: NAT
+        * Address Space: 10.0.0.0/24
+        * Note: This is where our Hyper-V hosts primary NIC resides. This will be used to handle outbound NAT for the nested VMs. It will be the gateway to the internet for your nested VMs.
 
-	* Second Subnet High Level Configuration.
-		* Name: Hyper-V-LAN
-		* Address Space: 10.0.1.0/24
-		* Note:  Our Hyper-V host will have a second NIC that will be used to handle the routing between the nested VMs and non-internet resources external to the Hyper-V host.
+    * Second Subnet High Level Configuration.
+        * Name: Hyper-V-LAN
+        * Address Space: 10.0.1.0/24
+        * Note:  Our Hyper-V host will have a second NIC that will be used to handle the routing between the nested VMs and non-internet resources external to the Hyper-V host.
 
-	* Third Subnet High Level Configuration.
-		* Name: Ghosted
-		* Address Space: 10.0.2.0/24
-		* Note:  This will be a “floating” subnet. The address space will be consumed by our nested VMs and exists to handle route advertisements back to on-premises. No VMs will actually be deployed into this subnet.
+    * Third Subnet High Level Configuration.
+        * Name: Ghosted
+        * Address Space: 10.0.2.0/24
+        * Note:  This will be a “floating” subnet. The address space will be consumed by our nested VMs and exists to handle route advertisements back to on-premises. No VMs will actually be deployed into this subnet.
 
-	* Fourth Subnet High Level Configuration.
-		* Name: Azure-VMs
-		* Address Space: 10.0.3.0/24
-		* Note: Subnet containing Azure VMs.
+    * Fourth Subnet High Level Configuration.
+        * Name: Azure-VMs
+        * Address Space: 10.0.3.0/24
+        * Note: Subnet containing Azure VMs.
 
 1. Our Hyper-V host has the below NIC configurations.
-	* Primary NIC 
-		* IP Address: 10.0.0.4
-		* Subnet Mask: 255.255.255.0
-		* Default Gateway: 10.0.0.1
-		* DNS: Configured for DHCP
-		* IP Forwarding Enabled: No
+    * Primary NIC 
+        * IP Address: 10.0.0.4
+        * Subnet Mask: 255.255.255.0
+        * Default Gateway: 10.0.0.1
+        * DNS: Configured for DHCP
+        * IP Forwarding Enabled: No
 
-	* Secondary NIC
-		* IP Address: 10.0.1.4
-		* Subnet Mask: 255.255.255.0
-		* Default Gateway: Empty
-		* DNS: Configured for DHCP
-		* IP Forwarding Enabled: Yes
+    * Secondary NIC
+        * IP Address: 10.0.1.4
+        * Subnet Mask: 255.255.255.0
+        * Default Gateway: Empty
+        * DNS: Configured for DHCP
+        * IP Forwarding Enabled: Yes
 
-	* Hyper-V Created NIC for Internal Virtual Switch
-		* IP Address: 10.0.2.1
-		* Subnet Mask: 255.255.255.0
-		* Default Gateway: Empty
+    * Hyper-V Created NIC for Internal Virtual Switch
+        * IP Address: 10.0.2.1
+        * Subnet Mask: 255.255.255.0
+        * Default Gateway: Empty
 
 3. Our Route Table will have a single rule.
-	* Rule 1
-		* Name: Nested-VMs
-		* Destination: 10.0.2.0/24
-		* Next Hop: Virtual Appliance - 10.0.1.4
+    * Rule 1
+        * Name: Nested-VMs
+        * Destination: 10.0.2.0/24
+        * Next Hop: Virtual Appliance - 10.0.1.4
 
 ## Conclusion
 

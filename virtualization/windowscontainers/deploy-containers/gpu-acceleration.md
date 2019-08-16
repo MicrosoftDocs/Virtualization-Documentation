@@ -11,8 +11,8 @@ For many containerized workloads, CPU compute resources provide sufficient perfo
 
 GPUs are already a common tool for many popular workloads, from traditional rendering and simulation to machine learning training and inference. Windows containers support GPU acceleration for DirectX and all the frameworks built on top of it.
 
-> [!IMPORTANT]
-> This feature requires a version of Docker that supports the `--device` command-line option for Windows containers. This support is currently only available in the `Docker Desktop for Windows Edge` release. You can download the edge release of Docker [here](https://docs.docker.com/docker-for-windows/edge-release-notes/).
+> [!NOTE]
+> This feature is available in Docker Desktop, version 2.1 and Docker Engine - Enterprise, version 19.03 or later.
 
 ## Requirements
 
@@ -40,8 +40,8 @@ docker run --isolation process --device class/5B45201D-F2F2-4F3B-85BB-30FF1F9535
 
 ## Hyper-V-isolated Windows Container Support
 
-GPU acceleration for workloads in Hyper-V-isolated Windows containers is not supported today.
+GPU acceleration for workloads in Hyper-V-isolated Windows containers is not currently supported.
 
 ## Hyper-V-isolated Linux Container Support
 
-GPU acceleration for workloads in Hyper-V-isolated Linux containers is not supported today.
+GPU acceleration for workloads in Hyper-V-isolated Linux containers is not currently supported.

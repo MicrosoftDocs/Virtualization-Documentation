@@ -3,7 +3,7 @@ title:      "LiveMeeting on Microsoft’s Integrated Virtualization Strategy&#58
 date:       2009-11-17 14:44:48
 categories: cloud-computing
 ---
-Join us **Thursday, November 19, 8:00 AM PST** for a LiveMeeting session on  “Microsoft’s Integrated Virtualization Strategy, Products and Solutions” presented by Kenon Owens, Technical Product Manager. This LiveMeeting is exclusive to members of the _System Center Influencers Program_ (which is also open to virtualization enthusiasts).   Not a member?  Visit the [program overview on TechNet](http://technet.microsoft.com/en-us/ee532416.aspx) to learn more about the program and how to join. 
+Join us **Thursday, November 19, 8:00 AM PST** for a LiveMeeting session on  “Microsoft’s Integrated Virtualization Strategy, Products and Solutions” presented by Kenon Owens, Technical Product Manager. This LiveMeeting is exclusive to members of the _System Center Influencers Program_ (which is also open to virtualization enthusiasts).   Not a member?  Visit the [program overview on TechNet](https://technet.microsoft.com/ee532416.aspx) to learn more about the program and how to join. 
 
 [Join Information Available on Influencer Portal](https://sharepoint.connect.microsoft.com/SystemCenterCommunity/Lists/Announcements/DispForm.aspx?ID=15&Source=https%3A%2F%2Fsharepoint%2Econnect%2Emicrosoft%2Ecom%2FSystemCenterCommunity%2FOffers%2Easpx).  Members of the program will need to log into the Connect site to access the LiveMeeting join information. 
 

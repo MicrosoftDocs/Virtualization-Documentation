@@ -33,7 +33,7 @@ For more info on Microsoft Hyper-V Server 2008 R2, read: [http://blogs.technet.c
 
 
 
-After installing the update, both Dynamic Memory and [RemoteFX](http://technet.microsoft.com/en-us/library/ff817578\(WS.10\).aspx) will be available to Hyper-V Server. These new features can be managed in a number of ways:
+After installing the update, both Dynamic Memory and [RemoteFX](https://technet.microsoft.com/library/ff817578\(WS.10\).aspx) will be available to Hyper-V Server. These new features can be managed in a number of ways:
 
   * Using the updated R2 SP1 Hyper-V Manager user interface on a full version of Windows Server 2008 R2 SP1
 
@@ -52,7 +52,7 @@ Dynamic memory is an enhancement to Hyper-V R2 which pools all the memory availa
 
 Although using Dynamic Memory does not need any additional server side configuration beyond installing the R2 SP1 update, enabling RemoteFX does require some additional configuration on the host.  The exact steps for enabling the RemoteFX are detailed below:
 
-1)      Verify the host machine meets the [minimum hardware requirements](http://technet.microsoft.com/en-us/library/ff817602\(WS.10\).aspx) for RemoteFX. 
+1)      Verify the host machine meets the [minimum hardware requirements](https://technet.microsoft.com/library/ff817602\(WS.10\).aspx) for RemoteFX. 
 
 2)      Verify the host has the latest 3D graphics card drivers installed before enabling RemoteFX.
 

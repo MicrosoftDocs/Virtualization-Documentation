@@ -3,7 +3,7 @@ System Center, Virtual Machine Manager(SCVMM) customers can try out the Windows 
 creating a Virtual Machine using the "ContainerHostTemplate.xml" provided.
 
 The OS Image to be used for creating the Virtual machine can be found here:
-http://aka.ms/containerhostvhd
+https://aka.ms/containerhostvhd
 
 Process:
 

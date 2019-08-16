@@ -64,6 +64,12 @@ Users on Windows Server, version 1903 can go to the following registry location 
 \\Computer\HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\vmsmp\parameters\NicList
 ```
 
+### Containers on my Flannel host-gw deployment on Azure cannot reach the internet ###
+When deploying Flannel in host-gw mode on Azure, packets have to go through the Azure physical host vSwitch. Users should program [user-defined routes](https://docs.microsoft.com/en-us/azure/virtual-network/virtual-networks-udr-overview#user-defined) of type "virtual appliance" for each subnet assigned to a node. This can be done through the Azure portal (see an example [here](https://docs.microsoft.com/en-us/azure/virtual-network/tutorial-create-route-table-portal)) or via `az` Azure CLI. Here is one example UDR with name "MyRoute" using az commands for a node with IP 10.0.0.4 and respective pod subnet 10.244.0.0/24:
+```
+az network route-table create --resource-group <my_resource_group> --name BridgeRoute 
+az network route-table route create  --resource-group <my_resource_group> --address-prefix 10.244.0.0/24 --route-table-name BridgeRoute  --name MyRoute --next-hop-type VirtualAppliance --next-hop-ip-address 10.0.0.4 
+```
 
 ### My Windows pods cannot ping external resources ###
 Windows pods do not have outbound rules programmed for the ICMP protocol today. However, TCP/UDP is supported. When trying to demonstrate connectivity to resources outside of the cluster, please substitute `ping <IP>` with corresponding `curl <IP>` commands.
@@ -72,12 +78,12 @@ If you are still facing problems, most likely your network configuration in [cni
 
 Why?
 One of the Kubernetes networking requirements (see [Kubernetes model](https://kubernetes.io/docs/concepts/cluster-administration/networking/)) is for cluster communication to occur without NAT internally. To honor this requirement, we have an [ExceptionList](https://github.com/Microsoft/SDN/blob/master/Kubernetes/flannel/l2bridge/cni/config/cni.conf#L20) for all the communication where we do not want outbound NAT to occur. However, this also means that you need to exclude the external IP you are trying to query from the ExceptionList. Only then will the traffic originating from your Windows pods be SNAT’ed correctly to receive a response from the outside world. In this regard, your ExceptionList in `cni.conf` should look as follows:
-```
-				"ExceptionList": [
-					"10.244.0.0/16",  # Cluster subnet
-					"10.96.0.0/12",   # Service subnet
-					"10.127.130.0/24" # Management (host) subnet
-				]
+```conf
+"ExceptionList": [
+  "10.244.0.0/16",  # Cluster subnet
+  "10.96.0.0/12",   # Service subnet
+  "10.127.130.0/24" # Management (host) subnet
+]
 ```
 
 ### My Windows node cannot access a NodePort service ###

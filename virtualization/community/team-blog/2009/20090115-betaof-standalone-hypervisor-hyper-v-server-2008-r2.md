@@ -27,7 +27,7 @@ Building on the solid virtualization platform of Microsoft Hyper-V Server 2008, 
 
 So make sure to check out more information on Microsoft Hyper-V Server and download R2 Beta at the [Microsoft Hyper-V Website](http://www.microsoft.com/hvs).
 
-Additionally, the beta can be downloaded by subscribers on [TechNet](http://technet.microsoft.com/subscriptions/downloads/default.aspx?pv=1:352) and [MSDN](http://msdn.microsoft.com/subscriptions/downloads/default.aspx?pv=1:352). 
+Additionally, the beta can be downloaded by subscribers on [TechNet](https://technet.microsoft.com/subscriptions/downloads/default.aspx?pv=1:352) and [MSDN](https://msdn.microsoft.com/subscriptions/downloads/default.aspx?pv=1:352). 
 
 # 
 
