@@ -37,6 +37,7 @@ This is a collection of samples and examples submitted by the Windows team and m
 [nginx](https://github.com/Microsoft/Virtualization-Documentation/tree/master/windows-container-samples/nginx)
 
 ## Programing Languages
+
 [dotnet35](https://github.com/Microsoft/Virtualization-Documentation/tree/master/windows-container-samples/dotnet35)
 
 [golang](https://github.com/Microsoft/Virtualization-Documentation/tree/master/windows-container-samples/golang)
@@ -53,8 +54,8 @@ This is a collection of samples and examples submitted by the Windows team and m
 
 [server-jre-8u51-windows-x64](https://github.com/Microsoft/Virtualization-Documentation/tree/master/windows-container-samples/server-jre-8u51-windows-x64)
 
-
 ## Databases
+
 [mongodb](https://github.com/Microsoft/Virtualization-Documentation/tree/master/windows-container-samples/mongodb)
 
 [mysql](https://github.com/Microsoft/Virtualization-Documentation/tree/master/windows-container-samples/mysql)
@@ -75,3 +76,4 @@ sqlserver-express - [Docker Hub Image](https://hub.docker.com/r/microsoft/mssql-
 
 ## Other
 
+[DirectX](https://github.com/MicrosoftDocs/Virtualization-Documentation/tree/master/windows-container-samples/directx) (including GPU acceleration)
