@@ -46,6 +46,6 @@ GPU acceleration for workloads in Hyper-V-isolated Windows containers is not cur
 
 GPU acceleration for workloads in Hyper-V-isolated Linux containers is not currently supported.
 
-## See also
+## More information
 
 For a complete example of a containerized DirectX app that leverages GPU acceleration, see [DirectX container sample](https://github.com/MicrosoftDocs/Virtualization-Documentation/tree/master/windows-container-samples/directx).
