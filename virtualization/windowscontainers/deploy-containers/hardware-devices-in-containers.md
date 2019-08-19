@@ -72,13 +72,13 @@ The following devices (and their device interface class GUIDs) are supported tod
 </tbody>
 </table>
 
-> [!TIP]
-> The devices listed above are the _only_ devices supported in Windows containers today. Attempting to pass any other class GUIDs will result in the container failing to start.
+> [!IMPORTANT]
+> Device support is driver-dependent. Attempting to pass class GUIDs not defined in the table above may result in undefined behavior.
 
 ## Hyper-V-isolated Windows Container Support
 
-Device assignment and device sharing for workloads in Hyper-V-isolated Windows containers is not supported today.
+Device assignment and device sharing for workloads in Hyper-V-isolated Windows containers is not currently supported.
 
 ## Hyper-V-isolated Linux Container Support
 
-Device assignment and device sharing for workloads in Hyper-V-isolated Linux containers is not supported today.
+Device assignment and device sharing for workloads in Hyper-V-isolated Linux containers is not currently supported.
