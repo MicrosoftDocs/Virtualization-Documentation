@@ -3,7 +3,7 @@ title: Windows and Linux Containers on Windows 10
 description: Container deployment quick start
 keywords: docker, containers, LCOW
 author: taylorb-microsoft
-ms.date: 11/8/2018
+ms.date: 08/16/2019
 ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
@@ -11,10 +11,6 @@ ms.assetid: bb9bfbe0-5bdc-4984-912f-9c93ea67105f
 ---
 
 # Windows Containers on Windows 10
-
-> [!div class="op_single_selector"]
-> - [Linux Containers on Windows](quick-start-windows-10-linux.md)
-> - [Windows containers on Windows](quick-start-windows-10.md)
 
 The exercise will walk through creating and running Windows containers on Windows 10.
 
@@ -57,6 +53,9 @@ Windows containers are built from base images. The following command will pull t
 ```console
 docker pull mcr.microsoft.com/windows/nanoserver:1809
 ```
+
+> [!NOTE]
+> If you see an error message that says `no matching manifest for unknown in the manifest list entries`, make sure that you're not expecting to pull a Linux container.
 
 Once the image is pulled, running `docker images` will return a list of installed images, in this case the Nano Server image.
 
