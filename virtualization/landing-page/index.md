@@ -138,7 +138,7 @@ ms.assetid: addcfda8-1522-4137-bc02-14cbb1ff838f
                                                 <h3 style="margin: 8px 0 2px 0;">Management tools</h3>
                                                 <ul>
                                                     <li><a href="https://www.docker.com/docker-windows">Docker</a></li>
-                                                    <li><a href="https://azure.microsoft.com/services/container-service/">Azure Container Service</a></li>
+                                                    <li><a href="https://azure.microsoft.com/services/kubernetes-service/">Azure Kubernetes Service (AKS)</a></li>
                                                     <li><a href="https://kubernetes.io/">Kubernetes</a></li>
                                                 </ul>
                                             </div>
