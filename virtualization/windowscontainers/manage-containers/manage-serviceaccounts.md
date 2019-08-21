@@ -172,6 +172,16 @@ To create a credential spec file on your container host:
     Get-CredentialSpec
     ```
 
+## Next steps
+
+Now that you've set up your gMSA account, you can use it to:
+
+- [Configure apps](gmsa-configure-app.md)
+- [Run containers](gmsa-run-container.md)
+- [Orchestrate containers](gmsa-orchestrate-containers.md)
+
+If you run into any issues during setup, check our [troubleshooting guide](gmsa-troubleshooting.md) for possible solutions.
+
 ## Additional resources
 
 - To learn more about gMSAs, see the [group Managed Service Accounts overview](https://docs.microsoft.com/windows-server/security/group-managed-service-accounts/group-managed-service-accounts-overview).

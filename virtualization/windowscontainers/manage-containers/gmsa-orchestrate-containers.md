@@ -41,3 +41,12 @@ See the [Docker Swarm example](https://docs.docker.com/engine/reference/commandl
 ### How to use gMSA with Kubernetes
 
 Support for scheduling Windows containers with gMSAs in Kubernetes is available as an alpha feature in Kubernetes 1.14. See [Configure gMSA for Windows pods and containers](https://kubernetes.io/docs/tasks/configure-pod-container/configure-gmsa) for the latest information about this feature and how to test it in your Kubernetes distribution.
+
+## Next steps
+
+In addition to orchestrating containers, you can also use gMSAs to:
+
+- [Configure apps](gmsa-configure-app.md)
+- [Run containers](gmsa-run-container.md)
+
+If you run into any issues during setup, check our [troubleshooting guide](gmsa-troubleshooting.md) for possible solutions.

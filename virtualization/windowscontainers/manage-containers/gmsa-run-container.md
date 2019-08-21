@@ -86,3 +86,12 @@ Mode                LastWriteTime         Length Name
 ----                -------------         ------ ----
 d----l        2/27/2019   8:09 PM                contoso.com
 ```
+
+## Next steps
+
+In addition to running containers, you can also use gMSAs to:
+
+- [Configure apps](gmsa-configure-app.md)
+- [Orchestrate containers](gmsa-orchestrate-containers.md)
+
+If you run into any issues during setup, check our [troubleshooting guide](gmsa-troubleshooting.md) for possible solutions.

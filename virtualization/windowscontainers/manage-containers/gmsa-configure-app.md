@@ -47,3 +47,12 @@ You can also connect to a container as Network Service on a one-off basis with `
 # Opens an interactive PowerShell console in the container (id = 85d) as the Network Service account
 docker exec -it --user "NT AUTHORITY\NETWORK SERVICE" 85d powershell
 ```
+
+## Next steps
+
+In addition to configuring apps, you can also use gMSAs to:
+
+- [Run containers](gmsa-run-container.md)
+- [Orchestrate containers](gmsa-orchestrate-containers.md)
+
+If you run into any issues during setup, check our [troubleshooting guide](gmsa-troubleshooting.md) for possible solutions.
