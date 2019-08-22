@@ -83,6 +83,10 @@ function New-CredentialSpec {
     .PARAMETER AccountName
     The name of the group managed service account that should be used when the container communicates over the network.
 
+    .PARAMETER FilePath
+    The full path of the file where the credential spec will be stored. This parameter accepts only valid path that exists.
+    The file will be created in the specified credential spec directory.
+
     .PARAMETER FileName
     The name of the file where the credential spec will be stored. If a value is not specified, the file name will default to DOMAIN_ACCOUNTNAME.json.
     The file will be located in the configured credential spec directory in Docker.
@@ -123,25 +127,34 @@ function New-CredentialSpec {
 
     #>
 
+    [CmdletBinding(DefaultParameterSetName = "DefaultPath")]
     param(
-        [Parameter(Mandatory = $true, Position = 0)]
+        [Parameter(Mandatory = $true, Position = 0, ParameterSetName = "DefaultPath")]
+        [Parameter(ParameterSetName = "CustomPath")]
         [String]
         $AccountName,
 
-        [Parameter(Mandatory = $false)]
+        [Parameter(Mandatory = $false, ParameterSetName = "CustomPath")]
+        [String]
+        $Path,
+
+        [Parameter(Mandatory = $false, ParameterSetName = "DefaultPath")]
         [Alias("Name")]
         [String]
         $FileName,
 
-        [Parameter(Mandatory = $false)]
+        [Parameter(Mandatory = $false, ParameterSetName = "DefaultPath")]
+        [Parameter(ParameterSetName = "CustomPath")]
         [string]
         $Domain,
 
-        [Parameter(Mandatory = $false)]
+        [Parameter(Mandatory = $false, ParameterSetName = "DefaultPath")]
+        [Parameter(ParameterSetName = "CustomPath")]
         [object[]]
         $AdditionalAccounts,
 
-        [Parameter(Mandatory = $false)]
+        [Parameter(Mandatory = $false, ParameterSetName = "DefaultPath")]
+        [Parameter(ParameterSetName = "CustomPath")]
         [switch]
         $NoClobber = $false
     )
@@ -247,8 +260,14 @@ function New-CredentialSpec {
         }
     }
 
-    # Get the location to store the cred spec file
-    $CredSpecRoot = GetCredSpecRoot
+    # Get the location to store the cred spec file either from input params or helper function
+    if ($Path) {
+        $CredSpecRoot = Split-Path $Path -Parent
+        $FileName = Split-Path $Path -Leaf
+    } else {
+        $CredSpecRoot = GetCredSpecRoot
+    }
+
     if (-not $FileName) {
         $FileName = "{0}_{1}" -f $ADDomain.NetBIOSName.ToLower(), $AccountName.ToLower()
     }
