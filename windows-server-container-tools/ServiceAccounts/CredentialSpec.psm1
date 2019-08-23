@@ -83,13 +83,13 @@ function New-CredentialSpec {
     .PARAMETER AccountName
     The name of the group managed service account that should be used when the container communicates over the network.
 
-    .PARAMETER FilePath
-    The full path of the file where the credential spec will be stored. This parameter accepts only valid path that exists.
-    The file will be created in the specified credential spec directory.
+    .PARAMETER Path
+    The full path (*.json) to the file where the credential spec will be stored.
 
     .PARAMETER FileName
     The name of the file where the credential spec will be stored. If a value is not specified, the file name will default to DOMAIN_ACCOUNTNAME.json.
     The file will be located in the configured credential spec directory in Docker.
+    To store the file in an arbitrary location on the filesystem (not in the Docker root directory), use the -Path parameter instead.
 
     .PARAMETER Domain
     The DNS name of the Active Directory domain where the gMSA account exists.
@@ -125,16 +125,19 @@ function New-CredentialSpec {
     Creates a credential spec for a gMSA named "FrontEndWeb01" and includes 2 additional gMSAs: LogAccount01 and gMSA3.
     gMSA3 comes from the dev.contoso.com domain, which may be different from the current computer's domain and that of the other gMSAs. 
 
+    .EXAMPLE
+    New-CredentialSpec -AccountName "FrontEndWeb01" -Path "C:\src\myapp\webapp01.json"
+    
+    Creates a credential spec for a gMSA named "FrontEndWeb01" and stores the file at "C:\src\myapp\webapp01.json"
     #>
 
     [CmdletBinding(DefaultParameterSetName = "DefaultPath")]
     param(
-        [Parameter(Mandatory = $true, Position = 0, ParameterSetName = "DefaultPath")]
-        [Parameter(ParameterSetName = "CustomPath")]
+        [Parameter(Mandatory = $true, Position = 0)]
         [String]
         $AccountName,
 
-        [Parameter(Mandatory = $false, ParameterSetName = "CustomPath")]
+        [Parameter(Mandatory = $true, ParameterSetName = "CustomPath")]
         [String]
         $Path,
 
@@ -143,18 +146,15 @@ function New-CredentialSpec {
         [String]
         $FileName,
 
-        [Parameter(Mandatory = $false, ParameterSetName = "DefaultPath")]
-        [Parameter(ParameterSetName = "CustomPath")]
+        [Parameter(Mandatory = $false)]
         [string]
         $Domain,
 
-        [Parameter(Mandatory = $false, ParameterSetName = "DefaultPath")]
-        [Parameter(ParameterSetName = "CustomPath")]
+        [Parameter(Mandatory = $false)]
         [object[]]
         $AdditionalAccounts,
 
-        [Parameter(Mandatory = $false, ParameterSetName = "DefaultPath")]
-        [Parameter(ParameterSetName = "CustomPath")]
+        [Parameter(Mandatory = $false)]
         [switch]
         $NoClobber = $false
     )
