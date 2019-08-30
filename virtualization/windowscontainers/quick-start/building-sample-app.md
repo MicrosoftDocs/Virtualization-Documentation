@@ -115,7 +115,7 @@ Running this command will yield the IP address of your running container. Below 
 
 Enter this IP address into the web browser of your choice and you will be greeted by the application running successfully in a container!
 
-<center style="margin: 25px">![](media/SampleAppScreenshot.png)</center>
+>![](media/SampleAppScreenshot.png)
 
 Clicking on "MvcMovie" in the navigation bar will take you to a web page where you can input, edit, and, delete movie entries.
 
