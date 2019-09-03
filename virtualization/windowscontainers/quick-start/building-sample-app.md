@@ -54,7 +54,8 @@ ENTRYPOINT ["dotnet", "MvcMovie.dll"]
 
 The first group of lines declares from which base image we will use to build our container on top of. If the local system does not have this image already, then docker will automatically try and fetch it. Aspnetcore-build comes packaged with dependencies to compile our project. We then change the working directory in our container to be '/app', so all ensuing commands in our dockerfile will execute there.
 
-_NOTE_: Since we must build our project, this first container we create is a temporary container which we will use to do just that, and then discard it at the end.
+>[!NOTE]
+>Since we must build our project, this first container we create is a temporary container which we will use to do just that, and then discard it at the end.
 
 ```Dockerfile
 FROM microsoft/aspnetcore-build:1.1 AS build-env
@@ -79,7 +80,8 @@ RUN dotnet publish -c Release -o out
 
 We should have successfully compiled our project. Now we need to build our finalized container. Since our application is ASP.NET, we specify an image with those libs as the source. We then copy over all files from the output directory of our temporary container into our final container. We configure our container to run with our new .dll that we compiled when we launch it.
 
-_NOTE_: Our base image for this final container is similar but different to the ```FROM``` command above--it doesn't have the libraries capable of _building_ an ASP.NET app, only running.
+>[!NOTE]
+>Our base image for this final container is similar but different to the ```FROM``` command above--it doesn't have the libraries capable of _building_ an ASP.NET app, only running.
 
 ```Dockerfile
 FROM microsoft/aspnetcore:1.1
@@ -94,7 +96,8 @@ We have now successfully performed what is called a _multi-stage build_. We used
 
 Now that the dockerfile is written, all that is left to do is tell docker to build our app and then run the container. We specify the port to publish to and then give our container a tag "myapp". In powershell, execute the commands below.
 
-_NOTE_: Your PowerShell console's current working directory needs to be the directory where the dockerfile created above resides.
+>[!NOTE]
+>Your PowerShell console's current working directory needs to be the directory where the dockerfile created above resides.
 
 ```Powershell
 docker build -t myasp .
@@ -115,7 +118,7 @@ Running this command will yield the IP address of your running container. Below 
 
 Enter this IP address into the web browser of your choice and you will be greeted by the application running successfully in a container!
 
-<center style="margin: 25px">![](media/SampleAppScreenshot.png)</center>
+>![](media/SampleAppScreenshot.png)
 
 Clicking on "MvcMovie" in the navigation bar will take you to a web page where you can input, edit, and, delete movie entries.
 

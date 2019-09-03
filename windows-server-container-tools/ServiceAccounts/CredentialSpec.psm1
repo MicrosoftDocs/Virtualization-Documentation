@@ -83,9 +83,13 @@ function New-CredentialSpec {
     .PARAMETER AccountName
     The name of the group managed service account that should be used when the container communicates over the network.
 
+    .PARAMETER Path
+    The full path (*.json) to the file where the credential spec will be stored.
+
     .PARAMETER FileName
     The name of the file where the credential spec will be stored. If a value is not specified, the file name will default to DOMAIN_ACCOUNTNAME.json.
     The file will be located in the configured credential spec directory in Docker.
+    To store the file in an arbitrary location on the filesystem (not in the Docker root directory), use the -Path parameter instead.
 
     .PARAMETER Domain
     The DNS name of the Active Directory domain where the gMSA account exists.
@@ -121,14 +125,23 @@ function New-CredentialSpec {
     Creates a credential spec for a gMSA named "FrontEndWeb01" and includes 2 additional gMSAs: LogAccount01 and gMSA3.
     gMSA3 comes from the dev.contoso.com domain, which may be different from the current computer's domain and that of the other gMSAs. 
 
+    .EXAMPLE
+    New-CredentialSpec -AccountName "FrontEndWeb01" -Path "C:\src\myapp\webapp01.json"
+    
+    Creates a credential spec for a gMSA named "FrontEndWeb01" and stores the file at "C:\src\myapp\webapp01.json"
     #>
 
+    [CmdletBinding(DefaultParameterSetName = "DefaultPath")]
     param(
         [Parameter(Mandatory = $true, Position = 0)]
         [String]
         $AccountName,
 
-        [Parameter(Mandatory = $false)]
+        [Parameter(Mandatory = $true, ParameterSetName = "CustomPath")]
+        [String]
+        $Path,
+
+        [Parameter(Mandatory = $false, ParameterSetName = "DefaultPath")]
         [Alias("Name")]
         [String]
         $FileName,
@@ -247,8 +260,14 @@ function New-CredentialSpec {
         }
     }
 
-    # Get the location to store the cred spec file
-    $CredSpecRoot = GetCredSpecRoot
+    # Get the location to store the cred spec file either from input params or helper function
+    if ($Path) {
+        $CredSpecRoot = Split-Path $Path -Parent
+        $FileName = Split-Path $Path -Leaf
+    } else {
+        $CredSpecRoot = GetCredSpecRoot
+    }
+
     if (-not $FileName) {
         $FileName = "{0}_{1}" -f $ADDomain.NetBIOSName.ToLower(), $AccountName.ToLower()
     }
