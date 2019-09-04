@@ -15,8 +15,8 @@
 ### [Build and run an application](quick-start/Nano-RS3-.NET-Core-and-PS.md)
 
 # Tutorials
-## Building a Windows container
-### [Writing a Dockerfile](manage-docker/manage-windows-dockerfile.md)
+## Build a Windows container
+### [Write a Dockerfile](manage-docker/manage-windows-dockerfile.md)
 ### [Optimize a Dockerfile](manage-docker/optimize-windows-dockerfile.md)
 ## Kubernetes on Windows
 ### [Kubernetes on Windows](kubernetes/getting-started-kubernetes-windows.md)
