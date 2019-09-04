@@ -50,18 +50,6 @@ If all went well, it is possible to:
 > [!Note]  
 > Windows *container hosts* will **not** be able to access the service IP from services scheduled on them. This is a [known platform limitation](./common-problems.md#my-windows-node-cannot-access-my-services-using-the-service-ip) that will be improved in future versions to Windows Server. Windows *pods* **are** able to access the service IP however.
 
-### Port mapping ### 
-It is also possible to access services hosted in pods through their respective nodes by mapping a port on the node. There is [another sample YAML available](https://github.com/Microsoft/SDN/blob/master/Kubernetes/PortMapping.yaml) with a mapping of port 4444 on the node to port 80 on the pod to demonstrate this feature. To deploy it, follow the same steps as before:
-
-```bash
-wget https://raw.githubusercontent.com/Microsoft/SDN/master/Kubernetes/PortMapping.yaml -O win-webserver-port-mapped.yaml
-kubectl apply -f win-webserver-port-mapped.yaml
-watch kubectl get pods -o wide
-```
-
-It should now be possible to `curl` on the *node* IP on port 4444 and receive a web server response. Keep in mind that this limits scaling to a single pod per node since it must enforce a one-to-one mapping.
-
-
 ## Next steps ##
 In this section, we covered how to schedule Kubernetes resources on Windows nodes. This concludes the guide. If there were any problems, please review the troubleshooting section:
 
