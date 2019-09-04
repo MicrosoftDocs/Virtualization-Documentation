@@ -40,6 +40,9 @@ For additional details, see official [nssm usage](https://nssm.cc/usage) docs.
 
 ## Common networking errors ##
 
+### HostPort publishing is not working ###
+It is currently not possible to publish ports using the Kubernetes `containers.ports.hostPort` field as this field is not honored by Windows CNI plugins. Please use NodePort publishing for the time being to publish ports on the Node.
+
 ### I am seeing errors such as "hnsCall failed in Win32: The wrong diskette is in the drive." ###
 This error can occur when making custom modifications to HNS objects or installing new Windows Update that introduce changes to HNS without tearing down old HNS objects. It indicates that a HNS object which was previously created before an update is incompatible with the currently installed HNS version.
 
