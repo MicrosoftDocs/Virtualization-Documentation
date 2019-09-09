@@ -3,7 +3,7 @@ title: Deploy Windows Containers on Windows Server
 description: Deploy Windows Containers on Windows Server
 keywords: docker, containers
 author: taylorb-microsoft
-ms.date: 09/06/2019
+ms.date: 09/09/2019
 ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
