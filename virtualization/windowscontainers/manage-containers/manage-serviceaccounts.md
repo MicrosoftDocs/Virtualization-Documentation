@@ -3,7 +3,7 @@ title: Group Managed Service Accounts for Windows containers
 description: How to create Group Managed Service Accounts for Windows containers.
 keywords: docker, containers, active directory, gmsa
 author: rpsqrd
-ms.date: 08/02/2019
+ms.date: 09/10/2019
 ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers

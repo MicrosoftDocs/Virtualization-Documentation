@@ -3,7 +3,7 @@ title: Orchestrate containers with a Group Managed Service Account
 description: How to orchestrate Windows containers with a Group Managed Service Account.
 keywords: docker, containers, active directory, gmsa, orchestration, kubernetes
 author: Heidilohr
-ms.date: 08/20/2019
+ms.date: 09/10/2019
 ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers

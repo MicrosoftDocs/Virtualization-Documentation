@@ -3,7 +3,7 @@ title: Run a container with a Group Managed Service Account
 description: How to troubleshoot Group Managed Service Accounts for Windows containers
 keywords: docker, containers, active directory, gmsa
 author: Heidilohr
-ms.date: 08/20/2019
+ms.date: 09/10/2019
 ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers

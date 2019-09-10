@@ -3,7 +3,7 @@ title: Configure your app to use a Group Managed Service Account
 description: How to troubleshoot Group Managed Service Accounts for Windows containers
 keywords: docker, containers, active directory, gmsa, apps, applications
 author: Heidilohr
-ms.date: 08/20/2019
+ms.date: 09/10/2019
 ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
