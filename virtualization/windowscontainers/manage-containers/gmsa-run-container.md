@@ -1,7 +1,7 @@
 ---
-title: Run a container with a Group Managed Service Account
-description: How to troubleshoot Group Managed Service Accounts for Windows containers
-keywords: docker, containers, active directory, gmsa
+title: Run a container with a gMSA
+description: How to run a Windows container with a Group Managed Service Account (gMSA).
+keywords: docker, containers, active directory, gmsa, group managed service account, group managed service accounts
 author: Heidilohr
 ms.date: 09/10/2019
 ms.topic: article
@@ -10,7 +10,7 @@ ms.service: windows-containers
 ms.assetid: 9e06ad3a-0783-476b-b85c-faff7234809c
 ---
 
-# Run a container with a Group Managed Service Account
+# Run a container with a gMSA
 
 To run a container with a Group Managed Service Account (gMSA), provide the credential spec file to the `--security-opt` parameter of [docker run](https://docs.docker.com/engine/reference/run):
 

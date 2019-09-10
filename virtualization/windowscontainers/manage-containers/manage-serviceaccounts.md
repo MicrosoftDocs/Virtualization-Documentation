@@ -1,7 +1,7 @@
 ---
-title: Group Managed Service Accounts for Windows containers
-description: How to create Group Managed Service Accounts for Windows containers.
-keywords: docker, containers, active directory, gmsa
+title: Create gMSAs for Windows containers
+description: How to create Group Managed Service Accounts (gMSAs) for Windows containers.
+keywords: docker, containers, active directory, gmsa, group managed service account, group managed service accounts
 author: rpsqrd
 ms.date: 09/10/2019
 ms.topic: article
@@ -9,7 +9,7 @@ ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: 9e06ad3a-0783-476b-b85c-faff7234809c
 ---
-# Create Group Managed Service Accounts for Windows containers
+# Create gMSAs for Windows containers
 
 Windows-based networks commonly use Active Directory (AD) to facilitate authentication and authorization between users, computers, and other network resources. Enterprise application developers often design their apps to be AD-integrated and run on domain-joined servers to take advantage of Integrated Windows Authentication, which makes it easy for users and other services to automatically and transparently sign in to the application with their identities.
 
