@@ -3,7 +3,7 @@ title: Deploy Windows Containers on Windows Server
 description: Deploy Windows Containers on Windows Server
 keywords: docker, containers
 author: taylorb-microsoft
-ms.date: 09/26/2016
+ms.date: 09/09/2019
 ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
@@ -91,13 +91,13 @@ docker pull mcr.microsoft.com/windows/nanoserver:1809
 To install the Windows Server Core base image run the following:
 
 ```PowerShell
-docker pull microsoft/windowsservercore
+docker pull mcr.microsoft.com/windows/servercore:1607
 ```
 
 To install the Nano Server base image run the following:
 
 ```PowerShell
-docker pull microsoft/nanoserver
+docker pull mcr.microsoft.com/windows/nanoserver:1803
 ```
 
 > Please read the Windows containers OS image EULA, which can be found here – [EULA](../images-eula.md).
