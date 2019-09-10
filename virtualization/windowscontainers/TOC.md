@@ -41,7 +41,12 @@
 ### [Docker swarm](manage-containers/swarm-mode.md)
 ### [Remote management of a Windows Docker host](management/manage_remotehost.md)
 ## Workloads
-### [Group Managed Service Accounts](manage-containers/manage-serviceaccounts.md)
+### Group Managed Service Accounts
+#### [Create a gMSA](manage-containers/manage-serviceaccounts.md)
+#### [Configure your app to use a gMSA](manage-containers/gmsa-configure-app.md)
+#### [Run a container with a gMSA](manage-containers/gmsa-run-container.md)
+#### [Orchestrate containers with a gMSA](manage-containers/gmsa-orchestrate-containers.md)
+#### [Troubleshoot gMSAs](manage-containers/gmsa-troubleshooting.md)
 ### [Printer services](deploy-containers/print-spooler.md)
 ## Networking
 ### [Overview](container-networking/architecture.md)
