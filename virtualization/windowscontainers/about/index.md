@@ -3,14 +3,14 @@ title: About Windows containers
 description: Learn about Windows containers.
 keywords: docker, containers
 author: taylorb-microsoft
-ms.date: 05/22/2019
+ms.date: 09/11/2019
 ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: 8e273856-3620-4e58-9d1a-d1e06550448
 
 ---
-# About Windows containers
+# About Containers on Windows
 
 Imagine a kitchen. Inside this single room is everything you need to cook a meal: the oven, pans, sink, and so on. This is our container.
 
