@@ -26,11 +26,6 @@ For anyone familiar with virtual machines, containers and virtual machines may s
 
 ## Container users
 
-> [!div class="card"]
-> * Set up your environment for containers
-> * Pull your first container image
-> * Launch your first container
-
 ### Containers for developers
 
 Containers help developers build and ship higher-quality applications faster. Developers can create a Docker image that will deploy identically across all environments in seconds. There's a massive and growing ecosystem of applications packaged in Docker containers. DockerHub, a public containerized-application registry maintained by Docker, has published more than 180,000 applications in its public community repository, and that number is still growing.
@@ -49,17 +44,26 @@ Explain value prop here.
 
 ### Container Images
 
-### Windows container types
+All containers are created from container images. Container images are a bundle of files organized into a stack of layers that reside on your local machine or in a remote container registry. The container image consists of an OS instance, your application, any runtimes or dependencies of your application, and any other miscellaneous configuration file your application needs to run properly. Microsoft offers several "starter" images (called **base images**) that you may use as a starting point to build your own container image:
 
-Another thing you should know is that there are two different container types, also known as runtimes.
+* Windows Server Core
+* Nano Server
+* Windows
 
-Windows Server containers provide application isolation through process and namespace isolation technology, which is why these containers are also referred to as process-isolated containers. A Windows Server container shares a kernel with the container host and all containers running on the host. These process-isolated containers don't provide a hostile security boundary and shouldn't be used to isolate untrusted code. Because of the shared kernel space, these containers require the same kernel version and configuration.
+> [!TIP]
+> Learn more about the [use cases and differences]() between each base image by checking the "Concepts" area of our docs.
 
-Hyper-V isolation expands on the isolation provided by Windows Server containers by running each container in a highly optimized virtual machine. In this configuration, the container host doesn't share its kernel with other containers on the same host. These containers are designed for hostile multitenant hosting with the same security assurances of a virtual machine. Since these containers don't share the kernel with the host or other containers on the host, they can run kernels with different versions and configurations (within supported versions). For example, all Windows containers on Windows 10 use Hyper-V isolation to utilize the Windows Server kernel version and configuration.
+As mentioned earlier, container images are composed of a series of layers. Each layer contains a set of files that, when overlaid together, represent your container image. Because of the layered nature of containers, you do not have to always target a base image to build a Windows container. Instead, you could target another image that already carries the framework you want. For example, the .NET team publishes a [.NET core image](https://hub.docker.com/_/microsoft-dotnet-core) that carries the .NET core runtime. It saves users from needing to duplicate the process of installing .NET core--instead they can re-use the layers of this container image. The .NET core image itself is built based upon Nano Server.
 
-Running a container on Windows with or without Hyper-V isolation is a runtime decision. You can initially create the container with Hyper-V isolation, and then later at runtime choose to run it as a Windows Server container instead.
+### Windows container isolation modes
 
+Windows containers support running in two isolation modes: `process isolation` and `Hyper-V isolation`.
 
+`Process isolation` is how container conventionally run. The application in the container is isolated through process and namespace isolation technologies. These containers are referred to as "process-isolated containers". Process-isolated containers share the kernel with the container host and all containers running on the host. These process-isolated containers don't provide a hostile security boundary and shouldn't be used to isolate untrusted code. Because of the shared kernel space, these containers require the same kernel version and configuration.
+
+`Hyper-V isolation` expands on the isolation provided by Windows containers by running each container in a highly optimized virtual machine. In this configuration, the container host doesn't share its kernel with other containers on the same host. These containers are designed for hostile multitenant hosting with the same security assurances of a virtual machine. Since these containers don't share the kernel with the host or other containers on the host, they can run kernels with different versions and configurations (within supported versions).
+
+Choosing which isolation mode the container will run under is a runtime decision. Containers are built independent of the isolation, and then later at runtime the user gets to choose how it should run. Learn more about [Hyper-V isolation]() in our "Concepts" section of the docs.
 
 ## Try containers on Windows
 
