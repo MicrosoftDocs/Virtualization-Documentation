@@ -14,7 +14,7 @@ There are several resource controls that can be implemented on a per-container a
 
 Windows containers utilize [job objects](https://docs.microsoft.com/windows/desktop/ProcThread/job-objects) to group and track processes associated with each container.  Resource controls are implemented on the parent job object associated with the container. 
 
-In the case of [Hyper-V isolation](https://docs.microsoft.com/virtualization/windowscontainers/about/index#windows-container-types) resource controls are applied both to the virtual machine as well as to the job object of the container running inside the virtual machine automatically, this ensures that even if a process running in the container bypassed or escaped the job objects controls the virtual machine would ensure it was not able to exceed the defined resource controls.
+In the case of [Hyper-V isolation](./hyperv-container.md) resource controls are applied both to the virtual machine as well as to the job object of the container running inside the virtual machine automatically, this ensures that even if a process running in the container bypassed or escaped the job objects controls the virtual machine would ensure it was not able to exceed the defined resource controls.
 
 ## Resources
 For each resource this section provides a mapping between the Docker command line interface as an example of how the resource control might be used (it might be configured by an orchestrator or other tooling) to the corresponding Windows host compute service (HCS) API as well as generally how the resource control has been implemented by Windows (please note that this description is high-level and that the underlying implementation is subject to change).

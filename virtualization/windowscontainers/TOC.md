@@ -38,6 +38,11 @@
 ### [Run your first LCOW container](quick-start/quick-start-windows-10-linux.md)
 
 # Concepts
+## Windows Container Essentials
+### [Resource controls](manage-containers/resource-controls.md)
+### [Hyper-V isolation](manage-containers/hyperv-container.md)
+### [Version compatibility](deploy-containers/version-compatibility.md)
+### [Container Base Images](manage-containers/container-base-images.md)
 ## Docker
 ### [Docker Engine on Windows](manage-docker/configure-docker-daemon.md)
 ### [Docker swarm](manage-containers/swarm-mode.md)
@@ -60,11 +65,8 @@
 ## Devices
 ### [Hardware devices](deploy-containers/hardware-devices-in-containers.md)
 ### [GPU acceleration](deploy-containers/gpu-acceleration.md)
-## [Resource controls](manage-containers/resource-controls.md)
-## [Hyper-V isolation](manage-containers/hyperv-container.md)
 
 # Reference
-## [Version compatibility](deploy-containers/version-compatibility.md)
 ## [Base image servicing lifecycles](deploy-containers/base-image-lifecycle.md)
 ## [Anti-virus optimization](https://docs.microsoft.com/windows-hardware/drivers/ifs/anti-virus-optimization-for-windows-containers)
 ## [Container platform tools](deploy-containers/containerd.md)
