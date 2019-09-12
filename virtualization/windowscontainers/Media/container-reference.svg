@@ -1,0 +1,50 @@
+<svg id="ICONS" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 140">
+  <defs>
+    <style>
+      .cls-1, .cls-4 {
+        fill: #fff;
+      }
+
+      .cls-2 {
+        fill: none;
+      }
+
+      .cls-2, .cls-4 {
+        stroke: #556a8a;
+        stroke-miterlimit: 10;
+        stroke-width: 2px;
+      }
+
+      .cls-3 {
+        fill: #80def9;
+      }
+
+      .cls-5 {
+        fill: #556a8a;
+      }
+
+      .cls-6 {
+        fill: #e5e5e5;
+      }
+    </style>
+  </defs>
+  <title>virtualization-hperv-server-doc-archive</title>
+  <g>
+    <path class="cls-1" d="M251.32,17h-33A1.27,1.27,0,0,0,217,18.28V97.72A1.27,1.27,0,0,0,218.27,99h58.45A1.27,1.27,0,0,0,278,97.72V42.62Z"/>
+    <path class="cls-2" d="M251.32,17h-33A1.27,1.27,0,0,0,217,18.28V97.72A1.27,1.27,0,0,0,218.27,99h58.45A1.27,1.27,0,0,0,278,97.72V42.62Z"/>
+    <polyline class="cls-2" points="251 17.37 251 43 277.21 43"/>
+  </g>
+  <g>
+    <path class="cls-1" d="M242.32,25.93h-33A1.27,1.27,0,0,0,208,27.21v79.43a1.27,1.27,0,0,0,1.27,1.28h58.45a1.27,1.27,0,0,0,1.27-1.28V51.54Z"/>
+    <polygon class="cls-3" points="269 52 242.05 52 242 26 269 52"/>
+    <path class="cls-2" d="M242.32,25.93h-33A1.27,1.27,0,0,0,208,27.21v79.43a1.27,1.27,0,0,0,1.27,1.28h58.45a1.27,1.27,0,0,0,1.27-1.28V51.54Z"/>
+    <polyline class="cls-2" points="242 26 242 51.93 268.26 51.93"/>
+  </g>
+  <g>
+    <rect class="cls-4" x="128" y="45" width="98" height="77"/>
+    <rect class="cls-5" x="159" y="77" width="36" height="5"/>
+    <rect class="cls-6" x="129" y="56" width="11" height="65"/>
+    <rect class="cls-6" x="214" y="56" width="11" height="65"/>
+    <rect class="cls-5" x="122" y="39" width="110" height="21"/>
+  </g>
+</svg>
