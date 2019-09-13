@@ -6,15 +6,9 @@
 ## [FAQ](about/faq.md)
 
 # Get Started
-## Windows 10
-### [Run your first WCOW container](quick-start/quick-start-windows-10.md)
-### [Build a sample app](quick-start/building-sample-app.md)
-## Windows Server
-### [Run your first Windows Server container](quick-start/quick-start-windows-server.md)
-### [Automate container builds](quick-start/quick-start-images.md)
-## Windows Insider
-### [Use the Insider images](quick-start/Using-Insider-Container-Images.md)
-### [Build and run an application](quick-start/Nano-RS3-.NET-Core-and-PS.md)
+## [Set up your environment](quick-start/set-up-environment.md)
+## [Run your first container](quick-start/run-your-first-container.md)
+## [Containerize a sample app](quick-start/building-sample-app.md)
 
 # Tutorials
 ## Build a Windows container
