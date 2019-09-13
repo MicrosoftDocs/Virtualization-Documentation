@@ -105,9 +105,9 @@ ms.assetid: 74c9d604-0915-4d89-bc69-0263b76bc66b
                         <div class="cardText">
                             <h3 style="margin: 8px 0 2px 0;">Get Started</h3>
                             <ul>
-                                <li><a href="/en-us/virtualization/windowscontainers/quick-start/quick-start-windows-10" data-linktype="external">Windows 10</a></li>
-                                <li><a href="/en-us/virtualization/windowscontainers/quick-start/quick-start-windows-server" data-linktype="external">Windows Server</a></li>
-                                <li><a href="/en-us/virtualization/windowscontainers/quick-start/using-insider-container-images" data-linktype="external">Windows Insider</a></li>
+                                <li><a href="/en-us/virtualization/windowscontainers/quick-start/set-up-environment" data-linktype="external">Set up your environment</a></li>
+                                <li><a href="/en-us/virtualization/windowscontainers/quick-start/run-your-first-container" data-linktype="external">Run your first container</a></li>
+                                <li><a href="/en-us/virtualization/windowscontainers/quick-start/building-sample-app" data-linktype="external">Containerize a sample app</a></li>
                             </ul>
                         </div>
                     </div>

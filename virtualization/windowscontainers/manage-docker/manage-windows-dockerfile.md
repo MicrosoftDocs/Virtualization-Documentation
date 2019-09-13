@@ -25,7 +25,7 @@ Docker build is the Docker engine command that consumes a Dockerfile and trigger
 
 This topic will show you how to use Dockerfiles with Windows containers, understand their basic syntax, and what the most common Dockerfile instructions are.
 
-This document will discuss the concept of container images and container image layers. If you want to learn more about images and image layering, see [the quickstart guide to images](../quick-start/quick-start-images.md).
+This document will discuss the concept of container images and container image layers. If you want to learn more about images and image layering, see [container base images](../manage-containers/container-base-images.md).
 
 For a complete look at Dockerfiles, see the [Dockerfile reference](https://docs.docker.com/engine/reference/builder/).
 
@@ -63,7 +63,7 @@ Dockerfile instructions provide the Docker Engine the instructions it needs to c
 
 ### FROM
 
-The `FROM` instruction sets the container image that will be used during the new image creation process. For instance, when using the instruction `FROM microsoft/windowsservercore`, the resulting image is derived from, and has a dependency on, the Windows Server Core base OS image. If the specified image is not present on the system where the Docker build process is being run, the Docker engine will attempt to download the image from a public or private image registry.
+The `FROM` instruction sets the container image that will be used during the new image creation process. For instance, when using the instruction `FROM mcr.microsoft.com/windows/servercore`, the resulting image is derived from, and has a dependency on, the Windows Server Core base OS image. If the specified image is not present on the system where the Docker build process is being run, the Docker engine will attempt to download the image from a public or private image registry.
 
 The FROM instruction's format goes like this:
 
