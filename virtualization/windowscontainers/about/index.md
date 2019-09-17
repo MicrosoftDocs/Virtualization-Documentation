@@ -80,4 +80,4 @@ Ready to begin leveraging the awesome power of containers? The following article
 
 To set up a container on Windows Server, see the [Windows Server quickstart](../quick-start/quick-start-windows-server.md).
 
-To set up a container on Windows 10, see the [Get Started: Configure Your Environment for Containers](../quick-start/set-up-environment?tabs=Windows-10-Client).
+To set up a container on Windows 10, see [Get Started: Configure Your Environment for Containers](../quick-start/set-up-environment.md?tabs=Windows-10-Client).
