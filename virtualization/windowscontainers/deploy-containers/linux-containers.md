@@ -41,7 +41,7 @@ To see if you're running with Moby VM, check Hyper-V Manager for Moby VM using e
 
 ## Linux Containers with Hyper-V isolation
 
-To try LCOW, follow the Linux container instructions in [this get-started guide](../quick-start/quick-start-windows-10.md)
+To try Linux containers on Windows, follow the Linux container instructions in [Linux containers on Windows 10](../quick-start/quick-start-windows-10-linux.md).
 
 Linux containers with Hyper-V isolation run each Linux container (LCOW) in an optimized Linux VM with just enough OS to run containers.  In contrast to the Moby VM approach, each LCOW has its own kernel and its own VM sandbox.  They're also managed by Docker on Windows directly.
 
