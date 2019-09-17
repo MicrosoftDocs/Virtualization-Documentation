@@ -92,12 +92,12 @@
         },
         {
             "source_path": "virtualization/windowscontainers/quick_start/quick_start_windows_10.md",
-            "redirect_url": "virtualization/windowscontainers/quick-start/set-up-environment?tabs=Windows-10-Client",
+            "redirect_url": "https://docs.microsoft.com/virtualization/windowscontainers/quick-start/set-up-environment?tabs=Windows-10-Client",
             "redirect_document_id": true
         },
         {
             "source_path": "virtualization/windowscontainers/quick_start/quick-start-windows-10",
-            "redirect_url": "virtualization/windowscontainers/quick-start/set-up-environment?tabs=Windows-10-Client",
+            "redirect_url": "https://docs.microsoft.com/virtualization/windowscontainers/quick-start/set-up-environment?tabs=Windows-10-Client",
             "redirect_document_id": true
         },
         {
