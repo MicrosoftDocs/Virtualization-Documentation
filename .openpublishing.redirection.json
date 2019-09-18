@@ -102,7 +102,12 @@
         },
         {
             "source_path": "virtualization/windowscontainers/quick_start/quick_start_windows_server.md",
-            "redirect_url": "/virtualization/windowscontainers/quick-start/quick-start-windows-server",
+            "redirect_url": "/virtualization/windowscontainers/quick-start/set-up-environment",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "virtualization/windowscontainers/quick-start/quick-start-windows-server.md",
+            "redirect_url": "/virtualization/windowscontainers/quick-start/set-up-environment",
             "redirect_document_id": true
         },
         {
