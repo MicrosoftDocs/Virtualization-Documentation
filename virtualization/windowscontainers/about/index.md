@@ -8,7 +8,6 @@ ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: 8e273856-3620-4e58-9d1a-d1e06550448
-
 ---
 # About Windows containers
 
@@ -76,8 +75,4 @@ The following video presentation will give you a more in-depth overview of the h
 
 ## Try Windows Server containers
 
-Ready to begin leveraging the awesome power of containers? The following articles will help you get started:
-
-To set up a container on Windows Server, see the [Windows Server quickstart](../quick-start/quick-start-windows-server.md).
-
-To set up a container on Windows 10, see [Get Started: Configure Your Environment for Containers](../quick-start/set-up-environment.md?tabs=Windows-10-Client).
+To get started with containers on Windows Server or Windows 10, see [Get Started: Configure Your Environment for Containers](../quick-start/set-up-environment.md).
