@@ -38,7 +38,7 @@
         {
             "source_path": "virtualization/windowscontainers/docker/manage_windows_dockerfile.md",
             "redirect_url": "/virtualization/windowscontainers/manage-docker/manage-windows-dockerfile",
-            "redirect_document_id": true
+            "redirect_document_id": false
         },
         {
             "source_path": "virtualization/windowscontainers/docker/optimize_windows_dockerfile.md",
@@ -87,7 +87,12 @@
         },
         {
             "source_path": "virtualization/windowscontainers/quick_start/quick_start_images.md",
-            "redirect_url": "/virtualization/windowscontainers/quick-start/quick-start-images",
+            "redirect_url": "/virtualization/windowscontainers/manage-docker/manage-windows-dockerfile",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "virtualization/windowscontainers/quick-start/quick-start-images.md",
+            "redirect_url": "/virtualization/windowscontainers/manage-docker/manage-windows-dockerfile",
             "redirect_document_id": true
         },
         {
