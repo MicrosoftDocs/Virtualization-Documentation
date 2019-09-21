@@ -8,9 +8,9 @@ RUN curl.exe -o tiny_yolov2.tar.gz https://onnxzoo.blob.core.windows.net/models/
     del tiny_yolov2.tar.gz
 
 # Download and extract cli tool for evaluation .onnx model with WinML.
-RUN curl.exe -L -o WinMLRunner_x64_Release.zip https://github.com/Microsoft/Windows-Machine-Learning/releases/download/v1.0.0.0/WinMLRunner_x64_Release.zip && \
+RUN curl.exe -L -o WinMLRunner_x64_Release.zip https://github.com/microsoft/Windows-Machine-Learning/releases/download/1.2.1.1/WinMLRunner.v1.2.1.1.zip && \
     tar.exe -xf C:/App/WinMLRunner_x64_Release.zip && \
     del WinMLRunner_x64_Release.zip
 
 # Run the model evaluation when container starts.
-ENTRYPOINT ["C:/App/WinMLRunner_x64_Release/WinMLRunner.exe", "-model", "C:/App/tiny_yolov2/model.onnx", "-terse", "-iterations", "100", "-perf"]
+ENTRYPOINT ["C:/App/WinMLRunner v1.2.1.1/x64/WinMLRunner.exe", "-model", "C:/App/tiny_yolov2/model.onnx", "-terse", "-iterations", "100", "-perf"]

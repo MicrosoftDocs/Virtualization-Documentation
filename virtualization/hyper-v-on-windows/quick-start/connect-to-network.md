@@ -17,7 +17,7 @@ Your virtual machines will need a virtual network to share a network with your c
 
 ## Connect virtual machines to the internet
 
-Hyper-V has three types of virtual switches -- external, internal, and private. create an external switch to share your computer's network with the virtual machines running on it.
+Hyper-V has three types of virtual switches -- external, internal, and private. Create an external switch to share your computer's network with the virtual machines running on it.
 
 This exercise walks through creating an external virtual switch. Once completed, your Hyper-V host will have a virtual switch that can  connect virtual machines to the internet through your computer's network connection. 
 
