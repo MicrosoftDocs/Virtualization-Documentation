@@ -72,7 +72,7 @@ Orchestrators are a critical piece of infrastructure that you should be mindful 
 
 To learn more about container orchestrators with Windows containers, visit the [Kubernetes on Windows](../kubernetes/getting-started-kubernetes-windows.md) tutorial.
 
-## Windows Containers on Azure
+## Windows Containers in Azure
 
 Microsoft Azure provides comprehensive end-to-end services to help you get up and running with Windows containers. You can use Azure container instances to run containers without needing to worry about the underlying infrastructure, use Azure Kubernetes Service to take advantage of a fully managed Kubernetes solution with just a few clicks, and more.
 
