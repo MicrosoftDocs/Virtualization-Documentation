@@ -56,16 +56,6 @@ All containers are created from container images. Container images are a bundle 
 
 As mentioned earlier, container images are composed of a series of layers. Each layer contains a set of files that, when overlaid together, represent your container image. Because of the layered nature of containers, you do not have to always target a base image to build a Windows container. Instead, you could target another image that already carries the framework you want. For example, the .NET team publishes a [.NET core image](https://hub.docker.com/_/microsoft-dotnet-core) that carries the .NET core runtime. It saves users from needing to duplicate the process of installing .NET core--instead they can re-use the layers of this container image. The .NET core image itself is built based upon Nano Server.
 
-### Windows container isolation modes
-
-Windows containers support running in two isolation modes: `process isolation` and `Hyper-V isolation`.
-
-`Process isolation` is how container conventionally run. The application in the container is isolated through process and namespace isolation technologies. These containers are referred to as "process-isolated containers". Process-isolated containers share the kernel with the container host and all containers running on the host. These process-isolated containers don't provide a hostile security boundary and shouldn't be used to isolate untrusted code. Because of the shared kernel space, these containers require the same kernel version and configuration.
-
-`Hyper-V isolation` expands on the isolation provided by Windows containers by running each container in a highly optimized virtual machine. In this configuration, the container host doesn't share its kernel with other containers on the same host. These containers are designed for hostile multitenant hosting with the same security assurances of a virtual machine. Since these containers don't share the kernel with the host or other containers on the host, they can run kernels with different versions and configurations (within supported versions).
-
-Choosing which isolation mode the container will run under is a runtime decision. Containers are built independent of the isolation, and then later at runtime the user gets to choose how it should run. Learn more about [Hyper-V isolation]() in our "Concepts" section of the docs.
-
 ## Container Orchestration
 
 Orchestrators are a critical piece of infrastructure that you should be mindful of when embarking on a journey with containers. Managing one or two containers manually can be done successfully on your own. However, most applications are composed of more than just one or two containers. Most applications could be powered by five, ten, or even hundreds of containers. Container orchestrators were built to help manage containers at scale and in production. Orchestrators provide functionality for:
