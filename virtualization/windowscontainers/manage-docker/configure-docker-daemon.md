@@ -15,14 +15,13 @@ The Docker Engine and client aren't included with Windows and need to be install
 
 ## Install Docker
 
-You need Docker in order to work with Windows Containers. Docker consists of the Docker Engine (dockerd.exe), and the Docker client (docker.exe). The easiest way to get everything installed is in the quickstart guides, which will help you get everything set up and run your first container.
+You need Docker in order to work with Windows Containers. Docker consists of the Docker Engine (dockerd.exe), and the Docker client (docker.exe). The easiest way to get everything installed is in the quickstart guide, which will help you get everything set up and run your first container.
 
-- [Windows containers on Windows Server 2019](../quick-start/quick-start-windows-server.md)
-- [Windows containers on Windows 10](../quick-start/quick-start-windows-10.md)
+- [Install Docker](../quick-start/set-up-environment.md)
 
 For scripted installations, see [Use a script to install Docker EE](https://docs.docker.com/install/windows/docker-ee/#use-a-script-to-install-docker-ee).
 
-Before you can use Docker, you'll need to install the container images. For more information, see [the quickstart guide for using images](../quick-start/quick-start-images.md).
+Before you can use Docker, you'll need to install the container images. For more information, see [docs for our container base images](../manage-containers/container-base-images.md).
 
 ## Configure Docker with a configuration file
 

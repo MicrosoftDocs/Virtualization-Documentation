@@ -10,75 +10,37 @@ ms.service: windows-containers
 ms.assetid: 88e6e080-cf8f-41d8-a301-035959dc5ce0
 ---
 
-# Windows Container Base Image History
+# Container Base Images
 
-Every Windows container is built on top of a base OS provided by Microsoft. If you're not sure which version of Windows a container was built for,
-you can run `docker inspect <tag>`, and match the top 1 or two rows to the chart below.
+## Supported base images
 
-For example, `docker inspect microsoft/windowsservercore:10.0.14393.447` would show
+Windows containers are offered with four container base images: Windows Server Core, Nano Server, Windows, and IoT Core. Not all configurations support both OS images. This table details the supported configurations.
 
-```
-...
-"RootFS": {
-    "Type": "layers",
-    "Layers": [
-        "sha256:3fd27ecef6a323f5ea7f3fde1f7b87a2dbfb1afa797f88fd7d20e8dbdc856f67",
-        "sha256:b9454c3094c68005f07ae8424021ff0e7906dac77a172a874cd5ec372528fc15"
-    ]
-}
-```
+|Host operating system|Windows container|Hyper-V isolation|
+|---------------------|-----------------|-----------------|
+|Windows Server 2016 or Windows Server 2019 (Standard or Datacenter)|Server Core, Nano Server, Windows|Server Core, Nano Server, Windows|
+|Nano Server|Nano Server|Server Core, Nano Server, Windows|
+|Windows 10 Pro or Windows 10 Enterprise|Not available|Server Core, Nano Server, Windows|
+|IoT Core|IoT Core|Not available|
 
-Which are the two layers in the image provided by Microsoft. The top one is constant and represents the original Windows Server release, and the second one changes based on the latest cumulative update included.
+> [!WARNING]  
+> Starting with Windows Server version 1709, Nano Server is no longer available as a container host.
 
-If you want to find out what changed in each version, look up the knowledge base for that version at 
-[Windows 10 and Windows Server 2016 update history](https://support.microsoft.com/help/12387/windows-10-update-history)
+## Base image differences
 
+How does one choose the right base image to build upon? While you are free to build with whatever you wish, these are the general guidelines for each image:
 
-## Tools to simplify this process
+- [Windows Server Core](https://hub.docker.com/_/microsoft-windows-servercore): If your application needs the full .NET framework, this is the best image to use.
+- [Nano Server](https://hub.docker.com/_/microsoft-windows-nanoserver): For applications that only require .NET Core, Nano Server will provide a much slimmer image.
+- [Windows](https://hub.docker.com/_/microsoft-windowsfamily-windows): You may find your application depends on a component or .dll that is missing in Server Core or Nano Server images, such as GDI libraries. This image carries the full dependency set of Windows.
+- [IoT Core](https://hub.docker.com/_/microsoft-windows-iotcore): This image is purpose-built for [IoT applications](https://developer.microsoft.com/windows/iot). You should use this container image when targeting an IoT Core host.
 
-Stefan Scherer has created a tool that can read the image manifest and determine the version without downloading the full container. Check his [blog](https://stefanscherer.github.io/winspector/) and [GitHub](https://github.com/StefanScherer/winspector) repo for more info.
+For most users, Windows Server Core or Nano Server will be the most appropriate image to use. The following are things to keep in mind as you think about building on top of Nano Server:
 
+- The servicing stack was removed
+- .NET Core is not included (though you can use the [.NET Core Nano Server image](https://hub.docker.com/r/microsoft/dotnet/))
+- PowerShell was removed
+- WMI was removed
+- Starting with Windows Server version 1709 applications run under a user context, so commands that require administrator privileges will fail. You can specify the container administrator account via the --user flag (such as docker run --user ContainerAdministrator) however in the future we intend to fully remove administrator accounts from NanoServer.
 
-## Image Versions
-
-<table>
-    <tr>
-        <th>Windows Version</th>
-        <th>microsoft/windowsservercore</th>
-        <th>microsoft/nanoserver</th>
-    </tr>
-    <tr>
-        <td>10.0.14393.206</td>
-        <td>sha256:3fd27ecef6a323f5ea7f3fde1f7b87a2dbfb1afa797f88fd7d20e8dbdc856f67</td>
-        <td>sha256:342d4e407550c52261edd20cd901b5ce438f0b1e940336de3978210612365063</td>
-    </tr>
-    <tr>
-        <td>10.0.14393.321</td>
-        <td>sha256:3fd27ecef6a323f5ea7f3fde1f7b87a2dbfb1afa797f88fd7d20e8dbdc856f67<br/>
-        sha256:cc6b0a07c696c3679af48ab4968de1b42d35e568f3d1d72df21f0acb52592e0b</td>
-        <td>sha256:342d4e407550c52261edd20cd901b5ce438f0b1e940336de3978210612365063<br/>
-        sha256:2c195a33d84d936c7b8542a8d9890a2a550e7558e6ac73131b130e5730b9a3a5</td>
-    </tr>
-    <tr>
-        <td>10.0.14393.447</td>
-        <td>sha256:3fd27ecef6a323f5ea7f3fde1f7b87a2dbfb1afa797f88fd7d20e8dbdc856f67<br/>
-        sha256:b9454c3094c68005f07ae8424021ff0e7906dac77a172a874cd5ec372528fc15</td>
-        <td>sha256:342d4e407550c52261edd20cd901b5ce438f0b1e940336de3978210612365063<br/>
-        sha256:c8606bedb07a714a6724b8f88ce85b71eaf5a1c80b4c226e069aa3ccbbe69154</td>
-    </tr>
-    <tr>
-        <td>10.0.14393.576</td>
-        <td>sha256:f358be10862ccbc329638b9e10b3d497dd7cd28b0e8c7931b4a545c88d7f7cd6<br/>
-        sha256:de57d9086f9a337bb084b78f5f37be4c8f1796f56a1cd3ec8d8d1c9c77eb693c</td>
-        <td>sha256:6c357baed9f5177e8c8fd1fa35b39266f329535ec8801385134790eb08d8787d<br/>
-        sha256:0d812bf7a7032db75770c3d5b92c0ac9390ca4a9efa0d90ba2f55ccb16515381</td>
-    </tr>
-    <tr>
-        <td>10.0.14393.693</td>
-        <td>sha256:f358be10862ccbc329638b9e10b3d497dd7cd28b0e8c7931b4a545c88d7f7cd6<br/>
-        sha256:c28d44287ce521eac86e0296c7677f5d8ca1e86d1e45e7618ec900da08c95df3</td>
-        <td>sha256:6c357baed9f5177e8c8fd1fa35b39266f329535ec8801385134790eb08d8787d<br/>
-        sha256:dd33c5d8d8b3c230886132c328a7801547f13de1dac9a629e2739164a285b3ab</td>
-    </tr>
-</table>
-
+These are the biggest differences and not an exhaustive list. There are other components not called out which are absent as well. Keep in mind that you can always add layers on top of Nano Server as you see fit. For an example of this check out the [.NET Core Nano Server Dockerfile](https://github.com/dotnet/dotnet-docker/blob/master/2.1/sdk/nanoserver-1803/amd64/Dockerfile).

@@ -11,21 +11,11 @@ ms.service: windows-containers
 
 # Containerize a .NET Core App
 
-
-In this quickstart, you will learn how to containerize a simple .NET core application. You will:
-
-> [!div class="checklist"]
-> * Clone the sample app source from GitHub
-> * Create a dockerfile to build a container image with the app source
-> * Test the containerized .NET core app in a local Docker environment
-
-## Before you begin
-
-This quickstart assumes your development environment is already configured for using containers. If you don't have an environment configured for containers, visit the [Windows 10 Quick Start](./quick-start-windows-10.md) to learn how to get started.
+This segment assumes your development environment is already configured for using containers. If you don't have an environment configured for containers, visit "[Set up your environment](./set-up-environment.md)" to learn how to get started.
 
 You will need the Git source control system installed on your computer. You can grab it here: [Git](https://git-scm.com/download)
 
-## Getting started
+## Clone the sample code
 
 All container sample source code is kept under the [Virtualization-Documentation](https://github.com/MicrosoftDocs/Virtualization-Documentation) git repo in a folder called `windows-container-samples`. Clone this git repo to your curent working directory.
 
