@@ -1,18 +1,14 @@
+# [Containers on Windows Documentation](index.md) 
+
 # Overview
 ## [About Windows containers](about/index.md)
 ## [System requirements](deploy-containers/system-requirements.md)
 ## [FAQ](about/faq.md)
 
 # Get Started
-## Windows 10
-### [Run your first WCOW container](quick-start/quick-start-windows-10.md)
-### [Build a sample app](quick-start/building-sample-app.md)
-## Windows Server
-### [Run your first Windows Server container](quick-start/quick-start-windows-server.md)
-### [Automate container builds](quick-start/quick-start-images.md)
-## Windows Insider
-### [Use the Insider images](quick-start/Using-Insider-Container-Images.md)
-### [Build and run an application](quick-start/Nano-RS3-.NET-Core-and-PS.md)
+## [Set up your environment](quick-start/set-up-environment.md)
+## [Run your first container](quick-start/run-your-first-container.md)
+## [Containerize a sample app](quick-start/building-sample-app.md)
 
 # Tutorials
 ## Build a Windows container
@@ -36,6 +32,11 @@
 ### [Run your first LCOW container](quick-start/quick-start-windows-10-linux.md)
 
 # Concepts
+## Windows Container Essentials
+### [Resource controls](manage-containers/resource-controls.md)
+### [Hyper-V isolation](manage-containers/hyperv-container.md)
+### [Version compatibility](deploy-containers/version-compatibility.md)
+### [Container Base Images](manage-containers/container-base-images.md)
 ## Docker
 ### [Docker Engine on Windows](manage-docker/configure-docker-daemon.md)
 ### [Docker swarm](manage-containers/swarm-mode.md)
@@ -58,11 +59,8 @@
 ## Devices
 ### [Hardware devices](deploy-containers/hardware-devices-in-containers.md)
 ### [GPU acceleration](deploy-containers/gpu-acceleration.md)
-## [Resource controls](manage-containers/resource-controls.md)
-## [Hyper-V isolation](manage-containers/hyperv-container.md)
 
 # Reference
-## [Version compatibility](deploy-containers/version-compatibility.md)
 ## [Base image servicing lifecycles](deploy-containers/base-image-lifecycle.md)
 ## [Anti-virus optimization](https://docs.microsoft.com/windows-hardware/drivers/ifs/anti-virus-optimization-for-windows-containers)
 ## [Container platform tools](deploy-containers/containerd.md)

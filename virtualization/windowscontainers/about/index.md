@@ -8,7 +8,6 @@ ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: 8e273856-3620-4e58-9d1a-d1e06550448
-
 ---
 # About Containers on Windows
 
@@ -67,7 +66,6 @@ Choosing which isolation mode the container will run under is a runtime decision
 
 ## Try containers on Windows
 
-Ready to begin leveraging the awesome power of containers?
-
+To get started with containers on Windows Server or Windows 10, follow this link.
 > [!div class="nextstepaction"]
-> [Get started using Windows containers](../quick-start/quick-start-windows-10.md)
+> [Get started: Configure Your Environment for Containers](../quick-start/set-up-environment.md)
