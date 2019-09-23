@@ -70,14 +70,15 @@ Choosing which isolation mode the container will run under is a runtime decision
 
 Orchestrators are a critical piece of infrastructure that you should be mindful of when embarking on a journey with containers. Managing one or two containers manually can be done successfully on your own. However, most applications are composed of more than just one or two containers. Most applications could be powered by five, ten, or even hundreds of containers. Container orchestrators were built to help manage containers at scale and in production. Orchestrators provide functionality for:
 
-* Workload scheduling
-* Affinity
-* Health monitoring
-* Failover
-* Scaling
-* Networking
-* Service discovery
-* Coordinated app upgrades
+> [!div class="checklist"]
+> * Workload scheduling
+> * Affinity
+> * Health monitoring
+> * Failover
+> * Scaling
+> * Networking
+> * Service discovery
+> * Coordinated app upgrades
 
 To learn more about container orchestrators with Windows containers, visit the [Kubernetes on Windows](../kubernetes/getting-started-kubernetes-windows.md) tutorial.
 
