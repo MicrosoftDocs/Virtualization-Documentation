@@ -84,9 +84,12 @@ To learn more about container orchestrators with Windows containers, visit the [
 
 ## Windows Containers on Azure
 
-Microsoft Azure provides comprehensive end-to-end services to help you get up and running with Windows containers. You can use Azure container instances to run containers without needing to worry about the underlying infrastructure, or you can use Azure Kubernetes Service to take advantage of a fully managed Kubernetes solution with just a few clicks.
+Microsoft Azure provides comprehensive end-to-end services to help you get up and running with Windows containers. You can use Azure container instances to run containers without needing to worry about the underlying infrastructure, use Azure Kubernetes Service to take advantage of a fully managed Kubernetes solution with just a few clicks, and more.
 
 ![](media/windows-containers-in-azure.png)
+
+> [!div class="nextstepaction"]
+> [Learn more abotu what Azure has to offer](https://azure.microsoft.com/en-us/product-categories/containers/)
 
 ## Try containers on Windows
 
