@@ -14,15 +14,17 @@ ms.assetid: 8e273856-3620-4e58-9d1a-d1e06550448
 
 Today's world demands that information be at a user's fingertips and that services maintain zero downtime availability. Time-to-deployment for both new features and critical fixes are tablestakes of the internet-connected society we live in. Now more than ever businesses are building out solutions that must deploy across a variety of locales--the edge, on-prem datacenters, multiple public cloud providers, and more--to meet the needs of their customers and satisfy their own demands for consuming compute to unlock critical business insights. Just as we at Microsoft have built the Azure cloud to help customers meet these needs, we too have also built Windows containers to help our Windows customers deliver on these requirements.
 
-Containers are a technology for packaging and delivering applications on top of the Windows and across any environment. Containers are purpose-built to carry only the dependencies and configuration needed to successfully run the enclosed application. Containers are incredibly portable by nature; they can move across any environment with ease--from a developer's machine, into a private datacenter, and out to the public cloud.
+Containers are a technology for packaging and delivering applications on top of the Windows across any environment. Containers are purpose-built to carry only the dependencies and configuration needed to successfully run the enclosed application. Containers are incredibly portable by nature; they can move across any environment with ease--from a developer's machine, into a private datacenter, and out to the public cloud.
 
 ![](media/about-3-box.png)
 
 ## How containers work
 
-For anyone familiar with virtual machines, containers and virtual machines may seem similar. A container runs an operating system, has a file system, and can be accessed over a network much like a physical or virtual machine. However, the technology and concepts behind containers are vastly different from virtual machines. Whereas virtual machines sit on top of a layer called the hypervisor which virtualizes the underlying hardware of a machine, containers share the kernel of the host's operating system.
+Containers provide an isolated environment for your application to run within. A container runs an operating system, has a file system, and can be accessed over a network much like a physical or virtual machine. However, the technology and concepts behind containers are vastly different from virtual machines. Whereas virtual machines sit on top of a layer called the hypervisor which virtualizes the underlying hardware of a machine, containers share the kernel of the host's operating system.
 
-![](media/about-3-box.png)
+![](media/container-arch.png)
+
+That means Microsoft built containers into the Windows OS itself. Similar to how applications can depend on the OS to manage low-level resource control and scheduling, the OS also can provide containers as an isolated environment by which your app can execute in. Windows takes care of setting up the container environment--isolating the view of the filesystem, isolating the view of the Windows registry, restricting which apps are seen running in a container, etc. There is no hypervisor involved--just the Windows host OS itself.
 
 ## Container users
 
@@ -64,6 +66,27 @@ Windows containers support running in two isolation modes: `process isolation` a
 `Hyper-V isolation` expands on the isolation provided by Windows containers by running each container in a highly optimized virtual machine. In this configuration, the container host doesn't share its kernel with other containers on the same host. These containers are designed for hostile multitenant hosting with the same security assurances of a virtual machine. Since these containers don't share the kernel with the host or other containers on the host, they can run kernels with different versions and configurations (within supported versions).
 
 Choosing which isolation mode the container will run under is a runtime decision. Containers are built independent of the isolation, and then later at runtime the user gets to choose how it should run. Learn more about [Hyper-V isolation]() in our "Concepts" section of the docs.
+
+## Container Orchestration
+
+Orchestrators are a critical piece of infrastructure that you should be mindful of when embarking on a journey with containers. Managing one or two containers manually can be done successfully on your own. However, most applications are composed of more than just one or two containers. Most applications could be powered by five, ten, or even hundreds of containers. Container orchestrators were built to help manage containers at scale and in production. Orchestrators provide functionality for:
+
+* Workload scheduling
+* Affinity
+* Health monitoring
+* Failover
+* Scaling
+* Networking
+* Service discovery
+* Coordinated app upgrades
+
+To learn more about container orchestrators with Windows containers, visit the [Kubernetes on Windows](../kubernetes/getting-started-kubernetes-windows.md) tutorial.
+
+## Windows Containers on Azure
+
+Microsoft Azure provides comprehensive end-to-end services to help you get up and running with Windows containers. You can use Azure container instances to run containers without needing to worry about the underlying infrastructure, or you can use Azure Kubernetes Service to take advantage of a fully managed Kubernetes solution with just a few clicks.
+
+![](media/windows-containers-in-azure.png)
 
 ## Try containers on Windows
 
