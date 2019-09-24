@@ -84,7 +84,7 @@ Microsoft Azure provides comprehensive end-to-end services to help you get up an
                 <div class="cardPadding">
                     <div class="card">
 	                    <div class="cardImageOuter">
-                            <div class="cardImage centered" style="width: 64px; height: 64px">
+                            <div class="cardImage centered" style="width: 64px; height: 64px;">
                                 <img src="media/appservice.svg" alt="" data-linktype="relative-path">
                             </div>
                         </div>
@@ -104,7 +104,7 @@ Microsoft Azure provides comprehensive end-to-end services to help you get up an
                 <div class="cardPadding">
                     <div class="card">
 	                    <div class="cardImageOuter">
-                            <div class="cardImage centered" style="width: 64px; height: 64px">
+                            <div class="cardImage centered" style="width: 64px; height: 64px;">
                                 <img src="media/fabric.svg" alt="" data-linktype="relative-path">
                             </div>
                         </div>
@@ -124,7 +124,7 @@ Microsoft Azure provides comprehensive end-to-end services to help you get up an
                 <div class="cardPadding">
                     <div class="card">
 	                    <div class="cardImageOuter">
-                            <div class="cardImage centered" style="width: 64px; height: 64px">
+                            <div class="cardImage centered" style="width: 64px; height: 64px;">
                                 <img src="media/containerservice.svg" alt="" data-linktype="relative-path">
                             </div>
                         </div>
@@ -144,7 +144,7 @@ Microsoft Azure provides comprehensive end-to-end services to help you get up an
                 <div class="cardPadding">
                     <div class="card">
 	                    <div class="cardImageOuter">
-                            <div class="cardImage centered" style="width: 64px; height: 64px">
+                            <div class="cardImage centered" style="width: 64px; height: 64px;">
                                 <img src="media/containerinstances.svg" alt="" data-linktype="relative-path">
                             </div>
                         </div>
