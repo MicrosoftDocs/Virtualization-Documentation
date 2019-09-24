@@ -159,29 +159,6 @@ Microsoft Azure provides comprehensive end-to-end services to help you get up an
         </a>
     </li>
 </ul>
-<ul class="cardsY panelContent featuredContent">
-    <li>
-        <a href="/en-us/azure/guides/developer/azure-developer-guide" data-linktype="absolute-path">
-            <div class="cardSize">
-                <div class="cardPadding">
-                    <div class="card ready">
-                        <div class="cardImageOuter">
-                            <div class="cardImage" style="background-image: url(&quot;media/index/getstarted-developer.svg&quot;); background-size: cover; background-position: 0px 0px;">
-                                <img data-hoverimage="media/index/getstarted-developer.svg" src="media/index/getstarted-developer.png" alt="" data-linktype="relative-path" style="display: none;">
-                            </div>
-                        </div>
-                        <div class="cardText">
-                            <span class="likeAnH3">Store and manage container images across all types of Azure deployments</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </a>
-    </li>
-</ul>
-
-> [!div class="nextstepaction"]
-> [Learn more about what Azure has to offer](https://azure.microsoft.com/en-us/product-categories/containers/)
 
 ## Try containers on Windows
 
