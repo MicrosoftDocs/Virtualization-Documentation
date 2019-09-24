@@ -77,19 +77,41 @@ To learn more about container orchestrators with Windows containers, visit the [
 
 Microsoft Azure provides comprehensive end-to-end services to help you get up and running with Windows containers. You can use Azure container instances to run containers without needing to worry about the underlying infrastructure, use Azure Kubernetes Service to take advantage of a fully managed Kubernetes solution with just a few clicks, and more.
 
-<ul class="cardsY panelContent featuredContent">
+<ul class="hubpage cardsM cols cols4 container " style="display: flex;">
     <li>
-        <a href="https://docs.microsoft.com/en-us/azure/aks/windows-container-cli" data-linktype="external">
+        <a href="https://docs.microsoft.com/en-us/azure/app-service/app-service-web-get-started-windows-container" data-linktype="external">
             <div class="cardSize">
                 <div class="cardPadding">
                     <div class="card">
-                        <div class="cardImageOuter">
-                            <div class="cardImage">
-                                <img src="media/box1.png" alt="" data-linktype="relative-path">
+	                    <div class="cardImageOuter">
+                            <div class="cardImage centered">
+                                <img src="media/appservice.svg" alt="" data-linktype="relative-path">
                             </div>
                         </div>
                         <div class="cardText">
                             <h3>App Service</h3>
+                            <hr>
+                            <p>Deploy web apps or APIs using containers in a PaaS environment</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </li>
+    <li>
+        <a href="https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-quickstart-containers" data-linktype="external">
+            <div class="cardSize">
+                <div class="cardPadding">
+                    <div class="card">
+	                    <div class="cardImageOuter">
+                            <div class="cardImage centered">
+                                <img src="media/fabric.svg" alt="" data-linktype="relative-path">
+                            </div>
+                        </div>
+                        <div class="cardText">
+                            <h3>Service Fabric</h3>
+                            <hr>
+                            <p>Modernize .NET applications to microservices using Windows Server containers</p>
                         </div>
                     </div>
                 </div>
@@ -101,11 +123,35 @@ Microsoft Azure provides comprehensive end-to-end services to help you get up an
             <div class="cardSize">
                 <div class="cardPadding">
                     <div class="card">
-                        <div class="cardImage">
-                            <img src="media/box1.png" alt="" data-linktype="relative-path">
+	                    <div class="cardImageOuter">
+                            <div class="cardImage centered">
+                                <img src="media/containerservice.svg" alt="" data-linktype="relative-path">
+                            </div>
                         </div>
                         <div class="cardText">
-                            <h3>App Service</h3>
+                            <h3>Kubernetes Service</h3>
+                            <hr>
+                            <p>Scale and orchestrate Linux containers using Kubernetes</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </li>
+    <li>
+        <a href="https://docs.microsoft.com/en-us/azure/container-instances/container-instances-overview#linux-and-windows-containers" data-linktype="external">
+            <div class="cardSize">
+                <div class="cardPadding">
+                    <div class="card">
+	                    <div class="cardImageOuter">
+                            <div class="cardImage centered">
+                                <img src="media/containerinstances.svg" alt="" data-linktype="relative-path">
+                            </div>
+                        </div>
+                        <div class="cardText">
+                            <h3>Container Instances</h3>
+                            <hr>
+                            <p>Elastically burst from your Azure Kubernetes Service (AKS) cluster</p>
                         </div>
                     </div>
                 </div>
@@ -114,10 +160,8 @@ Microsoft Azure provides comprehensive end-to-end services to help you get up an
     </li>
 </ul>
 
-![](media/windows-containers-in-azure.png)
-
 > [!div class="nextstepaction"]
-> [Learn more abotu what Azure has to offer](https://azure.microsoft.com/en-us/product-categories/containers/)
+> [Learn more about what Azure has to offer](https://azure.microsoft.com/en-us/product-categories/containers/)
 
 ## Try containers on Windows
 
