@@ -77,14 +77,14 @@ To learn more about container orchestrators with Windows containers, visit the [
 
 Microsoft Azure provides comprehensive end-to-end services to help you get up and running with Windows containers. You can use Azure container instances to run containers without needing to worry about the underlying infrastructure, use Azure Kubernetes Service to take advantage of a fully managed Kubernetes solution with just a few clicks, and more.
 
-<ul class="hubpage cardsM cols cols4 container " style="display: flex;">
+<ul class="hubpage cardsM cols cols4" style="display: flex;">
     <li>
         <a href="https://docs.microsoft.com/en-us/azure/app-service/app-service-web-get-started-windows-container" data-linktype="external">
             <div class="cardSize">
                 <div class="cardPadding">
                     <div class="card">
 	                    <div class="cardImageOuter">
-                            <div class="cardImage centered" style="width: 64px; height: 64px;">
+                            <div class="cardImage centered">
                                 <img src="media/appservice.svg" alt="" data-linktype="relative-path">
                             </div>
                         </div>
@@ -104,7 +104,7 @@ Microsoft Azure provides comprehensive end-to-end services to help you get up an
                 <div class="cardPadding">
                     <div class="card">
 	                    <div class="cardImageOuter">
-                            <div class="cardImage centered" style="width: 64px; height: 64px;">
+                            <div class="cardImage centered">
                                 <img src="media/fabric.svg" alt="" data-linktype="relative-path">
                             </div>
                         </div>
@@ -124,7 +124,7 @@ Microsoft Azure provides comprehensive end-to-end services to help you get up an
                 <div class="cardPadding">
                     <div class="card">
 	                    <div class="cardImageOuter">
-                            <div class="cardImage centered" style="width: 64px; height: 64px;">
+                            <div class="cardImage centered">
                                 <img src="media/containerservice.svg" alt="" data-linktype="relative-path">
                             </div>
                         </div>
@@ -144,7 +144,7 @@ Microsoft Azure provides comprehensive end-to-end services to help you get up an
                 <div class="cardPadding">
                     <div class="card">
 	                    <div class="cardImageOuter">
-                            <div class="cardImage centered" style="width: 64px; height: 64px;">
+                            <div class="cardImage centered">
                                 <img src="media/containerinstances.svg" alt="" data-linktype="relative-path">
                             </div>
                         </div>
