@@ -1,4 +1,5 @@
 ---
+layout: HubPage
 title: About Windows containers
 description: Learn about Windows containers.
 keywords: docker, containers
