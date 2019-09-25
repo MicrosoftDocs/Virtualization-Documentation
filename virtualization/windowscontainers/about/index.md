@@ -83,8 +83,8 @@ Microsoft Azure provides comprehensive end-to-end services to help you get up an
             href="https://docs.microsoft.com/en-us/azure/app-service/app-service-web-get-started-windows-container" data-linktype="external">
             <article class="card has-outline-hover is-relative is-fullheight">
                     <div class="cardImageOuter">
-                        <div class="cardImage centered">
-                            <img src="media/appservice.svg" alt="" data-linktype="relative-path" style="width: 64px; height: 64px;">
+                        <div class="cardImage centered has-padding-top-medium has-padding-bottom-medium has-padding-left-medium has-padding-right-medium">
+                            <img src="media/appservice.svg" alt="" data-linktype="relative-path">
                         </div>
                     </div>
                 <div class="card-content has-text-overflow-ellipsis">
@@ -103,8 +103,8 @@ Microsoft Azure provides comprehensive end-to-end services to help you get up an
             href="https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-quickstart-containers" data-linktype="external">
             <article class="card has-outline-hover is-relative is-fullheight">
                     <div class="cardImageOuter">
-                        <div class="cardImage centered">
-                            <img src="media/fabric.svg" alt="" data-linktype="relative-path" style="width: 64px; height: 64px;">
+                        <div class="cardImage centered has-padding-top-medium has-padding-bottom-medium has-padding-left-medium has-padding-right-medium">
+                            <img src="media/fabric.svg" alt="" data-linktype="relative-path">
                         </div>
                     </div>
                 <div class="card-content has-text-overflow-ellipsis">
@@ -123,8 +123,8 @@ Microsoft Azure provides comprehensive end-to-end services to help you get up an
             href="https://docs.microsoft.com/en-us/azure/aks/windows-container-cli" data-linktype="external">
             <article class="card has-outline-hover is-relative is-fullheight">
                     <div class="cardImageOuter">
-                        <div class="cardImage centered">
-                            <img src="media/containerservice.svg" alt="" data-linktype="relative-path" style="width: 64px; height: 64px;">
+                        <div class="cardImage centered has-padding-top-medium has-padding-bottom-medium has-padding-left-medium has-padding-right-medium">
+                            <img src="media/containerservice.svg" alt="" data-linktype="relative-path">
                         </div>
                     </div>
                 <div class="card-content has-text-overflow-ellipsis">
@@ -143,8 +143,8 @@ Microsoft Azure provides comprehensive end-to-end services to help you get up an
             href="https://docs.microsoft.com/en-us/azure/container-instances/container-instances-overview#linux-and-windows-containers" data-linktype="external">
             <article class="card has-outline-hover is-relative is-fullheight">
                     <div class="cardImageOuter">
-                        <div class="cardImage centered">
-                            <img src="media/containerinstances.svg" alt="" data-linktype="relative-path" style="width: 64px; height: 64px;">
+                        <div class="cardImage centered has-padding-top-medium has-padding-bottom-medium has-padding-left-medium has-padding-right-medium">
+                            <img src="media/containerinstances.svg" alt="" data-linktype="relative-path">
                         </div>
                     </div>
                 <div class="card-content has-text-overflow-ellipsis">
