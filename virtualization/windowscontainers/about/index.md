@@ -9,13 +9,24 @@ ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: 8e273856-3620-4e58-9d1a-d1e06550448
 ---
-# About Containers on Windows
+# Windows and containers
 
-Today's world demands that information be at a user's fingertips and that services maintain zero downtime availability. Time-to-deployment for both new features and critical fixes are tablestakes of the internet-connected society we live in. Now more than ever businesses are building out solutions that must deploy across a variety of locales--the edge, on-prem datacenters, multiple public cloud providers, and more--to meet the needs of their customers and satisfy their own demands for consuming compute to unlock critical business insights. Just as we at Microsoft have built the Azure cloud to help customers meet these needs, we too have also built Windows containers to help our Windows customers deliver on these requirements.
+Containers are a virtualization technology for packaging and running apps across diverse environments on-premises and in the cloud. Containers enable you to abstract your apps from the environment they run in so that they're easier to develop, deploy, and manage. Containers also start and stop more quickly, making them ideal for applications that need to rapidly adapt to changing demand or cluster nodes going down or coming up.
 
-Containers are a technology for packaging and delivering applications on top of the Windows and across any environment. Containers are purpose-built to carry only the dependencies and configuration needed to successfully run the enclosed application. Containers are incredibly portable by nature; they can move across any environment with ease--from a developer's machine, into a private datacenter, and out to the public cloud.
+Microsoft and Windows provide extensive support for containers:
 
-![](media/about-3-box.png)
+- Develop and test Windows-based or Linux-based containers on Windows 10 with built-in Docker support.
+- Deploy containers in the cloud on Azure:
+  - Use Azure Kubernetes Service (AKS) to orchestrate deployment and management of numerous containers.
+  - Containers are deployed to Azure virtual machines, which act as the Kubernetes cluster nodes.
+  - The Azure virtual machines run either a customized Ubuntu Linux operating system image, or a customized Windows Server 2019 image, providing support for both Linux and Windows-based containers.
+- Optionally deploy containers on-premises by using [Azure Stack with the AKS Engine](https://docs.microsoft.com/azure-stack/user/azure-stack-kubernetes-aks-engine-overview).
+
+<!--Today's world demands that information be at a user's fingertips and that services maintain zero downtime availability. Time-to-deployment for both new features and critical fixes are tablestakes of the internet-connected society we live in. Now more than ever businesses are building out solutions that must deploy across a variety of locales--the edge, on-prem datacenters, multiple public cloud providers, and more--to meet the needs of their customers and satisfy their own demands for consuming compute to unlock critical business insights. Just as we at Microsoft have built the Azure cloud to help customers meet these needs, we too have also built Windows containers to help our Windows customers deliver on these requirements.
+
+Containers are a technology for packaging and delivering applications on top of the Windows and across any environment. Containers are purpose-built to carry only the dependencies and configuration needed to successfully run the enclosed application. Containers are incredibly portable by nature; they can move across any environment with ease--from a developer's machine, into a private datacenter, and out to the public cloud. 
+
+![](media/about-3-box.png)-->
 
 ## How containers work
 
