@@ -57,4 +57,4 @@ To guarantee the packaging format remains universal, Docker recently organized t
 
 ## Additional feedback
 
-Want to add something to the FAQ? Open a new feedback issue in the comments section or set up a pull request for this page with GitHub!
+Want to add something to the FAQ? Open a new feedback issue in the comments section or set up a pull request for this page with GitHub.
