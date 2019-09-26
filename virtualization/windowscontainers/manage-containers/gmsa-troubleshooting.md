@@ -3,7 +3,7 @@ title: Troubleshoot gMSAs for Windows containers
 description: How to troubleshoot Group Managed Service Accounts (gMSAs) for Windows containers.
 keywords: docker, containers, active directory, gmsa, group managed service account, group managed service accounts, troubleshooting, troubleshoot
 author: Heidilohr
-ms.date: 09/10/2019
+ms.date: 09/25/2019
 ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
@@ -135,10 +135,44 @@ See [Active Directory and Active Directory Domain Services port requirements](ht
     ```
 
     The trust verification should return `NERR_SUCCESS` if the gMSA is available and network connectivity allows the container to talk to the domain. If it fails, verify the network configuration of the host and container. Both need to be able to communicate with the domain controller.
+    
+4. Check if the container can obtain a valid Kerberos Ticket Granting Ticket (TGT):
 
-4. Ensure your app is [configured to use the gMSA](gmsa-configure-app.md). The user account inside the container doesn't change when you use a gMSA. Rather, the System account uses the gMSA when it talks to other network resources. This means your app will need to run as Network Service or Local System to leverage the gMSA identity.
+    ```powershell
+    klist get krbtgt
+    ```
+    
+    This command should return "A ticket to krbtgt has been retrieved successfully" and list the domain controller used to retrieve the ticket. If you're able to obtain a TGT but `nltest` from the previous step fails, this may be an indication that the gMSA account is misconfigured. See [check the gMSA account](#check-the-gmsa-account) for more information.
+
+    If you cannot obtain a TGT inside the container, this may indicate DNS or network connectivity issues. Ensure the container can resolve a domain controller using the domain DNS name and that the domain controller is routable from the container.
+
+5. Ensure your app is [configured to use the gMSA](gmsa-configure-app.md). The user account inside the container doesn't change when you use a gMSA. Rather, the System account uses the gMSA when it talks to other network resources. This means your app will need to run as Network Service or Local System to leverage the gMSA identity.
 
     > [!TIP]
     > If you run `whoami` or use another tool to identify your current user context in the container, you won't see the gMSA name itself. This is because you always sign in to the container as a local user instead of a domain identity. The gMSA is used by the computer account whenever it talks to network resources, which is why your app needs to run as Network Service or Local System.
 
-5. Finally, if your container seems to be configured correctly but users or other services are unable to automatically authenticate to your containerized app, check the SPNs on your gMSA account. Clients will locate the gMSA account by the name at which they reach your application. This may mean that you'll need additional `host` SPNs for your gMSA if, for example, clients connect to your app via a load balancer or a different DNS name.
+### Check the gMSA account
+
+1. If your container seems to be configured correctly but users or other services are unable to automatically authenticate to your containerized app, check the SPNs on your gMSA account. Clients will locate the gMSA account by the name at which they reach your application. This may mean that you'll need additional `host` SPNs for your gMSA if, for example, clients connect to your app via a load balancer or a different DNS name.
+
+2. Ensure the gMSA and container host belong to the same Active Directory domain. The container host will not be able to retrieve the gMSA password if the gMSA belongs to a different domain.
+
+3. Ensure there is only one account in your domain with the same name as your gMSA. gMSA objects have dollar signs ($) appended to their SAM account names, so it's possible for a gMSA to be named "myaccount$" and an unrelated user account to be named "myaccount" in the same domain. This can cause issues if the domain controller or application has to look up the gMSA by name. You can search AD for similarly named objects with the following command:
+
+    ```powershell
+    # Replace "GMSANAMEHERE" with your gMSA account name (no trailing dollar sign)
+    Get-ADObject -Filter 'sAMAccountName -like "GMSANAMEHERE*"'
+    ```
+
+4. If you've enabled unconstrained delegation on the gMSA account, ensure that the userAccountControl attribute still has the `WORKSTATION_TRUST_ACCOUNT` flag enabled. This flag is required for NETLOGON in the container to communicate with the domain controller, as is the case when an app has to resolve a name to a SID or vice versa. You can check if the flag is configured correctly with the following commands:
+
+    ```powershell
+    $gMSA = Get-ADServiceAccount -Identity 'yourGmsaName' -Properties userAccountControl
+    $gMSA.userAccountControl -band 0x1000
+    ```
+    
+    If the above commands return `False`, use the following to add the `WORKSTATION_TRUST_ACCOUNT` flag to the gMSA account's userAccountControl property.
+    
+    ```powershell
+    Set-ADObject -Identity $gMSA -Replace @{ userAccountControl = $gMSA.userAccountControl -bor 0x1000 }
+    ```
