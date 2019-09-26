@@ -40,7 +40,7 @@ Starting with the Windows 10 October 2018 update, you can run a Windows containe
 If you want to run your Windows containers this way, you'll need to make sure your host is running Windows 10 build 17763+ and you have a Docker version with Engine 18.09 or newer.
 
 > [!WARNING]
-> This feature is only meant for development/testing. You should continue to use Windows Server as the host for production deployments. By using this feature, you must also ensure that your host and container version tags match, otherwise the container may fail to start or exhibit undefined behavior.
+> This feature is only meant for development and testing. You should continue to use Windows Server as the host for production deployments. By using this feature, you must also ensure that your host and container version tags match, otherwise the container may fail to start or exhibit undefined behavior.
 
 ## How do I make my container images available on air-gapped machines?
 
