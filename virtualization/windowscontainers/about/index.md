@@ -11,7 +11,7 @@ ms.assetid: 8e273856-3620-4e58-9d1a-d1e06550448
 ---
 # Windows and containers
 
-Containers are a virtualization technology for packaging and running apps--including Windows apps--across diverse environments on-premises and in the cloud. Containers provide a lightweight layer of virtualization so that apps are easier to develop, deploy, and manage. Containers start and stop more quickly than virtual machines and most monolithic apps, making them ideal for applications that need to rapidly adapt to changing demand or cluster node availability.
+Containers are a virtualization technology for packaging and running apps--including Windows apps--across diverse environments on-premises and in the cloud. Containers provide a lightweight layer of virtualization that makes apps easier to develop, deploy, and manage. Containers start and stop more quickly than virtual machines and most monolithic apps, making them ideal for applications that need to rapidly adapt to changing demand or cluster node availability.
 
 Microsoft and Windows help you develop and deploy apps in containers:
 
@@ -36,10 +36,11 @@ Today's world demands that information be at a user's fingertips and that servic
 To understand containers, it can be helpful to compare them with virtual machines, which are a complementary virtualization technology:
 
 - Virtual machines provide a complete virtualization of a computer, running an operating system in the virtual machine as if it were on physical hardware. Your apps run in the VM.
-- Containers provide a partial virtualization of the operating system so that each container doesn't need to run an entire operating system as a virtual machine must. Instead, the containers use just the user mode portion of an operating system where apps run, sharing the kernel with the host operating system.
+- Containers provide a partial virtualization of the operating system so that each container doesn't need to run an entire operating system. Instead, the containers include a lightweight operating system that consists only of the user mode where apps run, sharing the kernel with the host operating system.
  
  ![](media/container-arch.png)
 
+Containers are natively supported in Windows, similar to Win32 (desktop) apps, with Windows managing all low-level resources. Containers, like virtual machines, are isolated from the host operating system so that they have a restricted view of the file system, Windows registry, and other system resources. This provides a consistent environment for running apps across systems, and optionally provides security boundaries when using the Hyper-V isolation mode (which we talk about later).
 
 
 ![](media/about-3-box.png)
@@ -48,15 +49,17 @@ To understand containers, it can be helpful to compare them with virtual machine
 
 ## How containers work
 
-Containers provide an isolated environment for your application to run within. A container runs an operating system, has a file system, and can be accessed over a network much like a physical or virtual machine. However, the technology and concepts behind containers are vastly different from virtual machines. Whereas virtual machines sit on top of a layer called the hypervisor which virtualizes the underlying hardware of a machine, containers share the kernel of the host's operating system.
+<!--Containers provide an isolated environment for your application to run within. A container runs an operating system, has a file system, and can be accessed over a network much like a physical or virtual machine. However, the technology and concepts behind containers are vastly different from virtual machines. Whereas virtual machines sit on top of a layer called the hypervisor which virtualizes the underlying hardware of a machine, containers share the kernel of the host's operating system.
 
 ![](media/container-arch.png)
 
-That means Microsoft built containers into the Windows OS itself. Similar to how applications can depend on the OS to manage low-level resource control and scheduling, the OS also can provide containers as an isolated environment by which your app can execute in. Windows takes care of setting up the container environment--isolating the view of the filesystem, isolating the view of the Windows registry, restricting which apps are seen running in a container, etc. There is no hypervisor involved--just the Windows host OS itself.
+That means Microsoft built containers into the Windows OS itself. Similar to how applications can depend on the OS to manage low-level resource control and scheduling, the OS also can provide containers as an isolated environment by which your app can execute in. Windows takes care of setting up the container environment--isolating the view of the filesystem, isolating the view of the Windows registry, restricting which apps are seen running in a container, etc. There is no hypervisor involved--just the Windows host OS itself. -->
 
 ### Container Images
 
-All containers are created from container images. Container images are a bundle of files organized into a stack of layers that reside on your local machine or in a remote container registry. The container image consists of an OS instance, your application, any runtimes or dependencies of your application, and any other miscellaneous configuration file your application needs to run properly. Microsoft offers several "starter" images (called **base images**) that you may use as a starting point to build your own container image:
+All containers are created from container images. Container images are a bundle of files organized into a stack of layers that reside on your local machine or in a remote container registry. The container image consists of a lightweight operating system, your application, any runtimes or dependencies of your application, and any other miscellaneous configuration file your application needs to run properly.
+
+Microsoft offers several starter images (called **base images**) that you can use as a starting point to build your own container image:
 
 * Windows Server Core
 * Nano Server
