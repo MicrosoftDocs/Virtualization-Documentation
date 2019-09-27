@@ -34,9 +34,9 @@
 # Concepts
 ## Windows Container Essentials
 ### [Container Base Images](manage-containers/container-base-images.md)
-### [Resource controls](manage-containers/resource-controls.md)
-### [Hyper-V isolation](manage-containers/hyperv-container.md)
+### [Isolation Modes](manage-containers/hyperv-container.md)
 ### [Version compatibility](deploy-containers/version-compatibility.md)
+### [Resource controls](manage-containers/resource-controls.md)
 ## Docker
 ### [Docker Engine on Windows](manage-docker/configure-docker-daemon.md)
 ### [Docker swarm](manage-containers/swarm-mode.md)

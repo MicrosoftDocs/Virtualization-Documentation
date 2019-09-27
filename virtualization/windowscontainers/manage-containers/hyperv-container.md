@@ -1,41 +1,61 @@
 ﻿---
-title: Hyper-V Isolation
-description: Explaination of how Hyper-V isolation differ from process isolated containers.
+title: Isolation Modes
+description: Explanation of how Hyper-V isolation differ from process isolated containers.
 keywords: docker, containers
-author: scooley
-ms.date: 09/13/2018
+author: crwilhit
+ms.date: 09/26/2019
 ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: 42154683-163b-47a1-add4-c7e7317f1c04
 ---
 
-# Hyper-V Isolation
+# Isolation Modes
 
-The Windows container technology includes two distinct levels of isolation for containers, process and Hyper-V isolation. Both types are created, managed, and function identically. They also produce and consume the same container images. What differs between them is the level of isolation created between the container, the host operating system, and all of the other containers running on that host.
+Windows containers offer two distinct modes of runtime isolation: `process` and `Hyper-V` isolation. Containers running under both isolation modes are created, managed, and function identically. They also produce and consume the same container images. The difference between the isolation modes is to what degree of isolation is created between the container, the host operating system, and all of the other containers running on that host.
 
-**Process isolation** – multiple container instances can run concurrently on a host, with isolation provided through namespace, resource control, and process isolation technologies.  Containers share the same kernel with the host, as well as each other.  This is approximately the same as how containers run on Linux.
+## Process Isolation
 
-**Hyper-V isolation** – multiple container instances can run concurrently on a host, however, each container runs inside of a special virtual machine. This provides kernel level isolation between each container as well as the container host.
+This is the "traditional" isolation mode for containers and is what is described in the [Windows containers overview](../about/index.md). With process isolation, multiple container instances run concurrently on a given host with isolation provided through namespace, resource control, and process isolation technologies. When running in this mode, containers share the same kernel with the host as well as each other.  This is approximately the same as how Linux containers run.
 
-## Hyper-V isolation examples
+![](media/container-arch-process.png)
+
+## Hyper-V isolation
+This isolation mode offers enhanced security and broader compatibility between host and container versions. With Hyper-V isolation, multiple container instances run concurrently on a host; However, each container runs inside of a highly optimized virtual machine and effectively gets its own kernel. The presence of the virtual machine provides hardware-level isolation between each container as well as the container host.
+
+![](media/container-arch-hyperv.png)
+
+## Isolation examples
 
 ### Create container
 
-Managing Hyper-V isolated containers with Docker is nearly identical to managing Windows Server containers. To create a container with Hyper-V isolation thorough Docker, use the `--isolation` parameter to set `--isolation=hyperv`.
+Managing Hyper-V-isolated containers with Docker is nearly identical to managing process-isolated containers. To create a container with Hyper-V isolation thorough Docker, use the `--isolation` parameter to set `--isolation=hyperv`.
 
-``` cmd
-docker run -it --isolation=hyperv mcr.microsoft.com/windows/nanoserver:1809 cmd
+```cmd
+docker run -it --isolation=hyperv mcr.microsoft.com/windows/servercore:ltsc2019 cmd
 ```
+
+To create a container with process isolation thorough Docker, use the `--isolation` parameter to set `--isolation=process`.
+
+```cmd
+docker run -it --isolation=process mcr.microsoft.com/windows/servercore:ltsc2019 cmd
+```
+
+Windows containers running on Windows Server default to running with process isolation. Windows containers running on Windows 10 Pro and Enterprise default to running with Hyper-V isolation. Starting with the Windows 10 October 2018 update, users running a Windows 10 Pro or Enterprise host can run a Windows container with process isolation. Users must must directly request process isolation by using the `--isolation=process` flag.
+
+> [!WARNING]
+> Running with process isolation on Windows 10 Pro and Enterprise is meant for development/testing. Your host must be running Windows 10 build 17763+ and you must have a Docker version with Engine 18.09 or newer.
+> 
+> You should continue to use Windows Server as the host for production deployments. By using this feature on Windows 10 Pro and Enterprise, you must also ensure that your host and container version tags match, otherwise the container may fail to start or exhibit undefined behavior.
 
 ### Isolation explanation
 
-This example demonstrates the differences in isolation capabilities between Windows Server and Hyper-V isolation.
+This example demonstrates the differences in isolation capabilities between process and Hyper-V isolation.
 
-Here, a process isolated container is being deployed, and will be hosting a long-running ping process.
+Here, a process-isolated container is being deployed and will be hosting a long-running ping process.
 
 ``` cmd
-docker run -d mcr.microsoft.com/windows/servercore:1809 ping localhost -t
+docker run -d mcr.microsoft.com/windows/servercore:ltsc2019 ping localhost -t
 ```
 
 Using the `docker top` command, the ping process is returned as seen inside the container. The process in this example has an ID of 3964.
@@ -56,10 +76,10 @@ Handles  NPM(K)    PM(K)      WS(K) VM(M)   CPU(s)     Id  SI ProcessName
      67       5      820       3836 ...71     0.03   3964   3 PING
 ```
 
-To contrast, this example starts a Hyper-V isolated container with a ping process as well.
+To contrast, this example starts a Hyper-V -solated container with a ping process as well.
 
 ```
-docker run -d --isolation=hyperv mcr.microsoft.com/windows/nanoserver:1809 ping -t localhost
+docker run -d --isolation=hyperv mcr.microsoft.com/windows/servercore:ltsc2019 ping localhost -t
 ```
 
 Likewise, `docker top` can be used to return the running processes from the container.
@@ -70,7 +90,7 @@ docker top 5d5611e38b31a41879d37a94468a1e11dc1086dcd009e2640d36023aa1663e62
 1732 ping
 ```
 
-However, when searching for the process on the container host, a ping process is not found, and an error is thrown.
+However, when searching for the process on the container host, a ping process is not found and an error is thrown.
 
 ```
 get-process -Name ping
