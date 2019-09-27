@@ -1,5 +1,5 @@
 ---
-title: Windows Container Base Image History
+title: Windows Container Base Images
 description: An overview of the Windows container base images and when to use them.
 keywords: docker, containers, hashes
 author: patricklang
