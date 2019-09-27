@@ -11,13 +11,13 @@ ms.assetid: 8e273856-3620-4e58-9d1a-d1e06550448
 ---
 # Windows and containers
 
-Containers are a virtualization technology for packaging and running apps--including Windows apps--across diverse environments on-premises and in the cloud. Containers provide a lightweight layer of virtualization that makes apps easier to develop, deploy, and manage. Containers start and stop more quickly than virtual machines and most monolithic apps, making them ideal for applications that need to rapidly adapt to changing demand or cluster node availability.
+Containers are a technology for packaging and running apps--including Windows apps--across diverse environments on-premises and in the cloud. Containers provide a lightweight, isolated environment that makes apps easier to develop, deploy, and manage. Containers start and stop more quickly than virtual machines, making them ideal for applications that need to rapidly adapt to changing demand or cluster node availability.
 
 Microsoft and Windows help you develop and deploy apps in containers:
 
-- Develop and test Windows-based or Linux-based containers on Windows 10 with built-in support for Docker (the most common environment for running containers).
+- Develop and test Windows-based or Linux-based containers on Windows 10 with built-in support for Docker containers (the most common environment for running containers) and [powerful container and Docker support in Visual Studio](https://docs.microsoft.com/visualstudio/containers/overview), and [Visual Studio Code](https://code.visualstudio.com/docs/azure/docker).
 - Deploy containers in the cloud on Azure (or other clouds):
-  - Azure Kubernetes Service (AKS) orchestrates deployment and management of containers at scale.
+  - Azure Kubernetes Service (AKS) orchestrates deployment and management of containers at scale. Service Fabric is another option for orchestration.
   - Containers are deployed to Azure virtual machines, which act as the Kubernetes cluster nodes.
   - The Azure virtual machines run either a customized Ubuntu Linux operating system image, or a customized Windows Server 2019 image, providing support for both Linux and Windows-based apps running in containers.
 - Optionally deploy containers on-premises by using [Azure Stack with the AKS Engine](https://docs.microsoft.com/azure-stack/user/azure-stack-kubernetes-aks-engine-overview). You can also set up Kubernetes yourself on Windows Server, though the process is more complex.
@@ -36,7 +36,14 @@ Today's world demands that information be at a user's fingertips and that servic
 To understand containers, it can be helpful to compare them with virtual machines, which are a complementary virtualization technology:
 
 - Virtual machines provide a complete virtualization of a computer, running an operating system in the virtual machine as if it were on physical hardware. Your apps run in the VM.
-- Containers provide a partial virtualization of the operating system so that each container doesn't need to run an entire operating system. Instead, the containers include a lightweight operating system that consists only of the user mode where apps run, sharing the kernel with the host operating system.
+- Containers provide an isolated environment in which to run an app, but remove much of the 
+
+
+
+- Containers provide an isolated environment, but 
+- 
+- 
+- partial virtualization of the operating system so that each container doesn't need to run an entire operating system. Instead, the containers include a lightweight operating system that consists only of the user mode where apps run, sharing the kernel with the host operating system.
  
  ![](media/container-arch.png)
 
