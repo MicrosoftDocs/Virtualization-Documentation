@@ -3,7 +3,7 @@ title: Windows Container Base Image History
 description: A list of Windows container images released with SHA256 layer hashes
 keywords: docker, containers, hashes
 author: patricklang
-ms.date: 01/12/2018
+ms.date: 09/25/2019
 ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
@@ -12,35 +12,119 @@ ms.assetid: 88e6e080-cf8f-41d8-a301-035959dc5ce0
 
 # Container Base Images
 
-## Supported base images
+Windows offers four container base images that users can build from. Each base image is a different flavor of the Windows OS, has a different on-disk footprint, and carries a different amount of the Windows API set.
 
-Windows containers are offered with four container base images: Windows Server Core, Nano Server, Windows, and IoT Core. Not all configurations support both OS images. This table details the supported configurations.
+<ul class="columns is-multiline has-margin-left-none has-margin-bottom-none has-padding-top-medium">
+    <li class="column is-one-quarter has-padding-top-small-mobile has-padding-bottom-small">
+        <a class="is-undecorated is-full-height is-block"
+            href="https://hub.docker.com/_/microsoft-windows-servercore" data-linktype="external">
+            <article class="card has-outline-hover is-relative is-full-height has-padding-none">
+                    <div class="cardImageOuter bgdAccent1 has-padding-top-large has-padding-bottom-large has-padding-left-large has-padding-right-large">
+                        <div class="cardImage centered has-padding-top-large has-padding-bottom-large has-padding-left-large has-padding-right-large">
+                            <img src="media/Microsoft_logo.svg" alt="" data-linktype="relative-path">
+                        </div>
+                    </div>
+                <div class="card-content has-text-overflow-ellipsis has-padding-top-small">
+                    <div class="has-padding-bottom-none">
+                        <h3 class="is-size-4 has-margin-top-none has-margin-bottom-none has-text-primary">Windows Server Core</h3>
+                    </div>
+                    <div class="is-size-7 has-margin-top-small has-line-height-reset">
+                        <p>Supports traditional .NET framework applications.</p>
+                    </div>
+                </div>
+            </article>
+        </a>
+    </li>
+    <li class="column is-one-quarter has-padding-top-small-mobile has-padding-bottom-small">
+        <a class="is-undecorated is-full-height is-block"
+            href="https://hub.docker.com/_/microsoft-windows-nanoserver" data-linktype="external">
+            <article class="card has-outline-hover is-relative is-full-height has-padding-none">
+                    <div class="cardImageOuter bgdAccent1 has-padding-top-large has-padding-bottom-large has-padding-left-large has-padding-right-large">
+                        <div class="cardImage centered has-padding-top-large has-padding-bottom-large has-padding-left-large has-padding-right-large">
+                            <img src="media/Microsoft_logo.svg" alt="" data-linktype="relative-path">
+                        </div>
+                    </div>
+                <div class="card-content has-text-overflow-ellipsis has-padding-top-small">
+                    <div class="has-padding-bottom-none">
+                        <h3 class="is-size-4 has-margin-top-none has-margin-bottom-none has-text-primary">Nano Server</h3>
+                    </div>
+                    <div class="is-size-7 has-margin-top-small has-line-height-reset">
+                        <p>Built for .NET Core applications.</p>
+                    </div>
+                </div>
+            </article>
+        </a>
+    </li>
+    <li class="column is-one-quarter has-padding-top-small-mobile has-padding-bottom-small">
+        <a class="is-undecorated is-full-height is-block"
+            href="https://hub.docker.com/_/microsoft-windows" data-linktype="external">
+            <article class="card has-outline-hover is-relative is-full-height has-padding-none">
+                    <div class="cardImageOuter bgdAccent1 has-padding-top-large has-padding-bottom-large has-padding-left-large has-padding-right-large">
+                        <div class="cardImage centered has-padding-top-large has-padding-bottom-large has-padding-left-large has-padding-right-large">
+                            <img src="media/Microsoft_logo.svg" alt="" data-linktype="relative-path">
+                        </div>
+                    </div>
+                <div class="card-content has-text-overflow-ellipsis has-padding-top-small">
+                    <div class="has-padding-bottom-none">
+                        <h3 class="is-size-4 has-margin-top-none has-margin-bottom-none has-text-primary">Windows</h3>
+                    </div>
+                    <div class="is-size-7 has-margin-top-small has-line-height-reset">
+                        <p>Provides the full Windows API set.</p>
+                    </div>
+                </div>
+            </article>
+        </a>
+    </li>
+    <li class="column is-one-quarter has-padding-top-small-mobile has-padding-bottom-small">
+        <a class="is-undecorated is-full-height is-block"
+            href="https://hub.docker.com/_/microsoft-windows-iotcore" data-linktype="external">
+            <article class="card has-outline-hover is-relative is-full-height has-padding-none">
+                    <div class="cardImageOuter bgdAccent1 has-padding-top-large has-padding-bottom-large has-padding-left-large has-padding-right-large">
+                        <div class="cardImage centered has-padding-top-large has-padding-bottom-large has-padding-left-large has-padding-right-large">
+                            <img src="media/Microsoft_logo.svg" alt="" data-linktype="relative-path">
+                        </div>
+                    </div>
+                <div class="card-content has-text-overflow-ellipsis has-padding-top-small">
+                    <div class="has-padding-bottom-none">
+                        <h3 class="is-size-4 has-margin-top-none has-margin-bottom-none has-text-primary">Windows IoT Core</h3>
+                    </div>
+                    <div class="is-size-7 has-margin-top-small has-line-height-reset">
+                        <p>Purpose-built for IoT applications.</p>
+                    </div>
+                </div>
+            </article>
+        </a>
+    </li>
+</ul>
 
-|Host operating system|Windows container|Hyper-V isolation|
-|---------------------|-----------------|-----------------|
-|Windows Server 2016 or Windows Server 2019 (Standard or Datacenter)|Server Core, Nano Server, Windows|Server Core, Nano Server, Windows|
-|Nano Server|Nano Server|Server Core, Nano Server, Windows|
-|Windows 10 Pro or Windows 10 Enterprise|Not available|Server Core, Nano Server, Windows|
-|IoT Core|IoT Core|Not available|
+## Image discovery
 
-> [!WARNING]  
-> Starting with Windows Server version 1709, Nano Server is no longer available as a container host.
+All Windows container base images are discoverable through [Docker Hub](https://hub.docker.com/_/microsoft-windows-base-os-images). The Windows container base images themselves are served from [mcr.microsoft.com](https://azure.microsoft.com/en-us/services/container-registry/), the Microsoft Container Registry (MCR). This is why the pull commands for the Windows container base images look like the following:
 
-## Base image differences
+```code
+docker pull mcr.microsoft.com/windows/servercore:ltsc2019
+```
 
-How does one choose the right base image to build upon? While you are free to build with whatever you wish, these are the general guidelines for each image:
+The MCR does not have its own catalog experience and is meant to support existing catalogs such as Docker Hub. Thanks to Azure’s global footprint and coupled with Azure CDN, the MCR delivers an image pull experience that is consistent and fast. Azure customers, running their workloads in Azure, benefit from in-network performance enhancements as well as tight integration with the MCR (the source for Microsoft container images), Azure Marketplace, and the expanding number of services in Azure that offer containers as the deployment package format.
 
-- [Windows Server Core](https://hub.docker.com/_/microsoft-windows-servercore): If your application needs the full .NET framework, this is the best image to use.
-- [Nano Server](https://hub.docker.com/_/microsoft-windows-nanoserver): For applications that only require .NET Core, Nano Server will provide a much slimmer image.
-- [Windows](https://hub.docker.com/_/microsoft-windowsfamily-windows): You may find your application depends on a component or .dll that is missing in Server Core or Nano Server images, such as GDI libraries. This image carries the full dependency set of Windows.
-- [IoT Core](https://hub.docker.com/_/microsoft-windows-iotcore): This image is purpose-built for [IoT applications](https://developer.microsoft.com/windows/iot). You should use this container image when targeting an IoT Core host.
+## Choosing a base image
 
-For most users, Windows Server Core or Nano Server will be the most appropriate image to use. The following are things to keep in mind as you think about building on top of Nano Server:
+How do you choose the right base image to build upon? For most users, `Windows Server Core` and `Nanoserver` will be the most appropriate image to use.
 
-- The servicing stack was removed
-- .NET Core is not included (though you can use the [.NET Core Nano Server image](https://hub.docker.com/r/microsoft/dotnet/))
-- PowerShell was removed
-- WMI was removed
-- Starting with Windows Server version 1709 applications run under a user context, so commands that require administrator privileges will fail. You can specify the container administrator account via the --user flag (such as docker run --user ContainerAdministrator) however in the future we intend to fully remove administrator accounts from NanoServer.
+### Guidelines
 
-These are the biggest differences and not an exhaustive list. There are other components not called out which are absent as well. Keep in mind that you can always add layers on top of Nano Server as you see fit. For an example of this check out the [.NET Core Nano Server Dockerfile](https://github.com/dotnet/dotnet-docker/blob/master/2.1/sdk/nanoserver-1803/amd64/Dockerfile).
+ While you're free to target whichever image you wish, here are some guidelines to help steer your choice:
+
+- **Does your application require the full .NET framework?** If the answer to this question is yes, you should target `Windows Server Core`.
+- **Are you building a Windows app based upon .NET Core?** If the answer to this question is yes, you should target `Nanoserver`.
+- **Are you building an IoT application?** If the answer to this question is yes, you should target `IoT Core`.
+- **Is the Windows Server Core container image missing a dependency your app needs?** If the answer to this question is yes, you should attempt to target `Windows`. This image is much larger than the other base images, but it carries many of the core Windows libraries (such as the GDI library).
+
+> [!TIP]
+> Many Windows users want to containerize applications that have a dependency on .NET. In addition to the four base images described here, Microsoft publishes several Windows container images that come pre-configured with popular Microsoft frameworks, such as a the [.NET framework](https://hub.docker.com/_/microsoft-dotnet-framework) image and the [ASP .NET](https://hub.docker.com/_/microsoft-dotnet-framework-aspnet/) image.
+
+### Windows Server Core vs Nanoserver
+
+`Windows Server Core` and `Nanoserver` are the most common base images to target. The key difference between these images is that Nanoserver has a significantly smaller API surface. PowerShell, WMI, and the Windows servicing stack are absent from the Nanoserver image.
+
+Nanoserver was built to provide just enough API surface to run apps that have a dependency on .NET core or other modern open source frameworks. As a tradeoff to the smaller APi surface, the Nanoserver image has a significantly smaller on-disk footprint than the rest of the Windows base images. Keep in mind that you can always add layers on top of Nano Server as you see fit. For an example of this check out the [.NET Core Nano Server Dockerfile](https://github.com/dotnet/dotnet-docker/blob/master/2.1/sdk/nanoserver-1803/amd64/Dockerfile).
