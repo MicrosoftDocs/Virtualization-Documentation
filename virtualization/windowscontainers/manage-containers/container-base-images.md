@@ -1,6 +1,6 @@
 ---
 title: Windows Container Base Image History
-description: A list of Windows container images released with SHA256 layer hashes
+description: An overview of the Windows container base images and when to use them.
 keywords: docker, containers, hashes
 author: patricklang
 ms.date: 09/25/2019
