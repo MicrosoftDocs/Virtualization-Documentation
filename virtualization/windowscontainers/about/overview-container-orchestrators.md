@@ -1,5 +1,5 @@
 ---
-title: About Windows container orchestrators
+title: Windows Container Orchestration Overview
 description: Learn about Windows container orchestrators.
 keywords: docker, containers
 author: Heidilohr
@@ -9,7 +9,7 @@ ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
 ---
-# About Windows container orchestrators
+# Windows Container Orchestration Overview
 
 Because of their small size and application orientation, containers are perfect for agile delivery environments and microservice-based architectures. However, an environment that uses containers and microservers can have hundreds or thousands of components to keep track of. You might be able to manually manage a few dozen virtual machines or physical servers, but there's no way to properly manage a production-scale container environment without automation. This task should fall to your orchestrator, which is a process that automates and manages a large number of containers and how they interact with each other.
 
