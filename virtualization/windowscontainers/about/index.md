@@ -11,12 +11,12 @@ ms.assetid: 8e273856-3620-4e58-9d1a-d1e06550448
 ---
 # Windows and containers
 
-Containers are a technology for packaging and running apps--including Windows apps--across diverse environments on-premises and in the cloud. Containers provide a lightweight, isolated environment that makes apps easier to develop, deploy, and manage. Containers start and stop more quickly than virtual machines, making them ideal for applications that need to rapidly adapt to changing demand or cluster node availability.
+Containers are a technology for packaging and running apps--including Windows apps--across diverse environments on-premises and in the cloud. Containers provide a lightweight, isolated environment that makes apps easier to develop, deploy, and manage. Containers start and stop quickly, making them ideal for applications that need to rapidly adapt to changing demand or cluster node availability.
 
 Microsoft and Windows help you develop and deploy apps in containers:
 
-- Develop and test Windows-based or Linux-based containers on Windows 10 with built-in support for Docker containers (the most common environment for running containers) and [powerful container and Docker support in Visual Studio](https://docs.microsoft.com/visualstudio/containers/overview), and [Visual Studio Code](https://code.visualstudio.com/docs/azure/docker).
-- Deploy containers in the cloud on Azure (or other clouds):
+- Develop and test Windows-based or Linux-based containers on Windows 10 with built-in support for containers and [powerful container and Docker support in Visual Studio](https://docs.microsoft.com/visualstudio/containers/overview), and [Visual Studio Code](https://code.visualstudio.com/docs/azure/docker).
+- Deploy containers in the cloud on Azure or other clouds:
   - Azure Kubernetes Service (AKS) orchestrates deployment and management of containers at scale. Service Fabric is another option for orchestration.
   - Containers are deployed to Azure virtual machines, which act as the Kubernetes cluster nodes.
   - The Azure virtual machines run either a customized Ubuntu Linux operating system image, or a customized Windows Server 2019 image, providing support for both Linux and Windows-based apps running in containers.
@@ -33,6 +33,17 @@ Today's world demands that information be at a user's fingertips and that servic
 
 ## How containers work
 
+A container is an isolated, lightweight environment for running apps. The container environment bypasses most of the Windows operating system, and communicates directly with its kernel (which can be thought of as the deep plumbing of an operating system).
+
+ ![](media/container-arch.png)
+
+Because so much of the operating system is bypassed, containers typically add back some of the higher-level (user mode) operating system functionality, such as programming interfaces and important system services that apps can't function without. These are contained in the container base image, but we'll get to that later.
+
+Some Linux containerized apps can function without an operating system in the container, but this only works if the apps can directly make kernel-mode system calls and don't need any higher level system services, so even Linux containers typically include a base image with some amount of operating system services.
+
+
+Containers connect more-or-less directly to a deep layer of the host operating system--the kernel--
+
 To understand containers, it can be helpful to compare them with virtual machines, which are a complementary virtualization technology:
 
 - Virtual machines provide a complete virtualization of a computer, running an operating system in the virtual machine as if it were on physical hardware. Your apps run in the VM.
@@ -45,7 +56,7 @@ To understand containers, it can be helpful to compare them with virtual machine
 - 
 - partial virtualization of the operating system so that each container doesn't need to run an entire operating system. Instead, the containers include a lightweight operating system that consists only of the user mode where apps run, sharing the kernel with the host operating system.
  
- ![](media/container-arch.png)
+
 
 Containers are natively supported in Windows, similar to Win32 (desktop) apps, with Windows managing all low-level resources. Containers, like virtual machines, are isolated from the host operating system so that they have a restricted view of the file system, Windows registry, and other system resources. This provides a consistent environment for running apps across systems, and optionally provides security boundaries when using the Hyper-V isolation mode (which we talk about later).
 
