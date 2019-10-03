@@ -11,18 +11,22 @@ ms.assetid: 8e273856-3620-4e58-9d1a-d1e06550448
 ---
 # Windows and containers
 
-Containers are a technology for packaging and running apps--including Windows apps--across diverse environments on-premises and in the cloud. Containers provide a lightweight, isolated environment that makes apps easier to develop, deploy, and manage. Containers start and stop quickly, making them ideal for applications that need to rapidly adapt to changing demand or cluster node availability.
+Containers are a technology for packaging and running apps--including Windows apps--across diverse environments on-premises and in the cloud. Containers provide a lightweight, isolated environment that makes apps easier to develop, deploy, and manage. Containers start and stop quickly, making them ideal for applications that need to rapidly adapt to changing demand or cluster node availability. Another benefit of the lightweight nature of containers is increased density when compared to apps running in virtual machines or on physical hardware.
+
+![](media/about-3-box.png)
 
 Microsoft and Windows help you develop and deploy apps in containers:
 
-- Develop and test Windows-based or Linux-based containers on Windows 10 with built-in support for containers and [powerful container and Docker support in Visual Studio](https://docs.microsoft.com/visualstudio/containers/overview), and [Visual Studio Code](https://code.visualstudio.com/docs/azure/docker).
-- Deploy containers in the cloud on Azure or other clouds:
-  - Azure Kubernetes Service (AKS) orchestrates deployment and management of containers at scale. Service Fabric is another option for orchestration.
-  - Containers are deployed to Azure virtual machines, which act as the Kubernetes cluster nodes.
-  - The Azure virtual machines run either a customized Ubuntu Linux operating system image, or a customized Windows Server 2019 image, providing support for both Linux and Windows-based apps running in containers.
-- Optionally deploy containers on-premises by using [Azure Stack with the AKS Engine](https://docs.microsoft.com/azure-stack/user/azure-stack-kubernetes-aks-engine-overview). You can also set up Kubernetes yourself on Windows Server, though the process is more complex.
+- <strong>Run Windows-based or Linux-based containers on Windows 10</strong> for development and testing by using [Docker Desktop](https://store.docker.com/editions/community/docker-ce-desktop-windows), which uses containers functionality built-in to Windows. Later, you can deploy to Windows Server, which also natively supports running containers.
+- <strong>Develop, test, publish, and deploy Windows-based containers</strong> using the [powerful container support in Visual Studio](https://docs.microsoft.com/visualstudio/containers/overview), which includes support for Docker, Docker Compose, Kubernetes, Helm, and other useful technologies; or with [Visual Studio Code](https://code.visualstudio.com/docs/azure/docker), which supports most of the same technologies.
+- <strong>Publish your apps as container images</strong> to the public DockerHub for others to use, or to the private [Azure Container Registry](https://azure.microsoft.com/services/container-registry/) for your org's own development and deployment, pushing and pulling directly from within VisualStudio and VisualStudio Code.
+- <strong>Deploy containers at scale in the cloud</strong> on Azure or other clouds:
 
-<em>Maybe add a graphic here illustrating the above?</em>
+  - Pull your app (container image) from a container registry, such as the Azure Container Registry, and then deploy and manage it at scale using an orchestrator such as [Azure Kubernetes Service (AKS)](https://docs.microsoft.com/azure/aks/intro-kubernetes) (in preview for Windows-based apps) or [Azure Service Fabric](https://docs.microsoft.com/azure/service-fabric/).
+  - Containers are deployed to Azure virtual machines, which act as the Kubernetes cluster nodes.
+  - The Azure virtual machines run either a customized Ubuntu Linux operating system image (if you're deploying a Linux-based app), or a customized Windows Server 2019 image (if you're deploying a Windows-based app).
+- <strong>Optionally deploy containers on-premises</strong> by using [Azure Stack with the AKS Engine](https://docs.microsoft.com/azure-stack/user/azure-stack-kubernetes-aks-engine-overview) (in preview). You can also set up Kubernetes yourself on Windows Server, though the process is more complex.
+
 
 <!--
 Containers are a technology for packaging and delivering applications on top of the Windows across any environment. Containers are purpose-built to carry only the dependencies and configuration needed to successfully run the enclosed application. Containers are incredibly portable by nature; they can move across any environment with ease--from a developer's machine, into a private datacenter, and out to the public cloud.
@@ -33,11 +37,43 @@ Today's world demands that information be at a user's fingertips and that servic
 
 ## How containers work
 
-A container is an isolated, lightweight environment for running apps. The container environment bypasses most of the Windows operating system, and communicates directly with its kernel (which can be thought of as the deep plumbing of an operating system).
+A container is an isolated, lightweight environment for running apps. The container environment bypasses most of the Windows operating system, and communicates directly with its kernel (which can be thought of as the deep plumbing of an operating system), as shown in this diagram.
 
- ![](media/container-arch.png)
+![](media/container-arch.png)
+*Maybe update this diagram to add a second container and the hypervisor?*
 
-Because so much of the operating system is bypassed, containers typically add back some of the higher-level (user mode) operating system functionality, such as programming interfaces and important system services that apps can't function without. These are contained in the container base image, but we'll get to that later.
+Because so much of the operating system is bypassed, containers typically add back some of the higher-level (user mode) operating system services that apps can't function without, such as programming APIs. These are shown in the diagram above inside the container as *Services*.
+
+This is in contrast to virtual machines, which require a complete operating system inside the virtual machine--including the kernel, as shown in this diagram.
+
+*Create a VM diagram here:*
+
+- OS (Host)
+    - Applications
+    - Services
+    - Kernel
+- Virtual machine/OS (Guest 1)
+    - Applications
+    - Services
+    - Kernel
+- Virtual machine/OS (Guest 2)
+    - Applications
+    - Services
+    - Kernel
+- Hypervisor
+- Hardware
+
+|     | Virtual machine  | Container  |
+| --- | ---------------- | ---------- |
+| Isolation| Provides complete isolation from the host operating system and other VMs. This is useful when a strong security boundary is critical, such as hosting apps from competing companies on the same server or cluster. | Typically provides lightweight isolation from other containers, but doesn't provide a strong security boundary from other apps or the host. (You can increase the security boundary by using Hyper-V isolation mode which uses a lightweight VM to isolate all containers from the host while still providing most of the benefits of containers). |
+| Deployment | Deploy individual VMs with Windows Admin Center or Hyper-V Manager; deploy multiple VMs by using PowerShell or System Center Virtual Machine Manager. | Deploy individual containers with Docker; deploy multiple containers by using an orchestrator such as Azure Kubernetes Service. |
+| Operating system | Runs a complete operating system including the kernel, thus requiring more system resources (CPU, memory, and storage). | Runs a lightweight operating system that includes just essential system services and can be tailored to be just large enough for your app, thus using fewer system resources. |
+| Persistent storage | Use a virtual hard disk (VHD) for local storage for a single VM, or an SMB file share for storage shared by multiple servers | Use Azure Disks for local storage for a single node, or Azure Files (SMB shares) for storage shared by multiple nodes or servers. |
+| Load balancing | Virtual machine load balancing moves running VMs to other servers in a failover cluster. | Containers themselves don't move; instead the app state can be stored in shared storage and an orchestrator can automatically start or stop containers on cluster nodes to manage changes in load and availability. |
+| Fault tolerance | VMs can fail over to another server in a cluster.  | If a cluster node fails, any containers running on it are rapidly recreated by an orchestrator on another cluster node. Apps that persist data (stateful apps) can retrieve the data from shared storage. |
+| Networking | Uses virtual network adapters. | Also use virtual network adapters. |
+
+<!--
 
 Some Linux containerized apps can function without an operating system in the container, but this only works if the apps can directly make kernel-mode system calls and don't need any higher level system services, so even Linux containers typically include a base image with some amount of operating system services.
 
@@ -60,8 +96,8 @@ To understand containers, it can be helpful to compare them with virtual machine
 
 Containers are natively supported in Windows, similar to Win32 (desktop) apps, with Windows managing all low-level resources. Containers, like virtual machines, are isolated from the host operating system so that they have a restricted view of the file system, Windows registry, and other system resources. This provides a consistent environment for running apps across systems, and optionally provides security boundaries when using the Hyper-V isolation mode (which we talk about later).
 
+-->
 
-![](media/about-3-box.png)
 
 ## Container users
 
