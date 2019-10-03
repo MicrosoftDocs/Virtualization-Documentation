@@ -487,7 +487,7 @@
         },
         {
             "source_path": "virtualization/windowscontainers/manage-docker/docker-powershell.md",
-            "redirect_url": "/virtualization/windowscontainers/manage-docker/configure-docker-daemon.md",
+            "redirect_url": "/virtualization/windowscontainers/manage-docker/configure-docker-daemon",
             "redirect_document_id": false
         }
     ]
