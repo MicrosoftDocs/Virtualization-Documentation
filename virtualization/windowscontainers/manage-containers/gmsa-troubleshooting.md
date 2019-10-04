@@ -2,8 +2,8 @@
 title: Troubleshoot gMSAs for Windows containers
 description: How to troubleshoot Group Managed Service Accounts (gMSAs) for Windows containers.
 keywords: docker, containers, active directory, gmsa, group managed service account, group managed service accounts, troubleshooting, troubleshoot
-author: Heidilohr
-ms.date: 09/25/2019
+author: rpsqrd
+ms.date: 10/03/2019
 ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
@@ -135,13 +135,13 @@ See [Active Directory and Active Directory Domain Services port requirements](ht
     ```
 
     The trust verification should return `NERR_SUCCESS` if the gMSA is available and network connectivity allows the container to talk to the domain. If it fails, verify the network configuration of the host and container. Both need to be able to communicate with the domain controller.
-    
+
 4. Check if the container can obtain a valid Kerberos Ticket Granting Ticket (TGT):
 
     ```powershell
     klist get krbtgt
     ```
-    
+
     This command should return "A ticket to krbtgt has been retrieved successfully" and list the domain controller used to retrieve the ticket. If you're able to obtain a TGT but `nltest` from the previous step fails, this may be an indication that the gMSA account is misconfigured. See [check the gMSA account](#check-the-gmsa-account) for more information.
 
     If you cannot obtain a TGT inside the container, this may indicate DNS or network connectivity issues. Ensure the container can resolve a domain controller using the domain DNS name and that the domain controller is routable from the container.
@@ -164,15 +164,15 @@ See [Active Directory and Active Directory Domain Services port requirements](ht
     Get-ADObject -Filter 'sAMAccountName -like "GMSANAMEHERE*"'
     ```
 
-4. If you've enabled unconstrained delegation on the gMSA account, ensure that the userAccountControl attribute still has the `WORKSTATION_TRUST_ACCOUNT` flag enabled. This flag is required for NETLOGON in the container to communicate with the domain controller, as is the case when an app has to resolve a name to a SID or vice versa. You can check if the flag is configured correctly with the following commands:
+4. If you've enabled unconstrained delegation on the gMSA account, ensure that the [UserAccountControl attribute](https://support.microsoft.com/en-us/help/305144/how-to-use-useraccountcontrol-to-manipulate-user-account-properties) still has the `WORKSTATION_TRUST_ACCOUNT` flag enabled. This flag is required for NETLOGON in the container to communicate with the domain controller, as is the case when an app has to resolve a name to a SID or vice versa. You can check if the flag is configured correctly with the following commands:
 
     ```powershell
-    $gMSA = Get-ADServiceAccount -Identity 'yourGmsaName' -Properties userAccountControl
-    $gMSA.userAccountControl -band 0x1000
+    $gMSA = Get-ADServiceAccount -Identity 'yourGmsaName' -Properties UserAccountControl
+    ($gMSA.UserAccountControl -band 0x1000) -eq 0x1000
     ```
-    
-    If the above commands return `False`, use the following to add the `WORKSTATION_TRUST_ACCOUNT` flag to the gMSA account's userAccountControl property.
-    
+
+    If the above commands return `False`, use the following to add the `WORKSTATION_TRUST_ACCOUNT` flag to the gMSA account's UserAccountControl property. This command will also clear the `NORMAL_ACCOUNT`, `INTERDOMAIN_TRUST_ACCOUNT`, and `SERVER_TRUST_ACCOUNT` flags from the UserAccountControl property.
+
     ```powershell
-    Set-ADObject -Identity $gMSA -Replace @{ userAccountControl = $gMSA.userAccountControl -bor 0x1000 }
+    Set-ADObject -Identity $gMSA -Replace @{ userAccountControl = ($gmsa.userAccountControl -band 0x7FFFC5FF) -bor 0x1000 }
     ```
