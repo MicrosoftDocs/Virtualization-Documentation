@@ -25,7 +25,7 @@ Microsoft and Windows help you develop and deploy apps in containers:
   - Pull your app (container image) from a container registry, such as the Azure Container Registry, and then deploy and manage it at scale using an orchestrator such as [Azure Kubernetes Service (AKS)](https://docs.microsoft.com/azure/aks/intro-kubernetes) (in preview for Windows-based apps) or [Azure Service Fabric](https://docs.microsoft.com/azure/service-fabric/).
   - Containers are deployed to Azure virtual machines, which act as the Kubernetes cluster nodes.
   - The Azure virtual machines run either a customized Ubuntu Linux operating system image (if you're deploying a Linux-based app), or a customized Windows Server 2019 image (if you're deploying a Windows-based app).
-- <strong>Optionally deploy containers on-premises</strong> by using [Azure Stack with the AKS Engine](https://docs.microsoft.com/azure-stack/user/azure-stack-kubernetes-aks-engine-overview) (in preview). You can also set up Kubernetes yourself on Windows Server, though the process is more complex.
+- <strong>Deploy containers on-premises</strong> by using [Azure Stack with the AKS Engine](https://docs.microsoft.com/azure-stack/user/azure-stack-kubernetes-aks-engine-overview) (in preview). You can also set up Kubernetes yourself on Windows Server, though the process is more complex.
 
 
 <!--
@@ -37,12 +37,32 @@ Today's world demands that information be at a user's fingertips and that servic
 
 ## How containers work
 
-A container is an isolated, lightweight environment for running apps. The container environment bypasses most of the Windows operating system, and communicates directly with its kernel (which can be thought of as the deep plumbing of an operating system), as shown in this diagram.
+A container is an isolated, lightweight silo for running an app on the host operating system. Containers build on top of the host operating system's kernel (which can be thought of as the core of the operating system), as shown in this diagram.
 
 ![](media/container-arch.png)
-*Maybe update this diagram to add a second container and the hypervisor?*
+*Maybe update this diagram to add a second container*
 
-Because so much of the operating system is bypassed, containers typically add back some of the higher-level (user mode) operating system services that apps can't function without, such as programming APIs. These are shown in the diagram above inside the container as *Services*.
+However, containers don't get unfettered access to the kernel. Instead, containers communicate through a layer that creates a virtualized, isolated, and temporary view of the system registry and file system. The app can write to the virtualized registry or file system, but the changes are kept within the container and discarded when the container stops. If you want to persist data from a container, you can write to a file share or Azure Disk.
+
+Empty containers are so lightweight that they're missing pretty much all of the system services and APIs needed by apps--it's essentially running an app directly on top of the kernel. But because the kernel doesn't provide APIs that apps can use, and containerized apps can't share the user-mode APIs and system services of the host (because of the isolation), the apps can't do anything... yet.
+
+To give the containerized app the ability to do anything, the container needs its own copy of select operating system libraries--the ones providing the user mode system services and APIs that the app wants to use. To get these libraries, your container is based on a package that includes the appropriate operating system libraries. This package is called a base image, but we'll talk more about them in a little bit.
+
+
+
+
+<!--
+some of these user-mode operating system pieces, such as system services and APIs.
+
+
+Because the kernel doesn't provide APIs that apps can consume, and the containers are isolated from the host so can't consume the APIs running on the host in user mode outside the container--the app can't do anything. Not yet, anyway.
+
+To give the containerized app the ability to do anything, the container needs some of these user-mode operating system pieces, such as system services and APIs.
+
+user-mode operating system system services and APIs. 
+
+you need to add some of these APIs and system services to the container. since the container can't access them in the host operating system (part of the isolation provided by containers). To do so, you use a base image (package) that includes the operating system APIs and services that your app relies upon. These are shown in the diagram above inside the container as *Services*. For example, you could use a base image that includes Windows Server Nano Server, a streamlined version of Windows, but we'll talk more about base images in a little bit.
+-->
 
 This is in contrast to virtual machines, which require a complete operating system inside the virtual machine--including the kernel, as shown in this diagram.
 
@@ -67,6 +87,7 @@ This is in contrast to virtual machines, which require a complete operating syst
 | --- | ---------------- | ---------- |
 | Isolation| Provides complete isolation from the host operating system and other VMs. This is useful when a strong security boundary is critical, such as hosting apps from competing companies on the same server or cluster. | Typically provides lightweight isolation from other containers, but doesn't provide as strong a security boundary from other apps or the host. (You can increase the security by using Hyper-V isolation mode to isolate each container in a lightweight VM). |
 | Operating system | Runs a complete operating system including the kernel, thus requiring more system resources (CPU, memory, and storage). | Runs a lightweight operating system that includes only essential system services and can be tailored to be just large enough for your app, using fewer system resources. |
+| Guest compatibility | Runs just about any operating system inside the virtual machine | Runs on the same operating system version as the host (Hyper-V isolation enables you to run earlier versions of the same OS in a lightweight VM environment)
 | Deployment | Deploy individual VMs with Windows Admin Center or Hyper-V Manager; deploy multiple VMs by using PowerShell or System Center Virtual Machine Manager. | Deploy individual containers with Docker (via command line or Windows Admin Center); deploy multiple containers by using an orchestrator such as Azure Kubernetes Service. |
 | Persistent storage | Use a virtual hard disk (VHD) for local storage for a single VM, or an SMB file share for storage shared by multiple servers | Use Azure Disks for local storage for a single node, or Azure Files (SMB shares) for storage shared by multiple nodes or servers. |
 | Load balancing | Virtual machine load balancing moves running VMs to other servers in a failover cluster. | Containers themselves don't move; instead the app state can be stored in shared storage and an orchestrator can automatically start or stop containers on cluster nodes to manage changes in load and availability. |
@@ -161,6 +182,9 @@ To learn more about container orchestrators with Windows containers, visit the [
 ## Windows Containers in Azure
 
 Microsoft Azure provides comprehensive end-to-end services to help you get up and running with Windows containers. You can use Azure container instances to run containers without needing to worry about the underlying infrastructure, use Azure Kubernetes Service to take advantage of a fully managed Kubernetes solution with just a few clicks, and more.
+
+- [Choosing what Azure services to use to host your application](https://docs.microsoft.com/azure/architecture/guide/technology-choices/compute-decision-tree)
+
 
 <ul class="hubpage cardsM cols cols4" style="display: flex;">
     <li>
