@@ -188,90 +188,89 @@ There are many different orchestrators that you can use with Windows containers;
 <!--## Windows Containers in Azure
 
 Microsoft Azure provides comprehensive end-to-end services to help you get up and running with Windows containers. You can use Azure container instances to run containers without needing to worry about the underlying infrastructure, use Azure Kubernetes Service to take advantage of a fully managed Kubernetes solution, and more.
--->
 
 
 
-<!---
-<ul class="hubpage cardsM cols cols4" style="display: flex;">
-    <li>
-        <a href="https://docs.microsoft.com/en-us/azure/app-service/app-service-web-get-started-windows-container" data-linktype="external">
-            <div class="cardSize">
-                <div class="cardPadding">
-                    <div class="card">
-	                    <div class="cardImageOuter">
-                            <div class="cardImage centered">
-                                <img src="media/appservice.svg" alt="" data-linktype="relative-path" style="width: 64px; height: 64px;">
-                            </div>
-                        </div>
-                        <div class="cardText">
-                            <h3>App Service</h3>
-                            <hr>
-                            <p>Deploy web apps or APIs using containers in a PaaS environment</p>
+
+<ul class="columns is-multiline has-margin-left-none has-margin-bottom-none has-padding-top-medium">
+    <li class="column is-one-quarter has-padding-top-small-mobile has-padding-bottom-small">
+        <a class="is-undecorated is-full-height is-block"
+            href="https://docs.microsoft.com/en-us/azure/app-service/app-service-web-get-started-windows-container" data-linktype="external">
+            <article class="card has-outline-hover is-relative is-fullheight">
+                    <div class="cardImageOuter has-padding-top-large has-padding-bottom-large has-padding-left-large has-padding-right-large">
+                        <div class="cardImage centered has-padding-top-large has-padding-bottom-large has-padding-left-large has-padding-right-large">
+                            <img src="media/appservice.svg" alt="" data-linktype="relative-path">
                         </div>
                     </div>
+                <div class="card-content has-text-overflow-ellipsis">
+                    <div class="has-padding-bottom-none">
+                        <h3 class="is-size-4 has-margin-top-none has-margin-bottom-none has-text-primary">App Service</h3>
+                    </div>
+                    <div class="is-size-7 has-margin-top-small has-line-height-reset">
+                        <p>Deploy web apps or APIs using containers in a PaaS environment</p>
+                    </div>
                 </div>
-            </div>
+            </article>
         </a>
     </li>
-    <li>
-        <a href="https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-quickstart-containers" data-linktype="external">
-            <div class="cardSize">
-                <div class="cardPadding">
-                    <div class="card">
-	                    <div class="cardImageOuter">
-                            <div class="cardImage centered">
-                                <img src="media/fabric.svg" alt="" data-linktype="relative-path" style="width: 64px; height: 64px;">
-                            </div>
-                        </div>
-                        <div class="cardText">
-                            <h3>Service Fabric</h3>
-                            <hr>
-                            <p>Modernize .NET applications to microservices using Windows Server containers</p>
+    <li class="column is-one-quarter has-padding-top-small-mobile has-padding-bottom-small">
+        <a class="is-undecorated is-full-height is-block"
+            href="https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-quickstart-containers" data-linktype="external">
+            <article class="card has-outline-hover is-relative is-fullheight">
+                    <div class="cardImageOuter has-padding-top-large has-padding-bottom-large has-padding-left-large has-padding-right-large">
+                        <div class="cardImage centered has-padding-top-large has-padding-bottom-large has-padding-left-large has-padding-right-large">
+                            <img src="media/fabric.svg" alt="" data-linktype="relative-path">
                         </div>
                     </div>
+                <div class="card-content has-text-overflow-ellipsis">
+                    <div class="has-padding-bottom-none">
+                        <h3 class="is-size-4 has-margin-top-none has-margin-bottom-none has-text-primary">Service Fabric</h3>
+                    </div>
+                    <div class="is-size-7 has-margin-top-small has-line-height-reset">
+                        <p>Modernize .NET applications to microservices using Windows Server containers</p>
+                    </div>
                 </div>
-            </div>
+            </article>
         </a>
     </li>
-    <li>
-        <a href="https://docs.microsoft.com/en-us/azure/aks/windows-container-cli" data-linktype="external">
-            <div class="cardSize">
-                <div class="cardPadding">
-                    <div class="card">
-	                    <div class="cardImageOuter">
-                            <div class="cardImage centered">
-                                <img src="media/containerservice.svg" alt="" data-linktype="relative-path" style="width: 64px; height: 64px;">
-                            </div>
-                        </div>
-                        <div class="cardText">
-                            <h3>Kubernetes Service</h3>
-                            <hr>
-                            <p>Scale and orchestrate Linux containers using Kubernetes</p>
+    <li class="column is-one-quarter has-padding-top-small-mobile has-padding-bottom-small">
+        <a class="is-undecorated is-full-height is-block"
+            href="https://docs.microsoft.com/en-us/azure/aks/windows-container-cli" data-linktype="external">
+            <article class="card has-outline-hover is-relative is-fullheight">
+                    <div class="cardImageOuter has-padding-top-large has-padding-bottom-large has-padding-left-large has-padding-right-large">
+                        <div class="cardImage centered has-padding-top-large has-padding-bottom-large has-padding-left-large has-padding-right-large">
+                            <img src="media/containerservice.svg" alt="" data-linktype="relative-path">
                         </div>
                     </div>
+                <div class="card-content has-text-overflow-ellipsis">
+                    <div class="has-padding-bottom-none">
+                        <h3 class="is-size-4 has-margin-top-none has-margin-bottom-none has-text-primary">Kubernetes Service</h3>
+                    </div>
+                    <div class="is-size-7 has-margin-top-small has-line-height-reset">
+                        <p>Scale and orchestrate Linux containers using Kubernetes</p>
+                    </div>
                 </div>
-            </div>
+            </article>
         </a>
     </li>
-    <li>
-        <a href="https://docs.microsoft.com/en-us/azure/container-instances/container-instances-overview#linux-and-windows-containers" data-linktype="external">
-            <div class="cardSize">
-                <div class="cardPadding">
-                    <div class="card">
-	                    <div class="cardImageOuter">
-                            <div class="cardImage centered">
-                                <img src="media/containerinstances.svg" alt="" data-linktype="relative-path" style="width: 64px; height: 64px;">
-                            </div>
-                        </div>
-                        <div class="cardText">
-                            <h3>Container Instances</h3>
-                            <hr>
-                            <p>Elastically burst from your Azure Kubernetes Service (AKS) cluster</p>
+    <li class="column is-one-quarter has-padding-top-small-mobile has-padding-bottom-small">
+        <a class="is-undecorated is-full-height is-block"
+            href="https://docs.microsoft.com/en-us/azure/container-instances/container-instances-overview#linux-and-windows-containers" data-linktype="external">
+            <article class="card has-outline-hover is-relative is-fullheight">
+                    <div class="cardImageOuter has-padding-top-large has-padding-bottom-large has-padding-left-large has-padding-right-large">
+                        <div class="cardImage centered has-padding-top-large has-padding-bottom-large has-padding-left-large has-padding-right-large">
+                            <img src="media/containerinstances.svg" alt="" data-linktype="relative-path">
                         </div>
                     </div>
+                <div class="card-content has-text-overflow-ellipsis">
+                    <div class="has-padding-bottom-none">
+                        <h3 class="is-size-4 has-margin-top-none has-margin-bottom-none has-text-primary">Container Instances</h3>
+                    </div>
+                    <div class="is-size-7 has-margin-top-small has-line-height-reset">
+                        <p>Elastically burst from your Azure Kubernetes Service (AKS) cluster</p>
+                    </div>
                 </div>
-            </div>
+            </article>
         </a>
     </li>
 </ul>
