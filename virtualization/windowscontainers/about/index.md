@@ -66,7 +66,7 @@ you need to add some of these APIs and system services to the container. since t
 
 This is in contrast to virtual machines (VMs), which run a complete operating system inside the virtual machine, as shown in this diagram.
 
-*Create a VM diagram here:*
+![](media/virtual-machine.png)
 
 - OS (Host)
     - Applications
