@@ -39,8 +39,7 @@ Today's world demands that information be at a user's fingertips and that servic
 
 A container is an isolated, lightweight silo for running an app on the host operating system. Containers build on top of the host operating system's kernel (which can be thought of as the buried plumbing of the operating system), as shown in this diagram.
 
-![](media/container-arch.png)
-*Maybe update this diagram to add a second container*
+![](media/container.png)
 
 However, containers don't get unfettered access to the kernel. Instead, containers communicate through an isolation layer that creates a virtualized and temporary view of the system registry and file system. The app can write to the virtualized registry or file system, but the changes are kept within the container and discarded when the container stops. To persist data from a container, you can write to a file share or Azure Disk.
 
@@ -67,21 +66,6 @@ you need to add some of these APIs and system services to the container. since t
 This is in contrast to virtual machines (VMs), which run a complete operating system inside the virtual machine, as shown in this diagram.
 
 ![](media/virtual-machine.png)
-
-- OS (Host)
-    - Applications
-    - Services
-    - Kernel
-- Virtual machine/OS (Guest 1)
-    - Applications
-    - Services
-    - Kernel
-- Virtual machine/OS (Guest 2)
-    - Applications
-    - Services
-    - Kernel
-- Hypervisor
-- Hardware
 
 Containers and virtual machines each have their uses–in fact, most deployments of containers in the cloud use virtual machines as the host operating system rather than running directly on the cloud hardware. The following table shows some of the similarities and differences of these complementary technologies.
 
