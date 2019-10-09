@@ -105,7 +105,8 @@ On Windows Server version 1709, a new feature called "SMB Global Mapping" makes 
     ```
     This command will use the credentials to authenticate with the remote SMB server. Then, map the remote share path to G: drive letter (can be any other available drive letter). Containers created on this container host can now have their data volumes mapped to a path on the G: drive.
 
-    > Note: When using SMB global mapping for containers, all users on the container host can access the remote share. Any application running on the container host will also have access to the mapped remote share.
+    > [!NOTE]
+    > When using SMB global mapping for containers, all users on the container host can access the remote share. Any application running on the container host will also have access to the mapped remote share.
 
 2. Create containers with data volumes mapped to globally mounted SMB share
     docker run -it --name demo -v g:\ContainerData:G:\AppData1 microsoft/windowsservercore:1709 cmd.exe

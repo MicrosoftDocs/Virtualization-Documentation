@@ -20,15 +20,15 @@ The following documents detail the Hyper-V feature in Windows 10, provide a guid
 The following articles provide an introduction to and information about Hyper-V on Windows.
 
 * [Introduction to Hyper-V](./about/index.md)
-* [Supported Guest Operating Systems](about\supported-guest-os.md)
+* [Supported Guest Operating Systems](about/supported-guest-os.md)
 
 ## Get started with Hyper-V
 The following documents provide a quick and guided introduction to Hyper-V on Windows 10.
 
-* [Install Hyper-V](quick-start\enable-hyper-v.md)
-* [Create a Virtual Machine](quick-start\create-virtual-machine.md)
-* [Create a Virtual Switch](quick-start\connect-to-network.md)
-* [Hyper-V and PowerShell](quick-start\try-hyper-v-powershell.md)
+* [Install Hyper-V](quick-start/enable-hyper-v.md)
+* [Create a Virtual Machine](quick-start/create-virtual-machine.md)
+* [Create a Virtual Switch](quick-start/connect-to-network.md)
+* [Hyper-V and PowerShell](quick-start/try-hyper-v-powershell.md)
 
 ## Connect with Community and Support
 Additional technical support and community resources.

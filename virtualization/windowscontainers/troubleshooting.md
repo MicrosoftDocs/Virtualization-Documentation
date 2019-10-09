@@ -94,9 +94,7 @@ Download [docker-signal.exe](https://github.com/jhowardmsft/docker-signal).
 
 Usage:
 ```PowerShell
-Get-Process dockerd
-# Note the process ID in the `Id` column
-docker-signal -pid=<id>
+docker-signal --pid=$((Get-Process dockerd).Id)
 ```
 
 The output file will be located in the data-root directory docker is running in. The default directory is `C:\ProgramData\Docker`. The actual directory can be confirmed by running `docker info -f "{{.DockerRootDir}}"`.
