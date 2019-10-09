@@ -11,7 +11,7 @@ ms.assetid: 8e273856-3620-4e58-9d1a-d1e06550448
 ---
 # Windows and containers
 
-Containers are a technology for packaging and running apps–including Windows apps–across diverse environments on-premises and in the cloud. Containers provide a lightweight, isolated environment that makes apps easier to develop, deploy, and manage. Containers start and stop quickly, making them ideal for applications that need to rapidly adapt to changing demand or cluster node availability. The lightweight nature of containers also make them a useful tool for increasing the density and utilization of your infrastructure.
+Containers are a technology for packaging and running Windows and Linux apps across diverse environments on-premises and in the cloud. Containers provide a lightweight, isolated environment that makes apps easier to develop, deploy, and manage. Containers start and stop quickly, making them ideal for applications that need to rapidly adapt to changing demand or cluster nodes going offline. The lightweight nature of containers also make them a useful tool for increasing the density and utilization of your infrastructure.
 
 ![](media/about-3-box.png)
 
@@ -19,11 +19,11 @@ Microsoft, Windows, and Azure help you develop and deploy applications in contai
 
 - <strong>Run Windows-based or Linux-based containers on Windows 10</strong> for development and testing using [Docker Desktop](https://store.docker.com/editions/community/docker-ce-desktop-windows), which makes use of containers functionality built-in to Windows. Later, you can deploy to Windows Server, which also natively supports running containers.
 - <strong>Develop, test, publish, and deploy Windows-based containers</strong> using the [powerful container support in Visual Studio](https://docs.microsoft.com/visualstudio/containers/overview), which includes support for Docker, Docker Compose, Kubernetes, Helm, and other useful technologies; or with [Visual Studio Code](https://code.visualstudio.com/docs/azure/docker), which supports most of the same technologies.
-- <strong>Publish your apps as container images</strong> to the public DockerHub for others to use, or to the private [Azure Container Registry](https://azure.microsoft.com/services/container-registry/) for your org's own development and deployment, pushing and pulling directly from within VisualStudio and VisualStudio Code.
+- <strong>Publish your apps as container images</strong> to the public DockerHub for others to use, or to a private [Azure Container Registry](https://azure.microsoft.com/services/container-registry/) for your org's own development and deployment, pushing and pulling directly from within VisualStudio and VisualStudio Code.
 - <strong>Deploy containers at scale on Azure</strong> or other clouds:
 
   - Pull your app (container image) from a container registry, such as the Azure Container Registry, and then deploy and manage it at scale using an orchestrator such as [Azure Kubernetes Service (AKS)](https://docs.microsoft.com/azure/aks/intro-kubernetes) (in preview for Windows-based apps) or [Azure Service Fabric](https://docs.microsoft.com/azure/service-fabric/).
-  - Azure Kubernetes Service deploys containers to Azure virtual machines, which act as the Kubernetes cluster nodes.
+  - Azure Kubernetes Service deploys containers to Azure virtual machines and manages them at scale, whether that's dozens of containers, hundreds, or even thousands.
   - The Azure virtual machines run either a customized Windows Server 2019 image (if you're deploying a Windows-based app), or a customized Ubuntu Linux image (if you're deploying a Linux-based app).
 - <strong>Deploy containers on-premises</strong> by using [Azure Stack with the AKS Engine](https://docs.microsoft.com/azure-stack/user/azure-stack-kubernetes-aks-engine-overview) (in preview). You can also set up Kubernetes yourself on Windows Server--for more, see [Kubernetes on Windows](../kubernetes/getting-started-kubernetes-windows.md).
 
@@ -41,9 +41,9 @@ A container is an isolated, lightweight silo for running an app on the host oper
 
 ![](media/container.png)
 
-However, containers don't get unfettered access to the kernel. Instead, containers communicate through an isolation layer that creates a virtualized and temporary view of the system registry and file system. The app can write to the virtualized registry or file system, but the changes are kept within the container and discarded when the container stops. To persist data from a container, you can write to a file share or Azure Disk.
+However, a container doesn't get unfettered access to the kernel. Instead, the kernel presents an isolated–and in some cases virtualized–view of the system. For example, a container gets its own view of the system registry and the file system. The containerized app can write to its virtualized registry or file system, but the changes are kept within the container and discarded when the container stops. To persist data, the container can mount persistent storage such as an [Azure Disk](https://azure.microsoft.com/services/storage/disks/) or a file share, including [Azure Files](https://azure.microsoft.com/services/storage/files/)).
 
-Empty containers are so lightweight that they're missing pretty much all of the system services and APIs needed by apps–it's essentially running an app directly on top of the kernel. But because the kernel doesn't provide APIs that apps can use, and containerized apps are isolated from the host's user-mode APIs and system services, the apps can't do anything... yet.
+An empty container without a base image is so lightweight that it's missing pretty much all of the system services and APIs needed by apps–it's essentially running directly on top of the kernel. But because the kernel doesn't provide APIs that apps can use, and the container is isolated from the host's user-mode APIs and system services, an app inside a container needs something more before it can do anything.
 
 To give the containerized app the ability to do something, the container needs its own copy of the operating system's APIs and system services that the app needs to function. To get these, your container is based on a package that includes the appropriate operating system files (user mode libraries). This package is called a base image, but we'll talk more about container images more in a little bit.
 
