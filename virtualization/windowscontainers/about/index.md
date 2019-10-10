@@ -87,7 +87,7 @@ The following table shows some of the similarities and differences of these comp
 | Persistent storage | Use a virtual hard disk (VHD) for local storage for a single VM, or an SMB file share for storage shared by multiple servers | Use Azure Disks for local storage for a single node, or Azure Files (SMB shares) for storage shared by multiple nodes or servers. |
 | Load balancing | Virtual machine load balancing moves running VMs to other servers in a failover cluster. | Containers themselves don't move; instead an orchestrator can automatically start or stop containers on cluster nodes to manage changes in load and availability. |
 | Fault tolerance | VMs can fail over to another server in a cluster, with the VM's operating system restarting on the new server.  | If a cluster node fails, any containers running on it are rapidly recreated by the orchestrator on another cluster node. |
-| Networking | Uses virtual network adapters. | Uses an isolated view of a virtual network adapter, providing just a little less virtualization–the host's firewall is shared with containers–while using less resources. For more, see [Windows container networking](../container-networking/architecture.md). |
+| Networking | Uses virtual network adapters. | Uses an isolated view of a virtual network adapter, providing a little less virtualization–the host's firewall is shared with containers–while using less resources. For more, see [Windows container networking](../container-networking/architecture.md). |
 
 
 <!--
@@ -158,7 +158,7 @@ Mention here.-->
 
 ## Container orchestration
 
-Orchestrators are a critical piece of infrastructure that you should be mindful of when embarking on a journey with containers. Managing one or two containers manually can be done successfully on your own with Docker and Windows. However, most applications are composed of more than just one or two containers. Most applications could be powered by five, ten, or even hundreds of containers.
+Orchestrators are a critical piece of infrastructure when embarking on a journey with containers. Managing one or two containers manually can be done successfully on your own with Docker and Windows. However, applications often make use of five, ten, or even hundreds of containers.
 
 Container orchestrators were built to help manage containers at scale and in production. Orchestrators provide functionality for:
 
