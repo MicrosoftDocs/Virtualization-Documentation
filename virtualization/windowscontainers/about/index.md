@@ -24,8 +24,8 @@ Microsoft, Windows, and Azure help you develop and deploy applications in contai
 
   - Pull your app (container image) from a container registry, such as the Azure Container Registry, and then deploy and manage it at scale using an orchestrator such as [Azure Kubernetes Service (AKS)](https://docs.microsoft.com/azure/aks/intro-kubernetes) (in preview for Windows-based apps) or [Azure Service Fabric](https://docs.microsoft.com/azure/service-fabric/).
   - Azure Kubernetes Service deploys containers to Azure virtual machines and manages them at scale, whether that's dozens of containers, hundreds, or even thousands.
-  - The Azure virtual machines run either a customized Windows Server 2019 image (if you're deploying a Windows-based app), or a customized Ubuntu Linux image (if you're deploying a Linux-based app).
-- <strong>Deploy containers on-premises</strong> by using [Azure Stack with the AKS Engine](https://docs.microsoft.com/azure-stack/user/azure-stack-kubernetes-aks-engine-overview) (in preview). You can also set up Kubernetes yourself on Windows Server--for more, see [Kubernetes on Windows](../kubernetes/getting-started-kubernetes-windows.md).
+  - The Azure virtual machines run either a customized Windows image (if you're deploying a Windows-based app), or a customized Ubuntu Linux image (if you're deploying a Linux-based app).
+- <strong>Deploy containers on-premises</strong> by using [Azure Stack with the AKS Engine](https://docs.microsoft.com/azure-stack/user/azure-stack-kubernetes-aks-engine-overview) (in preview). You can also set up Kubernetes yourself on Windows Server–for more, see [Kubernetes on Windows](../kubernetes/getting-started-kubernetes-windows.md).
 
 
 <!--
@@ -49,7 +49,7 @@ An empty container without a base image is so lightweight that it's missing pret
 
 and the container is isolated from the host's user-mode APIs and system services, an app inside a container requires more before it can do anything.-->
 
-To give the containerized app the ability to do something, the container needs its own copy of the operating system's APIs and system services. To get these, your container is based on a package that includes the appropriate system files (user mode libraries). This package is called a base image, but we'll talk more about container images more in a little bit.
+To give the containerized app the ability to do something, the container needs its own copy of the operating system's APIs and system services. To get these, a container is based on a package that includes the appropriate system files (user mode libraries). This package is called a base image, but we'll talk about container images in a bit.
 
 
 
@@ -67,11 +67,15 @@ user-mode operating system system services and APIs.
 you need to add some of these APIs and system services to the container. since the container can't access them in the host operating system (part of the isolation provided by containers). To do so, you use a base image (package) that includes the operating system APIs and services that your app relies upon. These are shown in the diagram above inside the container as *Services*. For example, you could use a base image that includes Windows Server Nano Server, a streamlined version of Windows, but we'll talk more about base images in a little bit.
 -->
 
-This is in contrast to virtual machines (VMs), which run a complete operating system–including its own kernel–inside the virtual machine, as shown in this diagram.
+## Containers vs. virtual machines
+
+In contrast to containers, virtual machines (VMs) run a complete operating system–including its own kernel–as shown in this diagram.
 
 ![](media/virtual-machine.png)
 
-Containers and virtual machines each have their uses–in fact, most deployments of containers in the cloud use virtual machines as the host operating system rather than running directly on the cloud hardware. The following table shows some of the similarities and differences of these complementary technologies.
+Containers and virtual machines each have their uses–in fact, many deployments of containers use virtual machines as the host operating system rather than running directly on the hardware, especially when running containers in the cloud. 
+
+The following table shows some of the similarities and differences of these complementary technologies.
 
 |     | Virtual machine  | Container  |
 | --- | ---------------- | ---------- |
@@ -79,7 +83,7 @@ Containers and virtual machines each have their uses–in fact, most deployments
 | Operating system | Runs a complete operating system including the kernel, thus requiring more system resources (CPU, memory, and storage). | Runs the user mode portion of an operating system, and can be tailored to contain just the needed services for your app, using fewer system resources. |
 | Guest compatibility | Runs just about any operating system inside the virtual machine | Runs on the [same operating system version as the host](../deploy-containers/version-compatibility.md) (Hyper-V isolation enables you to run earlier versions of the same OS in a lightweight VM environment)
 | Deployment | Deploy individual VMs by using Windows Admin Center or Hyper-V Manager; deploy multiple VMs by using PowerShell or System Center Virtual Machine Manager. | Deploy individual containers by using Docker via command line; deploy multiple containers by using an orchestrator such as Azure Kubernetes Service. |
-| Servicing | Download and install operating system updates on each VM. | Deploying monthly updates or a new version of Windows is the same: <br><ol><li>Edit the reference in your container's build file (known as a Dockerfile) to point to the latest version of the Windows container base image. </li><li>Rebuild your container with this new base image.</li><li>Push the updated container image to your container registry.</li> <li>Redeploy using an orchestrator.<br>The process might sound a little complex, but the orchestrator provides powerful automation for doing this at scale. For details, see [Tutorial: Update an application in Azure Kubernetes Service](https://docs.microsoft.com/azure/aks/tutorial-kubernetes-app-update).</li></ol> |
+| Servicing | Download and install operating system updates on each VM. Installing a new operating system version requires upgrading or often just creating an entirely new VM. This can be time-consuming, especially if you have a lot of VMs... | Deploying monthly updates or a new version of Windows is the same: <br><ol><li>Edit the reference in your container's build file (known as a Dockerfile) to point to the latest version of the Windows container base image. </li><li>Rebuild your container with this new base image.</li><li>Push the updated container image to your container registry.</li> <li>Redeploy using an orchestrator.<br>The orchestrator provides powerful automation for doing this at scale. For details, see [Tutorial: Update an application in Azure Kubernetes Service](https://docs.microsoft.com/azure/aks/tutorial-kubernetes-app-update).</li></ol> |
 | Persistent storage | Use a virtual hard disk (VHD) for local storage for a single VM, or an SMB file share for storage shared by multiple servers | Use Azure Disks for local storage for a single node, or Azure Files (SMB shares) for storage shared by multiple nodes or servers. |
 | Load balancing | Virtual machine load balancing moves running VMs to other servers in a failover cluster. | Containers themselves don't move; instead an orchestrator can automatically start or stop containers on cluster nodes to manage changes in load and availability. |
 | Fault tolerance | VMs can fail over to another server in a cluster, with the VM's operating system restarting on the new server.  | If a cluster node fails, any containers running on it are rapidly recreated by the orchestrator on another cluster node. |
