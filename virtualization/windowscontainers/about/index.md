@@ -41,11 +41,15 @@ A container is an isolated, lightweight silo for running an app on the host oper
 
 ![](media/container.png)
 
-However, a container doesn't get unfettered access to the kernel. Instead, the kernel presents an isolated–and in some cases virtualized–view of the system. For example, a container gets its own view of the system registry and the file system. The containerized app can write to its virtualized registry or file system, but the changes are kept within the container and discarded when the container stops. To persist data, the container can mount persistent storage such as an [Azure Disk](https://azure.microsoft.com/services/storage/disks/) or a file share, including [Azure Files](https://azure.microsoft.com/services/storage/files/)).
+However, a container doesn't get unfettered access to the kernel. Instead, the kernel presents an isolated–and in some cases virtualized–view of the system. For example, a container gets its own view of the system registry and the file system. The containerized app can write to its virtualized registry or file system, but the changes are kept within the container and discarded when the container stops. To persist data, the container can mount persistent storage such as an [Azure Disk](https://azure.microsoft.com/services/storage/disks/) or a file share (including [Azure Files](https://azure.microsoft.com/services/storage/files/)).
 
-An empty container without a base image is so lightweight that it's missing pretty much all of the system services and APIs needed by apps–it's essentially running directly on top of the kernel. But because the kernel doesn't provide APIs that apps can use, and the container is isolated from the host's user-mode APIs and system services, an app inside a container needs something more before it can do anything.
+An empty container without a base image is so lightweight that it's missing pretty much all of the system services and APIs needed by apps–it's essentially running directly on top of the kernel. The system services and APIs run in user mode, above the kernel, but due to isolation from the host, the container can't access them.
 
-To give the containerized app the ability to do something, the container needs its own copy of the operating system's APIs and system services that the app needs to function. To get these, your container is based on a package that includes the appropriate operating system files (user mode libraries). This package is called a base image, but we'll talk more about container images more in a little bit.
+<!--It needs its own.But because the kernel doesn't provide APIs that apps can use–the APIs and system services run in user mode in the host operating system, isolated from containers–
+
+and the container is isolated from the host's user-mode APIs and system services, an app inside a container requires more before it can do anything.-->
+
+To give the containerized app the ability to do something, the container needs its own copy of the operating system's APIs and system services. To get these, your container is based on a package that includes the appropriate system files (user mode libraries). This package is called a base image, but we'll talk more about container images more in a little bit.
 
 
 
@@ -63,7 +67,7 @@ user-mode operating system system services and APIs.
 you need to add some of these APIs and system services to the container. since the container can't access them in the host operating system (part of the isolation provided by containers). To do so, you use a base image (package) that includes the operating system APIs and services that your app relies upon. These are shown in the diagram above inside the container as *Services*. For example, you could use a base image that includes Windows Server Nano Server, a streamlined version of Windows, but we'll talk more about base images in a little bit.
 -->
 
-This is in contrast to virtual machines (VMs), which run a complete operating system inside the virtual machine, as shown in this diagram.
+This is in contrast to virtual machines (VMs), which run a complete operating system–including its own kernel–inside the virtual machine, as shown in this diagram.
 
 ![](media/virtual-machine.png)
 
@@ -71,14 +75,14 @@ Containers and virtual machines each have their uses–in fact, most deployments
 
 |     | Virtual machine  | Container  |
 | --- | ---------------- | ---------- |
-| Isolation| Provides complete isolation from the host operating system and other VMs. This is useful when a strong security boundary is critical, such as hosting apps from competing companies on the same server or cluster. | Typically provides lightweight isolation from the host and other containers, but doesn't provide as strong a security boundary as a VM. (You can increase the security by using Hyper-V isolation mode to isolate each container in a lightweight VM). |
+| Isolation| Provides complete isolation from the host operating system and other VMs. This is useful when a strong security boundary is critical, such as hosting apps from competing companies on the same server or cluster. | Typically provides lightweight isolation from the host and other containers, but doesn't provide as strong a security boundary as a VM. (You can increase the security by using [Hyper-V isolation mode](../manage-containers/hyperv-container.md) to isolate each container in a lightweight VM). |
 | Operating system | Runs a complete operating system including the kernel, thus requiring more system resources (CPU, memory, and storage). | Runs the user mode portion of an operating system, and can be tailored to contain just the needed services for your app, using fewer system resources. |
-| Guest compatibility | Runs just about any operating system inside the virtual machine | Runs on the same operating system version as the host (Hyper-V isolation enables you to run earlier versions of the same OS in a lightweight VM environment)
+| Guest compatibility | Runs just about any operating system inside the virtual machine | Runs on the [same operating system version as the host](../deploy-containers/version-compatibility.md) (Hyper-V isolation enables you to run earlier versions of the same OS in a lightweight VM environment)
 | Deployment | Deploy individual VMs by using Windows Admin Center or Hyper-V Manager; deploy multiple VMs by using PowerShell or System Center Virtual Machine Manager. | Deploy individual containers by using Docker via command line; deploy multiple containers by using an orchestrator such as Azure Kubernetes Service. |
 | Persistent storage | Use a virtual hard disk (VHD) for local storage for a single VM, or an SMB file share for storage shared by multiple servers | Use Azure Disks for local storage for a single node, or Azure Files (SMB shares) for storage shared by multiple nodes or servers. |
 | Load balancing | Virtual machine load balancing moves running VMs to other servers in a failover cluster. | Containers themselves don't move; instead the app state can be stored in shared storage and an orchestrator can automatically start or stop containers on cluster nodes to manage changes in load and availability. |
 | Fault tolerance | VMs can fail over to another server in a cluster, with the VM's operating system restarting on the new server.  | If a cluster node fails, any containers running on it are rapidly recreated by an orchestrator on another cluster node. Apps that persist data (stateful apps) can retrieve the data from shared storage. |
-| Networking | Uses virtual network adapters. | Also use virtual network adapters. |
+| Networking | Uses virtual network adapters. | Uses an isolated view of a virtual network adapter, providing just a little less virtualization--the host's firewall is shared with containers--while using less resources. For more, see [Windows container networking](../container-networking/architecture.md). |
 
 <!--
 
@@ -121,7 +125,7 @@ All containers are created from container images. Container images are a bundle 
 
 Microsoft offers several images (called **base images**) that you can use as a starting point to build your own container image:
 
-* <strong>Windows</strong> - contains the full Windows Server API set.
+* <strong>Windows</strong> - contains the full Windows API set.
 * <strong>Windows Server Core</strong> - a smaller image that contains a subset of the Windows Server APIs, namely the full .NET framework.
 * <strong>Nano Server</strong> - the smallest Windows Server image, with support for the .NET Core APIs.
 * <strong>Windows 10 IoT Core</strong> - a version of Windows used by hardware manufacturers for small Internet of Things devices that run ARM or x86/x64 processors.
