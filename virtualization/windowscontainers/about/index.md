@@ -79,10 +79,12 @@ Containers and virtual machines each have their uses–in fact, most deployments
 | Operating system | Runs a complete operating system including the kernel, thus requiring more system resources (CPU, memory, and storage). | Runs the user mode portion of an operating system, and can be tailored to contain just the needed services for your app, using fewer system resources. |
 | Guest compatibility | Runs just about any operating system inside the virtual machine | Runs on the [same operating system version as the host](../deploy-containers/version-compatibility.md) (Hyper-V isolation enables you to run earlier versions of the same OS in a lightweight VM environment)
 | Deployment | Deploy individual VMs by using Windows Admin Center or Hyper-V Manager; deploy multiple VMs by using PowerShell or System Center Virtual Machine Manager. | Deploy individual containers by using Docker via command line; deploy multiple containers by using an orchestrator such as Azure Kubernetes Service. |
+| Servicing | Download and install operating system updates on each VM. | Deploying monthly updates or a new version of Windows is the same: <br><ol><li>Edit the reference in your container's build file (known as a Dockerfile) to point to the latest version of the Windows container base image. </li><li>Rebuild your container with this new base image.</li><li>Push the updated container image to your container registry.</li> <li>Redeploy using an orchestrator.<br>The process might sound a little complex, but the orchestrator provides powerful automation for doing this at scale. For details, see [Tutorial: Update an application in Azure Kubernetes Service](https://docs.microsoft.com/azure/aks/tutorial-kubernetes-app-update).</li></ol> |
 | Persistent storage | Use a virtual hard disk (VHD) for local storage for a single VM, or an SMB file share for storage shared by multiple servers | Use Azure Disks for local storage for a single node, or Azure Files (SMB shares) for storage shared by multiple nodes or servers. |
-| Load balancing | Virtual machine load balancing moves running VMs to other servers in a failover cluster. | Containers themselves don't move; instead the app state can be stored in shared storage and an orchestrator can automatically start or stop containers on cluster nodes to manage changes in load and availability. |
-| Fault tolerance | VMs can fail over to another server in a cluster, with the VM's operating system restarting on the new server.  | If a cluster node fails, any containers running on it are rapidly recreated by an orchestrator on another cluster node. Apps that persist data (stateful apps) can retrieve the data from shared storage. |
-| Networking | Uses virtual network adapters. | Uses an isolated view of a virtual network adapter, providing just a little less virtualization--the host's firewall is shared with containers--while using less resources. For more, see [Windows container networking](../container-networking/architecture.md). |
+| Load balancing | Virtual machine load balancing moves running VMs to other servers in a failover cluster. | Containers themselves don't move; instead an orchestrator can automatically start or stop containers on cluster nodes to manage changes in load and availability. |
+| Fault tolerance | VMs can fail over to another server in a cluster, with the VM's operating system restarting on the new server.  | If a cluster node fails, any containers running on it are rapidly recreated by the orchestrator on another cluster node. |
+| Networking | Uses virtual network adapters. | Uses an isolated view of a virtual network adapter, providing just a little less virtualization–the host's firewall is shared with containers–while using less resources. For more, see [Windows container networking](../container-networking/architecture.md). |
+
 
 <!--
 
@@ -125,9 +127,9 @@ All containers are created from container images. Container images are a bundle 
 
 Microsoft offers several images (called **base images**) that you can use as a starting point to build your own container image:
 
-* <strong>Windows</strong> - contains the full Windows API set.
-* <strong>Windows Server Core</strong> - a smaller image that contains a subset of the Windows Server APIs, namely the full .NET framework.
-* <strong>Nano Server</strong> - the smallest Windows Server image, with support for the .NET Core APIs.
+* <strong>Windows</strong> - contains the full set of Windows APIs and system services (minus server roles).
+* <strong>Windows Server Core</strong> - a smaller image that contains a subset of the Windows Server APIs namely the full .NET framework. It also includes most server roles, though sadly to few, not Fax Server.
+* <strong>Nano Server</strong> - the smallest Windows Server image, with support for the .NET Core APIs and some server roles.
 * <strong>Windows 10 IoT Core</strong> - a version of Windows used by hardware manufacturers for small Internet of Things devices that run ARM or x86/x64 processors.
 
 As mentioned earlier, container images are composed of a series of layers. Each layer contains a set of files that, when overlaid together, represent your container image. Because of the layered nature of containers, you don't have to always target a base image to build a Windows container. Instead, you could target another image that already carries the framework you want. For example, the .NET team publishes a [.NET core image](https://hub.docker.com/_/microsoft-dotnet-core) that carries the .NET core runtime. It saves users from needing to duplicate the process of installing .NET core–instead they can re-use the layers of this container image. The .NET core image itself is built based upon Nano Server.
@@ -140,7 +142,7 @@ For more details, see [Container Base Images](../manage-containers/container-bas
 
 Containers help developers build and ship higher-quality applications, faster. With containers, developers can create a Docker image that will deploy in seconds, identically across environments. Containers act as an easy mechanism to share code across teams and to bootstrap a development environment without impacting your host filesystem.
 
-Containers are portable and versatile, can be written in any language, and they're compatible with any machine running Windows 10, version 1607 or later, or Windows 2016 or later. Developers can create and test a container locally on their laptop or desktop, then deploy that same container image to their company's private cloud, public cloud, or service provider. The natural agility of containers supports modern app development patterns in large-scale, virtualized cloud environments.
+Containers are portable and versatile, can run apps written in any language, and they're compatible with any machine running Windows 10, version 1607 or later, or Windows 2016 or later. Developers can create and test a container locally on their laptop or desktop, then deploy that same container image to their company's private cloud, public cloud, or service provider. The natural agility of containers supports modern app development patterns in large-scale, virtualized cloud environments.
 
 ### Containers for IT professionals
 
