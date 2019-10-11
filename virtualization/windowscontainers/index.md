@@ -42,7 +42,7 @@ ms.assetid: 74c9d604-0915-4d89-bc69-0263b76bc66b
                                 </div>
                             </div>
                             <div class="cardText">
-                                <h3>Check out our container images on Docker Hub</h3>
+                                <h3>Check out our container images on Docker Hub.</h3>
                             </div>
                         </div>
                     </div>
@@ -84,8 +84,8 @@ ms.assetid: 74c9d604-0915-4d89-bc69-0263b76bc66b
                         <div class="cardText">
                             <h3 style="margin: 8px 0 2px 0;">Overview</h3>
                             <ul>
-                                <li><a href="/en-us/virtualization/windowscontainers/about/index" data-linktype="absolute-path">Containers 101</a></li>
-                                <li><a href="/en-us/virtualization/windowscontainers/deploy-containers/system-requirements" data-linktype="absolute-path">System Requirements</a></li>
+                                <li><a href="/en-us/virtualization/windowscontainers/about/index" data-linktype="absolute-path">About Windows containers</a></li>
+                                <li><a href="/en-us/virtualization/windowscontainers/deploy-containers/system-requirements" data-linktype="absolute-path">System requirements</a></li>
                                 <li><a href="/en-us/virtualization/windowscontainers/about/faq" data-linktype="absolute-path">FAQ</a></li>
                             </ul>
                         </div>
@@ -127,9 +127,9 @@ ms.assetid: 74c9d604-0915-4d89-bc69-0263b76bc66b
                             <h3 style="margin: 8px 0 2px 0;">Tutorials</h3>
                             <ul>
                                 <li><a href="/en-us/virtualization/windowscontainers/manage-docker/manage-windows-dockerfile" data-linktype="external">Building a Windows container</a></li>
-                                <li><a href="/en-us/virtualization/windowscontainers/kubernetes/getting-started-kubernetes-windows" data-linktype="external">Kubernetes on Windows</a></li>
-                                <li><a href="/en-us/azure/service-fabric/service-fabric-quickstart-containers" data-linktype="external">Service Fabric on Windows</a></li>
-                                <li><a href="/en-us/virtualization/windowscontainers/deploy-containers/linux-containers" data-linktype="external">Linux containers on Windows</a></li>
+                                <li><a href="/azure/aks/windows-container-cli" data-linktype="external">Run on AKS</a></li>
+                                <li><a href="/azure/service-fabric/service-fabric-quickstart-containers" data-linktype="external">Run on Service Fabric</a></li>
+                                <li><a href="/azure/app-service/app-service-web-get-started-windows-container" data-linktype="external">Run on Azure App Service</a></li>
                             </ul>
                         </div>
                     </div>
@@ -149,11 +149,8 @@ ms.assetid: 74c9d604-0915-4d89-bc69-0263b76bc66b
                             <h3 style="margin: 8px 0 2px 0;">Concepts</h3>
                             <ul>
                                 <li><a href="/en-us/virtualization/windowscontainers/manage-docker/configure-docker-daemon" data-linktype="external">Docker</a></li>
-                                <li><a href="/en-us/virtualization/windowscontainers/manage-containers/manage-serviceaccounts" data-linktype="external">Workloads</a></li>
-                                <li><a href="/en-us/virtualization/windowscontainers/container-networking/architecture" data-linktype="external">Networking</a></li>
-                                <li><a href="/en-us/virtualization/windowscontainers/manage-containers/container-storage" data-linktype="external">Storage</a></li>
-                                <li><a href="/en-us/virtualization/windowscontainers/deploy-containers/hardware-devices-in-containers" data-linktype="external">Devices</a></li>
-                                <li><a href="/en-us/virtualization/windowscontainers/manage-containers/hyperv-container" data-linktype="external">Hyper-V Isolation</a></li>
+                                <li><a href="/virtualization/windowscontainers/about/overview-container-orchestrators" data-linktype="external">Container orchestration</a></li>
+                                <li><a href="/virtualization/windowscontainers/manage-containers/container-base-images" data-linktype="external">Windows container essentials</a></li>
                             </ul>
                         </div>
                     </div>
