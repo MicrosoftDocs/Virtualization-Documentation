@@ -14,19 +14,15 @@
 ## Build a Windows container
 ### [Write a Dockerfile](manage-docker/manage-windows-dockerfile.md)
 ### [Optimize a Dockerfile](manage-docker/optimize-windows-dockerfile.md)
-## Kubernetes on Windows
-### [Kubernetes on Windows](kubernetes/getting-started-kubernetes-windows.md)
-### [Create a Kubernetes Master](kubernetes/creating-a-linux-master.md)
-### [Choose a network solution](kubernetes/network-topologies.md)
-### [Join Windows workers](kubernetes/joining-windows-workers.md)
-### [Join Linux workers](kubernetes/joining-linux-workers.md)
-### [Deploy Kubernetes resources](kubernetes/deploying-resources.md)
-### [Troubleshooting](kubernetes/common-problems.md)
-### [Windows services on Kubernetes](kubernetes/kube-windows-services.md)
-### [Compile Kubernetes binaries](kubernetes/compiling-kubernetes-binaries.md)
-## Service fabric on Windows
+## Run on Azure Kubernetes Service
+### [Create a Windows container cluster on AKS](/azure/aks/windows-container-cli)
+### [Current Limitations](/azure/aks/windows-node-limitations)
+## Run on Service Fabric
 ### [Deploy your first container](/azure/service-fabric/service-fabric-quickstart-containers)
 ### [Deploy a .NET application in a Windows container](/azure/service-fabric/service-fabric-host-app-in-a-container)
+## Run on Azure App Service
+### [Azure App Service Quickstart](/azure/app-service/app-service-web-get-started-windows-container)
+### [Migrate an ASP.NET app with Windows containers and Azure App Service](/azure/app-service/app-service-web-tutorial-windows-containers-custom-fonts)
 ## Linux containers on Windows
 ### [Overview](deploy-containers/linux-containers.md)
 ### [Run your first LCOW container](quick-start/quick-start-windows-10-linux.md)
@@ -39,10 +35,24 @@
 ### [Resource controls](manage-containers/resource-controls.md)
 ## Docker
 ### [Docker Engine on Windows](manage-docker/configure-docker-daemon.md)
-### [Docker swarm](manage-containers/swarm-mode.md)
 ### [Remote management of a Windows Docker host](management/manage_remotehost.md)
 ## Container Orchestration
 ### [Overview](about/overview-container-orchestrators.md)
+### Kubernetes on Windows
+#### [Kubernetes on Windows](kubernetes/getting-started-kubernetes-windows.md)
+#### [Create a Kubernetes Master](kubernetes/creating-a-linux-master.md)
+#### [Choose a network solution](kubernetes/network-topologies.md)
+#### [Join Windows workers](kubernetes/joining-windows-workers.md)
+#### [Join Linux workers](kubernetes/joining-linux-workers.md)
+#### [Deploy Kubernetes resources](kubernetes/deploying-resources.md)
+#### [Troubleshooting](kubernetes/common-problems.md)
+#### [Windows services on Kubernetes](kubernetes/kube-windows-services.md)
+#### [Compile Kubernetes binaries](kubernetes/compiling-kubernetes-binaries.md)
+### Service Fabric
+#### [Service Fabric and Containers](/azure/service-fabric/service-fabric-containers-overview)
+#### [Resource Governance](/azure/service-fabric/service-fabric-resource-governance)
+### Docker Swarm
+#### [Swarm Mode](manage-containers/swarm-mode.md)
 ## Workloads
 ### Group Managed Service Accounts
 #### [Create a gMSA](manage-containers/manage-serviceaccounts.md)
@@ -58,6 +68,7 @@
 ### [Configure advanced networking options](container-networking/advanced.md)
 ## Storage
 ### [Overview](manage-containers/container-storage.md)
+### [Persistent Storage](manage-containers/persistent-storage.md)
 ## Devices
 ### [Hardware devices](deploy-containers/hardware-devices-in-containers.md)
 ### [GPU acceleration](deploy-containers/gpu-acceleration.md)
