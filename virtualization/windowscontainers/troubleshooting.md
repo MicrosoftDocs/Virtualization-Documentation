@@ -109,7 +109,7 @@ The Docker Engine depends on a Windows-specific Host Compute Service. It has sep
 - Microsoft-Windows-Hyper-V-Compute-Admin
 - Microsoft-Windows-Hyper-V-Compute-Operational
 
-They are visible in Event Viewer, and may also be queried with PowerShell.
+They are visible in Event Viewer and may also be queried with PowerShell.
 
 For example:
 ```PowerShell
