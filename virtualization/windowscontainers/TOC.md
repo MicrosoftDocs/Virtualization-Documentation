@@ -58,6 +58,7 @@
 ### [Configure advanced networking options](container-networking/advanced.md)
 ## Storage
 ### [Overview](manage-containers/container-storage.md)
+### [Persistent Storage](manage-containers/persistent-storage.md)
 ## Devices
 ### [Hardware devices](deploy-containers/hardware-devices-in-containers.md)
 ### [GPU acceleration](deploy-containers/gpu-acceleration.md)
