@@ -35,9 +35,20 @@ A container is an isolated, lightweight silo for running an app on the host oper
 
 While a container shares the host operating system's kernel, a container doesn't get unfettered access to it. Instead, the container gets an isolated–and in some cases virtualized–view of the system. For example, a container can access a virtualized version of the file system and registry, but any changes affect only the container and are discarded when it stops. To save data, the container can mount persistent storage such as an [Azure Disk](https://azure.microsoft.com/services/storage/disks/) or a file share (including [Azure Files](https://azure.microsoft.com/services/storage/files/)).
 
-Because the container shares only the kernel of the host operating system, it doesn't have access to the APIs and system services needed by apps–those are provided by system libraries that run above the kernel in user mode, isolated from the container. So, the container gets its own copy of these system libraries, which are packaged into something known as a base image. The base image serves as the foundational layer upon which your container is built, providing it with operating system services not provided by the kernel. But we'll talk more about container images later.
+A container builds on top of the kernel, but the kernel doesn't provide all of the operating system APIs and services an app needs to run--most of these are provided by system files (libraries) that run above the kernel in user mode, isolated from the container. So the container needs its own copy of these system libraries, which are packaged into something known as a base image. The base image serves as the foundational layer upon which your container is built, providing it with operating system services not provided by the kernel. But we'll talk more about container images later.
 
 <!--
+Because the container builds on top of the host operating system's kernel, all user-mode 
+
+
+Because the container shares only the kernel of the host operating system, it doesn't have access to the APIs and system services needed by apps–those are provided by system libraries that run above the kernel in user mode, isolated from the container.
+
+Because the container shares only the kernel of the host operating system, it doesn't have access to the host operating system's APIs and system services, which run above the kernel in user mode, isolated from the container. To access these APIs and services from within the container, 
+
+
+So, the container needs its own copy of these system libraries, which are packaged into something known as a base image. The base image serves as the foundational layer upon which your container is built, providing it with operating system services not provided by the kernel. But we'll talk more about container images later.
+
+
 To get these system libraries, the container is built upon a package that includes 
 
 
