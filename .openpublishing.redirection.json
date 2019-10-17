@@ -23,7 +23,7 @@
         {
             "source_path": "virtualization/windowscontainers/deployment/deployment.md",
             "redirect_url": "/virtualization/windowscontainers/deploy-containers/deploy-containers-on-server",
-            "redirect_document_id": true
+            "redirect_document_id": false
         },
         {
             "source_path": "virtualization/windowscontainers/deployment/system_requirements.md",
@@ -63,7 +63,7 @@
         {
             "source_path": "virtualization/windowscontainers/management/manage_containers.md",
             "redirect_url": "/virtualization/windowscontainers/quick-start/index",
-            "redirect_document_id": true
+            "redirect_document_id": false
         },
         {
             "source_path": "virtualization/windowscontainers/management/manage_data.md",
