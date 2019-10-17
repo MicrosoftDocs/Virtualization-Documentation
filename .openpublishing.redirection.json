@@ -59,7 +59,7 @@
             "source_path": "virtualization/windowscontainers/manage-docker/docker-powershell.md",
             "redirect_url": "/virtualization/windowscontainers/manage-docker/configure-docker-daemon",
             "redirect_document_id": true
-        }
+        },
         {
             "source_path": "virtualization/windowscontainers/management/hyperv_container.md",
             "redirect_url": "/virtualization/windowscontainers/manage-docker/hyperv-container",
@@ -489,6 +489,6 @@
             "source_path": "virtualization/windowscontainers/quick-start/index.md",
             "redirect_url": "/virtualization/windowscontainers/about/index",
             "redirect_document_id": false
-        },
+        }
     ]
 }
