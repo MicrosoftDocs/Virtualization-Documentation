@@ -25,7 +25,7 @@ Microsoft helps you develop and deploy apps in containers:
   - Pull your app (container image) from a container registry, such as the Azure Container Registry, and then deploy and manage it at scale using an orchestrator such as [Azure Kubernetes Service (AKS)](https://docs.microsoft.com/azure/aks/intro-kubernetes) (in preview for Windows-based apps) or [Azure Service Fabric](https://docs.microsoft.com/azure/service-fabric/).
   - Azure Kubernetes Service deploys containers to Azure virtual machines and manages them at scale, whether that's dozens of containers, hundreds, or even thousands.
   - The Azure virtual machines run either a customized Windows Server image (if you're deploying a Windows-based app), or a customized Ubuntu Linux image (if you're deploying a Linux-based app).
-- <strong>Deploy containers on-premises</strong> by using [Azure Stack with the AKS Engine](https://docs.microsoft.com/azure-stack/user/azure-stack-kubernetes-aks-engine-overview) (in preview with Linux containers) or [Azure Stack with OpenShift](https://docs.microsoft.com/azure/virtual-machines/linux/openshift-azure-stack). You can also set up Kubernetes yourself on Windows Server. To learn how, see [Kubernetes on Windows](../kubernetes/getting-started-kubernetes-windows.md).
+- <strong>Deploy containers on-premises</strong> by using [Azure Stack with the AKS Engine](https://docs.microsoft.com/azure-stack/user/azure-stack-kubernetes-aks-engine-overview) (in preview with Linux containers) or [Azure Stack with OpenShift](https://docs.microsoft.com/azure/virtual-machines/linux/openshift-azure-stack). You can also set up Kubernetes yourself on Windows Server (see [Kubernetes on Windows](../kubernetes/getting-started-kubernetes-windows.md)), and we're working on support for running [Windows containers on RedHat OpenShift Container Platform](https://techcommunity.microsoft.com/t5/Networking-Blog/Managing-Windows-containers-with-Red-Hat-OpenShift-Container/ba-p/339821) as well.
 
 ## How containers work
 
@@ -122,9 +122,7 @@ Microsoft offers several images (called base images) that you can use as a start
 
 As mentioned earlier, container images are composed of a series of layers. Each layer contains a set of files that, when overlaid together, represent your container image. Because of the layered nature of containers, you don't have to always target a base image to build a Windows container. Instead, you could target another image that already carries the framework you want. For example, the .NET team publishes a [.NET core image](https://hub.docker.com/_/microsoft-dotnet-core) that carries the .NET core runtime. It saves users from needing to duplicate the process of installing .NET core–instead they can re-use the layers of this container image. The .NET core image itself is built based upon Nano Server.
 
-For more details, see [Container Base Images](../manage-containers/container-base-images.md). 
-
-If you’re an IoT user, also check out [Azure IoT Edge](https://docs.microsoft.com/azure/iot-edge/about-iot-edge), which makes use of containers to run Azure services, non-Microsoft services, or your own code locally on IoT Edge devices.
+For more details, see [Container Base Images](../manage-containers/container-base-images.md).
 
 ## Container users
 
