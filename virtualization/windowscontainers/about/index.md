@@ -15,6 +15,8 @@ Containers are a technology for packaging and running Windows and Linux applicat
 
 ![Graphic showing how containers can run in the cloud or on-premises, supporting monolithic apps or microservices written in nearly any language.](media/about-3-box.png)
 
+## The Microsoft container ecosystem
+
 Microsoft helps you develop and deploy apps in containers:
 
 - <strong>Run Windows-based or Linux-based containers on Windows 10</strong> for development and testing using [Docker Desktop](https://store.docker.com/editions/community/docker-ce-desktop-windows), which makes use of containers functionality built-in to Windows. You can also [run containers natively on Windows Server](../quick-start/set-up-environment.md?tabs=Windows-Server).
@@ -23,8 +25,7 @@ Microsoft helps you develop and deploy apps in containers:
 - <strong>Deploy containers at scale on Azure</strong> or other clouds:
 
   - Pull your app (container image) from a container registry, such as the Azure Container Registry, and then deploy and manage it at scale using an orchestrator such as [Azure Kubernetes Service (AKS)](https://docs.microsoft.com/azure/aks/intro-kubernetes) (in preview for Windows-based apps) or [Azure Service Fabric](https://docs.microsoft.com/azure/service-fabric/).
-  - Azure Kubernetes Service deploys containers to Azure virtual machines and manages them at scale, whether that's dozens of containers, hundreds, or even thousands.
-  - The Azure virtual machines run either a customized Windows Server image (if you're deploying a Windows-based app), or a customized Ubuntu Linux image (if you're deploying a Linux-based app).
+  - Azure Kubernetes Service deploys containers to Azure virtual machines and manages them at scale, whether that's dozens of containers, hundreds, or even thousands. The Azure virtual machines run either a customized Windows Server image (if you're deploying a Windows-based app), or a customized Ubuntu Linux image (if you're deploying a Linux-based app).
 - <strong>Deploy containers on-premises</strong> by using [Azure Stack with the AKS Engine](https://docs.microsoft.com/azure-stack/user/azure-stack-kubernetes-aks-engine-overview) (in preview with Linux containers) or [Azure Stack with OpenShift](https://docs.microsoft.com/azure/virtual-machines/linux/openshift-azure-stack). You can also set up Kubernetes yourself on Windows Server (see [Kubernetes on Windows](../kubernetes/getting-started-kubernetes-windows.md)), and we're working on support for running [Windows containers on RedHat OpenShift Container Platform](https://techcommunity.microsoft.com/t5/Networking-Blog/Managing-Windows-containers-with-Red-Hat-OpenShift-Container/ba-p/339821) as well.
 
 ## How containers work
@@ -39,7 +40,7 @@ A container builds on top of the kernel, but the kernel doesn't provide all of t
 
 ## Containers vs. virtual machines
 
-In contrast to containers, virtual machines (VMs) run a complete operating system–including its own kernel–as shown in this diagram.
+In contrast to a container, a virtual machine (VMs) runs a complete operating system–including its own kernel–as shown in this diagram.
 
 ![Architectural diagram showing how VMs run a complete operating system beside the host operating system](media/virtual-machine-diagram.svg)
 
@@ -47,14 +48,14 @@ Containers and virtual machines each have their uses–in fact, many deployments
 
 For more details on the similarities and differences of these complementary technologies, see [Containers vs. virtual machines](containers-vs-vm.md).
 
-### Container images
+## Container images
 
 All containers are created from container images. Container images are a bundle of files organized into a stack of layers that reside on your local machine or in a remote container registry. The container image consists of the user mode operating system files needed to support your app, your app, any runtimes or dependencies of your app, and any other miscellaneous configuration file your app needs to run properly.
 
 Microsoft offers several images (called base images) that you can use as a starting point to build your own container image:
 
 * <strong>Windows</strong> - contains the full set of Windows APIs and system services (minus server roles).
-* <strong>Windows Server Core</strong> - a smaller image that contains a subset of the Windows Server APIs namely the full .NET framework. It also includes most server roles, though sadly to few, not Fax Server.
+* <strong>Windows Server Core</strong> - a smaller image that contains a subset of the Windows Server APIs–namely the full .NET framework. It also includes most server roles, though sadly to few, not Fax Server.
 * <strong>Nano Server</strong> - the smallest Windows Server image, with support for the .NET Core APIs and some server roles.
 * <strong>Windows 10 IoT Core</strong> - a version of Windows used by hardware manufacturers for small Internet of Things devices that run ARM or x86/x64 processors.
 
@@ -66,9 +67,9 @@ For more details, see [Container Base Images](../manage-containers/container-bas
 
 ### Containers for developers
 
-Containers help developers build and ship higher-quality apps, faster. With containers, developers can create a Docker image that will deploy in seconds, identically across environments. Containers act as an easy mechanism to share code across teams and to bootstrap a development environment without impacting your host filesystem.
+Containers help developers build and ship higher-quality apps, faster. With containers, developers can create a container image that deploys in seconds, identically across environments. Containers act as an easy mechanism to share code across teams and to bootstrap a development environment without impacting your host filesystem.
 
-Containers are portable and versatile, can run apps written in any language, and they're compatible with any machine running Windows 10, version 1607 or later, or Windows 2016 or later. Developers can create and test a container locally on their laptop or desktop, then deploy that same container image to their company's private cloud, public cloud, or service provider. The natural agility of containers supports modern app development patterns in large-scale, virtualized cloud environments.
+Containers are portable and versatile, can run apps written in any language, and they're compatible with any machine running Windows 10, version 1607 or later, or Windows 2016 or later. Developers can create and test a container locally on their laptop or desktop, and then deploy that same container image to their company's private cloud, public cloud, or service provider. The natural agility of containers supports modern app development patterns in large-scale, virtualized cloud environments.
 
 ### Containers for IT professionals
 
@@ -76,7 +77,7 @@ Containers help admins create infrastructure that's easier to update and maintai
 
 ## Container orchestration
 
-Orchestrators are a critical piece of infrastructure when embarking on a journey with containers. Managing one or two containers manually can be done successfully on your own with Docker and Windows. However, apps often make use of five, ten, or even hundreds of containers.
+Orchestrators are a critical piece of infrastructure when setting up a container-based environment. While you can manage a few containers manually using Docker and Windows, apps often make use of five, ten, or even hundreds of containers, which is where orchestrators come in.
 
 Container orchestrators were built to help manage containers at scale and in production. Orchestrators provide functionality for:
 
@@ -87,7 +88,7 @@ Container orchestrators were built to help manage containers at scale and in pro
 - Scaling up or down
 - Networking
 - Service discovery
-- Coordinated app upgrades
+- Coordinating app upgrades
 - Cluster node affinity
 
 There are many different orchestrators that you can use with Windows containers; here are the options Microsoft provides:
