@@ -148,7 +148,7 @@
         {
             "source_path": "virtualization/hyper-v-on-windows/quick_start/walkthrough_checkpoints.md",
             "redirect_url": "/virtualization/hyper-v-on-windows/user-guide/checkpoints",
-            "redirect_document_id": true
+            "redirect_document_id": false
         },
         {
             "source_path": "virtualization/hyper-v-on-windows/quick_start/walkthrough_compatibility.md",
