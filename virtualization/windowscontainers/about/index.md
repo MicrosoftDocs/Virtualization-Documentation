@@ -17,7 +17,7 @@ Containers are a technology for packaging and running Windows and Linux applicat
 
 ## The Microsoft container ecosystem
 
-Microsoft helps you develop and deploy apps in containers:
+Microsoft provides a number of tools and platforms to help you develop and deploy apps in containers:
 
 - <strong>Run Windows-based or Linux-based containers on Windows 10</strong> for development and testing using [Docker Desktop](https://store.docker.com/editions/community/docker-ce-desktop-windows), which makes use of containers functionality built-in to Windows. You can also [run containers natively on Windows Server](../quick-start/set-up-environment.md?tabs=Windows-Server).
 - <strong>Develop, test, publish, and deploy Windows-based containers</strong> using the [powerful container support in Visual Studio](https://docs.microsoft.com/visualstudio/containers/overview) and [Visual Studio Code](https://code.visualstudio.com/docs/azure/docker), which include support for Docker, Docker Compose, Kubernetes, Helm, and other useful technologies.
