@@ -9,7 +9,8 @@ author: cwilhit
 
 This exercise will walk you through the deployment and use of the Windows container feature on the latest insider build of Windows Server from the Windows Insider Preview program. During this exercise, you will install the container role and deploy a preview edition of the base OS images. If you need to familiarize yourself with containers, you can find this information in [About Containers](../about/index.md).
 
-This quick start is specific to Windows Server containers on the Windows Server Insider Preview program. Please familiarize yourself with the program before continuing this quick start.
+> [!NOTE]
+> This content is specific to Windows Server containers on the Windows Server Insider Preview program. If you're looking for non-insider instructions for using Windows containers, please see the [Get Started](../quick-start/set-up-environment.md) guide.
 
 ## Join the Windows Insider Program
 
