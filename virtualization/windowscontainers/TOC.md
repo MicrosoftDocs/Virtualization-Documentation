@@ -26,6 +26,8 @@
 ## Linux containers on Windows
 ### [Overview](deploy-containers/linux-containers.md)
 ### [Run your first LCOW container](quick-start/quick-start-windows-10-linux.md)
+## Use containers with the Windows Insider program
+### [Overview](deploy-containers/insider-overview.md)
 
 # Concepts
 ## Windows Container Essentials
