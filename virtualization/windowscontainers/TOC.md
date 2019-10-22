@@ -2,6 +2,7 @@
 
 # Overview
 ## [About Windows containers](about/index.md)
+## [Containers vs. VMs](about/containers-vs-vm.md)
 ## [System requirements](deploy-containers/system-requirements.md)
 ## [FAQ](about/faq.md)
 
@@ -26,6 +27,8 @@
 ## Linux containers on Windows
 ### [Overview](deploy-containers/linux-containers.md)
 ### [Run your first LCOW container](quick-start/quick-start-windows-10-linux.md)
+## Use containers with the Windows Insider program
+### [Overview](deploy-containers/insider-overview.md)
 
 # Concepts
 ## Windows Container Essentials
