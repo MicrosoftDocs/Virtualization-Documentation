@@ -33,7 +33,7 @@ In addition to leveraging the default 'nat' network created by Docker on Windows
   > Requires: Requires Windows Server 2016 with [KB4015217](https://support.microsoft.com/help/4015217/windows-10-update-kb4015217),  Windows 10 Creators Update, or a later release.
 
   >[!NOTE]
-  >On Windows Server 2019 running Docker EE 18.03 and above, overlay networks created by Docker Swarm leverage VFP NAT rules for outbound connectivity. This means thata given container receives 1 IP address. It also means that ICMP-based tools such as `ping` or `Test-NetConnection` should be configured using their TCP/UDP options in debugging situations.
+  >On Windows Server 2019 running Docker EE 18.03 and above, overlay networks created by Docker Swarm leverage VFP NAT rules for outbound connectivity. This means that a given container receives 1 IP address. It also means that ICMP-based tools such as `ping` or `Test-NetConnection` should be configured using their TCP/UDP options in debugging situations.
 
 - **l2bridge** - containers attached to a network created with the 'l2bridge' driver will be in the same IP subnet as the container host, and connected to the physical network through an *external* Hyper-V switch. The IP addresses must be assigned statically from the same prefix as the container host. All container endpoints on the host will have the same MAC address as the host due to Layer-2 address translation (MAC re-write) operation on ingress and egress.
   > Requires: Requires Windows Server 2016, Windows 10 Creators Update, or a later release.
