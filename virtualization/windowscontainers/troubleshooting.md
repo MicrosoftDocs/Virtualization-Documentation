@@ -90,7 +90,7 @@ sc.exe stop docker
 
 Generally, this is only useful if explicitly requested by Microsoft support, or docker developers. It can be used to assist diagnosing a situation where docker appears to have hung. 
 
-Download [docker-signal.exe](https://github.com/jhowardmsft/docker-signal).
+Download [docker-signal.exe](https://github.com/moby/docker-signal).
 
 Usage:
 ```PowerShell
