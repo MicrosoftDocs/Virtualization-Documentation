@@ -11,7 +11,7 @@ This quick start is specific to Windows Server containers on the Windows Server 
 - One computer system (physical or virtual) running the latest build of Windows Server from the Windows Insider program and/or the latest build of Windows 10 from the Windows Insider program.
 
 > [!IMPORTANT]
-> You must use a build of Windows Server from the Windows Server Insider Preview program or a build of Windows 10 from the Windows Insider Preview program to use the base image described below. If you are not using one of these builds, the use of these base images will result in failure to start a container.
+> Windows requires the host OS version to match the container OS version. If you want to run a container based on a newer Windows build, make sure you have an equivalent host build. Otherwise, you can use Hyper-V isolation to run older containers on new host builds. You can read more on Windows Container Version Compatibility in our Container Docs.
 
 ## Install Docker Enterprise Edition (EE)
 
@@ -48,25 +48,33 @@ Restart-Computer -Force
 
 ## Install Base Container Image
 
-Before working with Windows containers, a base image needs to be installed. By being part of the Windows Insider program, you can also test our latest builds for the base images. With the Insider base images, there are now 4 available base images based on Windows Server. Refer to the table below to check for what purposes each should be used:
+Before working with Windows containers, a base image needs to be installed. By being part of the Windows Insider program, you can also test our latest builds for the base images. With the Insider base images, there are now 6 available base images based on Windows Server. Refer to the table below to check for what purposes each should be used:
 
 | Base OS Image                       | Usage                      |
 |-------------------------------------|----------------------------|
 | mcr.microsoft.com/windows/servercore         | Production and Development |
 | mcr.microsoft.com/windows/nanoserver              | Production and Development |
+| mcr.microsoft.com/windows/              | Production and Development |
 | mcr.microsoft.com/windows/servercore/insider | Development only           |
 | mcr.microsoft.com/windows/nanoserver/insider        | Development only           |
+| mcr.microsoft.com/windows/insider        | Development only           |
 
-To pull the Nano Server Insider base image run the following:
+To pull the Server Core Insider base image, refer to the featured tag(s) on the [Server Core Insider Docker Hub Repo](https://hub.docker.com/_/microsoft-windows-servercore-insider) to use the following format:
 
 ```console
-docker pull mcr.microsoft.com/nanoserver/insider
+docker pull mcr.microsoft.com/windows/servercore/insider:10.0.{build}.{revision}
 ```
 
-To pull the Windows Server Core insider base image run the following:
+To pull the Nano Server Insider base image, refer to the featured tag(s) on the [Nano Server Insider Docker Hub Repo](https://store.docker.com/_/microsoft-windows-nanoserver-insider) to use the following format:
 
 ```console
-docker pull mcr.microsoft.com/windows/servercore/insider
+docker pull mcr.microsoft.com/windows/nanoserver/insider:10.0.{build}.{revision}
+```
+
+To pull the Windows Insider base image, refer to the featured tag(s) on the [Windows Insider Docker Hub Repo](https://store.docker.com/_/microsoft-windows-insider) to use the following format:
+
+```console
+docker pull mcr.microsoft.com/windows/insider:10.0.{build}.{revision}
 ```
 
 > [!IMPORTANT]
