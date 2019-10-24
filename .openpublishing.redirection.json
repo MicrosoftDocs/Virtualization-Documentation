@@ -489,6 +489,11 @@
             "source_path": "virtualization/windowscontainers/quick-start/index.md",
             "redirect_url": "/virtualization/windowscontainers/about/index",
             "redirect_document_id": false
+        },
+        {
+            "source_path": "virtualization/windowscontainers/quick-start/Using-Insider-Container-Images.md",
+            "redirect_url": "/virtualization/windowscontainers/deploy-containers/insider-overview",
+            "redirect_document_id": false
         }
     ]
 }
