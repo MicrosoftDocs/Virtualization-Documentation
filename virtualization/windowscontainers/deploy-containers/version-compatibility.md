@@ -17,91 +17,91 @@ As we've been improving the Windows container features, we've had to make some c
 
 |Container OS|Supports Hyper-V isolation|Supports process isolation|
 |---|:---:|:---:|
-|Windows Server, version 1909|Yes|Yes|
-|Windows Server, version 1903|Yes|No|
-|Windows Server 2019|Yes|No|
-|Windows Server, version 1803|Yes|No|
-|Windows Server 2016|Yes|No|
+|Windows Server, version 1909|&#10004;|&#10004;|
+|Windows Server, version 1903|&#10004;|&#10006;|
+|Windows Server 2019|&#10004;|&#10006;|
+|Windows Server, version 1803|&#10004;|&#10006;|
+|Windows Server 2016|&#10004;|&#10006;|
 
 ## Windows Server, version 1903 host OS compatibility
 
 |Container OS|Supports Hyper-V isolation|Supports process isolation|
 |---|:---:|:---:|
-|Windows Server, version 1909|No|No|
-|Windows Server, version 1903|Yes|Yes|
-|Windows Server 2019|Yes|No|
-|Windows Server, version 1803|Yes|No|
-|Windows Server 2016|Yes|No|
+|Windows Server, version 1909|&#10006;|&#10006;|
+|Windows Server, version 1903|&#10004;|&#10004;|
+|Windows Server 2019|&#10004;|&#10006;|
+|Windows Server, version 1803|&#10004;|&#10006;|
+|Windows Server 2016|&#10004;|&#10006;|
 
 ## Windows Server 2019 host OS compatibility
 
 |Container OS|Supports Hyper-V isolation|Supports process isolation|
 |---|:---:|:---:|
-|Windows Server, version 1909|No|No|
-|Windows Server, version 1903|No|No|
-|Windows Server 2019|Yes|Yes|
-|Windows Server, version 1803|Yes|No|
-|Windows Server 2016|Yes|No|
+|Windows Server, version 1909|&#10006;|&#10006;|
+|Windows Server, version 1903|&#10006;|&#10006;|
+|Windows Server 2019|&#10004;|&#10004;|
+|Windows Server, version 1803|&#10004;|&#10006;|
+|Windows Server 2016|&#10004;|&#10006;|
 
 ## Windows Server, version 1803 host OS compatibility
 
 |Container OS|Supports Hyper-V isolation|Supports process isolation|
 |---|:---:|:---:|
-|Windows Server, version 1909|No|No|
-|Windows Server, version 1903|No|No|
-|Windows Server 2019|No|No|
-|Windows Server, version 1803|Yes|Yes|
-|Windows Server 2016|Yes|No|
+|Windows Server, version 1909|&#10006;|&#10006;|
+|Windows Server, version 1903|&#10006;|&#10006;|
+|Windows Server 2019|&#10006;|&#10006;|
+|Windows Server, version 1803|&#10004;|&#10004;|
+|Windows Server 2016|&#10004;|&#10006;|
 
 ## Windows Server 2016 host OS compatibility
 
 |Container OS|Supports Hyper-V isolation|Supports process isolation|
 |---|:---:|:---:|
-|Windows Server, version 1909|No|No|
-|Windows Server 2019, version 1903|No|No|
-|Windows Server 2019|No|No|
-|Windows Server, version 1803|No|No|
-|Windows Server 2016|Yes|Yes|
+|Windows Server, version 1909|&#10006;|&#10006;|
+|Windows Server 2019, version 1903|&#10006;|&#10006;|
+|Windows Server 2019|&#10006;|&#10006;|
+|Windows Server, version 1803|&#10006;|&#10006;|
+|Windows Server 2016|&#10004;|&#10004;|
 
 ## Windows 10, version 1903 host OS compatibility
 
 |Container OS|Supports Hyper-V isolation|Supports process isolation|
 |---|:---:|:---:|
-|Windows Server, version 1909|No|No|
-|Windows Server, version 1903|Yes|No|
-|Windows Server 2019|Yes|No|
-|Windows Server, version 1803|Yes|No|
-|Windows Server 2016|Yes|No|
+|Windows Server, version 1909|&#10006;|&#10006;|
+|Windows Server, version 1903|&#10004;|&#10006;|
+|Windows Server 2019|&#10004;|&#10006;|
+|Windows Server, version 1803|&#10004;|&#10006;|
+|Windows Server 2016|&#10004;|&#10006;|
 
 ## Windows 10, version 1809 host OS compatibility
 
 |Container OS|Supports Hyper-V isolation|Supports process isolation|
 |---|:---:|:---:|
-|Windows Server, version 1909|No|No|
-|Windows Server, version 1903|No|No|
-|Windows Server 2019|Yes|No|
-|Windows Server, version 1803|Yes|No|
-|Windows Server 2016|Yes|No|
+|Windows Server, version 1909|&#10006;|&#10006;|
+|Windows Server, version 1903|&#10006;|&#10006;|
+|Windows Server 2019|&#10004;|&#10006;|
+|Windows Server, version 1803|&#10004;|&#10006;|
+|Windows Server 2016|&#10004;|&#10006;|
 
 ## Windows 10, version 1803 host OS compatibility
 
 |Container OS|Supports Hyper-V isolation|Supports process isolation|
 |---|:---:|:---:|
-|Windows Server, version 1909|No|No|
-|Windows Serve, version 1903|No|No|
-|Windows Server 2019|No|No|
-|Windows Server, version 1803|Yes|No||
-|Windows Server 2016|Yes|No|
+|Windows Server, version 1909|&#10006;|&#10006;|
+|Windows Serve, version 1903|&#10006;|&#10006;|
+|Windows Server 2019|&#10006;|&#10006;|
+|Windows Server, version 1803|&#10004;|&#10006;|
+|Windows Server 2016|&#10004;|&#10006;|
 
 ## Windows 10 Fall Creators Update host OS compatibility
 
 |Container OS|Supports Hyper-V isolation|Supports process isolation|
 |---|:---:|:---:|
-|Windows Server, version 1909|No|No|
-|Windows Server, version 1903|No|No|
-|Windows Server 2019|No|No|
-|Windows Server, version 1803|No|No|
-|Windows Server 2016|Yes|No|
+|Windows Server, version 1909|&#10006;|&#10006;|
+|Windows Server, version 1903|&#10006;|&#10006;|
+|Windows Server 2019|&#10006;|&#10006;|
+|Windows Server, version 1803|&#10006;|&#10006;|
+|Windows Server 2016|&#10004;|&#10006;|
 
 ## Matching container host version with container image versions
 
