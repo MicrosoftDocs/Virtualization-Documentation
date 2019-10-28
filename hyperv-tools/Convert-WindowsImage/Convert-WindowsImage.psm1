@@ -2322,8 +2322,7 @@ You can use the fields below to configure the VHD or VHDX that you want to creat
                     Else
                     {
                         Write-Verbose -Message "Closing $VhdFormat..."
-                        $SupportsPassThru = (Get-Command -Name DisMount-DiskImage).Parameters | Where-Object Name -eq Passthru
-                        IF($SupportsPassThru) {
+                        If((Get-Command Dismount-DiskImage).parameters.Keys.Contains("PassThru")) {
                             $DismountDiskImage = Dismount-DiskImage -ImagePath $VhdPath -PassThru
                         }
                         Else {
@@ -2396,8 +2395,7 @@ You can use the fields below to configure the VHD or VHDX that you want to creat
                 }
                 Else
                 {
-                    $SupportsPassThru = (Get-Command -Name DisMount-DiskImage).Parameters | Where-Object Name -eq Passthru
-                    IF($SupportsPassThru) {
+                    If((Get-Command Dismount-DiskImage).parameters.Keys.Contains("PassThru")) {
                         $DismountDiskImage = Dismount-DiskImage -ImagePath $VhdPath -PassThru
                     }
                     Else {
@@ -2410,8 +2408,7 @@ You can use the fields below to configure the VHD or VHDX that you want to creat
             If ($openIso -ne $Null)
             {
                 Write-Verbose -Message "Closing ISO..."
-                $SupportsPassThru = (Get-Command -Name DisMount-DiskImage).Parameters | Where-Object Name -eq Passthru
-                IF($SupportsPassThru) {
+                If((Get-Command Dismount-DiskImage).parameters.Keys.Contains("PassThru")) {
                     $DismountDiskImage = Dismount-DiskImage -ImagePath $IsoPath -PassThru
                 }
                 Else {
