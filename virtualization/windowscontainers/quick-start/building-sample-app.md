@@ -23,11 +23,14 @@ All container sample source code is kept under the [Virtualization-Documentation
 git clone https://github.com/MicrosoftDocs/Virtualization-Documentation.git
 ```
 
-Navigate to the sample directory found under `<directory where clone occured>\Virtualization-Documentation\windows-container-samples\asp-net-getting-started` and create a Dockerfile. A [Dockerfile](https://docs.docker.com/engine/reference/builder/) is like a makefile--a list of instructions that instruct the container engine on how the container image must be built.
+Navigate to the sample directory found under `Virtualization-Documentation\windows-container-samples\asp-net-getting-started` and create a Dockerfile. A [Dockerfile](https://docs.docker.com/engine/reference/builder/) is like a makefile--a list of instructions that instruct the container engine on how the container image must be built.
 
 ```Powershell
-#Create the dockerfile for our project
-New-Item -name dockerfile -type file
+# navigate into the sample directory
+Set-Location -Path Virtualization-Documentation\windows-container-samples\asp-net-getting-started
+
+# create the Dockerfile for our project
+New-Item -Name Dockerfile -ItemType file
 ```
 
 ## Write the dockerfile
