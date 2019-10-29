@@ -3,7 +3,7 @@ title: Windows Containers FAQ
 description: Windows Server containers FAQ
 keywords: docker, containers
 author: PatrickLang
-ms.date: 05/22/2019
+ms.date: 10/25/2019
 ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
@@ -11,15 +11,32 @@ ms.assetid: 25de368c-5a10-40a4-b4aa-ac8c9a9ca022
 ---
 # Frequently asked questions about containers
 
-## What are WCOW and LCOW?
-
-WCOW is short for "Windows containers on Windows." LCOW is short for "Linux containers on Windows."
-
 ## What's the difference between Linux and Windows Server containers?
 
 Linux and Windows Server both implement similar technologies within their kernel and core operating systems. The difference comes from the platform and workloads that run within the containers.  
 
 When a customer uses Windows Server containers, they can integrate with existing Windows technologies, such as .NET, ASP.NET, and PowerShell.
+
+## What are the prerequisites for running containers on Windows?
+
+Containers were introduced to the platform with Windows Server 2016. To use containers, you'll need either Windows Server 2016 or the Windows 10 Anniversary update (version 1607) or newer. Read the [System Requirements](../deploy-containers/system-requirements.md) to learn more.
+
+## What are WCOW and LCOW?
+
+WCOW is short for "Windows containers on Windows." LCOW is short for "Linux containers on Windows."
+
+## How are containers licensed? Is there a limit to the number of containers I can run?
+
+The Windows container image [EULA](../images-eula.md) describes a usage that depends on a user having a validly licensed host OS. The number of containers a user is allowed to run depends upon the host OS edition and the [isolation mode](../manage-containers/hyperv-container.md) a container is being run with, as well as whether these containers are running for dev/test purposes or in production.
+
+|Host OS                                                         |Process-isolated container limit                   |Hyper-V-isolated container limit                   |
+|----------------------------------------------------------------|---------------------------------------------------|---------------------------------------------------|
+|Windows Server Standard                                         |Unlimited                                          |2                                                  |
+|Windows Server Datacenter                                       |Unlimited                                          |Unlimited                                          |
+|Windows 10 Pro and Enterprise                                   |Unlimited *(for test or development purposes only)*|Unlimited *(for test or development purposes only)*|
+|Windows 10 IoT Core and Enterprise)                             |Unlimited *(for test or development purposes only)*|Unlimited *(for test or development purposes only)*|
+
+Windows Server container image usage is determined by reading the number of virtualization guests supported for that [edition](/windows-server/get-started-19/editions-comparison-19.md). Production usage of containers on an IoT edition of Windows is depends on additional license restrictions. Please read the [container image EULA](../images-eula.md) to understand exactly what is permitted and what is not.
 
 ## As a developer, do I have to rewrite my app for each type of container?
 
@@ -28,10 +45,6 @@ No. Windows container images are common across both Windows Server containers an
 A developer can create a container image using a Windows Server container and deploy it in Hyper-V isolation or vice-versa without any changes other than specifying the appropriate runtime flag.
 
 Windows Server containers offer greater density and performance for when speed is key, such as lower spin-up time and faster runtime performance compared to nested configurations. Hyper-V isolation, true to its name, offers greater isolation, ensuring that code running in one container can't compromise or impact the host operating system or other containers running on the same host. This is useful for multitenant scenarios with requirements for hosting untrusted code, including SaaS applications and compute hosting.
-
-## What are the prerequisites for running containers on Windows?
-
-Containers were introduced to the platform with Windows Server 2016. To use containers, you'll need either Windows Server 2016 or the Windows 10 Anniversary update (version 1607) or newer.
 
 ## Can I run Windows containers in process-isolated mode on Windows 10 Enterprise or Professional?
 
@@ -50,10 +63,6 @@ This can complicate things when you have an air-gapped machine that can only pul
 
 > [!IMPORTANT]
 > Usage of this flag shall not preclude your obligation to comply with the terms of the Windows container base image license; you must not post Windows content for public or third-party redistribution. Usage within your own environment is allowed.
-
-## Is Microsoft participating in the Open Container Initiative (OCI)?
-
-To guarantee the packaging format remains universal, Docker recently organized the Open Container Initiative (OCI), which aims to ensure container packaging remains an open and in a foundation-led format, with Microsoft as one of its founding members.
 
 ## Additional feedback
 

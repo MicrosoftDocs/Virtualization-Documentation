@@ -113,7 +113,7 @@ Let's dissect this command:
 * `--name myapp` tells Docker to give this container a convenient name to query by (instead of having to look up the contaienr ID assigned at runtime by Docker).
 * `my-asp-app` is the image we want Docker to run. This is the container image produced as the culmination of the `docker build` process.
 
-Open a web browser web browser and navigate to `https://localhost:5000` to be greeted by your containerized application.
+Open a web browser web browser and navigate to `http://localhost:5000` to be greeted by your containerized application.
 
 >![](media/SampleAppScreenshot.png)
 
