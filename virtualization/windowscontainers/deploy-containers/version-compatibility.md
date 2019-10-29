@@ -16,7 +16,7 @@ As we've been improving the Windows container features, we've had to make some c
 ## Windows Server host OS compatibility
 
 <!-- start tab view -->
-# [Windows Server, version 1909 host OS compatibility](#tab/windows-server-1909)
+# [Windows Server, version 1909](#tab/windows-server-1909)
 
 |Container OS|Supports Hyper-V isolation|Supports process isolation|
 |---|:---:|:---:|
@@ -26,7 +26,7 @@ As we've been improving the Windows container features, we've had to make some c
 |Windows Server, version 1803|&#10004;|&#10006;|
 |Windows Server 2016|&#10004;|&#10006;|
 
-# [Windows Server, version 1903 host OS compatibility](#tab/windows-server-1903)
+# [Windows Server, version 1903](#tab/windows-server-1903)
 
 |Container OS|Supports Hyper-V isolation|Supports process isolation|
 |---|:---:|:---:|
@@ -36,7 +36,7 @@ As we've been improving the Windows container features, we've had to make some c
 |Windows Server, version 1803|&#10004;|&#10006;|
 |Windows Server 2016|&#10004;|&#10006;|
 
-# [Windows Server 2019 host OS compatibility](#tab/windows-server-2019)
+# [Windows Server 2019](#tab/windows-server-2019)
 
 |Container OS|Supports Hyper-V isolation|Supports process isolation|
 |---|:---:|:---:|
@@ -46,7 +46,7 @@ As we've been improving the Windows container features, we've had to make some c
 |Windows Server, version 1803|&#10004;|&#10006;|
 |Windows Server 2016|&#10004;|&#10006;|
 
-# [Windows Server, version 1803 host OS compatibility](#tab/windows-server-1803)
+# [Windows Server, version 1803](#tab/windows-server-1803)
 
 |Container OS|Supports Hyper-V isolation|Supports process isolation|
 |---|:---:|:---:|
@@ -56,7 +56,7 @@ As we've been improving the Windows container features, we've had to make some c
 |Windows Server, version 1803|&#10004;|&#10004;|
 |Windows Server 2016|&#10004;|&#10006;|
 
-# [Windows Server 2016 host OS compatibility](#tab/windows-server-2016)
+# [Windows Server 2016](#tab/windows-server-2016)
 
 |Container OS|Supports Hyper-V isolation|Supports process isolation|
 |---|:---:|:---:|
@@ -73,7 +73,7 @@ As we've been improving the Windows container features, we've had to make some c
 
 <!-- start tab view -->
 
-# [Windows 10, version 1903 host OS compatibility](#tab/windows-10-1903)
+# [Windows 10, version 1903](#tab/windows-10-1903)
 
 |Container OS|Supports Hyper-V isolation|Supports process isolation|
 |---|:---:|:---:|
@@ -83,7 +83,7 @@ As we've been improving the Windows container features, we've had to make some c
 |Windows Server, version 1803|&#10004;|&#10006;|
 |Windows Server 2016|&#10004;|&#10006;|
 
-# [Windows 10, version 1809 host OS compatibility](#tab/windows-10-1809)
+# [Windows 10, version 1809](#tab/windows-10-1809)
 
 |Container OS|Supports Hyper-V isolation|Supports process isolation|
 |---|:---:|:---:|
@@ -93,7 +93,7 @@ As we've been improving the Windows container features, we've had to make some c
 |Windows Server, version 1803|&#10004;|&#10006;|
 |Windows Server 2016|&#10004;|&#10006;|
 
-# [Windows 10, version 1803 host OS compatibility](#tab/windows-10-1803)
+# [Windows 10, version 1803](#tab/windows-10-1803)
 
 |Container OS|Supports Hyper-V isolation|Supports process isolation|
 |---|:---:|:---:|
@@ -103,7 +103,7 @@ As we've been improving the Windows container features, we've had to make some c
 |Windows Server, version 1803|&#10004;|&#10006;|
 |Windows Server 2016|&#10004;|&#10006;|
 
-# [Windows 10 Fall Creators Update host OS compatibility](#tab/windows-10-fall)
+# [Windows 10 Fall Creators Update](#tab/windows-10-fall)
 
 |Container OS|Supports Hyper-V isolation|Supports process isolation|
 |---|:---:|:---:|
