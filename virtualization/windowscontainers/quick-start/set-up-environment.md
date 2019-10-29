@@ -1,39 +1,35 @@
 ---
 title: Windows and Linux Containers on Windows 10
-description: Container deployment quick start
+description: Set up Windows 10 or Windows Server for containers, then move on to running your first container image.
 keywords: docker, containers, LCOW
 author: cwilhit
-ms.date: 09/11/2019
+ms.author: crwilhit 
+ms.date: 10/29/2019
 ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: bb9bfbe0-5bdc-4984-912f-9c93ea67105f
 ---
+# Get started: Prep Windows for containers
 
-# Get Started: Configure Your Environment for Containers
+This tutorial describes how to:
 
-This quickstart demonstrates how to:
-
-> [!div class="checklist"]
-> * Set up your environment for containers
-> * Run your first container image
-> * Containerize a simple .NET core application
+- Set up Windows 10 or Windows Server for containers
+- Run your first container image
+- Containerize a simple .NET core application
 
 ## Prerequisites
 
 <!-- start tab view -->
 # [Windows Server](#tab/Windows-Server)
 
-Please make sure you meet the following requirements:
+To run containers on Windows Server, you need a physical server or virtual machine running Windows Server (Semi-Annual Channel), Windows Server 2019, or Windows Server 2016.
 
-- One computer system (physical or virtual) running Windows Server 2016 or later.
-
-> [!NOTE]
-> If you are using Windows Server 2019 Insider Preview, please update to [Window Server 2019 Evaluation](https://www.microsoft.com/evalcenter/evaluate-windows-server-2019 ).
+For testing, you can download a copy of [Window Server 2019 Evaluation](https://www.microsoft.com/evalcenter/evaluate-windows-server-2019 ) or a [Windows Server Insider Preview](https://insider.windows.com/for-business-getting-started-server/).
 
 # [Windows 10 Professional and Enterprise](#tab/Windows-10-Client)
 
-Please make sure you meet the following requirements:
+To run containers on Windows 10, you need the following:
 
 - One physical computer system running Windows 10 Professional or Enterprise with Anniversary Update (version 1607) or later.
 - [Hyper-V](https://docs.microsoft.com/virtualization/hyper-v-on-windows/reference/hyper-v-requirements) should be enabled.
@@ -48,33 +44,36 @@ Please make sure you meet the following requirements:
 
 ## Install Docker
 
-Docker is the definitive toolchain for working with Windows containers. Docker offers a CLI for users to manage containers on a given host, build containers, remove containers, and more. Learn more about Docker in the [Concepts](../manage-containers/configure-docker-daemon.md) area of our docs.
+The first step is to install Docker, which is required for working with Windows containers. Docker provides a standard runtime environment for containers with a common API and command-line interface (CLI)
+for managing containers on Windows.
+
+For more configuration details, see [Docker Engine on Windows](../manage-docker/configure-docker-daemon.md).
 
 <!-- start tab view -->
 # [Windows Server](#tab/Windows-Server)
 
-On Windows Server, Docker is installed through a [OneGet provider PowerShell module](https://github.com/oneget/oneget) published by Microsoft called the [DockerMicrosoftProvider](https://github.com/OneGet/MicrosoftDockerProvider). This provider:
+To install Docker on Windows Server, you can use a [OneGet provider PowerShell module](https://github.com/oneget/oneget) published by Microsoft called the [DockerMicrosoftProvider](https://github.com/OneGet/MicrosoftDockerProvider). This provider enables the containers feature in Windows and installs the Docker engine and client.
 
-- enables the containers feature on your machine
-- installs the Docker engine and client on your machine.
+To install Docker, 
 
-To install Docker, open an elevated PowerShell session and install the Docker-Microsoft PackageManagement Provider from the [PowerShell Gallery](https://www.powershellgallery.com/packages/DockerMsftProvider).
+1. Open an elevated PowerShell session and install the Docker-Microsoft PackageManagement Provider from the [PowerShell Gallery](https://www.powershellgallery.com/packages/DockerMsftProvider).
 
-```powershell
-Install-Module -Name DockerMsftProvider -Repository PSGallery -Force
-```
+   ```powershell
+   Install-Module -Name DockerMsftProvider -Repository PSGallery -Force
+   ```
 
-Next, use the PackageManagement PowerShell module to install the latest version of Docker.
+2. Use the PackageManagement PowerShell module to install the latest version of Docker.
 
-```powershell
-Install-Package -Name docker -ProviderName DockerMsftProvider
-```
+   ```powershell
+   Install-Package -Name docker -ProviderName DockerMsftProvider
+   ```
 
-When PowerShell asks you whether to trust the package source 'DockerDefault', type `A` to continue the installation. After the installation complete, you must reboot the computer.
+   When PowerShell asks you whether to trust the package source 'DockerDefault', type `A` to continue the installation. 
+4. After the installation completes, restart the computer.
 
-```powershell
-Restart-Computer -Force
-```
+   ```powershell
+   Restart-Computer -Force
+   ```
 
 > [!TIP]
 > If you want to update Docker later:
