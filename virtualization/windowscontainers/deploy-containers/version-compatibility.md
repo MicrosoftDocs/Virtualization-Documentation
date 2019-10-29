@@ -61,7 +61,7 @@ As we've been improving the Windows container features, we've had to make some c
 |Container OS|Supports Hyper-V isolation|Supports process isolation|
 |---|:---:|:---:|
 |Windows Server, version 1909|&#10006;|&#10006;|
-|Windows Server 2019, version 1903|&#10006;|&#10006;|
+|Windows Server, version 1903|&#10006;|&#10006;|
 |Windows Server 2019|&#10006;|&#10006;|
 |Windows Server, version 1803|&#10006;|&#10006;|
 |Windows Server 2016|&#10004;|&#10004;|
