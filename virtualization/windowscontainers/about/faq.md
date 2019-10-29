@@ -34,7 +34,7 @@ The Windows container image [EULA](../images-eula.md) describes a usage that dep
 |Windows Server Standard                                         |Unlimited                                          |2                                                  |
 |Windows Server Datacenter                                       |Unlimited                                          |Unlimited                                          |
 |Windows 10 Pro and Enterprise                                   |Unlimited *(for test or development purposes only)*|Unlimited *(for test or development purposes only)*|
-|Windows 10 IoT Core and Enterprise)                             |Unlimited*                                         |Unlimited*                                          |
+|Windows 10 IoT Core and Enterprise                             |Unlimited*                                         |Unlimited*                                          |
 
 Windows Server container image usage is determined by reading the number of virtualization guests supported for that [edition](/windows-server/get-started-19/editions-comparison-19.md). <br/>
 
