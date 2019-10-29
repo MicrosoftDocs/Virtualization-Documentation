@@ -13,6 +13,8 @@ As we've been improving the Windows container features, we've had to make some c
 >[!NOTE]
 > Windows Server, version 1709 is no longer supported. For more information, see [Base image servicing lifecycles](base-image-lifecycle.md).
 
+## Windows Server host OS compatibility
+
 <!-- start tab view -->
 # [Windows Server, version 1909 host OS compatibility](#tab/windows-server-1909)
 
@@ -63,6 +65,13 @@ As we've been improving the Windows container features, we've had to make some c
 |Windows Server 2019|&#10006;|&#10006;|
 |Windows Server, version 1803|&#10006;|&#10006;|
 |Windows Server 2016|&#10004;|&#10004;|
+
+---
+<!-- stop tab view -->
+
+## Windows 10 host OS compatibility
+
+<!-- start tab view -->
 
 # [Windows 10, version 1903 host OS compatibility](#tab/windows-10-1903)
 
