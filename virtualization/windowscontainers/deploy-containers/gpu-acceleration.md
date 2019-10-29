@@ -19,7 +19,7 @@ GPUs are already a common tool for many popular workloads, from traditional rend
 For this feature to work, your environment must meet the following requirements:
 
 - The container host must be running Windows Server 2019 or Windows 10, version 1809 or newer.
-- The container base image must be [mcr.microsoft.com/windows:1809](https://hub.docker.com/_/microsoft-windowsfamily-windows) or newer. Windows Server Core and Nano Server container images are not currently supported.
+- The container base image must be [mcr.microsoft.com/windows:1809](https://hub.docker.com/_/microsoft-windows) or newer. Windows Server Core and Nano Server container images are not currently supported.
 - The container host must be running Docker Engine 19.03 or newer.
 - The container host must have a GPU running display drivers version WDDM 2.5 or newer.
 
