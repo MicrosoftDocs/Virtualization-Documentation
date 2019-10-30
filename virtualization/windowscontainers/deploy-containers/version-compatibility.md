@@ -10,9 +10,6 @@ Windows Server 2016 and Windows 10 Anniversary Update (both version 14393) were 
 
 As we've been improving the Windows container features, we've had to make some changes that can affect compatibility. Older containers will run the same on newer hosts with [Hyper-V isolation](../manage-containers/hyperv-container.md), and will use the same (older) kernel version. However, if you want to run a container based on a newer Windows build, it can only run on the newer host build.
 
->[!NOTE]
-> Windows Server, version 1709 is no longer supported. For more information, see [Base image servicing lifecycles](base-image-lifecycle.md).
-
 ## Windows Server host OS compatibility
 
 <!-- start tab view -->
@@ -23,7 +20,6 @@ As we've been improving the Windows container features, we've had to make some c
 |Windows Server, version 1909|&#10004;|&#10004;|
 |Windows Server, version 1903|&#10004;|&#10006;|
 |Windows Server 2019|&#10004;|&#10006;|
-|Windows Server, version 1803|&#10004;|&#10006;|
 |Windows Server 2016|&#10004;|&#10006;|
 
 # [Windows Server, version 1903](#tab/windows-server-1903)
@@ -33,7 +29,6 @@ As we've been improving the Windows container features, we've had to make some c
 |Windows Server, version 1909|&#10006;|&#10006;|
 |Windows Server, version 1903|&#10004;|&#10004;|
 |Windows Server 2019|&#10004;|&#10006;|
-|Windows Server, version 1803|&#10004;|&#10006;|
 |Windows Server 2016|&#10004;|&#10006;|
 
 # [Windows Server 2019](#tab/windows-server-2019)
@@ -43,17 +38,6 @@ As we've been improving the Windows container features, we've had to make some c
 |Windows Server, version 1909|&#10006;|&#10006;|
 |Windows Server, version 1903|&#10006;|&#10006;|
 |Windows Server 2019|&#10004;|&#10004;|
-|Windows Server, version 1803|&#10004;|&#10006;|
-|Windows Server 2016|&#10004;|&#10006;|
-
-# [Windows Server, version 1803](#tab/windows-server-1803)
-
-|Container OS|Supports Hyper-V isolation|Supports process isolation|
-|---|:---:|:---:|
-|Windows Server, version 1909|&#10006;|&#10006;|
-|Windows Server, version 1903|&#10006;|&#10006;|
-|Windows Server 2019|&#10006;|&#10006;|
-|Windows Server, version 1803|&#10004;|&#10004;|
 |Windows Server 2016|&#10004;|&#10006;|
 
 # [Windows Server 2016](#tab/windows-server-2016)
@@ -63,7 +47,6 @@ As we've been improving the Windows container features, we've had to make some c
 |Windows Server, version 1909|&#10006;|&#10006;|
 |Windows Server, version 1903|&#10006;|&#10006;|
 |Windows Server 2019|&#10006;|&#10006;|
-|Windows Server, version 1803|&#10006;|&#10006;|
 |Windows Server 2016|&#10004;|&#10004;|
 
 ---
@@ -90,7 +73,6 @@ As we've been improving the Windows container features, we've had to make some c
 |Windows Server, version 1909|&#10006;|&#10006;|
 |Windows Server, version 1903|&#10006;|&#10006;|
 |Windows Server 2019|&#10004;|&#10006;|
-|Windows Server, version 1803|&#10004;|&#10006;|
 |Windows Server 2016|&#10004;|&#10006;|
 
 # [Windows 10, version 1803](#tab/windows-10-1803)
@@ -100,17 +82,15 @@ As we've been improving the Windows container features, we've had to make some c
 |Windows Server, version 1909|&#10006;|&#10006;|
 |Windows Server, version 1903|&#10006;|&#10006;|
 |Windows Server 2019|&#10006;|&#10006;|
-|Windows Server, version 1803|&#10004;|&#10006;|
 |Windows Server 2016|&#10004;|&#10006;|
 
-# [Windows 10 Fall Creators Update](#tab/windows-10-fall)
+# [Windows 10, version 1709](#tab/windows-10-1709)
 
 |Container OS|Supports Hyper-V isolation|Supports process isolation|
 |---|:---:|:---:|
 |Windows Server, version 1909|&#10006;|&#10006;|
 |Windows Server, version 1903|&#10006;|&#10006;|
 |Windows Server 2019|&#10006;|&#10006;|
-|Windows Server, version 1803|&#10006;|&#10006;|
 |Windows Server 2016|&#10004;|&#10006;|
 
 ---
@@ -120,7 +100,7 @@ As we've been improving the Windows container features, we've had to make some c
 
 ### Windows Server containers
 
-Because Windows Server containers and the underlying host share a single kernel, the container’s base image must match that of the host. If the versions are different, the container may start, but full functionally isn't guaranteed. The Windows operating system has four levels of versioning: major, minor, build and revision. For example, version 10.0.14393.103 would have a major version of 10, a minor version of 0, a build number of 14393, and a revision number of 103. The build number only changes when new versions of the OS are published, such as version 1709, 1803, Fall Creators' Update, and so on. The revision number is updated as Windows updates are applied.
+Because Windows Server containers and the underlying host share a single kernel, the container’s base image must match that of the host. If the versions are different, the container may start, but full functionally isn't guaranteed. The Windows operating system has four levels of versioning: major, minor, build and revision. For example, version 10.0.14393.103 would have a major version of 10, a minor version of 0, a build number of 14393, and a revision number of 103. The build number only changes when new versions of the OS are published, such as version 1709, 1903, and so on. The revision number is updated as Windows updates are applied.
 
 #### Build number (new release of Windows)
 
