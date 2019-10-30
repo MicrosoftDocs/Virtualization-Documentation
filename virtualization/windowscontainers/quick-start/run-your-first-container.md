@@ -3,29 +3,31 @@ title: Windows and Linux Containers on Windows 10
 description: Container deployment quick start
 keywords: docker, containers, LCOW
 author: cwilhit
+ms.author: crwilhit
 ms.date: 09/11/2019
 ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: bb9bfbe0-5bdc-4984-912f-9c93ea67105f
 ---
+# Get started: Run your first Windows container
 
-# Get Started: Run Your First Container
+This topic describes how to run your first Windows container, after setting up your environment as described in [Get started: Prep Windows for containers](./set-up-environment.md). To run a container, you first install a base image, which provides a foundational layer of operating system services to your container. Then you create and run a container image, which is based upon the base image. For details, read on.
 
-In the [previous segment](./set-up-environment.md), we configured our environment for running containers. This exercise shows how to pull a container image and run it.
+## Install a container base image
 
-## Install Container Base Image
+All containers are instantiated from container images. Microsoft offers several starter images, called base images, to choose from (for more details, see [Container base images](../manage-containers/container-base-images.md)). This procedures pulls the lightweight Nano Server base image.
 
-All containers are instantiated from `container images`. Microsoft offers several "starter" images (called `base images`) to choose from. The following command will pull the Nano Server base image.
+1. Open a command prompt window (use the built-in command prompt, PowerShell, [Windows Terminal](https://www.microsoft.com/p/windows-terminal-preview/9n0dx20hk701?activetab=pivot:overviewtab), or even Bash), and then run the following command to pull (download) the base image to your system:
 
-```console
-docker pull mcr.microsoft.com/windows/nanoserver:1809
-```
+   ```console
+   docker pull mcr.microsoft.com/windows/nanoserver:1903
+   ```
 
-> [!TIP]
-> If you see an error message that says `no matching manifest for unknown in the manifest list entries`, make sure Docker is not configured to run Linux containers.
+   > [!TIP]
+   > If you see an error message that says `no matching manifest for unknown in the manifest list entries`, make sure Docker isn't configured to run Linux containers.
 
-After the image is pulled, you can verify it's existence on your machine by querying your local docker image repository. Running the command `docker images` returns a list of installed images--in this case the Nano Server image.
+2. After the image is finished downloading, verify it's existence on your system by querying your local docker image repository. Running the command `docker images` returns a list of installed images--in this case the Nano Server image.
 
 ```console
 docker images
