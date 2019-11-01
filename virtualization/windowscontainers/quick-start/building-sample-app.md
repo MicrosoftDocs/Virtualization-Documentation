@@ -23,11 +23,14 @@ All container sample source code is kept under the [Virtualization-Documentation
 git clone https://github.com/MicrosoftDocs/Virtualization-Documentation.git
 ```
 
-Navigate to the sample directory found under `<directory where clone occured>\Virtualization-Documentation\windows-container-samples\asp-net-getting-started` and create a Dockerfile. A [Dockerfile](https://docs.docker.com/engine/reference/builder/) is like a makefile--a list of instructions that instruct the container engine on how the container image must be built.
+Navigate to the sample directory found under `Virtualization-Documentation\windows-container-samples\asp-net-getting-started` and create a Dockerfile. A [Dockerfile](https://docs.docker.com/engine/reference/builder/) is like a makefile--a list of instructions that instruct the container engine on how the container image must be built.
 
 ```Powershell
-#Create the dockerfile for our project
-New-Item -name dockerfile -type file
+# navigate into the sample directory
+Set-Location -Path Virtualization-Documentation\windows-container-samples\asp-net-getting-started
+
+# create the Dockerfile for our project
+New-Item -Name Dockerfile -ItemType file
 ```
 
 ## Write the dockerfile
@@ -113,7 +116,7 @@ Let's dissect this command:
 * `--name myapp` tells Docker to give this container a convenient name to query by (instead of having to look up the contaienr ID assigned at runtime by Docker).
 * `my-asp-app` is the image we want Docker to run. This is the container image produced as the culmination of the `docker build` process.
 
-Open a web browser web browser and navigate to `https://localhost:5000` to be greeted by your containerized application.
+Open a web browser web browser and navigate to `http://localhost:5000` to be greeted by your containerized application.
 
 >![](media/SampleAppScreenshot.png)
 
