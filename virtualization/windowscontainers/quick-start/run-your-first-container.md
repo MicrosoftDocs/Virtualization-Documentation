@@ -4,7 +4,7 @@ description: Container deployment quick start
 keywords: docker, containers, LCOW
 author: cwilhit
 ms.author: crwilhit
-ms.date: 09/11/2019
+ms.date: 11/01/2019
 ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
@@ -16,9 +16,9 @@ This topic describes how to run your first Windows container, after setting up y
 
 ## Install a container base image
 
-All containers are instantiated from container images. Microsoft offers several starter images, called base images, to choose from (for more details, see [Container base images](../manage-containers/container-base-images.md)). This procedures pulls the lightweight Nano Server base image.
+All containers are created from container images. Microsoft offers several starter images, called base images, to choose from (for more details, see [Container base images](../manage-containers/container-base-images.md)). This procedures pulls (downloads and installs) the lightweight Nano Server base image.
 
-1. Open a command prompt window (use the built-in command prompt, PowerShell, [Windows Terminal](https://www.microsoft.com/p/windows-terminal-preview/9n0dx20hk701?activetab=pivot:overviewtab), or even Bash), and then run the following command to pull (download) the base image to your system:
+1. Open a command prompt window (use the built-in command prompt, PowerShell, [Windows Terminal](https://www.microsoft.com/p/windows-terminal-preview/9n0dx20hk701?activetab=pivot:overviewtab), or even Bash), and then run the following command to download and install the base image:
 
    ```console
    docker pull mcr.microsoft.com/windows/nanoserver:1903
@@ -27,67 +27,64 @@ All containers are instantiated from container images. Microsoft offers several 
    > [!TIP]
    > If you see an error message that says `no matching manifest for unknown in the manifest list entries`, make sure Docker isn't configured to run Linux containers.
 
-2. After the image is finished downloading, verify it's existence on your system by querying your local docker image repository. Running the command `docker images` returns a list of installed images--in this case the Nano Server image.
+2. After the image is finished downloading--read the [EULA](../images-eula.md) while you wait--verify it's existence on your system by querying your local docker image repository. Running the command `docker images` returns a list of installed images.
 
-```console
-docker images
+   Here's an example of the output showing the Nano Server image.
 
-REPOSITORY             TAG                 IMAGE ID            CREATED             SIZE
-microsoft/nanoserver   latest              105d76d0f40e        4 days ago          652 MB
-```
+   ```console
+   REPOSITORY             TAG                 IMAGE ID            CREATED             SIZE
+   microsoft/nanoserver   latest              105d76d0f40e        4 days ago          652 MB
+   ```
 
-> [!IMPORTANT]
-> Please read the Windows containers OS image [EULA](../images-eula.md).
+## Run a Windows container
 
-## Run Your First Windows Container
+For this simple example, a ‘Hello World’ container image will be created and deployed. For the best experience, run these commands in an elevated command prompt window (but don't use the Windows PowerShell ISE--it doesn't work for interactive sessions with containers, as the containers appear to hang).
 
-For this simple example, a ‘Hello World’ container image will be created and deployed. For the best experience, run these commands in an elevated Windows CMD shell or PowerShell.
+1. Start a container with an interactive session from the `nanoserver` image by entering the following command in your command prompt window:
 
-> Windows PowerShell ISE does not work for interactive sessions with containers. Even though the container is running, it will appear to hang.
+   ```console
+   docker run -it mcr.microsoft.com/windows/nanoserver:1903 cmd.exe
+   ```
+2. After the container is started, the command prompt window changes context to the container. Inside the container, we'll create a simple ‘Hello World’ text file and then exit the container by entering the following commands:
 
-First, start a container with an interactive session from the `nanoserver` image. Once the container is started, you will be presented with a command shell from within the container.  
+   ```cmd
+   echo "Hello World!" > Hello.txt
+   exit
+   ```   
 
-```console
-docker run -it mcr.microsoft.com/windows/nanoserver:1809 cmd.exe
-```
+3. Get the container ID for the container you just exited by running the [docker ps](https://docs.docker.com/engine/reference/commandline/ps/) command:
 
-Inside the container, we will create a simple ‘Hello World’ text file.
+   ```console
+   docker ps -a
+   ```
 
-```cmd
-echo "Hello World!" > Hello.txt
-```   
+4. Create a new ‘HelloWorld’ image that includes the changes in the first container you ran. To do so, run the [docker commit](https://docs.docker.com/engine/reference/commandline/commit/) command, replacing `<containerid>` with the ID of your container:
 
-When completed, exit the container.
+   ```console
+   docker commit <containerid> helloworld
+   ```
 
-```cmd
-exit
-```
+   When completed, you now have a custom image that contains the hello world script. This can be seen with the [docker images](https://docs.docker.com/engine/reference/commandline/images/) command.
 
-Create a new container image from the modified container. To see a list of containers that are running or have exited, run the following and take note of the container id.
+   ```console
+   docker images
+   ```
 
-```console
-docker ps -a
-```
+   Here's an example of the output:
 
-Run the following command to create the new ‘HelloWorld’ image. Replace `<containerid>` with the id of your container.
+   ```console
+   REPOSITORY                             TAG                 IMAGE ID            CREATED             SIZE
+   helloworld                             latest              a1064f2ec798        10 seconds ago      258MB
+   mcr.microsoft.com/windows/nanoserver   1903                2b9c381d0911        3 weeks ago         256MB
+   ```
 
-```console
-docker commit <containerid> helloworld
-```
+5. Finally, run the new container by using the [docker run](https://docs.docker.com/engine/reference/commandline/run/) command with the `--rm` parameter that automatically removes the container once the command line (cmd.exe) stops.
 
-When completed, you now have a custom image that contains the hello world script. This can be seen with the following command.
+   ```console
+   docker run --rm helloworld cmd.exe /s /c type Hello.txt
+   ```
 
-```console
-docker images
-```
-
-Finally, run the container by using the `docker run` command.
-
-```console
-docker run --rm helloworld cmd.exe /s /c type Hello.txt
-```
-
-The result of the `docker run` command is that a container was created from the 'HelloWorld' image, an instance of cmd was started in the container and executed a reading of our file (output echoed to the shell), and then the container stopped and removed.
+   The result is that a container was created from the 'HelloWorld' image, an instance of cmd.exe was started in the container that read our file and output the file contents to the shell, and then the container stopped and was removed.
 
 ## Next Steps
 
