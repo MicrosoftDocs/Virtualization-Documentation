@@ -17,9 +17,9 @@ docker-compose up
 	docker pull microsoft/windowsservercore
 - https://hub.docker.com/r/microsoft/windowsservercore/
 
-# Get the SQL Server 2016 Express Docker image:
-	docker pull microsoft/mssql-server-2014-express-windows
-- https://hub.docker.com/r/microsoft/mssql-server-2014-express-windows/
+# Get the Microsoft SQL Server Express Docker image:
+	docker pull microsoft/mssql-server-windows-express
+- https://hub.docker.com/r/microsoft/mssql-server-windows-express/
 
 # Create a custom NAT network
 networks:
