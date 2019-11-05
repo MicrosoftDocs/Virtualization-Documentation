@@ -52,7 +52,7 @@ Let's walk through setting up a new NAT network.
 
     Your output should look something like this:
 
-    ```
+    ```console
     PS C:\> Get-NetAdapter
 
     Name                  InterfaceDescription               ifIndex Status       MacAddress           LinkSpeed
