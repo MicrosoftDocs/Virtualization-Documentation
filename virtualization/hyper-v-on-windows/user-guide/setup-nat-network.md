@@ -212,7 +212,7 @@ Make sure you only have one “internal” vmSwitch for the application or featu
 Get-VMSwitch
 ```
 
-Check to see if there are private IP addresses (e.g. NAT default Gateway IP Address – usually *.1) from the old NAT still assigned to an adapter
+Check to see if there are private IP addresses (e.g. NAT default Gateway IP Address – usually _x_._y_._z_.1) from the old NAT still assigned to an adapter
 ```powershell
 Get-NetIPAddress -InterfaceAlias "vEthernet (<name of vSwitch>)"
 ```
