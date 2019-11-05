@@ -156,7 +156,6 @@ Note that if multiple networks which use an external vSwitch for connectivity (e
 
 #### IP assignment on stopped vs. running containers
 Static IP assignment is performed directly on the container's network adapter and must only be performed when the container is in a STOPPED state. "Hot-add" of container network adapters or changes to the network stack is not supported (in Windows Server 2016) while the container is running.
-> Note: This behavior is changing on Windows 10, Creators Update as the platform now supports "hot-add". This capability will light-up E2E after this [outstanding Docker pull request](https://github.com/docker/libnetwork/pull/1661) is merged
 
 #### Existing vSwitch (not visible to Docker) can block transparent network creation
 If you encounter an error in creating a transparent network, it is possible that there is an external vSwitch on your system which was not automatically discovered by Docker and is therefore preventing the transparent network from being bound to your container host's external network adapter. 
