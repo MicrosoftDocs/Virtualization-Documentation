@@ -107,7 +107,7 @@ C:\> docker service create --name=<SERVICENAME> --endpoint-mode dnsrr --network=
 Here, \<SERVICENAME\> is the name you'd like to give to the service--this is the name you will use to reference the service via service discovery (which uses Docker's native DNS server). \<NETWORKNAME\> is the name of the network that you would like to connect this service to (for example, "myOverlayNet"). \<CONTAINERIMAGE\> is the name of the container image that will defined the service.
 
 >[!NOTE]
->The second argument to this command, `--endpoint-mode dnsrr`, is required to specify to the Docker engine that the DNS Round Robin policy will be used to balance network traffic across service container endpoints. Currently, DNS Round-Robin is the only load balancing strategy supported on Windows.[Routing mesh](https://docs.docker.com/engine/swarm/ingress/) for Windows docker hosts is not yet supported, but will be coming soon. Users seeking an alternative load balancing strategy today can setup an external load balancer (e.g. NGINX) and use Swarm’s [publish-port mode](https://docs.docker.com/engine/reference/commandline/service_create/#/publish-service-ports-externally-to-the-swarm--p---publish) to expose container host ports over which to load balance.
+>The second argument to this command, `--endpoint-mode dnsrr`, is required to specify to the Docker engine that the DNS Round Robin policy will be used to balance network traffic across service container endpoints. Currently, DNS Round-Robin is the only load balancing strategy supported on Windows Server 2016.[Routing mesh](https://docs.docker.com/engine/swarm/ingress/) for Windows docker hosts is supported on Windows Server 2019 (and above), but not on Windows Server 2016. Users seeking an alternative load balancing strategy on Windows Server 2016 today can setup an external load balancer (e.g. NGINX) and use Swarm’s [publish-port mode](https://docs.docker.com/engine/reference/commandline/service_create/#/publish-service-ports-externally-to-the-swarm--p---publish) to expose container host ports over which to balance traffic.
 
 ## Scaling a service
 Once a service is deployed to a swarm cluster, the container instances composing that service are deployed across the cluster. By default, the number of container instances backing a service—the number of “replicas,” or “tasks” for a service—is one. However, a service can be created with multiple tasks using the `--replicas` option to the `docker service create` command, or by scaling the service after it has been created.
@@ -219,10 +219,13 @@ C:\> docker service create --name=linux_s1 --endpoint-mode dnsrr --network testo
 ## Limitations
 Currently, swarm mode on Windows has the following limitations:
 - Data-plane encryption not supported (i.e. container-container traffic using the `--opt encrypted` option)
-- [Routing mesh](https://docs.docker.com/engine/swarm/ingress/) for Windows docker hosts is not yet supported, but will be coming soon. Users seeking an alternative load balancing strategy today can setup an external load balancer (e.g. NGINX) and use Swarm’s [publish-port mode](https://docs.docker.com/engine/reference/commandline/service_create/#/publish-service-ports-externally-to-the-swarm--p---publish) to expose container host ports over which to load balance. More detail on this below.
+- [Routing mesh](https://docs.docker.com/engine/swarm/ingress/) for Windows docker hosts is not supported on Windows Server 2016, but only from Windows Server 2019 onwards. Users seeking an alternative load balancing strategy today can setup an external load balancer (e.g. NGINX) and use Swarm’s [publish-port mode](https://docs.docker.com/engine/reference/commandline/service_create/#/publish-service-ports-externally-to-the-swarm--p---publish) to expose container host ports over which to load balance. More detail on this below.
+
+ >[!NOTE]
+>For more details on how to setup Docker Swarm Routing Mesh, please see this [blog post](https://docs.microsoft.com/en-us/virtualization/community/team-blog/2017/20170926-docker-s-routing-mesh-available-with-windows-server-version-1709)
 
 ## Publish ports for service endpoints
-Docker Swarm's [routing mesh](https://docs.docker.com/engine/swarm/ingress/) feature is not yet supported on Windows, but users seeking to publish ports for their service endpoints can do so today using publish-port mode. 
+ Users seeking to publish ports for their service endpoints can do so today using either publish-port mode, or Docker Swarm's [routing mesh](https://docs.docker.com/engine/swarm/ingress/) feature. 
 
 To cause host ports to be published for each of the tasks/container endpoints that define a service, use the `--publish mode=host,target=<CONTAINERPORT>` argument to the `docker service create` command:
 
