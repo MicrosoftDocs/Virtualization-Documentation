@@ -243,7 +243,7 @@ PS> Stop-Service docker
 PS> Set-Service docker -StartupType Disabled
 Reboot Host
 PS> Get-NetNat | Remove-NetNat
-PS> Set-Service docker -StartupType automaticac
+PS> Set-Service docker -StartupType Automatic
 PS> Start-Service docker 
 ```
 
