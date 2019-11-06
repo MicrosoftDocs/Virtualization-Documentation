@@ -4,7 +4,7 @@ description: Container deployment quick start
 keywords: docker, containers, LCOW
 author: cwilhit
 ms.author: crwilhit
-ms.date: 11/01/2019
+ms.date: 11/07/2019
 ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
