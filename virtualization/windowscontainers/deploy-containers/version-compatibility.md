@@ -18,35 +18,35 @@ As we've been improving the Windows container features, we've had to make some c
 |Base image OS version|Supports Hyper-V isolation|Supports process isolation|
 |---|:---:|:---:|
 |Windows Server, version 1909|&#10004;|&#10004;|
-|Windows Server, version 1903|&#10004;|&#10006;|
-|Windows Server 2019|&#10004;|&#10006;|
-|Windows Server 2016|&#10004;|&#10006;|
+|Windows Server, version 1903|&#10004;|&#10060;|
+|Windows Server 2019|&#10004;|&#10060;|
+|Windows Server 2016|&#10004;|&#10060;|
 
 # [Windows Server, version 1903](#tab/windows-server-1903)
 
 |Base image OS version|Supports Hyper-V isolation|Supports process isolation|
 |---|:---:|:---:|
-|Windows Server, version 1909|&#10006;|&#10006;|
+|Windows Server, version 1909|&#10060;|&#10060;|
 |Windows Server, version 1903|&#10004;|&#10004;|
-|Windows Server 2019|&#10004;|&#10006;|
-|Windows Server 2016|&#10004;|&#10006;|
+|Windows Server 2019|&#10004;|&#10060;|
+|Windows Server 2016|&#10004;|&#10060;|
 
 # [Windows Server 2019](#tab/windows-server-2019)
 
 |Base image OS version|Supports Hyper-V isolation|Supports process isolation|
 |---|:---:|:---:|
-|Windows Server, version 1909|&#10006;|&#10006;|
-|Windows Server, version 1903|&#10006;|&#10006;|
+|Windows Server, version 1909|&#10060;|&#10060;|
+|Windows Server, version 1903|&#10060;|&#10060;|
 |Windows Server 2019|&#10004;|&#10004;|
-|Windows Server 2016|&#10004;|&#10006;|
+|Windows Server 2016|&#10004;|&#10060;|
 
 # [Windows Server 2016](#tab/windows-server-2016)
 
 |Base image OS version|Supports Hyper-V isolation|Supports process isolation|
 |---|:---:|:---:|
-|Windows Server, version 1909|&#10006;|&#10006;|
-|Windows Server, version 1903|&#10006;|&#10006;|
-|Windows Server 2019|&#10006;|&#10006;|
+|Windows Server, version 1909|&#10060;|&#10060;|
+|Windows Server, version 1903|&#10060;|&#10060;|
+|Windows Server 2019|&#10060;|&#10060;|
 |Windows Server 2016|&#10004;|&#10004;|
 
 ---
@@ -60,38 +60,38 @@ As we've been improving the Windows container features, we've had to make some c
 
 |Base image OS version|Supports Hyper-V isolation|Supports process isolation|
 |---|:---:|:---:|
-|Windows Server, version 1909|&#10006;|&#10006;|
-|Windows Server, version 1903|&#10004;|&#10006;|
-|Windows Server 2019|&#10004;|&#10006;|
-|Windows Server, version 1803|&#10004;|&#10006;|
-|Windows Server 2016|&#10004;|&#10006;|
+|Windows Server, version 1909|&#10060;|&#10060;|
+|Windows Server, version 1903|&#10004;|&#10060;|
+|Windows Server 2019|&#10004;|&#10060;|
+|Windows Server, version 1803|&#10004;|&#10060;|
+|Windows Server 2016|&#10004;|&#10060;|
 
 # [Windows 10, version 1809](#tab/windows-10-1809)
 
 |Base image OS version|Supports Hyper-V isolation|Supports process isolation|
 |---|:---:|:---:|
-|Windows Server, version 1909|&#10006;|&#10006;|
-|Windows Server, version 1903|&#10006;|&#10006;|
-|Windows Server 2019|&#10004;|&#10006;|
-|Windows Server 2016|&#10004;|&#10006;|
+|Windows Server, version 1909|&#10060;|&#10060;|
+|Windows Server, version 1903|&#10060;|&#10060;|
+|Windows Server 2019|&#10004;|&#10060;|
+|Windows Server 2016|&#10004;|&#10060;|
 
 # [Windows 10, version 1803](#tab/windows-10-1803)
 
 |Base image OS version|Supports Hyper-V isolation|Supports process isolation|
 |---|:---:|:---:|
-|Windows Server, version 1909|&#10006;|&#10006;|
-|Windows Server, version 1903|&#10006;|&#10006;|
-|Windows Server 2019|&#10006;|&#10006;|
-|Windows Server 2016|&#10004;|&#10006;|
+|Windows Server, version 1909|&#10060;|&#10060;|
+|Windows Server, version 1903|&#10060;|&#10060;|
+|Windows Server 2019|&#10060;|&#10060;|
+|Windows Server 2016|&#10004;|&#10060;|
 
 # [Windows 10, version 1709](#tab/windows-10-1709)
 
 |Base image OS version|Supports Hyper-V isolation|Supports process isolation|
 |---|:---:|:---:|
-|Windows Server, version 1909|&#10006;|&#10006;|
-|Windows Server, version 1903|&#10006;|&#10006;|
-|Windows Server 2019|&#10006;|&#10006;|
-|Windows Server 2016|&#10004;|&#10006;|
+|Windows Server, version 1909|&#10060;|&#10060;|
+|Windows Server, version 1903|&#10060;|&#10060;|
+|Windows Server 2019|&#10060;|&#10060;|
+|Windows Server 2016|&#10004;|&#10060;|
 
 ---
 <!-- stop tab view -->
