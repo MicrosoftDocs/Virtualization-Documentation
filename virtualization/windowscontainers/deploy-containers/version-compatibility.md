@@ -56,6 +56,16 @@ As we've been improving the Windows container features, we've had to make some c
 
 <!-- start tab view -->
 
+# [Windows 10, version 1909](#tab/windows-10-1909)
+
+|Container base image OS version|Supports Hyper-V isolation|Supports process isolation|
+|---|:---:|:---:|
+|Windows Server, version 1909|&#10004;|&#10060;|
+|Windows Server, version 1903|&#10004;|&#10060;|
+|Windows Server 2019|&#10004;|&#10060;|
+|Windows Server, version 1803|&#10004;|&#10060;|
+|Windows Server 2016|&#10004;|&#10060;|
+
 # [Windows 10, version 1903](#tab/windows-10-1903)
 
 |Container base image OS version|Supports Hyper-V isolation|Supports process isolation|
