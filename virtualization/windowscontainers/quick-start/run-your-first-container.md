@@ -4,7 +4,7 @@ description: Container deployment quick start
 keywords: docker, containers, LCOW
 author: cwilhit
 ms.author: crwilhit
-ms.date: 11/07/2019
+ms.date: 11/12/2019
 ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
@@ -27,7 +27,7 @@ All containers are created from container images. Microsoft offers several start
    > [!TIP]
    > If you see an error message that says `no matching manifest for unknown in the manifest list entries`, make sure Docker isn't configured to run Linux containers.
 
-2. After the image is finished downloading--read the [EULA](../images-eula.md) while you wait--verify it's existence on your system by querying your local docker image repository. Running the command `docker images` returns a list of installed images.
+2. After the image is finished downloading—read the [EULA](../images-eula.md) while you wait—verify it's existence on your system by querying your local docker image repository. Running the command `docker images` returns a list of installed images.
 
    Here's an example of the output showing the Nano Server image.
 
@@ -38,7 +38,7 @@ All containers are created from container images. Microsoft offers several start
 
 ## Run a Windows container
 
-For this simple example, a ‘Hello World’ container image will be created and deployed. For the best experience, run these commands in an elevated command prompt window (but don't use the Windows PowerShell ISE--it doesn't work for interactive sessions with containers, as the containers appear to hang).
+For this simple example, a ‘Hello World’ container image will be created and deployed. For the best experience, run these commands in an elevated command prompt window (but don't use the Windows PowerShell ISE—it doesn't work for interactive sessions with containers, as the containers appear to hang).
 
 1. Start a container with an interactive session from the `nanoserver` image by entering the following command in your command prompt window:
 
@@ -86,7 +86,7 @@ For this simple example, a ‘Hello World’ container image will be created and
 
    The result is that a container was created from the 'HelloWorld' image, an instance of cmd.exe was started in the container that read our file and output the file contents to the shell, and then the container stopped and was removed.
 
-## Next Steps
+## Next steps
 
 > [!div class="nextstepaction"]
 > [Learn how to containerize a sample app](./building-sample-app.md)

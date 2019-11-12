@@ -4,7 +4,7 @@ description: Set up Windows 10 or Windows Server for containers, then move on to
 keywords: docker, containers, LCOW
 author: cwilhit
 ms.author: crwilhit 
-ms.date: 10/29/2019
+ms.date: 11/12/2019
 ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers

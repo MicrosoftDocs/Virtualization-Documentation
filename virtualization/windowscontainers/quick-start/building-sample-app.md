@@ -26,9 +26,9 @@ All container sample source code is kept under the [Virtualization-Documentation
    git clone https://github.com/MicrosoftDocs/Virtualization-Documentation.git
    ```
 
-3. Navigate to the sample directory found under `Virtualization-Documentation\windows-container-samples\asp-net-getting-started` and create a Dockerfile, using the following commands. 
+3. Navigate to the sample directory found under `Virtualization-Documentation\windows-container-samples\asp-net-getting-started` and create a Dockerfile, using the following commands.
 
-   A [Dockerfile](https://docs.docker.com/engine/reference/builder/) is like a makefile--a list of instructions that instruct the container engine on how the container image must be built.
+   A [Dockerfile](https://docs.docker.com/engine/reference/builder/) is like a makefile—it's a list of instructions that tell the container engine how to build the container image.
 
    ```Powershell
    # Navigate into the sample directory
@@ -113,16 +113,16 @@ With the Dockerfile written, we can point Docker at our Dockerfile and tell it t
    docker run -d -p 5000:80 --name myapp my-asp-app
    ```
 
-Let's dissect this command:
+   Let's dissect this command:
 
-* `-d` tells Docker tun run the container 'detached', meaning no console is hooked up to the console inside the container. The container runs in the background. 
-* `-p 5000:80` tells Docker to map port 5000 on the host to port 80 in the container. Each container gets its own IP address. ASP .NET listens by default on port 80. Port mapping allows us to go to the host's IP address at the mapped port and Docker will forward all traffic to the destination port inside the container.
-* `--name myapp` tells Docker to give this container a convenient name to query by (instead of having to look up the contaienr ID assigned at runtime by Docker).
-* `my-asp-app` is the image we want Docker to run. This is the container image produced as the culmination of the `docker build` process.
+   * `-d` tells Docker tun run the container 'detached', meaning no console is hooked up to the console inside the container. The container runs in the background. 
+   * `-p 5000:80` tells Docker to map port 5000 on the host to port 80 in the container. Each container gets its own IP address. ASP .NET listens by default on port 80. Port mapping allows us to go to the host's IP address at the mapped port and Docker will forward all traffic to the destination port inside the container.
+   * `--name myapp` tells Docker to give this container a convenient name to query by (instead of having to look up the contaienr ID assigned at runtime by Docker).
+   * `my-asp-app` is the image we want Docker to run. This is the container image produced as the culmination of the `docker build` process.
 
-Open a web browser web browser and navigate to `http://localhost:5000` to be greeted by your containerized application, showing in this screenshot:
+3. Open a web browser web browser and navigate to `http://localhost:5000` to be see your containerized application, as shown in this screenshot:
 
->![ASP.NET Core webpage, running from the localhost in a container](media/SampleAppScreenshot.png)
+   >![ASP.NET Core webpage, running from the localhost in a container](media/SampleAppScreenshot.png)
 
 ## Next steps
 
