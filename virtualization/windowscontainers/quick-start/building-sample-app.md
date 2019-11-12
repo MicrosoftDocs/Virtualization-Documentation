@@ -4,7 +4,7 @@ description: Learn to build a sample .NET core app with containers
 keywords: docker, containers
 author: cwilhit
 ms.author: crwilhit
-ms.date: 11/11/2019
+ms.date: 11/12/2019
 ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
@@ -126,16 +126,20 @@ Open a web browser web browser and navigate to `http://localhost:5000` to be gre
 
 ## Next steps
 
-The next step is to publish your containerized ASP.NET web app to a private registry using Azure Container Registry. This allows you to deploy it in your org.
+1. The next step is to publish your containerized ASP.NET web app to a private registry using Azure Container Registry. This allows you to deploy it in your org.
 
-> [!div class="nextstepaction"]
-> [Create a private container registry](https://docs.microsoft.com/azure/container-registry/container-registry-get-started-powershell)
+   > [!div class="nextstepaction"]
+   > [Create a private container registry](https://docs.microsoft.com/azure/container-registry/container-registry-get-started-powershell)
 
-To use the ASP.NET app you just packaged in the container registry tutorial, when you get to the section where you push your container image to the registry, specify the name of your app, as shown here (assuming that you named your container registry contosocontainerregistry, which you probably didn't):
+   When you get to the section where you [push your container image to the registry](https://docs.microsoft.com/azure/container-registry/container-registry-get-started-powershell#push-image-to-registry), specify the name of the ASP.NET app you just packaged (`my-asp-app`) along with your container registry (for example: `contoso-container-registry`):
 
-```PowerShell
-docker tag my-asp-app contosocontainerregistry.azurecr.io/my-asp-app:v1
-```
+   ```PowerShell
+   docker tag my-asp-app contoso-container-registry.azurecr.io/my-asp-app:v1
+   ```
 
+   To see more app samples and their associated dockerfiles, see [additional container samples](../samples.md).
 
-To see more app samples and their associated dockerfiles, see [additional container samples](../samples.md).
+2. Once you've published your app to the container registry, the next step would be to deploy the app to a Kubernetes cluster that you create with Azure Kubernetes Service.
+
+   > [!div class="nextstepaction"]
+   > [Create a Kubernetes cluster](https://docs.microsoft.com/azure/aks/windows-container-cli)
