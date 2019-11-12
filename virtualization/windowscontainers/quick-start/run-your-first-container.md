@@ -18,7 +18,7 @@ This topic describes how to run your first Windows container, after setting up y
 
 All containers are created from container images. Microsoft offers several starter images, called base images, to choose from (for more details, see [Container base images](../manage-containers/container-base-images.md)). This procedures pulls (downloads and installs) the lightweight Nano Server base image.
 
-1. Open a command prompt window (use the built-in command prompt, PowerShell, [Windows Terminal](https://www.microsoft.com/p/windows-terminal-preview/9n0dx20hk701?activetab=pivot:overviewtab), or even Bash), and then run the following command to download and install the base image:
+1. Open a command prompt window (such as the built-in command prompt, PowerShell, or [Windows Terminal](https://www.microsoft.com/p/windows-terminal-preview/9n0dx20hk701?activetab=pivot:overviewtab)), and then run the following command to download and install the base image:
 
    ```console
    docker pull mcr.microsoft.com/windows/nanoserver:1903

@@ -27,7 +27,7 @@ To run containers on Windows Server, you need a physical server or virtual machi
 
 For testing, you can download a copy of [Window Server 2019 Evaluation](https://www.microsoft.com/evalcenter/evaluate-windows-server-2019 ) or a [Windows Server Insider Preview](https://insider.windows.com/for-business-getting-started-server/).
 
-# [Windows 10 Professional and Enterprise](#tab/Windows-10-Client)
+# [Windows 10](#tab/Windows-10-Client)
 
 To run containers on Windows 10, you need the following:
 
