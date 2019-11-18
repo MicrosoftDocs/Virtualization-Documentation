@@ -63,7 +63,6 @@ The following networking options are currently **NOT** supported on Windows:
 - Windows containers attached to l2bridge, NAT, and overlay networks do not support communicating over the IPv6 stack.
 - Encrypted container communication via IPsec.
 - HTTP proxy support for containers.
-- Attaching endpoints to running in Hyper-V isolation (hot-add).
 - Networking on virtualized Azure infrastructure via the transparent network driver.
 
 | Command        | Unsupported option   |
