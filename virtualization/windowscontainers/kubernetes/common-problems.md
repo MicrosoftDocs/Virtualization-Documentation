@@ -40,6 +40,19 @@ For additional details, see official [nssm usage](https://nssm.cc/usage) docs.
 
 ## Common networking errors ##
 
+### Load balancers are plumbed inconsistently across the cluster nodes ###
+In the (default) kube-proxy configuration, clusters containing 100+ load balancers may run out of available ephemeral (dynamic) ports due to the high number of ports reserved on each node for every (non-DSR) load balancer. This may manifest itself through errors in kube-proxy such as:
+```
+Policy creation failed: hcnCreateLoadBalancer failed in Win32: The specified port already exists.
+```
+
+Users can identify this issue by running [CollectLogs.ps1](https://github.com/microsoft/SDN/blob/master/Kubernetes/windows/debug/collectlogs.ps1) script and consulting the `*portrange.txt` files. A heuristical summary will also be generated in `reservedports.txt`.
+
+To resolve this issue, a few steps can be taken:
+1.	For a permanent solution, kube-proxy load balancing should be set to [DSR mode](https://techcommunity.microsoft.com/t5/Networking-Blog/Direct-Server-Return-DSR-in-a-nutshell/ba-p/693710). Unfortunately, DSR mode is fully implemented on newer [Windows Server Insider build 18945](https://blogs.windows.com/windowsexperience/2019/07/30/announcing-windows-server-vnext-insider-preview-build-18945/#o1bs7T2DGPFpf7HM.97) (or higher) only.
+2. As a workaround, users can also increase the default Windows configuration of ephemeral ports available using a command such as `netsh int ipv4 dynamicportrange TCP <start_range> <end_range>`. *WARNING:* Overriding the default dynamic port range can have consequences on other processes/services on the host that rely on available TCP ports from the non-ephemeral range, so this range should be selected carefully.
+3. We are also working on a scalability enhancement to non-DSR mode load balancers using intelligent port pool sharing, which is scheduled to be released through a cumulative update in Q1 2020.
+
 ### HostPort publishing is not working ###
 It is currently not possible to publish ports using the Kubernetes `containers.ports.hostPort` field as this field is not honored by Windows CNI plugins. Please use NodePort publishing for the time being to publish ports on the Node.
 
