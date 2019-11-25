@@ -46,7 +46,7 @@ In the (default) kube-proxy configuration, clusters containing 100+ load balance
 Policy creation failed: hcnCreateLoadBalancer failed in Win32: The specified port already exists.
 ```
 
-Users can identify this issue by running [CollectLogs.ps1](https://github.com/microsoft/SDN/blob/master/Kubernetes/windows/debug/collectlogs.ps1) script and consulting the `*portrange.txt` files. A heuristical summary will also be generated in `reservedports.txt`.
+Users can identify this issue by running [CollectLogs.ps1](https://github.com/microsoft/SDN/blob/master/Kubernetes/windows/debug/collectlogs.ps1) script and consulting the `*portrange.txt` files. A heuristical summary will also be generated in `reservedports.txt`. The `CollectLogs.ps1` will also attempt to reserve port ranges for 10 load balancers and report success/failure in `reserverports.txt` as part of its normal operation. 
 
 To resolve this issue, a few steps can be taken:
 1.	For a permanent solution, kube-proxy load balancing should be set to [DSR mode](https://techcommunity.microsoft.com/t5/Networking-Blog/Direct-Server-Return-DSR-in-a-nutshell/ba-p/693710). Unfortunately, DSR mode is fully implemented on newer [Windows Server Insider build 18945](https://blogs.windows.com/windowsexperience/2019/07/30/announcing-windows-server-vnext-insider-preview-build-18945/#o1bs7T2DGPFpf7HM.97) (or higher) only.
