@@ -25,6 +25,47 @@ If that doesn't help find the source of the problem, please go ahead and post th
 ## Finding Logs
 There are multiple services that are used to manage Windows containers. The next sections shows where to get logs for each service.
 
+# Docker Container Logs 
+The `docker logs` command fetches a container's logs from STDOUT/STDERR, the standard application log deposit locations for Linux applications. Windows applications typically do not log to STDOUT/STDERR; instead, they log to ETW, Event Logs, or log files, among others. 
+
+[Log Monitor](https://github.com/microsoft/windows-container-tools/tree/master/LogMonitor), a Microsoft-supported opensource tool, is now available on github. Log Monitor bridges Windows application logs to STDOUT/STDERR. Log Monitor is configured via a config file. 
+
+## Log Monitor Usage
+
+LogMonitor.exe and LogMonitorConfig.json should both be included in the same LogMonitor directory. 
+
+Log Monitor can either be used in a SHELL usage pattern:
+
+```
+SHELL ["C:\\LogMonitor\\LogMonitor.exe", "cmd", "/S", "/C"]
+CMD c:\windows\system32\ping.exe -n 20 localhost
+```
+
+Or an ENTRYPOINT usage pattern:
+
+```
+ENTRYPOINT C:\LogMonitor\LogMonitor.exe c:\windows\system32\ping.exe -n 20 localhost
+```
+
+Both example usages wrap the ping.exe application. Other applications (such as [IIS.ServiceMonitor]( https://github.com/microsoft/IIS.ServiceMonitor)) can be nested with Log Monitor in a similar fashion:
+
+```
+COPY LogMonitor.exe LogMonitorConfig.json C:\LogMonitor\
+WORKDIR /LogMonitor
+SHELL ["C:\\LogMonitor\\LogMonitor.exe", "powershell.exe"]
+ 
+# Start IIS Remote Management and monitor IIS
+ENTRYPOINT      Start-Service WMSVC; `
+                    C:\ServiceMonitor.exe w3svc;
+```
+
+
+Log Monitor starts the wrapped application as a child process and monitors the STDOUT output of the application.
+
+Note that in the SHELL usage pattern the CMD/ENTRYPOINT instruction should be specified in the SHELL form and not exec form. When exec form of the CMD/ENTRYPOINT instruction is used, SHELL is not launched, and the Log Monitor tool will not be launched inside the container.
+
+More usage information can be found on the [Log Monitor wiki](https://github.com/microsoft/windows-container-tools/wiki). Example config files for key Windows container scenarios (IIS, etc.) can be found within the [github repo](https://github.com/microsoft/windows-container-tools/tree/master/LogMonitor/src/LogMonitor/sample-config-files). Additional context can be found in this [blog post](https://techcommunity.microsoft.com/t5/Containers/Windows-Containers-Log-Monitor-Opensource-Release/ba-p/973947).
+
 # Docker Engine
 The Docker Engine logs to the Windows 'Application' event log, rather than to a file. These logs can easily be read, sorted, and filtered using Windows PowerShell
 
