@@ -65,7 +65,7 @@ FROM mcr.microsoft.com/dotnet/core/sdk:2.1 AS build-env
 WORKDIR /app
 ```
 
-The first group of lines declares from which base image we will use to build our container on top of. If the local system does not have this image already, then docker will automatically try and fetch it. The `mcr.microsoft.com/dotnet/core/sdk:2.1` comes comes packaged with the .NET core 2.1 SDK installed, so it's up to the task of building ASP .NET core projects targeting version 2.1. The next instruction  changes the working directory in our container to be `/app`, so all commands following this one execute under this context.
+The first group of lines declares from which base image we will use to build our container on top of. If the local system does not have this image already, then docker will automatically try and fetch it. The `mcr.microsoft.com/dotnet/core/sdk:2.1` comes packaged with the .NET core 2.1 SDK installed, so it's up to the task of building ASP .NET core projects targeting version 2.1. The next instruction  changes the working directory in our container to be `/app`, so all commands following this one execute under this context.
 
 ```Dockerfile
 COPY *.csproj ./
