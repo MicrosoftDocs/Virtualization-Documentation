@@ -22,15 +22,15 @@ A list of all of the tests it runs along with common solutions is in the [Readme
 If that doesn't help find the source of the problem, please go ahead and post the output from your script on the [Container Forum](https://social.msdn.microsoft.com/Forums/home?forum=windowscontainers). This is the best place to get help from the community including Windows Insiders and developers.
 
 
-## Finding Logs
+### Finding Logs
 There are multiple services that are used to manage Windows containers. The next sections shows where to get logs for each service.
 
-# Docker Container Logs 
+## Docker Container Logs 
 The `docker logs` command fetches a container's logs from STDOUT/STDERR, the standard application log deposit locations for Linux applications. Windows applications typically do not log to STDOUT/STDERR; instead, they log to ETW, Event Logs, or log files, among others. 
 
 [Log Monitor](https://github.com/microsoft/windows-container-tools/tree/master/LogMonitor), a Microsoft-supported opensource tool, is now available on github. Log Monitor bridges Windows application logs to STDOUT/STDERR. Log Monitor is configured via a config file. 
 
-## Log Monitor Usage
+### Log Monitor Usage
 
 LogMonitor.exe and LogMonitorConfig.json should both be included in the same LogMonitor directory. 
 
@@ -66,7 +66,7 @@ Note that in the SHELL usage pattern the CMD/ENTRYPOINT instruction should be sp
 
 More usage information can be found on the [Log Monitor wiki](https://github.com/microsoft/windows-container-tools/wiki). Example config files for key Windows container scenarios (IIS, etc.) can be found within the [github repo](https://github.com/microsoft/windows-container-tools/tree/master/LogMonitor/src/LogMonitor/sample-config-files). Additional context can be found in this [blog post](https://techcommunity.microsoft.com/t5/Containers/Windows-Containers-Log-Monitor-Opensource-Release/ba-p/973947).
 
-# Docker Engine
+## Docker Engine
 The Docker Engine logs to the Windows 'Application' event log, rather than to a file. These logs can easily be read, sorted, and filtered using Windows PowerShell
 
 For example, this will show the Docker Engine logs from the last 5 minutes starting with the oldest.
@@ -81,7 +81,7 @@ This could also easily be piped into a CSV file to be read by another tool or sp
 Get-EventLog -LogName Application -Source Docker -After (Get-Date).AddMinutes(-30)  | Sort-Object Time | Export-CSV ~/last30minutes.CSV
 ```
 
-## Enabling Debug logging
+### Enabling Debug logging
 You can also enable debug-level logging on the Docker Engine. This may be helpful for troubleshooting if the regular logs don't have enough detail.
 
 First, open an elevated Command Prompt, then run `sc.exe qc docker` get the current command line for the Docker service.
@@ -127,7 +127,7 @@ sc.exe stop docker
 <path\to\>dockerd.exe -D > daemon.log 2>&1
 ```
 
-## Obtaining stack dump.
+### Obtaining stack dump
 
 Generally, this is only useful if explicitly requested by Microsoft support, or docker developers. It can be used to assist diagnosing a situation where docker appears to have hung. 
 
@@ -145,7 +145,7 @@ The file will be `goroutine-stacks-<timestamp>.log`.
 Note that `goroutine-stacks*.log` does not contain personal information.
 
 
-# Host Compute Service
+## Host Compute Service
 The Docker Engine depends on a Windows-specific Host Compute Service. It has separate logs: 
 - Microsoft-Windows-Hyper-V-Compute-Admin
 - Microsoft-Windows-Hyper-V-Compute-Operational
@@ -158,7 +158,7 @@ Get-WinEvent -LogName Microsoft-Windows-Hyper-V-Compute-Admin
 Get-WinEvent -LogName Microsoft-Windows-Hyper-V-Compute-Operational 
 ```
 
-## Capturing HCS analytic/debug logs
+### Capturing HCS analytic/debug logs
 
 To enable analytic/debug logs for Hyper-V Compute and save them to `hcslog.evtx`.
 
@@ -175,7 +175,7 @@ wevtutil.exe epl Microsoft-Windows-Hyper-V-Compute-Analytic <hcslog.evtx>
 wevtutil.exe sl Microsoft-Windows-Hyper-V-Compute-Analytic /e:false /q:true
 ```
 
-## Capturing HCS verbose tracing
+### Capturing HCS verbose tracing
 
 Generally, these are only useful if requested by Microsoft support. 
 
