@@ -78,3 +78,17 @@ When the installation has completed you are prompted to restart your computer.
 ## Make virtual machines
 
 [Create your first virtual machine](quick-create-virtual-machine.md)
+
+## Error
+* Hyper-V encountered an error trying to access an object on computer 'xxx' because the object was no
+t found. The object might have been deleted. Verify that the Virtual Machine Management service on the computer is runn
+ing.
+![Error Message](media/connect_to_server_error_message_1.png)
+1. Open "Window Security"
+2. Open "App & Browser control"
+3. Click "Exploit protection settings" at the bottom
+4. Switch to "Program settings" tab
+5. Locate "C:\WINDOWS\System32\vmcompute.exe" in the list and expand it
+6. Click "Edit"
+7. Scroll down to "Code flow guard (CFG)" and uncheck "Override system settings"
+8. Start vmcompute from powershell "net start vmcompute"
