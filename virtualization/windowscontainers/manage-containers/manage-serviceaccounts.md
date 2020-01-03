@@ -3,7 +3,7 @@ title: Create gMSAs for Windows containers
 description: How to create Group Managed Service Accounts (gMSAs) for Windows containers.
 keywords: docker, containers, active directory, gmsa, group managed service account, group managed service accounts
 author: rpsqrd
-ms.date: 09/10/2019
+ms.date: 01/03/2019
 ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
@@ -158,13 +158,19 @@ To create a credential spec file on your container host:
 
     By default, the cmdlet will create a cred spec using the provided gMSA name as the computer account for the container. The file will be saved in the Docker CredentialSpecs directory using the gMSA domain and account name for the filename.
 
-    You can create a credential spec that includes additional gMSA accounts if you're running a service or process as a secondary gMSA in the container. To do that, use the `-AdditionalAccounts` parameter:
+    If you want to save the file to another directory, use the `-Path` parameter:
+
+    ```powershell
+    New-CredentialSpec -AccountName WebApp01 -Path "C:\MyFolder\WebApp01_CredSpec.json"
+    ```
+
+    You can also create a credential spec that includes additional gMSA accounts if you're running a service or process as a secondary gMSA in the container. To do that, use the `-AdditionalAccounts` parameter:
 
     ```powershell
     New-CredentialSpec -AccountName WebApp01 -AdditionalAccounts LogAgentSvc, OtherSvc
     ```
 
-    For a full list of supported parameters, run `Get-Help New-CredentialSpec`.
+    For a full list of supported parameters, run `Get-Help New-CredentialSpec -Full`.
 
 4. You can show a list of all credential specs and their full path with the following cmdlet:
 
