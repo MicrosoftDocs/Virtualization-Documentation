@@ -46,12 +46,23 @@ The following items will need to be enabled in the system BIOS:
 
 ## Verify Hardware Compatibility
 
-To verify compatibility, open up PowerShell or a command prompt (cmd.exe) and type **systeminfo**. If all listed Hyper-V requirements have a value of **Yes**, your system can run the Hyper-V role. If any item returns **No**, check the requirements listed in this document and make adjustments where possible.
+Apart from above mentioned OS and Hardware requirements to verify compatibility, open up PowerShell or a command prompt (cmd.exe) and type **systeminfo**. If all listed Hyper-V requirements have a value of **Yes**, your system can run the Hyper-V role. If any item returns **No**, check the requirements listed in this document and make adjustments where possible.
 
 ![](media/SystemInfo-upd.png)
 
-If you run **systeminfo** on an existing Hyper-V host, the Hyper-V Requirements section reads:
+## Final Check
 
-```
-Hyper-V Requirements: A hypervisor has been detected. Features required for Hyper-V will not be displayed.
-```
+If all OS, hardware and compatibility requirements are met then you will see **Hyper-V** in **Control Panel: Turn Windows features on or off** and it will have 2 options.
+
+1. Hyper-V platform
+1. Hyper-V Management Tools
+
+![](media/hyper_v_feature_screenshot.png)
+
+> [!NOTE] If you see **Windows Hypervisor Platform** instead of **Hyper-V** in **Control Panel: Turn Windows features on or >off** your system may not be compatible for Hyper-V, then cross check above requirements.
+>
+>If you run **systeminfo** on an existing Hyper-V host, the Hyper-V Requirements section reads:
+>
+>```
+>Hyper-V Requirements: A hypervisor has been detected. Features required for Hyper-V will not be displayed.
+>```
