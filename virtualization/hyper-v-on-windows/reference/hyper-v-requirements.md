@@ -37,7 +37,7 @@ The Hyper-V role **cannot** be installed on:
 Although this document does not provide a complete list of Hyper-V compatible hardware, the following items are necessary:
 
 - 64-bit Processor with Second Level Address Translation (SLAT).
-- CPU support for VM Monitor Mode Extension (VT-c on Intel CPU's).
+- CPU support for VM Monitor Mode Extension (VT-x on Intel CPU's).
 - Minimum of 4 GB memory. As virtual machines share memory with the Hyper-V host, you will need to provide enough memory to handle the expected virtual workload.
 
 The following items will need to be enabled in the system BIOS:
