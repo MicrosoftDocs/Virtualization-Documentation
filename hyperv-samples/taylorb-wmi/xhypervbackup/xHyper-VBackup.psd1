@@ -12,7 +12,7 @@
 #RootModule = ''
 
 # Version number of this module.
-ModuleVersion = '1.0.3'
+ModuleVersion = '1.0.4'
 
 # ID used to uniquely identify this module
 GUID = '04094e8f-6037-41d4-a29f-3a1700651fc8'
