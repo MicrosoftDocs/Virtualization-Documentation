@@ -98,15 +98,17 @@ Windows Server containers are blocked from starting when the build number betwee
 
 #### Revision number (patching)
 
-Windows Server containers aren't blocked from starting when the revision numbers of the container host and the container image are different. For example, if the container host is version 10.0.14393.1914 (Windows Server 2016 with KB4051033 applied) and the container image is version 10.0.14393.1944 (Windows Server 2016 with KB4053579 applied), then the image will still start even though their revision numbers are different.
+Windows Server 2016-based containers are blocked from starting when the revision numbers of the container host and the container image are different. For example, if the container host is version 10.0.14393.1914 (Windows Server 2016 with KB4051033 applied) and the container image is version 10.0.14393.1944 (Windows Server 2016 with KB4053579 applied), then the image will not start.
 
-For Windows Server 2016-based hosts or images, the container image’s revision must match the host to be in a supported configuration. However, for hosts or images using Windows Server version 1709 and higher, this rule doesn't apply, and the host and container image need not have matching revisions. We recommend you keep your systems up-to-date with the latest patches and updates.
+However, for hosts or images using Windows Server version 1809 and higher, this rule doesn't apply, and the host and container image need not have matching revisions. 
+
+We recommend you keep your systems (host and container) up-to-date with the latest patches and updates to stay secure.
 
 #### Practical application
 
 Example 1:  The container host is running Windows Server 2016 with KB4041691 applied. Any Windows Server container deployed to this host must be based on the version 10.0.14393.1770 container base images. If you apply KB4053579 to the host container, you must also update the images to make sure the host container supports them.
 
-Example 2: The container host is running Windows Server version 1709 with KB4043961 applied. Any Windows Server container deployed to this host must be based on a Windows Server version 1709 (10.0.16299) container base image, but doesn't need to match the host KB. If KB4054517 is applied to the host, the container images will still be supported, but we recommend you update them to address any potential security issues.
+Example 2: The container host is running Windows Server version 1809 with KB4534273 applied. Any Windows Server container deployed to this host must be based on a Windows Server version 1809 (10.0.17763) container base image, but doesn't need to match the host KB. If KB4534273 is applied to the host, the container images will still be supported, but we recommend you update them to address any potential security issues.
 
 #### Querying version
 
