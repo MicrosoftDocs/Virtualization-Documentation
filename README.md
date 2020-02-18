@@ -16,7 +16,7 @@ If you want to submit prospective content but contributing to public documentati
 
 Digging into the repo structure a little:
 
-### virtualization -- Contribute docs here! -- 
+### Virtualization -- Contribute docs here! -- 
 
 This is a mirrored copy of the documentation available on the [virtualization documentation on docs.microsoft.com](https://docs.microsoft.com/virtualization/).
 
@@ -30,7 +30,7 @@ doc location:
 If you add a screen shot or picture, put it in the media folder closest to the article you're contributing to.  For the checkpoints userguide, that would be:  
 `virtualization/hyperv_on_windows/user_guide/media`
 
-### demos
+### Demos
 Demos of Hyper-V.  These are public scripts from various presentations and conferences.
 
 Everything in here was made to present once.  There are many egregious hacks.  Don't use any of it in production.
