@@ -98,7 +98,7 @@ Windows Server containers are blocked from starting when the build number betwee
 
 #### Revision number (patching)
 
-Windows Server 2016-based containers are blocked from starting when the revision numbers of the container host and the container image are different. For example, if the container host is version 10.0.14393.1914 (Windows Server 2016 with KB4051033 applied) and the container image is version 10.0.14393.1944 (Windows Server 2016 with KB4053579 applied), then the image will not start.
+Windows Server 2016-based containers are blocked from starting when the revision numbers of the container host and the container image are different. For example, if the container host is version 10.0.14393.**1914** (Windows Server 2016 with KB4051033 applied) and the container image is version 10.0.14393.**1944** (Windows Server 2016 with KB4053579 applied), then the image will not start.
 
 However, for hosts or images using Windows Server version 1809 and higher, this rule doesn't apply, and the host and container image need not have matching revisions. 
 
