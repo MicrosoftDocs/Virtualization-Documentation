@@ -8,6 +8,7 @@
 |**CachingMode**  <br>*optional*|enum (Uncached, Cached, ReadOnlyCached)|
 |**Path**  <br>*optional*|string|
 |**ReadOnly**  <br>*optional*|boolean|
+|**SupportCompressedVolumes**  <br>*optional*|boolean|
 |**Type**  <br>*optional*|enum (VirtualDisk, Iso, PassThru)|
 
 
@@ -132,6 +133,7 @@ ComPort specifies the named pipe that will be used for the port, with empty stri
 |**VideoMonitor**  <br>*optional*|[VideoMonitor](#videomonitor)|
 |**VirtioSerial**  <br>*optional*|[VirtioSerial](#virtioserial)|
 |**VirtualPMem**  <br>*optional*|[VirtualPMemController](#virtualpmemcontroller)|
+|**VirtualPci**  <br>*optional*|< string, [VirtualPciDevice](#virtualpcidevice) > map|
 |**VirtualSmb**  <br>*optional*|[VirtualSmb](#virtualsmb)|
 
 
@@ -159,6 +161,7 @@ ComPort specifies the named pipe that will be used for the port, with empty stri
 |Name|Description|Schema|
 |---|---|---|
 |**UseConnectedSuspend**  <br>*optional*|Don't disconnect the guest connection when pausing the virtual machine.|boolean|
+|**UseHostTimeZone**  <br>*optional*|Set the guest's time zone to that of the host|boolean|
 |**UseVsock**  <br>*optional*|Use Vsock rather than Hyper-V sockets to communicate with the guest service.|boolean|
 
 
@@ -198,6 +201,11 @@ Information about the guest.
 |**ForceTransientState**  <br>*optional*|If true, the guest state and runtime state files will be used as templates  to populate transient, in-memory state instead of using the files as persistent backing store.|boolean|
 |**GuestStateFilePath**  <br>*optional*|The path to an existing file uses for persistent guest state storage.  An empty string indicates the system should initialize new transient, in-memory guest state.|string|
 |**RuntimeStateFilePath**  <br>*optional*|The path to an existing file for persistent runtime state storage.  An empty string indicates the system should initialize new transient, in-memory runtime state.|string|
+
+
+<a name="heartbeat"></a>
+## Heartbeat
+*Type* : object
 
 
 <a name="hvsocket"></a>
@@ -241,6 +249,16 @@ HvSocket configuration for a VM
 |**HvSocketConfig**  <br>*optional*|[HvSocketSystemConfig](#hvsocketsystemconfig)|
 
 
+<a name="integrationcomponentstatus"></a>
+## IntegrationComponentStatus
+
+|Name|Description|Schema|
+|---|---|---|
+|**IsEnabled**  <br>*optional*|if IC is enabled on this compute system|boolean|
+|**Reason**  <br>*optional*|Explanation for the State|enum (Unknown, AppsInCriticalState, CommunicationTimedOut, FailedCommunication, HealthyApps, ProtocolMismatch)|
+|**State**  <br>*optional*|the current state of the IC inside the VM|enum (Unknown, Degraded, Dormant, Error, LostCommunication, NonRecoverableError, NoContact, Ok)|
+
+
 <a name="kernelintegration"></a>
 ## KernelIntegration
 *Type* : object
@@ -281,6 +299,7 @@ HvSocket configuration for a VM
 |**HostPath**  <br>*optional*|string|
 |**HostPathType**  <br>*optional*|enum (AbsolutePath, VirtualSmbShareName)|
 |**ReadOnly**  <br>*optional*|boolean|
+|**SupportCloudFiles**  <br>*optional*|boolean|
 
 
 <a name="mappedpipe"></a>
@@ -330,10 +349,16 @@ Memory runtime statistics
 |---|---|---|
 |**AllowOvercommit**  <br>*optional*|If enabled, then the VM's memory is backed by the Windows pagefile rather than physically  backed, statically allocated memory.|boolean|
 |**BackingPageSize**  <br>*optional*|The preferred page size unit (chunk size) used when allocating backing pages for the VM.|enum (Small, Large)|
-|**EnableColdHint**  <br>*optional*|If enabled, then the memory cold hint feature is exposed to the VM, allowing it to trim pages  from its working set (if supported by the guest operating system).|boolean|
+|**DirectMapFaultClusterSizeShift**  <br>*optional*|Fault clustering size for direct mapped memory.|integer (uint32)|
+|**EnableColdDiscardHint**  <br>*optional*|If enabled, then the memory cold discard hint feature is exposed to the VM, allowing it to trim  non-zeroed pages from the working set (if supported by the guest operating system).|boolean|
+|**EnableColdHint**  <br>*optional*|If enabled, then the memory cold hint feature is exposed to the VM, allowing it to trim zeroed  pages from its working set (if supported by the guest operating system).|boolean|
 |**EnableDeferredCommit**  <br>*optional*|If enabled, then commit is not charged for each backing page until first access.|boolean|
 |**EnableHotHint**  <br>*optional*|If enabled, then the memory hot hint feature is exposed to the VM, allowing it to prefetch  pages into its working set. (if supported by the guest operating system).|boolean|
+|**FaultClusterSizeShift**  <br>*optional*|Fault clustering size for primary RAM.|integer (uint32)|
 |**ForbidSmallBackingPages**  <br>*optional*|If enabled, then backing page chunks smaller than the backing page size are never used unless  the system is under extreme memory pressure. If the backing page size is Small, then it is  forced to Large when this option is enabled.|boolean|
+|**HighMmioBaseInMB**  <br>*optional*|High MMIO region allocated above 4GB (base and size)|integer (uint64)|
+|**HighMmioGapInMB**  <br>*optional*||integer (uint64)|
+|**LowMmioGapInMB**  <br>*optional*|Low MMIO region allocated below 4GB|integer (uint64)|
 |**PinBackingPages**  <br>*optional*|If enabled, then each backing page is physically pinned on first access.|boolean|
 |**SizeInMB**  <br>*optional*||integer (uint64)|
 
@@ -360,6 +385,7 @@ Memory runtime statistics
 |Name|Description|Schema|
 |---|---|---|
 |**EndpointId**  <br>*optional*|**Pattern** : `"^[0-9A-Fa-f]{8}-([0-9A-Fa-f]{4}-){3}[0-9A-Fa-f]{12}$"`|string|
+|**InstanceId**  <br>*optional*|**Pattern** : `"^[0-9A-Fa-f]{8}-([0-9A-Fa-f]{4}-){3}[0-9A-Fa-f]{12}$"`|string|
 |**MacAddress**  <br>*optional*||string (mac-address)|
 
 
@@ -481,12 +507,14 @@ Status of a process running in a container
 
 <a name="processor"></a>
 ## Processor
+Specifies CPU limits for a container.  Count, Maximum and Weight are all mutually exclusive.
 
-|Name|Schema|
-|---|---|
-|**Count**  <br>*optional*|integer (uint32)|
-|**Maximum**  <br>*optional*|integer (uint64)|
-|**Weight**  <br>*optional*|integer (uint64)|
+
+|Name|Description|Schema|
+|---|---|---|
+|**Count**  <br>*optional*|Optional property that represents the fraction of the configured processor  count in a container in relation to the processors available in the host.  The fraction ultimately determines the portion of processor cycles that the  threads in a container can use during each scheduling interval,  as the number of cycles per 10,000 cycles.|integer (uint32)|
+|**Maximum**  <br>*optional*|Optional property that determines the portion of processor cycles  that the threads in a container can use during each scheduling interval,  as the number of cycles per 10,000 cycles.  Set processor maximum to a percentage times 100.|integer (int64)|
+|**Weight**  <br>*optional*|Optional property that limits the share of processor time given to the container  relative to other workloads on the processor.  The processor weight is a value between 0 and 10000.|integer (int64)|
 
 
 <a name="processorstats"></a>
@@ -524,6 +552,7 @@ CPU runtime statistics
 |**ExitType**  <br>*optional*||enum (None, GracefulExit, ForcedExit, UnexpectedExit, Unknown)|
 |**GuestConnectionInfo**  <br>*optional*||[GuestConnectionInfo](#guestconnectioninfo)|
 |**HostingSystemId**  <br>*optional*||string|
+|**ICHeartbeatStatus**  <br>*optional*||[IntegrationComponentStatus](#integrationcomponentstatus)|
 |**Id**  <br>*optional*||string|
 |**Memory**  <br>*optional*||[MemoryInformationForVm](#memoryinformationforvm)|
 |**Name**  <br>*optional*||string|
@@ -547,7 +576,7 @@ By default the basic properties will be returned. This query provides a way to  
 
 |Name|Schema|
 |---|---|
-|**PropertyTypes**  <br>*optional*|< enum (Memory, GuestMemory, Statistics, ProcessList, TerminateOnLastHandleClosed, SharedMemoryRegion, GuestConnection) > array|
+|**PropertyTypes**  <br>*optional*|< enum (Memory, GuestMemory, Statistics, ProcessList, TerminateOnLastHandleClosed, SharedMemoryRegion, GuestConnection, ICHeartbeatStatus) > array|
 
 
 <a name="rdpconnectionoptions"></a>
@@ -617,6 +646,14 @@ By default the basic properties will be returned. This query provides a way to  
 |Name|Description|Schema|
 |---|---|---|
 |**Attachments**  <br>*optional*|Map of attachments, where the key is the integer LUN number on the controller.|< string, [Attachment](#attachment) > map|
+
+
+<a name="services"></a>
+## Services
+
+|Name|Schema|
+|---|---|
+|**Heartbeat**  <br>*optional*|[Heartbeat](#heartbeat)|
 
 
 <a name="sharedmemoryconfiguration"></a>
@@ -709,6 +746,7 @@ Storage runtime statistics
 
 |Name|Description|Schema|
 |---|---|---|
+|**ApplySecureBootTemplate**  <br>*optional*||enum (Skip, Apply)|
 |**BootThis**  <br>*optional*||[UefiBootEntry](#uefibootentry)|
 |**Console**  <br>*optional*||enum (Default, Disabled, ComPort1, ComPort2)|
 |**EnableDebugger**  <br>*optional*||boolean|
@@ -776,6 +814,7 @@ Storage runtime statistics
 |**GuestState**  <br>*optional*|[GuestState](#gueststate)|
 |**RegistryChanges**  <br>*optional*|[RegistryChanges](#registrychanges)|
 |**RestoreState**  <br>*optional*|[RestoreState](#restorestate)|
+|**Services**  <br>*optional*|[Services](#services)|
 |**StopOnReset**  <br>*optional*|boolean|
 |**StorageQoS**  <br>*optional*|[StorageQoS](#storageqos)|
 
@@ -823,6 +862,24 @@ Storage runtime statistics
 |**ImageFormat**  <br>*optional*|enum (Vhdx, Vhd1)|
 
 
+<a name="virtualpcidevice"></a>
+## VirtualPciDevice
+
+|Name|Schema|
+|---|---|
+|**Functions**  <br>*optional*|< [VirtualPciFunction](#virtualpcifunction) > array|
+
+
+<a name="virtualpcifunction"></a>
+## VirtualPciFunction
+
+|Name|Schema|
+|---|---|
+|**AllowDirectTranslatedP2P**  <br>*optional*|boolean|
+|**DeviceInstancePath**  <br>*optional*|string|
+|**VirtualFunction**  <br>*optional*|integer (uint16)|
+
+
 <a name="virtualsmb"></a>
 ## VirtualSmb
 
@@ -849,6 +906,7 @@ Storage runtime statistics
 |Name|Description|Schema|
 |---|---|---|
 |**CacheIo**  <br>*optional*|all opens will use cached I/O|boolean|
+|**FilterEncryptionAttributes**  <br>*optional*|Filter EFS attributes from the guest|boolean|
 |**ForceLevelIIOplocks**  <br>*optional*|disable all oplocks except Level II|boolean|
 |**NoDirectmap**  <br>*optional*|disable Direct Mapping|boolean|
 |**NoDirnotify**  <br>*optional*|disable Directory CHange Notifications|boolean|
@@ -862,6 +920,7 @@ Storage runtime statistics
 |**RestrictFileAccess**  <br>*optional*|allow access only to the files specified in AllowedFiles|boolean|
 |**ShareRead**  <br>*optional*|convert exclusive access to shared read access|boolean|
 |**SingleFileMapping**  <br>*optional*|Block directory enumeration, renames, and deletes.|boolean|
+|**SupportCloudFiles**  <br>*optional*|Support Cloud Files functionality|boolean| 
 |**TakeBackupPrivilege**  <br>*optional*|Acquire the backup privilege when attempting to open|boolean|
 |**UseShareRootIdentity**  <br>*optional*|Use the identity of the share root when opening|boolean|
 |**VmSharedMemory**  <br>*optional*|share is use for VM shared memory|boolean|
