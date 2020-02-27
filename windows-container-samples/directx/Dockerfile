@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/windows:1809
+FROM mcr.microsoft.com/windows:1909
 
 WORKDIR C:/App
 
