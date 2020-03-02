@@ -55,7 +55,7 @@ Command line: `docker run --storage-opt "size=50GB" mcr.microsoft.com/windows/se
 Or you can change the docker configuration file directly:
 
 ```Docker Configuration File
-"storage-opts": [
+"storage-opt": [
     "size=50GB"
   ]
 ```
