@@ -20,7 +20,7 @@ After a bit of thinking, we decided to go with a third option. We created a new 
 
 ### Getting Started with the HCS
 
-If you think this is nifty, and would like to play around with the HCS, here's some infomation to help you get started. Instead of calling our C API directly, I recommend using one the friendly wrappers we've built around the HCS. These wrappers make it easy to call the HCS from higher level languages, and are released open source on GitHub. They're also super handy if you want to figure out how to use the C API. We've released two wrappers thus far. One is written in Go (and used by Docker), and the other is written in C#. You can find the wrappers here: 
+If you think this is nifty, and would like to play around with the HCS, here's some information to help you get started. Instead of calling our C API directly, I recommend using one the friendly wrappers we've built around the HCS. These wrappers make it easy to call the HCS from higher level languages, and are released open source on GitHub. They're also super handy if you want to figure out how to use the C API. We've released two wrappers thus far. One is written in Go (and used by Docker), and the other is written in C#. You can find the wrappers here: 
 
   * <https://github.com/microsoft/dotnet-computevirtualization>
   * <https://github.com/microsoft/hcsshim>
