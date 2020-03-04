@@ -40,6 +40,21 @@ For additional details, see official [nssm usage](https://nssm.cc/usage) docs.
 
 ## Common networking errors ##
 
+### Load balancers are plumbed inconsistently across the cluster nodes ###
+On Windows, kube-proxy creates a HNS load balancer for every Kubernetes service in the cluster. In the (default) kube-proxy configuration, nodes in clusters containing many (usually 100+) load balancers may run out of available ephemeral TCP ports (a.k.a. dynamic port range, which by default covers ports 49152 through 65535). This is due to the high number of ports reserved on each node for every (non-DSR) load balancer. This issue may manifest itself through errors in kube-proxy such as:
+```
+Policy creation failed: hcnCreateLoadBalancer failed in Win32: The specified port already exists.
+```
+
+Users can identify this issue by running [CollectLogs.ps1](https://github.com/microsoft/SDN/blob/master/Kubernetes/windows/debug/collectlogs.ps1) script and consulting the `*portrange.txt` files.
+
+The `CollectLogs.ps1` will also mimic HNS allocation logic to test port pool allocation availability in the ephemeral TCP port range, and report success/failure in `reservedports.txt`. The script reserves 10 ranges of 64 TCP ephemeral ports (to emulate HNS behavior), counts reservation successes & failures, then releases the allocated port ranges. A success number less than 10 indicates the ephemeral pool is running out of free space. A heuristical summary of how many 64-block port reservations are approximately available will also be generated in `reservedports.txt`.
+
+To resolve this issue, a few steps can be taken:
+1.	For a permanent solution, kube-proxy load balancing should be set to [DSR mode](https://techcommunity.microsoft.com/t5/Networking-Blog/Direct-Server-Return-DSR-in-a-nutshell/ba-p/693710). DSR mode is fully implemented and available on newer [Windows Server Insider build 18945](https://blogs.windows.com/windowsexperience/2019/07/30/announcing-windows-server-vnext-insider-preview-build-18945/#o1bs7T2DGPFpf7HM.97) (or higher) only.
+2. As a workaround, users can also increase the default Windows configuration of ephemeral ports available using a command such as `netsh int ipv4 set dynamicportrange TCP <start_port> <port_count>`. *WARNING:* Overriding the default dynamic port range can have consequences on other processes/services on the host that rely on available TCP ports from the non-ephemeral range, so this range should be selected carefully.
+3. There is a scalability enhancement to non-DSR mode load balancers using intelligent port pool sharing, which is scheduled to be released through a cumulative update in Q1 2020.
+
 ### HostPort publishing is not working ###
 It is currently not possible to publish ports using the Kubernetes `containers.ports.hostPort` field as this field is not honored by Windows CNI plugins. Please use NodePort publishing for the time being to publish ports on the Node.
 
@@ -73,6 +88,9 @@ When deploying Flannel in host-gw mode on Azure, packets have to go through the 
 az network route-table create --resource-group <my_resource_group> --name BridgeRoute 
 az network route-table route create  --resource-group <my_resource_group> --address-prefix 10.244.0.0/24 --route-table-name BridgeRoute  --name MyRoute --next-hop-type VirtualAppliance --next-hop-ip-address 10.0.0.4 
 ```
+
+>[!TIP]
+> If you are deploying Kubernetes on Azure or IaaS VMs from other cloud providers yourself, you can also use [overlay networking](./network-topologies.md#flannel-in-vxlan-mode) instead.
 
 ### My Windows pods cannot ping external resources ###
 Windows pods do not have outbound rules programmed for the ICMP protocol today. However, TCP/UDP is supported. When trying to demonstrate connectivity to resources outside of the cluster, please substitute `ping <IP>` with corresponding `curl <IP>` commands.
@@ -115,19 +133,6 @@ PS C:> C:\flannel\flanneld.exe --kubeconfig-file=c:\k\config --iface=<Windows_Wo
 There is also a [PR](https://github.com/coreos/flannel/pull/1042) that addresses this issue under review currently.
 
 
-### On Flannel (host-gw), my Windows pods do not have network connectivity ###
-Should you wish to use l2bridge for networking (aka [flannel host-gateway](./network-topologies.md#flannel-in-host-gateway-mode)), you should ensure MAC address spoofing is enabled for the Windows container host VMs (guests). To achieve this, you should run the following as Administrator on the machine hosting the VMs (example given for Hyper-V):
-
-```powershell
-Get-VMNetworkAdapter -VMName "<name>" | Set-VMNetworkAdapter -MacAddressSpoofing On
-```
-
-> [!TIP]
-> If you are using a VMware-based product to meet your virtualization needs, please look into enabling [promiscuous mode](https://kb.vmware.com/s/article/1004099) for the MAC spoofing requirement.
-
->[!TIP]
-> If you are deploying Kubernetes on Azure or IaaS VMs from other cloud providers yourself, you can also use [overlay networking](./network-topologies.md#flannel-in-vxlan-mode) instead.
-
 ### My Windows pods cannot launch because of missing /run/flannel/subnet.env ###
 This indicates that Flannel didn't launch correctly. You can either try to restart flanneld.exe or you can copy the files over manually from `/run/flannel/subnet.env`  on the Kubernetes master to `C:\run\flannel\subnet.env` on the Windows worker node and modify the `FLANNEL_SUBNET` row to the subnet that was assigned. For example, if node subnet 10.244.4.1/24 was assigned:
 ```
@@ -137,6 +142,7 @@ FLANNEL_MTU=1500
 FLANNEL_IPMASQ=true
 ```
 It is safer to let flanneld.exe generate this file for you.
+
 
 ### Pod-to-pod connectivity between hosts is broken on my Kubernetes cluster running on vSphere 
 Since both vSphere and Flannel reserves port 4789 (default VXLAN port) for overlay networking, packets can end up being intercepted. If vSphere is used for overlay networking, it should be configured to use a different port in order to free up 4789.  
@@ -186,6 +192,8 @@ communication between nodes. Ensure that:
   - HTTP traffic is allowed, if you are deploying web services
   - Packets from different protocols (ie ICMP vs. TCP/UDP) are not being dropped
 
+>[!TIP]
+> For additional self-help resources, there is also a Kubernetes troubleshooting guide for Windows [available here](https://techcommunity.microsoft.com/t5/Networking-Blog/Troubleshooting-Kubernetes-Networking-on-Windows-Part-1/ba-p/508648).
 
 ## Common Windows errors ##
 

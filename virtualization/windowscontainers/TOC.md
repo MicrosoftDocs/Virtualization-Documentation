@@ -49,7 +49,7 @@
 #### [Join Linux workers](kubernetes/joining-linux-workers.md)
 #### [Deploy Kubernetes resources](kubernetes/deploying-resources.md)
 #### [Troubleshooting](kubernetes/common-problems.md)
-#### [Windows services on Kubernetes](kubernetes/kube-windows-services.md)
+#### [Kubernetes as a Windows service](kubernetes/kube-windows-services.md)
 #### [Compile Kubernetes binaries](kubernetes/compiling-kubernetes-binaries.md)
 ### Service Fabric
 #### [Service Fabric and Containers](/azure/service-fabric/service-fabric-containers-overview)
