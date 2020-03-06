@@ -44,7 +44,7 @@ If the Trusted DC Connection Status and Trust Verification Status are not `NERR_
 You can verify the gMSA identity from within the container by running the following command and checking the client name:
 
 ```powershell
-PS C:\> klist get krbtgt
+PS C:\> klist get webapp01
 
 Current LogonId is 0:0xaa79ef8
 A ticket to krbtgt has been retrieved successfully.

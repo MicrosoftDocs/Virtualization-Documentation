@@ -1,7 +1,7 @@
 ---
-title: Linux Containers on Windows
-description: Learn about different ways you can use Hyper-V to run Linux containers on Windows as if they're native.
-keywords: LCOW, linux containers, docker, containers
+title: Linux Containers on Windows 10
+description: Learn about different ways you can use Hyper-V to run Linux containers on Windows 10 as if they're native.
+keywords: LCOW, linux containers, docker, containers, windows 10
 author: scooley
 ms.date: 09/17/2019
 ms.topic: article
@@ -9,7 +9,7 @@ ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: edfd11c8-ee99-42d8-9878-efc126fe1826
 ---
-# Linux containers on Windows
+# Linux containers on Windows 10
 
 Linux containers make up a huge percent of the overall container ecosystem and are fundamental to both developer experiences and production environments.  Since containers share a kernel with the container host, however, running Linux containers directly on Windows isn't an option[*](linux-containers.md#other-options-we-considered).  This is where virtualization comes into the picture.
 
@@ -17,6 +17,8 @@ Right now there are two ways to run Linux containers with Docker for Windows and
 
 - Run Linux containers in a full Linux VM - this is what Docker typically does today.
 - Run Linux containers with [Hyper-V isolation](../manage-containers/hyperv-container.md) (LCOW) - this is a new option in Docker for Windows.
+
+> _Running Linux containers on a Windows Server OS is currently still in an experimental stage. Additional licensing for the Docker EE program will be needed to try this. **The remainder of this article will pertain only to Windows 10**._
 
 This article outlines how each approach works, provides guidance about when to choose which solution, and shares work in progress.
 
@@ -41,7 +43,7 @@ To see if you're running with Moby VM, check Hyper-V Manager for Moby VM using e
 
 ## Linux Containers with Hyper-V isolation
 
-To try Linux containers on Windows (LCOW), follow the Linux container instructions in [Linux containers on Windows 10](../quick-start/quick-start-windows-10-linux.md).
+To try Linux containers on Windows 10 (LCOW10), follow the Linux container instructions in [Linux containers on Windows 10](../quick-start/quick-start-windows-10-linux.md). 
 
 Linux containers with Hyper-V isolation run each Linux container in an optimized Linux VM with just enough OS to run containers. In contrast to the Moby VM approach, each Linux container has its own kernel and its own VM sandbox. They're also managed by Docker on Windows directly.
 
