@@ -276,7 +276,7 @@ function CopyAllLogs
 
     ipconfig /allcompartments /all > $LogsPath"\ipconfig.txt"
 
-    if (Test-Path "C:\Windows\System32\vfpctrl.exe")
+    if ((Test-Path "C:\Windows\System32\vfpctrl.exe") -and (Get-WindowsFeature -Name Hyper-V).Installed -and (Get-Command Get-VMSwitch -ErrorAction SilentlyContinue))
     {
         $allSwitches = Get-VMSwitch
         foreach ($switch in $allSwitches)
@@ -304,8 +304,10 @@ function CopyAllLogs
         $addMe = docker network inspect $network
         Add-Content $LogsPath"\docker_network_inspect.txt" $addMe
     }
-
-    Get-VMSwitch | FL * > $LogsPath"\GetVMSwitch.txt"
+    
+    if ((Get-WindowsFeature -Name Hyper-V).Installed -and (Get-Command Get-VMSwitch -ErrorAction SilentlyContinue)){
+        Get-VMSwitch | FL * > $LogsPath"\GetVMSwitch.txt"
+    }
     Get-NetNat | FL * > $LogsPath"\GetNetNat.txt"
     Get-NetNatStaticMapping | FL *> $LogsPath"\GetNetNatStaticMapping.txt"
     Get-Service winnat | FL * > $LogsPath"\WinNat.txt"
