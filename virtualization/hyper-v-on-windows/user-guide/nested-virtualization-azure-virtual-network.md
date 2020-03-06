@@ -119,7 +119,7 @@ I will gloss over any configuration values that are up to personal preference, s
 3. At the wizard select "Next", check the radial button for "Custom Configuration", and then select "Next".
 4. Check “NAT” and “LAN routing” and then select “Next” and then “Finish”. If it asks you to start the service then do so.
 5. Now navigate to the “IPv4” node and expand it so that the “NAT” node is made available.
-6. Right click “NAT”, select “New Interface...” and select "Ethernet", this should be your first NIC with the IP of "10.0.0.4"
+6. Right click “NAT”, select “New Interface...” and select "Ethernet", this should be your first NIC with the IP of "10.0.0.4" and select Public interface connect to the Internet and Enable NAT on this interface. 
 7. Now we need to create some static routes to force LAN traffic out the second NIC. You do this by going to the "Static Routes" node under "IPv4".
 8. Once there we'll create the following routes.
     * Route 1
