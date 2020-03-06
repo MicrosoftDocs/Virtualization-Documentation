@@ -27,7 +27,7 @@ All containers are created from container images. Microsoft offers several start
    > [!TIP]
    > If you see an error message that says `no matching manifest for unknown in the manifest list entries`, make sure Docker isn't configured to run Linux containers.
 
-2. After the image is finished downloading—read the [EULA](../images-eula.md) while you wait—verify it's existence on your system by querying your local docker image repository. Running the command `docker images` returns a list of installed images.
+2. After the image is finished downloading—read the [EULA](../images-eula.md) while you wait—verify its existence on your system by querying your local docker image repository. Running the command `docker images` returns a list of installed images.
 
    Here's an example of the output showing the Nano Server image.
 

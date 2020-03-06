@@ -131,7 +131,7 @@ sc.exe stop docker
 
 Generally, this is only useful if explicitly requested by Microsoft support, or docker developers. It can be used to assist diagnosing a situation where docker appears to have hung. 
 
-Download [docker-signal.exe](https://github.com/jhowardmsft/docker-signal).
+Download [docker-signal.exe](https://github.com/moby/docker-signal).
 
 Usage:
 ```PowerShell
@@ -150,7 +150,7 @@ The Docker Engine depends on a Windows-specific Host Compute Service. It has sep
 - Microsoft-Windows-Hyper-V-Compute-Admin
 - Microsoft-Windows-Hyper-V-Compute-Operational
 
-They are visible in Event Viewer, and may also be queried with PowerShell.
+They are visible in Event Viewer and may also be queried with PowerShell.
 
 For example:
 ```PowerShell

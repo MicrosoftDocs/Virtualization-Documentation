@@ -65,7 +65,7 @@ FROM mcr.microsoft.com/dotnet/core/sdk:2.1 AS build-env
 WORKDIR /app
 ```
 
-The first group of lines declares from which base image we will use to build our container on top of. If the local system does not have this image already, then docker will automatically try and fetch it. The `mcr.microsoft.com/dotnet/core/sdk:2.1` comes comes packaged with the .NET core 2.1 SDK installed, so it's up to the task of building ASP .NET core projects targeting version 2.1. The next instruction  changes the working directory in our container to be `/app`, so all commands following this one execute under this context.
+The first group of lines declares from which base image we will use to build our container on top of. If the local system does not have this image already, then docker will automatically try and fetch it. The `mcr.microsoft.com/dotnet/core/sdk:2.1` comes packaged with the .NET core 2.1 SDK installed, so it's up to the task of building ASP .NET core projects targeting version 2.1. The next instruction  changes the working directory in our container to be `/app`, so all commands following this one execute under this context.
 
 ```Dockerfile
 COPY *.csproj ./
@@ -120,7 +120,7 @@ With the Dockerfile written, we can point Docker at our Dockerfile and tell it t
    * `--name myapp` tells Docker to give this container a convenient name to query by (instead of having to look up the contaienr ID assigned at runtime by Docker).
    * `my-asp-app` is the image we want Docker to run. This is the container image produced as the culmination of the `docker build` process.
 
-3. Open a web browser web browser and navigate to `http://localhost:5000` to be see your containerized application, as shown in this screenshot:
+3. Open a web browser and navigate to `http://localhost:5000` to be see your containerized application, as shown in this screenshot:
 
    >![ASP.NET Core webpage, running from the localhost in a container](media/SampleAppScreenshot.png)
 

@@ -38,13 +38,13 @@ For all of these reasons, NAT networking is very common for container technology
 ## Create a NAT virtual network
 Let's walk through setting up a new NAT network.
 
-1.  Open a PowerShell console as Administrator.  
+1. Open a PowerShell console as Administrator.  
 
 2. Create an internal switch.
 
-  ``` PowerShell
-  New-VMSwitch -SwitchName "SwitchName" -SwitchType Internal
-  ```
+    ```powershell
+    New-VMSwitch -SwitchName "SwitchName" -SwitchType Internal
+    ```
 
 3. Find the interface index of the virtual switch you just created.
 
@@ -52,7 +52,7 @@ Let's walk through setting up a new NAT network.
 
     Your output should look something like this:
 
-    ```
+    ```console
     PS C:\> Get-NetAdapter
 
     Name                  InterfaceDescription               ifIndex Status       MacAddress           LinkSpeed
@@ -67,54 +67,54 @@ Let's walk through setting up a new NAT network.
 
 4. Configure the NAT gateway using [New-NetIPAddress](https://docs.microsoft.com/powershell/module/nettcpip/New-NetIPAddress).  
 
-  Here is the generic command:
-  ``` PowerShell
-  New-NetIPAddress -IPAddress <NAT Gateway IP> -PrefixLength <NAT Subnet Prefix Length> -InterfaceIndex <ifIndex>
-  ```
+    Here is the generic command:
+    ```powershell
+    New-NetIPAddress -IPAddress <NAT Gateway IP> -PrefixLength <NAT Subnet Prefix Length> -InterfaceIndex <ifIndex>
+    ```
 
-  In order to configure the gateway, you'll need a bit of information about your network:  
-  * **IPAddress** -- NAT Gateway IP specifies the IPv4 or IPv6 address to use as the NAT gateway IP.  
-    The generic form will be a.b.c.1 (e.g. 172.16.0.1).  While the final position doesn’t have to be .1, it usually is (based on prefix length)
+    In order to configure the gateway, you'll need a bit of information about your network:  
+    * **IPAddress** -- NAT Gateway IP specifies the IPv4 or IPv6 address to use as the NAT gateway IP.  
+      The generic form will be a.b.c.1 (e.g. 172.16.0.1).  While the final position doesn’t have to be .1, it usually is (based on prefix length)
 
-    A common gateway IP is 192.168.0.1  
+      A common gateway IP is 192.168.0.1  
 
-  * **PrefixLength** --  NAT Subnet Prefix Length defines the NAT local subnet size (subnet mask).
-    The subnet prefix length will be an integer value between 0 and 32.
+    * **PrefixLength** -- NAT Subnet Prefix Length defines the NAT local subnet size (subnet mask).
+      The subnet prefix length will be an integer value between 0 and 32.
 
-    0 would map the entire internet, 32 would only allow one mapped IP.  Common values range from 24 to 12 depending on how many IPs need to be attached to the NAT.
+      0 would map the entire internet, 32 would only allow one mapped IP.  Common values range from 24 to 12 depending on how many IPs need to be attached to the NAT.
 
-    A common PrefixLength is 24 -- this is a subnet mask of 255.255.255.0
+      A common PrefixLength is 24 -- this is a subnet mask of 255.255.255.0
 
-  * **InterfaceIndex** -- ifIndex is the interface index of the virtual switch, which you determined in the previous step.
+    * **InterfaceIndex** -- ifIndex is the interface index of the virtual switch, which you determined in the previous step.
 
-  Run the following to create the NAT Gateway:
+    Run the following to create the NAT Gateway:
 
-  ``` PowerShell
-  New-NetIPAddress -IPAddress 192.168.0.1 -PrefixLength 24 -InterfaceIndex 24
-  ```
+    ```powershell
+    New-NetIPAddress -IPAddress 192.168.0.1 -PrefixLength 24 -InterfaceIndex 24
+    ```
 
 5. Configure the NAT network using [New-NetNat](https://docs.microsoft.com/powershell/module/netnat/New-NetNat).  
 
-  Here is the generic command:
+    Here is the generic command:
 
-  ``` PowerShell
-  New-NetNat -Name <NATOutsideName> -InternalIPInterfaceAddressPrefix <NAT subnet prefix>
-  ```
+    ```powershell
+    New-NetNat -Name <NATOutsideName> -InternalIPInterfaceAddressPrefix <NAT subnet prefix>
+    ```
 
-  In order to configure the gateway, you'll need to provide information about the network and NAT Gateway:  
-  * **Name** -- NATOutsideName describes the name of the NAT network.  You'll use this to remove the NAT network.
+    In order to configure the gateway, you'll need to provide information about the network and NAT Gateway:  
+    * **Name** -- NATOutsideName describes the name of the NAT network.  You'll use this to remove the NAT network.
 
-  * **InternalIPInterfaceAddressPrefix** -- NAT subnet prefix describes both the NAT Gateway IP prefix from above as well as the NAT Subnet Prefix Length from above.
+    * **InternalIPInterfaceAddressPrefix** -- NAT subnet prefix describes both the NAT Gateway IP prefix from above as well as the NAT Subnet Prefix Length from above.
 
     The generic form will be a.b.c.0/NAT Subnet Prefix Length
 
     From the above, for this example, we'll use 192.168.0.0/24
 
-  For our example, run the following to setup the NAT network:
+    For our example, run the following to setup the NAT network:
 
-  ``` PowerShell
-  New-NetNat -Name MyNATnetwork -InternalIPInterfaceAddressPrefix 192.168.0.0/24
-  ```
+    ```powershell
+    New-NetNat -Name MyNATnetwork -InternalIPInterfaceAddressPrefix 192.168.0.0/24
+    ```
 
 Congratulations!  You now have a virtual NAT network!  To add a virtual machine, to the NAT network follow [these instructions](#connect-a-virtual-machine).
 
@@ -199,52 +199,55 @@ In the end, you should have two internal vSwitches – one named DockerNAT and t
 This guide assumes that there are no other NATs on the host. However, applications or services will require the use of a NAT and may create one as part of setup. Since Windows (WinNAT) only supports one internal NAT subnet prefix, trying to create multiple NATs will place the system into an unknown state.
 
 To see if this may be the problem, make sure you only have one NAT:
-``` PowerShell
+```powershell
 Get-NetNat
 ```
 
 If a NAT already exists, delete it
-``` PowerShell
+```powershell
 Get-NetNat | Remove-NetNat
 ```
 Make sure you only have one “internal” vmSwitch for the application or feature (e.g. Windows containers). Record the name of the vSwitch
-``` PowerShell
+```powershell
 Get-VMSwitch
 ```
 
-Check to see if there are private IP addresses (e.g. NAT default Gateway IP Address – usually *.1) from the old NAT still assigned to an adapter
-``` PowerShell
+Check to see if there are private IP addresses (e.g. NAT default Gateway IP Address – usually _x_._y_._z_.1) from the old NAT still assigned to an adapter
+```powershell
 Get-NetIPAddress -InterfaceAlias "vEthernet (<name of vSwitch>)"
 ```
 
 If an old private IP address is in use, please delete it
-``` PowerShell
+```powershell
 Remove-NetIPAddress -InterfaceAlias "vEthernet (<name of vSwitch>)" -IPAddress <IPAddress>
 ```
 
 **Removing Multiple NATs**  
 We have seen reports of multiple NAT networks created inadvertently. This is due to a bug in recent builds (including Windows Server 2016 Technical Preview 5 and Windows 10 Insider Preview builds). If you see multiple NAT networks, after running docker network ls or Get-ContainerNetwork, please perform the following from an elevated PowerShell:
 
+```powershell
+$keys = Get-ChildItem "HKLM:\SYSTEM\CurrentControlSet\Services\vmsmp\parameters\SwitchList"
+foreach($key in $keys)
+{
+   if ($key.GetValue("FriendlyName") -eq 'nat')
+   {
+      $newKeyPath = $KeyPath+"\"+$key.PSChildName
+      Remove-Item -Path $newKeyPath -Recurse
+   }
+}
+Remove-NetNat -Confirm:$false
+Get-ContainerNetwork | Remove-ContainerNetwork
+Get-VmSwitch -Name nat | Remove-VmSwitch # failure is expected
+Stop-Service docker
+Set-Service docker -StartupType Disabled
 ```
-PS> $KeyPath = "HKLM:\SYSTEM\CurrentControlSet\Services\vmsmp\parameters\SwitchList"
-PS> $keys = get-childitem $KeyPath
-PS> foreach($key in $keys)
-PS> {
-PS>    if ($key.GetValue("FriendlyName") -eq 'nat')
-PS>    {
-PS>       $newKeyPath = $KeyPath+"\"+$key.PSChildName
-PS>       Remove-Item -Path $newKeyPath -Recurse
-PS>    }
-PS> }
-PS> remove-netnat -Confirm:$false
-PS> Get-ContainerNetwork | Remove-ContainerNetwork
-PS> Get-VmSwitch -Name nat | Remove-VmSwitch (_failure is expected_)
-PS> Stop-Service docker
-PS> Set-Service docker -StartupType Disabled
-Reboot Host
-PS> Get-NetNat | Remove-NetNat
-PS> Set-Service docker -StartupType automaticac
-PS> Start-Service docker 
+
+Reboot the operating system prior executing the subsequent commands (`Restart-Computer`)
+
+```powershell
+Get-NetNat | Remove-NetNat
+Set-Service docker -StartupType Automatic
+Start-Service docker 
 ```
 
 See this [setup guide for multiple applications using the same NAT](#multiple-applications-using-the-same-nat) to rebuild your NAT environment, if necessary. 
