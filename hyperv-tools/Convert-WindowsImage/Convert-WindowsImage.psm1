@@ -13,10 +13,10 @@
         THE SAMPLE SOURCE CODE IS PROVIDED "AS IS", WITH NO WARRANTIES.
 
     .SYNOPSIS
-        Creates a bootable VHD(X) based on Windows 7 or Windows 8 installation media.
+        Creates a bootable VHD(X) based on Windows 7,8, 10 or Windows Server 2012, 2012R2, 2016, 2019 installation media.
 
     .DESCRIPTION
-        Creates a bootable VHD(X) based on Windows 7 or Windows 8 installation media.
+        Creates a bootable VHD(X) based on Windows 7,8, 10 or Windows Server 2012, 2012R2, 2016, 2019 installation media.
 
     .PARAMETER SourcePath
         The complete path to the WIM or ISO file that will be converted to a Virtual Hard Disk.
@@ -147,14 +147,14 @@
         The default is False.
 
     .EXAMPLE
-        .\Convert-WindowsImage.ps1 -SourcePath D:\foo\install.wim -Edition Professional -WorkingDirectory D:\foo
+        Convert-WindowsImage -SourcePath D:\foo\install.wim -Edition Professional -WorkingDirectory D:\foo
 
         This command will create a 40GB dynamically expanding VHD in the D:\foo folder.
         The VHD will be based on the Professional edition from D:\foo\install.wim,
         and will be named automatically.
 
     .EXAMPLE
-        .\Convert-WindowsImage.ps1 -SourcePath D:\foo\Win7SP1.iso -Edition Ultimate -VHDPath D:\foo\Win7_Ultimate_SP1.vhd
+        Convert-WindowsImage -SourcePath D:\foo\Win7SP1.iso -Edition Ultimate -VHDPath D:\foo\Win7_Ultimate_SP1.vhd
 
         This command will parse the ISO file D:\foo\Win7SP1.iso and try to locate
         \sources\install.wim.  If that file is found, it will be used to create a
@@ -162,7 +162,7 @@
         named D:\foo\Win7_Ultimate_SP1.vhd
 
     .EXAMPLE
-        .\Convert-WindowsImage.ps1 -SourcePath D:\foo\install.wim -Edition Professional -EnableDebugger Serial -ComPort 2 -BaudRate 38400
+        Convert-WindowsImage -SourcePath D:\foo\install.wim -Edition Professional -EnableDebugger Serial -ComPort 2 -BaudRate 38400
 
         This command will create a VHD from D:\foo\install.wim of the Professional SKU.
         Serial debugging will be enabled in the VHD via COM2 at a baud rate of 38400bps.
@@ -198,7 +198,7 @@ Convert-WindowsImage
 
               # This helps to work around the issue when PowerShell does not immediately
               # recognize newly mounted drives
-                $Drive = Get-psDrive
+                $Drive = Get-PSDrive
                 Test-Path -Path ( Resolve-Path -Path $PSItem ).Path
             }
         )]
@@ -942,9 +942,10 @@ You can use the fields below to configure the VHD or VHDX that you want to creat
 
                                 $openIso     = Mount-DiskImage -ImagePath $IsoPath -StorageType ISO -PassThru
 
-                                # Refresh the DiskImage object so we can get the real information about it.  I assume this is a bug.
+                                # Refresh the DiskImage and Drive object so we can get the real information about it.  I assume this is a bug.
+                                Get-PSDrive -PSProvider FileSystem | Out-Null
                                 $openIso     = Get-DiskImage -ImagePath $IsoPath
-                                $driveLetter = ($openIso | Get-Volume).DriveLetter
+                                $driveLetter = ( Get-Volume -DiskImage $openIso ).DriveLetter
 
                                 $script:SourcePath  = "$($driveLetter):\sources\install.wim"
 
@@ -1616,7 +1617,8 @@ You can use the fields below to configure the VHD or VHDX that you want to creat
                     Write-Verbose -Message "Opening ISO `"$IsoFileName`"..."
                     $openIso     = Mount-DiskImage -ImagePath $IsoPath -StorageType "ISO" -PassThru
 
-                  # Refresh the DiskImage object so we can get the real information about it.  I assume this is a bug.
+                  # Refresh the DiskImage and Drive object so we can get the real information about it.  I assume this is a bug.
+                    Get-PSDrive -PSProvider FileSystem | Out-Null
                     $openIso     = Get-DiskImage -ImagePath $IsoPath
                     $driveLetter = ( Get-Volume -DiskImage $openIso ).DriveLetter
 
