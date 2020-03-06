@@ -2324,7 +2324,12 @@ You can use the fields below to configure the VHD or VHDX that you want to creat
                     Else
                     {
                         Write-Verbose -Message "Closing $VhdFormat..."
-                        $DismountDiskImage = Dismount-DiskImage -ImagePath $VhdPath -PassThru
+                        If((Get-Command Dismount-DiskImage).parameters.Keys.Contains("PassThru")) {
+                            $DismountDiskImage = Dismount-DiskImage -ImagePath $VhdPath -PassThru
+                        }
+                        Else {
+                            $DismountDiskImage = Dismount-DiskImage -ImagePath $VhdPath    
+                        }
                     }
 
                     $vhdParentPath = Split-Path -Path $VhdPath -Parent
@@ -2392,7 +2397,12 @@ You can use the fields below to configure the VHD or VHDX that you want to creat
                 }
                 Else
                 {
-                    $DismountDiskImage = Dismount-DiskImage -ImagePath $VhdPath -PassThru
+                    If((Get-Command Dismount-DiskImage).parameters.Keys.Contains("PassThru")) {
+                        $DismountDiskImage = Dismount-DiskImage -ImagePath $VhdPath -PassThru
+                    }
+                    Else {
+                        $DismountDiskImage = Dismount-DiskImage -ImagePath $VhdPath    
+                    }
                 }
             }
 
@@ -2400,8 +2410,12 @@ You can use the fields below to configure the VHD or VHDX that you want to creat
             If ($openIso -ne $Null)
             {
                 Write-Verbose -Message "Closing ISO..."
-
-                $DismountDiskImage = Dismount-DiskImage -ImagePath $IsoPath -PassThru
+                If((Get-Command Dismount-DiskImage).parameters.Keys.Contains("PassThru")) {
+                    $DismountDiskImage = Dismount-DiskImage -ImagePath $IsoPath -PassThru
+                }
+                Else {
+                    $DismountDiskImage = Dismount-DiskImage -ImagePath $IsoPath    
+                }
             }
 
             If (-not $CacheSource)
