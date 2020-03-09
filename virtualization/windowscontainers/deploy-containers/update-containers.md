@@ -5,10 +5,11 @@ keywords: metadata, containers, version
 author: heidilohr
 ms. author: helohr
 manager: lizross
+ms.date: 03/10/2020
 ---
 # Update Windows Server containers
 
-Windows Server containers don't have a servicing stack like Windows Server. That means Windows Server containers don't support Windows Update. You can't get updates within a container like you do with Windows Server. Instead, as part of the overall Windows servicing effort, every month we rebuild the Windows Server Base OS container images with the updates and  publish the updated container images.
+Windows Server containers don't have a servicing stack like Windows Server. That means Windows Server containers don't support Windows Update. You can't get updates within a container like you do with Windows Server. Instead, as part of the overall Windows servicing effort, every month we rebuild the Windows Server Base OS container images with the updates and publish the updated container images.
 
 ## How to get Windows Server container updates
 
