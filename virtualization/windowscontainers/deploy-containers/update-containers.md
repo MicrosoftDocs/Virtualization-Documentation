@@ -11,6 +11,8 @@ ms.date: 03/10/2020
 
 As part of servicing Windows Server each month, we publish updated Windows Server Base OS container images on a regular basis. With these updates, you can automate building updated container images or manually update them by pulling hte latest version. However, this also means that Windows Server containers don't support Windows Update because they don't have a servicing stack like Windows Server. You can't get updates within a container like you do with Windows Server. Therefore, every month we rebuild the Windows Server Base OS container images with the updates and publish the updated container images.
 
+Other container images, such as .NET and ISS, will update their base OS container images, then rebuild and publish their containers on top of the updated images on a monthly basis.
+
 ## How to get Windows Server container updates
 
 We update Windows Server Base OS container images in alignment with the Windows servicing cadence. Updated container images are published the second Tuesday of each month, which we sometimes refer to as our "B" release, with a prefix number based on the release month. For example, we call our February update "2B" and our March update "3B." This monthly update event is the only regular release that include new security fixes.
@@ -19,8 +21,8 @@ The server hosting these containers, called the container host or just the "host
 
 New Windows Server Base OS container images go live shortly after 10:00am PST on the second Tuesday of each month in the Microsoft Container Registry (MCR), and the featured tags target the most recent B release. Some examples include:
 
-- ltsc2019 (LTSC):  docker pull mcr.microsoft.com/windows/servercore:ltsc2019
-- 1909 (SAC): docker pull mcr.microsoft.com/windows/servercore:1909
+- ltsc2019 [(LTSC)](/windows-server/get-started-19/servicing-channels-19#long-term-servicing-channel-ltsc):  docker pull mcr.microsoft.com/windows/servercore:ltsc2019
+- 1909 [(SAC)](/windows-server/get-started-19/servicing-channels-19#semi-annual-channel): docker pull mcr.microsoft.com/windows/servercore:1909
 
 If you're more familiar with Docker Hub than MCR, [this blog post](https://azure.microsoft.com/blog/microsoft-syndicates-container-catalog/) will give you a more detailed explanation.  
 
@@ -102,7 +104,7 @@ Follow these instructions to find out which version your container is running:
 1. Run the following cmdlet in PowerShell:
 
     ```powershell
-    docker image
+    docker images
     ```
 
     The output should look something like this:
