@@ -8,7 +8,7 @@ manager: lizross
 ---
 # Update Windows Server containers
 
-Windows Server containers by design don't have a servicing stack like Windows Server. That means Windows Server containers don't support Windows Update. You can't get updates within a container like you do with Windows Server. Instead, as part of the overall Windows servicing effort, every month we rebuild the Windows Server Base OS container images with the updates and then publish the updated container images. Other Microsoft teams who author container images, such as .NET or IIS, on top of Base OS images will also rebuild their container images with the updated Base OS images and publish new ones monthly.
+Windows Server containers don't have a servicing stack like Windows Server. That means Windows Server containers don't support Windows Update. You can't get updates within a container like you do with Windows Server. Instead, as part of the overall Windows servicing effort, every month we rebuild the Windows Server Base OS container images with the updates and  publish the updated container images.
 
 ## How to get Windows Server container updates
 
@@ -30,7 +30,7 @@ For each release, the respective container image also gets published with two ad
 
 These examples both pull the Windows Server 2019 Server Core container image with the February 18 security release update.  
 
-For a complete list of Windows Server Base OS container images, versions, and their respective tags, please see this [Windows Base OS container images](https://hub.docker.com/_/microsoft-windows-base-os-images) on Docker Hub.
+For a complete list of Windows Server Base OS container images, versions, and their respective tags, see this [Windows Base OS container images](https://hub.docker.com/_/microsoft-windows-base-os-images) on Docker Hub.
 
 Monthly serviced Windows Server images released on Azure Marketplace by Microsoft also come with preinstalled Base OS container images. Find our more at our [Windows Server Azure Marketplace pricing page](https://azuremarketplace.microsoft.com/marketplace/apps/microsoftwindowsserver.windowsserver?tab=PlansAndPrice). We usually update these images about five working days after the "B" release.
 
@@ -40,7 +40,7 @@ For a complete list of Windows Server images and versions, see [Windows Server r
 
 When you update your container host or container image with the monthly updates, as long as the host and container image are both supported (Windows Server version 1809 or higher), the host and container image revisions don't need to match for the container to start and run normally.
 
-However, you might encounter issues when using Windows Server containers with the February 11, 2020 security update release (also called "2B") or later monthly security update releases. Please refer to [this Microsoft Support article](https://support.microsoft.com/help/4542617/you-might-encounter-issues-when-using-windows-server-containers-with-t) for more details. These issues resulted from a security change that required an interface between user mode and kernel mode to change to ensure the security of your applications. These issues only happen on process isolated containers because process isolated containers share the kernel mode with the container host. This means container images without the updated user mode component were unsecured and incompatible with the new secured kernel interface.
+However, you might encounter issues when using Windows Server containers with the February 11, 2020 security update release (also called "2B") or later monthly security update releases. See [this Microsoft Support article](https://support.microsoft.com/help/4542617/you-might-encounter-issues-when-using-windows-server-containers-with-t) for more details. These issues resulted from a security change that required an interface between user mode and kernel mode to change to ensure the security of your applications. These issues only happen on process isolated containers because process isolated containers share the kernel mode with the container host. This means container images without the updated user mode component were unsecured and incompatible with the new secured kernel interface.
 
 We've released a fix as of February 18, 2020. This new release has established a divide line, or the so-called "new baseline". This new baseline means that any host-container combination where both versions are either before or after the 2B release are compatible. However, any combination of host and container with one before and one after 2B won't work.  
 
