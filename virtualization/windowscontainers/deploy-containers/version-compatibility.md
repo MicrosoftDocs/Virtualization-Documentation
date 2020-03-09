@@ -98,16 +98,16 @@ Windows Server containers are blocked from starting when the build number betwee
 
 #### Revision number (patching)
 
-Windows Server 2016-based containers are blocked from starting when the revision numbers of the container host and the container image are different. For example, if the container host is version 10.0.14393.**1914** (Windows Server 2016 with KB4051033 applied) and the container image is version 10.0.14393.**1944** (Windows Server 2016 with KB4053579 applied), then the image will not start.
+Windows Server containers currently don't support scenarios where Windows Server 2016-based containers run in a system where the revision numbers of the container host and the container image are different. For example, if the container host is version 10.0.14393.**1914** (Windows Server 2016 with KB4051033 applied) and the container image is version 10.0.14393.**1944** (Windows Server 2016 with KB4053579 applied), then the image might not start.
 
-However, for hosts or images using Windows Server version 1809 and higher, this rule doesn't apply, and the host and container image need not have matching revisions.
+However, for hosts or images using Windows Server version 1809 and later, this rule doesn't apply, and the host and container image don't need to have matching revisions.
 
 We recommend you keep your systems (host and container) up-to-date with the latest patches and updates to stay secure.
 
 >[!NOTE]
->You might encounter issues when using Windows Server containers with the February 11, 2020 security update release (also called "2B") or later monthly security update releases. Please refer to [this article](https://support.microsoft.com/help/4542617/you-might-encounter-issues-when-using-windows-server-containers-with-t) for more details.  
+>You might encounter issues when using Windows Server containers with the February 11, 2020 security update release (also called "2B") or later monthly security update releases. See [this article](https://support.microsoft.com/help/4542617/you-might-encounter-issues-when-using-windows-server-containers-with-t) for more details.  
 >
->We strongly recommend you update both your host and containers with the latest patches and updates to stay secure and compatible. To learn how to upate Windows containers, see [Update Windows Server containers](update-containers.md). 
+>We strongly recommend you update both your host and containers with the latest patches and updates to stay secure and compatible. For important guidance for how to update Windows containers, see [Update Windows Server containers](update-containers.md).
 
 #### Practical application
 
