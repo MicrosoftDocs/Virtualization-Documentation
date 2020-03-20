@@ -12,7 +12,7 @@ ms.assetid: 538871ba-d02e-47d3-a3bf-25cda4a40965
 # Windows container networking
 
 >[!IMPORTANT]
->Please reference [Docker Container Networking](https://docs.docker.com/engine/userguide/networking/) for general docker networking commands, options, and syntax.*** With the exception of any cases described in [unsupported features and network options](#unsupported-features-and-network-options), all Docker networking commands are supported on Windows with the same syntax as on Linux. However, the Windows and Linux network stacks are different, and as such you will find that some Linux network commands (for example, ifconfig) are not supported on Windows.
+>Please reference [Docker Container Networking](https://docs.docker.com/engine/userguide/networking/) for general Docker networking commands, options, and syntax. With the exception of any cases described in [unsupported features and network options](#unsupported-features-and-network-options), all Docker networking commands are supported on Windows with the same syntax as on Linux. However, the Windows and Linux network stacks are different, and as such you will find that some Linux network commands (for example, `ifconfig`) are not supported on Windows.
 
 ## Basic networking architecture
 
@@ -20,7 +20,7 @@ This topic provides an overview of how Docker creates and manages host networks 
 
 ![text](media/windowsnetworkstack-simple.png)
 
-The first time the docker engine runs, it will create a default NAT network, 'nat', which uses an internal vSwitch and a Windows component named `WinNAT`. If there are any pre-existing external vSwitches on the host which were created through PowerShell or Hyper-V Manager, they will also be available to Docker using the *transparent* network driver and can be seen when you run the ``docker network ls`` command.  
+The first time the Docker Engine runs, it will create a default NAT network, 'nat', which uses an internal vSwitch and a Windows component named `WinNAT`. If there are any pre-existing external vSwitches on the host which were created through PowerShell or Hyper-V Manager, they will also be available to Docker using the *transparent* network driver and can be seen when you run the `docker network ls` command.  
 
 ![text](media/docker-network-ls.png)
 
