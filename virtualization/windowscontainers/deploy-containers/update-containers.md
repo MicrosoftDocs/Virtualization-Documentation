@@ -71,8 +71,9 @@ For reference, the following table lists the version numbers for Base OS contain
 
 | Windows Server version (floating tag) | Update version for 1/14/20 release (1B)| Update version for 2/18/20 release (2B) | Update version for 3/10/20 release (3B) |
 |---|---|---|---|
-| Windows Server 2016 (ltsc2016) | 10.0.14393.3443 (B4534271) | 10.0.14393.3506 (KB4546850) | Container to be released in the coming days |
+| Windows Server 2016 (ltsc2016) | 10.0.14393.3443 (KB4534271) | 10.0.14393.3506 (KB4546850) | 10.0.14393.3568 (KB4551573) |
 | Windows Server, version 1803 (1803) | 10.0.17134.1246 (KB4534293) | 10.0.17134.1305 (KB4546851)  | This version has reached end of support. For more information, see [Base image servicing lifecycles](base-image-lifecycle.md).|
+| Windows Server, version 1809 (1809)| 10.0.17763.973 (KB4534273) | 10.0.17763.1040 (KB4546852) | 10.0.17763.1098 (KB4538461) |
 | Windows Server 2019 (ltsc2019) | 10.0.17763.973 (KB4534273) | 10.0.17763.1040 (KB4546852) | 10.0.17763.1098 (KB4538461) |
 | Windows Server, version 1903 (1903) |10.0.18362.592 (KB4528760) | 10.0.18362.658 (KB4546853) | 10.0.18362.719 (KB4540673) |
 | Windows Server, version 1909 (1909) | 10.0.18363.592 (KB4528760) | 10.0.18363.658 (KB4546853) | 10.0.18363.719 (KB4540673) |
