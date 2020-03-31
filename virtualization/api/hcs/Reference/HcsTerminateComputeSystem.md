@@ -1,5 +1,8 @@
 # HcsTerminateComputeSystem
 
+## Description
+Forcefully terminates a compute system
+
 ## Syntax
 
 ### Parameters
@@ -10,12 +13,9 @@
 |`options`| Optional JSON document specifying terminate options| 
 |    |    | 
 
-## Return Values
+### Return Values
 |Return | Description|
 |---|---|
-|`HCS_E_OPERTATION_PENDING`|Returns if terminating the compute system was successfully initiated|
+|`HCS_E_OPERTATION_PENDING`|Returned if terminating the compute system was successfully initiated|
+|`HRESULT`|Error code for failures to terminate of the compute system.|
 |     |     |
-
-`HRESULT` error code for failures to terminate of the compute system.
-
-## Remarks

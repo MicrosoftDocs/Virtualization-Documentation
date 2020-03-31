@@ -1,4 +1,4 @@
-# HdvDeliverGuestInterrupt function
+# HdvDeliverGuestInterrupt
 
 Delivers a message signalled interrupt (MSI) to the guest partition.
 
@@ -27,7 +27,7 @@ The guest address to which the interrupt message is written.
 
 The data to write at MsiAddress.
 
-## Return Value
+## Return Values
 
 If the function succeeds, the return value is `S_OK`.
 

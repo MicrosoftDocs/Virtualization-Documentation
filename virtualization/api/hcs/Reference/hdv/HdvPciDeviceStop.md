@@ -1,4 +1,4 @@
-# HDV_PCI_DEVICE_STOP function
+# HDV_PCI_DEVICE_STOP
 
 Function called to notify the emulated device that the virtual processors of the VM are about to be stopped.
 
@@ -16,7 +16,7 @@ typedef void (CALLBACK *HDV_PCI_DEVICE_STOP)(
 
 Context pointer that was supplied to HdvCreateDeviceInstance
 
-## Return Value
+## Return Values
 
 If the function succeeds, the return value is `S_OK`.
 

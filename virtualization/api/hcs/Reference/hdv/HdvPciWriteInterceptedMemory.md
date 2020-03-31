@@ -1,4 +1,4 @@
-# HDV_PCI_WRITE_INTERCEPTED_MEMORY function
+# HDV_PCI_WRITE_INTERCEPTED_MEMORY
 
 Function called to execute an intercepted MMIO write for the emulated device.
 
@@ -36,7 +36,7 @@ Length in bytes to write (1 / 2 / 4 / 8 bytes).
 
 Value to write.
 
-## Return Value
+## Return Values
 
 If the function succeeds, the return value is `S_OK`.
 

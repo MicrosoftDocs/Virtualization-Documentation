@@ -1,5 +1,8 @@
 # HcsPauseComputeSystem
 
+## Description
+Pauses the execution of a compute system
+
 ## Syntax
 
 ### Parameters
@@ -10,13 +13,10 @@
 |`options`| Optional JSON document specifying pause options| 
 |    |    | 
 
-## Return Values
+### Return Values
 |Return | Description|
 |---|---|
-|`HCS_E_OPERTATION_PENDING`|Returns if pausing the compute system was successfully initiated|
-|`HCS_E_INVALID_STATE`|Returns if the compute system cannot be paused in it's current state|
+|`HCS_E_OPERTATION_PENDING`|Returned if pausing the compute system was successfully initiated|
+|`HCS_E_INVALID_STATE`|Returned if the compute system cannot be paused in it's current state|
+|`HRESULT`|Error code for failures to pause the compute system.|
 |     |     |
-
-`HRESULT` error code for failures to pause the compute system.
-
-## Remarks

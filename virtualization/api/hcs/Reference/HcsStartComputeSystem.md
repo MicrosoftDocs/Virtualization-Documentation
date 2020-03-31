@@ -1,5 +1,8 @@
 # HcsStartComputeSystem
 
+## Description
+Starts a compute system
+
 ## Syntax
 
 ### Parameters
@@ -11,14 +14,11 @@
 |`options`| Optional JSON document specifying start options| 
 |    |    | 
 
-## Return Values
+### Return Values
 
 |Return | Description|
 |---|---|
-|`HCS_E_OPERTATION_PENDING`|Returns if starting the compute system was successfully initiated|
-|`HCS_E_INVALID_STATE`|Returns if the compute system cannot be started in it's current state (i.e. if the system has already started)|
+|`HCS_E_OPERTATION_PENDING`|Returned if starting the compute system was successfully initiated|
+|`HCS_E_INVALID_STATE`|Returned if the compute system cannot be started in it's current state (i.e. if the system has already started)|
+|`HRESULT`|Error code for failures to initiate the start of the compute system|
 |     |     |
-
-`HRESULT` error code for failures to initiate the start of the compute system.
-
-## Remarks

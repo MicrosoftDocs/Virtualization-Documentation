@@ -1,4 +1,4 @@
-# HdvCreateGuestMemoryAperture function
+# HdvCreateGuestMemoryAperture
 
 Creates a guest RAM aperture into the address space of the calling process.
 
@@ -37,7 +37,7 @@ If TRUE, the process is only granted read access to the mapped memory.
 
 Receives the virtual address (in the calling process) at which the requested guest memory region has been mapped. 
 
-## Return Value
+## Return Values
 
 If the function succeeds, the return value is `S_OK`.
 

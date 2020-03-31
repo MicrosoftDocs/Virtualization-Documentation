@@ -1,4 +1,4 @@
-# HDV_PCI_DEVICE_GET_DETAILS function
+# HDV_PCI_DEVICE_GET_DETAILS
 
 Function invoked to query the PCI description of the emulated device. This information is used when presenting the device to the guest partition.
 
@@ -22,11 +22,14 @@ Context pointer that was supplied to HdvCreateDeviceInstance
 
 Receives the vendor / device ID / ... information about the device
 
+`BarCount`
+Specifies the size of the output buffer provided in probedBars. It should be large enough to receive `HDV_MAX_PCI_BAR_COUNT` elements.
+
 `ProbedBars` 
 
 Receives the results for probing the MMIO BARs.
 
-## Return Value
+## Return Values
 
 If the function succeeds, the return value is `S_OK`.
 

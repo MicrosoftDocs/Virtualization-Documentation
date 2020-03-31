@@ -1,4 +1,7 @@
-# HcsOpenProcess
+# HcsModifyProcess
+
+## Description
+Modifies the parameters of a process in a compute system
 
 ## Syntax
 
@@ -6,18 +9,15 @@
 |Parameter     |Description|
 |---|---|---|---|---|---|---|---| 
 |`process`| Handle to the process to modify|
+|`operation`| Handle to the operation that tracks the process|
 |`settings`| Receives the new settings of the process|
 |    |    | 
 
 
 
-## Return Values
+### Return Values
 |Return Values     |Description|
 |---|---|---|---|---|---|---|---| 
-|`result`| Optional, receives an error document on failures to modify the process. It is the callers responsibility to release the returned buffer using `LocalFree`.|
+|`S_OK`| Returned on success|
+|`HRESULT`|Error code for failures to modify the process|
 |    |    | 
-
-The function returns `S_OK` on success. `HRESULT` error code for failures to modify the process.
-
-## Remarks
-This function modifies the parameters of a process in a compute system.

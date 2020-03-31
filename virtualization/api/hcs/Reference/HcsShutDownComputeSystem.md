@@ -1,5 +1,8 @@
 # HcsShutDownComputeSystem
 
+## Description
+Cleanly shuts down a compute system
+
 ## Syntax
 
 ### Parameters
@@ -10,13 +13,10 @@
 |`options`| Optional JSON document specifying shutdown options| 
 |    |    | 
 
-## Return Values
+### Return Values
 |Return | Description|
 |---|---|
-|`HCS_E_OPERTATION_PENDING`|Returns if shutting down the compute system was successfully initiated|
-|`HCS_E_INVALID_STATE`|Returns if the compute system cannot be shut down in it's current state (i.e. if the system was not yet started or is currently paused)|
+|`HCS_E_OPERTATION_PENDING`|Returned if shutting down the compute system was successfully initiated|
+|`HCS_E_INVALID_STATE`|Returned if the compute system cannot be shut down in it's current state (i.e. if the system was not yet started or is currently paused)|
+|`HRESULT`|Error code for failures to initiate the shutdown of the compute system|
 |     |     |
-
-`HRESULT` error code for failures to initiate the shutdown of the compute system.
-
-## Remarks

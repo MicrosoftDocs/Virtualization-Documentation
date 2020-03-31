@@ -1,5 +1,8 @@
 # HcsInitializeWritableLayer
 
+## Description
+This function initializes the writable layer for a container (e.g. the layer that caputres the filesystem and registry changes caused by executing the container).
+
 ## Syntax
 
 ### Parameters
@@ -12,9 +15,6 @@
 
 
 
-## Return Values
+### Return Values
 
 The function returns `S_OK` on success. `HRESULT` error code for failures to initialize the sandbox.
-
-## Remarks
-This function initializes the writable layer for a container (e.g. the layer that caputres the filesystem and registry changes caused by executing the container).

@@ -1,4 +1,4 @@
-# HDV_PCI_DEVICE_INITIALIZE function
+# HDV_PCI_DEVICE_INITIALIZE
 
 Function invoked to initialize the emulated device. It is called as the VM is powered on.
 
@@ -16,7 +16,7 @@ typedef HRESULT (CALLBACK *HDV_PCI_DEVICE_INITIALIZE)(
 
 Context pointer that was supplied to HdvCreateDeviceInstance
 
-## Return Value
+## Return Values
 
 If the function succeeds, the return value is `S_OK`.
 
