@@ -1,11 +1,25 @@
-# Host Compute System API Definitions
+# Host Compute System API Definitions - mamezgeb branch
 
 The following section contains the definitions of the host Compute System APIs. The DLL exports a set of C-style Windows API functions, the functions return HRESULT error codes indicating the result of the function call.
 
-## Compute System Opterations
+## TODO - all
+- Gap: v2 return values
+- Align formatting style (device virtualization has a different format)
+- Align formatting style for return values
+- Question: Where to cross reference device virtualization parameters in code base?
+- Fix camelcasing on device virtualization parameters
+- Make sure cross-links are in place
+- Add barCount parameter to code snippet in HDV_PCI_DEVICE_GET_DETAILS if you keep the formatting style of including a code snippet on the function pages
+- HdvReadGuestMemory.md has content for HdvInitializeDeviceHost
+- HdvTeardownDeviceHost.md has content for HdvTeardownDeviceHost but is named HdvInitializeDeviceHost
+- Right description for the operation parameter in HcsCreateProcess and others in the Process Execution group of functions? And HcsExportLayer
+- HcsRegisterProcessCallback is not in v2. Make sure to remove HcsRegisterProcessCallback.md from public view. Same with HcsUnregisterProcessCallback
+- HcsDestroyLayer.md did not exist
+
+## Compute System Operations
 |Function   |Description|
 |---|---|---|---|---|---|---|---|
-|[HcsCreateComputeSystem](./HcsCreateComputeSystem.md)|Create a compute system|
+|[HcsCreateComputeSystem](./HcsCreateComputeSystem.md)|Creates a new compute system|
 |[HcsGetComputeSystemProperties](./HcsGetComputeSystemProperties.md)| Query a compute system's properties|
 |[HcsModifyComputeSystem](./HcsModifyComputeSystem.md)|Modify a compute system|
 |[HcsOpenComputeSystem](./HcsOpenComputeSystem.md)|Open a compute system|
@@ -20,39 +34,37 @@ The following section contains the definitions of the host Compute System APIs. 
 ## Device Virtualization
 |Function   |Description|
 |---|---|---|---|---|---|---|---|
-|[HdvCreateDeviceInstance function](./hdv/HdvCreateDeviceInstance.md)|Creates a device instance in the current host and associates it with a device emulation interface and context.|
-|[HdvCreateGuestMemoryAperture function](./hdv/HdvCreateGuestMemoryAperture.md)|Creates a guest RAM aperture into the address space of the calling process.|
-|[HdvDeliverGuestInterrupt function](./hdv/HdvDeliverGuestInterrupt.md)|Delivers a message signalled interrupt (MSI) to the guest partition.|
-|[HdvPciDeviceGetDetails function](./hdv/HdvPciDeviceGetDetails.md)|Function invoked to query the PCI description of the emulated device.|
-|[HdvPciDeviceInitialize function](./hdv/HdvPciDeviceInitialize.md)|Function invoked to initialize the emulated device.|
-|[HdvPciDeviceSetConfiguration function](./hdv/HdvPciDeviceSetConfiguration.md)|Function invoked to set the configuration of the emulated device.|
-|[HdvPciDeviceStart function](./hdv/HdvPciDeviceStart.md)|Function called to notify the emulated device that the virtual processors of the VM are about to start.|
-|[HdvPciDeviceStop function](./hdv/HdvPciDeviceStop.md)|Function called to notify the emulated device that the virtual processors of the VM are about to be stopped.|
-|[HdvPciDeviceTeardown function](./hdv/HdvPciDeviceTeardown.md)|Function invoked to tear down the emulated device.|
-|[HdvPciReadConfigSpace function](./hdv/HdvPciReadConfigSpace.md)|Function called to execute a read into the emulated device’s PCI config space.|
-|[HdvPciReadInterceptedMemory function](./hdv/HdvPciReadInterceptedMemory.md)|Function called to execute an intercepted MMIO read for the emulated device.|
-|[HdvPciWriteConfigSpace function](./hdv/HdvPciWriteConfigSpace.md)|Function called to execute a write to the emulated device’s PCI config space.|
-|[HdvPciWriteInterceptedMemory function](./hdv/HdvPciWriteInterceptedMemory.md)|Function called to execute an intercepted MMIO write for the emulated device.|
+|[HdvCreateDeviceInstance](./hdv/HdvCreateDeviceInstance.md)|Creates a device instance in the current host and associates it with a device emulation interface and context.|
+|[HdvCreateGuestMemoryAperture](./hdv/HdvCreateGuestMemoryAperture.md)|Creates a guest RAM aperture into the address space of the calling process.|
+|[HdvDeliverGuestInterrupt](./hdv/HdvDeliverGuestInterrupt.md)|Delivers a message signalled interrupt (MSI) to the guest partition.|
+|[HdvPciDeviceGetDetails](./hdv/HdvPciDeviceGetDetails.md)|Function invoked to query the PCI description of the emulated device.|
+|[HdvPciDeviceInitialize](./hdv/HdvPciDeviceInitialize.md)|Function invoked to initialize the emulated device.|
+|[HdvPciDeviceSetConfiguration](./hdv/HdvPciDeviceSetConfiguration.md)|Function invoked to set the configuration of the emulated device.|
+|[HdvPciDeviceStart](./hdv/HdvPciDeviceStart.md)|Function called to notify the emulated device that the virtual processors of the VM are about to start.|
+|[HdvPciDeviceStop](./hdv/HdvPciDeviceStop.md)|Function called to notify the emulated device that the virtual processors of the VM are about to be stopped.|
+|[HdvPciDeviceTeardown](./hdv/HdvPciDeviceTeardown.md)|Function invoked to tear down the emulated device.|
+|[HdvPciReadConfigSpace](./hdv/HdvPciReadConfigSpace.md)|Function called to execute a read into the emulated device’s PCI config space.|
+|[HdvPciReadInterceptedMemory](./hdv/HdvPciReadInterceptedMemory.md)|Function called to execute an intercepted MMIO read for the emulated device.|
+|[HdvPciWriteConfigSpace](./hdv/HdvPciWriteConfigSpace.md)|Function called to execute a write to the emulated device’s PCI config space.|
+|[HdvPciWriteInterceptedMemory](./hdv/HdvPciWriteInterceptedMemory.md)|Function called to execute an intercepted MMIO write for the emulated device.|
 |[HdvReadGuestMemory function](./hdv/HdvReadGuestMemory.md)|Reads guest primary memory (RAM) contents into the supplied buffer.|
 |[HdvTeardownDeviceHost function](./hdv/HdvTeardownDeviceHost.md)|Tears down the device emulator host in the caller's process.|
-|[HdvWriteGuestMemory function](./hdv/HdvWriteGuestMemory.md)|Writes the contents of the supplied buffer to guest primary memory (RAM).|
+|[HdvWriteGuestMemory](./hdv/HdvWriteGuestMemory.md)|Writes the contents of the supplied buffer to guest primary memory (RAM).|
 |   |   |
 
 ## Process Execution
-The following functions enable applications to execute a process in a compute system. For containers, these functions are the main way for an application to start and interact wit hte workload running in the container. Unlike the compute system operations, these process execution functions are executed synchronously. 
+The following functions enable applications to execute a process in a compute system. For containers, these functions are the main way for an application to start and interact with the workload running in the container. Unlike the compute system operations, these process execution functions are executed synchronously. 
 
 |Function   |Description|
 |---|---|---|---|---|---|---|---|
-|[HcsCloseProcess](./HcsCloseProcess.md)|Close a process in a compute system |
-|[HcsCreateProcess](./HcsCreateProcess.md)|Start a process in a compute system |
-|[HcsGetProcessInfo](./HcsGetProcessInfo.md)|Return the initial startup info of a process in a compute system |
-|[HcsGetProcessProperties](./HcsGetProcessProperties.md)|Return properties a process in a compute system |
-|[HcsModifyProcess](./HcsModifyProcess.md)|Modify a process in a compute system |
-|[HcsOpenProcess](./HcsOpenProcess.md)|Open a process in a compute system |
-|[HcsRegisterProcessCallback](./HcsRegisterProcessCallback.md)|Register a callback function to process in a compute system |
-|[HcsSignalProcess](./HcsSignalProcess.md)|Send a signal to a process in a compute system |
-|[HcsTerminateProcess](./HcsTerminateProcess.md)|Terminate a process in a compute system |
-|[HcsUnregisterProcessCallback](./HcsUnregisterProcessCallback.md)|Unregister a callback function to process in a compute system |
+|[HcsCloseProcess](./HcsCloseProcess.md)|Closes the handle to a  process in a compute system |
+|[HcsCreateProcess](./HcsCreateProcess.md)|Starts a process in a compute system |
+|[HcsGetProcessInfo](./HcsGetProcessInfo.md)|Returns the initial startup info of a process in a compute system |
+|[HcsGetProcessProperties](./HcsGetProcessProperties.md)|Returns properties a process in a compute system |
+|[HcsModifyProcess](./HcsModifyProcess.md)|Modifies a process in a compute system |
+|[HcsOpenProcess](./HcsOpenProcess.md)|Opens a process in a compute system |
+|[HcsSignalProcess](./HcsSignalProcess.md)|Sends a signal to a process in a compute system |
+|[HcsTerminateProcess](./HcsTerminateProcess.md)|Terminates a process in a compute system |
 |   |   |
 
 ## Utility Functions for Virtual Machines
@@ -60,10 +72,10 @@ The following set of functions allow applications to set up the environment to r
 
 |Function   |Description|
 |---|---|---|---|---|---|---|---|
-|[HcsCreateEmptyGuestStateFile](./HcsCreateEmptyGuestStateFile.md)|Create a guest-state file for VMs that are expected to persist or restart multiple times |
-|[HcsCreateEmptyRuntimeStateFile](./HcsCreateEmptyRuntimeStateFile.md)|Create a funtime-state file which is used to save running VMs|
-|[HcsGrantVmAccess](./HcsGrantVmAccess.md)|Grant access to a user account to run a VM|
-|[HcsRevokeVmAccess](./HcsrevokeVmAccess.md)|Revoke access to a user account to run a VM|
+|[HcsCreateEmptyGuestStateFile](./HcsCreateEmptyGuestStateFile.md)|Creates an empty guest-state file (.vmgs) for VMs that are expected to be persisted or restarted multiple times |
+|[HcsCreateEmptyRuntimeStateFile](./HcsCreateEmptyRuntimeStateFile.md)|Creates an empty runtime-state file (.vmrs) for a VM. Used to save running VMs.|
+|[HcsGrantVmAccess](./HcsGrantVmAccess.md)|Grants access for a VM|
+|[HcsRevokeVmAccess](./HcsrevokeVmAccess.md)|Revokes access to a user account to run a VM|
 |   |   |
 
 ## Storage Utility Functions for Containers
@@ -71,13 +83,13 @@ The following functions allow applications to create and manage the file system 
 
 |Function   |Description|
 |---|---|---|---|---|---|---|---|
-|[HcsAttachLayerStorageFilter](./HcsAttachLayerStorageFilter.md)|Sets up the container storage filter on a layer directory|
-|[HcsDestroyLayer](./HcsDestoryLayer.md)|Deletes layer from the host|
-|[HcsDetachLayerStorageFilter](./HcsDetachLayerStorageFilter.md)|Detaches the container storage filter from the root directory of a layer|
+|[HcsAttachLayerStorageFilter](./HcsAttachLayerStorageFilter.md)|Sets up the layer storage filter on a writable container layer|
+|[HcsDestroyLayer](./HcsDestoryLayer.md)|Deletes a container layer from the host|
+|[HcsDetachLayerStorageFilter](./HcsDetachLayerStorageFilter.md)|Detaches the layer storage filter from a writable container layer|
 |[HcsExportLayer](./HcsExportLayer.md)|Exports a container layer that can be copied to another host or uploaded to a container registry|
-|[HcsFormatWritableLayerVhd](./HcsFormatWritableLayerVhd.md)|Creates and formats a partition that is to be used as a writable layer for a container|
-|[HcsGetLayerVhdMountPath](./HcsGetLayerVhdMountPath.md)| Returns the volume path for a layer VHD mounted on the host|
-|[HcsImportLayer](./HcsImportLayer.md)|Imports a container layer and sets it up on the host|
+|[HcsFormatWritableLayerVhd](./HcsFormatWritableLayerVhd.md)|Formats a virtual disk for the use as a writable container layer|
+|[HcsGetLayerVhdMountPath](./HcsGetLayerVhdMountPath.md)| Returns the volume path for a virtual disk of a writable container layer|
+|[HcsImportLayer](./HcsImportLayer.md)|Imports a container layer and configures it for use on the host|
 |[HcsInitializeWritableLayer](./HcsInitializeWritableLayer.md)|Initializes the writable layer for a container (i.e. the layer that captures the filesystem)|
 |[HcsSetupBaseOSLayer](./HcsSetupBaseOSLayer.md)|Sets up a base OS layer on the host|
 |   |   |

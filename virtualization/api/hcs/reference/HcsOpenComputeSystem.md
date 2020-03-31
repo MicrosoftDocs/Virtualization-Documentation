@@ -1,5 +1,8 @@
 # HcsOpenComputeSystem
 
+## Description
+Opens a handle to an existing compute system
+
 ## Syntax
 
 ### Parameters
@@ -12,11 +15,10 @@
 
 
 
-## Return Values
+### Return Values
 |Return | Description|
 |---|---|
+|`S_OK`|Returned on success|
 |`HCS_E_SYSTEM_NOT_FOUND`|Returns if a compute system with the specified Id does not exist|
+|`HRESULT`|Error code for failures to open the cmopute system|
 |     |     |
-
-
-## Remarks

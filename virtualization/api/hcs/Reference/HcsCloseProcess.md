@@ -1,5 +1,8 @@
 # HcsCloseProcess
 
+## Description
+Closes the handle to a process in a compute system
+
 ## Syntax
 ```C
 void WINAPI
@@ -14,8 +17,3 @@ HcsCloseProcess(
 |---|---|---|---|---|---|---|---| 
 |`process`| Process handle to close|
 |    |    | 
-
-
-
-## Remarks
-This function closes the handle to a process in a compute system.

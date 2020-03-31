@@ -1,5 +1,8 @@
 # HcsModifyComputeSystem
 
+## Description
+Modifies settings of a compute system
+
 ## Syntax
 
 ### Parameters
@@ -13,14 +16,11 @@
 
 
 
-## Return Values
+### Return Values
 |Return | Description|
 |---|---|
 |`HCS_E_OPERTATION_PENDING`|Returns if modifying the compute system was successfully initiated|
 |`HCS_E_INVALID_STATE`|Returns if the compute system cannot be modified in it's current state|
+|`HRESULT`|Error code for failures to modify the compute system.|
 |     |     |
 
-`HRESULT` error code for failures to modify the compute system.
-
-
-## Remarks

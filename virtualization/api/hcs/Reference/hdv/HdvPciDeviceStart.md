@@ -1,4 +1,4 @@
-# HDV_PCI_DEVICE_START function
+# HDV_PCI_DEVICE_START
 
 Function called to notify the emulated device that the virtual processors of the VM are about to start.
 
@@ -16,7 +16,7 @@ typedef HRESULT (CALLBACK *HDV_PCI_DEVICE_START)(
 
 Context pointer that was supplied to HdvCreateDeviceInstance
 
-## Return Value
+## Return Values
 
 If the function succeeds, the return value is `S_OK`.
 

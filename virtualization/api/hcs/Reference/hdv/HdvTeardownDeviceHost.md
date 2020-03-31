@@ -1,4 +1,4 @@
-# HdvInitializeDeviceHost function
+# HdvInitializeDeviceHost function [INCORRECT NAME]
 
 Tears down the device emulator host in the caller's process. All device instances associated to the device host become non-functional.
 
@@ -17,7 +17,7 @@ HdvTeardownDeviceHost(
 
 Handle to the device host to tear down.
 
-## Return Value
+## Return Values
 
 If the function succeeds, the return value is `S_OK`.
 

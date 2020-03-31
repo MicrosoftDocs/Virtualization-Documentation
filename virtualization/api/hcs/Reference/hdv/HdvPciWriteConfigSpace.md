@@ -1,4 +1,4 @@
-# HDV_PCI_WRITE_CONFIG_SPACE function
+# HDV_PCI_WRITE_CONFIG_SPACE
 
 Function called to execute a write to the emulated device’s PCI config space.
 
@@ -26,7 +26,7 @@ Offset in bytes from the base of the bar to write.
 
 Value to write.
 
-## Return Value
+## Return Values
 
 If the function succeeds, the return value is `S_OK`.
 

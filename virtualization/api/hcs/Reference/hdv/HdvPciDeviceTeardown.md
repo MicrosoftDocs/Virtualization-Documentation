@@ -1,4 +1,4 @@
-# HDV_PCI_DEVICE_TEARDOWN function
+# HDV_PCI_DEVICE_TEARDOWN
 
 Function invoked to tear down the emulated device. It is called during the cleanup of the VM.
 
@@ -16,7 +16,7 @@ typedef void (CALLBACK *HDV_PCI_DEVICE_TEARDOWN)(
 
 Context pointer that was supplied to HdvCreateDeviceInstance
 
-## Return Value
+## Return Values
 
 If the function succeeds, the return value is `S_OK`.
 

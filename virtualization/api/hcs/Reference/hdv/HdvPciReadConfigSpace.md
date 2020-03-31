@@ -1,4 +1,4 @@
-# HDV_PCI_READ_CONFIG_SPACE function
+# HDV_PCI_READ_CONFIG_SPACE
 
 Function called to execute a read into the emulated device’s PCI config space.
 
@@ -26,7 +26,7 @@ Offset in bytes from the base of the bar to read.
 
 Receives the read value.
 
-## Return Value
+## Return Values
 
 If the function succeeds, the return value is `S_OK`.
 

@@ -1,4 +1,4 @@
-# HdvWriteGuestMemory function
+# HdvWriteGuestMemory
 
 Writes the contents of the supplied buffer to guest primary memory (RAM).
 
@@ -32,7 +32,7 @@ Number of bytes to write.
 
 Source buffer for the write operation.
 
-## Return Value
+## Return Values
 
 If the function succeeds, the return value is `S_OK`.
 

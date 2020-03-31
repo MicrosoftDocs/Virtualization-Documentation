@@ -1,5 +1,8 @@
 # HcsDetachLayerStorageFilter
 
+## Description
+This function detaches the container storage filter from the root directory of a layer.
+
 ## Syntax
 
 ### Parameters
@@ -10,9 +13,6 @@
 
 
 
-## Return Values
+### Return Values
 
 The function returns `S_OK` on success. `HRESULT` error code for failures to detach a filter.
-
-## Remarks
-This function detaches the container storage filter from the root directory of a layer.

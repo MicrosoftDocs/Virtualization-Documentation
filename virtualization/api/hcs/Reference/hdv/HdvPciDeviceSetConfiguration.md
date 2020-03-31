@@ -1,4 +1,4 @@
-# HDV_PCI_DEVICE_SET_CONFIGURATION function
+# HDV_PCI_DEVICE_SET_CONFIGURATION
 
 Function invoked to set the configuration of the emulated device.
 
@@ -26,7 +26,7 @@ Number of elements in the ConfigurationValues array
 
 Array with strings representing the configurations values. These strings are provided in the VM’s configuration.
 
-## Return Value
+## Return Values
 
 If the function succeeds, the return value is `S_OK`.
 

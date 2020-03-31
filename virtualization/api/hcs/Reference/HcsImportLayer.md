@@ -1,5 +1,8 @@
 # HcsImportLayer
 
+## Description
+This function imports a container layer and sets it up for use on boot. This function is used by an application to setup a container layer that was copied in a transport format to the host (e.g was downloaded from a container registry such as DockerHub).
+
 ## Syntax
 
 ### Parameters
@@ -12,9 +15,6 @@
 
 
 
-## Return Values
+### Return Values
 
 The function returns `S_OK` on success. `HRESULT` error code for failures to import the layer.
-
-## Remarks
-This function imports a container layer and sets it up for use on boot. This function is used by an application to setup a container layer that was copied in a transport format to the host (e.g was downloaded from a container registry such as DockerHub).

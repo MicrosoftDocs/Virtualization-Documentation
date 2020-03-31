@@ -1,4 +1,4 @@
-# HdvCreateDeviceInstance function
+# HdvCreateDeviceInstance
 
 Creates a device instance in the current host and associates it with a device emulation interface and context.
 
@@ -47,7 +47,7 @@ An optional opaque context pointer that will be supplied to the device instance 
 
 Receives a handle to the created device instance.
 
-## Return Value
+## Return Values
 
 If the function succeeds, the return value is `S_OK`.
 

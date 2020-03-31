@@ -1,4 +1,4 @@
-# HdvInitializeDeviceHost function
+# HdvInitializeDeviceHost function [INCORRECT NAME]
 
 Reads guest primary memory (RAM) contents into the supplied buffer.
 
@@ -32,7 +32,7 @@ Number of bytes to read.
 
 Target buffer for the read operation. 
 
-## Return Value
+## Return Values
 
 If the function succeeds, the return value is `S_OK`.
 

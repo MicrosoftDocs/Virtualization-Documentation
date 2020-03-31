@@ -1,4 +1,4 @@
-# HDV_PCI_READ_INTERCEPTED_MEMORY function
+# HDV_PCI_READ_INTERCEPTED_MEMORY
 
 Function called to execute an intercepted MMIO read for the emulated device.
 
@@ -36,7 +36,7 @@ Length in bytes to read (1 / 2 / 4 / 8 bytes).
 
 Receives the read value.
 
-## Return Value
+## Return Values
 
 If the function succeeds, the return value is `S_OK`.
 
