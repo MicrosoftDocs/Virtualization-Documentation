@@ -1907,8 +1907,8 @@ You can use the fields below to configure the VHD or VHDX that you want to creat
                     }
 
                     If (( $DiskLayout -eq "UEFI" -and $BcdInVhd -eq "VirtualMachine" ) -or
-                          $DiskLayout -eq "WindowsToGo") -or
-                          $DiskLayout -eq "BIOS")
+                        ( $DiskLayout -eq "WindowsToGo") -or
+                        ( $DiskLayout -eq "BIOS"))
                     {
                       # Retreive access path for System partition.
                         $systemPartition = Get-Partition -UniqueId $systemPartition.UniqueId
@@ -2018,7 +2018,6 @@ You can use the fields below to configure the VHD or VHDX that you want to creat
                #region BCD manipulation
 
                     If (( $openImage.ImageArchitecture -ne "ARM" ) -and       # No virtualization platform for ARM images
-                        ( $openImage.ImageArchitecture -ne "ARM64" ) -and     # No virtualization platform for ARM64 images
                         ( $BcdInVhd -ne "NativeBoot" ))                       # User asked for a non-bootable image
                     {
                         If (Test-Path -Path "$($systemDrive)\boot\bcd")
