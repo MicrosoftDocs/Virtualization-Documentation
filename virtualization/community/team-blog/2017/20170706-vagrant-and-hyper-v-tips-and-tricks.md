@@ -20,7 +20,7 @@ Vagrant doesn't know how to set up networking on Hyper-V right now (unlike other
 Unfortunately, the [Getting Started](https://www.vagrantup.com/intro/getting-started/index.html) guide uses VirtualBox, and you can't run other virtualization solutions alongside Hyper-V. You need to change the "[provider](https://www.vagrantup.com/intro/getting-started/providers.html)" Vagrant uses at a few different points. When you install your first box, add --provider : 
     
     
-    vagrant box add hashicorp/precise64 --provider hyperv
+    vagrant box add hashicorp/bionic64 --provider hyperv
     
 
 And when you boot your first Vagrant environment, again, add --provider. Note: you might run into the error mentioned in Trick 4, so skip to there if you see something like "mount error(112): Host is down". 
@@ -35,7 +35,7 @@ Adding the provider flag is a pain to do every single time you run `vagrant up`.
     
     
      Vagrant.configure(2) do |config|  
-      config.vm.box = "hashicorp/precise64"
+      config.vm.box = "hashicorp/bionic64"
       config.vm.provider "hyperv"
       config.vm.network "public_network"
     end
@@ -57,7 +57,7 @@ One additional trick here: `vagrant init` will create a file that will appear to
     again.
     
 
-## Trick 4: Shared folders uses SMBv1 for hashicorp/precise64
+## Trick 4: Shared folders uses SMBv1 for hashicorp/bionic64
 
 For the image used in the "Getting Started" guide (hashicorp/precise64), Vagrant tries to use SMBv1 for shared folders. However, if you're like me and have [SMBv1 disabled](https://blogs.technet.microsoft.com/filecab/2016/09/16/stop-using-smb1/), this will fail: 
     
@@ -142,7 +142,7 @@ Those are my tips and tricks for getting started with Vagrant on Hyper-V. If the
     # backwards compatibility). Please don't change it unless you know what
     # you're doing.
     Vagrant.configure("2") do |config|
-      config.vm.box = "hashicorp/precise64"
+      config.vm.box = "hashicorp/bionic64"
       config.vm.provider "hyperv"
       config.vm.network "public_network"
       config.vm.synced_folder ".", "/vagrant", disabled: true
