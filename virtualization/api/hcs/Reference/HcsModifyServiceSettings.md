@@ -5,18 +5,28 @@ This function modifies the settings of the Host Compute System
 
 ## Syntax
 
-### Parameters
+```cpp
+HRESULT WINAPI
+HcsModifyServiceSettings(
+    _In_ PCWSTR settings,
+    _Outptr_opt_ PWSTR* result
+    );
+```
+
+## Parameters
 |Parameter     |Description|
 |---|---|---|---|---|---|---|---| 
 |`settings`| JSON document specifying the new settings|
+|`result` | Optional, receives an error document on failures to apply the settings.| 
 |    |    | 
 
 
-### Return Values
-|Return Values     |Description|
-|---|---|---|---|---|---|---|---| 
-|`result`| Optional, receives an error document on failures to apply the settings. It is the callers responsibility to release the returned buffer using `LocalFree`. |
+## Return Values
+|Return Value     |Description|
+|---|---|---|---|---|---|---|---|
+|`S_OK` | The function returns on success.|
+|`HRESULT`| Error code for failures to modify the settings.|
 |    |    | 
 
-The function returns `S_OK` on success. `HRESULT` error code for failures to modify the settings.
+
 

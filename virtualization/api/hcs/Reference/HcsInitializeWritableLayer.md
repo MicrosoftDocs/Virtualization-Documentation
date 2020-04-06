@@ -5,7 +5,16 @@ This function initializes the writable layer for a container (e.g. the layer tha
 
 ## Syntax
 
-### Parameters
+```cpp
+HRESULT WINAPI
+HcsInitializeWritableLayer(
+    _In_ PCWSTR writableLayerPath,
+    _In_ PCWSTR layerData,
+    _In_opt_ PCWSTR options
+    );
+```
+
+## Parameters
 |Parameter     |Description|
 |---|---|---|---|---|---|---|---| 
 |`writableLayerPath`| Full path to the root directory of the writable layer|
@@ -15,6 +24,8 @@ This function initializes the writable layer for a container (e.g. the layer tha
 
 
 
-### Return Values
-
-The function returns `S_OK` on success. `HRESULT` error code for failures to initialize the sandbox.
+## Return Values
+|Return Value     |Description|
+|---|---|
+|`S_OK` | The function returns on success.|
+|`HRESULT` | Error code for failures to initialize the sandbox.|

@@ -5,7 +5,16 @@ Returns properties of a compute system
 
 ## Syntax
 
-### Parameters
+```cpp
+HRESULT WINAPI
+HcsGetComputeSystemProperties(
+    _In_  HCS_SYSTEM computeSystem,
+    _In_  HCS_OPERATION operation,
+    _In_opt_ PCWSTR propertyQuery
+    );
+```
+
+## Parameters
 |Parameter     |Description|
 |---|---|---|---|---|---|---|---| 
 |`computeSystem`| Handle to the compute system to query|
@@ -13,9 +22,9 @@ Returns properties of a compute system
 |`propertyQuery`| Optional JSON document specifying the properties to query| 
 |    |    | 
 
-### Return Values
-|Return | Description|
+## Return Values
+|Return Value | Description|
 |---|---|
-|`HCS_E_OPERTATION_PENDING`|Returns if querying the compute system was successfully initiated|
+|`HCS_E_OPERATION_PENDING`|Returns if querying the compute system was successfully initiated|
 |`HRESULT`|Error code for failures to query the compute system|
 |     |     |

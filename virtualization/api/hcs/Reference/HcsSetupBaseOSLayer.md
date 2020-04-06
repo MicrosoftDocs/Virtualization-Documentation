@@ -5,7 +5,16 @@ This function sets up a base OS layer for the use on a host. The base OS layer i
 
 ## Syntax
 
-### Parameters
+```cpp
+HRESULT WINAPI
+HcsSetupBaseOSLayer(
+    _In_ PCWSTR layerPath,
+    _In_ HANDLE vhdHandle,
+    _In_ PCWSTR options
+    );
+```
+
+## Parameters
 |Parameter     |Description|
 |---|---|---|---|---|---|---|---| 
 |`layerPath`| Path to the root of the base OS layer|
@@ -15,7 +24,9 @@ This function sets up a base OS layer for the use on a host. The base OS layer i
 
 
 
-### Return Values
-
-The function returns `S_OK` on success. `HRESULT` error code for failures to setup the base OS layer.
+## Return Values
+|Return Value    |Description|
+|---|---|
+|`S_OK` |The function returns on success.|
+|`HRESULT`| Error code for failures to setup the base OS layer.|
 

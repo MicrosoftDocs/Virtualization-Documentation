@@ -5,7 +5,16 @@ This function imports a container layer and sets it up for use on boot. This fun
 
 ## Syntax
 
-### Parameters
+```cpp
+HRESULT WINAPI
+HcsImportLayer(
+    _In_ PCWSTR layerPath,
+    _In_ PCWSTR sourceFolderPath,
+    _In_ PCWSTR layerData
+    );
+```
+
+## Parameters
 |Parameter     |Description|
 |---|---|---|---|---|---|---|---| 
 |`layerPath`| Destination path for the container layer|
@@ -15,6 +24,8 @@ This function imports a container layer and sets it up for use on boot. This fun
 
 
 
-### Return Values
-
-The function returns `S_OK` on success. `HRESULT` error code for failures to import the layer.
+## Return Values
+|Return Value     |Description|
+|---|---|
+|`S_OK` | The function returns on success.|
+|`HRESULT`| Error code for failures to import the layer.|

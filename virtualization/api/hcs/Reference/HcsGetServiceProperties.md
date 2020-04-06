@@ -5,18 +5,29 @@ This function returns properties of the Host Compute System
 
 ## Syntax
 
-### Parameters
+```cpp
+HRESULT WINAPI
+HcsGetServiceProperties(
+    _In_opt_ PCWSTR propertyQuery,
+    _Outptr_ PWSTR* result
+    );
+```
+
+## Parameters
 |Parameter     |Description|
 |---|---|---|---|---|---|---|---| 
 |`propertyQuery`| Optional JSON document specifying the properties to query|
+|`properties` | Receives a JSON document with the requested properties.|
+|`result` | Optional, receives an error document on failures to query the properties.
 |    |    | 
 
 
 
-### Return Values
-|Return Values     |Description|
+## Return Values
+|Return Value     |Description|
 |---|---|---|---|---|---|---|---| 
-|`result`| Optional, receives an error document on failures to query the properties. It is the callers responsibility to release the returned buffer using `LocalFree`. |
+|`S_OK` | The function returns on success.|
+|`HRESULT`| Error code for failures to query the properties.|
 |    |    | 
 
-The function returns `S_OK` on success. `HRESULT` error code for failures to query the properties.
+

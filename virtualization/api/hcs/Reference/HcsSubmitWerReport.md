@@ -5,12 +5,22 @@ This function submits a WER report for a bugcheck of a VM.
 
 ## Syntax
 
-### Parameters
+```cpp
+HRESULT WINAPI
+HcsSubmitWerReport(
+    _In_ PCWSTR settings
+    );
+```
+
+
+## Parameters
 |Parameter     |Description|
 |---|---|---|---|---|---|---|---| 
 |`settings`| JSON document with the bugcheck information|
 |    |    | 
 
-### Return Values
-
-The function returns `S_OK` on success. `HRESULT` error code for failures to submit the WER report.
+## Return Values
+|Return Value     |Description|
+|---|---|
+|`S_OK` | The function returns on success.|
+|`HRESULT`| Error code for failures to submit the WER report.|

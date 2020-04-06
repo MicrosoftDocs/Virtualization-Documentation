@@ -5,7 +5,14 @@ This function sets up the container storage filter on a layer directory. The sto
 
 ## Syntax
 
-### Parameters
+```cpp
+HRESULT WINAPI
+HcsAttachLayerStorageFilter(
+    _In_ PCWSTR layerPath,
+    _In_ PCWSTR layerData
+    );
+```
+## Parameters
 |Parameter     |Description|
 |---|---|---|---|---|---|---|---| 
 |`layerPath`| Full path to the root directory of the layer|
@@ -14,6 +21,8 @@ This function sets up the container storage filter on a layer directory. The sto
 
 
 
-### Return Values
-
-The function returns `S_OK` on success. `HRESULT` error code for failures to attach a filter.
+## Return Values
+|Return Value     |Description|
+|---|---|
+|`S_OK` | The function returns on success.|
+|`HRESULT`| Error code for failures to attach a filter.

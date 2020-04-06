@@ -5,7 +5,16 @@ Returns the properties of a process in a compute system
 
 ## Syntax
 
-### Parameters
+```cpp
+HRESULT WINAPI
+HcsGetProcessProperties(
+    _In_ HCS_PROCESS process,
+    _In_ HCS_OPERATION operation,
+    _In_opt_ PCWSTR propertyQuery
+    );
+```
+
+## Parameters
 |Parameter     |Description|
 |---|---|---|---|---|---|---|---| 
 |`process`| Handle to the process to query|
@@ -15,9 +24,9 @@ Returns the properties of a process in a compute system
 
 
 
-### Return Values
-|Return Values     |Description|
-|---|---|---|---|---|---|---|---| 
+## Return Values
+|Return Value | Description|
+|---|---|
 |`S_OK`| Returned  on success|
 |`HRESULT`| Error code for failures to query the process |
 |    |    | 

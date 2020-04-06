@@ -2,7 +2,15 @@
 
 ## Syntax
 
-### Parameters
+```cpp
+HRESULT
+WINAPI
+HcsDestroyLayer(
+    _In_ PCWSTR layerPath
+    );
+```
+
+## Parameters
 |Parameter     |Description|
 |---|---|---|---|---|---|---|---| 
 |`layerPath`| Path of the layer to delete|
@@ -11,8 +19,10 @@
 
 
 ## Return Values
-
-The function returns `S_OK` on success. `HRESULT` error code for failures to delete the layer.
+|Return Value     |Description|
+|---|---|
+|`S_OK` |The function returns on success.|
+|`HRESULT`| Error code for failures to delete the layer.|
 
 ## Remarks
 This function deletes a layer from the host.

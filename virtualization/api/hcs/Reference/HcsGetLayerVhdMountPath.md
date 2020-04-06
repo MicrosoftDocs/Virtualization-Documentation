@@ -5,7 +5,16 @@ Returns the volume path for a virtual disk of a writable container layer
 
 ## Syntax
 
-### Parameters
+```cpp
+HRESULT
+WINAPI
+HcsGetLayerVhdMountPath(
+    _In_     HANDLE vhdHandle,
+    _Outptr_ PWSTR* mountPath
+    );
+```
+
+## Parameters
 |Parameter     |Description|
 |---|---|---|---|---|---|---|---| 
 |`vhdHandle`| Handle to a VHD mounted on the host|
@@ -14,6 +23,9 @@ Returns the volume path for a virtual disk of a writable container layer
 
 
 
-### Return Values
-The function returns `S_OK` on success. `HRESULT` error code for failures to lookup the volume path.
+## Return Values
+|Return Value     |Description|
+|---|---|
+|`S_OK` | The function returns on success.|
+|`HRESULT`| Error code for failures to lookup the volume path.|
 

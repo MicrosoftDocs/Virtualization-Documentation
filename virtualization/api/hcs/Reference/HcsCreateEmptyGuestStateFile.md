@@ -1,8 +1,16 @@
 # HcsCreateEmptyGuestStateFile
 ## Description
-This function creates an empty guest-state file (.vmgs) for a VM. This file is required in cases where the VM  is expected to be persisted and restarted multiple times. It is configured in the ‘GuestState’ property of the settings document for a VM.
+This function creates an empty guest-state file (.vmgs) for a VM. This file is required in cases where the VM  is expected to be persisted and restarted multiple times. It is configured in the 'GuestState' property of the settings document for a VM.
 
 ## Syntax
+
+```cpp
+HRESULT
+WINAPI
+HcsCreateEmptyRuntimeStateFile(
+    _In_ PCWSTR runtimeStateFilePath
+    );
+```
 
 ### Parameters
 |Parameter     |Description|
@@ -13,6 +21,9 @@ This function creates an empty guest-state file (.vmgs) for a VM. This file is r
 
 
 ### Return Values
-The function returns `S_OK` on success. `HRESULT` error code for failures to create the file.
-
+|Return Value     |Description|
+|---|---|---|---|---|---|---|---|
+|``S_OK``|The function returns on success.|
+|`HRESULT`|Returns error code for failures to create the file.|
+|     |     | 
 
