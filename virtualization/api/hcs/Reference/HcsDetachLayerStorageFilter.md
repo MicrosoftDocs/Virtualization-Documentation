@@ -5,7 +5,14 @@ This function detaches the container storage filter from the root directory of a
 
 ## Syntax
 
-### Parameters
+```cpp
+HRESULT WINAPI
+HcsDetachLayerStorageFilter(
+    _In_ PCWSTR layerPath
+    );
+```
+
+## Parameters
 |Parameter     |Description|
 |---|---|---|---|---|---|---|---| 
 |`layerPath`| Path to the root directory of the layer|
@@ -13,6 +20,8 @@ This function detaches the container storage filter from the root directory of a
 
 
 
-### Return Values
-
-The function returns `S_OK` on success. `HRESULT` error code for failures to detach a filter.
+## Return Values
+|Return Value     |Description|
+|---|---|
+|`S_OK` | The function returns on success.|
+|`HRESULT`| Error code for failures to detach a filter.|

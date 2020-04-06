@@ -5,7 +5,16 @@ Sends a signal to a process in a compute system
 
 ## Syntax
 
-### Parameters
+```cpp
+HRESULT WINAPI
+HcsSignalProcess(
+    _In_ HCS_PROCESS process,
+    _In_ HCS_OPERATION operation,
+    _In_opt_ PCWSTR options
+    );
+```
+
+## Parameters
 |Parameter     |Description|
 |---|---|---|---|---|---|---|---| 
 |`process`| Handle to the process to send the signal to|
@@ -15,9 +24,9 @@ Sends a signal to a process in a compute system
 
 
 
-### Return Values
-|Return Values     |Description|
-|---|---|---|---|---|---|---|---| 
+## Return Values
+|Return Value | Description|
+|---|---|
 |`S_OK`|Returned on success|
 |`HRESULT`|Error code for failures to send the signal to the process|
 |    |    | 

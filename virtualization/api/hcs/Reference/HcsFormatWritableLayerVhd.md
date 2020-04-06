@@ -5,13 +5,22 @@ This function creates and formats a partition that is intended to be used as a w
 
 ## Syntax
 
-### Parameters
+```cpp
+HRESULT WINAPI
+HcsFormatWritableLayerVhd(
+    _In_ HANDLE vhdHandle
+    );
+```
+
+## Parameters
 |Parameter     |Description|
 |---|---|---|---|---|---|---|---| 
 |`vhdHandle`| Handle to a VHD|
 |    |    | 
 
 
-### Return Values
-
-The function returns `S_OK` on success. `HRESULT` error code for failures to initialize the VHD.
+## Return Values
+|Return Value     |Description|
+|---|---|
+|`S_OK` | The function returns on success.|
+|`HRESULT`| Error code for failures to initialize the VHD.|

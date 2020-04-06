@@ -5,7 +5,17 @@ This function exports a container layer. This function is used by an application
 
 ## Syntax
 
-### Parameters
+```cpp
+HRESULT WINAPI
+HcsExportLayer(
+    _In_ PCWSTR layerPath,
+    _In_ PCWSTR exportFolderPath,
+    _In_ PCWSTR layerData,
+    _In_ PCWSTR options
+    );
+```
+
+## Parameters
 |Parameter     |Description|
 |---|---|---|---|---|---|---|---| 
 |`layerPath`| Path of the layer to export|
@@ -16,6 +26,8 @@ This function exports a container layer. This function is used by an application
 
 
 
-### Return Values
-
-The function returns `S_OK` on success. `HRESULT` error code for failures to export the layer.
+## Return Values
+|Return Value    |Description|
+|---|---|
+|`S_OK` |The function returns on success.|
+|`HRESULT`| Error code for failures to export the layer.|

@@ -5,7 +5,14 @@ This function creates an empty runtime-state file (.vmrs) for a VM. This file is
 
 ## Syntax
 
-### Parameters
+```cpp
+HRESULT
+WINAPI
+HcsCreateEmptyRuntimeStateFile(
+    _In_ PCWSTR runtimeStateFilePath
+    );
+```
+## Parameters
 |Parameter     |Description|
 |---|---|---|---|---|---|---|---| 
 |`runtimeStateFilePath`| Full path to the runtime-state file to create|
@@ -13,7 +20,10 @@ This function creates an empty runtime-state file (.vmrs) for a VM. This file is
 
 
 
-### Return Values
-The function returns `S_OK` on success. `HRESULT` error code for failures to create the file.
+## Return Values
+|Return Value | Description|
+|---|---|
+|`S_OK` | The function returns on success.|
+|`HRESULT`| error code for failures to create the file.|
 
 
