@@ -1,6 +1,7 @@
 # HcsCloseProcess
 
 ## Description
+
 Closes the handle to a process in a compute system
 
 ## Syntax
@@ -13,9 +14,8 @@ HcsCloseProcess(
 ```
 
 ## Parameters
+
 |Parameter     |Description|
-|---|---|---|---|---|---|---|---| 
+|---|---|---|---|---|---|---|---|
 |`process`| Process handle to close|
-|    |    | 
-
-
+|    |    |

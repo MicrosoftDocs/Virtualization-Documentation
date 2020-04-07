@@ -3,6 +3,7 @@
 The following section contains the definitions of the host Compute System APIs. The DLL exports a set of C-style Windows API functions, the functions return HRESULT error codes indicating the result of the function call.
 
 ## TODO - all
+
 - Gap: v2 return values
 - Align formatting style (device virtualization has a different format)
 - Align formatting style for return values
@@ -19,9 +20,8 @@ The following section contains the definitions of the host Compute System APIs. 
 - HCSCLoseProcess.md does not have return values. question for devs; does it return values at least and Hresult?
 - Seems HCN (Compute Network) is documented here https://docs.microsoft.com/en-us/windows-server/networking/technologies/hcn/hcn-top
 
-
-
 ## Compute System Operations
+
 |Function   |Description|
 |---|---|---|---|---|---|---|---|
 |[HcsCreateComputeSystem](./HcsCreateComputeSystem.md)|Creates a new compute system|
@@ -51,6 +51,7 @@ The following section contains the definitions of the host Compute System APIs. 
 |   |   |
 
 ## Device Virtualization
+
 |Function   |Description|
 |---|---|---|---|---|---|---|---|
 |[HdvCreateDeviceInstance](./hdv/HdvCreateDeviceInstance.md)|Creates a device instance in the current host and associates it with a device emulation interface and context.|
@@ -72,7 +73,8 @@ The following section contains the definitions of the host Compute System APIs. 
 |   |   |
 
 ## Process Execution
-The following functions enable applications to execute a process in a compute system. For containers, these functions are the main way for an application to start and interact with the workload running in the container. Unlike the compute system operations, these process execution functions are executed synchronously. 
+
+The following functions enable applications to execute a process in a compute system. For containers, these functions are the main way for an application to start and interact with the workload running in the container. Unlike the compute system operations, these process execution functions are executed synchronously.
 
 |Function   |Description|
 |---|---|---|---|---|---|---|---|
@@ -88,6 +90,7 @@ The following functions enable applications to execute a process in a compute sy
 |   |   |
 
 ## Utility Functions for Virtual Machines
+
 The following set of functions allow applications to set up the environment to run virtual machines.
 
 |Function   |Description|
@@ -99,6 +102,7 @@ The following set of functions allow applications to set up the environment to r
 |   |   |
 
 ## Storage Utility Functions for Containers
+
 The following functions allow applications to create and manage the file system and storage environment that is required to run containers.
 
 |Function   |Description|
@@ -115,6 +119,7 @@ The following functions allow applications to create and manage the file system 
 |   |   |
 
 ## Host Operations
+
 The following functions provide functionality that is not specified to a compute system.
 
 |Function   |Description|

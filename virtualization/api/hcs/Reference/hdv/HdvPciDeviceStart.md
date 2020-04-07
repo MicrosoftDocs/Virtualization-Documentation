@@ -1,5 +1,7 @@
 # HDV_PCI_DEVICE_START
 
+## Description
+
 Function called to notify the emulated device that the virtual processors of the VM are about to start.
 
 ## Syntax
@@ -28,10 +30,10 @@ typedef HRESULT (CALLBACK *HDV_PCI_DEVICE_START)(
 ## Requirements
 
 |Parameter     |Description|
-|---|---|---|---|---|---|---|---| 
+|---|---|---|---|---|---|---|---|
 | **Minimum supported client** | Windows 10, version 1607 |
 | **Minimum supported server** | Windows Server 2016 |
 | **Target Platform** | Windows |
 | **Library** | ComputeCore.ext |
 | **Dll** | ComputeCore.ext |
-|    |    | 
+|    |    |

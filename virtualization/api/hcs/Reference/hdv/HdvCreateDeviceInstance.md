@@ -1,5 +1,7 @@
 # HdvCreateDeviceInstance
 
+## Description
+
 Creates a device instance in the current host and associates it with a device emulation interface and context.
 
 ## Syntax
@@ -41,10 +43,10 @@ HdvCreateDeviceInstance(
 ## Requirements
 
 |Parameter     |Description|
-|---|---|---|---|---|---|---|---| 
+|---|---|---|---|---|---|---|---|
 | **Minimum supported client** | Windows 10, version 1607 |
 | **Minimum supported server** | Windows Server 2016 |
 | **Target Platform** | Windows |
 | **Library** | ComputeCore.ext |
 | **Dll** | ComputeCore.ext |
-|    |    | 
+|    |    |

@@ -1,6 +1,7 @@
 # HcsCloseComputeSystem
 
 ## Description
+
 Closes a handle to a compute system
 
 ## Syntax
@@ -14,12 +15,12 @@ HcsCloseComputeSystem(
 ```
 
 ## Parameters
+
 |Parameter     |Description|
-|---|---|---|---|---|---|---|---| 
+|---|---|---|---|---|---|---|---|
 |`computeSystem`| Receives a handle to the compute system.|
-|    |    | 
-
-
+|    |    |
 
 ## Return Values
+
 None

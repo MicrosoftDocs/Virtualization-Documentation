@@ -1,6 +1,7 @@
 # HcsStartComputeSystem
 
 ## Description
+
 Starts a compute system
 
 ## Syntax
@@ -17,11 +18,11 @@ HcsStartComputeSystem(
 ## Parameters
 
 |Parameter     |Description|
-|---|---|---|---|---|---|---|---| 
+|---|---|---|---|---|---|---|---|
 |`computeSystem`| Handle to the compute system to start|
 |`operation`| Handle to the operation that tracks the start operation|
-|`options`| Optional JSON document specifying start options| 
-|    |    | 
+|`options`| Optional JSON document specifying start options|
+|    |    |
 
 ## Return Values
 

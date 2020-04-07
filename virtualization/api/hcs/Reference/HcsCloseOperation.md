@@ -1,8 +1,8 @@
 # HcsCloseOperation
 
 ## Description
-Close the operation, freeing any tracking resources associated with the operation.
 
+Close the operation, freeing any tracking resources associated with the operation.
 
 ## Syntax
 
@@ -14,13 +14,13 @@ HcsCloseOperation(
 
 ```
 
-
 ## Parameters
-|Parameter     |Description|
-|---|---|---|---|---|---|---|---| 
-|`operation`| Handle to an operation|
-|    |    | 
 
+|Parameter     |Description|
+|---|---|---|---|---|---|---|---|
+|`operation`| Handle to an operation|
+|    |    |
 
 ## Return Values
+
 If the operation is in progress it will be cancelled.  An operation can be closed from within a callback.
