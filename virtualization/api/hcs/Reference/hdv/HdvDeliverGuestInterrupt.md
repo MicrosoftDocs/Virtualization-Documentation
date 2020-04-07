@@ -15,23 +15,20 @@ HdvDeliverGuestInterrupt(
 
 ## Parameters
 
-`Requestor` 
-
-Handle to the device requesting the interrupt.
-
-`MsiAddress`
-
-The guest address to which the interrupt message is written.
-
-`MsiData`
-
-The data to write at MsiAddress.
+|Parameter     |Description|
+|---|---|---|---|---|---|---|---|
+|`Requestor` |Handle to the device requesting the interrupt.|
+|`MsiAddress` |The guest address to which the interrupt message is written.|
+|`MsiData`|The data to write at MsiAddress.|
+|    |    |
 
 ## Return Values
 
-If the function succeeds, the return value is `S_OK`.
-
-If the function fails, the return value is an  `HRESULT` error code.
+|Return Value     |Description|
+|---|---|
+|`S_OK` | Returned if function succeeds.|
+|`HRESULT` | An error code is returned if the function fails.
+|     |     |
 
 ## Requirements
 

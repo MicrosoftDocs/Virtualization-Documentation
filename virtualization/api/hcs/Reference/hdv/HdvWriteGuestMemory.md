@@ -16,27 +16,20 @@ HdvWriteGuestMemory(
 
 ## Parameters
 
-`Requestor` 
-
-Handle to the device requesting memory access.
-
-`GuestPhysicalAddress` 
-
-Guest physical address at which the write operation starts.
-
-`ByteCount` 
-
-Number of bytes to write.
-
-`Buffer` 
-
-Source buffer for the write operation.
+|Parameter     |Description|
+|---|---|---|---|---|---|---|---|
+|`Requestor` |Handle to the device requesting memory access.|
+|`GuestPhysicalAddress` |Guest physical address at which the write operation starts.|
+|`ByteCount` |Number of bytes to write.|
+|`Buffer` |Source buffer for the write operation.|
 
 ## Return Values
 
-If the function succeeds, the return value is `S_OK`.
-
-If the function fails, the return value is an  `HRESULT` error code.
+|Return Value     |Description|
+|---|---|
+|`S_OK` | Returned if function succeeds.|
+|`HRESULT` | An error code is returned if the function fails.
+|     |     |
 
 ## Requirements
 

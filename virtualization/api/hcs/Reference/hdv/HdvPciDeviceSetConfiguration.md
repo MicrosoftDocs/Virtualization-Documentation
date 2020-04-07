@@ -14,23 +14,20 @@ typedef HRESULT (CALLBACK *HDV_PCI_DEVICE_SET_CONFIGURATION)(
 
 ## Parameters
 
-`DeviceContext` 
-
-Context pointer that was supplied to HdvCreateDeviceInstance
-
-`ConfigurationValueCount` 
-
-Number of elements in the ConfigurationValues array
-
-`ConfigurationValues` 
-
-Array with strings representing the configurations values. These strings are provided in the VM’s configuration.
+|Parameter     |Description|
+|---|---|---|---|---|---|---|---|
+|`DeviceContext` |Context pointer that was supplied to HdvCreateDeviceInstance|
+|`ConfigurationValueCount` |Number of elements in the ConfigurationValues array|
+|`ConfigurationValues` |Array with strings representing the configurations values. These strings are provided in the VM's configuration.|
+|    |    |
 
 ## Return Values
 
-If the function succeeds, the return value is `S_OK`.
-
-If the function fails, the return value is an  `HRESULT` error code.
+|Return Value     |Description|
+|---|---|
+|`S_OK` | Returned if function succeeds.|
+|`HRESULT` | An error code is returned if the function fails.
+|     |     |
 
 ## Requirements
 

@@ -14,26 +14,21 @@ typedef HRESULT (CALLBACK *HDV_PCI_DEVICE_GET_DETAILS)(
 
 ## Parameters
 
-`DeviceContext` 
-
-Context pointer that was supplied to HdvCreateDeviceInstance
-
-`PnpId` 
-
-Receives the vendor / device ID / ... information about the device
-
-`BarCount`
-Specifies the size of the output buffer provided in probedBars. It should be large enough to receive `HDV_MAX_PCI_BAR_COUNT` elements.
-
-`ProbedBars` 
-
-Receives the results for probing the MMIO BARs.
+|Parameter     |Description|
+|---|---|---|---|---|---|---|---|
+|`DeviceContext` |Context pointer that was supplied to HdvCreateDeviceInstance|
+|`PnpId` |Receives the vendor / device ID / ... information about the device|
+|`BarCount`|Specifies the size of the output buffer provided in probedBars. It should be large enough to receive `HDV_MAX_PCI_BAR_COUNT` elements.|
+|`ProbedBars` |Receives the results for probing the MMIO BARs.|
+|    |    |
 
 ## Return Values
 
-If the function succeeds, the return value is `S_OK`.
-
-If the function fails, the return value is an  `HRESULT` error code.
+|Return Value     |Description|
+|---|---|
+|`S_OK` | Returned if function succeeds.|
+|`HRESULT` | An error code is returned if the function fails.
+|     |     |
 
 ## Requirements
 
