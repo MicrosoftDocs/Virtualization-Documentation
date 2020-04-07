@@ -1,5 +1,7 @@
 # HDV_PCI_READ_INTERCEPTED_MEMORY
 
+## Description
+
 Function called to execute an intercepted MMIO read for the emulated device.
 
 ## Syntax
@@ -42,4 +44,4 @@ typedef HRESULT (CALLBACK *HDV_PCI_READ_INTERCEPTED_MEMORY)(
 | **Target Platform** | Windows |
 | **Library** | ComputeCore.ext |
 | **Dll** | ComputeCore.ext |
-|    |    | 
+|    |    |
