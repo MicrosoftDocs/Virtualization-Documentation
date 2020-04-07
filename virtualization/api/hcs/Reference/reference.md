@@ -14,7 +14,7 @@ The following section contains the definitions of the host Compute System APIs. 
 - HdvReadGuestMemory.md has content for HdvInitializeDeviceHost
 - HdvTeardownDeviceHost.md has content for HdvTeardownDeviceHost but is named HdvInitializeDeviceHost
 - Right description for the operation parameter in HcsCreateProcess and others in the Process Execution group of functions? And HcsExportLayer
-- HcsRegisterProcessCallback is not in v2. Make sure to remove HcsRegisterProcessCallback.md from public view. Same with 
+- HcsRegisterProcessCallback is not in v2. Make sure to remove HcsRegisterProcessCallback.md from public view. Same with
     - Im assuming that HcsSetProcessCallback should also be removed from public view.
 - HcsDestroyLayer.md did not exist
 - HCSCLoseProcess.md does not have return values. question for devs; does it return values at least and Hresult?
