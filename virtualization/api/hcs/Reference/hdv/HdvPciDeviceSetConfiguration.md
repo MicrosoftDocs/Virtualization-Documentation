@@ -1,5 +1,7 @@
 # HDV_PCI_DEVICE_SET_CONFIGURATION
 
+## Description
+
 Function invoked to set the configuration of the emulated device.
 
 ## Syntax
@@ -32,10 +34,10 @@ typedef HRESULT (CALLBACK *HDV_PCI_DEVICE_SET_CONFIGURATION)(
 ## Requirements
 
 |Parameter     |Description|
-|---|---|---|---|---|---|---|---| 
+|---|---|---|---|---|---|---|---|
 | **Minimum supported client** | Windows 10, version 1607 |
 | **Minimum supported server** | Windows Server 2016 |
 | **Target Platform** | Windows |
 | **Library** | ComputeCore.ext |
 | **Dll** | ComputeCore.ext |
-|    |    | 
+|    |    |

@@ -1,5 +1,7 @@
 # HDV_PCI_DEVICE_GET_DETAILS
 
+## Description
+
 Function invoked to query the PCI description of the emulated device. This information is used when presenting the device to the guest partition.
 
 ## Syntax
@@ -33,10 +35,10 @@ typedef HRESULT (CALLBACK *HDV_PCI_DEVICE_GET_DETAILS)(
 ## Requirements
 
 |Parameter     |Description|
-|---|---|---|---|---|---|---|---| 
+|---|---|---|---|---|---|---|---|
 | **Minimum supported client** | Windows 10, version 1607 |
 | **Minimum supported server** | Windows Server 2016 |
 | **Target Platform** | Windows |
 | **Library** | ComputeCore.ext |
 | **Dll** | ComputeCore.ext |
-|    |    | 
+|    |    |

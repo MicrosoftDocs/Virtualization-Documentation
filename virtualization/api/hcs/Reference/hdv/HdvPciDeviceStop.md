@@ -1,5 +1,7 @@
 # HDV_PCI_DEVICE_STOP
 
+## Description
+
 Function called to notify the emulated device that the virtual processors of the VM are about to be stopped.
 
 ## Syntax
@@ -28,10 +30,10 @@ typedef void (CALLBACK *HDV_PCI_DEVICE_STOP)(
 ## Requirements
 
 |Parameter     |Description|
-|---|---|---|---|---|---|---|---| 
+|---|---|---|---|---|---|---|---|
 | **Minimum supported client** | Windows 10, version 1607 |
 | **Minimum supported server** | Windows Server 2016 |
 | **Target Platform** | Windows |
 | **Library** | ComputeCore.ext |
 | **Dll** | ComputeCore.ext |
-|    |    | 
+|    |    |

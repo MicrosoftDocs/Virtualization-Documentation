@@ -1,9 +1,11 @@
 # HcsResumeComputeSystem
 
 ## Description
+
 Resumes the execution of a compute system
 
 ## Syntax
+
 ```cpp
 HRESULT WINAPI
 HcsResumeComputeSystem(
@@ -12,15 +14,18 @@ HcsResumeComputeSystem(
     _In_opt_ PCWSTR options
     );
 ```
+
 ## Parameters
+
 |Parameter     |Description|
-|---|---|---|---|---|---|---|---| 
+|---|---|---|---|---|---|---|---|
 |`computeSystem`| Handle to the compute system to resume|
 |`operation`| Handle to the operation that tracks the resume operation|
-|`options`| Optional JSON document specifying resume options| 
-|    |    | 
+|`options`| Optional JSON document specifying resume options|
+|    |    |
 
 ## Return Values
+
 |Return Value | Description|
 |---|---|
 |`HCS_E_OPERATION_PENDING`|Returned if resuming the compute system was successfully initiated|

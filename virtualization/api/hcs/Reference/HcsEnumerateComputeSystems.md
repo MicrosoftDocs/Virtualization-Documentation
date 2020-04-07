@@ -1,6 +1,7 @@
 # HcsEnumerateComputeSystems
 
 ## Description
+
 Enumerates existing compute systems
 
 ## Syntax
@@ -14,17 +15,16 @@ HcsEnumerateComputeSystems(
 
 ```
 
-
 ## Parameters
+
 |Parameter     |Description|
-|---|---|---|---|---|---|---|---| 
+|---|---|---|---|---|---|---|---|
 |`query`|Optional JSON document specifying a query for specific compute systems|
 |`operation`| Handle to the operation that tracks the enumerate operation|
-|    |    | 
-
-
+|    |    |
 
 ## Return Values
+
 |Return Value | Description|
 |---|---|
 |`S_OK`|Returned on success|

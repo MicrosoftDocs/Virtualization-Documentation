@@ -1,8 +1,8 @@
 # HcsGetOperationContext
 
 ## Description
-Gets the context pointer of an operation.
 
+Gets the context pointer of an operation.
 
 ## Syntax
 
@@ -14,13 +14,13 @@ HcsGetOperationContext(
 
 ```
 
-
 ## Parameters
-|Parameter     |Description|
-|---|---|---|---|---|---|---|---| 
-|`operation`| Handle to an operation|
-|    |    | 
 
+|Parameter     |Description|
+|---|---|---|---|---|---|---|---|
+|`operation`| Handle to an operation|
+|    |    |
 
 ## Return Values
+
 Returns context pointer stored in the operation.
