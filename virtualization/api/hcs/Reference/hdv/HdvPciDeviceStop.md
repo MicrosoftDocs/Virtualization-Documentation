@@ -12,15 +12,18 @@ typedef void (CALLBACK *HDV_PCI_DEVICE_STOP)(
 
 ## Parameters
 
-`DeviceContext` 
-
-Context pointer that was supplied to HdvCreateDeviceInstance
+|Parameter     |Description|
+|---|---|---|---|---|---|---|---|
+|`DeviceContext` |Context pointer that was supplied to HdvCreateDeviceInstance|
+|    |    |
 
 ## Return Values
 
-If the function succeeds, the return value is `S_OK`.
-
-If the function fails, the return value is an  `HRESULT` error code.
+|Return Value     |Description|
+|---|---|
+|`S_OK` | Returned if function succeeds.|
+|`HRESULT` | An error code is returned if the function fails.
+|     |     |
 
 ## Requirements
 

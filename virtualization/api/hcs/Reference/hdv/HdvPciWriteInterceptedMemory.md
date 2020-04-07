@@ -16,31 +16,22 @@ typedef HRESULT (CALLBACK *HDV_PCI_WRITE_INTERCEPTED_MEMORY)(
 
 ## Parameters
 
-`DeviceContext` 
-
-Context pointer that was supplied to HdvCreateDeviceInstance.
-
-`BarIndex` 
-
-Index to the BAR the write operation pertains to.
-
-`Offset` 
-
-Offset in bytes from the base of the BAR to write.
-
-`Length` 
-
-Length in bytes to write (1 / 2 / 4 / 8 bytes).
-
-`Value` 
-
-Value to write.
+|Parameter     |Description|
+|---|---|---|---|---|---|---|---|
+|`DeviceContext` |Context pointer that was supplied to HdvCreateDeviceInstance.|
+|`BarIndex` |Index to the BAR the write operation pertains to.|
+|`Offset` |Offset in bytes from the base of the BAR to write.|
+|`Length` |Length in bytes to write (1 / 2 / 4 / 8 bytes).|
+|`Value` |Value to write.|
+|    |    |
 
 ## Return Values
 
-If the function succeeds, the return value is `S_OK`.
-
-If the function fails, the return value is an  `HRESULT` error code.
+|Return Value     |Description|
+|---|---|
+|`S_OK` | Returned if function succeeds.|
+|`HRESULT` | An error code is returned if the function fails.
+|     |     |
 
 ## Requirements
 
