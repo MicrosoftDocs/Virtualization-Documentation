@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WindowsPerformanceRecorder Version="1.0" Author="WPR Profile Generator" Copyright="Microsoft Corporation" Company="Microsoft Corporation">
+    <Profiles>
+        <SystemCollector Id="SystemCollector" Name="NT Kernel Logger">
+            <BufferSize Value="1024" />
+            <Buffers Value="48" />
+        </SystemCollector>
+
+        <EventCollector Id="EventCollector_HCSTraceSession" Name="HCSTraceSession">
+            <BufferSize Value="512" />
+            <Buffers Value="32" />
+        </EventCollector>
+
+        <EventCollector Id="EventCollector_HCSTraceSession_Verbose" Name="HCSTraceSession">
+            <BufferSize Value="1024" />
+            <Buffers Value="128" />
+        </EventCollector>
+
+        <SystemProvider Id="SystemProvider">
+            <Keywords>
+                <Keyword Value="Loader" />
+                <Keyword Value="ProcessThread" />
+            </Keywords>
+        </SystemProvider>
+
+        <EventProvider Id="EventProvider_HvSocketTraceProvider" Name="B2ED3BDB-CD74-5B2C-F660-85079CA074B3" NonPagedMemory="true">
+            <Keywords>
+                <Keyword Value="0x0"/>
+            </Keywords>
+        </EventProvider>
+        
+        <EventProvider Id="HCS_NoTransport_Provider" Name="80CE50DE-D264-4581-950D-ABADEEE0D340" Level="6">
+            <Keywords>
+                <Keyword Value="0xF000FFFFF47D" />
+            </Keywords>
+        </EventProvider>
+
+        <EventProvider Id="HCS_BasicSocket_Provider" Name="80CE50DE-D264-4581-950D-ABADEEE0D340" Level="6">
+            <Keywords>
+                <Keyword Value="0xF000FFFFF1FF" />
+            </Keywords>
+        </EventProvider>
+
+        <EventProvider Id="HCS_Full_Provider" Name="80CE50DE-D264-4581-950D-ABADEEE0D340" Level="6">
+            <Keywords>
+                <Keyword Value="0xF000FFFFFFFF" />
+            </Keywords>
+        </EventProvider>
+
+        <EventProvider Id="HCS_VmComputeDll" Name="af7fd3a7-b248-460c-a9f5-fec39ef8468c" Level="6">
+            <Keywords>
+                <Keyword Value="0xFFFFFFFFFFFFFFFF" />
+            </Keywords>
+        </EventProvider>
+
+        <EventProvider Id="ContainerDll_Provider" Name="67EB0417-9297-42AE-A1D9-98BFEB359059" Level="6">
+            <Keywords>
+                <Keyword Value="0xF000FFFFFFFF" />
+            </Keywords>
+        </EventProvider>
+
+        <EventProvider Id="ContainerStorage_Provider" Name="2551390d-5927-5c84-6f0a-027a7e78d38d" Level="6">
+            <Keywords>
+                <Keyword Value="0xF000FFFFFFFF" />
+            </Keywords>
+        </EventProvider>
+
+        <EventProvider Id="HyperV_Worker" Name="51ddfa29-d5c8-4803-be4b-2ecb715570fe" Level="6">
+            <Keywords>
+                <Keyword Value="0xFFFFFFFFFFFFFFFF" />
+            </Keywords>
+        </EventProvider>
+
+        <EventProvider Id="HyperV_Worker_Telemetry" Name="06C601B3-6957-4F8C-A15F-74875B24429D" Level="6">
+            <Keywords>
+                <Keyword Value="0xFFFFFFFFFFFFFFFF" />
+            </Keywords>
+        </EventProvider>
+        
+        <EventProvider Id="HyperV_Chipset" Name="de9ba731-7f33-4f44-98c9-6cac856b9f83" Level="6">
+            <Keywords>
+                <Keyword Value="0xFFFFFFFFFFFFFFFF" />
+            </Keywords>
+        </EventProvider>
+
+        <EventProvider Id="HyperV_GuestCrash" Name="9a02f67c-133d-58be-ecad-0d891d8b6fd1" Level="5">
+            <Keywords>
+                <Keyword Value="0xFFFFFFFFFFFFFFFF" />
+            </Keywords>
+        </EventProvider>
+
+        <EventProvider Id="HyperV_GuestCrash_Verbose" Name="9a02f67c-133d-58be-ecad-0d891d8b6fd1" Level="6">
+            <Keywords>
+                <Keyword Value="0xFFFFFFFFFFFFFFFF" />
+            </Keywords>
+        </EventProvider>
+
+        <EventProvider Id="HyperV_GuestCrash_EventLog" Name="C7C9E4F7-C41D-5C68-F104-D72A920016C7" Level="6">
+            <Keywords>
+                <Keyword Value="0xFFFFFFFFFFFFFFFF" />
+            </Keywords>
+        </EventProvider>
+
+        <EventProvider Id="HyperV_vSMB" Name="9498441b-f0e0-4331-a5ad-a3e77e0ff2f4" Level="7">
+            <Keywords>
+                <Keyword Value="0xFFFFFFFFFFFFFFFF" />
+            </Keywords>
+        </EventProvider>
+
+        <EventProvider Id="HyperV_vSMB_EventLog" Name="7b0ea079-e3bc-424a-b2f0-e3d8478d20" Level="7">
+            <Keywords>
+                <Keyword Value="0xFFFFFFFFFFFFFFFF" />
+            </Keywords>
+        </EventProvider>
+    
+        <EventProvider Id="EventProvider_VidTraceProvider" Name="5931D877-4860-4ee7-A95C-610A5F0D1407" Level="6" NonPagedMemory="true">
+            <Keywords>
+                <Keyword Value="0xFFFFFFFFFFFFFFFF" />
+            </Keywords>
+        </EventProvider>
+        
+        <EventProvider Id="WerReporting" Name="cc79cf77-70d9-4082-9b52-23f3a3e92fe4" Level="6">
+            <Keywords>
+                <Keyword Value="0xFFFFFFFFFFFFFFFF" />
+            </Keywords>
+        </EventProvider>
+
+        <EventProvider Id="WerFaultReporting" Name="1377561d-9312-452c-ad13-c4a1c9c906e0" Level="6">
+            <Keywords>
+                <Keyword Value="0xFFFFFFFFFFFFFFFF" />
+            </Keywords>
+        </EventProvider>
+
+        <EventProvider Id="WindowsRpc" Name="6ad52b32-d609-4be9-ae07-ce8dae937e39" Level="4">
+            <Keywords>
+                <Keyword Value="0xFFFFFFFFFFFFFFFF" />
+            </Keywords>
+        </EventProvider>
+        
+        <EventProvider Id="ContainerManager_Provider" Name="9D911DDB-D45F-41C3-B766-D566D2655C4A" Level="6">
+            <Keywords>
+                <Keyword Value="0xFFFFFFFFFFFF" />
+            </Keywords>
+        </EventProvider>
+        
+        <!-- Test providers -->
+        <EventProvider Id="EventProvider_Microsoft.OSGENG.Testing.TaefEngine" Name="70d27130-f2f3-4365-b790-d31223254ef4"/>
+        <EventProvider Id="EventProvider_Microsoft.Windows.TestExecution.WexLogger" Name="40c4df8b-00a9-5159-62bc-9bbc5ee78a29"/>
+
+        <Profile Id="Rpc.Verbose.File" Name="Rpc" Description="Windows RPC tracing" LoggingMode="File" DetailLevel="Verbose">
+            <Collectors>
+                <EventCollectorId Value="EventCollector_HCSTraceSession">
+                    <EventProviders>
+                        <EventProviderId Value="WindowsRpc" />
+                    </EventProviders>
+                </EventCollectorId>
+            </Collectors>
+        </Profile>
+        
+        <Profile Id="Vid.Verbose.File" Name="Vid" Description="VID Tracing" LoggingMode="File" DetailLevel="Verbose">
+            <Collectors>
+                <EventCollectorId Value="EventCollector_HCSTraceSession">
+                    <EventProviders>
+                        <EventProviderId Value="EventProvider_VidTraceProvider" />
+                    </EventProviders>
+                </EventCollectorId>
+            </Collectors>
+        </Profile>
+        
+        <Profile Id="Hcs.Verbose.File" Name="Hcs" Description="[For RS1] HCS (host compute service) tracing without transport or IO logging" LoggingMode="File" DetailLevel="Verbose">
+            <Collectors>
+                <SystemCollectorId Value="SystemCollector">
+                    <SystemProviderId Value="SystemProvider" />
+                </SystemCollectorId>
+                <EventCollectorId Value="EventCollector_HCSTraceSession">
+                    <EventProviders>
+                        <EventProviderId Value="HCS_NoTransport_Provider" />
+                        <EventProviderId Value="HCS_VmComputeDll" />
+                        <EventProviderId Value="WerReporting" />
+                        <EventProviderId Value="WerFaultReporting" />
+                        <EventProviderId Value="HyperV_Worker" />
+                        <EventProviderId Value="HyperV_Worker_Telemetry" />
+                        <EventProviderId Value="HyperV_Chipset" />
+                    </EventProviders>
+                </EventCollectorId>
+            </Collectors>
+        </Profile>
+
+        <Profile Id="HcsWithIo.Verbose.File" Name="HcsWithIo" Description="HCS (host compute service) tracing with transport and IO logging" LoggingMode="File" DetailLevel="Verbose">
+            <Collectors>
+                <SystemCollectorId Value="SystemCollector">
+                    <SystemProviderId Value="SystemProvider" />
+                </SystemCollectorId>
+                <EventCollectorId Value="EventCollector_HCSTraceSession_Verbose">
+                    <EventProviders>
+                        <EventProviderId Value="HCS_Full_Provider" />
+                        <EventProviderId Value="HCS_VmComputeDll" />
+                        <EventProviderId Value="WerReporting" />
+                        <EventProviderId Value="WerFaultReporting" />
+                        <EventProviderId Value="HyperV_Worker" />
+                        <EventProviderId Value="HyperV_Worker_Telemetry" />
+                        <EventProviderId Value="HyperV_Chipset" />
+                        <EventProviderId Value="HyperV_GuestCrash_Verbose" />
+                        <EventProviderId Value="HyperV_GuestCrash_EventLog" />
+                    </EventProviders>
+                </EventCollectorId>
+            </Collectors>
+        </Profile>
+
+        <Profile Id="HcsWithVsmb.Verbose.File" Name="HcsWithVsmb" Description="HCS (host compute service) tracing with vSMB WPP" LoggingMode="File" DetailLevel="Verbose">
+            <Collectors>
+                <SystemCollectorId Value="SystemCollector">
+                    <SystemProviderId Value="SystemProvider" />
+                </SystemCollectorId>
+                <EventCollectorId Value="EventCollector_HCSTraceSession">
+                    <EventProviders>
+                        <EventProviderId Value="HCS_Full_Provider" />
+                        <EventProviderId Value="HCS_VmComputeDll" />
+                        <EventProviderId Value="WerReporting" />
+                        <EventProviderId Value="WerFaultReporting" />
+                        <EventProviderId Value="HyperV_Worker" />
+                        <EventProviderId Value="HyperV_Worker_Telemetry" />
+                        <EventProviderId Value="HyperV_Chipset" />
+                        <EventProviderId Value="HyperV_GuestCrash" />
+                        <EventProviderId Value="HyperV_GuestCrash_EventLog" />
+                        <EventProviderId Value="HyperV_vSMB" />
+                    </EventProviders>
+                </EventCollectorId>
+            </Collectors>
+        </Profile>
+
+        <Profile Id="HcsWithHvSocket.Verbose.File" Name="HcsWithHvSocket" Description="HCS (host compute service) tracing with transport and hvsocket logging" LoggingMode="File" DetailLevel="Verbose">
+            <Collectors>
+                <SystemCollectorId Value="SystemCollector">
+                    <SystemProviderId Value="SystemProvider" />
+                </SystemCollectorId>
+                <EventCollectorId Value="EventCollector_HCSTraceSession">
+                    <EventProviders>
+                        <EventProviderId Value="HCS_Full_Provider" />
+                        <EventProviderId Value="HCS_VmComputeDll" />
+                        <EventProviderId Value="WerReporting" />
+                        <EventProviderId Value="WerFaultReporting" />
+                        <EventProviderId Value="HyperV_Worker" />
+                        <EventProviderId Value="HyperV_Worker_Telemetry" />
+                        <EventProviderId Value="HyperV_Chipset" />
+                        <EventProviderId Value="HyperV_GuestCrash" />
+                        <EventProviderId Value="HyperV_GuestCrash_EventLog" />
+                        <EventProviderId Value="EventProvider_HvSocketTraceProvider" />
+                    </EventProviders>
+                </EventCollectorId>
+            </Collectors>
+        </Profile>
+
+        <Profile Id="HcsArgon.Verbose.File" Name="HcsArgon" Description="HCS (host compute service) tracing for Windows Containers" LoggingMode="File" DetailLevel="Verbose">
+            <Collectors>
+                <SystemCollectorId Value="SystemCollector">
+                    <SystemProviderId Value="SystemProvider" />
+                </SystemCollectorId>
+                <EventCollectorId Value="EventCollector_HCSTraceSession">
+                    <EventProviders>
+                        <EventProviderId Value="HCS_NoTransport_Provider" />
+                        <EventProviderId Value="HCS_VmComputeDll" />
+                        <EventProviderId Value="ContainerDll_Provider" />
+                        <EventProviderId Value="ContainerStorage_Provider" />
+                        <EventProviderId Value="WerReporting" />
+                        <EventProviderId Value="WerFaultReporting" />
+                    </EventProviders>
+                </EventCollectorId>
+            </Collectors>
+        </Profile>
+
+        <Profile Id="UnitTests.Verbose.File" Name="UnitTests" Description="HCS (host compute service) tracing for Unit Tests" LoggingMode="File" DetailLevel="Verbose">
+            <Collectors>
+                <SystemCollectorId Value="SystemCollector">
+                    <SystemProviderId Value="SystemProvider" />
+                </SystemCollectorId>
+                <EventCollectorId Value="EventCollector_HCSTraceSession">
+                    <EventProviders>
+                        <EventProviderId Value="HCS_Full_Provider" />
+                        <EventProviderId Value="WerReporting" />
+                        <EventProviderId Value="WerFaultReporting" />
+                        <EventProviderId Value="EventProvider_Microsoft.OSGENG.Testing.TaefEngine" />
+                    </EventProviders>
+                </EventCollectorId>
+            </Collectors>
+        </Profile>
+
+        <Profile Id="Taef.Verbose.File" Name="Taef" Description="TAEF related providers" LoggingMode="File" DetailLevel="Verbose">
+            <Collectors>
+                <EventCollectorId Value="EventCollector_HCSTraceSession">
+                    <EventProviders>
+                        <EventProviderId Value="EventProvider_Microsoft.OSGENG.Testing.TaefEngine" />
+                        <EventProviderId Value="EventProvider_Microsoft.Windows.TestExecution.WexLogger" />                        
+                    </EventProviders>
+                </EventCollectorId>
+            </Collectors>
+        </Profile>
+        
+    </Profiles>
+</WindowsPerformanceRecorder>
+
