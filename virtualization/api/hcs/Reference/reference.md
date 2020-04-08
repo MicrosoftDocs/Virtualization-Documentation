@@ -126,5 +126,6 @@ The following functions provide functionality that is not specified to a compute
 |---|---|---|---|---|---|---|---|
 |[HcsGetServiceProperties](./HcsGetServiceProperties.md)|Returns the properties of the Host Compute System|
 |[HcsModifyServiceSettings](./HcsModifyServiceSettings.md)|Modifies the settings of the Host Compute System|
-|[HcsSubmitWerReport](./HcsSubmitWerReport.md)|Submits a WER report for a bugcheck of a VM|
+|[HcsSubmitW
+erReport](./HcsSubmitWerReport.md)|Submits a WER report for a bugcheck of a VM|
 |   |   |
