@@ -20,7 +20,7 @@ Developers can export the backup data through the Hyper-V WMI interfaces (as use
 Developers can use the SetVirtualDiskInformation, GetVirtualDiskInformation and QueryChangesVirtualDisk APIs on the Virtual Hard Disk Win32 API set as documented here: https://docs.microsoft.com/windows/desktop/api/_vhd/ 
 Note that to use these APIs, Hyper-V WMI still needs to be used to create reference points on associated virtual machines.  These Win32 APIs then allow for efficient access to the data of the backed up virtual machine.  The Win32 APIs do have several limitations:
 * They can only be accessed locally
-* The do not support reading data from shared virtual hard disk files
+* They do not support reading data from shared virtual hard disk files
 * They return data addresses that are relative to the internal structure of the virtual hard disk
 
 ### Remote Shared Virtual Disk Protocol
