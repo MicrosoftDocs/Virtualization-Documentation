@@ -1,0 +1,194 @@
+### YamlMime:Hub
+
+title: Virtualization documentation # < 60 chars
+summary: Find related links to virtualization on Windows. # < 160 chars
+# brand: aspnet | azure | dotnet | dynamics | m365 | ms-graph | office | power-bi | power-platform | sql | sql-server | vs | visual-studio | windows | xamarin
+brand: windows
+
+metadata:
+  title: Virtualization documentation # Required; page title displayed in search results. Include the brand. < 60 chars.
+  description: Find related links to virtualization on Windows. # Required; article description that is displayed in search results. < 160 chars.
+  services: virtual-machines-windows
+  ms.service: virtual-machines-windows #Required; service per approved list. service slug assigned to your service by ACOM.
+  ms.topic: hub-page # Required
+  author: scooley #Required; your GitHub user alias, with correct capitalization.
+  ms.prod: virtualization
+  ms.date: 03/31/2017 #Required; mm/dd/yyyy format.
+  ms.assetid: addcfda8-1522-4137-bc02-14cbb1ff838f
+
+# highlightedContent section (optional)
+# Maximum of 8 items
+highlightedContent:
+# itemType: architecture | concept | deploy | download | get-started | how-to-guide | learn | overview | quickstart | reference | sample | tutorial | video | whats-new
+  items:
+    # Card
+    - title: Join the Windows Insider Program
+      itemType: overview
+      url: https://insider.windows.com/
+    # Card
+    - title: Did we miss something? Let us know.
+      itemType: reference
+      url: https://github.com/Microsoft/Virtualization-Documentation/issues
+    # Card
+    - title: Read the Virtualization blog.
+      itemType: learn
+      url: https://techcommunity.microsoft.com/t5/Virtualization/bg-p/Virtualization
+    # Card
+    - title: Windows Container Forums
+      itemType: reference
+      url: https://social.msdn.microsoft.com/Forums/home?forum=windowscontainers
+    # Card
+    - title: Hyper-V Forums
+      itemType: reference
+      url: https://social.technet.microsoft.com/Forums/home?forum=winserverhyperv     
+
+# conceptualContent section (optional)
+conceptualContent:
+# itemType: architecture | concept | deploy | download | get-started | how-to-guide | learn | overview | quickstart | reference | sample | tutorial | video | whats-new
+  title: Virtualization on Windows # < 60 chars (optional)
+  summary: Find related links to Containers and Hyper-V on Windows. # < 160 chars (optional)
+  items:
+    # Card
+    - title: About Containers
+      links:
+        - url: /virtualization/windowscontainers/about/
+          itemType: overview
+          text: About containers
+        - url: /virtualization/windowscontainers/troubleshooting
+          itemType: how-to-guide
+          text: Troubleshooting
+        - url: /windows-server/administration/performance-tuning/role/windows-server-container/
+          itemType: concept
+          text: Performance tuning
+    # Card
+    - title: Windows Containers Quick Starts
+      links:
+        - url: /virtualization/windowscontainers/quick-start/quick-start-windows-10
+          itemType: quickstart
+          text: Start using containers on Windows 10
+        - url: /virtualization/windowscontainers/quick-start/quick-start-windows-server
+          itemType: quickstart
+          text: Start using containers on Windows Server
+    # Card
+    - title: Windows Containers Management Tools
+      links:
+        - url: https://www.docker.com/docker-windows
+          itemType: overview
+          text: Docker
+        - url: https://azure.microsoft.com/services/kubernetes-service/
+          itemType: overview
+          text: Azure Kubernetes Service (AKS)
+        - url: https://kubernetes.io/
+          itemType: overview
+          text: Kubernetes
+    # Card
+    - title: Container Samples
+      links:
+        - url: /virtualization/windowscontainers/samples#Application-Frameworks
+          itemType: sample
+          text: Application Frameworks
+        - url: /virtualization/windowscontainers/samples#programing-languages
+          itemType: sample
+          text: Programming Languages
+        - url: /virtualization/windowscontainers/samples#databases
+          itemType: sample
+          text: Databases
+        - url: /virtualization/windowscontainers/samples#infrastructure-and-ci-tools
+          itemType: sample
+          text: Infrastructure Tools
+    # Card
+    - title: About Hyper-V
+      links:
+        - url: /virtualization/hyper-v-on-windows/about/
+          itemType: overview
+          text: What is virtualization?
+        - url: /virtualization/hyper-v-on-windows/reference/hyper-v-requirements
+          itemType: reference
+          text: Hyper-V System Requirements
+    # Card
+    - title: Hyper-V Quick Starts
+      links:
+        - url: /virtualization/hyper-v-on-windows/quick-start/enable-hyper-v
+          itemType: quickstart
+          text: Enable Hyper-V
+        - url: /virtualization/hyper-v-on-windows/quick-start/quick-create-virtual-machine
+          itemType: quickstart
+          text: Create a virtual machine
+    # Card
+    - title: Hyper-V Management Tools
+      links:
+        - url: https://docs.microsoft.com/powershell/module/hyper-v/index?view=win10-ps
+          itemType: reference
+          text: PowerShell
+        - url: https://docs.microsoft.com/windows/desktop/HyperV_v2/windows-virtualization-portal
+          itemType: reference
+          text: WMI
+    # Card
+    - title: Hyper-V on Windows Server
+      links:
+        - url: /windows-server/virtualization/virtualization
+          itemType: overview
+          text: Overview
+        - url: /windows-server/virtualization/hyper-v/get-started/get-started-with-hyper-v-on-windows
+          itemType: get-started
+          text: Evaluate Hyper-V
+        - url: /windows-server/virtualization/hyper-v/plan/plan-hyper-v-on-windows-server
+          itemType: deploy
+          text: Plan Hyper-V deployment
+        - url: /windows-server/virtualization/hyper-v/deploy/deploy-hyper-v-on-windows-server
+          itemType: deploy
+          text: Deploy Hyper-V in production
+        - url: /windows-server/administration/performance-tuning/role/hyper-v-server/
+          itemType: concept
+          text: Performance tuning
+    # Card
+    - title: Hyper-V Management Tools on Windows Server
+      links:
+        - url: https://docs.microsoft.com/system-center/vmm/overview
+          itemType: overview
+          text: System Center Virtual Machine Manager
+        - url: https://www.openstack.org/
+          itemType: overview
+          text: Open Stack
+        - url: https://docs.microsoft.com/powershell/module/hyper-v/index
+          itemType: reference
+          text: PowerShell
+    # Card
+    - title: Hyper-V Server and Documentation Archive
+      links:
+        - url: https://www.microsoft.com/evalcenter/evaluate-hyper-v-server-2019
+          itemType: download
+          text: Download Hyper-V Server 2019
+        - url: https://docs.microsoft.com/previous-versions/windows/it-pro/windows-server-2012-R2-and-2012/mt169373(v=ws.11)
+          itemType: overview
+          text: Windows Server 2012 R2 and 2012
+        - url: https://docs.microsoft.com/previous-versions/windows/it-pro/windows-server-2008-R2-and-2008/cc753637(v=ws.10)
+          itemType: overview
+          text: Windows Server 2008 R2
+    # Card
+    - title: Hypervisor and Developer Resources
+      links:
+        - url: /virtualization/hyper-v-on-windows/reference/tlfs
+          itemType: reference
+          text: Top Level Functional specification
+        - url: /virtualization/hyper-v-on-windows/reference/hyper-v-architecture
+          itemType: reference
+          text: Hyper-V Architecture
+        - url: https://developer.microsoft.com/windows/desktop/test-deploy/instrument
+          itemType: reference
+          text: Hyper-V Core Developer Resources
+    # Card
+    - title: Hyper-V Core APIs
+      links:
+        - url: https://msdn.microsoft.com/library/hh850319.aspx
+          itemType: reference
+          text: Hyper-V WMI
+        - url: /virtualization/api/index
+          itemType: reference
+          text: Windows Hypervisor Platform
+        - url: /virtualization/api/hypervisor-instruction-emulator/hypervisor-instruction-emulator
+          itemType: reference
+          text: Hyper-V Instruction Emulator
+        - url: /virtualization/api/vm-dump-provider/vm-dump-provider
+          itemType: reference
+          text: VM Saved State Dump Provider
