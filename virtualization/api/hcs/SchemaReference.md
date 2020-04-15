@@ -1,4 +1,21 @@
 # JSON Schema Reference - mamezgeb-hcs branch
+[//]: # does Schema.linix.mars shows all classes as private
+
+
+<a name="attributionrecord"></a>
+## AttributionRecord
+
+|Name|Schema|
+|---|---|
+|**WorkerExit**  <br>*optional*|WorkerExit|
+|**GuestCrash**  <br>*optional*|GuestCrash|
+|**TripleFault**  <br>*optional*|TripleFault|
+|**OperationFailure**  <br>*optional*|OperationFailure|
+|**SystemExit**  <br>*optional*|SystemExit|
+|**VirtualDeviceFailure**  <br>*optional*|VirtualDeviceFailure|
+|**InjectNonMaskableInterrupt**  <br>*optional*|InjectNonMaskableInterrupt|
+|**VirtualDeviceFailure**  <br>*optional*|VirtualDeviceFailure|
+
 
 <a name="attachment"></a>
 ## Attachment
@@ -16,6 +33,14 @@
 ## Battery
 *Type* : object
 
+<a name="BatchedBinding"></a>
+## BatchedBinding
+
+|Name|Schema|
+|---|---|
+|**FilePath**  <br>*optional*|string|
+|**BindingRoots[]**  <br>*optional*|string|
+
 
 <a name="chipset"></a>
 ## Chipset
@@ -29,6 +54,16 @@
 |**LinuxKernelDirect**  <br>*optional*|[LinuxKernelDirect](#linuxkerneldirect)|
 |**Uefi**  <br>*optional*|[Uefi](#uefi)|
 |**UseUtc**  <br>*optional*|boolean|
+
+
+<a name="cachequerystatsresponse"></a>
+## CacheQueryStatsResponse
+
+|Name|Schema|
+|---|---|
+|**L3OccupancyBytes**  <br>|uint64|
+|**L3TotalBwBytes**  <br>|uint64|
+|**L3LocalBwBytes**  <br>|uint64|
 
 
 <a name="closehandle"></a>
@@ -91,6 +126,42 @@ ComPort specifies the named pipe that will be used for the port, with empty stri
 |**Storage**  <br>*optional*|[Storage](#storage)|
 
 
+<a name="ContainerCredentialGuardAddInstanceRequest"></a>
+## ContainerCredentialGuardAddInstanceRequest
+
+|Name|Description|Schema|
+|---|---|---|
+|**Id**  <br>*optional*|string|
+|**CredentialSpec**  <br>*optional*|string|
+|**Transport**  <br>*optional*|ContainerCredentialGuardTransport|
+
+<a name="ContainerCredentialGuardInstance"></a>
+## ContainerCredentialGuardInstance
+
+|Name|Description|Schema|
+|---|---|---|
+|**Id**  <br>*optional*|string|
+|**CredentialGuard**  <br>*optional*|ContainerCredentialGuardState|
+|**HvSocketConfig**  <br>*optional*|ContainerCredentialGuardHvSocketServiceConfig?|
+
+
+<a name="ContainerCredentialGuardSystemInfo"></a>
+## ContainerCredentialGuardSystemInfo
+
+|Name|Description|Schema|
+|---|---|---|
+|**Instances[]**  <br>*optional*|ContainerCredentialGuardInstance|
+
+
+<a name="ContainerCredentialGuardHvSocketServiceConfig"></a>
+## ContainerCredentialGuardHvSocketServiceConfig
+
+|Name|Description|Schema|
+|---|---|---|
+|**ServiceId**  <br>*optional*|Guid|
+|**ServiceConfig**  <br>*optional*|Schema.HvSocket.HvSocketServiceConfig?|
+
+
 <a name="containercredentialguardstate"></a>
 ## ContainerCredentialGuardState
 
@@ -100,6 +171,60 @@ ComPort specifies the named pipe that will be used for the port, with empty stri
 |**CredentialSpec**  <br>*optional*|Credential spec used for the configured Container Credential Guard instance.|string|
 |**RpcEndpoint**  <br>*optional*|Name of the RPC endpoint of the Container Credential Guard instance.|string|
 |**Transport**  <br>*optional*|Transport used for the configured Container Credential Guard instance.|enum (LRPC, HvSocket)|
+
+
+<a name="cpugroup"></a>
+## CpuGroup
+
+|Name|Description|Schema|
+|---|---|---|
+|**Id**  <br>*optional*|guid|
+
+
+<a name="crashoptions"></a>
+## CrashOptions
+
+|Name|Description|Schema|
+|---|---|---|
+|**Type**  <br>*optional*|enum (CrashGuest = 0)|
+
+
+<a name="crashreport"></a>
+## CrashReport
+
+crash information reported through CrashReport notifications
+
+|Name|Description|Schema|
+|---|---|---|
+|**SystemId**  <br>|string|
+|**ActivityId**  <br>*optional*|guid|
+|**WindowsCrashInfo**  <br>*optional*|WindowsCrashReport|
+|**CrashParameters**  <br>*optional*|uint64|
+|**CrashLog**  <br>*optional*|string|
+|**VmwpDump**  <br>*optional*|CrashReportProcessDump|
+
+
+<a name="crashreportprocessdump"></a>
+## CrashReportProcessDump
+
+Information on auxillary process dumps
+
+|Name|Description|Schema|
+|---|---|---|
+|**DumpFile**  <br>*optional*|string|
+|**Status**  <br>*optional*|int32|
+
+
+<a name="debugoptions"></a>
+## DebugOptions
+
+|Name|Description|Schema|
+|---|---|---|
+|**BugcheckSavedStateFileName**  <br>*optional*|Capture a save state to the given file if the guest crashes.|string|
+|**BugcheckNoCrashdumpSavedStateFileName**  <br>*optional*|Capture a save state to the given file if the guest crashes and no crash dump can be written.|string|
+|**TripleFaultSavedStateFileName**  <br>*optional*|Capture a save state to the given file if the guest triple faults.|string|
+|**FirmwareDumpFileName**  <br>*optional*|Name of a dump file to use for firmware crashes.|string|
+
 
 
 <a name="device"></a>
@@ -145,6 +270,52 @@ ComPort specifies the named pipe that will be used for the port, with empty stri
 |**ConnectionOptions**  <br>*optional*|[RdpConnectionOptions](#rdpconnectionoptions)|
 
 
+<a name="errorevent"></a>
+## ErrorEvent
+
+Error descriptor that provides the info of an error object
+
+|Name|Schema|
+|---|---|
+|**Message**  <br>*optional*|Fully formated error message|string|
+|**StackTrace**  <br>*optional*|Stack trace in string form|string|
+|**Provider**  <br>|Event definition|guid|
+|**EventId**  <br>|Event definition|uint16|
+|**Flags**  <br>*optional*|uint32|
+|**Source**  <br>*optional*|string|
+|**Data**  <br>*optional*|EventData|array|
+
+
+<a name="eventdata"></a>
+## EventData
+
+Event data element
+
+|Name|Schema|
+|---|---|
+|**Value**  <br>*optional*|string|
+|**Type**  <br>*optional*|enum (Empty = 0, String = 1, AnsiString = 2, SByte = 3, Byte = 4, Int16 = 5, UInt16 = 6,Int32 = 7, UInt32 = 8, Int64 = 9, UInt64 = 10, Single = 11, Double  = 12, Boolean = 13, Binary = 14, Guid = 15)|
+
+
+<a name="exportlayeroptions"></a>
+## ExportLayerOptions
+
+|Name|Schema|
+|---|---|
+|**IsWritableLayer**  <br>*optional*|bool|
+
+
+<a name="filteredpropertyquery"></a>
+## FilteredPropertyQuery
+
+Structures used to perform a filtered propertyquery. 
+
+|Name|Description|Schema|
+|---|---|---|
+|**Filter**  <br>*optional*|Additional filter to query.|any|
+|**PropertyType**  <br>|Specifies which property to query.|enum ( Basic, Memory, CpuGroup, ProcessorTopology, CacheAllocation, CacheMonitoring, ContainerCredentialGuard, QoSCapabilities, MemoryBwAllocation, Undefined)|
+
+
 <a name="flexibleiodevice"></a>
 ## FlexibleIoDevice
 
@@ -177,12 +348,48 @@ Information about the guest.
 |**SupportedSchemaVersions**  <br>*optional*|Each schema version x.y stands for the range of versions a.b where a==x  and b<=y. This list comes from the SupportedSchemaVersions field in  GcsCapabilities.|< [Version](#version) > array|
 
 
+<a name="guestcrash"></a>
+## GuestCrash
+
+Crash parameters as reported by the guest.
+
+|Name|Schema|
+|---|---|
+|**CrashParameters**  <br>*optional*|Crash parameters as reported by the guest.|uint64 array|
+
+
 <a name="guestcrashreporting"></a>
 ## GuestCrashReporting
 
 |Name|Schema|
 |---|---|
 |**WindowsCrashSettings**  <br>*optional*|[WindowsCrashReporting](#windowscrashreporting)|
+
+
+<a name="guestmemoryinfo"></a>
+## GuestMemoryInfo
+
+Memory usage as viewed from the guest OS.
+
+|Name|Description|Schema|
+|---|---|---|
+|**TotalPhysicalBytes**  <br>|uint64|
+|**TotalUsage**  <br>|uint64|
+|**CommittedBytes**  <br>|uint64|
+|**SharedCommittedBytes**  <br>|uint64|
+|**CommitLimitBytes**  <br>|uint64|
+|**PeakCommitmentBytes**  <br>|uint64|
+
+
+
+<a name="guestmodifysettingrequest"></a>
+## GuestModifySettingRequest
+
+|Name|Description|Schema|
+|---|---|---|
+|**Settings**  <br>*optional*|Any|
+|**RequestType**  <br>|Schema.Requests.ModifyRequestType|
+|**ResourceType**  <br>|enum (Memory,MappedDirectory,MappedPipe,MappedVirtualDisk,CombinedLayers,NetworkNamespace,CimMount)|
 
 
 <a name="guestos"></a>
@@ -206,6 +413,15 @@ Information about the guest.
 <a name="heartbeat"></a>
 ## Heartbeat
 *Type* : object
+
+
+<a name="hostedsystem"></a>
+## HostedSystem
+
+|Name|Description|Schema|
+|---|---|---|
+|**SchemaVersion**  <br>|Version|
+|**Container**  <br>|Container|
 
 
 <a name="hvsocket"></a>
@@ -249,6 +465,30 @@ HvSocket configuration for a VM
 |**HvSocketConfig**  <br>*optional*|[HvSocketSystemConfig](#hvsocketsystemconfig)|
 
 
+<a name="idledprocessorresponse"></a>
+## IdledProcessorResponse
+
+|Name|Description|Schema|
+|---|---|---|
+|**RequestedIdle**  <br>|uint32|
+|**IdleStatus**  <br>|uint32|
+|**CurrentIdle**  <br>|uint32|
+
+
+<a name="idleprocessorsrequest"></a>
+## IdleProcessorsRequest
+
+|Name|Description|Schema|
+|---|---|---|
+|**IdleProcessorCount**  <br>|uint32|
+
+
+<a name="injectnonmaskableinterrupt"></a>
+## InjectNonMaskableInterrupt
+
+A non-maskable interrupt (NMI) was inject by the host management client or other tool.
+
+
 <a name="integrationcomponentstatus"></a>
 ## IntegrationComponentStatus
 
@@ -269,6 +509,14 @@ HvSocket configuration for a VM
 *Type* : object
 
 
+<a name="launchoptions"></a>
+## LaunchOptions
+
+|Name|Description|Schema|
+|---|---|---|
+|**Type**  <br>*optional*|enum (Default, None // Launch VMWP normally, AppContainer // Launch VMWP as an App Container)|
+
+
 <a name="layer"></a>
 ## Layer
 
@@ -278,6 +526,15 @@ HvSocket configuration for a VM
 |**Id**  <br>*optional*|**Pattern** : `"^[0-9A-Fa-f]{8}-([0-9A-Fa-f]{4}-){3}[0-9A-Fa-f]{12}$"`|string|
 |**Path**  <br>*optional*||string|
 |**PathType**  <br>*optional*||enum (AbsolutePath, VirtualSmbShareName)|
+
+
+<a name="layerData"></a>
+## Layer
+
+|Name|Description|Schema|
+|---|---|---|
+|**SchemaVersion**  <br>*optional*|Schema.Version|
+|**Layers[]**  <br>*optional*|Schema.Common.Resources.Layer|
 
 
 <a name="linuxkerneldirect"></a>
@@ -318,6 +575,19 @@ HvSocket configuration for a VM
 |Name|Schema|
 |---|---|
 |**SizeInMB**  <br>*optional*|integer (uint64)|
+|**AllowOvercommit**  <br>*optional*|If enabled, then the VM's memory is backed by the Windows pagefile rather than physically backed, statically allocated memory.|bool|
+|**BackingPageSize**  <br>*optional*|The preferred page size unit (chunk size) used when allocating backing pages for the VM.|enum (small = 0, large = 1)
+|**FaultClusterSizeShift**  <br>*optional*|Fault clustering size for primary RAM.|uint32|
+|**DirectMapFaultClusterSizeShift**  <br>*optional*|Fault clustering size for direct mapped memory.|uint32
+|**PinBackingPages**  <br>*optional*|If enabled, then each backing page is physically pinned on first access.|bool|
+|**ForbidSmallBackingPages**  <br>*optional*|If enabled, then backing page chunks smaller than the backing page size are never used unless the system is under extreme memory pressure. If the backing page size is Small, then it is forced to Large when this option is enabled.|bool|
+|**EnableHotHint**  <br>*optional*|If enabled, then the memory hot hint feature is exposed to the VM, allowing it to prefetch pages into its working set. (if supported by the guest pperating system).|bool|
+|**EnableColdHint**  <br>*optional*| If enabled, then the memory cold hint feature is exposed to the VM, allowing it to trim zeroed pages from its working set (if supported by the guest operating system).|bool|
+|**EnableColdDiscardHint**  <br>*optional*|If enabled, then the memory cold discard hint feature is exposed to the VM, allowing it to trim non-zeroed pages from the working set (if supported by the guest operating system).|bool|
+|**EnableDeferredCommit**  <br>*optional*|If enabled, then commit is not charged for each backing page until first access.|bool|
+|**LowMmioGapInMB**  <br>*optional*|Low MMIO region allocated below 4GB|uint64|
+|**HighMmioBaseInMB**  <br>*optional*|High MMIO region allocated above 4GB (base and size)|uint64|
+|**HighMmioGapInMB**  <br>*optional*|uint64|
 
 
 <a name="memoryinformationforvm"></a>
@@ -401,6 +671,35 @@ Memory runtime statistics
 |**NetworkSharedContainerName**  <br>*optional*||string|
 
 
+<a name="networkmodifysettingrequest"></a>
+## NetworkModifySettingRequest
+
+|Name|Description|Schema|
+|---|---|---|
+|**AdapterId**  <br>*optional*||string|
+|**Settings**  <br>*optional*||any|
+|**RequestType**  <br>|enum (PreAdd,Add,Remove)|
+
+
+<a name="operationfailure"></a>
+## OperationFailure
+
+
+|Name|Schema|
+|---|---|
+|**Detail**  <br>*optional*|enum (Invalid, CreateInternalError, ConstructStateError, RuntimeOsTypeMismatch, Construct, Start, Pause, Resume, Shutdown, Terminate, Save, GetProperties, Modify, Crash, GuestCrash, LifecycleNotify, ExecuteProcess, GetProcessInfo, WaitForProcess, SignalProcess, ModifyProcess, PrepareForHosting, RegisterHostedSystem, UnregisterHostedSystem, PrepareForClone, GetCloneTemplate)|
+
+
+<a name="oslayeroptions"></a>
+## OsLayerOptions
+
+
+|Name|Schema|
+|---|---|
+|**DisableCiCacheOptimization**  <br>*optional*|bool|
+|**Type**  <br>*optional*|enum (Container,Vm)|
+
+
 <a name="pausenotification"></a>
 ## PauseNotification
 Notification data that is indicated to components running in the Virtual Machine.
@@ -457,6 +756,18 @@ Information about a process running in a container
 |**MemoryWorkingSetSharedBytes**  <br>*optional*|integer (uint64)|
 |**ProcessId**  <br>*optional*|integer (uint32)|
 |**UserTime100ns**  <br>*optional*|integer (uint64)|
+
+
+<a name="processdump"></a>
+## ProcessDump
+Configuration for a process dump
+
+
+|Name|Schema|
+|---|---|
+|**Type**  <br>*optional*|enum (None, Heap, Mini, Custom)|
+|**CustomDumpFlags**  <br>*optional*|Custom MINIDUMP_TYPE flags used if Type is ProcessDumpType::Custom|uint32|
+|**DumpFileName**  <br>|string|
 
 
 <a name="processmodifyrequest"></a>
@@ -579,6 +890,14 @@ By default the basic properties will be returned. This query provides a way to  
 |**PropertyTypes**  <br>*optional*|< enum (Memory, GuestMemory, Statistics, ProcessList, TerminateOnLastHandleClosed, SharedMemoryRegion, GuestConnection, ICHeartbeatStatus) > array|
 
 
+<a name="qoscapabilities"></a>
+## QoSCapabilities
+
+|Name|Schema|
+|---|---|
+|**ProcessorQoSSupported**  <br>*optional*|bool|
+
+
 <a name="rdpconnectionoptions"></a>
 ## RdpConnectionOptions
 
@@ -622,6 +941,27 @@ By default the basic properties will be returned. This query provides a way to  
 |**Type**  <br>*optional*||enum (None, String, ExpandedString, MultiString, Binary, DWord, QWord, CustomType)|
 
 
+<a name="registrychanges"></a>
+## RegistryChanges
+
+|Name|Description|Schema|
+|---|---|---|
+|**AddValues[]**  <br>*optional*||RegistryValue|
+|**DeleteKeys[]**  <br>*optional*|RegistryKey|
+
+
+<a name="resulterror"></a>
+## ResultError
+
+Extended error information returned by the HCS
+
+|Name|Description|Schema|
+|---|---|---|
+|**Error**  <br>|int32|
+|**ErrorMessage**  <br>|string|
+|**ErrorEvents**  <br>*optional*|ErrorEvents|array|
+|**Attribution**  <br>*optional*|AttributionRecord|array|
+
 <a name="restorestate"></a>
 ## RestoreState
 
@@ -656,6 +996,16 @@ By default the basic properties will be returned. This query provides a way to  
 |**Heartbeat**  <br>*optional*|[Heartbeat](#heartbeat)|
 
 
+<a name="serviceproperties"></a>
+## ServiceProperties
+
+The service properties will be returned as an array corresponding to the requested property types.
+
+|Name|Schema|
+|---|---|
+|**Properties**  <br>*optional*|array|
+
+
 <a name="sharedmemoryconfiguration"></a>
 ## SharedMemoryConfiguration
 
@@ -683,6 +1033,34 @@ By default the basic properties will be returned. This query provides a way to  
 |---|---|
 |**GuestPhysicalAddress**  <br>*optional*|integer (uint64)|
 |**SectionName**  <br>*optional*|string|
+
+
+<a name="siloproperties"></a>
+## SiloProperties
+
+|Name|Schema|
+|---|---|
+|**Enabled**  <br>|bool|
+|**JobName**  <br>*optional*|string|
+
+
+<a name="silosettings"></a>
+## SiloSettings
+
+|Name|Schema|
+|---|---|
+|**SiloBaseOsPath**  <br>*optional*|If running this virtual machine inside a silo, the base OS path to use for the silo.|string|
+|**NotifySiloJobCreated**  <br>*optional*|Request a notification when the job object for the silo is available.|bool|
+|**FileSystemLayers**  <br>*optional*|The filesystem layers to use for the silo.|Layer array|
+
+
+<a name="signalprocessoptions"></a>
+## SignalProcessOptions
+
+|Name|Schema|
+|---|---|
+|**Signal**  <br>*optional*|enum (CtrlC = 0, CtrlBreak = 1, CtrlClose = 2,CtrlLogOff = 5,CtrlShutdown = 6)|
+
 
 
 <a name="statistics"></a>
@@ -732,6 +1110,38 @@ Storage runtime statistics
 |**WriteSizeBytes**  <br>*optional*|integer (uint64)|
 
 
+<a name="systemexit"></a>
+## SystemExit
+
+
+|Name|Schema|
+|---|---|
+|**Initiator**  <br>*optional*|enum(None, GuestOS, Client, Internal,Unknown)|
+|**Detail**  <br>*optional*|enum (None, GracefulExit, ForcedExit, UnexpectedExit, Unknown)|
+
+
+<a name="systemexitstatus"></a>
+## SystemExitStatus
+
+|Name|Schema|
+|---|---|
+|**Status**  <br>|Exit status (HRESULT) for the system.|int32|
+|**ExitType**  <br>*optional*|enum (Invalid, HcsApiFatalError, ServiceStop, Shutdown,Terminate, UnexpectedExit)|
+|**Attribution**  <br>*optional*|AttributionRecord|array|
+
+
+<a name="systemquery"></a>
+## SystemQuery
+
+
+|Name|Schema|
+|---|---|
+|**Ids**  <br>*optional*|array|string|
+|**Names**  <br>*optional*|array|string|
+|**Types**  <br>*optional*|array|Schema.Responses.System.SystemType|
+|**Owners**  <br>*optional*|array|string|
+
+
 <a name="topology"></a>
 ## Topology
 
@@ -739,6 +1149,14 @@ Storage runtime statistics
 |---|---|
 |**Memory**  <br>*optional*|[Memory_2](#memory_2)|
 |**Processor**  <br>*optional*|[Processor_2](#processor_2)|
+
+
+<a name="triplefault"></a>
+## TripleFault
+
+|Name|Schema|
+|---|---|
+|**ErrorType**  <br>*optional*|uint64|
 
 
 <a name="uefi"></a>
@@ -800,6 +1218,19 @@ Storage runtime statistics
 |---|---|
 |**Name**  <br>*optional*|string|
 |**NamedPipe**  <br>*optional*|string|
+
+
+<a name="virtualdevicefailure"></a>
+## VirtualDeviceFailure
+
+ Provides information on failures originated by a virtual device.
+
+|Name|Schema|
+|---|---|
+|**InstanceId**  <br>*optional*|Guid|
+|**DeviceId**  <br>*optional*|Guid|
+|**Name**  <br>*optional*|string|
+|**Detail**  <br>*optional*|enum VirtualDeviceFailureDetail ( None, Create, Initialize, StartReservingResources, FinishReservingResources, FreeReservedResources,  SaveReservedResources, PowerOnCold, PowerOnRestore, PowerOff, Save, Resume, Pause, EnableOptimizations, StartDisableOptimizations, FinishDisableOptimizations, Reset, PostReset, Teardown, SaveCompatibilityInfo, MetricRestore, MetricEnumerate, MetricEnumerateForSave, MetricReset, MetricEnable, MetricDisable)|
 
 
 <a name="virtualmachine"></a>
@@ -940,6 +1371,25 @@ Storage runtime statistics
 |**SlpActive**  <br>*optional*|boolean|
 
 
+<a name="windowscrashreport"></a>
+## WindowsCrashReport
+
+Windows specific crash information
+
+|Name|Schema|
+|---|---|
+|**DumpFile**  <br>*optional*|string|
+|**OsMajorVersion**  <br>*optional*|integer (int32)|
+|**OsMinorVersion**  <br>*optional*|integer (int32)|
+|**OsBuildNumber**  <br>*optional*|integer (int32)|
+|**OsServicePackMajorVersion**  <br>*optional*|integer (int32)|
+|**OsServicePackMinorVersion**  <br>*optional*|integer (int32)|
+|**OsSuiteMask**  <br>*optional*|integer (int32)|
+|**OsProductType**  <br>*optional*|integer (int32)|
+|**Status**  <br>*optional*|integer (int32)|
+|**FinalPhase**  <br>*optional*|enum(Inactive, CrashValues, Starting, Started, Writing, Complete)|
+
+
 <a name="windowscrashreporting"></a>
 ## WindowsCrashReporting
 
@@ -949,4 +1399,14 @@ Storage runtime statistics
 |**MaxDumpSize**  <br>*optional*|integer (int64)|
 
 
+<a name="workerexit"></a>
+## WorkerExit
 
+Exit code of the virtual machine worker process.
+
+|Name|Schema|
+|---|---|
+|**ExitCode**  <br>*optional*|uint32|
+|**Type**  <br>*optional*|enum WorkerExitType (None // VM Failed to initialize., InitializationFailed // VM shutdown after complete stop, Stopped // VM shutdown after complete save, Saved // VM reset and the VM was configured to stop on reset, StoppedOnReset // VM worker process exited unexpectedly, UnexpectedStop // VM exit after failing to reset, ResetFailed // VM stopped because of an unrecoverable error (e.g., storage failure), UnrecoverableError)|
+|**Detail**  <br>*optional*|enum WorkerExitDetail (Invalid, PowerOff, PowerOffCritical, Reset, GuestCrash, GuestFirmwareCrash, TripleFault, DeviceFatalApicRequest, DeviceFatalMsrRequest, DeviceFatalException, DeviceFatalError, DeviceMachineCheck, EmulatorError, VidTerminate, ProcessUnexpectedExit, InitializationFailure, InitializationStartTimeout, ColdStartFailure, ResetStartFailure, FastRestoreStartFailure, RestoreStartFailure, FastSavePreservePartition, FastSavePreservePartitionHandleTransfer, FastSave, CloneTemplate, Save, Migrate, MigrateFailure, CannotReferenceVm, MgotUnregister)|
+|**Initiator**  <br>*optional*|enum ExitInitiator (None , GuestOS //Initiated by the guest OS (e.g. guest OS shutdown), Client  //Initiated by the management client, Internal  //Initiated internally (e.g. due to an error) by the virtual machine or HCS.,Unknown  //Initiator is unknown, e.g. a process was terminated or crashed.)|
