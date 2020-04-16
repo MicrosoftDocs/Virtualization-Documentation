@@ -3,7 +3,7 @@ title: Troubleshoot gMSAs for Windows containers
 description: How to troubleshoot Group Managed Service Accounts (gMSAs) for Windows containers.
 keywords: docker, containers, active directory, gmsa, group managed service account, group managed service accounts, troubleshooting, troubleshoot
 author: rpsqrd
-ms.date: 10/03/2019
+ms.date: 04/16/2020
 ms.topic: article
 ms.prod: windows-containers
 ms.service: windows-containers
@@ -145,6 +145,8 @@ See [Active Directory and Active Directory Domain Services port requirements](ht
     This command should return "A ticket to krbtgt has been retrieved successfully" and list the domain controller used to retrieve the ticket. If you're able to obtain a TGT but `nltest` from the previous step fails, this may be an indication that the gMSA account is misconfigured. See [check the gMSA account](#check-the-gmsa-account) for more information.
 
     If you cannot obtain a TGT inside the container, this may indicate DNS or network connectivity issues. Ensure the container can resolve a domain controller using the domain DNS name and that the domain controller is routable from the container.
+    
+    If you're running Windows Server 2016, you can safely ignore the output of this command and proceed to step 5. Windows Server 2016 containers will be unable to return a TGT using this command, even when the gMSA is configured correctly.
 
 5. Ensure your app is [configured to use the gMSA](gmsa-configure-app.md). The user account inside the container doesn't change when you use a gMSA. Rather, the System account uses the gMSA when it talks to other network resources. This means your app will need to run as Network Service or Local System to leverage the gMSA identity.
 
