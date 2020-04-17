@@ -20,6 +20,7 @@
 
 <a name="attachment"></a>
 ## Attachment
+Attachment information. the Attachment types are VirtualDisk, Iso, PassThru.
 
 |Name|Schema|
 |---|---|
@@ -65,6 +66,7 @@ Cache Query Statistics Response.
 
 <a name="chipset"></a>
 ## Chipset
+Virtual machine chipset information
 
 |Name|Schema|
 |---|---|
@@ -297,7 +299,7 @@ Container device information
 
 <a name="device"></a>
 ## Device
-Guest device information
+Virtual Machine Guest device information
 
 |Name|Description|Schema|
 |---|---|---|
@@ -334,6 +336,7 @@ Virtual Machine devices information.
 
 <a name="enhancedmodevideo"></a>
 ## EnhancedModeVideo
+Enhanced Mode Video connection
 
 |Name|Schema|
 |---|---|
@@ -389,6 +392,7 @@ Structures used to perform a filtered propertyquery.
 
 <a name="flexibleiodevice"></a>
 ## FlexibleIoDevice
+Flexible IO Device information
 
 |Name|Description|Schema|
 |---|---|---|
@@ -432,6 +436,7 @@ Crash parameters as reported by the guest.
 
 <a name="guestcrashreporting"></a>
 ## GuestCrashReporting
+Guest Crash Reporting settings
 
 |Name|Schema|
 |---|---|
@@ -611,6 +616,12 @@ Integration Component Status
 *Type* : object
 
 
+<a name="KvpExchange"></a>
+## KvpExchange
+Data exchange integration service
+#object
+
+
 <a name="launchoptions"></a>
 ## LaunchOptions
 Launch Options
@@ -642,8 +653,9 @@ Information about layers
 |**Layers[]**  <br>*optional*|Schema.Common.Resources.Layer|
 
 
-<a name="licensing></a>
+<a name="licensing"></a>
 ## Licensing
+The settings used to configure guest activation.
 
 |Name|Schema|
 |---|---|
@@ -653,6 +665,7 @@ Information about layers
 
 <a name="linuxkerneldirect"></a>
 ## LinuxKernelDirect
+Linux Kernel Direct settings
 
 |Name|Schema|
 |---|---|
@@ -687,6 +700,7 @@ Information about mapped pipes in a container
 
 <a name="mappedvirtualdisk"></a>
 ## MappedVirtualDisk
+Mapped Virtual Disk information
 
 |Name|Schema|
 |---|---|
@@ -777,6 +791,7 @@ Information about Modify Setting Request.
 
 <a name="networkadapter"></a>
 ## NetworkAdapter
+Network adapter information
 
 |Name|Description|Schema|
 |---|---|---|
@@ -834,6 +849,7 @@ NUMA related settings.
 
 <a name="nvram"></a>
 ## Nvram
+Nvram information
 
 |Name|Description|Schema|
 |---|---|---|
@@ -843,6 +859,7 @@ NUMA related settings.
 
 <a name="nvramvariable"></a>
 ## NvramVariable
+Nvram Variable information
 
 |Name|Description|Schema|
 |---|---|---|
@@ -853,6 +870,7 @@ NUMA related settings.
 
 <a name="nvramvendor"></a>
 ## NvramVendor
+Nvram Vendor information
 
 |Name|Description|Schema|
 |---|---|---|
@@ -901,6 +919,7 @@ Options for HcsPauseComputeSystem
 
 <a name="plan9"></a>
 ## Plan9
+plan9 protocol information
 
 |Name|Schema|
 |---|---|
@@ -909,6 +928,7 @@ Options for HcsPauseComputeSystem
 
 <a name="plan9share"></a>
 ## Plan9Share
+plan9 protocol share information
 
 |Name|Description|Schema|
 |---|---|---|
@@ -1096,6 +1116,7 @@ Qos capabilities information.
 
 <a name="rdpconnectionoptions"></a>
 ## RdpConnectionOptions
+Rdp Connection Options
 
 |Name|Schema|
 |---|---|
@@ -1182,7 +1203,7 @@ Restore State Information
 
 <a name="runtimestate"></a>
 ## RuntimeState
-guest runtime state
+virtual machine guest runtime state
 
 |Name|Description|Schema|
 |---|---|---|
@@ -1202,6 +1223,7 @@ Save options information.
 
 <a name="scsi"></a>
 ## Scsi
+SCSI controller attachments
 
 |Name|Description|Schema|
 |---|---|---|
@@ -1269,7 +1291,7 @@ Shared Memory Region Information.
 
 <a name="shutdown"></a>
 ## Shutdown
-
+shutdown integration service
 #object
 
 <a name="siloproperties"></a>
@@ -1401,6 +1423,7 @@ Document provided in the EventData parameter of an HcsEventSystemExited event.
 
 <a name="timesync"></a>
 ## TimeSync
+Time synchronization integration service
 #object
 
 <a name="timezoneinformation"></a>
@@ -1438,6 +1461,7 @@ Error type  for a TripleFault.
 
 <a name="uefi"></a>
 ## Uefi
+Virtual machine Uefi 
 
 |Name|Description|Schema|
 |---|---|---|
@@ -1451,6 +1475,7 @@ Error type  for a TripleFault.
 
 <a name="uefibootentry"></a>
 ## UefiBootEntry
+Uefi boot entry information
 
 |Name|Schema|
 |---|---|
@@ -1463,6 +1488,7 @@ Error type  for a TripleFault.
 
 <a name="uefisysteminformation"></a>
 ## UefiSystemInformation
+Virtual machine UEFI system information
 
 |Name|Schema|
 |---|---|
@@ -1487,6 +1513,7 @@ Version information
 
 <a name="videomonitor"></a>
 ## VideoMonitor
+Video Monitor
 
 |Name|Schema|
 |---|---|
@@ -1505,6 +1532,7 @@ Version information
 
 <a name="virtioserialport"></a>
 ## VirtioSerialPort
+virtual machine virtual serial port
 
 |Name|Schema|
 |---|---|
@@ -1557,6 +1585,7 @@ Information on virtual nodes.
 
 <a name="virtualpmemcontroller"></a>
 ## VirtualPMemController
+Virtual Partiiton Memory Controller information
 
 |Name|Description|Schema|
 |---|---|---|
@@ -1568,6 +1597,7 @@ Information on virtual nodes.
 
 <a name="virtualpmemdevice"></a>
 ## VirtualPMemDevice
+virtual partition memory device information
 
 |Name|Schema|
 |---|---|
@@ -1580,6 +1610,7 @@ Information on virtual nodes.
 
 <a name="virtualpmemmapping"></a>
 ## VirtualPMemMapping
+virtual partition memory mapping information
 
 |Name|Schema|
 |---|---|
@@ -1589,6 +1620,7 @@ Information on virtual nodes.
 
 <a name="virtualpcidevice"></a>
 ## VirtualPciDevice
+virtual pci device information
 
 |Name|Schema|
 |---|---|
@@ -1597,6 +1629,7 @@ Information on virtual nodes.
 
 <a name="virtualpcifunction"></a>
 ## VirtualPciFunction
+Virtua lPci Function information
 
 |Name|Schema|
 |---|---|
@@ -1607,6 +1640,7 @@ Information on virtual nodes.
 
 <a name="virtualsmb"></a>
 ## VirtualSmb
+Virtual Smb information
 
 |Name|Schema|
 |---|---|
@@ -1616,6 +1650,7 @@ Information on virtual nodes.
 
 <a name="virtualsmbalternatedatastream"></a>
 ## VirtualSmbAlternateDataStream
+Virtual Smb Alternate Data Stream
 
 |Name|Schema|
 |---|---|
@@ -1625,6 +1660,7 @@ Information on virtual nodes.
 
 <a name="virtualsmbshare"></a>
 ## VirtualSmbShare
+Virtual Smb Share settings
 
 |Name|Schema|
 |---|---|
@@ -1636,6 +1672,7 @@ Information on virtual nodes.
 
 <a name="virtualsmbshareoptions"></a>
 ## VirtualSmbShareOptions
+SMB share options
 
 |Name|Description|Schema|
 |---|---|---|
@@ -1696,6 +1733,7 @@ Windows specific crash information
 
 <a name="windowscrashreporting"></a>
 ## WindowsCrashReporting
+Windows Crash Reporting settings
 
 |Name|Schema|
 |---|---|
