@@ -42,6 +42,16 @@
 |**BindingRoots[]**  <br>*optional*|string|
 
 
+<a name="cachequerystatsresponse"></a>
+## CacheQueryStatsResponse
+
+|Name|Schema|
+|---|---|
+|**L3OccupancyBytes**  <br>|uint64|
+|**L3TotalBwBytes**  <br>|uint64|
+|**L3LocalBwBytes**  <br>|uint64|
+
+
 <a name="chipset"></a>
 ## Chipset
 
@@ -56,14 +66,14 @@
 |**UseUtc**  <br>*optional*|boolean|
 
 
-<a name="cachequerystatsresponse"></a>
-## CacheQueryStatsResponse
+<a name="cimmount"></a>
+## CimMount
 
 |Name|Schema|
 |---|---|
-|**L3OccupancyBytes**  <br>|uint64|
-|**L3TotalBwBytes**  <br>|uint64|
-|**L3LocalBwBytes**  <br>|uint64|
+|**ImagePath**  <br>|string|
+|**FileSystemName**  <br>|string|
+|**VolumeGuid**  <br>|guid|
 
 
 <a name="closehandle"></a>
@@ -72,6 +82,20 @@
 |Name|Schema|
 |---|---|
 |**Handle**  <br>*optional*|enum (StdIn, StdOut, StdErr, All)|
+
+
+<a name="combinedlayers"></a>
+## CombinedLayers
+This class is used by a modify request to add or remove a combined layers structure in the guest. For windows, the GCS applies a filter in ContainerRootPath using the specified layers as the parent content. Ignores property ScratchPath since the container path is already the scratch path. For linux, the GCS unions the specified layers and ScratchPath together, placing the resulting union filesystem at ContainerRootPath.
+
+
+|Name|Schema|
+|---|---|
+|**Layers**  <br>*optional*|Layer array|
+|**ScratchPath**  <br>*optional*|string|
+|**ContainerRootPath**  <br>*optional*|string|
+
+
 
 
 <a name="comport"></a>
@@ -229,12 +253,25 @@ Information on auxillary process dumps
 
 <a name="device"></a>
 ## Device
+Container device information
 
 |Name|Description|Schema|
 |---|---|---|
 |**InterfaceClassGuid**  <br>*optional*|The interface class guid of the device interfaces to assign to the  container.  Only used when Type is ClassGuid.  <br>**Pattern** : `"^[0-9A-Fa-f]{8}-([0-9A-Fa-f]{4}-){3}[0-9A-Fa-f]{12}$"`|string|
 |**LocationPath**  <br>*optional*|The location path of the device to assign to the container.  Only used when Type is DeviceInstance.|string|
 |**Type**  <br>*optional*|The type of device to assign to the container.|enum (ClassGuid, DeviceInstance, GpuMirror)|
+
+
+
+<a name="device"></a>
+## Device
+Guest device information
+
+|Name|Description|Schema|
+|---|---|---|
+|**version**  <br>*optional*|version|
+|**States**  <br>*optional*|Map(string, any)|
+|**Type**  <br>*optional*|guid|
 
 
 <a name="devices"></a>
@@ -410,6 +447,16 @@ Memory usage as viewed from the guest OS.
 |**RuntimeStateFilePath**  <br>*optional*|The path to an existing file for persistent runtime state storage.  An empty string indicates the system should initialize new transient, in-memory runtime state.|string|
 
 
+<a name="gpuconfiguration"></a>
+## GpuConfiguration
+
+|Name|Description|Schema|
+|---|---|---|
+|**AssignmentMode**  <br>*optional*|The mode used to assign GPUs to the guest.|enum (Disabled, Default //Assign the single default GPU to guest, which currently is POST GPU., List // Assign the GPU(s)/partition(s) specified in AssignmentRequest to guest. If AssignmentRequest is empty, do not assign GPU to the guest., Mirror //Assign all current and future GPUs to guest.)
+|**AssignmentRequest**  <br>*optional*|This only applies to List mode, and is ignored in other modes. In GPU-P, string is GPU device interface, and unit16 is partition id. HCS simply assigns the partition with the input id. In GPU-PV, string is GPU device interface, and unit16 is 0xffff. HCS needs to find an available partition to assign.|Map (string, uint16)|
+|**AllowVendorExtension**  <br>*optional*|Whether we allow vendor extension.|bool|
+
+
 <a name="heartbeat"></a>
 ## Heartbeat
 *Type* : object
@@ -431,6 +478,16 @@ Memory usage as viewed from the guest OS.
 |---|---|
 |**Config**  <br>*optional*|[HvSocketSystemConfig](#hvsocketsystemconfig)|
 |**EnablePowerShellDirect**  <br>*optional*|boolean|
+
+
+<a name="hvsocketaddress"></a>
+## HvSocketAddress
+This class defines address settings applied to a VM by the GCS every time a VM starts or restores.
+
+|Name|Schema|
+|---|---|
+|**LocalAddress**  <br>*optional*|guid|
+|**ParentAddress**  <br>*optional*|guid|
 
 
 <a name="hvsocketserviceconfig"></a>
@@ -537,6 +594,15 @@ A non-maskable interrupt (NMI) was inject by the host management client or other
 |**Layers[]**  <br>*optional*|Schema.Common.Resources.Layer|
 
 
+<a name="licensing></a>
+## Licensing
+
+|Name|Schema|
+|---|---|
+|**ContainerID**  <br>*optional*|guid|
+|**PackageFamilyNames**  <br>*optional*|string array|
+
+
 <a name="linuxkerneldirect"></a>
 ## LinuxKernelDirect
 
@@ -569,25 +635,23 @@ A non-maskable interrupt (NMI) was inject by the host management client or other
 |**HostPathType**  <br>*optional*|enum (AbsolutePath, VirtualSmbPipeName)|
 
 
-<a name="memory"></a>
-## Memory
+<a name="mappedvirtualdisk"></a>
+## MappedVirtualDisk
 
 |Name|Schema|
 |---|---|
-|**SizeInMB**  <br>*optional*|integer (uint64)|
-|**AllowOvercommit**  <br>*optional*|If enabled, then the VM's memory is backed by the Windows pagefile rather than physically backed, statically allocated memory.|bool|
-|**BackingPageSize**  <br>*optional*|The preferred page size unit (chunk size) used when allocating backing pages for the VM.|enum (small = 0, large = 1)
-|**FaultClusterSizeShift**  <br>*optional*|Fault clustering size for primary RAM.|uint32|
-|**DirectMapFaultClusterSizeShift**  <br>*optional*|Fault clustering size for direct mapped memory.|uint32
-|**PinBackingPages**  <br>*optional*|If enabled, then each backing page is physically pinned on first access.|bool|
-|**ForbidSmallBackingPages**  <br>*optional*|If enabled, then backing page chunks smaller than the backing page size are never used unless the system is under extreme memory pressure. If the backing page size is Small, then it is forced to Large when this option is enabled.|bool|
-|**EnableHotHint**  <br>*optional*|If enabled, then the memory hot hint feature is exposed to the VM, allowing it to prefetch pages into its working set. (if supported by the guest pperating system).|bool|
-|**EnableColdHint**  <br>*optional*| If enabled, then the memory cold hint feature is exposed to the VM, allowing it to trim zeroed pages from its working set (if supported by the guest operating system).|bool|
-|**EnableColdDiscardHint**  <br>*optional*|If enabled, then the memory cold discard hint feature is exposed to the VM, allowing it to trim non-zeroed pages from the working set (if supported by the guest operating system).|bool|
-|**EnableDeferredCommit**  <br>*optional*|If enabled, then commit is not charged for each backing page until first access.|bool|
-|**LowMmioGapInMB**  <br>*optional*|Low MMIO region allocated below 4GB|uint64|
-|**HighMmioBaseInMB**  <br>*optional*|High MMIO region allocated above 4GB (base and size)|uint64|
-|**HighMmioGapInMB**  <br>*optional*|uint64|
+|**ContainerPath**  <br>*optional*|string|
+|**Lun**  <br>*optional*|integer (uint8)|
+
+
+<a name="memory"></a>
+## Memory
+
+This class is used for Virtual Machines and containers. Container related items are listed in the description.
+
+|Name|Schema|
+|---|---|
+|**SizeInMB**  <br>*optional*|Used for Virtual machines and Containers|integer (uint64)|
 
 
 <a name="memoryinformationforvm"></a>
@@ -679,6 +743,55 @@ Memory runtime statistics
 |**AdapterId**  <br>*optional*||string|
 |**Settings**  <br>*optional*||any|
 |**RequestType**  <br>|enum (PreAdd,Add,Remove)|
+
+
+<a name="numa"></a>
+## Numa
+
+|Name|Description|Schema|
+|---|---|---|
+|**VirtualNodeCount**  <br>*optional*|Integer (uint8)|
+|**PreferredPhysicalNodes**  <br>*optional*|Integer (uint8) array|
+|**Settings**  <br>*optional*|numasetting array|
+
+
+<a name="numasetting"></a>
+## NumaSetting
+
+|Name|Description|Schema|
+|---|---|---|
+|**VirtualNodeNumber**  <br>*optional*|Integer (uint32)|
+|**PhysicalNodeNumber**  <br>*optional*|Integer (uint32)|
+|**VirtualSocketNumber**  <br>*optional*|Integer (uint32)|
+|**CountOfProcessors**  <br>*optional*|Integer (uint32)|
+|**CountOfMemoryBlocks**  <br>*optional*|Integer (uint32)|
+
+
+<a name="nvram"></a>
+## Nvram
+
+|Name|Description|Schema|
+|---|---|---|
+|**Vendors**  <br>*optional*|Map<Guid, NvramVendor> |
+|**LastUpdateTime**  <br>*optional*|DateTime|
+
+
+<a name="nvramvariable"></a>
+## NvramVariable
+
+|Name|Description|Schema|
+|---|---|---|
+|**Attributes**  <br>*optional*|Integer (uint32)|
+|**Timestamp**  <br>*optional*|DateTime|
+|**Data**  <br>*optional*|Integer (uint8) array|
+
+
+<a name="nvramvendor"></a>
+## NvramVendor
+
+|Name|Description|Schema|
+|---|---|---|
+|**Variables**  <br>*optional*|CaseInsensitiveStringMap(NvramVariable)|
 
 
 <a name="operationfailure"></a>
@@ -828,6 +941,19 @@ Specifies CPU limits for a container.  Count, Maximum and Weight are all mutuall
 |**Weight**  <br>*optional*|Optional property that limits the share of processor time given to the container  relative to other workloads on the processor.  The processor weight is a value between 0 and 10000.|integer (int64)|
 
 
+<a name="processorlimits"></a>
+## ProcessorLimits
+Used when modifying processor scheduling limits of a virtual machine.
+
+
+|Name|Description|Schema|
+|---|---|---|
+|**Weight**  <br>*optional*|Value describing the relative priority of this virtual machine compared to other virtual machines.  The processor weight is a value between 0 and 10000.|integer (int64)|
+|**Limit**  <br>*optional*|Maximum amount of host CPU resources that the virtual machine can use.|integer (int64)|
+|**Reservation**  <br>*optional*|Minimum amount of host CPU resources that the virtual machine is guaranteed.|integer (int64)|
+|**MaximumFrequencyMHz**  <br>*optional*|Provides the target maximum CPU frequency, in MHz, for a virtual machine.|integer (int64)|
+
+
 <a name="processorstats"></a>
 ## ProcessorStats
 CPU runtime statistics
@@ -842,6 +968,7 @@ CPU runtime statistics
 
 <a name="processor_2"></a>
 ## Processor_2
+Specifies CPU limits for a Virtual Machines
 
 |Name|Schema|
 |---|---|
@@ -853,6 +980,8 @@ CPU runtime statistics
 |**ExposeVirtualizationExtensions**  <br>*optional*|boolean|
 |**Limit**  <br>*optional*|integer (uint64)|
 |**Weight**  <br>*optional*|integer (uint64)|
+**Reservation**  <br>*optional*|Minimum amount of host CPU resources that the virtual machine is guaranteed.|integer (int64)|
+**MaximumFrequencyMHz**  <br>*optional*|Provides the target maximum CPU frequency, in MHz, for a virtual machine.|integer (int64)|
 
 
 <a name="properties"></a>
@@ -916,6 +1045,16 @@ By default the basic properties will be returned. This query provides a way to  
 |**DeleteKeys**  <br>*optional*|< [RegistryKey](#registrykey) > array|
 
 
+<a name="registryflushstate"></a>
+## RegistryFlushState
+
+Represents the flush state of the registry hive for a windows container's job object.
+
+|Name|Schema|
+|---|---|
+|**Hive**  <br>*optional*|Determines whether the flush state of the registry hive is enabled or not. When not enabled, flushes are ignored and changes to the registry are not preserved.|bool|
+
+
 <a name="registrykey"></a>
 ## RegistryKey
 
@@ -971,6 +1110,16 @@ Extended error information returned by the HCS
 |**TemplateSystemId**  <br>*optional*|The ID of the template system to clone this new system off of. An empty  string indicates the system should not be cloned from a template.|string|
 
 
+<a name="runtimestate"></a>
+## RuntimeState
+guest runtime state
+
+|Name|Description|Schema|
+|---|---|---|
+|**Version**  <br>*optional*|version|
+|**Devices**  <br>*optional*|Map(Guid, Device)|
+
+
 <a name="saveoptions"></a>
 ## SaveOptions
 
@@ -986,6 +1135,16 @@ Extended error information returned by the HCS
 |Name|Description|Schema|
 |---|---|---|
 |**Attachments**  <br>*optional*|Map of attachments, where the key is the integer LUN number on the controller.|< string, [Attachment](#attachment) > map|
+
+
+<a name="secureboottemplate"></a>
+## SecureBootTemplate
+guest secure boot template
+
+|Name|Schema|
+|---|---|
+|**TemplateGuid**  <br>*optional*|guid|
+|**TemplateVersion**  <br>*optional*|Integer (uint16)|
 
 
 <a name="services"></a>
@@ -1034,6 +1193,11 @@ The service properties will be returned as an array corresponding to the request
 |**GuestPhysicalAddress**  <br>*optional*|integer (uint64)|
 |**SectionName**  <br>*optional*|string|
 
+
+<a name="shutdown"></a>
+## Shutdown
+
+#object
 
 <a name="siloproperties"></a>
 ## SiloProperties
@@ -1142,6 +1306,40 @@ Storage runtime statistics
 |**Owners**  <br>*optional*|array|string|
 
 
+<a name="systemtime"></a>
+## SystemTime
+
+
+|Name|Schema|
+|---|---|
+|**Year**  <br>*optional*|Integer (uint16)|
+|**Month**  <br>*optional*|Integer (uint16)|
+|**DayOfWeek**  <br>*optional*|Integer (uint16)|
+|**Day**  <br>*optional*|Integer (uint16)|
+|**Hour**  <br>*optional*|Integer (uint16)|
+|**Minute**  <br>*optional*|Integer (uint16)|
+|**Second**  <br>*optional*|Integer (uint16)|
+|**Milliseconds**  <br>*optional*|Integer (uint16)|
+
+
+<a name="timesync"></a>
+## TimeSync
+#object
+
+<a name="timezoneinformation"></a>
+## TimeZoneInformation
+
+|Name|Schema|
+|---|---|
+|**Bias**  <br>*optional*|int32|
+|**StandardName**  <br>*optional*|string|
+|**StandardDate**  <br>*optional*|SystemTime|
+|**StandardBias**  <br>*optional*|int32|
+|**DaylightName**  <br>*optional*|string|
+|**DaylightBias**  <br>*optional*|int32|
+|**DaylightDate**  <br>*optional*|SystemTime|
+
+
 <a name="topology"></a>
 ## Topology
 
@@ -1182,6 +1380,20 @@ Storage runtime statistics
 |**DiskNumber**  <br>*optional*|integer (uint16)|
 |**OptionalData**  <br>*optional*|string|
 |**VmbFsRootPath**  <br>*optional*|string|
+
+
+<a name="uefisysteminformation"></a>
+## UefiSystemInformation
+
+|Name|Schema|
+|---|---|
+|**Manufacturer**  <br>*optional*|string|
+|**ProductName**  <br>*optional*|string|
+|**Version**  <br>*optional*|string|
+|**SerialNumber**  <br>*optional*|string|
+|**UUID**  <br>*optional*|guid|
+|**SKUNumber**  <br>*optional*|string|
+|**Family**  <br>*optional*|string|
 
 
 <a name="version"></a>
@@ -1318,6 +1530,15 @@ Storage runtime statistics
 |---|---|
 |**DirectFileMappingInMB**  <br>*optional*|integer (int64)|
 |**Shares**  <br>*optional*|< [VirtualSmbShare](#virtualsmbshare) > array|
+
+
+<a name="virtualsmbalternatedatastream"></a>
+## VirtualSmbAlternateDataStream
+
+|Name|Schema|
+|---|---|
+|**Name**  <br>*optional*|Name of the alternate data stream.|string|
+|**Contents**  <br>*optional*|Data to be written to the alternate data stream.|ByteArray|
 
 
 <a name="virtualsmbshare"></a>
