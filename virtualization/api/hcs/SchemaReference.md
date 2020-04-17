@@ -5,6 +5,7 @@
 <a name="attributionrecord"></a>
 ## AttributionRecord
 
+
 |Name|Schema|
 |---|---|
 |**WorkerExit**  <br>*optional*|WorkerExit|
@@ -33,7 +34,7 @@
 ## Battery
 *Type* : object
 
-<a name="BatchedBinding"></a>
+<a name="batchedbinding"></a>
 ## BatchedBinding
 
 |Name|Schema|
@@ -42,8 +43,18 @@
 |**BindingRoots[]**  <br>*optional*|string|
 
 
+<a name="basicinformation"></a>
+## BasicInformation
+Information about schema.
+
+|Name|Schema|
+|---|---|
+|**SupportedSchemaVersions**  <br>*optional*|Version array|
+
+
 <a name="cachequerystatsresponse"></a>
 ## CacheQueryStatsResponse
+Cache Query Statistics Response.
 
 |Name|Schema|
 |---|---|
@@ -78,6 +89,7 @@
 
 <a name="closehandle"></a>
 ## CloseHandle
+Display close handle.
 
 |Name|Schema|
 |---|---|
@@ -111,6 +123,7 @@ ComPort specifies the named pipe that will be used for the port, with empty stri
 
 <a name="computesystem"></a>
 ## ComputeSystem
+Compute system information
 
 |Name|Schema|
 |---|---|
@@ -125,6 +138,7 @@ ComPort specifies the named pipe that will be used for the port, with empty stri
 
 <a name="consolesize"></a>
 ## ConsoleSize
+Dimension size for a console session.
 
 |Name|Schema|
 |---|---|
@@ -134,6 +148,7 @@ ComPort specifies the named pipe that will be used for the port, with empty stri
 
 <a name="container"></a>
 ## Container
+Container information
 
 |Name|Schema|
 |---|---|
@@ -150,8 +165,9 @@ ComPort specifies the named pipe that will be used for the port, with empty stri
 |**Storage**  <br>*optional*|[Storage](#storage)|
 
 
-<a name="ContainerCredentialGuardAddInstanceRequest"></a>
+<a name="containercredentialguardaddinstancerequest"></a>
 ## ContainerCredentialGuardAddInstanceRequest
+Information about an instance request for CredentialGuard in a container
 
 |Name|Description|Schema|
 |---|---|---|
@@ -159,8 +175,9 @@ ComPort specifies the named pipe that will be used for the port, with empty stri
 |**CredentialSpec**  <br>*optional*|string|
 |**Transport**  <br>*optional*|ContainerCredentialGuardTransport|
 
-<a name="ContainerCredentialGuardInstance"></a>
+<a name="containercredentialguardinstance"></a>
 ## ContainerCredentialGuardInstance
+Displays information about Credential Guard instance for a container.
 
 |Name|Description|Schema|
 |---|---|---|
@@ -169,9 +186,19 @@ ComPort specifies the named pipe that will be used for the port, with empty stri
 |**HvSocketConfig**  <br>*optional*|ContainerCredentialGuardHvSocketServiceConfig?|
 
 
+<a name="containercredentialguardoperationrequest"></a>
+## ContainerCredentialGuardOperationRequest
+Information about an operation request for CredentialGuard in a container
+
+|Name|Description|Schema|
+|---|---|---|
+|**Operation**  <br>*optional*|containercredentialguardmodifyoperation|
+|**OperationDetails**  <br>*optional*|any|
+
+
 <a name="ContainerCredentialGuardSystemInfo"></a>
 ## ContainerCredentialGuardSystemInfo
-
+Displays sysmte information related to CredentialGuard for a container.
 |Name|Description|Schema|
 |---|---|---|
 |**Instances[]**  <br>*optional*|ContainerCredentialGuardInstance|
@@ -179,6 +206,7 @@ ComPort specifies the named pipe that will be used for the port, with empty stri
 
 <a name="ContainerCredentialGuardHvSocketServiceConfig"></a>
 ## ContainerCredentialGuardHvSocketServiceConfig
+Credential Guard Hyper-V socket service configuration for a container.
 
 |Name|Description|Schema|
 |---|---|---|
@@ -188,6 +216,7 @@ ComPort specifies the named pipe that will be used for the port, with empty stri
 
 <a name="containercredentialguardstate"></a>
 ## ContainerCredentialGuardState
+Contains information about Credential Guard and its state for a container.
 
 |Name|Description|Schema|
 |---|---|---|
@@ -199,6 +228,7 @@ ComPort specifies the named pipe that will be used for the port, with empty stri
 
 <a name="cpugroup"></a>
 ## CpuGroup
+CPU groups allow Hyper-V administrators to better manage and allocate the host's CPU resources across guest virtual machines
 
 |Name|Description|Schema|
 |---|---|---|
@@ -207,6 +237,7 @@ ComPort specifies the named pipe that will be used for the port, with empty stri
 
 <a name="crashoptions"></a>
 ## CrashOptions
+Crash options information.
 
 |Name|Description|Schema|
 |---|---|---|
@@ -241,6 +272,7 @@ Information on auxillary process dumps
 
 <a name="debugoptions"></a>
 ## DebugOptions
+Debugging Options information
 
 |Name|Description|Schema|
 |---|---|---|
@@ -276,6 +308,7 @@ Guest device information
 
 <a name="devices"></a>
 ## Devices
+Virtual Machine devices information.
 
 |Name|Schema|
 |---|---|
@@ -336,6 +369,7 @@ Event data element
 
 <a name="exportlayeroptions"></a>
 ## ExportLayerOptions
+Layer export option information.
 
 |Name|Schema|
 |---|---|
@@ -365,6 +399,7 @@ Structures used to perform a filtered propertyquery.
 
 <a name="guestconnection"></a>
 ## GuestConnection
+Guest Connection information.
 
 |Name|Description|Schema|
 |---|---|---|
@@ -421,6 +456,7 @@ Memory usage as viewed from the guest OS.
 
 <a name="guestmodifysettingrequest"></a>
 ## GuestModifySettingRequest
+Guest Modify Setting Request information.
 
 |Name|Description|Schema|
 |---|---|---|
@@ -431,6 +467,7 @@ Memory usage as viewed from the guest OS.
 
 <a name="guestos"></a>
 ## GuestOs
+Guest operating system information.
 
 |Name|Schema|
 |---|---|
@@ -439,6 +476,7 @@ Memory usage as viewed from the guest OS.
 
 <a name="gueststate"></a>
 ## GuestState
+Guest state information
 
 |Name|Description|Schema|
 |---|---|---|
@@ -449,6 +487,7 @@ Memory usage as viewed from the guest OS.
 
 <a name="gpuconfiguration"></a>
 ## GpuConfiguration
+Gpu Configuration Information
 
 |Name|Description|Schema|
 |---|---|---|
@@ -464,6 +503,7 @@ Memory usage as viewed from the guest OS.
 
 <a name="hostedsystem"></a>
 ## HostedSystem
+Information about hosted system
 
 |Name|Description|Schema|
 |---|---|---|
@@ -473,6 +513,7 @@ Memory usage as viewed from the guest OS.
 
 <a name="hvsocket"></a>
 ## HvSocket
+Windows Socket for targeting virtual machines.
 
 |Name|Schema|
 |---|---|
@@ -492,6 +533,7 @@ This class defines address settings applied to a VM by the GCS every time a VM s
 
 <a name="hvsocketserviceconfig"></a>
 ## HvSocketServiceConfig
+Information about Hyper-V socket service configuration.
 
 |Name|Description|Schema|
 |---|---|---|
@@ -524,6 +566,7 @@ HvSocket configuration for a VM
 
 <a name="idledprocessorresponse"></a>
 ## IdledProcessorResponse
+Information about idled processor response.
 
 |Name|Description|Schema|
 |---|---|---|
@@ -534,6 +577,7 @@ HvSocket configuration for a VM
 
 <a name="idleprocessorsrequest"></a>
 ## IdleProcessorsRequest
+Idle Processors Request count.
 
 |Name|Description|Schema|
 |---|---|---|
@@ -548,6 +592,7 @@ A non-maskable interrupt (NMI) was inject by the host management client or other
 
 <a name="integrationcomponentstatus"></a>
 ## IntegrationComponentStatus
+Integration Component Status
 
 |Name|Description|Schema|
 |---|---|---|
@@ -568,6 +613,7 @@ A non-maskable interrupt (NMI) was inject by the host management client or other
 
 <a name="launchoptions"></a>
 ## LaunchOptions
+Launch Options
 
 |Name|Description|Schema|
 |---|---|---|
@@ -576,6 +622,7 @@ A non-maskable interrupt (NMI) was inject by the host management client or other
 
 <a name="layer"></a>
 ## Layer
+Describe the parent hierarchy for a container's storage.
 
 |Name|Description|Schema|
 |---|---|---|
@@ -587,6 +634,7 @@ A non-maskable interrupt (NMI) was inject by the host management client or other
 
 <a name="layerData"></a>
 ## Layer
+Information about layers
 
 |Name|Description|Schema|
 |---|---|---|
@@ -615,6 +663,7 @@ A non-maskable interrupt (NMI) was inject by the host management client or other
 
 <a name="mappeddirectory"></a>
 ## MappedDirectory
+Information about mapped directories in a container
 
 |Name|Schema|
 |---|---|
@@ -627,6 +676,7 @@ A non-maskable interrupt (NMI) was inject by the host management client or other
 
 <a name="mappedpipe"></a>
 ## MappedPipe
+Information about mapped pipes in a container
 
 |Name|Schema|
 |---|---|
@@ -647,7 +697,7 @@ A non-maskable interrupt (NMI) was inject by the host management client or other
 <a name="memory"></a>
 ## Memory
 
-This class is used for Virtual Machines and containers. Container related items are listed in the description.
+This class is used to display memory information for containers. 
 
 |Name|Schema|
 |---|---|
@@ -656,6 +706,7 @@ This class is used for Virtual Machines and containers. Container related items 
 
 <a name="memoryinformationforvm"></a>
 ## MemoryInformationForVm
+Memory information specific for a virtual machine.
 
 |Name|Schema|
 |---|---|
@@ -678,6 +729,7 @@ Memory runtime statistics
 
 <a name="memory_2"></a>
 ## Memory_2
+This class is used to display memory information for virtual machines.
 
 |Name|Description|Schema|
 |---|---|---|
@@ -697,8 +749,18 @@ Memory runtime statistics
 |**SizeInMB**  <br>*optional*||integer (uint64)|
 
 
+<a name="modificationrequest"></a>
+## ModificationRequest
+
+|Name|Schema|
+|---|---|
+|**PropertyType**  <br>*optional*|enum(Basic, Memory, CpuGroup, ProcessorTopology, CacheAllocation, CacheMonitoring, ContainerCredentialGuard, QoSCapabilities, MemoryBwAllocation, Undefined)|
+|**Settings**  <br>*optional*|object|
+
+
 <a name="modifysettingrequest"></a>
 ## ModifySettingRequest
+Information about Modify Setting Request.
 
 |Name|Schema|
 |---|---|
@@ -725,6 +787,7 @@ Memory runtime statistics
 
 <a name="networking"></a>
 ## Networking
+Network information about a container
 
 |Name|Description|Schema|
 |---|---|---|
@@ -737,6 +800,7 @@ Memory runtime statistics
 
 <a name="networkmodifysettingrequest"></a>
 ## NetworkModifySettingRequest
+Network Modify Setting Request information.
 
 |Name|Description|Schema|
 |---|---|---|
@@ -757,6 +821,7 @@ Memory runtime statistics
 
 <a name="numasetting"></a>
 ## NumaSetting
+NUMA related settings.
 
 |Name|Description|Schema|
 |---|---|---|
@@ -796,7 +861,7 @@ Memory runtime statistics
 
 <a name="operationfailure"></a>
 ## OperationFailure
-
+Details about a failure.
 
 |Name|Schema|
 |---|---|
@@ -805,7 +870,7 @@ Memory runtime statistics
 
 <a name="oslayeroptions"></a>
 ## OsLayerOptions
-
+Options of the Operating system layer.
 
 |Name|Schema|
 |---|---|
@@ -986,6 +1051,7 @@ Specifies CPU limits for a Virtual Machines
 
 <a name="properties"></a>
 ## Properties
+Virtual Machine properties.
 
 |Name|Description|Schema|
 |---|---|---|
@@ -1021,6 +1087,7 @@ By default the basic properties will be returned. This query provides a way to  
 
 <a name="qoscapabilities"></a>
 ## QoSCapabilities
+Qos capabilities information.
 
 |Name|Schema|
 |---|---|
@@ -1057,6 +1124,7 @@ Represents the flush state of the registry hive for a windows container's job ob
 
 <a name="registrykey"></a>
 ## RegistryKey
+Registry key information.
 
 |Name|Schema|
 |---|---|
@@ -1082,6 +1150,7 @@ Represents the flush state of the registry hive for a windows container's job ob
 
 <a name="registrychanges"></a>
 ## RegistryChanges
+Information on registry changes.
 
 |Name|Description|Schema|
 |---|---|---|
@@ -1103,6 +1172,7 @@ Extended error information returned by the HCS
 
 <a name="restorestate"></a>
 ## RestoreState
+Restore State Information
 
 |Name|Description|Schema|
 |---|---|---|
@@ -1122,6 +1192,7 @@ guest runtime state
 
 <a name="saveoptions"></a>
 ## SaveOptions
+Save options information.
 
 |Name|Description|Schema|
 |---|---|---|
@@ -1149,6 +1220,7 @@ guest secure boot template
 
 <a name="services"></a>
 ## Services
+Guest services information.
 
 |Name|Schema|
 |---|---|
@@ -1187,6 +1259,7 @@ The service properties will be returned as an array corresponding to the request
 
 <a name="sharedmemoryregioninfo"></a>
 ## SharedMemoryRegionInfo
+Shared Memory Region Information.
 
 |Name|Schema|
 |---|---|
@@ -1210,6 +1283,7 @@ The service properties will be returned as an array corresponding to the request
 
 <a name="silosettings"></a>
 ## SiloSettings
+Silo job information.
 
 |Name|Schema|
 |---|---|
@@ -1220,6 +1294,7 @@ The service properties will be returned as an array corresponding to the request
 
 <a name="signalprocessoptions"></a>
 ## SignalProcessOptions
+Signal Process Options
 
 |Name|Schema|
 |---|---|
@@ -1230,7 +1305,6 @@ The service properties will be returned as an array corresponding to the request
 <a name="statistics"></a>
 ## Statistics
 Runtime statistics for a container
-
 
 |Name|Schema|
 |---|---|
@@ -1244,6 +1318,7 @@ Runtime statistics for a container
 
 <a name="storage"></a>
 ## Storage
+Storage inforamtion about a container
 
 |Name|Description|Schema|
 |---|---|---|
@@ -1254,6 +1329,7 @@ Runtime statistics for a container
 
 <a name="storageqos"></a>
 ## StorageQoS
+Storage related QoS settings
 
 |Name|Schema|
 |---|---|
@@ -1276,7 +1352,7 @@ Storage runtime statistics
 
 <a name="systemexit"></a>
 ## SystemExit
-
+Detail information about system exits.
 
 |Name|Schema|
 |---|---|
@@ -1286,6 +1362,7 @@ Storage runtime statistics
 
 <a name="systemexitstatus"></a>
 ## SystemExitStatus
+Document provided in the EventData parameter of an HcsEventSystemExited event.
 
 |Name|Schema|
 |---|---|
@@ -1296,7 +1373,7 @@ Storage runtime statistics
 
 <a name="systemquery"></a>
 ## SystemQuery
-
+ By default the basic properties will be returned. This query provides a way to request specific properties.
 
 |Name|Schema|
 |---|---|
@@ -1342,6 +1419,7 @@ Storage runtime statistics
 
 <a name="topology"></a>
 ## Topology
+Specifies NUMA topology.
 
 |Name|Schema|
 |---|---|
@@ -1351,6 +1429,7 @@ Storage runtime statistics
 
 <a name="triplefault"></a>
 ## TripleFault
+Error type  for a TripleFault.
 
 |Name|Schema|
 |---|---|
@@ -1398,6 +1477,7 @@ Storage runtime statistics
 
 <a name="version"></a>
 ## Version
+Version information
 
 |Name|Schema|
 |---|---|
@@ -1447,6 +1527,7 @@ Storage runtime statistics
 
 <a name="virtualmachine"></a>
 ## VirtualMachine
+Virtual machine information
 
 |Name|Schema|
 |---|---|
@@ -1464,6 +1545,7 @@ Storage runtime statistics
 
 <a name="virtualnodeinfo"></a>
 ## VirtualNodeInfo
+Information on virtual nodes.
 
 |Name|Schema|
 |---|---|
@@ -1580,6 +1662,7 @@ Storage runtime statistics
 
 <a name="vmmemory"></a>
 ## VmMemory
+Virtual machine memory.
 
 |Name|Schema|
 |---|---|
