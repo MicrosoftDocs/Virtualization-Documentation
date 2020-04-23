@@ -83,8 +83,7 @@ For this simple example, a ‘Hello World’ container image will be created and
    ```console
    docker run --rm helloworld cmd.exe /s /c type Hello.txt
    ```
-
-   The result is that a container was created from the 'HelloWorld' image, an instance of cmd.exe was started in the container that read our file and output the file contents to the shell, and then the container stopped and was removed.
+   The result is that Docker created a container from the 'HelloWorld' image, Docker started an instance of cmd.exe in the container, and the cmd.exe read our file and output the contents to the shell. As the final step, Docker stopped and removed the container.
 
 ## Next steps
 
