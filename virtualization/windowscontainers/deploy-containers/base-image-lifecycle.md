@@ -24,6 +24,7 @@ The following table lists each type of base image, its servicing channel, and ho
 
 |Base image                       |Servicing channel|Version|OS build|Availability|Mainstream support end date|Extended support date|
 |---------------------------------|-----------------|-------|--------|------------|---------------------------|---------------------|
+|Server Core, Nano Server, Windows|Semi-Annual      |2004   |19041   |05/27/2020  |12/14/2021                 |N/A                  |
 |Server Core, Nano Server, Windows|Semi-Annual      |1909   |18363   |11/12/2019  |05/11/2021                 |N/A                  |
 |Server Core, Nano Server, Windows|Semi-Annual      |1903   |18362   |05/21/2019  |12/08/2020                 |N/A                  |
 |Server Core                      |Long-Term        |2019   |17763   |11/13/2018  |01/09/2024                 |01/09/2029           |
@@ -33,4 +34,4 @@ The following table lists each type of base image, its servicing channel, and ho
 |Server Core                      |Long-Term        |1607   |14393   |10/15/2016  |01/11/2022                 |01/11/2027           |
 |Nano Server                      |Semi-Annual      |1607   |14393   |10/15/2016  |10/09/2018                 |N/A                  |
 
-For servicing requirements and other additional information, see the [Windows Lifecycle FAQ](https://support.microsoft.com/help/18581/lifecycle-faq-windows-products), [Windows Server release information](https://docs.microsoft.com/windows-server/get-started/windows-server-release-info), and the [Windows base OS images Docker hub repo](https://hub.docker.com/_/microsoft-windows-base-os-images).
+For servicing requirements and other additional information, see the [Windows Lifecycle FAQ](https://support.microsoft.com/help/18581/lifecycle-faq-windows-products), [Windows Server release information](https://docs.microsoft.com/windows-server/get-started/windows-server-release-info), and the [Windows base OS images Docker hub repo](https://hub.docker.com/_/microsoft-windows-base-os-images).
