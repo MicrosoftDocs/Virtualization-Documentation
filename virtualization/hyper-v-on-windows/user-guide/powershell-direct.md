@@ -17,7 +17,7 @@ You can use PowerShell Direct to run arbitrary PowerShell in a Windows 10 or Win
 Here are some ways you can run PowerShell Direct:
 
 * [As an interactive session using the Enter-PSSession cmdlet](#create-and-exit-an-interactive-powershell-session)
-* [As a single-use section to execute a single command or script using the Invoke-Command cmdlet](#run-a-script-or-command-with-invoke-command)
+* [As a single-use session to execute a single command or script using the Invoke-Command cmdlet](#run-a-script-or-command-with-invoke-command)
 * [As a persistant session (build 14280 and later) using the New-PSSession, Copy-Item, and Remove-PSSession cmdlets](#copy-files-with-new-pssession-and-copy-item)
 
 ## Requirements
