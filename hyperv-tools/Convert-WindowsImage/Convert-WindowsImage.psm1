@@ -2020,6 +2020,19 @@ You can use the fields below to configure the VHD or VHDX that you want to creat
                     If (( $openImage.ImageArchitecture -ne "ARM" ) -and       # No virtualization platform for ARM images
                         ( $BcdInVhd -ne "NativeBoot" ))                       # User asked for a non-bootable image
                     {
+                        $BcdEdit = "BCDEDIT.EXE"
+                        If (Test-Path -Path "$($env:WINDIR)\sysnative\")
+                        {
+                            Write-Verbose -Message "Powershell is not running as native, switching to sysnative paths for native tools"
+                            $BcdEdit = Join-Path -Path "$($env:WINDIR)\sysnative\" -ChildPath $BcdEdit
+
+                            # Update bcdboot parameter only if not specified by caller
+                            If (-Not $PSBoundParameters.ContainsKey('BcdBoot'))
+                            {
+                                $BcdBoot = Join-Path -Path "$($env:WINDIR)\sysnative\" -ChildPath $BcdBoot
+                            }
+                        }
+
                         If (Test-Path -Path "$($systemDrive)\boot\bcd")
                         {
                             Write-Verbose -Message "Image already has BIOS BCD store..."
@@ -2090,15 +2103,15 @@ You can use the fields below to configure the VHD or VHDX that you want to creat
 
                             $bcdPath | ForEach-Object -Process {
 
-                                Start-Executable -Executable "BCDEDIT.EXE" -Arguments (
+                                Start-Executable -Executable $BcdEdit -Arguments (
                                     "/store $PSItem",
                                     "/set `{bootmgr`} device locate"
                                 )
-                                Start-Executable -Executable "BCDEDIT.EXE" -Arguments (
+                                Start-Executable -Executable $BcdEdit -Arguments (
                                     "/store $PSItem",
                                     "/set `{default`} device locate"
                                 )
-                                Start-Executable -Executable "BCDEDIT.EXE" -Arguments (
+                                Start-Executable -Executable $BcdEdit -Arguments (
                                     "/store $PSItem",
                                     "/set `{default`} osdevice locate"
                                 )
@@ -2175,7 +2188,7 @@ You can use the fields below to configure the VHD or VHDX that you want to creat
                                 {
                                     Write-Verbose -Message "Turning kernel debugging on in the $VhdFormat for $bcdStore..."
 
-                                    Start-Executable -Executable "BCDEDIT.EXE" -Arguments (
+                                    Start-Executable -Executable $BcdEdit -Arguments (
 
                                         "/store $($bcdStore)",
                                         "/set `{default`} debug on"
@@ -2183,7 +2196,7 @@ You can use the fields below to configure the VHD or VHDX that you want to creat
 
                                     $bcdEditArguments = @("/store $($bcdStore)") + $bcdEditArgs
 
-                                    Start-Executable -Executable "BCDEDIT.EXE" -Arguments $bcdEditArguments
+                                    Start-Executable -Executable $BcdEdit -Arguments $bcdEditArguments
                                 }
                             }
                         }
