@@ -53,7 +53,7 @@ For more configuration details, see [Docker Engine on Windows](../manage-docker/
 
 To install Docker on Windows Server, you can use a [OneGet provider PowerShell module](https://github.com/oneget/oneget) published by Microsoft called the [DockerMicrosoftProvider](https://github.com/OneGet/MicrosoftDockerProvider). This provider enables the containers feature in Windows and installs the Docker engine and client. Here's how:
 
-1. Open an elevated PowerShell session and install the Docker-Microsoft PackageManagement Provider from the [PowerShell Gallery](https://www.powershellgallery.com/packages/DockerMsftProvider).
+1. Open an elevated PowerShell session and download the Docker-Microsoft PackageManagement Provider from the [PowerShell Gallery](https://www.powershellgallery.com/packages/DockerMsftProvider).
 
    ```powershell
    Install-Module -Name DockerMsftProvider -Repository PSGallery -Force
@@ -61,14 +61,20 @@ To install Docker on Windows Server, you can use a [OneGet provider PowerShell m
 
    If you're prompted to install the NuGet provider, type `Y` to install it as well.
 
-2. Use the PackageManagement PowerShell module to install the latest version of Docker.
+2. Install the Docker-Microsoft PackageManagement Provider.
+
+   ```powershell
+   Import-Module -Name DockerMsftProvider -Force
+   ```
+   If you get an error that running scripts has been disabled on this system, you need to change your current powershell execution policy. Use `Get-Executionpolicy` and `Set-Executionpolicy` to confirm what type of scripts are allowed to run.
+3. Use the PackageManagement PowerShell module to install the latest version of Docker.
 
    ```powershell
    Install-Package -Name docker -ProviderName DockerMsftProvider
    ```
 
    When PowerShell asks you whether to trust the package source 'DockerDefault', type `A` to continue the installation.
-3. After the installation completes, restart the computer.
+4. After the installation completes, restart the computer.
 
    ```powershell
    Restart-Computer -Force
