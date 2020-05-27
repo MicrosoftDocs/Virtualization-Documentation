@@ -12,7 +12,7 @@ ms.date: 05/26/2020
 ## Know Issues of Windows Server, version 2004
 
 ### 1. Performance Issue on Server Core container
-In prepping for Windows Server, version 2004 release, we identified a performance issue with .NET Team on the current Server Container image, comparing to the performance improvements we blogged in Dec 2019 here(https://techcommunity.microsoft.com/t5/containers/making-windows-server-core-containers-40-smaller/ba-p/1058874) and on .NET Team blog here(https://devblogs.microsoft.com/dotnet/we-made-windows-server-core-container-images-40-smaller/) which was done on an 20H1 Insider Release Server Core container image. The symptons that we observed are like this:
+In prepping for Windows Server, version 2004 release, we identified a performance issue with .NET Team on the current Server Core container image, comparing to the performance improvements we blogged in Dec 2019 [here](https://techcommunity.microsoft.com/t5/containers/making-windows-server-core-containers-40-smaller/ba-p/1058874) and on .NET Team blog [here](https://devblogs.microsoft.com/dotnet/we-made-windows-server-core-container-images-40-smaller/) which was done on an 20H1 Insider Release Server Core container image. The symptons that we observed are like this:
 
 If you use the Server Core container image to build your own image and upload to a remote container registry such as Azure Container Registry, and then you or someone else pulls that image from the registry and runs it, you will see a slower performance of the container.
 However, if you build the image and run the image locally, you will not see any performance difference.
