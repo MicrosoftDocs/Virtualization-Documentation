@@ -44,7 +44,7 @@ Before starting this guide, please:
 
 ## Creating the host
 
-I will gloss over any configuration values that are up to personal preference, such as VM Name, Resource Group, etc..
+I will gloss over any configuration values that are up to personal preference, such as VM Name, Resource Group, and so on.
 
 1. Navigate to portal.azure.com
 2. Click "Create a resource" in upper left
@@ -117,10 +117,10 @@ I will gloss over any configuration values that are up to personal preference, s
 1. Open Server Manager and select "Tools" and then select "Routing and Remote Access".
 2. On the left hand side of the Routing and Remote Access management panel you will see an icon with your servers name next to it, right click this and select "Configure and Enable Routing and Remote Access".
 3. At the wizard select "Next", select "Custom Configuration", and then select "Next".
-4. Check “NAT” and “LAN routing” and then select “Next” and then “Finish”. If it asks you to start the service then do so.
+4. Check “NAT” and “LAN routing” and then select “Next” and then “Finish”. If it asks you to start the service, then do so.
 5. Now navigate to the “IPv4” node and expand it so that the “NAT” node is made available.
-6. Right click “NAT”, select “New Interface...” and select "Ethernet", this should be your first NIC with the IP of "10.0.0.4" and select Public interface connect to the Internet and Enable NAT on this interface. 
-7. Now we need to create some static routes to force LAN traffic out the second NIC. You do this by going to the "Static Routes" node under "IPv4".
+6. Right click “NAT”, select “New Interface...” and select "Ethernet", this should be your first NIC with the IP of "10.0.0.4" and select "Public interface," connect to the Internet and Enable NAT on this interface. 
+7. Now we need to create some static routes to force LAN traffic out of the second NIC. You do this by going to the "Static Routes" node under "IPv4".
 8. Once there we'll create the following routes.
     * Route 1
         * Interface: Ethernet
@@ -128,7 +128,7 @@ I will gloss over any configuration values that are up to personal preference, s
         * Network Mask: 255.255.255.0
         * Gateway: 10.0.0.1
         * Metric: 256
-        * Note: We put this here to allow the primary NIC to respond to traffic destined to it out its own interface. If we didn't have this here the following route would cause traffic meant for NIC 1 to go out NIC 2. This would create an asymmetric route. 10.0.0.1 is the IP address that Azure assigns to the NAT subnet. Azure uses the first available IP in a range as the default gateway. So if you were to have used 192.168.0.0/24 for your NAT subnet, the gateway would be 192.168.0.1. In routing the more specific route wins, meaning this route will supercede the below route.
+        * Note: We put this here to allow the primary NIC to respond to traffic destined to it out its own interface. If we didn't have this here the following route would cause traffic meant for NIC 1 to go out NIC 2. This would create an asymmetric route. 10.0.0.1 is the IP address that Azure assigns to the NAT subnet. Azure uses the first available IP in a range as the default gateway. So if you were to have used 192.168.0.0/24 for your NAT subnet, the gateway would be 192.168.0.1. In routing the more specific route wins, meaning this route will supersede the below route.
 
     * Route 2
         * Interface: Ethernet 2
@@ -136,7 +136,7 @@ I will gloss over any configuration values that are up to personal preference, s
         * Network Mask: 255.255.252.0
         * Gateway: 10.0.1.1
         * Metric: 256
-        * Note: This is a catch all route for traffic meant to our Azure VNet. It will force traffic out the second NIC. You'll need to add additional routes for other ranges you want your nested VMs to access. So if you're on-prem network is 172.16.0.0/22 then you'd want to have another route to send that traffic out the second NIC of our hypervisor.
+        * Note: This is a catch all route for traffic meant to our Azure VNet. It will force traffic out the second NIC. You'll need to add additional routes for other ranges you want your nested VMs to access. So if you're on-prem network is 172.16.0.0/22, then you'd want to have another route to send that traffic out the second NIC of our hypervisor.
 
 ## Creating a route table within Azure
 
@@ -163,8 +163,9 @@ Refer to [this article](https://docs.microsoft.com/azure/virtual-network/tutoria
 8. Select "Associate", then select our "Nested-Fun" VNet and then select the "Azure-VMs" subnet, and then select "OK".
 9. Do this same process for the Subnet that our Hyper-V host resides on as well as for any other Subnets that need to access the nested VMs. If connected 
 
-# End state configuration reference
-The environment in this guide has the below configurations. This section is inteded to be used as a reference.
+## End state configuration reference
+
+The environment in this guide has the below configurations. This section is intended to be used as a reference.
 
 1. Azure Virtual Network Information.
     * VNet High Level Configuration.
