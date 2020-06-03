@@ -163,7 +163,8 @@ Refer to [this article](https://docs.microsoft.com/azure/virtual-network/tutoria
 8. Select "Associate", then select our "Nested-Fun" VNet and then select the "Azure-VMs" subnet, and then select "OK".
 9. Do this same process for the Subnet that our Hyper-V host resides on as well as for any other Subnets that need to access the nested VMs. If connected 
 
-# End state configuration reference
+## End state configuration reference
+
 The environment in this guide has the below configurations. This section is intended to be used as a reference.
 
 1. Azure Virtual Network Information.
