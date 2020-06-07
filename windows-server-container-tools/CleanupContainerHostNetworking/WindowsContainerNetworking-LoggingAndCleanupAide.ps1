@@ -276,10 +276,7 @@ function CopyAllLogs
 
     ipconfig /allcompartments /all > $LogsPath"\ipconfig.txt"
 
-
-
     Try
-
     {
 
         Resolve-Path "C:\Windows\System32\vfpctrl.exe" -ErrorAction Stop | Out-Null
@@ -315,11 +312,6 @@ function CopyAllLogs
     {
         $addMe = docker network inspect $network
         Add-Content $LogsPath"\docker_network_inspect.txt" $addMe
-    }
-
-    
-    if ((Get-WindowsFeature -Name Hyper-V).Installed -and (Get-Command Get-VMSwitch -ErrorAction SilentlyContinue)){
-        Get-VMSwitch | FL * > $LogsPath"\GetVMSwitch.txt"
     }
 
     Get-NetNat | FL * > $LogsPath"\GetNetNat.txt"
