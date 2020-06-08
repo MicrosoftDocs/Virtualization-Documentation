@@ -239,13 +239,14 @@ function GetAllPolicies
 # -----------------------------------------------------------------------
 function CopyAllLogs
 {
-    Param(
+
+    Param (
         [string] $LogsPath
     )
 
     $LogsPath += "_$($script:namingSuffix)"
 
-    if (!(Test-Path $LogsPath))
+    If (!(Test-Path $LogsPath))
     {
         mkdir $LogsPath
     }
@@ -255,20 +256,20 @@ function CopyAllLogs
 
     $hns = Get-Service hns
 
-    try
+    Try
     {
-        if ($hns.Status -eq "Running")
+        If ($hns.Status -eq "Running")
         {
             net stop hns
         }
-        if (Test-Path "C:\ProgramData\Microsoft\Windows\HNS\HNS.data")
+        If (Test-Path "C:\ProgramData\Microsoft\Windows\HNS\HNS.data")
         {
             Copy-Item c:\ProgramData\Microsoft\Windows\HNS\HNS.data $LogsPath
         }
     }
-    finally
+    Finally
     {
-        if ($hns.Status -eq "Running")
+        If ($hns.Status -eq "Running")
         {
             net start hns
         }
@@ -302,13 +303,13 @@ function CopyAllLogs
     docker info > $LogsPath"\docker_info.txt"
 
     # Get list containing IDs of current container networks on host
-    $networks=docker network ls -q
+    $networks = docker network ls -q
 
     # Initialize file for recording network info
     "Number of container networks currently on this host: "+$networks.Length+"`\n" > $LogsPath"\docker_network_inspect.txt"
 
     # Inspect each network
-    foreach($network in $networks)
+    ForEach ($network in $networks)
     {
         $addMe = docker network inspect $network
         Add-Content $LogsPath"\docker_network_inspect.txt" $addMe
@@ -323,6 +324,7 @@ function CopyAllLogs
 
     Get-ChildItem HKLM:\SYSTEM\CurrentControlSet\Services\hns -Recurse > $LogsPath"\HNSRegistry.txt"
     Get-ChildItem HKLM:\SYSTEM\CurrentControlSet\Services\vmsmp -Recurse > $LogsPath"\vmsmpRegistry.txt"
+
 }
 
 # -----------------------------------------------------------------------
