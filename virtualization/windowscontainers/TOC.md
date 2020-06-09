@@ -26,7 +26,7 @@
 ### [Migrate an ASP.NET app with Windows containers and Azure App Service](/azure/app-service/app-service-web-tutorial-windows-containers-custom-fonts)
 ## Linux containers on Windows
 ### [Overview](deploy-containers/linux-containers.md)
-### [Run your first LCOW container](quick-start/quick-start-windows-10-linux.md)
+### [Run your first Linux container](quick-start/quick-start-windows-10-linux.md)
 ## Use containers with the Windows Insider program
 ### [Overview](deploy-containers/insider-overview.md)
 
