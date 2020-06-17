@@ -19,9 +19,11 @@ The symptoms that we observed are:
 If you use the Server Core container image to build your own image and upload to a remote container registry such as Azure Container Registry, and then you pull that image from the registry and run it, you will see a slower performance of the container. However, if you build the image and run the image locally, you will not observe that performance difference.
 
 This issue is now root caused and we are working on the fix. You can find the following links that track the issue:
-[microsoft/hcsshim#830](https://github.com/microsoft/hcsshim/issues/830)
-[moby/moby#41066](https://github.com/moby/moby/issues/41066)
-[containerd/containerd#4301](https://github.com/containerd/containerd/issues/4301)
+[microsoft/hcsshim#830](https://github.com/microsoft/hcsshim/issues/830);
+
+[moby/moby#41066](https://github.com/moby/moby/issues/41066);
+
+[containerd/containerd#4301](https://github.com/containerd/containerd/issues/4301).
 
 We are also actively with our partner Mirantis getting that fix in Docker EE.
 
