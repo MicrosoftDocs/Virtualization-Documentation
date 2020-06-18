@@ -38,7 +38,7 @@ highlightedContent:
       itemType: overview
       url: /virtualization/windowscontainers/about/
     # Card
-    - title: Start using containers on Windows 10
+    - title: Start using containers on Windows
       itemType: how-to-guide
       url: /virtualization/windowscontainers/quick-start/set-up-environment?tabs=Windows-10-Client     
 
@@ -70,14 +70,11 @@ conceptualContent:
           itemType: how-to-guide
           text: Create a virtual network switch
     # Card
-    - title: Run containers
+    - title: Run containers on Windows or Azure
       links:
         - url: https://www.docker.com/docker-windows
           itemType: overview
           text: Get Docker Desktop for Windows
-        - url: /virtualization/windowscontainers/quick-start/quick-start-windows-server
-          itemType: quickstart
-          text: Run containers on Windows Server
         - url: https://azure.microsoft.com/services/kubernetes-service/
           itemType: overview
           text: Azure Kubernetes Service (AKS)
