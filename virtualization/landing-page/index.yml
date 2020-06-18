@@ -22,25 +22,25 @@ highlightedContent:
 # itemType: architecture | concept | deploy | download | get-started | how-to-guide | learn | overview | quickstart | reference | sample | tutorial | video | whats-new
   items:
     # Card
-    - title: Join the Windows Insider Program
+    - title: Hyper-V on Windows 10
       itemType: overview
-      url: https://insider.windows.com/
+      url: https://docs.microsoft.com/virtualization/hyper-v-on-windows/about/
     # Card
-    - title: Did we miss something? Let us know.
-      itemType: reference
-      url: https://github.com/Microsoft/Virtualization-Documentation/issues
+    - title: Install Hyper-V on Windows 10
+      itemType: how-to-guide
+      url: https://docs.microsoft.com/virtualization/hyper-v-on-windows/quick-start/enable-hyper-v
     # Card
-    - title: Read the Virtualization blog.
-      itemType: learn
-      url: https://techcommunity.microsoft.com/t5/Virtualization/bg-p/Virtualization
+    - title: Hyper-V on Windows Server
+      itemType: overview
+      url: https://docs.microsoft.com/windows-server/virtualization/hyper-v/hyper-v-technology-overview
     # Card
-    - title: Windows Container Forums
-      itemType: reference
-      url: https://social.msdn.microsoft.com/Forums/home?forum=windowscontainers
+    - title: Windows and containers
+      itemType: overview
+      url: https://docs.microsoft.com/virtualization/windowscontainers/about/
     # Card
-    - title: Hyper-V Forums
-      itemType: reference
-      url: https://social.technet.microsoft.com/Forums/home?forum=winserverhyperv     
+    - title: Start using containers on Windows 10
+      itemType: how-to-guide
+      url: https://docs.microsoft.com/virtualization/windowscontainers/quick-start/set-up-environment?tabs=Windows-10-Client     
 
 # conceptualContent section (optional)
 conceptualContent:
