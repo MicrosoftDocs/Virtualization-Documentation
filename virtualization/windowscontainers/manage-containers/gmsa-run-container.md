@@ -20,7 +20,7 @@ docker run --security-opt "credentialspec=file://contoso_webapp01.json" --hostna
 ```
 
 >[!IMPORTANT]
->On Windows Server 2016 versions 1709 and 1803, the hostname of the container must match the gMSA short name.
+>On Windows Server, versions 1709 and 1803, the hostname of the container must match the gMSA short name.
 
 In the previous example, the gMSA SAM Account Name is "webapp01," so the container hostname is also named "webapp01."
 
