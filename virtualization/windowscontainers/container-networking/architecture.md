@@ -52,7 +52,7 @@ The Host Networking Service (HNS) and the Host Compute Service (HCS) work togeth
 - Default NAT network: HNS creates WinNAT port forwarding rules / mappings with corresponding Windows Firewall ALLOW rules
 - All other networks: HNS utilizes the Virtual Filtering Platform (VFP) for policy creation
     - This includes: load balancing, ACLs, encapsulation, etc.
-    - Look for our HNS APIs and schema published [here](https://docs.microsoft.com/en-us/windows-server/networking/technologies/hcn/hcn-top)
+    - Look for our HNS APIs and schema published [here](https://docs.microsoft.com/windows-server/networking/technologies/hcn/hcn-top)
 
 ![text](media/HNS-Management-Stack.png)
 

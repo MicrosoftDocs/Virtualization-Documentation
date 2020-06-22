@@ -12,7 +12,7 @@ ms.service: windows-containers
 # Base image servicing lifecycles
 
 > [!Note]
-> Microsoft has delayed the scheduled end of support and servicing dates for a number of products to help people and organizations focus their attention on retaining business continuity. See [Lifecycle changes to end of support and servicing dates](https://support.microsoft.com/en-us/help/4557164/lifecycle-changes-to-end-of-support-and-servicing-dates) entry from April 14, 2020 for more information.
+> Microsoft has delayed the scheduled end of support and servicing dates for a number of products to help people and organizations focus their attention on retaining business continuity. See [Lifecycle changes to end of support and servicing dates](https://support.microsoft.com/help/4557164/lifecycle-changes-to-end-of-support-and-servicing-dates) entry from April 14, 2020 for more information.
 
 Windows container base images are based on either Semi-Annual Channel releases or Long-Term Servicing Channel releases of Windows Server. This article will tell you how long support will last for different versions of base images from both channels.
 

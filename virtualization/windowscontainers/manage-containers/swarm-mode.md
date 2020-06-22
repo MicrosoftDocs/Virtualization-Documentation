@@ -222,7 +222,7 @@ Currently, swarm mode on Windows has the following limitations:
 - [Routing mesh](https://docs.docker.com/engine/swarm/ingress/) for Windows docker hosts is not supported on Windows Server 2016, but only from Windows Server 2019 onwards. Users seeking an alternative load balancing strategy today can setup an external load balancer (e.g. NGINX) and use Swarm’s [publish-port mode](https://docs.docker.com/engine/reference/commandline/service_create/#/publish-service-ports-externally-to-the-swarm--p---publish) to expose container host ports over which to load balance. More detail on this below.
 
  >[!NOTE]
->For more details on how to setup Docker Swarm Routing Mesh, please see this [blog post](https://docs.microsoft.com/en-us/virtualization/community/team-blog/2017/20170926-docker-s-routing-mesh-available-with-windows-server-version-1709)
+>For more details on how to setup Docker Swarm Routing Mesh, please see this [blog post](https://docs.microsoft.com/virtualization/community/team-blog/2017/20170926-docker-s-routing-mesh-available-with-windows-server-version-1709)
 
 ## Publish ports for service endpoints
  Users seeking to publish ports for their service endpoints can do so today using either publish-port mode, or Docker Swarm's [routing mesh](https://docs.docker.com/engine/swarm/ingress/) feature.
