@@ -1,11 +1,10 @@
 ---
-title: Kubernetes on Windows 
+title: Kubernetes on Windows
 author: gkudra-msft
 ms.author: gekudray
 ms.date: 02/09/2018
-ms.topic: get-started-article
 ms.prod: containers
-
+ms.topic: overview
 description: Joining a Windows node to a Kubernetes cluster with v1.14.
 keywords: kubernetes, 1.14, windows, getting started
 ms.assetid: 3b05d2c2-4b9b-42b4-a61b-702df35f5b17
@@ -48,10 +47,10 @@ As Kubernetes clusters introduce new subnets for pods and services, it is import
 By the end of this guide, you will have:
 
 > [!div class="checklist"]
-> * Created a [Kubernetes master](./creating-a-linux-master.md) node.  
-> * Selected a [network solution](./network-topologies.md).  
-> * Joined a [Windows worker node](./joining-windows-workers.md) or [Linux worker node](./joining-linux-workers.md) to it.  
-> * Deployed a [sample Kubernetes resource](./deploying-resources.md).  
+> * Created a [Kubernetes master](./creating-a-linux-master.md) node.
+> * Selected a [network solution](./network-topologies.md).
+> * Joined a [Windows worker node](./joining-windows-workers.md) or [Linux worker node](./joining-linux-workers.md) to it.
+> * Deployed a [sample Kubernetes resource](./deploying-resources.md).
 > * Covered [common problems and mistakes](./common-problems.md).
 
 ## Next steps

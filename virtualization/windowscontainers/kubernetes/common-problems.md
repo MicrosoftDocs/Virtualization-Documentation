@@ -66,7 +66,7 @@ To use HostPort feature, please ensure your CNI plugins are [v0.8.6](https://git
 ### I am seeing errors such as "hnsCall failed in Win32: The wrong diskette is in the drive." ###
 This error can occur when making custom modifications to HNS objects or installing new Windows Update that introduce changes to HNS without tearing down old HNS objects. It indicates that a HNS object which was previously created before an update is incompatible with the currently installed HNS version.
 
-On Windows Server 2019 (and below), users can delete HNS objects by deleting the HNS.data file 
+On Windows Server 2019 (and below), users can delete HNS objects by deleting the HNS.data file
 ```
 Stop-Service HNS
 rm C:\ProgramData\Microsoft\Windows\HNS\HNS.data
@@ -77,7 +77,7 @@ Users should be able to directly delete any incompatible HNS endpoints or networ
 ```
 hnsdiag list endpoints
 hnsdiag delete endpoints <id>
-hnsdiag list networks 
+hnsdiag list networks
 hnsdiag delete networks <id>
 Restart-Service HNS
 ```
@@ -88,7 +88,7 @@ Users on Windows Server, version 1903 can go to the following registry location 
 ```
 
 ### Containers on my Flannel host-gw deployment on Azure cannot reach the internet ###
-When deploying Flannel in host-gw mode on Azure, packets have to go through the Azure physical host vSwitch. Users should program [user-defined routes](https://docs.microsoft.com/en-us/azure/virtual-network/virtual-networks-udr-overview#user-defined) of type "virtual appliance" for each subnet assigned to a node. This can be done through the Azure portal (see an example [here](https://docs.microsoft.com/en-us/azure/virtual-network/tutorial-create-route-table-portal)) or via `az` Azure CLI. Here is one example UDR with name "MyRoute" using az commands for a node with IP 10.0.0.4 and respective pod subnet 10.244.0.0/24:
+When deploying Flannel in host-gw mode on Azure, packets have to go through the Azure physical host vSwitch. Users should program [user-defined routes](https://docs.microsoft.com/azure/virtual-network/virtual-networks-udr-overview#user-defined) of type "virtual appliance" for each subnet assigned to a node. This can be done through the Azure portal (see an example [here](https://docs.microsoft.com/azure/virtual-network/tutorial-create-route-table-portal)) or via `az` Azure CLI. Here is one example UDR with name "MyRoute" using az commands for a node with IP 10.0.0.4 and respective pod subnet 10.244.0.0/24:
 ```
 az network route-table create --resource-group <my_resource_group> --name BridgeRoute 
 az network route-table route create  --resource-group <my_resource_group> --address-prefix 10.244.0.0/24 --route-table-name BridgeRoute  --name MyRoute --next-hop-type VirtualAppliance --next-hop-ip-address 10.0.0.4 
@@ -152,12 +152,12 @@ FLANNEL_IPMASQ=true
 It is safer to let flanneld.exe generate this file for you.
 
 
-### Pod-to-pod connectivity between hosts is broken on my Kubernetes cluster running on vSphere 
-Since both vSphere and Flannel reserves port 4789 (default VXLAN port) for overlay networking, packets can end up being intercepted. If vSphere is used for overlay networking, it should be configured to use a different port in order to free up 4789.  
+### Pod-to-pod connectivity between hosts is broken on my Kubernetes cluster running on vSphere
+Since both vSphere and Flannel reserves port 4789 (default VXLAN port) for overlay networking, packets can end up being intercepted. If vSphere is used for overlay networking, it should be configured to use a different port in order to free up 4789.
 
 
 ### My endpoints/IPs are leaking ###
-There exist 2 currently known issues that can cause endpoints to leak. 
+There exist 2 currently known issues that can cause endpoints to leak.
 1.  The first [known issue](https://github.com/kubernetes/kubernetes/issues/68511) is a problem in Kubernetes version 1.11. Please avoid using Kubernetes version 1.11.0 - 1.11.2.
 2. The second [known issue](https://github.com/docker/libnetwork/issues/1950) that can cause endpoints to leak is a concurrency problem in the storage of endpoints. To receive the fix, you must use Docker EE 18.09 or above.
 
@@ -180,7 +180,7 @@ Get-HnsNetwork | ? Name -ieq "cbr0"
 Get-NetAdapter | ? Name -Like "vEthernet (Ethernet*"
 ```
 
-Often it is worthwhile to modify the [InterfaceName](https://github.com/Microsoft/SDN/blob/master/Kubernetes/flannel/l2bridge/start.ps1#L6) parameter of the start.ps1 script, in cases where the host's network adapter isn't "Ethernet". Otherwise, consult the output of the `start-kubelet.ps1` script to see if there are errors during virtual network creation. 
+Often it is worthwhile to modify the [InterfaceName](https://github.com/Microsoft/SDN/blob/master/Kubernetes/flannel/l2bridge/start.ps1#L6) parameter of the start.ps1 script, in cases where the host's network adapter isn't "Ethernet". Otherwise, consult the output of the `start-kubelet.ps1` script to see if there are errors during virtual network creation.
 
 ### Pods stop resolving DNS queries successfully after some time alive ###
 There is a known DNS caching issue in the networking stack of Windows Server, version 1803 and below that may sometimes cause DNS requests to fail. To work around this issue, you can set the max TTL cache values to zero using the following registry keys:
@@ -188,12 +188,12 @@ There is a known DNS caching issue in the networking stack of Windows Server, ve
 ```Dockerfile
 FROM microsoft/windowsservercore:<your-build>
 SHELL ["powershell', "-Command", "$ErrorActionPreference = 'Stop';"]
-New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Services\Dnscache\Parameters' -Name MaxCacheTtl -Value 0 -Type DWord 
+New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Services\Dnscache\Parameters' -Name MaxCacheTtl -Value 0 -Type DWord
 New-ItemPropery -Path 'HKLM:\SYSTEM\CurrentControlSet\Services\Dnscache\Parameters' -Name MaxNegativeCacheTtl -Value 0 -Type DWord
 ```
 
-### I am still seeing problems. What should I do? ### 
-There may be additional restrictions in place on your network or on hosts preventing certain types of 
+### I am still seeing problems. What should I do? ###
+There may be additional restrictions in place on your network or on hosts preventing certain types of
 communication between nodes. Ensure that:
   - you have properly configured your chosen [network topology](./network-topologies.md)
   - traffic that looks like it's coming from pods is allowed
@@ -226,7 +226,7 @@ Run `kubectl get pods -n kube-system` to see the pods being created by Kubernete
 ### Cannot connect to the API server at `https://[address]:[port]` ###
 More often than not, this error indicates certificate problems. Ensure that you have generated the configuration file correctly, that the IP addresses in it match that of your host, and that you have copied it to the directory that is mounted by the API server.
 
-If following [our instructions](./creating-a-linux-master.md), good places to find this is:   
+If following [our instructions](./creating-a-linux-master.md), good places to find this is:
 * `~/kube/kubelet/`
 * `$HOME/.kube/config`
 *  `/etc/kubernetes/admin.conf`

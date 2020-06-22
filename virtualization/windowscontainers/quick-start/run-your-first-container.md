@@ -5,7 +5,7 @@ keywords: docker, containers, LCOW
 author: cwilhit
 ms.author: crwilhit
 ms.date: 11/12/2019
-ms.topic: article
+ms.topic: quickstart
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: bb9bfbe0-5bdc-4984-912f-9c93ea67105f
@@ -50,7 +50,7 @@ For this simple example, a ‘Hello World’ container image will be created and
    ```cmd
    echo "Hello World!" > Hello.txt
    exit
-   ```   
+   ```
 
 3. Get the container ID for the container you just exited by running the [docker ps](https://docs.docker.com/engine/reference/commandline/ps/) command:
 

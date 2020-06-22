@@ -3,7 +3,7 @@ title: Network Topologies
 author: daschott
 ms.author: daschott
 ms.date: 02/09/2018
-ms.topic: get-started-article
+ms.topic: how-to
 ms.prod: containers
 
 description: Supported network topologies on Windows and Linux.
@@ -18,7 +18,7 @@ Once you have [setup a Kubernetes master node](./creating-a-linux-master.md) you
 2. Use a CNI plugin such as [Flannel](#flannel-in-host-gateway-mode) to program routes for you (uses l2bridge networking mode).
 3. Configure a smart [top-of-rack (ToR) switch](#configuring-a-tor-switch) to route the subnet.
 
-> [!tip]  
+> [!tip]
 > There is a fourth networking solution on Windows which leverages Open vSwitch (OvS) and Open Virtual Network (OVN). Documenting this is out of scope for this document, but you can read [these instructions](https://kubernetes.io/docs/getting-started-guides/windows/#for-3-open-vswitch-ovs-open-virtual-network-ovn-with-overlay) to set it up.
 
 ## Flannel in vxlan mode
@@ -60,7 +60,7 @@ After applying the above steps, your `net-conf.json` should look as follows:
     }
 ```
 
-> [!NOTE]  
+> [!NOTE]
 > The VNI must be set to 4096 and port 4789 for Flannel on Linux to interoperate with Flannel on Windows. Support for other VNIs is coming soon. See [VXLAN](https://github.com/coreos/flannel/blob/master/Documentation/backends.md#vxlan) for an explanation of these fields.
 
 Your `cni-conf.json` should look as follows:
@@ -85,7 +85,7 @@ cni-conf.json: |
       ]
     }
 ```
-> [!tip]  
+> [!tip]
 > For more information on the above options, please consult official CNI [flannel](https://github.com/containernetworking/plugins/tree/master/plugins/meta/flannel#network-configuration-reference), [portmap](https://github.com/containernetworking/plugins/tree/master/plugins/meta/portmap#port-mapping-plugin), and [bridge](https://github.com/containernetworking/plugins/tree/master/plugins/main/bridge#network-configuration-reference) plugin docs for Linux.
 
 ### Launch Flannel & validate ###
@@ -100,7 +100,7 @@ Next, since the Flannel pods are Linux-based, apply the Linux [NodeSelector](htt
 ```
 kubectl patch ds/kube-flannel-ds-amd64 --patch "$(cat node-selector-patch.yml)" -n=kube-system
 ```
-> [!tip]  
+> [!tip]
 > If any nodes aren't x86-64 based, replace `-amd64` above with your processor architecture.
 
 After a few minutes, you should see all the pods as running if the Flannel pod network was deployed.
@@ -119,10 +119,10 @@ kubectl get ds -n kube-system
 
 ![text](media/kube-daemonset.png)
 
-> [!tip]  
+> [!tip]
 > For the remaining flannel-ds-* DaemonSets, these can be either ignored or deleted as they won't be scheduled if there are no nodes matching that processor architecture.
 
-> [!tip]  
+> [!tip]
 > Confused? Here is a complete [example kube-flannel.yml](https://github.com/Microsoft/SDN/blob/master/Kubernetes/flannel/overlay/manifests/kube-flannel-example.yml) for Flannel v0.11.0 with these steps pre-applied for default cluster subnet `10.244.0.0/16`.
 
 Once successful, continue to the [next steps](#next-steps).
@@ -176,7 +176,7 @@ Next, since the Flannel pods are Linux-based, apply our Linux [NodeSelector](htt
 ```
 kubectl patch ds/kube-flannel-ds-amd64 --patch "$(cat node-selector-patch.yml)" -n=kube-system
 ```
-> [!tip]  
+> [!tip]
 > If any nodes aren't x86-64 based, replace `-amd64` above with the desired processor architecture.
 
 After a few minutes, you should see all the pods as running if the Flannel pod network was deployed.
@@ -195,10 +195,10 @@ kubectl get ds -n kube-system
 
 ![text](media/kube-daemonset.png)
 
-> [!tip]  
+> [!tip]
 > For the remaining flannel-ds-* DaemonSets, these can be either ignored or deleted as they won't be scheduled if there are no nodes matching that processor architecture.
 
-> [!tip]  
+> [!tip]
 > Confused? Here is a complete [example kube-flannel.yml](https://github.com/Microsoft/SDN/blob/master/Kubernetes/flannel/l2bridge/manifests/kube-flannel-example.yml) For Flannel v0.11.0 with these 2 steps pre-applied for default cluster subnet `10.244.0.0/16`.
 
 Once successful, continue to the [next steps](#next-steps).
@@ -209,7 +209,7 @@ Once successful, continue to the [next steps](#next-steps).
 Configuration of the ToR switch occurs outside of your actual nodes. For more details on this, please see [official Kubernetes docs](https://kubernetes.io/docs/getting-started-guides/windows/#upstream-l3-routing-topology).
 
 
-## Next steps ## 
+## Next steps ##
 In this section, we covered how to pick and configure a networking solution. Now you are ready for step 4:
 
 > [!div class="nextstepaction"]

@@ -3,9 +3,9 @@ title: Windows and Linux Containers on Windows 10
 description: Set up Windows 10 or Windows Server for containers, then move on to running your first container image.
 keywords: docker, containers, LCOW
 author: cwilhit
-ms.author: crwilhit 
+ms.author: crwilhit
 ms.date: 11/12/2019
-ms.topic: article
+ms.topic: quickstart
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: bb9bfbe0-5bdc-4984-912f-9c93ea67105f
@@ -35,8 +35,8 @@ To run containers on Windows 10, you need the following:
 - [Hyper-V](https://docs.microsoft.com/virtualization/hyper-v-on-windows/reference/hyper-v-requirements) should be enabled.
 
 > [!NOTE]
->  Starting with the Windows 10 October Update 2018, we no longer disallow users from running a Windows container in process-isolation mode on Windows 10 Enterprise or Professional for dev/test purposes. See the [FAQ](../about/faq.md) to learn more. 
-> 
+>  Starting with the Windows 10 October Update 2018, we no longer disallow users from running a Windows container in process-isolation mode on Windows 10 Enterprise or Professional for dev/test purposes. See the [FAQ](../about/faq.md) to learn more.
+>
 > Windows Server Containers use Hyper-V isolation by default on Windows 10 in order to provide developers with the same kernel version and configuration that will be used in production. Learn more about Hyper-V isolation in the [Concepts](../manage-containers/hyperv-container.md) area of our docs.
 
 ---
@@ -82,7 +82,7 @@ If you want to update Docker later:
 
 # [Windows 10](#tab/Windows-10-Client)
 
-You can install Docker on Windows 10 Professional and Enterprise editions by using the following steps. 
+You can install Docker on Windows 10 Professional and Enterprise editions by using the following steps.
 
 1. Download and install [Docker Desktop](https://store.docker.com/editions/community/docker-ce-desktop-windows), creating a free Docker account if you don't have one already. For more details, see the [Docker documentation](https://docs.docker.com/docker-for-windows/install).
 

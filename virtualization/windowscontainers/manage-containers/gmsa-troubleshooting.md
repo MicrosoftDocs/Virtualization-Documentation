@@ -4,7 +4,7 @@ description: How to troubleshoot Group Managed Service Accounts (gMSAs) for Wind
 keywords: docker, containers, active directory, gmsa, group managed service account, group managed service accounts, troubleshooting, troubleshoot
 author: rpsqrd
 ms.date: 10/03/2019
-ms.topic: article
+ms.topic: troubleshooting
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: 9e06ad3a-0783-476b-b85c-faff7234809c
@@ -164,7 +164,7 @@ See [Active Directory and Active Directory Domain Services port requirements](ht
     Get-ADObject -Filter 'sAMAccountName -like "GMSANAMEHERE*"'
     ```
 
-4. If you've enabled unconstrained delegation on the gMSA account, ensure that the [UserAccountControl attribute](https://support.microsoft.com/en-us/help/305144/how-to-use-useraccountcontrol-to-manipulate-user-account-properties) still has the `WORKSTATION_TRUST_ACCOUNT` flag enabled. This flag is required for NETLOGON in the container to communicate with the domain controller, as is the case when an app has to resolve a name to a SID or vice versa. You can check if the flag is configured correctly with the following commands:
+4. If you've enabled unconstrained delegation on the gMSA account, ensure that the [UserAccountControl attribute](https://support.microsoft.com/help/305144/how-to-use-useraccountcontrol-to-manipulate-user-account-properties) still has the `WORKSTATION_TRUST_ACCOUNT` flag enabled. This flag is required for NETLOGON in the container to communicate with the domain controller, as is the case when an app has to resolve a name to a SID or vice versa. You can check if the flag is configured correctly with the following commands:
 
     ```powershell
     $gMSA = Get-ADServiceAccount -Identity 'yourGmsaName' -Properties UserAccountControl

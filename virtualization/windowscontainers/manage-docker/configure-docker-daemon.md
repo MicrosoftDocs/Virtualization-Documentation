@@ -4,7 +4,7 @@ description: Configure Docker in Windows
 keywords: docker, containers
 author: PatrickLang
 ms.date: 05/03/2019
-ms.topic: article
+ms.topic: overview
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: 6885400c-5623-4cde-8012-f6a00019fafa
@@ -40,7 +40,7 @@ The preferred method for configuring the Docker Engine on Windows is using a con
     "storage-driver": "",
     "storage-opts": [],
     "labels": [],
-    "log-driver": "", 
+    "log-driver": "",
     "mtu": 0,
     "pidfile": "",
     "data-root": "",
@@ -76,7 +76,7 @@ Likewise, the following sample configures the Docker daemon to keep images and c
 default is `c:\programdata\docker`.
 
 ```json
-{    
+{   
     "data-root": "d:\\docker"
 }
 ```

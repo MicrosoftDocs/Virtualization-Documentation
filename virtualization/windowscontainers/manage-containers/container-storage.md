@@ -3,6 +3,7 @@ title: Container Storage Overview
 description: How Windows Server Containers can use host & other storage types
 keywords: containers, volume, storage, mount, bindmount
 author: cwilhit
+ms.topic: overview
 ---
 
 # Container Storage Overview
