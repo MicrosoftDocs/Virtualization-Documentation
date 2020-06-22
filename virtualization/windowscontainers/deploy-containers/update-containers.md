@@ -5,6 +5,7 @@ keywords: metadata, containers, version
 author: heidilohr
 ms. author: helohr
 manager: lizross
+ms.topic: conceptual
 ms.date: 03/10/2020
 ---
 # Update Windows Server containers
@@ -24,14 +25,14 @@ New Windows Server Base OS container images go live shortly after 10:00am PST on
 - ltsc2019 [(LTSC)](/windows-server/get-started-19/servicing-channels-19#long-term-servicing-channel-ltsc):  docker pull mcr.microsoft.com/windows/servercore:ltsc2019
 - 1909 [(SAC)](/windows-server/get-started-19/servicing-channels-19#semi-annual-channel): docker pull mcr.microsoft.com/windows/servercore:1909
 
-If you're more familiar with Docker Hub than MCR, [this blog post](https://azure.microsoft.com/blog/microsoft-syndicates-container-catalog/) will give you a more detailed explanation.  
+If you're more familiar with Docker Hub than MCR, [this blog post](https://azure.microsoft.com/blog/microsoft-syndicates-container-catalog/) will give you a more detailed explanation.
 
 For each release, the respective container image also gets published with two additional tags for the revision number and the KB article number for targeting specific container image revisions. For example:
 
 - docker pull mcr.microsoft.com/windows/servercore:10.0.17763.1040
 - docker pull mcr.microsoft.com/windows/servercore:1809-KB4546852
 
-These examples both pull the Windows Server 2019 Server Core container image with the February 18 security release update.  
+These examples both pull the Windows Server 2019 Server Core container image with the February 18 security release update.
 
 For a complete list of Windows Server Base OS container images, versions, and their respective tags, see this [Windows Base OS container images](https://hub.docker.com/_/microsoft-windows-base-os-images) on Docker Hub.
 
@@ -90,7 +91,7 @@ If you can access your container host, you can run the `ver` command to get its 
 Microsoft Windows [Version 10.0.17763.1039]
 (c) 2018 Microsoft Corporation. All rights reserved.
 
-C:\>ver 
+C:\>ver
 
 Microsoft Windows [Version 10.0.17763.1039]
 ```

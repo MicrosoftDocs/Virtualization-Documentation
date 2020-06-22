@@ -3,6 +3,7 @@ title: GPU Acceleration in Windows Containers
 description: What level of GPU acceleration exists in Windows containers
 keywords: docker, containers, devices, hardware
 author: cwilhit
+ms.topic: how-to
 ---
 
 # GPU Acceleration in Windows containers

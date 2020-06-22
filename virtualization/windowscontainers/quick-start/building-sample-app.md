@@ -5,7 +5,7 @@ keywords: docker, containers
 author: cwilhit
 ms.author: crwilhit
 ms.date: 11/12/2019
-ms.topic: article
+ms.topic: quickstart
 ms.prod: windows-containers
 ms.service: windows-containers
 ---
@@ -81,7 +81,7 @@ RUN dotnet publish -c Release -o out
 
 Once .NET has pulled all the dependencies into the `build-env` container, the next instruction copies all project source files into the container. We then tell .NET to publish our application with a release configuration and specify the output path in the .
 
-The compilation should succeed. Now we must build the final image. 
+The compilation should succeed. Now we must build the final image.
 
 > [!TIP]
 > This quickstart builds a .NET core project from source. When building container images, it's good practice to include _only_ the production payload and its dependencies in the container image. We don't want the .NET core SDK included in our final image because we only need the .NET core runtime, so the dockerfile is written to use a temporary container that is packaged with the SDK called `build-env` to build the app.
@@ -115,7 +115,7 @@ With the Dockerfile written, we can point Docker at our Dockerfile and tell it t
 
    Let's dissect this command:
 
-   * `-d` tells Docker to run the container 'detached', meaning no console is hooked up to the console inside the container. The container runs in the background. 
+   * `-d` tells Docker to run the container 'detached', meaning no console is hooked up to the console inside the container. The container runs in the background.
    * `-p 5000:80` tells Docker to map port 5000 on the host to port 80 in the container. Each container gets its own IP address. ASP .NET listens by default on port 80. Port mapping allows us to go to the host's IP address at the mapped port and Docker will forward all traffic to the destination port inside the container.
    * `--name myapp` tells Docker to give this container a convenient name to query by (instead of having to look up the container ID assigned at runtime by Docker).
    * `my-asp-app` is the image we want Docker to run. This is the container image produced as the culmination of the `docker build` process.

@@ -4,7 +4,7 @@ description: Windows Server containers FAQ
 keywords: docker, containers
 author: PatrickLang
 ms.date: 10/25/2019
-ms.topic: article
+ms.topic: overview
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: 25de368c-5a10-40a4-b4aa-ac8c9a9ca022
@@ -13,7 +13,7 @@ ms.assetid: 25de368c-5a10-40a4-b4aa-ac8c9a9ca022
 
 ## What's the difference between Linux and Windows Server containers?
 
-Linux and Windows Server both implement similar technologies within their kernel and core operating systems. The difference comes from the platform and workloads that run within the containers.  
+Linux and Windows Server both implement similar technologies within their kernel and core operating systems. The difference comes from the platform and workloads that run within the containers.
 
 When a customer uses Windows Server containers, they can integrate with existing Windows technologies, such as .NET, ASP.NET, and PowerShell.
 

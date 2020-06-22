@@ -4,7 +4,7 @@ description: A brief overview about building container ecosystems.
 keywords: metadata, containers
 author: PatrickLang
 ms.date: 05/22/2019
-ms.topic: about-article
+ms.topic: overview
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: 29fbe13a-228a-4eaa-9d4d-90ae60da5965
