@@ -3,7 +3,7 @@ title: Joining Linux nodes
 author: daschott
 ms.author: daschott
 ms.date: 02/09/2018
-ms.topic: get-started-article
+ms.topic: how-to
 ms.prod: containers
 
 description: Joining a Linux node to a Kubernetes cluster with v1.14.
@@ -46,7 +46,7 @@ docker run hello-world
 
 Download `kubeadm` binaries for your Linux distribution and initialize your cluster.
 
-> [!Important]  
+> [!Important]
 > Depending on your Linux distribution, you may need to replace `kubernetes-xenial` below with the correct [codename](https://wiki.ubuntu.com/Releases).
 
 ``` bash
@@ -54,7 +54,7 @@ curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
 cat <<EOF >/etc/apt/sources.list.d/kubernetes.list
 deb http://apt.kubernetes.io/ kubernetes-xenial main
 EOF
-apt-get update && apt-get install -y kubelet kubeadm kubectl 
+apt-get update && apt-get install -y kubelet kubeadm kubectl
 ```
 
 ## Disable swap

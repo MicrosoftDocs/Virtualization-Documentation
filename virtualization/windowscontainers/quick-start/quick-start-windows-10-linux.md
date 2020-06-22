@@ -4,7 +4,7 @@ description: Container deployment quick start
 keywords: docker, containers, LCOW
 author: taylorb-microsoft
 ms.date: 08/16/2019
-ms.topic: article
+ms.topic: tutorial
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: bb9bfbe0-5bdc-4984-912f-9c93ea67105f
@@ -26,7 +26,7 @@ This quick start is specific to Windows 10. Additional quick start documentation
 Please make sure you meet the following requirements:
 - One physical computer system running Windows 10 Professional, Windows 10 Enterprise, or Windows
 Server 2019 version 1809 or later
-- Make sure [Hyper-V](https://docs.microsoft.com/virtualization/hyper-v-on-windows/reference/hyper-v-requirements) is enabled. 
+- Make sure [Hyper-V](https://docs.microsoft.com/virtualization/hyper-v-on-windows/reference/hyper-v-requirements) is enabled.
 
 ## Install Docker Desktop
 
@@ -44,7 +44,7 @@ Once you've confirmed you are targeting the correc daemon, run the container wit
 docker run --rm busybox echo hello_world
 ```
 
-The container should run, print "hello_world", then exit. 
+The container should run, print "hello_world", then exit.
 
 When you query `docker images`, you should see the Linux container image that you just pulled an ran:
 

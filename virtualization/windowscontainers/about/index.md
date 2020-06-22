@@ -4,7 +4,7 @@ description: Containers are a technology for packaging and running apps--includi
 keywords: docker, containers
 author: taylorb-microsoft
 ms.date: 10/22/2019
-ms.topic: article
+ms.topic: overview
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: 8e273856-3620-4e58-9d1a-d1e06550448

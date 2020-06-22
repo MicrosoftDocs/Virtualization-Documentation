@@ -4,7 +4,7 @@ description: Learn about different ways you can use Hyper-V to run Linux contain
 keywords: linux containers, docker, containers, windows 10
 author: scooley
 ms.date: 09/17/2019
-ms.topic: article
+ms.topic: overview
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: edfd11c8-ee99-42d8-9878-efc126fe1826
