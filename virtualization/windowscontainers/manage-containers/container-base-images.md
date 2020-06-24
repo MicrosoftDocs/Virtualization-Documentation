@@ -4,7 +4,7 @@ description: An overview of the Windows container base images and when to use th
 keywords: docker, containers, hashes
 author: patricklang
 ms.date: 09/25/2019
-ms.topic: article
+ms.topic: conceptual
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: 88e6e080-cf8f-41d8-a301-035959dc5ce0
@@ -99,7 +99,7 @@ Windows offers four container base images that users can build from. Each base i
 
 ## Image discovery
 
-All Windows container base images are discoverable through [Docker Hub](https://hub.docker.com/_/microsoft-windows-base-os-images). The Windows container base images themselves are served from [mcr.microsoft.com](https://azure.microsoft.com/en-us/services/container-registry/), the Microsoft Container Registry (MCR). This is why the pull commands for the Windows container base images look like the following:
+All Windows container base images are discoverable through [Docker Hub](https://hub.docker.com/_/microsoft-windows-base-os-images). The Windows container base images themselves are served from [mcr.microsoft.com](https://azure.microsoft.com/services/container-registry/), the Microsoft Container Registry (MCR). This is why the pull commands for the Windows container base images look like the following:
 
 ```code
 docker pull mcr.microsoft.com/windows/servercore:ltsc2019

@@ -3,7 +3,7 @@ title: Joining Windows nodes
 author: daschott
 ms.author: daschott
 ms.date: 11/02/2018
-ms.topic: get-started-article
+ms.topic: how-to
 ms.prod: containers
 
 description: Joining a Windows node to a Kubernetes cluster with v1.14.
@@ -14,7 +14,7 @@ ms.assetid: 3b05d2c2-4b9b-42b4-a61b-702df35f5b17
 Once you have [setup a Kubernetes master node](./creating-a-linux-master.md) and [selected your desired network solution](./network-topologies.md), you are ready to join Windows Server nodes to form a cluster. This requires some [preparation on the Windows nodes](#preparing-a-windows-node) before joining.
 
 ## Preparing a Windows node ##
-> [!NOTE]  
+> [!NOTE]
 > All code snippets in Windows sections are to be run in _elevated_ PowerShell.
 
 ### Install Docker (requires reboot) ###
@@ -46,13 +46,13 @@ Start-Service docker
 > [!Important]
 > It's important to be careful of conflicting container images; not having the expected tag can cause a `docker pull` of an incompatible container image, causing [deployment problems](./common-problems.md#when-deploying-docker-containers-keep-restarting) such as indefinite `ContainerCreating` status.
 
-Now that `docker` is installed, you need to prepare a "pause" image that's used by Kubernetes to prepare the infrastructure pods. There are three steps to this: 
+Now that `docker` is installed, you need to prepare a "pause" image that's used by Kubernetes to prepare the infrastructure pods. There are three steps to this:
   1. [pulling the image](#pull-the-image)
   2. [tagging it](#tag-the-image) as microsoft/nanoserver:latest
   3. and [running it](#run-the-container)
 
 
-#### Pull the image ####     
+#### Pull the image ####
  Pull the image for your specific Windows release. For example, if you are running Windows Server 2019:
 
  ```powershell
@@ -88,7 +88,7 @@ Create a "Kubernetes for Windows" directory to store Kubernetes binaries as well
 mkdir c:\k
 ```
 
-#### Copy Kubernetes certificate #### 
+#### Copy Kubernetes certificate ####
 Copy the Kubernetes certificate file (`$HOME/.kube/config`) [from master](./creating-a-linux-master.md#collect-cluster-information) to this new `C:\k` directory.
 
 > [!tip]
@@ -159,7 +159,7 @@ Assuming you [prepared your Windows node](#preparing-a-windows-node), and your `
 
 ![text](./media/flannel-directory.png)
 
-#### Join node #### 
+#### Join node ####
 To simplify the process of joining a Windows node, you only need to run a single Windows script to launch `kubelet`, `kube-proxy`, `flanneld`, and join the node.
 
 > [!Note]
@@ -172,7 +172,7 @@ cd c:\k
 # [ManagementIP](#tab/ManagementIP)
 The IP address assigned to the Windows node. You can use `ipconfig` to find this.
 
-|  |  | 
+|  |  |
 |---------|---------|
 |Parameter     | `-ManagementIP`        |
 |Default Value    | n.A. **required**        |
@@ -180,10 +180,10 @@ The IP address assigned to the Windows node. You can use `ipconfig` to find this
 # [NetworkMode](#tab/NetworkMode)
 The network mode `l2bridge` (flannel host-gw) or `overlay` (flannel vxlan) chosen as a [network solution](./network-topologies.md).
 
-> [!Important] 
+> [!Important]
 > `overlay` networking mode (flannel vxlan) requires Kubernetes v1.14 binaries (or above) and [KB4489899](https://support.microsoft.com/help/4489899).
 
-|  |  | 
+|  |  |
 |---------|---------|
 |Parameter     | `-NetworkMode`        |
 |Default Value    | `l2bridge`        |
@@ -192,7 +192,7 @@ The network mode `l2bridge` (flannel host-gw) or `overlay` (flannel vxlan) chose
 # [ClusterCIDR](#tab/ClusterCIDR)
 The [cluster subnet range](./getting-started-kubernetes-windows.md#cluster-subnet-def).
 
-|  |  | 
+|  |  |
 |---------|---------|
 |Parameter     | `-ClusterCIDR`        |
 |Default Value    | `10.244.0.0/16`        |
@@ -201,7 +201,7 @@ The [cluster subnet range](./getting-started-kubernetes-windows.md#cluster-subne
 # [ServiceCIDR](#tab/ServiceCIDR)
 The [service subnet range](./getting-started-kubernetes-windows.md#service-subnet-def).
 
-|  |  | 
+|  |  |
 |---------|---------|
 |Parameter     | `-ServiceCIDR`        |
 |Default Value    | `10.96.0.0/12`        |
@@ -210,7 +210,7 @@ The [service subnet range](./getting-started-kubernetes-windows.md#service-subne
 # [KubeDnsServiceIP](#tab/KubeDnsServiceIP)
 The [Kubernetes DNS service IP](./getting-started-kubernetes-windows.md#plan-ip-addressing-for-your-cluster).
 
-|  |  | 
+|  |  |
 |---------|---------|
 |Parameter     | `-KubeDnsServiceIP`        |
 |Default Value    | `10.96.0.10`        |
@@ -219,7 +219,7 @@ The [Kubernetes DNS service IP](./getting-started-kubernetes-windows.md#plan-ip-
 # [InterfaceName](#tab/InterfaceName)
 The name of the network interface of the Windows host. You can use `ipconfig` to find this.
 
-|  |  | 
+|  |  |
 |---------|---------|
 |Parameter     | `-InterfaceName`        |
 |Default Value    | `Ethernet`        |
@@ -228,7 +228,7 @@ The name of the network interface of the Windows host. You can use `ipconfig` to
 # [LogDir](#tab/LogDir)
 The directory where kubelet and kube-proxy logs are redirected into their respective output files.
 
-|  |  | 
+|  |  |
 |---------|---------|
 |Parameter     | `-LogDir`        |
 |Default Value    | `C:\k`        |

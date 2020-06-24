@@ -4,27 +4,27 @@ description: Network drivers and topologies for Windows containers.
 keywords: docker, containers
 author: jmesser81
 ms.date: 03/27/2018
-ms.topic: article
+ms.topic: conceptual
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: 538871ba-d02e-47d3-a3bf-25cda4a40965
 ---
-# Windows container network drivers  
+# Windows container network drivers
 
 In addition to leveraging the default 'nat' network created by Docker on Windows, users can define custom container networks. User-defined networks can be created using the Docker CLI [`docker network create -d <NETWORK DRIVER TYPE> <NAME>`](https://docs.docker.com/engine/reference/commandline/network_create/) command. On Windows, the following network driver types are available:
 
 - **nat** – containers attached to a network created with the 'nat' driver will be connected to an *internal* Hyper-V switch and receive an IP address from the user-specified (``--subnet``) IP prefix. Port forwarding / mapping from the container host to container endpoints is supported.
-  
+
   >[!NOTE]
   > NAT networks created on Windows Server 2019 (or above) are no longer persisted after reboot.
 
   > Multiple NAT networks are supported if you have the Windows 10 Creators Update installed (or above).
-  
+
 - **transparent** – containers attached to a network created with the 'transparent' driver will be directly connected to the physical network through an *external* Hyper-V switch. IPs from the physical network can be assigned statically (requires user-specified ``--subnet`` option) or dynamically using an external DHCP server.
-  
+
   >[!NOTE]
   >Due to the following requirement, connecting your container hosts over a transparent network is not supported on Azure VMs.
-  
+
   > Requires: When this mode is used in a virtualization scenario (container host is a VM) _MAC address spoofing is required_.
 
 - **overlay** - when the docker engine is running in [swarm mode](../manage-containers/swarm-mode.md), containers attached to an overlay network can communicate with other containers attached to the same network across multiple container hosts. Each overlay network that is created on a Swarm cluster is created with its own IP subnet, defined by a private IP prefix. The overlay network driver uses VXLAN encapsulation. **Can be used with Kubernetes when using suitable network control planes (e.g. Flannel).**
@@ -40,8 +40,8 @@ In addition to leveraging the default 'nat' network created by Docker on Windows
 - **l2bridge** - similar to `transparent` networking mode, containers attached to a network created with the 'l2bridge' driver will be connected to the physical network through an *external* Hyper-V switch. The difference in l2bridge is that container endpoints will have the same MAC address as the host due to Layer-2 address translation (MAC re-write) operation on ingress and egress. In clustering scenarios, this helps alleviate the stress on switches having to learn MAC addresses of sometimes short-lived containers. L2bridge networks can be configured in 2 different ways:
   1. L2bridge network is configured with the same IP subnet as the container host
   2. L2bridge network is configured with a new custom IP subnet
-  
-  In configuration 2 users will need to add a endpoint on the host network compartment that acts as a gateway and configure routing capabilities for the designated prefix. 
+
+  In configuration 2 users will need to add a endpoint on the host network compartment that acts as a gateway and configure routing capabilities for the designated prefix.
   > Requires: Requires Windows Server 2016, Windows 10 Creators Update, or a later release.
   >[!TIP]
   >More details on how to configure and install l2bridge can be found [here](https://techcommunity.microsoft.com/t5/networking-blog/l2bridge-container-networking/ba-p/1180923).
@@ -81,7 +81,7 @@ Service Discovery is only supported for certain Windows network drivers.
 
 |  | Local Service Discovery  | Global Service Discovery |
 | :---: | :---------------     |  :---                |
-| nat | YES | YES with Docker EE |  
+| nat | YES | YES with Docker EE |
 | overlay | YES | YES with Docker EE or kube-dns |
 | transparent | NO | NO |
 | l2bridge | NO | YES with kube-dns |

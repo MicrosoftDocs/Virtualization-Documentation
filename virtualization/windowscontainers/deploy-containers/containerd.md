@@ -4,7 +4,7 @@ description: Learn more about new container building blocks available in Windows
 keywords: LCOW, linux containers, docker, containers, containerd, cri, runhcs, runc
 author: scooley
 ms.date: 11/19/2018
-ms.topic: article
+ms.topic: conceptual
 ms.prod: windows-containers
 ms.service: windows-containers
 ms.assetid: a0e62b32-0c4c-4dd4-9956-8056e9abd9e5
@@ -57,7 +57,7 @@ runhcs run [ -b bundle ] <container-id>
 
 `<container-id>` is your name for the container instance you are starting. The name must be unique on your container host.
 
-The bundle directory (using `-b bundle`) is optional.  
+The bundle directory (using `-b bundle`) is optional.
 As with runc, containers are configured using bundles. A container's bundle is the directory with the container's OCI specification file, "config.json".  The default value for "bundle" is the current directory.
 
 The OCI spec file, "config.json", has to have two fields to run correctly:
@@ -87,7 +87,7 @@ The only command that could be considered multi-container is **list**.  It lists
 
 ### HCS
 
-We have two wrappers available on GitHub to interface with the HCS. Since the HCS is a C API, wrappers make it easy to call the HCS from higher level languages.  
+We have two wrappers available on GitHub to interface with the HCS. Since the HCS is a C API, wrappers make it easy to call the HCS from higher level languages.
 
 * [hcsshim](https://github.com/microsoft/hcsshim) - HCSShim is written in Go and it's the basis for runhcs.
 Grab the latest from AppVeyor or build it yourself.
