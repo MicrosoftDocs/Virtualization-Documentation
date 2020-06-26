@@ -54,7 +54,7 @@
 
 # Host Compute System API
 ## [Overview](./hcs/overview.md)
-## [API Reference](./hcs/reference/APIOverview.md)
+## [API Reference](./hcs/Reference/APIOverview.md)
 ## [Samples](./hcs/Samples.md)
 ## [JSON Schema Reference](./hcs/SchemaReference.md)
 ## [Tutorial](./hcs/Tutorial.md)
