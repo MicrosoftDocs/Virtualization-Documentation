@@ -21,13 +21,14 @@ HcsGetOperationResultAndProcessInfo(
 |Parameter     |Description|
 |---|---|---|---|---|---|---|---|
 |`operation`| Handle to an active operation|
+|`processInformation`| Pointer to the process information|
+|`resultDocument`| If the operation succeeded, receives the result document of the operation.|
 |    |    |
 
 ## Return Values
 
 |Return Value | Description|
 |---|---|
-|`resultDocument`| If the operation succeeded, receives the result document of the operation.|
 |`HCS_PROCESS_INFORMATION` |Returns process information|
 |`HRESULT`| Returns code indicating the result of the operation.|
 |     |     |

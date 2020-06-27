@@ -2,7 +2,7 @@
 
 ## Description
 
-Close the operation, freeing any tracking resources associated with the operation.
+Close the operation, freeing any tracking resources associated with the operation. If the operation is in progress it will be cancelled.  An operation can be closed from within a callback.
 
 ## Syntax
 
@@ -20,7 +20,3 @@ HcsCloseOperation(
 |---|---|---|---|---|---|---|---|
 |`operation`| Handle to an operation|
 |    |    |
-
-## Return Values
-
-If the operation is in progress it will be cancelled.  An operation can be closed from within a callback.

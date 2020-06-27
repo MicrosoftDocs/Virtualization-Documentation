@@ -2,14 +2,13 @@
 
 ## Description
 
-This function adds an entry to a files ACL that grants access to the user account used to run the VM. The user account is based on an internal GUID that is derived from the compute system ID of the VM's HCS compute system object.
+This function adds a group of entries to a files ACL that grants access to the user account used to run the VM. 
 
 ## Syntax
 
 ```cpp
 HRESULT WINAPI
 HcsGrantVmAccess(
-    _In_ PCWSTR vmId,
     _In_ PCWSTR filePath
     );
 ```
@@ -18,7 +17,6 @@ HcsGrantVmAccess(
 
 |Parameter     |Description|
 |---|---|---|---|---|---|---|---|
-|`vmId`| Unique Id of the VM's compute system|
 |`filePath`| Path to the file for which to update the ACL|
 |    |    |
 

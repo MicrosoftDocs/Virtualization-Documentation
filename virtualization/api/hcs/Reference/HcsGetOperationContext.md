@@ -7,7 +7,7 @@ Gets the context pointer of an operation.
 ## Syntax
 
 ```cpp
-void WINAPI
+void* WINAPI
 HcsGetOperationContext(
     _In_ HCS_OPERATION operation
     );
@@ -23,4 +23,6 @@ HcsGetOperationContext(
 
 ## Return Values
 
-Returns context pointer stored in the operation.
+|Return Value | Description|
+|---|---|
+|`void*`|Returns context pointer stored in the operation|
