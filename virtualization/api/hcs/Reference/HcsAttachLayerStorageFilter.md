@@ -17,7 +17,7 @@ HcsAttachLayerStorageFilter(
 ## Parameters
 
 |Parameter     |Description|
-|---|---|---|---|---|---|---|---|
+|---|---|
 |`layerPath`| Full path to the root directory of the layer|
 |`layerData`| JSON document providing the locations of the antecedent layers that are used by the layer|
 |    |    |
