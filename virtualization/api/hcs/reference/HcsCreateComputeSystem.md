@@ -22,7 +22,7 @@ HcsCreateComputeSystem(
 |Parameter     |Description|
 |---|---|---|---|---|---|---|---|
 |`id`| Unique Id identifying the compute system|
-|`configuration`| JSON document specifying the settings of the compute system|
+|`configuration`| JSON document specifying the settings of the [compute system](./../SchemaReference.md#ComputeSystem)|
 |`operation`| Handle to the operation that tracks the create operation|
 |`securityDescriptor`| Optional security descriptor specifying the permissions on the compute system. If not specified, only the caller of the function is granted permissions to perform operations on the compute system.|
 |`computeSystem`| Receives a handle to the newly created compute system. It is the responsibility of the caller to release the handle using HcsCloseComputeSystem once it is no longer in use.|

@@ -7,8 +7,7 @@ Deletes a layer from the host.
 ## Syntax
 
 ```cpp
-HRESULT
-WINAPI
+HRESULT WINAPI
 HcsDestroyLayer(
     _In_ PCWSTR layerPath
     );
