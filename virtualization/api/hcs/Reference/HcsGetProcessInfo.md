@@ -17,7 +17,7 @@ HcsGetProcessInfo(
 ## Parameters
 
 |Parameter     |Description|
-|---|---|---|---|---|---|---|---|
+|---|---|
 |`process`| Handle to the process to query|
 |`operation`| Handle to the operation that tracks the process|
 |    |    |

@@ -18,7 +18,7 @@ HcsSignalProcess(
 ## Parameters
 
 |Parameter     |Description|
-|---|---|---|---|---|---|---|---|
+|---|---|
 |`process`| Handle to the process to send the signal to|
 |`operation`| Handle to the operation that tracks the signal|
 |`options`| Optional JSON document specifying the detailed signal|

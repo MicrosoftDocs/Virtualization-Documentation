@@ -19,7 +19,7 @@ HcsWaitForOperationResult(
 ## Parameters
 
 |Parameter     |Description|
-|---|---|---|---|---|---|---|---|
+|---|---|
 |`operation`| Handle to an active operation.|
 |`timeoutMs`| Time to wait for the operation to complete.|
 |`resultDocument`| If the operation succeeded, receives the result document of the operation. On failure, receives an error document. The caller is responsible for releasing the returned string using LocalFree().|

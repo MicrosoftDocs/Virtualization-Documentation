@@ -18,7 +18,7 @@ HcsShutDownComputeSystem(
 ## Parameters
 
 |Parameter     |Description|
-|---|---|---|---|---|---|---|---|
+|---|---|
 |`computeSystem`| Handle to the compute system to shut down|
 |`operation`| Handle to the operation that tracks the shutdown operation|
 |`options`| Optional JSON document specifying shutdown options|

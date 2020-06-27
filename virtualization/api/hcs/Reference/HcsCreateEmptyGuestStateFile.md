@@ -16,14 +16,14 @@ HcsCreateEmptyRuntimeStateFile(
 ### Parameters
 
 |Parameter     |Description|
-|---|---|---|---|---|---|---|---|
+|---|---|
 |`guestStateFilePath`| Full path to the guest-state file to create|
 |    |    |
 
 ### Return Values
 
 |Return Value     |Description|
-|---|---|---|---|---|---|---|---|
+|---|---|
 |``S_OK``|The function returns on success.|
 |`HRESULT`|Returns error code for failures to create the file.|
 |     |     |

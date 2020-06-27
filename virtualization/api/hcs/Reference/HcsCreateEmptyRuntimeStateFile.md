@@ -16,7 +16,7 @@ HcsCreateEmptyRuntimeStateFile(
 ## Parameters
 
 |Parameter     |Description|
-|---|---|---|---|---|---|---|---|
+|---|---|
 |`runtimeStateFilePath`| Full path to the runtime-state file to create|
 |    |    |
 

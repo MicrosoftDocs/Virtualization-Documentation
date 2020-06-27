@@ -18,7 +18,7 @@ HcsModifyProcess(
 ## Parameters
 
 |Parameter     |Description|
-|---|---|---|---|---|---|---|---|
+|---|---|
 |`process`| Handle to the process to modify|
 |`operation`| Handle to the operation that tracks the process|
 |`settings`| Receives the new settings of the process|

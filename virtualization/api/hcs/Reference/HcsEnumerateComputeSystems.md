@@ -18,7 +18,7 @@ HcsEnumerateComputeSystems(
 ## Parameters
 
 |Parameter     |Description|
-|---|---|---|---|---|---|---|---|
+|---|---|
 |`query`|Optional JSON document specifying a query for specific compute systems|
 |`operation`| Handle to the operation that tracks the enumerate operation|
 |    |    |

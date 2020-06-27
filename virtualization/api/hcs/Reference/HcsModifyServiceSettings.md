@@ -17,7 +17,7 @@ HcsModifyServiceSettings(
 ## Parameters
 
 |Parameter     |Description|
-|---|---|---|---|---|---|---|---|
+|---|---|
 |`settings`| JSON document specifying the new settings|
 |`result` | Optional, receives an error document on failures to apply the settings.|
 |    |    |
@@ -25,7 +25,7 @@ HcsModifyServiceSettings(
 ## Return Values
 
 |Return Value     |Description|
-|---|---|---|---|---|---|---|---|
+|---|---|
 |`S_OK` | The function returns on success.|
 |`HRESULT`| Error code for failures to modify the settings.|
 |    |    |

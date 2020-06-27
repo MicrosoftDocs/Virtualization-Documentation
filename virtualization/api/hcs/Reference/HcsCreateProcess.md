@@ -20,7 +20,7 @@ HcsCreateProcess(
 ## Parameters
 
 |Parameter     |Description|
-|---|---|---|---|---|---|---|---|
+|---|---|
 |`computeSystem`| Handle to the compute system in which to start the process|
 |`processParameters`| JSON document specifying the command line and environment for the process|
 |`operation`| Handle to the operation that tracks the process creation operation|

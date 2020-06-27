@@ -16,6 +16,6 @@ HcsCloseProcess(
 ## Parameters
 
 |Parameter     |Description|
-|---|---|---|---|---|---|---|---|
+|---|---|
 |`process`| Process handle to close|
 |    |    |

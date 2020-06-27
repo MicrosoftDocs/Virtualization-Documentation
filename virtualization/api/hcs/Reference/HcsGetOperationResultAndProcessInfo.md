@@ -19,7 +19,7 @@ HcsGetOperationResultAndProcessInfo(
 ## Parameters
 
 |Parameter     |Description|
-|---|---|---|---|---|---|---|---|
+|---|---|
 |`operation`| Handle to an active operation|
 |`processInformation`| Pointer to the process information|
 |`resultDocument`| If the operation succeeded, receives the result document of the operation.|

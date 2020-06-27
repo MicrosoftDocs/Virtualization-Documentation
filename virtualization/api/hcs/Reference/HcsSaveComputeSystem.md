@@ -18,7 +18,7 @@ HcsSaveComputeSystem(
 ## Parameters
 
 |Parameter     |Description|
-|---|---|---|---|---|---|---|---|
+|---|---|
 |`computeSystem`| Handle to the compute system to save|
 |`operation`| Handle to the operation that tracks the save operation|
 |`options`| Optional JSON document specifying save options|

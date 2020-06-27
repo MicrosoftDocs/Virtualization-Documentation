@@ -20,7 +20,7 @@ HcsWaitForOperationResultAndProcessInfo(
 ## Parameters
 
 |Parameter     |Description|
-|---|---|---|---|---|---|---|---|
+|---|---|
 |`operation`| Handle to an active operation.|
 |`timeoutMs`| Time to wait for the operation to complete.|
 |`processInformation`| Pointer to the process information|

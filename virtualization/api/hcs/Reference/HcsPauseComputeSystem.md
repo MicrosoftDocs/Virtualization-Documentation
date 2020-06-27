@@ -19,7 +19,7 @@ HcsPauseComputeSystem(
 ## Parameters
 
 |Parameter     |Description|
-|---|---|---|---|---|---|---|---|
+|---|---|
 |`computeSystem`| Handle to the compute system to pause|
 |`operation`| Handle to the operation that tracks the pause operation|
 |`options`| Optional JSON document specifying pause options|

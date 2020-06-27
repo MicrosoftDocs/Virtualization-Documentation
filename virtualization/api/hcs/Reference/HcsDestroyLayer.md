@@ -16,7 +16,7 @@ HcsDestroyLayer(
 ## Parameters
 
 |Parameter     |Description|
-|---|---|---|---|---|---|---|---|
+|---|---|
 |`layerPath`| Path of the layer to delete|
 |    |    |
 

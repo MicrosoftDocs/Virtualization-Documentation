@@ -18,7 +18,7 @@ HcsImportLayer(
 ## Parameters
 
 |Parameter     |Description|
-|---|---|---|---|---|---|---|---|
+|---|---|
 |`layerPath`| Destination path for the container layer|
 |`sourceFolderPath`| Source path that contains the downloaded layer files|
 |`layerData`| JSON document providing the locations of the antecedent layers that are used by the imported layer|

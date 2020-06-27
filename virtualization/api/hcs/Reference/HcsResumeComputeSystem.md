@@ -18,7 +18,7 @@ HcsResumeComputeSystem(
 ## Parameters
 
 |Parameter     |Description|
-|---|---|---|---|---|---|---|---|
+|---|---|
 |`computeSystem`| Handle to the compute system to resume|
 |`operation`| Handle to the operation that tracks the resume operation|
 |`options`| Optional JSON document specifying resume options|

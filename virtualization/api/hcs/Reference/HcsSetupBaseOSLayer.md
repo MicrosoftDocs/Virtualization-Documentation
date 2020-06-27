@@ -18,7 +18,7 @@ HcsSetupBaseOSLayer(
 ## Parameters
 
 |Parameter     |Description|
-|---|---|---|---|---|---|---|---|
+|---|---|
 |`layerPath`| Path to the root of the base OS layer|
 |`vhdHandle`| Handle to a VHD|
 |`options`| Optional JSON document describing options for setting up the layer|

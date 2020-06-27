@@ -16,7 +16,7 @@ HcsDetachLayerStorageFilter(
 ## Parameters
 
 |Parameter     |Description|
-|---|---|---|---|---|---|---|---|
+|---|---|
 |`layerPath`| Path to the root directory of the layer|
 |    |    |
 

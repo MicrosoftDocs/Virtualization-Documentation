@@ -19,7 +19,7 @@ HcsModifyComputeSystem(
 ## Parameters
 
 |Parameter     |Description|
-|---|---|---|---|---|---|---|---|
+|---|---|
 |`computeSystem`| Handle the compute system to modify|
 |`operation`| Handle to the operation that tracks the modify operation|
 |`configuration`| JSON document specifying the settings to modify|

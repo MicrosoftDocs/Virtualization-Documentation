@@ -19,7 +19,7 @@ HcsOpenComputeSystemInNamespace(
 ## Parameters
 
 |Parameter     |Description|
-|---|---|---|---|---|---|---|---|
+|---|---|
 |`idNamespace`| Unique Id namespace identifying the compute system|
 |`id`| Unique Id identifying the compute system|
 |`requestedAccess`| Specifies the required access to the compute system|
