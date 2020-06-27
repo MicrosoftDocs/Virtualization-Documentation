@@ -20,7 +20,7 @@ HcsCreateComputeSystem(
 ## Parameters
 
 |Parameter     |Description|
-|---|---|---|---|---|---|---|---|
+|---|---|
 |`id`| Unique Id identifying the compute system|
 |`configuration`| JSON document specifying the settings of the [compute system](./../SchemaReference.md#ComputeSystem)|
 |`operation`| Handle to the operation that tracks the create operation|
