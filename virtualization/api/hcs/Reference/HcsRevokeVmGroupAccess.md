@@ -16,7 +16,7 @@ HcsRevokeVmAccess(
 ## Parameters
 
 |Parameter     |Description|
-|---|---|---|---|---|---|---|---|
+|---|---|
 |`filePath`| Path to teh file for which to update the ACL|
 |    |    |
 

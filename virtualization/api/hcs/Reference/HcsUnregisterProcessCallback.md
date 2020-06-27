@@ -4,7 +4,7 @@
 
 ### Parameters
 |Parameter     |Description|
-|---|---|---|---|---|---|---|---| 
+|---|---|
 |`callback`| Handle to the callback to unregister|
 |    |    | 
 

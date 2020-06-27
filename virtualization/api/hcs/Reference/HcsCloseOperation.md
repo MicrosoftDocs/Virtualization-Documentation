@@ -17,6 +17,6 @@ HcsCloseOperation(
 ## Parameters
 
 |Parameter     |Description|
-|---|---|---|---|---|---|---|---|
+|---|---|
 |`operation`| Handle to an operation|
 |    |    |

@@ -18,7 +18,7 @@ HcsTerminateComputeSystem(
 ## Parameters
 
 |Parameter     |Description|
-|---|---|---|---|---|---|---|---|
+|---|---|
 |`computeSystem`| Handle to the compute system to terminate|
 |`operation`| Handle to the operation that tracks the terminate operation|
 |`options`| Optional JSON document specifying terminate options|

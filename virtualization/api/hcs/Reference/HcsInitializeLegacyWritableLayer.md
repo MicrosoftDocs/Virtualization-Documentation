@@ -20,7 +20,7 @@ HcsInitializeLegacyWritableLayer(
 ## Parameters
 
 |Parameter     |Description|
-|---|---|---|---|---|---|---|---|
+|---|---|
 |`writableLayerMountPath`| Full path to the root directory of the writable layer|
 |`writableLayerFolderPath`| The legacy hive folder with the writable layer|
 |`layerData`| JSON document providing the locations of the antecedent layers that are used by teh writable layer|

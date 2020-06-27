@@ -19,7 +19,7 @@ HcsSetComputeSystemCallback(
 ## Parameters
 
 |Parameter     |Description|
-|---|---|---|---|---|---|---|---|
+|---|---|
 |`computeSystem`| Handle to the compute system|
 |`callbackOptions`| JSON document specifying callback options|
 |`context`| Optional pointer to a context that is passed to the callback|

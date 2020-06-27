@@ -19,7 +19,7 @@ HcsSetProcessCallback(
 ## Parameters
 
 |Parameter     |Description|
-|---|---|---|---|---|---|---|---|
+|---|---|
 |`process`| Handle to the process for that the callback is registered|
 |`callbackOptions`| JSON document specifying callback options|
 |`context`| Optional pointer to a context that is passed to the callback|

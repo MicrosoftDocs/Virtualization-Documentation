@@ -17,7 +17,7 @@ HcsRevokeVmAccess(
 ## Parameters
 
 |Parameter     |Description|
-|---|---|---|---|---|---|---|---|
+|---|---|
 |`vmId`| Unique Id of the VM's compute system|
 |`filePath`| Path to teh file for which to update the ACL|
 |    |    |

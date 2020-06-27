@@ -16,7 +16,7 @@ HcsFormatWritableLayerVhd(
 ## Parameters
 
 |Parameter     |Description|
-|---|---|---|---|---|---|---|---|
+|---|---|
 |`vhdHandle`| Handle to a VHD|
 |    |    |
 

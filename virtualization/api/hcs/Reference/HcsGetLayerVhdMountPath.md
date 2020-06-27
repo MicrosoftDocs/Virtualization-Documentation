@@ -17,7 +17,7 @@ HcsGetLayerVhdMountPath(
 ## Parameters
 
 |Parameter     |Description|
-|---|---|---|---|---|---|---|---|
+|---|---|
 |`vhdHandle`| Handle to a VHD mounted on the host|
 |`mountPath`| Receives the volume path for the layer. It is the caller's responsibility to release the returned string buffer using `LocalFree`.|
 |    |    |

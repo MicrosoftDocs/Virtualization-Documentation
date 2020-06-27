@@ -19,7 +19,7 @@ HcsExportLegacyWritableLayer(
 ## Parameters
 
 |Parameter     |Description|
-|---|---|---|---|---|---|---|---|
+|---|---|
 |`writableLayerMountPath`| Path of the writable layer to export|
 |`writableLayerFolderPath`| Folder of the writable layer to export|
 |`exportFolderPath`| Destination folder for the exported layer|

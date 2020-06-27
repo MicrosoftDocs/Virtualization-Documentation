@@ -16,7 +16,7 @@ HcsSubmitWerReport(
 ## Parameters
 
 |Parameter     |Description|
-|---|---|---|---|---|---|---|---|
+|---|---|
 |`settings`| JSON document with the bugcheck information|
 |    |    |
 

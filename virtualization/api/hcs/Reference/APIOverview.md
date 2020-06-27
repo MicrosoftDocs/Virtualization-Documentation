@@ -86,7 +86,7 @@ The following set of functions allow applications to set up the environment to r
 The following functions allow applications to create and manage the file system and storage environment that is required to run containers.
 
 |Function   |Description|
-|---|---|---|---|---|---|---|---|
+|---|---|
 |[HcsImportLayer](./HcsImportLayer.md)|Imports a container layer and configures it for use on the host|
 |[HcsExportLayer](./HcsExportLayer.md)|Exports a container layer that can be copied to another host or uploaded to a container registry|
 |[HcsExportLegacyWritableLayer](./HcsExportLegacyWritableLayer.md)|Exports a legacy container writable layer|

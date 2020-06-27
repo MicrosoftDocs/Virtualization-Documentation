@@ -19,7 +19,7 @@ HcsExportLayer(
 ## Parameters
 
 |Parameter     |Description|
-|---|---|---|---|---|---|---|---|
+|---|---|
 |`layerPath`| Path of the layer to export|
 |`exportFolderPath`| Destination folder for the exported layer|
 |`layerData`| JSON document providing the locations of the antecedent layers that are used by the exported layer|

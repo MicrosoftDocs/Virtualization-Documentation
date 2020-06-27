@@ -19,7 +19,7 @@ HcsSetOperationContext(
 ## Parameters
 
 |Parameter     |Description|
-|---|---|---|---|---|---|---|---|
+|---|---|
 |`operation`| Handle to an active operation|
 |`context`| Optional pointer to a context that is passed to the callback|
 |    |    |

@@ -18,7 +18,7 @@ HcsEnumerateComputeSystemsInNamespace(
 ## Parameters
 
 |Parameter     |Description|
-|---|---|---|---|---|---|---|---|
+|---|---|
 |`idNamespace`| Unique Id namespace identifying the compute system|
 |`query`|Optional JSON document specifying a query for specific compute systems|
 |`operation`| Handle to the operation that tracks the enumerate operation|

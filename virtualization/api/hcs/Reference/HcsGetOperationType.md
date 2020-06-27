@@ -17,7 +17,7 @@ HcsGetOperationType(
 ## Parameters
 
 |Parameter     |Description|
-|---|---|---|---|---|---|---|---|
+|---|---|
 |`operation`| Handle to an active operation|
 |    |    |
 

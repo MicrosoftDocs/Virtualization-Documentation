@@ -18,7 +18,7 @@ HcsGetProcessProperties(
 ## Parameters
 
 |Parameter     |Description|
-|---|---|---|---|---|---|---|---|
+|---|---|
 |`process`| Handle to the process to query|
 |`operation`| Handle to the operation that tracks the process|
 |`propertyQuery`| Optional JSON document specifying the properties to query|
