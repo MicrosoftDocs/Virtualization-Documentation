@@ -7,8 +7,7 @@ This function creates an empty runtime-state file (.vmrs) for a VM. This file is
 ## Syntax
 
 ```cpp
-HRESULT
-WINAPI
+HRESULT WINAPI
 HcsCreateEmptyRuntimeStateFile(
     _In_ PCWSTR runtimeStateFilePath
     );

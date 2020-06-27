@@ -6,17 +6,15 @@ Starts a process in a compute system
 
 ## Syntax
 
-```csharp
-THROW_IF_FAILED(
-        HcsCreateProcess(
-            containerSystem.get(),  
-            c_ProcessConfiguration,
-            nullptr,
-            &processInfo,
-            &process,
-            &result
-        ));
-
+```cpp
+HRESULT WINAPI
+HcsCreateProcess(
+    _In_ HCS_SYSTEM computeSystem,
+    _In_ PCWSTR processParameters,
+    _In_ HCS_OPERATION operation,
+    _In_opt_ const SECURITY_DESCRIPTOR* securityDescriptor,
+    _Out_ HCS_PROCESS* process
+    );
 ```
 
 ## Parameters

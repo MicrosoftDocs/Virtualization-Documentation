@@ -9,12 +9,12 @@ The following section contains the definitions of the host Compute System APIs. 
 |[HcsCloseOperation](./HcsCloseOperation.md)|Close an operation|
 |[HcsGetOperationContext](./HcsGetOperationContext.md)|Get the context pointer of an operation|
 |[HcsSetOperationContext](./HcsSetOperationContext.md)|Set the context pointer on an operation|
-|[HcsGetComputeSystemFromOperation](.HcsGetComputeSystemFromOperation.md)|Get the compute system associated with operation|
-|[HcsGetProcessFromOperation](.HcsGetProcessFromOperation.md)|Return the handle to the process associated with an operation|
-|[HcsGetOperationType](.HcsGetOperationType.md)|Get the type of the operation|
-|[HcsGetOperationId](.HcsGetOperationId.md)|Get the id of the operation|
-|[HcsGetOperationResult](.HcsGetOperationResult.md)|Get the result of the operation|
-|[HcsGetOperationResultAndProcessInfo](.HcsGetOperationResultAndProcessInfo.md)|Return the result of an operation|
+|[HcsGetComputeSystemFromOperation](./HcsGetComputeSystemFromOperation.md)|Get the compute system associated with operation|
+|[HcsGetProcessFromOperation](./HcsGetProcessFromOperation.md)|Return the handle to the process associated with an operation|
+|[HcsGetOperationType](./HcsGetOperationType.md)|Get the type of the operation|
+|[HcsGetOperationId](./HcsGetOperationId.md)|Get the id of the operation|
+|[HcsGetOperationResult](./HcsGetOperationResult.md)|Get the result of the operation|
+|[HcsGetOperationResultAndProcessInfo](./HcsGetOperationResultAndProcessInfo.md)|Return the result of an operation|
 |[HcsWaitForOperationResult](./HcsWaitForOperationResult.md)| Wait for the completion of the create operation
 |[HcsWaitForOperationResultAndProcessInfo](./HcsWaitForOperationResultAndProcessInfo.md)| Wait for the completion of the create operation and returns the result
 |[HcsSetOperationCallback](./HcsSetOperationCallback.md)|Set the callbck that is invoked on completion of an operation|

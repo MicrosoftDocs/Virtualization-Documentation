@@ -2429,7 +2429,9 @@ Windows specific crash information
 
 <a name = "JSON-type"></a>
 ### JSON type
+
 The table shows the mapping from type name for field of classes to JSON type, as well as its format and pattern
+
 |Name|JSON Type|Format|Pattern|
 |---|---|---|---|
 |Any|object|||
@@ -2452,9 +2454,9 @@ The table shows the mapping from type name for field of classes to JSON type, as
 
 |Schema Version|Release Version|
 |---|---|
-|2.0|RS5|
-|2.1|RS5|
-|2.2|19H1|
-|2.3|Vibranium|
-|2.4|Manganese|
+|2.0|Windows 10 SDK, version 1809 (10.0.17763.0)|
+|2.1|Windows 10 SDK, version 1809 (10.0.17763.0)|
+|2.2|Windows 10 SDK, version 1903 (10.0.18362.1)|
+|2.3|Windows 10 SDK, version 2004 (10.0.19041.0)|
+|2.4|TBD|
 ---

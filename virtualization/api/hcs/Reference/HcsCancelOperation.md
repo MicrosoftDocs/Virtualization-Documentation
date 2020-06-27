@@ -9,8 +9,7 @@ Cancel the operation, optionally waiting for any in-progress callbacks to comple
 ```cpp
 HRESULT WINAPI
 HcsCancelOperation (
-    _In_ HCS_OPERATION operation,
-    _In_ BOOL          waitForCallback
+    _In_ HCS_OPERATION operation
     );
 
 ```
@@ -20,7 +19,6 @@ HcsCancelOperation (
 |Parameter     |Description|
 |---|---|---|---|---|---|---|---|
 |`operation`| Handle to an active operation|
-|`waitForCallback`| If TRUE, cancellation will wait for any in-progress callback to complete.|
 |    |    |
 
 ## Return Values

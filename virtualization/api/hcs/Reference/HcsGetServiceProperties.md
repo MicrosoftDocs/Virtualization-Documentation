@@ -19,8 +19,7 @@ HcsGetServiceProperties(
 |Parameter     |Description|
 |---|---|---|---|---|---|---|---|
 |`propertyQuery`| Optional JSON document specifying the properties to query|
-|`properties` | Receives a JSON document with the requested properties.|
-|`result` | Optional, receives an error document on failures to query the properties.
+|`result` | Receives a JSON document with the requested properties.|
 |    |    |
 
 ## Return Values

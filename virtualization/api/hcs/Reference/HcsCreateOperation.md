@@ -25,4 +25,6 @@ HcsCreateOperation(
 
 ## Return Values
 
-Handle to the newly created operation on success, NULL if resources required for the operation couldn't be allocated. It is the responsibility of the caller to release the operation using HcsCloseOperation once it is no longer used.
+|Return Value | Description|
+|---|---|---|---|---|---|---|---|
+|`HCS_OPERATION`| Handle to the newly created operation on success, NULL if resources required for the operation couldn't be allocated. It is the responsibility of the caller to release the operation using HcsCloseOperation once it is no longer used|

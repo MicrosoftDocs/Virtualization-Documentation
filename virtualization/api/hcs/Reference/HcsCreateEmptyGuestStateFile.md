@@ -7,8 +7,7 @@ This function creates an empty guest-state file (.vmgs) for a VM. This file is r
 ## Syntax
 
 ```cpp
-HRESULT
-WINAPI
+HRESULT WINAPI
 HcsCreateEmptyRuntimeStateFile(
     _In_ PCWSTR runtimeStateFilePath
     );
