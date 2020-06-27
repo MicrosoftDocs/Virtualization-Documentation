@@ -80,3 +80,22 @@ The following set of functions allow applications to set up the environment to r
 |[HcsRevokeVmAccess](./HcsRevokeVmAccess.md)|Remove an entry to a file's ACL that granted access for a VM|
 |[HcsGrantVmGroupAccess](./HcsGrantVmGroupAccess.md)|Grant VM group access (R/O) to the specified file.|
 |[HcsRevokeVmGroupAccess](./HcsRevokeVmGroupAccess.md)|Remove VM group access for the specified file.|
+
+## Storage Utility Functions for Containers
+
+The following functions allow applications to create and manage the file system and storage environment that is required to run containers.
+
+|Function   |Description|
+|---|---|---|---|---|---|---|---|
+|[HcsImportLayer](./HcsImportLayer.md)|Imports a container layer and configures it for use on the host|
+|[HcsExportLayer](./HcsExportLayer.md)|Exports a container layer that can be copied to another host or uploaded to a container registry|
+|[HcsExportLegacyWritableLayer](./HcsExportLegacyWritableLayer.md)|Exports a legacy container writable layer|
+|[HcsDestroyLayer](./HcsDestroyLayer.md)|Deletes a container layer from the host|
+|[HcsSetupBaseOSLayer](./HcsSetupBaseOSLayer.md)|Sets up a layer that contains a base OS for a container|
+|[HcsInitializeWritableLayer](./HcsInitializeWritableLayer.md)|Initializes the writable layer for a container (i.e. the layer that captures the filesystem)|
+|[HcsInitializeLegacyWritableLayer](./HcsInitializeLegacyWritableLayer.md)|Initializes the writable layer for a container using the legacy hive folder format|
+|[HcsAttachLayerStorageFilter](./HcsAttachLayerStorageFilter.md)|Sets up the layer storage filter on a writable container layers|
+|[HcsDetachLayerStorageFilter](./HcsDetachLayerStorageFilter.md)|Detaches the layer storage filter from a writable container layer|
+|[HcsFormatWritableLayerVhd](./HcsFormatWritableLayerVhd.md)|Formats a virtual disk for the use as a writable container layer|
+|[HcsGetLayerVhdMountPath](./HcsGetLayerVhdMountPath.md)| Returns the volume path for a virtual disk of a writable container layer|
+|   |   |

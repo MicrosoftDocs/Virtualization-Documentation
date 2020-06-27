@@ -7,8 +7,7 @@ Returns the volume path for a virtual disk of a writable container layer
 ## Syntax
 
 ```cpp
-HRESULT
-WINAPI
+HRESULT WINAPI
 HcsGetLayerVhdMountPath(
     _In_     HANDLE vhdHandle,
     _Outptr_ PWSTR* mountPath
