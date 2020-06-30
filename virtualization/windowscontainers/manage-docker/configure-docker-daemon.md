@@ -203,6 +203,11 @@ After you uninstall Docker, you'll need to remove Docker's default networks so t
 Get-HNSNetwork | Remove-HNSNetwork
 ```
 
+To remove Docker's default networks on Windows Server 2016.
+```powershell
+Get-ContainerNetwork | Remove-ContainerNetwork
+```
+
 Run the following cmdlet to remove Docker's program data from your system:
 
 ```powershell
