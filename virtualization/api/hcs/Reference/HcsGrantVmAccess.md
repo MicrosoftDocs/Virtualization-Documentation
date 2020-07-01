@@ -16,16 +16,27 @@ HcsGrantVmAccess(
 
 ## Parameters
 
-|Parameter     |Description|
-|---|---|
-|`vmId`| Unique Id of the VM's compute system|
-|`filePath`| Path to the file for which to update the ACL|
-|    |    |
+`vmId`
+
+Unique Id of the VM's compute system
+
+`filePath`
+
+Path to the file for which to update the ACL
 
 ## Return Values
 
-|Return Value | Description|
+The function returns [HRESULT](https://docs.microsoft.com/en-us/windows/win32/seccrypto/common-hresult-values)
+
+If the operation completes successfully, the return value is `S_OK`.
+
+## Requirements
+
+|Parameter     |Description|
 |---|---|
-|`S_OK`|The function returns on success.|
-|`HRESULT` | error code for failures to grant VM access to user.|
-|    |    |
+| **Minimum supported client** | Windows 10, version 1809 |
+| **Minimum supported server** | Windows Server 2019 |
+| **Target Platform** | Windows |
+| **Header** | ComputeCore.h |
+| **Library** | ComputeCore.lib |
+| **Dll** | ComputeCore.dll |

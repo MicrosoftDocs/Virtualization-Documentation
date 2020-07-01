@@ -16,16 +16,28 @@ HcsModifyServiceSettings(
 
 ## Parameters
 
-|Parameter     |Description|
-|---|---|
-|`settings`| JSON document specifying the new settings|
-|`result` | Optional, receives an error document on failures to apply the settings.|
-|    |    |
+`settings`
+
+JSON document  of [ModificationRequest](./../SchemaReference.md#ModificationRequest) specifying the new settings
+
+`result`
+
+Optional, receives an error document on failures to apply the settings
 
 ## Return Values
 
-|Return Value     |Description|
+The function returns [HRESULT](https://docs.microsoft.com/en-us/windows/win32/seccrypto/common-hresult-values)
+
+If the operation completes successfully, the return value is `S_OK`.
+
+## Requirements
+
+|Parameter     |Description|
 |---|---|
-|`S_OK` | The function returns on success.|
-|`HRESULT`| Error code for failures to modify the settings.|
-|    |    |
+| **Minimum supported client** | Windows 10, version 1809 |
+| **Minimum supported server** | Windows Server 2019 |
+| **Target Platform** | Windows |
+| **Header** | ComputeCore.h |
+| **Library** | ComputeCore.lib |
+| **Dll** | ComputeCore.dll |
+

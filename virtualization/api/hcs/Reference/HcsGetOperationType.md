@@ -16,15 +16,22 @@ HcsGetOperationType(
 
 ## Parameters
 
-|Parameter     |Description|
-|---|---|
-|`operation`| Handle to an active operation|
-|    |    |
+`operation`
+The handle to an active operation
 
 ## Return Values
 
-|Return Value | Description|
+If the function succeeds, the return value is `HCS_OPERATION_TYPE`
+
+If the operation has not yet been used in a function call, the return value is `HcsOperationNone`
+
+## Requirements
+
+|Parameter     |Description|
 |---|---|
-|`HCS_OPERATION_TYPE`|Returned on success|
-|`HcsOperationNone` |Returned if the operation has not yet been used in a function call|
-|     |     |
+| **Minimum supported client** | Windows 10, version 1809 |
+| **Minimum supported server** | Windows Server 2019 |
+| **Target Platform** | Windows |
+| **Header** | ComputeCore.h |
+| **Library** | ComputeCore.lib |
+| **Dll** | ComputeCore.dll |

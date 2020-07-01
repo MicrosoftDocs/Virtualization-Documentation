@@ -15,15 +15,23 @@ HcsCreateEmptyRuntimeStateFile(
 
 ## Parameters
 
-|Parameter     |Description|
-|---|---|
-|`runtimeStateFilePath`| Full path to the runtime-state file to create|
-|    |    |
+`runtimeStateFilePath`
+
+Full path to the runtime-state file to create
 
 ## Return Values
 
-|Return Value | Description|
+The function returns [HRESULT](https://docs.microsoft.com/en-us/windows/win32/seccrypto/common-hresult-values)
+
+If the operation completes successfully, the return value is `S_OK`.
+
+## Requirements
+
+|Parameter     |Description|
 |---|---|
-|`S_OK` | The function returns on success.|
-|`HRESULT`| error code for failures to create the file.|
-|    |    |
+| **Minimum supported client** | Windows 10, version 1809 |
+| **Minimum supported server** | Windows Server 2019 |
+| **Target Platform** | Windows |
+| **Header** | ComputeCore.h |
+| **Library** | ComputeCore.lib |
+| **Dll** | ComputeCore.dll |

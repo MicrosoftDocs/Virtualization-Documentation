@@ -19,18 +19,36 @@ HcsOpenProcess(
 
 ## Parameters
 
-|Parameter     |Description|
-|---|---|
-|`computeSystem`| Handle to the compute system in which to start the process|
-|`processId`| Specifies the Id of the process to open|
-|`requestedAccess`| Specifies the required access to the compute system|
-|    |    |
+`computeSystem`
+
+The handle to the compute system in which to start the process
+
+`processId`
+
+Specifies the Id of the process to open
+
+`requestedAccess`
+
+Specifies the required access to the compute system
+
+`process`
+
+Receives the handle to the process
 
 ## Return Values
 
-|Return Value | Description|
+The function returns [HRESULT](https://docs.microsoft.com/en-us/windows/win32/seccrypto/common-hresult-values)
+
+If the operation completes successfully, the return value is `S_OK`.
+
+## Requirements
+
+|Parameter     |Description|
 |---|---|
-|`process`| Receives the handle to the process|
-|`S_OK`| Returned on success|
-|`HRESULT`|Error code for failures to open the process|
-|    |    |
+| **Minimum supported client** | Windows 10, version 1809 |
+| **Minimum supported server** | Windows Server 2019 |
+| **Target Platform** | Windows |
+| **Header** | ComputeCore.h |
+| **Library** | ComputeCore.lib |
+| **Dll** | ComputeCore.dll |
+

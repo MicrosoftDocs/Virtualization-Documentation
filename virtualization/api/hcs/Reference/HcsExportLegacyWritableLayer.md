@@ -18,18 +18,35 @@ HcsExportLegacyWritableLayer(
 
 ## Parameters
 
-|Parameter     |Description|
-|---|---|
-|`writableLayerMountPath`| Path of the writable layer to export|
-|`writableLayerFolderPath`| Folder of the writable layer to export|
-|`exportFolderPath`| Destination folder for the exported layer|
-|`layerData`| JSON document providing the locations of the antecedent layers that are used by the exported layer|
-|    |    |
+`writableLayerMountPath`
+
+Path of the writable layer to export
+
+`writableLayerFolderPath`
+
+Folder of the writable layer to export
+
+`exportFolderPath`
+
+Destination folder for the exported layer
+
+`layerData`
+
+JSON document of [layerData](./../SchemaReference.md#LayerData) providing the locations of the antecedent layers that are used by the exported layer
 
 ## Return Values
 
-|Return Value    |Description|
+The function returns [HRESULT](https://docs.microsoft.com/en-us/windows/win32/seccrypto/common-hresult-values)
+
+If the operation completes successfully, the return value is `S_OK`.
+
+## Requirements
+
+|Parameter     |Description|
 |---|---|
-|`S_OK` |The function returns on success.|
-|`HRESULT`| Error code for failures to export the layer.|
-|    |    |
+| **Minimum supported client** | Windows 10, version 1809 |
+| **Minimum supported server** | Windows Server 2019 |
+| **Target Platform** | Windows |
+| **Header** | ComputeStorage.h |
+| **Library** | ComputeStorage.lib |
+| **Dll** | ComputeStorage.dll |

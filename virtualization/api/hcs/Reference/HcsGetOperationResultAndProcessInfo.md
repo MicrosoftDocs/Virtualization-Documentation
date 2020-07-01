@@ -18,17 +18,32 @@ HcsGetOperationResultAndProcessInfo(
 
 ## Parameters
 
-|Parameter     |Description|
-|---|---|
-|`operation`| Handle to an active operation|
-|`processInformation`| Pointer to the process information|
-|`resultDocument`| If the operation succeeded, receives the result document of the operation.|
-|    |    |
+`operation`
+
+The handle to an active operation
+
+`processInformation`
+
+If the operation succeeded, receives the pointer to the process information, which type is `HCS_PROCESS_INFORMATION`
+
+`resultDocument`
+
+If the operation succeeded, receives the result document of the operation
 
 ## Return Values
 
-|Return Value | Description|
+The function returns [HRESULT](https://docs.microsoft.com/en-us/windows/win32/seccrypto/common-hresult-values)
+
+If the operation completes successfully, the return value is `S_OK`.
+
+## Requirements
+
+|Parameter     |Description|
 |---|---|
-|`HCS_PROCESS_INFORMATION` |Returns process information|
-|`HRESULT`| Returns code indicating the result of the operation.|
-|     |     |
+| **Minimum supported client** | Windows 10, version 1809 |
+| **Minimum supported server** | Windows Server 2019 |
+| **Target Platform** | Windows |
+| **Header** | ComputeCore.h |
+| **Library** | ComputeCore.lib |
+| **Dll** | ComputeCore.dll |
+

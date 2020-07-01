@@ -18,19 +18,35 @@ HcsModifyComputeSystem(
 
 ## Parameters
 
-|Parameter     |Description|
-|---|---|
-|`computeSystem`| Handle the compute system to modify|
-|`operation`| Handle to the operation that tracks the modify operation|
-|`configuration`| JSON document specifying the settings to modify|
-|`identity`| Optional handle to an access token that is used when applying the settings|
-|    |    |
+`computeSystem`
+
+Handle the compute system to modify
+
+`operation`
+
+Handle to the operation that tracks the modify operation
+
+`configuration`
+
+JSON document of [ModifySettingRequest](./../SchemaReference.md#ModifySettingRequest) specifying the settings to modify
+
+`identity`
+
+Optional handle to an access token that is used when applying the settings
 
 ## Return Values
 
-|Return Value | Description|
+The function returns [HRESULT](https://docs.microsoft.com/en-us/windows/win32/seccrypto/common-hresult-values)
+
+If the operation completes successfully, the return value is `S_OK`.
+
+## Requirements
+
+|Parameter     |Description|
 |---|---|
-|`HCS_E_OPERATION_PENDING`|Returns if modifying the compute system was successfully initiated|
-|`HCS_E_INVALID_STATE`|Returns if the compute system cannot be modified in it's current state|
-|`HRESULT`|Error code for failures to modify the compute system.|
-|     |     |
+| **Minimum supported client** | Windows 10, version 1809 |
+| **Minimum supported server** | Windows Server 2019 |
+| **Target Platform** | Windows |
+| **Header** | ComputeCore.h |
+| **Library** | ComputeCore.lib |
+| **Dll** | ComputeCore.dll |

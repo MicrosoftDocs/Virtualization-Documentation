@@ -17,17 +17,32 @@ HcsImportLayer(
 
 ## Parameters
 
-|Parameter     |Description|
-|---|---|
-|`layerPath`| Destination path for the container layer|
-|`sourceFolderPath`| Source path that contains the downloaded layer files|
-|`layerData`| JSON document providing the locations of the antecedent layers that are used by the imported layer|
-|    |    |
+`layerPath`
+
+Destination path for the container layer
+
+`sourceFolderPath`
+
+Source path that contains the downloaded layer files
+
+`layerData`
+
+JSON document of [layerData](./../SchemaReference.md#LayerData) providing the locations of the antecedent layers that are used by the imported layer
 
 ## Return Values
 
-|Return Value     |Description|
+The function returns [HRESULT](https://docs.microsoft.com/en-us/windows/win32/seccrypto/common-hresult-values)
+
+If the operation completes successfully, the return value is `S_OK`.
+
+## Requirements
+
+|Parameter     |Description|
 |---|---|
-|`S_OK` | The function returns on success.|
-|`HRESULT`| Error code for failures to import the layer.|
-|    |    |
+| **Minimum supported client** | Windows 10, version 1809 |
+| **Minimum supported server** | Windows Server 2019 |
+| **Target Platform** | Windows |
+| **Header** | ComputeStorage.h |
+| **Library** | ComputeStorage.lib |
+| **Dll** | ComputeStorage.dll |
+

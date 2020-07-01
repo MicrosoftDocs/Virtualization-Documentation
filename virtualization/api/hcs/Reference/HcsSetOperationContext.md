@@ -18,15 +18,27 @@ HcsSetOperationContext(
 
 ## Parameters
 
-|Parameter     |Description|
-|---|---|
-|`operation`| Handle to an active operation|
-|`context`| Optional pointer to a context that is passed to the callback|
-|    |    |
+`operation`
+
+The handle to an active operation
+
+`context`
+
+Optional pointer to a context that is passed to the callback
 
 ## Return Values
 
-|Return Value | Description|
+The function returns [HRESULT](https://docs.microsoft.com/en-us/windows/win32/seccrypto/common-hresult-values)
+
+If the operation completes successfully, the return value is `S_OK`.
+
+## Requirements
+
+|Parameter     |Description|
 |---|---|
-|`HRESULT`|Returns code indicating the result of the operation.|
-|     |     |
+| **Minimum supported client** | Windows 10, version 1809 |
+| **Minimum supported server** | Windows Server 2019 |
+| **Target Platform** | Windows |
+| **Header** | ComputeCore.h |
+| **Library** | ComputeCore.lib |
+| **Dll** | ComputeCore.dll |

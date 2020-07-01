@@ -17,17 +17,31 @@ HcsGetComputeSystemProperties(
 
 ## Parameters
 
-|Parameter     |Description|
-|---|---|
-|`computeSystem`| Handle to the compute system to query|
-|`operation`| Handle to the operation that tracks the query operation|
-|`propertyQuery`| Optional JSON document specifying the properties to query|
-|    |    |
+`computeSystem`
+
+The handle to the compute system to query
+
+`operation`
+
+The handle to the operation that tracks the query operation
+
+`propertyQuery`
+
+Optional JSON document of [System_PropertyQuery](./../SchemaReference.md#System_PropertyQuery) specifying the properties to query
 
 ## Return Values
 
-|Return Value | Description|
+The function returns [HRESULT](https://docs.microsoft.com/en-us/windows/win32/seccrypto/common-hresult-values)
+
+If the operation completes successfully, the return value is `S_OK`.
+
+## Requirements
+
+|Parameter     |Description|
 |---|---|
-|`HCS_E_OPERATION_PENDING`|Returns if querying the compute system was successfully initiated|
-|`HRESULT`|Error code for failures to query the compute system|
-|     |     |
+| **Minimum supported client** | Windows 10, version 1809 |
+| **Minimum supported server** | Windows Server 2019 |
+| **Target Platform** | Windows |
+| **Header** | ComputeCore.h |
+| **Library** | ComputeCore.lib |
+| **Dll** | ComputeCore.dll |

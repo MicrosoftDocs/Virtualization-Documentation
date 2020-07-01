@@ -15,15 +15,23 @@ HcsSubmitWerReport(
 
 ## Parameters
 
-|Parameter     |Description|
-|---|---|
-|`settings`| JSON document with the bugcheck information|
-|    |    |
+`settings`
+
+JSON document of [CrashReport](./../SchemaReference.md#CrashReport) with the bugcheck information
 
 ## Return Values
 
-|Return Value     |Description|
+The function returns [HRESULT](https://docs.microsoft.com/en-us/windows/win32/seccrypto/common-hresult-values)
+
+If the operation completes successfully, the return value is `S_OK`.
+
+## Requirements
+
+|Parameter     |Description|
 |---|---|
-|`S_OK` | The function returns on success.|
-|`HRESULT`| Error code for failures to submit the WER report.|
-|    |    |
+| **Minimum supported client** | Windows 10, version 1809 |
+| **Minimum supported server** | Windows Server 2019 |
+| **Target Platform** | Windows |
+| **Header** | ComputeCore.h |
+| **Library** | ComputeCore.lib |
+| **Dll** | ComputeCore.dll |

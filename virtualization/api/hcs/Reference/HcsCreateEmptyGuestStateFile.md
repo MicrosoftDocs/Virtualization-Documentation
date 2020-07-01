@@ -8,22 +8,30 @@ This function creates an empty guest-state file (.vmgs) for a VM. This file is r
 
 ```cpp
 HRESULT WINAPI
-HcsCreateEmptyRuntimeStateFile(
-    _In_ PCWSTR runtimeStateFilePath
+HcsCreateEmptyGuestStateFile(
+    _In_ PCWSTR guestStateFilePath
     );
 ```
 
 ### Parameters
 
-|Parameter     |Description|
-|---|---|
-|`guestStateFilePath`| Full path to the guest-state file to create|
-|    |    |
+`guestStateFilePath`
+
+Full path to the guest-state file to create
 
 ### Return Values
 
-|Return Value     |Description|
+The function returns [HRESULT](https://docs.microsoft.com/en-us/windows/win32/seccrypto/common-hresult-values)
+
+If the operation completes successfully, the return value is `S_OK`.
+
+## Requirements
+
+|Parameter     |Description|
 |---|---|
-|``S_OK``|The function returns on success.|
-|`HRESULT`|Returns error code for failures to create the file.|
-|     |     |
+| **Minimum supported client** | Windows 10, version 1809 |
+| **Minimum supported server** | Windows Server 2019 |
+| **Target Platform** | Windows |
+| **Header** | ComputeCore.h |
+| **Library** | ComputeCore.lib |
+| **Dll** | ComputeCore.dll |

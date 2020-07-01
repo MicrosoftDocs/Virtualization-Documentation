@@ -16,16 +16,27 @@ HcsGetServiceProperties(
 
 ## Parameters
 
-|Parameter     |Description|
-|---|---|
-|`propertyQuery`| Optional JSON document specifying the properties to query|
-|`result` | Receives a JSON document with the requested properties.|
-|    |    |
+`propertyQuery`
+
+Optional JSON document of [Service_PropertyQuery](./../SchemaReference.md#Service_PropertyQuery) specifying the properties to query
+
+`result`
+
+Receives a JSON document of [ServiceProperties](./../SchemaReference.md#ServiceProperties) with the requested properties
 
 ## Return Values
 
-|Return Value     |Description|
+The function returns [HRESULT](https://docs.microsoft.com/en-us/windows/win32/seccrypto/common-hresult-values)
+
+If the operation completes successfully, the return value is `S_OK`.
+
+## Requirements
+
+|Parameter     |Description|
 |---|---|
-|`S_OK` | The function returns on success.|
-|`HRESULT`| Error code for failures to query the properties.|
-|    |    |
+| **Minimum supported client** | Windows 10, version 1809 |
+| **Minimum supported server** | Windows Server 2019 |
+| **Target Platform** | Windows |
+| **Header** | ComputeCore.h |
+| **Library** | ComputeCore.lib |
+| **Dll** | ComputeCore.dll |

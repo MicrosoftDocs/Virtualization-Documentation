@@ -17,17 +17,31 @@ HcsTerminateProcess(
 
 ## Parameters
 
-|Parameter     |Description|
-|---|---|
-|`process`| Handle to the process to terminate|
-|`operation`| Handle to the operation tracking the terminate operation|
-|`options`|Optional JSON document specifying terminate options|
-|    |    |
+`process`
+
+The handle to the process to terminate
+
+`operation`
+
+The handle to the operation tracking the terminate operation
+
+`options`
+
+Optional JSON document specifying terminate options
 
 ## Return Values
 
-|Return Value | Description|
+The function returns [HRESULT](https://docs.microsoft.com/en-us/windows/win32/seccrypto/common-hresult-values)
+
+If the operation completes successfully, the return value is `S_OK`.
+
+## Requirements
+
+|Parameter     |Description|
 |---|---|
-|`S_OK`| Returned on success|
-|`HRESULT`|Error code for failures to terminate the process|
-|    |    |
+| **Minimum supported client** | Windows 10, version 1809 |
+| **Minimum supported server** | Windows Server 2019 |
+| **Target Platform** | Windows |
+| **Header** | ComputeCore.h |
+| **Library** | ComputeCore.lib |
+| **Dll** | ComputeCore.dll |

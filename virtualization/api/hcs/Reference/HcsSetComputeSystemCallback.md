@@ -18,17 +18,39 @@ HcsSetComputeSystemCallback(
 
 ## Parameters
 
-|Parameter     |Description|
-|---|---|
-|`computeSystem`| Handle to the compute system|
-|`callbackOptions`| JSON document specifying callback options|
-|`context`| Optional pointer to a context that is passed to the callback|
-|`callback`| The target callback for HCS event|
-|    |    |
+`computeSystem`
+
+The handle to the compute system
+
+`callbackOptions`
+
+The option for callback, using HCS_EVENT_OPTIONS
+|Parameter|Value|Description|
+|---|---|---|
+|HcsEventOptionNone|0|No callback|
+|HcsEventOptionEnableOperationCallbacks|1|Enable operation call back|
+
+`context`
+
+Optional pointer to a context that is passed to the callback
+
+`callback`
+
+The target callback for HCS event
 
 ## Return Values
 
-|Return Value | Description|
+The function returns [HRESULT](https://docs.microsoft.com/en-us/windows/win32/seccrypto/common-hresult-values)
+
+If the operation completes successfully, the return value is `S_OK`.
+
+## Requirements
+
+|Parameter     |Description|
 |---|---|
-|`HRESULT`|Returns code indicating the result of the operation.|
-|     |     |
+| **Minimum supported client** | Windows 10, version 1809 |
+| **Minimum supported server** | Windows Server 2019 |
+| **Target Platform** | Windows |
+| **Header** | ComputeCore.h |
+| **Library** | ComputeCore.lib |
+| **Dll** | ComputeCore.dll |
