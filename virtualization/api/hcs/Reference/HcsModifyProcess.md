@@ -17,17 +17,31 @@ HcsModifyProcess(
 
 ## Parameters
 
-|Parameter     |Description|
-|---|---|
-|`process`| Handle to the process to modify|
-|`operation`| Handle to the operation that tracks the process|
-|`settings`| Receives the new settings of the process|
-|    |    |
+`process`
+
+Handle to the process to modify
+
+`operation`
+
+Handle to the operation that tracks the process
+
+`settings`
+
+Receives the new settings of the process
 
 ## Return Values
 
-|Return Value | Description|
+The function returns [HRESULT](https://docs.microsoft.com/en-us/windows/win32/seccrypto/common-hresult-values)
+
+If the operation completes successfully, the return value is `S_OK`.
+
+## Requirements
+
+|Parameter     |Description|
 |---|---|
-|`S_OK`| Returned on success|
-|`HRESULT`|Error code for failures to modify the process|
-|    |    |
+| **Minimum supported client** | Windows 10, version 1809 |
+| **Minimum supported server** | Windows Server 2019 |
+| **Target Platform** | Windows |
+| **Header** | ComputeCore.h |
+| **Library** | ComputeCore.lib |
+| **Dll** | ComputeCore.dll |

@@ -16,14 +16,23 @@ HcsGetComputeSystemFromOperation(
 
 ## Parameters
 
-|Parameter     |Description|
-|---|---|
-|`operation`| Handle to an active operation|
-|    |    |
+`operation`
+
+The handle to an active operation
 
 ## Return Values
 
-|Return Value | Description|
+`HCS_SYSTEM`
+
+Returns the handle to the compute system used by active operation, returns NULL if the operation is not active
+
+## Requirements
+
+|Parameter     |Description|
 |---|---|
-|`HCS_SYSTEM`|Returns NULL if the operation is not active.|
-|     |     |
+| **Minimum supported client** | Windows 10, version 1809 |
+| **Minimum supported server** | Windows Server 2019 |
+| **Target Platform** | Windows |
+| **Header** | ComputeCore.h |
+| **Library** | ComputeCore.lib |
+| **Dll** | ComputeCore.dll |

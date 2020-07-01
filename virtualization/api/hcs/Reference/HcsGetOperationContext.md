@@ -16,13 +16,23 @@ HcsGetOperationContext(
 
 ## Parameters
 
-|Parameter     |Description|
-|---|---|
-|`operation`| Handle to an operation|
-|    |    |
+`operation`
+
+The handle to an operation
 
 ## Return Values
 
-|Return Value | Description|
+`void*`
+
+Returns context pointer stored in the operation
+
+## Requirements
+
+|Parameter     |Description|
 |---|---|
-|`void*`|Returns context pointer stored in the operation|
+| **Minimum supported client** | Windows 10, version 1809 |
+| **Minimum supported server** | Windows Server 2019 |
+| **Target Platform** | Windows |
+| **Header** | ComputeCore.h |
+| **Library** | ComputeCore.lib |
+| **Dll** | ComputeCore.dll |

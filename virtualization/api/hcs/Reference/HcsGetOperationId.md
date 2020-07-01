@@ -17,15 +17,25 @@ HcsGetOperationId(
 
 ## Parameters
 
-|Parameter     |Description|
-|---|---|
-|`operation`| Handle to an active operation|
-|    |    |
+`operation`
+
+The handle to an active operation
 
 ## Return Values
 
-|Return Value | Description|
+If the function succeeds, the return value is Id of operation.
+
+If the operation is invalid, the return value is `HCS_INVALID_OPERATION_ID`
+
+
+## Requirements
+
+|Parameter     |Description|
 |---|---|
-|`Id`| Id of operation|
-|`HCS_INVALID_OPERATION_ID` |Returns if the operation is invalid|
-|     |     |
+| **Minimum supported client** | Windows 10, version 1809 |
+| **Minimum supported server** | Windows Server 2019 |
+| **Target Platform** | Windows |
+| **Header** | ComputeCore.h |
+| **Library** | ComputeCore.lib |
+| **Dll** | ComputeCore.dll |
+

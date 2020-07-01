@@ -3,11 +3,18 @@
 ## Syntax
 
 ### Parameters
-|Parameter     |Description|
-|---|---|
-|`process`| Handle to the process for that the callback is registered|
-|`callback`| Callback function that is invoked for events on the process|
-|`context`| Opaque pointer that is passed to the callback function|
+
+`process`
+
+The handle to the process for that the callback is registered
+
+`callback`
+
+Callback function that is invoked for events on the process
+
+`context`
+
+Opaque pointer that is passed to the callback function|
 |    |    | 
 
 

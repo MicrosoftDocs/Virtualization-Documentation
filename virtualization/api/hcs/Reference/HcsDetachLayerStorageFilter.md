@@ -15,15 +15,24 @@ HcsDetachLayerStorageFilter(
 
 ## Parameters
 
-|Parameter     |Description|
-|---|---|
-|`layerPath`| Path to the root directory of the layer|
-|    |    |
+`layerPath`
+
+Path to the root directory of the layer
 
 ## Return Values
 
-|Return Value     |Description|
+The function returns [HRESULT](https://docs.microsoft.com/en-us/windows/win32/seccrypto/common-hresult-values)
+
+If the operation completes successfully, the return value is `S_OK`.
+
+## Requirements
+
+|Parameter     |Description|
 |---|---|
-|`S_OK` | The function returns on success.|
-|`HRESULT`| Error code for failures to detach a filter.|
-|    |    |
+| **Minimum supported client** | Windows 10, version 1809 |
+| **Minimum supported server** | Windows Server 2019 |
+| **Target Platform** | Windows |
+| **Header** | ComputeStorage.h |
+| **Library** | ComputeStorage.lib |
+| **Dll** | ComputeStorage.dll |
+

@@ -16,16 +16,27 @@ HcsGetLayerVhdMountPath(
 
 ## Parameters
 
-|Parameter     |Description|
-|---|---|
-|`vhdHandle`| Handle to a VHD mounted on the host|
-|`mountPath`| Receives the volume path for the layer. It is the caller's responsibility to release the returned string buffer using `LocalFree`.|
-|    |    |
+`vhdHandle`
+
+The handle to a VHD mounted on the host
+
+`mountPath`
+
+Receives the volume path for the layer. It is the caller's responsibility to release the returned string buffer using `LocalFree`.
 
 ## Return Values
 
-|Return Value     |Description|
+The function returns [HRESULT](https://docs.microsoft.com/en-us/windows/win32/seccrypto/common-hresult-values)
+
+If the operation completes successfully, the return value is `S_OK`.
+
+## Requirements
+
+|Parameter     |Description|
 |---|---|
-|`S_OK` | The function returns on success.|
-|`HRESULT`| Error code for failures to lookup the volume path.|
-|    |    |
+| **Minimum supported client** | Windows 10, version 1809 |
+| **Minimum supported server** | Windows Server 2019 |
+| **Target Platform** | Windows |
+| **Header** | ComputeStorage.h |
+| **Library** | ComputeStorage.lib |
+| **Dll** | ComputeStorage.dll |

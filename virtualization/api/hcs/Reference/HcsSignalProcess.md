@@ -17,17 +17,31 @@ HcsSignalProcess(
 
 ## Parameters
 
-|Parameter     |Description|
-|---|---|
-|`process`| Handle to the process to send the signal to|
-|`operation`| Handle to the operation that tracks the signal|
-|`options`| Optional JSON document specifying the detailed signal|
-|    |    |
+`process`
+
+The handle to the process to send the signal to
+
+`operation`
+
+The handle to the operation that tracks the signal
+
+`options`
+
+Optional JSON document of [SignalProcessOptions](./../SchemaReference.md#SignalProcessOptions) specifying the detailed signal
 
 ## Return Values
 
-|Return Value | Description|
+The function returns [HRESULT](https://docs.microsoft.com/en-us/windows/win32/seccrypto/common-hresult-values)
+
+If the operation completes successfully, the return value is `S_OK`.
+
+## Requirements
+
+|Parameter     |Description|
 |---|---|
-|`S_OK`|Returned on success|
-|`HRESULT`|Error code for failures to send the signal to the process|
-|    |    |
+| **Minimum supported client** | Windows 10, version 1809 |
+| **Minimum supported server** | Windows Server 2019 |
+| **Target Platform** | Windows |
+| **Header** | ComputeCore.h |
+| **Library** | ComputeCore.lib |
+| **Dll** | ComputeCore.dll |

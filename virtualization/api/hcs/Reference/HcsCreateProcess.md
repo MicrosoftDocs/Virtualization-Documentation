@@ -19,19 +19,39 @@ HcsCreateProcess(
 
 ## Parameters
 
-|Parameter     |Description|
-|---|---|
-|`computeSystem`| Handle to the compute system in which to start the process|
-|`processParameters`| JSON document specifying the command line and environment for the process|
-|`operation`| Handle to the operation that tracks the process creation operation|
-|`securityDescriptor`| Optional security descriptor specifying the permissions on the compute system process. If not specified, only the caller of the function is granted permissions to perform operations on the compute system process|
-|`process`| Receives the handle to the newly created process|
-|    |    |
+`computeSystem`
+
+The handle to the compute system in which to start the process
+
+`processParameters`
+
+JSON document of [ProcessParameters](./../SchemaReference.md#ProcessParameters) specifying the command line and environment for the process 
+
+`operation`
+
+Handle to the operation that tracks the process creation operation
+
+`securityDescriptor`
+
+Optional security descriptor specifying the permissions on the compute system process. If not specified, only the caller of the function is granted permissions to perform operations on the compute system process
+
+`process`
+
+Receives the handle to the newly created process
 
 ## Return Values
 
-|Return Value | Description|
+The function returns [HRESULT](https://docs.microsoft.com/en-us/windows/win32/seccrypto/common-hresult-values)
+
+If the operation completes successfully, the return value is `S_OK`.
+
+## Requirements
+
+|Parameter     |Description|
 |---|---|
-|`S_OK`| Returned on success|
-|`HRESULT`|Error code for failures to create the process.|
-|    |    |
+| **Minimum supported client** | Windows 10, version 1809 |
+| **Minimum supported server** | Windows Server 2019 |
+| **Target Platform** | Windows |
+| **Header** | ComputeCore.h |
+| **Library** | ComputeCore.lib |
+| **Dll** | ComputeCore.dll |
