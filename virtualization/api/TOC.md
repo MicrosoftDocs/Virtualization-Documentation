@@ -51,11 +51,99 @@
 ### [WHV_EMULATOR_SET_VIRTUAL_PROCESSOR_REGISTERS_CALLBACK](./hypervisor-instruction-emulator/funcs/WHvEmulatorSetVirtualProcessorRegistersCallback.md)
 ### [WHV_EMULATOR_TRANSLATE_GVA_PAGE_CALLBACK](./hypervisor-instruction-emulator/funcs/WHvEmulatorTranslateGVAPageCallback.md)
 
-
 # Host Compute System API
 ## [Overview](./hcs/overview.md)
-## [API Reference](./hcs/Reference/APIOverview.md)
-## [Samples](./hcs/Samples.md)
+## API Reference
+### [Overview](./hcs/Reference/APIOverview.md)
+### Data types
+#### [HCS_OPERATION_TYPE](./hcs/Reference/HCS_OPERATION_TYPE.md)
+#### [HCS_EVENT_TYPE](./hcs/Reference/HCS_EVENT_TYPE.md)
+#### [HCS_EVENT_OPTIONS](./hcs/Reference/HCS_EVENT_OPTIONS.md)
+#### [HCS_NOTIFICATION_FLAGS](./hcs/Reference/HCS_NOTIFICATION_FLAGS.md)
+#### [HCS_NOTIFICATIONS](./hcs/Reference/HCS_NOTIFICATIONS.md)
+#### [HCS_CREATE_OPTIONS](./hcs/Reference/HCS_CREATE_OPTIONS.md)
+#### [HCS_PROCESS_INFORMATION](./hcs/Reference/HCS_PROCESS_INFORMATION.md)
+### Function types
+#### [HCS_OPERATION_COMPLETION](./hcs/Reference/HCS_OPERATION_COMPLETION.md)
+#### [HCS_EVENT_CALLBACK](./hcs/Reference/HCS_EVENT_CALLBACK.md)
+#### [HCS_NOTIFICATION_CALLBACK](./hcs/Reference/HCS_NOTIFICATION_CALLBACK.md)
+### Functions
+### Operations
+#### [HcsCreateOperation](./Reference/HcsCreateOperation.md)
+#### [HcsCloseOperation](./Reference/HcsCloseOperation.md)
+#### [HcsGetOperationContext](./Reference/HcsGetOperationContext.md)
+#### [HcsSetOperationContext](./Reference/HcsSetOperationContext.md)
+#### [HcsGetComputeSystemFromOperation](./Reference/HcsGetComputeSystemFromOperation.md)
+#### [HcsGetProcessFromOperation](./Reference/HcsGetProcessFromOperation.md)
+#### [HcsGetOperationType](./Reference/HcsGetOperationType.md)
+#### [HcsGetOperationId](./Reference/HcsGetOperationId.md)
+#### [HcsGetOperationResult](./Reference/HcsGetOperationResult.md)
+#### [HcsGetOperationResultAndProcessInfo](./Reference/HcsGetOperationResultAndProcessInfo.md)
+#### [HcsWaitForOperationResult](./Reference/HcsWaitForOperationResult.md)
+#### [HcsWaitForOperationResultAndProcessInfo](./Reference/HcsWaitForOperationResultAndProcessInfo.md)
+#### [HcsSetOperationCallback](./Reference/HcsSetOperationCallback.md)
+#### [HcsCancelOperation](./Reference/HcsCancelOperation.md)
+### Compute System Operations
+#### HcsCreateComputeSystem
+##### [HcsCreateComputeSystem](./Reference/HcsCreateComputeSystem.md)
+##### [JSON document example(s)](./Reference/HcsCreateComputeSystemJsonSample.md)
+#### [HcsCreateComputeSystemInNamespace](./Reference/HcsCreateComputeSystemInNamespace.md)
+#### [HcsOpenComputeSystem](./Reference/HcsOpenComputeSystem.md)
+#### [HcsCloseComputeSystem](./Reference/HcsCloseComputeSystem.md)
+#### [HcsStartComputeSystem](./Reference/HcsStartComputeSystem.md)
+#### [HcsShutDownComputeSystem](./Reference/HcsShutDownComputeSystem.md)
+#### [HcsTerminateComputeSystem](./Reference/HcsTerminateComputeSystem.md)
+#### [HcsCrashComputeSystem](./Reference/HcsCrashComputeSystem.md)
+#### [HcsPauseComputeSystem](./Reference/HcsPauseComputeSystem.md)
+#### [HcsResumeComputeSystem](./Reference/HcsResumeComputeSystem.md)
+#### [HcsSaveComputeSystem](./Reference/HcsSaveComputeSystem.md)
+#### [HcsGetComputeSystemProperties](./Reference/HcsGetComputeSystemProperties.md)
+#### HcsModifyComputeSystem
+##### [function](./Reference/HcsModifyComputeSystem.md)
+##### [JSON document example(s)]()
+#### [HcsSetComputeSystemCallback](./Reference/HcsSetComputeSystemCallback.md)
+#### [HcsEnumerateComputeSystems](./Reference/HcsEnumerateComputeSystems.md)
+#### [HcsEnumerateComputeSystemsInNamespace](./Reference/HcsEnumerateComputeSystemsInNamespace.md)
+### Process Execution
+#### [HcsCreateProcess](./Reference/HcsCreateProcess.md)
+#### [HcsOpenProcess](./Reference/HcsOpenProcess.md)
+#### [HcsCloseProcess](./Reference/HcsCloseProcess.md)
+#### [HcsTerminateProcess](./Reference/HcsTerminateProcess.md)
+#### [HcsSignalProcess](./Reference/HcsSignalProcess.md)
+#### [HcsGetProcessInfo](./Reference/HcsGetProcessInfo.md)
+#### [HcsGetProcessProperties](./Reference/HcsGetProcessProperties.md)
+#### [HcsModifyProcess](./Reference/HcsModifyProcess.md)
+#### [HcsSetProcessCallback](./Reference/HcsSetProcessCallback.md)
+### Host Service Operations
+#### [HcsGetServiceProperties](./Reference/HcsGetServiceProperties.md)
+#### [HcsModifyServiceSettings](./Reference/HcsModifyServiceSettings.md)
+#### [HcsSubmitWerReport](./Reference/HcsSubmitWerReport.md)
+### Utility Functions for Virtual Machines
+#### [HcsCreateEmptyGuestStateFile](./Reference/HcsCreateEmptyGuestStateFile.md)
+#### [HcsCreateEmptyRuntimeStateFile](./Reference/HcsCreateEmptyRuntimeStateFile.md)
+#### [HcsGrantVmAccess](./Reference/HcsGrantVmAccess.md)
+#### [HcsRevokeVmAccess](./Reference/HcsRevokeVmAccess.md)
+#### [HcsGrantVmGroupAccess](./Reference/HcsGrantVmGroupAccess.md)
+#### [HcsRevokeVmGroupAccess](./Reference/HcsRevokeVmGroupAccess.md)
+### Storage Utility Functions for Containers
+#### [HcsImportLayer](./HcsImportLayer.md)
+#### [HcsExportLayer](./HcsExportLayer.md)
+#### [HcsExportLegacyWritableLayer](./HcsExportLegacyWritableLayer.md)
+#### [HcsDestroyLayer](./HcsDestroyLayer.md)
+#### [HcsSetupBaseOSLayer](./HcsSetupBaseOSLayer.md)
+#### [HcsInitializeWritableLayer](./HcsInitializeWritableLayer.md)
+#### [HcsInitializeLegacyWritableLayer](./HcsInitializeLegacyWritableLayer.md)
+#### [HcsAttachLayerStorageFilter](./HcsAttachLayerStorageFilter.md)
+#### [HcsDetachLayerStorageFilter](./HcsDetachLayerStorageFilter.md)
+#### [HcsFormatWritableLayerVhd](./HcsFormatWritableLayerVhd.md)
+#### [HcsGetLayerVhdMountPath](./HcsGetLayerVhdMountPath.md)
+## Samples Code
+### Operations
+### Compute System Operations
+### Process Execution
+### Host Service Operations
+### Utility Functions for Virtual Machines
+### Storage Utility Functions for Containers
 ## [JSON Schema Reference](./hcs/SchemaReference.md)
 ## [Tutorial](./hcs/Tutorial.md)
 ### [Asynchronous Model](./hcs/AsyncModel.md)

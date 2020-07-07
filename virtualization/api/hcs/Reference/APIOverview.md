@@ -2,8 +2,41 @@
 
 The following section contains the definitions of the host Compute System APIs. The DLL exports a set of C-style Windows API functions, using JSON schema as configuration. 
 
+
+## Data types
+
+|Type|Description|
+|---|---|
+|[HCS_CREATE_OPTIONS](./HCS_CREATE_OPTIONS.md)|Versions available used by [HcsCreateComputeSystemInNamespace](./HcsCreateComputeSystemInNamespace.md)|
+|[HCS_EVENT_TYPE](./HCS_EVENT_TYPE.md)|Events indicated to callbacks registered by [HcsSetComputeSystemCallback](./HcsSetComputeSystemCallback.md) or [HcsSetProcessCallback](./HcsSetProcessCallback.md)|
+|[HCS_EVENT_OPTIONS](./HCS_EVENT_OPTIONS.md)|Options for an event callback registration|
+|[HCS_NOTIFICATION_FLAGS](./HCS_NOTIFICATION_FLAGS.md)|Flags applicable to HCS_NOTIFICATIONS|
+|[HCS_NOTIFICATIONS](./HCS_NOTIFICATIONS.md)|Notifications indicated to callbacks registered by [HcsSetComputeSystemCallback](./HcsSetComputeSystemCallback.md) or [HcsSetProcessCallback](./HcsSetProcessCallback.md)|
+|[HCS_OPERATION_TYPE](./HCS_OPERATION_TYPE.md)|Type of an operation used in the functions that invoke the operation|
+|[HCS_PROCESS_INFORMATION](./HCS_PROCESS_INFORMATION.md)|Struct containing information about a process created by [HcsCreateProcess](./HcsCreateProcess.md)|
+
+## Handle types
+
+|Type|Description|
+|---|---|
+|HCS_SYSTEM|Handle to a compute system|
+|HCS_PROCESS|Handle to a process running in a compute system|
+|HCS_OPERATION|Handle to an operation on a compute system|
+|HCS_CALLBACK|Handle to a callback registered on a compute system or process handle|
+
+## Function types
+
+|Type|Description|
+|---|---|
+[HCS_OPERATION_COMPLETION](./hcs/Reference/HCS_OPERATION_COMPLETION.md)|the completion callback of an operation|
+|[HCS_EVENT_CALLBACK](./hcs/Reference/HCS_EVENT_CALLBACK.md)|compute system event callbacks|
+|[HCS_NOTIFICATION_CALLBACK](./hcs/Reference/HCS_NOTIFICATION_CALLBACK.md)|compute system notification callbacks|
+
+
+###
+
 ## Operations
-|Function   |Description|
+|Function|Description|
 |---|---|
 |[HcsCreateOperation](./HcsCreateOperation.md)|Create a new operation|
 |[HcsCloseOperation](./HcsCloseOperation.md)|Close an operation|
@@ -21,7 +54,7 @@ The following section contains the definitions of the host Compute System APIs. 
 |[HcsCancelOperation](./HcsCancelOperation.md)|Cancel the operation|
 
 ## Compute System Operations
-|Function   |Description|
+|Function|Description|
 |---|---|
 |[HcsCreateComputeSystem](./HcsCreateComputeSystem.md)|Create a new compute system|
 |[HcsCreateComputeSystemInNamespace](./HcsCreateComputeSystemInNamespace.md)|Create a new compute system in a given namespace|
@@ -46,7 +79,7 @@ The following section contains the definitions of the host Compute System APIs. 
 
 The following functions enable applications to execute a process in a compute system. For containers, these functions are the main way for an application to start and interact with the workload running in the container. Unlike the compute system operations, these process execution functions are executed synchronously.
 
-|Function   |Description|
+|Function|Description|
 |---|---|
 |[HcsCreateProcess](./HcsCreateProcess.md)|Start a process in a compute system |
 |[HcsOpenProcess](./HcsOpenProcess.md)|Open an existing process in a compute system |
@@ -62,7 +95,7 @@ The following functions enable applications to execute a process in a compute sy
 
 The following functions provide functionality for host compute service.
 
-|Function   |Description|
+|Function|Description|
 |---|---|
 |[HcsGetServiceProperties](./HcsGetServiceProperties.md)|Return the properties of the Host Compute Service|
 |[HcsModifyServiceSettings](./HcsModifyServiceSettings.md)|Modify the settings of the Host Compute Service|
@@ -72,7 +105,7 @@ The following functions provide functionality for host compute service.
 
 The following set of functions allow applications to set up the environment to run virtual machines.
 
-|Function   |Description|
+|Function|Description|
 |---|---|
 |[HcsCreateEmptyGuestStateFile](./HcsCreateEmptyGuestStateFile.md)|Create an empty guest-state file (.vmgs) for VMs|
 |[HcsCreateEmptyRuntimeStateFile](./HcsCreateEmptyRuntimeStateFile.md)|Create an empty runtime-state file (.vmrs) for a VM|
@@ -85,7 +118,7 @@ The following set of functions allow applications to set up the environment to r
 
 The following functions allow applications to create and manage the file system and storage environment that is required to run containers.
 
-|Function   |Description|
+|Function|Description|
 |---|---|
 |[HcsImportLayer](./HcsImportLayer.md)|Imports a container layer and configures it for use on the host|
 |[HcsExportLayer](./HcsExportLayer.md)|Exports a container layer that can be copied to another host or uploaded to a container registry|
