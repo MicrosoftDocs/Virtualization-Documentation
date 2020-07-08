@@ -29,7 +29,7 @@ Time to wait for the operation to complete
 
 `processInformation`
 
-Receives the pointer to the process information
+Receives the pointer to the process information, which type is [HCS_PROCESS_INFORMATION](./HCS_PROCESS_INFORMATION.md)
 
 `resultDocument`
 

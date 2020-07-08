@@ -24,11 +24,7 @@ The handle to the process for that the callback is registered
 
 `callbackOptions`
 
-The option for callback, using HCS_EVENT_OPTIONS
-|Parameter|Value|Description|
-|---|---|---|
-|HcsEventOptionNone|0|No callback|
-|HcsEventOptionEnableOperationCallbacks|1|Enable operation call back|
+The option for callback, using [HCS_EVENT_OPTIONS](./HCS_EVENT_OPTIONS.md)
 
 `context`
 
