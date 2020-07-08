@@ -27,7 +27,7 @@ JSON document providing the locations of the antecedent layers that are used by 
 
 `options`
 
-Optional JSON document specifying the options for how to initialize the sandbox (e.g. which filesystem paths should be pre-expanded in the sandbox)
+Reserved for future use. Must be `NULL`.
 
 ## Return Values
 

@@ -38,7 +38,7 @@ The handle to the operation that tracks the create operation
 
 `options`
 
-Optional versioned [HCS_CREATE_OPTIONS](./HCS_CREATE_OPTIONS.md) to the internal representation
+Reserved for future use. Must be `NULL`.
 
 `computeSystem`
 
