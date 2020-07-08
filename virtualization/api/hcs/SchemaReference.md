@@ -1073,7 +1073,7 @@ It is referenced by: [VirtualMachine](#VirtualMachine);
 |---|---|---|---|---|
 |**ComPorts**<br>|[Map](#JSON-type)<[uint32](#JSON-type), [ComPort](#ComPort)>|[2.1](#Schema-Version-Map)|[](#Schema-Version-Map) ||
 |**VirtioSerial**<br>|[VirtioSerial](#VirtioSerial)|[2.2](#Schema-Version-Map)|[](#Schema-Version-Map) ||
-|**Scsi**<br>|[Map](#JSON-type)<[string](#JSON-type), [Scsi](#Scsi)>|[2.0](#Schema-Version-Map)|[](#Schema-Version-Map) ||
+|**Scsi**<br>|[Map](#JSON-type)<[string](#JSON-type), [Scsi](#Scsi)>|[2.0](#Schema-Version-Map)|[](#Schema-Version-Map) |Map of named SCSI controllers|
 |**VirtualPMem**<br>|[VirtualPMemController](#VirtualPMemController)|[2.0](#Schema-Version-Map)|[](#Schema-Version-Map) ||
 |**NetworkAdapters**<br>|[Map](#JSON-type)<[string](#JSON-type), [NetworkAdapter](#NetworkAdapter)>|[2.0](#Schema-Version-Map)|[](#Schema-Version-Map) ||
 |**VideoMonitor**<br>|[VideoMonitor](#VideoMonitor)|[2.0](#Schema-Version-Map)|[](#Schema-Version-Map) ||
@@ -1815,7 +1815,7 @@ This class is only necessary because JSON marshaling complains when we have two 
 ## Scsi
 It is referenced by: [Devices](#Devices);
 
-
+Object describing a SCSI controller.
 |Field|Type|NewInVersion|RemovedInVersion|Description|
 |---|---|---|---|---|
 |**Attachments**<br>|[Map](#JSON-type)<[uint32](#JSON-type), [Attachment](#Attachment)>|[2.0](#Schema-Version-Map)|[](#Schema-Version-Map) |Map of attachments, where the key is the integer LUN number on the controller.|
