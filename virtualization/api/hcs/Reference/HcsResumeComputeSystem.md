@@ -27,7 +27,7 @@ The handle to the operation that tracks the resume operation
 
 `options`
 
-Optional JSON document specifying resume options
+Reserved for future use. Must be `NULL`.
 
 ## Return Values
 

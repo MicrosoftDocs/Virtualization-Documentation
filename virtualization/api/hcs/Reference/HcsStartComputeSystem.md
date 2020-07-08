@@ -27,7 +27,7 @@ The handle to the operation that tracks the start operation
 
 `options`
 
-Optional JSON document specifying start options
+Reserved for future use. Must be `NULL`.
 
 ## Return Values
 
