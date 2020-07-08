@@ -21,9 +21,7 @@ The handle to an active operation
 
 ## Return Values
 
-If the function succeeds, the return value is `HCS_OPERATION_TYPE`
-
-If the operation has not yet been used in a function call, the return value is `HcsOperationNone`
+If the function succeeds, the return value is [HCS_OPERATION_TYPE](./HCS_OPERATION_TYPE.md)
 
 ## Requirements
 

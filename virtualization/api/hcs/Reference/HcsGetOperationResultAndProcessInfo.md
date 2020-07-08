@@ -24,7 +24,7 @@ The handle to an active operation
 
 `processInformation`
 
-If the operation succeeded, receives the pointer to the process information, which type is `HCS_PROCESS_INFORMATION`
+If the operation succeeded, receives the pointer to the process information, which type is [HCS_PROCESS_INFORMATION](./HCS_PROCESS_INFORMATION.md)
 
 `resultDocument`
 

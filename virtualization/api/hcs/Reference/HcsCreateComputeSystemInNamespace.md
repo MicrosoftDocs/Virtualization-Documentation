@@ -36,9 +36,9 @@ JSON document specifying the settings of the [compute system](./../SchemaReferen
 
 The handle to the operation that tracks the create operation
 
-`securityDescriptor`
+`options`
 
-Optional security descriptor specifying the permissions on the compute system. If not specified, only the caller of the function is granted permissions to perform operations on the compute system.
+Optional versioned [HCS_CREATE_OPTIONS](./HCS_CREATE_OPTIONS.md) to the internal representation
 
 `computeSystem`
 

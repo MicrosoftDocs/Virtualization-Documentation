@@ -28,9 +28,9 @@ The following section contains the definitions of the host Compute System APIs. 
 
 |Type|Description|
 |---|---|
-[HCS_OPERATION_COMPLETION](./hcs/Reference/HCS_OPERATION_COMPLETION.md)|the completion callback of an operation|
-|[HCS_EVENT_CALLBACK](./hcs/Reference/HCS_EVENT_CALLBACK.md)|compute system event callbacks|
-|[HCS_NOTIFICATION_CALLBACK](./hcs/Reference/HCS_NOTIFICATION_CALLBACK.md)|compute system notification callbacks|
+[HCS_OPERATION_COMPLETION](./HCS_OPERATION_COMPLETION.md)|the completion callback of an operation|
+|[HCS_EVENT_CALLBACK](./HCS_EVENT_CALLBACK.md)|compute system event callbacks|
+|[HCS_NOTIFICATION_CALLBACK](./HCS_NOTIFICATION_CALLBACK.md)|compute system notification callbacks|
 
 
 ###
