@@ -31,9 +31,7 @@ Optional JSON document of [ProcessStatus](./../SchemaReference.md#ProcessStatus)
 
 ## Return Values
 
-The function returns [HRESULT](https://docs.microsoft.com/en-us/windows/win32/seccrypto/common-hresult-values)
-
-If the operation completes successfully, the return value is `S_OK`.
+The function returns [HRESULT](./HCSHResult.md)
 
 ## Requirements
 

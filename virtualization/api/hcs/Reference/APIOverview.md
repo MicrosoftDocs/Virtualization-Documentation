@@ -7,11 +7,9 @@ The following section contains the definitions of the host Compute System APIs. 
 
 |Type|Description|
 |---|---|
-|[HCS_CREATE_OPTIONS](./HCS_CREATE_OPTIONS.md)|Versions available used by [HcsCreateComputeSystemInNamespace](./HcsCreateComputeSystemInNamespace.md)|
+|[HRESULT](./HCSHResult.md)|The return value of HCS API|
 |[HCS_EVENT_TYPE](./HCS_EVENT_TYPE.md)|Events indicated to callbacks registered by [HcsSetComputeSystemCallback](./HcsSetComputeSystemCallback.md) or [HcsSetProcessCallback](./HcsSetProcessCallback.md)|
 |[HCS_EVENT_OPTIONS](./HCS_EVENT_OPTIONS.md)|Options for an event callback registration|
-|[HCS_NOTIFICATION_FLAGS](./HCS_NOTIFICATION_FLAGS.md)|Flags applicable to HCS_NOTIFICATIONS|
-|[HCS_NOTIFICATIONS](./HCS_NOTIFICATIONS.md)|Notifications indicated to callbacks registered by [HcsSetComputeSystemCallback](./HcsSetComputeSystemCallback.md) or [HcsSetProcessCallback](./HcsSetProcessCallback.md)|
 |[HCS_OPERATION_TYPE](./HCS_OPERATION_TYPE.md)|Type of an operation used in the functions that invoke the operation|
 |[HCS_PROCESS_INFORMATION](./HCS_PROCESS_INFORMATION.md)|Struct containing information about a process created by [HcsCreateProcess](./HcsCreateProcess.md)|
 
@@ -30,7 +28,6 @@ The following section contains the definitions of the host Compute System APIs. 
 |---|---|
 [HCS_OPERATION_COMPLETION](./HCS_OPERATION_COMPLETION.md)|the completion callback of an operation|
 |[HCS_EVENT_CALLBACK](./HCS_EVENT_CALLBACK.md)|compute system event callbacks|
-|[HCS_NOTIFICATION_CALLBACK](./HCS_NOTIFICATION_CALLBACK.md)|compute system notification callbacks|
 
 
 ###
@@ -57,9 +54,7 @@ The following section contains the definitions of the host Compute System APIs. 
 |Function|Description|
 |---|---|
 |[HcsCreateComputeSystem](./HcsCreateComputeSystem.md)|Create a new compute system|
-|[HcsCreateComputeSystemInNamespace](./HcsCreateComputeSystemInNamespace.md)|Create a new compute system in a given namespace|
 |[HcsOpenComputeSystem](./HcsOpenComputeSystem.md)|Open a handle to an existing compute system|
-|[HcsOpenComputeSystemInNamespace](./HcsOpenComputeSystemInNamespace.md)|Open a handle to an existing  compute system in a given namespace|
 |[HcsCloseComputeSystem](./HcsCloseComputeSystem.md)|Close a handle to a compute system|
 |[HcsStartComputeSystem](./HcsStartComputeSystem.md)|Start a compute system|
 |[HcsShutDownComputeSystem](./HcsShutDownComputeSystem.md)|Cleanly  Shut down a compute system|
@@ -72,7 +67,6 @@ The following section contains the definitions of the host Compute System APIs. 
 |[HcsModifyComputeSystem](./HcsModifyComputeSystem.md)|Modify setting of a compute system|
 |[HcsSetComputeSystemCallback](./HcsSetComputeSystemCallback.md)|Register a callback function to receive notifications for the compute system|
 |[HcsEnumerateComputeSystems](./HcsEnumerateComputeSystems.md)|Enumerates existing compute systems|
-|[HcsEnumerateComputeSystemsInNamespace](./HcsEnumerateComputeSystemsInNamespace.md)|Enumerates existing compute systems in a given namespace|
 
 
 ## Process Execution
