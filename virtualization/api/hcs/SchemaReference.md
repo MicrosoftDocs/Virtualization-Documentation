@@ -196,7 +196,7 @@ Note: all variants listed should be used as string
 
 <a name = "ApplySecureBootTemplateType"></a>
 ## ApplySecureBootTemplateType
-It is referenced by: [Uefi](#Uefi);
+Referenced by: [Uefi](#Uefi)
 
 
 
@@ -209,7 +209,7 @@ It is referenced by: [Uefi](#Uefi);
 
 <a name = "AttachmentType"></a>
 ## AttachmentType
-It is referenced by: [Attachment](#Attachment);
+Referenced by: [Attachment](#Attachment)
 
 
 
@@ -223,7 +223,7 @@ It is referenced by: [Attachment](#Attachment);
 
 <a name = "CacheMode"></a>
 ## CacheMode
-It is referenced by: [Layer](#Layer);
+Referenced by: [Layer](#Layer)
 
 
 
@@ -239,7 +239,7 @@ It is referenced by: [Layer](#Layer);
 
 <a name = "CachingMode"></a>
 ## CachingMode
-It is referenced by: [Attachment](#Attachment);
+Referenced by: [Attachment](#Attachment)
 
 
 
@@ -253,7 +253,7 @@ It is referenced by: [Attachment](#Attachment);
 
 <a name = "ContainerCredentialGuardModifyOperation"></a>
 ## ContainerCredentialGuardModifyOperation
-It is referenced by: [ContainerCredentialGuardOperationRequest](#ContainerCredentialGuardOperationRequest);
+Referenced by: [ContainerCredentialGuardOperationRequest](#ContainerCredentialGuardOperationRequest)
 
 
 
@@ -266,7 +266,7 @@ It is referenced by: [ContainerCredentialGuardOperationRequest](#ContainerCreden
 
 <a name = "ContainerCredentialGuardTransport"></a>
 ## ContainerCredentialGuardTransport
-It is referenced by: [ContainerCredentialGuardAddInstanceRequest](#ContainerCredentialGuardAddInstanceRequest); [ContainerCredentialGuardState](#ContainerCredentialGuardState);
+Referenced by: [ContainerCredentialGuardAddInstanceRequest](#ContainerCredentialGuardAddInstanceRequest); [ContainerCredentialGuardState](#ContainerCredentialGuardState)
 
 
 
@@ -279,7 +279,7 @@ It is referenced by: [ContainerCredentialGuardAddInstanceRequest](#ContainerCred
 
 <a name = "CrashType"></a>
 ## CrashType
-It is referenced by: [CrashOptions](#CrashOptions);
+Referenced by: [CrashOptions](#CrashOptions)
 
 
 
@@ -291,7 +291,7 @@ It is referenced by: [CrashOptions](#CrashOptions);
 
 <a name = "DeviceType"></a>
 ## DeviceType
-It is referenced by: [Device](#Device);
+Referenced by: [Device](#Device)
 
 
 
@@ -305,7 +305,7 @@ It is referenced by: [Device](#Device);
 
 <a name = "EventDataType"></a>
 ## EventDataType
-It is referenced by: [EventData](#EventData);
+Referenced by: [EventData](#EventData)
 
 Data types for event data elements, based on EVT_VARIANT_TYPE
 
@@ -332,7 +332,7 @@ Data types for event data elements, based on EVT_VARIANT_TYPE
 
 <a name = "FlexibleIoDeviceHostingModel"></a>
 ## FlexibleIoDeviceHostingModel
-It is referenced by: [FlexibleIoDevice](#FlexibleIoDevice);
+Referenced by: [FlexibleIoDevice](#FlexibleIoDevice)
 
 
 
@@ -345,7 +345,7 @@ It is referenced by: [FlexibleIoDevice](#FlexibleIoDevice);
 
 <a name = "GpuAssignmentMode"></a>
 ## GpuAssignmentMode
-It is referenced by: [GpuConfiguration](#GpuConfiguration);
+Referenced by: [GpuConfiguration](#GpuConfiguration)
 
 
 
@@ -360,7 +360,7 @@ It is referenced by: [GpuConfiguration](#GpuConfiguration);
 
 <a name = "IntegrationComponentOperatingStateReason"></a>
 ## IntegrationComponentOperatingStateReason
-It is referenced by: [IntegrationComponentStatus](#IntegrationComponentStatus);
+Referenced by: [IntegrationComponentStatus](#IntegrationComponentStatus)
 
 possible reason for integration component's state
 
@@ -377,7 +377,7 @@ possible reason for integration component's state
 
 <a name = "IntegrationComponentOperationalState"></a>
 ## IntegrationComponentOperationalState
-It is referenced by: [IntegrationComponentStatus](#IntegrationComponentStatus);
+Referenced by: [IntegrationComponentStatus](#IntegrationComponentStatus)
 
 operational status for integration component
 
@@ -396,7 +396,7 @@ operational status for integration component
 
 <a name = "MappedPipePathType"></a>
 ## MappedPipePathType
-It is referenced by: [MappedPipe](#MappedPipe);
+Referenced by: [MappedPipe](#MappedPipe)
 
 
 
@@ -409,7 +409,7 @@ It is referenced by: [MappedPipe](#MappedPipe);
 
 <a name = "MemoryBackingPageSize"></a>
 ## MemoryBackingPageSize
-It is referenced by: [VirtualMachine_Memory](#VirtualMachine_Memory);
+Referenced by: [VirtualMachine_Memory](#VirtualMachine_Memory)
 
 
 
@@ -422,7 +422,7 @@ It is referenced by: [VirtualMachine_Memory](#VirtualMachine_Memory);
 
 <a name = "ModifyOperation"></a>
 ## ModifyOperation
-It is referenced by: [ProcessModifyRequest](#ProcessModifyRequest);
+Referenced by: [ProcessModifyRequest](#ProcessModifyRequest)
 
 
 
@@ -435,7 +435,7 @@ It is referenced by: [ProcessModifyRequest](#ProcessModifyRequest);
 
 <a name = "ModifyRequestType"></a>
 ## ModifyRequestType
-It is referenced by: [GuestModifySettingRequest](#GuestModifySettingRequest); [ModifySettingRequest](#ModifySettingRequest);
+Referenced by: [GuestModifySettingRequest](#GuestModifySettingRequest); [ModifySettingRequest](#ModifySettingRequest)
 
 
 
@@ -449,7 +449,7 @@ It is referenced by: [GuestModifySettingRequest](#GuestModifySettingRequest); [M
 
 <a name = "ModifyResourceType"></a>
 ## ModifyResourceType
-It is referenced by: [GuestModifySettingRequest](#GuestModifySettingRequest);
+Referenced by: [GuestModifySettingRequest](#GuestModifySettingRequest)
 
 
 
@@ -467,7 +467,7 @@ It is referenced by: [GuestModifySettingRequest](#GuestModifySettingRequest);
 
 <a name = "NetworkModifyRequestType"></a>
 ## NetworkModifyRequestType
-It is referenced by: [NetworkModifySettingRequest](#NetworkModifySettingRequest); [Rs4NetworkModifySettingRequest](#Rs4NetworkModifySettingRequest);
+Referenced by: [NetworkModifySettingRequest](#NetworkModifySettingRequest); [Rs4NetworkModifySettingRequest](#Rs4NetworkModifySettingRequest)
 
 
 
@@ -481,7 +481,7 @@ It is referenced by: [NetworkModifySettingRequest](#NetworkModifySettingRequest)
 
 <a name = "NotificationType"></a>
 ## NotificationType
-It is referenced by: [Properties](#Properties); [SystemExitStatus](#SystemExitStatus);
+Referenced by: [Properties](#Properties); [SystemExitStatus](#SystemExitStatus)
 
 Notification type generated by ComputeSystems
 
@@ -497,7 +497,7 @@ Notification type generated by ComputeSystems
 
 <a name = "OsLayerType"></a>
 ## OsLayerType
-It is referenced by: [OsLayerOptions](#OsLayerOptions);
+Referenced by: [OsLayerOptions](#OsLayerOptions)
 
 
 
@@ -510,7 +510,7 @@ It is referenced by: [OsLayerOptions](#OsLayerOptions);
 
 <a name = "OsType"></a>
 ## OsType
-It is referenced by: [Properties](#Properties);
+Referenced by: [Properties](#Properties)
 
 
 
@@ -524,7 +524,7 @@ It is referenced by: [Properties](#Properties);
 
 <a name = "PathType"></a>
 ## PathType
-It is referenced by: [Layer](#Layer); [MappedDirectory](#MappedDirectory);
+Referenced by: [Layer](#Layer); [MappedDirectory](#MappedDirectory)
 
 
 
@@ -537,7 +537,7 @@ It is referenced by: [Layer](#Layer); [MappedDirectory](#MappedDirectory);
 
 <a name = "PauseReason"></a>
 ## PauseReason
-It is referenced by: [PauseNotification](#PauseNotification);
+Referenced by: [PauseNotification](#PauseNotification)
 
 Pause reason that is indicated to components running in the Virtual Machine.
 
@@ -551,7 +551,7 @@ Pause reason that is indicated to components running in the Virtual Machine.
 
 <a name = "PauseSuspensionLevel"></a>
 ## PauseSuspensionLevel
-It is referenced by: [PauseOptions](#PauseOptions);
+Referenced by: [PauseOptions](#PauseOptions)
 
 
 
@@ -579,7 +579,7 @@ It is referenced by: [PauseOptions](#PauseOptions);
 
 <a name = "ProcessSignal"></a>
 ## ProcessSignal
-It is referenced by: [SignalProcessOptions](#SignalProcessOptions);
+Referenced by: [SignalProcessOptions](#SignalProcessOptions)
 
 
 
@@ -595,7 +595,7 @@ It is referenced by: [SignalProcessOptions](#SignalProcessOptions);
 
 <a name = "RegistryHive"></a>
 ## RegistryHive
-It is referenced by: [RegistryKey](#RegistryKey);
+Referenced by: [RegistryKey](#RegistryKey)
 
 
 
@@ -610,7 +610,7 @@ It is referenced by: [RegistryKey](#RegistryKey);
 
 <a name = "RegistryValueType"></a>
 ## RegistryValueType
-It is referenced by: [RegistryValue](#RegistryValue);
+Referenced by: [RegistryValue](#RegistryValue)
 
 
 
@@ -629,7 +629,7 @@ It is referenced by: [RegistryValue](#RegistryValue);
 
 <a name = "SaveType"></a>
 ## SaveType
-It is referenced by: [SaveOptions](#SaveOptions);
+Referenced by: [SaveOptions](#SaveOptions)
 
 
 
@@ -642,7 +642,7 @@ It is referenced by: [SaveOptions](#SaveOptions);
 
 <a name = "SerialConsole"></a>
 ## SerialConsole
-It is referenced by: [Uefi](#Uefi);
+Referenced by: [Uefi](#Uefi)
 
 
 
@@ -657,7 +657,7 @@ It is referenced by: [Uefi](#Uefi);
 
 <a name = "Service_PropertyType"></a>
 ## Service_PropertyType
-It is referenced by: [FilteredPropertyQuery](#FilteredPropertyQuery); [ModificationRequest](#ModificationRequest); [Service_PropertyQuery](#Service_PropertyQuery);
+Referenced by: [FilteredPropertyQuery](#FilteredPropertyQuery); [ModificationRequest](#ModificationRequest); [Service_PropertyQuery](#Service_PropertyQuery)
 
 Service property types
 
@@ -678,7 +678,7 @@ Service property types
 
 <a name = "State"></a>
 ## State
-It is referenced by: [Properties](#Properties);
+Referenced by: [Properties](#Properties)
 
 Compute system state which is exposed to external clients
 
@@ -695,7 +695,7 @@ Compute system state which is exposed to external clients
 
 <a name = "StdHandle"></a>
 ## StdHandle
-It is referenced by: [CloseHandle](#CloseHandle);
+Referenced by: [CloseHandle](#CloseHandle)
 
 
 
@@ -710,7 +710,7 @@ It is referenced by: [CloseHandle](#CloseHandle);
 
 <a name = "System_PropertyType"></a>
 ## System_PropertyType
-It is referenced by: [System_PropertyQuery](#System_PropertyQuery);
+Referenced by: [System_PropertyQuery](#System_PropertyQuery)
 
 Compute system property types. The properties will be returned as a Schema.Responses.System.Properties instance.
 
@@ -729,7 +729,7 @@ Compute system property types. The properties will be returned as a Schema.Respo
 
 <a name = "SystemType"></a>
 ## SystemType
-It is referenced by: [Properties](#Properties); [SystemQuery](#SystemQuery);
+Referenced by: [Properties](#Properties); [SystemQuery](#SystemQuery)
 
 
 
@@ -743,7 +743,7 @@ It is referenced by: [Properties](#Properties); [SystemQuery](#SystemQuery);
 
 <a name = "UefiBootDevice"></a>
 ## UefiBootDevice
-It is referenced by: [UefiBootEntry](#UefiBootEntry);
+Referenced by: [UefiBootEntry](#UefiBootEntry)
 
 
 
@@ -758,7 +758,7 @@ It is referenced by: [UefiBootEntry](#UefiBootEntry);
 
 <a name = "VirtualPMemBackingType"></a>
 ## VirtualPMemBackingType
-It is referenced by: [VirtualPMemController](#VirtualPMemController);
+Referenced by: [VirtualPMemController](#VirtualPMemController)
 
 
 
@@ -771,7 +771,7 @@ It is referenced by: [VirtualPMemController](#VirtualPMemController);
 
 <a name = "VirtualPMemImageFormat"></a>
 ## VirtualPMemImageFormat
-It is referenced by: [VirtualPMemDevice](#VirtualPMemDevice); [VirtualPMemMapping](#VirtualPMemMapping);
+Referenced by: [VirtualPMemDevice](#VirtualPMemDevice); [VirtualPMemMapping](#VirtualPMemMapping)
 
 
 
@@ -784,7 +784,7 @@ It is referenced by: [VirtualPMemDevice](#VirtualPMemDevice); [VirtualPMemMappin
 
 <a name = "WindowsCrashPhase"></a>
 ## WindowsCrashPhase
-It is referenced by: [WindowsCrashReport](#WindowsCrashReport);
+Referenced by: [WindowsCrashReport](#WindowsCrashReport)
 
 
 
@@ -802,7 +802,7 @@ It is referenced by: [WindowsCrashReport](#WindowsCrashReport);
 # Structs
 <a name = "Attachment"></a>
 ## Attachment
-It is referenced by: [Scsi](#Scsi);
+Referenced by: [Scsi](#Scsi)
 
 
 
@@ -837,7 +837,7 @@ It is referenced by: [Scsi](#Scsi);
 
 <a name = "Battery"></a>
 ## Battery
-It is referenced by: [Devices](#Devices);
+Referenced by: [Devices](#Devices)
 
 
 
@@ -848,7 +848,7 @@ It is referenced by: [Devices](#Devices);
 
 <a name = "Chipset"></a>
 ## Chipset
-It is referenced by: [VirtualMachine](#VirtualMachine);
+Referenced by: [VirtualMachine](#VirtualMachine)
 
 
 
@@ -878,7 +878,7 @@ It is referenced by: [VirtualMachine](#VirtualMachine);
 
 <a name = "CloseHandle"></a>
 ## CloseHandle
-It is referenced by: [ProcessModifyRequest](#ProcessModifyRequest);
+Referenced by: [ProcessModifyRequest](#ProcessModifyRequest)
 
 
 
@@ -902,7 +902,7 @@ This class is used by a modify request to add or remove a combined layers struct
 
 <a name = "ComPort"></a>
 ## ComPort
-It is referenced by: [Devices](#Devices);
+Referenced by: [Devices](#Devices)
 
 ComPort specifies the named pipe that will be used for the port, with empty string indicating a disconnected port.
 
@@ -931,7 +931,7 @@ ComPort specifies the named pipe that will be used for the port, with empty stri
 
 <a name = "ConsoleSize"></a>
 ## ConsoleSize
-It is referenced by: [ProcessModifyRequest](#ProcessModifyRequest);
+Referenced by: [ProcessModifyRequest](#ProcessModifyRequest)
 
 
 
@@ -944,7 +944,7 @@ It is referenced by: [ProcessModifyRequest](#ProcessModifyRequest);
 
 <a name = "Container"></a>
 ## Container
-It is referenced by: [ComputeSystem](#ComputeSystem); [HostedSystem](#HostedSystem);
+Referenced by: [ComputeSystem](#ComputeSystem); [HostedSystem](#HostedSystem)
 
 
 
@@ -966,7 +966,7 @@ It is referenced by: [ComputeSystem](#ComputeSystem); [HostedSystem](#HostedSyst
 
 <a name = "Container_HvSocket"></a>
 ## Container_HvSocket
-It is referenced by: [Container](#Container);
+Referenced by: [Container](#Container)
 
 
 
@@ -979,7 +979,7 @@ It is referenced by: [Container](#Container);
 
 <a name = "Container_Memory"></a>
 ## Container_Memory
-It is referenced by: [Container](#Container);
+Referenced by: [Container](#Container)
 
 
 
@@ -991,7 +991,7 @@ It is referenced by: [Container](#Container);
 
 <a name = "Container_Processor"></a>
 ## Container_Processor
-It is referenced by: [Container](#Container);
+Referenced by: [Container](#Container)
 
 Specifies CPU limits for a container. Count, Maximum and Weight are all mutually exclusive.
 
@@ -1017,7 +1017,7 @@ Specifies CPU limits for a container. Count, Maximum and Weight are all mutually
 
 <a name = "ContainerCredentialGuardHvSocketServiceConfig"></a>
 ## ContainerCredentialGuardHvSocketServiceConfig
-It is referenced by: [ContainerCredentialGuardInstance](#ContainerCredentialGuardInstance);
+Referenced by: [ContainerCredentialGuardInstance](#ContainerCredentialGuardInstance)
 
 
 
@@ -1030,7 +1030,7 @@ It is referenced by: [ContainerCredentialGuardInstance](#ContainerCredentialGuar
 
 <a name = "ContainerCredentialGuardInstance"></a>
 ## ContainerCredentialGuardInstance
-It is referenced by: [ContainerCredentialGuardSystemInfo](#ContainerCredentialGuardSystemInfo);
+Referenced by: [ContainerCredentialGuardSystemInfo](#ContainerCredentialGuardSystemInfo)
 
 
 
@@ -1065,7 +1065,7 @@ It is referenced by: [ContainerCredentialGuardSystemInfo](#ContainerCredentialGu
 
 <a name = "ContainerCredentialGuardState"></a>
 ## ContainerCredentialGuardState
-It is referenced by: [Container](#Container); [ContainerCredentialGuardInstance](#ContainerCredentialGuardInstance);
+Referenced by: [Container](#Container); [ContainerCredentialGuardInstance](#ContainerCredentialGuardInstance)
 
 
 
@@ -1125,7 +1125,7 @@ crash information reported through CrashReport notifications
 
 <a name = "CrashReportProcessDump"></a>
 ## CrashReportProcessDump
-It is referenced by: [CrashReport](#CrashReport);
+Referenced by: [CrashReport](#CrashReport)
 
 Information on auxillary process dumps
 
@@ -1138,7 +1138,7 @@ Information on auxillary process dumps
 
 <a name = "Device"></a>
 ## Device
-It is referenced by: [Container](#Container);
+Referenced by: [Container](#Container)
 
 
 
@@ -1152,7 +1152,7 @@ It is referenced by: [Container](#Container);
 
 <a name = "Devices"></a>
 ## Devices
-It is referenced by: [VirtualMachine](#VirtualMachine);
+Referenced by: [VirtualMachine](#VirtualMachine)
 
 
 
@@ -1181,7 +1181,7 @@ It is referenced by: [VirtualMachine](#VirtualMachine);
 
 <a name = "EnhancedModeVideo"></a>
 ## EnhancedModeVideo
-It is referenced by: [Devices](#Devices);
+Referenced by: [Devices](#Devices)
 
 
 
@@ -1209,7 +1209,7 @@ Error descriptor that provides the info of an error object
 
 <a name = "EventData"></a>
 ## EventData
-It is referenced by: [ErrorEvent](#ErrorEvent);
+Referenced by: [ErrorEvent](#ErrorEvent)
 
 Event data element
 
@@ -1232,7 +1232,7 @@ Event data element
 
 <a name = "FilteredPropertyQuery"></a>
 ## FilteredPropertyQuery
-It is referenced by: [Service_PropertyQuery](#Service_PropertyQuery);
+Referenced by: [Service_PropertyQuery](#Service_PropertyQuery)
 
 Structures used to perform a filtered property query.
 
@@ -1245,7 +1245,7 @@ Structures used to perform a filtered property query.
 
 <a name = "FlexibleIoDevice"></a>
 ## FlexibleIoDevice
-It is referenced by: [Devices](#Devices);
+Referenced by: [Devices](#Devices)
 
 
 
@@ -1271,7 +1271,7 @@ It is referenced by: [Devices](#Devices);
 
 <a name = "GuestConnection"></a>
 ## GuestConnection
-It is referenced by: [VirtualMachine](#VirtualMachine);
+Referenced by: [VirtualMachine](#VirtualMachine)
 
 
 
@@ -1284,7 +1284,7 @@ It is referenced by: [VirtualMachine](#VirtualMachine);
 
 <a name = "GuestConnectionInfo"></a>
 ## GuestConnectionInfo
-It is referenced by: [Properties](#Properties);
+Referenced by: [Properties](#Properties)
 
 Information about the guest.
 
@@ -1307,7 +1307,7 @@ Information about the guest.
 
 <a name = "GuestCrashReporting"></a>
 ## GuestCrashReporting
-It is referenced by: [Devices](#Devices);
+Referenced by: [Devices](#Devices)
 
 
 
@@ -1331,7 +1331,7 @@ It is referenced by: [Devices](#Devices);
 
 <a name = "GuestOs"></a>
 ## GuestOs
-It is referenced by: [Container](#Container);
+Referenced by: [Container](#Container)
 
 
 
@@ -1343,7 +1343,7 @@ It is referenced by: [Container](#Container);
 
 <a name = "GuestState"></a>
 ## GuestState
-It is referenced by: [VirtualMachine](#VirtualMachine);
+Referenced by: [VirtualMachine](#VirtualMachine)
 
 
 
@@ -1357,7 +1357,7 @@ It is referenced by: [VirtualMachine](#VirtualMachine);
 
 <a name = "Heartbeat"></a>
 ## Heartbeat
-It is referenced by: [Services](#Services);
+Referenced by: [Services](#Services)
 
 
 
@@ -1390,7 +1390,7 @@ This class defines address settings applied to a VM by the GCS every time a VM s
 
 <a name = "HvSocketServiceConfig"></a>
 ## HvSocketServiceConfig
-It is referenced by: [ContainerCredentialGuardHvSocketServiceConfig](#ContainerCredentialGuardHvSocketServiceConfig); [HvSocketSystemConfig](#HvSocketSystemConfig);
+Referenced by: [ContainerCredentialGuardHvSocketServiceConfig](#ContainerCredentialGuardHvSocketServiceConfig); [HvSocketSystemConfig](#HvSocketSystemConfig)
 
 
 
@@ -1404,7 +1404,7 @@ It is referenced by: [ContainerCredentialGuardHvSocketServiceConfig](#ContainerC
 
 <a name = "HvSocketSystemConfig"></a>
 ## HvSocketSystemConfig
-It is referenced by: [Container_HvSocket](#Container_HvSocket); [VirtualMachine_HvSocket](#VirtualMachine_HvSocket);
+Referenced by: [Container_HvSocket](#Container_HvSocket); [VirtualMachine_HvSocket](#VirtualMachine_HvSocket)
 
 
 
@@ -1437,7 +1437,7 @@ A non-maskable interrupt (NMI) was inject by the host management client or other
 
 <a name = "IntegrationComponentStatus"></a>
 ## IntegrationComponentStatus
-It is referenced by: [Properties](#Properties);
+Referenced by: [Properties](#Properties)
 
 
 
@@ -1460,7 +1460,7 @@ It is referenced by: [Properties](#Properties);
 
 <a name = "KernelIntegration"></a>
 ## KernelIntegration
-It is referenced by: [Devices](#Devices);
+Referenced by: [Devices](#Devices)
 
 
 
@@ -1471,7 +1471,7 @@ It is referenced by: [Devices](#Devices);
 
 <a name = "Keyboard"></a>
 ## Keyboard
-It is referenced by: [Devices](#Devices);
+Referenced by: [Devices](#Devices)
 
 
 
@@ -1482,7 +1482,7 @@ It is referenced by: [Devices](#Devices);
 
 <a name = "Layer"></a>
 ## Layer
-It is referenced by: [CombinedLayers](#CombinedLayers); [LayerData](#LayerData); [Storage](#Storage);
+Referenced by: [CombinedLayers](#CombinedLayers); [LayerData](#LayerData); [Storage](#Storage)
 
 Describe the parent hierarchy for a container's storage
 
@@ -1508,7 +1508,7 @@ Describe the parent hierarchy for a container's storage
 
 <a name = "LinuxKernelDirect"></a>
 ## LinuxKernelDirect
-It is referenced by: [Chipset](#Chipset);
+Referenced by: [Chipset](#Chipset)
 
 
 
@@ -1522,7 +1522,7 @@ It is referenced by: [Chipset](#Chipset);
 
 <a name = "MappedDirectory"></a>
 ## MappedDirectory
-It is referenced by: [Container](#Container);
+Referenced by: [Container](#Container)
 
 
 
@@ -1538,7 +1538,7 @@ It is referenced by: [Container](#Container);
 
 <a name = "MappedPipe"></a>
 ## MappedPipe
-It is referenced by: [Container](#Container);
+Referenced by: [Container](#Container)
 
 
 
@@ -1563,7 +1563,7 @@ It is referenced by: [Container](#Container);
 
 <a name = "MemoryInformationForVm"></a>
 ## MemoryInformationForVm
-It is referenced by: [Properties](#Properties);
+Referenced by: [Properties](#Properties)
 
 
 
@@ -1577,7 +1577,7 @@ It is referenced by: [Properties](#Properties);
 
 <a name = "MemoryStats"></a>
 ## MemoryStats
-It is referenced by: [Statistics](#Statistics);
+Referenced by: [Statistics](#Statistics)
 
 Memory runtime statistics
 
@@ -1615,7 +1615,7 @@ Structure used for service level modification request. Right now, we support mod
 
 <a name = "Mouse"></a>
 ## Mouse
-It is referenced by: [Devices](#Devices);
+Referenced by: [Devices](#Devices)
 
 
 
@@ -1626,7 +1626,7 @@ It is referenced by: [Devices](#Devices);
 
 <a name = "NetworkAdapter"></a>
 ## NetworkAdapter
-It is referenced by: [Devices](#Devices);
+Referenced by: [Devices](#Devices)
 
 
 
@@ -1639,7 +1639,7 @@ It is referenced by: [Devices](#Devices);
 
 <a name = "Networking"></a>
 ## Networking
-It is referenced by: [Container](#Container);
+Referenced by: [Container](#Container)
 
 
 
@@ -1701,7 +1701,7 @@ It is referenced by: [Container](#Container);
 
 <a name = "PauseNotification"></a>
 ## PauseNotification
-It is referenced by: [PauseOptions](#PauseOptions);
+Referenced by: [PauseOptions](#PauseOptions)
 
 Notification data that is indicated to components running in the Virtual Machine.
 
@@ -1724,7 +1724,7 @@ Options for HcsPauseComputeSystem
 
 <a name = "Plan9"></a>
 ## Plan9
-It is referenced by: [Devices](#Devices);
+Referenced by: [Devices](#Devices)
 
 
 
@@ -1736,7 +1736,7 @@ It is referenced by: [Devices](#Devices);
 
 <a name = "Plan9Share"></a>
 ## Plan9Share
-It is referenced by: [Plan9](#Plan9);
+Referenced by: [Plan9](#Plan9)
 
 
 
@@ -1752,7 +1752,7 @@ It is referenced by: [Plan9](#Plan9);
 
 <a name = "ProcessDetails"></a>
 ## ProcessDetails
-It is referenced by: [Properties](#Properties);
+Referenced by: [Properties](#Properties)
 
 Information about a process running in a container
 
@@ -1792,7 +1792,7 @@ Used when modifying processor scheduling limits of a virtual machine.
 
 <a name = "ProcessorStats"></a>
 ## ProcessorStats
-It is referenced by: [Statistics](#Statistics);
+Referenced by: [Statistics](#Statistics)
 
 CPU runtime statistics
 
@@ -1879,7 +1879,7 @@ Status of a process running in a container
 
 <a name = "RdpConnectionOptions"></a>
 ## RdpConnectionOptions
-It is referenced by: [EnhancedModeVideo](#EnhancedModeVideo); [VideoMonitor](#VideoMonitor);
+Referenced by: [EnhancedModeVideo](#EnhancedModeVideo); [VideoMonitor](#VideoMonitor)
 
 
 
@@ -1892,7 +1892,7 @@ It is referenced by: [EnhancedModeVideo](#EnhancedModeVideo); [VideoMonitor](#Vi
 
 <a name = "RegistryChanges"></a>
 ## RegistryChanges
-It is referenced by: [Container](#Container); [VirtualMachine](#VirtualMachine);
+Referenced by: [Container](#Container); [VirtualMachine](#VirtualMachine)
 
 
 
@@ -1915,7 +1915,7 @@ Represents the flush state of the registry hive for a windows container's job ob
 
 <a name = "RegistryKey"></a>
 ## RegistryKey
-It is referenced by: [RegistryChanges](#RegistryChanges); [RegistryValue](#RegistryValue);
+Referenced by: [RegistryChanges](#RegistryChanges); [RegistryValue](#RegistryValue)
 
 
 
@@ -1929,7 +1929,7 @@ It is referenced by: [RegistryChanges](#RegistryChanges); [RegistryValue](#Regis
 
 <a name = "RegistryValue"></a>
 ## RegistryValue
-It is referenced by: [RegistryChanges](#RegistryChanges);
+Referenced by: [RegistryChanges](#RegistryChanges)
 
 
 
@@ -1948,7 +1948,7 @@ It is referenced by: [RegistryChanges](#RegistryChanges);
 
 <a name = "RestoreState"></a>
 ## RestoreState
-It is referenced by: [VirtualMachine](#VirtualMachine);
+Referenced by: [VirtualMachine](#VirtualMachine)
 
 
 
@@ -1995,7 +1995,7 @@ This class is only necessary because JSON marshaling complains when we have two 
 
 <a name = "Scsi"></a>
 ## Scsi
-It is referenced by: [Devices](#Devices);
+Referenced by: [Devices](#Devices)
 
 Object describing a SCSI controller.
 
@@ -2028,7 +2028,7 @@ The service properties will be returned as an array corresponding to the request
 
 <a name = "Services"></a>
 ## Services
-It is referenced by: [VirtualMachine](#VirtualMachine);
+Referenced by: [VirtualMachine](#VirtualMachine)
 
 
 
@@ -2040,7 +2040,7 @@ It is referenced by: [VirtualMachine](#VirtualMachine);
 
 <a name = "SharedMemoryConfiguration"></a>
 ## SharedMemoryConfiguration
-It is referenced by: [Devices](#Devices);
+Referenced by: [Devices](#Devices)
 
 
 
@@ -2052,7 +2052,7 @@ It is referenced by: [Devices](#Devices);
 
 <a name = "SharedMemoryRegion"></a>
 ## SharedMemoryRegion
-It is referenced by: [SharedMemoryConfiguration](#SharedMemoryConfiguration);
+Referenced by: [SharedMemoryConfiguration](#SharedMemoryConfiguration)
 
 
 
@@ -2068,7 +2068,7 @@ It is referenced by: [SharedMemoryConfiguration](#SharedMemoryConfiguration);
 
 <a name = "SharedMemoryRegionInfo"></a>
 ## SharedMemoryRegionInfo
-It is referenced by: [Properties](#Properties);
+Referenced by: [Properties](#Properties)
 
 
 
@@ -2091,7 +2091,7 @@ It is referenced by: [Properties](#Properties);
 
 <a name = "Statistics"></a>
 ## Statistics
-It is referenced by: [Properties](#Properties);
+Referenced by: [Properties](#Properties)
 
 Runtime statistics for a container
 
@@ -2108,7 +2108,7 @@ Runtime statistics for a container
 
 <a name = "Storage"></a>
 ## Storage
-It is referenced by: [Container](#Container);
+Referenced by: [Container](#Container)
 
 
 
@@ -2122,7 +2122,7 @@ It is referenced by: [Container](#Container);
 
 <a name = "StorageQoS"></a>
 ## StorageQoS
-It is referenced by: [Storage](#Storage); [VirtualMachine](#VirtualMachine);
+Referenced by: [Storage](#Storage); [VirtualMachine](#VirtualMachine)
 
 
 
@@ -2135,7 +2135,7 @@ It is referenced by: [Storage](#Storage); [VirtualMachine](#VirtualMachine);
 
 <a name = "StorageStats"></a>
 ## StorageStats
-It is referenced by: [Statistics](#Statistics);
+Referenced by: [Statistics](#Statistics)
 
 Storage runtime statistics
 
@@ -2193,7 +2193,7 @@ Document provided in the EventData parameter of an HcsEventSystemExited event.
 
 <a name = "SystemTime"></a>
 ## SystemTime
-It is referenced by: [TimeZoneInformation](#TimeZoneInformation); [TimeZoneInformation](#TimeZoneInformation);
+Referenced by: [TimeZoneInformation](#TimeZoneInformation); [TimeZoneInformation](#TimeZoneInformation)
 
 
 
@@ -2228,7 +2228,7 @@ It is referenced by: [TimeZoneInformation](#TimeZoneInformation); [TimeZoneInfor
 
 <a name = "Topology"></a>
 ## Topology
-It is referenced by: [VirtualMachine](#VirtualMachine);
+Referenced by: [VirtualMachine](#VirtualMachine)
 
 
 
@@ -2250,7 +2250,7 @@ It is referenced by: [VirtualMachine](#VirtualMachine);
 
 <a name = "Uefi"></a>
 ## Uefi
-It is referenced by: [Chipset](#Chipset);
+Referenced by: [Chipset](#Chipset)
 
 
 
@@ -2267,7 +2267,7 @@ It is referenced by: [Chipset](#Chipset);
 
 <a name = "UefiBootEntry"></a>
 ## UefiBootEntry
-It is referenced by: [Uefi](#Uefi);
+Referenced by: [Uefi](#Uefi)
 
 
 
@@ -2283,7 +2283,7 @@ It is referenced by: [Uefi](#Uefi);
 
 <a name = "Version"></a>
 ## Version
-It is referenced by: [BasicInformation](#BasicInformation); [ComputeSystem](#ComputeSystem); [GuestConnectionInfo](#GuestConnectionInfo); [HostedSystem](#HostedSystem); [LayerData](#LayerData);
+Referenced by: [BasicInformation](#BasicInformation); [ComputeSystem](#ComputeSystem); [GuestConnectionInfo](#GuestConnectionInfo); [HostedSystem](#HostedSystem); [LayerData](#LayerData)
 
 
 
@@ -2296,7 +2296,7 @@ It is referenced by: [BasicInformation](#BasicInformation); [ComputeSystem](#Com
 
 <a name = "VideoMonitor"></a>
 ## VideoMonitor
-It is referenced by: [Devices](#Devices);
+Referenced by: [Devices](#Devices)
 
 
 
@@ -2310,7 +2310,7 @@ It is referenced by: [Devices](#Devices);
 
 <a name = "VirtioSerial"></a>
 ## VirtioSerial
-It is referenced by: [Devices](#Devices);
+Referenced by: [Devices](#Devices)
 
 
 
@@ -2322,7 +2322,7 @@ It is referenced by: [Devices](#Devices);
 
 <a name = "VirtioSerialPort"></a>
 ## VirtioSerialPort
-It is referenced by: [VirtioSerial](#VirtioSerial);
+Referenced by: [VirtioSerial](#VirtioSerial)
 
 
 
@@ -2344,7 +2344,7 @@ Provides information on failures originated by a virtual device.
 
 <a name = "VirtualMachine"></a>
 ## VirtualMachine
-It is referenced by: [ComputeSystem](#ComputeSystem);
+Referenced by: [ComputeSystem](#ComputeSystem)
 
 
 
@@ -2365,7 +2365,7 @@ It is referenced by: [ComputeSystem](#ComputeSystem);
 
 <a name = "VirtualMachine_HvSocket"></a>
 ## VirtualMachine_HvSocket
-It is referenced by: [Devices](#Devices);
+Referenced by: [Devices](#Devices)
 
 HvSocket configuration for a VM
 
@@ -2377,7 +2377,7 @@ HvSocket configuration for a VM
 
 <a name = "VirtualMachine_Memory"></a>
 ## VirtualMachine_Memory
-It is referenced by: [Topology](#Topology);
+Referenced by: [Topology](#Topology)
 
 
 
@@ -2400,7 +2400,7 @@ It is referenced by: [Topology](#Topology);
 
 <a name = "VirtualMachine_Processor"></a>
 ## VirtualMachine_Processor
-It is referenced by: [Topology](#Topology);
+Referenced by: [Topology](#Topology)
 
 
 
@@ -2419,7 +2419,7 @@ It is referenced by: [Topology](#Topology);
 
 <a name = "VirtualNodeInfo"></a>
 ## VirtualNodeInfo
-It is referenced by: [MemoryInformationForVm](#MemoryInformationForVm);
+Referenced by: [MemoryInformationForVm](#MemoryInformationForVm)
 
 
 
@@ -2434,7 +2434,7 @@ It is referenced by: [MemoryInformationForVm](#MemoryInformationForVm);
 
 <a name = "VirtualPciDevice"></a>
 ## VirtualPciDevice
-It is referenced by: [Devices](#Devices);
+Referenced by: [Devices](#Devices)
 
 
 
@@ -2446,7 +2446,7 @@ It is referenced by: [Devices](#Devices);
 
 <a name = "VirtualPciFunction"></a>
 ## VirtualPciFunction
-It is referenced by: [VirtualPciDevice](#VirtualPciDevice);
+Referenced by: [VirtualPciDevice](#VirtualPciDevice)
 
 
 
@@ -2459,7 +2459,7 @@ It is referenced by: [VirtualPciDevice](#VirtualPciDevice);
 
 <a name = "VirtualPMemController"></a>
 ## VirtualPMemController
-It is referenced by: [Devices](#Devices);
+Referenced by: [Devices](#Devices)
 
 
 
@@ -2474,7 +2474,7 @@ It is referenced by: [Devices](#Devices);
 
 <a name = "VirtualPMemDevice"></a>
 ## VirtualPMemDevice
-It is referenced by: [VirtualPMemController](#VirtualPMemController);
+Referenced by: [VirtualPMemController](#VirtualPMemController)
 
 
 
@@ -2490,7 +2490,7 @@ It is referenced by: [VirtualPMemController](#VirtualPMemController);
 
 <a name = "VirtualPMemMapping"></a>
 ## VirtualPMemMapping
-It is referenced by: [VirtualPMemDevice](#VirtualPMemDevice);
+Referenced by: [VirtualPMemDevice](#VirtualPMemDevice)
 
 
 
@@ -2503,7 +2503,7 @@ It is referenced by: [VirtualPMemDevice](#VirtualPMemDevice);
 
 <a name = "VirtualSmb"></a>
 ## VirtualSmb
-It is referenced by: [Devices](#Devices);
+Referenced by: [Devices](#Devices)
 
 
 
@@ -2516,7 +2516,7 @@ It is referenced by: [Devices](#Devices);
 
 <a name = "VirtualSmbShare"></a>
 ## VirtualSmbShare
-It is referenced by: [VirtualSmb](#VirtualSmb);
+Referenced by: [VirtualSmb](#VirtualSmb)
 
 
 
@@ -2531,7 +2531,7 @@ It is referenced by: [VirtualSmb](#VirtualSmb);
 
 <a name = "VirtualSmbShareOptions"></a>
 ## VirtualSmbShareOptions
-It is referenced by: [VirtualSmbShare](#VirtualSmbShare);
+Referenced by: [VirtualSmbShare](#VirtualSmbShare)
 
 
 
@@ -2560,7 +2560,7 @@ It is referenced by: [VirtualSmbShare](#VirtualSmbShare);
 
 <a name = "VmMemory"></a>
 ## VmMemory
-It is referenced by: [MemoryInformationForVm](#MemoryInformationForVm);
+Referenced by: [MemoryInformationForVm](#MemoryInformationForVm)
 
 
 
@@ -2578,7 +2578,7 @@ It is referenced by: [MemoryInformationForVm](#MemoryInformationForVm);
 
 <a name = "WindowsCrashReport"></a>
 ## WindowsCrashReport
-It is referenced by: [CrashReport](#CrashReport);
+Referenced by: [CrashReport](#CrashReport)
 
 Windows specific crash information
 
@@ -2599,7 +2599,7 @@ Windows specific crash information
 
 <a name = "WindowsCrashReporting"></a>
 ## WindowsCrashReporting
-It is referenced by: [GuestCrashReporting](#GuestCrashReporting);
+Referenced by: [GuestCrashReporting](#GuestCrashReporting)
 
 
 
@@ -2621,7 +2621,9 @@ It is referenced by: [GuestCrashReporting](#GuestCrashReporting);
 
 <a name = "JSON-type"></a>
 ### JSON type
+
 The table shows the mapping from type name for field of classes to JSON type, as well as its format and pattern
+
 |Name|JSON Type|Format|Pattern|
 |---|---|---|---|
 |Any|object|||
@@ -2638,6 +2640,7 @@ The table shows the mapping from type name for field of classes to JSON type, as
 |uint32|integer|uint32||
 |uint64|integer|uint64||
 |uint8|integer|uint8||
+
 ---
 <a name = "Schema-Version-Map"></a>
 ### Schema Version Map
@@ -2648,4 +2651,5 @@ The table shows the mapping from type name for field of classes to JSON type, as
 |2.1|Windows 10 SDK, version 1809 (10.0.17763.0)|
 |2.2|Windows 10 SDK, version 1903 (10.0.18362.1)|
 |2.3|Windows 10 SDK, version 2004 (10.0.19041.0)|
+
 ---

@@ -56,17 +56,14 @@
 ## API Reference
 ### [Overview](./hcs/Reference/APIOverview.md)
 ### Data types
+#### [HRESULT](./hcs/Reference/HCSHResult.md)
 #### [HCS_OPERATION_TYPE](./hcs/Reference/HCS_OPERATION_TYPE.md)
 #### [HCS_EVENT_TYPE](./hcs/Reference/HCS_EVENT_TYPE.md)
 #### [HCS_EVENT_OPTIONS](./hcs/Reference/HCS_EVENT_OPTIONS.md)
-#### [HCS_NOTIFICATION_FLAGS](./hcs/Reference/HCS_NOTIFICATION_FLAGS.md)
-#### [HCS_NOTIFICATIONS](./hcs/Reference/HCS_NOTIFICATIONS.md)
-#### [HCS_CREATE_OPTIONS](./hcs/Reference/HCS_CREATE_OPTIONS.md)
 #### [HCS_PROCESS_INFORMATION](./hcs/Reference/HCS_PROCESS_INFORMATION.md)
 ### Function types
 #### [HCS_OPERATION_COMPLETION](./hcs/Reference/HCS_OPERATION_COMPLETION.md)
 #### [HCS_EVENT_CALLBACK](./hcs/Reference/HCS_EVENT_CALLBACK.md)
-#### [HCS_NOTIFICATION_CALLBACK](./hcs/Reference/HCS_NOTIFICATION_CALLBACK.md)
 ### Functions
 #### Operations
 ##### [HcsCreateOperation](./hcs/Reference/HcsCreateOperation.md)
@@ -84,10 +81,7 @@
 ##### [HcsSetOperationCallback](./hcs/Reference/HcsSetOperationCallback.md)
 ##### [HcsCancelOperation](./hcs/Reference/HcsCancelOperation.md)
 #### Compute System Operations
-##### HcsCreateComputeSystem
-###### [HcsCreateComputeSystem](./hcs/Reference/HcsCreateComputeSystem.md)
-###### [JSON document example(s)](./hcs/Reference/HcsCreateComputeSystemJsonSample.md)
-##### [HcsCreateComputeSystemInNamespace](./hcs/Reference/HcsCreateComputeSystemInNamespace.md)
+##### [HcsCreateComputeSystem](./hcs/Reference/HcsCreateComputeSystem.md)
 ##### [HcsOpenComputeSystem](./hcs/Reference/HcsOpenComputeSystem.md)
 ##### [HcsCloseComputeSystem](./hcs/Reference/HcsCloseComputeSystem.md)
 ##### [HcsStartComputeSystem](./hcs/Reference/HcsStartComputeSystem.md)
@@ -98,12 +92,9 @@
 ##### [HcsResumeComputeSystem](./hcs/Reference/HcsResumeComputeSystem.md)
 ##### [HcsSaveComputeSystem](./hcs/Reference/HcsSaveComputeSystem.md)
 ##### [HcsGetComputeSystemProperties](./hcs/Reference/HcsGetComputeSystemProperties.md)
-##### HcsModifyComputeSystem
-###### [function](./hcs/Reference/HcsModifyComputeSystem.md)
-###### [JSON document example(s)]()
+##### [HcsModifyComputeSystem](./hcs/Reference/HcsModifyComputeSystem.md)
 ##### [HcsSetComputeSystemCallback](./hcs/Reference/HcsSetComputeSystemCallback.md)
 ##### [HcsEnumerateComputeSystems](./hcs/Reference/HcsEnumerateComputeSystems.md)
-##### [HcsEnumerateComputeSystemsInNamespace](./hcs/Reference/HcsEnumerateComputeSystemsInNamespace.md)
 #### Process Execution
 ##### [HcsCreateProcess](./hcs/Reference/HcsCreateProcess.md)
 ##### [HcsOpenProcess](./hcs/Reference/HcsOpenProcess.md)
@@ -138,6 +129,7 @@
 ##### [HcsFormatWritableLayerVhd](./hcs/Reference/HcsFormatWritableLayerVhd.md)
 ##### [HcsGetLayerVhdMountPath](./hcs/Reference/HcsGetLayerVhdMountPath.md)
 ## Samples Code
+### [Quick Start](./hcs/Tutorial.md)
 ### Operations
 ### [Compute System Operations](./hcs/Reference/ComputeSystemOperationSample.md)
 ### Process Execution
@@ -145,7 +137,6 @@
 ### Utility Functions for Virtual Machines
 ### Storage Utility Functions for Containers
 ## [JSON Schema Reference](./hcs/SchemaReference.md)
-## [Tutorial](./hcs/Tutorial.md)
 ### [Asynchronous Model](./hcs/AsyncModel.md)
 
 # VM Saved State Dump Provider API

@@ -31,11 +31,7 @@ Receives a handle to the compute system. It is the responsibility of the caller 
 
 ## Return Values
 
-The function returns [HRESULT](https://docs.microsoft.com/en-us/windows/win32/seccrypto/common-hresult-values)
-
-If the operation completes successfully, the return value is `S_OK`.
-
-If a compute system with the specified Id does not exist, the return value is `HCS_E_SYSTEM_NOT_FOUND`.
+The function returns [HRESULT](./HCSHResult.md)
 
 ## Requirements
 

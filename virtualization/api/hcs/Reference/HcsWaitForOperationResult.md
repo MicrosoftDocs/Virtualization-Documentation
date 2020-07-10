@@ -32,11 +32,7 @@ If the operation succeeded, receives the result document of the operation. On fa
 
 ## Return Values
 
-The function returns [HRESULT](https://docs.microsoft.com/en-us/windows/win32/seccrypto/common-hresult-values)
-
-If the operation completes successfully, the return value is `S_OK`.
-
-If  the operation does not complete within the specified timeout period, the return value is `HCS_E_OPERATION_TIMEOUT`
+The function returns [HRESULT](./HCSHResult.md)
 
 ## Requirements
 

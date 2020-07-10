@@ -34,8 +34,8 @@ typedef enum HCS_OPERATION_TYPE
 |||
 |---|---|
 |HcsOperationTypeNone|Return if the operation has not yet been used in a function call|
-|HcsOperationTypeEnumerate|Return if the operation is [HcsEnumerateComputeSystems](./HcsEnumerateComputeSystems.md) or [HcsEnumerateComputeSystemsInNamespace](./HcsEnumerateComputeSystemsInNamespace.md)|
-|HcsOperationTypeCreate|Return if the operation is [HcsCreateComputeSystem](./HcsCreateComputeSystem.md) or [HcsCreateComputeSystemInNamespace](./HcsCreateComputeSystemInNamespace.md)|
+|HcsOperationTypeEnumerate|Return if the operation is [HcsEnumerateComputeSystems](./HcsEnumerateComputeSystems.md)|
+|HcsOperationTypeCreate|Return if the operation is [HcsCreateComputeSystem](./HcsCreateComputeSystem.md)|
 |HcsOperationTypeStart|Return if the operation is [HcsStartComputeSystem](./HcsStartComputeSystem.md)|
 |HcsOperationTypeShutdown|Return if the operation is [HcsShutDownComputeSystem](./HcsShutDownComputeSystem.md)|
 |HcsOperationTypePause|Return if the operation is [HcsPauseComputeSystem](./HcsPauseComputeSystem.md)|
