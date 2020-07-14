@@ -2,7 +2,7 @@
 
 ## Description
 
-Returns properties of a compute system
+Returns properties of a compute system, see [sample code](./ComputeSystemSample.md#OpenGetPropVM)
 
 ## Syntax
 
@@ -31,7 +31,7 @@ Optional JSON document of [System_PropertyQuery](./../SchemaReference.md#System_
 
 ## Return Values
 
-The function returns [HRESULT](./HCSHResult.md)
+The function returns [HRESULT](./HCSHResult.md), refering details in [asnyc model](./../AsyncModel.md#HcsOperationResult)
 
 ## Requirements
 

@@ -26,7 +26,7 @@ The following section contains the definitions of the host Compute System APIs. 
 
 |Type|Description|
 |---|---|
-[HCS_OPERATION_COMPLETION](./HCS_OPERATION_COMPLETION.md)|the completion callback of an operation|
+|[HCS_OPERATION_COMPLETION](./HCS_OPERATION_COMPLETION.md)|the completion callback of an operation|
 |[HCS_EVENT_CALLBACK](./HCS_EVENT_CALLBACK.md)|compute system event callbacks|
 
 

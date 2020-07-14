@@ -2,7 +2,7 @@
 
 ## Description
 
-Creates a new compute system
+Creates a new compute system, see [sample code](./ComputeSystemSample.md#CreateStartVM)
 
 ## Syntax
 
@@ -42,7 +42,7 @@ Receives a handle to the newly created compute system. It is the responsibility 
 
 ## Return Values
 
-The function returns [HRESULT](./HCSHResult.md)
+The function returns [HRESULT](./HCSHResult.md), refering details in [asnyc model](./../AsyncModel.md#HcsOperationResult)
 
 ## Requirements
 

@@ -2,7 +2,7 @@
 
 ## Description
 
-Starts a compute system
+Starts a compute system, see [sample code](./ComputeSystemSample.md#OpenGetPropVM)
 
 ## Syntax
 
@@ -31,7 +31,7 @@ Reserved for future use. Must be `NULL`.
 
 ## Return Values
 
-The function returns [HRESULT](./HCSHResult.md)
+The function returns [HRESULT](./HCSHResult.md), refering details in [asnyc model](./../AsyncModel.md#HcsOperationResult)
 
 ## Requirements
 
