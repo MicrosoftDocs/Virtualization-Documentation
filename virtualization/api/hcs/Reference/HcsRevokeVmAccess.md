@@ -26,7 +26,7 @@ Path to teh file for which to update the ACL
 
 ## Return Values
 
-The function returns [HRESULT](./HCSHResult.md)
+The function returns [HRESULT](./HCSHResult.md), refering details in [asnyc model](./../AsyncModel.md#HcsOperationResult)
 
 ## Requirements
 

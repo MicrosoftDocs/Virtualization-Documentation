@@ -31,7 +31,7 @@ Optional JSON document [CrashOptions](./../SchemaReference.md#CrashOptions) spec
 
 ## Return Values
 
-The function returns [HRESULT](./HCSHResult.md)
+The function returns [HRESULT](./HCSHResult.md), refering details in [asnyc model](./../AsyncModel.md#HcsOperationResult)
 
 ## Requirements
 

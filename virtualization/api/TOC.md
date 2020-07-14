@@ -137,16 +137,16 @@
 ##### [HcsDetachLayerStorageFilter](./hcs/Reference/HcsDetachLayerStorageFilter.md)
 ##### [HcsFormatWritableLayerVhd](./hcs/Reference/HcsFormatWritableLayerVhd.md)
 ##### [HcsGetLayerVhdMountPath](./hcs/Reference/HcsGetLayerVhdMountPath.md)
+## [JSON Schema Reference](./hcs/SchemaReference.md)
+## [Asynchronous Model](./hcs/AsyncModel.md)
 ## Samples Code
 ### [Quick Start](./hcs/Tutorial.md)
 ### Operations
-### [Compute System Operations](./hcs/Reference/ComputeSystemOperationSample.md)
+### [Compute System Operations](./hcs/Reference/ComputeSystemSample.md)
 ### Process Execution
 ### Host Service Operations
 ### Utility Functions for Virtual Machines
 ### Storage Utility Functions for Containers
-## [JSON Schema Reference](./hcs/SchemaReference.md)
-### [Asynchronous Model](./hcs/AsyncModel.md)
 
 # VM Saved State Dump Provider API
 ## [Overview](./vm-dump-provider/index.md)

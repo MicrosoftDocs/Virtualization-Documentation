@@ -26,7 +26,7 @@ Receives the volume path for the layer. It is the caller's responsibility to rel
 
 ## Return Values
 
-The function returns [HRESULT](./HCSHResult.md)
+The function returns [HRESULT](./HCSHResult.md), refering details in [asnyc model](./../AsyncModel.md#HcsOperationResult)
 
 ## Requirements
 

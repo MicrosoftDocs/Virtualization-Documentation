@@ -31,7 +31,7 @@ Optional JSON document of [SignalProcessOptions](./../SchemaReference.md#SignalP
 
 ## Return Values
 
-The function returns [HRESULT](./HCSHResult.md)
+The function returns [HRESULT](./HCSHResult.md), refering details in [asnyc model](./../AsyncModel.md#HcsOperationResult)
 
 ## Requirements
 

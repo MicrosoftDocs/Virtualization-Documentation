@@ -2,7 +2,7 @@
 
 ## Description
 
-Opens a handle to an existing compute system
+Opens a handle to an existing compute system, see [sample code](./ComputeSystemSample.md#OpenGetPropVM)
 
 ## Syntax
 
@@ -23,7 +23,7 @@ Unique Id identifying the compute system
 
 `requestedAccess`
 
-Specifies the required access to the compute system
+Specifies the [required access](https://docs.microsoft.com/en-us/windows/win32/secauthz/generic-access-rights) to the compute system
 
 `computeSystem`
 
@@ -31,7 +31,7 @@ Receives a handle to the compute system. It is the responsibility of the caller 
 
 ## Return Values
 
-The function returns [HRESULT](./HCSHResult.md)
+The function returns [HRESULT](./HCSHResult.md), refering details in [asnyc model](./../AsyncModel.md#HcsOperationResult)
 
 ## Requirements
 
