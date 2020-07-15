@@ -2,7 +2,7 @@
 
 ## Description
 
-This function submits a WER report for a bugcheck of a VM.
+This function submits a WER report for a bugcheck of a VM, see [sample code](./ServiceSample.md#SubmitReport) 
 
 ## Syntax
 

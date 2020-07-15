@@ -2,7 +2,7 @@
 
 ## Description
 
-This function returns properties of the Host Compute System
+This function returns properties of the Host Compute System, see [sample code](./ServiceSample.md#GetServiceProperties) 
 
 ## Syntax
 
