@@ -2,7 +2,7 @@
 
 ## Description
 
-This function creates an empty runtime-state file (.vmrs) for a VM. This file is used to save a running VM. It is specified in the options document of the [`HcsSaveComputeSystem`](./HcsSaveComputeSystem.md) function.
+This function creates an empty runtime-state file (.vmrs) for a VM. This file is used to save a running VM. It is specified in the options document of the [`HcsSaveComputeSystem`](./HcsSaveComputeSystem.md) function. See [sample code](./UtilityFunctionSample.md#CreateFilesGrantAccess) 
 
 ## Syntax
 

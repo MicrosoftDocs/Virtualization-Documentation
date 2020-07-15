@@ -2,7 +2,7 @@
 
 ## Description
 
-This function adds an entry to a files ACL that grants access to the user account used to run the VM. The user account is based on an internal GUID that is derived from the compute system ID of the VM's HCS compute system object.
+This function adds an entry to a files ACL that grants access to the user account used to run the VM. The user account is based on an internal GUID that is derived from the compute system ID of the VM's HCS compute system object. See [sample code](./UtilityFunctionSample.md#CreateFilesGrantAccess) 
 
 ## Syntax
 

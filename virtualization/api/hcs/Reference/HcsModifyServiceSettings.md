@@ -2,7 +2,7 @@
 
 ## Description
 
-This function modifies the settings of the Host Compute System
+This function modifies the settings of the Host Compute System, see [sample code](./ServiceSample.md#ModifyServiceSettings) 
 
 ## Syntax
 

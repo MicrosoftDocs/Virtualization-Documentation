@@ -2,7 +2,7 @@
 
 ## Description
 
-This function imports a container layer and sets it up for use on boot. This function is used by an application to setup a container layer that was copied in a transport format to the host (e.g was downloaded from a container registry such as DockerHub).
+This function imports a container layer and sets it up for use on boot. This function is used by an application to setup a container layer that was copied in a transport format to the host (e.g was downloaded from a container registry such as DockerHub). See [sample code](./StorageSample.md#ImportLayer)
 
 ## Syntax
 

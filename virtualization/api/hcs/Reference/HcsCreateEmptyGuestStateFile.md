@@ -2,7 +2,7 @@
 
 ## Description
 
-This function creates an empty guest-state file (.vmgs) for a VM. This file is required in cases where the VM  is expected to be persisted and restarted multiple times. It is configured in the 'GuestState' property of the settings document for a VM.
+This function creates an empty guest-state file (.vmgs) for a VM. This file is required in cases where the VM  is expected to be persisted and restarted multiple times. It is configured in the 'GuestState' property of the settings document for a VM. See [sample code](./UtilityFunctionSample.md#CreateFilesGrantAccess) 
 
 ## Syntax
 
