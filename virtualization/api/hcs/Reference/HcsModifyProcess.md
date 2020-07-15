@@ -2,7 +2,7 @@
 
 ## Description
 
-Modifies the parameters of a process in a compute system
+Modifies the parameters of a process in a compute system, see [sample code](./ProcessSample.md#ModifyProcess)  
 
 ## Syntax
 

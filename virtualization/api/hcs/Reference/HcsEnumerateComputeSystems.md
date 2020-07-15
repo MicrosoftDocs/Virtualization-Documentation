@@ -2,7 +2,7 @@
 
 ## Description
 
-Enumerates existing compute systems
+Enumerates existing compute systems, see [sample code](./ComputeSystemSample.md#EnumCS)
 
 ## Syntax
 

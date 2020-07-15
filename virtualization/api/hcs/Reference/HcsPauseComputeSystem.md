@@ -2,7 +2,7 @@
 
 ## Description
 
-Pauses the execution of a compute system
+Pauses the execution of a compute system, see [sample code](./ComputeSystemSample.md#PauseResumeCS)
 
 ## Syntax
 

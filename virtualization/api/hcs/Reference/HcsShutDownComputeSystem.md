@@ -2,7 +2,7 @@
 
 ## Description
 
-Cleanly shuts down a compute system
+Cleanly shuts down a compute system, see [sample code](./ComputeSystemSample.md#ShutDownCS)
 
 ## Syntax
 

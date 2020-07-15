@@ -2,7 +2,7 @@
 
 ## Description
 
-Forcefully terminates a compute system
+Forcefully terminates a compute system, see [sample code](./ComputeSystemSample.md#ShutDownCS)
 
 ## Syntax
 

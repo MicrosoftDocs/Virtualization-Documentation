@@ -1,8 +1,8 @@
-# HcsSetOperationContext
+# HcsSetComputeSystemCallback
 
 ## Description
 
-Registers a callback to receive notifications for the compute system.
+Registers a callback to receive notifications for the compute system, see [sample code](./ComputeSystemSample.md#SetCSCallback)
 
 ## Syntax
 

@@ -2,7 +2,7 @@
 
 ## Description
 
-Closes a handle to a compute system
+Closes a handle to a compute system, see [sample code](./ComputeSystemSample.md#SaveCloseCS)
 
 ## Syntax
 

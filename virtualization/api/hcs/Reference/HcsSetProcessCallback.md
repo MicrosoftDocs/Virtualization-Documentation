@@ -1,8 +1,8 @@
-# HcsSetOperationContext
+# HcsSetProcessCallback
 
 ## Description
 
-Registers a callback function to receive notifications for a process in a compute system
+Registers a callback function to receive notifications for a process in a compute system, see [sample code](./ProcessSample.md#SetProcessCallback)
 
 ## Syntax
 

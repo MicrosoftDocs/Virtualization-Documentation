@@ -2,7 +2,7 @@
 
 ## Description
 
-Sends a signal to a process in a compute system
+Sends a signal to a process in a compute system, see [sample code](./ProcessSample.md#SignalProcess)
 
 ## Syntax
 

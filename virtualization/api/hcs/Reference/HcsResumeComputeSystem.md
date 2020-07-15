@@ -2,7 +2,7 @@
 
 ## Description
 
-Resumes the execution of a compute system
+Resumes the execution of a compute system, see [sample code](./ComputeSystemSample.md#PauseResumeCS)
 
 ## Syntax
 
