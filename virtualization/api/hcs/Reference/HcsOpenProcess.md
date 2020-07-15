@@ -2,7 +2,7 @@
 
 ## Description
 
-Opens an existing process in a compute system
+Opens an existing process in a compute system, see [sample code](./ProcessSample.md#CreateProcess) 
 
 ## Syntax
 

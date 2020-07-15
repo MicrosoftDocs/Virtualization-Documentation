@@ -9,9 +9,11 @@ This sample shows how to use Host Compute System API to create a virtual machine
 
 //
 // Helper RAII objects around HCS system handle and HCS operation handle
+// HCS_OPERATION handle closed by HcsCloseOperation
+// HCS_SYSTEM handle closed by HcsCloseComputeSystem
 //
-using unique_hcs_operation = wil::unique_any<HCS_OPERATION, decltype(&::HcsCloseOperation), ::HcsCloseOperation>;
-using unique_hcs_system = wil::unique_any<HCS_SYSTEM, decltype(&::HcsCloseComputeSystem), ::HcsCloseComputeSystem>;
+using unique_hcs_operation = wil::unique_any<HCS_OPERATION, decltype(&HcsCloseOperation), HcsCloseOperation>;
+using unique_hcs_system = wil::unique_any<HCS_SYSTEM, decltype(&HcsCloseComputeSystem), HcsCloseComputeSystem>;
 
     static constexpr wchar_t c_VmConfiguration[] = LR"(
     {
@@ -46,7 +48,7 @@ using unique_hcs_system = wil::unique_any<HCS_SYSTEM, decltype(&::HcsCloseComput
                         "Attachments": {
                             "0": {
                                 "Type": "VirtualDisk",
-                                "Path": "e:\\schema-test\\image\\utilityvm.vhdx"
+                                "Path": c:\\HCS_Test\\utilityvm.vhdx"
                             }
                         }
                     }
@@ -102,7 +104,6 @@ If you still want to access/modify/query the compute system after this function/
 via ::HcsOpenComputeSystem (assuming the system is still running/created and hasn't been removed)
 
 ```cpp
-
     static constexpr wchar_t c_VmQuery[] = LR"(
     {
         "PropertyTypes":[
@@ -110,7 +111,7 @@ via ::HcsOpenComputeSystem (assuming the system is still running/created and has
         ]
     })";
 
-    unique_hcs_operation operation(HcsCreateOperation(nullptr, nullptr)); // This operation doesn't need callback
+    unique_hcs_operation operation(HcsCreateOperation(nullptr, nullptr));
     unique_hcs_system system;
     THROW_IF_FAILED(HcsOpenComputeSystem(L"Sample", GENERIC_ALL, &system));
 
@@ -129,3 +130,126 @@ via ::HcsOpenComputeSystem (assuming the system is still running/created and has
     wprintf(L"HCS VM properties:\n%s\n", resultDoc.get());
 
 ```
+
+<a name = "ShutDownCS"></a>
+## Shut down compute system
+
+If there is duplicate shutdown or terminate for same compute system, the return value of `HcsWaitForOperationResult` will be `HCS_E_SYSTEM_ALREADY_STOPPED`
+
+```cpp
+    // Use same "system" as previous sample code
+    unique_hcs_operation shutdownOperation(HcsCreateOperation(nullptr, nullptr));
+    THROW_IF_FAILED(HcsShutDownComputeSystem(system.get(), shutdownOperation.get(), nullptr));
+
+    wil::unique_hlocal_string resultDoc;
+    // always throw -2147024846	E_NOTSUPPORTED here ???
+    THROW_IF_FAILED_MSG(HcsWaitForOperationResult(shutdownOperation.get(), INFINITE, &resultDoc),
+        "ResultDoc: %ws", resultDoc.get());
+
+    // Similar for terminate    
+    unique_hcs_operation terminateOperation(HcsCreateOperation(nullptr, nullptr));
+    THROW_IF_FAILED(HcsTerminateComputeSystem(system.get(), terminateOperation.get(), nullptr));
+
+    THROW_IF_FAILED_MSG(HcsWaitForOperationResult(terminateOperation.get(), INFINITE, &resultDoc),
+        "ResultDoc: %ws", resultDoc.get());
+```
+
+<a name = "EnumCS"></a>
+## Enumerate all compute systems
+
+```cpp
+    unique_hcs_operation enumOperation(HcsCreateOperation(nullptr, nullptr));
+    THROW_IF_FAILED(HcsEnumerateComputeSystems(nullptr, enumOperation.get()));
+
+    // print out all the compute system in JSON string 
+    wil::unique_hlocal_string Enumresult;
+    THROW_IF_FAILED(HcsWaitForOperationResult(enumOperation.get(), INFINITE, &Enumresult));
+    std::wcout << Enumresult.get() << std::endl;
+```
+
+<a name = "PauseResumeCS"></a>
+## Pause and Resume compute system
+
+```cpp
+    static constexpr wchar_t c_pauseOption[] = LR"(
+    {
+        "SuspensionLevel": "Suspend",
+        "HostedNotification": {
+            "Reason": "Save"
+        }
+    })";
+
+    // Use same "system" as previous sample code
+    unique_hcs_operation pauseOperation(HcsCreateOperation(nullptr, nullptr));
+    THROW_IF_FAILED(HcsPauseComputeSystem(system.get(), pauseOperation.get(), c_pauseOption));
+
+    wil::unique_hlocal_string resultDoc;
+    THROW_IF_FAILED_MSG(HcsWaitForOperationResult(pauseOperation.get(), INFINITE, &resultDoc),
+        "ResultDoc: %ws", resultDoc.get());
+
+    // after some while, resume the compute system
+    unique_hcs_operation resumeOperation(HcsCreateOperation(nullptr, nullptr));
+    THROW_IF_FAILED(HcsResumeComputeSystem(system.get(), resumeOperation.get(), nullptr));
+
+    THROW_IF_FAILED_MSG(HcsWaitForOperationResult(resumeOperation.get(), INFINITE, &resultDoc),
+        "ResultDoc: %ws", resultDoc.get());
+```
+
+<a name = "SaveCloseCS"></a>
+## Save and close compute system
+
+The compute system cannot be saved if it is still running and the return value of `HcsWaitForOperationResult` will be `HCS_E_INVALID_STATE`
+
+```cpp
+    static constexpr wchar_t c_saveOption[] = LR"(
+    {
+        "SaveType": "ToFile",
+        "SaveStateFilePath": "c:\\HCS_Test\\save.vmrs"
+    })";
+
+    // Use same "system" as previous sample code
+    unique_hcs_operation saveOperation(HcsCreateOperation(nullptr, nullptr));
+    THROW_IF_FAILED(HcsSaveComputeSystem(system.get(), saveOperation.get(), c_saveOption));
+
+    wil::unique_hlocal_string resultDoc;
+    THROW_IF_FAILED_MSG(HcsWaitForOperationResult(saveOperation.get(), INFINITE, &resultDoc),
+        "ResultDoc: %ws", resultDoc.get());
+
+    // after some while, close the compute system
+    // No need to close manually if using wil::unique_any for HCS_SYSTEM handle
+    HcsCloseComputeSystem(system.get());
+```
+
+<a name = "ModifyVM"></a>
+## Pause and Resume compute system
+
+The example shows to add virtual SMB layer
+
+```cpp
+    static constexpr wchar_t c_modifySetting[] = LR"(
+    {
+        "ResourcePath": "c:\\HCS_Test\\VirtualSMB",
+        "RequestType": "Add",
+        "Settings": {
+            "Name": "BaseImageLayer",
+            "Path": "c:\\HCS_Test\\",
+            "Options": {
+                "ReadOnly": true
+            },
+            "AllowedFiles": [
+                "BaseImage.vhdx"
+            ]
+        }
+    })";
+
+    unique_hcs_operation modifyOperation(HcsCreateOperation(nullptr, nullptr));
+    THROW_IF_FAILED(HcsModifyComputeSystem(system.get(), modifyOperation.get(), c_modifySetting, nullptr));
+
+    wil::unique_hlocal_string resultDoc;
+    THROW_IF_FAILED_MSG(HcsWaitForOperationResult(modifyOperation.get(), INFINITE, &resultDoc),
+        "ResultDoc: %ws", resultDoc.get());
+```
+
+<a name = "SetCSCallback"></a>
+## Set the compute system callback
+

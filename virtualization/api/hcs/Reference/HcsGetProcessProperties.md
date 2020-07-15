@@ -2,7 +2,7 @@
 
 ## Description
 
-Returns the properties of a process in a compute system
+Returns the properties of a process in a compute system, see [sample code](./ProcessSample.md#GetProcessProperty) 
 
 ## Syntax
 

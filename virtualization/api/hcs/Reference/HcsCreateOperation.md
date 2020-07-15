@@ -2,7 +2,7 @@
 
 ## Description
 
-Creates a new operation
+Creates a new operation, see [sample code](./OperationSample.md#CreateOperation) 
 
 ## Syntax
 

@@ -132,9 +132,9 @@
 ## [Asynchronous Model](./hcs/AsyncModel.md)
 ## Samples Code
 ### [Quick Start](./hcs/Tutorial.md)
-### Operations
+### [Operations](./hcs/Reference/OperationSample.md)
 ### [Compute System Operations](./hcs/Reference/ComputeSystemSample.md)
-### Process Execution
+### [Process Execution](./hcs/Reference/ProcessSample.md)
 ### Host Service Operations
 ### Utility Functions for Virtual Machines
 ### Storage Utility Functions for Containers

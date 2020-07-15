@@ -2,7 +2,7 @@
 
 ## Description
 
-Saves the state of a compute system
+Saves the state of a compute system, see [sample code](./ComputeSystemSample.md#SaveCloseCS)
 
 ## Syntax
 

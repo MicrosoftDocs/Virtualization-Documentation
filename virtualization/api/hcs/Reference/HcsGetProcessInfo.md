@@ -18,7 +18,7 @@ HcsGetProcessInfo(
 
 `process`
 
-The handle to the process to query
+The handle to the process to query, see [sample code](./ProcessSample.md#CreateProcess) 
 
 `operation`
 

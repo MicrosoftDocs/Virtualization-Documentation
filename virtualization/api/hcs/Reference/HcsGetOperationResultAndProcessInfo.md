@@ -2,7 +2,7 @@
 
 ## Description
 
-Returns the result of an operation, including the process information for HcsCreateProcess and HcsGetProcessInfo.
+Returns the result of an operation and the process information created by [HcsCreateProcess](./HcsCreateProcess.md), see [sample code](./ProcessSample.md#CreateProcess) 
 
 ## Syntax
 
