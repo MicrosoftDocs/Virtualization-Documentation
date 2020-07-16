@@ -16,7 +16,7 @@ HcsAttachLayerStorageFilter(
 
 ## Parameters
 
-`layerPath` 
+`layerPath`
 
 Full path to the root directory of the layer
 
@@ -26,7 +26,7 @@ JSON document of [layerData](./../SchemaReference.md#LayerData) providing the lo
 
 ## Return Values
 
-The function returns [HRESULT](./HCSHResult.md), refering details in [asnyc model](./../AsyncModel.md#HcsOperationResult)
+The function returns [HRESULT](./HCSHResult.md), refer to [hcs operation async model](./../AsyncModel.md#HcsOperationResult).
 
 ## Requirements
 

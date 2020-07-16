@@ -2,7 +2,7 @@
 
 ## Description
 
-This function adds an entry to a files ACL that grants access to the user account used to run the VM. The user account is based on an internal GUID that is derived from the compute system ID of the VM's HCS compute system object. See [sample code](./UtilityFunctionSample.md#CreateFilesGrantAccess) 
+This function adds an entry to a files ACL that grants access to the user account used to run the VM. The user account is based on an internal GUID that is derived from the compute system ID of the VM's HCS compute system object. See [sample code](./UtilityFunctionSample.md#CreateFilesGrantAccess)
 
 ## Syntax
 
@@ -26,7 +26,7 @@ Path to the file for which to update the ACL
 
 ## Return Values
 
-The function returns [HRESULT](./HCSHResult.md), refering details in [asnyc model](./../AsyncModel.md#HcsOperationResult)
+The function returns [HRESULT](./HCSHResult.md), refer to [hcs operation async model](./../AsyncModel.md#HcsOperationResult).
 
 ## Requirements
 

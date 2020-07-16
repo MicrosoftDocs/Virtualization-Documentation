@@ -2,7 +2,7 @@
 
 ## Description
 
-This function returns properties of the Host Compute System, see [sample code](./ServiceSample.md#GetServiceProperties) 
+This function returns properties of the Host Compute System, see [sample code](./ServiceSample.md#GetServiceProperties)
 
 ## Syntax
 
@@ -26,7 +26,7 @@ Receives a JSON document of [ServiceProperties](./../SchemaReference.md#ServiceP
 
 ## Return Values
 
-The function returns [HRESULT](./HCSHResult.md), refering details in [asnyc model](./../AsyncModel.md#HcsOperationResult)
+The function returns [HRESULT](./HCSHResult.md), refer to [hcs operation async model](./../AsyncModel.md#HcsOperationResult).
 
 ## Requirements
 

@@ -2,7 +2,7 @@
 
 ## Description
 
-This function adds a group of entries to a files ACL that grants access to the user account used to run the VM. 
+This function adds a group of entries to a files ACL that grants access to the user account used to run the VM.
 
 ## Syntax
 
@@ -21,7 +21,7 @@ Path to the file for which to update the ACL
 
 ## Return Values
 
-The function returns [HRESULT](./HCSHResult.md), refering details in [asnyc model](./../AsyncModel.md#HcsOperationResult)
+The function returns [HRESULT](./HCSHResult.md), refer to [hcs operation async model](./../AsyncModel.md#HcsOperationResult).
 
 ## Requirements
 

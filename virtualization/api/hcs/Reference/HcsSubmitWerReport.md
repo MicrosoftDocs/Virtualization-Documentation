@@ -2,7 +2,7 @@
 
 ## Description
 
-This function submits a WER report for a bugcheck of a VM, see [sample code](./ServiceSample.md#SubmitReport) 
+This function submits a WER report for a bugcheck of a VM, see [sample code](./ServiceSample.md#SubmitReport)
 
 ## Syntax
 
@@ -21,7 +21,7 @@ JSON document of [CrashReport](./../SchemaReference.md#CrashReport) with the bug
 
 ## Return Values
 
-The function returns [HRESULT](./HCSHResult.md), refering details in [asnyc model](./../AsyncModel.md#HcsOperationResult)
+The function returns [HRESULT](./HCSHResult.md), refer to [hcs operation async model](./../AsyncModel.md#HcsOperationResult).
 
 ## Requirements
 

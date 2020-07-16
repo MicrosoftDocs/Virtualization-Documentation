@@ -2,7 +2,7 @@
 
 ## Description
 
-This function creates an empty guest-state file (.vmgs) for a VM. This file is required in cases where the VM  is expected to be persisted and restarted multiple times. It is configured in the 'GuestState' property of the settings document for a VM. See [sample code](./UtilityFunctionSample.md#CreateFilesGrantAccess) 
+This function creates an empty guest-state file (.vmgs) for a VM. This file is required in cases where the VM  is expected to be persisted and restarted multiple times. It is configured in the 'GuestState' property of the settings document for a VM. See [sample code](./UtilityFunctionSample.md#CreateFilesGrantAccess)
 
 ## Syntax
 
@@ -21,7 +21,7 @@ Full path to the guest-state file to create
 
 ### Return Values
 
-The function returns [HRESULT](./HCSHResult.md), refering details in [asnyc model](./../AsyncModel.md#HcsOperationResult)
+The function returns [HRESULT](./HCSHResult.md), refer to [hcs operation async model](./../AsyncModel.md#HcsOperationResult).
 
 ## Requirements
 
