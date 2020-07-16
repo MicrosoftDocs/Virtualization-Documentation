@@ -68,6 +68,7 @@
 #### [HRESULT](./hcs/Reference/HCSHResult.md)
 #### [HCS_OPERATION_TYPE](./hcs/Reference/HCS_OPERATION_TYPE.md)
 #### [HCS_EVENT_TYPE](./hcs/Reference/HCS_EVENT_TYPE.md)
+#### [HCS_EVENT](./hcs/Reference/HCS_EVENT.md)
 #### [HCS_EVENT_OPTIONS](./hcs/Reference/HCS_EVENT_OPTIONS.md)
 #### [HCS_PROCESS_INFORMATION](./hcs/Reference/HCS_PROCESS_INFORMATION.md)
 ### Function types

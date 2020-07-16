@@ -2,7 +2,7 @@
 
 ## Description
 
-Registers a callback to receive notifications for the compute system, see [sample code](./ServiceSample.md#SubmitReport) 
+Registers a callback to receive notifications for the compute system, see [sample code](./ServiceSample.md#SubmitReport)
 
 ## Syntax
 
@@ -32,7 +32,7 @@ Optional pointer to a context that is passed to the callback.
 
 `callback`
 
-The target callback for HCS event.
+The target [`HCS_EVENT_CALLBACK`](./HCS_EVENT_CALLBACK.md) for compute system events.
 
 ## Return Values
 
