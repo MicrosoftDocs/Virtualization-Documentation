@@ -2,7 +2,7 @@
 
 ## Description
 
-Sends a signal to a process in a compute system, see [sample code](./ProcessSample.md#SignalProcess)
+Sends a signal to a process in a compute system.
 
 ## Syntax
 
@@ -19,15 +19,15 @@ HcsSignalProcess(
 
 `process`
 
-The handle to the process to send the signal to
+The handle to the process to send the signal to.
 
 `operation`
 
-The handle to the operation that tracks the signal
+The handle to the operation that tracks the signal.
 
 `options`
 
-Optional JSON document of [SignalProcessOptions](./../SchemaReference.md#SignalProcessOptions) specifying the detailed signal
+Optional JSON document of [SignalProcessOptions](./../SchemaReference.md#SignalProcessOptions) specifying the detailed signal.
 
 ## Return Values
 

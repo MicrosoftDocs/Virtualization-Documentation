@@ -19,15 +19,15 @@ HcsSetupBaseOSLayer(
 
 `layerPath`
 
-Path to the root of the base OS layer
+Path to the root of the base OS layer.
 
 `vhdHandle`
 
-The handle to a VHD
+The handle to a VHD.
 
 `options`
 
-Optional JSON document  of [OsLayerOptions](./../SchemaReference.md#OsLayerOptions) describing options for setting up the layer
+Optional JSON document  of [OsLayerOptions](./../SchemaReference.md#OsLayerOptions) describing options for setting up the layer.
 
 ## Return Values
 

@@ -2,7 +2,7 @@
 
 ## Description
 
-Registers a callback to receive notifications for the compute system, see [sample code](./ComputeSystemSample.md#SetCSCallback)
+Registers a callback to receive notifications for the compute system, see [sample code](./ServiceSample.md#SubmitReport) 
 
 ## Syntax
 
@@ -20,15 +20,15 @@ HcsSetComputeSystemCallback(
 
 `computeSystem`
 
-The handle to the compute system
+The handle to the compute system.
 
 `callbackOptions`
 
-The option for callback, using [HCS_EVENT_OPTIONS](./HCS_EVENT_OPTIONS.md)
+The option for callback, using [HCS_EVENT_OPTIONS](./HCS_EVENT_OPTIONS.md).
 
 `context`
 
-Optional pointer to a context that is passed to the callback
+Optional pointer to a context that is passed to the callback.
 
 `callback`
 

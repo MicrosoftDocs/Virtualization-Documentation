@@ -132,21 +132,10 @@ via ::HcsOpenComputeSystem (assuming the system is still running/created and has
 ```
 
 <a name = "ShutDownCS"></a>
-## Shut down compute system
-
-If there is duplicate shutdown or terminate for same compute system, the return value of `HcsWaitForOperationResult` will be `HCS_E_SYSTEM_ALREADY_STOPPED`
+## Terminate compute system
 
 ```cpp
-    // Use same "system" as previous sample code
-    unique_hcs_operation shutdownOperation(HcsCreateOperation(nullptr, nullptr));
-    THROW_IF_FAILED(HcsShutDownComputeSystem(system.get(), shutdownOperation.get(), nullptr));
-
-    wil::unique_hlocal_string resultDoc;
-    // always throw -2147024846	E_NOTSUPPORTED here ???
-    THROW_IF_FAILED_MSG(HcsWaitForOperationResult(shutdownOperation.get(), INFINITE, &resultDoc),
-        "ResultDoc: %ws", resultDoc.get());
-
-    // Similar for terminate
+    // Assume same "system" as previous sample code
     unique_hcs_operation terminateOperation(HcsCreateOperation(nullptr, nullptr));
     THROW_IF_FAILED(HcsTerminateComputeSystem(system.get(), terminateOperation.get(), nullptr));
 
@@ -179,7 +168,7 @@ If there is duplicate shutdown or terminate for same compute system, the return 
         }
     })";
 
-    // Use same "system" as previous sample code
+    // Assume same "system" as previous sample code
     unique_hcs_operation pauseOperation(HcsCreateOperation(nullptr, nullptr));
     THROW_IF_FAILED(HcsPauseComputeSystem(system.get(), pauseOperation.get(), c_pauseOption));
 
@@ -187,7 +176,7 @@ If there is duplicate shutdown or terminate for same compute system, the return 
     THROW_IF_FAILED_MSG(HcsWaitForOperationResult(pauseOperation.get(), INFINITE, &resultDoc),
         "ResultDoc: %ws", resultDoc.get());
 
-    // after some while, resume the compute system
+    // After some while, resume the compute system
     unique_hcs_operation resumeOperation(HcsCreateOperation(nullptr, nullptr));
     THROW_IF_FAILED(HcsResumeComputeSystem(system.get(), resumeOperation.get(), nullptr));
 
@@ -198,8 +187,6 @@ If there is duplicate shutdown or terminate for same compute system, the return 
 <a name = "SaveCloseCS"></a>
 ## Save and close compute system
 
-The compute system cannot be saved if it is still running and the return value of `HcsWaitForOperationResult` will be `HCS_E_INVALID_STATE`
-
 ```cpp
     static constexpr wchar_t c_saveOption[] = LR"(
     {
@@ -207,7 +194,7 @@ The compute system cannot be saved if it is still running and the return value o
         "SaveStateFilePath": "c:\\HCS_Test\\save.vmrs"
     })";
 
-    // Use same "system" as previous sample code
+    // Assume same "system" as previous sample code
     unique_hcs_operation saveOperation(HcsCreateOperation(nullptr, nullptr));
     THROW_IF_FAILED(HcsSaveComputeSystem(system.get(), saveOperation.get(), c_saveOption));
 

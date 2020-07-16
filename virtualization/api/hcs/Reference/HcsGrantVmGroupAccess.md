@@ -17,7 +17,7 @@ HcsGrantVmAccess(
 
 `filePath`
 
-Path to the file for which to update the ACL
+Path to the file for which to update the ACL.
 
 ## Return Values
 

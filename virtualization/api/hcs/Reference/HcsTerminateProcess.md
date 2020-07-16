@@ -2,7 +2,7 @@
 
 ## Description
 
-Terminates a process in a compute system
+Terminates a process in a compute system.
 
 ## Syntax
 
@@ -19,11 +19,11 @@ HcsTerminateProcess(
 
 `process`
 
-The handle to the process to terminate
+The handle to the process to terminate.
 
 `operation`
 
-The handle to the operation tracking the terminate operation
+The handle to the operation tracking the terminate operation.
 
 `options`
 

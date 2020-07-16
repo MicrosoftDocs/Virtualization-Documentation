@@ -20,15 +20,15 @@ HcsWaitForOperationResult(
 
 `operation`
 
-The handle to an active operation
+The handle to an active operation.
 
 `timeoutMs`
 
-Time to wait for the operation to complete
+Time to wait for the operation to complete.
 
 `resultDocument`
 
-If the operation succeeded, receives the result document of the operation. On failure, receives an error document. The caller is responsible for releasing the returned string using LocalFree()
+If the operation succeeded, receives the result document of the operation. On failure, receives an error document. The caller is responsible for releasing the returned string using [`LocalFree`](https://docs.microsoft.com/en-us/windows/win32/api/winbase/nf-winbase-localfree).
 
 ## Return Values
 

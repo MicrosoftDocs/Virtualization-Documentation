@@ -2,7 +2,7 @@
 
 ## Description
 
-Modifies the parameters of a process in a compute system, see [sample code](./ProcessSample.md#ModifyProcess)
+Modifies the parameters of a process in a compute system.
 
 ## Syntax
 
@@ -19,15 +19,15 @@ HcsModifyProcess(
 
 `process`
 
-Handle to the process to modify
+Handle to the process to modify.
 
 `operation`
 
-Handle to the operation that tracks the process
+Handle to the operation that tracks the process.
 
 `settings`
 
-Receives the new settings of the process
+Receives the new settings of the process.
 
 ## Return Values
 

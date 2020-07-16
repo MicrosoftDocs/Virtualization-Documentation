@@ -2,7 +2,7 @@
 
 ## Description
 
-Opens an existing process in a compute system, see [sample code](./ProcessSample.md#CreateProcess)
+Opens an existing process in a compute system.
 
 ## Syntax
 
@@ -21,19 +21,19 @@ HcsOpenProcess(
 
 `computeSystem`
 
-The handle to the compute system in which to start the process
+The handle to the compute system in which to start the process.
 
 `processId`
 
-Specifies the Id of the process to open
+Specifies the Id of the process to open.
 
 `requestedAccess`
 
-Specifies the required access to the compute system
+Specifies the required access to the compute system.
 
 `process`
 
-Receives the handle to the process
+Receives the handle to the process.
 
 ## Return Values
 

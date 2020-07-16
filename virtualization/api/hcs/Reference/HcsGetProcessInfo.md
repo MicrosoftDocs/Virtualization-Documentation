@@ -18,11 +18,11 @@ HcsGetProcessInfo(
 
 `process`
 
-The handle to the process to query, see [sample code](./ProcessSample.md#CreateProcess)
+The handle to the process to query.
 
 `operation`
 
-The handle to the operation that tracks the process
+The handle to the operation that tracks the process.
 
 ## Return Values
 

@@ -2,7 +2,7 @@
 
 ## Description
 
-This function submits a WER report for a bugcheck of a VM, see [sample code](./ServiceSample.md#SubmitReport)
+This function submits a WER report for a bugcheck of a VM, see [sample code](./ServiceSample.md#SubmitReport).
 
 ## Syntax
 
@@ -17,7 +17,7 @@ HcsSubmitWerReport(
 
 `settings`
 
-JSON document of [CrashReport](./../SchemaReference.md#CrashReport) with the bugcheck information
+JSON document of [CrashReport](./../SchemaReference.md#CrashReport) with the bugcheck information.
 
 ## Return Values
 

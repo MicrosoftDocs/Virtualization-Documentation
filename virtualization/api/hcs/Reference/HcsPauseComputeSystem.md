@@ -2,7 +2,7 @@
 
 ## Description
 
-Pauses the execution of a compute system, see [sample code](./ComputeSystemSample.md#PauseResumeCS)
+Pauses the execution of a compute system, see [sample code](./ComputeSystemSample.md#PauseResumeCS).
 
 ## Syntax
 
@@ -20,15 +20,15 @@ HcsPauseComputeSystem(
 
 `computeSystem`
 
-The handle to the compute system to pause
+The handle to the compute system to pause.
 
 `operation`
 
-The handle to the operation that tracks the pause operation
+The handle to the operation that tracks the pause operation.
 
 `options`
 
-Optional JSON document of [PauseOptions](./../SchemaReference.md#PauseOptions) specifying pause options
+Optional JSON document of [PauseOptions](./../SchemaReference.md#PauseOptions) specifying pause options.
 
 ## Return Values
 

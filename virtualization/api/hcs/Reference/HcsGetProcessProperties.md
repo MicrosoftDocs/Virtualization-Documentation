@@ -2,7 +2,7 @@
 
 ## Description
 
-Returns the properties of a process in a compute system, see [sample code](./ProcessSample.md#GetProcessProperty)
+Returns the properties of a process in a compute system.
 
 ## Syntax
 
@@ -19,15 +19,15 @@ HcsGetProcessProperties(
 
 `process`
 
-The handle to the process to query
+The handle to the process to query.
 
 `operation`
 
-The handle to the operation that tracks the process
+The handle to the operation that tracks the process.
 
 `propertyQuery`
 
-Optional JSON document of [ProcessStatus](./../SchemaReference.md#ProcessStatus) specifying the properties to query
+Optional JSON document of [ProcessStatus](./../SchemaReference.md#ProcessStatus) specifying the properties to query.
 
 ## Return Values
 

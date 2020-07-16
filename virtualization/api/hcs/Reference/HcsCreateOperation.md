@@ -2,7 +2,7 @@
 
 ## Description
 
-Creates a new operation, see [sample code](./OperationSample.md#CreateOperation).
+Creates a new operation.
 
 ## Syntax
 
@@ -18,7 +18,7 @@ HcsCreateOperation(
 
 `callback`
 
-Optional pointer to an [`HCS_OPERATION_COMPLETION`](./HCS_OPERATION_COMPLETION.md) callback to be invoked when the operation completes. Refer to [the async model documentation](../AsyncModel.md) for details on how to use hcs operations.
+Optional pointer to an [`HCS_OPERATION_COMPLETION`](./HCS_OPERATION_COMPLETION.md) callback to be invoked when the operation completes. Refer to [the async model documentation](./../AsyncModel.md) for details on how to use hcs operations.
 
 `context`
 

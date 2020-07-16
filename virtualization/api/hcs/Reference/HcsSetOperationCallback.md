@@ -19,15 +19,15 @@ HcsSetOperationCallback(
 
 `operation`
 
-The handle to an active operation
+The handle to an active operation.
 
 `context`
 
-Optional pointer to a context that is passed to the callback
+Optional pointer to a context that is passed to the callback.
 
 `callback`
 
-The target callback that is invoked on completion of an operation
+The target callback that is invoked on completion of an operation.
 
 ## Return Values
 

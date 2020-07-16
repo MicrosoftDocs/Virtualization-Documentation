@@ -2,7 +2,7 @@
 
 ## Description
 
-Registers a callback function to receive notifications for a process in a compute system, see [sample code](./ProcessSample.md#SetProcessCallback)
+Registers a callback function to receive notifications for a process in a compute system.
 
 ## Syntax
 
@@ -20,19 +20,19 @@ HcsSetProcessCallback(
 
 `process`
 
-The handle to the process for that the callback is registered
+The handle to the process for that the callback is registered.
 
 `callbackOptions`
 
-The option for callback, using [HCS_EVENT_OPTIONS](./HCS_EVENT_OPTIONS.md)
+The option for callback, using [HCS_EVENT_OPTIONS](./HCS_EVENT_OPTIONS.md).
 
 `context`
 
-Optional pointer to a context that is passed to the callback
+Optional pointer to a context that is passed to the callback.
 
 `callback`
 
-Callback function that is invoked for events on the process
+Callback function that is invoked for events on the process.
 
 ## Return Values
 

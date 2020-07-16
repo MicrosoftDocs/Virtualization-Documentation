@@ -21,10 +21,6 @@ Return type is ServiceProperties, its properties `Any` can be ???
 <a name = "ModifyServiceSettings"></a>
 ## Modify the service settings
 
-|PropertyType|Setting Type|
-|---|---|
-|`"ContainerCredentialGuard"`|ContainerCredentialGuard|
-
 ```cpp
     static constexpr wchar_t c_ServiceSettings[] = LR"(
     {
