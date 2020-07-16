@@ -1,19 +1,19 @@
 # ReadGuestPhysicalAddress function
 
-Reads from the saved state file the given guest physical address range and then it is written into the supplied buffer. If BytesRead returns something lower than BufferSize, then the end of memory has been reached. 
+Reads from the saved state file the given guest physical address range and then it is written into the supplied buffer. If BytesRead returns something lower than BufferSize, then the end of memory has been reached.
 
 ## Syntax
 
 ```C
-HRESULT 
-WINAPI 
-ReadGuestPhysicalAddress( 
-    _In_        VM_SAVED_STATE_DUMP_HANDLE  VmSavedStateDumpHandle, 
-    _In_        GUEST_PHYSICAL_ADDRESS      PhysicalAddress, 
-    _Out_writes_bytes_(BufferSize) LPVOID   Buffer, 
-    _In_        UINT32                      BufferSize, 
-    _Out_opt_   UINT32*                     BytesRead 
-    ); 
+HRESULT
+WINAPI
+ReadGuestPhysicalAddress(
+    _In_        VM_SAVED_STATE_DUMP_HANDLE  VmSavedStateDumpHandle,
+    _In_        GUEST_PHYSICAL_ADDRESS      PhysicalAddress,
+    _Out_writes_bytes_(BufferSize) LPVOID   Buffer,
+    _In_        UINT32                      BufferSize,
+    _Out_opt_   UINT32*                     BytesRead
+    );
 ```
 
 ## Parameters
@@ -44,11 +44,11 @@ If the operation completes successfully, the return value is `S_OK`.
 
 ## Requirements
 
-|Parameter     |Description|
-|---|---|---|---|---|---|---|---| 
+|Parameter|Description|
+|---|---|---|---|---|---|---|---|
 | **Minimum supported client** | Windows 10, version 1607 |
 | **Minimum supported server** | Windows Server 2016 |
 | **Target Platform** | Windows |
 | **Library** | ComputeCore.ext |
 | **Dll** | ComputeCore.ext |
-|    |    | 
+|    |    |

@@ -2,7 +2,7 @@
 
 ## Description
 
-This function creates an empty runtime-state file (.vmrs) for a VM. This file is used to save a running VM. It is specified in the options document of the [`HcsSaveComputeSystem`](./HcsSaveComputeSystem.md) function. See [sample code](./UtilityFunctionSample.md#CreateFilesGrantAccess)
+This function creates an empty runtime-state file (.vmrs) for a VM. This file is used to save a running VM. It is specified in the options document of the [`HcsSaveComputeSystem`](./HcsSaveComputeSystem.md) function. See [sample code](./UtilityFunctionSample.md#CreateFilesGrantAccess).
 
 ## Syntax
 
@@ -17,15 +17,15 @@ HcsCreateEmptyRuntimeStateFile(
 
 `runtimeStateFilePath`
 
-Full path to the runtime-state file to create
+Full path to the runtime-state file to create.
 
 ## Return Values
 
-The function returns [HRESULT](./HCSHResult.md), refer to [hcs operation async model](./../AsyncModel.md#HcsOperationResult).
+The function returns [HRESULT](./HCSHResult.md).
 
 ## Requirements
 
-|Parameter     |Description|
+|Parameter|Description|
 |---|---|
 | **Minimum supported client** | Windows 10, version 1809 |
 | **Minimum supported server** | Windows Server 2019 |

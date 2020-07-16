@@ -16,7 +16,7 @@ typedef enum HDV_DEVICE_TYPE
 
 ## Constants
 
-|Parameter     |Description|
+|Parameter|Description|
 |---|---|---|---|---|---|---|---|
 | HdvDeviceTypeUndefined | null |
 | HdvDeviceTypePCI | null |
@@ -24,7 +24,7 @@ typedef enum HDV_DEVICE_TYPE
 
 ## Requirements
 
-|Parameter     |Description|
+|Parameter|Description|
 |---|---|---|---|---|---|---|---|
 | **Minimum supported client** | Windows 10, version 1607 |
 | **Minimum supported server** | Windows Server 2016 |

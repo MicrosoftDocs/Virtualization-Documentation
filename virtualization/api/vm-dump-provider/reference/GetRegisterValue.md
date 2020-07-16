@@ -1,17 +1,17 @@
 # GetRegisterValue function
 
-Queries for a specific register value for a given VP in a VmSavedStateDump. Callers must specify architecture and register ID in paremeter Register, and this function returns the regsiter value through it. 
+Queries for a specific register value for a given VP in a VmSavedStateDump. Callers must specify architecture and register ID in paremeter Register, and this function returns the regsiter value through it.
 
 ## Syntax
 
 ```C
-HRESULT 
-WINAPI 
-GetRegisterValue( 
-    _In_    VM_SAVED_STATE_DUMP_HANDLE      VmSavedStateDumpHandle, 
-    _In_    UINT32                          VpId, 
-    _Inout_ VIRTUAL_PROCESSOR_REGISTER*     Register 
-    ); 
+HRESULT
+WINAPI
+GetRegisterValue(
+    _In_    VM_SAVED_STATE_DUMP_HANDLE      VmSavedStateDumpHandle,
+    _In_    UINT32                          VpId,
+    _Inout_ VIRTUAL_PROCESSOR_REGISTER*     Register
+    );
 ```
 
 ## Parameters
@@ -34,11 +34,11 @@ If the operation completes successfully, the return value is `S_OK`.
 
 ## Requirements
 
-|Parameter     |Description|
-|---|---|---|---|---|---|---|---| 
+|Parameter|Description|
+|---|---|---|---|---|---|---|---|
 | **Minimum supported client** | Windows 10, version 1607 |
 | **Minimum supported server** | Windows Server 2016 |
 | **Target Platform** | Windows |
 | **Library** | ComputeCore.ext |
 | **Dll** | ComputeCore.ext |
-|    |    | 
+|    |    |

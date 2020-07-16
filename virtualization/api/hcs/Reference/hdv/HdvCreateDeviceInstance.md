@@ -21,7 +21,7 @@ HdvCreateDeviceInstance(
 
 ## Parameters
 
-|Parameter     |Description|
+|Parameter|Description|
 |---|---|---|---|---|---|---|---|
 |`DeviceHost` | Handle to the device host in which to create the new device.|
 |`DeviceType` | Specifies the [HDV_DEVICE_TYPE](./HdvDeviceType) type of the device instance to create.|
@@ -42,7 +42,7 @@ HdvCreateDeviceInstance(
 
 ## Requirements
 
-|Parameter     |Description|
+|Parameter|Description|
 |---|---|---|---|---|---|---|---|
 | **Minimum supported client** | Windows 10, version 1607 |
 | **Minimum supported server** | Windows Server 2016 |

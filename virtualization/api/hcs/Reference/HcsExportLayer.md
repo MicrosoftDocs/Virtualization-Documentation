@@ -20,28 +20,28 @@ HcsExportLayer(
 
 `layerPath`
 
-Path of the layer to export
+Path of the layer to export.
 
 `exportFolderPath`
 
-Destination folder for the exported layer
+Destination folder for the exported layer.
 
 `layerData`
 
-JSON document of [layerData](./../SchemaReference.md#LayerData) providing the locations of the antecedent layers that are used by the exported layer
+JSON document of [layerData](./../SchemaReference.md#LayerData) providing the locations of the antecedent layers that are used by the exported layer.
 
 `options`
 
-JSON document of [ExportLayerOptions](./../SchemaReference.md#ExportLayerOptions) describing the layer to export
+JSON document of [ExportLayerOptions](./../SchemaReference.md#ExportLayerOptions) describing the layer to export.
 
 
 ## Return Values
 
-The function returns [HRESULT](./HCSHResult.md), refer to [hcs operation async model](./../AsyncModel.md#HcsOperationResult).
+The function returns [HRESULT](./HCSHResult.md).
 
 ## Requirements
 
-|Parameter     |Description|
+|Parameter|Description|
 |---|---|
 | **Minimum supported client** | Windows 10, version 1809 |
 | **Minimum supported server** | Windows Server 2019 |

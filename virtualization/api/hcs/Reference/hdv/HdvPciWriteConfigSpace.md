@@ -16,7 +16,7 @@ typedef HRESULT (CALLBACK *HDV_PCI_WRITE_CONFIG_SPACE)(
 
 ## Parameters
 
-|Parameter     |Description|
+|Parameter|Description|
 |---|---|---|---|---|---|---|---|
 |`DeviceContext` |Context pointer that was supplied to HdvCreateDeviceInstance.|
 |`Offset` |Offset in bytes from the base of the bar to write.|
@@ -33,7 +33,7 @@ typedef HRESULT (CALLBACK *HDV_PCI_WRITE_CONFIG_SPACE)(
 
 ## Requirements
 
-|Parameter     |Description|
+|Parameter|Description|
 |---|---|---|---|---|---|---|---|
 | **Minimum supported client** | Windows 10, version 1607 |
 | **Minimum supported server** | Windows Server 2016 |

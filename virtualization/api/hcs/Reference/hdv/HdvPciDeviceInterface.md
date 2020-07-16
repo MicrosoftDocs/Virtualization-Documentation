@@ -23,57 +23,57 @@ typedef struct HDV_PCI_DEVICE_INTERFACE
 
 ## Members
 
-`Version` 
+`Version`
 
 Version.
 
-`Initialize` 
+`Initialize`
 
 Version.
 
-`Teardown` 
+`Teardown`
 
 Version.
 
-`SetConfiguration` 
+`SetConfiguration`
 
 Version.
 
-`GetDetails` 
+`GetDetails`
 
 Version.
 
-`Start` 
+`Start`
 
 Version.
 
-`Stop` 
+`Stop`
 
 Version.
 
-`ReadConfigSpace` 
+`ReadConfigSpace`
 
 Version.
 
-`WriteConfigSpace` 
+`WriteConfigSpace`
 
 Version.
 
-`ReadInterceptedMemory` 
+`ReadInterceptedMemory`
 
 Version.
 
-`WriteInterceptedMemory` 
+`WriteInterceptedMemory`
 
 Version.
 
 ## Requirements
 
-|Parameter     |Description|
-|---|---|---|---|---|---|---|---| 
+|Parameter|Description|
+|---|---|---|---|---|---|---|---|
 | **Minimum supported client** | Windows 10, version 1607 |
 | **Minimum supported server** | Windows Server 2016 |
 | **Target Platform** | Windows |
 | **Library** | ComputeCore.ext |
 | **Dll** | ComputeCore.ext |
-|    |    | 
+|    |    |

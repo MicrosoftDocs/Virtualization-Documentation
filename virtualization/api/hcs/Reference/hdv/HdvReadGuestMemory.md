@@ -18,7 +18,7 @@ HdvReadGuestMemory(
 
 ## Parameters
 
-|Parameter     |Description|
+|Parameter|Description|
 |---|---|---|---|---|---|---|---|
 |`Requestor` |Handle to the device requesting memory access.|
 |`GuestPhysicalAddress`|Guest physical address at which the read operation starts.|
@@ -36,7 +36,7 @@ HdvReadGuestMemory(
 
 ## Requirements
 
-|Parameter     |Description|
+|Parameter|Description|
 |---|---|---|---|---|---|---|---|
 | **Minimum supported client** | Windows 10, version 1607 |
 | **Minimum supported server** | Windows Server 2016 |

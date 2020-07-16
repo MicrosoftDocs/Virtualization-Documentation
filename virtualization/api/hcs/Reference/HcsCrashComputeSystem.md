@@ -2,7 +2,7 @@
 
 ## Description
 
-Forcefully terminates a compute system
+Requests to crash the guest through an architectured defined mechanism, by sending an NMI (Non Maskable Interrupt).
 
 ## Syntax
 
@@ -19,15 +19,15 @@ HcsCrashComputeSystem(
 
 `computeSystem`
 
-The handle to the compute system to terminate
+The handle to the compute system to crash.
 
 `operation`
 
-The handle to the operation that tracks the terminate operation
+The handle to the operation that tracks the crash system operation.
 
 `options`
 
-Optional JSON document [CrashOptions](./../SchemaReference.md#CrashOptions) specifying terminate options
+Optional JSON document [CrashOptions](./../SchemaReference.md#CrashOptions) specifying terminate options.
 
 ## Return Values
 
@@ -35,7 +35,7 @@ The function returns [HRESULT](./HCSHResult.md), refer to [hcs operation async m
 
 ## Requirements
 
-|Parameter     |Description|
+|Parameter|Description|
 |---|---|
 | **Minimum supported client** | Windows 10, version 1809 |
 | **Minimum supported server** | Windows Server 2019 |

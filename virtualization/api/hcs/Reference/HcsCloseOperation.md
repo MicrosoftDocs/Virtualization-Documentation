@@ -2,7 +2,7 @@
 
 ## Description
 
-Close the operation, freeing any tracking resources associated with the operation. If the operation is in progress it will be cancelled.  An operation can be closed from within a callback.
+Close the operation, freeing any tracking resources associated with the operation. An operation can be closed from within a callback.
 
 ## Syntax
 
@@ -11,22 +11,21 @@ void WINAPI
 HcsCloseOperation(
     _In_ HCS_OPERATION operation
     );
-
 ```
 
 ## Parameters
 
 `operation`
 
-Handle to an operation
+Handle to an operation.
 
 ## Return Values
 
-None
+None.
 
 ## Requirements
 
-|Parameter     |Description|
+|Parameter|Description|
 |---|---|
 | **Minimum supported client** | Windows 10, version 1809 |
 | **Minimum supported server** | Windows Server 2019 |

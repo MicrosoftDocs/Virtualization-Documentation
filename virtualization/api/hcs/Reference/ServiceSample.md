@@ -29,7 +29,7 @@ Return type is ServiceProperties, its properties `Any` can be ???
     static constexpr wchar_t c_ServiceSettings[] = LR"(
     {
         "PropertyType": "ContainerCredentialGuard",
-        "Settings": 
+        "Settings":
     })";
 
     wil::unique_hlocal_string resultDoc;
@@ -45,16 +45,18 @@ Return type is ServiceProperties, its properties `Any` can be ???
 ## Submit Crash Report
 
 ```cpp
-
-// Recorder for HCS_EVENTs on a given HCS_SYSTEM.
-// class HcsEventRecorder
-
-    static constexpr wchar_t c_Settings[] = LR"(
-    {
-        "WindowsCrashInfo": 
-    })";
-
-    wil::unique_hlocal_string resultDoc;
-    THROW_IF_FAILED(HcsSubmitWerReport(c_Settings));
+    // Assume you have a valid unique_hcs_system object
+    // to a newly created compute system.
+    // We set compute system callbacks to wait specifically
+    // for a crash system report.
+    THROW_IF_FAILED(HcsSetComputeSystemCallback(
+        system.get(), // system handle
+        nullptr, // context
+        [](HCS_EVENT* Event, void*)
+        {
+            if (Event->Type == HcsEventSystemCrashReport)
+            {
+                THROW_IF_FAILED(HcsSubmitWerReport(Event->EventData));
+            }
+        }));
 ```
-

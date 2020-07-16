@@ -16,7 +16,7 @@ typedef HRESULT (CALLBACK *HDV_PCI_DEVICE_SET_CONFIGURATION)(
 
 ## Parameters
 
-|Parameter     |Description|
+|Parameter|Description|
 |---|---|---|---|---|---|---|---|
 |`DeviceContext` |Context pointer that was supplied to HdvCreateDeviceInstance|
 |`ConfigurationValueCount` |Number of elements in the ConfigurationValues array|
@@ -33,7 +33,7 @@ typedef HRESULT (CALLBACK *HDV_PCI_DEVICE_SET_CONFIGURATION)(
 
 ## Requirements
 
-|Parameter     |Description|
+|Parameter|Description|
 |---|---|---|---|---|---|---|---|
 | **Minimum supported client** | Windows 10, version 1607 |
 | **Minimum supported server** | Windows Server 2016 |

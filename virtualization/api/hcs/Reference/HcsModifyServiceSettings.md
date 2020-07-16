@@ -2,7 +2,7 @@
 
 ## Description
 
-This function modifies the settings of the Host Compute System, see [sample code](./ServiceSample.md#ModifyServiceSettings)
+This function modifies the settings of the Host Compute System, see [sample code](./ServiceSample.md#ModifyServiceSettings).
 
 ## Syntax
 
@@ -18,19 +18,27 @@ HcsModifyServiceSettings(
 
 `settings`
 
-JSON document  of [ModificationRequest](./../SchemaReference.md#ModificationRequest) specifying the new settings
+JSON document of [ModificationRequest](./../SchemaReference.md#ModificationRequest) specifying the settings to modify.
 
 `result`
 
-Optional, receives an error document on failures to apply the settings
+On failure, it can optionally receive an error JSON document represented by a [ResultError](./../SchemaReference.md#ResultError); it's not guaranteed to be always returned and depends on the property type that is being modified.
 
 ## Return Values
 
-The function returns [HRESULT](./HCSHResult.md), refer to [hcs operation async model](./../AsyncModel.md#HcsOperationResult).
+The function returns [HRESULT](./HCSHResult.md).
+
+## Remarks
+
+The [ModificationRequest](./../SchemaReference.md#ModificationRequest) JSON document has a property called `"Settings"` of type `Any`. In JSON, `Any` means an arbitrary object with no restrictions. Refer to the following table to know what JSON type HCS expects for each property type.
+
+|PropertyType|Setting Type|
+|---|---|
+|`"ContainerCredentialGuard"`|ContainerCredentialGuard|
 
 ## Requirements
 
-|Parameter     |Description|
+|Parameter|Description|
 |---|---|
 | **Minimum supported client** | Windows 10, version 1809 |
 | **Minimum supported server** | Windows Server 2019 |

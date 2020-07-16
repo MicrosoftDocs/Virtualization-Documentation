@@ -19,7 +19,7 @@ HdvCreateGuestMemoryAperture(
 
 ## Parameters
 
-|Parameter     |Description|
+|Parameter|Description|
 |---|---|---|---|---|---|---|---|
 |`Requestor` | Handle to the device requesting memory access.|
 |`GuestPhysicalAddress` | Base physical address at which the aperture starts.|
@@ -38,7 +38,7 @@ HdvCreateGuestMemoryAperture(
 
 ## Requirements
 
-|Parameter     |Description|
+|Parameter|Description|
 |---|---|---|---|---|---|---|---|
 | **Minimum supported client** | Windows 10, version 1607 |
 | **Minimum supported server** | Windows Server 2016 |

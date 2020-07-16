@@ -17,7 +17,7 @@ HdvDeliverGuestInterrupt(
 
 ## Parameters
 
-|Parameter     |Description|
+|Parameter|Description|
 |---|---|---|---|---|---|---|---|
 |`Requestor` |Handle to the device requesting the interrupt.|
 |`MsiAddress` |The guest address to which the interrupt message is written.|
@@ -34,7 +34,7 @@ HdvDeliverGuestInterrupt(
 
 ## Requirements
 
-|Parameter     |Description|
+|Parameter|Description|
 |---|---|---|---|---|---|---|---|
 | **Minimum supported client** | Windows 10, version 1607 |
 | **Minimum supported server** | Windows Server 2016 |

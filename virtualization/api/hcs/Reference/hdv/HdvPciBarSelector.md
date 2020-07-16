@@ -7,7 +7,7 @@ Discriminator for the BAR selection.
 ```C++
 typedef enum
 {
-    HDV_PCI_BAR0 = 0, 
+    HDV_PCI_BAR0 = 0,
     HDV_PCI_BAR1,
     HDV_PCI_BAR2,
     HDV_PCI_BAR3,
@@ -19,23 +19,23 @@ typedef enum
 
 ## Constants
 
-|Parameter     |Description|
-|---|---|---|---|---|---|---|---| 
+|Parameter|Description|
+|---|---|---|---|---|---|---|---|
 | HDV_PCI_BAR0 | null |
 | HDV_PCI_BAR1 | null |
 | HDV_PCI_BAR2 | null |
 | HDV_PCI_BAR3 | null |
 | HDV_PCI_BAR4 | null |
 | HDV_PCI_BAR5 | null |
-|    |    | 
+|    |    |
 
 ## Requirements
 
-|Parameter     |Description|
-|---|---|---|---|---|---|---|---| 
+|Parameter|Description|
+|---|---|---|---|---|---|---|---|
 | **Minimum supported client** | Windows 10, version 1607 |
 | **Minimum supported server** | Windows Server 2016 |
 | **Target Platform** | Windows |
 | **Library** | ComputeCore.ext |
 | **Dll** | ComputeCore.ext |
-|    |    | 
+|    |    |

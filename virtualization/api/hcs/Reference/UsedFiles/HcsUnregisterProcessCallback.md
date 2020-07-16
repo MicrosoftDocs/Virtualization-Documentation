@@ -3,10 +3,10 @@
 ## Syntax
 
 ### Parameters
-|Parameter     |Description|
+|Parameter|Description|
 |---|---|
 |`callback`| Handle to the callback to unregister|
-|    |    | 
+|    |    |
 
 
 

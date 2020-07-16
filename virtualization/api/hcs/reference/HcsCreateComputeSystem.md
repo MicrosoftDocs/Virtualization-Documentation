@@ -2,7 +2,7 @@
 
 ## Description
 
-Creates a new compute system, see [sample code](./ComputeSystemSample.md#CreateStartVM)
+Creates a new compute system, see [sample code](./ComputeSystemSample.md#CreateStartVM).
 
 ## Syntax
 
@@ -21,19 +21,19 @@ HcsCreateComputeSystem(
 
 `id`
 
-Unique Id identifying the compute system
+Unique Id identifying the compute system.
 
 `configuration`
 
-JSON document specifying the settings of the [compute system](./../SchemaReference.md#ComputeSystem)
+JSON document specifying the settings of the [compute system](./../SchemaReference.md#ComputeSystem). The compute system document is expected to have a `Container`, `VirtualMachine` or `HostedSystem` property set since they are mutually exclusive.
 
 `operation`
 
-The handle to the operation that tracks the create operation
+The handle to the operation that tracks the create operation.
 
 `securityDescriptor`
 
-Optional security descriptor specifying the permissions on the compute system. If not specified, only the caller of the function is granted permissions to perform operations on the compute system.
+Reserved for future use, must be `NULL`.
 
 `computeSystem`
 
@@ -44,9 +44,11 @@ Receives a handle to the newly created compute system. It is the responsibility 
 
 The function returns [HRESULT](./HCSHResult.md), refer to [hcs operation async model](./../AsyncModel.md#HcsOperationResult).
 
+
+
 ## Requirements
 
-|Parameter     |Description|
+|Parameter|Description|
 |---|---|
 | **Minimum supported client** | Windows 10, version 1809 |
 | **Minimum supported server** | Windows Server 2019 |

@@ -18,7 +18,7 @@ typedef HRESULT (CALLBACK *HDV_PCI_READ_INTERCEPTED_MEMORY)(
 
 ## Parameters
 
-|Parameter     |Description|
+|Parameter|Description|
 |---|---|---|---|---|---|---|---|
 |`DeviceContext` |Context pointer that was supplied to HdvCreateDeviceInstance.|
 |`BarIndex` |Index to the BAR the read operation pertains to.|
@@ -37,8 +37,8 @@ typedef HRESULT (CALLBACK *HDV_PCI_READ_INTERCEPTED_MEMORY)(
 
 ## Requirements
 
-|Parameter     |Description|
-|---|---|---|---|---|---|---|---| 
+|Parameter|Description|
+|---|---|---|---|---|---|---|---|
 | **Minimum supported client** | Windows 10, version 1607 |
 | **Minimum supported server** | Windows Server 2016 |
 | **Target Platform** | Windows |

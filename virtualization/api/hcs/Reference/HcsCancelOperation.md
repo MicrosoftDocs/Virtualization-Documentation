@@ -11,23 +11,26 @@ HRESULT WINAPI
 HcsCancelOperation (
     _In_ HCS_OPERATION operation
     );
-
 ```
 
 ## Parameters
 
 `operation`
 
-The handle to an active operation
+The handle to an active operation.
 
 
 ## Return Values
 
-The function returns [HRESULT](./HCSHResult.md), refer to [hcs operation async model](./../AsyncModel.md#HcsOperationResult).
+The function returns [HRESULT](./HCSHResult.md).
+
+## Remarks
+
+This function is not currently implemented and will always return an `E_NOTIMPL` HRESULT value.
 
 ## Requirements
 
-|Parameter     |Description|
+|Parameter|Description|
 |---|---|
 | **Minimum supported client** | Windows 10, version 1809 |
 | **Minimum supported server** | Windows Server 2019 |

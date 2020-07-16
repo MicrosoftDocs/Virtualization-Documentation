@@ -17,15 +17,15 @@ typedef void (CALLBACK *HCS_OPERATION_COMPLETION)(
 
 `operation`
 
-Handle to an operation on a compute system
+Handle to an operation on a compute system.
 
 `context`
 
-Handle to the pointer of callback context
+Handle to the pointer of callback context.
 
 ## Requirements
 
-|Parameter     |Description|
+|Parameter|Description|
 |---|---|
 | **Minimum supported client** | Windows 10, version 1809 |
 | **Minimum supported server** | Windows Server 2019 |
