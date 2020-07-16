@@ -2,7 +2,7 @@
 
 ## Description
 
-Cleanly shuts down a compute system, see [sample code](./ComputeSystemSample.md#ShutDownCS)
+Cleanly shuts down a compute system.
 
 ## Syntax
 
@@ -19,11 +19,11 @@ HcsShutDownComputeSystem(
 
 `computeSystem`
 
-The handle to the compute system to shut down
+The handle to the compute system to shut down.
 
 `operation`
 
-The handle to the operation that tracks the shutdown operation
+The handle to the operation that tracks the shutdown operation.
 
 `options`
 
@@ -32,6 +32,11 @@ Reserved for future use. Must be `NULL`.
 ## Return Values
 
 The function returns [HRESULT](./HCSHResult.md), refer to [hcs operation async model](./../AsyncModel.md#HcsOperationResult).
+
+## Remarks
+
+If there is duplicate shutdown or terminate for same compute system, the return value of `HcsWaitForOperationResult` will be `HCS_E_SYSTEM_ALREADY_STOPPED`.
+
 
 ## Requirements
 

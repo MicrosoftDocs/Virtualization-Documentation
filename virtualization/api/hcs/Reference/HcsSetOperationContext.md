@@ -2,7 +2,7 @@
 
 ## Description
 
-Sets the context pointer on an operation
+Sets the context pointer on an operation.
 
 ## Syntax
 
@@ -20,11 +20,11 @@ HcsSetOperationContext(
 
 `operation`
 
-The handle to an active operation
+The handle to an active operation.
 
 `context`
 
-Optional pointer to a context that is passed to the callback
+Optional pointer to a context that is passed to the callback.
 
 ## Return Values
 

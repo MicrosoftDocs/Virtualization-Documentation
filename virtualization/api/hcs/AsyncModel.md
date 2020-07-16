@@ -5,15 +5,8 @@ Since the HCS is an asynchronous API, notifications provide context when a funct
 
 The HCS has sticky notification in which the HCS only expects to receive once. If these notifications are received, the HCS will mark any remaining tasks as failed since they system is disconnected or has exited.
 
-<a name = "HcsOperationHandle"></a>
-## HCS_OPERATION Handle
-
-If the return value is `S_OK`, it means the operation starts successfully.
-
 
 <a name = "HcsOperationResult"></a>
-## HCS_OPERATION Expected Result
+## HCS_OPERATION Return Details
 
-|Current operation|Potential return value if failed|Format of result document|
-|---|---|---|
-|HcsCreateComputeSystem|HCS_E_HYPERV_NOT_INSTALLED|NULL if the operation succeed|
+If the return value is `S_OK`, it means the operation starts successfully.

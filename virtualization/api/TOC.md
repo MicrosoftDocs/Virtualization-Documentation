@@ -141,12 +141,9 @@
 ## [Asynchronous Model](./hcs/AsyncModel.md)
 ## Samples Code
 ### [Quick Start](./hcs/Tutorial.md)
-### [Operations](./hcs/Reference/OperationSample.md)
 ### [Compute System Operations](./hcs/Reference/ComputeSystemSample.md)
-### [Process Execution](./hcs/Reference/ProcessSample.md)
 ### [Host Service Operations](./hcs/Reference/ServiceSample.md)
 ### [Utility Functions for Virtual Machines](./hcs/Reference/UtilityFunctionSample.md)
-### [Storage Utility Functions for Containers](./hcs/Reference/StorageSample.md)
 
 # VM Saved State Dump Provider API
 ## [Overview](./vm-dump-provider/index.md)

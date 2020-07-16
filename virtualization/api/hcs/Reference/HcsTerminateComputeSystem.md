@@ -2,7 +2,7 @@
 
 ## Description
 
-Forcefully terminates a compute system, see [sample code](./ComputeSystemSample.md#ShutDownCS)
+Forcefully terminates a compute system, see [sample code](./ComputeSystemSample.md#ShutDownCS).
 
 ## Syntax
 
@@ -19,11 +19,11 @@ HcsTerminateComputeSystem(
 
 `computeSystem`
 
-The handle to the compute system to terminate
+The handle to the compute system to terminate.
 
 `operation`
 
-The handle to the operation that tracks the terminate operation
+The handle to the operation that tracks the terminate operation.
 
 `options`
 

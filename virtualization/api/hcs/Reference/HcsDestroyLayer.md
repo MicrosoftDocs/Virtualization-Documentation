@@ -17,7 +17,7 @@ HcsDestroyLayer(
 
 `layerPath`
 
-Path of the layer to delete
+Path of the layer to delete.
 
 ## Return Values
 
@@ -26,6 +26,7 @@ The function returns [HRESULT](./HCSHResult.md).
 ## Remarks
 
 **Be careful when using this API, it deletes directories using high privilege rights.**
+This function deletes a layer from the host.
 
 ## Requirements
 
@@ -38,6 +39,3 @@ The function returns [HRESULT](./HCSHResult.md).
 | **Library** | ComputeStorage.lib |
 | **Dll** | ComputeStorage.dll |
 
-## Remarks
-
-This function deletes a layer from the host.

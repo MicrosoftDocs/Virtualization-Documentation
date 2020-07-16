@@ -17,7 +17,7 @@ HcsRevokeVmAccess(
 
 `filePath`
 
-Path to teh file for which to update the ACL
+Path to teh file for which to update the ACL.
 
 ## Return Values
 

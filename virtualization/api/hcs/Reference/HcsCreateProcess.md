@@ -2,7 +2,7 @@
 
 ## Description
 
-Starts a process in a compute system, see [sample code](./ProcessSample.md#CreateProcess).
+Starts a process in a compute system.
 
 ## Syntax
 

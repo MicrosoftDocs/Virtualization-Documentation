@@ -2,7 +2,7 @@
 
 ## Description
 
-Struct containing information about a process created by  [HcsCreateProcess](./HcsCreateProcess.md)
+Struct containing information about a process created by  [HcsCreateProcess](./HcsCreateProcess.md).
 
 ## Syntax
 
@@ -21,21 +21,21 @@ typedef struct
 
 `ProcessId`
 
-Identifier of the created process
+Identifier of the created process.
 
 `Reserved`
 
 `StdInput`
 
-If created, standard input handle of the process
+If created, standard input handle of the process.
 
 `StdOutput`
 
-If created, standard output handle of the process
+If created, standard output handle of the process.
 
 `StdError`
 
-If created, standard error handle of the process
+If created, standard error handle of the process.
 
 ## Requirements
 

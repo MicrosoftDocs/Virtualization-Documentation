@@ -1,7 +1,7 @@
 # HCS HRESULT
 
 
-The following HRESULT values are the most common ones. More values are contained in the header file [Winerror.h](https://docs.microsoft.com/en-us/windows/win32/api/winerror/)
+The following HRESULT values are the most common ones. More values are contained in the header file [Winerror.h](https://docs.microsoft.com/en-us/windows/win32/api/winerror/).
 
 
 |Name|Description|Value|

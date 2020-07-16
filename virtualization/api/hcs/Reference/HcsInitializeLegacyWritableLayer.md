@@ -21,19 +21,19 @@ HcsInitializeLegacyWritableLayer(
 
 `writableLayerMountPath`
 
-Full path to the root directory of the writable layer
+Full path to the root directory of the writable layer.
 
 `writableLayerFolderPath`
 
-The legacy hive folder with the writable layer
+The legacy hive folder with the writable layer.
 
 `layerData`
 
-JSON document of [layerData](./../SchemaReference.md#LayerData) providing the locations of the antecedent layers that are used by teh writable layer
+JSON document of [layerData](./../SchemaReference.md#LayerData) providing the locations of the antecedent layers that are used by teh writable layer.
 
 `options`
 
-Optional JSON document specifying the options for how to initialize the sandbox (e.g. which filesystem paths should be pre-expanded in the sandbox)
+Optional JSON document specifying the options for how to initialize the sandbox (e.g. which filesystem paths should be pre-expanded in the sandbox).
 
 ## Return Values
 

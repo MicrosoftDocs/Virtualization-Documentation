@@ -2,7 +2,7 @@
 
 ## Description
 
-This function returns properties of the Host Compute System, see [sample code](./ServiceSample.md#GetServiceProperties)
+This function returns properties of the Host Compute System, see [sample code](./ServiceSample.md#GetServiceProperties).
 
 ## Syntax
 
@@ -18,11 +18,11 @@ HcsGetServiceProperties(
 
 `propertyQuery`
 
-Optional JSON document of [Service_PropertyQuery](./../SchemaReference.md#Service_PropertyQuery) specifying the properties to query
+Optional JSON document of [Service_PropertyQuery](./../SchemaReference.md#Service_PropertyQuery) specifying the properties to query.
 
 `result`
 
-Receives a JSON document of [ServiceProperties](./../SchemaReference.md#ServiceProperties) with the requested properties
+Receives a JSON document of [ServiceProperties](./../SchemaReference.md#ServiceProperties) with the requested properties.
 
 ## Return Values
 

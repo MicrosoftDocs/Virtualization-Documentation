@@ -2,7 +2,7 @@
 
 ## Description
 
-Resumes the execution of a compute system, see [sample code](./ComputeSystemSample.md#PauseResumeCS)
+Resumes the execution of a compute system, see [sample code](./ComputeSystemSample.md#PauseResumeCS).
 
 ## Syntax
 
@@ -19,11 +19,11 @@ HcsResumeComputeSystem(
 
 `computeSystem`
 
-The handle to the compute system to resume
+The handle to the compute system to resume.
 
 `operation`
 
-The handle to the operation that tracks the resume operation
+The handle to the operation that tracks the resume operation.
 
 `options`
 

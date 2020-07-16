@@ -2,7 +2,7 @@
 
 ## Description
 
-Modifies settings of a compute system, see [sample code](./ComputeSystemSample.md#ModifyVM)
+Modifies settings of a compute system, see [sample code](./ComputeSystemSample.md#ModifyVM).
 
 ## Syntax
 
@@ -20,19 +20,19 @@ HcsModifyComputeSystem(
 
 `computeSystem`
 
-Handle the compute system to modify
+Handle the compute system to modify.
 
 `operation`
 
-Handle to the operation that tracks the modify operation
+Handle to the operation that tracks the modify operation.
 
 `configuration`
 
-JSON document of [ModifySettingRequest](./../SchemaReference.md#ModifySettingRequest) specifying the settings to modify
+JSON document of [ModifySettingRequest](./../SchemaReference.md#ModifySettingRequest) specifying the settings to modify.
 
 `identity`
 
-Optional handle to an access token that is used when applying the settings
+Optional handle to an access token that is used when applying the settings.
 
 ## Return Values
 

@@ -2,7 +2,7 @@
 
 ## Description
 
-Opens a handle to an existing compute system, see [sample code](./ComputeSystemSample.md#OpenGetPropVM)
+Opens a handle to an existing compute system, see [sample code](./ComputeSystemSample.md#OpenGetPropVM).
 
 ## Syntax
 
@@ -19,7 +19,7 @@ HcsOpenComputeSystem(
 
 `id`
 
-Unique Id identifying the compute system
+Unique Id identifying the compute system.
 
 `requestedAccess`
 
@@ -27,7 +27,7 @@ Reserved for future use, must be `GENERIC_ALL`.
 
 `computeSystem`
 
-Receives a handle to the compute system. It is the responsibility of the caller to release the handle using [HcsCloseComputeSystem](./HcsCloseComputeSystem.md) once it is no longer in use
+Receives a handle to the compute system. It is the responsibility of the caller to release the handle using [HcsCloseComputeSystem](./HcsCloseComputeSystem.md) once it is no longer in use.
 
 ## Return Values
 

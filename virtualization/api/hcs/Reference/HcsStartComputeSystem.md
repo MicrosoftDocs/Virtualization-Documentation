@@ -2,7 +2,7 @@
 
 ## Description
 
-Starts a compute system, see [sample code](./ComputeSystemSample.md#OpenGetPropVM)
+Starts a compute system, see [sample code](./ComputeSystemSample.md#OpenGetPropVM).
 
 ## Syntax
 
@@ -19,11 +19,11 @@ HcsStartComputeSystem(
 
 `computeSystem`
 
-The handle to the compute system to start
+The handle to the compute system to start.
 
 `operation`
 
-The handle to the operation that tracks the start operation
+The handle to the operation that tracks the start operation.
 
 `options`
 

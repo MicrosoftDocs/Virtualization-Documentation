@@ -2,7 +2,7 @@
 
 ## Description
 
-Returns the handle to the process associated with an operation
+Returns the handle to the process associated with an operation.
 
 ## Syntax
 
@@ -17,11 +17,11 @@ HcsGetProcessFromOperation(
 ## Parameters
 
 `operation`
-The handle to an active operation
+The handle to an active operation.
 
 ## Return Values
 
-If the function succeeds, the return value is `HCS_PROCESS`
+If the function succeeds, the return value is `HCS_PROCESS`.
 
 ## Requirements
 

@@ -18,11 +18,11 @@ HcsRevokeVmAccess(
 
 `vmId`
 
-Unique Id of the VM's compute system
+Unique Id of the VM's compute system.
 
 `filePath`
 
-Path to teh file for which to update the ACL
+Path to teh file for which to update the ACL.
 
 ## Return Values
 

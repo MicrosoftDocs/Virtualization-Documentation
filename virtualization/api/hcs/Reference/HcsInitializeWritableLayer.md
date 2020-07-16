@@ -19,11 +19,11 @@ HcsInitializeWritableLayer(
 
 `writableLayerPath`
 
-Full path to the root directory of the writable layer
+Full path to the root directory of the writable layer.
 
 `layerData`
 
-JSON document providing the locations of the antecedent layers that are used by teh writable layer
+JSON document providing the locations of the antecedent layers that are used by teh writable layer.
 
 `options`
 

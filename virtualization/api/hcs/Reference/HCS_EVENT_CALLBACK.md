@@ -2,7 +2,7 @@
 
 ## Description
 
-Function type for compute system event callbacks
+Function type for compute system event callbacks.
 
 ## Syntax
 
@@ -17,11 +17,11 @@ typedef void (CALLBACK *HCS_EVENT_CALLBACK)(
 
 `event`
 
-Handle to the pointer of `HCS_EVENT`
+Handle to the pointer of `HCS_EVENT`.
 
 `context`
 
-Handle for context of callback
+Handle for context of callback.
 
 ## Requirements
 
