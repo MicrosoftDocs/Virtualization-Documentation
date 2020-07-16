@@ -1,16 +1,16 @@
 # Host Compute System API Reference
 
-The following section contains the definitions of the host Compute System APIs. The DLL exports a set of C-style Windows API functions, using JSON schema as configuration. 
+The following section contains the definitions of the host Compute System APIs. The DLL exports a set of C-style Windows API functions, using JSON schema as configuration.
 
 
 ## Data types
 
 |Type|Description|
 |---|---|
-|[HRESULT](./HCSHResult.md)|The return value of HCS API|
+|[HRESULT](./HCSHResult.md)|Common HCS HRESULT values|
 |[HCS_EVENT_TYPE](./HCS_EVENT_TYPE.md)|Events indicated to callbacks registered by [HcsSetComputeSystemCallback](./HcsSetComputeSystemCallback.md) or [HcsSetProcessCallback](./HcsSetProcessCallback.md)|
 |[HCS_EVENT_OPTIONS](./HCS_EVENT_OPTIONS.md)|Options for an event callback registration|
-|[HCS_OPERATION_TYPE](./HCS_OPERATION_TYPE.md)|Type of an operation used in the functions that invoke the operation|
+|[HCS_OPERATION_TYPE](./HCS_OPERATION_TYPE.md)|Operation type assigned to a valid hcs operation|
 |[HCS_PROCESS_INFORMATION](./HCS_PROCESS_INFORMATION.md)|Struct containing information about a process created by [HcsCreateProcess](./HcsCreateProcess.md)|
 
 ## Handle types
@@ -20,37 +20,36 @@ The following section contains the definitions of the host Compute System APIs. 
 |HCS_SYSTEM|Handle to a compute system|
 |HCS_PROCESS|Handle to a process running in a compute system|
 |HCS_OPERATION|Handle to an operation on a compute system|
-|HCS_CALLBACK|Handle to a callback registered on a compute system or process handle|
+|HCS_CALLBACK|Handle to a callback registered on a compute system or process|
 
 ## Function types
 
 |Type|Description|
 |---|---|
-|[HCS_OPERATION_COMPLETION](./HCS_OPERATION_COMPLETION.md)|the completion callback of an operation|
-|[HCS_EVENT_CALLBACK](./HCS_EVENT_CALLBACK.md)|compute system event callbacks|
-
-
-###
+|[HCS_OPERATION_COMPLETION](./HCS_OPERATION_COMPLETION.md)|The completion callback of an hcs operation|
+|[HCS_EVENT_CALLBACK](./HCS_EVENT_CALLBACK.md)|Compute system events callback|
 
 ## Operations
+
 |Function|Description|
 |---|---|
 |[HcsCreateOperation](./HcsCreateOperation.md)|Create a new operation|
 |[HcsCloseOperation](./HcsCloseOperation.md)|Close an operation|
 |[HcsGetOperationContext](./HcsGetOperationContext.md)|Get the context pointer of an operation|
 |[HcsSetOperationContext](./HcsSetOperationContext.md)|Set the context pointer on an operation|
-|[HcsGetComputeSystemFromOperation](./HcsGetComputeSystemFromOperation.md)|Get the compute system associated with operation|
+|[HcsGetComputeSystemFromOperation](./HcsGetComputeSystemFromOperation.md)|Get the compute system handle associated with operation|
 |[HcsGetProcessFromOperation](./HcsGetProcessFromOperation.md)|Return the handle to the process associated with an operation|
 |[HcsGetOperationType](./HcsGetOperationType.md)|Get the type of the operation|
 |[HcsGetOperationId](./HcsGetOperationId.md)|Get the id of the operation|
 |[HcsGetOperationResult](./HcsGetOperationResult.md)|Get the result of the operation|
 |[HcsGetOperationResultAndProcessInfo](./HcsGetOperationResultAndProcessInfo.md)|Return the result of an operation|
-|[HcsWaitForOperationResult](./HcsWaitForOperationResult.md)| Wait for the completion of the create operation
-|[HcsWaitForOperationResultAndProcessInfo](./HcsWaitForOperationResultAndProcessInfo.md)| Wait for the completion of the create operation and returns the result
-|[HcsSetOperationCallback](./HcsSetOperationCallback.md)|Set the callbck that is invoked on completion of an operation|
+|[HcsWaitForOperationResult](./HcsWaitForOperationResult.md)| Wait for the completion of the create operation|
+|[HcsWaitForOperationResultAndProcessInfo](./HcsWaitForOperationResultAndProcessInfo.md)|Wait for the completion of the create operation and returns both the result and process info|
+|[HcsSetOperationCallback](./HcsSetOperationCallback.md)|Set the callback that is invoked on completion of an operation|
 |[HcsCancelOperation](./HcsCancelOperation.md)|Cancel the operation|
 
 ## Compute System Operations
+
 |Function|Description|
 |---|---|
 |[HcsCreateComputeSystem](./HcsCreateComputeSystem.md)|Create a new compute system|
@@ -63,7 +62,7 @@ The following section contains the definitions of the host Compute System APIs. 
 |[HcsPauseComputeSystem](./HcsPauseComputeSystem.md)|Pause the execution of a compute system|
 |[HcsResumeComputeSystem](./HcsResumeComputeSystem.md)|Resume the execution of a compute system|
 |[HcsSaveComputeSystem](./HcsSaveComputeSystem.md)|Save the state of a compute system|
-|[HcsGetComputeSystemProperties](./HcsGetComputeSystemProperties.md)| Query properties of a compute system|
+|[HcsGetComputeSystemProperties](./HcsGetComputeSystemProperties.md)|Query properties of a compute system|
 |[HcsModifyComputeSystem](./HcsModifyComputeSystem.md)|Modify setting of a compute system|
 |[HcsSetComputeSystemCallback](./HcsSetComputeSystemCallback.md)|Register a callback function to receive notifications for the compute system|
 |[HcsEnumerateComputeSystems](./HcsEnumerateComputeSystems.md)|Enumerates existing compute systems|
@@ -125,4 +124,3 @@ The following functions allow applications to create and manage the file system 
 |[HcsDetachLayerStorageFilter](./HcsDetachLayerStorageFilter.md)|Detaches the layer storage filter from a writable container layer|
 |[HcsFormatWritableLayerVhd](./HcsFormatWritableLayerVhd.md)|Formats a virtual disk for the use as a writable container layer|
 |[HcsGetLayerVhdMountPath](./HcsGetLayerVhdMountPath.md)| Returns the volume path for a virtual disk of a writable container layer|
-|   |   |

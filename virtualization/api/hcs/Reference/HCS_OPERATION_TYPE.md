@@ -4,6 +4,9 @@
 
 Defines the type of an operation, which is used as return value in [HcsGetOperationType](./HcsGetOperationType.md).
 
+
+The operation type is determined by the called HCS API that leverages an hcs operation for asynchronous tracking.
+
 ## Syntax
 
 ```cpp
