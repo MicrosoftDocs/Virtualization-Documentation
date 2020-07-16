@@ -2,7 +2,7 @@
 
 ## Description
 
-Enumerates existing compute systems, see [sample code](./ComputeSystemSample.md#EnumCS)
+Enumerates existing compute systems, see [sample code](./ComputeSystemSample.md#EnumCS).
 
 ## Syntax
 
@@ -12,26 +12,29 @@ HcsEnumerateComputeSystems(
     _In_opt_ PCWSTR        query,
     _In_     HCS_OPERATION operation
     );
-
 ```
 
 ## Parameters
 
 `query`
 
-Optional JSON document of [Properties](./../SchemaReference.md#Properties) specifying a query for specific compute systems
+Optional JSON document of [SystemQuery](./../SchemaReference.md#SystemQuery) specifying a query for specific compute systems.
 
 `operation`
 
-The handle to the operation that tracks the enumerate operation
+The handle to the operation that tracks the enumerate operation.
 
 ## Return Values
 
 The function returns [HRESULT](./HCSHResult.md), refer to [hcs operation async model](./../AsyncModel.md#HcsOperationResult).
 
+## Remarks
+
+On success, the result document returned by the hcs operation is a JSON document representing an array of compute system [Properties](./../SchemaReference.md#Properties).
+
 ## Requirements
 
-|Parameter     |Description|
+|Parameter|Description|
 |---|---|
 | **Minimum supported client** | Windows 10, version 1809 |
 | **Minimum supported server** | Windows Server 2019 |

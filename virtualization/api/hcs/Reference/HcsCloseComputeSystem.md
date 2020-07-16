@@ -11,7 +11,6 @@ void WINAPI
 HcsCloseComputeSystem(
     _In_ HCS_SYSTEM computeSystem
     );
-
 ```
 
 ## Parameters
@@ -21,11 +20,11 @@ The handle to the compute system.
 
 ## Return Values
 
-None
+None.
 
 ## Requirements
 
-|Parameter     |Description|
+|Parameter|Description|
 |---|---|
 | **Minimum supported client** | Windows 10, version 1809 |
 | **Minimum supported server** | Windows Server 2019 |

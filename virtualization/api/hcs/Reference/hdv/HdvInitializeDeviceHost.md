@@ -15,7 +15,7 @@ HdvInitializeDeviceHost(
 
 ## Parameters
 
-`ComputeSystem` 
+`ComputeSystem`
 
 Handle to the compute system of the VM in which the device is used. The VM’s configuration must indicate that an external device host for the VM will be present.
 
@@ -31,11 +31,11 @@ If the function fails, the return value is an  `HRESULT` error code.
 
 ## Requirements
 
-|Parameter     |Description|
-|---|---|---|---|---|---|---|---| 
+|Parameter|Description|
+|---|---|---|---|---|---|---|---|
 | **Minimum supported client** | Windows 10, version 1607 |
 | **Minimum supported server** | Windows Server 2016 |
 | **Target Platform** | Windows |
 | **Library** | ComputeCore.ext |
 | **Dll** | ComputeCore.ext |
-|    |    | 
+|    |    |

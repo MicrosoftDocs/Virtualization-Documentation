@@ -15,7 +15,7 @@ HdvTeardownDeviceHost(
 
 ## Parameters
 
-|Parameter     |Description|
+|Parameter|Description|
 |---|---|---|---|---|---|---|---|
 |`DeviceHost` |Handle to the device host to tear down.|
 |    |    |
@@ -30,7 +30,7 @@ HdvTeardownDeviceHost(
 
 ## Requirements
 
-|Parameter     |Description|
+|Parameter|Description|
 |---|---|---|---|---|---|---|---|
 | **Minimum supported client** | Windows 10, version 1607 |
 | **Minimum supported server** | Windows Server 2016 |

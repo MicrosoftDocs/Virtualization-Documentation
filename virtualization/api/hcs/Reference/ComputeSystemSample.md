@@ -38,7 +38,7 @@ using unique_hcs_system = wil::unique_any<HCS_SYSTEM, decltype(&HcsCloseComputeS
                     "Backing": "Virtual",
                     "SizeInMB": 2048
                 },
-                "Processor": { 
+                "Processor": {
                     "Count": 2
                 }
             },
@@ -100,7 +100,7 @@ using unique_hcs_system = wil::unique_any<HCS_SYSTEM, decltype(&HcsCloseComputeS
 
 On scope exit, the operation will be properly cleaned up, and the system handle (HCS_SYSTEM handle) will be close using HcsCloseComputeSystem.
 Because the HCS VM has already been created, it will still be running even after closing the handle and even after the current process exits.
-If you still want to access/modify/query the compute system after this function/process exists, you can always get a new handle to the system 
+If you still want to access/modify/query the compute system after this function/process exists, you can always get a new handle to the system
 via ::HcsOpenComputeSystem (assuming the system is still running/created and hasn't been removed)
 
 ```cpp
@@ -146,7 +146,7 @@ If there is duplicate shutdown or terminate for same compute system, the return 
     THROW_IF_FAILED_MSG(HcsWaitForOperationResult(shutdownOperation.get(), INFINITE, &resultDoc),
         "ResultDoc: %ws", resultDoc.get());
 
-    // Similar for terminate    
+    // Similar for terminate
     unique_hcs_operation terminateOperation(HcsCreateOperation(nullptr, nullptr));
     THROW_IF_FAILED(HcsTerminateComputeSystem(system.get(), terminateOperation.get(), nullptr));
 
@@ -161,7 +161,7 @@ If there is duplicate shutdown or terminate for same compute system, the return 
     unique_hcs_operation enumOperation(HcsCreateOperation(nullptr, nullptr));
     THROW_IF_FAILED(HcsEnumerateComputeSystems(nullptr, enumOperation.get()));
 
-    // print out all the compute system in JSON string 
+    // print out all the compute system in JSON string
     wil::unique_hlocal_string Enumresult;
     THROW_IF_FAILED(HcsWaitForOperationResult(enumOperation.get(), INFINITE, &Enumresult));
     std::wcout << Enumresult.get() << std::endl;
@@ -249,7 +249,3 @@ The example shows to add virtual SMB layer
     THROW_IF_FAILED_MSG(HcsWaitForOperationResult(modifyOperation.get(), INFINITE, &resultDoc),
         "ResultDoc: %ws", resultDoc.get());
 ```
-
-<a name = "SetCSCallback"></a>
-## Set the compute system callback
-

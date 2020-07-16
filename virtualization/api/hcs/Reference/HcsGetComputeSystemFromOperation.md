@@ -2,7 +2,7 @@
 
 ## Description
 
-Get the compute system associated with operation
+Get the compute system associated with operation.
 
 ## Syntax
 
@@ -18,17 +18,15 @@ HcsGetComputeSystemFromOperation(
 
 `operation`
 
-The handle to an active operation
+The handle to an active operation.
 
 ## Return Values
 
-`HCS_SYSTEM`
-
-Returns the handle to the compute system used by active operation, returns NULL if the operation is not active
+Returns the `HCS_SYSTEM` handle to the compute system used by active operation, returns `NULL` if the operation is not active.
 
 ## Requirements
 
-|Parameter     |Description|
+|Parameter|Description|
 |---|---|
 | **Minimum supported client** | Windows 10, version 1809 |
 | **Minimum supported server** | Windows Server 2019 |

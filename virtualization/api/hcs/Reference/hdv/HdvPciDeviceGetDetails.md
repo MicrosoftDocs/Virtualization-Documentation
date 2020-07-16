@@ -16,7 +16,7 @@ typedef HRESULT (CALLBACK *HDV_PCI_DEVICE_GET_DETAILS)(
 
 ## Parameters
 
-|Parameter     |Description|
+|Parameter|Description|
 |---|---|---|---|---|---|---|---|
 |`DeviceContext` |Context pointer that was supplied to HdvCreateDeviceInstance|
 |`PnpId` |Receives the vendor / device ID / ... information about the device|
@@ -34,7 +34,7 @@ typedef HRESULT (CALLBACK *HDV_PCI_DEVICE_GET_DETAILS)(
 
 ## Requirements
 
-|Parameter     |Description|
+|Parameter|Description|
 |---|---|---|---|---|---|---|---|
 | **Minimum supported client** | Windows 10, version 1607 |
 | **Minimum supported server** | Windows Server 2016 |

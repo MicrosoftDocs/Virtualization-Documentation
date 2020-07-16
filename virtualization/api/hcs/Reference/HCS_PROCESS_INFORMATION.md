@@ -9,11 +9,11 @@ Struct containing information about a process created by  [HcsCreateProcess](./H
 ```cpp
 typedef struct
 {
-    DWORD ProcessId;  
+    DWORD ProcessId;
     DWORD Reserved;
-    HANDLE StdInput; 
-    HANDLE StdOutput; 
-    HANDLE StdError; 
+    HANDLE StdInput;
+    HANDLE StdOutput;
+    HANDLE StdError;
 } HCS_PROCESS_INFORMATION;
 ```
 
@@ -39,7 +39,7 @@ If created, standard error handle of the process
 
 ## Requirements
 
-|Parameter     |Description|
+|Parameter|Description|
 |---|---|
 | **Minimum supported client** | Windows 10, version 1809 |
 | **Minimum supported server** | Windows Server 2019 |

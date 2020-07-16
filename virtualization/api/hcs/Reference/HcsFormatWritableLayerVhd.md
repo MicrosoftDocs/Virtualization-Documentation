@@ -2,7 +2,7 @@
 
 ## Description
 
-This function creates and formats a partition that is intended to be used as a writable layer for a container
+This function creates and formats a partition that is intended to be used as a writable layer for a container.
 
 ## Syntax
 
@@ -17,15 +17,15 @@ HcsFormatWritableLayerVhd(
 
 `vhdHandle`
 
-The handle to a VHD
+The handle to an unmounted virtual hard disk.
 
 ## Return Values
 
-The function returns [HRESULT](./HCSHResult.md), refer to [hcs operation async model](./../AsyncModel.md#HcsOperationResult).
+The function returns [HRESULT](./HCSHResult.md).
 
 ## Requirements
 
-|Parameter     |Description|
+|Parameter|Description|
 |---|---|
 | **Minimum supported client** | Windows 10, version 1809 |
 | **Minimum supported server** | Windows Server 2019 |

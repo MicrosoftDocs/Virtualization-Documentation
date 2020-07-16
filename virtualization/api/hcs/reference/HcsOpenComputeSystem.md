@@ -23,7 +23,7 @@ Unique Id identifying the compute system
 
 `requestedAccess`
 
-Specifies the [required access](https://docs.microsoft.com/en-us/windows/win32/secauthz/generic-access-rights) to the compute system
+Reserved for future use, must be `GENERIC_ALL`.
 
 `computeSystem`
 
@@ -31,11 +31,11 @@ Receives a handle to the compute system. It is the responsibility of the caller 
 
 ## Return Values
 
-The function returns [HRESULT](./HCSHResult.md), refer to [hcs operation async model](./../AsyncModel.md#HcsOperationResult).
+The function returns [HRESULT](./HCSHResult.md).
 
 ## Requirements
 
-|Parameter     |Description|
+|Parameter|Description|
 |---|---|
 | **Minimum supported client** | Windows 10, version 1809 |
 | **Minimum supported server** | Windows Server 2019 |

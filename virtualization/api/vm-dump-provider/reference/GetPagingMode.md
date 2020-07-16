@@ -1,18 +1,18 @@
 # GetPagingMode function
 
-Queries for the current Paging Mode in use by the virtual processor at the time the 
-saved state file was generated. 
+Queries for the current Paging Mode in use by the virtual processor at the time the
+saved state file was generated.
 
 ## Syntax
 
 ```C
-HRESULT 
-WINAPI 
-GetPagingMode( 
-    _In_    VM_SAVED_STATE_DUMP_HANDLE      VmSavedStateDumpHandle, 
-    _In_    UINT32                          VpId, 
-    _Out_   PAGING_MODE*                    PagingMode 
-    ); 
+HRESULT
+WINAPI
+GetPagingMode(
+    _In_    VM_SAVED_STATE_DUMP_HANDLE      VmSavedStateDumpHandle,
+    _In_    UINT32                          VpId,
+    _Out_   PAGING_MODE*                    PagingMode
+    );
 ```
 
 ## Parameters
@@ -35,11 +35,11 @@ If the operation completes successfully, the return value is `S_OK`.
 
 ## Requirements
 
-|Parameter     |Description|
-|---|---|---|---|---|---|---|---| 
+|Parameter|Description|
+|---|---|---|---|---|---|---|---|
 | **Minimum supported client** | Windows 10, version 1607 |
 | **Minimum supported server** | Windows Server 2016 |
 | **Target Platform** | Windows |
 | **Library** | ComputeCore.ext |
 | **Dll** | ComputeCore.ext |
-|    |    | 
+|    |    |

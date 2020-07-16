@@ -14,7 +14,7 @@ typedef HRESULT (CALLBACK *HDV_PCI_DEVICE_INITIALIZE)(
 
 ## Parameters
 
-|Parameter     |Description|
+|Parameter|Description|
 |---|---|---|---|---|---|---|---|
 |`DeviceContext` |Context pointer that was supplied to HdvCreateDeviceInstance|
 |    |    |
@@ -29,7 +29,7 @@ typedef HRESULT (CALLBACK *HDV_PCI_DEVICE_INITIALIZE)(
 
 ## Requirements
 
-|Parameter     |Description|
+|Parameter|Description|
 |---|---|---|---|---|---|---|---|
 | **Minimum supported client** | Windows 10, version 1607 |
 | **Minimum supported server** | Windows Server 2016 |

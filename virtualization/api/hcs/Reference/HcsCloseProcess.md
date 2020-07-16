@@ -2,7 +2,7 @@
 
 ## Description
 
-Closes the handle to a process in a compute system
+Closes the handle to a process in a compute system.
 
 ## Syntax
 
@@ -17,14 +17,15 @@ HcsCloseProcess(
 
 `process`
 
-Process handle to close
+Process handle to close.
 
 ## Return Values
 
-None
+None.
+
 ## Requirements
 
-|Parameter     |Description|
+|Parameter|Description|
 |---|---|
 | **Minimum supported client** | Windows 10, version 1809 |
 | **Minimum supported server** | Windows Server 2019 |

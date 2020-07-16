@@ -18,17 +18,15 @@ HcsGetOperationContext(
 
 `operation`
 
-The handle to an operation
+The handle to an operation.
 
 ## Return Values
 
-`void*`
-
-Returns context pointer stored in the operation
+Returns the context pointer stored in the operation as a `void*` type.
 
 ## Requirements
 
-|Parameter     |Description|
+|Parameter|Description|
 |---|---|
 | **Minimum supported client** | Windows 10, version 1809 |
 | **Minimum supported server** | Windows Server 2019 |

@@ -2,7 +2,7 @@
 
 ## Description
 
-Starts a process in a compute system, see [sample code](./ProcessSample.md#CreateProcess)
+Starts a process in a compute system, see [sample code](./ProcessSample.md#CreateProcess).
 
 ## Syntax
 
@@ -21,31 +21,35 @@ HcsCreateProcess(
 
 `computeSystem`
 
-The handle to the compute system in which to start the process
+The handle to the compute system in which to start the process.
 
 `processParameters`
 
-JSON document of [ProcessParameters](./../SchemaReference.md#ProcessParameters) specifying the command line and environment for the process
+JSON document of [ProcessParameters](./../SchemaReference.md#ProcessParameters) specifying the command line and environment for the process.
 
 `operation`
 
-Handle to the operation that tracks the process creation operation
+Handle to the operation that tracks the process creation operation.
 
 `securityDescriptor`
 
-Optional security descriptor specifying the permissions on the compute system process. If not specified, only the caller of the function is granted permissions to perform operations on the compute system process
+Reserved for future use, must be `NULL`.
 
 `process`
 
-Receives the handle to the newly created process
+Receives the `HCS_PROCESS` handle to the newly created process.
 
 ## Return Values
 
 The function returns [HRESULT](./HCSHResult.md), refer to [hcs operation async model](./../AsyncModel.md#HcsOperationResult).
 
+## Remarks
+
+It is recommended for callers to use the [`HcsWaitForOperationResultAndProcessInfo`](./HcsWaitForOperationResultAndProcessInfo.md) or [`HcsGetOperationResultAndProcessInfo`](./HcsGetOperationResultAndProcessInfo.md) function calls to ensure you can get a reference to the process information. This is important when the process has created standard Input/Output/Error handles. You can still get this through a call to [`HcsGetProcessInfo`](./HcsGetProcessInfo.md).
+
 ## Requirements
 
-|Parameter     |Description|
+|Parameter|Description|
 |---|---|
 | **Minimum supported client** | Windows 10, version 1809 |
 | **Minimum supported server** | Windows Server 2019 |

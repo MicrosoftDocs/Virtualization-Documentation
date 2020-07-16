@@ -1,19 +1,19 @@
 # ReadGuestRawSavedMemory function
 
-Reads raw memory from the saved state file. This function reads raw memory from the saved state file as if it were a flat memory layout, regardless of the guest memory layout. If BytesRead returns something lower than BufferSize, then the end of memory has been reached. 
+Reads raw memory from the saved state file. This function reads raw memory from the saved state file as if it were a flat memory layout, regardless of the guest memory layout. If BytesRead returns something lower than BufferSize, then the end of memory has been reached.
 
 ## Syntax
 
 ```C
-HRESULT 
-WINAPI 
-ReadGuestRawSavedMemory( 
-    _In_        VM_SAVED_STATE_DUMP_HANDLE  VmSavedStateDumpHandle, 
-    _In_        UINT64                      RawSavedMemoryOffset, 
-    _Out_writes_bytes_(BufferSize) LPVOID   Buffer, 
-    _In_        UINT32                      BufferSize, 
-    _Out_opt_   UINT32*                     BytesRead 
-    ); 
+HRESULT
+WINAPI
+ReadGuestRawSavedMemory(
+    _In_        VM_SAVED_STATE_DUMP_HANDLE  VmSavedStateDumpHandle,
+    _In_        UINT64                      RawSavedMemoryOffset,
+    _Out_writes_bytes_(BufferSize) LPVOID   Buffer,
+    _In_        UINT32                      BufferSize,
+    _Out_opt_   UINT32*                     BytesRead
+    );
 ```
 
 ## Parameters
@@ -44,11 +44,11 @@ If the operation completes successfully, the return value is `S_OK`.
 
 ## Requirements
 
-|Parameter     |Description|
-|---|---|---|---|---|---|---|---| 
+|Parameter|Description|
+|---|---|---|---|---|---|---|---|
 | **Minimum supported client** | Windows 10, version 1607 |
 | **Minimum supported server** | Windows Server 2016 |
 | **Target Platform** | Windows |
 | **Library** | ComputeCore.ext |
 | **Dll** | ComputeCore.ext |
-|    |    | 
+|    |    |
