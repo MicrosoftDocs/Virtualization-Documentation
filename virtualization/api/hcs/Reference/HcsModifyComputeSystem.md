@@ -36,7 +36,7 @@ Optional handle to an access token that is used when applying the settings
 
 ## Return Values
 
-The function returns [HRESULT](./HCSHResult.md), refering details in [asnyc model](./../AsyncModel.md#HcsOperationResult)
+The function returns [HRESULT](./HCSHResult.md), refer to [hcs operation async model](./../AsyncModel.md#HcsOperationResult).
 
 
 ## Requirements

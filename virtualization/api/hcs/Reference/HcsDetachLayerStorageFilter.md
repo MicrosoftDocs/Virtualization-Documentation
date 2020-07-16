@@ -21,7 +21,7 @@ Path to the root directory of the layer
 
 ## Return Values
 
-The function returns [HRESULT](./HCSHResult.md), refering details in [asnyc model](./../AsyncModel.md#HcsOperationResult)
+The function returns [HRESULT](./HCSHResult.md), refer to [hcs operation async model](./../AsyncModel.md#HcsOperationResult).
 
 ## Requirements
 
@@ -33,4 +33,3 @@ The function returns [HRESULT](./HCSHResult.md), refering details in [asnyc mode
 | **Header** | ComputeStorage.h |
 | **Library** | ComputeStorage.lib |
 | **Dll** | ComputeStorage.dll |
-

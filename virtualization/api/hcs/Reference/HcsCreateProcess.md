@@ -2,7 +2,7 @@
 
 ## Description
 
-Starts a process in a compute system, see [sample code](./ProcessSample.md#CreateProcess) 
+Starts a process in a compute system, see [sample code](./ProcessSample.md#CreateProcess)
 
 ## Syntax
 
@@ -25,7 +25,7 @@ The handle to the compute system in which to start the process
 
 `processParameters`
 
-JSON document of [ProcessParameters](./../SchemaReference.md#ProcessParameters) specifying the command line and environment for the process 
+JSON document of [ProcessParameters](./../SchemaReference.md#ProcessParameters) specifying the command line and environment for the process
 
 `operation`
 
@@ -41,7 +41,7 @@ Receives the handle to the newly created process
 
 ## Return Values
 
-The function returns [HRESULT](./HCSHResult.md), refering details in [asnyc model](./../AsyncModel.md#HcsOperationResult)
+The function returns [HRESULT](./HCSHResult.md), refer to [hcs operation async model](./../AsyncModel.md#HcsOperationResult).
 
 ## Requirements
 

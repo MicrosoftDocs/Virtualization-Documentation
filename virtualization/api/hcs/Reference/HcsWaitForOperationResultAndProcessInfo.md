@@ -37,7 +37,7 @@ If the operation succeeded, receives the result document of the operation. On fa
 
 ## Return Values
 
-The function returns [HRESULT](./HCSHResult.md), refering details in [asnyc model](./../AsyncModel.md#HcsOperationResult)
+The function returns [HRESULT](./HCSHResult.md), refer to [hcs operation async model](./../AsyncModel.md#HcsOperationResult).
 
 ## Requirements
 
