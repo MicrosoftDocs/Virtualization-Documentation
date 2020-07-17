@@ -2,7 +2,7 @@
 
 ## Description
 
-Gets the result of the operation and optionally a result document.
+Gets the result of the operation used to track an HCS function; optionally returns a JSON document associated to such tracked operation.
 
 ## Syntax
 
@@ -22,7 +22,7 @@ The handle to an active operation.
 
 `resultDocument`
 
-If the operation succeeded, receives the result document of the operation. The result document is dependent on the operation that was running. Not all functions that are tracked with operations return a result document on success. Refer to the remarks on the documentation for the HCS functions that use hcs operations for asynchronous tracking.
+If the operation finished, regardless of success or failure, receives the result document of the operation. The returned result document's JSON document is dependent on the HCS function that was being tracked by this operation. Not all functions that are tracked with operations return a result document. Refer to the remarks on the documentation for the HCS functions that use hcs operations for asynchronous tracking.
 
 
 On failure, it can optionally receive an error JSON document represented by a [ResultError](./../SchemaReference.md#ResultError); it's not guaranteed to be always returned and depends on the function call the operation was tracking.
@@ -30,16 +30,15 @@ On failure, it can optionally receive an error JSON document represented by a [R
 
 The caller is responsible for releasing the returned string using [`LocalFree`](https://docs.microsoft.com/en-us/windows/win32/api/winbase/nf-winbase-localfree).
 
-
-Refer to [async model documentation](./../AsyncModel.md) for more details.
-
 ## Return Values
 
-The function returns [HRESULT](./HCSHResult.md).
+|Value|Description|
+|---|---|
+|`S_OK`|The operation has completed successfully.|
+|`HCS_E_OPERATION_NOT_STARTED`|The operation has not been started. This is expected when the operation has not been used yet in an HCS function that expects an `HCS_OPERATION` handle.|
+|`HCS_E_OPERATION_PENDING`|The operation is still in progress and hasn't been completed, regardless of success or failure.|
+|Any other failure [`HRESULT`](./HCSHResult.md) value|The operation completed with failures. The returned `HRESULT` is dependent on the HCS function thas was being tracked.|
 
-## Remarks
-
-When the operation doesn't have a callback set, this function can be used to poll for the result. As long as the operation is valid, running and not completed this will return `HCS_E_OPERATION_PENDING`.
 
 ## Requirements
 
