@@ -2,7 +2,7 @@
 
 ## Description
 
-Returns properties of a compute system, see [sample code](./ComputeSystemSample.md#OpenGetPropVM).
+Returns properties of a compute system, see [sample code](./tutorial.md) for simple example.
 
 ## Syntax
 

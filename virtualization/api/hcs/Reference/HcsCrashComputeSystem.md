@@ -31,7 +31,11 @@ Optional JSON document [CrashOptions](./../SchemaReference.md#CrashOptions) spec
 
 ## Return Values
 
-The function returns [HRESULT](./HCSHResult.md), refer to [hcs operation async model](./../AsyncModel.md#HcsOperationResult).
+The function returns [HRESULT](./HCSHResult.md)
+
+If the return value is `S_OK`, it means the operation starts successfully. It needs 
+to use [`HcsWaitForOperationResult`](./HcsWaitForOperationResult.md) to show operation result.
+
 
 ## Requirements
 

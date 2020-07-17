@@ -2,7 +2,7 @@
 
 ## Description
 
-Registers a callback to receive notifications for the compute system, see [sample code](./ServiceSample.md#SubmitReport)
+Registers a callback to receive notifications for the compute system, see [sample code](./AsyncModelSample.md#).
 
 ## Syntax
 

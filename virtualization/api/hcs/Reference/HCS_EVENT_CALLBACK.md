@@ -17,7 +17,7 @@ typedef void (CALLBACK *HCS_EVENT_CALLBACK)(
 
 `event`
 
-Handle to the pointer of `HCS_EVENT`.
+Handle to the pointer of [`HCS_EVENT`](./HCS_EVENT.md).
 
 `context`
 

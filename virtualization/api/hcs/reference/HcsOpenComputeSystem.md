@@ -2,7 +2,7 @@
 
 ## Description
 
-Opens a handle to an existing compute system, see [sample code](./ComputeSystemSample.md#OpenGetPropVM).
+Opens a handle to an existing compute system, see [sample code](./ComputeSystemSample.md#OpenVM).
 
 ## Syntax
 

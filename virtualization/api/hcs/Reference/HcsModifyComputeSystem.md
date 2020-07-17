@@ -2,7 +2,7 @@
 
 ## Description
 
-Modifies settings of a compute system, see [sample code](./ComputeSystemSample.md#ModifyVM).
+Modifies settings of a compute system, see [sample code](./tutorial.md) for simple example.
 
 ## Syntax
 
