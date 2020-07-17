@@ -18,8 +18,8 @@ typedef enum HCS_EVENT_OPTIONS
 
 |||
 |---|---|
-|HcsEventOptionNone|No callback|
-|HcsEventOptionEnableOperationCallbacks|Enable operation call back|
+|`HcsEventOptionNone`|No special event options.|
+|`HcsEventOptionEnableOperationCallbacks`|Enables `HcsEventOperationCallback` [event type](./HCS_EVENT_TYPE.md) in the callback supplied in [HcsSetComputeSystemCallback](./HcsSetComputeSystemCallback.md) and [HcsSetProcessCallback](./HcsSetProcessCallback.md). This allows for a compute system handle or compute process handle to get notified when the operation used to track the function call completes. When event operation completion callbacks are enabled, hcs operations with callbacks are not allowed when calling HCS functions that require an operation handle. Such function calls will fail with `HCS_E_OPERATION_SYSTEM_CALLBACK_ALREADY_SET`.|
 
 
 ## Requirements

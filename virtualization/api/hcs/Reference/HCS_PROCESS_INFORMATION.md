@@ -2,7 +2,7 @@
 
 ## Description
 
-Struct containing information about a process created by  [HcsCreateProcess](./HcsCreateProcess.md).
+Struct containing information about a process created by [HcsCreateProcess](./HcsCreateProcess.md). This structure can be obtained with [`HcsGetOperationResultAndProcessInfo`](./HcsGetOperationResultAndProcessInfo.md) and [`HcsWaitForOperationResultAndProcessInfo`](./HcsWaitForOperationResultAndProcessInfo.md).
 
 ## Syntax
 

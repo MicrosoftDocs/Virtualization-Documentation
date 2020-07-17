@@ -12,7 +12,6 @@ typedef struct HCS_EVENT
     HCS_EVENT_TYPE Type;
     PCWSTR EventData;
     HCS_OPERATION Operation;
-
 } HCS_EVENT;
 ```
 
@@ -25,11 +24,15 @@ Type of event [`HCS_EVENT_TYPE`](./HCS_EVENT_TYPE.md)
 
 `EventData`
 
-Provides additional data for the event.
+Optionally provides additional data for the event as a JSON document. The following table shows expected documents for specific event types.
+
+|Event Type|JSON Document|
+|---|---|
+|`HcsEventOperationCallback`|Dependent on the operation being tracked. This is equivalent to the result document you can obtain from [`HcsGetOperationResult`](./HcsGetOperationResult.md), [`HcsGetOperationResultAndProcessInfo`](./HcsGetOperationResultAndProcessInfo.md), [`HcsWaitForOperationResult`](./HcsWaitForOperationResult.md) and [`HcsWaitForOperationResultAndProcessInfo`](./HcsWaitForOperationResultAndProcessInfo.md). |
 
 `Operation`
 
-Handle to a completed operation, if `Type` is `HcsEventOperationCallback` as [`HCS_EVENT_TYPE`](./HCS_EVENT_TYPE.md).
+Handle to a completed operation, if `Type` is `HcsEventOperationCallback`. This is only possible when [`HcsSetComputeSystemCallback`](./HcsSetComputeSystemCallback.md) has specified event option `HcsEventOptionEnableOperationCallbacks`.
 
 
 ## Requirements

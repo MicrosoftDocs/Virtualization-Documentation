@@ -24,7 +24,7 @@ The handle to the compute system.
 
 `callbackOptions`
 
-The option for callback, using [HCS_EVENT_OPTIONS](./HCS_EVENT_OPTIONS.md).
+The option for callback, using one from [HCS_EVENT_OPTIONS](./HCS_EVENT_OPTIONS.md).
 
 `context`
 
