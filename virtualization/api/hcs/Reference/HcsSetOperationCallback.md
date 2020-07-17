@@ -27,7 +27,7 @@ Optional pointer to a context that is passed to the callback.
 
 `callback`
 
-The target callback that is invoked on completion of an operation.
+The target [`HCS_OPERATION_COMPLETION`](./HCS_OPERATION_COMPLETION.md) callback that is invoked on completion of an operation.
 
 ## Return Values
 
