@@ -2,7 +2,7 @@
 
 ## Description
 
-Creates a new compute system, see [sample code](./ComputeSystemSample.md#CreateStartVM).
+Creates a new compute system, see [sample code](./tutorial.md) for simple example.
 
 ## Syntax
 
@@ -42,7 +42,12 @@ Receives a handle to the newly created compute system. It is the responsibility 
 
 ## Return Values
 
-The function returns [HRESULT](./HCSHResult.md), refer to [hcs operation async model](./../AsyncModel.md#HcsOperationResult).
+The function returns [HRESULT](./HCSHResult.md).
+
+If the return value is `S_OK`, it means the operation starts successfully. It needs 
+to use [`HcsWaitForOperationResult`](./HcsWaitForOperationResult.md) to show operation result.
+
+If the return value is `HCS_E_OPERATION_PENDING`...
 
 
 

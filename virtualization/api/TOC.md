@@ -139,12 +139,12 @@
 ##### [HcsFormatWritableLayerVhd](./hcs/Reference/HcsFormatWritableLayerVhd.md)
 ##### [HcsGetLayerVhdMountPath](./hcs/Reference/HcsGetLayerVhdMountPath.md)
 ## [JSON Schema Reference](./hcs/SchemaReference.md)
-## [Asynchronous Model](./hcs/AsyncModel.md)
 ## Samples Code
-### [Quick Start](./hcs/Tutorial.md)
+### [Quick Start](./hcs/Reference/Tutorial.md)
 ### [Compute System Operations](./hcs/Reference/ComputeSystemSample.md)
 ### [Host Service Operations](./hcs/Reference/ServiceSample.md)
 ### [Utility Functions for Virtual Machines](./hcs/Reference/UtilityFunctionSample.md)
+### [Asynchronous Model](./hcs/Reference/AsyncModelSample.md)
 
 # VM Saved State Dump Provider API
 ## [Overview](./vm-dump-provider/index.md)

@@ -2,7 +2,7 @@
 
 ## Description
 
-Starts a compute system, see [sample code](./ComputeSystemSample.md#OpenGetPropVM).
+Starts a compute system, see [sample code](./tutorial.md).
 
 ## Syntax
 

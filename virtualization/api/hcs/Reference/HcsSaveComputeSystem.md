@@ -35,7 +35,7 @@ The function returns [HRESULT](./HCSHResult.md), refer to [hcs operation async m
 
 ## Remarks
 
-The compute system cannot be saved if it is still running and the return value of `HcsWaitForOperationResult` will be `HCS_E_INVALID_STATE`
+The compute system cannot be saved if it is still running and the return value of [`HcsWaitForOperationResult`](./HcsWaitForOperationResult.md) will be `HCS_E_INVALID_STATE`
 
 ## Requirements
 
