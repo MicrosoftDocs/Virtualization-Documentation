@@ -18,7 +18,7 @@ HcsCreateOperation(
 
 `callback`
 
-Optional pointer to an [`HCS_OPERATION_COMPLETION`](./HCS_OPERATION_COMPLETION.md) callback to be invoked when the operation completes. Refer to [the async model documentation](./../AsyncModel.md) for details on how to use hcs operations.
+Optional pointer to an [`HCS_OPERATION_COMPLETION`](./HCS_OPERATION_COMPLETION.md) callback to be invoked when the operation completes.
 
 `context`
 
@@ -27,6 +27,10 @@ Optional pointer to a context that is passed to the callback.
 ## Return Values
 
 Returns the `HCS_OPERATION` handle to the newly created operation on success, `NULL` if resources required for the operation couldn't be allocated. It is the responsibility of the caller to release the operation using [`HcsCloseOperation`](./HcsCloseOperation.md) once it is no longer used.
+
+## Remarks
+
+Refer to the [async model sample code](./AsyncModelSample.md) for details on how to use HCS operations.
 
 ## Requirements
 
