@@ -31,10 +31,13 @@ Optional JSON document [CrashOptions](./../SchemaReference.md#CrashOptions) spec
 
 ## Return Values
 
-The function returns [HRESULT](./HCSHResult.md)
+The function returns [HRESULT](./HCSHResult.md).
 
-If the return value is `S_OK`, it means the operation starts successfully. It needs 
-to use [`HcsWaitForOperationResult`](./HcsWaitForOperationResult.md) to show operation result.
+If the return value is `S_OK`, it means the operation started successfully. Callers are expected to get the operation's result using [`HcsWaitForOperationResult`](./HcsWaitForOperationResult.md) or [`HcsGetOperationResult`](./HcsGetOperationResult.md).
+
+| Operation Result Value | Description |
+| -- | -- |
+|||
 
 
 ## Requirements

@@ -31,12 +31,14 @@ Reserved for future use. Must be `NULL`.
 
 ## Return Values
 
-The function returns [HRESULT](./HCSHResult.md), refer to [hcs operation async model](./../AsyncModel.md#HcsOperationResult).
+The function returns [HRESULT](./HCSHResult.md).
 
-## Remarks
+If the return value is `S_OK`, it means the operation started successfully. Callers are expected to get the operation's result using [`HcsWaitForOperationResult`](./HcsWaitForOperationResult.md) or [`HcsGetOperationResult`](./HcsGetOperationResult.md).
 
-If there is duplicate shutdown or terminate for same compute system, the return value of `HcsWaitForOperationResult` will be `HCS_E_SYSTEM_ALREADY_STOPPED`.
-
+| Operation Result Value | Description |
+| -- | -- |
+| `S_OK` | The compute system shut down successfully |
+| `HCS_E_SYSTEM_ALREADY_STOPPED` | The operation failed if there is duplicate shutdown or terminate for same compute system |
 
 ## Requirements
 
