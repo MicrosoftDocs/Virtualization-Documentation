@@ -2,6 +2,8 @@
 
 Here provides a simple example to use HCS API to manage the virtual machine, which includes HcsCreateComputeSystem, HcsStartComputeSystem, HcsGetComputeSystemProperties, HcsModifyComputeSystem and HcsTerminateComputeSystem.
 
+This sample code uses the [Windows Implementation Libraries (WIL)](https://github.com/microsoft/wil) for more ergonomic and modern C++ usage of win32 APIs.
+
 ```cpp
 
 #include <windows.h>
@@ -13,8 +15,6 @@ Here provides a simple example to use HCS API to manage the virtual machine, whi
 #include <computedefs.h>
 #include <computenetwork.h>
 #include <computestorage.h>
-
-#include <hypervdevicevirtualization.h>
 
 #pragma comment(lib, "computecore.lib")
 
@@ -75,7 +75,7 @@ using unique_hcs_system = wil::unique_any<HCS_SYSTEM, decltype(&HcsCloseComputeS
     // After setting up the JSON document, we need to call into the HCS to create
     // the compute system, in this case, an HCS VM.
     // This operation doesn't need callback
-    unique_hcs_operation operation(HcsCreateOperation(nullptr, nullptr)); 
+    unique_hcs_operation operation(HcsCreateOperation(nullptr, nullptr));
     unique_hcs_system system;
     THROW_IF_FAILED(HcsCreateComputeSystem(
         L"Sample", // Unique Id
