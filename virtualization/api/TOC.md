@@ -65,7 +65,7 @@
 ## API Reference
 ### [Overview](./hcs/Reference/APIOverview.md)
 ### Data types
-#### [HRESULT](./hcs/Reference/HCSHResult.md)
+#### [HCS Error Code](./hcs/Reference/HCSHResult.md)
 #### [HCS_OPERATION_TYPE](./hcs/Reference/HCS_OPERATION_TYPE.md)
 #### [HCS_EVENT_TYPE](./hcs/Reference/HCS_EVENT_TYPE.md)
 #### [HCS_EVENT](./hcs/Reference/HCS_EVENT.md)

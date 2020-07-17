@@ -7,7 +7,7 @@ The following section contains the definitions of the host Compute System APIs. 
 
 |Type|Description|
 |---|---|
-|[HRESULT](./HCSHResult.md)|Common HCS HRESULT values|
+|[HCS ERROR CODE](./HCSHResult.md)|Common HCS Error Code|
 |[HCS_EVENT_TYPE](./HCS_EVENT_TYPE.md)|Events indicated to callbacks registered by [HcsSetComputeSystemCallback](./HcsSetComputeSystemCallback.md) or [HcsSetProcessCallback](./HcsSetProcessCallback.md)|
 |[HCS_EVENT](./HCS_EVENT.md)|Provides information about an event that ocurred on a compute system or process.|
 |[HCS_EVENT_OPTIONS](./HCS_EVENT_OPTIONS.md)|Options for an event callback registration|
@@ -23,7 +23,7 @@ The following section contains the definitions of the host Compute System APIs. 
 |HCS_OPERATION|Handle to an operation on a compute system|
 |HCS_CALLBACK|Handle to a callback registered on a compute system or process|
 
-## Function types
+## Callback Function types
 
 |Type|Description|
 |---|---|
