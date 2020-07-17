@@ -26,16 +26,16 @@ typedef enum HCS_EVENT_TYPE
 
 |||
 |---|---|
-|HcsEventInvalid|The event is invalid|
-|HcsEventSystemExited|The notification of HCS_SYSTEM handle for system exited|
-|HcsEventSystemCrashInitiated|The notification of HCS_SYSTEM handle for crash initiated|
-|HcsEventSystemCrashReport|The notification of HCS_SYSTEM handle for crash report|
-|HcsEventSystemRdpEnhancedModeStateChanged|The notification of HCS_SYSTEM handle for Rdp enhanced mode state changed|
-|HcsEventSystemSiloJobCreated|The notification of HCS_SYSTEM handle for Silo container job created|
-|HcsEventSystemGuestConnectionClosed|The notification of HCS_SYSTEM handle for guest connection closed|
-|HcsEventProcessExited|The notification of HCS_PROCESS handle for process exited|
-|HcsEventOperationCallback|The notification of call-back operation|
-|HcsEventServiceDisconnect|The notification of service disconnect|
+|`HcsEventInvalid`|The event is invalid.|
+|`HcsEventSystemExited`|The notification of `HCS_SYSTEM` handle for system exited.|
+|`HcsEventSystemCrashInitiated`|The notification of `HCS_SYSTEM` handle for crash initiated.|
+|`HcsEventSystemCrashReport`|The notification of `HCS_SYSTEM` handle for crash report.|
+|`HcsEventSystemRdpEnhancedModeStateChanged`|The notification of `HCS_SYSTEM` handle for Rdp enhanced mode state changed.|
+|`HcsEventSystemSiloJobCreated`|The notification of `HCS_SYSTEM` handle for Silo container job created.|
+|`HcsEventSystemGuestConnectionClosed`|The notification of `HCS_SYSTEM` handle for guest connection closed.|
+|`HcsEventProcessExited`|The notification of `HCS_PROCESS` handle for process exited.|
+|`HcsEventOperationCallback`|The notification of call-back operation.|
+|`HcsEventServiceDisconnect`|The notification of service disconnect.|
 
 ## Requirements
 
