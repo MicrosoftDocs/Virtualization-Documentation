@@ -1,4 +1,4 @@
-# Hose Service Sample Code
+# Host Service Sample Code
 
 <a name = "GetServiceProperties"></a>
 ## Get the properties of host service

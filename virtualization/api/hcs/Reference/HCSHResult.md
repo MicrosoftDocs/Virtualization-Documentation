@@ -1,6 +1,7 @@
-# HCS HRESULT
+# HCS Error Code
 
 Most of the the HCS functions use `HRESULT` return codes. These return codes can be found in the [Winerror.h](https://docs.microsoft.com/en-us/windows/win32/api/winerror/) header file. The following table shows HCS specific error codes:
+
 
 
 |Name|Description|Value|

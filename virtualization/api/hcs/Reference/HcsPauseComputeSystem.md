@@ -36,6 +36,10 @@ The function returns [HRESULT](./HCSHResult.md), refer to [hcs operation async m
 
 If the return value is `S_OK`, it means the operation started successfully. Callers are expected to get the operation's result using [`HcsWaitForOperationResult`](./HcsWaitForOperationResult.md) or [`HcsGetOperationResult`](./HcsGetOperationResult.md).
 
+## Operation Results
+
+The return value of [`HcsWaitForOperationResult`](./HcsWaitForOperationResult.md) or [`HcsGetOperationResult`](./HcsGetOperationResult.md) based on current operation listed as below.
+
 | Operation Result Value | Description |
 | -- | -- |
 | `S_OK` | The compute system was paused successfully |

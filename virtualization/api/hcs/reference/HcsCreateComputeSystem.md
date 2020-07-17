@@ -46,16 +46,18 @@ The function returns [HRESULT](./HCSHResult.md).
 
 If the return value is `S_OK`, it means the operation started successfully. Callers are expected to get the operation's result using [`HcsWaitForOperationResult`](./HcsWaitForOperationResult.md) or [`HcsGetOperationResult`](./HcsGetOperationResult.md).
 
+
+## Operation Results
+
+The return value of [`HcsWaitForOperationResult`](./HcsWaitForOperationResult.md) or [`HcsGetOperationResult`](./HcsGetOperationResult.md) based on current operation listed as below.
+
 | Operation Result Value | Description |
 | -- | -- |
 | `S_OK` | The compute system was created successfully |
 | `HCS_E_OPERATION_PENDING` | The compute system has not been fully created yet |
-| Other windows `HRESULT` value | If something went wrong when creating the compute system, the return value here will give hints on what could have gone wrong |
+| Other Windows `HRESULT` value | If something went wrong when creating the compute system, the return value here will give hints on what could have gone wrong |
 
-
-## Remarks
-
-If the operation's result is not `S_OK`, then it's possible the result document might contain
+If the operation's result is not `S_OK`, then it's possible the result document might contain the error message.
 
 
 ## Requirements

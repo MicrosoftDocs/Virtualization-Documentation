@@ -30,9 +30,14 @@ The function returns [HRESULT](./HCSHResult.md).
 
 If the return value is `S_OK`, it means the operation started successfully. Callers are expected to get the operation's result using [`HcsWaitForOperationResultAndProcessInfo`](./HcsWaitForOperationResultAndProcessInfo.md) or [`HcsGetOperationResultAndProcessInfo`](./HcsGetOperationResultAndProcessInfo.md).
 
+
+## Operation Results
+
+The return value of [`HcsWaitForOperationResultAndProcessInfo`](./HcsWaitForOperationResultAndProcessInfo.md) or [`HcsGetOperationResultAndProcessInfo`](./HcsGetOperationResultAndProcessInfo.md) based on current operation listed as below.
+
 | Operation Result Value | Description |
 | -- | -- |
-| `S_OK` | The process information queried successfully, the process information is stored in `processInformation`|
+| `S_OK` | The process information queried successfully, the process information is stored as [HCS_PROCESS_INFORMATION](./HCS_PROCESS_INFORMATION.md) in `processInformation`|
 
 
 ## Requirements
