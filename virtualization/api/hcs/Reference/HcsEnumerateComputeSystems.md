@@ -26,11 +26,14 @@ The handle to the operation that tracks the enumerate operation.
 
 ## Return Values
 
-The function returns [HRESULT](./HCSHResult.md), refer to [hcs operation async model](./../AsyncModel.md#HcsOperationResult).
+The function returns [HRESULT](./HCSHResult.md).
 
-## Remarks
+If the return value is `S_OK`, it means the operation started successfully. Callers are expected to get the operation's result using [`HcsWaitForOperationResult`](./HcsWaitForOperationResult.md) or [`HcsGetOperationResult`](./HcsGetOperationResult.md)
 
-On success, the result document returned by the hcs operation is a JSON document representing an array of compute system [Properties](./../SchemaReference.md#Properties).
+| Operation Result Value | Description |
+| -- | -- |
+| `S_OK` | The operation was finished successfully, the result document returned by the hcs operation is a JSON document representing an array of compute system [Properties](./../SchemaReference.md#Properties) |
+
 
 ## Requirements
 

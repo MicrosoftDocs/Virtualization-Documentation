@@ -34,6 +34,12 @@ Optional JSON document of [PauseOptions](./../SchemaReference.md#PauseOptions) s
 
 The function returns [HRESULT](./HCSHResult.md), refer to [hcs operation async model](./../AsyncModel.md#HcsOperationResult).
 
+If the return value is `S_OK`, it means the operation started successfully. Callers are expected to get the operation's result using [`HcsWaitForOperationResult`](./HcsWaitForOperationResult.md) or [`HcsGetOperationResult`](./HcsGetOperationResult.md).
+
+| Operation Result Value | Description |
+| -- | -- |
+| `S_OK` | The compute system was paused successfully |
+
 ## Requirements
 
 |Parameter|Description|

@@ -31,7 +31,14 @@ Optional JSON document of [ProcessStatus](./../SchemaReference.md#ProcessStatus)
 
 ## Return Values
 
-The function returns [HRESULT](./HCSHResult.md), refer to [hcs operation async model](./../AsyncModel.md#HcsOperationResult).
+The function returns [HRESULT](./HCSHResult.md).
+
+If the return value is `S_OK`, it means the operation started successfully. Callers are expected to get the operation's result using [`HcsWaitForOperationResultAndProcessInfo`](./HcsWaitForOperationResultAndProcessInfo.md) or [`HcsGetOperationResultAndProcessInfo`](./HcsGetOperationResultAndProcessInfo.md).
+
+| Operation Result Value | Description |
+| -- | -- |
+| `S_OK` | The process properties queried successfully, the result document returned by the hcs operation is a JSON document representing a process's [ProcessStatus](./../SchemaReference.md#ProcessStatus) |
+
 
 ## Requirements
 

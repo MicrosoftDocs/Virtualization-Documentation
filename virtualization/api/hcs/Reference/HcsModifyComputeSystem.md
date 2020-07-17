@@ -36,7 +36,25 @@ Optional handle to an access token that is used when applying the settings.
 
 ## Return Values
 
-The function returns [HRESULT](./HCSHResult.md), refer to [hcs operation async model](./../AsyncModel.md#HcsOperationResult).
+The function returns [HRESULT](./HCSHResult.md).
+
+If the return value is `S_OK`, it means the operation started successfully. Callers are expected to get the operation's result using [`HcsWaitForOperationResult`](./HcsWaitForOperationResult.md) or [`HcsGetOperationResult`](./HcsGetOperationResult.md).
+
+| Operation Result Value | Description |
+| -- | -- |
+| `S_OK` | The compute system was modified successfully |
+
+## Remarks
+
+The [ModifySettingRequest](./../SchemaReference.md#ModifySettingRequest) JSON document has a property called `"Settings"` of type `Any`. In JSON, `Any` means an arbitrary object with no restrictions. Refer to the following table to know what JSON type HCS expects for each `"ResourcePath"`.
+
+|`"ResourcePath"`|`"Settings"` Type|Valid `"RequestType"` in [ModifyRequestType](./../SchemaReference.md#ModifyRequestType)|
+|---|---|---|
+|L"VirtualMachine/ComputeTopology/Processor/Limits"|[ProcessorLimits](./../SchemaReference.md#ProcessorLimits)(empty one???)|No Limit|
+|L"VirtualMachine/ComputeTopology/Processor/CpuGroup"|[CpuGroup](./../SchemaReference.md#CpuGroup)|No Limit|
+|L"VirtualMachine/ComputeTopology/Processor/IdledProcessors"|Only "Update"|
+|...|...|...|
+|L"VirtualMachine/ComputeTopology/Memory/SizeInMB"|UINT64, meaning new memory size in MB|No Limit|
 
 
 ## Requirements

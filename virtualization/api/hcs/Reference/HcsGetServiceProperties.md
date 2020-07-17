@@ -22,11 +22,30 @@ Optional JSON document of [Service_PropertyQuery](./../SchemaReference.md#Servic
 
 `result`
 
-Receives a JSON document of [ServiceProperties](./../SchemaReference.md#ServiceProperties) with the requested properties.
+On success, receives a JSON document of [ServiceProperties](./../SchemaReference.md#ServiceProperties) with the requested properties.
+
+On failure, it can optionally receive an error JSON document represented by a [ResultError](./../SchemaReference.md#ResultError).
+
 
 ## Return Values
 
 The function returns [HRESULT](./HCSHResult.md).
+
+## Remarks
+
+On success, the result as [ServiceProperties](./../SchemaReference.md#ServiceProperties) JSON document is an array of `"Properties"` of type `Any`. In JSON, `Any` means an arbitrary object with no restrictions. Refer to the following table to know what JSON type HCS expects for each `propertyQuery`.
+
+|`propertyQuery`|Property type for `result`|
+|---|---|
+|`"Basic"`|[BasicInformation](./../SchemaReference.md#BasicInformation)|
+|`"Memory"`||
+|`"CpuGroup"`||
+|`"ProcessorTopology"`||
+|`"CacheAllocation"`||
+|`"CacheMonitoring"`||
+|`"ContainerCredentialGuard"`||
+|`"QoSCapabilities"`|[QoSCapabilities](./../SchemaReference.md#QoSCapabilities)|
+|`"MemoryBwAllocation"`||
 
 ## Requirements
 

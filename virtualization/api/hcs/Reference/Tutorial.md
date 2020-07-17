@@ -130,6 +130,7 @@ using unique_hcs_system = wil::unique_any<HCS_SYSTEM, decltype(&HcsCloseComputeS
 //
 // Let's modify the virtual machine setting
 //
+// Not finished yet, this property is not available here
     static constexpr wchar_t c_modifySetting[] = LR"(
     {
         "ResourcePath": "c:\\HCS_Test\\VirtualSMB",
@@ -151,7 +152,8 @@ using unique_hcs_system = wil::unique_any<HCS_SYSTEM, decltype(&HcsCloseComputeS
         "ResultDoc: %ws", resultDoc.get());
 
 //
-// Finally, shut down the virtual machine. Because the sample virtual machine is not created with guest compute service, HcsShutDownComputeSystem is not able to use here. Let's use HcsTerminateComputeSystem
+// Finally, shut down the virtual machine. Because the sample virtual machine is not created with guest
+// compute service, HcsShutDownComputeSystem is not able to use here. Let's use HcsTerminateComputeSystem
 //
     THROW_IF_FAILED(HcsTerminateComputeSystem(system.get(), operation.get(), nullptr));
     THROW_IF_FAILED_MSG(HcsWaitForOperationResult(operation.get(), INFINITE, &resultDoc),

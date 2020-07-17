@@ -3,7 +3,7 @@
 <a name = "GetServiceProperties"></a>
 ## Get the properties of host service
 
-Return type is ServiceProperties, its properties `Any` can be ???
+Here takes the memory property of service as example.
 
 ```cpp
     static constexpr wchar_t c_ServicePropertyQuery[] = LR"(
@@ -22,6 +22,8 @@ Return type is ServiceProperties, its properties `Any` can be ???
 ## Modify the service settings
 
 ```cpp
+
+// Not finished yet
     static constexpr wchar_t c_ServiceSettings[] = LR"(
     {
         "PropertyType": "ContainerCredentialGuard",

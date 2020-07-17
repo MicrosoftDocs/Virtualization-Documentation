@@ -31,11 +31,14 @@ Optional JSON document of [SaveOptions](./../SchemaReference.md#SaveOptions) spe
 
 ## Return Values
 
-The function returns [HRESULT](./HCSHResult.md), refer to [hcs operation async model](./../AsyncModel.md#HcsOperationResult).
+The function returns [HRESULT](./HCSHResult.md).
 
-## Remarks
+If the return value is `S_OK`, it means the operation started successfully. Callers are expected to get the operation's result using [`HcsWaitForOperationResult`](./HcsWaitForOperationResult.md) or [`HcsGetOperationResult`](./HcsGetOperationResult.md).
 
-The compute system cannot be saved if it is still running and the return value of [`HcsWaitForOperationResult`](./HcsWaitForOperationResult.md) will be `HCS_E_INVALID_STATE`
+| Operation Result Value | Description |
+| -- | -- |
+| `S_OK` | The compute system was saved successfully |
+| `HCS_E_INVALID_STATE` | The compute system cannot be saved as it is still running |
 
 ## Requirements
 
