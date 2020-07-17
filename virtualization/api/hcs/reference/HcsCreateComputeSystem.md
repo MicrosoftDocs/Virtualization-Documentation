@@ -44,11 +44,18 @@ Receives a handle to the newly created compute system. It is the responsibility 
 
 The function returns [HRESULT](./HCSHResult.md).
 
-If the return value is `S_OK`, it means the operation starts successfully. It needs 
-to use [`HcsWaitForOperationResult`](./HcsWaitForOperationResult.md) to show operation result.
+If the return value is `S_OK`, it means the operation started successfully. Callers are expected to get the operation's result using [`HcsWaitForOperationResult`](./HcsWaitForOperationResult.md) or [`HcsGetOperationResult`](./HcsGetOperationResult.md).
 
-If the return value is `HCS_E_OPERATION_PENDING`...
+| Operation Result Value | Description |
+| -- | -- |
+| `S_OK` | The compute system was created successfully |
+| `HCS_E_OPERATION_PENDING` | The compute system has not been fully created yet |
+| Other windows `HRESULT` value | If something went wrong when creating the compute system, the return value here will give hints on what could have gone wrong |
 
+
+## Remarks
+
+If the operation's result is not `S_OK`, then it's possible the result document might contain
 
 
 ## Requirements
