@@ -9,10 +9,10 @@ The following section contains the definitions of the host Compute System APIs. 
 |---|---|
 |[HCS ERROR CODE](./HCSHResult.md)|Common HCS Error Code|
 |[HCS_EVENT_TYPE](./HCS_EVENT_TYPE.md)|Events indicated to callbacks registered by [HcsSetComputeSystemCallback](./HcsSetComputeSystemCallback.md) or [HcsSetProcessCallback](./HcsSetProcessCallback.md)|
-|[HCS_EVENT](./HCS_EVENT.md)|Provides information about an event that ocurred on a compute system or process.|
+|[HCS_EVENT](./HCS_EVENT.md)|Information about an event that ocurred on a compute system or process.|
 |[HCS_EVENT_OPTIONS](./HCS_EVENT_OPTIONS.md)|Options for an event callback registration|
 |[HCS_OPERATION_TYPE](./HCS_OPERATION_TYPE.md)|Operation type assigned to a valid hcs operation|
-|[HCS_PROCESS_INFORMATION](./HCS_PROCESS_INFORMATION.md)|Struct containing information about a process created by [HcsCreateProcess](./HcsCreateProcess.md)|
+|[HCS_PROCESS_INFORMATION](./HCS_PROCESS_INFORMATION.md)|Information about a process created by [HcsCreateProcess](./HcsCreateProcess.md)|
 
 ## Handle types
 
@@ -28,7 +28,7 @@ The following section contains the definitions of the host Compute System APIs. 
 |Type|Description|
 |---|---|
 |[HCS_OPERATION_COMPLETION](./HCS_OPERATION_COMPLETION.md)|The completion callback of an hcs operation|
-|[HCS_EVENT_CALLBACK](./HCS_EVENT_CALLBACK.md)|Compute system events callback|
+|[HCS_EVENT_CALLBACK](./HCS_EVENT_CALLBACK.md)|The compute system events callback|
 
 ## Operations
 
@@ -57,7 +57,7 @@ The following section contains the definitions of the host Compute System APIs. 
 |[HcsOpenComputeSystem](./HcsOpenComputeSystem.md)|Open a handle to an existing compute system|
 |[HcsCloseComputeSystem](./HcsCloseComputeSystem.md)|Close a handle to a compute system|
 |[HcsStartComputeSystem](./HcsStartComputeSystem.md)|Start a compute system|
-|[HcsShutDownComputeSystem](./HcsShutDownComputeSystem.md)|Cleanly  Shut down a compute system|
+|[HcsShutDownComputeSystem](./HcsShutDownComputeSystem.md)|Cleanly Shut down a compute system|
 |[HcsTerminateComputeSystem](./HcsTerminateComputeSystem.md)|Forcefully terminate a compute system|
 |[HcsCrashComputeSystem](./HcsCrashComputeSystem.md)|Forcefully terminate a compute system|
 |[HcsPauseComputeSystem](./HcsPauseComputeSystem.md)|Pause the execution of a compute system|
@@ -66,7 +66,7 @@ The following section contains the definitions of the host Compute System APIs. 
 |[HcsGetComputeSystemProperties](./HcsGetComputeSystemProperties.md)|Query properties of a compute system|
 |[HcsModifyComputeSystem](./HcsModifyComputeSystem.md)|Modify setting of a compute system|
 |[HcsSetComputeSystemCallback](./HcsSetComputeSystemCallback.md)|Register a callback function to receive notifications for the compute system|
-|[HcsEnumerateComputeSystems](./HcsEnumerateComputeSystems.md)|Enumerates existing compute systems|
+|[HcsEnumerateComputeSystems](./HcsEnumerateComputeSystems.md)|Enumerate existing compute systems|
 
 
 ## Process Execution
@@ -114,14 +114,14 @@ The following functions allow applications to create and manage the file system 
 
 |Function|Description|
 |---|---|
-|[HcsImportLayer](./HcsImportLayer.md)|Imports a container layer and configures it for use on the host|
-|[HcsExportLayer](./HcsExportLayer.md)|Exports a container layer that can be copied to another host or uploaded to a container registry|
-|[HcsExportLegacyWritableLayer](./HcsExportLegacyWritableLayer.md)|Exports a legacy container writable layer|
-|[HcsDestroyLayer](./HcsDestroyLayer.md)|Deletes a container layer from the host|
-|[HcsSetupBaseOSLayer](./HcsSetupBaseOSLayer.md)|Sets up a layer that contains a base OS for a container|
-|[HcsInitializeWritableLayer](./HcsInitializeWritableLayer.md)|Initializes the writable layer for a container (i.e. the layer that captures the filesystem)|
-|[HcsInitializeLegacyWritableLayer](./HcsInitializeLegacyWritableLayer.md)|Initializes the writable layer for a container using the legacy hive folder format|
-|[HcsAttachLayerStorageFilter](./HcsAttachLayerStorageFilter.md)|Sets up the layer storage filter on a writable container layers|
-|[HcsDetachLayerStorageFilter](./HcsDetachLayerStorageFilter.md)|Detaches the layer storage filter from a writable container layer|
-|[HcsFormatWritableLayerVhd](./HcsFormatWritableLayerVhd.md)|Formats a virtual disk for the use as a writable container layer|
-|[HcsGetLayerVhdMountPath](./HcsGetLayerVhdMountPath.md)| Returns the volume path for a virtual disk of a writable container layer|
+|[HcsImportLayer](./HcsImportLayer.md)|Import a container layer and configures it for use on the host|
+|[HcsExportLayer](./HcsExportLayer.md)|Export a container layer that can be copied to another host or uploaded to a container registry|
+|[HcsExportLegacyWritableLayer](./HcsExportLegacyWritableLayer.md)|Export a legacy container writable layer|
+|[HcsDestroyLayer](./HcsDestroyLayer.md)|Delete a container layer from the host|
+|[HcsSetupBaseOSLayer](./HcsSetupBaseOSLayer.md)|Set up a layer that contains a base OS for a container|
+|[HcsInitializeWritableLayer](./HcsInitializeWritableLayer.md)|Initialize the writable layer for a container (i.e. the layer that captures the filesystem)|
+|[HcsInitializeLegacyWritableLayer](./HcsInitializeLegacyWritableLayer.md)|Initialize the writable layer for a container using the legacy hive folder format|
+|[HcsAttachLayerStorageFilter](./HcsAttachLayerStorageFilter.md)|Set up the layer storage filter on a writable container layers|
+|[HcsDetachLayerStorageFilter](./HcsDetachLayerStorageFilter.md)|Detach the layer storage filter from a writable container layer|
+|[HcsFormatWritableLayerVhd](./HcsFormatWritableLayerVhd.md)|Format a virtual disk for the use as a writable container layer|
+|[HcsGetLayerVhdMountPath](./HcsGetLayerVhdMountPath.md)| Return the volume path for a virtual disk of a writable container layer|

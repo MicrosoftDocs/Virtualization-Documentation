@@ -737,7 +737,6 @@ Referenced by: [Properties](#Properties); [SystemQuery](#SystemQuery)
 |---|---|---|
 |`"Container"`<br>|[](#Schema-Version-Map)||
 |`"VirtualMachine"`<br>|[](#Schema-Version-Map)||
-|`"Host"`<br>|[](#Schema-Version-Map)||
 
 ---
 
@@ -2620,7 +2619,7 @@ Referenced by: [GuestCrashReporting](#GuestCrashReporting)
 ---
 
 <a name = "JSON-type"></a>
-### JSON type
+## JSON type
 
 The table shows the mapping from type name for field of classes to JSON type, as well as its format and pattern
 
@@ -2643,7 +2642,7 @@ The table shows the mapping from type name for field of classes to JSON type, as
 
 ---
 <a name = "Schema-Version-Map"></a>
-### Schema Version Map
+## Schema Version Map
 
 |Schema Version|Release Version|
 |---|---|
