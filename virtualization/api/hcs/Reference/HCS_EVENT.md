@@ -2,7 +2,7 @@
 
 ## Description
 
-Provides information about an event that occurred on a compute system or process.
+The struct provides information about an event that occurred on a compute system or process.
 
 ## Syntax
 
