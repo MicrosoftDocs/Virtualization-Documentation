@@ -34,12 +34,15 @@ The [ModificationRequest](./../SchemaReference.md#ModificationRequest) JSON docu
 
 |`PropertyType`|`"Setting"` JSON Type|
 |---|---|
-|`"Memory"`|HostMemoryModificationRequest|
-|`"CpuGroup"`|HostProcessorModificationRequest|
-|`"CacheAllocation"`|CacheOperationRequest|
-|`"CacheMonitoring"`|CacheOperationRequest|
-|`"MemoryBwAllocation"`|CacheOperationRequest|
+|`"Basic"`|Not supported|
+|`"Memory"`|HostMemoryModificationRequest(V1 schema)|
+|`"CpuGroup"`|HostProcessorModificationRequest(V1 schema)|
+|`"ProcessorTopology"`|Not supported|
+|`"CacheAllocation"`|CacheOperationRequest(V1 schema)|
+|`"CacheMonitoring"`|CacheOperationRequest(V1 schema)|
+|`"MemoryBwAllocation"`|CacheOperationRequest(V1 schema)|
 |`"ContainerCredentialGuard"`|[ContainerCredentialGuardOperationRequest](./../SchemaReference.md#ContainerCredentialGuardOperationRequest)|
+|`"QoSCapabilities"`|Not supported|
 
 ## Requirements
 

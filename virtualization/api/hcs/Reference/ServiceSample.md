@@ -22,8 +22,7 @@ Here takes the memory property of service as example.
 ## Modify the service settings
 
 ```cpp
-
-// Not finished yet
+// Not finished yet, only available type `ContainerCredentialGuard` is used for container
     static constexpr wchar_t c_ServiceSettings[] = LR"(
     {
         "PropertyType": "ContainerCredentialGuard",

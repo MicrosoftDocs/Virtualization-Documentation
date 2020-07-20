@@ -54,11 +54,24 @@ The [ModifySettingRequest](./../SchemaReference.md#ModifySettingRequest) JSON do
 
 |`"ResourcePath"`|`"Settings"` Type|Valid `"RequestType"` in [ModifyRequestType](./../SchemaReference.md#ModifyRequestType)|
 |---|---|---|
-|L"VirtualMachine/ComputeTopology/Processor/Limits"|[ProcessorLimits](./../SchemaReference.md#ProcessorLimits)(empty one???)|No Limit|
+|L"VirtualMachine/ComputeTopology/Processor/Limits"|[ProcessorLimits](./../SchemaReference.md#ProcessorLimits)(all new members NewIn 2.4???)|No Limit|
 |L"VirtualMachine/ComputeTopology/Processor/CpuGroup"|[CpuGroup](./../SchemaReference.md#CpuGroup)|No Limit|
-|L"VirtualMachine/ComputeTopology/Processor/IdledProcessors"|Only "Update"|
-|...|...|...|
+|L"VirtualMachine/ComputeTopology/Processor/IdledProcessors"||Only "Update"|
+|L"VirtualMachine/ComputeTopology/Processor/CpuFrequencyPowerCap"|ULONG|No Limit|
+|L"VirtualMachine/Devices/FlexibleIov/"(following is Regex???)|[FlexibleIoDevice](./../SchemaReference.md#FlexibleIoDevice)|Only "Add"|
+|L"VirtualMachine/ComputeTopology/Gpu"|[GpuConfiguration](./../SchemaReference.md#GpuConfiguration)|Only "Update"|
+|L"VirtualMachine/Devices/Licensing"|Licensing(class is referenced as private???)|Only "Update"|
+|L"VirtualMachine/Devices/MappedPipes/"(following is Regex???)|NULL(`E_INVALIDARG` if `Settings` is not empty)|"Add" or "Remove"|
 |L"VirtualMachine/ComputeTopology/Memory/SizeInMB"|UINT64, meaning new memory size in MB|No Limit|
+|L"VirtualMachine/Devices/NetworkAdapters/"(following is Regex???)|[NetworkAdapter](./../SchemaReference.md#CpuGroup)|No Limit|
+|L"VirtualMachine/Devices/Plan9/Shares"|[Plan9Share](./../SchemaReference.md#Plan9Share)|No Limit|
+|L"VirtualMachine/Devices/Scsi/" + c_Identifier + L"/Attachments/" + c_UnsignedInt(c_UnsignedInt is Regex???)|[Attachment](./../SchemaReference.md#CpuGroup)|No Limit|
+|L"VirtualMachine/Devices/ComPorts/" + c_UnsignedInt|[comPort](./../SchemaReference.md#comPort)|No Limit(check c_SerialResourceRegex???)|
+|L"VirtualMachine/Devices/SharedMemory/Regions"||No Limit|
+|L"VirtualMachine/Devices/VirtualPMem/Devices/" + c_UnsignedInt|[VirtualPMemDevice](./../SchemaReference.md#VirtualPMemDevice)|"Add" or "Remove"|
+|L"VirtualMachine/Devices/VirtualPMem/Devices/" + c_UnsignedInt + L"/Mappings/" + c_UnsignedInt|[VirtualPMemMapping(]./../SchemaReference.md#VirtualPMemMapping)|"Add" or "Remove"|
+|L"VirtualMachine/Devices/VirtualSmb/Shares"|[VirtualSmbShare](./../SchemaReference.md#VirtualSmbShare)|No Limit|
+|L"VirtualMachine/Devices/VirtualPci/" + c_Identifier|[VirtualPciDevice](./../SchemaReference.md#VirtualSmbShare)|"Add" or "Remove"|
 
 
 ## Requirements
