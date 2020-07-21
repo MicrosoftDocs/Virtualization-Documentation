@@ -129,27 +129,26 @@ using unique_hcs_system = wil::unique_any<HCS_SYSTEM, decltype(&HcsCloseComputeS
 
 //
 // Let's modify the virtual machine setting
+// The operation of HcsModifyComputeSystem will success only when virtual machine booted up completed
+// So here gives 5 times retry and each would wait for 5s. 
 //
-// Not finished yet, this property is not available here
     static constexpr wchar_t c_modifySetting[] = LR"(
     {
-        "ResourcePath": "c:\\HCS_Test\\VirtualSMB",
-        "RequestType": "Add",
-        "Settings": {
-            "Name": "BaseImageLayer",
-            "Path": "c:\\HCS_Test\\",
-            "Options": {
-                "ReadOnly": true
-            },
-            "AllowedFiles": [
-                "BaseImage.vhdx"
-            ]
-        }
+        "ResourcePath": "VirtualMachine/ComputeTopology/Memory/SizeInMB",
+        "RequestType": "Update",
+        "Settings": 4096
     })";
 
-    THROW_IF_FAILED(HcsModifyComputeSystem(system.get(), operation.get(), c_modifySetting, nullptr));
-    THROW_IF_FAILED_MSG(HcsWaitForOperationResult(operation.get(), INFINITE, &resultDoc),
-        "ResultDoc: %ws", resultDoc.get());
+    int retry = 0;
+    do
+    {
+        Sleep(5000);
+        unique_hcs_operation modifyOperation(HcsCreateOperation(nullptr, nullptr));
+        THROW_IF_FAILED(HcsModifyComputeSystem(system.get(), modifyOperation.get(), c_modifySetting, nullptr));
+
+        result = HcsWaitForOperationResult(modifyOperation.get(), INFINITE, &resultDoc);
+    } while (result != S_OK && retry++ < 5);
+    THROW_IF_FAILED(result);
 
 //
 // Finally, shut down the virtual machine. Because the sample virtual machine is not created with guest
