@@ -54,24 +54,22 @@ The [ModifySettingRequest](./../SchemaReference.md#ModifySettingRequest) JSON do
 
 |`"ResourcePath"`|`"Settings"` Type|Valid `"RequestType"` in [ModifyRequestType](./../SchemaReference.md#ModifyRequestType)|
 |---|---|---|
-|L"VirtualMachine/ComputeTopology/Processor/Limits"|[ProcessorLimits](./../SchemaReference.md#ProcessorLimits)(all new members NewIn 2.4???)|No Limit|
 |L"VirtualMachine/ComputeTopology/Processor/CpuGroup"|[CpuGroup](./../SchemaReference.md#CpuGroup)|No Limit|
-|L"VirtualMachine/ComputeTopology/Processor/IdledProcessors"||Only "Update"|
+|L"VirtualMachine/ComputeTopology/Processor/IdledProcessors"|[IdleProcessorsRequest](./../SchemaReference.md#CpuGroup)|Only "Update"|
 |L"VirtualMachine/ComputeTopology/Processor/CpuFrequencyPowerCap"|ULONG|No Limit|
-|L"VirtualMachine/Devices/FlexibleIov/"(following is Regex???)|[FlexibleIoDevice](./../SchemaReference.md#FlexibleIoDevice)|Only "Add"|
+|L"VirtualMachine/Devices/FlexibleIov/`<Identifier>`"<br>`Identifier` is expected as uniq name to represent the flexible IOV device|[FlexibleIoDevice](./../SchemaReference.md#FlexibleIoDevice)|Only "Add"|
 |L"VirtualMachine/ComputeTopology/Gpu"|[GpuConfiguration](./../SchemaReference.md#GpuConfiguration)|Only "Update"|
-|L"VirtualMachine/Devices/Licensing"|Licensing(class is referenced as private???)|Only "Update"|
-|L"VirtualMachine/Devices/MappedPipes/"(following is Regex???)|NULL(`E_INVALIDARG` if `Settings` is not empty)|"Add" or "Remove"|
+|L"VirtualMachine/Devices/MappedPipes/`<Identifier>`"<br>`Identifier` is expected as uniq name to represent the host named pipe to be mapped|`Settings` should be empty|"Add" or "Remove"|
 |L"VirtualMachine/ComputeTopology/Memory/SizeInMB"|UINT64, meaning new memory size in MB|No Limit|
-|L"VirtualMachine/Devices/NetworkAdapters/"(following is Regex???)|[NetworkAdapter](./../SchemaReference.md#CpuGroup)|No Limit|
+|L"VirtualMachine/Devices/NetworkAdapters/`<Identifier`>"<br>`Identifier` is expected as uniq name to represent the network adapter|[NetworkAdapter](./../SchemaReference.md#CpuGroup)|No Limit|
 |L"VirtualMachine/Devices/Plan9/Shares"|[Plan9Share](./../SchemaReference.md#Plan9Share)|No Limit|
-|L"VirtualMachine/Devices/Scsi/" + c_Identifier + L"/Attachments/" + c_UnsignedInt(c_UnsignedInt is Regex???)|[Attachment](./../SchemaReference.md#CpuGroup)|No Limit|
-|L"VirtualMachine/Devices/ComPorts/" + c_UnsignedInt|[comPort](./../SchemaReference.md#comPort)|No Limit(check c_SerialResourceRegex???)|
-|L"VirtualMachine/Devices/SharedMemory/Regions"||No Limit|
-|L"VirtualMachine/Devices/VirtualPMem/Devices/" + c_UnsignedInt|[VirtualPMemDevice](./../SchemaReference.md#VirtualPMemDevice)|"Add" or "Remove"|
-|L"VirtualMachine/Devices/VirtualPMem/Devices/" + c_UnsignedInt + L"/Mappings/" + c_UnsignedInt|[VirtualPMemMapping(]./../SchemaReference.md#VirtualPMemMapping)|"Add" or "Remove"|
+|L"VirtualMachine/Devices/Scsi/`<Identifier>`/Attachments/`<UnsignedInt>`"<br>`Identifier` is expected as uniq name to represent the scsi device; `UnsignedInt` is expected as the unsigned int value to represent the lun of the disk|[Attachment](./../SchemaReference.md#Attachment)|No Limit<br>`Settings` is ignored when type is "Remove"|
+|L"VirtualMachine/Devices/ComPorts/`<UnsignedInt>`"<br>`UnsignedInt` is expected to represent the serial ID which is not larger than 1|[comPort](./../SchemaReference.md#comPort)|No Limit(check c_SerialResourceRegex???)|
+|L"VirtualMachine/Devices/SharedMemory/Regions"|[SharedMemoryRegion](./../SchemaReference.md#SharedMemoryRegion)|No Limit|
+|L"VirtualMachine/Devices/VirtualPMem/Devices/`<UnsignedInt>`"<br>`UnsignedInt` is expected to represent the number identifier of the VPMEM device|[VirtualPMemDevice](./../SchemaReference.md#VirtualPMemDevice)|"Add" or "Remove"<br>`Settings` is ignored when type is "Remove"|
+|L"VirtualMachine/Devices/VirtualPMem/Devices/`<UnsignedInt>`/Mappings/`<UnsignedInt>`"<br>First `UnsignedInt` is expected to represent the number identifier of the VPMEM device; Second `UnsignedInt` is expected to represent the offset indicating which Mapping to modify|[VirtualPMemMapping](./../SchemaReference.md#VirtualPMemMapping)|"Add" or "Remove"<br>`Settings` is ignored when type is "Remove"|
 |L"VirtualMachine/Devices/VirtualSmb/Shares"|[VirtualSmbShare](./../SchemaReference.md#VirtualSmbShare)|No Limit|
-|L"VirtualMachine/Devices/VirtualPci/" + c_Identifier|[VirtualPciDevice](./../SchemaReference.md#VirtualSmbShare)|"Add" or "Remove"|
+|L"VirtualMachine/Devices/VirtualPci/" + c_Identifier|[VirtualPciDevice](./../SchemaReference.md#VirtualSmbShare)|"Add" or "Remove"<br>`Settings` is ignored when type is "Remove"|
 
 
 ## Requirements
