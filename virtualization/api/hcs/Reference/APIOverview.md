@@ -23,7 +23,7 @@ The following section contains the definitions of the host Compute System APIs. 
 |HCS_OPERATION|Handle to an operation on a compute system|
 |HCS_CALLBACK|Handle to a callback registered on a compute system or process|
 
-## Callback Function types
+## Callback function types
 
 |Type|Description|
 |---|---|

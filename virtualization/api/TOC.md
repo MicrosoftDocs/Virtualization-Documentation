@@ -71,7 +71,7 @@
 #### [HCS_EVENT](./hcs/Reference/HCS_EVENT.md)
 #### [HCS_EVENT_OPTIONS](./hcs/Reference/HCS_EVENT_OPTIONS.md)
 #### [HCS_PROCESS_INFORMATION](./hcs/Reference/HCS_PROCESS_INFORMATION.md)
-### Function types
+### Callback function types
 #### [HCS_OPERATION_COMPLETION](./hcs/Reference/HCS_OPERATION_COMPLETION.md)
 #### [HCS_EVENT_CALLBACK](./hcs/Reference/HCS_EVENT_CALLBACK.md)
 ### Functions
@@ -139,12 +139,13 @@
 ##### [HcsFormatWritableLayerVhd](./hcs/Reference/HcsFormatWritableLayerVhd.md)
 ##### [HcsGetLayerVhdMountPath](./hcs/Reference/HcsGetLayerVhdMountPath.md)
 ## [JSON Schema Reference](./hcs/SchemaReference.md)
-## Samples Code
+## Samples
 ### [Quick Start](./hcs/Reference/Tutorial.md)
 ### [Compute System Operations](./hcs/Reference/ComputeSystemSample.md)
 ### [Host Service Operations](./hcs/Reference/ServiceSample.md)
 ### [Utility Functions for Virtual Machines](./hcs/Reference/UtilityFunctionSample.md)
 ### [Asynchronous Model](./hcs/Reference/AsyncModelSample.md)
+### [Generate Schema in Go](./hcs/Reference/GenerateSchema.md)
 
 # VM Saved State Dump Provider API
 ## [Overview](./vm-dump-provider/index.md)
