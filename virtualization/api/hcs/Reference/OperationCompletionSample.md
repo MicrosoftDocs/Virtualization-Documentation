@@ -1,6 +1,6 @@
-# Async Model Sample Code
+# Operation Completion Samples
 
-This section shows example code on how to leverage the asynchronous nature of the HCS APIs.
+This section shows example code on how to use operation completion callback function in the HCS APIs.
 
 
 The examples in this page use [`HcsCreateComputeSystem`](./HcsCreateComputeSystem.md) as the HCS function to track, and the following global definitions:
@@ -112,8 +112,3 @@ HRESULT result = HcsStartComputeSystem(
     nullptr);
 THROW_HR_IF(E_UNEXPECTED, result != HCS_E_OPERATION_SYSTEM_CALLBACK_ALREADY_SET);
 ```
-
-
-## Use event callback for non operation notifications
-
-TODO: Expand on this.
