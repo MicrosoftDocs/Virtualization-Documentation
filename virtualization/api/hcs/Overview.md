@@ -15,7 +15,7 @@ For both VMs and containers, the API provides the ability to start and interact 
 ## Life Cycle Management
 A client must configure the necessary resources in the host environment prior to calling the HCS APIs to create and configure the virtual machine. The HCS will not provide functionality to setup resources when creating the virtual machine.  
 
-The three main components include creating the virtual hard disk file (VHD) to act as the VM's disk, configuring the networking, and creating any Hyper-V sockets.  The application configurations and properties will be stored in a JSON file which will then be passed through the HCS APIs to create the compute system. The following sections describes the necessary components and workflow. 
+The three main components include creating the virtual hard disk file (VHD) to act as the VM's disk, [configuring the networking](https://docs.microsoft.com/en-us/windows-server/networking/technologies/hcn/hcn-top), and creating any Hyper-V sockets.  The application configurations and properties will be stored in a JSON file which will then be passed through the HCS APIs to create the compute system. The following sections describes the necessary components and workflow. 
 
 ## API References
 
@@ -23,4 +23,13 @@ For a list of the HCS functions, please see [API Reference](./Reference/APIOverv
 
 ## JSON Schema References
 
-For a list of JSON Schema References, please see [Schema References](SchemaReference.md)
+For a list of JSON Schema References, please see [Schema References](./SchemaReference.md)
+
+## Samples References
+
+Sample codes(./Reference/Tutorial.md) lists the simple workflow by using HCS API to create and manage the virtual machine, as well as samples to use specific functions.
+
+The sample code of how HCS APIs use asynchronous model shows in [Asynchronous Model](./Reference/AsyncModelSample.md)
+
+HCS APIs can be easily used in other languages with Schema-based configuration, which can be generated from JSON Schema file, please see [Generate Schema](./Reference/GenerateSchema.md) 
+
