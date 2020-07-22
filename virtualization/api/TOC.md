@@ -136,7 +136,7 @@
 ### [Host Service Operations](./hcs/Reference/ServiceSample.md)
 ### [Utility Functions for Virtual Machines](./hcs/Reference/UtilityFunctionSample.md)
 ### [Asynchronous Model](./hcs/Reference/AsyncModelSample.md)
-### [Generate Schema in Go](./hcs/Reference/GenerateSchema.md)
+### [Generate Schema](./hcs/Reference/GenerateSchema.md)
 
 # VM Saved State Dump Provider API
 ## [Overview](./vm-dump-provider/index.md)
