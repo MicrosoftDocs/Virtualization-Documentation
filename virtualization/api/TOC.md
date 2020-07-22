@@ -66,7 +66,7 @@
 #### [HCS_OPERATION_COMPLETION](./hcs/Reference/HCS_OPERATION_COMPLETION.md)
 #### [HCS_EVENT_CALLBACK](./hcs/Reference/HCS_EVENT_CALLBACK.md)
 ### Functions
-#### Operations
+#### Operation
 ##### [HcsCreateOperation](./hcs/Reference/HcsCreateOperation.md)
 ##### [HcsCloseOperation](./hcs/Reference/HcsCloseOperation.md)
 ##### [HcsGetOperationContext](./hcs/Reference/HcsGetOperationContext.md)
@@ -81,7 +81,7 @@
 ##### [HcsWaitForOperationResultAndProcessInfo](./hcs/Reference/HcsWaitForOperationResultAndProcessInfo.md)
 ##### [HcsSetOperationCallback](./hcs/Reference/HcsSetOperationCallback.md)
 ##### [HcsCancelOperation](./hcs/Reference/HcsCancelOperation.md)
-#### Compute System Operations
+#### Compute System
 ##### [HcsCreateComputeSystem](./hcs/Reference/HcsCreateComputeSystem.md)
 ##### [HcsOpenComputeSystem](./hcs/Reference/HcsOpenComputeSystem.md)
 ##### [HcsCloseComputeSystem](./hcs/Reference/HcsCloseComputeSystem.md)
@@ -106,18 +106,18 @@
 ##### [HcsGetProcessProperties](./hcs/Reference/HcsGetProcessProperties.md)
 ##### [HcsModifyProcess](./hcs/Reference/HcsModifyProcess.md)
 ##### [HcsSetProcessCallback](./hcs/Reference/HcsSetProcessCallback.md)
-#### Host Service Operations
+#### Host Service
 ##### [HcsGetServiceProperties](./hcs/Reference/HcsGetServiceProperties.md)
 ##### [HcsModifyServiceSettings](./hcs/Reference/HcsModifyServiceSettings.md)
 ##### [HcsSubmitWerReport](./hcs/Reference/HcsSubmitWerReport.md)
-#### Utility Functions for Virtual Machines
+#### Virtual Machines Utilities 
 ##### [HcsCreateEmptyGuestStateFile](./hcs/Reference/HcsCreateEmptyGuestStateFile.md)
 ##### [HcsCreateEmptyRuntimeStateFile](./hcs/Reference/HcsCreateEmptyRuntimeStateFile.md)
 ##### [HcsGrantVmAccess](./hcs/Reference/HcsGrantVmAccess.md)
 ##### [HcsRevokeVmAccess](./hcs/Reference/HcsRevokeVmAccess.md)
 ##### [HcsGrantVmGroupAccess](./hcs/Reference/HcsGrantVmGroupAccess.md)
 ##### [HcsRevokeVmGroupAccess](./hcs/Reference/HcsRevokeVmGroupAccess.md)
-#### Storage Utility Functions for Containers
+#### Containers Storage Utilities
 ##### [HcsImportLayer](./hcs/Reference/HcsImportLayer.md)
 ##### [HcsExportLayer](./hcs/Reference/HcsExportLayer.md)
 ##### [HcsExportLegacyWritableLayer](./hcs/Reference/HcsExportLegacyWritableLayer.md)
@@ -129,14 +129,16 @@
 ##### [HcsDetachLayerStorageFilter](./hcs/Reference/HcsDetachLayerStorageFilter.md)
 ##### [HcsFormatWritableLayerVhd](./hcs/Reference/HcsFormatWritableLayerVhd.md)
 ##### [HcsGetLayerVhdMountPath](./hcs/Reference/HcsGetLayerVhdMountPath.md)
-## [JSON Schema Reference](./hcs/SchemaReference.md)
+## JSON Schema
+### [Schema Overview](./hcs/SchemaOverview.md)
+### [JSON Schema Reference](./hcs/SchemaReference.md)
 ## Samples
 ### [Quick Start](./hcs/Reference/Tutorial.md)
-### [Compute System Operations](./hcs/Reference/ComputeSystemSample.md)
-### [Host Service Operations](./hcs/Reference/ServiceSample.md)
-### [Utility Functions for Virtual Machines](./hcs/Reference/UtilityFunctionSample.md)
-### [Asynchronous Model](./hcs/Reference/AsyncModelSample.md)
-### [Generate Schema](./hcs/Reference/GenerateSchema.md)
+### [Operation Completion](./hcs/Reference/OperationCompletionSample.md)
+### [Event Callback](./hcs/Reference/EventCallbackSample.md)
+### [Compute System](./hcs/Reference/ComputeSystemSample.md)
+### [Host Service](./hcs/Reference/ServiceSample.md)
+### [Virtual Machines Utilities](./hcs/Reference/UtilityFunctionSample.md)
 
 # VM Saved State Dump Provider API
 ## [Overview](./vm-dump-provider/index.md)

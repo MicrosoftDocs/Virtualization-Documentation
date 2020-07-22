@@ -19,17 +19,19 @@ The three main components include creating the virtual hard disk file (VHD) to a
 
 ## API References
 
-For a list of the HCS functions, please see [API Reference](./Reference/APIOverview.md)
+For a list of the HCS functions, please see [API Reference](./Reference/APIOverview.md).
 
-## JSON Schema References
+## JSON Schema
 
-For a list of JSON Schema References, please see [Schema References](./SchemaReference.md)
+The overview of Schema-based configuration documents is in [JSON Schema Overview](./SchemaOverview.md)
 
-## Samples References
+For a list of JSON Schema References, please see [Schema References](./SchemaReference.md).
 
-Sample codes(./Reference/Tutorial.md) lists the simple workflow by using HCS API to create and manage the virtual machine, as well as samples to use specific functions.
+For JSON Schema file used to generate other languages and the example of generated Schema code, please see [Schema Sample](./SchemaSample.md). 
 
-The sample code of how HCS APIs use asynchronous model shows in [Asynchronous Model](./Reference/AsyncModelSample.md)
+## Samples
 
-HCS APIs can be easily used in other languages with Schema-based configuration, which can be generated from JSON Schema file, please see [Generate Schema](./Reference/GenerateSchema.md) 
+[Sample codes](./Reference/Tutorial.md) lists the simple workflow by using HCS API to create and manage the virtual machine.
+
+The sample code of how callback functions are used as both synchronous and asynchronous way shows in [Operation Completion Samples](./Reference/OperationCompletionSample.md)
 
