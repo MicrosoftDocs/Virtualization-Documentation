@@ -119,7 +119,7 @@
 ##### [HcsGetServiceProperties](./hcs/Reference/HcsGetServiceProperties.md)
 ##### [HcsModifyServiceSettings](./hcs/Reference/HcsModifyServiceSettings.md)
 ##### [HcsSubmitWerReport](./hcs/Reference/HcsSubmitWerReport.md)
-#### Virtual Machines Utilities 
+#### Virtual Machine Utilities 
 ##### [HcsCreateEmptyGuestStateFile](./hcs/Reference/HcsCreateEmptyGuestStateFile.md)
 ##### [HcsCreateEmptyRuntimeStateFile](./hcs/Reference/HcsCreateEmptyRuntimeStateFile.md)
 ##### [HcsGrantVmAccess](./hcs/Reference/HcsGrantVmAccess.md)
@@ -148,7 +148,7 @@
 ### [Event Callback](./hcs/Reference/EventCallbackSample.md)
 ### [Compute System](./hcs/Reference/ComputeSystemSample.md)
 ### [Host Service](./hcs/Reference/ServiceSample.md)
-### [Virtual Machines Utilities](./hcs/Reference/UtilityFunctionSample.md)
+### [Virtual Machine Utilities](./hcs/Reference/UtilityFunctionSample.md)
 
 # VM Saved State Dump Provider API
 ## [Overview](./vm-dump-provider/index.md)
