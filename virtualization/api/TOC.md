@@ -141,6 +141,7 @@
 ## JSON Schema
 ### [Schema Overview](./hcs/SchemaOverview.md)
 ### [JSON Schema Reference](./hcs/SchemaReference.md)
+### [Schema Samples](./hcs/SchemaSample.md)
 ## Samples
 ### [Quick Start](./hcs/Reference/Tutorial.md)
 ### [Operation Completion](./hcs/Reference/OperationCompletionSample.md)
