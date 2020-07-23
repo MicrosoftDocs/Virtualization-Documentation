@@ -1,6 +1,6 @@
-# Schema in different languages
+# Schema Samples in Different Languages
 
-## JSON Schema file
+## JSON Schema File
 
 Here provides the schema definitions as the OpenAPI specifications in [JSON Schema document](TODO: add json schme link), which used in HCS APIs as configuration strings.
 
@@ -10,7 +10,7 @@ It is easy to use tools, such as [Swagger CodeGen](https://github.com/swagger-ap
 
 Here shows the example of generated C# and Go code for the top level [VirtualMachine](./SchemaReference.md#VirtualMachine) object
 
-### Sample of generated C# code
+### Sample of Generated C# Code
 
 ```C#
 /* 
@@ -300,7 +300,7 @@ namespace IO.Swagger.Model
 
 ```
 
-### Sample of generated Go code
+### Sample of Generated Go Code
 
 ```Go
 /*
