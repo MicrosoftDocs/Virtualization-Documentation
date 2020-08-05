@@ -1597,19 +1597,6 @@ Referenced by: [Container](#Container)
 
 ---
 
-<a name = "NumaNodeProcessor"></a>
-## NumaNodeProcessor
-Referenced by: [ProcessorInformationForHost](#ProcessorInformationForHost)
-
-
-
-|Field|Type|NewInVersion|Description|
-|---|---|---|---|
-|**TotalAssignedProcessors**<br>|[uint32](#JSON-type)|[2.1](#Schema-Version-Map)||
-|**TotalAvailableProcessors**<br>|[uint32](#JSON-type)|[2.1](#Schema-Version-Map)||
-
----
-
 <a name = "NumaSetting"></a>
 ## NumaSetting
 
@@ -1723,17 +1710,6 @@ Passed to HcsRpc_ModifyProcess
 |**Operation**<br>|[ModifyOperation](#ModifyOperation)|[2.0](#Schema-Version-Map)||
 |**ConsoleSize**<br>|[ConsoleSize](#ConsoleSize)|[2.0](#Schema-Version-Map)||
 |**CloseHandle**<br>|[CloseHandle](#CloseHandle)|[2.0](#Schema-Version-Map)||
-
----
-
-<a name = "ProcessorInformationForHost"></a>
-## ProcessorInformationForHost
-Structure used to return processor information for a Service property query
-
-|Field|Type|NewInVersion|Description|
-|---|---|---|---|
-|**NumaNodeCount**<br>|[uint32](#JSON-type)|[2.1](#Schema-Version-Map)|Number of physical NUMA nodes on the host.|
-|**NumaNodes**<br>|<[NumaNodeProcessor](#NumaNodeProcessor)> array|[2.1](#Schema-Version-Map)|Number of processor on each NUMA node|
 
 ---
 
