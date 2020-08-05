@@ -30,19 +30,13 @@ The function returns [HRESULT](./HCSHResult.md).
 
 ## Remarks
 
-The [ModificationRequest](./../SchemaReference.md#ModificationRequest) JSON document has a property called `"Settings"` of type `Any`. In JSON, `Any` means an arbitrary object with no restrictions. Refer to the following table to know what JSON type HCS expects for each [PropertyType](./../SchemaReference.md#Service_PropertyType).
+The [ModificationRequest](./../SchemaReference.md#ModificationRequest) JSON document has a property called `"Settings"` of type `Any`. In JSON, `Any` means an arbitrary object with no restrictions. Refer to the following table to know what JSON type HCS expects for each [ModifyPropertyType](./../SchemaReference.md#ModifyPropertyType).
 
-|`PropertyType`|`"Setting"` JSON Type|
+|`ModifyPropertyType`|`"Setting"` JSON Type|
 |---|---|
-|`"Basic"`|Not supported|
-|`"Memory"`|HostMemoryModificationRequest(V1 schema)|
-|`"CpuGroup"`|HostProcessorModificationRequest(V1 schema)|
-|`"ProcessorTopology"`|Not supported|
-|`"CacheAllocation"`|CacheOperationRequest(V1 schema)|
-|`"CacheMonitoring"`|CacheOperationRequest(V1 schema)|
-|`"MemoryBwAllocation"`|CacheOperationRequest(V1 schema)|
+|`"CpuGroup"`|[HostProcessorModificationRequest](./../SchemaReference.md#HostProcessorModificationRequest)|
 |`"ContainerCredentialGuard"`|[ContainerCredentialGuardOperationRequest](./../SchemaReference.md#ContainerCredentialGuardOperationRequest)|
-|`"QoSCapabilities"`|Not supported|
+
 
 ## Requirements
 

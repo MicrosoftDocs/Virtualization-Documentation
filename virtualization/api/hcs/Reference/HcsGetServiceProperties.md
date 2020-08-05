@@ -33,19 +33,15 @@ The function returns [HRESULT](./HCSHResult.md).
 
 ## Remarks
 
-On success, the result as [ServiceProperties](./../SchemaReference.md#ServiceProperties) JSON document is an array of `"Properties"` of type `Any`. In JSON, `Any` means an arbitrary object with no restrictions. Refer to the following table to know what JSON type HCS expects for each [PropertyType](./../SchemaReference.md#Service_PropertyType).
+On success, the result as [ServiceProperties](./../SchemaReference.md#ServiceProperties) JSON document is an array of `"Properties"` of type `Any`. In JSON, `Any` means an arbitrary object with no restrictions. Refer to the following table to know what JSON type HCS expects for each [GetPropertyType](./../SchemaReference.md#GetPropertyType).
 
-|`PropertyType`|Property type for `result`|
+|`GetPropertyType`|Property type for `result`|
 |---|---|
 |`"Basic"`|[BasicInformation](./../SchemaReference.md#BasicInformation)|
-|`"Memory"`|HostMemoryQueryRequest(V1 schema), Filter supported|
-|`"CpuGroup"`|CpuGroupConfigurations(V1 schema), Filter supported|
-|`"ProcessorTopology"`|processorTopology(V1 schema), Filter supported|
-|`"CacheAllocation"`|CacheAllocationSystemInfo(V1 schema)|
-|`"CacheMonitoring"`|CacheMonitoringSystemInfo(V1 schema)|
+|`"CpuGroup"`|[CpuGroupConfigurations](./../SchemaReference.md#CpuGroupConfigurations)|
+|`"ProcessorTopology"`|[processorTopology](./../SchemaReference.md#processorTopology)|
 |`"ContainerCredentialGuard"`|[ContainerCredentialGuardSystemInfo](./../SchemaReference.md#ContainerCredentialGuardSystemInfo)|
 |`"QoSCapabilities"`|[QoSCapabilities](./../SchemaReference.md#QoSCapabilities)|
-|`"MemoryBwAllocation"`|MemoryBwAllocationSystemInfo(V1 schema)|
 
 ## Requirements
 
