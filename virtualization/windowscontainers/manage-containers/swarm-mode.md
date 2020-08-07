@@ -5,8 +5,6 @@ keywords: docker, containers, swarm, orchestration
 author: kallie-b
 ms.date: 02/9/2017
 ms.topic: how-to
-ms.prod: windows-containers
-ms.service: windows-containers
 ms.assetid: 5ceb9626-7c48-4d42-81f8-9c936595ad85
 ---
 

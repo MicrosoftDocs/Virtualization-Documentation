@@ -6,8 +6,6 @@ author: cwilhit
 ms.author: crwilhit
 ms.date: 11/12/2019
 ms.topic: quickstart
-ms.prod: windows-containers
-ms.service: windows-containers
 ---
 # Containerize a .NET Core App
 

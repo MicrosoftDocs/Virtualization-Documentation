@@ -5,8 +5,6 @@ keywords: docker, containers, LCOW
 author: taylorb-microsoft
 ms.date: 08/16/2019
 ms.topic: tutorial
-ms.prod: windows-containers
-ms.service: windows-containers
 ms.assetid: bb9bfbe0-5bdc-4984-912f-9c93ea67105f
 ---
 

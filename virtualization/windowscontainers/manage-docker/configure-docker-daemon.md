@@ -5,8 +5,6 @@ keywords: docker, containers
 author: PatrickLang
 ms.date: 05/03/2019
 ms.topic: overview
-ms.prod: windows-containers
-ms.service: windows-containers
 ms.assetid: 6885400c-5623-4cde-8012-f6a00019fafa
 ---
 # Docker Engine on Windows

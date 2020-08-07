@@ -4,7 +4,6 @@ author: daschott
 ms.author: daschott
 ms.date: 02/12/2019
 ms.topic: how-to
-ms.prod: containers
 
 description: How to run Kubernetes components as Windows services.
 keywords: kubernetes, 1.14, windows, getting started
