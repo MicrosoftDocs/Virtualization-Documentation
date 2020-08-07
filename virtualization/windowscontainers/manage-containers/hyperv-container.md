@@ -5,8 +5,6 @@ keywords: docker, containers
 author: crwilhit
 ms.date: 09/26/2019
 ms.topic: conceptual
-ms.prod: windows-containers
-ms.service: windows-containers
 ms.assetid: 42154683-163b-47a1-add4-c7e7317f1c04
 ---
 

@@ -5,8 +5,6 @@ keywords: LCOW, linux containers, docker, containers, containerd, cri, runhcs, r
 author: scooley
 ms.date: 11/19/2018
 ms.topic: conceptual
-ms.prod: windows-containers
-ms.service: windows-containers
 ms.assetid: a0e62b32-0c4c-4dd4-9956-8056e9abd9e5
 ---
 # Container platform tools on Windows

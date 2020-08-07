@@ -3,7 +3,6 @@ title: Kubernetes on Windows
 author: gkudra-msft
 ms.author: gekudray
 ms.date: 02/09/2018
-ms.prod: containers
 ms.topic: overview
 description: Joining a Windows node to a Kubernetes cluster with v1.14.
 keywords: kubernetes, 1.14, windows, getting started

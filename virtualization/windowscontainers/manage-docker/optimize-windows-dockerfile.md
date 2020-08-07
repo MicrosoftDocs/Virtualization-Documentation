@@ -5,8 +5,6 @@ keywords: docker, containers
 author: cwilhit
 ms.date: 05/03/2019
 ms.topic: tutorial
-ms.prod: windows-containers
-ms.service: windows-containers
 ms.assetid: bb2848ca-683e-4361-a750-0d1d14ec8031
 ---
 # Optimize Windows Dockerfiles

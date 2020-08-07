@@ -4,8 +4,6 @@ author: gkudra-msft
 ms.author: gekudray
 ms.date: 11/02/2018
 ms.topic: troubleshooting
-ms.prod: containers
-
 description: Solutions for common issues when deploying Kubernetes and joining Windows nodes.
 keywords: kubernetes, 1.14, linux, compile
 ---

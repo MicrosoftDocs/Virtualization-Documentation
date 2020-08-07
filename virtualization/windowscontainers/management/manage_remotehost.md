@@ -5,8 +5,6 @@ keywords: docker, containers
 author: taylorb-microsoft
 ms.date: 02/14/2017
 ms.topic: how-to
-ms.prod: windows-containers
-ms.service: windows-containers
 ms.assetid: 0cc1b621-1a92-4512-8716-956d7a8fe495
 ---
 

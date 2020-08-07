@@ -5,8 +5,6 @@ keywords: docker, containers
 author: PatrickLang
 ms.date: 10/25/2019
 ms.topic: overview
-ms.prod: windows-containers
-ms.service: windows-containers
 ms.assetid: 25de368c-5a10-40a4-b4aa-ac8c9a9ca022
 ---
 # Frequently asked questions about containers

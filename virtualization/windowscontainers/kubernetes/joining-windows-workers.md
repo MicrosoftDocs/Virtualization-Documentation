@@ -4,7 +4,6 @@ author: daschott
 ms.author: daschott
 ms.date: 11/02/2018
 ms.topic: how-to
-ms.prod: containers
 
 description: Joining a Windows node to a Kubernetes cluster with v1.14.
 keywords: kubernetes, 1.14, windows, getting started
