@@ -42,7 +42,7 @@ In addition to leveraging the default 'nat' network created by Docker on Windows
   2. L2bridge network is configured with a new custom IP subnet
 
   In configuration 2 users will need to add a endpoint on the host network compartment that acts as a gateway and configure routing capabilities for the designated prefix.
-  > Requires: Requires Windows Server 2016, Windows 10 Creators Update, or a later release.
+
   >[!TIP]
   >More details on how to configure and install l2bridge can be found [here](https://techcommunity.microsoft.com/t5/networking-blog/l2bridge-container-networking/ba-p/1180923).
 
