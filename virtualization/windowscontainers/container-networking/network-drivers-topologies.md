@@ -40,14 +40,7 @@ In addition to leveraging the default 'nat' network created by Docker on Windows
   2. L2bridge network is configured with a new custom IP subnet
 
   In configuration 2 users will need to add a endpoint on the host network compartment that acts as a gateway and configure routing capabilities for the designated prefix.
-  > Requires: Requires Windows Server 2016, Windows 10 Creators Update, or a later release.
 
-
-- **l2bridge** - similar to `transparent` networking mode, containers attached to a network created with the 'l2bridge' driver will be connected to the physical network through an *external* Hyper-V switch. The difference in l2bridge is that container endpoints will have the same MAC address as the host due to Layer-2 address translation (MAC re-write) operation on ingress and egress. In clustering scenarios, this helps alleviate the stress on switches having to learn MAC addresses of sometimes short-lived containers. L2bridge networks can be configured in 2 different ways:
-  1. L2bridge network is configured with the same IP subnet as the container host
-  2. L2bridge network is configured with a new custom IP subnet
-
-  In configuration 2 users will need to add a endpoint on the host network compartment that acts as a gateway and configure routing capabilities for the designated prefix.
   >[!TIP]
   >More details on how to configure and install l2bridge can be found [here](https://techcommunity.microsoft.com/t5/networking-blog/l2bridge-container-networking/ba-p/1180923).
 
