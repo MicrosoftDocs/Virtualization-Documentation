@@ -5,8 +5,6 @@ keywords: docker, containers, cpu, memory, disk, resources
 author: taylorb-microsoft
 ms.date: 11/21/2017
 ms.topic: conceptual
-ms.prod: windows-containers
-ms.service: windows-containers
 ms.assetid: 8ccd4192-4a58-42a5-8f74-2574d10de98e
 ---
 # Implementing resource controls for Windows containers

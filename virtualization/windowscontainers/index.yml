@@ -1,15 +1,14 @@
 ### YamlMime:Landing
 
 title: Containers on Windows documentation
-summary: Windows containers allow users to package applications with their dependencies and leverage operating system-level virtualization to provide fast, fully isolated environments on a single system. Learn how to use Windows containers with our quick start guides, deployment guides, and samples. 
+summary: Windows containers allow users to package applications with their dependencies and leverage operating system-level virtualization to provide fast, fully isolated environments on a single system. Learn how to use Windows containers with our quick start guides, deployment guides, and samples.
 
 metadata:
   title: Containers on Windows documentation
   description: documentation for running containers on Windows.
   ms.topic: landing-page # Required
-  ms.prod: windows-containers
-  author: cwilhit 
-  ms.date: 07/06/2020 
+  author: cwilhit
+  ms.date: 07/06/2020
 
 # linkListType: architecture | concept | deploy | download | get-started | how-to-guide | learn | overview | quickstart | reference | sample | tutorial | video | whats-new
 
@@ -30,7 +29,7 @@ landingContent:
 
   # Card
   - title: Overview
-    linkLists:  
+    linkLists:
       - linkListType: overview
         links:
           - text: About Windows containers
@@ -54,7 +53,7 @@ landingContent:
 
   # Card
   - title: Tutorials
-    linkLists:  
+    linkLists:
       - linkListType: tutorial
         links:
           - text: Building a Windows container
@@ -68,7 +67,7 @@ landingContent:
 
   # Card
   - title: Concepts
-    linkLists:  
+    linkLists:
       - linkListType: concept
         links:
           - text: Docker
@@ -80,7 +79,7 @@ landingContent:
 
   # Card
   - title: Reference
-    linkLists:  
+    linkLists:
       - linkListType: reference
         links:
           - text: Version Compatibility

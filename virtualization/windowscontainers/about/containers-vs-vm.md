@@ -6,8 +6,6 @@ author: jasongerend
 ms.author: jgerend
 ms.date: 10/21/2019
 ms.topic: overview
-ms.prod: windows-containers
-ms.service: windows-containers
 ---
 # Containers vs. virtual machines
 

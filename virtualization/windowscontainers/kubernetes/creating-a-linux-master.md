@@ -4,7 +4,6 @@ author: daschott
 ms.author: daschott
 ms.date: 02/09/2018
 ms.topic: how-to
-ms.prod: containers
 
 description: Creating a Kubernetes cluster master.
 keywords: kubernetes, 1.14, master, linux

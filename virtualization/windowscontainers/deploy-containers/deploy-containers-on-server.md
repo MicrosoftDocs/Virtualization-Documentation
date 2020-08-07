@@ -5,8 +5,6 @@ keywords: docker, containers
 author: taylorb-microsoft
 ms.date: 09/09/2019
 ms.topic: article
-ms.prod: windows-containers
-ms.service: windows-containers
 ms.assetid: ba4eb594-0cdb-4148-81ac-a83b4bc337bc
 ---
 # Container host deployment: Windows Server

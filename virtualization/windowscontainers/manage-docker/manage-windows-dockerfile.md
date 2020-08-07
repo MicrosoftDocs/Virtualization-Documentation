@@ -5,8 +5,6 @@ keywords: docker, containers
 author: PatrickLang
 ms.date: 05/03/2019
 ms.topic: tutorial
-ms.prod: windows-containers
-ms.service: windows-containers
 ms.assetid: 75fed138-9239-4da9-bce4-4f2e2ad469a1
 ---
 # Dockerfile on Windows

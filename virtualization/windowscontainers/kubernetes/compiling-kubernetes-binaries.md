@@ -4,7 +4,6 @@ author: gkudra-msft
 ms.author: gekudray
 ms.date: 11/02/2018
 ms.topic: how-to
-ms.prod: containers
 
 description: Compiling and cross-compiling Kubernetes binaries from source.
 keywords: kubernetes, 1.12, linux, compile

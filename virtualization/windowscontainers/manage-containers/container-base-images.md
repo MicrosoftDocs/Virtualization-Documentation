@@ -5,8 +5,6 @@ keywords: docker, containers, hashes
 author: patricklang
 ms.date: 09/25/2019
 ms.topic: conceptual
-ms.prod: windows-containers
-ms.service: windows-containers
 ms.assetid: 88e6e080-cf8f-41d8-a301-035959dc5ce0
 ---
 

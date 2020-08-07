@@ -5,8 +5,6 @@ keywords: docker, containers, active directory, gmsa, group managed service acco
 author: rpsqrd
 ms.date: 10/03/2019
 ms.topic: troubleshooting
-ms.prod: windows-containers
-ms.service: windows-containers
 ms.assetid: 9e06ad3a-0783-476b-b85c-faff7234809c
 ---
 # Troubleshoot gMSAs for Windows containers

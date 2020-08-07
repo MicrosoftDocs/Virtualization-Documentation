@@ -4,7 +4,6 @@ author: daschott
 ms.author: daschott
 ms.date: 11/02/2018
 ms.topic: how-to
-ms.prod: containers
 
 description: Deploying Kubernetes resoureces on a mixed-OS Kubernetes cluster.
 keywords: kubernetes, 1.14, windows, getting started

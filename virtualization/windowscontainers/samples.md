@@ -1,12 +1,10 @@
 ---
 title: Windows Container Samples
 description: Find links to popular projects and code samples using Windows containers.
-keywords: docker, containers, windows, samples 
+keywords: docker, containers, windows, samples
 author: cwilhit
 ms.date: 12/19/2016
 ms.topic: article
-ms.prod: windows-containers
-ms.service: windows-containers
 ms.assetid: 5c6f6350-f8d6-4426-b53d-9fb09c2bf267
 ---
 
@@ -72,7 +70,7 @@ sqlserver-express - [Docker Hub Image](https://hub.docker.com/r/microsoft/mssql-
 
 ## Just for Fun
 
-[MineCraft](https://github.com/Microsoft/Virtualization-Documentation/tree/master/windows-container-samples/MineCraft) 
+[MineCraft](https://github.com/Microsoft/Virtualization-Documentation/tree/master/windows-container-samples/MineCraft)
 
 ## Other
 
