@@ -19,7 +19,7 @@ Windows offers four container base images that users can build from. Each base i
             <article class="card has-outline-hover is-relative is-full-height has-padding-none">
                     <div class="cardImageOuter bgdAccent1 has-padding-top-large has-padding-bottom-large has-padding-left-large has-padding-right-large">
                         <div class="cardImage centered has-padding-top-large has-padding-bottom-large has-padding-left-large has-padding-right-large">
-                            <img src="media/Microsoft_logo.svg" alt="" data-linktype="relative-path">
+                            <img src="media/Microsoft_logo.svg" alt="Microsoft logo" data-linktype="relative-path">
                         </div>
                     </div>
                 <div class="card-content has-text-overflow-ellipsis has-padding-top-small">
@@ -39,7 +39,7 @@ Windows offers four container base images that users can build from. Each base i
             <article class="card has-outline-hover is-relative is-full-height has-padding-none">
                     <div class="cardImageOuter bgdAccent1 has-padding-top-large has-padding-bottom-large has-padding-left-large has-padding-right-large">
                         <div class="cardImage centered has-padding-top-large has-padding-bottom-large has-padding-left-large has-padding-right-large">
-                            <img src="media/Microsoft_logo.svg" alt="" data-linktype="relative-path">
+                            <img src="media/Microsoft_logo.svg" alt="Microsoft logo." data-linktype="relative-path">
                         </div>
                     </div>
                 <div class="card-content has-text-overflow-ellipsis has-padding-top-small">
@@ -59,7 +59,7 @@ Windows offers four container base images that users can build from. Each base i
             <article class="card has-outline-hover is-relative is-full-height has-padding-none">
                     <div class="cardImageOuter bgdAccent1 has-padding-top-large has-padding-bottom-large has-padding-left-large has-padding-right-large">
                         <div class="cardImage centered has-padding-top-large has-padding-bottom-large has-padding-left-large has-padding-right-large">
-                            <img src="media/Microsoft_logo.svg" alt="" data-linktype="relative-path">
+                            <img src="media/Microsoft_logo.svg" alt="Microsoft logo." data-linktype="relative-path">
                         </div>
                     </div>
                 <div class="card-content has-text-overflow-ellipsis has-padding-top-small">
@@ -79,7 +79,7 @@ Windows offers four container base images that users can build from. Each base i
             <article class="card has-outline-hover is-relative is-full-height has-padding-none">
                     <div class="cardImageOuter bgdAccent1 has-padding-top-large has-padding-bottom-large has-padding-left-large has-padding-right-large">
                         <div class="cardImage centered has-padding-top-large has-padding-bottom-large has-padding-left-large has-padding-right-large">
-                            <img src="media/Microsoft_logo.svg" alt="" data-linktype="relative-path">
+                            <img src="media/Microsoft_logo.svg" alt="Microsoft logo." data-linktype="relative-path">
                         </div>
                     </div>
                 <div class="card-content has-text-overflow-ellipsis has-padding-top-small">

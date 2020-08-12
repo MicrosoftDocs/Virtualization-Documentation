@@ -1,5 +1,5 @@
 ---
-title: Joining Windows nodes
+title: Joining Windows nodes cluster
 author: daschott
 ms.author: daschott
 ms.date: 11/02/2018
@@ -9,14 +9,17 @@ description: Joining a Windows node to a Kubernetes cluster with v1.14.
 keywords: kubernetes, 1.14, windows, getting started
 ms.assetid: 3b05d2c2-4b9b-42b4-a61b-702df35f5b17
 ---
-# Joining Windows Server Nodes to a Cluster #
+# Joining Windows Server Nodes to a Cluster
+
 Once you have [setup a Kubernetes master node](./creating-a-linux-master.md) and [selected your desired network solution](./network-topologies.md), you are ready to join Windows Server nodes to form a cluster. This requires some [preparation on the Windows nodes](#preparing-a-windows-node) before joining.
 
-## Preparing a Windows node ##
+## Preparing a Windows node
+
 > [!NOTE]
 > All code snippets in Windows sections are to be run in _elevated_ PowerShell.
 
-### Install Docker (requires reboot) ###
+### Install Docker (requires reboot)
+
 Kubernetes uses [Docker](https://www.docker.com/) as its container engine, so we need to install it. You can follow the [official Docs instructions](../manage-docker/configure-docker-daemon.md#install-docker), the [Docker instructions](https://store.docker.com/editions/enterprise/docker-ee-server-windows), or try these steps:
 
 ```powershell
@@ -33,7 +36,7 @@ If you are behind a proxy, the following PowerShell environment variables must b
 
 If after reboot you see the following error:
 
-![text](media/docker-svc-error.png)
+![A screenshot of the svc error that says "error during connect."](media/docker-svc-error.png)
 
 Then start the docker service manually:
 
@@ -41,8 +44,9 @@ Then start the docker service manually:
 Start-Service docker
 ```
 
-### Create the "pause" (infrastructure) image ###
-> [!Important]
+### Create the "pause" (infrastructure) image
+
+> [!IMPORTANT]
 > It's important to be careful of conflicting container images; not having the expected tag can cause a `docker pull` of an incompatible container image, causing [deployment problems](./common-problems.md#when-deploying-docker-containers-keep-restarting) such as indefinite `ContainerCreating` status.
 
 Now that `docker` is installed, you need to prepare a "pause" image that's used by Kubernetes to prepare the infrastructure pods. There are three steps to this:
@@ -50,15 +54,16 @@ Now that `docker` is installed, you need to prepare a "pause" image that's used 
   2. [tagging it](#tag-the-image) as microsoft/nanoserver:latest
   3. and [running it](#run-the-container)
 
+#### Pull the image
 
-#### Pull the image ####
- Pull the image for your specific Windows release. For example, if you are running Windows Server 2019:
+Pull the image for your specific Windows release. For example, if you are running Windows Server 2019:
 
- ```powershell
+```powershell
 docker pull mcr.microsoft.com/windows/nanoserver:1809
- ```
+```
 
-#### Tag the image ####
+#### Tag the image
+
 The Dockerfiles you will use later in this guide look for the `:latest` image tag. Tag the nanoserver image you just pulled as follows:
 
 ```powershell
@@ -171,10 +176,9 @@ cd c:\k
 # [ManagementIP](#tab/ManagementIP)
 The IP address assigned to the Windows node. You can use `ipconfig` to find this.
 
-|  |  |
-|---------|---------|
-|Parameter     | `-ManagementIP`        |
-|Default Value    | n.A. **required**        |
+| Parameter | Default value|
+|---|---|
+| `-ManagementIP` | n.A. **required** |
 
 # [NetworkMode](#tab/NetworkMode)
 The network mode `l2bridge` (flannel host-gw) or `overlay` (flannel vxlan) chosen as a [network solution](./network-topologies.md).
@@ -182,56 +186,45 @@ The network mode `l2bridge` (flannel host-gw) or `overlay` (flannel vxlan) chose
 > [!Important]
 > `overlay` networking mode (flannel vxlan) requires Kubernetes v1.14 binaries (or above) and [KB4489899](https://support.microsoft.com/help/4489899).
 
-|  |  |
-|---------|---------|
-|Parameter     | `-NetworkMode`        |
-|Default Value    | `l2bridge`        |
+| Parameter | Default value |
+|---|---|
+| `-NetworkMode` | `12bridge` |
 
 
 # [ClusterCIDR](#tab/ClusterCIDR)
 The [cluster subnet range](./getting-started-kubernetes-windows.md#cluster-subnet-def).
 
-|  |  |
-|---------|---------|
-|Parameter     | `-ClusterCIDR`        |
-|Default Value    | `10.244.0.0/16`        |
-
+| Parameter | Default value |
+|---|---|
+| `-ClusterCIDR` | `10.244.0.0/16` |
 
 # [ServiceCIDR](#tab/ServiceCIDR)
 The [service subnet range](./getting-started-kubernetes-windows.md#service-subnet-def).
 
-|  |  |
-|---------|---------|
-|Parameter     | `-ServiceCIDR`        |
-|Default Value    | `10.96.0.0/12`        |
-
+| Parameter | Default value |
+|---|---|
+| `-ServiceCIDR` | `10.96.0.0/12` |
 
 # [KubeDnsServiceIP](#tab/KubeDnsServiceIP)
 The [Kubernetes DNS service IP](./getting-started-kubernetes-windows.md#plan-ip-addressing-for-your-cluster).
 
-|  |  |
-|---------|---------|
-|Parameter     | `-KubeDnsServiceIP`        |
-|Default Value    | `10.96.0.10`        |
-
+| Parameter | Default value |
+|---|---|
+| `-KubeDnsServiceIP` | `10.96.0.10` |
 
 # [InterfaceName](#tab/InterfaceName)
 The name of the network interface of the Windows host. You can use `ipconfig` to find this.
 
-|  |  |
-|---------|---------|
-|Parameter     | `-InterfaceName`        |
-|Default Value    | `Ethernet`        |
-
+| Parameter | Default value |
+|---|---|
+| `-InterfaceName` | `Ethernet` |
 
 # [LogDir](#tab/LogDir)
 The directory where kubelet and kube-proxy logs are redirected into their respective output files.
 
-|  |  |
-|---------|---------|
-|Parameter     | `-LogDir`        |
-|Default Value    | `C:\k`        |
-
+| Parameter | Default value |
+|---|---|
+| `-LogDir` | `C:\k` |
 
 ---
 

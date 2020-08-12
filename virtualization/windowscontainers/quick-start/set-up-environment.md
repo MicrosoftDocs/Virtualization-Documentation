@@ -1,5 +1,5 @@
 ---
-title: Windows and Linux Containers on Windows 10
+title: Prep Windows operating system containers
 description: Set up Windows 10 or Windows Server for containers, then move on to running your first container image.
 keywords: docker, containers, LCOW
 author: cwilhit
