@@ -3,6 +3,7 @@ title: Build and run an application with or without .NET Core 2.0 or PowerShell 
 description: Build and run an application with or without .NET Core 2.0 or PowerShell Core 6.
 keywords: docker, containers
 ms.topic: quickstart
+author: cwilhit
 ---
 
 # Build and run an application with or without .NET Core 2.0 or PowerShell Core 6

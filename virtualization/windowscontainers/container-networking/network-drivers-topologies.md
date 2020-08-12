@@ -1,5 +1,5 @@
 ---
-title: Windows container networking
+title: Windows container network drivers
 description: Network drivers and topologies for Windows containers.
 keywords: docker, containers
 author: jmesser81
@@ -77,8 +77,8 @@ IP Addresses are allocated and assigned differently for each networking driver. 
 
 Service Discovery is only supported for certain Windows network drivers.
 
-|  | Local Service Discovery  | Global Service Discovery |
-| :---: | :---------------     |  :---                |
+| Driver name | Local Service Discovery  | Global Service Discovery |
+| :--- | :---------------     |  :---                |
 | nat | YES | YES with Docker EE |
 | overlay | YES | YES with Docker EE or kube-dns |
 | transparent | NO | NO |

@@ -1,5 +1,5 @@
 ---
-title: Joining Linux nodes
+title: Deploying Kubernetes resources
 author: daschott
 ms.author: daschott
 ms.date: 11/02/2018
@@ -9,22 +9,26 @@ description: Deploying Kubernetes resoureces on a mixed-OS Kubernetes cluster.
 keywords: kubernetes, 1.14, windows, getting started
 ms.assetid: 3b05d2c2-4b9b-42b4-a61b-702df35f5b17
 ---
-# Deploying Kubernetes Resources #
+# Deploying Kubernetes Resources
+
 Assuming you have a Kubernetes cluster consisting of at least 1 master and 1 worker, you are ready to deploy Kubernetes resources.
+
 > [!TIP]
 > Curious what Kubernetes resources are supported today on Windows? Please see [officially supported features](https://kubernetes.io/docs/setup/production-environment/windows/intro-windows-in-kubernetes/#supported-functionality-and-limitations) and [Kubernetes on Windows roadmap](https://github.com/orgs/kubernetes/projects/8) for more details.
 
+## Running a sample service
 
-## Running a sample service ##
 You'll be deploying a very simple [PowerShell-based web service](https://github.com/Microsoft/SDN/blob/master/Kubernetes/WebServer.yaml) to ensure you joined the cluster successfully and our network is properly configured.
 
 Before doing so, it is always a good idea to make sure all our nodes are healthy.
+
 ```bash
 kubectl get nodes
 ```
 
 If everything looks good, you can download and run the following service:
-> [!Important]
+
+> [!IMPORTANT]
 > Before `kubectl apply`, make sure to double-check/modify the `microsoft/windowsservercore` image in the sample file to [a container image that is runnable by your nodes](https://docs.microsoft.com/virtualization/windowscontainers/deploy-containers/version-compatibility#choosing-container-os-versions)!
 
 ```bash
@@ -46,10 +50,11 @@ If all went well, it is possible to:
   - `curl` the *NodePort* from the Linux master or machines outside of the cluster; this demonstrates inbound connectivity.
   - `curl` external IPs from inside the pod; this demonstrates outbound connectivity.
 
-> [!Note]
+> [!NOTE]
 > Windows *container hosts* will **not** be able to access the service IP from services scheduled on them. This is a [known platform limitation](./common-problems.md#my-windows-node-cannot-access-my-services-using-the-service-ip) that will be improved in future versions to Windows Server. Windows *pods* **are** able to access the service IP however.
 
-## Next steps ##
+## Next steps
+
 In this section, we covered how to schedule Kubernetes resources on Windows nodes. This concludes the guide. If there were any problems, please review the troubleshooting section:
 
 > [!div class="nextstepaction"]

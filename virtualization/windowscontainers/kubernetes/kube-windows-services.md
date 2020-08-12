@@ -29,10 +29,9 @@ C:\k\register-svc.ps1 -NetworkMode <Network mode> -ManagementIP <Windows Node IP
 # [ManagementIP](#tab/ManagementIP)
 The IP address assigned to the Windows node. You can use `ipconfig` to find this.
 
-|  |  |
-|---------|---------|
-|Parameter     | `-ManagementIP`        |
-|Default Value    | n.A.        |
+| Parameter | Default value |
+|---|---|
+| `-ManagementIP` | n.A. |
 
 
 # [NetworkMode](#tab/NetworkMode)
@@ -41,37 +40,30 @@ The network mode `l2bridge` (flannel host-gw) or `overlay` (flannel vxlan) chose
 > [!Important]
 > `overlay` networking mode (flannel vxlan) requires Kubernetes v1.14 binaries or above.
 
-|  |  |
-|---------|---------|
-|Parameter     | `-NetworkMode`        |
-|Default Value    | `l2bridge`        |
-
+| Parameter | Default value |
+|---|---|
+| `-NetworkMode` | `12bridge` |
 
 # [ClusterCIDR](#tab/ClusterCIDR)
 The [cluster subnet range](./getting-started-kubernetes-windows.md#cluster-subnet-def).
 
-|  |  |
-|---------|---------|
-|Parameter     | `-ClusterCIDR`        |
-|Default Value    | `10.244.0.0/16`        |
-
+| Parameter | Default value |
+|---|---|
+| `-ClusterCIDR` | `10.244.0.0/16` |
 
 # [KubeDnsServiceIP](#tab/KubeDnsServiceIP)
-The [Kubernetes DNS service IP](./getting-started-kubernetes-windows.md#kube-dns-def).
+The [Kubernetes DNS service IP](./getting-started-kubernetes-windows.md#plan-ip-addressing-for-your-cluster).
 
-|  |  |
-|---------|---------|
-|Parameter     | `-KubeDnsServiceIP`        |
-|Default Value    | `10.96.0.10`        |
-
+| Parameter | Default value |
+|---|---|
+| `-KubeDnsServiceIP` | `10.96.0.10` |
 
 # [LogDir](#tab/LogDir)
 The directory where kubelet and kube-proxy logs are redirected into their respective output files.
 
-|  |  |
-|---------|---------|
-|Parameter     | `-LogDir`        |
-|Default Value    | `C:\k`        |
+| Parameter | Default value |
+|---|---|
+| `-LogDir` | `C:\k` |
 
 ---
 
