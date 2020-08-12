@@ -11,7 +11,7 @@ ms.topic: overview
 
 As you read about containers, you’ll inevitably hear about Docker. The Docker Engine is a container management toolset that packages and delivers container images. The resulting images can be run anywhere as a container, whether it's on-premises, in the cloud, or on a personal machine.
 
-![](media/docker.png)
+![A graphic showing a general Docker workflow where the user builds a container, then runs it on the cloud.](media/docker.png)
 
 You can manage a Windows Server container with [Docker](https://www.docker.com) just like any other container.
 

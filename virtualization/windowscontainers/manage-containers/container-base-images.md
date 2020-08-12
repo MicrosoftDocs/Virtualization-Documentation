@@ -19,7 +19,7 @@ Windows offers four container base images that users can build from. Each base i
             <article class="card has-outline-hover is-relative is-full-height has-padding-none">
                     <div class="cardImageOuter bgdAccent1 has-padding-top-large has-padding-bottom-large has-padding-left-large has-padding-right-large">
                         <div class="cardImage centered has-padding-top-large has-padding-bottom-large has-padding-left-large has-padding-right-large">
-                            <img src="media/Microsoft_logo.svg" alt="" data-linktype="relative-path">
+                            <img src="media/Microsoft_logo.svg" alt="Microsoft logo" data-linktype="relative-path">
                         </div>
                     </div>
                 <div class="card-content has-text-overflow-ellipsis has-padding-top-small">
@@ -39,7 +39,7 @@ Windows offers four container base images that users can build from. Each base i
             <article class="card has-outline-hover is-relative is-full-height has-padding-none">
                     <div class="cardImageOuter bgdAccent1 has-padding-top-large has-padding-bottom-large has-padding-left-large has-padding-right-large">
                         <div class="cardImage centered has-padding-top-large has-padding-bottom-large has-padding-left-large has-padding-right-large">
-                            <img src="media/Microsoft_logo.svg" alt="" data-linktype="relative-path">
+                            <img src="media/Microsoft_logo.svg" alt="Microsoft logo." data-linktype="relative-path">
                         </div>
                     </div>
                 <div class="card-content has-text-overflow-ellipsis has-padding-top-small">
@@ -59,7 +59,7 @@ Windows offers four container base images that users can build from. Each base i
             <article class="card has-outline-hover is-relative is-full-height has-padding-none">
                     <div class="cardImageOuter bgdAccent1 has-padding-top-large has-padding-bottom-large has-padding-left-large has-padding-right-large">
                         <div class="cardImage centered has-padding-top-large has-padding-bottom-large has-padding-left-large has-padding-right-large">
-                            <img src="media/Microsoft_logo.svg" alt="" data-linktype="relative-path">
+                            <img src="media/Microsoft_logo.svg" alt="Microsoft logo." data-linktype="relative-path">
                         </div>
                     </div>
                 <div class="card-content has-text-overflow-ellipsis has-padding-top-small">
@@ -79,7 +79,7 @@ Windows offers four container base images that users can build from. Each base i
             <article class="card has-outline-hover is-relative is-full-height has-padding-none">
                     <div class="cardImageOuter bgdAccent1 has-padding-top-large has-padding-bottom-large has-padding-left-large has-padding-right-large">
                         <div class="cardImage centered has-padding-top-large has-padding-bottom-large has-padding-left-large has-padding-right-large">
-                            <img src="media/Microsoft_logo.svg" alt="" data-linktype="relative-path">
+                            <img src="media/Microsoft_logo.svg" alt="Microsoft logo." data-linktype="relative-path">
                         </div>
                     </div>
                 <div class="card-content has-text-overflow-ellipsis has-padding-top-small">
@@ -137,4 +137,4 @@ Read [Use Containers with the Windows Insider Program](../deploy-containers/insi
 
 `Windows Server Core` and `Nanoserver` are the most common base images to target. The key difference between these images is that Nanoserver has a significantly smaller API surface. PowerShell, WMI, and the Windows servicing stack are absent from the Nanoserver image.
 
-Nanoserver was built to provide just enough API surface to run apps that have a dependency on .NET core or other modern open source frameworks. As a tradeoff to the smaller APi surface, the Nanoserver image has a significantly smaller on-disk footprint than the rest of the Windows base images. Keep in mind that you can always add layers on top of Nano Server as you see fit. For an example of this check out the [.NET Core Nano Server Dockerfile](https://github.com/dotnet/dotnet-docker/blob/master/2.1/sdk/nanoserver-1909/amd64/Dockerfile).
+Nanoserver was built to provide just enough API surface to run apps that have a dependency on .NET core or other modern open source frameworks. As a tradeoff to the smaller API surface, the Nanoserver image has a significantly smaller on-disk footprint than the rest of the Windows base images. Keep in mind that you can always add layers on top of Nano Server as you see fit. For an example of this check out the [.NET Core Nano Server Dockerfile](https://github.com/dotnet/dotnet-docker/blob/master/src/sdk/2.1/nanoserver-1909/amd64/Dockerfile).

@@ -1,3 +1,10 @@
+---
+title: Microsoft Software EULA Windows Containers
+description: License agreement for Windows container base images.
+keywords: docker, containers, eula
+author: cwilhit
+ms.date: 08/11/2020
+---
 # MICROSOFT SOFTWARE SUPPLEMENTAL LICENSE FOR WINDOWS CONTAINER BASE IMAGE
 
 This Supplemental License is for the Windows Container Base Image (“Container Image”). If you comply with the terms of this Supplemental License you may use the Container Image as described below.
@@ -31,6 +38,6 @@ UPDATED: Windows Server Container with Hyper-V isolation (formerly known as Hype
 
 **IoT Host Software.** When running a Container Image on IoT Host Software you may run any number of the Container Image instantiated as Windows containers for test or development purposes only. You may only use the Container Image in a production environment if you have agreed to the Microsoft Commercial Terms of Use for Windows 10 Core Runtime Images or the Windows 10 IoT Enterprise Device License (“Windows IoT Commercial Agreement”). Additional terms and restrictions in the Windows IoT Commercial Agreements apply to your use of Container Image in a production environment.
 
-**Third Party Software.** The Container Image may include third party applications that are licensed to you under this Supplemental License or under their own terms. License terms, notices, and acknowledgements, if any, for the third-party applications may be accessible online at http://aka.ms/thirdpartynotices or in an accompanying notices file. Even if such applications are governed by other agreements, the disclaimer, limitations on, and exclusions of damages in the Host License also apply to the extent allowed by applicable law.
+**Third Party Software.** The Container Image may include third party applications that are licensed to you under this Supplemental License or under their own terms. License terms, notices, and acknowledgements, if any, for the third-party applications may be accessible online at <https://aka.ms/thirdpartynotices> or in an accompanying notices file. Even if such applications are governed by other agreements, the disclaimer, limitations on, and exclusions of damages in the Host License also apply to the extent allowed by applicable law.
 
-**Open Source Components.** The Container Image may contain third party copyrighted software licensed under open source licenses with source code availability obligations. Copies of those licenses are included in the ThirdPartyNotices file or other accompanying notices file. You may obtain the complete corresponding source code from Microsoft if and as required under the relevant open source license by sending a money order or check for $5.00 to: Source Code Compliance Team, Microsoft Corporation, 1 Microsoft Way, Redmond, WA 98052, USA. Please include the name “Microsoft Software Supplemental License for Windows Container base image,“ the open source component name and version number in the memo line of your payment. You may also find a copy of the source at http://aka.ms/getsource.
+**Open Source Components.** The Container Image may contain third party copyrighted software licensed under open source licenses with source code availability obligations. Copies of those licenses are included in the ThirdPartyNotices file or other accompanying notices file. You may obtain the complete corresponding source code from Microsoft if and as required under the relevant open source license by sending a money order or check for $5.00 to: Source Code Compliance Team, Microsoft Corporation, 1 Microsoft Way, Redmond, WA 98052, USA. Please include the name “Microsoft Software Supplemental License for Windows Container base image,“ the open source component name and version number in the memo line of your payment. You may also find a copy of the source at <https://aka.ms/getsource>.

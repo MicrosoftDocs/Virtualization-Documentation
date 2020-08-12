@@ -1,5 +1,5 @@
 ---
-title: Joining Linux nodes
+title: Joining Linux nodes cluster
 author: daschott
 ms.author: daschott
 ms.date: 02/09/2018
@@ -13,7 +13,8 @@ ms.assetid: 3b05d2c2-4b9b-42b4-a61b-702df35f5b17
 # Joining Linux Nodes to a Cluster
 
 Once you have [setup a Kubernetes master node](creating-a-linux-master.md) and [selected your desired network solution](network-topologies.md), you are ready to join Linux nodes to your cluster. This requires some [preparation on the Linux node](joining-linux-workers.md#preparing-a-linux-node) before joining.
-> [!tip]
+
+> [!TIP]
 > The Linux instructions are tailored towards **Ubuntu 16.04**. Other Linux distributions certified to run Kubernetes should also offer equivalent commands that you can substitute. They will also interoperate successfully with Windows.
 
 ## Preparing a Linux node
@@ -45,7 +46,7 @@ docker run hello-world
 
 Download `kubeadm` binaries for your Linux distribution and initialize your cluster.
 
-> [!Important]
+> [!IMPORTANT]
 > Depending on your Linux distribution, you may need to replace `kubernetes-xenial` below with the correct [codename](https://wiki.ubuntu.com/Releases).
 
 ``` bash
@@ -85,7 +86,7 @@ mkdir -p $HOME/.kube
 
 2. Copy the Kubernetes certificate file (`$HOME/.kube/config`) [from master](./creating-a-linux-master.md#collect-cluster-information) and save as `$HOME/.kube/config` on the worker.
 
-> [!tip]
+> [!TIP]
 > You can use scp-based tools such as [WinSCP](https://winscp.net/eng/download.php) to transfer the config file between nodes.
 
 3. Set file ownership of the copied config file as follows:
@@ -104,7 +105,7 @@ kubeadm join <Master_IP>:6443 --token <some_token> --discovery-token-ca-cert-has
 
 If successful, you should see similar output to this:
 
-![text](./media/node-join.png)
+![A screenshot of the node join complete output in bash.](./media/node-join.png)
 
 ## Next steps
 

@@ -17,7 +17,7 @@ Windows containers are a key component of a large container ecosystem. We’re w
 
 The container ecosystem provides ways to manage, share, and develop apps that run in containers.
 
-![](media/containerEcosystem.png)
+![A diagram of the container ecosystem. It shows various Microsoft products spit into four categories: development environments, container management, container technologies, and Microsoft Cloud.](media/containerEcosystem.png)
 
 Microsoft wants to empower developer choice and productivity as they build these next-gen apps. Our goal is to fuel developer productivity, which means enabling applications to target any Microsoft cloud without having to modify, rewrite, or reconfigure code.
 
