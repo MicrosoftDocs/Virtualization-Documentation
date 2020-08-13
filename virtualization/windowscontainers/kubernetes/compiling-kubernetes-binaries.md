@@ -1,8 +1,8 @@
 ---
 title: Compiling Kubernetes Binaries
-author: gkudra-msft
-ms.author: gekudray
-ms.date: 11/02/2018
+author: daschott
+ms.author: daschott
+ms.date: 08/13/2020
 ms.topic: how-to
 
 description: Compiling and cross-compiling Kubernetes binaries from source.
