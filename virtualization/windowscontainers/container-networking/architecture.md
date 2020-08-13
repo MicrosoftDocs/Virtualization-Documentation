@@ -2,15 +2,15 @@
 title: Windows container networking
 description: Gentle intro to architecture of Windows container networks.
 keywords: docker, containers
-author: jmesser81
-ms.date: 03/27/2018
+author: daschott
+ms.date: 08/13/2020
 ms.topic: overview
 ms.assetid: 538871ba-d02e-47d3-a3bf-25cda4a40965
 ---
 # Windows container networking
 
 >[!IMPORTANT]
->Please reference [Docker Container Networking](https://docs.docker.com/engine/userguide/networking/) for general docker networking commands, options, and syntax.*** With the exception of any cases described in [unsupported features and network options](#unsupported-features-and-network-options), all Docker networking commands are supported on Windows with the same syntax as on Linux. However, the Windows and Linux network stacks are different, and as such you will find that some Linux network commands (for example, ifconfig) are not supported on Windows.
+>Please reference [Docker Container Networking](https://docs.docker.com/engine/userguide/networking/) for general docker networking commands, options, and syntax. With the exception of any cases described in [unsupported features and network options](#unsupported-features-and-network-options), all Docker networking commands are supported on Windows with the same syntax as on Linux. However, the Windows and Linux network stacks are different, and as such you will find that some Linux network commands (for example, ifconfig) are not supported on Windows.
 
 ## Basic networking architecture
 
