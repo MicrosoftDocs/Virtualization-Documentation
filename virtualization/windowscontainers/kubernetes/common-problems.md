@@ -43,10 +43,15 @@ The `CollectLogs.ps1` will also mimic HNS allocation logic to test port pool all
 To resolve this issue, a few steps can be taken:
 1.	For a permanent solution, kube-proxy load balancing should be set to [DSR mode](https://techcommunity.microsoft.com/t5/Networking-Blog/Direct-Server-Return-DSR-in-a-nutshell/ba-p/693710). DSR mode is fully implemented and available on newer [Windows Server Insider build 18945](https://blogs.windows.com/windowsexperience/2019/07/30/announcing-windows-server-vnext-insider-preview-build-18945/#o1bs7T2DGPFpf7HM.97) (or higher) only.
 2. As a workaround, users can also increase the default Windows configuration of ephemeral ports available using a command such as `netsh int ipv4 set dynamicportrange TCP <start_port> <port_count>`. *WARNING:* Overriding the default dynamic port range can have consequences on other processes/services on the host that rely on available TCP ports from the non-ephemeral range, so this range should be selected carefully.
-3. There is a scalability enhancement to non-DSR mode load balancers using intelligent port pool sharing, which is scheduled to be released through a cumulative update in Q1 2020.
+3. There is a scalability enhancement to non-DSR mode load balancers using intelligent port pool sharing included in cumulative update [KB4551853](https://support.microsoft.com/en-us/help/4551853) (and all newer cumulative updates).
 
 ### HostPort publishing is not working ###
-It is currently not possible to publish ports using the Kubernetes `containers.ports.hostPort` field as this field is not honored by Windows CNI plugins. Please use NodePort publishing for the time being to publish ports on the Node.
+To use HostPort feature, please ensure your CNI plugins are [v0.8.6](https://github.com/containernetworking/plugins/releases/tag/v0.8.6) release or higher, and that the CNI configuration file has the `portMappings` capabilities set:
+```
+"capabilities": {
+    "portMappings":  true
+}
+```
 
 ### I am seeing errors such as "hnsCall failed in Win32: The wrong diskette is in the drive." ###
 This error can occur when making custom modifications to HNS objects or installing new Windows Update that introduce changes to HNS without tearing down old HNS objects. It indicates that a HNS object which was previously created before an update is incompatible with the currently installed HNS version.
@@ -98,7 +103,10 @@ One of the Kubernetes networking requirements (see [Kubernetes model](https://ku
 ```
 
 ### My Windows node cannot access a NodePort service ###
-Local NodePort access from the node itself may fail. This is a known feature gap being addressed with cumulative update KB4571748 (or later). NodePort access should always work from other nodes or external clients.
+Local NodePort access from the node itself may fail. This is a known feature gap being addressed with cumulative update KB4571748 (or later). NodePort access will work from other nodes or external clients.
+
+### My Windows node stops routing thourgh NodePorts after I scaled down my pods ###
+Due to a design limitation, there needs to be at least one pod running on the Windows node for NodePort forwarding to work.
 
 ### After some time, vNICs and HNS endpoints of containers are being deleted ###
 This issue can be caused when the `hostname-override` parameter is not passed to [kube-proxy](https://kubernetes.io/docs/reference/command-line-tools-reference/kube-proxy/). To resolve it, users need to pass the hostname to kube-proxy as follows:

@@ -78,6 +78,7 @@
 ## [Container OS image EULA](Images_EULA.md)
 
 # Resources
+## [Known Issues](manage-containers/known-issues.md)
 ## [Container samples](samples.md)
 ## [Troubleshooting](troubleshooting.md)
 ## [Container forum](https://social.msdn.microsoft.com/Forums/home?forum=windowscontainers)
