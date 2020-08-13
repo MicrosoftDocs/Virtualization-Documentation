@@ -80,7 +80,7 @@ az network route-table route create  --resource-group <my_resource_group> --add
 ```
 
 >[!TIP]
-> If you are deploying Kubernetes on Azure or IaaS VMs from other cloud providers yourself, you can also use [overlay networking](./network-topologies.md#flannel-in-vxlan-mode) instead.
+> If you are deploying Kubernetes on Azure or IaaS VMs from other cloud providers yourself, you can also use `overlay networking` instead.
 
 ### My Windows pods cannot ping external resources ###
 Windows pods do not have outbound rules programmed for the ICMP protocol today. However, TCP/UDP is supported. When trying to demonstrate connectivity to resources outside of the cluster, please substitute `ping <IP>` with corresponding `curl <IP>` commands.
@@ -163,20 +163,11 @@ Get-NetAdapter | ? Name -Like "vEthernet (Ethernet*"
 
 Often it is worthwhile to modify the [InterfaceName](https://github.com/Microsoft/SDN/blob/master/Kubernetes/flannel/l2bridge/start.ps1#L6) parameter of the start.ps1 script, in cases where the host's network adapter isn't "Ethernet". Otherwise, consult the output of the `start-kubelet.ps1` script to see if there are errors during virtual network creation.
 
-### Pods stop resolving DNS queries successfully after some time alive ###
-There is a known DNS caching issue in the networking stack of Windows Server, version 1803 and below that may sometimes cause DNS requests to fail. To work around this issue, you can set the max TTL cache values to zero using the following registry keys:
-
-```Dockerfile
-FROM microsoft/windowsservercore:<your-build>
-SHELL ["powershell', "-Command", "$ErrorActionPreference = 'Stop';"]
-New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Services\Dnscache\Parameters' -Name MaxCacheTtl -Value 0 -Type DWord
-New-ItemPropery -Path 'HKLM:\SYSTEM\CurrentControlSet\Services\Dnscache\Parameters' -Name MaxNegativeCacheTtl -Value 0 -Type DWord
-```
 
 ### I am still seeing problems. What should I do? ###
 There may be additional restrictions in place on your network or on hosts preventing certain types of
 communication between nodes. Ensure that:
-  - you have properly configured your chosen [network topology](./network-topologies.md)
+  - you have properly configured your chosen network topology (`l2bridge` or `overlay`)
   - traffic that looks like it's coming from pods is allowed
   - HTTP traffic is allowed, if you are deploying web services
   - Packets from different protocols (ie ICMP vs. TCP/UDP) are not being dropped
@@ -191,7 +182,7 @@ This issue can have many causes, but one of the most common is that the pause im
 
 
 ### When deploying, Docker containers keep restarting ###
-Check that your pause image is compatible with your OS version. The [instructions](./deploying-resources.md) assume that both the OS and the containers are version 1803. If you have a later version of Windows, such as an Insider build, you will need to adjust the images accordingly. Please refer to the Microsoft's [Docker repository](https://hub.docker.com/u/microsoft/) for images. Regardless, both the pause image Dockerfile and the sample service will expect the image to be tagged as `:latest`.
+Check that your pause image is compatible with your OS version. Kubernetes assumes that both the OS and the containers have matching OS version numbers. If you are using an experimental build of Windows, such as an Insider build, you will need to adjust the images accordingly. Please refer to the Microsoft's [Docker repository](https://hub.docker.com/u/microsoft/) for images.
 
 
 ## Common Kubernetes master errors ##
@@ -207,7 +198,7 @@ Run `kubectl get pods -n kube-system` to see the pods being created by Kubernete
 ### Cannot connect to the API server at `https://[address]:[port]` ###
 More often than not, this error indicates certificate problems. Ensure that you have generated the configuration file correctly, that the IP addresses in it match that of your host, and that you have copied it to the directory that is mounted by the API server.
 
-If following [our instructions](./creating-a-linux-master.md), good places to find this is:
+Good places to find this configuration file are:
 * `~/kube/kubelet/`
 * `$HOME/.kube/config`
 *  `/etc/kubernetes/admin.conf`
