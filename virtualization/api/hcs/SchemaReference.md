@@ -84,8 +84,8 @@ Referenced by: [ContainerCredentialGuardOperationRequest](#ContainerCredentialGu
 
 |Variants|NewInVersion|Description|
 |---|---|---|
-|`"AddInstance"`<br>|[2.1](#Schema-Version-Map)||
-|`"RemoveInstance"`<br>|[2.1](#Schema-Version-Map)||
+|`"AddInstance"`<br>|[2.1](#Schema-Version-Map)|Determines that a Container Credential Guard request operation is trying to add a new Container Credential Guard Instance.|
+|`"RemoveInstance"`<br>|[2.1](#Schema-Version-Map)|Determines that a Container Credential Guard request operation is trying to remove an existing running Container Credential Guard Instance.|
 
 ---
 
@@ -97,8 +97,8 @@ Referenced by: [ContainerCredentialGuardAddInstanceRequest](#ContainerCredential
 
 |Variants|NewInVersion|Description|
 |---|---|---|
-|`"LRPC"`<br>|[2.1](#Schema-Version-Map)||
-|`"HvSocket"`<br>|[2.1](#Schema-Version-Map)||
+|`"LRPC"`<br>|[2.1](#Schema-Version-Map)|Specifies that the Container Credential Guard transport is configured using Local Remote Procedure calls.|
+|`"HvSocket"`<br>|[2.1](#Schema-Version-Map)|Specifies that the Container Credential Guard transport is configured using Remote Procedure calls over HvSocket.|
 
 ---
 
@@ -170,7 +170,7 @@ Referenced by: [FlexibleIoDevice](#FlexibleIoDevice)
 
 <a name = "GetPropertyType"></a>
 ## GetPropertyType
-Referenced by: [FilteredPropertyQuery](#FilteredPropertyQuery); [Service_PropertyQuery](#Service_PropertyQuery)
+Referenced by: [Service_PropertyQuery](#Service_PropertyQuery)
 
 Service property type queried by HcsGetServiceProperties
 
@@ -243,8 +243,8 @@ Referenced by: [MappedPipe](#MappedPipe)
 
 |Variants|NewInVersion|Description|
 |---|---|---|
-|`"AbsolutePath"`<br>|[2.1](#Schema-Version-Map)||
-|`"VirtualSmbPipeName"`<br>|[2.1](#Schema-Version-Map)||
+|`"AbsolutePath"`<br>|[2.1](#Schema-Version-Map)|The path associated to this path type is an absolute path. The path is passed as-is to Windows APIs.|
+|`"VirtualSmbPipeName"`<br>|[2.1](#Schema-Version-Map)|The path associated to this path type is a virtual SMB pipe name. The path is translated to a file system path, relative to the virtual SMB object namespace path, before passed to Windows APIs.|
 
 ---
 
@@ -335,7 +335,7 @@ Enumeration of different supported service processor modification requests
 
 <a name = "NetworkModifyRequestType"></a>
 ## NetworkModifyRequestType
-Referenced by: [NetworkModifySettingRequest](#NetworkModifySettingRequest); [Rs4NetworkModifySettingRequest](#Rs4NetworkModifySettingRequest)
+Referenced by: [NetworkModifySettingRequest](#NetworkModifySettingRequest)
 
 
 
@@ -398,8 +398,8 @@ Referenced by: [Layer](#Layer); [MappedDirectory](#MappedDirectory)
 
 |Variants|NewInVersion|Description|
 |---|---|---|
-|`"AbsolutePath"`<br>|[2.1](#Schema-Version-Map)||
-|`"VirtualSmbShareName"`<br>|[2.1](#Schema-Version-Map)||
+|`"AbsolutePath"`<br>|[2.1](#Schema-Version-Map)|The path associated to this path type is an absolute path. The path is passed as-is to windows APIs.|
+|`"VirtualSmbShareName"`<br>|[2.1](#Schema-Version-Map)|The path associated to this path type is a virtual SMB share name. The path is translated to a file system path, relative to the virtual SMB object namespace path, before passed to windows APIs.|
 
 ---
 
@@ -737,11 +737,11 @@ Referenced by: [ProcessModifyRequest](#ProcessModifyRequest)
 
 <a name = "CombinedLayers"></a>
 ## CombinedLayers
-This class is used by a modify request to add or remove a combined layers structure in the guest. For windows, the GCS applies a filter in ContainerRootPath using the specified layers as the parent content. Ignores property ScratchPath since the container path is already the scratch path. For linux, the GCS unions the specified layers and ScratchPath together, placing the resulting union filesystem at ContainerRootPath.
+Object used by a modify request to add or remove a combined layers structure in the guest. For Windows, the GCS applies a filter in ContainerRootPath using the specified layers as the parent content. Ignores property ScratchPath since the container path is already the scratch path. For linux, the GCS unions the specified layers and ScratchPath together, placing the resulting union filesystem at ContainerRootPath.
 
 |Field|Type|NewInVersion|Description|
 |---|---|---|---|
-|**Layers**<br>|<[Layer](#Layer)> array|[2.0](#Schema-Version-Map)||
+|**Layers**<br>|<[Layer](#Layer)> array|[2.0](#Schema-Version-Map)|Layer hierarchy to be combined.|
 |**ScratchPath**<br>|[string](#JSON-type)|[2.0](#Schema-Version-Map)||
 |**ContainerRootPath**<br>|[string](#JSON-type)|[2.0](#Schema-Version-Map)||
 
@@ -762,17 +762,17 @@ ComPort specifies the named pipe that will be used for the port, with empty stri
 
 <a name = "ComputeSystem"></a>
 ## ComputeSystem
-
+Describes the configuration of a compute system to create with all of the necessary resources it requires for a successful boot.
 
 |Field|Type|NewInVersion|Description|
 |---|---|---|---|
-|**Owner**<br>|[string](#JSON-type)|[2.0](#Schema-Version-Map)||
-|**SchemaVersion**<br>|[Version](#Version)|[2.0](#Schema-Version-Map)||
-|**HostingSystemId**<br>|[string](#JSON-type)|[2.0](#Schema-Version-Map)||
-|**HostedSystem**<br>|[Any](#JSON-type)|[2.0](#Schema-Version-Map)||
-|**Container**<br>|[Container](#Container)|[2.0](#Schema-Version-Map)||
-|**VirtualMachine**<br>|[VirtualMachine](#VirtualMachine)|[2.0](#Schema-Version-Map)||
-|**ShouldTerminateOnLastHandleClosed**<br>|[bool](#JSON-type)|[2.0](#Schema-Version-Map)||
+|**Owner**<br>|[string](#JSON-type)|[2.0](#Schema-Version-Map)|A string identifying the owning client for this system.|
+|**SchemaVersion**<br>|[Version](#Version)|[2.0](#Schema-Version-Map)|A version structure for this schema. Properties nested within this object may identify their own schema versions.|
+|**HostingSystemId**<br>|[string](#JSON-type)|[2.0](#Schema-Version-Map)|The identifier of the compute system that will host the system described by HostedSystem. The hosting system must already have been created.|
+|**HostedSystem**<br>|[Any](#JSON-type)|[2.0](#Schema-Version-Map)|The JSON describing the compute system that will be launched inside of the system identified by HostingSystemId. This property is mutually exclusive with the Container and VirtualMachine properties.|
+|**Container**<br>|[Container](#Container)|[2.0](#Schema-Version-Map)|The set of properties defining a container. This property is mutualy exclusive with the HostedSystem and VirtualMachine properties.|
+|**VirtualMachine**<br>|[VirtualMachine](#VirtualMachine)|[2.0](#Schema-Version-Map)|The set of properties defining a virtual machine. This property is mutually exclusive with the HostedSystem and Container properties.|
+|**ShouldTerminateOnLastHandleClosed**<br>|[bool](#JSON-type)|[2.0](#Schema-Version-Map)|If true, this system will be forcibly terminated when the last HCS_SYSTEM handle corresponding to it is closed.|
 
 ---
 
@@ -793,21 +793,21 @@ Referenced by: [ProcessModifyRequest](#ProcessModifyRequest)
 ## Container
 Referenced by: [ComputeSystem](#ComputeSystem); [HostedSystem](#HostedSystem)
 
-
+Configuration of a Windows Server Container, used during its creation to set up and/or use resources.
 
 |Field|Type|NewInVersion|Description|
 |---|---|---|---|
-|**GuestOs**<br>|[GuestOs](#GuestOs)|[2.0](#Schema-Version-Map)||
-|**Storage**<br>|[Storage](#Storage)|[2.0](#Schema-Version-Map)||
-|**MappedDirectories**<br>|<[MappedDirectory](#MappedDirectory)> array|[2.0](#Schema-Version-Map)||
-|**MappedPipes**<br>|<[MappedPipe](#MappedPipe)> array|[2.0](#Schema-Version-Map)||
-|**Memory**<br>|[Container_Memory](#Container_Memory)|[2.0](#Schema-Version-Map)||
-|**Processor**<br>|[Container_Processor](#Container_Processor)|[2.0](#Schema-Version-Map)||
-|**Networking**<br>|[Networking](#Networking)|[2.0](#Schema-Version-Map)||
-|**HvSocket**<br>|[Container_HvSocket](#Container_HvSocket)|[2.0](#Schema-Version-Map)||
-|**ContainerCredentialGuard**<br>|[ContainerCredentialGuardState](#ContainerCredentialGuardState)|[2.1](#Schema-Version-Map)||
-|**RegistryChanges**<br>|[RegistryChanges](#RegistryChanges)|[2.0](#Schema-Version-Map)||
-|**AssignedDevices**<br>|<[Device](#Device)> array|[2.1](#Schema-Version-Map)||
+|**GuestOs**<br>|[GuestOs](#GuestOs)|[2.0](#Schema-Version-Map)|Properties specific to the guest operating system that runs on the container.|
+|**Storage**<br>|[Storage](#Storage)|[2.0](#Schema-Version-Map)|Storage configuration of a container.|
+|**MappedDirectories**<br>|<[MappedDirectory](#MappedDirectory)> array|[2.0](#Schema-Version-Map)|Optional list of directories in the container host that will be mapped to the container guest on creation.|
+|**MappedPipes**<br>|<[MappedPipe](#MappedPipe)> array|[2.0](#Schema-Version-Map)|Optional list of named pipes in the container host that will be mapped to the container guest on creation.|
+|**Memory**<br>|[Container_Memory](#Container_Memory)|[2.0](#Schema-Version-Map)|Optional memory configuration of a container.|
+|**Processor**<br>|[Container_Processor](#Container_Processor)|[2.0](#Schema-Version-Map)|Optional processor configuration of a container.|
+|**Networking**<br>|[Networking](#Networking)|[2.0](#Schema-Version-Map)|Network configuration of a container.|
+|**HvSocket**<br>|[Container_HvSocket](#Container_HvSocket)|[2.0](#Schema-Version-Map)|HvSocket configuration of a container. Used to configure ACLs to control what host process can connect\bind to the container. Hosted container ACLs are inherited from the hosting system.|
+|**ContainerCredentialGuard**<br>|[ContainerCredentialGuardState](#ContainerCredentialGuardState)|[2.1](#Schema-Version-Map)|Optional configuration and description of credentials forwarded to the container guest from the container host.|
+|**RegistryChanges**<br>|[RegistryChanges](#RegistryChanges)|[2.0](#Schema-Version-Map)|List of Windows registry key/value changes applied on the container on creation.|
+|**AssignedDevices**<br>|<[Device](#Device)> array|[2.1](#Schema-Version-Map)|Optional list of direct device assignment configurations.|
 
 ---
 
@@ -815,12 +815,12 @@ Referenced by: [ComputeSystem](#ComputeSystem); [HostedSystem](#HostedSystem)
 ## Container_HvSocket
 Referenced by: [Container](#Container)
 
-
+Describes the HvSocket configuration and options for a container.
 
 |Field|Type|NewInVersion|Description|
 |---|---|---|---|
-|**Config**<br>|[HvSocketSystemConfig](#HvSocketSystemConfig)|[2.0](#Schema-Version-Map)||
-|**EnablePowerShellDirect**<br>|[bool](#JSON-type)|[2.0](#Schema-Version-Map)||
+|**Config**<br>|[HvSocketSystemConfig](#HvSocketSystemConfig)|[2.0](#Schema-Version-Map)|Optional detailed HvSocket configuration.|
+|**EnablePowerShellDirect**<br>|[bool](#JSON-type)|[2.0](#Schema-Version-Map)|When true, enables Powershell Direct service in the guest to allow it to use the HvSocket transport.|
 
 ---
 
@@ -828,11 +828,11 @@ Referenced by: [Container](#Container)
 ## Container_Memory
 Referenced by: [Container](#Container)
 
-
+Describes memory configuration for a container.
 
 |Field|Type|NewInVersion|Description|
 |---|---|---|---|
-|**SizeInMB**<br>|[uint64](#JSON-type)|[2.1](#Schema-Version-Map)||
+|**SizeInMB**<br>|[uint64](#JSON-type)|[2.1](#Schema-Version-Map)|Specifies the memory size in megabytes.|
 
 ---
 
@@ -852,13 +852,13 @@ Specifies CPU limits for a container. Count, Maximum and Weight are all mutually
 
 <a name = "ContainerCredentialGuardAddInstanceRequest"></a>
 ## ContainerCredentialGuardAddInstanceRequest
-
+Object describing a request to add a Container Credential Guard Instance.
 
 |Field|Type|NewInVersion|Description|
 |---|---|---|---|
-|**Id**<br>|[string](#JSON-type)|[2.1](#Schema-Version-Map)||
-|**CredentialSpec**<br>|[string](#JSON-type)|[2.1](#Schema-Version-Map)||
-|**Transport**<br>|[ContainerCredentialGuardTransport](#ContainerCredentialGuardTransport)|[2.1](#Schema-Version-Map)||
+|**Id**<br>|[string](#JSON-type)|[2.1](#Schema-Version-Map)|Globally unique identifier to use for the Container Credential Guard Instance.|
+|**CredentialSpec**<br>|[string](#JSON-type)|[2.1](#Schema-Version-Map)|JSON document as a string that describes the Container Credential Guard Instance's credential specification to use.|
+|**Transport**<br>|[ContainerCredentialGuardTransport](#ContainerCredentialGuardTransport)|[2.1](#Schema-Version-Map)|Specifies the transport the Container Credential Guard Instance will use at runtime.|
 
 ---
 
@@ -866,12 +866,12 @@ Specifies CPU limits for a container. Count, Maximum and Weight are all mutually
 ## ContainerCredentialGuardHvSocketServiceConfig
 Referenced by: [ContainerCredentialGuardInstance](#ContainerCredentialGuardInstance)
 
-
+Specifies the HvSocket configurations required for a Container Credential Guard instance that is meant to be used with HvSocket transport.
 
 |Field|Type|NewInVersion|Description|
 |---|---|---|---|
-|**ServiceId**<br>|[Guid](#JSON-type)|[2.1](#Schema-Version-Map)||
-|**ServiceConfig**<br>|[HvSocketServiceConfig](#HvSocketServiceConfig)|[2.1](#Schema-Version-Map)||
+|**ServiceId**<br>|[Guid](#JSON-type)|[2.1](#Schema-Version-Map)|Identifier of the service that needs to be configured over HvSocket.|
+|**ServiceConfig**<br>|[HvSocketServiceConfig](#HvSocketServiceConfig)|[2.1](#Schema-Version-Map)|Necessary HvSocket settings that allow a Container Credential Guard instance to configure a transport using Remote Procedure Calls over HvSocket.|
 
 ---
 
@@ -879,34 +879,34 @@ Referenced by: [ContainerCredentialGuardInstance](#ContainerCredentialGuardInsta
 ## ContainerCredentialGuardInstance
 Referenced by: [ContainerCredentialGuardSystemInfo](#ContainerCredentialGuardSystemInfo)
 
-
+Describes the configuration of a running Container Credential Guard Instance.
 
 |Field|Type|NewInVersion|Description|
 |---|---|---|---|
-|**Id**<br>|[string](#JSON-type)|[2.1](#Schema-Version-Map)||
-|**CredentialGuard**<br>|[ContainerCredentialGuardState](#ContainerCredentialGuardState)|[2.1](#Schema-Version-Map)||
-|**HvSocketConfig**<br>|[ContainerCredentialGuardHvSocketServiceConfig](#ContainerCredentialGuardHvSocketServiceConfig)|[2.1](#Schema-Version-Map)||
+|**Id**<br>|[string](#JSON-type)|[2.1](#Schema-Version-Map)|Identifier of a Container Credential Guard Instance, globally unique.|
+|**CredentialGuard**<br>|[ContainerCredentialGuardState](#ContainerCredentialGuardState)|[2.1](#Schema-Version-Map)|Object that describes the state of a running Container Credential Guard Instance.|
+|**HvSocketConfig**<br>|[ContainerCredentialGuardHvSocketServiceConfig](#ContainerCredentialGuardHvSocketServiceConfig)|[2.1](#Schema-Version-Map)|Optional HvSocket configuration to allow a Container Credential Guard Instance to communicate over an HvSocket transport.|
 
 ---
 
 <a name = "ContainerCredentialGuardOperationRequest"></a>
 ## ContainerCredentialGuardOperationRequest
-
+Object describing a Container Credential Guard system request.
 
 |Field|Type|NewInVersion|Description|
 |---|---|---|---|
-|**Operation**<br>|[ContainerCredentialGuardModifyOperation](#ContainerCredentialGuardModifyOperation)|[2.1](#Schema-Version-Map)||
-|**OperationDetails**<br>|[Any](#JSON-type)|[2.1](#Schema-Version-Map)||
+|**Operation**<br>|[ContainerCredentialGuardModifyOperation](#ContainerCredentialGuardModifyOperation)|[2.1](#Schema-Version-Map)|Determines the type of Container Credential Guard request.|
+|**OperationDetails**<br>|[Any](#JSON-type)|[2.1](#Schema-Version-Map)|Object describing the input properties used by the specified operation type.|
 
 ---
 
 <a name = "ContainerCredentialGuardRemoveInstanceRequest"></a>
 ## ContainerCredentialGuardRemoveInstanceRequest
-
+Object describing a request to remove a running Container Credential Guard Instance.
 
 |Field|Type|NewInVersion|Description|
 |---|---|---|---|
-|**Id**<br>|[string](#JSON-type)|[2.1](#Schema-Version-Map)||
+|**Id**<br>|[string](#JSON-type)|[2.1](#Schema-Version-Map)|Globally unique identifier of a running Container Credential Guard Instance.|
 
 ---
 
@@ -918,7 +918,7 @@ Referenced by: [Container](#Container); [ContainerCredentialGuardInstance](#Cont
 
 |Field|Type|NewInVersion|Description|
 |---|---|---|---|
-|**Cookie**<br>|[ByteArray](#JSON-type)|[2.1](#Schema-Version-Map)|Authentication cookie for calls to a Container Credential Guard instance.|
+|**Cookie**<br>|[ByteArray](#JSON-type)<br>*JSON Type/Format: string/binary*|[2.1](#Schema-Version-Map)|Authentication cookie for calls to a Container Credential Guard instance.|
 |**RpcEndpoint**<br>|[string](#JSON-type)|[2.1](#Schema-Version-Map)|Name of the RPC endpoint of the Container Credential Guard instance.|
 |**Transport**<br>|[ContainerCredentialGuardTransport](#ContainerCredentialGuardTransport)|[2.1](#Schema-Version-Map)|Transport used for the configured Container Credential Guard instance.|
 |**CredentialSpec**<br>|[string](#JSON-type)|[2.1](#Schema-Version-Map)|Credential spec used for the configured Container Credential Guard instance.|
@@ -927,11 +927,11 @@ Referenced by: [Container](#Container); [ContainerCredentialGuardInstance](#Cont
 
 <a name = "ContainerCredentialGuardSystemInfo"></a>
 ## ContainerCredentialGuardSystemInfo
-
+Object listing the system's running Container Credential Guard Instances.
 
 |Field|Type|NewInVersion|Description|
 |---|---|---|---|
-|**Instances**<br>|<[ContainerCredentialGuardInstance](#ContainerCredentialGuardInstance)> array|[2.1](#Schema-Version-Map)||
+|**Instances**<br>|<[ContainerCredentialGuardInstance](#ContainerCredentialGuardInstance)> array|[2.1](#Schema-Version-Map)|Array of running Container Credential Guard Instances.|
 
 ---
 
@@ -1063,23 +1063,22 @@ Referenced by: [VirtualMachine](#VirtualMachine)
 
 |Field|Type|NewInVersion|Description|
 |---|---|---|---|
-|**ComPorts**<br>|[Map](#JSON-type)<[uint32](#JSON-type), [ComPort](#ComPort)>|[2.1](#Schema-Version-Map)||
+|**ComPorts**<br>|[Map](#JSON-type)<[uint32](#JSON-type), [ComPort](#ComPort)>|[2.1](#Schema-Version-Map)|An optional object that maps COM Port objects for any ports configured on the virtual machine. The key in the map is the integer, starting from zero, that will identify the COM port into the guest.|
 |**VirtioSerial**<br>|[VirtioSerial](#VirtioSerial)|[2.2](#Schema-Version-Map)||
-|**Scsi**<br>|[Map](#JSON-type)<[string](#JSON-type), [Scsi](#Scsi)>|[2.0](#Schema-Version-Map)|Map of named SCSI controllers|
-|**VirtualPMem**<br>|[VirtualPMemController](#VirtualPMemController)|[2.0](#Schema-Version-Map)||
-|**NetworkAdapters**<br>|[Map](#JSON-type)<[string](#JSON-type), [NetworkAdapter](#NetworkAdapter)>|[2.0](#Schema-Version-Map)||
-|**VideoMonitor**<br>|[VideoMonitor](#VideoMonitor)|[2.0](#Schema-Version-Map)||
-|**Keyboard**<br>|[Keyboard](#Keyboard)|[2.0](#Schema-Version-Map)||
-|**Mouse**<br>|[Mouse](#Mouse)|[2.0](#Schema-Version-Map)||
-|**HvSocket**<br>|[VirtualMachine_HvSocket](#VirtualMachine_HvSocket)|[2.1](#Schema-Version-Map)||
-|**EnhancedModeVideo**<br>|[EnhancedModeVideo](#EnhancedModeVideo)|[2.1](#Schema-Version-Map)||
-|**GuestCrashReporting**<br>|[GuestCrashReporting](#GuestCrashReporting)|[2.0](#Schema-Version-Map)||
-|**VirtualSmb**<br>|[VirtualSmb](#VirtualSmb)|[2.0](#Schema-Version-Map)||
-|**Plan9**<br>|[Plan9](#Plan9)|[2.0](#Schema-Version-Map)||
-|**Battery**<br>|[Battery](#Battery)|[2.0](#Schema-Version-Map)||
-|**FlexibleIov**<br>|[Map](#JSON-type)<[string](#JSON-type), [FlexibleIoDevice](#FlexibleIoDevice)>|[2.1](#Schema-Version-Map)||
-|**SharedMemory**<br>|[SharedMemoryConfiguration](#SharedMemoryConfiguration)|[2.1](#Schema-Version-Map)||
-|**KernelIntegration**<br>|[KernelIntegration](#KernelIntegration)|[2.1](#Schema-Version-Map)||
+|**Scsi**<br>|[Map](#JSON-type)<[string](#JSON-type), [Scsi](#Scsi)>|[2.0](#Schema-Version-Map)|An optional object that maps SCSI controllers, identified by friendly name. The provided name is hashed to create the controller's channel instance identifier. If the name is already a GUID, that GUID will be used as the channel instance identifier as-is.|
+|**VirtualPMem**<br>|[VirtualPMemController](#VirtualPMemController)|[2.0](#Schema-Version-Map)|An optional object defining the settings for virtual persistent memory.|
+|**NetworkAdapters**<br>|[Map](#JSON-type)<[string](#JSON-type), [NetworkAdapter](#NetworkAdapter)>|[2.0](#Schema-Version-Map)|An optional object that maps network adapters, identified by friendly name. The provided name is hashed to create the adapter's instance identifier. If the name is already a GUID, that GUID will be used as the identifier as-is.|
+|**VideoMonitor**<br>|[VideoMonitor](#VideoMonitor)|[2.0](#Schema-Version-Map)|An optional object describing the video monitor device.|
+|**Keyboard**<br>|[Keyboard](#Keyboard)|[2.0](#Schema-Version-Map)|An optional object describing the keyboard device.|
+|**Mouse**<br>|[Mouse](#Mouse)|[2.0](#Schema-Version-Map)|An optional object describing the mouse device.|
+|**HvSocket**<br>|[VirtualMachine_HvSocket](#VirtualMachine_HvSocket)|[2.1](#Schema-Version-Map)|An optional object describing socket services exposed to the virtual machine.|
+|**EnhancedModeVideo**<br>|[EnhancedModeVideo](#EnhancedModeVideo)|[2.1](#Schema-Version-Map)|An optional object describing the configuration of enhanced-mode video, including connection configuration.|
+|**GuestCrashReporting**<br>|[GuestCrashReporting](#GuestCrashReporting)|[2.0](#Schema-Version-Map)|An optional object defining settings for how guest crashes should be captured for later analysis.|
+|**VirtualSmb**<br>|[VirtualSmb](#VirtualSmb)|[2.0](#Schema-Version-Map)|An optional object describing any virtual SMB shares to be exposed to the guest OS.|
+|**Plan9**<br>|[Plan9](#Plan9)|[2.0](#Schema-Version-Map)|An optional object describing any Plan9 shares to be exposed to the guest OS.|
+|**Battery**<br>|[Battery](#Battery)|[2.0](#Schema-Version-Map)|An optional battery device that will forward host battery state to the guest OS.|
+|**FlexibleIov**<br>|[Map](#JSON-type)<[string](#JSON-type), [FlexibleIoDevice](#FlexibleIoDevice)>|[2.1](#Schema-Version-Map)|An optional object that maps flexible IoV devices, identified by friendly name. The provided name is hashed to create the device's instance identifier. If the name is already a GUID, that GUID will be used as the identifier as-is.|
+|**SharedMemory**<br>|[SharedMemoryConfiguration](#SharedMemoryConfiguration)|[2.1](#Schema-Version-Map)|An optional object describing any shared memory settings for the virtual machine.|
 |**VirtualPci**<br>|[Map](#JSON-type)<[string](#JSON-type), [VirtualPciDevice](#VirtualPciDevice)>|[2.3](#Schema-Version-Map)||
 
 ---
@@ -1135,19 +1134,6 @@ Event data element
 
 ---
 
-<a name = "FilteredPropertyQuery"></a>
-## FilteredPropertyQuery
-Referenced by: [Service_PropertyQuery](#Service_PropertyQuery)
-
-Structures used to perform a filtered property query.
-
-|Field|Type|NewInVersion|Description|
-|---|---|---|---|
-|**PropertyType**<br>|[GetPropertyType](#GetPropertyType)|[](#Schema-Version-Map)|Specifies which property to query.|
-|**Filter**<br>|[Any](#JSON-type)|[](#Schema-Version-Map)|Filter - Additional filter to query. The following map describes the relationship between property type and its filter. ["Memory" => HostMemoryQueryRequest]|
-
----
-
 <a name = "FlexibleIoDevice"></a>
 ## FlexibleIoDevice
 Referenced by: [Devices](#Devices)
@@ -1182,8 +1168,8 @@ Referenced by: [VirtualMachine](#VirtualMachine)
 
 |Field|Type|NewInVersion|Description|
 |---|---|---|---|
-|**UseVsock**<br>|[bool](#JSON-type)|[2.1](#Schema-Version-Map)|Use Vsock rather than Hyper-V sockets to communicate with the guest service.|
-|**UseConnectedSuspend**<br>|[bool](#JSON-type)|[2.1](#Schema-Version-Map)|Don't disconnect the guest connection when pausing the virtual machine.|
+|**UseVsock**<br>|[bool](#JSON-type)|[2.1](#Schema-Version-Map)|When true, use Vsock rather than Hyper-V sockets to communicate with the guest service.|
+|**UseConnectedSuspend**<br>|[bool](#JSON-type)|[2.1](#Schema-Version-Map)|When true, don't disconnect the guest connection when pausing the virtual machine.|
 
 ---
 
@@ -1238,11 +1224,11 @@ Referenced by: [Devices](#Devices)
 ## GuestOs
 Referenced by: [Container](#Container)
 
-
+Properties of the guest operating system that boots on a Windows Server Container.
 
 |Field|Type|NewInVersion|Description|
 |---|---|---|---|
-|**HostName**<br>|[string](#JSON-type)|[2.0](#Schema-Version-Map)||
+|**HostName**<br>|[string](#JSON-type)|[2.0](#Schema-Version-Map)|HostName assigned to a container guest operating system.|
 
 ---
 
@@ -1273,12 +1259,12 @@ Referenced by: [Services](#Services)
 
 <a name = "HostedSystem"></a>
 ## HostedSystem
-
+Describes the configuration of a container compute system hosted by another compute system. This can have its own schema version since the hosted system could support different versions compared to the host machine.
 
 |Field|Type|NewInVersion|Description|
 |---|---|---|---|
-|**SchemaVersion**<br>|[Version](#Version)|[2.0](#Schema-Version-Map)||
-|**Container**<br>|[Container](#Container)|[2.0](#Schema-Version-Map)||
+|**SchemaVersion**<br>|[Version](#Version)|[2.0](#Schema-Version-Map)|A version structure for this schema. Properties nested within this object may identify their own schema versions.|
+|**Container**<br>|[Container](#Container)|[2.0](#Schema-Version-Map)|The set of properties defining a container.|
 
 ---
 
@@ -1374,17 +1360,6 @@ Referenced by: [Properties](#Properties)
 
 ---
 
-<a name = "KernelIntegration"></a>
-## KernelIntegration
-Referenced by: [Devices](#Devices)
-
-
-
-
-**Note:** This is an empty struct with no fields, and to be used in the JSON document must be specified as an empty object: `"{}"`.
-
----
-
 <a name = "Keyboard"></a>
 ## Keyboard
 Referenced by: [Devices](#Devices)
@@ -1404,9 +1379,9 @@ Describe the parent hierarchy for a container's storage
 
 |Field|Type|NewInVersion|Description|
 |---|---|---|---|
-|**Id**<br>|[Guid](#JSON-type)|[2.0](#Schema-Version-Map)||
-|**Path**<br>|[string](#JSON-type)|[2.0](#Schema-Version-Map)||
-|**PathType**<br>|[PathType](#PathType)|[2.1](#Schema-Version-Map)||
+|**Id**<br>|[Guid](#JSON-type)|[2.0](#Schema-Version-Map)|Identifier for a layer.|
+|**Path**<br>|[string](#JSON-type)|[2.0](#Schema-Version-Map)|Root path of the layer.|
+|**PathType**<br>|[PathType](#PathType)|[2.1](#Schema-Version-Map)|Defines how to interpret the layer's path.|
 |**Cache**<br>|[CacheMode](#CacheMode)|[2.0](#Schema-Version-Map)|Unspecified defaults to Enabled|
 
 ---
@@ -1456,15 +1431,15 @@ Referenced by: [ProcessorTopology](#ProcessorTopology)
 ## MappedDirectory
 Referenced by: [Container](#Container)
 
-
+Object that describes a directory in the host that is requested to be mapped into a compute system's guest.
 
 |Field|Type|NewInVersion|Description|
 |---|---|---|---|
-|**HostPath**<br>|[string](#JSON-type)|[2.0](#Schema-Version-Map)||
-|**HostPathType**<br>|[PathType](#PathType)|[2.1](#Schema-Version-Map)||
-|**ContainerPath**<br>|[string](#JSON-type)|[2.0](#Schema-Version-Map)||
-|**ReadOnly**<br>|[bool](#JSON-type)|[2.0](#Schema-Version-Map)||
-|**SupportCloudFiles**<br>|[bool](#JSON-type)|[2.3](#Schema-Version-Map)||
+|**HostPath**<br>|[string](#JSON-type)|[2.0](#Schema-Version-Map)|Path in the host that is going to be mapped into the compute system.|
+|**HostPathType**<br>|[PathType](#PathType)|[2.1](#Schema-Version-Map)|Defines how to interpret the host path.|
+|**ContainerPath**<br>|[string](#JSON-type)|[2.0](#Schema-Version-Map)|Path relative to the compute system's guest. This is the resulting path from mapping the host path.|
+|**ReadOnly**<br>|[bool](#JSON-type)|[2.0](#Schema-Version-Map)|When set to true, the mapped directory in the compute system's guest will be read-only.|
+|**SupportCloudFiles**<br>|[bool](#JSON-type)|[2.3](#Schema-Version-Map)|When set to true, the mapped directory in the compute system's guest will support cloud files.|
 
 ---
 
@@ -1472,13 +1447,13 @@ Referenced by: [Container](#Container)
 ## MappedPipe
 Referenced by: [Container](#Container)
 
-
+Object that describes a named pipe that is requested to be mapped into a compute system's guest.
 
 |Field|Type|NewInVersion|Description|
 |---|---|---|---|
-|**ContainerPipeName**<br>|[string](#JSON-type)|[2.0](#Schema-Version-Map)||
-|**HostPath**<br>|[string](#JSON-type)|[2.0](#Schema-Version-Map)||
-|**HostPathType**<br>|[MappedPipePathType](#MappedPipePathType)|[2.1](#Schema-Version-Map)||
+|**ContainerPipeName**<br>|[string](#JSON-type)|[2.0](#Schema-Version-Map)|The resulting named pipe that will be accessible in the compute system's guest.|
+|**HostPath**<br>|[string](#JSON-type)|[2.0](#Schema-Version-Map)|The named pipe path in the host that will be mapped into a compute system's guest.|
+|**HostPathType**<br>|[MappedPipePathType](#MappedPipePathType)|[2.1](#Schema-Version-Map)|Defines how to interpret the host path.|
 
 ---
 
@@ -1848,7 +1823,7 @@ Referenced by: [Container](#Container); [VirtualMachine](#VirtualMachine)
 
 <a name = "RegistryFlushState"></a>
 ## RegistryFlushState
-Represents the flush state of the registry hive for a windows container's job object.
+Represents the flush state of the registry hive for a Windows container's job object.
 
 |Field|Type|NewInVersion|Description|
 |---|---|---|---|
@@ -1913,18 +1888,6 @@ Extended error information returned by the HCS
 
 ---
 
-<a name = "Rs4NetworkModifySettingRequest"></a>
-## Rs4NetworkModifySettingRequest
-This class is only necessary because JSON marshaling complains when we have two fields identical except for capitalization in the same class. Remove this once we stop supporting RS4.
-
-|Field|Type|NewInVersion|Description|
-|---|---|---|---|
-|**RequestType**<br>|[NetworkModifyRequestType](#NetworkModifyRequestType)|[](#Schema-Version-Map)||
-|**AdapterInstanceID**<br>|[Guid](#JSON-type)|[](#Schema-Version-Map)||
-|**Settings**<br>|[Any](#JSON-type)|[](#Schema-Version-Map)||
-
----
-
 <a name = "SaveOptions"></a>
 ## SaveOptions
 
@@ -1955,7 +1918,6 @@ Object describing a SCSI controller.
 |Field|Type|NewInVersion|Description|
 |---|---|---|---|
 |**PropertyTypes**<br>|<[GetPropertyType](#GetPropertyType)> array|[](#Schema-Version-Map)||
-|**FilteredQueries**<br>|<[FilteredPropertyQuery](#FilteredPropertyQuery)> array|[](#Schema-Version-Map)||
 
 ---
 
@@ -2071,7 +2033,7 @@ Referenced by: [Container](#Container)
 |---|---|---|---|
 |**Layers**<br>|<[Layer](#Layer)> array|[2.0](#Schema-Version-Map)|List of layers that describe the parent hierarchy for a container's storage. These layers combined together, presented as a disposable and/or committable working storage, are used by the container to record all changes done to the parent layers.|
 |**Path**<br>|[string](#JSON-type)|[2.0](#Schema-Version-Map)|Path that points to the scratch space of a container, where parent layers are combined together to present a new disposable and/or committable layer with the changes done during its runtime.|
-|**QoS**<br>|[StorageQoS](#StorageQoS)|[2.0](#Schema-Version-Map)||
+|**QoS**<br>|[StorageQoS](#StorageQoS)|[2.0](#Schema-Version-Map)|Optional quality of service configurations for a container's storage.|
 
 ---
 
@@ -2079,12 +2041,12 @@ Referenced by: [Container](#Container)
 ## StorageQoS
 Referenced by: [Storage](#Storage); [VirtualMachine](#VirtualMachine)
 
-
+Describes storage quality of service settings, relative to a storage volume.
 
 |Field|Type|NewInVersion|Description|
 |---|---|---|---|
-|**IopsMaximum**<br>|[uint64](#JSON-type)|[2.0](#Schema-Version-Map)||
-|**BandwidthMaximum**<br>|[uint64](#JSON-type)|[2.0](#Schema-Version-Map)||
+|**IopsMaximum**<br>|[uint64](#JSON-type)|[2.0](#Schema-Version-Map)|Defines the maximum allowed Input/Output operations per second in a volume.|
+|**BandwidthMaximum**<br>|[uint64](#JSON-type)|[2.0](#Schema-Version-Map)|Defines the maximum bandwidth (bytes per second) allowed in a volume.|
 
 ---
 
@@ -2250,12 +2212,12 @@ Referenced by: [Uefi](#Uefi)
 ## Version
 Referenced by: [BasicInformation](#BasicInformation); [ComputeSystem](#ComputeSystem); [GuestConnectionInfo](#GuestConnectionInfo); [HostedSystem](#HostedSystem); [LayerData](#LayerData)
 
-
+Object that describes a version with a Major.Minor format.
 
 |Field|Type|NewInVersion|Description|
 |---|---|---|---|
-|**Major**<br>|[uint32](#JSON-type)|[2.0](#Schema-Version-Map)||
-|**Minor**<br>|[uint32](#JSON-type)|[2.0](#Schema-Version-Map)||
+|**Major**<br>|[uint32](#JSON-type)|[2.0](#Schema-Version-Map)|The major version value. Individual major versions are not compatible with one another.|
+|**Minor**<br>|[uint32](#JSON-type)|[2.0](#Schema-Version-Map)|The minor version value. A lower minor version is considered a compatible subset of a higher minor version.|
 
 ---
 
@@ -2311,20 +2273,20 @@ Provides information on failures originated by a virtual device.
 ## VirtualMachine
 Referenced by: [ComputeSystem](#ComputeSystem)
 
-
+Configuration of a virtual machine, used during its creation to set up and/or use resources.
 
 |Field|Type|NewInVersion|Description|
 |---|---|---|---|
-|**StopOnReset**<br>|[bool](#JSON-type)|[2.0](#Schema-Version-Map)||
-|**Chipset**<br>|[Chipset](#Chipset)|[2.0](#Schema-Version-Map)||
-|**ComputeTopology**<br>|[Topology](#Topology)|[2.0](#Schema-Version-Map)||
-|**Devices**<br>|[Devices](#Devices)|[2.0](#Schema-Version-Map)||
-|**Services**<br>|[Services](#Services)|[2.3](#Schema-Version-Map)||
-|**GuestState**<br>|[GuestState](#GuestState)|[2.1](#Schema-Version-Map)||
-|**RestoreState**<br>|[RestoreState](#RestoreState)|[2.0](#Schema-Version-Map)||
-|**RegistryChanges**<br>|[RegistryChanges](#RegistryChanges)|[2.0](#Schema-Version-Map)||
-|**StorageQoS**<br>|[StorageQoS](#StorageQoS)|[2.1](#Schema-Version-Map)||
-|**GuestConnection**<br>|[GuestConnection](#GuestConnection)|[2.1](#Schema-Version-Map)||
+|**StopOnReset**<br>|[bool](#JSON-type)|[2.0](#Schema-Version-Map)|When set to true, the virtual machine will treat a reset as a stop, releasing resources and cleaning up state.|
+|**Chipset**<br>|[Chipset](#Chipset)|[2.0](#Schema-Version-Map)|An object describing the chipset settings, including boot settings.|
+|**ComputeTopology**<br>|[Topology](#Topology)|[2.0](#Schema-Version-Map)|An object describing the processor and memory configuration of a virtual machine.|
+|**Devices**<br>|[Devices](#Devices)|[2.0](#Schema-Version-Map)|Nested objects describing the set of devices attached to the virtual machine.|
+|**Services**<br>|[Services](#Services)|[2.3](#Schema-Version-Map)|Object that configures the different guest services the virtual machine will support. Most of these are Windows specific.|
+|**GuestState**<br>|[GuestState](#GuestState)|[2.1](#Schema-Version-Map)|An optional object describing files used to back guest state. When omitted, guest state is transient and kept purely in memory.|
+|**RestoreState**<br>|[RestoreState](#RestoreState)|[2.0](#Schema-Version-Map)|An optional object describing the state the virtual machine should restore from as part of start.|
+|**RegistryChanges**<br>|[RegistryChanges](#RegistryChanges)|[2.0](#Schema-Version-Map)|A set of changes applied to a Windows guest's registry at boot time.|
+|**StorageQoS**<br>|[StorageQoS](#StorageQoS)|[2.1](#Schema-Version-Map)|An optional set of quality of service restrictions on the virtual machine's storage.|
+|**GuestConnection**<br>|[GuestConnection](#GuestConnection)|[2.1](#Schema-Version-Map)|An optional object describing settings for a conection to the guest OS. If GuestConnection is not specified, the virtual machine will be considered started once the chipset is fully powered on. If specified, the virtual machine start will wait until a guest connection is established.|
 
 ---
 
@@ -2587,7 +2549,7 @@ Referenced by: [GuestCrashReporting](#GuestCrashReporting)
 <a name = "JSON-type"></a>
 ## JSON type
 
-The table shows the mapping from type name for field of classes to JSON type, as well as its format and pattern
+The table shows the mapping from type name for field of classes to JSON type, its format and pattern, see details in [Swagger IO spec](https://swagger.io/specification/#data-types)
 
 |Name|JSON Type|Format|Pattern|
 |---|---|---|---|
