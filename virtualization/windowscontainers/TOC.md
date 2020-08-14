@@ -44,13 +44,7 @@
 ### [Overview](about/overview-container-orchestrators.md)
 ### Kubernetes on Windows
 #### [Kubernetes on Windows](kubernetes/getting-started-kubernetes-windows.md)
-#### [Create a Kubernetes Master](kubernetes/creating-a-linux-master.md)
-#### [Choose a network solution](kubernetes/network-topologies.md)
-#### [Join Windows workers](kubernetes/joining-windows-workers.md)
-#### [Join Linux workers](kubernetes/joining-linux-workers.md)
-#### [Deploy Kubernetes resources](kubernetes/deploying-resources.md)
 #### [Troubleshooting](kubernetes/common-problems.md)
-#### [Kubernetes as a Windows service](kubernetes/kube-windows-services.md)
 #### [Compile Kubernetes binaries](kubernetes/compiling-kubernetes-binaries.md)
 ### Service Fabric
 #### [Service Fabric and Containers](/azure/service-fabric/service-fabric-containers-overview)

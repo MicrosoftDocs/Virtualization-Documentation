@@ -1,11 +1,11 @@
 ---
 title: Troubleshooting Kubernetes
-author: gkudra-msft
-ms.author: gekudray
-ms.date: 11/02/2018
+author: daschott
+ms.author: daschott
+ms.date: 08/13/2020
 ms.topic: troubleshooting
 description: Solutions for common issues when deploying Kubernetes and joining Windows nodes.
-keywords: kubernetes, 1.14, linux, compile
+keywords: kubernetes, linux, compile
 ---
 
 # Troubleshooting Kubernetes #
@@ -22,19 +22,11 @@ This page is subdivided into the following categories:
 
 ## General questions ##
 
-### How do I know start.ps1 on Windows completed successfully? ###
-You should see kubelet, kube-proxy, and (if you chose Flannel as your networking solution) flanneld host-agent processes running on your node, with running logs being displayed in separate PoSh windows. In addition to this, your Windows node should be listed as “Ready” in your Kubernetes cluster.
+### How do I know Kubernetes on Windows completed successfully? ###
+You should see kubelet, kube-proxy, and (if you chose Flannel as your networking solution) flanneld host-agent processes running on your node. In addition to this, your Windows node should be listed as “Ready” in your Kubernetes cluster.
 
-### Can I configure to run all of this in the background instead of PoSh windows? ###
-Starting with Kubernetes version 1.11, kubelet & kube-proxy can be run as native [Windows Services](https://kubernetes.io/docs/getting-started-guides/windows/#kubelet-and-kube-proxy-can-now-run-as-windows-services). You can also always use alternative service managers like [nssm.exe](https://nssm.cc/) to always run these processes (flanneld, kubelet & kube-proxy) in the background for you. See [Windows Services on Kubernetes](./kube-windows-services.md) for example steps.
-
-### I have problems running Kubernetes processes as Windows services ###
-For initial troubleshooting, you can use the following flags in [nssm.exe](https://nssm.cc/) to redirect stdout and stderr to a output file:
-```
-nssm set <Service Name> AppStdout C:\k\mysvc.log
-nssm set <Service Name> AppStderr C:\k\mysvc.log
-```
-For additional details, see official [nssm usage](https://nssm.cc/usage) docs.
+### Can I configure to run all of this in the background? ###
+Starting with Kubernetes version 1.11, kubelet & kube-proxy can be run as native [Windows Services](https://kubernetes.io/docs/getting-started-guides/windows/#kubelet-and-kube-proxy-can-now-run-as-windows-services). You can also always use alternative service managers like [nssm.exe](https://nssm.cc/) to always run these processes (flanneld, kubelet & kube-proxy) in the background for you.
 
 ## Common networking errors ##
 
@@ -93,7 +85,7 @@ az network route-table route create  --resource-group <my_resource_group> --add
 ```
 
 >[!TIP]
-> If you are deploying Kubernetes on Azure or IaaS VMs from other cloud providers yourself, you can also use [overlay networking](./network-topologies.md#flannel-in-vxlan-mode) instead.
+> If you are deploying Kubernetes on Azure or IaaS VMs from other cloud providers yourself, you can also use `overlay networking` instead.
 
 ### My Windows pods cannot ping external resources ###
 Windows pods do not have outbound rules programmed for the ICMP protocol today. However, TCP/UDP is supported. When trying to demonstrate connectivity to resources outside of the cluster, please substitute `ping <IP>` with corresponding `curl <IP>` commands.
@@ -111,7 +103,7 @@ One of the Kubernetes networking requirements (see [Kubernetes model](https://ku
 ```
 
 ### My Windows node cannot access a NodePort service ###
-Local NodePort access from the node itself will fail due to a design limitation on Windows Server 2019. NodePort access will work from other nodes or external clients.
+Local NodePort access from the node itself may fail. This is a known feature gap being addressed with cumulative update KB4571748 (or later). NodePort access will work from other nodes or external clients.
 
 ### My Windows node stops routing thourgh NodePorts after I scaled down my pods ###
 Due to a design limitation, there needs to be at least one pod running on the Windows node for NodePort forwarding to work.
@@ -129,15 +121,12 @@ Remove-Item C:\k\SourceVip.json
 Remove-Item C:\k\SourceVipRequest.json
 ```
 
-### After launching start.ps1, Flanneld is stuck in "Waiting for the Network to be created" ###
-There are numerous reports of this issue which are being investigated; most likely it is a timing issue for when the management IP of the flannel network is set. A workaround is to simply relaunch start.ps1 or relaunch it manually as follows:
+### After launching Kubernetes, Flanneld is stuck in "Waiting for the Network to be created" ###
+This issue should be addressed with [Flannel v0.12.0](https://github.com/coreos/flannel/releases/tag/v0.12.0) (and above). If you are using an older version of Flanneld, there is a known race condition that can occur such that the management IP of the flannel network is not set. A workaround is to simply relaunch FlannelD manually.
 ```
 PS C:> [Environment]::SetEnvironmentVariable("NODE_NAME", "<Windows_Worker_Hostname>")
 PS C:> C:\flannel\flanneld.exe --kubeconfig-file=c:\k\config --iface=<Windows_Worker_Node_IP> --ip-masq=1 --kube-subnet-mgr=1
 ```
-
-There is also a [PR](https://github.com/coreos/flannel/pull/1042) that addresses this issue under review currently.
-
 
 ### My Windows pods cannot launch because of missing /run/flannel/subnet.env ###
 This indicates that Flannel didn't launch correctly. You can either try to restart flanneld.exe or you can copy the files over manually from `/run/flannel/subnet.env`  on the Kubernetes master to `C:\run\flannel\subnet.env` on the Windows worker node and modify the `FLANNEL_SUBNET` row to the subnet that was assigned. For example, if node subnet 10.244.4.1/24 was assigned:
@@ -147,7 +136,7 @@ FLANNEL_SUBNET=10.244.4.1/24
 FLANNEL_MTU=1500
 FLANNEL_IPMASQ=true
 ```
-It is safer to let flanneld.exe generate this file for you.
+More often than not, there is another issue that could be causing this error that needs to be investigated first. It is recommended to let `flanneld.exe` generate this file for you.
 
 
 ### Pod-to-pod connectivity between hosts is broken on my Kubernetes cluster running on vSphere
@@ -158,6 +147,7 @@ Since both vSphere and Flannel reserves port 4789 (default VXLAN port) for overl
 There exist 2 currently known issues that can cause endpoints to leak.
 1.  The first [known issue](https://github.com/kubernetes/kubernetes/issues/68511) is a problem in Kubernetes version 1.11. Please avoid using Kubernetes version 1.11.0 - 1.11.2.
 2. The second [known issue](https://github.com/docker/libnetwork/issues/1950) that can cause endpoints to leak is a concurrency problem in the storage of endpoints. To receive the fix, you must use Docker EE 18.09 or above.
+
 
 ### My pods cannot launch due to "network: failed to allocate for range" errors ###
 This indicates that the IP address space on your node is used up. To clean up any [leaked endpoints](#my-endpointsips-are-leaking), please migrate any resources on impacted nodes & run the following commands:
@@ -171,35 +161,27 @@ Remove-Item -Recurse c:\var
 This is a known limitation of the current networking stack on Windows. Windows *pods* **are** able to access the service IP however.
 
 ### No network adapter is found when starting Kubelet ###
-The Windows networking stack needs a virtual adapter for Kubernetes networking to work. If the following commands return no results (in an admin shell), virtual network creation &mdash; a necessary prerequisite for Kubelet to work &mdash; has failed:
+The Windows networking stack needs a virtual adapter for Kubernetes networking to work. If the following commands return no results (in an admin shell), HNS network creation &mdash; a necessary prerequisite for Kubelet to work &mdash; has failed:
 
 ```powershell
 Get-HnsNetwork | ? Name -ieq "cbr0"
+Get-HnsNetwork | ? Name -ieq "vxlan0"
 Get-NetAdapter | ? Name -Like "vEthernet (Ethernet*"
 ```
 
 Often it is worthwhile to modify the [InterfaceName](https://github.com/Microsoft/SDN/blob/master/Kubernetes/flannel/l2bridge/start.ps1#L6) parameter of the start.ps1 script, in cases where the host's network adapter isn't "Ethernet". Otherwise, consult the output of the `start-kubelet.ps1` script to see if there are errors during virtual network creation.
 
-### Pods stop resolving DNS queries successfully after some time alive ###
-There is a known DNS caching issue in the networking stack of Windows Server, version 1803 and below that may sometimes cause DNS requests to fail. To work around this issue, you can set the max TTL cache values to zero using the following registry keys:
-
-```Dockerfile
-FROM microsoft/windowsservercore:<your-build>
-SHELL ["powershell', "-Command", "$ErrorActionPreference = 'Stop';"]
-New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Services\Dnscache\Parameters' -Name MaxCacheTtl -Value 0 -Type DWord
-New-ItemPropery -Path 'HKLM:\SYSTEM\CurrentControlSet\Services\Dnscache\Parameters' -Name MaxNegativeCacheTtl -Value 0 -Type DWord
-```
 
 ### I am still seeing problems. What should I do? ###
 There may be additional restrictions in place on your network or on hosts preventing certain types of
 communication between nodes. Ensure that:
-  - you have properly configured your chosen [network topology](./network-topologies.md)
+  - you have properly configured your chosen network topology (`l2bridge` or `overlay`)
   - traffic that looks like it's coming from pods is allowed
   - HTTP traffic is allowed, if you are deploying web services
   - Packets from different protocols (ie ICMP vs. TCP/UDP) are not being dropped
 
 >[!TIP]
-> For additional self-help resources, there is also a Kubernetes troubleshooting guide for Windows [available here](https://techcommunity.microsoft.com/t5/Networking-Blog/Troubleshooting-Kubernetes-Networking-on-Windows-Part-1/ba-p/508648).
+> For additional self-help resources, there is also a Kubernetes networking troubleshooting guide for Windows [available here](https://techcommunity.microsoft.com/t5/Networking-Blog/Troubleshooting-Kubernetes-Networking-on-Windows-Part-1/ba-p/508648).
 
 ## Common Windows errors ##
 
@@ -208,7 +190,7 @@ This issue can have many causes, but one of the most common is that the pause im
 
 
 ### When deploying, Docker containers keep restarting ###
-Check that your pause image is compatible with your OS version. The [instructions](./deploying-resources.md) assume that both the OS and the containers are version 1803. If you have a later version of Windows, such as an Insider build, you will need to adjust the images accordingly. Please refer to the Microsoft's [Docker repository](https://hub.docker.com/u/microsoft/) for images. Regardless, both the pause image Dockerfile and the sample service will expect the image to be tagged as `:latest`.
+Check that your pause image is compatible with your OS version. Kubernetes assumes that both the OS and the containers have matching OS version numbers. If you are using an experimental build of Windows, such as an Insider build, you will need to adjust the images accordingly. Please refer to the Microsoft's [Docker repository](https://hub.docker.com/u/microsoft/) for images.
 
 
 ## Common Kubernetes master errors ##
@@ -224,7 +206,7 @@ Run `kubectl get pods -n kube-system` to see the pods being created by Kubernete
 ### Cannot connect to the API server at `https://[address]:[port]` ###
 More often than not, this error indicates certificate problems. Ensure that you have generated the configuration file correctly, that the IP addresses in it match that of your host, and that you have copied it to the directory that is mounted by the API server.
 
-If following [our instructions](./creating-a-linux-master.md), good places to find this is:
+Good places to find this configuration file are:
 * `~/kube/kubelet/`
 * `$HOME/.kube/config`
 *  `/etc/kubernetes/admin.conf`
