@@ -7,18 +7,6 @@
 <a name = "enums"></a>
 # Enums
 Note: all variants listed should be used as string
-<a name = "AppContainerLaunchType"></a>
-## AppContainerLaunchType
-
-
-|Variants|NewInVersion|Description|
-|---|---|---|
-|`"Default"`<br>|[2.1](#Schema-Version-Map)|Use None or global setting.|
-|`"None"`<br>|[2.1](#Schema-Version-Map)|Launch VMWP normally.|
-|`"AppContainer"`<br>|[2.1](#Schema-Version-Map)|Launch VMWP as an App Container.|
-
----
-
 <a name = "ApplySecureBootTemplateType"></a>
 ## ApplySecureBootTemplateType
 Referenced by: [Uefi](#Uefi)
@@ -333,20 +321,6 @@ Enumeration of different supported service processor modification requests
 
 ---
 
-<a name = "NetworkModifyRequestType"></a>
-## NetworkModifyRequestType
-Referenced by: [NetworkModifySettingRequest](#NetworkModifySettingRequest)
-
-
-
-|Variants|NewInVersion|Description|
-|---|---|---|
-|`"PreAdd"`<br>|[](#Schema-Version-Map)||
-|`"Add"`<br>|[](#Schema-Version-Map)||
-|`"Remove"`<br>|[](#Schema-Version-Map)||
-
----
-
 <a name = "NotificationType"></a>
 ## NotificationType
 Referenced by: [Properties](#Properties); [SystemExitStatus](#SystemExitStatus)
@@ -429,19 +403,6 @@ Referenced by: [PauseOptions](#PauseOptions)
 |`"MemoryLow"`<br>|[2.0](#Schema-Version-Map)||
 |`"MemoryMedium"`<br>|[2.0](#Schema-Version-Map)||
 |`"MemoryHigh"`<br>|[2.0](#Schema-Version-Map)||
-
----
-
-<a name = "ProcessDumpType"></a>
-## ProcessDumpType
-Indicates the type of process dump to be captured.
-
-|Variants|NewInVersion|Description|
-|---|---|---|
-|`"None"`<br>|[](#Schema-Version-Map)|Do not caputure a process dump.|
-|`"Heap"`<br>|[](#Schema-Version-Map)|Capture a process dump containing complete memory information.|
-|`"Mini"`<br>|[](#Schema-Version-Map)|Capture a process dump containing minimal application memory.|
-|`"Custom"`<br>|[](#Schema-Version-Map)|Use custom dump flags in ProcessDump::CustomDumpFlags.|
 
 ---
 
@@ -918,7 +879,7 @@ Referenced by: [Container](#Container); [ContainerCredentialGuardInstance](#Cont
 
 |Field|Type|NewInVersion|Description|
 |---|---|---|---|
-|**Cookie**<br>|[ByteArray](#JSON-type)<br>*JSON Type/Format: string/binary*|[2.1](#Schema-Version-Map)|Authentication cookie for calls to a Container Credential Guard instance.|
+|**Cookie**<br>|[string_binary](#JSON-type)|[2.1](#Schema-Version-Map)|Authentication cookie for calls to a Container Credential Guard instance.|
 |**RpcEndpoint**<br>|[string](#JSON-type)|[2.1](#Schema-Version-Map)|Name of the RPC endpoint of the Container Credential Guard instance.|
 |**Transport**<br>|[ContainerCredentialGuardTransport](#ContainerCredentialGuardTransport)|[2.1](#Schema-Version-Map)|Transport used for the configured Container Credential Guard instance.|
 |**CredentialSpec**<br>|[string](#JSON-type)|[2.1](#Schema-Version-Map)|Credential spec used for the configured Container Credential Guard instance.|
@@ -1181,9 +1142,9 @@ Information about the guest.
 
 |Field|Type|NewInVersion|Description|
 |---|---|---|---|
-|**SupportedSchemaVersions**<br>|<[Version](#Version)> array|[](#Schema-Version-Map)|Each schema version x.y stands for the range of versions a.b where a==x and b<=y. This list comes from the SupportedSchemaVersions field in GcsCapabilities.|
-|**ProtocolVersion**<br>|[uint32](#JSON-type)|[](#Schema-Version-Map)||
-|**GuestDefinedCapabilities**<br>|[Any](#JSON-type)|[](#Schema-Version-Map)||
+|**SupportedSchemaVersions**<br>|<[Version](#Version)> array|[2.1](#Schema-Version-Map)|Each schema version x.y stands for the range of versions a.b where a==x and b<=y. This list comes from the SupportedSchemaVersions field in GcsCapabilities.|
+|**ProtocolVersion**<br>|[uint32](#JSON-type)|[2.1](#Schema-Version-Map)||
+|**GuestDefinedCapabilities**<br>|[Any](#JSON-type)|[2.1](#Schema-Version-Map)||
 
 ---
 
@@ -1472,13 +1433,13 @@ Object that describes a named pipe that is requested to be mapped into a compute
 ## MemoryInformationForVm
 Referenced by: [Properties](#Properties)
 
-
+The response of memory information for virtual machine when query memory propery of compute system
 
 |Field|Type|NewInVersion|Description|
 |---|---|---|---|
-|**VirtualNodeCount**<br>|[uint8](#JSON-type)|[](#Schema-Version-Map)||
-|**VirtualMachineMemory**<br>|[VmMemory](#VmMemory)|[](#Schema-Version-Map)||
-|**VirtualNodes**<br>|<[VirtualNodeInfo](#VirtualNodeInfo)> array|[](#Schema-Version-Map)||
+|**VirtualNodeCount**<br>|[uint8](#JSON-type)|[2.1](#Schema-Version-Map)||
+|**VirtualMachineMemory**<br>|[VmMemory](#VmMemory)|[2.1](#Schema-Version-Map)||
+|**VirtualNodes**<br>|<[VirtualNodeInfo](#VirtualNodeInfo)> array|[2.1](#Schema-Version-Map)||
 
 ---
 
@@ -1490,9 +1451,9 @@ Memory runtime statistics
 
 |Field|Type|NewInVersion|Description|
 |---|---|---|---|
-|**MemoryUsageCommitBytes**<br>|[uint64](#JSON-type)|[](#Schema-Version-Map)||
-|**MemoryUsageCommitPeakBytes**<br>|[uint64](#JSON-type)|[](#Schema-Version-Map)||
-|**MemoryUsagePrivateWorkingSetBytes**<br>|[uint64](#JSON-type)|[](#Schema-Version-Map)||
+|**MemoryUsageCommitBytes**<br>|[uint64](#JSON-type)|[2.1](#Schema-Version-Map)||
+|**MemoryUsageCommitPeakBytes**<br>|[uint64](#JSON-type)|[2.1](#Schema-Version-Map)||
+|**MemoryUsagePrivateWorkingSetBytes**<br>|[uint64](#JSON-type)|[2.1](#Schema-Version-Map)||
 
 ---
 
@@ -1502,8 +1463,8 @@ Structure used for service level modification request. Right now, we support mod
 
 |Field|Type|NewInVersion|Description|
 |---|---|---|---|
-|**PropertyType**<br>|[ModifyPropertyType](#ModifyPropertyType)|[](#Schema-Version-Map)||
-|**Settings**<br>|[Any](#JSON-type)|[](#Schema-Version-Map)||
+|**PropertyType**<br>|[ModifyPropertyType](#ModifyPropertyType)|[2.1](#Schema-Version-Map)||
+|**Settings**<br>|[Any](#JSON-type)|[2.1](#Schema-Version-Map)||
 
 ---
 
@@ -1557,32 +1518,6 @@ Referenced by: [Container](#Container)
 |**NetworkSharedContainerName**<br>|[string](#JSON-type)|[2.0](#Schema-Version-Map)||
 |**Namespace**<br>|[string](#JSON-type)|[2.0](#Schema-Version-Map)|Guid in windows; string in linux|
 |**NetworkAdapters**<br>|<[Guid](#JSON-type)> array|[2.0](#Schema-Version-Map)||
-
----
-
-<a name = "NetworkModifySettingRequest"></a>
-## NetworkModifySettingRequest
-
-
-|Field|Type|NewInVersion|Description|
-|---|---|---|---|
-|**RequestType**<br>|[NetworkModifyRequestType](#NetworkModifyRequestType)|[](#Schema-Version-Map)||
-|**AdapterId**<br>|[string](#JSON-type)|[](#Schema-Version-Map)||
-|**Settings**<br>|[Any](#JSON-type)|[](#Schema-Version-Map)||
-
----
-
-<a name = "NumaSetting"></a>
-## NumaSetting
-
-
-|Field|Type|NewInVersion|Description|
-|---|---|---|---|
-|**VirtualNodeNumber**<br>|[uint32](#JSON-type)|[](#Schema-Version-Map)||
-|**PhysicalNodeNumber**<br>|[uint32](#JSON-type)|[](#Schema-Version-Map)||
-|**VirtualSocketNumber**<br>|[uint32](#JSON-type)|[](#Schema-Version-Map)||
-|**CountOfProcessors**<br>|[uint32](#JSON-type)|[](#Schema-Version-Map)||
-|**CountOfMemoryBlocks**<br>|[uint64](#JSON-type)|[](#Schema-Version-Map)||
 
 ---
 
@@ -1665,14 +1600,14 @@ Information about a process running in a container
 
 |Field|Type|NewInVersion|Description|
 |---|---|---|---|
-|**ProcessId**<br>|[uint32](#JSON-type)|[](#Schema-Version-Map)||
-|**ImageName**<br>|[string](#JSON-type)|[](#Schema-Version-Map)||
-|**CreateTimestamp**<br>|[DateTime](#JSON-type)|[](#Schema-Version-Map)||
-|**UserTime100ns**<br>|[uint64](#JSON-type)|[](#Schema-Version-Map)||
-|**KernelTime100ns**<br>|[uint64](#JSON-type)|[](#Schema-Version-Map)||
-|**MemoryCommitBytes**<br>|[uint64](#JSON-type)|[](#Schema-Version-Map)||
-|**MemoryWorkingSetPrivateBytes**<br>|[uint64](#JSON-type)|[](#Schema-Version-Map)||
-|**MemoryWorkingSetSharedBytes**<br>|[uint64](#JSON-type)|[](#Schema-Version-Map)||
+|**ProcessId**<br>|[uint32](#JSON-type)|[2.1](#Schema-Version-Map)||
+|**ImageName**<br>|[string](#JSON-type)|[2.1](#Schema-Version-Map)||
+|**CreateTimestamp**<br>|[DateTime](#JSON-type)|[2.1](#Schema-Version-Map)||
+|**UserTime100ns**<br>|[uint64](#JSON-type)|[2.1](#Schema-Version-Map)||
+|**KernelTime100ns**<br>|[uint64](#JSON-type)|[2.1](#Schema-Version-Map)||
+|**MemoryCommitBytes**<br>|[uint64](#JSON-type)|[2.1](#Schema-Version-Map)||
+|**MemoryWorkingSetPrivateBytes**<br>|[uint64](#JSON-type)|[2.1](#Schema-Version-Map)||
+|**MemoryWorkingSetSharedBytes**<br>|[uint64](#JSON-type)|[2.1](#Schema-Version-Map)||
 
 ---
 
@@ -1705,9 +1640,9 @@ CPU runtime statistics
 
 |Field|Type|NewInVersion|Description|
 |---|---|---|---|
-|**TotalRuntime100ns**<br>|[uint64](#JSON-type)|[](#Schema-Version-Map)||
-|**RuntimeUser100ns**<br>|[uint64](#JSON-type)|[](#Schema-Version-Map)||
-|**RuntimeKernel100ns**<br>|[uint64](#JSON-type)|[](#Schema-Version-Map)||
+|**TotalRuntime100ns**<br>|[uint64](#JSON-type)|[2.1](#Schema-Version-Map)||
+|**RuntimeUser100ns**<br>|[uint64](#JSON-type)|[2.1](#Schema-Version-Map)||
+|**RuntimeKernel100ns**<br>|[uint64](#JSON-type)|[2.1](#Schema-Version-Map)||
 
 ---
 
@@ -1774,13 +1709,13 @@ Provided in the EventData parameter of an HcsEventProcessExited HCS_EVENT.
 |**State**<br>|[State](#State)|[](#Schema-Version-Map)||
 |**Stopped**<br>|[bool](#JSON-type)|[](#Schema-Version-Map)||
 |**ExitType**<br>|[NotificationType](#NotificationType)|[](#Schema-Version-Map)||
-|**Memory**<br>|[MemoryInformationForVm](#MemoryInformationForVm)|[](#Schema-Version-Map)||
-|**Statistics**<br>|[Statistics](#Statistics)|[](#Schema-Version-Map)||
-|**ProcessList**<br>|<[ProcessDetails](#ProcessDetails)> array|[](#Schema-Version-Map)||
-|**TerminateOnLastHandleClosed**<br>|[bool](#JSON-type)|[](#Schema-Version-Map)||
+|**Memory**<br>|[MemoryInformationForVm](#MemoryInformationForVm)|[2.1](#Schema-Version-Map)||
+|**Statistics**<br>|[Statistics](#Statistics)|[2.1](#Schema-Version-Map)||
+|**ProcessList**<br>|<[ProcessDetails](#ProcessDetails)> array|[2.1](#Schema-Version-Map)||
+|**TerminateOnLastHandleClosed**<br>|[bool](#JSON-type)|[2.1](#Schema-Version-Map)||
 |**HostingSystemId**<br>|[string](#JSON-type)|[](#Schema-Version-Map)||
-|**SharedMemoryRegionInfo**<br>|<[SharedMemoryRegionInfo](#SharedMemoryRegionInfo)> array|[](#Schema-Version-Map)||
-|**GuestConnectionInfo**<br>|[GuestConnectionInfo](#GuestConnectionInfo)|[](#Schema-Version-Map)||
+|**SharedMemoryRegionInfo**<br>|<[SharedMemoryRegionInfo](#SharedMemoryRegionInfo)> array|[2.1](#Schema-Version-Map)||
+|**GuestConnectionInfo**<br>|[GuestConnectionInfo](#GuestConnectionInfo)|[2.1](#Schema-Version-Map)||
 |**ICHeartbeatStatus**<br>|[IntegrationComponentStatus](#IntegrationComponentStatus)|[2.3](#Schema-Version-Map)||
 
 ---
@@ -1917,7 +1852,7 @@ Object describing a SCSI controller.
 
 |Field|Type|NewInVersion|Description|
 |---|---|---|---|
-|**PropertyTypes**<br>|<[GetPropertyType](#GetPropertyType)> array|[](#Schema-Version-Map)||
+|**PropertyTypes**<br>|<[GetPropertyType](#GetPropertyType)> array|[2.1](#Schema-Version-Map)||
 
 ---
 
@@ -1991,8 +1926,8 @@ Referenced by: [Properties](#Properties)
 
 |Field|Type|NewInVersion|Description|
 |---|---|---|---|
-|**SectionName**<br>|[string](#JSON-type)|[](#Schema-Version-Map)||
-|**GuestPhysicalAddress**<br>|[uint64](#JSON-type)|[](#Schema-Version-Map)||
+|**SectionName**<br>|[string](#JSON-type)|[2.1](#Schema-Version-Map)||
+|**GuestPhysicalAddress**<br>|[uint64](#JSON-type)|[2.1](#Schema-Version-Map)||
 
 ---
 
@@ -2014,12 +1949,12 @@ Runtime statistics for a container
 
 |Field|Type|NewInVersion|Description|
 |---|---|---|---|
-|**Timestamp**<br>|[DateTime](#JSON-type)|[](#Schema-Version-Map)||
-|**ContainerStartTime**<br>|[DateTime](#JSON-type)|[](#Schema-Version-Map)||
-|**Uptime100ns**<br>|[uint64](#JSON-type)|[](#Schema-Version-Map)||
-|**Processor**<br>|[ProcessorStats](#ProcessorStats)|[](#Schema-Version-Map)||
-|**Memory**<br>|[MemoryStats](#MemoryStats)|[](#Schema-Version-Map)||
-|**Storage**<br>|[StorageStats](#StorageStats)|[](#Schema-Version-Map)||
+|**Timestamp**<br>|[DateTime](#JSON-type)|[2.1](#Schema-Version-Map)||
+|**ContainerStartTime**<br>|[DateTime](#JSON-type)|[2.1](#Schema-Version-Map)||
+|**Uptime100ns**<br>|[uint64](#JSON-type)|[2.1](#Schema-Version-Map)||
+|**Processor**<br>|[ProcessorStats](#ProcessorStats)|[2.1](#Schema-Version-Map)||
+|**Memory**<br>|[MemoryStats](#MemoryStats)|[2.1](#Schema-Version-Map)||
+|**Storage**<br>|[StorageStats](#StorageStats)|[2.1](#Schema-Version-Map)||
 
 ---
 
@@ -2058,10 +1993,10 @@ Storage runtime statistics
 
 |Field|Type|NewInVersion|Description|
 |---|---|---|---|
-|**ReadCountNormalized**<br>|[uint64](#JSON-type)|[](#Schema-Version-Map)||
-|**ReadSizeBytes**<br>|[uint64](#JSON-type)|[](#Schema-Version-Map)||
-|**WriteCountNormalized**<br>|[uint64](#JSON-type)|[](#Schema-Version-Map)||
-|**WriteSizeBytes**<br>|[uint64](#JSON-type)|[](#Schema-Version-Map)||
+|**ReadCountNormalized**<br>|[uint64](#JSON-type)|[2.1](#Schema-Version-Map)||
+|**ReadSizeBytes**<br>|[uint64](#JSON-type)|[2.1](#Schema-Version-Map)||
+|**WriteCountNormalized**<br>|[uint64](#JSON-type)|[2.1](#Schema-Version-Map)||
+|**WriteSizeBytes**<br>|[uint64](#JSON-type)|[2.1](#Schema-Version-Map)||
 
 ---
 
@@ -2071,7 +2006,7 @@ By default the basic properties will be returned. This query provides a way to r
 
 |Field|Type|NewInVersion|Description|
 |---|---|---|---|
-|**PropertyTypes**<br>|<[System_PropertyType](#System_PropertyType)> array|[](#Schema-Version-Map)||
+|**PropertyTypes**<br>|<[System_PropertyType](#System_PropertyType)> array|[2.1](#Schema-Version-Map)||
 
 ---
 
@@ -2120,7 +2055,7 @@ Structure used to request a system processor modification
 
 <a name = "SystemTime"></a>
 ## SystemTime
-Referenced by: [TimeZoneInformation](#TimeZoneInformation); [TimeZoneInformation](#TimeZoneInformation)
+Referenced by: [TimeZoneInformation](#TimeZoneInformation)
 
 
 
@@ -2352,10 +2287,10 @@ Referenced by: [MemoryInformationForVm](#MemoryInformationForVm)
 
 |Field|Type|NewInVersion|Description|
 |---|---|---|---|
-|**VirtualNodeIndex**<br>|[uint8](#JSON-type)|[](#Schema-Version-Map)||
-|**PhysicalNodeNumber**<br>|[uint8](#JSON-type)|[](#Schema-Version-Map)||
-|**VirtualProcessorCount**<br>|[uint32](#JSON-type)|[](#Schema-Version-Map)||
-|**MemoryUsageInPages**<br>|[uint64](#JSON-type)|[](#Schema-Version-Map)||
+|**VirtualNodeIndex**<br>|[uint8](#JSON-type)|[2.1](#Schema-Version-Map)||
+|**PhysicalNodeNumber**<br>|[uint8](#JSON-type)|[2.1](#Schema-Version-Map)||
+|**VirtualProcessorCount**<br>|[uint32](#JSON-type)|[2.1](#Schema-Version-Map)||
+|**MemoryUsageInPages**<br>|[uint64](#JSON-type)|[2.1](#Schema-Version-Map)||
 
 ---
 
@@ -2493,13 +2428,13 @@ Referenced by: [MemoryInformationForVm](#MemoryInformationForVm)
 
 |Field|Type|NewInVersion|Description|
 |---|---|---|---|
-|**AvailableMemory**<br>|[int32](#JSON-type)|[](#Schema-Version-Map)||
-|**AvailableMemoryBuffer**<br>|[int32](#JSON-type)|[](#Schema-Version-Map)||
-|**ReservedMemory**<br>|[uint64](#JSON-type)|[](#Schema-Version-Map)||
-|**AssignedMemory**<br>|[uint64](#JSON-type)|[](#Schema-Version-Map)||
-|**SlpActive**<br>|[bool](#JSON-type)|[](#Schema-Version-Map)||
-|**BalancingEnabled**<br>|[bool](#JSON-type)|[](#Schema-Version-Map)||
-|**DmOperationInProgress**<br>|[bool](#JSON-type)|[](#Schema-Version-Map)||
+|**AvailableMemory**<br>|[int32](#JSON-type)|[2.1](#Schema-Version-Map)||
+|**AvailableMemoryBuffer**<br>|[int32](#JSON-type)|[2.1](#Schema-Version-Map)||
+|**ReservedMemory**<br>|[uint64](#JSON-type)|[2.1](#Schema-Version-Map)||
+|**AssignedMemory**<br>|[uint64](#JSON-type)|[2.1](#Schema-Version-Map)||
+|**SlpActive**<br>|[bool](#JSON-type)|[2.1](#Schema-Version-Map)||
+|**BalancingEnabled**<br>|[bool](#JSON-type)|[2.1](#Schema-Version-Map)||
+|**DmOperationInProgress**<br>|[bool](#JSON-type)|[2.1](#Schema-Version-Map)||
 
 ---
 
@@ -2549,13 +2484,13 @@ Referenced by: [GuestCrashReporting](#GuestCrashReporting)
 <a name = "JSON-type"></a>
 ## JSON type
 
-The table shows the mapping from type name for field of classes to JSON type, its format and pattern, see details in [Swagger IO spec](https://swagger.io/specification/#data-types)
+The table shows the mapping from type name for field of classes to JSON type, its format and pattern. See details in [Swagger IO spec](https://swagger.io/specification/#data-types)
 
 |Name|JSON Type|Format|Pattern|
 |---|---|---|---|
 |Any|object|||
 |bool|boolean|||
-|ByteArray|string|binary||
+|ByteArray|string|byte||
 |DateTime|string|date-time||
 |Guid|string||^[0-9A-Fa-f]{8}-([0-9A-Fa-f]{4}-){3}[0-9A-Fa-f]{12}$|
 |int32|integer|int32||
@@ -2563,6 +2498,7 @@ The table shows the mapping from type name for field of classes to JSON type, it
 |MacAddress|string|mac-address||
 |Map|object|||
 |string|string|||
+|string_binary|string|binary||
 |uint16|integer|uint16||
 |uint32|integer|uint32||
 |uint64|integer|uint64||
