@@ -2,7 +2,7 @@
 
 ## JSON Schema File
 
-Here provides the schema definitions as the OpenAPI specifications in [JSON Schema document](./json_files.zip), which used in HCS APIs as configuration strings.
+Here provides the schema definitions as the OpenAPI specifications in [JSON Schema document](https://github.com/MicrosoftDocs/Virtualization-Documentation/tree/master/hyperv-samples/hcs-samples/JSON_files), which used in HCS APIs as configuration strings.
 
 ## Schema Generated Code Samples
 

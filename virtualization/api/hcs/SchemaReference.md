@@ -124,22 +124,22 @@ Data types for event data elements, based on EVT_VARIANT_TYPE
 
 |Variants|NewInVersion|Description|
 |---|---|---|
-|`"Empty"`<br>|[](#Schema-Version-Map)||
-|`"String"`<br>|[](#Schema-Version-Map)||
-|`"AnsiString"`<br>|[](#Schema-Version-Map)||
-|`"SByte"`<br>|[](#Schema-Version-Map)||
-|`"Byte"`<br>|[](#Schema-Version-Map)||
-|`"Int16"`<br>|[](#Schema-Version-Map)||
-|`"UInt16"`<br>|[](#Schema-Version-Map)||
-|`"Int32"`<br>|[](#Schema-Version-Map)||
-|`"UInt32"`<br>|[](#Schema-Version-Map)||
-|`"Int64"`<br>|[](#Schema-Version-Map)||
-|`"UInt64"`<br>|[](#Schema-Version-Map)||
-|`"Single"`<br>|[](#Schema-Version-Map)||
-|`"Double"`<br>|[](#Schema-Version-Map)||
-|`"Boolean"`<br>|[](#Schema-Version-Map)||
-|`"Binary"`<br>|[](#Schema-Version-Map)||
-|`"Guid"`<br>|[](#Schema-Version-Map)||
+|`"Empty"`<br>|[2.1](#Schema-Version-Map)||
+|`"String"`<br>|[2.1](#Schema-Version-Map)||
+|`"AnsiString"`<br>|[2.1](#Schema-Version-Map)||
+|`"SByte"`<br>|[2.1](#Schema-Version-Map)||
+|`"Byte"`<br>|[2.1](#Schema-Version-Map)||
+|`"Int16"`<br>|[2.1](#Schema-Version-Map)||
+|`"UInt16"`<br>|[2.1](#Schema-Version-Map)||
+|`"Int32"`<br>|[2.1](#Schema-Version-Map)||
+|`"UInt32"`<br>|[2.1](#Schema-Version-Map)||
+|`"Int64"`<br>|[2.1](#Schema-Version-Map)||
+|`"UInt64"`<br>|[2.1](#Schema-Version-Map)||
+|`"Single"`<br>|[2.1](#Schema-Version-Map)||
+|`"Double"`<br>|[2.1](#Schema-Version-Map)||
+|`"Boolean"`<br>|[2.1](#Schema-Version-Map)||
+|`"Binary"`<br>|[2.1](#Schema-Version-Map)||
+|`"Guid"`<br>|[2.1](#Schema-Version-Map)||
 
 ---
 
@@ -358,9 +358,9 @@ Referenced by: [Properties](#Properties)
 
 |Variants|NewInVersion|Description|
 |---|---|---|
-|`"Unknown"`<br>|[](#Schema-Version-Map)||
-|`"Windows"`<br>|[](#Schema-Version-Map)||
-|`"Linux"`<br>|[](#Schema-Version-Map)||
+|`"Unknown"`<br>|[2.1](#Schema-Version-Map)||
+|`"Windows"`<br>|[2.1](#Schema-Version-Map)||
+|`"Linux"`<br>|[2.1](#Schema-Version-Map)||
 
 ---
 
@@ -492,12 +492,12 @@ Compute system state which is exposed to external clients
 
 |Variants|NewInVersion|Description|
 |---|---|---|
-|`"Created"`<br>|[](#Schema-Version-Map)||
-|`"Running"`<br>|[](#Schema-Version-Map)||
-|`"Paused"`<br>|[](#Schema-Version-Map)||
-|`"Stopped"`<br>|[](#Schema-Version-Map)||
-|`"SavedAsTemplate"`<br>|[](#Schema-Version-Map)||
-|`"Unknown"`<br>|[](#Schema-Version-Map)||
+|`"Created"`<br>|[2.1](#Schema-Version-Map)||
+|`"Running"`<br>|[2.1](#Schema-Version-Map)||
+|`"Paused"`<br>|[2.1](#Schema-Version-Map)||
+|`"Stopped"`<br>|[2.1](#Schema-Version-Map)||
+|`"SavedAsTemplate"`<br>|[2.1](#Schema-Version-Map)||
+|`"Unknown"`<br>|[2.1](#Schema-Version-Map)||
 
 ---
 
@@ -525,7 +525,6 @@ Compute system property types. The properties will be returned as a Schema.Respo
 |Variants|NewInVersion|Description|
 |---|---|---|
 |`"Memory"`<br>|[2.1](#Schema-Version-Map)||
-|`"GuestMemory"`<br>|[2.1](#Schema-Version-Map)||
 |`"Statistics"`<br>|[2.1](#Schema-Version-Map)||
 |`"ProcessList"`<br>|[2.1](#Schema-Version-Map)||
 |`"TerminateOnLastHandleClosed"`<br>|[2.1](#Schema-Version-Map)||
@@ -543,8 +542,8 @@ Referenced by: [Properties](#Properties); [SystemQuery](#SystemQuery)
 
 |Variants|NewInVersion|Description|
 |---|---|---|
-|`"Container"`<br>|[](#Schema-Version-Map)||
-|`"VirtualMachine"`<br>|[](#Schema-Version-Map)||
+|`"Container"`<br>|[2.1](#Schema-Version-Map)||
+|`"VirtualMachine"`<br>|[2.1](#Schema-Version-Map)||
 
 ---
 
@@ -597,12 +596,12 @@ Indicated the progress of a Windows memory dump in a WindowsCrashReport.
 
 |Variants|NewInVersion|Description|
 |---|---|---|
-|`"Inactive"`<br>|[](#Schema-Version-Map)|A memory dump was not active.|
-|`"CrashValues"`<br>|[](#Schema-Version-Map)|Crash values have been reported through CrashParameters.|
-|`"Starting"`<br>|[](#Schema-Version-Map)|A memory dump is in the process of starting.|
-|`"Started"`<br>|[](#Schema-Version-Map)|A memory dump has been initialized.|
-|`"Writing"`<br>|[](#Schema-Version-Map)|Memory dump data is being written.|
-|`"Complete"`<br>|[](#Schema-Version-Map)|Memory dump was successfully written.|
+|`"Inactive"`<br>|[2.1](#Schema-Version-Map)|A memory dump was not active.|
+|`"CrashValues"`<br>|[2.1](#Schema-Version-Map)|Crash values have been reported through CrashParameters.|
+|`"Starting"`<br>|[2.1](#Schema-Version-Map)|A memory dump is in the process of starting.|
+|`"Started"`<br>|[2.1](#Schema-Version-Map)|A memory dump has been initialized.|
+|`"Writing"`<br>|[2.1](#Schema-Version-Map)|Memory dump data is being written.|
+|`"Complete"`<br>|[2.1](#Schema-Version-Map)|Memory dump was successfully written.|
 
 ---
 
@@ -972,11 +971,11 @@ Crash information reported through HcsEventSystemCrashInitiated and HcsEventSyst
 
 |Field|Type|NewInVersion|Description|
 |---|---|---|---|
-|**SystemId**<br>|[string](#JSON-type)|[](#Schema-Version-Map)|Compute system id the CrashReport is for.|
-|**ActivityId**<br>|[Guid](#JSON-type)|[](#Schema-Version-Map)|Trace correlation activity Id.|
-|**WindowsCrashInfo**<br>|[WindowsCrashReport](#WindowsCrashReport)|[](#Schema-Version-Map)|Additional Windows specific crash report information. This information is only present in HcsEventSystemCrashReport and only if the GuestCrashReporting device has been configured in the Devices as well as the Windows guest OS.|
-|**CrashParameters**<br>|<[uint64](#JSON-type)> array|[](#Schema-Version-Map)|Crash parameters as reported by the guest OS. For Windows these correspond to the bug check code followed by 4 bug check code specific values. The CrashParameters are available in both HcsEventSystemCrashInitiated and HcsEventSystemCrashReport events.|
-|**CrashLog**<br>|[string](#JSON-type)|[](#Schema-Version-Map)|An optional string provided by the guest OS. Currently only used by Linux guest OSes with Hyper-V Linux Integration Services configured.|
+|**SystemId**<br>|[string](#JSON-type)|[2.1](#Schema-Version-Map)|Compute system id the CrashReport is for.|
+|**ActivityId**<br>|[Guid](#JSON-type)|[2.1](#Schema-Version-Map)|Trace correlation activity Id.|
+|**WindowsCrashInfo**<br>|[WindowsCrashReport](#WindowsCrashReport)|[2.1](#Schema-Version-Map)|Additional Windows specific crash report information. This information is only present in HcsEventSystemCrashReport and only if the GuestCrashReporting device has been configured in the Devices as well as the Windows guest OS.|
+|**CrashParameters**<br>|<[uint64](#JSON-type)> array|[2.3](#Schema-Version-Map)|Crash parameters as reported by the guest OS. For Windows these correspond to the bug check code followed by 4 bug check code specific values. The CrashParameters are available in both HcsEventSystemCrashInitiated and HcsEventSystemCrashReport events.|
+|**CrashLog**<br>|[string](#JSON-type)|[2.3](#Schema-Version-Map)|An optional string provided by the guest OS. Currently only used by Linux guest OSes with Hyper-V Linux Integration Services configured.|
 
 ---
 
@@ -1062,13 +1061,13 @@ Error descriptor that provides the info of an error object
 
 |Field|Type|NewInVersion|Description|
 |---|---|---|---|
-|**Message**<br>|[string](#JSON-type)|[](#Schema-Version-Map)|Fully formated error message|
-|**StackTrace**<br>|[string](#JSON-type)|[](#Schema-Version-Map)|Stack trace in string form|
-|**Provider**<br>|[Guid](#JSON-type)|[](#Schema-Version-Map)|Event definition|
-|**EventId**<br>|[uint16](#JSON-type)|[](#Schema-Version-Map)||
-|**Flags**<br>|[uint32](#JSON-type)|[](#Schema-Version-Map)||
-|**Source**<br>|[string](#JSON-type)|[](#Schema-Version-Map)||
-|**Data**<br>|<[EventData](#EventData)> array|[](#Schema-Version-Map)||
+|**Message**<br>|[string](#JSON-type)|[2.1](#Schema-Version-Map)|Fully formated error message|
+|**StackTrace**<br>|[string](#JSON-type)|[2.1](#Schema-Version-Map)|Stack trace in string form|
+|**Provider**<br>|[Guid](#JSON-type)|[2.1](#Schema-Version-Map)|Event definition|
+|**EventId**<br>|[uint16](#JSON-type)|[2.1](#Schema-Version-Map)||
+|**Flags**<br>|[uint32](#JSON-type)|[2.1](#Schema-Version-Map)||
+|**Source**<br>|[string](#JSON-type)|[2.1](#Schema-Version-Map)||
+|**Data**<br>|<[EventData](#EventData)> array|[2.1](#Schema-Version-Map)||
 
 ---
 
@@ -1080,8 +1079,8 @@ Event data element
 
 |Field|Type|NewInVersion|Description|
 |---|---|---|---|
-|**Type**<br>|[EventDataType](#EventDataType)|[](#Schema-Version-Map)||
-|**Value**<br>|[string](#JSON-type)|[](#Schema-Version-Map)||
+|**Type**<br>|[EventDataType](#EventDataType)|[2.1](#Schema-Version-Map)||
+|**Value**<br>|[string](#JSON-type)|[2.1](#Schema-Version-Map)||
 
 ---
 
@@ -1246,8 +1245,8 @@ This class defines address settings applied to a VM by the GCS every time a VM s
 
 |Field|Type|NewInVersion|Description|
 |---|---|---|---|
-|**LocalAddress**<br>|[Guid](#JSON-type)|[](#Schema-Version-Map)||
-|**ParentAddress**<br>|[Guid](#JSON-type)|[](#Schema-Version-Map)||
+|**LocalAddress**<br>|[Guid](#JSON-type)|[2.1](#Schema-Version-Map)||
+|**ParentAddress**<br>|[Guid](#JSON-type)|[2.1](#Schema-Version-Map)||
 
 ---
 
@@ -1686,10 +1685,10 @@ Provided in the EventData parameter of an HcsEventProcessExited HCS_EVENT.
 
 |Field|Type|NewInVersion|Description|
 |---|---|---|---|
-|**ProcessId**<br>|[uint32](#JSON-type)|[](#Schema-Version-Map)|The process id (PID) of the process.|
-|**Exited**<br>|[bool](#JSON-type)|[](#Schema-Version-Map)|True if the process has exited, false if it has not exited yet.|
-|**ExitCode**<br>|[uint32](#JSON-type)|[](#Schema-Version-Map)|Exit code of the process. The ExitCode is valid only if LastWaitResult is S_OK and Exited is true.|
-|**LastWaitResult**<br>|[int32](#JSON-type)|[](#Schema-Version-Map)|Status of waiting for process exit. S_OK indicates success. Other HRESULT values on error.|
+|**ProcessId**<br>|[uint32](#JSON-type)|[2.1](#Schema-Version-Map)|The process id (PID) of the process.|
+|**Exited**<br>|[bool](#JSON-type)|[2.1](#Schema-Version-Map)|True if the process has exited, false if it has not exited yet.|
+|**ExitCode**<br>|[uint32](#JSON-type)|[2.1](#Schema-Version-Map)|Exit code of the process. The ExitCode is valid only if LastWaitResult is S_OK and Exited is true.|
+|**LastWaitResult**<br>|[int32](#JSON-type)|[2.1](#Schema-Version-Map)|Status of waiting for process exit. S_OK indicates success. Other HRESULT values on error.|
 
 ---
 
@@ -1699,21 +1698,21 @@ Provided in the EventData parameter of an HcsEventProcessExited HCS_EVENT.
 
 |Field|Type|NewInVersion|Description|
 |---|---|---|---|
-|**Id**<br>|[string](#JSON-type)|[](#Schema-Version-Map)||
-|**SystemType**<br>|[SystemType](#SystemType)|[](#Schema-Version-Map)||
-|**RuntimeOsType**<br>|[OsType](#OsType)|[](#Schema-Version-Map)||
-|**Name**<br>|[string](#JSON-type)|[](#Schema-Version-Map)||
-|**Owner**<br>|[string](#JSON-type)|[](#Schema-Version-Map)||
-|**RuntimeId**<br>|[Guid](#JSON-type)|[](#Schema-Version-Map)||
-|**RuntimeTemplateId**<br>|[string](#JSON-type)|[](#Schema-Version-Map)||
-|**State**<br>|[State](#State)|[](#Schema-Version-Map)||
-|**Stopped**<br>|[bool](#JSON-type)|[](#Schema-Version-Map)||
-|**ExitType**<br>|[NotificationType](#NotificationType)|[](#Schema-Version-Map)||
+|**Id**<br>|[string](#JSON-type)|[2.1](#Schema-Version-Map)||
+|**SystemType**<br>|[SystemType](#SystemType)|[2.1](#Schema-Version-Map)||
+|**RuntimeOsType**<br>|[OsType](#OsType)|[2.1](#Schema-Version-Map)||
+|**Name**<br>|[string](#JSON-type)|[2.1](#Schema-Version-Map)||
+|**Owner**<br>|[string](#JSON-type)|[2.1](#Schema-Version-Map)||
+|**RuntimeId**<br>|[Guid](#JSON-type)|[2.1](#Schema-Version-Map)||
+|**RuntimeTemplateId**<br>|[string](#JSON-type)|[2.1](#Schema-Version-Map)||
+|**State**<br>|[State](#State)|[2.1](#Schema-Version-Map)||
+|**Stopped**<br>|[bool](#JSON-type)|[2.1](#Schema-Version-Map)||
+|**ExitType**<br>|[NotificationType](#NotificationType)|[2.1](#Schema-Version-Map)||
 |**Memory**<br>|[MemoryInformationForVm](#MemoryInformationForVm)|[2.1](#Schema-Version-Map)||
 |**Statistics**<br>|[Statistics](#Statistics)|[2.1](#Schema-Version-Map)||
 |**ProcessList**<br>|<[ProcessDetails](#ProcessDetails)> array|[2.1](#Schema-Version-Map)||
 |**TerminateOnLastHandleClosed**<br>|[bool](#JSON-type)|[2.1](#Schema-Version-Map)||
-|**HostingSystemId**<br>|[string](#JSON-type)|[](#Schema-Version-Map)||
+|**HostingSystemId**<br>|[string](#JSON-type)|[2.1](#Schema-Version-Map)||
 |**SharedMemoryRegionInfo**<br>|<[SharedMemoryRegionInfo](#SharedMemoryRegionInfo)> array|[2.1](#Schema-Version-Map)||
 |**GuestConnectionInfo**<br>|[GuestConnectionInfo](#GuestConnectionInfo)|[2.1](#Schema-Version-Map)||
 |**ICHeartbeatStatus**<br>|[IntegrationComponentStatus](#IntegrationComponentStatus)|[2.3](#Schema-Version-Map)||
@@ -1818,8 +1817,8 @@ Extended error information returned by the HCS
 
 |Field|Type|NewInVersion|Description|
 |---|---|---|---|
-|**Error**<br>|[int32](#JSON-type)|[](#Schema-Version-Map)||
-|**ErrorMessage**<br>|[string](#JSON-type)|[](#Schema-Version-Map)||
+|**Error**<br>|[int32](#JSON-type)|[2.1](#Schema-Version-Map)||
+|**ErrorMessage**<br>|[string](#JSON-type)|[2.1](#Schema-Version-Map)||
 
 ---
 
@@ -1862,7 +1861,7 @@ The service properties will be returned as an array corresponding to the request
 
 |Field|Type|NewInVersion|Description|
 |---|---|---|---|
-|**Properties**<br>|<[Any](#JSON-type)> array|[](#Schema-Version-Map)||
+|**Properties**<br>|<[Any](#JSON-type)> array|[2.1](#Schema-Version-Map)||
 
 ---
 
@@ -2046,10 +2045,10 @@ Structure used to request a system processor modification
 
 |Field|Type|NewInVersion|Description|
 |---|---|---|---|
-|**Ids**<br>|<[string](#JSON-type)> array|[](#Schema-Version-Map)||
-|**Names**<br>|<[string](#JSON-type)> array|[](#Schema-Version-Map)||
-|**Types**<br>|<[SystemType](#SystemType)> array|[](#Schema-Version-Map)||
-|**Owners**<br>|<[string](#JSON-type)> array|[](#Schema-Version-Map)||
+|**Ids**<br>|<[string](#JSON-type)> array|[2.1](#Schema-Version-Map)||
+|**Names**<br>|<[string](#JSON-type)> array|[2.1](#Schema-Version-Map)||
+|**Types**<br>|<[SystemType](#SystemType)> array|[2.1](#Schema-Version-Map)||
+|**Owners**<br>|<[string](#JSON-type)> array|[2.1](#Schema-Version-Map)||
 
 ---
 
@@ -2061,14 +2060,14 @@ Referenced by: [TimeZoneInformation](#TimeZoneInformation)
 
 |Field|Type|NewInVersion|Description|
 |---|---|---|---|
-|**Year**<br>|[uint16](#JSON-type)|[](#Schema-Version-Map)||
-|**Month**<br>|[uint16](#JSON-type)|[](#Schema-Version-Map)||
-|**DayOfWeek**<br>|[uint16](#JSON-type)|[](#Schema-Version-Map)||
-|**Day**<br>|[uint16](#JSON-type)|[](#Schema-Version-Map)||
-|**Hour**<br>|[uint16](#JSON-type)|[](#Schema-Version-Map)||
-|**Minute**<br>|[uint16](#JSON-type)|[](#Schema-Version-Map)||
-|**Second**<br>|[uint16](#JSON-type)|[](#Schema-Version-Map)||
-|**Milliseconds**<br>|[uint16](#JSON-type)|[](#Schema-Version-Map)||
+|**Year**<br>|[uint16](#JSON-type)|[2.1](#Schema-Version-Map)||
+|**Month**<br>|[uint16](#JSON-type)|[2.1](#Schema-Version-Map)||
+|**DayOfWeek**<br>|[uint16](#JSON-type)|[2.1](#Schema-Version-Map)||
+|**Day**<br>|[uint16](#JSON-type)|[2.1](#Schema-Version-Map)||
+|**Hour**<br>|[uint16](#JSON-type)|[2.1](#Schema-Version-Map)||
+|**Minute**<br>|[uint16](#JSON-type)|[2.1](#Schema-Version-Map)||
+|**Second**<br>|[uint16](#JSON-type)|[2.1](#Schema-Version-Map)||
+|**Milliseconds**<br>|[uint16](#JSON-type)|[2.1](#Schema-Version-Map)||
 
 ---
 
@@ -2078,13 +2077,13 @@ Referenced by: [TimeZoneInformation](#TimeZoneInformation)
 
 |Field|Type|NewInVersion|Description|
 |---|---|---|---|
-|**Bias**<br>|[int32](#JSON-type)|[](#Schema-Version-Map)||
-|**StandardName**<br>|[string](#JSON-type)|[](#Schema-Version-Map)||
-|**StandardDate**<br>|[SystemTime](#SystemTime)|[](#Schema-Version-Map)||
-|**StandardBias**<br>|[int32](#JSON-type)|[](#Schema-Version-Map)||
-|**DaylightName**<br>|[string](#JSON-type)|[](#Schema-Version-Map)||
-|**DaylightDate**<br>|[SystemTime](#SystemTime)|[](#Schema-Version-Map)||
-|**DaylightBias**<br>|[int32](#JSON-type)|[](#Schema-Version-Map)||
+|**Bias**<br>|[int32](#JSON-type)|[2.1](#Schema-Version-Map)||
+|**StandardName**<br>|[string](#JSON-type)|[2.1](#Schema-Version-Map)||
+|**StandardDate**<br>|[SystemTime](#SystemTime)|[2.1](#Schema-Version-Map)||
+|**StandardBias**<br>|[int32](#JSON-type)|[2.1](#Schema-Version-Map)||
+|**DaylightName**<br>|[string](#JSON-type)|[2.1](#Schema-Version-Map)||
+|**DaylightDate**<br>|[SystemTime](#SystemTime)|[2.1](#Schema-Version-Map)||
+|**DaylightBias**<br>|[int32](#JSON-type)|[2.1](#Schema-Version-Map)||
 
 ---
 
@@ -2446,16 +2445,16 @@ Windows specific crash information
 
 |Field|Type|NewInVersion|Description|
 |---|---|---|---|
-|**DumpFile**<br>|[string](#JSON-type)|[](#Schema-Version-Map)|Path to a Windows memory dump file. This will contain the same path as the configured in the GuestCrashReporting device. This field is not valid unless the FinalPhase is Complete.|
-|**OsMajorVersion**<br>|[uint32](#JSON-type)|[](#Schema-Version-Map)|Major version as reported by the guest OS.|
-|**OsMinorVersion**<br>|[uint32](#JSON-type)|[](#Schema-Version-Map)|Minor version as reported by the guest OS.|
-|**OsBuildNumber**<br>|[uint32](#JSON-type)|[](#Schema-Version-Map)|Build number as reported by the guest OS.|
-|**OsServicePackMajorVersion**<br>|[uint32](#JSON-type)|[](#Schema-Version-Map)|Service pack major version as reported by the guest OS.|
-|**OsServicePackMinorVersion**<br>|[uint32](#JSON-type)|[](#Schema-Version-Map)|Service pack minor version as reported by the guest OS.|
-|**OsSuiteMask**<br>|[uint32](#JSON-type)|[](#Schema-Version-Map)|Suite mask as reported by the guest OS.|
-|**OsProductType**<br>|[uint32](#JSON-type)|[](#Schema-Version-Map)|Product type as reported by the guest OS.|
-|**Status**<br>|[int32](#JSON-type)|[](#Schema-Version-Map)|Status of the crash dump. S_OK indicates success, other HRESULT values on error.|
-|**FinalPhase**<br>|[WindowsCrashPhase](#WindowsCrashPhase)|[](#Schema-Version-Map)|Indicates progress of a Windows memory dump when the crash report was sent.|
+|**DumpFile**<br>|[string](#JSON-type)|[2.1](#Schema-Version-Map)|Path to a Windows memory dump file. This will contain the same path as the configured in the GuestCrashReporting device. This field is not valid unless the FinalPhase is Complete.|
+|**OsMajorVersion**<br>|[uint32](#JSON-type)|[2.1](#Schema-Version-Map)|Major version as reported by the guest OS.|
+|**OsMinorVersion**<br>|[uint32](#JSON-type)|[2.1](#Schema-Version-Map)|Minor version as reported by the guest OS.|
+|**OsBuildNumber**<br>|[uint32](#JSON-type)|[2.1](#Schema-Version-Map)|Build number as reported by the guest OS.|
+|**OsServicePackMajorVersion**<br>|[uint32](#JSON-type)|[2.1](#Schema-Version-Map)|Service pack major version as reported by the guest OS.|
+|**OsServicePackMinorVersion**<br>|[uint32](#JSON-type)|[2.1](#Schema-Version-Map)|Service pack minor version as reported by the guest OS.|
+|**OsSuiteMask**<br>|[uint32](#JSON-type)|[2.1](#Schema-Version-Map)|Suite mask as reported by the guest OS.|
+|**OsProductType**<br>|[uint32](#JSON-type)|[2.1](#Schema-Version-Map)|Product type as reported by the guest OS.|
+|**Status**<br>|[int32](#JSON-type)|[2.1](#Schema-Version-Map)|Status of the crash dump. S_OK indicates success, other HRESULT values on error.|
+|**FinalPhase**<br>|[WindowsCrashPhase](#WindowsCrashPhase)|[2.1](#Schema-Version-Map)|Indicates progress of a Windows memory dump when the crash report was sent.|
 
 ---
 
