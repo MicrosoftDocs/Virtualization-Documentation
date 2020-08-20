@@ -13,5 +13,5 @@ packages.config
 *.swp
 
 # Visual Studio Code
-.vscode/**
+.vscode/*
 !.vscode/extensions.json
