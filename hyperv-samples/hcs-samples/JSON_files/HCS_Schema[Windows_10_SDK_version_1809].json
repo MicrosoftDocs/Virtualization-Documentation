@@ -32,12 +32,14 @@
         },
         "BasicInformation": {
             "type": "object",
+            "description": "Basic information",
             "properties": {
                 "SupportedSchemaVersions": {
                     "type": "array",
                     "items": {
                         "$ref": "#/definitions/Version"
-                    }
+                    },
+                    "description": "The supported schema versions will be returned as an array. Array element A.X implies all versions with major version A and minor version from 0 to X are also supported."
                 }
             }
         },
@@ -359,6 +361,18 @@
                 }
             }
         },
+        "ContainersDef_BatchedBinding": {
+            "type": "object",
+            "properties": {}
+        },
+        "ContainersDef_Container": {
+            "type": "object",
+            "properties": {}
+        },
+        "ContainersDef_Device": {
+            "type": "object",
+            "properties": {}
+        },
         "CpuGroup": {
             "type": "object",
             "description": "CPU groups allow Hyper-V administrators to better manage and allocate the host's CPU resources across guest virtual machines",
@@ -491,6 +505,22 @@
                 }
             }
         },
+        "DeviceCategory": {
+            "type": "object",
+            "properties": {}
+        },
+        "DeviceExtension": {
+            "type": "object",
+            "properties": {}
+        },
+        "DeviceInstance": {
+            "type": "object",
+            "properties": {}
+        },
+        "DeviceNamespace": {
+            "type": "object",
+            "properties": {}
+        },
         "Devices": {
             "type": "object",
             "properties": {
@@ -557,6 +587,18 @@
                 }
             }
         },
+        "DownlevelFixups": {
+            "type": "object",
+            "properties": {}
+        },
+        "DownlevelNamespace": {
+            "type": "object",
+            "properties": {}
+        },
+        "DownlevelSku": {
+            "type": "object",
+            "properties": {}
+        },
         "EnhancedModeVideo": {
             "type": "object",
             "properties": {
@@ -584,20 +626,24 @@
                 },
                 "EventId": {
                     "type": "integer",
-                    "format": "uint16"
+                    "format": "uint16",
+                    "description": "Event Id"
                 },
                 "Flags": {
                     "type": "integer",
-                    "format": "uint32"
+                    "format": "uint32",
+                    "description": "Flags"
                 },
                 "Source": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Source"
                 },
                 "Data": {
                     "type": "array",
                     "items": {
                         "$ref": "#/definitions/EventData"
-                    }
+                    },
+                    "description": "Event data"
                 }
             }
         },
@@ -610,7 +656,8 @@
                     "$ref": "#/definitions/EventDataType"
                 },
                 "Value": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Event value"
                 }
             }
         },
@@ -621,6 +668,14 @@
                     "type": "boolean"
                 }
             }
+        },
+        "FilesystemLayer": {
+            "type": "object",
+            "properties": {}
+        },
+        "FilesystemNamespace": {
+            "type": "object",
+            "properties": {}
         },
         "FlexibleIoDevice": {
             "type": "object",
@@ -766,6 +821,10 @@
                 }
             }
         },
+        "HostFiles": {
+            "type": "object",
+            "properties": {}
+        },
         "HostProcessorModificationRequest": {
             "type": "object",
             "description": "Structure used to request a service processor modification",
@@ -842,7 +901,27 @@
             "type": "object",
             "properties": {}
         },
+        "InterfaceClass": {
+            "type": "object",
+            "properties": {}
+        },
         "IovSettings": {
+            "type": "object",
+            "properties": {}
+        },
+        "JobCpu": {
+            "type": "object",
+            "properties": {}
+        },
+        "JobMemory": {
+            "type": "object",
+            "properties": {}
+        },
+        "JobNamespace": {
+            "type": "object",
+            "properties": {}
+        },
+        "JobSystemRoot": {
             "type": "object",
             "properties": {}
         },
@@ -1014,7 +1093,8 @@
                     "$ref": "#/definitions/ModifyPropertyType"
                 },
                 "Settings": {
-                    "type": "object"
+                    "type": "object",
+                    "description": "Settings to the modification request"
                 }
             }
         },
@@ -1036,7 +1116,27 @@
                 }
             }
         },
+        "MountManagerMountPoint": {
+            "type": "object",
+            "properties": {}
+        },
+        "MountManagerNamespace": {
+            "type": "object",
+            "properties": {}
+        },
         "Mouse": {
+            "type": "object",
+            "properties": {}
+        },
+        "NamedPipeNamespace": {
+            "type": "object",
+            "properties": {}
+        },
+        "NamedPipeSymlink": {
+            "type": "object",
+            "properties": {}
+        },
+        "Namespace": {
             "type": "object",
             "properties": {}
         },
@@ -1077,6 +1177,22 @@
                     }
                 }
             }
+        },
+        "NetworkNamespace": {
+            "type": "object",
+            "properties": {}
+        },
+        "ObjectDirectory": {
+            "type": "object",
+            "properties": {}
+        },
+        "ObjectNamespace": {
+            "type": "object",
+            "properties": {}
+        },
+        "ObjectSymlink": {
+            "type": "object",
+            "properties": {}
         },
         "OperationFailure": {
             "type": "object",
@@ -1396,9 +1512,11 @@
         },
         "QoSCapabilities": {
             "type": "object",
+            "description": "Quality of Service (QoS) capabilities",
             "properties": {
                 "ProcessorQoSSupported": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "description": "Whether or not processor QoS is supported"
                 }
             }
         },
@@ -1433,6 +1551,10 @@
                 }
             }
         },
+        "RegistryDeleteKey": {
+            "type": "object",
+            "properties": {}
+        },
         "RegistryFlushState": {
             "type": "object",
             "description": "Represents the flush state of the registry hive for a Windows container's job object.",
@@ -1442,6 +1564,10 @@
                     "description": "Determines whether the flush state of the registry hive is enabled or not. When not enabled, flushes are ignored and changes to the registry are not preserved."
                 }
             }
+        },
+        "RegistryHiveStack": {
+            "type": "object",
+            "properties": {}
         },
         "RegistryKey": {
             "type": "object",
@@ -1457,6 +1583,30 @@
                     "type": "boolean"
                 }
             }
+        },
+        "RegistryLayer": {
+            "type": "object",
+            "properties": {}
+        },
+        "RegistryMakeKey": {
+            "type": "object",
+            "properties": {}
+        },
+        "RegistryMakeValue": {
+            "type": "object",
+            "properties": {}
+        },
+        "RegistryNamespace": {
+            "type": "object",
+            "properties": {}
+        },
+        "RegistryRedirectionNode": {
+            "type": "object",
+            "properties": {}
+        },
+        "RegistrySymlink": {
+            "type": "object",
+            "properties": {}
         },
         "RegistryValue": {
             "type": "object",
@@ -1513,10 +1663,12 @@
             "properties": {
                 "Error": {
                     "type": "integer",
-                    "format": "int32"
+                    "format": "int32",
+                    "description": "HRESULT error code"
                 },
                 "ErrorMessage": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Error message"
                 }
             }
         },
@@ -1548,25 +1700,28 @@
         },
         "Service_PropertyQuery": {
             "type": "object",
+            "description": "Structure used to perform property query",
             "properties": {
                 "PropertyTypes": {
                     "type": "array",
                     "items": {
                         "type": "string",
                         "$ref": "#/definitions/GetPropertyType"
-                    }
+                    },
+                    "description": "Specifies the property array to query"
                 }
             }
         },
         "ServiceProperties": {
             "type": "object",
-            "description": "The service properties will be returned as an array corresponding to the requested property types.",
+            "description": "Properties of the host",
             "properties": {
                 "Properties": {
                     "type": "array",
                     "items": {
                         "type": "object"
-                    }
+                    },
+                    "description": "The service properties will be returned as an array corresponding to the requested property types."
                 }
             }
         },

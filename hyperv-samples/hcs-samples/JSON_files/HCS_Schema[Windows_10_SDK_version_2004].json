@@ -23,6 +23,9 @@
                 },
                 "ReadOnly": {
                     "type": "boolean"
+                },
+                "SupportCompressedVolumes": {
+                    "type": "boolean"
                 }
             }
         },
@@ -32,12 +35,14 @@
         },
         "BasicInformation": {
             "type": "object",
+            "description": "Basic information",
             "properties": {
                 "SupportedSchemaVersions": {
                     "type": "array",
                     "items": {
                         "$ref": "#/definitions/Version"
-                    }
+                    },
+                    "description": "The supported schema versions will be returned as an array. Array element A.X implies all versions with major version A and minor version from 0 to X are also supported."
                 }
             }
         },
@@ -73,7 +78,18 @@
         },
         "CimMount": {
             "type": "object",
-            "properties": {}
+            "properties": {
+                "ImagePath": {
+                    "type": "string"
+                },
+                "FileSystemName": {
+                    "type": "string"
+                },
+                "VolumeGuid": {
+                    "type": "string",
+                    "pattern": "^[0-9A-Fa-f]{8}-([0-9A-Fa-f]{4}-){3}[0-9A-Fa-f]{12}$"
+                }
+            }
         },
         "CloseHandle": {
             "type": "object",
@@ -362,6 +378,39 @@
                 }
             }
         },
+        "ContainersDef_BatchedBinding": {
+            "type": "object",
+            "properties": {
+                "filepath": {
+                    "type": "string"
+                },
+                "bindingroots": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "ContainersDef_Container": {
+            "type": "object",
+            "properties": {
+                "namespace": {
+                    "$ref": "#/definitions/Namespace"
+                }
+            }
+        },
+        "ContainersDef_Device": {
+            "type": "object",
+            "properties": {
+                "device_extension": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/DeviceExtension"
+                    }
+                }
+            }
+        },
         "CpuGroup": {
             "type": "object",
             "description": "CPU groups allow Hyper-V administrators to better manage and allocate the host's CPU resources across guest virtual machines",
@@ -433,7 +482,12 @@
         },
         "CrashOptions": {
             "type": "object",
-            "properties": {}
+            "properties": {
+                "Type": {
+                    "type": "string",
+                    "$ref": "#/definitions/CrashType"
+                }
+            }
         },
         "CrashReport": {
             "type": "object",
@@ -450,6 +504,18 @@
                 },
                 "WindowsCrashInfo": {
                     "$ref": "#/definitions/WindowsCrashReport"
+                },
+                "CrashParameters": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer",
+                        "format": "uint64"
+                    },
+                    "description": "Crash parameters as reported by the guest OS. For Windows these correspond to the bug check code followed by 4 bug check code specific values. The CrashParameters are available in both HcsEventSystemCrashInitiated and HcsEventSystemCrashReport events."
+                },
+                "CrashLog": {
+                    "type": "string",
+                    "description": "An optional string provided by the guest OS. Currently only used by Linux guest OSes with Hyper-V Linux Integration Services configured."
                 }
             }
         },
@@ -499,6 +565,71 @@
                 "LocationPath": {
                     "type": "string",
                     "description": "The location path of the device to assign to the container. Only used when Type is DeviceInstance."
+                }
+            }
+        },
+        "DeviceCategory": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "interface_class": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/InterfaceClass"
+                    }
+                }
+            }
+        },
+        "DeviceExtension": {
+            "type": "object",
+            "properties": {
+                "device_category": {
+                    "$ref": "#/definitions/DeviceCategory"
+                },
+                "namespace": {
+                    "$ref": "#/definitions/Namespace"
+                }
+            }
+        },
+        "DeviceInstance": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "location_path": {
+                    "type": "string"
+                },
+                "port_name": {
+                    "type": "string"
+                },
+                "interface_class": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/InterfaceClass"
+                    }
+                }
+            }
+        },
+        "DeviceNamespace": {
+            "type": "object",
+            "properties": {
+                "requires_driverstore": {
+                    "type": "boolean"
+                },
+                "device_category": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/DeviceCategory"
+                    }
+                },
+                "device_instance": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/DeviceInstance"
+                    }
                 }
             }
         },
@@ -568,6 +699,62 @@
                 },
                 "SharedMemory": {
                     "$ref": "#/definitions/SharedMemoryConfiguration"
+                },
+                "VirtualPci": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "#/definitions/VirtualPciDevice"
+                    }
+                }
+            }
+        },
+        "DownlevelFixups": {
+            "type": "object",
+            "properties": {
+                "build_number": {
+                    "type": "integer",
+                    "format": "uint32"
+                },
+                "lcu": {
+                    "type": "integer",
+                    "format": "uint32"
+                },
+                "file": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "DownlevelNamespace": {
+            "type": "object",
+            "properties": {
+                "base_image_path": {
+                    "type": "string"
+                },
+                "sandbox_path": {
+                    "type": "string"
+                },
+                "sku": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/DownlevelSku"
+                    }
+                }
+            }
+        },
+        "DownlevelSku": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "fixups": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/DownlevelFixups"
+                    }
                 }
             }
         },
@@ -598,20 +785,24 @@
                 },
                 "EventId": {
                     "type": "integer",
-                    "format": "uint16"
+                    "format": "uint16",
+                    "description": "Event Id"
                 },
                 "Flags": {
                     "type": "integer",
-                    "format": "uint32"
+                    "format": "uint32",
+                    "description": "Flags"
                 },
                 "Source": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Source"
                 },
                 "Data": {
                     "type": "array",
                     "items": {
                         "$ref": "#/definitions/EventData"
-                    }
+                    },
+                    "description": "Event data"
                 }
             }
         },
@@ -624,7 +815,8 @@
                     "$ref": "#/definitions/EventDataType"
                 },
                 "Value": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Event value"
                 }
             }
         },
@@ -633,6 +825,46 @@
             "properties": {
                 "IsWritableLayer": {
                     "type": "boolean"
+                }
+            }
+        },
+        "FilesystemLayer": {
+            "type": "object",
+            "properties": {
+                "identifier": {
+                    "type": "string",
+                    "pattern": "^[0-9A-Fa-f]{8}-([0-9A-Fa-f]{4}-){3}[0-9A-Fa-f]{12}$"
+                },
+                "path": {
+                    "type": "string"
+                }
+            }
+        },
+        "FilesystemNamespace": {
+            "type": "object",
+            "properties": {
+                "path": {
+                    "type": "string"
+                },
+                "isolation": {
+                    "type": "string",
+                    "$ref": "#/definitions/FilesystemIsolationMode"
+                },
+                "nesting": {
+                    "type": "string",
+                    "$ref": "#/definitions/FilesystemNestingMode"
+                },
+                "layer": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/FilesystemLayer"
+                    }
+                },
+                "bindings": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/ContainersDef_BatchedBinding"
+                    }
                 }
             }
         },
@@ -780,6 +1012,29 @@
                 }
             }
         },
+        "HostFiles": {
+            "type": "object",
+            "properties": {
+                "base_image_path": {
+                    "type": "string"
+                },
+                "sandbox_path": {
+                    "type": "string"
+                },
+                "file": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "optionalfile": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
         "HostProcessorModificationRequest": {
             "type": "object",
             "description": "Structure used to request a service processor modification",
@@ -845,7 +1100,12 @@
         },
         "IdleProcessorsRequest": {
             "type": "object",
-            "properties": {}
+            "properties": {
+                "IdleProcessorCount": {
+                    "type": "integer",
+                    "format": "uint32"
+                }
+            }
         },
         "InjectNonMaskableInterrupt": {
             "type": "object",
@@ -856,9 +1116,76 @@
             "type": "object",
             "properties": {}
         },
+        "InterfaceClass": {
+            "type": "object",
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "$ref": "#/definitions/InterfaceClassType"
+                },
+                "identifier": {
+                    "type": "string",
+                    "pattern": "^[0-9A-Fa-f]{8}-([0-9A-Fa-f]{4}-){3}[0-9A-Fa-f]{12}$"
+                },
+                "recurse": {
+                    "type": "boolean"
+                }
+            }
+        },
         "IovSettings": {
             "type": "object",
             "properties": {}
+        },
+        "JobCpu": {
+            "type": "object",
+            "properties": {
+                "rate": {
+                    "type": "integer",
+                    "format": "uint32"
+                },
+                "weight": {
+                    "type": "integer",
+                    "format": "uint32"
+                }
+            }
+        },
+        "JobMemory": {
+            "type": "object",
+            "properties": {
+                "limit": {
+                    "type": "integer",
+                    "format": "uint64"
+                }
+            }
+        },
+        "JobNamespace": {
+            "type": "object",
+            "properties": {
+                "cpu": {
+                    "$ref": "#/definitions/JobCpu"
+                },
+                "memory": {
+                    "$ref": "#/definitions/JobMemory"
+                },
+                "systemroot": {
+                    "$ref": "#/definitions/JobSystemRoot"
+                },
+                "terminationpolicy": {
+                    "type": "string",
+                    "$ref": "#/definitions/JobTerminationPolicy"
+                },
+                "threadimpersonation": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "JobSystemRoot": {
+            "type": "object",
+            "properties": {
+                "path": {
+                    "type": "string"
+                }
+            }
         },
         "Keyboard": {
             "type": "object",
@@ -959,6 +1286,10 @@
                 "ReadOnly": {
                     "type": "boolean",
                     "description": "When set to true, the mapped directory in the compute system's guest will be read-only."
+                },
+                "SupportCloudFiles": {
+                    "type": "boolean",
+                    "description": "When set to true, the mapped directory in the compute system's guest will support cloud files."
                 }
             }
         },
@@ -1038,7 +1369,8 @@
                     "$ref": "#/definitions/ModifyPropertyType"
                 },
                 "Settings": {
-                    "type": "object"
+                    "type": "object",
+                    "description": "Settings to the modification request"
                 }
             }
         },
@@ -1060,9 +1392,88 @@
                 }
             }
         },
+        "MountManagerMountPoint": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "path": {
+                    "type": "string"
+                }
+            }
+        },
+        "MountManagerNamespace": {
+            "type": "object",
+            "properties": {
+                "mount_point": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/MountManagerMountPoint"
+                    }
+                }
+            }
+        },
         "Mouse": {
             "type": "object",
             "properties": {}
+        },
+        "NamedPipeNamespace": {
+            "type": "object",
+            "properties": {
+                "symlink": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/NamedPipeSymlink"
+                    }
+                }
+            }
+        },
+        "NamedPipeSymlink": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "path": {
+                    "type": "string"
+                }
+            }
+        },
+        "Namespace": {
+            "type": "object",
+            "properties": {
+                "job": {
+                    "$ref": "#/definitions/JobNamespace"
+                },
+                "filesystem": {
+                    "$ref": "#/definitions/FilesystemNamespace"
+                },
+                "mountmgr": {
+                    "$ref": "#/definitions/MountManagerNamespace"
+                },
+                "namedpipe": {
+                    "$ref": "#/definitions/NamedPipeNamespace"
+                },
+                "ob": {
+                    "$ref": "#/definitions/ObjectNamespace"
+                },
+                "registry": {
+                    "$ref": "#/definitions/RegistryNamespace"
+                },
+                "network": {
+                    "$ref": "#/definitions/NetworkNamespace"
+                },
+                "device": {
+                    "$ref": "#/definitions/DeviceNamespace"
+                },
+                "downlevel": {
+                    "$ref": "#/definitions/DownlevelNamespace"
+                },
+                "hostfiles": {
+                    "$ref": "#/definitions/HostFiles"
+                }
+            }
         },
         "NetworkAdapter": {
             "type": "object",
@@ -1099,6 +1510,84 @@
                         "type": "string",
                         "pattern": "^[0-9A-Fa-f]{8}-([0-9A-Fa-f]{4}-){3}[0-9A-Fa-f]{12}$"
                     }
+                }
+            }
+        },
+        "NetworkNamespace": {
+            "type": "object",
+            "properties": {
+                "compartment": {
+                    "type": "string"
+                }
+            }
+        },
+        "ObjectDirectory": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "clonesd": {
+                    "type": "string"
+                },
+                "shadow": {
+                    "type": "string",
+                    "$ref": "#/definitions/ObjectDirectoryShadow"
+                },
+                "symlink": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/ObjectSymlink"
+                    }
+                },
+                "objdir": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/ObjectDirectory"
+                    }
+                }
+            }
+        },
+        "ObjectNamespace": {
+            "type": "object",
+            "properties": {
+                "shadow": {
+                    "type": "string",
+                    "$ref": "#/definitions/ObjectDirectoryShadow"
+                },
+                "symlink": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/ObjectSymlink"
+                    }
+                },
+                "objdir": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/ObjectDirectory"
+                    }
+                }
+            }
+        },
+        "ObjectSymlink": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "path": {
+                    "type": "string"
+                },
+                "scope": {
+                    "type": "string",
+                    "$ref": "#/definitions/ObjectSymlinkScope"
+                },
+                "pathtoclone": {
+                    "type": "string"
+                },
+                "access_mask": {
+                    "type": "integer",
+                    "format": "uint32"
                 }
             }
         },
@@ -1426,9 +1915,11 @@
         },
         "QoSCapabilities": {
             "type": "object",
+            "description": "Quality of Service (QoS) capabilities",
             "properties": {
                 "ProcessorQoSSupported": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "description": "Whether or not processor QoS is supported"
                 }
             }
         },
@@ -1463,6 +1954,14 @@
                 }
             }
         },
+        "RegistryDeleteKey": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                }
+            }
+        },
         "RegistryFlushState": {
             "type": "object",
             "description": "Represents the flush state of the registry hive for a Windows container's job object.",
@@ -1470,6 +1969,32 @@
                 "Enabled": {
                     "type": "boolean",
                     "description": "Determines whether the flush state of the registry hive is enabled or not. When not enabled, flushes are ignored and changes to the registry are not preserved."
+                }
+            }
+        },
+        "RegistryHiveStack": {
+            "type": "object",
+            "properties": {
+                "hive": {
+                    "type": "string"
+                },
+                "layer": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/RegistryLayer"
+                    }
+                },
+                "mkkey": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/RegistryMakeKey"
+                    }
+                },
+                "delkey": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/RegistryDeleteKey"
+                    }
                 }
             }
         },
@@ -1485,6 +2010,144 @@
                 },
                 "Volatile": {
                     "type": "boolean"
+                }
+            }
+        },
+        "RegistryLayer": {
+            "type": "object",
+            "properties": {
+                "hosthive": {
+                    "type": "string"
+                },
+                "filepath": {
+                    "type": "string"
+                },
+                "identifier": {
+                    "type": "string",
+                    "pattern": "^[0-9A-Fa-f]{8}-([0-9A-Fa-f]{4}-){3}[0-9A-Fa-f]{12}$"
+                },
+                "readonly": {
+                    "type": "boolean"
+                },
+                "immutable": {
+                    "type": "boolean"
+                },
+                "inherittrustclass": {
+                    "type": "boolean"
+                },
+                "writethrough": {
+                    "type": "boolean"
+                },
+                "fileaccesstoken": {
+                    "type": "integer",
+                    "format": "uint64",
+                    "description": "The FileAccessToken field should only be used in-memory and not serialized/deserialized, since it refers to a token handle."
+                }
+            }
+        },
+        "RegistryMakeKey": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "clonesd": {
+                    "type": "string"
+                },
+                "mkkey": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/RegistryMakeKey"
+                    }
+                },
+                "mkvalue": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/RegistryMakeValue"
+                    }
+                },
+                "volatile": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "RegistryMakeValue": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "data_multistring": {
+                    "type": "string"
+                },
+                "data_dword": {
+                    "type": "integer",
+                    "format": "uint32"
+                },
+                "data_string": {
+                    "type": "string"
+                },
+                "data_binary": {
+                    "type": "string",
+                    "format": "binary"
+                }
+            }
+        },
+        "RegistryNamespace": {
+            "type": "object",
+            "properties": {
+                "symlink": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/RegistrySymlink"
+                    }
+                },
+                "redirectionnode": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/RegistryRedirectionNode"
+                    }
+                },
+                "hivestack": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/RegistryHiveStack"
+                    }
+                }
+            }
+        },
+        "RegistryRedirectionNode": {
+            "type": "object",
+            "properties": {
+                "containerpath": {
+                    "type": "string"
+                },
+                "hostpath": {
+                    "type": "string"
+                },
+                "hivestack": {
+                    "type": "string"
+                },
+                "access_mask": {
+                    "type": "integer",
+                    "format": "uint32"
+                },
+                "trustedhive": {
+                    "type": "boolean"
+                },
+                "exitnode": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "RegistrySymlink": {
+            "type": "object",
+            "properties": {
+                "key": {
+                    "type": "string"
+                },
+                "target": {
+                    "type": "string"
                 }
             }
         },
@@ -1543,10 +2206,12 @@
             "properties": {
                 "Error": {
                     "type": "integer",
-                    "format": "int32"
+                    "format": "int32",
+                    "description": "HRESULT error code"
                 },
                 "ErrorMessage": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Error message"
                 }
             }
         },
@@ -1578,25 +2243,28 @@
         },
         "Service_PropertyQuery": {
             "type": "object",
+            "description": "Structure used to perform property query",
             "properties": {
                 "PropertyTypes": {
                     "type": "array",
                     "items": {
                         "type": "string",
                         "$ref": "#/definitions/GetPropertyType"
-                    }
+                    },
+                    "description": "Specifies the property array to query"
                 }
             }
         },
         "ServiceProperties": {
             "type": "object",
-            "description": "The service properties will be returned as an array corresponding to the requested property types.",
+            "description": "Properties of the host",
             "properties": {
                 "Properties": {
                     "type": "array",
                     "items": {
                         "type": "object"
-                    }
+                    },
+                    "description": "The service properties will be returned as an array corresponding to the requested property types."
                 }
             }
         },
@@ -1923,6 +2591,10 @@
                     "type": "string",
                     "pattern": "^[0-9A-Fa-f]{8}-([0-9A-Fa-f]{4}-){3}[0-9A-Fa-f]{12}$"
                 },
+                "ApplySecureBootTemplate": {
+                    "type": "string",
+                    "$ref": "#/definitions/ApplySecureBootTemplateType"
+                },
                 "BootThis": {
                     "$ref": "#/definitions/UefiBootEntry"
                 },
@@ -2097,6 +2769,20 @@
                 "EnableDeferredCommit": {
                     "type": "boolean",
                     "description": "If enabled, then commit is not charged for each backing page until first access."
+                },
+                "LowMmioGapInMB": {
+                    "type": "integer",
+                    "format": "uint64",
+                    "description": "Low MMIO region allocated below 4GB"
+                },
+                "HighMmioBaseInMB": {
+                    "type": "integer",
+                    "format": "uint64",
+                    "description": "High MMIO region allocated above 4GB (base and size)"
+                },
+                "HighMmioGapInMB": {
+                    "type": "integer",
+                    "format": "uint64"
                 }
             }
         },
@@ -2155,11 +2841,26 @@
         },
         "VirtualPciDevice": {
             "type": "object",
-            "properties": {}
+            "properties": {
+                "Functions": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/VirtualPciFunction"
+                    }
+                }
+            }
         },
         "VirtualPciFunction": {
             "type": "object",
-            "properties": {}
+            "properties": {
+                "DeviceInstancePath": {
+                    "type": "string"
+                },
+                "VirtualFunction": {
+                    "type": "integer",
+                    "format": "uint16"
+                }
+            }
         },
         "VirtualPMemController": {
             "type": "object",
@@ -2326,6 +3027,10 @@
                 "SingleFileMapping": {
                     "type": "boolean",
                     "description": "Block directory enumeration, renames, and deletes."
+                },
+                "SupportCloudFiles": {
+                    "type": "boolean",
+                    "description": "Support Cloud Files functionality"
                 }
             }
         },
@@ -2429,6 +3134,13 @@
             "type": "object",
             "properties": {}
         },
+        "ApplySecureBootTemplateType": {
+            "type": "string",
+            "enum": [
+                "Skip",
+                "Apply"
+            ]
+        },
         "AttachmentType": {
             "type": "string",
             "enum": [
@@ -2469,6 +3181,12 @@
                 "HvSocket"
             ]
         },
+        "CrashType": {
+            "type": "string",
+            "enum": [
+                "CrashGuest"
+            ]
+        },
         "DeviceType": {
             "type": "string",
             "enum": [
@@ -2499,6 +3217,20 @@
                 "Guid"
             ]
         },
+        "FilesystemIsolationMode": {
+            "type": "string",
+            "enum": [
+                "hard",
+                "soft"
+            ]
+        },
+        "FilesystemNestingMode": {
+            "type": "string",
+            "enum": [
+                "inner",
+                "outer"
+            ]
+        },
         "FlexibleIoDeviceHostingModel": {
             "type": "string",
             "enum": [
@@ -2524,6 +3256,22 @@
                 "Default",
                 "List",
                 "Mirror"
+            ]
+        },
+        "InterfaceClassType": {
+            "type": "string",
+            "description": "Enum used to specify how the interface class should be treated when applying a device extension/creating container symlinks. This enum is ordering-sensitive; if two interface classes with the same identifier are merged, the type of the resulting interface class is given by the larger enum value (e.g., DeviceInstance + ClassGuid = ClassGuid).",
+            "enum": [
+                "Inherit",
+                "DeviceInstance",
+                "ClassGuid"
+            ]
+        },
+        "JobTerminationPolicy": {
+            "type": "string",
+            "enum": [
+                "PermanentQuiescent",
+                "KillOnHandleClose"
             ]
         },
         "MappedPipePathType": {
@@ -2571,7 +3319,8 @@
                 "MappedPipe",
                 "MappedVirtualDisk",
                 "CombinedLayers",
-                "NetworkNamespace"
+                "NetworkNamespace",
+                "CimMount"
             ]
         },
         "ModifyServiceOperation": {
@@ -2592,6 +3341,22 @@
                 "ForcedExit",
                 "UnexpectedExit",
                 "Unknown"
+            ]
+        },
+        "ObjectDirectoryShadow": {
+            "type": "string",
+            "enum": [
+                "false",
+                "true",
+                "ifexists"
+            ]
+        },
+        "ObjectSymlinkScope": {
+            "type": "string",
+            "enum": [
+                "Local",
+                "Global",
+                "GlobalDropSilo"
             ]
         },
         "OsLayerType": {
