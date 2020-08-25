@@ -143,6 +143,32 @@ Data types for event data elements, based on EVT_VARIANT_TYPE
 
 ---
 
+<a name = "FilesystemIsolationMode"></a>
+## FilesystemIsolationMode
+Referenced by: [FilesystemNamespace](#FilesystemNamespace)
+
+
+
+|Variants|NewInVersion|Description|
+|---|---|---|
+|`"hard"`<br>|[2.3](#Schema-Version-Map)||
+|`"soft"`<br>|[2.3](#Schema-Version-Map)||
+
+---
+
+<a name = "FilesystemNestingMode"></a>
+## FilesystemNestingMode
+Referenced by: [FilesystemNamespace](#FilesystemNamespace)
+
+
+
+|Variants|NewInVersion|Description|
+|---|---|---|
+|`"inner"`<br>|[2.3](#Schema-Version-Map)||
+|`"outer"`<br>|[2.3](#Schema-Version-Map)||
+
+---
+
 <a name = "FlexibleIoDeviceHostingModel"></a>
 ## FlexibleIoDeviceHostingModel
 Referenced by: [FlexibleIoDevice](#FlexibleIoDevice)
@@ -187,39 +213,30 @@ Referenced by: [GpuConfiguration](#GpuConfiguration)
 
 ---
 
-<a name = "IntegrationComponentOperatingStateReason"></a>
-## IntegrationComponentOperatingStateReason
-Referenced by: [IntegrationComponentStatus](#IntegrationComponentStatus)
+<a name = "InterfaceClassType"></a>
+## InterfaceClassType
+Referenced by: [InterfaceClass](#InterfaceClass)
 
-possible reason for integration component's state
+Enum used to specify how the interface class should be treated when applying a device extension/creating container symlinks. This enum is ordering-sensitive; if two interface classes with the same identifier are merged, the type of the resulting interface class is given by the larger enum value (e.g., DeviceInstance + ClassGuid = ClassGuid).
 
 |Variants|NewInVersion|Description|
 |---|---|---|
-|`"Unknown"`<br>|[2.3](#Schema-Version-Map)||
-|`"AppsInCriticalState"`<br>|[2.3](#Schema-Version-Map)||
-|`"CommunicationTimedOut"`<br>|[2.3](#Schema-Version-Map)||
-|`"FailedCommunication"`<br>|[2.3](#Schema-Version-Map)||
-|`"HealthyApps"`<br>|[2.3](#Schema-Version-Map)||
-|`"ProtocolMismatch"`<br>|[2.3](#Schema-Version-Map)||
+|`"Inherit"`<br>|[2.3](#Schema-Version-Map)|Used only in the namespace portion of a device extension (i.e., an interface class that is added to the container definition when a given interface class is specified). This placeholder value will be replaced with the same type as the interface class that caused the device extension to be merged in.|
+|`"DeviceInstance"`<br>|[2.3](#Schema-Version-Map)|Represents a single device instance.|
+|`"ClassGuid"`<br>|[2.3](#Schema-Version-Map)|Represents all device interfaces of this class GUID on the system.|
 
 ---
 
-<a name = "IntegrationComponentOperationalState"></a>
-## IntegrationComponentOperationalState
-Referenced by: [IntegrationComponentStatus](#IntegrationComponentStatus)
+<a name = "JobTerminationPolicy"></a>
+## JobTerminationPolicy
+Referenced by: [JobNamespace](#JobNamespace)
 
-operational status for integration component
+
 
 |Variants|NewInVersion|Description|
 |---|---|---|
-|`"Unknown"`<br>|[2.3](#Schema-Version-Map)||
-|`"Degraded"`<br>|[2.3](#Schema-Version-Map)||
-|`"Dormant"`<br>|[2.3](#Schema-Version-Map)||
-|`"Error"`<br>|[2.3](#Schema-Version-Map)||
-|`"LostCommunication"`<br>|[2.3](#Schema-Version-Map)||
-|`"NonRecoverableError"`<br>|[2.3](#Schema-Version-Map)||
-|`"NoContact"`<br>|[2.3](#Schema-Version-Map)||
-|`"Ok"`<br>|[2.3](#Schema-Version-Map)||
+|`"PermanentQuiescent"`<br>|[2.3](#Schema-Version-Map)||
+|`"KillOnHandleClose"`<br>|[2.3](#Schema-Version-Map)||
 
 ---
 
@@ -334,6 +351,34 @@ Exit type of a compute system.
 |`"ForcedExit"`<br>|[2.1](#Schema-Version-Map)|The compute system was forcefully terminated with HcsTerminateComputeSystem.|
 |`"UnexpectedExit"`<br>|[2.1](#Schema-Version-Map)|The compute system exited unexpectedly.|
 |`"Unknown"`<br>|[2.1](#Schema-Version-Map)|The compute system exit type could not be determined.|
+
+---
+
+<a name = "ObjectDirectoryShadow"></a>
+## ObjectDirectoryShadow
+Referenced by: [ObjectDirectory](#ObjectDirectory); [ObjectNamespace](#ObjectNamespace)
+
+
+
+|Variants|NewInVersion|Description|
+|---|---|---|
+|`"false"`<br>|[2.3](#Schema-Version-Map)||
+|`"true"`<br>|[2.3](#Schema-Version-Map)||
+|`"ifexists"`<br>|[2.3](#Schema-Version-Map)||
+
+---
+
+<a name = "ObjectSymlinkScope"></a>
+## ObjectSymlinkScope
+Referenced by: [ObjectSymlink](#ObjectSymlink)
+
+
+
+|Variants|NewInVersion|Description|
+|---|---|---|
+|`"Local"`<br>|[2.3](#Schema-Version-Map)||
+|`"Global"`<br>|[2.3](#Schema-Version-Map)||
+|`"GlobalDropSilo"`<br>|[2.3](#Schema-Version-Map)||
 
 ---
 
@@ -530,7 +575,6 @@ Compute system property types. The properties will be returned as a Schema.Respo
 |`"TerminateOnLastHandleClosed"`<br>|[2.1](#Schema-Version-Map)||
 |`"SharedMemoryRegion"`<br>|[2.1](#Schema-Version-Map)||
 |`"GuestConnection"`<br>|[2.1](#Schema-Version-Map)||
-|`"ICHeartbeatStatus"`<br>|[2.3](#Schema-Version-Map)|The status of the heartbeat integration component|
 
 ---
 
@@ -634,11 +678,11 @@ Referenced by: [Scsi](#Scsi)
 
 <a name = "BasicInformation"></a>
 ## BasicInformation
-
+Basic information
 
 |Field|Type|NewInVersion|Description|
 |---|---|---|---|
-|**SupportedSchemaVersions**<br>|<[Version](#Version)> array|[2.1](#Schema-Version-Map)||
+|**SupportedSchemaVersions**<br>|<[Version](#Version)> array|[2.1](#Schema-Version-Map)|The supported schema versions will be returned as an array. Array element A.X implies all versions with major version A and minor version from 0 to X are also supported.|
 
 ---
 
@@ -895,6 +939,39 @@ Object listing the system's running Container Credential Guard Instances.
 
 ---
 
+<a name = "ContainersDef_BatchedBinding"></a>
+## ContainersDef_BatchedBinding
+Referenced by: [FilesystemNamespace](#FilesystemNamespace)
+
+
+
+|Field|Type|NewInVersion|Description|
+|---|---|---|---|
+|**filepath**<br>|[string](#JSON-type)|[2.3](#Schema-Version-Map)||
+|**bindingroots**<br>|<[string](#JSON-type)> array|[2.3](#Schema-Version-Map)||
+
+---
+
+<a name = "ContainersDef_Container"></a>
+## ContainersDef_Container
+
+
+|Field|Type|NewInVersion|Description|
+|---|---|---|---|
+|**namespace**<br>|[Namespace](#Namespace)|[2.3](#Schema-Version-Map)||
+
+---
+
+<a name = "ContainersDef_Device"></a>
+## ContainersDef_Device
+
+
+|Field|Type|NewInVersion|Description|
+|---|---|---|---|
+|**device_extension**<br>|<[DeviceExtension](#DeviceExtension)> array|[2.3](#Schema-Version-Map)||
+
+---
+
 <a name = "CpuGroup"></a>
 ## CpuGroup
 CPU groups allow Hyper-V administrators to better manage and allocate the host's CPU resources across guest virtual machines
@@ -1015,6 +1092,61 @@ Referenced by: [Container](#Container)
 
 ---
 
+<a name = "DeviceCategory"></a>
+## DeviceCategory
+Referenced by: [DeviceExtension](#DeviceExtension); [DeviceNamespace](#DeviceNamespace)
+
+
+
+|Field|Type|NewInVersion|Description|
+|---|---|---|---|
+|**name**<br>|[string](#JSON-type)|[2.3](#Schema-Version-Map)||
+|**interface_class**<br>|<[InterfaceClass](#InterfaceClass)> array|[2.3](#Schema-Version-Map)||
+
+---
+
+<a name = "DeviceExtension"></a>
+## DeviceExtension
+Referenced by: [ContainersDef_Device](#ContainersDef_Device)
+
+
+
+|Field|Type|NewInVersion|Description|
+|---|---|---|---|
+|**device_category**<br>|[DeviceCategory](#DeviceCategory)|[2.3](#Schema-Version-Map)||
+|**namespace**<br>|[Namespace](#Namespace)|[2.3](#Schema-Version-Map)||
+
+---
+
+<a name = "DeviceInstance"></a>
+## DeviceInstance
+Referenced by: [DeviceNamespace](#DeviceNamespace)
+
+
+
+|Field|Type|NewInVersion|Description|
+|---|---|---|---|
+|**id**<br>|[string](#JSON-type)|[2.3](#Schema-Version-Map)||
+|**location_path**<br>|[string](#JSON-type)|[2.3](#Schema-Version-Map)||
+|**port_name**<br>|[string](#JSON-type)|[2.3](#Schema-Version-Map)||
+|**interface_class**<br>|<[InterfaceClass](#InterfaceClass)> array|[2.3](#Schema-Version-Map)||
+
+---
+
+<a name = "DeviceNamespace"></a>
+## DeviceNamespace
+Referenced by: [Namespace](#Namespace)
+
+
+
+|Field|Type|NewInVersion|Description|
+|---|---|---|---|
+|**requires_driverstore**<br>|[bool](#JSON-type)|[2.3](#Schema-Version-Map)||
+|**device_category**<br>|<[DeviceCategory](#DeviceCategory)> array|[2.3](#Schema-Version-Map)||
+|**device_instance**<br>|<[DeviceInstance](#DeviceInstance)> array|[2.3](#Schema-Version-Map)||
+
+---
+
 <a name = "Devices"></a>
 ## Devices
 Referenced by: [VirtualMachine](#VirtualMachine)
@@ -1043,6 +1175,47 @@ Referenced by: [VirtualMachine](#VirtualMachine)
 
 ---
 
+<a name = "DownlevelFixups"></a>
+## DownlevelFixups
+Referenced by: [DownlevelSku](#DownlevelSku)
+
+
+
+|Field|Type|NewInVersion|Description|
+|---|---|---|---|
+|**build_number**<br>|[uint32](#JSON-type)|[2.3](#Schema-Version-Map)||
+|**lcu**<br>|[uint32](#JSON-type)|[2.3](#Schema-Version-Map)||
+|**file**<br>|<[string](#JSON-type)> array|[2.3](#Schema-Version-Map)||
+
+---
+
+<a name = "DownlevelNamespace"></a>
+## DownlevelNamespace
+Referenced by: [Namespace](#Namespace)
+
+
+
+|Field|Type|NewInVersion|Description|
+|---|---|---|---|
+|**base_image_path**<br>|[string](#JSON-type)|[2.3](#Schema-Version-Map)||
+|**sandbox_path**<br>|[string](#JSON-type)|[2.3](#Schema-Version-Map)||
+|**sku**<br>|<[DownlevelSku](#DownlevelSku)> array|[2.3](#Schema-Version-Map)||
+
+---
+
+<a name = "DownlevelSku"></a>
+## DownlevelSku
+Referenced by: [DownlevelNamespace](#DownlevelNamespace)
+
+
+
+|Field|Type|NewInVersion|Description|
+|---|---|---|---|
+|**name**<br>|[string](#JSON-type)|[2.3](#Schema-Version-Map)||
+|**fixups**<br>|<[DownlevelFixups](#DownlevelFixups)> array|[2.3](#Schema-Version-Map)||
+
+---
+
 <a name = "EnhancedModeVideo"></a>
 ## EnhancedModeVideo
 Referenced by: [Devices](#Devices)
@@ -1064,10 +1237,10 @@ Error descriptor that provides the info of an error object
 |**Message**<br>|[string](#JSON-type)|[2.1](#Schema-Version-Map)|Fully formated error message|
 |**StackTrace**<br>|[string](#JSON-type)|[2.1](#Schema-Version-Map)|Stack trace in string form|
 |**Provider**<br>|[Guid](#JSON-type)|[2.1](#Schema-Version-Map)|Event definition|
-|**EventId**<br>|[uint16](#JSON-type)|[2.1](#Schema-Version-Map)||
-|**Flags**<br>|[uint32](#JSON-type)|[2.1](#Schema-Version-Map)||
-|**Source**<br>|[string](#JSON-type)|[2.1](#Schema-Version-Map)||
-|**Data**<br>|<[EventData](#EventData)> array|[2.1](#Schema-Version-Map)||
+|**EventId**<br>|[uint16](#JSON-type)|[2.1](#Schema-Version-Map)|Event Id|
+|**Flags**<br>|[uint32](#JSON-type)|[2.1](#Schema-Version-Map)|Flags|
+|**Source**<br>|[string](#JSON-type)|[2.1](#Schema-Version-Map)|Source|
+|**Data**<br>|<[EventData](#EventData)> array|[2.1](#Schema-Version-Map)|Event data|
 
 ---
 
@@ -1079,8 +1252,8 @@ Event data element
 
 |Field|Type|NewInVersion|Description|
 |---|---|---|---|
-|**Type**<br>|[EventDataType](#EventDataType)|[2.1](#Schema-Version-Map)||
-|**Value**<br>|[string](#JSON-type)|[2.1](#Schema-Version-Map)||
+|**Type**<br>|[EventDataType](#EventDataType)|[2.1](#Schema-Version-Map)|Event data type|
+|**Value**<br>|[string](#JSON-type)|[2.1](#Schema-Version-Map)|Event value|
 
 ---
 
@@ -1091,6 +1264,35 @@ Event data element
 |Field|Type|NewInVersion|Description|
 |---|---|---|---|
 |**IsWritableLayer**<br>|[bool](#JSON-type)|[2.1](#Schema-Version-Map)||
+
+---
+
+<a name = "FilesystemLayer"></a>
+## FilesystemLayer
+Referenced by: [FilesystemNamespace](#FilesystemNamespace)
+
+
+
+|Field|Type|NewInVersion|Description|
+|---|---|---|---|
+|**identifier**<br>|[Guid](#JSON-type)|[2.3](#Schema-Version-Map)||
+|**path**<br>|[string](#JSON-type)|[2.3](#Schema-Version-Map)||
+
+---
+
+<a name = "FilesystemNamespace"></a>
+## FilesystemNamespace
+Referenced by: [Namespace](#Namespace)
+
+
+
+|Field|Type|NewInVersion|Description|
+|---|---|---|---|
+|**path**<br>|[string](#JSON-type)|[2.3](#Schema-Version-Map)||
+|**isolation**<br>|[FilesystemIsolationMode](#FilesystemIsolationMode)|[2.3](#Schema-Version-Map)||
+|**nesting**<br>|[FilesystemNestingMode](#FilesystemNestingMode)|[2.3](#Schema-Version-Map)||
+|**layer**<br>|<[FilesystemLayer](#FilesystemLayer)> array|[2.3](#Schema-Version-Map)||
+|**bindings**<br>|<[ContainersDef_BatchedBinding](#ContainersDef_BatchedBinding)> array|[2.3](#Schema-Version-Map)||
 
 ---
 
@@ -1208,8 +1410,6 @@ Referenced by: [VirtualMachine](#VirtualMachine)
 
 <a name = "Heartbeat"></a>
 ## Heartbeat
-Referenced by: [Services](#Services)
-
 
 
 
@@ -1225,6 +1425,21 @@ Describes the configuration of a container compute system hosted by another comp
 |---|---|---|---|
 |**SchemaVersion**<br>|[Version](#Version)|[2.0](#Schema-Version-Map)|A version structure for this schema. Properties nested within this object may identify their own schema versions.|
 |**Container**<br>|[Container](#Container)|[2.0](#Schema-Version-Map)|The set of properties defining a container.|
+
+---
+
+<a name = "HostFiles"></a>
+## HostFiles
+Referenced by: [Namespace](#Namespace)
+
+
+
+|Field|Type|NewInVersion|Description|
+|---|---|---|---|
+|**base_image_path**<br>|[string](#JSON-type)|[2.3](#Schema-Version-Map)||
+|**sandbox_path**<br>|[string](#JSON-type)|[2.3](#Schema-Version-Map)||
+|**file**<br>|<[string](#JSON-type)> array|[2.3](#Schema-Version-Map)||
+|**optionalfile**<br>|<[string](#JSON-type)> array|[2.3](#Schema-Version-Map)||
 
 ---
 
@@ -1299,15 +1514,24 @@ A non-maskable interrupt (NMI) was inject by the host management client or other
 
 <a name = "IntegrationComponentStatus"></a>
 ## IntegrationComponentStatus
-Referenced by: [Properties](#Properties)
+
+
+
+**Note:** This is an empty struct with no fields, and to be used in the JSON document must be specified as an empty object: `"{}"`.
+
+---
+
+<a name = "InterfaceClass"></a>
+## InterfaceClass
+Referenced by: [DeviceCategory](#DeviceCategory); [DeviceInstance](#DeviceInstance)
 
 
 
 |Field|Type|NewInVersion|Description|
 |---|---|---|---|
-|**IsEnabled**<br>|[bool](#JSON-type)|[2.3](#Schema-Version-Map)|if IC is enabled on this compute system|
-|**State**<br>|[IntegrationComponentOperationalState](#IntegrationComponentOperationalState)|[2.3](#Schema-Version-Map)|the current state of the IC inside the VM|
-|**Reason**<br>|[IntegrationComponentOperatingStateReason](#IntegrationComponentOperatingStateReason)|[2.3](#Schema-Version-Map)|Explanation for the State|
+|**type**<br>|[InterfaceClassType](#InterfaceClassType)|[2.3](#Schema-Version-Map)||
+|**identifier**<br>|[Guid](#JSON-type)|[2.3](#Schema-Version-Map)||
+|**recurse**<br>|[bool](#JSON-type)|[2.3](#Schema-Version-Map)||
 
 ---
 
@@ -1317,6 +1541,59 @@ Referenced by: [Properties](#Properties)
 
 
 **Note:** This is an empty struct with no fields, and to be used in the JSON document must be specified as an empty object: `"{}"`.
+
+---
+
+<a name = "JobCpu"></a>
+## JobCpu
+Referenced by: [JobNamespace](#JobNamespace)
+
+
+
+|Field|Type|NewInVersion|Description|
+|---|---|---|---|
+|**rate**<br>|[uint32](#JSON-type)|[2.3](#Schema-Version-Map)||
+|**weight**<br>|[uint32](#JSON-type)|[2.3](#Schema-Version-Map)||
+
+---
+
+<a name = "JobMemory"></a>
+## JobMemory
+Referenced by: [JobNamespace](#JobNamespace)
+
+
+
+|Field|Type|NewInVersion|Description|
+|---|---|---|---|
+|**limit**<br>|[uint64](#JSON-type)|[2.3](#Schema-Version-Map)||
+
+---
+
+<a name = "JobNamespace"></a>
+## JobNamespace
+Referenced by: [Namespace](#Namespace)
+
+
+
+|Field|Type|NewInVersion|Description|
+|---|---|---|---|
+|**cpu**<br>|[JobCpu](#JobCpu)|[2.3](#Schema-Version-Map)||
+|**memory**<br>|[JobMemory](#JobMemory)|[2.3](#Schema-Version-Map)||
+|**systemroot**<br>|[JobSystemRoot](#JobSystemRoot)|[2.3](#Schema-Version-Map)||
+|**terminationpolicy**<br>|[JobTerminationPolicy](#JobTerminationPolicy)|[2.3](#Schema-Version-Map)||
+|**threadimpersonation**<br>|[bool](#JSON-type)|[2.3](#Schema-Version-Map)||
+
+---
+
+<a name = "JobSystemRoot"></a>
+## JobSystemRoot
+Referenced by: [JobNamespace](#JobNamespace)
+
+
+
+|Field|Type|NewInVersion|Description|
+|---|---|---|---|
+|**path**<br>|[string](#JSON-type)|[2.3](#Schema-Version-Map)||
 
 ---
 
@@ -1462,8 +1739,8 @@ Structure used for service level modification request. Right now, we support mod
 
 |Field|Type|NewInVersion|Description|
 |---|---|---|---|
-|**PropertyType**<br>|[ModifyPropertyType](#ModifyPropertyType)|[2.1](#Schema-Version-Map)||
-|**Settings**<br>|[Any](#JSON-type)|[2.1](#Schema-Version-Map)||
+|**PropertyType**<br>|[ModifyPropertyType](#ModifyPropertyType)|[2.1](#Schema-Version-Map)|Specifies the property to be modified|
+|**Settings**<br>|[Any](#JSON-type)|[2.1](#Schema-Version-Map)|Settings to the modification request|
 
 ---
 
@@ -1480,6 +1757,31 @@ Structure used for service level modification request. Right now, we support mod
 
 ---
 
+<a name = "MountManagerMountPoint"></a>
+## MountManagerMountPoint
+Referenced by: [MountManagerNamespace](#MountManagerNamespace)
+
+
+
+|Field|Type|NewInVersion|Description|
+|---|---|---|---|
+|**name**<br>|[string](#JSON-type)|[2.3](#Schema-Version-Map)||
+|**path**<br>|[string](#JSON-type)|[2.3](#Schema-Version-Map)||
+
+---
+
+<a name = "MountManagerNamespace"></a>
+## MountManagerNamespace
+Referenced by: [Namespace](#Namespace)
+
+
+
+|Field|Type|NewInVersion|Description|
+|---|---|---|---|
+|**mount_point**<br>|<[MountManagerMountPoint](#MountManagerMountPoint)> array|[2.3](#Schema-Version-Map)||
+
+---
+
 <a name = "Mouse"></a>
 ## Mouse
 Referenced by: [Devices](#Devices)
@@ -1488,6 +1790,52 @@ Referenced by: [Devices](#Devices)
 
 
 **Note:** This is an empty struct with no fields, and to be used in the JSON document must be specified as an empty object: `"{}"`.
+
+---
+
+<a name = "NamedPipeNamespace"></a>
+## NamedPipeNamespace
+Referenced by: [Namespace](#Namespace)
+
+
+
+|Field|Type|NewInVersion|Description|
+|---|---|---|---|
+|**symlink**<br>|<[NamedPipeSymlink](#NamedPipeSymlink)> array|[2.3](#Schema-Version-Map)||
+
+---
+
+<a name = "NamedPipeSymlink"></a>
+## NamedPipeSymlink
+Referenced by: [NamedPipeNamespace](#NamedPipeNamespace)
+
+
+
+|Field|Type|NewInVersion|Description|
+|---|---|---|---|
+|**name**<br>|[string](#JSON-type)|[2.3](#Schema-Version-Map)||
+|**path**<br>|[string](#JSON-type)|[2.3](#Schema-Version-Map)||
+
+---
+
+<a name = "Namespace"></a>
+## Namespace
+Referenced by: [ContainersDef_Container](#ContainersDef_Container); [DeviceExtension](#DeviceExtension)
+
+
+
+|Field|Type|NewInVersion|Description|
+|---|---|---|---|
+|**job**<br>|[JobNamespace](#JobNamespace)|[2.3](#Schema-Version-Map)||
+|**filesystem**<br>|[FilesystemNamespace](#FilesystemNamespace)|[2.3](#Schema-Version-Map)||
+|**mountmgr**<br>|[MountManagerNamespace](#MountManagerNamespace)|[2.3](#Schema-Version-Map)||
+|**namedpipe**<br>|[NamedPipeNamespace](#NamedPipeNamespace)|[2.3](#Schema-Version-Map)||
+|**ob**<br>|[ObjectNamespace](#ObjectNamespace)|[2.3](#Schema-Version-Map)||
+|**registry**<br>|[RegistryNamespace](#RegistryNamespace)|[2.3](#Schema-Version-Map)||
+|**network**<br>|[NetworkNamespace](#NetworkNamespace)|[2.3](#Schema-Version-Map)||
+|**device**<br>|[DeviceNamespace](#DeviceNamespace)|[2.3](#Schema-Version-Map)||
+|**downlevel**<br>|[DownlevelNamespace](#DownlevelNamespace)|[2.3](#Schema-Version-Map)||
+|**hostfiles**<br>|[HostFiles](#HostFiles)|[2.3](#Schema-Version-Map)||
 
 ---
 
@@ -1517,6 +1865,64 @@ Referenced by: [Container](#Container)
 |**NetworkSharedContainerName**<br>|[string](#JSON-type)|[2.0](#Schema-Version-Map)||
 |**Namespace**<br>|[string](#JSON-type)|[2.0](#Schema-Version-Map)|Guid in windows; string in linux|
 |**NetworkAdapters**<br>|<[Guid](#JSON-type)> array|[2.0](#Schema-Version-Map)||
+
+---
+
+<a name = "NetworkNamespace"></a>
+## NetworkNamespace
+Referenced by: [Namespace](#Namespace)
+
+
+
+|Field|Type|NewInVersion|Description|
+|---|---|---|---|
+|**compartment**<br>|[string](#JSON-type)|[2.3](#Schema-Version-Map)||
+
+---
+
+<a name = "ObjectDirectory"></a>
+## ObjectDirectory
+Referenced by: [ObjectDirectory](#ObjectDirectory); [ObjectNamespace](#ObjectNamespace)
+
+
+
+|Field|Type|NewInVersion|Description|
+|---|---|---|---|
+|**name**<br>|[string](#JSON-type)|[2.3](#Schema-Version-Map)||
+|**clonesd**<br>|[string](#JSON-type)|[2.3](#Schema-Version-Map)||
+|**shadow**<br>|[ObjectDirectoryShadow](#ObjectDirectoryShadow)|[2.3](#Schema-Version-Map)||
+|**symlink**<br>|<[ObjectSymlink](#ObjectSymlink)> array|[2.3](#Schema-Version-Map)||
+|**objdir**<br>|<[ObjectDirectory](#ObjectDirectory)> array|[2.3](#Schema-Version-Map)||
+
+---
+
+<a name = "ObjectNamespace"></a>
+## ObjectNamespace
+Referenced by: [Namespace](#Namespace)
+
+
+
+|Field|Type|NewInVersion|Description|
+|---|---|---|---|
+|**shadow**<br>|[ObjectDirectoryShadow](#ObjectDirectoryShadow)|[2.3](#Schema-Version-Map)||
+|**symlink**<br>|<[ObjectSymlink](#ObjectSymlink)> array|[2.3](#Schema-Version-Map)||
+|**objdir**<br>|<[ObjectDirectory](#ObjectDirectory)> array|[2.3](#Schema-Version-Map)||
+
+---
+
+<a name = "ObjectSymlink"></a>
+## ObjectSymlink
+Referenced by: [ObjectDirectory](#ObjectDirectory); [ObjectNamespace](#ObjectNamespace)
+
+
+
+|Field|Type|NewInVersion|Description|
+|---|---|---|---|
+|**name**<br>|[string](#JSON-type)|[2.3](#Schema-Version-Map)||
+|**path**<br>|[string](#JSON-type)|[2.3](#Schema-Version-Map)||
+|**scope**<br>|[ObjectSymlinkScope](#ObjectSymlinkScope)|[2.3](#Schema-Version-Map)||
+|**pathtoclone**<br>|[string](#JSON-type)|[2.3](#Schema-Version-Map)||
+|**access_mask**<br>|[uint32](#JSON-type)|[2.3](#Schema-Version-Map)||
 
 ---
 
@@ -1715,17 +2121,16 @@ Provided in the EventData parameter of an HcsEventProcessExited HCS_EVENT.
 |**HostingSystemId**<br>|[string](#JSON-type)|[2.1](#Schema-Version-Map)||
 |**SharedMemoryRegionInfo**<br>|<[SharedMemoryRegionInfo](#SharedMemoryRegionInfo)> array|[2.1](#Schema-Version-Map)||
 |**GuestConnectionInfo**<br>|[GuestConnectionInfo](#GuestConnectionInfo)|[2.1](#Schema-Version-Map)||
-|**ICHeartbeatStatus**<br>|[IntegrationComponentStatus](#IntegrationComponentStatus)|[2.3](#Schema-Version-Map)||
 
 ---
 
 <a name = "QoSCapabilities"></a>
 ## QoSCapabilities
-
+Quality of Service (QoS) capabilities
 
 |Field|Type|NewInVersion|Description|
 |---|---|---|---|
-|**ProcessorQoSSupported**<br>|[bool](#JSON-type)|[2.1](#Schema-Version-Map)||
+|**ProcessorQoSSupported**<br>|[bool](#JSON-type)|[2.1](#Schema-Version-Map)|Whether or not processor QoS is supported|
 
 ---
 
@@ -1755,6 +2160,18 @@ Referenced by: [Container](#Container); [VirtualMachine](#VirtualMachine)
 
 ---
 
+<a name = "RegistryDeleteKey"></a>
+## RegistryDeleteKey
+Referenced by: [RegistryHiveStack](#RegistryHiveStack)
+
+
+
+|Field|Type|NewInVersion|Description|
+|---|---|---|---|
+|**name**<br>|[string](#JSON-type)|[2.3](#Schema-Version-Map)||
+
+---
+
 <a name = "RegistryFlushState"></a>
 ## RegistryFlushState
 Represents the flush state of the registry hive for a Windows container's job object.
@@ -1762,6 +2179,21 @@ Represents the flush state of the registry hive for a Windows container's job ob
 |Field|Type|NewInVersion|Description|
 |---|---|---|---|
 |**Enabled**<br>|[bool](#JSON-type)|[2.1](#Schema-Version-Map)|Determines whether the flush state of the registry hive is enabled or not. When not enabled, flushes are ignored and changes to the registry are not preserved.|
+
+---
+
+<a name = "RegistryHiveStack"></a>
+## RegistryHiveStack
+Referenced by: [RegistryNamespace](#RegistryNamespace)
+
+
+
+|Field|Type|NewInVersion|Description|
+|---|---|---|---|
+|**hive**<br>|[string](#JSON-type)|[2.3](#Schema-Version-Map)||
+|**layer**<br>|<[RegistryLayer](#RegistryLayer)> array|[2.3](#Schema-Version-Map)||
+|**mkkey**<br>|<[RegistryMakeKey](#RegistryMakeKey)> array|[2.3](#Schema-Version-Map)||
+|**delkey**<br>|<[RegistryDeleteKey](#RegistryDeleteKey)> array|[2.3](#Schema-Version-Map)||
 
 ---
 
@@ -1776,6 +2208,101 @@ Referenced by: [RegistryChanges](#RegistryChanges); [RegistryValue](#RegistryVal
 |**Hive**<br>|[RegistryHive](#RegistryHive)|[2.0](#Schema-Version-Map)||
 |**Name**<br>|[string](#JSON-type)|[2.0](#Schema-Version-Map)||
 |**Volatile**<br>|[bool](#JSON-type)|[2.0](#Schema-Version-Map)||
+
+---
+
+<a name = "RegistryLayer"></a>
+## RegistryLayer
+Referenced by: [RegistryHiveStack](#RegistryHiveStack)
+
+
+
+|Field|Type|NewInVersion|Description|
+|---|---|---|---|
+|**hosthive**<br>|[string](#JSON-type)|[2.3](#Schema-Version-Map)||
+|**filepath**<br>|[string](#JSON-type)|[2.3](#Schema-Version-Map)||
+|**identifier**<br>|[Guid](#JSON-type)|[2.3](#Schema-Version-Map)||
+|**readonly**<br>|[bool](#JSON-type)|[2.3](#Schema-Version-Map)||
+|**immutable**<br>|[bool](#JSON-type)|[2.3](#Schema-Version-Map)||
+|**inherittrustclass**<br>|[bool](#JSON-type)|[2.3](#Schema-Version-Map)||
+|**writethrough**<br>|[bool](#JSON-type)|[2.3](#Schema-Version-Map)||
+|**fileaccesstoken**<br>|[uint64](#JSON-type)|[2.3](#Schema-Version-Map)|The FileAccessToken field should only be used in-memory and not serialized/deserialized, since it refers to a token handle.|
+
+---
+
+<a name = "RegistryMakeKey"></a>
+## RegistryMakeKey
+Referenced by: [RegistryHiveStack](#RegistryHiveStack); [RegistryMakeKey](#RegistryMakeKey)
+
+
+
+|Field|Type|NewInVersion|Description|
+|---|---|---|---|
+|**name**<br>|[string](#JSON-type)|[2.3](#Schema-Version-Map)||
+|**clonesd**<br>|[string](#JSON-type)|[2.3](#Schema-Version-Map)||
+|**mkkey**<br>|<[RegistryMakeKey](#RegistryMakeKey)> array|[2.3](#Schema-Version-Map)||
+|**mkvalue**<br>|<[RegistryMakeValue](#RegistryMakeValue)> array|[2.3](#Schema-Version-Map)||
+|**volatile**<br>|[bool](#JSON-type)|[2.3](#Schema-Version-Map)||
+
+---
+
+<a name = "RegistryMakeValue"></a>
+## RegistryMakeValue
+Referenced by: [RegistryMakeKey](#RegistryMakeKey)
+
+
+
+|Field|Type|NewInVersion|Description|
+|---|---|---|---|
+|**name**<br>|[string](#JSON-type)|[2.3](#Schema-Version-Map)||
+|**data_multistring**<br>|[string](#JSON-type)|[2.3](#Schema-Version-Map)||
+|**data_dword**<br>|[uint32](#JSON-type)|[2.3](#Schema-Version-Map)||
+|**data_string**<br>|[string](#JSON-type)|[2.3](#Schema-Version-Map)||
+|**data_binary**<br>|[NullableByteArray](#JSON-type)|[2.3](#Schema-Version-Map)||
+
+---
+
+<a name = "RegistryNamespace"></a>
+## RegistryNamespace
+Referenced by: [Namespace](#Namespace)
+
+
+
+|Field|Type|NewInVersion|Description|
+|---|---|---|---|
+|**symlink**<br>|<[RegistrySymlink](#RegistrySymlink)> array|[2.3](#Schema-Version-Map)||
+|**redirectionnode**<br>|<[RegistryRedirectionNode](#RegistryRedirectionNode)> array|[2.3](#Schema-Version-Map)||
+|**hivestack**<br>|<[RegistryHiveStack](#RegistryHiveStack)> array|[2.3](#Schema-Version-Map)||
+
+---
+
+<a name = "RegistryRedirectionNode"></a>
+## RegistryRedirectionNode
+Referenced by: [RegistryNamespace](#RegistryNamespace)
+
+
+
+|Field|Type|NewInVersion|Description|
+|---|---|---|---|
+|**containerpath**<br>|[string](#JSON-type)|[2.3](#Schema-Version-Map)||
+|**hostpath**<br>|[string](#JSON-type)|[2.3](#Schema-Version-Map)||
+|**hivestack**<br>|[string](#JSON-type)|[2.3](#Schema-Version-Map)||
+|**access_mask**<br>|[uint32](#JSON-type)|[2.3](#Schema-Version-Map)||
+|**trustedhive**<br>|[bool](#JSON-type)|[2.3](#Schema-Version-Map)||
+|**exitnode**<br>|[bool](#JSON-type)|[2.3](#Schema-Version-Map)||
+
+---
+
+<a name = "RegistrySymlink"></a>
+## RegistrySymlink
+Referenced by: [RegistryNamespace](#RegistryNamespace)
+
+
+
+|Field|Type|NewInVersion|Description|
+|---|---|---|---|
+|**key**<br>|[string](#JSON-type)|[2.3](#Schema-Version-Map)||
+|**target**<br>|[string](#JSON-type)|[2.3](#Schema-Version-Map)||
 
 ---
 
@@ -1817,8 +2344,8 @@ Extended error information returned by the HCS
 
 |Field|Type|NewInVersion|Description|
 |---|---|---|---|
-|**Error**<br>|[int32](#JSON-type)|[2.1](#Schema-Version-Map)||
-|**ErrorMessage**<br>|[string](#JSON-type)|[2.1](#Schema-Version-Map)||
+|**Error**<br>|[int32](#JSON-type)|[2.1](#Schema-Version-Map)|HRESULT error code|
+|**ErrorMessage**<br>|[string](#JSON-type)|[2.1](#Schema-Version-Map)|Error message|
 
 ---
 
@@ -1847,33 +2374,30 @@ Object describing a SCSI controller.
 
 <a name = "Service_PropertyQuery"></a>
 ## Service_PropertyQuery
-
+Structure used to perform property query
 
 |Field|Type|NewInVersion|Description|
 |---|---|---|---|
-|**PropertyTypes**<br>|<[GetPropertyType](#GetPropertyType)> array|[2.1](#Schema-Version-Map)||
+|**PropertyTypes**<br>|<[GetPropertyType](#GetPropertyType)> array|[2.1](#Schema-Version-Map)|Specifies the property array to query|
 
 ---
 
 <a name = "ServiceProperties"></a>
 ## ServiceProperties
-The service properties will be returned as an array corresponding to the requested property types.
+Properties of the host
 
 |Field|Type|NewInVersion|Description|
 |---|---|---|---|
-|**Properties**<br>|<[Any](#JSON-type)> array|[2.1](#Schema-Version-Map)||
+|**Properties**<br>|<[Any](#JSON-type)> array|[2.1](#Schema-Version-Map)|The service properties will be returned as an array corresponding to the requested property types.|
 
 ---
 
 <a name = "Services"></a>
 ## Services
-Referenced by: [VirtualMachine](#VirtualMachine)
 
 
 
-|Field|Type|NewInVersion|Description|
-|---|---|---|---|
-|**Heartbeat**<br>|[Heartbeat](#Heartbeat)|[2.3](#Schema-Version-Map)|Heartbeat integration component that is used to detect if a VM is operational|
+**Note:** This is an empty struct with no fields, and to be used in the JSON document must be specified as an empty object: `"{}"`.
 
 ---
 
@@ -2215,7 +2739,6 @@ Configuration of a virtual machine, used during its creation to set up and/or us
 |**Chipset**<br>|[Chipset](#Chipset)|[2.0](#Schema-Version-Map)|An object describing the chipset settings, including boot settings.|
 |**ComputeTopology**<br>|[Topology](#Topology)|[2.0](#Schema-Version-Map)|An object describing the processor and memory configuration of a virtual machine.|
 |**Devices**<br>|[Devices](#Devices)|[2.0](#Schema-Version-Map)|Nested objects describing the set of devices attached to the virtual machine.|
-|**Services**<br>|[Services](#Services)|[2.3](#Schema-Version-Map)|Object that configures the different guest services the virtual machine will support. Most of these are Windows specific.|
 |**GuestState**<br>|[GuestState](#GuestState)|[2.1](#Schema-Version-Map)|An optional object describing files used to back guest state. When omitted, guest state is transient and kept purely in memory.|
 |**RestoreState**<br>|[RestoreState](#RestoreState)|[2.0](#Schema-Version-Map)|An optional object describing the state the virtual machine should restore from as part of start.|
 |**RegistryChanges**<br>|[RegistryChanges](#RegistryChanges)|[2.0](#Schema-Version-Map)|A set of changes applied to a Windows guest's registry at boot time.|
@@ -2496,6 +3019,7 @@ The table shows the mapping from type name for field of classes to JSON type, it
 |int64|integer|int64||
 |MacAddress|string|mac-address||
 |Map|object|||
+|NullableByteArray|string|binary||
 |string|string|||
 |string_binary|string|binary||
 |uint16|integer|uint16||
