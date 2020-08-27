@@ -1,4 +1,4 @@
-# Compute System Operation Sample Code
+# Compute System Samples
 
 <a name = "OpenVM"></a>
 ## Open a virtual machine

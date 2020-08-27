@@ -1,4 +1,4 @@
-# Where to Begin with the HCS
+# Guick Start
 
 Here provides a simple example to use HCS API to manage the virtual machine, which includes HcsCreateComputeSystem, HcsStartComputeSystem, HcsGetComputeSystemProperties, HcsModifyComputeSystem and HcsTerminateComputeSystem.
 

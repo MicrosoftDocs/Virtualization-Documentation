@@ -1,4 +1,4 @@
-# Schema Samples in Different Languages
+# Schema in Different Languages
 
 ## JSON Schema File
 

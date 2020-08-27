@@ -141,11 +141,10 @@
 ## JSON Schema
 ### [Schema Overview](./hcs/SchemaOverview.md)
 ### [JSON Schema Reference](./hcs/SchemaReference.md)
-### [Schema Samples](./hcs/SchemaSample.md)
+### [Schema in Different Languages](./hcs/SchemaSample.md)
 ## Samples
 ### [Quick Start](./hcs/Reference/Tutorial.md)
 ### [Operation Completion](./hcs/Reference/OperationCompletionSample.md)
-### [Event Callback](./hcs/Reference/EventCallbackSample.md)
 ### [Compute System](./hcs/Reference/ComputeSystemSample.md)
 ### [Host Service](./hcs/Reference/ServiceSample.md)
 ### [Virtual Machine Utilities](./hcs/Reference/UtilityFunctionSample.md)

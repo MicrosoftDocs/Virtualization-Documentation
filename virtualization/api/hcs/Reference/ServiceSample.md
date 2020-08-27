@@ -1,4 +1,4 @@
-# Host Service Sample Code
+# Host Service Samples
 
 <a name = "GetServiceProperties"></a>
 ## Get the properties of host service

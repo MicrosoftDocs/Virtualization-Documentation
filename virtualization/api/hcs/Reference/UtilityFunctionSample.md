@@ -1,4 +1,4 @@
-# Utility Functions Sample Code
+# Virtual Machine Utilities Samples
 
 <a name = "CreateFilesGrantAccess"></a>
 ## Create the file and grant vm access to them

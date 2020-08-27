@@ -1,3 +1,5 @@
+# JSON Schema Reference
+
 # Agenda
 - [Enums](#enums)
 - [Structs](#structs)
