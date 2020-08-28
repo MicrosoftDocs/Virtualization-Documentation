@@ -29,6 +29,7 @@ Optionally provides additional data for the event as a JSON document. The follow
 |Event Type|JSON Document|
 |---|---|
 |`HcsEventOperationCallback`|Dependent on the operation being tracked. This is equivalent to the result document you can obtain from [`HcsGetOperationResult`](./HcsGetOperationResult.md), [`HcsGetOperationResultAndProcessInfo`](./HcsGetOperationResultAndProcessInfo.md), [`HcsWaitForOperationResult`](./HcsWaitForOperationResult.md) and [`HcsWaitForOperationResultAndProcessInfo`](./HcsWaitForOperationResultAndProcessInfo.md). |
+|`HcsEventProcessExited`|[`ProcessStatus`](../SchemaReference.md#ProcessStatus)|
 
 `Operation`
 
