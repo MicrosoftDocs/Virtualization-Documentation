@@ -60,9 +60,10 @@ On Windows Server version 1709 and later, feature called "SMB Global Mapping" ma
     > [!NOTE]
     > When using SMB global mapping for containers, all users on the container host can access the remote share. Any application running on the container host will also have access to the mapped remote share.
 
-2. Create containers with data volumes mapped to globally mounted SMB share
-    docker run -it --name demo -v g:\ContainerData:c:\AppData1 mcr.microsoft.com/windows/servercore:ltsc2019 cmd.exe
-
+1. Create containers with data volumes mapped to globally mounted SMB share:
+   ```
+   docker run -it --name demo -v g:\ContainerData:c:\AppData1 mcr.microsoft.com/windows/servercore:ltsc2019 cmd.exe
+   ```
     Inside the container, c:\AppData1 will then be mapped to the remote share’s "ContainerData" directory. Any data stored on globally mapped remote share will be available to applications inside the container. Multiple containers can get read/write access to this shared data with the same command.
 
 This SMB global mapping support is SMB client-side feature which can work on top of any compatible SMB server including:
