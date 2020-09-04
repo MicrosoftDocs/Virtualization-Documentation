@@ -119,7 +119,7 @@
 ##### [HcsGetServiceProperties](./hcs/Reference/HcsGetServiceProperties.md)
 ##### [HcsModifyServiceSettings](./hcs/Reference/HcsModifyServiceSettings.md)
 ##### [HcsSubmitWerReport](./hcs/Reference/HcsSubmitWerReport.md)
-#### Virtual Machine Utilities 
+#### Virtual Machine Utilities
 ##### [HcsCreateEmptyGuestStateFile](./hcs/Reference/HcsCreateEmptyGuestStateFile.md)
 ##### [HcsCreateEmptyRuntimeStateFile](./hcs/Reference/HcsCreateEmptyRuntimeStateFile.md)
 ##### [HcsGrantVmAccess](./hcs/Reference/HcsGrantVmAccess.md)
@@ -145,6 +145,7 @@
 ## Samples
 ### [Quick Start](./hcs/Reference/Tutorial.md)
 ### [Operation Completion](./hcs/Reference/OperationCompletionSample.md)
+### [Event Callback](./hcs/Reference/EventCallbackSample.md)
 ### [Compute System](./hcs/Reference/ComputeSystemSample.md)
 ### [Host Service](./hcs/Reference/ServiceSample.md)
 ### [Virtual Machine Utilities](./hcs/Reference/UtilityFunctionSample.md)
