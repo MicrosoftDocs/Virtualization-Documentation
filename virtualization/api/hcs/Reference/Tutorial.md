@@ -1,4 +1,4 @@
-# Guick Start
+# Quick Start
 
 Here provides a simple example to use HCS API to manage the virtual machine, which includes HcsCreateComputeSystem, HcsStartComputeSystem, HcsGetComputeSystemProperties, HcsModifyComputeSystem and HcsTerminateComputeSystem.
 
@@ -130,7 +130,7 @@ using unique_hcs_system = wil::unique_any<HCS_SYSTEM, decltype(&HcsCloseComputeS
 //
 // Let's modify the virtual machine setting
 // The operation of HcsModifyComputeSystem will success only when virtual machine booted up completed
-// So here gives 5 times retry and each would wait for 5s. 
+// So here gives 5 times retry and each would wait for 5s.
 //
     static constexpr wchar_t c_modifySetting[] = LR"(
     {
