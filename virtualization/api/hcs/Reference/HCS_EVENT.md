@@ -31,7 +31,6 @@ Optionally provides additional data for the event as a JSON document. The follow
 |`HcsEventSystemExited`|[`SystemExitStatus`](../SchemaReference.md#SystemExitStatus)|
 |`HcsEventSystemCrashInitiated`|[`CrashReport`](../SchemaReference.md#CrashReport)|
 |`HcsEventSystemCrashReport`|[`CrashReport`](../SchemaReference.md#CrashReport)|
-|`HcsEventSystemSiloJobCreated`|[`SiloJobCreatedNotification`](../SchemaReference.md#SiloJobCreatedNotification)|
 |`HcsEventProcessExited`|[`ProcessStatus`](../SchemaReference.md#ProcessStatus)|
 
 `Operation`
