@@ -64,14 +64,14 @@
 ## [Overview](./hcs/overview.md)
 ## API Reference
 ### [Overview](./hcs/Reference/APIOverview.md)
-### Data types
+### Data Types
 #### [HCS Error Code](./hcs/Reference/HCSHResult.md)
 #### [HCS_OPERATION_TYPE](./hcs/Reference/HCS_OPERATION_TYPE.md)
 #### [HCS_EVENT_TYPE](./hcs/Reference/HCS_EVENT_TYPE.md)
 #### [HCS_EVENT](./hcs/Reference/HCS_EVENT.md)
 #### [HCS_EVENT_OPTIONS](./hcs/Reference/HCS_EVENT_OPTIONS.md)
 #### [HCS_PROCESS_INFORMATION](./hcs/Reference/HCS_PROCESS_INFORMATION.md)
-### Callback function types
+### Callback Function Types
 #### [HCS_OPERATION_COMPLETION](./hcs/Reference/HCS_OPERATION_COMPLETION.md)
 #### [HCS_EVENT_CALLBACK](./hcs/Reference/HCS_EVENT_CALLBACK.md)
 ### Functions
