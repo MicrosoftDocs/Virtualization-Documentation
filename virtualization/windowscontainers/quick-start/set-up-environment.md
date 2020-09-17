@@ -74,9 +74,22 @@ To install Docker on Windows Server, you can use a [OneGet provider PowerShell m
 
 If you want to update Docker later:
 
-- Check the installed version with `Get-Package -Name Docker -ProviderName DockerMsftProvider`
-- Find the current version with `Find-Package -Name Docker -ProviderName DockerMsftProvider`
-- When you're ready, upgrade with `Install-Package -Name Docker -ProviderName DockerMsftProvider -Update -Force`, followed by `Start-Service Docker`
+- Check the installed version with:
+```powershell
+Get-Package -Name Docker -ProviderName DockerMsftProvider
+```
+- Find the current version with:
+```powershell
+Find-Package -Name Docker -ProviderName DockerMsftProvider
+```
+- When you're ready, upgrade with:
+```powershell
+Install-Package -Name Docker -ProviderName DockerMsftProvider -Update -Force
+```
+, followed by 
+```powershell
+Start-Service Docker
+```
 
 # [Windows 10](#tab/Windows-10-Client)
 
