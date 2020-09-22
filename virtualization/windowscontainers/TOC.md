@@ -73,9 +73,9 @@
 
 # Reference
 ## [Base image servicing lifecycles](deploy-containers/base-image-lifecycle.md)
-## [Anti-virus optimization](https://docs.microsoft.com/windows-hardware/drivers/ifs/anti-virus-optimization-for-windows-containers)
+## [Anti-virus optimization](/windows-hardware/drivers/ifs/anti-virus-optimization-for-windows-containers)
 ## [Container platform tools](deploy-containers/containerd.md)
-## [Container OS image EULA](Images_EULA.md)
+## [Container OS image EULA](./images-eula.md)
 
 # Resources
 ## [Known Issues](manage-containers/known-issues.md)

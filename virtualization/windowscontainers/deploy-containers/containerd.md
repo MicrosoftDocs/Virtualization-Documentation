@@ -13,7 +13,7 @@ The Windows container platform is expanding! Docker was the first piece of the c
 
 * [containerd/cri](https://github.com/containerd/cri) - new in Windows Server 2019/Windows 10 1809.
 * [runhcs](https://github.com/Microsoft/hcsshim/tree/master/cmd/runhcs) - a Windows container host counterpart to runc.
-* [hcs](https://docs.microsoft.com/virtualization/api/) - the Host Compute Service + handy shims to make it easier to use.
+* [hcs](/virtualization/api/) - the Host Compute Service + handy shims to make it easier to use.
   * [hcsshim](https://github.com/microsoft/hcsshim)
   * [dotnet-computevirtualization](https://github.com/microsoft/dotnet-computevirtualization)
 

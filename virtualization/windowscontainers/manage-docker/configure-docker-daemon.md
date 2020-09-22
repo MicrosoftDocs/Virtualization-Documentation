@@ -217,7 +217,7 @@ You may also want to remove the Windows optional features associated with Docker
 This includes the "Containers" feature, which is automatically enabled on any Windows 10 or Windows Server 2016 when Docker is installed. It may also include the "Hyper-V" feature, which is automatically enabled on Windows 10 when Docker is installed, but must be explicitly enabled on Windows Server 2016.
 
 >[!IMPORTANT]
->[The Hyper-V feature](https://docs.microsoft.com/virtualization/hyper-v-on-windows/about/) is a general virtualization feature that enables much more than just containers. Before disabling the Hyper-V feature, make sure there are no other virtualized components on your system that require Hyper-V.
+>[The Hyper-V feature](/virtualization/hyper-v-on-windows/about/) is a general virtualization feature that enables much more than just containers. Before disabling the Hyper-V feature, make sure there are no other virtualized components on your system that require Hyper-V.
 
 To remove Windows features on Windows 10:
 

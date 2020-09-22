@@ -24,7 +24,7 @@ When you're orchestrating containers with Group Managed Service Accounts (gMSAs)
 
 Service Fabric supports running Windows containers with a gMSA when you specify the credential spec location in your application manifest. You'll need to create the credential spec file and place in the **CredentialSpecs** subdirectory of the Docker data directory on each host so that Service Fabric can locate it. You can run the **Get-CredentialSpec** cmdlet, part of the [CredentialSpec PowerShell module](https://aka.ms/credspec), to verify if your credential spec is in the correct location.
 
-See [Quickstart: Deploy Windows containers to Service Fabric](https://docs.microsoft.com/azure/service-fabric/service-fabric-quickstart-containers) and [Set up gMSA for Windows containers running on Service Fabric](https://docs.microsoft.com/azure/service-fabric/service-fabric-setup-gmsa-for-windows-containers) for more information about how to configure your application.
+See [Quickstart: Deploy Windows containers to Service Fabric](/azure/service-fabric/service-fabric-quickstart-containers) and [Set up gMSA for Windows containers running on Service Fabric](/azure/service-fabric/service-fabric-setup-gmsa-for-windows-containers) for more information about how to configure your application.
 
 ## How to use gMSA with Docker Swarm
 
