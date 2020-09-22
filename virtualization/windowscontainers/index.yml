@@ -33,11 +33,11 @@ landingContent:
       - linkListType: overview
         links:
           - text: About Windows containers
-            url: /virtualization/windowscontainers/about/
+            url: ./about/index.md
           - text: System requirements
-            url: /virtualization/windowscontainers/deploy-containers/system-requirements
+            url: ./deploy-containers/system-requirements.md
           - text: FAQ
-            url: /virtualization/windowscontainers/about/faq
+            url: ./about/faq.md
 
   # Card
   - title: Get Started
@@ -45,11 +45,11 @@ landingContent:
       - linkListType: get-started
         links:
           - text: Set up your environment
-            url: /virtualization/windowscontainers/quick-start/set-up-environment
+            url: ./quick-start/set-up-environment.md
           - text: Run your first container
-            url: /virtualization/windowscontainers/quick-start/run-your-first-container
+            url: ./quick-start/run-your-first-container.md
           - text: Containerize a sample app
-            url: /virtualization/windowscontainers/quick-start/building-sample-app
+            url: ./quick-start/building-sample-app.md
 
   # Card
   - title: Tutorials
@@ -57,7 +57,7 @@ landingContent:
       - linkListType: tutorial
         links:
           - text: Building a Windows container
-            url: /virtualization/windowscontainers/manage-docker/manage-windows-dockerfile
+            url: ./manage-docker/manage-windows-dockerfile.md
           - text: Run on AKS
             url: /azure/aks/windows-container-cli
           - text: Run on Service Fabric
@@ -71,11 +71,11 @@ landingContent:
       - linkListType: concept
         links:
           - text: Docker
-            url: /virtualization/windowscontainers/manage-docker/configure-docker-daemon
+            url: ./manage-docker/configure-docker-daemon.md
           - text: Container orchestration
-            url: /virtualization/windowscontainers/about/overview-container-orchestrators
+            url: ./about/overview-container-orchestrators.md
           - text: Windows container essentials
-            url: /virtualization/windowscontainers/manage-containers/container-base-images
+            url: ./manage-containers/container-base-images.md
 
   # Card
   - title: Reference
@@ -83,11 +83,11 @@ landingContent:
       - linkListType: reference
         links:
           - text: Version Compatibility
-            url: /virtualization/windowscontainers/deploy-containers/version-compatibility
+            url: ./deploy-containers/version-compatibility.md
           - text: Image servicing lifecycles
-            url: /virtualization/windowscontainers/deploy-containers/base-image-lifecycle
+            url: ./deploy-containers/base-image-lifecycle.md
           - text: Container OS image EULA
-            url: /virtualization/windowscontainers/images-eula
+            url: ./images-eula.md
 
   # Card
   - title: Resources
@@ -95,8 +95,8 @@ landingContent:
       - linkListType: reference
         links:
           - text: Samples
-            url: /virtualization/windowscontainers/samples
+            url: ./samples.md
           - text: Troubleshooting
-            url: /virtualization/windowscontainers/troubleshooting
+            url: ./troubleshooting.md
           - text: Community videos and blogs
-            url: /virtualization/windowscontainers/communitylinks
+            url: ./communitylinks.md

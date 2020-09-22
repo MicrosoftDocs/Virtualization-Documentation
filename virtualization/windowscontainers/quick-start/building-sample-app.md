@@ -127,9 +127,9 @@ With the Dockerfile written, we can point Docker at our Dockerfile and tell it t
 1. The next step is to publish your containerized ASP.NET web app to a private registry using Azure Container Registry. This allows you to deploy it in your org.
 
    > [!div class="nextstepaction"]
-   > [Create a private container registry](https://docs.microsoft.com/azure/container-registry/container-registry-get-started-powershell)
+   > [Create a private container registry](/azure/container-registry/container-registry-get-started-powershell)
 
-   When you get to the section where you [push your container image to the registry](https://docs.microsoft.com/azure/container-registry/container-registry-get-started-powershell#push-image-to-registry), specify the name of the ASP.NET app you just packaged (`my-asp-app`) along with your container registry (for example: `contoso-container-registry`):
+   When you get to the section where you [push your container image to the registry](/azure/container-registry/container-registry-get-started-powershell#push-image-to-registry), specify the name of the ASP.NET app you just packaged (`my-asp-app`) along with your container registry (for example: `contoso-container-registry`):
 
    ```PowerShell
    docker tag my-asp-app contoso-container-registry.azurecr.io/my-asp-app:v1
@@ -140,4 +140,4 @@ With the Dockerfile written, we can point Docker at our Dockerfile and tell it t
 2. Once you've published your app to the container registry, the next step would be to deploy the app to a Kubernetes cluster that you create with Azure Kubernetes Service.
 
    > [!div class="nextstepaction"]
-   > [Create a Kubernetes cluster](https://docs.microsoft.com/azure/aks/windows-container-cli)
+   > [Create a Kubernetes cluster](/azure/aks/windows-container-cli)

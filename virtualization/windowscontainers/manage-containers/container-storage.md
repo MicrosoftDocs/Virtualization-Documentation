@@ -3,6 +3,7 @@ title: Container Storage Overview
 description: How Windows Server Containers can use host & other storage types
 keywords: containers, volume, storage, mount, bindmount
 author: cwilhit
+ms.author: jgerend
 ms.topic: overview
 ---
 
@@ -62,4 +63,4 @@ Or you can change the docker configuration file directly:
 ```
 
 > [!TIP]
-> This method works for docker build, too. See the [configure docker](https://docs.microsoft.com/virtualization/windowscontainers/manage-docker/configure-docker-daemon#configure-docker-with-configuration-file) document for more details on modifying the docker configuration file.
+> This method works for docker build, too. See the [configure docker](../manage-docker/configure-docker-daemon.md#configure-docker-with-a-configuration-file) document for more details on modifying the docker configuration file.

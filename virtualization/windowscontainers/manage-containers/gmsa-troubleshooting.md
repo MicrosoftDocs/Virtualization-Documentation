@@ -3,6 +3,7 @@ title: Troubleshoot gMSAs for Windows containers
 description: How to troubleshoot Group Managed Service Accounts (gMSAs) for Windows containers.
 keywords: docker, containers, active directory, gmsa, group managed service account, group managed service accounts, troubleshooting, troubleshoot
 author: rpsqrd
+ms.author: jgerend
 ms.date: 10/03/2019
 ms.topic: troubleshooting
 ms.assetid: 9e06ad3a-0783-476b-b85c-faff7234809c
@@ -38,7 +39,7 @@ If you're encountering errors when running a container with a gMSA, the followin
 ### Make sure the host can use the gMSA
 
 1. Verify the host is domain joined and can reach the domain controller.
-2. Install the AD PowerShell Tools from RSAT and run [Test-ADServiceAccount](https://docs.microsoft.com/powershell/module/activedirectory/test-adserviceaccount) to see if the computer has access to retrieve the gMSA. If the cmdlet returns **False**, the computer does not have access to the gMSA password.
+2. Install the AD PowerShell Tools from RSAT and run [Test-ADServiceAccount](/powershell/module/activedirectory/test-adserviceaccount) to see if the computer has access to retrieve the gMSA. If the cmdlet returns **False**, the computer does not have access to the gMSA password.
 
     ```powershell
     # To install the AD module on Windows Server, run Install-WindowsFeature RSAT-AD-PowerShell
@@ -118,7 +119,7 @@ If you're using a strict firewall policy on the container or host network, it ma
 | TCP 636 | LDAP SSL |
 
 You may need to allow access to additional ports depending on the type of traffic your container sends to a domain controller.
-See [Active Directory and Active Directory Domain Services port requirements](https://docs.microsoft.com/previous-versions/windows/it-pro/windows-server-2008-R2-and-2008/dd772723(v=ws.10)#communication-to-domain-controllers) for a full list of ports used by Active Directory.
+See [Active Directory and Active Directory Domain Services port requirements](/previous-versions/windows/it-pro/windows-server-2008-R2-and-2008/dd772723(v=ws.10)#communication-to-domain-controllers) for a full list of ports used by Active Directory.
 
 ### Check the container
 

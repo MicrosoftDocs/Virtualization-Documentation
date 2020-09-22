@@ -3,6 +3,7 @@ title: Create gMSAs for Windows containers
 description: How to create Group Managed Service Accounts (gMSAs) for Windows containers.
 keywords: docker, containers, active directory, gmsa, group managed service account, group managed service accounts
 author: rpsqrd
+ms.author: jgerend
 ms.date: 01/03/2019
 ms.topic: how-to
 ms.assetid: 9e06ad3a-0783-476b-b85c-faff7234809c
@@ -13,7 +14,7 @@ Windows-based networks commonly use Active Directory (AD) to facilitate authenti
 
 Although Windows containers cannot be domain joined, they can still use Active Directory domain identities to support various authentication scenarios.
 
-To achieve this, you can configure a Windows container to run with a [group Managed Service Account](https://docs.microsoft.com/windows-server/security/group-managed-service-accounts/group-managed-service-accounts-overview) (gMSA), which is a special type of service account introduced in Windows Server 2012 designed to allow multiple computers to share an identity without needing to know its password.
+To achieve this, you can configure a Windows container to run with a [group Managed Service Account](/windows-server/security/group-managed-service-accounts/group-managed-service-accounts-overview) (gMSA), which is a special type of service account introduced in Windows Server 2012 designed to allow multiple computers to share an identity without needing to know its password.
 
 When you run a container with a gMSA, the container host retrieves the gMSA password from an Active Directory domain controller and gives it to the container instance. The container will use the gMSA credentials whenever its computer account (SYSTEM) needs to access network resources.
 
@@ -23,9 +24,9 @@ This article explains how to start using Active Directory group managed service 
 
 To run a Windows container with a group managed service account, you will need the following:
 
-- An Active Directory domain with at least one domain controller running Windows Server 2012 or later. There are no forest or domain functional level requirements to use gMSAs, but the gMSA passwords can only be distributed by domain controllers running Windows Server 2012 or later. For more information, see [Active Directory requirements for gMSAs](https://docs.microsoft.com/windows-server/security/group-managed-service-accounts/getting-started-with-group-managed-service-accounts#BKMK_gMSA_Req).
+- An Active Directory domain with at least one domain controller running Windows Server 2012 or later. There are no forest or domain functional level requirements to use gMSAs, but the gMSA passwords can only be distributed by domain controllers running Windows Server 2012 or later. For more information, see [Active Directory requirements for gMSAs](/windows-server/security/group-managed-service-accounts/getting-started-with-group-managed-service-accounts#BKMK_gMSA_Req).
 - Permission to create a gMSA account. To create a gMSA account, you'll need to be a Domain Administrator or use an account that has been delegated the *Create msDS-GroupManagedServiceAccount objects* permission.
-- Access to the internet to download the CredentialSpec PowerShell module. If you're working in a disconnected environment, you can [save the module](https://docs.microsoft.com/powershell/module/powershellget/save-module?view=powershell-5.1) on a computer with internet access and copy it to your development machine or container host.
+- Access to the internet to download the CredentialSpec PowerShell module. If you're working in a disconnected environment, you can [save the module](/powershell/module/powershellget/save-module?view=powershell-5.1) on a computer with internet access and copy it to your development machine or container host.
 
 ## One-time preparation of Active Directory
 
@@ -85,7 +86,7 @@ Once you've decided on the name for your gMSA, run the following cmdlets in Powe
 
 > [!TIP]
 > You'll need to use an account that belongs to the **Domain Admins** security group or has been delegated the **Create msDS-GroupManagedServiceAccount objects** permission to run the following commands.
-> The [New-ADServiceAccount](https://docs.microsoft.com/powershell/module/addsadministration/new-adserviceaccount?view=win10-ps) cmdlet is part of the AD PowerShell Tools from [Remote Server Administration Tools](https://aka.ms/rsat).
+> The [New-ADServiceAccount](/powershell/module/addsadministration/new-adserviceaccount?view=win10-ps) cmdlet is part of the AD PowerShell Tools from [Remote Server Administration Tools](/troubleshoot/windows-server/system-management-components/remote-server-administration-tools).
 
 ```powershell
 # Replace 'WebApp01' and 'contoso.com' with your own gMSA and domain names, respectively
@@ -114,7 +115,7 @@ Each container host that will run a Windows container with a gMSA must be domain
 2. Ensure your host belongs to the security group controlling access to the gMSA password.
 3. Restart the computer so it gets its new group membership.
 4. Set up [Docker Desktop for Windows 10](https://docs.docker.com/docker-for-windows/install/) or [Docker for Windows Server](https://docs.docker.com/install/windows/docker-ee/).
-5. (Recommended) Verify the host can use the gMSA account by running [Test-ADServiceAccount](https://docs.microsoft.com/powershell/module/activedirectory/test-adserviceaccount). If the command returns **False**, follow the [troubleshooting instructions](gmsa-troubleshooting.md#make-sure-the-host-can-use-the-gmsa).
+5. (Recommended) Verify the host can use the gMSA account by running [Test-ADServiceAccount](/powershell/module/activedirectory/test-adserviceaccount). If the command returns **False**, follow the [troubleshooting instructions](gmsa-troubleshooting.md#make-sure-the-host-can-use-the-gmsa).
 
     ```powershell
     # To install the AD module on Windows Server, run Install-WindowsFeature RSAT-AD-PowerShell
@@ -188,5 +189,5 @@ If you run into any issues during setup, check our [troubleshooting guide](gmsa-
 
 ## Additional resources
 
-- To learn more about gMSAs, see the [group Managed Service Accounts overview](https://docs.microsoft.com/windows-server/security/group-managed-service-accounts/group-managed-service-accounts-overview).
+- To learn more about gMSAs, see the [group Managed Service Accounts overview](/windows-server/security/group-managed-service-accounts/group-managed-service-accounts-overview).
 - For a video demonstration, watch our [recorded demo](https://youtu.be/cZHPz80I-3s?t=2672) from Ignite 2016.

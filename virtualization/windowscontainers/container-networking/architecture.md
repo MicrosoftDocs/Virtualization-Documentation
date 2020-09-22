@@ -3,6 +3,7 @@ title: Windows container networking
 description: Gentle intro to architecture of Windows container networks.
 keywords: docker, containers
 author: daschott
+ms.author: jgerend
 ms.date: 08/13/2020
 ms.topic: overview
 ms.assetid: 538871ba-d02e-47d3-a3bf-25cda4a40965
@@ -50,7 +51,7 @@ The Host Networking Service (HNS) and the Host Compute Service (HCS) work togeth
 - Default NAT network: HNS creates WinNAT port forwarding rules / mappings with corresponding Windows Firewall ALLOW rules
 - All other networks: HNS utilizes the Virtual Filtering Platform (VFP) for policy creation
     - This includes: load balancing, ACLs, encapsulation, etc.
-    - Look for our HNS APIs and schema published [here](https://docs.microsoft.com/windows-server/networking/technologies/hcn/hcn-top)
+    - Look for our HNS APIs and schema published [here](/windows-server/networking/technologies/hcn/hcn-top)
 
 ![text](media/HNS-Management-Stack.png)
 

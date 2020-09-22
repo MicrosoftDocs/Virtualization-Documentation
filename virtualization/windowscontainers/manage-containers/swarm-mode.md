@@ -3,6 +3,7 @@ title: Getting Started with Swarm Mode
 description: Intializing a swarm cluster, creating an overlay network, and attaching a service to the network.
 keywords: docker, containers, swarm, orchestration
 author: kallie-b
+ms.author: jgerend
 ms.date: 02/9/2017
 ms.topic: how-to
 ms.assetid: 5ceb9626-7c48-4d42-81f8-9c936595ad85
@@ -23,7 +24,7 @@ Worker nodes are orchestrated by Docker swarm via manager nodes. To join a swarm
 
 ## Swarm mode system requirements
 
-At least one physical or virtual computer system (to use the full functionality of swarm at least two nodes is recommended) running either **Windows 10 Creators Update** or **Windows Server 2016** *with all of the latest updates\**, setup as a container host (see the topic, [Windows containers on Windows 10](https://docs.microsoft.com/virtualization/windowscontainers/quick-start/quick-start-windows-10) or [Windows containers on Windows Server](https://docs.microsoft.com/virtualization/windowscontainers/quick-start/quick-start-windows-server) for more details on how to get started with Docker containers on Windows 10).
+At least one physical or virtual computer system (to use the full functionality of swarm at least two nodes is recommended) running either **Windows 10 Creators Update** or **Windows Server 2016** *with all of the latest updates\**, setup as a container host (see the topic, [Windows containers on Windows 10](/virtualization/windowscontainers/quick-start/quick-start-windows-10) or [Windows containers on Windows Server](/virtualization/windowscontainers/quick-start/quick-start-windows-server) for more details on how to get started with Docker containers on Windows 10).
 
 \***Note**: Docker Swarm on Windows Server 2016 requires [KB4015217](https://support.microsoft.com/help/4015217/windows-10-update-kb4015217)
 
@@ -220,7 +221,7 @@ Currently, swarm mode on Windows has the following limitations:
 - [Routing mesh](https://docs.docker.com/engine/swarm/ingress/) for Windows docker hosts is not supported on Windows Server 2016, but only from Windows Server 2019 onwards. Users seeking an alternative load balancing strategy today can setup an external load balancer (e.g. NGINX) and use Swarm’s [publish-port mode](https://docs.docker.com/engine/reference/commandline/service_create/#/publish-service-ports-externally-to-the-swarm--p---publish) to expose container host ports over which to load balance. More detail on this below.
 
  >[!NOTE]
->For more details on how to setup Docker Swarm Routing Mesh, please see this [blog post](https://docs.microsoft.com/virtualization/community/team-blog/2017/20170926-docker-s-routing-mesh-available-with-windows-server-version-1709)
+>For more details on how to setup Docker Swarm Routing Mesh, please see this [blog post](/virtualization/community/team-blog/2017/20170926-docker-s-routing-mesh-available-with-windows-server-version-1709)
 
 ## Publish ports for service endpoints
  Users seeking to publish ports for their service endpoints can do so today using either publish-port mode, or Docker Swarm's [routing mesh](https://docs.docker.com/engine/swarm/ingress/) feature.
@@ -256,6 +257,3 @@ Hence, if a container host has only one network adapter it is possible to run in
 There are two ways to get around this issue:
 - *Option 1 - delete existing transparent network:* Before initializing a swarm, ensure there is not an existing transparent network on your container host. Delete transparent networks to ensure there is a free virtual network adapter on your host to be used for overlay network creation.
 - *Option 2 - create an additional (virtual) network adapter on your host:* Instead of removing any transparent network that's on your host you can create an additional network adapter on your host to be used for overlay network creation. To do this, simply create a new external network adapter (using PowerShell or Hyper-V Manager); with the new interface in place, when your swarm is initialized the Host Network Service (HNS) will automatically recognize it on your host and use it to bind the external vSwitch for overlay network creation.
-
-
-
