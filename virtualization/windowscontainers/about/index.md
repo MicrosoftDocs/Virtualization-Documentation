@@ -3,6 +3,7 @@ title: About Windows containers
 description: Containers are a technology for packaging and running apps--including Windows apps--across diverse environments on-premises and in the cloud. This topic discusses how Microsoft, Windows, and Azure help you develop and deploy apps in containers, including using Docker and Azure Kubernetes Service.
 keywords: docker, containers
 author: taylorb-microsoft
+ms.author: jgerend
 ms.date: 10/22/2019
 ms.topic: overview
 ms.assetid: 8e273856-3620-4e58-9d1a-d1e06550448

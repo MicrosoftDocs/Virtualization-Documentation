@@ -3,6 +3,7 @@ title: Devices in Containers on Windows
 description: What device support exists for containers on Windows
 keywords: docker, containers, devices, hardware
 author: cwilhit
+ms.author: jgerend
 ms.topic: how-to
 ---
 
