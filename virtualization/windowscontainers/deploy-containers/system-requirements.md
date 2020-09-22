@@ -29,7 +29,7 @@ If a Windows container host will be run from a Hyper-V virtual machine, and will
 
 ### Memory requirements
 
-Restrictions on available memory to containers can be configured though [resource controls](https://docs.microsoft.com/virtualization/windowscontainers/manage-containers/resource-controls) or by overloading a container host.  The minimum amount of memory required to launch a container and run basic commands (ipconfig, dir, and so on) are listed below.
+Restrictions on available memory to containers can be configured though [resource controls](../manage-containers/resource-controls.md) or by overloading a container host.  The minimum amount of memory required to launch a container and run basic commands (ipconfig, dir, and so on) are listed below.
 
 >[!NOTE]
 >These values don't take into account resource sharing between containers or requirements from the application running in the container.  For example a host with 512MB of free memory can run multiple Server Core containers under Hyper-V isolation because those containers share resources.

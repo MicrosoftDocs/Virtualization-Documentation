@@ -3,6 +3,7 @@ title: About Windows containers
 description: Containers are a technology for packaging and running apps--including Windows apps--across diverse environments on-premises and in the cloud. This topic discusses how Microsoft, Windows, and Azure help you develop and deploy apps in containers, including using Docker and Azure Kubernetes Service.
 keywords: docker, containers
 author: taylorb-microsoft
+ms.author: jgerend
 ms.date: 10/22/2019
 ms.topic: overview
 ms.assetid: 8e273856-3620-4e58-9d1a-d1e06550448
@@ -18,13 +19,13 @@ Containers are a technology for packaging and running Windows and Linux applicat
 Microsoft provides a number of tools and platforms to help you develop and deploy apps in containers:
 
 - <strong>Run Windows-based or Linux-based containers on Windows 10</strong> for development and testing using [Docker Desktop](https://store.docker.com/editions/community/docker-ce-desktop-windows), which makes use of containers functionality built-in to Windows. You can also [run containers natively on Windows Server](../quick-start/set-up-environment.md?tabs=Windows-Server).
-- <strong>Develop, test, publish, and deploy Windows-based containers</strong> using the [powerful container support in Visual Studio](https://docs.microsoft.com/visualstudio/containers/overview) and [Visual Studio Code](https://code.visualstudio.com/docs/azure/docker), which include support for Docker, Docker Compose, Kubernetes, Helm, and other useful technologies.
+- <strong>Develop, test, publish, and deploy Windows-based containers</strong> using the [powerful container support in Visual Studio](/visualstudio/containers/overview) and [Visual Studio Code](https://code.visualstudio.com/docs/azure/docker), which include support for Docker, Docker Compose, Kubernetes, Helm, and other useful technologies.
 - <strong>Publish your apps as container images</strong> to the public DockerHub for others to use, or to a private [Azure Container Registry](https://azure.microsoft.com/services/container-registry/) for your org's own development and deployment, pushing and pulling directly from within Visual Studio and Visual Studio Code.
 - <strong>Deploy containers at scale on Azure</strong> or other clouds:
 
-  - Pull your app (container image) from a container registry, such as the Azure Container Registry, and then deploy and manage it at scale using an orchestrator such as [Azure Kubernetes Service (AKS)](https://docs.microsoft.com/azure/aks/intro-kubernetes) or [Azure Service Fabric](https://docs.microsoft.com/azure/service-fabric/).
+  - Pull your app (container image) from a container registry, such as the Azure Container Registry, and then deploy and manage it at scale using an orchestrator such as [Azure Kubernetes Service (AKS)](/azure/aks/intro-kubernetes) or [Azure Service Fabric](/azure/service-fabric/).
   - Azure Kubernetes Service deploys containers to Azure virtual machines and manages them at scale, whether that's dozens of containers, hundreds, or even thousands. The Azure virtual machines run either a customized Windows Server image (if you're deploying a Windows-based app), or a customized Ubuntu Linux image (if you're deploying a Linux-based app).
-- <strong>Deploy containers on-premises</strong> by using [Azure Stack with the AKS Engine](https://docs.microsoft.com/azure-stack/user/azure-stack-kubernetes-aks-engine-overview) (in preview with Linux containers) or [Azure Stack with OpenShift](https://docs.microsoft.com/azure/virtual-machines/linux/openshift-azure-stack). You can also set up Kubernetes yourself on Windows Server (see [Kubernetes on Windows](../kubernetes/getting-started-kubernetes-windows.md)), and we're working on support for running [Windows containers on RedHat OpenShift Container Platform](https://techcommunity.microsoft.com/t5/Networking-Blog/Managing-Windows-containers-with-Red-Hat-OpenShift-Container/ba-p/339821) as well.
+- <strong>Deploy containers on-premises</strong> by using [Azure Stack with the AKS Engine](/azure-stack/user/azure-stack-kubernetes-aks-engine-overview) (in preview with Linux containers) or [Azure Stack with OpenShift](/azure/virtual-machines/linux/openshift-azure-stack). You can also set up Kubernetes yourself on Windows Server (see [Kubernetes on Windows](../kubernetes/getting-started-kubernetes-windows.md)), and we're working on support for running [Windows containers on RedHat OpenShift Container Platform](https://techcommunity.microsoft.com/t5/Networking-Blog/Managing-Windows-containers-with-Red-Hat-OpenShift-Container/ba-p/339821) as well.
 
 ## How containers work
 
@@ -90,9 +91,9 @@ Container orchestrators were built to help manage containers at scale and in pro
 - Cluster node affinity
 
 There are many different orchestrators that you can use with Windows containers; here are the options Microsoft provides:
-- [Azure Kubernetes Service (AKS)](https://docs.microsoft.com/azure/aks/intro-kubernetes) - use a managed Azure Kubernetes service
-- [Azure Service Fabric](https://docs.microsoft.com/azure/service-fabric/) - use a managed service
-- [Azure Stack with the AKS Engine](https://docs.microsoft.com/azure-stack/user/azure-stack-kubernetes-aks-engine-overview) - use Azure Kubernetes Service on-premises
+- [Azure Kubernetes Service (AKS)](/azure/aks/intro-kubernetes) - use a managed Azure Kubernetes service
+- [Azure Service Fabric](/azure/service-fabric/) - use a managed service
+- [Azure Stack with the AKS Engine](/azure-stack/user/azure-stack-kubernetes-aks-engine-overview) - use Azure Kubernetes Service on-premises
 - [Kubernetes on Windows](../kubernetes/getting-started-kubernetes-windows.md) - set up Kubernetes yourself on Windows
 
 ## Try containers on Windows
@@ -101,4 +102,4 @@ To get started with containers on Windows Server or Windows 10, see the followin
 > [!div class="nextstepaction"]
 > [Get started: Configure Your Environment for Containers](../quick-start/set-up-environment.md)
 
-For help deciding which Azure services are right for your scenario, see [Azure container services](https://azure.microsoft.com/product-categories/containers/) and [Choosing what Azure services to use to host your application](https://docs.microsoft.com/azure/architecture/guide/technology-choices/compute-decision-tree).
+For help deciding which Azure services are right for your scenario, see [Azure container services](https://azure.microsoft.com/product-categories/containers/) and [Choosing what Azure services to use to host your application](/azure/architecture/guide/technology-choices/compute-decision-tree).

@@ -30,7 +30,7 @@ For testing, you can download a copy of [Windows Server 2019 Evaluation](https:/
 To run containers on Windows 10, you need the following:
 
 - One physical computer system running Windows 10 Professional or Enterprise with Anniversary Update (version 1607) or later.
-- [Hyper-V](https://docs.microsoft.com/virtualization/hyper-v-on-windows/reference/hyper-v-requirements) should be enabled.
+- [Hyper-V](/virtualization/hyper-v-on-windows/reference/hyper-v-requirements) should be enabled.
 
 > [!NOTE]
 >  Starting with the Windows 10 October Update 2018, we no longer disallow users from running a Windows container in process-isolation mode on Windows 10 Enterprise or Professional for dev/test purposes. See the [FAQ](../about/faq.md) to learn more.

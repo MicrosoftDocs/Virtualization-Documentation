@@ -3,6 +3,7 @@ title: Container Storage Overview
 description: How Windows Server Containers can use host & other storage types
 keywords: containers, volume, storage, mount, bindmount
 author: cwilhit
+ms.author: jgerend
 ms.topic: overview
 ---
 
@@ -56,10 +57,10 @@ Command line: `docker run --storage-opt "size=50GB" mcr.microsoft.com/windows/se
 Or you can change the docker configuration file directly:
 
 ```Docker Configuration File
-"storage-opt": [
+"storage-opts": [
     "size=50GB"
   ]
 ```
 
 > [!TIP]
-> This method works for docker build, too. See the [configure docker](https://docs.microsoft.com/virtualization/windowscontainers/manage-docker/configure-docker-daemon#configure-docker-with-configuration-file) document for more details on modifying the docker configuration file.
+> This method works for docker build, too. See the [configure docker](../manage-docker/configure-docker-daemon.md#configure-docker-with-a-configuration-file) document for more details on modifying the docker configuration file.
