@@ -81,7 +81,7 @@ For each resource this section provides a mapping between the Docker command lin
 
 ### Memory requirements
 
-Windows containers run some system process in each container typically those which provide per-container functionality like user management, networking etc… and while much of the memory required by these processes is shared amongst containers the memory cap must be high enough to allow for them.  A table is provided in the [system requirements](../deploy-containers/system-requirements.md#memory-requirments) document for each base image type and with and without Hyper-V isolation.
+Windows containers run some system process in each container typically those which provide per-container functionality like user management, networking etc… and while much of the memory required by these processes is shared amongst containers the memory cap must be high enough to allow for them.  A table is provided in the [system requirements](../deploy-containers/system-requirements.md#memory-requirements) document for each base image type and with and without Hyper-V isolation.
 
 ### CPU Shares (without Hyper-V isolation)
 
