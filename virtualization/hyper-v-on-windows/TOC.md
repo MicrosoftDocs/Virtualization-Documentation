@@ -1,31 +1,52 @@
-# [Introduction to Hyper-V](./about/index.md)
-# [Install Hyper-V](quick-start/enable-hyper-v.md)
-# [Make a Virtual Machine](quick-start/quick-create-virtual-machine.md)
-
-# Manage Virtual Machines with Hyper-V
-## [Hyper-V and PowerShell](quick-start/try-hyper-v-powershell.md)
-## [Share devices with VMs](user-guide/enhanced-session-mode.md)
-## [Work with Checkpoints](user-guide/checkpoints.md)
-## [Connect with PowerShell Direct](user-guide/powershell-direct.md)
-## [Create pre-release VMs](user-guide/create-pre-release-vm.md)
-
-# Manage the Hyper-V Hosts
-## [Enable Nested Virtualization](user-guide/nested-virtualization.md)
-## [Build a custom VM Gallery](user-guide/custom-gallery.md)
-## [Set up a NAT network](user-guide/setup-nat-network.md)
-## [Create a virtual switch](quick-start/connect-to-network.md)
-## [Build an integration Service](user-guide/make-integration-service.md)
-## [Port Hyper-V WMI](user-guide/refactor-wmiv1-to-wmiv2.md)
-
-# Reference
-## [Hyper-V Requirements](reference/hyper-v-requirements.md)
-## [Supported Guest Operating Systems](about/supported-guest-os.md)
-## [Hyper-V PowerShell](https://docs.microsoft.com/powershell/module/hyper-v/index?view=win10-ps)
-## [Hyper-V Integration Services](reference/integration-services.md)
-## [Hyper-V Architecture](reference/hyper-v-architecture.md)
-## [Hypervisor Specifications](tlfs/tlfs.md)
-### [Feature Discovery](tlfs/feature-discovery.md)
-## [Hyper-V Backup Approaches](reference/HyperVBackupApproaches.md)
-
-# Community and Support
-## [Hyper-V forums](https://social.technet.microsoft.com/Forums/windowsserver/home?forum=winserverhyperv)
+- name: Introduction to Hyper-V
+  href: ./about/index.md
+- name: Install Hyper-V
+  href: quick-start/enable-hyper-v.md
+- name: Make a Virtual Machine
+  href: quick-start/quick-create-virtual-machine.md
+- name: Manage Virtual Machines with Hyper-V
+  items:
+  - name: Hyper-V and PowerShell
+    href: quick-start/try-hyper-v-powershell.md
+  - name: Share devices with VMs
+    href: user-guide/enhanced-session-mode.md
+  - name: Work with Checkpoints
+    href: user-guide/checkpoints.md
+  - name: Connect with PowerShell Direct
+    href: user-guide/powershell-direct.md
+  - name: Create pre-release VMs
+    href: user-guide/create-pre-release-vm.md
+- name: Manage the Hyper-V Hosts
+  items:
+  - name: Enable Nested Virtualization
+    href: user-guide/nested-virtualization.md
+  - name: Build a custom VM Gallery
+    href: user-guide/custom-gallery.md
+  - name: Set up a NAT network
+    href: user-guide/setup-nat-network.md
+  - name: Create a virtual switch
+    href: quick-start/connect-to-network.md
+  - name: Build an integration Service
+    href: user-guide/make-integration-service.md
+  - name: Port Hyper-V WMI
+    href: user-guide/refactor-wmiv1-to-wmiv2.md
+- name: Reference
+  items:
+  - name: Hyper-V Requirements
+    href: reference/hyper-v-requirements.md
+  - name: Supported Guest Operating Systems
+    href: about/supported-guest-os.md)
+  - name: Hyper-V PowerShell
+    href: https://docs.microsoft.com/powershell/module/hyper-v/index?view=win10-ps
+  - name: Hyper-V Integration Services
+    href: reference/integration-services.md
+  - name: Hyper-V Architecture
+    href: reference/hyper-v-architecture.md
+  - name: Hypervisor Specifications
+    href: tlfs/tlfs.md
+  - name: Hyper-V Backup Approaches
+    href: reference/HyperVBackupApproaches.md
+- name: Community and Support
+  items:
+  - name: Hyper-V forums
+    href: https://social.technet.microsoft.com/Forums/windowsserver/home?forum=winserverhyperv
