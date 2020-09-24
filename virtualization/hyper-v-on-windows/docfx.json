@@ -28,14 +28,16 @@
     "overwrite": [],
     "externalReference": [],
     "globalMetadata": {
+      "extendBreadcrumb": true, 
+      "breadcrumb_path": "toc.json"
       "feedback_system": "GitHub", 
       "feedback_github_repo": "MicrosoftDocs/Virtualization-Documentation", 
       "feedback_product_url": "https://github.com/MicrosoftDocs/Virtualization-Documentation/issues"
     },
     "fileMetadata": {
-      "breadcrumb_path": {
-        "*.md": "toc.yml"
-      }
+        "extendBreadcrumb": {
+            "tlfs/hypercalls/**/*.md": false,      
+        },
     },
     "template": [],
     "dest": "virtualization/hyper-v-on-windows"
