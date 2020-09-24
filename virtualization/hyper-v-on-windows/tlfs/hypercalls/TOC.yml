@@ -1,2 +1,4 @@
+- name: HvCallStartVirtualProcessor
+  href: HvCallStartVirtualProcessor.md
 - name: HvExtCallQueryCapabilities
   href: HvExtCallQueryCapabilities.md
