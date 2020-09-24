@@ -34,11 +34,6 @@
       "feedback_github_repo": "MicrosoftDocs/Virtualization-Documentation", 
       "feedback_product_url": "https://github.com/MicrosoftDocs/Virtualization-Documentation/issues"
     },
-    "fileMetadata": {
-        "extendBreadcrumb": {
-            "tlfs/hypercalls/**/*.md": false,      
-        },
-    },
     "template": [],
     "dest": "virtualization/hyper-v-on-windows"
   }
