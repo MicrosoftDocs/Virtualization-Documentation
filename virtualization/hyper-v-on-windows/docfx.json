@@ -28,7 +28,10 @@
     "overwrite": [],
     "externalReference": [],
     "globalMetadata": {
-      "breadcrumb_path": "/virtualization/toc.yml",
+      "breadcrumb_path": {
+        "tlfs/hypercalls/**/*.md": "/tlfs/hypercalls/toc.yml",
+        "*.md": "toc.yml"
+      }
       "extendBreadcrumb": true, 
       "feedback_system": "GitHub", 
       "feedback_github_repo": "MicrosoftDocs/Virtualization-Documentation", 
