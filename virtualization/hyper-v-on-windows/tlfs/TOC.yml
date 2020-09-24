@@ -2,9 +2,10 @@
   href: tlfs.md
 - name: Feature Discovery
   href: feature-discovery.md
-- name: Hypercall Interface
-  href: hypercall-interface.md
+- name: Hypercalls
 - items:
+    - name: Interface
+    - href: hypercall-interface.md
     - name: Hypercall Reference
     - href: hypercalls/overview.md
 - name: Partition Properties
