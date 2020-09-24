@@ -96,4 +96,4 @@ The hypervisor interface is designed to be endian-neutral (that is, it should be
 
 The document uses a naming convention for pointer types. In particular, a “P” prepended to a defined type indicates a pointer to that type. A “PC” prepended to a defined type indicates a pointer to a constant value of that type.
 
-## FOO3
+## FOO4
