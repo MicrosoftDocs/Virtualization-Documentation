@@ -35,8 +35,6 @@
       "feedback_product_url": "https://github.com/MicrosoftDocs/Virtualization-Documentation/issues"
     },
     "fileMetadata": {
-      "breadcrumb_path": {
-      }
     },
     "template": [],
     "dest": "virtualization/hyper-v-on-windows"
