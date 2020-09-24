@@ -34,8 +34,7 @@
     },
     "fileMetadata": {
       "breadcrumb_path": {
-        "tlfs/hypercalls/**/*.md": "/tlfs/hypercalls/toc.yml",
-        "/**/*.md": "toc.yml"
+        "*.md": "toc.yml"
       }
     },
     "template": [],
