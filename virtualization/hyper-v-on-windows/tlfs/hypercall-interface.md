@@ -241,7 +241,6 @@ Hypercalls are invoked by using a special opcode. Because this opcode differs am
 #define HV_X64_MSR_HYPERCALL 0x40000001
  ```
 
-[!div class="mx-tdBreakAll"]
 | Bits    | Description                                                                        | Attributes      |
 |---------|------------------------------------------------------------------------------------|-----------------|
 | 63:12   | Hypercall GPFN - Indicates the Guest Physical Page Number of the hypercall page    | Read/write    |
@@ -269,3 +268,9 @@ The following is a detailed list of the steps involved in establishing the hyper
 8. The guest creates an executable VA mapping to the hypercall page GPA.
 9. The guest consults CPUID leaf 0x40000003 to determine which hypervisor facilities are available to it.
 After the interface has been established, the guest can initiate a hypercall. To do so, it populates the registers per the hypercall protocol and issues a CALL to the beginning of the hypercall page. The guest should assume the hypercall page performs the equivalent of a near return (0xC3) to return to the caller. As such, the hypercall must be invoked with a valid stack.
+
+## Extended Hypercall Interface
+
+Hypercalls with call codes above 0x8000 are known as extended hypercalls. Extended hypercalls use the same calling convention as normal hypercalls and appear identical from a guest VM’s perspective. Extended hypercalls are internally handled differently within the Hyper-V hypervisor.
+
+Extended hypercall capabilities can be queried with [HvExtCallQueryCapabilities](hypercalls/HvExtCallQueryCapabilities.md).
