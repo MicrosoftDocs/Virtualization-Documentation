@@ -15,3 +15,7 @@ typedef union
     };
 } HV_CRASH_CTL_REG_CONTENTS;
  ```
+
+## See also
+
+ [Partition Crash Enlightenment](../partition-properties.md#Partition-Crash-Enlightenment)
