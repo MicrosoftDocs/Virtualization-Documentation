@@ -43,7 +43,7 @@
   - name: Hyper-V Architecture
     href: reference/hyper-v-architecture.md
   - name: Hypervisor Specifications
-    href: tlfs/tlfs.md
+    href: tlfs/TOC.yml
   - name: Hyper-V Backup Approaches
     href: reference/HyperVBackupApproaches.md
 - name: Community and Support
