@@ -45,7 +45,7 @@ typedef struct
  ```
 
 ## Call Code
-`0x0099`
+`0x0099` (Simple)
 
 ## Input Parameters
 

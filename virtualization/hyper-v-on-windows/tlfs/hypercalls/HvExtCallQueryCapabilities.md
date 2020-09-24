@@ -14,7 +14,7 @@ HvExtCallQueryCapabilities(
  ```
 
 ## Call Code
-`0x8001`
+`0x8001` (Simple)
 
 ## Output Parameters
 
