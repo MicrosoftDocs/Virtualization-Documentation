@@ -36,7 +36,6 @@
     },
     "fileMetadata": {
       "breadcrumb_path": {
-        "virtualization/hyper-v-on-windows/tlfs/hypercalls/**/*.md": "/virtualization/hyper-v-on-windows/tlfs/hypercalls/toc.yml"
       }
     },
     "template": [],
