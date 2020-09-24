@@ -4,5 +4,10 @@
   href: feature-discovery.md
 - name: Hypercall Interface
   href: hypercall-interface.md
+- items:
+    - name: Hypercall Reference
+    - href: hypercalls/overview.md
 - name: Partition Properties
   href: partition-properties.md
+- name: Virtual Processor Properties
+  href: vp-properties.md
