@@ -22,4 +22,4 @@ A guest specifies the location of the overlay page (in GPA space) by writing to 
 |-----------|-----------------|-----------------------------------------------------------------------------|
 | 0         | Enable          | Enables the VP assist page                                                  |
 | 11:1      | RsvdP           | Reserved                                                                    |
-| 63:12     | Page PFN        | Virtual VP Assist PAGe PFN                                                  |
+| 63:12     | Page PFN        | Virtual VP Assist Page PFN                                                  |
