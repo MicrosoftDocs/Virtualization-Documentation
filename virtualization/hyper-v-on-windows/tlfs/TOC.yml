@@ -3,11 +3,11 @@
 - name: Feature Discovery
   href: feature-discovery.md
 - name: Hypercalls
-- items:
-    - name: Interface
-    - href: hypercall-interface.md
-    - name: Hypercall Reference
-    - href: hypercalls/overview.md
+  items:
+  - name: Interface
+    href: hypercall-interface.md
+  - name: Hypercall Reference
+    href: hypercalls/overview.md
 - name: Partition Properties
   href: partition-properties.md
 - name: Virtual Processor Properties
