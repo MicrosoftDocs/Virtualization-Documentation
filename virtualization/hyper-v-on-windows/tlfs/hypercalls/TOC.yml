@@ -1,3 +1,5 @@
+- name: HvCallGetVpIndexFromApicId
+  href: HvCallGetVpIndexFromApicId.md
 - name: HvCallStartVirtualProcessor
   href: HvCallStartVirtualProcessor.md
 - name: HvExtCallQueryCapabilities
