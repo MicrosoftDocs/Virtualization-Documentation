@@ -73,13 +73,6 @@ typedef struct
 | `Cr4`                   | 224        | 8        | Initial CR4                               |
 | `MsrCrPat`              | 232        | 8        | Initial value for the PAT MSR             |
 
-
-## Output Parameters
-
-| Name                    | Offset     | Size     | Information Provided                      |
-|-------------------------|------------|----------|-------------------------------------------|
-| `Capabilities`          | 0          | 8        | Bitmask of supported extended hypercalls  |
-
 ## Return Values
 
 | Status code                         | Error Condition                                       |
