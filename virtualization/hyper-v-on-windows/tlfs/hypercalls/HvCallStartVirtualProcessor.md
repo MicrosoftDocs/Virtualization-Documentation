@@ -8,7 +8,7 @@ This is the only method for starting a VP in a non-zero VTL.
 
  ```c
 HV_STATUS
-HvCallStartVirtualProcessor
+HvCallStartVirtualProcessor(
     _In_ HV_PARTITION_ID PartitionId,
     _In_ HV_VP_INDEX VpIndex,
     _In_ HV_VTL TargetVtl,

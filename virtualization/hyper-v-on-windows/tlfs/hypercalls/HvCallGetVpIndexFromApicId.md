@@ -6,7 +6,7 @@ The HvCallGetVpIndexFromApicId allows the caller to retrieve a VP index for the 
 
  ```c
 HV_STATUS
-HvCallGetVpIndexFromApicId
+HvCallGetVpIndexFromApicId(
     _In_ HV_PARTITION_ID PartitionId,
     _In_ HV_VTL TargetVtl,
     _Inout_ PUINT32 ApicIdCoount,
