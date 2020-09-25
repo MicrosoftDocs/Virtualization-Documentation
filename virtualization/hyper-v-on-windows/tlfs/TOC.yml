@@ -14,3 +14,5 @@
   href: partition-properties.md
 - name: Virtual Processor Properties
   href: vp-properties.md
+- name: Virtual MMU
+  href: virtual-mmu.md

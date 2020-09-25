@@ -5,7 +5,7 @@ The following table lists supported hypercalls by call code.
 | Call Code | Type    | Hypercall                                                                           |
 |-----------|---------|-------------------------------------------------------------------------------------|
 | 0x0001    | Simple  | HvCallSwitchVirtualAddressSpace                                                     |
-| 0x0002    | Simple  | HvCallFlushVirtualAddressSpace                                                      |
+| 0x0002    | Simple  | [HvCallFlushVirtualAddressSpace](HvCallFlushVirtualAddressSpace.md)                 |
 | 0x0003    | Rep     | HvCalFlushVirtualAddressList                                                        |
 | 0x0008    | Simple  | HvCallNotifyLongSpinWait                                                            |
 | 0x000b    | Simple  | HvCallSendSyntheticClusterIpi                                                       |
@@ -16,7 +16,7 @@ The following table lists supported hypercalls by call code.
 | 0x0010    | Simple  | HvCallDisableVpVtl                                                                  |
 | 0x0011    | Simple  | HvCallVtlCall                                                                       |
 | 0x0012    | Simple  | HvCallVtlReturn                                                                     |
-| 0x0013    | Simple  | HvCallFlushVirtualAddressSpaceEx                                                    |
+| 0x0013    | Simple  | [HvCallFlushVirtualAddressSpaceEx](HvCallFlushVirtualAddressSpaceEx.md)             |
 | 0x0014    | Rep     | HvCallFlushVirtualAddressListEx                                                     |
 | 0x0015    | Simple  | HvCallSendSyntheticClusterIpiEx                                                     |
 | 0x005C    | Simple  | HvPostMessage                                                                       |
