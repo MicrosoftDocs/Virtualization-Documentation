@@ -1,5 +1,9 @@
 - name: Overview
   href: overview.md
+- name: HvCallFlushVirtualAddressList
+  href: HvCallFlushVirtualAddressList.md
+- name: HvCallFlushVirtualAddressListEx
+  href: HvCallFlushVirtualAddressListEx.md
 - name: HvCallFlushVirtualAddressSpace
   href: HvCallFlushVirtualAddressSpace.md
 - name: HvCallFlushVirtualAddressSpaceEx
