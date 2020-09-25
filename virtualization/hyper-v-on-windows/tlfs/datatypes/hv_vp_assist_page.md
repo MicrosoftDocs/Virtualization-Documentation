@@ -7,7 +7,8 @@
 ```c
 typedef union
 {
-    struct {
+    struct
+    {
         //
         // APIC assist for optimized EOI processing.
         //
