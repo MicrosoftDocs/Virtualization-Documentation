@@ -7,7 +7,7 @@ Guest software interacts with the hypervisor through a variety of mechanisms. Ma
 - Memory-mapped registers – Used for status and control values.
 - Processor interrupts – Used for asynchronous events, notifications and messages.
 
-In addition to these architecture-specific interfaces, the hypervisor provides a simple procedural interface implemented with [hypercalls](#hypercalls).
+In addition to these architecture-specific interfaces, the hypervisor provides a simple procedural interface implemented with [hypercalls](hypercall-interface.md).
 
 ## Hypervisor Discovery
 Before using any hypervisor interfaces, software should first determine whether it’s running within a virtualized environment. On x64 platforms that conform to this specification, this is done by executing the CPUID instruction with an input (EAX) value of 1. Upon execution, code should check bit 31 of register ECX (the “hypervisor present bit”). If this bit is set, a hypervisor is present. In a non-virtualized environment, the bit will be clear.
