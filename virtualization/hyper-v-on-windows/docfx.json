@@ -35,7 +35,8 @@
       "feedback_product_url": "https://github.com/MicrosoftDocs/Virtualization-Documentation/issues"
     },
     "fileMetadata": {
-      "breadcrumb_path": {    
+      "breadcrumb_path": {
+        "tlfs/hypercalls/**/*.md": "tlfs/hypercalls/toc.yml",          
       }
     },
     "template": [],
