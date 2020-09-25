@@ -38,7 +38,7 @@
       "breadcrumb_path": {
         "tlfs/hypercalls/**/*.md": "tlfs/hypercalls/breadcrumb/toc.yml",          
       },
-      ""extendBreadcrumb": {
+      "extendBreadcrumb": {
         "tlfs/hypercalls/**/*.md": false         
       }
     },
