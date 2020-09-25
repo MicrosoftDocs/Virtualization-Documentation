@@ -7,7 +7,7 @@
   - name: Interface
     href: hypercall-interface.md
   - name: Hypercall Reference
-    href: hypercalls/overview.md
+    href: hypercall-overview.md
 - name: Partition Properties
   href: partition-properties.md
 - name: Virtual Processor Properties
