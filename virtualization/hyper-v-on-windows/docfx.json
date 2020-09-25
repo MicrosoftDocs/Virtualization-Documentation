@@ -36,10 +36,12 @@
     },
     "fileMetadata": {
       "breadcrumb_path": {
-        "tlfs/hypercalls/**/*.md": "tlfs/hypercalls/breadcrumb/toc.yml",          
+        "tlfs/hypercalls/**/*.md": "tlfs/hypercalls/breadcrumb/toc.yml",
+        "tlfs/datatypes/**/*.md": "tlfs/datatypes/breadcrumb/toc.yml"          
       },
       "extendBreadcrumb": {
-        "tlfs/hypercalls/**/*.md": false         
+        "tlfs/hypercalls/**/*.md": false,
+        "tlfs/datatypes/**/*.md": false              
       }
     },
     "template": [],

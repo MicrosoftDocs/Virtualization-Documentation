@@ -1,5 +1,7 @@
 - name: Overview
   href: tlfs.md
+- name: Data Types
+  href: datatypes/overview.md
 - name: Feature Discovery
   href: feature-discovery.md
 - name: Hypercalls
