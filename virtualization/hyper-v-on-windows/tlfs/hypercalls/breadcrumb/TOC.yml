@@ -1,7 +1,7 @@
 - name: Hypervisor Specification
-  tocHref: /virtualization/hyper-v-on-windows/tlfs/hypercalls/
+  tocHref: /
   topicHref: /virtualization/hyper-v-on-windows/tlfs
   items:
   - name: Hypercall Reference
-    tocHref: /virtualization/hyper-v-on-windows/tlfs/hypercalls/
+    tocHref: /
     topicHref: /virtualization/hyper-v-on-windows/tlfs/hypercalls/overview
