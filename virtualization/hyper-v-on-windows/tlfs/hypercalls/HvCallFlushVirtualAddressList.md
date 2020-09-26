@@ -2,7 +2,6 @@
 
 The HvCallFlushVirtualAddressList hypercall invalidates portions of the virtual TLB that belong to a specified address space.
 
-
 ## Interface
 
  ```c

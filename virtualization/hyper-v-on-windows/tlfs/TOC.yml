@@ -16,3 +16,5 @@
   href: vp-properties.md
 - name: Virtual MMU
   href: virtual-mmu.md
+- name: Virtual Interrupt Control
+  href: virtual-interrupts.md
