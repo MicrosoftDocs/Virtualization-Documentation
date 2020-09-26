@@ -6,6 +6,53 @@ The hypervisor provides two simple mechanisms for one partition to communicate w
 
 The hypervisor provides a simple inter-partition communication facility that allows one partition to send a parameterized message to another partition. (Because the message is sent asynchronously, it is said to be posted.) The destination partition may be notified of the arrival of this message through an interrupt.
 
+### Messages
+
+When a message is sent, the hypervisor selects a free message buffer. The set of available message buffers depends on the event that triggered the sending of the message.
+
+The hypervisor marks the message buffer “in use” and fills in the message header with the message type, payload size, and information about the sender. Finally, it fills in the message payload. The contents of the payload depend on the event that triggered the message.
+
+The hypervisor then appends the message buffer to a receiving message queue. The receiving message queue depends on the event that triggered the sending of the message. For all message types, SINTx is either implicit (in the case of intercept messages), explicit (in the case of timer messages) or specified by a port ID (in the case of guest messages). The target virtual processor is either explicitly specified or chosen by the hypervisor when the message is enqueued. Virtual processors whose SynIC or SIM page is disabled will not be considered as potential targets. If no targets are available, the hypervisor terminates the operation and returns an error to the caller.
+
+The hypervisor then determines whether the specified SINTx message slot within the [SIM page](#SIM-Page) for the target virtual processor is empty. If the message type in the message slot is equal to HvMessageTypeNone (that is, zero), the message slot is assumed to be empty. In this case, the hypervisor dequeues the message buffer and copies its contents to the message slot within the SIM page. The hypervisor may copy only the number of payload bytes associated with the message. The hypervisor also attempts to generate an edge-triggered interrupt for the specified SINTx. If the APIC is software disabled or the SINTx is masked, the interrupt is lost. The arrival of this interrupt notifies the guest that a new message has arrived. If the SIM page is disabled or the message slot within the SIM page is not empty, the message remains queued, and no interrupt is generated.
+
+As with any fixed-priority interrupt, the interrupt is not acknowledged by the virtual processor until the PPR (process priority register) is less than the vector specified in the SINTx register and interrupts are not masked by the virtual processor (rFLAGS[IF] is set to 1).
+
+Multiple message buffers with the same SINTx can be queued to a virtual processor. In this case, the hypervisor will deliver the first message (that is, write it to the SIM page) and leave the others queued until one of three events occur:
+
+- Another message buffer is queued.
+- The guest indicates the “end of interrupt” by writing to the APIC’s EOI register.
+- The guest indicates the “end of message” by writing to the SynIC’s [EOM register](#EOM-Register).
+
+In all three cases, the hypervisor will scan one or more message buffer queues and attempt to deliver additional messages. The hypervisor also attempts to generate an edge-triggered interrupt, indicating that a new message has arrived.
+
+#### SIM Page
+
+The SIM page consists of a 16-element array of 256-byte messages (see [HV_MESSAGE](datatypes/HV_MESSAGE.md) data structure). Each array element (also known as a message slot) corresponds to a single synthetic interrupt source (SINTx). A message slot is said to be “empty” if the message type of the message in the slot is equal to HvMessageTypeNone.
+
+The address for the SIM page is specified in the [SIMP register](#SIMP-Register). The address of the SIM page should be unique for each virtual processor. Programming these pages to overlap other instances of the SIEF or SIM pages or any other overlay page (for example, the hypercall page) will result in undefined behavior.
+
+Read and write accesses by a virtual processor to the SIM page behave like read and write accesses to RAM. However, the hypervisor’s SynIC implementation also writes to the pages in response to certain events.
+
+Upon virtual processor creation and reset, the SIM page is cleared to zero.
+
+#### Recommended Message Handling
+
+The SynIC message delivery mechanism is designed to accommodate efficient delivery and receipt of messages within a target partition. It is recommended that the message handling ISR (interrupt service routine) within the target partition perform the following steps:
+
+- Examine the message that was deposited into the SIM message slot.
+- Copy the contents of the message to another location and set the message type within the message slot to HvMessageTypeNone.
+- Indicate the end of interrupt for the vector by writing to the APIC’s EOI register.
+- Perform any actions implied by the message.
+
+#### Message Sources
+
+The classes of events that can trigger the sending of a message are as follows:
+
+- Intercepts: Any intercept in a virtual processor will cause a message to be sent to either the parent partition or a higher VTL.
+- Timers: The timer mechanisms will cause messages to be sent. Associated with each virtual processor are four dedicated timer message buffers, one for each timer. The receiving message queue belongs to SINTx of the virtual processor whose timer triggered the sending of the message.
+- Guest messages: The hypervisor supports message passing as an inter-partition communication mechanism between guests. The interfaces defined in this section allow one guest to send messages to another guest. The message buffers used for messages of this class are taken from the receiver’s per-port pool of guest message buffers.
+
 ### Message Buffers
 
 A message buffer is used internally to the hypervisor to store a message until it is delivered to the recipient. The hypervisor maintains several sets of message buffers.
@@ -26,43 +73,6 @@ Breaking a connection will not affect undelivered (queued) messages. Deletion of
 
 Messages arrive in the order in which they have been successfully posted. If the receiving port is associated with a specific virtual processor, then messages will arrive in the same order in which they were posted. If the receiving port is associated with HV_ANY_VP, then messages are not guaranteed to arrive in any particular order.
 
-### Messages
-
-When a message is sent, the hypervisor selects a free message buffer. The set of available message buffers depends on the event that triggered the sending of the message.
-
-The hypervisor marks the message buffer “in use” and fills in the message header with the message type, payload size, and information about the sender. Finally, it fills in the message payload. The contents of the payload depend on the event that triggered the message.
-
-The hypervisor then appends the message buffer to a receiving message queue. The receiving message queue depends on the event that triggered the sending of the message. For all message types, SINTx is either implicit (in the case of intercept messages), explicit (in the case of timer messages) or specified by a port ID (in the case of guest messages). The target virtual processor is either explicitly specified or chosen by the hypervisor when the message is enqueued. Virtual processors whose SynIC or SIM page is disabled will not be considered as potential targets. If no targets are available, the hypervisor terminates the operation and returns an error to the caller.
-
-The hypervisor then determines whether the specified SINTx message slot within the SIM page for the target virtual processor is empty. If the message type in the message slot is equal to HvMessageTypeNone (that is, zero), the message slot is assumed to be empty. In this case, the hypervisor dequeues the message buffer and copies its contents to the message slot within the SIM page. The hypervisor may copy only the number of payload bytes associated with the message. The hypervisor also attempts to generate an edge-triggered interrupt for the specified SINTx. If the APIC is software disabled or the SINTx is masked, the interrupt is lost. The arrival of this interrupt notifies the guest that a new message has arrived. If the SIM page is disabled or the message slot within the SIM page is not empty, the message remains queued, and no interrupt is generated.
-
-As with any fixed-priority interrupt, the interrupt is not acknowledged by the virtual processor until the PPR (process priority register) is less than the vector specified in the SINTx register and interrupts are not masked by the virtual processor (rFLAGS[IF] is set to 1).
-
-Multiple message buffers with the same SINTx can be queued to a virtual processor. In this case, the hypervisor will deliver the first message (that is, write it to the SIM page) and leave the others queued until one of three events occur:
-
-- Another message buffer is queued.
-- The guest indicates the “end of interrupt” by writing to the APIC’s EOI register.
-- The guest indicates the “end of message” by writing to the SynIC’s EOM register.
-
-In all three cases, the hypervisor will scan one or more message buffer queues and attempt to deliver additional messages. The hypervisor also attempts to generate an edge-triggered interrupt, indicating that a new message has arrived.
-
-#### Recommended Message Handling
-
-The SynIC message delivery mechanism is designed to accommodate efficient delivery and receipt of messages within a target partition. It is recommended that the message handling ISR (interrupt service routine) within the target partition perform the following steps:
-
-- Examine the message that was deposited into the SIM message slot.
-- Copy the contents of the message to another location and set the message type within the message slot to HvMessageTypeNone.
-- Indicate the end of interrupt for the vector by writing to the APIC’s EOI register.
-- Perform any actions implied by the message.
-
-#### Message Sources
-
-The classes of events that can trigger the sending of a message are as follows:
-
-- Intercepts: Any intercept in a virtual processor will cause a message to be sent to either the parent partition or a higher VTL.
-- Timers: The timer mechanisms will cause messages to be sent. Associated with each virtual processor are four dedicated timer message buffers, one for each timer. The receiving message queue belongs to SINTx of the virtual processor whose timer triggered the sending of the message.
-- Guest messages: The hypervisor supports message passing as an inter-partition communication mechanism between guests. The interfaces defined in this section allow one guest to send messages to another guest. The message buffers used for messages of this class are taken from the receiver’s per-port pool of guest message buffers.
-
 ## SynIC Event Flags
 
 In addition to messages, the SynIC supports a second type of cross-partition notification mechanism called event flags. Event flags may be set explicitly using the HvCallSignalEvent hypercall or implicitly by the hypervisor.
@@ -73,11 +83,21 @@ Event flags are lighter-weight than messages and are therefore lower overhead. F
 
 ### Event Flag Delivery
 
-When a partition calls HvCallSignalEvent, it specifies an event flag number. The hypervisor responds by atomically setting a bit within the receiving virtual processor’s SIEF page. Virtual processors whose SynIC or SIEF page is disabled will not be considered as potential targets. If no targets are available, the hypervisor terminates the operation and returns an error to the caller.
+When a partition calls HvCallSignalEvent, it specifies an event flag number. The hypervisor responds by atomically setting a bit within the receiving virtual processor’s [SIEF page](#SIEF-Page). Virtual processors whose SynIC or SIEF page is disabled will not be considered as potential targets. If no targets are available, the hypervisor terminates the operation and returns an error to the caller.
 
 If the event flag was previously cleared, the hypervisor attempts to notify the receiving partition that the flag is now set by generating an edge-triggered interrupt. The target virtual processor, along with the target SINTx, is specified as part of a port’s creation. If the SINTx is masked, HvSignalEvent returns HV_STATUS_INVALID_SYNIC_STATE.
 
 As with any fixed-priority external interrupt, the interrupt is not acknowledged by the virtual processor until the process priority register (PPR) is less than the vector specified in the SINTx register and interrupts are not masked by the virtual processor (rFLAGS[IF] is set to 1).
+
+#### SIEF Page
+
+The SIEF page consists of a 16-element array of 256-byte event flags (see [HV_SYNIC_EVENT_FLAGS](datatypes/HV_SYNIC_EVENT_FLAGS.md)). Each array element corresponds to a single synthetic interrupt source (SINTx).
+
+The address for the SIEF page is specified in the [SIEF register](#SIEF-Register). The address of the SIEF page should be unique for each virtual processor. Programming these pages to overlap other instances of the SIEF or SIM pages or any other overlay page (for example, the hypercall page) will result in undefined behavior.
+
+Read and write accesses by a virtual processor to the SIEF page behave like read and write accesses to RAM. However, the hypervisor’s SynIC implementation also writes to the pages in response to certain events.
+
+Upon virtual processor creation and reset, the SIEF page is cleared to zero.
 
 ### Recommended Event Flag Handling
 
