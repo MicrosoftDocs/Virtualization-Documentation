@@ -10,6 +10,12 @@
   href: HvCallFlushVirtualAddressSpaceEx.md
 - name: HvCallGetVpIndexFromApicId
   href: HvCallGetVpIndexFromApicId.md
+- name: HvCallRetargetDeviceInterrupt
+  href: HvCallRetargetDeviceInterrupt.md
+- name: HvCallSendSyntheticClusterIpi
+  href: HvCallSendSyntheticClusterIpi.md
+- name: HvCallSendSyntheticClusterIpiEx
+  href: HvCallSendSyntheticClusterIpiEx.md
 - name: HvCallStartVirtualProcessor
   href: HvCallStartVirtualProcessor.md
 - name: HvExtCallQueryCapabilities

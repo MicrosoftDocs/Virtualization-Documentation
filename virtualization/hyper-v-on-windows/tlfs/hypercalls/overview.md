@@ -8,7 +8,7 @@ The following table lists supported hypercalls by call code.
 | 0x0002    | Simple  | [HvCallFlushVirtualAddressSpace](HvCallFlushVirtualAddressSpace.md)                 |
 | 0x0003    | Rep     | [HvCalFlushVirtualAddressList](HvCalFlushVirtualAddressList.md)                     |
 | 0x0008    | Simple  | HvCallNotifyLongSpinWait                                                            |
-| 0x000b    | Simple  | HvCallSendSyntheticClusterIpi                                                       |
+| 0x000b    | Simple  | [HvCallSendSyntheticClusterIpi](HvCallSendSyntheticClusterIpi.md)                   |
 | 0x000c    | Rep     | HvCallModifyVtlProtectionMask                                                       |
 | 0x000d    | Simple  | HvCallEnablePartitionVtl                                                            |
 | 0x000e    | Simple  | HvCallDisablePartitionVtl                                                           |
@@ -18,11 +18,12 @@ The following table lists supported hypercalls by call code.
 | 0x0012    | Simple  | HvCallVtlReturn                                                                     |
 | 0x0013    | Simple  | [HvCallFlushVirtualAddressSpaceEx](HvCallFlushVirtualAddressSpaceEx.md)             |
 | 0x0014    | Rep     | [HvCalFlushVirtualAddressListEx](HvCalFlushVirtualAddressListEx.md)                 |
-| 0x0015    | Simple  | HvCallSendSyntheticClusterIpiEx                                                     |
+| 0x0015    | Simple  | [HvCallSendSyntheticClusterIpiEx](HvCallSendSyntheticClusterIpiEx.md)               |
 | 0x005C    | Simple  | HvPostMessage                                                                       |
 | 0x0069    | Simple  | HvPostDebugData                                                                     |
 | 0x006A    | Simple  | HvRetrieveDebugData                                                                 |
 | 0x006B    | Simple  | HvResetDebugSession                                                                 |
+| 0x007e    | Simple  | [HvCallRetargetDeviceInterrupt](HvCallRetargetDeviceInterrupt.md)                   |
 | 0x0099    | Simple  | [HvCallStartVirtualProcessor](HvCallStartVirtualProcessor.md)                       |
 | 0x009A    | Rep     | [HvCallGetVpIndexFromApicId](HvCallGetVpIndexFromApicId.md)                         |
 | 0x00AF    | Simple  | HvCallFlushGuestPhysicalAddressSpace                                                |

@@ -2,6 +2,8 @@
 
 The following data structure is used to define the contents of the guest crash enlightenment control register (HV_X64_MSR_CRASH_CTL).
 
+## Syntax
+
  ```c
 typedef union
 {
