@@ -34,3 +34,7 @@ This hypercall will fail if called to enable a VTL that is already enabled for a
 | `TargetVtl`             | 12         | 1        | Specifies the VTL to be enabled by this hypercall. |
 | RsvdZ                   | 13         | 3        |                                           |
 | `VpVtlContext`          | 16         | 224      | Specifies the initial context in which the VP should start upon the first entry to the target VTL. |
+
+## See also
+
+[HV_INITIAL_VP_CONTEXT](../datatypes/HV_INITIAL_VP_CONTEXT.md)
