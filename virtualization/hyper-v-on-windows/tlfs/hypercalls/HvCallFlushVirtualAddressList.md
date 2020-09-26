@@ -6,7 +6,7 @@ The HvCallFlushVirtualAddressList hypercall invalidates portions of the virtual 
 
  ```c
 HV_STATUS
-HvFlushVirtualAddressList(
+HvCallFlushVirtualAddressList(
     _In_ HV_ADDRESS_SPACE_ID AddressSpace,
     _In_ HV_FLUSH_FLAGS Flags,
     _In_ UINT64 ProcessorMask,

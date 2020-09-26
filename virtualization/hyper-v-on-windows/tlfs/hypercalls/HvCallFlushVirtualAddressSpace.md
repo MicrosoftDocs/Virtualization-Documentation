@@ -6,7 +6,7 @@ The HvCallFlushVirtualAddressSpace hypercall invalidates all virtual TLB entries
 
  ```c
 HV_STATUS
-HvFlushVirtualAddressSpace(
+HvCallFlushVirtualAddressSpace(
     _In_ HV_ADDRESS_SPACE_ID AddressSpace,
     _In_ HV_FLUSH_FLAGS Flags,
     _In_ UINT64 ProcessorMask

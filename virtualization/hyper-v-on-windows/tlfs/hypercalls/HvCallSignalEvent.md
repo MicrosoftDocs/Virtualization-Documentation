@@ -8,7 +8,7 @@ The event is signaled by setting a bit within the SIEF page of one of the receiv
 
  ```c
 HV_STATUS
-HvSignalEvent(
+HvCallSignalEvent(
     _In_ HV_CONNECTION_ID ConnectionId,
     _In_ UINT16 FlagNumber
     );

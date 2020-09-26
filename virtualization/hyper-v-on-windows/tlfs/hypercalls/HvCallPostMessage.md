@@ -6,7 +6,7 @@ The HvCallPostMessage hypercall attempts to post (that is, send asynchronously) 
 
  ```c
 HV_STATUS
-HvPostMessage(
+HvCallPostMessage(
     _In_ HV_CONNECTION_ID ConnectionId,
     _In_ HV_MESSAGE_TYPE MessageType,
     _In_ UINT32 PayloadSize,

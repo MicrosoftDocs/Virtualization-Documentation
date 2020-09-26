@@ -6,7 +6,7 @@ This hypercall sends a virtual fixed interrupt to the specified virtual processo
 
  ```c
 HV_STATUS
-HvSendSyntheticClusterIpi(
+HvCallSendSyntheticClusterIpi(
     _In_ UINT32 Vector,
     _In_ HV_INPUT_VTL TargetVtl,
     _In_ UINT64 ProcessorMask

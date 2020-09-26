@@ -4,7 +4,7 @@ The hypervisor provides two simple mechanisms for one partition to communicate w
 
 ## SynIC Messages
 
-The hypervisor provides a simple inter-partition communication facility that allows one partition to send a parameterized message to another partition. (Because the message is sent asynchronously, it is said to be posted.) The destination partition may be notified of the arrival of this message through an interrupt.
+The hypervisor provides a simple inter-partition communication facility that allows one partition to send a parameterized message to another partition. (Because the message is sent asynchronously, it is said to be posted.) The destination partition may be notified of the arrival of this message through an interrupt. Messages may be sent explicitly using the [HvCallPostMessage](hypercalls/HvCallPostMessage.md) hypercall or implicitly by the hypervisor.
 
 ### Messages
 
@@ -75,7 +75,7 @@ Messages arrive in the order in which they have been successfully posted. If the
 
 ## SynIC Event Flags
 
-In addition to messages, the SynIC supports a second type of cross-partition notification mechanism called event flags. Event flags may be set explicitly using the HvCallSignalEvent hypercall or implicitly by the hypervisor.
+In addition to messages, the SynIC supports a second type of cross-partition notification mechanism called event flags. Event flags may be set explicitly using the [HvCallSignalEvent](hypercalls/HvCallSignalEvent.md) hypercall or implicitly by the hypervisor.
 
 ### Event Flags versus Messages
 

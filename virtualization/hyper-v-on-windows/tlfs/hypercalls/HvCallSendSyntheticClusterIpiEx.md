@@ -10,7 +10,7 @@ The following checks should be used to infer the availability of this hypercall:
 
  ```c
 HV_STATUS
-HvSendSyntheticClusterIpiEx(
+HvCallSendSyntheticClusterIpiEx(
     _In_ UINT32 Vector,
     _In_ HV_INPUT_VTL TargetVtl,
     _In_ HV_VP_SET ProcessorSet

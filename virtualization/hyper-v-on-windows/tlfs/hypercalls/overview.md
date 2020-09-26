@@ -6,7 +6,7 @@ The following table lists supported hypercalls by call code.
 |-----------|---------|-------------------------------------------------------------------------------------|
 | 0x0001    | Simple  | HvCallSwitchVirtualAddressSpace                                                     |
 | 0x0002    | Simple  | [HvCallFlushVirtualAddressSpace](HvCallFlushVirtualAddressSpace.md)                 |
-| 0x0003    | Rep     | [HvCalFlushVirtualAddressList](HvCalFlushVirtualAddressList.md)                     |
+| 0x0003    | Rep     | [HvCallFlushVirtualAddressList](HvCallFlushVirtualAddressList.md)                   |
 | 0x0008    | Simple  | HvCallNotifyLongSpinWait                                                            |
 | 0x000b    | Simple  | [HvCallSendSyntheticClusterIpi](HvCallSendSyntheticClusterIpi.md)                   |
 | 0x000c    | Rep     | HvCallModifyVtlProtectionMask                                                       |
@@ -17,7 +17,7 @@ The following table lists supported hypercalls by call code.
 | 0x0011    | Simple  | HvCallVtlCall                                                                       |
 | 0x0012    | Simple  | HvCallVtlReturn                                                                     |
 | 0x0013    | Simple  | [HvCallFlushVirtualAddressSpaceEx](HvCallFlushVirtualAddressSpaceEx.md)             |
-| 0x0014    | Rep     | [HvCalFlushVirtualAddressListEx](HvCalFlushVirtualAddressListEx.md)                 |
+| 0x0014    | Rep     | [HvCallFlushVirtualAddressListEx](HvCallFlushVirtualAddressListEx.md)               |
 | 0x0015    | Simple  | [HvCallSendSyntheticClusterIpiEx](HvCallSendSyntheticClusterIpiEx.md)               |
 | 0x005C    | Simple  | [HvCallPostMessage](HvCallPostMessage.md)                                           |
 | 0x005D    | Simple  | [HvCallSignalEvent](HvCallSignalEvent.md)                                           |
