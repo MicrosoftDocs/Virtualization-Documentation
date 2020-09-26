@@ -20,3 +20,5 @@
   href: virtual-interrupts.md
 - name: Inter-Partition Communication
   href: inter-partition-communication.md
+- name: Timers
+  href: timers.md
