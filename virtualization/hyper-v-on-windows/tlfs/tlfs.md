@@ -25,6 +25,3 @@ This specification is provided under the Microsoft Open Specification Promise. F
 
 This specification is informal; that is, the interfaces are not specified in a formal language. Nevertheless, it is a goal to be precise. It is also a goal to specify which behaviors are architectural and which are implementation-specific. Callers should not rely on behaviors that fall into the latter category because they may change in future implementations.
 Segments of code and algorithms are presented with a grey background.
-
-## FOO16
-foo 6

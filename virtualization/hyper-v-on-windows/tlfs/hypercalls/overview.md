@@ -19,10 +19,11 @@ The following table lists supported hypercalls by call code.
 | 0x0013    | Simple  | [HvCallFlushVirtualAddressSpaceEx](HvCallFlushVirtualAddressSpaceEx.md)             |
 | 0x0014    | Rep     | [HvCalFlushVirtualAddressListEx](HvCalFlushVirtualAddressListEx.md)                 |
 | 0x0015    | Simple  | [HvCallSendSyntheticClusterIpiEx](HvCallSendSyntheticClusterIpiEx.md)               |
-| 0x005C    | Simple  | HvPostMessage                                                                       |
-| 0x0069    | Simple  | HvPostDebugData                                                                     |
-| 0x006A    | Simple  | HvRetrieveDebugData                                                                 |
-| 0x006B    | Simple  | HvResetDebugSession                                                                 |
+| 0x005C    | Simple  | [HvCallPostMessage](HvCallPostMessage.md)                                           |
+| 0x005D    | Simple  | [HvCallSignalEvent](HvCallSignalEvent.md)                                           |
+| 0x0069    | Simple  | HvCallPostDebugData                                                                 |
+| 0x006A    | Simple  | HvCallRetrieveDebugData                                                             |
+| 0x006B    | Simple  | HvCallResetDebugSession                                                             |
 | 0x007e    | Simple  | [HvCallRetargetDeviceInterrupt](HvCallRetargetDeviceInterrupt.md)                   |
 | 0x0099    | Simple  | [HvCallStartVirtualProcessor](HvCallStartVirtualProcessor.md)                       |
 | 0x009A    | Rep     | [HvCallGetVpIndexFromApicId](HvCallGetVpIndexFromApicId.md)                         |

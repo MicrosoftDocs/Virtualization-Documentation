@@ -17,6 +17,7 @@ HvCallGetVpIndexFromApicId(
  ```
 
 ## Call Code
+
 `0x009A` (Rep)
 
 ## Input Parameters
@@ -41,7 +42,7 @@ HvCallGetVpIndexFromApicId(
 | `VpIndex`               | 0          | 4        | Index of the VP with the specified APIC ID|
 | Padding                 | 4          | 4        |                                           |
 
-# Return Values
+## Return Values
 
 | Status code                         | Error Condition                                       |
 |-------------------------------------|-------------------------------------------------------|
