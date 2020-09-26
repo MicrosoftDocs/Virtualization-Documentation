@@ -2,6 +2,8 @@
 
 The virtualization fault information area contains the current fault code and fault parameters for the VP. It is 16 byte aligned.
 
+## Syntax
+
 ```c
 typedef union
 {

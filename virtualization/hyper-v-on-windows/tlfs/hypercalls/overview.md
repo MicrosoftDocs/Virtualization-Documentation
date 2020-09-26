@@ -7,7 +7,7 @@ The following table lists supported hypercalls by call code.
 | 0x0001    | Simple  | HvCallSwitchVirtualAddressSpace                                                     |
 | 0x0002    | Simple  | [HvCallFlushVirtualAddressSpace](HvCallFlushVirtualAddressSpace.md)                 |
 | 0x0003    | Rep     | [HvCallFlushVirtualAddressList](HvCallFlushVirtualAddressList.md)                   |
-| 0x0008    | Simple  | HvCallNotifyLongSpinWait                                                            |
+| 0x0008    | Simple  | [HvCallNotifyLongSpinWait](HvCallNotifyLongSpinWait.md)                             |
 | 0x000b    | Simple  | [HvCallSendSyntheticClusterIpi](HvCallSendSyntheticClusterIpi.md)                   |
 | 0x000c    | Rep     | HvCallModifyVtlProtectionMask                                                       |
 | 0x000d    | Simple  | HvCallEnablePartitionVtl                                                            |

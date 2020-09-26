@@ -81,7 +81,7 @@ The TscSequence value is used to synchronize access to the enlightened reference
 
 The recommended code for computing the partition reference time using this enlightenment is shown below:
 
-```
+```c
 do
 {
     StartSequence = ReferenceTscPage->TscSequence;
@@ -188,6 +188,10 @@ Note that the Count register is permitted to wrap. Wrapping will have no effect 
 For one-shot timers, it represents the absolute timer expiration time. The timer expires when the reference counter for the partition is equal to or greater than the specified count value.
 
 For periodic timers, the count represents the period of the timer. The first period begins when the synthetic timer is enabled.
+
+### Synthetic Timer Expiration Message
+
+Timer expiration messages are sent when a timer event fires. Refer to the [HV_TIMER_MESSAGE_PAYLOAD](datatypes/HV_TIMER_MESSAGE_PAYLOAD.md) for the definition of the message payload.
 
 ### Synthetic Time-Unhalted Timer MSRs
 
