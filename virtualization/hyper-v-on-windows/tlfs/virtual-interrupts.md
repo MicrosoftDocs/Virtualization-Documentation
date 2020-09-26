@@ -63,3 +63,12 @@ The hypervisor provides accelerated MSR access to high usage memory mapped APIC 
 | 7:0           | TPR value                           | Read / Write                                                |
 
 This MSR is intended to accelerate access to the TPR in 32-bit mode guest partitions. 64-bit mode guest partitions should set the TPR by way of CR8.
+
+### Synthetic Cluster IPI
+
+A hypervisor supports hypercalls which allow to send virtual fixed interrupts to an arbitrary set of virtual processors.
+
+| Hypercall                                                                           | Description                                     |
+|-------------------------------------------------------------------------------------|-------------------------------------------------|
+| [HvCallSendSyntheticClusterIpi](hypercalls/HvCallSendSyntheticClusterIpi.md)      | Sends a virtual fixed interrupt to the specified virtual processor set. |
+| [HvCallSendSyntheticClusterIpiEx](hypercalls/HvCallSendSyntheticClusterIpiEx.md)  | Similar to HvCallSendSyntheticClusterIpi, takes a sparse VP set as input.    |

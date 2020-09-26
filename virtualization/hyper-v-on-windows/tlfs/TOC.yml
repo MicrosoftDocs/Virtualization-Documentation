@@ -18,3 +18,5 @@
   href: virtual-mmu.md
 - name: Virtual Interrupt Control
   href: virtual-interrupts.md
+- name: Inter-Partition Communication
+  href: inter-partition-communication.md
