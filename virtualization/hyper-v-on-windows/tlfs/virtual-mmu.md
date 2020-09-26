@@ -27,8 +27,18 @@ Note that all of these invalidation operations affect only one processor. To inv
 
 ### Virtual TLB Enhancements
 
-In addition to supporting the legacy TLB management mechanisms described earlier, the hypervisor also supports a set of enhancements that enable a guest to manage the virtual TLB more efficiently.
-These enhanced operations can be used interchangeably with legacy TLB management operations. On some systems (those with sufficient virtualization support in hardware), the legacy TLB management instructions may be faster for local or remote (cross-processor) TLB invalidation. Guests who are interested in optimal performance should use the CPUID leaf 0x40000004 to determine which behaviors to implement using hypercalls:
+In addition to supporting the legacy TLB management mechanisms described earlier, the hypervisor also supports a set of enhancements that enable a guest to manage the virtual TLB more efficiently. These enhanced operations can be used interchangeably with legacy TLB management operations.
+
+The hypervisor supports the following hypercalls to invalidate TLBs:
+
+| Hypercall                                                                           | Description                                     |
+|-------------------------------------------------------------------------------------|-------------------------------------------------|
+| [HvCallFlushVirtualAddressSpace](hypercalls/HvCallFlushVirtualAddressSpace.md)      | Invalidates all virtual TLB entries that belong to a specified address space.    |
+| [HvCallFlushVirtualAddressSpaceEx](hypercalls/HvCallFlushVirtualAddressSpaceEx.md)  | Similar to HvCallFlushVirtualAddressSpace, takes a sparse VP set as input.    |
+| [HvCallFlushVirtualAddressList](hypercalls/HvCallFlushVirtualAddressList.md)        | Invalidates a portion of the specified address space.    |
+| [HvCallFlushVirtualAddressListEx](hypercalls/HvCallFlushVirtualAddressListEx.md)    | Similar to HvCallFlushVirtualAddressList, takes a sparse VP set as input.    |
+
+On some systems (those with sufficient virtualization support in hardware), the legacy TLB management instructions may be faster for local or remote (cross-processor) TLB invalidation. Guests who are interested in optimal performance should use the CPUID leaf 0x40000004 to determine which behaviors to implement using hypercalls:
 
 - UseHypercallForAddressSpaceSwitch: If this flag is set, the caller should assume that it’s faster to use HvCallSwitchAddressSpace to switch between address spaces. If this flag is clear, a MOV to CR3 instruction is recommended.
 - UseHypercallForLocalFlush: If this flag is set, the caller should assume that it’s faster to use hypercalls (as opposed to INVLPG or MOV to CR3) to flush one or more pages from the virtual TLB.

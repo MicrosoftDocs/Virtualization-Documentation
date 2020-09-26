@@ -9,7 +9,7 @@ The following checks should be used to infer the availability of this hypercall:
 
  ```c
 HV_STATUS
-HvFlushVirtualAddressSpaceEx((
+HvFlushVirtualAddressSpaceEx(
     _In_ HV_ADDRESS_SPACE_ID AddressSpace,
     _In_ HV_FLUSH_FLAGS Flags,
     _In_ HV_VP_SET ProcessorSet

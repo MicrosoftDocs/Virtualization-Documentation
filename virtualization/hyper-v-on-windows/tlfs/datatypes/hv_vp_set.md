@@ -43,4 +43,4 @@ First, the format is 0, since this is a sparse set. Next, the corresponding bank
 
 Bank 0 sets bits 0 and 5 to specify the VPs within that bank. Therefore, the corresponding element in the BankContents mask is 0x21.
 
-Since bit 1 is not set in ValidBanksMask, there is no corresponding element in BankContents. Bank 2 represents VP indices 128-191. To describe index 130, bit 2 of the corresponding mask is set. Thus, BankContents is: { 0𝑥21,0𝑥04 }.
+Since bit 1 is not set in ValidBanksMask, there is no corresponding element in BankContents. Bank 2 represents VP indices 128-191. To describe index 130, bit 2 of the corresponding mask is set. Thus, BankContents is: { 0x21,0x04 }.
