@@ -131,8 +131,7 @@ Synthetic and virtualized timers generate interrupts at or near their designated
 
 ### Direct Synthetic Timers
 
-“Direct” synthetic timers assert an interrupt upon timer expiration instead of sending a message to a SynIc synthetic interrupt source (see Section 12.1.3 for more about synthetic timers).
-A synthetic timer is set to “direct” mode by setting the “DirectMode” field of the synthetic timer configuration MSRs. The “ApicVector” field controls the interrupt vector that is asserted upon timer expiration.
+“Direct” synthetic timers assert an interrupt upon timer expiration instead of sending a message to a SynIc synthetic interrupt source. A synthetic timer is set to “direct” mode by setting the “DirectMode” field of the synthetic timer configuration MSRs. The “ApicVector” field controls the interrupt vector that is asserted upon timer expiration.
 
 ### Synthetic Timer MSRs
 

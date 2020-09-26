@@ -22,3 +22,5 @@
   href: inter-partition-communication.md
 - name: Timers
   href: timers.md
+- name: Virtual Secure Mode
+  href: vsm.md

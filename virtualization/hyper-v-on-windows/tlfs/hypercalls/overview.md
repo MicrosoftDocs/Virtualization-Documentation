@@ -10,10 +10,8 @@ The following table lists supported hypercalls by call code.
 | 0x0008    | Simple  | [HvCallNotifyLongSpinWait](HvCallNotifyLongSpinWait.md)                             |
 | 0x000b    | Simple  | [HvCallSendSyntheticClusterIpi](HvCallSendSyntheticClusterIpi.md)                   |
 | 0x000c    | Rep     | HvCallModifyVtlProtectionMask                                                       |
-| 0x000d    | Simple  | HvCallEnablePartitionVtl                                                            |
-| 0x000e    | Simple  | HvCallDisablePartitionVtl                                                           |
-| 0x000f    | Simple  | HvCallEnableVpVtl                                                                   |
-| 0x0010    | Simple  | HvCallDisableVpVtl                                                                  |
+| 0x000d    | Simple  | [HvCallEnablePartitionVtl](HvCallEnablePartitionVtl.md)                             |
+| 0x000f    | Simple  | [HvCallEnableVpVtl](HvCallEnableVpVtl.md)                                           |
 | 0x0011    | Simple  | HvCallVtlCall                                                                       |
 | 0x0012    | Simple  | HvCallVtlReturn                                                                     |
 | 0x0013    | Simple  | [HvCallFlushVirtualAddressSpaceEx](HvCallFlushVirtualAddressSpaceEx.md)             |

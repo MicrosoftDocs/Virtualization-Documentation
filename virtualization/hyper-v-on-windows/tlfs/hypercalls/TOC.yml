@@ -1,5 +1,9 @@
 - name: Overview
   href: overview.md
+- name: HvCallEnablePartitionVtl
+  href: HvCallEnablePartitionVtl.md
+- name: HvCallEnableVpVtl
+  href: HvCallEnableVpVtl.md
 - name: HvCallFlushVirtualAddressList
   href: HvCallFlushVirtualAddressList.md
 - name: HvCallFlushVirtualAddressListEx
