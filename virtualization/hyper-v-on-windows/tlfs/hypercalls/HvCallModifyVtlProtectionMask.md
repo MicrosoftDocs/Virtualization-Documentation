@@ -28,7 +28,8 @@ Any attempt to apply VTL protections on non-RAM ranges will fail with HV_STATUS_
 |-------------------------|------------|----------|-------------------------------------------|
 | `TargetPartitionId`     | 0          | 8        | Supplies the partition ID of the partition this request is for. |
 | `MapFlags`              | 8          | 4        | Specifies the new mapping flags to apply. |
-| `TargetVtl`             | 12         | 1        | Specified the target VTL. |
+| `TargetVtl`             | 12         | 1        | Specified the target VTL.                 |
+| RsvdZ                   | 13         | 3        |                                           |
 
 ## Input List Element
 

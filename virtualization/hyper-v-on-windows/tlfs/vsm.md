@@ -343,7 +343,7 @@ These three combine for the following types of memory protection:
 4. Read/write, no execute
 5. Read/write, execute
 
-If “[mode based execution control (MBEC)](#mode-based-execute-control-(mbec))” is enabed, user and kernel mode execute protections can be set seperately.
+If “mode based execution control (MBEC))” is enabed, user and kernel mode execute protections can be set seperately.
 
 Higher VTLs can set the memory protection for a GPA through the [HvCallModifyVtlProtectionMask](hypercalls/HvCallModifyVtlProtectionMask.md) hypercall.
 
@@ -399,3 +399,80 @@ Supervisor-Mode Execution Prevention (SMEP) is a processor feature supported on 
 - If SMEP is not available to the guest OS (whether it be because of hardware capabilities or processor compatibility mode), MBEC operates unaffected.
 - If SMEP is available, and is enabled, MBEC operates unaffected.
 - If SMEP is available, and is disabled, all execute restrictions are governed by the KMX control. Thus, only code marked KMX=1 will be allowed to execute.
+
+## Virtual Processor State Isolation
+
+Virtual processors maintain separate states for each active VTL. However, some of this state is private to a particular VTL, and the remaining state is shared among all VTLs.
+
+State which is preserved per VTL (a.k.a. private state) is saved by the hypervisor across VTL transitions. If a VTL switch is initiated, the hypervisor saves the current private state for the active VTL, and then switches to the private state of the target VTL. Shared state remains active regardless of VTL switches.
+
+### Private State
+
+In general, each VTL has its own control registers, RIP register, RSP register, and MSRs. Below is a list of specific registers and MSRs which are private to each VTL.
+
+Private MSRs:
+
+- SYSENTER_CS, SYSENTER_ESP, SYSENTER_EIP, STAR, LSTAR, CSTAR, SFMASK, EFER, PAT, KERNEL_GSBASE, FS.BASE, GS.BASE, TSC_AUX
+- HV_X64_MSR_HYPERCALL
+- HV_X64_MSR_GUEST_OS_ID
+- HV_X64_MSR_REFERENCE_TSC
+- HV_X64_MSR_APIC_FREQUENCY
+- HV_X64_MSR_EOI
+- HV_X64_MSR_ICR
+- HV_X64_MSR_TPR
+- HV_X64_MSR_APIC_ASSIST_PAGE
+- HV_X64_MSR_NPIEP_CONFIG
+- HV_X64_MSR_SIRBP
+- HV_X64_MSR_SCONTROL
+- HV_X64_MSR_SVERSION
+- HV_X64_MSR_SIEFP
+- HV_X64_MSR_SIMP
+- HV_X64_MSR_EOM
+- HV_X64_MSR_SINT0 – HV_X64_MSR_SINT15
+- HV_X64_MSR_STIMER0_CONFIG – HV_X64_MSR_STIMER3_CONFIG
+- HV_X64_MSR_STIMER0_COUNT – HV_X64_MSR_STIMER3_COUNT
+- Local APIC registers (including CR8/TPR)
+
+Private registers:
+
+- RIP, RSP
+- RFLAGS
+- CR0, CR3, CR4
+- DR7
+- IDTR, GDTR
+- CS, DS, ES, FS, GS, SS, TR, LDTR
+- TSC
+- DR6 (*dependent on processor type. Read HvRegisterVsmCapabilities virtual register to determine shared/private status)
+
+### Shared State
+
+VTLs share state in order to cut down on the overhead of switching contexts. Sharing state also allows some necessary communication between VTLs. Most general purpose and floating point registers are shared, as are most architectural MSRs. Below is the list of specific MSRs and registers that are shared among all VTLs:
+
+Shared MSRs:
+
+- HV_X64_MSR_TSC_FREQUENCY
+- HV_X64_MSR_VP_INDEX
+- HV_X64_MSR_VP_RUNTIME
+- HV_X64_MSR_RESET
+- HV_X64_MSR_TIME_REF_COUNT
+- HV_X64_MSR_GUEST_IDLE
+- HV_X64_MSR_DEBUG_DEVICE_OPTIONS
+- MTRRs
+- MCG_CAP
+- MCG_STATUS
+
+Shared registers:
+
+- Rax, Rbx, Rcx, Rdx, Rsi, Rdi, Rbp
+- CR2
+- R8 – R15
+- DR0 – DR5
+- X87 floating point state
+- XMM state
+- AVX state
+- XCR0 (XFEM)
+- DR6 (*dependent on processor type. Read HvRegisterVsmCapabilities virtual register to determine shared/private status)
+
+### Real Mode
+
+Real mode is not supported for any VTL greater than 0. VTLs greater than 0 can run in 32-bit or 64-bit mode.
