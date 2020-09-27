@@ -520,3 +520,78 @@ In order to prevent a flood of interrupts occurring when this facility is enable
 2. The state is automatically cleared on the next entry to the VTL if the “auto-reset on VTL entry” option is enabled in the HvRegisterVsmVina register.
 
 This allows code running at a secure VTL to just be notified of the first interrupt that is received for a lower VTL. If a secure VTL wishes to be notified of additional interrupts, it can clear the VinaAsserted field of the VP assist page, and it will be notified of the next new interrupt.
+
+## Secure Intercepts
+
+The hypervisor allows a higher VTL to install intercepts for events that take place in the context of a lower VTL. This gives higher VTLs an elevated level of control over lower-VTL resources. Secure intercepts can be used to protect system-critical resources, and prevent attacks from lower-VTLs.
+
+A secure intercept is queued to the higher VTL, and that VTL is made runnable on the VP.
+
+### Secure Intercept Types
+
+| Intercept Type             | Intercept Applies To                                                |
+|----------------------------|---------------------------------------------------------------------|
+| Memory access              | Attempting to access GPA protections established by a higher VTL.   |
+| Control register access    | Attempting to access a set of control registers specified by a higher VTL. |
+
+### Nested Intercepts
+
+Multiple VTLs can install secure intercepts for the same event in a lower VTL. Thus, a hierarchy is established to decide where nested intercepts are notified. The following list is the order of where intercept are notified:
+
+1. Lower VTL
+2. Higher VTL
+
+### Handling Secure Intercepts
+
+Once a VTL has been notified of a secure intercept, it must take action such that the lower VTL can continue.
+The higher VTL can handle the intercept in a number of ways, including: injecting an exception, emulating the access, or providing a proxy to the access. In any case, if the private state of the lower VTL VP needs to be modified, HvCallSetVpRegisters should be used.
+
+### Secure Register Intercepts
+
+A higher VTL can intercept on accesses to certain control registers. This is achieved by setting HvX64RegisterCrInterceptControl using the HvCallSetVpRegisters hypercall. Setting the control bit in HvX64RegisterCrInterceptControl will trigger an intercept for every access of the corresponding control register.
+
+```c
+typedef union
+{
+    UINT64 AsUINT64;
+    struct
+    {
+        UINT64 Cr0Write : 1;
+        UINT64 Cr4Write : 1;
+        UINT64 XCr0Write : 1;
+        UINT64 IA32MiscEnableRead : 1;
+        UINT64 IA32MiscEnableWrite : 1;
+        UINT64 MsrLstarRead : 1;
+        UINT64 MsrLstarWrite : 1;
+        UINT64 MsrStarRead : 1;
+        UINT64 MsrStarWrite : 1;
+        UINT64 MsrCstarRead : 1;
+        UINT64 MsrCstarWrite : 1;
+        UINT64 ApicBaseMsrRead : 1;
+        UINT64 ApicBaseMsrWrite : 1;
+        UINT64 MsrEferRead : 1;
+        UINT64 MsrEferWrite : 1;
+        UINT64 GdtrWrite : 1;
+        UINT64 IdtrWrite : 1;
+        UINT64 LdtrWrite : 1;
+        UINT64 TrWrite : 1;
+        UINT64 MsrSysenterCsWrite : 1;
+        UINT64 MsrSysenterEipWrite : 1;
+        UINT64 MsrSysenterEspWrite : 1;
+        UINT64 MsrSfmaskWrite : 1;
+        UINT64 MsrTscAuxWrite : 1;
+        UINT64 MsrSgxLaunchControlWrite : 1;
+        UINT64 RsvdZ : 39;
+    };
+} HV_REGISTER_CR_INTERCEPT_CONTROL;
+```
+
+#### Mask Registers
+
+To allow for finer control, a subset of control registers also have corresponding mask registers. Mask registers can be used to install intercepts on a subset of the corresponding control registers. Where a mask register is not defined, any access (as defined by HvX64RegisterCrInterceptControl) will trigger an intercept.
+
+The hypervisor supports the following mask registers: HvX64RegisterCrInterceptCr0Mask, HvX64RegisterCrInterceptCr4Mask and HvX64RegisterCrInterceptIa32MiscEnableMask.
+
+## DMA and Devices
+
+Devices effectively have the same privilege level as VTL0. When VSM is enabled, all device-allocated memory is marked as VTL0. Any DMA accesses have the same privileges as VTL0.

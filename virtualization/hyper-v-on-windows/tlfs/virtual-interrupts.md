@@ -72,3 +72,38 @@ A hypervisor supports hypercalls which allow to send virtual fixed interrupts to
 |-------------------------------------------------------------------------------------|-------------------------------------------------|
 | [HvCallSendSyntheticClusterIpi](hypercalls/HvCallSendSyntheticClusterIpi.md)      | Sends a virtual fixed interrupt to the specified virtual processor set. |
 | [HvCallSendSyntheticClusterIpiEx](hypercalls/HvCallSendSyntheticClusterIpiEx.md)  | Similar to HvCallSendSyntheticClusterIpi, takes a sparse VP set as input.    |
+
+### EOI Assist
+
+One field in the [Virtual Processor Assist Page](../vp-properties.md#Virtual-Processor-Assist-Page) is the EOI Assist field. The EOI Assist field resides at offset 0 of the overlay page and is 32-bits in size. The format of the EOI assist field is as follows:
+
+| Bits          | Description                         | Attributes                                                  |
+|---------------|-------------------------------------|-------------------------------------------------------------|
+| 31:1          | RsvdZ                               | Read / Write                                                |
+| 0             | No EOI Required                     | Read / Write                                                |
+
+The guest OS performs an EOI by atomically writing zero to the EOI Assist field of the virtual VP assist page and checking whether the “No EOI required” field was previously zero. If it was, the OS must write to the HV_X64_APIC_EOI MSR thereby triggering an intercept into the hypervisor. The following code is recommended to perform an EOI:
+
+```
+lea rcx, [VirtualApicAssistVa]
+btr [rcx], 0
+jc NoEoiRequired
+
+mov ecx, HV_X64_APIC_EOI
+wrmsr
+
+NoEoiRequired:
+```
+
+The hypervisor sets the “No EOI required” bit when it injects a virtual interrupt if the following conditions are satisfied:
+
+- The virtual interrupt is edge-triggered, and
+- There are no lower priority interrupts pending
+
+If, at a later time, a lower priority interrupt is requested, the hypervisor clears the “No EOI required” such that a subsequent EOI causes an intercept.
+
+In case of nested interrupts, the EOI intercept is avoided only for the highest priority interrupt. This is necessary since no count is maintained for the number of EOIs performed by the OS. Therefore only the first EOI can be avoided and since the first EOI clears the “No EOI Required” bit, the next EOI generates an intercept. However nested interrupts are rare, so this is not a problem in the common case.
+
+Note that devices and/or the I/O APIC (physical or synthetic) need not be notified of an EOI for an edge-triggered interrupt – the hypervisor intercepts such EOIs only to update the virtual APIC state. In some cases, the virtual APIC state can be lazily updated – in such cases, the “NoEoiRequired” bit is set by the hypervisor indicating to the guest that an EOI intercept is not necessary. At a later instant, the hypervisor can derive the state of the local APIC depending on the current value of the “NoEoiRequired” bit.
+
+Enabling and disabling this enlightenment can be done at any time independently of the interrupt activity and the APIC state at that moment. While the enlightenment is enabled, conventional EOIs can still be performed irrespective of the “No EOI required” value but they will not realize the performance benefit of the enlightenment.

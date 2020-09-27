@@ -24,3 +24,5 @@
   href: timers.md
 - name: Virtual Secure Mode
   href: vsm.md
+- name: Nested Virtualization
+  href: nested-virtualization.md
