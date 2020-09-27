@@ -345,6 +345,8 @@ These three combine for the following types of memory protection:
 
 If “[mode based execution control (MBEC)](#mode-based-execute-control-(mbec))” is enabed, user and kernel mode execute protections can be set seperately.
 
+Higher VTLs can set the memory protection for a GPA through the [HvCallModifyVtlProtectionMask](hypercalls/HvCallModifyVtlProtectionMask.md) hypercall.
+
 ### Memory Protection Hierarchy
 
 Memory access permissions can be set by a number of sources for a particular VTL. Each VTL’s permissions can potentially be restricted by a number of other VTLs, as well as by the host partition. The order in which protections are applied is the following:
