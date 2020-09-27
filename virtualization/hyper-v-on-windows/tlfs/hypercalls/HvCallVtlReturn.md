@@ -1,6 +1,6 @@
 # HvCallVtlReturn
 
-HvCallVtlReturn initiates a "[VTL Return](../vsm.md#VTL-Return)" and switches into the next lowest VTL enabled on the VP.
+HvCallVtlReturn initiates a "[VTL Return](../vsm.md#vtl-return)" and switches into the next lowest VTL enabled on the VP.
 
 ## Interface
 

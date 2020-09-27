@@ -545,11 +545,11 @@ Multiple VTLs can install secure intercepts for the same event in a lower VTL. T
 ### Handling Secure Intercepts
 
 Once a VTL has been notified of a secure intercept, it must take action such that the lower VTL can continue.
-The higher VTL can handle the intercept in a number of ways, including: injecting an exception, emulating the access, or providing a proxy to the access. In any case, if the private state of the lower VTL VP needs to be modified, HvCallSetVpRegisters should be used.
+The higher VTL can handle the intercept in a number of ways, including: injecting an exception, emulating the access, or providing a proxy to the access. In any case, if the private state of the lower VTL VP needs to be modified, [HvCallSetVpRegisters](hypercalls/HvCallSetVpRegisters.md) should be used.
 
 ### Secure Register Intercepts
 
-A higher VTL can intercept on accesses to certain control registers. This is achieved by setting HvX64RegisterCrInterceptControl using the HvCallSetVpRegisters hypercall. Setting the control bit in HvX64RegisterCrInterceptControl will trigger an intercept for every access of the corresponding control register.
+A higher VTL can intercept on accesses to certain control registers. This is achieved by setting HvX64RegisterCrInterceptControl using the [HvCallSetVpRegisters](hypercalls/HvCallSetVpRegisters.md) hypercall. Setting the control bit in HvX64RegisterCrInterceptControl will trigger an intercept for every access of the corresponding control register.
 
 ```c
 typedef union

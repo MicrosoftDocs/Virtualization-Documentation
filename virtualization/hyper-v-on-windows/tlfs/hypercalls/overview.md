@@ -17,6 +17,8 @@ The following table lists supported hypercalls by call code.
 | 0x0013    | Simple  | [HvCallFlushVirtualAddressSpaceEx](HvCallFlushVirtualAddressSpaceEx.md)             |
 | 0x0014    | Rep     | [HvCallFlushVirtualAddressListEx](HvCallFlushVirtualAddressListEx.md)               |
 | 0x0015    | Simple  | [HvCallSendSyntheticClusterIpiEx](HvCallSendSyntheticClusterIpiEx.md)               |
+| 0x0050    | Rep     | [HvCallGetVpRegisters](HvCallGetVpRegisters.md)                                     |
+| 0x0051    | Rep     | [HvCallSetVpRegisters](HvCallSetVpRegisters.md)                                     |
 | 0x005C    | Simple  | [HvCallPostMessage](HvCallPostMessage.md)                                           |
 | 0x005D    | Simple  | [HvCallSignalEvent](HvCallSignalEvent.md)                                           |
 | 0x007e    | Simple  | [HvCallRetargetDeviceInterrupt](HvCallRetargetDeviceInterrupt.md)                   |

@@ -1,6 +1,6 @@
 # HvCallVtlCall
 
-HvCallVtlCall initiates a "[VTL call](../vsm.md#VTL-call)" and switches into the next highest VTL enabled on the VP.
+HvCallVtlCall initiates a "[VTL call](../vsm.md#vtl-call)" and switches into the next highest VTL enabled on the VP.
 
 ## Interface
 

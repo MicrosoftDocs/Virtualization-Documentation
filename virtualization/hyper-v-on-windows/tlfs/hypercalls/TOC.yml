@@ -18,6 +18,8 @@
   href: HvCallFlushVirtualAddressSpaceEx.md
 - name: HvCallGetVpIndexFromApicId
   href: HvCallGetVpIndexFromApicId.md
+- name: HvCallGetVpRegisters
+  href: HvCallGetVpRegisters.md
 - name: HvCallModifyVtlProtectionMask
   href: HvCallModifyVtlProtectionMask.md
 - name: HvCallNotifyLongSpinWait
@@ -30,6 +32,8 @@
   href: HvCallSendSyntheticClusterIpi.md
 - name: HvCallSendSyntheticClusterIpiEx
   href: HvCallSendSyntheticClusterIpiEx.md
+- name: HvCallSetVpRegisters
+  href: HvCallSetVpRegisters.md
 - name: HvCallSignalEvent
   href: HvCallSignalEvent.md
 - name: HvCallStartVirtualProcessor
