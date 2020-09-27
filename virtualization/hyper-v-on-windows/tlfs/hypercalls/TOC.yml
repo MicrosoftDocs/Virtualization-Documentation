@@ -28,5 +28,9 @@
   href: HvCallSignalEvent.md
 - name: HvCallStartVirtualProcessor
   href: HvCallStartVirtualProcessor.md
+- name: HvCallVtlCall
+  href: HvCallVtlCall.md
+- name: HvCallVtlReturn
+  href: HvCallVtlReturn.md
 - name: HvExtCallQueryCapabilities
   href: HvExtCallQueryCapabilities.md

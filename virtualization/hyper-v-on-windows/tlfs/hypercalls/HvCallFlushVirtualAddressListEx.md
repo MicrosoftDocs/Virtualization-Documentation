@@ -1,6 +1,6 @@
 # HvFlushVirtualAddressListEx
 
-The HvFlushVirtualAddressListEx hypercall is similar to [HvCalFlushVirtualAddressList](HvCalFlushVirtualAddressList.md), but can take a variably-sized sparse VP set as an input.
+The HvFlushVirtualAddressListEx hypercall is similar to [HvCallFlushVirtualAddressList](HvCallFlushVirtualAddressList.md), but can take a variably-sized sparse VP set as an input.
 The following checks should be used to infer the availability of this hypercall:
 
 - ExProcessorMasks must be indicated via CPUID leaf 0x40000004.

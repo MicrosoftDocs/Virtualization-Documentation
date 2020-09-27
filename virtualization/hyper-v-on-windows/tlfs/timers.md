@@ -1,7 +1,5 @@
 # Timers
 
-## Timer Services
-
 The hypervisor provides simple timing services. These are based on a constant-rate reference time source (typically the ACPI timer on x64 systems).
 
 The following timer services are provided:

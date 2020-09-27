@@ -25,8 +25,8 @@ HvCallEnablePartitionVtl(
 
 ### Restrictions
 
-1. A launching VTL can always enable a target VTL if the target VTL is lower than the launching VTL.
-2. A launching VTL can enable a higher target VTL if the launching VTL is the highest VTL enabled for the partition that is lower than the target VTL.
+- A launching VTL can always enable a target VTL if the target VTL is lower than the launching VTL.
+- A launching VTL can enable a higher target VTL if the launching VTL is the highest VTL enabled for the partition that is lower than the target VTL.
 
 ## Call Code
 `0x000D` (Simple)
@@ -38,4 +38,4 @@ HvCallEnablePartitionVtl(
 | `TargetPartitionId`     | 0          | 8        | Supplies the partition ID of the partition this request is for. |
 | `TargetVtl`             | 8          | 1        | Specifies the VTL to be enabled by this hypercall. |
 | `Flags`                 | 9          | 1        | Specifies a mask to enable VSM related features.|
-| RxvdZ                   | 10         | 6        |                                           |
+| RsvdZ                   | 10         | 6        |                                           |
