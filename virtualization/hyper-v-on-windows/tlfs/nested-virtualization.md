@@ -26,7 +26,8 @@ The hypervisor exposes an “enlightened VMCS” feature which can be used to co
 The L1 hypervisor may choose to use enlightened VMCSs by writing 1 to the corresponding field in the [Virtual Processor Assist Page](../vp-properties.md#Virtual-Processor-Assist-Page). Another field in the VP assist page controls the currently active enlightened VMCS. Each enlightened VMCS is exactly one page (4 KB) in size and must be initially zeroed. No VMPTRLD instruction must be executed to make an enlightened VMCS active or current.
 
 After the L1 hypervisor performs a VM entry with an enlightened VMCS, the VMCS is considered active on the processor. An enlightened VMCS can only be active on a single processor at the same time. The L1 hypervisor can execute a VMCLEAR instruction to transition an enlightened VMCS from the active to the non-active state. Any VMREAD or VMWRITE instructions while an enlightened VMCS is active is unsupported and can result in unexpected behavior.
-The enlightened VMCS type is defined in section 16.11.2. All non-synthetic fields map to an Intel physical VMCS encoding, which is defined in section 16.11.4.
+
+The [HV_VMX_ENLIGHTENED_VMCS](datatypes/HV_VMX_ENLIGHTENED_VMCS.md) structure defines the layout of the enlightened VMCS. All non-synthetic fields map to an Intel physical VMCS encoding.
 
 ### Feature Discovery
 
@@ -42,13 +43,13 @@ The L0 hypervisor may choose to cache parts of the enlightened VMCS. The enlight
 
 The clean fields enlightenment is controlled via the synthetic “CleanFields” field of the enlightened VMCS. By default, all bits are set such that the L0 hypervisor must reload the corresponding VMCS fields for each nested VM entry.
 
-### Enlightened MSR Bitmap
+## Enlightened MSR Bitmap
 
 On Intel platforms, the L0 hypervisor emulates the VMX “MSR-Bitmap Address” controls that allow virtualization software to control which MSR accesses generate intercepts.
 
 The L1 hypervisor may collaborate with the L0 hypervisor to make MSR accesses more efficient. It can enable enlightened MSR bitmaps by setting the corresponding field in the enlightened VMCS to 1. When enabled, the L0 hypervisor does not monitor the MSR bitmaps for changes. Instead, the L1 hypervisor must invalidate the corresponding clean field after making changes to one of the MSR bitmaps.
 
-### Compatibility with Live Migration
+## Compatibility with Live Migration
 
 Hyper-V has the ability to live migrate a child partition from one host to another host. Live migrations are typically transparent to the child partition. However, in the case of nested virtualization, the L1 hypervisor may need to be aware of migrations.
 
@@ -77,11 +78,11 @@ The specified vector must correspond to a fixed APIC interrupt. TargetVp specifi
 
 ### TSC Emulation
 
-A guest partition may be live migrated between two machines with different TSC frequencies. In those cases, the TscScale value from the [reference TSC page](timers.md#Partition-Reference-Time-Enlightenment) may need to be recomputed.
+A guest partition may be live migrated between two machines with different TSC frequencies. In those cases, the TscScale value from the [reference TSC page](timers.md#partition-reference-time-enlightenment) may need to be recomputed.
 
 The L0 hypervisor optionally emulates all TSC accesses after a migration until the L1 hypervisor has had the opportunity to recompute the TscScale value. The L1 hypervisor can opt into TSC Emulation by writing to the HV_X64_MSR_TSC_EMULATION_CONTROL MSR. If opted in, the L0 hypervisor emulates TSC accesses after a migration takes place.
 
-The L1 hypervisor can query if TSC accesses are currently being emulated using the HV_X64_MSR_TSC_EMULATION_STATUS MSR. For example, the L1 hypervisor could subscribe to [Live Migration notifications](#Live-Migration-Notification) and query the TSC status after it receives the migration interrupt. It can also turn off TSC emulation (after it updates the TscScale value) using this MSR.
+The L1 hypervisor can query if TSC accesses are currently being emulated using the HV_X64_MSR_TSC_EMULATION_STATUS MSR. For example, the L1 hypervisor could subscribe to [Live Migration notifications](#live-migration-notification) and query the TSC status after it receives the migration interrupt. It can also turn off TSC emulation (after it updates the TscScale value) using this MSR.
 
 ```c
 #define HV_X64_MSR_TSC_EMULATION_CONTROL (0x40000107)
@@ -153,6 +154,7 @@ struct
     UINT32 TlbLockCount;
 } VM_PARTITION_ASSIST_PAGE;
 ```
+
 #### Synthetic VM-Exit
 
 If the TlbLockCount of the caller’s partition assist page is non-zero, the L0 hypervisor delivers a VM-Exit with a synthetic exit reason to the L1 hypervisor after handling a direct virtual flush hypercall.
@@ -160,3 +162,23 @@ If the TlbLockCount of the caller’s partition assist page is non-zero, the L0 
 ```c
 #define HV_VMX_SYNTHETIC_EXIT_REASON_TRAP_AFTER_FLUSH 0x10000031
 ```
+
+### Second Level Address Translation
+
+When nested virtualization is enabled for a guest partition, the memory management unit (MMU) exposed by the partition includes support for second level address translation. Second level address translation is a capability that can be used by the L1 hypervisor to virtualize physical memory. When in use, certain addresses that would be treated as guest physical addresses (GPAs) are treated as L2 guest physical addresses (L2 GPAs) and translated to GPAs by traversing a set of paging structures.
+
+The L1 hypervisor can decide how and where to use second level address spaces. Each second level address space is identified by a guest defined 64-bit ID value. On Intel platforms, this value is the same as the address of the EPT PML4 table.
+
+#### Compatibility
+
+On Intel platforms, the second level address translation capability exposed by the hypervisor is generally compatible with VMX support for address translation. However, the following guest-observable differences exist:
+
+- Internally, the hypervisor may use shadow page tables that translate L2 GPAs to SPAs. In such implementations, these shadow page tables appear to software as large TLBs. However, several differences may be observable. First, shadow page tables can be shared between two virtual processors, whereas traditional TLBs are per-processor structures and are independent. This sharing may be visible because a page access by one virtual processor can fill a shadow page table entry that is subsequently used by another virtual processor.
+- Some hypervisor implementations may use internal write protection of guest page tables to lazily flush MMU mappings from internal data structures (for example, shadow page tables). This is architecturally invisible to the guest because writes to these tables will be handled transparently by the hypervisor. However, writes performed to the underlying GPA pages by other partitions or by devices may not trigger the appropriate TLB flush.
+- On some hypervisor implementations, a second level page fault (“EPT violation”) might not invalidate cached mappings.
+
+## Nested Virtualization Exceptions
+
+The L1 hypervisor can opt in to combining virtualization exceptions in the page fault exception class. The L0 hypervisor advertises support for this enlightment in the Hypervisor Nested Virtualization Features CPUID leaf.
+
+This enlightenment can be enabled by setting VirtualizationException to “1” in [HV_NESTED_ENLIGHTENMENTS_CONTROL](datatypes/HV_NESTED_ENLIGHTENMENTS_CONTROL.md) data structure in the Virtual Processor Assist Page.
