@@ -260,5 +260,52 @@ The following table maps the Intel physical VMCS encoding to its corresponding e
 | 0x00006814     | GuestTrBase                 | 8      | HV_VMX_ENLIGHTENED_CLEAN_FIELD_GUEST_GRP2                    |
 | 0x00006816     | GuestGdtrBase               | 8      | HV_VMX_ENLIGHTENED_CLEAN_FIELD_GUEST_GRP2                    |
 | 0x00006818     | GuestIdtrBase               | 8      | HV_VMX_ENLIGHTENED_CLEAN_FIELD_GUEST_GRP2                    |
-| 0x00002010     | TscOffset                   | 8      | V_VMX_ENLIGHTENED_CLEAN_FIELD_CONTROL_GRP2                   |
-| 0x00002012     | VirtualApicPage             | 8      | V_VMX_ENLIGHTENED_CLEAN_FIELD_CONTROL_GRP2                   |
+| 0x00002010     | TscOffset                   | 8      | HV_VMX_ENLIGHTENED_CLEAN_FIELD_CONTROL_GRP2                  |
+| 0x00002012     | VirtualApicPage             | 8      | HV_VMX_ENLIGHTENED_CLEAN_FIELD_CONTROL_GRP2                  |
+| 0x00002800     | GuestWorkingVmcsPtr         | 8      | HV_VMX_ENLIGHTENED_CLEAN_FIELD_GUEST_GRP1                    |
+| 0x00002802     | GuestIa32DebugCtl           | 8      | HV_VMX_ENLIGHTENED_CLEAN_FIELD_GUEST_GRP1                    |
+| 0x00002804     | GuestPat                    | 8      | HV_VMX_ENLIGHTENED_CLEAN_FIELD_GUEST_GRP1                    |
+| 0x00002806     | GuestEfer                   | 8      | HV_VMX_ENLIGHTENED_CLEAN_FIELD_GUEST_GRP1                    |
+| 0x0000280a     | GuestPdpte0                 | 8      | HV_VMX_ENLIGHTENED_CLEAN_FIELD_GUEST_GRP1                    |
+| 0x0000280c     | GuestPdpte1                 | 8      | HV_VMX_ENLIGHTENED_CLEAN_FIELD_GUEST_GRP1                    |
+| 0x0000280e     | GuestPdpte2                 | 8      | HV_VMX_ENLIGHTENED_CLEAN_FIELD_GUEST_GRP1                    |
+| 0x00002810     | GuestPdpte3                 | 8      | HV_VMX_ENLIGHTENED_CLEAN_FIELD_GUEST_GRP1                    |
+| 0x00006822     | GuestPendingDebugExceptions | 8      | HV_VMX_ENLIGHTENED_CLEAN_FIELD_GUEST_GRP1                    |
+| 0x00006824     | GuestSysenterEspMsr         | 8      | HV_VMX_ENLIGHTENED_CLEAN_FIELD_GUEST_GRP1                    |
+| 0x00006826     | GuestSysenterEipMsr         | 8      | HV_VMX_ENLIGHTENED_CLEAN_FIELD_GUEST_GRP1                    |
+| 0x00004826     | GuestSleepState             | 4      | HV_VMX_ENLIGHTENED_CLEAN_FIELD_GUEST_GRP1                    |
+| 0x0000482a     | GuestSysenterCsMsr          | 4      | HV_VMX_ENLIGHTENED_CLEAN_FIELD_GUEST_GRP1                    |
+| 0x00006000     | Cr0GuestHostMask            | 8      | HV_VMX_ENLIGHTENED_CLEAN_FIELD_CRDR                          |
+| 0x00006002     | Cr4GuestHostMask            | 8      | HV_VMX_ENLIGHTENED_CLEAN_FIELD_CRDR                          |
+| 0x00006004     | Cr0ReadShadow               | 8      | HV_VMX_ENLIGHTENED_CLEAN_FIELD_CRDR                          |
+| 0x00006006     | Cr4ReadShadow               | 8      | HV_VMX_ENLIGHTENED_CLEAN_FIELD_CRDR                          |
+| 0x00006800     | GuestCr0                    | 8      | HV_VMX_ENLIGHTENED_CLEAN_FIELD_CRDR                          |
+| 0x00006802     | GuestCr3                    | 8      | HV_VMX_ENLIGHTENED_CLEAN_FIELD_CRDR                          |
+| 0x00006804     | GuestCr4                    | 8      | HV_VMX_ENLIGHTENED_CLEAN_FIELD_CRDR                          |
+| 0x0000681a     | GuestDr7                    | 8      | HV_VMX_ENLIGHTENED_CLEAN_FIELD_CRDR                          |
+| 0x00006c06     | HostFsBase                  | 8      | HV_VMX_ENLIGHTENED_CLEAN_FIELD_HOST_POINTER                  |
+| 0x00006c08     | HostGsBase                  | 8      | HV_VMX_ENLIGHTENED_CLEAN_FIELD_HOST_POINTER                  |
+| 0x00006c0a     | HostTrBase                  | 8      | HV_VMX_ENLIGHTENED_CLEAN_FIELD_HOST_POINTER                  |
+| 0x00006c0c     | HostGdtrBase                | 8      | HV_VMX_ENLIGHTENED_CLEAN_FIELD_HOST_POINTER                  |
+| 0x00006c0e     | HostIdtrBase                | 8      | HV_VMX_ENLIGHTENED_CLEAN_FIELD_HOST_POINTER                  |
+| 0x00006c14     | HostRsp                     | 8      | HV_VMX_ENLIGHTENED_CLEAN_FIELD_HOST_POINTER                  |
+| 0x00000000     | Vpid                        | 2      | HV_VMX_ENLIGHTENED_CLEAN_FIELD_CONTROL_XLAT                  |
+| 0x0000201a     | EptRoot                     | 8      | HV_VMX_ENLIGHTENED_CLEAN_FIELD_CONTROL_XLAT                  |
+| 0x00002812     | GuestBndcfgs                | 8      | HV_VMX_ENLIGHTENED_CLEAN_FIELD_GUEST_GRP1                    |
+| 0x0000202c     | XssExitingBitmap            | 8      | HV_VMX_ENLIGHTENED_CLEAN_FIELD_CONTROL_GRP2                  |
+| 0x0000202e     | EnclsExitingBitmap          | 8      | HV_VMX_ENLIGHTENED_CLEAN_FIELD_CONTROL_GRP2                  |
+| 0x00002400     | ExitEptFaultGpa             | 8      | Read only (no corresponding clean field)                     |
+| 0x00004400     | ExitInstructionError        | 4      | Read only (no corresponding clean field)                     |
+| 0x00004402     | ExitReason                  | 4      | Read only (no corresponding clean field)                     |
+| 0x00004404     | ExitInterruptionInfo        | 4      | Read only (no corresponding clean field)                     |
+| 0x00004406     | ExitExceptionErrorCode      | 4      | Read only (no corresponding clean field)                     |
+| 0x00004408     | ExitIdtVectoringInfo        | 4      | Read only (no corresponding clean field)                     |
+| 0x0000440a     | ExitIdtVectoringErrorCode   | 4      | Read only (no corresponding clean field)                     |
+| 0x0000440c     | ExitInstructionLength       | 4      | Read only (no corresponding clean field)                     |
+| 0x0000440e     | ExitInstructionInfo         | 4      | Read only (no corresponding clean field)                     |
+| 0x00006400     | ExitQualification           | 8      | Read only (no corresponding clean field)                     |
+| 0x00006402     | ExitIoInstructionEcx        | 8      | Read only (no corresponding clean field)                     |
+| 0x00006404     | ExitIoInstructionEsi        | 8      | Read only (no corresponding clean field)                     |
+| 0x00006406     | ExitIoInstructionEdi        | 8      | Read only (no corresponding clean field)                     |
+| 0x00006408     | ExitIoInstructionEip        | 8      | Read only (no corresponding clean field)                     |
+| 0x0000640a     | GuestLinearAddress          | 8      | Read only (no corresponding clean field)                     |
