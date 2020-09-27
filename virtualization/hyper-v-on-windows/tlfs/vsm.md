@@ -327,6 +327,24 @@ To summarize, the steps for calling a code sequence using the hypercall page are
 
 One necessary protection provided by VSM is the ability to isolate memory accesses.
 
+Higher VTLs have a high degree of control over the type of memory access permissible by lower VTLs. There are three basic types of protections that can be specified by a higher VTL for a particular GPA page: Read, Write, and eXecute. These are defined in the following table:
+
+| Name                       | Description                                                         |
+|----------------------------|---------------------------------------------------------------------|
+| Read                       | Controls whether read access is allowed to a memory page            |
+| Write                      | Controls whether write access allowed to a memory page              |
+| Execute                    | Controls whether instruction fetches are allowed for a memory page. |
+
+These three combine for the following types of memory protection:
+
+1. No access
+2. Read-only, no execute
+3. Read-only, execute
+4. Read/write, no execute
+5. Read/write, execute
+
+If “[mode based execution control (MBEC)](#mode-based-execute-control-(mbec))” is enabed, user and kernel mode execute protections can be set seperately.
+
 ### Memory Protection Hierarchy
 
 Memory access permissions can be set by a number of sources for a particular VTL. Each VTL’s permissions can potentially be restricted by a number of other VTLs, as well as by the host partition. The order in which protections are applied is the following:
@@ -341,3 +359,41 @@ A conformant interface is expected to not overlay any non-RAM type over RAM.
 ### Memory Access Violations
 
 If a VP running at a lower VTL attempts to violate a memory protection set by a higher VTL, an intercept is generated. This intercept is received by the higher VTL which set the protection. This allows higher VTLs to deal with the violation on a case-by-case basis. For example, the higher VTL may choose to return a fault, or emulate the access (see 15.13).
+
+### Mode Based Execute Control (MBEC)
+
+When a VTL places a memory restriction on a lower VTL, it may wish to make a distinction between user and kernel mode when granting an “execute” privilege. For example, if code integrity checks were to take place in a higher VTL, the ability to distinguish between user-mode and kernel-mode would mean that a VTL could enforce code integrity for only kernel-mode applications.
+
+Apart from the traditional three memory protections (read, write, execute), MBEC introduces a distinction between user-mode and kernel-mode for execute protections. Thus, if MBEC is enabled, a VTL has the opportunity to set four types of memory protections:
+
+| Name                       | Description                                                         |
+|----------------------------|---------------------------------------------------------------------|
+| Read                       | Controls whether read access is allowed to a memory page            |
+| Write                      | Controls whether write access allowed to a memory page              |
+| User Mode Execute (UMX)    | Controls whether instruction fetches generated in user-mode are allowed for a memory page. NOTE: If MBEC is disabled, this setting is ignored. |
+| Kernel Mode Execute (UMX)  | Controls whether instruction fetches generated in kernel-mode are allowed for a memory page. NOTE: If MBEC is disabled, this setting controls both user-mode and kernel-mode execute accesses. |
+
+Memory marked with the “User-Mode Execute” protections would only be executable when the virtual processor is running in user-mode. Likewise, “Kernel-Mode Execute” memory would only be executable when the virtual processor is running in kernel-mode.
+
+KMX and UMX can be independently set such that execute permissions are enforced differently between user and kernel mode. All combinations of UMX and KMX are supported, except for KMX=1, UMX=0. The behavior of this combination is undefined.
+
+MBEC is disabled by default for all VTLs and virtual processors. When MBEC is disabled, the kernel-mode execute bit determines memory access restriction. Thus, if MBEC is disabled, KMX=1 code is executable in both kernel and user-mode.
+
+#### Descriptor Tables
+
+Any user-mode code that accesses descriptor tables must be in GPA pages marked as KMX=UMX=1. User-mode software accessing descriptor tables from a GPA page marked KMX=0 is unsupported and results in a general protection fault.
+
+#### MBEC configuration
+
+To make use of Mode-based execution control, it must be enabled at two levels:
+
+1. When the VTL is enabled for a partition, MBEC must be enabled using HvCallEnablePartitionVtl
+2. MBEC must be configured on a per-VP and per-VTL basis, using HvRegisterVsmVpSecureVtlConfig.
+
+#### MBEC Interaction with Supervisor Mode Execution Prevention (SMEP)
+
+Supervisor-Mode Execution Prevention (SMEP) is a processor feature supported on some platforms. SMEP can impact the operation of MBEC due to its restriction of supervisor access to memory pages. The hypervisor adheres to the following policies related to SMEP:
+
+- If SMEP is not available to the guest OS (whether it be because of hardware capabilities or processor compatibility mode), MBEC operates unaffected.
+- If SMEP is available, and is enabled, MBEC operates unaffected.
+- If SMEP is available, and is disabled, all execute restrictions are governed by the KMX control. Thus, only code marked KMX=1 will be allowed to execute.
