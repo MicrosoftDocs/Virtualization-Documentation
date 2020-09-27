@@ -77,7 +77,7 @@ The specified vector must correspond to a fixed APIC interrupt. TargetVp specifi
 
 ### TSC Emulation
 
-A guest partition may be live migrated between two machines with different TSC frequencies. In those cases, the TscScale value from the reference TSC page may need to be recomputed.
+A guest partition may be live migrated between two machines with different TSC frequencies. In those cases, the TscScale value from the [reference TSC page](timers.md#Partition-Reference-Time-Enlightenment) may need to be recomputed.
 
 The L0 hypervisor optionally emulates all TSC accesses after a migration until the L1 hypervisor has had the opportunity to recompute the TscScale value. The L1 hypervisor can opt into TSC Emulation by writing to the HV_X64_MSR_TSC_EMULATION_CONTROL MSR. If opted in, the L0 hypervisor emulates TSC accesses after a migration takes place.
 
