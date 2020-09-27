@@ -298,7 +298,7 @@ This field can be set with bit 0 of the VTL return input. If it is set to 0, the
 
 ## Hypercall Page Assist
 
-The hypervisor provides mechanisms to assist with VTL calls and returns via the [hypercall page](hypercall-interface.md/#Establishing-the-Hypercall-Interface). This page abstracts the specific code sequence required to switch VTLs.
+The hypervisor provides mechanisms to assist with VTL calls and returns via the [hypercall page](hypercall-interface.md#Establishing-the-Hypercall-Interface). This page abstracts the specific code sequence required to switch VTLs.
 
 The code sequences to execute VTL calls and returns may be accessed by executing specific instructions in the hypercall page. The call/return chunks are located at an offset in the hypercall page determined by the HvRegisterVsmCodePageOffset virtual register. This is a read-only and partition-wide register, with a separate instance per-VTL.
 
@@ -322,3 +322,22 @@ To summarize, the steps for calling a code sequence using the hypercall page are
 1. Map the hypercall page into a VTL’s GPA space
 2. Determine the correct offset for the code sequence (VTL call or return).
 3. Execute the code sequence using CALL.
+
+## Memory Access Protections
+
+One necessary protection provided by VSM is the ability to isolate memory accesses.
+
+### Memory Protection Hierarchy
+
+Memory access permissions can be set by a number of sources for a particular VTL. Each VTL’s permissions can potentially be restricted by a number of other VTLs, as well as by the host partition. The order in which protections are applied is the following:
+
+1. Memory protections set by the host
+2. Memory protections set by higher VTLs
+
+In other words, VTL protections supersede host protections. Higher-level VTLs supersede lower-level VTLs. Note that a VTL may not set memory access permissions for itself.
+
+A conformant interface is expected to not overlay any non-RAM type over RAM.
+
+### Memory Access Violations
+
+If a VP running at a lower VTL attempts to violate a memory protection set by a higher VTL, an intercept is generated. This intercept is received by the higher VTL which set the protection. This allows higher VTLs to deal with the violation on a case-by-case basis. For example, the higher VTL may choose to return a fault, or emulate the access (see 15.13).
