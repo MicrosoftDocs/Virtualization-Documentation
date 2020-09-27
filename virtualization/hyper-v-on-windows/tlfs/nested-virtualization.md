@@ -193,3 +193,43 @@ The hypervisor supports the following hypercalls to invalidate TLBs:
 The L1 hypervisor can opt in to combining virtualization exceptions in the page fault exception class. The L0 hypervisor advertises support for this enlightment in the Hypervisor Nested Virtualization Features CPUID leaf.
 
 This enlightenment can be enabled by setting VirtualizationException to “1” in [HV_NESTED_ENLIGHTENMENTS_CONTROL](datatypes/HV_NESTED_ENLIGHTENMENTS_CONTROL.md) data structure in the Virtual Processor Assist Page.
+
+## Nested Virtualization MSRs
+
+### Nested VP Index Register
+
+The L1 hypervisor exposes a MSR that reports the current processor's underlying VP index.
+
+| MSR address      | Register Name              | Description                                                                 |
+|------------------|----------------------------|-----------------------------------------------------------------------------|
+| 0x40001002       | HV_X64_MSR_NESTED_VP_INDEX | In a nested root partition, reports the current processor's underlying VP index. |
+
+### Nested SynIC MSRs
+
+In a nested root partition, the following MSRs allow access to the corresponding [SynIC MSRs](inter-partition-communication.md#synic-msrs) of the base hypervisor.
+
+To find the index of the underlying processor, callers should first use HV_X64_MSR_NESTED_VP_INDEX.
+
+| MSR address      | Register Name                 | Underlaying MSR                                              |
+|------------------|-------------------------------|--------------------------------------------------------------|
+| 0x40001080       | HV_X64_MSR_NESTED_SCONTROL    | HV_X64_MSR_SCONTROL                                          |
+| 0x40001081       | HV_X64_MSR_NESTED_SVERSION    | HV_X64_MSR_SVERSION                                          |
+| 0x40001082       | HV_X64_MSR_NESTED_SIEFP       | HV_X64_MSR_SIEFP                                             |
+| 0x40001083       | HV_X64_MSR_NESTED_SIMP        | HV_X64_MSR_SIMP                                              |
+| 0x40001084       | HV_X64_MSR_NESTED_EOM         | HV_X64_MSR_EOM                                               |
+| 0x40001090       | HV_X64_MSR_NESTED_SINT0       | HV_X64_MSR_SINT0                                             |
+| 0x40001091       | HV_X64_MSR_NESTED_SINT1       | HV_X64_MSR_SINT1                                             |
+| 0x40001092       | HV_X64_MSR_NESTED_SINT2       | HV_X64_MSR_SINT2                                             |
+| 0x40001093       | HV_X64_MSR_NESTED_SINT3       | HV_X64_MSR_SINT3                                             |
+| 0x40001094       | HV_X64_MSR_NESTED_SINT4       | HV_X64_MSR_SINT4                                             |
+| 0x40001095       | HV_X64_MSR_NESTED_SINT5       | HV_X64_MSR_SINT5                                             |
+| 0x40001096       | HV_X64_MSR_NESTED_SINT6       | HV_X64_MSR_SINT6                                             |
+| 0x40001097       | HV_X64_MSR_NESTED_SINT7       | HV_X64_MSR_SINT7                                             |
+| 0x40001098       | HV_X64_MSR_NESTED_SINT8       | HV_X64_MSR_SINT8                                             |
+| 0x40001099       | HV_X64_MSR_NESTED_SINT9       | HV_X64_MSR_SINT9                                             |
+| 0x4000109A       | HV_X64_MSR_NESTED_SINT10      | HV_X64_MSR_SINT10                                            |
+| 0x4000109B       | HV_X64_MSR_NESTED_SINT11      | HV_X64_MSR_SINT11                                            |
+| 0x4000109C       | HV_X64_MSR_NESTED_SINT12      | HV_X64_MSR_SINT12                                            |
+| 0x4000109D       | HV_X64_MSR_NESTED_SINT13      | HV_X64_MSR_SINT13                                            |
+| 0x4000109E       | HV_X64_MSR_NESTED_SINT14      | HV_X64_MSR_SINT14                                            |
+| 0x4000109F       | HV_X64_MSR_NESTED_SINT15      | HV_X64_MSR_SINT15                                            |

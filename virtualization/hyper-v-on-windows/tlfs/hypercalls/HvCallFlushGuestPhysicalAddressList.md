@@ -15,8 +15,6 @@ HvCallFlushGuestPhysicalAddressList(
 
 This hypercall can only be used with nested virtualization is active. The virtual TLB invalidation operation acts on all processors.
 
-On Intel platforms, the HvFlushGuestPhysicalAddressSpace hypercall is like the execution of an INVEPT instruction with type “single-context” on all processors.
-
 This call guarantees that by the time control returns to the caller, the observable effects of all flushes have occurred.
 If the TLB is currently “locked”, the caller’s virtual processor is suspended.
 
