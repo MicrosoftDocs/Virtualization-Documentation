@@ -22,8 +22,8 @@ The following table lists supported hypercalls by call code.
 | 0x007e    | Simple  | [HvCallRetargetDeviceInterrupt](HvCallRetargetDeviceInterrupt.md)                   |
 | 0x0099    | Simple  | [HvCallStartVirtualProcessor](HvCallStartVirtualProcessor.md)                       |
 | 0x009A    | Rep     | [HvCallGetVpIndexFromApicId](HvCallGetVpIndexFromApicId.md)                         |
-| 0x00AF    | Simple  | HvCallFlushGuestPhysicalAddressSpace                                                |
-| 0x00B0    | Rep     | HvCallFlushGuestPhysicalAddressList                                                 |
+| 0x00AF    | Simple  | [HvCallFlushGuestPhysicalAddressSpace](HvCallFlushGuestPhysicalAddressSpace.md)     |
+| 0x00B0    | Rep     | [HvCallFlushGuestPhysicalAddressList](HvCallFlushGuestPhysicalAddressList.md)       |
 
 The following table lists supported extended hypercalls by call code.
 

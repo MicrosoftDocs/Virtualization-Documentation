@@ -177,6 +177,17 @@ On Intel platforms, the second level address translation capability exposed by t
 - Some hypervisor implementations may use internal write protection of guest page tables to lazily flush MMU mappings from internal data structures (for example, shadow page tables). This is architecturally invisible to the guest because writes to these tables will be handled transparently by the hypervisor. However, writes performed to the underlying GPA pages by other partitions or by devices may not trigger the appropriate TLB flush.
 - On some hypervisor implementations, a second level page fault (“EPT violation”) might not invalidate cached mappings.
 
+#### Enlightened Second Level TLB Flushes
+
+The hypervisor also supports a set of enhancements that enable a guest to manage the second level TLB more efficiently. These enhanced operations can be used interchangeably with legacy TLB management operations.
+
+The hypervisor supports the following hypercalls to invalidate TLBs:
+
+| Hypercall                                                                           | Description                                     |
+|-------------------------------------------------------------------------------------|-------------------------------------------------|
+| [HvCallFlushGuestPhysicalAddressSpace](hypercalls/HvCallFlushGuestPhysicalAddressSpace.md)      | invalidates cached L2 GPA to GPA mappings within a second level address space.   |
+| [HvCallFlushGuestPhysicalAddressList](hypercalls/HvCallFlushGuestPhysicalAddressList.md)  | invalidates cached GVA / L2 GPA to GPA mappings within a portion of a second level address space.    |
+
 ## Nested Virtualization Exceptions
 
 The L1 hypervisor can opt in to combining virtualization exceptions in the page fault exception class. The L0 hypervisor advertises support for this enlightment in the Hypervisor Nested Virtualization Features CPUID leaf.

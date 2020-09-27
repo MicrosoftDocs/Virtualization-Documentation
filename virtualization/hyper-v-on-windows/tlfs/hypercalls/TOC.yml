@@ -4,6 +4,10 @@
   href: HvCallEnablePartitionVtl.md
 - name: HvCallEnableVpVtl
   href: HvCallEnableVpVtl.md
+- name: HvCallFlushGuestPhysicalAddressList
+  href: HvCallFlushGuestPhysicalAddressList.md
+- name: HvCallFlushGuestPhysicalAddressSpace
+  href: HvCallFlushGuestPhysicalAddressSpace.md
 - name: HvCallFlushVirtualAddressList
   href: HvCallFlushVirtualAddressList.md
 - name: HvCallFlushVirtualAddressListEx
