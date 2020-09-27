@@ -16,7 +16,7 @@
   href: vp-properties.md
 - name: Virtual MMU
   href: virtual-mmu.md
-- name: Virtual Interrupt Control
+- name: Virtual Interrupt Controller
   href: virtual-interrupts.md
 - name: Inter-Partition Communication
   href: inter-partition-communication.md
