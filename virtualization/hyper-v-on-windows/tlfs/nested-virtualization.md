@@ -107,3 +107,56 @@ typedef union
     };
 } HV_TSC_EMULATION_STATUS;
 ```
+
+## Virtual TLB
+
+The virtual TLB exposed by the hypervisor may be extended to cache translations from L2 GPAs to GPAs. As with the TLB on a logical processor, the virtual TLB is a non-coherent cache, and this non-coherence is visible to guests. The hypervisor exposes operations to manage the TLB.
+On Intel platforms, the L0 hypervisor virtualizes the following additional ways to manage the TLB:
+
+- The INVVPID instruction can be used to invalidate cached GVA to GPA or SPA mappings
+- The INVEPT instruction can be used to invalidate cached L2 GPA to GPA mappings
+
+### Direct Virtual Flush
+
+The hypervisor exposes hypercalls ([HvFlushVirtualAddressSpace](hypercalls/HvFlushVirtualAddressSpace.md), [HvFlushVirtualAddressSpaceEx](hypercalls/HvFlushVirtualAddressSpaceEx.md), [HvFlushVirtualAddressList](hypercalls/HvFlushVirtualAddressList.md), and [HvFlushVirtualAddressListEx](hypercalls/HvFlushVirtualAddressListEx.md)) that allow operating systems to more efficiently manage the virtual TLB. The L1 hypervisor can choose to allow its guest to use those hypercalls and delegate the responsibility of handling them to the L0 hypervisor. This requires the use of enlightened VMCSs and of a partition assist page.
+
+When enlightened VMCSs are in use, the virtual TLB tags all cached mappings with an identifier of the enlightened VMCS that created them. In response to a direct virtual flush hypercall from a L2 guest, the L0 hypervisor invalidates all cached mappings created by enlightened VMCSs where
+
+- The VmId is the same as the caller’s VmId
+- Either the VpId is contained in the specified ProcessorMask or HV_FLUSH_ALL_PROCESSORS is specified
+
+#### Configuration
+
+Direct handling of virtual flush hypercalls is enabled by:
+
+1. Setting the NestedEnlightenmentsControl.Features.DirectHypercall field of the [Virtual Processor Assist Page](../vp-properties.md#Virtual-Processor-Assist-Page) to 1.
+2. Setting the EnlightenmentsControl.NestedFlushVirtualHypercall field of an enlightened VMCS to 1.
+
+Before enabling it, the L1 hypervisor must configure the following additional fields of the enlightened VMCS:
+
+- VpId: ID of the virtual processor that the enlightened VMCS controls.
+- VmId: ID of the virtual machine that the enlightened VMCS belongs to.
+- PartitionAssistPage: Guest physical address of the partition assist page.
+
+The L1 hypervisor must also expose the following capabilities to its guests via CPUID.
+
+- UseHypercallForLocalFlush
+- UseHypercallForRemoteFlush
+
+#### Partition Assist Page
+
+The partition assist page is a page-size aligned page-size region of memory that the L1 hypervisor must allocate and zero before direct flush hypercalls can be used. Its GPA must be written to the corresponding field in the enlightened VMCS.
+
+```c
+struct
+{
+    UINT32 TlbLockCount;
+} VM_PARTITION_ASSIST_PAGE;
+```
+#### Synthetic VM-Exit
+
+If the TlbLockCount of the caller’s partition assist page is non-zero, the L0 hypervisor delivers a VM-Exit with a synthetic exit reason to the L1 hypervisor after handling a direct virtual flush hypercall.
+
+```c
+#define HV_VMX_SYNTHETIC_EXIT_REASON_TRAP_AFTER_FLUSH 0x10000031
+```
