@@ -476,3 +476,47 @@ Shared registers:
 ### Real Mode
 
 Real mode is not supported for any VTL greater than 0. VTLs greater than 0 can run in 32-bit or 64-bit mode.
+
+## VTL Interrupt Management
+
+In order to achieve a high level of isolation between Virtual Trust Levels, Virtual Secure Mode provides a separate interrupt subsystem for each VTL enabled on a virtual processor. This ensures that a VTL is able to both send and receive interrupts without interference from a less secure VTL.
+
+Each VTL has its own interrupt controller, which is only active if the virtual processor is running in that particular VTL. If a virtual processor switches VTL states, the interrupt controller active on the processor is also switched.
+
+An interrupt targeted at a VTL which is higher than the active VTL will cause an immediate VTL switch. The higher VTL can then receive the interrupt. If the higher VTL is unable to receive the interrupt because of its TPR/CR8 value, the interrupt is held as “pending” and the VTL does not switch. If there are multiple VTLs with pending interrupts, the highest VTL takes precedence (without notice to the lower VTL).
+
+When an interrupt is targeted at a lower VTL, the interrupt is not delivered until the next time the virtual processor transitions into the targeted VTL. INIT and startup IPIs targeted at a lower VTL are dropped on a virtual processor with a higher VTL enabled. Since INIT/SIPI is blocked, the [HvCallStartVirtualProcessor](hypercalls/HvCallStartVirtualProcessor.md) hypercall should be used to start processors.
+
+### RFLAGS.IF
+
+For the purposes of switching VTLs, RFLAGS.IF does not affect whether a secure interrupt triggers a VTL switch. If RFLAGS.IF is cleared to mask interrupts, interrupts into higher VTLs will still cause a VTL switch to a higher VTL. Only the higher VTL’s TPR/CR8 value is taken into account when deciding whether to immediately interrupt.
+
+This behavior also affects pending interrupts upon a VTL return. If the RFLAGS.IF bit is cleared to mask interrupts in a given VTL, and the VTL returns (to a lower VTL), the hypervisor will reevaluate any pending interrupts. This will cause an immediate call back to the higher VTL.
+
+### Virtual Interrupt Notification Assist
+
+Higher VTLs may register to receive a notification if they are blocking immediate delivery of an interrupt to a lower VTL of the same virtual processor. Higher VTLs can enable Virtual Interrupt Notification Assist (VINA) via a virtual register HvRegisterVsmVina:
+
+```c
+typedef union
+{
+    UINT64 AsUINT64;
+    struct
+    {
+        UINT64 Vector : 8;
+        UINT64 Enabled : 1;
+        UINT64 AutoReset : 1;
+        UINT64 AutoEoi : 1;
+        UINT64 ReservedP : 53;
+    };
+} HV_REGISTER_VSM_VINA;
+```
+
+Each VTL on each VP has its own VINA instance, as well as its own version of HvRegisterVsmVina. The VINA facility will generate an edge triggered interrupt to the currently active higher VTL when an interrupt for the lower VTL is ready for immediate delivery.
+
+In order to prevent a flood of interrupts occurring when this facility is enabled, the VINA facility includes some limited state. When a VINA interrupt is generated, the VINA facility’s state is changed to “Asserted.” Sending an end-of-interrupt to the SINT associated with the VINA facility will not clear the “Asserted” state. The asserted state can only be cleared in one of two ways:
+
+1. The state can manually be cleared by writing to the VinaAsserted field of the [HV_VP_VTL_CONTROL](datatypes/HV_VP_VTL_CONTROL.md) structure.
+2. The state is automatically cleared on the next entry to the VTL if the “auto-reset on VTL entry” option is enabled in the HvRegisterVsmVina register.
+
+This allows code running at a secure VTL to just be notified of the first interrupt that is received for a lower VTL. If a secure VTL wishes to be notified of additional interrupts, it can clear the VinaAsserted field of the VP assist page, and it will be notified of the next new interrupt.
